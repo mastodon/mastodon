@@ -3,34 +3,21 @@ id:
   about:
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
     about_this: Tentang server ini
-    active_count_after: aktif
-    active_footnote: Pengguna Aktif Bulanan (PAB)
     administered_by: 'Dikelola oleh:'
     api: API
     apps: Aplikasi mobile
-    apps_platforms: Gunakan Mastodon dari iOS, Android, dan platform lain
-    browse_public_posts: Jelajahi siaran langsung pos publik di Mastodon
     contact: Kontak
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
-    continue_to_web: Lanjut ke apl web
     documentation: Dokumentasi
-    federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
-    get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
     instance_actor_flash: "Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain. \n"
-    learn_more: Pelajari selengkapnya
-    logged_in_as_html: Anda sedang masuk sebagai %{username}.
-    logout_before_registering: Anda sudah masuk.
     rules: Aturan server
     rules_html: 'Di bawah ini adalah ringkasan aturan yang perlu Anda ikuti jika Anda ingin memiliki akun di server Mastodon ini:'
-    see_whats_happening: Lihat apa yang sedang terjadi
-    server_stats: 'Statistik server:'
     source_code: Kode sumber
     status_count_after:
       other: status
     status_count_before: Yang telah menulis
-    tagline: Jejaring sosial terdesentralisasi
     unavailable_content: Konten tak tersedia
     unavailable_content_description:
       domain: Server
@@ -670,9 +657,6 @@ id:
         closed_message:
           desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
           title: Pesan penutupan pendaftaran
-        deletion:
-          desc_html: Izinkan siapapun untuk menghapus akun miliknya
-          title: Buka penghapusan akun
         require_invite_text:
           desc_html: Saat pendaftaran harus disetujui manual, buat input teks "Mengapa Anda ingin bergabung?" sebagai hal wajib bukan opsional
           title: Pengguna baru harus memasukkan alasan bergabung
@@ -890,10 +874,7 @@ id:
     warning: Hati-hati dengan data ini. Jangan bagikan kepada siapapun!
     your_token: Token akses Anda
   auth:
-    apply_for_account: Meminta undangan
     change_password: Kata sandi
-    checkbox_agreement_html: Saya setuju dengan <a href="%{rules_path}" target="_blank">peraturan server</a> dan <a href="%{terms_path}" target="_blank">ketentuan layanan</a>
-    checkbox_agreement_without_rules_html: Saya setuju dengan <a href="%{terms_path}" target="_blank">ketentuan layanan</a>
     delete_account: Hapus akun
     delete_account_html: Jika Anda ingin menghapus akun Anda, Anda dapat <a href="%{path}">memproses ini</a>. Anda akan dikonfirmasi.
     description:
@@ -933,7 +914,6 @@ id:
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
       view_strikes: Lihat hukuman lalu yang pernah terjadi kepada akun Anda
     too_fast: Formulir dikirim terlalu cepat, coba lagi.
-    trouble_logging_in: Kesulitan masuk?
     use_security_key: Gunakan kunci keamanan
   authorize_follow:
     already_following: Anda sudah mengikuti akun ini
@@ -1547,20 +1527,11 @@ id:
         suspend: Akun ditangguhkan
     welcome:
       edit_profile_action: Siapkan profil
-      edit_profile_step: Anda dapat menyesuaikan profil Anda dengan mengunggah avatar, kepala, mengubah tampilan nama dan lainnya. Jika Anda ingin meninjau pengikut baru sebelum Anda terima sebagai pengikut, Anda dapat mengunci akun Anda.
       explanation: Beberapa tips sebelum Anda memulai
       final_action: Mulai mengirim
-      final_step: 'Mulai mengirim! Tanpa pengikut, pesan publik Anda akan tetap dapat dilihat oleh akun lain, contohnya di linimasa lokal atau di tagar. Anda mungkin ingin memperkenalkan diri dengan tagar #introductions.'
       full_handle: Penanganan penuh Anda
       full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
-      review_preferences_action: Ubah preferensi
-      review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti email untuk menerima pesan, atau tingkat privasi bawaan untuk postingan Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
       subject: Selamat datang di Mastodon
-      tip_federated_timeline: Linimasa gabungan adalah ruang yang menampilkan jaringan Mastodon. Tapi ini hanya berisi tetangga orang-orang yang Anda ikuti, jadi tidak sepenuhnya komplet.
-      tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
-      tip_local_timeline: Linimasa lokal adalah ruang yang menampilkan orang-orang di %{instance}. Mereka adalah tetangga dekat!
-      tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
-      tips: Tips
       title: Selamat datang, %{name}!
   users:
     follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang

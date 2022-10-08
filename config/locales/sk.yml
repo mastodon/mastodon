@@ -3,29 +3,17 @@ sk:
   about:
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
     about_this: O tomto serveri
-    active_count_after: aktívni
-    active_footnote: Mesačne aktívnych užívateľov (MAU)
     administered_by: 'Správcom je:'
     apps: Aplikácie
-    apps_platforms: Užívaj Mastodon z iOSu, Androidu, a iných platforiem
-    browse_public_posts: Sleduj naživo prúd verejných príspevkov na Mastodone
     contact: Kontakt
     contact_missing: Nezadaný
     contact_unavailable: Neuvedený/á
-    continue_to_web: Pokračovať na webovú aplikáciu
     documentation: Dokumentácia
-    federation_hint_html: S účtom na %{instance} budeš môcť následovať ľúdí na hociakom Mastodon serveri, ale aj na iných serveroch.
-    get_apps: Vyskúšaj aplikácie
     hosted_on: Mastodon hostovaný na %{domain}
     instance_actor_flash: |
       Tento účet je virtuálnym aktérom, ktorý predstavuje samotný server a nie žiadného jedného užívateľa.
       Je využívaný pre potreby federovania a nemal by byť blokovaný, pokiaľ nechceš zablokovať celý server, čo ide lepšie dosiahnúť cez blokovanie domény.
-    learn_more: Zisti viac
-    logged_in_as_html: Práve si prihlásený/á ako %{username}.
-    logout_before_registering: Už si prihlásený/á.
     rules: Serverové pravidlá
-    see_whats_happening: Pozoruj, čo sa deje
-    server_stats: 'Serverové štatistiky:'
     source_code: Zdrojový kód
     status_count_after:
       few: príspevkov
@@ -33,7 +21,6 @@ sk:
       one: príspevok
       other: príspevky
     status_count_before: Ktorí napísali
-    tagline: Decentralizovaná sociálna sieť
     unavailable_content: Nedostupný obsah
     unavailable_content_description:
       reason: 'Dôvod:'
@@ -536,9 +523,6 @@ sk:
         closed_message:
           desc_html: Toto sa zobrazí na hlavnej stránke v prípade, že sú registrácie uzavreté. Možno tu použiť aj HTML kód
           title: Správa o uzavretých registráciách
-        deletion:
-          desc_html: Dovoľ každému, aby si mohli vymazať svok účet
-          title: Sprístupni možnosť vymazať si účet
       registrations_mode:
         modes:
           approved: Pre registráciu je nutné povolenie
@@ -645,10 +629,7 @@ sk:
     warning: Na tieto údaje dávaj ohromný pozor. Nikdy ich s nikým nezďieľaj!
     your_token: Tvoj prístupový token
   auth:
-    apply_for_account: Vyžiadaj si pozvánku
     change_password: Heslo
-    checkbox_agreement_html: Súhlasím s <a href="%{rules_path}" target="_blank">pravidlami servera</a>, aj s <a href="%{terms_path}" target="_blank">prevoznými podmienkami</a>
-    checkbox_agreement_without_rules_html: Súhlasím s <a href="%{terms_path}" target="_blank">podmienkami užívania</a>
     delete_account: Vymaž účet
     delete_account_html: Pokiaľ chceš svoj účet odtiaľto vymazať, môžeš tak <a href="%{path}">urobiť tu</a>. Budeš požiadaný/á o potvrdenie tohto kroku.
     description:
@@ -678,7 +659,6 @@ sk:
       confirming: Čaká sa na dokončenie potvrdenia emailom.
       pending: Tvoja žiadosť čaká na schvílenie od nášho týmu. Môže to chviľu potrvať. Ak bude tvoja žiadosť schválená, dostaneš o tom email.
       redirecting_to: Tvoj účet je neaktívny, lebo v súčasnosti presmerováva na %{acct}.
-    trouble_logging_in: Problém s prihlásením?
     use_security_key: Použi bezpečnostný kľúč
   authorize_follow:
     already_following: Tento účet už následuješ
@@ -1122,20 +1102,11 @@ sk:
         suspend: Tvoj účet bol vylúčený
     welcome:
       edit_profile_action: Nastav profil
-      edit_profile_step: Profil si môžeš prispôsobiť nahratím portrétu a záhlavia, môžeš upraviť svoje meno a viac. Pokiaľ chceš preverovať nových následovateľov predtým než ťa budú môcť sledovať, môžeš uzamknúť svoj účet.
       explanation: Tu nájdeš nejaké tipy do začiatku
       final_action: Začni prispievať
-      final_step: 'Začni písať! Aj bez následovateľov budú tvoje verejné príspevky videné ostatnými, napríklad na miestnej osi a pod haštagmi. Ak chceš, môžeš sa ostatným predstaviť pod haštagom #introductions.'
       full_handle: Adresa tvojho profilu v celom formáte
       full_handle_hint: Toto je čo musíš dať vedieť svojím priateľom aby ti mohli posielať správy, alebo ťa následovať z iného serveru.
-      review_preferences_action: Zmeniť nastavenia
-      review_preferences_step: Daj si záležať na svojích nastaveniach, napríklad že aké emailové notifikácie chceš dostávať, alebo pod aký level súkromia sa tvoje príspevky majú sami automaticky zaradiť. Pokiaľ nemáš malátnosť z pohybu, môžeš si zvoliť aj automatické spúšťanie GIF animácií.
       subject: Vitaj na Mastodone
-      tip_federated_timeline: Federovaná os zobrazuje sieť Mastodonu až po jej hranice. Ale zahŕňa iba ľúdí ktorých ostatní okolo teba sledujú, takže predsa nieje úplne celistvá.
-      tip_following: Správcu servera následuješ automaticky. Môžeš ale nájsť mnoho iných zaujímavých ľudí ak prezrieš tak lokálnu, ako aj globálne federovanú os.
-      tip_local_timeline: Miestna časová os je celkový pohľad na aktivitu užívateľov %{instance}. Toto sú tvoji najbližší susedia!
-      tip_mobile_webapp: Pokiaľ ti prehliadač ponúkne možnosť pridať Mastodon na tvoju obrazovku, môžeš potom dostávať notifikácie skoro ako z natívnej aplikácie!
-      tips: Tipy
       title: Vitaj na palube, %{name}!
   users:
     follow_limit_reached: Nemôžeš následovať viac ako %{limit} ľudí

@@ -3,25 +3,16 @@ kk:
   about:
     about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
     about_this: Туралы
-    active_count_after: актив
-    active_footnote: Соңғы айдағы актив қолданушылар (MAU)
     administered_by: 'Админ:'
     apps: Мобиль қосымшалар
-    apps_platforms: iOS, Android және басқа платформалардағы Mastodon қолданыңыз
-    browse_public_posts: Mastodon-дағы ашық посттар стримын қараңыз
     contact: Байланыс
     contact_missing: Бапталмаған
     contact_unavailable: Белгісіз
     documentation: Құжаттама
-    federation_hint_html: "%{instance} платформасындағы аккаунтыңыз арқылы Mastodon желісіндегі кез келген сервердегі қолданушыларға жазыла аласыз."
-    get_apps: Мобиль қосымшаны қолданып көріңіз
     hosted_on: Mastodon орнатылған %{domain} доменінде
     instance_actor_flash: |
       Бұл аккаунт кез-келген жеке пайдаланушыны емес, сервердің өзін көрсету үшін қолданылатын виртуалды актер.
       Ол федерация мақсаттарында қолданылады және сіз барлығын бұғаттағыңыз келмейінше, бұғатталмауы керек, бұл жағдайда сіз домен блогын қолданған жөн.
-    learn_more: Көбірек білу
-    see_whats_happening: Не болып жатқанын қараңыз
-    server_stats: 'Сервер статистикасы:'
     source_code: Ашық коды
     status_count_after:
       one: жазба
@@ -366,9 +357,6 @@ kk:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed. You can use HTML тег
           title: Closed registration мессадж
-        deletion:
-          desc_html: Allow anyone to delete their аккаунт
-          title: Open аккаунт deletion
       registrations_mode:
         modes:
           approved: Тіркелу үшін мақұлдау қажет
@@ -450,10 +438,7 @@ kk:
     warning: Be very carеful with this data. Never share it with anyone!
     your_token: Your access tokеn
   auth:
-    apply_for_account: Шақыруды сұрау
     change_password: Құпиясөз
-    checkbox_agreement_html: Мен <a href="%{rules_path}" target="_blank">ережелер</a> мен <a href="%{terms_path}" target="_blank">шарттарды</a> қабылдаймын
-    checkbox_agreement_without_rules_html: Мен <a href="%{terms_path}" target="_blank">шарттармен</a> келісемін
     delete_account: Аккаунт өшіру
     delete_account_html: Аккаунтыңызды жойғыңыз келсе, <a href="%{path}">мына жерді</a> басыңыз. Сізден растау сұралатын болады.
     description:
@@ -486,7 +471,6 @@ kk:
       confirming: Электрондық поштаны растау аяқталуын күтуде.
       pending: Сіздің өтінішіңіз біздің қызметкерлеріміздің қарауында. Бұл біраз уақыт алуы мүмкін. Өтінішіңіз мақұлданса, сізге электрондық пошта хабарламасы келеді.
       redirecting_to: Сіздің есептік жазбаңыз белсенді емес, себебі ол %{acct} жүйесіне қайта бағытталуда.
-    trouble_logging_in: Кіру қиын ба?
   authorize_follow:
     already_following: Бұл аккаунтқа жазылғансыз
     error: Өкінішке орай, қашықтағы тіркелгіні іздеуде қате пайда болды
@@ -895,20 +879,11 @@ kk:
         suspend: Аккаунт тоқтатылды
     welcome:
       edit_profile_action: Профиль өңдеу
-      edit_profile_step: Профиліңізге аватар, мұқаба сурет жүктей аласыз, аты-жөніңізді көрсете аласыз. Оқырмандарыңызға сізбен танысуға рұқсат бермес бұрын аккаунтыңызды уақытша құлыптап қоюға болады.
       explanation: Мына кеңестерді шолып өтіңіз
       final_action: Жазба жазу
-      final_step: 'Жазуды бастаңыз! Тіпті оқырмандарыңыз болмаса да, сіздің жалпы жазбаларыңызды басқа адамдар көре алады, мысалы, жергілікті желіде және хэштегтерде. Жазбаларыңызға # протоколды хэштег қоссаңыз болады.'
       full_handle: Желі тұтқасы
       full_handle_hint: This is what you would tell your friends so they can message or follow you frоm another server.
-      review_preferences_action: Таңдауларды өзгерту
-      review_preferences_step: Қандай хат-хабарларын алуды қалайтыныңызды немесе сіздің хабарламаларыңыздың қандай құпиялылық деңгейін алғыңыз келетінін анықтаңыз. Сондай-ақ, сіз GIF автоматты түрде ойнату мүмкіндігін қосуды таңдай аласыз.
       subject: Mastodon Желісіне қош келдіңіз
-      tip_federated_timeline: Жаһандық желі - Mastodon желісінің негізгі құндылығы.
-      tip_following: Сіз бірден желі админіне жазылған болып саналасыз. Басқа адамдарға жазылу үшін жергілікті және жаһандық желіні шолып шығыңыз.
-      tip_local_timeline: Жерігілкті желіде маңайыздағы адамдардың белсенділігін көре аласыз %{instance}. Олар - негізгі көршілеріңіз!
-      tip_mobile_webapp: Мобиль браузеріңіз Mastodon желісін бастапқы бетке қосуды ұсынса, қабылдаңыз. Ескертпелер де шығатын болады. Арнайы қосымша сияқты бұл!
-      tips: Кеңестер
       title: Ортаға қош келдің, %{name}!
   users:
     follow_limit_reached: Сіз %{limit} лимитінен көп адамға жазыла алмайсыз

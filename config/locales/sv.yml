@@ -3,29 +3,17 @@ sv:
   about:
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
     about_this: Om
-    active_count_after: aktiv
-    active_footnote: Månatligen Aktiva användare (MAU)
     administered_by: 'Administreras av:'
     api: API
     apps: Mobilappar
-    apps_platforms: Använd Mastodon från iOS, Android och andra plattformar
-    browse_public_posts: Titta på strömmande publika inlägg på Mastodon
     contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: Ej tillämplig
-    continue_to_web: Fortsätt till webbtjänst
     documentation: Dokumentation
-    federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
-    get_apps: Prova en mobilapp
     hosted_on: Mastodon-värd på %{domain}
     instance_actor_flash: "Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. \n"
-    learn_more: Lär dig mer
-    logged_in_as_html: Inloggad som %{username}.
-    logout_before_registering: Du är redan inloggad.
     rules: Serverns regler
     rules_html: 'Nedan en sammanfattning av kontoreglerna för denna Mastodonserver:'
-    see_whats_happening: Se vad som händer
-    server_stats: 'Serverstatistik:'
     source_code: Källkod
     status_count_after:
       one: status
@@ -545,9 +533,6 @@ sv:
         closed_message:
           desc_html: Visas på framsidan när registreringen är stängd. Du kan använda HTML-taggar
           title: Stängt registreringsmeddelande
-        deletion:
-          desc_html: Tillåt vem som helst att radera sitt konto
-          title: Öppen kontoradering
         require_invite_text:
           desc_html: När nyregistrering kräver manuellt godkännande, gör det obligatoriskt att fylla i text i fältet "Varför vill du gå med?"
           title: Kräv att nya användare fyller i en inbjudningsförfrågan
@@ -643,9 +628,7 @@ sv:
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
-    apply_for_account: Be om en inbjudan
     change_password: Lösenord
-    checkbox_agreement_html: Jag accepterar <a href="%{rules_path}" target="_blank">serverreglerna</a> och <a href="%{terms_path}" target="_blank">villkoren för användning</a>
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
@@ -679,7 +662,6 @@ sv:
       confirming: Väntar på att e-postbekräftelsen ska slutföras.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
     too_fast: Formuläret har skickats för snabbt, försök igen.
-    trouble_logging_in: Har du problem med att logga in?
     use_security_key: Använd säkerhetsnyckel
   authorize_follow:
     already_following: Du följer redan detta konto
@@ -1188,20 +1170,11 @@ sv:
         suspend: Kontot avstängt
     welcome:
       edit_profile_action: Profilinställning
-      edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
       explanation: Här är några tips för att komma igång
       final_action: Börja posta
-      final_step: 'Börja posta! Även utan anhängare kan dina offentliga meddelanden ses av andra, till exempel på den lokala tidslinjen och i hashtags. Du får gärna presentera dig via hashtaggen #introductions.'
       full_handle: Ditt fullständiga användarnamn/mastodonadress
       full_handle_hint: Det här är vad du skulle berätta för dina vänner så att de kan meddela eller följa dig från en annan instans.
-      review_preferences_action: Ändra inställningar
-      review_preferences_step: Se till att du ställer in dina inställningar, t.ex. vilka e-postmeddelanden du vill ta emot eller vilken integritetsnivå du vill att dina inlägg ska vara. Om du inte har åksjuka, kan du välja att aktivera automatisk uppspelning av GIF-bilder.
       subject: Välkommen till Mastodon
-      tip_federated_timeline: Den förenade tidslinjen är en störtflodsvy av Mastodon-nätverket. Men det inkluderar bara människor som dina grannar följer, så det är inte komplett.
-      tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
-      tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!
-      tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon på din hemskärm kan du få push-aviseringar. Det fungerar som en inbyggd app på många sätt!
-      tips: Tips
       title: Välkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer

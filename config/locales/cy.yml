@@ -3,31 +3,19 @@ cy:
   about:
     about_mastodon_html: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Yn debyg i e-bost mae'n ddatganoledig.
     about_this: Ynghylch
-    active_count_after: yn weithredol
-    active_footnote: Defnyddwyr Gweithredol Misol (DGM)
     administered_by: 'Gweinyddir gan:'
     api: API
     apps: Apiau symudol
-    apps_platforms: Defnyddio Mastodon o iOS, Android a phlatfformau eraill
-    browse_public_posts: Pori ffrwd byw o byst cyhoeddus ar Fastodon
     contact: Cyswllt
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
-    continue_to_web: Parhau i app gwe
     documentation: Dogfennaeth
-    federation_hint_html: Gyda cyfrif ar %{instance}, gallwch dilyn pobl ar unrhyw gweinydd Mastodon, a thu hwnt.
-    get_apps: Rhowch gynnig ar ap dyfeis symudol
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
     instance_actor_flash: |
       Mae'r cyfrif hwn yn actor rhithwir a ddefnyddir i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol.
       Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei rwystro oni bai eich bod am rwystro'r achos cyfan, ac os felly dylech ddefnyddio bloc parth.
-    learn_more: Dysgu mwy
-    logged_in_as_html: Rydych chi wedi mewngofnodi fel %{username}.
-    logout_before_registering: Rydych chi eisoes wedi mewngofnodi.
     rules: Rheolau gweinydd
     rules_html: 'Isod mae crynodeb o''r rheolau y mae angen i chi eu dilyn os ydych chi am gael cyfrif ar y gweinydd hwn o Mastodon:'
-    see_whats_happening: Gweld beth sy'n digwydd
-    server_stats: 'Ystadegau gweinydd:'
     source_code: Cod ffynhonnell
     status_count_after:
       few: statwsau
@@ -471,9 +459,6 @@ cy:
         closed_message:
           desc_html: I'w arddangos ar y dudalen flaen wedi i gofrestru cau. Mae modd defnyddio tagiau HTML
           title: Neges gofrestru caeëdig
-        deletion:
-          desc_html: Caniatau i unrhywun i ddileu eu cyfrif
-          title: Agor dileu cyfrif
       registrations_mode:
         modes:
           approved: Mae angen cymeradwyaeth ar gyfer cofrestru
@@ -562,10 +547,7 @@ cy:
     warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
     your_token: Eich tocyn mynediad
   auth:
-    apply_for_account: Gofyn am wahoddiad
     change_password: Cyfrinair
-    checkbox_agreement_html: Rydw i'n cytuno i'r <a href="%{rules_path}" target="_blank">rheolau'r gweinydd</a> a'r <a href="%{terms_path}" target="_blank">telerau gwasanaeth</a>
-    checkbox_agreement_without_rules_html: Rydw i'n cytuno i <a href="%{terms_path}" target="_blank">Delerau y Gwasanaeth</a>
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
     description:
@@ -595,7 +577,6 @@ cy:
       confirming: Aros i gadarnhad e-bost gael ei gwblhau.
       pending: Mae'ch cais yn aros i gael ei adolygu gan ein staff. Gall hyn gymryd cryn amser. Byddwch yn derbyn e-bost os caiff eich cais ei gymeradwyo.
       redirecting_to: Mae eich cyfrif yn anactif oherwydd ei fod ar hyn o bryd yn ailgyfeirio i %{acct}.
-    trouble_logging_in: Trafferdd mewngofnodi?
   authorize_follow:
     already_following: Yr ydych yn dilyn y cyfrif hwn yn barod
     already_requested: Rydych barod wedi anfon ceisiad dilyn i'r cyfrif hynny
@@ -1062,20 +1043,11 @@ cy:
         suspend: Cyfrif wedi'i rewi
     welcome:
       edit_profile_action: Sefydlu proffil
-      edit_profile_step: Mae modd i chi addasu eich proffil drwy uwchlwytho afatar, pennawd, drwy newid eich enw arddangos a mwy. Os hoffech chi adolygu dilynwyr newydd cyn iddynt gael caniatad i'ch dilyn, mae modd i chi gloi eich cyfrif.
       explanation: Dyma ambell nodyn i'ch helpu i ddechrau
       final_action: Dechrau postio
-      final_step: 'Dechrau postio! Hyd yn oed heb ddilynwyr mae''n bosib i eraill weld eich negeseuon cyhoeddus, er enghraifft at y ffrwd leol ac mewn hashnodau. Mae''n bosib yr hoffech hi gyflwyno''ch hun ar yr hashnod #introductions.'
       full_handle: Eich enw llawn
       full_handle_hint: Dyma'r hyn y bysech yn dweud wrth eich ffrindiau er mwyn iddyn nhw gael anfon neges atoch o achos arall.
-      review_preferences_action: Newid dewisiadau
-      review_preferences_step: Gwnewch yn siŵr i chi osod eich dewisiadau, megis pa e-byst hoffech eu derbyn, neu ba lefel preifatrwydd hoffech eich tŵtiau ragosod i. Os nad oes gennych salwch symud, gallwch ddewis i ganiatau chwarae GIFs yn awtomatig.
       subject: Croeso i Mastodon
-      tip_federated_timeline: Mae'r ffrwd ffederasiwn yn olwg firehose o'r rhwydwaith Mastodon. Ond mae ond yn cynnwys y bobl mae eich cymdogion wedi ymrestru iddynt, felly nid yw'n gyflawn.
-      tip_following: Rydych yn dilyn goruwchwyliwr eich gweinydd yn ddiofyn. I ganfod pobl mwy diddorol, edrychwch ar y ffrydiau lleol a'r rhai wedi ei ffedereiddio.
-      tip_local_timeline: Mae'r ffrwd leol yn olwg firehose o bobl ar %{instance}. Dyma eich cymdogion agosaf!
-      tip_mobile_webapp: Os yw eich porwr gwe yn cynnig i chi ychwanegu Mastodon i'ch sgrîn gartref, mae modd i chi dderbyn hysbysiadau gwthiadwy. Mewn sawl modd mae'n gweithio fel ap cynhenid!
-      tips: Awgrymiadau
       title: Croeso, %{name}!
   users:
     follow_limit_reached: Nid oes modd i chi ddilyn mwy na %{limit} o bobl

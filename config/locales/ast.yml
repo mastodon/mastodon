@@ -6,17 +6,12 @@ ast:
     administered_by: 'Alministráu por:'
     api: API
     apps: Aplicaciones pa móviles
-    apps_platforms: Usa Mastodon dende Android, iOS y otres plataformes
     contact: Contautu
     contact_missing: Nun s'afitó
     contact_unavailable: N/D
     documentation: Documentación
-    federation_hint_html: Con una cuenta en %{instance} vas ser a siguir a persones de cualesquier sirvidor de Mastodon y facer más coses.
-    get_apps: En preseos móviles
     hosted_on: Mastodon ta agospiáu en %{domain}
-    learn_more: Saber más
     privacy_policy: Política de privacidá
-    server_stats: 'Estadístiques del sirvidor:'
     source_code: Códigu fonte
     status_count_after:
       one: artículu
@@ -165,8 +160,6 @@ ast:
     warning: Ten munchu curiáu con estos datos, ¡enxamás nun los compartas con naide!
   auth:
     change_password: Contraseña
-    checkbox_agreement_html: Acepto les <a href="%{rules_path}" target="_blank">regles del sirvidor</a> y los <a href="%{terms_path}" target="_blank">términos del serviciu</a>
-    checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank"> términos del serviciu</a>
     delete_account: Desaniciu de la cuenta
     delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir equí</a>. Va pidísete la confirmación.
     description:
@@ -182,7 +175,6 @@ ast:
       saml: SAML
     register: Rexistrase
     security: Seguranza
-    trouble_logging_in: "¿Tienes problemes col aniciu de sesión?"
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
@@ -461,8 +453,6 @@ ast:
     sensitive_content: Conteníu sensible
   tags:
     does_not_match_previous_name: nun concasa col nome anterior
-  terms:
-    title: 'Política de pirvacidá de: %{instance}'
   themes:
     contrast: Contraste altu
     default: Mastodon
@@ -487,7 +477,6 @@ ast:
     welcome:
       full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate mensaxes o siguite dende otra instancia.
       subject: Afáyate en Mastodon
-      tips: Conseyos
   users:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu nun ye válidu

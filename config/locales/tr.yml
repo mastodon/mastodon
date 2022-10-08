@@ -3,38 +3,25 @@ tr:
   about:
     about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
     about_this: Hakkında
-    active_count_after: etkin
-    active_footnote: Aylık Aktif Kullanıcılar (AAK)
     administered_by: 'Yönetici:'
     api: API
     apps: Mobil uygulamalar
-    apps_platforms: İos, Android ve diğer platformlardaki Mastodon'u kullanın
-    browse_public_posts: Mastodon'daki herkese açık yayınlara göz atın
     contact: İletişim
     contact_missing: Ayarlanmadı
     contact_unavailable: Yok
-    continue_to_web: Web uygulamasına git
     documentation: Belgeler
-    federation_hint_html: "%{instance} hesabınızla, herhangi bir Mastodon sunucusundaki ve haricindeki kişileri takip edebilirsiniz."
-    get_apps: Bir mobil uygulamayı deneyin
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
     instance_actor_flash: |
       Bu hesap, herhangi bir kullanıcıyı değil sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür.
       Federasyon amaçlı kullanılır ve tüm yansıyı engellemek istemediğiniz sürece engellenmemelidir; bu durumda bir etki alanı bloğu kullanmanız gerekir.
-    learn_more: Daha fazla bilgi edinin
-    logged_in_as_html: Şu an %{username} olarak oturum açmışsınız.
-    logout_before_registering: Zaten oturumunuz açık.
     privacy_policy: Gizlilik Politikası
     rules: Sunucu kuralları
     rules_html: 'Aşağıda, bu Mastodon sunucusu üzerinde bir hesap açmak istiyorsanız uymanız gereken kuralların bir özeti var:'
-    see_whats_happening: Neler olduğunu görün
-    server_stats: 'Sunucu istatistikleri:'
     source_code: Kaynak kodu
     status_count_after:
       one: durum yazıldı
       other: durum yazıldı
     status_count_before: Şu ana kadar
-    tagline: Merkezi olmayan sosyal ağ
     unavailable_content: Denetlenen sunucular
     unavailable_content_description:
       domain: Sunucu
@@ -767,9 +754,6 @@ tr:
         closed_message:
           desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz
           title: Kayıt alımları kapatılma mesajı
-        deletion:
-          desc_html: Herkese hesabını silme izni ver
-          title: Hesap silmeyi aç
         require_invite_text:
           desc_html: Kayıtlar elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
           title: Yeni kullanıcıların katılmak için bir gerekçe sunmasını gerektir
@@ -1001,10 +985,8 @@ tr:
     warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
     your_token: Erişim belirteciniz
   auth:
-    apply_for_account: Davet et
+    apply_for_account: Bekleme listesine gir
     change_password: Parola
-    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Sunucu kurallarını</a> ve <a href="%{terms_path}" target="_blank">hizmet şartlarını</a> kabul ediyorum
-    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Hizmet şartlarını</a> kabul ediyorum
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
     description:
@@ -1023,6 +1005,7 @@ tr:
     migrate_account: Farklı bir hesaba taşıyın
     migrate_account_html: Bu hesabı başka bir hesaba yönlendirmek istiyorsan, <a href="%{path}">buradan yapılandırabilirsin</a>.
     or_log_in_with: 'Veya şununla oturum açın:'
+    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">Gizlilik politikasını</a> okudum ve kabul ettim
     providers:
       cas: CAS
       saml: SAML
@@ -1030,12 +1013,18 @@ tr:
     registration_closed: "%{instance} yeni üyeler kabul etmemektedir"
     resend_confirmation: Onaylama talimatlarını tekrar gönder
     reset_password: Parolayı sıfırla
+    rules:
+      preamble: Bunlar, %{domain} moderatörleri tarafından ayarlanmış ve uygulanmıştır.
+      title: Bazı temel kurallar.
     security: Güvenlik
     set_new_password: Yeni parola belirle
     setup:
       email_below_hint_html: Eğer aşağıdaki e-posta adresi yanlışsa, onu burada değiştirebilir ve yeni bir doğrulama e-postası alabilirsiniz.
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
       title: Kurulum
+    sign_up:
+      preamble: Bu Mastodon sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
+      title: "%{domain} için kurulumunuzu yapalım."
     status:
       account_status: Hesap durumu
       confirming: E-posta doğrulamasının tamamlanması bekleniyor.
@@ -1044,7 +1033,6 @@ tr:
       redirecting_to: Hesabınız aktif değil çünkü şu anda %{acct} adresine yönlendirilmektedir.
       view_strikes: Hesabınıza yönelik eski eylemleri görüntüleyin
     too_fast: Form çok hızlı gönderildi, tekrar deneyin.
-    trouble_logging_in: Oturum açarken sorun mu yaşıyorsunuz?
     use_security_key: Güvenlik anahtarını kullan
   authorize_follow:
     already_following: Bu hesabı zaten takip ediyorsunuz
@@ -1625,88 +1613,6 @@ tr:
       too_late: Bu eyleme itiraz etmek için çok geç
   tags:
     does_not_match_previous_name: önceki adla eşleşmiyor
-  terms:
-    body_html: |
-      <h2>Gizlilik Politikası</h2>
-      <h3 id="collect">Hangi bilgileri topluyoruz?</h3>
-
-      <ul>
-      <li><em>Temel hesap bilgileri</em>: Bu sunucuya kaydolursanız, bir kullanıcı adı, bir e-posta adresi ve bir parola girmeniz istenebilir. Ayrıca, ekran adı ve biyografi gibi ek profil bilgileri girebilir ve bir profil fotoğrafı ve başlık resmi yükleyebilirsiniz. Kullanıcı adı, ekran ad, biyografi, profil fotoğrafı ve başlık resmi her zaman herkese açık olarak listelenir.</li>
-      <li><em>Gönderiler, takip etmeler ve diğer herkese açık bilgiler</em>: Takip ettiğiniz kişilerin listesi herkese açık olarak listelenir, sizi takip edenler için de aynısı geçerlidir. Bir mesaj gönderdiğinizde, mesajı gönderdiğiniz uygulamanın yanı sıra tarih ve saati de saklanır. Mesajlar, resim ve video gibi medya ekleri içerebilir. Herkese açık ve listelenmemiş gönderiler halka açıktır. Profilinizde bir gönderiyi yayınladığınızda, bu da herkese açık olarak mevcut bir bilgidir. Gönderileriniz takipçilerinize iletilir, bazı durumlarda farklı sunuculara gönderilir ve kopyalar orada saklanır. Gönderilerinizi sildiğinizde, bu da takipçilerinize iletilir. Başka bir gönderiyi yeniden bloglama veya favorileme eylemi her zaman halka açıktır.</li>
-      <li><em>Doğrudan ve takipçilere özel gönderiler</em>: Tüm gönderiler sunucuda saklanır ve işlenir. Takipçilere özel gönderiler, takipçilerinize ve içinde bahsedilen kullanıcılara, doğrudan gönderiler ise yalnızca içinde bahsedilen kullanıcılara iletilir. Bu, bazı durumlarda farklı sunuculara iletildiği ve kopyaların orada saklandığı anlamına gelir. Bu gönderilere erişimi yalnızca yetkili kişilerle sınırlamak için iyi niyetle çalışıyoruz, ancak diğer sunucular bunu yapamayabilir. Bu nedenle, takipçilerinizin ait olduğu sunucuları incelemek önemlidir. Ayarlarda yeni izleyicileri manuel olarak onaylama ve reddetme seçeneğini değiştirebilirsiniz. <em>Sunucuyu ve alıcı sunucuyu işleten kişilerin bu mesajları görüntüleyebileceğini unutmayın</em>, ve alıcılar ekran görüntüsü alabilir, kopyalayabilir veya başka bir şekilde yeniden paylaşabilir. <em>Mastodon üzerinden herhangi bir hassas bilgi paylaşmayın.</em></li>
-      <li><em>IP'ler ve diğer meta veriler</em>: Oturum açarken, giriş yaptığınız IP adresini ve tarayıcı uygulamanızın adını kaydederiz. Giriş yapılan tüm oturumlar, incelemek ve iptal etmek için ayarlarda mevcuttur. En son kullanılan IP adresi 12 aya kadar saklanır. Sunucumuza gelen her isteğin IP adresini içeren sunucu loglarını da saklayabiliriz.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Bilgilerinizi ne için kullanıyoruz?</h3>
-
-      <p>Sizden topladığımız bilgilerin herhangi bir kısmı aşağıdaki şekillerde kullanılabilir:</p>
-
-      <ul>
-      <li>Mastodon'un ana işlevselliğini sağlamak için. Yalnızca oturum açtığınızda diğer kişilerin içeriğiyle etkileşime girebilir ve kendi içeriğinizi gönderebilirsiniz. Örneğin, başkalarının kombine gönderilerini kendi kişiselleştirilmiş ana sayfanızdaki zaman çizelgenizde görüntülemek için onları takip edebilirsiniz.</li>
-      <li>Topluluğun denetlenmesine yardımcı olmak için, örneğin, yasaktan kaçınma veya diğer ihlalleri belirlemek için IP adresinizin diğer bilinen adreslerle karşılaştırılması.</li>
-      <li>Verdiğiniz e-posta adresi, size bilgi, içeriğinizle etkileşimde bulunan diğer kişilerle ilgili bildirimler veya mesaj göndermek, sorgulara ve/veya diğer istek ve sorulara cevap vermek için kullanılabilir.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Bilgilerinizi nasıl koruyoruz?</h3>
-
-      <p>Kişisel bilgilerinizi girerken, gönderirken veya onlara erişirken kişisel bilgilerinizin güvenliğini sağlamak için çeşitli güvenlik önlemleri uyguluyoruz. Diğer şeylerin yanı sıra, tarayıcı oturumunuz ve uygulamalarınız ile API arasındaki trafik SSL ile güvence altına alınır ve şifreniz sağlam bir tek yönlü bir algoritma kullanılarak şifrelenir. Hesabınıza daha güvenli bir şekilde erişebilmek için iki adımlı kimlik doğrulamasını etkinleştirebilirsiniz.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Veri saklama politikamız nedir?</h3>
-
-      <p>Şunları yapmak için iyi niyetli bir şekilde çalışacağız:</p>
-
-      <ul>
-      <li>Bu sunucuya yapılan tüm isteklerin IP adresini içeren sunucu loglarını, bu tür logların şimdiye kadar saklandığı gibi, 90 günden fazla saklamayacağız.</li>
-      <li>Kayıtlı kullanıcılarla ilişkili IP adreslerini en fazla 12 ay boyunca saklayacağız.</li>
-      </ul>
-      <p>Gönderileriniz, medya ekleriniz, profil fotoğrafınız ve başlık resminiz dahil, içeriğimizin arşivini talep edebilir ve indirebilirsiniz.</p>
-
-      <p>Hesabınızı istediğiniz zaman geri alınamaz şekilde silebilirsiniz.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Çerez kullanıyor muyuz?</h3>
-
-      <p>Evet. Çerezler, bir sitenin veya servis sağlayıcısının Web tarayıcınız üzerinden bilgisayarınızın sabit diskine aktardığı küçük dosyalardır (eğer izin verirseniz). Bu çerezler sitenin tarayıcınızı tanımasını ve kayıtlı bir hesabınız varsa, kayıtlı hesabınızla ilişkilendirmesini sağlar.</p>
-
-      <p>Sonraki ziyaretlerde tercihlerinizi anlamak ve kaydetmek için çerezleri kullanıyoruz.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Herhangi bir bilgiyi dış taraflara açıklıyor muyuz?</h3>
-
-      <p>Kişisel olarak tanımlanabilir bilgilerinizi dış taraflara satmıyor, takas etmiyor veya devretmiyoruz. Bu, taraflarımız bu bilgileri gizli tutmayı kabul ettiği sürece sitemizi işletmemize, işimizi yürütmemize veya size hizmet etmemize yardımcı olan güvenilir üçüncü tarafları içermemektedir. Ayrıca, yayınlanmanın yasalara uymayı, site politikalarımızı yürürlüğe koymayı ya da kendimizin ya da diğerlerinin haklarını, mülklerini ya da güvenliğini korumamızı sağladığına inandığımızda bilgilerinizi açıklayabiliriz.</p>
-
-      <p>Herkese açık içeriğiniz ağdaki diğer sunucular tarafından indirilebilir. Bu takipçiler veya alıcılar bundan farklı bir sunucuda bulundukları sürece, herkese açık ve takipçilere özel gönderileriniz, takipçilerinizin bulunduğu sunuculara, ve doğrudan mesajlar, alıcıların sunucularına iletilir.</p>
-
-      <p>Hesabınızı kullanması için bir uygulamayı yetkilendirdiğinizde, onayladığınız izinlerin kapsamına bağlı olarak, herkese açık profil bilgilerinize, takip ettiklerinizin listesine, takipçilerinize, listelerinize, tüm gönderilerinize ve favorilerinize erişebilir. Uygulamalar e-posta adresinize veya parolanıza asla erişemez.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Sitenin çocuklar tarafından kullanımı</h3>
-
-      <p>Bu sunucu AB’de veya AEA’da ise: Site, ürün ve hizmetlerimizin tamamı en az 16 yaşında olan kişilere yöneliktir. Eğer 16 yaşın altındaysanız, GDPR yükümlülükleri gereği (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) bu siteyi kullanmayın.</p>
-
-      <p>Bu sunucu ABD’de ise: Site, ürün ve hizmetlerimizin tamamı en az 13 yaşında olan kişilere yöneliktir. Eğer 13 yaşın altındaysanız, COPPA yükümlülükleri gereği (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) bu siteyi kullanmayın.</p>
-
-      <p>Bu sunucu başka bir ülkede ise yasal gereklilikler farklı olabilir.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Gizlilik Politikamızdaki Değişiklikler</h3>
-
-      <p>Gizlilik politikamızı değiştirmeye karar verirsek, bu değişiklikleri bu sayfada yayınlayacağız.</p>
-
-      <p>Bu belge CC-BY-SA altında lisanslanmıştır. En son 26 Mayıs 2022 tarihinde güncellenmiştir.</p>
-
-      <p><a href="https://github.com/discourse/discourse">Discourse gizlilik politikasından uyarlanmıştır</a>.</p>
-    title: "%{instance} Gizlilik Politikası"
   themes:
     contrast: Mastodon (Yüksek karşıtlık)
     default: Mastodon (Karanlık)
@@ -1785,20 +1691,13 @@ tr:
         suspend: Hesap askıya alındı
     welcome:
       edit_profile_action: Profil kurulumu
-      edit_profile_step: Bir avatar veya başlık yükleyerek, ekran adınızı değiştirerek ve daha fazlasını yaparak profilinizi kişiselleştirebilirsiniz. Yeni takipçileri sizi takip etmelerine izin verilmeden önce incelemek isterseniz, hesabınızı kilitleyebilirsiniz.
+      edit_profile_step: Bir profil resmi yükleyerek, ekran adınızı değiştirerek ve daha fazlasını yaparak profilinizi kişiselleştirebilirsiniz. Sizi takip etmelerine izin verilmeden önce yeni takipçileri incelemeyi tercih edebilirsiniz.
       explanation: İşte sana başlangıç için birkaç ipucu
       final_action: Gönderi yazmaya başlayın
-      final_step: 'Gönderi yazmaya başlayın! Takipçiler olmadan bile, herkese açık mesajlarınız başkaları tarafından görülebilir, örneğin yerel zaman çizelgesinde ve etiketlerde. Kendinizi #introductions etiketinde tanıtmak isteyebilirsiniz.'
+      final_step: 'Gönderi yazmaya başlayın! Takipçiler olmadan bile, herkese açık gönderileriniz başkaları tarafından görülebilir, örneğin yerel zaman tünelinde veya etiketlerde. Kendinizi #introductions etiketinde tanıtmak isteyebilirsiniz.'
       full_handle: Tanıtıcınız
       full_handle_hint: Arkadaşlarınıza, size başka bir sunucudan mesaj atabilmeleri veya sizi takip edebilmeleri için söyleyeceğiniz şey budur.
-      review_preferences_action: Tercihleri değiştirin
-      review_preferences_step: Hangi e-postaları almak veya gönderilerinizin varsayılan olarak hangi gizlilik seviyesinde olmasını istediğiniz gibi tercihlerinizi ayarladığınızdan emin olun. Hareket hastalığınız yoksa, GIF otomatik oynatmayı etkinleştirmeyi seçebilirsiniz.
       subject: Mastodon'a hoş geldiniz
-      tip_federated_timeline: Federe zaman tüneli, Mastodon ağının genel bir görüntüsüdür. Ancak yalnızca komşularınızın abone olduğu kişileri içerir, bu yüzden tamamı değildir.
-      tip_following: Sunucu yönetici(ler)ini varsayılan olarak takip edersiniz. Daha ilginç insanlar bulmak için yerel ve federe zaman çizelgelerini kontrol edin.
-      tip_local_timeline: Yerel zaman çizelgesi, %{instance} üzerindeki kişilerin genel bir görüntüsüdür. Bunlar senin en yakın komşularındır!
-      tip_mobile_webapp: Mobil tarayıcınız size ana ekranınıza Mastodon eklemenizi önerirse, push bildirimleri alabilirsiniz. Birçok yönden yerli bir uygulama gibi davranır!
-      tips: İpuçları
       title: Gemiye hoşgeldin, %{name}!
   users:
     follow_limit_reached: "%{limit} kişiden daha fazlasını takip edemezsiniz"

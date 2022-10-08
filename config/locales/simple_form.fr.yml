@@ -85,6 +85,7 @@ fr:
         ip: Entrez une adresse IPv4 ou IPv6. Vous pouvez bloquer des plages entières en utilisant la syntaxe CIDR. Faites attention à ne pas vous bloquer vous-même !
         severities:
           no_access: Bloquer l’accès à toutes les ressources
+          sign_up_block: Les nouvelles inscriptions ne seront pas possibles
           sign_up_requires_approval: Les nouvelles inscriptions nécessiteront votre approbation
         severity: Choisir ce qui se passera avec les requêtes de cette adresse IP
       rule:
@@ -219,6 +220,7 @@ fr:
         ip: IP
         severities:
           no_access: Bloquer l’accès
+          sign_up_block: Bloquer les inscriptions
           sign_up_requires_approval: Limite des inscriptions
         severity: Règle
       notification_emails:
@@ -251,6 +253,7 @@ fr:
         events: Événements activés
         url: URL du point de terminaison
     'no': Non
+    not_recommended: Non recommandé
     recommended: Recommandé
     required:
       mark: "*"

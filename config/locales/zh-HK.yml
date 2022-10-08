@@ -3,28 +3,19 @@ zh-HK:
   about:
     about_mastodon_html: Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！
     about_this: 關於本伺服器
-    active_count_after: 活躍
-    active_footnote: 每月活躍使用者 (MAU)
     administered_by: 管理者：
     api: API
     apps: 手機 App
-    apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
-    browse_public_posts: 在 Mastodon 瀏覽公開文章的即時串流
     contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 不適用
     documentation: 說明文件
-    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤任何 Mastodon 服務站上的人！
-    get_apps: 嘗試使用手機 App
     hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
     instance_actor_flash: |
       這個帳戶是代表伺服器，而非代表任何個人用戶的虛擬帳號。
       此帳戶是為聯盟協定而設。除非你想封鎖整個伺服器的話，否則請不要封鎖這個帳戶。如果你想封鎖伺服器，請使用網域封鎖以達到相同效果。
-    learn_more: 了解更多
     rules: 系統規則
     rules_html: 如果你想要在本站開一個新帳戶，以下是你需要遵守的規則：
-    see_whats_happening: 看看發生什麼事
-    server_stats: 伺服器統計：
     source_code: 源代碼
     status_count_after:
       other: 篇文章
@@ -548,9 +539,6 @@ zh-HK:
         closed_message:
           desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/> 可使用 HTML
           title: 暫停註冊訊息
-        deletion:
-          desc_html: 允許所有人刪除自己的帳號
-          title: 容許刪除帳號
         require_invite_text:
           desc_html: 如果已設定為手動審核注冊，請把「加入的原因」設定為必填項目。
           title: 要求新用戶填寫注冊申請
@@ -651,10 +639,7 @@ zh-HK:
     warning: 警告，不要把它分享給任何人！
     your_token: token
   auth:
-    apply_for_account: 請求邀請
     change_password: 密碼
-    checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">的伺服器規則</a> 和<a href="%{terms_path}" target="_blank">服務條款</a>
-    checkbox_agreement_without_rules_html: 我同意 <a href="%{terms_path}" target="_blank">服務條款</a>
     delete_account: 刪除帳號
     delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     description:
@@ -691,7 +676,6 @@ zh-HK:
       pending: 管理員正在處理你的申請。可能會需要一點時間處理。我們將會在申請被批準的時候馬上寄電郵給你。
       redirecting_to: 你的帳戶因為正在重新定向到 %{acct}，所以暫時被停用。
     too_fast: 你太快遞交了，請再試一次。
-    trouble_logging_in: 不能登入？
     use_security_key: 使用安全密鑰裝置
   authorize_follow:
     already_following: 你已經關注了這個帳號
@@ -1216,20 +1200,11 @@ zh-HK:
         suspend: 帳號已停用
     welcome:
       edit_profile_action: 設定個人資料
-      edit_profile_step: 你可以設定你的個人資料，包括上傳頭像、橫幅圖片、更改顯示名稱等等。如果你想在新的關注者關注你之前對他們進行審核，你也可以選擇為你的帳戶設為「私人」。
       explanation: 下面是幾個小貼士，希望它們能幫到你
       final_action: 開始發文
-      final_step: '開始發文吧！即使你現在沒有關注者，其他人仍然能在本站時間軸或者話題標籤等地方看到你的公開文章。試著用 #introductions 這個話題標籤介紹一下自己吧。'
       full_handle: 你的完整 Mastodon 地址
       full_handle_hint: 這訊息將顯示給你朋友們，讓他們能從另一個服務站發信息給你，或者關注你的。
-      review_preferences_action: 更改偏好設定
-      review_preferences_step: 記得調整你的偏好設定，比如你想接收什麼類型的郵件，或者你想把你的文章可見範圍默認設定為什麼級別。如果你沒有暈車的話，考慮一下啟用「自動播放 GIF 動畫」這個選項吧。
       subject: 歡迎來到 Mastodon (萬象)
-      tip_federated_timeline: 跨站時間軸可以讓你一窺更廣闊的 Mastodon 網絡。不過，由於它只顯示你的鄰居們所訂閱的內容，所以並不是全部。
-      tip_following: 你會預設關注你服務站的管理員。想結交更多有趣的人的話，記得多逛逛本站時間軸和跨站時間軸哦。
-      tip_local_timeline: 本站時間軸可以讓你一窺 %{instance} 本站上的用戶。他們就是離你最近的鄰居！
-      tip_mobile_webapp: 如果你的移動設備瀏覽器支援，你可以將 Mastodon 加到裝置的主畫面，讓你可以選擇接收推送通知，就像本機的 App 一樣方便！
-      tips: 小貼士
       title: 歡迎 %{name} 加入！
   users:
     follow_limit_reached: 你不能關注多於%{limit} 人

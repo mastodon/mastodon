@@ -3,39 +3,26 @@ lv:
   about:
     about_mastodon_html: 'Nākotnes sociālais tīkls: bez reklāmām, bez korporatīvās uzraudzības, ētisks dizains un decentralizācija! Pārvaldi savus datus ar Mastodon!'
     about_this: Par
-    active_count_after: aktīvs
-    active_footnote: Ikmēneša aktīvie lietotāji (IAL)
     administered_by: 'Administrē:'
     api: API
     apps: Mobilās lietotnes
-    apps_platforms: Lieto Mastodon iOS, Android un citās platformās
-    browse_public_posts: Pārlūko publisko ziņu straumi no Mastodon
     contact: Kontakts
     contact_missing: Nav uzstādīts
     contact_unavailable: N/A
-    continue_to_web: Pārej uz tīmekļa lietotni
     documentation: Dokumentācija
-    federation_hint_html: Izmantojot kontu vietnē %{instance}, varēsi sekot cilvēkiem jebkurā Mastodon serverī un ārpus tā.
-    get_apps: Izmēģini mobilo lietotni
     hosted_on: Mastodon mitināts %{domain}
     instance_actor_flash: |
       Šis konts ir virtuāls aktieris, ko izmanto, lai pārstāvētu pašu serveri, nevis atsevišķu lietotāju.
       To izmanto apvienošanas nolūkos, un to nedrīkst bloķēt, ja vien nevēlies bloķēt visu instanci, un tādā gadījumā tev jāizmanto domēna bloķēšana.
-    learn_more: Uzzināt vairāk
-    logged_in_as_html: Tu pašlaik esi pieteicies kā %{username}.
-    logout_before_registering: Tu jau esi pieteicies.
     privacy_policy: Privātuma Politika
     rules: Servera noteikumi
     rules_html: 'Tālāk ir sniegts noteikumu kopsavilkums, kas jāievēro, ja vēlies izveidot kontu šajā Mastodon serverī:'
-    see_whats_happening: Redzēt, kas notiek
-    server_stats: 'Servera statistika:'
     source_code: Pirmkods
     status_count_after:
       one: ziņa
       other: ziņas
       zero: nav
     status_count_before: Kurš publicējis
-    tagline: Decentralizēts sociālais tīkls
     unavailable_content: Moderētie serveri
     unavailable_content_description:
       domain: Serveris
@@ -783,9 +770,6 @@ lv:
         closed_message:
           desc_html: Tiek parādīts sākumlapā, kad reģistrācija ir slēgta. Tu vari izmantot HTML tagus
           title: Paziņojums par slēgtu reģistrāciju
-        deletion:
-          desc_html: Atļaut ikvienam dzēst savu kontu
-          title: Atvērt konta dzēšanu
         require_invite_text:
           desc_html: 'Ja reģistrācijai nepieciešama manuāla apstiprināšana, izdari, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis neobligāts'
           title: Pieprasīt jauniem lietotājiem ievadīt pievienošanās iemeslu
@@ -1021,10 +1005,8 @@ lv:
     warning: Esi ļoti uzmanīgs ar šiem datiem. Nekad nedalies ne ar vienu ar tiem!
     your_token: Tavs piekļuves marķieris
   auth:
-    apply_for_account: Pieprasīt ielūgumu
+    apply_for_account: Iekļūt gaidīšanas sarakstā
     change_password: Parole
-    checkbox_agreement_html: Es piekrītu <a href="%{rules_path}" target="_blank">servera noteikumiem</a> un <a href="%{terms_path}" target="_blank">pakalpojuma sniegšanas noteikumiem</a>
-    checkbox_agreement_without_rules_html: Es piekrītu <a href="%{terms_path}" target="_blank">pakalpojuma sniegšanas noteikumiem</a>
     delete_account: Dzēst kontu
     delete_account_html: Ja vēlies dzēst savu kontu, tu vari <a href="%{path}">turpināt šeit</a>. Tev tiks lūgts apstiprinājums.
     description:
@@ -1043,6 +1025,7 @@ lv:
     migrate_account: Pāriešana uz citu kontu
     migrate_account_html: Ja vēlies novirzīt šo kontu uz citu, tu vari <a href="%{path}">to konfigurēt šeit</a>.
     or_log_in_with: Vai piesakies ar
+    privacy_policy_agreement_html: Esmu izlasījis un piekrītu <a href="%{privacy_policy_path}" target="_blank">privātuma politikai</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1050,12 +1033,18 @@ lv:
     registration_closed: "%{instance} nepieņem jaunus dalībniekus"
     resend_confirmation: Atkārtoti nosūtīt apstiprinājuma norādījumus
     reset_password: Atiestatīt paroli
+    rules:
+      preamble: Tos iestata un ievieš %{domain} moderatori.
+      title: Daži pamatnoteikumi.
     security: Drošība
     set_new_password: Iestatīt jaunu paroli
     setup:
       email_below_hint_html: Ja zemāk norādītā e-pasta adrese ir nepareiza, vari to nomainīt šeit un saņemt jaunu apstiprinājuma e-pastu.
       email_settings_hint_html: Apstiprinājuma e-pasts tika nosūtīts uz %{email}. Ja šī e-pasta adrese nav pareiza, vari to nomainīt konta iestatījumos.
       title: Iestatīt
+    sign_up:
+      preamble: Izmantojot kontu šajā Mastodon serverī, tu varēsi sekot jebkurai citai personai tīklā neatkarīgi no tā, kur tiek mitināts viņas konts.
+      title: Atļauj tevi iestatīt %{domain}.
     status:
       account_status: Konta statuss
       confirming: Gaida e-pasta apstiprinājuma pabeigšanu.
@@ -1064,7 +1053,6 @@ lv:
       redirecting_to: Tavs konts ir neaktīvs, jo pašlaik tas tiek novirzīts uz %{acct}.
       view_strikes: Skati iepriekšējos brīdinājumus par savu kontu
     too_fast: Veidlapa ir iesniegta pārāk ātri, mēģini vēlreiz.
-    trouble_logging_in: Problēma ar pieteikšanos?
     use_security_key: Lietot drošības atslēgu
   authorize_follow:
     already_following: Tu jau seko šim kontam
@@ -1659,89 +1647,6 @@ lv:
       too_late: Brīdinājuma apstrīdēšanas laiks ir nokavēts
   tags:
     does_not_match_previous_name: nesakrīt ar iepriekšējo nosaukumu
-  terms:
-    body_html: |
-      <h2>Konfidencialitātes politika</h2>
-      <h3 id="collect">Kādu informāciju mēs apkopojam?</h3>
-
-      <ul>
-        <li><em>Konta pamatinformācija</em>: ja reģistrējaties šajā serverī, iespējams, jums tiks lūgts ievadīt lietotājvārdu, e-pasta adresi un paroli. Varat arī ievadīt papildu profila informāciju, piemēram, parādāmo vārdu un biogrāfiju, kā arī augšupielādēt profila attēlu un galvenes attēlu. Lietotājvārds, parādāmais vārds, biogrāfija, profila attēls un galvenes attēls vienmēr ir publiski norādīti.</li>
-        <li><em>Ziņas, sekošana un cita publiska informācija</em>: to personu saraksts, kurām sekojat, ir publiski pieejams, tas pats attiecas uz jūsu sekotājiem. Iesniedzot ziņojumu, tiek saglabāts datums un laiks, kā arī pieteikums, no kura iesniedzāt ziņojumu. Ziņojumos var būt multivides pielikumi, piemēram, attēli un video. Publiskās un nerindotās ziņas ir pieejamas publiski. Ja savā profilā ievietojat ziņu, tā ir arī publiski pieejama informācija. Jūsu ziņas tiek piegādātas jūsu sekotājiem, dažos gadījumos tas nozīmē, ka tās tiek piegādātas uz dažādiem serveriem un tur tiek glabātas kopijas. Dzēšot ziņas, tas tāpat tiek piegādāts jūsu sekotājiem. Atkārtota emuāra pievienošana vai citas ziņas pievienošana izlasei vienmēr ir publiska.</li>
-        <li><em>Tiešas un tikai sekotāju ziņas</em>: visas ziņas tiek glabātas un apstrādātas serverī. Tikai sekotājiem paredzētās ziņas tiek piegādātas jūsu sekotājiem un tajos minētajiem lietotājiem, un tiešās ziņas tiek piegādātas tikai tajos minētajiem lietotājiem. Dažos gadījumos tas nozīmē, ka tie tiek piegādāti uz dažādiem serveriem un tur tiek saglabātas kopijas. Mēs godprātīgi cenšamies ierobežot piekļuvi šīm ziņām tikai pilnvarotām personām, taču citiem serveriem tas var neizdoties. Tāpēc ir svarīgi pārskatīt serverus, kuriem pieder jūsu sekotāji. Iestatījumos varat manuāli pārslēgt iespēju apstiprināt un noraidīt jaunus sekotājus. <em>Lūdzu, ņemiet vērā, ka servera operatori un jebkura saņēmēja servera operatori var skatīt šādus ziņojumus</em> un ka adresāti var tos ekrānuzņēmumus, kopēt vai citādi atkārtoti kopīgot. <em>Nekopīgojiet sensitīvu informāciju pakalpojumā Mastodon.</em></li>
-        <li><em>IP un citi metadati</em>: kad jūs piesakāties, mēs ierakstām IP adresi, no kuras piesakāties, kā arī jūsu pārlūkprogrammas lietojumprogrammas nosaukumu. Visas reģistrētās sesijas iestatījumos ir pieejamas pārskatīšanai un atsaukšanai. Pēdējā izmantotā IP adrese tiek glabāta līdz 12 mēnešiem. Mēs varam arī saglabāt servera žurnālus, kuros ir iekļauta katra mūsu serverim nosūtītā pieprasījuma IP adrese.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Kam mēs izmantojam jūsu informāciju?</h3>
-
-      <p>Jebkuru informāciju, ko mēs apkopojam no jums, var izmantot šādos veidos:</p>
-
-      <ul>
-        <li>Lai nodrošinātu Mastodon pamatfunkcionalitāti. Jūs varat mijiedarboties ar citu cilvēku saturu un izlikt savu saturu tikai tad, kad esat pieteicies. Piemēram, varat sekot citām personām, lai skatītu viņu apvienotās ziņas savā personalizētajā mājas laika skalā.</li>
-        <li>Lai palīdzētu regulēt kopienu, piemēram, salīdzinot jūsu IP adresi ar citām zināmām, lai noteiktu izvairīšanos no aizlieguma vai citus pārkāpumus.</li>
-        <li>Jūsu norādītā e-pasta adrese var tikt izmantota, lai nosūtītu jums informāciju, paziņojumus par citām personām, kas mijiedarbojas ar jūsu saturu vai sūta jums ziņojumus, kā arī atbildētu uz jautājumiem un/vai citiem pieprasījumiem vai jautājumiem.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Kā mēs aizsargājam jūsu informāciju?</h3>
-
-      <p>Mēs ieviešam dažādus drošības pasākumus, lai saglabātu jūsu personiskās informācijas drošību, kad ievadāt, iesniedzat vai piekļūstat savai personas informācijai. Cita starpā jūsu pārlūkprogrammas sesija, kā arī datplūsma starp jūsu lietojumprogrammām un API ir aizsargāta ar SSL, un jūsu parole tiek sajaukta, izmantojot spēcīgu vienvirziena algoritmu. Varat iespējot divu faktoru autentifikāciju, lai vēl vairāk aizsargātu piekļuvi savam kontam.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Kāda ir mūsu datu saglabāšanas politika?</h3>
-
-      <p>Mēs godprātīgi centīsimies:</p>
-
-      <ul>
-        <li>Saglabājiet servera žurnālus, kuros ir visu šim serverim nosūtīto pieprasījumu IP adrese, ciktāl šādi žurnāli tiek glabāti, ne ilgāk kā 90 dienas.</li>
-        <li>Saglabājiet ar reģistrētajiem lietotājiem saistītās IP adreses ne ilgāk kā 12 mēnešus.</li>
-      </ul>
-
-      <p>Varat pieprasīt un lejupielādēt sava satura arhīvu, tostarp ziņas, multivides pielikumus, profila attēlu un galvenes attēlu.</p>
-
-      <p>Jūs jebkurā laikā varat neatgriezeniski dzēst savu kontu.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Vai mēs izmantojam sīkfailus?</h3>
-
-      <p>Jā. Sīkfaili ir nelieli faili, ko vietne vai tās pakalpojumu sniedzējs pārsūta uz jūsu datora cieto disku, izmantojot jūsu tīmekļa pārlūkprogrammu (ja atļaujat). Šīs sīkdatnes ļauj vietnei atpazīt jūsu pārlūkprogrammu un, ja jums ir reģistrēts konts, saistīt to ar jūsu reģistrēto kontu.</p>
-
-      <p>Mēs izmantojam sīkfailus, lai saprastu un saglabātu jūsu uztādījumus turpmākiem apmeklējumiem.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Vai mēs izpaužam kādu informāciju ārējām pusēm?</h3>
-
-      <p>Mēs nepārdodam, netirgojam vai citādi nesniedzam trešajām pusēm jūsu personu identificējošo informāciju. Tas neietver uzticamas trešās puses, kas palīdz mums darboties mūsu vietnē, veikt mūsu uzņēmējdarbību vai apkalpot jūs, ja vien šīs puses piekrīt saglabāt šīs informācijas konfidencialitāti. Mēs varam arī izpaust jūsu informāciju, ja uzskatām, ka tā ir piemērota, lai ievērotu likumus, īstenotu mūsu vietnes politikas vai aizsargātu mūsu vai citu tiesības, īpašumu vai drošību.</p>
-
-      <p>Jūsu publisko saturu var lejupielādēt citi tīkla serveri. Jūsu publiskās un tikai sekotājiem paredzētās ziņas tiek piegādātas serveros, kur atrodas jūsu sekotāji, un tiešie ziņojumi tiek piegādāti adresātu serveriem, ja šie sekotāji vai adresāti atrodas citā serverī, nevis šajā.</p>
-
-      <p>Kad jūs pilnvarojat lietojumprogrammu izmantot jūsu kontu, atkarībā no jūsu apstiprināto atļauju apjoma, tā var piekļūt jūsu publiskā profila informācijai, jūsu sekojošajam sarakstam, jūsu sekotājiem, jūsu sarakstiem, visām jūsu ziņām un jūsu izlasei. Lietojumprogrammas nekad nevar piekļūt jūsu e-pasta adresei vai parolei.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Vietnes lietojums bērniem</h3>
-
-      <p>Ja šis serveris atrodas ES vai EEZ: mūsu vietne, produkti un pakalpojumi ir paredzēti personām, kuras ir vismaz 16 gadus vecas. Ja esat jaunāks par 16 gadiem, neizmantojiet šo vietni atbilstoši GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Vispārīgās datu aizsardzības regulas</a>) prasībām..</p>
-
-      <p>Ja šis serveris atrodas ASV: mūsu vietne, produkti un pakalpojumi ir paredzēti personām, kuras ir vismaz 13 gadus vecas. Ja esat jaunāks par 13 gadiem, saskaņā ar COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) prasībām neizmantojiet šajā vietnē.</p>
-
-      <p>Tiesību prasības var atšķirties, ja šis serveris atrodas citā jurisdikcijā.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Izmaiņas mūsu konfidencialitātes politikā</h3>
-
-      <p>Ja mēs nolemsim mainīt savu konfidencialitātes politiku, mēs publicēsim šīs izmaiņas šajā lapā.</p>
-
-      <p>Šis dokuments ir CC-BY-SA. Pēdējo reizi tas tika atjaunināts 2022. gada 26. maijā.</p>
-
-      <p>Sākotnēji adaptēts no <a href="https://github.com/discourse/discourse">Discourse konfidencialitātes politikas</a>.</p>
-    title: "%{instance} Privātuma Politika"
   themes:
     contrast: Mastodon (Augsts kontrasts)
     default: Mastodon (Tumšs)
@@ -1820,20 +1725,13 @@ lv:
         suspend: Konts apturēts
     welcome:
       edit_profile_action: Iestatīt profilu
-      edit_profile_step: Vari pielāgot savu profilu, augšupielādējot avataru, galveni, mainot parādāmo vārdu un daudz ko citu. Ja vēlies pārskatīt jaunus sekotājus, pirms viņiem ir atļauts tev sekot, tu vari bloķēt savu kontu.
+      edit_profile_step: Tu vari pielāgot savu profilu, augšupielādējot profila attēlu, mainot parādāmo vārdu un citas lietas. Vari izvēlēties pārskatīt jaunus sekotājus, pirms atļauj viņiem tev sekot.
       explanation: Šeit ir daži padomi, kā sākt darbu
       final_action: Sāc publicēt
-      final_step: 'Sāc publicēt! Pat bez sekotājiem tavas publiskās ziņas var redzēt citi, piemēram, vietējā ziņu lentā un atsaucēs. Iespējams, tu vēlēsies iepazīstināt ar sevi, izmantojot tēmturi #introductions.'
+      final_step: 'Sāc publicēt! Pat bez sekotājiem tavas publiskās ziņas var redzēt citi, piemēram, vietējā ziņu lentā vai atsaucēs. Iespējams, tu vēlēsies iepazīstināt ar sevi, izmantojot tēmturi #introductions.'
       full_handle: Tavs pilnais rokturis
       full_handle_hint: Šis ir tas, ko tu pasaki saviem draugiem, lai viņi varētu tev ziņot vai sekot tev no cita servera.
-      review_preferences_action: Mainīt uztādījumus
-      review_preferences_step: Noteikti iestati savas uztādījumus, piemēram, kādus e-pasta ziņojumus vēlies saņemt vai kādu konfidencialitātes līmeni vēlies iestatīt savām ziņām pēc noklusējuma. Ja tev nav kustību slimības, vari izvēlēties iespējot GIF automātisko atskaņošanu.
       subject: Laipni lūgts Mastodon
-      tip_federated_timeline: Apvienotā ziņu lenta ir skats caur ugunsdzēsības šļūteni uz Mastodon tīklu. Bet tajā ir iekļauti tikai tie cilvēki, kurus abonē tavi kaimiņi, tāpēc tas nav pilnīgs.
-      tip_following: Pēc noklusējuma tu seko sava servera administratoram(-iem). Lai atrastu vairāk interesantu cilvēku, pārbaudi vietējās un federālās ziņu lentas.
-      tip_local_timeline: Vietējā ziņu lenta ir skats caur ugunsdzēsības šļūteni uz %{instance}. Tie ir tavi tuvākie kaimiņi!
-      tip_mobile_webapp: Ja tava mobilā pārlūkprogramma piedāvā pievienot Mastodon sākuma ekrānam, vari saņemt push paziņojumus. Daudzējādi tā darbojas kā vietējā lietotne!
-      tips: Padomi
       title: Laipni lūgts uz borta, %{name}!
   users:
     follow_limit_reached: Tu nevari sekot vairāk par %{limit} cilvēkiem

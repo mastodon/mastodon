@@ -3,38 +3,25 @@ pt-PT:
   about:
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
     about_this: Sobre esta instância
-    active_count_after: activo
-    active_footnote: Utilizadores activos mensais (UAM)
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicações móveis
-    apps_platforms: Usar o Mastodon a partir do iOS, Android e outras plataformas
-    browse_public_posts: Visualize as publicações públicas do Mastodon em tempo real
     contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
-    continue_to_web: Continuar para a aplicação web
     documentation: Documentação
-    federation_hint_html: Ter uma conta em %{instance} permitirá seguir pessoas em qualquer instância Mastodon.
-    get_apps: Experimente uma aplicação
     hosted_on: Mastodon em %{domain}
     instance_actor_flash: |
       Esta conta é um actor virtual usado para representar a própria instância e não um utilizador individual.
       É usada para motivos de federação e não deve ser bloqueada a não ser que que queira bloquear a instância por completo. Se for esse o caso, deverá usar o bloqueio de domínio.
-    learn_more: Saber mais
-    logged_in_as_html: Está de momento ligado como %{username}.
-    logout_before_registering: Já tem sessão iniciada.
     privacy_policy: Política de Privacidade
     rules: Regras da instância
     rules_html: 'Abaixo está um resumo das regras que precisa seguir se pretender ter uma conta nesta instância do Mastodon:'
-    see_whats_happening: Veja o que está a acontecer
-    server_stats: 'Estatísticas da instância:'
     source_code: Código fonte
     status_count_after:
       one: publicação
       other: publicações
     status_count_before: Que fizeram
-    tagline: Rede social descentralizada
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
       domain: Instância
@@ -767,9 +754,6 @@ pt-PT:
         closed_message:
           desc_html: Mostrar na página inicial quando registos estão encerrados<br/>Podes usar tags HTML
           title: Mensagem de registos encerrados
-        deletion:
-          desc_html: Permitir a qualquer utilizador eliminar a sua conta
-          title: Permitir eliminar contas
         require_invite_text:
           desc_html: Quando os registos exigirem aprovação manual, faça o texto "Porque se quer juntar a nós?" da solicitação de convite obrigatório, em vez de opcional
           title: Exigir que novos utilizadores preencham um texto de solicitação de convite
@@ -1001,10 +985,8 @@ pt-PT:
     warning: Cuidado com estes dados. Não partilhar com ninguém!
     your_token: O teu token de acesso
   auth:
-    apply_for_account: Solicitar um convite
+    apply_for_account: Juntar-se à lista de espera
     change_password: Palavra-passe
-    checkbox_agreement_html: Concordo com as <a href="%{rules_path}" target="_blank">regras da instância</a> e com os <a href="%{terms_path}" target="_blank">termos de serviço</a>
-    checkbox_agreement_without_rules_html: Concordo com os <a href="%{terms_path}" target="_blank">termos do serviço</a>
     delete_account: Eliminar conta
     delete_account_html: Se deseja eliminar a sua conta, pode <a href="%{path}">continuar aqui</a>. Uma confirmação será solicitada.
     description:
@@ -1023,6 +1005,7 @@ pt-PT:
     migrate_account: Mudar para uma conta diferente
     migrate_account_html: Se deseja redirecionar esta conta para uma outra pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou iniciar sessão com
+    privacy_policy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1030,12 +1013,18 @@ pt-PT:
     registration_closed: "%{instance} não está a aceitar novos membros"
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Criar nova palavra-passe
+    rules:
+      preamble: Estas são definidos e aplicadas pelos moderadores de %{domain}.
+      title: Algumas regras básicas.
     security: Alterar palavra-passe
     set_new_password: Editar palavra-passe
     setup:
       email_below_hint_html: Se o endereço de e-mail abaixo estiver incorreto, pode alterá-lo aqui e receber um novo e-mail de confirmação.
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, pode alterá-lo nas definições da conta.
       title: Configuração
+    sign_up:
+      preamble: Com uma conta neste servidor Mastodon, poderá seguir qualquer outra pessoa na rede, independentemente do servidor onde a conta esteja hospedada.
+      title: Vamos lá inscrevê-lo em %{domain}.
     status:
       account_status: Estado da conta
       confirming: A aguardar que conclua a confirmação do e-mail.
@@ -1044,7 +1033,6 @@ pt-PT:
       redirecting_to: A sua conta está inativa porque está atualmente a ser redirecionada para %{acct}.
       view_strikes: Veja as punições anteriores contra a sua conta
     too_fast: Formulário enviado muito rapidamente, tente novamente.
-    trouble_logging_in: Problemas em iniciar sessão?
     use_security_key: Usar chave de segurança
   authorize_follow:
     already_following: Tu já estás a seguir esta conta
@@ -1625,89 +1613,6 @@ pt-PT:
       too_late: É tarde demais para apelar desta punição
   tags:
     does_not_match_previous_name: não coincide com o nome anterior
-  terms:
-    body_html: |
-      <h2>Política de privacidade</h2>
-      <h3 id="collect">Que informação nós recolhemos?</h3>
-
-      <ul>
-      <li><em>Informação básica da conta</em>: Ao registar-se neste servidor, pode ser-lhe pedido que indique um nome de utilizador, um endereço de e-mail e uma palavra-chave. Pode ainda incluir informações adicionais no seu perfil, tais como um nome a exibir e biografia, e carregar uma imagem de perfil e imagem de cabeçalho. O nome de utilizador, nome a exibir, a biografia, a imagem de perfil e a imagem de cabeçalho são sempre listados publicamente.</li>
-      <li><em>Publicações, seguimento e outra informação pública</em>: A lista de pessoas que segue é pública, o mesmo é verdade para os seus seguidores. Quando publica uma mensagem, a data e a hora são guardados, tal como a aplicação a partir da qual a mensagem foi enviada. As mensagens podem conter anexos de media, tais como fotografias ou vídeos. Publicações públicas e não listadas são acessíveis publicamente. Quando destaca uma publicação no seu perfil, isso é também informação disponível publicamente. As suas publicações são enviadas aos seus seguidores, em alguns casos isso significa que elas são enviadas para servidores diferentes onde são guardadas cópias. Quando elimina publicações, isso também é enviado para os teus seguidores. A ação de partilhar ou adicionar uma publicação aos favoritos é sempre pública.</li>
-      <li><em>Publicações diretas e exclusivas para seguidores</em>: Todas as publicações são guardadas e processadas no servidor. Publicações exclusivas para seguidores são enviadas para os teus seguidores e para os utilizadores nelas mencionados. As publicações diretas são enviadas apenas para os utilizadores nelas mencionados. Em alguns casos isso significa que são enviadas para diferentes servidores onde são guardadas cópias. Nós fazemos um grande esforço para limitar o acesso a estas publicações aos utilizadores autorizados, mas outros servidores podem falhar neste objetivo. Por isso, deve rever os servidores a que os seus seguidores pertencem. Pode ativar uma opção para aprovar e rejeitar manualmente novos seguidores nas configurações. <em>Por favor, tenha em mente que os gestores do seu servidor e qualquer servidor que receba a publicação pode lê-la</em> e que os destinatários podem fazer uma captura de tela, copiar ou partilhar a publicação.<em> Não partilhe qualquer informação sensível no Mastodon.</em></li>
-      <li><em>IPs e outros metadados</em>: Quando inicia sessão, nós guardamos o endereço de IP a partir do qual inicou sessão, tal como o nome do seu navegador. Todas as sessões estão disponíveis para verificação e revogação nas configurações. O último endereço de IP usado é guardado até 12 meses. Nós também podemos guardar registos de servidor, os quais incluem o endereço de IP de cada pedido dirigido ao nosso servidor.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Para que utilizamos a sua informação?</h3>
-
-      <p>Qualquer informação que recolhemos sobre sí pode ser utilizada dos seguintes modos:</p>
-
-      <ul>
-      <li>Para prover a funcionalidade central do Mastodon. Só pode interagir com o conteúdo de outras pessoas e publicar o seu próprio conteúdo depois de ter iniciado sessão. Por exemplo, pode seguir outras pessoas para veres as suas publicações na sua cronologia inicial personalizada.</li>
-      <li>Para ajudar na moderação da comunidade, por exemplo, para comparar o seu endereço IP com outros conhecidos, para determinar a fuga ao banimento ou outras violações.</li>
-      <li>O endereço de e-mail que fornece pode ser utilizado para lhe enviar informações e/ou notificações sobre outras pessoas que estão a interagir com o seu conteúdo ou a enviar-lhe mensagens, para responder a inquéritos e/ou outros pedidos ou questões.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Como protegemos a sua informação?</h3>
-
-      <p>Implementamos uma variedade de medidas para garantir a segurança da sua informação pessoal quando introduz, submete ou acede à mesma. Entre outras coisas, a sua sessão de navegação, tal como o tráfego entre as tuas aplicações e a API, estão seguras por SSL e a sua palavra-passe é codificada utilizando um forte algoritmo de sentido único. Pode activar a autenticação em duas etapas para aumentar ainda mais a segurança do acesso à sua conta.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">>Qual é a nossa política de retenção de dados?</h3>
-
-      <p>Faremos o nosso melhor esforço para:</p>
-
-      <ul>
-      <li>Reter registos do servidor contendo o endereço de IP de todos os pedidos feitos a este servidor, considerando que estes registos não sejam guardados por mais de 90 dias.</li>
-      <li>Reter os endereços de IP associados aos utilizadores registados durante um período que não ultrapasse os 12 meses.</li>
-      </ul>
-
-      <p>Pode requer e descarregar um ficheiro com o seu conteúdo, incluindo as suas publicações, os ficheiros multimédia, a imagem de perfil e a imagem de cabeçalho.</p>
-
-      <p>Pode eliminar a sua conta de modo irreversível a qualquer momento.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Utilizamos cookies?</h3>
-
-      <p>Sim. Cookies são pequenos ficheiros que um site ou o seu fornecedor de serviço transfere para o disco rígido do seu computador através do seu navegador (se você o permitir). Esses cookies possibilitam ao site reconhecer o seu navegador e, se você tiver uma conta registada, associá-lo a ela.</p>
-
-      <p>Nós usamos os cookies para compreender e guardar as suas preferências para visitas futuras.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Divulgamos alguma informação para entidades externas?</h3>
-
-      <p>Nós não vendemos, trocamos ou transferimos de qualquer modo a sua informação pessoal que seja identificável para qualquer entidade externa. Isto não inclui entindades terceiras de confiança que nos ajudam a manter o nosso site, conduzir o nosso negócio ou prestar-lhe este serviço, desde que essas entendidades concordem em manter essa informação confidencial. Poderemos também revelar a sua informação quando acreditarmos que isso é o apropriado para cumprir a lei, forçar a aplicação dos nossos termos de serviço ou proteger os direitos, propriedade e segurança, nossos e de outrem.</p>
-
-       <p>O seu conteúdo público pode ser descarregado por outros servidores na rede. As suas publicações públicas e exclusivas para os seus seguidores são enviadas para os servidores onde os seus seguidores residem e as mensagens diretas são entregues aos servidores dos seus destinatários, no caso desses seguidores ou destinatários residirem num servidor diferente deste.</p>
-
-      <p>Quando autoriza uma aplicação a utilizar a sua conta, dependendo da abrangência das permissões que aprova, ela pode ter acesso à informação pública do seu perfil, à lista de quem segue, aos seus seguidores, às suas listas, a todas as suas publicações e aos seus favoritos. As aplicações nunca terão acesso ao seu endereço de e-mail ou à sua palavra-passe.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Utilização do site por crianças</h3>
-
-      <p>Se este servidor estiver na UE ou no EEE: O nosso site, produtos e serviços são todos dirigidos a pessoas que tenham, pelo menos, 16 anos de idade. Se você tem menos de 16 anos de idade, em concordância com os requisitos da GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) não utilize este site.</p>
-
-      <p>Se este servidor estiver nos EUA: O nosso site, produtos e serviços são todos dirigidos a pessoas que tenham, pelo menos, 13 anos de idade. Se você tem menos de 13 anos de idade, em concordância com os requisitos da COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) não utilize este site.</p>
-
-      <p>Os requisitos legais poderão ser diferentes se este servidor estiver noutra jurisdição.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Alterações à nossa Política de Privacidade</h3>
-
-      <p>Se decidirmos alterar a nossa política de privacidade, iremos publicar essas alterações nesta página.</p>
-
-      <p>Este documento é CC-BY-SA. Ele foi actualizado pela última vez em 26 de Maio 2022.</p>
-
-      <p>Originalmente adaptado de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: Política de Privacidade de %{instance}
   themes:
     contrast: Mastodon (Elevado contraste)
     default: Mastodon
@@ -1786,20 +1691,11 @@ pt-PT:
         suspend: Conta suspensa
     welcome:
       edit_profile_action: Configurar o perfil
-      edit_profile_step: Pode personalizar o seu perfil carregando uma imagem de perfil e de cabeçalho ou alterando o nome a exibir, entre outras opções. Se preferir rever os novos seguidores antes de estes o poderem seguir, pode tornar a sua conta privada.
       explanation: Aqui estão algumas dicas para começar
       final_action: Começar a publicar
-      final_step: 'Começa a publicar! Mesmo sem seguidores, as suas mensagens públicas podem ser vistas por outros, por exemplo, na cronologia local e em hashtags. Pode querer apresentar-se utilizando a hashtag #introduções ou #introductions.'
       full_handle: O seu nome completo
       full_handle_hint: Isto é o que tem de facultar aos seus amigos para que eles lhe possam enviar mensagens ou seguir a partir de outra instância.
-      review_preferences_action: Alterar preferências
-      review_preferences_step: Certifique-se de configurar as suas preferências, tais como os e-mails que gostaria de receber ou o nível de privacidade que deseja que as suas publicações tenham por defeito. Se não sofre de enjoo de movimento, pode ativar a opção de auto-iniciar GIFs.
       subject: Bem-vindo ao Mastodon
-      tip_federated_timeline: A cronologia federativa é uma visão global da rede Mastodon. Mas só inclui pessoas que os teus vizinhos subscrevem, por isso não é uma visão completa.
-      tip_following: Segues o(s) administrador(es) do teu servidor por defeito. Para encontrar mais pessoas interessantes, procura nas cronologias local e federada.
-      tip_local_timeline: A cronologia local é uma visão global das pessoas em %{instance}. Estes são os seus vizinhos mais próximos!
-      tip_mobile_webapp: Se o teu navegador móvel te oferecer a possibilidade de adicionar o Mastodon ao teu homescreen, tu podes receber notificações push. Ele age como uma aplicação nativa de vários modos!
-      tips: Dicas
       title: Bem-vindo a bordo, %{name}!
   users:
     follow_limit_reached: Não podes seguir mais do que %{limit} pessoas

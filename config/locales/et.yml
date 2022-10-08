@@ -3,28 +3,19 @@ et:
   about:
     about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid Mastodonis!'
     about_this: Meist
-    active_count_after: aktiivne
-    active_footnote: Igakuiselt aktiivseid kasutajaid (MAU)
     administered_by: 'Administraator:'
     api: API
     apps: Mobiilirakendused
-    apps_platforms: Kasuta Mastodoni iOS-is, Androidis ja teistel platvormidel
-    browse_public_posts: Sirvi reaalajas voogu avalikest postitustest Mastodonis
     contact: Kontakt
     contact_missing: Määramata
     contact_unavailable: Pole saadaval
     documentation: Dokumentatsioon
-    federation_hint_html: Kui Teil on kasutaja %{instance}-is, saate Te jälgida inimesi üks kõik millisel Mastodoni serveril ja kaugemalgi.
-    get_apps: Proovi mobiilirakendusi
     hosted_on: Mastodon majutatud %{domain}-is
     instance_actor_flash: |
       See konto on virtuaalne näitleja, mis esindab tervet serverit ning mitte ühtegi kindlat isikut.
       Seda kasutatakse föderatiivsetel põhjustel ning seda ei tohiks blokeerida, välja arvatud juhul, kui soovite blokeerida tervet serverit, kuid sellel juhul soovitame hoopis kasutada domeeni blokeerimist.
-    learn_more: Lisateave
     rules: Serveri reeglid
     rules_html: 'Järgneb kokkuvõte reeglitest, mida pead järgima, kui lood endale siin Mastodoni serveris konto:'
-    see_whats_happening: Vaata, mis toimub
-    server_stats: 'Serveri statistika:'
     source_code: Lähtekood
     status_count_after:
       one: postitust
@@ -424,9 +415,6 @@ et:
         closed_message:
           desc_html: Kuvatud esilehel kui registreerimised on suletud. Te võite kasutada HTMLi silte
           title: Suletud registreerimiste sõnum
-        deletion:
-          desc_html: Luba kasutajatel oma konto kustutada
-          title: Ava kontode kustutamine
       registrations_mode:
         modes:
           approved: Kinnitus vajalik konto loomisel
@@ -513,10 +501,7 @@ et:
     warning: Olge nende andmetega ettevaatlikud. Ärge jagage neid kellegagi!
     your_token: Teie access token
   auth:
-    apply_for_account: Taotle kutse
     change_password: Salasõna
-    checkbox_agreement_html: Ma nõustun <a href="%{rules_path}" target="_blank">serveri reeglitega</a> ja <a href="%{terms_path}" target="_blank">kasutustingimustega</a>
-    checkbox_agreement_without_rules_html: Ma nõustun <a href="%{terms_path}" target="_blank">kasutustingimustega</a>
     delete_account: Kustuta konto
     delete_account_html: Kui Te soovite oma kontot kustutada, võite <a href="%{path}">jätkata siit</a>. Teilt küsitakse kinnitust.
     description:
@@ -546,7 +531,6 @@ et:
       confirming: Ootan e-posti kinnitust.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
       redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
-    trouble_logging_in: Probleeme sisselogimisega?
   authorize_follow:
     already_following: Te juba jälgite seda kontot
     already_requested: Te juba saatsite jälgimistaotluse sellele kontole
@@ -957,20 +941,11 @@ et:
         suspend: Konto peatatud
     welcome:
       edit_profile_action: Sea üles profiil
-      edit_profile_step: Te saate oma profiili isikupärastada näiteks lisades profiilipildi, päise, muutes oma kuvanime ja muud. Kui Te soovite üle vaadata inimesi, kes Teid jälgida soovivad, saate lukustada oma konto.
       explanation: Siin on mõned nõuanded, mis aitavad sul alustada
       final_action: Alusa postitamist
-      final_step: 'Alusta postitamist! Isegi ilma jälgijateta näevad teised Teie avalikke postitusi, näiteks kohalikul ajajoonel ning siltidest. Te võite ennast tutvustada kasutades silti #introductions.'
       full_handle: Teie täisnimi
       full_handle_hint: See on mida oma sõpradega jagada, et nad saaksid Teile sõnumeid saata ning Teid jälgida teiselt serverilt.
-      review_preferences_action: Muuda eelistusi
-      review_preferences_step: Kindlasti seadistage oma sätted Teie maitse järgi, näiteks e-kirju, mida soovite saada, või millist privaatsustaset Te soovite vaikimisi. Kui Teil pole merehaigust, võite Te näiteks lubada GIFide automaatse mängimise.
       subject: Tere tulemast Mastodoni
-      tip_federated_timeline: Föderatiivne ajajoon on reaalajas voogvaade tervest Mastodoni võrgust. Aga see sisaldab ainult inimesi, keda su naabrid tellivad, niiet see pole täiuslik.
-      tip_following: Vaikimisi, Te jälgite ainult oma serveri administraator(eid). Et leida rohkem huvitavamaid inimesi, vaadake kohalikke ja föderatiivseid ajajooni.
-      tip_local_timeline: Kohalik ajajoon on reaalajas voogvaade inimestest, kes on serveris %{instance}. Need on Teie lähimad naabrid!
-      tip_mobile_webapp: Kui Teie mobiilne veebilehitseja pakub Teile lisada meid Teie avaekraanile, saate Te reaalajas teateid. See töötab nagu tavaline mobiilirakendus mitmel moel!
-      tips: Nõuanded
       title: Tere tulemast pardale, %{name}!
   users:
     follow_limit_reached: Te ei saa jälgida rohkem kui %{limit} inimest

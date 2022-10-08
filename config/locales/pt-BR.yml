@@ -3,37 +3,24 @@ pt-BR:
   about:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     about_this: Sobre
-    active_count_after: ativo
-    active_footnote: Usuários Ativos Mensalmente (UAM)
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicativos
-    apps_platforms: Use o Mastodon a partir do iOS, Android e outras plataformas
-    browse_public_posts: Navegue pelos toots públicos globais em tempo real
     contact: Contato
     contact_missing: Não definido
     contact_unavailable: Não disponível
-    continue_to_web: Continuar no aplicativo web
     documentation: Documentação
-    federation_hint_html: Com uma conta em %{instance} você vai poder seguir e interagir com pessoas de qualquer canto do fediverso.
-    get_apps: Experimente um aplicativo
     hosted_on: Instância Mastodon em %{domain}
     instance_actor_flash: |
       Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
       É usado para propósitos de federação e não deve ser bloqueado a menos que queira bloquear toda a instância, o que no caso devia usar um bloqueio de domínio.
-    learn_more: Saiba mais
-    logged_in_as_html: Você está atualmente logado como %{username}.
-    logout_before_registering: Já está logado.
     rules: Regras do servidor
     rules_html: 'Abaixo está um resumo das regras que você precisa seguir se você quer ter uma conta neste servidor do Mastodon:'
-    see_whats_happening: Veja o que está acontecendo
-    server_stats: 'Estatísticas da instância:'
     source_code: Código-fonte
     status_count_after:
       one: toot
       other: toots
     status_count_before: Autores de
-    tagline: Rede social descentralizada
     unavailable_content: Conteúdo indisponível
     unavailable_content_description:
       domain: Instância
@@ -741,9 +728,6 @@ pt-BR:
         closed_message:
           desc_html: Mostrado na página inicial quando a instância está fechada. Você pode usar tags HTML
           title: Mensagem de instância fechada
-        deletion:
-          desc_html: Permitir que qualquer um exclua a própria conta
-          title: Exclusão aberta de contas
         require_invite_text:
           desc_html: Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite em "Por que você deseja criar uma conta aqui?"
           title: Exigir que novos usuários preencham um texto de solicitação de convite
@@ -917,10 +901,7 @@ pt-BR:
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
     your_token: Seu código de acesso
   auth:
-    apply_for_account: Solicitar convite
     change_password: Senha
-    checkbox_agreement_html: Concordo com <a href="%{rules_path}" target="_blank">as regras da instância</a> e com <a href="%{terms_path}" target="_blank">os termos de serviço</a>
-    checkbox_agreement_without_rules_html: Concordo com os <a href="%{terms_path}" target="_blank">termos do serviço</a>
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
     description:
@@ -960,7 +941,6 @@ pt-BR:
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
       view_strikes: Veja os ataques anteriores contra a sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
-    trouble_logging_in: Problemas para entrar?
     use_security_key: Usar chave de segurança
   authorize_follow:
     already_following: Você já segue
@@ -1573,20 +1553,11 @@ pt-BR:
         suspend: Conta banida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Você pode personalizar o seu perfil enviando um avatar, uma capa, alterando seu nome de exibição e etc. Se você preferir aprovar seus novos seguidores antes de eles te seguirem, você pode trancar a sua conta.
       explanation: Aqui estão algumas dicas para você começar
       final_action: Comece a tootar
-      final_step: 'Comece a tootar! Mesmo sem seguidores, suas mensagens públicas podem ser vistas pelos outros, por exemplo, na linha local e nas hashtags. Você pode querer fazer uma introdução usando a hashtag #introdução, ou em inglês usando a hashtag #introductions.'
       full_handle: Seu nome de usuário completo
       full_handle_hint: Isso é o que você compartilha com aos seus amigos para que eles possam te mandar toots ou te seguir a partir de outra instância.
-      review_preferences_action: Alterar preferências
-      review_preferences_step: Não se esqueça de configurar suas preferências, como quais e-mails você gostaria de receber, que nível de privacidade você gostaria que seus toots tenham por padrão. Se você não sofre de enjoo com movimento, você pode habilitar GIFs animado automaticamente.
       subject: Boas-vindas ao Mastodon
-      tip_federated_timeline: A linha global é uma visão contínua da rede do Mastodon. Mas ela só inclui pessoas de instâncias que a sua instância conhece, então não é a rede completa.
-      tip_following: Você vai seguir administrador(es) da sua instância por padrão. Para encontrar mais gente interessante, confira as linhas local e global.
-      tip_local_timeline: A linha local é uma visão contínua das pessoas em %{instance}. Estes são seus vizinhos!
-      tip_mobile_webapp: Se o seu navegador móvel oferecer a opção de adicionar Mastodon à tela inicial, você pode receber notificações push. Será como um aplicativo nativo!
-      tips: Dicas
       title: Boas vindas, %{name}!
   users:
     follow_limit_reached: Você não pode seguir mais de %{limit} pessoas

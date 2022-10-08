@@ -3,30 +3,19 @@ nn:
   about:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     about_this: Om oss
-    active_count_after: aktiv
-    active_footnote: Månadlege aktive brukarar (MAB)
     administered_by: 'Administrert av:'
     api: API
     apps: Mobilappar
-    apps_platforms: Bruk Mastodon på iOS, Android og andre plattformer
-    browse_public_posts: Sjå ei direktesending av offentlege innlegg på Mastodon
     contact: Kontakt
     contact_missing: Ikkje sett
     contact_unavailable: I/T
     documentation: Dokumentasjon
-    federation_hint_html: Med ein konto på %{instance} kan du fylgja folk på kva som helst slags Mastod-tenar og meir.
-    get_apps: Prøv ein mobilapp
     hosted_on: "%{domain} er vert for Mastodon"
     instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
-    learn_more: Lær meir
-    logout_before_registering: Du er allereie logga inn.
     rules: Tenarreglar
     rules_html: 'Nedanfor er eit samandrag av reglar du må fylgje dersom du vil ha ein konto på denne Mastodontenaren:'
-    see_whats_happening: Sjå kva som skjer
-    server_stats: 'Tenarstatistikk:'
     source_code: Kjeldekode
     status_count_before: Som skreiv
-    tagline: Desentralisert sosialt nettverk
     unavailable_content: Utilgjengeleg innhald
     unavailable_content_description:
       domain: Sørvar
@@ -517,9 +506,6 @@ nn:
         closed_message:
           desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
           title: Melding for lukket registrering
-        deletion:
-          desc_html: Tillat alle å sletta kontoen sin
-          title: Åpne kontosletting
         require_invite_text:
           desc_html: Når registreringer krever manuell godkjenning, må du føye «Hvorfor vil du bli med?» tekstinput obligatoriske i stedet for valgfritt
           title: Krev nye brukere for å oppgi en grunn for å delta
@@ -615,10 +601,7 @@ nn:
     warning: Ver varsam med dette datumet. Aldri del det med nokon!
     your_token: Tilgangsnykelen din
   auth:
-    apply_for_account: Bed om innbyding
     change_password: Passord
-    checkbox_agreement_html: Eg godtek <a href="%{rules_path}" target="_blank">tenarreglane</a> og <a href="%{terms_path}" target="_blank">tenestevilkåra</a>
-    checkbox_agreement_without_rules_html: Eg godtek <a href="%{terms_path}" target="_blank">tenestevilkåra</a>
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
     description:
@@ -654,7 +637,6 @@ nn:
       confirming: Ventar på stadfesting av e-post.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
-    trouble_logging_in: Får du ikkje logga inn?
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -1129,20 +1111,11 @@ nn:
         suspend: Konto utvist
     welcome:
       edit_profile_action: Lag til profil
-      edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
       explanation: Her er nokre tips for å koma i gang
       final_action: Kom i gang med å leggja ut
-      final_step: 'Byrj å skriva innlegg! Sjølv utan fylgjarar kan andre sjå dei offentlege meldingane dine, til dømes på den lokale tidslina og i emneknaggar. Du har kanskje lyst til å introdusera deg med emneknaggen #introductions.'
       full_handle: Det fulle brukarnamnet ditt
       full_handle_hint: Dette er det du fortel venene dine for at dei skal kunna senda deg meldingar eller fylgja deg frå ein annan tenar.
-      review_preferences_action: Endr innstillingar
-      review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
       subject: Velkomen til Mastodon
-      tip_federated_timeline: Den forente tidslinjen blir konstant matet med meldinger fra Mastodon-nettverket. Men den inkluderer bare personer dine naboer abbonerer på, så den er ikke komplett.
-      tip_following: Du fylgjer automatisk tenaradministrator(ane). For å finna fleire forvitnelege folk kan du sjekka den lokale og fødererte tidslina.
-      tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
-      tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
-      tips: Tips
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk

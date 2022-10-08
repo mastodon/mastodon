@@ -3,28 +3,19 @@ sc:
   about:
     about_mastodon_html: 'Sa rete sotziale de su benidore: sena publitzidade, sena vigilàntzia corporativa, disinnu èticu e detzentralizatzione! Sias mere de is datos tuos cun Mastodon!'
     about_this: Informatziones
-    active_count_after: ativu
-    active_footnote: Utentes cun atividade mensile (UAM)
     administered_by: 'Amministradu dae:'
     api: API
     apps: Aplicatziones mòbiles
-    apps_platforms: Imprea Mastodon dae iOS, Android e àteras prataformas
-    browse_public_posts: Nàviga in unu flussu in direta de messàgios pùblicos in Mastodon
     contact: Cuntatu
     contact_missing: No cunfiguradu
     contact_unavailable: No a disponimentu
     documentation: Documentatzione
-    federation_hint_html: Cun unu contu in %{instance} as a pòdere sighire persones in cale si siat serbidore de Mastodon o de su fediversu.
-    get_apps: Proa un'aplicatzione mòbile
     hosted_on: Mastodon allogiadu in %{domain}
     instance_actor_flash: 'Custu contu est un''atore virtuale impreadu pro rapresentare su pròpiu serbidore, no est un''utente individuale. Benit impreadu pro punnas de federatzione e no ddu dias dèpere blocare si non boles blocare su domìniu intreu, e in cussu casu dias dèpere impreare unu blocu de domìniu.
 
       '
-    learn_more: Àteras informatziones
     rules: Règulas de su serbidore
     rules_html: 'Depes sighire is règulas imbenientes si boles tènnere unu contu in custu serbidore de Mastodon:'
-    see_whats_happening: Càstia su chi est acontessende
-    server_stats: 'Istatìsticas de su serbidore:'
     source_code: Còdighe de orìgine
     status_count_after:
       one: istadu
@@ -528,9 +519,6 @@ sc:
         closed_message:
           desc_html: Ammustradu in sa prima pàgina cando is registratziones sunt serradas. Podes impreare etichetas HTML
           title: Messàgiu de registru serradu
-        deletion:
-          desc_html: Permite a chie si siat de cantzellare su contu suo
-          title: Aberi s'eliminatzione de su contu
         require_invite_text:
           desc_html: Cando is registratziones rechedent s'aprovatzione manuale, faghe chi a incarcare su butone "Pro ite ti boles iscrìere?" siat obligatòriu e no a praghere
           title: Rechede a is persones noas chi iscriant una resone prima de aderire
@@ -631,10 +619,7 @@ sc:
     warning: Dae cara a custos datos. Non ddos cumpartzas mai cun nemos!
     your_token: S'identificadore tuo de atzessu
   auth:
-    apply_for_account: Pedi un'invitu
     change_password: Crae
-    checkbox_agreement_html: So de acòrdiu cun is <a href="%{rules_path}" target="_blank">règulas de su serbidore</a> e is <a href="%{terms_path}" target="_blank">cunditziones de su servìtziu</a>
-    checkbox_agreement_without_rules_html: So de acòrdiu cun is <a href="%{terms_path}" target="_blank">cunditziones de su servìtziu</a>
     delete_account: Cantzella su contu
     delete_account_html: Si boles cantzellare su contu, ddu podes <a href="%{path}">fàghere inoghe</a>. T'amus a dimandare una cunfirmatzione.
     description:
@@ -671,7 +656,6 @@ sc:
       pending: Sa dimanda tua est in protzessu de revisione dae su personale nostru. Podet serbire unu pagu de tempus. As a retzire unu messàgiu eletrònicu si sa dimanda est aprovada.
       redirecting_to: Su contu tuo est inativu pro ite in die de oe est torrende a indiritzare a %{acct}.
     too_fast: Formulàriu imbiadu tropu a lestru, torra a proare.
-    trouble_logging_in: Tenes problemas de atzessu?
     use_security_key: Imprea una crae de seguresa
   authorize_follow:
     already_following: Ses giai sighende custu contu
@@ -1166,20 +1150,11 @@ sc:
         suspend: Contu suspèndidu
     welcome:
       edit_profile_action: Cunfigura su profilu
-      edit_profile_step: Podes personalizare su profilu tuo carrighende un'immàgine de profilu o un'intestatzione, cambiende su nòmine de utente tuo e àteru. Si boles revisionare is sighidores noos in antis chi tèngiant su permissu de ti sighire podes blocare su contu tuo.
       explanation: Inoghe ddoe at una paja de impòsitos pro cumintzare
       final_action: Cumintza a publicare
-      final_step: 'Cumintza a publicare! Fintzas si no ti sighit nemos àtera gente podet bìdere is messàgios pùblicos tuos, pro esèmpiu in sa lìnia de tempus locale e in is etichetas ("hashtags"). Ti dias pòdere bòlere introduire a sa comunidade cun s''eticheta #introductions.'
       full_handle: Su nòmine utente intreu tuo
       full_handle_hint: Custu est su chi dias nàrrere a is amistades tuas pro chi ti potzant imbiare messàgios o sighire dae un'àteru serbidore.
-      review_preferences_action: Muda is preferèntzias
-      review_preferences_step: Regorda·ti de cunfigurare is preferèntzias tuas, comente a cale messàgios de posta eletrònicas boles retzire, o ite livellu de riservadesa dias bòlere chi siat predefinidu pro is messàgios tuos. Si is immàgines in movimentu non ti infadant podes seberare de abilitare sa riprodutzione automàtica de is GIF.
       subject: Ti donamus su benebènnidu a Mastodon
-      tip_federated_timeline: Sa lìnia de tempus federada est una vista globale de sa retza de Mastodon. Ma includet isceti is persones sighidas dae is bighinos tuos, duncas no est totale.
-      tip_following: Pro more de is cunfiguratziones predefinidas sighis s'amministratzione de su serbidore tuo. Pro agatare àteras persones de interessu, càstia is lìnias de su tempus locale e federada.
-      tip_local_timeline: Sa lìnia de tempus locale est una vista globale de is persones in %{instance}. Custos sunt is bighinos tuos!
-      tip_mobile_webapp: Si su navigadore mòbile tuo t'oferit de agiùnghere Mastodon a s'ischermada printzipale tua podes retzire notìficas push. Funtzionat che a un'aplicatzione nativa in maneras medas!
-      tips: Impòsitos
       title: Ti donamus su benebènnidu, %{name}!
   users:
     follow_limit_reached: Non podes sighire prus de %{limit} persones

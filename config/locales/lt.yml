@@ -9,7 +9,6 @@ lt:
     contact_missing: Nenustatyta
     documentation: Dokumentacija
     hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
-    learn_more: Daugiau
     source_code: Šaltinio kodas
     status_count_before: Autorius
     user_count_before: Namai
@@ -281,9 +280,6 @@ lt:
         closed_message:
           desc_html: Rodoma pagrindiniame puslapyje, kuomet registracijos uždarytos. Jūs galite naudoti HTML
           title: Uždarytos registracijos žinutė
-        deletion:
-          desc_html: Leisti visiems ištrinti savo paskyrą
-          title: Atidaryti paskyros trynimą
       site_description:
         desc_html: Introdukcinis paragrafas pagrindiniame puslapyje. Apibūdink, kas padaro šį Mastodon serverį išskirtiniu ir visa kita, kas svarbu. Nebijok naudoti HTML žymes, pavyzdžiui <code> &lt; a &gt;</code> bei <code>&lt;em&gt;</code>.
         title: Serverio apibūdinimas
@@ -610,20 +606,11 @@ lt:
         suspend: Paskyra užrakinta
     welcome:
       edit_profile_action: Nustatyti profilį
-      edit_profile_step: Jūs galite keisti savo profilį įkeldami profilio nuotrauką, antraštę, pakeičiant savo rodomą vardą ir dar daugiau. Jeigu norėtumete peržiurėti naujus sekėjus prieš leidžiant jiems jus sekti, galite užrakinti savo paskyrą.
       explanation: Štai keletas patarimų Jums
       final_action: Pradėti kelti įrašus
-      final_step: 'Pradėk kelti įrašus! Net jeigu neturi sekėjų, Jūsų viešos žinutės gali būti matomos kitų, pavyzdžiui, lokalioje laiko juostoje ir saitažodžiuose. Galite norėti prisistatyti naudojan saitąžodį #introductions.'
       full_handle: Jūsų pilnas slapyvardis
       full_handle_hint: Štai ką jūs sakytumėte savo draugams, kad jie galėtų jums siųsti žinutes arba just sekti iš kitų serverių.
-      review_preferences_action: Pakeisti pasirinkimus
-      review_preferences_step: Nustatykite savo pasirinkimus, tokius kaip el pašto laiškai, kuriuos norėtumėte gauti, arba kokiu privatumo lygiu norėtumėte, kad jūsų įrašai būtų talpinami, taip pat galite įjungti automatinį GIF paleidimą.
       subject: Sveiki atvykę į Mastodon
-      tip_federated_timeline: Federuota laiko juosta yra lyg gaisrininkų žarną rodanti Mastodon tinklą. Tačiau, joje rodomi tik žmonės kurie yra sekami Jūsų kaimynų.
-      tip_following: Jūs sekate savo serverio administratorius numatyta tvarka. Norint rasti įdomesnių žmonių, patikrinkite lokalią bei federuotą laiko juostas.
-      tip_local_timeline: Lokali laiko juosta, joje rodomi žmonės iš %{instance}. Jie yra Jūsų artimiausi kaimynai!
-      tip_mobile_webapp: Jeigu Jūsų mobilioji naršyklė leidžia jums pridėti Mastodon prie namų ekrano, jūs galite gauti priminimus. Tai gali veikti kaip vietinė aplikacija!
-      tips: Patarimai
       title: Sveiki atvykę, %{name}!
   users:
     follow_limit_reached: Negalite sekti daugiau nei %{limit} žmonių

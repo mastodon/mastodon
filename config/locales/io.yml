@@ -3,38 +3,25 @@ io:
   about:
     about_mastodon_html: Mastodon esas <em>gratuita, apertitkodexa</em> sociala reto. Ol esas <em>sencentra</em> altra alternativo a komercala servadi. Ol evitigas, ke sola firmo guvernez tua tota komunikadol. Selektez servero, quan tu fidas. Irge qua esas tua selekto, tu povas komunikar kun omna altra uzeri. Irgu povas krear sua propra instaluro di Mastodon en sua servero, e partoprenar en la <em>sociala reto</em> tote glate.
     about_this: Pri ta instaluro
-    active_count_after: aktiva
-    active_footnote: Monade Aktiva Uzanti (MAU)
     administered_by: 'Administresis da:'
     api: API
     apps: Smartfonsoftwari
-    apps_platforms: Uzez Mastodon de iOS, Android e altra platformi
-    browse_public_posts: Videz samtempa video di publika posti che Mastodon
     contact: Kontaktar
     contact_missing: Ne fixigita
     contact_unavailable: Nula
-    continue_to_web: Durez a retsoftwaro
     documentation: Dokumentajo
-    federation_hint_html: Per konto che %{instance}, vu povas sequar persono che irga servilo di Mastodon e altra siti.
-    get_apps: Probez smartfonsoftwaro
     hosted_on: Mastodon hostigesas che %{domain}
     instance_actor_flash: 'Ca konto esas virtuala aganto quo uzesas por reprezentar la servilo e ne irga individuala uzanto. Ol uzesas por federskopo e ne debas restriktesar se vu ne volas obstruktar tota instanco, se ol esas la kaso, do vu debas uzar domenobstrukto.
 
       '
-    learn_more: Lernez pluse
-    logged_in_as_html: Vu nun eniras quale %{username}.
-    logout_before_registering: Vu ja eniris.
     privacy_policy: Privatesguidilo
     rules: Servilreguli
     rules_html: 'La subo montras rezumo di reguli quon vu bezonas sequar se vu volas havar konto che ca servilo di Mastodon:'
-    see_whats_happening: Videz quo eventas
-    server_stats: 'Servilstatistiko:'
     source_code: Fontkodexo
     status_count_after:
       one: posto
       other: posti
     status_count_before: Qua publikigis
-    tagline: Necentralizita sociala reto
     unavailable_content: Jerata servili
     unavailable_content_description:
       domain: Servilo
@@ -767,9 +754,6 @@ io:
         closed_message:
           desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
           title: Mesajo di klozita registro
-        deletion:
-          desc_html: Permisez irgu efacar sua konto
-          title: Apertez kontoefaco
         require_invite_text:
           desc_html: Se registri bezonas manuala aprobo, kauzigar "Por quo vu volas juntar?" textoenpoz divenar obligata
           title: Bezonez nova uzanti insertar motivo por juntar
@@ -1001,10 +985,7 @@ io:
     warning: Sorgemez per ca informi. Ne partigez kun irgu!
     your_token: Vua acesficho
   auth:
-    apply_for_account: Demandez invito
     change_password: Pasvorto
-    checkbox_agreement_html: Se konsentas <a href="%{rules_path}" target="_blank">servilreguli</a> e <a href="%{terms_path}" target="_blank">serveskondiconi</a>
-    checkbox_agreement_without_rules_html: Me konsentar <a href="%{terms_path}" target="_blank">serveskondicioni</a>
     delete_account: Efacez konto
     delete_account_html: Se vu volas efacar vua konto, vu povas <a href="%{path}">irar hike</a>. Vu demandesos konfirmar.
     description:
@@ -1044,7 +1025,6 @@ io:
       redirecting_to: Vua konto esas neaktiva pro ke ol nun ridirektesos a %{acct}.
       view_strikes: Videz antea streki kontre vua konto
     too_fast: Formulario sendesis tro rapide, probez itere.
-    trouble_logging_in: Ka ne povas enirar?
     use_security_key: Uzes sekuresklefo
   authorize_follow:
     already_following: Vu ja sequis ca konto
@@ -1625,90 +1605,6 @@ io:
       too_late: Ol esas tro tarda ye apelar ca strekizo
   tags:
     does_not_match_previous_name: ne parigesas a antea nomo
-  terms:
-    body_html: |
-      <h2>Privatesguidilo</h2>
-      <h3 id="collect">Quo informi kolektesas da ni?</h3>
-
-      <ul>
-        <li><em>Bazala kontoinformo</em></li>
-        <li><em>Posti, sequo e altra publika informo</em></li>
-        <li><em>Direta e sequantinura posti</em>: <em>Noto, operacero di servilo e gananta servilo povas vidar tala mesaji</em>. <em>Ne partigez irga privata informi che Mastodon.</em></li>
-        <li><em>IP e altra metainformi</em></li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Por quo ni uzas vua informi?</h3>
-
-      <p>
-      Irga informi quon ni kolektas de vu forsan uzesas per ca metodi:</p>
-
-      <ul>
-        <li>Por donar precipua funciono di Mastodon.</li>
-        <li>Por helpar jero di komunitato.</li>
-        <li>Retpostoadreso quon vu donas forsan uzesas por sendar informi a vu.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Quale ni protektas vua informi?</h3>
-
-      <p>Ni facar diversa sekuresdemarsh por mmantenar sekureso di vua personala informi kande vu enirar, sendar o acesar vua personala informi.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Quo esas nia informiretenguidilo?</h3>
-
-      <p>Ni esforcive proba:</p>
-
-      <ul>
-        <li>Retenar servillogi quo kontenar IP-adreso di omna demandi a ca servilo.</li>
-        <li>Retenar IP-adresi quo relatata kun registrinta uzanti til 12 monati.</li>
-      </ul>
-
-      <p>Vu povas demandar e deschargar arkivo di vua kontenajo.</p>
-
-      <p>Vu povas inversigebla efacar vua konto irgatempe.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Ka ni uzas kukii?</h3>
-
-      <p>Yes. (Se vu permisas)</p>
-
-      <p>Ni uzas kukii por komprenar e sparar vua preferaji por viziti en futuro.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Ka ni revelas irga informi a externe grupi?</h3>
-
-      <p>Ni ne vendas, komercar e transferar a externe grupi vua personala identigebla informi.</p>
-
-      <p>Vua publika kontenajo forsan deschargesas da altra servili en reto.</p>
-
-      <p>Kande vu yurizas softwaro uzar vua konto, ol forsan ganar vua publika profilinformi.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Situzo da pueri</h3>
-
-      <p>Se ca servilo esas en EU o EEA: Minimo esas 16 yari. (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>)</p>
-
-      <p>Se ca servilo esas en USA: Minimo esas 13 yari. (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>)</p>
-
-      <p>Legalbezonaji forsan esas diferanta se ca servilo esas en altra regiono.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Chanji di privatesguidilo</h3>
-
-      <p>Se ni decidas chanjar nia privatesguidilo, ni postigos ta chanji a ca pagino.</p>
-
-      <p>Ca dokumento esas CC-BY-SA.</p>
-
-      <p>Tradukesis e modifikesis de Angla de <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: Privatesguidilo di %{instance}
   themes:
     contrast: Mastodon (Alta kontrasteso)
     default: Mastodon (Obskura)
@@ -1787,20 +1683,11 @@ io:
         suspend: Konto restriktigesis
     welcome:
       edit_profile_action: Facez profilo
-      edit_profile_step: Vu povas kustumizar vua profilo per adchargar profilimajo, kapimajo, chanjar vua montronomo e pluse. Se vu volas kontrolar nova sequanti ante oli permisesar sequantar vu, vu povas klefklozar vua konto.
       explanation: Subo esas guidilo por helpar vu komencar
       final_action: Komencez postigar
-      final_step: 'Jus postigez! Mem sen sequanti, vua publika posti povas videsar da altra personi, exemplo es en lokala tempolineo e en hashtagi. Vu povas anke introduktar su en #introductions hashtagi.'
       full_handle: Vua kompleta profilnomo
       full_handle_hint: Co esas quon vu dicos a amiki por ke oli povas mesajigar o sequar vu de altra servilo.
-      review_preferences_action: Chanjez preferaji
-      review_preferences_step: Certigez ke vu fixas vua preferaji, tale quala retposto quon vu volas ganar, o privatesnivelo quo vu volas vua posti normale uzar. Se vu ne havas movmalado, vu povas selektar aktivigar GIF-autopleo.
       subject: Bonveno a Mastodon
-      tip_federated_timeline: Federatata tempolineo esas generala vido di reto di Mastodon. Ma, ol nur inkluzas personi quon vua vicini abonis, do ol ne esas kompleta.
-      tip_following: Vu sequas vua administrer(o) di servilo quale originala stando. Por sequar plu multa interesanta personi, videz lokala e federatata tempolinei.
-      tip_local_timeline: Lokala tempolineo esas generala vido di personi che %{instance}. Co esas vua apuda vicini!
-      tip_mobile_webapp: Se vua smartfonvidilo povigas vu pozar Mastodon a vua hemskreno, vu povas ganar pulsavizi. Ol funcionas tale traiti di smartfonsoftwaro!
-      tips: Guidili
       title: Bonveno, %{name}!
   users:
     follow_limit_reached: Vu ne povas sequar plu kam %{limit} personi

@@ -3,38 +3,25 @@ es-AR:
   about:
     about_mastodon_html: 'La red social del futuro: ¡sin publicidad, sin vigilancia corporativa, con diseño ético y descentralización! ¡Con Mastodon vos sos el dueño de tus datos!'
     about_this: Acerca de Mastodon
-    active_count_after: activo
-    active_footnote: Usuarios activos mensualmente (MAU)
     administered_by: 'Administrado por:'
     api: API
     apps: Aplicaciones móviles
-    apps_platforms: Usá Mastodon desde iOS, Android y otras plataformas
-    browse_public_posts: Explorá un flujo en tiempo real de mensajes públicos en Mastodon
     contact: Contacto
     contact_missing: No establecido
     contact_unavailable: No disponible
-    continue_to_web: Continuar con la aplicación web
     documentation: Documentación
-    federation_hint_html: Con una cuenta en %{instance} vas a poder seguir a cuentas de cualquier servidor de Mastodon y más allá.
-    get_apps: Probá una aplicación móvil
     hosted_on: Mastodon alojado en %{domain}
     instance_actor_flash: |
       Esta cuenta es un actor virtual usado para representar al propio servidor y no a ningún usuario individual.
       Se usa para fines federativos y no debe ser bloqueado a menos que quieras bloquear toda la instancia, en cuyo caso deberías usar un bloqueo de dominio.
-    learn_more: Aprendé más
-    logged_in_as_html: Actualmente iniciaste sesión como %{username}.
-    logout_before_registering: Ya iniciaste sesión.
     privacy_policy: Política de privacidad
     rules: Reglas del servidor
     rules_html: 'Abajo hay un resumen de las reglas que tenés que seguir si querés tener una cuenta en este servidor de Mastodon:'
-    see_whats_happening: Esto es lo que está pasando ahora
-    server_stats: 'Estadísticas del servidor:'
     source_code: Código fuente
     status_count_after:
       one: mensaje
       other: mensajes
     status_count_before: Que enviaron
-    tagline: Red social descentralizada
     unavailable_content: Servidores moderados
     unavailable_content_description:
       domain: Servidor
@@ -767,9 +754,6 @@ es-AR:
         closed_message:
           desc_html: Mostrado en la página principal cuando los registros de nuevas cuentas están cerrados. Podés usar etiquetas HTML
           title: Mensaje de registro de nuevas cuentas cerrado
-        deletion:
-          desc_html: Permitir que cualquiera elimine su cuenta
-          title: Abrir eliminación de cuenta
         require_invite_text:
           desc_html: Cuando los registros requieran aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
           title: Requerir que los nuevos usuarios llenen un texto de solicitud de invitación
@@ -1001,10 +985,8 @@ es-AR:
     warning: Ojo con estos datos. ¡Nunca los compartas con nadie!
     your_token: Tu clave de acceso
   auth:
-    apply_for_account: Solicitar una invitación
+    apply_for_account: Entrar en la lista de espera
     change_password: Contraseña
-    checkbox_agreement_html: Acepto las <a href="%{rules_path}" target="_blank">reglas del servidor</a> y los <a href="%{terms_path}" target="_blank">términos del servicio</a>
-    checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank">términos del servicio</a>
     delete_account: Eliminar cuenta
     delete_account_html: Si querés eliminar tu cuenta, podés <a href="%{path}">seguir por acá</a>. Se te va a pedir una confirmación.
     description:
@@ -1023,6 +1005,7 @@ es-AR:
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si querés redireccionar esta cuenta a otra distinta, podés <a href="%{path}">configurar eso acá</a>.
     or_log_in_with: O iniciar sesión con
+    privacy_policy_agreement_html: Leí y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1030,12 +1013,18 @@ es-AR:
     registration_closed: "%{instance} no está aceptando nuevos miembros"
     resend_confirmation: Reenviar correo electrónico de confirmación
     reset_password: Cambiar contraseña
+    rules:
+      preamble: Estas reglas son establecidas y aplicadas por los moderadores de %{domain}.
+      title: Algunas reglas básicas.
     security: Seguridad
     set_new_password: Establecer nueva contraseña
     setup:
       email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, podés cambiarla acá y recibir un nuevo correo electrónico de confirmación.
       email_settings_hint_html: Se envió el correo electrónico de confirmación a %{email}. Si esa dirección de correo electrónico no es correcta, podés cambiarla en la configuración de la cuenta.
       title: Configuración
+    sign_up:
+      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra cuenta en la red, independientemente de en qué servidor esté alojada su cuenta.
+      title: Dejá que te preparemos en %{domain}.
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
@@ -1044,7 +1033,6 @@ es-AR:
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
       view_strikes: Ver incumplimientos pasados contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, probá de nuevo.
-    trouble_logging_in: "¿Tenés problemas para iniciar sesión?"
     use_security_key: Usar la llave de seguridad
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
@@ -1625,89 +1613,6 @@ es-AR:
       too_late: Es demasiado tarde para apelar este incumplimiento
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
-  terms:
-    body_html: |
-      <h2>Política de privacidad</h2>
-      <h3 id="collect">¿Qué información recolectamos?</h3>
-
-      <ul>
-      <li><em>Información básica de la cuenta</em>: Si te registrás en este servidor, se te va a pedir que ingresés un nombre de usuario, una dirección de correo electrónico y una contraseña. También podés ingresar información adicional de perfil, como un nombre a mostrar y una biografía/descripción sobre vos mismo, así como subir una imagen de avatar y una imagen de cabecera. El nombre de usuario, el nombre a mostrar, la biografía y las imágenes de avatar y cabecera siempre se muestran públicamente.</li>
-      <li><em>Mensajes, seguimientos y otra información pública</em>: La lista de gente que seguís se muestra públicamente; lo mismo ocurre con tus seguidores. Cuando enviás un mensaje, la fecha y la hora de ese mensajes queda registrada, así como el nombre del programa o la aplicación que usaste para enviar dicho mensaje. Los mensajes pueden contener archivos adjuntos de medios, como audios, imágenes o videos. No sólo los mensajes públicos están disponibles públicamente, sino también aquellos mensajes no listados. Cuando destacás un mensaje en tu perfil, esta información también está disponible de modo público. Tus mensajes son entregados a tus seguidores; en muchos casos, eso significa que son entregados a diferentes servidores y que las copias de esos mensajes quedan almacenadas allí. Cuando eliminás mensajes, esta acción también es entregada a tus seguidores. La acción de adherir a un mensaje o de marcarlo como favorito siempre es pública.</li>
-      <li><em>Mensajes sólo para seguidores y directos</em>: Todos los mensajes son almacenados y procesados en el servidor. Los mensajes sólo para seguidores son entregados a tus seguidores y a los usuarios que son mencionados en ellos, mientras que los mensajes directos son entregados sólo a los usuarios mencionados en ellos; en muchos casos, eso significa que son entregados a diferentes servidores y las copias de esos mensajes quedan almacenadas allí. Hacemos el esfuerzo de buena fe para limitar el acceso a esos mensajes sólo a las cuentas autorizadas, pero otros servidores podrían no seguir estas pautas. Por lo tanto, es importante revisar los servidores a los cuales pertenecen tus seguidores. Podés activar una opción para aprobar y rechazar nuevos seguidores manualmente en la configuración de tu cuenta de Mastodon. <em>Por favor, tené en mente que los operadores del servidor y de cualquier servidor receptor podría ver tales mensajes</em>, y que los destinatarios podrías tomar capturas de pantalla, copiarlos o recompartirlos entre ellos. <em>No compartas ninguna información sensible al usar Mastodon.</em></li>
-      <li><em>Dirección IP y otros metadatos</em>: Cuando iniciás sesión, registramos tu dirección IP, así como el nombre de tu navegador web o programa/aplicación. Todas las sesiones registradas están disponibles para que la revisés y revoqués en la configuración de tu cuenta de Mastodon. La última dirección IP usada es almacenada por hasta 12 meses. También podríamos retener registros de servidor, los cuales incluyen la dirección IP de cada solicitud a nuestro servidor.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">¿Para qué usamos esta información?</h3>
-
-      <p>Cualquier información que recolectamos de vos puede ser usada de las siguientes maneras:</p>
-
-      <ul>
-      <li>Para proveer la funcionalidad central de Mastodon. Sólo podés interactuar con el contenido de otras cuentas y enviar tu propio contenido cuando iniciaste sesión. Por ejemplo, podrías seguir otras cuentas para ver sus mensajes combinados en tu propia línea temporal principal personalizada.</li>
-      <li>Para ayudar a la moderación de la comunidad, por ejemplo comparando tu dirección IP con otras conocidas, para determinar la evasión de expulsaciones u otras violaciones.</li>
-      <li>La dirección de correo electrónico que ofrecés puede ser usada para enviarte información, notificaciones sobre otras cuentas interactuando con tu contenido o enviándote mensajes, y responder a consultas y/u otras solicitudes o consultas.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">¿Cómo protegemos tu información?</h3>
-
-      <p>Implementamos una variedad de medidas de seguridad para mantener la seguridad de tu información personal cuando ingresás, enviás o accedés a tu información personal. Entre otras cosas, la sesión de tu navegador web o programa/aplicación, así como el tráfico entre tus aplicaciones y la API, están aseguradas con SSL, y tu contraseña está cifrada usando un fuerte algoritmo de un solo sentido. Podés habilitar la autenticación de dos factores para fortalecer el acceso seguro a tu cuenta.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">¿Cuál es nuestra política de retención?</h3>
-
-      <p>Haremos el esfuerzo de buena fe para:</p>
-
-      <ul>
-       <li>Retener los registros de servidor conteniendo las direcciones IP de todas las solicitudes a este servidor, por no más de 90 días.</li>
-      <li>Retener las direcciones IP asociadas a los usuarios registrados por no más de 12 meses.</li>
-      </ul>
-
-      <p>Podés solicitar y descargar un archivo de tu contenido, incluyendo tus mensajes, archivos adjuntos de medios e imágenes de avatar y cabecera.</p>
-
-      <p>Podés eliminar tu cuenta de forma irreversible en cualquier momento.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">¿Usamos cookies?</h3>
-
-      <p>Sí. Las cookies son diminutos archivos que un sitio web o su provedor de servicio transfiere a la unidad de almacenamiento de tu computadora a través de tu navegador web (si así lo permitís). Estas cookies habilitan al sitio web a reconocer a tu navegador web y, si tenés una cuenta registrada, asociarlo a tu cuenta registrada.</p>
-
-      <p>Usamos cookies para entender y guardar tu configuración para futuras visitas.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">¿Revelamos alguna información a entidades externas?</h3>
-
-      <p>No vendemos, intercambiamos ni transferimos tu información personal identificable a entidades externas. Esto no incluye terceros de confianza quienes nos asisten en operar nuestro sitio web, dirigir nuestro negocio u ofrecerte servicios, mientras esos terceros acepten conservar esa información de modo confidencial. También podríamos liberar tu información cuando creemos que liberarla es apropiado para cumplir con la ley, enforzar nuestras políticas del sitio web, o proteger nuestros u otros derechos, propiedad o seguridad.</p>
-
-      <p>Tu contenido público puede ser descargado por otros servidores en la red. Tus mensajes públicos y sólo para seguidores son entregados a los servidores en donde tus seguidores tienen cuenta, y los mensajes directos son entregados a los servidores de los destinatarios, es decir en los servidores en los que esos seguidores o destinatarios tengan su cuenta, diferentes de este servidor.</p>
-
-      <p>Cuando autorizás a un programa o aplicación a usar tu cuenta, dependiendo del alcance de los permisos que aprobés, podría acceder a tu información pública de perfil, tu lista de seguimientos, tus listas, todos tus mensajes y tus mensajes marcados como favoritos. Los programas o aplicaciones jamás pueden acceder a tu dirección de correo electrónico o contraseña.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Sitio web usado por niños</h3>
-
-      <p>Si este servidor está ubicado geográficamente en la Unión Europea o en el Espacio Económico Europeo: Nuestro sitio web, productos y servicios son todos dirigios a personas de al menos 16 años de edad. Si tenés menos de 16 años, por los requerimientos del GDPR (<a href="https://es.wikipedia.org/wiki/Reglamento_General_de_Protecci%C3%B3n_de_Datos">Reglamento General de Protección de Datos</a>) no usés este sitio web.</p>
-
-      <p>Si este servidor está ubicado geográficamente en los Estados Unidos de América: Nuestro sitio web, productos y servicios son todos dirigidos a personas de al menos 13 años de edad. Si tenés menos de 13 años, por los requerimientos de la COPPA (<a href="https://es.wikipedia.org/wiki/Ley_de_Protecci%C3%B3n_de_la_Privacidad_en_L%C3%ADnea_para_Ni%C3%B1os">Ley de Protección de la Privacidad en Línea para Niños</a>) no usés este sitio web.</p>
-
-      <p>Los requerimientos legales pueden ser diferente en este servidor si se encuentra geográficamente en otra jurisdicción.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Cambios a nuestra Política de privacidad</h3>
-
-      <p>Si decidimos cambiar nuestra política de privacidad, publicaremos dichos cambios en esta página.</p>
-
-      <p>Este documento se publica bajo la licencia CC-BY-SA (Creative Commons - Atribución - CompartirIgual) y fue actualizado por última vez el 26 de mayo de 2022.</p>
-
-      <p>Originalmente adaptado de la <a href="https://github.com/discourse/discourse">Política de privacidad de Discourse</a>.</p>
-    title: Política de privacidad de %{instance}
   themes:
     contrast: Alto contraste
     default: Oscuro
@@ -1786,20 +1691,13 @@ es-AR:
         suspend: Cuenta suspendida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Podés personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre para mostrar y más cosas. Si querés revisar a tus nuevos seguidores antes de que se les permita seguirte, podés hacer tu cuenta privada.
+      edit_profile_step: Podés personalizar tu perfil subiendo un avatar (imagen de perfil), cambiando tu nombre a mostrar y más. Podés optar por revisar a los nuevos seguidores antes de que puedan seguirte.
       explanation: Aquí hay algunos consejos para empezar
       final_action: Empezá a enviar mensajes
-      final_step: ¡Empezá a enviar mensajes! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea temporal local, y con etiquetas. Capaz que quieras presentarte al mundo con la etiqueta "#presentación".
+      final_step: "¡Empezá a enviar mensajes! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea temporal local o al usar etiquetas. Capaz que quieras presentarte al mundo con la etiqueta «#presentación»."
       full_handle: Tu nombre de usuario completo
       full_handle_hint: Esto es lo que le dirás a tus contactos para que ellos puedan enviarte mensajes o seguirte desde otro servidor.
-      review_preferences_action: Cambiar configuración
-      review_preferences_step: Asegurate de establecer tu configuración, como qué tipo de correos electrónicos te gustaría recibir, o qué nivel de privacidad te gustaría que sea el predeterminado para tus mensajes. Si no sufrís de mareos, podrías elegir habilitar la reproducción automática de GIFs.
       subject: Bienvenido a Mastodon
-      tip_federated_timeline: La línea temporal federada es una línea contínua global de la red de Mastodon. Pero sólo incluye gente que tus vecinos están siguiendo, así que no es completa.
-      tip_following: Predeterminadamente seguís al / a los administrador/es de tu servidor. Para encontrar más gente interesante, revisá las lineas temporales local y federada.
-      tip_local_timeline: La línea temporal local es una línea contínua global de cuentas en %{instance}. ¡Estos son tus vecinos inmediatos!
-      tip_mobile_webapp: Si tu navegador web móvil te ofrece agregar Mastodon a tu página de inicio, podés recibir notificaciones push. ¡Actúa como una aplicación nativa de muchas maneras!
-      tips: Consejos
       title: "¡Bienvenido a bordo, %{name}!"
   users:
     follow_limit_reached: No podés seguir a más de %{limit} cuentas

@@ -3,28 +3,19 @@ ro:
   about:
     about_mastodon_html: 'Rețeaua socială a viitorului: Fără reclame, fără supraveghere corporativă, design etic și descentralizare! Dețineți-vă datele cu Mastodon!'
     about_this: Despre
-    active_count_after: activi
-    active_footnote: Utilizatori activi lunar (UAL)
     administered_by: 'Administrat de:'
     api: API
     apps: Aplicații mobile
-    apps_platforms: Folosește Mastodon de pe iOS, Android și alte platforme
-    browse_public_posts: Răsfoiește un flux live de postări publice pe Mastodon
     contact: Contact
     contact_missing: Nesetat
     contact_unavailable: Indisponibil
     documentation: Documentație
-    federation_hint_html: Cu un cont pe %{instance} vei putea urmări oameni pe orice server de Mastodon sau mai departe.
-    get_apps: Încercați o aplicație pentru mobil
     hosted_on: Mastodon găzduit de %{domain}
     instance_actor_flash: |
       Acest cont este un actor virtual folosit pentru a reprezenta serverul în sine și nu un utilizator individual.
       Acesta este folosit în scopuri de federație și nu ar trebui blocat decât dacă doriți să blocați întreaga instanță, în ce caz trebuie să utilizaţi un bloc de domeniu.
-    learn_more: Află mai multe
     rules: Regulile serverului
     rules_html: 'Mai jos este un rezumat al regulilor pe care trebuie să le urmezi dacă vrei să ai un cont pe acest server de Mastodon:'
-    see_whats_happening: Vezi ce se întâmplă
-    server_stats: 'Statistici server:'
     source_code: Cod sursă
     status_count_after:
       few: stări
@@ -284,10 +275,7 @@ ro:
     warning: Fiți foarte atent cu aceste date. Nu le împărtășiți niciodată cu cineva!
     your_token: Token-ul tău de acces
   auth:
-    apply_for_account: Solicită o invitație
     change_password: Parolă
-    checkbox_agreement_html: Sunt de acord cu <a href="%{rules_path}" target="_blank">regulile serverului</a> şi <a href="%{terms_path}" target="_blank">termenii de serviciu</a>
-    checkbox_agreement_without_rules_html: Sunt de acord cu <a href="%{terms_path}" target="_blank">termenii serviciului</a>
     delete_account: Șterge contul
     delete_account_html: Dacă vrei să ștergi acest cont <a href="%{path}">poți începe aici</a>. Va trebui să confirmi această acțiune.
     description:
@@ -317,7 +305,6 @@ ro:
       confirming: Se așteaptă finalizarea confirmării prin e-mail.
       pending: Cererea dvs. este în curs de revizuire de către personalul nostru. Este posibil să dureze ceva timp. Veți primi un e-mail dacă cererea dvs. este aprobată.
       redirecting_to: Contul dvs. este inactiv deoarece în prezent se redirecționează către %{acct}.
-    trouble_logging_in: Probleme la conectare?
   authorize_follow:
     already_following: Urmărești deja acest cont
     already_requested: Ați trimis deja o cerere de urmărire către acel cont
@@ -618,20 +605,11 @@ ro:
         suspend: Cont suspendat
     welcome:
       edit_profile_action: Configurare profil
-      edit_profile_step: Vă puteți personaliza profilul încărcând un avatar, un antet, schimbându-vă numele afișat și multe altele. Dacă dorești să revizuiești noi urmăritori înainte de a primi permisiunea de a te urmări, îți poți bloca contul.
       explanation: Iată câteva sfaturi pentru a începe
       final_action: Începe să postezi
-      final_step: 'Începe să postezi! Chiar și fără urmăritori, mesajele publice pot fi văzute de alții, de exemplu pe fluxul local și pe hashtag-uri. Poate doriți să vă prezentați pe hashtag-ul #introducere.'
       full_handle: Numele tău complet
       full_handle_hint: Asta este ceea ce vei putea spune prietenilor pentru a te putea contacta sau pentru a te urmării de pe un alt server.
-      review_preferences_action: Schimbă preferințele
-      review_preferences_step: Asigură-te că setezi preferințele tale, cum ar fi e-mailurile pe care dorești să le primești sau ce nivel de confidențialitate vrei ca mesajele tale să fie implicite. Dacă nu ai rău de mişcare, ai putea alege să activezi imaginile GIF să pornească automat.
       subject: Bine ai venit
-      tip_federated_timeline: Fluxul federat este o vedere de ansamblu a rețelei Mastodon. Dar include doar oameni la care s-au abonat vecinii tăi, așa că nu este completă.
-      tip_following: Urmăriți implicit administratorul(ii) serverului. Pentru a găsi oameni mai interesanți, verificați fluxurile locale și federalizate.
-      tip_local_timeline: Fluxul local este o vedere în ansamblu a persoanelor de pe %{instance}. Aceștia sunt vecinii tăi apropiați!
-      tip_mobile_webapp: Dacă navigatorul tău mobil îți oferă să adaugi Mastodon pe ecranul tău de pornire, poți primi notificări push. Se comportă ca o aplicație nativă în multe moduri!
-      tips: Sfaturi
       title: Bine ai venit la bord, %{name}!
   users:
     follow_limit_reached: Nu poți urmări mai mult de %{limit} persoane

@@ -3,28 +3,19 @@ co:
   about:
     about_mastodon_html: 'A rete suciale di u futuru: micca pubblicità, micca surveglianza, cuncezzione etica, è dicentralizazione! Firmate in cuntrollu di i vostri dati cù Mastodon!'
     about_this: À prupositu
-    active_count_after: attivi
-    active_footnote: Utilizatori Attivi Mensili (UAM)
     administered_by: 'Amministratu da:'
     api: API
     apps: Applicazione per u telefuninu
-    apps_platforms: Utilizà Mastodon dapoi à iOS, Android è altre piattaforme
-    browse_public_posts: Navigà un flussu di i statuti pubblichi nant'à Mastodon
     contact: Cuntattu
     contact_missing: Mancante
     contact_unavailable: Micca dispunibule
     documentation: Ducumentazione
-    federation_hint_html: Cù un contu nant'à %{instance} puderete siguità ghjente da tutti i servori Mastodon è ancu più d'altri.
-    get_apps: Pruvà un'applicazione di telefuninu
     hosted_on: Mastodon allughjatu nant’à %{domain}
     instance_actor_flash: |
       Stu contu ghjè un'attore virtuale chì ghjove à riprisentà u servore sanu è micca un veru utilizatore.
       Hè utilizatu da a federazione è ùn deve micca esse bluccatu eccettu s'e voi vulete bluccà tuttu u servore, in quellu casu duvereste utilizà un blucchime di duminiu.
-    learn_more: Amparà di più
     rules: Regule di u servore
     rules_html: 'Eccu un riassuntu di e regule da siguità s''e voi vulete creà un contu nant''à quessu servore di Mastodon:'
-    see_whats_happening: Vede cio chì si passa
-    server_stats: 'Statistiche di u servore:'
     source_code: Codice di fonte
     status_count_after:
       one: statutu
@@ -559,9 +550,6 @@ co:
         closed_message:
           desc_html: Affissatu nant’a pagina d’accolta quandu l’arregistramenti sò chjosi. Pudete fà usu di u furmattu HTML
           title: Missaghju per l’arregistramenti chjosi
-        deletion:
-          desc_html: Auturizà tuttu u mondu à sguassà u so propiu contu
-          title: Auturizà à sguassà i conti
         require_invite_text:
           desc_html: Quandu l'arregistramenti necessitanu un'apprubazione manuale, fà chì u testu "Perchè vulete ghjunghje?" sia ubligatoriu invece d'esse facultativu
           title: Richiede chì i novi utilizatori empiinu una dumanda d'invitazione
@@ -677,10 +665,7 @@ co:
     warning: Abbadate à quessi dati. Ùn i date à nisunu!
     your_token: Rigenerà a fiscia d’accessu
   auth:
-    apply_for_account: Dumandà un'invitazione
     change_password: Chjave d’accessu
-    checkbox_agreement_html: Sò d'accunsentu cù e <a href="%{rules_path}" target="_blank">regule di u servore</a> è i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
-    checkbox_agreement_without_rules_html: Accettu i <a href="%{terms_path}" target="_blank">termini di u serviziu</a>
     delete_account: Sguassà u contu
     delete_account_html: S’è voi vulete toglie u vostru contu <a href="%{path}">ghjè quì</a>. Duverete cunfirmà a vostra scelta.
     description:
@@ -717,7 +702,6 @@ co:
       pending: A vostra dumanda hè in attesa di rivista da a squadra di muderazione. Quessa pò piglià un certu tempu. Avete da riceve un'e-mail s'ella hè appruvata.
       redirecting_to: U vostru contu hè inattivu perchè riindirizza versu %{acct}.
     too_fast: Furmulariu mandatu troppu prestu, ripruvate.
-    trouble_logging_in: Difficultà per cunnettavi?
     use_security_key: Utilizà a chjave di sicurità
   authorize_follow:
     already_following: Site digià abbunatu·a à stu contu
@@ -1236,20 +1220,11 @@ co:
         suspend: Contu suspesu
     welcome:
       edit_profile_action: Cunfigurazione di u prufile
-      edit_profile_step: Pudete persunalizà u vostru prufile cù un ritrattu di prufile o di cuprendula, un nome pubblicu persunalizatu, etc. Pudete ancu rende u contu privatu per duvè cunfirmà ogni dumanda d’abbunamentu.
       explanation: Eccu alcune idee per principià
       final_action: Principià à pustà
-      final_step: 'Andemu! Ancu senza abbunati i vostri missaghji pubblichi puderanu esse visti da altre persone, per esempiu nant’a linea lucale è l’hashtag. Pudete ancu prisintavi nant’à u hashtag #introductions.'
       full_handle: U vostru identificatore cumplettu
       full_handle_hint: Quessu ghjè cio chì direte à i vostri amichi per circavi, abbunassi à u vostru contu da altrò, o mandà missaghji.
-      review_preferences_action: Mudificà e priferenze
-      review_preferences_step: Quì pudete adattà u cumpurtamentu di Mastodon à e vostre priferenze, cum’è l’email che vulete riceve, u nivellu di cunfidenzialità predefinitu di i vostri statuti, o u cumpurtamentu di i GIF animati.
       subject: Benvenutu·a nant’à Mastodon
-      tip_federated_timeline: A linea pubblica glubale mostra i statuti da altre istanze nant’a rete Mastodon, mà ùn hè micca cumpleta perchè ci sò soli i conti à quelli sò abbunati membri di a vostr’istanza.
-      tip_following: Site digià abbunatu·a à l’amministratori di u vostru servore. Per truvà d’altre parsone da siguità, pudete pruvà e linee pubbliche.
-      tip_local_timeline: A linea pubblica lucale ghjè una vista crunulogica di i statuti di a ghjente nant’à %{instance}. Quessi sò i vostri cunvicini!
-      tip_mobile_webapp: Pudete aghjunghje Mastodon à a pagina d’accolta di u vostru navigatore di telefuninu per riceve nutificazione, cum’un applicazione!
-      tips: Cunsiglii
       title: Benvenutu·a, %{name}!
   users:
     follow_limit_reached: Ùn pidete seguità più di %{limit} conti

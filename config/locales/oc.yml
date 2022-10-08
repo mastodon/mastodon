@@ -3,24 +3,15 @@ oc:
   about:
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
     about_this: A prepaus d’aquesta instància
-    active_count_after: actius
-    active_footnote: Utilizaire actius per mes (UAM)
     administered_by: 'Administrat per :'
     api: API
     apps: Aplicacions per mobil
-    apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
-    browse_public_posts: Navigatz pel flux public a Mastodon
     contact: Contacte
     contact_missing: Pas parametrat
     contact_unavailable: Pas disponible
     documentation: Documentacion
-    federation_hint_html: Amb un compte sus %{instance} poiretz sègre de personas de qualque siasque servidor Mastodon e encara mai.
-    get_apps: Ensajatz una aplicacion mobil
     hosted_on: Mastodon albergat sus %{domain}
-    learn_more: Ne saber mai
     rules: Règlas del servidor
-    see_whats_happening: Agachatz çò qu’arriba
-    server_stats: 'Estatisticas del servidor :'
     source_code: Còdi font
     status_count_after:
       one: estatut
@@ -456,9 +447,6 @@ oc:
         closed_message:
           desc_html: Mostrat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz utilizar de balisas HTML
           title: Messatge de barradura de las inscripcions
-        deletion:
-          desc_html: Autorizar lo monde a suprimir lor compte
-          title: Possibilitat de suprimir lo compte
       registrations_mode:
         modes:
           approved: Validacion necessària per s’inscriure
@@ -549,10 +537,7 @@ oc:
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
-    apply_for_account: Demandar una invitacion
     change_password: Senhal
-    checkbox_agreement_html: Accepti las <a href="%{rules_path}" target="_blank">règlas del servidor</a> e <a href="%{terms_path}" target="_blank">los tèrmes del servici</a>
-    checkbox_agreement_without_rules_html: Soi d’acòrdi amb las <a href="%{terms_path}" target="_blank">condicions d’utilizacion</a>
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     description:
@@ -579,7 +564,6 @@ oc:
       title: Configuracion
     status:
       account_status: Estat del compte
-    trouble_logging_in: Problèmas de connexion ?
     use_security_key: Utilizar clau de seguretat
   authorize_follow:
     already_following: Seguètz ja aqueste compte
@@ -1039,20 +1023,11 @@ oc:
         suspend: Compte suspendut
     welcome:
       edit_profile_action: Configuracion del perfil
-      edit_profile_step: Podètz personalizar lo perfil en mandar un avatard, cambiar l’escais-nom e mai. Se volètz repassar las demandas d’abonaments abans que los nòus seguidors pòscan veire vòstre perfil, podètz clavar vòstre compte.
       explanation: Vaquí qualques astúcias per vos preparar
       final_action: Començar de publicar
-      final_step: 'Començatz de publicar ! Quitament s’avètz pas de seguidors los autres pòdon veire vòstres messatges publics, per exemple pel flux d’actualitat local e per las etiquetas. Benlèu que volètz vos presentar amb l’etiquetas #introductions.'
       full_handle: Vòstre escais-nom complèt
       full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos escriure o sègre a partir d’un autre servidor.
-      review_preferences_action: Cambiar las preferéncias
-      review_preferences_step: Pensatz de configurar vòstras preferéncias, tal coma los corrièls que volètz recebrer o lo nivèl de confidencialitat de vòstres tuts per defaut. O se l’animacion vos dòna pas enveja de rendre, podètz activar la lectura automatica dels GIF.
       subject: Benvengut a Mastodon
-      tip_federated_timeline: Lo flux d’actualitat federat es una vista generala del malhum Mastodon. Mas aquò inclutz solament lo monde que vòstres vesins sègon, doncas es pas complèt.
-      tip_following: Seguètz l’administrator del servidor per defaut. Per trobar de monde mai interessant, agachatz lo flux d’actualitat local e lo global.
-      tip_local_timeline: Lo flux d’actualitat local es una vista del monde de %{instance}. Son vòstres vesins dirèctes !
-      tip_mobile_webapp: Se vòstre navigator mobil nos permet d’apondre Mastodon a l’ecran d‘acuèlh, podètz recebre de notificacions. Aquò se compòrta coma una aplicacion nativa !
-      tips: Astúcias
       title: Vos desirem la benvenguda a bòrd %{name} !
   users:
     follow_limit_reached: Podètz pas sègre mai de %{limit} personas

@@ -3,38 +3,25 @@ de:
   about:
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral – genau wie E-Mail!
     about_this: Über diesen Server
-    active_count_after: aktiv
-    active_footnote: Monatlich aktive User (MAU)
     administered_by: 'Betrieben von:'
     api: API
     apps: Mobile Apps
-    apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
-    browse_public_posts: Stöbere durch öffentliche Beiträge auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
-    continue_to_web: Weiter zur Web-App
     documentation: Dokumentation
-    federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein, Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
-    get_apps: Versuche eine mobile App
     hosted_on: Mastodon, gehostet auf %{domain}
     instance_actor_flash: |
       Dieses Konto ist ein virtueller Akteur, welcher den Server selbst – und nicht einen einzelnen Benutzer – repräsentiert.
       Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn, du möchtest die gesamte Instanz blockieren.
-    learn_more: Mehr erfahren
-    logged_in_as_html: Du bist derzeit als %{username} eingeloggt.
-    logout_before_registering: Du bist bereits angemeldet.
     privacy_policy: Datenschutzerklärung
     rules: Server-Regeln
     rules_html: 'Unten ist eine Zusammenfassung der Regeln, denen du folgen musst, wenn du ein Konto auf diesem Mastodon-Server haben möchtest:'
-    see_whats_happening: Finde heraus, was gerade in der Welt los ist
-    server_stats: 'Serverstatistiken:'
     source_code: Quellcode
     status_count_after:
       one: Beitrag
       other: Beiträge
     status_count_before: mit
-    tagline: Dezentrales soziales Netzwerk
     unavailable_content: Nicht verfügbarer Inhalt
     unavailable_content_description:
       domain: Server
@@ -767,9 +754,6 @@ de:
         closed_message:
           desc_html: Wird auf der Einstiegsseite gezeigt, wenn die Anmeldung geschlossen ist. Du kannst HTML-Tags nutzen
           title: Nachricht über geschlossene Registrierung
-        deletion:
-          desc_html: Allen erlauben, ihr Konto eigenmächtig zu löschen
-          title: Kontolöschung erlauben
         require_invite_text:
           desc_html: Wenn eine Registrierung manuell genehmigt werden muss, mache den „Warum möchtest du beitreten?“-Text obligatorisch statt optional
           title: Neue Benutzer müssen einen Einladungstext ausfüllen
@@ -1001,10 +985,8 @@ de:
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
-    apply_for_account: Eine Einladung anfragen
+    apply_for_account: Auf Warteliste kommen
     change_password: Passwort
-    checkbox_agreement_html: Ich akzeptiere die <a href="%{rules_path}" target="_blank">Server-Regeln</a> und die <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a>
-    checkbox_agreement_without_rules_html: Ich stimme den <a href="%{terms_path}" target="_blank">Nutzungsbedingungen</a> zu
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
     description:
@@ -1023,6 +1005,7 @@ de:
     migrate_account: Ziehe zu einem anderen Konto um
     migrate_account_html: Wenn du wünschst, dieses Konto zu einem anderen umzuziehen, kannst du <a href="%{path}">dies hier einstellen</a>.
     or_log_in_with: Oder anmelden mit
+    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
     providers:
       cas: CAS
       saml: SAML
@@ -1030,12 +1013,18 @@ de:
     registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
     resend_confirmation: Bestätigungs-Mail erneut versenden
     reset_password: Passwort zurücksetzen
+    rules:
+      preamble: Diese werden von den Moderatoren von %{domain} erzwungn.
+      title: Einige Grundregeln.
     security: Sicherheit
     set_new_password: Neues Passwort setzen
     setup:
       email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
       email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
       title: Konfiguration
+    sign_up:
+      preamble: Mit einem Account auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet wird.
+      title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
       confirming: Warte auf die Bestätigung der E-Mail.
@@ -1044,7 +1033,6 @@ de:
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
       view_strikes: Zeige frühere Streiks gegen dein Konto
     too_fast: Formular zu schnell gesendet, versuche es erneut.
-    trouble_logging_in: Schwierigkeiten beim Anmelden?
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
     already_following: Du folgst diesem Konto bereits
@@ -1625,57 +1613,6 @@ de:
       too_late: Es ist zu spät, um gegen diese Verwarnung Einspruch zu erheben
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
-  terms:
-    body_html: |
-      <h2>Datenschutzerklärung</h2>
-      <h3 id="collect">Welche Informationen sammeln wir?</h3>
-      <ul>
-      <li><em>Grundlegende Kontoinformationen</em>: Wenn du dich auf diesem Server registrierst, wirst du darum gebeten, einen Benutzernamen, eine E-Mail-Adresse und ein Passwort einzugeben. Du kannst auch zusätzliche Profilinformationen, wie etwa einen Anzeigenamen oder eine Biografie, eingeben und ein Profilbild oder ein Headerbild hochladen. Der Benutzername, der Anzeigename, die Biografie, das Profilbild und das Headerbild werden immer öffentlich angezeigt.</li>
-      <li><em>Beiträge, Folge- und andere öffentliche Informationen</em>: Die Liste der Leute, denen du folgst, wird öffentlich gezeigt; das gleiche gilt für deine Folgenden (Follower). Sobald du eine Nachricht übermittelst, wird das Datum und die Uhrzeit gemeinsam mit der Information, welche Anwendung du dafür verwendet hast, gespeichert. Nachricht können Medienanhänge enthalten, etwa Bilder und Videos. Öffentliche und ungelistete Beiträge sind öffentlich verfügbar. Sobald du einen Beitrag auf deinem Profil anpinnst, ist dies auch eine öffentlich verfügbare Information. Deine Beiträge werden an deine Folgenden ausgeliefert, was in manchen Fällen bedeutet, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Sobald du Beiträge löschst, wird dies ebenso an deine Follower ausgeliefert. Die Handlungen des Teilens und Favorisieren eines anderen Beitrages ist immer öffentlich.</li>
-      <li><em>Direkte und „Nur Folgende“-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. „Nur Folgende“-Beiträge werden an deine Folgenden und an Benutzer, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer. In manchen Fällen bedeutet das, dass sie an andere Server ausgeliefert und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile keine sensiblen Informationen über Mastodon.</em></li>
-      <li><em>Internet-Protokoll-Adressen (IP-Adressen) und andere Metadaten</em>: Sobald du dich anmeldest, erfassen wir sowohl die IP-Adresse, von der aus du dich anmeldest, als auch den Namen deine Browseranwendung. Alle angemeldeten Sitzungen (Sessions) sind für deine Überprüfung und Widerruf in den Einstellungen verfügbar. Die letzte verwendete IP-Adresse wird bis zu 12 Monate lang gespeichert. Wir könnten auch Serverprotokoll behalten, welche die IP-Adresse von jeder Anfrage an unseren Server enthalten.</li>
-      </ul>
-      <hr class="spacer" />
-      <h3 id="use">Für was verwenden wir deine Informationen?</h3>
-      <p>Jede der von dir gesammelten Information kann in den folgenden Weisen verwendet werden:</p>
-      <ul>
-      <li>Um die Kernfunktionalität von Mastodon bereitzustellen. Du kannst du mit dem Inhalt anderer Leute interagieren und deine eigenen Inhalte beitragen, wenn du angemeldet bist. Zum Beispiel kannst du anderen folgen, um deren kombinierten Beiträge in deine personalisierten Start-Timeline zu sehen.</li>
-      <li>Um Moderation der Community zu ermöglichen, zum Beispiel beim Vergleichen deiner IP-Adresse mit anderen bekannten, um Verbotsumgehung oder andere Vergehen festzustellen.</li>
-      <li>Die E-Mail-Adresse, die du bereitstellst, kann dazu verwendet werden, dir Informationen, Benachrichtigungen über andere Leute, die mit deinen Inhalten interagieren oder dir Nachrichten senden, und auf Anfragen, Wünsche und/oder Fragen zu antworten.</li>
-      </ul>
-      <hr class="spacer" />
-      <h3 id="protect">Wie beschützen wir deine Informationen?</h3>
-      <p>Wir implementieren eine Reihe von Sicherheitsmaßnahmen, um die Sicherheit deiner persönlichen Information sicherzustellen, wenn du persönliche Informationen eingibst, übermittelst oder auf sie zugreifst. Neben anderen Dingen, wird sowohl deine Browsersitzung, als auch der Datenverkehr zwischen deinen Anwendungen und der Programmierschnittstelle (API) mit SSL gesichert, dein Passwort wird mit einem starken Einwegalgorithmus gehasht. Du kannst Zwei-Faktor-Authentifizierung aktivieren, um den Zugriff auf dein Konto zusätzlich abzusichern.</p>
-      <hr class="spacer" />
-      <h3 id="data-retention">Was ist unsere Datenspeicherungsrichtlinie?</h3>
-      <p>Wir werden mit bestem Wissen und Gewissen:</p>
-      <ul>
-      <li>Serverprotokolle, die IP-Adressen von allen deinen Anfragen an diesen Server, falls solche Protokolle behalten werden, für nicht mehr als 90 Tage behalten.</li>
-      <li>registrierten Benutzer zugeordnete IP-Adressen nicht länger als 12 Monate behalten.</li>
-      </ul>
-      <p>Du kannst ein Archiv deines Inhalts anfordern und herunterladen, inkludierend deiner Beiträge, Medienanhänge, Profilbilder und Headerbilder.</p>
-      <p>Es ist in den meisten Fällen möglich dein Konto jederzeit eigenmächtig unwiderruflich zu löschen.</p>
-      <hr class="spacer"/>
-      <h3 id="cookies">Verwenden wir Cookies?</h3>
-      <p>Ja. Cookies sind kleine Dateien, die eine Webseite oder ihr Serviceanbieter über deinen Webbrowser (sofern er es erlaubt) auf die Festplatte deines Computers überträgt. Diese Cookies ermöglichen es der Seite deinen Browser wiederzuerkennen und, sofern du ein registriertes Konto hast, diesen mit deinem registrierten Konto zu verknüpfen.</p>
-      <p>Wir verwenden Cookies, um deine Einstellungen zu verstehen und für zukünftige Besuche zu speichern.</p>
-      <hr class="spacer" />
-      <h3 id="disclose">Offenbaren wir Informationen an Dritte?</h3>
-      <p>Wir verkaufen nicht, handeln nicht mit oder übertragen deine persönlich identifizierbaren Informationen nicht an Dritte. Dies beinhaltet nicht Dritte, die vertrauenswürdig sind und uns beim Betreiben unserer Seite, Leiten unseres Geschäftes oder dabei, die Dienste für dich bereitzustellen, unterstützen, sofern diese Dritte zustimmen, diese Informationen vertraulich zu halten. Wir können auch Informationen freigeben, wenn wir glauben, dass Freigabe angemessen ist, um dem Gesetz zu entsprechen, unsere Seitenrichtlinien durchzusetzen oder unsere Rechte, Eigentum und/oder Sicherheit oder die anderer zu beschützen.</p>
-      <p>Dein öffentlicher Inhalt kann durch andere Server im Netzwerk heruntergeladen werden. Deine öffentlichen und "Nur Folgende"-Beiträge werden an die Server ausgeliefert, bei denen sich deine Folgenden befinden und direkte Nachrichten werden an die Server des Empfängers ausgeliefert, falls diese Folgenden oder Empfänger sich auf einem anderen Server als diesen befinden.</p>
-      <p>Wenn du eine Anwendung autorisierst, dein Konto zu benutzen, kann diese – abhängig von den von dir genehmigten Befugnissen – auf deine öffentlichen Profilinformationen, deine Folgt- und Folgende-Liste, deine Listen, alle deine Beiträge und deine Favoriten zugreifen. Anwendungen können nie auf deine E-Mail-Adresse oder dein Passwort zugreifen</p>
-      <hr class="spacer" />
-      <h3 id="children">Webseitenbenutzung durch Kinder</h3>
-      <p>Wenn sich dieser Server in der EU oder im Europäischen Wirtschaftsraum befindet: Unsere Website, Produkte und Dienstleistungen sind alle an Leute gerichtet, die mindestens 16 Jahre als sind. Wenn du unter 16 bist, darfst du nach den Bestimmungen der DSGVO (<a href="https://de.wikipedia.org/wiki/Datenschutz-Grundverordnung">Datenschutz-Grundverordnung</a>) diese Webseite nicht benutzen.</p>
-      <p>Wenn sich dieser Server in den USA befindet: Unsere Webseite, Produkte und Dienstleistungen sind alle an Leute gerichtet, die mindestens 13 Jahre alt sind. Wenn du unter 13 bist, darfst du nach den Bestimmungen des COPPA (<a href="https://de.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act, dt. "Gesetz zum Schutz der Privatsphäre von Kindern im Internet"</a>) diese Webseite nicht benutzen.</p>
-      <p>Gesetzesvorschriften können unterschiedlich sein, wenn sich dieser Server in anderer Gerichtsbarkeit befindet.</p>
-      <hr class="spacer" />
-      <h3 id="changes">Änderung an unserer Datenschutzerklärung</h3>
-      <p>Wenn wir uns entscheiden, Änderungen an unserer Datenschutzerklärung vorzunehmen, werden wir diese Änderungen auf dieser Seite bekannt gegeben.</p>
-      <p>Dies ist eine Übersetzung, Irrtümer und Übersetzungsfehler vorbehalten. Im Zweifelsfall gilt die englische Originalversion.</p>
-      <p>Dieses Dokument ist CC-BY-SA. Es wurde zuletzt aktualisiert am 26. Mai 2022.</p>
-      <p>Ursprünglich übernommen von der <a href="https://github.com/discourse/discourse">Discourse-Datenschutzerklärung</a>.</p>
-    title: "%{instance} Datenschutzerklärung"
   themes:
     contrast: Mastodon (Hoher Kontrast)
     default: Mastodon (Dunkel)
@@ -1754,20 +1691,13 @@ de:
         suspend: Konto gesperrt
     welcome:
       edit_profile_action: Profil einstellen
-      edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst oder deinen Anzeigenamen änderst und mehr. Wenn du deine Folgenden vorher überprüfen möchtest, bevor sie dir folgen können, dann kannst du dein Profil sperren.
+      edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst, deinen Anzeigenamen änderst und viel mehr. Du kannst optional einstellen, ob du Accounts, die dir folgen wollen, akzeptieren musst, bevor sie dies können.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten
-      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Vielleicht möchtest du dich mit dem #introductions-Hashtag vorstellen.'
+      final_step: 'Fang an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel auf der lokalen Zeitleiste oder in Hashtags. Du kannst dich unter dem Hashtag #introductions vorstellen, wenn du magst.'
       full_handle: Dein vollständiger Benutzername
       full_handle_hint: Dies ist, was du deinen Freunden sagen kannst, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
-      review_preferences_action: Einstellungen ändern
-      review_preferences_step: Stelle sicher, dass du deine Einstellungen einstellst, wie zum Beispiel welche E-Mails du gerne erhalten möchtest oder was für Privatsphäreneinstellungen voreingestellt werden sollten. Wenn dir beim Ansehen von GIFs nicht schwindelig wird, dann kannst du auch das automatische Abspielen dieser aktivieren.
       subject: Willkommen bei Mastodon
-      tip_federated_timeline: Die föderierte Zeitleiste ist die sehr große Ansicht vom Mastodon-Netzwerk. Sie enthält aber auch nur Leute, denen du und deine Nachbarn folgen, sie ist also nicht komplett.
-      tip_following: Du folgst standardmäßig deinen Server-Admin(s). Um mehr interessante Leute zu finden, kannst du die lokale oder öffentliche Zeitleiste durchsuchen.
-      tip_local_timeline: Die lokale Zeitleiste ist eine Ansicht aller Leute auf %{instance}. Diese sind deine Nachbarn!
-      tip_mobile_webapp: Wenn dein mobiler Browser dir anbietet, Mastodon zu deinem Startbildschirm hinzuzufügen, dann kannst du Benachrichtigungen erhalten. Es verhält sich wie eine native App in vielen Belangen!
-      tips: Tipps
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
