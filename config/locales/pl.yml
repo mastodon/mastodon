@@ -297,6 +297,7 @@ pl:
         create_user_role_html: "%{name} utworzył rolę %{target}"
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
+        destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hasłem %{target}"
         destroy_custom_emoji_html: "%{name} usunął emoji %{target}"
         destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
@@ -332,6 +333,7 @@ pl:
         update_announcement_html: "%{name} zaktualizował(a) ogłoszenie %{target}"
         update_custom_emoji_html: "%{name} zaktualizował(a) emoji %{target}"
         update_domain_block_html: "%{name} zaktualizował(a) blokadę domeny dla %{target}"
+        update_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
       empty: Nie znaleziono aktywności w dzienniku.
@@ -1060,6 +1062,7 @@ pl:
       title: Konfiguracja
     sign_up:
       preamble: Z kontem na tym serwerze Mastodon będziesz mógł obserwować każdą inną osobę w sieci, niezależnie od miejsca przechowywania ich konta.
+      title: Skonfigurujmy Twoje konto na %{domain}.
     status:
       account_status: Stan konta
       confirming: Oczekiwanie na potwierdzenie adresu e-mail.
@@ -1445,6 +1448,8 @@ pl:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
     public_timelines: Publiczne osie czasu
+  privacy_policy:
+    title: Polityka prywatności
   reactions:
     errors:
       limit_reached: Przekroczono limit różnych reakcji
