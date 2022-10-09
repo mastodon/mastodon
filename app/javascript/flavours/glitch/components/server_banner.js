@@ -1,12 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { domain } from 'flavours/glitch/initial_state';
-import { fetchServer } from 'flavours/glitch/actions/server';
+import React from 'react';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
-import Account from 'flavours/glitch/containers/account_container';
+import { fetchServer } from 'flavours/glitch/actions/server';
 import ShortNumber from 'flavours/glitch/components/short_number';
 import Skeleton from 'flavours/glitch/components/skeleton';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import Account from 'flavours/glitch/containers/account_container';
+import { domain } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   aboutActiveUsers: { id: 'server_banner.about_active_users', defaultMessage: 'People using this server during the last 30 days (Monthly Active Users)' },
