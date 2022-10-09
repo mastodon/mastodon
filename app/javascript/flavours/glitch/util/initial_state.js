@@ -31,7 +31,7 @@ export const version = getMeta('version');
 export const mascot = getMeta('mascot');
 export const profile_directory = getMeta('profile_directory');
 export const defaultContentType = getMeta('default_content_type');
-export const forceSingleColumn = getMeta('advanced_layout') === false;
+export const forceSingleColumn = !getMeta('advanced_layout');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
 export const useSystemEmojiFont = getMeta('system_emoji_font');
