@@ -24,7 +24,7 @@ mastodon:
     removeMedia:
       enabled: true
       schedule: "0 0 * * 0"
-  # available locales: https://github.com/tootsuite/mastodon/blob/master/config/application.rb#L43
+  # available locales: https://github.com/mastodon/mastodon/blob/main/config/application.rb#L71
   locale: en
   local_domain: mastodon.local
   # Use of WEB_DOMAIN requires careful consideration: https://docs.joinmastodon.org/admin/config/#federation
@@ -261,7 +261,7 @@ externalAuth:
     #   search: "., -"
     #   replace: _
 
-# https://github.com/tootsuite/mastodon/blob/master/Dockerfile#L88
+# https://github.com/mastodon/mastodon/blob/main/Dockerfile#L75
 #
 # if you manually change the UID/GID environment variables, ensure these values
 # match:
