@@ -6,7 +6,7 @@ import { fetchServer } from 'mastodon/actions/server';
 import ShortNumber from 'mastodon/components/short_number';
 import Skeleton from 'mastodon/components/skeleton';
 import Account from 'mastodon/containers/account_container';
-import { activityApiEnabled, domain } from 'mastodon/initial_state';
+import { domain } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   aboutActiveUsers: { id: 'server_banner.about_active_users', defaultMessage: 'People using this server during the last 30 days (Monthly Active Users)' },
@@ -62,25 +62,23 @@ class ServerBanner extends React.PureComponent {
             <Account id={server.getIn(['contact', 'account', 'id'])} />
           </div>
 
-          {activityApiEnabled && (
-            <div className='server-banner__meta__column'>
-              <h4><FormattedMessage id='server_banner.server_stats' defaultMessage='Server stats:' /></h4>
+          <div className='server-banner__meta__column'>
+            <h4><FormattedMessage id='server_banner.server_stats' defaultMessage='Server stats:' /></h4>
 
-              {isLoading ? (
-                <>
-                  <strong className='server-banner__number'><Skeleton width='10ch' /></strong>
-                  <br />
-                  <span className='server-banner__number-label'><Skeleton width='5ch' /></span>
-                </>
-              ) : (
-                <>
-                  <strong className='server-banner__number'><ShortNumber value={server.getIn(['usage', 'users', 'active_month'])} /></strong>
-                  <br />
-                  <span className='server-banner__number-label' title={intl.formatMessage(messages.aboutActiveUsers)}><FormattedMessage id='server_banner.active_users' defaultMessage='active users' /></span>
-                </>
-              )}
-            </div>
-          )}
+            {isLoading ? (
+              <>
+                <strong className='server-banner__number'><Skeleton width='10ch' /></strong>
+                <br />
+                <span className='server-banner__number-label'><Skeleton width='5ch' /></span>
+              </>
+            ) : (
+              <>
+                <strong className='server-banner__number'><ShortNumber value={server.getIn(['usage', 'users', 'active_month'])} /></strong>
+                <br />
+                <span className='server-banner__number-label' title={intl.formatMessage(messages.aboutActiveUsers)}><FormattedMessage id='server_banner.active_users' defaultMessage='active users' /></span>
+              </>
+            )}
+          </div>
         </div>
 
         <hr className='spacer' />
