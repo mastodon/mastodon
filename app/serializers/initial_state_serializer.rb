@@ -6,7 +6,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
              :max_toot_chars, :poll_limits,
-             :languages, :server
+             :languages
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
   has_one :role, serializer: REST::RoleSerializer
@@ -24,18 +24,19 @@ class InitialStateSerializer < ActiveModel::Serializer
     }
   end
 
+  # rubocop:disable Metrics/AbcSize
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
-      domain: Rails.configuration.x.local_domain,
-      title: instance_presenter.site_title,
+      domain: instance_presenter.domain,
+      title: instance_presenter.title,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
       repository: Mastodon::Version.repository,
-      source_url: Mastodon::Version.source_url,
-      version: Mastodon::Version.to_s,
+      source_url: instance_presenter.source_url,
+      version: instance_presenter.version,
       limited_federation_mode: Rails.configuration.x.whitelist_mode,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
@@ -71,6 +72,7 @@ class InitialStateSerializer < ActiveModel::Serializer
 
     store
   end
+  # rubocop:enable Metrics/AbcSize
 
   def compose
     store = {}
@@ -100,13 +102,6 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def languages
     LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, value[0], value[1]] }
-  end
-
-  def server
-    {
-      hero: instance_presenter.hero&.file&.url || instance_presenter.thumbnail&.file&.url || asset_pack_path('media/images/preview.png'),
-      description: instance_presenter.site_short_description.presence || I18n.t('about.about_mastodon_html'),
-    }
   end
 
   private

@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, me, title, domain } from 'flavours/glitch/util/initial_state';
 import { preferencesLink, profileLink, accountAdminLink } from 'flavours/glitch/util/backend_links';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
@@ -14,6 +14,7 @@ import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
 import { PERMISSION_MANAGE_USERS } from 'flavours/glitch/permissions';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
@@ -54,6 +55,14 @@ const messages = defineMessages({
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
 });
 
+const titleFromAccount = account => {
+  const displayName = account.get('display_name');
+  const acct = account.get('acct') === account.get('username') ? `${account.get('username')}@${domain}` : account.get('acct');
+  const prefix = displayName.trim().length === 0 ? account.get('username') : displayName;
+
+  return `${prefix} (@${acct})`;
+};
+
 const dateFormatOptions = {
   month: 'short',
   day: 'numeric',
@@ -87,6 +96,7 @@ class Header extends ImmutablePureComponent {
     onAddToList: PropTypes.func.isRequired,
     onEditAccountNote: PropTypes.func.isRequired,
     onChangeLanguages: PropTypes.func.isRequired,
+    onInteractionModal: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
@@ -124,6 +134,7 @@ class Header extends ImmutablePureComponent {
 
   render () {
     const { account, hidden, intl, domain } = this.props;
+    const { signedIn } = this.context.identity;
 
     if (!account) {
       return null;
@@ -157,12 +168,12 @@ class Header extends ImmutablePureComponent {
     }
 
     if (me !== account.get('id')) {
-      if (!account.get('relationship')) { // Wait until the relationship is loaded
+      if (signedIn && !account.get('relationship')) { // Wait until the relationship is loaded
         actionBtn = '';
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button className={classNames('logo-button', { 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={this.props.onFollow} />;
+        actionBtn = <Button className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
@@ -182,7 +193,7 @@ class Header extends ImmutablePureComponent {
       lockedIcon = <Icon id='lock' title={intl.formatMessage(messages.account_locked)} />;
     }
 
-    if (account.get('id') !== me && !suspended) {
+    if (signedIn && account.get('id') !== me && !suspended) {
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
       menu.push(null);
@@ -209,7 +220,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
       menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });
       menu.push({ text: intl.formatMessage(messages.domain_blocks), to: '/domain_blocks' });
-    } else {
+    } else if (signedIn) {
       if (account.getIn(['relationship', 'following'])) {
         if (!account.getIn(['relationship', 'muting'])) {
           if (account.getIn(['relationship', 'showing_reblogs'])) {
@@ -242,7 +253,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
     }
 
-    if (account.get('acct') !== account.get('username')) {
+    if (signedIn && account.get('acct') !== account.get('username')) {
       const domain = account.get('acct').split('@')[1];
 
       menu.push(null);
@@ -301,7 +312,7 @@ class Header extends ImmutablePureComponent {
                   </React.Fragment>
                 )}
 
-                <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />
+                <DropdownMenuContainer disabled={menu.length === 0} items={menu} icon='ellipsis-v' size={24} direction='right' />
               </div>
             )}
           </div>
@@ -313,7 +324,7 @@ class Header extends ImmutablePureComponent {
             </h1>
           </div>
 
-          <AccountNoteContainer account={account} />
+          {signedIn && <AccountNoteContainer account={account} />}
 
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
@@ -339,6 +350,10 @@ class Header extends ImmutablePureComponent {
             </div>
           )}
         </div>
+
+        <Helmet>
+          <title>{titleFromAccount(account)} - {title}</title>
+        </Helmet>
       </div>
     );
   }

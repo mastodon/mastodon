@@ -13,6 +13,9 @@ import { fetchAnnouncements, toggleShowAnnouncements } from 'flavours/glitch/act
 import AnnouncementsContainer from 'flavours/glitch/features/getting_started/containers/announcements_container';
 import classNames from 'classnames';
 import IconWithBadge from 'flavours/glitch/components/icon_with_badge';
+import NotSignedInIndicator from 'flavours/glitch/components/not_signed_in_indicator';
+import { Helmet } from 'react-helmet';
+import { title } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -32,6 +35,10 @@ const mapStateToProps = state => ({
 export default @connect(mapStateToProps)
 @injectIntl
 class HomeTimeline extends React.PureComponent {
+
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -115,6 +122,7 @@ class HomeTimeline extends React.PureComponent {
   render () {
     const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
+    const { signedIn } = this.context.identity;
 
     let announcementsButton = null;
 
@@ -149,15 +157,21 @@ class HomeTimeline extends React.PureComponent {
           <ColumnSettingsContainer />
         </ColumnHeader>
 
-        <StatusListContainer
-          trackScroll={!pinned}
-          scrollKey={`home_timeline-${columnId}`}
-          onLoadMore={this.handleLoadMore}
-          timelineId='home'
-          emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
-          bindToDocument={!multiColumn}
-          regex={this.props.regex}
-        />
+        {signedIn ? (
+          <StatusListContainer
+            trackScroll={!pinned}
+            scrollKey={`home_timeline-${columnId}`}
+            onLoadMore={this.handleLoadMore}
+            timelineId='home'
+            emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
+            bindToDocument={!multiColumn}
+            regex={this.props.regex}
+          />
+        ) : <NotSignedInIndicator />}
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)} - {title}</title>
+        </Helmet>
       </Column>
     );
   }

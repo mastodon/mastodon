@@ -9,6 +9,8 @@ import { expandCommunityTimeline } from 'flavours/glitch/actions/timelines';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from 'flavours/glitch/actions/streaming';
+import { Helmet } from 'react-helmet';
+import { title } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -39,6 +41,7 @@ class CommunityTimeline extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -72,18 +75,30 @@ class CommunityTimeline extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch, onlyMedia } = this.props;
+    const { signedIn } = this.context.identity;
 
     dispatch(expandCommunityTimeline({ onlyMedia }));
-    this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+
+    if (signedIn) {
+      this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+    }
   }
 
   componentDidUpdate (prevProps) {
+    const { signedIn } = this.context.identity;
+
     if (prevProps.onlyMedia !== this.props.onlyMedia) {
       const { dispatch, onlyMedia } = this.props;
 
-      this.disconnect();
+      if (this.disconnect) {
+        this.disconnect();
+      }
+
       dispatch(expandCommunityTimeline({ onlyMedia }));
-      this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+
+      if (signedIn) {
+        this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+      }
     }
   }
 
@@ -132,6 +147,10 @@ class CommunityTimeline extends React.PureComponent {
           bindToDocument={!multiColumn}
           regex={this.props.regex}
         />
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)} - {title}</title>
+        </Helmet>
       </Column>
     );
   }

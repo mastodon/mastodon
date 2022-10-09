@@ -9,6 +9,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from 'flavours/glitch/util/initial_state';
 import RelativeTimestamp from './relative_timestamp';
+import Skeleton from 'flavours/glitch/components/skeleton';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -26,7 +27,7 @@ export default @injectIntl
 class Account extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.map,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
@@ -77,7 +78,16 @@ class Account extends ImmutablePureComponent {
     } = this.props;
 
     if (!account) {
-      return <div />;
+      return (
+        <div className='account'>
+          <div className='account__wrapper'>
+            <div className='account__display-name'>
+              <div className='account__avatar-wrapper'><Skeleton width={36} height={36} /></div>
+              <DisplayName />
+            </div>
+          </div>
+        </div>
+      );
     }
 
     if (hidden) {

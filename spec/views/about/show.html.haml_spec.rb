@@ -14,26 +14,7 @@ describe 'about/show.html.haml', without_verify_partial_doubles: true do
   end
 
   it 'has valid open graph tags' do
-    instance_presenter = double(
-      :instance_presenter,
-      site_title: 'something',
-      site_short_description: 'something',
-      site_description: 'something',
-      version_number: '1.0',
-      source_url: 'https://github.com/mastodon/mastodon',
-      open_registrations: false,
-      thumbnail: nil,
-      hero: nil,
-      mascot: nil,
-      user_count: 420,
-      status_count: 69,
-      active_user_count: 420,
-      commit_hash: commit_hash,
-      contact_account: nil,
-      sample_accounts: []
-    )
-
-    assign(:instance_presenter, instance_presenter)
+    assign(:instance_presenter, InstancePresenter.new)
     render
 
     header_tags = view.content_for(:header_tags)

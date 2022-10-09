@@ -9,6 +9,8 @@ import { expandPublicTimeline } from 'flavours/glitch/actions/timelines';
 import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectPublicStream } from 'flavours/glitch/actions/streaming';
+import { Helmet } from 'react-helmet';
+import { title } from 'flavours/glitch/util/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
@@ -43,6 +45,7 @@ class PublicTimeline extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -78,18 +81,29 @@ class PublicTimeline extends React.PureComponent {
 
   componentDidMount () {
     const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
+    const { signedIn } = this.context.identity;
 
     dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, allowLocalOnly }));
-    this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly }));
+    if (signedIn) {
+      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly }));
+    }
   }
 
   componentDidUpdate (prevProps) {
+    const { signedIn } = this.context.identity;
+
     if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote || prevProps.allowLocalOnly !== this.props.allowLocalOnly) {
       const { dispatch, onlyMedia, onlyRemote, allowLocalOnly } = this.props;
 
-      this.disconnect();
+      if (this.disconnect) {
+        this.disconnect();
+      }
+
       dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, allowLocalOnly }));
-      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly }));
+
+      if (signedIn) {
+        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, allowLocalOnly }));
+      }
     }
   }
 
@@ -138,6 +152,10 @@ class PublicTimeline extends React.PureComponent {
           bindToDocument={!multiColumn}
           regex={this.props.regex}
         />
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)} - {title}</title>
+        </Helmet>
       </Column>
     );
   }

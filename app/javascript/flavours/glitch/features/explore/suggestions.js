@@ -5,6 +5,7 @@ import AccountCard from 'flavours/glitch/features/directory/components/account_c
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import { connect } from 'react-redux';
 import { fetchSuggestions, dismissSuggestion } from 'flavours/glitch/actions/suggestions';
+import { FormattedMessage } from 'react-intl';
 
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),
@@ -32,6 +33,16 @@ class Suggestions extends React.PureComponent {
 
   render () {
     const { isLoading, suggestions } = this.props;
+
+    if (!isLoading && suggestions.isEmpty()) {
+      return (
+        <div className='explore__suggestions scrollable scrollable--flex'>
+          <div className='empty-column-indicator'>
+            <FormattedMessage id='empty_column.explore_statuses' defaultMessage='Nothing is trending right now. Check back later!' />
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className='explore__suggestions'>

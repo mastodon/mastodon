@@ -3,6 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { autoPlayGif } from 'flavours/glitch/util/initial_state';
+import Skeleton from 'flavours/glitch/components/skeleton';
 
 export default class DisplayName extends React.PureComponent {
 
@@ -46,14 +47,15 @@ export default class DisplayName extends React.PureComponent {
 
     const computedClass = classNames('display-name', { inline }, className);
 
-    if (!account) return null;
-
     let displayName, suffix;
+    let acct;
 
-    let acct = account.get('acct');
+    if (account) {
+      acct = account.get('acct');
 
-    if (acct.indexOf('@') === -1 && localDomain) {
-      acct = `${acct}@${localDomain}`;
+      if (acct.indexOf('@') === -1 && localDomain) {
+        acct = `${acct}@${localDomain}`;
+      }
     }
 
     if (others && others.size > 0) {
@@ -80,9 +82,12 @@ export default class DisplayName extends React.PureComponent {
           <span className='display-name__account'>@{acct}</span>
         </a>
       );
-    } else {
+    } else if (account) {
       displayName = <bdi><strong className='display-name__html' dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /></bdi>;
       suffix      = <span className='display-name__account'>@{acct}</span>;
+    } else {
+      displayName = <bdi><strong className='display-name__html'><Skeleton width='10ch' /></strong></bdi>;
+      suffix = <span className='display-name__account'><Skeleton width='7ch' /></span>;
     }
 
     return (

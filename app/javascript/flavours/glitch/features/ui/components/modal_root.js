@@ -16,6 +16,7 @@ import ConfirmationModal from './confirmation_modal';
 import SubscribedLanguagesModal from 'flavours/glitch/features/subscribed_languages_modal';
 import FocalPointModal from './focal_point_modal';
 import DeprecatedSettingsModal from './deprecated_settings_modal';
+import InteractionModal from 'flavours/glitch/features/interaction_modal';
 import {
   OnboardingModal,
   MuteModal,
@@ -53,6 +54,7 @@ const MODAL_COMPONENTS = {
   'COMPARE_HISTORY': CompareHistoryModal,
   'FILTER': FilterModal,
   'SUBSCRIBED_LANGUAGES': () => Promise.resolve({ default: SubscribedLanguagesModal }),
+  'INTERACTION': () => Promise.resolve({ default: InteractionModal }),
 };
 
 export default class ModalRoot extends React.PureComponent {
