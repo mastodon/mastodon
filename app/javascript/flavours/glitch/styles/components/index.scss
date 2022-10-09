@@ -863,6 +863,10 @@
     position: relative;
     min-height: 120px;
   }
+
+  .scrollable {
+    flex: 1 1 auto;
+  }
 }
 
 .scrollable.fullscreen {
@@ -1751,3 +1755,4 @@ noscript {
 @import 'error_boundary';
 @import 'single_column';
 @import 'announcements';
+@import 'explore';

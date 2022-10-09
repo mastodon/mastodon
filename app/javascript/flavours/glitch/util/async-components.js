@@ -158,10 +158,6 @@ export function ListAdder () {
   return import(/* webpackChunkName: "features/glitch/async/list_adder" */'flavours/glitch/features/list_adder');
 }
 
-export function Search () {
-  return import(/*webpackChunkName: "features/glitch/async/search" */'flavours/glitch/features/search');
-}
-
 export function Tesseract () {
   return import(/*webpackChunkName: "tesseract" */'tesseract.js');
 }
@@ -180,4 +176,8 @@ export function CompareHistoryModal () {
 
 export function FilterModal () {
   return import(/*webpackChunkName: "flavours/glitch/async/filter_modal" */'flavours/glitch/features/ui/components/filter_modal');
+}
+
+export function Explore () {
+  return import(/* webpackChunkName: "flavours/glitch/async/explore" */'flavours/glitch/features/explore');
 }
