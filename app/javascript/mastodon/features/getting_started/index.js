@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, title, showTrends } from '../../initial_state';
+import { me, showTrends } from '../../initial_state';
 import { fetchFollowRequests } from 'mastodon/actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import NavigationContainer from '../compose/containers/navigation_container';
@@ -137,7 +137,7 @@ class GettingStarted extends ImmutablePureComponent {
         {(multiColumn && showTrends) && <TrendsContainer />}
 
         <Helmet>
-          <title>{intl.formatMessage(messages.menu)} - {title}</title>
+          <title>{intl.formatMessage(messages.menu)}</title>
         </Helmet>
       </Column>
     );

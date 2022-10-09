@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { title } from 'mastodon/initial_state';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage, FormattedDate, injectIntl, defineMessages } from 'react-intl';
 import Column from 'mastodon/components/column';
@@ -51,7 +50,7 @@ class PrivacyPolicy extends React.PureComponent {
         </div>
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title)} - {title}</title>
+          <title>{intl.formatMessage(messages.title)}</title>
         </Helmet>
       </Column>
     );

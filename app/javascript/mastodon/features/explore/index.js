@@ -12,7 +12,6 @@ import Suggestions from './suggestions';
 import Search from 'mastodon/features/compose/containers/search_container';
 import SearchResults from './results';
 import { Helmet } from 'react-helmet';
-import { title } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
@@ -84,7 +83,7 @@ class Explore extends React.PureComponent {
               </Switch>
 
               <Helmet>
-                <title>{intl.formatMessage(messages.title)} - {title}</title>
+                <title>{intl.formatMessage(messages.title)}</title>
               </Helmet>
             </React.Fragment>
           )}

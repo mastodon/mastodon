@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me, title, domain } from 'mastodon/initial_state';
+import { autoPlayGif, me, domain } from 'mastodon/initial_state';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import IconButton from 'mastodon/components/icon_button';
@@ -372,7 +372,7 @@ class Header extends ImmutablePureComponent {
         </div>
 
         <Helmet>
-          <title>{titleFromAccount(account)} - {title}</title>
+          <title>{titleFromAccount(account)}</title>
         </Helmet>
       </div>
     );
