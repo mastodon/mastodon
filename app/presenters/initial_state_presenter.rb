@@ -2,7 +2,7 @@
 
 class InitialStatePresenter < ActiveModelSerializers::Model
   attributes :settings, :push_subscription, :token,
-             :current_account, :admin, :text, :visibility
+             :current_account, :admin, :owner, :text, :visibility
 
   def role
     current_account&.user_role

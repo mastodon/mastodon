@@ -54,7 +54,7 @@ import {
   About,
   PrivacyPolicy,
 } from './util/async-components';
-import { me } from '../../initial_state';
+import initialState, { me, owner, singleUserMode } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import Header from './components/header';
 
@@ -161,6 +161,8 @@ class SwitchingColumnsArea extends React.PureComponent {
       } else {
         redirect = <Redirect from='/' to='/getting-started' exact />;
       }
+    } else if (singleUserMode && owner && initialState?.accounts[owner]) {
+      redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
     } else {
       redirect = <Redirect from='/' to='/explore' exact />;
     }
