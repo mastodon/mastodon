@@ -2604,12 +2604,14 @@ $ui-header-height: 55px;
 }
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
+  $sidebar-width: 285px;
+
   .with-fab .scrollable .item-list:last-child {
     padding-bottom: 5.25rem;
   }
 
   .columns-area__panels__main {
-    width: calc(100% - 55px);
+    width: calc(100% - $sidebar-width);
   }
 
   .columns-area__panels {
@@ -2617,10 +2619,10 @@ $ui-header-height: 55px;
   }
 
   .columns-area__panels__pane--navigational {
-    min-width: 55px;
+    min-width: $sidebar-width;
 
     .columns-area__panels__pane__inner {
-      width: 55px;
+      width: $sidebar-width;
     }
 
     .navigation-panel {
@@ -2630,7 +2632,6 @@ $ui-header-height: 55px;
       height: 100vh;
     }
 
-    .column-link span,
     .navigation-panel__sign-in-banner,
     .navigation-panel__logo,
     .getting-started__trends {
@@ -2655,11 +2656,31 @@ $ui-header-height: 55px;
   }
 }
 
+@media screen and (max-width: $no-gap-breakpoint - 285px - 1px) {
+  $sidebar-width: 55px;
+
+  .columns-area__panels__main {
+    width: calc(100% - $sidebar-width);
+  }
+
+  .columns-area__panels__pane--navigational {
+    min-width: $sidebar-width;
+
+    .columns-area__panels__pane__inner {
+      width: $sidebar-width;
+    }
+
+    .column-link span {
+      display: none;
+    }
+  }
+}
+
 .explore__search-header {
   display: none;
 }
 
-@media screen and (max-width: $no-gap-breakpoint + 285px - 1px) {
+@media screen and (max-width: $no-gap-breakpoint - 1px) {
   .columns-area__panels__pane--compositional {
     display: none;
   }
@@ -3145,6 +3166,9 @@ $ui-header-height: 55px;
   font-size: 16px;
   padding: 15px;
   text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 
   &:hover,
   &:focus,
