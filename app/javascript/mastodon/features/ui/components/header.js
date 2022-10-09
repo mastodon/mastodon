@@ -11,8 +11,7 @@ import { connect } from 'react-redux';
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
 }))(({ account }) => (
-  <Permalink href={account.get('url')} to={`/@${account.get('acct')}`}>
-    <span style={{ display: 'none' }}>{account.get('acct')}</span>
+  <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} title={account.get('acct')}>
     <Avatar account={account} size={35} />
   </Permalink>
 ));
