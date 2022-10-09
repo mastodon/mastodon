@@ -7,6 +7,7 @@ import { makeGetAccount } from 'flavours/glitch/selectors';
 import Avatar from 'flavours/glitch/components/avatar';
 import DisplayName from 'flavours/glitch/components/display_name';
 import Permalink from 'flavours/glitch/components/permalink';
+import IconButton from 'flavours/glitch/components/icon_button';
 import Button from 'flavours/glitch/components/button';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import { autoPlayGif, me, unfollowModal } from 'flavours/glitch/util/initial_state';
@@ -29,6 +30,7 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute_short', defaultMessage: 'Unmute' },
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
+  dismissSuggestion: { id: 'suggestions.dismiss', defaultMessage: 'Dismiss suggestion' },
 });
 
 const makeMapStateToProps = () => {
@@ -94,6 +96,7 @@ class AccountCard extends ImmutablePureComponent {
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
+    onDismiss: PropTypes.func,
   };
 
   handleMouseEnter = ({ currentTarget }) => {
@@ -138,6 +141,14 @@ class AccountCard extends ImmutablePureComponent {
     window.open('/settings/profile', '_blank');
   }
 
+  handleDismiss = (e) => {
+    const { account, onDismiss } = this.props;
+    onDismiss(account.get('id'));
+
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   render() {
     const { account, intl } = this.props;
 
@@ -163,6 +174,8 @@ class AccountCard extends ImmutablePureComponent {
       <div className='account-card'>
         <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='account-card__permalink'>
           <div className='account-card__header'>
+            {this.props.onDismiss && <IconButton className='media-modal__close' title={intl.formatMessage(messages.dismissSuggestion)} icon='times' onClick={this.handleDismiss} size={20} />}
+
             <img
               src={
                 autoPlayGif ? account.get('header') : account.get('header_static')
