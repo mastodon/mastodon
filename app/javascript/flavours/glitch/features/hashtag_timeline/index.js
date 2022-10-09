@@ -14,7 +14,6 @@ import { isEqual } from 'lodash';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'flavours/glitch/actions/tags';
 import Icon from 'flavours/glitch/components/icon';
 import classNames from 'classnames';
-import { title } from 'flavours/glitch/initial_state';
 import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
@@ -228,7 +227,7 @@ class HashtagTimeline extends React.PureComponent {
         />
 
         <Helmet>
-          <title>{`#${id}`} - {title}</title>
+          <title>#{id}</title>
         </Helmet>
       </Column>
     );

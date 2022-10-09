@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Column from 'flavours/glitch/components/column';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
 import { Helmet } from 'react-helmet';
-import { title } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
@@ -25,7 +24,7 @@ class About extends React.PureComponent {
         <LinkFooter />
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title)} - {title}</title>
+          <title>{intl.formatMessage(messages.title)}</title>
         </Helmet>
       </Column>
     );

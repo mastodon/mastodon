@@ -10,7 +10,6 @@ import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag'
 import { List as ImmutableList } from 'immutable';
 import LoadMore from 'flavours/glitch/components/load_more';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import { title } from 'flavours/glitch/initial_state';
 import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
@@ -118,7 +117,7 @@ class Results extends React.PureComponent {
         </div>
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title, { q })} - {title}</title>
+          <title>{intl.formatMessage(messages.title, { q })}</title>
         </Helmet>
       </React.Fragment>
     );
