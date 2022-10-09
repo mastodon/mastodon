@@ -938,12 +938,8 @@ da:
     new_trends:
       body: 'Flg. emner kræver revision, inden de kan vises offentligt:'
       new_trending_links:
-        no_approved_links: Der er i pt. ingen godkendte populære links.
-        requirements: 'Enhver af disse kandidater vil kunne overgå #%{rank} godkendte populære link, der med en score på %{lowest_link_score} pt. er "%{lowest_link_title}".'
         title: Populære links
       new_trending_statuses:
-        no_approved_statuses: Der er i pt. ingen godkendte populære opslag.
-        requirements: 'Enhver af disse kandidater vil kunne overgå #%{rank} godkendte populære opslag, der med en score på %{lowest_status_score} pt. er %{lowest_status_url}.'
         title: Populære opslag
       new_trending_tags:
         no_approved_tags: Der er pt. ingen godkendte populære hashtags.
@@ -1403,6 +1399,8 @@ da:
     other: Andet
     posting_defaults: Standarder for indlæg
     public_timelines: Offentlige tidslinjer
+  privacy_policy:
+    title: Fortrolighedspolitik
   reactions:
     errors:
       limit_reached: Grænse for forskellige reaktioner nået

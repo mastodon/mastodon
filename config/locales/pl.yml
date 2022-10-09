@@ -289,6 +289,7 @@ pl:
         confirm_user_html: "%{name} potwierdził(a) adres e-mail użytkownika %{target}"
         create_account_warning_html: "%{name} wysłał(a) ostrzeżenie do %{target}"
         create_announcement_html: "%{name} utworzył(a) nowe ogłoszenie %{target}"
+        create_canonical_email_block_html: "%{name} zablokował e-mail z hasłem %{target}"
         create_custom_emoji_html: "%{name} dodał(a) nowe emoji %{target}"
         create_domain_allow_html: "%{name} dodał(a) na białą listę domenę %{target}"
         create_domain_block_html: "%{name} zablokował(a) domenę %{target}"
@@ -298,6 +299,7 @@ pl:
         create_user_role_html: "%{name} utworzył rolę %{target}"
         demote_user_html: "%{name} zdegradował(a) użytkownika %{target}"
         destroy_announcement_html: "%{name} usunął(-ęła) ogłoszenie %{target}"
+        destroy_canonical_email_block_html: "%{name} odblokował(a) e-mail z hasłem %{target}"
         destroy_custom_emoji_html: "%{name} usunął emoji %{target}"
         destroy_domain_allow_html: "%{name} usunął(-ęła) domenę %{target} z białej listy"
         destroy_domain_block_html: "%{name} odblokował(a) domenę %{target}"
@@ -333,6 +335,7 @@ pl:
         update_announcement_html: "%{name} zaktualizował(a) ogłoszenie %{target}"
         update_custom_emoji_html: "%{name} zaktualizował(a) emoji %{target}"
         update_domain_block_html: "%{name} zaktualizował(a) blokadę domeny dla %{target}"
+        update_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
       empty: Nie znaleziono aktywności w dzienniku.
@@ -976,12 +979,8 @@ pl:
     new_trends:
       body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
       new_trending_links:
-        no_approved_links: Obecnie nie ma zatwierdzonych linków trendów.
-        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych linków, który wynosi obecnie "%{lowest_link_title}" z wynikiem %{lowest_link_score}.'
         title: Popularne linki
       new_trending_statuses:
-        no_approved_statuses: Obecnie nie ma zatwierdzonych popularnych linków.
-        requirements: 'Każdy z tych kandydatów może przekroczyć #%{rank} zatwierdzonych popularnych teraz wpisów, który wynosi obecnie %{lowest_status_url} z wynikiem %{lowest_status_score}.'
         title: Popularne teraz
       new_trending_tags:
         no_approved_tags: Obecnie nie ma żadnych zatwierdzonych popularnych hasztagów.
@@ -1061,6 +1060,7 @@ pl:
       title: Konfiguracja
     sign_up:
       preamble: Z kontem na tym serwerze Mastodon będziesz mógł obserwować każdą inną osobę w sieci, niezależnie od miejsca przechowywania ich konta.
+      title: Skonfigurujmy Twoje konto na %{domain}.
     status:
       account_status: Stan konta
       confirming: Oczekiwanie na potwierdzenie adresu e-mail.
@@ -1256,6 +1256,11 @@ pl:
       many: "<strong>%{count}</strong> elementów na tej stronie jest wybrane."
       one: "<strong>%{count}</strong> element na tej stronie jest wybrany."
       other: "<strong>%{count}</strong> elementów na tej stronie jest wybrane."
+    all_matching_items_selected_html:
+      few: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
+      many: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
+      one: "<strong>%{count}</strong> element pasujący do Twojego wyszukiwania został wybrany."
+      other: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
     changes_saved_msg: Ustawienia zapisane!
     copy: Kopiuj
     delete: Usuń
@@ -1263,6 +1268,11 @@ pl:
     none: Żaden
     order_by: Uporządkuj według
     save_changes: Zapisz zmiany
+    select_all_matching_items:
+      few: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
+      many: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
+      one: Zaznacz %{count} element pasujący do wyszukiwania.
+      other: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
     today: dzisiaj
     validation_errors:
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
@@ -1446,6 +1456,8 @@ pl:
     other: Pozostałe
     posting_defaults: Domyślne ustawienia wpisów
     public_timelines: Publiczne osie czasu
+  privacy_policy:
+    title: Polityka prywatności
   reactions:
     errors:
       limit_reached: Przekroczono limit różnych reakcji

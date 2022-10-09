@@ -62,8 +62,8 @@ tr:
     posts:
       one: Gönderi
       other: Gönderiler
-    posts_tab_heading: Tootlar
-    posts_with_replies: Tootlar ve yanıtlar
+    posts_tab_heading: Gönderiler
+    posts_with_replies: Gönderiler ve yanıtlar
     roles:
       bot: Bot
       group: Grup
@@ -568,11 +568,11 @@ tr:
     relays:
       add_new: Yeni aktarıcı ekle
       delete: Sil
-      description_html: "<strong>Federasyon aktarıcısı</strong>, kendisine abone olan ve yayın yapan sunucular arasında büyük miktarlarda herkese açık tootların değiş tokuşunu yapan aracı bir sunucudur. <strong>Küçük ve orta boyutlu sunucuların fediverse'ten içerik keşfetmesine yardımcı olurlar</strong>, aksi takdirde yerel kullanıcıların uzak sunuculardaki diğer kişileri manuel olarak takip etmeleri gerekecektir."
+      description_html: "<strong>Federasyon aktarıcısı</strong>, kendisine abone olan ve yayın yapan sunucular arasında büyük miktarlarda herkese açık gönderilerin değiş tokuşunu yapan aracı bir sunucudur. <strong>Küçük ve orta boyutlu sunucuların fediverse'ten içerik keşfetmesine yardımcı olurlar</strong>, aksi takdirde yerel kullanıcıların uzak sunuculardaki diğer kişileri manuel olarak takip etmeleri gerekecektir."
       disable: Devre dışı
       disabled: Devre dışı
       enable: Etkin
-      enable_hint: Etkinleştirildiğinde, sunucunuz bu aktarıcıdan gelecek tüm herkese açık tootlara abone olacak, ve kendisinin herkese açık tootlarını bu aktarıcıya göndermeye başlayacaktır.
+      enable_hint: Etkinleştirildiğinde, sunucunuz bu aktarıcıdan gelecek tüm herkese açık gönderilere abone olacak, ve kendisinin herkese açık gönderilerini bu aktarıcıya göndermeye başlayacaktır.
       enabled: Etkin
       inbox_url: Aktarıcı URL'si
       pending: Aktarıcının onaylaması için bekleniyor
@@ -939,12 +939,8 @@ tr:
     new_trends:
       body: 'Aşağıdaki öğeler herkese açık olarak gösterilmeden önce gözden geçirilmelidir:'
       new_trending_links:
-        no_approved_links: Şu anda onaylanmış öne çıkan bağlantı yok.
-        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_link_score} skoruna sahip "%{lowest_link_title}" olan #%{rank} onaylanmış öne çıkan bağlantıyı geçebilir.'
         title: Öne çıkan bağlantılar
       new_trending_statuses:
-        no_approved_statuses: Şu anda onaylanmış öne çıkan gönderi yok.
-        requirements: 'Aşağıdaki adaylardan herhangi biri, şu anda %{lowest_status_score} skoruna sahip "%{lowest_status_url}" olan #%{rank} onaylanmış öne çıkan gönderiyi geçebilir.'
         title: Öne çıkan gönderiler
       new_trending_tags:
         no_approved_tags: Şu anda onaylanmış öne çıkan etiket yok.
@@ -969,7 +965,7 @@ tr:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Herkes katkıda bulunabilir.
     sensitive_content: Hassas içerik
-    toot_layout: Toot yerleşimi
+    toot_layout: Gönderi düzeni
   application_mailer:
     notification_preferences: E-posta tercihlerini değiştir
     salutation: "%{name},"
@@ -1336,7 +1332,7 @@ tr:
     favourite:
       body: "%{name} durumunu beğendi:"
       subject: "%{name} durumunu beğendi"
-      title: Yeni beğeni
+      title: Yeni Favori
     follow:
       body: "%{name} artık seni takip ediyor!"
       subject: "%{name} artık seni takip ediyor"
@@ -1404,6 +1400,8 @@ tr:
     other: Diğer
     posting_defaults: Gönderi varsayılanları
     public_timelines: Genel zaman çizelgeleri
+  privacy_policy:
+    title: Gizlilik Politikası
   reactions:
     errors:
       limit_reached: Farklı reaksiyonların sınırına ulaşıldı
@@ -1434,14 +1432,14 @@ tr:
     reason_html: "<strong>Bu adım neden gerekli?</strong><code>%{instance}</code> kayıtlı olduğunuz sunucu olmayabilir, bu yüzden önce sizi kendi sunucunuza yönlendirmemiz gerekmektedir."
   remote_interaction:
     favourite:
-      proceed: Beğenmek için devam edin
-      prompt: 'Bu tootu beğenmek istiyorsunuz:'
+      proceed: Favorilere eklemek için devam edin
+      prompt: 'Bu gönderiyi favorilerinize eklemek istiyorsunuz:'
     reblog:
       proceed: Boostlamak için devam edin
-      prompt: 'Bu tootu boostlamak istiyorsunuz:'
+      prompt: 'Bu gönderiyi teşvik etmek istiyorsunuz:'
     reply:
       proceed: Yanıtlamak için devam edin
-      prompt: 'Bu tootu yanıtlamak istiyorsunuz:'
+      prompt: 'Bu gönderiyi yanıtlamak istiyorsunuz:'
   reports:
     errors:
       invalid_rules: geçerli kurallara işaret etmez
@@ -1451,8 +1449,8 @@ tr:
       account: "@%{acct} hesabından herkese açık gönderiler"
       tag: "#%{hashtag} etiketli herkese açık gönderiler"
   scheduled_statuses:
-    over_daily_limit: O gün için %{limit} zamanlanmış toot sınırını aştınız
-    over_total_limit: "%{limit} zamanlanmış toot sınırını aştınız"
+    over_daily_limit: Bugün için %{limit} zamanlanmış gönderi sınırını aştınız
+    over_total_limit: "%{limit} zamanlanmış gönderi sınırını aştınız"
     too_soon: Programlanan tarih bugünden ileri bir tarihte olmalıdır
   sessions:
     activity: Son etkinlik
@@ -1544,8 +1542,8 @@ tr:
     over_character_limit: "%{max} karakter limiti aşıldı"
     pin_errors:
       direct: Sadece değinilen kullanıcıların görebileceği gönderiler üstte tutulamaz
-      limit: Hali hazırda maksimum sayıda tootu sabitlediniz
-      ownership: Başkasının tootu sabitlenemez
+      limit: Halihazırda maksimum sayıda gönderi sabitlediniz
+      ownership: Başkasının gönderisi sabitlenemez
       reblog: Bir boost sabitlenemez
     poll:
       total_people:
@@ -1574,7 +1572,7 @@ tr:
     enabled_hint: Belirli bir zaman eşiğine ulaşan eski gönderilerinizi, aşağıdaki istisnalara uymadıkları sürece otomatik olarak siler
     exceptions: İstisnalar
     explanation: Gönderi silme maliyetli bir iş olduğu için, sunucu çok yoğun olmadığında yavaş yavaş yapılmaktadır. Bu nedenle, gönderilerinizin zaman eşiği geldiğinde silinmesi belirli bir süre alabilir.
-    ignore_favs: Beğenileri yoksay
+    ignore_favs: Favorileri yoksay
     ignore_reblogs: Teşvikleri yoksay
     interaction_exceptions: Etkileşimlere dayalı istisnalar
     interaction_exceptions_explanation: Bir kere değerlendirmeye alındıktan sonra, belirtilen beğeni veya teşvik eşiğinin altında düşünce gönderilerin silinmesinin bir güvencesi yok.
@@ -1605,7 +1603,7 @@ tr:
     min_reblogs: Şundan daha fazla teşvik edilen gönderileri sakla
     min_reblogs_hint: Bu belirtilenden daha fazla teşvik edilen gönderilerinizin herhangi birini silmez. Teşvik sayısından bağımsız olarak gönderilerin silinmesi için burayı boş bırakın
   stream_entries:
-    pinned: Sabitlenmiş toot
+    pinned: Sabitlenmiş gönderi
     reblogged: boostladı
     sensitive_content: Hassas içerik
   strikes:

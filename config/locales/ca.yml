@@ -939,12 +939,8 @@ ca:
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
       new_trending_links:
-        no_approved_links: Actualment no hi ha enllaços en tendència aprovats.
-        requirements: 'Qualsevol d''aquests candidats podria superar el #%{rank} del enllaç en tendència aprovat, que actualment és "%{lowest_link_title}" amb una puntuació de %{lowest_link_score}.'
         title: Enllaços en tendència
       new_trending_statuses:
-        no_approved_statuses: Actualment no hi ha etiquetes en tendència aprovades.
-        requirements: 'Qualsevol d''aquests candidats podria superar el #%{rank} de la publicació en tendència aprovada, que actualment és "%{lowest_status_url}" amb una puntuació de %{lowest_status_score}.'
         title: Publicacions en tendència
       new_trending_tags:
         no_approved_tags: Actualment no hi ha etiquetes en tendència aprovades.
@@ -1404,6 +1400,8 @@ ca:
     other: Altre
     posting_defaults: Valors predeterminats de publicació
     public_timelines: Línies de temps públiques
+  privacy_policy:
+    title: Política de Privacitat
   reactions:
     errors:
       limit_reached: Límit de diferents reaccions assolit

@@ -941,12 +941,8 @@ hu:
     new_trends:
       body: 'A következő elemeket ellenőrizni kell, mielőtt nyilvánosan megjelennének:'
       new_trending_links:
-        no_approved_links: Jelenleg nincsenek jóváhagyott felkapott hivatkozások.
-        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott hivatkozást, amely jelenleg a(z) „%{lowest_link_title}” ezzel a pontszámmal: %{lowest_link_score}.'
         title: Felkapott hivatkozások
       new_trending_statuses:
-        no_approved_statuses: Jelenleg nincsenek jóváhagyott felkapott bejegyzések.
-        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott bejegyzést, amely jelenleg a(z) „%{lowest_status_url}” ezzel a pontszámmal: %{lowest_status_score}.'
         title: Felkapott bejegyzések
       new_trending_tags:
         no_approved_tags: Jelenleg nincsenek jóváhagyott felkapott hashtagek.
@@ -1024,6 +1020,9 @@ hu:
       email_below_hint_html: Ha az alábbi e-mail cím nem megfelelő, itt megváltoztathatod és kaphatsz egy új igazoló e-mailt.
       email_settings_hint_html: A visszaigazoló e-mailt elküldtük ide %{email}. Ha az e-mail cím nem megfelelő, megváltoztathatod a fiókod beállításainál.
       title: Beállítás
+    sign_up:
+      preamble: Egy fiókkal ezen a Mastodon kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
+      title: Állítsuk be a fiókod a %{domain} kiszolgálón.
     status:
       account_status: Fiók állapota
       confirming: Várakozás az e-mailes visszaigazolásra.
@@ -1403,6 +1402,8 @@ hu:
     other: Egyéb
     posting_defaults: Bejegyzések alapértelmezései
     public_timelines: Nyilvános idővonalak
+  privacy_policy:
+    title: Adatvédelmi irányelvek
   reactions:
     errors:
       limit_reached: A különböző reakciók száma elérte a határértéket

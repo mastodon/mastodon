@@ -939,12 +939,8 @@ it:
     new_trends:
       body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
       new_trending_links:
-        no_approved_links: Attualmente non ci sono link in tendenza approvati.
-        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} link di tendenza approvato, che è attualmente "%{lowest_link_title}" con un punteggio di %{lowest_link_score}.'
         title: Link di tendenza
       new_trending_statuses:
-        no_approved_statuses: Attualmente non ci sono post di tendenza approvati.
-        requirements: 'Ognuno di questi candidati potrebbe superare il #%{rank} post di tendenza approvato, che è attualmente "%{lowest_status_url}" con un punteggio di %{lowest_status_score}.'
         title: Post di tendenza
       new_trending_tags:
         no_approved_tags: Attualmente non ci sono hashtag di tendenza approvati.
@@ -1406,6 +1402,8 @@ it:
     other: Altro
     posting_defaults: Predefinite di pubblicazione
     public_timelines: Timeline pubbliche
+  privacy_policy:
+    title: Politica sulla privacy
   reactions:
     errors:
       limit_reached: Raggiunto il limite di reazioni diverse

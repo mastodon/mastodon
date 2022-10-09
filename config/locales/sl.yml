@@ -979,12 +979,8 @@ sl:
     new_trends:
       body: 'Naslednji elementi potrebujejo pregled, preden jih je možno javno prikazati:'
       new_trending_links:
-        no_approved_links: Trenutno ni odobrenih povezav v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreno povezavo v trendu št. %{rank}, ki je trenutno %{lowest_link_title} z rezultatom %{lowest_link_score}.
         title: Povezave v trendu
       new_trending_statuses:
-        no_approved_statuses: Trenutno ni odobrenih objav v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreno trendno objavo št. %{rank}, ki je trenutno %{lowest_status_url} z rezultatom %{lowest_status_score}.
         title: Trendne objave
       new_trending_tags:
         no_approved_tags: Trenutno ni odobrenih ključnikov v trendu.
@@ -1025,6 +1021,7 @@ sl:
     warning: Bodite zelo previdni s temi podatki. Nikoli jih ne delite z nikomer!
     your_token: Vaš dostopni žeton
   auth:
+    apply_for_account: Vpišite se na čakalni seznam
     change_password: Geslo
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
@@ -1044,6 +1041,7 @@ sl:
     migrate_account: Premakni se na drug račun
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
+    privacy_policy_agreement_html: Prebral_a sem in se strinjam s <a href="%{privacy_policy_path}" target="_blank">pravilnikom o zasebnosti</a>.
     providers:
       cas: CAS
       saml: SAML
@@ -1051,12 +1049,18 @@ sl:
     registration_closed: "%{instance} ne sprejema novih članov"
     resend_confirmation: Ponovno pošlji navodila za potrditev
     reset_password: Ponastavi geslo
+    rules:
+      preamble: Slednje določajo in njihovo spoštovanje zagotavljajo moderatorji %{domain}.
+      title: Nekaj osnovnih pravil.
     security: Varnost
     set_new_password: Nastavi novo geslo
     setup:
       email_below_hint_html: Če spodnji e-poštni naslov ni pravilen, ga lahko spremenite tukaj in prejmete novo potrditveno e-pošto.
       email_settings_hint_html: Potrditvena e-pošta je bila poslana na %{email}. Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
       title: Nastavitev
+    sign_up:
+      preamble: Z računom na strežniku Mastodon boste lahko sledili vsem drugim v tem omrežju, ne glede na to, kje gostuje njihov račun.
+      title: Naj vas namestimo na %{domain}.
     status:
       account_status: Stanje računa
       confirming: Čakanje na potrditev e-pošte.
@@ -1452,6 +1456,8 @@ sl:
     other: Ostalo
     posting_defaults: Privzete nastavitev objavljanja
     public_timelines: Javne časovnice
+  privacy_policy:
+    title: Pravilnik o zasebnosti
   reactions:
     errors:
       limit_reached: Dosežena omejitev različnih reakcij/odzivov
@@ -1751,8 +1757,10 @@ sl:
         suspend: Račun je suspendiran
     welcome:
       edit_profile_action: Nastavitve profila
+      edit_profile_step: Profil lahko prilagodite tako, da naložite sliko profila, spremenite pojavno ime in drugo. Lahko izberete, da želite pregledati nove sledilce, preden jim dovolite sledenje.
       explanation: Tu je nekaj nasvetov za začetek
       final_action: Začnite objavljati
+      final_step: 'Začnite objavljati! Tudi brez sledilcev bodo vaše javne objave videli drugi, npr. na krajevni časovnici ali v ključnikih. Morda se želite predstaviti s ključnikom #introductions.'
       full_handle: Vaša polna ročica
       full_handle_hint: To bi povedali svojim prijateljem, da vam lahko pošljejo sporočila ali vam sledijo iz drugega strežnika.
       subject: Dobrodošli na Mastodon

@@ -921,12 +921,8 @@ zh-TW:
     new_trends:
       body: 以下項目需要經過審核才能公開顯示：
       new_trending_links:
-        no_approved_links: 這些是目前仍未被審核之熱門連結。
-        requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門連結，該連結目前是「%{lowest_link_title}」，得分為 %{lowest_link_score}。'
         title: 熱門連結
       new_trending_statuses:
-        no_approved_statuses: 這些是目前仍未被審核之熱門嘟文。
-        requirements: '這些候選中的任何一個都可能超過 #%{rank} 已批准的熱門嘟文，該嘟文目前是 %{lowest_status_url}，得分為 %{lowest_status_score}。'
         title: 熱門嘟文
       new_trending_tags:
         no_approved_tags: 這些是目前仍未被審核之熱門主題標籤。
@@ -1378,6 +1374,8 @@ zh-TW:
     other: 其他
     posting_defaults: 嘟文預設值
     public_timelines: 公開時間軸
+  privacy_policy:
+    title: 隱私權政策
   reactions:
     errors:
       limit_reached: 達到可回應之上限

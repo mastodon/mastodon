@@ -231,6 +231,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Dismiss",
+        "id": "dismissable_banner.dismiss"
+      }
+    ],
+    "path": "app/javascript/mastodon/components/dismissable_banner.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unblock domain {domain}",
         "id": "account.unblock_domain"
       }
@@ -1199,6 +1208,10 @@
         "id": "column.community"
       },
       {
+        "defaultMessage": "These are the most recent public posts from people whose accounts are hosted by {domain}.",
+        "id": "dismissable_banner.community_timeline"
+      },
+      {
         "defaultMessage": "The local timeline is empty. Write something publicly to get the ball rolling!",
         "id": "empty_column.community"
       }
@@ -1886,6 +1899,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "These news stories are being talked about by people on this and other servers of the decentralized network right now.",
+        "id": "dismissable_banner.explore_links"
+      },
+      {
         "defaultMessage": "Nothing is trending right now. Check back later!",
         "id": "empty_column.explore_statuses"
       }
@@ -1926,6 +1943,10 @@
       {
         "defaultMessage": "Nothing is trending right now. Check back later!",
         "id": "empty_column.explore_statuses"
+      },
+      {
+        "defaultMessage": "These posts from this and other servers in the decentralized network are gaining traction on this server right now.",
+        "id": "dismissable_banner.explore_statuses"
       }
     ],
     "path": "app/javascript/mastodon/features/explore/statuses.json"
@@ -1941,6 +1962,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "These hashtags are gaining traction among people on this and other servers of the decentralized network right now.",
+        "id": "dismissable_banner.explore_tags"
+      },
       {
         "defaultMessage": "Nothing is trending right now. Check back later!",
         "id": "empty_column.explore_statuses"
@@ -3089,6 +3114,10 @@
         "id": "column.public"
       },
       {
+        "defaultMessage": "These are the most recent public posts from people on this and other servers of the decentralized network that this server knows about.",
+        "id": "dismissable_banner.public_timeline"
+      },
+      {
         "defaultMessage": "There is nothing here! Write something publicly, or manually follow users from other servers to fill it up",
         "id": "empty_column.public"
       }
@@ -3768,7 +3797,7 @@
         "id": "navigation_bar.follow_requests"
       }
     ],
-    "path": "app/javascript/mastodon/features/ui/components/follow_requests_nav_link.json"
+    "path": "app/javascript/mastodon/features/ui/components/follow_requests_column_link.json"
   },
   {
     "descriptors": [
