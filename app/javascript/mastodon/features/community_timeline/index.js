@@ -10,7 +10,7 @@ import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from '../../actions/streaming';
 import { Helmet } from 'react-helmet';
-import { title, domain } from 'mastodon/initial_state';
+import { domain } from 'mastodon/initial_state';
 import DismissableBanner from 'mastodon/components/dismissable_banner';
 
 const messages = defineMessages({
@@ -150,7 +150,7 @@ class CommunityTimeline extends React.PureComponent {
         />
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title)} - {title}</title>
+          <title>{intl.formatMessage(messages.title)}</title>
         </Helmet>
       </Column>
     );
