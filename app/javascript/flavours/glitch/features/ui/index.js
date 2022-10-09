@@ -56,7 +56,7 @@ import {
   PrivacyPolicy,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
-import { me, title } from 'flavours/glitch/initial_state';
+import { me } from 'flavours/glitch/initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
@@ -669,10 +669,6 @@ class UI extends React.Component {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
-
-          <Helmet>
-            <title>{title}</title>
-          </Helmet>
         </div>
       </HotKeys>
     );

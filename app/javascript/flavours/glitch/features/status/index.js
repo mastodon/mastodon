@@ -47,7 +47,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
-import { boostModal, favouriteModal, deleteModal, title } from 'flavours/glitch/initial_state';
+import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';
@@ -684,7 +684,7 @@ class Status extends ImmutablePureComponent {
         </ScrollContainer>
 
         <Helmet>
-          <title>{titleFromStatus(status)} - {title}</title>
+          <title>{titleFromStatus(status)}</title>
         </Helmet>
       </Column>
     );

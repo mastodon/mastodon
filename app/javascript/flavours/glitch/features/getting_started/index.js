@@ -17,6 +17,7 @@ import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 import NavigationBar from '../compose/components/navigation_bar';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
 import TrendsContainer from './containers/trends_container';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -190,6 +191,10 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
         </div>
 
         {multiColumn && showTrends && <TrendsContainer />}
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.menu)}</title>
+        </Helmet>
       </Column>
     );
   }
