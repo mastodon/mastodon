@@ -56,7 +56,7 @@ import { openModal } from '../../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
-import { boostModal, deleteModal, title } from '../../initial_state';
+import { boostModal, deleteModal } from '../../initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { textForScreenReader, defaultMediaVisibility } from '../../components/status';
 import Icon from 'mastodon/components/icon';
@@ -658,7 +658,7 @@ class Status extends ImmutablePureComponent {
         </ScrollContainer>
 
         <Helmet>
-          <title>{titleFromStatus(status)} - {title}</title>
+          <title>{titleFromStatus(status)}</title>
         </Helmet>
       </Column>
     );

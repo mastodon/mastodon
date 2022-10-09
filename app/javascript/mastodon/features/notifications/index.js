@@ -28,7 +28,6 @@ import compareId from 'mastodon/compare_id';
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
 import NotSignedInIndicator from 'mastodon/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
-import { title } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -281,7 +280,7 @@ class Notifications extends React.PureComponent {
         {scrollContainer}
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title)} - {title}</title>
+          <title>{intl.formatMessage(messages.title)}</title>
         </Helmet>
       </Column>
     );

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Column from 'mastodon/components/column';
 import LinkFooter from 'mastodon/features/ui/components/link_footer';
 import { Helmet } from 'react-helmet';
-import { title } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.about', defaultMessage: 'About' },
@@ -25,7 +24,7 @@ class About extends React.PureComponent {
         <LinkFooter />
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title)} - {title}</title>
+          <title>{intl.formatMessage(messages.title)}</title>
         </Helmet>
       </Column>
     );

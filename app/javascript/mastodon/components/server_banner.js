@@ -1,12 +1,12 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-import { domain } from 'mastodon/initial_state';
-import { fetchServer } from 'mastodon/actions/server';
+import React from 'react';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
-import Account from 'mastodon/containers/account_container';
+import { fetchServer } from 'mastodon/actions/server';
 import ShortNumber from 'mastodon/components/short_number';
 import Skeleton from 'mastodon/components/skeleton';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import Account from 'mastodon/containers/account_container';
+import { domain } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   aboutActiveUsers: { id: 'server_banner.about_active_users', defaultMessage: 'People using this server during the last 30 days (Monthly Active Users)' },

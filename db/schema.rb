@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_08_29_192658) do
+ActiveRecord::Schema.define(version: 2022_10_06_061337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -735,6 +735,15 @@ ActiveRecord::Schema.define(version: 2022_08_29_192658) do
     t.index ["domain"], name: "index_preview_card_providers_on_domain", unique: true
   end
 
+  create_table "preview_card_trends", force: :cascade do |t|
+    t.bigint "preview_card_id", null: false
+    t.float "score", default: 0.0, null: false
+    t.integer "rank", default: 0, null: false
+    t.boolean "allowed", default: false, null: false
+    t.string "language"
+    t.index ["preview_card_id"], name: "index_preview_card_trends_on_preview_card_id", unique: true
+  end
+
   create_table "preview_cards", force: :cascade do |t|
     t.string "url", default: "", null: false
     t.string "title", default: "", null: false
@@ -892,6 +901,17 @@ ActiveRecord::Schema.define(version: 2022_08_29_192658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["status_id"], name: "index_status_stats_on_status_id", unique: true
+  end
+
+  create_table "status_trends", force: :cascade do |t|
+    t.bigint "status_id", null: false
+    t.bigint "account_id", null: false
+    t.float "score", default: 0.0, null: false
+    t.integer "rank", default: 0, null: false
+    t.boolean "allowed", default: false, null: false
+    t.string "language"
+    t.index ["account_id"], name: "index_status_trends_on_account_id"
+    t.index ["status_id"], name: "index_status_trends_on_status_id", unique: true
   end
 
   create_table "statuses", id: :bigint, default: -> { "timestamp_id('statuses'::text)" }, force: :cascade do |t|
@@ -1171,6 +1191,7 @@ ActiveRecord::Schema.define(version: 2022_08_29_192658) do
   add_foreign_key "poll_votes", "polls", on_delete: :cascade
   add_foreign_key "polls", "accounts", on_delete: :cascade
   add_foreign_key "polls", "statuses", on_delete: :cascade
+  add_foreign_key "preview_card_trends", "preview_cards", on_delete: :cascade
   add_foreign_key "report_notes", "accounts", on_delete: :cascade
   add_foreign_key "report_notes", "reports", on_delete: :cascade
   add_foreign_key "reports", "accounts", column: "action_taken_by_account_id", name: "fk_bca45b75fd", on_delete: :nullify
@@ -1185,6 +1206,8 @@ ActiveRecord::Schema.define(version: 2022_08_29_192658) do
   add_foreign_key "status_pins", "accounts", name: "fk_d4cb435b62", on_delete: :cascade
   add_foreign_key "status_pins", "statuses", on_delete: :cascade
   add_foreign_key "status_stats", "statuses", on_delete: :cascade
+  add_foreign_key "status_trends", "accounts", on_delete: :cascade
+  add_foreign_key "status_trends", "statuses", on_delete: :cascade
   add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", name: "fk_c7fa917661", on_delete: :nullify
   add_foreign_key "statuses", "accounts", name: "fk_9bda1543f7", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify
