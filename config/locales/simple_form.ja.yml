@@ -67,6 +67,10 @@ ja:
         with_dns_records: 指定したドメインのDNSレコードを取得し、その結果もメールドメインブロックに登録されます
       featured_tag:
         name: 'これらを使うといいかもしれません:'
+      form_admin_settings:
+        backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
+        content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
+        media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
       form_challenge:
         current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
@@ -79,6 +83,7 @@ ja:
         ip: IPv4またはIPv6アドレスを入力してください。CIDR構文を用いて範囲指定でブロックすることもできます。自分自身を締め出さないよう注意してください！
         severities:
           no_access: すべてのリソースへのアクセスをブロックします
+          sign_up_block: 新規のアカウント作成はできません
           sign_up_requires_approval: 承認するまで新規登録が完了しなくなります
         severity: このIPに対する措置を選択してください
       rule:
@@ -90,6 +95,7 @@ ja:
         name: 視認性向上などのためにアルファベット大文字小文字の変更のみ行うことができます
       user:
         chosen_languages: 選択すると、選択した言語の投稿のみが公開タイムラインに表示されるようになります
+        role: このロールはユーザーが持つ権限を管理します
       user_role:
         highlighted: これによりロールが公開されます。
         name: ロールのバッジを表示する際の表示名
