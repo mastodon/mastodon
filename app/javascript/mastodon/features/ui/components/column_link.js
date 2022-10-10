@@ -13,7 +13,7 @@ const ColumnLink = ({ icon, text, to, href, method, badge, transparent, ...other
     return (
       <a href={href} className={className} data-method={method} title={text} {...other}>
         {iconElement}
-        {text}
+        <span>{text}</span>
         {badgeElement}
       </a>
     );
@@ -21,7 +21,7 @@ const ColumnLink = ({ icon, text, to, href, method, badge, transparent, ...other
     return (
       <NavLink to={to} className={className} title={text} {...other}>
         {iconElement}
-        {text}
+        <span>{text}</span>
         {badgeElement}
       </NavLink>
     );
