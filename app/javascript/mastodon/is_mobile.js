@@ -1,10 +1,19 @@
+// @ts-check
+
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { forceSingleColumn } from 'mastodon/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
+/**
+ * @param {number} width
+ * @returns {boolean}
+ */
 export const isMobile = width => width <= LAYOUT_BREAKPOINT;
 
+/**
+ * @returns {string}
+ */
 export const layoutFromWindow = () => {
   if (isMobile(window.innerWidth)) {
     return 'mobile';
@@ -17,11 +26,13 @@ export const layoutFromWindow = () => {
 
 const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+
 let userTouching = false;
-let listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 const touchListener = () => {
   userTouching = true;
+
   window.removeEventListener('touchstart', touchListener, listenerOptions);
 };
 
