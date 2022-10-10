@@ -1,10 +1,20 @@
+// @ts-check
+
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { forceSingleColumn } from 'flavours/glitch/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 
+/**
+ * @param {number} width
+ * @returns {boolean}
+ */
 export const isMobile = width => width <= LAYOUT_BREAKPOINT;
 
+/**
+ * @param {string} layout_local_setting
+ * @returns {string}
+ */
 export const layoutFromWindow = (layout_local_setting) => {
   switch (layout_local_setting) {
   case 'multiple':
@@ -28,11 +38,13 @@ export const layoutFromWindow = (layout_local_setting) => {
 
 const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
+const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
+
 let userTouching = false;
-let listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
 const touchListener = () => {
   userTouching = true;
+
   window.removeEventListener('touchstart', touchListener, listenerOptions);
 };
 

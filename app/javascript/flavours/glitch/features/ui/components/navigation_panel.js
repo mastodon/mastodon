@@ -4,12 +4,12 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import TrendsContainer from 'flavours/glitch/features/getting_started/containers/trends_container';
 import { showTrends, timelinePreview } from 'flavours/glitch/initial_state';
+import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
 import { preferencesLink, relationshipsLink } from 'flavours/glitch/utils/backend_links';
-import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
