@@ -1,4 +1,4 @@
-import api from 'flavours/glitch/util/api';
+import api from '../api';
 import { debounce } from 'lodash';
 import compareId from 'flavours/glitch/util/compare_id';
 import { List as ImmutableList } from 'immutable';

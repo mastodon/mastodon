@@ -1,4 +1,4 @@
-import api from 'flavours/glitch/util/api';
+import api from '../api';
 
 import { deleteFromTimelines } from './timelines';
 import { importFetchedStatus, importFetchedStatuses } from './importer';

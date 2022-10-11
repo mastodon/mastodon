@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import api from 'flavours/glitch/util/api';
+import api from 'flavours/glitch/api';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import Hashtag from 'flavours/glitch/components/hashtag';

@@ -1,4 +1,4 @@
-import api from 'flavours/glitch/util/api';
+import api from '../api';
 
 export const HASHTAG_FETCH_REQUEST = 'HASHTAG_FETCH_REQUEST';
 export const HASHTAG_FETCH_SUCCESS = 'HASHTAG_FETCH_SUCCESS';

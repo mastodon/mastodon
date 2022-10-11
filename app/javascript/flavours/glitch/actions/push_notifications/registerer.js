@@ -1,4 +1,4 @@
-import api from 'flavours/glitch/util/api';
+import api from '../../api';
 import { pushNotificationsSetting } from 'flavours/glitch/util/settings';
 import { setBrowserSupport, setSubscription, clearSubscription } from './setter';
 

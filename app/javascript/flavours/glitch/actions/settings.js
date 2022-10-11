@@ -1,4 +1,4 @@
-import api from 'flavours/glitch/util/api';
+import api from '../api';
 import { debounce } from 'lodash';
 import { showAlertForError } from './alerts';
 

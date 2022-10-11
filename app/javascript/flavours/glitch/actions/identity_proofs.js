@@ -1,4 +1,4 @@
-import api from 'flavours/glitch/util/api';
+import api from '../api';
 
 export const IDENTITY_PROOFS_ACCOUNT_FETCH_REQUEST = 'IDENTITY_PROOFS_ACCOUNT_FETCH_REQUEST';
 export const IDENTITY_PROOFS_ACCOUNT_FETCH_SUCCESS = 'IDENTITY_PROOFS_ACCOUNT_FETCH_SUCCESS';

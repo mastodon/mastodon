@@ -1,4 +1,4 @@
-import api, { getLinks } from 'flavours/glitch/util/api';
+import api, { getLinks } from '../api';
 import {
   importFetchedAccounts,
   importFetchedStatuses,

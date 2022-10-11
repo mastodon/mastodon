@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import api from 'flavours/glitch/util/api';
+import api from 'flavours/glitch/api';
 import { FormattedNumber } from 'react-intl';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import classNames from 'classnames';
