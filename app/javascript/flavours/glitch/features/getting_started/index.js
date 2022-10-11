@@ -8,7 +8,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, showTrends } from 'flavours/glitch/util/initial_state';
+import { me, showTrends } from 'flavours/glitch/initial_state';
 import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';

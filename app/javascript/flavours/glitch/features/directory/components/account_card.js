@@ -10,7 +10,7 @@ import Permalink from 'flavours/glitch/components/permalink';
 import IconButton from 'flavours/glitch/components/icon_button';
 import Button from 'flavours/glitch/components/button';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
-import { autoPlayGif, me, unfollowModal } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, me, unfollowModal } from 'flavours/glitch/initial_state';
 import ShortNumber from 'flavours/glitch/components/short_number';
 import {
   followAccount,

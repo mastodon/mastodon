@@ -8,7 +8,7 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import TabsBar, { links, getIndex, getLink } from './tabs_bar';
 import { Link } from 'react-router-dom';
 
-import { disableSwiping } from 'flavours/glitch/util/initial_state';
+import { disableSwiping } from 'flavours/glitch/initial_state';
 
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';

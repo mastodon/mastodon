@@ -30,7 +30,7 @@ import compareId from 'flavours/glitch/util/compare_id';
 import NotificationsPermissionBanner from './components/notifications_permission_banner';
 import NotSignedInIndicator from 'flavours/glitch/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
-import { title } from 'flavours/glitch/util/initial_state';
+import { title } from 'flavours/glitch/initial_state';
 
 import NotificationPurgeButtonsContainer from 'flavours/glitch/containers/notification_purge_buttons_container';
 

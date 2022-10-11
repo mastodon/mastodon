@@ -21,7 +21,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { blockDomain, unblockDomain } from 'flavours/glitch/actions/domain_blocks';
 import { initEditAccountNote } from 'flavours/glitch/actions/account_notes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { unfollowModal } from 'flavours/glitch/util/initial_state';
+import { unfollowModal } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },

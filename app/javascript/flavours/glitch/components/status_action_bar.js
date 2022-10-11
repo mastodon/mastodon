@@ -5,7 +5,7 @@ import IconButton from './icon_button';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me } from 'flavours/glitch/initial_state';
 import RelativeTimestamp from './relative_timestamp';
 import { accountAdminLink, statusAdminLink } from 'flavours/glitch/util/backend_links';
 import classNames from 'classnames';

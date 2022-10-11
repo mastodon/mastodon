@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { autoPlayGif } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif } from 'flavours/glitch/initial_state';
 import Skeleton from 'flavours/glitch/components/skeleton';
 
 export default class DisplayName extends React.PureComponent {

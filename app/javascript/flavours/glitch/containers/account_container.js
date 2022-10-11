@@ -13,7 +13,7 @@ import {
 } from 'flavours/glitch/actions/accounts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
-import { unfollowModal } from 'flavours/glitch/util/initial_state';
+import { unfollowModal } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },

@@ -47,7 +47,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
-import { boostModal, favouriteModal, deleteModal, title } from 'flavours/glitch/util/initial_state';
+import { boostModal, favouriteModal, deleteModal, title } from 'flavours/glitch/initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from 'flavours/glitch/util/fullscreen';
 import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';

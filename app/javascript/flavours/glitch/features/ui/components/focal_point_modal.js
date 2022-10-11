@@ -17,7 +17,7 @@ import CharacterCounter from 'flavours/glitch/features/compose/components/charac
 import { length } from 'stringz';
 import { Tesseract as fetchTesseract } from 'flavours/glitch/util/async-components';
 import GIFV from 'flavours/glitch/components/gifv';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me } from 'flavours/glitch/initial_state';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import tesseractCorePath from 'tesseract.js-core/tesseract-core.wasm.js';
 // eslint-disable-next-line import/extensions

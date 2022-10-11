@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import Permalink from './permalink';
 import classnames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
-import { autoPlayGif } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif } from 'flavours/glitch/initial_state';
 import { decode as decodeIDNA } from 'flavours/glitch/util/idna';
 
 const textMatchesTarget = (text, origin, host) => {

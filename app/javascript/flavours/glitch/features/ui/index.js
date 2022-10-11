@@ -54,7 +54,7 @@ import {
   FollowRecommendations,
 } from 'flavours/glitch/util/async-components';
 import { HotKeys } from 'react-hotkeys';
-import { me, title } from 'flavours/glitch/util/initial_state';
+import { me, title } from 'flavours/glitch/initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';

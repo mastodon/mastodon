@@ -12,7 +12,7 @@ import { saveSettings } from './settings';
 import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
 import { unescapeHTML } from 'flavours/glitch/util/html';
-import { usePendingItems as preferPendingItems } from 'flavours/glitch/util/initial_state';
+import { usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
 import compareId from 'flavours/glitch/util/compare_id';
 import { requestNotificationPermission } from 'flavours/glitch/util/notifications';
 

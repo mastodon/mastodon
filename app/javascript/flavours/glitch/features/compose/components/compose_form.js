@@ -15,7 +15,7 @@ import { countableText } from 'flavours/glitch/util/counter';
 import OptionsContainer from '../containers/options_container';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
-import { maxChars } from 'flavours/glitch/util/initial_state';
+import { maxChars } from 'flavours/glitch/initial_state';
 import CharacterCounter from './character_counter';
 import { length } from 'stringz';
 

@@ -11,7 +11,7 @@ import SearchContainer from './containers/search_container';
 import Motion from 'flavours/glitch/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
-import { me, mascot } from 'flavours/glitch/util/initial_state';
+import { me, mascot } from 'flavours/glitch/initial_state';
 import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 import HeaderContainer from './containers/header_container';
 

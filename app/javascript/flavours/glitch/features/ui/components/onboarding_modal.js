@@ -10,7 +10,7 @@ import ComposeForm from 'flavours/glitch/features/compose/components/compose_for
 import DrawerAccount from 'flavours/glitch/features/compose/components/navigation_bar';
 import Search from 'flavours/glitch/features/compose/components/search';
 import ColumnHeader from './column_header';
-import { me, source_url } from 'flavours/glitch/util/initial_state';
+import { me, source_url } from 'flavours/glitch/initial_state';
 
 const noop = () => { };
 

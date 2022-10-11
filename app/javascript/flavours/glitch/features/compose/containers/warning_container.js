@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Warning from '../components/warning';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me } from 'flavours/glitch/initial_state';
 import { profileLink, termsLink } from 'flavours/glitch/util/backend_links';
 
 const buildHashtagRE = () => {

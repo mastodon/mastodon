@@ -1,4 +1,4 @@
-import { expandSpoilers } from 'flavours/glitch/util/initial_state';
+import { expandSpoilers } from 'flavours/glitch/initial_state';
 
 function _autoUnfoldCW(spoiler_text, skip_unfold_regex) {
   if (!expandSpoilers)

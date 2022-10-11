@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import Icon from 'flavours/glitch/components/icon';
-import { showTrends } from 'flavours/glitch/util/initial_state';
+import { showTrends } from 'flavours/glitch/initial_state';
 import { preferencesLink, relationshipsLink } from 'flavours/glitch/util/backend_links';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import FollowRequestsNavLink from './follow_requests_nav_link';

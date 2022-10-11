@@ -16,7 +16,7 @@ import NotificationOverlayContainer from 'flavours/glitch/features/notifications
 import classNames from 'classnames';
 import { autoUnfoldCW } from 'flavours/glitch/util/content_warning';
 import PollContainer from 'flavours/glitch/containers/poll_container';
-import { displayMedia } from 'flavours/glitch/util/initial_state';
+import { displayMedia } from 'flavours/glitch/initial_state';
 import PictureInPicturePlaceholder from 'flavours/glitch/components/picture_in_picture_placeholder';
 
 // We use the component (and not the container) since we do not want

@@ -6,7 +6,7 @@ import { hydrateStore } from 'flavours/glitch/actions/store';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from 'mastodon/locales';
 import Compose from 'flavours/glitch/features/standalone/compose';
-import initialState from 'flavours/glitch/util/initial_state';
+import initialState from 'flavours/glitch/initial_state';
 import { fetchCustomEmojis } from 'flavours/glitch/actions/custom_emojis';
 
 const { localeData, messages } = getLocale();

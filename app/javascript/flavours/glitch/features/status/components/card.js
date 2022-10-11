@@ -7,7 +7,7 @@ import punycode from 'punycode';
 import classnames from 'classnames';
 import { decode as decodeIDNA } from 'flavours/glitch/util/idna';
 import Icon from 'flavours/glitch/components/icon';
-import { useBlurhash } from 'flavours/glitch/util/initial_state';
+import { useBlurhash } from 'flavours/glitch/initial_state';
 import Blurhash from 'flavours/glitch/components/blurhash';
 import { debounce } from 'lodash';
 

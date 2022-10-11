@@ -1,4 +1,4 @@
-import { autoPlayGif, useSystemEmojiFont } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, useSystemEmojiFont } from 'flavours/glitch/initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import { assetHost } from 'flavours/glitch/util/config';
 import Trie from 'substring-trie';

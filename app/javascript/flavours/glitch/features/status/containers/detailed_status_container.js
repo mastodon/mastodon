@@ -27,7 +27,7 @@ import { initReport } from 'flavours/glitch/actions/reports';
 import { initBoostModal } from 'flavours/glitch/actions/boosts';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
-import { boostModal, deleteModal } from 'flavours/glitch/util/initial_state';
+import { boostModal, deleteModal } from 'flavours/glitch/initial_state';
 import { showAlertForError } from 'flavours/glitch/actions/alerts';
 
 const messages = defineMessages({

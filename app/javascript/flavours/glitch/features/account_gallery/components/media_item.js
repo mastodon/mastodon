@@ -1,7 +1,7 @@
 import Blurhash from 'flavours/glitch/components/blurhash';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
-import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
 import { isIOS } from 'flavours/glitch/util/is_mobile';
 import PropTypes from 'prop-types';
 import React from 'react';

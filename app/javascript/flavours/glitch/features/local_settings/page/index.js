@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 //  Our imports
-import { expandSpoilers, disableSwiping } from 'flavours/glitch/util/initial_state';
+import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
 import { preferenceLink } from 'flavours/glitch/util/backend_links';
 import LocalSettingsPageItem from './item';
 import DeprecatedLocalSettingsPageItem from './deprecated_item';

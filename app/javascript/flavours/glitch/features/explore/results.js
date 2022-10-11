@@ -10,7 +10,7 @@ import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag'
 import { List as ImmutableList } from 'immutable';
 import LoadMore from 'flavours/glitch/components/load_more';
 import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
-import { title } from 'flavours/glitch/util/initial_state';
+import { title } from 'flavours/glitch/initial_state';
 import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({

@@ -7,7 +7,7 @@ import Motion from 'flavours/glitch/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
-import { languages as preloadedLanguages } from 'flavours/glitch/util/initial_state';
+import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
 import { loupeIcon, deleteIcon } from 'flavours/glitch/util/icons';
 import fuzzysort from 'fuzzysort';
 

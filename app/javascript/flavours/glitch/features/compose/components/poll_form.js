@@ -7,7 +7,7 @@ import IconButton from 'flavours/glitch/components/icon_button';
 import Icon from 'flavours/glitch/components/icon';
 import AutosuggestInput from 'flavours/glitch/components/autosuggest_input';
 import classNames from 'classnames';
-import { pollLimits } from 'flavours/glitch/util/initial_state';
+import { pollLimits } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   option_placeholder: { id: 'compose_form.poll.option_placeholder', defaultMessage: 'Choice {number}' },

@@ -1,6 +1,6 @@
 import { connect }   from 'react-redux';
 import NavigationBar from '../components/navigation_bar';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me } from 'flavours/glitch/initial_state';
 
 const mapStateToProps = state => {
   return {

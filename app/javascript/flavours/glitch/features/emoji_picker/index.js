@@ -12,7 +12,7 @@ import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import { buildCustomEmojis, categoriesFromEmojis } from 'flavours/glitch/util/emoji';
-import { useSystemEmojiFont } from 'flavours/glitch/util/initial_state';
+import { useSystemEmojiFont } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/util/config';
 
 const messages = defineMessages({

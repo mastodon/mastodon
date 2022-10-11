@@ -1,5 +1,5 @@
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { forceSingleColumn } from 'flavours/glitch/util/initial_state';
+import { forceSingleColumn } from 'flavours/glitch/initial_state';
 
 const LAYOUT_BREAKPOINT = 630;
 

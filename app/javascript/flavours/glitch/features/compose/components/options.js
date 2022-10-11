@@ -17,7 +17,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 
 //  Utils.
 import Motion from 'flavours/glitch/util/optional_motion';
-import { pollLimits } from 'flavours/glitch/util/initial_state';
+import { pollLimits } from 'flavours/glitch/initial_state';
 
 //  Messages.
 const messages = defineMessages({
