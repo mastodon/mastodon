@@ -1,5 +1,5 @@
 import escapeTextContentForBrowser from 'escape-html';
-import emojify from 'flavours/glitch/utils/emoji';
+import emojify from 'flavours/glitch/features/emoji/emoji';
 import { unescapeHTML } from 'flavours/glitch/utils/html';
 import { autoHideCW } from 'flavours/glitch/utils/content_warning';
 

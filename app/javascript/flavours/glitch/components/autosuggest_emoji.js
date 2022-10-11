@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import unicodeMapping from 'flavours/glitch/utils/emoji/emoji_unicode_mapping_light';
+import unicodeMapping from 'flavours/glitch/features/emoji/emoji_unicode_mapping_light';
 
 import { assetHost } from 'flavours/glitch/utils/config';
 

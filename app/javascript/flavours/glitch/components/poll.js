@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import Motion from 'flavours/glitch/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import escapeTextContentForBrowser from 'escape-html';
-import emojify from 'flavours/glitch/utils/emoji';
+import emojify from 'flavours/glitch/features/emoji/emoji';
 import RelativeTimestamp from './relative_timestamp';
 import Icon from 'flavours/glitch/components/icon';
 

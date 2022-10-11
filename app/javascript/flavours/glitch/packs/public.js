@@ -7,7 +7,7 @@ function main() {
   const IntlMessageFormat = require('intl-messageformat').default;
   const { timeAgoString } = require('flavours/glitch/components/relative_timestamp');
   const { delegate } = require('@rails/ujs');
-  const emojify = require('flavours/glitch/utils/emoji').default;
+  const emojify = require('flavours/glitch/features/emoji/emoji').default;
   const { getLocale } = require('locales');
   const { messages } = getLocale();
   const React = require('react');

@@ -11,7 +11,7 @@ import Overlay from 'react-overlays/lib/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { buildCustomEmojis, categoriesFromEmojis } from 'flavours/glitch/utils/emoji';
+import { buildCustomEmojis, categoriesFromEmojis } from 'flavours/glitch/features/emoji/emoji';
 import { useSystemEmojiFont } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/utils/config';
 

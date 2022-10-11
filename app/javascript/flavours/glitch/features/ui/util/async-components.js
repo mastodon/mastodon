@@ -1,5 +1,5 @@
 export function EmojiPicker () {
-  return import(/* webpackChunkName: "flavours/glitch/async/emoji_picker" */'flavours/glitch/utils/emoji/emoji_picker');
+  return import(/* webpackChunkName: "flavours/glitch/async/emoji_picker" */'flavours/glitch/features/emoji/emoji_picker');
 }
 
 export function Compose () {

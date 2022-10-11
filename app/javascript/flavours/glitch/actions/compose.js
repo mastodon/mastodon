@@ -1,7 +1,7 @@
 import api from '../api';
 import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
-import { search as emojiSearch } from 'flavours/glitch/utils/emoji/emoji_mart_search_light';
+import { search as emojiSearch } from 'flavours/glitch/features/emoji/emoji_mart_search_light';
 import { useEmoji } from './emojis';
 import { tagHistory } from '../settings';
 import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
