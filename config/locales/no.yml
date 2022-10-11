@@ -1,6 +1,7 @@
-"no":
+---
+'no':
   about:
-    about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
+    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
     about_this: Om
     administered_by: 'Administrert av:'
     api: API
@@ -10,9 +11,7 @@
     contact_unavailable: Ikke tilgjengelig
     documentation: Dokumentasjon
     hosted_on: Mastodon driftet på %{domain}
-    instance_actor_flash: |
-      Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. 
-
+    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
     rules: Server regler
     rules_html: 'Nedenfor er et sammendrag av reglene du må følge om du vil ha en konto på denne serveren av Mastodon:'
     source_code: Kildekode
@@ -560,7 +559,7 @@
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Noen fra %{domain} har rapportert %{target}
-      subject: 'Ny rapport for %{instance} (#%{id})'
+      subject: Ny rapport for %{instance} (#%{id})
   aliases:
     add_new: Lag et alias
     empty: Du har ingen aliaser.
@@ -1042,7 +1041,7 @@
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg på for å delta i samtalen
-    title: '%{name}: «%{quote}»'
+    title: "%{name}: «%{quote}»"
     visibilities:
       direct: Direkte
       private: Privat
