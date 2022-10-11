@@ -5,7 +5,7 @@ import ReplyIndicatorContainer from '../containers/reply_indicator_container';
 import AutosuggestTextarea from '../../../components/autosuggest_textarea';
 import AutosuggestInput from '../../../components/autosuggest_input';
 import { defineMessages, injectIntl } from 'react-intl';
-import EmojiPicker from 'flavours/glitch/features/emoji_picker';
+import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
@@ -143,7 +143,7 @@ class ComposeForm extends ImmutablePureComponent {
   };
 
   //  Inserts an emoji at the caret.
-  handleEmoji = (data) => {
+  handleEmojiPick = (data) => {
     const { textarea: { selectionStart } } = this;
     const { onPickEmoji } = this.props;
     if (onPickEmoji) {
@@ -275,7 +275,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   render () {
     const {
-      handleEmoji,
+      handleEmojiPick,
       handleSecondarySubmit,
       handleSelect,
       handleSubmit,
@@ -344,7 +344,7 @@ class ComposeForm extends ImmutablePureComponent {
           onPaste={onPaste}
           autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
         >
-          <EmojiPicker onPickEmoji={handleEmoji} />
+          <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />
           <TextareaIcons advancedOptions={advancedOptions} />
           <div className='compose-form__modifiers'>
             <UploadFormContainer />

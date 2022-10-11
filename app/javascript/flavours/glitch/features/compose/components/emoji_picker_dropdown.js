@@ -1,17 +1,12 @@
-import { connect } from 'react-redux';
-import { changeSetting } from 'flavours/glitch/actions/settings';
-import { createSelector } from 'reselect';
-import { Map as ImmutableMap } from 'immutable';
-import { useEmoji } from 'flavours/glitch/actions/emojis';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { EmojiPicker as EmojiPickerAsync } from '../ui/util/async-components';
+import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
 import Overlay from 'react-overlays/lib/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { buildCustomEmojis, categoriesFromEmojis } from 'flavours/glitch/features/emoji/emoji';
+import { buildCustomEmojis, categoriesFromEmojis } from '../../emoji/emoji';
 import { useSystemEmojiFont } from 'flavours/glitch/initial_state';
 import { assetHost } from 'flavours/glitch/utils/config';
 
@@ -29,80 +24,6 @@ const messages = defineMessages({
   objects: { id: 'emoji_button.objects', defaultMessage: 'Objects' },
   symbols: { id: 'emoji_button.symbols', defaultMessage: 'Symbols' },
   flags: { id: 'emoji_button.flags', defaultMessage: 'Flags' },
-});
-
-const perLine = 8;
-const lines   = 2;
-
-const DEFAULTS = [
-  '+1',
-  'grinning',
-  'kissing_heart',
-  'heart_eyes',
-  'laughing',
-  'stuck_out_tongue_winking_eye',
-  'sweat_smile',
-  'joy',
-  'yum',
-  'disappointed',
-  'thinking_face',
-  'weary',
-  'sob',
-  'sunglasses',
-  'heart',
-  'ok_hand',
-];
-
-const getFrequentlyUsedEmojis = createSelector([
-  state => state.getIn(['settings', 'frequentlyUsedEmojis'], ImmutableMap()),
-], emojiCounters => {
-  let emojis = emojiCounters
-    .keySeq()
-    .sort((a, b) => emojiCounters.get(a) - emojiCounters.get(b))
-    .reverse()
-    .slice(0, perLine * lines)
-    .toArray();
-
-  if (emojis.length < DEFAULTS.length) {
-    emojis = emojis.concat(DEFAULTS.slice(0, DEFAULTS.length - emojis.length));
-  }
-
-  return emojis;
-});
-
-const getCustomEmojis = createSelector([
-  state => state.get('custom_emojis'),
-], emojis => emojis.filter(e => e.get('visible_in_picker')).sort((a, b) => {
-  const aShort = a.get('shortcode').toLowerCase();
-  const bShort = b.get('shortcode').toLowerCase();
-
-  if (aShort < bShort) {
-    return -1;
-  } else if (aShort > bShort ) {
-    return 1;
-  } else {
-    return 0;
-  }
-}));
-
-const mapStateToProps = state => ({
-  custom_emojis: getCustomEmojis(state),
-  skinTone: state.getIn(['settings', 'skinTone']),
-  frequentlyUsedEmojis: getFrequentlyUsedEmojis(state),
-});
-
-const mapDispatchToProps = (dispatch, { onPickEmoji }) => ({
-  onSkinTone: skinTone => {
-    dispatch(changeSetting(['skinTone'], skinTone));
-  },
-
-  onPickEmoji: emoji => {
-    dispatch(useEmoji(emoji));
-
-    if (onPickEmoji) {
-      onPickEmoji(emoji);
-    }
-  },
 });
 
 let EmojiPicker, Emoji; // load asynchronously
@@ -389,8 +310,7 @@ class EmojiPickerMenu extends React.PureComponent {
 
 }
 
-export default @connect(mapStateToProps, mapDispatchToProps)
-@injectIntl
+export default @injectIntl
 class EmojiPickerDropdown extends React.PureComponent {
 
   static propTypes = {

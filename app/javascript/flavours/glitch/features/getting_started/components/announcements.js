@@ -11,7 +11,7 @@ import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 import { mascot } from 'flavours/glitch/initial_state';
 import unicodeMapping from 'flavours/glitch/features/emoji/emoji_unicode_mapping_light';
 import classNames from 'classnames';
-import EmojiPickerDropdown from 'flavours/glitch/features/emoji_picker';
+import EmojiPickerDropdown from 'flavours/glitch/features/compose/containers/emoji_picker_dropdown_container';
 import AnimatedNumber from 'flavours/glitch/components/animated_number';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
