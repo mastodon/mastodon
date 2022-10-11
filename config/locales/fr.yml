@@ -1,4 +1,3 @@
----
 fr:
   about:
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
@@ -103,7 +102,7 @@ fr:
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
-      destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
+      destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
       disable: Geler
       disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -321,6 +320,7 @@ fr:
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
+        update_user_role_html: "%{name} a changé le rôle %{target}"
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
@@ -557,7 +557,7 @@ fr:
       no_ip_block_selected: Aucune règle IP n’a été modifiée car aucune n’a été sélectionnée
       title: Règles IP
     relationships:
-      title: Relations de %{acct}
+      title: "Relations de %{acct}"
     relays:
       add_new: Ajouter un nouveau relais
       delete: Supprimer
@@ -927,7 +927,7 @@ fr:
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
-      subject: Nouveau signalement sur %{instance} (#%{id})
+      subject: 'Nouveau signalement sur %{instance} (#%{id})'
     new_trends:
       body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
       new_trending_links:
@@ -993,6 +993,7 @@ fr:
     migrate_account: Déménager vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
+    privacy_policy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1306,7 +1307,7 @@ fr:
       sign_up:
         subject: "%{name} s'est inscrit·e"
     favourite:
-      body: "%{name} a ajouté votre message à ses favoris :"
+      body: '%{name} a ajouté votre message à ses favoris :'
       subject: "%{name} a ajouté votre message à ses favoris"
       title: Nouveau favori
     follow:
@@ -1320,8 +1321,8 @@ fr:
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
-      body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné·e"
+      body: '%{name} vous a mentionné⋅e dans :'
+      subject: '%{name} vous a mentionné·e'
       title: Nouvelle mention
     poll:
       subject: Un sondage de %{name} est terminé
@@ -1376,6 +1377,8 @@ fr:
     other: Autre
     posting_defaults: Paramètres de publication par défaut
     public_timelines: Fils publics
+  privacy_policy:
+    title: Politique de confidentialité
   reactions:
     errors:
       limit_reached: Limite de réactions différentes atteinte
@@ -1532,7 +1535,7 @@ fr:
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
-    title: "%{name} : « %{quote} »"
+    title: '%{name} : « %{quote} »'
     visibilities:
       direct: Direct
       private: Abonné⋅e⋅s uniquement
