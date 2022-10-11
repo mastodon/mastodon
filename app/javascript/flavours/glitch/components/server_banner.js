@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { domain } from 'flavours/glitch/util/initial_state';
+import { domain } from 'flavours/glitch/initial_state';
 import { fetchServer } from 'flavours/glitch/actions/server';
 import { connect } from 'react-redux';
 import Account from 'flavours/glitch/containers/account_container';

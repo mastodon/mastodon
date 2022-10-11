@@ -8,7 +8,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import IconButton from './icon_button';
 import VisibilityIcon from './status_visibility_icon';
 import Icon from 'flavours/glitch/components/icon';
-import { languages } from 'flavours/glitch/util/initial_state';
+import { languages } from 'flavours/glitch/initial_state';
 
 //  Messages for use with internationalization stuff.
 const messages = defineMessages({

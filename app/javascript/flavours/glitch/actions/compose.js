@@ -1,11 +1,11 @@
-import api from 'flavours/glitch/util/api';
+import api from '../api';
 import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
-import { search as emojiSearch } from 'flavours/glitch/util/emoji/emoji_mart_search_light';
+import { search as emojiSearch } from 'flavours/glitch/features/emoji/emoji_mart_search_light';
 import { useEmoji } from './emojis';
-import { tagHistory } from 'flavours/glitch/util/settings';
-import { recoverHashtags } from 'flavours/glitch/util/hashtag';
-import resizeImage from 'flavours/glitch/util/resize_image';
+import { tagHistory } from '../settings';
+import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
+import resizeImage from 'flavours/glitch/utils/resize_image';
 import { importFetchedAccounts } from './importer';
 import { updateTimeline } from './timelines';
 import { showAlertForError } from './alerts';

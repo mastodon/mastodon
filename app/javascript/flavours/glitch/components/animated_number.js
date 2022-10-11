@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedNumber } from 'react-intl';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
-import { reduceMotion } from 'flavours/glitch/util/initial_state';
+import { reduceMotion } from 'flavours/glitch/initial_state';
 
 const obfuscatedCount = count => {
   if (count < 0) {

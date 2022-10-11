@@ -11,9 +11,9 @@ import Statuses from './statuses';
 import Suggestions from './suggestions';
 import Search from 'flavours/glitch/features/compose/containers/search_container';
 import SearchResults from './results';
-import { showTrends } from 'flavours/glitch/util/initial_state';
+import { showTrends } from 'flavours/glitch/initial_state';
 import { Helmet } from 'react-helmet';
-import { title } from 'flavours/glitch/util/initial_state';
+import { title } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },

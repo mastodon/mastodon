@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/glitch/util/load_polyfills';
+import loadPolyfills from 'flavours/glitch/load_polyfills';
 
 function loaded() {
   const ComposeContainer = require('flavours/glitch/containers/compose_container').default;
@@ -14,7 +14,7 @@ function loaded() {
 }
 
 function main() {
-  const ready = require('flavours/glitch/util/ready').default;
+  const ready = require('flavours/glitch/ready').default;
   ready(loaded);
 }
 

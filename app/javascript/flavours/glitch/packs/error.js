@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import ready from 'flavours/glitch/util/ready';
+import ready from 'flavours/glitch/ready';
 
 ready(() => {
   const image = document.querySelector('img');

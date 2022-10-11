@@ -4,7 +4,7 @@ import Avatar from 'flavours/glitch/components/avatar';
 import Permalink from 'flavours/glitch/components/permalink';
 import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { profileLink } from 'flavours/glitch/util/backend_links';
+import { profileLink } from 'flavours/glitch/utils/backend_links';
 
 export default class NavigationBar extends ImmutablePureComponent {
 

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 //  Utils.
-import { assignHandlers } from 'flavours/glitch/util/react_helpers';
+import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
 
 //  Handlers.
 const handlers = {

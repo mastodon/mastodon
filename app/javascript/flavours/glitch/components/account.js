@@ -7,7 +7,7 @@ import Permalink from './permalink';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me } from 'flavours/glitch/initial_state';
 import RelativeTimestamp from './relative_timestamp';
 import Skeleton from 'flavours/glitch/components/skeleton';
 

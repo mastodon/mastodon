@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { FormattedMessage } from 'react-intl';
-import { toServerSideType } from 'flavours/glitch/util/filters';
+import { toServerSideType } from 'flavours/glitch/utils/filters';
 import Button from 'flavours/glitch/components/button';
 import { connect } from 'react-redux';
 

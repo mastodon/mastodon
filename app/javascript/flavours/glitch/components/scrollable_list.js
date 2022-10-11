@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import IntersectionObserverArticleContainer from 'flavours/glitch/containers/intersection_observer_article_container';
 import LoadMore from './load_more';
 import LoadPending from './load_pending';
-import IntersectionObserverWrapper from 'flavours/glitch/util/intersection_observer_wrapper';
+import IntersectionObserverWrapper from 'flavours/glitch/features/ui/util/intersection_observer_wrapper';
 import { throttle } from 'lodash';
 import { List as ImmutableList } from 'immutable';
 import classNames from 'classnames';
-import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from 'flavours/glitch/util/fullscreen';
+import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../features/ui/util/fullscreen';
 import LoadingIndicator from './loading_indicator';
 import { connect } from 'react-redux';
 

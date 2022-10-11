@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { scrollTop } from 'flavours/glitch/util/scroll';
+import { scrollTop } from '../scroll';
 
 export default class Column extends React.PureComponent {
 

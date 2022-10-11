@@ -10,7 +10,7 @@ import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/col
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectPublicStream } from 'flavours/glitch/actions/streaming';
 import { Helmet } from 'react-helmet';
-import { title } from 'flavours/glitch/util/initial_state';
+import { title } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },

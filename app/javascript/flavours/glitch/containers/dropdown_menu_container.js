@@ -2,7 +2,7 @@ import { openDropdownMenu, closeDropdownMenu } from 'flavours/glitch/actions/dro
 import { openModal, closeModal } from 'flavours/glitch/actions/modal';
 import { connect } from 'react-redux';
 import DropdownMenu from 'flavours/glitch/components/dropdown_menu';
-import { isUserTouching } from 'flavours/glitch/util/is_mobile';
+import { isUserTouching } from '../is_mobile';
 
 const mapStateToProps = state => ({
   dropdownPlacement: state.getIn(['dropdown_menu', 'placement']),

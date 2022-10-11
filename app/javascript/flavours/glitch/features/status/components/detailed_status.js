@@ -13,7 +13,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from 'flavours/glitch/features/video';
 import Audio from 'flavours/glitch/features/audio';
 import VisibilityIcon from 'flavours/glitch/components/status_visibility_icon';
-import scheduleIdleTask from 'flavours/glitch/util/schedule_idle_task';
+import scheduleIdleTask from '../../ui/util/schedule_idle_task';
 import classNames from 'classnames';
 import PollContainer from 'flavours/glitch/containers/poll_container';
 import Icon from 'flavours/glitch/components/icon';

@@ -4,7 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { closeModal } from 'flavours/glitch/actions/modal';
-import emojify from 'flavours/glitch/util/emoji';
+import emojify from 'flavours/glitch/features/emoji/emoji';
 import escapeTextContentForBrowser from 'escape-html';
 import InlineAccount from 'flavours/glitch/components/inline_account';
 import IconButton from 'flavours/glitch/components/icon_button';

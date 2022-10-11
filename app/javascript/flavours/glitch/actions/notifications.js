@@ -1,4 +1,4 @@
-import api, { getLinks } from 'flavours/glitch/util/api';
+import api, { getLinks } from '../api';
 import IntlMessageFormat from 'intl-messageformat';
 import { fetchFollowRequests, fetchRelationships } from './accounts';
 import {
@@ -11,10 +11,10 @@ import { submitMarkers } from './markers';
 import { saveSettings } from './settings';
 import { defineMessages } from 'react-intl';
 import { List as ImmutableList } from 'immutable';
-import { unescapeHTML } from 'flavours/glitch/util/html';
-import { usePendingItems as preferPendingItems } from 'flavours/glitch/util/initial_state';
-import compareId from 'flavours/glitch/util/compare_id';
-import { requestNotificationPermission } from 'flavours/glitch/util/notifications';
+import { unescapeHTML } from 'flavours/glitch/utils/html';
+import { usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
+import compareId from 'flavours/glitch/compare_id';
+import { requestNotificationPermission } from 'flavours/glitch/utils/notifications';
 
 export const NOTIFICATIONS_UPDATE = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';

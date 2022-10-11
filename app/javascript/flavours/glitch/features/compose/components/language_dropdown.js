@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import TextIconButton from './text_icon_button';
 import Overlay from 'react-overlays/lib/Overlay';
-import Motion from 'flavours/glitch/util/optional_motion';
+import Motion from 'flavours/glitch/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
-import { languages as preloadedLanguages } from 'flavours/glitch/util/initial_state';
-import { loupeIcon, deleteIcon } from 'flavours/glitch/util/icons';
+import { languages as preloadedLanguages } from 'flavours/glitch/initial_state';
+import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
 import fuzzysort from 'fuzzysort';
 
 const messages = defineMessages({

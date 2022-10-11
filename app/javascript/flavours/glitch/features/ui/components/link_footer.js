@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { limitedFederationMode, version, repository, source_url, profile_directory as profileDirectory } from 'flavours/glitch/util/initial_state';
-import { signOutLink, securityLink, privacyPolicyLink } from 'flavours/glitch/util/backend_links';
-import { logOut } from 'flavours/glitch/util/log_out';
+import { limitedFederationMode, version, repository, source_url, profile_directory as profileDirectory } from 'flavours/glitch/initial_state';
+import { signOutLink, securityLink, privacyPolicyLink } from 'flavours/glitch/utils/backend_links';
+import { logOut } from 'flavours/glitch/utils/log_out';
 import { openModal } from 'flavours/glitch/actions/modal';
 import { PERMISSION_INVITE_USERS } from 'flavours/glitch/permissions';
 

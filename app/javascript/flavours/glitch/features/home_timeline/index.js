@@ -15,7 +15,7 @@ import classNames from 'classnames';
 import IconWithBadge from 'flavours/glitch/components/icon_with_badge';
 import NotSignedInIndicator from 'flavours/glitch/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
-import { title } from 'flavours/glitch/util/initial_state';
+import { title } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },

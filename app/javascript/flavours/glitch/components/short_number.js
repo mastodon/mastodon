@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toShortNumber, pluralReady, DECIMAL_UNITS } from '../util/numbers';
+import { toShortNumber, pluralReady, DECIMAL_UNITS } from '../utils/numbers';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 // @ts-check
 
@@ -56,7 +56,7 @@ ShortNumber.propTypes = {
 
 /**
  * @typedef {object} ShortNumberCounterProps
- * @property {import('../util/number').ShortNumber} value Short number
+ * @property {import('../utils/number').ShortNumber} value Short number
  */
 
 /**

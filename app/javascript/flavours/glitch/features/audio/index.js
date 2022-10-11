@@ -8,7 +8,7 @@ import { throttle } from 'lodash';
 import { getPointerPosition, fileNameFromURL } from 'flavours/glitch/features/video';
 import { debounce } from 'lodash';
 import Visualizer from './visualizer';
-import { displayMedia, useBlurhash } from 'flavours/glitch/util/initial_state';
+import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
 import Blurhash from 'flavours/glitch/components/blurhash';
 import { is } from 'immutable';
 

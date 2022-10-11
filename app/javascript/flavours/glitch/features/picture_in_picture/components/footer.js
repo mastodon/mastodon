@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import IconButton from 'flavours/glitch/components/icon_button';
 import classNames from 'classnames';
-import { me, boostModal } from 'flavours/glitch/util/initial_state';
+import { me, boostModal } from 'flavours/glitch/initial_state';
 import { defineMessages, injectIntl } from 'react-intl';
 import { replyCompose } from 'flavours/glitch/actions/compose';
 import { reblog, favourite, unreblog, unfavourite } from 'flavours/glitch/actions/interactions';

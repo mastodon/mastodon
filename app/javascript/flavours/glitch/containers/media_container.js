@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { fromJS } from 'immutable';
 import { getLocale } from 'mastodon/locales';
-import { getScrollbarWidth } from 'flavours/glitch/util/scrollbar';
+import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 import MediaGallery from 'flavours/glitch/components/media_gallery';
 import Poll from 'flavours/glitch/components/poll';
 import { ImmutableHashtag as Hashtag } from 'flavours/glitch/components/hashtag';

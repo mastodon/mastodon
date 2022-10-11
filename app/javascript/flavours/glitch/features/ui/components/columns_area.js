@@ -8,7 +8,7 @@ import ReactSwipeableViews from 'react-swipeable-views';
 import TabsBar, { links, getIndex, getLink } from './tabs_bar';
 import { Link } from 'react-router-dom';
 
-import { disableSwiping } from 'flavours/glitch/util/initial_state';
+import { disableSwiping } from 'flavours/glitch/initial_state';
 
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
@@ -26,13 +26,13 @@ import {
   BookmarkedStatuses,
   ListTimeline,
   Directory,
-} from 'flavours/glitch/util/async-components';
+} from '../../ui/util/async-components';
 import Icon from 'flavours/glitch/components/icon';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { scrollRight } from 'flavours/glitch/util/scroll';
+import { scrollRight } from 'flavours/glitch/scroll';
 
 const componentMap = {
   'COMPOSE': Compose,

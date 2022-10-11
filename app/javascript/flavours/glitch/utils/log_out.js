@@ -1,5 +1,5 @@
 import Rails from '@rails/ujs';
-import { signOutLink } from 'flavours/glitch/util/backend_links';
+import { signOutLink } from 'flavours/glitch/utils/backend_links';
 
 export const logOut = () => {
   const form = document.createElement('form');

@@ -4,7 +4,7 @@ import { scrollTopTimeline, loadPending } from 'flavours/glitch/actions/timeline
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
-import { me } from 'flavours/glitch/util/initial_state';
+import { me } from 'flavours/glitch/initial_state';
 
 const getRegex = createSelector([
   (state, { regex }) => regex,

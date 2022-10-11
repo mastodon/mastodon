@@ -7,7 +7,7 @@ import { injectIntl, FormattedMessage } from 'react-intl';
 import { fetchPinnedAccounts, clearPinnedAccountsSuggestions, resetPinnedAccountsEditor } from 'flavours/glitch/actions/accounts';
 import AccountContainer from './containers/account_container';
 import SearchContainer from './containers/search_container';
-import Motion from 'flavours/glitch/util/optional_motion';
+import Motion from 'flavours/glitch/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 
 const mapStateToProps = state => ({

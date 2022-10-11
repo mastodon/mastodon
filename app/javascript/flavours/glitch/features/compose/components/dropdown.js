@@ -9,8 +9,8 @@ import IconButton from 'flavours/glitch/components/icon_button';
 import DropdownMenu from './dropdown_menu';
 
 //  Utils.
-import { isUserTouching } from 'flavours/glitch/util/is_mobile';
-import { assignHandlers } from 'flavours/glitch/util/react_helpers';
+import { isUserTouching } from 'flavours/glitch/is_mobile';
+import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
 
 //  The component.
 export default class ComposerOptionsDropdown extends React.PureComponent {

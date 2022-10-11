@@ -12,7 +12,7 @@ import Icon from 'flavours/glitch/components/icon';
 import GIFV from 'flavours/glitch/components/gifv';
 import Footer from 'flavours/glitch/features/picture_in_picture/components/footer';
 import { getAverageFromBlurhash } from 'flavours/glitch/blurhash';
-import { disableSwiping } from 'flavours/glitch/util/initial_state';
+import { disableSwiping } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

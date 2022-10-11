@@ -8,7 +8,7 @@ import { setupListEditor, clearListSuggestions, resetListEditor } from 'flavours
 import AccountContainer from './containers/account_container';
 import SearchContainer from './containers/search_container';
 import EditListForm from './components/edit_list_form';
-import Motion from 'flavours/glitch/util/optional_motion';
+import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 
 const mapStateToProps = state => ({

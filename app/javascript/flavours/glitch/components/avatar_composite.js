@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { autoPlayGif } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif } from 'flavours/glitch/initial_state';
 
 export default class AvatarComposite extends React.PureComponent {
 

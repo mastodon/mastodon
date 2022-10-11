@@ -1,7 +1,7 @@
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { APP_LAYOUT_CHANGE } from 'flavours/glitch/actions/app';
 import { Map as ImmutableMap } from 'immutable';
-import { layoutFromWindow } from 'flavours/glitch/util/is_mobile';
+import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 
 const initialState = ImmutableMap({
   streaming_api_base_url: null,

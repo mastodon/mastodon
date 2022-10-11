@@ -9,7 +9,7 @@ import { getLocale } from 'mastodon/locales';
 import PublicTimeline from 'flavours/glitch/features/standalone/public_timeline';
 import HashtagTimeline from 'flavours/glitch/features/standalone/hashtag_timeline';
 import ModalContainer from 'flavours/glitch/features/ui/containers/modal_container';
-import initialState from 'flavours/glitch/util/initial_state';
+import initialState from 'flavours/glitch/initial_state';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);

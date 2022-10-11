@@ -4,8 +4,8 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { is } from 'immutable';
 import { throttle, debounce } from 'lodash';
 import classNames from 'classnames';
-import { isFullscreen, requestFullscreen, exitFullscreen } from 'flavours/glitch/util/fullscreen';
-import { displayMedia, useBlurhash } from 'flavours/glitch/util/initial_state';
+import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/fullscreen';
+import { displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
 import Icon from 'flavours/glitch/components/icon';
 import Blurhash from 'flavours/glitch/components/blurhash';
 

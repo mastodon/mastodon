@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { toServerSideType } from 'flavours/glitch/util/filters';
-import { loupeIcon, deleteIcon } from 'flavours/glitch/util/icons';
+import { toServerSideType } from 'flavours/glitch/utils/filters';
+import { loupeIcon, deleteIcon } from 'flavours/glitch/utils/icons';
 import Icon from 'flavours/glitch/components/icon';
 import fuzzysort from 'fuzzysort';
 

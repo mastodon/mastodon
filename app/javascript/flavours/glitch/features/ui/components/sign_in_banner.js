@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { registrationsOpen } from 'flavours/glitch/util/initial_state';
+import { registrationsOpen } from 'flavours/glitch/initial_state';
 
 const SignInBanner = () => (
   <div className='sign-in-banner'>

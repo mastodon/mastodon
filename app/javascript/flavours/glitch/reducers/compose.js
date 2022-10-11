@@ -53,12 +53,12 @@ import { TIMELINE_DELETE } from 'flavours/glitch/actions/timelines';
 import { STORE_HYDRATE } from 'flavours/glitch/actions/store';
 import { REDRAFT } from 'flavours/glitch/actions/statuses';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
-import uuid from 'flavours/glitch/util/uuid';
-import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
-import { me, defaultContentType } from 'flavours/glitch/util/initial_state';
-import { overwrite } from 'flavours/glitch/util/js_helpers';
-import { unescapeHTML } from 'flavours/glitch/util/html';
-import { recoverHashtags } from 'flavours/glitch/util/hashtag';
+import uuid from '../uuid';
+import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
+import { me, defaultContentType } from 'flavours/glitch/initial_state';
+import { overwrite } from 'flavours/glitch/utils/js_helpers';
+import { unescapeHTML } from 'flavours/glitch/utils/html';
+import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
 
 const totalElefriends = 3;
 

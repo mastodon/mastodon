@@ -11,7 +11,7 @@ import Permalink from 'flavours/glitch/components/permalink';
 import IconButton from 'flavours/glitch/components/icon_button';
 import RelativeTimestamp from 'flavours/glitch/components/relative_timestamp';
 import { HotKeys } from 'react-hotkeys';
-import { autoPlayGif } from 'flavours/glitch/util/initial_state';
+import { autoPlayGif } from 'flavours/glitch/initial_state';
 import classNames from 'classnames';
 
 const messages = defineMessages({

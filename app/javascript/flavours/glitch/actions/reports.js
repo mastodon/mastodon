@@ -1,4 +1,4 @@
-import api from 'flavours/glitch/util/api';
+import api from '../api';
 import { openModal } from './modal';
 
 export const REPORT_SUBMIT_REQUEST = 'REPORT_SUBMIT_REQUEST';

@@ -1,4 +1,4 @@
-import ready from './ready';
+import ready from '../ready';
 
 export let assetHost = '';
 

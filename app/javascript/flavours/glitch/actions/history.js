@@ -1,4 +1,4 @@
-import api from 'flavours/glitch/util/api';
+import api from '../api';
 import { importFetchedAccounts } from './importer';
 
 export const HISTORY_FETCH_REQUEST = 'HISTORY_FETCH_REQUEST';

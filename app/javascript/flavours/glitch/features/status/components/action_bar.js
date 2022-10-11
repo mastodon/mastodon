@@ -4,8 +4,8 @@ import IconButton from 'flavours/glitch/components/icon_button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import { defineMessages, injectIntl } from 'react-intl';
-import { me } from 'flavours/glitch/util/initial_state';
-import { accountAdminLink, statusAdminLink } from 'flavours/glitch/util/backend_links';
+import { me } from 'flavours/glitch/initial_state';
+import { accountAdminLink, statusAdminLink } from 'flavours/glitch/utils/backend_links';
 import classNames from 'classnames';
 import { PERMISSION_MANAGE_USERS } from 'flavours/glitch/permissions';
 

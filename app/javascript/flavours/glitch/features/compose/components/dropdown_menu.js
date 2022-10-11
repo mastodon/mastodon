@@ -9,9 +9,9 @@ import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
-import { withPassive } from 'flavours/glitch/util/dom_helpers';
-import Motion from 'flavours/glitch/util/optional_motion';
-import { assignHandlers } from 'flavours/glitch/util/react_helpers';
+import { withPassive } from 'flavours/glitch/utils/dom_helpers';
+import Motion from '../../ui/util/optional_motion';
+import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
 
 //  The spring to use with our motion.
 const springMotion = spring(1, {

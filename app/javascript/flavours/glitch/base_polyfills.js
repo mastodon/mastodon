@@ -5,7 +5,7 @@ import includes from 'array-includes';
 import assign from 'object-assign';
 import values from 'object.values';
 import isNaN from 'is-nan';
-import { decode as decodeBase64 } from './base64';
+import { decode as decodeBase64 } from './utils/base64';
 import promiseFinally from 'promise.prototype.finally';
 
 if (!Array.prototype.includes) {

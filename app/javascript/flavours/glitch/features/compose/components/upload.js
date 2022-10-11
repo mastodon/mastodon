@@ -1,12 +1,12 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Motion from 'flavours/glitch/util/optional_motion';
+import Motion from '../../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { FormattedMessage } from 'react-intl';
 import Icon from 'flavours/glitch/components/icon';
-import { isUserTouching } from 'flavours/glitch/util/is_mobile';
+import { isUserTouching } from 'flavours/glitch/is_mobile';
 
 export default class Upload extends ImmutablePureComponent {
 
