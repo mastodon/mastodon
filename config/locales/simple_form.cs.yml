@@ -73,6 +73,10 @@ cs:
         actions:
           hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
           warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
+      form_admin_settings:
+        backups_retention_period: Zachovat generované uživatelské archivy pro zadaný počet dní.
+        content_cache_retention_period: Příspěvky z jiných serverů budou odstraněny po zadaném počtu dní, pokud je nastavena kladná hodnota. To může být nevratné.
+        media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
@@ -207,6 +211,10 @@ cs:
         actions:
           hide: Zcela skrýt
           warn: Skrýt s varováním
+      form_admin_settings:
+        backups_retention_period: Doba uchovávání archivu uživatelů
+        content_cache_retention_period: Doba uchování mezipaměti obsahu
+        media_cache_retention_period: Doba uchovávání mezipaměti médií
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete

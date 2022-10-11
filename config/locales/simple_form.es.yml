@@ -73,6 +73,10 @@ es:
         actions:
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
+      form_admin_settings:
+        backups_retention_period: Mantener los archivos de usuario generados durante el número de días especificado.
+        content_cache_retention_period: Las publicaciones de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        media_cache_retention_period: Los archivos multimedia descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se redescargarán bajo demanda.
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -207,6 +211,10 @@ es:
         actions:
           hide: Ocultar completamente
           warn: Ocultar con una advertencia
+      form_admin_settings:
+        backups_retention_period: Período de retención del archivo de usuario
+        content_cache_retention_period: Período de retención de caché de contenido
+        media_cache_retention_period: Período de retención de caché multimedia
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues

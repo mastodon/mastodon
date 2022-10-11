@@ -73,6 +73,10 @@ ca:
         actions:
           hide: Ocultar completament el contingut filtrat, comportant-se com si no existís
           warn: Oculta el contingut filtrat rera un avís mencionant el títol del filtre
+      form_admin_settings:
+        backups_retention_period: Mantenir els arxius d'usuari generats durant el número de dies especificats.
+        content_cache_retention_period: Els apunts des d'altres servidors s'esborraran després del número de dies especificat quan es configura un valor positiu. Això pot ser irreversible.
+        media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del número de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -207,6 +211,10 @@ ca:
         actions:
           hide: Oculta completament
           warn: Oculta amb un avís
+      form_admin_settings:
+        backups_retention_period: Període de retenció del arxiu d'usuari
+        content_cache_retention_period: Periode de retenció de la memòria cau de contingut
+        media_cache_retention_period: Període de retenció del cau multimèdia
       interactions:
         must_be_follower: Bloqueja les notificacions de persones que no em segueixen
         must_be_following: Bloqueja les notificacions de persones no seguides

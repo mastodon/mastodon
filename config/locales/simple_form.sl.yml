@@ -73,6 +73,10 @@ sl:
         actions:
           hide: Povsem skrij filtrirano vsebino, kot da ne bi obstajala
           warn: Skrij filtrirano vsebino za opozorilom, ki pomenja naslov filtra
+      form_admin_settings:
+        backups_retention_period: Hani tvorjene arhive uporabnikov navedeno število dni.
+        content_cache_retention_period: Objave z drugih strežnikov bodo izbrisane po navedenem številu dni, če je vrednost pozitivna. Ta dejanja lahko nepovratna.
+        media_cache_retention_period: Prenesene predstavnostne datoteke bodo izbrisane po navedenem številu dni, če je vrednost pozitivna, in ponovno prenesene na zahtevo.
       form_challenge:
         current_password: Vstopate v varovano območje
       imports:
@@ -207,6 +211,10 @@ sl:
         actions:
           hide: Povsem skrij
           warn: Skrij z opozorilom
+      form_admin_settings:
+        backups_retention_period: Obdobje hrambe arhivov uporabnikov
+        content_cache_retention_period: Obdobje hrambe predpomnilnika vsebine
+        media_cache_retention_period: Obdobje hrambe predpomnilnika predstavnosti
       interactions:
         must_be_follower: Blokiraj obvestila nesledilcev
         must_be_following: Blokiraj obvestila oseb, ki jim ne sledite

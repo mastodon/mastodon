@@ -73,6 +73,10 @@ tr:
         actions:
           hide: Filtrelenmiş içeriği tamamen gizle, sanki varolmamış gibi
           warn: Filtrelenmiş içeriği, filtrenin başlığından söz eden bir uyarının arkasında gizle
+      form_admin_settings:
+        backups_retention_period: Üretilen kullanıcı arşivlerini belirli gün sayısı kadar sakla.
+        content_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan gelen gönderiler belirli bir gün sonra silinecektir. Silme geri alınamayabilir.
+        media_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan indirilen medya dosyaları belirli bir gün sonra silinecektir, isteğe bağlı olarak tekrar indirilebilir.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -207,6 +211,10 @@ tr:
         actions:
           hide: Tamamen gizle
           warn: Uyarıyla gizle
+      form_admin_settings:
+        backups_retention_period: Kullanıcı arşivi saklama süresi
+        content_cache_retention_period: İçerik önbelleği saklama süresi
+        media_cache_retention_period: Medya önbelleği saklama süresi
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle

@@ -73,6 +73,10 @@ lv:
         actions:
           hide: Paslēp filtrēto saturu pilnībā, izturoties tā, it kā tas neeksistētu
           warn: Paslēp filtrēto saturu aiz brīdinājuma, kurā minēts filtra nosaukums
+      form_admin_settings:
+        backups_retention_period: Saglabā ģenerētos lietotāju arhīvus norādīto dienu skaitā.
+        content_cache_retention_period: Ziņas no citiem serveriem tiks dzēstas pēc norādītā dienu skaita, ja ir iestatīta pozitīva vērtība. Tas var būt neatgriezeniski.
+        media_cache_retention_period: Lejupielādētie multivides faili tiks dzēsti pēc norādītā dienu skaita, kad tie būs iestatīti uz pozitīvu vērtību, un pēc pieprasījuma tiks lejupielādēti atkārtoti.
       form_challenge:
         current_password: Tu ieej drošā zonā
       imports:
@@ -207,6 +211,10 @@ lv:
         actions:
           hide: Paslēpt pilnībā
           warn: Paslēpt ar brīdinājumu
+      form_admin_settings:
+        backups_retention_period: Lietotāja arhīva glabāšanas periods
+        content_cache_retention_period: Satura arhīva glabāšanas periods
+        media_cache_retention_period: Multivides kešatmiņas saglabāšanas periods
       interactions:
         must_be_follower: Bloķēt paziņojumus no ne-sekotājiem
         must_be_following: Bloķēt paziņojumus no cilvēkiem, kuriem tu neseko

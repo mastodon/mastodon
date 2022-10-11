@@ -73,6 +73,10 @@ pl:
         actions:
           hide: Całkowicie ukryj przefiltrowaną zawartość, jakby nie istniała
           warn: Ukryj filtrowaną zawartość za ostrzeżeniem wskazującym tytuł filtra
+      form_admin_settings:
+        backups_retention_period: Zachowaj wygenerowane archiwa użytkownika przez określoną liczbę dni.
+        content_cache_retention_period: Posty z innych serwerów zostaną usunięte po określonej liczbie dni, kiedy liczba jest ustawiona na wartość dodatnią. Może to być nieodwracalne.
+        media_cache_retention_period: Pobrane pliki multimedialne zostaną usunięte po określonej liczbie dni po ustawieniu na wartość dodatnią i ponownie pobrane na żądanie.
       form_challenge:
         current_password: Wchodzisz w strefę bezpieczną
       imports:
@@ -207,6 +211,10 @@ pl:
         actions:
           hide: Ukryj całkowicie
           warn: Ukryj z ostrzeżeniem
+      form_admin_settings:
+        backups_retention_period: Okres przechowywania archiwum użytkownika
+        content_cache_retention_period: Okres przechowywania pamięci podręcznej
+        media_cache_retention_period: Okres przechowywania pamięci podręcznej
       interactions:
         must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
         must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz

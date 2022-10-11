@@ -73,6 +73,10 @@ zh-TW:
         actions:
           hide: 完全隱藏過濾內容，當作它似乎不曾存在過
           warn: 隱藏過濾內容於過濾器標題之警告後
+      form_admin_settings:
+        backups_retention_period: 將已產生的使用者封存資料保存特定天數。
+        content_cache_retention_period: 當設定成正值時，從其他伺服器而來的嘟文會於指定天數後被刪除。這項操作可能是不可逆的。
+        media_cache_retention_period: 當設定成正值時，已下載的多媒體檔案會於指定天數後被刪除，並且視需要重新下載。
       form_challenge:
         current_password: 您正要進入安全區域
       imports:
@@ -207,6 +211,10 @@ zh-TW:
         actions:
           hide: 完全隱藏
           warn: 隱藏於警告之後
+      form_admin_settings:
+        backups_retention_period: 使用者封存資料保留期間
+        content_cache_retention_period: 內容快取資料保留期間
+        media_cache_retention_period: 多媒體快取資料保留期間
       interactions:
         must_be_follower: 封鎖非跟隨者的通知
         must_be_following: 封鎖您未跟隨之使用者的通知
