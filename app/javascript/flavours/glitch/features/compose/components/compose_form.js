@@ -11,7 +11,7 @@ import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import { isMobile } from 'flavours/glitch/utils/is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { countableText } from 'flavours/glitch/utils/counter';
+import { countableText } from '../util/counter';
 import OptionsContainer from '../containers/options_container';
 import Publisher from './publisher';
 import TextareaIcons from './textarea_icons';
