@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getScrollbarWidth } from 'flavours/glitch/util/scrollbar';
+import { getScrollbarWidth } from 'flavours/glitch/utils/scrollbar';
 import Base from 'flavours/glitch/components/modal_root';
 import BundleContainer from '../containers/bundle_container';
 import BundleModalError from './bundle_modal_error';
@@ -29,7 +29,7 @@ import {
   PinnedAccountsEditor,
   CompareHistoryModal,
   FilterModal,
-} from 'flavours/glitch/util/async-components';
+} from 'flavours/glitch/utils/async-components';
 
 const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),

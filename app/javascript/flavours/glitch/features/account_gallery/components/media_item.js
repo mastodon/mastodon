@@ -2,7 +2,7 @@ import Blurhash from 'flavours/glitch/components/blurhash';
 import classNames from 'classnames';
 import Icon from 'flavours/glitch/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'flavours/glitch/initial_state';
-import { isIOS } from 'flavours/glitch/util/is_mobile';
+import { isIOS } from 'flavours/glitch/utils/is_mobile';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';

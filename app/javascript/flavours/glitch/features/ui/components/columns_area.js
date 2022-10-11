@@ -26,13 +26,13 @@ import {
   BookmarkedStatuses,
   ListTimeline,
   Directory,
-} from 'flavours/glitch/util/async-components';
+} from 'flavours/glitch/utils/async-components';
 import Icon from 'flavours/glitch/components/icon';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { scrollRight } from 'flavours/glitch/util/scroll';
+import { scrollRight } from 'flavours/glitch/utils/scroll';
 
 const componentMap = {
   'COMPOSE': Compose,

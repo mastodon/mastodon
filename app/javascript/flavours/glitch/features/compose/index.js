@@ -8,7 +8,7 @@ import { mountCompose, unmountCompose } from 'flavours/glitch/actions/compose';
 import { injectIntl, defineMessages } from 'react-intl';
 import classNames from 'classnames';
 import SearchContainer from './containers/search_container';
-import Motion from 'flavours/glitch/util/optional_motion';
+import Motion from 'flavours/glitch/utils/optional_motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
 import { me, mascot } from 'flavours/glitch/initial_state';

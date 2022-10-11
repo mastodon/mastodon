@@ -13,7 +13,7 @@ import { fetchFollowRequests } from 'flavours/glitch/actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { fetchLists } from 'flavours/glitch/actions/lists';
-import { preferencesLink } from 'flavours/glitch/util/backend_links';
+import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 import NavigationBar from '../compose/components/navigation_bar';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
 import TrendsContainer from './containers/trends_container';

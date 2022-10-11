@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { source_url } from 'flavours/glitch/initial_state';
-import { preferencesLink } from 'flavours/glitch/util/backend_links';
+import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 import StackTrace from 'stacktrace-js';
 
 export default class ErrorBoundary extends React.PureComponent {

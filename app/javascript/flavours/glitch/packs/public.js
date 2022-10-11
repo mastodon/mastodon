@@ -1,13 +1,13 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/glitch/util/load_polyfills';
-import ready from 'flavours/glitch/util/ready';
-import loadKeyboardExtensions from 'flavours/glitch/util/load_keyboard_extensions';
+import loadPolyfills from 'flavours/glitch/utils/load_polyfills';
+import ready from 'flavours/glitch/utils/ready';
+import loadKeyboardExtensions from 'flavours/glitch/utils/load_keyboard_extensions';
 
 function main() {
   const IntlMessageFormat = require('intl-messageformat').default;
   const { timeAgoString } = require('flavours/glitch/components/relative_timestamp');
   const { delegate } = require('@rails/ujs');
-  const emojify = require('flavours/glitch/util/emoji').default;
+  const emojify = require('flavours/glitch/utils/emoji').default;
   const { getLocale } = require('locales');
   const { messages } = getLocale();
   const React = require('react');

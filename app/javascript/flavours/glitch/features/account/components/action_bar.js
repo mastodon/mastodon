@@ -5,7 +5,7 @@ import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_cont
 import { NavLink } from 'react-router-dom';
 import { injectIntl, FormattedMessage, FormattedNumber } from 'react-intl';
 import { me, isStaff } from 'flavours/glitch/initial_state';
-import { profileLink, accountAdminLink } from 'flavours/glitch/util/backend_links';
+import { profileLink, accountAdminLink } from 'flavours/glitch/utils/backend_links';
 import Icon from 'flavours/glitch/components/icon';
 
 export default @injectIntl

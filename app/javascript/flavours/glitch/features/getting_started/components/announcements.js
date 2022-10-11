@@ -9,13 +9,13 @@ import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'rea
 import { autoPlayGif, reduceMotion, disableSwiping } from 'flavours/glitch/initial_state';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 import { mascot } from 'flavours/glitch/initial_state';
-import unicodeMapping from 'flavours/glitch/util/emoji/emoji_unicode_mapping_light';
+import unicodeMapping from 'flavours/glitch/utils/emoji/emoji_unicode_mapping_light';
 import classNames from 'classnames';
 import EmojiPickerDropdown from 'flavours/glitch/features/emoji_picker';
 import AnimatedNumber from 'flavours/glitch/components/animated_number';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
-import { assetHost } from 'flavours/glitch/util/config';
+import { assetHost } from 'flavours/glitch/utils/config';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },

@@ -37,7 +37,7 @@ import { deployPictureInPicture } from 'flavours/glitch/actions/picture_in_pictu
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
-import { filterEditLink } from 'flavours/glitch/util/backend_links';
+import { filterEditLink } from 'flavours/glitch/utils/backend_links';
 import { showAlertForError } from '../actions/alerts';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Spoilers from '../components/spoilers';

@@ -2,9 +2,9 @@ import { importFetchedStatus, importFetchedStatuses } from './importer';
 import { submitMarkers } from './markers';
 import api, { getLinks } from 'flavours/glitch/api';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
-import compareId from 'flavours/glitch/util/compare_id';
+import compareId from 'flavours/glitch/utils/compare_id';
 import { me, usePendingItems as preferPendingItems } from 'flavours/glitch/initial_state';
-import { toServerSideType } from 'flavours/glitch/util/filters';
+import { toServerSideType } from 'flavours/glitch/utils/filters';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';

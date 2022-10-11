@@ -15,9 +15,9 @@ import Overlay from 'react-overlays/lib/Overlay';
 import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
-import { focusRoot } from 'flavours/glitch/util/dom_helpers';
+import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
 import { searchEnabled } from 'flavours/glitch/initial_state';
-import Motion from 'flavours/glitch/util/optional_motion';
+import Motion from 'flavours/glitch/utils/optional_motion';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },

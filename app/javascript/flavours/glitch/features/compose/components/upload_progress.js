@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Motion from 'flavours/glitch/util/optional_motion';
+import Motion from 'flavours/glitch/utils/optional_motion';
 import spring from 'react-motion/lib/spring';
 import Icon from 'flavours/glitch/components/icon';
 

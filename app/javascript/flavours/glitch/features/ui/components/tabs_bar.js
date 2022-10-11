@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink, withRouter } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import { debounce } from 'lodash';
-import { isUserTouching } from 'flavours/glitch/util/is_mobile';
+import { isUserTouching } from 'flavours/glitch/utils/is_mobile';
 import Icon from 'flavours/glitch/components/icon';
 import NotificationsCounterIcon from './notifications_counter_icon';
 

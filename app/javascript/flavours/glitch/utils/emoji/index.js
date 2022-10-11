@@ -1,6 +1,6 @@
 import { autoPlayGif, useSystemEmojiFont } from 'flavours/glitch/initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
-import { assetHost } from 'flavours/glitch/util/config';
+import { assetHost } from 'flavours/glitch/utils/config';
 import Trie from 'substring-trie';
 
 const trie = new Trie(Object.keys(unicodeMapping));

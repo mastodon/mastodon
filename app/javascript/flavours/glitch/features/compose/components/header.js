@@ -10,8 +10,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
-import { conditionalRender } from 'flavours/glitch/util/react_helpers';
-import { signOutLink } from 'flavours/glitch/util/backend_links';
+import { conditionalRender } from 'flavours/glitch/utils/react_helpers';
+import { signOutLink } from 'flavours/glitch/utils/backend_links';
 
 //  Messages.
 const messages = defineMessages({

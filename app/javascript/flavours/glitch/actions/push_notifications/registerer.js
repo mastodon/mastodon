@@ -1,5 +1,5 @@
 import api from '../../api';
-import { pushNotificationsSetting } from 'flavours/glitch/util/settings';
+import { pushNotificationsSetting } from 'flavours/glitch/utils/settings';
 import { setBrowserSupport, setSubscription, clearSubscription } from './setter';
 
 // Taken from https://www.npmjs.com/package/web-push

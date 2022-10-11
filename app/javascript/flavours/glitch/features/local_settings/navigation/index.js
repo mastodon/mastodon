@@ -5,7 +5,7 @@ import { injectIntl, defineMessages } from 'react-intl';
 
 //  Our imports
 import LocalSettingsNavigationItem from './item';
-import { preferencesLink } from 'flavours/glitch/util/backend_links';
+import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 
 //  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 

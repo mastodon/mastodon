@@ -5,7 +5,7 @@ import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { layoutFromWindow } from 'flavours/glitch/util/is_mobile';
+import { layoutFromWindow } from 'flavours/glitch/utils/is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/glitch/actions/compose';
 import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';
@@ -14,7 +14,7 @@ import { fetchServer } from 'flavours/glitch/actions/server';
 import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { changeLayout } from 'flavours/glitch/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
-import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/util/react_router_helpers';
+import { WrappedSwitch, WrappedRoute } from 'flavours/glitch/utils/react_router_helpers';
 import UploadArea from './components/upload_area';
 import PermaLink from 'flavours/glitch/components/permalink';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -52,7 +52,7 @@ import {
   Directory,
   Explore,
   FollowRecommendations,
-} from 'flavours/glitch/util/async-components';
+} from 'flavours/glitch/utils/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me, title } from 'flavours/glitch/initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';

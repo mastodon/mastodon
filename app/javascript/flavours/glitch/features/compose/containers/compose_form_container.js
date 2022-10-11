@@ -18,7 +18,7 @@ import {
 } from 'flavours/glitch/actions/modal';
 import { changeLocalSetting } from 'flavours/glitch/actions/local_settings';
 
-import { privacyPreference } from 'flavours/glitch/util/privacy_preference';
+import { privacyPreference } from 'flavours/glitch/utils/privacy_preference';
 
 const messages = defineMessages({
   missingDescriptionMessage: {  id: 'confirmations.missing_media_description.message',

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import api from 'flavours/glitch/api';
 import { FormattedMessage, FormattedNumber, FormattedDate } from 'react-intl';
 import classNames from 'classnames';
-import { roundTo10 } from 'flavours/glitch/util/numbers';
+import { roundTo10 } from 'flavours/glitch/utils/numbers';
 
 const dateForCohort = cohort => {
   switch(cohort.frequency) {

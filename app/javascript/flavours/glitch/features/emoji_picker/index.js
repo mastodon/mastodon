@@ -6,14 +6,14 @@ import { useEmoji } from 'flavours/glitch/actions/emojis';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { EmojiPicker as EmojiPickerAsync } from 'flavours/glitch/util/async-components';
+import { EmojiPicker as EmojiPickerAsync } from 'flavours/glitch/utils/async-components';
 import Overlay from 'react-overlays/lib/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { buildCustomEmojis, categoriesFromEmojis } from 'flavours/glitch/util/emoji';
+import { buildCustomEmojis, categoriesFromEmojis } from 'flavours/glitch/utils/emoji';
 import { useSystemEmojiFont } from 'flavours/glitch/initial_state';
-import { assetHost } from 'flavours/glitch/util/config';
+import { assetHost } from 'flavours/glitch/utils/config';
 
 const messages = defineMessages({
   emoji: { id: 'emoji_button.label', defaultMessage: 'Insert emoji' },

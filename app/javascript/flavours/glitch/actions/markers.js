@@ -1,6 +1,6 @@
 import api from '../api';
 import { debounce } from 'lodash';
-import compareId from 'flavours/glitch/util/compare_id';
+import compareId from 'flavours/glitch/utils/compare_id';
 import { List as ImmutableList } from 'immutable';
 
 export const MARKERS_FETCH_REQUEST = 'MARKERS_FETCH_REQUEST';

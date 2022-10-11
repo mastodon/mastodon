@@ -6,7 +6,7 @@ import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 //  Our imports
 import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
-import { preferenceLink } from 'flavours/glitch/util/backend_links';
+import { preferenceLink } from 'flavours/glitch/utils/backend_links';
 import LocalSettingsPageItem from './item';
 import DeprecatedLocalSettingsPageItem from './deprecated_item';
 

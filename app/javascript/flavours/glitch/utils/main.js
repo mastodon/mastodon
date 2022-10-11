@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { setupBrowserNotifications } from 'flavours/glitch/actions/notifications';
 import Mastodon, { store } from 'flavours/glitch/containers/mastodon';
-import ready from 'flavours/glitch/util/ready';
+import ready from 'flavours/glitch/utils/ready';
 
-const perf = require('flavours/glitch/util/performance');
+const perf = require('flavours/glitch/utils/performance');
 
 /**
  * @returns {Promise<void>}
