@@ -5,7 +5,7 @@ import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
 import { Redirect, withRouter } from 'react-router-dom';
-import { layoutFromWindow } from 'flavours/glitch/utils/is_mobile';
+import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/glitch/actions/compose';
 import { expandHomeTimeline } from 'flavours/glitch/actions/timelines';

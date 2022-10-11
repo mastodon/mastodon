@@ -3,7 +3,7 @@ import { CancelToken, isCancel } from 'axios';
 import { throttle } from 'lodash';
 import { search as emojiSearch } from 'flavours/glitch/utils/emoji/emoji_mart_search_light';
 import { useEmoji } from './emojis';
-import { tagHistory } from 'flavours/glitch/utils/settings';
+import { tagHistory } from '../settings';
 import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
 import resizeImage from 'flavours/glitch/utils/resize_image';
 import { importFetchedAccounts } from './importer';

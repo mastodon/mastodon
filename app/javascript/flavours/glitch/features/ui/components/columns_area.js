@@ -32,7 +32,7 @@ import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
 
 import { supportsPassiveEvents } from 'detect-passive-events';
-import { scrollRight } from 'flavours/glitch/utils/scroll';
+import { scrollRight } from 'flavours/glitch/scroll';
 
 const componentMap = {
   'COMPOSE': Compose,

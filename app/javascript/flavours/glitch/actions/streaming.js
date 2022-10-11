@@ -1,6 +1,6 @@
 // @ts-check
 
-import { connectStream } from 'flavours/glitch/utils/stream';
+import { connectStream } from '../stream';
 import {
   updateTimeline,
   deleteFromTimelines,

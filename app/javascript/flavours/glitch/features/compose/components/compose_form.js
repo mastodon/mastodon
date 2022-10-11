@@ -9,7 +9,7 @@ import EmojiPicker from 'flavours/glitch/features/emoji_picker';
 import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
-import { isMobile } from 'flavours/glitch/utils/is_mobile';
+import { isMobile } from 'flavours/glitch/is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { countableText } from '../util/counter';
 import OptionsContainer from '../containers/options_container';

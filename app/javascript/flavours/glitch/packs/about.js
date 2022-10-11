@@ -1,5 +1,5 @@
 import 'packs/public-path';
-import loadPolyfills from 'flavours/glitch/utils/load_polyfills';
+import loadPolyfills from 'flavours/glitch/load_polyfills';
 
 function loaded() {
   const TimelineContainer = require('flavours/glitch/containers/timeline_container').default;
