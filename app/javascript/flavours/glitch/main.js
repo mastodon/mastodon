@@ -30,7 +30,7 @@ function main() {
     if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
       const [{ Workbox }, { me }] = await Promise.all([
         import('workbox-window'),
-        import('mastodon/initial_state'),
+        import('flavours/glitch/initial_state'),
       ]);
 
       const wb = new Workbox('/sw.js');

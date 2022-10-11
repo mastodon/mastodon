@@ -4,7 +4,7 @@ import {
   HASHTAG_FOLLOW_FAIL,
   HASHTAG_UNFOLLOW_REQUEST,
   HASHTAG_UNFOLLOW_FAIL,
-} from 'mastodon/actions/tags';
+} from 'flavours/glitch/actions/tags';
 import { Map as ImmutableMap, fromJS } from 'immutable';
 
 const initialState = ImmutableMap();
