@@ -2673,6 +2673,10 @@ $ui-header-height: 55px;
     .column-link span {
       display: none;
     }
+
+    .list-panel {
+      display: none;
+    }
   }
 }
 
@@ -2755,7 +2759,7 @@ $ui-header-height: 55px;
 
 .column-actions {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   padding: 40px;
   padding-top: 40px;

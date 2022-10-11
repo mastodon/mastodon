@@ -43,7 +43,7 @@ module Trends
     Setting.trends
   end
 
-  def skip_review?
+  def self.skip_review?
     Setting.trendable_by_default
   end
 
