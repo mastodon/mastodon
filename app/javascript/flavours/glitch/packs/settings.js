@@ -1,6 +1,6 @@
 import 'packs/public-path';
 import loadPolyfills from 'flavours/glitch/utils/load_polyfills';
-import ready from 'flavours/glitch/utils/ready';
+import ready from 'flavours/glitch/ready';
 import loadKeyboardExtensions from 'flavours/glitch/utils/load_keyboard_extensions';
 import 'cocoon-js-vanilla';
 

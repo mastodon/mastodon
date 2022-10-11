@@ -6,7 +6,7 @@ import { useEmoji } from 'flavours/glitch/actions/emojis';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { EmojiPicker as EmojiPickerAsync } from 'flavours/glitch/utils/async-components';
+import { EmojiPicker as EmojiPickerAsync } from '../ui/util/async-components';
 import Overlay from 'react-overlays/lib/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';

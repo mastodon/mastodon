@@ -52,7 +52,7 @@ import {
   Directory,
   Explore,
   FollowRecommendations,
-} from 'flavours/glitch/utils/async-components';
+} from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
 import { me, title } from 'flavours/glitch/initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';

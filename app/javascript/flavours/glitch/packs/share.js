@@ -14,7 +14,7 @@ function loaded() {
 }
 
 function main() {
-  const ready = require('flavours/glitch/utils/ready').default;
+  const ready = require('flavours/glitch/ready').default;
   ready(loaded);
 }
 

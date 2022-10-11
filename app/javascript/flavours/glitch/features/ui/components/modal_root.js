@@ -29,7 +29,7 @@ import {
   PinnedAccountsEditor,
   CompareHistoryModal,
   FilterModal,
-} from 'flavours/glitch/utils/async-components';
+} from 'flavours/glitch/features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
   'MEDIA': () => Promise.resolve({ default: MediaModal }),

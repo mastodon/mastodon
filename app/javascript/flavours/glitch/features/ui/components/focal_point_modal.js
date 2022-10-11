@@ -15,7 +15,7 @@ import Textarea from 'react-textarea-autosize';
 import UploadProgress from 'flavours/glitch/features/compose/components/upload_progress';
 import CharacterCounter from 'flavours/glitch/features/compose/components/character_counter';
 import { length } from 'stringz';
-import { Tesseract as fetchTesseract } from 'flavours/glitch/utils/async-components';
+import { Tesseract as fetchTesseract } from 'flavours/glitch/features/ui/util/async-components';
 import GIFV from 'flavours/glitch/components/gifv';
 import { me } from 'flavours/glitch/initial_state';
 // eslint-disable-next-line import/no-extraneous-dependencies

@@ -26,7 +26,7 @@ import {
   BookmarkedStatuses,
   ListTimeline,
   Directory,
-} from 'flavours/glitch/utils/async-components';
+} from '../../ui/util/async-components';
 import Icon from 'flavours/glitch/components/icon';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
