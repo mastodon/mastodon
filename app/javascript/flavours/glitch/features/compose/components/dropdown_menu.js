@@ -10,7 +10,7 @@ import Icon from 'flavours/glitch/components/icon';
 
 //  Utils.
 import { withPassive } from 'flavours/glitch/utils/dom_helpers';
-import Motion from 'flavours/glitch/utils/optional_motion';
+import Motion from '../../ui/util/optional_motion';
 import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
 
 //  The spring to use with our motion.
