@@ -12,6 +12,7 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
     allow(view).to receive(:current_account).and_return(nil)
+    allow(view).to receive(:single_user_mode?).and_return(false)
     assign(:instance_presenter, InstancePresenter.new)
   end
 

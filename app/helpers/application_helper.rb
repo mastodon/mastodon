@@ -211,6 +211,10 @@ module ApplicationHelper
       state_params[:admin]             = Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
     end
 
+    if single_user_mode?
+      state_params[:owner] = Account.local.without_suspended.where('id > 0').first
+    end
+
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json
     # rubocop:disable Rails/OutputSafety
     content_tag(:script, json_escape(json).html_safe, id: 'initial-state', type: 'application/json')
