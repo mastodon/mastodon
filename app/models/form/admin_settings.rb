@@ -22,7 +22,6 @@ class Form::AdminSettings
     custom_css
     profile_directory
     thumbnail
-    hero
     mascot
     trends
     trendable_by_default
@@ -49,7 +48,6 @@ class Form::AdminSettings
 
   UPLOAD_KEYS = %i(
     thumbnail
-    hero
     mascot
   ).freeze
 

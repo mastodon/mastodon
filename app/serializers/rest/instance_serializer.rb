@@ -17,7 +17,20 @@ class REST::InstanceSerializer < ActiveModel::Serializer
   has_many :rules, serializer: REST::RuleSerializer
 
   def thumbnail
-    object.thumbnail ? full_asset_url(object.thumbnail.file.url) : full_pack_url('media/images/preview.png')
+    if object.thumbnail
+      {
+        url: full_asset_url(object.thumbnail.file.url(:'@1x')),
+        blurhash: object.thumbnail.blurhash,
+        versions: {
+          '@1x': full_asset_url(object.thumbnail.file.url(:'@1x')),
+          '@2x': full_asset_url(object.thumbnail.file.url(:'@2x')),
+        },
+      }
+    else
+      {
+        url: full_pack_url('media/images/preview.png'),
+      }
+    end
   end
 
   def usage
