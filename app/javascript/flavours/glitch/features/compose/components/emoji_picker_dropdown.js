@@ -345,7 +345,7 @@ class EmojiPickerDropdown extends React.PureComponent {
 
         this.setState({ loading: false });
       }).catch(() => {
-        this.setState({ loading: false });
+        this.setState({ loading: false, active: false });
       });
     }
 
