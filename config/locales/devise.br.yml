@@ -1,3 +1,4 @@
+---
 br:
   devise:
     confirmations:
@@ -7,10 +8,10 @@ br:
     failure:
       already_authenticated: Kennasket oc'h dija.
       inactive: N'eo ket gweredekaet ho kont c'hoazh.
-      invalid: '%{authentication_keys} pe ger-tremen diwiriek.'
+      invalid: "%{authentication_keys} pe ger-tremen diwiriek."
       last_attempt: Un esae a chom deoc'h a-raok ma vefe prennet ho kont.
       locked: Prennet eo ho kont.
-      not_found_in_database: '%{authentication_keys} pe ger-tremen diwiriek.'
+      not_found_in_database: "%{authentication_keys} pe ger-tremen diwiriek."
       pending: O vezañ asantet eo ho kont.
       timeout: Ho talc'h a zo aet da dermen. Mar plij, kit-tre c'hoazh evit kenderc'hel.
       unauthenticated: Ret eo deoc'h mont-tre pe e em enskrivañ araok kenderc'hel.
@@ -110,8 +111,8 @@ br:
       not_found: digavet
       not_locked: ne oa ket prennet
       not_saved:
-        one: '1 faot en deus miret ouzh %{resource} da vezañ gwarezet:'
-        two: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"
         few: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"
         many: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"
+        one: '1 faot en deus miret ouzh %{resource} da vezañ gwarezet:'
         other: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"
+        two: "%{count} faot en deus miret ouzh %{resource} da vezañ gwarezet:"
