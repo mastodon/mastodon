@@ -3,7 +3,8 @@
 module Admin
   class StatusesController < BaseController
     before_action :set_account
-    before_action :set_statuses
+    before_action :set_statuses, except: :show
+    before_action :set_status, only: :show
 
     PER_PAGE = 20
 
@@ -11,6 +12,10 @@ module Admin
       authorize :status, :index?
 
       @status_batch_action = Admin::StatusBatchAction.new
+    end
+
+    def show
+      authorize @status, :show?
     end
 
     def batch
@@ -41,6 +46,10 @@ module Admin
 
     def set_account
       @account = Account.find(params[:account_id])
+    end
+
+    def set_status
+      @status = @account.statuses.find(params[:id])
     end
 
     def set_statuses

@@ -12,9 +12,11 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def show?
-    return false if author.suspended?
-
-    if requires_mention?
+    if role.can?(:manage_reports) && record.reported?
+      true
+    elsif author.suspended?
+      false
+    elsif requires_mention?
       owned? || mention_exists?
     elsif private?
       owned? || following_author? || mention_exists?
