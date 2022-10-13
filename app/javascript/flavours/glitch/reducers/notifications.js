@@ -162,7 +162,9 @@ const deleteByStatus = (state, statusId) => {
 
 const markForDelete = (state, notificationId, yes) => {
   return state.update('items', list => list.map(item => {
-    if(item.get('id') === notificationId) {
+    if (item === null) {
+      return null;
+    } else if(item.get('id') === notificationId) {
       return item.set('markedForDelete', yes);
     } else {
       return item;
@@ -172,7 +174,9 @@ const markForDelete = (state, notificationId, yes) => {
 
 const markAllForDelete = (state, yes) => {
   return state.update('items', list => list.map(item => {
-    if(yes !== null) {
+    if (item === null) {
+      return null;
+    } else if(yes !== null) {
       return item.set('markedForDelete', yes);
     } else {
       return item.set('markedForDelete', !item.get('markedForDelete'));
@@ -181,11 +185,11 @@ const markAllForDelete = (state, yes) => {
 };
 
 const unmarkAllForDelete = (state) => {
-  return state.update('items', list => list.map(item => item.set('markedForDelete', false)));
+  return state.update('items', list => list.map(item => item === null ? item : item.set('markedForDelete', false)));
 };
 
 const deleteMarkedNotifs = (state) => {
-  return state.update('items', list => list.filterNot(item => item.get('markedForDelete')));
+  return state.update('items', list => list.filterNot(item => item === null ? item : item.get('markedForDelete')));
 };
 
 const updateMounted = (state) => {
