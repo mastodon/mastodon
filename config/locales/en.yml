@@ -667,79 +667,40 @@ en:
       empty: No server rules have been defined yet.
       title: Server rules
     settings:
-      activity_api_enabled:
-        desc_html: Counts of locally published posts, active users, and new registrations in weekly buckets
-        title: Publish aggregate statistics about user activity in the API
-      bootstrap_timeline_accounts:
-        desc_html: Separate multiple usernames by comma. These accounts will be guaranteed to be shown in follow recommendations
-        title: Recommend these accounts to new users
-      contact_information:
-        email: Business e-mail
-        username: Contact username
-      custom_css:
-        desc_html: Modify the look with CSS loaded on every page
-        title: Custom CSS
-      default_noindex:
-        desc_html: Affects all users who have not changed this setting themselves
-        title: Opt users out of search engine indexing by default
+      about:
+        manage_rules: Manage server rules
+        preamble: Provide in-depth information about how the server is operated, moderated, funded.
+        rules_hint: There is a dedicated area for rules that your users are expected to adhere to.
+        title: About
+      appearance:
+        preamble: Customize Mastodon's web interface.
+        title: Appearance
+      branding:
+        preamble: Your server's branding differentiates it from other servers in the network. This information may be displayed across a variety of environments, such as Mastodon's web interface, native applications, in link previews on other websites and within messaging apps, and so on. For this reason, it is best to keep this information clear, short and concise.
+        title: Branding
+      content_retention:
+        preamble: Control how user-generated content is stored in Mastodon.
+        title: Content retention
+      discovery:
+        follow_recommendations: Follow recommendations
+        preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
+        profile_directory: Profile directory
+        public_timelines: Public timelines
+        title: Discovery
+        trends: Trends
       domain_blocks:
         all: To everyone
         disabled: To no one
-        title: Show domain blocks
         users: To logged-in local users
-      domain_blocks_rationale:
-        title: Show rationale
-      mascot:
-        desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
-        title: Mascot image
-      peers_api_enabled:
-        desc_html: Domain names this server has encountered in the fediverse
-        title: Publish list of discovered servers in the API
-      preview_sensitive_media:
-        desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
-        title: Show sensitive media in OpenGraph previews
-      profile_directory:
-        desc_html: Allow users to be discoverable
-        title: Enable profile directory
       registrations:
-        closed_message:
-          desc_html: Displayed on frontpage when registrations are closed. You can use HTML tags
-          title: Closed registration message
-        require_invite_text:
-          desc_html: When registrations require manual approval, make the “Why do you want to join?” text input mandatory rather than optional
-          title: Require new users to enter a reason to join
+        preamble: Control who can create an account on your server.
+        title: Registrations
       registrations_mode:
         modes:
           approved: Approval required for sign up
           none: Nobody can sign up
           open: Anyone can sign up
-        title: Registrations mode
-      site_description:
-        desc_html: Introductory paragraph on the API. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Server description
-      site_description_extended:
-        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your server apart. You can use HTML tags
-        title: Custom extended information
-      site_short_description:
-        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph.
-        title: Short server description
-      site_terms:
-        desc_html: You can write your own privacy policy. You can use HTML tags
-        title: Custom privacy policy
-      site_title: Server name
-      thumbnail:
-        desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
-        title: Server thumbnail
-      timeline_preview:
-        desc_html: Display link to public timeline on landing page and allow API access to the public timeline without authentication
-        title: Allow unauthenticated access to public timeline
-      title: Site settings
-      trendable_by_default:
-        desc_html: Specific trending content can still be explicitly disallowed
-        title: Allow trends without prior review
-      trends:
-        desc_html: Publicly display previously reviewed content that is currently trending
-        title: Trends
+      title: Server Settings
     site_uploads:
       delete: Delete uploaded file
       destroyed_msg: Site upload successfully deleted!

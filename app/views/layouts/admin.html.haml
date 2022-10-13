@@ -22,15 +22,16 @@
 
     .content-wrapper
       .content
-        .content-heading
+        .content__heading
           - if content_for?(:heading)
             = yield :heading
           - else
-            %h2= yield :page_title
+            .content__heading__row
+              %h2= yield :page_title
 
-          - if :heading_actions
-            .content-heading-actions
-              = yield :heading_actions
+              - if content_for?(:heading_actions)
+                .content__heading__actions
+                  = yield :heading_actions
 
         = render 'application/flashes'
 
