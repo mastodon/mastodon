@@ -2,41 +2,14 @@
 it:
   about:
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
-    about_this: A proposito di questo server
-    administered_by: 'Amministrato da:'
     api: API
     apps: Applicazioni per dispositivi mobili
-    contact: Contatti
     contact_missing: Non impostato
     contact_unavailable: N/D
     documentation: Documentazione
     hosted_on: Mastodon ospitato su %{domain}
-    instance_actor_flash: |
-      Questo account è un attore virtuale utilizzato per rappresentare il server stesso e non un particolare utente.
-      È utilizzato per scopi di federazione e non dovrebbe essere bloccato a meno che non si voglia bloccare l'intera istanza: in questo caso si dovrebbe utilizzare un blocco di dominio.
     privacy_policy: Politica sulla Privacy
-    rules: Regole del server
-    rules_html: 'Di seguito è riportato un riassunto delle regole che devi seguire se vuoi avere un account su questo server di Mastodon:'
     source_code: Codice sorgente
-    status_count_after:
-      one: stato
-      other: stati
-    status_count_before: Che hanno pubblicato
-    unavailable_content: Server moderati
-    unavailable_content_description:
-      domain: Server
-      reason: 'Motivo:'
-      rejecting_media: I file multimediali di questo server non saranno elaborati e non verranno visualizzate miniature, che richiedono clic manuale sull'altro server.
-      rejecting_media_title: Media filtrati
-      silenced: 'I messaggi da questi server saranno nascosti nelle timeline e nelle conversazioni pubbliche, e nessuna notifica verrà generata dalle interazioni dei loro utenti, a meno che non li stai seguendo:'
-      silenced_title: Server silenziati
-      suspended: 'Nessun dato da questi server sarà elaborato, memorizzato o scambiato, rendendo impossibile qualsiasi interazione o comunicazione con gli utenti di questi server:'
-      suspended_title: Server sospesi
-    unavailable_content_html: Mastodon generalmente permette di visualizzare i contenuti e interagire con gli utenti di qualsiasi altro server nel fediverse. Queste sono le eccezioni che sono state create su questo specifico server.
-    user_count_after:
-      one: utente
-      other: utenti
-    user_count_before: Home di
     what_is_mastodon: Che cos'è Mastodon?
   accounts:
     choices_html: 'Suggerimenti da %{name}:'
@@ -735,9 +708,6 @@ it:
         users: Agli utenti locali connessi
       domain_blocks_rationale:
         title: Mostra motivazione
-      hero:
-        desc_html: Mostrata nella pagina iniziale. Almeno 600x100 px consigliati. Se non impostata, sarà usato il thumbnail del server
-        title: Immagine dell'eroe
       mascot:
         desc_html: Mostrata su più pagine. Almeno 293×205px consigliati. Se non impostata, sarò usata la mascotte predefinita
         title: Immagine della mascotte

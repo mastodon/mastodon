@@ -2,40 +2,13 @@
 pt-BR:
   about:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
-    about_this: Sobre
-    administered_by: 'Administrado por:'
     api: API
     apps: Aplicativos
-    contact: Contato
     contact_missing: Não definido
     contact_unavailable: Não disponível
     documentation: Documentação
     hosted_on: Instância Mastodon em %{domain}
-    instance_actor_flash: |
-      Esta conta é um ator virtual usado para representar o próprio servidor e não qualquer usuário individual.
-      É usado para propósitos de federação e não deve ser bloqueado a menos que queira bloquear toda a instância, o que no caso devia usar um bloqueio de domínio.
-    rules: Regras do servidor
-    rules_html: 'Abaixo está um resumo das regras que você precisa seguir se você quer ter uma conta neste servidor do Mastodon:'
     source_code: Código-fonte
-    status_count_after:
-      one: toot
-      other: toots
-    status_count_before: Autores de
-    unavailable_content: Conteúdo indisponível
-    unavailable_content_description:
-      domain: Instância
-      reason: 'Motivo:'
-      rejecting_media: 'Arquivos de mídia destas instâncias não serão processados ou armazenados e nenhuma miniatura será exibida, exigindo que o usuário abra o arquivo original manualmente:'
-      rejecting_media_title: Mídia filtrada
-      silenced: 'Toots destas instâncias serão ocultos em linhas e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus usuários, a menos que esteja sendo seguido:'
-      silenced_title: Servidores silenciados
-      suspended: 'Você não será capaz de seguir ninguém destas instâncias, e nenhum dado delas será processado, armazenado ou trocado:'
-      suspended_title: Servidores banidos
-    unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com usuários de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
-    user_count_after:
-      one: usuário
-      other: usuários
-    user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
     choices_html: 'Sugestões de %{name}:'
@@ -709,9 +682,6 @@ pt-BR:
         users: Para usuários locais logados
       domain_blocks_rationale:
         title: Mostrar motivo
-      hero:
-        desc_html: Aparece na página inicial. Recomendado ao menos 600x100px. Se não estiver definido, a miniatura da instância é usada no lugar
-        title: Imagem de capa
       mascot:
         desc_html: Mostrado em diversas páginas. Recomendado ao menos 293×205px. Quando não está definido, o mascote padrão é mostrado
         title: Imagem do mascote

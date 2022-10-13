@@ -2,39 +2,14 @@
 ko:
   about:
     about_mastodon_html: 마스토돈은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 마스토돈 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
-    about_this: 이 인스턴스에 대해서
-    administered_by: '관리자:'
     api: API
     apps: 모바일 앱
-    contact: 연락처
     contact_missing: 미설정
     contact_unavailable: 없음
     documentation: 문서
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
-    instance_actor_flash: |
-      이 계정은 가상의 actor로서 개인 사용자가 아닌 서버 자체를 나타냅니다.
-      이것은 페더레이션을 목적으로 사용 되며 인스턴스 전체를 차단하려 하지 않는 이상 차단하지 않아야 합니다, 그 경우에는 도메인 차단을 사용하세요.
     privacy_policy: 개인정보 처리방침
-    rules: 서버 규칙
-    rules_html: '아래의 글은 이 마스토돈 서버에 계정이 있다면 따라야 할 규칙의 요약입니다:'
     source_code: 소스 코드
-    status_count_after:
-      other: 개
-    status_count_before: 게시물 수
-    unavailable_content: 이용 불가능한 컨텐츠
-    unavailable_content_description:
-      domain: 서버
-      reason: 이유
-      rejecting_media: 이 서버의 미디어 파일들은 처리되지 않고 썸네일또한 보이지 않게 됩니다. 수동으로 클릭하여 해당 서버로 가게 됩니다.
-      rejecting_media_title: 필터링 된 미디어
-      silenced: 이 서버의 게시물은 작성자를 팔로우 한 경우에만 홈 피드에 나타나며 이를 제외한 어디에도 나타나지 않습니다.
-      silenced_title: 침묵 된 서버들
-      suspended: 이 서버의 아무도 팔로우 할 수 없으며, 어떤 데이터도 처리되거나 저장 되지 않고 데이터가 교환 되지도 않습니다.
-      suspended_title: 금지된 서버들
-    unavailable_content_html: 마스토돈은 일반적으로 연합우주에 있는 어떤 서버의 사용자와도 게시물을 보고 응답을 할 수 있도록 허용합니다. 다음 항목들은 특정한 서버에 대해 만들어 진 예외사항입니다.
-    user_count_after:
-      other: 명
-    user_count_before: 사용자 수
     what_is_mastodon: 마스토돈이란?
   accounts:
     choices_html: "%{name}의 추천:"
@@ -146,7 +121,7 @@ ko:
       no_role_assigned: 할당된 역할 없음
       not_subscribed: 구독하지 않음
       pending: 심사 대기
-      perform_full_suspension: 정지시키기
+      perform_full_suspension: 정지
       previous_strikes: 이전의 처벌들
       previous_strikes_description_html:
         other: 이 계정은 <strong>%{count}</strong> 번의 처벌이 있었습니다.
@@ -176,7 +151,7 @@ ko:
       security_measures:
         only_password: 암호만
         password_and_2fa: 암호와 2단계 인증
-      sensitive: 민감함
+      sensitive: 민감함 강제
       sensitized: 민감함으로 설정됨
       shared_inbox_url: 공유된 inbox URL
       show:
@@ -721,9 +696,6 @@ ko:
         users: 로그인 한 사용자에게
       domain_blocks_rationale:
         title: 사유 보여주기
-      hero:
-        desc_html: 프론트페이지에 표시 됩니다. 최소 600x100픽셀을 권장합니다. 만약 설정되지 않았다면, 서버의 썸네일이 사용 됩니다
-        title: 히어로 이미지
       mascot:
         desc_html: 여러 페이지에서 보여집니다. 최소 293x205px을 추천합니다. 설정 되지 않은 경우, 기본 마스코트가 사용 됩니다
         title: 마스코트 이미지
@@ -1000,6 +972,9 @@ ko:
       email_below_hint_html: 아래의 이메일 계정이 올바르지 않을 경우, 여기서 변경하고 새 확인 메일을 받을 수 있습니다.
       email_settings_hint_html: 확인 메일이 %{email}로 보내졌습니다. 이메일 주소가 올바르지 않은 경우, 계정 설정에서 변경하세요.
       title: 설정
+    sign_up:
+      preamble: 이 마스토돈 서버의 계정을 통해, 네트워크에 속한 다른 사람들을, 그들이 어떤 서버에 있든 팔로우 할 수 있습니다.
+      title: "%{domain}에 가입하기 위한 정보들을 입력하세요."
     status:
       account_status: 계정 상태
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
@@ -1371,6 +1346,8 @@ ko:
     other: 기타
     posting_defaults: 게시물 기본설정
     public_timelines: 공개 타임라인
+  privacy_policy:
+    title: 개인정보 정책
   reactions:
     errors:
       limit_reached: 다른 리액션 제한에 도달했습니다
@@ -1652,8 +1629,10 @@ ko:
         suspend: 계정 정지 됨
     welcome:
       edit_profile_action: 프로필 설정
+      edit_profile_step: 프로필 사진을 업로드하고, 사람들에게 표시 될 이름을 바꾸는 것 등으로 당신의 프로필을 커스텀 할 수 있습니다. 사람들이 당신을 팔로우 하기 전에 리뷰를 거치게 할 수도 있습니다.
       explanation: 시작하기 전에 몇가지 팁들을 준비했습니다
       final_action: 포스팅 시작하기
+      final_step: '게시물을 올리세요! 팔로워가 없더라도, 공개 게시물들은 다른 사람에게 보여질 수 있습니다, 예를 들자면 로컬이나 연합 타임라인 등이 있습니다. 사람들에게 자신을 소개하고 싶다면 #툿친소 해시태그를 이용해보세요.'
       full_handle: 당신의 풀 핸들
       full_handle_hint: 이것을 당신의 친구들에게 알려주면 다른 서버에서 팔로우 하거나 메시지를 보낼 수 있습니다.
       subject: 마스토돈에 오신 것을 환영합니다

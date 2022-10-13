@@ -73,6 +73,10 @@ gl:
         actions:
           hide: Agochar todo o contido filtrado, facer coma se non existise
           warn: Agochar o contido filtrado tras un aviso que conteña o nome do filtro
+      form_admin_settings:
+        backups_retention_period: Gardar os arquivos xerados pola usuaria durante o número de días indicado.
+        content_cache_retention_period: As publicacións desde outros servidores serán eliminados despois do número de días indicados ao poñer un valor positivo. É unha acción irreversible.
+        media_cache_retention_period: Os ficheiros multimedia descargados serán eliminados despois do número de días indicado ao establecer un valor positivo, e voltos a descargar baixo petición.
       form_challenge:
         current_password: Estás entrando nun área segura
       imports:
@@ -207,6 +211,10 @@ gl:
         actions:
           hide: Agochar completamente
           warn: Agochar tras un aviso
+      form_admin_settings:
+        backups_retention_period: Período de retención do arquivo da usuaria
+        content_cache_retention_period: Período de retención da caché do contido
+        media_cache_retention_period: Período de retención da caché multimedia
       interactions:
         must_be_follower: Bloquear as notificacións de non-seguidoras
         must_be_following: Bloquea as notificacións de persoas que non segues

@@ -2,38 +2,13 @@
 zh-HK:
   about:
     about_mastodon_html: Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！
-    about_this: 關於本伺服器
-    administered_by: 管理者：
     api: API
     apps: 手機 App
-    contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 不適用
     documentation: 說明文件
     hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
-    instance_actor_flash: |
-      這個帳戶是代表伺服器，而非代表任何個人用戶的虛擬帳號。
-      此帳戶是為聯盟協定而設。除非你想封鎖整個伺服器的話，否則請不要封鎖這個帳戶。如果你想封鎖伺服器，請使用網域封鎖以達到相同效果。
-    rules: 系統規則
-    rules_html: 如果你想要在本站開一個新帳戶，以下是你需要遵守的規則：
     source_code: 源代碼
-    status_count_after:
-      other: 篇文章
-    status_count_before: 共發佈了
-    unavailable_content: 受限制的伺服器
-    unavailable_content_description:
-      domain: 伺服器
-      reason: 原因
-      rejecting_media: 這些伺服器的媒體檔案將不會被處理或儲存，我們亦不會展示其縮圖。請手動點擊以觀看原始檔：
-      rejecting_media_title: 被篩選的媒體檔案
-      silenced: 除非你已經關注個別使用者，否則來自這些伺服器的文章和通知將會被隱藏。
-      silenced_title: 已靜音的伺服器
-      suspended: 來自這些伺服器的所有數據將不會被處理。你將不可能聯絡來自這些伺服器的使用者。
-      suspended_title: 已停權的伺服器
-    unavailable_content_html: Mastodon 通常讓你瀏覽其他社交聯盟網站的所有內容，但是對於這個特定網站，有這些特別的例外規則。
-    user_count_after:
-      other: 位使用者
-    user_count_before: 本站共有
     what_is_mastodon: Mastodon （萬象）是甚麼？
   accounts:
     choices_html: "%{name} 的選擇："
@@ -520,9 +495,6 @@ zh-HK:
         users: 所有已登入的帳號
       domain_blocks_rationale:
         title: 顯示原因予
-      hero:
-        desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
-        title: 主題圖片
       mascot:
         desc_html: 在不同頁面顯示。推薦最小 293×205px。如果留空，就會默認為伺服器縮圖。
         title: 縮圖

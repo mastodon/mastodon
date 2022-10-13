@@ -2,41 +2,14 @@
 fr:
   about:
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
-    about_this: À propos
-    administered_by: 'Administré par :'
     api: API
     apps: Applications mobiles
-    contact: Contact
     contact_missing: Non défini
     contact_unavailable: Non disponible
     documentation: Documentation
     hosted_on: Serveur Mastodon hébergé sur %{domain}
-    instance_actor_flash: |
-      Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un·e utilisateur·rice individuel·le.
-      Il est utilisé à des fins de fédération et ne doit pas être bloqué à moins que vous ne vouliez bloquer l’instance entière, auquel cas vous devriez utiliser un blocage de domaine.
     privacy_policy: Politique de confidentialité
-    rules: Règles du serveur
-    rules_html: 'Voici un résumé des règles que vous devez suivre si vous voulez avoir un compte sur ce serveur de Mastodon :'
     source_code: Code source
-    status_count_after:
-      one: message
-      other: messages
-    status_count_before: Ayant publié
-    unavailable_content: Serveurs modérés
-    unavailable_content_description:
-      domain: Serveur
-      reason: Motif
-      rejecting_media: 'Les fichiers média de ces serveurs ne seront ni traités ni stockés, et aucune miniature ne sera affichée, rendant nécessaire de cliquer vers le fichier d’origine :'
-      rejecting_media_title: Médias filtrés
-      silenced: 'Les messages de ces serveurs seront cachés des flux publics et conversations, et les interactions de leurs utilisateur·rice·s ne donneront lieu à aucune notification, à moins que vous ne les suiviez :'
-      silenced_title: Serveurs limités
-      suspended: 'Aucune donnée venant de ces serveurs ne sera traitée, stockée ou échangée, rendant impossible toute interaction ou communication avec les utilisateur·rice·s de ces serveurs :'
-      suspended_title: Serveurs suspendus
-    unavailable_content_html: Mastodon vous permet généralement de visualiser le contenu et d'interagir avec les utilisateur·rice·s de n'importe quel autre serveur dans le fédiverse. Voici les exceptions qui ont été faites sur ce serveur en particulier.
-    user_count_after:
-      one: utilisateur
-      other: utilisateur·rice·s
-    user_count_before: Abrite
     what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
     choices_html: "%{name} recommande :"
@@ -321,6 +294,7 @@ fr:
         update_custom_emoji_html: "%{name} a mis à jour l'émoji %{target}"
         update_domain_block_html: "%{name} a mis à jour le blocage de domaine pour %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
+        update_user_role_html: "%{name} a changé le rôle %{target}"
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
@@ -728,9 +702,6 @@ fr:
         users: Aux utilisateur·rice·s connecté·e·s localement
       domain_blocks_rationale:
         title: Montrer la raison
-      hero:
-        desc_html: Affichée sur la page d’accueil. Au moins 600x100px recommandé. Lorsqu’elle n’est pas définie, se rabat sur la vignette du serveur
-        title: Image d’en-tête
       mascot:
         desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu’il n’est pas défini, retombe à la mascotte par défaut
         title: Image de la mascotte
@@ -993,6 +964,7 @@ fr:
     migrate_account: Déménager vers un compte différent
     migrate_account_html: Si vous voulez rediriger ce compte vers un autre, vous pouvez le <a href="%{path}">configurer ici</a>.
     or_log_in_with: Ou authentifiez-vous avec
+    privacy_policy_agreement_html: J’ai lu et j’accepte la <a href="%{privacy_policy_path}" target="_blank">politique de confidentialité</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1376,6 +1348,8 @@ fr:
     other: Autre
     posting_defaults: Paramètres de publication par défaut
     public_timelines: Fils publics
+  privacy_policy:
+    title: Politique de confidentialité
   reactions:
     errors:
       limit_reached: Limite de réactions différentes atteinte

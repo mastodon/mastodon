@@ -2,45 +2,14 @@
 pl:
   about:
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
-    about_this: O tej instancji
-    administered_by: 'Administrowana przez:'
     api: API
     apps: Aplikacje
-    contact: Kontakt
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
     documentation: Dokumentacja
     hosted_on: Mastodon uruchomiony na %{domain}
-    instance_actor_flash: |
-      To konto jest wirtualnym nadawcą, używanym do reprezentacji serwera, a nie jakiegokolwiek użytkownika.
-      Jest używane w celu federowania i nie powinno być blokowane, chyba że chcesz zablokować całą instację, w takim przypadku użyj blokady domeny.
     privacy_policy: Polityka prywatności
-    rules: Regulamin serwera
-    rules_html: 'Poniżej znajduje się podsumowanie zasad, których musisz przestrzegać, jeśli chcesz mieć konto na tym serwerze Mastodona:'
     source_code: Kod źródłowy
-    status_count_after:
-      few: wpisów
-      many: wpisów
-      one: wpisu
-      other: wpisów
-    status_count_before: Są autorami
-    unavailable_content: Niedostępne treści
-    unavailable_content_description:
-      domain: Serwer
-      reason: Powód
-      rejecting_media: 'Pliki multimedialne z tych serwerów nie będą przetwarzane ani przechowywane, ani ich miniaturki nie będą wyświetlane, wymuszając ręczne przejście do oryginalnego pliku:'
-      rejecting_media_title: Filtrowana zawartość multimedialna
-      silenced: 'Posty z tych serwerów będą ukryte na publicznych osiach czasu i konwersacjach, a powiadomienia z interakcji ich użytkowników nie będą generowane, chyba że ich obserwujesz:'
-      silenced_title: Wyciszone serwery
-      suspended: 'Żadne dane z tych serwerów nie będą przetwarzane, przechowywane ani wymieniane, sprawiając że jakakolwiek interakcja czy komunikacja z użytkownikami tych serwerów będzie niemożliwa:'
-      suspended_title: Zawieszone serwery
-    unavailable_content_html: Normalnie Mastodon pozwala ci przeglądać treści od innych użytkowników z jakiegokolwiek serwera w fediwersum. To są wyjątki, które zostały stworzone na tym konkretnym serwerze.
-    user_count_after:
-      few: użytkowników
-      many: użytkowników
-      one: użytkownik
-      other: użytkowników
-    user_count_before: Z serwera korzysta
     what_is_mastodon: Czym jest Mastodon?
   accounts:
     choices_html: 'Polecani przez %{name}:'
@@ -767,9 +736,6 @@ pl:
         users: Zalogowanym lokalnym użytkownikom
       domain_blocks_rationale:
         title: Pokaż uzasadnienia
-      hero:
-        desc_html: Wyświetlany na stronie głównej. Zalecany jest rozmiar przynajmniej 600x100 pikseli. Jeżeli nie ustawiony, zostanie użyta miniatura serwera
-        title: Obraz bohatera
       mascot:
         desc_html: Wyświetlany na wielu stronach. Zalecany jest rozmiar przynajmniej 293px × 205px. Jeżeli nie ustawiono, zostanie użyta domyślna
         title: Obraz maskotki

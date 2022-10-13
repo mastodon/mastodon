@@ -2,41 +2,14 @@
 is:
   about:
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
-    about_this: Um hugbúnaðinn
-    administered_by: 'Stýrt af:'
     api: API-kerfisviðmót
     apps: Farsímaforrit
-    contact: Hafa samband
     contact_missing: Ekki skilgreint
     contact_unavailable: Ekki til staðar
     documentation: Hjálparskjöl
     hosted_on: Mastodon hýst á %{domain}
-    instance_actor_flash: |
-      Þessi aðgangur er sýndarnotandi sem er notaður til að tákna sjálfan vefþjóninn en ekki neinn einstakan notanda.
-      Tilgangur hans tengist virkni vefþjónasambandsins og ætti alls ekki að loka á hann nema að þú viljir útiloka allan viðkomandi vefþjón, en þá ætti frekar að útiloka sjálft lénið.
     privacy_policy: Persónuverndarstefna
-    rules: Reglur netþjónsins
-    rules_html: 'Hér fyrir neðan er yfirlit yfir þær reglur sem þú þarft að fara eftir ef þú ætlar að vera með notandaaðgang á þessum Mastodon-netþjóni:'
     source_code: Grunnkóði
-    status_count_after:
-      one: færsla
-      other: færslur
-    status_count_before: Sem stóðu fyrir
-    unavailable_content: Ekki tiltækt efni
-    unavailable_content_description:
-      domain: Vefþjónn
-      reason: Ástæða
-      rejecting_media: 'Myndefnisskrár frá þessum vefþjónum verða hvorki birtar né geymdar og engar smámyndir frá þeim birtar, sem krefst þess að smellt sé handvirkt til að nálgast upprunalegu skrárnar:'
-      rejecting_media_title: Síuð gögn
-      silenced: 'Færslur frá þessum vefþjónum verða faldar í opinberum tímalínum og samtölum, auk þess sem engar tilkynningar verða til þvið aðgerðir notendanna, nema ef þú fylgist með þeim:'
-      silenced_title: Þaggaðir netþjónar
-      suspended: 'Engin gögn frá þessum vefþjónum verða unnin, geymd eða skipst á, sem gerir samskipti við notendur frá þessum vefþjónum ómöguleg:'
-      suspended_title: Netþjónar í frysti
-    unavailable_content_html: Mastodon leyfir þér almennt að skoða og eiga við efni frá notendum frá hvaða vefþjóni sem er í vefþjónasambandinu. Þetta eru þær undantekningar sem hafa verið gerðar á þessum tiltekna vefþjóni.
-    user_count_after:
-      one: notanda
-      other: notendur
-    user_count_before: Hýsir
     what_is_mastodon: Hvað er Mastodon?
   accounts:
     choices_html: "%{name} hefur valið:"
@@ -735,9 +708,6 @@ is:
         users: Til innskráðra staðværra notenda
       domain_blocks_rationale:
         title: Birta röksemdafærslu
-      hero:
-        desc_html: Birt á forsíðunni. Mælt með að hún sé a.m.k. 600×100 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
-        title: Aðalmynd
       mascot:
         desc_html: Birt á ýmsum síðum. Mælt með að hún sé a.m.k. 293×205 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
         title: Mynd af lukkudýri
@@ -1400,6 +1370,8 @@ is:
     other: Annað
     posting_defaults: Sjálfgefin gildi við gerð færslna
     public_timelines: Opinberar tímalínur
+  privacy_policy:
+    title: Persónuverndarstefna
   reactions:
     errors:
       limit_reached: Hámarki mismunandi viðbragða náð

@@ -73,6 +73,10 @@ de:
         actions:
           hide: Den gefilterten Inhalt vollständig ausblenden, als hätte er nie existiert
           warn: Den gefilterten Inhalt hinter einer Warnung ausblenden, die den Filtertitel beinhaltet
+      form_admin_settings:
+        backups_retention_period: Behalte generierte Benutzerarchive für die angegebene Anzahl von Tagen.
+        content_cache_retention_period: Beiträge von anderen Servern werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht. Dies kann eventuell nicht rückgängig gemacht werden.
+        media_cache_retention_period: Heruntergeladene Mediendateien werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht und bei Bedarf erneut heruntergeladen.
       form_challenge:
         current_password: Du betrittst einen sicheren Bereich
       imports:
@@ -207,6 +211,10 @@ de:
         actions:
           hide: Komplett ausblenden
           warn: Mit einer Warnung ausblenden
+      form_admin_settings:
+        backups_retention_period: Aufbewahrungsfrist für Benutzerarchive
+        content_cache_retention_period: Aufbewahrungsfrist für Inhalte im Cache
+        media_cache_retention_period: Aufbewahrungsfrist für den Medien-Cache
       interactions:
         must_be_follower: Benachrichtigungen von Profilen blockieren, die mir nicht folgen
         must_be_following: Benachrichtigungen von Profilen blockieren, denen ich nicht folge

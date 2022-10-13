@@ -2,39 +2,14 @@
 zh-CN:
   about:
     about_mastodon_html: Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
-    about_this: 关于本站
-    administered_by: 本站管理员：
     api: API
     apps: 移动应用
-    contact: 联系方式
     contact_missing: 未设定
     contact_unavailable: 未公开
     documentation: 文档
     hosted_on: 运行在 %{domain} 上的 Mastodon 站点
-    instance_actor_flash: |
-      该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。
-      该账号用于达成互联之目的，除非你想要封禁整个实例，否则该账号不应该被封禁。在此种情况下，你应该使用域名封禁。
     privacy_policy: 隐私政策
-    rules: 服务器规则
-    rules_html: 如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：
     source_code: 源码
-    status_count_after:
-      other: 条嘟文
-    status_count_before: 他们共嘟出了
-    unavailable_content: 被限制的服务器
-    unavailable_content_description:
-      domain: 服务器
-      reason: 原因
-      rejecting_media: 来自这些服务器的媒体文件将不会被处理或存储，缩略图也不会显示，需要手动点击打开原始文件。
-      rejecting_media_title: 被过滤的媒体文件
-      silenced: 来自这些服务器上的帖子将不会出现在公共时间轴和会话中，通知功能也不会提醒这些用户的动态；只有你关注了这些用户，才会收到用户互动的通知消息。
-      silenced_title: 已限制的服务器
-      suspended: 这些服务器的数据将不会被处理、存储或者交换，本站也将无法和来自这些服务器的用户互动或者交流。
-      suspended_title: 已被封禁的服务器
-    unavailable_content_html: 通常来说，在 Mastodon 上，你可以浏览联邦宇宙中任何一台服务器上的内容，并且和上面的用户互动。但是某些站点上不排除会有例外。
-    user_count_after:
-      other: 位用户
-    user_count_before: 这里共注册有
     what_is_mastodon: Mastodon 是什么？
   accounts:
     choices_html: "%{name} 的推荐："
@@ -719,9 +694,6 @@ zh-CN:
         users: 对本地已登录用户
       domain_blocks_rationale:
         title: 显示理由
-      hero:
-        desc_html: 将用于在首页展示。推荐使用分辨率 600×100px 以上的图片。如未设置，将默认使用本站缩略图。
-        title: 主题图片
       mascot:
         desc_html: 用于在首页展示。推荐分辨率 293×205px 以上。未指定的情况下将使用默认吉祥物。
         title: 吉祥物图像

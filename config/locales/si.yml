@@ -2,46 +2,19 @@
 si:
   about:
     about_mastodon_html: 'අනාගත සමාජ ජාලය: දැන්වීම් නැත, ආයතනික නිරීක්ෂණ නැත, සදාචාරාත්මක සැලසුම් සහ විමධ්‍යගත කිරීම! Mastodon සමඟ ඔබේ දත්ත අයිති කරගන්න!'
-    about_this: පිලිබඳව
-    administered_by: 'පරිපාලනය කරන්නේ:'
     api: යෙ.ක්‍ර. මු. (API)
     apps: ජංගම යෙදුම්
-    contact: සබඳතාව
     contact_missing: සකස් කර නැත
     contact_unavailable: අ/නොවේ
     documentation: ප්‍රලේඛනය
     hosted_on: Mastodon %{domain}හි සත්කාරකත්වය දරයි
-    instance_actor_flash: |
-      මෙම ගිණුම සේවාදායකයම නියෝජනය කිරීමට භාවිතා කරන අතථ්‍ය නළුවෙකු වන අතර කිසිදු තනි පරිශීලකයෙකු නොවේ.
-      එය ෆෙඩරේෂන් අරමුණු සඳහා භාවිතා කරන අතර ඔබට සම්පූර්ණ අවස්ථාව අවහිර කිරීමට අවශ්‍ය නම් මිස අවහිර නොකළ යුතුය, මෙම අවස්ථාවේදී ඔබ ඩොමේන් බ්ලොක් එකක් භාවිතා කළ යුතුය.
-    rules: සේවාදායකයේ නීති
-    rules_html: 'ඔබට Mastodon හි මෙම සේවාදායකයේ ගිණුමක් ඇති කර ගැනීමට අවශ්‍ය නම් ඔබ අනුගමනය කළ යුතු නීති වල සාරාංශයක් පහත දැක්වේ:'
     source_code: මූල කේතය
-    status_count_after:
-      one: තත්ත්වය
-      other: තත්ත්වයන්
-    status_count_before: කවුද පළ කළේ
-    unavailable_content: මධ්‍යස්ථ සේවාදායකයන්
-    unavailable_content_description:
-      domain: සේවාදායකය
-      reason: හේතුව
-      rejecting_media: 'මෙම සේවාදායකයන්ගෙන් මාධ්‍ය ගොනු සැකසීම හෝ ගබඩා කිරීම සිදු නොවනු ඇති අතර, මුල් ගොනුව වෙත අතින් ක්ලික් කිරීම අවශ්‍ය වන, සිඟිති රූ නොපෙන්වනු ඇත:'
-      rejecting_media_title: පෙරූ මාධ්‍ය
-      silenced: 'මෙම සේවාදායකයන්ගෙන් පළ කිරීම් පොදු කාලරේඛා සහ සංවාදවල සඟවනු ඇති අතර, ඔබ ඒවා අනුගමනය කරන්නේ නම් මිස, ඔවුන්ගේ පරිශීලක අන්තර්ක්‍රියාවලින් කිසිදු දැනුම්දීමක් ජනනය නොවේ:'
-      silenced_title: සීමාසහිත සේවාදායක
-      suspended: 'මෙම සේවාදායකයන්ගෙන් කිසිදු දත්තයක් සැකසීම, ගබඩා කිරීම හෝ හුවමාරු කිරීම සිදු නොවනු ඇත, මෙම සේවාදායකයන්ගෙන් පරිශීලකයින් සමඟ කිසියම් අන්තර්ක්‍රියා හෝ සන්නිවේදනයක් කළ නොහැක:'
-      suspended_title: අත්හිටවූ සේවාදායකයන්
-    unavailable_content_html: Mastodon සාමාන්‍යයෙන් ඔබට ෆෙඩිවර්ස් හි වෙනත් ඕනෑම සේවාදායකයකින් අන්තර්ගතය බැලීමට සහ පරිශීලකයින් සමඟ අන්තර් ක්‍රියා කිරීමට ඉඩ සලසයි. මෙම විශේෂිත සේවාදායකයේ සිදු කර ඇති ව්‍යතිරේක මේවාය.
-    user_count_after:
-      one: පරිශීලක
-      other: පරිශීලකයින්
-    user_count_before: ගෙදරට
     what_is_mastodon: මාස්ටඩන් යනු කුමක්ද?
   accounts:
     choices_html: "%{name}හි තේරීම්:"
     endorsements_hint: ඔබට වෙබ් අතුරු මුහුණතෙන් ඔබ අනුගමනය කරන පුද්ගලයින් අනුමත කළ හැකි අතර, ඔවුන් මෙහි පෙන්වනු ඇත.
     featured_tags_hint: ඔබට මෙහි සංදර්ශන කෙරෙන විශේෂිත හැෂ් ටැග් විශේෂාංගගත කළ හැක.
-    follow: අනුගමනය කරන්න
+    follow: අනුගමනය
     followers:
       one: අනුගාමිකයා
       other: අනුගාමිකයින්
@@ -59,10 +32,10 @@ si:
     pin_errors:
       following: ඔබට අනුමත කිරීමට අවශ්‍ය පුද්ගලයා ඔබ දැනටමත් අනුගමනය කරමින් සිටිය යුතුය
     posts:
-      one: තැපැල්
-      other: තනතුරු
-    posts_tab_heading: තනතුරු
-    posts_with_replies: පළ කිරීම් සහ පිළිතුරු
+      one: ලිපිය
+      other: ලිපි
+    posts_tab_heading: ලිපි
+    posts_with_replies: පළ කිරීම් හා පිළිතුරු
     roles:
       bot: ස්වයං ක්‍රමලේඛය
       group: සමූහය
@@ -179,7 +152,7 @@ si:
         targeted_reports: වෙනත් අය විසින් වාර්තා කරන ලදී
       silence: සීමාව
       silenced: සීමාසහිත
-      statuses: තත්ත්වයන්
+      statuses: ලිපි
       strikes: පෙර වැඩ වර්ජන
       subscribe: දායක වන්න
       suspend: අත්හිටුවන්න
@@ -443,7 +416,7 @@ si:
     follow_recommendations:
       description_html: "<strong>නව පරිශීලකයින්ට රසවත් අන්තර්ගතයන් ඉක්මනින් සොයා ගැනීමට උපකාර වන නිර්දේශ අනුගමනය කරන්න</strong>. පෞද්ගලීකරණය කළ පසු විපරම් නිර්දේශ සැකසීමට තරම් පරිශීලකයෙකු අන් අය සමඟ අන්තර් ක්‍රියා කර නොමැති විට, ඒ වෙනුවට මෙම ගිණුම් නිර්දේශ කෙරේ. දී ඇති භාෂාවක් සඳහා ඉහළම මෑත කාලීන නියැලීම් සහ ඉහළම දේශීය අනුගාමික සංඛ්‍යාව සහිත ගිණුම් මිශ්‍රණයකින් ඒවා දෛනික පදනමින් නැවත ගණනය කෙරේ."
       language: භාෂාව සඳහා
-      status: තත්ත්වය
+      status: තත්‍වය
       suppress: අනුගමනය නිර්දේශය යටපත් කරන්න
       suppressed: යටපත් කළා
       title: නිර්දේශ අනුගමනය කරන්න
@@ -484,7 +457,7 @@ si:
         instance_languages_dimension: ඉහළම භාෂා
         instance_media_attachments_measure: ගබඩා කළ මාධ්‍ය ඇමුණුම්
         instance_reports_measure: ඔවුන් ගැන වාර්තා
-        instance_statuses_measure: ගබඩා කළ තනතුරු
+        instance_statuses_measure: ගබඩා කළ ලිපි
       delivery:
         all: සියල්ල
         clear: බෙදා හැරීමේ දෝෂ ඉවත් කරන්න
@@ -520,7 +493,7 @@ si:
       filter:
         all: සියල්ල
         available: පවතින
-        expired: කල් ඉකුත් වී ඇත
+        expired: ඉකුත් වී ඇත
         title: පෙරහන
       title: ඇරයුම්
     ip_blocks:
@@ -532,10 +505,10 @@ si:
         '15778476': මාස 6
         '2629746': මාස 1
         '31556952': අවුරුදු 1
-        '86400': දින 1
+        '86400': දවස් 1
         '94670856': අවුරුදු 3
       new:
-        title: නව අ.ජා. කෙ.(IP) නීතියක් සාදන්න
+        title: නව අ.ජා.කෙ. නීතියක් සාදන්න
       no_ip_block_selected: IP රීති කිසිවක් තෝරා නොගත් බැවින් වෙනස් කර නැත
       title: අ.ජා. කෙ. (IP) නීති
     relationships:
@@ -649,9 +622,6 @@ si:
         users: පුරනය වී ඇති දේශීය පරිශීලකයින් වෙත
       domain_blocks_rationale:
         title: තාර්කිකත්වය පෙන්වන්න
-      hero:
-        desc_html: මුල් පිටුවේ ප්‍රදර්ශනය කෙරේ. අවම වශයෙන් 600x100px නිර්දේශිතයි. සකසා නොමැති විට, සේවාදායක සිඟිති රුව වෙත ආපසු වැටේ
-        title: වීර රූපය
       mascot:
         desc_html: පිටු කිහිපයක ප්‍රදර්ශනය කෙරේ. අවම වශයෙන් 293×205px නිර්දේශිතයි. සකසා නොමැති විට, පෙරනිමි මැස්කොට් වෙත ආපසු වැටේ
         title: මැස්කොට් රූපය
@@ -737,7 +707,7 @@ si:
       sidekiq_process_check:
         message_html: "%{value} පෝලිම්(ය) සඳහා Sidekiq ක්‍රියාවලියක් ක්‍රියාත්මක නොවේ. කරුණාකර ඔබේ Sidekiq වින්‍යාසය සමාලෝචනය කරන්න"
     tags:
-      review: තත්ත්වය සමාලෝචනය කරන්න
+      review: තත්‍වය සමාලෝචනය
       updated_msg: Hashtag සැකසුම් සාර්ථකව යාවත්කාලීන කරන ලදී
     title: පරිපාලනය
     trends:
@@ -821,7 +791,7 @@ si:
       new: නව webhook
       rotate_secret: රහස කරකවන්න
       secret: අත්සන් කිරීමේ රහස
-      status: තත්ත්වය
+      status: තත්‍වය
       webhook: වෙබ්හුක්
   admin_mailer:
     new_appeal:
@@ -893,7 +863,7 @@ si:
     delete_account_html: ඔබට ඔබගේ ගිණුම මකා දැමීමට අවශ්‍ය නම්, ඔබට <a href="%{path}">මෙතැනින් ඉදිරියට යා හැක</a>. තහවුරු කිරීම සඳහා ඔබෙන් අසනු ඇත.
     description:
       prefix_invited_by_user: "@%{name} ඔබට Mastodon හි මෙම සේවාදායකයට සම්බන්ධ වීමට ආරාධනා කරයි!"
-      prefix_sign_up: අදම Mastodon හි ලියාපදිංචි වන්න!
+      prefix_sign_up: අදම මාස්ටඩන් හි ලියාපදිංචි වන්න!
       suffix: ගිණුමක් සමඟ, ඔබට ඕනෑම Mastodon සේවාදායකයකින් සහ තවත් බොහෝ දේ භාවිතා කරන්නන් සමඟ පුද්ගලයින් අනුගමනය කිරීමට, යාවත්කාලීන කිරීම් පළ කිරීමට සහ පණිවිඩ හුවමාරු කර ගැනීමට හැකි වනු ඇත!
     didnt_get_confirmation: තහවුරු කිරීමේ උපදෙස් ලැබුණේ නැද්ද?
     dont_have_your_security_key: ඔබගේ ආරක්ෂක යතුර නොමැතිද?
@@ -907,7 +877,7 @@ si:
     migrate_account: වෙනත් ගිණුමකට යන්න
     migrate_account_html: ඔබට මෙම ගිණුම වෙනත් එකකට හරවා යැවීමට අවශ්‍ය නම්, ඔබට එය <a href="%{path}">මෙහි වින්‍යාසගත කළ හැක</a>.
     or_log_in_with: හෝ සමඟින් පිවිසෙන්න
-    register: ලියාපදිංචි වන්න
+    register: ලියාපදිංචිය
     registration_closed: "%{instance} නව සාමාජිකයින් පිළිගන්නේ නැත"
     resend_confirmation: තහවුරු කිරීමේ උපදෙස් නැවත යවන්න
     reset_password: මුරපදය නැවත සකසන්න
@@ -930,14 +900,14 @@ si:
     already_following: ඔබ දැනටමත් මෙම ගිණුම අනුගමනය කරයි
     already_requested: ඔබ දැනටමත් එම ගිණුමට අනුගමනය ඉල්ලීමක් යවා ඇත
     error: අවාසනාවකට, දුරස්ථ ගිණුම සෙවීමේදී දෝෂයක් ඇති විය
-    follow: අනුගමනය කරන්න
+    follow: අනුගමනය
     follow_request: 'ඔබ පහත ඉල්ලීමක් යවා ඇත:'
     following: 'සාර්ථකත්වය! ඔබ දැන් පහත දැක්වේ:'
     post_follow:
       close: හෝ ඔබට මෙම කවුළුව වසාදැමිය හැකිය.
       return: පරිශීලකගේ පැතිකඩ පෙන්වන්න
       web: වියමන ට යන්න
-    title: "%{acct}අනුගමනය කරන්න"
+    title: "%{acct} අනුගමනය"
   challenge:
     confirm: ඉදිරියට
     hint_html: "<strong>ඉඟිය:</strong> අපි ඉදිරි පැය සඳහා නැවත ඔබගේ මුරපදය ඔබෙන් නොඉල්ලමු."
@@ -1082,7 +1052,7 @@ si:
   generic:
     all: සියල්ල
     changes_saved_msg: වෙනස්කම් සාර්ථකව සුරකින ලදී!
-    copy: පිටපත්
+    copy: පිටපතක්
     delete: මකන්න
     none: කිසිවක් නැත
     order_by: විසින් ඇණවුම් කරන්න
@@ -1105,7 +1075,7 @@ si:
     success: ඔබගේ දත්ත සාර්ථකව උඩුගත කර ඇති අතර නියමිත වේලාවට සැකසෙනු ඇත
     types:
       blocking: අවහිර කිරීමේ ලැයිස්තුව
-      bookmarks: පොත් යොමු කරන්න
+      bookmarks: පොත් යොමු
       domain_blocking: වසම් අවහිර කිරීමේ ලැයිස්තුව
       following: පහත ලැයිස්තුව
       muting: නිහඬ කිරීමේ ලැයිස්තුව
@@ -1139,7 +1109,7 @@ si:
   login_activities:
     authentication_methods:
       otp: ද්වි-සාධක සත්‍යාපන යෙදුම
-      password: මුර පදය
+      password: මුරපදය
       sign_in_token: ඊමේල් ආරක්ෂක කේතය
       webauthn: ආරක්ෂක යතුරු
     description_html: ඔබ හඳුනා නොගත් ක්‍රියාකාරකම් ඔබ දුටුවහොත්, ඔබේ මුරපදය වෙනස් කිරීම සහ ද්වි-සාධක සත්‍යාපනය සක්‍රීය කිරීම සලකා බලන්න.
@@ -1233,9 +1203,9 @@ si:
         format: "%n%u"
         units:
           billion: බී
-          million: එම්
+          million: ද.ල.
           quadrillion: ප්‍රශ්නය
-          thousand: කේ
+          thousand: ද.
           trillion: ටී
   otp_authentication:
     code_hint: තහවුරු කිරීමට ඔබගේ සත්‍යාපන යෙදුම මගින් ජනනය කරන ලද කේතය ඇතුළු කරන්න
@@ -1247,7 +1217,7 @@ si:
     wrong_code: ඇතුළත් කළ කේතය අවලංගුයි! සේවාදායක වේලාව සහ උපාංග වේලාව නිවැරදිද?
   pagination:
     newer: අලුත්
-    next: සඳහා
+    next: ඊළඟ
     older: වැඩිහිටි
     prev: පෙර
     truncate: "&hellip;"
@@ -1286,7 +1256,7 @@ si:
     remove_selected_domains: තෝරාගත් වසම් වලින් සියලුම අනුගාමිකයින් ඉවත් කරන්න
     remove_selected_followers: තෝරාගත් අනුගාමිකයින් ඉවත් කරන්න
     remove_selected_follows: තෝරාගත් පරිශීලකයින් අනුගමනය නොකරන්න
-    status: ගිණුමේ තත්ත්වය
+    status: ගිණුමේ තත්‍වය
   remote_follow:
     acct: ඔබට ක්‍රියා කිරීමට අවශ්‍ය ඔබගේ username@domain ඇතුලත් කරන්න
     missing_resource: ඔබගේ ගිණුම සඳහා අවශ්‍ය යළි-යොමුවීම් URL එක සොයා ගැනීමට නොහැකි විය
@@ -1344,7 +1314,7 @@ si:
       adobe_air: ඇඩෝබි එයාර්
       android: ඇන්ඩ්‍රොයිඩ්
       blackberry: බ්ලැක්බෙරි
-      chrome_os: ක්‍රෝම්ස්
+      chrome_os: ක්‍රෝම් ඕඑස්
       firefox_os: ෆයර්ෆොක්ස් ඕඑස්
       ios: අයිඕඑස්
       linux: ලිනක්ස්
@@ -1367,10 +1337,10 @@ si:
     delete: ගිණුම මකා දැමීම
     development: සංවර්ධනය
     edit_profile: පැතිකඩ සංස්කරණය
-    export: දත්ත නිර්යාත
+    export: දත්ත නිර්යාතය
     featured_tags: විශේෂාංගගත හැෂ් ටැග්
-    import: ආයත කරන්න
-    import_and_export: ආයාත සහ නිර්යාත
+    import: ආයාතය
+    import_and_export: ආයාත හා නිර්යාත
     migrate: ගිණුම් සංක්‍රමණය
     notifications: දැනුම්දීම්
     preferences: මනාප
@@ -1426,7 +1396,7 @@ si:
       direct: සෘජු
       private: අනුගාමිකයින්-පමණි
       private_long: අනුගාමිකයින්ට පමණක් පෙන්වන්න
-      public: ප්රසිද්ධ
+      public: ප්‍රසිද්ධ
       public_long: හැමෝටම පේනවා
       unlisted: ලැයිස්තුගත නොකළ
       unlisted_long: සෑම කෙනෙකුටම දැකිය හැක, නමුත් පොදු කාලරාමුවෙහි ලැයිස්තුගත කර නොමැත
@@ -1443,8 +1413,8 @@ si:
     keep_direct_hint: ඔබගේ සෘජු පණිවිඩ කිසිවක් මකන්නේ නැත
     keep_media: මාධ්‍ය ඇමුණුම් සමඟ පළ කිරීම් තබා ගන්න
     keep_media_hint: මාධ්‍ය ඇමුණුම් ඇති ඔබේ පළ කිරීම් කිසිවක් මකන්නේ නැත
-    keep_pinned: පින් කළ පළ කිරීම් තබා ගන්න
-    keep_pinned_hint: ඔබගේ පින් කළ පළ කිරීම් කිසිවක් මකන්නේ නැත
+    keep_pinned: ඇමිණූ ලිපි තබාගන්න
+    keep_pinned_hint: ඔබ ඇමිණූ ලිපි කිසිවක් නොමැකෙයි
     keep_polls: ඡන්ද තබා ගන්න
     keep_polls_hint: ඔබගේ ඡන්ද විමසීම් කිසිවක් මකන්නේ නැත
     keep_self_bookmark: ඔබ පිටු සලකුණු කළ පළ කිරීම් තබා ගන්න
@@ -1466,9 +1436,9 @@ si:
     min_reblogs: අඩුම තරමේ පෝස්ට් බූස්ට් කරගෙන තියාගන්න
     min_reblogs_hint: අඩුම තරමින් මෙම වාර ගණන වැඩි කර ඇති ඔබගේ පළ කිරීම් කිසිවක් මකා නොදමන්න. බූස්ට් ගණන නොතකා පළ කිරීම් මැකීමට හිස්ව තබන්න
   stream_entries:
-    pinned: පින් කළ පළ කිරීම
+    pinned: ඇමිණූ ලිපිය
     reblogged: ඉහල නැංවීය
-    sensitive_content: සංවේදී අන්තර්ගතය
+    sensitive_content: සංවේදී අන්තර්ගතයකි
   strikes:
     errors:
       too_late: මෙම වර්ජනයට අභියාචනයක් ඉදිරිපත් කිරීමට ප්‍රමාද වැඩියි

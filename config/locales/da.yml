@@ -2,41 +2,14 @@
 da:
   about:
     about_mastodon_html: 'Fremtidens sociale netværk: Ingen annoncer, ingen virksomhedsovervågning, etisk design og decentralisering! Vær ejer af egne data med Mastodon!'
-    about_this: Om
-    administered_by: 'Håndteres af:'
     api: API
     apps: Mobil-apps
-    contact: Kontakt
     contact_missing: Ikke angivet
     contact_unavailable: Utilgængelig
     documentation: Dokumentation
     hosted_on: Mostodon hostet på %{domain}
-    instance_actor_flash: |
-      Denne konto er en virtuel aktør brugt som repræsentation af selve serveren og ikke en individuel bruger.
-      Den bruges til fællesformål og bør ikke blokeres, medmindre hele instansen ønskes blokeret, i hvilket tilfælde man bør bruge domæneblokering.
     privacy_policy: Fortrolighedspolitik
-    rules: Serverregler
-    rules_html: 'Nedenfor ses en oversigt over regler, som skal følges, hvis man ønsker at have en konto på denne Mastodon-server:'
     source_code: Kildekode
-    status_count_after:
-      one: indlæg
-      other: indlæg
-    status_count_before: Som har postet
-    unavailable_content: Modererede servere
-    unavailable_content_description:
-      domain: Server
-      reason: Årsag
-      rejecting_media: 'Mediefiler fra disse servere hverken behandles eller gemmes, og ingen miniaturebilleder vises, hvilket kræver manuelt klik-igennem til originalfilen:'
-      rejecting_media_title: Filtrerede medier
-      silenced: 'Indlæg fra disse servere er skjult i offentlige tidslinjer og konversationer, og der genereres ingen notifikationer fra deres brugerinteraktioner, medmindre man følger dem:'
-      silenced_title: Begrænsede servere
-      suspended: 'Data fra disse servere hverken behandles, gemmes eller udveksles, hvilket umuliggør interaktion eller kommunikation med brugere fra disse servere:'
-      suspended_title: Suspenderede servere
-    unavailable_content_html: Mastodon tillader generelt, at man ser indhold og interagere med brugere fra enhver anden server i fediverset. Disse er undtagelserne, som er implementeret på netop denne server.
-    user_count_after:
-      one: bruger
-      other: brugere
-    user_count_before: Hjem til
     what_is_mastodon: Hvad er Mastodon?
   accounts:
     choices_html: "%{name}s valg:"
@@ -734,9 +707,6 @@ da:
         users: Til indloggede lokale brugere
       domain_blocks_rationale:
         title: Vis begrundelse
-      hero:
-        desc_html: Vises på forsiden. Mindst 600x100px anbefales. Hvis ikke opsat, benyttes serverminiaturebillede
-        title: Heltebillede
       mascot:
         desc_html: Vises på flere sider. Mindst 293x205px anbefales. Hvis ikke opsat, benyttes standardmaskot
         title: Maskotbillede

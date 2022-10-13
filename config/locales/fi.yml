@@ -2,40 +2,13 @@
 fi:
   about:
     about_mastodon_html: 'Tulevaisuuden sosiaalinen verkosto: Ei mainoksia, ei valvontaa, toteutettu avoimilla protokollilla ja hajautettu! Pidä tietosi ominasi Mastodonilla!'
-    about_this: Tietoa tästä palvelimesta
-    administered_by: 'Ylläpitäjä:'
     api: Rajapinta
     apps: Mobiilisovellukset
-    contact: Ota yhteyttä
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
     documentation: Dokumentaatio
     hosted_on: Mastodon palvelimella %{domain}
-    instance_actor_flash: |
-      Tämä on virtuaalitili, joka edustaa itse palvelinta eikä yksittäistä käyttäjää.
-      Sitä käytetään yhdistämistarkoituksiin, eikä sitä saa estää, ellet halua estää koko palvelinta, jolloin sinun on käytettävä verkkotunnuksen estoa.
-    rules: Palvelimen säännöt
-    rules_html: 'Alla on yhteenveto säännöistä, joita sinun on noudatettava, jos haluat olla tili tällä Mastodonin palvelimella:'
     source_code: Lähdekoodi
-    status_count_after:
-      one: julkaisun
-      other: julkaisua
-    status_count_before: Julkaistu
-    unavailable_content: Moderoidut palvelimet
-    unavailable_content_description:
-      domain: Palvelin
-      reason: Syy
-      rejecting_media: 'Näiden palvelimien mediatiedostoja ei käsitellä tai tallenneta eikä pikkukuvia näytetä, mikä edellyttää manuaalista klikkausta alkuperäiseen tiedostoon:'
-      rejecting_media_title: Media suodatettu
-      silenced: 'Julkaisut näiltä palvelimilta piilotetaan julkisilta aikajanoilta ja keskusteluista, ilmoituksia ei luoda näiden käyttäjien tekemistä toiminnoista, jos et seuraa heitä:'
-      silenced_title: Hiljennetyt palvelimet
-      suspended: 'Dataa näiltä palvelimilta ei tulla käsittelemään, tallentamaan tai jakamaan. Tämä tekee kommunikoinnin näiden käyttäjien kanssa mahdottomaksi:'
-      suspended_title: Keskeytetyt palvelimet
-    unavailable_content_html: Mastodonin avulla voit yleensä tarkastella sisältöä ja olla vuorovaikutuksessa käyttäjien kanssa millä tahansa muulla palvelimella fediversessä. Nämä ovat poikkeuksia, jotka on tehty tälle palvelimelle.
-    user_count_after:
-      one: käyttäjä
-      other: käyttäjää
-    user_count_before: Palvelimella
     what_is_mastodon: Mikä on Mastodon?
   accounts:
     choices_html: "%{name} valinnat:"
@@ -728,9 +701,6 @@ fi:
         users: Kirjautuneille paikallisille käyttäjille
       domain_blocks_rationale:
         title: Näytä syy
-      hero:
-        desc_html: Näytetään etusivulla. Suosituskoko vähintään 600x100 pikseliä. Jos kuvaa ei aseteta, käytetään instanssin pikkukuvaa
-        title: Sankarin kuva
       mascot:
         desc_html: Näytetään useilla sivuilla. Suositus vähintään 293×205px. Kun ei ole asetettu, käytetään oletuskuvaa
         title: Maskottikuva

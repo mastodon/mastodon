@@ -2,41 +2,14 @@
 es-AR:
   about:
     about_mastodon_html: 'La red social del futuro: ¡sin publicidad, sin vigilancia corporativa, con diseño ético y descentralización! ¡Con Mastodon vos sos el dueño de tus datos!'
-    about_this: Acerca de Mastodon
-    administered_by: 'Administrado por:'
     api: API
     apps: Aplicaciones móviles
-    contact: Contacto
     contact_missing: No establecido
     contact_unavailable: No disponible
     documentation: Documentación
     hosted_on: Mastodon alojado en %{domain}
-    instance_actor_flash: |
-      Esta cuenta es un actor virtual usado para representar al propio servidor y no a ningún usuario individual.
-      Se usa para fines federativos y no debe ser bloqueado a menos que quieras bloquear toda la instancia, en cuyo caso deberías usar un bloqueo de dominio.
     privacy_policy: Política de privacidad
-    rules: Reglas del servidor
-    rules_html: 'Abajo hay un resumen de las reglas que tenés que seguir si querés tener una cuenta en este servidor de Mastodon:'
     source_code: Código fuente
-    status_count_after:
-      one: mensaje
-      other: mensajes
-    status_count_before: Que enviaron
-    unavailable_content: Servidores moderados
-    unavailable_content_description:
-      domain: Servidor
-      reason: Motivo
-      rejecting_media: 'Los archivos de medios de este servidor no van a ser procesados y no se mostrarán miniaturas, lo que requiere un clic manual hacia el archivo original:'
-      rejecting_media_title: Medios filtrados
-      silenced: 'Los mensajes de estos servidores se ocultarán en las líneas temporales y conversaciones públicas, y no se generarán notificaciones de las interacciones de sus usuarios, a menos que los estés siguiendo:'
-      silenced_title: Servidores limitados
-      suspended: 'No se procesarán, almacenarán o intercambiarán datos de estos servidores, haciendo imposible cualquier interacción o comunicación con los usuarios de estos servidores:'
-      suspended_title: Servidores suspendidos
-    unavailable_content_html: Mastodon generalmente te permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se hicieron en este servidor en particular.
-    user_count_after:
-      one: usuario
-      other: usuarios
-    user_count_before: Hogar de
     what_is_mastodon: "¿Qué es Mastodon?"
   accounts:
     choices_html: 'Recomendados de %{name}:'
@@ -471,7 +444,7 @@ es-AR:
       status: Estado
       suppress: Eliminar recomendación de cuentas para seguir
       suppressed: Eliminado
-      title: Recomendaciones de cuentas para seguir
+      title: Recom. de cuentas a seguir
       unsuppress: Restablecer recomendaciones de cuentas para seguir
     instances:
       availability:
@@ -735,9 +708,6 @@ es-AR:
         users: A usuarios locales con sesiones abiertas
       domain_blocks_rationale:
         title: Mostrar razonamiento
-      hero:
-        desc_html: Mostrado en la página principal. Se recomienda un tamaño mínimo de 600x100 píxeles. Predeterminadamente se establece a la miniatura del servidor
-        title: Imagen de portada
       mascot:
         desc_html: Mostrado en múltiples páginas. Se recomienda un tamaño mínimo de 293x205 píxeles. Cuando no se especifica, se muestra la mascota predeterminada
         title: Imagen de la mascota
@@ -1513,9 +1483,9 @@ es-AR:
     preferences: Configuración
     profile: Perfil
     relationships: Seguimientos
-    statuses_cleanup: Eliminación automática de mensajes
+    statuses_cleanup: Eliminación auto. de mensajes
     strikes: Moderación de incumplimientos
-    two_factor_authentication: Autenticación de dos factores
+    two_factor_authentication: Aut. de dos factores
     webauthn_authentication: Llaves de seguridad
   statuses:
     attached:

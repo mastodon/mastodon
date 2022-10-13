@@ -2,41 +2,14 @@
 de:
   about:
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral – genau wie E-Mail!
-    about_this: Über diesen Server
-    administered_by: 'Betrieben von:'
     api: API
     apps: Mobile Apps
-    contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
     documentation: Dokumentation
     hosted_on: Mastodon, gehostet auf %{domain}
-    instance_actor_flash: |
-      Dieses Konto ist ein virtueller Akteur, welcher den Server selbst – und nicht einen einzelnen Benutzer – repräsentiert.
-      Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn, du möchtest die gesamte Instanz blockieren.
     privacy_policy: Datenschutzerklärung
-    rules: Server-Regeln
-    rules_html: 'Unten ist eine Zusammenfassung der Regeln, denen du folgen musst, wenn du ein Konto auf diesem Mastodon-Server haben möchtest:'
     source_code: Quellcode
-    status_count_after:
-      one: Beitrag
-      other: Beiträge
-    status_count_before: mit
-    unavailable_content: Nicht verfügbarer Inhalt
-    unavailable_content_description:
-      domain: Server
-      reason: 'Grund:'
-      rejecting_media: Mediendateien dieses Servers werden nicht verarbeitet und keine Thumbnails werden angezeigt, was manuelles Anklicken auf den anderen Server erfordert.
-      rejecting_media_title: Gefilterte Medien
-      silenced: Beiträge von diesem Server werden nirgends angezeigt, außer in deiner Startseite, wenn du der Person folgst, die den Beitrag verfasst hat.
-      silenced_title: Stummgeschaltete Server
-      suspended: Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.
-      suspended_title: Gesperrte Server
-    unavailable_content_html: Mastodon erlaubt es dir generell, mit Inhalten zu interagieren, diese anzuzeigen und mit anderen Nutzern im Fediversum über Server hinweg zu interagieren. Dies sind die Ausnahmen, die auf diesem bestimmten Server gemacht wurden.
-    user_count_after:
-      one: Profil
-      other: Profile
-    user_count_before: Hostet
     what_is_mastodon: Was ist Mastodon?
   accounts:
     choices_html: "%{name} empfiehlt:"
@@ -735,9 +708,6 @@ de:
         users: Für angemeldete lokale Benutzer
       domain_blocks_rationale:
         title: Rationale anzeigen
-      hero:
-        desc_html: Wird auf der Startseite angezeigt. Mindestens 600x100px sind empfohlen. Wenn es nicht gesetzt wurde, wird das Server-Thumbnail dafür verwendet
-        title: Bild für Einstiegsseite
       mascot:
         desc_html: Angezeigt auf mehreren Seiten. Mehr als 293x205px empfohlen. Wenn es nicht gesetzt wurde, wird stattdessen das Standard-Maskottchen genutzt werden.
         title: Maskottchen-Bild

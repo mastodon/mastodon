@@ -2,38 +2,13 @@
 'no':
   about:
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
-    about_this: Om
-    administered_by: 'Administrert av:'
     api: API
     apps: Mobilapper
-    contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
     documentation: Dokumentasjon
     hosted_on: Mastodon driftet på %{domain}
-    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
-    rules: Server regler
-    rules_html: 'Nedenfor er et sammendrag av reglene du må følge om du vil ha en konto på denne serveren av Mastodon:'
     source_code: Kildekode
-    status_count_after:
-      one: innlegg
-      other: statuser
-    status_count_before: Som skrev
-    unavailable_content: Utilgjengelig innhold
-    unavailable_content_description:
-      domain: Tjener
-      reason: Årsak
-      rejecting_media: 'Mediafiler fra disse tjenerne vil ikke bli behandlet eller lagret, og ingen miniatyrbilder vil bli vist, noe som vil kreve manuell klikking for å besøke den opprinnelige filen:'
-      rejecting_media_title: Filtrert media
-      silenced: 'Innlegg fra disse tjenerne vil bli skjult fra offentlige tidslinjer og samtaler, og ingen varslinger vil bli generert fra disse brukernes samhandlinger, med mindre du følger dem:'
-      silenced_title: Stilnede tjenere
-      suspended: 'Ingen data fra disse tjenerne vil bli behandlet, lagret, eller utvekslet, noe som vil gjøre enhver samhandling eller kommunikasjon med brukere fra disse tjenerne umulig:'
-      suspended_title: Suspenderte tjenere
-    unavailable_content_html: Mastodon lar deg vanligvis se innhold fra og samhandle med brukere fra enhver annen tjener i strømiverset. Dette er unntakene som har blitt gjort på denne spesifikke tjeneren.
-    user_count_after:
-      one: bruker
-      other: brukere
-    user_count_before: Her bor
     what_is_mastodon: Hva er Mastodon?
   accounts:
     choices_html: "%{name} sine anbefalte:"
@@ -482,9 +457,6 @@
         users: Til lokale brukere som er logget inn
       domain_blocks_rationale:
         title: Vis grunnlaget
-      hero:
-        desc_html: Vises på forsiden. Minst 600×100px er anbefalt. Dersom dette ikke er valgt, faller det tilbake på tjenerens miniatyrbilde
-        title: Heltebilde
       mascot:
         desc_html: Vist på flere sider. Minst 293×205px er anbefalt. Dersom det ikke er valgt, faller det tilbake til standardmaskoten
         title: Maskotbilde

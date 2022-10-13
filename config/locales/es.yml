@@ -2,41 +2,14 @@
 es:
   about:
     about_mastodon_html: 'La red social del futuro: ¡Sin anuncios, sin vigilancia corporativa, diseño ético, y descentralización! ¡Sé dueño de tu información con Mastodon!'
-    about_this: Información
-    administered_by: 'Administrado por:'
     api: API
     apps: Aplicaciones móviles
-    contact: Contacto
     contact_missing: No especificado
     contact_unavailable: No disponible
     documentation: Documentación
     hosted_on: Mastodon alojado en %{domain}
-    instance_actor_flash: |
-      Esta cuenta es un actor virtual usado para representar al servidor y no a ningún usuario individual.
-      Se usa para fines federativos y no debe ser bloqueado a menos que usted quiera bloquear toda la instancia, en cuyo caso se debe utilizar un bloque de dominio.
     privacy_policy: Política de Privacidad
-    rules: Normas del servidor
-    rules_html: 'A continuación hay un resumen de las normas que debes seguir si quieres tener una cuenta en este servidor de Mastodon:'
     source_code: Código fuente
-    status_count_after:
-      one: estado
-      other: estados
-    status_count_before: Qué han escrito
-    unavailable_content: Contenido no disponible
-    unavailable_content_description:
-      domain: Servidor
-      reason: 'Motivo:'
-      rejecting_media: Los archivos multimedia de este servidor no serán procesados y no se mostrarán miniaturas, lo que requiere un clic manual en el otro servidor.
-      rejecting_media_title: Medios filtrados
-      silenced: Las publicaciones de este servidor no se mostrarán en ningún lugar salvo en el Inicio si sigues al autor.
-      silenced_title: Servidores silenciados
-      suspended: No podrás seguir a nadie de este servidor, y ningún dato de este será procesado o almacenado, y no se intercambiarán datos.
-      suspended_title: Servidores suspendidos
-    unavailable_content_html: Mastodon generalmente le permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se han hecho en este servidor en particular.
-    user_count_after:
-      one: usuario
-      other: usuarios
-    user_count_before: Tenemos
     what_is_mastodon: "¿Qué es Mastodon?"
   accounts:
     choices_html: 'Elecciones de %{name}:'
@@ -735,9 +708,6 @@ es:
         users: Para los usuarios locales que han iniciado sesión
       domain_blocks_rationale:
         title: Mostrar la razón de ser
-      hero:
-        desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
-        title: Imagen de portada
       mascot:
         desc_html: Mostrado en múltiples páginas. Se recomienda un tamaño mínimo de 293x205px. Cuando no se especifica, se muestra la mascota por defecto
         title: Imagen de la mascota

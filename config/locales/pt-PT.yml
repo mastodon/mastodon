@@ -2,41 +2,14 @@
 pt-PT:
   about:
     about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
-    about_this: Sobre esta instância
-    administered_by: 'Administrado por:'
     api: API
     apps: Aplicações móveis
-    contact: Contacto
     contact_missing: Não configurado
     contact_unavailable: n.d.
     documentation: Documentação
     hosted_on: Mastodon em %{domain}
-    instance_actor_flash: |
-      Esta conta é um actor virtual usado para representar a própria instância e não um utilizador individual.
-      É usada para motivos de federação e não deve ser bloqueada a não ser que que queira bloquear a instância por completo. Se for esse o caso, deverá usar o bloqueio de domínio.
     privacy_policy: Política de Privacidade
-    rules: Regras da instância
-    rules_html: 'Abaixo está um resumo das regras que precisa seguir se pretender ter uma conta nesta instância do Mastodon:'
     source_code: Código fonte
-    status_count_after:
-      one: publicação
-      other: publicações
-    status_count_before: Que fizeram
-    unavailable_content: Conteúdo indisponível
-    unavailable_content_description:
-      domain: Instância
-      reason: Motivo
-      rejecting_media: 'Arquivos de media destas instâncias não serão processados ou armazenados, e nenhuma miniatura será exibida, o que requer que o utilizador clique e abra o arquivo original manualmente:'
-      rejecting_media_title: Media filtrada
-      silenced: 'Publicações destas instâncias serão ocultas em linhas do tempo e conversas públicas, e nenhuma notificação será gerada a partir das interações dos seus utilizadores, a menos que você os esteja a seguir:'
-      silenced_title: Servidores silenciados
-      suspended: 'Nenhum dado dessas instâncias será processado, armazenado ou trocado, tornando qualquer interação ou comunicação com os utilizadores dessas instâncias impossível:'
-      suspended_title: Servidores suspensos
-    unavailable_content_html: Mastodon geralmente permite que você veja o conteúdo e interaja com utilizadores de qualquer outra instância no fediverso. Estas são as exceções desta instância em específico.
-    user_count_after:
-      one: utilizador
-      other: utilizadores
-    user_count_before: Casa para
     what_is_mastodon: O que é o Mastodon?
   accounts:
     choices_html: 'escolhas de %{name}:'
@@ -735,9 +708,6 @@ pt-PT:
         users: Para utilizadores locais que se encontrem autenticados
       domain_blocks_rationale:
         title: Mostrar motivo
-      hero:
-        desc_html: Apresentado na primeira página. Pelo menos 600x100px recomendados. Quando não é definido, é apresentada a miniatura da instância
-        title: Imagem Hero
       mascot:
         desc_html: Apresentada em múltiplas páginas. Pelo menos 293x205px recomendados. Quando não é definida, é apresentada a mascote predefinida
         title: Imagem da mascote
