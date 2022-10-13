@@ -3,13 +3,9 @@ require 'rails_helper'
 RSpec.describe AboutController, type: :controller do
   render_views
 
-  describe 'GET #more' do
+  describe 'GET #show' do
     before do
-      get :more
-    end
-
-    it 'assigns @instance_presenter' do
-      expect(assigns(:instance_presenter)).to be_kind_of InstancePresenter
+      get :show
     end
 
     it 'returns http success' do

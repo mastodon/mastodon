@@ -44,7 +44,7 @@ class PrivacyPolicy extends React.PureComponent {
           </div>
 
           <div
-            className='privacy-policy__body'
+            className='privacy-policy__body prose'
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </div>
