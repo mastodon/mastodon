@@ -341,6 +341,7 @@ zh-TW:
       listed: 已顯示
       new:
         title: 加入新的自訂表情符號
+      no_emoji_selected: 未選取任何 emoji，因此未變更
       not_permitted: 您無權執行此操作
       overwrite: 覆蓋
       shortcode: 短代碼
@@ -795,9 +796,12 @@ zh-TW:
       links:
         allow: 允許連結
         allow_provider: 允許發行者
-        description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索現在世界上正在發生的事情。除非您核准該發佈者，連結將不被公開展示。您也可以核准或駁回個別連結。
+        description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索現在世界上正在發生的事情。除非您核准該發行者，連結將不被公開展示。您也可以核准或駁回個別連結。
         disallow: 不允許連結
         disallow_provider: 不允許發行者
+        no_link_selected: 未選取任何鏈結，因此未變更
+        publishers:
+          no_publisher_selected: 未選取任何發行者，因此未變更
         shared_by_over_week:
           other: 上週被 %{count} 名使用者分享
         title: 熱門連結
@@ -816,6 +820,7 @@ zh-TW:
         description_html: 這些是您伺服器上已知被正在大量分享及加入最愛之嘟文。這些嘟文能幫助您伺服器上舊雨新知發現更多帳號來跟隨。除非您核准該作者且作者允許他們的帳號被推薦至其他人，嘟文將不被公開展示。您可以核准或駁回個別嘟文。
         disallow: 不允許嘟文
         disallow_account: 不允許作者
+        no_status_selected: 未選取任何熱門嘟文，因此未變更
         not_discoverable: 嘟文作者選擇不被發現
         shared_by:
           other: 分享過或／及收藏過 %{friendly_count} 次
@@ -830,6 +835,7 @@ zh-TW:
           tag_uses_measure: 總使用次數
         description_html: 這些主題標籤正在您的伺服器上大量嘟文中出現。這些主題標籤能幫助您的使用者發現人們正集中討論的內容。除非您核准，主題標籤將不被公開展示。
         listable: 能被建議
+        no_tag_selected: 未選取任何主題標籤，因此未變更
         not_listable: 不能被建議
         not_trendable: 不會登上熱門
         not_usable: 不可被使用
