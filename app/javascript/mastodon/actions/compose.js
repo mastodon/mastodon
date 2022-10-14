@@ -1,18 +1,20 @@
-import api from '../api';
-import { CancelToken, isCancel } from 'axios';
+import { isCancel } from 'axios';
 import { throttle } from 'lodash';
-import { search as emojiSearch } from '../features/emoji/emoji_mart_search_light';
-import { tagHistory } from '../settings';
-import { useEmoji } from './emojis';
-import resizeImage from '../utils/resize_image';
-import { importFetchedAccounts } from './importer';
-import { updateTimeline } from './timelines';
-import { showAlertForError } from './alerts';
-import { showAlert } from './alerts';
-import { openModal } from './modal';
 import { defineMessages } from 'react-intl';
+import api from 'mastodon/api';
+import { search as emojiSearch } from 'mastodon/features/emoji/emoji_mart_search_light';
+import { tagHistory } from 'mastodon/settings';
+import resizeImage from 'mastodon/utils/resize_image';
+import { showAlert, showAlertForError } from './alerts';
+import { useEmoji } from './emojis';
+import { importFetchedAccounts } from './importer';
+import { openModal } from './modal';
+import { updateTimeline } from './timelines';
 
-let cancelFetchComposeSuggestionsAccounts, cancelFetchComposeSuggestionsTags;
+/** @type {AbortController | undefined} */
+let fetchComposeSuggestionsAccountsController;
+/** @type {AbortController | undefined} */
+let fetchComposeSuggestionsTagsController;
 
 export const COMPOSE_CHANGE          = 'COMPOSE_CHANGE';
 export const COMPOSE_SUBMIT_REQUEST  = 'COMPOSE_SUBMIT_REQUEST';
@@ -433,8 +435,8 @@ export function undoUploadCompose(media_id) {
 };
 
 export function clearComposeSuggestions() {
-  if (cancelFetchComposeSuggestionsAccounts) {
-    cancelFetchComposeSuggestionsAccounts();
+  if (fetchComposeSuggestionsAccountsController) {
+    fetchComposeSuggestionsAccountsController.abort();
   }
   return {
     type: COMPOSE_SUGGESTIONS_CLEAR,
@@ -442,14 +444,14 @@ export function clearComposeSuggestions() {
 };
 
 const fetchComposeSuggestionsAccounts = throttle((dispatch, getState, token) => {
-  if (cancelFetchComposeSuggestionsAccounts) {
-    cancelFetchComposeSuggestionsAccounts();
+  if (fetchComposeSuggestionsAccountsController) {
+    fetchComposeSuggestionsAccountsController.abort();
   }
 
+  fetchComposeSuggestionsAccountsController = new AbortController();
+
   api(getState).get('/api/v1/accounts/search', {
-    cancelToken: new CancelToken(cancel => {
-      cancelFetchComposeSuggestionsAccounts = cancel;
-    }),
+    signal: fetchComposeSuggestionsAccountsController.signal,
 
     params: {
       q: token.slice(1),
@@ -472,16 +474,16 @@ const fetchComposeSuggestionsEmojis = (dispatch, getState, token) => {
 };
 
 const fetchComposeSuggestionsTags = throttle((dispatch, getState, token) => {
-  if (cancelFetchComposeSuggestionsTags) {
-    cancelFetchComposeSuggestionsTags();
+  if (fetchComposeSuggestionsTagsController) {
+    fetchComposeSuggestionsTagsController.abort();
   }
 
   dispatch(updateSuggestionTags(token));
 
+  fetchComposeSuggestionsTagsController = new AbortController();
+
   api(getState).get('/api/v2/search', {
-    cancelToken: new CancelToken(cancel => {
-      cancelFetchComposeSuggestionsTags = cancel;
-    }),
+    signal: fetchComposeSuggestionsTagsController.signal,
 
     params: {
       type: 'hashtags',
