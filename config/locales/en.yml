@@ -345,6 +345,7 @@ en:
       listed: Listed
       new:
         title: Add new custom emoji
+      no_emoji_selected: No emojis were changed as none were selected
       not_permitted: You are not permitted to perform this action
       overwrite: Overwrite
       shortcode: Shortcode
@@ -813,6 +814,9 @@ en:
         description_html: These are links that are currently being shared a lot by accounts that your server sees posts from. It can help your users find out what's going on in the world. No links are displayed publicly until you approve the publisher. You can also allow or reject individual links.
         disallow: Disallow link
         disallow_provider: Disallow publisher
+        no_link_selected: No links were changed as none were selected
+        publishers:
+          no_publisher_selected: No publishers were changed as none were selected
         shared_by_over_week:
           one: Shared by one person over the last week
           other: Shared by %{count} people over the last week
@@ -832,6 +836,7 @@ en:
         description_html: These are posts that your server knows about that are currently being shared and favourited a lot at the moment. It can help your new and returning users to find more people to follow. No posts are displayed publicly until you approve the author, and the author allows their account to be suggested to others. You can also allow or reject individual posts.
         disallow: Disallow post
         disallow_account: Disallow author
+        no_status_selected: No trending posts were changed as none were selected
         not_discoverable: Author has not opted-in to being discoverable
         shared_by:
           one: Shared or favourited one time
@@ -847,6 +852,7 @@ en:
           tag_uses_measure: total uses
         description_html: These are hashtags that are currently appearing in a lot of posts that your server sees. It can help your users find out what people are talking the most about at the moment. No hashtags are displayed publicly until you approve them.
         listable: Can be suggested
+        no_tag_selected: No tags were changed as none were selected
         not_listable: Won't be suggested
         not_trendable: Won't appear under trends
         not_usable: Cannot be used

@@ -15,7 +15,7 @@ class Admin::Trends::StatusesController < Admin::BaseController
     @form = Trends::StatusBatch.new(trends_status_batch_params.merge(current_account: current_account, action: action_from_button))
     @form.save
   rescue ActionController::ParameterMissing
-    flash[:alert] = I18n.t('admin.accounts.no_account_selected')
+    flash[:alert] = I18n.t('admin.trends.statuses.no_status_selected')
   ensure
     redirect_to admin_trends_statuses_path(filter_params)
   end
