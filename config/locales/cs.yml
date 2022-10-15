@@ -9,6 +9,7 @@ cs:
     hosted_on: Mastodon na doméně %{domain}
     privacy_policy: Ochrana osobních údajů
     source_code: Zdrojový kód
+    title: O aplikaci
     what_is_mastodon: Co je Mastodon?
   accounts:
     choices_html: "Volby %{name}:"
@@ -341,6 +342,7 @@ cs:
       listed: Uvedeno
       new:
         title: Přidat nové vlastní emoji
+      no_emoji_selected: Žádné emoji nebyly změněny, protože nikdo nebyl vybrán
       not_permitted: K provedené této akce nemáte dostatečná oprávnění
       overwrite: Přepsat
       shortcode: Zkratka
@@ -831,6 +833,9 @@ cs:
         description_html: Toto jsou odkazy, které jsou momentálně hojně sdíleny účty, jejichž příspěvky váš server vidí. To může pomoct vašim uživatelům zjistit, co se děje ve světě. Žádné odkazy se nezobrazují veřejně, dokud neschválíte vydavatele. Můžete také povolit nebo zamítnout jednotlivé odkazy.
         disallow: Zakázat odkaz
         disallow_provider: Zakázat vydavatele
+        no_link_selected: Nebyly změněny žádné odkazy, protože nebyl vybrán žádný
+        publishers:
+          no_publisher_selected: Nebyly změněny žádní publikující, protože nikdo nebyl vybrán
         shared_by_over_week:
           one: Sdílený jedním člověkem za poslední týden
           few: Sdílený %{count} lidmi za poslední týden
@@ -852,6 +857,7 @@ cs:
         description_html: Toto jsou příspěvky, o kterých váš server ví, že jsou momentálně hodně sdíleny a oblibovány. To může pomoci vašim novým i vracejícím se uživatelům najít další lidi ke sledování. Žádné příspěvky se nezobrazují veřejně, dokud neschválíte autora a tento autor nepovolí navrhování svého účtu ostatním. Můžete také povolit či zamítnout jednotlivé příspěvky.
         disallow: Zakázat příspěvek
         disallow_account: Zakázat autora
+        no_status_selected: Nebyly změněny žádné populární příspěvky, protože nikdo nebyl vybrán
         not_discoverable: Autor nepovolil navrhování svého účtu ostatním
         shared_by:
           one: Jednou sdílen nebo oblíben
@@ -869,6 +875,7 @@ cs:
           tag_uses_measure: použití celkem
         description_html: Toto jsou hashtagy, které se momentálně objevují v mnoha příspěvcích, které váš server vidí. To může pomoci vašim uživatelům zjistit, o čem lidé zrovna nejvíce mluví. Žádné hashtagy se nezobrazují veřejně, dokud je neschválíte.
         listable: Může být navrhován
+        no_tag_selected: Nebyly změněny žádné štítky, protože nikdo nebyl vybrán
         not_listable: Nebude navrhován
         not_trendable: Neobjeví se mezi populárními
         not_usable: Nemůže být používán
@@ -978,6 +985,7 @@ cs:
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
+    apply_for_account: Přejít na čekací frontu
     change_password: Heslo
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.
