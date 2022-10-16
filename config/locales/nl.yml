@@ -422,6 +422,7 @@ nl:
       domain: Domein
       new:
         create: Blokkeren
+        resolve: Domein opzoeken
         title: Nieuw e-maildomein blokkeren
       title: Geblokkeerde e-maildomeinen
     follow_recommendations:
@@ -539,6 +540,7 @@ nl:
           other: "%{count} opmerkingen"
       action_log: Auditlog
       action_taken_by: Actie uitgevoerd door
+      add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
       assigned: Toegewezen moderator
@@ -588,6 +590,7 @@ nl:
         moderation: Moderatie
         special: Speciaal
       delete: Verwijderen
+      edit: Rol '%{name}' bewerken
       everyone: Standaardrechten
       everyone_full_description_html: Dit is de <strong>basisrol</strong> die van toepassing is op <strong>alle gebruikers</strong>, zelfs voor diegenen zonder toegewezen rol. Alle andere rollen hebben de rechten van deze rol als minimum.
       permissions_count:
@@ -702,6 +705,7 @@ nl:
     statuses:
       back_to_account: Terug naar accountpagina
       batch:
+        remove_from_report: Uit de rapportage verwijderen
         report: Rapportage
       deleted: Verwijderd
       media:
@@ -758,15 +762,44 @@ nl:
         title: Trending berichten
       tags:
         dashboard:
+          tag_accounts_measure: aantal unieke keren gebruikt
           tag_languages_dimension: Populaire talen
           tag_servers_dimension: Populaire servers
+          tag_servers_measure: verschillende servers
+          tag_uses_measure: totaal aantal keer gebruikt
+        listable: Kan worden aanbevolen
         no_tag_selected: Er werden geen hashtags gewijzigd, omdat er geen enkele werd geselecteerd
+        not_listable: Wordt niet aanbevolen
+        not_usable: Kan niet worden gebruikt
+        title: Trending hashtags
+        trending_rank: 'Trending #%{rank}'
+        usable: Kan worden gebruikt
+      title: Trends
+      trending: Trending
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
       edit_preset: Preset voor waarschuwing bewerken
       empty: Je hebt nog geen presets voor waarschuwingen toegevoegd.
       title: Presets voor waarschuwingen beheren
+    webhooks:
+      add_new: Eindpunt toevoegen
+      delete: Verwijderen
+      disable: Uitschakelen
+      disabled: Uitgeschakeld
+      edit: Eindpunt bewerken
+      enable: Inschakelen
+      enabled: Ingeschakeld
+      enabled_events:
+        one: 1 ingeschakelde gebeurtenis
+        other: "%{count} ingeschakelde gebeurtenissen"
+      events: Gebeurtenissen
+      new: Nieuwe webhook
+      rotate_secret: Secret opnieuw genereren
+      secret: Signing secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -787,6 +820,13 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: 'Nieuwe rapportage op %{instance} (#%{id})'
+    new_trends:
+      new_trending_links:
+        title: Trending links
+      new_trending_statuses:
+        title: Trending berichten
+      new_trending_tags:
+        title: Trending hashtags
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
@@ -867,6 +907,7 @@ nl:
       functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
+      view_strikes: Bekijk jouw door moderatoren eerder vastgestelde overtredingen
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
   authorize_follow:
@@ -927,6 +968,7 @@ nl:
       username_unavailable: Jouw gebruikersnaam zal onbeschikbaar blijven
   disputes:
     strikes:
+      action_taken: Genomen maatregel
       appeal: Bezwaar
       appeal_approved: Het ingediende bezwaar is goedgekeurd en de eerder vastgestelde overtreding is niet langer geldig
       appeal_rejected: Het ingediende bezwaar is afgewezen
@@ -935,7 +977,11 @@ nl:
       appeals:
         submit: Bezwaar indienen
       approve_appeal: Bezwaar goedkeuren
+      associated_report: Bijbehorende rapportage
+      created_at: Datum en tijd
+      recipient: Geadresseerd aan
       reject_appeal: Bezwaar afgewezen
+      status: 'Bericht #%{id}'
       title_actions:
         delete_statuses: Verwijdering bericht
         disable: Bevriezen van account
@@ -1151,6 +1197,8 @@ nl:
     admin:
       report:
         subject: "%{name} heeft een rapportage ingediend"
+      sign_up:
+        subject: "%{name} heeft zich geregistreerd"
     favourite:
       body: 'Jouw bericht werd door %{name} als favoriet gemarkeerd:'
       subject: "%{name} markeerde jouw bericht als favoriet"
@@ -1262,6 +1310,8 @@ nl:
     reply:
       proceed: Doorgaan met reageren
       prompt: 'Je wilt op het volgende bericht reageren:'
+  rss:
+    content_warning: 'Inhoudswaarschuwing:'
   scheduled_statuses:
     over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
     over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
@@ -1327,6 +1377,7 @@ nl:
     profile: Profiel
     relationships: Volgers en gevolgden
     statuses_cleanup: Automatisch berichten verwijderen
+    strikes: Berispingen door moderatoren
     two_factor_authentication: Tweestapsverificatie
     webauthn_authentication: Beveiligingssleutels
   statuses:
@@ -1378,6 +1429,7 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   statuses_cleanup:
+    exceptions: Uitzonderingen
     ignore_favs: Favorieten negeren
     ignore_reblogs: Boosts negeren
     keep_direct: Directe berichten behouden
@@ -1417,6 +1469,7 @@ nl:
     formats:
       default: "%d %B %Y om %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Toevoegen
     disable: Tweestapsverificatie uitschakelen
