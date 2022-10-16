@@ -13,6 +13,7 @@ const messages = defineMessages({
   hashtag_all: { id: 'account.hashtag_all', defaultMessage: 'All' },
   hashtag_all_description: { id: 'account.hashtag_all_description', defaultMessage: 'All posts (deselect hashtags)' },
   hashtag_select_description: { id: 'account.hashtag_select_description', defaultMessage: 'Select hashtag #{name}' },
+  statuses_counter: { id: 'account.statuses_counter', defaultMessage: '{count, plural, one {{counter} Post} other {{counter} Posts}}' },
 });
 
 const mapStateToProps = (state, { account }) => ({
@@ -57,7 +58,7 @@ class FeaturedTags extends ImmutablePureComponent {
 
               return (
                 <Permalink key={`#${name}`} className={classNames('account__hashtag-link', { active: this.context.router.history.location.pathname === to })} title={desc} href={url} to={to}>
-                  #{name} ({<ShortNumber value={count} />})
+                  #{name} <span title={intl.formatMessage(messages.statuses_counter, { count: count, counter: intl.formatNumber(count) })}>({<ShortNumber value={count} />})</span>
                 </Permalink>
               );
             })}
