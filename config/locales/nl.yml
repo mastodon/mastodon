@@ -9,6 +9,7 @@ nl:
     hosted_on: Mastodon op %{domain}
     privacy_policy: Privacybeleid
     source_code: Broncode
+    title: Over
     what_is_mastodon: Wat is Mastodon?
   accounts:
     choices_html: "Aanbevelingen van %{name}:"
@@ -732,9 +733,10 @@ nl:
       disallow: Weigeren
       links:
         allow: Link toestaan
-        allow_provider: Uitgever toestaan
+        allow_provider: Website goedkeuren
+        description_html: Dit zijn links die momenteel veel worden gedeeld door accounts waar jouw server berichten van ontvangt. Hierdoor kunnen jouw gebruikers zien wat er in de wereld aan de hand is. Er worden geen links weergeven totdat je de website hebt goedgekeurd. Je kunt ook individuele links goed- of afkeuren.
         disallow: Link toestaan
-        disallow_provider: Website toestaan
+        disallow_provider: Website afkeuren
         no_link_selected: Er werden geen links gewijzigd, omdat er geen enkele werd geselecteerd
         publishers:
           no_publisher_selected: Er werden geen websites gewijzigd, omdat er geen enkele werd geselecteerd
@@ -743,7 +745,7 @@ nl:
       pending_review: In afwachting van beoordeling
       preview_card_providers:
         allowed: Links van deze website kunnen trending worden
-        rejected: Links van deze website kunnen niet trending worden
+        rejected: Links naar deze nieuwssite kunnen niet trending worden
         title: Websites
       rejected: Afgewezen
       statuses:
