@@ -336,6 +336,7 @@ nl:
       listed: Weergegeven
       new:
         title: Lokale emoji toevoegen
+      no_emoji_selected: Er werden geen emoji's gewijzigd, omdat er geen enkele werd geselecteerd
       not_permitted: Het hebt geen rechten om deze actie uit te voeren
       overwrite: Overschrijven
       shortcode: Verkorte code
@@ -734,25 +735,30 @@ nl:
         allow_provider: Uitgever toestaan
         disallow: Link toestaan
         disallow_provider: Website toestaan
+        no_link_selected: Er werden geen links gewijzigd, omdat er geen enkele werd geselecteerd
+        publishers:
+          no_publisher_selected: Er werden geen websites gewijzigd, omdat er geen enkele werd geselecteerd
         title: Trending links
       only_allowed: Alleen toegestaan
       pending_review: In afwachting van beoordeling
       preview_card_providers:
         allowed: Links van deze website kunnen trending worden
         rejected: Links van deze website kunnen niet trending worden
-        title: Uitgevers
+        title: Websites
       rejected: Afgewezen
       statuses:
         allow: Bericht toestaan
         allow_account: Gebruiker toestaan
         disallow: Bericht niet toestaan
         disallow_account: Gebruiker niet toestaan
+        no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
         not_discoverable: Gebruiker heeft geen toestemming gegeven om vindbaar te zijn
         title: Trending berichten
       tags:
         dashboard:
           tag_languages_dimension: Populaire talen
           tag_servers_dimension: Populaire servers
+        no_tag_selected: Er werden geen hashtags gewijzigd, omdat er geen enkele werd geselecteerd
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
@@ -1318,6 +1324,7 @@ nl:
     preferences: Voorkeuren
     profile: Profiel
     relationships: Volgers en gevolgden
+    statuses_cleanup: Automatisch berichten verwijderen
     two_factor_authentication: Tweestapsverificatie
     webauthn_authentication: Beveiligingssleutels
   statuses:
