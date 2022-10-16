@@ -6,7 +6,6 @@ class AccountsController < ApplicationController
 
   include AccountControllerConcern
   include SignatureAuthentication
-  include WebAppControllerConcern
 
   before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_cache_headers

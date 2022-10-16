@@ -5,11 +5,11 @@ module WebAppControllerConcern
 
   included do
     before_action :redirect_unauthenticated_to_permalinks!
-    before_action :set_body_classes
+    before_action :set_app_body_class
     before_action :set_referrer_policy_header
   end
 
-  def set_body_classes
+  def set_app_body_class
     @body_classes = 'app-body'
   end
 

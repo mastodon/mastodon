@@ -107,15 +107,21 @@ Rails.application.routes.draw do
 
   resource :inbox, only: [:create], module: :activitypub
 
-  get '/@:username', to: 'accounts#show', as: :short_account
-  get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
-  get '/@:username/media', to: 'accounts#show', as: :short_account_media
-  get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
-  get '/@:account_username/following', to: 'following_accounts#index'
-  get '/@:account_username/followers', to: 'follower_accounts#index'
-  get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
-  get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+  constraints(username: /[^@\/.]+/) do
+    get '/@:username', to: 'accounts#show', as: :short_account
+    get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
+    get '/@:username/media', to: 'accounts#show', as: :short_account_media
+    get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
+  end
 
+  constraints(account_username: /[^@\/.]+/) do
+    get '/@:account_username/following', to: 'following_accounts#index'
+    get '/@:account_username/followers', to: 'follower_accounts#index'
+    get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
+    get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+  end
+
+  get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: /([^\/])+?/ }, format: false
   get '/settings', to: redirect('/settings/profile')
 
   namespace :settings do

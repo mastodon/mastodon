@@ -3,6 +3,7 @@
 module AccountControllerConcern
   extend ActiveSupport::Concern
 
+  include WebAppControllerConcern
   include AccountOwnedConcern
 
   FOLLOW_PER_PAGE = 12
