@@ -17,6 +17,7 @@ class BundleColumnError extends React.PureComponent {
   static propTypes = {
     onRetry: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
   }
 
   handleRetry = () => {
@@ -24,14 +25,15 @@ class BundleColumnError extends React.PureComponent {
   }
 
   render () {
-    const { intl: { formatMessage } } = this.props;
+    const { multiColumn, intl: { formatMessage } } = this.props;
 
     return (
-      <Column label={formatMessage(messages.title)}>
+      <Column bindToDocument={!multiColumn} label={formatMessage(messages.title)}>
         <ColumnHeader
           icon='exclamation-circle'
           title={formatMessage(messages.title)}
           showBackButton
+          multiColumn={multiColumn}
         />
 
         <div className='error-column'>

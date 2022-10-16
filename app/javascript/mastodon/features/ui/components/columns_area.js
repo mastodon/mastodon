@@ -143,7 +143,7 @@ class ColumnsArea extends ImmutablePureComponent {
   }
 
   renderError = (props) => {
-    return <BundleColumnError {...props} />;
+    return <BundleColumnError multiColumn {...props} />;
   }
 
   render () {
