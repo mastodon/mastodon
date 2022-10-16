@@ -139,7 +139,7 @@ class ColumnsArea extends ImmutablePureComponent {
   }
 
   renderLoading = columnId => () => {
-    return columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading />;
+    return columnId === 'COMPOSE' ? <DrawerLoading /> : <ColumnLoading multiColumn />;
   }
 
   renderError = (props) => {
