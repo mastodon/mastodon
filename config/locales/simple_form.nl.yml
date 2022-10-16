@@ -71,7 +71,9 @@ nl:
           hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_admin_settings:
-        media_cache_retention_period: Mediabestanden die zijn gedownload worden na de opgeven aantal dagen verwijderd en kunnen op verzoek opnieuw worden gedownload.
+        backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
+        content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
+        media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -245,6 +247,7 @@ nl:
         permissions_as_keys: Rechten
         position: Prioriteit
       webhook:
+        events: Ingeschakelde gebeurtenissen
         url: Eindpunt URL
     'no': 'Nee'
     not_recommended: Niet aanbevolen
