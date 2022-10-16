@@ -7338,6 +7338,33 @@ noscript {
         }
       }
     }
+
+    &__hashtag-links {
+      overflow: hidden;
+      padding: 10px 5px;
+      margin: 0;
+      color: $darker-text-color;
+      border-bottom: 1px solid lighten($ui-base-color, 12%);
+
+      a {
+        display: inline-block;
+        color: $darker-text-color;
+        text-decoration: none;
+        padding: 5px 10px;
+        font-weight: 500;
+
+        strong {
+          font-weight: 700;
+          color: $primary-text-color;
+        }
+      }
+
+      a.active {
+        color: darken($ui-base-color, 4%);
+        background: $darker-text-color;
+        border-radius: 18px;
+      }
+    }
   }
 
   &__account-note {

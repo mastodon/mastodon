@@ -18,10 +18,11 @@ import { me } from 'mastodon/initial_state';
 import { connectTimeline, disconnectTimeline } from 'mastodon/actions/timelines';
 import LimitedAccountHint from './components/limited_account_hint';
 import { getAccountHidden } from 'mastodon/selectors';
+import { fetchFeaturedTags } from '../../actions/featured_tags';
 
 const emptyList = ImmutableList();
 
-const mapStateToProps = (state, { params: { acct, id }, withReplies = false }) => {
+const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
   const accountId = id || state.getIn(['accounts_map', acct]);
 
   if (!accountId) {
@@ -30,7 +31,7 @@ const mapStateToProps = (state, { params: { acct, id }, withReplies = false }) =
     };
   }
 
-  const path = withReplies ? `${accountId}:with_replies` : accountId;
+  const path = withReplies ? `${accountId}:with_replies` : `${accountId}${tagged ? `:${tagged}` : ''}`;
 
   return {
     accountId,
@@ -38,7 +39,7 @@ const mapStateToProps = (state, { params: { acct, id }, withReplies = false }) =
     remoteUrl: state.getIn(['accounts', accountId, 'url']),
     isAccount: !!state.getIn(['accounts', accountId]),
     statusIds: state.getIn(['timelines', `account:${path}`, 'items'], emptyList),
-    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned`, 'items'], emptyList),
+    featuredStatusIds: withReplies ? ImmutableList() : state.getIn(['timelines', `account:${accountId}:pinned${tagged ? `:${tagged}` : ''}`, 'items'], emptyList),
     isLoading: state.getIn(['timelines', `account:${path}`, 'isLoading']),
     hasMore: state.getIn(['timelines', `account:${path}`, 'hasMore']),
     suspended: state.getIn(['accounts', accountId, 'suspended'], false),
@@ -62,6 +63,7 @@ class AccountTimeline extends ImmutablePureComponent {
     params: PropTypes.shape({
       acct: PropTypes.string,
       id: PropTypes.string,
+      tagged: PropTypes.string,
     }).isRequired,
     accountId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
@@ -80,15 +82,16 @@ class AccountTimeline extends ImmutablePureComponent {
   };
 
   _load () {
-    const { accountId, withReplies, dispatch } = this.props;
+    const { accountId, withReplies, params: { tagged }, dispatch } = this.props;
 
     dispatch(fetchAccount(accountId));
 
     if (!withReplies) {
-      dispatch(expandAccountFeaturedTimeline(accountId));
+      dispatch(expandAccountFeaturedTimeline(accountId, { tagged }));
     }
 
-    dispatch(expandAccountTimeline(accountId, { withReplies }));
+    dispatch(fetchFeaturedTags(accountId));
+    dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
 
     if (accountId === me) {
       dispatch(connectTimeline(`account:${me}`));
@@ -106,12 +109,17 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   componentDidUpdate (prevProps) {
-    const { params: { acct }, accountId, dispatch } = this.props;
+    const { params: { acct, tagged }, accountId, withReplies, dispatch } = this.props;
 
     if (prevProps.accountId !== accountId && accountId) {
       this._load();
     } else if (prevProps.params.acct !== acct) {
       dispatch(lookupAccount(acct));
+    } else if (prevProps.params.tagged !== tagged) {
+      if (!withReplies) {
+        dispatch(expandAccountFeaturedTimeline(accountId, { tagged }));
+      }
+      dispatch(expandAccountTimeline(accountId, { withReplies, tagged }));
     }
 
     if (prevProps.accountId === me && accountId !== me) {
@@ -128,7 +136,7 @@ class AccountTimeline extends ImmutablePureComponent {
   }
 
   handleLoadMore = maxId => {
-    this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies }));
+    this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies, tagged: this.props.params.tagged }));
   }
 
   render () {
@@ -174,7 +182,7 @@ class AccountTimeline extends ImmutablePureComponent {
         <ColumnBackButton multiColumn={multiColumn} />
 
         <StatusList
-          prepend={<HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} />}
+          prepend={<HeaderContainer accountId={this.props.accountId} hideTabs={forceEmptyState} tagged={this.props.params.tagged} />}
           alwaysPrepend
           append={remoteMessage}
           scrollKey='account_timeline'
