@@ -587,7 +587,7 @@ class Status extends ImmutablePureComponent {
     }
 
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
-    const isIndexable = status.getIn(['account', 'discoverable']);
+    const isIndexable = !status.getIn(['account', 'noindex']);
 
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,

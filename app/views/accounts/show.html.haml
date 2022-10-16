@@ -2,7 +2,7 @@
   = "#{display_name(@account)} (#{acct(@account)})"
 
 - content_for :header_tags do
-  - if @account.user&.setting_noindex
+  - if @account.user_prefers_noindex?
     %meta{ name: 'robots', content: 'noindex, noarchive' }/
 
   %link{ rel: 'alternate', type: 'application/rss+xml', href: @rss_url }/
