@@ -587,6 +587,7 @@ class Status extends ImmutablePureComponent {
     }
 
     const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
+    const isIndexable = status.getIn(['account', 'discoverable']);
 
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,
@@ -661,7 +662,7 @@ class Status extends ImmutablePureComponent {
 
         <Helmet>
           <title>{titleFromStatus(status)}</title>
-          <meta name='robots' content={isLocal ? 'all' : 'noindex'} />
+          <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
         </Helmet>
       </Column>
     );
