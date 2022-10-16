@@ -70,6 +70,8 @@ nl:
         actions:
           hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
+      form_admin_settings:
+        media_cache_retention_period: Mediabestanden die zijn gedownload worden na de opgeven aantal dagen verwijderd en kunnen op verzoek opnieuw worden gedownload.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -197,6 +199,10 @@ nl:
         actions:
           hide: Volledig verbergen
           warn: Met een waarschuwing verbergen
+      form_admin_settings:
+        backups_retention_period: Bewaartermijn gebruikersarchief
+        content_cache_retention_period: Bewaartermijn berichtencache
+        media_cache_retention_period: Bewaartermijn mediacache
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
