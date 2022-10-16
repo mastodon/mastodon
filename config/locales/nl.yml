@@ -124,8 +124,8 @@ nl:
       perform_full_suspension: Opschorten
       previous_strikes: Eerdere overtredingen
       previous_strikes_description_html:
-        one: Dit account heeft <strong>één</strong> overtreding.
-        other: Dit account heeft <strong>%{count}</strong> overtredingen.
+        one: Dit account heeft <strong>één</strong> overtreding gemaakt.
+        other: Dit account heeft <strong>%{count}</strong> overtredingen gemaakt.
       promote: Promoveren
       protocol: Protocol
       public: Openbaar
@@ -435,6 +435,7 @@ nl:
       unsuppress: Account weer aanbevelen
     instances:
       availability:
+        no_failures_recorded: Geen storingen bekend.
         title: Beschikbaarheid
         warning: De laatste poging om met deze server te verbinden was onsuccesvol
       back_to_all: Alles
@@ -704,6 +705,7 @@ nl:
       destroyed_msg: Verwijderen website-upload geslaagd!
     statuses:
       back_to_account: Terug naar accountpagina
+      back_to_report: Terug naar de rapportage
       batch:
         remove_from_report: Uit de rapportage verwijderen
         report: Rapportage
@@ -761,6 +763,7 @@ nl:
         not_discoverable: Gebruiker heeft geen toestemming gegeven om vindbaar te zijn
         title: Trending berichten
       tags:
+        current_score: Huidige score is %{score}
         dashboard:
           tag_accounts_measure: aantal unieke keren gebruikt
           tag_languages_dimension: Populaire talen
@@ -907,7 +910,7 @@ nl:
       functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
-      view_strikes: Bekijk jouw door moderatoren eerder vastgestelde overtredingen
+      view_strikes: Bekijk de eerder door moderatoren vastgestelde overtredingen die je hebt gemaakt
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
   authorize_follow:
@@ -982,6 +985,7 @@ nl:
       recipient: Geadresseerd aan
       reject_appeal: Bezwaar afgewezen
       status: 'Bericht #%{id}'
+      title: "%{action} van %{date}"
       title_actions:
         delete_statuses: Verwijdering bericht
         disable: Bevriezen van account
@@ -1151,6 +1155,7 @@ nl:
       password: wachtwoord
       sign_in_token: beveiligingscode via e-mail
       webauthn: beveiligingssleutels
+    title: Inloggeschiedenis
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een bericht met afbeeldingen worden gekoppeld
@@ -1377,7 +1382,7 @@ nl:
     profile: Profiel
     relationships: Volgers en gevolgden
     statuses_cleanup: Automatisch berichten verwijderen
-    strikes: Berispingen door moderatoren
+    strikes: Vastgestelde overtredingen
     two_factor_authentication: Tweestapsverificatie
     webauthn_authentication: Beveiligingssleutels
   statuses:
@@ -1458,7 +1463,7 @@ nl:
     sensitive_content: Gevoelige inhoud
   strikes:
     errors:
-      too_late: De periode dat je bezwaar kon maken is verstreken
+      too_late: De periode dat je bezwaar kunt maken tegen deze overtreding is verstreken
   tags:
     does_not_match_previous_name: komt niet overeen met de vorige naam
   themes:
@@ -1500,6 +1505,7 @@ nl:
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     suspicious_sign_in:
+      change_password: jouw wachtwoord wijzigen
       title: Een nieuwe registratie
     warning:
       appeal: Bezwaar indienen
