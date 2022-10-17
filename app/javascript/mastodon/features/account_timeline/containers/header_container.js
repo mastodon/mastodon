@@ -23,7 +23,7 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { unfollowModal } from '../../../initial_state';
 
 const messages = defineMessages({
-  cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Cancel request' },
+  cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
   blockDomainConfirm: { id: 'confirmations.domain_block.confirm', defaultMessage: 'Hide entire domain' },
 });
@@ -56,7 +56,7 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else if (account.getIn(['relationship', 'requested'])) {
       if (unfollowModal) {
         dispatch(openModal('CONFIRM', {
-          message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to cancel your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
+          message: <FormattedMessage id='confirmations.cancel_follow_request.message' defaultMessage='Are you sure you want to withdraw your request to follow {name}?' values={{ name: <strong>@{account.get('acct')}</strong> }} />,
           confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
           onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
         }));
