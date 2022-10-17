@@ -9,6 +9,7 @@ io:
     hosted_on: Mastodon hostigesas che %{domain}
     privacy_policy: Privatesguidilo
     source_code: Fontkodexo
+    title: Pri co
     what_is_mastodon: Quo esas Mastodon?
   accounts:
     choices_html: "Selektaji di %{name}:"
@@ -343,6 +344,7 @@ io:
       listed: Listita
       new:
         title: Insertez nova kustumizita emocimajo
+      no_emoji_selected: Nula emocimaji chanjesis pro ke nulo selektesis
       not_permitted: Vu ne permisesis agar co
       overwrite: Remplasez
       shortcode: Kurtkodexo
@@ -811,6 +813,9 @@ io:
         description_html: Co esas ligili quo nun multe partigesas da konti kun posti quon vua servilo vidas. Ol povas helpar vua uzanti lernar quo eventas en mondo. Ligili ne publike montresas til vu aprobar publikiganto. Vu povas anke permisar o refuzar individuala ligili.
         disallow: Despermisez ligilo
         disallow_provider: Despermisez publikiganto
+        no_link_selected: Nula ligili chanjesis pro ke nulo selektesis
+        publishers:
+          no_publisher_selected: Nula publikiganti chanjesis pro ke nulo selektesis
         shared_by_over_week:
           one: Partigesis da 1 persono de pos antea semano
           other: Partigesis da %{count} personi de pos antea semano
@@ -830,6 +835,7 @@ io:
         description_html: Co esas posti quon vua servilo savas quale nun partigesas e favorizesas multe nun. Ol povas helpar vua nova e retrovenanta uzanti trovar plu multa personi por sequar. Posti ne publike montresas til vu aprobar la skribanto, e la skribanto permisas sua konto sugestesas a altra personi. Vu povas anke permisar o refuzar individuala posti.
         disallow: Despermisez posto
         disallow_account: Despermisez skribanto
+        no_status_selected: Nula tendencoza posti chanjesis pro ke nulo selektesis
         not_discoverable: Skribanto ne konsentis pri esar deskovrebla
         shared_by:
           one: Partigesis o favorizesis 1 foye
@@ -845,6 +851,7 @@ io:
           tag_uses_measure: uzsumo
         description_html: Co esas hashtagi quo nun aparas en multa posti quon vua servilo vidas. Ol povas helpar vua uzanti lernar quon personi parolas frequente nun. Hashtagi ne montresas publike til vu aprobar.
         listable: Povas sugestesar
+        no_tag_selected: Nula tagi chanjesis pro ke nulo selektesis
         not_listable: Ne sugestesar
         not_trendable: Ne aparas che tendenci
         not_usable: Ne povas uzesar
@@ -950,6 +957,7 @@ io:
     warning: Sorgemez per ca informi. Ne partigez kun irgu!
     your_token: Vua acesficho
   auth:
+    apply_for_account: Esez sur vartlisto
     change_password: Pasvorto
     delete_account: Efacez konto
     delete_account_html: Se vu volas efacar vua konto, vu povas <a href="%{path}">irar hike</a>. Vu demandesos konfirmar.
@@ -969,6 +977,7 @@ io:
     migrate_account: Transferez a diferanta konto
     migrate_account_html: Se vu volas ridirektar ca konto a diferanto, vu povas <a href="%{path}">ajustar hike</a>.
     or_log_in_with: O eniras per
+    privacy_policy_agreement_html: Me lektis e konsentis <a href="%{privacy_policy_path}" target="_blank">privatesguidilo</a>
     providers:
       cas: CAS
       saml: SAML
@@ -976,12 +985,18 @@ io:
     registration_closed: "%{instance} ne aceptas nova membri"
     resend_confirmation: Risendar la instrucioni por konfirmar
     reset_password: Chanjar la pasvorto
+    rules:
+      preamble: Co igesas e exekutesas da jereri di %{domain}.
+      title: Kelka bazala reguli.
     security: Chanjar pasvorto
     set_new_password: Selektar nova pasvorto
     setup:
       email_below_hint_html: Se suba retpostoadreso esas nekorekta, vu povas chanjar hike e ganar nova konfirmretposto.
       email_settings_hint_html: Konfirmretposto sendesis a %{email}. Se ta retpostoadreso ne esas korekta, vu povas chanjar en kontoopcioni.
       title: Komencoprocedo
+    sign_up:
+      preamble: Per konto en ca servilo di Mastodon, on povas sequar irga persono en ca reto, ne ye ube ona konto hostagisas.
+      title: Ni komencigez vu en %{domain}.
     status:
       account_status: Kontostando
       confirming: Vartas retpostokonfirmo finar.
@@ -1361,6 +1376,8 @@ io:
     other: Altra
     posting_defaults: Originala postoopcioni
     public_timelines: Publika tempolinei
+  privacy_policy:
+    title: Privatesguidilo
   reactions:
     errors:
       limit_reached: Limito di diferanta reakto atingesis
@@ -1648,8 +1665,10 @@ io:
         suspend: Konto restriktigesis
     welcome:
       edit_profile_action: Facez profilo
+      edit_profile_step: Vu povas kustumizar vua profilo per adchargar profilimajo, chanjesar vua montronomo e plue. Vu povas selektas kontrolar nova sequanti ante oli permisesas sequar vu.
       explanation: Subo esas guidilo por helpar vu komencar
       final_action: Komencez postigar
+      final_step: 'Jus postigez! Mem sen sequanti, vua publika posti povas videsar da altra personi, exemplo es en lokala tempolineo e en hashtagi. Vu povas anke introduktar su en #introductions hashtagi.'
       full_handle: Vua kompleta profilnomo
       full_handle_hint: Co esas quon vu dicos a amiki por ke oli povas mesajigar o sequar vu de altra servilo.
       subject: Bonveno a Mastodon
