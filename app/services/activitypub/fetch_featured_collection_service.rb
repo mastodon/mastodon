@@ -36,7 +36,15 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   end
 
   def process_items(items)
+    process_note_items(items)
+    process_hashtag_items(items)
+  end
+
+  def process_note_items(items)
     status_ids = items.filter_map do |item|
+      type = item['type']
+      next unless type == 'Note'
+
       uri = value_or_id(item)
       next if ActivityPub::TagManager.instance.local_uri?(uri)
 
@@ -64,6 +72,26 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
 
     to_add.each do |status_id|
       StatusPin.create!(account: @account, status_id: status_id)
+    end
+  end
+
+  def process_hashtag_items(items)
+    names     = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }
+    to_remove = []
+    to_add    = names
+
+    FeaturedTag.where(account: @account).map(&:name).each do |name|
+      if names.include?(name)
+        to_add.delete(name)
+      else
+        to_remove << name
+      end
+    end
+
+    FeaturedTag.includes(:tag).where(account: @account, tags: { name: to_remove }).delete_all unless to_remove.empty?
+
+    to_add.each do |name|
+      FeaturedTag.create!(account: @account, name: name)
     end
   end
 
