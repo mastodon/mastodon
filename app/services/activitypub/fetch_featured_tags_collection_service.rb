@@ -4,43 +4,22 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
   include JsonLdHelper
 
   def call(account, url)
-    return if account.suspended? || account.local?
+    return if url.blank? || account.suspended? || account.local?
 
     @account = account
+    @json    = fetch_resource(url, true, local_follower)
 
-    items = collection_items(url)
+    return unless supported_context?(@json)
 
-    process_items(items) unless items.nil?
+    process_items(collection_items(@json))
   end
 
   private
 
-  def process_items(items)
-    names     = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.map { |name| HashtagNormalizer.new.normalize(name) }
-    to_remove = []
-    to_add    = names
-
-    FeaturedTag.where(account: @account).map(&:name).each do |name|
-      if names.include?(name)
-        to_add.delete(name)
-      else
-        to_remove << name
-      end
-    end
-
-    FeaturedTag.includes(:tag).where(account: @account, tags: { name: to_remove }).delete_all unless to_remove.empty?
-
-    to_add.each do |name|
-      FeaturedTag.create!(account: @account, name: name)
-    end
-  end
-
-  def collection_items(collection_or_uri)
-    collection = fetch_collection(collection_or_uri)
-    return [] unless collection.is_a?(Hash)
+  def collection_items(collection)
+    all_items = []
 
     collection = fetch_collection(collection['first']) if collection['first'].present?
-    all_items  = []
 
     while collection.is_a?(Hash)
       items = begin
@@ -67,6 +46,33 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
   def fetch_collection(collection_or_uri)
     return collection_or_uri if collection_or_uri.is_a?(Hash)
     return if invalid_origin?(collection_or_uri)
-    fetch_resource_without_id_validation(collection_or_uri, nil, true)
+
+    fetch_resource_without_id_validation(collection_or_uri, local_follower, true)
+  end
+
+  def process_items(items)
+    names     = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.map { |name| HashtagNormalizer.new.normalize(name) }
+    to_remove = []
+    to_add    = names
+
+    FeaturedTag.where(account: @account).map(&:name).each do |name|
+      if names.include?(name)
+        to_add.delete(name)
+      else
+        to_remove << name
+      end
+    end
+
+    FeaturedTag.includes(:tag).where(account: @account, tags: { name: to_remove }).delete_all unless to_remove.empty?
+
+    to_add.each do |name|
+      FeaturedTag.create!(account: @account, name: name)
+    end
+  end
+
+  def local_follower
+    return @local_follower if defined?(@local_follower)
+
+    @local_follower = @account.followers.local.without_suspended.first
   end
 end
