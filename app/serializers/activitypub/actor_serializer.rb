@@ -10,7 +10,7 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
                      :moved_to, :property_value, :discoverable, :olm, :suspended
 
   attributes :id, :type, :following, :followers,
-             :inbox, :outbox, :featured, :featured_tags,
+             :inbox, :outbox, :featured,
              :preferred_username, :name, :summary,
              :url, :manually_approves_followers,
              :discoverable, :published
@@ -80,10 +80,6 @@ class ActivityPub::ActorSerializer < ActivityPub::Serializer
 
   def featured
     account_collection_url(object, :featured)
-  end
-
-  def featured_tags
-    account_collection_url(object, :tags)
   end
 
   def endpoints

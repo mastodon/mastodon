@@ -22,6 +22,7 @@ class ActivityPub::CollectionsController < ActivityPub::BaseController
     when 'featured'
       @items = for_signed_account { cache_collection(@account.pinned_statuses, Status) }
       @items = @items.map { |item| item.distributable? ? item : ActivityPub::TagManager.instance.uri_for(item) }
+      @items.concat(for_signed_account { @account.featured_tags })
     when 'tags'
       @items = for_signed_account { @account.featured_tags }
     when 'devices'
