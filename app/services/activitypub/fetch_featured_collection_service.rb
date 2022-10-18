@@ -3,10 +3,11 @@
 class ActivityPub::FetchFeaturedCollectionService < BaseService
   include JsonLdHelper
 
-  def call(account)
+  def call(account, **options)
     return if account.featured_collection_url.blank? || account.suspended? || account.local?
 
     @account = account
+    @options = options
     @json    = fetch_resource(@account.featured_collection_url, true, local_follower)
 
     return unless supported_context?(@json)
@@ -36,8 +37,8 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   end
 
   def process_items(items)
-    process_note_items(items)
-    process_hashtag_items(items)
+    process_note_items(items) if @options[:note]
+    process_hashtag_items(items) if @options[:hashtag]
   end
 
   def process_note_items(items)

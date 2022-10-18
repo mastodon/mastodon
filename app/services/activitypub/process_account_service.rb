@@ -150,7 +150,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_featured_collection!
-    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id)
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'hashtag' => @json['featuredTags'].blank? })
   end
 
   def check_featured_tags_collection!
