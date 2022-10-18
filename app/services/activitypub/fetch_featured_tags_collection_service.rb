@@ -16,7 +16,7 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
   private
 
   def process_items(items)
-    names     = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }
+    names     = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.map { |name| HashtagNormalizer.new.normalize(name) }
     to_remove = []
     to_add    = names
 
