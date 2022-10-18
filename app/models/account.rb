@@ -49,6 +49,7 @@
 #  trendable                     :boolean
 #  reviewed_at                   :datetime
 #  requested_review_at           :datetime
+#  featured_tags_collection_url  :string
 #
 
 class Account < ApplicationRecord
