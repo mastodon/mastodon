@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Logo from 'mastodon/components/logo';
-import TrendsContainer from 'mastodon/features/getting_started/containers/trends_container';
-import { showTrends, timelinePreview } from 'mastodon/initial_state';
+import { timelinePreview } from 'mastodon/initial_state';
 import ColumnLink from './column_link';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
+import NavigationPortal from 'mastodon/components/navigation_portal';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -93,12 +93,7 @@ class NavigationPanel extends React.Component {
           <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
         </div>
 
-        {showTrends && (
-          <React.Fragment>
-            <div className='flex-spacer' />
-            <TrendsContainer />
-          </React.Fragment>
-        )}
+        <NavigationPortal />
       </div>
     );
   }

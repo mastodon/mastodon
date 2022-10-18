@@ -1,27 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { defineMessages, injectIntl } from 'react-intl';
-import classNames from 'classnames';
-import Permalink from 'mastodon/components/permalink';
-import ShortNumber from 'mastodon/components/short_number';
-import { List as ImmutableList } from 'immutable';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Hashtag from 'mastodon/components/hashtag';
 
 const messages = defineMessages({
-  hashtag_all: { id: 'account.hashtag_all', defaultMessage: 'All' },
-  hashtag_all_description: { id: 'account.hashtag_all_description', defaultMessage: 'All posts (deselect hashtags)' },
-  hashtag_select_description: { id: 'account.hashtag_select_description', defaultMessage: 'Select hashtag #{name}' },
-  statuses_counter: { id: 'account.statuses_counter', defaultMessage: '{count, plural, one {{counter} Post} other {{counter} Posts}}' },
+  lastStatusAt: { id: 'account.featured_tags.last_status_at', defaultMessage: 'Last post on {date}' },
+  empty: { id: 'account.featured_tags.last_status_never', defaultMessage: 'No posts' },
 });
 
-const mapStateToProps = (state, { account }) => ({
-  featuredTags: state.getIn(['user_lists', 'featured_tags', account.get('id'), 'items'], ImmutableList()),
-});
-
-export default @connect(mapStateToProps)
-@injectIntl
+export default @injectIntl
 class FeaturedTags extends ImmutablePureComponent {
 
   static contextTypes = {
@@ -36,34 +25,27 @@ class FeaturedTags extends ImmutablePureComponent {
   };
 
   render () {
-    const { account, featuredTags, tagged, intl } = this.props;
+    const { account, featuredTags, intl } = this.props;
 
-    if (!account || featuredTags.isEmpty()) {
+    if (!account || account.get('suspended') || featuredTags.isEmpty()) {
       return null;
     }
 
-    const suspended = account.get('suspended');
-
     return (
-      <div className={classNames('account__header', 'advanced', { inactive: !!account.get('moved') })}>
-        <div className='account__header__extra'>
-          <div className='account__header__extra__hashtag-links'>
-            <Permalink key='all' className={classNames('account__hashtag-link', { active: !tagged })} title={intl.formatMessage(messages.hashtag_all_description)} href={account.get('url')} to={`/@${account.get('acct')}`}>{intl.formatMessage(messages.hashtag_all)}</Permalink>
-            {!suspended && featuredTags.map(featuredTag => {
-              const name  = featuredTag.get('name');
-              const url   = featuredTag.get('url');
-              const to    = `/@${account.get('acct')}/tagged/${name}`;
-              const desc  = intl.formatMessage(messages.hashtag_select_description, { name });
-              const count = featuredTag.get('statuses_count');
+      <div className='getting-started__trends'>
+        <h4><FormattedMessage id='account.featured_tags.title' defaultMessage="{name}'s featured hashtags" values={{ name: <bdi dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /> }} /></h4>
 
-              return (
-                <Permalink key={`#${name}`} className={classNames('account__hashtag-link', { active: this.context.router.history.location.pathname === to })} title={desc} href={url} to={to}>
-                  #{name} <span title={intl.formatMessage(messages.statuses_counter, { count: count, counter: intl.formatNumber(count) })}>({<ShortNumber value={count} />})</span>
-                </Permalink>
-              );
-            })}
-          </div>
-        </div>
+        {featuredTags.map(featuredTag => (
+          <Hashtag
+            key={featuredTag.get('name')}
+            name={featuredTag.get('name')}
+            href={featuredTag.get('url')}
+            to={`/@${account.get('acct')}/tagged/${featuredTag.get('name')}`}
+            uses={featuredTag.get('statuses_count')}
+            withGraph={false}
+            description={((featuredTag.get('statuses_count') * 1) > 0) ? intl.formatMessage(messages.lastStatusAt, { date: intl.formatDate(featuredTag.get('last_status_at'), { month: 'short', day: '2-digit' }) }) : intl.formatMessage(messages.empty)}
+          />
+        ))}
       </div>
     );
   }
