@@ -39,7 +39,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     unless @options[:only_key] || @account.suspended?
       check_featured_collection! if @account.featured_collection_url.present?
-      check_featured_tags_collection! if @account.featured_tags_collection_url.present?
+      check_featured_tags_collection! if @json['featuredTags'].present?
       check_links! unless @account.fields.empty?
     end
 
@@ -87,15 +87,14 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def set_immediate_attributes!
-    @account.featured_collection_url      = @json['featured'] || ''
-    @account.featured_tags_collection_url = @json['featuredTags'] || ''
-    @account.devices_url                  = @json['devices'] || ''
-    @account.display_name                 = @json['name'] || ''
-    @account.note                         = @json['summary'] || ''
-    @account.locked                       = @json['manuallyApprovesFollowers'] || false
-    @account.fields                       = property_values || {}
-    @account.also_known_as                = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
-    @account.discoverable                 = @json['discoverable'] || false
+    @account.featured_collection_url = @json['featured'] || ''
+    @account.devices_url             = @json['devices'] || ''
+    @account.display_name            = @json['name'] || ''
+    @account.note                    = @json['summary'] || ''
+    @account.locked                  = @json['manuallyApprovesFollowers'] || false
+    @account.fields                  = property_values || {}
+    @account.also_known_as           = as_array(@json['alsoKnownAs'] || []).map { |item| value_or_id(item) }
+    @account.discoverable            = @json['discoverable'] || false
   end
 
   def set_fetchable_key!
@@ -155,7 +154,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_featured_tags_collection!
-    ActivityPub::SynchronizeFeaturedTagsCollectionWorker.perform_async(@account.id)
+    ActivityPub::SynchronizeFeaturedTagsCollectionWorker.perform_async(@account.id, @json['featuredTags'])
   end
 
   def check_links!

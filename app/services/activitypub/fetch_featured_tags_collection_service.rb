@@ -3,12 +3,12 @@
 class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
   include JsonLdHelper
 
-  def call(account)
+  def call(account, url)
     return if account.suspended? || account.local?
 
     @account = account
 
-    items = collection_items(account.featured_tags_collection_url)
+    items = collection_items(url)
 
     process_items(items) unless items.nil?
   end

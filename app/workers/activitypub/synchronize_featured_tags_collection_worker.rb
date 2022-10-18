@@ -5,8 +5,8 @@ class ActivityPub::SynchronizeFeaturedTagsCollectionWorker
 
   sidekiq_options queue: 'pull', lock: :until_executed
 
-  def perform(account_id)
-    ActivityPub::FetchFeaturedTagsCollectionService.new.call(Account.find(account_id))
+  def perform(account_id, url)
+    ActivityPub::FetchFeaturedTagsCollectionService.new.call(Account.find(account_id), url)
   rescue ActiveRecord::RecordNotFound
     true
   end
