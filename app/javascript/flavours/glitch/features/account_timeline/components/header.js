@@ -28,7 +28,6 @@ export default class Header extends ImmutablePureComponent {
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
-    tagged: PropTypes.string,
   };
 
   static contextTypes = {
@@ -104,7 +103,7 @@ export default class Header extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, hidden, hideTabs, tagged } = this.props;
+    const { account, hidden, hideTabs } = this.props;
 
     if (account === null) {
       return null;
