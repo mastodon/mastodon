@@ -1,47 +1,26 @@
 is:
   about:
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
-    api: API-kerfisviðmót
-    apps: Farsímaforrit
     contact_missing: Ekki skilgreint
     contact_unavailable: Ekki til staðar
-    documentation: Hjálparskjöl
     hosted_on: Mastodon hýst á %{domain}
-    privacy_policy: Persónuverndarstefna
-    source_code: Grunnkóði
     title: Um hugbúnaðinn
-    what_is_mastodon: Hvað er Mastodon?
   accounts:
-    choices_html: "%{name} hefur valið:"
-    endorsements_hint: Þú getur auglýst efni frá fólki sem þú fylgir í vefviðmótinu og mun það birtast hér.
-    featured_tags_hint: Þú getur gefið sérstökum myllumerkjum aukið vægi og birtast þau þá hér.
     follow: Fylgjast með
     followers:
       one: fylgjandi
       other: fylgjendur
     following: Fylgist með
     instance_actor_flash: Þessi notandaaðgangur er sýndarnotandi sem stendur fyrir sjálfan netþjóninn en ekki neinn einstakling. Hann er notaður við skýjasambandsmiðlun og ætti ekki að setja hann í bið eða banna.
-    joined: Gerðist þátttakandi %{date}
     last_active: síðasta virkni
     link_verified_on: Eignarhald á þessum tengli var athugað þann %{date}
-    media: Myndefni
-    moved_html: "%{name} hefur verið færður í %{new_profile_link}:"
-    network_hidden: Þessar upplýsingar ekki tiltækar
     nothing_here: Það er ekkert hér!
-    people_followed_by: Fólk sem %{name} fylgist með
-    people_who_follow: Fólk sem fylgist með %{name}
     pin_errors:
       following: Þú þarft að vera þegar að fylgjast með þeim sem þú ætlar að mæla með
     posts:
       one: Færsla
       other: Færslur
     posts_tab_heading: Færslur
-    posts_with_replies: Færslur og svör
-    roles:
-      bot: Róbót
-      group: Hópur
-    unavailable: Notandasnið ekki tiltækt
-    unfollow: Hætta að fylgja
   admin:
     account_actions:
       action: Framkvæma aðgerð
@@ -1175,9 +1154,6 @@ is:
         hint: Þessi sía virkar til að velja stakar færslur án tillits til annarra skilyrða. Þú getur bætt fleiri færslum í þessa síu í vefviðmótinu.
         title: Síaðar færslur
   footer:
-    developers: Forritarar
-    more: Meira…
-    resources: Tilföng
     trending_now: Í umræðunni núna
   generic:
     all: Allt
@@ -1220,7 +1196,6 @@ is:
       following: Listi yfir þá sem fylgst er með
       muting: Listi yfir þagganir
     upload: Senda inn
-  in_memoriam_html: Minning.
   invites:
     delete: Gera óvirkt
     expired: Útrunnið
@@ -1400,22 +1375,7 @@ is:
     remove_selected_follows: Hætta að fylgjast með völdum notendum
     status: Staða aðgangs
   remote_follow:
-    acct: Settu inn notandanafn@lén þaðan sem þú vilt vera virk/ur
     missing_resource: Gat ekki fundið endurbeiningarslóðina fyrir notandaaðganginn þinn
-    no_account_html: Ertu ekki með aðgang? Þú getur <a href='%{sign_up_path}' target='_blank'>nýskráð þig hér</a>
-    proceed: Halda áfram í að fylgjast með
-    prompt: 'Þú ætlar að fara að fylgjast með:'
-    reason_html: "<strong>Hvers vegna er þetta skref nauðsynlegt?</strong> <code>%{instance}</code> er ekki endilega netþjónninn þar sem þú ert skráð/ur, þannig að við verðum að endurbeina þér á heimaþjóninn þinn fyrst."
-  remote_interaction:
-    favourite:
-      proceed: Halda áfram í að setja í eftirlæti
-      prompt: 'Þú ætlar að setja þessa færslu í eftirlæti:'
-    reblog:
-      proceed: Halda áfram í endurbirtingu
-      prompt: 'Þú ætlar að endurbirta þessa færslu:'
-    reply:
-      proceed: Halda áfram í að svara
-      prompt: 'Þú ætlar að svara þessari færslu:'
   reports:
     errors:
       invalid_rules: vísar ekki til gildra reglna
