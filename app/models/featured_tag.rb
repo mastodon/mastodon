@@ -26,6 +26,8 @@ class FeaturedTag < ApplicationRecord
 
   attr_writer :name
 
+  LIMIT = 10
+
   def name
     tag_id.present? ? tag.name : @name
   end
@@ -50,7 +52,7 @@ class FeaturedTag < ApplicationRecord
   end
 
   def validate_featured_tags_limit
-    errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= 10
+    errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= LIMIT
   end
 
   def validate_tag_name

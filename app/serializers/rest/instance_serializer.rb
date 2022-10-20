@@ -47,6 +47,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         streaming: Rails.configuration.x.streaming_api_base_url,
       },
 
+      accounts: {
+        max_featured_tags: FeaturedTag::LIMIT,
+      },
+
       statuses: {
         max_characters: StatusLengthValidator::MAX_CHARS,
         max_media_attachments: 4,

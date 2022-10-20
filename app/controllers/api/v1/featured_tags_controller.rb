@@ -14,11 +14,13 @@ class Api::V1::FeaturedTagsController < Api::BaseController
 
   def create
     @featured_tag = current_account.featured_tags.create!(featured_tag_params)
+    ActivityPub::UpdateDistributionWorker.perform_in(3.minutes, current_account.id)
     render json: @featured_tag, serializer: REST::FeaturedTagSerializer
   end
 
   def destroy
     @featured_tag.destroy!
+    ActivityPub::UpdateDistributionWorker.perform_in(3.minutes, current_account.id)
     render_empty
   end
 
