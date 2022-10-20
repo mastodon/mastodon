@@ -1,20 +1,11 @@
 uk:
   about:
     about_mastodon_html: 'Соціальна мережа майбутнього: жодної реклами, жодного корпоративного нагляду, етичний дизайн та децентралізація! З Mastodon ваші дані під вашим контролем!'
-    api: API
-    apps: Мобільні застосунки
     contact_missing: Не зазначено
     contact_unavailable: Недоступно
-    documentation: Документація
     hosted_on: Mastodon розміщено на %{domain}
-    privacy_policy: Політика конфіденційності
-    source_code: Вихідний код
     title: Про програму
-    what_is_mastodon: Що таке Mastodon?
   accounts:
-    choices_html: "Вподобання %{name}:"
-    endorsements_hint: У веб-інтерфейсі ви можете рекомендувати людей, на яких підписані, і вони з'являться тут.
-    featured_tags_hint: Ви можете вказати хештеги, які будуть відображатись тут.
     follow: Підписатися
     followers:
       one: Підписник
@@ -23,15 +14,9 @@ uk:
       other: Підписників
     following: Підписаний(-а)
     instance_actor_flash: Цей обліковий запис є віртуальним персонажем, який використовується для показу самого сервера, а не будь-якого окремого користувача. Він використовується з метою федералізації і не повинен бути зупинений.
-    joined: Приєднався %{date}
     last_active: остання активність
     link_verified_on: Права власності на це посилання були перевірені %{date}
-    media: Медіа
-    moved_html: "%{name} переїхав до %{new_profile_link}:"
-    network_hidden: Ця інформація недоступна
     nothing_here: Тут нічого немає!
-    people_followed_by: Люди, на яких підписаний(-а) %{name}
-    people_who_follow: Підписники %{name}
     pin_errors:
       following: Ви повинні бути підписаним на людину, яку бажаєте схвалити
     posts:
@@ -40,12 +25,6 @@ uk:
       many: Дмухів
       other: Дмухів
     posts_tab_heading: Дмухи
-    posts_with_replies: Дмухи та відповіді
-    roles:
-      bot: Бот
-      group: Група
-    unavailable: Профіль недоступний
-    unfollow: Відписатися
   admin:
     account_actions:
       action: Виконати дію
@@ -1217,9 +1196,6 @@ uk:
         hint: Цей фільтр застосовується для вибору окремих дописів, незалежно від інших критеріїв. Ви можете додавати більше дописів до цього фільтра з вебінтерфейсу.
         title: Відфільтровані дописи
   footer:
-    developers: Розробникам
-    more: Більше…
-    resources: Ресурси
     trending_now: Актуальні
   generic:
     all: Усі
@@ -1270,7 +1246,6 @@ uk:
       following: Підписки
       muting: Список глушення
     upload: Завантажити
-  in_memoriam_html: Пам'ятник.
   invites:
     delete: Деактивувати
     expired: Вийшов
@@ -1452,22 +1427,7 @@ uk:
     remove_selected_follows: Не стежити за обраними користувачами
     status: Статус облікового запису
   remote_follow:
-    acct: Введіть username@domain, яким ви хочете підписатися
     missing_resource: Не вдалося знайти необхідний URL переадресації для вашого облікового запису
-    no_account_html: Не маєте облікового запису? Ви можете <a href='%{sign_up_path}' target='_blank'>зареєструватися тут</a>
-    proceed: Перейти до підписки
-    prompt: 'Ви хочете підписатися на:'
-    reason_html: "<strong>Чому це необхідно?</strong> <code>%{instance}</code> можливо, не є сервером, на якому ви зареєстровані, тому ми маємо спрямувати вас до вашого домашнього сервера."
-  remote_interaction:
-    favourite:
-      proceed: Перейти до додавання в улюблені
-      prompt: 'Ви хочете зробити улюбленим цей дмух:'
-    reblog:
-      proceed: Перейти до передмухування
-      prompt: 'Ви хочете передмухнути цей дмух:'
-    reply:
-      proceed: Перейти до відповіді
-      prompt: 'Ви хочете відповісти на цей дмух:'
   reports:
     errors:
       invalid_rules: не посилається на чинні правила
