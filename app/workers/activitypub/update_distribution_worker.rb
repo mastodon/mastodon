@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ActivityPub::UpdateDistributionWorker < ActivityPub::RawDistributionWorker
-  sidekiq_options queue: 'push', lock: :until_executed
-
   # Distribute an profile update to servers that might have a copy
   # of the account in question
   def perform(account_id, options = {})

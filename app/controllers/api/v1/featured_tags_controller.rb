@@ -6,29 +6,22 @@ class Api::V1::FeaturedTagsController < Api::BaseController
 
   before_action :require_user!
   before_action :set_featured_tags, only: :index
-  before_action :set_featured_tag, except: [:index, :create]
 
   def index
     render json: @featured_tags, each_serializer: REST::FeaturedTagSerializer
   end
 
   def create
-    @featured_tag = current_account.featured_tags.create!(featured_tag_params)
-    ActivityPub::UpdateDistributionWorker.perform_in(3.minutes, current_account.id)
-    render json: @featured_tag, serializer: REST::FeaturedTagSerializer
+    featured_tag = FeaturedTagService.new.call(current_account, featured_tag_params[:name])
+    render json: featured_tag, serializer: REST::FeaturedTagSerializer
   end
 
   def destroy
-    @featured_tag.destroy!
-    ActivityPub::UpdateDistributionWorker.perform_in(3.minutes, current_account.id)
+    UnfeaturedTagWorker.perform_async(current_account.id, params[:id])
     render_empty
   end
 
   private
-
-  def set_featured_tag
-    @featured_tag = current_account.featured_tags.find(params[:id])
-  end
 
   def set_featured_tags
     @featured_tags = current_account.featured_tags.order(statuses_count: :desc)
