@@ -1,45 +1,24 @@
 vi:
   about:
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
-    api: API
-    apps: Apps
     contact_missing: Chưa thiết lập
     contact_unavailable: N/A
-    documentation: Tài liệu
     hosted_on: '%{domain} vận hành nhờ Mastodon'
-    privacy_policy: Chính sách bảo mật
-    source_code: Mã nguồn
     title: Giới thiệu
-    what_is_mastodon: Mastodon là gì?
   accounts:
-    choices_html: "%{name} tôn vinh:"
-    endorsements_hint: Bạn có thể tôn vinh những người bạn theo dõi và họ sẽ hiển thị ở giao diện web.
-    featured_tags_hint: Bạn có thể cho biết những hashtag thường dùng ở đây.
     follow: Theo dõi
     followers:
       other: Người theo dõi
     following: Theo dõi
     instance_actor_flash: Tài khoản này được dùng để đại diện cho máy chủ và không phải là người thật. Đừng bao giờ vô hiệu hóa tài khoản này.
-    joined: Đã tham gia %{date}
     last_active: online
     link_verified_on: Liên kết này đã được xác minh quyền sở hữu vào %{date}
-    media: Media
-    moved_html: "%{name} đã chuyển sang %{new_profile_link}:"
-    network_hidden: Dữ liệu đã bị ẩn
     nothing_here: Trống trơn!
-    people_followed_by: Những người %{name} theo dõi
-    people_who_follow: Những người theo dõi %{name}
     pin_errors:
       following: Để tôn vinh người nào đó, bạn phải theo dõi họ trước
     posts:
       other: Tút
     posts_tab_heading: Tút
-    posts_with_replies: Trả lời
-    roles:
-      bot: Tài khoản Bot
-      group: Nhóm
-    unavailable: Tài khoản bị đình chỉ
-    unfollow: Ngưng theo dõi
   admin:
     account_actions:
       action: Thực hiện hành động
@@ -1154,9 +1133,6 @@ vi:
         hint: Bộ lọc này áp dụng để chọn các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút khác vào bộ lọc này từ giao diện web.
         title: Những tút đã lọc
   footer:
-    developers: Phát triển
-    more: Nhiều hơn
-    resources: Quy tắc
     trending_now: Xu hướng
   generic:
     all: Tất cả
@@ -1195,7 +1171,6 @@ vi:
       following: Danh sách người theo dõi
       muting: Danh sách người đã ẩn
     upload: Tải lên
-  in_memoriam_html: Tưởng Niệm
   invites:
     delete: Vô hiệu hóa
     expired: Hết hạn
@@ -1374,22 +1349,7 @@ vi:
     remove_selected_follows: Ngưng theo dõi những người đã chọn
     status: Trạng thái của họ
   remote_follow:
-    acct: Nhập địa chỉ Mastodon của bạn (tên@máy chủ)
     missing_resource: Không tìm thấy URL chuyển hướng cho tài khoản của bạn
-    no_account_html: Nếu chưa có tài khoản, hãy <a href='%{sign_up_path}' target='_blank'>đăng ký</a>
-    proceed: Theo dõi
-    prompt: 'Bạn vừa yêu cầu theo dõi:'
-    reason_html: "<strong>Tại sao bước này là cần thiết?</strong> <code>%{instance}</code> có thể không phải là máy chủ nơi bạn đã đăng ký, vì vậy chúng tôi cần chuyển hướng bạn đến máy chủ của bạn trước."
-  remote_interaction:
-    favourite:
-      proceed: Thích tút
-      prompt: 'Bạn muốn thích tút này:'
-    reblog:
-      proceed: Tiếp tục đăng lại
-      prompt: 'Bạn có muốn đăng lại tút này?'
-    reply:
-      proceed: Tiếp tục trả lời
-      prompt: 'Bạn có muốn trả lời tút này?'
   reports:
     errors:
       invalid_rules: không đúng với quy tắc
