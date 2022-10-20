@@ -1,47 +1,26 @@
 ca:
   about:
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
-    api: API
-    apps: Aplicacions mòbils
     contact_missing: No configurat
     contact_unavailable: N/D
-    documentation: Documentació
     hosted_on: Mastodon allotjat a %{domain}
-    privacy_policy: Política de Privacitat
-    source_code: Codi font
     title: Quant a
-    what_is_mastodon: Què és Mastodon?
   accounts:
-    choices_html: "Eleccions de %{name}:"
-    endorsements_hint: Pots recomanar persones que segueixes des de la interfície de web i apareixeran aquí.
-    featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
     followers:
       one: Seguidor
       other: Seguidors
     following: Seguint
     instance_actor_flash: Aquest compte és un actor virtual usat per a representar el mateix servidor i no cap usuari individual. Es fa servir per a federar i no s'hauria d'esborrar.
-    joined: Unit des de %{date}
     last_active: última activitat
     link_verified_on: La propietat d'aquest enllaç s'ha verificat el %{date}
-    media: Mèdia
-    moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
-    network_hidden: Aquesta informació no està disponible
     nothing_here: No hi ha res aquí!
-    people_followed_by: Persones seguides per %{name}
-    people_who_follow: Usuaris que segueixen %{name}
     pin_errors:
       following: Has d'estar seguint la persona que vulguis avalar
     posts:
       one: Publicació
       other: Publicacions
     posts_tab_heading: Publicacions
-    posts_with_replies: Publicacions i respostes
-    roles:
-      bot: Bot
-      group: Grup
-    unavailable: Perfil inaccessible
-    unfollow: Deixa de seguir
   admin:
     account_actions:
       action: Realitzar acció
@@ -1175,9 +1154,6 @@ ca:
         hint: Aquest filtre aplica als apunts seleccionats independentment d'altres criteris. Pots afegir més apunts a aquest filtre des de l'interfície Web.
         title: Apunts filtrats
   footer:
-    developers: Desenvolupadors
-    more: Més…
-    resources: Recursos
     trending_now: En tendència
   generic:
     all: Tot
@@ -1220,7 +1196,6 @@ ca:
       following: Llista de seguits
       muting: Llista de silenciats
     upload: Carrega
-  in_memoriam_html: En Memòria.
   invites:
     delete: Desactiva
     expired: Caducat
@@ -1400,22 +1375,7 @@ ca:
     remove_selected_follows: Deixa de seguir als usuaris seleccionats
     status: Estat del compte
   remote_follow:
-    acct: Escriu el teu usuari@domini des del qual vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessària per al compte
-    no_account_html: No tens cap compte? Pots <a href='%{sign_up_path}' target='_blank'>registrar-te aquí</a>
-    proceed: Comença a seguir
-    prompt: 'Seguiràs a:'
-    reason_html: "<strong>Per què és necessari aquest pas?</strong> <code>%{instance}</code> pot ser que no sigui el servidor on estàs registrat per tant primer hem de redirigir-te al teu servidor."
-  remote_interaction:
-    favourite:
-      proceed: Procedir a afavorir
-      prompt: 'Vols marcar com a favorit aquesta publicació:'
-    reblog:
-      proceed: Procedir a impulsar
-      prompt: 'Vols impulsar aquesta publicació:'
-    reply:
-      proceed: Procedir a respondre
-      prompt: 'Vols respondre a aquesta publicació:'
   reports:
     errors:
       invalid_rules: no fa referència a normes vàlides
