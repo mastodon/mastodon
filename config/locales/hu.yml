@@ -1,47 +1,26 @@
 hu:
   about:
     about_mastodon_html: 'A jövő közösségi hálózata: Hirdetések és céges megfigyelés nélkül, etikus dizájnnal és decentralizációval! Legyél a saját adataid ura a Mastodonnal!'
-    api: API
-    apps: Mobil appok
     contact_missing: Nincs megadva
     contact_unavailable: N/A
-    documentation: Dokumentáció
     hosted_on: '%{domain} Mastodon szerver'
-    privacy_policy: Adatvédelmi szabályzat
-    source_code: Forráskód
     title: Névjegy
-    what_is_mastodon: Mi a Mastodon?
   accounts:
-    choices_html: "%{name} választásai:"
-    endorsements_hint: A webes felületen promózhatsz általad követett embereket, akik itt fognak megjelenni.
-    featured_tags_hint: Szerepeltethetsz bizonyos hashtageket, melyek itt jelennek majd meg.
     follow: Követés
     followers:
       one: Követő
       other: Követő
     following: Követett
     instance_actor_flash: "Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét\nfelhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni."
-    joined: Csatlakozott %{date}
     last_active: utoljára aktív
     link_verified_on: 'A hivatkozás tulajdonosa ekkor volt ellenőrizve: %{date}'
-    media: Média
-    moved_html: "%{name} ide költözött: %{new_profile_link}"
-    network_hidden: Ez az információ nem elérhető
     nothing_here: Nincs itt semmi!
-    people_followed_by: '%{name} követettjei'
-    people_who_follow: '%{name} követői'
     pin_errors:
       following: Ehhez szükséges, hogy kövesd már a felhasználót
     posts:
       one: Bejegyzés
       other: Bejegyzés
     posts_tab_heading: Bejegyzés
-    posts_with_replies: Bejegyzés válaszokkal
-    roles:
-      bot: Bot
-      group: Csoport
-    unavailable: Nincs ilyen profil
-    unfollow: Követés vége
   admin:
     account_actions:
       action: Művelet végrehajtása
@@ -1175,9 +1154,6 @@ hu:
         hint: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik a megadott kritériumoktól függetlenül. Újabb bejegyzéseket adhatsz hozzá ehhez a szűrőhöz a webes felületen keresztül.
         title: Megszűrt bejegyzések
   footer:
-    developers: Fejlesztőknek
-    more: Többet…
-    resources: Segédanyagok
     trending_now: Most felkapott
   generic:
     all: Mind
@@ -1220,7 +1196,6 @@ hu:
       following: Követettjeid listája
       muting: Némított felhasználók listája
     upload: Feltöltés
-  in_memoriam_html: Emlékünkben.
   invites:
     delete: Visszavonás
     expired: Lejárt
@@ -1400,22 +1375,7 @@ hu:
     remove_selected_follows: Kiválasztottak követésének abbahagyása
     status: Fiók állapota
   remote_follow:
-    acct: Írd be a felhasználódat, amelyről követni szeretnéd felhasznalonev@domain formátumban
     missing_resource: A fiókodnál nem található a szükséges átirányítási URL
-    no_account_html: Nincs fiókod? <a href='%{sign_up_path}' target='_blank'>Regisztrálj itt</a>
-    proceed: Tovább a követéshez
-    prompt: 'Őt tervezed követni:'
-    reason_html: "<strong>Miért van erre szükség?</strong> <code>%{instance}</code> nem feltétlenül az a szerver, ahol regisztrálva vagy, ezért először a saját szerveredre irányítunk."
-  remote_interaction:
-    favourite:
-      proceed: Jelöljük kedvencnek
-      prompt: 'Ezt a bejegyzést szeretnéd kedvencnek jelölni:'
-    reblog:
-      proceed: Tovább a megtoláshoz
-      prompt: 'Ezt a bejegyzést szeretnéd megtolni:'
-    reply:
-      proceed: Válaszadás
-      prompt: 'Erre a bejegyzésre szeretnél válaszolni:'
   reports:
     errors:
       invalid_rules: nem hivatkozik érvényes szabályra
