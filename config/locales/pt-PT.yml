@@ -1,47 +1,26 @@
 pt-PT:
   about:
     about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
-    api: API
-    apps: Aplicações móveis
     contact_missing: Não configurado
     contact_unavailable: n.d.
-    documentation: Documentação
     hosted_on: Mastodon em %{domain}
-    privacy_policy: Política de Privacidade
-    source_code: Código fonte
     title: Sobre
-    what_is_mastodon: O que é o Mastodon?
   accounts:
-    choices_html: "escolhas de %{name}:"
-    endorsements_hint: Você pode, através da interface web, escolher endossar pessoas que segue, e elas aparecerão aqui.
-    featured_tags_hint: Você pode destacar hashtags específicas que serão exibidas aqui.
     follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
     following: A seguir
     instance_actor_flash: Esta conta é um actor virtual usado para representar a própria instância e não um utilizador individual. É usada para motivos de federação e não deve ser suspenso.
-    joined: Aderiu %{date}
     last_active: última vez activo
     link_verified_on: A posse deste link foi verificada em %{date}
-    media: Media
-    moved_html: "%{name} mudou-se para %{new_profile_link}:"
-    network_hidden: Esta informação não está disponível
     nothing_here: Não há nada aqui!
-    people_followed_by: Pessoas seguidas por %{name}
-    people_who_follow: Pessoas que seguem %{name}
     pin_errors:
       following: Tu tens de estar a seguir a pessoa que pretendes apoiar
     posts:
       one: Publicação
       other: Publicações
     posts_tab_heading: Publicações
-    posts_with_replies: Posts e Respostas
-    roles:
-      bot: Robô
-      group: Grupo
-    unavailable: Perfil indisponível
-    unfollow: Deixar de seguir
   admin:
     account_actions:
       action: Executar acção
@@ -1175,9 +1154,6 @@ pt-PT:
         hint: Este filtro aplica-se a publicações individuais selecionadas independentemente de outros critérios. Pode adicionar mais publicações a este filtro através da interface web.
         title: Publicações filtradas
   footer:
-    developers: Responsáveis pelo desenvolvimento
-    more: Mais…
-    resources: Recursos
     trending_now: Tendências atuais
   generic:
     all: Tudo
@@ -1220,7 +1196,6 @@ pt-PT:
       following: Lista de pessoas que estás a seguir
       muting: Lista de utilizadores silenciados
     upload: Enviar
-  in_memoriam_html: Em memória.
   invites:
     delete: Desativar
     expired: Expirados
@@ -1400,22 +1375,7 @@ pt-PT:
     remove_selected_follows: Deixar de seguir os utilizadores selecionados
     status: Estado da conta
   remote_follow:
-    acct: Introduza o seu utilizador@domínio do qual quer seguir
     missing_resource: Não foi possível achar a URL de redirecionamento para sua conta
-    no_account_html: Não tens uma conta? Tu podes <a href='%{sign_up_path}' target='_blank'> aderir aqui</a>
-    proceed: Prossiga para seguir
-    prompt: 'Você vai seguir:'
-    reason_html: "<strong> Porque é este passo necessário?</strong> <code>%{instance}</code> pode não ser a instância onde você está registado. Por isso, precisamos de o redirecionar para a sua instância de origem em primeiro lugar."
-  remote_interaction:
-    favourite:
-      proceed: Prosseguir para os favoritos
-      prompt: 'Queres favoritar esta publicação:'
-    reblog:
-      proceed: Prosseguir com partilha
-      prompt: 'Queres partilhar esta publicação:'
-    reply:
-      proceed: Prosseguir com resposta
-      prompt: 'Queres responder a esta publicação:'
   reports:
     errors:
       invalid_rules: não faz referência a regras válidas
