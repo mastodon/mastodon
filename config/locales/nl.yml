@@ -1,47 +1,26 @@
 nl:
   about:
     about_mastodon_html: 'Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.'
-    api: API
-    apps: Mobiele apps
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
-    documentation: Documentatie
     hosted_on: Mastodon op %{domain}
-    privacy_policy: Privacybeleid
-    source_code: Broncode
     title: Over
-    what_is_mastodon: Wat is Mastodon?
   accounts:
-    choices_html: "Aanbevelingen van %{name}:"
-    endorsements_hint: Je kunt mensen die je volgt in de webomgeving aanbevelen, waarna ze dan hier zullen verschijnen.
-    featured_tags_hint: Je kunt specifieke hashtags uitlichten, waarna ze dan hier zullen verschijnen.
     follow: Volgen
     followers:
       one: Volger
       other: Volgers
     following: Volgend
     instance_actor_flash: Dit account is een 'virtual actor' waarmee de server zichzelf vertegenwoordigd en is dus geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden opgeschort.
-    joined: Geregistreerd in %{date}
     last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
-    media: Media
-    moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
-    network_hidden: Deze informatie is niet beschikbaar
     nothing_here: Hier is niets!
-    people_followed_by: Mensen die %{name} volgen
-    people_who_follow: Mensen die %{name} volgen
     pin_errors:
       following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
     posts:
       one: Toot
       other: Berichten
     posts_tab_heading: Berichten
-    posts_with_replies: Berichten en reacties
-    roles:
-      bot: Bot
-      group: Groep
-    unavailable: Profiel niet beschikbaar
-    unfollow: Ontvolgen
   admin:
     account_actions:
       action: Actie uitvoeren
@@ -1078,9 +1057,6 @@ nl:
       index:
         title: Gefilterde berichten
   footer:
-    developers: Ontwikkelaars
-    more: Meer…
-    resources: Hulpmiddelen
     trending_now: Trends
   generic:
     all: Alles
@@ -1123,7 +1099,6 @@ nl:
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
-  in_memoriam_html: In memoriam.
   invites:
     delete: Deactiveren
     expired: Verlopen
@@ -1299,22 +1274,7 @@ nl:
     remove_selected_follows: Geselecteerde gebruikers ontvolgen
     status: Accountstatus
   remote_follow:
-    acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
-    no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
-    proceed: Ga verder om te volgen
-    prompt: 'Jij gaat volgen:'
-    reason_html: "<strong> Waarom is deze extra stap nodig? </strong> <code>%{instance}</code> is wellicht niet de server waarop jij je geregistreerd hebt. We verwijzen je eerst door naar jouw eigen server."
-  remote_interaction:
-    favourite:
-      proceed: Doorgaan met het markeren als favoriet
-      prompt: 'Je wilt het volgende bericht als favoriet markeren:'
-    reblog:
-      proceed: Doorgaan met boosten
-      prompt: 'Je wilt het volgende bericht boosten:'
-    reply:
-      proceed: Doorgaan met reageren
-      prompt: 'Je wilt op het volgende bericht reageren:'
   rss:
     content_warning: 'Inhoudswaarschuwing:'
   scheduled_statuses:
