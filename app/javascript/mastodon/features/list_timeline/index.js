@@ -212,6 +212,7 @@ class ListTimeline extends React.PureComponent {
 
         <Helmet>
           <title>{title}</title>
+          <meta name='robots' content='noindex' />
         </Helmet>
       </Column>
     );

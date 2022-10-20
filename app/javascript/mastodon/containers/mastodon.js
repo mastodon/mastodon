@@ -78,7 +78,7 @@ export default class Mastodon extends React.PureComponent {
       <IntlProvider locale={locale} messages={messages}>
         <ReduxProvider store={store}>
           <ErrorBoundary>
-            <BrowserRouter basename='/web'>
+            <BrowserRouter>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
                 <Route path='/' component={UI} />
               </ScrollContext>

@@ -39,7 +39,7 @@ describe AuthorizeInteractionsController do
       end
 
       it 'sets resource from url' do
-        account = Account.new
+        account = Fabricate(:account)
         service = double
         allow(ResolveURLService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('http://example.com').and_return(account)
@@ -51,7 +51,7 @@ describe AuthorizeInteractionsController do
       end
 
       it 'sets resource from acct uri' do
-        account = Account.new
+        account = Fabricate(:account)
         service = double
         allow(ResolveAccountService).to receive(:new).and_return(service)
         allow(service).to receive(:call).with('found@hostname').and_return(account)

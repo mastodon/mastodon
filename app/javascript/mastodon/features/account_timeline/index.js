@@ -142,19 +142,17 @@ class AccountTimeline extends ImmutablePureComponent {
   render () {
     const { accountId, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;
 
-    if (!isAccount) {
+    if (isLoading && statusIds.isEmpty()) {
+      return (
+        <Column>
+          <LoadingIndicator />
+        </Column>
+      );
+    } else if (!isLoading && !isAccount) {
       return (
         <Column>
           <ColumnBackButton multiColumn={multiColumn} />
           <MissingIndicator />
-        </Column>
-      );
-    }
-
-    if (!statusIds && isLoading) {
-      return (
-        <Column>
-          <LoadingIndicator />
         </Column>
       );
     }

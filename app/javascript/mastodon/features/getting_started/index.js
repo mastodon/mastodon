@@ -138,6 +138,7 @@ class GettingStarted extends ImmutablePureComponent {
 
         <Helmet>
           <title>{intl.formatMessage(messages.menu)}</title>
+          <meta name='robots' content='noindex' />
         </Helmet>
       </Column>
     );

@@ -53,7 +53,9 @@ export class WrappedRoute extends React.Component {
   }
 
   renderLoading = () => {
-    return <ColumnLoading />;
+    const { multiColumn } = this.props;
+
+    return <ColumnLoading multiColumn={multiColumn} />;
   }
 
   renderError = (props) => {

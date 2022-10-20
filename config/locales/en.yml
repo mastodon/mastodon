@@ -2,47 +2,26 @@
 en:
   about:
     about_mastodon_html: 'The social network of the future: No ads, no corporate surveillance, ethical design, and decentralization! Own your data with Mastodon!'
-    api: API
-    apps: Mobile apps
     contact_missing: Not set
     contact_unavailable: N/A
-    documentation: Documentation
     hosted_on: Mastodon hosted on %{domain}
-    privacy_policy: Privacy Policy
-    source_code: Source code
     title: About
-    what_is_mastodon: What is Mastodon?
   accounts:
-    choices_html: "%{name}'s choices:"
-    endorsements_hint: You can endorse people you follow from the web interface, and they will show up here.
-    featured_tags_hint: You can feature specific hashtags that will be displayed here.
     follow: Follow
     followers:
       one: Follower
       other: Followers
     following: Following
     instance_actor_flash: This account is a virtual actor used to represent the server itself and not any individual user. It is used for federation purposes and should not be suspended.
-    joined: Joined %{date}
     last_active: last active
     link_verified_on: Ownership of this link was checked on %{date}
-    media: Media
-    moved_html: "%{name} has moved to %{new_profile_link}:"
-    network_hidden: This information is not available
     nothing_here: There is nothing here!
-    people_followed_by: People whom %{name} follows
-    people_who_follow: People who follow %{name}
     pin_errors:
       following: You must be already following the person you want to endorse
     posts:
       one: Post
       other: Posts
     posts_tab_heading: Posts
-    posts_with_replies: Posts and replies
-    roles:
-      bot: Bot
-      group: Group
-    unavailable: Profile unavailable
-    unfollow: Unfollow
   admin:
     account_actions:
       action: Perform action
@@ -1176,9 +1155,6 @@ en:
         hint: This filter applies to select individual posts regardless of other criteria. You can add more posts to this filter from the web interface.
         title: Filtered posts
   footer:
-    developers: Developers
-    more: More…
-    resources: Resources
     trending_now: Trending now
   generic:
     all: All
@@ -1221,7 +1197,6 @@ en:
       following: Following list
       muting: Muting list
     upload: Upload
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Deactivate
     expired: Expired
@@ -1402,22 +1377,7 @@ en:
     remove_selected_follows: Unfollow selected users
     status: Account status
   remote_follow:
-    acct: Enter your username@domain you want to act from
     missing_resource: Could not find the required redirect URL for your account
-    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
-    proceed: Proceed to follow
-    prompt: 'You are going to follow:'
-    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the server where you are registered, so we need to redirect you to your home server first."
-  remote_interaction:
-    favourite:
-      proceed: Proceed to favourite
-      prompt: 'You want to favourite this post:'
-    reblog:
-      proceed: Proceed to boost
-      prompt: 'You want to boost this post:'
-    reply:
-      proceed: Proceed to reply
-      prompt: 'You want to reply to this post:'
   reports:
     errors:
       invalid_rules: does not reference valid rules
