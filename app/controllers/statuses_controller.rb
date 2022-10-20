@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class StatusesController < ApplicationController
+  include WebAppControllerConcern
   include StatusControllerConcern
   include SignatureAuthentication
   include Authorization
   include AccountOwnedConcern
-  include WebAppControllerConcern
 
   before_action :require_account_signature!, only: [:show, :activity], if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status

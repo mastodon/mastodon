@@ -134,6 +134,7 @@ class Account < ApplicationRecord
            :role,
            :locale,
            :shows_application?,
+           :prefers_noindex?,
            to: :user,
            prefix: true,
            allow_nil: true

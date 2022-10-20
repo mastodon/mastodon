@@ -94,6 +94,7 @@ class About extends React.PureComponent {
     }),
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
   };
 
   componentDidMount () {
@@ -108,11 +109,11 @@ class About extends React.PureComponent {
   }
 
   render () {
-    const { intl, server, extendedDescription, domainBlocks } = this.props;
+    const { multiColumn, intl, server, extendedDescription, domainBlocks } = this.props;
     const isLoading = server.get('isLoading');
 
     return (
-      <Column>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <div className='scrollable about'>
           <div className='about__header'>
             <Image blurhash={server.getIn(['thumbnail', 'blurhash'])} src={server.getIn(['thumbnail', 'url'])} srcSet={server.getIn(['thumbnail', 'versions'])?.map((value, key) => `${value} ${key.replace('@', '')}`).join(', ')} className='about__header__hero' />
@@ -212,6 +213,7 @@ class About extends React.PureComponent {
 
         <Helmet>
           <title>{intl.formatMessage(messages.title)}</title>
+          <meta name='robots' content='all' />
         </Helmet>
       </Column>
     );

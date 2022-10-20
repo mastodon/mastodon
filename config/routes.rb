@@ -3,6 +3,31 @@
 require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
+# Paths of routes on the web app that to not require to be indexed or
+# have alternative format representations requiring separate controllers
+WEB_APP_PATHS = %w(
+  /getting-started
+  /keyboard-shortcuts
+  /home
+  /public
+  /public/local
+  /conversations
+  /lists/(*any)
+  /notifications
+  /favourites
+  /bookmarks
+  /pinned
+  /start
+  /directory
+  /explore/(*any)
+  /search
+  /publish
+  /follow_requests
+  /blocks
+  /domain_blocks
+  /mutes
+).freeze
+
 Rails.application.routes.draw do
   root 'home#index'
 
@@ -59,9 +84,6 @@ Rails.application.routes.draw do
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
-    get :remote_follow,  to: 'remote_follow#new'
-    post :remote_follow, to: 'remote_follow#create'
-
     resources :statuses, only: [:show] do
       member do
         get :activity
@@ -85,16 +107,21 @@ Rails.application.routes.draw do
 
   resource :inbox, only: [:create], module: :activitypub
 
-  get '/@:username', to: 'accounts#show', as: :short_account
-  get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
-  get '/@:username/media', to: 'accounts#show', as: :short_account_media
-  get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
-  get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
-  get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+  constraints(username: /[^@\/.]+/) do
+    get '/@:username', to: 'accounts#show', as: :short_account
+    get '/@:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
+    get '/@:username/media', to: 'accounts#show', as: :short_account_media
+    get '/@:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
+  end
 
-  get  '/interact/:id', to: 'remote_interaction#new', as: :remote_interaction
-  post '/interact/:id', to: 'remote_interaction#create'
+  constraints(account_username: /[^@\/.]+/) do
+    get '/@:account_username/following', to: 'following_accounts#index'
+    get '/@:account_username/followers', to: 'follower_accounts#index'
+    get '/@:account_username/:id', to: 'statuses#show', as: :short_account_status
+    get '/@:account_username/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+  end
 
+  get '/@:username_with_domain/(*any)', to: 'home#index', constraints: { username_with_domain: /([^\/])+?/ }, format: false
   get '/settings', to: redirect('/settings/profile')
 
   namespace :settings do
@@ -187,9 +214,6 @@ Rails.application.routes.draw do
   resource :relationships, only: [:show, :update]
   resource :statuses_cleanup, controller: :statuses_cleanup, only: [:show, :update]
 
-  get '/explore', to: redirect('/web/explore')
-  get '/public', to: redirect('/web/public')
-  get '/public/local', to: redirect('/web/public/local')
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
   resource :authorize_interaction, only: [:show, :create]
@@ -642,8 +666,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/web/(*any)', to: 'home#index', as: :web
+  WEB_APP_PATHS.each do |path|
+    get path, to: 'home#index'
+  end
 
+  get '/web/(*any)',   to: redirect('/%{any}', status: 302), as: :web
   get '/about',        to: 'about#show'
   get '/about/more',   to: redirect('/about')
 

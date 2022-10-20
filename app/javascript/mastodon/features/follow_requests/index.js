@@ -12,6 +12,7 @@ import AccountAuthorizeContainer from './containers/account_authorize_container'
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import ScrollableList from '../../components/scrollable_list';
 import { me } from '../../initial_state';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'column.follow_requests', defaultMessage: 'Follow requests' },
@@ -87,6 +88,10 @@ class FollowRequests extends ImmutablePureComponent {
             <AccountAuthorizeContainer key={id} id={id} />,
           )}
         </ScrollableList>
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

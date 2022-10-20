@@ -13,6 +13,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
     @featured_tag = current_account.featured_tags.new(featured_tag_params)
 
     if @featured_tag.save
+      ActivityPub::UpdateDistributionWorker.perform_in(3.minutes, current_account.id)
       redirect_to settings_featured_tags_path
     else
       set_featured_tags
@@ -24,6 +25,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
 
   def destroy
     @featured_tag.destroy!
+    ActivityPub::UpdateDistributionWorker.perform_in(3.minutes, current_account.id)
     redirect_to settings_featured_tags_path
   end
 

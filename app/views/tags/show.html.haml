@@ -1,0 +1,5 @@
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex' }/
+  = render partial: 'shared/og'
+
+= render partial: 'shared/web_app'

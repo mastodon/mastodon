@@ -228,6 +228,7 @@ class HashtagTimeline extends React.PureComponent {
 
         <Helmet>
           <title>#{id}</title>
+          <meta name='robots' content='noindex' />
         </Helmet>
       </Column>
     );
