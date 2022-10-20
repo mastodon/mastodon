@@ -1,47 +1,26 @@
 da:
   about:
     about_mastodon_html: 'Fremtidens sociale netværk: Ingen annoncer, ingen virksomhedsovervågning, etisk design og decentralisering! Vær ejer af egne data med Mastodon!'
-    api: API
-    apps: Mobil-apps
     contact_missing: Ikke angivet
     contact_unavailable: Utilgængelig
-    documentation: Dokumentation
     hosted_on: Mostodon hostet på %{domain}
-    privacy_policy: Fortrolighedspolitik
-    source_code: Kildekode
     title: Om
-    what_is_mastodon: Hvad er Mastodon?
   accounts:
-    choices_html: "%{name}s valg:"
-    endorsements_hint: Man kan støtte personer, man følger, fra webgrænsefladen, som så vil fremgå hér.
-    featured_tags_hint: Man kan fremhæve bestemte hashtags, som så vil fremgå hér.
     follow: Følg
     followers:
       one: Følger
       other: Følgere
     following: Følger
     instance_actor_flash: Denne konto er en virtuel aktør repræsenterende selve serveren og ikke en individuel bruger. Den anvendes til fællesformål og bør ikke suspenderes.
-    joined: Tilmeldt %{date}
     last_active: senest aktiv
     link_verified_on: Ejerskab af dette link blev tjekket %{date}
-    media: Medier
-    moved_html: "%{name} er flyttet til %{new_profile_link}:"
-    network_hidden: Denne information er utilgængelig
     nothing_here: Der er intet hér!
-    people_followed_by: Personer, som %{name} følger
-    people_who_follow: Personer, som følger %{name}
     pin_errors:
       following: Man skal allerede følge den person, man ønsker at støtte
     posts:
       one: Indlæg
       other: Indlæg
     posts_tab_heading: Indlæg
-    posts_with_replies: Indlæg og svar
-    roles:
-      bot: Bot
-      group: Gruppe
-    unavailable: Profil utilgængelig
-    unfollow: Følg ikke længere
   admin:
     account_actions:
       action: Udfør handling
@@ -1175,9 +1154,6 @@ da:
         hint: Dette filter gælder for udvalgte, individuelle indlæg uanset andre kriterier. Flere indlæg kan føjes til filteret via webfladen.
         title: Filtrerede indlæg
   footer:
-    developers: Udviklere
-    more: Mere…
-    resources: Ressourcer
     trending_now: Trender lige nu
   generic:
     all: Alle
@@ -1220,7 +1196,6 @@ da:
       following: Følgningsliste
       muting: Tavsgørelsesliste
     upload: Upload
-  in_memoriam_html: Til minde om.
   invites:
     delete: Deaktivér
     expired: Udløbet
@@ -1400,22 +1375,7 @@ da:
     remove_selected_follows: Følg ikke længere valgte brugere
     status: Kontostatus
   remote_follow:
-    acct: Angiv det brugernavn@domæne, hvorfra du vil ageres
     missing_resource: Nødvendige omdirigerings-URL til kontoen ikke fundet
-    no_account_html: Har ingen konto? Der kan <a href='%{sign_up_path}' target='_blank'>oprettes én hér</a>
-    proceed: Fortsæt for at følge
-    prompt: 'Du er ved at følge:'
-    reason_html: "<strong>Hvorfor er dette trin nødvendigt?</strong> <code>%{instance}</code> er måske ikke den server, hvorpå man er registreret, så man skal først omdirigeres til sin hjemmeserver."
-  remote_interaction:
-    favourite:
-      proceed: Fortsæt for at favoritmarkere
-      prompt: 'Favoritmarkere dette indlæg:'
-    reblog:
-      proceed: Fortsæt for at booste
-      prompt: 'Booste dette indlæg:'
-    reply:
-      proceed: Fortsæt for at besvare
-      prompt: 'Besvare dette indlæg:'
   reports:
     errors:
       invalid_rules: refererer ikke til gyldige regler
