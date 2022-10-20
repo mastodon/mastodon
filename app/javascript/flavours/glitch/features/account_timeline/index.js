@@ -26,6 +26,7 @@ const mapStateToProps = (state, { params: { acct, id }, withReplies = false }) =
   if (!accountId) {
     return {
       isLoading: true,
+      statusIds: emptyList,
     };
   }
 
