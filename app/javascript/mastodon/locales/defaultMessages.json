@@ -956,6 +956,10 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Withdraw request",
+        "id": "confirmations.cancel_follow_request.confirm"
+      },
+      {
         "defaultMessage": "Unfollow",
         "id": "confirmations.unfollow.confirm"
       },
@@ -966,6 +970,10 @@
       {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
         "id": "confirmations.unfollow.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to withdraw your request to follow {name}?",
+        "id": "confirmations.cancel_follow_request.message"
       },
       {
         "defaultMessage": "Are you really, really sure you want to block the entire {domain}? In most cases a few targeted blocks or mutes are sufficient and preferable. You will not see content from that domain in any public timelines or your notifications. Your followers from that domain will be removed.",
@@ -1015,6 +1023,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Last post on {date}",
+        "id": "account.featured_tags.last_status_at"
+      },
+      {
+        "defaultMessage": "No posts",
+        "id": "account.featured_tags.last_status_never"
+      },
+      {
+        "defaultMessage": "{name}'s featured hashtags",
+        "id": "account.featured_tags.title"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account/components/featured_tags.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unfollow",
         "id": "account.unfollow"
       },
@@ -1023,7 +1048,7 @@
         "id": "account.follow"
       },
       {
-        "defaultMessage": "Cancel follow request",
+        "defaultMessage": "Withdraw follow request",
         "id": "account.cancel_follow_request"
       },
       {
@@ -1839,7 +1864,7 @@
         "id": "account.follow"
       },
       {
-        "defaultMessage": "Cancel follow request",
+        "defaultMessage": "Withdraw follow request",
         "id": "account.cancel_follow_request"
       },
       {
