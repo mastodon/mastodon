@@ -1,45 +1,24 @@
 zh-TW:
   about:
     about_mastodon_html: 'Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，在上面建立帳號，然後您就可以和任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。'
-    api: API
-    apps: 行動應用程式
     contact_missing: 未設定
     contact_unavailable: 未公開
-    documentation: 文件
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
-    privacy_policy: 隱私權政策
-    source_code: 原始碼
     title: 關於本站
-    what_is_mastodon: 什麼是 Mastodon?
   accounts:
-    choices_html: "%{name} 的選擇："
-    endorsements_hint: 推薦您已經跟隨的人，將他們釘選在您的個人頁面。
-    featured_tags_hint: 您可以推薦不同主題標籤，它們也會在此處出現。
     follow: 跟隨
     followers:
       other: 跟隨者
     following: 正在跟隨
     instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為聯邦宇宙且不應被停權。
-    joined: 加入於 %{date}
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
-    media: 媒體
-    moved_html: "%{name} 已經搬遷到 %{new_profile_link}:"
-    network_hidden: 此訊息不可用
     nothing_here: 暫時沒有內容可供顯示!
-    people_followed_by: '%{name} 跟隨的人'
-    people_who_follow: 跟隨 %{name} 的人
     pin_errors:
       following: 您只能推薦您正在跟隨的使用者。
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
-    posts_with_replies: 嘟文與回覆
-    roles:
-      bot: 機器人
-      group: 群組
-    unavailable: 無法取得個人檔案
-    unfollow: 取消跟隨
   admin:
     account_actions:
       action: 執行動作
@@ -1154,9 +1133,6 @@ zh-TW:
         hint: 此過濾器會套用至所選之各別嘟文，不管它們有無符合其他條件。您可以從網頁介面中將更多嘟文加入至此過濾器。
         title: 已過濾之嘟文
   footer:
-    developers: 開發者
-    more: 更多......
-    resources: 資源
     trending_now: 現正熱門
   generic:
     all: 全部
@@ -1195,7 +1171,6 @@ zh-TW:
       following: 您關注的使用者名單
       muting: 您靜音的使用者名單
     upload: 上傳
-  in_memoriam_html: 謹此悼念。
   invites:
     delete: 停用
     expired: 已失效
@@ -1374,22 +1349,7 @@ zh-TW:
     remove_selected_follows: 取消跟隨所選使用者
     status: 帳號狀態
   remote_follow:
-    acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
-    no_account_html: 還沒有帳號？您可以<a href='%{sign_up_path}' target='_blank'>於這裡註冊</a>
-    proceed: 下一步
-    prompt: '您希望跟隨：'
-    reason_html: "<strong>為什麼要經過這個步驟？</strong>因為<code>%{instance}</code>未必是您註冊的伺服器，我們需要先將您帶回您駐在的伺服器。"
-  remote_interaction:
-    favourite:
-      proceed: 加入到最愛
-      prompt: '您欲將此嘟文加入最愛'
-    reblog:
-      proceed: 確認轉嘟
-      prompt: '您想轉嘟此嘟文：'
-    reply:
-      proceed: 確認回覆
-      prompt: '您想回覆此嘟文'
   reports:
     errors:
       invalid_rules: 未引用有效規則
