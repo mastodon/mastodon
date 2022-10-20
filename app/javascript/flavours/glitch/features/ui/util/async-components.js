@@ -182,6 +182,14 @@ export function Explore () {
   return import(/* webpackChunkName: "flavours/glitch/async/explore" */'flavours/glitch/features/explore');
 }
 
+export function InteractionModal () {
+  return import(/*webpackChunkName: "flavours/glitch/async/modals/interaction_modal" */'flavours/glitch/features/interaction_modal');
+}
+
+export function SubscribedLanguagesModal () {
+  return import(/*webpackChunkName: "flavours/glitch/async/modals/subscribed_languages_modal" */'flavours/glitch/features/subscribed_languages_modal');
+}
+
 export function About () {
   return import(/*webpackChunkName: "features/glitch/async/about" */'flavours/glitch/features/about');
 }

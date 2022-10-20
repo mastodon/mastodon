@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 
-import Column from './column';
-import ColumnHeader from './column_header';
-import ColumnBackButtonSlim from 'flavours/glitch/components/column_back_button_slim';
+import Column from 'flavours/glitch/components/column';
+import ColumnHeader from 'flavours/glitch/components/column_header';
 import IconButton from 'flavours/glitch/components/icon_button';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   title: { id: 'bundle_column_error.title', defaultMessage: 'Network error' },
@@ -18,6 +18,7 @@ class BundleColumnError extends React.Component {
   static propTypes = {
     onRetry: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
   }
 
   handleRetry = () => {
@@ -25,16 +26,25 @@ class BundleColumnError extends React.Component {
   }
 
   render () {
-    const { intl: { formatMessage } } = this.props;
+    const { multiColumn, intl: { formatMessage } } = this.props;
 
     return (
-      <Column>
-        <ColumnHeader icon='exclamation-circle' type={formatMessage(messages.title)} />
-        <ColumnBackButtonSlim />
+      <Column bindToDocument={!multiColumn} label={formatMessage(messages.title)}>
+        <ColumnHeader
+          icon='exclamation-circle'
+          title={formatMessage(messages.title)}
+          showBackButton
+          multiColumn={multiColumn}
+        />
+
         <div className='error-column'>
           <IconButton title={formatMessage(messages.retry)} icon='refresh' onClick={this.handleRetry} size={64} />
           {formatMessage(messages.body)}
         </div>
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

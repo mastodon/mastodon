@@ -15,6 +15,7 @@ import { me, mascot } from 'flavours/glitch/initial_state';
 import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 import HeaderContainer from './containers/header_container';
 import Column from 'flavours/glitch/components/column';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
@@ -114,6 +115,10 @@ class Compose extends React.PureComponent {
       <Column>
         <NavigationContainer />
         <ComposeFormContainer />
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

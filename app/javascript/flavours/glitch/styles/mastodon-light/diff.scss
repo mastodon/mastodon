@@ -354,37 +354,6 @@
   }
 }
 
-.public-layout {
-  .header,
-  .public-account-header,
-  .public-account-bio {
-    box-shadow: none;
-  }
-
-  .header {
-    background: lighten($ui-base-color, 12%);
-  }
-
-  .public-account-header {
-    &__image {
-      background: lighten($ui-base-color, 12%);
-
-      &::after {
-        box-shadow: none;
-      }
-    }
-
-    &__tabs {
-      &__name {
-        h1,
-        h1 small {
-          color: $white;
-        }
-      }
-    }
-  }
-}
-
 .account__section-headline a.active::after {
   border-color: transparent transparent $white;
 }

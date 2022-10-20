@@ -15,6 +15,7 @@ class PrivacyPolicy extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object,
+    multiColumn: PropTypes.bool,
   };
 
   state = {
@@ -32,11 +33,11 @@ class PrivacyPolicy extends React.PureComponent {
   }
 
   render () {
-    const { intl } = this.props;
+    const { intl, multiColumn } = this.props;
     const { isLoading, content, lastUpdated } = this.state;
 
     return (
-      <Column>
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.title)}>
         <div className='scrollable privacy-policy'>
           <div className='column-title'>
             <h3><FormattedMessage id='privacy_policy.title' defaultMessage='Privacy Policy' /></h3>
@@ -51,6 +52,7 @@ class PrivacyPolicy extends React.PureComponent {
 
         <Helmet>
           <title>{intl.formatMessage(messages.title)}</title>
+          <meta name='robots' content='all' />
         </Helmet>
       </Column>
     );

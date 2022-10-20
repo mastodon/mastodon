@@ -99,6 +99,7 @@ class Favourites extends ImmutablePureComponent {
 
         <Helmet>
           <title>{intl.formatMessage(messages.heading)}</title>
+          <meta name='robots' content='noindex' />
         </Helmet>
       </Column>
     );

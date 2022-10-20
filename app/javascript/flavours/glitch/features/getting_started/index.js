@@ -194,6 +194,7 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
 
         <Helmet>
           <title>{intl.formatMessage(messages.menu)}</title>
+          <meta name='robots' content='noindex' />
         </Helmet>
       </Column>
     );

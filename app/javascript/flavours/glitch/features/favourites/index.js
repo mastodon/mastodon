@@ -11,6 +11,7 @@ import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import AccountContainer from 'flavours/glitch/containers/account_container';
 import Column from 'flavours/glitch/features/ui/components/column';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'column.favourited_by', defaultMessage: 'Favourited by' },
@@ -91,6 +92,10 @@ class Favourites extends ImmutablePureComponent {
             <AccountContainer key={id} id={id} withNote={false} />,
           )}
         </ScrollableList>
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

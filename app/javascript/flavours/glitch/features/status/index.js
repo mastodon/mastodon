@@ -135,6 +135,7 @@ const makeMapStateToProps = () => {
     }
 
     return {
+      isLoading: state.getIn(['statuses', props.params.statusId, 'isLoading']),
       status,
       ancestorsIds,
       descendantsIds,
@@ -178,6 +179,7 @@ class Status extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
+    isLoading: PropTypes.bool,
     settings: ImmutablePropTypes.map.isRequired,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
@@ -589,8 +591,16 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { status, settings, ancestorsIds, descendantsIds, intl, domain, multiColumn, usingPiP } = this.props;
+    const { isLoading, status, settings, ancestorsIds, descendantsIds, intl, domain, multiColumn, usingPiP } = this.props;
     const { fullscreen } = this.state;
+
+    if (isLoading) {
+      return (
+        <Column>
+          <LoadingIndicator />
+        </Column>
+      );
+    }
 
     if (status === null) {
       return (
@@ -610,6 +620,9 @@ class Status extends ImmutablePureComponent {
     if (descendantsIds && descendantsIds.size > 0) {
       descendants = <div>{this.renderChildren(descendantsIds)}</div>;
     }
+
+    const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
+    const isIndexable = !status.getIn(['account', 'noindex']);
 
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,
@@ -685,6 +698,7 @@ class Status extends ImmutablePureComponent {
 
         <Helmet>
           <title>{titleFromStatus(status)}</title>
+          <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
         </Helmet>
       </Column>
     );
