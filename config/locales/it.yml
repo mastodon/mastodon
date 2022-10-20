@@ -1,47 +1,26 @@
 it:
   about:
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
-    api: API
-    apps: Applicazioni per dispositivi mobili
     contact_missing: Non impostato
     contact_unavailable: N/D
-    documentation: Documentazione
     hosted_on: Mastodon ospitato su %{domain}
-    privacy_policy: Politica sulla Privacy
-    source_code: Codice sorgente
     title: Info
-    what_is_mastodon: Che cos'è Mastodon?
   accounts:
-    choices_html: "Suggerimenti da %{name}:"
-    endorsements_hint: 'Puoi segnalare persone che segui e che apprezzi dall''interfaccia web: saranno mostrate qui.'
-    featured_tags_hint: Puoi mettere in evidenza determinati hashtag che verranno visualizzati qui.
     follow: Segui
     followers:
       one: Seguace
       other: Seguaci
     following: Segui
     instance_actor_flash: Questo account è un attore virtuale usato per rappresentare il server stesso e non un singolo utente. Viene utilizzato per scopi federativi e non dovrebbe essere sospeso.
-    joined: Dal %{date}
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
-    media: Media
-    moved_html: "%{name} si è spostato su %{new_profile_link}:"
-    network_hidden: Questa informazione non e' disponibile
     nothing_here: Qui non c'è nulla!
-    people_followed_by: Persone seguite da %{name}
-    people_who_follow: Persone che seguono %{name}
     pin_errors:
       following: Devi gia seguire la persona che vuoi promuovere
     posts:
       one: Toot
       other: Toot
     posts_tab_heading: Toot
-    posts_with_replies: Toot e risposte
-    roles:
-      bot: Bot
-      group: Gruppo
-    unavailable: Profilo non disponibile
-    unfollow: Non seguire più
   admin:
     account_actions:
       action: Esegui azione
@@ -1175,9 +1154,6 @@ it:
         hint: Questo filtro si applica a singoli post indipendentemente da altri criteri. Puoi aggiungere più post a questo filtro dall'interfaccia Web.
         title: Post filtrati
   footer:
-    developers: Sviluppatori
-    more: Altro…
-    resources: Risorse
     trending_now: Di tendenza ora
   generic:
     all: Tutto
@@ -1220,7 +1196,6 @@ it:
       following: Lista dei seguiti
       muting: Lista dei silenziati
     upload: Carica
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Disattiva
     expired: Scaduto
@@ -1400,22 +1375,7 @@ it:
     remove_selected_follows: Smetti di seguire gli utenti selezionati
     status: Stato dell'account
   remote_follow:
-    acct: Inserisci il tuo username@dominio da cui vuoi seguire questo utente
     missing_resource: Impossibile trovare l'URL di reindirizzamento richiesto per il tuo account
-    no_account_html: Non hai un account? Puoi <a href='%{sign_up_path}' target='_blank'>iscriverti qui</a>
-    proceed: Conferma
-    prompt: 'Stai per seguire:'
-    reason_html: "<strong>Perchè questo passo è necessario?</strong> <code>%{instance}</code> potrebbe non essere il server nel quale tu sei registrato, quindi dobbiamo reindirizzarti prima al tuo server."
-  remote_interaction:
-    favourite:
-      proceed: Continua per segnare come apprezzato
-      prompt: 'Vuoi segnare questo post come apprezzato:'
-    reblog:
-      proceed: Continua per condividere
-      prompt: 'Vuoi condividere questo post:'
-    reply:
-      proceed: Continua per rispondere
-      prompt: 'Vuoi rispondere a questo post:'
   reports:
     errors:
       invalid_rules: non fa riferimento a regole valide
