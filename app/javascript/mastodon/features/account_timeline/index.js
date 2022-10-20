@@ -28,6 +28,7 @@ const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = fa
   if (!accountId) {
     return {
       isLoading: true,
+      statusIds: emptyList,
     };
   }
 
