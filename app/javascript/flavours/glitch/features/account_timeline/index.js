@@ -17,11 +17,12 @@ import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import TimelineHint from 'flavours/glitch/components/timeline_hint';
 import LimitedAccountHint from './components/limited_account_hint';
 import { getAccountHidden } from 'flavours/glitch/selectors';
+import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
 
 const emptyList = ImmutableList();
 
 const mapStateToProps = (state, { params: { acct, id }, withReplies = false }) => {
-  const accountId = id || state.getIn(['accounts_map', acct]);
+  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
   if (!accountId) {
     return {
