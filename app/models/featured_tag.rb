@@ -22,6 +22,8 @@ class FeaturedTag < ApplicationRecord
   before_create :set_tag
   before_create :reset_data
 
+  scope :by_name, ->(name) { joins(:tag).where(tag: { name: HashtagNormalizer.new.normalize(name) }) }
+
   delegate :display_name, to: :tag
 
   attr_writer :name
@@ -58,5 +60,6 @@ class FeaturedTag < ApplicationRecord
   def validate_tag_name
     errors.add(:name, :blank) if @name.blank?
     errors.add(:name, :invalid) unless @name.match?(/\A(#{Tag::HASHTAG_NAME_RE})\z/i)
+    errors.add(:name, I18n.t('featured_tags.errors.duplicate_hashtag')) if FeaturedTag.by_name(@name).where(account_id: account_id).exists?
   end
 end
