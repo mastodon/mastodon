@@ -19,11 +19,12 @@ import { connectTimeline, disconnectTimeline } from 'mastodon/actions/timelines'
 import LimitedAccountHint from './components/limited_account_hint';
 import { getAccountHidden } from 'mastodon/selectors';
 import { fetchFeaturedTags } from '../../actions/featured_tags';
+import { normalizeForLookup } from 'mastodon/reducers/accounts_map';
 
 const emptyList = ImmutableList();
 
 const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
-  const accountId = id || state.getIn(['accounts_map', acct]);
+  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
   if (!accountId) {
     return {
