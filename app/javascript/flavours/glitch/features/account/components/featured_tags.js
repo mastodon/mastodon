@@ -35,7 +35,7 @@ class FeaturedTags extends ImmutablePureComponent {
       <div className='getting-started__trends'>
         <h4><FormattedMessage id='account.featured_tags.title' defaultMessage="{name}'s featured hashtags" values={{ name: <bdi dangerouslySetInnerHTML={{ __html: account.get('display_name_html') }} /> }} /></h4>
 
-        {featuredTags.map(featuredTag => (
+        {featuredTags.take(3).map(featuredTag => (
           <Hashtag
             key={featuredTag.get('name')}
             name={featuredTag.get('name')}
