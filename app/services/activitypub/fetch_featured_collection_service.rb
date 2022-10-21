@@ -43,8 +43,7 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
 
   def process_note_items(items)
     status_ids = items.filter_map do |item|
-      type = item['type']
-      next unless type == 'Note'
+      next unless item.is_a?(String) || item['type'] == 'Note'
 
       uri = value_or_id(item)
       next if ActivityPub::TagManager.instance.local_uri?(uri)
