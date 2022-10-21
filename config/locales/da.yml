@@ -2,46 +2,26 @@
 da:
   about:
     about_mastodon_html: 'Fremtidens sociale netværk: Ingen annoncer, ingen virksomhedsovervågning, etisk design og decentralisering! Vær ejer af egne data med Mastodon!'
-    api: API
-    apps: Mobil-apps
     contact_missing: Ikke angivet
     contact_unavailable: Utilgængelig
-    documentation: Dokumentation
     hosted_on: Mostodon hostet på %{domain}
-    privacy_policy: Fortrolighedspolitik
-    source_code: Kildekode
-    what_is_mastodon: Hvad er Mastodon?
+    title: Om
   accounts:
-    choices_html: "%{name}s valg:"
-    endorsements_hint: Man kan støtte personer, man følger, fra webgrænsefladen, som så vil fremgå hér.
-    featured_tags_hint: Man kan fremhæve bestemte hashtags, som så vil fremgå hér.
     follow: Følg
     followers:
       one: Følger
       other: Følgere
     following: Følger
     instance_actor_flash: Denne konto er en virtuel aktør repræsenterende selve serveren og ikke en individuel bruger. Den anvendes til fællesformål og bør ikke suspenderes.
-    joined: Tilmeldt %{date}
     last_active: senest aktiv
     link_verified_on: Ejerskab af dette link blev tjekket %{date}
-    media: Medier
-    moved_html: "%{name} er flyttet til %{new_profile_link}:"
-    network_hidden: Denne information er utilgængelig
     nothing_here: Der er intet hér!
-    people_followed_by: Personer, som %{name} følger
-    people_who_follow: Personer, som følger %{name}
     pin_errors:
       following: Man skal allerede følge den person, man ønsker at støtte
     posts:
       one: Indlæg
       other: Indlæg
     posts_tab_heading: Indlæg
-    posts_with_replies: Indlæg og svar
-    roles:
-      bot: Bot
-      group: Gruppe
-    unavailable: Profil utilgængelig
-    unfollow: Følg ikke længere
   admin:
     account_actions:
       action: Udfør handling
@@ -344,6 +324,7 @@ da:
       listed: Oplistet
       new:
         title: Tilføj ny tilpasset emoji
+      no_emoji_selected: Ingen emoji ændret (da ingen var valgt)
       not_permitted: Ingen tilladelse til at udføre denne handling
       overwrite: Overskriv
       shortcode: Kortkode
@@ -640,6 +621,7 @@ da:
         administrator: Administrator
         administrator_description: Brugere med denne rolle kan omgå alle tilladelser
         delete_user_data: Slet brugerdata
+        delete_user_data_description: Tillader brugere at slette andre brugeres data straks
         invite_users: Invitere brugere
         invite_users_description: Tillader brugere at invitere nye personer til serveren
         manage_announcements: Håndtere bekendtgørelser
@@ -811,6 +793,9 @@ da:
         description_html: Disse er links, som pt. deles meget af konti, som serveren ser indlæg fra. Det kan hjælpe ens brugere med at finde ud af, hvad der sker i verden. Ingen links vises offentligt, før man godkender udgiveren. Man kan også tillade/afvise individuelle links.
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
+        no_link_selected: Intet link ændret (da intet var valgt)
+        publishers:
+          no_publisher_selected: Ingen udgiver ændret (da ingen var valgt)
         shared_by_over_week:
           one: Delt af én person den seneste uge
           other: Delt af %{count} personer den seneste uge
@@ -830,6 +815,7 @@ da:
         description_html: Disse er indlæg, serveren kender til, som pt. deles og favoritmarkeres meget. Det kan hjælpe nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før man godkender forfatteren, samt denne tillader sin konto at blive foreslået andre. Man kan også tillade/afvise individuelle indlæg.
         disallow: Tillad ikke indlæg
         disallow_account: Tillad ikke forfatter
+        no_status_selected: Intet tendensindlæg ændret (da intet var valgt)
         not_discoverable: Forfatteren har ikke valgt at kunne findes
         shared_by:
           one: Delt eller favoritmarkeret én gang
@@ -845,6 +831,7 @@ da:
           tag_uses_measure: anvendelser i alt
         description_html: Disse er hashtags, som pt. vises i en masse indlæg, som serveren ser. Det kan hjælpe brugerne til at finde ud af, hvad folk taler mest om pt. Ingen hashtags vises offentligt, før man godkender dem.
         listable: Kan foreslås
+        no_tag_selected: Intet tag ændret (da intet var valgt)
         not_listable: Foreslås ikke
         not_trendable: Vises ikke under tendenser
         not_usable: Kan ikke anvendes
@@ -1168,9 +1155,6 @@ da:
         hint: Dette filter gælder for udvalgte, individuelle indlæg uanset andre kriterier. Flere indlæg kan føjes til filteret via webfladen.
         title: Filtrerede indlæg
   footer:
-    developers: Udviklere
-    more: Mere…
-    resources: Ressourcer
     trending_now: Trender lige nu
   generic:
     all: Alle
@@ -1213,7 +1197,6 @@ da:
       following: Følgningsliste
       muting: Tavsgørelsesliste
     upload: Upload
-  in_memoriam_html: Til minde om.
   invites:
     delete: Deaktivér
     expired: Udløbet
@@ -1393,22 +1376,7 @@ da:
     remove_selected_follows: Følg ikke længere valgte brugere
     status: Kontostatus
   remote_follow:
-    acct: Angiv det brugernavn@domæne, hvorfra du vil ageres
     missing_resource: Nødvendige omdirigerings-URL til kontoen ikke fundet
-    no_account_html: Har ingen konto? Der kan <a href='%{sign_up_path}' target='_blank'>oprettes én hér</a>
-    proceed: Fortsæt for at følge
-    prompt: 'Du er ved at følge:'
-    reason_html: "<strong>Hvorfor er dette trin nødvendigt?</strong> <code>%{instance}</code> er måske ikke den server, hvorpå man er registreret, så man skal først omdirigeres til sin hjemmeserver."
-  remote_interaction:
-    favourite:
-      proceed: Fortsæt for at favoritmarkere
-      prompt: 'Favoritmarkere dette indlæg:'
-    reblog:
-      proceed: Fortsæt for at booste
-      prompt: 'Booste dette indlæg:'
-    reply:
-      proceed: Fortsæt for at besvare
-      prompt: 'Besvare dette indlæg:'
   reports:
     errors:
       invalid_rules: refererer ikke til gyldige regler
@@ -1661,6 +1629,7 @@ da:
       edit_profile_step: Man kan tilpasse sin profil ved at uploade profilfoto, overskrift, ændre visningsnavn mv. Ønskes nye følgere vurderet, før de må følge dig, kan kontoen låses.
       explanation: Her er nogle råd for at få dig i gang
       final_action: Begynd at poste
+      final_step: 'Begynd at poste! Selv uden følgere vil offentlige indlæg kunne ses af andre f.eks. på den lokale tidslinje og i hashtags. Man kan introducere sig selv via hastagget #introductions.'
       full_handle: Dit fulde brugernavn
       full_handle_hint: Dette er, hvad du oplyser til dine venner, så de kan sende dig beskeder eller følge dig fra andre server.
       subject: Velkommen til Mastodon

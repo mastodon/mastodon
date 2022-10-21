@@ -2,44 +2,24 @@
 oc:
   about:
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
-    api: API
-    apps: Aplicacions per mobil
     contact_missing: Pas parametrat
     contact_unavailable: Pas disponible
-    documentation: Documentacion
     hosted_on: Mastodon albergat sus %{domain}
-    source_code: Còdi font
-    what_is_mastodon: Qu’es Mastodon ?
   accounts:
-    choices_html: 'Recomandacions de %{name} :'
-    endorsements_hint: Podètz recomandar personas que seguètz a partir de l’interfàcia web, apreissaràn aquí.
-    featured_tags_hint: Podètz indicar d’etiquetas que mostrarem aquí.
     follow: Sègre
     followers:
       one: Seguidor
       other: Seguidors
     following: Abonaments
-    joined: Arribèt en %{date}
     last_active: darrièra activitat
     link_verified_on: La proprietat d’aqueste ligam foguèt verificada lo %{date}
-    media: Mèdias
-    moved_html: "%{name} a mudat a %{new_profile_link} :"
-    network_hidden: Aquesta informacion es pas disponibla
     nothing_here: I a pas res aquí !
-    people_followed_by: Lo monde que %{name} sèc
-    people_who_follow: Lo monde que sègon %{name}
     pin_errors:
       following: Vos cal d’en primièr sègre las personas que volètz promòure
     posts:
       one: Tut
       other: Tuts
     posts_tab_heading: Tuts
-    posts_with_replies: Tuts e responsas
-    roles:
-      bot: Robòt
-      group: Grop
-    unavailable: Perfil indisponible
-    unfollow: Quitar de sègre
   admin:
     account_actions:
       action: Realizar una accion
@@ -647,9 +627,6 @@ oc:
     new:
       title: Ajustar un nòu filtre
   footer:
-    developers: Desvolopaires
-    more: Mai…
-    resources: Ressorsas
     trending_now: Tendéncia del moment
   generic:
     all: Tot
@@ -679,7 +656,6 @@ oc:
       following: Lista de monde que seguètz
       muting: Lista de monde que volètz pas legir
     upload: Importar
-  in_memoriam_html: En Memòria.
   invites:
     delete: Desactivar
     expired: Expirat
@@ -813,22 +789,7 @@ oc:
     remove_selected_follows: Quitar de sègre las personas seleccionadas
     status: Estat del compte
   remote_follow:
-    acct: Picatz vòstre utilizaire@domeni que que volètz utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
-    no_account_html: Avètz pas cap de compte ? Podètz <a href='%{sign_up_path}' target='_blank'>vos marcar aquí</a>
-    proceed: Clicatz per sègre
-    prompt: 'Sètz per sègre :'
-    reason_html: "<strong>Perque aquesta etapa es necessària ?</strong><code>%{instance}</code> es benlèu pas lo servidor ont vos marquèretz, doncas nos cal vos redirigir cap a vòstre prim servidor per començar."
-  remote_interaction:
-    favourite:
-      proceed: Contunhar per metre en favorit
-      prompt: 'Volètz metre en favorit aqueste tut :'
-    reblog:
-      proceed: Contunhar per repartejar
-      prompt: 'Volètz repartejar aqueste tut :'
-    reply:
-      proceed: Contunhar per respondre
-      prompt: 'Volètz respondre a aqueste tut :'
   scheduled_statuses:
     over_daily_limit: Avètz passat la limita de %{limit}  tuts programats per aquel jorn
     over_total_limit: Avètz passat la limita de %{limit}  tuts programats

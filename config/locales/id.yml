@@ -2,43 +2,23 @@
 id:
   about:
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
-    api: API
-    apps: Aplikasi mobile
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
-    documentation: Dokumentasi
     hosted_on: Mastodon dihosting di %{domain}
-    source_code: Kode sumber
-    what_is_mastodon: Apa itu Mastodon?
   accounts:
-    choices_html: 'Pilihan %{name}:'
-    endorsements_hint: Anda dapat mempromosikan orang yang Anda ikuti lewat antar muka web, dan mereka akan muncul di sini.
-    featured_tags_hint: Anda dapat mengunggulkan tagar tertentu yang akan ditampilkan di sini.
     follow: Ikuti
     followers:
       other: Pengikut
     following: Mengikuti
     instance_actor_flash: Akun ini adalah aktor virtual yang merepresentasikan server itu sendiri dan bukan pengguna individu. Ini dipakai untuk tujuan gabungan dan seharusnya tidak ditangguhkan.
-    joined: Bergabung pada %{date}
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
-    media: Media
-    moved_html: "%{name} telah pindah ke %{new_profile_link}:"
-    network_hidden: Informasi ini tidak tersedia
     nothing_here: Tidak ada apapun disini!
-    people_followed_by: Orang yang diikuti %{name}
-    people_who_follow: Orang-orang yang mengikuti %{name}
     pin_errors:
       following: Anda harus mengikuti orang yang ingin anda endorse
     posts:
       other: Toot
     posts_tab_heading: Toot
-    posts_with_replies: Toot dan balasan
-    roles:
-      bot: Bot
-      group: Grup
-    unavailable: Profil tidak tersedia
-    unfollow: Berhenti mengikuti
   admin:
     account_actions:
       action: Lakukan aksi
@@ -1029,9 +1009,6 @@ id:
     new:
       title: Tambah saringan baru
   footer:
-    developers: Pengembang
-    more: Lainnya…
-    resources: Sumber daya
     trending_now: Sedang tren
   generic:
     all: Semua
@@ -1063,7 +1040,6 @@ id:
       following: Daftar diikuti
       muting: Daftar didiamkan
     upload: Unggah
-  in_memoriam_html: Dalam memori.
   invites:
     delete: Nonaktifkan
     expired: Kedaluwarsa
@@ -1238,22 +1214,7 @@ id:
     remove_selected_follows: Batal ikuti pengguna terpilih
     status: Status akun
   remote_follow:
-    acct: Masukkan namapengguna@domain yang akan anda ikuti
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda
-    no_account_html: Tidak memiliki akun? Anda dapat <a href='%{sign_up_path}' target='_blank'>mendaftar di sini</a>
-    proceed: Lanjutkan untuk mengikuti
-    prompt: 'Anda akan mengikuti:'
-    reason_html: "<strong>Mengapa langkah ini penting?</strong> <code>%{instance}</code> mungkin saja bukan tempat Anda mendaftar, sehingga kami perlu mengalihkan Anda ke server beranda lebih dahulu."
-  remote_interaction:
-    favourite:
-      proceed: Lanjutkan ke favorit
-      prompt: 'Anda ingin memfavoritkan toot ini:'
-    reblog:
-      proceed: Lanjutkan ke boost
-      prompt: 'Anda ingin mem-boost toot ini:'
-    reply:
-      proceed: Lanjutkan ke balasan
-      prompt: 'Anda ingin membalas toot ini:'
   reports:
     errors:
       invalid_rules: tidak mereferensikan aturan yang valid

@@ -2,45 +2,25 @@
 el:
   about:
     about_mastodon_html: 'Το κοινωνικό δίκτυο του μέλλοντος: Χωρίς διαφημίσεις, χωρίς εταιρίες να σε κατασκοπεύουν, ηθικά σχεδιασμένο και αποκεντρωμένο! Με το Mastodon τα δεδομένα σου είναι πραγματικά δικά σου!'
-    api: API
-    apps: Εφαρμογές κινητών
     contact_missing: Δεν έχει οριστεί
     contact_unavailable: Μη διαθέσιμο
-    documentation: Τεκμηρίωση
     hosted_on: Το Mastodon φιλοξενείται στο %{domain}
-    privacy_policy: Πολιτική Απορρήτου
-    source_code: Πηγαίος κώδικας
-    what_is_mastodon: Τι είναι το Mastodon;
+    title: Σχετικά με
   accounts:
-    choices_html: 'Επιλογές από %{name}:'
-    endorsements_hint: Μπορεις να εγκρίνεις ανθρώπους που ακολουθείς μέσω της δικτυακής εφαρμογής και αυτοί θα εμφανίζονται εδώ.
-    featured_tags_hint: Μπορείς να επιλέξεις συγκεκριμένες ετικέτες που θα εμφανίζονται εδώ.
     follow: Ακολούθησε
     followers:
       one: Ακόλουθος
       other: Ακόλουθοι
     following: Ακολουθεί
-    joined: Εγγράφηκε στις %{date}
     last_active: τελευταία ενεργός/ή
     link_verified_on: Η κυριότητα αυτού του συνδέσμου ελέγχθηκε στις %{date}
-    media: Πολυμέσα
-    moved_html: 'Ο/Η %{name} μετακόμισε στο %{new_profile_link}:'
-    network_hidden: Αυτή η πληροφορία δεν είναι διαθέσιμη
     nothing_here: Δεν υπάρχει τίποτα εδώ!
-    people_followed_by: Χρήστες που ακολουθεί ο/η %{name}
-    people_who_follow: Χρήστες που ακολουθούν τον/την %{name}
     pin_errors:
       following: Πρέπει ήδη να ακολουθείς το άτομο που θέλεις να επιδοκιμάσεις
     posts:
       one: Τουτ
       other: Τουτ
     posts_tab_heading: Τουτ
-    posts_with_replies: Τουτ και απαντήσεις
-    roles:
-      bot: Μποτ (αυτόματος λογαριασμός)
-      group: Ομάδα
-    unavailable: Το προφίλ δεν είναι διαθέσιμο
-    unfollow: Διακοπή παρακολούθησης
   admin:
     account_actions:
       action: Εκτέλεση ενέργειας
@@ -778,9 +758,6 @@ el:
       save: Αποθήκευση νέου φίλτρου
       title: Πρόσθεσε νέο φίλτρο
   footer:
-    developers: Ανάπτυξη
-    more: Περισσότερα…
-    resources: Πόροι
     trending_now: Τάσεις
   generic:
     all: Όλα
@@ -812,7 +789,6 @@ el:
       following: Λίστα ακολούθων
       muting: Λίστα αποσιωπήσεων
     upload: Ανέβασμα
-  in_memoriam_html: Εις μνήμην.
   invites:
     delete: Απενεργοποίησε
     expired: Ληγμένη
@@ -974,22 +950,7 @@ el:
     remove_selected_follows: Διακοπή παρακολούθησης επιλεγμένων χρηστών
     status: Κατάσταση λογαριασμού
   remote_follow:
-    acct: Γράψε το ΌνομαΧρήστη@τομέα από όπου θέλεις να εκτελέσεις την ενέργεια αυτή
     missing_resource: Δεν βρέθηκε το απαιτούμενο URL ανακατεύθυνσης για το λογαριασμό σου
-    no_account_html: Δεν έχεις λογαριασμό; Μπορείς <a href='%{sign_up_path}' target='_blank'>να γραφτείς εδώ</a>
-    proceed: Συνέχισε για να ακολουθήσεις
-    prompt: 'Ετοιμάζεσαι να ακολουθήσεις:'
-    reason_html: "<strong>Γιατί χρειάζεται αυτό το βήμα;</strong> Το <code>%{instance}</code> μπορεί να μην είναι ο κόμβος που έχεις γραφτεί, έτσι πρέπει να σε ανακατευθύνουμε στο δικό σου."
-  remote_interaction:
-    favourite:
-      proceed: Συνέχισε για σημείωση ως αγαπημένου
-      prompt: 'Θέλεις να σημειώσεις ως αγαπημένο αυτό το τουτ:'
-    reblog:
-      proceed: Συνέχισε για προώθηση
-      prompt: 'Θέλεις να προωθήσεις αυτό το τουτ:'
-    reply:
-      proceed: Συνέχισε για να απαντήσεις
-      prompt: 'Θέλεις να απαντήσεις σε αυτό το τουτ:'
   reports:
     errors:
       invalid_rules: δεν παραπέμπει σε έγκυρους κανόνες

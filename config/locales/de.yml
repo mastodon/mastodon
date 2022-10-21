@@ -2,46 +2,26 @@
 de:
   about:
     about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral – genau wie E-Mail!
-    api: API
-    apps: Mobile Apps
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
-    documentation: Dokumentation
     hosted_on: Mastodon, gehostet auf %{domain}
-    privacy_policy: Datenschutzerklärung
-    source_code: Quellcode
-    what_is_mastodon: Was ist Mastodon?
+    title: Über
   accounts:
-    choices_html: "%{name} empfiehlt:"
-    endorsements_hint: Du kannst Personen, denen du über die Weboberfläche folgst, auswählen, und sie werden hier angezeigt.
-    featured_tags_hint: Du kannst spezifische Hashtags, die hier angezeigt werden, angeben.
     follow: Folgen
     followers:
       one: Folgender
       other: Folgende
     following: Folgt
     instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert und nicht ein einzelner Benutzer. Es wird für Föderationszwecke verwendet und sollte nicht gesperrt werden.
-    joined: Beigetreten am %{date}
     last_active: zuletzt aktiv
     link_verified_on: Besitz des Links wurde überprüft am %{date}
-    media: Medien
-    moved_html: "%{name} ist auf %{new_profile_link} umgezogen:"
-    network_hidden: Diese Informationen sind nicht verfügbar
     nothing_here: Hier gibt es nichts!
-    people_followed_by: Profile, denen %{name} folgt
-    people_who_follow: Profile, die %{name} folgen
     pin_errors:
       following: Du musst dieser Person bereits folgen, um sie empfehlen zu können
     posts:
       one: Beitrag
       other: Beiträge
     posts_tab_heading: Beiträge
-    posts_with_replies: Beiträge mit Antworten
-    roles:
-      bot: Bot
-      group: Gruppe
-    unavailable: Profil nicht verfügbar
-    unfollow: Entfolgen
   admin:
     account_actions:
       action: Aktion ausführen
@@ -344,6 +324,7 @@ de:
       listed: Gelistet
       new:
         title: Eigenes Emoji hinzufügen
+      no_emoji_selected: Keine Emojis wurden geändert, da keine ausgewählt wurden
       not_permitted: Du bist für die Durchführung dieses Vorgangs nicht berechtigt
       overwrite: Überschreiben
       shortcode: Kürzel
@@ -812,6 +793,9 @@ de:
         description_html: Dies sind Links, die derzeit von Konten geteilt werden, von denen dein Server Beiträge sieht. Es kann deinen Benutzern helfen herauszufinden, was in der Welt vor sich geht. Es werden keine Links öffentlich angezeigt, bis du den Publisher genehmigst. Du kannst auch einzelne Links zulassen oder ablehnen.
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
+        no_link_selected: Keine Links wurden geändert, da keine ausgewählt wurden
+        publishers:
+          no_publisher_selected: Es wurden keine Herausgeber geändert, da keine ausgewählt wurden
         shared_by_over_week:
           one: In der letzten Woche von einer Person geteilt
           other: In der letzten Woche von %{count} Personen geteilt
@@ -831,6 +815,7 @@ de:
         description_html: Dies sind Beiträge, von denen dein Server weiß, dass sie derzeit viel geteilt und favorisiert werden. Es kann deinen neuen und wiederkehrenden Benutzern helfen, weitere Personen zu finden. Es werden keine Beiträge öffentlich angezeigt, bis du den Autor genehmigst und der Autor es zulässt, sein Konto anderen Benutzern zeigen zu lassen. Du kannst auch einzelne Beiträge zulassen oder ablehnen.
         disallow: Beitrag verbieten
         disallow_account: Autor verbieten
+        no_status_selected: Keine angesagten Beiträge wurden geändert, da keine ausgewählt wurden
         not_discoverable: Der Autor hat sich nicht dafür entschieden, entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
@@ -846,6 +831,7 @@ de:
           tag_uses_measure: Gesamtnutzungen
         description_html: Dies sind Hashtags, die derzeit in vielen Beiträgen erscheinen, die dein Server sieht. Es kann deinen Benutzern helfen, herauszufinden, worüber die Menschen im Moment am meisten reden. Es werden keine Hashtags öffentlich angezeigt, bis du sie genehmigst.
         listable: Kann vorgeschlagen werden
+        no_tag_selected: Keine Tags wurden geändert, da keine ausgewählt wurden
         not_listable: Wird nicht vorgeschlagen
         not_trendable: Wird nicht unter Trends angezeigt
         not_usable: Kann nicht verwendet werden
@@ -1169,9 +1155,6 @@ de:
         hint: Dieser Filter wird verwendet, um einzelne Beiträge unabhängig von anderen Kriterien auszuwählen. Du kannst mehr Beiträge zu diesem Filter über die Webschnittstelle hinzufügen.
         title: Gefilterte Beiträge
   footer:
-    developers: Entwickler
-    more: Mehr…
-    resources: Ressourcen
     trending_now: In den Trends
   generic:
     all: Alle
@@ -1214,7 +1197,6 @@ de:
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Hochladen
-  in_memoriam_html: In Gedenken.
   invites:
     delete: Deaktivieren
     expired: Abgelaufen
@@ -1394,22 +1376,7 @@ de:
     remove_selected_follows: Entfolge ausgewählten Benutzern
     status: Kontostatus
   remote_follow:
-    acct: Profilname@Domain, von wo aus du dieser Person folgen möchtest
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
-    no_account_html: Noch kein Konto? Du kannst dich <a href='%{sign_up_path}' target='_blank'>hier anmelden</a>
-    proceed: Weiter
-    prompt: 'Du wirst dieser Person folgen:'
-    reason_html: "<strong>Warum ist dieser Schritt erforderlich?</strong><code>%{instance}</code> ist möglicherweise nicht der Server, auf dem du registriert bist, also müssen wir dich erst auf deinen Heimserver weiterleiten."
-  remote_interaction:
-    favourite:
-      proceed: Fortfahren zum Favorisieren
-      prompt: 'Du möchtest diesen Beitrag favorisieren:'
-    reblog:
-      proceed: Fortfahren zum Teilen
-      prompt: 'Du möchtest diesen Beitrag teilen:'
-    reply:
-      proceed: Fortfahren zum Antworten
-      prompt: 'Du möchtest auf diesen Beitrag antworten:'
   reports:
     errors:
       invalid_rules: verweist nicht auf gültige Regeln

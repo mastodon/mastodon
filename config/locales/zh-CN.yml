@@ -2,44 +2,23 @@
 zh-CN:
   about:
     about_mastodon_html: Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
-    api: API
-    apps: 移动应用
     contact_missing: 未设定
     contact_unavailable: 未公开
-    documentation: 文档
     hosted_on: 运行在 %{domain} 上的 Mastodon 站点
-    privacy_policy: 隐私政策
-    source_code: 源码
-    what_is_mastodon: Mastodon 是什么？
   accounts:
-    choices_html: "%{name} 的推荐："
-    endorsements_hint: 你可以在 web 界面上推荐你关注的人，他们会显示在这里。
-    featured_tags_hint: 你可以精选一些话题标签展示在这里。
     follow: 关注
     followers:
       other: 关注者
     following: 正在关注
     instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于达成互联之目的，不应该被停用。
-    joined: 加入于 %{date}
     last_active: 最近活动
     link_verified_on: 此链接的所有权已在 %{date} 检查
-    media: 媒体
-    moved_html: "%{name} 已经迁移到 %{new_profile_link}："
-    network_hidden: 此信息不可用
     nothing_here: 这里什么都没有！
-    people_followed_by: "%{name} 关注的人"
-    people_who_follow: 关注 %{name} 的人
     pin_errors:
       following: 你必须关注你要推荐的人
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
-    posts_with_replies: 嘟文和回复
-    roles:
-      bot: 机器人
-      group: 群组
-    unavailable: 个人资料不可用
-    unfollow: 取消关注
   admin:
     account_actions:
       action: 执行操作
@@ -1148,9 +1127,6 @@ zh-CN:
         hint: 无论其他条件如何，此过滤器适用于选用个别嘟文。你可以从网页界面中向此过滤器加入更多嘟文。
         title: 过滤的嘟文
   footer:
-    developers: 开发者
-    more: 更多…
-    resources: 资源
     trending_now: 现在流行
   generic:
     all: 全部
@@ -1189,7 +1165,6 @@ zh-CN:
       following: 关注列表
       muting: 隐藏列表
     upload: 上传
-  in_memoriam_html: 谨此悼念。
   invites:
     delete: 停用
     expired: 已失效
@@ -1366,22 +1341,7 @@ zh-CN:
     remove_selected_follows: 取消关注所选用户
     status: 帐户状态
   remote_follow:
-    acct: 请输入你的“用户名@实例域名”
     missing_resource: 无法确定你的帐户的跳转 URL
-    no_account_html: 还没有账号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
-    proceed: 确认关注
-    prompt: 你正准备关注：
-    reason_html: "<strong>为什么需要这个步骤？</strong> <code>%{instance}</code> 可能不是你所注册的服务器，所以我们需要先跳转到你所在的服务器。"
-  remote_interaction:
-    favourite:
-      proceed: 确认标记为喜欢
-      prompt: 你想要标记此嘟文为喜欢：
-    reblog:
-      proceed: 确认转嘟
-      prompt: 你想要转嘟此条：
-    reply:
-      proceed: 确认回复
-      prompt: 你想要回复此嘟文：
   reports:
     errors:
       invalid_rules: 没有引用有效的规则

@@ -2,44 +2,24 @@
 et:
   about:
     about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid Mastodonis!'
-    api: API
-    apps: Mobiilirakendused
     contact_missing: Määramata
     contact_unavailable: Pole saadaval
-    documentation: Dokumentatsioon
     hosted_on: Mastodon majutatud %{domain}-is
-    source_code: Lähtekood
-    what_is_mastodon: Mis on Mastodon?
   accounts:
-    choices_html: "%{name}-i valikud:"
-    endorsements_hint: Te saate heaks kiita inimesi, keda jälgite, veebiliidesest ning neid kuvatakse siin.
-    featured_tags_hint: Te saate valida kindlaid silte, mida kuvatakse siin.
     follow: Jälgi
     followers:
       one: Jälgija
       other: Jälgijaid
     following: Jälgib
-    joined: Liitus %{date}
     last_active: viimati aktiivne
     link_verified_on: Selle lingi autorsust kontrolliti %{date}
-    media: Meedia
-    moved_html: "%{name} kolis %{new_profile_link}:"
-    network_hidden: Neid andmeid pole saadaval
     nothing_here: Siin pole midagi!
-    people_followed_by: Inimesed, keda %{name} jälgib
-    people_who_follow: Inimesed, kes jälgivad kasutajat %{name}
     pin_errors:
       following: Te peate juba olema selle kasutaja jälgija, keda te heaks kiidate
     posts:
       one: Postitus
       other: Postitused
     posts_tab_heading: Postitused
-    posts_with_replies: Postitused ja vastused
-    roles:
-      bot: Robot
-      group: Grupp
-    unavailable: Profiil pole saadaval
-    unfollow: Lõpeta jälgimine
   admin:
     account_actions:
       action: Täida tegevus
@@ -612,9 +592,6 @@ et:
     new:
       title: Lisa uus filter
   footer:
-    developers: Arendajad
-    more: Rohkem…
-    resources: Materjalid
     trending_now: Praegu trendikad
   generic:
     all: Kõik
@@ -642,7 +619,6 @@ et:
       following: Jälgimiste nimekiri
       muting: Vaigistuse nimekiri
     upload: Lae üles
-  in_memoriam_html: Mälestamaks.
   invites:
     delete: Peata
     expired: Aegunud
@@ -780,24 +756,7 @@ et:
     remove_selected_follows: Lõpeta valitud kasutajate jälgimine
     status: Konto olek
   remote_follow:
-    acct: Sisestage oma kasutajanimi@domeen, kust te soovite jälgida
     missing_resource: Ei suutnud leida vajalikku suunamise URLi Teie konto jaoks
-    no_account_html: Teil pole veel kontot? Saate <a href='%{sign_up_path}' target='_blank'>luua ühe siit</a>
-    proceed: Jätka jälgimiseks
-    prompt: 'Te hakkate jälgima:'
-    reason_html: |-
-      <strong>Miks on see samm vajalik?</strong>
-      <code>%{instance}</code> ei pruugi olla server, kus asub Teie konto, nii et me peame Teid suunama oma kodu serverile.
-  remote_interaction:
-    favourite:
-      proceed: Jätka lemmikuks lisamiseks
-      prompt: 'Te soovite lisada seda tuututust lemmikutesse:'
-    reblog:
-      proceed: Jätka upitamiseks
-      prompt: 'Te soovite seda tuututust upitada:'
-    reply:
-      proceed: Jätka vastamiseks
-      prompt: 'Te soovite vastata sellele tuututusele:'
   scheduled_statuses:
     over_daily_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit} selle päeva kohta
     over_total_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit}

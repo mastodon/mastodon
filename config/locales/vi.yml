@@ -2,44 +2,24 @@
 vi:
   about:
     about_mastodon_html: 'Mạng xã hội của tương lai: Không quảng cáo, không bán thông tin người dùng và phi tập trung! Làm chủ dữ liệu của bạn với Mastodon!'
-    api: API
-    apps: Apps
     contact_missing: Chưa thiết lập
     contact_unavailable: N/A
-    documentation: Tài liệu
     hosted_on: "%{domain} vận hành nhờ Mastodon"
-    privacy_policy: Chính sách bảo mật
-    source_code: Mã nguồn
-    what_is_mastodon: Mastodon là gì?
+    title: Giới thiệu
   accounts:
-    choices_html: "%{name} tôn vinh:"
-    endorsements_hint: Bạn có thể tôn vinh những người bạn theo dõi và họ sẽ hiển thị ở giao diện web.
-    featured_tags_hint: Bạn có thể cho biết những hashtag thường dùng ở đây.
     follow: Theo dõi
     followers:
       other: Người theo dõi
     following: Theo dõi
     instance_actor_flash: Tài khoản này được dùng để đại diện cho máy chủ và không phải là người thật. Đừng bao giờ vô hiệu hóa tài khoản này.
-    joined: Đã tham gia %{date}
     last_active: online
     link_verified_on: Liên kết này đã được xác minh quyền sở hữu vào %{date}
-    media: Media
-    moved_html: "%{name} đã chuyển sang %{new_profile_link}:"
-    network_hidden: Dữ liệu đã bị ẩn
     nothing_here: Trống trơn!
-    people_followed_by: Những người %{name} theo dõi
-    people_who_follow: Những người theo dõi %{name}
     pin_errors:
       following: Để tôn vinh người nào đó, bạn phải theo dõi họ trước
     posts:
       other: Tút
     posts_tab_heading: Tút
-    posts_with_replies: Trả lời
-    roles:
-      bot: Tài khoản Bot
-      group: Nhóm
-    unavailable: Tài khoản bị đình chỉ
-    unfollow: Ngưng theo dõi
   admin:
     account_actions:
       action: Thực hiện hành động
@@ -341,6 +321,7 @@ vi:
       listed: Liệt kê
       new:
         title: Thêm Emoji mới
+      no_emoji_selected: Không có emoji nào thay đổi vì không có emoji nào được chọn
       not_permitted: Bạn không có quyền thực hiện việc này
       overwrite: Ghi đè
       shortcode: Viết tắt
@@ -798,6 +779,9 @@ vi:
         description_html: Đây là những liên kết được chia sẻ nhiều trên máy chủ của bạn. Nó có thể giúp người dùng tìm hiểu những gì đang xảy ra trên thế giới. Không có liên kết nào được hiển thị công khai cho đến khi bạn duyệt nguồn đăng. Bạn cũng có thể cho phép hoặc từ chối từng liên kết riêng.
         disallow: Cấm liên kết
         disallow_provider: Cấm nguồn đăng
+        no_link_selected: Không có liên kết nào thay đổi vì không có liên kết nào được chọn
+        publishers:
+          no_publisher_selected: Không có nguồn đăng nào thay đổi vì không có nguồn đăng nào được chọn
         shared_by_over_week:
           other: "%{count} người chia sẻ tuần rồi"
         title: Liên kết xu hướng
@@ -816,6 +800,7 @@ vi:
         description_html: Đây là những tút đang được đăng lại và yêu thích rất nhiều trên máy chủ của bạn. Nó có thể giúp người dùng mới và người dùng cũ tìm thấy nhiều người hơn để theo dõi. Không có tút nào được hiển thị công khai cho đến khi bạn cho phép người đăng và người cho phép đề xuất tài khoản của họ cho người khác. Bạn cũng có thể cho phép hoặc từ chối từng tút riêng.
         disallow: Cấm tút
         disallow_account: Cấm người đăng
+        no_status_selected: Không có tút thịnh hành nào thay đổi vì không có tút nào được chọn
         not_discoverable: Tác giả đã chọn không tham gia mục khám phá
         shared_by:
           other: Được thích và đăng lại %{friendly_count} lần
@@ -830,6 +815,7 @@ vi:
           tag_uses_measure: tổng người dùng
         description_html: Đây là những hashtag đang xuất hiện trong rất nhiều tút trên máy chủ của bạn. Nó có thể giúp người dùng của bạn tìm ra những gì mọi người đang quan tâm nhiều nhất vào lúc này. Không có hashtag nào được hiển thị công khai cho đến khi bạn cho phép chúng.
         listable: Có thể đề xuất
+        no_tag_selected: Không có hashtag thịnh hành nào thay đổi vì không có hashtag nào được chọn
         not_listable: Không thể đề xuất
         not_trendable: Không xuất hiện xu hướng
         not_usable: Không được phép dùng
@@ -1148,9 +1134,6 @@ vi:
         hint: Bộ lọc này áp dụng để chọn các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút khác vào bộ lọc này từ giao diện web.
         title: Những tút đã lọc
   footer:
-    developers: Phát triển
-    more: Nhiều hơn
-    resources: Quy tắc
     trending_now: Xu hướng
   generic:
     all: Tất cả
@@ -1189,7 +1172,6 @@ vi:
       following: Danh sách người theo dõi
       muting: Danh sách người đã ẩn
     upload: Tải lên
-  in_memoriam_html: Tưởng Niệm
   invites:
     delete: Vô hiệu hóa
     expired: Hết hạn
@@ -1368,22 +1350,7 @@ vi:
     remove_selected_follows: Ngưng theo dõi những người đã chọn
     status: Trạng thái của họ
   remote_follow:
-    acct: Nhập địa chỉ Mastodon của bạn (tên@máy chủ)
     missing_resource: Không tìm thấy URL chuyển hướng cho tài khoản của bạn
-    no_account_html: Nếu chưa có tài khoản, hãy <a href='%{sign_up_path}' target='_blank'>đăng ký</a>
-    proceed: Theo dõi
-    prompt: 'Bạn vừa yêu cầu theo dõi:'
-    reason_html: "<strong>Tại sao bước này là cần thiết?</strong> <code>%{instance}</code> có thể không phải là máy chủ nơi bạn đã đăng ký, vì vậy chúng tôi cần chuyển hướng bạn đến máy chủ của bạn trước."
-  remote_interaction:
-    favourite:
-      proceed: Thích tút
-      prompt: 'Bạn muốn thích tút này:'
-    reblog:
-      proceed: Tiếp tục đăng lại
-      prompt: Bạn có muốn đăng lại tút này?
-    reply:
-      proceed: Tiếp tục trả lời
-      prompt: Bạn có muốn trả lời tút này?
   reports:
     errors:
       invalid_rules: không đúng với quy tắc

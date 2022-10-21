@@ -2,44 +2,24 @@
 zh-TW:
   about:
     about_mastodon_html: Mastodon （長毛象）是一個<em>自由、開放原始碼</em>的社群網站。它是一個分散式的服務，避免您的通訊被單一商業機構壟斷操控。請您選擇一家您信任的 Mastodon 站點，在上面建立帳號，然後您就可以和任一 Mastodon 站點上的使用者互通，享受無縫的<em>社群網路</em>交流。
-    api: API
-    apps: 行動應用程式
     contact_missing: 未設定
     contact_unavailable: 未公開
-    documentation: 文件
     hosted_on: 在 %{domain} 運作的 Mastodon 站點
-    privacy_policy: 隱私權政策
-    source_code: 原始碼
-    what_is_mastodon: 什麼是 Mastodon?
+    title: 關於本站
   accounts:
-    choices_html: "%{name} 的選擇："
-    endorsements_hint: 推薦您已經跟隨的人，將他們釘選在您的個人頁面。
-    featured_tags_hint: 您可以推薦不同主題標籤，它們也會在此處出現。
     follow: 跟隨
     followers:
       other: 跟隨者
     following: 正在跟隨
     instance_actor_flash: 這個帳號是一個用來代表此伺服器的虛擬執行者，而非真實使用者。它用途為聯邦宇宙且不應被停權。
-    joined: 加入於 %{date}
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
-    media: 媒體
-    moved_html: "%{name} 已經搬遷到 %{new_profile_link}:"
-    network_hidden: 此訊息不可用
     nothing_here: 暫時沒有內容可供顯示!
-    people_followed_by: "%{name} 跟隨的人"
-    people_who_follow: 跟隨 %{name} 的人
     pin_errors:
       following: 您只能推薦您正在跟隨的使用者。
     posts:
       other: 嘟文
     posts_tab_heading: 嘟文
-    posts_with_replies: 嘟文與回覆
-    roles:
-      bot: 機器人
-      group: 群組
-    unavailable: 無法取得個人檔案
-    unfollow: 取消跟隨
   admin:
     account_actions:
       action: 執行動作
@@ -341,6 +321,7 @@ zh-TW:
       listed: 已顯示
       new:
         title: 加入新的自訂表情符號
+      no_emoji_selected: 未選取任何 emoji，因此未變更
       not_permitted: 您無權執行此操作
       overwrite: 覆蓋
       shortcode: 短代碼
@@ -797,9 +778,12 @@ zh-TW:
       links:
         allow: 允許連結
         allow_provider: 允許發行者
-        description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索現在世界上正在發生的事情。除非您核准該發佈者，連結將不被公開展示。您也可以核准或駁回個別連結。
+        description_html: 這些連結是正在被您伺服器上看到該嘟文之帳號大量分享。這些連結可以幫助您的使用者探索現在世界上正在發生的事情。除非您核准該發行者，連結將不被公開展示。您也可以核准或駁回個別連結。
         disallow: 不允許連結
         disallow_provider: 不允許發行者
+        no_link_selected: 未選取任何鏈結，因此未變更
+        publishers:
+          no_publisher_selected: 未選取任何發行者，因此未變更
         shared_by_over_week:
           other: 上週被 %{count} 名使用者分享
         title: 熱門連結
@@ -818,6 +802,7 @@ zh-TW:
         description_html: 這些是您伺服器上已知被正在大量分享及加入最愛之嘟文。這些嘟文能幫助您伺服器上舊雨新知發現更多帳號來跟隨。除非您核准該作者且作者允許他們的帳號被推薦至其他人，嘟文將不被公開展示。您可以核准或駁回個別嘟文。
         disallow: 不允許嘟文
         disallow_account: 不允許作者
+        no_status_selected: 未選取任何熱門嘟文，因此未變更
         not_discoverable: 嘟文作者選擇不被發現
         shared_by:
           other: 分享過或／及收藏過 %{friendly_count} 次
@@ -832,6 +817,7 @@ zh-TW:
           tag_uses_measure: 總使用次數
         description_html: 這些主題標籤正在您的伺服器上大量嘟文中出現。這些主題標籤能幫助您的使用者發現人們正集中討論的內容。除非您核准，主題標籤將不被公開展示。
         listable: 能被建議
+        no_tag_selected: 未選取任何主題標籤，因此未變更
         not_listable: 不能被建議
         not_trendable: 不會登上熱門
         not_usable: 不可被使用
@@ -1150,9 +1136,6 @@ zh-TW:
         hint: 此過濾器會套用至所選之各別嘟文，不管它們有無符合其他條件。您可以從網頁介面中將更多嘟文加入至此過濾器。
         title: 已過濾之嘟文
   footer:
-    developers: 開發者
-    more: 更多......
-    resources: 資源
     trending_now: 現正熱門
   generic:
     all: 全部
@@ -1191,7 +1174,6 @@ zh-TW:
       following: 您關注的使用者名單
       muting: 您靜音的使用者名單
     upload: 上傳
-  in_memoriam_html: 謹此悼念。
   invites:
     delete: 停用
     expired: 已失效
@@ -1370,22 +1352,7 @@ zh-TW:
     remove_selected_follows: 取消跟隨所選使用者
     status: 帳號狀態
   remote_follow:
-    acct: 請輸入您的使用者名稱@站點網域
     missing_resource: 無法找到資源
-    no_account_html: 還沒有帳號？您可以<a href='%{sign_up_path}' target='_blank'>於這裡註冊</a>
-    proceed: 下一步
-    prompt: 您希望跟隨：
-    reason_html: "<strong>為什麼要經過這個步驟？</strong>因為<code>%{instance}</code>未必是您註冊的伺服器，我們需要先將您帶回您駐在的伺服器。"
-  remote_interaction:
-    favourite:
-      proceed: 加入到最愛
-      prompt: 您欲將此嘟文加入最愛
-    reblog:
-      proceed: 確認轉嘟
-      prompt: 您想轉嘟此嘟文：
-    reply:
-      proceed: 確認回覆
-      prompt: 您想回覆此嘟文
   reports:
     errors:
       invalid_rules: 未引用有效規則

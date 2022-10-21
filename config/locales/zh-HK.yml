@@ -2,43 +2,23 @@
 zh-HK:
   about:
     about_mastodon_html: Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！
-    api: API
-    apps: 手機 App
     contact_missing: 未設定
     contact_unavailable: 不適用
-    documentation: 說明文件
     hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
-    source_code: 源代碼
-    what_is_mastodon: Mastodon （萬象）是甚麼？
   accounts:
-    choices_html: "%{name} 的選擇："
-    endorsements_hint: 你可以推薦正在關注的人，他們會被顯示在你的個人頁面。
-    featured_tags_hint: 你可以推薦不同標籤，它們也會在此處出現。
     follow: 關注
     followers:
       other: 關注者
     following: 正在關注
     instance_actor_flash: 這個帳戶是結盟用的本伺服器的虛擬象徵，並不代表任何個別用戶。請不要把帳號停權。
-    joined: 於 %{date} 加入
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
-    media: 媒體
-    moved_html: "%{name} 已經轉移到 %{new_profile_link}："
-    network_hidden: 此信息不可用
     nothing_here: 暫時未有內容可以顯示！
-    people_followed_by: "%{name} 關注的人"
-    people_who_follow: 關注 %{name} 的人
     pin_errors:
       following: 你只能推薦你正在關注的使用者。
     posts:
       other: 文章
     posts_tab_heading: 文章
-    posts_with_replies: 包含回覆的文章
-    roles:
-      bot: 機械人
-      group: 群組
-    unavailable: 無法取得個人檔案
-    unfollow: 取消關注
   admin:
     account_actions:
       action: 執行動作
@@ -763,9 +743,6 @@ zh-HK:
     new:
       title: 新增篩選器
   footer:
-    developers: 開發者
-    more: 更多......
-    resources: 項目
     trending_now: 今期流行
   generic:
     all: 全部
@@ -795,7 +772,6 @@ zh-HK:
       following: 你所關注的用戶名單
       muting: 靜音名單
     upload: 上載
-  in_memoriam_html: 謹此悼念。
   invites:
     delete: 停用
     expired: 已失效
@@ -965,22 +941,7 @@ zh-HK:
     remove_selected_follows: 取消關注所選用戶
     status: 帳戶帖文
   remote_follow:
-    acct: 請輸入你想使用的「使用者名稱@域名」身份
     missing_resource: 無法找到你用戶的轉接網址
-    no_account_html: 沒有帳號？你可以<a href='%{sign_up_path}' target='_blank'>在這裏註冊</a>
-    proceed: 下一步
-    prompt: 你希望關注︰
-    reason_html: "<strong>為甚麼有必要做這個步驟？</strong>因為<code>%{instance}</code>未必是你註冊的伺服器，所以我們首先需要將你帶回你的伺服器。"
-  remote_interaction:
-    favourite:
-      proceed: 下一步
-      prompt: 你要求把這篇文章加入最愛：
-    reblog:
-      proceed: 繼續轉嘟
-      prompt: 你想轉推：
-    reply:
-      proceed: 下一步
-      prompt: 你想回覆：
   scheduled_statuses:
     over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
     over_total_limit: 你已經超越了排定發文的限額 (%{limit})

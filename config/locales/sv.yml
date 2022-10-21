@@ -2,45 +2,25 @@
 sv:
   about:
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
-    api: API
-    apps: Mobilappar
     contact_missing: Inte inställd
     contact_unavailable: Ej tillämplig
-    documentation: Dokumentation
     hosted_on: Mastodon-värd på %{domain}
-    source_code: Källkod
-    what_is_mastodon: Vad är Mastodon?
   accounts:
-    choices_html: "%{name}s val:"
-    endorsements_hint: Från webbgränssnittet kan du rekommendera följare, som sedan visas här.
-    featured_tags_hint: Du kan använda fyrkanter som visas här.
     follow: Följa
     followers:
       one: Följare
       other: Följare
     following: Följer
     instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern själv och inte någon enskild användare. Den används för federationsändamål och bör inte upphävas.
-    joined: Gick med %{date}
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
-    media: Media
-    moved_html: "%{name} har flyttat till %{new_profile_link}:"
-    network_hidden: Denna information är inte tillgänglig
     nothing_here: Det finns inget här!
-    people_followed_by: Personer som %{name} följer
-    people_who_follow: Personer som följer %{name}
     pin_errors:
       following: Du måste vara följare av den person du vill godkänna
     posts:
       one: Tuta
       other: Tutor
     posts_tab_heading: Tutor
-    posts_with_replies: Toots med svar
-    roles:
-      bot: Robot
-      group: Grupp
-    unavailable: Profilen är inte tillgänglig
-    unfollow: Sluta följa
   admin:
     account_actions:
       action: Utför åtgärd
@@ -745,9 +725,6 @@ sv:
     new:
       title: Lägg till nytt filter
   footer:
-    developers: Utvecklare
-    more: Mer…
-    resources: Resurser
     trending_now: Trendar nu
   generic:
     all: Alla
@@ -776,7 +753,6 @@ sv:
       following: Lista av följare
       muting: Lista av nertystade
     upload: Ladda upp
-  in_memoriam_html: Till minne av.
   invites:
     delete: Avaktivera
     expired: Utgånget
@@ -937,19 +913,7 @@ sv:
     remove_selected_follows: Sluta följ valda användare
     status: Kontostatus
   remote_follow:
-    acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
-    no_account_html: Har du inget konto? Du kan <a href='%{sign_up_path}' target='_blank'>registrera dig här</a>
-    proceed: Fortsätt för att följa
-    prompt: 'Du kommer att följa:'
-    reason_html: "<strong>Varför är det här steget nödvändigt?</strong> <code>%{instance}</code> är kanske inte den server du är registrerad vid, så vi behöver dirigera dig till din hemserver först."
-  remote_interaction:
-    favourite:
-      proceed: Fortsätt till favorit
-      prompt: 'Du vill favorit-markera det här inlägget:'
-    reply:
-      proceed: Fortsätt till svar
-      prompt: 'Du vill svara på det här inlägget:'
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare

@@ -2,46 +2,26 @@
 sq:
   about:
     about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
-    api: API
-    apps: Aplikacione për celular
     contact_missing: I parregulluar
     contact_unavailable: N/A
-    documentation: Dokumentim
     hosted_on: Mastodon i strehuar në %{domain}
-    privacy_policy: Rregulla Privatësie
-    source_code: Kod burim
-    what_is_mastodon: Ç’është Mastodon-i?
+    title: Mbi
   accounts:
-    choices_html: 'Zgjedhje të %{name}:'
-    endorsements_hint: Mund t’i mbështesni personat që nga ndërfaqja web, dhe do të shfaqen këtu.
-    featured_tags_hint: Mund të zgjidhni hashtag-ë të veçantë që do të shfaqen këtu.
     follow: Ndiqeni
     followers:
       one: Ndjekës
       other: Ndjekës
     following: Ndjekje
     instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual. Përdoret për qëllime federimi dhe s’duhet pezulluar.
-    joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
-    media: Media
-    moved_html: "%{name} ka kaluar te %{new_profile_link}:"
-    network_hidden: Këto të dhëna s’janë të passhme
     nothing_here: S’ka gjë këtu!
-    people_followed_by: Persona të ndjekur nga %{name}
-    people_who_follow: Persona që ndjekin %{name}
     pin_errors:
       following: Personin që doni të pasqyroni, duhet ta keni ndjekur tashmë
     posts:
       one: Mesazh
       other: Mesazhe
     posts_tab_heading: Mesazhe
-    posts_with_replies: Mesazhe dhe përgjigje
-    roles:
-      bot: Robot
-      group: Grup
-    unavailable: Profil jashtë funksionimi
-    unfollow: Resht së ndjekuri
   admin:
     account_actions:
       action: Kryeje veprimin
@@ -344,6 +324,7 @@ sq:
       listed: Në listë
       new:
         title: Shtoni emoxhi të ri vetjak
+      no_emoji_selected: S’u ndryshuan emoxhi, ngaqë s’qe përzgjedhur i tillë
       not_permitted: S’keni leje të kryeni këtë veprim
       overwrite: Mbishkruaje
       shortcode: Kod i shkurtër
@@ -809,6 +790,9 @@ sq:
         description_html: Këto janë lidhje që ndahen aktualisht shumë me llogari prej të cilave shërbyesi juaj sheh postime. Mund të ndihmojë përdoruesit tuaj të gjejnë se ç’po ndodh në botë. S’shfaqen lidhje publikisht, deri sa të miratoni botuesin. Mundeni edhe të lejoni ose hidhni poshtë lidhje individuale.
         disallow: Hiq lejimin e lidhjes
         disallow_provider: Mos e lejo botuesin
+        no_link_selected: S’u ndryshuan lidhje, ngaqë s’qe përzgjedhur e tillë
+        publishers:
+          no_publisher_selected: S’u ndryshuan botues, ngaqë s’qe përzgjedhur i tillë
         shared_by_over_week:
           one: Ndarë me të tjerë nga një person gjatë javës së kaluar
           other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
@@ -828,6 +812,7 @@ sq:
         description_html: Këto janë postime të cilat shërbyesi juaj di se po ndahen shumë dhe po zgjidhen si të parapëlqyera për çastin. Mund të ndihmojnë përdoruesit tuaj të rinj dhe të riardhur të gjejnë më tepër vetë për të ndjekur. S’shfaqen postime publikisht, pa miratuar ju autorin dhe autori lejon që llogaria e tij t’u sugjerohet të tjerëve. Mundeni edhe të lejoni, ose hidhni, poshtë postime individuale.
         disallow: Mos lejo postim
         disallow_account: Mos lejo autor
+        no_status_selected: S’u ndryshuan postime në modë, ngaqë s’qe përzgjedhur i tillë
         not_discoverable: Autori s’ka zgjedhur të jetë i zbulueshëm
         shared_by:
           one: Ndarë me të tjerë, ose shënuar si e parapëlqyer një herë
@@ -843,6 +828,7 @@ sq:
           tag_uses_measure: përdorime gjithsej
         description_html: Këta hashtag-ë aktualisht po shfaqen në një numër të madh postimesh që sheh shërbyesi juaj. Kjo mund të ndihmojë përdoruesit tuaj të gjejnë se për çfarë po flasin më shumë njerëzit aktualisht. Pa i miratuar ju, nuk shfaqen publikisht hashtag-ë.
         listable: Mund të sugjerohet
+        no_tag_selected: S’u ndryshuan etiketa, ngaqë s’qe përzgjedhur e tillë
         not_listable: S’do të sugjerohet
         not_trendable: S’do të shfaqet nën të modës
         not_usable: S’mund të përdoret
@@ -1164,9 +1150,6 @@ sq:
         hint: Ky filtër aplikohet për të përzgjedhur postime individuale, pavarësisht kriteresh të tjera. Që nga ndërfaqja web mund të shtoni më tepër postime te ky filtër.
         title: Postime të filtruar
   footer:
-    developers: Zhvillues
-    more: Më tepër…
-    resources: Burime
     trending_now: Prirjet e tashme
   generic:
     all: Krejt
@@ -1209,7 +1192,6 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -1389,22 +1371,7 @@ sq:
     remove_selected_follows: Hiqe ndjekjen e përdoruesve të përzgjedhur
     status: Gjendje llogarie
   remote_follow:
-    acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
     missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë tuaj
-    no_account_html: S’keni llogari? Mund të <a href='%{sign_up_path}' target='_blank'>regjistroheni këtu</a>
-    proceed: Ripohoni ndjekjen
-    prompt: 'Do të ndiqni:'
-    reason_html: "<strong>Pse është i domosdoshëm ky hap?</strong> <code>%{instance}</code> mund të mos jetë shërbyesi ku jeni regjistruar, ndaj na duhet t’ju ridrejtojmë së pari te shërbyesi juaj Home."
-  remote_interaction:
-    favourite:
-      proceed: Ripohoni parapëlqimin
-      prompt: 'Doni të parapëlqeni këtë mesazh:'
-    reblog:
-      proceed: Ripohoni përforcimin
-      prompt: 'Doni të përforconi këtë mesazh:'
-    reply:
-      proceed: Ripohoni përgjigjen
-      prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
   reports:
     errors:
       invalid_rules: s’i referohet ndonjë rregulli të vlefshëm

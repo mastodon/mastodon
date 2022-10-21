@@ -2,19 +2,11 @@
 cs:
   about:
     about_mastodon_html: 'Sociální síť budoucnosti: žádné reklamy, žádné korporátní sledování, etický design a decentralizace! S Mastodonem vlastníte svoje data!'
-    api: API
-    apps: Mobilní aplikace
     contact_missing: Nenastaveno
     contact_unavailable: Neuvedeno
-    documentation: Dokumentace
     hosted_on: Mastodon na doméně %{domain}
-    privacy_policy: Ochrana osobních údajů
-    source_code: Zdrojový kód
-    what_is_mastodon: Co je Mastodon?
+    title: O aplikaci
   accounts:
-    choices_html: 'Volby %{name}:'
-    endorsements_hint: Z webového rozhraní můžete podpořit lidi, které sledujete. Ti se poté zobrazí zde.
-    featured_tags_hint: Můžete vybrat konkrétní hashtagy, které se zobrazí zde.
     follow: Sledovat
     followers:
       few: Sledující
@@ -23,15 +15,9 @@ cs:
       other: Sledujících
     following: Sledovaných
     instance_actor_flash: Tento účet je virtuální aktér, který představuje server samotný, nikoliv jednotlivého uživatele. Používá se pro účely federace a neměl by být pozastaven.
-    joined: Uživatelem od %{date}
     last_active: naposledy aktivní
     link_verified_on: Vlastnictví tohoto odkazu bylo zkontrolováno %{date}
-    media: Média
-    moved_html: 'Uživatel %{name} se přesunul na %{new_profile_link}:'
-    network_hidden: Tato informace není k dispozici
     nothing_here: Nic tu není!
-    people_followed_by: Lidé, které sleduje %{name}
-    people_who_follow: Lidé, kteří sledují %{name}
     pin_errors:
       following: Osobu, kterou chcete podpořit, už musíte sledovat
     posts:
@@ -40,12 +26,6 @@ cs:
       one: Příspěvek
       other: Příspěvků
     posts_tab_heading: Příspěvky
-    posts_with_replies: Příspěvky a odpovědi
-    roles:
-      bot: Robot
-      group: Skupina
-    unavailable: Profil není dostupný
-    unfollow: Přestat sledovat
   admin:
     account_actions:
       action: Vykonat akci
@@ -342,6 +322,7 @@ cs:
       listed: Uvedeno
       new:
         title: Přidat nové vlastní emoji
+      no_emoji_selected: Žádné emoji nebyly změněny, protože nikdo nebyl vybrán
       not_permitted: K provedené této akce nemáte dostatečná oprávnění
       overwrite: Přepsat
       shortcode: Zkratka
@@ -832,6 +813,9 @@ cs:
         description_html: Toto jsou odkazy, které jsou momentálně hojně sdíleny účty, jejichž příspěvky váš server vidí. To může pomoct vašim uživatelům zjistit, co se děje ve světě. Žádné odkazy se nezobrazují veřejně, dokud neschválíte vydavatele. Můžete také povolit nebo zamítnout jednotlivé odkazy.
         disallow: Zakázat odkaz
         disallow_provider: Zakázat vydavatele
+        no_link_selected: Nebyly změněny žádné odkazy, protože nebyl vybrán žádný
+        publishers:
+          no_publisher_selected: Nebyly změněny žádní publikující, protože nikdo nebyl vybrán
         shared_by_over_week:
           few: Sdílený %{count} lidmi za poslední týden
           many: Sdílený %{count} lidmi za poslední týden
@@ -853,6 +837,7 @@ cs:
         description_html: Toto jsou příspěvky, o kterých váš server ví, že jsou momentálně hodně sdíleny a oblibovány. To může pomoci vašim novým i vracejícím se uživatelům najít další lidi ke sledování. Žádné příspěvky se nezobrazují veřejně, dokud neschválíte autora a tento autor nepovolí navrhování svého účtu ostatním. Můžete také povolit či zamítnout jednotlivé příspěvky.
         disallow: Zakázat příspěvek
         disallow_account: Zakázat autora
+        no_status_selected: Nebyly změněny žádné populární příspěvky, protože nikdo nebyl vybrán
         not_discoverable: Autor nepovolil navrhování svého účtu ostatním
         shared_by:
           few: "%{friendly_count} sdílení nebo oblíbení"
@@ -870,6 +855,7 @@ cs:
           tag_uses_measure: použití celkem
         description_html: Toto jsou hashtagy, které se momentálně objevují v mnoha příspěvcích, které váš server vidí. To může pomoci vašim uživatelům zjistit, o čem lidé zrovna nejvíce mluví. Žádné hashtagy se nezobrazují veřejně, dokud je neschválíte.
         listable: Může být navrhován
+        no_tag_selected: Nebyly změněny žádné štítky, protože nikdo nebyl vybrán
         not_listable: Nebude navrhován
         not_trendable: Neobjeví se mezi populárními
         not_usable: Nemůže být používán
@@ -979,6 +965,7 @@ cs:
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
+    apply_for_account: Přejít na čekací frontu
     change_password: Heslo
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.
@@ -1196,9 +1183,6 @@ cs:
         hint: Tento filtr se vztahuje na výběr jednotlivých příspěvků bez ohledu na jiná kritéria. Do tohoto filtru můžete přidat více příspěvků z webového rozhraní.
         title: Filtrované příspěvky
   footer:
-    developers: Vývojáři
-    more: Více…
-    resources: Zdroje
     trending_now: Právě populární
   generic:
     all: Všechny
@@ -1234,7 +1218,6 @@ cs:
       following: Seznam sledovaných
       muting: Seznam ignorovaných
     upload: Nahrát
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Deaktivovat
     expired: Expirováno
@@ -1416,22 +1399,7 @@ cs:
     remove_selected_follows: Přestat sledovat vybrané uživatele
     status: Stav účtu
   remote_follow:
-    acct: Napište svou přezdívku@doménu, ze které chcete jednat
     missing_resource: Nemůžeme najít požadovanou přesměrovávací URL adresu pro váš účet
-    no_account_html: Ještě nemáte účet? Tady se můžete <a href='%{sign_up_path}' target='_blank'>zaregistrovat</a>
-    proceed: Pokračovat ke sledování
-    prompt: 'Budete sledovat:'
-    reason_html: "<strong>Proč je tento krok nutný?</strong> <code>%{instance}</code> nemusí být serverem, na kterém jste registrováni, a proto vás musíme nejdříve přesměrovat na váš domovský server."
-  remote_interaction:
-    favourite:
-      proceed: Pokračovat k oblíbení
-      prompt: 'Chcete si oblíbit tento příspěvek:'
-    reblog:
-      proceed: Pokračovat k boostnutí
-      prompt: 'Chcete boostnout tento příspěvek:'
-    reply:
-      proceed: Pokračovat k odpovědi
-      prompt: 'Chcete odpovědět na tento příspěvek:'
   reports:
     errors:
       invalid_rules: neodkazuje na platná pravidla

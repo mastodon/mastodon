@@ -2,18 +2,10 @@
 he:
   about:
     about_mastodon_html: מסטודון היא רשת חברתית <em>חופשית, מבוססת תוכנה חופשית ("קוד פתוח")</em>. כאלטרנטיבה <em>בלתי ריכוזית</em> לפלטפרומות המסחריות, מסטודון מאפשרת להמנע מהסיכונים הנלווים להפקדת התקשורת שלך בידי חברה יחידה. שמת את מבטחך בשרת אחד &mdash; לא משנה במי בחרת, תמיד אפשר לדבר עם כל שאר המשתמשים. לכל מי שרוצה יש את האפשרות להקים שרת מסטודון עצמאי, ולהשתתף ב<em>רשת החברתית</em> באופן חלק.
-    api: ממשק
-    apps: יישומונים לנייד
     contact_missing: ללא הגדרה
     contact_unavailable: לא רלוונטי/חסר
-    documentation: תיעוד
     hosted_on: מסטודון שיושב בכתובת %{domain}
-    source_code: קוד מקור
-    what_is_mastodon: מה זה מסטודון?
   accounts:
-    choices_html: 'בחירותיו/ה של %{name}:'
-    endorsements_hint: תוכל/י להמליץ על אנשים לעקוב אחריהם דרך ממשק הווב, והם יופיעו כאן.
-    featured_tags_hint: תוכל/י להציג האשתגיות ספציפיות והן תופענה כאן.
     follow: לעקוב
     followers:
       many: עוקבים
@@ -22,15 +14,9 @@ he:
       two: עוקבים
     following: נעקבים
     instance_actor_flash: חשבון זה הינו פועל וירטואלי המשמש לייצוג השרת עצמו ולא אף משתמש ספציפי. הוא משמש למטרות פדרציה ואין להשעותו.
-    joined: הצטרף/ה ב-%{date}
     last_active: פעילות אחרונה
     link_verified_on: בעלות על קישורית זו נבדקה לאחרונה ב-%{date}
-    media: מדיה
-    moved_html: "%{name} עבר(ה) אל %{new_profile_link}:"
-    network_hidden: מידע זה אינו זמין
     nothing_here: אין פה שום דבר!
-    people_followed_by: הנעקבים של %{name}
-    people_who_follow: העוקבים של %{name}
     pin_errors:
       following: עליך לעקוב אחרי חשבון לפני שניתן יהיה להמליץ עליו
     posts:
@@ -39,12 +25,6 @@ he:
       other: פוסטים
       two: פוסטים
     posts_tab_heading: חצרוצים
-    posts_with_replies: חצרוצים ותגובות
-    roles:
-      bot: בוט
-      group: קבוצה
-    unavailable: פרופיל לא זמין
-    unfollow: הפסקת מעקב
   admin:
     account_actions:
       action: בצע/י פעולה
@@ -1178,9 +1158,6 @@ he:
         hint: פילטר זה חל באופן של בחירת פוסטים בודדים ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד פוסטים לפילטר זה ממשק הווב.
         title: פוסטים שסוננו
   footer:
-    developers: מפתחות
-    more: עוד…
-    resources: משאבים
     trending_now: נושאים חמים
   generic:
     all: הכל
@@ -1216,7 +1193,6 @@ he:
       following: רשימת נעקבים
       muting: רשימת השתקות
     upload: יבוא
-  in_memoriam_html: לזכר.
   invites:
     delete: ביטול הפעלה
     expired: פג תוקף
@@ -1396,22 +1372,7 @@ he:
     remove_selected_follows: בטל מעקב אחר המשתמשים שסומנו
     status: מצב חשבון
   remote_follow:
-    acct: נא להקליד שם_משתמש@קהילה מהם ברצונך לעקוב
     missing_resource: לא ניתן למצוא קישורית להפניה לחשבונך
-    no_account_html: אין לך חשבון? ניתן <a href='%{sign_up_path}' target='_blank'>להרשם כאן</a>
-    proceed: להמשיך ולעקוב
-    prompt: 'לעקוב אחרי:'
-    reason_html: "<strong>למה שלב זה הכרחי?</strong> <code>%{instance}</code> עשוי לא להיות השרת בו את/ה רשום/ה, כך שנצטרך קודם כל להעביר אותך לשרת הבית."
-  remote_interaction:
-    favourite:
-      proceed: המשך לחיבוב
-      prompt: 'ברצונך לחבב פוסט זה:'
-    reblog:
-      proceed: המשיכו להדהוד
-      prompt: 'ברצונך להדהד פוסט זה:'
-    reply:
-      proceed: המשיבו לתגובה
-      prompt: 'ברצונך להשיב לפוסט זה:'
   reports:
     errors:
       invalid_rules: לא מתייחס לכללים קבילים

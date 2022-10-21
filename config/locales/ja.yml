@@ -2,44 +2,24 @@
 ja:
   about:
     about_mastodon_html: Mastodonは、オープンなウェブプロトコルを採用した、自由でオープンソースなソーシャルネットワークです。電子メールのような分散型の仕組みを採っています。
-    api: API
-    apps: アプリ
     contact_missing: 未設定
     contact_unavailable: N/A
-    documentation: ドキュメント
     hosted_on: Mastodon hosted on %{domain}
-    privacy_policy: プライバシーポリシー
-    source_code: ソースコード
-    what_is_mastodon: Mastodonとは？
+    title: About
   accounts:
-    choices_html: "%{name}によるおすすめ:"
-    endorsements_hint: あなたがフォローしている中でおすすめしたい人をここで紹介できます。
-    featured_tags_hint: 特定のハッシュタグをここに表示できます。
     follow: フォロー
     followers:
       other: フォロワー
     following: フォロー中
     instance_actor_flash: このアカウントは、個々のユーザーではなく、サーバー自体を表すために使用される仮想のユーザーです。 連合のために使用されるため、停止しないで下さい。
-    joined: "%{date}に登録"
     last_active: 最後の活動
     link_verified_on: このリンクの所有権は%{date}に確認されました
-    media: メディア
-    moved_html: "%{name}さんは%{new_profile_link}に引っ越しました:"
-    network_hidden: この情報は利用できません
     nothing_here: 何もありません！
-    people_followed_by: "%{name}さんがフォロー中のアカウント"
-    people_who_follow: "%{name}さんをフォロー中のアカウント"
     pin_errors:
       following: おすすめしたい人はあなたが既にフォローしている必要があります
     posts:
       other: 投稿
     posts_tab_heading: 投稿
-    posts_with_replies: 投稿と返信
-    roles:
-      bot: Bot
-      group: Group
-    unavailable: プロフィールは利用できません
-    unfollow: フォロー解除
   admin:
     account_actions:
       action: アクションを実行
@@ -1114,9 +1094,6 @@ ja:
       index:
         title: フィルターされた投稿
   footer:
-    developers: 開発者向け
-    more: さらに…
-    resources: リソース
     trending_now: トレンドタグ
   generic:
     all: すべて
@@ -1149,7 +1126,6 @@ ja:
       following: フォロー中のアカウントリスト
       muting: ミュートしたアカウントリスト
     upload: アップロード
-  in_memoriam_html: 故人を偲んで。
   invites:
     delete: 無効化
     expired: 期限切れ
@@ -1328,22 +1304,7 @@ ja:
     remove_selected_follows: 選択したユーザーをフォロー解除
     status: 状態
   remote_follow:
-    acct: あなたの ユーザー名@ドメイン を入力してください
     missing_resource: リダイレクト先が見つかりませんでした
-    no_account_html: アカウントをお持ちではないですか？<a href='%{sign_up_path}' target='_blank'>こちら</a>からサインアップできます
-    proceed: フォローする
-    prompt: 'フォローしようとしています:'
-    reason_html: "<strong>なぜこの手順が必要でしょうか？</strong>　<code>%{instance}</code>はあなたが登録されているサーバーではないかもしれないので、まずあなたのサーバーに転送する必要があります。"
-  remote_interaction:
-    favourite:
-      proceed: お気に入り登録する
-      prompt: 'お気に入り登録しようとしています:'
-    reblog:
-      proceed: ブーストする
-      prompt: 'ブーストしようとしています:'
-    reply:
-      proceed: 返信する
-      prompt: '返信しようとしています:'
   reports:
     errors:
       invalid_rules: 有効なルールを参照していません

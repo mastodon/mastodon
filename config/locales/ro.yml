@@ -2,18 +2,10 @@
 ro:
   about:
     about_mastodon_html: 'Rețeaua socială a viitorului: Fără reclame, fără supraveghere corporativă, design etic și descentralizare! Dețineți-vă datele cu Mastodon!'
-    api: API
-    apps: Aplicații mobile
     contact_missing: Nesetat
     contact_unavailable: Indisponibil
-    documentation: Documentație
     hosted_on: Mastodon găzduit de %{domain}
-    source_code: Cod sursă
-    what_is_mastodon: Ce este Mastodon?
   accounts:
-    choices_html: 'Alegerile lui %{name}:'
-    endorsements_hint: Poți promova oameni pe care îi urmărești din interfața web, și ei vor apărea aici.
-    featured_tags_hint: Puteți promova anumite hashtag-uri care vor fi afișate aici.
     follow: Urmărește
     followers:
       few: Urmăritori
@@ -21,15 +13,9 @@ ro:
       other: De Urmăritori
     following: Urmăriți
     instance_actor_flash: Acest cont este un actor virtual folosit pentru a reprezenta serverul în sine și nu un utilizator individual. Acesta este utilizat în scopuri federative şi nu trebuie suspendat.
-    joined: Înscris %{date}
     last_active: ultima activitate
     link_verified_on: Proprietatea acestui link a fost verificată la %{date}
-    media: Media
-    moved_html: "%{name} s-a mutat la %{new_profile_link}:"
-    network_hidden: Aceste informaţii nu sunt disponibile
     nothing_here: Nu există nimic aici!
-    people_followed_by: Persoane pe care %{name} le urmărește
-    people_who_follow: Persoane care urmăresc pe %{name}
     pin_errors:
       following: Trebuie să urmăriți deja persoana pe care doriți să o aprobați
     posts:
@@ -37,12 +23,6 @@ ro:
       one: Postare
       other: De Postări
     posts_tab_heading: Postări
-    posts_with_replies: Postări și răspunsuri
-    roles:
-      bot: Robot
-      group: Grup
-    unavailable: Profil indisponibil
-    unfollow: Nu mai urmării
   admin:
     account_actions:
       action: Efectuează acțiunea
@@ -374,7 +354,6 @@ ro:
       following: Lista de urmărire
       muting: Lista de ignorare
     upload: Încarcă
-  in_memoriam_html: În Memoria.
   invites:
     delete: Dezactivați
     expired: Expirat
@@ -464,22 +443,7 @@ ro:
     remove_selected_follows: Anulează urmărirea utilizatorilor selectați
     status: Starea contului
   remote_follow:
-    acct: Introduceți numele@domeniu din care doriți să acționați
     missing_resource: Nu s-a putut găsi URL-ul de redirecționare necesar pentru contul dvs
-    no_account_html: Nu ai un cont? Poți <a href='%{sign_up_path}' target='_blank'>să te înregistrezi aici</a>
-    proceed: Continuă să urmărești
-    prompt: 'Vei urmării pe:'
-    reason_html: "<strong>De ce este necesar acest pas?</strong> <code>%{instance}</code> ar putea să nu fie serverul în care sunteți înregistrat, așa că trebuie să te redirecționăm către serverul tău de acasă."
-  remote_interaction:
-    favourite:
-      proceed: Continuă să favorizezi
-      prompt: 'Vrei să favorizezi această postare:'
-    reblog:
-      proceed: Continuă să dai impuls
-      prompt: 'Vrei să impulsionezi această postare:'
-    reply:
-      proceed: Continuă să răspunzi
-      prompt: 'Vrei să răspunzi la această postare:'
   scheduled_statuses:
     over_daily_limit: Ai depășit limita de %{limit} postări programate pentru acea zi
     over_total_limit: Ai depășit limita de %{limit} postări programate

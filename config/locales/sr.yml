@@ -2,29 +2,18 @@
 sr:
   about:
     about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
-    apps: Мобилне апликације
     contact_missing: Није постављено
-    documentation: Документација
     hosted_on: Мастодонт хостован на %{domain}
-    source_code: Изворни код
-    what_is_mastodon: Шта је Мастодон?
   accounts:
-    choices_html: "%{name}'s избори:"
     follow: Запрати
     followers:
       few: Пратиоци
       one: Пратиоц
       other: Пратиоци
     following: Пратим
-    joined: Придружио/ла се %{date}
     last_active: последњи пут активни
     link_verified_on: Власништво над овом везом је проверено %{date}
-    media: Медији
-    moved_html: "%{name} је прешао на %{new_profile_link}:"
-    network_hidden: Ова информација није доступна
     nothing_here: Овде нема ништа!
-    people_followed_by: Људи које %{name} прати
-    people_who_follow: Људи који прате %{name}
     pin_errors:
       following: Морате пратити ову особу ако хоћете да потврдите
     posts:
@@ -32,11 +21,6 @@ sr:
       one: Труба
       other: Трубе
     posts_tab_heading: Трубе
-    posts_with_replies: Трубе и одговори
-    roles:
-      bot: Бот
-    unavailable: Налог је недоступан
-    unfollow: Отпрати
   admin:
     account_actions:
       action: Извршите радњу
@@ -414,10 +398,6 @@ sr:
       title: Филтери
     new:
       title: Додај нови филтер
-  footer:
-    developers: Програмери
-    more: Више…
-    resources: Ресурси
   generic:
     changes_saved_msg: Измене успешно сачуване!
     copy: Копирај
@@ -501,19 +481,7 @@ sr:
   preferences:
     other: Остало
   remote_follow:
-    acct: Унесите Ваш корисник@домен са кога желите да пратите
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
-    no_account_html: Немате налог? Можете се <a href='%{sign_up_path}' target='_blank'>пријавити овде</a>
-    proceed: Наставите да би сте запратили
-    prompt: 'Запратићете:'
-    reason_html: "<strong>Зашто је овај корак неопходан?</strong><code>%{instance}</code> можда није сервер на којем сте регистровани, тако да прво морамо да вас преусмеримо на ваш сервер."
-  remote_interaction:
-    reblog:
-      proceed: Наставите да бисте поделили
-      prompt: 'Желите да делите ову трубу:'
-    reply:
-      proceed: Наставите да бисте одговорили
-      prompt: 'Желите да одговорите на ову трубу:'
   scheduled_statuses:
     over_daily_limit: Прекорачили сте границу од %{limit} планираних труба за тај дан
     over_total_limit: Прекорачили сте границу од %{limit} планираних труба

@@ -2,17 +2,10 @@
 sk:
   about:
     about_mastodon_html: Mastodon je sociálna sieť založená na otvorených webových protokoloch a na slobodnom softvéri. Je decentralizovaná, podobne ako email.
-    apps: Aplikácie
     contact_missing: Nezadaný
     contact_unavailable: Neuvedený/á
-    documentation: Dokumentácia
     hosted_on: Mastodon hostovaný na %{domain}
-    source_code: Zdrojový kód
-    what_is_mastodon: Čo je Mastodon?
   accounts:
-    choices_html: "%{name}vé voľby:"
-    endorsements_hint: Môžeš ukázať sledovaných užívateľov, s ktorými si spriaznený/á cez webové rozhranie, a tí tu budú zobrazení.
-    featured_tags_hint: Môžeš zvýrazniť určité haštagy, ktoré tu budú zobrazené.
     follow: Následuj
     followers:
       few: Sledovateľov
@@ -20,15 +13,9 @@ sk:
       one: Sledujúci
       other: Sledovatelia
     following: Následujem
-    joined: Pridal/a sa v %{date}
     last_active: naposledy aktívny
     link_verified_on: Vlastníctvo tohto odkazu bolo skontrolované %{date}
-    media: Médiá
-    moved_html: "%{name} účet bol presunutý na %{new_profile_link}:"
-    network_hidden: Táto informácia nieje k dispozícii
     nothing_here: Nič tu nie je!
-    people_followed_by: Ľudia, ktorých %{name} sleduje
-    people_who_follow: Ľudia sledujúci %{name}
     pin_errors:
       following: Musíš už následovať toho človeka, ktorého si praješ zviditeľniť
     posts:
@@ -37,11 +24,6 @@ sk:
       one: Príspevok
       other: Príspevkov
     posts_tab_heading: Príspevky
-    posts_with_replies: Príspevky s odpoveďami
-    roles:
-      group: Skupina
-    unavailable: Profil nieje dostupný
-    unfollow: Prestaň sledovať
   admin:
     account_actions:
       action: Vykonaj
@@ -731,9 +713,6 @@ sk:
     new:
       title: Pridaj nové triedenie
   footer:
-    developers: Vývojári
-    more: Viac…
-    resources: Podklady
     trending_now: Teraz populárne
   generic:
     all: Všetko
@@ -766,7 +745,6 @@ sk:
       following: Zoznam sledovaných
       muting: Zoznam ignorovaných
     upload: Nahraj
-  in_memoriam_html: V pamäti.
   invites:
     delete: Deaktivuj
     expired: Neplatné
@@ -913,22 +891,7 @@ sk:
     remove_selected_follows: Prestaň sledovať vybraných užívateľov
     status: Stav účtu
   remote_follow:
-    acct: Napíš svoju prezývku@doménu z ktorej chceš následovať
     missing_resource: Nemožno nájsť potrebnú presmerovaciu adresu k tvojmu účtu
-    no_account_html: Nemáš účet? Môžeš sa <a href='%{sign_up_path}' target='_blank'>zaregistrovať tu</a>
-    proceed: Začni následovať
-    prompt: 'Budeš sledovať:'
-    reason_html: "<strong>Načo je tento krok potrebný?</strong> <code>%{instance}</code> nemusí byť práve tým serverom na ktorom si zaregistrovaný/á, takže je ťa najprv potrebné presmerovať na tvoj domáci server."
-  remote_interaction:
-    favourite:
-      proceed: Pokračuj k obľúbeniu
-      prompt: 'Chceš si obľúbiť tento príspevok:'
-    reblog:
-      proceed: Pokračuj k vyzdvihnutiu
-      prompt: 'Chceš vyzdvihnúť tento príspevok:'
-    reply:
-      proceed: Pokračuj odpovedaním
-      prompt: 'Chceš odpovedať na tento príspevok:'
   scheduled_statuses:
     over_daily_limit: Prekročil/a si denný limit %{limit} predplánovaných príspevkov
     over_total_limit: Prekročil/a si limit %{limit} predplánovaných príspevkov

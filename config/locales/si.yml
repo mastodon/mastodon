@@ -2,45 +2,25 @@
 si:
   about:
     about_mastodon_html: 'අනාගත සමාජ ජාලය: දැන්වීම් නැත, ආයතනික නිරීක්ෂණ නැත, සදාචාරාත්මක සැලසුම් සහ විමධ්‍යගත කිරීම! Mastodon සමඟ ඔබේ දත්ත අයිති කරගන්න!'
-    api: යෙ.ක්‍ර. මු. (API)
-    apps: ජංගම යෙදුම්
     contact_missing: සකස් කර නැත
     contact_unavailable: අ/නොවේ
-    documentation: ප්‍රලේඛනය
     hosted_on: Mastodon %{domain}හි සත්කාරකත්වය දරයි
-    source_code: මූල කේතය
-    what_is_mastodon: මාස්ටඩන් යනු කුමක්ද?
   accounts:
-    choices_html: "%{name}හි තේරීම්:"
-    endorsements_hint: ඔබට වෙබ් අතුරු මුහුණතෙන් ඔබ අනුගමනය කරන පුද්ගලයින් අනුමත කළ හැකි අතර, ඔවුන් මෙහි පෙන්වනු ඇත.
-    featured_tags_hint: ඔබට මෙහි සංදර්ශන කෙරෙන විශේෂිත හැෂ් ටැග් විශේෂාංගගත කළ හැක.
     follow: අනුගමනය
     followers:
       one: අනුගාමිකයා
       other: අනුගාමිකයින්
     following: අනුගමනය
     instance_actor_flash: මෙම ගිණුම සේවාදායකයම නියෝජනය කිරීමට භාවිතා කරන අතථ්‍ය නළුවෙකු වන අතර කිසිදු තනි පරිශීලකයෙකු නොවේ. එය ෆෙඩරේෂන් අරමුණු සඳහා භාවිතා කරන අතර අත්හිටුවිය යුතු නොවේ.
-    joined: "%{date} එක් වී ඇත"
     last_active: අවසාන ක්රියාකාරී
     link_verified_on: මෙම සබැඳියේ හිමිකාරිත්වය %{date}හි පරීක්ෂා කරන ලදී
-    media: මාධ්‍යය
-    moved_html: "%{name} %{new_profile_link}මාරු වී ඇත:"
-    network_hidden: මෙම තොරතුරු ලබා ගත නොහැක
     nothing_here: මෙහි කිසිත් නැත!
-    people_followed_by: "%{name} අනුගමනය කරන පුද්ගලයින්"
-    people_who_follow: "%{name}අනුගමනය කරන පුද්ගලයින්"
     pin_errors:
       following: ඔබට අනුමත කිරීමට අවශ්‍ය පුද්ගලයා ඔබ දැනටමත් අනුගමනය කරමින් සිටිය යුතුය
     posts:
       one: ලිපිය
       other: ලිපි
     posts_tab_heading: ලිපි
-    posts_with_replies: පළ කිරීම් හා පිළිතුරු
-    roles:
-      bot: ස්වයං ක්‍රමලේඛය
-      group: සමූහය
-    unavailable: පැතිකඩ නොමැත
-    unfollow: අනුගමනය නොකරන්න
   admin:
     account_actions:
       action: ක්‍රියාව සිදු කරන්න
@@ -1045,9 +1025,6 @@ si:
       save: නව පෙරහන සුරකින්න
       title: නව පෙරහනක් එකතු කරන්න
   footer:
-    developers: සංවර්ධකයින්
-    more: තව…
-    resources: සම්පත්
     trending_now: දැන් ප්‍රවණතාවය
   generic:
     all: සියල්ල
@@ -1080,7 +1057,6 @@ si:
       following: පහත ලැයිස්තුව
       muting: නිහඬ කිරීමේ ලැයිස්තුව
     upload: උඩුගත කරන්න
-  in_memoriam_html: මතකය තුළ.
   invites:
     delete: අක්රිය කරන්න
     expired: කල් ඉකුත් වී ඇත
@@ -1258,22 +1234,7 @@ si:
     remove_selected_follows: තෝරාගත් පරිශීලකයින් අනුගමනය නොකරන්න
     status: ගිණුමේ තත්‍වය
   remote_follow:
-    acct: ඔබට ක්‍රියා කිරීමට අවශ්‍ය ඔබගේ username@domain ඇතුලත් කරන්න
     missing_resource: ඔබගේ ගිණුම සඳහා අවශ්‍ය යළි-යොමුවීම් URL එක සොයා ගැනීමට නොහැකි විය
-    no_account_html: ගිණුමක් නැද්ද? ඔබට මෙහි <a href='%{sign_up_path}' target='_blank'>ලියාපදිංචි විය හැක</a>
-    proceed: අනුගමනය කිරීමට ඉදිරියට යන්න
-    prompt: 'ඔබ අනුගමනය කිරීමට යන්නේ:'
-    reason_html: "<strong>මෙම පියවර අවශ්ය වන්නේ ඇයි?</strong> <code>%{instance}</code> ඔබ ලියාපදිංචි වී ඇති සේවාදායකය නොවිය හැක, එබැවින් අපට පළමුව ඔබව ඔබගේ නිවසේ සේවාදායකය වෙත හරවා යැවිය යුතුය."
-  remote_interaction:
-    favourite:
-      proceed: ප්රියතම වෙත ඉදිරියට යන්න
-      prompt: 'ඔබට මෙම පෝස්ටය ප්‍රියතම කිරීමට අවශ්‍යයි:'
-    reblog:
-      proceed: වැඩි කිරීමට ඉදිරියට යන්න
-      prompt: 'ඔබට මෙම පළ කිරීම වැඩි කිරීමට අවශ්‍යයි:'
-    reply:
-      proceed: පිළිතුරු දීමට ඉදිරියට යන්න
-      prompt: 'ඔබට මෙම පළ කිරීමට පිළිතුරු දීමට අවශ්‍යයි:'
   reports:
     errors:
       invalid_rules: වලංගු නීති සඳහන් නොකරයි

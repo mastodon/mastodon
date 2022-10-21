@@ -2,43 +2,25 @@
 eo:
   about:
     about_mastodon_html: 'Mastodon estas socia retejo de la estonteco: sen reklamo, sen kompania gvato, etika dezajno kaj malcentraligo! Vi regu viajn datumojn kun Mastodon!'
-    api: API
-    apps: Poŝtelefonaj aplikaĵoj
     contact_missing: Ne ŝargita
     contact_unavailable: Ne disponebla
-    documentation: Dokumentado
     hosted_on: "%{domain} estas nodo de Mastodon"
-    source_code: Fontkodo
-    what_is_mastodon: Kio estas Mastodon?
   accounts:
-    choices_html: 'Proponoj de %{name}:'
     follow: Sekvi
     followers:
       one: Sekvanto
       other: Sekvantoj
     following: Sekvatoj
     instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniu individua uzanto. Ĝi estas uzata por celoj de la federaĵo kaj devas ne esti suspendita.
-    joined: Aliĝis je %{date}
     last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
-    media: Aŭdovidaĵoj
-    moved_html: "%{name} moviĝis al %{new_profile_link}:"
-    network_hidden: Tiu informo ne estas disponebla
     nothing_here: Estas nenio ĉi tie!
-    people_followed_by: Sekvatoj de %{name}
-    people_who_follow: Sekvantoj de %{name}
     pin_errors:
       following: Vi devas sekvi la homon, kiun vi volas proponi
     posts:
       one: Mesaĝo
       other: Mesaĝoj
     posts_tab_heading: Mesaĝoj
-    posts_with_replies: Mesaĝoj kaj respondoj
-    roles:
-      bot: Roboto
-      group: Grupo
-    unavailable: Profilo ne disponebla
-    unfollow: Ne plu sekvi
   admin:
     account_actions:
       action: Plenumi agon
@@ -810,9 +792,6 @@ eo:
       save: Konservi novan filtrilon
       title: Aldoni novan filtrilon
   footer:
-    developers: Programistoj
-    more: Pli…
-    resources: Rimedoj
     trending_now: Nunaj furoraĵoj
   generic:
     all: Ĉio
@@ -843,7 +822,6 @@ eo:
       following: Listo de sekvatoj
       muting: Listo de silentigitoj
     upload: Alŝuti
-  in_memoriam_html: Memore
   invites:
     delete: Malaktivigi
     expired: Eksvalida
@@ -993,22 +971,7 @@ eo:
     remove_selected_follows: Ne plu sekvi elektitajn uzantojn
     status: Statuso de la konto
   remote_follow:
-    acct: Enmetu vian uzantnomo@domajno de kie vi volas agi
     missing_resource: La bezonata URL de plusendado por via konto ne estis trovita
-    no_account_html: Ĉu vi ne havas konton? Vi povas <a href='%{sign_up_path}' target='_blank'>registriĝi tie</a>
-    proceed: Daŭrigi por eksekvi
-    prompt: 'Vi eksekvos:'
-    reason_html: "<strong>Kial necesas ĉi tiu paŝo?</strong><code>%{instance}</code> povus ne esti la servilo, kie vi registriĝis, do ni unue bezonas alidirekti vin al via hejma servilo."
-  remote_interaction:
-    favourite:
-      proceed: Konfirmi la stelumon
-      prompt: 'Vi volas aldoni ĉi tiun mesaĝon al viaj preferaĵoj:'
-    reblog:
-      proceed: Procedi pri la suprenigo
-      prompt: 'Vi deziras suprenigi ĉi tiun mesaĝon:'
-    reply:
-      proceed: Konfirmi la respondon
-      prompt: 'Vi volas respondi al ĉi tiu mesaĝo:'
   rss:
     content_warning: 'Averto pri enhavo:'
   scheduled_statuses:

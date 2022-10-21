@@ -2,46 +2,26 @@
 es-AR:
   about:
     about_mastodon_html: 'La red social del futuro: ¡sin publicidad, sin vigilancia corporativa, con diseño ético y descentralización! ¡Con Mastodon vos sos el dueño de tus datos!'
-    api: API
-    apps: Aplicaciones móviles
     contact_missing: No establecido
     contact_unavailable: No disponible
-    documentation: Documentación
     hosted_on: Mastodon alojado en %{domain}
-    privacy_policy: Política de privacidad
-    source_code: Código fuente
-    what_is_mastodon: "¿Qué es Mastodon?"
+    title: Información
   accounts:
-    choices_html: 'Recomendados de %{name}:'
-    endorsements_hint: Podés recomendar, desde la interface web, a cuentas que seguís, y van a aparecer acá.
-    featured_tags_hint: Podés destacar etiquetas específicas que se mostrarán acá.
     follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
     following: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual usado para representar al servidor en sí mismo y no a ningún usuario individual. Se usa para propósitos de la federación y no debe ser suspendido.
-    joined: En este servidor desde %{date}
     last_active: última actividad
     link_verified_on: La propiedad de este enlace fue verificada el %{date}
-    media: Medios
-    moved_html: "%{name} se mudó a %{new_profile_link}:"
-    network_hidden: Esta información no está disponible
     nothing_here: "¡No hay nada acá!"
-    people_followed_by: "%{name} sigue a estas personas"
-    people_who_follow: Estas personas siguen a %{name}
     pin_errors:
       following: Ya tenés que estar siguiendo a la cuenta que querés recomendar
     posts:
       one: Mensaje
       other: Mensajes
     posts_tab_heading: Mensajes
-    posts_with_replies: Mensajes y respuestas
-    roles:
-      bot: Bot
-      group: Grupo
-    unavailable: Perfil no disponible
-    unfollow: Dejar de seguir
   admin:
     account_actions:
       action: Ejecutar acción
@@ -344,6 +324,7 @@ es-AR:
       listed: Listados
       new:
         title: Agregar nuevo emoji personalizado
+      no_emoji_selected: No se cambió ningún emoji, ya que ninguno fue seleccionado
       not_permitted: No tenés permiso para realizar esta acción
       overwrite: Sobreescribir
       shortcode: Código corto
@@ -812,6 +793,9 @@ es-AR:
         description_html: Estos son enlaces que actualmente están siendo muy compartidos por cuentas desde las que tu servidor ve los mensajes. Esto puede ayudar a tus usuarios a averiguar qué está pasando en el mundo. No hay enlaces que se muestren públicamente hasta que autoricés al publicador. También podés permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
+        no_link_selected: No se cambió ningún enlace, ya que ninguno fue seleccionado
+        publishers:
+          no_publisher_selected: No se cambió ningún medio, ya que ninguno fue seleccionado
         shared_by_over_week:
           one: Compartido por una persona durante la última semana
           other: Compartido por %{count} personas durante la última semana
@@ -831,6 +815,7 @@ es-AR:
         description_html: Estos son mensajes que tu servidor detecta que están siendo compartidos y marcados como favoritos muchas veces en este momento. Esto puede ayudar a tus usuarios nuevos y retornantes a encontrar más cuentas para seguir. No hay mensajes que se muestren públicamente hasta que aprobés al autor, y el autor permita que su cuenta sea sugerida a otros. También podés permitir o rechazar mensajes individuales.
         disallow: Rechazar mensaje
         disallow_account: Rechazar autor
+        no_status_selected: No se cambió ningún mensaje en tendencia, ya que ninguno fue seleccionado
         not_discoverable: El autor optó ser detectable
         shared_by:
           one: Compartido o marcado como favorito una vez
@@ -846,6 +831,7 @@ es-AR:
           tag_uses_measure: usos totales
         description_html: Estas son etiquetas que están apareciendo en muchos mensajes que tu servidor ve. Esto puede ayudar a tus usuarios a averiguar de qué habla la gente en estos momentos. No hay etiquetas que se muestren públicamente hasta que las aprobés.
         listable: Pueden ser recomendadas
+        no_tag_selected: No se cambió ninguna etiqueta, ya que ninguna fue seleccionada
         not_listable: No serán recomendadas
         not_trendable: No aparecerán en tendencias
         not_usable: No podrán ser usadas
@@ -1169,9 +1155,6 @@ es-AR:
         hint: Este filtro se aplica a la selección de mensajes individuales, independientemente de otros criterios. Podés agregar más mensajes a este filtro desde la interface web.
         title: Mensajes filtrados
   footer:
-    developers: Desarrolladores
-    more: Más…
-    resources: Recursos
     trending_now: Tendencia ahora
   generic:
     all: Todas
@@ -1214,7 +1197,6 @@ es-AR:
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Subir
-  in_memoriam_html: Cuenta conmemorativa.
   invites:
     delete: Desactivar
     expired: Vencidas
@@ -1394,22 +1376,7 @@ es-AR:
     remove_selected_follows: Dejar de seguir a los usuarios seleccionados
     status: Estado de la cuenta
   remote_follow:
-    acct: Ingresá tu usuario@dominio desde el que querés continuar
     missing_resource: No se pudo encontrar la dirección web de redireccionamiento requerida para tu cuenta
-    no_account_html: "¿No tenés cuenta? Podés <a href='%{sign_up_path}' target='_blank'>registrarte acá</a>"
-    proceed: Proceder para seguir
-    prompt: 'Vas a seguir a:'
-    reason_html: "<strong>¿Por qué es necesario este paso?</strong> <code>%{instance}</code> puede que no sea el servidor donde estás registrado, así que necesitamos redirigirte primero a tu servidor de origen."
-  remote_interaction:
-    favourite:
-      proceed: Proceder para marcar como favorito
-      prompt: 'Vas a marcar este mensaje como favorito:'
-    reblog:
-      proceed: Proceder para adherir
-      prompt: 'Vas a adherir a este mensaje:'
-    reply:
-      proceed: Proceder para responder
-      prompt: 'Vas a responder a este mensaje:'
   reports:
     errors:
       invalid_rules: no hace referencia a reglas válidas

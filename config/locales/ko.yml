@@ -2,44 +2,24 @@
 ko:
   about:
     about_mastodon_html: 마스토돈은 <em>오픈 소스 기반의</em> 소셜 네트워크 서비스 입니다. 상용 플랫폼의 대체로서 <em>분산형 구조</em>를 채택해, 여러분의 대화가 한 회사에 독점되는 것을 방지합니다. 신뢰할 수 있는 인스턴스를 선택하세요 &mdash; 어떤 인스턴스를 고르더라도, 누구와도 대화할 수 있습니다. 누구나 자신만의 마스토돈 인스턴스를 만들 수 있으며, 아주 매끄럽게 <em>소셜 네트워크</em>에 참가할 수 있습니다.
-    api: API
-    apps: 모바일 앱
     contact_missing: 미설정
     contact_unavailable: 없음
-    documentation: 문서
     hosted_on: "%{domain}에서 호스팅 되는 마스토돈"
-    privacy_policy: 개인정보 처리방침
-    source_code: 소스 코드
-    what_is_mastodon: 마스토돈이란?
+    title: 정보
   accounts:
-    choices_html: "%{name}의 추천:"
-    endorsements_hint: 내가 팔로우 하고 있는 사람들을 여기에 추천 할 수 있습니다.
-    featured_tags_hint: 특정한 해시태그들을 여기에 표시되도록 할 수 있습니다.
     follow: 팔로우
     followers:
       other: 팔로워
     following: 팔로잉
     instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
-    joined: "%{date}에 가입함"
     last_active: 최근 활동
     link_verified_on: "%{date}에 이 링크의 소유가 확인되었습니다"
-    media: 미디어
-    moved_html: "%{name}은 %{new_profile_link}으로 이동되었습니다:"
-    network_hidden: 이 정보는 사용할 수 없습니다
     nothing_here: 아무 것도 없습니다!
-    people_followed_by: "%{name} 님이 팔로우 중인 계정"
-    people_who_follow: "%{name} 님을 팔로우 중인 계정"
     pin_errors:
       following: 추천하려는 사람을 팔로우 하고 있어야 합니다
     posts:
       other: 게시물
     posts_tab_heading: 게시물
-    posts_with_replies: 게시물과 답장
-    roles:
-      bot: 봇
-      group: 그룹
-    unavailable: 프로필 사용 불가
-    unfollow: 팔로우 해제
   admin:
     account_actions:
       action: 조치 취하기
@@ -1150,9 +1130,6 @@ ko:
         hint: 이 필터는 다른 기준에 관계 없이 선택된 개별적인 게시물들에 적용됩니다. 웹 인터페이스에서 더 많은 게시물들을 이 필터에 추가할 수 있습니다.
         title: 필터링된 게시물
   footer:
-    developers: 개발자
-    more: 더 보기…
-    resources: 리소스
     trending_now: 지금 유행중
   generic:
     all: 모두
@@ -1191,7 +1168,6 @@ ko:
       following: 팔로우 중인 계정 목록
       muting: 뮤트 중인 계정 목록
     upload: 업로드
-  in_memoriam_html: 고인의 계정입니다.
   invites:
     delete: 비활성화
     expired: 만료됨
@@ -1370,22 +1346,7 @@ ko:
     remove_selected_follows: 선택한 사용자들을 팔로우 해제
     status: 계정 상태
   remote_follow:
-    acct: 당신이 사용하는 아이디@도메인을 입력해 주십시오
     missing_resource: 리디렉션 대상을 찾을 수 없습니다
-    no_account_html: 계정이 없나요? <a href='%{sign_up_path}' target='_blank'>여기에서 가입 할 수 있습니다</a>
-    proceed: 팔로우 하기
-    prompt: '팔로우 하려 하고 있습니다:'
-    reason_html: "<strong>왜 이 과정이 필요하죠?</strong><code>%{instance}</code>는 당신이 가입한 서버가 아닐 것입니다, 당신의 홈 서버로 먼저 가야 합니다."
-  remote_interaction:
-    favourite:
-      proceed: 좋아요 진행
-      prompt: '이 게시물을 좋아요 하려고 합니다:'
-    reblog:
-      proceed: 부스트 진행
-      prompt: '이 게시물을 부스트 하려 합니다:'
-    reply:
-      proceed: 답장 진행
-      prompt: '이 게시물에 답장을 하려 합니다:'
   reports:
     errors:
       invalid_rules: 올바른 규칙을 포함하지 않습니다

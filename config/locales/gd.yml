@@ -2,18 +2,10 @@
 gd:
   about:
     about_mastodon_html: 'An lìonra sòisealta dhan àm ri teachd: Gun sanasachd, gun chaithris corporra, dealbhadh beusail agus dì-mheadhanachadh! Gabh sealbh air an dàta agad fhèin le Mastodon!'
-    api: API
-    apps: Aplacaidean mobile
     contact_missing: Cha deach a shuidheachadh
     contact_unavailable: Chan eil seo iomchaidh
-    documentation: Docamaideadh
     hosted_on: Mastodon ’ga òstadh air %{domain}
-    source_code: Bun-tùs
-    what_is_mastodon: Dè th’ ann am Mastodon?
   accounts:
-    choices_html: 'Roghadh is taghadh %{name}:'
-    endorsements_hint: "’S urrainn dhut daoine air a leanas tu a bhrosnachadh on eadar-aghaidh-lìn agus nochdaidh iad an-seo."
-    featured_tags_hint: "’S urrainn dhut tagaichean hais sònraichte a bhrosnachadh a thèid a shealltainn an-seo."
     follow: Lean air
     followers:
       few: Luchd-leantainn
@@ -22,15 +14,9 @@ gd:
       two: Luchd-leantainn
     following: A’ leantainn
     instance_actor_flash: "’S e actar biortail a tha sa chunntas seo a riochdaicheas am frithealaiche fhèin seach cleachdaiche sònraichte. Tha e ’ga chleachdadh a chùm co-nasgaidh agus cha bu chòir dhut a chur à rèim."
-    joined: Air ballrachd fhaighinn %{date}
     last_active: an gnìomh mu dheireadh
     link_verified_on: Chaidh dearbhadh cò leis a tha an ceangal seo %{date}
-    media: Meadhanan
-    moved_html: 'Chaidh %{name} imrich gu %{new_profile_link}:'
-    network_hidden: Chan eil am fiosrachadh seo ri fhaighinn
     nothing_here: Chan eil dad an-seo!
-    people_followed_by: Daoine air a leanas %{name}
-    people_who_follow: Daoine a tha a’ leantainn air %{name}
     pin_errors:
       following: Feumaidh tu leantainn air neach mus urrainn dhut a bhrosnachadh
     posts:
@@ -39,12 +25,6 @@ gd:
       other: Postaichean
       two: Postaichean
     posts_tab_heading: Postaichean
-    posts_with_replies: Postaichean ’s freagairtean
-    roles:
-      bot: Bot
-      group: Buidheann
-    unavailable: Chan eil a’ phròifil ri làimh
-    unfollow: Na lean tuilleadh
   admin:
     account_actions:
       action: Gabh an gnìomh
@@ -407,7 +387,7 @@ gd:
         title: Bacadh àrainne ùr
       obfuscate: Doilleirich ainm na h-àrainne
       obfuscate_hint: Doilleirich pàirt de dh’ainm na h-àrainne air an liosta ma tha foillseachadh liosta nan cuingeachaidhean àrainne an comas
-      private_comment: Beachd prìobhaideachd
+      private_comment: Beachd prìobhaideach
       private_comment_hint: Beachd mu chuingeachadh na h-àrainne seo nach cleachd ach na maoir.
       public_comment: Beachd poblach
       public_comment_hint: Beachd poblach mu chuingeachadh na h-àrainne seo ma tha foillseachadh liosta nan cuingeachaidhean àrainne an comas.
@@ -508,7 +488,7 @@ gd:
         all: Na h-uile
         limited: Cuingichte
         title: Maorsainneachd
-      private_comment: Beachd prìobhaideachd
+      private_comment: Beachd prìobhaideach
       public_comment: Beachd poblach
       purge: Purgaidich
       purge_description_html: Ma tha thu dhen bheachd gu bheil an àrainn seo far loidhne gu buan, ’s urrainn dhut a h-uile clàr cunntais ’s an dàta co-cheangailte on àrainn ud a sguabadh às san stòras agad. Dh’fhaoidte gun doir sin greis mhath.
@@ -1162,9 +1142,6 @@ gd:
       save: Sàbhail a’ chriathrag ùr
       title: Cuir criathrag ùr ris
   footer:
-    developers: Luchd-leasachaidh
-    more: Barrachd…
-    resources: Goireasan
     trending_now: A’ treandadh an-dràsta
   generic:
     all: Na h-uile
@@ -1199,7 +1176,6 @@ gd:
       following: Liosta dhen fheadhainn air a leanas tu
       muting: Liosta a’ mhùchaidh
     upload: Luchdaich suas
-  in_memoriam_html: Mar chuimhneachan.
   invites:
     delete: Cuir à gnìomh
     expired: Dh’fhalbh an ùine air
@@ -1379,22 +1355,7 @@ gd:
     remove_selected_follows: Na lean air na cleachdaichean a thagh thu tuilleadh
     status: Staid a’ chunntais
   remote_follow:
-    acct: Cuir a-steach ainm-cleachdaiche@àrainn airson a chur ort
     missing_resource: Cha do lorg sinn URL ath-stiùiridh riatanach a’ chunntais agad
-    no_account_html: Nach eil cunntas agad? ’S urrainn dhut <a href='%{sign_up_path}' target='_blank'>clàradh leinn an-seo</a>
-    proceed: Lean air adhart gus leantainn air
-    prompt: 'Bidh thu a’ leantainn air:'
-    reason_html: "<strong>Carson a tha feum air a’ cheum seo?</strong> Dh’fhaoidte nach e <code>%{instance}</code> am frithealaiche far an do rinn thu clàradh agus feumaidh sinn d’ ath-stiùireadh dhan fhrithealaiche dachaigh agad an toiseach."
-  remote_interaction:
-    favourite:
-      proceed: Lean air adhart gus a chur ris na h-annsachdan
-      prompt: 'Tha thu airson am post seo a chur ris na h-annsachdan:'
-    reblog:
-      proceed: Lean air adhart gus a bhrosnachadh
-      prompt: 'Tha thu airson am post seo a bhrosnachadh:'
-    reply:
-      proceed: Lean air adhart gus freagairt
-      prompt: 'Tha thu airson freagairt dhan phost seo:'
   reports:
     errors:
       invalid_rules: gun iomradh air riaghailtean dligheach

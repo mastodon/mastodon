@@ -2,46 +2,26 @@
 is:
   about:
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
-    api: API-kerfisviðmót
-    apps: Farsímaforrit
     contact_missing: Ekki skilgreint
     contact_unavailable: Ekki til staðar
-    documentation: Hjálparskjöl
     hosted_on: Mastodon hýst á %{domain}
-    privacy_policy: Persónuverndarstefna
-    source_code: Grunnkóði
-    what_is_mastodon: Hvað er Mastodon?
+    title: Um hugbúnaðinn
   accounts:
-    choices_html: "%{name} hefur valið:"
-    endorsements_hint: Þú getur auglýst efni frá fólki sem þú fylgir í vefviðmótinu og mun það birtast hér.
-    featured_tags_hint: Þú getur gefið sérstökum myllumerkjum aukið vægi og birtast þau þá hér.
     follow: Fylgjast með
     followers:
       one: fylgjandi
       other: fylgjendur
     following: Fylgist með
     instance_actor_flash: Þessi notandaaðgangur er sýndarnotandi sem stendur fyrir sjálfan netþjóninn en ekki neinn einstakling. Hann er notaður við skýjasambandsmiðlun og ætti ekki að setja hann í bið eða banna.
-    joined: Gerðist þátttakandi %{date}
     last_active: síðasta virkni
     link_verified_on: Eignarhald á þessum tengli var athugað þann %{date}
-    media: Myndefni
-    moved_html: "%{name} hefur verið færður í %{new_profile_link}:"
-    network_hidden: Þessar upplýsingar ekki tiltækar
     nothing_here: Það er ekkert hér!
-    people_followed_by: Fólk sem %{name} fylgist með
-    people_who_follow: Fólk sem fylgist með %{name}
     pin_errors:
       following: Þú þarft að vera þegar að fylgjast með þeim sem þú ætlar að mæla með
     posts:
       one: Færsla
       other: Færslur
     posts_tab_heading: Færslur
-    posts_with_replies: Færslur og svör
-    roles:
-      bot: Róbót
-      group: Hópur
-    unavailable: Notandasnið ekki tiltækt
-    unfollow: Hætta að fylgja
   admin:
     account_actions:
       action: Framkvæma aðgerð
@@ -344,6 +324,7 @@ is:
       listed: Skráð
       new:
         title: Bæta við nýju sérsniðnu tjáningartákni
+      no_emoji_selected: Engum táknum var breytt þar sem engin voru valin
       not_permitted: Þú hefur ekki réttindi til að framkvæma þessa aðgerð
       overwrite: Skrifa yfir
       shortcode: Stuttkóði
@@ -812,6 +793,9 @@ is:
         description_html: Þetta eru tenglar/slóðir sem mikið er deilt af notendum sem netþjónninn þinn sér færslur frá. Þeir geta hjálpað notendunum þínu við að finna út hvað sé í gangi í heiminum. Engir tenglar birtast opinberlega fyrr en þú hefur samþykkt útgefanda þeirra. Þú getur líka leyft eða hafnað eintökum tenglum.
         disallow: Ekki leyfa tengil
         disallow_provider: Ekki leyfa útgefanda
+        no_link_selected: Engum tenglum var breytt þar sem engir voru valdir
+        publishers:
+          no_publisher_selected: Engum útgefendum var breytt þar sem engir voru valdir
         shared_by_over_week:
           one: Deilt af einum aðila síðustu vikuna
           other: Deilt af %{count} aðilum síðustu vikuna
@@ -831,6 +815,7 @@ is:
         description_html: Þetta eru færslur sem netþjónninn þinn veit að er víða deilt eða eru mikið sett í eftirlæti þessa stundina. Þær geta hjálpað nýjum sem eldri notendum þínum við að finna fleira fólk til að fylgjast með. Engar færslur birtast opinberlega fyrr en þú hefur samþykkt höfund þeirra og að viðkomandi höfundur leyfi að efni frá þeim sé notað í tillögur til annarra. Þú getur líka leyft eða hafnað eintökum færslum.
         disallow: Ekki leyfa færslu
         disallow_account: Ekki leyfa höfund
+        no_status_selected: Engum vinsælum færslum var breytt þar sem engar voru valdar
         not_discoverable: Höfundur hefur ekki beðið um að vera finnanlegur
         shared_by:
           one: ShaDeilt eða gert að eftirlæti einu sinni
@@ -846,6 +831,7 @@ is:
           tag_uses_measure: tilvik alls
         description_html: Þetta eru myllumerki sem birtast núna í mjög mörgum færslum sem netþjónninn þinn sér. Þau geta hjálpað notendunum þínu við að finna út hvað sé mest í umræðunni hjá öðru fólki. Engin myllumerki birtast opinberlega fyrr en þú hefur samþykkt þau.
         listable: Má stinga uppá
+        no_tag_selected: Engum merkjum var breytt þar sem engin voru valin
         not_listable: Mun ekki vera stungið uppá
         not_trendable: Mun ekki birtast í vinsældum
         not_usable: Má ekki nota
@@ -1169,9 +1155,6 @@ is:
         hint: Þessi sía virkar til að velja stakar færslur án tillits til annarra skilyrða. Þú getur bætt fleiri færslum í þessa síu í vefviðmótinu.
         title: Síaðar færslur
   footer:
-    developers: Forritarar
-    more: Meira…
-    resources: Tilföng
     trending_now: Í umræðunni núna
   generic:
     all: Allt
@@ -1214,7 +1197,6 @@ is:
       following: Listi yfir þá sem fylgst er með
       muting: Listi yfir þagganir
     upload: Senda inn
-  in_memoriam_html: Minning.
   invites:
     delete: Gera óvirkt
     expired: Útrunnið
@@ -1394,22 +1376,7 @@ is:
     remove_selected_follows: Hætta að fylgjast með völdum notendum
     status: Staða aðgangs
   remote_follow:
-    acct: Settu inn notandanafn@lén þaðan sem þú vilt vera virk/ur
     missing_resource: Gat ekki fundið endurbeiningarslóðina fyrir notandaaðganginn þinn
-    no_account_html: Ertu ekki með aðgang? Þú getur <a href='%{sign_up_path}' target='_blank'>nýskráð þig hér</a>
-    proceed: Halda áfram í að fylgjast með
-    prompt: 'Þú ætlar að fara að fylgjast með:'
-    reason_html: "<strong>Hvers vegna er þetta skref nauðsynlegt?</strong> <code>%{instance}</code> er ekki endilega netþjónninn þar sem þú ert skráð/ur, þannig að við verðum að endurbeina þér á heimaþjóninn þinn fyrst."
-  remote_interaction:
-    favourite:
-      proceed: Halda áfram í að setja í eftirlæti
-      prompt: 'Þú ætlar að setja þessa færslu í eftirlæti:'
-    reblog:
-      proceed: Halda áfram í endurbirtingu
-      prompt: 'Þú ætlar að endurbirta þessa færslu:'
-    reply:
-      proceed: Halda áfram í að svara
-      prompt: 'Þú ætlar að svara þessari færslu:'
   reports:
     errors:
       invalid_rules: vísar ekki til gildra reglna

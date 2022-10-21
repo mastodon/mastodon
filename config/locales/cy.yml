@@ -2,18 +2,10 @@
 cy:
   about:
     about_mastodon_html: Mae Mastodon yn rwydwaith cymdeithasol sy'n seiliedig ar brotocolau gwe a meddalwedd cod agored rhad ac am ddim. Yn debyg i e-bost mae'n ddatganoledig.
-    api: API
-    apps: Apiau symudol
     contact_missing: Heb ei osod
     contact_unavailable: Ddim yn berthnasol
-    documentation: Dogfennaeth
     hosted_on: Mastodon wedi ei weinyddu ar %{domain}
-    source_code: Cod ffynhonnell
-    what_is_mastodon: Beth yw Mastodon?
   accounts:
-    choices_html: 'Dewisiadau %{name}:'
-    endorsements_hint: Gallwch gymeradwyo pobl rydych chi'n eu dilyn o'r rhyngwyneb gwe, a byddan nhw'n ymddangos yma.
-    featured_tags_hint: Gallwch ychwanegu hashnodau penodol a fydd yn cael eu harddangos yma.
     follow: Dilynwch
     followers:
       few: Dilynwyr
@@ -24,15 +16,9 @@ cy:
       zero: Dilynwyr
     following: Yn dilyn
     instance_actor_flash: Mae'r cyfrif hwn yn actor rhithwir a ddefnyddir i gynrychioli'r gweinydd ei hun ac nid unrhyw ddefnyddiwr unigol. Fe'i defnyddir at ddibenion ffederasiwn ac ni ddylid ei atal.
-    joined: Ymunodd %{date}
     last_active: diweddaraf
     link_verified_on: Gwiriwyd perchnogaeth y ddolen yma ar %{date}
-    media: Cyfryngau
-    moved_html: 'Mae %{name} wedi symud i %{new_profile_link}:'
-    network_hidden: Nid yw'r wybodaeth hyn ar gael
     nothing_here: Does dim byd yma!
-    people_followed_by: Pobl y mae %{name} yn ei ddilyn
-    people_who_follow: Pobl sy'n dilyn %{name}
     pin_errors:
       following: Rhaid i ti fod yn dilyn y person yr ydych am ei gymeradwyo yn barod
     posts:
@@ -43,12 +29,6 @@ cy:
       two: Tŵtiau
       zero: Tŵtiau
     posts_tab_heading: Postiadau
-    posts_with_replies: Postiadau ac atebion
-    roles:
-      bot: Bot
-      group: Grŵp
-    unavailable: Proffil ddim ar gael
-    unfollow: Dad-ddilyn
   admin:
     account_actions:
       action: Cyflawni gweithred
@@ -651,9 +631,6 @@ cy:
     new:
       title: Ychwanegu hidlydd newydd
   footer:
-    developers: Datblygwyr
-    more: Mwy…
-    resources: Adnoddau
     trending_now: Yn tueddu nawr
   generic:
     all: Popeth
@@ -685,7 +662,6 @@ cy:
       following: Rhestr dilyn
       muting: Rhestr tawelu
     upload: Uwchlwytho
-  in_memoriam_html: Er cof.
   invites:
     delete: Dadactifadu
     expired: Wedi darfod
@@ -836,24 +812,7 @@ cy:
     remove_selected_follows: Dad-ddilyn y defnyddwyr dewisiedig
     status: Statws cyfrif
   remote_follow:
-    acct: Mewnbynnwch eich enwdefnyddiwr@parth yr ydych eisiau gweithredu ohonno
     missing_resource: Ni ellir canfod yr URL ailgyferio angenrheidiol i'ch cyfrif
-    no_account_html: Heb gyfrif? Mae modd i chi <a href='%{sign_up_path}' target='_blank'>gofrestru yma</a>
-    proceed: Ymlaen i ddilyn
-    prompt: 'Yr ydych am ddilyn:'
-    reason_html: |-
-      <strong>Pam yw'r cam hyn yn angenrheidiol? </strong>
-      Efallai nid yw <code>%{instance}</code> yn gweinydd ble wnaethoch gofrestru, felly mae'n rhaid i ni ailarweinio chi at eich gweinydd catref yn gyntaf.
-  remote_interaction:
-    favourite:
-      proceed: Ymlaen i hoffi
-      prompt: 'Hoffech hoffi''r tŵt hon:'
-    reblog:
-      proceed: Ymlaen i fŵstio
-      prompt: 'Hoffech fŵstio''r tŵt hon:'
-    reply:
-      proceed: Ymlaen i ateb
-      prompt: 'Hoffech ateb y tŵt hon:'
   scheduled_statuses:
     over_daily_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig ar y dydd hynny
     over_total_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig

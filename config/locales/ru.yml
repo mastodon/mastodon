@@ -2,19 +2,10 @@
 ru:
   about:
     about_mastodon_html: 'Социальная сеть будущего: никакой рекламы, слежки корпорациями, этичный дизайн и децентрализация! С Mastodon ваши данные под вашим контролем.'
-    api: API
-    apps: Приложения
     contact_missing: не указан
     contact_unavailable: неизв.
-    documentation: Документация
     hosted_on: Вы получили это сообщение, так как зарегистрированы на %{domain}
-    privacy_policy: Политика конфиденциальности
-    source_code: Исходный код
-    what_is_mastodon: Что такое Mastodon?
   accounts:
-    choices_html: "%{name} рекомендует:"
-    endorsements_hint: Вы можете рекомендовать людей, которые вы отслеживаете из веб-интерфейса, и они будут показаны здесь.
-    featured_tags_hint: Вы можете указать конкретные хэштеги, которые будут отображаться здесь.
     follow: Подписаться
     followers:
       few: подписчика
@@ -23,15 +14,9 @@ ru:
       other: подписчиков
     following: подписки
     instance_actor_flash: Эта учетная запись - виртуальный пользователь, используемый для представления самого сервера, а не отдельного пользователя. Она используется для организационных целей и не может быть заморожена.
-    joined: 'Дата регистрации: %{date}'
     last_active: последняя активность
     link_verified_on: Владение этой ссылкой было проверено %{date}
-    media: Медиафайлы
-    moved_html: "%{name} переехал(а) на %{new_profile_link}:"
-    network_hidden: Эта информация недоступна
     nothing_here: Здесь ничего нет!
-    people_followed_by: Люди, на которых подписан(а) %{name}
-    people_who_follow: Подписчики %{name}
     pin_errors:
       following: Чтобы порекомендовать кого-то, надо сначала на них подписаться
     posts:
@@ -40,12 +25,6 @@ ru:
       one: Пост
       other: статусов
     posts_tab_heading: Посты
-    posts_with_replies: Посты с ответами
-    roles:
-      bot: Бот
-      group: Группа
-    unavailable: Профиль недоступен
-    unfollow: Отписаться
   admin:
     account_actions:
       action: Выполнить действие
@@ -349,6 +328,7 @@ ru:
       listed: В списке
       new:
         title: Добавить новый эмодзи
+      no_emoji_selected: Не было изменено ни одного эмодзи
       not_permitted: У вас нет прав для совершения данного действия
       overwrite: Заменить
       shortcode: Краткий код
@@ -789,6 +769,7 @@ ru:
         allow_provider: Разрешить издание
         disallow: Запретить ссылку
         disallow_provider: Отклонить издание
+        no_link_selected: Ссылки не были изменены, так как не были выбраны ни один
         shared_by_over_week:
           few: Поделилось %{count} человека за последнюю неделю
           many: Поделилось %{count} человек за последнюю неделю
@@ -964,6 +945,7 @@ ru:
       title: Установка
     sign_up:
       preamble: С учётной записью на этом сервере Mastodon вы сможете следить за любым другим пользователем в сети, независимо от того, где размещён их аккаунт.
+      title: Зарегистрируйтесь в %{domain}.
     status:
       account_status: Статус учётной записи
       confirming: Ожидание подтверждения e-mail.
@@ -1133,9 +1115,6 @@ ru:
       batch:
         remove: Удалить из фильтра
   footer:
-    developers: Разработчикам
-    more: Ещё…
-    resources: Ссылки
     trending_now: Актуально сейчас
   generic:
     all: Любой
@@ -1170,7 +1149,6 @@ ru:
       following: Подписки
       muting: Список глушения
     upload: Загрузить
-  in_memoriam_html: В память о пользователе.
   invites:
     delete: Удалить
     expired: Истекло
@@ -1352,22 +1330,7 @@ ru:
     remove_selected_follows: Отписаться от выбранных пользователей
     status: Статус учётной записи
   remote_follow:
-    acct: Введите свой username@domain для продолжения
     missing_resource: Поиск требуемого перенаправления URL для Вашей учётной записи завершился неудачей
-    no_account_html: Нет учётной записи? Вы можете <a href='%{sign_up_path}' target='_blank'>зарегистрироваться здесь</a>
-    proceed: Продолжить подписку
-    prompt: 'Вы хотите подписаться на:'
-    reason_html: "<strong>Почему это необходимо?</strong> Возможно, <code>%{instance}</code> не является узлом, на котором вы зарегистрированы, поэтому нам сперва нужно перенаправить вас на домашний узел."
-  remote_interaction:
-    favourite:
-      proceed: Добавить в избранное
-      prompt: 'Вы собираетесь добавить в избранное следующий пост:'
-    reblog:
-      proceed: Продвинуть пост
-      prompt: 'Вы хотите продвинуть этот пост:'
-    reply:
-      proceed: Ответить
-      prompt: 'Вы собираетесь ответить на этот пост:'
   reports:
     errors:
       invalid_rules: не ссылается на действительные правила

@@ -2,45 +2,25 @@
 pt-BR:
   about:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
-    api: API
-    apps: Aplicativos
     contact_missing: Não definido
     contact_unavailable: Não disponível
-    documentation: Documentação
     hosted_on: Instância Mastodon em %{domain}
-    source_code: Código-fonte
-    what_is_mastodon: O que é Mastodon?
   accounts:
-    choices_html: 'Sugestões de %{name}:'
-    endorsements_hint: Você pode sugerir pessoas que você segue, elas aparecerão aqui.
-    featured_tags_hint: Você pode destacar hashtags específicas, elas aparecerão aqui.
     follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
     following: Seguindo
     instance_actor_flash: Esta conta é um ator virtual usado para representar o próprio servidor e não um usuário individual. É utilizada para fins de federação e não deve ser suspensa.
-    joined: Entrou em %{date}
     last_active: última atividade
     link_verified_on: O link foi verificado em %{date}
-    media: Mídia
-    moved_html: "%{name} se mudou para %{new_profile_link}:"
-    network_hidden: Informação indisponível
     nothing_here: Nada aqui!
-    people_followed_by: Pessoas que %{name} segue
-    people_who_follow: Pessoas que seguem %{name}
     pin_errors:
       following: Você deve estar seguindo a pessoa que você deseja sugerir
     posts:
       one: Toot
       other: Toots
     posts_tab_heading: Toots
-    posts_with_replies: Toots e respostas
-    roles:
-      bot: Robô
-      group: Grupo
-    unavailable: Perfil indisponível
-    unfollow: Deixar de seguir
   admin:
     account_actions:
       action: Tomar uma atitude
@@ -1060,9 +1040,6 @@ pt-BR:
       save: Salvar novo filtro
       title: Adicionar filtro
   footer:
-    developers: Desenvolvedores
-    more: Mais…
-    resources: Recursos
     trending_now: Em alta no momento
   generic:
     all: Tudo
@@ -1095,7 +1072,6 @@ pt-BR:
       following: Pessoas que você segue
       muting: Lista de silenciados
     upload: Enviar
-  in_memoriam_html: Em memória.
   invites:
     delete: Desativar
     expired: Expirados
@@ -1273,22 +1249,7 @@ pt-BR:
     remove_selected_follows: Deixar de seguir usuários selecionados
     status: Status da conta
   remote_follow:
-    acct: Digite o seu usuário@domínio para continuar
     missing_resource: Não foi possível encontrar o link de redirecionamento para sua conta
-    no_account_html: Não tem uma conta? Você pode <a href='%{sign_up_path}' target='_blank'>criar uma aqui</a>
-    proceed: Continue para seguir
-    prompt: 'Você seguirá:'
-    reason_html: "<strong>Por que esse passo é necessário?</strong> <code>%{instance}</code> pode não ser a instância onde você se hospedou, então precisamos redirecionar você para a sua instância primeiro."
-  remote_interaction:
-    favourite:
-      proceed: Continue para favoritar
-      prompt: 'Você favoritará este toot:'
-    reblog:
-      proceed: Continue para dar boost
-      prompt: 'Você dará boost neste toot:'
-    reply:
-      proceed: Continue para responder
-      prompt: 'Você responderá este toot:'
   reports:
     errors:
       invalid_rules: não faz referência a regras válidas

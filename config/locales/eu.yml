@@ -2,45 +2,25 @@
 eu:
   about:
     about_mastodon_html: 'Etorkizuneko sare soziala: ez iragarkirik eta ez zelatatze korporatiborik, diseinu etikoa eta deszentralizazioa! Izan zure datuen jabea Mastodonekin!'
-    api: APIa
-    apps: Aplikazio mugikorrak
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
-    documentation: Dokumentazioa
     hosted_on: Mastodon %{domain} domeinuan ostatatua
-    source_code: Iturburu kodea
-    what_is_mastodon: Zer da Mastodon?
   accounts:
-    choices_html: "%{name}(r)en aukerak:"
-    endorsements_hint: Jarraitzen duzun jendea sustatu dezakezu web interfazearen bidez, eta hemen agertuko da.
-    featured_tags_hint: Hemen agertuko diren traolak nabarmendu ditzakezu.
     follow: Jarraitu
     followers:
       one: Jarraitzaile
       other: jarraitzaile
     following: Jarraitzen
     instance_actor_flash: Kontu hau zerbitzaria adierazten duen aktore birtual bat da eta ez banako erabiltzaile bat. Federatzeko helburuarekin erabiltzen da eta ez da kanporatu behar.
-    joined: "%{date}(e)an elkartua"
     last_active: azkenekoz aktiboa
     link_verified_on: 'Esteka honen jabetzaren egiaztaketa data: %{date}'
-    media: Multimedia
-    moved_html: "%{name} hona migratu da %{new_profile_link}:"
-    network_hidden: Informazio hau ez dago eskuragarri
     nothing_here: Ez dago ezer hemen!
-    people_followed_by: "%{name}(e)k jarraitzen dituenak"
-    people_who_follow: "%{name} jarraitzen dutenak"
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
     posts:
       one: Bidalketa
       other: Bidalketa
     posts_tab_heading: Bidalketa
-    posts_with_replies: Bidalketak eta erantzunak
-    roles:
-      bot: Bot-a
-      group: Taldea
-    unavailable: Profila ez dago eskuragarri
-    unfollow: Utzi jarraitzeari
   admin:
     account_actions:
       action: Burutu ekintza
@@ -944,9 +924,6 @@ eu:
     new:
       title: Gehitu iragazki berria
   footer:
-    developers: Garatzaileak
-    more: Gehiago…
-    resources: Baliabideak
     trending_now: Joera orain
   generic:
     all: Denak
@@ -979,7 +956,6 @@ eu:
       following: Jarraitutakoen zerrenda
       muting: Mutututakoen zerrenda
     upload: Igo
-  in_memoriam_html: Memoriala.
   invites:
     delete: Desaktibatu
     expired: Iraungitua
@@ -1150,22 +1126,7 @@ eu:
     remove_selected_follows: Utzi hautatutako erabiltzaileak jarraitzeari
     status: Kontuaren egoera
   remote_follow:
-    acct: Sartu jarraitzeko erabili nahi duzun erabiltzaile@domeinua
     missing_resource: Ezin izan da zure konturako behar den birbideratze URL-a
-    no_account_html: Ez duzu konturik? <a href='%{sign_up_path}' target='_blank'>Izena eman</a> dezakezu
-    proceed: Ekin jarraitzeari
-    prompt: 'Hau jarraituko duzu:'
-    reason_html: "<strong>Zergaitik eman behar da urrats hau?</strong><code>%{instance}</code> agian ez da izena eman duzun zerbitzaria, eta zure hasiera-zerbitzarira eraman behar zaitugu aurretik."
-  remote_interaction:
-    favourite:
-      proceed: Bihurtu gogoko
-      prompt: 'Bidalketa hau gogoko bihurtu nahi duzu:'
-    reblog:
-      proceed: Eman bultzada
-      prompt: 'Bidalketa honi bultzada eman nahi diozu:'
-    reply:
-      proceed: Ekin erantzuteari
-      prompt: 'Bidalketa honi erantzun nahi diozu:'
   scheduled_statuses:
     over_daily_limit: 'Egun horretarako programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
     over_total_limit: 'Programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'

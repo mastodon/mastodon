@@ -2,44 +2,24 @@
 th:
   about:
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา ไม่มีการสอดแนมโดยองค์กร การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
-    api: API
-    apps: แอปมือถือ
     contact_missing: ไม่ได้ตั้ง
     contact_unavailable: ไม่มี
-    documentation: เอกสารประกอบ
     hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
-    privacy_policy: นโยบายความเป็นส่วนตัว
-    source_code: โค้ดต้นฉบับ
-    what_is_mastodon: Mastodon คืออะไร?
+    title: เกี่ยวกับ
   accounts:
-    choices_html: 'ตัวเลือกของ %{name}:'
-    endorsements_hint: คุณสามารถแนะนำผู้คนที่คุณติดตามจากส่วนติดต่อเว็บ และเขาจะปรากฏที่นี่
-    featured_tags_hint: คุณสามารถแนะนำแฮชแท็กที่เฉพาะเจาะจงที่จะแสดงที่นี่
     follow: ติดตาม
     followers:
       other: ผู้ติดตาม
     following: กำลังติดตาม
     instance_actor_flash: บัญชีนี้เป็นตัวดำเนินการเสมือนที่ใช้เพื่อเป็นตัวแทนของเซิร์ฟเวอร์เองและไม่ใช่ผู้ใช้รายบุคคลใด ๆ บัญชีใช้สำหรับวัตถุประสงค์ในการติดต่อกับภายนอกและไม่ควรได้รับการระงับ
-    joined: เข้าร่วมเมื่อ %{date}
     last_active: ใช้งานล่าสุด
     link_verified_on: ตรวจสอบความเป็นเจ้าของของลิงก์นี้เมื่อ %{date}
-    media: สื่อ
-    moved_html: "%{name} ได้ย้ายไปยัง %{new_profile_link}:"
-    network_hidden: ไม่มีข้อมูลนี้
     nothing_here: ไม่มีสิ่งใดที่นี่!
-    people_followed_by: ผู้คนที่ %{name} ติดตาม
-    people_who_follow: ผู้คนที่ติดตาม %{name}
     pin_errors:
       following: คุณต้องกำลังติดตามบุคคลที่คุณต้องการแนะนำอยู่แล้ว
     posts:
       other: โพสต์
     posts_tab_heading: โพสต์
-    posts_with_replies: โพสต์และการตอบกลับ
-    roles:
-      bot: บอต
-      group: กลุ่ม
-    unavailable: โปรไฟล์ไม่พร้อมใช้งาน
-    unfollow: เลิกติดตาม
   admin:
     account_actions:
       action: ทำการกระทำ
@@ -906,6 +886,7 @@ th:
     warning: ระวังเป็นอย่างสูงกับข้อมูลนี้ อย่าแบ่งปันข้อมูลกับใครก็ตาม!
     your_token: โทเคนการเข้าถึงของคุณ
   auth:
+    apply_for_account: เข้ารายชื่อผู้รอ
     change_password: รหัสผ่าน
     delete_account: ลบบัญชี
     delete_account_html: หากคุณต้องการลบบัญชีของคุณ คุณสามารถ <a href="%{path}">ดำเนินการต่อที่นี่</a> คุณจะได้รับการถามเพื่อการยืนยัน
@@ -925,6 +906,7 @@ th:
     migrate_account: ย้ายไปยังบัญชีอื่น
     migrate_account_html: หากคุณต้องการเปลี่ยนเส้นทางบัญชีนี้ไปยังบัญชีอื่น คุณสามารถ <a href="%{path}">กำหนดค่าบัญชีที่นี่</a>
     or_log_in_with: หรือเข้าสู่ระบบด้วย
+    privacy_policy_agreement_html: ฉันได้อ่านและเห็นด้วยกับ <a href="%{privacy_policy_path}" target="_blank">นโยบายความเป็นส่วนตัว</a>
     providers:
       cas: CAS
       saml: SAML
@@ -940,6 +922,8 @@ th:
       email_below_hint_html: หากที่อยู่อีเมลด้านล่างไม่ถูกต้อง คุณสามารถเปลี่ยนที่อยู่อีเมลที่นี่และรับอีเมลยืนยันใหม่
       email_settings_hint_html: ส่งอีเมลยืนยันไปยัง %{email} แล้ว หากที่อยู่อีเมลนั้นไม่ถูกต้อง คุณสามารถเปลี่ยนที่อยู่อีเมลได้ในการตั้งค่าบัญชี
       title: การตั้งค่า
+    sign_up:
+      title: มาตั้งค่าของคุณใน %{domain} กันเลย
     status:
       account_status: สถานะบัญชี
       confirming: กำลังรอการยืนยันอีเมลให้เสร็จสมบูรณ์
@@ -1103,9 +1087,6 @@ th:
       index:
         title: โพสต์ที่กรองอยู่
   footer:
-    developers: นักพัฒนา
-    more: เพิ่มเติม…
-    resources: ทรัพยากร
     trending_now: กำลังนิยม
   generic:
     all: ทั้งหมด
@@ -1144,7 +1125,6 @@ th:
       following: รายการติดตาม
       muting: รายการซ่อน
     upload: อัปโหลด
-  in_memoriam_html: เพื่อระลึกถึง
   invites:
     delete: ปิดใช้งาน
     expired: หมดอายุแล้ว
@@ -1196,6 +1176,8 @@ th:
     followers_count: ผู้ติดตาม ณ เวลาที่ย้าย
     incoming_migrations: การย้ายจากบัญชีอื่น
     incoming_migrations_html: เพื่อย้ายจากบัญชีอื่นไปยังบัญชีนี้ ก่อนอื่นคุณจำเป็นต้อง <a href="%{path}">สร้างนามแฝงบัญชี</a>
+    moved_msg: ตอนนี้กำลังเปลี่ยนเส้นทางบัญชีของคุณไปยัง %{acct} และกำลังย้ายผู้ติดตามของคุณไป
+    not_redirecting: บัญชีของคุณไม่ได้กำลังเปลี่ยนเส้นทางไปยังบัญชีอื่นใดในปัจจุบัน
     on_cooldown: คุณเพิ่งโยกย้ายบัญชีของคุณ ฟังก์ชันนี้จะพร้อมใช้งานอีกครั้งในอีก %{count} วัน
     past_migrations: การโยกย้ายที่ผ่านมา
     proceed_with_move: ย้ายผู้ติดตาม
@@ -1310,21 +1292,7 @@ th:
     remove_selected_follows: เลิกติดตามผู้ใช้ที่เลือก
     status: สถานะบัญชี
   remote_follow:
-    acct: ป้อน username@domain ของคุณที่คุณต้องการกระทำจาก
     missing_resource: ไม่พบ URL การเปลี่ยนเส้นทางที่จำเป็นสำหรับบัญชีของคุณ
-    no_account_html: ไม่มีบัญชี? คุณสามารถ <a href='%{sign_up_path}' target='_blank'>ลงทะเบียนที่นี่</a>
-    proceed: ดำเนินการต่อเพื่อติดตาม
-    prompt: 'คุณกำลังจะติดตาม:'
-  remote_interaction:
-    favourite:
-      proceed: ดำเนินการต่อเพื่อชื่นชอบ
-      prompt: 'คุณต้องการชื่นชอบโพสต์นี้:'
-    reblog:
-      proceed: ดำเนินการต่อเพื่อดัน
-      prompt: 'คุณต้องการดันโพสต์นี้:'
-    reply:
-      proceed: ดำเนินการต่อเพื่อตอบกลับ
-      prompt: 'คุณต้องการตอบกลับโพสต์นี้:'
   reports:
     errors:
       invalid_rules: ไม่ได้อ้างอิงกฎที่ถูกต้อง

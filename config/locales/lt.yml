@@ -2,32 +2,17 @@
 lt:
   about:
     about_mastodon_html: Mastodon, tai socialinis tinklas pagrįstas atviro kodo programavimu, ir atvirais web protokolais. Visiškai nemokamas. Ši sistema decantrilizuota kaip jūsų elektroninis paštas.
-    apps: Mobilioji Aplikacija
     contact_missing: Nenustatyta
-    documentation: Dokumentacija
     hosted_on: Mastodon palaikomas naudojantis %{domain} talpinimu
-    source_code: Šaltinio kodas
-    what_is_mastodon: Kas tai, Mastodon?
   accounts:
-    choices_html: "%{name} pasirinkimai:"
     follow: Sekti
     following: Sekami
-    joined: Prisijungiai %{date}
     last_active: paskutinį kartą aktyvus
     link_verified_on: Nuorodos nuosavybė paskutinį kartą tikrinta %{date}
-    media: Medija
-    moved_html: "%{name} persikėlė į %{new_profile_link}:"
-    network_hidden: Ši informacija neprieinama
     nothing_here: Čia nieko nėra!
-    people_followed_by: Žmonės, kuriuos %{name} seka
-    people_who_follow: Žmonės kurie seka %{name}
     pin_errors:
       following: Privalai sekti žmogų kurį nori pagerbti
     posts_tab_heading: Tootai
-    posts_with_replies: Tootai ir atsakymai
-    roles:
-      bot: Bot'as
-    unfollow: Nesekti
   admin:
     account_actions:
       action: Veiksmas
@@ -413,10 +398,6 @@ lt:
       title: Filtrai
     new:
       title: Pridėti naują filtrą
-  footer:
-    developers: Programuotojai
-    more: Daugiau…
-    resources: Resursai
   generic:
     changes_saved_msg: Pakeitimai sėkmingai išsaugoti!
     copy: Kopijuoti
@@ -435,7 +416,6 @@ lt:
       following: Sekėju sąrašas
       muting: Tildomų sąrašas
     upload: Įkelti
-  in_memoriam_html: Atminimui.
   invites:
     delete: Deaktyvuoti
     expired: Pasibaigęs
@@ -497,22 +477,7 @@ lt:
   preferences:
     other: Kita
   remote_follow:
-    acct: Įveskite Jūsų slapyvardį@domenas kurį norite naudoti
     missing_resource: Jūsų paskyros nukreipimo URL nerasta
-    no_account_html: Neturite paskyros? Jūs galite<a href='%{sign_up_path}' target='_blank'> užsiregistruoti čia </a>
-    proceed: Sekti
-    prompt: 'Jūs seksite:'
-    reason_html: "<strong>Kodėl šis žingsnis svarbus?</strong><code>%{instance}</code> gali būti serveris, kuriame jūs nesate užsiregistravęs, todėl mes turime jus nukreipti į Jūsų namų serveri."
-  remote_interaction:
-    favourite:
-      proceed: Pamėgti
-      prompt: 'Jūs norite pamėgti šį toot''ą:'
-    reblog:
-      proceed: Pakelti
-      prompt: 'Jūs norite pakelti šį toot''ą:'
-    reply:
-      proceed: Atsakyti
-      prompt: 'Jūs norite atsakyti šiam toot''ui:'
   scheduled_statuses:
     over_daily_limit: Jūs pasieketė limitą (%{limit}) galimų toot'ų per dieną
     over_total_limit: Jūs pasieketė %{limit} limitą galimų toot'ų

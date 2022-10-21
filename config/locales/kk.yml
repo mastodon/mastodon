@@ -2,43 +2,24 @@
 kk:
   about:
     about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
-    apps: Мобиль қосымшалар
     contact_missing: Бапталмаған
     contact_unavailable: Белгісіз
-    documentation: Құжаттама
     hosted_on: Mastodon орнатылған %{domain} доменінде
-    source_code: Ашық коды
-    what_is_mastodon: Mastodon деген не?
   accounts:
-    choices_html: "%{name} таңдаулары:"
-    endorsements_hint: Сіз веб-интерфейстен адамдарға қолдау көрсете аласыз және олар осында көрсетіледі.
-    featured_tags_hint: Мұнда көрсетілетін нақты хэштегтерді ұсына аласыз.
     follow: Жазылу
     followers:
       one: Оқырман
       other: Оқырман
     following: Жазылғандары
-    joined: Тіркелген күні %{date}
     last_active: соңғы әрекеті
     link_verified_on: Сілтеме меншігі расталған күн %{date}
-    media: Медиа
-    moved_html: "%{name} мына жерге көшті %{new_profile_link}:"
-    network_hidden: Бұл ақпарат қолжетімді емес
     nothing_here: Бұл жерде ештеңе жоқ!
-    people_followed_by: "%{name} жазылған адамдар"
-    people_who_follow: "%{name} атты қолданушының оқырмандары"
     pin_errors:
       following: Оқығыңыз келген адамға жазылуыңыз керек
     posts:
       one: Жазба
       other: Жазба
     posts_tab_heading: Жазба
-    posts_with_replies: Жазбалар және жауаптар
-    roles:
-      bot: Бот
-      group: Топ
-    unavailable: Профиль қолжетімді емес
-    unfollow: Оқымау
   admin:
     account_actions:
       action: Әрекетті орындаңыз
@@ -549,9 +530,6 @@ kk:
     new:
       title: Жаңа фильтр қосу
   footer:
-    developers: Жасаушылар
-    more: Тағы…
-    resources: Ресурстар
     trending_now: Бүгінгі трендтер
   generic:
     all: Барлығы
@@ -578,7 +556,6 @@ kk:
       following: Жазылғандар тізімі
       muting: Үнсіздер тізімі
     upload: Жүктеу
-  in_memoriam_html: Естеліктерде.
   invites:
     delete: Ажырату
     expired: Мерзімі өткен
@@ -698,22 +675,7 @@ kk:
     remove_selected_follows: Таңдалған қолданушыларды оқымау
     status: Аккаунт статусы
   remote_follow:
-    acct: Өзіңіздің username@domain теріңіз
     missing_resource: Аккаунтыңызға байланған URL табылмады
-    no_account_html: Әлі тіркелмегенсіз бе? Мына жерден <a href='%{sign_up_path}' target='_blank'>тіркеліп алыңыз</a>
-    proceed: Жазылу
-    prompt: 'Жазылғыңыз келеді:'
-    reason_html: "<strong>Неліктен бұл қадам қажет?</strong> <code>%{instance}</code> тіркелгіңіз келген сервер болмауы мүмкін, сондықтан сізді алдымен ішкі серверіңізге қайта бағыттау қажет."
-  remote_interaction:
-    favourite:
-      proceed: Таңдаулыға қосу
-      prompt: 'Мына жазбаны таңдаулыға қосасыз:'
-    reblog:
-      proceed: Жазба бөлісу
-      prompt: 'Сіз мына жазбаны бөлісесіз:'
-    reply:
-      proceed: Жауап жазу
-      prompt: 'Сіз мына жазбаға жауап жазасыз:'
   scheduled_statuses:
     over_daily_limit: Сіз бір күндік %{limit} жазба лимитін тауыстыңыз
     over_total_limit: Сіз %{limit} жазба лимитін тауыстыңыз

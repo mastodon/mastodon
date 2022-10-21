@@ -2,19 +2,11 @@
 pl:
   about:
     about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
-    api: API
-    apps: Aplikacje
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
-    documentation: Dokumentacja
     hosted_on: Mastodon uruchomiony na %{domain}
-    privacy_policy: Polityka prywatności
-    source_code: Kod źródłowy
-    what_is_mastodon: Czym jest Mastodon?
+    title: O nas
   accounts:
-    choices_html: 'Polecani przez %{name}:'
-    endorsements_hint: Możesz promować ludzi, których obserwujesz, z poziomu interfejsu webowego - wtedy oni pojawią się w tym miejscu.
-    featured_tags_hint: Możesz przedstawić w tym miejscu kilka wybranych hasztagów.
     follow: Śledź
     followers:
       few: śledzących
@@ -23,15 +15,9 @@ pl:
       other: Śledzących
     following: śledzonych
     instance_actor_flash: To konto jest wirtualnym profilem używanym do reprezentowania samego serwera, a nie żadnego indywidualnego użytkownika. Jest ono stosowane do celów federacji i nie powinien być zawieszany.
-    joined: Dołączył(a) %{date}
     last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
-    media: Zawartość multimedialna
-    moved_html: "%{name} korzysta teraz z konta %{new_profile_link}:"
-    network_hidden: Ta informacja nie jest dostępna
     nothing_here: Niczego tu nie ma!
-    people_followed_by: Konta śledzone przez %{name}
-    people_who_follow: Osoby, które śledzą konto %{name}
     pin_errors:
       following: Musisz śledzić osobę, którą chcesz polecać
     posts:
@@ -40,12 +26,6 @@ pl:
       one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
-    posts_with_replies: Wpisy z odpowiedziami
-    roles:
-      bot: Bot
-      group: Grupa
-    unavailable: Profil niedostępny
-    unfollow: Przestań śledzić
   admin:
     account_actions:
       action: Wykonaj działanie
@@ -350,6 +330,7 @@ pl:
       listed: Widoczne
       new:
         title: Dodaj nowe niestandardowe emoji
+      no_emoji_selected: Żadne emoji nie zostały zmienione, ponieważ żadnych nie wybrano
       not_permitted: Nie masz uprawnień do wykonania tego działania
       overwrite: Zastąp
       shortcode: Krótki kod
@@ -840,6 +821,9 @@ pl:
         description_html: Są to linki, które są obecnie często udostępniane przez konta, z których Twój serwer widzi posty. Może to pomóc Twoim użytkownikom dowiedzieć się, co dzieje się na świecie. Żadne linki nie są wyświetlane publicznie dopóki nie zaakceptujesz wydawcy. Możesz również zezwolić lub odrzucić indywidualne linki.
         disallow: Nie zezwalaj na link
         disallow_provider: Nie zezwalaj na wydawcę
+        no_link_selected: Żadne linki nie zostały zmienione, ponieważ żadnych nie wybrano
+        publishers:
+          no_publisher_selected: Żadni publikujcy nie zostali zmienieni, ponieważ żadnych nie wybrano
         shared_by_over_week:
           few: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
           many: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
@@ -861,6 +845,7 @@ pl:
         description_html: Są to wpisy, o których Twój serwer wie i które są obecnie często udostępniane i dodawane do ulubionych. Może to pomóc nowym i powracającym użytkownikom znaleźć więcej osób do śledzenia. Żadne posty nie są wyświetlane publicznie, dopóki nie zatwierdzisz autora, a autor ustawi zezwolenie na wyświetlanie się w katalogu. Możesz również zezwolić lub odrzucić poszczególne posty.
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
+        no_status_selected: Żadne popularne wpisy nie zostały zmienione, ponieważ żadnych nie wybrano
         not_discoverable: Autor nie włączył opcji, by być wyświetlany w katalogu
         shared_by:
           few: Udostępnione i dodane do ulubionych %{friendly_count} razy
@@ -878,6 +863,7 @@ pl:
           tag_uses_measure: użyć łącznie
         description_html: To są hasztagi, które obecnie pojawiają się w wielu wpisach, które widzisz na serwerze. Może to pomóc Twoim użytkownikom dowiedzieć się, o czym obecnie ludzie najchętniej rozmawiają. Żadne hasztagi nie są wyświetlane publicznie, dopóki ich nie zaakceptujesz.
         listable: Można zasugerować
+        no_tag_selected: Żadne tagi nie zostały zmienione, ponieważ żadnych nie wybrano
         not_listable: Nie można zasugerować
         not_trendable: Nie pojawia się pod trendami
         not_usable: Nie mogą zostać użyte
@@ -1211,9 +1197,6 @@ pl:
         hint: Ten filtr ma zastosowanie do wybierania poszczególnych wpisów niezależnie od pozostałych kryteriów. Możesz dodać więcej wpisów do tego filtra z interfejsu internetowego.
         title: Filtrowane posty
   footer:
-    developers: Dla programistów
-    more: Więcej…
-    resources: Zasoby
     trending_now: Obecnie na czasie
   generic:
     all: Wszystkie
@@ -1264,7 +1247,6 @@ pl:
       following: Lista śledzonych
       muting: Lista wyciszonych
     upload: Załaduj
-  in_memoriam_html: Ku pamięci.
   invites:
     delete: Wygaś
     expired: Wygasły
@@ -1446,22 +1428,7 @@ pl:
     remove_selected_follows: Przestań śledzić zaznaczonych użytkowników
     status: Stan konta
   remote_follow:
-    acct: Podaj swój adres (nazwa@domena), z którego chcesz wykonać działanie
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
-    no_account_html: Nie masz konta? Możesz <a href='%{sign_up_path}' target='_blank'>zarejestrować się tutaj</a>
-    proceed: Śledź
-    prompt: 'Zamierzasz śledzić:'
-    reason_html: "<strong>Dlaczego ten krok jest konieczny?</strong> <code>%{instance}</code> może nie być serwerem na którym jesteś zarejestrowany(-a), więc musisz zostać przekierowany(-a) na swój serwer."
-  remote_interaction:
-    favourite:
-      proceed: Przejdź do dodania do ulubionych
-      prompt: 'Chcesz dodać ten wpis do ulubionych:'
-    reblog:
-      proceed: Przejdź do podbicia
-      prompt: 'Chcesz podbić ten wpis:'
-    reply:
-      proceed: Przejdź do dodawania odpowiedzi
-      prompt: 'Chcesz odpowiedzieć na ten wpis:'
   reports:
     errors:
       invalid_rules: nie odwołuje się do prawidłowych reguł

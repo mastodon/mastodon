@@ -2,46 +2,25 @@
 fr:
   about:
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
-    api: API
-    apps: Applications mobiles
     contact_missing: Non défini
     contact_unavailable: Non disponible
-    documentation: Documentation
     hosted_on: Serveur Mastodon hébergé sur %{domain}
-    privacy_policy: Politique de confidentialité
-    source_code: Code source
-    what_is_mastodon: Qu’est-ce que Mastodon ?
   accounts:
-    choices_html: "%{name} recommande :"
-    endorsements_hint: Vous pouvez recommander des personnes que vous suivez depuis l’interface web, et elles apparaîtront ici.
-    featured_tags_hint: Vous pouvez mettre en avant certains hashtags qui seront affichés ici.
     follow: Suivre
     followers:
       one: Abonné·e
       other: Abonné·e·s
     following: Abonnements
     instance_actor_flash: Ce compte est un acteur virtuel utilisé pour représenter le serveur lui-même et non un utilisateur individuel. Il est utilisé à des fins de fédération et ne doit pas être suspendu.
-    joined: Inscrit·e en %{date}
     last_active: dernière activité
     link_verified_on: La propriété de ce lien a été vérifiée le %{date}
-    media: Médias
-    moved_html: "%{name} a changé de compte pour %{new_profile_link} :"
-    network_hidden: Cette information n’est pas disponible
     nothing_here: Rien à voir ici !
-    people_followed_by: Personnes suivies par %{name}
-    people_who_follow: Personnes qui suivent %{name}
     pin_errors:
       following: Vous devez être déjà abonné·e à la personne que vous désirez recommander
     posts:
       one: Message
       other: Messages
     posts_tab_heading: Messages
-    posts_with_replies: Messages et réponses
-    roles:
-      bot: Robot
-      group: Groupe
-    unavailable: Profil non disponible
-    unfollow: Ne plus suivre
   admin:
     account_actions:
       action: Effectuer l'action
@@ -1156,9 +1135,6 @@ fr:
       index:
         title: Messages filtrés
   footer:
-    developers: Développeurs
-    more: Davantage…
-    resources: Ressources
     trending_now: Tendance en ce moment
   generic:
     all: Tous
@@ -1192,7 +1168,6 @@ fr:
       following: Liste d’utilisateur·rice·s suivi·e·s
       muting: Liste d’utilisateur·rice·s que vous masquez
     upload: Importer
-  in_memoriam_html: En mémoire de.
   invites:
     delete: Désactiver
     expired: Expiré
@@ -1372,22 +1347,7 @@ fr:
     remove_selected_follows: Ne plus suivre les comptes sélectionnés
     status: État du compte
   remote_follow:
-    acct: Entrez l’adresse profil@serveur depuis laquelle vous voulez effectuer cette action
     missing_resource: L’URL de redirection requise pour votre compte n’a pas pu être trouvée
-    no_account_html: Vous n’avez pas de compte ? Vous pouvez <a href='%{sign_up_path}' target='_blank'>vous inscrire ici</a>
-    proceed: Confirmer l’abonnement
-    prompt: 'Vous allez suivre :'
-    reason_html: "<strong>Pourquoi cette étape est-elle nécessaire?</strong> <code>%{instance}</code> pourrait ne pas être le serveur sur lequel vous vous êtes inscrit·e, et nous devons donc vous rediriger vers votre serveur de base en premier."
-  remote_interaction:
-    favourite:
-      proceed: Confirmer l’ajout aux favoris
-      prompt: 'Vous souhaitez ajouter ce message à vos favoris :'
-    reblog:
-      proceed: Confirmer le partage
-      prompt: 'Vous souhaitez partager ce message :'
-    reply:
-      proceed: Confirmer la réponse
-      prompt: 'Vous souhaitez répondre à ce message :'
   reports:
     errors:
       invalid_rules: ne fait pas référence à des règles valides

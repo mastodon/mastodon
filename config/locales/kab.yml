@@ -2,39 +2,22 @@
 kab:
   about:
     about_mastodon_html: 'Azeṭṭa ametti n uzekka: Ulac deg-s asussen, ulac taɛessast n tsuddiwin fell-ak, yebna ɣef leqder d ttrebga, daɣen d akeslemmas! Akked Maṣṭudun, isefka-inek ad qimen inek!'
-    api: API
-    apps: Isnasen izirazen
     contact_missing: Ur yettusbadu ara
     contact_unavailable: Wlac
-    documentation: Amnir
     hosted_on: Maṣṭudun yersen deg %{domain}
-    source_code: Tangalt Taɣbalut
-    what_is_mastodon: D acu-t Maṣṭudun?
+    title: Γef
   accounts:
-    choices_html: 'Afranen n %{name}:'
     follow: Ḍfeṛ
     followers:
       one: Umeḍfaṛ
       other: Imeḍfaṛen
     following: Yeṭafaṛ
-    joined: Ikcemed deg %{date}
     last_active: armud aneggaru
-    media: Taɣwalt
-    moved_html: 'ibeddel %{name} amiḍan ɣer %{new_profile_link}:'
-    network_hidden: Ulac isalli-agi
     nothing_here: Ulac kra da!
-    people_followed_by: Imdanen i yeṭṭafaṛ %{name}
-    people_who_follow: Imdanen yeṭṭafaṛen %{name}
     posts:
       one: Tajewwiqt
       other: Tijewwiqin
     posts_tab_heading: Tijewwiqin
-    posts_with_replies: Tijewwaqin akked tririyin
-    roles:
-      bot: Aṛubut
-      group: Agraw
-    unavailable: Ur nufi ara amaɣnu-a
-    unfollow: Ur ṭṭafaṛ ara
   admin:
     account_actions:
       action: Eg tigawt
@@ -387,6 +370,11 @@ kab:
       unresolved: Ur yefra ara
       updated_at: Yettwaleqqem
       view_profile: Wali amaɣnu
+    roles:
+      categories:
+        administration: Tadbelt
+      privileges:
+        administrator: Anedbal
     rules:
       add_new: Rnu alugen
       delete: Kkes
@@ -541,9 +529,7 @@ kab:
     new:
       title: Rnu yiwen umzizdig amaynut
   footer:
-    developers: Ineflayen
-    more: Ugar…
-    resources: Iɣbula
+    trending_now: Ayen mucaɛen tura
   generic:
     all: Akk
     changes_saved_msg: Ttwaskelsen ibelliden-ik·im akken ilaq!
@@ -637,16 +623,6 @@ kab:
     primary: Agejdan
     relationship: Assaɣ
     status: Addad n umiḍan
-  remote_follow:
-    no_account_html: Ur tesɛid ara amiḍan? Tzmreḍ <a href='%{sign_up_path}' target='_blank'>ad jerdeḍ da</a>
-    proceed: Kemmel taḍfart
-  remote_interaction:
-    favourite:
-      proceed: Kemmel asmenyef
-    reblog:
-      proceed: Sentem beṭṭu
-    reply:
-      proceed: Kemmel tiririt
   sessions:
     activity: Armud aneggaru
     browser: Iminig
@@ -716,6 +692,7 @@ kab:
       video:
         one: "%{count} n tbidyutt"
         other: "%{count} n tbidyutin"
+    edited_at_html: Tettwaẓreg %{date}
     open_in_web: Ldi deg Web
     poll:
       total_people:
@@ -744,7 +721,7 @@ kab:
       '2629746': 1 n wayyur
       '31556952': 1 n useggas
       '5259492': 2 n wayyuren
-      '604800': 1 week
+      '604800': 1 umalas
       '63113904': 2 n yiseggasen
       '7889238': 3 n wayyuren
   stream_entries:
@@ -768,6 +745,8 @@ kab:
     otp: Asnas n usesteb
     webauthn: Tisura n teɣlist
   user_mailer:
+    appeal_approved:
+      action: Ddu ɣer umiḍan-ik·im
     warning:
       categories:
         spam: Aspam

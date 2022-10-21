@@ -2,45 +2,25 @@
 fa:
   about:
     about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
-    api: رابط برنامه‌نویسی کاربردی
-    apps: اپ‌های موبایل
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
-    documentation: مستندات
     hosted_on: ماستودون، میزبانی‌شده روی %{domain}
-    source_code: کدهای منبع
-    what_is_mastodon: ماستودون چیست؟
   accounts:
-    choices_html: 'انتخاب‌های %{name}:'
-    endorsements_hint: شما می‌توانید از محیط وب ماستودون، کسانی را که پی می‌گیرید به دیگران هم پیشنهاد دهید تا این‌جا نشان داده شوند.
-    featured_tags_hint: می‌توانید برچسب‌های خاصی را مشخّص کنید تا این‌جا دیده شوند.
     follow: پیگیری
     followers:
       one: پیگیر
       other: پیگیر
     following: پی می‌گیرد
     instance_actor_flash: این حساب یک عامل مجازی است که به نمایندگی از خود کارساز استفاده می‌شود و نه هیچ یکی از کاربران. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
-    joined: پیوسته از %{date}
     last_active: آخرین فعالیت
     link_verified_on: مالکیت این پیوند در %{date} بررسی شد
-    media: عکس و ویدیو
-    moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
-    network_hidden: این اطلاعات در دسترس نیست
     nothing_here: این‌جا چیزی نیست!
-    people_followed_by: کسانی که %{name} پی می‌گیرد
-    people_who_follow: کسانی که %{name} را پی می‌گیرند
     pin_errors:
       following: باید کاربری که می‌خواهید پیشنهاد دهید را دنبال کرده باشید
     posts:
       one: فرسته
       other: فرسته‌ها
     posts_tab_heading: فرسته‌ها
-    posts_with_replies: فرسته‌ها و پاسخ‌ها
-    roles:
-      bot: ربات
-      group: گروه
-    unavailable: نمایهٔ ناموجود
-    unfollow: پایان پیگیری
   admin:
     account_actions:
       action: انجامِ کنش
@@ -904,9 +884,6 @@ fa:
     new:
       title: افزودن پالایهٔ جدید
   footer:
-    developers: برنامه‌نویسان
-    more: بیشتر…
-    resources: منابع
     trending_now: پرطرفدار
   generic:
     all: همه
@@ -939,7 +916,6 @@ fa:
       following: سیاههٔ پی‌گیری
       muting: سیاههٔ خموشی
     upload: بارگذاری
-  in_memoriam_html: به یادبود.
   invites:
     delete: غیرفعال‌سازی
     expired: منقضی‌شده
@@ -1113,22 +1089,7 @@ fa:
     remove_selected_follows: به پیگیری از کاربران انتخاب‌شده پایان بده
     status: وضعیت حساب
   remote_follow:
-    acct: نشانی حساب username@domain خود را این‌جا بنویسید
     missing_resource: نشانی اینترنتی برای رسیدن به حساب شما پیدا نشد
-    no_account_html: هنوز عضو نیستید؟ <a href='%{sign_up_path}' target='_blank'>این‌جا می‌توانید حساب باز کنید</a>
-    proceed: درخواست پیگیری
-    prompt: 'شما قرار است این حساب را پیگیری کنید:'
-    reason_html: "<strong>چرا این گام ضروریست؟</strong> ممکن است <code>%{instance}</code> کارسازی نباشد که شما رویش حساب دارید؛ پس لازم است پیش از هرچیز، به کارساز خودتان هدایتتان کنیم."
-  remote_interaction:
-    favourite:
-      proceed: به سمت پسندیدن
-      prompt: 'شما می‌خواهید این فرسته را بپسندید:'
-    reblog:
-      proceed: به سمت تقویت
-      prompt: 'شما می‌خواهید این فرسته را تقویت کنید:'
-    reply:
-      proceed: به سمت پاسخ‌دادن
-      prompt: 'شما می‌خواهید به این فرسته پاسخ دهید:'
   scheduled_statuses:
     over_daily_limit: شما از حد مجاز %{limit} فرسته زمان‌بندی‌شده در آن روز فراتر رفته‌اید
     over_total_limit: شما از حد مجاز %{limit} فرسته زمان‌بندی‌شده فراتر رفته‌اید

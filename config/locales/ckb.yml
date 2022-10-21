@@ -2,45 +2,25 @@
 ckb:
   about:
     about_mastodon_html: 'تۆڕی کۆمەڵایەتی داهاتوو: هیچ ڕیکلامێک ، هیچ چاودێرییەکی کۆمپانیا ، دیزاینی ئەخلاقی و لامەرکەزی! خاوەنی داتاکانت نابێ لە ماستۆدۆن!'
-    api: API
-    apps: ئەپەکانی مۆبایل
     contact_missing: سازنەکراوە
     contact_unavailable: بوونی نییە
-    documentation: بەڵگەکان
     hosted_on: مەستودۆن میوانداری کراوە لە %{domain}
-    source_code: کۆدی سەرچاوە
-    what_is_mastodon: ماستۆدۆن چییە?
   accounts:
-    choices_html: 'هەڵبژاردنەکانی %{name}:'
-    endorsements_hint: دەتوانیت ئەو کەسانە پەسەند بکەیت کە پەیڕەویان دەکەیت لە ڕووکاری وێب، و ئەوان لێرە دەردەکەون.
-    featured_tags_hint: دەتوانیت هاشتاگی تایبەت پێشکەش بکەیت کە لێرە پیشان دەدرێت.
     follow: شوێن کەوە
     followers:
       one: شوێنکەوتوو
       other: شوێن‌کەوتووان
     following: شوێن‌کەوتووی
     instance_actor_flash: ئەم ئەکاونتە ئەکتەرێکی مەجازییە کە بەکاردێت بۆ نوێنەرایەتیکردنی خودی سێرڤەرەکە نەک هیچ بەکارهێنەرێکی تاکەکەسی. بۆ مەبەستی فیدراسیۆن بەکاردێت و نابێت ڕابگیرێت.
-    joined: بەشداری %{date}
     last_active: دوا چالاکی
     link_verified_on: خاوەنداریەتی ئەم لینکە لە %{date} چێک کراوە
-    media: میدیا
-    moved_html: "%{name} گواستراوەتەوە بۆ %{new_profile_link}:"
-    network_hidden: ئەم زانیاریە بەردەست نیە
     nothing_here: لێرە هیچ نییە!
-    people_followed_by: ئەو کەسانەی کە %{name} بەدوایدا دەکەون
-    people_who_follow: ئەو کەسانەی کە بەدوای %{name} دا دەکەون
     pin_errors:
       following: تۆ دەبێت هەر ئێستا بە دوای ئەو کەسەدا بیت کە دەتەوێت پەسەندی بکەیت
     posts:
       one: توت
       other: تووتەکان
     posts_tab_heading: تووتەکان
-    posts_with_replies: تووتەکان و وڵامەکان
-    roles:
-      bot: بۆت
-      group: گرووپ
-    unavailable: پرۆفایل بەردەست نیە
-    unfollow: بەدوادانەچو
   admin:
     account_actions:
       action: ئەنجامدانی کردار
@@ -808,9 +788,6 @@ ckb:
     new:
       title: زیادکردنی فلتەری نوێ
   footer:
-    developers: پەرەپێدەران
-    more: زیاتر…
-    resources: سەرچاوەکان
     trending_now: هەوادارانی ئێستا
   generic:
     all: هەموو
@@ -839,7 +816,6 @@ ckb:
       following: لیستی خوارەوە
       muting: لیستی کپکردنەوە
     upload: بارکردن
-  in_memoriam_html: لەیادبوون.
   invites:
     delete: لەکارخستن
     expired: بەسەرچووە
@@ -984,22 +960,7 @@ ckb:
     remove_selected_follows: کۆتایی بە بەدوادانەچوی بەکارهێنەرە دیاریکراوەکان بدە
     status: دۆخی هەژمارە
   remote_follow:
-    acct: ناونیشانی هەژمارەی username@domainخۆت لێرە بنووسە
     missing_resource: نەیتوانی URLی ئاراستەکردنەوەی پێویست بدۆزێتەوە بۆ ئەژمێرەکەت
-    no_account_html: هێشتا نەبووی بە ئەندام؟ <a href='%{sign_up_path}' target='_blank'>لێرە دەتوانی هەژمارەیەک دروست بکەی</a>
-    proceed: بەردەوام بە بۆ بەدواداچوون
-    prompt: 'تۆ بەدوای دا دەچیت:'
-    reason_html: "<strong> بۆچی ئەم هەنگاوە پێویستە؟ </strong> <code>%{instance}</code> لەوانەیە ئەو ڕاژەیە نەبێت کە تۆ تۆمارت کردووە، بۆیە پێویستە سەرەتا دووبارە ئاڕاستەت بکەین بۆ ڕاژەکاری ماڵەوەت."
-  remote_interaction:
-    favourite:
-      proceed: بۆ دڵخوازکردنی ئەم توتە
-      prompt: 'دەتەوێت ئەم تووتە تپەسەند بکەیت؛:'
-    reblog:
-      proceed: بەردەوام بە بۆ دووبارە توتاندن
-      prompt: 'دەتەوێت ئەم تووتە دووبارە بکەیتەوە:'
-    reply:
-      proceed: بۆ وەڵامدانەوە
-      prompt: 'دەتەوێت ئەم تووتە وڵام بدەیتەوە:'
   scheduled_statuses:
     over_daily_limit: ئێوە لە سنووری ڕیپێدراوی %{limit} توتی ئەو رۆژە،خۆرتر ڕۆیشتوویت
     over_total_limit: تۆ سنووری خشتەکراوی %{limit} ت بەزاندووە

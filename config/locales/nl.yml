@@ -2,46 +2,26 @@
 nl:
   about:
     about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
-    api: API
-    apps: Mobiele apps
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
-    documentation: Documentatie
     hosted_on: Mastodon op %{domain}
-    privacy_policy: Privacybeleid
-    source_code: Broncode
-    what_is_mastodon: Wat is Mastodon?
+    title: Over
   accounts:
-    choices_html: 'Aanbevelingen van %{name}:'
-    endorsements_hint: Je kunt mensen die je volgt in de webomgeving aanbevelen, waarna ze dan hier zullen verschijnen.
-    featured_tags_hint: Je kunt specifieke hashtags uitlichten, waarna ze dan hier zullen verschijnen.
     follow: Volgen
     followers:
       one: Volger
       other: Volgers
     following: Volgend
     instance_actor_flash: Dit account is een 'virtual actor' waarmee de server zichzelf vertegenwoordigd en is dus geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden opgeschort.
-    joined: Geregistreerd in %{date}
     last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
-    media: Media
-    moved_html: "%{name} is verhuisd naar %{new_profile_link}:"
-    network_hidden: Deze informatie is niet beschikbaar
     nothing_here: Hier is niets!
-    people_followed_by: Mensen die %{name} volgen
-    people_who_follow: Mensen die %{name} volgen
     pin_errors:
       following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
     posts:
       one: Toot
       other: Berichten
     posts_tab_heading: Berichten
-    posts_with_replies: Berichten en reacties
-    roles:
-      bot: Bot
-      group: Groep
-    unavailable: Profiel niet beschikbaar
-    unfollow: Ontvolgen
   admin:
     account_actions:
       action: Actie uitvoeren
@@ -124,8 +104,8 @@ nl:
       perform_full_suspension: Opschorten
       previous_strikes: Eerdere overtredingen
       previous_strikes_description_html:
-        one: Dit account heeft <strong>één</strong> overtreding.
-        other: Dit account heeft <strong>%{count}</strong> overtredingen.
+        one: Dit account heeft <strong>één</strong> overtreding gemaakt.
+        other: Dit account heeft <strong>%{count}</strong> overtredingen gemaakt.
       promote: Promoveren
       protocol: Protocol
       public: Openbaar
@@ -337,6 +317,7 @@ nl:
       listed: Weergegeven
       new:
         title: Lokale emoji toevoegen
+      no_emoji_selected: Er werden geen emoji's gewijzigd, omdat er geen enkele werd geselecteerd
       not_permitted: Het hebt geen rechten om deze actie uit te voeren
       overwrite: Overschrijven
       shortcode: Verkorte code
@@ -421,6 +402,7 @@ nl:
       domain: Domein
       new:
         create: Blokkeren
+        resolve: Domein opzoeken
         title: Nieuw e-maildomein blokkeren
       title: Geblokkeerde e-maildomeinen
     follow_recommendations:
@@ -433,6 +415,7 @@ nl:
       unsuppress: Account weer aanbevelen
     instances:
       availability:
+        no_failures_recorded: Geen storingen bekend.
         title: Beschikbaarheid
         warning: De laatste poging om met deze server te verbinden was onsuccesvol
       back_to_all: Alles
@@ -538,6 +521,7 @@ nl:
           other: "%{count} opmerkingen"
       action_log: Auditlog
       action_taken_by: Actie uitgevoerd door
+      add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
       assigned: Toegewezen moderator
@@ -587,6 +571,7 @@ nl:
         moderation: Moderatie
         special: Speciaal
       delete: Verwijderen
+      edit: Rol '%{name}' bewerken
       everyone: Standaardrechten
       everyone_full_description_html: Dit is de <strong>basisrol</strong> die van toepassing is op <strong>alle gebruikers</strong>, zelfs voor diegenen zonder toegewezen rol. Alle andere rollen hebben de rechten van deze rol als minimum.
       permissions_count:
@@ -700,7 +685,9 @@ nl:
       destroyed_msg: Verwijderen website-upload geslaagd!
     statuses:
       back_to_account: Terug naar accountpagina
+      back_to_report: Terug naar de rapportage
       batch:
+        remove_from_report: Uit de rapportage verwijderen
         report: Rapportage
       deleted: Verwijderd
       media:
@@ -732,34 +719,70 @@ nl:
       disallow: Weigeren
       links:
         allow: Link toestaan
-        allow_provider: Uitgever toestaan
+        allow_provider: Website goedkeuren
+        description_html: Dit zijn links die momenteel veel worden gedeeld door accounts waar jouw server berichten van ontvangt. Hierdoor kunnen jouw gebruikers zien wat er in de wereld aan de hand is. Er worden geen links weergeven totdat je de website hebt goedgekeurd. Je kunt ook individuele links goed- of afkeuren.
         disallow: Link toestaan
-        disallow_provider: Website toestaan
+        disallow_provider: Website afkeuren
+        no_link_selected: Er werden geen links gewijzigd, omdat er geen enkele werd geselecteerd
+        publishers:
+          no_publisher_selected: Er werden geen websites gewijzigd, omdat er geen enkele werd geselecteerd
         title: Trending links
       only_allowed: Alleen toegestaan
       pending_review: In afwachting van beoordeling
       preview_card_providers:
         allowed: Links van deze website kunnen trending worden
-        rejected: Links van deze website kunnen niet trending worden
-        title: Uitgevers
+        rejected: Links naar deze nieuwssite kunnen niet trending worden
+        title: Websites
       rejected: Afgewezen
       statuses:
         allow: Bericht toestaan
         allow_account: Gebruiker toestaan
         disallow: Bericht niet toestaan
         disallow_account: Gebruiker niet toestaan
+        no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
         not_discoverable: Gebruiker heeft geen toestemming gegeven om vindbaar te zijn
         title: Trending berichten
       tags:
+        current_score: Huidige score is %{score}
         dashboard:
+          tag_accounts_measure: aantal unieke keren gebruikt
           tag_languages_dimension: Populaire talen
           tag_servers_dimension: Populaire servers
+          tag_servers_measure: verschillende servers
+          tag_uses_measure: totaal aantal keer gebruikt
+        listable: Kan worden aanbevolen
+        no_tag_selected: Er werden geen hashtags gewijzigd, omdat er geen enkele werd geselecteerd
+        not_listable: Wordt niet aanbevolen
+        not_usable: Kan niet worden gebruikt
+        title: Trending hashtags
+        trending_rank: 'Trending #%{rank}'
+        usable: Kan worden gebruikt
+      title: Trends
+      trending: Trending
     warning_presets:
       add_new: Nieuwe toevoegen
       delete: Verwijderen
       edit_preset: Preset voor waarschuwing bewerken
       empty: Je hebt nog geen presets voor waarschuwingen toegevoegd.
       title: Presets voor waarschuwingen beheren
+    webhooks:
+      add_new: Eindpunt toevoegen
+      delete: Verwijderen
+      disable: Uitschakelen
+      disabled: Uitgeschakeld
+      edit: Eindpunt bewerken
+      enable: Inschakelen
+      enabled: Ingeschakeld
+      enabled_events:
+        one: 1 ingeschakelde gebeurtenis
+        other: "%{count} ingeschakelde gebeurtenissen"
+      events: Gebeurtenissen
+      new: Nieuwe webhook
+      rotate_secret: Secret opnieuw genereren
+      secret: Signing secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -780,6 +803,13 @@ nl:
       body: "%{reporter} heeft %{target} gerapporteerd"
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe rapportage op %{instance} (#%{id})
+    new_trends:
+      new_trending_links:
+        title: Trending links
+      new_trending_statuses:
+        title: Trending berichten
+      new_trending_tags:
+        title: Trending hashtags
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
@@ -860,6 +890,7 @@ nl:
       functional: Jouw account kan in diens geheel gebruikt worden.
       pending: Jouw aanvraag moet nog worden beoordeeld door een van onze medewerkers. Dit kan misschien eventjes duren. Je ontvangt een e-mail wanneer jouw aanvraag is goedgekeurd.
       redirecting_to: Jouw account is inactief omdat het momenteel wordt doorverwezen naar %{acct}.
+      view_strikes: Bekijk de eerder door moderatoren vastgestelde overtredingen die je hebt gemaakt
     too_fast: Formulier is te snel ingediend. Probeer het nogmaals.
     use_security_key: Beveiligingssleutel gebruiken
   authorize_follow:
@@ -920,6 +951,7 @@ nl:
       username_unavailable: Jouw gebruikersnaam zal onbeschikbaar blijven
   disputes:
     strikes:
+      action_taken: Genomen maatregel
       appeal: Bezwaar
       appeal_approved: Het ingediende bezwaar is goedgekeurd en de eerder vastgestelde overtreding is niet langer geldig
       appeal_rejected: Het ingediende bezwaar is afgewezen
@@ -928,7 +960,12 @@ nl:
       appeals:
         submit: Bezwaar indienen
       approve_appeal: Bezwaar goedkeuren
+      associated_report: Bijbehorende rapportage
+      created_at: Datum en tijd
+      recipient: Geadresseerd aan
       reject_appeal: Bezwaar afgewezen
+      status: 'Bericht #%{id}'
+      title: "%{action} van %{date}"
       title_actions:
         delete_statuses: Verwijdering bericht
         disable: Bevriezen van account
@@ -1021,9 +1058,6 @@ nl:
       index:
         title: Gefilterde berichten
   footer:
-    developers: Ontwikkelaars
-    more: Meer…
-    resources: Hulpmiddelen
     trending_now: Trends
   generic:
     all: Alles
@@ -1066,7 +1100,6 @@ nl:
       following: Volglijst
       muting: Negeerlijst
     upload: Uploaden
-  in_memoriam_html: In memoriam.
   invites:
     delete: Deactiveren
     expired: Verlopen
@@ -1098,6 +1131,7 @@ nl:
       password: wachtwoord
       sign_in_token: beveiligingscode via e-mail
       webauthn: beveiligingssleutels
+    title: Inloggeschiedenis
   media_attachments:
     validations:
       images_and_video: Een video kan niet aan een bericht met afbeeldingen worden gekoppeld
@@ -1144,6 +1178,8 @@ nl:
     admin:
       report:
         subject: "%{name} heeft een rapportage ingediend"
+      sign_up:
+        subject: "%{name} heeft zich geregistreerd"
     favourite:
       body: 'Jouw bericht werd door %{name} als favoriet gemarkeerd:'
       subject: "%{name} markeerde jouw bericht als favoriet"
@@ -1239,22 +1275,9 @@ nl:
     remove_selected_follows: Geselecteerde gebruikers ontvolgen
     status: Accountstatus
   remote_follow:
-    acct: Geef jouw account@domein op die je wilt gebruiken
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
-    no_account_html: Heb je geen account? Je kunt er <a href='%{sign_up_path}' target='_blank'>hier een registreren</a>
-    proceed: Ga verder om te volgen
-    prompt: 'Jij gaat volgen:'
-    reason_html: "<strong> Waarom is deze extra stap nodig? </strong> <code>%{instance}</code> is wellicht niet de server waarop jij je geregistreerd hebt. We verwijzen je eerst door naar jouw eigen server."
-  remote_interaction:
-    favourite:
-      proceed: Doorgaan met het markeren als favoriet
-      prompt: 'Je wilt het volgende bericht als favoriet markeren:'
-    reblog:
-      proceed: Doorgaan met boosten
-      prompt: 'Je wilt het volgende bericht boosten:'
-    reply:
-      proceed: Doorgaan met reageren
-      prompt: 'Je wilt op het volgende bericht reageren:'
+  rss:
+    content_warning: 'Inhoudswaarschuwing:'
   scheduled_statuses:
     over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
     over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
@@ -1319,6 +1342,8 @@ nl:
     preferences: Voorkeuren
     profile: Profiel
     relationships: Volgers en gevolgden
+    statuses_cleanup: Automatisch berichten verwijderen
+    strikes: Vastgestelde overtredingen
     two_factor_authentication: Tweestapsverificatie
     webauthn_authentication: Beveiligingssleutels
   statuses:
@@ -1370,6 +1395,7 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   statuses_cleanup:
+    exceptions: Uitzonderingen
     ignore_favs: Favorieten negeren
     ignore_reblogs: Boosts negeren
     keep_direct: Directe berichten behouden
@@ -1398,7 +1424,7 @@ nl:
     sensitive_content: Gevoelige inhoud
   strikes:
     errors:
-      too_late: De periode dat je bezwaar kon maken is verstreken
+      too_late: De periode dat je bezwaar kunt maken tegen deze overtreding is verstreken
   tags:
     does_not_match_previous_name: komt niet overeen met de vorige naam
   themes:
@@ -1409,6 +1435,7 @@ nl:
     formats:
       default: "%d %B %Y om %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Toevoegen
     disable: Tweestapsverificatie uitschakelen
@@ -1439,6 +1466,7 @@ nl:
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     suspicious_sign_in:
+      change_password: jouw wachtwoord wijzigen
       title: Een nieuwe registratie
     warning:
       appeal: Bezwaar indienen

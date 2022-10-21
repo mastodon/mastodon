@@ -2,19 +2,11 @@
 hu:
   about:
     about_mastodon_html: 'A jövő közösségi hálózata: Hirdetések és céges megfigyelés nélkül, etikus dizájnnal és decentralizációval! Legyél a saját adataid ura a Mastodonnal!'
-    api: API
-    apps: Mobil appok
     contact_missing: Nincs megadva
     contact_unavailable: N/A
-    documentation: Dokumentáció
     hosted_on: "%{domain} Mastodon szerver"
-    privacy_policy: Adatvédelmi szabályzat
-    source_code: Forráskód
-    what_is_mastodon: Mi a Mastodon?
+    title: Névjegy
   accounts:
-    choices_html: "%{name} választásai:"
-    endorsements_hint: A webes felületen promózhatsz általad követett embereket, akik itt fognak megjelenni.
-    featured_tags_hint: Szerepeltethetsz bizonyos hashtageket, melyek itt jelennek majd meg.
     follow: Követés
     followers:
       one: Követő
@@ -23,27 +15,15 @@ hu:
     instance_actor_flash: |-
       Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét
       felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni.
-    joined: Csatlakozott %{date}
     last_active: utoljára aktív
     link_verified_on: 'A hivatkozás tulajdonosa ekkor volt ellenőrizve: %{date}'
-    media: Média
-    moved_html: "%{name} ide költözött: %{new_profile_link}"
-    network_hidden: Ez az információ nem elérhető
     nothing_here: Nincs itt semmi!
-    people_followed_by: "%{name} követettjei"
-    people_who_follow: "%{name} követői"
     pin_errors:
       following: Ehhez szükséges, hogy kövesd már a felhasználót
     posts:
       one: Bejegyzés
       other: Bejegyzés
     posts_tab_heading: Bejegyzés
-    posts_with_replies: Bejegyzés válaszokkal
-    roles:
-      bot: Bot
-      group: Csoport
-    unavailable: Nincs ilyen profil
-    unfollow: Követés vége
   admin:
     account_actions:
       action: Művelet végrehajtása
@@ -346,6 +326,7 @@ hu:
       listed: Felsorolva
       new:
         title: Új egyéni emodzsi hozzáadása
+      no_emoji_selected: Nem változott meg egy emodzsi sem, mert semmi sem volt kiválasztva
       not_permitted: Nem vagy jogosult a művelet végrehajtására
       overwrite: Felülírás
       shortcode: Rövidítés
@@ -436,7 +417,7 @@ hu:
         create: Domain hozzáadása
         resolve: Domain feloldása
         title: Új e-mail domain tiltása
-      no_email_domain_block_selected: Nem változott meg egyetlen e-mail domain tiltás sem, mert nem volt egy sem kiválasztva
+      no_email_domain_block_selected: Nem változott meg egy domain tiltás sem, mert semmi sem volt kiválasztva
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
       title: Tiltott e-mail domainek
@@ -536,7 +517,7 @@ hu:
         '94670856': 3 év
       new:
         title: Új IP szabály létrehozása
-      no_ip_block_selected: Nem változtattunk egy IP szabályon sem, mivel egy sem volt kiválasztva
+      no_ip_block_selected: Nem változott meg egy IP-szabály sem, mert semmi sem volt kiválasztva
       title: IP szabály
     relationships:
       title: "%{acct} kapcsolatai"
@@ -814,6 +795,9 @@ hu:
         description_html: Ezek olyan hivatkozások, melyeket a szervered által látott fiókok mostanában sokat osztanak meg. Ez segíthet a felhasználóidnak rátalálni arra, hogy mi történik a világban. Egy hivatkozást sem mutatunk meg nyilvánosan, amíg a közzétevőt jóvá nem hagytad. A hivatkozásokat külön is engedélyezheted vagy visszautasíthatod.
         disallow: Hivatkozás letiltása
         disallow_provider: Közzétevő letiltása
+        no_link_selected: Nem változott meg egy hivatkozás sem, mert semmi sem volt kiválasztva
+        publishers:
+          no_publisher_selected: Nem változott meg egy közzétevő sem, mert semmi sem volt kiválasztva
         shared_by_over_week:
           one: Egy ember osztotta meg a múlt héten
           other: "%{count} ember osztotta meg a múlt héten"
@@ -833,6 +817,7 @@ hu:
         description_html: Ezek olyan, a szervered által ismert bejegyzések, melyeket mostanság gyakran osztanak meg vagy jelölnek kedvencnek. Ez segíthet az új vagy visszatérő felhasználóidnak, hogy több követhető személyt találjanak Egyetlen bejegyzést sem mutatunk meg nyilvánosan, amíg ennek szerzőjét nem hagytad jóvá és ő nem járult hozzá, hogy őt másoknak ajánlják. Bejegyzéseket egyenként is engedélyezhetsz vagy visszautasíthatsz.
         disallow: Bejegyzés tiltása
         disallow_account: Szerző tiltása
+        no_status_selected: Nem változott meg egy felkapott bejegyzés sem, mert semmi sem volt kiválasztva
         not_discoverable: A szerző nem járult hozzá, hogy mások rátalálhassanak
         shared_by:
           one: Megosztva vagy kedvencnek jelölve egy alkalommal
@@ -848,6 +833,7 @@ hu:
           tag_uses_measure: összes használat
         description_html: Ezek olyan hashtag-ek, melyek mostanság nagyon sok bejegyzésben jelennek meg, melyet a szervered lát. Ez segíthet a felhasználóidnak abban, hogy megtudják, miről beszélnek legtöbbet az emberek az adott pillanatban. Egyetlen hashtag-et sem mutatunk meg nyilvánosan, amíg azt nem hagytad jóvá.
         listable: Javasolható
+        no_tag_selected: Nem változott meg egy címke sem, mert semmi sem volt kiválasztva
         not_listable: Nem lesz javasolva
         not_trendable: Nem fog megjelenni a trendek alatt
         not_usable: Nem használható
@@ -1171,9 +1157,6 @@ hu:
         hint: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik a megadott kritériumoktól függetlenül. Újabb bejegyzéseket adhatsz hozzá ehhez a szűrőhöz a webes felületen keresztül.
         title: Megszűrt bejegyzések
   footer:
-    developers: Fejlesztőknek
-    more: Többet…
-    resources: Segédanyagok
     trending_now: Most felkapott
   generic:
     all: Mind
@@ -1216,7 +1199,6 @@ hu:
       following: Követettjeid listája
       muting: Némított felhasználók listája
     upload: Feltöltés
-  in_memoriam_html: Emlékünkben.
   invites:
     delete: Visszavonás
     expired: Lejárt
@@ -1396,22 +1378,7 @@ hu:
     remove_selected_follows: Kiválasztottak követésének abbahagyása
     status: Fiók állapota
   remote_follow:
-    acct: Írd be a felhasználódat, amelyről követni szeretnéd felhasznalonev@domain formátumban
     missing_resource: A fiókodnál nem található a szükséges átirányítási URL
-    no_account_html: Nincs fiókod? <a href='%{sign_up_path}' target='_blank'>Regisztrálj itt</a>
-    proceed: Tovább a követéshez
-    prompt: 'Őt tervezed követni:'
-    reason_html: "<strong>Miért van erre szükség?</strong> <code>%{instance}</code> nem feltétlenül az a szerver, ahol regisztrálva vagy, ezért először a saját szerveredre irányítunk."
-  remote_interaction:
-    favourite:
-      proceed: Jelöljük kedvencnek
-      prompt: 'Ezt a bejegyzést szeretnéd kedvencnek jelölni:'
-    reblog:
-      proceed: Tovább a megtoláshoz
-      prompt: 'Ezt a bejegyzést szeretnéd megtolni:'
-    reply:
-      proceed: Válaszadás
-      prompt: 'Erre a bejegyzésre szeretnél válaszolni:'
   reports:
     errors:
       invalid_rules: nem hivatkozik érvényes szabályra

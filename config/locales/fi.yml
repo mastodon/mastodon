@@ -2,45 +2,25 @@
 fi:
   about:
     about_mastodon_html: 'Tulevaisuuden sosiaalinen verkosto: Ei mainoksia, ei valvontaa, toteutettu avoimilla protokollilla ja hajautettu! Pidä tietosi ominasi Mastodonilla!'
-    api: Rajapinta
-    apps: Mobiilisovellukset
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
-    documentation: Dokumentaatio
     hosted_on: Mastodon palvelimella %{domain}
-    source_code: Lähdekoodi
-    what_is_mastodon: Mikä on Mastodon?
   accounts:
-    choices_html: "%{name} valinnat:"
-    endorsements_hint: Voit suositella seuraamiasi henkilöitä web käyttöliittymän kautta, ne tulevat näkymään tähän.
-    featured_tags_hint: Voit käyttää tiettyjä aihesanoja, jotka näytetään täällä.
     follow: Seuraa
     followers:
       one: Seuraaja
       other: Seuraajat
     following: Seuratut
     instance_actor_flash: Tämä on virtuaalitili, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään yhdistämistarkoituksiin, eikä sitä tule keskeyttää.
-    joined: Liittynyt %{date}
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
-    media: Media
-    moved_html: "%{name} on muuttanut osoitteeseen %{new_profile_link}:"
-    network_hidden: Nämä tiedot eivät ole käytettävissä
     nothing_here: Täällä ei ole mitään!
-    people_followed_by: Henkilöt, joita %{name} seuraa
-    people_who_follow: Käyttäjän %{name} seuraajat
     pin_errors:
       following: Sinun täytyy seurata henkilöä jota haluat tukea
     posts:
       one: Julkaisu
       other: Julkaisut
     posts_tab_heading: Julkaisut
-    posts_with_replies: Julkaisut ja vastaukset
-    roles:
-      bot: Botti
-      group: Ryhmä
-    unavailable: Profiili ei saatavilla
-    unfollow: Lopeta seuraaminen
   admin:
     account_actions:
       action: Suorita toimenpide
@@ -1148,9 +1128,6 @@ fi:
         hint: Tämä suodatin koskee yksittäisten viestien valintaa muista kriteereistä riippumatta. Voit lisätä lisää viestejä tähän suodattimeen web-käyttöliittymästä.
         title: Suodatetut viestit
   footer:
-    developers: Kehittäjille
-    more: Lisää…
-    resources: Resurssit
     trending_now: Suosittua nyt
   generic:
     all: Kaikki
@@ -1183,7 +1160,6 @@ fi:
       following: Seurattujen lista
       muting: Mykistettyjen lista
     upload: Lähetä
-  in_memoriam_html: Muistoissamme.
   invites:
     delete: Poista käytöstä
     expired: Vanhentunut
@@ -1361,22 +1337,7 @@ fi:
     remove_selected_follows: Lopeta valittujen käyttäjien seuraaminen
     status: Tilin tila
   remote_follow:
-    acct: Syötä se käyttäjätunnus@verkkotunnus, josta haluat seurata
     missing_resource: Vaadittavaa uudelleenohjaus-URL:ää tiliisi ei löytynyt
-    no_account_html: Eikö sinulla ole tiliä? Voit <a href='%{sign_up_path}' target='_blank'>rekisteröityä täällä</a>
-    proceed: Siirry seuraamaan
-    prompt: 'Olet aikeissa seurata:'
-    reason_html: "<strong>Miksi tämä vaihe on tarpeen?</strong> <code>%{instance}</code> ei ehkä ole se palvelin, jolle olet rekisteröitynyt, joten meidän täytyy ensin ohjata sinut kotipalvelimellesi."
-  remote_interaction:
-    favourite:
-      proceed: Jatka suosikiksi lisäämiseen
-      prompt: 'Haluat lisätä suosikiksi julkaisun:'
-    reblog:
-      proceed: Jatka buustaamiseen
-      prompt: 'Haluat buustata julkaisun:'
-    reply:
-      proceed: Jatka vastaamiseen
-      prompt: 'Haluat vastata julkaisuun:'
   reports:
     errors:
       invalid_rules: ei viittaa voimassa oleviin sääntöihin

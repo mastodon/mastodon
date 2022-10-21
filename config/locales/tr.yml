@@ -2,46 +2,26 @@
 tr:
   about:
     about_mastodon_html: Mastodon <em>ücretsiz ve açık kaynaklı</em> bir sosyal ağdır. <em>Merkezileştirilmemiş</em> yapısı sayesinde diğer ticari sosyal platformların aksine iletişimininizin tek bir firmada tutulmasının/yönetilmesinin önüne geçer. Güvendiğiniz bir sunucuyu seçerek oradaki kişilerle etkileşimde bulunabilirsiniz. Herkes kendi Mastodon sunucusunu kurabilir ve sorunsuz bir şekilde Mastodon <em>sosyal ağına</em> dahil edebilir.
-    api: API
-    apps: Mobil uygulamalar
     contact_missing: Ayarlanmadı
     contact_unavailable: Yok
-    documentation: Belgeler
     hosted_on: Mastodon %{domain} üzerinde barındırılıyor
-    privacy_policy: Gizlilik Politikası
-    source_code: Kaynak kodu
-    what_is_mastodon: Mastodon nedir?
+    title: Hakkında
   accounts:
-    choices_html: "%{name} kişisinin seçimleri:"
-    endorsements_hint: Takip ettiğiniz kişileri web arayüzünden onaylayabilirsiniz, burada görünecekler.
-    featured_tags_hint: Burada görüntülenecek belirli etiketlere sahip olabilirsiniz.
     follow: Takip et
     followers:
       one: Takipçi
       other: Takipçi
     following: Takip edilenler
     instance_actor_flash: Bu hesap, herhangi bir bireysel kullanıcı değil, sunucunun kendisini temsil etmek için kullanılan sanal bir aktördür. Birleştirme amacıyla kullanılmaktadır ve askıya alınmamalıdır.
-    joined: "%{date} tarihinde katıldı"
     last_active: son etkinlik
     link_verified_on: Bu bağlantının mülkiyeti %{date} tarihinde kontrol edildi
-    media: Medya
-    moved_html: "%{name}, %{new_profile_link} adresine taşındı:"
-    network_hidden: Bu bilgi mevcut değil
     nothing_here: Burada henüz hiçbir gönderi yok!
-    people_followed_by: Kullanıcı %{name}'in takip ettikleri
-    people_who_follow: Kullanıcı %{name}'i takip edenler
     pin_errors:
       following: Onaylamak istediğiniz kişiyi zaten takip ediyor olmalısınız
     posts:
       one: Gönderi
       other: Gönderiler
     posts_tab_heading: Gönderiler
-    posts_with_replies: Gönderiler ve yanıtlar
-    roles:
-      bot: Bot
-      group: Grup
-    unavailable: Profil kullanılamıyor
-    unfollow: Takibi bırak
   admin:
     account_actions:
       action: Eylemi gerçekleştir
@@ -344,6 +324,7 @@ tr:
       listed: Listelenen
       new:
         title: Yeni özel emoji ekle
+      no_emoji_selected: Hiçbiri seçilmediğinden hiçbir emoji değiştirilmedi
       not_permitted: Bu işlemi gerçekleştirme izniniz yok
       overwrite: Üzerine yaz
       shortcode: Kısa kod
@@ -812,6 +793,9 @@ tr:
         description_html: Bu bağlantılar şu anda sunucunuzun gönderilerini gördüğü hesaplarca bolca paylaşılıyor. Kullanıcılarınızın dünyada neler olduğunu görmesine yardımcı olabilir. Yayıncıyı onaylamadığınız sürece hiçbir bağlantı herkese açık yayınlanmaz. Tekil bağlantıları onaylayabilir veya reddedebilirsiniz.
         disallow: Bağlantıya izin verme
         disallow_provider: Yayıncıya izin verme
+        no_link_selected: Hiçbiri seçilmediğinden hiçbir bağlantı değiştirilmedi
+        publishers:
+          no_publisher_selected: Hiçbiri seçilmediğinden hiçbir yayıncı değiştirilmedi
         shared_by_over_week:
           one: Geçen hafta bir kişi paylaştı
           other: Geçen hafta %{count} kişi paylaştı
@@ -831,6 +815,7 @@ tr:
         description_html: Bunlar, sunucunuzca bilinen, şu an sıklıkla paylaşılan ve beğenilen gönderilerdir. Yeni ve geri dönen kullanıcılarınızın takip etmesi için daha fazla kullanıcı bulmasına yararlar. Siz yazarı onaylamadığınız ve yazar hesabının başkalarına önerilmesine izin vermediği sürece gönderileri herkese açık olarak gösterilmez. Tekil gönderileri de onaylayabilir veya reddedebilirsiniz.
         disallow: Gönderi iznini kaldır
         disallow_account: Yazar iznini kaldır
+        no_status_selected: Hiçbiri seçilmediğinden hiçbir öne çıkan gönderi değiştirilmedi
         not_discoverable: Yazar keşfedilebilir olmamayı seçiyor
         shared_by:
           one: Bir defa paylaşıldı veya favorilendi
@@ -846,6 +831,7 @@ tr:
           tag_uses_measure: toplam kullanım
         description_html: Bunlar sunucunuzun gördüğü gönderilerde sıklıkla gözüken etiketlerdir. Kullanıcılarınızın, şu an en çok ne hakkında konuşulduğunu görmesine yardımcı olurlar. Onaylamadığınız sürece etiketler herkese açık görünmez.
         listable: Önerilebilir
+        no_tag_selected: Hiçbiri seçilmediğinden hiçbir etiket değiştirilmedi
         not_listable: Önerilmeyecek
         not_trendable: Öne çıkanlar altında görünmeyecek
         not_usable: Kullanılamaz
@@ -1169,9 +1155,6 @@ tr:
         hint: Bu filtre diğer ölçütlerden bağımsız olarak tekil gönderileri seçmek için uygulanıyor. Web arayüzünü kullanarak bu filtreye daha fazla gönderi ekleyebilirsiniz.
         title: Filtrelenmiş gönderiler
   footer:
-    developers: Geliştiriciler
-    more: Daha Fazla…
-    resources: Kaynaklar
     trending_now: Şu an gündemde
   generic:
     all: Tümü
@@ -1214,7 +1197,6 @@ tr:
       following: Takip edilenler listesi
       muting: Susturulanlar listesi
     upload: Yükle
-  in_memoriam_html: Hatırada.
   invites:
     delete: Devre dışı bırak
     expired: Süresi dolmuş
@@ -1394,22 +1376,7 @@ tr:
     remove_selected_follows: Seçili kullanıcıları takip etmeyi bırak
     status: Hesap durumu
   remote_follow:
-    acct: İşlem yapmak istediğiniz kullaniciadi@alanadini girin
     missing_resource: Hesabınız için gerekli yönlendirme URL'si bulunamadı
-    no_account_html: Hesabınız yok mu? <a href='%{sign_up_path}' target='_blank'>Buradan kaydolabilirsiniz</a>
-    proceed: Takip etmek için devam edin
-    prompt: Bu kullanıcıyı takip etmek istediğinize emin misiniz?
-    reason_html: "<strong>Bu adım neden gerekli?</strong><code>%{instance}</code> kayıtlı olduğunuz sunucu olmayabilir, bu yüzden önce sizi kendi sunucunuza yönlendirmemiz gerekmektedir."
-  remote_interaction:
-    favourite:
-      proceed: Favorilere eklemek için devam edin
-      prompt: 'Bu gönderiyi favorilerinize eklemek istiyorsunuz:'
-    reblog:
-      proceed: Boostlamak için devam edin
-      prompt: 'Bu gönderiyi teşvik etmek istiyorsunuz:'
-    reply:
-      proceed: Yanıtlamak için devam edin
-      prompt: 'Bu gönderiyi yanıtlamak istiyorsunuz:'
   reports:
     errors:
       invalid_rules: geçerli kurallara işaret etmez

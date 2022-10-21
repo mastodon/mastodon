@@ -2,46 +2,26 @@
 ca:
   about:
     about_mastodon_html: 'La xarxa social del futur: sense anuncis, sense vigilància corporativa, disseny ètic i descentralització. Tingues el control de les teves dades amb Mastodon!'
-    api: API
-    apps: Aplicacions mòbils
     contact_missing: No configurat
     contact_unavailable: N/D
-    documentation: Documentació
     hosted_on: Mastodon allotjat a %{domain}
-    privacy_policy: Política de Privacitat
-    source_code: Codi font
-    what_is_mastodon: Què és Mastodon?
+    title: Quant a
   accounts:
-    choices_html: 'Eleccions de %{name}:'
-    endorsements_hint: Pots recomanar persones que segueixes des de la interfície de web i apareixeran aquí.
-    featured_tags_hint: Pots presentar etiquetes específiques que seràn mostrades aquí.
     follow: Segueix
     followers:
       one: Seguidor
       other: Seguidors
     following: Seguint
     instance_actor_flash: Aquest compte és un actor virtual usat per a representar el mateix servidor i no cap usuari individual. Es fa servir per a federar i no s'hauria d'esborrar.
-    joined: Unit des de %{date}
     last_active: última activitat
     link_verified_on: La propietat d'aquest enllaç s'ha verificat el %{date}
-    media: Mèdia
-    moved_html: "%{name} s'ha mogut a %{new_profile_link}:"
-    network_hidden: Aquesta informació no està disponible
     nothing_here: No hi ha res aquí!
-    people_followed_by: Persones seguides per %{name}
-    people_who_follow: Usuaris que segueixen %{name}
     pin_errors:
       following: Has d'estar seguint la persona que vulguis avalar
     posts:
       one: Publicació
       other: Publicacions
     posts_tab_heading: Publicacions
-    posts_with_replies: Publicacions i respostes
-    roles:
-      bot: Bot
-      group: Grup
-    unavailable: Perfil inaccessible
-    unfollow: Deixa de seguir
   admin:
     account_actions:
       action: Realitzar acció
@@ -344,6 +324,7 @@ ca:
       listed: Enumerat
       new:
         title: Afegeix emoji personalitzat nou
+      no_emoji_selected: No s'ha canviat cap emoji perquè cap ha estat seleccionat
       not_permitted: No tens permís per a realitzar aquesta acció
       overwrite: Sobreescriure
       shortcode: Codi curt
@@ -812,6 +793,9 @@ ca:
         description_html: Aquests son enllaços que ara mateix s'estan compartint molt per els comptes que el teu servidor en veu les publicacions. Poden ajudar als teus usuaris a trobar què està passant en el món. Cap dels enllaços es mostra publicament fins que no aprovis el mitjà. També pots aceptar o rebutjar enllaços individuals.
         disallow: No permetre l'enllaç
         disallow_provider: No permetre el mitjà
+        no_link_selected: No s'ha canviat cap enllaç perquè cap ha estat seleccionat
+        publishers:
+          no_publisher_selected: No s'ha canviat cap editor perquè cap ha estat seleccionat
         shared_by_over_week:
           one: Compartit per una persona en la darrera setmana
           other: Compartit per %{count} persones en la darrera setmana
@@ -831,6 +815,7 @@ ca:
         description_html: Aquestes son publicacions que el teu servidor veu i que ara mateix s'estan compartint i afavorint molt. Poden ajudar als teus nous usuaris i als que retornen a trobar més gent a qui seguir. Cap publicació es mostra publicament fins que no aprovis l'autor i l'autor permeti que el seu compte sigui sugerit a altres. També pots aceptar o rebutjar publicacions individuals.
         disallow: Rebutja publicació
         disallow_account: Rebutja autor
+        no_status_selected: No s'ha canviat els apunts en tendència perquè cap ha estat seleccionat
         not_discoverable: L'autor no ha activat poder ser detectable
         shared_by:
           one: Compartit o afavorit una vegada
@@ -846,6 +831,7 @@ ca:
           tag_uses_measure: total usos
         description_html: Aquestes son etiquetes que ara mateix estan apareixen en moltes publicacions que el teu servidor veu. Poden ajudar als teus usuaris a trobar de què està parlant majoritariament la gent en aquest moment. Cap etiqueta es mostra publicament fins que no l'aprovis.
         listable: Es pot suggerir
+        no_tag_selected: No s'ha canviat cap etiqueta perquè cap ha estat seleccionada
         not_listable: No es pot suggerir
         not_trendable: No apareixeran en les tendències
         not_usable: No pot ser emprat
@@ -1169,9 +1155,6 @@ ca:
         hint: Aquest filtre aplica als apunts seleccionats independentment d'altres criteris. Pots afegir més apunts a aquest filtre des de l'interfície Web.
         title: Apunts filtrats
   footer:
-    developers: Desenvolupadors
-    more: Més…
-    resources: Recursos
     trending_now: En tendència
   generic:
     all: Tot
@@ -1214,7 +1197,6 @@ ca:
       following: Llista de seguits
       muting: Llista de silenciats
     upload: Carrega
-  in_memoriam_html: En Memòria.
   invites:
     delete: Desactiva
     expired: Caducat
@@ -1394,22 +1376,7 @@ ca:
     remove_selected_follows: Deixa de seguir als usuaris seleccionats
     status: Estat del compte
   remote_follow:
-    acct: Escriu el teu usuari@domini des del qual vols seguir
     missing_resource: No s'ha pogut trobar la URL de redirecció necessària per al compte
-    no_account_html: No tens cap compte? Pots <a href='%{sign_up_path}' target='_blank'>registrar-te aquí</a>
-    proceed: Comença a seguir
-    prompt: 'Seguiràs a:'
-    reason_html: "<strong>Per què és necessari aquest pas?</strong> <code>%{instance}</code> pot ser que no sigui el servidor on estàs registrat per tant primer hem de redirigir-te al teu servidor."
-  remote_interaction:
-    favourite:
-      proceed: Procedir a afavorir
-      prompt: 'Vols marcar com a favorit aquesta publicació:'
-    reblog:
-      proceed: Procedir a impulsar
-      prompt: 'Vols impulsar aquesta publicació:'
-    reply:
-      proceed: Procedir a respondre
-      prompt: 'Vols respondre a aquesta publicació:'
   reports:
     errors:
       invalid_rules: no fa referència a normes vàlides

@@ -2,46 +2,26 @@
 gl:
   about:
     about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
-    api: API
-    apps: Aplicacións móbiles
     contact_missing: Non establecido
     contact_unavailable: Non dispoñíbel
-    documentation: Documentación
     hosted_on: Mastodon aloxado en %{domain}
-    privacy_policy: Política de Privacidade
-    source_code: Código fonte
-    what_is_mastodon: Qué é Mastodon?
+    title: Acerca de
   accounts:
-    choices_html: 'Escollas de %{name}:'
-    endorsements_hint: Podes suxerir a persoas que segues dende a interface web, e amosaranse aquí.
-    featured_tags_hint: Podes destacar determinados cancelos que se amosarán aquí.
     follow: Seguir
     followers:
       one: Seguidora
       other: Seguidoras
     following: Seguindo
     instance_actor_flash: Esta conta é un actor virtual utilizado para representar ó servidor mesmo e non a unha usuaria individual. Utilízase por motivos de federación e non debería estar suspendida.
-    joined: Uniuse en %{date}
     last_active: última actividade
     link_verified_on: A propiedade desta ligazón foi verificada en %{date}
-    media: Multimedia
-    moved_html: "%{name} mudouse a %{new_profile_link}:"
-    network_hidden: Esta información non está dispoñíbel
     nothing_here: Non hai nada aquí!
-    people_followed_by: Persoas que segue %{name}
-    people_who_follow: Persoas que seguen a %{name}
     pin_errors:
       following: Tes que seguir á persoa que queres engadir
     posts:
       one: Publicación
       other: Publicacións
     posts_tab_heading: Publicacións
-    posts_with_replies: Publicacións e respostas
-    roles:
-      bot: Bot
-      group: Grupo
-    unavailable: Perfil non dispoñíbel
-    unfollow: Deixar de seguir
   admin:
     account_actions:
       action: Executar acción
@@ -344,6 +324,7 @@ gl:
       listed: Listado
       new:
         title: Engadir nova emoticona personalizado
+      no_emoji_selected: Non se cambiou ningún emoji xa que ningún foi seleccionado
       not_permitted: Non podes realizar esta acción
       overwrite: Sobrescribir
       shortcode: Código curto
@@ -812,6 +793,9 @@ gl:
         description_html: Estas son ligazóns que actualmente están sendo compartidas por moitas contas das que o teu servidor recibe publicación. Pode ser de utilidade para as túas usuarias para saber o que acontece polo mundo. Non se mostran ligazóns de xeito público a non ser que autorices a quen as publica. Tamén podes permitir ou rexeitar ligazóns de xeito individual.
         disallow: Denegar ligazón
         disallow_provider: Denegar orixe
+        no_link_selected: Non se cambiou ningunha ligazón xa que non había ningunha seleccionada
+        publishers:
+          no_publisher_selected: Non se cambiou ningún autor xa que ningún foi seleccionado
         shared_by_over_week:
           one: Compartido por unha persoa na última semana
           other: Compartido por %{count} persoas na última semana
@@ -831,6 +815,7 @@ gl:
         description_html: Estas son publicacións que o teu servidor coñece que están sendo compartidas e favorecidas en gran número neste intre. Pode ser útil para as persoas recén chegadas e as que retornan para que atopen persoas a quen seguir. Non se mostran publicamente a menos que aprobes a autora, e a autora permita que a súa conta sexa suxerida a outras. Tamén podes rexeitar ou aprobar publicacións individuais.
         disallow: Rexeitar publicación
         disallow_account: Rexeitar autora
+        no_status_selected: Non se cambiou ningunha publicación en voga xa que non había ningunha seleccionada
         not_discoverable: A autora non elexiu poder ser atopada
         shared_by:
           one: Compartida ou favorecida unha vez
@@ -846,6 +831,7 @@ gl:
           tag_uses_measure: total de usos
         description_html: Estes son cancelos que actualmente están presentes en moitas publicacións que o teu servidor recibe. Pode ser útil para que as túas usuarias atopen a outras persoas a través do máis comentado neste intre. Non se mostran cancelos públicamente que non fosen aprobados por ti.
         listable: Pode ser suxerida
+        no_tag_selected: Non se cambiaron cancelos porque ningún foi seleccionado
         not_listable: Non vai ser suxerida
         not_trendable: Non aparecerá en tendencias
         not_usable: Non pode ser usado
@@ -926,7 +912,7 @@ gl:
     remove: Desligar alcume
   appearance:
     advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se queres empregar todo o ancho da túa pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, cronoloxía federada, calquera número de listaxes e cancelos.
+    advanced_web_interface_hint: Se queres empregar todo o ancho da pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como queiras. Inicio, notificacións, cronoloxía federada, varias listaxes e cancelos.
     animations_and_accessibility: Animacións e accesibilidade
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -1169,9 +1155,6 @@ gl:
         hint: Este filtro aplícase para seleccionar publicacións individuais independentemente de outros criterios. Podes engadir máis publicacións a este filtro desde a interface web.
         title: Publicacións filtradas
   footer:
-    developers: Desenvolvedoras
-    more: Máis…
-    resources: Recursos
     trending_now: Tendencia agora
   generic:
     all: Todo
@@ -1214,7 +1197,6 @@ gl:
       following: Lista de seguimento
       muting: Lista de usuarias acaladas
     upload: Subir
-  in_memoriam_html: Lembranzas.
   invites:
     delete: Desactivar
     expired: Caducou
@@ -1394,22 +1376,7 @@ gl:
     remove_selected_follows: Deixar de seguir as usuarias escollidas
     status: Estado da conta
   remote_follow:
-    acct: Introduza o seu usuaria@servidor desde onde quere interactuar
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
-    no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse aquí</a>
-    proceed: Proceda para seguir
-    prompt: 'Vas seguir a:'
-    reason_html: "<strong>Por que é necesario este paso?</strong><code>%{instance}</code> podería non ser o servidor onde se rexistrou, así que precisamo redirixila primeiro ao seu servidor de orixe."
-  remote_interaction:
-    favourite:
-      proceed: Darlle a favorito
-      prompt: 'Vas marcar favorita esta publicación:'
-    reblog:
-      proceed: Darlle a promocionar
-      prompt: 'Vas promover esta publicación:'
-    reply:
-      proceed: Responde
-      prompt: 'Vas responder a esta publicación:'
   reports:
     errors:
       invalid_rules: non fai referencia a regras válidas

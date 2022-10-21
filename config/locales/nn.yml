@@ -2,45 +2,25 @@
 nn:
   about:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
-    api: API
-    apps: Mobilappar
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    documentation: Dokumentasjon
     hosted_on: "%{domain} er vert for Mastodon"
-    source_code: Kjeldekode
-    what_is_mastodon: Kva er Mastodon?
   accounts:
-    choices_html: "%{name} sine val:"
-    endorsements_hint: Du kan fremja folk dy fylgjer frå grensesnittet på nettet, og då visast dei her.
-    featured_tags_hint: Du kan velja emneknaggar som skal visast her.
     follow: Fylg
     followers:
       one: Fylgjar
       other: Fylgjarar
     following: Fylgjer
     instance_actor_flash: Denne kontoen er en virtuell figur som brukes til å representere selve serveren og ikke noen individuell bruker. Den brukes til forbundsformål og bør ikke oppheves.
-    joined: Vart med %{date}
     last_active: sist aktiv
     link_verified_on: Eigarskap for denne lenkja vart sist sjekka %{date}
-    media: Media
-    moved_html: "%{name} har flytta til %{new_profile_link}:"
-    network_hidden: Denne informasjonen er ikkje tilgjengeleg
     nothing_here: Her er det ingenting!
-    people_followed_by: Folk som %{name} fylgjer
-    people_who_follow: Folk som fylgjer %{name}
     pin_errors:
       following: Du må allereie fylgja personen du vil fremja
     posts:
       one: Tut
       other: Tut
     posts_tab_heading: Tut
-    posts_with_replies: Tut og svar
-    roles:
-      bot: Robot
-      group: Gruppe
-    unavailable: Profil ikkje tilgjengeleg
-    unfollow: Slutt å fylgja
   admin:
     account_actions:
       action: Utfør
@@ -723,9 +703,6 @@ nn:
     new:
       title: Legg til nytt filter
   footer:
-    developers: Utviklarar
-    more: Meir…
-    resources: Ressursar
     trending_now: Populært no
   generic:
     all: Alle
@@ -754,7 +731,6 @@ nn:
       following: Fylgjeliste
       muting: Dempeliste
     upload: Last opp
-  in_memoriam_html: Til minne.
   invites:
     delete: Slå av
     expired: Utgått
@@ -915,22 +891,7 @@ nn:
     remove_selected_follows: Slutt å fylgja desse brukarane
     status: Kontostatus
   remote_follow:
-    acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
-    no_account_html: Har du ikkje konto? Du kan <a href='%{sign_up_path}' target='_blank'>melda deg inn her</a>
-    proceed: Hald fram med å fylgja
-    prompt: 'Du kjem til å fylgja:'
-    reason_html: "<strong>Hvorfor dette trinnet er nødvendig?</strong><code>%{instance}</code> er kanskje ikke tjeneren som du er registrert på, så vi må omdirigere deg til hjemmetjeneren din først."
-  remote_interaction:
-    favourite:
-      proceed: Merk som favoritt
-      prompt: 'Du vil merkja dette tutet som favoritt:'
-    reblog:
-      proceed: Framhev
-      prompt: 'Du vil framheva dette tutet:'
-    reply:
-      proceed: Svar
-      prompt: 'Du vil svara på dette tutet:'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter

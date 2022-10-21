@@ -2,45 +2,25 @@
 'no':
   about:
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
-    api: API
-    apps: Mobilapper
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
-    documentation: Dokumentasjon
     hosted_on: Mastodon driftet på %{domain}
-    source_code: Kildekode
-    what_is_mastodon: Hva er Mastodon?
   accounts:
-    choices_html: "%{name} sine anbefalte:"
-    endorsements_hint: Du kan fremheve personer du følger fra nettgrensesnittet som deretter vil bli vist her.
-    featured_tags_hint: Du kan fremheve spesifikke emneknagger som vil bli vist her.
     follow: Følg
     followers:
       one: Følger
       other: Følgere
     following: Følger
     instance_actor_flash: Denne kontoen er en virtuell figur som brukes til å representere selve serveren og ikke noen individuell bruker. Den brukes til forbundsformål og bør ikke oppheves.
-    joined: Ble med den %{date}
     last_active: sist aktiv
     link_verified_on: Eierskap av denne lenken ble sjekket %{date}
-    media: Media
-    moved_html: "%{name} har flyttet til %{new_profile_link}:"
-    network_hidden: Denne informasjonen er ikke tilgjengelig
     nothing_here: Det er ingenting her!
-    people_followed_by: Folk som %{name} følger
-    people_who_follow: Folk som følger %{name}
     pin_errors:
       following: Du må allerede følge personen du vil fremheve
     posts:
       one: Tut
       other: Tuter
     posts_tab_heading: Tuter
-    posts_with_replies: Tuter med svar
-    roles:
-      bot: Bot
-      group: Gruppe
-    unavailable: Profilen er utilgjengelig
-    unfollow: Slutt å følge
   admin:
     account_actions:
       action: Utfør handling
@@ -705,9 +685,6 @@
     new:
       title: Legg til nytt filter
   footer:
-    developers: Utviklere
-    more: Mer…
-    resources: Ressurser
     trending_now: Trender nå
   generic:
     all: Alle
@@ -733,7 +710,6 @@
       following: Følgeliste
       muting: Dempeliste
     upload: Opplastning
-  in_memoriam_html: Til minne.
   invites:
     delete: Deaktiver
     expired: Utløpt
@@ -894,22 +870,7 @@
     remove_selected_follows: Avfølg de valgte brukerne
     status: Kontostatus
   remote_follow:
-    acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
-    no_account_html: Har du ikke en konto? Da kan du <a href='%{sign_up_path}' target='_blank'>lage en konto her</a>
-    proceed: Fortsett med følging
-    prompt: 'Du vil følge:'
-    reason_html: "<strong>Hvorfor dette trinnet er nødvendig?</strong><code>%{instance}</code> er kanskje ikke tjeneren som du er registrert på, så vi må omdirigere deg til hjemmetjeneren din først."
-  remote_interaction:
-    favourite:
-      proceed: Fortsett til likingen
-      prompt: 'Du ønsker å like denne tuten:'
-    reblog:
-      proceed: Fortsett til fremhevingen
-      prompt: 'Du ønsker å fremheve denne tuten:'
-    reply:
-      proceed: Fortsett til svaret
-      prompt: 'Du ønsker å svare på denne tuten:'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter

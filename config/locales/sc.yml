@@ -2,45 +2,25 @@
 sc:
   about:
     about_mastodon_html: 'Sa rete sotziale de su benidore: sena publitzidade, sena vigilàntzia corporativa, disinnu èticu e detzentralizatzione! Sias mere de is datos tuos cun Mastodon!'
-    api: API
-    apps: Aplicatziones mòbiles
     contact_missing: No cunfiguradu
     contact_unavailable: No a disponimentu
-    documentation: Documentatzione
     hosted_on: Mastodon allogiadu in %{domain}
-    source_code: Còdighe de orìgine
-    what_is_mastodon: Ite est Mastodon?
   accounts:
-    choices_html: 'Sèberos de %{name}:'
-    endorsements_hint: Podes cussigiare gente chi sighis dae s'interfache web, e at a aparèssere inoghe.
-    featured_tags_hint: Podes evidentziare etichetas ispetzìficas chi ant a èssere ammustradas inoghe.
     follow: Sighi
     followers:
       one: Sighidura
       other: Sighiduras
     following: Sighende
     instance_actor_flash: Custu contu est un'atore virtuale chi costumaiat a rapresentare su serbidore etotu e nono unu cale si siat utente individuale. Est impreadu pro finalidades de sa federatzione e non si depet suspèndere.
-    joined: At aderidu su %{date}
     last_active: ùrtima atividade
     link_verified_on: Sa propiedade de custu ligàmene est istada controllada su %{date}
-    media: Elementos multimediales
-    moved_html: "%{name} est istadu trasferidu a %{new_profile_link}:"
-    network_hidden: Custa informatzione no est a disponimentu
     nothing_here: Nudda inoghe.
-    people_followed_by: Gente sighida dae %{name}
-    people_who_follow: Gente chi sighit a %{name}
     pin_errors:
       following: Depes sighire sa persone chi boles promòvere
     posts:
       one: Tut
       other: Tuts
     posts_tab_heading: Tuts
-    posts_with_replies: Tuts e rispostas
-    roles:
-      bot: Bot
-      group: Grupu
-    unavailable: Su profilu no est a disponimentu
-    unfollow: Non sigas prus
   admin:
     account_actions:
       action: Faghe un'atzione
@@ -741,9 +721,6 @@ sc:
     new:
       title: Agiunghe unu filtru nou
   footer:
-    developers: Iscuadra de isvilupu
-    more: Àteru…
-    resources: Resursas
     trending_now: Est tendèntzia immoe
   generic:
     all: Totus
@@ -774,7 +751,6 @@ sc:
       following: Lista de sighiduras
       muting: Lista gente a sa muda
     upload: Càrriga
-  in_memoriam_html: In memoriam.
   invites:
     delete: Disativa
     expired: Iscadidu
@@ -934,22 +910,7 @@ sc:
     remove_selected_follows: Non sigas prus is persones seletzionadas
     status: Istadu de su contu
   remote_follow:
-    acct: Inserta·nche s'utente@domìniu tuo dae su chi boles sighire custa persone
     missing_resource: Impossìbile agatare sa rechesta de indiritzamentu URL pro su contu tuo
-    no_account_html: Non tenes ancora unu contu? Ti podes <a href='%{sign_up_path}' target='_blank'>registrare inoghe</a>
-    proceed: Cumintza a sighire
-    prompt: 'As a sighire a:'
-    reason_html: "<strong>Pro ite serbit custu?</strong> Podet èssere chi <code>%{instance}</code> non siat su serbidore aunde ses registradu, pro custu tenimus bisòngiu de ti torrare a indiritzare prima a su serbidore tuo."
-  remote_interaction:
-    favourite:
-      proceed: Sighi pro marcare che a preferidu
-      prompt: 'Boles marcare comente a preferidu custu tut:'
-    reblog:
-      proceed: Sighi pro cumpartzire
-      prompt: 'Boles cumpartzire custu tut:'
-    reply:
-      proceed: Sighi pro rispòndere
-      prompt: 'Boles rispòndere a custu tut:'
   scheduled_statuses:
     over_daily_limit: As superadu su lìmite de %{limit} tuts programmados pro cudda die
     over_total_limit: As superadu su lìmite de %{limit} tuts programmados

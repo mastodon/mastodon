@@ -2,46 +2,26 @@
 ku:
   about:
     about_mastodon_html: 'Tora civakî ya pêşerojê: Ne reklam, ne çavdêriya pargîdanî, sêwirana exlaqî, û desentralîzasyon! Bi Mastodon re bibe xwediyê daneyên xwe!'
-    api: API
-    apps: Sepana mobîl
     contact_missing: Nehate sazkirin
     contact_unavailable: N/A
-    documentation: Pelbend
     hosted_on: Mastodon li ser %{domain} tê pêşkêşkirin
-    privacy_policy: Politîka taybetiyê
-    source_code: Çavkaniya Kodî
-    what_is_mastodon: Mastodon çi ye?
+    title: Derbar
   accounts:
-    choices_html: 'Hilbijartina %{name}:'
-    endorsements_hint: Tu dikarî kesên ku di navrûya tevnê de dişopînî bipejirînî û ew ê li vir were nîşankirin.
-    featured_tags_hint: Tu dikarî hashtagên taybet ên ku wê li vir werin nîşandan bibînî.
     follow: Bişopîne
     followers:
       one: Şopîner
       other: Şopîner
     following: Dişopîne
     instance_actor_flash: Ev ajimêr listikvaneke rastkî ye ku ji bo wek nûnerê rajekar bixwe tê bikaranîn û ne bikarhênerek kesane. Ew ji bo mebestên giştî tê bikaranîn û divê neyê rawestandin.
-    joined: Di %{date} de tevlî bû
     last_active: çalakiya dawî
     link_verified_on: Xwedaniya li vê girêdanê di %{date} de hatiye kontrolkirin
-    media: Medya
-    moved_html: "%{name} bar kire %{new_profile_link}:"
-    network_hidden: Ev zanyarî berdest nîne
     nothing_here: Li vir tiştek tune ye!
-    people_followed_by: Kesên ku %{name} wan dişopîne
-    people_who_follow: Kesên%{name} dişopîne
     pin_errors:
       following: Kesê ku tu dixwazî bipejirînî jixwe tu vê dişopînî
     posts:
       one: Şandî
       other: Şandî
     posts_tab_heading: Şandî
-    posts_with_replies: Şandî û bersiv
-    roles:
-      bot: Bot
-      group: Kom
-    unavailable: Profîl nay bikaranîn
-    unfollow: Neşopîne
   admin:
     account_actions:
       action: Çalakî yê bike
@@ -344,6 +324,7 @@ ku:
       listed: Rêzokkirî
       new:
         title: Hestokên kesane yên nû lê zêde bike
+      no_emoji_selected: Tu emojî nehatin hilbijartin ji ber vê tu şandî jî nehatin guhertin
       not_permitted: Mafê te tune ku tu vê çalakiyê bikî
       overwrite: Bi ser de binivsîne
       shortcode: Kurtekod
@@ -814,6 +795,9 @@ ku:
         description_html: Van girêdanên ku niha ji hêla ajimêrên ku rajekarê te ji wan peyaman dibîne pir têne parvekirin. Ew dikare ji bikarhênerên te re bibe alîkar ku fêr bibin ka li cîhanê çi diqewime. Heya ku tu weşanger nepejirînin, ti girêdan bi gelemperî nayê xuyangkirin. Her weha tu dikarî mafê bidî girêdanên kesane an jî nedî.
         disallow: Mafê nede girêdanê
         disallow_provider: Mafê nede weşanger
+        no_link_selected: Tu girêdan nehatin hilbijartin ji ber vê tu girêdan jî nehatin guhertin
+        publishers:
+          no_publisher_selected: Tu weşan nehatin hilbijartin ji ber vê tu weşan jî nehatin guhertin
         shared_by_over_week:
           one: Di nava hefteya dawî de ji aliyê keskekî ve hate parvekirin
           other: Di nava hefteya dawî de ji aliyê %{count} ve hate parvekirin
@@ -833,6 +817,7 @@ ku:
         description_html: Van şandiyên ku rajekarê te pê dizane ku niha pir têne parvekirin û bijartekirin. Ew dikare ji bikarhênerên te yên nû û yên vedigerin re bibe alîkar ku bêtir mirovên ku bişopînin bibînin. Heya ku tu nivîskar nepejirînî, tu şandî bi gelemperî nayên xuyangkirin, û nivîskar mafê dide ku ajimêrê xwe ji kesên din re were pêşniyarkirin. Her weha tu dikarî mafê bidî şandiyên kesane an jî nedî.
         disallow: Mafê nede şandiyê
         disallow_account: Mafê nede nivîskar
+        no_status_selected: Tu şandiyên rojevê nehatin hilbijartin ji ber vê tu şandî jî nehatin guhertin
         not_discoverable: Nivîskar nejilbijartiye ji bo ku were kifşkirin
         shared_by:
           one: Yek carî parvekirî an bijartî
@@ -848,6 +833,7 @@ ku:
           tag_uses_measure: bikaranîna giştî
         description_html: Ev hashtag in ku niha di gelek şandiyên ku rajekarê te dibîne de xuya dibin. Ew dikare ji bikarhênerên te re bibe alîkar ku fêr bibin ka mirov di vê demê de herî pir li ser çi diaxive. Heya ku tu wan nepejirînî, tu hashtag bi gelemperî nayê xuyangkirin.
         listable: Dikare were pêşniyarkirin
+        no_tag_selected: Tu hashtag nehatin hilbijartin ji ber vê tu hashtag jî nehatin guhertin
         not_listable: Nikare wer pêşniyarkirin
         not_trendable: Wê di bin rojevan de xuya neke
         not_usable: Nikare were bikaranîn
@@ -1171,9 +1157,6 @@ ku:
         hint: Ev parzûn bêyî pîvanên din ji bo hilbijartina şandiyên kesane tê sepandin. Tu dikarî ji navrûya tevnê bêtir şandiyan tevlî vê parzûnê bikî.
         title: Şandiyên parzûnkirî
   footer:
-    developers: Pêşdebir
-    more: Bêtir…
-    resources: Çavkanî
     trending_now: Niha rojevê de
   generic:
     all: Hemû
@@ -1216,7 +1199,6 @@ ku:
       following: Rêzoka yên dişopînin
       muting: Rêzoka bêdengiyê
     upload: Bar bike
-  in_memoriam_html: Di bîranînê de.
   invites:
     delete: Neçalak bike
     expired: Dema wê qediya
@@ -1396,22 +1378,7 @@ ku:
     remove_selected_follows: Bikarhênerên hilbijartî neşopîne
     status: Rewşa ajimêr
   remote_follow:
-    acct: Navnîşana ajimêra xwe username@domain yê ku tu yê jê çalakî bikî binvsîne
     missing_resource: Ji bona ajimêra te pêwistiya beralîkirina URLyê nehate dîtin
-    no_account_html: Ajimêra te tune? Tu dikarî<a href='%{sign_up_path}' target='_blank'>li vir tomar bibe</a>
-    proceed: Şopandinê bidomîne
-    prompt: 'Tu yê bişopînî:'
-    reason_html: "<strong>Ev gav ji bona çi pêwîst e?</strong><code>%{instance}</code>rajekerên ku tu tomarkiriyî dibe ku tunebe, ji bona vê divê pêşî te beralîyê rajekera te bi xwe bikin."
-  remote_interaction:
-    favourite:
-      proceed: Ber bi bijarteyê ve biçe
-      prompt: 'Tu dixwazî vê şandiyê bibijêrî:'
-    reblog:
-      proceed: Bo bilindkirinê bidomîne
-      prompt: 'Tu dixwazî vê şandî ye bilind bikî:'
-    reply:
-      proceed: Bersivandinê bidomîne
-      prompt: 'Tu dixwazî bersiva vê şandiyê bidî:'
   reports:
     errors:
       invalid_rules: rêbazên derbasdar nîşan nadê

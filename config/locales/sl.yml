@@ -2,19 +2,11 @@
 sl:
   about:
     about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
-    api: API (programerski vmesnik aplikacije)
-    apps: Mobilne aplikacije
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
-    documentation: Dokumentacija
     hosted_on: Mastodon gostuje na %{domain}
-    privacy_policy: Pravilnik o zasebnosti
-    source_code: Izvorna koda
-    what_is_mastodon: Kaj je Mastodon?
+    title: O programu
   accounts:
-    choices_html: "%{name} izbire:"
-    endorsements_hint: Osebe, ki jim sledite, lahko podprete prek spletnega vmesnika in prikazane bodo tukaj.
-    featured_tags_hint: Izpostavite lahko določene ključnike, ki bodo prikazani na tem mestu.
     follow: Sledi
     followers:
       few: Sledilci
@@ -23,15 +15,9 @@ sl:
       two: Sledilca
     following: Sledim
     instance_actor_flash: Ta račun je navidezni akter, ki se uporablja za predstavljanje strežnika samega in ne posameznega uporabnika. Uporablja se za namene federacije in se ne sme začasno ustaviti.
-    joined: Se je pridružil na %{date}
     last_active: zadnja dejavnost
     link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
-    media: Mediji
-    moved_html: "%{name} se je prestavil na %{new_profile_link}:"
-    network_hidden: Ta informacija ni na voljo
     nothing_here: Tukaj ni ničesar!
-    people_followed_by: Ljudje, ki jim sledi %{name}
-    people_who_follow: Ljudje, ki sledijo %{name}
     pin_errors:
       following: Verjetno že sledite osebi, ki jo želite potrditi
     posts:
@@ -40,12 +26,6 @@ sl:
       other: Objav
       two: Tuta
     posts_tab_heading: Objave
-    posts_with_replies: Objave in odgovori
-    roles:
-      bot: Robot
-      group: Skupina
-    unavailable: Profil ni na voljo
-    unfollow: Prenehaj slediti
   admin:
     account_actions:
       action: Izvedi dejanje
@@ -201,7 +181,7 @@ sl:
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
         create_canonical_email_block: Ustvari blokado e-pošte
-        create_custom_emoji: Ustvari emodži po meri
+        create_custom_emoji: Ustvari emotikon po meri
         create_domain_allow: Ustvari odobritev domene
         create_domain_block: Ustvari blokado domene
         create_email_domain_block: Ustvari blokado domene e-pošte
@@ -211,7 +191,7 @@ sl:
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
         destroy_canonical_email_block: Izbriši blokado e-pošte
-        destroy_custom_emoji: Izbriši emodži po meri
+        destroy_custom_emoji: Izbriši emotikon po meri
         destroy_domain_allow: Izbriši odobritev domene
         destroy_domain_block: Izbriši blokado domene
         destroy_email_domain_block: Izbriši blokado domene e-pošte
@@ -221,10 +201,10 @@ sl:
         destroy_unavailable_domain: Izbriši domeno, ki ni na voljo
         destroy_user_role: Uniči vlogo
         disable_2fa_user: Onemogoči
-        disable_custom_emoji: Onemogoči emodži po meri
+        disable_custom_emoji: Onemogoči emotikon po meri
         disable_sign_in_token_auth_user: Onemogoči overjanje z žetonom po e-pošti za uporabnika
         disable_user: Onemogoči uporabnika
-        enable_custom_emoji: Omogoči emodži po meri
+        enable_custom_emoji: Omogoči emotikon po meri
         enable_sign_in_token_auth_user: Omogoči overjanje z žetonom po e-pošti za uporabnika
         enable_user: Omogoči uporabnika
         memorialize_account: Spomenificiraj račun
@@ -244,7 +224,7 @@ sl:
         unsilence_account: Razveljavi omejitev računa
         unsuspend_account: Prekliči začasno prekinitev računa
         update_announcement: Posodobi objavo
-        update_custom_emoji: Posodobi emodži po meri
+        update_custom_emoji: Posodobi emotikon po meri
         update_domain_block: Posodobi blokado domene
         update_ip_block: Posodobi pravilo IP
         update_status: Posodobi objavo
@@ -350,6 +330,7 @@ sl:
       listed: Navedeno
       new:
         title: Dodaj nove emotikone
+      no_emoji_selected: Noben emotikon ni bil spremenjen, ker noben ni bil izbran
       not_permitted: Nimate pravic za izvedbo tega dejanja.
       overwrite: Prepiši
       shortcode: Kratka koda
@@ -677,8 +658,8 @@ sl:
         manage_appeals_description: Omogoča uporabnikom, da pregledajo pritožbe glede dejanj moderiranja
         manage_blocks: Upravljaj blokirano
         manage_blocks_description: Omogoča uporabnikom, da blokirajo ponudnike e-pošte in naslove IP
-        manage_custom_emojis: Upravljaj emodžije po meri
-        manage_custom_emojis_description: Omogoča uporabnikom, da upravljajo emodžije po meri na strežniku
+        manage_custom_emojis: Upravljaj emotikone po meri
+        manage_custom_emojis_description: Omogoča uporabnikom, da upravljajo emotikone po meri na strežniku
         manage_federation: Upravljaj beli seznam
         manage_federation_description: Omogoča uporabnikom blokirati ali dovoljevati vstop na beli seznam z druimi domenami ter nadzirati dostavljivost
         manage_invites: Upravljaj vabila
@@ -840,6 +821,9 @@ sl:
         description_html: To so povezave, ki jih trenutno veliko delijo računi, iz katerih vaš strežnik vidi objave. Vašim uporabnikom lahko pomaga izvedeti, kaj se dogaja po svetu. Nobene povezave niso javno prikazane, dokler ne odobrite izdajatelja. Posamezne povezave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli povezave
         disallow_provider: Ne dovoli izdajatelja
+        no_link_selected: Nobena povezava ni bila spremenjena, ker nobena ni bila izbrana
+        publishers:
+          no_publisher_selected: Noben izdajatelj ni bil spremenjen, ker noben ni bila izbran
         shared_by_over_week:
           few: Delile %{count} osebe v zadnjem tednu
           one: Delila %{count} oseba v zadnjem tednu
@@ -861,6 +845,7 @@ sl:
         description_html: To so objave, za katere vaš strežnik ve, da so trenutno v skupni rabi in med priljubljenimi. Vašim novim uporabnikom in uporabnikom, ki se vračajo, lahko pomaga najti več oseb, ki jim bodo sledili. Nobena objava ni javno prikazana, dokler avtorja ne odobrite in avtor ne dovoli, da se njegov račun predlaga drugim. Posamezne objave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli objave
         disallow_account: Ne dovoli avtorja
+        no_status_selected: Nobena trendna objava ni bila spremenjena, ker ni bila nobena izbrana
         not_discoverable: Avtor ni dovolil, da bi ga bilo moč odkriti
         shared_by:
           few: Deljeno ali priljubljeno %{friendly_count}-krat
@@ -878,6 +863,7 @@ sl:
           tag_uses_measure: uporab skupaj
         description_html: To so ključniki, ki se trenutno pojavljajo v številnih objavah, ki jih vidi vaš strežnik. Uporabnikom lahko pomaga ugotoviti, o čem ljudje trenutno največ govorijo. Noben ključnik ni javno prikazan, dokler ga ne odobrite.
         listable: Je moč predlagati
+        no_tag_selected: Nobena značka ni bila spremenjena, ker nobena ni bila izbrana
         not_listable: Ne bo predlagano
         not_trendable: Se ne bo pojavilo med trendi
         not_usable: Ni mogoče uporabiti
@@ -1211,9 +1197,6 @@ sl:
         hint: Ta filter se nanaša na posamezne objave ne glede na druge pogoje. Filtru lahko dodate več objav prek spletnega vmesnika.
         title: Filtrirane objave
   footer:
-    developers: Razvijalci
-    more: Več…
-    resources: Viri
     trending_now: Zdaj v trendu
   generic:
     all: Vse
@@ -1264,7 +1247,6 @@ sl:
       following: Seznam uporabnikov, katerim sledite
       muting: Seznam utišanih
     upload: Pošlji
-  in_memoriam_html: V spomin.
   invites:
     delete: Onemogoči
     expired: Poteklo
@@ -1446,22 +1428,7 @@ sl:
     remove_selected_follows: Prenehaj slediti izbranim uporabnikom
     status: Stanje računa
   remote_follow:
-    acct: Vnesite uporabniško_ime@domena, iz katerega želite delovati
     missing_resource: Za vaš račun ni bilo mogoče najti zahtevanega URL-ja za preusmeritev
-    no_account_html: Še nimate računa? Tukaj se lahko <a href='%{sign_up_path}' target='_blank'>prijavite</a>
-    proceed: Nadaljujte
-    prompt: 'Sledili boste:'
-    reason_html: "<strong>Zakaj je ta korak potreben?</strong> <code>%{instance}</code> morda ni strežnik, kjer ste registrirani, zato vas moramo najprej preusmeriti na domači strežnik."
-  remote_interaction:
-    favourite:
-      proceed: Nadaljuj s priljubljenim
-      prompt: 'Želite vzljubiti to objavo:'
-    reblog:
-      proceed: Nadaljuj s izpostavljanjem
-      prompt: 'Želite izpostaviti to objavo:'
-    reply:
-      proceed: Nadaljuj z odgovorom
-      prompt: 'Želite odgovoriti na to objavo:'
   reports:
     errors:
       invalid_rules: se ne sklicuje na veljavna pravila
