@@ -694,15 +694,40 @@ pl:
       empty: Jeszcze nie zdefiniowano zasad serwera.
       title: Regulamin serwera
     settings:
+      about:
+        manage_rules: Zarządzaj regułami serwera
+        preamble: Podaj szczegółowe informacje na temat sposobu działania, moderacji i finansowania serwera.
+        rules_hint: Istnieje dedykowany obszar dla reguł, których twoi użytkownicy mają przestrzegać.
+        title: O...
+      appearance:
+        preamble: Dostosuj interfejs www Mastodon.
+        title: Wygląd
+      branding:
+        preamble: Marka Twojego serwera odróżnia go od innych serwerów w sieci. Informacje te mogą być wyświetlane w różnych środowiskach, takich jak interfejs internetowy Mastodon, aplikacje natywne, w podglądzie linków na innych stronach internetowych i w aplikacjach do wysyłania wiadomości itd. Z tego względu najlepiej zachować jasną, krótką i zwięzłą informację.
+        title: Marka
+      content_retention:
+        preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
+        title: Retencja treści
+      discovery:
+        follow_recommendations: Postępuj zgodnie z zaleceniami
+        preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
+        profile_directory: Katalog profilów
+        public_timelines: Publiczne osie czasu
+        title: Odkrywanie
+        trends: Trendy
       domain_blocks:
         all: Każdemu
         disabled: Nikomu
         users: Zalogowanym lokalnym użytkownikom
+      registrations:
+        preamble: Kontroluj, kto może utworzyć konto na Twoim serwerze.
+        title: Rejestracje
       registrations_mode:
         modes:
           approved: Przyjęcie jest wymagane do rejestracji
           none: Nikt nie może się zarejestrować
           open: Każdy może się zarejestrować
+      title: Ustawienia serwera
     site_uploads:
       delete: Usuń przesłany plik
       destroyed_msg: Pomyślnie usunięto przesłany plik!
