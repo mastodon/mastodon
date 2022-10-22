@@ -2,6 +2,7 @@
 
 class Settings::FeaturedTagsController < Settings::BaseController
   before_action :set_featured_tags, only: :index
+  before_action :set_featured_tag, except: [:index, :create]
   before_action :set_recently_used_tags, only: :index
 
   def index
@@ -21,7 +22,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def destroy
-    UnfeaturedTagWorker.perform_async(current_account.id, params[:id])
+    UnfeaturedTagWorker.perform_async(current_account.id, @featured_tag.id)
     redirect_to settings_featured_tags_path
   end
 
@@ -29,6 +30,10 @@ class Settings::FeaturedTagsController < Settings::BaseController
 
   def featured_tag_exists?
     current_account.featured_tags.by_name(featured_tag_params[:name]).exists?
+  end
+
+  def set_featured_tag
+    @featured_tag = current_account.featured_tags.find(params[:id])
   end
 
   def set_featured_tags
