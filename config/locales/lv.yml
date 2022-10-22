@@ -682,15 +682,38 @@ lv:
     settings:
       about:
         manage_rules: Pārvaldīt servera nosacījumus
+        preamble: Sniedz padziļinātu informāciju par to, kā serveris tiek darbināts, moderēts un finansēts.
+        rules_hint: Noteikumiem, kas taviem lietotājiem ir jāievēro, ir īpaša sadaļa.
+        title: Par
+      appearance:
+        preamble: Pielāgo Mastodon tīmekļa saskarni.
+        title: Izskats
+      branding:
+        preamble: Tava servera zīmols to atšķir no citiem tīkla serveriem. Šī informācija var tikt parādīta dažādās vidēs, piemēram, Mastodon tīmekļa saskarnē, vietējās lietojumprogrammās, saišu priekšskatījumos citās vietnēs un ziņojumapmaiņas lietotnēs un tā tālāk. Šī iemesla dēļ vislabāk ir saglabāt šo informāciju skaidru, īsu un kodolīgu.
+        title: Zīmola veidošana
+      content_retention:
+        preamble: Kontrolē, kā Mastodon tiek glabāts lietotāju ģenerēts saturs.
+        title: Satura saglabāšana
+      discovery:
+        follow_recommendations: Sekotšanas rekomendācijas
+        preamble: Interesanta satura parādīšana palīdz piesaistīt jaunus lietotājus, kuri, iespējams, nepazīst nevienu Mastodon. Kontrolē, kā tavā serverī darbojas dažādi atklāšanas līdzekļi.
+        profile_directory: Profila direktorija
+        public_timelines: Publiskās ziņu lentas
+        title: Atklāt
+        trends: Tendences
       domain_blocks:
         all: Visiem
         disabled: Nevienam
         users: Vietējiem reģistrētiem lietotājiem
+      registrations:
+        preamble: Kontrolē, kurš var izveidot kontu tavā serverī.
+        title: Reģistrācijas
       registrations_mode:
         modes:
           approved: Reģistrācijai nepieciešams apstiprinājums
           none: Neviens nevar reģistrēties
           open: Jebkurš var reģistrēties
+      title: Servera Iestatījumi
     site_uploads:
       delete: Dzēst augšupielādēto failu
       destroyed_msg: Vietnes augšupielāde ir veiksmīgi izdzēsta!
