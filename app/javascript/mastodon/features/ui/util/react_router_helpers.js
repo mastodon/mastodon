@@ -53,7 +53,7 @@ export class WrappedRoute extends React.Component {
     stacktrace: '',
   };
 
-  componentDidCatch (error, componentInfo) {
+  componentDidCatch (error) {
     StackTrace.fromError(error).then(stackframes => {
       this.setState({ stacktrace: error.toString() + '\n' + stackframes.map(frame => frame.toString()).join('\n') });
     }).catch(err => {
