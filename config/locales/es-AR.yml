@@ -666,15 +666,40 @@ es-AR:
       empty: Aún no se han definido las reglas del servidor.
       title: Reglas del servidor
     settings:
+      about:
+        manage_rules: Administrar reglas del servidor
+        preamble: Proveé información en profundidad sobre cómo el servidor es operado, moderado y financiado.
+        rules_hint: Hay un área dedicada para las reglas a las que se espera que tus usuarios se adhieran.
+        title: Información
+      appearance:
+        preamble: Personalizá la interface web de Mastodon.
+        title: Apariencia
+      branding:
+        preamble: La marca de tu servidor lo diferencia de otros servidores de la red. Esta información puede mostrarse a través de una variedad de entornos, como en la interface web de Mastodon, en aplicaciones nativas, en previsualizaciones de enlaces en otros sitios web y en aplicaciones de mensajería, etc. Por esta razón, es mejor mantener esta información clara, breve y concisa.
+        title: Marca
+      content_retention:
+        preamble: Controlá cómo el contenido generado por el usuario se almacena en Mastodon.
+        title: Retención de contenido
+      discovery:
+        follow_recommendations: Recom. de cuentas a seguir
+        preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
+        profile_directory: Directorio de perfiles
+        public_timelines: Líneas temporales públicas
+        title: Descubrí
+        trends: Tendencias
       domain_blocks:
         all: A todos
         disabled: A nadie
         users: A usuarios locales con sesiones abiertas
+      registrations:
+        preamble: Controlá quién puede crear una cuenta en tu servidor.
+        title: Registros
       registrations_mode:
         modes:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
+      title: Configuraciones del servidor
     site_uploads:
       delete: Eliminar archivo subido
       destroyed_msg: '¡Subida al sitio eliminada exitosamente!'
