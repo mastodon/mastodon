@@ -71,7 +71,7 @@ export default class Avatar extends React.PureComponent {
         style={style}
         data-avatar-of={account && `@${account.get('acct')}`}
         role='img'
-        aria-label={account.get('acct')}
+        aria-label={account?.get('acct')}
       />
     );
   }
