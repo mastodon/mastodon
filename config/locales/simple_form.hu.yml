@@ -61,7 +61,7 @@ hu:
         username: A felhasználói neved egyedi lesz a %{domain} domainen
         whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
       domain_allow:
-        domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
+        domain: Ez a domain adatokat kérhet le erről a kiszolgálóról, és a bejövő adatok fel lesznek dolgozva és tárolva lesznek
       email_domain_block:
         domain: Ez lehet az e-mail címben szereplő domain név vagy az MX rekord, melyet ez használ. Ezeket feliratkozáskor ellenőrizzük.
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
@@ -76,10 +76,15 @@ hu:
         backups_retention_period: Az előállított felhasználói archívumok megtartása a megadott napokig.
         content_cache_retention_period: A más kiszolgálókról származó bejegyzések megadott számú nap után törölve lesznek, ha pozitív értékre van állítva. Ez lehet, hogy nem fordítható vissza.
         media_cache_retention_period: A letöltött médiafájlok megadott számú nap után törölve lesznek, ha pozitív értékre van állítva, és igény szerint újból le lesznek töltve.
+        site_short_description: Rövid leírás, amely segíthet a kiszolgálód egyedi azonosításában. Ki futtatja, kinek készült?
+        site_title: Hogyan hivatkozhatnak mások a kiszolgálódra a domain nevén kívül.
+        thumbnail: Egy durván 2:1 arányú kép, amely a kiszolgálóinformációk mellett jelenik meg.
+        timeline_preview: A kijelentkezett látogatók továbbra is böngészhetik a kiszolgáló legfrissebb nyilvános bejegyzéseit.
+        trends: A trendek azt mondják meg, hogy mely bejegyzések, hashtagek és hírbejegyzések felkapottak a kiszolgálódon.
       form_challenge:
         current_password: Beléptél egy biztonsági térben
       imports:
-        data: Egy másik Mastodon szerverről exportált CSV fájl
+        data: Egy másik Mastodon kiszolgálóról exportált CSV-fájl
       invite_request:
         text: Ez segít nekünk átnézni a jelentkezésedet
       ip_block:
@@ -92,7 +97,7 @@ hu:
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
       rule:
-        text: Írd le, mi a szabály vagy elvárás ezen a szerveren a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni
+        text: Írd le, mi a szabály vagy elvárás ezen a kiszolgálón a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni.
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
         webauthn: Ha ez egy USB kulcs, ellenőrizd, hogy csatlakoztattad és ha szükséges, aktiváltad is.
