@@ -669,10 +669,18 @@ hu:
       about:
         manage_rules: Kiszolgáló szabályainak kezelése
         preamble: Adj meg részletes információkat arról, hogy a kiszolgáló hogyan működik, miként moderálják és finanszírozzák.
+        title: Névjegy
+      appearance:
+        title: Megjelenés
       branding:
         preamble: A kiszolgáló márkajelzése különbözteti meg a hálózat többi kiszolgálójától. Ez az információ számos környezetben megjelenhet, például a Mastodon webes felületén, natív alkalmazásokban, más weboldalakon és üzenetküldő alkalmazásokban megjelenő hivatkozások előnézetben stb. Ezért a legjobb, ha ez az információ világos, rövid és tömör.
+      content_retention:
+        title: Tartalom megtartása
       discovery:
+        follow_recommendations: Ajánlottak követése
         preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
+        profile_directory: Profiladatbázis
+        public_timelines: Nyilvános idővonalak
         trends: Trendek
       domain_blocks:
         all: Mindenkinek
@@ -736,7 +744,7 @@ hu:
       links:
         allow: Hivatkozás engedélyezése
         allow_provider: Közzétevő engedélyezése
-        description_html: Ezek olyan hivatkozások, melyeket a szervered által látott fiókok mostanában sokat osztanak meg. Ez segíthet a felhasználóidnak rátalálni arra, hogy mi történik a világban. Egy hivatkozást sem jelenik meg nyilvánosan, amíg a közzétevőt jóvá nem hagytad. A hivatkozásokat külön is engedélyezheted vagy visszautasíthatod.
+        description_html: Ezek olyan hivatkozások, melyeket a kiszolgálód által látott fiókok mostanában sokat osztanak meg. Ez segíthet a felhasználóidnak rátalálni arra, hogy mi történik a világban. Egy hivatkozást sem jelenik meg nyilvánosan, amíg a közzétevőt jóvá nem hagytad. A hivatkozásokat külön is engedélyezheted vagy elutasíthatod.
         disallow: Hivatkozás letiltása
         disallow_provider: Közzétevő letiltása
         no_link_selected: Nem változott meg egy hivatkozás sem, mert semmi sem volt kiválasztva
