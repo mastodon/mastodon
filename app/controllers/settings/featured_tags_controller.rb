@@ -10,8 +10,9 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def create
-    if !featured_tag_exists?
-      CreateFeaturedTagService.new.call(current_account, featured_tag_params[:name])
+    @featured_tag = CreateFeaturedTagService.new.call(current_account, featured_tag_params[:name], force: false)
+
+    if @featured_tag.valid?
       redirect_to settings_featured_tags_path
     else
       set_featured_tags
@@ -27,10 +28,6 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   private
-
-  def featured_tag_exists?
-    current_account.featured_tags.by_name(featured_tag_params[:name]).exists?
-  end
 
   def set_featured_tag
     @featured_tag = current_account.featured_tags.find(params[:id])
