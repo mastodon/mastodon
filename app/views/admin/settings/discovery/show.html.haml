@@ -1,0 +1,40 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.settings.discovery.title')
+
+- content_for :heading do
+  %h2= t('admin.settings.title')
+  = render partial: 'admin/settings/shared/links'
+
+= simple_form_for @admin_settings, url: admin_settings_discovery_path, html: { method: :patch } do |f|
+  = render 'shared/error_messages', object: @admin_settings
+
+  %p.lead= t('admin.settings.discovery.preamble')
+
+  %h4= t('admin.settings.discovery.trends')
+
+  .fields-group
+    = f.input :trends, as: :boolean, wrapper: :with_label
+
+  .fields-group
+    = f.input :trendable_by_default, as: :boolean, wrapper: :with_label
+
+  %h4= t('admin.settings.discovery.public_timelines')
+
+  .fields-group
+    = f.input :timeline_preview, as: :boolean, wrapper: :with_label
+
+  %h4= t('admin.settings.discovery.follow_recommendations')
+
+  .fields-group
+    = f.input :bootstrap_timeline_accounts, wrapper: :with_block_label
+
+  %h4= t('admin.settings.discovery.profile_directory')
+
+  .fields-group
+    = f.input :profile_directory, as: :boolean, wrapper: :with_label
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit
