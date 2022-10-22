@@ -89,6 +89,15 @@
     cursor: default;
   }
 
+  &.copyable {
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    background: $valid-value-color;
+    transition: none;
+  }
+
   &::-moz-focus-inner {
     border: 0;
   }
@@ -2656,7 +2665,8 @@ $ui-header-height: 55px;
 
   .column-header,
   .column-back-button,
-  .scrollable {
+  .scrollable,
+  .error-column {
     border-radius: 0 !important;
   }
 }
@@ -4292,7 +4302,6 @@ a.status-card.compact:hover {
 }
 
 .empty-column-indicator,
-.error-column,
 .follow_requests-unlocked_explanation {
   color: $dark-text-color;
   background: $ui-base-color;
@@ -4330,7 +4339,47 @@ a.status-card.compact:hover {
 }
 
 .error-column {
+  padding: 20px;
+  background: $ui-base-color;
+  border-radius: 4px;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  cursor: default;
+
+  &__image {
+    max-width: 350px;
+    margin-top: -50px;
+  }
+
+  &__message {
+    text-align: center;
+    color: $darker-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    h1 {
+      font-size: 28px;
+      line-height: 33px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: $primary-text-color;
+    }
+
+    p {
+      max-width: 48ch;
+    }
+
+    &__actions {
+      margin-top: 30px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
 @keyframes heartbeat {

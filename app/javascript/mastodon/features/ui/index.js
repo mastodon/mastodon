@@ -3,7 +3,7 @@ import React from 'react';
 import { HotKeys } from 'react-hotkeys';
 import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NotificationsContainer from './containers/notifications_container';
 import LoadingBarContainer from './containers/loading_bar_container';
@@ -18,6 +18,7 @@ import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
+import BundleColumnError from './components/bundle_column_error';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import PictureInPicture from 'mastodon/features/picture_in_picture';
@@ -39,7 +40,6 @@ import {
   HashtagTimeline,
   Notifications,
   FollowRequests,
-  GenericNotFound,
   FavouritedStatuses,
   BookmarkedStatuses,
   ListTimeline,
@@ -219,7 +219,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/mutes' component={Mutes} content={children} />
           <WrappedRoute path='/lists' component={Lists} content={children} />
 
-          <WrappedRoute component={GenericNotFound} content={children} />
+          <Route component={BundleColumnError} />
         </WrappedSwitch>
       </ColumnsAreaContainer>
     );
