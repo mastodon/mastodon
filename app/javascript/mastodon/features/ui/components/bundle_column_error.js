@@ -116,7 +116,7 @@ class BundleColumnError extends React.PureComponent {
   }
 
   render () {
-    const { errorType, multiColumn, stacktrace, intl } = this.props;
+    const { errorType, multiColumn, stacktrace } = this.props;
 
     let title, body;
 
