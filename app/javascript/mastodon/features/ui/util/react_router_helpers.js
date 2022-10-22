@@ -42,7 +42,7 @@ export class WrappedRoute extends React.Component {
     componentParams: {},
   };
 
-  static getDerivedStateFromError (error) {
+  static getDerivedStateFromError () {
     return {
       hasError: true,
     };
