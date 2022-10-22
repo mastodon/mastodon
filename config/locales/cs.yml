@@ -686,15 +686,39 @@ cs:
       empty: Zatím nebyla definována žádná pravidla serveru.
       title: Pravidla serveru
     settings:
+      about:
+        manage_rules: Spravovat pravidla serveru
+        preamble: Uveďte podrobné informace o tom, jak je server provozován, moderován, financován.
+        rules_hint: Existuje vyhrazená oblast pro pravidla, u nichž se očekává, že je budou uživatelé dodržovat.
+        title: O aplikaci
+      appearance:
+        preamble: Přizpůsobte si webové rozhraní Mastodon.
+        title: Vzhled
+      branding:
+        title: Značka
+      content_retention:
+        preamble: Určuje, jak je obsah generovaný uživatelem uložen v Mastodonu.
+        title: Uchovávání obsahu
+      discovery:
+        follow_recommendations: Doporučená sledování
+        preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
+        profile_directory: Adresář profilů
+        public_timelines: Veřejné časové osy
+        title: Objevujte
+        trends: Trendy
       domain_blocks:
         all: Všem
         disabled: Nikomu
         users: Přihlášeným místním uživatelům
+      registrations:
+        preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
+        title: Registrace
       registrations_mode:
         modes:
           approved: Pro registraci je vyžadováno schválení
           none: Nikdo se nemůže registrovat
           open: Kdokoliv se může registrovat
+      title: Nastavení serveru
     site_uploads:
       delete: Odstranit nahraný soubor
       destroyed_msg: Upload stránky byl úspěšně smazán!
