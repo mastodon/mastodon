@@ -30,6 +30,10 @@ class FeaturedTag < ApplicationRecord
 
   LIMIT = 10
 
+  def sign?
+    true
+  end
+
   def name
     tag_id.present? ? tag.name : @name
   end
