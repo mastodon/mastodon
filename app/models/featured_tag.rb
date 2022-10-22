@@ -22,6 +22,8 @@ class FeaturedTag < ApplicationRecord
   before_create :set_tag
   before_create :reset_data
 
+  scope :by_name, ->(name) { joins(:tag).where(tag: { name: HashtagNormalizer.new.normalize(name) }) }
+
   delegate :display_name, to: :tag
 
   attr_writer :name
