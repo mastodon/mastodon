@@ -60,5 +60,6 @@ class FeaturedTag < ApplicationRecord
   def validate_tag_name
     errors.add(:name, :blank) if @name.blank?
     errors.add(:name, :invalid) unless @name.match?(/\A(#{Tag::HASHTAG_NAME_RE})\z/i)
+    errors.add(:name, :taken) if FeaturedTag.by_name(@name).where(account_id: account_id).exists?
   end
 end
