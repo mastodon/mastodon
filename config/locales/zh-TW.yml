@@ -652,15 +652,40 @@ zh-TW:
       empty: 未曾定義任何伺服器規則
       title: 伺服器規則
     settings:
+      about:
+        manage_rules: 管理伺服器規則
+        preamble: 提關於此伺服器如何運作、管理、及金援之供詳細資訊。
+        rules_hint: 這是關於您的使用者應該遵循規則之專有區域。
+        title: 關於
+      appearance:
+        preamble: 客製化 Mastodon 網頁介面。
+        title: 外觀設定
+      branding:
+        preamble: 您伺服器的品牌使之從聯邦宇宙網路中其他伺服器間區別自己。此資訊可能於各種不同的環境顯示，例如 Mastodon 網頁介面、原生應用程式、其他網頁上的連結預覽或是其他通訊應用程式等等。因此，請盡可能保持此資訊簡潔明朗。
+        title: 品牌
+      content_retention:
+        preamble: 控制使用者產生內容是如何儲存於 Mastodon 上。
+        title: 內容保留期間
+      discovery:
+        follow_recommendations: 跟隨建議
+        preamble: 呈現有趣的內容有助於 Mastodon 上一人不識的新手上路。控制各種不同的分類在您伺服器上如何被探索到。
+        profile_directory: 個人檔案目錄
+        public_timelines: 公開時間軸
+        title: 探索
+        trends: 熱門趨勢
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
         users: 套用至所有登入的本機使用者
+      registrations:
+        preamble: 控制誰能於您伺服器上建立帳號。
+        title: 註冊
       registrations_mode:
         modes:
           approved: 註冊需要核准
           none: 沒有人可註冊
           open: 任何人皆能註冊
+      title: 伺服器設定
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！
