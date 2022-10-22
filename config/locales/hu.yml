@@ -666,79 +666,15 @@ hu:
       empty: Nincsenek még szerver szabályok definiálva.
       title: Szerverszabályzat
     settings:
-      activity_api_enabled:
-        desc_html: Helyi bejegyzések, aktív felhasználók és új regisztrációk száma heti bontásban
-        title: Felhasználói aktivitás összesített statisztikájának publikussá tétele
-      bootstrap_timeline_accounts:
-        desc_html: Az egyes felhasználóneveket vesszővel válaszd el! Csak helyi és aktivált fiókok esetében működik. Üresen (alapértelmezettként) minden helyi adminisztrátorra érvényes.
-        title: Alapértelmezett követések új felhasználók esetében
-      contact_information:
-        email: Kapcsolattartói e-mail cím
-        username: Kapcsolattartó felhasználóneve
-      custom_css:
-        desc_html: Változtasd meg a kinézetet ebben a CSS-ben, mely minden oldalon be fog töltődni
-        title: Egyéni CSS
-      default_noindex:
-        desc_html: Olyan felhasználókat érinti, akik nem módosították ezt a beállítást
-        title: Alapértelmezésként ne indexeljék a keresők a felhasználóinkat
       domain_blocks:
         all: Mindenkinek
         disabled: Senkinek
-        title: Domain tiltások megjelenitése
         users: Bejelentkezett helyi felhasználóknak
-      domain_blocks_rationale:
-        title: Mutasd meg az indokolást
-      mascot:
-        desc_html: Több oldalon is látszik. Legalább 293×205px méret javasolt. Ha nincs beállítva, az alapértelmezett kabalát használjuk
-        title: Kabala kép
-      peers_api_enabled:
-        desc_html: Domainek, amelyekkel ez a szerver kapcsolatban áll
-        title: Szerverek listájának közzététele, melyekkel ez a szerver kapcsolatban áll
-      preview_sensitive_media:
-        desc_html: Más weboldalakon linkelt tartalmaink előnézetében mindenképp benne lesz egy bélyegkép még akkor is, ha a médiát kényesnek jelölték meg
-        title: Kényes média mutatása OpenGraph előnézetben
-      profile_directory:
-        desc_html: Lehetővé teszi, hogy a felhasználóinkat megtalálják
-        title: Profil adatbázis engedélyezése
-      registrations:
-        closed_message:
-          desc_html: Ez az üzenet jelenik meg a főoldalon, ha a regisztráció nem engedélyezett. HTML-tageket is használhatsz
-          title: Üzenet, ha a regisztráció nem engedélyezett
-        require_invite_text:
-          desc_html: Ha a regisztrációhoz kézi jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
-          title: Az új felhasználóktól legyen megkövetelve a meghívási kérés szövegének kitöltése
       registrations_mode:
         modes:
           approved: A regisztráció engedélyhez kötött
           none: Senki sem regisztrálhat
           open: Bárki regisztrálhat
-        title: Regisztrációs mód
-      site_description:
-        desc_html: Rövid bemutatkozás a főoldalon és a meta fejlécekben. Írd le, mi teszi ezt a szervert különlegessé! Használhatod a <code>&lt;a&gt;</code> és <code>&lt;em&gt;</code> HTML tageket.
-        title: Kiszolgáló leírása
-      site_description_extended:
-        desc_html: Ide teheted például a közösségi és egyéb szabályzatot, útmutatókat és mindent, ami egyedivé teszi szerveredet. HTML-tageket is használhatsz
-        title: További egyéni információk
-      site_short_description:
-        desc_html: Oldalsávban és meta tag-ekben jelenik meg. Írd le, mi teszi ezt a szervert különlegessé egyetlen bekezdésben.
-        title: Rövid leírás
-      site_terms:
-        desc_html: Megírhatod a saját adatvédelmi szabályzatodat. Használhatsz HTML címkéket.
-        title: Egyéni adatvédelmi szabályzat
-      site_title: A szerver neve
-      thumbnail:
-        desc_html: Az OpenGraph-on és API-n keresztüli előnézetekhez használatos. Ajánlott mérete 1200×630 képpont.
-        title: A szerver bélyegképe
-      timeline_preview:
-        desc_html: Nyilvános idővonal megjelenítése a főoldalon
-        title: A nyilvános idővonal hitelesítés nélküli elérésének engedélyezése
-      title: Webhely beállításai
-      trendable_by_default:
-        desc_html: Az egyes felkapott tartalmak továbbra is explicit módon tilthatók
-        title: Trendek engedélyezése előzetes ellenőrzés nélkül
-      trends:
-        desc_html: Előzetesen engedélyezett és most felkapott hashtagek nyilvános megjelenítése
-        title: Felkapott hashtagek
     site_uploads:
       delete: Feltöltött fájl törlése
       destroyed_msg: Sikeresen töröltük a site feltöltését!
