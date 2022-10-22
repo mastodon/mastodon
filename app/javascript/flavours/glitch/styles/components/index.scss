@@ -189,6 +189,15 @@
     color: $highlight-text-color;
   }
 
+  &.copyable {
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    background: $valid-value-color;
+    transition: none;
+  }
+
   &::-moz-focus-inner {
     border: 0;
   }
