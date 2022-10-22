@@ -13,12 +13,12 @@ class Api::V1::FeaturedTagsController < Api::BaseController
   end
 
   def create
-    featured_tag = FeaturedTagService.new.call(current_account, featured_tag_params[:name])
+    featured_tag = CreateFeaturedTagService.new.call(current_account, featured_tag_params[:name])
     render json: featured_tag, serializer: REST::FeaturedTagSerializer
   end
 
   def destroy
-    UnfeaturedTagWorker.perform_async(current_account.id, @featured_tag.id)
+    RemoveFeaturedTagWorker.perform_async(current_account.id, @featured_tag.id)
     render_empty
   end
 

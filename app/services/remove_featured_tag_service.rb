@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UnfeaturedTagService < BaseService
+class RemoveFeaturedTagService < BaseService
   include Payloadable
 
   def call(account, featured_tag)
