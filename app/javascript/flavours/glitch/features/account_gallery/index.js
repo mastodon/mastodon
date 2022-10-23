@@ -15,9 +15,10 @@ import ScrollContainer from 'flavours/glitch/containers/scroll_container';
 import LoadMore from 'flavours/glitch/components/load_more';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import { openModal } from 'flavours/glitch/actions/modal';
+import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
-  const accountId = id || state.getIn(['accounts_map', acct]);
+  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
   if (!accountId) {
     return {
