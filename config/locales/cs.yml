@@ -687,79 +687,39 @@ cs:
       empty: Zatím nebyla definována žádná pravidla serveru.
       title: Pravidla serveru
     settings:
-      activity_api_enabled:
-        desc_html: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací, v týdenních intervalech
-        title: Publikovat hromadné statistiky o uživatelské aktivitě v API
-      bootstrap_timeline_accounts:
-        desc_html: Více uživatelských jmen oddělte čárkou. U těchto účtů bude zaručeno, že budou vždy zobrazeny mezi doporučenými sledováními
-        title: Doporučit tyto účty novým uživatelům
-      contact_information:
-        email: Pracovní e-mail
-        username: Uživatelské jméno pro kontaktování
-      custom_css:
-        desc_html: Pozměnit vzhled pomocí CSS šablony načítané na každé stránce
-        title: Vlastní CSS
-      default_noindex:
-        desc_html: Ovlivňuje všechny uživatele, kteří toto nastavení sami nezměnili
-        title: Ve výchozím stavu odhlásit uživatele z indexování vyhledávači
+      about:
+        manage_rules: Spravovat pravidla serveru
+        preamble: Uveďte podrobné informace o tom, jak je server provozován, moderován, financován.
+        rules_hint: Existuje vyhrazená oblast pro pravidla, u nichž se očekává, že je budou uživatelé dodržovat.
+        title: O aplikaci
+      appearance:
+        preamble: Přizpůsobte si webové rozhraní Mastodon.
+        title: Vzhled
+      branding:
+        title: Značka
+      content_retention:
+        preamble: Určuje, jak je obsah generovaný uživatelem uložen v Mastodonu.
+        title: Uchovávání obsahu
+      discovery:
+        follow_recommendations: Doporučená sledování
+        preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
+        profile_directory: Adresář profilů
+        public_timelines: Veřejné časové osy
+        title: Objevujte
+        trends: Trendy
       domain_blocks:
         all: Všem
         disabled: Nikomu
-        title: Zobrazit blokace domén
         users: Přihlášeným místním uživatelům
-      domain_blocks_rationale:
-        title: Zobrazit odůvodnění
-      mascot:
-        desc_html: Zobrazuje se na několika stránkách. Doporučujeme rozlišení alespoň 293x205 px. Pokud toto není nastaveno, bude zobrazen výchozí maskot
-        title: Obrázek maskota
-      peers_api_enabled:
-        desc_html: Domény, na které tento server narazil ve fedivesmíru
-        title: Zveřejnit seznam objevených serverů v API
-      preview_sensitive_media:
-        desc_html: Náhledy odkazů na jiných stránkách budou zobrazeny i pokud jsou media označena jako citlivá
-        title: Zobrazovat v náhledech OpenGraph i citlivá média
-      profile_directory:
-        desc_html: Dovolit uživatelům být objevitelní
-        title: Povolit adresář profilů
       registrations:
-        closed_message:
-          desc_html: Zobrazí se na hlavní stránce, jsou-li registrace uzavřeny. Můžete použít i HTML značky
-          title: Zpráva o uzavřených registracích
-        require_invite_text:
-          desc_html: Když jsou registrace schvalovány ručně, udělat odpověď na otázku "Proč se chcete připojit?" povinnou
-          title: Požadovat od nových uživatelů zdůvodnění založení
+        preamble: Mějte pod kontrolou, kdo může vytvořit účet na vašem serveru.
+        title: Registrace
       registrations_mode:
         modes:
           approved: Pro registraci je vyžadováno schválení
           none: Nikdo se nemůže registrovat
           open: Kdokoliv se může registrovat
-        title: Režim registrací
-      site_description:
-        desc_html: Úvodní odstavec v API. Popište, čím se tento server Mastodon odlišuje od ostatních, a cokoliv jiného, co je důležité. Můžete zde používat HTML značky, hlavně <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
-        title: Popis serveru
-      site_description_extended:
-        desc_html: Dobré místo pro vaše pravidla, pokyny a jiné věci, které váš server odlišují od ostatních. Lze použít HTML značky
-        title: Vlastní rozšířené informace
-      site_short_description:
-        desc_html: Zobrazeno v postranním panelu a meta značkách. V jednom odstavci popište, co je Mastodon a čím se tento server odlišuje od ostatních.
-        title: Krátký popis serveru
-      site_terms:
-        desc_html: Můžete napsat své vlastní zásady ochrany osobních údajů. HTML tagy můžete použít
-        title: Vlastní zásady ochrany osobních údajů
-      site_title: Název serveru
-      thumbnail:
-        desc_html: Používáno pro náhledy přes OpenGraph a API. Doporučujeme rozlišení 1200x630px
-        title: Miniatura serveru
-      timeline_preview:
-        desc_html: Zobrazit na hlavní stránce odkaz na veřejnou časovou osu a povolit přístup na veřejnou časovou osu pomocí API bez autentizace
-        title: Povolit neautentizovaný přístup k časové ose
-      title: Nastavení stránky
-      trendable_by_default:
-        desc_html: Specifický populární obsah může být i nadále výslovně zakázán
-        title: Povolit trendy bez předchozí revize
-      trends:
-        desc_html: Veřejně zobrazit dříve schválený obsah, který je zrovna populární
-        title: Trendy
+      title: Nastavení serveru
     site_uploads:
       delete: Odstranit nahraný soubor
       destroyed_msg: Upload stránky byl úspěšně smazán!

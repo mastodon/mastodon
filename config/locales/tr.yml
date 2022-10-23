@@ -667,79 +667,15 @@ tr:
       empty: Henüz bir sunucu kuralı tanımlanmadı.
       title: Sunucu kuralları
     settings:
-      activity_api_enabled:
-        desc_html: Yerel olarak yayınlanan durumların, aktif kullanıcıların, ve haftalık kovalardaki yeni kayıtların sayısı
-        title: Kullanıcı etkinliği hakkında toplu istatistikler yayınlayın
-      bootstrap_timeline_accounts:
-        desc_html: Birden fazla kullanıcı adını virgülle ayırın. Yalnızca yerel ve kilitlenmemiş hesaplar geçerlidir. Boş olduğunda varsayılan tüm yerel yöneticilerdir.
-        title: Yeni kullanıcılar için varsayılan takipler
-      contact_information:
-        email: Herkese açık e-posta adresiniz
-        username: Bir kullanıcı adı giriniz
-      custom_css:
-        desc_html: Görünümü her sayfada yüklenecek CSS ile değiştirin
-        title: Özel CSS
-      default_noindex:
-        desc_html: Bu ayarı kendileri değiştirmeyen tüm kullanıcıları etkiler
-        title: Varsayılan olarak kullanıcıları arama motoru indekslemesinin dışında tut
       domain_blocks:
         all: Herkes için
         disabled: Hiç kimseye
-        title: Engellenen alan adlarını göster
         users: Oturum açan yerel kullanıcılara
-      domain_blocks_rationale:
-        title: Gerekçeyi göster
-      mascot:
-        desc_html: Birden fazla sayfada görüntülenir. En az 293x205px önerilir. Ayarlanmadığında, varsayılan maskot kullanılır
-        title: Maskot görseli
-      peers_api_enabled:
-        desc_html: Bu sunucunun fediverse'te karşılaştığı alan adları
-        title: Keşfedilen sunucuların listesini yayınla
-      preview_sensitive_media:
-        desc_html: Medya duyarlı olarak işaretlenmiş olsa bile, diğer web sitelerindeki bağlantı ön izlemeleri küçük resim gösterecektir
-        title: OpenGraph ön izlemelerinde hassas medyayı göster
-      profile_directory:
-        desc_html: Kullanıcıların keşfedilebilir olmasına izin ver
-        title: Profil dizinini etkinleştir
-      registrations:
-        closed_message:
-          desc_html: Kayıt alımları kapatıldığında ana sayfada görüntülenecek mesajdır. <br> HTML etiketleri kullanabilirsiniz
-          title: Kayıt alımları kapatılma mesajı
-        require_invite_text:
-          desc_html: Kayıtlar elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
-          title: Yeni kullanıcıların katılmak için bir gerekçe sunmasını gerektir
       registrations_mode:
         modes:
           approved: Kayıt için onay gerekli
           none: Hiç kimse kayıt olamaz
           open: Herkes kaydolabilir
-        title: Kayıt modu
-      site_description:
-        desc_html: Ana sayfada paragraf olarak görüntülenecek bilgidir.<br>Özellikle <code>&lt;a&gt;</code> ve <code>&lt;em&gt;</code> olmak suretiyle HTML etiketlerini kullanabilirsiniz.
-        title: Site açıklaması
-      site_description_extended:
-        desc_html: Harici bilgi sayfasında gösterilir.<br>HTML etiketleri girebilirsiniz
-        title: Sunucu hakkında detaylı bilgi
-      site_short_description:
-        desc_html: Kenar çubuğunda ve meta etiketlerinde görüntülenir. Mastodon'un ne olduğunu ve bu sunucuyu özel kılan şeyleri tek bir paragrafta açıklayın.
-        title: Kısa sunucu açıklaması
-      site_terms:
-        desc_html: Kendi gizlilik politikanızı yazabilirsiniz. HTML etiketlerini kullanabilirsiniz
-        title: Özel gizlilik politikası
-      site_title: Site başlığı
-      thumbnail:
-        desc_html: OpenGraph ve API ile ön izlemeler için kullanılır. 1200x630px tavsiye edilir
-        title: Sunucu küçük resmi
-      timeline_preview:
-        desc_html: Açılış sayfasında genel zaman çizelgesini görüntüle
-        title: Zaman çizelgesi önizlemesi
-      title: Site Ayarları
-      trendable_by_default:
-        desc_html: Belirli öne çıkan içeriğe yine de açıkça izin verilmeyebilir
-        title: Ön inceleme yapmadan öne çıkmalara izin ver
-      trends:
-        desc_html: Şu anda trend olan ve daha önce incelenen etiketleri herkese açık olarak göster
-        title: Gündem etiketleri
     site_uploads:
       delete: Yüklenen dosyayı sil
       destroyed_msg: Site yüklemesi başarıyla silindi!

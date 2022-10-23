@@ -667,79 +667,40 @@ da:
       empty: Ingen serverregler defineret endnu.
       title: Serverregler
     settings:
-      activity_api_enabled:
-        desc_html: Antal lokalt opslåede indlæg, aktive brugere samt nye tilmeldinger i ugentlige opdelinger
-        title: Offentliggør samlede statistikker vedr. brugeraktivitet i API'en
-      bootstrap_timeline_accounts:
-        desc_html: Adskil flere brugernavne med kommaer. Disse konti vil være garanteret visning i følg-anbefalinger
-        title: Anbefal disse konti til nye brugere
-      contact_information:
-        email: Forretningse-mail
-        username: Kontaktbrugernavn
-      custom_css:
-        desc_html: Ændre udseendet med CSS indlæst på hver side
-        title: Tilpasset CSS
-      default_noindex:
-        desc_html: Påvirker alle brugere, som ikke selv har ændret denne indstilling
-        title: Fravælg som standard søgemaskineindekseringer for brugere
+      about:
+        manage_rules: Håndtér serverregler
+        preamble: Giv dybdegående oplysninger om, hvordan serveren opereres, modereres, finansieres.
+        rules_hint: Der er et dedikeret område for regler, som forventes overholdt af brugerne.
+        title: Om
+      appearance:
+        preamble: Tilpas Mastodon-webgrænsefladen.
+        title: Udseende
+      branding:
+        preamble: Serverens branding adskiller den fra andres i netværket. Oplysningerne kan vises på tværs af div. miljøer, såsom Mastodon-webgrænsefladen, dedikerede applikationer, i-link forhåndsvisninger på andre websteder og i besked-apps mv. Oplysningerne bør derfor være klare og detaljerede, men samtidig kortfattede.
+        title: Branding
+      content_retention:
+        preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
+        title: Indholdsopbevaring
+      discovery:
+        follow_recommendations: Følg-anbefalinger
+        preamble: At vise interessant indhold er vital ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
+        profile_directory: Profilmappe
+        public_timelines: Offentlige tidslinjer
+        title: Opdagelse
+        trends: Trends
       domain_blocks:
         all: Til alle
         disabled: Til ingen
-        title: Vis domæneblokeringer
         users: Til indloggede lokale brugere
-      domain_blocks_rationale:
-        title: Vis begrundelse
-      mascot:
-        desc_html: Vises på flere sider. Mindst 293x205px anbefales. Hvis ikke opsat, benyttes standardmaskot
-        title: Maskotbillede
-      peers_api_enabled:
-        desc_html: Domænenavne, denne server er stødt på i fediverset
-        title: Udgiv liste over fundne server i API'en
-      preview_sensitive_media:
-        desc_html: Linkforhåndsvisninger på andre websteder vil vise et miniaturebillede, selv hvis mediet er markeret som sensitivt
-        title: Vis sensitive medier i OpenGraph-forhåndsvisninger
-      profile_directory:
-        desc_html: Tillad brugere at blive fundet
-        title: Aktivér profilmappe
       registrations:
-        closed_message:
-          desc_html: Vises på forside, når tilmeldingsmuligheder er lukket. HTML-tags kan bruges
-          title: Lukket tilmelding-besked
-        require_invite_text:
-          desc_html: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
-          title: Nye brugere afkræves tilmeldingsbegrundelse
+        preamble: Styr, hvem der kan oprette en konto på serveren.
+        title: Registreringer
       registrations_mode:
         modes:
           approved: Tilmeldingsgodkendelse kræves
           none: Ingen kan tilmelde sig
           open: Alle kan tilmelde sig
-        title: Tilmeldingstilstand
-      site_description:
-        desc_html: Introduktionsafsnit på API'en. Beskriv, hvad der gør denne Mastodonserver speciel samt alt andet vigtigt. HTML-tags kan bruges, især <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
-        title: Serverbeskrivelse
-      site_description_extended:
-        desc_html: Et god placering til adfærdskodes, regler, retningslinjer mv., som gør denne server unik. HTML-tags kan bruges
-        title: Tilpasset udvidet information
-      site_short_description:
-        desc_html: Vises på sidebjælke og metatags. Beskriv i et enkelt afsnit, hvad Mastodon er, og hvad der gør denne server speciel.
-        title: Kort serverbeskrivelse
-      site_terms:
-        desc_html: Man kan skrive sin egen fortrolighedspolitik. HTML-tags understøttes
-        title: Tilpasset fortrolighedspolitik
-      site_title: Servernavn
-      thumbnail:
-        desc_html: Bruges til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
-        title: Serverminiaturebillede
-      timeline_preview:
-        desc_html: Vis link til offentlig tidslinje på indgangssiden og lad API'en tilgå den offentlige tidslinje uden godkendelse
-        title: Tillad ikke-godkendt tilgang til offentlig tidslinje
-      title: Webstedsindstillinger
-      trendable_by_default:
-        desc_html: Bestemt tendensindhold kan stadig udtrykkeligt forbydes
-        title: Tillad tendenser uden forudgående gennemsyn
-      trends:
-        desc_html: Vis offentligt tidligere reviderede hashtags, som pt. trender
-        title: Populært
+      title: Serverindstillinger
     site_uploads:
       delete: Slet uploadet fil
       destroyed_msg: Websteds-upload blev slettet!

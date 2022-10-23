@@ -621,6 +621,7 @@ ja:
         manage_rules_description: ユーザーがサーバールールを変更できるようにします
         manage_settings: 設定の管理
         manage_settings_description: ユーザーがサイト設定を変更できるようにします
+        manage_taxonomies: 分類の管理
         manage_taxonomies_description: トレンドコンテンツの確認とハッシュタグの設定の更新
         manage_user_access: アクセス権を管理
         manage_user_access_description: 他のユーザーの2段階認証を無効にしたり、メールアドレスを変更したり、パスワードをリセットしたりすることができます。
@@ -642,75 +643,34 @@ ja:
       empty: サーバーのルールが定義されていません。
       title: サーバーのルール
     settings:
-      activity_api_enabled:
-        desc_html: 週ごとのローカルに投稿された投稿数、アクティブなユーザー数、新規登録者数
-        title: ユーザーアクティビティに関する統計を公開する
-      bootstrap_timeline_accounts:
-        desc_html: 複数のユーザー名を指定する場合コンマで区切ります。おすすめに表示されます。
-        title: 新規ユーザーにおすすめするアカウント
-      contact_information:
-        email: ビジネスメールアドレス
-        username: 連絡先ユーザー名
-      custom_css:
-        desc_html: 全ページに適用されるCSSの編集
-        title: カスタムCSS
-      default_noindex:
-        desc_html: この設定を変更していない全ユーザーに影響します
-        title: デフォルトで検索エンジンによるインデックスを拒否する
+      about:
+        manage_rules: サーバーのルールを管理
+        title: About
+      appearance:
+        preamble: ウェブインターフェースをカスタマイズします。
+        title: 外観
+      branding:
+        title: ブランディング
+      content_retention:
+        title: コンテンツの保持
+      discovery:
+        follow_recommendations: おすすめフォロー
+        profile_directory: ディレクトリ
+        public_timelines: 公開タイムライン
+        trends: トレンド
       domain_blocks:
         all: 誰にでも許可
         disabled: 誰にも許可しない
-        title: ドメインブロックを表示
         users: ログイン済みローカルユーザーのみ許可
-      domain_blocks_rationale:
-        title: コメントを表示
-      mascot:
-        desc_html: 複数のページに表示されます。サイズは293x205px以上推奨です。未設定の場合、標準のマスコットが使用されます
-        title: マスコットイメージ
-      peers_api_enabled:
-        desc_html: 連合内でこのサーバーが遭遇したドメインの名前
-        title: 接続しているサーバーのリストを公開する
-      preview_sensitive_media:
-        desc_html: 他のウェブサイトにリンクを貼った際、メディアが閲覧注意としてマークされていてもサムネイルが表示されます
-        title: OpenGraphによるプレビューで閲覧注意のメディアも表示する
-      profile_directory:
-        desc_html: ユーザーが見つかりやすくできるようになります
-        title: ディレクトリを有効にする
       registrations:
-        closed_message:
-          desc_html: 新規登録を停止しているときにフロントページに表示されます。HTMLタグが使えます
-          title: 新規登録停止時のメッセージ
-        require_invite_text:
-          desc_html: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストを必須入力にする
-          title: 新規ユーザー登録時の理由を必須入力にする
+        preamble: あなたのサーバー上でアカウントを作成できるユーザーを制御します。
+        title: 登録
       registrations_mode:
         modes:
           approved: 登録には承認が必要
           none: 誰にも許可しない
           open: 誰でも登録可
-        title: 新規登録
-      site_description:
-        desc_html: フロントページへの表示に使用される紹介文です。このMastodonサーバーを特徴付けることやその他重要なことを記述してください。HTMLタグ、特に<code>&lt;a&gt;</code> と <code>&lt;em&gt;</code>が使えます。
-        title: サーバーの説明
-      site_description_extended:
-        desc_html: あなたのサーバーにおける行動規範やルール、ガイドライン、そのほかの記述をする際に最適な場所です。HTMLタグが使えます
-        title: カスタム詳細説明
-      site_short_description:
-        desc_html: サイドバーとmetaタグに表示されます。Mastodonとは何か、そしてこのサーバーの特別な何かを1段落で記述してください。空欄の場合、サーバーの説明が使用されます。
-        title: 短いサーバーの説明
-      site_terms:
-        title: カスタムプライバシーポリシー
-      site_title: サーバーの名前
-      thumbnail:
-        desc_html: OpenGraphとAPIによるプレビューに使用されます。サイズは1200×630px推奨です
-        title: サーバーのサムネイル
-      timeline_preview:
-        desc_html: ランディングページに公開タイムラインへのリンクを表示し、認証なしでの公開タイムラインへのAPIアクセスを許可します
-        title: 公開タイムラインへの未認証のアクセスを許可する
-      title: サイト設定
-      trends:
-        desc_html: 現在トレンドになっている承認済みのハッシュタグを公開します
-        title: トレンドタグを有効にする
+      title: サーバー設定
     site_uploads:
       delete: ファイルを削除
       destroyed_msg: ファイルを削除しました！

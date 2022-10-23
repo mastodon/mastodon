@@ -667,79 +667,35 @@ pt-PT:
       empty: Nenhuma regra de instância foi ainda definida.
       title: Regras da instância
     settings:
-      activity_api_enabled:
-        desc_html: Contagem semanais de publicações locais, utilizadores activos e novos registos
-        title: Publicar estatísticas agregadas sobre atividade dos utilizadores
-      bootstrap_timeline_accounts:
-        desc_html: Separa os nomes de utilizadores por vírgulas. Funciona apenas com contas locais e desbloqueadas. O padrão quando vazio são todos os administradores locais.
-        title: Seguidores predefinidos para novas contas
-      contact_information:
-        email: Inserir um endereço de e-mail para tornar público
-        username: Insira um nome de utilizador
-      custom_css:
-        desc_html: Modificar a aparência com CSS carregado em cada página
-        title: CSS personalizado
-      default_noindex:
-        desc_html: Afeta todos os utilizadores que não alteraram esta configuração
-        title: Desativar, por omissão, a indexação de utilizadores por parte dos motores de pesquisa
+      about:
+        manage_rules: Gerir regras do servidor
+        preamble: Forneça informações aprofundadas sobre como o servidor é operado, moderado, financiado.
+        rules_hint: Existe uma área dedicada às regras a que os seus utilizadores devem aderir.
+        title: Sobre
+      appearance:
+        preamble: Personalize a interface web do Mastodon.
+        title: Aspeto
+      content_retention:
+        title: Retenção de conteúdo
+      discovery:
+        follow_recommendations: Recomendações para seguir
+        profile_directory: Diretório de perfis
+        public_timelines: Cronologias públicas
+        title: Descobrir
+        trends: Tendências
       domain_blocks:
         all: Para toda a gente
         disabled: Para ninguém
-        title: Mostrar domínios bloqueados
         users: Para utilizadores locais que se encontrem autenticados
-      domain_blocks_rationale:
-        title: Mostrar motivo
-      mascot:
-        desc_html: Apresentada em múltiplas páginas. Pelo menos 293x205px recomendados. Quando não é definida, é apresentada a mascote predefinida
-        title: Imagem da mascote
-      peers_api_enabled:
-        desc_html: Nomes de domínio que esta instância encontrou no fediverso
-        title: Publicar lista de instâncias descobertas
-      preview_sensitive_media:
-        desc_html: A pre-visualização de links noutros sites irá apresentar uma miniatura, mesmo que a media seja marcada como sensível
-        title: Mostrar media sensível em pre-visualizações OpenGraph
-      profile_directory:
-        desc_html: Permite aos utilizadores serem descobertos
-        title: Ativar directório do perfil
       registrations:
-        closed_message:
-          desc_html: Mostrar na página inicial quando registos estão encerrados<br/>Podes usar tags HTML
-          title: Mensagem de registos encerrados
-        require_invite_text:
-          desc_html: Quando os registos exigirem aprovação manual, faça o texto "Porque se quer juntar a nós?" da solicitação de convite obrigatório, em vez de opcional
-          title: Exigir que novos utilizadores preencham um texto de solicitação de convite
+        preamble: Controle quem pode criar uma conta no seu servidor.
+        title: Inscrições
       registrations_mode:
         modes:
           approved: Registo sujeito a aprovação
           none: Ninguém se pode registar
           open: Qualquer pessoa se pode registar
-        title: Modo de registo
-      site_description:
-        desc_html: Mostrar como parágrafo na página inicial e usado como meta tag.Podes usar tags HTML, em particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descrição do site
-      site_description_extended:
-        desc_html: Mostrar na página de mais informações<br/>Podes usar tags HTML
-        title: Página de mais informações
-      site_short_description:
-        desc_html: Mostrada na barra lateral e em etiquetas de metadados. Descreve o que o Mastodon é e o que torna esta instância especial num único parágrafo. Se deixada em branco, remete para a descrição da instância.
-        title: Breve descrição da instância
-      site_terms:
-        desc_html: Pode escrever a sua própria política de privacidade. Pode utilizar código HTML
-        title: Política de privacidade personalizada
-      site_title: Título do site
-      thumbnail:
-        desc_html: Usada para visualizações via OpenGraph e API. Recomenda-se 1200x630px
-        title: Miniatura da instância
-      timeline_preview:
-        desc_html: Exibir a linha temporal pública na página inicial
-        title: Visualização da linha temporal
-      title: Configurações do site
-      trendable_by_default:
-        desc_html: Conteúdo específico em tendência pode mesmo assim ser explicitamente rejeitado
-        title: Permitir tendências sem revisão prévia
-      trends:
-        desc_html: Exibir publicamente hashtags atualmente em destaque que já tenham sido revistas anteriormente
-        title: Hashtags em destaque
+      title: Definições do Servidor
     site_uploads:
       delete: Eliminar arquivo carregado
       destroyed_msg: Upload do site eliminado com sucesso!

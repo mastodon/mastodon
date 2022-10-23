@@ -75,8 +75,25 @@ ca:
           warn: Oculta el contingut filtrat rera un avís mencionant el títol del filtre
       form_admin_settings:
         backups_retention_period: Mantenir els arxius d'usuari generats durant el número de dies especificats.
+        bootstrap_timeline_accounts: Aquests comptes es fixaran en la part superior de les recomanacions de seguiment dels nous usuaris.
+        closed_registrations_message: Mostrat quan el registres estan tancats
         content_cache_retention_period: Els apunts des d'altres servidors s'esborraran després del número de dies especificat quan es configura un valor positiu. Això pot ser irreversible.
+        custom_css: Pots aplicar estils personalitzats en la versió web de Mastodon.
+        mascot: Anul·la l'ilustració en l'interfície web avançada.
         media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del número de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
+        profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
+        require_invite_text: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcional escriure el text de la solicitud d'invitació "Perquè vols unirte?"
+        site_contact_email: Com pot la gent comunicar amb tu per a consultes legals o de recolzament.
+        site_contact_username: Com pot la gent trobar-te a Mastodon.
+        site_extended_description: Qualsevol informació adicional que pot ser útil per els visitants i els teus usuaris. Pot ser estructurat amb format Markdown.
+        site_short_description: Una descripció curta per ajudar a identificar de manera única el teu servidor. Qui el fa anar, per a qui és?
+        site_terms: Usa la teva pròpia política de privacitat o deixa-ho en blanc per a usar la per defecte. Pot ser estructurat amb format Markdown.
+        site_title: Com pot la gent referir-se al teu servidor a part del seu nom de domini.
+        theme: El tema que els visitants i els nous usuaris veuen.
+        thumbnail: Una imatge d'aproximadament 2:1 mostrada junt l'informació del teu servidor.
+        timeline_preview: Els visitants amb sessió no iniciada seran capaços de navegar per els apunts públics més recents en el teu servidor.
+        trendable_by_default: Omet la revisió manual del contingut en tendència. Els articles individuals poden encara ser eliminats després del fet.
+        trends: Les tendències mostres els apunts, les etiquetes i les noves històries que estan guanyant atenció en el teu servidor.
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -213,8 +230,22 @@ ca:
           warn: Oculta amb un avís
       form_admin_settings:
         backups_retention_period: Període de retenció del arxiu d'usuari
+        bootstrap_timeline_accounts: Recomana sempre aquests comptes als nous usuaris
+        closed_registrations_message: Missatge personalitzat quan el registre està tancat
         content_cache_retention_period: Periode de retenció de la memòria cau de contingut
+        custom_css: CSS personalitzat
+        mascot: Mascota personalitzada (llegat)
         media_cache_retention_period: Període de retenció del cau multimèdia
+        profile_directory: Habilita el directori de perfils
+        registrations_mode: Qui es pot registrar
+        require_invite_text: Requereix un motiu per el registre
+        show_domain_blocks: Mostra els bloquejos de domini
+        show_domain_blocks_rationale: Mostra perquè estan bloquejats els dominis
+        site_contact_email: E-mail de contacte
+        site_contact_username: Nom d'usuari del contacte
+        site_extended_description: Descripció ampliada
+        site_short_description: Descripció del servidor
+        site_terms: Política de Privacitat
       interactions:
         must_be_follower: Bloqueja les notificacions de persones que no em segueixen
         must_be_following: Bloqueja les notificacions de persones no seguides

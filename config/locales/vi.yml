@@ -653,79 +653,15 @@ vi:
       empty: Chưa có quy tắc máy chủ.
       title: Quy tắc máy chủ
     settings:
-      activity_api_enabled:
-        desc_html: Thu thập số lượng tút được đăng, người dùng hoạt động và người dùng đăng ký mới hàng tuần
-        title: Công khai số liệu thống kê về hoạt động người dùng trong API
-      bootstrap_timeline_accounts:
-        desc_html: Tách tên người dùng bằng dấu phẩy. Những người dùng này sẽ xuất hiện trong mục gợi ý theo dõi
-        title: Gợi ý theo dõi cho người dùng mới
-      contact_information:
-        email: Email liên hệ
-        username: Tên tài khoản liên hệ
-      custom_css:
-        desc_html: Sửa đổi giao diện với CSS trên mỗi trang
-        title: Tùy chỉnh CSS
-      default_noindex:
-        desc_html: Ảnh hưởng đến tất cả người dùng không tự thay đổi cài đặt này
-        title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
       domain_blocks:
         all: Tới mọi người
         disabled: Không ai
-        title: Hiển thị khối miền
         users: Để đăng nhập người dùng cục bộ
-      domain_blocks_rationale:
-        title: Hiển thị lý do
-      mascot:
-        desc_html: Hiển thị trên nhiều trang. Kích cỡ tối thiểu 293 × 205px. Mặc định dùng linh vật Mastodon
-        title: Logo máy chủ
-      peers_api_enabled:
-        desc_html: Tên miền mà máy chủ này đã kết giao trong mạng liên hợp
-        title: Công khai danh sách những máy chủ đã khám phá trong API
-      preview_sensitive_media:
-        desc_html: Liên kết xem trước trên các trang web khác sẽ hiển thị hình thu nhỏ ngay cả khi phương tiện được đánh dấu là nhạy cảm
-        title: Hiển thị phương tiện nhạy cảm trong bản xem trước OpenGraph
-      profile_directory:
-        desc_html: Cho phép tìm kiếm người dùng
-        title: Cho phép hiện danh sách thành viên
-      registrations:
-        closed_message:
-          desc_html: Hiển thị trên trang chủ khi đăng ký được đóng lại. Bạn có thể viết bằng thẻ HTML
-          title: Thông điệp báo máy chủ đã ngừng đăng ký
-        require_invite_text:
-          desc_html: Khi chọn phê duyệt người dùng thủ công, hiện “Tại sao bạn muốn đăng ký?” thay cho tùy chọn nhập
-          title: Người đăng ký mới phải nhập mã mời tham gia
       registrations_mode:
         modes:
           approved: Yêu cầu phê duyệt để đăng ký
           none: Không ai có thể đăng ký
           open: Bất cứ ai cũng có thể đăng ký
-        title: Chế độ đăng ký
-      site_description:
-        desc_html: Nội dung giới thiệu về máy chủ. Mô tả những gì làm cho máy chủ Mastodon này đặc biệt và bất cứ điều gì quan trọng khác. Bạn có thể dùng các thẻ HTML, đặc biệt là <code>&lt;a&gt;</code> và <code>&lt;em&gt;</code>.
-        title: Mô tả máy chủ
-      site_description_extended:
-        desc_html: Bạn có thể tạo thêm các mục như quy định chung, hướng dẫn và những thứ khác liên quan tới máy chủ của bạn. Dùng thẻ HTML
-        title: Thông tin bổ sung
-      site_short_description:
-        desc_html: Hiển thị trong thanh bên và thẻ meta. Mô tả Mastodon là gì và điều gì làm cho máy chủ này trở nên đặc biệt trong một đoạn văn duy nhất.
-        title: Mô tả máy chủ ngắn
-      site_terms:
-        desc_html: Bạn có thể tự soạn chính sách bảo mật của riêng bạn. Sử dụng HTML
-        title: Sửa chính sách bảo mật
-      site_title: Tên máy chủ
-      thumbnail:
-        desc_html: Bản xem trước thông qua OpenGraph và API. Khuyến nghị 1200x630px
-        title: Hình thu nhỏ của máy chủ
-      timeline_preview:
-        desc_html: Hiển thị dòng thời gian công khai trên trang đích và cho phép API truy cập vào dòng thời gian công khai mà không cần cho phép
-        title: Cho phép truy cập vào dòng thời gian công cộng không cần cho phép
-      title: Cài đặt trang web
-      trendable_by_default:
-        desc_html: Nội dung xu hướng cụ thể vẫn có thể bị cấm một cách rõ ràng
-        title: Cho phép xu hướng mà không cần xem xét trước
-      trends:
-        desc_html: Hiển thị công khai các hashtag được xem xét trước đây hiện đang là xu hướng
-        title: Hashtag xu hướng
     site_uploads:
       delete: Xóa tập tin đã tải lên
       destroyed_msg: Đã xóa tập tin tải lên thành công!

@@ -655,79 +655,40 @@ zh-TW:
       empty: 未曾定義任何伺服器規則
       title: 伺服器規則
     settings:
-      activity_api_enabled:
-        desc_html: 本站使用者發佈的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
-        title: 公開使用者活躍度的統計數據
-      bootstrap_timeline_accounts:
-        desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則預設跟隨本站所有管理員。
-        title: 新使用者預設跟隨
-      contact_information:
-        email: 用於聯絡的公開電子信箱地址
-        username: 請輸入使用者名稱
-      custom_css:
-        desc_html: 透過於每個頁面都載入的 CSS 調整外觀
-        title: 自訂 CSS
-      default_noindex:
-        desc_html: 影響所有沒有變更此設定的使用者
-        title: 預設將使用者退出搜尋引擎索引
+      about:
+        manage_rules: 管理伺服器規則
+        preamble: 提供關於此伺服器如何運作、管理、及金援之供詳細資訊。
+        rules_hint: 這是關於您的使用者應遵循規則之專有區域。
+        title: 關於
+      appearance:
+        preamble: 客製化 Mastodon 網頁介面。
+        title: 外觀設定
+      branding:
+        preamble: 您的伺服器品牌使之從聯邦宇宙網路中其他伺服器間凸顯自己。此資訊可能於各種不同的環境中顯示，例如 Mastodon 網頁介面、原生應用程式、其他網頁上的連結預覽或是其他通訊應用程式等等。因此，請盡可能保持此資訊簡潔明朗。
+        title: 品牌化
+      content_retention:
+        preamble: 控制使用者產生內容如何儲存於 Mastodon 上。
+        title: 內容保留期間
+      discovery:
+        follow_recommendations: 跟隨建議
+        preamble: 呈現有趣的內容有助於 Mastodon 上一人不識的新手上路。控制各種不同的分類在您伺服器上如何被探索到。
+        profile_directory: 個人檔案目錄
+        public_timelines: 公開時間軸
+        title: 探索
+        trends: 熱門趨勢
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
-        title: 顯示封鎖的網域
         users: 套用至所有登入的本機使用者
-      domain_blocks_rationale:
-        title: 顯示解釋原因
-      mascot:
-        desc_html: 在許多頁面都會顯示。推薦最小 293x205px。如果留空，將採用預設的吉祥物
-        title: 吉祥物圖片
-      peers_api_enabled:
-        desc_html: 本伺服器在聯邦中發現的站點
-        title: 發布已知伺服器的列表
-      preview_sensitive_media:
-        desc_html: 連結來自其他網站的預覽將顯示於縮圖，即使這些媒體被標記為敏感
-        title: 在 OpenGraph 預覽中顯示敏感媒體
-      profile_directory:
-        desc_html: 允許能探索使用者
-        title: 啟用個人資料目錄
       registrations:
-        closed_message:
-          desc_html: 關閉註冊時顯示在首頁的內容，可使用 HTML 標籤
-          title: 關閉註冊訊息
-        require_invite_text:
-          desc_html: 如果已設定為手動審核註冊，請將「加入原因」設定為必填項目。
-          title: 要求新使用者填申請書以索取邀請
+        preamble: 控制誰能於您伺服器上建立帳號。
+        title: 註冊
       registrations_mode:
         modes:
           approved: 註冊需要核准
           none: 沒有人可註冊
           open: 任何人皆能註冊
-        title: 註冊模式
-      site_description:
-        desc_html: 首頁上的介紹文字，描述此 Mastodon 伺服器的特別之處和其他重要資訊。可使用 HTML 標籤，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code>。
-        title: 伺服器描述
-      site_description_extended:
-        desc_html: 可放置行為準則、規定以及其他此伺服器特有的內容。可使用 HTML 標籤
-        title: 本站詳細資訊
-      site_short_description:
-        desc_html: 顯示在側邊欄和網頁標籤 (meta tags)。以一段話描述 Mastodon 是甚麼，以及這個伺服器的特色。
-        title: 伺服器短描述
-      site_terms:
-        desc_html: 您可以撰寫自己的隱私權政策。您可以使用 HTML 標籤。
-        title: 客製的隱私權政策
-      site_title: 伺服器名稱
-      thumbnail:
-        desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
-        title: 伺服器縮圖
-      timeline_preview:
-        desc_html: 在主頁顯示本站時間軸
-        title: 時間軸預覽
-      title: 網站設定
-      trendable_by_default:
-        desc_html: 特定的熱門內容仍可以被明確地禁止
-        title: 允許熱門話題直接顯示，不需經過審核
-      trends:
-        desc_html: 公開目前炎上的已審核標籤
-        title: 趨勢主題標籤
+      title: 伺服器設定
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！

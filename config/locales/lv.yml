@@ -681,79 +681,40 @@ lv:
       empty: Servera noteikumi vēl nav definēti.
       title: Servera noteikumi
     settings:
-      activity_api_enabled:
-        desc_html: Vietēji publicēto ziņu, aktīvo lietotāju un jauno reģistrāciju skaits nedēļas kopās
-        title: Publicējiet apkopotu statistiku par lietotāju darbībām API
-      bootstrap_timeline_accounts:
-        desc_html: Atdaliet vairākus lietotājvārdus ar komatu. Tiks garantēts, ka šie konti tiks parādīti ieteikumos
-        title: Iesaki šos kontus jaunajiem lietotājiem
-      contact_information:
-        email: Lietišķais e-pasts
-        username: Saziņas lietotājvārds
-      custom_css:
-        desc_html: Maini izskatu, izmantojot CSS, kas ielādēta katrā lapā
-        title: Pielāgota CSS
-      default_noindex:
-        desc_html: Ietekmē visus lietotājus, kuri paši nav mainījuši šo iestatījumu
-        title: Pēc noklusējuma lietotāji būs atteikušies no meklētājprogrammu indeksēšanas
+      about:
+        manage_rules: Pārvaldīt servera nosacījumus
+        preamble: Sniedz padziļinātu informāciju par to, kā serveris tiek darbināts, moderēts un finansēts.
+        rules_hint: Noteikumiem, kas taviem lietotājiem ir jāievēro, ir īpaša sadaļa.
+        title: Par
+      appearance:
+        preamble: Pielāgo Mastodon tīmekļa saskarni.
+        title: Izskats
+      branding:
+        preamble: Tava servera zīmols to atšķir no citiem tīkla serveriem. Šī informācija var tikt parādīta dažādās vidēs, piemēram, Mastodon tīmekļa saskarnē, vietējās lietojumprogrammās, saišu priekšskatījumos citās vietnēs un ziņojumapmaiņas lietotnēs un tā tālāk. Šī iemesla dēļ vislabāk ir saglabāt šo informāciju skaidru, īsu un kodolīgu.
+        title: Zīmola veidošana
+      content_retention:
+        preamble: Kontrolē, kā Mastodon tiek glabāts lietotāju ģenerēts saturs.
+        title: Satura saglabāšana
+      discovery:
+        follow_recommendations: Sekotšanas rekomendācijas
+        preamble: Interesanta satura parādīšana palīdz piesaistīt jaunus lietotājus, kuri, iespējams, nepazīst nevienu Mastodon. Kontrolē, kā tavā serverī darbojas dažādi atklāšanas līdzekļi.
+        profile_directory: Profila direktorija
+        public_timelines: Publiskās ziņu lentas
+        title: Atklāt
+        trends: Tendences
       domain_blocks:
         all: Visiem
         disabled: Nevienam
-        title: Rādīt domēnu bloķēšanas
         users: Vietējiem reģistrētiem lietotājiem
-      domain_blocks_rationale:
-        title: Rādīt pamatojumus
-      mascot:
-        desc_html: Parādīts vairākās lapās. Ieteicams vismaz 293 × 205 pikseļi. Ja tas nav iestatīts, tiek atgriezts noklusējuma talismans
-        title: Talismana attēls
-      peers_api_enabled:
-        desc_html: Domēna vārdi, ar kuriem šis serveris ir saskāries fediversā
-        title: Publicēt API atklāto serveru sarakstu
-      preview_sensitive_media:
-        desc_html: Saites priekšskatījumus citās vietnēs parādīs kā sīktēlu pat tad, ja medijs ir atzīmēts kā sensitīvs
-        title: Parādīt sensitīvos medijus OpenGraph priekšskatījumos
-      profile_directory:
-        desc_html: Atļaut lietotājiem būt atklājamiem
-        title: Iespējot profila direktoriju
       registrations:
-        closed_message:
-          desc_html: Tiek parādīts sākumlapā, kad reģistrācija ir slēgta. Tu vari izmantot HTML tagus
-          title: Paziņojums par slēgtu reģistrāciju
-        require_invite_text:
-          desc_html: 'Ja reģistrācijai nepieciešama manuāla apstiprināšana, izdari, lai teksta: “Kāpēc vēlaties pievienoties?” ievade ir obligāta, nevis neobligāts'
-          title: Pieprasīt jauniem lietotājiem ievadīt pievienošanās iemeslu
+        preamble: Kontrolē, kurš var izveidot kontu tavā serverī.
+        title: Reģistrācijas
       registrations_mode:
         modes:
           approved: Reģistrācijai nepieciešams apstiprinājums
           none: Neviens nevar reģistrēties
           open: Jebkurš var reģistrēties
-        title: Reģistrācijas režīms
-      site_description:
-        desc_html: Ievadpunkts par API. Apraksti, kas padara šo Mastodon serveri īpašu, un jebko citu svarīgu. Vari izmantot HTML tagus, jo īpaši <code>&lt;a&gt;</code> un <code>&lt;em&gt;</code>.
-        title: Servera apraksts
-      site_description_extended:
-        desc_html: Laba vieta tavam rīcības kodeksam, noteikumiem, vadlīnijām un citām lietām, kas atšķir tavu serveri. Tu vari izmantot HTML tagus
-        title: Pielāgota paplašināta informācija
-      site_short_description:
-        desc_html: Tiek parādīts sānjoslā un metatagos. Vienā rindkopā apraksti, kas ir Mastodon un ar ko šis serveris ir īpašs.
-        title: Īss servera apraksts
-      site_terms:
-        desc_html: Tu vari uzrakstīt pats savu privātuma politiku. Vari izmantot HTML tagus
-        title: Pielāgot privātuma politiku
-      site_title: Servera nosaukums
-      thumbnail:
-        desc_html: Izmanto priekšskatījumiem, izmantojot OpenGraph un API. Ieteicams 1200x630 pikseļi
-        title: Servera sīkbilde
-      timeline_preview:
-        desc_html: Galvenajā lapā parādi saiti uz publisku laika skalu un ļauj API piekļūt publiskai ziņu lentai bez autentifikācijas
-        title: Atļaut neautentificētu piekļuvi publiskai ziņu lentai
-      title: Vietnes iestatījumi
-      trendable_by_default:
-        desc_html: Konkrētais populārais saturs joprojām var būt nepārprotami aizliegts
-        title: Atļaut tendences bez iepriekšējas pārskatīšanas
-      trends:
-        desc_html: Publiski parādīt iepriekš pārskatītus tēmturus, kas pašlaik ir populāri
-        title: Populārākie tēmturi
+      title: Servera Iestatījumi
     site_uploads:
       delete: Dzēst augšupielādēto failu
       destroyed_msg: Vietnes augšupielāde ir veiksmīgi izdzēsta!

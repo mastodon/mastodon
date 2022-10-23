@@ -695,79 +695,39 @@ sl:
       empty: Zaenkrat še ni opredeljenih pravil.
       title: Pravila strežnika
     settings:
-      activity_api_enabled:
-        desc_html: Številke lokalno objavljenih objav, aktivnih uporabnikov in novih registracij na tedenskih seznamih
-        title: Objavi združeno statistiko o dejavnosti uporabnikov
-      bootstrap_timeline_accounts:
-        desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih in odklenjenih računih. Privzeto, ko je prazno, je pri vseh lokalnih skrbnikih.
-        title: Privzeta sledenja za nove uporabnike
-      contact_information:
-        email: Poslovna e-pošta
-        username: Uporabniško ime stika
-      custom_css:
-        desc_html: Spremeni videz z naloženim CSS na vsaki strani
-        title: CSS po meri
-      default_noindex:
-        desc_html: Vpliva na vse uporabnike, ki niso sami spremenili te nastavitve
-        title: Privzeto izvzemi uporabnike iz indeksiranja iskalnika
+      about:
+        manage_rules: Upravljaj pravila strežnika
+        preamble: Podrobneje opišite, kako upravljate, moderirate in financirate strežnik.
+        rules_hint: Na voljo je poseben prostor za pravila, ki jih naj spoštujejo vaši uporabniki.
+        title: O programu
+      appearance:
+        preamble: Prilagodite spletni vmesnik Mastodona.
+        title: Videz
+      branding:
+        title: Blagovne znamke
+      content_retention:
+        preamble: Nazdor nad hrambo vsebine uporabnikov v Mastodonu.
+        title: Hramba vsebin
+      discovery:
+        follow_recommendations: Sledi priporočilom
+        preamble: Izpostavljanje zanimivih vsebin je ključno za pridobivanje novih uporabnikov, ki morda ne poznajo nikogar na Mastodonu. Nadzirajte, kako različne funkcionalnosti razkritja delujejo na vašem strežniku.
+        profile_directory: Imenik profilov
+        public_timelines: Javne časovnice
+        title: Razkrivanje
+        trends: Trendi
       domain_blocks:
         all: Vsem
         disabled: Nikomur
-        title: Domenske bloke pokaži
         users: Prijavljenim krajevnim uporabnikom
-      domain_blocks_rationale:
-        title: Pokaži razlago
-      mascot:
-        desc_html: Prikazano na več straneh. Priporočena je najmanj 293 × 205 px. Ko ni nastavljen, se vrne na privzeto maskoto
-        title: Slika maskote
-      peers_api_enabled:
-        desc_html: Domene, na katere je ta strežnik naletel na fediverse-u
-        title: Objavi seznam odkritih strežnikov
-      preview_sensitive_media:
-        desc_html: Predogledi povezav na drugih spletiščih bodo prikazali sličico, tudi če je medij označen kot občutljiv
-        title: Prikaži občutljive medije v predogledih OpenGraph
-      profile_directory:
-        desc_html: Dovoli uporabnikom, da jih lahko odkrijejo
-        title: Omogoči imenik profilov
       registrations:
-        closed_message:
-          desc_html: Prikazano na prvi strani, ko so registracije zaprte. Lahko uporabite oznake HTML
-          title: Sporočilo o zaprti registraciji
-        require_invite_text:
-          desc_html: Če registracije zahtevajo ročno potrditev, nastavite vnos besedila pod »Zakaj se želite pridružiti?« za obveznega
-          title: Zahteva, da novi uprorabniki navedejo razlog, zakaj se želijo registrirati
+        preamble: Nadzirajte, kdo lahko ustvari račun na vašem strežniku.
+        title: Registracije
       registrations_mode:
         modes:
           approved: Potrebna je odobritev za prijavo
           none: Nihče se ne more prijaviti
           open: Vsakdo se lahko prijavi
-        title: Način registracije
-      site_description:
-        desc_html: Uvodni odstavek na API-ju. Opišite, zakaj je ta Mastodon strežnik poseben in karkoli pomembnega. Lahko uporabite HTML oznake, zlasti <code>&lt;a&gt;</code> in <code>&lt;em&gt;</code>.
-        title: Opis strežnika
-      site_description_extended:
-        desc_html: Dober kraj za vaš kodeks ravnanja, pravila, smernice in druge stvari, ki ločujejo vaš strežnik. Lahko uporabite oznake HTML
-        title: Razširjene informacije po meri
-      site_short_description:
-        desc_html: Prikazano v stranski vrstici in metaoznakah. V enem odstavku opišite, kaj je Mastodon in kaj naredi ta strežnik poseben.
-        title: Kratek opis strežnika
-      site_terms:
-        desc_html: Napišete lahko svoj pravilnik o zasebnosti. Uporabite lahko značke HTML.
-        title: Pravilnik o zasebnosti po meri
-      site_title: Ime strežnika
-      thumbnail:
-        desc_html: Uporablja se za predogled prek OpenGrapha in API-ja. Priporočamo 1200x630px
-        title: Sličica strežnika
-      timeline_preview:
-        desc_html: Prikaži javno časovnico na ciljni strani
-        title: Predogled časovnice
-      title: Nastavitve strani
-      trendable_by_default:
-        desc_html: Določeno vsebino v trendu je še vedno možno izrecno prepovedati
-        title: Dovoli trende brez predhodnega pregleda
-      trends:
-        desc_html: Javno prikaži poprej pregledano vsebino, ki je trenutno v trendu
-        title: Trendi
+      title: Nastavitve strežnika
     site_uploads:
       delete: Izbriši naloženo datoteko
       destroyed_msg: Prenos na strežnik uspešno izbrisan!

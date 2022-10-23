@@ -667,79 +667,40 @@ it:
       empty: Non sono ancora state definite regole del server.
       title: Regole del server
     settings:
-      activity_api_enabled:
-        desc_html: Conteggi degli status pubblicati localmente, degli utenti attivi e delle nuove registrazioni in gruppi settimanali
-        title: Pubblica statistiche aggregate circa l'attività dell'utente
-      bootstrap_timeline_accounts:
-        desc_html: Separa i nomi utente con virgola. Funziona solo con account locali e non bloccati. Quando vuoto, valido per tutti gli amministratori locali.
-        title: Seguiti predefiniti per i nuovi utenti
-      contact_information:
-        email: E-mail di lavoro
-        username: Nome utente del contatto
-      custom_css:
-        desc_html: Modifica l'aspetto con il CSS caricato in ogni pagina
-        title: CSS personalizzato
-      default_noindex:
-        desc_html: Influisce su tutti gli utenti che non hanno cambiato questa impostazione
-        title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
+      about:
+        manage_rules: Gestisci le regole del server
+        preamble: Fornire informazioni approfondite su come, il server, venga gestito, moderato e finanziato.
+        rules_hint: C'è un'area dedicata per le regole che i tuoi utenti dovrebbero rispettare.
+        title: Info
+      appearance:
+        preamble: Personalizza l'interfaccia web di Mastodon.
+        title: Aspetto
+      branding:
+        preamble: 'Il marchio del tuo server lo differenzia dagli altri server nella rete. Queste informazioni possono essere visualizzate in una varietà di ambienti, come: l''interfaccia web di Mastodon, le applicazioni native, nelle anteprime dei collegamenti su altri siti Web e all''interno delle app di messaggistica e così via. Per questo motivo, è meglio mantenere queste informazioni chiare, brevi e concise.'
+        title: Marchio
+      content_retention:
+        preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
+        title: Conservazione dei contenuti
+      discovery:
+        follow_recommendations: Segui le raccomandazioni
+        preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
+        profile_directory: Directory del profilo
+        public_timelines: Timeline pubbliche
+        title: Scopri
+        trends: Tendenze
       domain_blocks:
         all: A tutti
         disabled: A nessuno
-        title: Mostra blocchi di dominio
         users: Agli utenti locali connessi
-      domain_blocks_rationale:
-        title: Mostra motivazione
-      mascot:
-        desc_html: Mostrata su più pagine. Almeno 293×205px consigliati. Se non impostata, sarò usata la mascotte predefinita
-        title: Immagine della mascotte
-      peers_api_enabled:
-        desc_html: Nomi di dominio che questo server ha incontrato nel fediverse
-        title: Pubblica elenco dei server scoperti
-      preview_sensitive_media:
-        desc_html: Le anteprime dei link su altri siti mostreranno un thumbnail anche se il media è segnato come sensibile
-        title: Mostra media sensibili nella anteprime OpenGraph
-      profile_directory:
-        desc_html: Permetti agli utenti di essere trovati
-        title: Attiva directory dei profili
       registrations:
-        closed_message:
-          desc_html: Mostrato nella pagina iniziale quando le registrazioni sono chiuse. Puoi usare tag HTML
-          title: Messaggio per registrazioni chiuse
-        require_invite_text:
-          desc_html: Quando le iscrizioni richiedono l'approvazione manuale, rendere la richiesta “Perché si desidera iscriversi?” obbligatoria invece che opzionale
-          title: Richiedi ai nuovi utenti di rispondere alla richiesta di motivazione per l'iscrizione
+        preamble: Controlla chi può creare un account sul tuo server.
+        title: Registrazioni
       registrations_mode:
         modes:
           approved: Approvazione richiesta per le iscrizioni
           none: Nessuno può iscriversi
           open: Chiunque può iscriversi
-        title: Modalità di registrazione
-      site_description:
-        desc_html: Paragrafo introduttivo nella pagina iniziale. Descrive ciò che rende speciale questo server Mastodon e qualunque altra cosa sia importante dire. Potete usare marcatori HTML, in particolare <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descrizione del server
-      site_description_extended:
-        desc_html: Un posto adatto le regole di comportamento, linee guida e altre cose specifiche del vostro server. Potete usare marcatori HTML
-        title: Informazioni estese personalizzate
-      site_short_description:
-        desc_html: Mostrato nella barra laterale e nei tag meta. Descrive in un paragrafo che cos'è Mastodon e che cosa rende questo server speciale. Se vuoto, sarà usata la descrizione predefinita del server.
-        title: Breve descrizione del server
-      site_terms:
-        desc_html: Puoi scrivere la tua politica sulla privacy. Puoi usare i tag HTML
-        title: Politica sulla privacy personalizzata
-      site_title: Nome del server
-      thumbnail:
-        desc_html: Usato per anteprime tramite OpenGraph e API. 1200x630px consigliati
-        title: Thumbnail del server
-      timeline_preview:
-        desc_html: Mostra la timeline pubblica sulla pagina iniziale
-        title: Anteprima timeline
-      title: Impostazioni sito
-      trendable_by_default:
-        desc_html: I contenuti di tendenza specifici possono ancora essere esplicitamente vietati
-        title: Consenti tendenze senza controllo preliminare
-      trends:
-        desc_html: Visualizza pubblicamente gli hashtag precedentemente esaminati che sono attualmente in tendenza
-        title: Hashtag di tendenza
+      title: Impostazioni del server
     site_uploads:
       delete: Cancella il file caricato
       destroyed_msg: Caricamento sito eliminato!

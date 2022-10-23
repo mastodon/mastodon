@@ -659,73 +659,15 @@ fi:
       empty: Palvelimen sääntöjä ei ole vielä määritelty.
       title: Palvelimen säännöt
     settings:
-      activity_api_enabled:
-        desc_html: Paikallisesti julkaistujen tilojen, aktiivisten käyttäjien ja uusien rekisteröintien määrät viikoittain
-        title: Julkaise koostetilastoja käyttäjien aktiivisuudesta
-      bootstrap_timeline_accounts:
-        desc_html: Erota käyttäjänimet pilkulla. Vain paikalliset ja lukitsemattomat tilit toimivat. Jos kenttä jätetään tyhjäksi, oletusarvona ovat kaikki paikalliset ylläpitäjät.
-        title: Uudet käyttäjät seuraavat oletuksena seuraavia tilejä
-      contact_information:
-        email: Työsähköposti
-        username: Yhteyshenkilön käyttäjänimi
-      custom_css:
-        desc_html: Muokkaa ulkoasua CSS:llä, joka on ladattu jokaiselle sivulle
-        title: Mukautettu CSS
-      default_noindex:
-        desc_html: Vaikuttaa kaikkiin käyttäjiin, jotka eivät ole muuttaneet tätä asetusta itse
-        title: Valitse oletuksena käyttäjät hakukoneiden indeksoinnin ulkopuolelle
       domain_blocks:
         all: Kaikille
         disabled: Ei kenellekkään
-        title: Näytä domainestot
         users: Kirjautuneille paikallisille käyttäjille
-      domain_blocks_rationale:
-        title: Näytä syy
-      mascot:
-        desc_html: Näytetään useilla sivuilla. Suositus vähintään 293×205px. Kun ei ole asetettu, käytetään oletuskuvaa
-        title: Maskottikuva
-      peers_api_enabled:
-        desc_html: Verkkotunnukset, jotka tämä instanssi on kohdannut fediversumissa
-        title: Julkaise löydettyjen instanssien luettelo
-      preview_sensitive_media:
-        desc_html: Linkin esikatselu muilla sivustoilla näyttää pikkukuvan vaikka media on merkitty arkaluonteiseksi
-        title: Näytä arkaluontoiset mediat OpenGraph esikatselussa
-      profile_directory:
-        desc_html: Salli käyttäjien olla löydettävissä
-        title: Ota profiilihakemisto käyttöön
-      registrations:
-        closed_message:
-          desc_html: Näytetään etusivulla, kun rekisteröinti on suljettu. HTML-tagit käytössä
-          title: Viesti, kun rekisteröinti on suljettu
-        require_invite_text:
-          desc_html: Kun rekisteröinnit edellyttävät manuaalista hyväksyntää, tee “Miksi haluat liittyä?” teksti pakolliseksi eikä valinnaiseksi
-          title: Vaadi uusia käyttäjiä antamaan liittymisen syy
       registrations_mode:
         modes:
           approved: Rekisteröinti vaatii hyväksynnän
           none: Kukaan ei voi rekisteröityä
           open: Kaikki voivat rekisteröityä
-        title: Rekisteröintitapa
-      site_description:
-        desc_html: Esittelykappale etusivulla ja metatunnisteissa. HTML-tagit käytössä, tärkeimmät ovat <code>&lt;a&gt;</code> ja <code>&lt;em&gt;</code>.
-        title: Instanssin kuvaus
-      site_description_extended:
-        desc_html: Hyvä paikka käytösohjeille, säännöille, ohjeistuksille ja muille instanssin muista erottaville asioille. HTML-tagit käytössä
-        title: Omavalintaiset laajat tiedot
-      site_short_description:
-        desc_html: Näytetään sivupalkissa ja kuvauksessa. Kerro yhdessä kappaleessa, mitä Mastodon on ja mikä tekee palvelimesta erityisen.
-        title: Lyhyt instanssin kuvaus
-      site_title: Instanssin nimi
-      thumbnail:
-        desc_html: Käytetään esikatseluissa OpenGraphin ja API:n kautta. Suosituskoko 1200x630 pikseliä
-        title: Instanssin pikkukuva
-      timeline_preview:
-        desc_html: Näytä julkinen aikajana aloitussivulla
-        title: Aikajanan esikatselu
-      title: Sivuston asetukset
-      trends:
-        desc_html: Näytä julkisesti aiemmin tarkistetut hashtagit, jotka ovat tällä hetkellä saatavilla
-        title: Trendaavat aihetunnisteet
     site_uploads:
       delete: Poista ladattu tiedosto
       destroyed_msg: Sivuston lataus onnistuneesti poistettu!

@@ -667,79 +667,15 @@ gl:
       empty: Aínda non se definiron as regras do servidor.
       title: Regras do servidor
     settings:
-      activity_api_enabled:
-        desc_html: Conta de estados publicados de xeito local, usuarias activas, e novos rexistros en períodos semanais
-        title: Publicar na API estatísticas acumuladas sobre a actividade da usuaria
-      bootstrap_timeline_accounts:
-        desc_html: Separar os múltiples nomes de usuaria con vírgulas. Estas contas teñen garantido aparecer nas recomendacións de seguimento
-        title: Recoméndalle estas contas ás novas usuarias
-      contact_information:
-        email: Email de negocios
-        username: Nome de usuaria de contacto
-      custom_css:
-        desc_html: Modificar a aparencia con CSS cargado en cada páxina
-        title: CSS personalizado
-      default_noindex:
-        desc_html: Aféctalle a todas as usuarias que non cambiaron os axustes elas mesmas
-        title: Por omisión exclúe as usuarias do indexado por servidores de busca
       domain_blocks:
         all: Para todos
         disabled: Para ninguén
-        title: Amosar dominios bloqueados
         users: Para usuarias locais conectadas
-      domain_blocks_rationale:
-        title: Amosar motivo
-      mascot:
-        desc_html: Amosado en varias páxinas. Polo menos 293x205px recomendados. Se non está definido, estará a mascota por defecto
-        title: Imaxe da mascota
-      peers_api_enabled:
-        desc_html: Nomes de dominio que este servidor atopou no fediverso
-        title: Publicar na API listaxe de servidores descobertos
-      preview_sensitive_media:
-        desc_html: A vista previa de ligazóns de outros sitios web mostrará unha imaxe incluso si os medios están marcados como sensibles
-        title: Mostrar medios sensibles con vista previa OpenGraph
-      profile_directory:
-        desc_html: Permitir que as usuarias poidan ser descubertas
-        title: Activar o directorio de perfil
-      registrations:
-        closed_message:
-          desc_html: Mostrado na páxina de portada cando o rexistro está pechado. Pode utilizar cancelos HTML
-          title: Mensaxe de rexistro pechado
-        require_invite_text:
-          desc_html: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
-          title: Require que as novas usuarias completen solicitude de texto do convite
       registrations_mode:
         modes:
           approved: Precisa aprobación para rexistrarse
           none: Rexistro pechado
           open: Rexistro aberto
-        title: Estado do rexistro
-      site_description:
-        desc_html: Parágrafo de presentación na páxina principal. Describe o que fai especial a este servidor Mastodon e calquera outra ouca importante. Pode utilizar cancelos HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descrición do servidor
-      site_description_extended:
-        desc_html: Un bo lugar para o teu código de conduta, regras, guías e outras cousas para diferenciar o teu servidor. Podes empregar cancelos HTML
-        title: Información extendida da personalización
-      site_short_description:
-        desc_html: Amosado na barra lateral e nos cancelos meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Se está baleiro, amosará a descrición do servidor.
-        title: Descrición curta do servidor
-      site_terms:
-        desc_html: Podes escribir a túa propia Política de Privacidade e usar etiquetas HTML
-        title: Política de Privacidade propia
-      site_title: Nome do servidor
-      thumbnail:
-        desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
-        title: Icona do servidor
-      timeline_preview:
-        desc_html: Mostrar ligazón á cronoloxía pública na páxina de benvida e permitir o acceso API á cronoloxía pública sen ter autenticación
-        title: Permitir acceso á cronoloxía pública sen autenticación
-      title: Axustes do sitio
-      trendable_by_default:
-        desc_html: Poderase prohibir igualmente contido en voga específico
-        title: Permitir tendencias sen aprobación previa
-      trends:
-        desc_html: Amosar de xeito público cancelos revisados previamente que actualmente son tendencia
-        title: Cancelos en tendencia
     site_uploads:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!

@@ -659,78 +659,15 @@ fr:
       empty: Aucune règle de serveur n'a été définie pour l'instant.
       title: Règles du serveur
     settings:
-      activity_api_enabled:
-        desc_html: Nombre de messages publiés localement, de comptes actifs et de nouvelles inscriptions regroupés par semaine
-        title: Publier des statistiques agrégées sur l’activité des utilisateur·rice·s
-      bootstrap_timeline_accounts:
-        desc_html: Séparez les noms d'utilisateur·rice·s par des virgules. Ces comptes seront affichés dans les recommendations d'abonnement
-        title: Recommender ces comptes aux nouveaux·elles utilisateur·rice·s
-      contact_information:
-        email: Entrez une adresse courriel publique
-        username: Entrez un nom d’utilisateur·ice
-      custom_css:
-        desc_html: Modifier l’apparence avec une CSS chargée sur chaque page
-        title: CSS personnalisé
-      default_noindex:
-        desc_html: Affecte tous les utilisateurs qui n'ont pas changé eux-mêmes ce paramètre
-        title: Opter pour le retrait de l'indexation des moteurs de recherche par défaut
       domain_blocks:
         all: À tout le monde
         disabled: À personne
-        title: Afficher le blocage de domaines
         users: Aux utilisateur·rice·s connecté·e·s localement
-      domain_blocks_rationale:
-        title: Montrer la raison
-      mascot:
-        desc_html: Affiché sur plusieurs pages. Au moins 293×205px recommandé. Lorsqu’il n’est pas défini, retombe à la mascotte par défaut
-        title: Image de la mascotte
-      peers_api_enabled:
-        desc_html: Noms des domaines que ce serveur a découvert dans le fédiverse
-        title: Publier la liste des serveurs découverts dans l’API
-      preview_sensitive_media:
-        desc_html: Les aperçus de lien sur les autres sites web afficheront une vignette même si les médias sont marqués comme sensibles
-        title: Montrer les médias sensibles dans les prévisualisations OpenGraph
-      profile_directory:
-        desc_html: Permettre aux utilisateur·ice·s d’être découvert·e·s
-        title: Activer l’annuaire des profils
-      registrations:
-        closed_message:
-          desc_html: Affiché sur la page d’accueil lorsque les inscriptions sont fermées. Vous pouvez utiliser des balises HTML
-          title: Message de fermeture des inscriptions
-        require_invite_text:
-          desc_html: Lorsque les enregistrements nécessitent une approbation manuelle, rendre le texte de l’invitation "Pourquoi voulez-vous vous inscrire ?" obligatoire plutôt que facultatif
-          title: Exiger que les nouveaux utilisateurs remplissent un texte de demande d’invitation
       registrations_mode:
         modes:
           approved: Approbation requise pour s’inscrire
           none: Personne ne peut s’inscrire
           open: N’importe qui peut s’inscrire
-        title: Mode d’enregistrement
-      site_description:
-        desc_html: Paragraphe introductif sur l'API. Décrivez les particularités de ce serveur Mastodon et précisez toute autre chose qui vous semble importante. Vous pouvez utiliser des balises HTML, en particulier <code>&lt;a&gt;</code> et <code>&lt;em&gt;</code>.
-        title: Description du serveur
-      site_description_extended:
-        desc_html: L’endroit idéal pour afficher votre code de conduite, les règles, les guides et autres choses qui rendent votre serveur différent. Vous pouvez utiliser des balises HTML
-        title: Description étendue du serveur
-      site_short_description:
-        desc_html: Affichée dans la barre latérale et dans les méta-tags. Décrivez ce qui rend spécifique ce serveur Mastodon en un seul paragraphe. Si laissée vide, la description du serveur sera affiché par défaut.
-        title: Description courte du serveur
-      site_terms:
-        desc_html: Vous pouvez écrire votre propre politique de confidentialité. Vous pouvez utiliser des balises HTML
-        title: Politique de confidentialité personnalisée
-      site_title: Nom du serveur
-      thumbnail:
-        desc_html: Utilisée pour les prévisualisations via OpenGraph et l’API. 1200x630px recommandé
-        title: Vignette du serveur
-      timeline_preview:
-        desc_html: Afficher un lien vers le fil public sur la page d’accueil et autoriser l'accès anonyme au fil public via l'API
-        title: Autoriser la prévisualisation anonyme du fil global
-      title: Paramètres du serveur
-      trendable_by_default:
-        title: Autoriser les tendances sans révision préalable
-      trends:
-        desc_html: Afficher publiquement les hashtags approuvés qui sont populaires en ce moment
-        title: Hashtags populaires
     site_uploads:
       delete: Supprimer le fichier téléversé
       destroyed_msg: Téléversement sur le site supprimé avec succès !

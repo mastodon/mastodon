@@ -667,79 +667,40 @@ io:
       empty: Nula servilreguli fixesis til nun.
       title: Servilreguli
     settings:
-      activity_api_enabled:
-        desc_html: Quanto de lokale publikigita posti, aktiva uzanti e nova registri quale semane faski
-        title: Publikigez rezumstatistiko pri uzantoaktiveso en API
-      bootstrap_timeline_accounts:
-        desc_html: Separez multopla uzantonomi kun komo. Ca konti garantiesos montresar en sequorekomendi
-        title: Rekomendez ca konti a nova uzanti
-      contact_information:
-        email: Enter a public e-mail address
-        username: Enter a username
-      custom_css:
-        desc_html: Modifikez aspekto kun CSS chargasas che singla pagino
-        title: Kustumizita CSS
-      default_noindex:
-        desc_html: Efektigar omna uzanti quo ne chanjis ca opciono per su
-        title: Despartoprenigez uzanti de trovmotorindexo quale originala stando
+      about:
+        manage_rules: Jerez servilreguli
+        preamble: Donez detaloza informi pri quale la servilo funcionar, jeresar e moyenigesar.
+        rules_hint: Havas partikulara areo por reguli quo uzanti expektesar sequar.
+        title: Pri co
+      appearance:
+        preamble: Kustumizitez retintervizajo di Mastodon.
+        title: Aspekto
+      branding:
+        preamble: Fabrikmarko di ca servilo diferentigas lu de altra servili en la reto. Ca informi forsan montresas che diversa loki. Do, ca informi debas esar klara.
+        title: Fabrikmarkeso
+      content_retention:
+        preamble: Dominacez quale uzantigita kontenajo retenesar en Mastodon.
+        title: Kontenajreteneso
+      discovery:
+        follow_recommendations: Sequez rekomendaji
+        preamble: Montrar interesanta kontenajo esas importanta ye voligar nova uzanti quo forsan ne savas irgu. Dominacez quale ca deskovrotraiti funcionar en ca servilo.
+        profile_directory: Profilcheflisto
+        public_timelines: Publika tempolinei
+        title: Deskovro
+        trends: Tendenci
       domain_blocks:
         all: A omnu
         disabled: A nulu
-        title: Montrez domenobstrukti
         users: A enirinta lokala uzanti
-      domain_blocks_rationale:
-        title: Montrez motivo
-      mascot:
-        desc_html: Montresas che multa chefpagino. Minime 293x205px rekomendesas. Se ne fixesis, ol retrouzas reprezentanto
-        title: Reprezenterimajo
-      peers_api_enabled:
-        desc_html: Domennomo quon ca servilo renkontris en fediverso
-        title: Publikigez listo di deskovrita servili en API
-      preview_sensitive_media:
-        desc_html: Ligilprevidi che altra retsiti montros imajeto mem se medii markizesas quale sentoza
-        title: Montrez sentoza medii e OpenGraph previdi
-      profile_directory:
-        desc_html: Permisez uzanti deskovresar
-        title: Aktivigez profilcheflisto
       registrations:
-        closed_message:
-          desc_html: Displayed on frontpage when registrations are closed<br>You can use HTML tags
-          title: Mesajo di klozita registro
-        require_invite_text:
-          desc_html: Se registri bezonas manuala aprobo, kauzigar "Por quo vu volas juntar?" textoenpoz divenar obligata
-          title: Bezonez nova uzanti insertar motivo por juntar
+        preamble: Dominacez qua povas krear konto en ca servilo.
+        title: Registragi
       registrations_mode:
         modes:
           approved: Aprobo bezonesas por registro
           none: Nulu povas registrar
           open: Irgu povas registrar
-        title: Registromodo
-      site_description:
-        desc_html: Displayed as a paragraph on the frontpage and used as a meta tag.<br>You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Site description
-      site_description_extended:
-        desc_html: Displayed on extended information page<br>You can use HTML tags
-        title: Extended site description
-      site_short_description:
-        desc_html: Montresas en flankobaro e metatagi. Deskriptez Mastodon e por quo ca servilo esas specala per 1 paragrafo.
-        title: Kurta servildeskripto
-      site_terms:
-        desc_html: Vu povas adjuntar sua privatesguidilo. Vu povas uzar tagi di HTML
-        title: Kustumizita privatesguidilo
-      site_title: Site title
-      thumbnail:
-        desc_html: Uzesis por previdi tra OpenGraph e API. 1200x630px rekomendesas
-        title: Servilimajeto
-      timeline_preview:
-        desc_html: Montrez ligilo e publika tempolineo che atingopagino e permisez API acesar publika tempolineo sen yurizo
-        title: Permisez neyurizita aceso a publika tempolineo
-      title: Site Settings
-      trendable_by_default:
-        desc_html: Partikulara trendoza kontenajo povas ankore videbla nepermisesar
-        title: Permisez hashtagi divenies tendencoza sen bezonata kontrolo
-      trends:
-        desc_html: Publika montrez antee kontrolita kontenajo quo nun esas tendencoza
-        title: Tendenci
+      title: Servilopcioni
     site_uploads:
       delete: Efacez adchargita failo
       destroyed_msg: Sitadchargito sucesoze efacesis!

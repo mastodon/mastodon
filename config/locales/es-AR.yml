@@ -667,79 +667,40 @@ es-AR:
       empty: Aún no se han definido las reglas del servidor.
       title: Reglas del servidor
     settings:
-      activity_api_enabled:
-        desc_html: Conteos de mensajes publicados localmente, usuarios activos y nuevos registros en tandas semanales
-        title: Publicar estadísticas agregadas sobre la actividad del usuario en la API
-      bootstrap_timeline_accounts:
-        desc_html: Separar múltiples nombres de usuario con coma. Sólo funcionarán las cuentas locales y desbloqueadas. Predeterminadamente, cuando está vacío se trata de todos los administradores locales.
-        title: Recomendar estas cuentas a usuarios nuevos
-      contact_information:
-        email: Correo electrónico de negocios
-        username: Nombre de usuario de contacto
-      custom_css:
-        desc_html: Modificá la apariencia con CSS cargado en cada página
-        title: CSS personalizado
-      default_noindex:
-        desc_html: Afecta a todos los usuarios que no cambiaron esta configuración por sí mismos
-        title: Quitar predeterminadamente a los usuarios de la indexación de los motores de búsqueda
+      about:
+        manage_rules: Administrar reglas del servidor
+        preamble: Proveé información en profundidad sobre cómo el servidor es operado, moderado y financiado.
+        rules_hint: Hay un área dedicada para las reglas a las que se espera que tus usuarios se adhieran.
+        title: Información
+      appearance:
+        preamble: Personalizá la interface web de Mastodon.
+        title: Apariencia
+      branding:
+        preamble: La marca de tu servidor lo diferencia de otros servidores de la red. Esta información puede mostrarse a través de una variedad de entornos, como en la interface web de Mastodon, en aplicaciones nativas, en previsualizaciones de enlaces en otros sitios web y en aplicaciones de mensajería, etc. Por esta razón, es mejor mantener esta información clara, breve y concisa.
+        title: Marca
+      content_retention:
+        preamble: Controlá cómo el contenido generado por el usuario se almacena en Mastodon.
+        title: Retención de contenido
+      discovery:
+        follow_recommendations: Recom. de cuentas a seguir
+        preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
+        profile_directory: Directorio de perfiles
+        public_timelines: Líneas temporales públicas
+        title: Descubrí
+        trends: Tendencias
       domain_blocks:
         all: A todos
         disabled: A nadie
-        title: Mostrar dominios bloqueados
         users: A usuarios locales con sesiones abiertas
-      domain_blocks_rationale:
-        title: Mostrar razonamiento
-      mascot:
-        desc_html: Mostrado en múltiples páginas. Se recomienda un tamaño mínimo de 293x205 píxeles. Cuando no se especifica, se muestra la mascota predeterminada
-        title: Imagen de la mascota
-      peers_api_enabled:
-        desc_html: Nombres de dominio que este servidor encontró en el fediverso
-        title: Publicar lista de servidores descubiertos en la API
-      preview_sensitive_media:
-        desc_html: Las previsualizaciones de enlaces en otros sitios web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
-        title: Mostrar medios sensibles en previsualizaciones de OpenGraph
-      profile_directory:
-        desc_html: Permitir que los usuarios puedan ser descubiertos
-        title: Habilitar directorio de perfiles
       registrations:
-        closed_message:
-          desc_html: Mostrado en la página principal cuando los registros de nuevas cuentas están cerrados. Podés usar etiquetas HTML
-          title: Mensaje de registro de nuevas cuentas cerrado
-        require_invite_text:
-          desc_html: Cuando los registros requieran aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
-          title: Requerir que los nuevos usuarios llenen un texto de solicitud de invitación
+        preamble: Controlá quién puede crear una cuenta en tu servidor.
+        title: Registros
       registrations_mode:
         modes:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
-        title: Modo de registros
-      site_description:
-        desc_html: Párrafo introductorio en la API. Describe qué hace especial a este servidor de Mastodon y todo lo demás que sea importante. Podés usar etiquetas HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
-        title: Descripción del servidor
-      site_description_extended:
-        desc_html: Un buen lugar para tu código de conducta, reglas, directrices y otras cosas que definen tu servidor. Podés usar etiquets HTML
-        title: Información extendida personalizada
-      site_short_description:
-        desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe qué es Mastodon y qué hace especial a este servidor en un solo párrafo.
-        title: Descripción corta del servidor
-      site_terms:
-        desc_html: Podés escribir tu propia política de privacidad. Podés usar etiquetas HTML
-        title: Política de privacidad personalizada
-      site_title: Nombre del servidor
-      thumbnail:
-        desc_html: Usado para previsualizaciones vía OpenGraph y APIs. Se recomienda 1200x630 píxeles
-        title: Miniatura del servidor
-      timeline_preview:
-        desc_html: Mostrar enlace a la línea temporal pública en la página de inicio y permitir el acceso a la API a la línea temporal pública sin autenticación
-        title: Permitir acceso no autorizado a la línea temporal pública
-      title: Configuración del sitio
-      trendable_by_default:
-        desc_html: El contenido de tendencias específicas todavía puede ser explícitamente desactivado
-        title: Permitir tendencias sin revisión previa
-      trends:
-        desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia actualmente
-        title: Tendencias
+      title: Configuraciones del servidor
     site_uploads:
       delete: Eliminar archivo subido
       destroyed_msg: "¡Subida al sitio eliminada exitosamente!"

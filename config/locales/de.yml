@@ -667,79 +667,15 @@ de:
       empty: Es wurden bis jetzt keine Server-Regeln definiert.
       title: Server-Regeln
     settings:
-      activity_api_enabled:
-        desc_html: Anzahl der lokal geposteten Beiträge, aktiven Nutzern und neuen Registrierungen in wöchentlichen Zusammenfassungen
-        title: Veröffentliche gesamte Statistiken über Benutzeraktivitäten
-      bootstrap_timeline_accounts:
-        desc_html: Mehrere Profilnamen durch Kommata trennen. Diese Konten werden immer in den Folgemempfehlungen angezeigt
-        title: Konten, welche neuen Benutzern empfohlen werden sollen
-      contact_information:
-        email: Öffentliche E-Mail-Adresse
-        username: Profilname für die Kontaktaufnahme
-      custom_css:
-        desc_html: Verändere das Aussehen mit CSS-Stilen, die auf jeder Seite geladen werden
-        title: Benutzerdefiniertes CSS
-      default_noindex:
-        desc_html: Beeinflusst alle Benutzer, die diese Einstellung nicht selbst geändert haben
-        title: Benutzer aus Suchmaschinen-Indizierung standardmäßig herausnehmen
       domain_blocks:
         all: An alle
         disabled: An niemanden
-        title: Zeige Domain-Blockaden
         users: Für angemeldete lokale Benutzer
-      domain_blocks_rationale:
-        title: Rationale anzeigen
-      mascot:
-        desc_html: Angezeigt auf mehreren Seiten. Mehr als 293x205px empfohlen. Wenn es nicht gesetzt wurde, wird stattdessen das Standard-Maskottchen genutzt werden.
-        title: Maskottchen-Bild
-      peers_api_enabled:
-        desc_html: Domain-Namen, die der Server im Fediversum gefunden hat
-        title: Veröffentliche entdeckte Server durch die API
-      preview_sensitive_media:
-        desc_html: Linkvorschauen auf anderen Webseiten werden ein Vorschaubild anzeigen, obwohl die Medien als NSFW markiert sind
-        title: NSFW-Medien in OpenGraph-Vorschau anzeigen
-      profile_directory:
-        desc_html: Erlaube es Benutzern, auffindbar zu sein
-        title: Aktiviere Profilverzeichnis
-      registrations:
-        closed_message:
-          desc_html: Wird auf der Einstiegsseite gezeigt, wenn die Anmeldung geschlossen ist. Du kannst HTML-Tags nutzen
-          title: Nachricht über geschlossene Registrierung
-        require_invite_text:
-          desc_html: Wenn eine Registrierung manuell genehmigt werden muss, mache den „Warum möchtest du beitreten?“-Text obligatorisch statt optional
-          title: Neue Benutzer müssen einen Einladungstext ausfüllen
       registrations_mode:
         modes:
           approved: Zustimmung benötigt zur Registrierung
           none: Niemand kann sich registrieren
           open: Jeder kann sich registrieren
-        title: Registrierungsmodus
-      site_description:
-        desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diesen Mastodon-Server ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
-        title: Beschreibung des Servers
-      site_description_extended:
-        desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres an, was deinen Server auszeichnet. Du kannst HTML-Tags benutzen
-        title: Erweiterte Beschreibung des Servers
-      site_short_description:
-        desc_html: Wird in der Seitenleiste und in Meta-Tags angezeigt. Beschreibe in einem einzigen Abschnitt, was Mastodon ist und was diesen Server von anderen unterscheidet. Falls leer, wird die Server-Beschreibung verwendet.
-        title: Kurze Beschreibung des Servers
-      site_terms:
-        desc_html: Sie können Ihre eigenen Datenschutzrichtlinien schreiben. Sie können HTML-Tags verwenden
-        title: Benutzerdefinierte Datenschutzerklärung
-      site_title: Name des Servers
-      thumbnail:
-        desc_html: Wird für die Vorschau via OpenGraph und API verwendet. 1200×630 px wird empfohlen
-        title: Vorschaubild des Servers
-      timeline_preview:
-        desc_html: Auf der Einstiegsseite die öffentliche Zeitleiste anzeigen
-        title: Zeitleisten-Vorschau
-      title: Server-Einstellungen
-      trendable_by_default:
-        desc_html: Bestimmte angesagte Inhalte können immer noch explizit deaktiviert werden
-        title: Trends ohne vorherige Überprüfung erlauben
-      trends:
-        desc_html: Zuvor überprüfte Hashtags öffentlich anzeigen, die derzeit angesagt sind
-        title: Trendende Hashtags
     site_uploads:
       delete: Hochgeladene Datei löschen
       destroyed_msg: Upload erfolgreich gelöscht!

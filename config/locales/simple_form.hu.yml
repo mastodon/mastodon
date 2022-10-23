@@ -37,7 +37,7 @@ hu:
         current_password: Biztonsági okok miatt kérlek, írd be a jelenlegi fiók jelszavát
         current_username: A jóváhagyáshoz írd be a jelenlegi fiók felhasználói nevét
         digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
-        discoverable: Engedélyezzük, hogy a fiókod idegenek által megtalálható legyen javaslatokon, trendeken és más funkciókon keresztül
+        discoverable: Engedélyezés, hogy a fiókod idegenek által megtalálható legyen javaslatokon, trendeken és más funkciókon keresztül
         email: Kapsz egy megerősítő e-mailt
         fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
         header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -62,7 +62,7 @@ hu:
         username: A felhasználói neved egyedi lesz a %{domain} domainen
         whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
       domain_allow:
-        domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
+        domain: Ez a domain adatokat kérhet le erről a kiszolgálóról, és a bejövő adatok fel lesznek dolgozva és tárolva lesznek
       email_domain_block:
         domain: Ez lehet az e-mail címben szereplő domain név vagy az MX rekord, melyet ez használ. Ezeket feliratkozáskor ellenőrizzük.
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
@@ -77,10 +77,16 @@ hu:
         backups_retention_period: Az előállított felhasználói archívumok megtartása a megadott napokig.
         content_cache_retention_period: A más kiszolgálókról származó bejegyzések megadott számú nap után törölve lesznek, ha pozitív értékre van állítva. Ez lehet, hogy nem fordítható vissza.
         media_cache_retention_period: A letöltött médiafájlok megadott számú nap után törölve lesznek, ha pozitív értékre van állítva, és igény szerint újból le lesznek töltve.
+        site_short_description: Rövid leírás, amely segíthet a kiszolgálód egyedi azonosításában. Ki futtatja, kinek készült?
+        site_title: Hogyan hivatkozhatnak mások a kiszolgálódra a domain nevén kívül.
+        thumbnail: Egy durván 2:1 arányú kép, amely a kiszolgálóinformációk mellett jelenik meg.
+        timeline_preview: A kijelentkezett látogatók továbbra is böngészhetik a kiszolgáló legfrissebb nyilvános bejegyzéseit.
+        trendable_by_default: Kézi felülvizsgálat kihagyása a felkapott tartalmaknál. Az egyes elemek utólag távolíthatók el a trendek közül.
+        trends: A trendek azt mondják meg, hogy mely bejegyzések, hashtagek és hírbejegyzések felkapottak a kiszolgálódon.
       form_challenge:
         current_password: Beléptél egy biztonsági térben
       imports:
-        data: Egy másik Mastodon szerverről exportált CSV fájl
+        data: Egy másik Mastodon kiszolgálóról exportált CSV-fájl
       invite_request:
         text: Ez segít nekünk átnézni a jelentkezésedet
       ip_block:
@@ -93,7 +99,7 @@ hu:
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
       rule:
-        text: Írd le, mi a szabály vagy elvárás ezen a szerveren a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni
+        text: Írd le, mi a szabály vagy elvárás ezen a kiszolgálón a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni.
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
         webauthn: Ha ez egy USB kulcs, ellenőrizd, hogy csatlakoztattad és ha szükséges, aktiváltad is.
@@ -214,7 +220,22 @@ hu:
       form_admin_settings:
         backups_retention_period: Felhasználói archívum megtartási időszaka
         content_cache_retention_period: Tartalom-gyorsítótár megtartási időszaka
+        custom_css: Egyéni CSS
+        mascot: Egyéni kabala (örökölt)
         media_cache_retention_period: Média-gyorsítótár megtartási időszaka
+        profile_directory: Profiladatbázis engedélyezése
+        registrations_mode: Ki regisztrálhat
+        require_invite_text: Indok megkövetelése a csatlakozáshoz
+        show_domain_blocks: Domain tiltások megjelenitése
+        site_extended_description: Bővített leírás
+        site_short_description: Kiszolgáló leírása
+        site_terms: Adatvédelmi szabályzat
+        site_title: Kiszolgáló neve
+        theme: Alapértelmezett téma
+        thumbnail: Kiszolgáló bélyegképe
+        timeline_preview: A nyilvános idővonalak hitelesítés nélküli elérésének engedélyezése
+        trendable_by_default: Trendek engedélyezése előzetes ellenőrzés nélkül
+        trends: Trendek engedélyezése
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása

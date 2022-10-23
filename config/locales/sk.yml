@@ -435,70 +435,15 @@ sk:
       empty: Žiadne pravidlá servera ešte neboli určené.
       title: Serverové pravidlá
     settings:
-      activity_api_enabled:
-        desc_html: Sčítanie miestne uverejnených príspevkov, aktívnych užívateľov, a nových registrácii, v týždenných intervaloch
-        title: Vydať hromadné štatistiky o užívateľskej aktivite
-      bootstrap_timeline_accounts:
-        desc_html: Ak je prezývok viacero, každú oddeľ čiarkou. Tieto účty budú zobrazené v odporúčaniach na sledovanie
-        title: Štandardní následovníci nových užívateľov
-      contact_information:
-        email: Pracovný email
-        username: Kontaktné užívateľské meno
-      custom_css:
-        desc_html: Uprav vzhľad pomocou CSS, ktoré je načítané na každej stránke
-        title: Vlastné CSS
-      default_noindex:
-        desc_html: Ovplyvňuje všetkých užívateľov, ktorí si toto nasavenie nezmenili sami
-        title: Vyraď užívateľov z indexovania vyhľadávačmi, ako východzie nastavenie
       domain_blocks:
         all: Všetkým
         disabled: Nikomu
-        title: Ukáž blokované domény
         users: Prihláseným, miestnym užívateľom
-      domain_blocks_rationale:
-        title: Ukáž zdôvodnenie
-      mascot:
-        desc_html: Zobrazované na viacerých stránkach. Odporúčaná veľkosť aspoň 293×205px. Pokiaľ nieje nahraté, bude zobrazený základný maskot.
-        title: Obrázok maskota
-      peers_api_enabled:
-        desc_html: Domény, na ktoré tento server už v rámci fediversa natrafil
-        title: Zverejni zoznam objavených serverov
-      preview_sensitive_media:
-        desc_html: Náhľad odkazov z iných serverov, bude zobrazený aj vtedy, keď sú médiá označené ako chúlostivé
-        title: Ukazuj aj chúlostivé médiá v náhľadoch OpenGraph
-      profile_directory:
-        desc_html: Povoľ užívateľom, aby mohli byť nájdení
-        title: Zapni profilový katalóg
-      registrations:
-        closed_message:
-          desc_html: Toto sa zobrazí na hlavnej stránke v prípade, že sú registrácie uzavreté. Možno tu použiť aj HTML kód
-          title: Správa o uzavretých registráciách
       registrations_mode:
         modes:
           approved: Pre registráciu je nutné povolenie
           none: Nikto sa nemôže registrovať
           open: Ktokoľvek sa môže zaregistrovať
-        title: Režím registrácií
-      site_description:
-        desc_html: Oboznamujúci paragraf na hlavnej stránke a pri meta tagoch. Opíš, čo robí tento Mastodon server špecifickým, a ďalej hocičo iné, čo považuješ za dôležité. Môžeš použiť HTML kód, hlavne <code>&lt;a&gt;</code> a <code>&lt;em&gt;</code>.
-        title: Popis servera
-      site_description_extended:
-        desc_html: Toto je vhodné miesto pre tvoje pravidlá o prevádzke, pokyny, podmienky a iné veci, ktorými je tvoj server špecifický. Je možné tu používať HTML tagy
-        title: Vlastné doplňujúce informácie
-      site_short_description:
-        desc_html: Zobrazené na bočnom paneli a pri meta tagoch. Popíš čo je Mastodon, a čo robí tento server iným, v jednom paragrafe. Pokiaľ toto necháš prázdne, bude tu zobrazený základný popis servera.
-        title: Krátky popis serveru
-      site_title: Názov servera
-      thumbnail:
-        desc_html: Používané pre náhľady cez OpenGraph a API. Doporučuje sa rozlišenie 1200x630px
-        title: Miniatúra servera
-      timeline_preview:
-        desc_html: Zobraziť verejnú nástenku na hlavnej stránke
-        title: Náhľad nástenky
-      title: Nastavenia stránky
-      trends:
-        desc_html: Verejne zobraz už schválené haštagy, ktoré práve trendujú
-        title: Populárne haštagy
     site_uploads:
       delete: Vymaž nahratý súbor
       destroyed_msg: Nahratie bolo zo stránky úspešne vymazané!

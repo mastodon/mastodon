@@ -667,79 +667,15 @@ is:
       empty: Engar reglur fyrir netþjón hafa ennþá verið skilgreindar.
       title: Reglur netþjónsins
     settings:
-      activity_api_enabled:
-        desc_html: Fjöldi staðvært birtra færslna, virkra notenda og nýskráninga í vikulegum skömmtum
-        title: Birta samantektartölfræði um virkni notanda
-      bootstrap_timeline_accounts:
-        desc_html: Aðskildu mörg notendanöfn með kommum. Einungis staðværir og ólæstir aðgangar virka. Þegar þetta er autt er sjálgefið miðað við alla staðværa stjórnendur.
-        title: Sjálfgefnar fylgnistillingar fyrir nýja notendur
-      contact_information:
-        email: Fyrirtækistölvupóstur
-        username: Notandanafn tengiliðar
-      custom_css:
-        desc_html: Breyttu útlitinu með CSS-skilgreiningum sem hlaðið er inn á hverri síðu
-        title: Sérsniðið CSS
-      default_noindex:
-        desc_html: Hefur áhrif á alla þá notendur sem ekki hafa breytt þessum stillingum sjálfir
-        title: Sjálfgefið láta notendur afþakka atriðaskráningu í leitarvélum
       domain_blocks:
         all: Til allra
         disabled: Til engra
-        title: Birta útilokanir á lénum
         users: Til innskráðra staðværra notenda
-      domain_blocks_rationale:
-        title: Birta röksemdafærslu
-      mascot:
-        desc_html: Birt á ýmsum síðum. Mælt með að hún sé a.m.k. 293×205 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
-        title: Mynd af lukkudýri
-      peers_api_enabled:
-        desc_html: Lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu (samtengdum vefþjónum - fediverse)
-        title: Birta lista yfir uppgötvaða netþjóna
-      preview_sensitive_media:
-        desc_html: Forskoðun tengla á önnur vefsvæði mun birta smámynd jafnvel þótt myndefnið sé merkt sem viðkvæmt
-        title: Birta viðkvæmt myndefni í OpenGraph-forskoðun
-      profile_directory:
-        desc_html: Leyfa að hægt sé að finna notendur
-        title: Virkja notandasniðamöppu
-      registrations:
-        closed_message:
-          desc_html: Birt á forsíðu þegar lokað er fyrir nýskráningar. Þú getur notað HTML-einindi
-          title: Skilaboð vegna lokunar á nýskráningu
-        require_invite_text:
-          desc_html: Þegar nýskráningar krefjast handvirks samþykkis, skal gera "Hvers vegna viltu taka þátt?" boðstexta að skyldu fremur en valkvæðan
-          title: Krefja nýja notendur um að fylla út boðstexta
       registrations_mode:
         modes:
           approved: Krafist er samþykkt nýskráningar
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
-        title: Nýskráningarhamur
-      site_description:
-        desc_html: Kynningarmálsgrein í API. Lýstu því hvað það er sem geri þennan Mastodon-þjón sérstakan, auk annarra mikilvægra upplýsinga. Þú getur notað HTML-einindi, sér í lagi <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
-        title: Lýsing á vefþjóni
-      site_description_extended:
-        desc_html: Góður staður fyrir siðareglur, almennt regluverk, leiðbeiningar og annað sem gerir netþjóninni þinn sérstakann. Þú getur notað HTML-einindi
-        title: Sérsniðnar ítarlegar upplýsingar
-      site_short_description:
-        desc_html: Birt á hliðarspjaldi og í lýsigögnum. Lýstu því hvað Mastodon gerir og hvað það er sem geri þennan vefþjón sérstakan, í einni málsgrein.
-        title: Stutt lýsing á netþjóninum
-      site_terms:
-        desc_html: Þú getur skrifað þína eigin persónuverndarstefnu. Nota má HTML-einindi
-        title: Sérsniðin persónuverndarstefna
-      site_title: Heiti vefþjóns
-      thumbnail:
-        desc_html: Notað við forskoðun í gegnum OpenGraph og API-kerfisviðmót. Mælt með 1200×630 mynddílum
-        title: Smámynd vefþjóns
-      timeline_preview:
-        desc_html: Birta tengil í opinbera tímalínu á upphafssíðu og leyfa aðgang API-kerfisviðmóts að opinberri tímalínu án auðkenningar
-        title: Leyfa óauðkenndan aðgang að opinberri tímalínu
-      title: Stillingar vefsvæðis
-      trendable_by_default:
-        desc_html: Sérstakt vinsælt efni er eftir sem áður hægt að banna sérstaklega
-        title: Leyfa vinsælt efni án undanfarandi yfirferðar
-      trends:
-        desc_html: Birta opinberlega þau áður yfirförnu myllumerki sem eru núna í umræðunni
-        title: Vinsælt
     site_uploads:
       delete: Eyða innsendri skrá
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!

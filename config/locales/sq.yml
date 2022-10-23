@@ -664,79 +664,15 @@ sq:
       empty: S’janë përcaktuar ende rregulla shërbyesi.
       title: Rregulla shërbyesi
     settings:
-      activity_api_enabled:
-        desc_html: Numër postimesh të postuara lokalisht, përdorues aktivë, dhe regjistrime të reja në kosha javorë
-        title: Botoni statistika përmbledhëse mbi veprimtarinë e përdoruesve te API
-      bootstrap_timeline_accounts:
-        desc_html: Emrat e përdoruesve ndajini prej njëri-tjetrit me presje. Për këto llogari do të garantohet shfaqja te rekomandime ndjekjeje
-        title: Rekomandoji këto llogari për përdorues të rinj
-      contact_information:
-        email: Email biznesi
-        username: Emër përdoruesi kontakti
-      custom_css:
-        desc_html: Ndryshojeni pamjen me CSS të ngarkuar në çdo faqe
-        title: CSS Vetjake
-      default_noindex:
-        desc_html: Prek krejt përdoruesi që s’e kanë ndryshuar vetë këtë rregullim
-        title: Lejo, si parazgjedhje, lënien e përdoruesve jashtë indeksimi nga motorë kërkimesh
       domain_blocks:
         all: Për këdo
         disabled: Për askënd
-        title: Shfaq bllokime përkatësish
         users: Për përdorues vendorë që kanë bërë hyrjen
-      domain_blocks_rationale:
-        title: Shfaq arsye
-      mascot:
-        desc_html: E shfaqur në faqe të shumta. Këshillohet të paktën 293x205. Kur nuk caktohet gjë, përdoret simboli parazgjedhje
-        title: Figurë simboli
-      peers_api_enabled:
-        desc_html: Emra përkatësish që ka hasur në fedivers ky shërbyes
-        title: Boto listë shërbyesish të gjetur
-      preview_sensitive_media:
-        desc_html: Në sajte të tjera, paraparjet e lidhjeve do të shfaqin një miniaturë, edhe pse medias i është vënë shenjë si rezervat
-        title: Shfaq në paraparje OpenGraph media me shenjën rezervat
-      profile_directory:
-        desc_html: Lejoju përdoruesve të jenë të zbulueshëm
-        title: Aktivizo drejtori profilesh
-      registrations:
-        closed_message:
-          desc_html: E shfaqur në faqen ballore, kur regjistrimet janë të mbyllura. Mund të përdorni etiketa HTML
-          title: Mesazh mbylljeje regjistrimesh
-        require_invite_text:
-          desc_html: Kur regjistrimet lypin miratim dorazi, tekstin e kërkesës për ftesë “Pse doni të merrni pjesë?” bëje të detyrueshëm, në vend se opsional
-          title: Kërkoju përdoruesve të rinj të plotësojnë doemos një tekst kërkese për ftesë
       registrations_mode:
         modes:
           approved: Për regjistrim, lypset miratimi
           none: S’mund të regjistrohet ndokush
           open: Mund të regjistrohet gjithkush
-        title: Mënyrë regjistrimi
-      site_description:
-        desc_html: Paragraf hyrës te faqja ballore. Përshkruani ç’e bën special këtë shërbyes Mastodon dhe çfarëdo gjëje tjetër të rëndësishme. Mund të përdorni etiketa HTML, veçanërisht <code>&lt;a&gt;</code> dhe <code>&lt;em&gt;</code>.
-        title: Përshkrim shërbyesi
-      site_description_extended:
-        desc_html: Një vend i mirë për kodin e sjelljes në shërbyesin tuaj, rregulla, udhëzime dhe gjëra të tjera që e bëjnë të veçantë këtë shërbyes. Mund të përdorni etiketa HTML
-        title: Informacion i zgjeruar vetjak
-      site_short_description:
-        desc_html: E shfaqur në anështyllë dhe etiketa meta. Përshkruani në një paragraf të vetëm ç’është Mastodon-i dhe ç’e bën special këtë shërbyes. Në u lëntë i zbrazët, për shërbyesin do të përdoret përshkrimi parazgjedhje.
-        title: Përshkrim i shkurtër shërbyesi
-      site_terms:
-        desc_html: Mund të shkruani rregullat tuaja të privatësisë. Mundeni të përdorni etiketa HTML
-        title: Rregulla vetjake privatësie
-      site_title: Emër shërbyesi
-      thumbnail:
-        desc_html: I përdorur për paraparje përmes OpenGraph-it dhe API-t. Këshillohet 1200x630px
-        title: Miniaturë shërbyesi
-      timeline_preview:
-        desc_html: Shfaqni lidhje te rrjedhë kohore publike në faqen hyrëse dhe lejoni te rrjedhë kohore publike hyrje API pa mirëfilltësim
-        title: Lejo në rrjedhë kohore publike hyrje pa mirëfilltësim
-      title: Rregullime sajti
-      trendable_by_default:
-        desc_html: Lënda specifike në modë prapë mund të ndalohet shprehimisht
-        title: Lejoni prirje pa shqyrtim paraprak
-      trends:
-        desc_html: Shfaqni publikisht hashtag-ë të shqyrtuar më parë që janë popullorë tani
-        title: Hashtag-ë popullorë tani
     site_uploads:
       delete: Fshi kartelën e ngarkuar
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!

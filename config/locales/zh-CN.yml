@@ -651,79 +651,15 @@ zh-CN:
       empty: 尚未定义服务器规则。
       title: 实例规则
     settings:
-      activity_api_enabled:
-        desc_html: 本站一周内的嘟文数、活跃用户数以及新用户数
-        title: 公开用户活跃度的统计数据
-      bootstrap_timeline_accounts:
-        desc_html: 用半角逗号分隔多个用户名。这些账户一定会在推荐关注中展示。
-        title: 新用户推荐关注
-      contact_information:
-        email: 用于联系的公开电子邮件地址
-        username: 用于联系的公开用户名
-      custom_css:
-        desc_html: 通过 CSS 代码调整所有页面的显示效果
-        title: 自定义 CSS
-      default_noindex:
-        desc_html: 影响所有尚未更改此设置的用户
-        title: 默认不让用户被搜索引擎索引
       domain_blocks:
         all: 对所有人
         disabled: 不对任何人
-        title: 查看域名屏蔽
         users: 对本地已登录用户
-      domain_blocks_rationale:
-        title: 显示理由
-      mascot:
-        desc_html: 用于在首页展示。推荐分辨率 293×205px 以上。未指定的情况下将使用默认吉祥物。
-        title: 吉祥物图像
-      peers_api_enabled:
-        desc_html: 截至目前本服务器在联邦宇宙中已发现的域名
-        title: 公开已知实例的列表
-      preview_sensitive_media:
-        desc_html: 无论媒体文件是否标记为敏感内容，站外链接预览始终呈现为缩略图。
-        title: 在 OpenGraph 预览中显示敏感媒体内容
-      profile_directory:
-        desc_html: 允许用户被发现
-        title: 启用用户目录
-      registrations:
-        closed_message:
-          desc_html: 本站关闭注册期间的提示信息。可以使用 HTML 标签
-          title: 关闭注册时的提示信息
-        require_invite_text:
-          desc_html: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
-          title: 要求新用户填写申请注册的原因
       registrations_mode:
         modes:
           approved: 注册时需要批准
           none: 关闭注册
           open: 开放注册
-        title: 注册模式
-      site_description:
-        desc_html: 首页上的介绍文字。 描述一下本 Mastodon 实例的特殊之处以及其他重要信息。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 。
-        title: 本站简介
-      site_description_extended:
-        desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
-        title: 本站详细介绍
-      site_short_description:
-        desc_html: 会在在侧栏和元数据标签中显示。可以用一小段话描述 Mastodon 是什么，以及本服务器的特点。
-        title: 服务器一句话介绍
-      site_terms:
-        desc_html: 您可以写自己的隐私政策。您可以使用 HTML 标签
-        title: 自定义隐私政策
-      site_title: 本站名称
-      thumbnail:
-        desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
-        title: 本站缩略图
-      timeline_preview:
-        desc_html: 在主页显示公共时间轴
-        title: 时间轴预览
-      title: 网站设置
-      trendable_by_default:
-        desc_html: 特定的热门内容仍可以被明确地禁止
-        title: 允许在未审查的情况下将话题置为热门
-      trends:
-        desc_html: 公开显示先前已通过审核的当前热门话题
-        title: 热门标签
     site_uploads:
       delete: 删除已上传的文件
       destroyed_msg: 站点上传的文件已经成功删除！

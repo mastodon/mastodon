@@ -453,73 +453,15 @@ zh-HK:
       empty: 尚未定義伺服器規則
       title: 伺服器守則
     settings:
-      activity_api_enabled:
-        desc_html: 本站的文章數量、活躍使用者數量、及每週新註冊使用者數量
-        title: 公佈使用者活躍度的統計數據
-      bootstrap_timeline_accounts:
-        desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則默認關注本站所有管理員。
-        title: 新使用者預設關注的對像
-      contact_information:
-        email: 輸入一個公開的電郵地址
-        username: 輸入使用者名稱
-      custom_css:
-        desc_html: 透過 CSS 自訂每一頁的外觀
-        title: 自訂 CSS
-      default_noindex:
-        desc_html: 影響所有未自行設定的帳號
-        title: 預設帳號不在搜尋引擎索引之內
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
-        title: 顯示封鎖的網域
         users: 所有已登入的帳號
-      domain_blocks_rationale:
-        title: 顯示原因予
-      mascot:
-        desc_html: 在不同頁面顯示。推薦最小 293×205px。如果留空，就會默認為伺服器縮圖。
-        title: 縮圖
-      peers_api_enabled:
-        desc_html: 現時本服務站在網絡中已發現的域名
-        title: 公開已知服務站的列表
-      preview_sensitive_media:
-        desc_html: 在其他頁面預覽的連結將會在敏感媒體的情況下顯示縮圖
-        title: 在 OpenGraph 預覽中顯示敏感媒體
-      profile_directory:
-        desc_html: 允許使用者被搜尋
-        title: 啟用個人資料目錄
-      registrations:
-        closed_message:
-          desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/> 可使用 HTML
-          title: 暫停註冊訊息
-        require_invite_text:
-          desc_html: 如果已設定為手動審核注冊，請把「加入的原因」設定為必填項目。
-          title: 要求新用戶填寫注冊申請
       registrations_mode:
         modes:
           approved: 註冊需要核准
           none: 沒有人可註冊
           open: 任何人皆能註冊
-        title: 註冊模式
-      site_description:
-        desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/> 你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
-        title: 本站介紹
-      site_description_extended:
-        desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
-        title: 本站詳細資訊
-      site_short_description:
-        desc_html: "顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫𩓙而出。"
-        title: 伺服器短描述
-      site_title: 本站名稱
-      thumbnail:
-        desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
-        title: 本站縮圖
-      timeline_preview:
-        desc_html: 在主頁顯示本站時間軸
-        title: 時間軸預覽
-      title: 網站設定
-      trends:
-        desc_html: 公開地顯示已審核的標籤為今期流行
-        title: 趨勢主題標籤
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！

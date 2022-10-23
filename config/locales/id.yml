@@ -573,73 +573,15 @@ id:
       empty: Belum ada aturan server yang didefinisikan.
       title: Aturan server
     settings:
-      activity_api_enabled:
-        desc_html: Hitung status yang dipos scr lokal, pengguna aktif, dan registrasi baru dlm keranjang bulanan
-        title: Terbitkan statistik keseluruhan tentang aktivitas pengguna
-      bootstrap_timeline_accounts:
-        desc_html: Pisahkan nama pengguna dengan koma. Hanya akun lokal dan tak terkunci yang akan bekerja. Isi bawaan jika kosong adalah semua admin lokal.
-        title: Ikuti scr bawaan untuk pengguna baru
-      contact_information:
-        email: Masukkan alamat email
-        username: Masukkan nama pengguna
-      custom_css:
-        desc_html: Ubah tampilan dengan CSS yang dimuat di setiap halaman
-        title: CSS Kustom
-      default_noindex:
-        desc_html: Memengaruhi semua pengguna yang tidak mengubah setelan ini sendiri
-        title: Singkirkan pengguna dari pengindeksan mesin pencari scr bawaan
       domain_blocks:
         all: Kepada semua orang
         disabled: Tidak kepada siapa pun
-        title: Lihat blokir domain
         users: Ke pengguna lokal yang sudah login
-      domain_blocks_rationale:
-        title: Tampilkan alasan
-      mascot:
-        desc_html: Ditampilkan di banyak halaman. Direkomendasikan minimal 293x205px. Jika tidak diatur, kembali ke maskot bawaan
-        title: Gambar maskot
-      peers_api_enabled:
-        desc_html: Nama domain server ini dijumpai di fediverse
-        title: Terbitkan daftar server yang ditemukan
-      preview_sensitive_media:
-        desc_html: Pratinjau tautan pada situsweb lain akan menampilkan gambar kecil meski media ditandai sebagai sensitif
-        title: Tampilkan media sensitif di pratinjau OpenGraph
-      profile_directory:
-        desc_html: Izinkan pengguna untuk ditemukan
-        title: Aktifkan direktori profil
-      registrations:
-        closed_message:
-          desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
-          title: Pesan penutupan pendaftaran
-        require_invite_text:
-          desc_html: Saat pendaftaran harus disetujui manual, buat input teks "Mengapa Anda ingin bergabung?" sebagai hal wajib bukan opsional
-          title: Pengguna baru harus memasukkan alasan bergabung
       registrations_mode:
         modes:
           approved: Persetujuan diperlukan untuk mendaftar
           none: Tidak ada yang dapat mendaftar
           open: Siapa pun dapat mendaftar
-        title: Mode registrasi
-      site_description:
-        desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
-        title: Deskripsi situs
-      site_description_extended:
-        desc_html: Ditampilkan pada halaman informasi tambahan<br>Anda bisa menggunakan tag HTML
-        title: Deskripsi situs tambahan
-      site_short_description:
-        desc_html: Ditampilkan pada bilah samping dan tag meta. Jelaskan apa itu Mastodon dan yang membuat server ini spesial dalam satu paragraf.
-        title: Deskripsi server pendek
-      site_title: Judul Situs
-      thumbnail:
-        desc_html: Dipakai sebagai pratinjau via OpenGraph dan API. Direkomendasikan 1200x630px
-        title: Server gambar kecil
-      timeline_preview:
-        desc_html: Tampilkan tautan ke linimasa publik pada halaman landas dan izinkan API mengakses linimasa publik tanpa autentifikasi
-        title: Izinkan akses linimasa publik tanpa autentifikasi
-      title: Pengaturan situs
-      trends:
-        desc_html: Tampilkan secara publik tagar tertinjau yang kini sedang tren
-        title: Tagar sedang tren
     site_uploads:
       delete: Hapus berkas yang diunggah
       destroyed_msg: Situs yang diunggah berhasil dihapus!

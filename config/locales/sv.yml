@@ -449,69 +449,15 @@ sv:
       edit: Ändra regel
       title: Serverns regler
     settings:
-      activity_api_enabled:
-        desc_html: Räkning av lokalt postade statusar, aktiva användare och nyregistreringar per vecka
-        title: Publicera uppsamlad statistik om användaraktivitet
-      bootstrap_timeline_accounts:
-        desc_html: Separera flera användarnamn med kommatecken. Endast lokala och olåsta konton kommer att fungera. Standard när det är tomt och alla är lokala administratörer.
-        title: Standard att följa för nya användare
-      contact_information:
-        email: Företag E-post
-        username: Användarnamn för kontakt
-      custom_css:
-        desc_html: Ändra utseendet genom CSS laddat på varje sida
-        title: Anpassad CSS
-      default_noindex:
-        desc_html: Påverkar alla användare som inte har ändrat denna inställning själva
-        title: Undantag användare från sökmotorindexering som standard
       domain_blocks:
         all: Till alla
         disabled: För ingen
-        title: Visa domän-blockeringar
         users: För inloggade lokala användare
-      domain_blocks_rationale:
-        title: Visa motiv
-      mascot:
-        title: Maskot bild
-      peers_api_enabled:
-        desc_html: Domännamn denna instans har påträffat i fediverse
-        title: Publicera lista över upptäckta instanser
-      preview_sensitive_media:
-        title: Visa känsligt media i OpenGraph-förhandsvisningar
-      profile_directory:
-        desc_html: Tillåt användare att upptäckas
-        title: Aktivera profil-mapp
-      registrations:
-        closed_message:
-          desc_html: Visas på framsidan när registreringen är stängd. Du kan använda HTML-taggar
-          title: Stängt registreringsmeddelande
-        require_invite_text:
-          desc_html: När nyregistrering kräver manuellt godkännande, gör det obligatoriskt att fylla i text i fältet "Varför vill du gå med?"
-          title: Kräv att nya användare fyller i en inbjudningsförfrågan
       registrations_mode:
         modes:
           approved: Godkännande krävs för registrering
           none: Ingen kan registrera
           open: Alla kan registrera
-        title: Registreringsläge
-      site_description:
-        desc_html: Inledande stycke på framsidan och i metataggar. Du kan använda HTML-taggar, i synnerhet <code>&lt;a&gt;</code> och <code>&lt;em&gt;</code>.
-        title: Instansbeskrivning
-      site_description_extended:
-        desc_html: Ett bra ställe för din uppförandekod, regler, riktlinjer och andra saker som stämmer med din instans. Du kan använda HTML-taggar
-        title: Egentillverkad utökad information
-      site_short_description:
-        title: Kort beskrivning av servern
-      site_title: Namn på instans
-      thumbnail:
-        desc_html: Används för förhandsgranskningar via OpenGraph och API. 1200x630px rekommenderas
-        title: Instans tumnagelbild
-      timeline_preview:
-        desc_html: Visa offentlig tidslinje på landingsidan
-        title: Förhandsgranska tidslinje
-      title: Sidans inställningar
-      trends:
-        title: Trendande hashtaggar
     site_uploads:
       delete: Radera uppladdad fil
     statuses:

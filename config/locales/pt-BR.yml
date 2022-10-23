@@ -640,73 +640,15 @@ pt-BR:
       empty: Nenhuma regra do servidor foi definida.
       title: Regras do servidor
     settings:
-      activity_api_enabled:
-        desc_html: Contagem de toots locais, usuários ativos e novos usuários semanalmente
-        title: Publicar estatísticas agregadas sobre atividade de usuários
-      bootstrap_timeline_accounts:
-        desc_html: Separe nomes de usuário através de vírgulas. Funciona apenas com contas locais e destrancadas. O padrão quando vazio são todos os administradores locais.
-        title: Usuários a serem seguidos por padrão por novas contas
-      contact_information:
-        email: E-mail
-        username: Usuário de contato
-      custom_css:
-        desc_html: Alterar o visual com CSS carregado em todas as páginas
-        title: CSS personalizado
-      default_noindex:
-        desc_html: Afeta qualquer usuário que não tenha alterado esta configuração manualmente
-        title: Optar por excluir usuários da indexação de mecanismos de pesquisa por padrão
       domain_blocks:
         all: Para todos
         disabled: Para ninguém
-        title: Mostrar domínios bloqueados
         users: Para usuários locais logados
-      domain_blocks_rationale:
-        title: Mostrar motivo
-      mascot:
-        desc_html: Mostrado em diversas páginas. Recomendado ao menos 293×205px. Quando não está definido, o mascote padrão é mostrado
-        title: Imagem do mascote
-      peers_api_enabled:
-        desc_html: Nomes de domínio que essa instância encontrou no fediverso
-        title: Publicar lista de instâncias descobertas
-      preview_sensitive_media:
-        desc_html: A prévia do link em outros sites vai incluir uma miniatura mesmo se a mídia estiver marcada como sensível
-        title: Mostrar mídia sensível em prévias OpenGraph
-      profile_directory:
-        desc_html: Permitir que usuários possam ser descobertos
-        title: Ativar diretório de perfis
-      registrations:
-        closed_message:
-          desc_html: Mostrado na página inicial quando a instância está fechada. Você pode usar tags HTML
-          title: Mensagem de instância fechada
-        require_invite_text:
-          desc_html: Quando o cadastro de novas contas exigir aprovação manual, tornar obrigatório, ao invés de opcional, o texto de solicitação de convite em "Por que você deseja criar uma conta aqui?"
-          title: Exigir que novos usuários preencham um texto de solicitação de convite
       registrations_mode:
         modes:
           approved: Aprovação necessária para criar conta
           none: Ninguém pode criar conta
           open: Qualquer um pode criar conta
-        title: Modo de novos usuários
-      site_description:
-        desc_html: Parágrafo introdutório na página inicial. Descreva o que faz esse servidor especial, e qualquer outra coisa de importante. Você pode usar tags HTML, em especial <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descrição da instância
-      site_description_extended:
-        desc_html: Um ótimo lugar para seu código de conduta, regras, diretrizes e outras coisas para diferenciar a sua instância. Você pode usar tags HTML
-        title: Informação estendida personalizada
-      site_short_description:
-        desc_html: Mostrada na barra lateral e em etiquetas de metadados. Descreve o que é o Mastodon e o que torna esta instância especial num único parágrafo. Se deixada em branco, é substituído pela descrição da instância.
-        title: Descrição curta da instância
-      site_title: Nome da instância
-      thumbnail:
-        desc_html: Usada para prévias via OpenGraph e API. Recomenda-se 1200x630px
-        title: Miniatura da instância
-      timeline_preview:
-        desc_html: Mostra a linha do tempo pública na página inicial e permite acesso da API à mesma sem autenticação
-        title: Permitir acesso não autenticado à linha pública
-      title: Configurações do site
-      trends:
-        desc_html: Mostrar publicamente hashtags previamente revisadas que estão em alta
-        title: Hashtags em alta
     site_uploads:
       delete: Excluir arquivo enviado
       destroyed_msg: Upload do site excluído com sucesso!

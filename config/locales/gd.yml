@@ -678,73 +678,15 @@ gd:
       empty: Cha deach riaghailtean an fhrithealaiche a mhìneachadh fhathast.
       title: Riaghailtean an fhrithealaiche
     settings:
-      activity_api_enabled:
-        desc_html: Cunntasan nam postaichean a chaidh fhoillseachadh gu h-ionadail, nan cleachdaichean gnìomhach ’s nan clàraidhean ùra an am bucaidean seachdaineil
-        title: Foillsich agragaid dhen stadastaireachd mu ghnìomhachd nan cleachdaichean san API
-      bootstrap_timeline_accounts:
-        desc_html: Sgar iomadh ainm cleachdaiche le cromag. Cuiridh sinn geall gun nochd na cunntasan seo am measg nam molaidhean leantainn
-        title: Mol na cunntasan seo do chleachdaichean ùra
-      contact_information:
-        email: Post-d gnìomhachais
-        username: Ainm cleachdaiche a’ chonaltraidh
-      custom_css:
-        desc_html: Atharraich an coltas le CSS a thèid a luchdadh le gach duilleag
-        title: CSS gnàthaichte
-      default_noindex:
-        desc_html: Bidh buaidh air a h-uile cleachdaiche nach do dh’atharraich an roghainn seo dhaibh fhèin
-        title: Thoir air falbh ro-aonta nan cleachdaichean air inneacsadh le einnseanan-luirg mar a’ bhun-roghainn
       domain_blocks:
         all: Dhan a h-uile duine
         disabled: Na seall idir
-        title: Seall bacaidhean àrainne
         users: Dhan luchd-chleachdaidh a clàraich a-steach gu h-ionadail
-      domain_blocks_rationale:
-        title: Seall an t-adhbhar
-      mascot:
-        desc_html: Thèid seo a shealltainn air iomadh duilleag. Mholamaid 293×205px air a char as lugha. Mura dèid seo a shuidheachadh, thèid an suaichnean a shealltainn ’na àite
-        title: Dealbh suaichnein
-      peers_api_enabled:
-        desc_html: Ainmean àrainne air an do thachair am frithealaiche seo sa cho-shaoghal
-        title: Foillsich liosta nam frithealaichean a chaidh a rùrachadh san API
-      preview_sensitive_media:
-        desc_html: Ro-sheallaidh ceanglaichean dealbhag fhiù ’s ma chaidh comharradh gu bheil am meadhan frionasach
-        title: Seall meadhanan frionasach ann an ro-sheallaidhean OpenGraph
-      profile_directory:
-        desc_html: Suidhich gun gabh cleachdaichean a rùrachadh
-        title: Cuir eòlaire nam pròifil an comas
-      registrations:
-        closed_message:
-          desc_html: Thèid seo a shealltainn air an duilleag-dhachaigh nuair a bhios an clàradh dùinte. ’S urrainn dhut tagaichean HTML a chleachdadh
-          title: Teachdaireachd a’ chlàraidh dhùinte
-        require_invite_text:
-          desc_html: Nuair a bhios aontachadh a làimh riatanach dhan chlàradh, dèan an raon teacsa “Carson a bu mhiann leat ballrachd fhaighinn?” riatanach seach roghainneil
-          title: Iarr air cleachdaichean ùra gun innis iad carson a tha iad ag iarraidh ballrachd
       registrations_mode:
         modes:
           approved: Tha aontachadh riatanach airson clàradh
           none: Chan fhaod neach sam bith clàradh
           open: "’S urrainn do neach sam bith clàradh"
-        title: Modh a’ chlàraidh
-      site_description:
-        desc_html: Earrann tuairisgeil air an API. Mìnich dè tha sònraichte mun fhrithealaiche Mastodon seo agus rud sa bith eile a tha cudromach. ’S urrainn dhut tagaichean HTML a chleachdadh agus <code>&lt;a&gt;</code> ’s <code>&lt;em&gt;</code> gu sònraichte.
-        title: Tuairisgeul an fhrithealaiche
-      site_description_extended:
-        desc_html: Seo deagh àite airson an còd-giùlain, na riaghailtean ’s na comharran-treòrachaidh agad agus do nithean eile a tha sònraichte mun fhrithealaiche agad. ‘S urrainn dhut tagaichean HTML a chleachdadh
-        title: Fiosrachadh leudaichte gnàthaichte
-      site_short_description:
-        desc_html: Nochdaidh seo air a’ bhàr-taoibh agus sna meata-thagaichean. Mìnich dè th’ ann am Mastodon agus dè tha sònraichte mun fhrithealaiche agad ann an aon earrann a-mhàin.
-        title: Tuairisgeul goirid an fhrithealaiche
-      site_title: Ainm an fhrithealaiche
-      thumbnail:
-        desc_html: Thèid seo a chleachdadh airson ro-sheallaidhean slighe OpenGraph no API. Mholamaid 1200x630px
-        title: Dealbhag an fhrithealaiche
-      timeline_preview:
-        desc_html: Seall ceangal dhan loidhne-ama phoblach air an duilleag-landaidh is ceadaich inntrigeadh gun ùghdarrachadh leis an API air an loidhne-ama phoblach
-        title: Ceadaich inntrigeadh gun ùghdarrachadh air an loidhne-ama phoblach
-      title: Roghainnean na làraich
-      trends:
-        desc_html: Seall susbaint gu poblach a chaidh lèirmheas a dhèanamh oirre roimhe ’s a tha a’ treandadh
-        title: Treandaichean
     site_uploads:
       delete: Sguab às am faidhle a chaidh a luchdadh suas
       destroyed_msg: Chaidh an luchdadh suas dhan làrach a sguabadh às!

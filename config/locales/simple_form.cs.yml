@@ -75,8 +75,12 @@ cs:
           warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_admin_settings:
         backups_retention_period: Zachovat generované uživatelské archivy pro zadaný počet dní.
+        bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
+        closed_registrations_message: Zobrazeno při zavření registrace
         content_cache_retention_period: Příspěvky z jiných serverů budou odstraněny po zadaném počtu dní, pokud je nastavena kladná hodnota. To může být nevratné.
         media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
+        site_contact_username: Jak vás lidé mohou oslovit na Mastodon.
+        site_terms: Použijte vlastní zásady ochrany osobních údajů nebo ponechte prázdné pro použití výchozího nastavení. Může být strukturováno pomocí Markdown syntaxe.
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
@@ -213,8 +217,27 @@ cs:
           warn: Skrýt s varováním
       form_admin_settings:
         backups_retention_period: Doba uchovávání archivu uživatelů
+        bootstrap_timeline_accounts: Vždy doporučovat tyto účty novým uživatelům
         content_cache_retention_period: Doba uchování mezipaměti obsahu
+        custom_css: Vlastní CSS
+        mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
+        profile_directory: Povolit adresář profilů
+        registrations_mode: Kdo se může přihlásit
+        require_invite_text: Požadovat důvod pro připojení
+        show_domain_blocks: Zobrazit blokace domén
+        show_domain_blocks_rationale: Zobrazit proč byly blokovány domény
+        site_contact_email: Kontaktní e-mail
+        site_contact_username: Jméno kontaktu
+        site_extended_description: Rozšířený popis
+        site_short_description: Popis serveru
+        site_terms: Ochrana osobních údajů
+        site_title: Název serveru
+        theme: Výchozí motiv
+        thumbnail: Miniatura serveru
+        timeline_preview: Povolit neověřený přístup k veřejným časovým osám
+        trendable_by_default: Povolit trendy bez předchozí revize
+        trends: Povolit trendy
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete

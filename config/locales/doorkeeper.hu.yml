@@ -80,7 +80,7 @@ hu:
         title: Engedélyezett alkalmazásaid
     errors:
       messages:
-        access_denied: Az erőforrás tulajdonosa vagy hitelesítő kiszolgálója megtagadta a kérést.
+        access_denied: Az erőforrás tulajdonosa vagy az engedélyező kiszolgáló elutasította a kérést.
         credential_flow_not_configured: Az erőforrás tulajdonos jelszóadatainak átadása megszakadt, mert a Doorkeeper.configure.resource_owner_from_credentials beállítatlan.
         invalid_client: A kliens hitelesítése megszakadt, mert ismeretlen a kliens, a kliens nem küldött hitelesítést, vagy a hitelesítés módja nem támogatott.
         invalid_grant: A biztosított hitelesítés érvénytelen, lejárt, visszavont, vagy nem egyezik a hitelesítési kérésben használt URI-val, vagy más kliensnek címezték.
@@ -96,11 +96,11 @@ hu:
           revoked: Hozzáférési kulcsot visszavonták
           unknown: Hozzáférési kulcs érvénytelen
         resource_owner_authenticator_not_configured: Erőforrás tulajdonos keresés megszakadt, ugyanis a Doorkeeper.configure.resource_owner_authenticator beállítatlan.
-        server_error: Hitelesítő szervert váratlan esemény érte, mely meggátolta a kérés teljesítését.
-        temporarily_unavailable: A hitelesítő szerver jelenleg nem tudja teljesíteni a kérést átmeneti túlterheltség vagy a kiszolgáló karbantartása miatt.
+        server_error: Az engedélyező kiszolgáló váratlan körülménybe ütközött, ami megakadályozta, hogy teljesítse a kérést.
+        temporarily_unavailable: Az engedélyezési kiszolgáló jelenleg nem tudja kezelni a kérelmet a kiszolgáló ideiglenes túlterhelése vagy karbantartása miatt.
         unauthorized_client: A kliens nincs feljogosítva erre a kérésre.
-        unsupported_grant_type: A hitelesítés módja nem támogatott a hitelesítő kiszolgálón.
-        unsupported_response_type: A hitelesítő kiszolgáló nem támogatja ezt a választ.
+        unsupported_grant_type: Az engedélyezés megadási típusát nem támogatja az engedélyezési kiszolgáló.
+        unsupported_response_type: Az engedélyezési kiszolgáló nem támogatja ezt a választípust.
     flash:
       applications:
         create:
@@ -147,10 +147,10 @@ hu:
       application:
         title: OAuth engedély szükséges
     scopes:
-      admin:read: szerver minden adatának olvasása
+      admin:read: a kiszolgáló összes adatának olvasása
       admin:read:accounts: minden kényes fiókadat olvasása
       admin:read:reports: minden bejelentés és bejelentett fiók kényes adatainak olvasása
-      admin:write: szerver minden adatának változtatása
+      admin:write: a kiszolgáló összes adatának módosítása
       admin:write:accounts: moderációs műveletek végzése fiókokon
       admin:write:reports: moderációs műveletek végzése bejelentéseken
       crypto: végpontok közti titkosítás használata

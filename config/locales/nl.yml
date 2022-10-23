@@ -607,79 +607,15 @@ nl:
       empty: Voor deze server zijn nog geen regels opgesteld.
       title: Serverregels
     settings:
-      activity_api_enabled:
-        desc_html: Wekelijks overzicht van de hoeveelheid lokale berichten, actieve gebruikers en nieuwe registraties
-        title: Statistieken over gebruikersactiviteit via de API publiceren
-      bootstrap_timeline_accounts:
-        desc_html: Meerdere gebruikersnamen met komma's scheiden. Deze accounts worden in ieder geval aan nieuwe gebruikers aanbevolen
-        title: Aanbevolen accounts voor nieuwe gebruikers
-      contact_information:
-        email: Vul een openbaar gebruikt e-mailadres in
-        username: Vul een gebruikersnaam in
-      custom_css:
-        desc_html: Het uiterlijk van deze server met CSS aanpassen
-        title: Aangepaste CSS
-      default_noindex:
-        desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
-        title: Berichten van gebruikers standaard niet door zoekmachines laten indexeren
       domain_blocks:
         all: Aan iedereen
         disabled: Aan niemand
-        title: Domeinblokkades tonen
         users: Aan ingelogde lokale gebruikers
-      domain_blocks_rationale:
-        title: Motivering tonen
-      mascot:
-        desc_html: Wordt op meerdere pagina's weergegeven. Tenminste 293×205px aanbevolen. Wanneer dit niet is ingesteld wordt de standaardmascotte getoond
-        title: Mascotte-afbeelding
-      peers_api_enabled:
-        desc_html: Domeinnamen die deze server in de fediverse is tegengekomen
-        title: Lijst van bekende servers via de API publiceren
-      preview_sensitive_media:
-        desc_html: Linkvoorvertoningen op andere websites hebben een thumbnail, zelfs als een afbeelding of video als gevoelig is gemarkeerd
-        title: Gevoelige afbeeldingen en video's in OpenGraph-voorvertoningen tonen
-      profile_directory:
-        desc_html: Gebruikers toestaan om vindbaar te zijn
-        title: Gebruikersgids inschakelen
-      registrations:
-        closed_message:
-          desc_html: Wordt op de voorpagina weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld<br>En ook hier kan je HTML gebruiken
-          title: Bericht wanneer registratie is uitgeschakeld
-        require_invite_text:
-          desc_html: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
-          title: Nieuwe gebruikers moeten een reden invullen waarom ze zich willen registreren
       registrations_mode:
         modes:
           approved: Goedkeuring vereist om te kunnen registreren
           none: Niemand kan zich registreren
           open: Iedereen kan zich registreren
-        title: Registratiemodus
-      site_description:
-        desc_html: Introductie-alinea voor de API. Beschrijf wat er speciaal is aan deze server en andere zaken die van belang zijn. Je kunt HTML gebruiken, zoals <code>&lt;a&gt;</code> en <code>&lt;em&gt;</code>.
-        title: Omschrijving Mastodonserver (API)
-      site_description_extended:
-        desc_html: Een goede plek voor je gedragscode, regels, richtlijnen en andere zaken die jouw server uniek maken. Je kunt ook hier HTML gebruiken
-        title: Uitgebreide omschrijving Mastodonserver
-      site_short_description:
-        desc_html: Dit wordt gebruikt op de voorpagina, in de zijbalk op profielpagina's en als metatag in de paginabron. Beschrijf in één alinea wat Mastodon is en wat deze server speciaal maakt.
-        title: Omschrijving Mastodonserver (website)
-      site_terms:
-        desc_html: Je kunt jouw eigen privacybeleid hier kwijt. Je kunt HTML gebruiken
-        title: Aangepast privacybeleid
-      site_title: Naam Mastodonserver
-      thumbnail:
-        desc_html: Gebruikt als voorvertoning voor OpenGraph en de API. 1200x630px aanbevolen
-        title: Thumbnail Mastodonserver
-      timeline_preview:
-        desc_html: Toon een link naar de openbare tijdlijnpagina op de voorpagina en geef de API zonder in te loggen toegang tot de openbare tijdlijn
-        title: Toegang tot de openbare tijdlijn zonder in te loggen toestaan
-      title: Server-instellingen
-      trendable_by_default:
-        desc_html: Specifieke trends kunnen nog steeds expliciet worden afgekeurd
-        title: Trends toestaan zonder voorafgaande beoordeling
-      trends:
-        desc_html: Eerder beoordeelde hashtags die op dit moment trending zijn openbaar tonen
-        title: Trends
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!

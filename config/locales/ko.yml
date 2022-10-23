@@ -654,79 +654,17 @@ ko:
       empty: 아직 정의된 서버 규칙이 없습니다.
       title: 서버 규칙
     settings:
-      activity_api_enabled:
-        desc_html: 주별 로컬에 게시 된 글, 활성 사용자 및 새로운 가입자 수
-        title: 사용자 활동에 대한 통계 발행
-      bootstrap_timeline_accounts:
-        desc_html: 콤마로 여러 사용자명을 구분. 이 계정들은 팔로우 추천에 반드시 나타나게 됩니다
-        title: 새로운 사용자들에게 추천할 계정들
-      contact_information:
-        email: 공개할 메일 주소를 입력
-        username: 연락 받을 관리자 사용자명
-      custom_css:
-        desc_html: 모든 페이지에 적용할 CSS
-        title: 커스텀 CSS
-      default_noindex:
-        desc_html: 이 설정을 바꾸지 않은 모든 사용자들에게 적용 됩니다
-        title: 사용자들이 기본적으로 검색엔진에 인덱싱 되지 않도록 합니다
+      about:
+        manage_rules: 서버 규칙 관리
       domain_blocks:
         all: 모두에게
         disabled: 아무에게도 안 함
-        title: 도메인 차단 보여주기
         users: 로그인 한 사용자에게
-      domain_blocks_rationale:
-        title: 사유 보여주기
-      mascot:
-        desc_html: 여러 페이지에서 보여집니다. 최소 293x205px을 추천합니다. 설정 되지 않은 경우, 기본 마스코트가 사용 됩니다
-        title: 마스코트 이미지
-      peers_api_enabled:
-        desc_html: 이 서버가 페디버스에서 만났던 도메인 네임들
-        title: 발견 된 서버들의 리스트 발행
-      preview_sensitive_media:
-        desc_html: 민감한 미디어로 설정되었더라도 다른 웹사이트에서 링크 미리보기에 썸네일을 보여줍니다
-        title: 민감한 미디어를 오픈그래프 미리보기에 보여주기
-      profile_directory:
-        desc_html: 사용자들이 발견 될 수 있도록 허용
-        title: 프로필 책자 활성화
-      registrations:
-        closed_message:
-          desc_html: 신규 등록을 받지 않을 때 프론트 페이지에 표시됩니다. HTML 태그를 사용할 수 있습니다
-          title: 신규 등록 정지 시 메시지
-        require_invite_text:
-          desc_html: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
-          title: 새 사용자가 초대 요청 글을 작성해야 하도록
       registrations_mode:
         modes:
           approved: 가입하려면 승인이 필요함
           none: 아무도 가입 할 수 없음
           open: 누구나 가입 할 수 있음
-        title: 가입 모드
-      site_description:
-        desc_html: API의 소개문에 사용 됩니다.이 마스토돈 서버의 특별한 점 등을 설명하세요. HTML 태그, 주로 <code>&lt;a&gt;</code>, <code>&lt;em&gt;</code> 같은 것을 사용 가능합니다.
-        title: 서버 설명
-      site_description_extended:
-        desc_html: 규칙, 가이드라인 등을 작성하기 좋은 곳입니다. HTML 태그를 사용할 수 있습니다
-        title: 사이트 상세 설명
-      site_short_description:
-        desc_html: 사이드바와 메타 태그에 나타납니다. 마스토돈이 무엇이고 이 서버의 특징은 무엇인지 한 문장으로 설명하세요.
-        title: 짧은 서버 설명
-      site_terms:
-        desc_html: 자신만의 개인정보 처리방침을 작성할 수 있습니다. HTML 태그를 사용할 수 있습니다
-        title: 사용자 지정 개인정보 처리방침
-      site_title: 서버 이름
-      thumbnail:
-        desc_html: OpenGraph와 API의 미리보기로 사용 됩니다. 1200x630px을 권장합니다
-        title: 서버 썸네일
-      timeline_preview:
-        desc_html: 랜딩 페이지에 공개 타임라인을 표시합니다
-        title: 타임라인 프리뷰
-      title: 사이트 설정
-      trendable_by_default:
-        desc_html: 특정 트렌드를 허용시키지 않는 것은 여전히 가능합니다
-        title: 사전 리뷰 없이 트렌드에 오르는 것을 허용
-      trends:
-        desc_html: 리뷰를 거친 해시태그를 유행하는 해시태그에 공개적으로 보여줍니다
-        title: 유행하는 해시태그
     site_uploads:
       delete: 업로드한 파일 삭제
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!

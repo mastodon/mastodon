@@ -667,79 +667,40 @@ ca:
       empty: Encara no s'han definit les normes del servidor.
       title: Normes del servidor
     settings:
-      activity_api_enabled:
-        desc_html: Nombre de publicacions publicades localment, usuaris actius i registres nous en períodes setmanals
-        title: Publica estadístiques agregades sobre l'activitat de l'usuari
-      bootstrap_timeline_accounts:
-        desc_html: Separa diversos noms d'usuari amb comes. Només funcionaran els comptes locals i desblocats. El valor predeterminat quan està buit és tots els administradors locals.
-        title: El seguiment per defecte per als usuaris nous
-      contact_information:
-        email: Adreça electrònica d'empresa
-        username: Nom d'usuari del contacte
-      custom_css:
-        desc_html: Modifica l'aspecte amb CSS carregat a cada pàgina
-        title: CSS personalitzat
-      default_noindex:
-        desc_html: Afecta a tots els usuaris que no han canviat aquest ajustament ells mateixos
-        title: Configura per defecte als usuaris fora de la indexació del motor de cerca
+      about:
+        manage_rules: Gestiona les normes del servidor
+        preamble: Proporciona informació detallada sobre com funciona, com es modera i com es financia el servidor.
+        rules_hint: Hi ha un àrea dedicada a les normes a les que s'espera que els teus usuaris s'hi adhereixin.
+        title: Quant a
+      appearance:
+        preamble: Personalitza l'interfície web de Mastodon.
+        title: Aparença
+      branding:
+        preamble: La marca del teu servidor el diferència dels demés servidors de la xarxa. Aquesta informació es pot mostrar en diversos entorns com ara en l'interfície web, en les aplicacions natives, en les previsualitzacions dels enllaços en altres webs, dins les aplicacions de missatgeria i d'altres. Per aquesta raó, és millor mantenir aquesta informació clara, breu i precisa.
+        title: Marca
+      content_retention:
+        preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
+        title: Retenció de contingut
+      discovery:
+        follow_recommendations: Seguir les recomanacions
+        preamble: L'aparició de contingut interessant és fonamental per atraure els nous usuaris que podrien no saber res de Mastodon. Controla com funcionen diverses opcions de descobriment en el teu servidor.
+        profile_directory: Directori de perfils
+        public_timelines: Línies de temps públiques
+        title: Descobriment
+        trends: Tendències
       domain_blocks:
         all: Per a tothom
         disabled: Per a ningú
-        title: Mostra els bloquejos de domini
         users: Per als usuaris locals en línia
-      domain_blocks_rationale:
-        title: Mostra el raonament
-      mascot:
-        desc_html: Es mostra a diverses pàgines. Es recomana com a mínim 293 × 205px. Si no està configurat, torna a la mascota predeterminada
-        title: Imatge de la mascota
-      peers_api_enabled:
-        desc_html: Els noms de domini que aquest servidor ha trobat al fedivers
-        title: Publica la llista de servidors descoberts
-      preview_sensitive_media:
-        desc_html: Les visualitzacions prèvies d'enllaços d'altres llocs web mostraran una miniatura encara que els mitjans de comunicació estiguin marcats com a sensibles
-        title: Mostra els mitjans sensibles a les previsualitzacions d'OpenGraph
-      profile_directory:
-        desc_html: Permet als usuaris ser descoberts
-        title: Habilita el directori de perfils
       registrations:
-        closed_message:
-          desc_html: Apareix en la primera pàgina quan es tanquen els registres. Pots utilitzar etiquetes HTML
-          title: Missatge de registre tancat
-        require_invite_text:
-          desc_html: Quan el registre requereix aprovació manual, fer que sigui obligatori enlloc d'opcions l escriure el text de la solicitud d'invitació "Perquè vols unirte?"
-          title: Requerir als nous usuaris omplir el text de la solicitud d'invitació
+        preamble: Controla qui pot crear un compte en el teu servidor.
+        title: Registres
       registrations_mode:
         modes:
           approved: Es requereix l’aprovació per registrar-se
           none: Ningú no pot registrar-se
           open: Qualsevol pot registrar-se
-        title: Mode de registres
-      site_description:
-        desc_html: Paràgraf introductori a la pàgina principal i en etiquetes meta. Pots utilitzar etiquetes HTML, en particular <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
-        title: Descripció del servidor
-      site_description_extended:
-        desc_html: Un bon lloc per al codi de conducta, regles, directrius i altres coses que distingeixen el teu servidor. Pots utilitzar etiquetes HTML
-        title: Descripció ampliada del lloc
-      site_short_description:
-        desc_html: Es mostra a la barra lateral i a metaetiquetes. Descriu en un únic paràgraf què és Mastodon i què fa que aquest servidor sigui especial.
-        title: Descripció curta del servidor
-      site_terms:
-        desc_html: Pots escriure la teva pròpia política de privacitat. Pots fer servir etiquetes HTML
-        title: Política de privacitat personalitzada
-      site_title: Nom del servidor
-      thumbnail:
-        desc_html: S'utilitza per obtenir visualitzacions prèvies a través d'OpenGraph i API. Es recomana 1200x630px
-        title: Miniatura del servidor
-      timeline_preview:
-        desc_html: Mostra l'enllaç a la línia de temps pública a la pàgina inicial i permet l'accés a l'API a la línia de temps pública sense autenticació
-        title: Permet l'accés no autenticat a la línia de temps pública
-      title: Configuració del lloc
-      trendable_by_default:
-        desc_html: El contingut específic de la tendència encara pot explícitament no estar permès
-        title: Permet tendències sense revisió prèvia
-      trends:
-        desc_html: Mostra públicament les etiquetes revisades anteriorment que actualment estan en tendència
-        title: Etiquetes tendència
+      title: Paràmetres del servidor
     site_uploads:
       delete: Esborra el fitxer pujat
       destroyed_msg: La càrrega al lloc s'ha suprimit correctament!
