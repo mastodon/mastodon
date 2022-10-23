@@ -222,30 +222,6 @@
   }
 }
 
-.floating-action-button {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.9375rem;
-  height: 3.9375rem;
-  bottom: 1.3125rem;
-  right: 1.3125rem;
-  background: darken($ui-highlight-color, 2%);
-  color: $white;
-  border-radius: 50%;
-  font-size: 21px;
-  line-height: 21px;
-  text-decoration: none;
-  box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: $ui-highlight-color;
-  }
-}
-
 @media screen and (min-width: $no-gap-breakpoint) {
   .tabs-bar {
     width: 100%;
@@ -260,7 +236,6 @@
     margin-bottom: 10px;
   }
 
-  .floating-action-button,
   .tabs-bar__link.optional {
     display: none;
   }
@@ -276,10 +251,6 @@
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
   $sidebar-width: 285px;
-
-  .with-fab .scrollable .item-list:last-child {
-    padding-bottom: 5.25rem;
-  }
 
   .columns-area__panels__main {
     width: calc(100% - $sidebar-width);

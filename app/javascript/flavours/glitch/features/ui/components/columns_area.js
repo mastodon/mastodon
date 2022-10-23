@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { Link } from 'react-router-dom';
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
 import DrawerLoading from './drawer_loading';
@@ -21,7 +19,6 @@ import {
   ListTimeline,
   Directory,
 } from '../../ui/util/async-components';
-import Icon from 'flavours/glitch/components/icon';
 import ComposePanel from './compose_panel';
 import NavigationPanel from './navigation_panel';
 
@@ -43,22 +40,13 @@ const componentMap = {
   'DIRECTORY': Directory,
 };
 
-const shouldHideFAB = path => path.match(/^\/statuses\/|^\/@[^/]+\/\d+|^\/publish|^\/explore|^\/getting-started|^\/start/);
-
-const messages = defineMessages({
-  publish: { id: 'compose_form.publish', defaultMessage: 'Toot' },
-});
-
-export default @(component => injectIntl(component, { withRef: true }))
-class ColumnsArea extends ImmutablePureComponent {
+export default class ColumnsArea extends ImmutablePureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
-    identity: PropTypes.object.isRequired,
   };
 
   static propTypes = {
-    intl: PropTypes.object.isRequired,
     columns: ImmutablePropTypes.list.isRequired,
     singleColumn: PropTypes.bool,
     children: PropTypes.node,
@@ -144,17 +132,14 @@ class ColumnsArea extends ImmutablePureComponent {
   }
 
   renderError = (props) => {
-    return <BundleColumnError multiColumn {...props} />;
+    return <BundleColumnError multiColumn errorType='network' {...props} />;
   }
 
   render () {
-    const { columns, children, singleColumn, intl, navbarUnder, openSettings } = this.props;
+    const { columns, children, singleColumn, navbarUnder, openSettings } = this.props;
     const { renderComposePanel } = this.state;
-    const { signedIn } = this.context.identity;
 
     if (singleColumn) {
-      const floatingActionButton = (!signedIn || shouldHideFAB(this.context.router.history.location.pathname)) ? null : <Link key='floating-action-button' to='/publish' className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}><Icon id='pencil' /></Link>;
-
       return (
         <div className='columns-area__panels'>
           <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
@@ -163,7 +148,7 @@ class ColumnsArea extends ImmutablePureComponent {
             </div>
           </div>
 
-          <div className={`columns-area__panels__main ${floatingActionButton && 'with-fab'}`}>
+          <div className='columns-area__panels__main'>
             <div className='tabs-bar__wrapper'><div id='tabs-bar__portal' /></div>
             <div className='columns-area columns-area--mobile'>{children}</div>
           </div>
@@ -173,8 +158,6 @@ class ColumnsArea extends ImmutablePureComponent {
               <NavigationPanel onOpenSettings={openSettings} />
             </div>
           </div>
-
-          {floatingActionButton}
         </div>
       );
     }
