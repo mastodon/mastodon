@@ -58,7 +58,6 @@ class StatusContent extends React.PureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     expanded: PropTypes.bool,
-    showThread: PropTypes.bool,
     onExpandedToggle: PropTypes.func,
     onTranslate: PropTypes.func,
     onClick: PropTypes.func,
@@ -214,7 +213,6 @@ class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderReadMore = this.props.onClick && status.get('collapsed');
-    const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
     const renderTranslate = translationEnabled && this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
 
     const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
@@ -225,12 +223,6 @@ class StatusContent extends React.PureComponent {
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
       'status__content--collapsed': renderReadMore,
     });
-
-    const showThreadButton = renderViewThread && (
-      <button className='status__content__read-more-button' onClick={this.props.onClick}>
-        <FormattedMessage id='status.show_thread' defaultMessage='Show thread' />
-      </button>
-    );
 
     const readMoreButton = renderReadMore && (
       <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
@@ -275,7 +267,6 @@ class StatusContent extends React.PureComponent {
 
           {!hidden && poll}
           {!hidden && translateButton}
-          {showThreadButton}
         </div>
       );
     } else if (this.props.onClick) {
@@ -286,7 +277,6 @@ class StatusContent extends React.PureComponent {
 
             {poll}
             {translateButton}
-            {showThreadButton}
           </div>
 
           {readMoreButton}
@@ -299,7 +289,6 @@ class StatusContent extends React.PureComponent {
 
           {poll}
           {translateButton}
-          {showThreadButton}
         </div>
       );
     }
