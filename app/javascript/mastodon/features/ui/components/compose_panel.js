@@ -6,7 +6,7 @@ import ComposeFormContainer from 'mastodon/features/compose/containers/compose_f
 import NavigationContainer from 'mastodon/features/compose/containers/navigation_container';
 import LinkFooter from './link_footer';
 import ServerBanner from 'mastodon/components/server_banner';
-import { changeComposing } from 'mastodon/actions/compose';
+import { changeComposing, mountCompose, unmountCompose } from 'mastodon/actions/compose';
 
 export default @connect()
 class ComposePanel extends React.PureComponent {
@@ -20,11 +20,23 @@ class ComposePanel extends React.PureComponent {
   };
 
   onFocus = () => {
-    this.props.dispatch(changeComposing(true));
+    const { dispatch } = this.props;
+    dispatch(changeComposing(true));
   }
 
   onBlur = () => {
-    this.props.dispatch(changeComposing(false));
+    const { dispatch } = this.props;
+    dispatch(changeComposing(false));
+  }
+
+  componentDidMount () {
+    const { dispatch } = this.props;
+    dispatch(mountCompose());
+  }
+
+  componentWillUnmount () {
+    const { dispatch } = this.props;
+    dispatch(unmountCompose());
   }
 
   render() {
