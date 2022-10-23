@@ -2,6 +2,7 @@
 
 class Auth::RegistrationsController < Devise::RegistrationsController
   include RegistrationSpamConcern
+  include TurnstileConcern
 
   layout :determine_layout
 
@@ -17,6 +18,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   before_action :set_rules, only: :new
   before_action :require_rules_acceptance!, only: :new
   before_action :set_registration_form_time, only: :new
+  before_action :add_csp_for_turnstile, only: [:new, :create]
+  before_action :check_turnstile, if: :turnstile_enabled?, only: [:create]
 
   skip_before_action :require_functional!, only: [:edit, :update]
 

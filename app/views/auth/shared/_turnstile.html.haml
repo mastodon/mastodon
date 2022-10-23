@@ -1,0 +1,4 @@
+- if ENV['TURNSTILE_ENABLED'] == 'true'
+  .turnstile
+    %script(src='https://challenges.cloudflare.com/turnstile/v0/api.js')
+    %div.cf-turnstile{ "data-sitekey": ENV['TURNSTILE_SITE_KEY'] }
