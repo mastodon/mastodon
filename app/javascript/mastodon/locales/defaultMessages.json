@@ -3702,16 +3702,44 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Network error",
-        "id": "bundle_column_error.title"
+        "defaultMessage": "Copied",
+        "id": "copypaste.copied"
       },
       {
-        "defaultMessage": "Something went wrong while loading this component.",
-        "id": "bundle_column_error.body"
+        "defaultMessage": "404",
+        "id": "bundle_column_error.routing.title"
+      },
+      {
+        "defaultMessage": "The requested page could not be found. Are you sure the URL in the address bar is correct?",
+        "id": "bundle_column_error.routing.body"
+      },
+      {
+        "defaultMessage": "Network error",
+        "id": "bundle_column_error.network.title"
+      },
+      {
+        "defaultMessage": "There was an error when trying to load this page. This could be due to a temporary problem with your internet connection or this server.",
+        "id": "bundle_column_error.network.body"
+      },
+      {
+        "defaultMessage": "Oh, no!",
+        "id": "bundle_column_error.error.title"
+      },
+      {
+        "defaultMessage": "The requested page could not be rendered. It could be due to a bug in our code, or a browser compatibility issue.",
+        "id": "bundle_column_error.error.body"
       },
       {
         "defaultMessage": "Try again",
         "id": "bundle_column_error.retry"
+      },
+      {
+        "defaultMessage": "Copy error report",
+        "id": "bundle_column_error.copy_stacktrace"
+      },
+      {
+        "defaultMessage": "Go back home",
+        "id": "bundle_column_error.return"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/bundle_column_error.json"
@@ -3732,15 +3760,6 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/bundle_modal_error.json"
-  },
-  {
-    "descriptors": [
-      {
-        "defaultMessage": "Publish",
-        "id": "compose_form.publish"
-      }
-    ],
-    "path": "app/javascript/mastodon/features/ui/components/columns_area.json"
   },
   {
     "descriptors": [
@@ -3882,6 +3901,10 @@
   },
   {
     "descriptors": [
+      {
+        "defaultMessage": "Publish",
+        "id": "compose_form.publish"
+      },
       {
         "defaultMessage": "Sign in",
         "id": "sign_in_banner.sign_in"
