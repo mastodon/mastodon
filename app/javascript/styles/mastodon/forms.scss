@@ -254,7 +254,7 @@ code {
 
     & > label {
       font-family: inherit;
-      font-size: 16px;
+      font-size: 14px;
       color: $primary-text-color;
       display: block;
       font-weight: 500;
@@ -290,6 +290,20 @@ code {
 
     .input:last-child {
       margin-bottom: 0;
+    }
+
+    &__thumbnail {
+      display: block;
+      margin: 0;
+      margin-bottom: 10px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      background: url("images/void.png");
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 

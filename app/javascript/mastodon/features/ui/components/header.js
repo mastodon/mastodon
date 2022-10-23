@@ -1,6 +1,6 @@
 import React from 'react';
 import Logo from 'mastodon/components/logo';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { registrationsOpen, me } from 'mastodon/initial_state';
 import Avatar from 'mastodon/components/avatar';
@@ -16,25 +16,36 @@ const Account = connect(state => ({
   </Permalink>
 ));
 
-export default class Header extends React.PureComponent {
+export default @withRouter
+class Header extends React.PureComponent {
 
   static contextTypes = {
     identity: PropTypes.object,
   };
 
+  static propTypes = {
+    location: PropTypes.object,
+  };
+
   render () {
     const { signedIn } = this.context.identity;
+    const { location } = this.props;
 
     let content;
 
     if (signedIn) {
-      content = <Account />;
+      content = (
+        <>
+          {location.pathname !== '/publish' && <Link to='/publish' className='button'><FormattedMessage id='compose_form.publish' defaultMessage='Publish' /></Link>}
+          <Account />
+        </>
+      );
     } else {
       content = (
-        <React.Fragment>
+        <>
           <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
           <a href={registrationsOpen ? '/auth/sign_up' : 'https://joinmastodon.org/servers'} className='button button-tertiary'><FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' /></a>
-        </React.Fragment>
+        </>
       );
     }
 

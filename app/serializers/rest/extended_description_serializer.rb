@@ -8,6 +8,16 @@ class REST::ExtendedDescriptionSerializer < ActiveModel::Serializer
   end
 
   def content
-    object.text
+    if object.text.present?
+      markdown.render(object.text)
+    else
+      ''
+    end
+  end
+
+  private
+
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML)
   end
 end

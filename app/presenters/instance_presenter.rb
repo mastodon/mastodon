@@ -12,7 +12,9 @@ class InstancePresenter < ActiveModelSerializers::Model
     end
 
     def account
-      Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
+      username, domain = Setting.site_contact_username.strip.gsub(/\A@/, '').split('@', 2)
+      domain = nil if TagManager.instance.local_domain?(domain)
+      Account.find_remote(username, domain) if username.present?
     end
   end
 

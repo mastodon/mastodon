@@ -3,7 +3,7 @@ import React from 'react';
 import { HotKeys } from 'react-hotkeys';
 import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import NotificationsContainer from './containers/notifications_container';
 import LoadingBarContainer from './containers/loading_bar_container';
@@ -18,6 +18,7 @@ import { clearHeight } from '../../actions/height_cache';
 import { focusApp, unfocusApp, changeLayout } from 'mastodon/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'mastodon/actions/markers';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
+import BundleColumnError from './components/bundle_column_error';
 import UploadArea from './components/upload_area';
 import ColumnsAreaContainer from './containers/columns_area_container';
 import PictureInPicture from 'mastodon/features/picture_in_picture';
@@ -39,7 +40,6 @@ import {
   HashtagTimeline,
   Notifications,
   FollowRequests,
-  GenericNotFound,
   FavouritedStatuses,
   BookmarkedStatuses,
   ListTimeline,
@@ -54,7 +54,7 @@ import {
   About,
   PrivacyPolicy,
 } from './util/async-components';
-import initialState, { me, owner, singleUserMode } from '../../initial_state';
+import initialState, { me, owner, singleUserMode, showTrends } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
 import Header from './components/header';
 
@@ -145,7 +145,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   setRef = c => {
     if (c) {
-      this.node = c.getWrappedInstance();
+      this.node = c;
     }
   }
 
@@ -163,8 +163,10 @@ class SwitchingColumnsArea extends React.PureComponent {
       }
     } else if (singleUserMode && owner && initialState?.accounts[owner]) {
       redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
-    } else {
+    } else if (showTrends) {
       redirect = <Redirect from='/' to='/explore' exact />;
+    } else {
+      redirect = <Redirect from='/' to='/about' exact />;
     }
 
     return (
@@ -217,7 +219,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/mutes' component={Mutes} content={children} />
           <WrappedRoute path='/lists' component={Lists} content={children} />
 
-          <WrappedRoute component={GenericNotFound} content={children} />
+          <Route component={BundleColumnError} />
         </WrappedSwitch>
       </ColumnsAreaContainer>
     );

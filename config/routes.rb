@@ -241,7 +241,18 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :settings, only: [:edit, :update]
+    get '/settings', to: redirect('/admin/settings/branding')
+    get '/settings/edit', to: redirect('/admin/settings/branding')
+
+    namespace :settings do
+      resource :branding, only: [:show, :update], controller: 'branding'
+      resource :registrations, only: [:show, :update], controller: 'registrations'
+      resource :content_retention, only: [:show, :update], controller: 'content_retention'
+      resource :about, only: [:show, :update], controller: 'about'
+      resource :appearance, only: [:show, :update], controller: 'appearance'
+      resource :discovery, only: [:show, :update], controller: 'discovery'
+    end
+
     resources :site_uploads, only: [:destroy]
 
     resources :invites, only: [:index, :create, :destroy] do

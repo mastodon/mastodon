@@ -29,6 +29,11 @@
   background: transparent;
   padding: 0;
   cursor: pointer;
+  text-decoration: none;
+
+  &--destructive {
+    color: $error-value-color;
+  }
 
   &:hover,
   &:active {
@@ -82,6 +87,15 @@
   &.disabled {
     background-color: $ui-primary-color;
     cursor: default;
+  }
+
+  &.copyable {
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    background: $valid-value-color;
+    transition: none;
   }
 
   &::-moz-focus-inner {
@@ -2551,30 +2565,6 @@ $ui-header-height: 55px;
   }
 }
 
-.floating-action-button {
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 3.9375rem;
-  height: 3.9375rem;
-  bottom: 1.3125rem;
-  right: 1.3125rem;
-  background: darken($ui-highlight-color, 2%);
-  color: $white;
-  border-radius: 50%;
-  font-size: 21px;
-  line-height: 21px;
-  text-decoration: none;
-  box-shadow: 2px 3px 9px rgba($base-shadow-color, 0.4);
-
-  &:hover,
-  &:focus,
-  &:active {
-    background: $ui-highlight-color;
-  }
-}
-
 @media screen and (min-width: $no-gap-breakpoint) {
   .tabs-bar {
     width: 100%;
@@ -2589,7 +2579,6 @@ $ui-header-height: 55px;
     margin-bottom: 10px;
   }
 
-  .floating-action-button,
   .tabs-bar__link.optional {
     display: none;
   }
@@ -2605,10 +2594,6 @@ $ui-header-height: 55px;
 
 @media screen and (max-width: $no-gap-breakpoint - 1px) {
   $sidebar-width: 285px;
-
-  .with-fab .scrollable .item-list:last-child {
-    padding-bottom: 5.25rem;
-  }
 
   .columns-area__panels__main {
     width: calc(100% - $sidebar-width);
@@ -2651,7 +2636,8 @@ $ui-header-height: 55px;
 
   .column-header,
   .column-back-button,
-  .scrollable {
+  .scrollable,
+  .error-column {
     border-radius: 0 !important;
   }
 }
@@ -3171,7 +3157,6 @@ $ui-header-height: 55px;
   padding: 15px;
   text-decoration: none;
   overflow: hidden;
-  text-overflow: ellipsis;
   white-space: nowrap;
 
   &:hover,
@@ -4288,7 +4273,6 @@ a.status-card.compact:hover {
 }
 
 .empty-column-indicator,
-.error-column,
 .follow_requests-unlocked_explanation {
   color: $dark-text-color;
   background: $ui-base-color;
@@ -4326,7 +4310,48 @@ a.status-card.compact:hover {
 }
 
 .error-column {
+  padding: 20px;
+  background: $ui-base-color;
+  border-radius: 4px;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  cursor: default;
+
+  &__image {
+    width: 70%;
+    max-width: 350px;
+    margin-top: -50px;
+  }
+
+  &__message {
+    text-align: center;
+    color: $darker-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    h1 {
+      font-size: 28px;
+      line-height: 33px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: $primary-text-color;
+    }
+
+    p {
+      max-width: 48ch;
+    }
+
+    &__actions {
+      margin-top: 30px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
 @keyframes heartbeat {
@@ -7217,6 +7242,7 @@ noscript {
     &__buttons {
       display: flex;
       align-items: center;
+      gap: 8px;
       padding-top: 55px;
       overflow: hidden;
 
@@ -7225,14 +7251,6 @@ noscript {
         border-radius: 4px;
         box-sizing: content-box;
         padding: 2px;
-      }
-
-      & > .icon-button {
-        margin-right: 8px;
-      }
-
-      .button {
-        margin: 0 8px;
       }
     }
 

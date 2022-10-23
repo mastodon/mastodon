@@ -1,0 +1,27 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.settings.registrations.title')
+
+- content_for :heading do
+  %h2= t('admin.settings.title')
+  = render partial: 'admin/settings/shared/links'
+
+= simple_form_for @admin_settings, url: admin_settings_branding_path, html: { method: :patch } do |f|
+  = render 'shared/error_messages', object: @admin_settings
+
+  %p.lead= t('admin.settings.registrations.preamble')
+
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :registrations_mode, collection: %w(open approved none), wrapper: :with_label, include_blank: false, label_method: lambda { |mode| I18n.t("admin.settings.registrations_mode.modes.#{mode}") }
+
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :require_invite_text, as: :boolean, wrapper: :with_label, disabled: !approved_registrations?
+
+  .fields-group
+    = f.input :closed_registrations_message, as: :text, wrapper: :with_block_label, input_html: { rows: 2 }
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit
