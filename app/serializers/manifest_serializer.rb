@@ -52,7 +52,7 @@ class ManifestSerializer < ActiveModel::Serializer
   end
 
   def start_url
-    '/web/home'
+    '/home'
   end
 
   def scope
@@ -77,11 +77,11 @@ class ManifestSerializer < ActiveModel::Serializer
     [
       {
         name: 'Compose new post',
-        url: '/web/publish',
+        url: '/publish',
       },
       {
         name: 'Notifications',
-        url: '/web/notifications',
+        url: '/notifications',
       },
     ]
   end
