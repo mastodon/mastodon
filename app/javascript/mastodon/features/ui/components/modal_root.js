@@ -23,6 +23,7 @@ import {
   FilterModal,
   InteractionModal,
   SubscribedLanguagesModal,
+  ClosedRegistrationsModal,
 } from 'mastodon/features/ui/util/async-components';
 import { Helmet } from 'react-helmet';
 
@@ -44,6 +45,7 @@ const MODAL_COMPONENTS = {
   'FILTER': FilterModal,
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
+  'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
 };
 
 export default class ModalRoot extends React.PureComponent {
