@@ -3,8 +3,9 @@
 class StatusFinder
   attr_reader :url
 
-  def initialize(url)
+  def initialize(url, allow_activity: false)
     @url = url
+    @allowed_actions = allow_activity ? ['show', 'activity'] : ['show']
   end
 
   def status
@@ -27,8 +28,6 @@ class StatusFinder
   end
 
   def verify_action!
-    unless recognized_params[:action] == 'show'
-      raise ActiveRecord::RecordNotFound
-    end
+    raise ActiveRecord::RecordNotFound unless @allowed_actions.include?(recognized_params[:action])
   end
 end

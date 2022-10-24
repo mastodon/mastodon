@@ -125,6 +125,8 @@ module ApplicationHelper
       fa_icon('lock', title: I18n.t('statuses.visibilities.private'))
     elsif status.direct_visibility?
       fa_icon('at', title: I18n.t('statuses.visibilities.direct'))
+    elsif status.group_visibility?
+      fa_icon('users', title: I18n.t('statuses.visibilities.group')) # TODO: mention the group's name, probably?
     end
   end
 

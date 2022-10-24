@@ -34,8 +34,28 @@ export function ListTimeline () {
   return import(/* webpackChunkName: "features/list_timeline" */'../../list_timeline');
 }
 
+export function GroupTimeline () {
+  return import(/* webpackChunkName: "features/group_timeline" */'../../group_timeline');
+}
+
+export function GroupMembers () {
+  return import(/* webpackChunkName: "features/group_members" */'../../group_members');
+}
+
+export function GroupMembershipRequests () {
+  return import(/* webpackChunkName: "features/group_membership_requests" */'../../group_membership_requests');
+}
+
+export function GroupBlocks () {
+  return import(/* webpackChunkName: "features/group_blocks" */'../../group_blocks');
+}
+
 export function Lists () {
   return import(/* webpackChunkName: "features/lists" */'../../lists');
+}
+
+export function Groups () {
+  return import(/* webpackChunkName: "features/groups" */'../../groups');
 }
 
 export function Status () {

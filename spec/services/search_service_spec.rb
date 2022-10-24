@@ -46,6 +46,18 @@ describe SearchService, type: :service do
         end
       end
 
+      context 'that finds a group' do
+        it 'includes the group in the results' do
+          group = Group.new
+          service = double(call: group)
+          allow(ResolveURLService).to receive(:new).and_return(service)
+
+          results = subject.call(@query, nil, 10, resolve: true)
+          expect(service).to have_received(:call).with(@query, on_behalf_of: nil)
+          expect(results).to eq empty_results.merge(groups: [group])
+        end
+      end
+
       context 'that finds a status' do
         it 'includes the status in the results' do
           status = Status.new
@@ -104,6 +116,6 @@ describe SearchService, type: :service do
   end
 
   def empty_results
-    { accounts: [], hashtags: [], statuses: [] }
+    { accounts: [], hashtags: [], statuses: [], groups: [] }
   end
 end

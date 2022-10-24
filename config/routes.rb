@@ -105,6 +105,13 @@ Rails.application.routes.draw do
     resource :followers_synchronization, only: [:show], module: :activitypub
   end
 
+  resources :groups, only: [:show] do
+    resource :outbox, only: [:show], module: :activitypub, controller: :group_outboxes
+    resource :inbox, only: [:create], module: :activitypub, controller: :group_inboxes
+    resource :wall, only: [:show], module: :activitypub
+    resources :members, only: [:index], controller: :group_members
+  end
+
   resource :inbox, only: [:create], module: :activitypub
 
   constraints(username: /[^@\/.]+/) do
@@ -302,6 +309,27 @@ Rails.application.routes.draw do
 
     resources :report_notes, only: [:create, :destroy]
 
+    resources :groups, only: [:index, :destroy, :show] do
+      member do
+        post :suspend
+        post :unsuspend
+        post :remove_avatar
+        post :remove_header
+      end
+
+      collection do
+        post :batch
+      end
+
+      resources :statuses, only: [:index], controller: 'group_statuses' do
+        collection do
+          post :batch
+        end
+      end
+
+      resources :memberships, only: [:index], controller: 'group_memberships'
+    end
+
     resources :accounts, only: [:index, :show, :destroy] do
       member do
         post :enable
@@ -443,6 +471,7 @@ Rails.application.routes.draw do
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
         resources :list, only: :show
+        resources :group, only: :show
       end
 
       resources :streaming, only: [:index]
@@ -593,6 +622,33 @@ Rails.application.routes.draw do
         resource :accounts, only: [:show, :create, :destroy], controller: 'lists/accounts'
       end
 
+      namespace :groups do
+        resources :relationships, only: [:index]
+      end
+
+      resources :groups, only: [:index, :create, :show, :update, :destroy] do
+        resources :memberships, only: [:index], controller: 'groups/memberships'
+
+        resources :membership_requests, only: [:index], controller: 'groups/membership_requests' do
+          member do
+            post :authorize, to: 'groups/membership_requests#accept'
+            post :reject
+          end
+        end
+
+        resources :statuses, only: [:destroy], controller: 'groups/statuses'
+
+        resource :blocks, only: [:show, :create, :destroy], controller: 'groups/blocks'
+
+        member do
+          post :join
+          post :leave
+          post :kick
+          post :promote
+          post :demote
+        end
+      end
+
       namespace :featured_tags do
         get :suggestions, to: 'suggestions#index'
       end
@@ -619,6 +675,13 @@ Rails.application.routes.draw do
           end
 
           resource :action, only: [:create], controller: 'account_actions'
+        end
+
+        resources :groups, only: [:index, :show, :destroy] do
+          member do
+            post :suspend
+            post :unsuspend
+          end
         end
 
         resources :reports, only: [:index, :update, :show] do

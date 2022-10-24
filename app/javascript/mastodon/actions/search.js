@@ -1,6 +1,6 @@
 import api from '../api';
 import { fetchRelationships } from './accounts';
-import { importFetchedAccounts, importFetchedStatuses } from './importer';
+import { importFetchedAccounts, importFetchedStatuses, importFetchedGroups } from './importer';
 
 export const SEARCH_CHANGE = 'SEARCH_CHANGE';
 export const SEARCH_CLEAR  = 'SEARCH_CLEAR';
@@ -32,7 +32,7 @@ export function submitSearch() {
     const value = getState().getIn(['search', 'value']);
 
     if (value.length === 0) {
-      dispatch(fetchSearchSuccess({ accounts: [], statuses: [], hashtags: [] }, ''));
+      dispatch(fetchSearchSuccess({ accounts: [], statuses: [], hashtags: [], groups: [] }, ''));
       return;
     }
 
@@ -51,6 +51,10 @@ export function submitSearch() {
 
       if (response.data.statuses) {
         dispatch(importFetchedStatuses(response.data.statuses));
+      }
+
+      if (response.data.groups) {
+        dispatch(importFetchedGroups(response.data.groups));
       }
 
       dispatch(fetchSearchSuccess(response.data, value));
@@ -101,6 +105,10 @@ export const expandSearch = type => (dispatch, getState) => {
 
     if (data.statuses) {
       dispatch(importFetchedStatuses(data.statuses));
+    }
+
+    if (data.groups) {
+      dispatch(importFetchedGroups(data.groups));
     }
 
     dispatch(expandSearchSuccess(data, value, type));

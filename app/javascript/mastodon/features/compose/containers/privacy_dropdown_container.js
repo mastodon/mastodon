@@ -6,6 +6,8 @@ import { isUserTouching } from '../../../is_mobile';
 
 const mapStateToProps = state => ({
   value: state.getIn(['compose', 'privacy']),
+  group: state.getIn(['groups', state.getIn(['compose', 'group_id'])]),
+  isInReply: state.getIn(['compose', 'in_reply_to']) !== null,
 });
 
 const mapDispatchToProps = dispatch => ({

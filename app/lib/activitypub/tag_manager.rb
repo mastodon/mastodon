@@ -24,6 +24,8 @@ class ActivityPub::TagManager
     case target.object_type
     when :person
       target.instance_actor? ? about_more_url(instance_actor: true) : short_account_url(target)
+    when :group
+      group_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       short_account_status_url(target.account, target)
@@ -36,6 +38,8 @@ class ActivityPub::TagManager
     case target.object_type
     when :person
       target.instance_actor? ? instance_actor_url : account_url(target)
+    when :group
+      group_url(target)
     when :note, :comment, :activity
       return activity_account_status_url(target.account, target) if target.reblog?
       account_status_url(target.account, target)
@@ -72,6 +76,14 @@ class ActivityPub::TagManager
     target.local? ? account_followers_url(target) : target.followers_url.presence
   end
 
+  def wall_uri_for(target)
+    target.local? ? group_wall_url(target) : target.wall_url.presence
+  end
+
+  def members_uri_for(target)
+    target.local? ? group_members_url(target) : target.members_url.presence
+  end
+
   # Primary audience of a status
   # Public statuses go out to primarily the public collection
   # Unlisted and private statuses go out primarily to the followers collection
@@ -80,6 +92,8 @@ class ActivityPub::TagManager
     case status.visibility
     when 'public'
       [COLLECTIONS[:public]]
+    when 'group'
+      [status.group&.members_url]
     when 'unlisted', 'private'
       [account_followers_url(status.account)]
     when 'direct', 'limited'
@@ -109,6 +123,8 @@ class ActivityPub::TagManager
   # Both of those and private statuses also go to the people mentioned in them
   # Direct ones don't have a secondary audience
   def cc(status)
+    return [] if status.group_visibility? # TODO: add COLLECTIONS[:public]?
+
     cc = []
 
     cc << uri_for(status.reblog.account) if status.reblog?
@@ -160,7 +176,7 @@ class ActivityPub::TagManager
   end
 
   def uri_to_actor(uri)
-    uri_to_resource(uri, Account)
+    uri_to_resource(uri, Group) || uri_to_resource(uri, Account)
   end
 
   def uri_to_resource(uri, klass)
@@ -170,6 +186,8 @@ class ActivityPub::TagManager
       case klass.name
       when 'Account'
         klass.find_local(uri_to_local_id(uri, :username))
+      when 'Group'
+        klass.local.find(uri_to_local_id(uri))
       else
         StatusFinder.new(uri).status
       end

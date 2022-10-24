@@ -53,6 +53,11 @@ import {
   FollowRecommendations,
   About,
   PrivacyPolicy,
+  GroupTimeline,
+  Groups,
+  GroupMembers,
+  GroupMembershipRequests,
+  GroupBlocks,
 } from './util/async-components';
 import initialState, { me, owner, singleUserMode, showTrends } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'mastodon/actions/onboarding';
@@ -185,6 +190,10 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/conversations', '/timelines/direct']} component={DirectTimeline} content={children} />
           <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
           <WrappedRoute path='/lists/:id' component={ListTimeline} content={children} />
+          <WrappedRoute path='/groups/:id' exact component={GroupTimeline} content={children} />
+          <WrappedRoute path='/groups/:id/members' component={GroupMembers} content={children} />
+          <WrappedRoute path='/groups/:id/membership_requests' component={GroupMembershipRequests} content={children} />
+          <WrappedRoute path='/groups/:id/blocks' component={GroupBlocks} content={children} />
           <WrappedRoute path='/notifications' component={Notifications} content={children} />
           <WrappedRoute path='/favourites' component={FavouritedStatuses} content={children} />
 
@@ -218,6 +227,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
           <WrappedRoute path='/mutes' component={Mutes} content={children} />
           <WrappedRoute path='/lists' component={Lists} content={children} />
+          <WrappedRoute path='/groups' component={Groups} content={children} />
 
           <Route component={BundleColumnError} />
         </WrappedSwitch>

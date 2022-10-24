@@ -45,10 +45,15 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   filter: { id: 'status.filter', defaultMessage: 'Filter this post' },
+  replies_disabled_group: { id: 'status.disabled_replies.group_membership', defaultMessage: 'Only group members can reply' },
+  group_mod_delete: { id: 'status.group_mod_delete', defaultMessage: 'Delete post from group' },
+  group_mod_kick: { id: 'status.group_mod_kick', defaultMessage: 'Kick @{name} from group' },
+  group_mod_block: { id: 'status.group_mod_block', defaultMessage: 'Block @{name} from group' },
 });
 
 const mapStateToProps = (state, { status }) => ({
   relationship: state.getIn(['relationships', status.getIn(['account', 'id'])]),
+  groupRelationship: state.getIn(['group_relationships', status.getIn(['group', 'id'])]),
 });
 
 export default @connect(mapStateToProps)
@@ -63,6 +68,7 @@ class StatusActionBar extends ImmutablePureComponent {
   static propTypes = {
     status: ImmutablePropTypes.map.isRequired,
     relationship: ImmutablePropTypes.map,
+    groupRelationship: ImmutablePropTypes.map,
     onReply: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
@@ -83,6 +89,9 @@ class StatusActionBar extends ImmutablePureComponent {
     onFilter: PropTypes.func,
     onAddFilter: PropTypes.func,
     onInteractionModal: PropTypes.func,
+    onDeleteFromGroup: PropTypes.func.isRequired,
+    onKickFromGroup: PropTypes.func.isRequired,
+    onBlockFromGroup: PropTypes.func.isRequired,
     withDismiss: PropTypes.bool,
     withCounters: PropTypes.bool,
     scrollKey: PropTypes.string,
@@ -94,6 +103,7 @@ class StatusActionBar extends ImmutablePureComponent {
   updateOnProps = [
     'status',
     'relationship',
+    'groupRelationship',
     'withDismiss',
   ]
 
@@ -244,6 +254,18 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onFilter();
   }
 
+  handleDeleteFromGroup = () => {
+    this.props.onDeleteFromGroup(this.props.status);
+  }
+
+  handleKickFromGroup = () => {
+    this.props.onKickFromGroup(this.props.status);
+  }
+
+  handleBlockFromGroup = () => {
+    this.props.onBlockFromGroup(this.props.status);
+  }
+
   render () {
     const { status, relationship, intl, withDismiss, withCounters, scrollKey } = this.props;
 
@@ -319,6 +341,14 @@ class StatusActionBar extends ImmutablePureComponent {
         }
       }
 
+      if (status.get('group') && ['admin', 'moderator'].includes(this.props.groupRelationship?.get('role'))) {
+        menu.push(null);
+        menu.push({ text: intl.formatMessage(messages.group_mod_delete), action: this.handleDeleteFromGroup });
+        // TODO: figure out when an account is not in the group anymore
+        menu.push({ text: intl.formatMessage(messages.group_mod_kick, { name: account.get('username') }), action: this.handleKickFromGroup });
+        menu.push({ text: intl.formatMessage(messages.group_mod_block, { name: account.get('username') }), action: this.handleBlockFromGroup });
+      }
+
       if ((this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) {
         menu.push(null);
         menu.push({ text: intl.formatMessage(messages.admin_account, { name: account.get('username') }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
@@ -328,12 +358,18 @@ class StatusActionBar extends ImmutablePureComponent {
 
     let replyIcon;
     let replyTitle;
+    let replyDisabled = false;
     if (status.get('in_reply_to_id', null) === null) {
       replyIcon = 'reply';
       replyTitle = intl.formatMessage(messages.reply);
     } else {
       replyIcon = 'reply-all';
       replyTitle = intl.formatMessage(messages.replyAll);
+    }
+
+    if (status.getIn(['group', 'membership_required']) && !this.props.groupRelationship?.get('member')) {
+      replyDisabled = true;
+      replyTitle = intl.formatMessage(messages.replies_disabled_group);
     }
 
     const reblogPrivate = status.getIn(['account', 'id']) === me && status.get('visibility') === 'private';
@@ -359,7 +395,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     return (
       <div className='status__action-bar'>
-        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
+        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount disabled={replyDisabled} />
         <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
         <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
 

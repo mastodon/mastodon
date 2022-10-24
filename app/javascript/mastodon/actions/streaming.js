@@ -11,6 +11,7 @@ import {
   fillPublicTimelineGaps,
   fillCommunityTimelineGaps,
   fillListTimelineGaps,
+  fillGroupTimelineGaps,
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
@@ -165,3 +166,10 @@ export const connectDirectStream = () =>
  */
 export const connectListStream = listId =>
   connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });
+
+/**
+ * @param {string} groupId
+ * @return {function(): void}
+ */
+export const connectGroupStream = groupId =>
+  connectTimelineStream(`group:${groupId}`, 'group', { group: groupId }, { fillGaps: () => fillGroupTimelineGaps(groupId) });

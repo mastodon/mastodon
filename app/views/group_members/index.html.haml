@@ -1,0 +1,8 @@
+- content_for :page_title do
+  = t('groups.members_of', name: group_display_name(@group))
+
+- content_for :header_tags do
+  %meta{ name: 'robots', content: 'noindex' }/
+  -# TODO: OpenGraph = render 'accounts/og', account: @account, url: account_followers_url(@account, only_path: false)
+
+= render partial: 'shared/web_app'

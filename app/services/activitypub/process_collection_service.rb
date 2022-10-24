@@ -4,7 +4,7 @@ class ActivityPub::ProcessCollectionService < BaseService
   include JsonLdHelper
 
   def call(body, actor, **options)
-    @account = actor
+    @actor   = actor
     @json    = original_json = Oj.load(body, mode: :strict)
     @options = options
 
@@ -15,8 +15,7 @@ class ActivityPub::ProcessCollectionService < BaseService
       @json = original_json.without('signature')
     end
 
-    return if !supported_context? || (different_actor? && verify_account!.nil?) || suspended_actor? || @account.local?
-    return unless @account.is_a?(Account)
+    return if !supported_context? || (different_actor? && verify_actor!.nil?) || suspended_actor? || @actor.local?
 
     if @json['signature'].present?
       # We have verified the signature, but in the compaction step above, might
@@ -42,11 +41,11 @@ class ActivityPub::ProcessCollectionService < BaseService
   private
 
   def different_actor?
-    @json['actor'].present? && value_or_id(@json['actor']) != @account.uri
+    @json['actor'].present? && value_or_id(@json['actor']) != @actor.uri
   end
 
   def suspended_actor?
-    @account.suspended? && !activity_allowed_while_suspended?
+    @actor.suspended? && !activity_allowed_while_suspended?
   end
 
   def activity_allowed_while_suspended?
@@ -62,15 +61,14 @@ class ActivityPub::ProcessCollectionService < BaseService
   end
 
   def process_item(item)
-    activity = ActivityPub::Activity.factory(item, @account, **@options)
+    activity = ActivityPub::Activity.factory(item, @actor, **@options)
     activity&.perform
   end
 
-  def verify_account!
-    @options[:relayed_through_actor] = @account
-    @account = ActivityPub::LinkedDataSignature.new(@json).verify_actor!
-    @account = nil unless @account.is_a?(Account)
-    @account
+  def verify_actor!
+    @options[:relayed_through_actor] = @actor
+    @actor = ActivityPub::LinkedDataSignature.new(@json).verify_actor!
+    @actor
   rescue JSON::LD::JsonLdError => e
     Rails.logger.debug "Could not verify LD-Signature for #{value_or_id(@json['actor'])}: #{e.message}"
     nil

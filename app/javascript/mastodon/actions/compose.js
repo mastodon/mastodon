@@ -22,6 +22,7 @@ export const COMPOSE_SUBMIT_SUCCESS  = 'COMPOSE_SUBMIT_SUCCESS';
 export const COMPOSE_SUBMIT_FAIL     = 'COMPOSE_SUBMIT_FAIL';
 export const COMPOSE_REPLY           = 'COMPOSE_REPLY';
 export const COMPOSE_REPLY_CANCEL    = 'COMPOSE_REPLY_CANCEL';
+export const COMPOSE_GROUP_POST      = 'COMPOSE_GROUP_POST';
 export const COMPOSE_DIRECT          = 'COMPOSE_DIRECT';
 export const COMPOSE_MENTION         = 'COMPOSE_MENTION';
 export const COMPOSE_RESET           = 'COMPOSE_RESET';
@@ -112,6 +113,17 @@ export function replyCompose(status, routerHistory) {
   };
 };
 
+export function groupCompose(group_id, routerHistory) {
+  return (dispatch, getState) => {
+    dispatch({
+      type: COMPOSE_GROUP_POST,
+      group_id,
+    });
+
+    ensureComposeIsVisible(getState, routerHistory);
+  };
+};
+
 export function cancelReplyCompose() {
   return {
     type: COMPOSE_REPLY_CANCEL,
@@ -170,6 +182,7 @@ export function submitCompose(routerHistory) {
         visibility: getState().getIn(['compose', 'privacy']),
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        group_id: getState().getIn(['compose', 'privacy']) === 'group' ? getState().getIn(['compose', 'group_id']) : null,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -193,7 +206,7 @@ export function submitCompose(routerHistory) {
       };
 
       if (statusId === null && response.data.visibility !== 'direct') {
-        insertIfOnline('home');
+        insertIfOnline(response.data.visibility === 'group' ? `group:${response.data.group.id}` : 'home');
       }
 
       if (statusId === null && response.data.in_reply_to_id === null && response.data.visibility === 'public') {

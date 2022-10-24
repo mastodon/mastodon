@@ -1,0 +1,16 @@
+- group_url = local_assigns[:admin] ? admin_group_path(group.id) : ActivityPub::TagManager.instance.url_for(group)
+
+.card.h-card
+  = link_to group_url, target: '_blank', rel: 'noopener noreferrer' do
+    .card__img
+      = image_tag group.header.url, alt: ''
+    .card__bar
+      .avatar
+        = image_tag group.avatar.url, alt: '', width: 48, height: 48, class: 'u-photo'
+
+      .display-name
+        %bdi
+          %strong.emojify.p-name= group_display_name(group, custom_emojify: true)
+        %span
+          = ActivityPub::TagManager.instance.uri_for(group)
+          = fa_icon('lock', { :data => ({hidden: true} unless group.locked?)})

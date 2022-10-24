@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = "#{group_display_name(@group)}"
+
+- content_for :header_tags do
+  -# TODO: make that optional
+  %meta{ name: 'robots', content: 'noindex, noarchive' }/
+
+  %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@group) }/
+
+  -# TODO: opengraph
+  -# = opengraph 'og:type', 'profile'
+  -# = render 'og', account: @account, url: short_account_url(@account, only_path: false)
+
+= render partial: 'shared/web_app'

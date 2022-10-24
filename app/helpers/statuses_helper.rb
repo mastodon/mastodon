@@ -102,6 +102,8 @@ module StatusesHelper
       fa_icon 'lock fw'
     when 'direct'
       fa_icon 'at fw'
+    when 'group'
+      fa_icon 'users fw'
     end
   end
 

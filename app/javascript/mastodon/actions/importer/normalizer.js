@@ -16,6 +16,20 @@ export function searchTextFromRawStatus (status) {
   return domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
 }
 
+export function normalizeGroup(group) {
+  const normalGroup = { ...group };
+
+  const emojiMap = makeEmojiMap(group);
+  const displayName = group.display_name.trim().length === 0 ? group.id : group.display_name;
+
+  normalGroup.title = displayName;
+  normalGroup.display_name_html = emojify(escapeTextContentForBrowser(displayName), emojiMap);
+  normalGroup.note_emojified = emojify(group.note, emojiMap);
+  normalGroup.note_plain = unescapeHTML(group.note);
+
+  return normalGroup;
+}
+
 export function normalizeAccount(account) {
   account = { ...account };
 
@@ -53,6 +67,7 @@ export function normalizeFilterResult(result) {
 export function normalizeStatus(status, normalOldStatus) {
   const normalStatus   = { ...status };
   normalStatus.account = status.account.id;
+  normalStatus.group = status.group ? status.group.id : null;
 
   if (status.reblog && status.reblog.id) {
     normalStatus.reblog = status.reblog.id;

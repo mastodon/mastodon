@@ -8,6 +8,7 @@ class Api::V1::StatusesController < Api::BaseController
   before_action :require_user!, except:  [:show, :context]
   before_action :set_status, only:       [:show, :context]
   before_action :set_thread, only:       [:create]
+  before_action :set_group, only:        [:create]
 
   override_rate_limit_headers :create, family: :statuses
   override_rate_limit_headers :update, family: :statuses
@@ -44,6 +45,7 @@ class Api::V1::StatusesController < Api::BaseController
       sensitive: status_params[:sensitive],
       spoiler_text: status_params[:spoiler_text],
       visibility: status_params[:visibility],
+      group: @group,
       language: status_params[:language],
       scheduled_at: status_params[:scheduled_at],
       application: doorkeeper_token.application,
@@ -102,6 +104,13 @@ class Api::V1::StatusesController < Api::BaseController
     render json: { error: I18n.t('statuses.errors.in_reply_not_found') }, status: 404
   end
 
+  def set_group
+    @group = Group.find(status_params[:group_id]) if status_params[:group_id].present?
+    authorize(@group, :post?) if @group.present?
+  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
+    render json: { error: I18n.t('statuses.errors.group_not_found') }, status: 404
+  end
+
   def status_params
     params.permit(
       :status,
@@ -109,6 +118,7 @@ class Api::V1::StatusesController < Api::BaseController
       :sensitive,
       :spoiler_text,
       :visibility,
+      :group_id,
       :language,
       :scheduled_at,
       media_ids: [],

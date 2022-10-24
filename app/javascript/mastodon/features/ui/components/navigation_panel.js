@@ -7,6 +7,7 @@ import { timelinePreview } from 'mastodon/initial_state';
 import ColumnLink from './column_link';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
+import GroupPanel from './group_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
 import NavigationPortal from 'mastodon/components/navigation_portal';
@@ -24,6 +25,7 @@ const messages = defineMessages({
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
+  groups: { id: 'navigation_bar.groups', defaultMessage: 'Groups' },
 });
 
 export default @injectIntl
@@ -78,8 +80,10 @@ class NavigationPanel extends React.Component {
             <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
             <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
             <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
+            <ColumnLink transparent to='/groups' icon='users' text={intl.formatMessage(messages.groups)} />
 
             <ListPanel />
+            <GroupPanel />
 
             <hr />
 

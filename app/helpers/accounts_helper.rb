@@ -11,6 +11,16 @@ module AccountsHelper
     end
   end
 
+  def group_display_name(group, **options)
+    str = group.display_name.presence || ActivityPub::TagManager.instance.uri_for(group)
+
+    if options[:custom_emojify]
+      prerender_custom_emojis(h(str), group.emojis)
+    else
+      str
+    end
+  end
+
   def acct(account)
     if account.local?
       "@#{account.acct}@#{site_hostname}"

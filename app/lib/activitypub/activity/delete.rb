@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::Activity::Delete < ActivityPub::Activity
+  include Payloadable
+
   def perform
     if @account.uri == object_uri
       delete_person
@@ -38,6 +40,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
       return if @status.nil?
 
       forwarder.forward! if forwarder.forwardable?
+      distribute_remove_to_remote_members! if @status.group&.local?
       delete_now!
     end
   end
@@ -48,5 +51,10 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
 
   def delete_now!
     RemoveStatusService.new.call(@status, redraft: false)
+  end
+
+  def distribute_remove_to_remote_members!
+    json = Oj.dump(serialize_payload(@status, ActivityPub::RemoveSerializer, target: ActivityPub::TagManager.instance.wall_uri_for(@status.group), actor: ActivityPub::TagManager.instance.uri_for(@status.group)))
+    ActivityPub::GroupRawDistributionWorker.perform_async(json, @status.group.id)
   end
 end

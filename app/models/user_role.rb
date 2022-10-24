@@ -36,17 +36,22 @@ class UserRole < ApplicationRecord
     manage_roles: (1 << 17),
     manage_user_access: (1 << 18),
     delete_user_data: (1 << 19),
+    create_groups: (1 << 20),
   }.freeze
 
   module Flags
     NONE = 0
     ALL  = FLAGS.values.reduce(&:|)
 
-    DEFAULT = FLAGS[:invite_users]
+    DEFAULT = FLAGS[:invite_users] # TODO: add group creation here
 
     CATEGORIES = {
       invites: %i(
         invite_users
+      ).freeze,
+
+      groups: %w(
+        create_groups
       ).freeze,
 
       moderation: %w(

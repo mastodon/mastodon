@@ -26,6 +26,8 @@
 #  edited_at                    :datetime
 #  trendable                    :boolean
 #  ordered_media_attachment_ids :bigint(8)        is an Array
+#  group_id                     :bigint(8)
+#  approval_status              :integer
 #
 
 class Status < ApplicationRecord
@@ -48,7 +50,23 @@ class Status < ApplicationRecord
 
   update_index('statuses', :proper)
 
-  enum visibility: [:public, :unlisted, :private, :direct, :limited], _suffix: :visibility
+  enum visibility: {
+    public: 0,
+    unlisted: 1,
+    private: 2,
+    direct: 3,
+    limited: 4,
+    group: 5
+  }, _suffix: :visibility
+
+  # In certain circumstances, we have to deal with asynchronous approval of
+  # statuses. For now, this only concerns group timelines.
+  enum approval_status: {
+    pending: 0,
+    approved: 1,
+    rejected: 2,
+    revoked: 3,
+  }, _suffix: :approval
 
   belongs_to :application, class_name: 'Doorkeeper::Application', optional: true
 
@@ -59,6 +77,8 @@ class Status < ApplicationRecord
 
   belongs_to :thread, foreign_key: 'in_reply_to_id', class_name: 'Status', inverse_of: :replies, optional: true
   belongs_to :reblog, foreign_key: 'reblog_of_id', class_name: 'Status', inverse_of: :reblogs, optional: true
+
+  belongs_to :group, inverse_of: :statuses, optional: true
 
   has_many :favourites, inverse_of: :status, dependent: :destroy
   has_many :bookmarks, inverse_of: :status, dependent: :destroy
@@ -81,6 +101,7 @@ class Status < ApplicationRecord
   validates :text, presence: true, unless: -> { with_media? || reblog? }
   validates_with StatusLengthValidator
   validates_with DisallowedHashtagsValidator
+  validates_with StatusGroupValidator
   validates :reblog, uniqueness: { scope: :account }, if: :reblog?
   validates :visibility, exclusion: { in: %w(direct limited) }, if: :reblog?
 
@@ -88,6 +109,8 @@ class Status < ApplicationRecord
 
   default_scope { recent.kept }
 
+  scope :approved, -> { where(approval_status: [nil, :approved]) }
+  scope :disapproved, -> { where(approval_status: [:rejected, :revoked]) }
   scope :recent, -> { reorder(id: :desc) }
   scope :remote, -> { where(local: false).where.not(uri: nil) }
   scope :local,  -> { where(local: true).or(where(uri: nil)) }
@@ -227,6 +250,7 @@ class Status < ApplicationRecord
   end
 
   def distributable?
+    # TODO: how do we consider group posts? they may need LDSigning for efficiency
     public_visibility? || unlisted_visibility?
   end
 
@@ -320,7 +344,7 @@ class Status < ApplicationRecord
 
   class << self
     def selectable_visibilities
-      visibilities.keys - %w(direct limited)
+      %w(public unlisted private)
     end
 
     def favourites_map(status_ids, account_id)
@@ -440,6 +464,10 @@ class Status < ApplicationRecord
     im
   end
 
+  def approved?
+    approval_status.nil? || approved_approval?
+  end
+
   private
 
   def update_status_stat!(attrs)
@@ -505,6 +533,7 @@ class Status < ApplicationRecord
   def increment_counter_caches
     return if direct_visibility?
 
+    group&.increment_count!(:statuses_count)
     account&.increment_count!(:statuses_count)
     reblog&.increment_count!(:reblogs_count) if reblog?
     thread&.increment_count!(:replies_count) if in_reply_to_id.present? && distributable?
@@ -513,6 +542,7 @@ class Status < ApplicationRecord
   def decrement_counter_caches
     return if direct_visibility? || new_record?
 
+    group&.decrement_count!(:statuses_count)
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?

@@ -1575,6 +1575,7 @@ a .account__avatar {
 .detailed-status__display-name,
 .detailed-status__datetime,
 .detailed-status__application,
+.detailed-status__group,
 .account__display-name {
   text-decoration: none;
 }
@@ -1608,7 +1609,8 @@ a.account__display-name {
 }
 
 .detailed-status__application,
-.detailed-status__datetime {
+.detailed-status__datetime,
+.detailed-status__group {
   color: inherit;
 }
 
@@ -1795,7 +1797,8 @@ a.account__display-name {
 }
 
 .status__relative-time,
-.detailed-status__datetime {
+.detailed-status__datetime,
+.detailed-status__group {
   &:hover {
     text-decoration: underline;
   }
@@ -3223,6 +3226,10 @@ $ui-header-height: 55px;
   cursor: default;
 }
 
+.group-role-subheading {
+  background: darken($ui-base-color, 4%);
+}
+
 .getting-started__wrapper,
 .getting-started,
 .flex-spacer {
@@ -4307,6 +4314,7 @@ a.status-card.compact:hover {
 .follow_requests-unlocked_explanation {
   background: darken($ui-base-color, 4%);
   contain: initial;
+  flex-grow: 0;
 }
 
 .error-column {
@@ -7833,6 +7841,10 @@ noscript {
       border-left: 2px solid $highlight-text-color;
       pointer-events: none;
     }
+  }
+
+  &.unapproved {
+    background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2), 15px, transparent 15px, transparent 30px);
   }
 }
 

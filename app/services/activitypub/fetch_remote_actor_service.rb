@@ -7,9 +7,11 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
   class Error < StandardError; end
 
-  SUPPORTED_TYPES = %w(Application Group Organization Person Service).freeze
+  SUPPORTED_GROUP_TYPES   = %w(PublicGroup).freeze
+  SUPPORTED_ACCOUNT_TYPES = %w(Application Group Organization Person Service).freeze
+  SUPPORTED_TYPES         = (SUPPORTED_ACCOUNT_TYPES + SUPPORTED_GROUP_TYPES).freeze
 
-  # Does a WebFinger roundtrip on each call, unless `only_key` is true
+  # For accounts, does a WebFinger roundtrip on each call, unless `only_key` is true
   def call(uri, id: true, prefetched_body: nil, break_on_redirect: false, only_key: false, suppress_errors: true)
     return if domain_not_allowed?(uri)
     return ActivityPub::TagManager.instance.uri_to_actor(uri) if ActivityPub::TagManager.instance.local_uri?(uri)
@@ -27,15 +29,20 @@ class ActivityPub::FetchRemoteActorService < BaseService
     raise Error, "Error fetching actor JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?
     raise Error, "Unexpected object type for actor #{uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_type?
-    raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if break_on_redirect && @json['movedTo'].present?
 
-    @uri      = @json['id']
-    @username = @json['preferredUsername']
-    @domain   = Addressable::URI.parse(@uri).normalized_host
+    if equals_or_includes_any?(@json['type'], SUPPORTED_GROUP_TYPES)
+      ActivityPub::ProcessGroupService.new.call(@json, only_key: only_key)
+    elsif equals_or_includes_any?(@json['type'], SUPPORTED_ACCOUNT_TYPES)
+      raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if break_on_redirect && @json['movedTo'].present?
 
-    check_webfinger! unless only_key
+      @uri      = @json['id']
+      @username = @json['preferredUsername']
+      @domain   = Addressable::URI.parse(@uri).normalized_host
 
-    ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key)
+      check_webfinger! unless @only_key
+
+      ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key)
+    end
   rescue Error => e
     Rails.logger.debug "Fetching actor #{uri} failed: #{e.message}"
     raise unless suppress_errors

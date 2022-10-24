@@ -405,6 +405,8 @@ const startWorker = async (workerId) => {
       return 'direct';
     case '/api/v1/streaming/list':
       return 'list';
+    case '/api/v1/streaming/group':
+      return 'group';
     default:
       return undefined;
     }
@@ -606,6 +608,41 @@ const startWorker = async (workerId) => {
         resolve();
       });
     });
+  });
+
+  /**
+   * @param {string} groupId
+   * @param {any} req
+   * @return {Promise.<void>}
+   */
+  const authorizeGroupAccess = (groupId, req) => new Promise((resolve, reject) => {
+    const { accountId } = req;
+
+    if (accountId) {
+      resolve();
+    } else {
+      reject();
+    };
+
+    /* TODO: possibly handle private-access groups in the future
+      pgPool.connect((err, client, done) => {
+        if (err) {
+          reject();
+          return;
+        }
+
+        client.query('SELECT id FROM group_memberships WHERE group_id = $1 AND account_id = $2 LIMIT 1', [groupId, accountId], (err, result) => {
+          done();
+
+          if (err || result.rows.length === 0) {
+            reject();
+            return;
+          }
+
+          resolve();
+        });
+      });
+    */
   });
 
   /**
@@ -1024,6 +1061,17 @@ const startWorker = async (workerId) => {
       });
 
       break;
+    case 'group':
+      authorizeGroupAccess(params.group, req).then(() => {
+        resolve({
+          channelIds: [`timeline:group:${params.group}`],
+          options: { needsFiltering: true },
+        });
+      }).catch(() => {
+        reject('Not authorized to stream this group');
+      });
+
+      break;
     default:
       reject('Unknown stream type');
     }
@@ -1037,6 +1085,8 @@ const startWorker = async (workerId) => {
   const streamNameFromChannelName = (channelName, params) => {
     if (channelName === 'list') {
       return [channelName, params.list];
+    } else if (channelName === 'group') {
+      return [channelName, params.group];
     } else if (['hashtag', 'hashtag:local'].includes(channelName)) {
       return [channelName, params.tag];
     } else {

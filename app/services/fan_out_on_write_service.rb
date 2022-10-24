@@ -15,6 +15,8 @@ class FanOutOnWriteService < BaseService
 
     check_race_condition!
 
+    return fan_out_to_group! if group_broadcastable?
+
     fan_out_to_local_recipients!
     fan_out_to_public_recipients! if broadcastable?
     fan_out_to_public_streams! if broadcastable?
@@ -58,6 +60,10 @@ class FanOutOnWriteService < BaseService
   def fan_out_to_public_streams!
     broadcast_to_hashtag_streams!
     broadcast_to_public_streams!
+  end
+
+  def fan_out_to_group!
+    redis.publish("timeline:group:#{@status.group_id}", anonymous_payload) if @status.approved?
   end
 
   def deliver_to_self!
@@ -148,5 +154,9 @@ class FanOutOnWriteService < BaseService
 
   def broadcastable?
     @status.public_visibility? && !@status.reblog? && !@account.silenced?
+  end
+
+  def group_broadcastable?
+    @status.group_visibility? && !@account.silenced?
   end
 end

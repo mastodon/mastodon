@@ -37,6 +37,7 @@ class ReportModal extends ImmutablePureComponent {
   static propTypes = {
     accountId: PropTypes.string.isRequired,
     statusId: PropTypes.string,
+    groupId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     account: ImmutablePropTypes.map.isRequired,
@@ -123,6 +124,7 @@ class ReportModal extends ImmutablePureComponent {
   render () {
     const {
       accountId,
+      groupId,
       account,
       intl,
       onClose,
@@ -173,6 +175,7 @@ class ReportModal extends ImmutablePureComponent {
         <Statuses
           onNextStep={this.handleNextStep}
           accountId={accountId}
+          groupId={groupId}
           selectedStatusIds={selectedStatusIds}
           onToggle={this.handleStatusToggle}
         />

@@ -30,6 +30,18 @@ describe ResolveURLService, type: :service do
       expect(subject.call(url)).to eq known_account
     end
 
+    it 'returns known group on temporary error' do
+      url           = 'http://example.com/missing-resource'
+      known_group = Fabricate(:group, uri: url)
+      service = double
+
+      allow(FetchResourceService).to receive(:new).and_return service
+      allow(service).to receive(:response_code).and_return(500)
+      allow(service).to receive(:call).with(url).and_return(nil)
+
+      expect(subject.call(url)).to eq known_group
+    end
+
     context 'searching for a remote private status' do
       let(:account)  { Fabricate(:account) }
       let(:poster)   { Fabricate(:account, domain: 'example.com') }

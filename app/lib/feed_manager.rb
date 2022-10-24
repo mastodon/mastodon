@@ -238,7 +238,7 @@ class FeedManager
     aggregate    = true
     timeline_key = key(:home, account.id)
 
-    account.statuses.limit(limit).each do |status|
+    account.statuses.where.not(visibility: :group).limit(limit).each do |status|
       add_to_feed(:home, account.id, status, aggregate_reblogs: aggregate)
     end
 

@@ -1,5 +1,5 @@
 Fabricator(:user_role) do
   name        "MyString"
-  color       "MyString"
+  color       ""
   permissions ""
 end

@@ -60,4 +60,25 @@ RSpec.describe ProcessMentionsService, type: :service do
       expect(remote_user.mentions.where(status: status).count).to eq 1
     end
   end
+
+  context 'local mentions in groups' do
+    let!(:bob) { Fabricate(:account, username: 'bob') }
+    let!(:eve) { Fabricate(:account, username: 'eve') }
+    let!(:group) { Fabricate(:group) }
+    let!(:account_membership) { Fabricate(:group_membership, group: group, account: account) }
+    let!(:eve_membership)     { Fabricate(:group_membership, group: group, account: eve) }
+    let!(:status) { Fabricate(:status, account: account, text: 'Hello @bob @eve', visibility: 'group', group: group) }
+
+    before do
+      subject.call(status)
+    end
+
+    it 'creates a mention to eve' do
+      expect(eve.mentions.where(status: status).count).to eq 1
+    end
+
+    it 'does not create a mention to bob' do
+      expect(bob.mentions.where(status: status).count).to eq 0
+    end
+  end
 end

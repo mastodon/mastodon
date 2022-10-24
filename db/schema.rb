@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_21_055441) do
+ActiveRecord::Schema.define(version: 2022_10_22_193523) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -478,6 +478,89 @@ ActiveRecord::Schema.define(version: 2022_10_21_055441) do
     t.index ["target_account_id"], name: "index_follows_on_target_account_id"
   end
 
+  create_table "group_account_blocks", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id", "group_id"], name: "index_group_account_blocks_on_account_id_and_group_id", unique: true
+    t.index ["group_id"], name: "index_group_account_blocks_on_group_id"
+  end
+
+  create_table "group_deletion_requests", force: :cascade do |t|
+    t.bigint "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_deletion_requests_on_group_id"
+  end
+
+  create_table "group_membership_requests", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.string "uri"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id", "group_id"], name: "index_group_membership_requests_on_account_id_and_group_id", unique: true
+    t.index ["group_id"], name: "index_group_membership_requests_on_group_id"
+    t.index ["uri"], name: "index_group_membership_requests_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
+  end
+
+  create_table "group_memberships", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.integer "role", default: 0, null: false
+    t.string "uri"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id", "group_id"], name: "index_group_memberships_on_account_id_and_group_id", unique: true
+    t.index ["group_id", "role"], name: "index_group_memberships_on_group_id_and_role"
+    t.index ["uri"], name: "index_group_memberships_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
+  end
+
+  create_table "group_stats", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "statuses_count", default: 0, null: false
+    t.bigint "members_count", default: 0, null: false
+    t.datetime "last_status_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_stats_on_group_id", unique: true
+  end
+
+  create_table "groups", id: :bigint, default: -> { "timestamp_id('groups'::text)" }, force: :cascade do |t|
+    t.string "domain"
+    t.string "url"
+    t.text "note", default: "", null: false
+    t.string "display_name", default: "", null: false
+    t.boolean "locked", default: false, null: false
+    t.boolean "hide_members", default: false, null: false
+    t.datetime "suspended_at"
+    t.integer "suspension_origin"
+    t.boolean "discoverable"
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.bigint "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string "avatar_remote_url", default: "", null: false
+    t.string "header_file_name"
+    t.string "header_content_type"
+    t.bigint "header_file_size"
+    t.datetime "header_updated_at"
+    t.string "header_remote_url", default: "", null: false
+    t.integer "image_storage_schema_version"
+    t.string "uri"
+    t.string "outbox_url", default: "", null: false
+    t.string "inbox_url", default: "", null: false
+    t.string "shared_inbox_url", default: "", null: false
+    t.string "members_url", default: "", null: false
+    t.string "wall_url", default: "", null: false
+    t.text "private_key"
+    t.text "public_key", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["uri"], name: "index_groups_on_uri", unique: true, opclass: :text_pattern_ops, where: "(uri IS NOT NULL)"
+  end
+
   create_table "identities", force: :cascade do |t|
     t.string "provider", default: "", null: false
     t.string "uid", default: "", null: false
@@ -938,9 +1021,13 @@ ActiveRecord::Schema.define(version: 2022_10_21_055441) do
     t.datetime "edited_at"
     t.boolean "trendable"
     t.bigint "ordered_media_attachment_ids", array: true
+    t.bigint "group_id"
+    t.integer "approval_status"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20190820", order: { id: :desc }, where: "(deleted_at IS NULL)"
     t.index ["account_id"], name: "index_statuses_on_account_id"
+    t.index ["approval_status"], name: "index_statuses_on_approval_status", where: "(approval_status IS NOT NULL)"
     t.index ["deleted_at"], name: "index_statuses_on_deleted_at", where: "(deleted_at IS NOT NULL)"
+    t.index ["group_id"], name: "index_statuses_on_group_id", where: "(group_id IS NOT NULL)"
     t.index ["id", "account_id"], name: "index_statuses_local_20190824", order: { id: :desc }, where: "((local OR (uri IS NULL)) AND (deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["id", "account_id"], name: "index_statuses_public_20200119", order: { id: :desc }, where: "((deleted_at IS NULL) AND (visibility = 0) AND (reblog_of_id IS NULL) AND ((NOT reply) OR (in_reply_to_account_id = account_id)))"
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id", where: "(in_reply_to_account_id IS NOT NULL)"
@@ -1164,6 +1251,14 @@ ActiveRecord::Schema.define(version: 2022_10_21_055441) do
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
+  add_foreign_key "group_account_blocks", "accounts", on_delete: :cascade
+  add_foreign_key "group_account_blocks", "groups", on_delete: :cascade
+  add_foreign_key "group_deletion_requests", "groups", on_delete: :cascade
+  add_foreign_key "group_membership_requests", "accounts", on_delete: :cascade
+  add_foreign_key "group_membership_requests", "groups", on_delete: :cascade
+  add_foreign_key "group_memberships", "accounts", on_delete: :cascade
+  add_foreign_key "group_memberships", "groups", on_delete: :cascade
+  add_foreign_key "group_stats", "groups", on_delete: :cascade
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
@@ -1211,6 +1306,7 @@ ActiveRecord::Schema.define(version: 2022_10_21_055441) do
   add_foreign_key "status_trends", "statuses", on_delete: :cascade
   add_foreign_key "statuses", "accounts", column: "in_reply_to_account_id", name: "fk_c7fa917661", on_delete: :nullify
   add_foreign_key "statuses", "accounts", name: "fk_9bda1543f7", on_delete: :cascade
+  add_foreign_key "statuses", "groups", on_delete: :cascade
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
   add_foreign_key "statuses_tags", "statuses", on_delete: :cascade

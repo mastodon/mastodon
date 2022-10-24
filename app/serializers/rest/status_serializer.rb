@@ -15,12 +15,15 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :pinned, if: :pinnable?
   has_many :filtered, serializer: REST::FilterResultSerializer, if: :current_user?
 
+  attribute :approval_status, if: -> { object.approval_status.present? }
+
   attribute :content, unless: :source_requested?
   attribute :text, if: :source_requested?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
   belongs_to :application, if: :show_application?
   belongs_to :account, serializer: REST::AccountSerializer
+  belongs_to :group, serializer: REST::GroupSerializer
 
   has_many :ordered_media_attachments, key: :media_attachments, serializer: REST::MediaAttachmentSerializer
   has_many :ordered_mentions, key: :mentions

@@ -17,7 +17,7 @@ class ActivityPub::DeliveryWorker
 
     @options        = options.with_indifferent_access
     @json           = json
-    @source_account = Account.find(source_account_id)
+    @source_actor   = actor_from_id(source_account_id)
     @inbox_url      = inbox_url
     @host           = Addressable::URI.parse(inbox_url).normalized_site
     @performed      = false
@@ -35,16 +35,20 @@ class ActivityPub::DeliveryWorker
 
   private
 
+  def actor_from_id(actor_id)
+    Account.find(actor_id)
+  end
+
   def build_request(http_client)
     Request.new(:post, @inbox_url, body: @json, http_client: http_client).tap do |request|
-      request.on_behalf_of(@source_account, sign_with: @options[:sign_with])
+      request.on_behalf_of(@source_actor, sign_with: @options[:sign_with])
       request.add_headers(HEADERS)
-      request.add_headers({ 'Collection-Synchronization' => synchronization_header }) if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] != 'true' && @options[:synchronize_followers]
+      request.add_headers({ 'Collection-Synchronization' => synchronization_header }) if ENV['DISABLE_FOLLOWERS_SYNCHRONIZATION'] != 'true' && @options[:synchronize_followers] && @source_actor.is_a?(Account)
     end
   end
 
   def synchronization_header
-    "collectionId=\"#{account_followers_url(@source_account)}\", digest=\"#{@source_account.remote_followers_hash(@inbox_url)}\", url=\"#{account_followers_synchronization_url(@source_account)}\""
+    "collectionId=\"#{account_followers_url(@source_actor)}\", digest=\"#{@source_actor.remote_followers_hash(@inbox_url)}\", url=\"#{account_followers_synchronization_url(@source_actor)}\""
   end
 
   def perform_request

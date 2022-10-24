@@ -1,0 +1,24 @@
+.batch-table__row{ class: [group.suspended? && 'batch-table__row--muted'] }
+  %label.batch-table__row__select.batch-table__row__select--aligned.batch-checkbox
+    = f.check_box :group_ids, { multiple: true, include_hidden: false }, group.id
+  .batch-table__row__content.batch-table__row__content--unpadded
+    %table.accounts-table
+      %tbody
+        %tr
+          %td
+            = group_link_to group, path: admin_group_path(group.id)
+          %td.accounts-table__count.optional
+            - if group.suspended?
+              \-
+            - else
+              = friendly_number_to_human group.statuses_count
+            %small= t('accounts.posts', count: group.statuses_count).downcase
+          %td.accounts-table__count.optional
+            - if group.suspended?
+              \-
+            - else
+              = friendly_number_to_human group.members_count
+            %small= t('groups.members', count: group.members_count).downcase
+          %td.accounts-table__count
+            = relevant_group_timestamp(group)
+            %small= t('accounts.last_active')

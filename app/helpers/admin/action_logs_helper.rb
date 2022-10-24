@@ -5,6 +5,8 @@ module Admin::ActionLogsHelper
     case log.target_type
     when 'Account'
       link_to log.human_identifier, admin_account_path(log.target_id)
+    when 'Group'
+      link_to log.human_identifier, admin_group_path(log.target_id)
     when 'User'
       link_to log.human_identifier, admin_account_path(log.route_param)
     when 'UserRole'
