@@ -17,6 +17,10 @@ class TranslationService
     end
   end
 
+  def self.configured?
+    ENV['DEEPL_API_KEY'].present? || ENV['LIBRE_TRANSLATE_ENDPOINT'].present?
+  end
+
   def translate(_text, _source_language, _target_language)
     raise NotImplementedError
   end
