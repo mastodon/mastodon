@@ -31,6 +31,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       timeline_preview: Setting.timeline_preview,
       activity_api_enabled: Setting.activity_api_enabled,
       single_user_mode: Rails.configuration.x.single_user_mode,
+      translation_enabled: TranslationService.configured?,
     }
 
     if object.current_account
