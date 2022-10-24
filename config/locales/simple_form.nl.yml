@@ -72,8 +72,15 @@ nl:
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
       form_admin_settings:
         backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
+        bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
+        closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
         content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
         media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
+        require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
+        theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
+        timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
+        trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
+        trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -225,7 +232,7 @@ nl:
         theme: Standaardthema
         thumbnail: Serverthumbnail
         timeline_preview: Toegang tot de openbare tijdlijnen zonder in te loggen toestaan
-        trendable_by_default: Trends toestaan zonder voorafgaande beoordeling
+        trendable_by_default: Trends goedkeuren zonder voorafgaande beoordeling
         trends: Trends inschakelen
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
@@ -259,7 +266,7 @@ nl:
       tag:
         listable: Toestaan dat deze hashtag in zoekopdrachten en aanbevelingen te zien valt
         name: Hashtag
-        trendable: Toestaan dat deze hashtag onder trends te zien valt
+        trendable: Goedkeuren dat deze hashtag onder trends te zien valt
         usable: Toestaan dat deze hashtag in berichten gebruikt mag worden
       user:
         role: Rol
