@@ -72,6 +72,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         min_expiration: PollValidator::MIN_EXPIRATION,
         max_expiration: PollValidator::MAX_EXPIRATION,
       },
+
+      translation: {
+        enabled: TranslationService.configured?,
+      },
     }
   end
 
