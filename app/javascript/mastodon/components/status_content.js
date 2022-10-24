@@ -208,7 +208,7 @@ class StatusContent extends React.PureComponent {
 
     const translateButton = (
       <button className='status__content__read-more-button' onClick={this.handleTranslate}>
-        {status.get('translation') ? <span><FormattedMessage id='status.translated_from' defaultMessage='Translated from {lang}' values={{ lang: languageName }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
+        {status.get('translation') ? <span><FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider: status.getIn(['translation', 'provider']) }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
       </button>
     );
 
