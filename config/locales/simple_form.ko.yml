@@ -1,4 +1,3 @@
----
 ko:
   simple_form:
     hints:
@@ -13,7 +12,7 @@ ko:
         include_statuses: 사용자는 어떤 게시물에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
         send_email_notification: 사용자는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
         text_html: 선택사항. 게시물 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
-        type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
+        type_html: <strong>%{acct}</strong>에 대해 취할 행동 선택
         types:
           disable: 사용자가 계정을 사용하는 것을 막지만, 그의 게시물을 삭제하거나 숨기지는 않습니다.
           none: 이것을 사용해서 어떤 동작도 하지 않고, 사용자에게 경고를 보냅니다.
@@ -214,7 +213,25 @@ ko:
       form_admin_settings:
         backups_retention_period: 사용자 아카이브 유지 기한
         content_cache_retention_period: 컨텐트 캐시 유지 기한
+        custom_css: 사용자 정의 CSS
+        mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한
+        profile_directory: 프로필 책자 활성화
+        registrations_mode: 누가 가입할 수 있는지
+        require_invite_text: 가입 하는 이유를 필수로 입력하게 하기
+        show_domain_blocks: 도메인 차단 보여주기
+        show_domain_blocks_rationale: 왜 도메인이 차단되었는지 보여주기
+        site_contact_email: 연락처 이메일
+        site_contact_username: 연락 받을 관리자 사용자명
+        site_extended_description: 확장된 설명
+        site_short_description: 서버 설명
+        site_terms: 개인정보 정책
+        site_title: 서버 이름
+        theme: 기본 테마
+        thumbnail: 서버 썸네일
+        timeline_preview: 로그인 하지 않고 공개 타임라인에 접근하는 것을 허용
+        trendable_by_default: 사전 리뷰 없이 트렌드에 오르는 것을 허용
+        trends: 유행 활성화
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단
@@ -260,7 +277,7 @@ ko:
       webhook:
         events: 활성화된 이벤트
         url: 엔드포인트 URL
-    'no': 아니오
+    'no': '아니오'
     not_recommended: 추천하지 않음
     recommended: 추천함
     required:
@@ -269,4 +286,4 @@ ko:
     title:
       sessions:
         webauthn: 로그인하기 위해서 보안 키를 사용해 주세요
-    'yes': 네
+    'yes': '네'
