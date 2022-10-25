@@ -246,8 +246,9 @@ class StatusActionBar extends ImmutablePureComponent {
 
   render () {
     const { status, relationship, intl, withDismiss, withCounters, scrollKey } = this.props;
+    const { signedIn } = this.context.identity;
 
-    const anonymousAccess    = !me;
+    const anonymousAccess    = !signedIn;
     const publicStatus       = ['public', 'unlisted'].includes(status.get('visibility'));
     const pinnableStatus     = ['public', 'unlisted', 'private'].includes(status.get('visibility'));
     const mutingConversation = status.get('muted');
@@ -350,24 +351,25 @@ class StatusActionBar extends ImmutablePureComponent {
     }
 
     const shareButton = ('share' in navigator) && publicStatus && (
-      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
+      <IconButton className='status__action-bar__button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
     );
 
     const filterButton = this.props.onFilter && (
-      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleHideClick} />
+      <IconButton className='status__action-bar__button' title={intl.formatMessage(messages.hide)} icon='eye' onClick={this.handleHideClick} />
     );
 
     return (
       <div className='status__action-bar'>
-        <IconButton className='status__action-bar-button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
-        <IconButton className={classNames('status__action-bar-button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
-        <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+        <IconButton className='status__action-bar__button' title={replyTitle} icon={status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) ? 'reply' : replyIcon} onClick={this.handleReplyClick} counter={status.get('replies_count')} obfuscateCount />
+        <IconButton className={classNames('status__action-bar__button', { reblogPrivate })} disabled={!publicStatus && !reblogPrivate} active={status.get('reblogged')} pressed={status.get('reblogged')} title={reblogTitle} icon='retweet' onClick={this.handleReblogClick} counter={withCounters ? status.get('reblogs_count') : undefined} />
+        <IconButton className='status__action-bar__button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} counter={withCounters ? status.get('favourites_count') : undefined} />
+        <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
 
         {shareButton}
 
         {filterButton}
 
-        <div className='status__action-bar-dropdown'>
+        <div className='status__action-bar__dropdown'>
           <DropdownMenuContainer
             scrollKey={scrollKey}
             disabled={anonymousAccess}

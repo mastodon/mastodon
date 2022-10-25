@@ -367,7 +367,7 @@
 }
 
 .compose-form {
-  padding: 10px;
+  padding: 15px;
 
   &__sensitive-button {
     padding: 10px;
@@ -714,7 +714,7 @@
 
     .compose-form__publish-button-wrapper {
       overflow: hidden;
-      padding-top: 10px;
+      padding-top: 15px;
     }
   }
 }
@@ -808,7 +808,7 @@
 .reply-indicator__content {
   position: relative;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 22px;
   word-wrap: break-word;
   font-weight: 400;
   overflow: hidden;
@@ -955,12 +955,12 @@
 .status__content__read-more-button {
   display: block;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 22px;
   color: $highlight-text-color;
   border: 0;
   background: transparent;
   padding: 0;
-  padding-top: 8px;
+  padding-top: 16px;
   text-decoration: none;
 
   &:hover,
@@ -972,7 +972,7 @@
 .translate-button {
   margin-top: 16px;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 22px;
   display: flex;
   justify-content: space-between;
   color: $dark-text-color;
@@ -1022,11 +1022,6 @@
   }
 }
 
-.status__prepend-icon-wrapper {
-  left: -26px;
-  position: absolute;
-}
-
 .focusable {
   &:focus {
     outline: 0;
@@ -1040,18 +1035,10 @@
 }
 
 .status {
-  padding: 8px 10px;
-  padding-left: 68px;
-  position: relative;
+  padding: 16px;
   min-height: 54px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
-
-  @supports (-ms-overflow-style: -ms-autohiding-scrollbar) {
-    // Add margin to avoid Edge auto-hiding scrollbar appearing over content.
-    // On Edge 16 this is 16px and Edge <=15 it's 12px, so aim for 16px.
-    padding-right: 26px; // 10px + 16px
-  }
 
   @keyframes fade {
     0% { opacity: 0; }
@@ -1061,9 +1048,11 @@
   opacity: 1;
   animation: fade 150ms linear;
 
+  .media-gallery,
   .video-player,
-  .audio-player {
-    margin-top: 8px;
+  .audio-player,
+  .attachment-list {
+    margin-top: 16px;
   }
 
   &.light {
@@ -1091,7 +1080,7 @@
         color: $highlight-text-color;
       }
 
-      a.status__content__spoiler-link {
+      &__spoiler-link {
         color: $primary-text-color;
         background: $ui-primary-color;
 
@@ -1104,7 +1093,16 @@
   }
 }
 
-.status__relative-time,
+.status__relative-time {
+  display: block;
+  font-size: 15px;
+  line-height: 22px;
+  height: 40px;
+  order: 2;
+  flex: 0 0 auto;
+  color: $dark-text-color;
+}
+
 .notification__relative_time {
   color: $dark-text-color;
   float: right;
@@ -1121,13 +1119,36 @@
 }
 
 .status__info .status__display-name {
-  display: block;
   max-width: 100%;
-  padding-right: 25px;
+  display: flex;
+  font-size: 15px;
+  line-height: 22px;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+
+  .display-name {
+    bdi {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    &__account {
+      white-space: nowrap;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
 .status__info {
   font-size: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .status-check-box__status {
@@ -1166,12 +1187,14 @@
 }
 
 .status__prepend {
-  margin-left: 68px;
+  padding: 16px;
+  padding-bottom: 0;
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
   color: $dark-text-color;
-  padding: 8px 0;
-  padding-bottom: 2px;
-  font-size: 14px;
-  position: relative;
 
   .status__display-name strong {
     color: $dark-text-color;
@@ -1185,22 +1208,11 @@
 }
 
 .status__action-bar {
-  align-items: center;
   display: flex;
-  margin-top: 8px;
-}
-
-.status__action-bar-button {
-  margin-right: 18px;
-
-  &.icon-button--with-counter {
-    margin-right: 14px;
-  }
-}
-
-.status__action-bar-dropdown {
-  height: 23.15px;
-  width: 23.15px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 16px;
 }
 
 .detailed-status__action-bar-dropdown {
@@ -1213,7 +1225,7 @@
 
 .detailed-status {
   background: lighten($ui-base-color, 4%);
-  padding: 14px 10px;
+  padding: 16px;
 
   &--flex {
     display: flex;
@@ -1243,14 +1255,15 @@
     }
   }
 
+  .media-gallery,
   .video-player,
   .audio-player {
-    margin-top: 8px;
+    margin-top: 16px;
   }
 }
 
 .detailed-status__meta {
-  margin-top: 15px;
+  margin-top: 16px;
   color: $dark-text-color;
   font-size: 14px;
   line-height: 18px;
@@ -1312,7 +1325,7 @@
 }
 
 .account {
-  padding: 10px;
+  padding: 16px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
 
   &.compact {
@@ -1326,7 +1339,9 @@
 
   .account__display-name {
     flex: 1 1 auto;
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: $darker-text-color;
     overflow: hidden;
     text-decoration: none;
@@ -1359,12 +1374,7 @@
 
 .account__wrapper {
   display: flex;
-}
-
-.account__avatar-wrapper {
-  float: left;
-  margin-left: 12px;
-  margin-right: 12px;
+  gap: 10px;
 }
 
 .account__avatar {
@@ -1372,9 +1382,6 @@
 
   display: block;
   position: relative;
-  width: 36px;
-  height: 36px;
-  background-size: 36px 36px;
 
   &-inline {
     display: inline-block;
@@ -1414,7 +1421,7 @@ a .account__avatar {
 }
 
 .account__avatar-overlay {
-  @include avatar-size(48px);
+  @include avatar-size(46px);
 
   position: relative;
 
@@ -1615,10 +1622,13 @@ a.account__display-name {
 }
 
 .detailed-status__display-name {
-  color: $secondary-text-color;
-  display: block;
-  line-height: 24px;
-  margin-bottom: 15px;
+  color: $darker-text-color;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 16px;
   overflow: hidden;
 
   strong,
@@ -1629,31 +1639,13 @@ a.account__display-name {
   }
 
   strong {
-    font-size: 16px;
     color: $primary-text-color;
   }
 }
 
-.detailed-status__display-avatar {
-  float: left;
-  margin-right: 10px;
-}
-
 .status__avatar {
-  height: 48px;
-  left: 10px;
-  position: absolute;
-  top: 10px;
-  width: 48px;
-}
-
-.status__expand {
-  width: 68px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  cursor: pointer;
+  width: 46px;
+  height: 46px;
 }
 
 .muted {
@@ -1684,40 +1676,52 @@ a.account__display-name {
 }
 
 .notification__report {
-  padding: 8px 10px;
-  padding-left: 68px;
-  position: relative;
+  padding: 16px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-  min-height: 54px;
+  display: flex;
+  gap: 10px;
+
+  &__avatar {
+    flex: 0 0 auto;
+  }
 
   &__details {
+    flex: 1 1 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: $darker-text-color;
+    gap: 10px;
     font-size: 15px;
     line-height: 22px;
+    white-space: nowrap;
+    overflow: hidden;
+
+    & > div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     strong {
       font-weight: 500;
     }
   }
 
-  &__avatar {
-    position: absolute;
-    left: 10px;
-    top: 10px;
+  &__actions {
+    flex: 0 0 auto;
   }
 }
 
 .notification__message {
-  margin: 0 10px 0 68px;
-  padding: 8px 0 0;
+  padding: 16px;
+  padding-bottom: 0;
   cursor: default;
   color: $darker-text-color;
   font-size: 15px;
   line-height: 22px;
-  position: relative;
+  font-weight: 500;
+  display: flex;
+  gap: 10px;
 
   .fa {
     color: $highlight-text-color;
@@ -1731,9 +1735,6 @@ a.account__display-name {
 }
 
 .notification__favourite-icon-wrapper {
-  left: -26px;
-  position: absolute;
-
   .star-icon {
     color: $gold-star;
   }
@@ -1767,13 +1768,8 @@ a.account__display-name {
   text-decoration: none;
 
   &:hover {
-    color: $primary-text-color;
     text-decoration: underline;
   }
-}
-
-.notification__relative_time {
-  float: right;
 }
 
 .display-name {
@@ -1786,10 +1782,6 @@ a.account__display-name {
 
 .display-name__html {
   font-weight: 500;
-}
-
-.display-name__account {
-  font-size: 14px;
 }
 
 .status__relative-time,
@@ -1860,11 +1852,12 @@ a.account__display-name {
 }
 
 .navigation-bar {
-  padding: 10px;
+  padding: 15px;
   display: flex;
   align-items: center;
   flex-shrink: 0;
   cursor: default;
+  gap: 10px;
   color: $darker-text-color;
 
   strong {
@@ -1899,9 +1892,7 @@ a.account__display-name {
 
 .navigation-bar__profile {
   flex: 1 1 auto;
-  margin-left: 8px;
   line-height: 20px;
-  margin-top: -1px;
   overflow: hidden;
 }
 
@@ -2466,101 +2457,6 @@ $ui-header-height: 55px;
     padding: 10px 0;
     padding-top: 0;
   }
-
-  .detailed-status {
-    padding: 15px;
-
-    .media-gallery,
-    .video-player,
-    .audio-player {
-      margin-top: 15px;
-    }
-  }
-
-  .account__header__bar {
-    padding: 5px 10px;
-  }
-
-  .navigation-bar,
-  .compose-form {
-    padding: 15px;
-  }
-
-  .compose-form .compose-form__publish .compose-form__publish-button-wrapper {
-    padding-top: 15px;
-  }
-
-  .notification__report {
-    padding: 15px 15px 15px (48px + 15px * 2);
-    min-height: 48px + 2px;
-
-    &__avatar {
-      left: 15px;
-      top: 17px;
-    }
-  }
-
-  .status {
-    padding: 15px 15px 15px (48px + 15px * 2);
-    min-height: 48px + 2px;
-
-    &__avatar {
-      left: 15px;
-      top: 17px;
-    }
-
-    &__content {
-      padding-top: 5px;
-    }
-
-    &__prepend {
-      margin-left: 48px + 15px * 2;
-      padding-top: 15px;
-    }
-
-    &__prepend-icon-wrapper {
-      left: -32px;
-    }
-
-    .media-gallery,
-    &__action-bar,
-    .video-player,
-    .audio-player {
-      margin-top: 10px;
-    }
-  }
-
-  .account {
-    padding: 15px 10px;
-
-    &__header__bio {
-      margin: 0 -10px;
-    }
-  }
-
-  .notification {
-    &__message {
-      margin-left: 48px + 15px * 2;
-      padding-top: 15px;
-    }
-
-    &__favourite-icon-wrapper {
-      left: -32px;
-    }
-
-    .status {
-      padding-top: 8px;
-    }
-
-    .account {
-      padding-top: 8px;
-    }
-
-    .account__avatar-wrapper {
-      margin-left: 17px;
-      margin-right: 15px;
-    }
-  }
 }
 
 @media screen and (min-width: $no-gap-breakpoint) {
@@ -2805,10 +2701,7 @@ $ui-header-height: 55px;
   }
 
   .navigation-bar {
-    padding-top: 20px;
-    padding-bottom: 20px;
     flex: 0 1 48px;
-    min-height: 20px;
   }
 
   .compose-form {
@@ -5303,24 +5196,6 @@ a.status-card.compact:hover {
   width: 480px;
   position: relative;
   flex-direction: column;
-
-  .status__display-name {
-    display: block;
-    max-width: 100%;
-    padding-right: 25px;
-  }
-
-  .status__avatar {
-    height: 28px;
-    left: 10px;
-    position: absolute;
-    top: 10px;
-    width: 48px;
-  }
-
-  .status__content__spoiler-link {
-    color: lighten($secondary-text-color, 8%);
-  }
 }
 
 .actions-modal {
@@ -5352,9 +5227,9 @@ a.status-card.compact:hover {
 .block-modal__action-bar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: $ui-secondary-color;
-  padding: 10px;
-  line-height: 36px;
+  padding: 15px;
 
   & > div {
     flex: 1 1 auto;
@@ -5366,15 +5241,6 @@ a.status-card.compact:hover {
   .button {
     flex: 0 0 auto;
   }
-}
-
-.boost-modal__status-header {
-  font-size: 15px;
-}
-
-.boost-modal__status-time {
-  float: right;
-  font-size: 14px;
 }
 
 .mute-modal,
@@ -5988,7 +5854,7 @@ a.status-card.compact:hover {
   font-size: 14px;
   border: 1px solid lighten($ui-base-color, 8%);
   border-radius: 4px;
-  margin-top: 14px;
+  margin-top: 16px;
   overflow: hidden;
 
   &__icon {
@@ -6034,7 +5900,6 @@ a.status-card.compact:hover {
 
   &.compact {
     border: 0;
-    margin-top: 4px;
 
     .attachment-list__list {
       padding: 0;
@@ -7177,6 +7042,7 @@ noscript {
 
 .account__header {
   overflow: hidden;
+  background: lighten($ui-base-color, 4%);
 
   &.inactive {
     opacity: 0.5;
@@ -7210,8 +7076,7 @@ noscript {
 
   &__bar {
     position: relative;
-    background: lighten($ui-base-color, 4%);
-    padding: 5px;
+    padding: 0 20px;
     border-bottom: 1px solid lighten($ui-base-color, 12%);
 
     .avatar {
@@ -7230,8 +7095,8 @@ noscript {
   &__tabs {
     display: flex;
     align-items: flex-start;
-    padding: 7px 10px;
     margin-top: -55px;
+    padding-top: 10px;
 
     &__buttons {
       display: flex;
@@ -7249,7 +7114,8 @@ noscript {
     }
 
     &__name {
-      padding: 5px 10px;
+      margin-top: 16px;
+      margin-bottom: 16px;
 
       .account-role {
         vertical-align: top;
@@ -7261,17 +7127,17 @@ noscript {
       }
 
       h1 {
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 17px;
+        line-height: 22px;
         color: $primary-text-color;
-        font-weight: 500;
+        font-weight: 700;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
 
         small {
           display: block;
-          font-size: 14px;
+          font-size: 15px;
           color: $darker-text-color;
           font-weight: 400;
           overflow: hidden;
@@ -7286,34 +7152,41 @@ noscript {
   }
 
   &__bio {
-    overflow: hidden;
-    margin: 0 -5px;
-
     .account__header__content {
-      padding: 20px 15px;
-      padding-bottom: 5px;
       color: $primary-text-color;
-
-      .columns-area--mobile & {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
-    }
-
-    .account__header__joined {
-      font-size: 14px;
-      padding: 5px 15px;
-      color: $darker-text-color;
-
-      .columns-area--mobile & {
-        padding-left: 20px;
-        padding-right: 20px;
-      }
     }
 
     .account__header__fields {
       margin: 0;
-      border-top: 1px solid lighten($ui-base-color, 12%);
+      margin-top: 16px;
+      border-radius: 4px;
+      background: darken($ui-base-color, 4%);
+      border: 0;
+
+      dl {
+        display: block;
+        padding: 11px 16px;
+        border-bottom-color: lighten($ui-base-color, 4%);
+      }
+
+      dd,
+      dt {
+        font-size: 13px;
+        line-height: 18px;
+        padding: 0;
+        text-align: initial;
+      }
+
+      dt {
+        width: auto;
+        background: transparent;
+        text-transform: uppercase;
+        color: $dark-text-color;
+      }
+
+      dd {
+        color: $darker-text-color;
+      }
 
       a {
         color: lighten($ui-highlight-color, 8%);
@@ -7330,12 +7203,14 @@ noscript {
   }
 
   &__extra {
-    margin-top: 4px;
+    margin-top: 16px;
 
     &__links {
       font-size: 14px;
       color: $darker-text-color;
-      padding: 10px 0;
+      margin: 0 -10px;
+      padding-top: 16px;
+      padding-bottom: 10px;
 
       a {
         display: inline-block;
@@ -7353,17 +7228,10 @@ noscript {
   }
 
   &__account-note {
-    padding: 15px;
-    padding-bottom: 10px;
     color: $primary-text-color;
     font-size: 14px;
     font-weight: 400;
-    border-bottom: 1px solid lighten($ui-base-color, 12%);
-
-    .columns-area--mobile & {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
+    margin-bottom: 10px;
 
     label {
       display: block;
