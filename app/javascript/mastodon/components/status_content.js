@@ -10,6 +10,43 @@ import { autoPlayGif, languages as preloadedLanguages, translationEnabled } from
 
 const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
 
+class TranslateButton extends React.PureComponent {
+
+  static propTypes = {
+    translation: ImmutablePropTypes.map,
+    onClick: PropTypes.func,
+  };
+
+  render () {
+    const { translation, onClick } = this.props;
+
+    if (translation) {
+      const language     = preloadedLanguages.find(lang => lang[0] === translation.get('detected_source_language'));
+      const languageName = language ? language[2] : translation.get('detected_source_language');
+      const provider     = translation.get('provider');
+
+      return (
+        <div className='translate-button'>
+          <div className='translate-button__meta'>
+            <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
+          </div>
+
+          <button className='link-button' onClick={onClick}>
+            <FormattedMessage id='status.show_original' defaultMessage='Show original' />
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <button className='status__content__read-more-button' onClick={onClick}>
+        <FormattedMessage id='status.translate' defaultMessage='Translate' />
+      </button>
+    );
+  }
+
+}
+
 export default @injectIntl
 class StatusContent extends React.PureComponent {
 
@@ -179,8 +216,6 @@ class StatusContent extends React.PureComponent {
     const renderReadMore = this.props.onClick && status.get('collapsed');
     const renderViewThread = this.props.showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']);
     const renderTranslate = translationEnabled && this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
-    const language = preloadedLanguages.find(lang => lang[0] === status.get('language'));
-    const languageName = language ? language[2] : status.get('language');
 
     const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -191,22 +226,24 @@ class StatusContent extends React.PureComponent {
       'status__content--collapsed': renderReadMore,
     });
 
-    const showThreadButton = (
+    const showThreadButton = renderViewThread && (
       <button className='status__content__read-more-button' onClick={this.props.onClick}>
         <FormattedMessage id='status.show_thread' defaultMessage='Show thread' />
       </button>
     );
 
-    const readMoreButton = (
+    const readMoreButton = renderReadMore && (
       <button className='status__content__read-more-button' onClick={this.props.onClick} key='read-more'>
         <FormattedMessage id='status.read_more' defaultMessage='Read more' /><Icon id='angle-right' fixedWidth />
       </button>
     );
 
-    const translateButton = (
-      <button className='status__content__read-more-button' onClick={this.handleTranslate}>
-        {status.get('translation') ? <span><FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider: status.getIn(['translation', 'provider']) }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
-      </button>
+    const translateButton = renderTranslate && (
+      <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
+    );
+
+    const poll = !!status.get('poll') && (
+      <PollContainer pollId={status.get('poll')} />
     );
 
     if (status.get('spoiler_text').length > 0) {
@@ -236,35 +273,33 @@ class StatusContent extends React.PureComponent {
 
           <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} translate`} lang={lang} dangerouslySetInnerHTML={content} />
 
-          {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-          {!hidden && renderTranslate && translateButton}
-          {renderViewThread && showThreadButton}
+          {!hidden && poll}
+          {!hidden && translateButton}
+          {showThreadButton}
         </div>
       );
     } else if (this.props.onClick) {
-      const output = [
-        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
-          <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
+      return (
+        <>
+          <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+            <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
 
-          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-          {renderTranslate && translateButton}
-          {renderViewThread && showThreadButton}
-        </div>,
-      ];
+            {poll}
+            {translateButton}
+            {showThreadButton}
+          </div>
 
-      if (renderReadMore) {
-        output.push(readMoreButton);
-      }
-
-      return output;
+          {readMoreButton}
+        </>
+      );
     } else {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
 
-          {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-          {renderTranslate && translateButton}
-          {renderViewThread && showThreadButton}
+          {poll}
+          {translateButton}
+          {showThreadButton}
         </div>
       );
     }
