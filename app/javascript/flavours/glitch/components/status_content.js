@@ -62,6 +62,43 @@ const isLinkMisleading = (link) => {
   return !(textMatchesTarget(text, origin, host) || textMatchesTarget(text.toLowerCase(), origin, host));
 };
 
+class TranslateButton extends React.PureComponent {
+
+  static propTypes = {
+    translation: ImmutablePropTypes.map,
+    onClick: PropTypes.func,
+  };
+
+  render () {
+    const { translation, onClick } = this.props;
+
+    if (translation) {
+      const language     = preloadedLanguages.find(lang => lang[0] === translation.get('detected_source_language'));
+      const languageName = language ? language[2] : translation.get('detected_source_language');
+      const provider     = translation.get('provider');
+
+      return (
+        <div className='translate-button'>
+          <div className='translate-button__meta'>
+            <FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider }} />
+          </div>
+
+          <button className='link-button' onClick={onClick}>
+            <FormattedMessage id='status.show_original' defaultMessage='Show original' />
+          </button>
+        </div>
+      );
+    }
+
+    return (
+      <button className='status__content__read-more-button' onClick={onClick}>
+        <FormattedMessage id='status.translate' defaultMessage='Translate' />
+      </button>
+    );
+  }
+
+}
+
 export default @injectIntl
 class StatusContent extends React.PureComponent {
 
@@ -279,8 +316,6 @@ class StatusContent extends React.PureComponent {
 
     const hidden = this.props.onExpandedToggle ? !this.props.expanded : this.state.hidden;
     const renderTranslate = translationEnabled && this.context.identity.signedIn && this.props.onTranslate && ['public', 'unlisted'].includes(status.get('visibility')) && status.get('contentHtml').length > 0 && status.get('language') !== null && intl.locale !== status.get('language');
-    const language = preloadedLanguages.find(lang => lang[0] === status.get('language'));
-    const languageName = language ? language[2] : status.get('language');
 
     const content = { __html: status.get('translation') ? status.getIn(['translation', 'content']) : status.get('contentHtml') };
     const spoilerContent = { __html: status.get('spoilerHtml') };
@@ -290,10 +325,8 @@ class StatusContent extends React.PureComponent {
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
     });
 
-    const translateButton = (
-      <button className='status__content__read-more-button' onClick={this.handleTranslate}>
-        {status.get('translation') ? <span><FormattedMessage id='status.translated_from_with' defaultMessage='Translated from {lang} using {provider}' values={{ lang: languageName, provider: status.getIn(['translation', 'provider']) }} /> · <FormattedMessage id='status.show_original' defaultMessage='Show original' /></span> : <FormattedMessage id='status.translate' defaultMessage='Translate' />}
-      </button>
+    const translateButton = renderTranslate && (
+      <TranslateButton onClick={this.handleTranslate} translation={status.get('translation')} />
     );
 
     if (status.get('spoiler_text').length > 0) {
@@ -376,7 +409,7 @@ class StatusContent extends React.PureComponent {
 
           {extraMedia}
 
-          {!hidden && renderTranslate && translateButton}
+          {!hidden && translateButton}
         </div>
       );
     } else if (parseClick) {
@@ -399,7 +432,7 @@ class StatusContent extends React.PureComponent {
           />
           {media}
           {extraMedia}
-          {!hidden && renderTranslate && translateButton}
+          {!hidden && translateButton}
         </div>
       );
     } else {
@@ -420,7 +453,7 @@ class StatusContent extends React.PureComponent {
           />
           {media}
           {extraMedia}
-          {!hidden && renderTranslate && translateButton}
+          {!hidden && translateButton}
         </div>
       );
     }
