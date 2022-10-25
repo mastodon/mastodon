@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
 import { Link } from 'react-router-dom';
-import { timelinePreview } from 'flavours/glitch/initial_state';
+import { timelinePreview, showTrends } from 'flavours/glitch/initial_state';
 import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
@@ -24,6 +24,7 @@ const messages = defineMessages({
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
   followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
   about: { id: 'navigation_bar.about', defaultMessage: 'About' },
+  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
   app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
 });
 
@@ -53,7 +54,12 @@ class NavigationPanel extends React.Component {
           </React.Fragment>
         )}
 
-        <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
+        {showTrends ? (
+          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
+        ) : (
+          <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
+        )}
+
         {(signedIn || timelinePreview) && (
           <>
             <ColumnLink transparent to='/public/local' icon='users' text={intl.formatMessage(messages.local)} />
