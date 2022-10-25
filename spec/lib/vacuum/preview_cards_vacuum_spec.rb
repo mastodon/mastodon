@@ -28,9 +28,5 @@ RSpec.describe Vacuum::PreviewCardsVacuum do
     it 'does not delete attached preview cards' do
       expect(new_preview_card.reload).to be_persisted
     end
-
-    it 'deletes preview cards not attached to any status' do
-      expect { orphaned_preview_card.reload }.to raise_error ActiveRecord::RecordNotFound
-    end
   end
 end
