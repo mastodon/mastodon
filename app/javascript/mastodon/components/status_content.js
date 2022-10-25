@@ -61,9 +61,6 @@ class StatusContent extends React.PureComponent {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
       }
-
-      link.setAttribute('target', '_blank');
-      link.setAttribute('rel', 'noopener noreferrer');
     }
 
     if (this.props.status.get('collapsed', null) === null) {
