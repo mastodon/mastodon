@@ -393,6 +393,9 @@ nl:
       view: Domeinblokkade bekijken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
+      attempts_over_week:
+        one: "%{count} registratiepoging tijdens de afgelopen week"
+        other: "%{count} registratiepogingen tijdens de afgelopen week"
       created_msg: Blokkeren e-maildomein geslaagd
       delete: Verwijderen
       dns:
@@ -403,6 +406,8 @@ nl:
         create: Blokkeren
         resolve: Domein opzoeken
         title: Nieuw e-maildomein blokkeren
+      resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
+      resolved_through_html: Geblokkeerd via %{domain}
       title: Geblokkeerde e-maildomeinen
     follow_recommendations:
       description_html: "<strong>Deze aanbevolen accounts helpen nieuwe gebruikers snel interessante inhoud</strong>te vinden. Wanneer een gebruiker niet met andere gebruikers genoeg interactie heeft gehad om gepersonaliseerde aanbevelingen te krijgen, worden in plaats daarvan deze accounts aanbevolen. Deze accounts worden dagelijks opnieuw berekend met behulp van accounts met het hoogste aantal recente interacties en het hoogste aantal lokale volgers in een bepaalde taal."
@@ -641,16 +646,29 @@ nl:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
     statuses:
+      account: Account
+      application: Toepassing
       back_to_account: Terug naar accountpagina
       back_to_report: Terug naar de rapportage
       batch:
         remove_from_report: Uit de rapportage verwijderen
         report: Rapportage
       deleted: Verwijderd
+      favourites: Favorieten
+      history: Versiegeschiedenis
+      in_reply_to: Reactie op
+      language: Taal
       media:
         title: Media
+      metadata: Metagegevens
       no_status_selected: Er werden geen berichten gewijzigd, omdat er geen enkele werd geselecteerd
+      open: Bericht tonen
+      original_status: Oorspronkelijk bericht
+      reblogs: Boosts
+      status_changed: Bericht veranderd
       title: Berichten van account
+      trending: Trending
+      visibility: Zichtbaarheid
       with_media: Met media
     strikes:
       actions:
@@ -1353,6 +1371,7 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   statuses_cleanup:
+    enabled: Automatisch oude berichten verwijderen
     exceptions: Uitzonderingen
     ignore_favs: Favorieten negeren
     ignore_reblogs: Boosts negeren
@@ -1376,6 +1395,7 @@ nl:
       '7889238': 3 maanden
     min_age_label: Te verwijderen na
     min_favs: Berichten die minstens zoveel keer als favoriet zijn gemarkeerd behouden
+    min_reblogs: Berichten die minstens zoveel keer zijn geboost behouden
   stream_entries:
     pinned: Vastgemaakt bericht
     reblogged: boostte
@@ -1444,6 +1464,7 @@ nl:
       title:
         delete_statuses: Berichten verwijderd
         disable: Account bevroren
+        mark_statuses_as_sensitive: Berichten als gevoelig gemarkeerd
         none: Waarschuwing
         sensitive: Account is als gevoelig gemarkeerd
         silence: Account beperkt
