@@ -86,6 +86,13 @@ is:
         site_contact_username: Hovernig fólk getur haft samband við þig á Mastodon.
         site_extended_description: Hverjar þær viðbótarupplýsingar sem gætu nýst gestum þínum og notendum. Má sníða með Markdown-málskipan.
         site_short_description: Stutt lýsing sem hjálpar til við að auðkenna netþjóninn þinn. Hver er að reka hann, fyrir hverja er hann?
+        site_terms: Notaðu þína eigin persónuverndarstefnu eða skildu þetta eftir autt til að nota sjálfgefna stefnu. Má sníða með Markdown-málskipan.
+        site_title: Hvað fólk kallar netþjóninn þinn annað en með heiti lénsins.
+        theme: Þema sem útskráðir gestir og nýjir notendur sjá.
+        thumbnail: Mynd um það bil 2:1 sem birtist samhliða upplýsingum um netþjóninn þinn.
+        timeline_preview: Gestir sem ekki eru skráðir inn munu geta skoðað nýjustu opinberu færslurnar sem tiltækar eru á þjóninum.
+        trendable_by_default: Sleppa handvirkri yfirferð á vinsælu efni. Áfram verður hægt að fjarlægja stök atriði úr vinsældarlistum.
+        trends: Vinsældir sýna hvaða færslur, myllumerki og fréttasögur séu í umræðunni á netþjóninum þínum.
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -222,10 +229,17 @@ is:
           warn: Fela með aðvörun
       form_admin_settings:
         backups_retention_period: Tímalengd sem safni notandans er haldið eftir
+        bootstrap_timeline_accounts: Alltaf mæla með þessum notendaaðgöngum fyrir nýja notendur
+        closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
         content_cache_retention_period: Tímalengd sem haldið er í biðminni
         custom_css: Sérsniðið CSS
+        mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið
         profile_directory: Virkja notendamöppu
+        registrations_mode: Hverjir geta nýskráð sig
+        require_invite_text: Krefjast ástæðu fyrir þátttöku
+        show_domain_blocks: Sýna útilokanir léna
+        show_domain_blocks_rationale: Sýna af hverju lokað var á lén
         site_contact_email: Tölvupóstfang tengiliðar
         site_contact_username: Notandanafn tengiliðar
         site_extended_description: Ítarleg lýsing
