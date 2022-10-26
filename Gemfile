@@ -122,6 +122,7 @@ group :test do
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.18'
   gem 'rspec_junit_formatter', '~> 0.6'
+  gem 'rack-test', '~> 2.0'
 end
 
 group :development do
@@ -152,7 +153,5 @@ end
 
 gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
-
 gem 'xorcist', '~> 1.1'
-
 gem 'cocoon', '~> 1.2'
