@@ -74,8 +74,18 @@ is:
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_admin_settings:
         backups_retention_period: Halda safni notandans í tiltekinn fjölda daga.
+        bootstrap_timeline_accounts: Þessir notendaaðgangar verða festir efst í meðmælum til nýrra notenda um að fylgjast með þeim.
+        closed_registrations_message: Birtist þegar lokað er á nýskráningar
         content_cache_retention_period: Færslum af öðrum netþjónum verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi. Þetta gæti verið óafturkallanleg aðgerð.
+        custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
+        mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Sóttu myndefni verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi og síðan sótt aftur eftir þörfum.
+        profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
+        require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
+        site_contact_email: Hovernig fólk getur haft samband við þig til að fá aðstoð eða vegna lagalegra mála.
+        site_contact_username: Hovernig fólk getur haft samband við þig á Mastodon.
+        site_extended_description: Hverjar þær viðbótarupplýsingar sem gætu nýst gestum þínum og notendum. Má sníða með Markdown-málskipan.
+        site_short_description: Stutt lýsing sem hjálpar til við að auðkenna netþjóninn þinn. Hver er að reka hann, fyrir hverja er hann?
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -215,6 +225,10 @@ is:
         content_cache_retention_period: Tímalengd sem haldið er í biðminni
         custom_css: Sérsniðið CSS
         media_cache_retention_period: Tímalengd sem myndefni haldið
+        profile_directory: Virkja notendamöppu
+        site_contact_email: Tölvupóstfang tengiliðar
+        site_contact_username: Notandanafn tengiliðar
+        site_extended_description: Ítarleg lýsing
         site_short_description: Lýsing á vefþjóni
         site_terms: Persónuverndarstefna
         site_title: Heiti vefþjóns
