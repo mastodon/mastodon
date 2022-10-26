@@ -1131,12 +1131,22 @@ fi:
     trending_now: Suosittua nyt
   generic:
     all: Kaikki
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> kohde tällä sivulla on valittu."
+      other: Kaikki <strong>%{count}</strong> kohdetta tällä sivulla on valittu.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> tuotetta, joka vastaa hakuasi."
+      other: Kaikki <strong>%{count}</strong> kohdetta, jotka vastaavat hakuasi.
     changes_saved_msg: Muutosten tallennus onnistui!
     copy: Kopioi
     delete: Poista
+    deselect: Poista kaikki valinnat
     none: Ei mitään
     order_by: Järjestä
     save_changes: Tallenna muutokset
+    select_all_matching_items:
+      one: Valitse %{count} kohdetta, joka vastaa hakuasi.
+      other: Valitse kaikki %{count} kohdetta, jotka vastaavat hakuasi.
     today: tänään
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
@@ -1315,6 +1325,8 @@ fi:
     other: Muut
     posting_defaults: Julkaisujen oletusasetukset
     public_timelines: Julkiset aikajanat
+  privacy_policy:
+    title: Tietosuojakäytäntö
   reactions:
     errors:
       limit_reached: Erilaisten reaktioiden raja saavutettu
@@ -1587,8 +1599,10 @@ fi:
         suspend: Tilin käyttäminen keskeytetty
     welcome:
       edit_profile_action: Aseta profiili
+      edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat ennen kuin he saavat seurata sinua.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
+      final_step: 'Aloita julkaiseminen! Jopa ilman seuraajia, muut voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla tai hashtageilla. Haluat ehkä esitellä itsesi #introductions hashtag.'
       full_handle: Koko käyttäjätunnuksesi
       full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
       subject: Tervetuloa Mastodoniin
