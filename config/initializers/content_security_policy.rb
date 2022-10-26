@@ -36,7 +36,7 @@ Rails.application.config.content_security_policy do |p|
     p.worker_src  :self, :blob, assets_host
   else
     p.connect_src :self, :data, :blob, assets_host, media_host, Rails.configuration.x.streaming_api_base_url
-    p.script_src  :self, assets_host
+    p.script_src  :self, assets_host, :unsafe_eval
     p.child_src   :self, :blob, assets_host
     p.worker_src  :self, :blob, assets_host
   end
