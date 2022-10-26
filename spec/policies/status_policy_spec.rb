@@ -96,10 +96,6 @@ RSpec.describe StatusPolicy, type: :model do
       expect(subject).to permit(status.account, status)
     end
 
-    it 'grants access when account is admin' do
-      expect(subject).to permit(admin.account, status)
-    end
-
     it 'denies access when account is not deleter' do
       expect(subject).to_not permit(bob, status)
     end
@@ -125,27 +121,9 @@ RSpec.describe StatusPolicy, type: :model do
     end
   end
 
-  permissions :index? do
-    it 'grants access if staff' do
-      expect(subject).to permit(admin.account)
-    end
-
-    it 'denies access unless staff' do
-      expect(subject).to_not permit(alice)
-    end
-  end
-
   permissions :update? do
-    it 'grants access if staff' do
-      expect(subject).to permit(admin.account, status)
-    end
-
     it 'grants access if owner' do
       expect(subject).to permit(status.account, status)
-    end
-
-    it 'denies access unless staff' do
-      expect(subject).to_not permit(bob, status)
     end
   end
 end

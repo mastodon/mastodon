@@ -325,7 +325,7 @@ Rails.application.routes.draw do
       resource :reset, only: [:create]
       resource :action, only: [:new, :create], controller: 'account_actions'
 
-      resources :statuses, only: [:index] do
+      resources :statuses, only: [:index, :show] do
         collection do
           post :batch
         end

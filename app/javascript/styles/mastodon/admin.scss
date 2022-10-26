@@ -1752,3 +1752,67 @@ a.sparkline {
     }
   }
 }
+
+.history {
+  counter-reset: step 0;
+  font-size: 15px;
+  line-height: 22px;
+
+  li {
+    counter-increment: step 1;
+    padding-left: 2.5rem;
+    padding-bottom: 8px;
+    position: relative;
+    margin-bottom: 8px;
+
+    &::before {
+      position: absolute;
+      content: counter(step);
+      font-size: 0.625rem;
+      font-weight: 500;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(1.375rem + 1px);
+      height: calc(1.375rem + 1px);
+      background: $ui-base-color;
+      border: 1px solid $highlight-text-color;
+      color: $highlight-text-color;
+      border-radius: 8px;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 1px;
+      background: $highlight-text-color;
+      bottom: 0;
+      top: calc(1.875rem + 1px);
+      left: 0.6875rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__entry {
+    h5 {
+      font-weight: 500;
+      color: $primary-text-color;
+      line-height: 25px;
+      margin-bottom: 16px;
+    }
+
+    .status {
+      border: 1px solid lighten($ui-base-color, 4%);
+      background: $ui-base-color;
+      border-radius: 4px;
+    }
+  }
+}
