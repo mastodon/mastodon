@@ -43,7 +43,7 @@ class Admin::AccountAction
   end
 
   def save!
-    raise ActiveRecord::RecordInvalid.new(self) unless valid?
+    raise ActiveRecord::RecordInvalid, self unless valid?
 
     ApplicationRecord.transaction do
       process_action!
@@ -110,9 +110,8 @@ class Admin::AccountAction
     # Otherwise, we will mark all unresolved reports about
     # the account as resolved.
 
-    reports.each { |report| authorize(report, :update?) }
-
     reports.each do |report|
+      authorize(report, :update?)
       log_action(:resolve, report)
       report.resolve!(current_account)
     end
