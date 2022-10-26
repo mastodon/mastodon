@@ -94,25 +94,37 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :controller do
   describe 'POST #create' do
     let!(:domain_allow) { Fabricate(:domain_allow, domain: 'example.com') }
 
-    before do
-      post :create, params: { domain: 'foo.bar.com' }
+    context do
+      before do
+        post :create, params: { domain: 'foo.bar.com' }
+      end
+
+      it_behaves_like 'forbidden for wrong scope', 'write:statuses'
+      it_behaves_like 'forbidden for wrong role', ''
+      it_behaves_like 'forbidden for wrong role', 'Moderator'
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'returns expected domain name' do
+        json = body_as_json
+        expect(json[:domain]).to eq 'foo.bar.com'
+      end
+
+      it 'creates a domain block' do
+        expect(DomainAllow.find_by(domain: 'foo.bar.com')).to_not be_nil
+      end
     end
 
-    it_behaves_like 'forbidden for wrong scope', 'write:statuses'
-    it_behaves_like 'forbidden for wrong role', ''
-    it_behaves_like 'forbidden for wrong role', 'Moderator'
+    context 'with invalid domain name' do
+      before do
+        post :create, params: { domain: 'foo bar' }
+      end
 
-    it 'returns http success' do
-      expect(response).to have_http_status(200)
-    end
-
-    it 'returns expected domain name' do
-      json = body_as_json
-      expect(json[:domain]).to eq 'foo.bar.com'
-    end
-
-    it 'creates a domain block' do
-      expect(DomainAllow.find_by(domain: 'foo.bar.com')).to_not be_nil
+      it 'returns http unprocessable entity' do
+        expect(response).to have_http_status(422)
+      end
     end
   end
 end
