@@ -33,6 +33,12 @@ class Form::AdminSettings
     backups_retention_period
   ).freeze
 
+  INTEGER_KEYS = %i(
+    media_cache_retention_period
+    content_cache_retention_period
+    backups_retention_period
+  ).freeze
+
   BOOLEAN_KEYS = %i(
     timeline_preview
     activity_api_enabled
@@ -104,6 +110,8 @@ class Form::AdminSettings
   def typecast_value(key, value)
     if BOOLEAN_KEYS.include?(key)
       value == '1'
+    elsif INTEGER_KEYS.include?(key)
+      value.blank? ? value : Integer(value)
     else
       value
     end
