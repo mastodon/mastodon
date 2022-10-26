@@ -48,10 +48,10 @@ class Admin::AccountAction
     ApplicationRecord.transaction do
       process_action!
       process_strike!
+      process_reports!
     end
 
     process_email!
-    process_reports!
     process_queue!
   end
 
