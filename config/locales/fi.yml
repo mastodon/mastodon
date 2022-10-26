@@ -677,10 +677,19 @@ fi:
         remove_from_report: Poista raportista
         report: Raportti
       deleted: Poistettu
+      history: Versiohistoria
+      in_reply_to: Vastaa
+      language: Kieli
       media:
         title: Media
+      metadata: Metadata
       no_status_selected: Viestejä ei muutettu, koska yhtään ei ole valittuna
+      open: Avaa viesti
+      original_status: Alkuperäinen viesti
+      status_changed: Viesti muutettu
       title: Tilin tilat
+      trending: Nousussa
+      visibility: Näkyvyys
       with_media: Sisältää mediaa
     strikes:
       actions:
@@ -720,6 +729,9 @@ fi:
         description_html: Nämä ovat linkkejä, joita jaetaan tällä hetkellä paljon tileillä, joilta palvelimesi näkee viestejä. Se voi auttaa käyttäjiäsi saamaan selville, mitä maailmassa tapahtuu. Linkkejä ei näytetä julkisesti, ennen kuin hyväksyt julkaisijan. Voit myös sallia tai hylätä yksittäiset linkit.
         disallow: Hylkää linkki
         disallow_provider: Estä julkaisija
+        no_link_selected: Yhtään linkkiä ei muutettu, koska yhtään ei valittu
+        publishers:
+          no_publisher_selected: Julkaisijoita ei muutettu, koska yhtään ei valittu
         shared_by_over_week:
           one: Yksi henkilö jakanut viimeisen viikon aikana
           other: Jakanut %{count} henkilöä viimeisen viikon aikana
@@ -739,6 +751,7 @@ fi:
         description_html: Nämä ovat viestejä, jotka palvelimesi tietää tällä hetkellä jaetuksi ja suosituksi. Tämä voi auttaa uusia ja palaavia ihmisiä löytämään lisää ihmisiä, joita seurata seurata. Julkaisuja ei näytetä julkisesti ennen kuin hyväksyt tekijän ja kirjoittaja sallii tilinsä ehdottamisen muille. Voit myös sallia tai hylätä yksittäiset viestit.
         disallow: Estä viesti
         disallow_account: Estä tekijä
+        no_status_selected: Suosittuja viestejä ei muutettu, koska yhtään ei valittu
         not_discoverable: Tekijä ei ole ilmoittanut olevansa löydettävissä
         shared_by:
           one: Jaettu tai suosikki kerran
@@ -754,6 +767,7 @@ fi:
           tag_uses_measure: käyttökerrat
         description_html: Nämä ovat hashtageja, jotka näkyvät tällä hetkellä monissa viesteissä, jotka palvelimesi näkee. Tämä voi auttaa käyttäjiäsi selvittämään, mistä ihmiset puhuvat eniten tällä hetkellä. Mitään hashtageja ei näytetä julkisesti ennen kuin hyväksyt ne.
         listable: Voidaan ehdottaa
+        no_tag_selected: Yhtään tagia ei muutettu, koska yhtään ei valittu
         not_listable: Ei tulla ehdottamaan
         not_trendable: Ei näy trendien alla
         not_usable: Ei voida käyttää
@@ -859,6 +873,7 @@ fi:
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
     your_token: Pääsytunnus
   auth:
+    apply_for_account: Tule jonotuslistalle
     change_password: Salasana
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
@@ -878,6 +893,7 @@ fi:
     migrate_account: Muuta toiseen tiliin
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
     or_log_in_with: Tai käytä kirjautumiseen
+    privacy_policy_agreement_html: Olen lukenut ja hyväksynyt <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
     providers:
       cas: CAS
       saml: SAML
@@ -885,12 +901,18 @@ fi:
     registration_closed: "%{instance} ei hyväksy uusia jäseniä"
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
+    rules:
+      preamble: '%{domain} valvojat määrittävät ja valvovat sääntöjä.'
+      title: Joitakin perussääntöjä.
     security: Tunnukset
     set_new_password: Aseta uusi salasana
     setup:
       email_below_hint_html: Jos alla oleva sähköpostiosoite on virheellinen, voit muuttaa sitä täällä ja tilata uuden vahvistussähköpostiviestin.
       email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit muuttaa sitä tiliasetuksissa.
       title: Asetukset
+    sign_up:
+      preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
+      title: Otetaan sinulle käyttöön %{domain}.
     status:
       account_status: Tilin tila
       confirming: Odotetaan sähköpostivahvistuksen valmistumista.
