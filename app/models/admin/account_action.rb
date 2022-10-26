@@ -25,6 +25,8 @@ class Admin::AccountAction
   alias send_email_notification? send_email_notification
   alias include_statuses? include_statuses
 
+  validates :type, :target_account, :current_account, presence: true
+
   def initialize(attributes = {})
     @send_email_notification = true
     @include_statuses        = true
@@ -41,6 +43,8 @@ class Admin::AccountAction
   end
 
   def save!
+    raise ActiveRecord::RecordInvalid.new(self) unless valid?
+
     ApplicationRecord.transaction do
       process_action!
       process_strike!
