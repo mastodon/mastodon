@@ -3,32 +3,32 @@
 require 'sidekiq_unique_jobs/web'
 require 'sidekiq-scheduler/web'
 
-# Paths of routes on the web app that to not require to be indexed or
-# have alternative format representations requiring separate controllers
-WEB_APP_PATHS = %w(
-  /getting-started
-  /keyboard-shortcuts
-  /home
-  /public
-  /public/local
-  /conversations
-  /lists/(*any)
-  /notifications
-  /favourites
-  /bookmarks
-  /pinned
-  /start
-  /directory
-  /explore/(*any)
-  /search
-  /publish
-  /follow_requests
-  /blocks
-  /domain_blocks
-  /mutes
-).freeze
-
 Rails.application.routes.draw do
+  # Paths of routes on the web app that to not require to be indexed or
+  # have alternative format representations requiring separate controllers
+  web_app_paths = %w(
+    /getting-started
+    /keyboard-shortcuts
+    /home
+    /public
+    /public/local
+    /conversations
+    /lists/(*any)
+    /notifications
+    /favourites
+    /bookmarks
+    /pinned
+    /start
+    /directory
+    /explore/(*any)
+    /search
+    /publish
+    /follow_requests
+    /blocks
+    /domain_blocks
+    /mutes
+  ).freeze
+
   root 'home#index'
 
   mount LetterOpenerWeb::Engine, at: 'letter_opener' if Rails.env.development?
@@ -677,7 +677,7 @@ Rails.application.routes.draw do
     end
   end
 
-  WEB_APP_PATHS.each do |path|
+  web_app_paths.each do |path|
     get path, to: 'home#index'
   end
 
