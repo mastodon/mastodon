@@ -4,6 +4,7 @@ gd:
     contact_missing: Cha deach a shuidheachadh
     contact_unavailable: Chan eil seo iomchaidh
     hosted_on: Mastodon ’ga òstadh air %{domain}
+    title: Mu dhèidhinn
   accounts:
     follow: Lean air
     followers:
@@ -174,17 +175,21 @@ gd:
         approve_user: Aontaich ris a’ chleachdaiche
         assigned_to_self_report: Iomruin an gearan
         change_email_user: Atharraich post-d a’ chleachdaiche
+        change_role_user: Atharraich dreuchd a’ chleachdaiche
         confirm_user: Dearbh an cleachdaiche
         create_account_warning: Cruthaich rabhadh
         create_announcement: Cruthaich brath-fios
+        create_canonical_email_block: Cruthaich bacadh puist-d
         create_custom_emoji: Cruthaich Emoji gnàthaichte
         create_domain_allow: Cruthaich ceadachadh àrainne
         create_domain_block: Cruthaich bacadh àrainne
         create_email_domain_block: Cruthaich bacadh àrainne puist-d
         create_ip_block: Cruthaich riaghailt IP
         create_unavailable_domain: Cruthaich àrainn nach eil ri fhaighinn
+        create_user_role: Cruthaich dreuchd
         demote_user: Ìslich an cleachdaiche
         destroy_announcement: Sguab às am brath-fios
+        destroy_canonical_email_block: Sguab às dhan bhacadh puist-d
         destroy_custom_emoji: Sguab às an t-Emoji gnàthaichte
         destroy_domain_allow: Sguab às ceadachadh na h-àrainne
         destroy_domain_block: Sguab às bacadh na h-àrainne
@@ -193,6 +198,7 @@ gd:
         destroy_ip_block: Sguab às an riaghailt IP
         destroy_status: Sguab às am post
         destroy_unavailable_domain: Sguab às àrainn nach eil ri fhaighinn
+        destroy_user_role: Mill an dreuchd
         disable_2fa_user: Cuir an dearbhadh dà-cheumnach à comas
         disable_custom_emoji: Cuir an t-Emoji gnàthaichte à comas
         disable_sign_in_token_auth_user: Cuir à comas dearbhadh le tòcan puist-d dhan chleachdaiche
@@ -219,12 +225,15 @@ gd:
         update_announcement: Ùraich am brath-fios
         update_custom_emoji: Ùraich an t-Emoji gnàthaichte
         update_domain_block: Ùraich bacadh na h-àrainne
+        update_ip_block: Ùraich an riaghailt IP
         update_status: Ùraich am post
+        update_user_role: Ùraich an dreuchd
       actions:
         approve_appeal_html: "Dh’aontaich %{name} ri ath-thagradh air co-dhùnadh na maorsainneachd o %{target}"
         approve_user_html: "Dh’aontaich %{name} ri clàradh o %{target}"
         assigned_to_self_report_html: "Dh’iomruin %{name} an gearan %{target} dhaibh fhèin"
         change_email_user_html: "Dh’atharraich %{name} seòladh puist-d a’ chleachdaiche %{target}"
+        change_role_user_html: "Atharraich %{name} an dreuchd aig %{target}"
         confirm_user_html: "Dhearbh %{name} seòladh puist-d a’ chleachdaiche %{target}"
         create_account_warning_html: "Chuir %{name} rabhadh gu %{target}"
         create_announcement_html: "Chruthaich %{name} brath-fios %{target} ùr"
@@ -677,29 +686,48 @@ gd:
       empty: Cha deach riaghailtean an fhrithealaiche a mhìneachadh fhathast.
       title: Riaghailtean an fhrithealaiche
     settings:
+      discovery:
+        title: Rùrachadh
+        trends: Treandaichean
       domain_blocks:
         all: Dhan a h-uile duine
         disabled: Na seall idir
         users: Dhan luchd-chleachdaidh a clàraich a-steach gu h-ionadail
+      registrations:
+        title: Clàraidhean
       registrations_mode:
         modes:
           approved: Tha aontachadh riatanach airson clàradh
           none: Chan fhaod neach sam bith clàradh
           open: '’S urrainn do neach sam bith clàradh'
+      title: Roghainnean an fhrithealaiche
     site_uploads:
       delete: Sguab às am faidhle a chaidh a luchdadh suas
       destroyed_msg: Chaidh an luchdadh suas dhan làrach a sguabadh às!
     statuses:
+      account: Ùghdar
+      application: Aplacaid
       back_to_account: Till gu duilleag a’ chunntais
       back_to_report: Till gu duilleag a’ ghearain
       batch:
         remove_from_report: Thoir air falbh on ghearan
         report: Gearan
       deleted: Chaidh a sguabadh às
+      favourites: Annsachdan
+      history: Eachdraidh nan tionndadh
+      in_reply_to: Air freagairt gu
+      language: Cànan
       media:
         title: Meadhanan
+      metadata: Meata-dàta
       no_status_selected: Cha deach post sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      open: Fosgail am post
+      original_status: Am post tùsail
+      reblogs: Brosnachaidhean
+      status_changed: Post air atharrachadh
       title: Postaichean a’ chunntais
+      trending: A’ treandadh
+      visibility: Faicsinneachd
       with_media: Le meadhanan riutha
     strikes:
       actions:
@@ -886,6 +914,7 @@ gd:
     warning: Bi glè chùramach leis an dàta seo. Na co-roinn le duine sam bith e!
     your_token: An tòcan inntrigidh agad
   auth:
+    apply_for_account: Faigh air an liosta-fheitheimh
     change_password: Facal-faire
     delete_account: Sguab às an cunntas
     delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
@@ -905,6 +934,7 @@ gd:
     migrate_account: Imrich gu cunntas eile
     migrate_account_html: Nam bu mhiann leat an cunntas seo ath-stiùireadh gu fear eile, ’s urrainn dhut <a href="%{path}">a rèiteachadh an-seo</a>.
     or_log_in_with: No clàraich a-steach le
+    privacy_policy_agreement_html: Leugh mi is tha mi ag aontachadh ris a’ <a href="%{privacy_policy_path}" target="_blank">phoileasaidh prìobhaideachd</a>
     providers:
       cas: CAS
       saml: SAML
@@ -912,6 +942,9 @@ gd:
     registration_closed: "Cha ghabh %{instance} ri buill ùra"
     resend_confirmation: Cuir an stiùireadh mun dearbhadh a-rithist
     reset_password: Ath-shuidhich am facal-faire
+    rules:
+      preamble: Tha iad ’gan stèidheachadh is a chur an gnìomh leis na maoir aig %{domain}.
+      title: Riaghailtean bunasach.
     security: Tèarainteachd
     set_new_password: Suidhich facal-faire ùr
     setup:
