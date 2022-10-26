@@ -48,7 +48,7 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :users, path: 'auth', controllers: {
+  devise_for :users, path: 'auth', format: false, controllers: {
     omniauth_callbacks: 'auth/omniauth_callbacks',
     sessions:           'auth/sessions',
     registrations:      'auth/registrations',
@@ -310,7 +310,7 @@ Rails.application.routes.draw do
 
   get '/admin', to: redirect('/admin/dashboard', status: 302)
 
-  namespace :api do
+  namespace :api, format: false do
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
 
