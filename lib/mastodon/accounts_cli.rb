@@ -126,6 +126,7 @@ module Mastodon
     end
 
     option :role
+    option :remove_role, type: :boolean
     option :email
     option :confirm, type: :boolean
     option :enable, type: :boolean
@@ -137,7 +138,8 @@ module Mastodon
     long_desc <<-LONG_DESC
       Modify a user account.
 
-      With the --role option, update the user's role.
+      With the --role option, update the user's role. To remove the user's
+      role, i.e. demote to normal user, use --remove-role.
 
       With the --email option, update the user's e-mail address. With
       the --confirm option, mark the user's e-mail as confirmed.
@@ -171,6 +173,8 @@ module Mastodon
         end
 
         user.role_id = role.id
+      elsif options[:remove_role]
+        user.role_id = nil
       end
 
       password = SecureRandom.hex if options[:reset_password]
