@@ -681,9 +681,9 @@ Rails.application.routes.draw do
     get path, to: 'home#index'
   end
 
-  get '/web/(*any)',   to: redirect('/%{any}', status: 302), as: :web
-  get '/about',        to: 'about#show'
-  get '/about/more',   to: redirect('/about')
+  get '/web/(*any)', to: redirect('/%{any}', status: 302), as: :web, defaults: { any: '' }
+  get '/about',      to: 'about#show'
+  get '/about/more', to: redirect('/about')
 
   get '/privacy-policy', to: 'privacy#show', as: :privacy_policy
   get '/terms',          to: redirect('/privacy-policy')
