@@ -48,6 +48,7 @@ nl:
         phrase: Komt overeen ongeacht hoofd-/kleine letters of een inhoudswaarschuwing
         scopes: Tot welke API's heeft de toepassing toegang. Wanneer je een toestemming van het bovenste niveau kiest, hoef je geen individuele toestemmingen meer te kiezen.
         setting_aggregate_reblogs: Geen nieuwe boosts tonen voor berichten die recentelijk nog zijn geboost (heeft alleen effect op nieuw ontvangen boosts)
+        setting_always_send_emails: Normaliter worden er geen e-mailmeldingen verstuurd wanneer je actief Mastodon gebruikt
         setting_default_sensitive: Gevoelige media wordt standaard verborgen en kan met één klik worden getoond
         setting_display_media_default: Als gevoelig gemarkeerde media verbergen
         setting_display_media_hide_all: Media altijd verbergen
@@ -107,9 +108,12 @@ nl:
         chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
         role: De rol bepaalt welke rechten een gebruiker heeft
       user_role:
+        highlighted: Dit maakt de rol openbaar zichtbaar
+        name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
+        url: Waar gebeurtenissen naartoe worden verzonden
     labels:
       account:
         fields:
@@ -272,6 +276,7 @@ nl:
         role: Rol
       user_role:
         color: Kleur van badge
+        highlighted: Rol als badge op profielpagina's tonen
         name: Naam
         permissions_as_keys: Rechten
         position: Prioriteit
