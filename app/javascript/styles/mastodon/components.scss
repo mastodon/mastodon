@@ -1382,6 +1382,14 @@
 
   display: block;
   position: relative;
+  overflow: hidden;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &-inline {
     display: inline-block;
@@ -1390,8 +1398,6 @@
   }
 
   &-composite {
-    @include avatar-radius;
-
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -1400,6 +1406,11 @@
       float: left;
       position: relative;
       box-sizing: border-box;
+    }
+
+    .account__avatar {
+      width: 100% !important;
+      height: 100% !important;
     }
 
     &__label {
@@ -1421,37 +1432,13 @@ a .account__avatar {
 }
 
 .account__avatar-overlay {
-  @include avatar-size(46px);
-
   position: relative;
 
-  &-base {
-    @include avatar-radius;
-    @include avatar-size(36px);
-
-    img {
-      @include avatar-radius;
-
-      width: 100%;
-      height: 100%;
-    }
-  }
-
   &-overlay {
-    @include avatar-radius;
-    @include avatar-size(24px);
-
     position: absolute;
     bottom: 0;
     right: 0;
     z-index: 1;
-
-    img {
-      @include avatar-radius;
-
-      width: 100%;
-      height: 100%;
-    }
   }
 }
 
