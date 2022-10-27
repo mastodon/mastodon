@@ -24,6 +24,10 @@ class Api::BaseController < ApplicationController
     render json: { error: 'Duplicate record' }, status: 422
   end
 
+  rescue_from Date::Error do
+    render json: { error: 'Invalid date supplied' }, status: 422
+  end
+
   rescue_from ActiveRecord::RecordNotFound do
     render json: { error: 'Record not found' }, status: 404
   end
