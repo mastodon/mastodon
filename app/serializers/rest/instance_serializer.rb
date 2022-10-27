@@ -83,7 +83,7 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     {
       enabled: registrations_enabled?,
       approval_required: Setting.registrations_mode == 'approved',
-      closed_registrations_message: registrations_enabled? ? nil : Setting.closed_registrations_message,
+      message: registrations_enabled? ? nil : registrations_message,
     }
   end
 
@@ -91,5 +91,17 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def registrations_enabled?
     Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
+  end
+
+  def registrations_message
+    if Setting.closed_registrations_message.present?
+      markdown.render(Setting.closed_registrations_message)
+    else
+      nil
+    end
+  end
+
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_images: true)
   end
 end
