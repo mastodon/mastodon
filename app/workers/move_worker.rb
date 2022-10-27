@@ -47,7 +47,7 @@ class MoveWorker
 
   def copy_account_notes!
     AccountNote.where(target_account: @source_account).find_each do |note|
-      text = I18n.with_locale(note.account.user&.locale || I18n.default_locale) do
+      text = I18n.with_locale(note.account.user&.locale.presence || I18n.default_locale) do
         I18n.t('move_handler.copy_account_note_text', acct: @source_account.acct)
       end
 
@@ -90,7 +90,7 @@ class MoveWorker
 
   def add_account_note_if_needed!(account, id)
     unless AccountNote.where(account: account, target_account: @target_account).exists?
-      text = I18n.with_locale(account.user&.locale || I18n.default_locale) do
+      text = I18n.with_locale(account.user&.locale.presence || I18n.default_locale) do
         I18n.t(id, acct: @source_account.acct)
       end
       AccountNote.create!(account: account, target_account: @target_account, comment: text)

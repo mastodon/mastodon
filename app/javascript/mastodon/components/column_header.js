@@ -17,6 +17,7 @@ class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
@@ -145,7 +146,7 @@ class ColumnHeader extends React.PureComponent {
       collapsedContent.push(moveButtons);
     }
 
-    if (children || (multiColumn && this.props.onPin)) {
+    if (this.context.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
       collapseButton = (
         <button
           className={collapsibleButtonClassName}

@@ -9,6 +9,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from '../initial_state';
 import RelativeTimestamp from './relative_timestamp';
+import Skeleton from 'mastodon/components/skeleton';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -26,7 +27,7 @@ export default @injectIntl
 class Account extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.map,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
@@ -67,7 +68,16 @@ class Account extends ImmutablePureComponent {
     const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction } = this.props;
 
     if (!account) {
-      return <div />;
+      return (
+        <div className='account'>
+          <div className='account__wrapper'>
+            <div className='account__display-name'>
+              <div className='account__avatar-wrapper'><Skeleton width={36} height={36} /></div>
+              <DisplayName />
+            </div>
+          </div>
+        </div>
+      );
     }
 
     if (hidden) {
@@ -126,7 +136,7 @@ class Account extends ImmutablePureComponent {
       <div className='account'>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+            <div className='account__avatar-wrapper'><Avatar account={account} size={46} /></div>
             {mute_expires_at}
             <DisplayName account={account} />
           </Permalink>

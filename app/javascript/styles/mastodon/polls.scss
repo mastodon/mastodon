@@ -64,8 +64,8 @@
       max-width: calc(100% - 45px - 25px);
     }
 
-    input[type=radio],
-    input[type=checkbox] {
+    input[type="radio"],
+    input[type="checkbox"] {
       display: none;
     }
 
@@ -73,7 +73,7 @@
       flex: 1 1 auto;
     }
 
-    input[type=text] {
+    input[type="text"] {
       display: block;
       box-sizing: border-box;
       width: 100%;
@@ -109,7 +109,6 @@
     box-sizing: border-box;
     width: 18px;
     height: 18px;
-    flex: 0 0 auto;
     margin-right: 10px;
     top: -1px;
     border-radius: 50%;
@@ -198,7 +197,7 @@
 
     &:active,
     &:focus {
-      background-color: rgba($dark-text-color, .1);
+      background-color: rgba($dark-text-color, 0.1);
     }
   }
 

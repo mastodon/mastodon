@@ -11,10 +11,14 @@ class Api::V1::Trends::StatusesController < Api::BaseController
 
   private
 
+  def enabled?
+    Setting.trends
+  end
+
   def set_statuses
     @statuses = begin
-      if Setting.trends
-        cache_collection(statuses_from_trends, Status)
+      if enabled?
+        cache_collection(statuses_from_trends.offset(offset_param).limit(limit_param(DEFAULT_STATUSES_LIMIT)), Status)
       else
         []
       end
@@ -24,7 +28,7 @@ class Api::V1::Trends::StatusesController < Api::BaseController
   def statuses_from_trends
     scope = Trends.statuses.query.allowed.in_locale(content_locale)
     scope = scope.filtered_for(current_account) if user_signed_in?
-    scope.offset(offset_param).limit(limit_param(DEFAULT_STATUSES_LIMIT))
+    scope
   end
 
   def insert_pagination_headers

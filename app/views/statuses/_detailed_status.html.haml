@@ -20,7 +20,7 @@
       %p<
         %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
-    .e-content
+    .e-content{ :lang => status.language }
       = prerender_custom_emojis(status_content_format(status), status.emojis)
 
       - if status.preloadable_poll
@@ -56,7 +56,7 @@
       - else
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener noreferrer'
       ·
-    = link_to remote_interaction_path(status, type: :reply), class: 'modal-button detailed-status__link' do
+    %span.detailed-status__link
       - if status.in_reply_to_id.nil?
         = fa_icon('reply')
       - else
@@ -65,12 +65,12 @@
       = " "
     ·
     - if status.public_visibility? || status.unlisted_visibility?
-      = link_to remote_interaction_path(status, type: :reblog), class: 'modal-button detailed-status__link' do
+      %span.detailed-status__link
         = fa_icon('retweet')
         %span.detailed-status__reblogs>= friendly_number_to_human status.reblogs_count
         = " "
       ·
-    = link_to remote_interaction_path(status, type: :favourite), class: 'modal-button detailed-status__link' do
+    %span.detailed-status__link
       = fa_icon('star')
       %span.detailed-status__favorites>= friendly_number_to_human status.favourites_count
       = " "

@@ -60,7 +60,8 @@ pt-BR:
       error:
         title: Ocorreu um erro
       new:
-        review_permissions: Analisar permissões
+        prompt_html: O %{client_name} gostaria de ter permissão para acessar sua conta. É uma aplicação de terceiros. <strong>Se você não confia, então você não deve autorizá-lo.</strong>
+        review_permissions: Revisar permissões
         title: Autorização necessária
       show:
         title: Copie este código de autorização e cole no aplicativo.
@@ -71,6 +72,8 @@ pt-BR:
         revoke: Você tem certeza?
       index:
         authorized_at: Autorizado em %{date}
+        description_html: Estas são as aplicações que podem acessar sua conta usando a API. Se houver aplicativos que você não reconhece ou com mau funcionamento, você pode revogar seu acesso.
+        last_used_at: Última vez usado em %{date}
         never_used: Nunca usado
         scopes: Permissões
         superapp: Interno
@@ -110,16 +113,23 @@ pt-BR:
         destroy:
           notice: Aplicativo revogado.
     grouped_scopes:
+      access:
+        read: Acesso somente para leitura
+        read/write: Acesso de leitura e escrita
+        write: Acesso somente para escrita
       title:
         accounts: Contas
+        admin/accounts: Administração de contas
+        admin/all: Todas as funções administrativas
+        admin/reports: Administração de relatórios
         all: Tudo
-        blocks: Blocos
+        blocks: Bloqueios
         bookmarks: Salvos
         conversations: Conversas
         crypto: Criptografia de ponta a ponta
         favourites: Favoritos
         filters: Filtros
-        follow: Relações
+        follow: Relacionamentos
         lists: Listas
         media: Mídias anexadas
         notifications: Notificações
@@ -161,6 +171,7 @@ pt-BR:
       write:accounts: alterar seu perfil
       write:blocks: bloquear contas e domínios
       write:bookmarks: salvar toots
+      write:conversations: silenciar e excluir conversas
       write:favourites: favoritar toots
       write:filters: criar filtros
       write:follows: seguir pessoas

@@ -68,6 +68,19 @@ cs:
         with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
       featured_tag:
         name: 'Nejspíš budete chtít použít jeden z těchto:'
+      filters:
+        action: Vyberte jakou akci provést, když příspěvek odpovídá filtru
+        actions:
+          hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
+          warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
+      form_admin_settings:
+        backups_retention_period: Zachovat generované uživatelské archivy pro zadaný počet dní.
+        bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
+        closed_registrations_message: Zobrazeno při zavření registrace
+        content_cache_retention_period: Příspěvky z jiných serverů budou odstraněny po zadaném počtu dní, pokud je nastavena kladná hodnota. To může být nevratné.
+        media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
+        site_contact_username: Jak vás lidé mohou oslovit na Mastodon.
+        site_terms: Použijte vlastní zásady ochrany osobních údajů nebo ponechte prázdné pro použití výchozího nastavení. Může být strukturováno pomocí Markdown syntaxe.
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
@@ -80,6 +93,7 @@ cs:
         ip: Zadejte IPv4 nebo IPv6 adresu. Můžete blokovat celé rozsahy použitím CIDR notace. Dejte pozor, ať neodříznete přístup sami sobě!
         severities:
           no_access: Blokovat přístup ke všem zdrojům
+          sign_up_block: Nové přihlášení nebude možné
           sign_up_requires_approval: Nové registrace budou vyžadovat schválení
         severity: Zvolte, jak naložit s požadavky z dané IP
       rule:
@@ -91,6 +105,16 @@ cs:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
+        role: Role určuje, která oprávnění má uživatel
+      user_role:
+        color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
+        highlighted: Toto roli učiní veřejně viditelnou
+        name: Veřejný název role, pokud má být role zobrazena jako odznak
+        permissions_as_keys: Uživatelé s touto rolí budou moci...
+        position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
+      webhook:
+        events: Zvolte odesílané události
+        url: Kam budou události odesílány
     labels:
       account:
         fields:
@@ -178,6 +202,7 @@ cs:
         setting_use_pending_items: Pomalý režim
         severity: Vážnost
         sign_in_token_attempt: Bezpečnostní kód
+        title: Název
         type: Typ importu
         username: Uživatelské jméno
         username_or_email: Uživatelské jméno nebo e-mail
@@ -186,6 +211,33 @@ cs:
         with_dns_records: Zahrnout MX záznamy a IP adresy domény
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Zcela skrýt
+          warn: Skrýt s varováním
+      form_admin_settings:
+        backups_retention_period: Doba uchovávání archivu uživatelů
+        bootstrap_timeline_accounts: Vždy doporučovat tyto účty novým uživatelům
+        content_cache_retention_period: Doba uchování mezipaměti obsahu
+        custom_css: Vlastní CSS
+        mascot: Vlastní maskot (zastaralé)
+        media_cache_retention_period: Doba uchovávání mezipaměti médií
+        profile_directory: Povolit adresář profilů
+        registrations_mode: Kdo se může přihlásit
+        require_invite_text: Požadovat důvod pro připojení
+        show_domain_blocks: Zobrazit blokace domén
+        show_domain_blocks_rationale: Zobrazit proč byly blokovány domény
+        site_contact_email: Kontaktní e-mail
+        site_contact_username: Jméno kontaktu
+        site_extended_description: Rozšířený popis
+        site_short_description: Popis serveru
+        site_terms: Ochrana osobních údajů
+        site_title: Název serveru
+        theme: Výchozí motiv
+        thumbnail: Miniatura serveru
+        timeline_preview: Povolit neověřený přístup k veřejným časovým osám
+        trendable_by_default: Povolit trendy bez předchozí revize
+        trends: Povolit trendy
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -199,6 +251,7 @@ cs:
         ip: IP
         severities:
           no_access: Blokovat přístup
+          sign_up_block: Blokovat registrace
           sign_up_requires_approval: Omezit registrace
         severity: Pravidlo
       notification_emails:
@@ -219,7 +272,19 @@ cs:
         name: Hashtag
         trendable: Povolit zobrazení tohoto hashtagu mezi populárními
         usable: Povolit používat tento hashtag v příspěvcích
+      user:
+        role: Role
+      user_role:
+        color: Barva odznaku
+        highlighted: Zobrazit roli jako odznak na profilech uživatelů
+        name: Název
+        permissions_as_keys: Oprávnění
+        position: Priorita
+      webhook:
+        events: Zapnuté události
+        url: URL koncového bodu
     'no': Ne
+    not_recommended: Nedoporučuje se
     recommended: Doporučeno
     required:
       mark: "*"

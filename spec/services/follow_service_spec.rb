@@ -121,6 +121,19 @@ RSpec.describe FollowService, type: :service do
         expect(sender.muting_reblogs?(bob)).to be false
       end
     end
+
+    describe 'already followed account, changing languages' do
+      let(:bob) { Fabricate(:account, username: 'bob') }
+
+      before do
+        sender.follow!(bob)
+        subject.call(sender, bob, languages: %w(en es))
+      end
+
+      it 'changes languages' do
+        expect(Follow.find_by(account: sender, target_account: bob)&.languages).to match_array %w(en es)
+      end
+    end
   end
 
   context 'remote ActivityPub account' do

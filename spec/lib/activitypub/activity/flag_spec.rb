@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ActivityPub::Activity::Flag do
-  let(:sender)  { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/account') }
+  let(:sender)  { Fabricate(:account, username: 'example.com', domain: 'example.com', uri: 'http://example.com/actor') }
   let(:flagged) { Fabricate(:account) }
   let(:status)  { Fabricate(:status, account: flagged, uri: 'foobar') }
   let(:flag_id) { nil }
@@ -23,16 +23,88 @@ RSpec.describe ActivityPub::Activity::Flag do
   describe '#perform' do
     subject { described_class.new(json, sender) }
 
-    before do
-      subject.perform
+    context 'when the reported status is public' do
+      before do
+        subject.perform
+      end
+
+      it 'creates a report' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment).to eq 'Boo!!'
+        expect(report.status_ids).to eq [status.id]
+      end
     end
 
-    it 'creates a report' do
-      report = Report.find_by(account: sender, target_account: flagged)
+    context 'when the reported status is private and should not be visible to the remote server' do
+      let(:status) { Fabricate(:status, account: flagged, uri: 'foobar', visibility: :private) }
 
-      expect(report).to_not be_nil
-      expect(report.comment).to eq 'Boo!!'
-      expect(report.status_ids).to eq [status.id]
+      before do
+        subject.perform
+      end
+
+      it 'creates a report with no attached status' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment).to eq 'Boo!!'
+        expect(report.status_ids).to eq []
+      end
+    end
+
+    context 'when the reported status is private and the author has a follower on the remote instance' do
+      let(:status) { Fabricate(:status, account: flagged, uri: 'foobar', visibility: :private) }
+      let(:follower) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/users/account') }
+
+      before do
+        follower.follow!(flagged)
+        subject.perform
+      end
+
+      it 'creates a report with the attached status' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment).to eq 'Boo!!'
+        expect(report.status_ids).to eq [status.id]
+      end
+    end
+
+    context 'when the reported status is private and the author mentions someone else on the remote instance' do
+      let(:status) { Fabricate(:status, account: flagged, uri: 'foobar', visibility: :private) }
+      let(:mentioned) { Fabricate(:account, domain: 'example.com', uri: 'http://example.com/users/account') }
+
+      before do
+        status.mentions.create(account: mentioned)
+        subject.perform
+      end
+
+      it 'creates a report with the attached status' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment).to eq 'Boo!!'
+        expect(report.status_ids).to eq [status.id]
+      end
+    end
+
+    context 'when the reported status is private and the author mentions someone else on the local instance' do
+      let(:status) { Fabricate(:status, account: flagged, uri: 'foobar', visibility: :private) }
+      let(:mentioned) { Fabricate(:account) }
+
+      before do
+        status.mentions.create(account: mentioned)
+        subject.perform
+      end
+
+      it 'creates a report with no attached status' do
+        report = Report.find_by(account: sender, target_account: flagged)
+
+        expect(report).to_not be_nil
+        expect(report.comment).to eq 'Boo!!'
+        expect(report.status_ids).to eq []
+      end
     end
   end
 

@@ -63,6 +63,8 @@ export default class Avatar extends React.PureComponent {
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
         style={style}
+        role='img'
+        aria-label={account?.get('acct')}
       />
     );
   }

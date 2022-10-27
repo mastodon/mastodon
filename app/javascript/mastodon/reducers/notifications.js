@@ -28,7 +28,7 @@ import {
 } from '../actions/app';
 import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from '../actions/timelines';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import compareId from '../compare_id';
 
 const initialState = ImmutableMap({
@@ -41,7 +41,7 @@ const initialState = ImmutableMap({
   lastReadId: '0',
   readMarkerId: '0',
   isTabVisible: true,
-  isLoading: false,
+  isLoading: 0,
   browserSupport: false,
   browserPermission: 'default',
 });
@@ -52,6 +52,7 @@ const notificationToMap = notification => ImmutableMap({
   account: notification.account.id,
   created_at: notification.created_at,
   status: notification.status ? notification.status.id : null,
+  report: notification.report ? fromJS(notification.report) : null,
 });
 
 const normalizeNotification = (state, notification, usePendingItems) => {
@@ -114,7 +115,7 @@ const expandNormalizedNotifications = (state, notifications, next, isLoadingRece
       }
     }
 
-    mutable.set('isLoading', false);
+    mutable.update('isLoading', (nbLoading) => nbLoading - 1);
   });
 };
 
@@ -213,9 +214,9 @@ export default function notifications(state = initialState, action) {
   case NOTIFICATIONS_LOAD_PENDING:
     return state.update('items', list => state.get('pendingItems').concat(list.take(40))).set('pendingItems', ImmutableList()).set('unread', 0);
   case NOTIFICATIONS_EXPAND_REQUEST:
-    return state.set('isLoading', true);
+    return state.update('isLoading', (nbLoading) => nbLoading + 1);
   case NOTIFICATIONS_EXPAND_FAIL:
-    return state.set('isLoading', false);
+    return state.update('isLoading', (nbLoading) => nbLoading - 1);
   case NOTIFICATIONS_FILTER_SET:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', true);
   case NOTIFICATIONS_SCROLL_TOP:
@@ -233,8 +234,6 @@ export default function notifications(state = initialState, action) {
   case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
   case FOLLOW_REQUEST_REJECT_SUCCESS:
     return filterNotifications(state, [action.id], 'follow_request');
-  case ACCOUNT_MUTE_SUCCESS:
-    return action.relationship.muting_notifications ? filterNotifications(state, [action.relationship.id]) : state;
   case NOTIFICATIONS_CLEAR:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', false);
   case TIMELINE_DELETE:

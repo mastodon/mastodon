@@ -5,7 +5,7 @@ $white: #ffffff;
 $classic-base-color: #282c37;
 $classic-primary-color: #9baec8;
 $classic-secondary-color: #d9e1e8;
-$classic-highlight-color: #2b90d9;
+$classic-highlight-color: #6364ff;
 
 // Differences
 $success-green: lighten(#3c754d, 8%);
@@ -17,10 +17,11 @@ $ui-base-color: $classic-secondary-color !default;
 $ui-base-lighter-color: #b0c0cf;
 $ui-primary-color: #9bcbed;
 $ui-secondary-color: $classic-base-color !default;
-$ui-highlight-color: #2b90d9;
+$ui-highlight-color: $classic-highlight-color !default;
 
 $primary-text-color: $black !default;
 $darker-text-color: $classic-base-color !default;
+$highlight-text-color: darken($ui-highlight-color, 8%) !default;
 $dark-text-color: #444b5d;
 $action-button-color: #606984;
 
@@ -28,10 +29,10 @@ $inverted-text-color: $black !default;
 $lighter-text-color: $classic-base-color !default;
 $light-text-color: #444b5d;
 
-//Newly added colors
+// Newly added colors
 $account-background-color: $white !default;
 
-//Invert darkened and lightened colors
+// Invert darkened and lightened colors
 @function darken($color, $amount) {
   @return hsl(hue($color), saturation($color), lightness($color) + $amount);
 }

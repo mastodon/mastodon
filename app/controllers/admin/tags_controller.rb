@@ -16,6 +16,8 @@ module Admin
       if @tag.update(tag_params.merge(reviewed_at: Time.now.utc))
         redirect_to admin_tag_path(@tag.id), notice: I18n.t('admin.tags.updated_msg')
       else
+        @time_period = (6.days.ago.to_date...Time.now.utc.to_date)
+
         render :show
       end
     end
@@ -27,7 +29,7 @@ module Admin
     end
 
     def tag_params
-      params.require(:tag).permit(:name, :trendable, :usable, :listable)
+      params.require(:tag).permit(:name, :display_name, :trendable, :usable, :listable)
     end
   end
 end

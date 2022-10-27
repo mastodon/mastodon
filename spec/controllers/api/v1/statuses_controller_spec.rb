@@ -20,6 +20,85 @@ RSpec.describe Api::V1::StatusesController, type: :controller do
         get :show, params: { id: status.id }
         expect(response).to have_http_status(200)
       end
+
+      context 'when post includes filtered terms' do
+        let(:status) { Fabricate(:status, text: 'this toot is about that banned word') }
+
+        before do
+          user.account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+        end
+
+        it 'returns http success' do
+          get :show, params: { id: status.id }
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns filter information' do
+          get :show, params: { id: status.id }
+          json = body_as_json
+          expect(json[:filtered][0]).to include({
+            filter: a_hash_including({
+              id: user.account.custom_filters.first.id.to_s,
+              title: 'filter1',
+              filter_action: 'hide',
+            }),
+            keyword_matches: ['banned'],
+          })
+        end
+      end
+
+      context 'when post is explicitly filtered' do
+        let(:status) { Fabricate(:status, text: 'hello world') }
+
+        before do
+          filter = user.account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide)
+          filter.statuses.create!(status_id: status.id)
+        end
+
+        it 'returns http success' do
+          get :show, params: { id: status.id }
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns filter information' do
+          get :show, params: { id: status.id }
+          json = body_as_json
+          expect(json[:filtered][0]).to include({
+            filter: a_hash_including({
+              id: user.account.custom_filters.first.id.to_s,
+              title: 'filter1',
+              filter_action: 'hide',
+            }),
+            status_matches: [status.id.to_s],
+          })
+        end
+      end
+
+      context 'when reblog includes filtered terms' do
+        let(:status) { Fabricate(:status, reblog: Fabricate(:status, text: 'this toot is about that banned word')) }
+
+        before do
+          user.account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+        end
+
+        it 'returns http success' do
+          get :show, params: { id: status.id }
+          expect(response).to have_http_status(200)
+        end
+
+        it 'returns filter information' do
+          get :show, params: { id: status.id }
+          json = body_as_json
+          expect(json[:reblog][:filtered][0]).to include({
+            filter: a_hash_including({
+              id: user.account.custom_filters.first.id.to_s,
+              title: 'filter1',
+              filter_action: 'hide',
+            }),
+            keyword_matches: ['banned'],
+          })
+        end
+      end
     end
 
     describe 'GET #context' do

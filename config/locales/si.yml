@@ -1,66 +1,74 @@
 ---
 si:
   about:
-    about_this: පිලිබඳව
-    active_count_after: සක්‍රීයයි
-    active_footnote: මාසික ක්‍රියාකාරී පරිශීලකයින් (මාක්‍රිප)
-    api: යෙ.ක්‍ර. මු. (API)
-    apps: ජංගම යෙදුම්
-    contact: සබඳතාව
-    contact_missing: සකසා නැත
+    about_mastodon_html: 'අනාගත සමාජ ජාලය: දැන්වීම් නැත, ආයතනික නිරීක්ෂණ නැත, සදාචාරාත්මක සැලසුම් සහ විමධ්‍යගත කිරීම! Mastodon සමඟ ඔබේ දත්ත අයිති කරගන්න!'
+    contact_missing: සකස් කර නැත
     contact_unavailable: අ/නොවේ
-    documentation: ප්‍රලේඛනය
-    get_apps: ජංගම යෙදුමක් උත්සාහ කරන්න
-    learn_more: තව දැනගන්න
-    privacy_policy: රහස්‍යතා ප්‍රතිපත්තිය
-    rules: සේවාදායකයේ නීති
-    source_code: මූල කේතය
-    status_count_after:
-      one: තත්වය
-      other: තත්වයන්
-    terms: සේවාවේ කොන්දේසි
-    unavailable_content_description:
-      domain: සේවාදායකය
-      reason: හේතුව
-      silenced_title: සීමාසහිත සේවාදායක
-      suspended_title: අත්හිටවූ සේවාදායකයන්
-    user_count_after:
-      one: පරිශීලක
-      other: පරිශීලකයින්
-    what_is_mastodon: මාස්ටඩන් යනු කුමක්ද?
+    hosted_on: Mastodon %{domain}හි සත්කාරකත්වය දරයි
   accounts:
-    joined: "%{date} එක් වී ඇත"
-    media: මාධ්‍යය
+    follow: අනුගමනය
+    followers:
+      one: අනුගාමිකයා
+      other: අනුගාමිකයින්
+    following: අනුගමනය
+    instance_actor_flash: මෙම ගිණුම සේවාදායකයම නියෝජනය කිරීමට භාවිතා කරන අතථ්‍ය නළුවෙකු වන අතර කිසිදු තනි පරිශීලකයෙකු නොවේ. එය ෆෙඩරේෂන් අරමුණු සඳහා භාවිතා කරන අතර අත්හිටුවිය යුතු නොවේ.
+    last_active: අවසාන ක්රියාකාරී
+    link_verified_on: මෙම සබැඳියේ හිමිකාරිත්වය %{date}හි පරීක්ෂා කරන ලදී
     nothing_here: මෙහි කිසිත් නැත!
-    roles:
-      admin: පරිපාලක
-      bot: ස්වයං ක්‍රමලේඛය
-      group: සමූහය
+    pin_errors:
+      following: ඔබට අනුමත කිරීමට අවශ්‍ය පුද්ගලයා ඔබ දැනටමත් අනුගමනය කරමින් සිටිය යුතුය
+    posts:
+      one: ලිපිය
+      other: ලිපි
+    posts_tab_heading: ලිපි
   admin:
+    account_actions:
+      action: ක්‍රියාව සිදු කරන්න
+      title: "%{acct}මත මධ්‍යස්ථ ක්‍රියාව සිදු කරන්න"
     account_moderation_notes:
       create: සටහන හැරයන්න
+      created_msg: මධ්‍යස්ථ සටහන සාර්ථකව සාදන ලදී!
+      destroyed_msg: මධ්‍යස්ථ සටහන සාර්ථකව විනාශ විය!
     accounts:
       add_email_domain_block: වි-තැපැල් වසම අවහිර කරන්න
       approve: අනුමත කරන්න
+      approved_msg: "%{username}හි ලියාපදිංචි වීමේ යෙදුම සාර්ථකව අනුමත කරන ලදී"
       are_you_sure: ඔබට විශ්වාසද?
+      avatar: අවතාරය
       by_domain: වසම
       change_email:
-        changed_msg: ගිණුමේ වි-තැපෑල සාර්ථකව වෙනස් කෙරිණි!
         current_email: වත්මන් වි-තැපෑල
         label: වි-තැපෑල වෙනස් කරන්න
         new_email: නව විද්‍යුත් තැපෑල
         submit: වි-තැපෑල වෙනස් කරන්න
         title: "%{username} සඳහා වි-තැපෑල වෙනස් කරන්න"
       confirm: සනාථ කරන්න
-      confirmed: සනාථ කර ඇත
+      confirmed: තහවුරු කර ඇත
       confirming: සනාථ කරමින්
+      custom: අභිරුචි
+      delete: දත්ත මකන්න
+      deleted: මකා දමන ලදී
+      demote: පහත් කරන්න
+      destroyed_msg: "%{username}හි දත්ත ඉක්මනින් මකා දැමීමට පෝලිම් කර ඇත"
+      disable: කැටි කරන්න
+      disable_sign_in_token_auth: ඊමේල් ටෝකන් සත්‍යාපනය අක්‍රීය කරන්න
+      disable_two_factor_authentication: 2FA අබල කරන්න
+      disabled: ශීත කළ
+      display_name: ප්රදර්ශන නාමය
       domain: වසම
       edit: සංස්කරණය
       email: විද්‍යුත් තැපෑල
       email_status: වි-තැපෑලෙහි තත්වය
+      enable: කැටි කිරීම ඉවත් කරන්න
+      enable_sign_in_token_auth: විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සබල කරන්න
       enabled: සබල කර ඇත
+      enabled_msg: "%{username}ගේ ගිණුම සාර්ථකව අත්හිටුවා ඇත"
+      followers: අනුගාමිකයින්
+      follows: පහත සඳහන්
       header: ශීර්ෂය
-      invite_request_text: එක්වීම සඳහා හේතුව
+      inbox_url: එන ලිපි URL
+      invite_request_text: එක්වීම සඳහා
+      invited_by: විසින් ආරාධනා කරන ලදී
       ip: අ.ජා. කෙ. (IP)
       joined: එක් වී ඇත
       location:
@@ -70,259 +78,1119 @@ si:
         title: ස්ථානය
       login_status: පිවිසීමේ තත්වය
       media_attachments: මාධ්‍ය ඇමුණුම්
+      memorialize: මතක සටහන් බවට පත් කරන්න
+      memorialized: අනුස්මරණය කරන ලදී
+      memorialized_msg: සාර්ථක ලෙස %{username} අනුස්මරණ ගිණුමක් බවට පත් කරන ලදී
       moderation:
         active: සක්‍රීයයි
         all: සියල්ල
+        pending: පොරොත්තුවෙන්
         suspended: අත්හිටුවන ලදි
-      most_recent_ip: වඩා මෑත අ.ජා.කෙ.(IP)
+        title: මධ්යස්ථභාවය
+      moderation_notes: මධ්‍යස්ථ සටහන්
+      most_recent_activity: වඩාත්ම මෑත ක්රියාකාරිත්වය
+      most_recent_ip: ඊට වඩා අ.ජා.කේ.(IP)
+      no_account_selected: කිසිවක් තෝරා නොගත් බැවින් ගිණුම් කිසිවක් වෙනස් කර නැත
+      no_limits_imposed: සීමාවන් පනවා නැත
+      not_subscribed: දායක වී නැත
+      pending: පොරොත්තු සමාලෝචනය
       perform_full_suspension: අත්හිටුවන්න
+      previous_strikes: පෙර වැඩ වර්ජන
+      previous_strikes_description_html:
+        one: මෙම ගිණුමට <strong>එක</strong> වර්ජනයක් ඇත.
+        other: මෙම ගිණුමේ වර්ජන <strong>%{count}</strong> ඇත.
+      promote: ප්රවර්ධනය කරන්න
       protocol: කෙටුම්පත
-      public: ප්‍රසිද්ධ
+      public: ප්රසිද්ධ
+      push_subscription_expires: පුෂ් දායකත්වය කල් ඉකුත් වේ
       redownload: පැතිකඩ නැවුම්කරන්න
+      redownloaded_msg: මූලාරම්භයේ සිට %{username}හි පැතිකඩ සාර්ථකව නැවුම් කරන ලදී
       reject: ප්‍රතික්ෂේප
+      rejected_msg: "%{username}හි ලියාපදිංචි වීමේ අයදුම්පත සාර්ථකව ප්‍රතික්ෂේප විය"
+      remove_avatar: අවතාරය ඉවත් කරන්න
       remove_header: ශීර්ෂය ඉවත්කරන්න
+      removed_avatar_msg: "%{username}ගේ අවතාර රූපය සාර්ථකව ඉවත් කරන ලදී"
+      removed_header_msg: "%{username}හි ශීර්ෂ රූපය සාර්ථකව ඉවත් කරන ලදී"
+      resend_confirmation:
+        already_confirmed: මෙම පරිශීලකයා දැනටමත් තහවුරු කර ඇත
+        send: තහවුරුකිරීමේ විද්යුත් තැපැල් පණිවිඩය නැවත එවන්න
+        success: තහවුරු කිරීමේ විද්‍යුත් තැපෑල සාර්ථකව යවා ඇත!
       reset: නැවත සකසන්න
       reset_password: මුරපදය නැවතසකසන්න
-      role: අවසරයන්
-      roles:
-        admin: පරිපාලක
-        staff: කාර්ය මණ්ඩලය
-        user: පරිශීලක
+      resubscribe: නැවත දායක වන්න
       search: සොයන්න
+      search_same_email_domain: එකම විද්‍යුත් තැපැල් වසම සහිත වෙනත් පරිශීලකයන්
+      search_same_ip: එකම IP සහිත වෙනත් පරිශීලකයන්
       security_measures:
         only_password: මුරපදය පමණි
+        password_and_2fa: මුරපදය සහ 2FA
       sensitive: සංවේදී
+      sensitized: සංවේදී ලෙස සලකුණු කර ඇත
+      shared_inbox_url: බෙදාගත් එන ලිපි URL
+      show:
+        created_reports: වාර්තා හැදුවා
+        targeted_reports: වෙනත් අය විසින් වාර්තා කරන ලදී
       silence: සීමාව
       silenced: සීමාසහිත
-      statuses: තත්වයන්
+      statuses: ලිපි
+      strikes: පෙර වැඩ වර්ජන
+      subscribe: දායක වන්න
+      suspend: අත්හිටුවන්න
       suspended: අත්හිටුවන ලදි
+      suspension_irreversible: මෙම ගිණුමේ දත්ත ආපසු හැරවිය නොහැකි ලෙස මකා ඇත. ඔබට එය භාවිතා කළ හැකි බවට පත් කිරීම සඳහා ගිණුම අත්හිටුවිය හැක නමුත් එය පෙර තිබූ දත්ත කිසිවක් ප්‍රතිසාධනය නොකරයි.
+      suspension_reversible_hint_html: ගිණුම අත්හිටුවා ඇති අතර, දත්ත සම්පූර්ණයෙන්ම %{date}දින ඉවත් කරනු ලැබේ. එතෙක් කිසිදු අයහපත් ප්‍රතිඵලයකින් තොරව ගිණුම යථා තත්ත්වයට පත් කළ හැක. ඔබට ගිණුමේ සියලුම දත්ත වහාම ඉවත් කිරීමට අවශ්‍ය නම්, ඔබට එය පහතින් කළ හැක.
       title: ගිණුම්
+      unblock_email: ඊමේල් ලිපිනය අවහිර කිරීම ඉවත් කරන්න
+      unblocked_email_msg: "%{username}ගේ විද්‍යුත් තැපැල් ලිපිනය අවහිර කිරීම සාර්ථකව ඉවත් කරන ලදී"
+      unconfirmed_email: තහවුරු නොකළ ඊමේල්
+      undo_sensitized: බල සංවේදී අහෝසි කරන්න
+      undo_silenced: සීමාව අහෝසි කරන්න
+      undo_suspension: අත්හිටුවීම අහෝසි කරන්න
+      unsilenced_msg: "%{username}ගිණුමේ සීමාව සාර්ථකව ඉවත් කරන ලදී"
+      unsubscribe: දායක නොවන්න
+      unsuspended_msg: "%{username}ගිණුම සාර්ථකව අත්හිටුවන ලදී"
       username: පරිශීලක නාමය
+      view_domain: වසම සඳහා සාරාංශය බලන්න
       warn: අවවාද
       web: වියමන
+      whitelisted: ෆෙඩරේෂන් සඳහා අවසර ඇත
     action_logs:
       action_types:
-        change_email_user: පරිශීලකට වි-තැපෑල වෙනස් කරන්න
+        approve_appeal: අභියාචනය අනුමත කරන්න
+        approve_user: පරිශීලක අනුමත කරන්න
+        assigned_to_self_report: වාර්තාව පැවරීම
+        change_email_user: පරිශීලකයින්ට වි-තැපෑල වෙනස් කරන්න
+        confirm_user: පරිශීලක තහවුරු කරන්න
         create_account_warning: අවවාදයක් සාදන්න
         create_announcement: නිවේදනය සාදන්න
+        create_custom_emoji: අභිරුචි ඉමොජි සාදන්න
         create_domain_allow: වසම් ඉඩදීමක් සාදන්න
         create_domain_block: වසම් අවහිරයක් සාදන්න
+        create_email_domain_block: ඊමේල් ඩොමේන් බ්ලොක් එකක් සාදන්න
         create_ip_block: අ.ජා. කෙ. (IP) නීතියක් සාදන්න
-        disable_user: පරිශීලක අබල කරන්න
+        create_unavailable_domain: ලබා ගත නොහැකි වසම සාදන්න
+        demote_user: පරිශීලකයා පහත් කරන්න
+        destroy_announcement: නිවේදනය මකන්න
+        destroy_custom_emoji: අභිරුචි ඉමොජි මකන්න
+        destroy_domain_allow: වසම මකන්න ඉඩ දෙන්න
+        destroy_domain_block: වසම් වාරණය මකන්න
+        destroy_email_domain_block: ඊමේල් ඩොමේන් බ්ලොක් එක මකන්න
+        destroy_instance: වසම පිරිසිදු කරන්න
+        destroy_ip_block: IP රීතිය මකන්න
+        destroy_status: පළ කිරීම මකන්න
+        destroy_unavailable_domain: ලබා ගත නොහැකි වසම මකන්න
+        disable_2fa_user: 2FA අබල කරන්න
+        disable_custom_emoji: අභිරුචි ඉමොජි අබල කරන්න
+        disable_sign_in_token_auth_user: පරිශීලකයා සඳහා ඊමේල් ටෝකන් සත්‍යාපනය අක්‍රීය කරන්න
+        disable_user: පරිශීලනය කරන්න
+        enable_custom_emoji: අභිරුචි ඉමොජි සබල කරන්න
+        enable_sign_in_token_auth_user: පරිශීලකයා සඳහා විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සක්‍රීය කරන්න
         enable_user: පරිශීලක සබල කරන්න
+        memorialize_account: ගිණුම අනුස්මරණ කරන්න
+        promote_user: පරිශීලක ප්රවර්ධනය කරන්න
+        reject_appeal: අභියාචනය ප්‍රතික්ෂේප කරන්න
+        reject_user: පරිශීලක ප්‍රතික්ෂේප කරන්න
+        remove_avatar_user: Avatar ඉවත් කරන්න
         reopen_report: වාර්තාව නැවත විවෘත කරන්න
         reset_password_user: මුරපදය නැවතසකසන්න
-        suspend_account: ගිණුම අත්හිටුවන්න
+        resolve_report: වාර්තාව විසඳන්න
+        sensitive_account: බල සංවේදී ගිණුම
+        silence_account: ගිණුම සීමා කරන්න
+        suspend_account: සැලකිය යුතු
+        unassigned_report: වාර්තාව පැවරීම ඉවත් කරන්න
+        unblock_email_account: ඊමේල් ලිපිනය අවහිර කිරීම ඉවත් කරන්න
+        unsensitive_account: බල සංවේදී ගිණුම අහෝසි කරන්න
+        unsilence_account: සීමාව ගිණුම අහෝසි කරන්න
+        unsuspend_account: ගිණුම අත්හිටුවීම
         update_announcement: නිවේදනය යාවත්කාල කරන්න
-      filter_by_action: ක්‍රියාමාර්ගය අනුව පෙරන්න
+        update_custom_emoji: අභිරුචි ඉමොජි යාවත්කාලීන කරන්න
+        update_domain_block: ඩොමේන් බ්ලොක් යාවත්කාලීන කරන්න
+        update_status: පළ කිරීම යාවත්කාලීන කරන්න
+      actions:
+        approve_appeal_html: "%{name} අනුමත මධ්‍යස්ථ තීරණ අභියාචනය %{target}සිට"
+        approve_user_html: "%{name} අනුමත ලියාපදිංචිය %{target}සිට"
+        assigned_to_self_report_html: "%{name} වාර්තාව %{target} තමන්ටම පවරා ඇත"
+        change_email_user_html: "%{name} පරිශීලක %{target}ගේ ඊමේල් ලිපිනය වෙනස් කළේය"
+        confirm_user_html: "%{name} පරිශීලකයාගේ තහවුරු කරන ලද විද්‍යුත් තැපැල් ලිපිනය %{target}"
+        create_account_warning_html: "%{name} %{target}අනතුරු ඇඟවීමක් යවා ඇත"
+        create_announcement_html: "%{name} නව නිවේදනයක් තනන %{target}"
+        create_custom_emoji_html: "%{name} නව ඉමොජි %{target}උඩුගත කරන ලදී"
+        create_domain_allow_html: "%{name} වසම %{target}සමඟ ෆෙඩරේෂණයට අවසර දී ඇත"
+        create_domain_block_html: "%{name} අවහිර කළ වසම %{target}"
+        create_email_domain_block_html: "%{name} අවහිර කරන ලද විද්‍යුත් තැපැල් වසම %{target}"
+        create_ip_block_html: "%{name} IP %{target}සඳහා රීතිය සාදන ලදී"
+        create_unavailable_domain_html: "%{name} වසම %{target}වෙත බෙදා හැරීම නැවැත්වීය"
+        demote_user_html: "%{name} පහත හෙලන ලද පරිශීලක %{target}"
+        destroy_announcement_html: "%{name} මකා දැමූ නිවේදනය %{target}"
+        destroy_domain_allow_html: වසම %{target}සමඟ %{name} අවසර නොදුන් සම්මේලනය
+        destroy_domain_block_html: "%{name} අවහිර නොකළ වසම %{target}"
+        destroy_email_domain_block_html: "%{name} අවහිර නොකළ විද්‍යුත් තැපැල් වසම %{target}"
+        destroy_instance_html: "%{name} පිරිසිදු කරන ලද වසම %{target}"
+        destroy_ip_block_html: IP %{target}සඳහා %{name} මකා දැමූ රීතිය
+        destroy_status_html: "%{name} පෝස්ට් %{target}විසින් ඉවත් කරන ලදී"
+        destroy_unavailable_domain_html: "%{name} වසම %{target}වෙත බෙදා හැරීම නැවත ආරම්භ විය"
+        disable_2fa_user_html: "%{name} පරිශීලක %{target}සඳහා සාධක දෙකක අවශ්‍යතාවය අක්‍රීය කර ඇත"
+        disable_custom_emoji_html: "%{name} ආබාධිත ඉමොජි %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} අක්‍රීය කරන ලද විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සඳහා %{target}"
+        disable_user_html: "%{name} පරිශීලක %{target}සඳහා අබල කළ පිවිසුම"
+        enable_custom_emoji_html: "%{name} සක්‍රීය ඉමොජි %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} %{target}විද්‍යුත් තැපෑල ටෝකන් සත්‍යාපනය සක්‍රීය කර ඇත"
+        enable_user_html: පරිශීලක %{target}සඳහා %{name} සක්‍රීය පුරනය වීම
+        memorialize_account_html: "%{name} %{target}ගේ ගිණුම සිහිවටන පිටුවක් බවට පත් කළේය"
+        promote_user_html: "%{name} උසස් පරිශීලක %{target}"
+        reject_appeal_html: "%{name} %{target}සිට මධ්‍යස්ථ තීරණ අභියාචනය ප්‍රතික්ෂේප කරන ලදී"
+        reject_user_html: "%{name} %{target}සිට ලියාපදිංචි වීම ප්‍රතික්ෂේප විය"
+        remove_avatar_user_html: "%{name} %{target}ගේ අවතාරය ඉවත් කරන ලදී"
+        reopen_report_html: "%{name} නැවත විවෘත කළ වාර්තාව %{target}"
+        reset_password_user_html: "%{name} පරිශීලක %{target}හි මුරපදය යළි පිහිටුවන්න"
+        resolve_report_html: "%{name} විසඳන ලද වාර්තාව %{target}"
+        sensitive_account_html: "%{name} %{target}හි මාධ්‍ය සංවේදී ලෙස සලකුණු කර ඇත"
+        silence_account_html: "%{name} සීමිත %{target}ගිණුමක්"
+        suspend_account_html: "%{name} %{target}ගේ ගිණුම අත්හිටුවා ඇත"
+        unassigned_report_html: "%{name} පවරා නොදුන් වාර්තාව %{target}"
+        unblock_email_account_html: "%{name} %{target}ගේ ඊමේල් ලිපිනය අවහිර කිරීම ඉවත් කරන ලදී"
+        unsensitive_account_html: "%{name} සලකුණු නොකළ %{target}ගේ මාධ්‍ය සංවේදී ලෙස"
+        unsilence_account_html: "%{target}ගිණුමේ %{name} undid සීමාව"
+        unsuspend_account_html: "%{name} අත්හිටුවන ලද %{target}ගිණුම"
+        update_announcement_html: "%{name} යාවත්කාලීන නිවේදනය %{target}"
+        update_custom_emoji_html: "%{name} යාවත්කාලීන කළ ඉමොජි %{target}"
+        update_domain_block_html: "%{target}සඳහා %{name} යාවත්කාලීන කරන ලද වසම් වාරණ"
+        update_status_html: "%{name} %{target}යාවත්කාලීන කරන ලද පළ කිරීම"
+      empty: ලඝු-සටහන් හමු නොවිණි.
+      filter_by_action: ක්‍රියාව අනුව පෙරන්න
       filter_by_user: පරිශීලක අනුව පෙරන්න
+      title: විගණන සටහන
     announcements:
+      destroyed_msg: නිවේදනය සාර්ථකව මකා ඇත!
       edit:
         title: නිවේදනය සංස්කරණය
+      empty: නිවේදන කිසිවක් හමු නොවීය.
       live: සජීවී
       new:
         create: නිවේදනය සාදන්න
         title: නව නිවේදනය
+      publish: ප්‍රකාශ කරන්න
       published_msg: නිවේදනය සාර්ථකව ප්‍රකාශයට පත් කරන ලදි!
+      scheduled_for: "%{time}සඳහා සැලසුම් කර ඇත"
+      scheduled_msg: නිවේදනය නිකුත් කිරීමට නියමිතයි!
       title: නිවේදන
+      unpublish: ප්‍රකාශනය ඉවත් කරන්න
+      unpublished_msg: නිවේදනය සාර්ථකව ප්‍රකාශයට පත් නොකළේය!
+      updated_msg: නිවේදනය සාර්ථකව යාවත්කාලීන කරන ලදී!
     custom_emojis:
+      assign_category: කාණ්ඩය පැවරීම
       by_domain: වසම
+      copied_msg: ඉමොජි වල දේශීය පිටපත සාර්ථකව සාදන ලදී
       copy: පිටපත්
+      copy_failed_msg: එම ඉමොජියේ දේශීය පිටපතක් සෑදීමට නොහැකි විය
       create_new_category: නව ප්‍රවර්ගයක් සාදන්න
+      created_msg: ඉමොජි සාර්ථකව නිර්මාණය කළා!
+      delete: මකන්න
+      destroyed_msg: Emojo සාර්ථකව විනාශ විය!
       disable: අබල කරන්න
       disabled: අබල කර ඇත
+      disabled_msg: එම ඉමොජිය සාර්ථකව අබල කරන ලදී
+      emoji: ඉමොජි
       enable: සබල කරන්න
       enabled: සබල කර ඇත
+      enabled_msg: එම ඉමොජි සාර්ථකව සබල කරන ලදී
+      image_hint: PNG හෝ GIF %{size}දක්වා
       list: ලැයිස්තුව
+      listed: ලැයිස්තුගත කර ඇත
+      new:
+        title: නව අභිරුචි ඉමොජි එක් කරන්න
+      not_permitted: මෙම ක්‍රියාව සිදු කිරීමට ඔබට අවසර නැත
+      overwrite: උඩින් ලියන්න
       shortcode: කෙටිකේතය
+      shortcode_hint: අවම වශයෙන් අක්ෂර 2 ක්, අක්ෂරාංක අක්ෂර සහ යටි ඉරි පමණි
+      title: අභිරුචි ඉමෝජි
+      uncategorized: වර්ගීකරණය නොකළ
+      unlist: ලැයිස්තුගත නොකරන්න
+      unlisted: ලැයිස්තුගත නොකළ
+      update_failed_msg: එම ඉමොජි යාවත්කාලීන කළ නොහැකි විය
+      updated_msg: ඉමොජි සාර්ථකව යාවත්කාලීන කරන ලදී!
       upload: උඩුගත කරන්න
     dashboard:
+      active_users: ක්රියාකාරී පරිශීලකයන්
+      interactions: අන්තර්ක්රියා
+      media_storage: මාධ්ය ගබඩාව
+      new_users: නව පරිශීලකයන්
+      opened_reports: වාර්තා විවෘත විය
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> අභියාචනයක් බලාපොරොත්තු වේ"
+        other: "<strong>%{count}</strong> අභියාචනා පොරොත්තු"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> පොරොත්තු වාර්තාව"
+        other: "<strong>%{count}</strong> පොරොත්තු වාර්තා"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> පොරොත්තු හැෂ් ටැගය"
+        other: "<strong>%{count}</strong> පොරොත්තු හැෂ් ටැග්"
+      pending_users_html:
+        one: "<strong>%{count}</strong> අපේක්ෂිත පරිශීලකයා"
+        other: "<strong>%{count}</strong> අපේක්ෂිත පරිශීලකයින්"
+      resolved_reports: වාර්තා විසඳා ඇත
       software: මෘදුකාංගය
+      sources: ලියාපදිංචි මූලාශ්‍ර
+      space: අවකාශය භාවිතය
       title: උපකරණ පුවරුව
+      top_languages: ඉහළම ක්රියාකාරී භාෂා
+      top_servers: ඉහළම ක්රියාකාරී සේවාදායකයන්
+      website: වෙබ් අඩවිය
+    disputes:
+      appeals:
+        empty: අභියාචනා හමු නොවීය.
+        title: අභියාචනා
+    domain_allows:
+      add_new: වසම සමඟ සම්මේලනයට ඉඩ දෙන්න
+      created_msg: ෆෙඩරේෂන් සඳහා වසම සාර්ථකව අවසර දී ඇත
+      destroyed_msg: ෆෙඩරේෂන් වෙතින් වසම අනුමත කර නැත
+      undo: වසම සමඟ සම්මේලනයට ඉඩ නොදෙන්න
     domain_blocks:
+      add_new: නව වසම් වාරණ එක් කරන්න
+      created_msg: වසම් අවහිර කිරීම දැන් සකසමින් පවතී
+      destroyed_msg: වසම් අවහිර කිරීම ඉවත් කර ඇත
       domain: වසම
+      edit: වසම් වාරණය සංස්කරණය කරන්න
+      existing_domain_block: ඔබ දැනටමත් %{name}මත දැඩි සීමාවන් පනවා ඇත.
+      existing_domain_block_html: ඔබ දැනටමත් %{name}මත දැඩි සීමාවන් පනවා ඇත, ඔබට <a href="%{unblock_url}">එය අවහිර කිරීම ඉවත් කිරීමට අවශ්‍යයි</a>.
       new:
+        create: බ්ලොක් එකක් සාදන්න
+        hint: ඩොමේන් බ්ලොක් එක දත්ත සමුදාය තුල ගිණුම් ඇතුලත් කිරීම් නිර්මාණය වීම වලක්වන්නේ නැත, නමුත් එම ගිණුම් වලට ප්‍රතික්‍රියාශීලීව සහ ස්වයංක්‍රීයව විශේෂිත මධ්‍යස්ථ ක්‍රම යොදනු ඇත.
         severity:
+          desc_html: "<strong>Silence</strong> ගිණුමේ පළ කිරීම් ඒවා අනුගමනය නොකරන ඕනෑම කෙනෙකුට නොපෙනී යයි. <strong>අත්හිටුවීම</strong> ගිණුමේ අන්තර්ගතය, මාධ්‍ය සහ පැතිකඩ දත්ත සියල්ල ඉවත් කරයි. ඔබට මාධ්‍ය ගොනු ප්‍රතික්ෂේප කිරීමට අවශ්‍ය නම් <strong>None</strong> භාවිතා කරන්න."
           noop: කිසිවක් නැත
+          silence: නිශ්ශබ්දතාව
           suspend: අත්හිටුවන්න
+        title: නව වසම් වාරණ
+      obfuscate: අපැහැදිලි වසම් නාමය
+      obfuscate_hint: වසම් සීමාවන් ලැයිස්තුව ප්‍රචාරණය කිරීම සබල කර ඇත්නම් ලැයිස්තුවේ වසම් නාමය අර්ධ වශයෙන් අපැහැදිලි කරන්න
       private_comment: පුද්ගලික අදහස
+      private_comment_hint: පරිපාලකයින් විසින් අභ්‍යන්තර භාවිතය සඳහා මෙම වසම් සීමාව ගැන අදහස් දක්වන්න.
       public_comment: ප්‍රසිද්ධ අදහස
+      public_comment_hint: වසම් සීමාවන් ලැයිස්තුව ප්‍රචාරණය කිරීම සබල කර ඇත්නම්, සාමාන්‍ය ජනතාව සඳහා මෙම වසම් සීමාව ගැන අදහස් දක්වන්න.
+      reject_media: මාධ්‍ය ගොනු ප්‍රතික්ෂේප කරන්න
+      reject_media_hint: දේශීයව ගබඩා කර ඇති මාධ්‍ය ගොනු ඉවත් කරන අතර අනාගතයේදී ඒවා බාගත කිරීම ප්‍රතික්ෂේප කරයි. අත්හිටුවීම් සඳහා අදාළ නොවේ
       reject_reports: වාර්තා ප්‍රතික්ෂේප කරන්න
+      reject_reports_hint: මෙම වසමෙන් එන සියලුම වාර්තා නොසලකා හරින්න. අත්හිටුවීම් සඳහා අදාළ නොවේ
+      undo: වසම් අවහිර කිරීම අහෝසි කරන්න
+      view: වසම් වාරණය බලන්න
     email_domain_blocks:
+      add_new: අලුතින් එකතු කරන්න
+      attempts_over_week:
+        one: පසුගිය සතිය පුරා %{count} උත්සාහයක්
+        other: පසුගිය සතියේ ලියාපදිංචි වීමේ උත්සාහයන් %{count} ක්
+      created_msg: විද්‍යුත් තැපැල් වසම සාර්ථකව අවහිර කරන ලදී
+      delete: මකන්න
+      dns:
+        types:
+          mx: MX වාර්තාව
       domain: වසම
       new:
         create: වසම එකතු කරන්න
+        resolve: වසම විසඳන්න
+        title: නව විද්‍යුත් තැපැල් වසම අවහිර කරන්න
+      no_email_domain_block_selected: කිසිවක් තෝරා නොගත් බැවින් විද්‍යුත් තැපැල් වසම් වාරණ කිසිවක් වෙනස් කර නැත
+      resolved_dns_records_hint_html: ඩොමේන් නාමය පහත දැක්වෙන MX වසම් වලට විසඳයි, ඒවා අවසානයේ ඊමේල් පිළිගැනීම සඳහා වගකිව යුතුය. MX වසමක් අවහිර කිරීම දෘශ්‍ය වසම් නාමය වෙනස් වුවද, එකම MX වසම භාවිතා කරන ඕනෑම විද්‍යුත් තැපැල් ලිපිනයකින් ලියාපදිංචි වීම අවහිර කරයි. <strong>ප්‍රධාන විද්‍යුත් තැපැල් සපයන්නන් අවහිර නොකිරීමට ප්‍රවේශම් වන්න.</strong>
+      resolved_through_html: "%{domain}හරහා විසඳා ඇත"
       title: අවහිර කළ වි-තැපැල් වසම්
     follow_recommendations:
+      description_html: "<strong>නව පරිශීලකයින්ට රසවත් අන්තර්ගතයන් ඉක්මනින් සොයා ගැනීමට උපකාර වන නිර්දේශ අනුගමනය කරන්න</strong>. පෞද්ගලීකරණය කළ පසු විපරම් නිර්දේශ සැකසීමට තරම් පරිශීලකයෙකු අන් අය සමඟ අන්තර් ක්‍රියා කර නොමැති විට, ඒ වෙනුවට මෙම ගිණුම් නිර්දේශ කෙරේ. දී ඇති භාෂාවක් සඳහා ඉහළම මෑත කාලීන නියැලීම් සහ ඉහළම දේශීය අනුගාමික සංඛ්‍යාව සහිත ගිණුම් මිශ්‍රණයකින් ඒවා දෛනික පදනමින් නැවත ගණනය කෙරේ."
       language: භාෂාව සඳහා
-      status: තත්වය
+      status: තත්‍වය
+      suppress: අනුගමනය නිර්දේශය යටපත් කරන්න
+      suppressed: යටපත් කළා
+      title: නිර්දේශ අනුගමනය කරන්න
+      unsuppress: නිර්දේශ පිළිපැදීම ප්‍රතිසාධනය කරන්න
     instances:
+      availability:
+        description_html:
+          one: වසම වෙත බෙදා හැරීම සාර්ථක නොවී දින <strong>%{count}</strong> අසාර්ථක වුවහොත්, වසම</em> න් <em>බෙදා හැරීමක් ලැබෙන්නේ නම් මිස වැඩිදුර බෙදා හැරීමේ උත්සාහයන් සිදු නොකෙරේ.
+          other: වසම වෙත බෙදා හැරීම සාර්ථක නොවී <strong>%{count} වෙනස් දින</strong> අසාර්ථක වුවහොත්, වසම</em> සිට <em>බෙදා හැරීමක් නොලැබුනේ නම්, තවදුරටත් බෙදා හැරීමේ උත්සාහයන් සිදු නොකෙරේ.
+        failure_threshold_reached: අසාර්ථක වීමේ සීමාව %{date}ට ළඟා විය.
+        failures_recorded:
+          one: දින %{count} කින් අසාර්ථක උත්සාහයක්.
+          other: විවිධ දින %{count} ක අසාර්ථක උත්සාහයන්.
+        no_failures_recorded: වාර්තාගත අසාර්ථක වීම් නොමැත.
+        title: පවතින බව
+        warning: මෙම සේවාදායකයට සම්බන්ධ වීමට ගත් අවසන් උත්සාහය අසාර්ථක විය
       back_to_all: සියල්ල
+      back_to_limited: සීමා සහිතයි
       back_to_warning: අවවාදයයි
       by_domain: වසම
+      confirm_purge: ඔබට මෙම වසමෙන් දත්ත ස්ථිරවම මැකීමට අවශ්‍ය බව විශ්වාසද?
+      content_policies:
+        comment: අභ්යන්තර සටහන
+        description_html: ඔබට මෙම වසම සහ එහි ඕනෑම උප වසමකින් සියලුම ගිණුම් වලට අදාළ වන අන්තර්ගත ප්‍රතිපත්ති නිර්වචනය කළ හැක.
+        policies:
+          reject_media: මාධ්‍ය ප්‍රතික්ෂේප කරන්න
+          reject_reports: වාර්තා ප්‍රතික්ෂේප කරන්න
+          silence: සීමාව
+          suspend: අත්හිටුවන්න
+        policy: ප්රතිපත්ති
+        reason: පොදු හේතුව
+        title: අන්තර්ගත ප්රතිපත්ති
+      dashboard:
+        instance_accounts_dimension: වැඩිපුරම අනුගමනය කරන ගිණුම්
+        instance_accounts_measure: ගබඩා කර ඇති ගිණුම්
+        instance_followers_measure: එතන අපේ අනුගාමිකයෝ
+        instance_follows_measure: ඔවුන්ගේ අනුගාමිකයන් මෙහි
+        instance_languages_dimension: ඉහළම භාෂා
+        instance_media_attachments_measure: ගබඩා කළ මාධ්‍ය ඇමුණුම්
+        instance_reports_measure: ඔවුන් ගැන වාර්තා
+        instance_statuses_measure: ගබඩා කළ ලිපි
       delivery:
         all: සියල්ල
+        clear: බෙදා හැරීමේ දෝෂ ඉවත් කරන්න
+        failing: අසාර්ථක වෙනවා
+        restart: බෙදා හැරීම නැවත ආරම්භ කරන්න
+        stop: බෙදා හැරීම නවත්වන්න
+        unavailable: ලබා ගත නොහැක
+      delivery_available: බෙදා හැරීම ලබා ගත හැකිය
+      delivery_error_days: බෙදා හැරීමේ දෝෂ සහිත දින
+      delivery_error_hint: දින %{count} ක් සඳහා බෙදා හැරීම කළ නොහැකි නම්, එය ස්වයංක්‍රීයව බෙදා හැරිය නොහැකි ලෙස ලකුණු කරනු ලැබේ.
+      destroyed_msg: "%{domain} සිට දත්ත දැන් ආසන්න මකාදැමීම සඳහා පෝලිම් කර ඇත."
+      empty: වසම් කිසිවක් හමු නොවීය.
+      known_accounts:
+        one: "%{count} දන්නා ගිණුම්"
+        other: දන්නා ගිණුම් %{count} ක්
       moderation:
         all: සියල්ල
+        limited: සීමා සහිතයි
+        title: මධ්යස්ථභාවය
       private_comment: පුද්ගලික අදහස
       public_comment: ප්‍රසිද්ධ අදහස
+      purge: පිරිසිදු කරන්න
+      purge_description_html: මෙම වසම යහපත සඳහා නොබැඳි බව ඔබ විශ්වාස කරන්නේ නම්, ඔබට ඔබගේ ගබඩාවෙන් මෙම වසමෙන් සියලුම ගිණුම් වාර්තා සහ ආශ්‍රිත දත්ත මකා දැමිය හැක. මෙයට යම් කාලයක් ගත විය හැක.
+      title: සම්මේලනය
+      total_blocked_by_us: අප විසින් අවහිර කරන ලදී
+      total_followed_by_them: ඔවුන් විසින් අනුගමනය කරන ලදී
+      total_followed_by_us: අප විසින් අනුගමනය කරන ලදී
+      total_reported: ඔවුන් ගැන වාර්තා
+      total_storage: මාධ්ය ඇමුණුම්
+      totals_time_period_hint_html: පහත දැක්වෙන එකතුවෙහි සියලු කාලය සඳහා දත්ත ඇතුළත් වේ.
     invites:
+      deactivate_all: සියල්ල අක්‍රිය කරන්න
       filter:
         all: සියල්ල
-        expired: කල් ඉකුත් වී ඇත
+        available: පවතින
+        expired: ඉකුත් වී ඇත
         title: පෙරහන
       title: ඇරයුම්
     ip_blocks:
       add_new: නීතිය සාදන්න
+      created_msg: නව IP රීතිය සාර්ථකව එක් කරන ලදී
+      delete: මකන්න
       expires_in:
         '1209600': සති 2
         '15778476': මාස 6
         '2629746': මාස 1
         '31556952': අවුරුදු 1
-        '86400': දින 1
+        '86400': දවස් 1
         '94670856': අවුරුදු 3
       new:
-        title: නව අ.ජා. කෙ.(IP) නීතියක් සාදන්න
+        title: නව අ.ජා.කෙ. නීතියක් සාදන්න
+      no_ip_block_selected: IP රීති කිසිවක් තෝරා නොගත් බැවින් වෙනස් කර නැත
       title: අ.ජා. කෙ. (IP) නීති
+    relationships:
+      title: "%{acct}හි සබඳතා"
     relays:
+      add_new: නව රිලේ එක් කරන්න
+      delete: මකන්න
+      description_html: "<strong>ෆෙඩරේෂන් රිලේ</strong> යනු එයට දායක වී ප්‍රකාශයට පත් කරන සේවාදායකයන් අතර විශාල ප්‍රසිද්ධ පළ කිරීම් හුවමාරු කරන අතරමැදි සේවාදායකයකි. <strong>එය කුඩා සහ මධ්‍යම සේවාදායකයන්ට fediverse</strong>වෙතින් අන්තර්ගතය සොයා ගැනීමට උදවු කළ හැකි අතර, එසේ නොමැති නම් දේශීය පරිශීලකයින්ට දුරස්ථ සේවාදායකයන් මත වෙනත් පුද්ගලයින් හස්තීයව අනුගමනය කිරීම අවශ්‍ය වේ."
       disable: අබල කරන්න
       disabled: අබල කර ඇත
       enable: සබල කරන්න
+      enable_hint: සක්‍රිය කළ පසු, ඔබේ සේවාදායකය මෙම රිලේ වෙතින් සියලුම පොදු පළ කිරීම් සඳහා දායක වන අතර, මෙම සේවාදායකයේ පොදු පළ කිරීම් එයට යැවීම ආරම්භ කරනු ඇත.
       enabled: සබල කර ඇත
+      inbox_url: රිලේ URL
+      pending: රිලේ අනුමැතිය සඳහා රැඳී සිටිමින්
+      save_and_enable: සුරකින්න සහ සක්රිය කරන්න
+      setup: රිලේ සම්බන්ධතාවයක් සකසන්න
+      signatures_not_enabled: ආරක්ෂිත මාදිලිය හෝ සීමිත ෆෙඩරේෂන් මාදිලිය සබල කර ඇති අතර රිලේ නිවැරදිව ක්‍රියා නොකරනු ඇත
       status: තත්වය
+      title: රිලේස්
+    report_notes:
+      created_msg: වාර්තා සටහන සාර්ථකව සාදන ලදී!
+      destroyed_msg: වාර්තා සටහන සාර්ථකව මකා ඇත!
+      today_at: අද %{time}ට
     reports:
+      account:
+        notes:
+          one: "%{count} සටහන"
+          other: "%{count} සටහන්"
+      action_log: විගණන සටහන
+      action_taken_by: විසින් ගන්නා ලද පියවර
+      actions:
+        delete_description_html: වාර්තා කරන ලද පළ කිරීම් මකා දැමෙනු ඇති අතර එම ගිණුමේම අනාගත උල්ලංඝනයන් තීව්‍ර කිරීමට ඔබට උදවු කිරීමට වර්ජනයක් වාර්තා කරනු ඇත.
+        mark_as_sensitive_description_html: වාර්තා කරන ලද පළ කිරීම් වල මාධ්‍ය සංවේදී ලෙස සලකුණු කරනු ලබන අතර එම ගිණුම මගින් අනාගත උල්ලංඝනයන් උත්සන්න කිරීමට ඔබට උපකාර කිරීමට වර්ජනයක් වාර්තා කරනු ඇත.
+        other_description_html: ගිණුමේ හැසිරීම පාලනය කිරීම සහ වාර්තා කළ ගිණුමට සන්නිවේදනය අභිරුචිකරණය කිරීම සඳහා තවත් විකල්ප බලන්න.
+        resolve_description_html: වාර්තා කරන ලද ගිණුමට එරෙහිව කිසිදු ක්‍රියාමාර්ගයක් නොගනු ඇත, වැඩ වර්ජනයක් වාර්තා නොකෙරේ, වාර්තාව වසා දමනු ඇත.
+        silence_description_html: පැතිකඩ දෘශ්‍යමාන වනු ඇත්තේ දැනටමත් එය අනුගමනය කරන හෝ අතින් බලන අයට පමණක් වන අතර, එහි ළඟාවීම දැඩි ලෙස සීමා කරයි. සෑම විටම ආපසු හැරවිය හැක.
+        suspend_description_html: එය අවසානයේ මකා දමන තුරු පැතිකඩ සහ එහි සියලුම අන්තර්ගතයන් ප්‍රවේශ විය නොහැකි වනු ඇත. ගිණුම සමඟ අන්තර් ක්රියා කිරීම කළ නොහැකි වනු ඇත. දින 30 ක් ඇතුළත ආපසු හැරවිය හැකිය.
+      actions_description_html: මෙම වාර්තාව විසඳීමට ගත යුතු ක්‍රියාමාර්ගය තීරණය කරන්න. ඔබ වාර්තා කරන ලද ගිණුමට එරෙහිව දණ්ඩනීය ක්‍රියාමාර්ගයක් ගන්නේ නම්, <strong>Spam</strong> කාණ්ඩය තෝරාගත් විට හැර, ඔවුන්ට විද්‍යුත් තැපෑලෙන් දැනුම්දීමක් යවනු ලැබේ.
+      add_to_report: වාර්තා කිරීමට තවත් එක් කරන්න
       are_you_sure: ඔබට විශ්වාසද?
+      assign_to_self: මට පවරන්න
+      assigned: පවරා ඇති උපපරිපාලක
       by_target_domain: වාර්තා කළ ගිණුමෙහි වසම
+      category: වර්ගය
+      category_description_html: මෙම ගිණුම සහ/හෝ අන්තර්ගතය වාර්තා කළ හේතුව වාර්තා කළ ගිණුම සමඟ සන්නිවේදනයේ සඳහන් කරනු ඇත
       comment:
         none: කිසිවක් නැත
+      comment_description_html: 'වැඩි විස්තර සැපයීම සඳහා, %{name} ලිවීය:'
+      created_at: වාර්තා කර ඇත
+      delete_and_resolve: පළ කිරීම් මකන්න
+      forwarded: යොමු කළා
+      forwarded_to: "%{domain}වෙත යොමු කරන ලදී"
+      mark_as_resolved: විසඳා ඇති ලෙස ලකුණු කරන්න
+      mark_as_sensitive: සංවේදී ලෙස ලකුණු කරන්න
+      mark_as_unresolved: නොවිසඳුනු ලෙස ලකුණු කරන්න
+      no_one_assigned: කිසි කෙනෙක නැහැ
       notes:
         create: සටහන එකතු කරන්න
+        create_and_resolve: සටහන සමඟ විසඳන්න
+        create_and_unresolve: සටහනක් සමඟ නැවත විවෘත කරන්න
+        delete: මකන්න
+        placeholder: ගෙන ඇති ක්‍රියාමාර්ග, හෝ වෙනත් අදාළ යාවත්කාලීන විස්තර කරන්න...
+        title: සටහන්
+      notes_description_html: අනෙකුත් උපපරිපාලකයින්ට සහ ඔබේ අනාගතයට සටහන් බලන්න සහ තබන්න
+      quick_actions_description_html: 'වාර්තා කළ අන්තර්ගතය බැලීමට ඉක්මන් ක්‍රියාමාර්ගයක් ගන්න හෝ පහළට අනුචලනය කරන්න:'
+      remote_user_placeholder: "%{instance}සිට දුරස්ථ පරිශීලකයා"
       reopen: වාර්තාව නැවත විවෘත කරන්න
       report: "@%{id} වාර්තා කරන්න"
       reported_account: වාර්තා කළ ගිණුම
+      reported_by: විසින් වාර්තා
+      resolved: විසඳා ඇත
+      resolved_msg: වාර්තාව සාර්ථකව විසඳා ඇත!
+      skip_to_actions: ක්‍රියාවන් වෙත යන්න
       status: තත්වය
+      statuses: වාර්තා කළ අන්තර්ගතය
+      statuses_description_html: වාර්තා කරන ලද ගිණුම සමඟ සන්නිවේදනය කිරීමේදී වැරදි අන්තර්ගතයන් උපුටා දක්වනු ඇත
+      target_origin: වාර්තා කළ ගිණුමේ ආරම්භය
       title: වාර්තා
+      unassign: පැවරීම ඉවත් කරන්න
+      unresolved: නොවිසඳී ඇත
+      updated_at: යාවත්කාලීන කරන ලදී
+      view_profile: පැතිකඩ බලන්න
     rules:
       add_new: නීතිය එකතු කරන්න
+      delete: මකන්න
+      description_html: බොහෝ දෙනා සේවා කොන්දේසි කියවා එකඟ වූ බව ප්‍රකාශ කරන අතර, සාමාන්‍යයෙන් මිනිසුන් ගැටලුවක් පැනනඟින තුරු කියවා නොගනිති. <strong>පැතලි බුලට් පොයින්ට් ලිස්ට් එකකින් ඒවා ලබා දීමෙන් බැලූ බැල්මට ඔබේ සේවාදායකයේ නීති බැලීම පහසු කරන්න.</strong> තනි නීති කෙටි හා සරලව තබා ගැනීමට උත්සාහ කරන්න, නමුත් ඒවා විවිධ අයිතම වලට බෙදීමට උත්සාහ නොකරන්න.
       edit: නීතිය සංස්කරණය කරන්න
+      empty: තවමත් සේවාදායක රීති නිර්වචනය කර නොමැත.
       title: සේවාදායකයේ නීති
     settings:
-      contact_information:
-        email: ව්‍යාපාරික වි-තැපෑල
-      site_description:
-        title: සේවාදායකයේ සවිස්තරය
-      site_short_description:
-        title: සේවාදායකයේ කෙටි සවිස්තරය
-      site_title: සේවාදායකයේ නම
-      title: අඩවියේ සැකසුම්
+      domain_blocks:
+        all: හැමෝටම
+        disabled: කාටවත් නෑ
+        users: පුරනය වී ඇති දේශීය පරිශීලකයින් වෙත
+      registrations_mode:
+        modes:
+          approved: ලියාපදිංචි වීමට අනුමැතිය අවශ්‍යයි
+          none: කිසිවෙකුට ලියාපදිංචි විය නොහැක
+          open: ඕනෑම කෙනෙකුට ලියාපදිංචි විය හැක
+    site_uploads:
+      delete: උඩුගත කළ ගොනුව මකන්න
+      destroyed_msg: අඩවිය උඩුගත කිරීම සාර්ථකව මකා ඇත!
     statuses:
       back_to_account: ගිණුම් පිටුවට ආපසු යන්න
+      back_to_report: වාර්තා පිටුවට ආපසු යන්න
+      batch:
+        remove_from_report: වාර්තාවෙන් ඉවත් කරන්න
+        report: වාර්තාව
+      deleted: මකා දමන ලදී
       media:
         title: මාධ්‍යය
-      with_media: මාධ්‍ය සමඟ
+      no_status_selected: කිසිවක් තෝරා නොගත් බැවින් තනතුරු කිසිවක් වෙනස් කර නැත
+      title: ගිණුම් තනතුරු
+      with_media: මාධ්‍ය දායකත්වය
+    strikes:
+      actions:
+        delete_statuses: "%{target}ගේ පළ කිරීම් %{name} මකා දමන ලදී"
+        disable: "%{name} %{target}ගේ ගිණුම නිශ්චල කළේය"
+        mark_statuses_as_sensitive: "%{name} %{target}ගේ පළ කිරීම් සංවේදී ලෙස ලකුණු කර ඇත"
+        none: "%{name} %{target}අනතුරු ඇඟවීමක් යවා ඇත"
+        sensitive: "%{name} %{target}ගේ ගිණුම සංවේදී ලෙස ලකුණු කර ඇත"
+        silence: "%{name} සීමිත %{target}ගිණුමක්"
+        suspend: "%{name} %{target}ගේ ගිණුම අත්හිටුවා ඇත"
+      appeal_approved: අභියාචනා කළා
+      appeal_pending: අභියාචනය පොරොත්තුවෙන්
+    system_checks:
+      database_schema_check:
+        message_html: පොරොත්තු දත්ත සමුදා සංක්‍රමණයන් ඇත. යෙදුම අපේක්ෂිත පරිදි ක්‍රියා කරන බව සහතික කිරීමට කරුණාකර ඒවා ධාවනය කරන්න
+      elasticsearch_running_check:
+        message_html: Elasticsearch වෙත සම්බන්ධ වීමට නොහැකි විය. කරුණාකර එය ක්‍රියාත්මක වන බව පරීක්ෂා කරන්න, නැතහොත් සම්පූර්ණ පෙළ සෙවීම අක්‍රීය කරන්න
+      elasticsearch_version_check:
+        message_html: 'නොගැලපෙන ඉලාස්ටික් සෙවුම් අනුවාදය: %{value}'
+        version_comparison: Elasticsearch %{running_version} ක්‍රියාත්මක වන අතර %{required_version} අවශ්‍ය වේ
+      rules_check:
+        action: සේවාදායක නීති කළමනාකරණය කරන්න
+        message_html: ඔබ සේවාදායක රීති කිසිවක් නිර්වචනය කර නැත.
+      sidekiq_process_check:
+        message_html: "%{value} පෝලිම්(ය) සඳහා Sidekiq ක්‍රියාවලියක් ක්‍රියාත්මක නොවේ. කරුණාකර ඔබේ Sidekiq වින්‍යාසය සමාලෝචනය කරන්න"
+    tags:
+      review: තත්‍වය සමාලෝචනය
+      updated_msg: Hashtag සැකසුම් සාර්ථකව යාවත්කාලීන කරන ලදී
     title: පරිපාලනය
+    trends:
+      allow: ඉඩ දෙන්න
+      approved: අනුමත කළා
+      disallow: අවසර නොදෙන්න
+      links:
+        allow: සබැඳියට ඉඩ දෙන්න
+        allow_provider: ප්‍රකාශකයාට ඉඩ දෙන්න
+        description_html: මේවා ඔබගේ සේවාදායකය විසින් පළ කිරීම් දකින ගිණුම් මගින් දැනට බොහෝ සෙයින් බෙදා ගන්නා සබැඳි වේ. එය ඔබගේ පරිශීලකයින්ට ලෝකයේ සිදුවෙමින් පවතින දේ සොයා ගැනීමට උදවු කළ හැක. ඔබ ප්‍රකාශකයා අනුමත කරන තුරු සබැඳි කිසිවක් ප්‍රසිද්ධියේ ප්‍රදර්ශනය නොවේ. ඔබට තනි සබැඳිවලට ඉඩ දීමට හෝ ප්‍රතික්ෂේප කිරීමටද හැකිය.
+        disallow: සබැඳියට ඉඩ නොදෙන්න
+        disallow_provider: ප්‍රකාශකයාට ඉඩ නොදෙන්න
+        shared_by_over_week:
+          one: පසුගිය සතිය පුරා එක් පුද්ගලයෙකු විසින් බෙදා ගන්නා ලදී
+          other: පසුගිය සතිය පුරා පුද්ගලයින් %{count} දෙනෙකු විසින් බෙදා ගන්නා ලදී
+        title: නැඟී එන සබැඳි
+        usage_comparison: ඊයේ %{yesterday} හා සසඳන විට අද %{today} වරක් බෙදා ගන්නා ලදී
+      only_allowed: අවසර දී ඇත
+      pending_review: පොරොත්තු සමාලෝචනය
+      preview_card_providers:
+        allowed: මෙම ප්‍රකාශකයාගේ සබැඳි නැඹුරු විය හැක
+        description_html: මේවා බොහෝ විට ඔබගේ සේවාදායකයේ සබැඳි බෙදා ගන්නා වසම් වේ. සබැඳියේ වසම අනුමත කරන්නේ නම් මිස සබැඳි ප්‍රසිද්ධියේ නැඹුරු නොවේ. ඔබගේ අනුමැතිය (හෝ ප්‍රතික්ෂේප කිරීම) උපවසම් දක්වා විහිදේ.
+        rejected: මෙම ප්‍රකාශකයාගේ සබැඳි නැඹුරු නොවනු ඇත
+        title: ප්‍රකාශකයන්
+      rejected: ප්‍රතික්ෂේප කළා
+      statuses:
+        allow: පළ කිරීමට ඉඩ දෙන්න
+        allow_account: කතුවරයාට ඉඩ දෙන්න
+        description_html: මේ වන විට ඔබේ සේවාදායකය දන්නා පෝස්ට් මේ වන විට බොහෝ බෙදාහරින සහ මේ මොහොතේ වැඩි කැමැත්තක් දක්වයි. එය ඔබගේ නව සහ නැවත පැමිණෙන පරිශීලකයින්ට අනුගමනය කිරීමට තවත් පුද්ගලයින් සොයා ගැනීමට උදවු කළ හැක. ඔබ කර්තෘ අනුමත කරන තෙක් පළ කිරීම් කිසිවක් ප්‍රසිද්ධියේ නොපෙන්වන අතර, කර්තෘ තම ගිණුම අන් අයට යෝජනා කිරීමට ඉඩ දෙයි. ඔබට තනි පළ කිරීම්වලට ඉඩ දීමට හෝ ප්‍රතික්ෂේප කිරීමටද හැකිය.
+        disallow: පළ කිරීමට ඉඩ නොදෙන්න
+        disallow_account: කතුවරයාට ඉඩ නොදෙන්න
+        not_discoverable: කර්තෘ සොයා ගත හැකි බව තෝරාගෙන නැත
+        shared_by:
+          one: එක් වරක් බෙදාගත් හෝ ප්‍රිය කරන ලදී
+          other: "%{friendly_count} වරක් බෙදාගෙන ප්‍රිය කරන ලදී"
+        title: ප්‍රවණතා පළ කිරීම්
+      tags:
+        current_score: වත්මන් ලකුණු %{score}
+        dashboard:
+          tag_accounts_measure: අද්විතීය භාවිතයන්
+          tag_languages_dimension: ඉහළම භාෂා
+          tag_servers_dimension: ඉහළම සේවාදායකයන්
+          tag_servers_measure: විවිධ සේවාදායකයන්
+          tag_uses_measure: සම්පූර්ණ භාවිතය
+        description_html: මේවා දැනට ඔබගේ සේවාදායකය දකින බොහෝ පළ කිරීම් වල දිස්වන හැෂ් ටැග් වේ. මේ මොහොතේ මිනිසුන් වැඩිපුරම කතා කරන්නේ කුමක් දැයි සොයා ගැනීමට එය ඔබගේ පරිශීලකයින්ට උදවු කළ හැක. ඔබ ඒවා අනුමත කරන තුරු හෑෂ් ටැග් ප්‍රසිද්ධියේ නොපෙන්වයි.
+        listable: යෝජනා කළ හැක
+        not_listable: යෝජනා නොකරනු ඇත
+        not_trendable: ප්‍රවණතා යටතේ දිස් නොවනු ඇත
+        not_usable: භාවිතා කළ නොහැක
+        peaked_on_and_decaying: "%{date}හි උච්චතම, දැන් දිරාපත් වෙමින් පවතී"
+        title: ප්‍රවණතා හැෂ් ටැග්
+        trendable: ප්රවණතා යටතේ පෙනී සිටිය හැක
+        trending_rank: 'නැඹුරු #%{rank}'
+        usable: භාවිතා කළ හැක
+        usage_comparison: ඊයේ %{yesterday} හා සසඳන විට අද %{today} වරක් භාවිතා වේ
+        used_by_over_week:
+          one: පසුගිය සතිය පුරා එක් පුද්ගලයෙකු විසින් භාවිතා කරන ලදී
+          other: පසුගිය සතිය පුරා පුද්ගලයින් %{count} දෙනෙකු විසින් භාවිතා කරන ලදී
+      title: ප්රවණතා
+      trending: ප්රවණතා
+    warning_presets:
+      add_new: අලුතින් එකතු කරන්න
+      delete: මකන්න
+      edit_preset: අනතුරු ඇඟවීමේ පෙර සැකසුම සංස්කරණය කරන්න
+      empty: ඔබ තවම කිසිදු අනතුරු ඇඟවීමේ පෙරසිටුවක් නිර්වචනය කර නැත.
+      title: අනතුරු ඇඟවීමේ පෙරසිටුවීම් කළමනාකරණය කරන්න
+    webhooks:
+      add_new: අන්ත ලක්ෂ්‍යය එක් කරන්න
+      delete: මකන්න
+      description_html: A <strong>webhook</strong> Mastodon හට තෝරාගත් සිදුවීම් පිළිබඳ තත්‍ය කාලීන දැනුම්දීම් <strong>ක්</strong> ඔබේම යෙදුමට තල්ලු කිරීමට හැකියාව ලබා දෙයි, එම නිසා ඔබේ යෙදුමට <strong>ස්වයංක්‍රීයව ප්‍රතික්‍රියා අවුලුවාලීමට හැකිය</strong>.
+      disable: අක්රිය කරන්න
+      disabled: ආබාධිතයි
+      edit: අන්ත ලක්ෂ්‍යය සංස්කරණය කරන්න
+      empty: ඔබට තවම වින්‍යාස කර ඇති කිසිදු webhook අන්ත ලක්ෂ්‍යයක් නොමැත.
+      enable: සබල කරන්න
+      enabled: ක්රියාකාරී
+      enabled_events:
+        one: 1 සබල කළ සිදුවීමක්
+        other: "%{count} සබල කළ සිදුවීම්"
+      events: සිදුවීම්
+      new: නව webhook
+      rotate_secret: රහස කරකවන්න
+      secret: අත්සන් කිරීමේ රහස
+      status: තත්‍වය
+      webhook: වෙබ්හුක්
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: ඔවුන්ගේ පළ කිරීම් මකා දැමීමට
+        disable: ඔවුන්ගේ ගිණුම කැටි කිරීමට
+        mark_statuses_as_sensitive: ඔවුන්ගේ තනතුරු සංවේදී ලෙස සලකුණු කිරීමට
+        none: අනතුරු ඇඟවීමක්
+        sensitive: ඔවුන්ගේ ගිණුම සංවේදී ලෙස සලකුණු කිරීමට
+        silence: ඔවුන්ගේ ගිණුම සීමා කිරීමට
+        suspend: ඔවුන්ගේ ගිණුම අත්හිටුවීමට
+      body: "%{target} යනු %{type}ක් වූ %{date}සිට %{action_taken_by} කින් මධ්‍යස්ථ තීරණයක් අභියාචනා කරයි. ඔවුන් මෙසේ ලිවීය."
+      next_steps: ඔබට මධ්‍යස්ථ තීරණය අවලංගු කිරීමට අභියාචනය අනුමත කළ හැකිය, නැතහොත් එය නොසලකා හරින්න.
+      subject: "%{username} යනු %{instance}හි මධ්‍යස්ථ තීරණයකට අභියාචනා කරයි"
+    new_pending_account:
+      body: නව ගිණුමේ විස්තර පහතින්. ඔබට මෙම යෙදුම අනුමත කිරීමට හෝ ප්‍රතික්ෂේප කිරීමට හැකිය.
+      subject: නව ගිණුම සමාලෝචනය සඳහා %{instance} (%{username})
+    new_report:
+      body: "%{reporter} %{target}වාර්තා කර ඇත"
+      body_remote: "%{domain} සිට යමෙක් %{target}වාර්තා කර ඇත"
+      subject: "%{instance} සඳහා නව වාර්තාව (#%{id})"
+    new_trends:
+      body: 'පහත අයිතම ප්‍රසිද්ධියේ ප්‍රදර්ශනය කිරීමට පෙර සමාලෝචනයක් අවශ්‍ය වේ:'
+      new_trending_links:
+        title: නැඟී එන සබැඳි
+      new_trending_statuses:
+        title: ප්‍රවණතා පළ කිරීම්
+      new_trending_tags:
+        no_approved_tags: දැනට අනුමත ප්‍රවණතා හැෂ් ටැග් නොමැත.
+        requirements: 'මෙම ඕනෑම අපේක්ෂකයෙකුට #%{rank} අනුමත ප්‍රවණතා හැෂ් ටැගය අභිබවා යා හැකිය, එය දැනට ලකුණු %{lowest_tag_score}ක් සමඟ #%{lowest_tag_name} වේ.'
+        title: ප්‍රවණතා හැෂ් ටැග්
+      subject: "%{instance}හි සමාලෝචනය සඳහා නව ප්‍රවණතා"
+  aliases:
+    add_new: අන්වර්ථ නාමයක් සාදන්න
+    created_msg: නව අන්වර්ථ නාමයක් සාර්ථකව නිර්මාණය කරන ලදී. ඔබට දැන් පැරණි ගිණුමෙන් මාරුවීම ආරම්භ කළ හැක.
+    deleted_msg: අන්වර්ථය සාර්ථකව ඉවත් කරන ලදී. එම ගිණුමෙන් මෙම ගිණුමට මාරුවීම තවදුරටත් කළ නොහැකි වනු ඇත.
+    empty: ඔබට අන්වර්ථ නාම නොමැත.
+    hint_html: ඔබට වෙනත් ගිණුමකින් මෙය වෙත මාරු වීමට අවශ්‍ය නම්, මෙහිදී ඔබට අන්වර්ථ නාමයක් සෑදිය හැක, එය පැරණි ගිණුමෙන් අනුගාමිකයින් මෙම ගිණුමට ගෙන යාමට පෙර අවශ්‍ය වේ. මෙම ක්‍රියාවම <strong>හානිකර නොවන සහ ආපසු හැරවිය හැකි</strong>වේ. <strong>ගිණුම් සංක්‍රමණය පැරණි ගිණුමෙන් ආරම්භ වේ</strong>.
+    remove: අන්වර්ථය විසන්ධි කරන්න
   appearance:
     advanced_web_interface: උසස් වියමන අතුරුමුහුණත
+    advanced_web_interface_hint: 'ඔබට ඔබේ සම්පූර්ණ තිරයේ පළල භාවිතා කිරීමට අවශ්‍ය නම්, උසස් වෙබ් අතුරු මුහුණත ඔබට අවශ්‍ය පරිදි එකම වේලාවක බොහෝ තොරතුරු බැලීමට විවිධ තීරු වින්‍යාස කිරීමට ඉඩ දෙයි: නිවස, දැනුම්දීම්, ෆෙඩරේටඩ් කාලරාමුව, ඕනෑම ලැයිස්තු සහ හැෂ් ටැග්.'
+    animations_and_accessibility: සජීවිකරණ සහ ප්‍රවේශ්‍යතාව
+    confirmation_dialogs: තහවුරු කිරීමේ සංවාද
+    discovery: සොයාගැනීම
     localization:
+      body: Mastodon ස්වේච්ඡා සේවකයන් විසින් පරිවර්තනය කර ඇත.
       guide_link: https://crowdin.com/project/mastodon
-    sensitive_content: සංවේදී අන්තර්ගතයකි
+      guide_link_text: සෑම කෙනෙකුටම දායක විය හැකිය.
+    sensitive_content: සංවේදී අන්තර්ගතය
+    toot_layout: පෝස්ට් පිරිසැලසුම
   application_mailer:
+    notification_preferences: ඊමේල් මනාප වෙනස් කරන්න
     salutation: "%{name},"
+    settings: 'ඊමේල් මනාප වෙනස් කරන්න: %{link}'
+    view: 'දැක්ම:'
+    view_profile: පැතිකඩ බලන්න
+    view_status: පළ කිරීම බලන්න
+  applications:
+    created: යෙදුම සාර්ථකව නිර්මාණය කරන ලදී
+    destroyed: යෙදුම සාර්ථකව මකා ඇත
+    regenerate_token: ප්‍රවේශ ටෝකනය නැවත උත්පාදනය කරන්න
+    token_regenerated: ප්‍රවේශ ටෝකනය සාර්ථකව ප්‍රතිජනනය කරන ලදී
+    warning: මෙම දත්ත සමඟ ඉතා ප්රවේශම් වන්න. එය කිසි විටෙක කිසිවෙකු සමඟ බෙදා නොගන්න!
+    your_token: ඔබේ ප්‍රවේශ ටෝකනය
   auth:
     change_password: මුර පදය
+    delete_account: ගිණුම මකන්න
+    delete_account_html: ඔබට ඔබගේ ගිණුම මකා දැමීමට අවශ්‍ය නම්, ඔබට <a href="%{path}">මෙතැනින් ඉදිරියට යා හැක</a>. තහවුරු කිරීම සඳහා ඔබෙන් අසනු ඇත.
+    description:
+      prefix_invited_by_user: "@%{name} ඔබට Mastodon හි මෙම සේවාදායකයට සම්බන්ධ වීමට ආරාධනා කරයි!"
+      prefix_sign_up: අදම මාස්ටඩන් හි ලියාපදිංචි වන්න!
+      suffix: ගිණුමක් සමඟ, ඔබට ඕනෑම Mastodon සේවාදායකයකින් සහ තවත් බොහෝ දේ භාවිතා කරන්නන් සමඟ පුද්ගලයින් අනුගමනය කිරීමට, යාවත්කාලීන කිරීම් පළ කිරීමට සහ පණිවිඩ හුවමාරු කර ගැනීමට හැකි වනු ඇත!
+    didnt_get_confirmation: තහවුරු කිරීමේ උපදෙස් ලැබුණේ නැද්ද?
+    dont_have_your_security_key: ඔබගේ ආරක්ෂක යතුර නොමැතිද?
+    forgot_password: මුරපදය අමතක වුනාද?
+    invalid_reset_password_token: මුරපද යළි පිහිටුවීමේ ටෝකනය අවලංගු හෝ කල් ඉකුත් වී ඇත. කරුණාකර අලුත් එකක් ඉල්ලන්න.
+    link_to_otp: ඔබගේ දුරකථනයෙන් ද්වි සාධක කේතයක් හෝ ප්‍රතිසාධන කේතයක් ඇතුළු කරන්න
+    link_to_webauth: ඔබගේ ආරක්ෂක යතුරු උපාංගය භාවිතා කරන්න
+    log_in_with: සමඟ ලොග් වන්න
     login: පිවිසෙන්න
     logout: නික්මෙන්න
-    or_log_in_with: හෝ සමඟ පිවිසෙන්න
+    migrate_account: වෙනත් ගිණුමකට යන්න
+    migrate_account_html: ඔබට මෙම ගිණුම වෙනත් එකකට හරවා යැවීමට අවශ්‍ය නම්, ඔබට එය <a href="%{path}">මෙහි වින්‍යාසගත කළ හැක</a>.
+    or_log_in_with: හෝ සමඟින් පිවිසෙන්න
+    register: ලියාපදිංචිය
+    registration_closed: "%{instance} නව සාමාජිකයින් පිළිගන්නේ නැත"
+    resend_confirmation: තහවුරු කිරීමේ උපදෙස් නැවත යවන්න
+    reset_password: මුරපදය නැවත සකසන්න
     security: ආරක්ෂාව
+    set_new_password: නව මුරපදය සකසන්න
+    setup:
+      email_below_hint_html: පහත විද්‍යුත් තැපැල් ලිපිනය වැරදි නම්, ඔබට එය මෙතැනින් වෙනස් කර නව තහවුරු කිරීමේ විද්‍යුත් තැපෑලක් ලබා ගත හැක.
+      email_settings_hint_html: තහවුරු කිරීමේ විද්‍යුත් තැපෑල %{email}වෙත යවන ලදී. එම විද්‍යුත් තැපැල් ලිපිනය නිවැරදි නොවේ නම්, ඔබට එය ගිණුම් සැකසුම් තුළ වෙනස් කළ හැක.
+      title: සැලසුම
     status:
       account_status: ගිණුමේ තත්වය
+      confirming: විද්‍යුත් තැපෑල තහවුරු කිරීම සම්පූර්ණ කිරීම සඳහා රැඳී සිටිමින්.
+      functional: ඔබගේ ගිණුම සම්පුර්ණයෙන්ම ක්‍රියාත්මකයි.
+      pending: ඔබගේ අයදුම්පත අපගේ කාර්ය මණ්ඩලය විසින් සමාලෝචනය කිරීමට බලාපොරොත්තු වේ. මෙය යම් කාලයක් ගත විය හැක. ඔබගේ අයදුම්පත අනුමත වුවහොත් ඔබට විද්‍යුත් තැපෑලක් ලැබෙනු ඇත.
+      redirecting_to: එය දැනට %{acct}වෙත හරවා යවන බැවින් ඔබගේ ගිණුම අක්‍රියයි.
+      view_strikes: ඔබගේ ගිණුමට එරෙහිව පසුගිය වර්ජන බලන්න
+    too_fast: පෝරමය ඉතා වේගයෙන් ඉදිරිපත් කර ඇත, නැවත උත්සාහ කරන්න.
+    use_security_key: ආරක්ෂක යතුර භාවිතා කරන්න
   authorize_follow:
+    already_following: ඔබ දැනටමත් මෙම ගිණුම අනුගමනය කරයි
+    already_requested: ඔබ දැනටමත් එම ගිණුමට අනුගමනය ඉල්ලීමක් යවා ඇත
+    error: අවාසනාවකට, දුරස්ථ ගිණුම සෙවීමේදී දෝෂයක් ඇති විය
+    follow: අනුගමනය
+    follow_request: 'ඔබ පහත ඉල්ලීමක් යවා ඇත:'
+    following: 'සාර්ථකත්වය! ඔබ දැන් පහත දැක්වේ:'
     post_follow:
       close: හෝ ඔබට මෙම කවුළුව වසාදැමිය හැකිය.
       return: පරිශීලකගේ පැතිකඩ පෙන්වන්න
       web: වියමන ට යන්න
+    title: "%{acct} අනුගමනය"
   challenge:
     confirm: ඉදිරියට
-    invalid_password: අවලංගු නොවන මුරපදයකි
+    hint_html: "<strong>ඉඟිය:</strong> අපි ඉදිරි පැය සඳහා නැවත ඔබගේ මුරපදය ඔබෙන් නොඉල්ලමු."
+    invalid_password: නොවන මුරපදයකි
+    prompt: ඉදිරියට යාමට මුරපදය තහවුරු කරන්න
+  crypto:
+    errors:
+      invalid_key: වලංගු Ed25519 හෝ Curve25519 යතුරක් නොවේ
+      invalid_signature: වලංගු Ed25519 අත්සනක් නොවේ
   date:
     formats:
       default: "%b %d, %Y"
       with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
+      about_x_hours: පැය %{count}
+      about_x_months: මාස %{count}
+      half_a_minute: මේ දැන්
+      less_than_x_minutes: මීටර් %{count}
       less_than_x_seconds: මේ දැන්
+      x_minutes: මීටර් %{count}
+      x_months: මාස %{count}
+      x_seconds: "%{count}තත්"
+  deletes:
+    challenge_not_passed: ඔබ ඇතුළත් කළ තොරතුරු නිවැරදි නැත
+    confirm_password: ඔබගේ අනන්‍යතාවය තහවුරු කිරීමට ඔබගේ වත්මන් මුරපදය ඇතුලත් කරන්න
+    confirm_username: ක්රියා පටිපාටිය තහවුරු කිරීමට ඔබගේ පරිශීලක නාමය ඇතුලත් කරන්න
+    proceed: ගිණුම මකන්න
+    success_msg: ඔබගේ ගිණුම සාර්ථකව මකා ඇත
+    warning:
+      before: 'ඉදිරියට යාමට පෙර, කරුණාකර මෙම සටහන් හොඳින් කියවන්න:'
+      caches: වෙනත් සේවාදායකයන් විසින් හැඹිලිගත කර ඇති අන්තර්ගතය දිගටම පැවතිය හැක
+      data_removal: ඔබගේ පළ කිරීම් සහ අනෙකුත් දත්ත ස්ථිරවම ඉවත් කරනු ලැබේ
+      email_change_html: ඔබට ඔබගේ ගිණුම මකා</a> <a href="%{path}">කළ හැක
+      email_contact_html: එය තවමත් නොපැමිණියේ නම්, ඔබට උදව් සඳහා <a href="mailto:%{email}">%{email}</a> විද්‍යුත් තැපෑලෙන් යැවිය හැක
+      email_reconfirmation_html: ඔබට තහවුරු කිරීමේ විද්‍යුත් තැපෑල නොලැබුනේ නම්, ඔබට එය <a href="%{path}">නැවත ඉල්ලා සිටිය හැක</a>
+      irreversible: ඔබට ඔබගේ ගිණුම ප්‍රතිසාධනය කිරීමට හෝ නැවත සක්‍රිය කිරීමට නොහැකි වනු ඇත
+      more_details_html: වැඩි විස්තර සඳහා, <a href="%{terms_path}">පෞද්ගලිකත්ව ප්‍රතිපත්තිය</a>බලන්න.
+      username_available: ඔබගේ පරිශීලක නාමය නැවත ලබා ගත හැකි වනු ඇත
+      username_unavailable: ඔබගේ පරිශීලක නාමය නොතිබෙනු ඇත
+  disputes:
+    strikes:
+      action_taken: පියවර ගත්තා
+      appeal: අභියාචනය
+      appeal_approved: මෙම වර්ජනය සාර්ථකව අභියාචනා කර ඇති අතර එය තවදුරටත් වලංගු නොවේ
+      appeal_rejected: අභියාචනය ප්‍රතික්ෂේප කර ඇත
+      appeal_submitted_at: අභියාචනය ඉදිරිපත් කරන ලදී
+      appealed_msg: ඔබගේ අභියාචනය ඉදිරිපත් කර ඇත. එය අනුමත වුවහොත්, ඔබට දැනුම් දෙනු ලැබේ.
+      appeals:
+        submit: අභියාචනය ඉදිරිපත් කරන්න
+      approve_appeal: අභියාචනය අනුමත කරන්න
+      associated_report: ආශ්රිත වාර්තාව
+      created_at: දිනැති
+      description_html: මේවා ඔබගේ ගිණුමට එරෙහිව ගන්නා ලද ක්‍රියා සහ %{instance}හි කාර්ය මණ්ඩලය විසින් ඔබට එවා ඇති අනතුරු ඇඟවීම් වේ.
+      recipient: වෙත යොමු කරන ලදී
+      reject_appeal: අභියාචනය ප්‍රතික්ෂේප කරන්න
+      status: 'පළ කිරීම #%{id}'
+      status_removed: පළ කිරීම දැනටමත් පද්ධතියෙන් ඉවත් කර ඇත
+      title: "%{action} සිට %{date}"
+      title_actions:
+        delete_statuses: පසු ඉවත් කිරීම
+        disable: ගිණුම කැටි කිරීම
+        mark_statuses_as_sensitive: තනතුරු සංවේදී ලෙස සලකුණු කිරීම
+        none: අවවාදයයි
+        sensitive: ගිණුම සංවේදී ලෙස සලකුණු කිරීම
+        silence: ගිණුම සීමා කිරීම
+        suspend: ගිණුම අත්හිටුවීම
+      your_appeal_approved: ඔබගේ අභියාචනය අනුමත කර ඇත
+      your_appeal_pending: ඔබ අභියාචනයක් ඉදිරිපත් කර ඇත
+      your_appeal_rejected: ඔබගේ අභියාචනය ප්‍රතික්ෂේප කර ඇත
+  domain_validator:
+    invalid_domain: වලංගු ඩොමේන් නාමයක් නොවේ
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '422': 
-    '429': Too many requests
-    '500': 
-    '503': The page could not be served due to a temporary server failure.
+    '400': ඔබ ඉදිරිපත් කළ ඉල්ලීම අවලංගු හෝ විකෘති විය.
+    '403': ඔබට මෙම පිටුව බැලීමට අවසර නැත.
+    '404': ඔබ සොයන පිටුව මෙහි නොමැත.
+    '406': මෙම පිටුව ඉල්ලන ලද ආකෘතියෙන් නොමැත.
+    '410': ඔබ සොයන පිටුව තවදුරටත් මෙහි නොමැත.
+    '422':
+      content: ආරක්ෂක සත්‍යාපනය අසාර්ථක විය. ඔබ කුකීස් අවහිර කරනවාද?
+      title: ආරක්ෂක සත්‍යාපනය අසාර්ථක විය
+    '429': ඉල්ලීම් වැඩියි
+    '500':
+      content: අපට කණගාටුයි, නමුත් අපගේ පැත්තෙන් යමක් වැරදී ඇත.
+      title: මෙම පිටුව නිවැරදි නොවේ
+    '503': තාවකාලික සේවාදායකයේ අසාර්ථක වීමක් හේතුවෙන් පිටුව සේවය කිරීමට නොහැකි විය.
+    noscript_html: Mastodon වෙබ් යෙදුම භාවිතා කිරීමට, කරුණාකර JavaScript සක්‍රීය කරන්න. විකල්පයක් ලෙස, ඔබේ වේදිකාව සඳහා</a> <a href="%{apps_path}">එකක් උත්සාහ කරන්න.
+  existing_username_validator:
+    not_found: එම පරිශීලක නාමය සහිත දේශීය පරිශීලකයෙකු සොයා ගැනීමට නොහැකි විය
+    not_found_multiple: "%{usernames}සොයා ගැනීමට නොහැකි විය"
   exports:
     archive_takeout:
       date: දිනය
-      download: ඔබගේ සංරක්ෂිතය බාගන්න
+      download: ඔබගේ සුරක්ෂිතභාවය බාගන්න
+      hint_html: ඔබට ඔබගේ පළ කිරීම් <strong>සහ උඩුගත කළ මාධ්‍ය</strong>හි සංරක්ෂිතයක් ඉල්ලා සිටිය හැක. නිර්යාත කළ දත්ත ActivityPub ආකෘතියෙන්, ඕනෑම අනුකූල මෘදුකාංගයකට කියවිය හැකිය. ඔබට දින 7කට වරක් ලේඛනාගාරයක් ඉල්ලා සිටිය හැක.
+      in_progress: ඔබගේ සංරක්ෂිතය සම්පාදනය කරමින්...
+      request: ඔබගේ සංරක්ෂිතය ඉල්ලන්න
       size: ප්‍රමාණය
-    bookmarks: පොත් යොමු
-    lists: ලැයිස්තු
+    blocks: ඔබ අවහිර කරන්න
+    bookmarks: පොත් යොමු කරන්න
+    domain_blocks: වසම් අවහිර කිරීම්
+    lists: ලැයිස්තුව
+    mutes: ඔබ නිහඬ කරන්න
     storage: මාධ්‍ය ගබඩාව
+  featured_tags:
+    add_new: අලුතින් එකතු කරන්න
+    errors:
+      limit: ඔබ දැනටමත් උපරිම හෑෂ් ටැග් ප්‍රමාණය විශේෂාංග කර ඇත
+    hint_html: "<strong>විශේෂාංගගත හැෂ් ටැග් මොනවාද?</strong> ඒවා ඔබේ පොදු පැතිකඩෙහි ප්‍රමුඛව ප්‍රදර්ශනය වන අතර එම හැෂ් ටැග් යටතේ ඔබේ පොදු පළ කිරීම් බ්‍රවුස් කිරීමට මිනිසුන්ට ඉඩ සලසයි. නිර්මාණාත්මක කෘති හෝ දිගු කාලීන ව්යාපෘති පිළිබඳ වාර්තාවක් තබා ගැනීම සඳහා ඔවුන් විශිෂ්ට මෙවලමක් වේ."
   filters:
     contexts:
       account: පැතිකඩයන්
+      home: නිවස සහ ලැයිස්තු
       notifications: දැනුම්දීම්
+      public: පොදු කාලරේඛා
       thread: සංවාද
     edit:
+      add_keyword: මූල පදය එක් කරන්න
+      keywords: මූල පද
       title: පෙරහන සංස්කරණය
+    errors:
+      deprecated_api_multiple_keywords: මෙම පරාමිති පෙරහන් මූල පද එකකට වඩා අදාළ වන බැවින් මෙම යෙදුමෙන් වෙනස් කළ නොහැක. වඩාත් මෑත යෙදුමක් හෝ වෙබ් අතුරු මුහුණතක් භාවිතා කරන්න.
+      invalid_context: කිසිවක් හෝ වලංගු නොවන සන්දර්භයක් සපයා නැත
     index:
+      contexts: "%{contexts}හි පෙරහන්"
+      delete: මකන්න
+      empty: ඔබට පෙරහන් නොමැත.
+      expires_in: "%{distance}කින් කල් ඉකුත් වේ"
+      expires_on: "%{date}දින කල් ඉකුත් වේ"
+      keywords:
+        one: "%{count} මූල පදය"
+        other: "%{count} මූල පද"
       title: පෙරහන්
     new:
+      save: නව පෙරහන සුරකින්න
       title: නව පෙරහනක් එකතු කරන්න
   footer:
-    developers: සංවර්ධකයින්
-    more: තව…
-    resources: සම්පත්
+    trending_now: දැන් ප්‍රවණතාවය
   generic:
     all: සියල්ල
-    copy: පිටපත්
+    changes_saved_msg: වෙනස්කම් සාර්ථකව සුරකින ලදී!
+    copy: පිටපතක්
+    delete: මකන්න
+    none: කිසිවක් නැත
+    order_by: විසින් ඇණවුම් කරන්න
     save_changes: වෙනස්කම් සුරකින්න
+    today: අද
+    validation_errors:
+      one: යමක් තවමත් හරි නැත! කරුණාකර පහත දෝෂය සමාලෝචනය කරන්න
+      other: යමක් තවමත් හරි නැත! කරුණාකර පහත දෝෂ %{count} ක් සමාලෝචනය කරන්න
+  html_validator:
+    invalid_markup: 'වලංගු නොවන HTML සලකුණු අඩංගු වේ: %{error}'
   imports:
+    errors:
+      over_rows_processing_limit: පේළි %{count} කට වඩා අඩංගු වේ
+    modes:
+      merge: ඒකාබද්ධ කරන්න
+      merge_long: පවතින වාර්තා තබා නව ඒවා එකතු කරන්න
+      overwrite: උඩින් ලියන්න
+      overwrite_long: වත්මන් වාර්තා නව ඒවා සමඟ ප්‍රතිස්ථාපනය කරන්න
+    preface: ඔබ අනුගමන කරන හෝ අවහිර කරන පුද්ගලයින්ගේ ලැයිස්තුවක් වැනි වෙනත් සේවාදායකයකින් ඔබ නිර්යාත කර ඇති දත්ත ඔබට ආයාත කළ හැක.
+    success: ඔබගේ දත්ත සාර්ථකව උඩුගත කර ඇති අතර නියමිත වේලාවට සැකසෙනු ඇත
     types:
+      blocking: අවහිර කිරීමේ ලැයිස්තුව
       bookmarks: පොත් යොමු
+      domain_blocking: වසම් අවහිර කිරීමේ ලැයිස්තුව
+      following: පහත ලැයිස්තුව
+      muting: නිහඬ කිරීමේ ලැයිස්තුව
     upload: උඩුගත කරන්න
   invites:
+    delete: අක්රිය කරන්න
+    expired: කල් ඉකුත් වී ඇත
     expires_in:
       '1800': විනාඩි 30
-      '21600': හෝරා 6
-      '3600': හෝරා 1
-      '43200': හෝරා 12
+      '21600': පැය 6
+      '3600': පැය 1
+      '43200': පැය 12
       '604800': සති 1
       '86400': දවස් 1
+    expires_in_prompt: කවදාවත් නැහැ
+    generate: ආරාධනා සබැඳිය උත්පාදනය කරන්න
+    invited_by: 'ඔබට ආරාධනා කළේ:'
+    max_uses:
+      one: 1 භාවිතය
+      other: "%{count} භාවිතා කරයි"
+    max_uses_prompt: සීමාවක් නැත
+    prompt: මෙම සේවාදායකයට ප්‍රවේශය ලබා දීමට අන් අය සමඟ සබැඳි ජනනය කර බෙදා ගන්න
+    table:
+      expires_at: කල් ඉකුත් වේ
+      uses: භාවිතා කරයි
     title: මිනිසුන්ට ආරාධනා කරන්න
+  lists:
+    errors:
+      limit: ඔබ උපරිම ලැයිස්තු ප්‍රමාණයට ළඟා වී ඇත
   login_activities:
     authentication_methods:
-      password: මුර පදය
+      otp: ද්වි-සාධක සත්‍යාපන යෙදුම
+      password: මුරපදය
+      sign_in_token: ඊමේල් ආරක්ෂක කේතය
+      webauthn: ආරක්ෂක යතුරු
+    description_html: ඔබ හඳුනා නොගත් ක්‍රියාකාරකම් ඔබ දුටුවහොත්, ඔබේ මුරපදය වෙනස් කිරීම සහ ද්වි-සාධක සත්‍යාපනය සක්‍රීය කිරීම සලකා බලන්න.
+    empty: සත්‍යාපන ඉතිහාසයක් නොමැත
+    failed_sign_in_html: "%{ip} (%{browser}) සිට %{method} සමඟ අසාර්ථක පුරනය වීමේ උත්සාහය"
+    successful_sign_in_html: "%{ip} (%{browser}) සිට %{method} සමඟ සාර්ථක පුරනය වීම"
+    title: සත්‍යාපන ඉතිහාසය
+  media_attachments:
+    validations:
+      images_and_video: දැනටමත් පින්තූර අඩංගු පළ කිරීමකට වීඩියෝවක් ඇමිණිය නොහැක
+      not_ready: සැකසීම අවසන් නොකළ ගොනු ඇමිණිය නොහැක. මොහොතකින් නැවත උත්සාහ කරන්න!
+      too_many: ගොනු 4කට වඩා ඇමිණිය නොහැක
+  migrations:
+    acct: වෙත ගෙන යන ලදී
+    cancel: යළි-යොමුවීම් අවලංගු කරන්න
+    cancel_explanation: යළි-යොමුවීම් අවලංගු කිරීම ඔබගේ ජංගම ගිණුම නැවත සක්‍රිය කරනු ඇත, නමුත් එම ගිණුමට ගෙන ගිය අනුගාමිකයින් ආපසු ගෙන එන්නේ නැත.
+    cancelled_msg: යළි-යොමුවීම සාර්ථකව අවලංගු කරන ලදී.
+    errors:
+      already_moved: ඔබ දැනටමත් මාරු කර ඇති ගිණුමයි
+      missing_also_known_as: මෙම ගිණුමේ අන්වර්ථ නාමයක් නොවේ
+      move_to_self: ජංගම ගිණුම විය නොහැක
+      not_found: සොයා ගැනීමට නොහැකි විය
+      on_cooldown: ඔබ සිසිලනය මත සිටී
+    followers_count: චලනය වන අවස්ථාවේ අනුගාමිකයන්
+    incoming_migrations: වෙනත් ගිණුමකින් මාරු වීම
+    incoming_migrations_html: වෙනත් ගිණුමකින් මෙම ගිණුමට මාරු වීමට, පළමුව ඔබ <a href="%{path}">අන්වර්ථ</a>ගිණුමක් සෑදිය යුතුය.
+    moved_msg: ඔබගේ ගිණුම දැන් %{acct} වෙත හරවා යවනු ලබන අතර ඔබගේ අනුගාමිකයින් එහා මෙහා ගෙන යමින් පවතී.
+    not_redirecting: ඔබගේ ගිණුම දැනට වෙනත් කිසිදු ගිණුමකට හරවා යවන්නේ නැත.
+    on_cooldown: ඔබ මෑතකදී ඔබගේ ගිණුම සංක්‍රමණය කර ඇත. මෙම කාර්යය දින %{count} කින් නැවත ලබා ගත හැකි වනු ඇත.
+    past_migrations: අතීත සංක්‍රමණ
+    proceed_with_move: අනුගාමිකයන් මාරු කරන්න
+    redirected_msg: ඔබගේ ගිණුම දැන් %{acct}වෙත හරවා යවනු ලැබේ.
+    redirecting_to: ඔබගේ ගිණුම %{acct}වෙත හරවා යවනු ලැබේ.
+    set_redirect: යළි-යොමුවීම් සකසන්න
+    warning:
+      backreference_required: නව ගිණුම ප්‍රථමයෙන් මෙය ආපසු යොමු කිරීමට වින්‍යාස කළ යුතුය
+      before: 'ඉදිරියට යාමට පෙර, කරුණාකර මෙම සටහන් හොඳින් කියවන්න:'
+      cooldown: මාරු වීමෙන් පසු ඔබට නැවත ගමන් කිරීමට නොහැකි වනු ඇති පොරොත්තු කාල සීමාවක් ඇත
+      disabled_account: ඔබගේ ජංගම ගිණුම පසුව සම්පූර්ණයෙන්ම භාවිතා කළ නොහැක. කෙසේ වෙතත්, ඔබට දත්ත අපනයනයට මෙන්ම නැවත සක්‍රිය කිරීමට ප්‍රවේශය ඇත.
+      followers: මෙම ක්‍රියාව සියළුම අනුගාමිකයින් ජංගම ගිණුමේ සිට නව ගිණුමට ගෙන යනු ඇත
+      only_redirect_html: විකල්පයක් ලෙස, ඔබට <a href="%{path}">ඔබගේ පැතිකඩ</a>හි යළි-යොමුවීමක් පමණක් තැබිය හැකිය.
+      other_data: වෙනත් දත්ත කිසිවක් ස්වයංක්‍රීයව ගෙන නොයනු ඇත
+      redirect: ඔබගේ ජංගම ගිණුමේ පැතිකඩ යළි-යොමු කිරීමේ දැන්වීමක් සමඟ යාවත්කාලීන කෙරෙන අතර සෙවුම් වලින් බැහැර කරනු ලැබේ
+  moderation:
+    title: මධ්යස්ථභාවය
+  move_handler:
+    carry_blocks_over_text: මෙම පරිශීලකයා ඔබ අවහිර කර තිබූ %{acct}සිට මාරු විය.
+    carry_mutes_over_text: මෙම පරිශීලකයා ඔබ නිශ්ශබ්ද කර තිබූ %{acct}වෙතින් මාරු විය.
+    copy_account_note_text: 'මෙම පරිශීලකයා %{acct}සිට මාරු විය, මෙන්න ඔවුන් ගැන ඔබේ පෙර සටහන්:'
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} වාර්තාවක් ඉදිරිපත් කළේය"
+      sign_up:
+        subject: "%{name} අත්සන් කර ඇත"
+    favourite:
+      body: 'ඔබේ පළ කිරීම %{name}විසින් ප්‍රිය කරන ලදී:'
+      subject: "%{name} ඔබගේ පළ කිරීම ප්‍රිය කරන ලදී"
+      title: නව ප්රියතම
+    follow:
+      body: "%{name} දැන් ඔබව අනුගමනය කරයි!"
+      subject: "%{name} දැන් ඔබව අනුගමනය කරයි"
+      title: නව අනුගාමිකයෙක්
+    follow_request:
+      action: අනුගමනය කරන ඉල්ලීම් කළමනාකරණය කරන්න
+      body: "%{name} ඔබව අනුගමනය කිරීමට ඉල්ලා ඇත"
+      subject: 'පොරොත්තු අනුගාමිකයා: %{name}'
+      title: නව අනුගමනය ඉල්ලීම
     mention:
       action: පිළිතුර
+      body: 'ඔබව මෙහි %{name} කින් සඳහන් කර ඇත:'
+      subject: ඔබව %{name}මගින් සඳහන් කර ඇත
       title: නව සඳැහුම
+    poll:
+      subject: "%{name} න් මත විමසුමක් අවසන් විය"
+    reblog:
+      body: 'ඔබේ පළ කිරීම %{name}කින් වැඩි කරන ලදී:'
+      subject: "%{name} ඔබේ පළ කිරීම ඉහළ නැංවීය"
+      title: නව තල්ලුවක්
+    status:
+      subject: "%{name} දැන් පළ කළා"
+    update:
+      subject: "%{name} පළ කිරීමක් සංස්කරණය කළා"
   notifications:
+    email_events: ඊමේල් දැනුම්දීම් සඳහා සිදුවීම්
+    email_events_hint: 'ඔබට දැනුම්දීම් ලැබීමට අවශ්‍ය සිදුවීම් තෝරන්න:'
     other_settings: වෙනත් දැනුම්දීම් සැකසුම්
   number:
     human:
       decimal_units:
         format: "%n%u"
+        units:
+          billion: බී
+          million: ද.ල.
+          quadrillion: ප්‍රශ්නය
+          thousand: ද.
+          trillion: ටී
   otp_authentication:
+    code_hint: තහවුරු කිරීමට ඔබගේ සත්‍යාපන යෙදුම මගින් ජනනය කරන ලද කේතය ඇතුළු කරන්න
+    description_html: ඔබ සත්‍යාපන යෙදුමක් භාවිතයෙන් <strong>ද්වි-සාධක සත්‍යාපනය</strong> සක්‍රීය කරන්නේ නම්, ලොගින් වීමේදී ඔබට ඔබගේ දුරකථනය සන්තකයේ තබා ගැනීමට අවශ්‍ය වනු ඇත, එය ඔබට ඇතුළු වීමට ටෝකන ජනනය කරයි.
     enable: සබල කරන්න
+    instructions_html: "<strong>මෙම QR කේතය ඔබගේ දුරකථනයේ Google Authenticator හෝ එවැනිම TOTP යෙදුමකට පරිලෝකනය කරන්න</strong>. මෙතැන් සිට, එම යෙදුම ඔබට ලොග් වීමේදී ඇතුළත් කළ යුතු ටෝකන ජනනය කරයි."
+    manual_instructions: 'ඔබට QR කේතය පරිලෝකනය කළ නොහැකි නම් සහ එය අතින් ඇතුල් කිරීමට අවශ්‍ය නම්, මෙන්න සරල පෙළ රහස:'
+    setup: සැලසුම
+    wrong_code: ඇතුළත් කළ කේතය අවලංගුයි! සේවාදායක වේලාව සහ උපාංග වේලාව නිවැරදිද?
   pagination:
+    newer: අලුත්
     next: ඊළඟ
+    older: වැඩිහිටි
+    prev: පෙර
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: ඔබ දැනටමත් මෙම මත විමසුමට ඡන්දය දී ඇත
+      duplicate_options: අනුපිටපත් අයිතම අඩංගු වේ
+      duration_too_long: අනාගතයට බොහෝ දුරයි
+      duration_too_short: ඉතා ඉක්මනින් වේ
+      expired: මත විමසුම දැනටමත් අවසන් වී ඇත
+      invalid_choice: තෝරාගත් ඡන්ද විකල්පය නොපවතී
+      over_character_limit: එක් එක් අක්ෂර %{max} ට වඩා දිගු විය නොහැක
+      too_few_options: එක් අයිතමයකට වඩා තිබිය යුතුය
+      too_many_options: අයිතම %{max} කට වඩා අඩංගු විය නොහැක
+  preferences:
+    other: වෙනත්
+    posting_defaults: පෙරනිමි පළ කිරීම
+    public_timelines: පොදු කාලරේඛා
+  reactions:
+    errors:
+      limit_reached: විවිධ ප්‍රතික්‍රියා වල සීමාව ළඟා විය
+      unrecognized_emoji: පිළිගත් ඉමොජියක් නොවේ
   relationships:
     activity: ගිණුමේ ක්‍රියාකාරකම්
-    status: ගිණුමේ තත්වය
+    dormant: නිදිමතයි
+    follow_selected_followers: තෝරාගත් අනුගාමිකයින් අනුගමනය කරන්න
+    followers: අනුගාමිකයින්
+    following: අනුගමනය
+    invited: ආරාධනා කළා
+    last_active: අවසන් වරට ක්‍රියාකාරී
+    most_recent: මෑතකාලීන
+    moved: මාරු කළා
+    mutual: අන්යෝන්ය
+    primary: ප්රාථමික
+    relationship: සම්බන්ධතාවය
+    remove_selected_domains: තෝරාගත් වසම් වලින් සියලුම අනුගාමිකයින් ඉවත් කරන්න
+    remove_selected_followers: තෝරාගත් අනුගාමිකයින් ඉවත් කරන්න
+    remove_selected_follows: තෝරාගත් පරිශීලකයින් අනුගමනය නොකරන්න
+    status: ගිණුමේ තත්‍වය
+  remote_follow:
+    missing_resource: ඔබගේ ගිණුම සඳහා අවශ්‍ය යළි-යොමුවීම් URL එක සොයා ගැනීමට නොහැකි විය
+  reports:
+    errors:
+      invalid_rules: වලංගු නීති සඳහන් නොකරයි
+  rss:
+    content_warning: 'අන්තර්ගත අනතුරු ඇඟවීම:'
+    descriptions:
+      account: "@%{acct}සිට පොදු පළ කිරීම්"
+      tag: "#%{hashtag}ටැග් කර ඇති පොදු පළ කිරීම්"
+  scheduled_statuses:
+    over_daily_limit: ඔබ අද දිනට නියමිත පළ කිරීම් %{limit} සීමාව ඉක්මවා ඇත
+    over_total_limit: ඔබ නියමිත පළ කිරීම් %{limit} සීමාව ඉක්මවා ඇත
+    too_soon: නියමිත දිනය අනාගතයේ විය යුතුය
   sessions:
+    activity: අවසාන ක්‍රියාකාරකම
     browser: අතිරික්සුව
     browsers:
       alipay: අලිපේ
@@ -334,12 +1202,16 @@ si:
       generic: නොදන්නා අතිරික්සුවකි
       ie: ඉන්ටර්නෙට් එක්ස්ප්ලෝරර්
       micro_messenger: මයික්‍රොමැසෙන්ජර්
+      nokia: Nokia S40 Ovi බ්‍රව්සරය
       opera: ඔපෙරා
       otter: ඔටර්
       qq: කියුකියු අතිරික්සුව
       safari: සෆාරි
       uc_browser: යූසී අතිරික්සුව
       weibo: වෙයිබො
+    current_session: වත්මන් සැසිය
+    description: "%{browser} මත %{platform}"
+    explanation: මේවා දැනට ඔබගේ Mastodon ගිණුමට ලොග් වී ඇති වෙබ් බ්‍රව්සර් වේ.
     ip: අ.ජා. කෙ. (IP)
     platforms:
       adobe_air: ඇඩෝබි එයාර්
@@ -350,25 +1222,233 @@ si:
       ios: අයිඕඑස්
       linux: ලිනක්ස්
       mac: මැක්ඕඑස්
+      other: නොදන්නා වේදිකාව
       windows: වින්ඩෝස්
       windows_mobile: වින්ඩෝස් මොබයිල්
       windows_phone: වින්ඩෝස් පෝන්
+    revoke: අවලංගු කරන්න
+    revoke_success: සැසිය සාර්ථකව අවලංගු කරන ලදී
+    title: සැසිවාර
+    view_authentication_history: ඔබගේ ගිණුමේ සත්‍යාපන ඉතිහාසය බලන්න
   settings:
     account: ගිණුම
     account_settings: ගිණුමේ සැකසුම්
+    aliases: ගිණුම් අන්වර්ථ නාමයන්
+    appearance: පෙනුම
+    authorized_apps: අවසර ලත් යෙදුම්
+    back: Mastodon වෙත නැවත යන්න
+    delete: ගිණුම මකා දැමීම
+    development: සංවර්ධනය
     edit_profile: පැතිකඩ සංස්කරණය
-    export: දත්ත නිර්යාත
-    import: ආයාත කරන්න
-    import_and_export: ආයාත සහ නිර්යාත
+    export: දත්ත නිර්යාතය
+    featured_tags: විශේෂාංගගත හැෂ් ටැග්
+    import: ආයාතය
+    import_and_export: ආයාත හා නිර්යාත
+    migrate: ගිණුම් සංක්‍රමණය
     notifications: දැනුම්දීම්
+    preferences: මනාප
     profile: පැතිකඩ
+    relationships: අනුගාමිකයින් සහ අනුගාමිකයින්
+    statuses_cleanup: ස්වයංක්‍රීය පළ කිරීම් මකාදැමීම
+    strikes: මධ්‍යස්ථ වැඩ වර්ජන
+    two_factor_authentication: ද්වි සාධක Aut
+    webauthn_authentication: ආරක්ෂක යතුරු
   statuses:
+    attached:
+      audio:
+        one: "%{count} ශ්රව්ය"
+        other: "%{count} ශ්රව්ය"
+      description: 'අමුණා ඇත: %{attached}'
+      image:
+        one: "%{count} රූපය"
+        other: පින්තූර %{count}
+      video:
+        one: "%{count} වීඩියෝ"
+        other: වීඩියෝ %{count}
+    boosted_from_html: "%{acct_link}සිට වැඩි කරන ලදී"
+    content_warning: 'අන්තර්ගත අනතුරු ඇඟවීම: %{warning}'
+    default_language: අතුරු මුහුණත් භාෂාවට සමානයි
+    disallowed_hashtags:
+      one: 'අනුමත නොකළ හැෂ් ටැගයක් අඩංගු විය: %{tags}'
+      other: 'අනුමත නොකළ හැෂ් ටැග් අඩංගු විය: %{tags}'
+    edited_at_html: සංස්කරණය %{date}
+    errors:
+      in_reply_not_found: ඔබ පිළිතුරු දීමට උත්සාහ කරන පළ කිරීම පවතින බවක් නොපෙනේ.
+    open_in_web: වෙබයේ විවෘත කරන්න
+    over_character_limit: අක්ෂර සීමාව %{max} ඉක්මවා ඇත
+    pin_errors:
+      direct: සඳහන් කළ පරිශීලකයින්ට පමණක් පෙනෙන පළ කිරීම් ඇමිණිය නොහැක
+      limit: ඔබ දැනටමත් උපරිම පළ කිරීම් සංඛ්‍යාව අමුණා ඇත
+      ownership: වෙනත් කෙනෙකුගේ පළ කිරීමක් ඇමිණිය නොහැක
+      reblog: බූස්ට් එකක් ඇලවිය නොහැක
+    poll:
+      total_people:
+        one: "%{count} පුද්ගලයෙක්"
+        other: පුද්ගලයන් %{count}
+      total_votes:
+        one: "%{count} ඡන්ද"
+        other: ඡන්ද %{count} යි
+      vote: ඡන්දය දෙන්න
     show_more: තව පෙන්වන්න
+    show_newer: අලුත්ම පෙන්වන්න
+    show_older: පැරණි පෙන්වන්න
+    show_thread: නූල් පෙන්වන්න
+    sign_in_to_participate: සංවාදයට සහභාගී වීමට පුරන්න
     title: '%{name}: "%{quote}"'
     visibilities:
+      direct: සෘජු
+      private: අනුගාමිකයින්-පමණි
+      private_long: අනුගාමිකයින්ට පමණක් පෙන්වන්න
       public: ප්‍රසිද්ධ
+      public_long: හැමෝටම පේනවා
+      unlisted: ලැයිස්තුගත නොකළ
+      unlisted_long: සෑම කෙනෙකුටම දැකිය හැක, නමුත් පොදු කාලරාමුවෙහි ලැයිස්තුගත කර නොමැත
+  statuses_cleanup:
+    enabled: පැරණි පළ කිරීම් ස්වයංක්‍රීයව මකන්න
+    enabled_hint: ඔබේ පළ කිරීම් පහත ව්‍යතිරේකවලින් එකකට ගැලපෙන්නේ නම් මිස, ඒවා නිශ්චිත වයස් සීමාවකට ළඟා වූ පසු ස්වයංක්‍රීයව මකයි
+    exceptions: ව්යතිරේක
+    explanation: පළ කිරීම් මකා දැමීම මිල අධික මෙහෙයුමක් වන බැවින්, සේවාදායකය වෙනත් ආකාරයකින් කාර්යබහුල නොවන විට කාලයත් සමඟ මෙය සෙමින් සිදු කෙරේ. මෙම හේතුව නිසා, ඔබේ පළ කිරීම් වයස් සීමාවට ළඟා වූ පසු ටික වේලාවකට පසුව මකා දැමිය හැක.
+    ignore_favs: ප්‍රියතමයන් නොසලකා හරින්න
+    ignore_reblogs: වැඩි කිරීම් නොසලකා හරින්න
+    interaction_exceptions: අන්තර්ක්‍රියා මත පදනම් වූ ව්‍යතිරේක
+    interaction_exceptions_explanation: පළ කිරීම් වරක් ඒවා ඉක්මවා ගිය පසු ප්‍රියතම හෝ බූස්ට් සීමාවට පහළින් ගියහොත් ඒවා මැකීමට සහතිකයක් නොමැති බව සලකන්න.
+    keep_direct: සෘජු පණිවිඩ තබා ගන්න
+    keep_direct_hint: ඔබගේ සෘජු පණිවිඩ කිසිවක් මකන්නේ නැත
+    keep_media: මාධ්‍ය ඇමුණුම් සමඟ පළ කිරීම් තබා ගන්න
+    keep_media_hint: මාධ්‍ය ඇමුණුම් ඇති ඔබේ පළ කිරීම් කිසිවක් මකන්නේ නැත
+    keep_pinned: ඇමිණූ ලිපි තබාගන්න
+    keep_pinned_hint: ඔබ ඇමිණූ ලිපි කිසිවක් නොමැකෙයි
+    keep_polls: ඡන්ද තබා ගන්න
+    keep_polls_hint: ඔබගේ ඡන්ද විමසීම් කිසිවක් මකන්නේ නැත
+    keep_self_bookmark: ඔබ පිටු සලකුණු කළ පළ කිරීම් තබා ගන්න
+    keep_self_bookmark_hint: ඔබ ඔබේම පළ කිරීම් පිටු සලකුණු කර ඇත්නම් ඒවා මකා නොදමන්න
+    keep_self_fav: ඔබ කැමති පළ කිරීම් තබා ගන්න
+    keep_self_fav_hint: ඔබ ඒවාට කැමති නම් ඔබේම පළ කිරීම් මකා නොදමන්න
+    min_age:
+      '1209600': සති 2 යි
+      '15778476': මාස 6 යි
+      '2629746': මාස 1 යි
+      '31556952': වසර 1 යි
+      '5259492': මාස 2 ක්
+      '604800': 1 සතිය
+      '63113904': අවුරුදු 2 ක්
+      '7889238': මාස 3 යි
+    min_age_label: වයස් සීමාව
+    min_favs: අඩුම තරමින් පෝස්ට් ප්‍රිය කරන ලෙස තබා ගන්න
+    min_favs_hint: අවම වශයෙන් මෙම ප්‍රියතම ප්‍රමාණය ලබා ඇති ඔබේ පළ කිරීම් කිසිවක් මකන්නේ නැත. ඔවුන්ගේ ප්‍රියතමයන් ගණන නොතකා පළ කිරීම් මැකීමට හිස්ව තබන්න
+    min_reblogs: අඩුම තරමේ පෝස්ට් බූස්ට් කරගෙන තියාගන්න
+    min_reblogs_hint: අඩුම තරමින් මෙම වාර ගණන වැඩි කර ඇති ඔබගේ පළ කිරීම් කිසිවක් මකා නොදමන්න. බූස්ට් ගණන නොතකා පළ කිරීම් මැකීමට හිස්ව තබන්න
   stream_entries:
+    pinned: ඇමිණූ ලිපිය
+    reblogged: ඉහල නැංවීය
     sensitive_content: සංවේදී අන්තර්ගතයකි
+  strikes:
+    errors:
+      too_late: මෙම වර්ජනයට අභියාචනයක් ඉදිරිපත් කිරීමට ප්‍රමාද වැඩියි
+  tags:
+    does_not_match_previous_name: පෙර නමට නොගැලපේ
+  themes:
+    contrast: Mastodon (ඉහළ වෙනස)
+    default: මැස්ටෝඩන් (අඳුරු)
+    mastodon-light: මැස්ටෝඩන් (ආලෝකය)
   two_factor_authentication:
+    add: එකතු කරන්න
+    disable: 2FA අබල කරන්න
+    disabled_success: ද්වි-සාධක සත්‍යාපනය සාර්ථකව අබල කර ඇත
     edit: සංස්කරණය
+    enabled: ද්වි-සාධක සත්‍යාපනය සක්‍රීය කර ඇත
+    enabled_success: ද්වි-සාධක සත්‍යාපනය සාර්ථකව සබල කර ඇත
+    generate_recovery_codes: ප්‍රතිසාධන කේත ජනනය කරන්න
+    lost_recovery_codes: ඔබගේ දුරකථනය නැති වුවහොත් ඔබගේ ගිණුමට ප්‍රවේශය නැවත ලබා ගැනීමට ප්‍රතිසාධන කේත ඔබට ඉඩ සලසයි. ඔබට ඔබේ ප්‍රතිසාධන කේත නැති වී ඇත්නම්, ඔබට ඒවා මෙහි නැවත උත්පාදනය කළ හැක. ඔබගේ පැරණි ප්‍රතිසාධන කේත අවලංගු වනු ඇත.
+    methods: ද්වි සාධක ක්රම
+    otp: Authenticator යෙදුම
+    recovery_codes: උපස්ථ ප්‍රතිසාධන කේත
+    recovery_codes_regenerated: ප්‍රතිසාධන කේත සාර්ථකව ප්‍රතිජනනය කරන ලදී
+    recovery_instructions_html: ඔබට කවදා හෝ ඔබගේ දුරකථනයට ප්‍රවේශය අහිමි වුවහොත්, ඔබගේ ගිණුමට ප්‍රවේශය නැවත ලබා ගැනීමට පහත ප්‍රතිසාධන කේත වලින් එකක් භාවිතා කළ හැක. <strong>ප්‍රතිසාධන කේත ආරක්ෂිතව තබා ගන්න</strong>. උදාහරණයක් ලෙස, ඔබට ඒවා මුද්‍රණය කර වෙනත් වැදගත් ලේඛන සමඟ ගබඩා කළ හැකිය.
     webauthn: ආරක්‍ෂණ යතුරු
+  user_mailer:
+    appeal_approved:
+      action: ඔබගේ ගිණුමට යන්න
+      explanation: ඔබ %{appeal_date} දින ඉදිරිපත් කළ %{strike_date} හි ඔබේ ගිණුමට එරෙහි වර්ජනයේ අභියාචනය අනුමත කර ඇත. ඔබගේ ගිණුම නැවත වරක් හොඳ තත්වයක පවතී.
+      subject: "%{date} සිට ඔබගේ අභියාචනය අනුමත කර ඇත"
+      title: අභියාචනය අනුමත කර ඇත
+    appeal_rejected:
+      explanation: "%{strike_date} දින ඔබේ ගිණුමට එරෙහිව ඔබ %{appeal_date} දින ඉදිරිපත් කළ වර්ජනයේ අභියාචනය ප්‍රතික්ෂේප කර ඇත."
+      subject: "%{date} සිට ඔබගේ අභියාචනය ප්‍රතික්ෂේප කර ඇත"
+      title: අභියාචනය ප්‍රතික්ෂේප විය
+    backup_ready:
+      explanation: ඔබ ඔබේ Mastodon ගිණුමේ සම්පූර්ණ උපස්ථයක් ඉල්ලා ඇත. එය දැන් බාගත කිරීම සඳහා සූදානම්!
+      subject: ඔබගේ සංරක්ෂිතය බාගැනීමට සූදානම්ය
+      title: සංරක්ෂිත රැගෙන යාම
+    suspicious_sign_in:
+      change_password: ඔබගේ මුරපදය වෙනස් කරන්න
+      details: 'පුරනය වීමේ විස්තර මෙන්න:'
+      explanation: අපි නව IP ලිපිනයකින් ඔබගේ ගිණුමට පුරනය වීමක් අනාවරණය කරගෙන ඇත.
+      further_actions_html: මෙය ඔබ නොවේ නම්, අපි ඔබට වහාම %{action} ලෙස නිර්දේශ කර ඔබගේ ගිණුම සුරක්ෂිතව තබා ගැනීමට සාධක දෙකක සත්‍යාපනය සබල කරන්න.
+      subject: ඔබගේ ගිණුම නව IP ලිපිනයකින් ප්‍රවේශ වී ඇත
+      title: නව පුරනය වීමක්
+    warning:
+      appeal: අභියාචනයක් ඉදිරිපත් කරන්න
+      appeal_description: මෙය දෝෂයක් බව ඔබ විශ්වාස කරන්නේ නම්, ඔබට %{instance}හි කාර්ය මණ්ඩලයට අභියාචනයක් ඉදිරිපත් කළ හැක.
+      categories:
+        spam: ආයාචිත තැපැල්
+        violation: අන්තර්ගතය පහත ප්‍රජා මාර්ගෝපදේශ උල්ලංඝනය කරයි
+      explanation:
+        delete_statuses: ඔබගේ සමහර පළ කිරීම් ප්‍රජා මාර්ගෝපදේශ එකක් හෝ කිහිපයක් උල්ලංඝනය කරන බව සොයා ගෙන ඇති අතර පසුව %{instance}හි උපපරිපාලකයින් විසින් ඉවත් කර ඇත.
+        disable: ඔබට තවදුරටත් ඔබගේ ගිණුම භාවිතා කළ නොහැක, නමුත් ඔබගේ පැතිකඩ සහ අනෙකුත් දත්ත නොවෙනස්ව පවතී. ඔබට ඔබගේ දත්තවල උපස්ථයක් ඉල්ලා සිටීමට, ගිණුම් සැකසීම් වෙනස් කිරීමට හෝ ඔබගේ ගිණුම මකා දැමීමට හැකිය.
+        mark_statuses_as_sensitive: ඔබගේ සමහර පළ කිරීම් %{instance}හි පරිපාලකයින් විසින් සංවේදී ලෙස සලකුණු කර ඇත. මෙයින් අදහස් කරන්නේ පෙරදසුනක් දර්ශනය වීමට පෙර පුද්ගලයින්ට පළ කිරීම් වල මාධ්‍ය තට්ටු කිරීමට අවශ්‍ය වනු ඇති බවයි. අනාගතයේදී පළ කිරීමේදී ඔබට මාධ්‍ය සංවේදී ලෙස සලකුණු කළ හැක.
+        sensitive: මෙතැන් සිට, ඔබගේ උඩුගත කරන ලද සියලුම මාධ්‍ය ගොනු සංවේදී ලෙස සලකුණු කර ක්ලික්-හරහා අනතුරු ඇඟවීමක් පිටුපස සඟවනු ඇත.
+        silence: ඔබට තවමත් ඔබගේ ගිණුම භාවිතා කළ හැකි නමුත් දැනටමත් ඔබව අනුගමනය කරන පුද්ගලයින් පමණක් මෙම සේවාදායකයේ ඔබගේ පළ කිරීම් දකිනු ඇති අතර, විවිධ සොයාගැනීම් විශේෂාංග වලින් ඔබව බැහැර කරනු ලැබිය හැක. කෙසේ වෙතත්, අනෙක් අය තවමත් ඔබව අතින් අනුගමනය කළ හැක.
+        suspend: ඔබට තවදුරටත් ඔබගේ ගිණුම භාවිතා කළ නොහැකි අතර, ඔබගේ පැතිකඩ සහ අනෙකුත් දත්ත තවදුරටත් ප්‍රවේශ විය නොහැක. දින 30කින් පමණ දත්ත සම්පූර්ණයෙන් ඉවත් කරන තෙක් ඔබට තවමත් ඔබේ දත්තවල උපස්ථයක් ඉල්ලා සිටීමට පුරනය විය හැක, නමුත් ඔබව අත්හිටුවීම මගහැර යාම වැළැක්වීමට අපි මූලික දත්ත කිහිපයක් රඳවා ගන්නෙමු.
+      reason: 'හේතුව:'
+      statuses: 'උපුටා දක්වන ලද පළ කිරීම්:'
+      subject:
+        delete_statuses: "%{acct} හි ඔබගේ පළ කිරීම් ඉවත් කර ඇත"
+        disable: ඔබගේ ගිණුම %{acct} කර ඇත
+        mark_statuses_as_sensitive: "%{acct} හි ඔබගේ පළ කිරීම් සංවේදී ලෙස සලකුණු කර ඇත"
+        none: "%{acct}සඳහා අනතුරු ඇඟවීම"
+        sensitive: "%{acct} හි ඔබගේ පළ කිරීම් මෙතැන් සිට සංවේදී ලෙස සලකුණු කෙරේ"
+        silence: ඔබගේ ගිණුම %{acct} සීමා කර ඇත
+        suspend: ඔබගේ ගිණුම %{acct} අත්හිටුවා ඇත
+      title:
+        delete_statuses: පළ කිරීම් ඉවත් කරන ලදී
+        disable: ගිණුම නිශ්චල කර ඇත
+        mark_statuses_as_sensitive: පළ කිරීම් සංවේදී ලෙස ලකුණු කර ඇත
+        none: අවවාදයයි
+        sensitive: ගිණුම සංවේදී ලෙස ලකුණු කර ඇත
+        silence: ගිණුම සීමා සහිතයි
+        suspend: ගිණුම අත්හිටුවා ඇත
+    welcome:
+      edit_profile_action: සැකසුම් පැතිකඩ
+      explanation: ඔබ ආරම්භ කිරීමට උපදෙස් කිහිපයක් මෙන්න
+      final_action: පළ කිරීම ආරම්භ කරන්න
+      full_handle: ඔබේ සම්පූර්ණ හසුරුව
+      full_handle_hint: මෙය ඔබ ඔබේ මිතුරන්ට පවසනු ඇත, එවිට ඔවුන්ට වෙනත් සේවාදායකයකින් ඔබට පණිවිඩ යැවීමට හෝ අනුගමනය කිරීමට හැකිය.
+      subject: Mastodon වෙත සාදරයෙන් පිළිගනිමු
+      title: නැවට සාදරයෙන් පිළිගනිමු, %{name}!
+  users:
+    follow_limit_reached: ඔබට පුද්ගලයින් %{limit} කට වඩා අනුගමනය කළ නොහැක
+    invalid_otp_token: වලංගු නොවන ද්වි-සාධක කේතය
+    otp_lost_help_html: ඔබට දෙකටම ප්‍රවේශය අහිමි වුවහොත්, ඔබට %{email}සමඟ සම්බන්ධ විය හැක
+    seamless_external_login: ඔබ බාහිර සේවාවක් හරහා ලොග් වී ඇත, එබැවින් මුරපදය සහ ඊමේල් සැකසුම් නොමැත.
+    signed_in_as: 'මෙසේ පුරනය වී ඇත:'
+  verification:
+    explanation_html: 'ඔබගේ පැතිකඩ පාරදත්ත</strong>හි ඇති සබැඳි වල හිමිකරු ලෙස ඔබට <strong>සත්‍යාපනය කළ හැක. ඒ සඳහා, සම්බන්ධිත වෙබ් අඩවියේ ඔබේ Mastodon පැතිකඩ වෙත ආපසු සබැඳියක් තිබිය යුතුය. සබැඳිය ආපසු <strong></code> </strong> <code>යුතුය. සබැඳියේ පෙළ අන්තර්ගතය වැදගත් නොවේ. මෙන්න උදාහරණයක්:'
+    verification: සත්යාපනය
+  webauthn_credentials:
+    add: නව ආරක්ෂක යතුර එක් කරන්න
+    create:
+      error: ඔබගේ ආරක්ෂක යතුර එක් කිරීමේ ගැටලුවක් ඇති විය. කරුණාකර නැවත උත්සාහ කරන්න.
+      success: ඔබගේ ආරක්ෂක යතුර සාර්ථකව එක් කරන ලදී.
+    delete: මකන්න
+    delete_confirmation: ඔබට මෙම ආරක්ෂක යතුර මැකීමට අවශ්‍ය බව විශ්වාසද?
+    description_html: ඔබ <strong>ආරක්‍ෂක යතුරු සත්‍යාපනය</strong>සක්‍රීය කරන්නේ නම්, පුරනය වීමේදී ඔබගේ ආරක්‍ෂක යතුරු වලින් එකක් භාවිතා කිරීම අවශ්‍ය වේ.
+    destroy:
+      error: ඔබගේ ආරක්ෂක යතුර මැකීමේ ගැටලුවක් ඇති විය. කරුණාකර නැවත උත්සාහ කරන්න.
+      success: ඔබගේ ආරක්ෂක යතුර සාර්ථකව මකා ඇත.
+    invalid_credential: වලංගු නොවන ආරක්ෂක යතුර
+    nickname_hint: ඔබගේ නව ආරක්ෂක යතුරේ අන්වර්ථ නාමය ඇතුළත් කරන්න
+    not_enabled: ඔබ තවමත් WebAuthn සබල කර නැත
+    not_supported: මෙම බ්‍රවුසරය ආරක්ෂක යතුරු සඳහා සහය නොදක්වයි
+    otp_required: ආරක්ෂක යතුරු භාවිතා කිරීමට කරුණාකර පළමුව ද්වි-සාධක සත්‍යාපනය සක්‍රීය කරන්න.
+    registered_on: "%{date}හි ලියාපදිංචි වී ඇත"

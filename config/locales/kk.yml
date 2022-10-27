@@ -1,84 +1,25 @@
 ---
 kk:
   about:
-    about_hashtag_html: Бұл жерде <strong>#%{hashtag}</strong> хэштегімен жинақталған жазбалар. Желіге тіркеліп, сіз де қосыла аласыз бұл ортаға.
     about_mastodon_html: Mastodon - әлеуметтік желіге негізделген, тегін және веб протоколды, ашық кодты бағдарлама. Ол email сияқты орталығы жоқ құрылым.
-    about_this: Туралы
-    active_count_after: актив
-    active_footnote: Соңғы айдағы актив қолданушылар (MAU)
-    administered_by: 'Админ:'
-    apps: Мобиль қосымшалар
-    apps_platforms: iOS, Android және басқа платформалардағы Mastodon қолданыңыз
-    browse_directory: Профильдер каталогын қажет фильтрлер арқылы қараңыз
-    browse_local_posts: Осы желідегі ашық посттар стримын қараңыз
-    browse_public_posts: Mastodon-дағы ашық посттар стримын қараңыз
-    contact: Байланыс
     contact_missing: Бапталмаған
     contact_unavailable: Белгісіз
-    discover_users: Қолданушыларды іздеңіз
-    documentation: Құжаттама
-    federation_hint_html: "%{instance} платформасындағы аккаунтыңыз арқылы Mastodon желісіндегі кез келген сервердегі қолданушыларға жазыла аласыз."
-    get_apps: Мобиль қосымшаны қолданып көріңіз
     hosted_on: Mastodon орнатылған %{domain} доменінде
-    instance_actor_flash: |
-      Бұл аккаунт кез-келген жеке пайдаланушыны емес, сервердің өзін көрсету үшін қолданылатын виртуалды актер.
-      Ол федерация мақсаттарында қолданылады және сіз барлығын бұғаттағыңыз келмейінше, бұғатталмауы керек, бұл жағдайда сіз домен блогын қолданған жөн.
-    learn_more: Көбірек білу
-    privacy_policy: Құпиялылық саясаты
-    see_whats_happening: Не болып жатқанын қараңыз
-    server_stats: 'Сервер статистикасы:'
-    source_code: Ашық коды
-    status_count_after:
-      one: жазба
-      other: жазба
-    status_count_before: Барлығы
-    tagline: Достарыңызды оқыңыз және жаңа авторларды табыңыз
-    terms: Қолдану шарттары
-    unavailable_content: Қолжетімсіз контент
-    unavailable_content_description:
-      domain: Сервер
-      reason: Себеп
-      rejecting_media: 'Бұл серверлердегі медиа файлдар өңделмейді немесе сақталмайды және түпнұсқаға қолмен басуды қажет ететін нобайлар көрсетілмейді:'
-      silenced: 'Осы серверлердегі жазбалар жалпы уақыт кестесінде және сөйлесулерде жасырын болады және егер сіз оларды бақыламасаңыз, олардың пайдаланушыларының өзара әрекеттестігі туралы ешқандай хабарламалар жасалмайды:'
-      suspended: 'Бұл серверлерден ешқандай дерек өңделмейді, сақталмайды немесе алмаспайды, бұл серверлердегі пайдаланушылармен өзара әрекеттесуді немесе байланыс орнатуды мүмкін етпейді:'
-    unavailable_content_html: Мастодон, әдетте, мазмұнды көруге және кез-келген басқа сервердегі пайдаланушылармен қарым-қатынас жасауға мүмкіндік береді. Бұл нақты серверде жасалған ерекше жағдайлар.
-    user_count_after:
-      one: қолданушы
-      other: қолданушы
-    user_count_before: Желіде
-    what_is_mastodon: Mastodon деген не?
   accounts:
-    choices_html: "%{name} таңдаулары:"
-    endorsements_hint: Сіз веб-интерфейстен адамдарға қолдау көрсете аласыз және олар осында көрсетіледі.
-    featured_tags_hint: Мұнда көрсетілетін нақты хэштегтерді ұсына аласыз.
     follow: Жазылу
     followers:
       one: Оқырман
       other: Оқырман
     following: Жазылғандары
-    joined: Тіркелген күні %{date}
     last_active: соңғы әрекеті
     link_verified_on: Сілтеме меншігі расталған күн %{date}
-    media: Медиа
-    moved_html: "%{name} мына жерге көшті %{new_profile_link}:"
-    network_hidden: Бұл ақпарат қолжетімді емес
     nothing_here: Бұл жерде ештеңе жоқ!
-    people_followed_by: "%{name} жазылған адамдар"
-    people_who_follow: "%{name} атты қолданушының оқырмандары"
     pin_errors:
       following: Оқығыңыз келген адамға жазылуыңыз керек
     posts:
       one: Жазба
       other: Жазба
     posts_tab_heading: Жазба
-    posts_with_replies: Жазбалар және жауаптар
-    roles:
-      admin: Админ
-      bot: Бот
-      group: Топ
-      moderator: Мод
-    unavailable: Профиль қолжетімді емес
-    unfollow: Оқымау
   admin:
     account_actions:
       action: Әрекетті орындаңыз
@@ -93,7 +34,6 @@ kk:
       avatar: Аватар
       by_domain: Домен
       change_email:
-        changed_msg: Аккаунт email-і сәтті өзгертілді!
         current_email: Қазіргі email
         label: email өзгерту
         new_email: Жаңа email
@@ -158,12 +98,6 @@ kk:
       reset: Қалпына келтіру
       reset_password: Құпиясөзді қалпына келтіру
       resubscribe: Resubscribе
-      role: Рұқсаттар
-      roles:
-        admin: Админ
-        moderator: Модератор
-        staff: Қызметкерлер
-        user: Қолданушы
       search: Іздеу
       search_same_ip: Осы ІРмен кірген басқа қолданушылар
       shared_inbox_url: Бөлісілген инбокс URL
@@ -185,7 +119,6 @@ kk:
       web: Веб
       whitelisted: Рұқсат тізімі
     action_logs:
-      deleted_status: "(өшірілген жазба)"
       title: Аудит логы
     announcements:
       destroyed_msg: Анонс сәтті өшірілді!
@@ -342,91 +275,15 @@ kk:
       unresolved: Шешілмеген
       updated_at: Жаңартылды
     settings:
-      activity_api_enabled:
-        desc_html: Соңғы аптада жазылған жазбалар, белсенді қолданушылар, жаңа тіркелімдер
-        title: Пайдаланушы әрекеті туралы жиынтық статистиканы жариялау
-      bootstrap_timeline_accounts:
-        desc_html: Бірнеше пайдаланушы атын үтірмен бөліңіз. Тек жергілікті және бұғатталмаған аккаунттар. Барлық жергілікті админдер бос болғанда.
-        title: Жаңа қолданушыларға жазылғандар
-      contact_information:
-        email: Бизнес e-mail
-        username: Қолданушымен байланыс
-      custom_css:
-        desc_html: Әр беттегі өзгерістерді CSS жаңаруымен қарау
-        title: Жеке CSS
-      default_noindex:
-        desc_html: Бұл параметрді өзгертпеген барлық пайдаланушыларға әсер етеді
-        title: Әдепкі бойынша іздеу жүйелерін индекстеуден бас тарту
       domain_blocks:
         all: Бәріне
         disabled: Ешкімге
-        title: Домен блоктарын көрсету
         users: Жергілікті қолданушыларға
-      domain_blocks_rationale:
-        title: Дәлелді көрсету
-      hero:
-        desc_html: Бастапқы бетінде көрсетіледі. Кем дегенде 600x100px ұсынылады. Орнатылмаған кезде, сервердің нобайына оралады
-        title: Қаһарман суреті
-      mascot:
-        desc_html: Displayed on multiple pages. Кем дегенде 293×205px рекоменделеді. When not set, falls back to default mascot
-        title: Маскот суреті
-      peers_api_enabled:
-        desc_html: Домен names this server has encountered in the fediverse
-        title: Publish list of discovered серверлер
-      preview_sensitive_media:
-        desc_html: Link previews on other websites will display a thumbnail even if the media is marked as сезімтал
-        title: Show sensitive media in OpenGraph превью
-      profile_directory:
-        desc_html: Рұқсат users to be discoverable
-        title: Enable профиль directory
-      registrations:
-        closed_message:
-          desc_html: Displayed on frontpage when registrations are closed. You can use HTML тег
-          title: Closed registration мессадж
-        deletion:
-          desc_html: Allow anyone to delete their аккаунт
-          title: Open аккаунт deletion
-        min_invite_role:
-          disabled: Ешкім
-          title: Allow шақырулар by
       registrations_mode:
         modes:
           approved: Тіркелу үшін мақұлдау қажет
           none: Ешкім тіркеле алмайды
           open: Бәрі тіркеле алады
-        title: Тіркелулер
-      show_known_fediverse_at_about_page:
-        desc_html: When toggled, it will show toots from all the known fediverse on preview. Otherwise it will only show жергілікті toots.
-        title: Show known fediverse on timeline превью
-      show_staff_badge:
-        desc_html: Show a staff badge on a user бет
-        title: Көрсет staff badge
-      site_description:
-        desc_html: Introductory paragraph on the басты бет. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Сервер туралы
-      site_description_extended:
-        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your server apart. You can use HTML тег
-        title: Custom extended ақпарат
-      site_short_description:
-        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to сервер description.
-        title: Short сервер description
-      site_terms:
-        desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML тег
-        title: Қолдану шарттары мен ережелер
-      site_title: Сервер аты
-      thumbnail:
-        desc_html: Used for previews via OpenGraph and API. 1200x630px рекоменделеді
-        title: Сервер суреті
-      timeline_preview:
-        desc_html: Display public timeline on лендинг пейдж
-        title: Таймлайн превьюі
-      title: Сайт баптаулары
-      trendable_by_default:
-        desc_html: Бұрын тыйым салынбаған хэштегтерге әсер етеді
-        title: Хэштегтерге алдын-ала шолусыз тренд беруге рұқсат етіңіз
-      trends:
-        desc_html: Бұрын қарастырылған хэштегтерді қазіргі уақытта трендте көпшілікке көрсету
-        title: Тренд хештегтер
     site_uploads:
       delete: Жүктелген файлды өшір
       destroyed_msg: Жүктелген файл сәтті өшірілді!
@@ -477,16 +334,12 @@ kk:
   applications:
     created: Application succеssfully created
     destroyed: Application succеssfully deleted
-    invalid_url: The providеd URL is invalid
     regenerate_token: Regenerate accеss token
     token_regenerated: Access token succеssfully regenerated
     warning: Be very carеful with this data. Never share it with anyone!
     your_token: Your access tokеn
   auth:
-    apply_for_account: Шақыруды сұрау
     change_password: Құпиясөз
-    checkbox_agreement_html: Мен <a href="%{rules_path}" target="_blank">ережелер</a> мен <a href="%{terms_path}" target="_blank">шарттарды</a> қабылдаймын
-    checkbox_agreement_without_rules_html: Мен <a href="%{terms_path}" target="_blank">шарттармен</a> келісемін
     delete_account: Аккаунт өшіру
     delete_account_html: Аккаунтыңызды жойғыңыз келсе, <a href="%{path}">мына жерді</a> басыңыз. Сізден растау сұралатын болады.
     description:
@@ -519,7 +372,6 @@ kk:
       confirming: Электрондық поштаны растау аяқталуын күтуде.
       pending: Сіздің өтінішіңіз біздің қызметкерлеріміздің қарауында. Бұл біраз уақыт алуы мүмкін. Өтінішіңіз мақұлданса, сізге электрондық пошта хабарламасы келеді.
       redirecting_to: Сіздің есептік жазбаңыз белсенді емес, себебі ол %{acct} жүйесіне қайта бағытталуда.
-    trouble_logging_in: Кіру қиын ба?
   authorize_follow:
     already_following: Бұл аккаунтқа жазылғансыз
     error: Өкінішке орай, қашықтағы тіркелгіні іздеуде қате пайда болды
@@ -567,10 +419,6 @@ kk:
       more_details_html: Қосымша мәліметтер алу үшін <a href="%{terms_path}"> құпиялылық саясатын </a> қараңыз.
       username_available: Аккаунтыңыз қайтадан қолжетімді болады
       username_unavailable: Логиніңіз қолжетімді болмайды
-  directories:
-    directory: Профильдер каталогы
-    explanation: Қолданушыларды қызығушылықтарына қарай реттеу
-    explore_mastodon: "%{title} шарлау"
   domain_validator:
     invalid_domain: жарамды домен атауы емес
   errors:
@@ -620,7 +468,6 @@ kk:
       title: Фильтр өңдеу
     errors:
       invalid_context: Жоқ немесе жарамсыз контекст берілген
-      invalid_irreversible: Қайтарылмайтын сүзгі тек ішкі немесе ескертпелер контекстімен жұмыс істейді
     index:
       delete: Өшіру
       empty: Сізде ешқандай фильтр жоқ.
@@ -628,9 +475,6 @@ kk:
     new:
       title: Жаңа фильтр қосу
   footer:
-    developers: Жасаушылар
-    more: Тағы…
-    resources: Ресурстар
     trending_now: Бүгінгі трендтер
   generic:
     all: Барлығы
@@ -657,7 +501,6 @@ kk:
       following: Жазылғандар тізімі
       muting: Үнсіздер тізімі
     upload: Жүктеу
-  in_memoriam_html: Естеліктерде.
   invites:
     delete: Ажырату
     expired: Мерзімі өткен
@@ -703,14 +546,6 @@ kk:
   moderation:
     title: Модерация
   notification_mailer:
-    digest:
-      action: Барлық ескертпелер
-      body: Міне, соңғы кірген уақыттан кейін келген хаттардың қысқаша мазмұны %{since}
-      mention: "%{name} сізді атап өтіпті:"
-      new_followers_summary:
-        one: Сондай-ақ, сіз бір жаңа оқырман таптыңыз! Алақай!
-        other: Сондай-ақ, сіз %{count} жаңа оқырман таптыңыз! Керемет!
-      title: Сіз жоқ кезде...
     favourite:
       body: 'Жазбаңызды ұнатып, таңдаулыға қосты %{name}:'
       subject: "%{name} жазбаңызды таңдаулыға қосты"
@@ -785,22 +620,7 @@ kk:
     remove_selected_follows: Таңдалған қолданушыларды оқымау
     status: Аккаунт статусы
   remote_follow:
-    acct: Өзіңіздің username@domain теріңіз
     missing_resource: Аккаунтыңызға байланған URL табылмады
-    no_account_html: Әлі тіркелмегенсіз бе? Мына жерден <a href='%{sign_up_path}' target='_blank'>тіркеліп алыңыз</a>
-    proceed: Жазылу
-    prompt: 'Жазылғыңыз келеді:'
-    reason_html: "<strong>Неліктен бұл қадам қажет?</strong> <code>%{instance}</code> тіркелгіңіз келген сервер болмауы мүмкін, сондықтан сізді алдымен ішкі серверіңізге қайта бағыттау қажет."
-  remote_interaction:
-    favourite:
-      proceed: Таңдаулыға қосу
-      prompt: 'Мына жазбаны таңдаулыға қосасыз:'
-    reblog:
-      proceed: Жазба бөлісу
-      prompt: 'Сіз мына жазбаны бөлісесіз:'
-    reply:
-      proceed: Жауап жазу
-      prompt: 'Сіз мына жазбаға жауап жазасыз:'
   scheduled_statuses:
     over_daily_limit: Сіз бір күндік %{limit} жазба лимитін тауыстыңыз
     over_total_limit: Сіз %{limit} жазба лимитін тауыстыңыз
@@ -910,89 +730,6 @@ kk:
     sensitive_content: Нәзік мазмұн
   tags:
     does_not_match_previous_name: алдыңғы атқа сәйкес келмейді
-  terms:
-    body_html: |
-      <h2>Құпиялылық шарттары</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: "%{instance} Қызмет көрсету шарттары және Құпиялылық саясаты"
   themes:
     contrast: Mastodon (Жоғары контраст)
     default: Mastodon (Қою)
@@ -1024,20 +761,11 @@ kk:
         suspend: Аккаунт тоқтатылды
     welcome:
       edit_profile_action: Профиль өңдеу
-      edit_profile_step: Профиліңізге аватар, мұқаба сурет жүктей аласыз, аты-жөніңізді көрсете аласыз. Оқырмандарыңызға сізбен танысуға рұқсат бермес бұрын аккаунтыңызды уақытша құлыптап қоюға болады.
       explanation: Мына кеңестерді шолып өтіңіз
       final_action: Жазба жазу
-      final_step: 'Жазуды бастаңыз! Тіпті оқырмандарыңыз болмаса да, сіздің жалпы жазбаларыңызды басқа адамдар көре алады, мысалы, жергілікті желіде және хэштегтерде. Жазбаларыңызға # протоколды хэштег қоссаңыз болады.'
       full_handle: Желі тұтқасы
       full_handle_hint: This is what you would tell your friends so they can message or follow you frоm another server.
-      review_preferences_action: Таңдауларды өзгерту
-      review_preferences_step: Қандай хат-хабарларын алуды қалайтыныңызды немесе сіздің хабарламаларыңыздың қандай құпиялылық деңгейін алғыңыз келетінін анықтаңыз. Сондай-ақ, сіз GIF автоматты түрде ойнату мүмкіндігін қосуды таңдай аласыз.
       subject: Mastodon Желісіне қош келдіңіз
-      tip_federated_timeline: Жаһандық желі - Mastodon желісінің негізгі құндылығы.
-      tip_following: Сіз бірден желі админіне жазылған болып саналасыз. Басқа адамдарға жазылу үшін жергілікті және жаһандық желіні шолып шығыңыз.
-      tip_local_timeline: Жерігілкті желіде маңайыздағы адамдардың белсенділігін көре аласыз %{instance}. Олар - негізгі көршілеріңіз!
-      tip_mobile_webapp: Мобиль браузеріңіз Mastodon желісін бастапқы бетке қосуды ұсынса, қабылдаңыз. Ескертпелер де шығатын болады. Арнайы қосымша сияқты бұл!
-      tips: Кеңестер
       title: Ортаға қош келдің, %{name}!
   users:
     follow_limit_reached: Сіз %{limit} лимитінен көп адамға жазыла алмайсыз

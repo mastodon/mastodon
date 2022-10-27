@@ -202,7 +202,8 @@
 }
 
 .account-role,
-.simple_form .recommended {
+.simple_form .recommended,
+.simple_form .not_recommended {
   display: inline-block;
   padding: 4px 6px;
   cursor: default;
@@ -210,9 +211,9 @@
   font-size: 12px;
   line-height: 12px;
   font-weight: 500;
-  color: $ui-secondary-color;
-  background-color: rgba($ui-secondary-color, 0.1);
-  border: 1px solid rgba($ui-secondary-color, 0.5);
+  color: var(--user-role-accent, $ui-secondary-color);
+  background-color: var(--user-role-background, rgba($ui-secondary-color, 0.1));
+  border: 1px solid var(--user-role-border, rgba($ui-secondary-color, 0.5));
 
   &.moderator {
     color: $success-green;
@@ -225,6 +226,12 @@
     background-color: rgba(lighten($error-red, 12%), 0.1);
     border-color: rgba(lighten($error-red, 12%), 0.5);
   }
+}
+
+.simple_form .not_recommended {
+  color: lighten($error-red, 12%);
+  background-color: rgba(lighten($error-red, 12%), 0.1);
+  border-color: rgba(lighten($error-red, 12%), 0.5);
 }
 
 .account__header__fields {

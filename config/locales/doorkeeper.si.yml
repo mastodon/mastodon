@@ -4,10 +4,22 @@ si:
     attributes:
       doorkeeper/application:
         name: යෙදුමේ නම
+        redirect_uri: URI යළි-යොමු කරන්න
+        scopes: විෂය පථයන්
         website: යෙදුමේ වියමන අඩවිය
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: කොටසක් අඩංගු විය නොහැක.
+              invalid_uri: වලංගු URI එකක් විය යුතුය.
+              relative_uri: නිරපේක්ෂ URI විය යුතුය.
+              secured_uri: HTTPS/SSL URI එකක් විය යුතුය.
   doorkeeper:
     applications:
       buttons:
+        authorize: අවසරලත්
         cancel: අවලංගු
         destroy: විනාශ කරන්න
         edit: සංස්කරණය
@@ -16,11 +28,20 @@ si:
         destroy: ඔබට විශ්වාසද?
       edit:
         title: යෙදුම සංස්කරණය
+      form:
+        error: අපොයි! විය හැකි දෝෂ සඳහා ඔබේ පෝරමය පරීක්ෂා කරන්න
+      help:
+        native_redirect_uri: දේශීය පරීක්ෂණ සඳහා %{native_redirect_uri} භාවිතා කරන්න
+        redirect_uri: URI එකකට එක පේළියක් භාවිතා කරන්න
+        scopes: අවකාශයන් සහිත විෂය පථයන් වෙන් කරන්න. පෙරනිමි විෂය පථ භාවිතා කිරීමට හිස්ව තබන්න.
       index:
         application: යෙදුම
+        callback_url: ආපසු ඇමතුම් URL
+        delete: මකන්න
         empty: ඔබට කිසිම යෙදුමක් නැත.
         name: නම
         new: නව යෙදුම
+        scopes: විෂය පථයන්
         show: පෙන්වන්න
         title: ඔබගේ යෙදුම්
       new:
@@ -28,33 +49,137 @@ si:
       show:
         actions: ක්‍රියාමාර්ග
         application_id: අනුග්‍රාහක යතුර
+        callback_urls: ආපසු ඇමතුම් URL
+        scopes: විෂය පථයන්
         secret: අනුග්‍රාහකයේ රහස
         title: 'යෙදුම: %{name}'
     authorizations:
       buttons:
         authorize: සත්‍යාපනය
+        deny: ප්‍රතික්ෂේප කරන්න
+      error:
+        title: දෝෂයක් සිදුවී ඇත
+      new:
+        prompt_html: "%{client_name} ඔබගේ ගිණුමට ප්‍රවේශ වීමට අවසර ලබා ගැනීමට කැමති වේ. එය තෙවන පාර්ශවීය යෙදුමකි. <strong>ඔබ එය විශ්වාස නොකරන්නේ නම්, ඔබ එයට අවසර නොදිය යුතුය.</strong>"
+        review_permissions: අවසර සමාලෝචනය කරන්න
+        title: බලය පැවරීමේ අවශ්ය
+      show:
+        title: මෙම අවසර කේතය පිටපත් කර එය යෙදුමට අලවන්න.
     authorized_applications:
+      buttons:
+        revoke: අවලංගු කරන්න
       confirmations:
         revoke: ඔබට විශ්වාසද?
+      index:
+        authorized_at: "%{date}මත අවසර දී ඇත"
+        description_html: මේවා API භාවිතයෙන් ඔබගේ ගිණුමට ප්‍රවේශ විය හැකි යෙදුම් වේ. ඔබ මෙහි හඳුනා නොගත් යෙදුම් තිබේ නම්, හෝ යෙදුමක් වැරදි ලෙස හැසිරෙන්නේ නම්, ඔබට එහි ප්‍රවේශය අවලංගු කළ හැක.
+        last_used_at: අවසන් වරට භාවිතා කළේ %{date}
+        never_used: කවදාවත් පාවිච්චි කළේ නැහැ
+        scopes: අවසර
+        superapp: අභ්යන්තර
+        title: ඔබගේ බලයලත් අයදුම්පත්
+    errors:
+      messages:
+        access_denied: සම්පත් හිමිකරු හෝ අවසර සේවාදායකය ඉල්ලීම ප්‍රතික්ෂේප කළේය.
+        credential_flow_not_configured: Doorkeeper.configure.resource_owner_from_credentials වින්‍යාස නොකිරීම හේතුවෙන් සම්පත් හිමිකරුගේ මුරපද අක්තපත්‍ර ප්‍රවාහය අසාර්ථක විය.
+        invalid_client: නොදන්නා සේවාලාභියා නිසා සේවාලාභී සත්‍යාපනය අසාර්ථක විය, සේවාලාභී සත්‍යාපනය ඇතුළත් කර නැත, හෝ සහය නොදක්වන සත්‍යාපන ක්‍රමයක්.
+        invalid_grant: සපයා ඇති අවසර දීමනාව වලංගු නැත, කල් ඉකුත් වී ඇත, අවලංගු කර ඇත, අවසර ඉල්ලීමේ භාවිතා කරන ලද යළි-යොමුවීම් URI සමඟ නොගැලපේ, නැතහොත් වෙනත් සේවාදායකයෙකුට නිකුත් කර ඇත.
+        invalid_redirect_uri: ඇතුළත් කර ඇති යළි-යොමුවීම් uri වලංගු නොවේ.
+        invalid_request:
+          missing_param: 'අවශ්‍ය පරාමිතිය අස්ථානගත වී ඇත: %{value}.'
+          request_not_authorized: ඉල්ලීම අනුමත කළ යුතුය. අවසර ඉල්ලීම සඳහා අවශ්‍ය පරාමිතිය අස්ථානගත වී හෝ වලංගු නොවේ.
+          unknown: ඉල්ලීමට අවශ්‍ය පරාමිතියක් අස්ථානගත වී ඇත, සහය නොදක්වන පරාමිති අගයක් ඇතුළත් වේ, නැතහොත් වෙනත් ආකාරයකින් විකෘති වී ඇත.
+        invalid_resource_owner: සපයන ලද සම්පත් හිමිකරු අක්තපත්‍ර වලංගු නැත, නැතහොත් සම්පත් හිමිකරු සොයාගත නොහැක
+        invalid_scope: ඉල්ලා සිටින විෂය පථය වලංගු නැත, නොදන්නා, හෝ විකෘති වී ඇත.
+        invalid_token:
+          expired: ප්‍රවේශ ටෝකනය කල් ඉකුත් විය
+          revoked: ප්‍රවේශ ටෝකනය අවලංගු කරන ලදී
+          unknown: ප්‍රවේශ ටෝකනය වලංගු නොවේ
+        resource_owner_authenticator_not_configured: Doorkeeper.configure.resource_owner_authenticator වින්‍යාසගත නොවීම හේතුවෙන් සම්පත් හිමිකරු සොයා ගැනීම අසාර්ථක විය.
+        server_error: අවසර සේවාදායකයට අනපේක්ෂිත කොන්දේසියක් ඇති වූ අතර එය ඉල්ලීම ඉටු කිරීම වළක්වයි.
+        temporarily_unavailable: තාවකාලික අධි බර පැටවීමක් හෝ සේවාදායකයේ නඩත්තුවක් හේතුවෙන් අවසර සේවාදායකයට ඉල්ලීම හැසිරවීමට දැනට නොහැක.
+        unauthorized_client: මෙම ක්‍රමය භාවිතයෙන් මෙම ඉල්ලීම ඉටු කිරීමට සේවාදායකයාට අවසර නැත.
+        unsupported_grant_type: අවසර ප්‍රදාන වර්ගයට බලය පැවරීමේ සේවාදායකය විසින් සහය නොදක්වයි.
+        unsupported_response_type: අවසර සේවාදායකය මෙම ප්‍රතිචාර වර්ගයට සහය නොදක්වයි.
+    flash:
+      applications:
+        create:
+          notice: යෙදුම නිර්මාණය කරන ලදී.
+        destroy:
+          notice: යෙදුම මකා ඇත.
+        update:
+          notice: යෙදුම යාවත්කාලීන කරන ලදී.
+      authorized_applications:
+        destroy:
+          notice: අයදුම්පත අවලංගු කරන ලදී.
+    grouped_scopes:
+      access:
+        read: කියවීමට පමණක් ප්‍රවේශය
+        read/write: කියවීමට සහ ලිවීමට ප්‍රවේශය
+        write: ලිවීමට පමණක් ප්‍රවේශය
+      title:
+        accounts: ගිණුම්
+        admin/accounts: ගිණුම් පරිපාලනය
+        admin/all: සියලුම පරිපාලන කාර්යයන්
+        admin/reports: වාර්තා පරිපාලනය
+        all: සියල්ල
+        blocks: කුට්ටි
+        bookmarks: පිටු සලකුණු
+        conversations: සංවාද
+        crypto: අන්ත සංකේතනය
+        favourites: ප්රියතම
+        filters: පෙරහන්
+        follow: සබඳතා
+        follows: පහත සඳහන්
+        lists: ලැයිස්තු
+        media: මාධ්ය ඇමුණුම්
+        mutes: නිහඬ කරයි
+        notifications: දැනුම්දීම්
+        push: තල්ලු දැනුම්දීම්
+        reports: වාර්තා
+        search: සොයන්න
+        statuses: ලිපි
     layouts:
       admin:
         nav:
           applications: යෙදුම්
           oauth2_provider: වි.සත්‍යා.2 (OAuth) සැපයුම්කරු
       application:
-        title: වි.සත්‍යා. (OAuth) අනුමැතිය අවශ්‍යයයි
+        title: වි.සත්යා. (OAuth) තොරතුරු අවශ්‍යයි
     scopes:
       admin:read: සේවාදායකයේ ඇති සියලුම දත්ත කියවන්න
       admin:read:accounts: සියලුම ගිණුම් වල සංවේදී තොරතුරු කියවන්න
       admin:read:reports: සියලුම වාර්තා සහ වාර්තා කළ ගිණුම් වල සංවේදී තොරතුරු කියවන්න
+      admin:write: සේවාදායකයේ සියලුම දත්ත වෙනස් කරන්න
+      admin:write:accounts: ගිණුම් මත මධ්‍යස්ථ ක්‍රියා සිදු කරන්න
+      admin:write:reports: වාර්තා මත මධ්‍යස්ථ ක්‍රියා සිදු කරන්න
+      crypto: end-to-end encryption භාවිතා කරන්න
+      follow: ගිණුම් සබඳතා වෙනස් කරන්න
+      push: ඔබගේ තල්ලු දැනුම්දීම් ලබා ගන්න
       read: ඔබගේ ගිණුමේ සියලුම දත්ත කියවන්න
+      read:accounts: ගිණුම් තොරතුරු බලන්න
+      read:blocks: ඔබගේ වාරණ බලන්න
+      read:bookmarks: ඔබගේ පිටු සලකුණු බලන්න
+      read:favourites: ඔබේ ප්රියතම බලන්න
       read:filters: ඔබගේ පෙරහන් බලන්න
+      read:follows: ඔබගේ පහත සඳහන් බලන්න
       read:lists: ඔබගේ ලැයිස්තු බලන්න
+      read:mutes: ඔබේ ගොළු බලන්න
       read:notifications: ඔබගේ දැනුම්දීම් බලන්න
-      read:search: ඔබ වෙනුවට සොයන්න
+      read:reports: ඔබගේ වාර්තා බලන්න
+      read:search: ඔබ වෙනුවෙන් සොයන්න
+      read:statuses: සියලුම පෝස්ට් බලන්න
+      write: ඔබගේ ගිණුමේ සියලුම දත්ත වෙනස් කරන්න
+      write:accounts: ඔබගේ පැතිකඩ වෙනස් කරන්න
       write:blocks: ගිණුම් සහ වසම් අවහිර කරන්න
-      write:filters: පෙරහන් සාදන්න
+      write:bookmarks: පිටු සලකුණු සටහන්
+      write:conversations: සංවාද නිහඬ කිරීම සහ මකා දැමීම
+      write:favourites: ප්‍රියතම ලිපි
+      write:filters: පෙරහන් කරන්න
+      write:follows: මිනිසුන් අනුගමනය කරන්න
+      write:lists: ලැයිස්තු සාදන්න
       write:media: මාධ්‍ය ගොනු උඩුගත කරන්න
-      write:mutes: මිනිසුන් සහ සංවාද නිහඬකරන්න
+      write:mutes: මිනිසුන් සහ සංවාද කරන්න
       write:notifications: ඔබගේ දැනුම්දීම් හිස්කරන්න
-      write:reports: වෙනත් මිනිසුන් වාර්තා කරන්න
+      write:reports: වෙනත් පුද්ගලයින් වාර්තා කරන්න
+      write:statuses: පළ කිරීම් පළ කරන්න

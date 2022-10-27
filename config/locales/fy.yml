@@ -1,0 +1,49 @@
+---
+fy:
+  accounts:
+    last_active: letst warber
+  admin:
+    accounts:
+      moderation:
+        active: Aktyf
+      security_measures:
+        only_password: Allinnich wachtwurd
+        password_and_2fa: Wachtwurd en 2FA
+    dashboard:
+      active_users: warbere brûkers
+      top_languages: Meast aktive talen
+      top_servers: Meast aktive tsjinners
+    instances:
+      confirm_purge: Wolle jo werklik alle gegevens fan dit domein foar ivich fuortsmite?
+      dashboard:
+        instance_accounts_measure: bewarre accounts
+    system_checks:
+      database_schema_check:
+        message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422': 
+    '429': Too many requests
+    '500': 
+    '503': The page could not be served due to a temporary server failure.
+  filters:
+    contexts:
+      thread: Petearen
+  notification_mailer:
+    mention:
+      action: Beäntwurdzje
+      body: 'Jo binne fermeld troch %{name} yn:'
+      subject: Jo binne fermeld troch %{name}
+      title: Nije fermelding
+  relationships:
+    last_active: Letst warber
+  rss:
+    content_warning: 'Ynhâldswarskôging:'
+  statuses:
+    content_warning: 'Ynhâldswarskôging: %{warning}'
+    pin_errors:
+      direct: Berjochten dy allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde

@@ -131,4 +131,10 @@ class Api::BaseController < ApplicationController
   def disallow_unauthenticated_api_access?
     authorized_fetch_mode?
   end
+
+  private
+
+  def respond_with_error(code)
+    render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code
+  end
 end

@@ -2,82 +2,24 @@
 bg:
   about:
     about_mastodon_html: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
-    about_this: За тази инстанция
-    active_count_after: активно
-    active_footnote: Месечни активни потребители (МАП)
-    administered_by: 'Администрирано от:'
-    api: API
-    apps: Мобилни приложения
-    apps_platforms: Използвайте Mastodon от iOS, Android и други платформи
-    browse_directory: Разгледайте профилна директория и филтрирайте по интереси
-    browse_local_posts: Разгледайте поток от публични публикации на живо от този сървър
-    browse_public_posts: Разгледайте поток от публични публикации на живо в Mastodon
-    contact: За контакти
     contact_missing: Не е зададено
     contact_unavailable: Не е приложимо
-    discover_users: Открийте потребители
-    documentation: Документация
-    federation_hint_html: С акаунт в %{instance} ще можете да последвате хората от всеки сървър на Mastodon и отвъд.
-    get_apps: Опитайте мобилно приложение
     hosted_on: Mastodon е хостван на %{domain}
-    learn_more: Още информация
-    privacy_policy: Политика за поверителност
-    see_whats_happening: Вижте какво се случва
-    server_stats: 'Сървърна статистика:'
-    source_code: Програмен код
-    status_count_after:
-      one: състояние
-      other: състояния
-    status_count_before: Написали
-    tagline: Следвайте приятели и открийте нови
-    terms: Условия за ползване
-    unavailable_content: Модерирани сървъри
-    unavailable_content_description:
-      domain: Сървър
-      reason: Причина
-      rejecting_media: 'Мултимедийните файлове от тези сървъри няма да бъдат обработени или съхранени и няма да бъдат показани миниатюри, което ще изисква ръчно щракване върху оригиналния файл:'
-      rejecting_media_title: Филтрирана мултимедия
-      silenced: 'Публикациите от тези сървъри ще бъдат скрити в обществени емисии и разговори и няма да се генерират известия от взаимодействията на потребителите им, освен ако не ги следвате:'
-      silenced_title: Заглушени сървъри
-      suspended: 'Никакви данни от тези сървъри няма да бъдат обработвани, съхранявани или обменяни, което прави невъзможно всяко взаимодействие или комуникация с потребители от тези сървъри:'
-      suspended_title: Спрени сървъри
-    user_count_after:
-      one: потребител
-      other: потребители
-    user_count_before: Дом на
-    what_is_mastodon: Какво е Mastodon?
   accounts:
-    choices_html: 'Избори на %{name}:'
-    endorsements_hint: Можете да подкрепите хората, които следите, от уеб интерфейса и те ще се покажат тук.
-    featured_tags_hint: Можете да представите конкретни хаштагове, които ще се показват тук.
     follow: Последвай
     followers:
       one: Последовател
       other: Последователи
     following: Следва
-    joined: Присъединил се на %{date}
     last_active: последна дейност
     link_verified_on: Собствеността върху тази връзка е проверена на %{date}
-    media: Мултимедия
-    moved_html: "%{name} се премести в %{new_profile_link}:"
-    network_hidden: Тази информация не е налична
     nothing_here: Тук няма никого!
-    people_followed_by: Хора, които %{name} следва
-    people_who_follow: Хора, които следват %{name}
     pin_errors:
       following: Трябва вече да следвате човека, когото искате да подкрепите
     posts:
       one: Публикация
       other: Публикации
     posts_tab_heading: Публикации
-    posts_with_replies: Публикации и отговори
-    roles:
-      admin: Админ
-      bot: Бот
-      group: Група
-      moderator: Мод
-    unavailable: Профилът не е наличен
-    unfollow: Не следвай
   admin:
     account_actions:
       action: Изпълняване на действие
@@ -91,7 +33,6 @@ bg:
       avatar: Аватар
       by_domain: Домейн
       change_email:
-        changed_msg: Имейлът на акаунта беше успешно променен!
         current_email: Текущ имейл
         label: Промяна на имейл
         new_email: Нов имейл
@@ -178,8 +119,6 @@ bg:
   application_mailer:
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
     view: 'Преглед:'
-  applications:
-    invalid_url: Предоставеният URL е невалиден
   auth:
     didnt_get_confirmation: Не получих инструкции за потвърждение
     forgot_password: Забравих си паролата
@@ -236,12 +175,6 @@ bg:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
       too_many: Не мога да прикача повече от 4 файла
   notification_mailer:
-    digest:
-      body: Ето кратко резюме на нещата, които се случиха от последното ти посещение на %{since}
-      mention: "%{name} те спомена в:"
-      new_followers_summary:
-        one: Имаш един нов последовател! Ура!
-        other: Имаш %{count} нови последователи! Изумително!
     favourite:
       body: 'Публикацията ти беше харесана от %{name}:'
       subject: "%{name} хареса твоята публикация"
@@ -261,10 +194,7 @@ bg:
     next: Напред
     prev: Назад
   remote_follow:
-    acct: Въведи потребителско_име@домейн, от които искаш да следваш
     missing_resource: Неуспешно търсене на нужния URL за пренасочване за твоя акаунт
-    proceed: Започни следване
-    prompt: 'Ще последваш:'
   settings:
     authorized_apps: Упълномощени приложения
     back: Обратно към Mastodon

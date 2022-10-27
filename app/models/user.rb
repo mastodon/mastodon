@@ -26,7 +26,6 @@
 #  otp_required_for_login    :boolean          default(FALSE), not null
 #  last_emailed_at           :datetime
 #  otp_backup_codes          :string           is an Array
-#  filtered_languages        :string           default([]), not null, is an Array
 #  account_id                :bigint(8)        not null
 #  disabled                  :boolean          default(FALSE), not null
 #  moderator                 :boolean          default(FALSE), not null
@@ -38,7 +37,7 @@
 #  sign_in_token_sent_at     :datetime
 #  webauthn_id               :string
 #  sign_up_ip                :inet
-#  skip_sign_in_token        :boolean
+#  role_id                   :bigint(8)
 #
 
 class User < ApplicationRecord
@@ -48,10 +47,10 @@ class User < ApplicationRecord
     current_sign_in_ip
     last_sign_in_ip
     skip_sign_in_token
+    filtered_languages
   )
 
   include Settings::Extend
-  include UserRoles
   include Redisable
   include LanguagesHelper
 
@@ -80,6 +79,7 @@ class User < ApplicationRecord
   belongs_to :account, inverse_of: :user
   belongs_to :invite, counter_cache: :uses, optional: true
   belongs_to :created_by_application, class_name: 'Doorkeeper::Application', optional: true
+  belongs_to :role, class_name: 'UserRole', optional: true
   accepts_nested_attributes_for :account
 
   has_many :applications, class_name: 'Doorkeeper::Application', as: :owner
@@ -94,7 +94,7 @@ class User < ApplicationRecord
   validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
-  validates_with BlacklistedEmailValidator, if: -> { !confirmed? }
+  validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
@@ -104,6 +104,7 @@ class User < ApplicationRecord
   validates_with RegistrationFormTimeValidator, on: :create
   validates :website, absence: true, on: :create
   validates :confirm_password, absence: true, on: :create
+  validate :validate_role_elevation
 
   scope :recent, -> { order(id: :desc) }
   scope :pending, -> { where(approved: false) }
@@ -118,8 +119,10 @@ class User < ApplicationRecord
   scope :emailable, -> { confirmed.enabled.joins(:account).merge(Account.searchable) }
 
   before_validation :sanitize_languages
+  before_validation :sanitize_role
   before_create :set_approved
   after_commit :send_pending_devise_notifications
+  after_create_commit :trigger_webhooks
 
   # This avoids a deprecation warning from Rails 5.1
   # It seems possible that a future release of devise-two-factor will
@@ -135,8 +138,28 @@ class User < ApplicationRecord
            :disable_swiping, :always_send_emails,
            to: :settings, prefix: :setting, allow_nil: false
 
+  delegate :can?, to: :role
+
   attr_reader :invite_code
-  attr_writer :external, :bypass_invite_request_check
+  attr_writer :external, :bypass_invite_request_check, :current_account
+
+  def self.those_who_can(*any_of_privileges)
+    matching_role_ids = UserRole.that_can(*any_of_privileges).map(&:id)
+
+    if matching_role_ids.empty?
+      none
+    else
+      where(role_id: matching_role_ids)
+    end
+  end
+
+  def role
+    if role_id.nil?
+      UserRole.everyone
+    else
+      super
+    end
+  end
 
   def confirmed?
     confirmed_at.present?
@@ -156,6 +179,14 @@ class User < ApplicationRecord
 
   def enable!
     update!(disabled: false)
+  end
+
+  def to_log_human_identifier
+    account.acct
+  end
+
+  def to_log_route_param
+    account_id
   end
 
   def confirm
@@ -182,7 +213,9 @@ class User < ApplicationRecord
   end
 
   def update_sign_in!(new_sign_in: false)
-    old_current, new_current = current_sign_in_at, Time.now.utc
+    old_current = current_sign_in_at
+    new_current = Time.now.utc
+
     self.last_sign_in_at     = old_current || new_current
     self.current_sign_in_at  = new_current
 
@@ -248,16 +281,16 @@ class User < ApplicationRecord
     save!
   end
 
+  def prefers_noindex?
+    setting_noindex
+  end
+
   def preferred_posting_language
-    valid_locale_cascade(settings.default_language, locale)
+    valid_locale_cascade(settings.default_language, locale, I18n.locale)
   end
 
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
-  end
-
-  def allows_digest_emails?
-    settings.notification_emails['digest']
   end
 
   def allows_report_emails?
@@ -439,6 +472,11 @@ class User < ApplicationRecord
     self.chosen_languages = nil if chosen_languages.empty?
   end
 
+  def sanitize_role
+    return if role.nil?
+    self.role = nil if role.everyone?
+  end
+
   def prepare_new_user!
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
@@ -451,7 +489,7 @@ class User < ApplicationRecord
   end
 
   def notify_staff_about_pending_account!
-    User.staff.includes(:account).find_each do |u|
+    User.those_who_can(:manage_users).includes(:account).find_each do |u|
       next unless u.allows_pending_account_emails?
       AdminMailer.new_pending_account(u.account, self).deliver_later
     end
@@ -469,7 +507,15 @@ class User < ApplicationRecord
     email_changed? && !external? && !(Rails.env.test? || Rails.env.development?)
   end
 
+  def validate_role_elevation
+    errors.add(:role_id, :elevated) if defined?(@current_account) && role&.overrides?(@current_account&.user_role)
+  end
+
   def invite_text_required?
     Setting.require_invite_text && !invited? && !external? && !bypass_invite_request_check?
+  end
+
+  def trigger_webhooks
+    TriggerWebhookWorker.perform_async('account.created', 'Account', account_id)
   end
 end

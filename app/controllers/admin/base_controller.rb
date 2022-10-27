@@ -7,8 +7,8 @@ module Admin
 
     layout 'admin'
 
-    before_action :require_staff!
     before_action :set_body_classes
+    after_action :verify_authorized
 
     private
 

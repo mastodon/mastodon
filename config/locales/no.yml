@@ -1,89 +1,26 @@
 ---
 'no':
   about:
-    about_hashtag_html: Dette er offentlige toots merket med <strong>#%{hashtag}</strong>. Du kan interagere med dem om du har en konto et sted i fediverset.
     about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
-    about_this: Om
-    active_count_after: aktive
-    active_footnote: Månedlige aktive brukere (MAU)
-    administered_by: 'Administrert av:'
-    api: API
-    apps: Mobilapper
-    apps_platforms: Bruk Mastodon gjennom iOS, Android og andre plattformer
-    browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
-    browse_local_posts: Bla i en sanntidsstrøm av offentlige innlegg fra denne tjeneren
-    browse_public_posts: Bla i en sanntidsstrøm av offentlige innlegg på Mastodon
-    contact: Kontakt
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
-    discover_users: Oppdag brukere
-    documentation: Dokumentasjon
-    federation_hint_html: Med en konto på %{instance} vil du kunne følge folk på enhver Mastodon-tjener, og mer til.
-    get_apps: Prøv en mobilapp
     hosted_on: Mastodon driftet på %{domain}
-    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
-    learn_more: Lær mer
-    privacy_policy: Privatlivsretningslinjer
-    rules: Server regler
-    rules_html: 'Nedenfor er et sammendrag av reglene du må følge om du vil ha en konto på denne serveren av Mastodon:'
-    see_whats_happening: Se hva som skjer
-    server_stats: 'Tjenerstatistikker:'
-    source_code: Kildekode
-    status_count_after:
-      one: innlegg
-      other: statuser
-    status_count_before: Som skrev
-    tagline: Følg venner og oppdag nye
-    terms: Bruksvilkår
-    unavailable_content: Utilgjengelig innhold
-    unavailable_content_description:
-      domain: Tjener
-      reason: Årsak
-      rejecting_media: 'Mediafiler fra disse tjenerne vil ikke bli behandlet eller lagret, og ingen miniatyrbilder vil bli vist, noe som vil kreve manuell klikking for å besøke den opprinnelige filen:'
-      rejecting_media_title: Filtrert media
-      silenced: 'Innlegg fra disse tjenerne vil bli skjult fra offentlige tidslinjer og samtaler, og ingen varslinger vil bli generert fra disse brukernes samhandlinger, med mindre du følger dem:'
-      silenced_title: Stilnede tjenere
-      suspended: 'Ingen data fra disse tjenerne vil bli behandlet, lagret, eller utvekslet, noe som vil gjøre enhver samhandling eller kommunikasjon med brukere fra disse tjenerne umulig:'
-      suspended_title: Suspenderte tjenere
-    unavailable_content_html: Mastodon lar deg vanligvis se innhold fra og samhandle med brukere fra enhver annen tjener i strømiverset. Dette er unntakene som har blitt gjort på denne spesifikke tjeneren.
-    user_count_after:
-      one: bruker
-      other: brukere
-    user_count_before: Her bor
-    what_is_mastodon: Hva er Mastodon?
   accounts:
-    choices_html: "%{name} sine anbefalte:"
-    endorsements_hint: Du kan fremheve personer du følger fra nettgrensesnittet som deretter vil bli vist her.
-    featured_tags_hint: Du kan fremheve spesifikke emneknagger som vil bli vist her.
     follow: Følg
     followers:
       one: Følger
       other: Følgere
     following: Følger
     instance_actor_flash: Denne kontoen er en virtuell figur som brukes til å representere selve serveren og ikke noen individuell bruker. Den brukes til forbundsformål og bør ikke oppheves.
-    joined: Ble med den %{date}
     last_active: sist aktiv
     link_verified_on: Eierskap av denne lenken ble sjekket %{date}
-    media: Media
-    moved_html: "%{name} har flyttet til %{new_profile_link}:"
-    network_hidden: Denne informasjonen er ikke tilgjengelig
     nothing_here: Det er ingenting her!
-    people_followed_by: Folk som %{name} følger
-    people_who_follow: Folk som følger %{name}
     pin_errors:
       following: Du må allerede følge personen du vil fremheve
     posts:
       one: Tut
       other: Tuter
     posts_tab_heading: Tuter
-    posts_with_replies: Tuter med svar
-    roles:
-      admin: Administrator
-      bot: Bot
-      group: Gruppe
-      moderator: Moderere
-    unavailable: Profilen er utilgjengelig
-    unfollow: Slutt å følge
   admin:
     account_actions:
       action: Utfør handling
@@ -100,7 +37,6 @@
       avatar: Profilbilde
       by_domain: Domene
       change_email:
-        changed_msg: Konto-E-postadressen ble vellykket endret!
         current_email: Nåværende E-post
         label: Endre e-post
         new_email: Ny E-post
@@ -177,12 +113,6 @@
       reset: Tilbakestill
       reset_password: Nullstill passord
       resubscribe: Abonner på nytt
-      role: Rettigheter
-      roles:
-        admin: Administrator
-        moderator: Ordstyrer
-        staff: Personale
-        user: Bruker
       search: Søk
       search_same_email_domain: Andre brukere med samme E-postdomene
       search_same_ip: Andre brukere med den samme IP-en
@@ -257,7 +187,6 @@
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
         reject_user_html: "%{name} avslo registrering fra %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
-      deleted_status: "(statusen er slettet)"
       empty: Ingen loggføringer ble funnet.
       filter_by_action: Sorter etter handling
       filter_by_user: Sorter etter bruker
@@ -486,92 +415,15 @@
       empty: Ingen serverregler har blitt definert ennå.
       title: Server regler
     settings:
-      activity_api_enabled:
-        desc_html: Antall lokale statusposter, aktive brukere og nye registreringer i ukentlige oppdelinger
-        title: Publiser samlet statistikk om brukeraktiviteter
-      bootstrap_timeline_accounts:
-        desc_html: Separer flere brukernavn med komma. Kun lokale og ulåste kontoer vil kunne brukes. Dersom tomt er standarden alle lokale administratorer.
-        title: Standard følgere for nye brukere
-      contact_information:
-        email: Skriv en offentlig e-postadresse
-        username: Skriv brukernavn
-      custom_css:
-        desc_html: Modifiser utseendet med CSS lastet på hver side
-        title: Egendefinert CSS
-      default_noindex:
-        desc_html: Påvirker alle brukerne som ikke har justert denne innstillingen selv
-        title: Velg brukere som er ute av søkemotoren indeksering som standard
       domain_blocks:
         all: Til alle
         disabled: Til ingen
-        title: Vis domeneblokkeringer
         users: Til lokale brukere som er logget inn
-      domain_blocks_rationale:
-        title: Vis grunnlaget
-      hero:
-        desc_html: Vises på forsiden. Minst 600×100px er anbefalt. Dersom dette ikke er valgt, faller det tilbake på tjenerens miniatyrbilde
-        title: Heltebilde
-      mascot:
-        desc_html: Vist på flere sider. Minst 293×205px er anbefalt. Dersom det ikke er valgt, faller det tilbake til standardmaskoten
-        title: Maskotbilde
-      peers_api_enabled:
-        desc_html: Domenenavn denne instansen har truffet på i fediverset
-        title: Publiser liste over oppdagede instanser
-      preview_sensitive_media:
-        desc_html: Lenkeforhåndsvisninger på andre nettsteder vil vise et miniatyrbilde selv dersom mediet er merket som sensitivt
-        title: Vis sensitive medier i OpenGraph-forhåndsvisninger
-      profile_directory:
-        desc_html: Tillat brukere å bli oppdagelige
-        title: Skru på profilmappen
-      registrations:
-        closed_message:
-          desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
-          title: Melding for lukket registrering
-        deletion:
-          desc_html: Tillat alle å slette sin konto
-          title: Åpne kontosletting
-        min_invite_role:
-          disabled: Ingen
-          title: Tillat invitasjoner fra
-        require_invite_text:
-          desc_html: Når registreringer krever manuell godkjenning, må du føye «Hvorfor vil du bli med?» tekstinput obligatoriske i stedet for valgfritt
-          title: Krev nye brukere for å oppgi en grunn for å delta
       registrations_mode:
         modes:
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melde seg inn
           open: Hvem som helst kan melde seg inn
-        title: Registreringsmodus
-      show_known_fediverse_at_about_page:
-        desc_html: Begrenser den offentlige tidslinjen som er knyttet til landingssiden når den er deaktivert, og viser bare lokalt innhold
-      show_staff_badge:
-        desc_html: Vis personalemerke på brukersiden
-        title: Vis personalemerke
-      site_description:
-        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
-        title: Nettstedsbeskrivelse
-      site_description_extended:
-        desc_html: Vises på side for utvidet informasjon.<br>Du kan bruke HTML-tagger
-        title: Utvidet nettstedsinformasjon
-      site_short_description:
-        desc_html: Vist i sidelinjen og i metastempler. Beskriv hva Mastodon er og hva som gjør denne tjeneren spesiell i én enkelt paragraf.
-        title: Kort tjenerbeskrivelse
-      site_terms:
-        desc_html: Du kan skrive din egen personverns-strategi, bruksviklår og andre regler. Du kan bruke HTML tagger
-        title: Skreddersydde bruksvilkår
-      site_title: Nettstedstittel
-      thumbnail:
-        desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
-        title: Miniatyrbilde for instans
-      timeline_preview:
-        desc_html: Vis offentlig tidslinje på landingssiden
-        title: Forhandsvis tidslinjen
-      title: Nettstedsinnstillinger
-      trendable_by_default:
-        desc_html: Påvirker hashtags som ikke har blitt nektet tidligere
-        title: Tillat hashtags for trend uten foregående vurdering
-      trends:
-        title: Trendende emneknagger
     site_uploads:
       delete: Slett den opplastede filen
       destroyed_msg: Vellykket sletting av sideopplasting!
@@ -629,16 +481,12 @@
   applications:
     created: Søknaden ble vellykket oppretttet
     destroyed: Søknaden ble vellykket slettet
-    invalid_url: Den oppgitte URLen er ugyldig
     regenerate_token: Regenerer tilgangsnøkkel
     token_regenerated: Tilgangsnøkkel vellykket regenerert
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
-    apply_for_account: Be om en invitasjon
     change_password: Passord
-    checkbox_agreement_html: Jeg godtar <a href="%{rules_path}" target="_blank">tjenerens regler</a> og <a href="%{terms_path}" target="_blank">bruksvilkår</a>
-    checkbox_agreement_without_rules_html: Jeg godtar <a href="%{terms_path}" target="_blank">bruksvilkårene</a>
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
     description:
@@ -674,7 +522,6 @@
       confirming: Venter på at e-postbekreftelsen er fullført.
       pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
-    trouble_logging_in: Har du problemer med å logge på?
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du følger allerede denne kontoen
@@ -727,10 +574,6 @@
       more_details_html: For mere detaljer, se <a href="%{terms_path}">privatlivsretningslinjene</a>.
       username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
-  directories:
-    directory: Profilmappe
-    explanation: Oppdag brukere basert på deres interesser
-    explore_mastodon: Utforsk %{title}
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:
@@ -785,9 +628,6 @@
     new:
       title: Legg til nytt filter
   footer:
-    developers: Utviklere
-    more: Mer…
-    resources: Ressurser
     trending_now: Trender nå
   generic:
     all: Alle
@@ -813,7 +653,6 @@
       following: Følgeliste
       muting: Dempeliste
     upload: Opplastning
-  in_memoriam_html: Til minne.
   invites:
     delete: Deaktiver
     expired: Utløpt
@@ -885,14 +724,6 @@
     carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   notification_mailer:
-    digest:
-      action: Vis alle varslinger
-      body: Her er en kort oppsummering av hva du har gått glipp av siden du sist logget inn den %{since}
-      mention: "%{name} nevnte deg i:"
-      new_followers_summary:
-        one: I tillegg har du fått en ny følger mens du var borte. Hurra!
-        other: I tillegg har du har fått %{count} nye følgere mens du var borte! Imponerende!
-      title: I ditt fravær…
     favourite:
       body: 'Statusen din ble likt av %{name}:'
       subject: "%{name} likte statusen din"
@@ -982,22 +813,7 @@
     remove_selected_follows: Avfølg de valgte brukerne
     status: Kontostatus
   remote_follow:
-    acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
-    no_account_html: Har du ikke en konto? Da kan du <a href='%{sign_up_path}' target='_blank'>lage en konto her</a>
-    proceed: Fortsett med følging
-    prompt: 'Du vil følge:'
-    reason_html: "<strong>Hvorfor dette trinnet er nødvendig?</strong><code>%{instance}</code> er kanskje ikke tjeneren som du er registrert på, så vi må omdirigere deg til hjemmetjeneren din først."
-  remote_interaction:
-    favourite:
-      proceed: Fortsett til likingen
-      prompt: 'Du ønsker å like denne tuten:'
-    reblog:
-      proceed: Fortsett til fremhevingen
-      prompt: 'Du ønsker å fremheve denne tuten:'
-    reply:
-      proceed: Fortsett til svaret
-      prompt: 'Du ønsker å svare på denne tuten:'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
@@ -1116,89 +932,6 @@
     sensitive_content: Følsomt innhold
   tags:
     does_not_match_previous_name: samsvarer ikke med det forrige navnet
-  terms:
-    body_html: |
-      <h2>Privatlivsretningslinjer</h2>
-      <h3 id="collect">Hva slags informasjon samler vi inn?</h3>
-
-      <ul>
-      <li><em>Grunnleggende kontoinformasjon</em>: Dersom du registrerer deg på denne tjeneren, vil du kanskje bli spurt om å skrive inn et brukernavn, en E-postadresse, og et passord. Du kan også skrive inn ytterligere profilinformasjon som f.eks. et visningsnavn og selvbiografi, og laste opp et profilbilde og toppfeltbilde. Brukernavnet, visningsnavnet, selvbiografien, profilbildet, og toppfeltbildet blir alltid vist offentlig.</li>
-      <li><em>Innlegg, følging, og annen offentlig informasjon</em>: Listen over folk du følger blir vist offentlig, det samme gjelder for følgerne dine. Når du sender inn en melding, blir datoen og tidspunktet lagret såvel som programmet du sendte inn meldingen ifra. Meldinger kan inneholde mediavedlegg, som f.eks. bilder og videoer. Offentlige og uoppførte innlegg er offentlig tilgjengelige. Når du viser frem et innlegg på profilen din, er det også offentlig tilgjengelig informasjon. Dinne innlegg blir levert til dine følgere, og i noen tilfeller betyr det at blir levert til forskjellige tjenere og at kopier blir lagret der. Når du sletter innlegg, blir også det levert til dine følgere. Det å fremheve eller like et annet innlegg er alltid offentlig.</li>
-      <li><em>Direkteinnlegg og innlegg som kun er for følgere</em>: Alle innlegg er lagret og behandlet på tjeneren. Innlegg som kun er for følgere, blir levert til dine følgere, og direkteinnlegg leveres kun til brukere som er nevnt i dem. I noen tilfeller betyr det at de blir levert til forskjellige tjenere og at kopier blir lagret der. Vi gjør et forsøk i god sportsånd for å begrense tilgangen til disse innleggene til kun autoriserte personer, men andre tjenere kan mislykkes med sådan. Derfor er det viktig å gå i gjennom tjenerne som følgerne dine hører til i. I innstillingene kan du veksle på en innstilling for å godkjenne og avslå nye følgere manuelt. <em>Vennligst ha i tankene at operatørene til tjeneren og enhver mottakende tjener kan se slike meldinger</em>, og at mottakere kan ta skjermklipp av, kopiere, eller på annet vis dele dem videre. <em>Ikke del noe farlig informasjon over Mastodon.</em></li>
-      <li><em>IP-er og andre metadata</em>: Når du logger på, lagrer vi IP-adressen som du logget deg på fra, såvel som navnet til nettleserprogrammet ditt. Du kan gå gjennom og tilbakekalle alle påloggede økter i innstillingene. Den seneste IP-adressen du brukte, blir lagret i opptil 12 måneder. Vi vil kanskje også holde på tjenerloggføringer som inkluderer IP-adressen til alle forespørsler til tjeneren vår.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Hva bruker vi informasjonen din til?</h3>
-
-      <p>Hva som helst av informasjonen som vi samler inn fra deg, kan bli brukt på de følgende måtene:</p>
-
-      <ul>
-      <li>Til å levere grunnfunksjonaliteten til Mastodon. Du kan bare samhandle med andre folks innhold og legge ut ditt eget innhold når du er logget på. For eksempel kan du følge andre folk for å se deres kombinerte innlegg i din egen personliggjorte hjemmetidslinje.</li>
-      <li>Til å bistå i moderasjonen av samfunnet, for eksempel å sammenligne IP-adressen din med andre andre kjente adresser for å avgjøre saker om bannlysningsunngåelse eller andre regelbrudd.</li>
-      <li>E-postadressen du oppgir kan bli brukt til å sende deg informasjon, varsler om at andre folk samhandler med innholdet ditt eller sender deg meldinger, og å svare på brukerstøttespørsmål, og/eller andre forespørsler eller spørsmål.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Hvordan beskytter vi informasjonen din?</h3>
-
-      <p>Vi implementer en rekke sikkerhetstiltak for å holde på sikkerheten til din personlige informasjon når du skriver inn, sender inn, eller besøker din personlige informasjon. Blant annet er din nettleserøkt, såvel som trafikken mellom dine apper og API-er, sikret med SSL, og passordet ditt er saltet med en kraftig énveisalgoritme. Du kan skru på 2-trinnsinnlogging for å sikre tilgangen til kontoen din ytterligere.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Hva er våre databeholdingsretningslinjer?</h3>
-
-      <p>Vi vil gjøre en innsats i god sportsånd for å</p>
-
-      <ul>
-      <li>Beholde tjenerloggføringer som inneholder IP-adressen til alle forespørsler til denne tjeneren, dersom det blir loggført i det hele tatt, i ikke mer enn 90 dager.</li>
-      <li>Beholde IP-adressene som er forbundet med registrerte brukere i ikke mer enn 12 måneder.</li>
-      </ul>
-
-      <p>Du kan be om og laste ned et arkiv av innholdet ditt, inkludert dine innlegg, media, mediavedlegg, profilbilde, og toppfeltbilde.</p>
-
-      <p>Du kan ugjenkallelig slette kontoen til enhver tid.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Bruker vi infokapsler?</h3>
-
-      <p>Ja. Infokapsler er små filer som et nettsted eller dens tjenesteleverandør overfører til harddisken på datamaskinen din gjennom nettleseren din (dersom du tillater dette). Disse infokapslene lar nettstedet kjenne igjen nettleseren din og, dersom du har en registrert konto, assosiere den med din registrerte konto.</p>
-
-      <p>Vi benytter infokapsler for å forstå og lagre dinne innstillinger til fremtidige besøk.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Forteller vi om noe informasjon til utenforstående parter?</h3>
-
-      <p>Vi hverken selger, bytter, eller på andre måter overfører din personlig identifiserbare informasjon til utenforstående parter. Dette inkluderer ikke tredjeparter som vi stoler på og som hjelper oss med å drifte nettstedet vårt, drifte våre forretninger, eller å yte tjenester til deg, så lenge disse partene sier seg enige i å holde denne informasjonen hemmelig. Vi kan også frigi informasjonen vår dersom vi mener et frigiving er passende for å møte loven, handle i tråd med vår nettstedsretningslinjer, eller å beskytte vår eller andres rettigheter, eiendom, eller trygghet.</p>
-
-      <p>Ditt offentlige innhold kan bli lastet ned av andre tjenere i nettverket. Dine offentlige innlegg og innlegg som kun er for følgere blir levert til tjenerne der følgerne dine holder til, og direktemeldinger blir levert il mottakernes tjenere, i den grad de følgerne eller mottakerne holder på en annen tjener enn denne.</p>
-
-      <p>Når du gir et program autorisasjon til å bruke kontoen din, avhengig av omfanget av tillatelser som du tillater, kan den få tilgang til din offentlige profilinformasjon, din følgingsliste, dine følgere, dine lister, alle dine innlegg, og dine likinger. Programmer kan aldri få tilgang til E-postadressen eller passordet ditt.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Nettstedsbruk av barn</h3>
-
-      <p>Dersom denne tjeneren er i EU eller EØS: Vårt nettsted, produkter og tjenester er alle siktet inn mot folk som er minst 16 år gamle. Dersom du er under 16, sier GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) at du ikke kan bruke dette nettstedet.</p>
-
-      <p>Dersom denne tjeneren er i USA: Vårt nettsted, produkter og tjenester er alle siktet inn mot folk som er minst 16 år gamle. Dersom du er under 16, sier COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) at du ikke kan bruke dette nettstedet.</p>
-
-      <p>Lovmessige krav kan være forskjellige dersom denne tjeneren befinner seg i en annen jurisdiksjon.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Endringer i våre privatlivsretningslinjer</h3>
-
-      <p>Dersom vi bestemmer oss for å endre våre privatlivsretningslinjer, vil vi legge ut endringene på denne siden.</p>
-
-      <p>Dette dokumentet er lisensiert under CC BY-SA. Den engelske originalversjonen ble sist oppdatert den 7. mars 2018. Den norske oversettelsen ble sist oppdatert den 13. desember 2019.</p>
-
-      <p>Opprinnelig modifisert utifra <a href="https://github.com/discourse/discourse">Discourse sine privatlivsretningslinjer</a>.</p>
-    title: "%{instance} Personvern og villkår for bruk av nettstedet"
   themes:
     contrast: Mastodon (Høykontrast)
     default: Mastodon
@@ -1239,20 +972,11 @@
         suspend: Kontoen er suspendert
     welcome:
       edit_profile_action: Sett opp profil
-      edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
       explanation: Her er noen tips for å komme i gang
       final_action: Start postingen
-      final_step: 'Start å poste! Selv uten følgere kan dine offentlige meldinger bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introductions.'
       full_handle: Ditt fullstendige brukernavn
       full_handle_hint: Dette er hva du forteller venner slik at de kan sende melding eller følge deg fra en annen instanse.
-      review_preferences_action: Endre innstillinger
-      review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
       subject: Velkommen til Mastodon
-      tip_federated_timeline: Den forente tidslinjen blir konstant matet med meldinger fra Mastodon-nettverket. Men den inkluderer bare personer dine naboer abbonerer på, så den er ikke komplett.
-      tip_following: Du følger din tjeners administrator(er) som standard. For å finne mer interessante personer, sjekk den lokale og forente tidslinjen.
-      tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
-      tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
-      tips: Tips
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan ikke følge mer enn %{limit} personer

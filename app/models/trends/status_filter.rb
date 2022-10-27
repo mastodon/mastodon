@@ -13,10 +13,10 @@ class Trends::StatusFilter
   end
 
   def results
-    scope = Status.unscoped.kept
+    scope = initial_scope
 
     params.each do |key, value|
-      next if %w(page locale).include?(key.to_s)
+      next if %w(page).include?(key.to_s)
 
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
@@ -26,21 +26,30 @@ class Trends::StatusFilter
 
   private
 
+  def initial_scope
+    Status.select(Status.arel_table[Arel.star])
+          .joins(:trend)
+          .eager_load(:trend)
+          .reorder(score: :desc)
+  end
+
   def scope_for(key, value)
     case key.to_s
     when 'trending'
       trending_scope(value)
+    when 'locale'
+      StatusTrend.where(language: value)
     else
       raise "Unknown filter: #{key}"
     end
   end
 
   def trending_scope(value)
-    scope = Trends.statuses.query
-
-    scope = scope.in_locale(@params[:locale].to_s) if @params[:locale].present?
-    scope = scope.allowed if value == 'allowed'
-
-    scope.to_arel
+    case value
+    when 'allowed'
+      StatusTrend.allowed
+    else
+      StatusTrend.all
+    end
   end
 end

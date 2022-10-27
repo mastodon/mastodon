@@ -1,87 +1,24 @@
 ---
 zh-HK:
   about:
-    about_hashtag_html: 這些是包含「<strong>#%{hashtag}</strong>」標籤的公開文章。只要你是任何聯盟網站的用戶，便可以與他們互動。
     about_mastodon_html: Mastodon（萬象）是屬於未來的社交網路︰無廣告煩擾、無企業監控、設計講道義、分散無大台！立即重奪個人資料的控制權，使用 Mastodon 吧！
-    about_this: 關於本伺服器
-    active_count_after: 活躍
-    active_footnote: 每月活躍使用者 (MAU)
-    administered_by: 管理者：
-    api: API
-    apps: 手機 App
-    apps_platforms: 在 iOS、Android 和其他平台使用 Mastodon
-    browse_directory: 依興趣瀏覽個人資料目錄和過濾器
-    browse_local_posts: 瀏覽這個伺服器的公開文章即時串流
-    browse_public_posts: 在 Mastodon 瀏覽公開文章的即時串流
-    contact: 聯絡
     contact_missing: 未設定
     contact_unavailable: 不適用
-    discover_users: 探索使用者
-    documentation: 說明文件
-    federation_hint_html: 你只需要擁有 %{instance} 的帳戶，就可以追蹤任何 Mastodon 服務站上的人！
-    get_apps: 嘗試使用手機 App
     hosted_on: 在 %{domain} 運作的 Mastodon 伺服器
-    instance_actor_flash: |
-      這個帳戶是代表伺服器，而非代表任何個人用戶的虛擬帳號。
-      此帳戶是為聯盟協定而設。除非你想封鎖整個伺服器的話，否則請不要封鎖這個帳戶。如果你想封鎖伺服器，請使用網域封鎖以達到相同效果。
-    learn_more: 了解更多
-    privacy_policy: 隱私權政策
-    rules: 系統規則
-    rules_html: 如果你想要在本站開一個新帳戶，以下是你需要遵守的規則：
-    see_whats_happening: 看看發生什麼事
-    server_stats: 伺服器統計：
-    source_code: 源代碼
-    status_count_after:
-      other: 篇文章
-    status_count_before: 共發佈了
-    tagline: 關注朋友並探索新朋友
-    terms: 使用條款
-    unavailable_content: 受限制的伺服器
-    unavailable_content_description:
-      domain: 伺服器
-      reason: 原因
-      rejecting_media: 這些伺服器的媒體檔案將不會被處理或儲存，我們亦不會展示其縮圖。請手動點擊以觀看原始檔：
-      rejecting_media_title: 被篩選的媒體檔案
-      silenced: 除非你已經關注個別使用者，否則來自這些伺服器的文章和通知將會被隱藏。
-      silenced_title: 已靜音的伺服器
-      suspended: 來自這些伺服器的所有數據將不會被處理。你將不可能聯絡來自這些伺服器的使用者。
-      suspended_title: 已停權的伺服器
-    unavailable_content_html: Mastodon 通常讓你瀏覽其他社交聯盟網站的所有內容，但是對於這個特定網站，有這些特別的例外規則。
-    user_count_after:
-      other: 位使用者
-    user_count_before: 本站共有
-    what_is_mastodon: Mastodon （萬象）是甚麼？
   accounts:
-    choices_html: "%{name} 的選擇："
-    endorsements_hint: 你可以推薦正在關注的人，他們會被顯示在你的個人頁面。
-    featured_tags_hint: 你可以推薦不同標籤，它們也會在此處出現。
     follow: 關注
     followers:
       other: 關注者
     following: 正在關注
     instance_actor_flash: 這個帳戶是結盟用的本伺服器的虛擬象徵，並不代表任何個別用戶。請不要把帳號停權。
-    joined: 於 %{date} 加入
     last_active: 上次活躍時間
     link_verified_on: 此連結的所有權已在 %{date} 檢查過
-    media: 媒體
-    moved_html: "%{name} 已經轉移到 %{new_profile_link}："
-    network_hidden: 此信息不可用
     nothing_here: 暫時未有內容可以顯示！
-    people_followed_by: "%{name} 關注的人"
-    people_who_follow: 關注 %{name} 的人
     pin_errors:
       following: 你只能推薦你正在關注的使用者。
     posts:
       other: 文章
     posts_tab_heading: 文章
-    posts_with_replies: 包含回覆的文章
-    roles:
-      admin: 管理員
-      bot: 機械人
-      group: 群組
-      moderator: 板主
-    unavailable: 無法取得個人檔案
-    unfollow: 取消關注
   admin:
     account_actions:
       action: 執行動作
@@ -98,7 +35,6 @@ zh-HK:
       avatar: 頭像
       by_domain: 域名
       change_email:
-        changed_msg: 帳號電郵更新成功！
         current_email: 現時電郵
         label: 更改電郵
         new_email: 新的電郵
@@ -175,12 +111,6 @@ zh-HK:
       reset: 重設
       reset_password: 重設密碼
       resubscribe: 重新訂閱
-      role: 權限
-      roles:
-        admin: 管理員
-        moderator: 管理員
-        staff: 工作人員
-        user: 普通使用者
       search: 搜尋
       search_same_email_domain: 其他有相同電郵網域的使用者
       search_same_ip: 其他有相同 IP 位址的使用者
@@ -273,7 +203,6 @@ zh-HK:
         create_unavailable_domain_html: "%{name} 停止了對網域 %{target} 的更新通知"
         demote_user_html: "%{name} 降權了 %{target}"
         destroy_announcement_html: "%{name} 刪除了公告 %{target}"
-        destroy_custom_emoji_html: "%{name} 刪除了 Emoji %{target}"
         destroy_domain_allow_html: "%{name} 禁止網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 封鎖了網域 %{target}"
         destroy_email_domain_block_html: "%{name} 解除封鎖 e-mail 網域 %{target}"
@@ -304,7 +233,6 @@ zh-HK:
         update_custom_emoji_html: "%{name} 更新了 Emoji 表情符號 %{target}"
         update_domain_block_html: "%{name} 更新了對 %{target} 的網域封鎖"
         update_status_html: "%{name} 更新了 %{target} 的嘟文"
-      deleted_status: "（已刪除文章）"
       empty: 找不到任何日誌。
       filter_by_action: 按動作篩選
       filter_by_user: 按帳號篩選
@@ -525,94 +453,15 @@ zh-HK:
       empty: 尚未定義伺服器規則
       title: 伺服器守則
     settings:
-      activity_api_enabled:
-        desc_html: 本站的文章數量、活躍使用者數量、及每週新註冊使用者數量
-        title: 公佈使用者活躍度的統計數據
-      bootstrap_timeline_accounts:
-        desc_html: 以半形逗號分隔多個使用者名稱。只能加入來自本站且未開啟保護的帳號。如果留空，則默認關注本站所有管理員。
-        title: 新使用者預設關注的對像
-      contact_information:
-        email: 輸入一個公開的電郵地址
-        username: 輸入使用者名稱
-      custom_css:
-        desc_html: 透過 CSS 自訂每一頁的外觀
-        title: 自訂 CSS
-      default_noindex:
-        desc_html: 影響所有未自行設定的帳號
-        title: 預設帳號不在搜尋引擎索引之內
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
-        title: 顯示封鎖的網域
         users: 所有已登入的帳號
-      domain_blocks_rationale:
-        title: 顯示原因予
-      hero:
-        desc_html: 在首頁顯示。推薦最小 600x100px。如果留空，就會默認為服務站縮圖
-        title: 主題圖片
-      mascot:
-        desc_html: 在不同頁面顯示。推薦最小 293×205px。如果留空，就會默認為伺服器縮圖。
-        title: 縮圖
-      peers_api_enabled:
-        desc_html: 現時本服務站在網絡中已發現的域名
-        title: 公開已知服務站的列表
-      preview_sensitive_media:
-        desc_html: 在其他頁面預覽的連結將會在敏感媒體的情況下顯示縮圖
-        title: 在 OpenGraph 預覽中顯示敏感媒體
-      profile_directory:
-        desc_html: 允許使用者被搜尋
-        title: 啟用個人資料目錄
-      registrations:
-        closed_message:
-          desc_html: 當本站暫停接受註冊時，會顯示這個訊息。<br/> 可使用 HTML
-          title: 暫停註冊訊息
-        deletion:
-          desc_html: 允許所有人刪除自己的帳號
-          title: 容許刪除帳號
-        min_invite_role:
-          disabled: 沒有人
-          title: 允許發送邀請的身份
-        require_invite_text:
-          desc_html: 如果已設定為手動審核注冊，請把「加入的原因」設定為必填項目。
-          title: 要求新用戶填寫注冊申請
       registrations_mode:
         modes:
           approved: 註冊需要核准
           none: 沒有人可註冊
           open: 任何人皆能註冊
-        title: 註冊模式
-      show_known_fediverse_at_about_page:
-        desc_html: 如果停用，將會只在本站的歡迎頁顯示本站的文章。
-        title: 在訪客預覽本站的時間軸上，顯示跨站文章
-      show_staff_badge:
-        desc_html: 在個人資料頁上顯示工作人員標誌
-        title: 顯示工作人員標誌
-      site_description:
-        desc_html: 在首頁顯示，及在 meta 標籤使用作網站介紹。<br/> 你可以在此使用 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 等 HTML 標籤。
-        title: 本站介紹
-      site_description_extended:
-        desc_html: 本站詳細資訊頁的內文<br/>你可以在此使用 HTML
-        title: 本站詳細資訊
-      site_short_description:
-        desc_html: "顯示在側邊欄和網頁標籤(meta tags)。以一句話描述Mastodon是甚麼，有甚麼令這個伺服器脫𩓙而出。"
-        title: 伺服器短描述
-      site_terms:
-        desc_html: 可以填寫自己的隱私權政策、使用條款或其他法律文本。可以使用 HTML 標籤
-        title: 自訂使用條款
-      site_title: 本站名稱
-      thumbnail:
-        desc_html: 用於在 OpenGraph 和 API 中顯示預覽圖。推薦大小 1200×630px
-        title: 本站縮圖
-      timeline_preview:
-        desc_html: 在主頁顯示本站時間軸
-        title: 時間軸預覽
-      title: 網站設定
-      trendable_by_default:
-        desc_html: 影響之前並未禁止的標籤
-        title: 容許標籤不需要審核來成為今期流行
-      trends:
-        desc_html: 公開地顯示已審核的標籤為今期流行
-        title: 趨勢主題標籤
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！
@@ -679,16 +528,12 @@ zh-HK:
   applications:
     created: 已建立應用程式
     destroyed: 已刪除應用程式
-    invalid_url: 所提供的網址不正確
     regenerate_token: 重設 token
     token_regenerated: 已重設 token
     warning: 警告，不要把它分享給任何人！
     your_token: token
   auth:
-    apply_for_account: 請求邀請
     change_password: 密碼
-    checkbox_agreement_html: 我同意 <a href="%{rules_path}" target="_blank">的伺服器規則</a> 和<a href="%{terms_path}" target="_blank">服務條款</a>
-    checkbox_agreement_without_rules_html: 我同意 <a href="%{terms_path}" target="_blank">服務條款</a>
     delete_account: 刪除帳號
     delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
     description:
@@ -725,7 +570,6 @@ zh-HK:
       pending: 管理員正在處理你的申請。可能會需要一點時間處理。我們將會在申請被批準的時候馬上寄電郵給你。
       redirecting_to: 你的帳戶因為正在重新定向到 %{acct}，所以暫時被停用。
     too_fast: 你太快遞交了，請再試一次。
-    trouble_logging_in: 不能登入？
     use_security_key: 使用安全密鑰裝置
   authorize_follow:
     already_following: 你已經關注了這個帳號
@@ -783,10 +627,6 @@ zh-HK:
       more_details_html: 請參見<a href="%{terms_path}">隱私政策</a>以瀏覽細節。
       username_available: 你的登入名稱將可被其他人使用
       username_unavailable: 你的登入名稱將不能讓其他人使用
-  directories:
-    directory: 個人資料目錄
-    explanation: 根據興趣認識新朋友
-    explore_mastodon: 探索%{title}
   domain_validator:
     invalid_domain: 不是一個可用域名
   errors:
@@ -838,7 +678,6 @@ zh-HK:
       title: 編輯篩選器
     errors:
       invalid_context: 沒有提供內文或內文無效
-      invalid_irreversible: 不可逆的篩選器只適用放主頁或通知頁面
     index:
       delete: 刪除
       empty: 你沒有過濾器。
@@ -846,9 +685,6 @@ zh-HK:
     new:
       title: 新增篩選器
   footer:
-    developers: 開發者
-    more: 更多......
-    resources: 項目
     trending_now: 今期流行
   generic:
     all: 全部
@@ -878,7 +714,6 @@ zh-HK:
       following: 你所關注的用戶名單
       muting: 靜音名單
     upload: 上載
-  in_memoriam_html: 謹此悼念。
   invites:
     delete: 停用
     expired: 已失效
@@ -957,13 +792,6 @@ zh-HK:
     carry_mutes_over_text: 此用戶從%{acct} 轉移，該帳號已被你靜音。
     copy_account_note_text: 此用戶從%{acct} 轉移，這是你之前在該帳號留下的備注：
   notification_mailer:
-    digest:
-      action: 查看所有通知
-      body: 這是自從你在%{since}使用以後，你錯失了的訊息︰
-      mention: "%{name} 在此提及了你︰"
-      new_followers_summary:
-        other: 你新獲得了 %{count} 位關注者了！好厲害！
-      title: 在你不在的這段時間……
     favourite:
       body: 你的文章被 %{name} 喜愛：
       subject: "%{name} 喜歡你的文章"
@@ -1055,22 +883,7 @@ zh-HK:
     remove_selected_follows: 取消關注所選用戶
     status: 帳戶帖文
   remote_follow:
-    acct: 請輸入你想使用的「使用者名稱@域名」身份
     missing_resource: 無法找到你用戶的轉接網址
-    no_account_html: 沒有帳號？你可以<a href='%{sign_up_path}' target='_blank'>在這裏註冊</a>
-    proceed: 下一步
-    prompt: 你希望關注︰
-    reason_html: "<strong>為甚麼有必要做這個步驟？</strong>因為<code>%{instance}</code>未必是你註冊的伺服器，所以我們首先需要將你帶回你的伺服器。"
-  remote_interaction:
-    favourite:
-      proceed: 下一步
-      prompt: 你要求把這篇文章加入最愛：
-    reblog:
-      proceed: 繼續轉嘟
-      prompt: 你想轉推：
-    reply:
-      proceed: 下一步
-      prompt: 你想回覆：
   scheduled_statuses:
     over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
     over_total_limit: 你已經超越了排定發文的限額 (%{limit})
@@ -1221,89 +1034,6 @@ zh-HK:
     sensitive_content: 敏感內容
   tags:
     does_not_match_previous_name: 和舊有名稱並不符合
-  terms:
-    body_html: |
-      <h2>隱私權政策</h2>
-      <h3 id="collect">我們蒐集甚麼資訊？</h3>
-
-      <ul>
-      <li><em>基本帳戶資訊</em>：如果您在此服務器上註冊，我們可能會要求您輸入用戶名、電子郵件地址和密碼。 您還可以輸入其他個人資料信息（例如顯示名稱和自我簡介），並上傳個人資料圖片和標題圖片。 用戶名、顯示名稱、自我簡介、個人資料圖片和標題圖片會持續公開。</li>
-      <li><em>帖文，關注和其他公共信息</em>：您的關注和追隨者名單為公開資訊。 在發佈帖文時，我們將會存儲日期和時間，以及您用以發佈帖文的應用程序。 帖文可能包含多媒體附件，例如圖片和視頻。 公開和非公開(unlisted)的帖文為公開資訊。 您在個人資料上推薦的帖文時也是公開的資訊。 您的追隨者會收到你的帖文，在某些情況下，它們有可能會在不同的服務器互相傳遞並將儲存副本。 您刪除帖文時亦同樣會傳遞給您的追隨者。 轉發或收藏其他帖文的操作始終是公開的。</li>
-      <li><em>私訊和追隨者限定的帖文</em>：所有的帖子都在服務器上被儲存和處理。 追隨者限定的帖文將傳遞給您的追隨者和其中提及的用家，而私訊僅會傳遞給其中提及的用戶。 在某些情況下，它們有可能會在不同的服務器互相傳遞並將儲存副本。 我們將努力地將訪問權限制為僅授權人員，但其他服務器可能無法這樣做。 因此，請檢查您的追隨者所屬的服務器。 您可以在設置中選擇手動批准和拒絕新追隨者。<em>請記住，服務器和任何接收服務器的操作員都可以查看此類消息</em>，並且收件人可以截屏，複製或以其他方式重新分享。 <em>請勿在Mastodon上分享任何危險信息。</em> </li>
-      <li> <em> IP和其他元數據</em>：登錄時，我們會記錄您登錄時使用的IP位址以及瀏覽器應用程序的名稱。 您可以在設置中查看和撤消所有已登錄的作業階段。 最新上傳的IP位址最多可以儲存12個月。 我們還可能保留服務器日誌，其中包括對我們服務器的每個請求的IP地位。</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">您的資訊將會被用在甚麼用途？</h3>
-
-      <p>我們從您那裡收集的任何資訊都可能通過以下方式使用：</p>
-
-      <ul>
-      <li>提供Mastodon的核心功能：您只可以在登錄後與其他人的內容交流並發佈自己的內容。例如，您可以追隨其他人以在自己的個人化主頁中查看他們的帖文。</li>
-      <li>社區管理：例如將您的IP位址與其他已知的IP位址進行比較來鑑定逃避封鎖或其他侵權行為。</li>
-      <li>您的電郵地址：可能會被用於向您發送信息，有關其他人與您互動或向您發送消息的通知，並用於答複查詢和/或其他請求或問題。</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">我們如何保護您的資訊？</h3>
-
-      <p>當您輸入，提交或訪問您的個人信息時，我們會採取各種安全措施來維護您的個人信息的安全。 除其他事項外，您的瀏覽器作業階段以及應用程序和API之間的流量均使用SSL進行保護。您的密碼也會以強大的單向算法進行散列處理。 您亦可以啟用多重驗證，以進一步安全地訪問您的帳戶。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">我們的數據保留政策</h3>
-
-      <p>我們會致力：</p>
-
-      <ul>
-      <li>保留包含對該服務器所有請求的IP位址的服務器日誌，而保留時間將不會超過90天。</li>
-      <li>保留與註冊用戶關聯的IP位址不超過12個月。</li>
-      </ul>
-
-      <p>您可以請求並下載您的內容備份，包括您的帖文，媒體附件，個人資料圖片和標題圖片。</p>
-
-      <p>您亦可以隨時不可逆地刪除您的帳戶。</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">我們使用cookies嗎？</h3>
-
-      <p>是。 Cookies是站點或其服務提供商通過Web瀏覽器（如果允許）傳輸到計算機硬盤的小文件。 這些cookies使站點能夠識別您的瀏覽器，並且如果您已經擁有註冊帳戶，會連結至您的註冊帳戶。</p>
-
-      <p>我們使用Cookie來了解並保存您的偏好，以供將來訪問。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">我們會否透露任何信息給第三方機構？</h3>
-
-      <p>我們不會將您的個人身份信息出售，交易或以其他方式轉讓給第三方。 這不包括同意對這些信息保密的運營方，和我們開展業務或為您提供服務的受信任的第三方。我們或會在基於對法律的尊重，或在執行我們的網站政策或保護我們或其他人的權利、財產或安全時釋出你的個人資料。</p>
-
-      <p>您的公開內容可能會被網絡中的其他服務器下載。 只要這些追隨者或收件人位於與之不同的服務器上，您的公開帖文和追隨者限定帖文將傳遞到您的追隨者所在的服務器，而私信將傳遞給收件人的服務器。</p>
-
-      <p>當您授權應用程序使用您的帳戶時，根據您批准的權限範圍，它可能會訪問您的公開資訊，您的關注列表，您的關注者，您的列表，所有帖文以及您的收藏夾。 應用程序永遠無法取得您的電子郵件地址或密碼。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">兒童在網站的應用</h3>
-
-      <p>如果此服務器位於歐盟或EEA中：我們的網站，產品和服務只為16歲或以上的人提供服務。 如果您未滿16歲，請按照GDPR的要求 (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">歐盟一般資料保護規範</a>)不使用此網站。</p>
-
-      <p>如果此服務器位於美國：我們的網站，產品和服務只為13歲或以上的人提供服務。 如果您未滿13歲，請按照COPPA的要求 (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">兒童在線隱私權保護法</a>)不使用此網站。</p>
-
-      <p>在其他管轄區內，法律要求可能會有所不同。</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">隱私權政策更改</h3>
-
-      <p>請根據英文版本所準，此中文版本只為英文版隱私政策的翻譯版本</p>
-
-      <p>此文件以 CC-BY-SA 授權。英文版本的發佈日期為2018年3月7日。此中文翻譯的翻譯日期為2020年11月28日。</p>
-
-      <p>最初改編自 <a href="https://github.com/discourse/discourse">Discourse的隱私權政策</a>.</p>
-    title: "%{instance} 使用條款和隱私權政策"
   themes:
     contrast: 高對比
     default: 萬象
@@ -1345,20 +1075,11 @@ zh-HK:
         suspend: 帳號已停用
     welcome:
       edit_profile_action: 設定個人資料
-      edit_profile_step: 你可以設定你的個人資料，包括上傳頭像、橫幅圖片、更改顯示名稱等等。如果你想在新的關注者關注你之前對他們進行審核，你也可以選擇為你的帳戶設為「私人」。
       explanation: 下面是幾個小貼士，希望它們能幫到你
       final_action: 開始發文
-      final_step: '開始發文吧！即使你現在沒有關注者，其他人仍然能在本站時間軸或者話題標籤等地方看到你的公開文章。試著用 #introductions 這個話題標籤介紹一下自己吧。'
       full_handle: 你的完整 Mastodon 地址
       full_handle_hint: 這訊息將顯示給你朋友們，讓他們能從另一個服務站發信息給你，或者關注你的。
-      review_preferences_action: 更改偏好設定
-      review_preferences_step: 記得調整你的偏好設定，比如你想接收什麼類型的郵件，或者你想把你的文章可見範圍默認設定為什麼級別。如果你沒有暈車的話，考慮一下啟用「自動播放 GIF 動畫」這個選項吧。
       subject: 歡迎來到 Mastodon (萬象)
-      tip_federated_timeline: 跨站時間軸可以讓你一窺更廣闊的 Mastodon 網絡。不過，由於它只顯示你的鄰居們所訂閱的內容，所以並不是全部。
-      tip_following: 你會預設關注你服務站的管理員。想結交更多有趣的人的話，記得多逛逛本站時間軸和跨站時間軸哦。
-      tip_local_timeline: 本站時間軸可以讓你一窺 %{instance} 本站上的用戶。他們就是離你最近的鄰居！
-      tip_mobile_webapp: 如果你的移動設備瀏覽器支援，你可以將 Mastodon 加到裝置的主畫面，讓你可以選擇接收推送通知，就像本機的 App 一樣方便！
-      tips: 小貼士
       title: 歡迎 %{name} 加入！
   users:
     follow_limit_reached: 你不能關注多於%{limit} 人

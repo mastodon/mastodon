@@ -1,92 +1,26 @@
 ---
 eu:
   about:
-    about_hashtag_html: Hauek <strong>#%{hashtag}</strong> traola duten bidalketa publikoak dira. Fedibertsoko edozein kontu baduzu haiekin elkarrekintza izan dezakezu.
     about_mastodon_html: 'Etorkizuneko sare soziala: ez iragarkirik eta ez zelatatze korporatiborik, diseinu etikoa eta deszentralizazioa! Izan zure datuen jabea Mastodonekin!'
-    about_this: Honi buruz
-    active_count_after: aktibo
-    active_footnote: Hilabeteko erabiltzaile aktiboak (HEA)
-    administered_by: 'Administratzailea(k):'
-    api: APIa
-    apps: Aplikazio mugikorrak
-    apps_platforms: Erabili Mastodon, iOS, Android eta beste plataformetatik
-    browse_directory: Arakatu profilen direktorio bat eta iragazi interesen arabera
-    browse_local_posts: Arakatu zerbitzari honetako bidalketa publikoen zuzeneko jario bat
-    browse_public_posts: Arakatu Mastodoneko bidalketa publikoen zuzeneko jario bat
-    contact: Kontaktua
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
-    continue_to_web: Jarraitu web aplikaziora
-    discover_users: Aurkitu erabiltzaileak
-    documentation: Dokumentazioa
-    federation_hint_html: "%{instance} instantzian kontu bat izanda edozein Mastodon zerbitzariko jendea jarraitu ahal izango duzu, eta harago ere."
-    get_apps: Probatu mugikorrerako aplikazio bat
     hosted_on: Mastodon %{domain} domeinuan ostatatua
-    instance_actor_flash: "Kontu hau zerbitzaria bera adierazten duen aktore birtual bat da, ez norbanako bat. Federaziorako erabiltzen da eta ez zenuke blokeatu behar instantzia osoa blokeatu nahi ez baduzu, kasu horretan domeinua blokeatzea egokia litzateke. \n"
-    learn_more: Ikasi gehiago
-    logged_in_as_html: "%{username} bezala saioa hasita zaude."
-    logout_before_registering: Saioa hasi duzu jada.
-    privacy_policy: Pribatutasun politika
-    rules: Zerbitzariaren arauak
-    rules_html: 'Behean Mastodon zerbitzari honetan kontua eduki nahi baduzu jarraitu beharreko arauen laburpena daukazu:'
-    see_whats_happening: Ikusi zer gertatzen ari den
-    server_stats: 'Zerbitzariaren estatistikak:'
-    source_code: Iturburu kodea
-    status_count_after:
-      one: bidalketa
-      other: bidalketa
-    status_count_before: Hauek
-    tagline: Jarraitu lagunak eta egin berriak
-    terms: Erabilera baldintzak
-    unavailable_content: Eduki eskuraezina
-    unavailable_content_description:
-      domain: Zerbitzaria
-      reason: Arrazoia
-      rejecting_media: 'Zerbitzari hauetako multimedia fitxategiak ez dira prozesatuko ez gordeko, eta ez dira iruditxoak bistaratuko, jatorrizko irudira joan behar izango da klik eginez:'
-      rejecting_media_title: Iragazitako multimedia
-      silenced: 'Zerbitzari hauetako bidalketak denbora-lerro eta elkarrizketa publikoetan ezkutatuko dira, eta bere erabiltzaileen interakzioek ez dute jakinarazpenik sortuko ez badituzu jarraitzen:'
-      silenced_title: Isilarazitako zerbitzariak
-      suspended: 'Ez da zerbitzari hauetako daturik prozesatuko, gordeko, edo partekatuko, zerbitzari hauetako erabiltzaileekin komunikatzea ezinezkoa eginez:'
-      suspended_title: Kanporatutako zerbitzariak
-    unavailable_content_html: Mastodonek orokorrean fedibertsoko beste zerbitzarietako erabiltzaileen edukia ikustea eta beraiekin aritzea ahalbidetzen dizu. Salbuespena egin da zerbitzari zehatz honekin.
-    user_count_after:
-      one: erabiltzaile
-      other: erabiltzaile
-    user_count_before: Hemen
-    what_is_mastodon: Zer da Mastodon?
   accounts:
-    choices_html: "%{name}(r)en aukerak:"
-    endorsements_hint: Jarraitzen duzun jendea sustatu dezakezu web interfazearen bidez, eta hemen agertuko da.
-    featured_tags_hint: Hemen agertuko diren traolak nabarmendu ditzakezu.
     follow: Jarraitu
     followers:
       one: Jarraitzaile
       other: jarraitzaile
     following: Jarraitzen
     instance_actor_flash: Kontu hau zerbitzaria adierazten duen aktore birtual bat da eta ez banako erabiltzaile bat. Federatzeko helburuarekin erabiltzen da eta ez da kanporatu behar.
-    joined: "%{date}(e)an elkartua"
     last_active: azkenekoz aktiboa
     link_verified_on: 'Esteka honen jabetzaren egiaztaketa data: %{date}'
-    media: Multimedia
-    moved_html: "%{name} hona migratu da %{new_profile_link}:"
-    network_hidden: Informazio hau ez dago eskuragarri
     nothing_here: Ez dago ezer hemen!
-    people_followed_by: "%{name}(e)k jarraitzen dituenak"
-    people_who_follow: "%{name} jarraitzen dutenak"
     pin_errors:
       following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
     posts:
       one: Bidalketa
       other: Bidalketa
     posts_tab_heading: Bidalketa
-    posts_with_replies: Bidalketak eta erantzunak
-    roles:
-      admin: Administratzailea
-      bot: Bot-a
-      group: Taldea
-      moderator: Moderatzailea
-    unavailable: Profila ez dago eskuragarri
-    unfollow: Utzi jarraitzeari
   admin:
     account_actions:
       action: Burutu ekintza
@@ -103,7 +37,6 @@ eu:
       avatar: Abatarra
       by_domain: Domeinua
       change_email:
-        changed_msg: e-mail kontua ongi aldatu da!
         current_email: Uneko e-mail helbidea
         label: Aldatu e-mail helbidea
         new_email: E-mail berria
@@ -185,12 +118,6 @@ eu:
       reset: Berrezarri
       reset_password: Berrezarri pasahitza
       resubscribe: Berriro harpidetu
-      role: Baimenak
-      roles:
-        admin: Administratzailea
-        moderator: Moderatzailea
-        staff: Langilea
-        user: Erabiltzailea
       search: Bilatu
       search_same_email_domain: E-mail domeinu bera duten beste erabiltzailean
       search_same_ip: IP bera duten beste erabiltzaileak
@@ -295,7 +222,6 @@ eu:
         create_unavailable_domain_html: "%{name}(e)k %{target} domeinurako banaketa gelditu du"
         demote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz jaitsi du"
         destroy_announcement_html: "%{name} erabiltzaileak %{target} iragarpena ezabatu du"
-        destroy_custom_emoji_html: "%{name} erabiltzaileak %{target} emojia suntsitu du"
         destroy_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federatzea debekatu du"
         destroy_domain_block_html: "%{name} erabiltzaileak %{target} domeinua desblokeatu du"
         destroy_email_domain_block_html: "%{name} erabiltzaileak %{target} e-posta helbideen domeinua desblokeatu du"
@@ -330,7 +256,6 @@ eu:
         update_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a eguneratu du"
         update_domain_block_html: "%{name} erabiltzaileak %{target} domeinu-blokeoa eguneratu du"
         update_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa eguneratu du"
-      deleted_status: "(ezabatutako bidalketa)"
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
       filter_by_user: Iragazi erabiltzaileen arabera
@@ -631,94 +556,15 @@ eu:
       empty: Ez da zerbitzariko araurik definitu oraindik.
       title: Zerbitzariaren arauak
     settings:
-      activity_api_enabled:
-        desc_html: Lokalki argitaratutako bidalketa kopurua, erabiltzaile aktiboak, eta izen emate berriak asteko
-        title: Argitaratu erabiltzaile-jardueraren estatistikak
-      bootstrap_timeline_accounts:
-        desc_html: Banandu erabiltzaile-izenak koma bitartez. Giltzapetu gabeko kontu lokalekin dabil bakarrik. Hutsik dagoenean lehenetsitakoa admin lokal guztiak da.
-        title: Lehenetsitako jarraipena erabiltzaile berrientzat
-      contact_information:
-        email: Laneko e-mail helbidea
-        username: Kontaktuaren erabiltzaile-izena
-      custom_css:
-        desc_html: Aldatu itxura orri bakoitzean kargatutako CSS bidez
-        title: CSS pertsonala
-      default_noindex:
-        desc_html: Ezarpen hau berez aldatu ez duten erabiltzaile guztiei eragiten die
-        title: Utzi erabiltzaileak bilatzailearen indexaziotik kanpo lehenetsita
       domain_blocks:
         all: Guztiei
         disabled: Inori ez
-        title: Erakutsi domeinu-blokeoak
         users: Saioa hasita duten erabiltzaile lokalei
-      domain_blocks_rationale:
-        title: Erakutsi arrazoia
-      hero:
-        desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, zerbitzariaren irudia hartuko du
-        title: Azaleko irudia
-      mascot:
-        desc_html: Hainbat orritan bistaratua. Gutxienez 293x205px aholkatzen da. Ezarri ezean lehenetsitako maskota erakutsiko da
-        title: Maskotaren irudia
-      peers_api_enabled:
-        desc_html: Zerbitzari honek fedibertsoan aurkitutako domeinu-izenak
-        title: Argitaratu aurkitutako zerbitzarien zerrenda
-      preview_sensitive_media:
-        desc_html: Beste webguneetako esteken aurrebistak iruditxoa izango du multimedia hunkigarri gisa markatzen bada ere
-        title: Erakutsi multimedia hunkigarria OpenGraph aurrebistetan
-      profile_directory:
-        desc_html: Baimendu erabiltzaileak aurkigarriak izatea
-        title: Gaitu profil-direktorioa
-      registrations:
-        closed_message:
-          desc_html: Azaleko orrian bistaratua izen ematea ixten denean. HTML etiketak erabili ditzakezu
-          title: Izen emate itxiaren mezua
-        deletion:
-          desc_html: Baimendu edonori bere kontua ezabatzea
-          title: Ireki kontu ezabaketa
-        min_invite_role:
-          disabled: Inor ez
-          title: Baimendu hauen gobidapenak
-        require_invite_text:
-          desc_html: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
-          title: Eskatu erabiltzaile berriei bat egiteko arrazoia sartzeko
       registrations_mode:
         modes:
           approved: Izena emateko onarpena behar da
           none: Ezin du inork izena eman
           open: Edonork eman dezake izena
-        title: Erregistratzeko modua
-      show_known_fediverse_at_about_page:
-        desc_html: Txandakatzean, fedibertso ezagun osoko tootak bistaratuko ditu aurrebistan. Bestela, toot lokalak besterik ez ditu erakutsiko
-        title: Erakutsi fedibertsu ezagun osoko denbora-lerroa aurrebistan
-      show_staff_badge:
-        desc_html: Erakutsi langile banda erabiltzailearen orrian
-        title: Erakutsi langile banda
-      site_description:
-        desc_html: Azaleko orrian agertuko den sarrera paragrafoa. Azaldu zerk egiten duen berezi Mastodon zerbitzari hau eta garrantzizko beste edozer. HTML etiketak erabili ditzakezu, zehazki <code>&lt;a&gt;</code> eta <code>&lt;em&gt;</code>.
-        title: Zerbitzariaren deskripzioa
-      site_description_extended:
-        desc_html: Zure jokabide-koderako  toki on bat, arauak, gidalerroak eta zure zerbitzari desberdin egiten duten bestelakoak. HTML etiketak erabili ditzakezu
-        title: Informazio hedatu pertsonalizatua
-      site_short_description:
-        desc_html: Albo-barra eta meta etiketetan bistaratua. Deskribatu zerk egiten duen Mastodon zerbitzari hau berezia paragrafo batean. Hutsik lagatzekotan lehenetsitako deskripzioa agertuko da.
-        title: Zerbitzariaren deskripzio laburra
-      site_terms:
-        desc_html: Zure pribatutasun politika, erabilera baldintzak eta bestelako testu legalak idatzi ditzakezu. HTML etiketak erabili ditzakezu
-        title: Erabilera baldintza pertsonalizatuak
-      site_title: Zerbitzariaren izena
-      thumbnail:
-        desc_html: Aurrebistetarako erabilia OpenGraph eta API bidez. 1200x630px aholkatzen da
-        title: Zerbitzariaren iruditxoa
-      timeline_preview:
-        desc_html: Bistaratu denbora-lerro publikoa hasiera orrian
-        title: Denbora-lerroaren aurrebista
-      title: Gunearen ezarpenak
-      trendable_by_default:
-        desc_html: Aurretik debekatu ez diren traola guztiei eragiten dio
-        title: Baimendu traolak joera bihurtzea aurretik errebisatu gabe
-      trends:
-        desc_html: Erakutsi publikoki orain joeran dauden aurretik errebisatutako traolak
-        title: Traolak joeran
     site_uploads:
       delete: Ezabatu igotako fitxategia
       destroyed_msg: Guneko igoera ongi ezabatu da!
@@ -855,16 +701,12 @@ eu:
   applications:
     created: Aplikazioa ongi sortu da
     destroyed: Aplikazioa ongi ezabatu da
-    invalid_url: Emandako URL-a baliogabea da
     regenerate_token: Birsortu sarbide token-a
     token_regenerated: Sarbide token-a ongi birsortu da
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
     your_token: Zure sarbide token-a
   auth:
-    apply_for_account: Eskatu gonbidapen bat
     change_password: Pasahitza
-    checkbox_agreement_html: <a href="%{rules_path}" target="_blank">Zerbitzariaren arauak</a> eta <a href="%{terms_path}" target="_blank">erabilera baldintzak</a> onartzen ditut
-    checkbox_agreement_without_rules_html: <a href="%{terms_path}" target="_blank">Erabilera baldintzak</a> onartzen ditut
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
     description:
@@ -903,7 +745,6 @@ eu:
       pending: Zure eskaera gainbegiratzeko dago oraindik. Honek denbora behar lezake. Zure eskaera onartzen bada e-mail bat jasoko duzu.
       redirecting_to: Zure kontua ez dago aktibo orain %{acct} kontura birbideratzen duelako.
     too_fast: Formularioa azkarregi bidali duzu, saiatu berriro.
-    trouble_logging_in: Arazoak saioa hasteko?
     use_security_key: Erabili segurtasun gakoa
   authorize_follow:
     already_following: Kontu hau aurretik jarraitzen duzu
@@ -961,10 +802,6 @@ eu:
       more_details_html: Xehetasun gehiagorako, ikusi <a href="%{terms_path}">pribatutasun politika</a>.
       username_available: Zure erabiltzaile-izena berriro eskuragarri egongo da
       username_unavailable: Zure erabiltzaile-izena ez da eskuragarri egongo
-  directories:
-    directory: Profilen direktorioa
-    explanation: Deskubritu erabiltzaileak interesen arabera
-    explore_mastodon: Esploratu %{title}
   disputes:
     strikes:
       appeal: Apelazioa
@@ -1022,7 +859,6 @@ eu:
       title: Editatu iragazkia
     errors:
       invalid_context: Testuinguru baliogabe edo hutsa eman da
-      invalid_irreversible: Behin betiko iragazketa hasiera edo jakinarazpenen testuinguruan besterik ez dabil
     index:
       delete: Ezabatu
       empty: Ez duzu iragazkirik.
@@ -1030,9 +866,6 @@ eu:
     new:
       title: Gehitu iragazki berria
   footer:
-    developers: Garatzaileak
-    more: Gehiago…
-    resources: Baliabideak
     trending_now: Joera orain
   generic:
     all: Denak
@@ -1065,7 +898,6 @@ eu:
       following: Jarraitutakoen zerrenda
       muting: Mutututakoen zerrenda
     upload: Igo
-  in_memoriam_html: Memoriala.
   invites:
     delete: Desaktibatu
     expired: Iraungitua
@@ -1145,14 +977,6 @@ eu:
     carry_mutes_over_text: Erabiltzaile hau %{acct} kontutik dator, zeina isilarazita daukazun.
     copy_account_note_text: 'Erabiltzaile hau %{acct} kontutik dator, hemen berari buruzko zure aurreko oharrak:'
   notification_mailer:
-    digest:
-      action: Ikusi jakinarazpen guztiak
-      body: Hona zure %{since}(e)ko azken bisitatik galdu dituzun mezuen laburpen bat
-      mention: "%{name}(e)k aipatu zaitu:"
-      new_followers_summary:
-        one: Kanpoan zeundela jarraitzaile berri bat gehitu zaizu!
-        other: Kanpoan zeundela %{count} jarraitzaile berri bat gehitu zaizkizu!
-      title: Kanpoan zeundela...
     favourite:
       body: "%{name}(e)k zure bidalketa gogoko du:"
       subject: "%{name}(e)k zure bidalketa gogoko du"
@@ -1244,22 +1068,7 @@ eu:
     remove_selected_follows: Utzi hautatutako erabiltzaileak jarraitzeari
     status: Kontuaren egoera
   remote_follow:
-    acct: Sartu jarraitzeko erabili nahi duzun erabiltzaile@domeinua
     missing_resource: Ezin izan da zure konturako behar den birbideratze URL-a
-    no_account_html: Ez duzu konturik? <a href='%{sign_up_path}' target='_blank'>Izena eman</a> dezakezu
-    proceed: Ekin jarraitzeari
-    prompt: 'Hau jarraituko duzu:'
-    reason_html: "<strong>Zergaitik eman behar da urrats hau?</strong><code>%{instance}</code> agian ez da izena eman duzun zerbitzaria, eta zure hasiera-zerbitzarira eraman behar zaitugu aurretik."
-  remote_interaction:
-    favourite:
-      proceed: Bihurtu gogoko
-      prompt: 'Bidalketa hau gogoko bihurtu nahi duzu:'
-    reblog:
-      proceed: Eman bultzada
-      prompt: 'Bidalketa honi bultzada eman nahi diozu:'
-    reply:
-      proceed: Ekin erantzuteari
-      prompt: 'Bidalketa honi erantzun nahi diozu:'
   scheduled_statuses:
     over_daily_limit: 'Egun horretarako programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
     over_total_limit: 'Programatutako bidalketa kopuruaren muga gainditu duzu: %{limit}'
@@ -1416,89 +1225,6 @@ eu:
     sensitive_content: 'Kontuz: Eduki hunkigarria'
   tags:
     does_not_match_previous_name: ez dator aurreko izenarekin bat
-  terms:
-    body_html: |
-      <h2>Pribatutasun politika</h2>
-      <h3 id="collect">Zer informazio biltzen dugu?</h3>
-
-      <ul>
-      <li><em>Kontuaren oinarrizko informazioa</em>: Zerbitzari honetan izena ematen baduzu, erabiltzaile-izena, e-posta helbidea eta pasahitza sartzea galdetu dakizuke. Profilean bestelako informazioa sartu dezakezu esaterako pantaila-izena eta biografia, eta profileko eta goiburuko irudiak igo ditzakezu. Erabiltzaile-izena, pantaila-izena, biografia, profileko irudia eta goiburuko irudia beti dira publikoak.</li>
-      <li><em>Bidalketak, jarraitzea eta beste informazioa</em>: Jarraitzen duzun jendearen zerrenda publikoa da, baita zure jarraitzaileena ere. Bidalketa bat argitaratzean, data eta ordua eta mezua bidaltzeko erabilitako aplikazioa gordetzen dira. Bidalketek eranskinak izan ditzakete, esaterako irudiak eta bideoak. Bidalketa publikoak eta zerrendatu gabeak publikoki ikusi daitezke. Zure profilean bidalketa bat sustatzen duzunean, informazio hori ere publikoki eskuragarri dago. Zure bidalketak zure jarraitzaileei bidaltzen zaizkie, kasu batzuetan honek esan nahi du beste zerbitzari batzuetara bidaltzen dela eta han kopiak gordetzen dituztela. Bidalketak ezabatzen dituzunean, hori ere zure jarraitzaileei bidaltzen zaie. Beste bidalketa batzuk zabaltzea edo gogoko izatea beti da informazio publikoa.</li>
-      <li><em>Mezu zuzenak eta soilik jarraitzaileentzako bidalketak</em>: Bidalketa guztiak zerbitzarian gorde eta prozesatzen dira. Soilik jarraitzaileentzako diren bidalketak zure jarraitzaileei bidaltzen zaizkie eta bertan aipatutako erabiltzaileei. Mezu zuzenak soilik aipatutako erabiltzaileei bidaltzen zaizkie. Honek esan nahi du kasu batzuetan beste zerbitzari batzuetara bidaltzen dela mezua eta han kopiak gordetzen direla. Borondate oneko ahalegin bat egiten dugu mezuok soilik baimena duten pertsonek ikus ditzaten, baina beste zerbitzariek agian ez. Hortaz, zure jarraitzaileen zerbitzaria zein den egiaztatzea garrantzitsua da. Jarraitzaileak eskuz onartu eta ukatzeko aukera aldatu dezakezu. <em>Kontuan izan zerbitzariaren operadoreak eta mezua jasotzen duen edozein zerbitzariko operadoreek mezuok ikus ditzaketela</em> eta edonork atera dezakeela pantaila argazki bat, kopiatu edo beste modu batean partekatu.<em>Ez partekatu informazio arriskutsua Mastodon bidez.</em></li>
-      <li><em>IP-ak eta bestelako meta-datuak</em>: Saioa hasten duzunean, zure IP helbidea gordetzen dugu, eta erabiltzen duzun nabigatzaile edo aplikazioa. Hasitako saio guztiak zuk ikusteko moduan daude eta ezarpenetan indargabetu ditzakezu. Erabilitako azken IP helbidea 12 hilabetez gordetzen da. Gure zerbitzariak jasotako eskari guztiak eta IP-a duten zerbitzariko egunkariak gorde genitzake.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Zertarako erabiltzen dugu zure informazioa?</h3>
-
-      <p>Biltzen dugun informazio guztia honela erabiltzen da:</p>
-
-      <ul>
-      <li>Mastodon zerbitzuko funtzio nagusietarako. Beste pertsonen edukiarekin harremanetan sartzeko edo zure edukia argitaratzeko saioa hasi behar duzu. Adibidez, beste pertsona batzuk jarraitu ditzakezu zure denbora-lerro pertsonalizatu bat izateko.</li>
-      <li>Komunitatearen moderazioari laguntzeko, esaterako zure IP-a ezagutzen ditugun beste batzuekin alderatu dezakegu, debekuak ekiditea edo bestelako arau-urraketak eragozteko.</li>
-      <li>Emandako e-posta helbidea informazioa bidaltzeko erabili genezake, beste pertsonek zure edukiekin harremanetan jartzean jakinarazteko, edo mezu bat bidaltzen dizutenean, galderak erantzutean eta bestelako eskari eta galderetarako.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Nola babesten dugu zure informazioa?</h3>
-
-      <p>Hainbat segurtasun neurri hartzen ditugu zure informazio pertsonalaren segurtasuna babesteko, informazio pertsonala sartzen duzunean, bidaltzen duzunean edo atzitzen duzunean. Besteak beste zure nabigatzailearen saioa eta zure aplikazioen eta API-aren arteko trafikoa, SSL bidez babesten da, eta zure pasahitza alde bateko algoritmo sendo batekin hash-eatzen da. Bi faktoreetako autentifikazioa gaitu dezakezu zure kontuaren segurtasuna areagotzeko.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Zein da gure datuak biltzeko politika?</h3>
-
-      <p>Borondate oneko ahalegina egingo dugu honetarako:</p>
-
-      <ul>
-      <li>Zerbitzari honetara egindako eskari guztien egunkaria IP helbidearekin, 90 egunez gehienez.</li>
-      <li>Izena eman duten erabiltzaileen eskariekin lotutako IP helbideak, 12 hilabetez gehienez..</li>
-      </ul>
-
-      <p>Zure edukiaren kopia duen artxibo bat eskatu eta deskargatu dezakezu, bertan mezuak multimedia eranskinak, profileko irudia eta goiburuko irudia daude.</p>
-
-      <p>Zure kontua behin betirako ezabatu dezakezu nahi duzunean.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Cookie-ak erabiltzen ditugu?</h3>
-
-      <p>Bai. Cookie-ak gune edo zerbitzu hornitzaile baten zure ordenagailuko disko gogorrera bidaltzen dituen fitxategi txikiak dira (zuk baimentzen baduzu). Cookie hauek guneari zure nabigatzailea identifikatzea, konturik duzun jakin, eta erregistratutako kontuarekin erlazionatzea ahalbidetzen diote.</p>
-
-      <p>Cookie-ak erabiltzen ditugu zure hobespenak ulertu eta hurrengo saioetarako gordetzeko</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Informazioa kanpoko inorekin partekatzen dugu?</h3>
-
-      <p>Ez dugu identifikatu zaitzakeen informazio pertsonala saltzen, trukatzen edo kanpora bidaltzen. Salbuespena konfiantzako hirugarrengoak dira, gunea martxan izaten laguntzen digutenak, negozioa aurrera eramateko aholkua ematen digutenak edo zuri zerbitzua ematen laguntzen digutenak, hauek informazioaren konfidentzialtasuna errespetatzea onartzen dutenean. Agian legearekin betetzeko beharrezkoa den informazioa ere eman genezake, gunearen politika indarrean jartzeko behar dena, edo gure eskubideak, jabetzak, edo segurtasuna babesteko beharrezkoa dena.</p>
-
-      <p>Zure eduki publikoak sareko beste zerbitzariek deskargatu dezakete. Zure bidalketa publikoak eta soilik jarraitzaileentzat diren mezuak zure jarraitzaileen zerbitzarietara bidaltzen dira, jarraitzaile edo hartzaile horiek beste zerbitzari batean badute kontua.</p>
-
-      <p>Aplikazio bati zure kontua erabiltzeko baimena ematen diozunean, onartutako baimen esparruaren arabera, zure profileko informazio publikoa atzitu lezake, zuk jarraitutakoen zerrenda, zure jarraitzaileen zerrenda, zure bidalketa guztiak eta zure gogokoak. Aplikazioen ezin dute inoiz zure e-posta helbidea edo pasahitza atzitu.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Umeek gunea erabiltzea</h3>
-
-      <p>Zerbitzari hau Europar Batasunean edo Europako Ekonomia-Eremuan badago: Gure gunea, produktua eta zerbitzuak 16 urte edo gehiago dituztenei zuzenduta daude. 16 urte baino gazteagoa bazara, GDPR legearen arabera ezin duzu gune hau erabili (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) </p>
-
-      <p>Zerbitzari hau Amerikako Estatu Batuetan badago: Gure gunea, produktua eta zerbitzuak 13 urte edo gehiago dituztenei zuzenduta daude. 13 urte baino gazteagoa bazara, COPPA legearen arabera ezin duzu gune hau erabili (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>).</p>
-
-      <p>Zerbitzari hau beste eremu legal batean badago, legearen eskariak desberdinak izan daitezke.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Aldaketak gure pribatutasun politikan</h3>
-
-      <p>Gure pribatutasun politika aldatzea erabakitzen badugu, aldaketak orri honetan argitaratuko ditugu.</p>
-
-      <p>Dokumentu honek CC-BY-SA lizentzia du. Eta azkenekoz 2018ko martxoak 7an eguneratu zen</p>
-
-      <p>Jatorrian <a href="https://github.com/discourse/discourse">Discourse sarearen pribatutasun politikatik</a> moldatua.</p>
-    title: "%{instance} instantziaren erabilera baldintzak eta pribatutasun politika"
   themes:
     contrast: Mastodon (Kontraste altua)
     default: Mastodon (Iluna)
@@ -1540,20 +1266,11 @@ eu:
         suspend: Kontu kanporatua
     welcome:
       edit_profile_action: Ezarri profila
-      edit_profile_step: Pertsonalizatu profila abatar bat igoz, goiburu bat, zure pantaila-izena aldatuz eta gehiago. Jarraitzaile berriak onartu aurretik gainbegiratu nahi badituzu, kontua giltzaperatu dezakezu.
       explanation: Hona hasteko aholku batzuk
       final_action: Hasi bidalketak argitaratzen
-      final_step: 'Hasi argitaratzen! Jarraitzailerik ez baduzu ere zure bidalketa publikoak besteek ikusi ditzakete, esaterako denbora-lerro lokalean eta traoletan. Zure burua aurkeztu nahi baduzu #aurkezpenak traola erabili zenezake.'
       full_handle: Zure erabiltzaile-izen osoa
       full_handle_hint: Hau da lagunei esango zeniekeena beste zerbitzari batetik zu jarraitzeko edo zuri mezuak bidaltzeko.
-      review_preferences_action: Aldatu hobespenak
-      review_preferences_step: Ziurtatu hobespenak ezartzen dituzula, hala nola, jaso nahi dituzu e-postak edo lehenetsitako pribatutasuna bidalketa berrietarako. Mareatzen ez bazaitu GIF-ak automatikoki abiatzea ere ezarri dezakezu.
       subject: Ongi etorri Mastodon-era
-      tip_federated_timeline: Federatutako denbora-lerroan Mastodon sarearen trafikoa ikusten da. Baina zure instantziako auzokideak jarraitutakoak besterik ez daude hor, ez da osoa.
-      tip_following: Lehenetsita zerbitzariko administratzailea jarraitzen duzu. Jende interesgarri gehiago aurkitzeko, egiaztatu denbora-lerro lokala eta federatua.
-      tip_local_timeline: Denbora-lerro lokalean %{instance} instantziako trafikoa ikusten da. Hauek zure instantziako auzokideak dira!
-      tip_mobile_webapp: Zure mugikorreko nabigatzaileak Mastodon hasiera pantailan gehitzea eskaintzen badizu, push jakinarazpenak jaso ditzakezu. Aplikazio natiboaren parekoa da zentzu askotan!
-      tips: Aholkuak
       title: Ongi etorri, %{name}!
   users:
     follow_limit_reached: Ezin dituzu %{limit} pertsona baino gehiago jarraitu

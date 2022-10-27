@@ -11,12 +11,17 @@
 #
 
 class DomainAllow < ApplicationRecord
+  include Paginable
   include DomainNormalizable
   include DomainMaterializable
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
   scope :matches_domain, ->(value) { where(arel_table[:domain].matches("%#{value}%")) }
+
+  def to_log_human_identifier
+    domain
+  end
 
   class << self
     def allowed?(domain)

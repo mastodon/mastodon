@@ -1,0 +1,35 @@
+moderator:
+  name: Moderator
+  position: 10
+  permissions:
+    - view_dashboard
+    - view_audit_log
+    - manage_users
+    - manage_reports
+    - manage_taxonomies
+admin:
+  name: Admin
+  position: 100
+  permissions:
+    - view_dashboard
+    - view_audit_log
+    - manage_users
+    - manage_user_access
+    - delete_user_data
+    - manage_reports
+    - manage_taxonomies
+    - manage_federation
+    - manage_settings
+    - manage_blocks
+    - manage_appeals
+    - manage_rules
+    - manage_invites
+    - manage_announcements
+    - manage_custom_emojis
+    - manage_webhooks
+    - manage_roles
+owner:
+  name: Owner
+  position: 1000
+  permissions:
+    - administrator

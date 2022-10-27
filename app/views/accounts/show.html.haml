@@ -2,85 +2,13 @@
   = "#{display_name(@account)} (#{acct(@account)})"
 
 - content_for :header_tags do
-  - if @account.user&.setting_noindex
+  - if @account.user_prefers_noindex?
     %meta{ name: 'robots', content: 'noindex, noarchive' }/
 
   %link{ rel: 'alternate', type: 'application/rss+xml', href: @rss_url }/
   %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
 
-  - if @older_url
-    %link{ rel: 'next', href: @older_url }/
-  - if @newer_url
-    %link{ rel: 'prev', href: @newer_url }/
-
   = opengraph 'og:type', 'profile'
   = render 'og', account: @account, url: short_account_url(@account, only_path: false)
 
-
-= render 'header', account: @account, with_bio: true
-
-.grid
-  .column-0
-    .h-feed
-      %data.p-name{ value: "#{@account.username} on #{site_hostname}" }/
-
-      .account__section-headline
-        = active_link_to t('accounts.posts_tab_heading'), short_account_url(@account)
-        = active_link_to t('accounts.posts_with_replies'), short_account_with_replies_url(@account)
-        = active_link_to t('accounts.media'), short_account_media_url(@account)
-
-      - if user_signed_in? && @account.blocking?(current_account)
-        .nothing-here.nothing-here--under-tabs= t('accounts.unavailable')
-      - elsif @statuses.empty?
-        = nothing_here 'nothing-here--under-tabs'
-      - else
-        .activity-stream.activity-stream--under-tabs
-          - if params[:page].to_i.zero?
-            = render partial: 'statuses/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
-
-          - if @newer_url
-            .entry= link_to_newer @newer_url
-
-          = render partial: 'statuses/status', collection: @statuses, as: :status
-
-          - if @older_url
-            .entry= link_to_older @older_url
-
-  .column-1
-    - if @account.memorial?
-      .memoriam-widget= t('in_memoriam_html')
-    - elsif @account.moved?
-      = render 'moved', account: @account
-
-    = render 'bio', account: @account
-
-    - if @endorsed_accounts.empty? && @account.id == current_account&.id
-      .placeholder-widget= t('accounts.endorsements_hint')
-    - elsif !@endorsed_accounts.empty?
-      .endorsements-widget
-        %h4= t 'accounts.choices_html', name: content_tag(:bdi, display_name(@account, custom_emojify: true))
-
-        - @endorsed_accounts.each do |account|
-          = account_link_to account
-
-    - if @featured_hashtags.empty? && @account.id == current_account&.id
-      .placeholder-widget
-        = t('accounts.featured_tags_hint')
-        = link_to settings_featured_tags_path do
-          = t('featured_tags.add_new')
-          = fa_icon 'chevron-right fw'
-    - else
-      - @featured_hashtags.each do |featured_tag|
-        .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
-          = link_to short_account_tag_path(@account, featured_tag.tag) do
-            %h4
-              = fa_icon 'hashtag'
-              = featured_tag.name
-              %small
-                - if featured_tag.last_status_at.nil?
-                  = t('accounts.nothing_here')
-                - else
-                  %time.formatted{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
-            .trends__item__current= friendly_number_to_human featured_tag.statuses_count
-
-    = render 'application/sidebar'
+= render partial: 'shared/web_app'

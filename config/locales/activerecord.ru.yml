@@ -21,6 +21,14 @@ ru:
             username:
               invalid: только буквы, цифры и символ подчёркивания
               reserved: зарезервировано
+        admin/webhook:
+          attributes:
+            url:
+              invalid: не является допустимым URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: не является допустимым URL
         status:
           attributes:
             reblog:
@@ -30,3 +38,14 @@ ru:
             email:
               blocked: использует запрещённого провайдера эл. почты
               unreachable: не существует
+            role_id:
+              elevated: не может быть выше вашей текущей роли
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: включить разрешения, небезопасные для базовой роли
+              elevated: не может включать разрешения, которыми не обладает ваша текущая роль
+              own_role: невозможно изменить с вашей текущей ролью
+            position:
+              elevated: не может быть выше, чем ваша текущая роль
+              own_role: невозможно изменить с вашей текущей ролью

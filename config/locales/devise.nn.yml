@@ -41,7 +41,7 @@ nn:
         subject: 'Mastodon: Stadfest e-post for %{instance}'
         title: Stadfest e-postadresse
       reset_password_instructions:
-        action: Endr passord
+        action: Endre passord
         explanation: Du har bedt om eit nytt passord til kontoen din.
         extra: Om du ikkje bad om dette, ignorer denne e-posten. Passordet ditt vert ikkje endra før du går inn på lenkja ovanfor og lagar eit nytt.
         subject: 'Mastodon: Instuksjonar for å endra passord'
@@ -63,51 +63,51 @@ nn:
       webauthn_credential:
         added:
           explanation: Følgende sikkerhetsnøkkel har blitt lagt til i kontoen din
-          subject: 'Mastodon: Ny sikkerhetsnøkkel'
-          title: En ny sikkerhetsnøkkel har blitt lagt til
+          subject: 'Mastodon: Ny sikkerheitsnøkkel'
+          title: Ein ny sikkerheitsnøkkel har blitt lagt til
         deleted:
-          explanation: Følgende sikkerhetsnøkkel har blitt slettet fra kontoen din
-          subject: 'Mastodon: Sikkerhetsnøkkel slettet'
-          title: En av sikkerhetsnøklene dine har blitt slettet
+          explanation: Den følgande sikkerheitsnøkkelen har blitt sletta frå kontoen din
+          subject: 'Mastodon: Sikkerheitsnøkkel sletta'
+          title: Ein av sikkerheitsnøklane dine har blitt sletta
       webauthn_disabled:
-        subject: 'Mastodon: Autentisering med sikkerhetsnøkler ble skrudd av'
-        title: Sikkerhetsnøkler deaktivert
+        subject: 'Mastodon: Autentisering med sikkerheitsnøklar vart skrudd av'
+        title: Sikkerheitsnøklar deaktivert
       webauthn_enabled:
-        subject: 'Mastodon: Sikkerhetsnøkkelsautentisering ble skrudd på'
-        title: Sikkerhetsnøkler aktivert
+        subject: 'Mastodon: Sikkerheitsnøkkelsautentisering vart skrudd på'
+        title: Sikkerheitsnøklar aktivert
     omniauth_callbacks:
-      failure: Du kunne ikkje verte autentisert frå %{kind} av di "%{reason}".
+      failure: Kunne ikkje autentisere deg frå %{kind} fordi "%{reason}".
       success: Autentisert frå %{kind}-konto.
     passwords:
-      no_token: Du har ikkje tilgang til denne sida utan ha gått via ein e-post som gjeld å nullstille passordet. Dersom det er kva du har gjort, dobbelsjekk at du har kopiert heile URLen.
-      send_instructions: Om vi har e-postadressa di i databasen vår, får du ein e-post med lenke til gjenopprette passordet om nokre få minutt. Sjekk søppelpostmappa di om du ikkje fekk denne e-posten.
-      send_paranoid_instructions: Om vi har e-postadressa di i databasen vår, får du ei lenkje til å endra passordet om nokre få minutt. Ver venleg og sjekk søppelpostmappa om du ikkje fekk denne e-posten.
+      no_token: Du har ikkje tilgang til denne sida utan ha gått via ein e-post som gjeld å nullstille passordet. Dersom det var det du gjorde, dobbelsjekk at du har kopiert heile URLen.
+      send_instructions: Om me har epostadressa di i databasen vår, får du ein epost med ei lenke til å gjenopprette passordet om nokre få minutt. Sjekk søppelpostmappa di om du ikkje fekk denne eposten.
+      send_paranoid_instructions: Om me har epostadressa di i databasen vår, får du ei lenke til å endra passordet om nokre få minutt. Ver venleg å sjekke søppelpostmappa om du ikkje fekk denne eposten.
       updated: Passordet ditt er endra. No er du logga inn.
       updated_not_active: Passordet ditt er endra.
     registrations:
-      destroyed: Ha det! Kontoen din er sletta. Vi vonar å sjå deg igjen snart.
+      destroyed: Ha det! Kontoen din er sletta. Me vonar å sjå deg igjen snart.
       signed_up: Velkomen! No er du registrert.
-      signed_up_but_inactive: Du har registrert deg inn, men vi kunne ikkje logga deg inn fordi kontoen din er ikkje aktivert enno.
-      signed_up_but_locked: Du har registrert deg inn, men vi kunne ikkje logga deg inn fordi kontoen din er låst.
-      signed_up_but_pending: Ei melding med ei stadfestingslenkje er vorten send til e-postadressa di. Når du klikkar på lenkja skal vi sjå gjennom søknaden din. Du får ei melding om han vert godkjend.
-      signed_up_but_unconfirmed: Ei melding med ei lenke for å stadfeste kontoen har vorte sendt e-postadressa di. Klikk på lenka for å aktivere kontoen. Sjekk søppelpostmappa dersom du ikkje har fått e-posten.
-      update_needs_confirmation: Du har oppdatert kontoen din, men vi må stadfeste den nye e-postadressa. Sjekk innboksen og følg lenka for å stadfeste adressa di. Sjekk søppelpostmappa dersom du ikkje har fått den e-posten.
+      signed_up_but_inactive: Du har registrert deg, men me kunne ikkje logga deg inn fordi kontoen din er ikkje aktivert enno.
+      signed_up_but_locked: Du har registrert deg, men me kunne ikkje logga deg inn fordi kontoen din er låst.
+      signed_up_but_pending: Ei melding med ei stadfestingslenke har vorte sendt til epostadressa di. Når du klikkar på lenka skal me sjå gjennom søknaden din. Du får ei melding om den vert godkjend.
+      signed_up_but_unconfirmed: Ei melding med ei lenke for å stadfeste kontoen har vorte sendt til epostadressa di. Klikk på lenka for å aktivere kontoen. Sjekk søppelpostmappa dersom du ikkje har fått eposten.
+      update_needs_confirmation: Du har oppdatert kontoen din, men me må stadfesta den nye epostadressa. Sjekk innboksen og fylg lenka for å stadfeste adressa di. Sjekk søppelpostmappa dersom du ikkje har fått denne eposten.
       updated: Kontoen har vorte oppdatert.
     sessions:
       already_signed_out: Logga ut.
       signed_in: Logga inn.
       signed_out: Logga ut.
     unlocks:
-      send_instructions: Om nokre minutt får du ein e-post med instruksjonar for korleis du kan låse opp kontoen din. Sjekk søppelpostmappa om du ikkje finn den mailen.
-      send_paranoid_instructions: Dersom du har konto her, får du ein e-post med instruksjonar for korleis du kan låse opp kontoen din om nokre minutt. Sjekk søppelpostmappa om du ikkje finn den mailen.
+      send_instructions: Om nokre minutt får du ein epost med instruksjonar for korleis du kan låse opp kontoen din. Sjekk søppelpostmappa om du ikkje finn den eposten.
+      send_paranoid_instructions: Dersom du har konto her, får du ein epost med instruksjonar for korleis du kan låse opp kontoen din om nokre minutt. Sjekk søppelpostmappa om du ikkje finn den eposten.
       unlocked: Kontoen din har vorte låst opp. Logg inn for å halde fram.
   errors:
     messages:
-      already_confirmed: er allereie stadfesta, prøv logge inn
+      already_confirmed: er allereie stadfesta, prøv å logge inn
       confirmation_period_expired: må verte stadfesta innan %{period}, spør etter ein ny
-      expired: er utgått, ver venleg å beda om ein ny ein
+      expired: er utgått, ver venleg å be om ein ny ein
       not_found: ikkje funne
       not_locked: var ikkje låst
       not_saved:
         one: '1 feil hindra %{resource} frå verte lagra:'
-        other: "%{count} feil hindra %{resource} frå verte lagra:"
+        other: "%{count} feil hindra %{resource} frå å verte lagra:"

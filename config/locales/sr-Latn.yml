@@ -1,28 +1,11 @@
 ---
 sr-Latn:
   about:
-    about_hashtag_html: Ovo su javni statusi tagovani sa <strong>#%{hashtag}</strong>. Možete odgovarati na njih ako imate nalog bilo gde u fediversu.
     about_mastodon_html: Mastodont je društvena mreža bazirana na otvorenim protokolima i slobodnom softveru otvorenog koda. Decentralizovana je kao što je decentralizovana e-pošta.
-    about_this: O instanci
-    contact: Kontakt
     contact_missing: Nije postavljeno
     hosted_on: Mastodont hostovan na %{domain}
-    learn_more: Saznajte više
-    source_code: Izvorni kod
-    status_count_before: Koji su napisali
-    user_count_before: Dom za
-    what_is_mastodon: Šta je Mastodont?
   accounts:
-    media: Multimedija
-    moved_html: "%{name} je pomeren na %{new_profile_link}:"
     nothing_here: Ovde nema ništa!
-    people_followed_by: Ljudi koje %{name} prati
-    people_who_follow: Ljudi koji prate %{name}
-    posts_with_replies: Tutovi i odgovori
-    roles:
-      admin: Administrator
-      moderator: Moderator
-    unfollow: Otprati
   admin:
     account_moderation_notes:
       create: Napravi
@@ -76,10 +59,6 @@ sr-Latn:
       reset: Resetuj
       reset_password: Resetuj lozinku
       resubscribe: Ponovo se pretplati
-      role: Ovlašćenja
-      roles:
-        staff: Osoblje
-        user: Korisnik
       search: Pretraga
       shared_inbox_url: Adresa deljenog sandučeta
       show:
@@ -166,43 +145,6 @@ sr-Latn:
       resolved: Rešeni
       title: Prijave
       unresolved: Nerešeni
-    settings:
-      bootstrap_timeline_accounts:
-        desc_html: Odvojite više korisničkih imena zarezom. Radi samo za lokalne i otključane naloge. Ako je prazno, onda se odnosi na sve lokalne administratore.
-        title: Nalozi za automatsko zapraćivanje za nove korisnike
-      contact_information:
-        email: Poslovna e-pošta
-        username: Kontakt korisničko ime
-      registrations:
-        closed_message:
-          desc_html: Prikazuje se na glavnoj strani kada je instanca zatvorena za registracije. Možete koristiti HTML tagove
-          title: Poruka o zatvorenoj registraciji
-        deletion:
-          desc_html: Dozvoli svima da mogu da obrišu svoj nalog
-          title: Otvori brisanje naloga
-        min_invite_role:
-          disabled: Niko
-          title: Samo preko pozivnice
-      show_staff_badge:
-        desc_html: Prikaži bedž osoblja na korisničkoj strani
-        title: Prikaži bedž osoblja
-      site_description:
-        desc_html: Uvodni pasus na naslovnoj strani i u meta HTML tagovima. Možete koristiti HTML tagove, konkretno <code>&lt;a&gt;</code> i <code>&lt;em&gt;</code>.
-        title: Opis instance
-      site_description_extended:
-        desc_html: Dobro mesto za vaš kod ponašanja, pravila, smernice i druge stvari po kojima se Vaša instanca razlikuje. Možete koristiti HTML tagove
-        title: Proizvoljne dodatne informacije
-      site_terms:
-        desc_html: Možete pisati Vašu politiku privatnosti, uslove korišćenja i ostale legalne stvari. Možete koristiti HTML tagove
-        title: Proizvoljni uslovi korišćenja
-      site_title: Ime instance
-      thumbnail:
-        desc_html: Koristi se za preglede kroz OpenGraph i API. Preporučuje se 1200x630px
-        title: Sličica instance
-      timeline_preview:
-        desc_html: Prikaži javnu lajnu na početnoj strani
-        title: Pregled lajne
-      title: Postavke sajta
     statuses:
       back_to_account: Nazad na stranu naloga
       media:
@@ -220,7 +162,6 @@ sr-Latn:
   applications:
     created: Aplikacija uspešno napravljena
     destroyed: Aplikacija uspešno obrisana
-    invalid_url: Data adresa nije ispravna
     regenerate_token: Rekreiraj pristupni token
     token_regenerated: Pristupni token uspešno rekreiran
     warning: Oprezno sa ovim podacima. Nikad je ne delite ni sa kim!
@@ -329,13 +270,6 @@ sr-Latn:
   moderation:
     title: Moderacija
   notification_mailer:
-    digest:
-      body: Evo kratak pregled šta ste propustili od poslednje posete od %{since}
-      mention: "%{name} Vas je pomenuo u:"
-      new_followers_summary:
-        few: Dobili ste %{count} nova pratioca! Sjajno!
-        one: Dobili ste jednog novog pratioca! Jeee!
-        other: Dobili ste %{count} novih pratioca! Sjajno!
     favourite:
       body: "%{name} je postavio kao omiljen Vaš status:"
       subject: "%{name} je postavio kao omiljen Vaš status"
@@ -357,10 +291,7 @@ sr-Latn:
   preferences:
     other: Ostali
   remote_follow:
-    acct: Unesite Vaš korisnik@domen sa koga želite da pratite
     missing_resource: Ne mogu da nađem zahtevanu adresu preusmeravanja za Vaš nalog
-    proceed: Nastavite da zapratite
-    prompt: 'Zapratite će:'
   sessions:
     activity: Poslednja aktivnost
     browser: Veb čitač
@@ -417,8 +348,6 @@ sr-Latn:
     pinned: Prikačeni tut
     reblogged: podržano
     sensitive_content: Osetljiv sadržaj
-  terms:
-    title: Uslovi korišćenja i politika privatnosti instance %{instance}
   themes:
     default: Mastodont
   two_factor_authentication:
