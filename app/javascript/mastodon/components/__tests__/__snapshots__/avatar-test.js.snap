@@ -2,36 +2,38 @@
 
 exports[`<Avatar /> Autoplay renders a animated avatar 1`] = `
 <div
-  aria-label="alice"
   className="account__avatar"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
-  role="img"
   style={
     {
-      "backgroundImage": "url(/animated/alice.gif)",
-      "backgroundSize": "100px 100px",
       "height": "100px",
       "width": "100px",
     }
   }
-/>
+>
+  <img
+    alt="alice"
+    src="/animated/alice.gif"
+  />
+</div>
 `;
 
 exports[`<Avatar /> Still renders a still avatar 1`] = `
 <div
-  aria-label="alice"
   className="account__avatar"
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
-  role="img"
   style={
     {
-      "backgroundImage": "url(/static/alice.jpg)",
-      "backgroundSize": "100px 100px",
       "height": "100px",
       "width": "100px",
     }
   }
-/>
+>
+  <img
+    alt="alice"
+    src="/static/alice.jpg"
+  />
+</div>
 `;
