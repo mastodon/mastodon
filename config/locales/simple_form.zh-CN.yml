@@ -1,4 +1,3 @@
----
 zh-CN:
   simple_form:
     hints:
@@ -67,12 +66,22 @@ zh-CN:
         domain: 这可以是电子邮件地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此检查。
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
-        name: 你可能想要使用以下之一：
+        name: '你可能想要使用以下之一：'
       filters:
         action: 选择在帖子匹配过滤器时要执行的操作
         actions:
           hide: 彻底屏蔽过滤内容，犹如它不曾存在过一般
           warn: 在警告中提及过滤器标题后，隐藏过滤内容
+      form_admin_settings:
+        site_extended_description: 任何可能对访客和用户有用的额外信息。可以使用 Markdown 语法。
+        site_short_description: 有助于区分你的服务器独特性的简短描述。谁在管理？供谁使用？
+        site_terms: 使用你自己的隐私政策或留空以使用默认版。可以使用 Markdown 语法。
+        site_title: 除了域名，人们还可以如何指代你的服务器。
+        theme: 给未登录访客和新用户使用的主题。
+        thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
+        timeline_preview: 未登录访客将能够浏览服务器上最新的公共嘟文。
+        trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
+        trends: 趋势中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -91,7 +100,7 @@ zh-CN:
       rule:
         text: 描述这个服务器上的用户规则或要求。尽量确保简洁、清晰易懂
       sessions:
-        otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
+        otp: '输入你手机应用上生成的双重认证码，或者任意一个恢复代码：'
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       tag:
         name: 你只能改变字母的大小写，让它更易读
@@ -207,6 +216,30 @@ zh-CN:
         actions:
           hide: 完全隐藏
           warn: 隐藏时显示警告信息
+      form_admin_settings:
+        backups_retention_period: 用户存档间隔
+        bootstrap_timeline_accounts: 推荐新用户关注以下账号
+        closed_registrations_message: 在关闭注册时显示的自定义消息
+        content_cache_retention_period: 内容缓存保留期
+        custom_css: 自定义 CSS
+        mascot: 自定义吉祥物（旧）
+        media_cache_retention_period: 媒体缓存保留期
+        profile_directory: 启用用户目录
+        registrations_mode: 谁可以注册
+        require_invite_text: 注册前需要提供理由
+        show_domain_blocks: 显示域名屏蔽列表
+        show_domain_blocks_rationale: 显示域名屏蔽原因
+        site_contact_email: 联系邮箱
+        site_contact_username: 用于联系的公开用户名
+        site_extended_description: 完整说明
+        site_short_description: 本站简介
+        site_terms: 隐私政策
+        site_title: 本站名称
+        theme: 默认主题
+        thumbnail: 本站缩略图
+        timeline_preview: 时间轴预览
+        trendable_by_default: 允许在未审核的情况下将话题置为热门
+        trends: 启用趋势
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
@@ -252,7 +285,7 @@ zh-CN:
       webhook:
         events: 已启用事件
         url: 端点网址
-    'no': 否
+    'no': '否'
     not_recommended: 不推荐
     recommended: 推荐
     required:
@@ -261,4 +294,4 @@ zh-CN:
     title:
       sessions:
         webauthn: 使用你的安全密钥登录
-    'yes': 是
+    'yes': '是'
