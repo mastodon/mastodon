@@ -191,10 +191,6 @@ class Account < ApplicationRecord
     "acct:#{local_username_and_domain}"
   end
 
-  def searchable?
-    !(suspended? || moved?) && (!local? || (approved? && confirmed?))
-  end
-
   def possibly_stale?
     last_webfingered_at.nil? || last_webfingered_at <= 1.day.ago
   end
