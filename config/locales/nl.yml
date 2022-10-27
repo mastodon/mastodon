@@ -679,6 +679,8 @@ nl:
     system_checks:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
+      elasticsearch_version_check:
+        version_comparison: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
       rules_check:
         action: Serverregels beheren
         message_html: Je hebt voor deze server geen regels opgesteld.
@@ -701,7 +703,11 @@ nl:
         no_link_selected: Er werden geen links gewijzigd, omdat er geen enkele werd geselecteerd
         publishers:
           no_publisher_selected: Er werden geen websites gewijzigd, omdat er geen enkele werd geselecteerd
+        shared_by_over_week:
+          one: Deze week door één persoon gedeeld
+          other: Deze week door %{count} mensen gedeeld
         title: Trending links
+        usage_comparison: Vandaag %{today} keer gedeeld, vergeleken met %{yesterday} keer gisteren
       only_allowed: Alleen goedgekeurde
       pending_review: In afwachting van beoordeling
       preview_card_providers:
@@ -938,9 +944,11 @@ nl:
       approve_appeal: Bezwaar goedkeuren
       associated_report: Bijbehorende rapportage
       created_at: Datum en tijd
+      description_html: Dit zijn acties die op jouw account zijn toegepast en waarschuwingen die door medewerkers van %{instance} naar je zijn gestuurd.
       recipient: Geadresseerd aan
       reject_appeal: Bezwaar afgewezen
       status: 'Bericht #%{id}'
+      status_removed: Bericht is al van de server verwijderd
       title: "%{action} van %{date}"
       title_actions:
         delete_statuses: Verwijdering bericht
@@ -1004,6 +1012,7 @@ nl:
       add_keyword: Trefwoord toevoegen
       keywords: Trefwoorden
       statuses: Individuele berichten
+      statuses_hint_html: Dit filter is van toepassing om individuele berichten te selecteren, ongeacht of ze overeenkomen met de onderstaande trefwoorden. <a href="%{path}">Berichten van het filter bekijken of verwijderen</a>.
       title: Filter bewerken
     errors:
       deprecated_api_multiple_keywords: Deze instellingen kunnen niet via deze applicatie worden veranderd, omdat er meer dan één trefwoord wordt gebruikt. Gebruik een meer recente applicatie of de webomgeving.
@@ -1032,6 +1041,7 @@ nl:
       batch:
         remove: Uit het filter verwijderen
       index:
+        hint: Dit filter is van toepassing om individuele berichten te selecteren, ongeacht andere critiria. Je kunt in de webomgeving meer berichten aan dit filter toevoegen.
         title: Gefilterde berichten
   footer:
     trending_now: Trends
@@ -1107,6 +1117,10 @@ nl:
       password: wachtwoord
       sign_in_token: beveiligingscode via e-mail
       webauthn: beveiligingssleutels
+    description_html: Wanneer je activiteit ziet die je niet herkent, overweeg dan uw wachtwoord te wijzigen en tweestapsverificatie in te schakelen.
+    empty: Geen inloggeschiedenis beschikbaar
+    failed_sign_in_html: Mislukte inlogpoging met %{method} van %{ip} (%{browser})
+    successful_sign_in_html: Succesvol ingelogd met %{method} van %{ip} (%{browser})
     title: Inloggeschiedenis
   media_attachments:
     validations:
@@ -1252,8 +1266,14 @@ nl:
     status: Accountstatus
   remote_follow:
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
+  reports:
+    errors:
+      invalid_rules: verwijst niet naar geldige regels
   rss:
     content_warning: 'Inhoudswaarschuwing:'
+    descriptions:
+      account: Openbare berichten van @%{acct}
+      tag: 'Openbare berichten met hashtag #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
     over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
@@ -1299,6 +1319,7 @@ nl:
     revoke: Intrekken
     revoke_success: Sessie succesvol ingetrokken
     title: Sessies
+    view_authentication_history: Inloggeschiedenis van jouw account bekijken
   settings:
     account: Account
     account_settings: Accountinstellingen
@@ -1336,6 +1357,7 @@ nl:
         other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
     content_warning: 'Inhoudswaarschuwing: %{warning}'
+    default_language: Hetzelfde als de taal van de gebruikersomgeving
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
@@ -1345,6 +1367,7 @@ nl:
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
+      direct: Berichten die alleen zichtbaar zijn voor vermelde gebruikers, kunnen niet worden vastgezet
       limit: Je hebt het maximaal aantal bericht al vastgemaakt
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
@@ -1453,13 +1476,18 @@ nl:
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     suspicious_sign_in:
-      change_password: jouw wachtwoord wijzigen
+      change_password: je wachtwoord te wijzigen
+      details: 'Hier zijn de details van inlogpoging:'
+      explanation: We hebben vastgesteld dat iemand vanaf een nieuw IP-adres op jouw account is ingelogd.
+      further_actions_html: Wanneer jij dit niet was, adviseren wij om onmiddellijk %{action} en om tweestapsverificatie in te schakelen, om zo je account veilig te houden.
+      subject: Jouw account is vanaf een nieuw IP-adres benaderd
       title: Een nieuwe registratie
     warning:
       appeal: Bezwaar indienen
       appeal_description: Wanneer je denkt dat dit een fout is, kun je een bezwaar indienen bij de medewerkers van %{instance}.
       categories:
         spam: Spam
+        violation: De inhoud is in strijd met de volgende communityrichtlijnen
       explanation:
         mark_statuses_as_sensitive: Sommige van jouw berichten zijn als gevoelig gemarkeerd door de moderatoren van %{instance}. Dit betekent dat mensen op de media in de berichten moeten klikken/tikken om deze weer te geven. Je kunt media in de toekomst ook zelf als gevoelig markeren.
         sensitive: Vanaf nu worden al jouw geüploade media als gevoelig gemarkeerd en verborgen achter een waarschuwing.
