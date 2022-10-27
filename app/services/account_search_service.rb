@@ -115,7 +115,7 @@ class AccountSearchService < BaseService
     {
       script_score: {
         script: {
-          source: "log2p(Math.max(doc['followers_count'].value, 0))",
+          source: "Math.log10(Math.max(doc['followers_count'].value, 0) + 2)",
         },
       },
     }
