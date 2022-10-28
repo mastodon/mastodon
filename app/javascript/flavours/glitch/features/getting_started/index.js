@@ -118,6 +118,7 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
 
   render () {
     const { intl, myAccount, columns, multiColumn, unreadFollowRequests, unreadNotifications, lists, openSettings } = this.props;
+    const { signedIn } = this.context.identity;
 
     const navItems = [];
     let listItems = [];
