@@ -38,15 +38,6 @@
     = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.privacy_policy_agreement_html', rules_path: about_more_path, privacy_policy_path: privacy_policy_path), required: true
 
   .actions
-    - if ENV['RECAPTCHA_ENABLED'] == 'true'
-      %script(src='https://www.google.com/recaptcha/api.js')
-      %div{class: 'g-recaptcha',data: {sitekey: ENV['RECAPTCHA_SITE_KEY'], callback: 'on_submit_new_user'}}
-      = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit, id: 'registration-form', disabled: 'true'
-      :javascript
-        function on_submit_new_user(token) {
-          document.getElementById("registration-form").disabled = false;
-        }
-    - else
-      = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
+    = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit
 
 .form-footer= render 'auth/shared/links'

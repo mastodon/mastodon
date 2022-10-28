@@ -6,8 +6,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   layout :determine_layout
 
   before_action :set_invite, only: [:new, :create]
-  before_action :check_enabled_registrations, only: [:new]
-  before_action :check_enabled_registrations_for_create, only: [:create]
+  before_action :check_enabled_registrations, only: [:new, :create]
   before_action :configure_sign_up_params, only: [:create]
   before_action :set_sessions, only: [:edit, :update]
   before_action :set_strikes, only: [:edit, :update]
@@ -88,10 +87,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     redirect_to root_path if single_user_mode? || omniauth_only? || !allowed_registrations? || ip_blocked?
   end
 
-  def check_enabled_registrations_for_create
-    redirect_to root_path if single_user_mode? || !allowed_registrations? || !is_human?
-  end
-
   def allowed_registrations?
     Setting.registrations_mode != 'none' || @invite&.valid_for_use?
   end
@@ -131,27 +126,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
 
   def determine_layout
     %w(edit update).include?(action_name) ? 'admin' : 'auth'
-  end
-
-  concerning :RecaptchaFeature do
-    if ENV['RECAPTCHA_ENABLED'] == 'true'
-      def is_human?
-        g_recaptcha_response = params["g-recaptcha-response"]
-        return false unless g_recaptcha_response.present?
-        verify_by_recaptcha g_recaptcha_response
-      end
-      def verify_by_recaptcha(g_recaptcha_response)
-        conn = Faraday.new(url: 'https://www.google.com')
-        res = conn.post '/recaptcha/api/siteverify', {
-            secret: ENV['RECAPTCHA_SECRET_KEY'],
-            response: g_recaptcha_response
-        }
-        j = JSON.parse(res.body)
-        j['success']
-      end
-    else
-      def is_human?; true end
-    end
   end
 
   def set_sessions
