@@ -749,16 +749,16 @@ class Status extends ImmutablePureComponent {
           data-featured={featured ? 'true' : null}
           aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}
         >
+          {prepend && account && (
+            <StatusPrepend
+              type={prepend}
+              account={account}
+              parseClick={parseClick}
+              notificationId={this.props.notificationId}
+            />
+          )}
           <header className='status__info'>
             <span>
-              {prepend && account ? (
-                <StatusPrepend
-                  type={prepend}
-                  account={account}
-                  parseClick={parseClick}
-                  notificationId={this.props.notificationId}
-                />
-              ) : null}
               {!muted || !isCollapsed ? (
                 <StatusHeader
                   status={status}
