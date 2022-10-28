@@ -38,3 +38,14 @@ de:
             email:
               blocked: verwendet einen nicht erlaubten E-Mail-Anbieter
               unreachable: scheint nicht zu existieren
+            role_id:
+              elevated: Kann nicht höher als Ihre aktuelle Rolle sein
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: enthalte Berechtigungen, die für die Basisrolle nicht sicher sind
+              elevated: kann keine Berechtigungen enthalten, die deine aktuelle Rolle nicht besitzt
+              own_role: kann nicht mit deiner aktuellen Rolle geändert werden
+            position:
+              elevated: kann nicht höher sein als deine aktuelle Rolle
+              own_role: kann nicht mit deiner aktuellen Rolle geändert werden

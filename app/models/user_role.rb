@@ -155,6 +155,10 @@ class UserRole < ApplicationRecord
     end
   end
 
+  def to_log_human_identifier
+    name
+  end
+
   private
 
   def in_permissions?(privilege)

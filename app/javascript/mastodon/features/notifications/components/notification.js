@@ -372,6 +372,10 @@ class Notification extends ImmutablePureComponent {
   renderAdminReport (notification, account, link) {
     const { intl, unread, report } = this.props;
 
+    if (!report) {
+      return null;
+    }
+
     const targetAccount = report.get('target_account');
     const targetDisplayNameHtml = { __html: targetAccount.get('display_name_html') };
     const targetLink = <bdi><Permalink className='notification__display-name' href={targetAccount.get('url')} title={targetAccount.get('acct')} to={`/@${targetAccount.get('acct')}`} dangerouslySetInnerHTML={targetDisplayNameHtml} /></bdi>;

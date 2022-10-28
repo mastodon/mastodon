@@ -1,17 +1,13 @@
 // @ts-check
 import React from 'react';
 import { Sparklines, SparklinesCurve } from 'react-sparklines';
-import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Permalink from './permalink';
 import ShortNumber from 'mastodon/components/short_number';
 import Skeleton from 'mastodon/components/skeleton';
 import classNames from 'classnames';
-
-const messages = defineMessages({
-  totalVolume: { id: 'hashtag.total_volume', defaultMessage: 'Total volume in the last {days, plural, one {day} other {{days} days}}' },
-});
 
 class SilentErrorBoundary extends React.Component {
 
@@ -69,39 +65,52 @@ ImmutableHashtag.propTypes = {
   hashtag: ImmutablePropTypes.map.isRequired,
 };
 
-const Hashtag = injectIntl(({ name, href, to, people, uses, history, className, intl }) => (
+const Hashtag = ({ name, href, to, people, uses, history, className, description, withGraph }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Permalink href={href} to={to}>
         {name ? <React.Fragment>#<span>{name}</span></React.Fragment> : <Skeleton width={50} />}
       </Permalink>
 
-      {typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />}
+      {description ? (
+        <span>{description}</span>
+      ) : (
+        typeof people !== 'undefined' ? <ShortNumber value={people} renderer={accountsCountRenderer} /> : <Skeleton width={100} />
+      )}
     </div>
 
-    <abbr className='trends__item__current' title={intl.formatMessage(messages.totalVolume, { days: 2 })}>
-      {typeof uses !== 'undefined' ? <ShortNumber value={uses} /> : <Skeleton width={42} height={36} />}
-      <span className='trends__item__current__asterisk'>*</span>
-    </abbr>
+    {typeof uses !== 'undefined' && (
+      <div className='trends__item__current'>
+        <ShortNumber value={uses} />
+      </div>
+    )}
 
-    <div className='trends__item__sparkline'>
-      <SilentErrorBoundary>
-        <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)}>
-          <SparklinesCurve style={{ fill: 'none' }} />
-        </Sparklines>
-      </SilentErrorBoundary>
-    </div>
+    {withGraph && (
+      <div className='trends__item__sparkline'>
+        <SilentErrorBoundary>
+          <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)}>
+            <SparklinesCurve style={{ fill: 'none' }} />
+          </Sparklines>
+        </SilentErrorBoundary>
+      </div>
+    )}
   </div>
-));
+);
 
 Hashtag.propTypes = {
   name: PropTypes.string,
   href: PropTypes.string,
   to: PropTypes.string,
   people: PropTypes.number,
+  description: PropTypes.node,
   uses: PropTypes.number,
   history: PropTypes.arrayOf(PropTypes.number),
   className: PropTypes.string,
+  withGraph: PropTypes.bool,
+};
+
+Hashtag.defaultProps = {
+  withGraph: true,
 };
 
 export default Hashtag;

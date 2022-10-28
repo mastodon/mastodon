@@ -32,8 +32,6 @@ class ActivityPub::ProcessAccountService < BaseService
       process_duplicate_accounts! if @options[:verified_webfinger]
     end
 
-    return if @account.nil?
-
     after_protocol_change! if protocol_changed?
     after_key_change! if key_changed? && !@options[:signed_with_known_key]
     clear_tombstones! if key_changed?
@@ -41,6 +39,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
     unless @options[:only_key] || @account.suspended?
       check_featured_collection! if @account.featured_collection_url.present?
+      check_featured_tags_collection! if @json['featuredTags'].present?
       check_links! unless @account.fields.empty?
     end
 
@@ -105,11 +104,13 @@ class ActivityPub::ProcessAccountService < BaseService
   def set_fetchable_attributes!
     begin
       @account.avatar_remote_url = image_url('icon') || '' unless skip_download?
+      @account.avatar = nil if @account.avatar_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       RedownloadAvatarWorker.perform_in(rand(30..600).seconds, @account.id)
     end
     begin
       @account.header_remote_url = image_url('image') || '' unless skip_download?
+      @account.header = nil if @account.header_remote_url.blank?
     rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
       RedownloadHeaderWorker.perform_in(rand(30..600).seconds, @account.id)
     end
@@ -149,7 +150,11 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_featured_collection!
-    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id)
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'hashtag' => @json['featuredTags'].blank? })
+  end
+
+  def check_featured_tags_collection!
+    ActivityPub::SynchronizeFeaturedTagsCollectionWorker.perform_async(@account.id, @json['featuredTags'])
   end
 
   def check_links!

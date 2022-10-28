@@ -55,7 +55,7 @@ jobs:
         with:
           node-version: 16.x
           cache: yarn
-      - name: Intall dependencies
+      - name: Install dependencies
         run: yarn install --frozen-lockfile
       - name: Set-up RuboCop Problem Mathcher
         uses: r7kamura/rubocop-problem-matchers-action@v1

@@ -9,8 +9,8 @@ RSpec.describe Trends::Statuses do
     let!(:query) { subject.query }
     let!(:today) { at_time }
 
-    let!(:status1) { Fabricate(:status, text: 'Foo', trendable: true, created_at: today) }
-    let!(:status2) { Fabricate(:status, text: 'Bar', trendable: true, created_at: today) }
+    let!(:status1) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: today) }
+    let!(:status2) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
 
     before do
       15.times { reblog(status1, today) }
@@ -69,9 +69,9 @@ RSpec.describe Trends::Statuses do
     let!(:today) { at_time }
     let!(:yesterday) { today - 1.day }
 
-    let!(:status1) { Fabricate(:status, text: 'Foo', trendable: true, created_at: yesterday) }
-    let!(:status2) { Fabricate(:status, text: 'Bar', trendable: true, created_at: today) }
-    let!(:status3) { Fabricate(:status, text: 'Baz', trendable: true, created_at: today) }
+    let!(:status1) { Fabricate(:status, text: 'Foo', language: 'en', trendable: true, created_at: yesterday) }
+    let!(:status2) { Fabricate(:status, text: 'Bar', language: 'en', trendable: true, created_at: today) }
+    let!(:status3) { Fabricate(:status, text: 'Baz', language: 'en', trendable: true, created_at: today) }
 
     before do
       13.times { reblog(status1, today) }
@@ -95,10 +95,10 @@ RSpec.describe Trends::Statuses do
 
     it 'decays scores' do
       subject.refresh(today)
-      original_score = subject.score(status2.id)
+      original_score = status2.trend.score
       expect(original_score).to be_a Float
       subject.refresh(today + subject.options[:score_halflife])
-      decayed_score = subject.score(status2.id)
+      decayed_score = status2.trend.reload.score
       expect(decayed_score).to be <= original_score / 2
     end
   end

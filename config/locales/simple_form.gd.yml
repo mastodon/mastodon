@@ -68,6 +68,11 @@ gd:
         with_dns_records: Thèid oidhirp a dhèanamh air fuasgladh clàran DNS na h-àrainne a chaidh a thoirt seachad agus thèid na toraidhean a bhacadh cuideachd
       featured_tag:
         name: 'Mholamaid fear dhe na tagaichean seo:'
+      filters:
+        action: Tagh na thachras nuair a bhios post a’ maidseadh na criathraige
+        actions:
+          hide: Falaich an t-susbaint chriathraichte uile gu lèir mar nach robh i ann idir
+          warn: Falaich an t-susbaint chriathraichte air cùlaibh rabhaidh a dh’innseas tiotal na criathraige
       form_challenge:
         current_password: Tha thu a’ tighinn a-steach gu raon tèarainte
       imports:
@@ -91,6 +96,16 @@ gd:
         name: Mar eisimpleir, ’s urrainn dhut measgachadh de litrichean mòra ’s beaga a chleachdadh ach an gabh a leughadh nas fhasa
       user:
         chosen_languages: Nuair a bhios cromag ris, cha nochd ach postaichean sna cànain a thagh thu air loidhnichean-ama poblach
+        role: Stiùiridh an dreuchd dè na ceadan a bhios aig cleachdaiche
+      user_role:
+        color: An datha a bhios air an dreuchd air feadh na h-eadar-aghaidh, ’na RGB san fhòrmat sia-dheicheach
+        highlighted: Le seo, chithear an dreuchd gu poblach
+        name: Ainm poblach na dreuchd ma chaidh a suidheachadh gun nochd i na baidse
+        permissions_as_keys: Gheibh na cleachdaichean aig a bheil an dreuchd seo inntrigeadh dha…
+        position: Ma tha còmhstri ann, buannaichidh an dreuchd as àirde ann an cuid a shuidheachaidhean. Tha gnìomhan sònraichte ann nach urrainn ach dreuchdan le prìomhachas ìosail a ghabhail
+      webhook:
+        events: Tagh na tachartasan a thèid a chur
+        url: Far an dèid na tachartasan a chur
     labels:
       account:
         fields:
@@ -178,6 +193,7 @@ gd:
         setting_use_pending_items: Am modh slaodach
         severity: Donad
         sign_in_token_attempt: Còd-tèarainteachd
+        title: Tiotal
         type: Seòrsa an ion-phortaidh
         username: Ainm-cleachdaiche
         username_or_email: Ainm-cleachdaiche no post-d
@@ -186,6 +202,10 @@ gd:
         with_dns_records: Gabh a-steach clàran MX agus IPan na h-àrainne
       featured_tag:
         name: Taga hais
+      filters:
+        actions:
+          hide: Falaich uile gu lèir
+          warn: Falaich le rabhadh
       interactions:
         must_be_follower: Bac na brathan nach eil o luchd-leantainn
         must_be_following: Bac na brathan o dhaoine air nach lean thu
@@ -219,6 +239,17 @@ gd:
         name: Taga hais
         trendable: Leig leis an taga hais seo gun nochd e am measg nan treandaichean
         usable: Leig le postaichean an taga hais seo a chleachdadh
+      user:
+        role: Dreuchd
+      user_role:
+        color: Dathan na baidse
+        highlighted: Seall an dreuchd ’na baidse air pròifilean nan cleachdaichean
+        name: Ainm
+        permissions_as_keys: Ceadan
+        position: Prìomhachas
+      webhook:
+        events: Na tachartas an comas
+        url: URL na puinge-deiridh
     'no': Chan eil
     recommended: Molta
     required:

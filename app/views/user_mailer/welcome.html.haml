@@ -76,26 +76,7 @@
                                     %td.button-primary
                                       = link_to settings_profile_url do
                                         %span= t 'user_mailer.welcome.edit_profile_action'
-              %tr
-                %td.content-cell
-                  .email-row
-                    .col-4
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.padded
-                              = t 'user_mailer.welcome.review_preferences_step'
-                    .col-2
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.padded
-                              %table.button.button-small{ align: 'left', cellspacing: 0, cellpadding: 0 }
-                                %tbody
-                                  %tr
-                                    %td.button-primary
-                                      = link_to settings_preferences_url do
-                                        %span= t 'user_mailer.welcome.review_preferences_action'
+
               %tr
                 %td.content-cell.padded-bottom
                   .email-row
@@ -116,29 +97,3 @@
                                     %td.button-primary
                                       = link_to web_url do
                                         %span= t 'user_mailer.welcome.final_action'
-
-%table.email-table{ cellspacing: 0, cellpadding: 0 }
-  %tbody
-    %tr
-      %td.email-body
-        .email-container
-          %table.content-section{ cellspacing: 0, cellpadding: 0 }
-            %tbody
-              %tr
-                %td.content-cell.border-top
-                  .email-row
-                    .col-6
-                      %table.column{ cellspacing: 0, cellpadding: 0 }
-                        %tbody
-                          %tr
-                            %td.column-cell.padded
-                              %h5= t 'user_mailer.welcome.tips'
-                              %ul
-                                %li
-                                  %span= t 'user_mailer.welcome.tip_mobile_webapp'
-                                %li
-                                  %span= t 'user_mailer.welcome.tip_following'
-                                %li
-                                  %span= t 'user_mailer.welcome.tip_local_timeline', instance: @instance
-                                %li
-                                  %span= t 'user_mailer.welcome.tip_federated_timeline'

@@ -87,10 +87,6 @@ module ApplicationHelper
     link_to label, omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
   end
 
-  def open_deletion?
-    Setting.open_deletion
-  end
-
   def locale_direction
     if RTL_LOCALES.include?(I18n.locale)
       'rtl'
@@ -198,10 +194,7 @@ module ApplicationHelper
 
   def render_initial_state
     state_params = {
-      settings: {
-        known_fediverse: Setting.show_known_fediverse_at_about_page,
-      },
-
+      settings: {},
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
     }
 
@@ -216,6 +209,10 @@ module ApplicationHelper
       state_params[:current_account]   = current_account
       state_params[:token]             = current_session.token
       state_params[:admin]             = Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
+    end
+
+    if single_user_mode?
+      state_params[:owner] = Account.local.without_suspended.where('id > 0').first
     end
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json

@@ -15,7 +15,7 @@ const notify = options =>
         icon: '/android-chrome-192x192.png',
         tag: GROUP_TAG,
         data: {
-          url: (new URL('/web/notifications', self.location)).href,
+          url: (new URL('/notifications', self.location)).href,
           count: notifications.length + 1,
           preferred_locale: options.data.preferred_locale,
         },
@@ -75,7 +75,7 @@ const formatMessage = (messageId, locale, values = {}) =>
 const htmlToPlainText = html =>
   unescape(html.replace(/<br\s*\/?>/g, '\n').replace(/<\/p><p>/g, '\n\n').replace(/<[^>]*>/g, ''));
 
-const handlePush = (event) => {
+export const handlePush = (event) => {
   const { access_token, notification_id, preferred_locale, title, body, icon } = event.data.json();
 
   // Placeholder until more information can be loaded
@@ -90,7 +90,7 @@ const handlePush = (event) => {
       options.tag       = notification.id;
       options.badge     = '/badge.png';
       options.image     = notification.status && notification.status.media_attachments.length > 0 && notification.status.media_attachments[0].preview_url || undefined;
-      options.data      = { access_token, preferred_locale, id: notification.status ? notification.status.id : notification.account.id, url: notification.status ? `/web/@${notification.account.acct}/${notification.status.id}` : `/web/@${notification.account.acct}` };
+      options.data      = { access_token, preferred_locale, id: notification.status ? notification.status.id : notification.account.id, url: notification.status ? `/@${notification.account.acct}/${notification.status.id}` : `/@${notification.account.acct}` };
 
       if (notification.status && notification.status.spoiler_text || notification.status.sensitive) {
         options.data.hiddenBody  = htmlToPlainText(notification.status.content);
@@ -115,7 +115,7 @@ const handlePush = (event) => {
         tag: notification_id,
         timestamp: new Date(),
         badge: '/badge.png',
-        data: { access_token, preferred_locale, url: '/web/notifications' },
+        data: { access_token, preferred_locale, url: '/notifications' },
       });
     }),
   );
@@ -166,30 +166,16 @@ const removeActionFromNotification = (notification, action) => {
 
 const openUrl = url =>
   self.clients.matchAll({ type: 'window' }).then(clientList => {
-    if (clientList.length !== 0) {
-      const webClients = clientList.filter(client => /\/web\//.test(client.url));
+    if (clientList.length !== 0 && 'navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
+      const client = findBestClient(clientList);
 
-      if (webClients.length !== 0) {
-        const client       = findBestClient(webClients);
-        const { pathname } = new URL(url, self.location);
-
-        if (pathname.startsWith('/web/')) {
-          return client.focus().then(client => client.postMessage({
-            type: 'navigate',
-            path: pathname.slice('/web/'.length - 1),
-          }));
-        }
-      } else if ('navigate' in clientList[0]) { // Chrome 42-48 does not support navigate
-        const client = findBestClient(clientList);
-
-        return client.navigate(url).then(client => client.focus());
-      }
+      return client.navigate(url).then(client => client.focus());
     }
 
     return self.clients.openWindow(url);
   });
 
-const handleNotificationClick = (event) => {
+export const handleNotificationClick = (event) => {
   const reactToNotificationClick = new Promise((resolve, reject) => {
     if (event.action) {
       if (event.action === 'expand') {
@@ -211,6 +197,3 @@ const handleNotificationClick = (event) => {
 
   event.waitUntil(reactToNotificationClick);
 };
-
-self.addEventListener('push', handlePush);
-self.addEventListener('notificationclick', handleNotificationClick);

@@ -73,6 +73,10 @@ sq:
         actions:
           hide: Fshihe plotësisht lëndën e filtruar, duke u sjellë sikur të mos ekzistonte
           warn: Fshihe lëndën e filtruar pas një sinjalizimi që përmend titullin e filtrit
+      form_admin_settings:
+        backups_retention_period: Mbaji arkivat e prodhuara të përdoruesve për aq ditë sa numri i dhënë.
+        content_cache_retention_period: Postimet prej shërbyesve të tjerë do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive. Kjo mund të jetë e pakthyeshme.
+        media_cache_retention_period: Kartelat media të shkarkuara do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive dhe rishkarkohen po u kërkua.
       form_challenge:
         current_password: Po hyni në një zonë të sigurt
       imports:
@@ -85,6 +89,7 @@ sq:
         ip: Jepni një adresë IPv4 ose IPv6. Duke përdorur sintaksën CIDR, mund të bllokoni intervale të tëra. Hapni sytë mos lini veten jashtë!
         severities:
           no_access: Blloko hyrje në krejt burimet
+          sign_up_block: S’do të jenë të mundur regjistrime të reja
           sign_up_requires_approval: Regjistrime të reja do të duan miratimin tuaj
         severity: Zgjidhni ç’do të ndodhë me kërkesa nga kjo IP
       rule:
@@ -206,6 +211,10 @@ sq:
         actions:
           hide: Fshihe plotësisht
           warn: Fshihe me një sinjalizim
+      form_admin_settings:
+        backups_retention_period: Periudhë mbajtjeje arkivash përdoruesish
+        content_cache_retention_period: Periudhë mbajtjeje lënde fshehtine
+        media_cache_retention_period: Periudhë mbajtjeje lënde media
       interactions:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që s’i ndiqni
@@ -219,6 +228,7 @@ sq:
         ip: IP
         severities:
           no_access: Bllokoji hyrjen
+          sign_up_block: Blloko regjistrime
           sign_up_requires_approval: Kufizo regjistrime
         severity: Rregull
       notification_emails:
@@ -251,6 +261,7 @@ sq:
         events: Akte të aktivizuar
         url: URL pikëmbarimi
     'no': Jo
+    not_recommended: Jo e këshilluar
     recommended: E rekomanduar
     required:
       mark: "*"

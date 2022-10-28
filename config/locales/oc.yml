@@ -1,80 +1,25 @@
 ---
 oc:
   about:
-    about_hashtag_html: Vaquí los estatuts publics ligats a <strong>#%{hashtag}</strong>. Podètz interagir amb eles s’avètz un compte ont que siasque sul fediverse.
     about_mastodon_html: Mastodon es un malhum social bastit amb de protocòls liures e gratuits. Es descentralizat coma los corrièls.
-    about_this: A prepaus d’aquesta instància
-    active_count_after: actius
-    active_footnote: Utilizaire actius per mes (UAM)
-    administered_by: 'Administrat per :'
-    api: API
-    apps: Aplicacions per mobil
-    apps_platforms: Utilizatz Mastodon d‘iOS, Android o d’autras plataforma estant
-    browse_directory: Navigatz per l’annuari de perfil e filtratz segon çò qu’aimatz
-    browse_local_posts: Percórrer un flux en dirècte de las publicacions publicas d’aqueste servidor
-    browse_public_posts: Navigatz pel flux public a Mastodon
-    contact: Contacte
     contact_missing: Pas parametrat
     contact_unavailable: Pas disponible
-    discover_users: Descobrissètz de nòvas personas
-    documentation: Documentacion
-    federation_hint_html: Amb un compte sus %{instance} poiretz sègre de personas de qualque siasque servidor Mastodon e encara mai.
-    get_apps: Ensajatz una aplicacion mobil
     hosted_on: Mastodon albergat sus %{domain}
-    learn_more: Ne saber mai
-    privacy_policy: Politica de confidencialitat
-    rules: Règlas del servidor
-    see_whats_happening: Agachatz çò qu’arriba
-    server_stats: 'Estatisticas del servidor :'
-    source_code: Còdi font
-    status_count_after:
-      one: estatut
-      other: estatuts
-    status_count_before: qu’an escrich
-    terms: Condicions d’utilizacion
-    unavailable_content: Contengut pas disponible
-    unavailable_content_description:
-      domain: Servidor
-      reason: 'Motiu :'
-      rejecting_media: 'Los fichièrs mèdias d’aquestes servidors estant seràn pas tractats o gardats e pas cap de miniatura serà pas mostrada, demanda de clicar sul fichièr original :'
-      rejecting_media_title: Mèdias filtrats
-      silenced_title: Servidors muts
-      suspended_title: Servidors suspenduts
-    user_count_after:
-      one: utilizaire
-      other: utilizaires
-    user_count_before: Ostal de
-    what_is_mastodon: Qu’es Mastodon ?
   accounts:
-    choices_html: 'Recomandacions de %{name} :'
-    endorsements_hint: Podètz recomandar personas que seguètz a partir de l’interfàcia web, apreissaràn aquí.
-    featured_tags_hint: Podètz indicar d’etiquetas que mostrarem aquí.
     follow: Sègre
     followers:
       one: Seguidor
       other: Seguidors
     following: Abonaments
-    joined: Arribèt en %{date}
     last_active: darrièra activitat
     link_verified_on: La proprietat d’aqueste ligam foguèt verificada lo %{date}
-    media: Mèdias
-    moved_html: "%{name} a mudat a %{new_profile_link} :"
-    network_hidden: Aquesta informacion es pas disponibla
     nothing_here: I a pas res aquí !
-    people_followed_by: Lo monde que %{name} sèc
-    people_who_follow: Lo monde que sègon %{name}
     pin_errors:
       following: Vos cal d’en primièr sègre las personas que volètz promòure
     posts:
       one: Tut
       other: Tuts
     posts_tab_heading: Tuts
-    posts_with_replies: Tuts e responsas
-    roles:
-      bot: Robòt
-      group: Grop
-    unavailable: Perfil indisponible
-    unfollow: Quitar de sègre
   admin:
     account_actions:
       action: Realizar una accion
@@ -216,7 +161,6 @@ oc:
         update_announcement: Actualizar l’anóncia
         update_custom_emoji: Actualizar l’emoji personalizat
         update_status: Actualizar l’estatut
-      deleted_status: "(estatut suprimit)"
       empty: Cap de jornal pas trobat.
       filter_by_action: Filtrar per accion
       filter_by_user: Filtrar per utilizaire
@@ -423,80 +367,15 @@ oc:
     rules:
       title: Règlas del servidor
     settings:
-      activity_api_enabled:
-        desc_html: Nombre d’estatuts publicats, d’utilizaires actius e de novèlas inscripcions en rapòrt setmanièr
-        title: Publicar las estatisticas totalas de l’activitat dels utilizaires
-      bootstrap_timeline_accounts:
-        desc_html: Separatz los noms d’utilizaire amb de virgula. Pas que los comptes locals e pas clavats foncionaràn. Se lo camp es void los admins seràn selecionats.
-        title: Per defaut los nòuvenguts sègon
-      contact_information:
-        email: Picatz una adreça de corrièl
-        username: Picatz un nom d’utilizaire
-      custom_css:
-        desc_html: Modificar l’estil amb una fuèlha CSS cargada sus cada pagina
-        title: CSS personalizada
-      default_noindex:
-        desc_html: Tòca totes los utilizaires qu’an pas cambiat lo paramètre
       domain_blocks:
         all: A tot lo monde
         disabled: A degun
-        title: Mostrar los blocatges de domeni
         users: Als utilizaires locals connectats
-      domain_blocks_rationale:
-        title: Mostrar lo rasonament
-      hero:
-        desc_html: Mostrat en primièra pagina. Almens 600x100px recomandat. S’es pas configurat l’imatge del servidor serà mostrat
-        title: Imatge de l’eròi
-      mascot:
-        desc_html: Mostrat sus mantun pagina. Almens 293×205px recomandat. S’es pas configurat, mostrarem la mascòta per defaut
-        title: Imatge de la mascòta
-      peers_api_enabled:
-        desc_html: Noms de domeni qu’aqueste servidor a trobats pel fediverse
-        title: Publicar la lista dels servidors coneguts
-      preview_sensitive_media:
-        desc_html: Los apercebuts dels ligams sus los autres sites mostraràn una vinheta encara que lo mèdia siá marcat coma sensible
-        title: Mostrar los mèdias sensibles dins los apercebuts OpenGraph
-      profile_directory:
-        desc_html: Permet als utilizaires d’èsser trobats
-        title: Activar l’annuari de perfils
-      registrations:
-        closed_message:
-          desc_html: Mostrat sus las pagina d’acuèlh quand las inscripcions son tampadas.<br>Podètz utilizar de balisas HTML
-          title: Messatge de barradura de las inscripcions
-        deletion:
-          desc_html: Autorizar lo monde a suprimir lor compte
-          title: Possibilitat de suprimir lo compte
       registrations_mode:
         modes:
           approved: Validacion necessària per s’inscriure
           none: Degun pòt pas se marcar
           open: Tot lo monde se pòt marcar
-        title: Mòdes d’inscripcion
-      show_known_fediverse_at_about_page:
-        desc_html: Un còp activat mostrarà los tuts de totes los fediverse dins l’apercebut. Autrament mostrarà pas que los tuts locals.
-        title: Mostrar los fediverse coneguts dins l’apercebut del flux
-      site_description:
-        desc_html: Paragraf d’introduccion sus la pagina d’acuèlh. Explicatz çò que fa diferent aqueste servidor Mastodon e tot çò qu’es important de dire. Podètz utilizare de balises HTML, en particular <code>&lt;a&gt;</code> e<code>&lt;em&gt;</code>.
-        title: Descripcion del servidor
-      site_description_extended:
-        desc_html: Un bon lòc per las règles de compòrtament e d’autras causas que fan venir vòstre servidor diferent. Podètz utilizar de balisas HTML
-        title: Descripcion espandida del site
-      site_short_description:
-        desc_html: Mostrat dins la barra laterala e dins las meta balisas. Explica çò qu’es Mastodon e perque aqueste servidor es especial en un solet paragraf. S’es void, serà garnit amb la descripcion del servidor.
-        title: Descripcion corta del servidor
-      site_terms:
-        desc_html: Afichada sus la pagina de las condicions d’utilizacion<br>Podètz utilizar de balisas HTML
-        title: Politica de confidencialitat del site
-      site_title: Títol del servidor
-      thumbnail:
-        desc_html: Servís pels apercebuts via OpenGraph e las API. Talha de 1200x630px recomandada
-        title: Miniatura del servidor
-      timeline_preview:
-        desc_html: Mostrar lo flux public sus la pagina d’acuèlh
-        title: Apercebut flux public
-      title: Paramètres del site
-      trends:
-        title: Etiquetas tendéncia
     site_uploads:
       delete: Suprimir lo fichièr enviat
     statuses:
@@ -562,10 +441,7 @@ oc:
     warning: Mèfi ! Agachatz de partejar aquela donada amb degun !
     your_token: Vòstre geton d’accès
   auth:
-    apply_for_account: Demandar una invitacion
     change_password: Senhal
-    checkbox_agreement_html: Accepti las <a href="%{rules_path}" target="_blank">règlas del servidor</a> e <a href="%{terms_path}" target="_blank">los tèrmes del servici</a>
-    checkbox_agreement_without_rules_html: Soi d’acòrdi amb las <a href="%{terms_path}" target="_blank">condicions d’utilizacion</a>
     delete_account: Suprimir lo compte
     delete_account_html: Se volètz suprimir vòstre compte, podètz <a href="%{path}">o far aquí</a>. Vos demandarem que confirmetz.
     description:
@@ -592,7 +468,6 @@ oc:
       title: Configuracion
     status:
       account_status: Estat del compte
-    trouble_logging_in: Problèmas de connexion ?
     use_security_key: Utilizar clau de seguretat
   authorize_follow:
     already_following: Seguètz ja aqueste compte
@@ -642,10 +517,6 @@ oc:
       more_details_html: Per mai d’informacion, vejatz la <a href="%{terms_path}">politica de confidencialitat</a>.
       username_available: Vòstre nom d’utilizaire serà disponible de nòu
       username_unavailable: Vòstre nom d’utilizaire demorarà pas disponible
-  directories:
-    directory: Annuari de perfils
-    explanation: Trobar d’utilizaires segon lor interèsses
-    explore_mastodon: Explorar %{title}
   domain_validator:
     invalid_domain: es pas un nom de domeni valid
   errors:
@@ -703,9 +574,6 @@ oc:
     new:
       title: Ajustar un nòu filtre
   footer:
-    developers: Desvolopaires
-    more: Mai…
-    resources: Ressorsas
     trending_now: Tendéncia del moment
   generic:
     all: Tot
@@ -735,7 +603,6 @@ oc:
       following: Lista de monde que seguètz
       muting: Lista de monde que volètz pas legir
     upload: Importar
-  in_memoriam_html: En Memòria.
   invites:
     delete: Desactivar
     expired: Expirat
@@ -793,14 +660,6 @@ oc:
   moderation:
     title: Moderacion
   notification_mailer:
-    digest:
-      action: Veire totas las notificacions
-      body: Trobatz aquí un resumit dels messatges qu’avètz mancats dempuèi vòstra darrièra visita lo %{since}
-      mention: "%{name} vos a mencionat dins :"
-      new_followers_summary:
-        one: Avètz un nòu seguidor dempuèi vòstra darrièra visita ! Ouà !
-        other: Avètz %{count} nòus seguidors dempuèi vòstra darrièra visita ! Qué crane !
-      title: Pendent vòstra abséncia…
     favourite:
       body: "%{name} a mes vòstre estatut en favorit :"
       subject: "%{name} a mes vòstre estatut en favorit"
@@ -877,22 +736,7 @@ oc:
     remove_selected_follows: Quitar de sègre las personas seleccionadas
     status: Estat del compte
   remote_follow:
-    acct: Picatz vòstre utilizaire@domeni que que volètz utilizar per sègre aqueste utilizaire
     missing_resource: URL de redireccion pas trobada
-    no_account_html: Avètz pas cap de compte ? Podètz <a href='%{sign_up_path}' target='_blank'>vos marcar aquí</a>
-    proceed: Clicatz per sègre
-    prompt: 'Sètz per sègre :'
-    reason_html: "<strong>Perque aquesta etapa es necessària ?</strong><code>%{instance}</code> es benlèu pas lo servidor ont vos marquèretz, doncas nos cal vos redirigir cap a vòstre prim servidor per començar."
-  remote_interaction:
-    favourite:
-      proceed: Contunhar per metre en favorit
-      prompt: 'Volètz metre en favorit aqueste tut :'
-    reblog:
-      proceed: Contunhar per repartejar
-      prompt: 'Volètz repartejar aqueste tut :'
-    reply:
-      proceed: Contunhar per respondre
-      prompt: 'Volètz respondre a aqueste tut :'
   scheduled_statuses:
     over_daily_limit: Avètz passat la limita de %{limit}  tuts programats per aquel jorn
     over_total_limit: Avètz passat la limita de %{limit}  tuts programats
@@ -1023,8 +867,6 @@ oc:
     sensitive_content: Contengut sensible
   tags:
     does_not_match_previous_name: correspond pas al nom precedent
-  terms:
-    title: Condicions d’utilizacion e politica de confidencialitat de %{instance}
   themes:
     contrast: Mastodon (Fòrt contrast)
     default: Mastodon (Escur)
@@ -1066,20 +908,11 @@ oc:
         suspend: Compte suspendut
     welcome:
       edit_profile_action: Configuracion del perfil
-      edit_profile_step: Podètz personalizar lo perfil en mandar un avatard, cambiar l’escais-nom e mai. Se volètz repassar las demandas d’abonaments abans que los nòus seguidors pòscan veire vòstre perfil, podètz clavar vòstre compte.
       explanation: Vaquí qualques astúcias per vos preparar
       final_action: Començar de publicar
-      final_step: 'Començatz de publicar ! Quitament s’avètz pas de seguidors los autres pòdon veire vòstres messatges publics, per exemple pel flux d’actualitat local e per las etiquetas. Benlèu que volètz vos presentar amb l’etiquetas #introductions.'
       full_handle: Vòstre escais-nom complèt
       full_handle_hint: Es aquò que vos cal donar a vòstres amics per que pòscan vos escriure o sègre a partir d’un autre servidor.
-      review_preferences_action: Cambiar las preferéncias
-      review_preferences_step: Pensatz de configurar vòstras preferéncias, tal coma los corrièls que volètz recebrer o lo nivèl de confidencialitat de vòstres tuts per defaut. O se l’animacion vos dòna pas enveja de rendre, podètz activar la lectura automatica dels GIF.
       subject: Benvengut a Mastodon
-      tip_federated_timeline: Lo flux d’actualitat federat es una vista generala del malhum Mastodon. Mas aquò inclutz solament lo monde que vòstres vesins sègon, doncas es pas complèt.
-      tip_following: Seguètz l’administrator del servidor per defaut. Per trobar de monde mai interessant, agachatz lo flux d’actualitat local e lo global.
-      tip_local_timeline: Lo flux d’actualitat local es una vista del monde de %{instance}. Son vòstres vesins dirèctes !
-      tip_mobile_webapp: Se vòstre navigator mobil nos permet d’apondre Mastodon a l’ecran d‘acuèlh, podètz recebre de notificacions. Aquò se compòrta coma una aplicacion nativa !
-      tips: Astúcias
       title: Vos desirem la benvenguda a bòrd %{name} !
   users:
     follow_limit_reached: Podètz pas sègre mai de %{limit} personas

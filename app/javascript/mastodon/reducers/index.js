@@ -17,7 +17,7 @@ import status_lists from './status_lists';
 import mutes from './mutes';
 import blocks from './blocks';
 import boosts from './boosts';
-import rules from './rules';
+import server from './server';
 import contexts from './contexts';
 import compose from './compose';
 import search from './search';
@@ -62,7 +62,7 @@ const reducers = {
   mutes,
   blocks,
   boosts,
-  rules,
+  server,
   contexts,
   compose,
   search,

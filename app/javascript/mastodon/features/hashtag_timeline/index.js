@@ -14,6 +14,7 @@ import { isEqual } from 'lodash';
 import { fetchHashtag, followHashtag, unfollowHashtag } from 'mastodon/actions/tags';
 import Icon from 'mastodon/components/icon';
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   followHashtag: { id: 'hashtag.follow', defaultMessage: 'Follow hashtag' },
@@ -30,6 +31,10 @@ export default @connect(mapStateToProps)
 class HashtagTimeline extends React.PureComponent {
 
   disconnects = [];
+
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     params: PropTypes.object.isRequired,
@@ -90,6 +95,12 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   _subscribe (dispatch, id, tags = {}, local) {
+    const { signedIn } = this.context.identity;
+
+    if (!signedIn) {
+      return;
+    }
+
     let any  = (tags.any || []).map(tag => tag.value);
     let all  = (tags.all || []).map(tag => tag.value);
     let none = (tags.none || []).map(tag => tag.value);
@@ -158,6 +169,11 @@ class HashtagTimeline extends React.PureComponent {
   handleFollow = () => {
     const { dispatch, params, tag } = this.props;
     const { id } = params;
+    const { signedIn } = this.context.identity;
+
+    if (!signedIn) {
+      return;
+    }
 
     if (tag.get('following')) {
       dispatch(unfollowHashtag(id));
@@ -170,6 +186,7 @@ class HashtagTimeline extends React.PureComponent {
     const { hasUnread, columnId, multiColumn, tag, intl } = this.props;
     const { id, local } = this.props.params;
     const pinned = !!columnId;
+    const { signedIn } = this.context.identity;
 
     let followButton;
 
@@ -177,7 +194,7 @@ class HashtagTimeline extends React.PureComponent {
       const following = tag.get('following');
 
       followButton = (
-        <button className={classNames('column-header__button')} onClick={this.handleFollow} title={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-label={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-pressed={following ? 'true' : 'false'}>
+        <button className={classNames('column-header__button')} onClick={this.handleFollow} disabled={!signedIn} title={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-label={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-pressed={following ? 'true' : 'false'}>
           <Icon id={following ? 'user-times' : 'user-plus'} fixedWidth className='column-header__icon' />
         </button>
       );
@@ -208,6 +225,11 @@ class HashtagTimeline extends React.PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}
           bindToDocument={!multiColumn}
         />
+
+        <Helmet>
+          <title>#{id}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

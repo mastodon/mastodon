@@ -30,7 +30,7 @@ class Trends::StatusBatch
   end
 
   def approve!
-    statuses.each { |status| authorize(status, :review?) }
+    statuses.each { |status| authorize([:admin, status], :review?) }
     statuses.update_all(trendable: true)
   end
 
@@ -45,7 +45,7 @@ class Trends::StatusBatch
   end
 
   def reject!
-    statuses.each { |status| authorize(status, :review?) }
+    statuses.each { |status| authorize([:admin, status], :review?) }
     statuses.update_all(trendable: false)
   end
 

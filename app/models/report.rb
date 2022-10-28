@@ -33,6 +33,7 @@ class Report < ApplicationRecord
   belongs_to :assigned_account, class_name: 'Account', optional: true
 
   has_many :notes, class_name: 'ReportNote', foreign_key: :report_id, inverse_of: :report, dependent: :destroy
+  has_many :notifications, as: :activity, dependent: :destroy
 
   scope :unresolved, -> { where(action_taken_at: nil) }
   scope :resolved,   -> { where.not(action_taken_at: nil) }
@@ -115,6 +116,10 @@ class Report < ApplicationRecord
     Report.where.not(id: id).where(target_account_id: target_account_id).unresolved.exists?
   end
 
+  def to_log_human_identifier
+    id
+  end
+
   def history
     subquery = [
       Admin::ActionLog.where(
@@ -135,6 +140,8 @@ class Report < ApplicationRecord
 
     Admin::ActionLog.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
   end
+
+  private
 
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil? && account.local?

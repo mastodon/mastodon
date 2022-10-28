@@ -26,7 +26,7 @@ module Trends
   end
 
   def self.request_review!
-    return unless enabled?
+    return if skip_review? || !enabled?
 
     links_requiring_review    = links.request_review
     tags_requiring_review     = tags.request_review
@@ -41,6 +41,10 @@ module Trends
 
   def self.enabled?
     Setting.trends
+  end
+
+  def self.skip_review?
+    Setting.trendable_by_default
   end
 
   def self.available_locales

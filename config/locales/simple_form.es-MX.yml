@@ -73,6 +73,10 @@ es-MX:
         actions:
           hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
           warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
+      form_admin_settings:
+        backups_retention_period: Mantener los archivos de usuario generados durante el número de días especificado.
+        content_cache_retention_period: Las publicaciones de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        media_cache_retention_period: Los archivos multimedia descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se redescargarán bajo demanda.
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -85,6 +89,7 @@ es-MX:
         ip: Introduzca una dirección IPv4 o IPv6. Puede bloquear rangos completos usando la sintaxis CIDR. ¡Tenga cuidado de no quedarse fuera!
         severities:
           no_access: Bloquear acceso a todos los recursos
+          sign_up_block: Los nuevos registros se deshabilitarán
           sign_up_requires_approval: Nuevos registros requerirán su aprobación
         severity: Elegir lo que pasará con las peticiones desde esta IP
       rule:
@@ -102,6 +107,7 @@ es-MX:
         highlighted: Esto hace que el rol sea públicamente visible
         name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
         permissions_as_keys: Los usuarios con este rol tendrán acceso a...
+        position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
       webhook:
         events: Seleccionar eventos para enviar
         url: Donde los eventos serán enviados
@@ -205,6 +211,10 @@ es-MX:
         actions:
           hide: Ocultar completamente
           warn: Ocultar con una advertencia
+      form_admin_settings:
+        backups_retention_period: Período de retención del archivo de usuario
+        content_cache_retention_period: Período de retención de caché de contenido
+        media_cache_retention_period: Período de retención de caché multimedia
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
@@ -218,6 +228,7 @@ es-MX:
         ip: IP
         severities:
           no_access: Bloquear acceso
+          sign_up_block: Bloquear registros
           sign_up_requires_approval: Limitar registros
         severity: Regla
       notification_emails:
@@ -250,6 +261,7 @@ es-MX:
         events: Eventos habilitados
         url: URL de Endpoint
     'no': 'No'
+    not_recommended: No recomendado
     recommended: Recomendado
     required:
       mark: "*"
