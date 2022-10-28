@@ -87,7 +87,7 @@ class NavigationPanel extends React.Component {
 
         <div className='navigation-panel__legal'>
           <hr />
-          <NavLink className='column-link column-link--transparent' to='/about'><Icon className='column-link__icon' id='ellipsis-h' fixedWidth /><FormattedMessage id='navigation_bar.about' defaultMessage='About' /></NavLink>
+          <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
         </div>
 
         {showTrends && (
