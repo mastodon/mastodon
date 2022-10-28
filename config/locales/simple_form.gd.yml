@@ -84,6 +84,7 @@ gd:
         ip: Cuir a-steach seòladh IPv4 no IPv6. ’S urrainn dhut rainsean gu lèir a bhacadh le co-chàradh CIDR. Thoir an aire nach gluais thu thu fhèin a-mach!
         severities:
           no_access: Bac inntrigeadh dha na goireasan uile
+          sign_up_block: Cha bhi ùr-chlàradh ceadaichte
           sign_up_requires_approval: Bidh cleachdaichean air an ùr-chlàradh feumach air d’ aonta
         severity: Tagh na thachras le iarrtasan on IP seo
       rule:
@@ -205,6 +206,30 @@ gd:
         actions:
           hide: Falaich uile gu lèir
           warn: Falaich le rabhadh
+      form_admin_settings:
+        backups_retention_period: Ùine glèidhidh aig tasg-lannan an luchd-cleachdaidh
+        bootstrap_timeline_accounts: Mol na cunntasan seo do chleachdaichean ùra an-còmhnaidh
+        closed_registrations_message: Teachdaireachd ghnàthaichte nuair nach eil clàradh ri fhaighinn
+        content_cache_retention_period: Ùine glèidhidh aig tasgadan na susbainte
+        custom_css: CSS gnàthaichte
+        mascot: Suaichnean gnàthaichte (dìleabach)
+        media_cache_retention_period: Ùine glèidhidh aig tasgadan nam meadhanan
+        profile_directory: Cuir eòlaire nam pròifil an comas
+        registrations_mode: Cò dh’fhaodas clàradh
+        require_invite_text: Iarr adhbhar clàraidh
+        show_domain_blocks: Seall bacaidhean àrainne
+        show_domain_blocks_rationale: Seall carson a chaidh àrainnean a bacadh
+        site_contact_email: Post-d a’ chonaltraidh
+        site_contact_username: Ainm cleachdaiche a’ chonaltraidh
+        site_extended_description: Tuairisgeul leudaichte
+        site_short_description: Tuairisgeul an fhrithealaiche
+        site_terms: Poileasaidh prìobhaideachd
+        site_title: Ainm an fhrithealaiche
+        theme: An t-ùrlar bunaiteach
+        thumbnail: Dealbhag an fhrithealaiche
+        timeline_preview: Ceadaich inntrigeadh gun ùghdarrachadh air na loidhnichean-ama phoblach
+        trendable_by_default: Ceadaich treandaichean gu lèirmheas ro làimh
+        trends: Cuir na treandaichean an comas
       interactions:
         must_be_follower: Bac na brathan nach eil o luchd-leantainn
         must_be_following: Bac na brathan o dhaoine air nach lean thu
@@ -218,6 +243,7 @@ gd:
         ip: IP
         severities:
           no_access: Bac inntrigeadh
+          sign_up_block: Bac clàraidhean ùra
           sign_up_requires_approval: Cuingich clàraidhean ùra
         severity: Riaghailt
       notification_emails:
@@ -250,6 +276,7 @@ gd:
         events: Na tachartas an comas
         url: URL na puinge-deiridh
     'no': 'Chan eil'
+    not_recommended: Cha mholamaid seo
     recommended: Molta
     required:
       mark: "*"
