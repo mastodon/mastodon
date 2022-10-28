@@ -548,6 +548,7 @@ nl:
         delete: Verwijderen
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
         title: Opmerkingen
+      remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
       reported_account: Gerapporteerde account
@@ -680,6 +681,7 @@ nl:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
       elasticsearch_version_check:
+        message_html: 'Incompatibele Elasticsearch-versie: %{value}'
         version_comparison: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
       rules_check:
         action: Serverregels beheren
@@ -1489,13 +1491,20 @@ nl:
         spam: Spam
         violation: De inhoud is in strijd met de volgende communityrichtlijnen
       explanation:
+        delete_statuses: Er is vastgesteld dat sommige van jouw berichten in strijd zijn met één of meerdere communityrichtlijnen en daarom door de moderatoren van %{instance} zijn verwijderd.
+        disable: Je kunt niet langer jouw account gebruiken, maar jouw profiel en andere gegevens zijn nog wel intact. Je kunt een backup van je gegevens opvragen, accountinstellingen wijzigen of je account verwijderen.
         mark_statuses_as_sensitive: Sommige van jouw berichten zijn als gevoelig gemarkeerd door de moderatoren van %{instance}. Dit betekent dat mensen op de media in de berichten moeten klikken/tikken om deze weer te geven. Je kunt media in de toekomst ook zelf als gevoelig markeren.
         sensitive: Vanaf nu worden al jouw geüploade media als gevoelig gemarkeerd en verborgen achter een waarschuwing.
+        silence: Je kunt nog steeds jouw account gebruiken, maar alleen mensen die jou al volgen kunnen jouw berichten zien, en je kunt minder goed worden gevonden. Andere kunnen je echter nog wel steeds handmatig volgen.
+        suspend: Je kunt niet langer jouw account gebruiken, en jouw profiel en andere gegevens zijn niet langer toegankelijk. Je kunt nog steeds inloggen om een backup van jouw gegevens op te vragen, totdat deze na 30 dagen volledig worden verwijderd. We zullen wel enkele basisgegevens behouden om te voorkomen dat je onder je schorsing uit probeert te komen.
       reason: 'Reden:'
       statuses: 'Gerapporteerde berichten:'
       subject:
+        delete_statuses: Deze berichten van %{acct} zijn verwijderd
         disable: Jouw account %{acct} is bevroren
+        mark_statuses_as_sensitive: Deze berichten van %{acct} zijn als gevoelig gemarkeerd
         none: Waarschuwing voor %{acct}
+        sensitive: Berichten van %{acct} zullen vanaf nu altijd als gevoelig worden gemarkeerd
         silence: Jouw account %{acct} is nu beperkt
         suspend: Jouw account %{acct} is opgeschort
       title:
