@@ -1,39 +1,14 @@
 ---
 hr:
   about:
-    about_hashtag_html: Ovo su javni tootovi označeni s <strong>#%{hashtag}</strong>. Možete biti u interakciji s njima, ako imate račun bilo gdje u fediverzumu.
     about_mastodon_html: 'Društvena mreža budućnosti: bez oglasa, bez korporativnog nadzora, etički dizajn i decentralizacija! Budite u vlasništvu svojih podataka pomoću Mastodona!'
-    about_this: Dodatne informacije
-    active_count_after: aktivnih
-    active_footnote: Mjesečno aktivnih korisnika (MAU)
-    apps: Mobilne aplikacije
-    apps_platforms: Koristite Mastodon na iOS-u, Androidu i drugim platformama
-    contact: Kontakt
     contact_missing: Nije postavljeno
-    discover_users: Otkrijte korisnike
-    documentation: Dokumentacija
-    get_apps: Isprobajte mobilnu aplikaciju
-    learn_more: Saznajte više
-    privacy_policy: Politika privatnosti
-    server_stats: 'Statistika poslužitelja:'
-    source_code: Izvorni kôd
-    status_count_before: Koji su objavili
-    terms: Uvjeti pružanja usluga
-    unavailable_content: Moderirani poslužitelji
   accounts:
     follow: Prati
     following: Praćenih
     last_active: posljednja aktivnost
-    media: Medijski sadržaj
     nothing_here: Ovdje nema ničeg!
-    people_followed_by: Ljudi koje %{name} prati
-    people_who_follow: Ljudi koji prate %{name}
     posts_tab_heading: Tootovi
-    posts_with_replies: Tootovi i odgovori
-    roles:
-      group: Grupa
-    unavailable: Profil nije dostupan
-    unfollow: Prestani pratiti
   admin:
     account_actions:
       action: Izvrši radnju
@@ -44,7 +19,6 @@ hr:
       are_you_sure: Jeste li sigurni?
       by_domain: Domena
       change_email:
-        changed_msg: E-pošta računa uspješno je promijenjena!
         current_email: Trenutna e-pošta
         label: Promijeni e-poštu
         new_email: Nova e-pošta
@@ -72,15 +46,12 @@ hr:
       moderation:
         all: Sve
     action_logs:
-      deleted_status: "(izbrisani status)"
       empty: Nema pronađenih izvješća.
       filter_by_action: Filtriraj prema radnji
       filter_by_user: Filtriraj prema korisniku
   application_mailer:
     settings: 'Promijeni postavke e-pošte: %{link}'
     view: 'Vidi:'
-  applications:
-    invalid_url: Unesena poveznica nije valjana
   auth:
     didnt_get_confirmation: Niste primili upute za potvrđivanje?
     forgot_password: Zaboravljena lozinka?
@@ -131,9 +102,6 @@ hr:
     new:
       title: Dodaj novi filter
   footer:
-    developers: Razvijatelji
-    more: Više…
-    resources: Resursi
     trending_now: Popularno
   generic:
     all: Sve
@@ -165,9 +133,6 @@ hr:
       one: 1 korištenje
       other: "%{count} korištenja"
   notification_mailer:
-    digest:
-      body: Ovo je kratak sažetak propuštenih poruka od Vašeg prošlog posjeta %{since}
-      mention: "%{name} Vas je spomenuo/la:"
     favourite:
       body: "%{name} je označio/la Vaš status favoritom:"
       subject: "%{name} je označio/la Vaš status favoritom"
@@ -202,10 +167,7 @@ hr:
     errors:
       already_voted: Već ste glasali u ovoj anketi
   remote_follow:
-    acct: Unesite Vaše KorisničkoIme@domena s kojim želite izvršiti radnju
     missing_resource: Nije moguće pronaći traženi URL preusmjeravanja za Vaš račun
-    proceed: Dalje
-    prompt: 'Pratit ćete:'
   sessions:
     platforms:
       other: nepoznata platforma
@@ -262,9 +224,7 @@ hr:
         suspend: Račun je suspendiran
     welcome:
       edit_profile_action: Postavi profil
-      review_preferences_action: Promijeni postavke
       subject: Dobro došli na Mastodon
-      tips: Savjeti
   users:
     invalid_otp_token: Nevažeći dvo-faktorski kôd
     signed_in_as: 'Prijavljeni kao:'

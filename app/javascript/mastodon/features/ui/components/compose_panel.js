@@ -6,31 +6,63 @@ import ComposeFormContainer from 'mastodon/features/compose/containers/compose_f
 import NavigationContainer from 'mastodon/features/compose/containers/navigation_container';
 import ModsAnnouncements from 'mastodon/features/compose/components/mods_announcements';
 import LinkFooter from './link_footer';
-import { changeComposing } from 'mastodon/actions/compose';
+import ServerBanner from 'mastodon/components/server_banner';
+import { changeComposing, mountCompose, unmountCompose } from 'mastodon/actions/compose';
 
 export default @connect()
 class ComposePanel extends React.PureComponent {
+
+  static contextTypes = {
+    identity: PropTypes.object.isRequired,
+  };
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
   };
 
   onFocus = () => {
-    this.props.dispatch(changeComposing(true));
+    const { dispatch } = this.props;
+    dispatch(changeComposing(true));
   }
 
   onBlur = () => {
-    this.props.dispatch(changeComposing(false));
+    const { dispatch } = this.props;
+    dispatch(changeComposing(false));
+  }
+
+  componentDidMount () {
+    const { dispatch } = this.props;
+    dispatch(mountCompose());
+  }
+
+  componentWillUnmount () {
+    const { dispatch } = this.props;
+    dispatch(unmountCompose());
   }
 
   render() {
+    const { signedIn } = this.context.identity;
+
     return (
       <div className='compose-panel' onFocus={this.onFocus}>
         <SearchContainer openInRoute />
-        <NavigationContainer onClose={this.onBlur} />
-        <ComposeFormContainer singleColumn />
-        <ModsAnnouncements />
-        <LinkFooter withHotkeys />
+
+        {!signedIn && (
+          <React.Fragment>
+            <ServerBanner />
+            <div className='flex-spacer' />
+          </React.Fragment>
+        )}
+
+        {signedIn && (
+          <React.Fragment>
+            <NavigationContainer onClose={this.onBlur} />
+            <ComposeFormContainer singleColumn />
+            <ModsAnnouncements />
+          </React.Fragment>
+        )}
+
+        <LinkFooter />
       </div>
     );
   }

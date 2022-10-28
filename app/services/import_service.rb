@@ -27,7 +27,7 @@ class ImportService < BaseService
 
   def import_follows!
     parse_import_data!(['Account address'])
-    import_relationships!('follow', 'unfollow', @account.following, ROWS_PROCESSING_LIMIT, reblogs: { header: 'Show boosts', default: true })
+    import_relationships!('follow', 'unfollow', @account.following, ROWS_PROCESSING_LIMIT, reblogs: { header: 'Show boosts', default: true }, notify: { header: 'Notify on new posts', default: false }, languages: { header: 'Languages', default: nil })
   end
 
   def import_blocks!

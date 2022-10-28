@@ -60,6 +60,7 @@ sv:
         ip: Ange en IPv4 eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Var försiktig så att du inte låser ut dig själv!
         severities:
           no_access: Blockera åtkomst till alla resurser
+          sign_up_block: Nya registreringar inte möjligt
           sign_up_requires_approval: Nya registreringar kräver ditt godkännande
         severity: Välj vad som ska hända med förfrågningar från denna IP
       rule:
@@ -176,6 +177,7 @@ sv:
         ip: IP
         severities:
           no_access: Blockera åtkomst
+          sign_up_block: Blockera registreringar
           sign_up_requires_approval: Begränsa registreringar
         severity: Regel
       notification_emails:

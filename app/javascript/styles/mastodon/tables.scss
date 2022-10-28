@@ -190,6 +190,55 @@ a.table-action-link {
     }
   }
 
+  &__select-all {
+    background: $ui-base-color;
+    height: 47px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid darken($ui-base-color, 8%);
+    border-top: 0;
+    color: $secondary-text-color;
+    display: none;
+
+    &.active {
+      display: flex;
+    }
+
+    .selected,
+    .not-selected {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    span {
+      padding: 8px;
+      display: inline-block;
+    }
+
+    button {
+      background: transparent;
+      border: 0;
+      font: inherit;
+      color: $highlight-text-color;
+      border-radius: 4px;
+      font-weight: 700;
+      padding: 8px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: lighten($ui-base-color, 8%);
+      }
+    }
+  }
+
   &__form {
     padding: 16px;
     border: 1px solid darken($ui-base-color, 8%);

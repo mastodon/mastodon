@@ -12,7 +12,7 @@ describe Admin::DashboardController, type: :controller do
         Admin::SystemCheck::Message.new(:rules_check, nil, admin_rules_path),
         Admin::SystemCheck::Message.new(:sidekiq_process_check, 'foo, bar'),
       ])
-      sign_in Fabricate(:user, admin: true)
+      sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin'))
     end
 
     it 'returns 200' do

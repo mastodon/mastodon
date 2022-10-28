@@ -12,10 +12,35 @@
 #  meta              :json
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  blurhash          :string
 #
 
 class SiteUpload < ApplicationRecord
-  has_attached_file :file
+  include Attachmentable
+
+  STYLES = {
+    thumbnail: {
+      '@1x': {
+        format: 'png',
+        geometry: '1200x630#',
+        file_geometry_parser: FastGeometryParser,
+        blurhash: {
+          x_comp: 4,
+          y_comp: 4,
+        }.freeze,
+      },
+
+      '@2x': {
+        format: 'png',
+        geometry: '2400x1260#',
+        file_geometry_parser: FastGeometryParser,
+      }.freeze,
+    }.freeze,
+
+    mascot: {}.freeze,
+  }.freeze
+
+  has_attached_file :file, styles: ->(file) { STYLES[file.instance.var.to_sym] }, convert_options: { all: '-coalesce -strip' }, processors: [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
 
   validates_attachment_content_type :file, content_type: /\Aimage\/.*\z/
   validates :file, presence: true

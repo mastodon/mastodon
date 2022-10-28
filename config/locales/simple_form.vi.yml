@@ -20,7 +20,7 @@ vi:
           sensitive: Mọi tập tin của tài khoản này tải lên đều sẽ bị gắn nhãn nhạy cảm.
           silence: Cấm tài khoản này đăng tút công khai, ẩn tút của họ hiện ra với những người chưa theo dõi họ.
           suspend: Vô hiệu hóa và xóa sạch dữ liệu của tài khoản này. Có thể khôi phục trước 30 ngày.
-        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm ghi chú riêng
+        warning_preset_id: Tùy chọn. Bạn vẫn có thể thêm chú thích riêng
       announcement:
         all_day: Chỉ có khoảng thời gian được đánh dấu mới hiển thị
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
@@ -68,6 +68,15 @@ vi:
         with_dns_records: Nếu DNS có vấn đề, nó sẽ bị đưa vào danh sách cấm
       featured_tag:
         name: 'Những hashtag gợi ý cho bạn:'
+      filters:
+        action: Chọn hành động sẽ thực hiện khi một tút khớp với bộ lọc
+        actions:
+          hide: Ẩn hoàn toàn nội dung đã lọc, hoạt động như thể nó không tồn tại
+          warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
+      form_admin_settings:
+        backups_retention_period: Lưu trữ dữ liệu người dùng đã tạo trong số ngày được chỉ định.
+        content_cache_retention_period: Tút từ các máy chủ khác sẽ bị xóa sau số ngày được chỉ định. Sau đó có thể không thể phục hồi được.
+        media_cache_retention_period: Media đã tải xuống sẽ bị xóa sau số ngày được chỉ định và sẽ tải xuống lại theo yêu cầu.
       form_challenge:
         current_password: Biểu mẫu này an toàn
       imports:
@@ -80,6 +89,7 @@ vi:
         ip: Nhập một địa chỉ IPv4 hoặc IPv6. Bạn cũng có thể chặn toàn bộ dãy IP bằng cú pháp CIDR. Hãy cẩn thận đừng chặn nhầm toàn bộ!
         severities:
           no_access: Chặn truy cập từ tất cả IP này
+          sign_up_block: Không chấp nhận đăng ký mới
           sign_up_requires_approval: Bạn sẽ phê duyệt những đăng ký mới từ IP này
         severity: Chọn hành động nếu nhận được yêu cầu từ IP này
       rule:
@@ -91,6 +101,16 @@ vi:
         name: Bạn có thể thay đổi cách viết hoa các chữ cái để giúp nó dễ đọc hơn
       user:
         chosen_languages: Chỉ hiển thị những tút viết bằng các ngôn ngữ được chọn sau
+        role: Vai trò kiểm soát những quyền mà người dùng có
+      user_role:
+        color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
+        highlighted: Vai trò sẽ hiển thị công khai
+        name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
+        permissions_as_keys: Người dùng có vai trò này sẽ có quyền truy cập vào...
+        position: Vai trò cao hơn sẽ có quyền quyết định xung đột trong các tình huống. Các vai trò có mức độ ưu tiên thấp hơn chỉ có thể thực hiện một số hành động nhất định
+      webhook:
+        events: Chọn sự kiện để gửi
+        url: Nơi những sự kiện được gửi đến
     labels:
       account:
         fields:
@@ -106,11 +126,11 @@ vi:
       admin_account_action:
         include_statuses: Đính kèm những tút bị báo cáo trong e-mail
         send_email_notification: Thông báo cho người này qua email
-        text: Ghi chú riêng
+        text: Chú thích riêng
         type: Hành động
         types:
           disable: Khóa
-          none: Nhắc nhở
+          none: Cảnh cáo
           sensitive: Nhạy cảm
           silence: Hạn chế
           suspend: Vô hiệu hóa
@@ -178,6 +198,7 @@ vi:
         setting_use_pending_items: Không tự động cập nhật bảng tin
         severity: Mức độ nghiêm trọng
         sign_in_token_attempt: Mã an toàn
+        title: Tựa đề
         type: Kiểu nhập
         username: Tên người dùng
         username_or_email: Tên người dùng hoặc email
@@ -186,6 +207,14 @@ vi:
         with_dns_records: Bao gồm bản ghi MX và địa chỉ IP của máy chủ
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Ẩn toàn bộ
+          warn: Ẩn kèm theo cảnh báo
+      form_admin_settings:
+        backups_retention_period: Thời hạn lưu trữ nội dung người dùng sao lưu
+        content_cache_retention_period: Thời hạn lưu trữ cache nội dung
+        media_cache_retention_period: Thời hạn lưu trữ cache media
       interactions:
         must_be_follower: Chặn thông báo từ những người không theo dõi bạn
         must_be_following: Chặn thông báo từ những người bạn không theo dõi
@@ -199,6 +228,7 @@ vi:
         ip: IP
         severities:
           no_access: Chặn truy cập
+          sign_up_block: Chặn đăng ký
           sign_up_requires_approval: Giới hạn đăng ký
         severity: Mức độ
       notification_emails:
@@ -219,7 +249,19 @@ vi:
         name: Hashtag
         trendable: Cho phép xuất hiện trong xu hướng
         usable: Cho phép dùng trong tút
+      user:
+        role: Vai trò
+      user_role:
+        color: Màu huy hiệu
+        highlighted: Hiển thị huy hiệu vai trò trên hồ sơ người dùng
+        name: Tên
+        permissions_as_keys: Quyền
+        position: Mức độ ưu tiên
+      webhook:
+        events: Những sự kiện đã bật
+        url: URL endpoint
     'no': Tắt
+    not_recommended: Không đề xuất
     recommended: Đề xuất
     required:
       mark: "*"

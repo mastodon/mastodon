@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { PureComponent } from 'react';
 import { LoadingBar } from 'react-redux-loading-bar';
 import ZoomableImage from './zoomable_image';
 
-export default class ImageLoader extends React.PureComponent {
+export default class ImageLoader extends PureComponent {
 
   static propTypes = {
     alt: PropTypes.string,
@@ -43,7 +43,7 @@ export default class ImageLoader extends React.PureComponent {
     this.loadImage(this.props);
   }
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (this.props.src !== nextProps.src) {
       this.loadImage(nextProps);
     }
@@ -139,14 +139,18 @@ export default class ImageLoader extends React.PureComponent {
 
     return (
       <div className={className}>
-        <LoadingBar loading={loading ? 1 : 0} className='loading-bar' style={{ width: this.state.width || width }} />
         {loading ? (
-          <canvas
-            className='image-loader__preview-canvas'
-            ref={this.setCanvasRef}
-            width={width}
-            height={height}
-          />
+          <>
+            <div className='loading-bar__container' style={{ width: this.state.width || width }}>
+              <LoadingBar className='loading-bar' loading={1} />
+            </div>
+            <canvas
+              className='image-loader__preview-canvas'
+              ref={this.setCanvasRef}
+              width={width}
+              height={height}
+            />
+          </>
         ) : (
           <ZoomableImage
             alt={alt}

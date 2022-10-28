@@ -1,9 +1,10 @@
 import React from 'react';
-import Column from '../ui/components/column';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
+import Column from 'mastodon/components/column';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePureComponent from 'react-immutable-pure-component';
+import ColumnHeader from 'mastodon/components/column_header';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'keyboard_shortcuts.heading', defaultMessage: 'Keyboard Shortcuts' },
@@ -21,8 +22,13 @@ class KeyboardShortcuts extends ImmutablePureComponent {
     const { intl, multiColumn } = this.props;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='question' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column>
+        <ColumnHeader
+          title={intl.formatMessage(messages.heading)}
+          icon='question'
+          multiColumn={multiColumn}
+        />
+
         <div className='keyboard-shortcuts scrollable optionally-scrollable'>
           <table>
             <thead>
@@ -159,6 +165,10 @@ class KeyboardShortcuts extends ImmutablePureComponent {
             </tbody>
           </table>
         </div>
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

@@ -20,8 +20,8 @@ class ResolveURLService < BaseService
   private
 
   def process_url
-    if equals_or_includes_any?(type, ActivityPub::FetchRemoteAccountService::SUPPORTED_TYPES)
-      ActivityPub::FetchRemoteAccountService.new.call(resource_url, prefetched_body: body)
+    if equals_or_includes_any?(type, ActivityPub::FetchRemoteActorService::SUPPORTED_TYPES)
+      ActivityPub::FetchRemoteActorService.new.call(resource_url, prefetched_body: body)
     elsif equals_or_includes_any?(type, ActivityPub::Activity::Create::SUPPORTED_TYPES + ActivityPub::Activity::Create::CONVERTED_TYPES)
       status = FetchRemoteStatusService.new.call(resource_url, body)
       authorize_with @on_behalf_of, status, :show? unless status.nil?

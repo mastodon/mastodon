@@ -35,6 +35,7 @@ class Api::V1::Timelines::PublicController < Api::BaseController
   def public_feed
     PublicFeed.new(
       current_account,
+      locale: content_locale,
       local: truthy_param?(:local),
       remote: truthy_param?(:remote),
       only_media: truthy_param?(:only_media)

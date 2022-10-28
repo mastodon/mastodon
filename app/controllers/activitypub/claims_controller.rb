@@ -6,7 +6,7 @@ class ActivityPub::ClaimsController < ActivityPub::BaseController
 
   skip_before_action :authenticate_user!
 
-  before_action :require_signature!
+  before_action :require_account_signature!
   before_action :set_claim_result
 
   def create

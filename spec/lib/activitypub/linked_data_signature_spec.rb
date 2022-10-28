@@ -20,7 +20,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     stub_jsonld_contexts!
   end
 
-  describe '#verify_account!' do
+  describe '#verify_actor!' do
     context 'when signature matches' do
       let(:raw_signature) do
         {
@@ -32,7 +32,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
       let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => sign(sender, raw_signature, raw_json)) }
 
       it 'returns creator' do
-        expect(subject.verify_account!).to eq sender
+        expect(subject.verify_actor!).to eq sender
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
       let(:signature) { nil }
 
       it 'returns nil' do
-        expect(subject.verify_account!).to be_nil
+        expect(subject.verify_actor!).to be_nil
       end
     end
 
@@ -55,7 +55,7 @@ RSpec.describe ActivityPub::LinkedDataSignature do
       let(:signature) { raw_signature.merge('type' => 'RsaSignature2017', 'signatureValue' => 's69F3mfddd99dGjmvjdjjs81e12jn121Gkm1') }
 
       it 'returns nil' do
-        expect(subject.verify_account!).to be_nil
+        expect(subject.verify_actor!).to be_nil
       end
     end
   end
@@ -73,14 +73,14 @@ RSpec.describe ActivityPub::LinkedDataSignature do
     end
 
     it 'can be verified again' do
-      expect(described_class.new(subject).verify_account!).to eq sender
+      expect(described_class.new(subject).verify_actor!).to eq sender
     end
   end
 
-  def sign(from_account, options, document)
+  def sign(from_actor, options, document)
     options_hash   = Digest::SHA256.hexdigest(canonicalize(options.merge('@context' => ActivityPub::LinkedDataSignature::CONTEXT)))
     document_hash  = Digest::SHA256.hexdigest(canonicalize(document))
     to_be_verified = options_hash + document_hash
-    Base64.strict_encode64(from_account.keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_verified))
+    Base64.strict_encode64(from_actor.keypair.sign(OpenSSL::Digest.new('SHA256'), to_be_verified))
   end
 end

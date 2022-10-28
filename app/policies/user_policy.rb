@@ -2,52 +2,38 @@
 
 class UserPolicy < ApplicationPolicy
   def reset_password?
-    staff? && !record.staff?
+    role.can?(:manage_user_access) && role.overrides?(record.role)
   end
 
   def change_email?
-    staff? && !record.staff?
+    role.can?(:manage_user_access) && role.overrides?(record.role)
   end
 
   def disable_2fa?
-    admin? && !record.staff?
+    role.can?(:manage_user_access) && role.overrides?(record.role)
+  end
+
+  def change_role?
+    role.can?(:manage_roles) && role.overrides?(record.role)
   end
 
   def confirm?
-    staff? && !record.confirmed?
+    role.can?(:manage_user_access) && !record.confirmed?
   end
 
   def enable?
-    staff?
+    role.can?(:manage_users)
   end
 
   def approve?
-    staff? && !record.approved?
+    role.can?(:manage_users) && !record.approved?
   end
 
   def reject?
-    staff? && !record.approved?
+    role.can?(:manage_users) && !record.approved?
   end
 
   def disable?
-    staff? && !record.admin?
-  end
-
-  def promote?
-    admin? && promotable?
-  end
-
-  def demote?
-    admin? && !record.admin? && demoteable?
-  end
-
-  private
-
-  def promotable?
-    record.approved? && (!record.staff? || !record.admin?)
-  end
-
-  def demoteable?
-    record.staff?
+    role.can?(:manage_users) && role.overrides?(record.role)
   end
 end

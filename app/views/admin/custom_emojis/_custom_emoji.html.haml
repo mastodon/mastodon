@@ -3,7 +3,7 @@
     = f.check_box :custom_emoji_ids, { multiple: true, include_hidden: false }, custom_emoji.id
   .batch-table__row__content.batch-table__row__content--with-image
     .batch-table__row__content__image
-      = custom_emoji_tag(custom_emoji, current_account&.user&.setting_auto_play_gif)
+      = custom_emoji_tag(custom_emoji)
 
     .batch-table__row__content__text
       %samp= ":#{custom_emoji.shortcode}:"

@@ -57,7 +57,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_bigger_publish,
       :setting_wider_column,
       :setting_always_send_emails,
-      notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account trending_tag appeal),
+      notification_emails: %i(follow follow_request reblog favourite mention report pending_account trending_tag appeal),
       interactions: %i(must_be_follower must_be_following must_be_following_dm)
     )
   end

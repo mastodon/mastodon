@@ -4,18 +4,71 @@ import ready from '../mastodon/ready';
 
 const batchCheckboxClassName = '.batch-checkbox input[type="checkbox"]';
 
+const showSelectAll = () => {
+  const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
+  selectAllMatchingElement.classList.add('active');
+};
+
+const hideSelectAll = () => {
+  const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
+  const hiddenField = document.querySelector('#select_all_matching');
+  const selectedMsg = document.querySelector('.batch-table__select-all .selected');
+  const notSelectedMsg = document.querySelector('.batch-table__select-all .not-selected');
+
+  selectAllMatchingElement.classList.remove('active');
+  selectedMsg.classList.remove('active');
+  notSelectedMsg.classList.add('active');
+  hiddenField.value = '0';
+};
+
 delegate(document, '#batch_checkbox_all', 'change', ({ target }) => {
+  const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
+
   [].forEach.call(document.querySelectorAll(batchCheckboxClassName), (content) => {
     content.checked = target.checked;
   });
+
+  if (selectAllMatchingElement) {
+    if (target.checked) {
+      showSelectAll();
+    } else {
+      hideSelectAll();
+    }
+  }
+});
+
+delegate(document, '.batch-table__select-all button', 'click', () => {
+  const hiddenField = document.querySelector('#select_all_matching');
+  const active = hiddenField.value === '1';
+  const selectedMsg = document.querySelector('.batch-table__select-all .selected');
+  const notSelectedMsg = document.querySelector('.batch-table__select-all .not-selected');
+
+  if (active) {
+    hiddenField.value = '0';
+    selectedMsg.classList.remove('active');
+    notSelectedMsg.classList.add('active');
+  } else {
+    hiddenField.value = '1';
+    notSelectedMsg.classList.remove('active');
+    selectedMsg.classList.add('active');
+  }
 });
 
 delegate(document, batchCheckboxClassName, 'change', () => {
   const checkAllElement = document.querySelector('#batch_checkbox_all');
+  const selectAllMatchingElement = document.querySelector('.batch-table__select-all');
 
   if (checkAllElement) {
     checkAllElement.checked = [].every.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
     checkAllElement.indeterminate = !checkAllElement.checked && [].some.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
+
+    if (selectAllMatchingElement) {
+      if (checkAllElement.checked) {
+        showSelectAll();
+      } else {
+        hideSelectAll();
+      }
+    }
   }
 });
 

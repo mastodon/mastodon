@@ -9,7 +9,7 @@
   = render 'shared/error_messages', object: @featured_tag
 
   .fields-group
-    = f.input :name, wrapper: :with_block_label, hint: safe_join([t('simple_form.hints.featured_tag.name'), safe_join(@recently_used_tags.map { |tag| link_to("##{tag.name}", settings_featured_tags_path(featured_tag: { name: tag.name }), method: :post) }, ', ')], ' ')
+    = f.input :name, wrapper: :with_block_label, hint: safe_join([t('simple_form.hints.featured_tag.name'), safe_join(@recently_used_tags.map { |tag| link_to("##{tag.display_name}", settings_featured_tags_path(featured_tag: { name: tag.name }), method: :post) }, ', ')], ' ')
 
   .actions
     = f.button :button, t('featured_tags.add_new'), type: :submit
@@ -21,7 +21,7 @@
     %div
       %h4
         = fa_icon 'hashtag'
-        = featured_tag.name
+        = featured_tag.display_name
         %small
           - if featured_tag.last_status_at.nil?
             = t('accounts.nothing_here')

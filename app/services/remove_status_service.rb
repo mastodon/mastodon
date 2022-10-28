@@ -21,6 +21,8 @@ class RemoveStatusService < BaseService
     with_lock("distribute:#{@status.id}") do
       @status.discard
 
+      StatusPin.find_by(status: @status)&.destroy
+
       remove_from_self if @account.local?
       remove_from_followers
       remove_from_lists

@@ -41,8 +41,7 @@
   %h3= t('migrations.incoming_migrations')
   %p.muted-hint= t('migrations.incoming_migrations_html', path: settings_aliases_path)
 
-  - if open_deletion?
-    %hr.spacer/
+  %hr.spacer/
 
-    %h3= t('auth.delete_account')
-    %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)
+  %h3= t('auth.delete_account')
+  %p.muted-hint= t('auth.delete_account_html', path: settings_delete_path)

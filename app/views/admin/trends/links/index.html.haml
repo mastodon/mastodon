@@ -16,7 +16,7 @@
     .filter-subset.filter-subset--with-select
       %strong= t('admin.follow_recommendations.language')
       .input.select.optional
-        = select_tag :locale, options_for_select(Trends.available_locales.map { |key| [standard_locale_name(key), key] }, params[:locale]), include_blank: true
+        = select_tag :locale, options_for_select(@locales.map { |key| [standard_locale_name(key), key] }, params[:locale]), include_blank: true
     .filter-subset
       %strong= t('admin.trends.trending')
       %ul

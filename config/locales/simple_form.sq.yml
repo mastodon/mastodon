@@ -68,6 +68,15 @@ sq:
         with_dns_records: Do të bëhet një përpjekje për ftillimin e zërave DNS të përkatësisë së dhënë dhe do të futen në listë bllokimesh edhe përfundimet
       featured_tag:
         name: 'Mund të doni të përdorni një nga këto:'
+      filters:
+        action: Zgjidhni cili veprim të kryhet, kur një postim ka përputhje me një filtër
+        actions:
+          hide: Fshihe plotësisht lëndën e filtruar, duke u sjellë sikur të mos ekzistonte
+          warn: Fshihe lëndën e filtruar pas një sinjalizimi që përmend titullin e filtrit
+      form_admin_settings:
+        backups_retention_period: Mbaji arkivat e prodhuara të përdoruesve për aq ditë sa numri i dhënë.
+        content_cache_retention_period: Postimet prej shërbyesve të tjerë do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive. Kjo mund të jetë e pakthyeshme.
+        media_cache_retention_period: Kartelat media të shkarkuara do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive dhe rishkarkohen po u kërkua.
       form_challenge:
         current_password: Po hyni në një zonë të sigurt
       imports:
@@ -80,6 +89,7 @@ sq:
         ip: Jepni një adresë IPv4 ose IPv6. Duke përdorur sintaksën CIDR, mund të bllokoni intervale të tëra. Hapni sytë mos lini veten jashtë!
         severities:
           no_access: Blloko hyrje në krejt burimet
+          sign_up_block: S’do të jenë të mundur regjistrime të reja
           sign_up_requires_approval: Regjistrime të reja do të duan miratimin tuaj
         severity: Zgjidhni ç’do të ndodhë me kërkesa nga kjo IP
       rule:
@@ -91,6 +101,16 @@ sq:
         name: Mund të ndryshoni shkronjat vetëm nga të mëdha në të vogla ose anasjelltas, për shembull, për t’i bërë më të lexueshme
       user:
         chosen_languages: Në iu vëntë shenjë, te rrjedha kohore publike do të shfaqen vetëm mesazhe në gjuhët e përzgjedhura
+        role: Roli kontrollon cilat leje ka përdoruesi
+      user_role:
+        color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
+        highlighted: Kjo e bën rolin të dukshëm publikisht
+        name: Emër publik për rolin, nëse roli është ujdisur të shfaqet si një stemë
+        permissions_as_keys: Përdoruest me këtë rol do të mund të…
+        position: Role më të lartë vendosin zgjidhje përplasje në disa raste. Disa veprime mund të kryhen vetëm mbi role të një shkalle më të ulët
+      webhook:
+        events: Përzgjidhni akte për dërgim
+        url: Ku do të dërgohen aktet
     labels:
       account:
         fields:
@@ -178,6 +198,7 @@ sq:
         setting_use_pending_items: Mënyra ngadalë
         severity: Rëndësi
         sign_in_token_attempt: Kod sigurie
+        title: Titull
         type: Lloj importimi
         username: Emër përdoruesi
         username_or_email: Emër përdoruesi ose Email
@@ -186,6 +207,14 @@ sq:
         with_dns_records: Përfshi zëra MX dhe IP-ra të përkatësisë
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Fshihe plotësisht
+          warn: Fshihe me një sinjalizim
+      form_admin_settings:
+        backups_retention_period: Periudhë mbajtjeje arkivash përdoruesish
+        content_cache_retention_period: Periudhë mbajtjeje lënde fshehtine
+        media_cache_retention_period: Periudhë mbajtjeje lënde media
       interactions:
         must_be_follower: Blloko njoftime nga jo-ndjekës
         must_be_following: Blloko njoftime nga persona që s’i ndiqni
@@ -199,6 +228,7 @@ sq:
         ip: IP
         severities:
           no_access: Bllokoji hyrjen
+          sign_up_block: Blloko regjistrime
           sign_up_requires_approval: Kufizo regjistrime
         severity: Rregull
       notification_emails:
@@ -219,7 +249,19 @@ sq:
         name: Hashtag
         trendable: Lejoje këtë hashtag të shfaqet në prirje
         usable: Lejoji mesazhet të përdorin këtë hashtag
+      user:
+        role: Rol
+      user_role:
+        color: Ngjyrë steme
+        highlighted: Shfaqe rolin si një stemë në profile përdoruesish
+        name: Emër
+        permissions_as_keys: Leje
+        position: Përparësi
+      webhook:
+        events: Akte të aktivizuar
+        url: URL pikëmbarimi
     'no': Jo
+    not_recommended: Jo e këshilluar
     recommended: E rekomanduar
     required:
       mark: "*"

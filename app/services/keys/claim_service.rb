@@ -72,7 +72,7 @@ class Keys::ClaimService < BaseService
 
   def build_post_request(uri)
     Request.new(:post, uri).tap do |request|
-      request.on_behalf_of(@source_account, :uri)
+      request.on_behalf_of(@source_account)
       request.add_headers(HEADERS)
     end
   end

@@ -30,9 +30,9 @@ class Export
   end
 
   def to_following_accounts_csv
-    CSV.generate(headers: ['Account address', 'Show boosts'], write_headers: true) do |csv|
+    CSV.generate(headers: ['Account address', 'Show boosts', 'Notify on new posts', 'Languages'], write_headers: true) do |csv|
       account.active_relationships.includes(:target_account).reorder(id: :desc).each do |follow|
-        csv << [acct(follow.target_account), follow.show_reblogs]
+        csv << [acct(follow.target_account), follow.show_reblogs, follow.notify, follow.languages&.join(', ')]
       end
     end
   end

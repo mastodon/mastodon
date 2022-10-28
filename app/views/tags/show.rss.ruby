@@ -1,14 +1,12 @@
 RSS::Builder.build do |doc|
-  doc.title("##{@tag.name}")
-  doc.description(I18n.t('rss.descriptions.tag', hashtag: @tag.name))
+  doc.title("##{@tag.display_name}")
+  doc.description(I18n.t('rss.descriptions.tag', hashtag: @tag.display_name))
   doc.link(tag_url(@tag))
   doc.last_build_date(@statuses.first.created_at) if @statuses.any?
-  doc.logo(full_pack_url('media/images/logo_transparent_white.svg'))
   doc.generator("Mastodon v#{Mastodon::Version.to_s}")
 
   @statuses.each do |status|
     doc.item do |item|
-      item.title(l(status.created_at))
       item.link(ActivityPub::TagManager.instance.url_for(status))
       item.pub_date(status.created_at)
       item.description(rss_status_content_format(status))
@@ -28,7 +26,7 @@ RSS::Builder.build do |doc|
       end
 
       status.tags.each do |tag|
-        item.category(tag.name)
+        item.category(tag.display_name)
       end
     end
   end

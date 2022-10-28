@@ -77,6 +77,7 @@ class Api::V1::StatusesController < Api::BaseController
     authorize @status, :destroy?
 
     @status.discard
+    StatusPin.find_by(status: @status)&.destroy
     @status.account.statuses_count = @status.account.statuses_count - 1
     json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
 

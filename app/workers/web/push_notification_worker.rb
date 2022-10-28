@@ -51,7 +51,7 @@ class Web::PushNotificationWorker
   private
 
   def push_notification_json
-    json = I18n.with_locale(@subscription.locale || I18n.default_locale) do
+    json = I18n.with_locale(@subscription.locale.presence || I18n.default_locale) do
       ActiveModelSerializers::SerializableResource.new(
         @notification,
         serializer: Web::NotificationSerializer,

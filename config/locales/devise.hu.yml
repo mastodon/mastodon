@@ -12,7 +12,7 @@ hu:
       last_attempt: Már csak egy próbálkozásod maradt, mielőtt a fiókodat zároljuk.
       locked: A fiókodat zároltuk.
       not_found_in_database: Helytelen %{authentication_keys} vagy jelszó.
-      pending: A fiókod felülvizsgálat alatt áll, még mielőtt használhatnád.
+      pending: A fiókod még engedélyezésre vár.
       timeout: A munkameneted lejárt. Kérjük, a folytatáshoz jelentkezz be újra.
       unauthenticated: A folytatás előtt be kell jelentkezned vagy regisztrálnod kell.
       unconfirmed: A folytatás előtt meg kell erősítened az e-mail címed.
@@ -22,7 +22,7 @@ hu:
         action_with_app: Megerősítés majd vissza ide %{app}
         explanation: Ezzel az e-mail címmel kezdeményeztek regisztrációt a(z) %{host} oldalon. Csak egy kattintás, és a felhasználói fiókodat aktiváljuk. Ha a regisztrációt nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
         explanation_when_pending: Ezzel az e-mail címmel meghívást kértél a(z) %{host} oldalon. Ahogy megerősíted az e-mail címed, átnézzük a jelentkezésedet. Ennek ideje alatt nem tudsz belépni. Ha a jelentkezésed elutasítjuk, az adataidat töröljük, más teendőd nincs. Ha a kérelmet nem te kezdeményezted, kérjük tekintsd ezt az e-mailt tárgytalannak.
-        extra_html: Kérjük tekintsd át a <a href="%{terms_path}">a szerver szabályzatát</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
+        extra_html: Tekintsd át a <a href="%{terms_path}">a kiszolgáló szabályait</a> és <a href="%{policy_path}">a felhasználási feltételeket</a>.
         subject: 'Mastodon: Megerősítési lépések ehhez az instancehez: %{instance}'
         title: E-mail cím megerősítése
       email_changed:
@@ -32,7 +32,7 @@ hu:
         title: Új e-mail cím
       password_change:
         explanation: A fiókodhoz tartozó jelszót megváltoztattuk.
-        extra: Ha nem te kezdeményezted a fiókodhoz tartozó jelszó módosítását, valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a szervered adminisztrátorával.
+        extra: Ha nem te kérted a fiókod jelszavának módosítását, akkor valaki hozzáférhetett a fiókodhoz. Legjobb, ha azonnal megváltoztatod a jelszavadat; ha nem férsz hozzá a fiókodhoz, vedd fel a kapcsolatot a kiszolgálód adminisztrátorával.
         subject: 'Mastodon: Jelszavad megváltoztattuk'
         title: Sikeres jelszómódosítás
       reconfirmation_instructions:

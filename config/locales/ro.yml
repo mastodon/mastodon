@@ -1,64 +1,11 @@
 ---
 ro:
   about:
-    about_hashtag_html: Acestea sunt postări publice etichetate cu <strong>#%{hashtag}</strong>. Poți interacționa cu ele dacă ai un cont oriunde în rețea.
     about_mastodon_html: 'Rețeaua socială a viitorului: Fără reclame, fără supraveghere corporativă, design etic și descentralizare! Dețineți-vă datele cu Mastodon!'
-    about_this: Despre
-    active_count_after: activi
-    active_footnote: Utilizatori activi lunar (UAL)
-    administered_by: 'Administrat de:'
-    api: API
-    apps: Aplicații mobile
-    apps_platforms: Folosește Mastodon de pe iOS, Android și alte platforme
-    browse_directory: Răsfoiți directorul de profil și filtrați după interese
-    browse_local_posts: Răsfoiți un flux live al postărilor publice de pe acest server
-    browse_public_posts: Răsfoiește un flux live de postări publice pe Mastodon
-    contact: Contact
     contact_missing: Nesetat
     contact_unavailable: Indisponibil
-    discover_users: Descoperă utilizatori
-    documentation: Documentație
-    federation_hint_html: Cu un cont pe %{instance} vei putea urmări oameni pe orice server de Mastodon sau mai departe.
-    get_apps: Încercați o aplicație pentru mobil
     hosted_on: Mastodon găzduit de %{domain}
-    instance_actor_flash: |
-      Acest cont este un actor virtual folosit pentru a reprezenta serverul în sine și nu un utilizator individual.
-      Acesta este folosit în scopuri de federație și nu ar trebui blocat decât dacă doriți să blocați întreaga instanță, în ce caz trebuie să utilizaţi un bloc de domeniu.
-    learn_more: Află mai multe
-    privacy_policy: Politica de confidenţialitate
-    rules: Regulile serverului
-    rules_html: 'Mai jos este un rezumat al regulilor pe care trebuie să le urmezi dacă vrei să ai un cont pe acest server de Mastodon:'
-    see_whats_happening: Vezi ce se întâmplă
-    server_stats: 'Statistici server:'
-    source_code: Cod sursă
-    status_count_after:
-      few: stări
-      one: stare
-      other: de stări
-    status_count_before: Care au postat
-    tagline: Urmăriți prietenii și descoperiți alții noi
-    terms: Termeni de serviciu
-    unavailable_content: Conținut indisponibil
-    unavailable_content_description:
-      domain: Server
-      reason: Motiv
-      rejecting_media: 'Fişierele media de pe aceste servere nu vor fi procesate sau stocate şi nici o miniatură nu va fi afişată, necesitând click manual la fişierul original:'
-      rejecting_media_title: Fișiere media filtrate
-      silenced: 'Postările de pe aceste servere vor fi ascunse în cronologii și conversații publice, și nici o notificare nu va fi generată de interacțiunile utilizatorilor lor decât dacă le urmărești:'
-      silenced_title: Servere limitate
-      suspended: 'Nici o informație de pe aceste servere nu va fi procesată, stocată sau schimbată, ceea ce face imposibilă orice interacțiune sau comunicare cu utilizatorii de pe aceste servere:'
-      suspended_title: Servere suspendate
-    unavailable_content_html: Mastodon vă permite în general să vedeți conținutul din orice alt server și să interacționați cu utilizatorii din rețea. Acestea sunt excepţiile care au fost făcute pe acest server.
-    user_count_after:
-      few: utilizatori
-      one: utilizator
-      other: de utilizatori
-    user_count_before: Casa a
-    what_is_mastodon: Ce este Mastodon?
   accounts:
-    choices_html: 'Alegerile lui %{name}:'
-    endorsements_hint: Poți promova oameni pe care îi urmărești din interfața web, și ei vor apărea aici.
-    featured_tags_hint: Puteți promova anumite hashtag-uri care vor fi afișate aici.
     follow: Urmărește
     followers:
       few: Urmăritori
@@ -66,15 +13,9 @@ ro:
       other: De Urmăritori
     following: Urmăriți
     instance_actor_flash: Acest cont este un actor virtual folosit pentru a reprezenta serverul în sine și nu un utilizator individual. Acesta este utilizat în scopuri federative şi nu trebuie suspendat.
-    joined: Înscris %{date}
     last_active: ultima activitate
     link_verified_on: Proprietatea acestui link a fost verificată la %{date}
-    media: Media
-    moved_html: "%{name} s-a mutat la %{new_profile_link}:"
-    network_hidden: Aceste informaţii nu sunt disponibile
     nothing_here: Nu există nimic aici!
-    people_followed_by: Persoane pe care %{name} le urmărește
-    people_who_follow: Persoane care urmăresc pe %{name}
     pin_errors:
       following: Trebuie să urmăriți deja persoana pe care doriți să o aprobați
     posts:
@@ -82,14 +23,6 @@ ro:
       one: Postare
       other: De Postări
     posts_tab_heading: Postări
-    posts_with_replies: Postări și răspunsuri
-    roles:
-      admin: Admin
-      bot: Robot
-      group: Grup
-      moderator: Moderator
-    unavailable: Profil indisponibil
-    unfollow: Nu mai urmării
   admin:
     account_actions:
       action: Efectuează acțiunea
@@ -106,7 +39,6 @@ ro:
       avatar: Poză de profil
       by_domain: Domeniu
       change_email:
-        changed_msg: E-mail de cont schimbat cu succes!
         current_email: E-mailul curent
         label: Schimbă adresa de email
         new_email: E-mail nou
@@ -184,12 +116,6 @@ ro:
       reset: Resetează
       reset_password: Resetează parola
       resubscribe: Resubscrie-te
-      role: Permisiuni
-      roles:
-        admin: Administrator
-        moderator: Moderator
-        staff: Personal
-        user: Utilizator
       search: Caută
       search_same_email_domain: Alţi utilizatori cu acelaşi domeniu de e-mail
       search_same_ip: Alţi utilizatori cu acelaşi IP
@@ -295,16 +221,12 @@ ro:
   applications:
     created: Aplicație creată cu succes
     destroyed: Aplicație ștearsă cu succes
-    invalid_url: URL-ul furnizat nu este valid
     regenerate_token: Regenerează token-ul de acces
     token_regenerated: Token de acces regenerat cu succes
     warning: Fiți foarte atent cu aceste date. Nu le împărtășiți niciodată cu cineva!
     your_token: Token-ul tău de acces
   auth:
-    apply_for_account: Solicită o invitație
     change_password: Parolă
-    checkbox_agreement_html: Sunt de acord cu <a href="%{rules_path}" target="_blank">regulile serverului</a> şi <a href="%{terms_path}" target="_blank">termenii de serviciu</a>
-    checkbox_agreement_without_rules_html: Sunt de acord cu <a href="%{terms_path}" target="_blank">termenii serviciului</a>
     delete_account: Șterge contul
     delete_account_html: Dacă vrei să ștergi acest cont <a href="%{path}">poți începe aici</a>. Va trebui să confirmi această acțiune.
     description:
@@ -334,7 +256,6 @@ ro:
       confirming: Se așteaptă finalizarea confirmării prin e-mail.
       pending: Cererea dvs. este în curs de revizuire de către personalul nostru. Este posibil să dureze ceva timp. Veți primi un e-mail dacă cererea dvs. este aprobată.
       redirecting_to: Contul dvs. este inactiv deoarece în prezent se redirecționează către %{acct}.
-    trouble_logging_in: Probleme la conectare?
   authorize_follow:
     already_following: Urmărești deja acest cont
     already_requested: Ați trimis deja o cerere de urmărire către acel cont
@@ -379,9 +300,6 @@ ro:
       data_removal: Postările tale și alte date vor fi șterse permanent
       email_change_html: Puteți <a href="%{path}">schimba adresa de e-mail</a> fără a șterge contul dvs
       email_contact_html: Dacă tot nu ajunge, puteți trimite e-mail la <a href="mailto:%{email}">%{email}</a> pentru ajutor
-  directories:
-    explanation: Descoperă oameni și companii în funcție de interesele lor
-    explore_mastodon: Explorează %{title}
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nu ai permisiunea să vizitezi această pagină.
@@ -419,7 +337,6 @@ ro:
       title: Editează filtru
     errors:
       invalid_context: Lipsa conținut sau acesta este invalid
-      invalid_irreversible: Filtrarea ireversibilă funcționează dor cu context din fluxul Acasă și notificări
     index:
       delete: Șterge
       title: Filtre
@@ -437,7 +354,6 @@ ro:
       following: Lista de urmărire
       muting: Lista de ignorare
     upload: Încarcă
-  in_memoriam_html: În Memoria.
   invites:
     delete: Dezactivați
     expired: Expirat
@@ -527,22 +443,7 @@ ro:
     remove_selected_follows: Anulează urmărirea utilizatorilor selectați
     status: Starea contului
   remote_follow:
-    acct: Introduceți numele@domeniu din care doriți să acționați
     missing_resource: Nu s-a putut găsi URL-ul de redirecționare necesar pentru contul dvs
-    no_account_html: Nu ai un cont? Poți <a href='%{sign_up_path}' target='_blank'>să te înregistrezi aici</a>
-    proceed: Continuă să urmărești
-    prompt: 'Vei urmării pe:'
-    reason_html: "<strong>De ce este necesar acest pas?</strong> <code>%{instance}</code> ar putea să nu fie serverul în care sunteți înregistrat, așa că trebuie să te redirecționăm către serverul tău de acasă."
-  remote_interaction:
-    favourite:
-      proceed: Continuă să favorizezi
-      prompt: 'Vrei să favorizezi această postare:'
-    reblog:
-      proceed: Continuă să dai impuls
-      prompt: 'Vrei să impulsionezi această postare:'
-    reply:
-      proceed: Continuă să răspunzi
-      prompt: 'Vrei să răspunzi la această postare:'
   scheduled_statuses:
     over_daily_limit: Ai depășit limita de %{limit} postări programate pentru acea zi
     over_total_limit: Ai depășit limita de %{limit} postări programate
@@ -604,87 +505,6 @@ ro:
     sensitive_content: Conținut sensibil
   tags:
     does_not_match_previous_name: nu se potrivește cu numele anterior
-  terms:
-    body_html: |
-      <h2> Politica de confidențialitate </h2>
-      <h3 id = "collect"> Ce informații colectăm? </h3>
-
-      <Ul>
-      <li> <em> Informații de bază despre cont </em>: dacă vă înregistrați pe acest server, vi se poate cere să introduceți un nume de utilizator, o adresă de e-mail și o parolă. De asemenea, puteți introduce informații suplimentare despre profil, cum ar fi numele afișat și biografie, și puteți încărca o imagine de profil și o imagine de antet. Numele de utilizator, numele afișat, biografia, imaginea de profil și imaginea antetului sunt întotdeauna listate public. </li>
-      <li> <em> Postări, umăriri și alte informații publice </em>: Lista persoanelor pe care le urmărești este listată public, aceeași este valabilă și pentru urmăritorii tăi. Când trimiteți un mesaj, data și ora sunt stocate, precum și aplicația din care ați trimis mesajul. Mesajele pot conține atașamente media, cum ar fi imagini și videoclipuri. Postările publice și nelistate sunt disponibile public. Când aveți o postare pe profilul dvs., aceasta este, de asemenea, informații disponibile publicului. Postările dvs. sunt livrate urmăritorilor dvs., în unele cazuri înseamnă că sunt livrate pe diferite servere și copiile sunt stocate acolo. Când ștergeți postări, acest lucru este de asemenea livrat urmăritorilor dvs. Acțiunea de a impulsiona sau favoriza o altă postare este întotdeauna publică. </li>
-      <li> <em> Postări directe și doar pentru urmăritori </em>: toate postările sunt stocate și procesate pe server. Postările destinate numai urmăritorilor sunt livrate urmăritorilor și utilizatorilor dvs. menționați în ele, iar postările directe sunt livrate numai utilizatorilor menționați în ele. În unele cazuri, înseamnă că sunt livrate pe diferite servere și copiile sunt stocate acolo. Facem un efort de bună-credință pentru a limita accesul la aceste postări doar persoanelor autorizate, dar este posibil ca alte servere să nu reușească. Prin urmare, este important să revizuiți serverele de pe care urmăritorii dvs provin. Puteți comuta o opțiune pentru a aproba și respinge manual următorii noi din setări. <em> Vă rugăm să rețineți că operatorii serverului și orice server primitor pot vizualiza astfel de mesaje </em> și că destinatarii pot face captură de ecran, copie sau distribuirea lor. <em> Nu împărtășiți informații periculoase  pe servere. </em> </li>
-      <li> <em> IP-uri și alte metadate </em>: atunci când vă conectați, înregistrăm adresa IP de lacare vă conectați, precum și numele aplicației dvs. de navigare pe internet. Toate sesiunile conectate sunt disponibile pentru revizuire și revocare în setări. Cea mai recentă adresă IP folosită este stocată până la 12 luni. De asemenea, putem păstra jurnalele de server care includ adresa IP a fiecărei solicitări către serverul nostru. </li>
-      </ Ul>
-
-      <hr class = "spacer" />
-
-      <h3 id = "use"> Pentru ce folosim informațiile dvs.? </h3>
-
-      <p> Toate informațiile pe care le colectăm de la dvs. pot fi utilizate în următoarele moduri: </p>
-
-      <Ul>
-      <li> Pentru a oferi funcționalitatea de bază a platformei. Puteți interacționa cu conținutul altor persoane și puteți posta propriul conținut atunci când sunteți autentificat. De exemplu, puteți urmări alte persoane pentru a vizualiza postările combinate în fluxul personal. </li>
-      <li> Pentru a ajuta la moderarea comunității, de exemplu, compararea adresei IP cu altele cunoscute pentru a determina evaziunea interdicției sau alte încălcări. </li>
-      <li> Adresa de e-mail pe care o furnizați poate fi utilizată pentru a vă trimite informații, notificări despre alte persoane care interacționează cu conținutul dvs. sau pentru a vă trimite mesaje și pentru a răspunde la întrebări și / sau alte solicitări sau întrebări. </li>
-      </ Ul>
-
-      <hr class = "spacer" />
-
-      <h3 id = "protect"> Cum vă protejăm informațiile? </h3>
-
-      <p> Implementăm o varietate de măsuri de securitate pentru a menține siguranța informațiilor dvs. personale atunci când introduceți, trimiteți sau accesați informațiile dvs. personale. Printre altele, sesiunea navigatorului dvs., precum și traficul dintre aplicațiile dvs. și API-ul, sunt securizate cu SSL, iar parola dvs. este salvată folosind un algoritm puternic unidirecțional. Puteți activa autentificarea în doi pași pentru a asigura accesul suplimentar la contul dvs.. </p>
-
-      <hr class = "spacer" />
-
-      <h3 id = "data-retenție"> Care este politica noastră de păstrare a datelor? </h3>
-
-      <p> Vom depune eforturi de bună credință pentru: </p>
-
-      <Ul>
-      <li>Păstrarea jurnalelor serverului care conțin adresa IP a tuturor solicitărilor către acest server, în măsura în care se păstrează astfel de jurnale, nu mai mult de 90 de zile. </li>
-      <li> Păstrarea adreselor IP asociate cu utilizatorii înregistrați nu mai mult de 12 luni. </li>
-      </ Ul>
-
-      <p> Puteți solicita și descărca o arhivă a conținutului dvs., inclusiv postările, atașamentele media, poza de profil și imaginea antetului. </p>
-
-      <p> Puteți șterge ireversibil contul în orice moment. </p>
-
-      <hr class = "spacer" />
-
-      <h3 id = "cookies"> Folosim module cookie? </h3>
-
-      <P> Da. Cookie-urile sunt fișiere mici pe care un site sau furnizorul său de servicii le transferă pe hard disk-ul computerului prin intermediul navigatorului dvs. Web (dacă permiteți). Aceste cookie-uri permit site-ului să vă recunoască navigatorul și, dacă aveți un cont înregistrat, să îl asociați cu contul dvs. înregistrat. </p>
-
-      <p> Folosim cookie-uri pentru a înțelege și salva preferințele pentru vizitele viitoare. </p>
-
-      <hr class = "spacer" />
-
-      <h3 id = "divulgare"> Dezvăluim informații părților din afară? </h3>
-
-      <p> Nu vindem, comercializăm sau nu transferăm în alte părți informațiilor dvs. de identificare personală. Aceasta nu include terți de încredere care ne ajută în operarea site-ului nostru, în desfășurarea activității noastre sau în deservirea dvs., atât timp cât acele părți acceptă să păstreze aceste informații confidențiale. De asemenea, putem elibera informațiile dvs. atunci când considerăm că eliberarea este adecvată pentru a respecta legea, a aplica politicile site-ului nostru sau a proteja drepturile noastre, proprietatea sau siguranța noastră sau a altor persoane. </p>
-
-      <p> Conținutul dvs. public poate fi descărcat de alte servere din rețea. Postările dvs. publice și cele doar pentru urmăritori sunt livrate pe serverele de unde provin urmăritorii dvs., iar mesajele directe sunt livrate către serverele destinatarilor, în măsura în care acei urmăritori sau destinatari provin de pe un server diferit decât acesta. </p>
-
-      <p> Atunci când autorizați o aplicație să vă utilizeze contul, în funcție de sfera de autorizare pe care o aprobați, aceasta poate accesa informațiile despre profilul dvs. public, lista dvs. de urmăritori, urmăritorii, listele dvs., toate postările și favorizările dvs. Aplicațiile nu vă pot accesa niciodată adresa de e-mail sau parola. </p>
-
-      <hr class = "spacer" />
-
-      <h3 id = "children"> Utilizarea site-ului de către copii </h3>
-
-      <p> Site-ul nostru, produsele și serviciile noastre sunt destinate tuturor persoanelor care au cel puțin 16 ani. Dacă aveți sub 16 ani, conform cerințelor GDPR (<a href="https://ro.wikipedia.org/wiki/General_Data_Protection_Regulation"> Regulamentul general privind protecția datelor </a>) nu utilizați acest site . </ p>
-
-      <p> Cerințele legii pot fi diferite dacă acest server se află într-o altă jurisdicție. </p>
-
-      <hr class = "spacer" />
-
-      <h3 id = "changes"> Modificări ale politicii noastre de confidențialitate </h3>
-
-      <p> Dacă decidem să ne schimbăm politica de confidențialitate, vom posta aceste modificări pe această pagină. </p>
-
-      <p> Acsta a fost actualizat ultima dată pe 27 aprilie 2020. </p>
-
-      <p> Adaptat inițial din <a href="https://github.com/discourse/discourse"> Politica de confidențialitate Discourse </a>. </p>
-    title: "%{instance} Termeni de utilizare și Politica de confidențialitate"
   themes:
     contrast: Mastodon (contrast mare)
     default: Mastodon (Întunecat)
@@ -720,20 +540,11 @@ ro:
         suspend: Cont suspendat
     welcome:
       edit_profile_action: Configurare profil
-      edit_profile_step: Vă puteți personaliza profilul încărcând un avatar, un antet, schimbându-vă numele afișat și multe altele. Dacă dorești să revizuiești noi urmăritori înainte de a primi permisiunea de a te urmări, îți poți bloca contul.
       explanation: Iată câteva sfaturi pentru a începe
       final_action: Începe să postezi
-      final_step: 'Începe să postezi! Chiar și fără urmăritori, mesajele publice pot fi văzute de alții, de exemplu pe fluxul local și pe hashtag-uri. Poate doriți să vă prezentați pe hashtag-ul #introducere.'
       full_handle: Numele tău complet
       full_handle_hint: Asta este ceea ce vei putea spune prietenilor pentru a te putea contacta sau pentru a te urmării de pe un alt server.
-      review_preferences_action: Schimbă preferințele
-      review_preferences_step: Asigură-te că setezi preferințele tale, cum ar fi e-mailurile pe care dorești să le primești sau ce nivel de confidențialitate vrei ca mesajele tale să fie implicite. Dacă nu ai rău de mişcare, ai putea alege să activezi imaginile GIF să pornească automat.
       subject: Bine ai venit
-      tip_federated_timeline: Fluxul federat este o vedere de ansamblu a rețelei Mastodon. Dar include doar oameni la care s-au abonat vecinii tăi, așa că nu este completă.
-      tip_following: Urmăriți implicit administratorul(ii) serverului. Pentru a găsi oameni mai interesanți, verificați fluxurile locale și federalizate.
-      tip_local_timeline: Fluxul local este o vedere în ansamblu a persoanelor de pe %{instance}. Aceștia sunt vecinii tăi apropiați!
-      tip_mobile_webapp: Dacă navigatorul tău mobil îți oferă să adaugi Mastodon pe ecranul tău de pornire, poți primi notificări push. Se comportă ca o aplicație nativă în multe moduri!
-      tips: Sfaturi
       title: Bine ai venit la bord, %{name}!
   users:
     follow_limit_reached: Nu poți urmări mai mult de %{limit} persoane

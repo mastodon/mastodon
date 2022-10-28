@@ -13,7 +13,7 @@ RSpec.describe Api::V1::ReportsController, type: :controller do
   end
 
   describe 'POST #create' do
-    let!(:admin) { Fabricate(:user, admin: true) }
+    let!(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     let(:scopes) { 'write:reports' }
     let(:status) { Fabricate(:status) }

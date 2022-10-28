@@ -4,7 +4,7 @@ class ActivityPub::FollowersSynchronizationsController < ActivityPub::BaseContro
   include SignatureVerification
   include AccountOwnedConcern
 
-  before_action :require_signature!
+  before_action :require_account_signature!
   before_action :set_items
   before_action :set_cache_headers
 

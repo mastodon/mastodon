@@ -445,7 +445,7 @@ RSpec.describe Account, type: :model do
 
     it 'accepts arbitrary limits' do
       2.times.each { Fabricate(:account, display_name: "Display Name") }
-      results = Account.search_for("display", 1)
+      results = Account.search_for("display", limit: 1)
       expect(results.size).to eq 1
     end
 
@@ -473,7 +473,7 @@ RSpec.describe Account, type: :model do
         )
         account.follow!(match)
 
-        results = Account.advanced_search_for('A?l\i:c e', account, 10, true)
+        results = Account.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
         expect(results).to eq [match]
       end
 
@@ -485,7 +485,7 @@ RSpec.describe Account, type: :model do
           domain: 'example.com'
         )
 
-        results = Account.advanced_search_for('A?l\i:c e', account, 10, true)
+        results = Account.advanced_search_for('A?l\i:c e', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -498,7 +498,7 @@ RSpec.describe Account, type: :model do
           suspended: true
         )
 
-        results = Account.advanced_search_for('username', account, 10, true)
+        results = Account.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -511,7 +511,7 @@ RSpec.describe Account, type: :model do
 
         match.user.update(approved: false)
 
-        results = Account.advanced_search_for('username', account, 10, true)
+        results = Account.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
 
@@ -524,7 +524,7 @@ RSpec.describe Account, type: :model do
 
         match.user.update(confirmed_at: nil)
 
-        results = Account.advanced_search_for('username', account, 10, true)
+        results = Account.advanced_search_for('username', account, limit: 10, following: true)
         expect(results).to eq []
       end
     end
@@ -588,7 +588,7 @@ RSpec.describe Account, type: :model do
 
     it 'accepts arbitrary limits' do
       2.times { Fabricate(:account, display_name: "Display Name") }
-      results = Account.advanced_search_for("display", account, 1)
+      results = Account.advanced_search_for("display", account, limit: 1)
       expect(results.size).to eq 1
     end
 

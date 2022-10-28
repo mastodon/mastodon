@@ -14,7 +14,7 @@ describe AccountInteractions do
     context 'account with Follow' do
       it 'returns { target_account_id => true }' do
         Fabricate(:follow, account: account, target_account: target_account)
-        is_expected.to eq(target_account_id => { reblogs: true, notify: false })
+        is_expected.to eq(target_account_id => { reblogs: true, notify: false, languages: nil })
       end
     end
 

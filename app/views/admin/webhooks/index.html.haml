@@ -1,0 +1,18 @@
+- content_for :page_title do
+  = t('admin.webhooks.title')
+
+- content_for :heading_actions do
+  = link_to t('admin.webhooks.add_new'), new_admin_webhook_path, class: 'button' if can?(:create, :webhook)
+
+%p= t('admin.webhooks.description_html')
+
+%hr.spacer/
+
+- if @webhooks.empty?
+  %div.muted-hint.center-text
+    = t 'admin.webhooks.empty'
+- else
+  .applications-list
+    = render partial: 'webhook', collection: @webhooks
+
+  = paginate @webhooks

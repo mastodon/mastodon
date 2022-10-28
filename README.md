@@ -1,5 +1,8 @@
-![Mastodon](https://i.imgur.com/NhZc40l.png)
-========
+<h1><picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
+  <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
+  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
+</picture></h1>
 
 [![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
 [![Build Status](https://img.shields.io/circleci/project/github/mastodon/mastodon.svg)][circleci]
@@ -35,7 +38,7 @@ Click below to **learn more** in a video:
 
 ## Features
 
-<img src="https://docs.joinmastodon.org/elephant.svg" align="right" width="30%" />
+<img src="/app/javascript/images/elephant_ui_working.svg?raw=true" align="right" width="30%" />
 
 ### No vendor lock-in: Fully interoperable with any conforming platform
 
@@ -69,8 +72,8 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 
 - **PostgreSQL** 9.5+
 - **Redis** 4+
-- **Ruby** 2.5+
-- **Node.js** 12+
+- **Ruby** 2.6+
+- **Node.js** 14+
 
 The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 

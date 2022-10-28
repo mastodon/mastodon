@@ -24,6 +24,10 @@ class Api::BaseController < ApplicationController
     render json: { error: 'Duplicate record' }, status: 422
   end
 
+  rescue_from Date::Error do
+    render json: { error: 'Invalid date supplied' }, status: 422
+  end
+
   rescue_from ActiveRecord::RecordNotFound do
     render json: { error: 'Record not found' }, status: 404
   end
@@ -130,5 +134,11 @@ class Api::BaseController < ApplicationController
 
   def disallow_unauthenticated_api_access?
     authorized_fetch_mode?
+  end
+
+  private
+
+  def respond_with_error(code)
+    render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code
   end
 end

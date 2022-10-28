@@ -13,10 +13,10 @@ class Trends::PreviewCardFilter
   end
 
   def results
-    scope = PreviewCard.unscoped
+    scope = initial_scope
 
     params.each do |key, value|
-      next if %w(page locale).include?(key.to_s)
+      next if %w(page).include?(key.to_s)
 
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
@@ -26,21 +26,30 @@ class Trends::PreviewCardFilter
 
   private
 
+  def initial_scope
+    PreviewCard.select(PreviewCard.arel_table[Arel.star])
+               .joins(:trend)
+               .eager_load(:trend)
+               .reorder(score: :desc)
+  end
+
   def scope_for(key, value)
     case key.to_s
     when 'trending'
       trending_scope(value)
+    when 'locale'
+      PreviewCardTrend.where(language: value)
     else
       raise "Unknown filter: #{key}"
     end
   end
 
   def trending_scope(value)
-    scope = Trends.links.query
-
-    scope = scope.in_locale(@params[:locale].to_s) if @params[:locale].present?
-    scope = scope.allowed if value == 'allowed'
-
-    scope.to_arel
+    case value
+    when 'allowed'
+      PreviewCardTrend.allowed
+    else
+      PreviewCardTrend.all
+    end
   end
 end

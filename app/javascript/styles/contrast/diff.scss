@@ -13,10 +13,6 @@
   }
 }
 
-.rich-formatting a,
-.rich-formatting p a,
-.rich-formatting li a,
-.landing-page__short-description p a,
 .status__content a,
 .reply-indicator__content a {
   color: lighten($ui-highlight-color, 12%);
@@ -70,10 +66,6 @@
 
 .nothing-here {
   color: $darker-text-color;
-}
-
-.public-layout .public-account-header__tabs__tabs .counter.active::after {
-  border-bottom: 4px solid $ui-highlight-color;
 }
 
 .compose-form .autosuggest-textarea__textarea::placeholder,

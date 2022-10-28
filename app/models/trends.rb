@@ -26,7 +26,7 @@ module Trends
   end
 
   def self.request_review!
-    return unless enabled?
+    return if skip_review? || !enabled?
 
     links_requiring_review    = links.request_review
     tags_requiring_review     = tags.request_review
@@ -34,13 +34,17 @@ module Trends
 
     return if links_requiring_review.empty? && tags_requiring_review.empty? && statuses_requiring_review.empty?
 
-    User.staff.includes(:account).find_each do |user|
+    User.those_who_can(:manage_taxonomies).includes(:account).find_each do |user|
       AdminMailer.new_trends(user.account, links_requiring_review, tags_requiring_review, statuses_requiring_review).deliver_later! if user.allows_trends_review_emails?
     end
   end
 
   def self.enabled?
     Setting.trends
+  end
+
+  def self.skip_review?
+    Setting.trendable_by_default
   end
 
   def self.available_locales

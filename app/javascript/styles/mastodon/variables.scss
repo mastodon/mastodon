@@ -12,7 +12,7 @@ $red-bookmark: $warning-red;
 $classic-base-color: #282c37;         // Midnight Express
 $classic-primary-color: #9baec8;      // Echo Blue
 $classic-secondary-color: #d9e1e8;    // Pattens Blue
-$classic-highlight-color: #2b90d9;    // Summer Sky
+$classic-highlight-color: #6364ff;    // Brand purple
 
 // Variables for defaults in UI
 $base-shadow-color: $black !default;
@@ -34,10 +34,11 @@ $primary-text-color: $white !default;
 $darker-text-color: $ui-primary-color !default;
 $dark-text-color: $ui-base-lighter-color !default;
 $secondary-text-color: $ui-secondary-color !default;
-$highlight-text-color: $ui-highlight-color !default;
+$highlight-text-color: lighten($ui-highlight-color, 8%) !default;
 $action-button-color: $ui-base-lighter-color !default;
 $passive-text-color: $gold-star !default;
 $active-passive-text-color: $success-green !default;
+
 // For texts on inverted backgrounds
 $inverted-text-color: $ui-base-color !default;
 $lighter-text-color: $ui-base-lighter-color !default;
@@ -48,10 +49,11 @@ $cjk-langs: ja, ko, zh-CN, zh-HK, zh-TW;
 
 // Variables for components
 $media-modal-media-max-width: 100%;
+
 // put margins on top and bottom of image to avoid the screen covered by image.
 $media-modal-media-max-height: 80%;
 
-$no-gap-breakpoint: 415px;
+$no-gap-breakpoint: 1175px;
 
 $font-sans-serif: 'mastodon-font-sans-serif' !default;
 $font-display: 'mastodon-font-display' !default;

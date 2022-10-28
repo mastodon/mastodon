@@ -1,21 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import StatusListContainer from '../ui/containers/status_list_container';
-import Column from '../../components/column';
-import ColumnBackButton from '../../components/column_back_button';
-import ColumnHeader from '../../components/column_header';
-import { addColumn, removeColumn, moveColumn } from '../../actions/columns';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import { connectListStream } from '../../actions/streaming';
-import { expandListTimeline } from '../../actions/timelines';
-import { fetchList, deleteList, updateList } from '../../actions/lists';
-import { openModal } from '../../actions/modal';
-import MissingIndicator from '../../components/missing_indicator';
-import LoadingIndicator from '../../components/loading_indicator';
+import { connect } from 'react-redux';
+import { addColumn, removeColumn, moveColumn } from 'mastodon/actions/columns';
+import { fetchList, deleteList, updateList } from 'mastodon/actions/lists';
+import { openModal } from 'mastodon/actions/modal';
+import { connectListStream } from 'mastodon/actions/streaming';
+import { expandListTimeline } from 'mastodon/actions/timelines';
+import Column from 'mastodon/components/column';
+import ColumnBackButton from 'mastodon/components/column_back_button';
+import ColumnHeader from 'mastodon/components/column_header';
 import Icon from 'mastodon/components/icon';
+import LoadingIndicator from 'mastodon/components/loading_indicator';
+import MissingIndicator from 'mastodon/components/missing_indicator';
 import RadioButton from 'mastodon/components/radio_button';
+import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -208,6 +209,11 @@ class ListTimeline extends React.PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
           bindToDocument={!multiColumn}
         />
+
+        <Helmet>
+          <title>{title}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

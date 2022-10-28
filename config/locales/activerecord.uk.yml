@@ -21,6 +21,14 @@ uk:
             username:
               invalid: тільки літери, цифри та підкреслення
               reserved: зарезервовано
+        admin/webhook:
+          attributes:
+            url:
+              invalid: не є дійсною URL-адресою
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: не є дійсною URL-адресою
         status:
           attributes:
             reblog:
@@ -30,3 +38,14 @@ uk:
             email:
               blocked: використовує не дозволенного постачальника електронної пошти
               unreachable: не існує
+            role_id:
+              elevated: не може бути вищою за поточну роль
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: включити небезпечні для базової ролі дозволи
+              elevated: не можна включити права, якими не володіє ваша поточна роль
+              own_role: не можна змінити у вашій поточній ролі
+            position:
+              elevated: не може бути вищою за поточну роль
+              own_role: не можна змінити у вашій поточній ролі

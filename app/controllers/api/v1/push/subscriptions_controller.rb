@@ -52,6 +52,6 @@ class Api::V1::Push::SubscriptionsController < Api::BaseController
   def data_params
     return {} if params[:data].blank?
 
-    params.require(:data).permit(:policy, alerts: [:follow, :follow_request, :favourite, :reblog, :mention, :poll, :status])
+    params.require(:data).permit(:policy, alerts: Notification::TYPES)
   end
 end

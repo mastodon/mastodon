@@ -76,7 +76,7 @@
               - if migration.target_account.present?
                 = compact_account_link_to migration.target_account
               - else
-                = migration.pretty_acct
+                = migration.acct
 
             %td= number_with_delimiter migration.followers_count
 
