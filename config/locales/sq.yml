@@ -1,91 +1,27 @@
 ---
 sq:
   about:
-    about_hashtag_html: Këto janë mesazhe publike të etiketuara me <strong>#%{hashtag}</strong>. Mundeni të ndërveproni me ta, nëse keni një llogari kudo qoftë në fedivers.
     about_mastodon_html: 'Rrjeti shoqëror i së ardhmes: Pa reklama, pa survejim nga korporata, konceptim etik dhe decentralizim! Jini zot i të dhënave tuaja, me Mastodon-in!'
-    about_this: Mbi
-    active_count_after: aktive
-    active_footnote: Përdorues Aktivë Mujorë (PAM)
-    administered_by: 'Administruar nga:'
-    api: API
-    apps: Aplikacione për celular
-    apps_platforms: Përdoreni Mastodon-in prej iOS-i, Android-i dhe platformash të tjera
-    browse_directory: Shfletoni një drejtori profilesh dhe filtrojeni sipas interesash
-    browse_local_posts: Shfletoni një rrjedhë të drejtpërdrejtë postimesh publike nga ky shërbyes
-    browse_public_posts: Shfletoni një rrjedhë të drejtpërdrejtë postimesh publike në Mastodon
-    contact: Kontakt
     contact_missing: I parregulluar
     contact_unavailable: N/A
-    continue_to_web: Vazhdoni te aplikacioni web
-    discover_users: Zbuloni përdorues
-    documentation: Dokumentim
-    federation_hint_html: Me një llogari në %{instance}, do të jeni në gjendje të ndiqni persona në çfarëdo shërbyesi Mastodon dhe më tej.
-    get_apps: Provoni një aplikacion për celular
     hosted_on: Mastodon i strehuar në %{domain}
-    instance_actor_flash: |
-      Kjo llogari është një aktor virtual i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual.
-      Përdoret për qëllime federimi dhe s’duhet bllokuar, veç në daçi të bllokoni krejt instancën, me ç’rast do të duhej të përdornit bllokim përkatësie.
-    learn_more: Mësoni më tepër
-    logged_in_as_html: Aktualisht jeni i futur si %{username}.
-    logout_before_registering: Jeni i futur tashmë.
-    privacy_policy: Rregulla Privatësie
-    rules: Rregulla shërbyesi
-    rules_html: 'Më poshtë keni një përmbledhje të rregullave që duhet të ndiqni, nëse doni të keni një llogari në këtë shërbyes Mastodon:'
-    see_whats_happening: Shihni ç'ndodh
-    server_stats: 'Statistika shërbyesi:'
-    source_code: Kod burim
-    status_count_after:
-      one: mesazh
-      other: mesazhe
-    status_count_before: Që kanë krijuar
-    tagline: Rrjet shoqëror i decentralizuar
-    unavailable_content: Shërbyes të moderuar
-    unavailable_content_description:
-      domain: Shërbyes
-      reason: Arsye
-      rejecting_media: 'Kartelat media prej këtyre shërbyesve s’do të përpunohen apo depozitohen, dhe s’do të shfaqet ndonjë miniaturë, duke kërkuar kështu doemos klikim dorazi te kartela origjinale:'
-      rejecting_media_title: Media e filtruar
-      silenced: 'Postimet prej këtyre shërbyesve do të jenë të fshehura në rrjedha kohore dhe biseda publike, dhe prej ndërveprimeve të përdoruesve të tyre s’do të prodhohen njoftime, veç në i ndjekshi:'
-      silenced_title: Shërbyes të heshtuar
-      suspended: 'Prej këtyre shërbyesve s’do të përpunohen, depozitohen apo shkëmbehen të dhëna, duke e bërë të pamundur çfarëdo ndërveprimi apo komunikimi me përdorues prej këtyre shërbyesve:'
-      suspended_title: Shërbyes të pezulluar
-    unavailable_content_html: Mastodon-i përgjithësisht ju lejon të shihni lëndë nga përdorues dhe të ndërveproni me të tillë prej cilitdo shërbyes në fedivers. Këto janë përjashtimet që janë bërë në këtë shërbyes.
-    user_count_after:
-      one: përdorues
-      other: përdorues
-    user_count_before: Shtëpi e
-    what_is_mastodon: Ç’është Mastodon-i?
+    title: Mbi
   accounts:
-    choices_html: 'Zgjedhje të %{name}:'
-    endorsements_hint: Mund t’i mbështesni personat që nga ndërfaqja web, dhe do të shfaqen këtu.
-    featured_tags_hint: Mund të zgjidhni hashtag-ë të veçantë që do të shfaqen këtu.
     follow: Ndiqeni
     followers:
       one: Ndjekës
       other: Ndjekës
     following: Ndjekje
     instance_actor_flash: Kjo llogari është një aktor virtual, i përdorur për të përfaqësuar vetë shërbyesin dhe jo ndonjë përdorues individual. Përdoret për qëllime federimi dhe s’duhet pezulluar.
-    joined: U bë pjesë më %{date}
     last_active: aktiv së fundi
     link_verified_on: Pronësia e kësaj lidhjeje qe kontrolluar më %{date}
-    media: Media
-    moved_html: "%{name} ka kaluar te %{new_profile_link}:"
-    network_hidden: Këto të dhëna s’janë të passhme
     nothing_here: S’ka gjë këtu!
-    people_followed_by: Persona të ndjekur nga %{name}
-    people_who_follow: Persona që ndjekin %{name}
     pin_errors:
       following: Personin që doni të pasqyroni, duhet ta keni ndjekur tashmë
     posts:
       one: Mesazh
       other: Mesazhe
     posts_tab_heading: Mesazhe
-    posts_with_replies: Mesazhe dhe përgjigje
-    roles:
-      bot: Robot
-      group: Grup
-    unavailable: Profil jashtë funksionimi
-    unfollow: Resht së ndjekuri
   admin:
     account_actions:
       action: Kryeje veprimin
@@ -388,6 +324,7 @@ sq:
       listed: Në listë
       new:
         title: Shtoni emoxhi të ri vetjak
+      no_emoji_selected: S’u ndryshuan emoxhi, ngaqë s’qe përzgjedhur i tillë
       not_permitted: S’keni leje të kryeni këtë veprim
       overwrite: Mbishkruaje
       shortcode: Kod i shkurtër
@@ -727,88 +664,15 @@ sq:
       empty: S’janë përcaktuar ende rregulla shërbyesi.
       title: Rregulla shërbyesi
     settings:
-      activity_api_enabled:
-        desc_html: Numër postimesh të postuara lokalisht, përdorues aktivë, dhe regjistrime të reja në kosha javorë
-        title: Botoni statistika përmbledhëse mbi veprimtarinë e përdoruesve te API
-      bootstrap_timeline_accounts:
-        desc_html: Emrat e përdoruesve ndajini prej njëri-tjetrit me presje. Për këto llogari do të garantohet shfaqja te rekomandime ndjekjeje
-        title: Rekomandoji këto llogari për përdorues të rinj
-      contact_information:
-        email: Email biznesi
-        username: Emër përdoruesi kontakti
-      custom_css:
-        desc_html: Ndryshojeni pamjen me CSS të ngarkuar në çdo faqe
-        title: CSS Vetjake
-      default_noindex:
-        desc_html: Prek krejt përdoruesi që s’e kanë ndryshuar vetë këtë rregullim
-        title: Lejo, si parazgjedhje, lënien e përdoruesve jashtë indeksimi nga motorë kërkimesh
       domain_blocks:
         all: Për këdo
         disabled: Për askënd
-        title: Shfaq bllokime përkatësish
         users: Për përdorues vendorë që kanë bërë hyrjen
-      domain_blocks_rationale:
-        title: Shfaq arsye
-      hero:
-        desc_html: E shfaqur në faqen ballore. Këshillohet të paktën 600x100px. Kur nuk caktohet gjë, përdoret miniaturë e shërbyesit
-        title: Figurë heroi
-      mascot:
-        desc_html: E shfaqur në faqe të shumta. Këshillohet të paktën 293x205. Kur nuk caktohet gjë, përdoret simboli parazgjedhje
-        title: Figurë simboli
-      peers_api_enabled:
-        desc_html: Emra përkatësish që ka hasur në fedivers ky shërbyes
-        title: Boto listë shërbyesish të gjetur
-      preview_sensitive_media:
-        desc_html: Në sajte të tjera, paraparjet e lidhjeve do të shfaqin një miniaturë, edhe pse medias i është vënë shenjë si rezervat
-        title: Shfaq në paraparje OpenGraph media me shenjën rezervat
-      profile_directory:
-        desc_html: Lejoju përdoruesve të jenë të zbulueshëm
-        title: Aktivizo drejtori profilesh
-      registrations:
-        closed_message:
-          desc_html: E shfaqur në faqen ballore, kur regjistrimet janë të mbyllura. Mund të përdorni etiketa HTML
-          title: Mesazh mbylljeje regjistrimesh
-        deletion:
-          desc_html: Lejo këdo të fshijë llogarinë e vet
-          title: Hapni fshirje llogarie
-        require_invite_text:
-          desc_html: Kur regjistrimet lypin miratim dorazi, tekstin e kërkesës për ftesë “Pse doni të merrni pjesë?” bëje të detyrueshëm, në vend se opsional
-          title: Kërkoju përdoruesve të rinj të plotësojnë doemos një tekst kërkese për ftesë
       registrations_mode:
         modes:
           approved: Për regjistrim, lypset miratimi
           none: S’mund të regjistrohet ndokush
           open: Mund të regjistrohet gjithkush
-        title: Mënyrë regjistrimi
-      show_known_fediverse_at_about_page:
-        desc_html: Kur përdoret, do të shfaqë mesazhe prej krejt fediversit të njohur, si paraparje. Përndryshe do të shfaqë vetëm mesazhe vendore
-        title: Përfshi lëndë të federuar në faqe rrjedhe publike kohore të pamirëfilltësuar
-      site_description:
-        desc_html: Paragraf hyrës te faqja ballore. Përshkruani ç’e bën special këtë shërbyes Mastodon dhe çfarëdo gjëje tjetër të rëndësishme. Mund të përdorni etiketa HTML, veçanërisht <code>&lt;a&gt;</code> dhe <code>&lt;em&gt;</code>.
-        title: Përshkrim shërbyesi
-      site_description_extended:
-        desc_html: Një vend i mirë për kodin e sjelljes në shërbyesin tuaj, rregulla, udhëzime dhe gjëra të tjera që e bëjnë të veçantë këtë shërbyes. Mund të përdorni etiketa HTML
-        title: Informacion i zgjeruar vetjak
-      site_short_description:
-        desc_html: E shfaqur në anështyllë dhe etiketa meta. Përshkruani në një paragraf të vetëm ç’është Mastodon-i dhe ç’e bën special këtë shërbyes. Në u lëntë i zbrazët, për shërbyesin do të përdoret përshkrimi parazgjedhje.
-        title: Përshkrim i shkurtër shërbyesi
-      site_terms:
-        desc_html: Mund të shkruani rregullat tuaja të privatësisë. Mundeni të përdorni etiketa HTML
-        title: Rregulla vetjake privatësie
-      site_title: Emër shërbyesi
-      thumbnail:
-        desc_html: I përdorur për paraparje përmes OpenGraph-it dhe API-t. Këshillohet 1200x630px
-        title: Miniaturë shërbyesi
-      timeline_preview:
-        desc_html: Shfaqni lidhje te rrjedhë kohore publike në faqen hyrëse dhe lejoni te rrjedhë kohore publike hyrje API pa mirëfilltësim
-        title: Lejo në rrjedhë kohore publike hyrje pa mirëfilltësim
-      title: Rregullime sajti
-      trendable_by_default:
-        desc_html: Lënda specifike në modë prapë mund të ndalohet shprehimisht
-        title: Lejoni prirje pa shqyrtim paraprak
-      trends:
-        desc_html: Shfaqni publikisht hashtag-ë të shqyrtuar më parë që janë popullorë tani
-        title: Hashtag-ë popullorë tani
     site_uploads:
       delete: Fshi kartelën e ngarkuar
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
@@ -862,6 +726,9 @@ sq:
         description_html: Këto janë lidhje që ndahen aktualisht shumë me llogari prej të cilave shërbyesi juaj sheh postime. Mund të ndihmojë përdoruesit tuaj të gjejnë se ç’po ndodh në botë. S’shfaqen lidhje publikisht, deri sa të miratoni botuesin. Mundeni edhe të lejoni ose hidhni poshtë lidhje individuale.
         disallow: Hiq lejimin e lidhjes
         disallow_provider: Mos e lejo botuesin
+        no_link_selected: S’u ndryshuan lidhje, ngaqë s’qe përzgjedhur e tillë
+        publishers:
+          no_publisher_selected: S’u ndryshuan botues, ngaqë s’qe përzgjedhur i tillë
         shared_by_over_week:
           one: Ndarë me të tjerë nga një person gjatë javës së kaluar
           other: Ndarë me të tjerë nga %{count} vetë gjatë javës së kaluar
@@ -881,6 +748,7 @@ sq:
         description_html: Këto janë postime të cilat shërbyesi juaj di se po ndahen shumë dhe po zgjidhen si të parapëlqyera për çastin. Mund të ndihmojnë përdoruesit tuaj të rinj dhe të riardhur të gjejnë më tepër vetë për të ndjekur. S’shfaqen postime publikisht, pa miratuar ju autorin dhe autori lejon që llogaria e tij t’u sugjerohet të tjerëve. Mundeni edhe të lejoni, ose hidhni, poshtë postime individuale.
         disallow: Mos lejo postim
         disallow_account: Mos lejo autor
+        no_status_selected: S’u ndryshuan postime në modë, ngaqë s’qe përzgjedhur i tillë
         not_discoverable: Autori s’ka zgjedhur të jetë i zbulueshëm
         shared_by:
           one: Ndarë me të tjerë, ose shënuar si e parapëlqyer një herë
@@ -896,6 +764,7 @@ sq:
           tag_uses_measure: përdorime gjithsej
         description_html: Këta hashtag-ë aktualisht po shfaqen në një numër të madh postimesh që sheh shërbyesi juaj. Kjo mund të ndihmojë përdoruesit tuaj të gjejnë se për çfarë po flasin më shumë njerëzit aktualisht. Pa i miratuar ju, nuk shfaqen publikisht hashtag-ë.
         listable: Mund të sugjerohet
+        no_tag_selected: S’u ndryshuan etiketa, ngaqë s’qe përzgjedhur e tillë
         not_listable: S’do të sugjerohet
         not_trendable: S’do të shfaqet nën të modës
         not_usable: S’mund të përdoret
@@ -958,11 +827,8 @@ sq:
     new_trends:
       body: 'Gjërat vijuese lypin një shqyrtim, përpara se të mund të shfaqen publikisht:'
       new_trending_links:
-        no_approved_links: Aktualisht s’ka lidhje në modë të miratuara.
-        requirements: 'Cilido prej këtyre kandidatëve mund të kalojë lidhjen e miratuar për në modë #%{rank}, që aktualisht është “%{lowest_link_title}” me pikë %{lowest_link_score}.'
         title: Lidhje në modë
       new_trending_statuses:
-        no_approved_statuses: Aktualisht s’ka postime në modë të miratuar.
         title: Postime në modë
       new_trending_tags:
         no_approved_tags: Aktualisht s’ka hashtag-ë në modë të miratuar.
@@ -1002,10 +868,8 @@ sq:
     warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
-    apply_for_account: Kërko ftesë
+    apply_for_account: Bëhuni pjesë e radhës
     change_password: Fjalëkalim
-    checkbox_agreement_html: Pajtohem me <a href="%{rules_path}" target="_blank">rregullat e shërbyesit</a> dhe <a href="%{terms_path}" target="_blank">kushtet e shërbimit</a>
-    checkbox_agreement_without_rules_html: Pajtohem me <a href="%{terms_path}" target="_blank">kushtet e shërbimit</a>
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
     description:
@@ -1024,6 +888,7 @@ sq:
     migrate_account: Kaloni në një tjetër llogari
     migrate_account_html: Nëse doni ta ridrejtoni këtë llogari te një tjetër, këtë mund <a href="%{path}">ta formësoni këtu</a>.
     or_log_in_with: Ose bëni hyrjen me
+    privacy_policy_agreement_html: I kam lexuar dhe pajtohem me <a href="%{privacy_policy_path}" target="_blank">rregullat e privatësisë</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1031,12 +896,18 @@ sq:
     registration_closed: "%{instance} s’pranon anëtarë të rinj"
     resend_confirmation: Ridërgo udhëzime ripohimi
     reset_password: Ricaktoni fjalëkalimin
+    rules:
+      preamble: Këto vendosen dhe zbatimi i tyre është nën kujdesin e moderatorëve të %{domain}.
+      title: Disa rregulla bazë.
     security: Siguri
     set_new_password: Caktoni fjalëkalim të ri
     setup:
       email_below_hint_html: Nëse adresa email më poshtë s’është e saktë, mund ta ndryshoni këtu dhe të merrni një email të ri ripohimi.
       email_settings_hint_html: Email-i i ripohimit u dërgua te %{email}. Nëse ajo adresë email s’është e saktë, mund ta ndryshoni që nga rregullimet e llogarisë.
       title: Ujdisje
+    sign_up:
+      preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
+      title: Le të ujdisim llogarinë tuaj në %{domain}.
     status:
       account_status: Gjendje llogarie
       confirming: Po pritet që të plotësohet ripohimi i email-it.
@@ -1045,7 +916,6 @@ sq:
       redirecting_to: Llogaria juaj është joaktive, ngaqë aktualisht ridrejton te %{acct}.
       view_strikes: Shihni paralajmërime të dikurshme kundër llogarisë tuaj
     too_fast: Formulari u parashtrua shumë shpejt, riprovoni.
-    trouble_logging_in: Probleme me hyrjen?
     use_security_key: Përdor kyç sigurie
   authorize_follow:
     already_following: E ndiqni tashmë këtë llogari
@@ -1103,10 +973,6 @@ sq:
       more_details_html: Për më tepër hollësi, shihni <a href="%{terms_path}">rregulla privatësie</a>.
       username_available: Emri juaj i përdoruesit do të jetë sërish i passhëm
       username_unavailable: Emri juaj i përdoruesit do të mbetet i papërdorshëm
-  directories:
-    directory: Drejtori profilesh
-    explanation: Zbuloni përdorues bazuar në interesat e tyre
-    explore_mastodon: Eksploroni %{title}
   disputes:
     strikes:
       action_taken: Vendim i marrë
@@ -1220,9 +1086,6 @@ sq:
         hint: Ky filtër aplikohet për të përzgjedhur postime individuale, pavarësisht kriteresh të tjera. Që nga ndërfaqja web mund të shtoni më tepër postime te ky filtër.
         title: Postime të filtruar
   footer:
-    developers: Zhvillues
-    more: Më tepër…
-    resources: Burime
     trending_now: Prirjet e tashme
   generic:
     all: Krejt
@@ -1265,7 +1128,6 @@ sq:
       following: Listë ndjekjesh
       muting: Listë heshtimesh
     upload: Ngarkoje
-  in_memoriam_html: In Memoriam.
   invites:
     delete: Çaktivizoje
     expired: Ka skaduar
@@ -1421,6 +1283,8 @@ sq:
     other: Tjetër
     posting_defaults: Parazgjedhje postimesh
     public_timelines: Rrjedha kohore publike
+  privacy_policy:
+    title: Rregulla Privatësie
   reactions:
     errors:
       limit_reached: U mbërrit në kufirin e reagimeve të ndryshme
@@ -1443,22 +1307,7 @@ sq:
     remove_selected_follows: Hiqe ndjekjen e përdoruesve të përzgjedhur
     status: Gjendje llogarie
   remote_follow:
-    acct: Jepni çiftin tuaj emërpërdoruesi@përkatësi prej të cilit doni që të veprohet
     missing_resource: S’u gjet dot URL-ja e domosdoshme e ridrejtimit për llogarinë tuaj
-    no_account_html: S’keni llogari? Mund të <a href='%{sign_up_path}' target='_blank'>regjistroheni këtu</a>
-    proceed: Ripohoni ndjekjen
-    prompt: 'Do të ndiqni:'
-    reason_html: "<strong>Pse është i domosdoshëm ky hap?</strong> <code>%{instance}</code> mund të mos jetë shërbyesi ku jeni regjistruar, ndaj na duhet t’ju ridrejtojmë së pari te shërbyesi juaj Home."
-  remote_interaction:
-    favourite:
-      proceed: Ripohoni parapëlqimin
-      prompt: 'Doni të parapëlqeni këtë mesazh:'
-    reblog:
-      proceed: Ripohoni përforcimin
-      prompt: 'Doni të përforconi këtë mesazh:'
-    reply:
-      proceed: Ripohoni përgjigjen
-      prompt: 'Doni t’i përgjigjeni këtij mesazhi:'
   reports:
     errors:
       invalid_rules: s’i referohet ndonjë rregulli të vlefshëm
@@ -1630,89 +1479,6 @@ sq:
       too_late: Është shumë vonë për apelim të këtij paralajmërimi
   tags:
     does_not_match_previous_name: s’përputhet me emrin e mëparshëm
-  terms:
-    body_html: |
-      <h2>Rregulla Privatësie</h2>
-      <h3 id="collect">Ç’informacion mbledhim?</h3>
-
-      <ul>
-        <li><em>Hollësi elementare llogarish</em>: Nëse regjistroheni në këtë shërbyes, mund t’ju kërkohet të jepni një emër përdoruesi, një adresë email dhe një fjalëkalim. Mund të jepni edhe hollësi shtesë profili, bie fjala, një emër për në ekran dhe jetëshkrim, si dhe të ngarkoni një foto profili dhe një figurë kryesh. Emri i përdoruesit, emri në ekran, jetëshkrimi, fotoja e profilit dhe figura e kryes janë përherë të dukshme publikisht.</li>
-        <li><em>Postime, ndjekje dhe të tjera hollësi publike</em>: Lista e personave që ndiqni tregohet publikisht, po kjo vlen edhe për ndjekësit tuaj. Kur parashtroni një mesazh, depozitohen gjithashtu data dhe koha, si dhe aplikacioni prej nga parashtruar mesazhin. Mesazhet mund të përmbajnë bashkëngjitje media, bie fjala, foto dhe video. Postimet publike dhe jo të tilla janë të passhme publikisht. Kur te profili juaj përfshini një postim, edhe ky është informacion i passhëm publikisht. Postimet tuaja u dërgohen ndjekësve tuaj, në disa raste kjo do të thotë se dërgohen te shërbyes të ndryshëm dhe në ta depozitohen kopje të tyre. Kur fshini postime, kjo ka gjasa t’u dërgohet ndjekësve tuaj. Veprimi i riblogimit, ose vënia shenjë si i parapëlqyer një postimi tjetër është përherë gjë publike.</li>
-        <li><em>Postime të drejtpërdrejta dhe vetëm për ndjekës</em>: Krejt postimet depozitohen dhe përpunohen te shërbyesi. Postimet vetëm për ndjekës u dërgohen ndjekësve tuaj dhe përdoruesve që përmenden në ta, kurse postimet e drejtpërdrejta u dërgohen vetëm përdoruesve të përmendur në to. Në disa raste kjo do të thotë se dërgohen në shërbyes të ndryshëm dhe kopje të tyre depozitohen atje. Përpiqemi në mirëbesim të kufizojmë hyrjen në këto postime të vetëm personave të autorizuar, por shërbyes të tjerë mund të mos bëjnë kështu. Ndaj është e rëndësishme të shqyrtohen shërbyesit të cilëve u përkasin ndjekësit tuaj. Që nga rregullimet mund të aktivizoni/çaktivizoni një mundësi për miratim dhe hedhje poshtë dorazi të ndjekësve të rinj. <em>Ju lutemi, kini parasysh se operatorët e shërbyesve dhe cilido shërbyes marrës mund t’i shohë këto mesazhe</em>, si dhe se marrësit mund të bëjnë foto ekrani, kopjojnë, ose rindajnë me të tjerët ato mesazhe. <em>Mos ndani me të tjerë gjëra me spec përmes Mastodon-it.</em></li>
-        <li><em>IP-ra dhe të tjera tejtëdhëna</em>: Kur bëni hyrjen në llogari, regjistrojmë adresën IP prej nga hyni, si dhe emrin e aplikacionit që përdorni për shfletim. Krejt sesionet me hyrje mund t’i shqyrtoni dhe shfuqizoni që nga rregullimet. Adresa e fundit IP e përdorur depozitohet për deri 12 muaj. Mund të mbajmë gjithashtu regjistra shërbyesi që përfshijnë adresën IP të çdo kërkese ndaj shërbyesit tonë.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Për se e përdorim informacionin tuaj?</h3>
-
-      <p>Çfarëdo hollësi që mbledhim prej jush mund të përdoret në rrugët vijuese:</p>
-
-      <ul>
-        <li>Për të dhënë funksionet bazë të Mastodon-it. Me lëndën e personave të tjerë mund të ndërveproni, si dhe të postoni lëndën tuaj, vetëm kur jeni i futur në llogarinë tuaj. Për shembull, mund të ndiqni persona të tjerë për të parë postimet e tyre në rrjedhën tuaj kohore të personalizuar.</li>
-        <li>Për të ndihmuar në moderimin e bashkësisë, për shembull, krahasimi i adresës tuaj IP me të tjera të ditura, për të pikasur shmangie dëbimesh, apo cenime të tjera.</li>
-        <li>Adresa email që jepni mund të përdoret për t’ju dërguar informacion, njoftime mbi persona të tjerë që ndërveprojnë me lëndën tuaj, ose që ju dërgojnë mesazhe, si dhe për t’iu përgjigjur kërkesave dhe/ose çështjeve apo pyetjeve të tjera.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Si e mbrojmë informacionin tuaj?</h3>
-
-      <p>Sendërtojmë një larmi masash sigurie për të ruajtur parrezikshmërinë e informacionit tuaj personal, kur jepni, parashtroni ose përdorni informacionin tuaj personal. Mes të tjerash, sesioni i shfletuesit tuaj, si dhe trafiku mes aplikacioneve tuaja dhe API-t sigurohen me SSL dhe fjalëkalimi juaj fshehtëzohet me një algoritëm të fuqishëm njëkahësh. Për të siguruar më tej hyrjen në llogarinë tuaj, mund të aktivizoni mirëfilltësim dufaktorësh.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Cili është rregulli ynë për mbajtje të dhënash?</h3>
-
-      <p>Do të përpiqemi në mirëbesim:</p>
-
-      <ul>
-        <li>Të mbajmë regjistra shërbyesi që përmbajnë adresën IP të krejt kërkesave të bëra këtij shërbyesi, ashtu siç mbahen këta regjistra, për jo më shumë se 90 ditë.</li>
-        <li>Të mbajmë për jo më shumë se 12 muaj adresat IP përshoqëruar përdoruesve të regjistruar.</li>
-      </ul>
-
-      <p>Mund të kërkoni dhe shkarkoni një arkiv të lëndës tuaj, përfshi postimet tuaja, bashkëngjitje media, foto profili dhe figure kryesh.</p>
-
-      <p>Mund të fshini kurdo në mënyrë të pakthyeshme llogarinë tuaj.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">A përdorim <em>cookies</em>?</h3>
-
-      <p>Po. Cookie-t janë kartela të vockla që një sajt ose furnizuesi i shërbimit përkatës shpërngul në diskun e kompjuterit tuaj përmes shfletuesit tuaj (nëse e lejoni). Këto <em>cookies</em> i bëjnë të mundur sajtit të njohë shfletuesin tuaj dhe, nëse keni regjistruar një llogari, t’ia përshoqërojë atë llogarisë që keni regjistruar.</p>
-
-      <p>Cookie-t i përdorim për të kuptuar dhe ruajtur parapëlqimet tuaja për vizita të ardhshme.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">A u japim palëve të jashtme ndonjë informacion?</h3>
-
-      <p>Nuk u shesim, shkëmbejmë, apo shpërngulim informacion tuajin personalisht të identifikueshëm palëve të jashtme. Këtu nuk përfshin palë të treta të besuara që na ndihmojnë në funksionimin e sajtit tonë, në mbajtjen në këmbë të biznesit tonë, ose për t’ju shërbyer juve, për sa kohë që këto palë pajtohen me mbajtjen rezervat të këtij informacioni. Mundet edhe të japim informacion tuajin, kur besojmë se dhënia është e duhur për të qenë në pajtim me ligjet, për të zbatuar rregullat tonë mbi sajtin, ose për të mbrojtur të drejtat, pronën apo sigurinë tonë apo të të tjerëve.</p>
-
-      <p>Lënda juaj publike mund të shkarkohet nga shërbyes të tjerë në rrjet. Postim tuaja publike, si dhe ato vetëm për ndjekësit, u dërgohen shërbyesve ku gjenden ndjekësit tuaj, ndërsa mesazhet e drejtpërdrejtë u dërgohen shërbyesve të marrësve, në rastin kur këta ndjekës apo marrës gjenden në një tjetër shërbyes nga ky.</p>
-
-      <p>Kur autorizoni një aplikacion të përdorë llogarinë tuaj, në varësi të fushëveprimit të lejeve që miratoni, ky mund të hyjë në hollësitë e profilit tuaj publik, listën e atyre që ndiqni, ndjekësit tuaj, listat tuaja, krejt postimet tuaja dhe të parapëlqyerit tuaj. Aplikaconet s’mund të njohin kurrë adresën tuaj email dhe fjalëkalimin tuaj.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Përdorim sajti nga fëmijë</h3>
-
-      <p>Nëse ky shërbyes gjendet në BE ose ZEE: Sajti, produktet dhe shërbimet tona u adresohen të tëra personave që janë të paktën 16 vjeç. Nëse jeni nën moshën 16 vjeç, sipas domosdoshmërive të GDPR-së (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">Rregullorja e Përgjithshme e Mbrojtjes së të Dhënave</a>) mos e përdorni këtë sajt.</p>
-
-      <p>Nëse ky shërbyes gjendet në ShBA: Sajti, produktet dhe shërbimet tona u adresohen të tëra personave që janë të paktën 13 vjeç. Nëse jeni nën moshën 13 vjeç, sipas domosdoshmërive të COPPA-s (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Ligji i Mbrojtjes së Privatësisë Internetore të Fëmijëve</a>) mos e përdorni këtë sajt.</p>
-
-      <p>kërkesat ligjore mund të jenë të tjera, nëse ky shërbyes gjendet nën një juridiksion tjetër.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Ndryshime te Rregullat tona të Privatësisë</h3>
-
-      <p>Nëse vendosim të ndryshojmë rregullat tona të privatësisë, ato ndryshime do t’i postojmë te kjo faqe.</p>
-
-      <p>Ky dokument licencohet sipas CC-BY-SA. Qe përditësuar së fundi më 26 maj 2022.</p>
-
-      <p>Përshtatur fillimisht prej <a href="https://github.com/discourse/discourse">rregulave të privatësisë së Discourse-it</a>.</p>
-    title: Rregulla Privatësie të %{instance}
   themes:
     contrast: Mastodon (Me shumë kontrast)
     default: Mastodon (I errët)
@@ -1791,20 +1557,13 @@ sq:
         suspend: Llogari e pezulluar
     welcome:
       edit_profile_action: Ujdisje profili
-      edit_profile_step: Profilin mund ta personalizoni duke ngarkuar një avatar, figurë kryesh, duke ndryshuar emrin tuaj në ekran, etj. Nëse dëshironi të shqyrtoni ndjekës të rinj, përpara se të jenë lejuar t’ju ndjekin, mund të kyçni llogarinë tuaj.
+      edit_profile_step: Profilin tuaj mund ta përshtatni duke ngarkuar një figurë, duke ndryshuar emrin tuaj në ekran, etj. Mund të zgjidhni të shqyrtoni ndjekës të rinj, para se të jenë lejuar t’ju ndjekin.
       explanation: Ja disa ndihmëza, sa për t’ia filluar
       final_action: Filloni të postoni
-      final_step: 'Filloni të postoni! Edhe pse pa ndjekës, mesazhet tuaj publike mund të shihen nga të tjerët, për shembull te rrjedha kohore vendore dhe në hashtag-ë. Mund të donit të prezantoni veten nën hashtagun #introductions.'
+      final_step: 'Filloni të postoni! Edhe pa ndjekës, postimet tuaja publike mund të shihen nga të tjerët, për shembull, në rrjedhën kohore vendore, ose në hashtag-ë. Mund të doni të prezantoni veten përmes hashtag-ut #introductions.'
       full_handle: Identifikuesi juaj i plotë
       full_handle_hint: Kjo është ajo çka do të duhej t’u tregonit shokëve tuaj, që të mund t’ju dërgojnë mesazhe ose t’ju ndjekin nga një shërbyes tjetër.
-      review_preferences_action: Ndryshoni parapëlqime
-      review_preferences_step: Mos harroni të caktoni parapëlqimet tuaja, fjala vjen, ç’email-e dëshironi të merrni, ose çfarë shkalle privatësie do të donit të kishin, si parazgjedhje, postimet tuaja. Nëse nuk ju merren mendtë nga rrotullimi, mund të zgjidhni të aktivizoni vetëluajtje GIF-esh.
       subject: Mirë se vini te Mastodon-i
-      tip_federated_timeline: Rrjedha kohore e të federuarve është një pamje e fluksit të rrjetit Mastodon. Por përfshin vetëm persona te të cilët janë pajtuar fqinjët tuaj, pra s’është e plotë.
-      tip_following: Përgjegjësin e shërbyesit tuaj e ndiqni, si parazgjedhje. Për të gjetur më shumë persona interesantë, shihni te rrjedha kohore vendore dhe ajo e të federuarve.
-      tip_local_timeline: Rrjedha kohore vendore është një pamje e fluksit të njerëzve në %{instance}. Këta janë fqinjët tuaj më të afërt!
-      tip_mobile_webapp: Nëse shfletuesi juaj celular ju ofron të shtohet Mastodon-i te skena juaj e kreut, mund të merrni njoftime <em>push</em>. Nga shumë pikëpamje vepron si një aplikacion i brendshëm i platformës së celularit!
-      tips: Ndihmëza
       title: Mirë se vini, %{name}!
   users:
     follow_limit_reached: S’mund të ndiqni më tepër se %{limit} persona

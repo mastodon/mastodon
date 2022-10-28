@@ -1,91 +1,27 @@
 ---
 is:
   about:
-    about_hashtag_html: Þetta eru opinberar færslur sem merkt eru með <strong>#%{hashtag}</strong>. Þú getur unnið með þau ef þú ert með skráðan aðgang einhversstaðar í skýjasambandinu.
     about_mastodon_html: 'Samfélagsnet framtíðarinnar: Engar auglýsingar, ekkert eftirlit stórfyrirtækja, siðleg hönnun og engin miðstýring! Þú átt þín eigin gögn í Mastodon!'
-    about_this: Um hugbúnaðinn
-    active_count_after: virkt
-    active_footnote: Mánaðarlega virkir notendur (MAU)
-    administered_by: 'Stýrt af:'
-    api: API-kerfisviðmót
-    apps: Farsímaforrit
-    apps_platforms: Notaðu Mastodon frá iOS, Android og öðrum stýrikerfum
-    browse_directory: Skoða notendur og sía eftir áhugamálum
-    browse_local_posts: Skoðaðu kvikt streymi af opinberum færslum á þessum vefþjóni
-    browse_public_posts: Skoðaðu kvikt streymi af opinberum færslum á Mastodon
-    contact: Hafa samband
     contact_missing: Ekki skilgreint
     contact_unavailable: Ekki til staðar
-    continue_to_web: Halda áfram í vefforritið
-    discover_users: Uppgötva notendur
-    documentation: Hjálparskjöl
-    federation_hint_html: Með notandaaðgangi á %{instance} geturðu fylgst með fólki á hvaða Mastodon-þjóni sem er og reyndar víðar.
-    get_apps: Prófaðu farsímaforrit
     hosted_on: Mastodon hýst á %{domain}
-    instance_actor_flash: |
-      Þessi aðgangur er sýndarnotandi sem er notaður til að tákna sjálfan vefþjóninn en ekki neinn einstakan notanda.
-      Tilgangur hans tengist virkni vefþjónasambandsins og ætti alls ekki að loka á hann nema að þú viljir útiloka allan viðkomandi vefþjón, en þá ætti frekar að útiloka sjálft lénið.
-    learn_more: Kanna nánar
-    logged_in_as_html: Þú ert núna skráð/ur inn sem %{username}.
-    logout_before_registering: Þú ert þegar skráð/ur inn.
-    privacy_policy: Persónuverndarstefna
-    rules: Reglur netþjónsins
-    rules_html: 'Hér fyrir neðan er yfirlit yfir þær reglur sem þú þarft að fara eftir ef þú ætlar að vera með notandaaðgang á þessum Mastodon-netþjóni:'
-    see_whats_happening: Sjáðu hvað er í gangi
-    server_stats: 'Tölfræði þjóns:'
-    source_code: Grunnkóði
-    status_count_after:
-      one: færsla
-      other: færslur
-    status_count_before: Sem stóðu fyrir
-    tagline: Dreift samfélagsnet
-    unavailable_content: Ekki tiltækt efni
-    unavailable_content_description:
-      domain: Vefþjónn
-      reason: Ástæða
-      rejecting_media: 'Myndefnisskrár frá þessum vefþjónum verða hvorki birtar né geymdar og engar smámyndir frá þeim birtar, sem krefst þess að smellt sé handvirkt til að nálgast upprunalegu skrárnar:'
-      rejecting_media_title: Síuð gögn
-      silenced: 'Færslur frá þessum vefþjónum verða faldar í opinberum tímalínum og samtölum, auk þess sem engar tilkynningar verða til þvið aðgerðir notendanna, nema ef þú fylgist með þeim:'
-      silenced_title: Þaggaðir netþjónar
-      suspended: 'Engin gögn frá þessum vefþjónum verða unnin, geymd eða skipst á, sem gerir samskipti við notendur frá þessum vefþjónum ómöguleg:'
-      suspended_title: Netþjónar í frysti
-    unavailable_content_html: Mastodon leyfir þér almennt að skoða og eiga við efni frá notendum frá hvaða vefþjóni sem er í vefþjónasambandinu. Þetta eru þær undantekningar sem hafa verið gerðar á þessum tiltekna vefþjóni.
-    user_count_after:
-      one: notanda
-      other: notendur
-    user_count_before: Hýsir
-    what_is_mastodon: Hvað er Mastodon?
+    title: Um hugbúnaðinn
   accounts:
-    choices_html: "%{name} hefur valið:"
-    endorsements_hint: Þú getur auglýst efni frá fólki sem þú fylgir í vefviðmótinu og mun það birtast hér.
-    featured_tags_hint: Þú getur gefið sérstökum myllumerkjum aukið vægi og birtast þau þá hér.
     follow: Fylgjast með
     followers:
       one: fylgjandi
       other: fylgjendur
     following: Fylgist með
     instance_actor_flash: Þessi notandaaðgangur er sýndarnotandi sem stendur fyrir sjálfan netþjóninn en ekki neinn einstakling. Hann er notaður við skýjasambandsmiðlun og ætti ekki að setja hann í bið eða banna.
-    joined: Gerðist þátttakandi %{date}
     last_active: síðasta virkni
     link_verified_on: Eignarhald á þessum tengli var athugað þann %{date}
-    media: Myndefni
-    moved_html: "%{name} hefur verið færður í %{new_profile_link}:"
-    network_hidden: Þessar upplýsingar ekki tiltækar
     nothing_here: Það er ekkert hér!
-    people_followed_by: Fólk sem %{name} fylgist með
-    people_who_follow: Fólk sem fylgist með %{name}
     pin_errors:
       following: Þú þarft að vera þegar að fylgjast með þeim sem þú ætlar að mæla með
     posts:
       one: Færsla
       other: Færslur
     posts_tab_heading: Færslur
-    posts_with_replies: Færslur og svör
-    roles:
-      bot: Róbót
-      group: Hópur
-    unavailable: Notandasnið ekki tiltækt
-    unfollow: Hætta að fylgja
   admin:
     account_actions:
       action: Framkvæma aðgerð
@@ -388,6 +324,7 @@ is:
       listed: Skráð
       new:
         title: Bæta við nýju sérsniðnu tjáningartákni
+      no_emoji_selected: Engum táknum var breytt þar sem engin voru valin
       not_permitted: Þú hefur ekki réttindi til að framkvæma þessa aðgerð
       overwrite: Skrifa yfir
       shortcode: Stuttkóði
@@ -730,88 +667,15 @@ is:
       empty: Engar reglur fyrir netþjón hafa ennþá verið skilgreindar.
       title: Reglur netþjónsins
     settings:
-      activity_api_enabled:
-        desc_html: Fjöldi staðvært birtra færslna, virkra notenda og nýskráninga í vikulegum skömmtum
-        title: Birta samantektartölfræði um virkni notanda
-      bootstrap_timeline_accounts:
-        desc_html: Aðskildu mörg notendanöfn með kommum. Einungis staðværir og ólæstir aðgangar virka. Þegar þetta er autt er sjálgefið miðað við alla staðværa stjórnendur.
-        title: Sjálfgefnar fylgnistillingar fyrir nýja notendur
-      contact_information:
-        email: Fyrirtækistölvupóstur
-        username: Notandanafn tengiliðar
-      custom_css:
-        desc_html: Breyttu útlitinu með CSS-skilgreiningum sem hlaðið er inn á hverri síðu
-        title: Sérsniðið CSS
-      default_noindex:
-        desc_html: Hefur áhrif á alla þá notendur sem ekki hafa breytt þessum stillingum sjálfir
-        title: Sjálfgefið láta notendur afþakka atriðaskráningu í leitarvélum
       domain_blocks:
         all: Til allra
         disabled: Til engra
-        title: Birta útilokanir á lénum
         users: Til innskráðra staðværra notenda
-      domain_blocks_rationale:
-        title: Birta röksemdafærslu
-      hero:
-        desc_html: Birt á forsíðunni. Mælt með að hún sé a.m.k. 600×100 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
-        title: Aðalmynd
-      mascot:
-        desc_html: Birt á ýmsum síðum. Mælt með að hún sé a.m.k. 293×205 mynddílar. Þegar þetta er ekki stillt, er notuð smámynd netþjónsins
-        title: Mynd af lukkudýri
-      peers_api_enabled:
-        desc_html: Lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu (samtengdum vefþjónum - fediverse)
-        title: Birta lista yfir uppgötvaða netþjóna
-      preview_sensitive_media:
-        desc_html: Forskoðun tengla á önnur vefsvæði mun birta smámynd jafnvel þótt myndefnið sé merkt sem viðkvæmt
-        title: Birta viðkvæmt myndefni í OpenGraph-forskoðun
-      profile_directory:
-        desc_html: Leyfa að hægt sé að finna notendur
-        title: Virkja notandasniðamöppu
-      registrations:
-        closed_message:
-          desc_html: Birt á forsíðu þegar lokað er fyrir nýskráningar. Þú getur notað HTML-einindi
-          title: Skilaboð vegna lokunar á nýskráningu
-        deletion:
-          desc_html: Leyfa öllum að eyða aðgangnum sínum
-          title: Opna eyðingu á notandaaðgangi
-        require_invite_text:
-          desc_html: Þegar nýskráningar krefjast handvirks samþykkis, skal gera "Hvers vegna viltu taka þátt?" boðstexta að skyldu fremur en valkvæðan
-          title: Krefja nýja notendur um að fylla út boðstexta
       registrations_mode:
         modes:
           approved: Krafist er samþykkt nýskráningar
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
-        title: Nýskráningarhamur
-      show_known_fediverse_at_about_page:
-        desc_html: Þegar þetta er óvirkt, takmarkast opinbera tímalínan sem tengt er í af upphafssíðunni við að birta einungis staðvært efni (af sama vefþjóni)
-        title: Hafa með efni úr skýjasambandi á síðu fyrir óauðkennda opinbera tímalínu
-      site_description:
-        desc_html: Kynningarmálsgrein í API. Lýstu því hvað það er sem geri þennan Mastodon-þjón sérstakan, auk annarra mikilvægra upplýsinga. Þú getur notað HTML-einindi, sér í lagi <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
-        title: Lýsing á vefþjóni
-      site_description_extended:
-        desc_html: Góður staður fyrir siðareglur, almennt regluverk, leiðbeiningar og annað sem gerir netþjóninni þinn sérstakann. Þú getur notað HTML-einindi
-        title: Sérsniðnar ítarlegar upplýsingar
-      site_short_description:
-        desc_html: Birt á hliðarspjaldi og í lýsigögnum. Lýstu því hvað Mastodon gerir og hvað það er sem geri þennan vefþjón sérstakan, í einni málsgrein.
-        title: Stutt lýsing á netþjóninum
-      site_terms:
-        desc_html: Þú getur skrifað þína eigin persónuverndarstefnu. Nota má HTML-einindi
-        title: Sérsniðin persónuverndarstefna
-      site_title: Heiti vefþjóns
-      thumbnail:
-        desc_html: Notað við forskoðun í gegnum OpenGraph og API-kerfisviðmót. Mælt með 1200×630 mynddílum
-        title: Smámynd vefþjóns
-      timeline_preview:
-        desc_html: Birta tengil í opinbera tímalínu á upphafssíðu og leyfa aðgang API-kerfisviðmóts að opinberri tímalínu án auðkenningar
-        title: Leyfa óauðkenndan aðgang að opinberri tímalínu
-      title: Stillingar vefsvæðis
-      trendable_by_default:
-        desc_html: Sérstakt vinsælt efni er eftir sem áður hægt að banna sérstaklega
-        title: Leyfa vinsælt efni án undanfarandi yfirferðar
-      trends:
-        desc_html: Birta opinberlega þau áður yfirförnu myllumerki sem eru núna í umræðunni
-        title: Vinsælt
     site_uploads:
       delete: Eyða innsendri skrá
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
@@ -865,6 +729,9 @@ is:
         description_html: Þetta eru tenglar/slóðir sem mikið er deilt af notendum sem netþjónninn þinn sér færslur frá. Þeir geta hjálpað notendunum þínu við að finna út hvað sé í gangi í heiminum. Engir tenglar birtast opinberlega fyrr en þú hefur samþykkt útgefanda þeirra. Þú getur líka leyft eða hafnað eintökum tenglum.
         disallow: Ekki leyfa tengil
         disallow_provider: Ekki leyfa útgefanda
+        no_link_selected: Engum tenglum var breytt þar sem engir voru valdir
+        publishers:
+          no_publisher_selected: Engum útgefendum var breytt þar sem engir voru valdir
         shared_by_over_week:
           one: Deilt af einum aðila síðustu vikuna
           other: Deilt af %{count} aðilum síðustu vikuna
@@ -884,6 +751,7 @@ is:
         description_html: Þetta eru færslur sem netþjónninn þinn veit að er víða deilt eða eru mikið sett í eftirlæti þessa stundina. Þær geta hjálpað nýjum sem eldri notendum þínum við að finna fleira fólk til að fylgjast með. Engar færslur birtast opinberlega fyrr en þú hefur samþykkt höfund þeirra og að viðkomandi höfundur leyfi að efni frá þeim sé notað í tillögur til annarra. Þú getur líka leyft eða hafnað eintökum færslum.
         disallow: Ekki leyfa færslu
         disallow_account: Ekki leyfa höfund
+        no_status_selected: Engum vinsælum færslum var breytt þar sem engar voru valdar
         not_discoverable: Höfundur hefur ekki beðið um að vera finnanlegur
         shared_by:
           one: ShaDeilt eða gert að eftirlæti einu sinni
@@ -899,6 +767,7 @@ is:
           tag_uses_measure: tilvik alls
         description_html: Þetta eru myllumerki sem birtast núna í mjög mörgum færslum sem netþjónninn þinn sér. Þau geta hjálpað notendunum þínu við að finna út hvað sé mest í umræðunni hjá öðru fólki. Engin myllumerki birtast opinberlega fyrr en þú hefur samþykkt þau.
         listable: Má stinga uppá
+        no_tag_selected: Engum merkjum var breytt þar sem engin voru valin
         not_listable: Mun ekki vera stungið uppá
         not_trendable: Mun ekki birtast í vinsældum
         not_usable: Má ekki nota
@@ -962,12 +831,8 @@ is:
     new_trends:
       body: 'Eftirfarandi atriði þarfnast yfirferðar áður en hægt er að birta þau opinberlega:'
       new_trending_links:
-        no_approved_links: Það eru í augnablikinu engir samþykktir vinsælir tenglar.
-        requirements: 'Hver af þessum tillögum gætu farið yfir samþykkta vinsæla tengilinn númer #%{rank}, sem í augnablikinu er "%{lowest_link_title}" með %{lowest_link_score} stig.'
         title: Vinsælir tenglar
       new_trending_statuses:
-        no_approved_statuses: Það eru í augnablikinu engar samþykktar vinsælar færslur.
-        requirements: 'Hver af þessum tillögum gætu farið yfir samþykktu vinsælu færsluna númer #%{rank}, sem í augnablikinu er %{lowest_status_url} með %{lowest_status_score} stig'
         title: Vinsælar færslur
       new_trending_tags:
         no_approved_tags: Það eru í augnablikinu engin samþykkt vinsæl myllumerki.
@@ -1008,10 +873,8 @@ is:
     warning: Farðu mjög varlega með þessi gögn. Þú skalt aldrei deila þeim með neinum!
     your_token: Aðgangsteiknið þitt
   auth:
-    apply_for_account: Beiðni um boð
+    apply_for_account: Fara á biðlista
     change_password: Lykilorð
-    checkbox_agreement_html: Ég samþykki <a href="%{rules_path}" target="_blank">reglur vefþjónsins</a> og <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
-    checkbox_agreement_without_rules_html: Ég samþykki <a href="%{terms_path}" target="_blank">þjónustuskilmálana</a>
     delete_account: Eyða notandaaðgangi
     delete_account_html: Ef þú vilt eyða notandaaðgangnum þínum, þá geturðu <a href="%{path}">farið í það hér</a>. Þú verður beðin/n um staðfestingu.
     description:
@@ -1030,6 +893,7 @@ is:
     migrate_account: Færa á annan notandaaðgang
     migrate_account_html: Ef þú vilt endurbeina þessum aðgangi á einhvern annan, geturðu <a href="%{path}">stillt það hér</a>.
     or_log_in_with: Eða skráðu inn með
+    privacy_policy_agreement_html: Ég hef lesið og samþykkt <a href="%{privacy_policy_path}" target="_blank">persónuverndarstefnuna</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1037,12 +901,18 @@ is:
     registration_closed: "%{instance} samþykkir ekki nýja meðlimi"
     resend_confirmation: Senda leiðbeiningar vegna staðfestingar aftur
     reset_password: Endursetja lykilorð
+    rules:
+      preamble: Þær eru settar og þeim framfylgt af umsjónarmönnum %{domain}.
+      title: Nokkrar grunnreglur.
     security: Öryggi
     set_new_password: Stilla nýtt lykilorð
     setup:
       email_below_hint_html: Ef tölvupóstfangið hér fyrir neðan er rangt, skaltu breyta því hér og fá nýjan staðfestingarpóst.
       email_settings_hint_html: Staðfestingarpósturinn var sendur til %{email}. Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
       title: Uppsetning
+    sign_up:
+      preamble: Með notandaaðgangi á þessum Mastodon-þjóni geturðu fylgst með hverjum sem er á netkerfinu, sama hvar notandaaðgangurinn þeirra er hýstur.
+      title: Förum núna að setja þig upp á %{domain}.
     status:
       account_status: Staða notandaaðgangs
       confirming: Bíð eftir að staðfestingu tölvupósts sé lokið.
@@ -1051,7 +921,6 @@ is:
       redirecting_to: Notandaaðgangurinn þinn er óvirkur vegna þess að hann endurbeinist á %{acct}.
       view_strikes: Skoða fyrri bönn notandaaðgangsins þíns
     too_fast: Innfyllingarform sent inn of hratt, prófaðu aftur.
-    trouble_logging_in: Vandræði við að skrá inn?
     use_security_key: Nota öryggislykil
   authorize_follow:
     already_following: Þú ert að þegar fylgjast með þessum aðgangi
@@ -1109,10 +978,6 @@ is:
       more_details_html: Til að skoða þetta nánar, er gott að líta á <a href="%{terms_path}">persónuverndarstefnuna</a>.
       username_available: Notandanafnið þitt mun verða tiltækt aftur
       username_unavailable: Notandanafnið þitt mun verða áfram ótiltækt
-  directories:
-    directory: Notandasniðamappa
-    explanation: Leitaðu að notendum eftir áhugamálum þeirra
-    explore_mastodon: Kannaðu %{title}
   disputes:
     strikes:
       action_taken: Framkvæmd aðgerð
@@ -1226,9 +1091,6 @@ is:
         hint: Þessi sía virkar til að velja stakar færslur án tillits til annarra skilyrða. Þú getur bætt fleiri færslum í þessa síu í vefviðmótinu.
         title: Síaðar færslur
   footer:
-    developers: Forritarar
-    more: Meira…
-    resources: Tilföng
     trending_now: Í umræðunni núna
   generic:
     all: Allt
@@ -1271,7 +1133,6 @@ is:
       following: Listi yfir þá sem fylgst er með
       muting: Listi yfir þagganir
     upload: Senda inn
-  in_memoriam_html: Minning.
   invites:
     delete: Gera óvirkt
     expired: Útrunnið
@@ -1427,6 +1288,8 @@ is:
     other: Annað
     posting_defaults: Sjálfgefin gildi við gerð færslna
     public_timelines: Opinberar tímalínur
+  privacy_policy:
+    title: Persónuverndarstefna
   reactions:
     errors:
       limit_reached: Hámarki mismunandi viðbragða náð
@@ -1449,22 +1312,7 @@ is:
     remove_selected_follows: Hætta að fylgjast með völdum notendum
     status: Staða aðgangs
   remote_follow:
-    acct: Settu inn notandanafn@lén þaðan sem þú vilt vera virk/ur
     missing_resource: Gat ekki fundið endurbeiningarslóðina fyrir notandaaðganginn þinn
-    no_account_html: Ertu ekki með aðgang? Þú getur <a href='%{sign_up_path}' target='_blank'>nýskráð þig hér</a>
-    proceed: Halda áfram í að fylgjast með
-    prompt: 'Þú ætlar að fara að fylgjast með:'
-    reason_html: "<strong>Hvers vegna er þetta skref nauðsynlegt?</strong> <code>%{instance}</code> er ekki endilega netþjónninn þar sem þú ert skráð/ur, þannig að við verðum að endurbeina þér á heimaþjóninn þinn fyrst."
-  remote_interaction:
-    favourite:
-      proceed: Halda áfram í að setja í eftirlæti
-      prompt: 'Þú ætlar að setja þessa færslu í eftirlæti:'
-    reblog:
-      proceed: Halda áfram í endurbirtingu
-      prompt: 'Þú ætlar að endurbirta þessa færslu:'
-    reply:
-      proceed: Halda áfram í að svara
-      prompt: 'Þú ætlar að svara þessari færslu:'
   reports:
     errors:
       invalid_rules: vísar ekki til gildra reglna
@@ -1636,89 +1484,6 @@ is:
       too_late: Það er orðið of sint að áfrýja þessari refsingu
   tags:
     does_not_match_previous_name: samsvarar ekki fyrra nafni
-  terms:
-    body_html: |
-      <h2>Persónuverndarstefna</h2>
-      <h3 id="collect">Hvaða upplýsingum söfnum við?</h3>
-
-      <ul>
-        <li><em>Grunnupplýsingar um notandaaðgang</em>: Ef þú skráir þig á þennan netþjón gætir þú verið beðinn um að setja inn notandanafn, tölvupóstfang og lykilorð. Þú getur líka slegið inn viðbótarupplýsingar um notandasniðið eins og birtingarnafn og æviágrip og hlaðið inn auðkennismynd og mynd á hausborða. Notandanafn, birtingarnafn, æviágrip, auðkennismynd og hausmynd eru alltaf skráð opinberlega.</li>
-        <li><em>Færslur, fylgjendur og aðrar opinberar upplýsingar</em>: Listinn yfir fólk sem þú fylgist með er skráður opinberlega, það sama á við um fylgjendur þína. Þegar þú sendir skilaboð er dagsetning og tími vistuð sem og forritið sem þú sendir skilaboðin frá. Skilaboð geta innihaldið margmiðlunarviðhengi, svo sem myndir og myndskeið. Opinberar og óskráðar færslur eru aðgengilegar opinberlega. Þegar þú birtir færslu á notandaaðgangnum þínum eru það einnig opinberar upplýsingar. Færslurnar þínar eru afhentar fylgjendum þínum, í sumum tilfellum þýðir það að þær eru sendar á mismunandi netþjóna og afrit eru geymd þar. Þegar þú eyðir færslum er þetta líka sent til fylgjenda þinna. Aðgerðin að endurbirta eða setja aðra færslu sem eftirlæti er alltaf opinber.</li>
-        <li><em>Bein skilaboð og eingöngu til fylgjenda</em>: Allar færslur eru geymdar og unnar á þjóninum. Færslur sem eingöngu eru fyrir fylgjendur eru sendar fylgjendum þínum og notendum sem eru nefndir í þeim og bein skilaboð eru aðeins send til notenda sem nefndir eru í þeim. Í sumum tilfellum þýðir það að þeir eru afhentir á mismunandi netþjóna og afrit eru geymd þar. Við leggjum mikið upp úr því að takmarka aðgang að þessum færslum við viðurkennda aðila, en aðrir netþjónar gætu ekki gert það. Þess vegna er mikilvægt að skoða netþjónanana sem fylgjendur þínir tilheyra. Þú getur virkjað valkosti til að samþykkja og hafna nýjum fylgjendum handvirkt í stillingunum. <em>Vinsamlegast hafðu í huga að stjórnendur netþjónsins og móttökuþjóna geta skoðað slík skilaboð</em> og að viðtakendur geta tekið skjámyndir, afritað eða endurdeilt þeim á annan hátt. <em>Ekki deila neinum viðkvæmum upplýsingum í gegnum Mastodon.</em></li>
-        <li><em>IP-vistföng og önnur lýsigögn</em>: Þegar þú skráir þig inn tökum við upp IP-töluna sem þú skráir þig inn af, svo og heiti vafraforritsins þíns. Allar innskráðar setur eru tiltækar til skoðunar og afturköllunar í stillingunum. Nýjasta IP-talan sem notuð er er geymd í allt að 12 mánuði. Við gætum líka geymt netþjónaskrár sem innihalda IP-tölu hverrar beiðni til netþjónsins okkar.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Í hvað notum við upplýsingarnar þínar?</h3>
-
-      <p>Allar þær upplýsingar sem við söfnum frá þér gætu verið notaðar á eftirfarandi hátt:</p>
-
-      <ul>
-        <li>Til að veita kjarnavirkni Mastodon. Þú getur aðeins haft samskipti við efni annarra og birt þitt eigið efni þegar þú ert skráð/ur inn. Til dæmis geturðu fylgst með öðru fólki til að skoða sameinaðar færslur þeirra á þinni eigin persónulegu heimatímalínu.</li>
-        <li>Til að hjálpa við umsjón samfélagsins, til dæmis að bera saman IP-vistfang þitt við önnur þekkt til að ákvarða bönn eða önnur brot.</li>
-        <li>Tölvupóstfangið sem þú gefur upp gæti verið notað til að senda þér upplýsingar, tilkynningar um annað fólk sem hefur samskipti við efnið þitt eða sendir þér skilaboð og til að svara fyrirspurnum og/eða öðrum beiðnum eða spurningum.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Hvernig verndum við upplýsingarnar þínar?</h3>
-
-      <p>Við innleiðum margvíslegar öryggisráðstafanir til að viðhalda öryggi persónuupplýsinga þinna þegar þú slærð inn, sendir inn eða opnar persónuupplýsingar þínar. Meðal annars er vafralotan þín, sem og umferðin milli forritanna þinna og API-kerfisviðmótsins, tryggð með SSL og lykilorðið þitt er gert að tætigildi með sterku einstefnualgrími. Þú gætir virkjað tveggja-þátta auðkenningu til að tryggja enn frekar aðgang að reikningnum þínum.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Hver er stefna okkar varðandi varðveislu gagna?</h3>
-
-      <p>Við munum leggja okkur fram um að:</p>
-
-      <ul>
-        <li>Geyma netþjónaskrár sem innihalda IP-tölu allra beiðna til þessa netþjóns, að því marki sem slíkar skrár eru geymdar, ekki lengur en í 90 daga.</li>
-        <li>Geyma IP-tölur tengdar skráðum notendum ekki lengur en í 12 mánuði.</li>
-      </ul>
-
-      <p>Þú getur beðið um og sótt safnskrá með efninu þínu, þar á meðal færslurnar þínar, margmiðlunarviðhengjum, auðkennismynd og hausmynd.</p>
-
-      <p>Þú getur eytt reikningnum þínum óafturkræft hvenær sem er.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Notum við vafrakökur?</h3>
-
-      <p>Já. Vafrakökur eru litlar skrár sem síða eða þjónustuaðili hennar flytur á harða disk tölvunnar þinnar í gegnum netvafrann þinn (ef þú leyfir). Þessar vafrakökur gera síðunni kleift að þekkja vafrann þinn og, ef þú ert með skráðan reikning, tengja hann við skráða reikninginn þinn.</p>
-
-      <p>Við notum vafrakökur til að skilja og vista kjörstillingar þínar fyrir framtíðarheimsóknir.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Gefum við utanaðkomandi aðilum einhverjar upplýsingar?</h3>
-
-      <p>Við seljum ekki, skiptum eða sendum á annan hátt til utanaðkomandi aðila neinar persónugreinanlegar upplýsingar um þig. Þetta felur ekki í sér treysta utanaðkomandi aðila sem aðstoða okkur við að reka síðuna okkar, stunda viðskipti við okkur eða þjónusta þig, svo framarlega sem þessir aðilar eru sammála um að halda þessum upplýsingum sem trúnaðarmáli. Við gætum einnig gefið út upplýsingarnar þínar þegar við teljum að það sé viðeigandi til að fara að lögum, framfylgja stefnu okkar á vefsvæðinu eða verja réttindi okkar eða annarra, eignir eða öryggi okkar.</p>
-
-      <p>Opinberu efni frá þér gæti verið hlaðið niður af öðrum netþjónum á netinu. Opinberu færslurnar þínar og þær sem eingöngu eru fyrir fylgjendur eru sendar til netþjónanna þar sem fylgjendur þínir eru hýstir og bein skilaboð eru send til netþjóna viðtakenda, að svo miklu leyti sem þessir fylgjendur eða viðtakendur eru hýstir á öðrum netþjóni en þessum.</p>
-
-      <p>Þegar þú heimilar forriti að nota reikninginn þinn, fer það eftir umfangi þeirra heimilda sem þú samþykkir, hvort það fái aðgang að opinberum upplýsingunum notandaaðgangsins þínus, lista yfir þá sem þú fylgist með, fylgjendur þína, listunum þínum, öllum færslum þínum og eftirlætum. Forrit hafa aldrei aðgang að netfanginu þínu eða lykilorði.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Vefsíðunotkun barna</h3>
-
-      <p>Ef þessi netþjónn er í ESB eða EES: Vefsvæðinu okkar, vörum og þjónustu er öllum beint til fólks sem er að minnsta kosti 16 ára. Ef þú ert yngri en 16 ára, máttu samkvæmt kröfum (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">GDPR - Almennu gagnaverndarreglugerðinni </a>) ekki nota þessa síðu .</p>
-
-      <p>Ef þessi netþjónn er í Bandaríkjunum: Vefsvæðinu okkar, vörum og þjónustu er öllum beint til fólks sem er að minnsta kosti 13 ára. Ef þú ert yngri en 13 ára, máttu samkvæmt kröfum (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">COPPA - Children's Online Privacy Protection Act</a>) ekki nota þessari síðu.</p>
-
-      <p>Lagakröfur geta verið mismunandi ef þessi þjónn er í öðru lögsagnarumdæmi.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Breytingar á persónuverndarstefnu okkar</h3>
-
-      <p>Ef við ákveðum að breyta persónuverndarstefnu okkar munum við birta þær breytingar á þessari síðu.</p>
-
-      <p>Þetta skjal er CC-BY-SA nptkunarleyfi. Það var síðast uppfært 26. maí 2022.</p>
-
-      <p>Upphaflega aðlagað frá <a href="https://github.com/discourse/discourse">persónuverndarstefnu Discourse</a>.</p>
-    title: Persónuverndarstefna á %{instance}
   themes:
     contrast: Mastodon (mikil birtuskil)
     default: Mastodon (dökkt)
@@ -1797,20 +1562,13 @@ is:
         suspend: Notandaaðgangur í bið
     welcome:
       edit_profile_action: Setja upp notandasnið
-      edit_profile_step: Þú getur sérsniðið notandasniðið þitt með því að senda inn auðkennismynd, síðuhaus, breytt birtingarnafninu þínu og ýmislegt fleira. Ef þú vilt yfirfara nýja fylgjendur áður en þeim er leyft að fylgjast með þér geturðu læst aðgangnum þínum.
+      edit_profile_step: Þú getur sérsniðið notandasniðið þitt með því að setja inn auðkennismynd þína, breyta birtingarnafninu þínu og ýmislegt fleira. Þú getur valið að yfirfara nýja fylgjendur áður en þú leyfir þeim að fylgjast með þér.
       explanation: Hér eru nokkrar ábendingar til að koma þér í gang
       final_action: Byrjaðu að skrifa
-      final_step: 'Byrjaðu að tjá þig! Jafnvel án fylgjenda geta aðrir séð opinberar færslur frá þér, til dæmis á staðværu tímalínunni og í myllumerkjum. Þú gætir jafnvel viljað kynna þig með myllumerkinu #introductions.'
+      final_step: 'Byrjaðu að tjá þig! Jafnvel án fylgjenda geta aðrir séð opinberar færslur frá þér, til dæmis á staðværu tímalínunni eða í myllumerkjum. Þú gætir jafnvel viljað kynna þig á myllumerkinu #introductions.'
       full_handle: Fullt auðkenni þitt
       full_handle_hint: Þetta er það sem þú myndir gefa upp við vini þína svo þeir geti sent þér skilaboð eða fylgst með þér af öðrum netþjóni.
-      review_preferences_action: Breyta kjörstillingum
-      review_preferences_step: Gakktu úr skugga um að kjörstillingarnar séu eins og þú vilt hafa þær, eins og t.d. hvaða tölvupóst þú vilt fá, eða hvaða stig friðhelgi þú vilt að færslurnar þínar hafi sjálfgefið. Ef þú hefur ekkert á móti sjónrænu áreiti geturðu virkjað sjálvirka spilun GIF-hreyfimynda.
       subject: Velkomin í Mastodon
-      tip_federated_timeline: Sameiginlega tímalínan er færibandasýn á Mastodon netkerfið. En hún inniheldur bara fólk sem nágrannar þínir eru áskrifendur að, þannig að hún er ekki tæmandi.
-      tip_following: Sjálfgefið er að þú fylgist með stjórnanda eða stjórnendum vefþjónsins. Til að finna fleira áhugavert fólk ættirðu að kíkja á staðværu og sameiginlegu tímalínurnar.
-      tip_local_timeline: Staðværa tímalínan er færibandasýn á allt fólkið á %{instance}. Þetta eru þínir næstu nágrannar!
-      tip_mobile_webapp: Ef farsímavafrinn býður þér að bæta Mastodon á heimaskjáinn þinn, muntu geta tekið á móti ýti-tilkynningum. Það virkar á ýmsa vegu eins og um uppsett forrit sé að ræða!
-      tips: Ábendingar
       title: Velkomin/n um borð, %{name}!
   users:
     follow_limit_reached: Þú getur ekki fylgst með fleiri en %{limit} aðilum

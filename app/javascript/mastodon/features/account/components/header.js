@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { autoPlayGif, me, title, domain } from 'mastodon/initial_state';
+import { autoPlayGif, me, domain } from 'mastodon/initial_state';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import IconButton from 'mastodon/components/icon_button';
@@ -20,7 +20,7 @@ import { Helmet } from 'react-helmet';
 const messages = defineMessages({
   unfollow: { id: 'account.unfollow', defaultMessage: 'Unfollow' },
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
-  cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Cancel follow request' },
+  cancel_follow_request: { id: 'account.cancel_follow_request', defaultMessage: 'Withdraw follow request' },
   requested: { id: 'account.requested', defaultMessage: 'Awaiting approval. Click to cancel follow request' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
@@ -96,6 +96,7 @@ class Header extends ImmutablePureComponent {
     onAddToList: PropTypes.func.isRequired,
     onEditAccountNote: PropTypes.func.isRequired,
     onChangeLanguages: PropTypes.func.isRequired,
+    onInteractionModal: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
@@ -177,7 +178,7 @@ class Header extends ImmutablePureComponent {
       } else if (account.getIn(['relationship', 'requested'])) {
         actionBtn = <Button className={classNames('logo-button', { 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(messages.cancel_follow_request)} title={intl.formatMessage(messages.requested)} onClick={this.props.onFollow} />;
       } else if (!account.getIn(['relationship', 'blocking'])) {
-        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : undefined} />;
+        actionBtn = <Button disabled={account.getIn(['relationship', 'blocked_by'])} className={classNames('logo-button', { 'button--destructive': account.getIn(['relationship', 'following']), 'button--with-bell': bellBtn !== '' })} text={intl.formatMessage(account.getIn(['relationship', 'following']) ? messages.unfollow : messages.follow)} onClick={signedIn ? this.props.onFollow : this.props.onInteractionModal} />;
       } else if (account.getIn(['relationship', 'blocking'])) {
         actionBtn = <Button className='logo-button' text={intl.formatMessage(messages.unblock, { name: account.get('username') })} onClick={this.props.onBlock} />;
       }
@@ -269,7 +270,9 @@ class Header extends ImmutablePureComponent {
     const content         = { __html: account.get('note_emojified') };
     const displayNameHtml = { __html: account.get('display_name_html') };
     const fields          = account.get('fields');
-    const acct            = account.get('acct').indexOf('@') === -1 && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
+    const isLocal         = account.get('acct').indexOf('@') === -1;
+    const acct            = isLocal && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
+    const isIndexable     = !account.get('noindex');
 
     let badge;
 
@@ -323,25 +326,26 @@ class Header extends ImmutablePureComponent {
           {!(suspended || hidden) && (
             <div className='account__header__extra'>
               <div className='account__header__bio'>
-                {fields.size > 0 && (
-                  <div className='account__header__fields'>
-                    {fields.map((pair, i) => (
-                      <dl key={i}>
-                        <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
-
-                        <dd className={`${pair.get('verified_at') ? 'verified' : ''} translate`} title={pair.get('value_plain')}>
-                          {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
-                        </dd>
-                      </dl>
-                    ))}
-                  </div>
-                )}
-
                 {(account.get('id') !== me && signedIn) && <AccountNoteContainer account={account} />}
 
                 {account.get('note').length > 0 && account.get('note') !== '<p></p>' && <div className='account__header__content translate' dangerouslySetInnerHTML={content} />}
 
-                <div className='account__header__joined'><FormattedMessage id='account.joined' defaultMessage='Joined {date}' values={{ date: intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' }) }} /></div>
+                <div className='account__header__fields'>
+                  <dl>
+                    <dt><FormattedMessage id='account.joined_short' defaultMessage='Joined' /></dt>
+                    <dd>{intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' })}</dd>
+                  </dl>
+
+                  {fields.map((pair, i) => (
+                    <dl key={i}>
+                      <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
+
+                      <dd className={`${pair.get('verified_at') ? 'verified' : ''} translate`} title={pair.get('value_plain')}>
+                        {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                      </dd>
+                    </dl>
+                  ))}
+                </div>
               </div>
 
               <div className='account__header__extra__links'>
@@ -371,7 +375,8 @@ class Header extends ImmutablePureComponent {
         </div>
 
         <Helmet>
-          <title>{titleFromAccount(account)} - {title}</title>
+          <title>{titleFromAccount(account)}</title>
+          <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
         </Helmet>
       </div>
     );

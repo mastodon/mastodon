@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
 import Option from './components/option';
+import { List as ImmutableList } from 'immutable';
 
 const messages = defineMessages({
   dislike: { id: 'report.reasons.dislike', defaultMessage: 'I don\'t like it' },
@@ -20,7 +21,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
-  rules: state.get('rules'),
+  rules: state.getIn(['server', 'server', 'rules'], ImmutableList()),
 });
 
 export default @connect(mapStateToProps)

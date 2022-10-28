@@ -71,6 +71,10 @@ nl:
         actions:
           hide: Verberg de gefilterde inhoud volledig, alsof het niet bestaat
           warn: Verberg de gefilterde inhoud achter een waarschuwing, met de titel van het filter als waarschuwingstekst
+      form_admin_settings:
+        backups_retention_period: De aangemaakte gebruikersarchieven voor het opgegeven aantal dagen behouden.
+        content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
+        media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
       form_challenge:
         current_password: Je betreedt een veilige omgeving
       imports:
@@ -98,6 +102,8 @@ nl:
         role: De rol bepaalt welke rechten een gebruiker heeft
       user_role:
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
+      webhook:
+        events: Selecteer de te verzenden gebeurtenissen
     labels:
       account:
         fields:
@@ -198,6 +204,10 @@ nl:
         actions:
           hide: Volledig verbergen
           warn: Met een waarschuwing verbergen
+      form_admin_settings:
+        backups_retention_period: Bewaartermijn gebruikersarchief
+        content_cache_retention_period: Bewaartermijn berichtencache
+        media_cache_retention_period: Bewaartermijn mediacache
       interactions:
         must_be_follower: Meldingen van mensen die jou niet volgen blokkeren
         must_be_following: Meldingen van mensen die jij niet volgt blokkeren
@@ -240,6 +250,7 @@ nl:
         permissions_as_keys: Rechten
         position: Prioriteit
       webhook:
+        events: Ingeschakelde gebeurtenissen
         url: Eindpunt URL
     'no': Nee
     not_recommended: Niet aanbevolen

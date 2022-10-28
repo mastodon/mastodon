@@ -1,83 +1,26 @@
 ---
 nn:
   about:
-    about_hashtag_html: Dette er offentlege tut merkt med <strong>#%{hashtag}</strong>. Du kan nytta dei om du har ein konto kvar som helst i fødiverset.
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
-    about_this: Om oss
-    active_count_after: aktiv
-    active_footnote: Månadlege aktive brukarar (MAB)
-    administered_by: 'Administrert av:'
-    api: API
-    apps: Mobilappar
-    apps_platforms: Bruk Mastodon på iOS, Android og andre plattformer
-    browse_directory: Bla gjennom en profilmappe og filtrer etter interesser
-    browse_local_posts: Bla i en sanntidsstrøm av offentlige innlegg fra denne tjeneren
-    browse_public_posts: Sjå ei direktesending av offentlege innlegg på Mastodon
-    contact: Kontakt
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    discover_users: Oppdag brukarar
-    documentation: Dokumentasjon
-    federation_hint_html: Med ein konto på %{instance} kan du fylgja folk på kva som helst slags Mastod-tenar og meir.
-    get_apps: Prøv ein mobilapp
     hosted_on: "%{domain} er vert for Mastodon"
-    instance_actor_flash: "Denne brukeren er en virtuell aktør brukt til å representere selve serveren og ingen individuell bruker. Det brukes til foreningsformål og bør ikke blokkeres med mindre du vil blokkere hele instansen, hvor domeneblokkering bør brukes i stedet. \n"
-    learn_more: Lær meir
-    logout_before_registering: Du er allereie logga inn.
-    rules: Tenarreglar
-    rules_html: 'Nedanfor er eit samandrag av reglar du må fylgje dersom du vil ha ein konto på denne Mastodontenaren:'
-    see_whats_happening: Sjå kva som skjer
-    server_stats: 'Tenarstatistikk:'
-    source_code: Kjeldekode
-    status_count_before: Som skreiv
-    tagline: Desentralisert sosialt nettverk
-    unavailable_content: Utilgjengeleg innhald
-    unavailable_content_description:
-      domain: Sørvar
-      reason: Grunn
-      rejecting_media: 'Mediafiler fra disse tjenerne vil ikke bli behandlet eller lagret, og ingen miniatyrbilder vil bli vist, noe som vil kreve manuell klikking for å besøke den opprinnelige filen:'
-      rejecting_media_title: Filtrert media
-      silenced: 'Innlegg frå desse tenarane vert gøymde frå offentlege tidsliner og samtalar, og det kjem ingen varsel frå samhandlingane til brukarane deira, med mindre du fylgjer dei:'
-      silenced_title: Stilnede tjenere
-      suspended: 'Ingen data frå desse tenarane vert handsama, lagra eller sende til andre, som gjer det umogeleg å samhandla eller kommunisera med andre brukarar frå desse tenarane:'
-      suspended_title: Suspenderte tjenere
-    unavailable_content_html: Mastodon gjev deg som regel lov til å sjå innhald og samhandla med brukarar frå alle andre tenarar i fødiverset. Dette er unnataka som er valde for akkurat denne tenaren.
-    user_count_after:
-      one: brukar
-      other: brukarar
-    user_count_before: Her bur
-    what_is_mastodon: Kva er Mastodon?
   accounts:
-    choices_html: "%{name} sine val:"
-    endorsements_hint: Du kan fremja folk dy fylgjer frå grensesnittet på nettet, og då visast dei her.
-    featured_tags_hint: Du kan velja emneknaggar som skal visast her.
     follow: Fylg
     followers:
       one: Fylgjar
       other: Fylgjarar
     following: Fylgjer
     instance_actor_flash: Denne kontoen er en virtuell figur som brukes til å representere selve serveren og ikke noen individuell bruker. Den brukes til forbundsformål og bør ikke oppheves.
-    joined: Vart med %{date}
     last_active: sist aktiv
     link_verified_on: Eigarskap for denne lenkja vart sist sjekka %{date}
-    media: Media
-    moved_html: "%{name} har flytta til %{new_profile_link}:"
-    network_hidden: Denne informasjonen er ikkje tilgjengeleg
     nothing_here: Her er det ingenting!
-    people_followed_by: Folk som %{name} fylgjer
-    people_who_follow: Folk som fylgjer %{name}
     pin_errors:
       following: Du må allereie fylgja personen du vil fremja
     posts:
       one: Tut
       other: Tut
     posts_tab_heading: Tut
-    posts_with_replies: Tut og svar
-    roles:
-      bot: Robot
-      group: Gruppe
-    unavailable: Profil ikkje tilgjengeleg
-    unfollow: Slutt å fylgja
   admin:
     account_actions:
       action: Utfør
@@ -480,80 +423,15 @@ nn:
       empty: Ingen serverregler har blitt definert ennå.
       title: Server regler
     settings:
-      activity_api_enabled:
-        desc_html: Antall lokale statusposter, aktive brukere og nye registreringer i ukentlige oppdelinger
-        title: Publiser samlet statistikk om brukeraktiviteter
-      bootstrap_timeline_accounts:
-        desc_html: Separer flere brukernavn med komma. Kun lokale og ulåste kontoer vil kunne brukes. Dersom tomt er standarden alle lokale administratorer.
-        title: Standard fylgjer for nye brukarar
-      contact_information:
-        email: Offentleg e-postadresse
-        username: Brukarnamn for kontakt
-      custom_css:
-        desc_html: Modifiser utseendet med CSS lastet på hver side
-        title: Eigen CSS
-      default_noindex:
-        desc_html: Påverkar alle brukarar som ikkje har justert denne innstillinga sjølve
-        title: Velg brukere som er ute av søkemotoren indeksering som standard
       domain_blocks:
         all: Til alle
         disabled: Til ingen
-        title: Vis domeneblokkeringer
         users: Til lokale brukarar som er logga inn
-      domain_blocks_rationale:
-        title: Vis kvifor
-      hero:
-        desc_html: Vises på forsiden. Minst 600×100px er anbefalt. Dersom dette ikke er valgt, faller det tilbake på tjenerens miniatyrbilde
-        title: Heltebilete
-      mascot:
-        desc_html: Vist på flere sider. Minst 293×205px er anbefalt. Dersom det ikke er valgt, faller det tilbake til standardmaskoten
-        title: Maskotbilete
-      peers_api_enabled:
-        desc_html: Domenenavn denne instansen har truffet på i fediverset
-        title: Publiser liste over oppdaga tenarar
-      preview_sensitive_media:
-        desc_html: Lenkeforhåndsvisninger på andre nettsteder vil vise et miniatyrbilde selv dersom mediet er merket som sensitivt
-        title: Vis sensitive medier i OpenGraph-forhåndsvisninger
-      profile_directory:
-        desc_html: Gjer at brukarar kan oppdagast
-        title: Skru på profilmappen
-      registrations:
-        closed_message:
-          desc_html: Vises på forsiden når registreringer er lukket<br>Du kan bruke HTML-tagger
-          title: Melding for lukket registrering
-        deletion:
-          desc_html: Tillat alle å sletta kontoen sin
-          title: Åpne kontosletting
-        require_invite_text:
-          desc_html: Når registreringer krever manuell godkjenning, må du føye «Hvorfor vil du bli med?» tekstinput obligatoriske i stedet for valgfritt
-          title: Krev nye brukere for å oppgi en grunn for å delta
       registrations_mode:
         modes:
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
-        title: Registreringsmodus
-      show_known_fediverse_at_about_page:
-        desc_html: Begrenser den offentlige tidslinjen som er knyttet til landingssiden når den er deaktivert, og viser bare lokalt innhold
-      site_description:
-        desc_html: Vises som et avsnitt på forsiden og brukes som en meta-tagg. Du kan bruke HTML-tagger, spesielt <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
-        title: Tenarskilding
-      site_description_extended:
-        desc_html: Ein god stad å setja reglar for åtferdskode, reglar, rettningsliner og andre ting som skil din tenar frå andre. Du kan nytta HTML-taggar
-        title: Utvidet nettstedsinformasjon
-      site_short_description:
-        desc_html: Vist i sidelinjen og i metastempler. Beskriv hva Mastodon er og hva som gjør denne tjeneren spesiell i én enkelt paragraf.
-        title: Stutt om tenaren
-      site_title: Tenarnamn
-      thumbnail:
-        desc_html: Brukes ved forhandsvisning via OpenGraph og API. 1200x630px anbefales
-        title: Småbilete for tenaren
-      timeline_preview:
-        desc_html: Vis offentlig tidslinje på landingssiden
-        title: Tillat uautentisert tilgang til offentleg tidsline
-      title: Sideinnstillingar
-      trends:
-        title: Populære emneknaggar
     site_uploads:
       delete: Slett opplasta fil
       destroyed_msg: Vellukka sletting av sideopplasting!
@@ -621,10 +499,7 @@ nn:
     warning: Ver varsam med dette datumet. Aldri del det med nokon!
     your_token: Tilgangsnykelen din
   auth:
-    apply_for_account: Bed om innbyding
     change_password: Passord
-    checkbox_agreement_html: Eg godtek <a href="%{rules_path}" target="_blank">tenarreglane</a> og <a href="%{terms_path}" target="_blank">tenestevilkåra</a>
-    checkbox_agreement_without_rules_html: Eg godtek <a href="%{terms_path}" target="_blank">tenestevilkåra</a>
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
     description:
@@ -660,7 +535,6 @@ nn:
       confirming: Ventar på stadfesting av e-post.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
-    trouble_logging_in: Får du ikkje logga inn?
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -714,10 +588,6 @@ nn:
       more_details_html: For fleire detaljar, sjå <a href="%{terms_path}">personvernsvilkåra</a>.
       username_available: Brukarnamnet ditt vert tilgjengeleg igjen
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
-  directories:
-    directory: Profilkatalog
-    explanation: Leit fram brukarar etter interessa deira
-    explore_mastodon: Utforsk %{title}
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:
@@ -776,9 +646,6 @@ nn:
     new:
       title: Legg til nytt filter
   footer:
-    developers: Utviklarar
-    more: Meir…
-    resources: Ressursar
     trending_now: Populært no
   generic:
     all: Alle
@@ -807,7 +674,6 @@ nn:
       following: Fylgjeliste
       muting: Dempeliste
     upload: Last opp
-  in_memoriam_html: Til minne.
   invites:
     delete: Slå av
     expired: Utgått
@@ -968,22 +834,7 @@ nn:
     remove_selected_follows: Slutt å fylgja desse brukarane
     status: Kontostatus
   remote_follow:
-    acct: Tast inn brukernavn@domene som du vil følge fra
     missing_resource: Kunne ikke finne URLen for din konto
-    no_account_html: Har du ikkje konto? Du kan <a href='%{sign_up_path}' target='_blank'>melda deg inn her</a>
-    proceed: Hald fram med å fylgja
-    prompt: 'Du kjem til å fylgja:'
-    reason_html: "<strong>Hvorfor dette trinnet er nødvendig?</strong><code>%{instance}</code> er kanskje ikke tjeneren som du er registrert på, så vi må omdirigere deg til hjemmetjeneren din først."
-  remote_interaction:
-    favourite:
-      proceed: Merk som favoritt
-      prompt: 'Du vil merkja dette tutet som favoritt:'
-    reblog:
-      proceed: Framhev
-      prompt: 'Du vil framheva dette tutet:'
-    reply:
-      proceed: Svar
-      prompt: 'Du vil svara på dette tutet:'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
@@ -1139,20 +990,11 @@ nn:
         suspend: Konto utvist
     welcome:
       edit_profile_action: Lag til profil
-      edit_profile_step: Du kan tilpasse din profil ved å laste opp en avatar, overskrift, endre ditt visningsnavn med mer. Hvis du vil godkjenne hvilke personer som får lov til å følge deg kan du låse kontoen.
       explanation: Her er nokre tips for å koma i gang
       final_action: Kom i gang med å leggja ut
-      final_step: 'Byrj å skriva innlegg! Sjølv utan fylgjarar kan andre sjå dei offentlege meldingane dine, til dømes på den lokale tidslina og i emneknaggar. Du har kanskje lyst til å introdusera deg med emneknaggen #introductions.'
       full_handle: Det fulle brukarnamnet ditt
       full_handle_hint: Dette er det du fortel venene dine for at dei skal kunna senda deg meldingar eller fylgja deg frå ein annan tenar.
-      review_preferences_action: Endr innstillingar
-      review_preferences_step: Husk å justere dine innstillinger, som hvilke e-poster du ønsker å motta, eller hvor private du ønsker at dine poster skal være som standard. Hvis du ikke har bevegelsessyke kan du skru på automatisk avspilling av GIF-animasjoner.
       subject: Velkomen til Mastodon
-      tip_federated_timeline: Den forente tidslinjen blir konstant matet med meldinger fra Mastodon-nettverket. Men den inkluderer bare personer dine naboer abbonerer på, så den er ikke komplett.
-      tip_following: Du fylgjer automatisk tenaradministrator(ane). For å finna fleire forvitnelege folk kan du sjekka den lokale og fødererte tidslina.
-      tip_local_timeline: Den lokale tidslinjen blir kontant matet med meldinger fra personer på %{instance}. Dette er dine nærmeste naboer!
-      tip_mobile_webapp: Hvis din mobile nettleser tilbyr deg å legge Mastadon til din hjemmeskjerm kan du motta push-varslinger. Det er nesten som en integrert app på mange måter!
-      tips: Tips
       title: Velkomen om bord, %{name}!
   users:
     follow_limit_reached: Du kan ikkje fylgja fleire enn %{limit} folk

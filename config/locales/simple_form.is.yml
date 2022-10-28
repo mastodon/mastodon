@@ -73,6 +73,10 @@ is:
         actions:
           hide: Fela síað efni algerlega, rétt eins og það sé ekki til staðar
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
+      form_admin_settings:
+        backups_retention_period: Halda safni notandans í tiltekinn fjölda daga.
+        content_cache_retention_period: Færslum af öðrum netþjónum verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi. Þetta gæti verið óafturkallanleg aðgerð.
+        media_cache_retention_period: Sóttu myndefni verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi og síðan sótt aftur eftir þörfum.
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -207,6 +211,10 @@ is:
         actions:
           hide: Fela alveg
           warn: Fela með aðvörun
+      form_admin_settings:
+        backups_retention_period: Tímalengd sem safni notandans er haldið eftir
+        content_cache_retention_period: Tímalengd sem haldið er í biðminni
+        media_cache_retention_period: Tímalengd sem myndefni haldið
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með

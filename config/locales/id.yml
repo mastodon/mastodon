@@ -1,84 +1,24 @@
 ---
 id:
   about:
-    about_hashtag_html: Ini adalah toot publik yang ditandai dengan <strong>#%{hashtag}</strong>. Anda bisa berinteraksi dengan mereka jika anda memiliki akun dimanapun di fediverse.
     about_mastodon_html: Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.
-    about_this: Tentang server ini
-    active_count_after: aktif
-    active_footnote: Pengguna Aktif Bulanan (PAB)
-    administered_by: 'Dikelola oleh:'
-    api: API
-    apps: Aplikasi mobile
-    apps_platforms: Gunakan Mastodon dari iOS, Android, dan platform lain
-    browse_directory: Jelajahi direktori profil dan saring sesuai minat
-    browse_local_posts: Jelajahi siaran langsung dari pos publik server ini
-    browse_public_posts: Jelajahi siaran langsung pos publik di Mastodon
-    contact: Kontak
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
-    continue_to_web: Lanjut ke apl web
-    discover_users: Temukan pengguna
-    documentation: Dokumentasi
-    federation_hint_html: Dengan akun di %{instance} Anda dapat mengikuti orang di server Mastodon mana pun dan di luarnya.
-    get_apps: Coba aplikasi mobile
     hosted_on: Mastodon dihosting di %{domain}
-    instance_actor_flash: "Akun ini adalah aktor virtual yang dipakai untuk merepresentasikan server, bukan pengguna individu. Ini dipakai untuk tujuan federasi dan jangan diblokir kecuali Anda ingin memblokir seluruh instansi, yang seharusnya Anda pakai blokir domain. \n"
-    learn_more: Pelajari selengkapnya
-    logged_in_as_html: Anda sedang masuk sebagai %{username}.
-    logout_before_registering: Anda sudah masuk.
-    rules: Aturan server
-    rules_html: 'Di bawah ini adalah ringkasan aturan yang perlu Anda ikuti jika Anda ingin memiliki akun di server Mastodon ini:'
-    see_whats_happening: Lihat apa yang sedang terjadi
-    server_stats: 'Statistik server:'
-    source_code: Kode sumber
-    status_count_after:
-      other: status
-    status_count_before: Yang telah menulis
-    tagline: Jejaring sosial terdesentralisasi
-    unavailable_content: Konten tak tersedia
-    unavailable_content_description:
-      domain: Server
-      reason: Alasan
-      rejecting_media: 'Berkas media dari server ini tak akan diproses dan disimpan, dan tak akan ada gambar kecil yang ditampilkan, perlu klik manual utk menuju berkas asli:'
-      rejecting_media_title: Media yang disaring
-      silenced: 'Pos dari server ini akan disembunyikan dari linimasa publik dan percakapan, dan takkan ada notifikasi yang dibuat dari interaksi pengguna mereka, kecuali Anda mengikuti mereka:'
-      silenced_title: Server yang dibisukan
-      suspended: 'Takkan ada data yang diproses, disimpan, dan ditukarkan dari server ini, sehingga interaksi atau komunikasi dengan pengguna dari server ini tak mungkin dilakukan:'
-      suspended_title: Server yang ditangguhkan
-    unavailable_content_html: Mastodon umumnya mengizinkan Anda untuk melihat konten dan berinteraksi dengan pengguna dari server lain di fediverse. Ini adalah pengecualian yang dibuat untuk beberapa server.
-    user_count_after:
-      other: pengguna
-    user_count_before: Tempat bernaung bagi
-    what_is_mastodon: Apa itu Mastodon?
   accounts:
-    choices_html: 'Pilihan %{name}:'
-    endorsements_hint: Anda dapat mempromosikan orang yang Anda ikuti lewat antar muka web, dan mereka akan muncul di sini.
-    featured_tags_hint: Anda dapat mengunggulkan tagar tertentu yang akan ditampilkan di sini.
     follow: Ikuti
     followers:
       other: Pengikut
     following: Mengikuti
     instance_actor_flash: Akun ini adalah aktor virtual yang merepresentasikan server itu sendiri dan bukan pengguna individu. Ini dipakai untuk tujuan gabungan dan seharusnya tidak ditangguhkan.
-    joined: Bergabung pada %{date}
     last_active: terakhir aktif
     link_verified_on: Kepemilikan tautan ini telah dicek pada %{date}
-    media: Media
-    moved_html: "%{name} telah pindah ke %{new_profile_link}:"
-    network_hidden: Informasi ini tidak tersedia
     nothing_here: Tidak ada apapun disini!
-    people_followed_by: Orang yang diikuti %{name}
-    people_who_follow: Orang-orang yang mengikuti %{name}
     pin_errors:
       following: Anda harus mengikuti orang yang ingin anda endorse
     posts:
       other: Toot
     posts_tab_heading: Toot
-    posts_with_replies: Toot dan balasan
-    roles:
-      bot: Bot
-      group: Grup
-    unavailable: Profil tidak tersedia
-    unfollow: Berhenti mengikuti
   admin:
     account_actions:
       action: Lakukan aksi
@@ -633,82 +573,15 @@ id:
       empty: Belum ada aturan server yang didefinisikan.
       title: Aturan server
     settings:
-      activity_api_enabled:
-        desc_html: Hitung status yang dipos scr lokal, pengguna aktif, dan registrasi baru dlm keranjang bulanan
-        title: Terbitkan statistik keseluruhan tentang aktivitas pengguna
-      bootstrap_timeline_accounts:
-        desc_html: Pisahkan nama pengguna dengan koma. Hanya akun lokal dan tak terkunci yang akan bekerja. Isi bawaan jika kosong adalah semua admin lokal.
-        title: Ikuti scr bawaan untuk pengguna baru
-      contact_information:
-        email: Masukkan alamat email
-        username: Masukkan nama pengguna
-      custom_css:
-        desc_html: Ubah tampilan dengan CSS yang dimuat di setiap halaman
-        title: CSS Kustom
-      default_noindex:
-        desc_html: Memengaruhi semua pengguna yang tidak mengubah setelan ini sendiri
-        title: Singkirkan pengguna dari pengindeksan mesin pencari scr bawaan
       domain_blocks:
         all: Kepada semua orang
         disabled: Tidak kepada siapa pun
-        title: Lihat blokir domain
         users: Ke pengguna lokal yang sudah login
-      domain_blocks_rationale:
-        title: Tampilkan alasan
-      hero:
-        desc_html: Ditampilkan di halaman depan. Direkomendasikan minimal 600x100px. Jika tidak diatur, kembali ke server gambar kecil
-        title: Gambar pertama
-      mascot:
-        desc_html: Ditampilkan di banyak halaman. Direkomendasikan minimal 293x205px. Jika tidak diatur, kembali ke maskot bawaan
-        title: Gambar maskot
-      peers_api_enabled:
-        desc_html: Nama domain server ini dijumpai di fediverse
-        title: Terbitkan daftar server yang ditemukan
-      preview_sensitive_media:
-        desc_html: Pratinjau tautan pada situsweb lain akan menampilkan gambar kecil meski media ditandai sebagai sensitif
-        title: Tampilkan media sensitif di pratinjau OpenGraph
-      profile_directory:
-        desc_html: Izinkan pengguna untuk ditemukan
-        title: Aktifkan direktori profil
-      registrations:
-        closed_message:
-          desc_html: Ditampilkan pada halaman depan saat pendaftaran ditutup<br>Anda bisa menggunakan tag HTML
-          title: Pesan penutupan pendaftaran
-        deletion:
-          desc_html: Izinkan siapapun untuk menghapus akun miliknya
-          title: Buka penghapusan akun
-        require_invite_text:
-          desc_html: Saat pendaftaran harus disetujui manual, buat input teks "Mengapa Anda ingin bergabung?" sebagai hal wajib bukan opsional
-          title: Pengguna baru harus memasukkan alasan bergabung
       registrations_mode:
         modes:
           approved: Persetujuan diperlukan untuk mendaftar
           none: Tidak ada yang dapat mendaftar
           open: Siapa pun dapat mendaftar
-        title: Mode registrasi
-      show_known_fediverse_at_about_page:
-        desc_html: Ketika dimatikan, batasi linimasa publik yang ditautkan dari halaman landas untuk menampilkan konten lokal saja
-        title: Masukkan konten gabungan di halaman linimasa publik tanpa autentifikasi
-      site_description:
-        desc_html: Ditampilkan sebagai sebuah paragraf di halaman depan dan digunakan sebagai tag meta.<br>Anda bisa menggunakan tag HTML, khususnya <code>&lt;a&gt;</code> dan <code>&lt;em&gt;</code>.
-        title: Deskripsi situs
-      site_description_extended:
-        desc_html: Ditampilkan pada halaman informasi tambahan<br>Anda bisa menggunakan tag HTML
-        title: Deskripsi situs tambahan
-      site_short_description:
-        desc_html: Ditampilkan pada bilah samping dan tag meta. Jelaskan apa itu Mastodon dan yang membuat server ini spesial dalam satu paragraf.
-        title: Deskripsi server pendek
-      site_title: Judul Situs
-      thumbnail:
-        desc_html: Dipakai sebagai pratinjau via OpenGraph dan API. Direkomendasikan 1200x630px
-        title: Server gambar kecil
-      timeline_preview:
-        desc_html: Tampilkan tautan ke linimasa publik pada halaman landas dan izinkan API mengakses linimasa publik tanpa autentifikasi
-        title: Izinkan akses linimasa publik tanpa autentifikasi
-      title: Pengaturan situs
-      trends:
-        desc_html: Tampilkan secara publik tagar tertinjau yang kini sedang tren
-        title: Tagar sedang tren
     site_uploads:
       delete: Hapus berkas yang diunggah
       destroyed_msg: Situs yang diunggah berhasil dihapus!
@@ -851,12 +724,8 @@ id:
     new_trends:
       body: 'Item berikut harus ditinjau sebelum ditampilkan secara publik:'
       new_trending_links:
-        no_approved_links: Saat ini tidak ada tautan tren yang disetujui.
-        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} tautan tren yang disetujui, yang kini "%{lowest_link_title}" memiliki nilai %{lowest_link_score}.'
         title: Tautan sedang tren
       new_trending_statuses:
-        no_approved_statuses: Tidak ada kiriman sedang tren yang disetujui.
-        requirements: 'Kandidat yang ada di sini bisa saja melewati peringkat #%{rank} kiriman tren yang disetujui, yang kini %{lowest_status_url} memiliki nilai %{lowest_status_score}.'
         title: Kiriman yang sedang tren
       new_trending_tags:
         no_approved_tags: Saat ini tidak ada tagar tren yang disetujui.
@@ -897,10 +766,7 @@ id:
     warning: Hati-hati dengan data ini. Jangan bagikan kepada siapapun!
     your_token: Token akses Anda
   auth:
-    apply_for_account: Meminta undangan
     change_password: Kata sandi
-    checkbox_agreement_html: Saya setuju dengan <a href="%{rules_path}" target="_blank">peraturan server</a> dan <a href="%{terms_path}" target="_blank">ketentuan layanan</a>
-    checkbox_agreement_without_rules_html: Saya setuju dengan <a href="%{terms_path}" target="_blank">ketentuan layanan</a>
     delete_account: Hapus akun
     delete_account_html: Jika Anda ingin menghapus akun Anda, Anda dapat <a href="%{path}">memproses ini</a>. Anda akan dikonfirmasi.
     description:
@@ -940,7 +806,6 @@ id:
       redirecting_to: Akun Anda tidak aktif karena sekarang dialihkan ke %{acct}.
       view_strikes: Lihat hukuman lalu yang pernah terjadi kepada akun Anda
     too_fast: Formulir dikirim terlalu cepat, coba lagi.
-    trouble_logging_in: Kesulitan masuk?
     use_security_key: Gunakan kunci keamanan
   authorize_follow:
     already_following: Anda sudah mengikuti akun ini
@@ -998,10 +863,6 @@ id:
       more_details_html: Lebih detailnya, lihat <a href="%{terms_path}">kebijakan privasi</a>.
       username_available: Nama pengguna Anda akan tersedia lagi
       username_unavailable: Nama pengguna Anda tetap tidak akan tersedia
-  directories:
-    directory: Direktori profil
-    explanation: Temukan pengguna berdasarkan minatnya
-    explore_mastodon: Jelajahi %{title}
   disputes:
     strikes:
       action_taken: Tindakan dilaksanakan
@@ -1090,9 +951,6 @@ id:
     new:
       title: Tambah saringan baru
   footer:
-    developers: Pengembang
-    more: Lainnya…
-    resources: Sumber daya
     trending_now: Sedang tren
   generic:
     all: Semua
@@ -1124,7 +982,6 @@ id:
       following: Daftar diikuti
       muting: Daftar didiamkan
     upload: Unggah
-  in_memoriam_html: Dalam memori.
   invites:
     delete: Nonaktifkan
     expired: Kedaluwarsa
@@ -1299,22 +1156,7 @@ id:
     remove_selected_follows: Batal ikuti pengguna terpilih
     status: Status akun
   remote_follow:
-    acct: Masukkan namapengguna@domain yang akan anda ikuti
     missing_resource: Tidak dapat menemukan URL redirect dari akun anda
-    no_account_html: Tidak memiliki akun? Anda dapat <a href='%{sign_up_path}' target='_blank'>mendaftar di sini</a>
-    proceed: Lanjutkan untuk mengikuti
-    prompt: 'Anda akan mengikuti:'
-    reason_html: "<strong>Mengapa langkah ini penting?</strong> <code>%{instance}</code> mungkin saja bukan tempat Anda mendaftar, sehingga kami perlu mengalihkan Anda ke server beranda lebih dahulu."
-  remote_interaction:
-    favourite:
-      proceed: Lanjutkan ke favorit
-      prompt: 'Anda ingin memfavoritkan toot ini:'
-    reblog:
-      proceed: Lanjutkan ke boost
-      prompt: 'Anda ingin mem-boost toot ini:'
-    reply:
-      proceed: Lanjutkan ke balasan
-      prompt: 'Anda ingin membalas toot ini:'
   reports:
     errors:
       invalid_rules: tidak mereferensikan aturan yang valid
@@ -1558,20 +1400,11 @@ id:
         suspend: Akun ditangguhkan
     welcome:
       edit_profile_action: Siapkan profil
-      edit_profile_step: Anda dapat menyesuaikan profil Anda dengan mengunggah avatar, kepala, mengubah tampilan nama dan lainnya. Jika Anda ingin meninjau pengikut baru sebelum Anda terima sebagai pengikut, Anda dapat mengunci akun Anda.
       explanation: Beberapa tips sebelum Anda memulai
       final_action: Mulai mengirim
-      final_step: 'Mulai mengirim! Tanpa pengikut, pesan publik Anda akan tetap dapat dilihat oleh akun lain, contohnya di linimasa lokal atau di tagar. Anda mungkin ingin memperkenalkan diri dengan tagar #introductions.'
       full_handle: Penanganan penuh Anda
       full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
-      review_preferences_action: Ubah preferensi
-      review_preferences_step: Pastikan Anda telah mengatur preferensi Anda, seperti email untuk menerima pesan, atau tingkat privasi bawaan untuk postingan Anda. Jika Anda tidak alergi dengan gerakan gambar, Anda dapat mengaktifkan opsi mainkan otomatis GIF.
       subject: Selamat datang di Mastodon
-      tip_federated_timeline: Linimasa gabungan adalah ruang yang menampilkan jaringan Mastodon. Tapi ini hanya berisi tetangga orang-orang yang Anda ikuti, jadi tidak sepenuhnya komplet.
-      tip_following: Anda secara otomatis mengikuti admin server. Untuk mencari akun-akun yang menarik, silakan periksa linimasa lokal dan gabungan.
-      tip_local_timeline: Linimasa lokal adalah ruang yang menampilkan orang-orang di %{instance}. Mereka adalah tetangga dekat!
-      tip_mobile_webapp: Jika peramban mobile Anda ingin menambahkan Mastodon ke layar utama, Anda dapat menerima notifikasi dorong. Ia akan berjalan seperti aplikasi asli!
-      tips: Tips
       title: Selamat datang, %{name}!
   users:
     follow_limit_reached: Anda tidak dapat mengikuti lebih dari %{limit} orang

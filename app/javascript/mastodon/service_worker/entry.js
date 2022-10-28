@@ -43,7 +43,7 @@ registerRoute(
 );
 
 registerRoute(
-  ({ request }) => ['audio', 'image', 'track', 'video'].includes(request.destination),
+  ({ request }) => request.destination === 'image',
   new CacheFirst({
     cacheName: `m${CACHE_NAME_PREFIX}media`,
     plugins: [
@@ -60,24 +60,15 @@ registerRoute(
 self.addEventListener('install', function(event) {
   event.waitUntil(Promise.all([openWebCache(), fetchRoot()]).then(([cache, root]) => cache.put('/', root)));
 });
+
 self.addEventListener('activate', function(event) {
   event.waitUntil(self.clients.claim());
 });
+
 self.addEventListener('fetch', function(event) {
   const url = new URL(event.request.url);
 
-  if (url.pathname.startsWith('/web/')) {
-    const asyncResponse = fetchRoot();
-    const asyncCache = openWebCache();
-
-    event.respondWith(asyncResponse.then(
-      response => {
-        const clonedResponse = response.clone();
-        asyncCache.then(cache => cache.put('/', clonedResponse)).catch();
-        return response;
-      },
-      () => asyncCache.then(cache => cache.match('/'))));
-  } else if (url.pathname === '/auth/sign_out') {
+  if (url.pathname === '/auth/sign_out') {
     const asyncResponse = fetch(event.request);
     const asyncCache = openWebCache();
 

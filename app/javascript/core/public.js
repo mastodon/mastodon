@@ -6,28 +6,6 @@ import ready from '../mastodon/ready';
 const { delegate } = require('@rails/ujs');
 const { length } = require('stringz');
 
-delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
-  if (button !== 0) {
-    return true;
-  }
-  window.location.href = target.href;
-  return false;
-});
-
-delegate(document, '.modal-button', 'click', e => {
-  e.preventDefault();
-
-  let href;
-
-  if (e.target.nodeName !== 'A') {
-    href = e.target.parentNode.href;
-  } else {
-    href = e.target.href;
-  }
-
-  window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
-});
-
 const getProfileAvatarAnimationHandler = (swapTo) => {
   //animate avatar gifs on the profile page when moused over
   return ({ target }) => {

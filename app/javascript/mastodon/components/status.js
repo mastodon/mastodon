@@ -86,6 +86,7 @@ class Status extends ImmutablePureComponent {
     onToggleHidden: PropTypes.func,
     onToggleCollapsed: PropTypes.func,
     onTranslate: PropTypes.func,
+    onInteractionModal: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
     unread: PropTypes.bool,
@@ -385,6 +386,15 @@ class Status extends ImmutablePureComponent {
 
       account = status.get('account');
       status  = status.get('reblog');
+    } else if (showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id'])) {
+      const display_name_html = { __html: status.getIn(['account', 'display_name_html']) };
+
+      prepend = (
+        <div className='status__prepend'>
+          <div className='status__prepend-icon-wrapper'><Icon id='reply' className='status__prepend-icon' fixedWidth /></div>
+          <FormattedMessage id='status.replied_to' defaultMessage='Replied to {name}' values={{ name: <a onClick={this.handlePrependAccountClick} data-id={status.getIn(['account', 'id'])} href={status.getIn(['account', 'url'])} className='status__display-name muted'><bdi><strong dangerouslySetInnerHTML={display_name_html} /></bdi></a> }} />
+        </div>
+      );
     }
 
     if (pictureInPicture.get('inUse')) {
@@ -480,7 +490,7 @@ class Status extends ImmutablePureComponent {
     }
 
     if (account === undefined || account === null) {
-      statusAvatar = <Avatar account={status.get('account')} size={48} />;
+      statusAvatar = <Avatar account={status.get('account')} size={46} />;
     } else {
       statusAvatar = <AvatarOverlay account={status.get('account')} friend={account} />;
     }
@@ -500,8 +510,6 @@ class Status extends ImmutablePureComponent {
           {prepend}
 
           <div className={classNames('status', `status-${status.get('visibility')}`, { 'status-reply': !!status.get('in_reply_to_id'), muted: this.props.muted })} data-id={status.get('id')}>
-            <div className='status__expand' onClick={this.handleClick} role='presentation' />
-
             <div className='status__info'>
               <a onClick={this.handleClick} href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener noreferrer'>
                 <span className='status__visibility-icon'><Icon id={visibilityIcon.icon} title={visibilityIcon.text} /></span>
@@ -521,7 +529,6 @@ class Status extends ImmutablePureComponent {
               status={status}
               onClick={this.handleClick}
               expanded={!status.get('hidden')}
-              showThread={showThread}
               onExpandedToggle={this.handleExpandedToggle}
               onTranslate={this.handleTranslate}
               collapsable

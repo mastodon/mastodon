@@ -3,7 +3,6 @@
 class Admin::StatusFilter
   KEYS = %i(
     media
-    id
     report_id
   ).freeze
 
@@ -28,12 +27,10 @@ class Admin::StatusFilter
 
   private
 
-  def scope_for(key, value)
+  def scope_for(key, _value)
     case key.to_s
     when 'media'
       Status.joins(:media_attachments).merge(@account.media_attachments.reorder(nil)).group(:id).reorder('statuses.id desc')
-    when 'id'
-      Status.where(id: value)
     else
       raise "Unknown filter: #{key}"
     end

@@ -1,91 +1,27 @@
 ---
 da:
   about:
-    about_hashtag_html: Disse er offentlige indlæg tagget med <strong>#%{hashtag}</strong>, som man kan interagere med, hvis man har en konto hvor som helst i fediverset.
     about_mastodon_html: 'Fremtidens sociale netværk: Ingen annoncer, ingen virksomhedsovervågning, etisk design og decentralisering! Vær ejer af egne data med Mastodon!'
-    about_this: Om
-    active_count_after: aktive
-    active_footnote: Månedlige aktive brugere (MAU)
-    administered_by: 'Håndteres af:'
-    api: API
-    apps: Mobil-apps
-    apps_platforms: Benyt Mastodon på Android, iOS og andre platforme
-    browse_directory: Gennemse en profilmappe og filtrér efter interesser
-    browse_local_posts: Gennemse en live stream af offentlige indlæg fra denne server
-    browse_public_posts: Gennemse en live stream af offentlige indlæg på Mastodon
-    contact: Kontakt
     contact_missing: Ikke angivet
     contact_unavailable: Utilgængelig
-    continue_to_web: Fortsæt til web-app
-    discover_users: Find brugere
-    documentation: Dokumentation
-    federation_hint_html: Vha. en konto på %{instance} vil man kunne følge andre på en hvilken som helst Mastodon-server.
-    get_apps: Prøv en mobil-app
     hosted_on: Mostodon hostet på %{domain}
-    instance_actor_flash: |
-      Denne konto er en virtuel aktør brugt som repræsentation af selve serveren og ikke en individuel bruger.
-      Den bruges til fællesformål og bør ikke blokeres, medmindre hele instansen ønskes blokeret, i hvilket tilfælde man bør bruge domæneblokering.
-    learn_more: Læs mere
-    logged_in_as_html: Du er pt. logget ind som %{username}.
-    logout_before_registering: Allerede logget ind.
-    privacy_policy: Fortrolighedspolitik
-    rules: Serverregler
-    rules_html: 'Nedenfor ses en oversigt over regler, som skal følges, hvis man ønsker at have en konto på denne Mastodon-server:'
-    see_whats_happening: Se, hvad der sker
-    server_stats: 'Serverstatstik:'
-    source_code: Kildekode
-    status_count_after:
-      one: indlæg
-      other: indlæg
-    status_count_before: Som har postet
-    tagline: Decentraliseret socialt netværk
-    unavailable_content: Modererede servere
-    unavailable_content_description:
-      domain: Server
-      reason: Årsag
-      rejecting_media: 'Mediefiler fra disse servere hverken behandles eller gemmes, og ingen miniaturebilleder vises, hvilket kræver manuelt klik-igennem til originalfilen:'
-      rejecting_media_title: Filtrerede medier
-      silenced: 'Indlæg fra disse servere er skjult i offentlige tidslinjer og konversationer, og der genereres ingen notifikationer fra deres brugerinteraktioner, medmindre man følger dem:'
-      silenced_title: Begrænsede servere
-      suspended: 'Data fra disse servere hverken behandles, gemmes eller udveksles, hvilket umuliggør interaktion eller kommunikation med brugere fra disse servere:'
-      suspended_title: Suspenderede servere
-    unavailable_content_html: Mastodon tillader generelt, at man ser indhold og interagere med brugere fra enhver anden server i fediverset. Disse er undtagelserne, som er implementeret på netop denne server.
-    user_count_after:
-      one: bruger
-      other: brugere
-    user_count_before: Hjem til
-    what_is_mastodon: Hvad er Mastodon?
+    title: Om
   accounts:
-    choices_html: "%{name}s valg:"
-    endorsements_hint: Man kan støtte personer, man følger, fra webgrænsefladen, som så vil fremgå hér.
-    featured_tags_hint: Man kan fremhæve bestemte hashtags, som så vil fremgå hér.
     follow: Følg
     followers:
       one: Følger
       other: Følgere
     following: Følger
     instance_actor_flash: Denne konto er en virtuel aktør repræsenterende selve serveren og ikke en individuel bruger. Den anvendes til fællesformål og bør ikke suspenderes.
-    joined: Tilmeldt %{date}
     last_active: senest aktiv
     link_verified_on: Ejerskab af dette link blev tjekket %{date}
-    media: Medier
-    moved_html: "%{name} er flyttet til %{new_profile_link}:"
-    network_hidden: Denne information er utilgængelig
     nothing_here: Der er intet hér!
-    people_followed_by: Personer, som %{name} følger
-    people_who_follow: Personer, som følger %{name}
     pin_errors:
       following: Man skal allerede følge den person, man ønsker at støtte
     posts:
       one: Indlæg
       other: Indlæg
     posts_tab_heading: Indlæg
-    posts_with_replies: Indlæg og svar
-    roles:
-      bot: Bot
-      group: Gruppe
-    unavailable: Profil utilgængelig
-    unfollow: Følg ikke længere
   admin:
     account_actions:
       action: Udfør handling
@@ -388,6 +324,7 @@ da:
       listed: Oplistet
       new:
         title: Tilføj ny tilpasset emoji
+      no_emoji_selected: Ingen emoji ændret (da ingen var valgt)
       not_permitted: Ingen tilladelse til at udføre denne handling
       overwrite: Overskriv
       shortcode: Kortkode
@@ -684,6 +621,7 @@ da:
         administrator: Administrator
         administrator_description: Brugere med denne rolle kan omgå alle tilladelser
         delete_user_data: Slet brugerdata
+        delete_user_data_description: Tillader brugere at slette andre brugeres data straks
         invite_users: Invitere brugere
         invite_users_description: Tillader brugere at invitere nye personer til serveren
         manage_announcements: Håndtere bekendtgørelser
@@ -729,88 +667,40 @@ da:
       empty: Ingen serverregler defineret endnu.
       title: Serverregler
     settings:
-      activity_api_enabled:
-        desc_html: Antal lokalt opslåede indlæg, aktive brugere samt nye tilmeldinger i ugentlige opdelinger
-        title: Offentliggør samlede statistikker vedr. brugeraktivitet i API'en
-      bootstrap_timeline_accounts:
-        desc_html: Adskil flere brugernavne med kommaer. Disse konti vil være garanteret visning i følg-anbefalinger
-        title: Anbefal disse konti til nye brugere
-      contact_information:
-        email: Forretningse-mail
-        username: Kontaktbrugernavn
-      custom_css:
-        desc_html: Ændre udseendet med CSS indlæst på hver side
-        title: Tilpasset CSS
-      default_noindex:
-        desc_html: Påvirker alle brugere, som ikke selv har ændret denne indstilling
-        title: Fravælg som standard søgemaskineindekseringer for brugere
+      about:
+        manage_rules: Håndtér serverregler
+        preamble: Giv dybdegående oplysninger om, hvordan serveren opereres, modereres, finansieres.
+        rules_hint: Der er et dedikeret område for regler, som forventes overholdt af brugerne.
+        title: Om
+      appearance:
+        preamble: Tilpas Mastodon-webgrænsefladen.
+        title: Udseende
+      branding:
+        preamble: Serverens branding adskiller den fra andres i netværket. Oplysningerne kan vises på tværs af div. miljøer, såsom Mastodon-webgrænsefladen, dedikerede applikationer, i-link forhåndsvisninger på andre websteder og i besked-apps mv. Oplysningerne bør derfor være klare og detaljerede, men samtidig kortfattede.
+        title: Branding
+      content_retention:
+        preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
+        title: Indholdsopbevaring
+      discovery:
+        follow_recommendations: Følg-anbefalinger
+        preamble: At vise interessant indhold er vital ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
+        profile_directory: Profilmappe
+        public_timelines: Offentlige tidslinjer
+        title: Opdagelse
+        trends: Trends
       domain_blocks:
         all: Til alle
         disabled: Til ingen
-        title: Vis domæneblokeringer
         users: Til indloggede lokale brugere
-      domain_blocks_rationale:
-        title: Vis begrundelse
-      hero:
-        desc_html: Vises på forsiden. Mindst 600x100px anbefales. Hvis ikke opsat, benyttes serverminiaturebillede
-        title: Heltebillede
-      mascot:
-        desc_html: Vises på flere sider. Mindst 293x205px anbefales. Hvis ikke opsat, benyttes standardmaskot
-        title: Maskotbillede
-      peers_api_enabled:
-        desc_html: Domænenavne, denne server er stødt på i fediverset
-        title: Udgiv liste over fundne server i API'en
-      preview_sensitive_media:
-        desc_html: Linkforhåndsvisninger på andre websteder vil vise et miniaturebillede, selv hvis mediet er markeret som sensitivt
-        title: Vis sensitive medier i OpenGraph-forhåndsvisninger
-      profile_directory:
-        desc_html: Tillad brugere at blive fundet
-        title: Aktivér profilmappe
       registrations:
-        closed_message:
-          desc_html: Vises på forside, når tilmeldingsmuligheder er lukket. HTML-tags kan bruges
-          title: Lukket tilmelding-besked
-        deletion:
-          desc_html: Tillad enhver at slette sin konto
-          title: Åbn kontosletning
-        require_invite_text:
-          desc_html: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
-          title: Nye brugere afkræves tilmeldingsbegrundelse
+        preamble: Styr, hvem der kan oprette en konto på serveren.
+        title: Registreringer
       registrations_mode:
         modes:
           approved: Tilmeldingsgodkendelse kræves
           none: Ingen kan tilmelde sig
           open: Alle kan tilmelde sig
-        title: Tilmeldingstilstand
-      show_known_fediverse_at_about_page:
-        desc_html: Når deaktiveret, begrænses den fra indgangssiden linkede offentlige tidslinje til kun at vise lokalt indhold
-        title: Medtag federeret indhold på ikke-godkendt, offentlig tidslinjeside
-      site_description:
-        desc_html: Introduktionsafsnit på API'en. Beskriv, hvad der gør denne Mastodonserver speciel samt alt andet vigtigt. HTML-tags kan bruges, især <code>&lt;a&gt;</code> og <code>&lt;em&gt;</code>.
-        title: Serverbeskrivelse
-      site_description_extended:
-        desc_html: Et god placering til adfærdskodes, regler, retningslinjer mv., som gør denne server unik. HTML-tags kan bruges
-        title: Tilpasset udvidet information
-      site_short_description:
-        desc_html: Vises på sidebjælke og metatags. Beskriv i et enkelt afsnit, hvad Mastodon er, og hvad der gør denne server speciel.
-        title: Kort serverbeskrivelse
-      site_terms:
-        desc_html: Man kan skrive sin egen fortrolighedspolitik. HTML-tags understøttes
-        title: Tilpasset fortrolighedspolitik
-      site_title: Servernavn
-      thumbnail:
-        desc_html: Bruges til forhåndsvisninger via OpenGraph og API. 1200x630px anbefales
-        title: Serverminiaturebillede
-      timeline_preview:
-        desc_html: Vis link til offentlig tidslinje på indgangssiden og lad API'en tilgå den offentlige tidslinje uden godkendelse
-        title: Tillad ikke-godkendt tilgang til offentlig tidslinje
-      title: Webstedsindstillinger
-      trendable_by_default:
-        desc_html: Bestemt tendensindhold kan stadig udtrykkeligt forbydes
-        title: Tillad tendenser uden forudgående gennemsyn
-      trends:
-        desc_html: Vis offentligt tidligere reviderede hashtags, som pt. trender
-        title: Populært
+      title: Serverindstillinger
     site_uploads:
       delete: Slet uploadet fil
       destroyed_msg: Websteds-upload blev slettet!
@@ -864,6 +754,9 @@ da:
         description_html: Disse er links, som pt. deles meget af konti, som serveren ser indlæg fra. Det kan hjælpe ens brugere med at finde ud af, hvad der sker i verden. Ingen links vises offentligt, før man godkender udgiveren. Man kan også tillade/afvise individuelle links.
         disallow: Tillad ikke link
         disallow_provider: Tillad ikke udgiver
+        no_link_selected: Intet link ændret (da intet var valgt)
+        publishers:
+          no_publisher_selected: Ingen udgiver ændret (da ingen var valgt)
         shared_by_over_week:
           one: Delt af én person den seneste uge
           other: Delt af %{count} personer den seneste uge
@@ -883,6 +776,7 @@ da:
         description_html: Disse er indlæg, serveren kender til, som pt. deles og favoritmarkeres meget. Det kan hjælpe nye og tilbagevendende brugere til at finde flere personer at følge. Ingen indlæg vises offentligt, før man godkender forfatteren, samt denne tillader sin konto at blive foreslået andre. Man kan også tillade/afvise individuelle indlæg.
         disallow: Tillad ikke indlæg
         disallow_account: Tillad ikke forfatter
+        no_status_selected: Intet tendensindlæg ændret (da intet var valgt)
         not_discoverable: Forfatteren har ikke valgt at kunne findes
         shared_by:
           one: Delt eller favoritmarkeret én gang
@@ -898,6 +792,7 @@ da:
           tag_uses_measure: anvendelser i alt
         description_html: Disse er hashtags, som pt. vises i en masse indlæg, som serveren ser. Det kan hjælpe brugerne til at finde ud af, hvad folk taler mest om pt. Ingen hashtags vises offentligt, før man godkender dem.
         listable: Kan foreslås
+        no_tag_selected: Intet tag ændret (da intet var valgt)
         not_listable: Foreslås ikke
         not_trendable: Vises ikke under tendenser
         not_usable: Kan ikke anvendes
@@ -961,12 +856,8 @@ da:
     new_trends:
       body: 'Flg. emner kræver revision, inden de kan vises offentligt:'
       new_trending_links:
-        no_approved_links: Der er i pt. ingen godkendte populære links.
-        requirements: 'Enhver af disse kandidater vil kunne overgå #%{rank} godkendte populære link, der med en score på %{lowest_link_score} pt. er "%{lowest_link_title}".'
         title: Populære links
       new_trending_statuses:
-        no_approved_statuses: Der er i pt. ingen godkendte populære opslag.
-        requirements: 'Enhver af disse kandidater vil kunne overgå #%{rank} godkendte populære opslag, der med en score på %{lowest_status_score} pt. er %{lowest_status_url}.'
         title: Populære opslag
       new_trending_tags:
         no_approved_tags: Der er pt. ingen godkendte populære hashtags.
@@ -1007,10 +898,8 @@ da:
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
     your_token: Dit adgangstoken
   auth:
-    apply_for_account: Anmod om en invitation
+    apply_for_account: Kom på ventelisten
     change_password: Adgangskode
-    checkbox_agreement_html: Jeg accepterer <a href="%{rules_path}" target="_blank">serverreglerne</a> og <a href="%{terms_path}" target="_blank">tjenestevilkårene</a>
-    checkbox_agreement_without_rules_html: Jeg accepterer <a href="%{terms_path}" target="_blank">tjenestevilkårene</a>
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
@@ -1029,6 +918,7 @@ da:
     migrate_account: Flyt til en anden konto
     migrate_account_html: Ønsker du at omdirigere denne konto til en anden, kan du <a href="%{path}">opsætte dette hér</a>.
     or_log_in_with: Eller log ind med
+    privacy_policy_agreement_html: Jeg accepterer <a href="%{privacy_policy_path}" target="_blank">Fortrolighedspolitikken</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1036,12 +926,18 @@ da:
     registration_closed: "%{instance} accepterer ikke nye medlemmer"
     resend_confirmation: Gensend bekræftelsesinstruktioner
     reset_password: Nulstil adgangskode
+    rules:
+      preamble: Disse er opsat og håndhæves af %{domain}-moderatorerne.
+      title: Nogle grundregler.
     security: Sikkerhed
     set_new_password: Opsæt ny adgangskode
     setup:
       email_below_hint_html: Er nedenstående e-mailadresse forkert, kan du rette den hér og modtage en ny bekræftelses-e-mail.
       email_settings_hint_html: Bekræftelsese-mailen er sendt til %{email}. Er denne e-mailadresse forkert, kan du rette den via kontoindstillingerne.
       title: Opsætning
+    sign_up:
+      preamble: Med en konto på denne Mastodon-server vil man kunne følge enhver anden person på netværket, uanset hvor vedkommendes konto hostes.
+      title: Lad os få dig sat op på %{domain}.
     status:
       account_status: Kontostatus
       confirming: Afventer færdiggørelse af e-mailbekræftelse.
@@ -1050,7 +946,6 @@ da:
       redirecting_to: Din konto er inaktiv, da den pt. er omdirigerer til %{acct}.
       view_strikes: Se tidligere anmeldelser af din konto
     too_fast: Formularen indsendt for hurtigt, forsøg igen.
-    trouble_logging_in: Indlogningsproblemer?
     use_security_key: Brug sikkerhedsnøgle
   authorize_follow:
     already_following: Du følger allerede denne konto
@@ -1108,10 +1003,6 @@ da:
       more_details_html: For yderligere oplysningerer, tjek <a href="%{terms_path}">fortrolighedspolitikken</a>.
       username_available: Dit brugernavn vil blive tilgængeligt igen
       username_unavailable: Dit brugernavn vil forblive utilgængeligt
-  directories:
-    directory: Profilliste
-    explanation: Find brugere baseret på deres interesser
-    explore_mastodon: Uforsk %{title}
   disputes:
     strikes:
       action_taken: Handling foretaget
@@ -1225,9 +1116,6 @@ da:
         hint: Dette filter gælder for udvalgte, individuelle indlæg uanset andre kriterier. Flere indlæg kan føjes til filteret via webfladen.
         title: Filtrerede indlæg
   footer:
-    developers: Udviklere
-    more: Mere…
-    resources: Ressourcer
     trending_now: Trender lige nu
   generic:
     all: Alle
@@ -1270,7 +1158,6 @@ da:
       following: Følgningsliste
       muting: Tavsgørelsesliste
     upload: Upload
-  in_memoriam_html: Til minde om.
   invites:
     delete: Deaktivér
     expired: Udløbet
@@ -1426,6 +1313,8 @@ da:
     other: Andet
     posting_defaults: Standarder for indlæg
     public_timelines: Offentlige tidslinjer
+  privacy_policy:
+    title: Fortrolighedspolitik
   reactions:
     errors:
       limit_reached: Grænse for forskellige reaktioner nået
@@ -1448,22 +1337,7 @@ da:
     remove_selected_follows: Følg ikke længere valgte brugere
     status: Kontostatus
   remote_follow:
-    acct: Angiv det brugernavn@domæne, hvorfra du vil ageres
     missing_resource: Nødvendige omdirigerings-URL til kontoen ikke fundet
-    no_account_html: Har ingen konto? Der kan <a href='%{sign_up_path}' target='_blank'>oprettes én hér</a>
-    proceed: Fortsæt for at følge
-    prompt: 'Du er ved at følge:'
-    reason_html: "<strong>Hvorfor er dette trin nødvendigt?</strong> <code>%{instance}</code> er måske ikke den server, hvorpå man er registreret, så man skal først omdirigeres til sin hjemmeserver."
-  remote_interaction:
-    favourite:
-      proceed: Fortsæt for at favoritmarkere
-      prompt: 'Favoritmarkere dette indlæg:'
-    reblog:
-      proceed: Fortsæt for at booste
-      prompt: 'Booste dette indlæg:'
-    reply:
-      proceed: Fortsæt for at besvare
-      prompt: 'Besvare dette indlæg:'
   reports:
     errors:
       invalid_rules: refererer ikke til gyldige regler
@@ -1635,88 +1509,6 @@ da:
       too_late: Det er for sent at appellere denne advarsel
   tags:
     does_not_match_previous_name: matcher ikke det foregående navn
-  terms:
-    body_html: |
-      <h2>Fortrolighedspolitik</h2>
-      <h3 id="collect">Hvilke oplysninger indsamle vi?</h3>
-
-      <ul>
-        <li><em>Grundlæggende kontooplysninger</em>: Registrerer man sig på denne server, kan man blive anmodet om at angive et brugernavn, en e-mail-adresse samt en adgangskode. Der vil også kunne angive yderligere profiloplysninger, såsom visningsnavn og biografi samt uploade et profilbillede og et overskriftsbillede. Brugernavn, visningsnavn, biografien, profilbillede og overskriftsbillede vises altid offentligt.</li>
-        <li><em>Opslag, følgninger og andre offentlige oplysninger</em>: Listen over personer, man følger, er offentlig, hvilket ligeledes gælder ens følgere. Når en besked indsendes, gemmes dato og klokkeslæt samt den applikation, hvorfra beskeden blev indsendt. Beskeder kan indeholde medievedhæftningsfiler, såsom billeder og videoer. Offentlige og ikke-listede indlæg er offentligt tilgængelige. Når man fremhæver et opslag på sin profil, er dette også offentligt tilgængelig information. Ens indlæg bliver leveret til ens følgere, hvilket i nogle tilfælde betyder, at de leveres til forskellige servere og kopier lagres dér. Når man sletter indlæg, leveres dette ligeledes til ens følgere. Handlingen at genblogge eller favorisere et andet indlæg er altid offentligt.</li>
-        <li><em>Direkte og kun-følgere indlæg</em>: Alle indlæg lagres og behandles på serveren. Kun-følgere Indlæg leveres til ens følgere og brugere, nævnt heri, og direkte indlæg leveres kun til brugere nævnt heri. I visse tilfælde betyder det, at de leveres til forskellige servere, og at kopier lagres dér. Vi gør efter bedste evne indsats for at begrænse adgangen til disse indlæg til autoriserede personer alene, men andre servere kan undlade lignende tiltag. Det er derfor vigtigt at gennemgå servere, ens følgere tilhører. Man kan skifte mellem en mulighed for at godkende og afvise nye følgere manuelt i indstillingerne. <em>Husk, at operatørerne af serveren og enhver modtagende server kan se beskederne</em>, og at modtagere kan tage skærmfotos, kopiere eller på anden vis videredele disse. <em>Del derfor ingen sensitive oplysninger over Mastodon.</em></li>
-        <li><em>IP'er og andre metadata</em>: Når man logger ind, registrerer vi den IP-adresse, der er logget ind fra, samt navnet på browserapplikationen. Man vil kunne gennemgå alle loggede sessioner, f.eks. mhp. tilbagekaldelse via indstillingerne. Den seneste anvendte IP-adresse gemmes i op til 12 måneder. Vi kan også beholde serverlogfiler, som inkluderer IP-adressen for hver anmodning til vores server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Hvad bruger vi dine oplysninger til?</h3>
-
-      <p>Alle indsamlede oplysninger vil kunne bruges på flg. måder:</p>
-
-      <ul>
-        <li>Mhp. at levere kernefunktionaliteten i Mastodon. Man kan kun interagere med andres indhold og poste eget indhold, når man er logget ind. Man kan f.eks. følge andre brugere for at se deres kombinerede indlæg på ens egen personligt tilpassede hjemmetidslinje.</li>
-        <li>For at hjælpe med fællesskabsmodereringen, f.eks. sammenligning af IP-adressen med andre kendte for at fastslå omgåelse af forbud eller andre overtrædelser.</li>
-        <li>Den angivne e-mailadresse kan blive brugt til at sende oplysninger, meddelelser om andre personer, som interagerer med ens indhold eller sender beskeder, og til at svare på forespørgsler og/eller andre anmodninger eller spørgsmål.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Hvordan beskytter vi dine oplysninger?</h3>
-
-      <p>Vi har implementeret en række sikkerhedsforanstaltninger for at opretholde sikkerheden af ens ​​personlige oplysninger, når man angiver, indsender eller får adgang til sine personlige oplysninger. Blandt andet er ens browsersession, samt trafikken mellem ens applikationer og API'et, sikret med SSL, og ens adgangskode hashes vha. en stærk envejsalgoritme. Man kan aktivere tofaktorgodkendelse for yderligere at sikre adgangen til sin konto.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Hvad er vores politik for dataopbevaring?</h3>
-
-      <p>Vi vil gøre efter bedste evne indsats for at:</p>
-
-      <ul> <li>Kun opbevare serverlogfiler indeholdende IP-adressen for alle anmodninger til denne server, i det omfang sådanne logfiler opbevares, i maks. 90 dage.</li>
-        <li>Kun opbevare de IP-adresser, som er tilknyttet registrerede brugere, i maks. 12 måneder.</li>
-      </ul>
-
-      <p>Man kan anmode om og downloade et arkiv af sit indhold, inkl. ens indlæg, medievedhæftninger, profilbillede og sidehovedbillede.</p>
-
-      <p>Man kan til enhver tid slette sin konto irreversibelt.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Bruger vi cookies?</h3>
-
-      <p>Ja. Cookies er små filer, som et websted eller dets tjenesteudbyder overfører til en lokal computers harddisk via webbrowseren (såfremt man tillader dette). Cookies muliggør for webstedet at genkende en browser og, hvis man har en registreret konto, knytte den til en registrerer konto.</p>
-
-      <p>Vi bruger cookies til at forstå og gemme brugerpræferencer til fremtidige besøg.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Videregiver vi nogen oplysninger til eksterne parter?</h3>
-
-      <p>Vi hverken sælger, bytter eller overfører på anden vis personligt identificerbare brugeroplysninger til eksterne parter. Dette inkluderer dog ikke betroede tredjeparter, som hjælper os med at drive vores websted, drive vores forretning eller servicere brugere, så længe disse parter accepterer at holde disse oplysninger fortrolige. Vi kan også frigive brugeroplysninger, når vi mener, at frigivelse er passende for at overholde loven, håndhæve vores webstedspolitikker eller beskytte vores eller andres rettigheder, ejendom eller sikkerhed.</p>
-
-      <p>Ens offentlige indhold kan blive downloadet af andre servere på netværket. Ens offentlige og kun-følgere indlæg leveres til de servere, hvor ens følgere hidhører, og direkte beskeder leveres til modtagernes servere, i det omfang disse følgere eller modtagere hidhører på en anden server end denne.</p>
-
-      <p>Når man godkender en applikation til at bruge ens konto, kan den, afhængigt af tilladelsesomfanget, man godkender, opnå adgang til ens offentlige profiloplysninger, følgende liste, følgere, lister, alle opslag og favoritter. Programmer kan aldrig tilgå ens e-mail-adresse eller adgangskode.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Børns brug af webstedet</h3>
-
-      <p>Hvis denne server er i EU eller EØS: Vores websted, produkter og tjenester er alle rettet mod et publikum på mindst 16 år. Er man under 16 år, skal man iht. kravene i GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) ikke bruge dette websted.</p>
-
-      <p>Hvis denne server er i USA: Vores websted, produkter og tjenester er alle rettet mod et publikum på mindst 13 år. Er man under 13 år, skal du iht. kravene i COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) ikke bruge dette websted.</p>
-
-      <p>Lovkravene kan være anderledes, hvis denne server er i en anden jurisdiktion.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Ændringer i vores fortrolighedspolitik</h3>
-
-      <p>Hvis vi beslutter at ændre vores fortrolighedspolitik, vil sådanne ændringer blive offentliggort på denne side.</p>
-
-      <p>Dette dokument er CC-BY-SA. Det er senest opdateret 26. maj 2022.</p>
-
-      <p>Oprindeligt tilpasset fra <a href="https://github.com/discourse/discourse">Discourse-fortrolighedspolitik</a>.</p>
-    title: "%{instance}-fortrolighedspolitik"
   themes:
     contrast: Mastodon (høj kontrast)
     default: Mastodont (mørkt)
@@ -1795,20 +1587,13 @@ da:
         suspend: Konto suspenderet
     welcome:
       edit_profile_action: Opsæt profil
-      edit_profile_step: Du kan tilpasse din profil ved at uploade profilbillede, overskrift, ændre visningsnavn mm. Ønsker du at vurdere nye følgere, før de må følge dig, kan du låse din konto.
+      edit_profile_step: Man kan tilpasse sin profil ved at uploade profilfoto, overskrift, ændre visningsnavn mv. Ønskes nye følgere vurderet, før de må følge dig, kan kontoen låses.
       explanation: Her er nogle råd for at få dig i gang
       final_action: Begynd at poste
-      final_step: 'Begynd at poste! Selv uden følgere vil dine offentlige indlæg kunne ses af andre f.eks. på den lokale tidslinje og i hashtags. Du kan introducere dig selv via hastagget #introductions.'
+      final_step: 'Begynd at poste! Selv uden følgere vil offentlige indlæg kunne ses af andre f.eks. på den lokale tidslinje og i hashtags. Man kan introducere sig selv via hastagget #introductions.'
       full_handle: Dit fulde brugernavn
       full_handle_hint: Dette er, hvad du oplyser til dine venner, så de kan sende dig beskeder eller følge dig fra andre server.
-      review_preferences_action: Ændre præferencer
-      review_preferences_step: Husk at opsætte dine præferencer, såsom hvilke e-mails, du ønsker at modtage, eller hvilket fortrolighedsniveau, der skal være standard for dine opslag. Har du ikke let til køresyge, kan du vælge at aktivere auto-afspilning af GIF'er.
       subject: Velkommen til Mastodon
-      tip_federated_timeline: Den fælles tidslinje giver det store overblik over Mastodon-netværket, men den inkluderer kun folk, dine naboer abonnerer på, så den er ikke komplet.
-      tip_following: Du følger som standard din servers admin(s). For at finde flere interessante folk, så tjek de lokale og fælles tidslinjer.
-      tip_local_timeline: Den lokale tidslinje er det store overblik over folk på %{instance}, dvs. dine umiddelbare naboer!
-      tip_mobile_webapp: Tilbyder din mobilbrowser at føje Mastodon til din hjemmeskærm, kan du modtage push-notifikationer. Dette fungerer på mange måder ligesom en almindelig app!
-      tips: Tips
       title: Velkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan maks. følge %{limit} personer

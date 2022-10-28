@@ -25,6 +25,7 @@ class IpBlock < ApplicationRecord
   }
 
   validates :ip, :severity, presence: true
+  validates :ip, uniqueness: true
 
   after_commit :reset_cache
 

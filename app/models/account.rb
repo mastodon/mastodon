@@ -138,6 +138,7 @@ class Account < ApplicationRecord
            :role,
            :locale,
            :shows_application?,
+           :prefers_noindex?,
            to: :user,
            prefix: true,
            allow_nil: true
@@ -192,10 +193,6 @@ class Account < ApplicationRecord
 
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
-  end
-
-  def searchable?
-    !(suspended? || moved?) && (!local? || (approved? && confirmed?))
   end
 
   def possibly_stale?

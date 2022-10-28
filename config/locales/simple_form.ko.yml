@@ -73,6 +73,10 @@ ko:
         actions:
           hide: 필터에 걸러진 글을 처음부터 없었던 것처럼 완전히 가리기
           warn: 필터에 걸러진 글을 필터 제목과 함께 경고 뒤에 가리기
+      form_admin_settings:
+        backups_retention_period: 생성된 사용자 아카이브를 며칠동안 저장할 지.
+        content_cache_retention_period: 양수가 설정되었다면 다른 서버의 게시물은 여기서 설정된 일수가 지나면 삭제될 것입니다. 되돌릴 수 없는 작업일 수 있습니다.
+        media_cache_retention_period: 양수로 설정된 경우 다운로드된 미디어 파일들은 지정된 일수가 지나면 삭제될 것이고 필요할 때 다시 다운로드 될 것입니다.
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다
       imports:
@@ -207,6 +211,10 @@ ko:
         actions:
           hide: 완전히 숨기기
           warn: 경고와 함께 숨기기
+      form_admin_settings:
+        backups_retention_period: 사용자 아카이브 유지 기한
+        content_cache_retention_period: 컨텐트 캐시 유지 기한
+        media_cache_retention_period: 미디어 캐시 유지 기한
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단

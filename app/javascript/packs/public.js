@@ -16,7 +16,6 @@ function main() {
   const { messages } = getLocale();
   const React = require('react');
   const ReactDOM = require('react-dom');
-  const Rellax = require('rellax');
   const { createBrowserHistory } = require('history');
 
   const scrollToDetailedStatus = () => {
@@ -93,12 +92,6 @@ function main() {
         });
     } else {
       scrollToDetailedStatus();
-    }
-
-    const parallaxComponents = document.querySelectorAll('.parallax');
-
-    if (parallaxComponents.length > 0 ) {
-      new Rellax('.parallax', { speed: -1 });
     }
 
     delegate(document, '#registration_user_password_confirmation,#registration_user_password', 'input', () => {

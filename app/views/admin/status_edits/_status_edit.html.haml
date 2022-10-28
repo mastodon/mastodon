@@ -1,0 +1,20 @@
+.status
+  .status__content><
+    - if status_edit.spoiler_text.blank?
+      = prerender_custom_emojis(status_content_format(status_edit), status_edit.emojis)
+    - else
+      %details<
+        %summary><
+          %strong> Content warning: #{prerender_custom_emojis(h(status_edit.spoiler_text), status_edit.emojis)}
+        = prerender_custom_emojis(status_content_format(status_edit), status_edit.emojis)
+
+  - unless status_edit.ordered_media_attachments.empty?
+    = render partial: 'admin/reports/media_attachments', locals: { status: status_edit }
+
+  .detailed-status__meta
+    %time.formatted{ datetime: status_edit.created_at.iso8601, title: l(status_edit.created_at) }= l(status_edit.created_at)
+
+    - if status_edit.sensitive?
+      ·
+      = fa_icon('eye-slash fw')
+      = t('stream_entries.sensitive_content')
