@@ -7278,6 +7278,7 @@ noscript {
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid lighten($ui-base-color, 8%);
+    gap: 15px;
 
     &:last-child {
       border-bottom: 0;
@@ -7319,8 +7320,6 @@ noscript {
       font-size: 24px;
       font-weight: 500;
       text-align: right;
-      padding-right: 15px;
-      margin-left: 5px;
       color: $secondary-text-color;
       text-decoration: none;
     }
