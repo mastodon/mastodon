@@ -7,16 +7,9 @@ RSpec.describe HomeController, type: :controller do
     subject { get :index }
 
     context 'when not signed in' do
-      context 'when requested path is tag timeline' do
-        it 'returns http success' do
-          @request.path = '/web/timelines/tag/name'
-          is_expected.to have_http_status(:success)
-        end
-      end
-
-      it 'redirects to about page' do
+      it 'returns http success' do
         @request.path = '/'
-        is_expected.to redirect_to(about_path)
+        is_expected.to have_http_status(:success)
       end
     end
 
