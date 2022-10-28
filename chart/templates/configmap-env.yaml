@@ -24,6 +24,9 @@ data:
   {{- if .Values.mastodon.web_domain }}
   WEB_DOMAIN: {{ .Values.mastodon.web_domain }}
   {{- end }}
+  {{- if .Values.mastodon.singleUserMode }}
+  SINGLE_USER_MODE: "true"
+  {{- end }}
   # https://devcenter.heroku.com/articles/tuning-glibc-memory-behavior
   MALLOC_ARENA_MAX: "2"
   NODE_ENV: "production"
