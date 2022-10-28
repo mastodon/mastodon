@@ -499,7 +499,6 @@ class Status extends ImmutablePureComponent {
       settings,
       collapsed,
       muted,
-      prepend,
       intersectionObserverWrapper,
       onOpenVideo,
       onOpenMedia,
@@ -713,20 +712,31 @@ class Status extends ImmutablePureComponent {
       'data-status-by': `@${status.getIn(['account', 'acct'])}`,
     };
 
-    if (prepend && account) {
+    let prepend;
+
+    if (this.props.prepend && account) {
       const notifKind = {
         favourite: 'favourited',
         reblog: 'boosted',
         reblogged_by: 'boosted',
         status: 'posted',
-      }[prepend];
+      }[this.props.prepend];
 
       selectorAttribs[`data-${notifKind}-by`] = `@${account.get('acct')}`;
+
+      prepend = (
+        <StatusPrepend
+          type={this.props.prepend}
+          account={account}
+          parseClick={parseClick}
+          notificationId={this.props.notificationId}
+        />
+      );
     }
 
     let rebloggedByText;
 
-    if (prepend === 'reblog') {
+    if (this.props.prepend === 'reblog') {
       rebloggedByText = intl.formatMessage({ id: 'status.reblogged_by', defaultMessage: '{name} boosted' }, { name: account.get('acct') });
     }
 
@@ -749,16 +759,10 @@ class Status extends ImmutablePureComponent {
           data-featured={featured ? 'true' : null}
           aria-label={textForScreenReader(intl, status, rebloggedByText, !status.get('hidden'))}
         >
-          {prepend && account && (
-            <StatusPrepend
-              type={prepend}
-              account={account}
-              parseClick={parseClick}
-              notificationId={this.props.notificationId}
-            />
-          )}
+          {!muted && prepend}
           <header className='status__info'>
             <span>
+              {muted && prepend}
               {!muted || !isCollapsed ? (
                 <StatusHeader
                   status={status}
