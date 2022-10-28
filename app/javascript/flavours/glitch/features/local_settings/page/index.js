@@ -181,36 +181,6 @@ class LocalSettingsPage extends React.PureComponent {
             <FormattedMessage id='settings.wide_view' defaultMessage='Wide view (Desktop mode only)' />
             <span className='hint'><FormattedMessage id='settings.wide_view_hint' defaultMessage='Stretches columns to better fill the available space.' /></span>
           </LocalSettingsPageItem>
-          <LocalSettingsPageItem
-            settings={settings}
-            item={['navbar_under']}
-            id='mastodon-settings--navbar_under'
-            onChange={onChange}
-          >
-            <FormattedMessage id='settings.navbar_under' defaultMessage='Navbar at the bottom (Mobile only)' />
-          </LocalSettingsPageItem>
-          <DeprecatedLocalSettingsPageItem
-            id='mastodon-settings--swipe_to_change_columns'
-            value={!disableSwiping}
-          >
-            <FormattedMessage id='settings.swipe_to_change_columns' defaultMessage='Allow swiping to change columns (Mobile only)' />
-            <span className='hint'>
-              <FormattedMessage
-                id='settings.deprecated_setting'
-                defaultMessage="This setting is now controlled from Mastodon's {settings_page_link}"
-                values={{
-                  settings_page_link: (
-                    <a href={preferenceLink('user_setting_disable_swiping')}>
-                      <FormattedMessage
-                        id='settings.shared_settings_link'
-                        defaultMessage='user preferences'
-                      />
-                    </a>
-                  )
-                }}
-              />
-            </span>
-          </DeprecatedLocalSettingsPageItem>
         </section>
       </div>
     ),
