@@ -1,12 +1,15 @@
 - content_for :page_title do
   = t('.title')
 
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
 = simple_form_for @announcement, url: admin_announcements_path do |f|
   = render 'shared/error_messages', object: @announcement
 
   .fields-group
-    = f.input :starts_at, include_blank: true, wrapper: :with_block_label
-    = f.input :ends_at, include_blank: true, wrapper: :with_block_label
+    = f.input :starts_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
+    = f.input :ends_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
 
   .fields-group
     = f.input :all_day, as: :boolean, wrapper: :with_label
@@ -15,7 +18,7 @@
     = f.input :text, wrapper: :with_block_label
 
   .fields-group
-    = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label
+    = f.input :scheduled_at, include_blank: true, wrapper: :with_block_label, html5: true, input_html: { pattern: '[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}(:[0-9]{2}){1,2}', placeholder: Time.now.strftime('%FT%R') }
 
   .actions
     = f.button :button, t('.create'), type: :submit
