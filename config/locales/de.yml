@@ -1,19 +1,19 @@
 de:
   about:
-    about_mastodon_html: 'Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral – genau wie E-Mail!'
-    contact_missing: Nicht angegeben
+    about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung, dafür dezentral und mit Anstand! Starte jetzt mit Mastodon!'
+    contact_missing: Nicht festgelegt
     contact_unavailable: Nicht verfügbar
     hosted_on: Mastodon, gehostet auf %{domain}
     title: Über
   accounts:
     follow: Folgen
     followers:
-      one: Folgender
+      one: Folgende
       other: Folgende
     following: Folgt
     instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert und nicht ein einzelner Benutzer. Es wird für Föderationszwecke verwendet und sollte nicht gesperrt werden.
     last_active: zuletzt aktiv
-    link_verified_on: Besitz des Links wurde überprüft am %{date}
+    link_verified_on: Das Profil mit dieser E-Mail-Adresse wurde bereits am %{date} bestätigt
     nothing_here: Hier gibt es nichts!
     pin_errors:
       following: Du musst dieser Person bereits folgen, um sie empfehlen zu können
@@ -26,41 +26,41 @@ de:
       action: Aktion ausführen
       title: Moderationsaktion auf %{acct} ausführen
     account_moderation_notes:
-      create: Notiz erstellen
-      created_msg: Moderationsnotiz erfolgreich erstellt!
+      create: Notiz abspeichern
+      created_msg: Moderationshinweis erfolgreich abgespeichert!
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
       add_email_domain_block: E-Mail-Domain auf Blacklist setzen
-      approve: Akzeptieren
+      approve: Genehmigen
       approved_msg: Anmeldeantrag von %{username} erfolgreich genehmigt
-      are_you_sure: Bist du sicher?
+      are_you_sure: Bist du dir sicher?
       avatar: Profilbild
       by_domain: Domain
       change_email:
-        changed_msg: E-Mail erfolgreich geändert!
+        changed_msg: E-Mail-Adresse erfolgreich geändert!
         current_email: Aktuelle E-Mail-Adresse
         label: E-Mail-Adresse ändern
         new_email: Neue E-Mail-Adresse
         submit: E-Mail-Adresse ändern
         title: E-Mail-Adresse für %{username} ändern
       change_role:
-        changed_msg: Rolle erfolgreich geändert!
-        label: Rolle ändern
-        no_role: Keine Rolle
-        title: Rolle für %{username} ändern
+        changed_msg: Benutzerrechte erfolgreich aktualisiert!
+        label: Benutzerrechte verändern
+        no_role: Keine Benutzerrechte
+        title: Benutzerrechte für %{username} bearbeiten
       confirm: Bestätigen
       confirmed: Bestätigt
-      confirming: Bestätigung
+      confirming: Verifiziert
       custom: Benutzerdefiniert
       delete: Daten löschen
       deleted: Gelöscht
-      demote: Degradieren
+      demote: Zurückstufen
       destroyed_msg: "Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht"
-      disable: Ausschalten
+      disable: Sperren
       disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentifizierung per E-Mail
-      disable_two_factor_authentication: 2FA abschalten
-      disabled: Ausgeschaltet
-      display_name: Anzeigename
+      disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
+      disabled: Gesperrte
+      display_name: Angezeigter Name
       domain: Domain
       edit: Bearbeiten
       email: E-Mail
@@ -667,6 +667,8 @@ de:
       title: Server-Regeln
     settings:
       about:
+        manage_rules: Serverregeln verwalten
+        preamble: Schildere ausführlich, wie Dein Server betrieben, moderiert und finanziert wird.
         rules_hint: Es gibt einen eigenen Bereich für Regeln, an die sich Ihre Benutzer halten sollen.
         title: Über
       appearance:
@@ -676,8 +678,11 @@ de:
         title: Branding
       content_retention:
         preamble: Steuern Sie, wie nutzergenerierte Inhalte in Mastodon gespeichert werden.
+        title: Aufbewahrung von Inhalten
       discovery:
         follow_recommendations: Folgeempfehlungen
+        profile_directory: Benutzerverzeichnis
+        public_timelines: Öffentliche Timeline
         title: Entdecken
         trends: Trends
       domain_blocks:
@@ -685,6 +690,7 @@ de:
         disabled: An niemanden
         users: Für angemeldete lokale Benutzer
       registrations:
+        preamble: Lege fest, wer auf Deinem Server ein Konto erstellen darf.
         title: Registrierungen
       registrations_mode:
         modes:
@@ -706,12 +712,18 @@ de:
       deleted: Gelöscht
       favourites: Favoriten
       history: Versionsverlauf
+      in_reply_to: Antwortet auf
+      language: Sprache
       media:
         title: Medien
       metadata: Metadaten
       no_status_selected: Keine Beiträge wurden geändert, weil keine ausgewählt wurden
+      open: Beitrag öffnen
       original_status: Ursprünglicher Beitrag
+      reblogs: Geteilte Beiträge
+      status_changed: Beitrag bearbeitet
       title: Beiträge des Kontos
+      trending: Trends
       visibility: Sichtbarkeit
       with_media: Mit Medien
     strikes:
