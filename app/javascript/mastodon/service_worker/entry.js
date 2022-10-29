@@ -43,7 +43,7 @@ registerRoute(
 );
 
 registerRoute(
-  ({ request }) => ['audio', 'image', 'track', 'video'].includes(request.destination),
+  ({ request }) => request.destination === 'image',
   new CacheFirst({
     cacheName: `m${CACHE_NAME_PREFIX}media`,
     plugins: [

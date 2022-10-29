@@ -4,14 +4,13 @@ import NavigationContainer from './containers/navigation_container';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
-import { mountCompose, unmountCompose } from '../../actions/compose';
+import { changeComposing, mountCompose, unmountCompose } from '../../actions/compose';
 import { Link } from 'react-router-dom';
 import { injectIntl, defineMessages } from 'react-intl';
 import SearchContainer from './containers/search_container';
 import Motion from '../ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import SearchResultsContainer from './containers/search_results_container';
-import { changeComposing } from '../../actions/compose';
 import { openModal } from 'mastodon/actions/modal';
 import elephantUIPlane from '../../../images/elephant_ui_plane.svg';
 import { mascot } from '../../initial_state';
@@ -35,7 +34,7 @@ const messages = defineMessages({
 
 const mapStateToProps = (state, ownProps) => ({
   columns: state.getIn(['settings', 'columns']),
-  showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : ownProps.isSearchPage,
+  showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
 });
 
 export default @connect(mapStateToProps)
@@ -47,24 +46,17 @@ class Compose extends React.PureComponent {
     columns: ImmutablePropTypes.list.isRequired,
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
-    isSearchPage: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
   componentDidMount () {
-    const { isSearchPage } = this.props;
-
-    if (!isSearchPage) {
-      this.props.dispatch(mountCompose());
-    }
+    const { dispatch } = this.props;
+    dispatch(mountCompose());
   }
 
   componentWillUnmount () {
-    const { isSearchPage } = this.props;
-
-    if (!isSearchPage) {
-      this.props.dispatch(unmountCompose());
-    }
+    const { dispatch } = this.props;
+    dispatch(unmountCompose());
   }
 
   handleLogoutClick = e => {
@@ -92,7 +84,7 @@ class Compose extends React.PureComponent {
   }
 
   render () {
-    const { multiColumn, showSearch, isSearchPage, intl } = this.props;
+    const { multiColumn, showSearch, intl } = this.props;
 
     if (multiColumn) {
       const { columns } = this.props;
@@ -117,10 +109,10 @@ class Compose extends React.PureComponent {
             <a href='/auth/sign_out' className='drawer__tab' title={intl.formatMessage(messages.logout)} aria-label={intl.formatMessage(messages.logout)} onClick={this.handleLogoutClick}><Icon id='sign-out' fixedWidth /></a>
           </nav>
 
-          {(multiColumn || isSearchPage) && <SearchContainer /> }
+          {multiColumn && <SearchContainer /> }
 
           <div className='drawer__pager'>
-            {!isSearchPage && <div className='drawer__inner' onFocus={this.onFocus}>
+            <div className='drawer__inner' onFocus={this.onFocus}>
               <NavigationContainer onClose={this.onBlur} />
 
               <ComposeFormContainer />
@@ -128,9 +120,9 @@ class Compose extends React.PureComponent {
               <div className='drawer__inner__mastodon'>
                 <img alt='' draggable='false' src={mascot || elephantUIPlane} />
               </div>
-            </div>}
+            </div>
 
-            <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
+            <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
               {({ x }) => (
                 <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
                   <SearchResultsContainer />

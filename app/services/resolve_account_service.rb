@@ -12,6 +12,7 @@ class ResolveAccountService < BaseService
   # @param [Hash] options
   # @option options [Boolean] :redirected Do not follow further Webfinger redirects
   # @option options [Boolean] :skip_webfinger Do not attempt any webfinger query or refreshing account data
+  # @option options [Boolean] :skip_cache Get the latest data from origin even if cache is not due to update yet
   # @option options [Boolean] :suppress_errors When failing, return nil instead of raising an error
   # @return [Account]
   def call(uri, options = {})
@@ -120,7 +121,7 @@ class ResolveAccountService < BaseService
     return false if @options[:check_delivery_availability] && !DeliveryFailureTracker.available?(@domain)
     return false if @options[:skip_webfinger]
 
-    @account.nil? || @account.possibly_stale?
+    @options[:skip_cache] || @account.nil? || @account.possibly_stale?
   end
 
   def activitypub_ready?

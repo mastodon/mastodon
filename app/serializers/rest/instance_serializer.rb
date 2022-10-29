@@ -72,13 +72,36 @@ class REST::InstanceSerializer < ActiveModel::Serializer
         min_expiration: PollValidator::MIN_EXPIRATION,
         max_expiration: PollValidator::MAX_EXPIRATION,
       },
+
+      translation: {
+        enabled: TranslationService.configured?,
+      },
     }
   end
 
   def registrations
     {
-      enabled: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
+      enabled: registrations_enabled?,
       approval_required: Setting.registrations_mode == 'approved',
+      message: registrations_enabled? ? nil : registrations_message,
     }
+  end
+
+  private
+
+  def registrations_enabled?
+    Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode
+  end
+
+  def registrations_message
+    if Setting.closed_registrations_message.present?
+      markdown.render(Setting.closed_registrations_message)
+    else
+      nil
+    end
+  end
+
+  def markdown
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_images: true)
   end
 end

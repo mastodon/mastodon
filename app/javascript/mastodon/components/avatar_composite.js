@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { autoPlayGif } from '../initial_state';
+import Avatar from './avatar';
 
 export default class AvatarComposite extends React.PureComponent {
 
@@ -74,12 +75,12 @@ export default class AvatarComposite extends React.PureComponent {
       bottom: bottom,
       width: `${width}%`,
       height: `${height}%`,
-      backgroundSize: 'cover',
-      backgroundImage: `url(${account.get(animate ? 'avatar' : 'avatar_static')})`,
     };
 
     return (
-      <div key={account.get('id')} style={style} />
+      <div key={account.get('id')} style={style}>
+        <Avatar account={account} animate={animate} />
+      </div>
     );
   }
 
