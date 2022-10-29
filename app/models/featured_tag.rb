@@ -19,6 +19,8 @@ class FeaturedTag < ApplicationRecord
   validate :validate_tag_name, on: :create
   validate :validate_featured_tags_limit, on: :create
 
+  before_validation :strip_name
+
   before_create :set_tag
   before_create :reset_data
 
@@ -47,6 +49,12 @@ class FeaturedTag < ApplicationRecord
   end
 
   private
+
+  def strip_name
+    return unless defined?(@name)
+
+    @name = @name&.strip&.gsub(/\A#/, '')
+  end
 
   def set_tag
     self.tag = Tag.find_or_create_by_names(@name)&.first
