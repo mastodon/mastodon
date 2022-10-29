@@ -716,7 +716,7 @@ zh-TW:
       with_media: 含有媒體檔案
     strikes:
       actions:
-        delete_statuses: "%{name} 刪除了 %{target} 的貼文"
+        delete_statuses: "%{name} 刪除了 %{target} 的嘟文"
         disable: "%{name} 凍結了 %{target} 的帳號"
         mark_statuses_as_sensitive: "%{name} 將 %{target} 的嘟文標記為敏感內容"
         none: "%{name} 已對 %{target} 送出警告"
@@ -984,8 +984,8 @@ zh-TW:
     challenge_not_passed: 您所輸入的資料不正確
     confirm_password: 輸入您現在的密碼以驗證身份
     confirm_username: 請輸入您的使用者名稱以作確認
-    proceed: 刪除帳戶
-    success_msg: 您的帳戶已經成功刪除
+    proceed: 刪除帳號
+    success_msg: 您的帳號已經成功刪除
     warning:
       before: '在進行下一步驟之前，請詳細閱讀以下説明：'
       caches: 已被其他節點快取的內容可能會殘留其中
@@ -1066,7 +1066,7 @@ zh-TW:
     add_new: 追加
     errors:
       limit: 您所推薦的標籤數量已經達到上限
-    hint_html: "<strong>推薦標籤是什麼？</strong> 這些標籤將顯示於您的公開個人檔案頁，訪客可以藉此閱覽您標示了這些標籤的嘟文，拿來展示創意作品或者長期更新的專案很好用唷！"
+    hint_html: "<strong>推薦主題標籤是什麼？</strong> 這些主題標籤將顯示於您的公開個人檔案頁，訪客可以藉此閱覽您標示了這些標籤的嘟文，拿來展示創意作品或者長期更新的專案很好用唷！"
   filters:
     contexts:
       account: 個人資料
@@ -1423,8 +1423,8 @@ zh-TW:
     pin_errors:
       direct: 無法釘選只有僅提及使用者可見之嘟文
       limit: 您所置頂的嘟文數量已經達到上限
-      ownership: 不能置頂他人的嘟文
-      reblog: 不能置頂轉嘟
+      ownership: 不能釘選他人的嘟文
+      reblog: 不能釘選轉嘟
     poll:
       total_people:
         other: "%{count} 個人"
@@ -1481,7 +1481,7 @@ zh-TW:
     min_reblogs: 保留超過嘟文轉嘟門檻
     min_reblogs_hint: 如果您嘟文已收到超過轉嘟門檻則不會刪除。留白表示不論轉嘟數量皆刪除嘟文。
   stream_entries:
-    pinned: 置頂嘟文
+    pinned: 釘選嘟文
     reblogged: 轉嘟
     sensitive_content: 敏感內容
   strikes:
@@ -1492,7 +1492,7 @@ zh-TW:
   themes:
     contrast: Mastodon（高對比）
     default: Mastodon（深色）
-    mastodon-light: Mastodon（亮色主題）
+    mastodon-light: Mastodon（亮色）
   time:
     formats:
       default: "%Y 年 %b 月 %d 日 %H:%M"
