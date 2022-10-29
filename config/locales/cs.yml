@@ -245,6 +245,7 @@ cs:
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
+        destroy_custom_emoji_html: "%{name} odstranil emoji %{target}"
         destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
         destroy_email_domain_block_html: Uživatel %{name} odblokoval e-mailovou doménu %{target}
@@ -252,6 +253,7 @@ cs:
         destroy_ip_block_html: Uživatel %{name} odstranil pravidlo pro IP %{target}
         destroy_status_html: Uživatel %{name} odstranil příspěvek uživatele %{target}
         destroy_unavailable_domain_html: "%{name} obnovil doručování na doménu %{target}"
+        destroy_user_role_html: "%{name} odstranil %{target} roli"
         disable_2fa_user_html: Uživatel %{name} vypnul dvoufázové ověřování pro uživatele %{target}
         disable_custom_emoji_html: Uživatel %{name} zakázal emoji %{target}
         disable_sign_in_token_auth_user_html: Uživatel %{name} zrušil ověřování e-mailovým tokenem pro %{target}
@@ -278,7 +280,9 @@ cs:
         update_announcement_html: Uživatel %{name} aktualizoval oznámení %{target}
         update_custom_emoji_html: Uživatel %{name} aktualizoval emoji %{target}
         update_domain_block_html: "%{name} aktualizoval blokaci domény %{target}"
+        update_ip_block_html: "%{name} změnil pravidlo pro IP %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
+        update_user_role_html: "%{name} změnil %{target} roli"
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
@@ -724,16 +728,25 @@ cs:
       delete: Odstranit nahraný soubor
       destroyed_msg: Upload stránky byl úspěšně smazán!
     statuses:
+      account: Autor
       back_to_account: Zpět na stránku účtu
       back_to_report: Zpět na stránku hlášení
       batch:
         remove_from_report: Odebrat z hlášení
         report: Nahlásit
       deleted: Smazáno
+      favourites: Oblíbené
+      history: Historie verzí
+      language: Jazyk
       media:
         title: Média
+      metadata: Metadata
       no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
+      open: Otevřít příspěvek
+      original_status: Původní příspěvek
+      status_changed: Příspěvek změněn
       title: Příspěvky účtu
+      visibility: Viditelnost
       with_media: S médii
     strikes:
       actions:

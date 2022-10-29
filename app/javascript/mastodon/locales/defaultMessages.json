@@ -689,16 +689,8 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "Show thread",
-        "id": "status.show_thread"
-      },
-      {
-        "defaultMessage": "Read more",
-        "id": "status.read_more"
-      },
-      {
-        "defaultMessage": "Translated from {lang}",
-        "id": "status.translated_from"
+        "defaultMessage": "Translated from {lang} using {provider}",
+        "id": "status.translated_from_with"
       },
       {
         "defaultMessage": "Show original",
@@ -707,6 +699,10 @@
       {
         "defaultMessage": "Translate",
         "id": "status.translate"
+      },
+      {
+        "defaultMessage": "Read more",
+        "id": "status.read_more"
       },
       {
         "defaultMessage": "Show more",
@@ -756,6 +752,10 @@
       {
         "defaultMessage": "{name} boosted",
         "id": "status.reblogged_by"
+      },
+      {
+        "defaultMessage": "Replied to {name}",
+        "id": "status.replied_to"
       }
     ],
     "path": "app/javascript/mastodon/components/status.json"
@@ -1204,8 +1204,8 @@
         "id": "account.badges.group"
       },
       {
-        "defaultMessage": "Joined {date}",
-        "id": "account.joined"
+        "defaultMessage": "Joined",
+        "id": "account.joined_short"
       }
     ],
     "path": "app/javascript/mastodon/features/account/components/header.json"
@@ -1272,6 +1272,39 @@
       }
     ],
     "path": "app/javascript/mastodon/features/bookmarked_statuses/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Creating an account on {domain} is currently not possible, but please keep in mind that you do not need an account specifically on {domain} to use Mastodon.",
+        "id": "closed_registrations_modal.description"
+      },
+      {
+        "defaultMessage": "Signing up on Mastodon",
+        "id": "closed_registrations_modal.title"
+      },
+      {
+        "defaultMessage": "Mastodon is decentralized, so no matter where you create your account, you will be able to follow and interact with anyone on this server. You can even self-host it!",
+        "id": "closed_registrations_modal.preamble"
+      },
+      {
+        "defaultMessage": "On this server",
+        "id": "interaction_modal.on_this_server"
+      },
+      {
+        "defaultMessage": "On a different server",
+        "id": "interaction_modal.on_another_server"
+      },
+      {
+        "defaultMessage": "Since Mastodon is decentralized, you can create an account on another server and still interact with this one.",
+        "id": "closed_registrations.other_server_instructions"
+      },
+      {
+        "defaultMessage": "Find another server",
+        "id": "closed_registrations_modal.find_another_server"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/closed_registrations_modal/index.json"
   },
   {
     "descriptors": [
@@ -2526,6 +2559,10 @@
         "id": "interaction_modal.description.follow"
       },
       {
+        "defaultMessage": "Create account",
+        "id": "sign_in_banner.create_account"
+      },
+      {
         "defaultMessage": "Since Mastodon is decentralized, you can use your existing account hosted by another Mastodon server or compatible platform if you don't have an account on this one.",
         "id": "interaction_modal.preamble"
       },
@@ -2536,10 +2573,6 @@
       {
         "defaultMessage": "Sign in",
         "id": "sign_in_banner.sign_in"
-      },
-      {
-        "defaultMessage": "Create account",
-        "id": "sign_in_banner.create_account"
       },
       {
         "defaultMessage": "On a different server",
@@ -4084,6 +4117,10 @@
       {
         "defaultMessage": "About",
         "id": "navigation_bar.about"
+      },
+      {
+        "defaultMessage": "Search",
+        "id": "navigation_bar.search"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/navigation_panel.json"
@@ -4104,16 +4141,16 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Create account",
+        "id": "sign_in_banner.create_account"
+      },
+      {
         "defaultMessage": "Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.",
         "id": "sign_in_banner.text"
       },
       {
         "defaultMessage": "Sign in",
         "id": "sign_in_banner.sign_in"
-      },
-      {
-        "defaultMessage": "Create account",
-        "id": "sign_in_banner.create_account"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/sign_in_banner.json"

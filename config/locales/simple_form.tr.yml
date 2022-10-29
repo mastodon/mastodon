@@ -75,8 +75,25 @@ tr:
           warn: Filtrelenmiş içeriği, filtrenin başlığından söz eden bir uyarının arkasında gizle
       form_admin_settings:
         backups_retention_period: Üretilen kullanıcı arşivlerini belirli gün sayısı kadar sakla.
+        bootstrap_timeline_accounts: Bu hesaplar, yeni kullanıcıların takip önerilerinin tepesinde sabitlenecektir.
+        closed_registrations_message: Kayıt olma kapalıyken görüntülenir
         content_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan gelen gönderiler belirli bir gün sonra silinecektir. Silme geri alınamayabilir.
+        custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
+        mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
         media_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan indirilen medya dosyaları belirli bir gün sonra silinecektir, isteğe bağlı olarak tekrar indirilebilir.
+        profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
+        require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
+        site_contact_email: İnsanlar yasal konular veya destek hakkında bilgi edinmek için size nasıl ulaşabilir.
+        site_contact_username: İnsanlar size Mastodon'da nasıl ulaşabilir.
+        site_extended_description: Ziyaretçileriniz ve kullanıcılarınıza yardımı dokunabilecek herhangi bir ek bilgi. Markdown sözdizimiyle biçimlendirilebilir.
+        site_short_description: Sunucunuzu tekil olarak tanımlamaya yardımcı olacak kısa tanım. Kim işletiyor, kimin için?
+        site_terms: Kendi gizlilik politikanızı kullanın veya varsayılanı kullanmak için boş bırakın. Markdown sözdizimiyle biçimlendirilebilir.
+        site_title: İnsanlar sunucunuzu alan adı dışında nasıl isimlendirmeli.
+        theme: Giriş yapmamış ziyaretçilerin ve yeni kullanıcıların gördüğü tema.
+        thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
+        timeline_preview: Giriş yapmamış ziyaretçiler, sunucuda mevcut olan en son genel gönderileri tarayabilecekler.
+        trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
+        trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -213,8 +230,28 @@ tr:
           warn: Uyarıyla gizle
       form_admin_settings:
         backups_retention_period: Kullanıcı arşivi saklama süresi
+        bootstrap_timeline_accounts: Bu hesapları yeni kullanıcılara her zaman öner
+        closed_registrations_message: Kayıt olma mevcut değilken gösterilen özel ileti
         content_cache_retention_period: İçerik önbelleği saklama süresi
+        custom_css: Özel CSS
+        mascot: Özel maskot (eski)
         media_cache_retention_period: Medya önbelleği saklama süresi
+        profile_directory: Profil dizinini etkinleştir
+        registrations_mode: Kim kaydolabilir
+        require_invite_text: Katılmak için bir gerekçe iste
+        show_domain_blocks: Engellenen alan adlarını göster
+        show_domain_blocks_rationale: Alan adlarının neden engellendiğini göster
+        site_contact_email: İletişim e-postası
+        site_contact_username: İletişim kullanıcı adı
+        site_extended_description: Geniş açıklama
+        site_short_description: Sunucu açıklaması
+        site_terms: Gizlilik Politikası
+        site_title: Sunucu adı
+        theme: Öntanımlı tema
+        thumbnail: Sunucu küçük resmi
+        timeline_preview: Genel zaman çizelgelerine yetkisiz erişime izin ver
+        trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
+        trends: Öne çıkanları etkinleştir
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle

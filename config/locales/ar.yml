@@ -5,6 +5,7 @@ ar:
     contact_missing: لم يتم تعيينه
     contact_unavailable: غير متوفر
     hosted_on: ماستدون مُستضاف على %{domain}
+    title: عن
   accounts:
     follow: اتبع
     followers:
@@ -50,6 +51,8 @@ ar:
         new_email: عنوان البريد الإلكتروني الجديد
         submit: تعديل عنوان البريد الإلكتروني
         title: تعديل عنوان البريد الإلكتروني الخاص بـ %{username}
+      change_role:
+        label: تغيير الدور
       confirm: تأكيد
       confirmed: مؤكَّد
       confirming: التأكد
@@ -123,6 +126,7 @@ ar:
       reset: إعادة التعيين
       reset_password: إعادة ضبط كلمة السر
       resubscribe: إعادة الاشتراك
+      role: الدور
       search: البحث
       search_same_email_domain: مستخدمون آخرون لديهم نفس نطاق البريد الإلكتروني
       search_same_ip: مستخدِمون آخرون بنفس الـ IP
@@ -529,6 +533,28 @@ ar:
       unresolved: غير معالجة
       updated_at: محدث
       view_profile: اعرض الصفحة التعريفية
+    roles:
+      add_new: إضافة دور
+      categories:
+        administration: الإدارة
+        invites: الدعوات
+        moderation: الإشراف
+        special: مميز
+      delete: حذف
+      everyone: الصلاحيات الافتراضية
+      privileges:
+        administrator: مدير
+        manage_announcements: ادارة الاعلانات
+        manage_appeals: إدارة الاستئنافات
+        manage_federation: إدارة الفديرالية
+        manage_invites: إدارة الدعوات
+        manage_reports: إدارة التقارير
+        manage_roles: إدارة الأدوار
+        manage_rules: إدارة القواعد
+        manage_settings: إدارة الإعدادات
+        manage_user_access: إدارة وصول المستخدم
+        manage_users: إدارة المستخدمين
+      title: الأدوار
     rules:
       add_new: إضافة قاعدة
       delete: حذف
@@ -537,27 +563,49 @@ ar:
       empty: لم يتم تحديد قواعد الخادم بعد.
       title: قوانين الخادم
     settings:
+      about:
+        manage_rules: إدارة قواعد الخادم
+        title: عن
+      appearance:
+        title: المظهر
+      branding:
+        title: العلامة
+      content_retention:
+        title: الاحتفاظ بالمحتوى
+      discovery:
+        profile_directory: دليل الصفحات التعريفية
+        public_timelines: الخيوط الزمنية العامة
+        title: الاستكشاف
+        trends: المتداوَلة
       domain_blocks:
         all: للجميع
         disabled: لا أحد
         users: للمستخدمين المتصلين محليا
+      registrations:
+        title: التسجيلات
       registrations_mode:
         modes:
           approved: طلب الموافقة لازم عند إنشاء حساب
           none: لا أحد يمكنه إنشاء حساب
           open: يمكن للجميع إنشاء حساب
+      title: إعدادات الخادم
     site_uploads:
       delete: احذف الملف الذي تم تحميله
       destroyed_msg: تم حذف التحميل مِن الموقع بنجاح!
     statuses:
+      account: المؤلف
+      application: التطبيق
       back_to_account: العودة إلى صفحة الحساب
       back_to_report: العودة إلى صفحة التقرير
       batch:
         remove_from_report: إزالة من التقرير
         report: إبلاغ
       deleted: محذوف
+      favourites: المفضلة
+      language: اللغة
       media:
         title: الوسائط
+      metadata: البيانات الوصفية
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
       title: منشورات الحساب
       with_media: تحتوي على وسائط
@@ -625,6 +673,8 @@ ar:
       edit_preset: تعديل نموذج التحذير
       empty: لم تحدد أي إعدادات تحذير مسبقة بعد.
       title: إدارة نماذج التحذير
+    webhooks:
+      delete: حذف
   admin_mailer:
     new_appeal:
       actions:
@@ -683,6 +733,7 @@ ar:
     warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين!
     your_token: رمز نفاذك
   auth:
+    apply_for_account: انضم إلى قائمة الانتظار
     change_password: الكلمة السرية
     delete_account: حذف الحساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
@@ -709,6 +760,8 @@ ar:
     registration_closed: لا يقبل %{instance} استقبال أعضاء جدد
     resend_confirmation: إعادة إرسال تعليمات التأكيد
     reset_password: إعادة تعيين كلمة المرور
+    rules:
+      title: بعض القواعد الأساسية.
     security: الأمان
     set_new_password: إدخال كلمة مرور جديدة
     setup:
@@ -852,6 +905,8 @@ ar:
       public: الخيوط الزمنية العامة
       thread: المحادثات
     edit:
+      add_keyword: إضافة كلمة مفتاحية
+      keywords: الكلمات المفتاحية
       title: تعديل عامل التصفية
     errors:
       invalid_context: لم تقم بتحديد أي مجال أو أنّ المجال غير صالح
@@ -1055,6 +1110,8 @@ ar:
     other: إعدادات أخرى
     posting_defaults: التفضيلات الافتراضية للنشر
     public_timelines: الخيوط الزمنية العامة
+  privacy_policy:
+    title: سياسة الخصوصية
   reactions:
     errors:
       limit_reached: تم بلوغ الحد الأقصى لردود الفعل المختلفة

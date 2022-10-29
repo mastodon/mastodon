@@ -73,6 +73,27 @@ zh-CN:
         actions:
           hide: 彻底屏蔽过滤内容，犹如它不曾存在过一般
           warn: 在警告中提及过滤器标题后，隐藏过滤内容
+      form_admin_settings:
+        backups_retention_period: 将在指定天数内保留生成的用户存档。
+        bootstrap_timeline_accounts: 这些账号将在新用户关注推荐中置顶。
+        closed_registrations_message: 在关闭注册时显示
+        content_cache_retention_period: 设为正数值时，来自其他服务器的嘟文将在指定天数后被删除。删除有可能会是不可逆的。
+        custom_css: 你可以为网页版 Mastodon 应用自定义样式。
+        mascot: 覆盖高级网页界面中的绘图形象。
+        media_cache_retention_period: 设为正数值时，来自其他服务器的媒体文件将在指定天数后被删除，并在需要时再次下载。
+        profile_directory: 个人资料目录会列出所有选择可被发现的用户。
+        require_invite_text: 当注册需要手动批准时，将“你为什么想要加入？”设为必填项
+        site_contact_email: 他人需要询恰法务或支持信息时的联络方式
+        site_contact_username: 他人在 Mastodon 上联系你的方式
+        site_extended_description: 任何可能对访客和用户有用的额外信息。可以使用 Markdown 语法。
+        site_short_description: 有助于区分你的服务器独特性的简短描述。谁在管理？供谁使用？
+        site_terms: 使用你自己的隐私政策或留空以使用默认版。可以使用 Markdown 语法。
+        site_title: 除了域名，人们还可以如何指代你的服务器。
+        theme: 给未登录访客和新用户使用的主题。
+        thumbnail: 与服务器信息一并展示的约 2:1 比例的图像。
+        timeline_preview: 未登录访客将能够浏览服务器上最新的公共嘟文。
+        trendable_by_default: 跳过对热门内容的手工审核。个别项目仍可在之后从趋势中删除。
+        trends: 趋势中会显示正在你服务器上受到关注的嘟文、标签和新闻故事。
       form_challenge:
         current_password: 你正在进入安全区域
       imports:
@@ -207,6 +228,30 @@ zh-CN:
         actions:
           hide: 完全隐藏
           warn: 隐藏时显示警告信息
+      form_admin_settings:
+        backups_retention_period: 用户存档保留期
+        bootstrap_timeline_accounts: 推荐新用户关注以下账号
+        closed_registrations_message: 在关闭注册时显示的自定义消息
+        content_cache_retention_period: 内容缓存保留期
+        custom_css: 自定义 CSS
+        mascot: 自定义吉祥物（旧）
+        media_cache_retention_period: 媒体缓存保留期
+        profile_directory: 启用用户目录
+        registrations_mode: 谁可以注册
+        require_invite_text: 注册前需要提供理由
+        show_domain_blocks: 显示域名屏蔽列表
+        show_domain_blocks_rationale: 显示域名屏蔽原因
+        site_contact_email: 联系邮箱
+        site_contact_username: 用于联系的公开用户名
+        site_extended_description: 完整说明
+        site_short_description: 本站简介
+        site_terms: 隐私政策
+        site_title: 本站名称
+        theme: 默认主题
+        thumbnail: 本站缩略图
+        timeline_preview: 时间轴预览
+        trendable_by_default: 允许在未审核的情况下将话题置为热门
+        trends: 启用趋势
       interactions:
         must_be_follower: 屏蔽来自未关注我的用户的通知
         must_be_following: 屏蔽来自我未关注的用户的通知
