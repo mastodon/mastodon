@@ -24,7 +24,6 @@ export default class IconButton extends React.PureComponent {
     inverted: PropTypes.bool,
     animate: PropTypes.bool,
     overlay: PropTypes.bool,
-    tabIndex: PropTypes.string,
     counter: PropTypes.number,
     obfuscateCount: PropTypes.bool,
     href: PropTypes.string,
@@ -36,7 +35,6 @@ export default class IconButton extends React.PureComponent {
     disabled: false,
     animate: false,
     overlay: false,
-    tabIndex: '0',
   };
 
   state = {
@@ -99,7 +97,6 @@ export default class IconButton extends React.PureComponent {
       inverted,
       overlay,
       pressed,
-      tabIndex,
       title,
       counter,
       obfuscateCount,
@@ -151,7 +148,6 @@ export default class IconButton extends React.PureComponent {
         onKeyDown={this.handleKeyDown}
         onKeyPress={this.handleKeyPress}
         style={style}
-        tabIndex={tabIndex}
         disabled={disabled}
       >
         {contents}
