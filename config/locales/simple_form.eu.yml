@@ -1,4 +1,3 @@
----
 eu:
   simple_form:
     hints:
@@ -176,6 +175,7 @@ eu:
         setting_use_pending_items: Modu geldoa
         severity: Larritasuna
         sign_in_token_attempt: Segurtasun kodea
+        title: Izenburua
         type: Inportazio mota
         username: Erabiltzaile-izena
         username_or_email: Erabiltzaile-izena edo e-mail helbidea
@@ -184,6 +184,12 @@ eu:
         with_dns_records: Sartu ere domeinuaren MX erregistroak eta IPak
       featured_tag:
         name: Traola
+      filters:
+        actions:
+          hide: Ezkutatu guztiz
+          warn: Ezkutatu ohar batekin
+      form_admin_settings:
+        custom_css: CSS pertsonalizatua
       interactions:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzu horien jakinarazpenak
@@ -217,7 +223,7 @@ eu:
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu tootek traola hau erabiltzea
-    'no': Ez
+    'no': 'Ez'
     recommended: Aholkatua
     required:
       mark: "*"
@@ -225,4 +231,4 @@ eu:
     title:
       sessions:
         webauthn: Erabili zure segurtasun gakoetako bat saioa hasteko
-    'yes': Bai
+    'yes': 'Bai'
