@@ -1,4 +1,3 @@
----
 sl:
   activerecord:
     attributes:
@@ -29,6 +28,10 @@ sl:
           attributes:
             website:
               invalid: ni veljaven URL
+        import:
+          attributes:
+            data:
+              malformed: je napačno oblikovan
         status:
           attributes:
             reblog:
