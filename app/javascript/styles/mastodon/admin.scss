@@ -31,22 +31,16 @@ $content-width: 840px;
 
     &__toggle {
       display: none;
-      background: lighten($ui-base-color, 8%);
-      height: 48px;
+      background: darken($ui-base-color, 4%);
+      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      align-items: center;
 
       &__logo {
         flex: 1 1 auto;
 
         a {
-          display: inline-block;
+          display: block;
           padding: 15px;
-        }
-
-        svg {
-          fill: $primary-text-color;
-          height: 20px;
-          position: relative;
-          bottom: -2px;
         }
       }
 
@@ -55,15 +49,27 @@ $content-width: 840px;
         color: $darker-text-color;
         text-decoration: none;
         flex: 0 0 auto;
-        font-size: 20px;
-        padding: 15px;
-      }
+        font-size: 18px;
+        padding: 10px;
+        margin: 5px 10px;
+        border-radius: 4px;
 
-      a {
-        &:hover,
-        &:focus,
-        &:active {
-          background: lighten($ui-base-color, 12%);
+        &:focus {
+          background: $ui-base-color;
+        }
+
+        .fa-times {
+          display: none;
+        }
+
+        &.active {
+          .fa-times {
+            display: block;
+          }
+
+          .fa-bars {
+            display: none;
+          }
         }
       }
     }
@@ -79,7 +85,7 @@ $content-width: 840px;
       display: inherit;
       margin: inherit;
       width: inherit;
-      height: 20px;
+      height: 25px;
     }
 
     @media screen and (max-width: $no-columns-breakpoint) {
@@ -189,9 +195,7 @@ $content-width: 840px;
     }
 
     &__heading {
-      padding-bottom: 36px;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
-      margin-bottom: 40px;
+      margin-bottom: 45px;
 
       &__row {
         display: flex;
@@ -208,45 +212,42 @@ $content-width: 840px;
 
       &__tabs {
         margin-top: 30px;
-        margin-bottom: -31px;
+        width: 100%;
 
         & > div {
           display: flex;
-          gap: 10px;
+          flex-wrap: wrap;
+          gap: 5px;
         }
 
         a {
           font-size: 14px;
           display: inline-flex;
           align-items: center;
-          padding: 7px 15px;
+          padding: 7px 10px;
           border-radius: 4px;
           color: $darker-text-color;
           text-decoration: none;
-          position: relative;
           font-weight: 500;
           gap: 5px;
           white-space: nowrap;
-
-          &.selected {
-            font-weight: 700;
-            color: $primary-text-color;
-
-            &::after {
-              content: "";
-              display: block;
-              width: 100%;
-              border-bottom: 1px solid $ui-highlight-color;
-              position: absolute;
-              bottom: -5px;
-              left: 0;
-            }
-          }
 
           &:hover,
           &:focus,
           &:active {
             background: lighten($ui-base-color, 4%);
+          }
+
+          &.selected {
+            font-weight: 700;
+            color: $primary-text-color;
+            background: $ui-highlight-color;
+
+            &:hover,
+            &:focus,
+            &:active {
+              background: lighten($ui-highlight-color, 4%);
+            }
           }
         }
       }
@@ -382,6 +383,14 @@ $content-width: 840px;
 
         &.visible {
           display: block;
+          position: fixed;
+          z-index: 10;
+          width: 100%;
+          height: calc(100vh - 56px);
+          left: 0;
+          bottom: 0;
+          overflow-y: auto;
+          background: $ui-base-color;
         }
       }
 

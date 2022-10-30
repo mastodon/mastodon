@@ -667,29 +667,67 @@ tr:
       empty: Henüz bir sunucu kuralı tanımlanmadı.
       title: Sunucu kuralları
     settings:
+      about:
+        manage_rules: Sunucu kurallarını yönet
+        preamble: Sunucunun nasıl işletildiği, yönetildiği ve fonlandığı hakkında ayrıntılı bilgi verin.
+        rules_hint: Kullanıcılarınızın uyması beklenen kurallar için özel bir alan var.
+        title: Hakkında
+      appearance:
+        preamble: Mastodon'un web arayüzünü düzenleyin.
+        title: Görünüm
+      branding:
+        preamble: Sunucunuzun markalaşması ağdaki diğer sunuculardan farklıdır. Bu bilgiler Mastodon'un web arayüzü, doğal uygulamalar, diğer sitelerdeki ve ileti uygulamalarındaki bağlantı önizlemeleri, vb. gibi çeşitli ortamlarda görüntülenebilir. Bu nedenle bu bilgiyi açık, kısa ve özlü tutmak en iyisidir.
+        title: Marka
+      content_retention:
+        preamble: Kullanıcıların ürettiği içeriğin Mastodon'da nasıl saklanacağını denetleyin.
+        title: İçerik saklama
+      discovery:
+        follow_recommendations: Takip önerileri
+        preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
+        profile_directory: Profil dizini
+        public_timelines: Genel zaman çizelgeleri
+        title: Keşfet
+        trends: Öne çıkanlar
       domain_blocks:
         all: Herkes için
         disabled: Hiç kimseye
         users: Oturum açan yerel kullanıcılara
+      registrations:
+        preamble: Sunucunuzda kimin hesap oluşturabileceğini denetleyin.
+        title: Kayıtlar
       registrations_mode:
         modes:
           approved: Kayıt için onay gerekli
           none: Hiç kimse kayıt olamaz
           open: Herkes kaydolabilir
+      title: Sunucu Ayarları
     site_uploads:
       delete: Yüklenen dosyayı sil
       destroyed_msg: Site yüklemesi başarıyla silindi!
     statuses:
+      account: Yazar
+      application: Uygulama
       back_to_account: Hesap sayfasına geri dön
       back_to_report: Bildirim sayfasına geri dön
       batch:
         remove_from_report: Bildirimden kaldır
         report: Bildirim
       deleted: Silindi
+      favourites: Favoriler
+      history: Sürüm geçmişi
+      in_reply_to: Yanıtlanan
+      language: Dil
       media:
         title: Medya
+      metadata: Üstveri
       no_status_selected: Hiçbiri seçilmediğinden hiçbir durum değiştirilmedi
+      open: Gönderiyi aç
+      original_status: Özgün gönderi
+      reblogs: Yeniden Paylaşımlar
+      status_changed: Gönderi değişti
       title: Hesap durumları
+      trending: Öne çıkanlar
+      visibility: Görünürlük
       with_media: Medya ile
     strikes:
       actions:

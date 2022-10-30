@@ -30,6 +30,8 @@ mastodon:
   # Use of WEB_DOMAIN requires careful consideration: https://docs.joinmastodon.org/admin/config/#federation
   # You must redirect the path LOCAL_DOMAIN/.well-known/ to WEB_DOMAIN/.well-known/ as described
   # web_domain: mastodon.example.com
+  # If set to true, the frontpage of your Mastodon server will always redirect to the first profile in the database and registrations will be disabled.
+  singleUserMode: false
   persistence:
     assets:
       # ReadWriteOnce is more widely supported than ReadWriteMany, but limits

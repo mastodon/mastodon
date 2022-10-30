@@ -5,6 +5,7 @@ fi:
     contact_missing: Ei asetettu
     contact_unavailable: Ei saatavilla
     hosted_on: Mastodon palvelimella %{domain}
+    title: Tietoja
   accounts:
     follow: Seuraa
     followers:
@@ -173,6 +174,7 @@ fi:
         confirm_user: Vahvista käyttäjä
         create_account_warning: Luo varoitus
         create_announcement: Luo ilmoitus
+        create_canonical_email_block: Luo sähköpostin esto
         create_custom_emoji: Luo mukautettu emoji
         create_domain_allow: Salli palvelin
         create_domain_block: Estä palvelin
@@ -182,6 +184,7 @@ fi:
         create_user_role: Luo rooli
         demote_user: Alenna käyttäjä
         destroy_announcement: Poista ilmoitus
+        destroy_canonical_email_block: Poista sähköpostin esto
         destroy_custom_emoji: Poista mukautettu emoji
         destroy_domain_allow: Salli verkkotunnuksen poisto
         destroy_domain_block: Poista verkkotunnuksen esto
@@ -217,6 +220,7 @@ fi:
         update_announcement: Päivitä ilmoitus
         update_custom_emoji: Päivitä muokattu emoji
         update_domain_block: Päivitä verkkotunnuksen esto
+        update_ip_block: Päivitä IP-sääntö
         update_status: Päivitä viesti
         update_user_role: Päivitä rooli
       actions:
@@ -228,6 +232,7 @@ fi:
         confirm_user_html: "%{name} vahvisti käyttäjän %{target} sähköpostiosoitteen"
         create_account_warning_html: "%{name} lähetti varoituksen henkilölle %{target}"
         create_announcement_html: "%{name} loi uuden ilmoituksen %{target}"
+        create_canonical_email_block_html: "%{name} esti sähköpostin hashilla %{target}"
         create_custom_emoji_html: "%{name} lähetti uuden emojin %{target}"
         create_domain_allow_html: "%{name} salli yhdistäminen verkkotunnuksella %{target}"
         create_domain_block_html: "%{name} esti verkkotunnuksen %{target}"
@@ -237,6 +242,7 @@ fi:
         create_user_role_html: "%{name} luonut %{target} roolin"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
         destroy_announcement_html: "%{name} poisti ilmoituksen %{target}"
+        destroy_canonical_email_block_html: "%{name} poisti sähköposti eston hashilla %{target}"
         destroy_custom_emoji_html: "%{name} poisti emojin %{target}"
         destroy_domain_allow_html: "%{name} esti yhdistämisen verkkotunnuksella %{target}"
         destroy_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
@@ -272,6 +278,7 @@ fi:
         update_announcement_html: "%{name} päivitti ilmoituksen %{target}"
         update_custom_emoji_html: "%{name} päivitti emojin %{target}"
         update_domain_block_html: "%{name} päivitti verkkotunnuksen %{target}"
+        update_ip_block_html: "%{name} muutti sääntöä IP-osoitteelle %{target}"
         update_status_html: "%{name} päivitti viestin %{target}"
         update_user_role_html: "%{name} muutti roolia %{target}"
       empty: Lokeja ei löytynyt.
@@ -317,6 +324,7 @@ fi:
       listed: Listassa
       new:
         title: Lisää uusi mukautettu emoji
+      no_emoji_selected: Hymiöitä ei muutettu, koska yhtään ei valittu
       not_permitted: Sinulla ei ole oikeutta suorittaa tätä toimintoa
       overwrite: Kirjoita yli
       shortcode: Lyhennekoodi
@@ -659,29 +667,67 @@ fi:
       empty: Palvelimen sääntöjä ei ole vielä määritelty.
       title: Palvelimen säännöt
     settings:
+      about:
+        manage_rules: Hallinnoi palvelimen sääntöjä
+        preamble: Anna perusteellista tietoa siitä, miten palvelinta käytetään, valvotaan, rahoitetaan.
+        rules_hint: On olemassa erityinen alue sääntöjä, joita käyttäjien odotetaan noudattavan.
+        title: Tietoja
+      appearance:
+        preamble: Muokkaa Mastodonin web-käyttöliittymää.
+        title: Ulkoasu
+      branding:
+        preamble: Palvelimesi brändäys erottaa sen muista verkon palvelimista. Nämä tiedot voidaan näyttää useissa eri ympäristöissä, kuten Mastodonin käyttöliittymässä, sovelluksissa, linkkien esikatselu muilla sivustoilla ja viestisovelluksien sisällä ja niin edelleen. Tästä syystä on parasta pitää nämä tiedot selkeinä, lyhyinä ja ytimekkäinä.
+        title: Brändäys
+      content_retention:
+        preamble: Määritä, miten käyttäjän luoma sisältö tallennetaan Mastodoniin.
+        title: Sisällön säilyttäminen
+      discovery:
+        follow_recommendations: Noudata suosituksia
+        preamble: Mielenkiintoisen sisällön esille tuominen auttaa saamaan uusia käyttäjiä, jotka eivät ehkä tunne ketään Mastodonista. Määrittele, kuinka erilaiset etsintäominaisuudet toimivat palvelimellasi.
+        profile_directory: Profiilihakemisto
+        public_timelines: Julkiset aikajanat
+        title: Löytäminen
+        trends: Trendit
       domain_blocks:
         all: Kaikille
         disabled: Ei kenellekkään
         users: Kirjautuneille paikallisille käyttäjille
+      registrations:
+        preamble: Määritä, kuka voi luoda tilin palvelimellesi.
+        title: Rekisteröinnit
       registrations_mode:
         modes:
           approved: Rekisteröinti vaatii hyväksynnän
           none: Kukaan ei voi rekisteröityä
           open: Kaikki voivat rekisteröityä
+      title: Palvelimen asetukset
     site_uploads:
       delete: Poista ladattu tiedosto
       destroyed_msg: Sivuston lataus onnistuneesti poistettu!
     statuses:
+      account: Tekijä
+      application: Sovellus
       back_to_account: Takaisin tilin sivulle
       back_to_report: Takaisin raporttisivulle
       batch:
         remove_from_report: Poista raportista
         report: Raportti
       deleted: Poistettu
+      favourites: Suosikit
+      history: Versiohistoria
+      in_reply_to: Vastaa
+      language: Kieli
       media:
         title: Media
+      metadata: Metadata
       no_status_selected: Viestejä ei muutettu, koska yhtään ei ole valittuna
+      open: Avaa viesti
+      original_status: Alkuperäinen viesti
+      reblogs: Edelleen jako
+      status_changed: Viesti muutettu
       title: Tilin tilat
+      trending: Nousussa
+      visibility: Näkyvyys
       with_media: Sisältää mediaa
     strikes:
       actions:
@@ -721,6 +767,9 @@ fi:
         description_html: Nämä ovat linkkejä, joita jaetaan tällä hetkellä paljon tileillä, joilta palvelimesi näkee viestejä. Se voi auttaa käyttäjiäsi saamaan selville, mitä maailmassa tapahtuu. Linkkejä ei näytetä julkisesti, ennen kuin hyväksyt julkaisijan. Voit myös sallia tai hylätä yksittäiset linkit.
         disallow: Hylkää linkki
         disallow_provider: Estä julkaisija
+        no_link_selected: Yhtään linkkiä ei muutettu, koska yhtään ei valittu
+        publishers:
+          no_publisher_selected: Julkaisijoita ei muutettu, koska yhtään ei valittu
         shared_by_over_week:
           one: Yksi henkilö jakanut viimeisen viikon aikana
           other: Jakanut %{count} henkilöä viimeisen viikon aikana
@@ -740,6 +789,7 @@ fi:
         description_html: Nämä ovat viestejä, jotka palvelimesi tietää tällä hetkellä jaetuksi ja suosituksi. Tämä voi auttaa uusia ja palaavia ihmisiä löytämään lisää ihmisiä, joita seurata seurata. Julkaisuja ei näytetä julkisesti ennen kuin hyväksyt tekijän ja kirjoittaja sallii tilinsä ehdottamisen muille. Voit myös sallia tai hylätä yksittäiset viestit.
         disallow: Estä viesti
         disallow_account: Estä tekijä
+        no_status_selected: Suosittuja viestejä ei muutettu, koska yhtään ei valittu
         not_discoverable: Tekijä ei ole ilmoittanut olevansa löydettävissä
         shared_by:
           one: Jaettu tai suosikki kerran
@@ -755,6 +805,7 @@ fi:
           tag_uses_measure: käyttökerrat
         description_html: Nämä ovat hashtageja, jotka näkyvät tällä hetkellä monissa viesteissä, jotka palvelimesi näkee. Tämä voi auttaa käyttäjiäsi selvittämään, mistä ihmiset puhuvat eniten tällä hetkellä. Mitään hashtageja ei näytetä julkisesti ennen kuin hyväksyt ne.
         listable: Voidaan ehdottaa
+        no_tag_selected: Yhtään tagia ei muutettu, koska yhtään ei valittu
         not_listable: Ei tulla ehdottamaan
         not_trendable: Ei näy trendien alla
         not_usable: Ei voida käyttää
@@ -860,6 +911,7 @@ fi:
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
     your_token: Pääsytunnus
   auth:
+    apply_for_account: Tule jonotuslistalle
     change_password: Salasana
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
@@ -879,6 +931,7 @@ fi:
     migrate_account: Muuta toiseen tiliin
     migrate_account_html: Jos haluat ohjata tämän tilin toiseen tiliin, voit <a href="%{path}">asettaa toisen tilin tästä</a>.
     or_log_in_with: Tai käytä kirjautumiseen
+    privacy_policy_agreement_html: Olen lukenut ja hyväksynyt <a href="%{privacy_policy_path}" target="_blank">tietosuojakäytännön</a>
     providers:
       cas: CAS
       saml: SAML
@@ -886,12 +939,18 @@ fi:
     registration_closed: "%{instance} ei hyväksy uusia jäseniä"
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
+    rules:
+      preamble: "%{domain} valvojat määrittävät ja valvovat sääntöjä."
+      title: Joitakin perussääntöjä.
     security: Tunnukset
     set_new_password: Aseta uusi salasana
     setup:
       email_below_hint_html: Jos alla oleva sähköpostiosoite on virheellinen, voit muuttaa sitä täällä ja tilata uuden vahvistussähköpostiviestin.
       email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit muuttaa sitä tiliasetuksissa.
       title: Asetukset
+    sign_up:
+      preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
+      title: Otetaan sinulle käyttöön %{domain}.
     status:
       account_status: Tilin tila
       confirming: Odotetaan sähköpostivahvistuksen valmistumista.
@@ -1073,12 +1132,22 @@ fi:
     trending_now: Suosittua nyt
   generic:
     all: Kaikki
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> kohde tällä sivulla on valittu."
+      other: Kaikki <strong>%{count}</strong> kohdetta tällä sivulla on valittu.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> tuotetta, joka vastaa hakuasi."
+      other: Kaikki <strong>%{count}</strong> kohdetta, jotka vastaavat hakuasi.
     changes_saved_msg: Muutosten tallennus onnistui!
     copy: Kopioi
     delete: Poista
+    deselect: Poista kaikki valinnat
     none: Ei mitään
     order_by: Järjestä
     save_changes: Tallenna muutokset
+    select_all_matching_items:
+      one: Valitse %{count} kohdetta, joka vastaa hakuasi.
+      other: Valitse kaikki %{count} kohdetta, jotka vastaavat hakuasi.
     today: tänään
     validation_errors:
       one: Kaikki ei ole aivan oikein! Tarkasta alla oleva virhe
@@ -1257,6 +1326,8 @@ fi:
     other: Muut
     posting_defaults: Julkaisujen oletusasetukset
     public_timelines: Julkiset aikajanat
+  privacy_policy:
+    title: Tietosuojakäytäntö
   reactions:
     errors:
       limit_reached: Erilaisten reaktioiden raja saavutettu
@@ -1529,8 +1600,10 @@ fi:
         suspend: Tilin käyttäminen keskeytetty
     welcome:
       edit_profile_action: Aseta profiili
+      edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat ennen kuin he saavat seurata sinua.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
+      final_step: 'Aloita julkaiseminen! Jopa ilman seuraajia, muut voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla tai hashtageilla. Haluat ehkä esitellä itsesi #introductions hashtag.'
       full_handle: Koko käyttäjätunnuksesi
       full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
       subject: Tervetuloa Mastodoniin

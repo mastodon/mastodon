@@ -6,7 +6,7 @@ import { domain } from 'mastodon/initial_state';
 import { fetchServer } from 'mastodon/actions/server';
 
 const mapStateToProps = state => ({
-  closed_registrations_message: state.getIn(['server', 'server', 'registrations', 'closed_registrations_message']),
+  message: state.getIn(['server', 'server', 'registrations', 'message']),
 });
 
 export default @connect(mapStateToProps)
@@ -20,11 +20,11 @@ class ClosedRegistrationsModal extends ImmutablePureComponent {
   render () {
     let closedRegistrationsMessage;
 
-    if (this.props.closed_registrations_message) {
+    if (this.props.message) {
       closedRegistrationsMessage = (
         <p
           className='prose'
-          dangerouslySetInnerHTML={{ __html: this.props.closed_registrations_message }}
+          dangerouslySetInnerHTML={{ __html: this.props.message }}
         />
       );
     } else {

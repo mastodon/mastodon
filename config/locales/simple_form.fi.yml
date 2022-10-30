@@ -73,6 +73,27 @@ fi:
         actions:
           hide: Piilota suodatettu sisältö kokonaan ja käyttäydy ikään kuin sitä ei olisi olemassa
           warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen otsikko
+      form_admin_settings:
+        backups_retention_period: Säilytä luodut arkistot määritetyn määrän päiviä.
+        bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien suositusten yläpuolelle.
+        closed_registrations_message: Näkyy, kun ilmoittautuminen on suljettu
+        content_cache_retention_period: Viestit muilta palvelimilta poistetaan määritetyn määrän päiviä jälkeen, kun arvo on asetettu positiiviseksi. Tämä voi olla peruuttamatonta.
+        custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
+        mascot: Ohittaa kuvituksen edistyneessä käyttöliittymässä.
+        media_cache_retention_period: Ladatut mediatiedostot poistetaan määritetyn määrän päiviä jälkeen, kun arvo on positiivinen ja ladataan uudelleen pyynnöstä.
+        profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
+        require_invite_text: Kun kirjautuminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” teksti syötetään pakolliseksi eikä vapaaehtoiseksi
+        site_contact_email: Kuinka ihmiset voivat tavoittaa sinut oikeudellisissa tai tukikysymyksissä.
+        site_contact_username: Miten ihmiset voivat tavoittaa sinut Mastodonissa.
+        site_extended_description: Kaikki lisätiedot, jotka voivat olla hyödyllisiä kävijöille ja käyttäjille. Voidaan jäsentää Markdown-syntaksilla.
+        site_short_description: Lyhyt kuvaus auttaa yksilöimään palvelimesi. Kuka sitä johtaa, kenelle se on tarkoitettu?
+        site_terms: Käytä omaa tietosuojakäytäntöä tai jätä tyhjäksi, jos haluat käyttää oletusta. Voidaan jäsentää Markdown-syntaksilla.
+        site_title: Kuinka ihmiset voivat viitata palvelimeen sen verkkotunnuksen lisäksi.
+        theme: Teema, jonka uloskirjautuneet vierailijat ja uudet käyttäjät näkevät.
+        thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
+        timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
+        trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
+        trends: Trendit osoittavat, mitkä viestit, hashtagit ja uutiset ovat saamassa vetoa palvelimellasi.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -207,6 +228,30 @@ fi:
         actions:
           hide: Piilota kokonaan
           warn: Piilota varoituksella
+      form_admin_settings:
+        backups_retention_period: Käyttäjän arkiston säilytysaika
+        bootstrap_timeline_accounts: Suosittele aina näitä tilejä uusille käyttäjille
+        closed_registrations_message: Mukautettu viesti, kun kirjautumisia ei ole saatavilla
+        content_cache_retention_period: Sisällön välimuistin säilytysaika
+        custom_css: Mukautettu CSS
+        mascot: Mukautettu maskotti (legacy)
+        media_cache_retention_period: Median välimuistin säilytysaika
+        profile_directory: Ota profiilihakemisto käyttöön
+        registrations_mode: Kuka voi rekisteröityä
+        require_invite_text: Vaadi syy liittyä
+        show_domain_blocks: Näytä domainestot
+        show_domain_blocks_rationale: Näytä miksi verkkotunnukset on estetty
+        site_contact_email: Ota yhteyttä sähköpostilla
+        site_contact_username: Kontaktin käyttäjänimi
+        site_extended_description: Laajennettu kuvaus
+        site_short_description: Palvelimen kuvaus
+        site_terms: Tietosuojakäytäntö
+        site_title: Palvelimen nimi
+        theme: Oletusteema
+        thumbnail: Palvelimen pikkukuva
+        timeline_preview: Salli todentamaton pääsy julkiselle aikajanalle
+        trendable_by_default: Salli trendit ilman ennakkotarkastusta
+        trends: Trendit käyttöön
       interactions:
         must_be_follower: Estä ilmoitukset käyttäjiltä, jotka eivät seuraa sinua
         must_be_following: Estä ilmoitukset käyttäjiltä, joita et seuraa
@@ -253,6 +298,7 @@ fi:
         events: Tapahtumat käytössä
         url: Päätepisteen URL
     'no': Ei
+    not_recommended: Ei suositella
     recommended: Suositeltu
     required:
       mark: "*"
