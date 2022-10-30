@@ -43,7 +43,7 @@ class Api::V1::Admin::DomainAllowsController < Api::BaseController
     authorize @domain_allow, :destroy?
     UnallowDomainService.new.call(@domain_allow)
     log_action :destroy, @domain_allow
-    render json: @domain_allow, serializer: REST::Admin::DomainAllowSerializer
+    render_empty
   end
 
   private
