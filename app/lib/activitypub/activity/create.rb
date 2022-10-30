@@ -171,7 +171,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
       end
 
       media_attachment = MediaAttachment.create(account: @account, remote_url: src, description: handler.alts[src], focus: nil)
-      media_attachment.file_remote_url = src
+      media_attachment.download_file!
       media_attachment.save
       if unsupported_media_type?(media_attachment.file.content_type)
         @object['content'].gsub!(src, '')
