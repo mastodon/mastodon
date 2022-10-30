@@ -75,8 +75,25 @@ is:
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_admin_settings:
         backups_retention_period: Halda safni notandans í tiltekinn fjölda daga.
+        bootstrap_timeline_accounts: Þessir notendaaðgangar verða festir efst í meðmælum til nýrra notenda um að fylgjast með þeim.
+        closed_registrations_message: Birtist þegar lokað er á nýskráningar
         content_cache_retention_period: Færslum af öðrum netþjónum verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi. Þetta gæti verið óafturkallanleg aðgerð.
+        custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
+        mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Sóttu myndefni verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi og síðan sótt aftur eftir þörfum.
+        profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
+        require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
+        site_contact_email: Hovernig fólk getur haft samband við þig til að fá aðstoð eða vegna lagalegra mála.
+        site_contact_username: Hovernig fólk getur haft samband við þig á Mastodon.
+        site_extended_description: Hverjar þær viðbótarupplýsingar sem gætu nýst gestum þínum og notendum. Má sníða með Markdown-málskipan.
+        site_short_description: Stutt lýsing sem hjálpar til við að auðkenna netþjóninn þinn. Hver er að reka hann, fyrir hverja er hann?
+        site_terms: Notaðu þína eigin persónuverndarstefnu eða skildu þetta eftir autt til að nota sjálfgefna stefnu. Má sníða með Markdown-málskipan.
+        site_title: Hvað fólk kallar netþjóninn þinn annað en með heiti lénsins.
+        theme: Þema sem útskráðir gestir og nýjir notendur sjá.
+        thumbnail: Mynd um það bil 2:1 sem birtist samhliða upplýsingum um netþjóninn þinn.
+        timeline_preview: Gestir sem ekki eru skráðir inn munu geta skoðað nýjustu opinberu færslurnar sem tiltækar eru á þjóninum.
+        trendable_by_default: Sleppa handvirkri yfirferð á vinsælu efni. Áfram verður hægt að fjarlægja stök atriði úr vinsældarlistum.
+        trends: Vinsældir sýna hvaða færslur, myllumerki og fréttasögur séu í umræðunni á netþjóninum þínum.
       form_challenge:
         current_password: Þú ert að fara inn á öryggissvæði
       imports:
@@ -213,8 +230,28 @@ is:
           warn: Fela með aðvörun
       form_admin_settings:
         backups_retention_period: Tímalengd sem safni notandans er haldið eftir
+        bootstrap_timeline_accounts: Alltaf mæla með þessum notendaaðgöngum fyrir nýja notendur
+        closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
         content_cache_retention_period: Tímalengd sem haldið er í biðminni
+        custom_css: Sérsniðið CSS
+        mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið
+        profile_directory: Virkja notendamöppu
+        registrations_mode: Hverjir geta nýskráð sig
+        require_invite_text: Krefjast ástæðu fyrir þátttöku
+        show_domain_blocks: Sýna útilokanir léna
+        show_domain_blocks_rationale: Sýna af hverju lokað var á lén
+        site_contact_email: Tölvupóstfang tengiliðar
+        site_contact_username: Notandanafn tengiliðar
+        site_extended_description: Ítarleg lýsing
+        site_short_description: Lýsing á vefþjóni
+        site_terms: Persónuverndarstefna
+        site_title: Heiti vefþjóns
+        theme: Sjálfgefið þema
+        thumbnail: Smámynd vefþjóns
+        timeline_preview: Leyfa óauðkenndan aðgang að opinberum tímalínum
+        trendable_by_default: Leyfa vinsælt efni án undanfarandi yfirferðar
+        trends: Virkja vinsælt
       interactions:
         must_be_follower: Loka á tilkynningar frá þeim sem ekki eru fylgjendur
         must_be_following: Loka á tilkynningar frá þeim sem þú fylgist ekki með

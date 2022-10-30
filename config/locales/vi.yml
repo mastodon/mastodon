@@ -653,29 +653,67 @@ vi:
       empty: Chưa có quy tắc máy chủ.
       title: Quy tắc máy chủ
     settings:
+      about:
+        manage_rules: Sửa quy tắc máy chủ
+        preamble: Cung cấp thông tin chuyên sâu về cách máy chủ được vận hành, kiểm duyệt, tài trợ.
+        rules_hint: Có một khu vực dành riêng cho các quy tắc mà người dùng của bạn phải tuân thủ.
+        title: Giới thiệu
+      appearance:
+        preamble: Tùy chỉnh giao diện web của Mastodon.
+        title: Giao diện
+      branding:
+        preamble: Thương hiệu máy chủ của bạn phân biệt nó với các máy chủ khác trong mạng. Thông tin này có thể được hiển thị trên nhiều môi trường khác nhau, chẳng hạn như giao diện web của Mastodon, các ứng dụng gốc, trong bản xem trước liên kết trên các trang web khác và trong các ứng dụng nhắn tin, v.v. Vì lý do này, cách tốt nhất là giữ cho thông tin này rõ ràng, ngắn gọn và súc tích.
+        title: Thương hiệu
+      content_retention:
+        preamble: Kiểm soát cách lưu trữ nội dung do người dùng tạo trong Mastodon.
+        title: Lưu giữ nội dung
+      discovery:
+        follow_recommendations: Gợi ý theo dõi
+        preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
+        profile_directory: Cộng đồng
+        public_timelines: Bảng tin
+        title: Khám phá
+        trends: Xu hướng
       domain_blocks:
         all: Tới mọi người
         disabled: Không ai
         users: Để đăng nhập người dùng cục bộ
+      registrations:
+        preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
+        title: Đăng ký
       registrations_mode:
         modes:
           approved: Yêu cầu phê duyệt để đăng ký
           none: Không ai có thể đăng ký
           open: Bất cứ ai cũng có thể đăng ký
+      title: Cài đặt máy chủ
     site_uploads:
       delete: Xóa tập tin đã tải lên
       destroyed_msg: Đã xóa tập tin tải lên thành công!
     statuses:
+      account: Tác giả
+      application: Ứng dụng
       back_to_account: Quay lại trang tài khoản
       back_to_report: Quay lại trang báo cáo
       batch:
         remove_from_report: Xóa khỏi báo cáo
         report: Báo cáo
       deleted: Đã xóa
+      favourites: Lượt thích
+      history: Lịch sử phiên bản
+      in_reply_to: Trả lời đến
+      language: Ngôn ngữ
       media:
         title: Media
+      metadata: Metadata
       no_status_selected: Bạn chưa chọn bất kỳ tút nào
+      open: Mở tút
+      original_status: Tút gốc
+      reblogs: Lượt đăng lại
+      status_changed: Tút đã thay đổi
       title: Toàn bộ tút
+      trending: Xu hướng
+      visibility: Hiển thị
       with_media: Có media
     strikes:
       actions:

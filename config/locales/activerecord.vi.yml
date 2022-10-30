@@ -6,8 +6,8 @@ vi:
         expires_at: Hạn chót
         options: Lựa chọn
       user:
-        agreement: Đồng ý quy tắc
-        email: Địa chỉ email
+        agreement: Thỏa thuận dịch vụ
+        email: Địa chỉ e-mail
         locale: Quốc gia
         password: Mật khẩu
       user/account:
@@ -29,6 +29,10 @@ vi:
           attributes:
             website:
               invalid: không phải là một URL hợp lệ
+        import:
+          attributes:
+            data:
+              malformed: bị hỏng
         status:
           attributes:
             reblog:

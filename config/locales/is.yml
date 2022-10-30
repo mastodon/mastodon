@@ -667,29 +667,67 @@ is:
       empty: Engar reglur fyrir netþjón hafa ennþá verið skilgreindar.
       title: Reglur netþjónsins
     settings:
+      about:
+        manage_rules: Sýsla með reglur netþjónsins
+        preamble: Gefðu nánari upplýsingar um hvernig þessi netþjónn er rekinn, hvernig umsjón fer fram með efni á honum eða hann fjármagnaður.
+        rules_hint: Það er sérstakt svæði með þeim reglum sem ætlast er til að notendur þínir fari eftir.
+        title: Um hugbúnaðinn
+      appearance:
+        preamble: Sérsníddu vefviðmót Mastodon.
+        title: Útlit
+      branding:
+        preamble: Útlitsleg einkenni aðgreina netþjóninn þinn frá öðrum netþjónum á netkerfinu. Þessar upplýsingar geta birst á margvíslegum stöðum, eins og til dæmis í vefviðmóti Mastodon, einstökum forritum, í forskoðun tengla á öðrum vefsvæðum og innan samskiptaforrita, svo eitthvað sé talið. Þess vegna er vest að þessar upplýsingar séu skýrar, stuttar og tæmandi.
+        title: Útlitsleg aðgreining
+      content_retention:
+        preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
+        title: Geymsla efnis
+      discovery:
+        follow_recommendations: Meðmæli um að fylgjast með
+        preamble: Að láta áhugavert efni koma skýrt fram er sérstaklega mikilvægt til að nálgast nýja notendur sem ekki þekkja neinn sem er á Mastodon. Stýrðu því hvernig hinir ýmsu eiginleikar við uppgötvun efnis virka á netþjóninum þínum.
+        profile_directory: Notendamappa
+        public_timelines: Opinberar tímalínur
+        title: Uppgötvun
+        trends: Vinsælt
       domain_blocks:
         all: Til allra
         disabled: Til engra
         users: Til innskráðra staðværra notenda
+      registrations:
+        preamble: Stýrðu því hverjir geta útbúið notandaaðgang á netþjóninum þínum.
+        title: Nýskráningar
       registrations_mode:
         modes:
           approved: Krafist er samþykkt nýskráningar
           none: Enginn getur nýskráð sig
           open: Allir geta nýskráð sig
+      title: Stillingar netþjóns
     site_uploads:
       delete: Eyða innsendri skrá
       destroyed_msg: Það tókst að eyða innsendingu á vefsvæði!
     statuses:
+      account: Höfundur
+      application: Forrit
       back_to_account: Fara aftur á síðu notandaaðgangsins
       back_to_report: Til baka á kærusíðu
       batch:
         remove_from_report: Fjarlægja úr kæru
         report: Kæra
       deleted: Eytt
+      favourites: Eftirlæti
+      history: Útgáfuferill
+      in_reply_to: Svarar til
+      language: Tungumál
       media:
         title: Myndefni
+      metadata: Lýsigögn
       no_status_selected: Engum færslum var breytt þar sem engar voru valdar
+      open: Opna færslu
+      original_status: Upprunaleg færsla
+      reblogs: Endurbirtingar
+      status_changed: Færslu breytt
       title: Færslur notandaaðgangs
+      trending: Vinsælt
+      visibility: Sýnileiki
       with_media: Með myndefni
     strikes:
       actions:
