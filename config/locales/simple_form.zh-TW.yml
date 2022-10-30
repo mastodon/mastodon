@@ -30,8 +30,8 @@ zh-TW:
         text: 您只能對警示提出一次申訴
       defaults:
         autofollow: 通過邀請網址註冊的使用者將自動跟隨您
-        avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會等比例縮減成 %{dimensions} 像素
-        bot: 此帳號主要執行自動操作且可能未被監控
+        avatar: 支援 PNG、GIF 或 JPG 圖片格式，檔案最大為 %{size}，會等比例縮減至 %{dimensions} 像素
+        bot: 此帳號主要執行自動化操作且可能未受人為監控
         context: 應該套用過濾器的一項或多項內容
         current_password: 因安全因素，請輸入目前帳號的密碼
         current_username: 請輸入目前帳號的使用者名稱以確認
@@ -39,7 +39,7 @@ zh-TW:
         discoverable: 允許陌生人透過推薦、熱門趨勢及其他功能發現您的帳號
         email: 您將收到一封確認電子郵件
         fields: 您可在個人資料上有至多 4 個以表格形式顯示的項目
-        header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會按比例縮小成 %{dimensions} 像素
+        header: 支援 PNG、GIF 或 JPG 圖片格式，檔案最大為 %{size}，會等比例縮減至 %{dimensions} 像素
         inbox_url: 從您想要使用的中繼首頁複製網址
         irreversible: 已過濾的嘟文將會不可逆的消失，即便過濾器移除之後也一樣
         locale: 使用者介面、電子信件和推送通知的語言
@@ -111,7 +111,7 @@ zh-TW:
       rule:
         text: 說明使用者在此伺服器上需遵守的規則或條款。試著維持各項條款簡短而明瞭。
       sessions:
-        otp: '請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原代碼：'
+        otp: '請輸入產生自您手機 App 的兩步驟驗證碼，或輸入其中一個復原碼：'
         webauthn: 如果它是 USB 安全金鑰的話，請確認已正確插入，如有需要請觸擊。
       tag:
         name: 您只能變更大小寫，例如，以使其更易讀。
@@ -174,7 +174,7 @@ zh-TW:
         email: 電子信箱地址
         expires_in: 失效時間
         fields: 個人資料中繼資料
-        header: 頁面頂端
+        header: 封面圖片
         honeypot: "%{label} (請勿填寫)"
         inbox_url: 中繼收件匣的 URL
         irreversible: 放棄而非隱藏
@@ -182,7 +182,7 @@ zh-TW:
         locked: 鎖定帳號
         max_uses: 最大使用次數
         new_password: 新密碼
-        note: 簡介
+        note: 個人簡介
         otp_attempt: 兩步驟驗證碼
         password: 密碼
         phrase: 關鍵字或片語
