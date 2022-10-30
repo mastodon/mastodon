@@ -423,8 +423,8 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   def text_from_content
     return converted_text if converted_object_type?
 
-    return Formatter.instance.format_article(@object['content']) if @object['content'].present? && @object['type'] == 'Article'
-    
+    return article_format(@object['content']) if @object['content'].present? && @object['type'] == 'Article'
+
     return @status_parser.text || ''
   end
 
