@@ -1,4 +1,3 @@
----
 nl:
   simple_form:
     hints:
@@ -79,6 +78,9 @@ nl:
         content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
         media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
+        site_contact_email: Hoe mensen je kunnen bereiken voor juridische of ondersteunende onderzoeken.
+        site_contact_username: Hoe mensen je kunnen bereiken op Mastodon.
+        site_title: Hoe mensen naar uw server kunnen verwijzen naast de domeinnaam.
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
@@ -284,7 +286,7 @@ nl:
       webhook:
         events: Ingeschakelde gebeurtenissen
         url: Eindpunt URL
-    'no': Nee
+    'no': 'Nee'
     not_recommended: Niet aanbevolen
     recommended: Aanbevolen
     required:
@@ -293,4 +295,4 @@ nl:
     title:
       sessions:
         webauthn: Gebruik een van uw beveiligingssleutels om in te loggen
-    'yes': Ja
+    'yes': 'Ja'
