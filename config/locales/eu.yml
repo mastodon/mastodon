@@ -231,7 +231,7 @@ eu:
         confirm_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea berretsi du"
         create_account_warning_html: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
         create_announcement_html: "%{name} erabiltzaileak %{target} iragarpen berria sortu du"
-        create_canonical_email_block_html: "%{name} erabiltzaileak %{target} hash-a duten helbide elektronikoak blokeatu du"
+        create_canonical_email_block_html: "%{name} erabiltzaileak %{target} hash-a duen helbide elektronikoa blokeatu du"
         create_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji berria kargatu du"
         create_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federazioa onartu du"
         create_domain_block_html: "%{name} erabiltzaileak %{target} domeinua blokeatu du"
@@ -241,6 +241,7 @@ eu:
         create_user_role_html: "%{name} erabiltzaileak %{target} rola sortu du"
         demote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz jaitsi du"
         destroy_announcement_html: "%{name} erabiltzaileak %{target} iragarpena ezabatu du"
+        destroy_canonical_email_block_html: "%{name} erabiltzaileak %{target} hash-a duen helbide elektronikoa desblokeatu du"
         destroy_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federatzea debekatu du"
         destroy_domain_block_html: "%{name} erabiltzaileak %{target} domeinua desblokeatu du"
         destroy_email_domain_block_html: "%{name} erabiltzaileak %{target} e-posta helbideen domeinua desblokeatu du"
@@ -567,6 +568,20 @@ eu:
       unresolved: Konpondu gabea
       updated_at: Eguneratua
       view_profile: Ikusi profila
+    roles:
+      categories:
+        administration: Administrazioa
+        invites: Gonbidapenak
+        moderation: Moderazioa
+        special: Berezia
+      delete: Ezabatu
+      edit: Editatu '%{name}' rola
+      everyone: Baimen lehenetsiak
+      privileges:
+        administrator: Administratzailea
+        delete_user_data: Ezabatu erabiltzaileen datuak
+        invite_users: Gonbidatu erabiltzaileak
+        manage_settings: Kudeatu ezarpenak
     rules:
       add_new: Gehitu araua
       delete: Ezabatu
@@ -575,6 +590,13 @@ eu:
       empty: Ez da zerbitzariko araurik definitu oraindik.
       title: Zerbitzariaren arauak
     settings:
+      about:
+        title: Honi buruz
+      appearance:
+        preamble: Mastodonen web interfazea pertsonalizatu.
+        title: Itxura
+      discovery:
+        trends: Joerak
       domain_blocks:
         all: Guztiei
         disabled: Inori ez
@@ -588,16 +610,29 @@ eu:
       delete: Ezabatu igotako fitxategia
       destroyed_msg: Guneko igoera ongi ezabatu da!
     statuses:
+      account: Egilea
+      application: Aplikazioa
       back_to_account: Atzera kontuaren orrira
       back_to_report: Atzera txostenaren orrira
       batch:
         remove_from_report: Kendu txostenetik
         report: Salatu
       deleted: Ezabatuta
+      favourites: Gogokoak
+      history: Bertsio-historia
+      in_reply_to: Honi erantzuten
+      language: Hizkuntza
       media:
         title: Multimedia
+      metadata: Metadatuak
       no_status_selected: Ez da bidalketarik aldatu ez delako bidalketarik aukeratu
+      open: Ireki bidalketa
+      original_status: Jatorrizko bidalketa
+      reblogs: Bultzadak
+      status_changed: Bidalketa aldatuta
       title: Kontuaren bidalketak
+      trending: Joera
+      visibility: Ikusgaitasuna
       with_media: Multimediarekin
     strikes:
       actions:
