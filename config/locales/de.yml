@@ -133,8 +133,8 @@ de:
       security_measures:
         only_password: Nur Passwort
         password_and_2fa: Passwort und 2FA
-      sensitive: NSFW
-      sensitized: Als NSFW markieren
+      sensitive: Inhaltswarnung
+      sensitized: Mit Inhaltswarnung versehen
       shared_inbox_url: Geteilte Posteingang-URL
       show:
         created_reports: Erstellte Meldungen
@@ -152,7 +152,7 @@ de:
       unblock_email: E-Mail Adresse entsperren
       unblocked_email_msg: Die E-Mail-Adresse von %{username} wurde erfolgreich entsperrt
       unconfirmed_email: Unbestätigte E-Mail-Adresse
-      undo_sensitized: Nicht mehr als NSFW markieren
+      undo_sensitized: Inhaltswarnung aufheben
       undo_silenced: Stummschaltung aufheben
       undo_suspension: Verbannung aufheben
       unsilenced_msg: Konto von %{username} erfolgreich freigegeben
@@ -266,12 +266,12 @@ de:
         reopen_report_html: "%{name} hat die Meldung %{target} wieder geöffnet"
         reset_password_user_html: "%{name} hat das Passwort von %{target} zurückgesetzt"
         resolve_report_html: "%{name} hat die Meldung %{target} bearbeitet"
-        sensitive_account_html: "%{name} markierte die Medien von %{target} als NSFW"
+        sensitive_account_html: "%{name} hat die Medien von %{target} mit einer Inhaltswarnung versehen"
         silence_account_html: "%{name} hat das Konto von %{target} stummgeschaltet"
         suspend_account_html: "%{name} hat das Konto von %{target} verbannt"
         unassigned_report_html: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
         unblock_email_account_html: "%{name} entsperrte die E-Mail-Adresse von %{target}"
-        unsensitive_account_html: "%{name} markierte Medien von %{target} als nicht NSFW"
+        unsensitive_account_html: "%{name} hob die Inhaltswarnung für Medien von %{target} auf"
         unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account_html: "%{name} hat die Verbannung von %{target} aufgehoben"
         update_announcement_html: "%{name} aktualisierte Ankündigung %{target}"
@@ -547,7 +547,7 @@ de:
       action_taken_by: Maßnahme ergriffen durch
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
-        mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden als NSFW markiert und ein Strike wird notiert, um dir dabei zu helfen, härter auf zukünftige Zuwiderhandlungen desselben Kontos zu reagieren.
+        mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung (NSFW) versehen und der Vorfall wird gesichert, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
         other_description_html: Weitere Optionen zur Kontrolle des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
         silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die ihm bereits folgen oder es manuell nachschlagen, und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
@@ -568,7 +568,7 @@ de:
       forwarded: Weitergeleitet
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
-      mark_as_sensitive: Als NSFW markieren
+      mark_as_sensitive: Mit einer Inhaltswarnung (NSFW) versehen
       mark_as_unresolved: Als ungelöst markieren
       no_one_assigned: Niemand
       notes:
@@ -732,9 +732,9 @@ de:
       actions:
         delete_statuses: "%{name} hat die Beiträge von %{target} entfernt"
         disable: "%{name} hat das Konto von %{target} eingefroren"
-        mark_statuses_as_sensitive: "%{name} markierte %{target}'s Beiträge als NSFW"
+        mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung (NSFW) versehen"
         none: "%{name} hat eine Warnung an %{target} gesendet"
-        sensitive: "%{name} markierte das Konto von %{target} als NSFW"
+        sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung (NSFW) versehen"
         silence: "%{name} hat das Konto von %{target} eingeschränkt"
         suspend: "%{name} hat das Konto von %{target} verbannt"
       appeal_approved: Einspruch angenommen
@@ -850,9 +850,9 @@ de:
       actions:
         delete_statuses: deren Beiträge zu löschen
         disable: deren Konto einzufrieren
-        mark_statuses_as_sensitive: um ihre Beiträge als NSFW zu markieren
+        mark_statuses_as_sensitive: um die Beiträge des Profils mit einer Inhaltswarnung (NSFW) zu versehen
         none: eine Warnung
-        sensitive: deren Konto als NSFW zu markieren
+        sensitive: um das Profil mit einer Inhaltswarnung (NSFW) zu versehen
         silence: deren Konto zu beschränken
         suspend: deren Konto zu sperren
       body: "%{target} hat etwas gegen eine Moderationsentscheidung von %{action_taken_by} von %{date}, die %{type} war. Die Person schrieb:"
@@ -893,7 +893,7 @@ de:
       body: Mastodon wurde von Freiwilligen übersetzt.
       guide_link: https://de.crowdin.com/project/mastodon
       guide_link_text: Jeder kann etwas dazu beitragen.
-    sensitive_content: NSFW
+    sensitive_content: Inhaltswarnung (NSFW)
     toot_layout: Beitragslayout
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
@@ -1037,9 +1037,9 @@ de:
       title_actions:
         delete_statuses: Post-Entfernung
         disable: Einfrieren des Kontos
-        mark_statuses_as_sensitive: Das Markieren der Beiträge als NSFW
+        mark_statuses_as_sensitive: Beiträge mit einer Inhaltswarnung (NSFW) versehen
         none: Warnung
-        sensitive: Das Markieren des Kontos als NSFW
+        sensitive: Profil mit einer Inhaltswarnung (NSFW) versehen
         silence: Kontobeschränkung
         suspend: Kontosperre
       your_appeal_approved: Dein Einspruch wurde angenommen
@@ -1337,7 +1337,7 @@ de:
     activity: Kontoaktivität
     dormant: Inaktiv
     follow_selected_followers: Ausgewählte Follower folgen
-    followers: Folgende
+    followers: Follower
     following: Folgt
     invited: Eingeladen
     last_active: Zuletzt aktiv
@@ -1424,7 +1424,7 @@ de:
     notifications: Benachrichtigungen
     preferences: Einstellungen
     profile: Profil
-    relationships: Folgende und Gefolgte
+    relationships: Folge ich und Follower
     statuses_cleanup: Automatische Löschung
     strikes: Strikes
     two_factor_authentication: Zwei-Faktor-Auth
@@ -1473,8 +1473,8 @@ de:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direktnachricht
-      private: Nur Folgende
-      private_long: Nur für Folgende sichtbar
+      private: Nur eigene Follower
+      private_long: Nur für deine eigenen Follower sichtbar
       public: Öffentlich
       public_long: Für alle sichtbar
       unlisted: Nicht gelistet
@@ -1517,7 +1517,7 @@ de:
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
-    sensitive_content: NSFW
+    sensitive_content: Inhaltswarnung (NSFW)
   strikes:
     errors:
       too_late: Es ist zu spät, um gegen diese Verwarnung Einspruch zu erheben
@@ -1573,11 +1573,11 @@ de:
       appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.
       categories:
         spam: Spam
-        violation: Inhalt verletzt die folgenden Community-Richtlinien
+        violation: Inhalt verstößt gegen die folgenden Community-Richtlinien
       explanation:
         delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Communityrichtlinien erkannt und von den Moderator_innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst ein Backup deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
-        mark_statuses_as_sensitive: Einige deiner Beiträge wurden von den Moderator_innen von %{instance} als NSFW markiert. Das bedeutet, dass die Nutzer die Medien in den Beiträgen antippen müssen, bevor eine Vorschau angezeigt wird. Du kannst Medien in Zukunft als NSFW markieren, wenn du Beiträge verfasst.
+        mark_statuses_as_sensitive: Ein oder mehrere Deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung (NSFW) versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden, und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
@@ -1586,17 +1586,17 @@ de:
       subject:
         delete_statuses: Deine Beiträge auf %{acct} wurden entfernt
         disable: Dein Konto %{acct} wurde eingefroren
-        mark_statuses_as_sensitive: Deine Beiträge auf %{acct} wurden als NSFW markiert
+        mark_statuses_as_sensitive: Die Beiträge deines Profils %{acct} wurden mit einer Inhaltswarnung (NSFW) versehen
         none: Warnung für %{acct}
-        sensitive: Deine Beiträge auf %{acct} werden von nun an als NSFW markiert
+        sensitive: Die Beiträge deines Profils %{acct} werden künftig mit einer Inhaltswarnung (NSFW) versehen
         silence: Dein Konto %{acct} wurde limitiert
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
         delete_statuses: Beiträge entfernt
         disable: Konto eingefroren
-        mark_statuses_as_sensitive: Als NSFW markierte Beiträge
+        mark_statuses_as_sensitive: Mit einer Inhaltswarnung (NSFW) versehene Beiträge
         none: Warnung
-        sensitive: Als NSFW markiertes Konto
+        sensitive: Profil mit einer Inhaltswarnung (NSFW) versehen
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:
