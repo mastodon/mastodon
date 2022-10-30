@@ -57,7 +57,7 @@ de:
       demote: Zurückstufen
       destroyed_msg: "Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht"
       disable: Sperren
-      disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentifizierung per E-Mail
+      disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentisierung (2FA) per E-Mail
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
       disabled: Gesperrte
       display_name: Angezeigter Name
@@ -66,11 +66,11 @@ de:
       email: E-Mail
       email_status: E-Mail-Status
       enable: Freischalten
-      enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentifizierung per E-Mail
+      enable_sign_in_token_auth: Aktiviere die Zwei-Faktor-Authentisierung (2FA) per E-Mail
       enabled: Freigegeben
       enabled_msg: Konto von %{username} erfolgreich freigegeben
       followers: Follower
-      follows: Folgt
+      follows: Folge ich
       header: Titelbild
       inbox_url: Posteingangs-URL
       invite_request_text: Begründung für das Beitreten
@@ -195,10 +195,10 @@ de:
         destroy_user_role: Rolle löschen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
-        disable_sign_in_token_auth_user: Zwei-Faktor-Authentifizierung per E-Mail für den Nutzer deaktiviert
+        disable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account deaktivieren
         disable_user: Benutzer deaktivieren
         enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
-        enable_sign_in_token_auth_user: Zwei-Faktor-Authentifizierung per E-Mail für den Nutzer aktiviert
+        enable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account aktivieren
         enable_user: Benutzer aktivieren
         memorialize_account: Account deaktivieren
         promote_user: Benutzer befördern
@@ -338,7 +338,7 @@ de:
     dashboard:
       active_users: Aktive Benutzer
       interactions: Interaktionen
-      media_storage: Medienspeicher
+      media_storage: Medien
       new_users: Neue Benutzer
       opened_reports: Erstellte Meldungen
       pending_appeals_html:
@@ -646,7 +646,7 @@ de:
         manage_taxonomies: Taxonomien verwalten
         manage_taxonomies_description: Ermöglicht Benutzern die Überprüfung angesagter Inhalte und das Aktualisieren der Hashtag-Einstellungen
         manage_user_access: Benutzerzugriff verwalten
-        manage_user_access_description: Erlaubt es Benutzern, die Zwei-Faktor-Authentifizierung anderer Benutzer zu deaktivieren, ihre E-Mail-Adresse zu ändern und ihr Passwort zurückzusetzen
+        manage_user_access_description: Erlaubt es Benutzer*innen, die Zwei-Faktor-Authentisierung (2FA) anderer Benutzer zu deaktivieren, ihre E-Mail-Adresse zu ändern und ihr Passwort zurückzusetzen
         manage_users: Benutzer verwalten
         manage_users_description: Erlaubt es Benutzern, die Details anderer Benutzer anzuzeigen und Moderationsaktionen gegen sie auszuführen
         manage_webhooks: Webhooks verwalten
@@ -1069,16 +1069,16 @@ de:
     archive_takeout:
       date: Datum
       download: Dein Archiv herunterladen
-      hint_html: Du kannst ein Archiv deiner <strong>Beiträge und hochgeladenen Medien</strong> anfragen. Die exportierten Daten werden in dem ActivityPub-Format gespeichert, welches mit jeder Software lesbar ist, die das Format unterstützt. Du kannst alle 7 Tage ein Archiv anfordern.
-      in_progress: Stelle dein Archiv zusammen...
-      request: Dein Archiv anfragen
+      hint_html: Du kannst ein Archiv deiner <strong>Beiträge, Listen, hochgeladenen Medien, usw.</strong> anfordern. Die exportierten Daten werden in dem ActivityPub-Format gespeichert und können mit jeder passenden Software gelesen werden. Du kannst alle 7 Tage ein Archiv anfordern.
+      in_progress: Dein persönliches Archiv wird erstellt...
+      request: Dein Archiv anfordern
       size: Größe
-    blocks: Du hast blockiert
+    blocks: Blockierte Accounts
     bookmarks: Lesezeichen
     csv: CSV
-    domain_blocks: Domainblockaden
+    domain_blocks: Blockierte Domains
     lists: Listen
-    mutes: Du hast stummgeschaltet
+    mutes: Stummgeschaltete Accounts
     storage: Medienspeicher
   featured_tags:
     add_new: Neu hinzufügen
@@ -1169,7 +1169,7 @@ de:
       domain_blocking: Domain-Blockliste
       following: Folgeliste
       muting: Stummschaltungsliste
-    upload: Hochladen
+    upload: Liste importieren
   invites:
     delete: Deaktivieren
     expired: Abgelaufen
@@ -1181,7 +1181,7 @@ de:
       '604800': 1 Woche
       '86400': 1 Tag
     expires_in_prompt: Nie
-    generate: Generieren
+    generate: Einladungslink erstellen
     invited_by: 'Du wurdest eingeladen von:'
     max_uses:
       one: 1 mal verwendet
@@ -1190,7 +1190,7 @@ de:
     prompt: Generiere und teile Links, um Zugang zu diesem Server zu erteilen
     table:
       expires_at: Läuft ab
-      uses: Verwendungen
+      uses: Verwendet
     title: Leute einladen
   lists:
     errors:
@@ -1201,7 +1201,7 @@ de:
       password: Passwort
       sign_in_token: E-Mail Sicherheitscode
       webauthn: Sicherheitsschlüssel
-    description_html: Wenn du Aktivitäten siehst, die du nicht erkennst, solltest du dein Passwort ändern und die Zwei-Faktor-Authentifizierung aktivieren.
+    description_html: Wenn du verdächtige Aktivitäten bemerkst, die du nicht verstehst oder zuordnen kannst, solltest du dringend dein Passwort ändern und ungeachtet dessen die Zwei-Faktor-Authentisierung (2FA) aktivieren.
     empty: Kein Authentifizierungsverlauf verfügbar
     failed_sign_in_html: Fehler beim Anmeldeversuch mit %{method} von %{ip} (%{browser})
     successful_sign_in_html: Erfolgreiche Anmeldung mit %{method} von %{ip} (%{browser})
@@ -1246,7 +1246,7 @@ de:
     title: Moderation
   move_handler:
     carry_blocks_over_text: Dieses Benutzerkonto ist von %{acct} umgezogen, welches du blockiert hast.
-    carry_mutes_over_text: Dieses Benutzerkonto ist von %{acct} umgezogen, welches du stummgeschaltet hast.
+    carry_mutes_over_text: Das Profil wurde von %{acct} übertragen – und dieses hattest du stummgeschaltet.
     copy_account_note_text: 'Dieser Benutzer ist von %{acct} umgezogen, hier sind deine letzten Notizen zu diesem Benutzer:'
   navigation:
     toggle_menu: Menü umschalten
@@ -1300,10 +1300,10 @@ de:
           trillion: T
   otp_authentication:
     code_hint: Gib den von deiner Authentifizierungs-App generierten Code ein, um deine Anmeldung zu bestätigen
-    description_html: Wenn du <strong>Zwei-Faktor-Authentifizierung</strong> mit einer Authentifizierungs-App aktivierst, musst du, um dich anzumelden, im Besitz deines Smartphones sein, welches Tokens für dein Konto generiert.
+    description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich einloggen zu können.
     enable: Aktivieren
-    instructions_html: "<strong>Scanne diesen QR-Code in Google Authenticator oder einer ähnlichen TOTP-App auf deinem Handy</strong>. Von nun an generiert diese App Tokens, die du beim Anmelden eingeben musst."
-    manual_instructions: 'Wenn du den QR-Code nicht scannen kannst und ihn manuell eingeben musst, ist hier das Klartext-Geheimnis:'
+    instructions_html: "<strong>Scanne diesen QR-Code mit einer TOTP-App (wie dem Google Authenticator)</strong>. Die 2FA-App generiert dann zeitbasierte Codes, die du beim Login zusätzlich zum regulären Passwort eingeben musst."
+    manual_instructions: 'Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.'
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Sind die Serverzeit und die Gerätezeit korrekt?
   pagination:
@@ -1338,7 +1338,7 @@ de:
     dormant: Inaktiv
     follow_selected_followers: Ausgewählte Follower folgen
     followers: Follower
-    following: Folgt
+    following: Folge ich
     invited: Eingeladen
     last_active: Zuletzt aktiv
     most_recent: Neuste
@@ -1416,9 +1416,9 @@ de:
     delete: Konto löschen
     development: Entwicklung
     edit_profile: Profil bearbeiten
-    export: Datenexport
+    export: Export
     featured_tags: Empfohlene Hashtags
-    import: Datenimport
+    import: Import
     import_and_export: Importieren und Exportieren
     migrate: Konto-Umzug
     notifications: Benachrichtigungen
@@ -1427,7 +1427,7 @@ de:
     relationships: Folge ich und Follower
     statuses_cleanup: Automatische Löschung
     strikes: Strikes
-    two_factor_authentication: Zwei-Faktor-Auth
+    two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
     webauthn_authentication: Sicherheitsschlüssel
   statuses:
     attached:
@@ -1535,15 +1535,15 @@ de:
   two_factor_authentication:
     add: Hinzufügen
     disable: Deaktivieren
-    disabled_success: Zwei-Faktor-Authentifizierung erfolgreich deaktiviert
+    disabled_success: Zwei-Faktor-Authentisierung (2FA) erfolgreich deaktiviert
     edit: Bearbeiten
-    enabled: Zwei-Faktor-Authentisierung ist aktiviert
-    enabled_success: Zwei-Faktor-Authentisierung erfolgreich aktiviert
-    generate_recovery_codes: Wiederherstellungscodes generieren
-    lost_recovery_codes: Wiederherstellungscodes erlauben es dir, wieder Zugang zu deinem Konto zu erlangen, falls du dein Telefon verlieren solltest. Wenn du deine Wiederherstellungscodes verloren hast, kannst du sie hier neu generieren. Deine alten Wiederherstellungscodes werden damit ungültig gemacht.
-    methods: Zwei-Faktor-Methoden
+    enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
+    enabled_success: Zwei-Faktor-Authentisierung (2FA) erfolgreich aktiviert
+    generate_recovery_codes: Wiederherstellungscodes erstellen
+    lost_recovery_codes: Wiederherstellungscodes erlauben es dir, wieder Zugang zu deinem Konto zu erlangen, falls du keinen Zugriff mehr auf die Zwei-Faktor-Authentisierung (2FA) oder den Sicherheitsschlüssel hast. Solltest Du diese Wiederherstellungscodes verloren haben, kannst du sie hier neu generieren. Deine alten, bereits erstellten Wiederherstellungscodes werden dadurch ungültig.
+    methods: Methoden der Zwei-Faktor-Authentisierung (2FA)
     otp: Authentifizierungs-App
-    recovery_codes: Wiederherstellungs-Codes sichern
+    recovery_codes: Wiederherstellungscodes sichern
     recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu generiert
     recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscode benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
@@ -1559,13 +1559,13 @@ de:
       title: Einspruch abgelehnt
     backup_ready:
       explanation: Du hast ein vollständiges Backup von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
-      subject: Dein Archiv ist bereit zum Download
+      subject: Dein persönliches Archiv ist bereit zum Download
       title: Archiv-Download
     suspicious_sign_in:
       change_password: dein Passwort zu ändern
       details: 'Hier sind die Details des Versuchs:'
       explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
-      further_actions_html: Wenn du das nicht warst, empfehlen wir dir, %{action} und die Zwei-Faktor-Authentifizierung zu aktivieren, um dein Konto sicher zu halten.
+      further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung (2FA) für deinen Account zu aktivieren, um dein Konto abzusichern.
       subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
       title: Eine neue Anmeldung
     warning:
@@ -1611,7 +1611,7 @@ de:
       title: Willkommen an Bord, %{name}!
   users:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
-    invalid_otp_token: Ungültiger Zwei-Faktor-Authentisierungs-Code
+    invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn Du beides nicht mehr weißt, melde Dich bei uns unter der E-Mailadresse %{email}
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
@@ -1633,5 +1633,5 @@ de:
     nickname_hint: Gib den Spitznamen deines neuen Sicherheitsschlüssels ein
     not_enabled: Du hast WebAuthn noch nicht aktiviert
     not_supported: Dieser Browser unterstützt keine Sicherheitsschlüssel
-    otp_required: Um Sicherheitsschlüssel zu verwenden, aktiviere zuerst die Zwei-Faktor-Authentifizierung.
+    otp_required: Um Sicherheitsschlüssel zu verwenden, aktiviere zunächst die Zwei-Faktor-Authentisierung (2FA).
     registered_on: Registriert am %{date}
