@@ -16,7 +16,7 @@ de:
         types:
           disable: Den Benutzer daran hindern, sein Konto zu verwenden, aber seinen Inhalt nicht löschen oder ausblenden.
           none: Verwende dies, um eine Warnung an den Benutzer zu senden, ohne eine andere Aktion auszulösen.
-          sensitive: Erzwinge, dass alle Medienanhänge des Benutzers als NSFW markiert werden.
+          sensitive: Erzwinge, dass alle Medien-Dateien dieses Profils mit einer Inhaltswarnung (NSFW) versehen werden.
           silence: Verhindern, dass der Benutzer in der Lage ist, mit der öffentlichen Sichtbarkeit zu posten und seine Beiträge und Benachrichtigungen von Personen zu verstecken, die ihm nicht folgen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Kann innerhalb von 30 Tagen rückgängig gemacht werden.
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
@@ -43,14 +43,14 @@ de:
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
         irreversible: Gefilterte Beiträge werden unwiderruflich gelöscht, selbst wenn der Filter später entfernt wird
         locale: Die Sprache der Oberfläche, E-Mails und Push-Benachrichtigungen
-        locked: Wer dir folgen möchte, muss um deine Erlaubnis bitten
+        locked: Wer dir folgen und deine Inhalte sehen möchte, muss dein Follower sein und dafür um deine Erlaubnis bitten
         password: Verwende mindestens 8 Zeichen
         phrase: Wird schreibungsunabhängig mit dem Text und Inhaltswarnung eines Beitrags verglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden E-Mail-Benachrichtigungen nicht gesendet, wenn du Mastodon aktiv verwendest
-        setting_default_sensitive: NSFW-Medien werden erst nach einem Klick sichtbar
-        setting_display_media_default: Verstecke Medien, die als NSFW markiert sind
+        setting_default_sensitive: Medien, die mit einer Inhaltswarnung (NSFW) versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
+        setting_display_media_default: Verberge alle Medien, die mit einer Inhaltswarnung (NSFW) versehen sind
         setting_display_media_hide_all: Alle Medien immer verstecken
         setting_display_media_show_all: Alle Medien immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
@@ -88,7 +88,7 @@ de:
         site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung Ihres Servers. Wer betreibt ihn, für wen ist er bestimmt?
         site_terms: Verwenden Sie Ihre eigene Datenschutzrichtlinie oder lassen Sie sie leer, um die Standardeinstellung zu verwenden. Kann mit Markdown-Syntax strukturiert werden.
         site_title: Wie Personen neben dem Domainnamen auf Ihren Server verweisen können.
-        theme: Farbschema, das abgemeldete Besucher und neue Benutzer sehen.
+        theme: Design, das abgemeldete und neue Benutzer*innen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
         timeline_preview: Ausgeloggte Besucherinnen und Besucher können die neuesten öffentlichen Beiträge auf dem Server ansehen.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
@@ -147,7 +147,7 @@ de:
         types:
           disable: Deaktivieren
           none: Nichts tun
-          sensitive: NSFW
+          sensitive: Inhaltswarnung (NSFW)
           silence: Stummschalten
           suspend: Deaktivieren und Benutzerdaten unwiderruflich löschen
         warning_preset_id: Benutze eine Warnungsvorlage
@@ -179,7 +179,7 @@ de:
         inbox_url: Inbox-URL des Relais
         irreversible: Verwerfen statt verstecken
         locale: Sprache der Benutzeroberfläche
-        locked: Profil sperren
+        locked: Geschütztes Profil
         max_uses: Maximale Verwendungen
         new_password: Neues Passwort
         note: Über mich
@@ -194,20 +194,20 @@ de:
         setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
-        setting_default_sensitive: Medien immer als NSFW markieren
+        setting_default_sensitive: Eigene Medien immer mit einer Inhaltswarnung (NSFW) versehen
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
         setting_disable_swiping: Deaktiviere Wischgesten
         setting_display_media: Medien-Anzeige
-        setting_display_media_default: NSFW-Inhalte verstecken
+        setting_display_media_default: Standard
         setting_display_media_hide_all: Alle Medien verstecken
         setting_display_media_show_all: Alle Medien anzeigen
         setting_expand_spoilers: Beiträge mit Inhaltswarnungen immer ausklappen
-        setting_hide_network: Netzwerk ausblenden
+        setting_hide_network: Deine Follower und „Folge ich“ nicht anzeigen
         setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern
         setting_show_application: Anwendung preisgeben, die benutzt wurde, um Beiträge zu versenden
-        setting_system_font_ui: Standardschriftart des Systems verwenden
-        setting_theme: Theme
+        setting_system_font_ui: Standardschriftart des Browsers verwenden
+        setting_theme: Design
         setting_trends: Heutige Trends anzeigen
         setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemandem entfolgt wird
         setting_use_blurhash: Farbverlauf für versteckte Medien anzeigen
