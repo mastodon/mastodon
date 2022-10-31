@@ -1,7 +1,7 @@
 id:
   about:
-    about_mastodon_html: 'Mastodon adalah sebuah jejaring sosial <em>terbuka, open-source</em. Sebuah alternatif <em>desentralisasi</em> dari platform komersial, menjauhkan anda resiko dari sebuah perusahaan yang memonopoli komunikasi anda. Pilih server yang anda percayai &mdash; apapun yang anda pilih, anda tetap dapat berinteraksi dengan semua orang. Semua orang dapat menjalankan server Mastodon sendiri dan berpartisipasi dalam <em>jejaring sosial</em> dengan mudah.'
-    contact_missing: Belum diset
+    about_mastodon_html: 'Jaringan sosial masa depan: Tanpa iklan, tanpa pemantauan perusahaan, desain etis, dan terdesentralisasi! Miliki data Anda dengan Mastodon!'
+    contact_missing: Belum ditetapkan
     contact_unavailable: Tidak Tersedia
     hosted_on: Mastodon dihosting di %{domain}
     title: Tentang
@@ -17,8 +17,8 @@ id:
     pin_errors:
       following: Anda harus mengikuti orang yang ingin anda endorse
     posts:
-      other: Toot
-    posts_tab_heading: Toot
+      other: Kiriman
+    posts_tab_heading: Kiriman
   admin:
     account_actions:
       action: Lakukan aksi
@@ -248,7 +248,7 @@ id:
         destroy_status_html: "%{name} menghapus status %{target}"
         destroy_unavailable_domain_html: "%{name} melanjutkan pengiriman ke domain %{target}"
         destroy_user_role_html: "%{name} menghapus peran %{target}"
-        disable_2fa_user_html: "%{name} mematikan syarat dua faktor utk pengguna %{target}"
+        disable_2fa_user_html: "%{name} mematikan syarat dua faktor untuk pengguna %{target}"
         disable_custom_emoji_html: "%{name} mematikan emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} menonaktifkan otentikasi token email untuk %{target}"
         disable_user_html: "%{name} mematikan login untuk pengguna %{target}"
@@ -510,11 +510,11 @@ id:
     relays:
       add_new: Tambah relai baru
       delete: Hapus
-      description_html: <strong>Relai gabungan</strong> adalah server perantara yang menukarkan toot publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server remot.
+      description_html: <strong>Relai gabungan</strong> adalah server perantara yang menukarkan kiriman publik dalam jumlah besar antara server yang berlangganan dengan yang menerbitkannya. <strong>Ini akan membantu server kecil hingga medium menemukan konten dari fediverse</strong>, yang tentu saja mengharuskan pengguna lokal untuk mengikuti orang lain dari server jarak jauh.
       disable: Matikan
       disabled: Dimatikan
       enable: Aktifkan
-      enable_hint: Saat diaktifkan, server Anda akan melanggan semua toot publik dari relai ini, dan akan mengirim toot publik server ini ke sana.
+      enable_hint: Saat diaktifkan, server Anda akan melanggan semua kiriman publik dari relai ini, dan akan mengirim toot publik server ini ke sana.
       enabled: Diaktifkan
       inbox_url: URL Relai
       pending: Menunggu persetujuan relai
@@ -866,8 +866,8 @@ id:
     hint_html: Jika Anda ingin pindah dari akun lain ke sini, Anda dapat membuat alias, yang dilakukan sebelum Anda setuju dengan memindah pengikut dari akun lama ke akun sini. Aksi ini <strong>tidak berbahaya dan tidak bisa dikembalikan</strong>. <strong>Pemindahan akun dimulai dari akun lama</strong>.
     remove: Hapus tautan alias
   appearance:
-    advanced_web_interface: Antar muka web tingkat lanjut
-    advanced_web_interface_hint: 'Jika Anda ingin memanfaatkan seluruh lebar layar Anda, antar muka web tingkat lanjut mengizinkan Anda mengonfigurasi beragam kolom untuk menampilkan informasi sebanyak yang Anda mau: Beranda, notifikasi, linimasa gabungan, daftar, dan tagar.'
+    advanced_web_interface: Antarmuka web tingkat lanjut
+    advanced_web_interface_hint: 'Jika Anda ingin memanfaatkan seluruh lebar layar Anda, antarmuka web tingkat lanjut memungkinkan Anda mengonfigurasi beragam kolom untuk menampilkan informasi sebanyak yang Anda inginkan: Beranda, notifikasi, linimasa gabungan, daftar, dan tagar.'
     animations_and_accessibility: Animasi dan aksesibilitas
     confirmation_dialogs: Dialog konfirmasi
     discovery: Jelajah
@@ -876,7 +876,7 @@ id:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Siapa saja bisa berkontribusi.
     sensitive_content: Konten sensitif
-    toot_layout: Tata letak toot
+    toot_layout: Tata letak kiriman
   application_mailer:
     notification_preferences: Ubah pilihan email
     salutation: "%{name},"
@@ -1051,7 +1051,7 @@ id:
     archive_takeout:
       date: Tanggal
       download: Unduh arsip Anda
-      hint_html: Anda dapat meminta arsip <strong>toot dan media yang Anda unggah</strong>. Data yang terekspor akan berformat ActivityPub, dapat dibaca dengan perangkat lunak yang mendukungnya. Anda dapat meminta arsip akun setiap 7 hari.
+      hint_html: Anda dapat meminta arsip <strong>kiriman dan media yang Anda unggah</strong>. Data yang terekspor akan berformat ActivityPub, yang dapat dibaca dengan perangkat lunak yang mendukungnya. Anda dapat meminta arsip akun setiap 7 hari.
       in_progress: Mengompilasi arsip Anda...
       request: Meminta arsip Anda
       size: Ukuran
@@ -1335,8 +1335,8 @@ id:
       account: Kiriman publik dari @%{acct}
       tag: 'Kiriman publik ditagari #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Anda telah melampaui batas %{limit} toot terjadwal untuk sehari
-    over_total_limit: Anda telah melampaui batas %{limit} toot terjadwal
+    over_daily_limit: Anda telah melampaui batas %{limit} kiriman terjadwal untuk sehari
+    over_total_limit: Anda telah melampaui batas %{limit} kiriman terjadwal
     too_soon: Tanggal terjadwal haruslah pada hari yang akan datang
   sessions:
     activity: Aktivitas terakhir
@@ -1424,15 +1424,15 @@ id:
     over_character_limit: melebihi %{max} karakter
     pin_errors:
       direct: Kiriman yang hanya terlihat oleh pengguna yang disebutkan tidak dapat disematkan
-      limit: Anda sudah mencapai jumlah maksimum toot yang dapat disematkan
-      ownership: Toot orang lain tidak bisa disematkan
+      limit: Anda sudah mencapai jumlah maksimum kiriman yang dapat disematkan
+      ownership: Kiriman orang lain tidak bisa disematkan
       reblog: Boost tidak bisa disematkan
     poll:
       total_people:
         other: "%{count} orang"
       total_votes:
         other: "%{count} memilih"
-      vote: Memilih
+      vote: Pilih
     show_more: Tampilkan selengkapnya
     show_newer: Tampilkan lebih baru
     show_older: Tampilkan lebih lama
@@ -1483,7 +1483,7 @@ id:
     min_reblogs: Simpan kiriman yang di-boost lebih dari
     min_reblogs_hint: Tidak menghapus kiriman Anda yang di-boost lebih dari sekian kali. Kosongkan bila ingin menghapus kiriman tanpa peduli jumlah boost-nya
   stream_entries:
-    pinned: Toot tersemat
+    pinned: Kiriman tersemat
     reblogged: di-boost-kan
     sensitive_content: Konten sensitif
   strikes:
@@ -1572,6 +1572,7 @@ id:
       edit_profile_step: Anda dapat mengubah profil Anda dengan mengunggah sebuah foto profil, mengubah nama tampilan Anda dan lain-lain. Anda dapat memilih untuk meninjau pengikut baru sebelum mereka diperbolehkan untuk mengikuti Anda.
       explanation: Beberapa tips sebelum Anda memulai
       final_action: Mulai mengirim
+      final_step: 'Mulai mengirim! Bahkan tanpa pengikut, kiriman publik Anda dapat dilihat oleh orang lain, misalkan di linimasa lokal atau dalam tagar. Anda dapat memperkenalkan diri Anda dalam tagar #introductions.'
       full_handle: Penanganan penuh Anda
       full_handle_hint: Ini yang dapat Anda sampaikan kepada teman agar mereka dapat mengirim pesan atau mengikuti Anda dari server lain.
       subject: Selamat datang di Mastodon
