@@ -4,6 +4,7 @@ id:
     contact_missing: Belum diset
     contact_unavailable: Tidak Tersedia
     hosted_on: Mastodon dihosting di %{domain}
+    title: Tentang
   accounts:
     follow: Ikuti
     followers:
@@ -42,6 +43,9 @@ id:
         title: Ganti email untuk %{username}
       change_role:
         changed_msg: תפקיד שונה בהצלחה !
+        label: Ubah peran
+        no_role: Tidak ada peran
+        title: Ganti peran untuk %{username}
       confirm: Konfirmasi
       confirmed: Dikonfirmasi
       confirming: Mengkonfirmasi
@@ -564,6 +568,29 @@ id:
       view_profile: Lihat profil
     roles:
       edit: ערכי את התפקיד של '%{name}' 
+      privileges:
+        manage_reports_description: Memungkinkan pengguna untuk meninjau laporan dan melakukan tindakan moderasi terhadap mereka
+        manage_roles: Kelola Peran
+        manage_roles_description: Memungkinkan pengguna untuk mengelola dan memberikan peran di bawah mereka
+        manage_rules: Kelola Aturan
+        manage_rules_description: Memungkinkan pengguna untuk mengubah aturan server
+        manage_settings: Kelola Pengaturan
+        manage_settings_description: Memungkinkan pengguna untuk mengubah pengaturan situs
+        manage_taxonomies: Kelola Taksonomi
+        manage_taxonomies_description: Memungkinkan pengguna untuk meninjau konten tren dan memperbarui pengaturan tagar
+        manage_user_access: Kelola Akses Pengguna
+        manage_user_access_description: Memungkinkan pengguna untuk menonaktifkan otentikasi dua faktor, mengubah alamat surel, dan mengatur ulang kata sandi pengguna lain
+        manage_users: Kelola Pengguna
+        manage_users_description: Memungkinkan pengguna untuk melihat detail pengguna lain dan melakukan tindakan moderasi terhadap mereka
+        manage_webhooks: Kelola Webhook
+        manage_webhooks_description: Memungkinkan pengguna untuk menyiapkan webhook untuk peristiwa administratif
+        view_audit_log: Lihat Catatan Audit
+        view_audit_log_description: Memungkinkan pengguna untuk melihat riwayat tindakan administratif di server
+        view_dashboard: Lihat Dasbor
+        view_dashboard_description: Memungkinkan pengguna untuk mengakses dasbor dan berbagai metrik
+        view_devops: DevOps
+        view_devops_description: Memungkinkan pengguna untuk mengakses dasbor Sidekiq dan pgHero
+      title: Peran
     rules:
       add_new: Tambah aturan
       delete: Hapus
@@ -572,28 +599,62 @@ id:
       empty: Belum ada aturan server yang didefinisikan.
       title: Aturan server
     settings:
+      about:
+        manage_rules: Kelola aturan server
+        preamble: Menyediakan informasi lanjut tentang bagaimana server ini beroperasi, dimoderasi, dan didana.
+        rules_hint: Ada area yang khusus untuk peraturan yang pengguna Anda seharusnya tahu.
+        title: Tentang
+      appearance:
+        preamble: Ubah antarmuka web Mastodon.
+        title: Tampilan
+      branding:
+        preamble: Merek server Anda membedakannya dari server lain dalam jaringan. Informasi ini dapat ditampilkan dalam berbagai lingkungan, seperti antarmuka web Mastodon, aplikasi asli, dalam tampilan tautan di situs web lain dan dalam aplikasi perpesanan, dan lain-lain. Untuk alasan ini, buat informasi ini jelas, pendek, dan tidak bertele-tele.
+        title: Merek
+      content_retention:
+        preamble: Atur bagaimana konten yang dibuat oleh pengguna disimpan di Mastodon.
+        title: Retensi konten
+      discovery:
+        follow_recommendations: Ikuti rekomendasi
+        preamble: Menampilkan konten menarik penting dalam memandu pengguna baru yang mungkin tidak tahu siapa pun di Mastodon. Atur bagaimana berbagai fitur penemuan bekerja di server Anda.
+        profile_directory: Direktori profil
+        public_timelines: Linimasa publik
+        title: Penemuan
+        trends: Tren
       domain_blocks:
         all: Kepada semua orang
         disabled: Tidak kepada siapa pun
         users: Ke pengguna lokal yang sudah login
+      registrations:
+        preamble: Atur siapa yang dapat membuat akun di server Anda.
+        title: Pendaftaran
       registrations_mode:
         modes:
           approved: Persetujuan diperlukan untuk mendaftar
           none: Tidak ada yang dapat mendaftar
           open: Siapa pun dapat mendaftar
+      title: Pengaturan Server
     site_uploads:
       delete: Hapus berkas yang diunggah
       destroyed_msg: Situs yang diunggah berhasil dihapus!
     statuses:
+      account: Penulis
+      application: Aplikasi
       back_to_account: Kembali ke halaman akun
       back_to_report: Kembali ke halaman laporan
       batch:
         remove_from_report: Hapus dari laporan
         report: Laporan
       deleted: Dihapus
+      favourites: Favorit
+      history: Riwayat versi
+      in_reply_to: Membalas ke
+      language: Bahasa
       media:
         title: Media
+      metadata: Metadata
       no_status_selected: Tak ada status yang berubah karena tak ada yang dipilih
+      open: Buka kiriman
+      original_status: Kiriman asli
       title: Status akun
       with_media: Dengan media
     strikes:
