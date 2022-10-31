@@ -30,11 +30,47 @@
   }
 }
 
+.link-footer {
+  flex: 0 0 auto;
+  padding: 10px;
+  padding-top: 20px;
+  z-index: 1;
+  font-size: 13px;
+
+  p {
+    color: $dark-text-color;
+    margin-bottom: 20px;
+
+    strong {
+      font-weight: 500;
+    }
+
+    a {
+      color: $dark-text-color;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
 .about {
   padding: 20px;
 
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: 4px;
+  }
+
+  &__footer {
+    color: $dark-text-color;
+    text-align: center;
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 20px;
   }
 
   &__header {
@@ -157,7 +193,7 @@
     }
   }
 
-  .getting-started__footer {
+  .link-footer {
     padding: 0;
     margin-top: 60px;
     text-align: center;

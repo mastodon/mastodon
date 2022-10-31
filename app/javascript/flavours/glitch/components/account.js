@@ -27,6 +27,7 @@ export default @injectIntl
 class Account extends ImmutablePureComponent {
 
   static propTypes = {
+    size: PropTypes.number,
     account: ImmutablePropTypes.map,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
@@ -39,6 +40,10 @@ class Account extends ImmutablePureComponent {
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+  };
+
+  static defaultProps = {
+    size: 36,
   };
 
   handleFollow = () => {
@@ -75,6 +80,7 @@ class Account extends ImmutablePureComponent {
       actionIcon,
       actionTitle,
       defaultAction,
+      size,
     } = this.props;
 
     if (!account) {
@@ -163,7 +169,7 @@ class Account extends ImmutablePureComponent {
       <div className='account'>
         <div className='account__wrapper'>
           <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+            <div className='account__avatar-wrapper'><Avatar account={account} size={size} /></div>
             {mute_expires_at}
             <DisplayName account={account} />
           </Permalink>
