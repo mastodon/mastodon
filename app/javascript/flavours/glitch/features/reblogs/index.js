@@ -11,6 +11,7 @@ import ColumnHeader from 'flavours/glitch/components/column_header';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'column.reblogged_by', defaultMessage: 'Boosted by' },
@@ -92,6 +93,10 @@ class Reblogs extends ImmutablePureComponent {
             <AccountContainer key={id} id={id} withNote={false} />,
           )}
         </ScrollableList>
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

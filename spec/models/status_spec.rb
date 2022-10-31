@@ -288,22 +288,6 @@ RSpec.describe Status, type: :model do
     end
   end
 
-  describe '.in_chosen_languages' do
-    context 'for accounts with language filters' do
-      let(:user) { Fabricate(:user, chosen_languages: ['en']) }
-
-      it 'does not include statuses in not in chosen languages' do
-        status = Fabricate(:status, language: 'de')
-        expect(Status.in_chosen_languages(user.account)).not_to include status
-      end
-
-      it 'includes status with unknown language' do
-        status = Fabricate(:status, language: nil)
-        expect(Status.in_chosen_languages(user.account)).to include status
-      end
-    end
-  end
-
   describe '.as_direct_timeline' do
     let(:account) { Fabricate(:account) }
     let(:followed) { Fabricate(:account) }

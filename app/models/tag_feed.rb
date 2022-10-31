@@ -12,6 +12,7 @@ class TagFeed < PublicFeed
   # @option [Boolean] :local
   # @option [Boolean] :remote
   # @option [Boolean] :only_media
+  # @option [String]  :locale
   def initialize(tag, account, options = {})
     @tag = tag
     super(account, options)

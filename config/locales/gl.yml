@@ -1,91 +1,27 @@
 ---
 gl:
   about:
-    about_hashtag_html: Estas son publicacións públicas etiquetadas con <strong>#%{hashtag}</strong>. Podes interactuar con elas se tes unha conta nalgures do fediverso.
     about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
-    about_this: Acerca de
-    active_count_after: activas
-    active_footnote: Usuarias Activas no Mes (UAM)
-    administered_by: 'Administrada por:'
-    api: API
-    apps: Aplicacións móbiles
-    apps_platforms: Emprega Mastodon dende iOS, Android e outras plataformas
-    browse_directory: Mira o directorio e filtra por intereses
-    browse_local_posts: Unha ollada aos últimos comentarios públicos neste servidor
-    browse_public_posts: Cronoloxía en directo cos comentarios públicos en Mastodon
-    contact: Contacto
     contact_missing: Non establecido
     contact_unavailable: Non dispoñíbel
-    continue_to_web: Continuar na app web
-    discover_users: Descubrir usuarias
-    documentation: Documentación
-    federation_hint_html: Cunha conta en %{instance} poderás seguir ás persoas en calquera servidor do Mastodon e alén.
-    get_apps: Probar unha aplicación móbil
     hosted_on: Mastodon aloxado en %{domain}
-    instance_actor_flash: 'Esta conta é un actor virtual utilizado para representar ao servidor e non a unha usuaria individual. Utilízase para propósitos de federación e non debería estar bloqueada a menos que queiras bloquear a toda a instancia, en tal caso deberías utilizar o bloqueo do dominio.
-
-      '
-    learn_more: Saber máis
-    logged_in_as_html: Entraches como %{username}.
-    logout_before_registering: Xa iniciaches sesión.
-    privacy_policy: Política de Privacidade
-    rules: Regras do servidor
-    rules_html: 'Aquí tes un resumo das regras que debes seguir se queres ter unha conta neste servidor de Mastodon:'
-    see_whats_happening: Mira o que acontece
-    server_stats: 'Estatísticas do servidor:'
-    source_code: Código fonte
-    status_count_after:
-      one: publicación
-      other: publicacións
-    status_count_before: Que publicaron
-    tagline: Rede social descentralizada
-    unavailable_content: Contido non dispoñíbel
-    unavailable_content_description:
-      domain: Servidor
-      reason: Razón
-      rejecting_media: 'Os ficheiros multimedia deste servidor non serán procesados e non se amosarán miniaturas, o que require un clic manual no ficheiro orixinal:'
-      rejecting_media_title: Multimedia filtrado
-      silenced: 'As publicacións destes servidores non se amosarán en conversas e cronoloxías públicas, nin terás notificacións xeradas polas interaccións das usuarias, a menos que as estés a seguir:'
-      silenced_title: Servidores acalados
-      suspended: 'Non se procesarán, almacenarán nin intercambiarán datos destes servidores, o que fai imposíbel calquera interacción ou comunicación coas usuarias dende estes servidores:'
-      suspended_title: Servidores suspendidos
-    unavailable_content_html: O Mastodon de xeito xeral permíteche ver contidos doutros servidores do fediverso e interactuar coas súas usuarias. Estas son as excepcións que se estabeleceron neste servidor en particular.
-    user_count_after:
-      one: usuaria
-      other: usuarias
-    user_count_before: Fogar de
-    what_is_mastodon: Qué é Mastodon?
+    title: Acerca de
   accounts:
-    choices_html: 'Escollas de %{name}:'
-    endorsements_hint: Podes suxerir a persoas que segues dende a interface web, e amosaranse aquí.
-    featured_tags_hint: Podes destacar determinados cancelos que se amosarán aquí.
     follow: Seguir
     followers:
       one: Seguidora
       other: Seguidoras
     following: Seguindo
     instance_actor_flash: Esta conta é un actor virtual utilizado para representar ó servidor mesmo e non a unha usuaria individual. Utilízase por motivos de federación e non debería estar suspendida.
-    joined: Uniuse en %{date}
     last_active: última actividade
     link_verified_on: A propiedade desta ligazón foi verificada en %{date}
-    media: Multimedia
-    moved_html: "%{name} mudouse a %{new_profile_link}:"
-    network_hidden: Esta información non está dispoñíbel
     nothing_here: Non hai nada aquí!
-    people_followed_by: Persoas que segue %{name}
-    people_who_follow: Persoas que seguen a %{name}
     pin_errors:
       following: Tes que seguir á persoa que queres engadir
     posts:
       one: Publicación
       other: Publicacións
     posts_tab_heading: Publicacións
-    posts_with_replies: Publicacións e respostas
-    roles:
-      bot: Bot
-      group: Grupo
-    unavailable: Perfil non dispoñíbel
-    unfollow: Deixar de seguir
   admin:
     account_actions:
       action: Executar acción
@@ -388,6 +324,7 @@ gl:
       listed: Listado
       new:
         title: Engadir nova emoticona personalizado
+      no_emoji_selected: Non se cambiou ningún emoji xa que ningún foi seleccionado
       not_permitted: Non podes realizar esta acción
       overwrite: Sobrescribir
       shortcode: Código curto
@@ -730,102 +667,67 @@ gl:
       empty: Aínda non se definiron as regras do servidor.
       title: Regras do servidor
     settings:
-      activity_api_enabled:
-        desc_html: Conta de estados publicados de xeito local, usuarias activas, e novos rexistros en períodos semanais
-        title: Publicar na API estatísticas acumuladas sobre a actividade da usuaria
-      bootstrap_timeline_accounts:
-        desc_html: Separar os múltiples nomes de usuaria con vírgulas. Estas contas teñen garantido aparecer nas recomendacións de seguimento
-        title: Recoméndalle estas contas ás novas usuarias
-      contact_information:
-        email: Email de negocios
-        username: Nome de usuaria de contacto
-      custom_css:
-        desc_html: Modificar a aparencia con CSS cargado en cada páxina
-        title: CSS personalizado
-      default_noindex:
-        desc_html: Aféctalle a todas as usuarias que non cambiaron os axustes elas mesmas
-        title: Por omisión exclúe as usuarias do indexado por servidores de busca
+      about:
+        manage_rules: Xestionar regras do servidor
+        preamble: Proporciona información detallada acerca do xeito en que se xestiona, modera e financia o servidor.
+        rules_hint: Hai un espazo dedicado para as normas que é de agardar que as túas usuarias cumpran.
+        title: Acerca de
+      appearance:
+        preamble: Personalizar a interface web de Mastodon.
+        title: Aparencia
+      branding:
+        preamble: A personalización do teu servidor diferénciao doutros servidores da rede. A información podería mostrarse en diversos entornos, como a interface web de Mastodon, aplicacións nativas, vista previa das ligazóns noutras webs e apps de mensaxería, e similares. Debido a esto é recomendable que a información sexa clara, curta e concisa.
+        title: Personalización
+      content_retention:
+        preamble: Controla como se gardan en Mastodon os contidos creados polas usuarias.
+        title: Retención do contido
+      discovery:
+        follow_recommendations: Recomendacións de seguimento
+        preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
+        profile_directory: Directorio de perfís
+        public_timelines: Cronoloxías públicas
+        title: Descubrir
+        trends: Tendencias
       domain_blocks:
         all: Para todos
         disabled: Para ninguén
-        title: Amosar dominios bloqueados
         users: Para usuarias locais conectadas
-      domain_blocks_rationale:
-        title: Amosar motivo
-      hero:
-        desc_html: Amosado na páxina principal. Polo menos 600x100px recomendados. Se non está definido, estará por defecto a miniatura do servidor
-        title: Imaxe do heroe
-      mascot:
-        desc_html: Amosado en varias páxinas. Polo menos 293x205px recomendados. Se non está definido, estará a mascota por defecto
-        title: Imaxe da mascota
-      peers_api_enabled:
-        desc_html: Nomes de dominio que este servidor atopou no fediverso
-        title: Publicar na API listaxe de servidores descobertos
-      preview_sensitive_media:
-        desc_html: A vista previa de ligazóns de outros sitios web mostrará unha imaxe incluso si os medios están marcados como sensibles
-        title: Mostrar medios sensibles con vista previa OpenGraph
-      profile_directory:
-        desc_html: Permitir que as usuarias poidan ser descubertas
-        title: Activar o directorio de perfil
       registrations:
-        closed_message:
-          desc_html: Mostrado na páxina de portada cando o rexistro está pechado. Pode utilizar cancelos HTML
-          title: Mensaxe de rexistro pechado
-        deletion:
-          desc_html: Permitirlle a calquera que elimine a súa conta
-          title: Abrir o borrado da conta
-        require_invite_text:
-          desc_html: Cando os rexistros requiren aprobación manual, facer que o texto "Por que te queres rexistrar?" do convite sexa obrigatorio en lugar de optativo
-          title: Require que as novas usuarias completen solicitude de texto do convite
+        preamble: Xestiona quen pode crear unha conta no teu servidor.
+        title: Rexistros
       registrations_mode:
         modes:
           approved: Precisa aprobación para rexistrarse
           none: Rexistro pechado
           open: Rexistro aberto
-        title: Estado do rexistro
-      show_known_fediverse_at_about_page:
-        desc_html: Si activado, mostraralle os toots de todo o fediverso coñecido nunha vista previa. Si non só mostrará os toots locais.
-        title: Incluír contido federado na páxina da cronoloxía pública sen autenticación
-      site_description:
-        desc_html: Parágrafo de presentación na páxina principal. Describe o que fai especial a este servidor Mastodon e calquera outra ouca importante. Pode utilizar cancelos HTML, en particular <code>&lt;a&gt;</code> e <code>&lt;em&gt;</code>.
-        title: Descrición do servidor
-      site_description_extended:
-        desc_html: Un bo lugar para o teu código de conduta, regras, guías e outras cousas para diferenciar o teu servidor. Podes empregar cancelos HTML
-        title: Información extendida da personalización
-      site_short_description:
-        desc_html: Amosado na barra lateral e nos cancelos meta. Describe o que é Mastodon e que fai especial a este servidor nun só parágrafo. Se está baleiro, amosará a descrición do servidor.
-        title: Descrición curta do servidor
-      site_terms:
-        desc_html: Podes escribir a túa propia Política de Privacidade e usar etiquetas HTML
-        title: Política de Privacidade propia
-      site_title: Nome do servidor
-      thumbnail:
-        desc_html: Utilizado para vistas previsas vía OpenGraph e API. Recoméndase 1200x630px
-        title: Icona do servidor
-      timeline_preview:
-        desc_html: Mostrar ligazón á cronoloxía pública na páxina de benvida e permitir o acceso API á cronoloxía pública sen ter autenticación
-        title: Permitir acceso á cronoloxía pública sen autenticación
-      title: Axustes do sitio
-      trendable_by_default:
-        desc_html: Poderase prohibir igualmente contido en voga específico
-        title: Permitir tendencias sen aprobación previa
-      trends:
-        desc_html: Amosar de xeito público cancelos revisados previamente que actualmente son tendencia
-        title: Cancelos en tendencia
+      title: Axustes do servidor
     site_uploads:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!
     statuses:
+      account: Conta
+      application: Aplicación
       back_to_account: Volver a páxina da conta
       back_to_report: Volver a denuncias
       batch:
         remove_from_report: Eliminar da denuncia
         report: Denuncia
       deleted: Eliminado
+      favourites: Favoritas
+      history: Historial de versións
+      in_reply_to: En resposta a
+      language: Idioma
       media:
         title: Medios
+      metadata: Metadatos
       no_status_selected: Non se cambiou ningunha publicación xa que ningunha foi seleccionada
+      open: Abrir publicación
+      original_status: Publicación orixinal
+      reblogs: Promocións
+      status_changed: Publicación editada
       title: Publicacións da conta
+      trending: Tendencia
+      visibility: Visibilidade
       with_media: con medios
     strikes:
       actions:
@@ -865,6 +767,9 @@ gl:
         description_html: Estas son ligazóns que actualmente están sendo compartidas por moitas contas das que o teu servidor recibe publicación. Pode ser de utilidade para as túas usuarias para saber o que acontece polo mundo. Non se mostran ligazóns de xeito público a non ser que autorices a quen as publica. Tamén podes permitir ou rexeitar ligazóns de xeito individual.
         disallow: Denegar ligazón
         disallow_provider: Denegar orixe
+        no_link_selected: Non se cambiou ningunha ligazón xa que non había ningunha seleccionada
+        publishers:
+          no_publisher_selected: Non se cambiou ningún autor xa que ningún foi seleccionado
         shared_by_over_week:
           one: Compartido por unha persoa na última semana
           other: Compartido por %{count} persoas na última semana
@@ -884,6 +789,7 @@ gl:
         description_html: Estas son publicacións que o teu servidor coñece que están sendo compartidas e favorecidas en gran número neste intre. Pode ser útil para as persoas recén chegadas e as que retornan para que atopen persoas a quen seguir. Non se mostran publicamente a menos que aprobes a autora, e a autora permita que a súa conta sexa suxerida a outras. Tamén podes rexeitar ou aprobar publicacións individuais.
         disallow: Rexeitar publicación
         disallow_account: Rexeitar autora
+        no_status_selected: Non se cambiou ningunha publicación en voga xa que non había ningunha seleccionada
         not_discoverable: A autora non elexiu poder ser atopada
         shared_by:
           one: Compartida ou favorecida unha vez
@@ -899,6 +805,7 @@ gl:
           tag_uses_measure: total de usos
         description_html: Estes son cancelos que actualmente están presentes en moitas publicacións que o teu servidor recibe. Pode ser útil para que as túas usuarias atopen a outras persoas a través do máis comentado neste intre. Non se mostran cancelos públicamente que non fosen aprobados por ti.
         listable: Pode ser suxerida
+        no_tag_selected: Non se cambiaron cancelos porque ningún foi seleccionado
         not_listable: Non vai ser suxerida
         not_trendable: Non aparecerá en tendencias
         not_usable: Non pode ser usado
@@ -962,12 +869,8 @@ gl:
     new_trends:
       body: 'Os seguintes elementos precisan revisión antes de ser mostrados públicamente:'
       new_trending_links:
-        no_approved_links: Actualmente non hai ligazóns en voga aprobadas.
-        requirements: 'Calquera destos candidatos podería superar o #%{rank} das ligazóns en voga aprobadas, que actualmente é "%{lowest_link_title}" cunha puntuación de %{lowest_link_score}.'
         title: Ligazóns en voga
       new_trending_statuses:
-        no_approved_statuses: Actualmente non hai publicacións en voga aprobadas.
-        requirements: 'Calquera destos candidatos podería superar o #%{rank} nas publicacións en boga aprobadas, que actualmente é %{lowest_status_url} cunha puntuación de %{lowest_status_score}.'
         title: Publicacións en voga
       new_trending_tags:
         no_approved_tags: Non hai etiquetas en voga aprobadas.
@@ -983,7 +886,7 @@ gl:
     remove: Desligar alcume
   appearance:
     advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se queres empregar todo o ancho da túa pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como desexe. Inicio, notificacións, cronoloxía federada, calquera número de listaxes e cancelos.
+    advanced_web_interface_hint: Se queres empregar todo o ancho da pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como queiras. Inicio, notificacións, cronoloxía federada, varias listaxes e cancelos.
     animations_and_accessibility: Animacións e accesibilidade
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -1008,10 +911,8 @@ gl:
     warning: Ten moito tino con estos datos. Non os compartas nunca con ninguén!
     your_token: O seu testemuño de acceso
   auth:
-    apply_for_account: Solicita un convite
+    apply_for_account: Solicita o acceso
     change_password: Contrasinal
-    checkbox_agreement_html: Acepto as <a href="%{rules_path}" target="_blank">regras do servidor</a> e os <a href="%{terms_path}" target="_blank">termos do servizo</a>
-    checkbox_agreement_without_rules_html: Acepto os <a href="%{terms_path}" target="_blank">termos do servizo</a>
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
     description:
@@ -1030,6 +931,7 @@ gl:
     migrate_account: Mover a unha conta diferente
     migrate_account_html: Se queres redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
     or_log_in_with: Ou accede con
+    privacy_policy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1037,12 +939,18 @@ gl:
     registration_closed: "%{instance} non está a aceptar novas usuarias"
     resend_confirmation: Reenviar as intruccións de confirmación
     reset_password: Restablecer contrasinal
+    rules:
+      preamble: Son establecidas e aplicadas pola moderación de %{domain}.
+      title: Algunhas regras básicas.
     security: Seguranza
     set_new_password: Estabelecer novo contrasinal
     setup:
       email_below_hint_html: Se o enderezo inferior non é correcto, podes cambialo aquí e recibir un correo de confirmación.
       email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto podes cambialo nos axustes da conta.
       title: Axustes
+    sign_up:
+      preamble: Cunha conta neste servidor Mastodon poderás seguir a calquera outra persoa na rede, independentemente de onde estivese hospedada esa conta.
+      title: Imos crear a túa conta en %{domain}.
     status:
       account_status: Estado da conta
       confirming: Agardando a confirmación do correo enviado.
@@ -1051,7 +959,6 @@ gl:
       redirecting_to: A túa conta está inactiva porque está redirixida a %{acct}.
       view_strikes: Ver avisos anteriores respecto da túa conta
     too_fast: Formulario enviado demasiado rápido, inténtao outra vez.
-    trouble_logging_in: Problemas para acceder?
     use_security_key: Usa chave de seguridade
   authorize_follow:
     already_following: Xa está a seguir esta conta
@@ -1109,10 +1016,6 @@ gl:
       more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de intimidade</a>.
       username_available: O nome de usuaria estará dispoñible novamente
       username_unavailable: O nome de usuaria non estará dispoñible
-  directories:
-    directory: Directorio de perfís
-    explanation: Descubre usuarias según o teu interese
-    explore_mastodon: Explorar %{title}
   disputes:
     strikes:
       action_taken: Acción tomada
@@ -1159,7 +1062,7 @@ gl:
       content: Sentímolo, pero algo do noso lado falloou.
       title: Esta páxina non é correcta
     '503': A páxina non se puido servir debido a un fallo temporal no servidor.
-    noscript_html: Para utilizar a aplicación web de Mastodon debes activar JavaScript. De xeito alternativo, probb cunha das <a href="%{apps_path}">apps nativas</a> para Mastodon na túa plataforma.
+    noscript_html: Para utilizar a aplicación web de Mastodon debes activar JavaScript. De xeito alternativo, proba cunha das <a href="%{apps_path}">apps nativas</a> para Mastodon na túa plataforma.
   existing_username_validator:
     not_found: non se atopou unha usuaria local con ese alcume
     not_found_multiple: non se atopou a %{usernames}
@@ -1226,9 +1129,6 @@ gl:
         hint: Este filtro aplícase para seleccionar publicacións individuais independentemente de outros criterios. Podes engadir máis publicacións a este filtro desde a interface web.
         title: Publicacións filtradas
   footer:
-    developers: Desenvolvedoras
-    more: Máis…
-    resources: Recursos
     trending_now: Tendencia agora
   generic:
     all: Todo
@@ -1271,7 +1171,6 @@ gl:
       following: Lista de seguimento
       muting: Lista de usuarias acaladas
     upload: Subir
-  in_memoriam_html: Lembranzas.
   invites:
     delete: Desactivar
     expired: Caducou
@@ -1427,6 +1326,8 @@ gl:
     other: Outro
     posting_defaults: Valores por omisión
     public_timelines: Cronoloxías públicas
+  privacy_policy:
+    title: Política de Privacidade
   reactions:
     errors:
       limit_reached: Acadouse o límite das diferentes reaccións
@@ -1449,22 +1350,7 @@ gl:
     remove_selected_follows: Deixar de seguir as usuarias escollidas
     status: Estado da conta
   remote_follow:
-    acct: Introduza o seu usuaria@servidor desde onde quere interactuar
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
-    no_account_html: Non ten unha conta? Pode <a href='%{sign_up_path}' target='_blank'>rexistrarse aquí</a>
-    proceed: Proceda para seguir
-    prompt: 'Vas seguir a:'
-    reason_html: "<strong>Por que é necesario este paso?</strong><code>%{instance}</code> podería non ser o servidor onde se rexistrou, así que precisamo redirixila primeiro ao seu servidor de orixe."
-  remote_interaction:
-    favourite:
-      proceed: Darlle a favorito
-      prompt: 'Vas marcar favorita esta publicación:'
-    reblog:
-      proceed: Darlle a promocionar
-      prompt: 'Vas promover esta publicación:'
-    reply:
-      proceed: Responde
-      prompt: 'Vas responder a esta publicación:'
   reports:
     errors:
       invalid_rules: non fai referencia a regras válidas
@@ -1636,56 +1522,6 @@ gl:
       too_late: É demasiado tarde para recurrir este aviso
   tags:
     does_not_match_previous_name: non concorda co nome anterior
-  terms:
-    body_html: |
-      <h2>Privacidade</h2>
-            <h3 id="collect">Que información recollemos?</h3>
-            <ul>
-            <li><em>Información básica da conta</em>: Se te rexistras neste servidor, pedirémosche un nome de usuaria, un enderezo de correo electrónico e un contrasinal. De xeito adicional tamén poderás incluír información como un nome público e biografía, tamén subir unha fotografía de perfil e unha imaxe para a cabeceira. O nome de usuaria, o nome público, a biografía e as imaxes de perfil e cabeceira sempre se mostran de xeito público.</li>
-            <li><em>Publicacións, seguimento e outra información pública</em>: A lista das persoas que segues é unha lista pública, o mesmo acontece coas persoas que te seguen. Cando envías unha mensaxe, a data e hora gárdanse así como a aplicación que utilizaches para enviar a mensaxe. As publicacións poderían incluír ficheiros multimeda, como fotografías e vídeos. As publicacións públicas e as non listadas están dispoñibles de xeito público. Cando destacas unha publicación no teu perfil tamén é pública. As publicacións son enviadas as túas seguidoras, nalgúns casos pode acontecer que estén en diferentes servidores e gárdanse copias neles. Cando eleminas unha publicación tamén se envía ás túas  seguidoras. A acción de volver a publicar ou marcar como favorita outra publicación sempre é pública.</li>
-            <li><em>Mensaxes directas e só para seguidoras</em>: Todas as mensaxes gárdanse e procésanse no servidor. As mensaxes só para seguidoras son entregadas ás túas seguidoras e ás usuarias que son mencionadas nelas, e as mensaxes directas entréganse só ás usuarias mencionadas en elas. Nalgúns casos esto implica que son entregadas a diferentes servidores e gárdanse copias alí. Facemos un esforzo honesto para limitar o acceso a esas publicacións só ás persoas autorizadas, pero outros servidores poderían non ser tan escrupulosos. Polo tanto, é importante revisar os servidores onde se hospedan as túas seguidoras. Nos axustes podes activar a opción de aprobar ou rexeitar novas seguidoras de xeito manual. <em>Ten en conta que a administración do servidor e todos os outros servidores implicados poden ver as mensaxes.</em>, e as destinatarias poderían facer capturas de pantalla, copiar e volver a compartir as mensaxes. <em>Non compartas información sensible en Mastodon.</em></li>
-            <li><em>IPs e outros metadatos</em>: Cando te conectas, gravamos o IP desde onde te conectas, así como o nome da aplicación desde onde o fas. Todas as sesións conectadas están dispoñibles para revisar e revogar nos axustes. O último enderezo IP utilizado gárdase ate por 12 meses. Tamén poderiamos gardar informes do servidor que inclúan o enderezo IP de cada petición ao servidor.</li>
-            </ul>
-            <hr class="spacer" />
-            <h3 id="use">De que xeito utilizamos os teus datos?</h3>
-            <p>Toda a información que recollemos podería ser utilizada dos seguintes xeitos:</p>
-            <ul>
-            <li>Para proporcionar a funcionabiliade básica de Mastodon. Só podes interactuar co contido de outra xente e publicar o teu propio contido se inicias sesión. Por exemplo, poderías seguir outra xente e ver as súas publicacións combinadas nunha cronoloxía de inicio personalizada.</li>
-            <li>Para axudar a moderar a comunidade, por exemplo comparando o teu enderezo IP con outros coñecidos para evitar esquivar os rexeitamentos ou outras infraccións.</li>
-            <li>O enderezo de correo electrónico que nos proporcionas podería ser utilizado para enviarche información, notificacións sobre outra xente que interactúa coas túas publicacións ou che envía mensaxes, e para responder a consultas, e/ou outras cuestións ou peticións.</li>
-            </ul>
-            <hr class="spacer" />
-            <h3 id="protect">Como proxetemos os teus datos?</h3>
-            <p>Implementamos varias medidas de seguridade para protexer os teus datos persoais cando introduces, envías ou accedes á túa información persoal. Entre outras medidas, a túa sesión de navegación, así como o tráfico entre as túas aplicacións e o API están aseguradas mediante SSL, e o teu contrasinal está camuflado utilizando un algoritmo potente de unha sóa vía. Podes habilitar a autenticación por dobre factor para protexer aínda máis o acceso á túa conta.</p>
-            <hr class="spacer" />
-            <h3 id="data-retention">Cal é a nosa política de retención de datos?</h3>
-            <p>Faremos un sincero esforzo en:</p>
-            <ul>
-            <li>Protexer informes do servidor que conteñan direccións IP das peticións ao servidor, actualmente estos informes gárdanse por non máis de 90 días.</li>
-            <li>Reter os enderezos IP asociados con usuarias rexistradas non máis de 12 meses.</li>
-            </ul>
-            <p>Podes solicitar e descargar un ficheiro cos teus contidos, incluíndo publicacións, anexos multimedia, imaxes de perfil e imaxe da cabeceira.</p>
-            <p>En todo momento podes eliminar de xeito irreversible a túa conta.</p>
-            <hr class="spacer"/>
-            <h3 id="cookies">Utilizamos cookies?</h3>
-            <p>Si. As cookies son pequenos ficheiros que un sitio web ou o provedor de servizo transfiren ao disco duro da túa computadora a través do navegador web (se o permites). Estas cookies posibilitan ao sitio web recoñecer o teu navegador e, se tes unha conta rexistrada, asocialo con dita conta.</p>
-            <p>Utilizamos cookies para comprender e gardar as túas preferencias para futuras visitas.</p>
-            <hr class="spacer" />
-            <h3 id="disclose">Entregamos algunha información a terceiras partes alleas?</h3>
-            <p>Non vendemos, negociamos ou transferimos de ningún xeito a terceiras partes alleas a túa información identificativa persoal. Esto non inclúe terceiras partes de confianza que nos axudan a xestionar o sitio web, a xestionar a empresa, ou darche servizo se esas partes aceptan manter esa información baixo confidencialidade. Poderiamos liberar esa información se cremos que eso da cumplimento axeitado a lei, reforza as políticas do noso sitio ou protexe os nosos, e de outros, dereitos, propiedade ou seguridade.</p>
-            <p>O teu contido público podería ser descargado por outros servidores na rede. As túas publicacións públicas e para só seguidoras son entregadas aos servidores onde residen as túas seguidoras na rede, e as mensaxes directas son entregadas aos servidores das destinatarias sempre que esas seguidoras ou destinatarios residan en servidores distintos de este.</p>
-            <p>Cado autorizas a unha aplicación a utilizar a túa conta, dependendo do ámbito dos permisos que autorices, podería acceder a información pública de perfil, á lista de seguimento, ás túas seguidoras, as túas listas, todas as túas publicacións, as publicacións favoritas. As aplicacións non poden acceder nunca ao teu enderezo de correo nin ao teu contrasinal.</p>
-            <hr class="spacer" />
-            <h3 id="children">Utilización do sitio web por menores</h3>
-            <p>Se este servidor está na UE ou no EEE: a nosa web, productos e servizos están dirixidos a persoas de 16 ou máis anos. Se tes menos de 16 anos, a requerimento da GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) non uses esta web.</p>
-            <p>Se este servidor está nos EEUU: a nosa web, productos e servizos están dirixidos a persoas de 13 ou máis anos. Se non tes 13 anos de idade, a requerimento de COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) non uses esta web.</p>
-            <p>Os requerimentos legais poden ser diferentes se este servidor está baixo outra xurisdición.</p>
-            <hr class="spacer" />
-            <h3 id="changes">Cambios na nosa política de privacidade</h3>
-            <p>Se decidimos cambiar a nosa política de privacidade publicaremos os cambios nesta páxina.</p>
-            <p>Este documento ten licenza CC-BY-SA. Actualizouse o 26 de maio de 2022.</p>
-            <p>Adaptado do orixinal <a href="https://github.com/discourse/discourse">política de privacidade de Discourse</a>.</p>
-    title: Política de Privacidade de %{instance}
   themes:
     contrast: Mastodon (Alto contraste)
     default: Mastodon (Escuro)
@@ -1764,20 +1600,13 @@ gl:
         suspend: Conta suspendida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Podes personalizar o teu perfil subindo un avatar, cabeceira, cambiar o nome público e aínda máis. Se restrinxes a túa conta podes revisar a conta das persoas que solicitan seguirte antes de permitirlles o acceso aos teus toots.
+      edit_profile_step: Podes personalizar o teu perfil subindo unha imaxe de perfil, cambiar o nome público e moito máis. Podes elexir revisar as solicitudes de seguimento recibidas antes de permitirlles que te sigan.
       explanation: Aquí tes algunhas endereitas para ir aprendendo
       final_action: Comeza a publicar
-      final_step: 'Publica! Incluso sen seguidoras as túas mensaxes públicas serán vistas por outras persoas, por exemplo na cronoloxía local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
+      final_step: 'Publica! Incluso sen seguidoras, as túas mensaxes públicas serán vistas por outras persoas, por exemplo na cronoloxía local e nos cancelos. Poderías presentarte ao #fediverso utilizando o cancelo #introductions.'
       full_handle: O teu alcume completo
       full_handle_hint: Compárteo coas túas amizades para que poidan seguirte ou enviarche mensaxes desde outros servidores.
-      review_preferences_action: Cambiar preferencias
-      review_preferences_step: Lembra establecer as preferencias, tales como o tipo de emails que queres recibir, ou o nivel de privacidade por defecto para as túas publicacións. Se non che molestan as imaxes con movemento, podes elexir que os GIF se reproduzan automáticamente.
       subject: Benvida a Mastodon
-      tip_federated_timeline: A cronoloxía federada é unha visión reducida da rede Mastodon. Só inclúe a persoas relacionadas coas persoas ás que estás subscrita, polo que non é a totalidade do fediverso.
-      tip_following: Por defecto segues a Admin(s) no teu servidor. Para atopar máis xente interesante, mira nas cronoloxías local e federada.
-      tip_local_timeline: A cronoloxía local é unha ollada xeral sobre a xente en %{instance}. Son as súas veciñas máis próximas!
-      tip_mobile_webapp: Se o navegador móbil che ofrece engadir Mastodon a pantalla de inicio, podes recibir notificacións push. En moitos aspectos comportarase como unha aplicación nativa!
-      tips: Consellos
       title: Benvida, %{name}!
   users:
     follow_limit_reached: Non pode seguir a máis de %{limit} persoas

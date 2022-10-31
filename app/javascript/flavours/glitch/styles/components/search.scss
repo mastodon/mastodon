@@ -28,10 +28,6 @@
   &:focus {
     background: lighten($ui-base-color, 4%);
   }
-
-  @media screen and (max-width: 600px) {
-    font-size: 16px;
-  }
 }
 
 .search__icon {
@@ -132,6 +128,7 @@
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid lighten($ui-base-color, 8%);
+    gap: 15px;
 
     &:last-child {
       border-bottom: 0;
@@ -173,16 +170,8 @@
       font-size: 24px;
       font-weight: 500;
       text-align: right;
-      padding-right: 15px;
-      margin-left: 5px;
       color: $secondary-text-color;
       text-decoration: none;
-
-      &__asterisk {
-        color: $darker-text-color;
-        font-size: 18px;
-        vertical-align: super;
-      }
     }
 
     &__sparkline {
@@ -191,7 +180,7 @@
 
       path:first-child {
         fill: rgba($highlight-text-color, 0.25) !important;
-        fill-opacity: 1 !important;
+        fill-opacity: 100% !important;
       }
 
       path:last-child {

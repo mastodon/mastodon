@@ -1,21 +1,24 @@
-import React from 'react';
-import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-import configureStore from 'flavours/glitch/store/configureStore';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { IntlProvider, addLocaleData } from 'react-intl';
+import { Provider as ReduxProvider } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { ScrollContext } from 'react-router-scroll-4';
+import configureStore from 'flavours/glitch/store/configureStore';
 import UI from 'flavours/glitch/features/ui';
 import { fetchCustomEmojis } from 'flavours/glitch/actions/custom_emojis';
 import { hydrateStore } from 'flavours/glitch/actions/store';
-import { connectUserStream } from 'flavours/glitch/actions/streaming';
 import { checkDeprecatedLocalSettings } from 'flavours/glitch/actions/local_settings';
-import { IntlProvider, addLocaleData } from 'react-intl';
-import { getLocale } from 'locales';
-import initialState from 'flavours/glitch/initial_state';
+import { connectUserStream } from 'flavours/glitch/actions/streaming';
 import ErrorBoundary from 'flavours/glitch/components/error_boundary';
+import initialState, { title as siteTitle } from 'flavours/glitch/initial_state';
+import { getLocale } from 'locales';
 
 const { localeData, messages } = getLocale();
 addLocaleData(localeData);
+
+const title = process.env.NODE_ENV === 'production' ? siteTitle : `${siteTitle} (Dev)`;
 
 export const store = configureStore();
 const hydrateAction = hydrateStore(initialState);
@@ -78,15 +81,17 @@ export default class Mastodon extends React.PureComponent {
 
     return (
       <IntlProvider locale={locale} messages={messages}>
-        <Provider store={store}>
+        <ReduxProvider store={store}>
           <ErrorBoundary>
-            <BrowserRouter basename='/web'>
+            <BrowserRouter>
               <ScrollContext shouldUpdateScroll={this.shouldUpdateScroll}>
                 <Route path='/' component={UI} />
               </ScrollContext>
             </BrowserRouter>
+
+            <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
           </ErrorBoundary>
-        </Provider>
+        </ReduxProvider>
       </IntlProvider>
     );
   }

@@ -17,6 +17,7 @@ import { preferencesLink } from 'flavours/glitch/utils/backend_links';
 import NavigationBar from '../compose/components/navigation_bar';
 import LinkFooter from 'flavours/glitch/features/ui/components/link_footer';
 import TrendsContainer from './containers/trends_container';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'getting_started.heading', defaultMessage: 'Getting started' },
@@ -84,11 +85,12 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
+    identity: PropTypes.object,
   };
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
-    myAccount: ImmutablePropTypes.map.isRequired,
+    myAccount: ImmutablePropTypes.map,
     columns: ImmutablePropTypes.list,
     multiColumn: PropTypes.bool,
     fetchFollowRequests: PropTypes.func.isRequired,
@@ -104,10 +106,10 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
   }
 
   componentDidMount () {
-    const { fetchFollowRequests, multiColumn } = this.props;
+    const { fetchFollowRequests } = this.props;
+    const { signedIn } = this.context.identity;
 
-    if (!multiColumn && window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
-      this.context.router.history.replace('/home');
+    if (!signedIn) {
       return;
     }
 
@@ -116,12 +118,13 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
 
   render () {
     const { intl, myAccount, columns, multiColumn, unreadFollowRequests, unreadNotifications, lists, openSettings } = this.props;
+    const { signedIn } = this.context.identity;
 
     const navItems = [];
     let listItems = [];
 
     if (multiColumn) {
-      if (!columns.find(item => item.get('id') === 'HOME')) {
+      if (signedIn && !columns.find(item => item.get('id') === 'HOME')) {
         navItems.push(<ColumnLink key='home' icon='home' text={intl.formatMessage(messages.home_timeline)} to='/home' />);
       }
 
@@ -142,47 +145,58 @@ const NAVIGATION_PANEL_BREAKPOINT = 600 + (285 * 2) + (10 * 2);
       navItems.push(<ColumnLink key='explore' icon='hashtag' text={intl.formatMessage(messages.explore)} to='/explore' />);
     }
 
-    if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
-      navItems.push(<ColumnLink key='conversations' icon='envelope' text={intl.formatMessage(messages.direct)} to='/conversations' />);
+    if (signedIn) {
+      if (!multiColumn || !columns.find(item => item.get('id') === 'DIRECT')) {
+        navItems.push(<ColumnLink key='conversations' icon='envelope' text={intl.formatMessage(messages.direct)} to='/conversations' />);
+      }
+
+      if (!multiColumn || !columns.find(item => item.get('id') === 'BOOKMARKS')) {
+        navItems.push(<ColumnLink key='bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
+      }
+
+      if (myAccount.get('locked') || unreadFollowRequests > 0) {
+        navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
+      }
+
+      navItems.push(<ColumnLink key='getting_started' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
+
+      listItems = listItems.concat([
+        <div key='9'>
+          <ColumnLink key='lists' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
+          {lists.filter(list => !columns.find(item => item.get('id') === 'LIST' && item.getIn(['params', 'id']) === list.get('id'))).map(list =>
+            <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
+          )}
+        </div>,
+      ]);
     }
-
-    if (!multiColumn || !columns.find(item => item.get('id') === 'BOOKMARKS')) {
-      navItems.push(<ColumnLink key='bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} to='/bookmarks' />);
-    }
-
-    if (myAccount.get('locked') || unreadFollowRequests > 0) {
-      navItems.push(<ColumnLink key='follow_requests' icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
-    }
-
-    navItems.push(<ColumnLink key='getting_started' icon='ellipsis-h' text={intl.formatMessage(messages.misc)} to='/getting-started-misc' />);
-
-    listItems = listItems.concat([
-      <div key='9'>
-        <ColumnLink key='lists' icon='bars' text={intl.formatMessage(messages.lists)} to='/lists' />
-        {lists.filter(list => !columns.find(item => item.get('id') === 'LIST' && item.getIn(['params', 'id']) === list.get('id'))).map(list =>
-          <ColumnLink key={`list-${list.get('id')}`} to={`/lists/${list.get('id')}`} icon='list-ul' text={list.get('title')} />
-        )}
-      </div>,
-    ]);
 
     return (
       <Column bindToDocument={!multiColumn} name='getting-started' icon='asterisk' heading={intl.formatMessage(messages.heading)} label={intl.formatMessage(messages.menu)} hideHeadingOnMobile>
         <div className='scrollable optionally-scrollable'>
           <div className='getting-started__wrapper'>
-            {!multiColumn && <NavigationBar account={myAccount} />}
+            {!multiColumn && signedIn && <NavigationBar account={myAccount} />}
             {multiColumn && <ColumnSubheading text={intl.formatMessage(messages.navigation_subheading)} />}
             {navItems}
-            <ColumnSubheading text={intl.formatMessage(messages.lists_subheading)} />
-            {listItems}
-            <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
-            { preferencesLink !== undefined && <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href={preferencesLink} /> }
-            <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={openSettings} />
+            {signedIn && (
+              <React.Fragment>
+                <ColumnSubheading text={intl.formatMessage(messages.lists_subheading)} />
+                {listItems}
+                <ColumnSubheading text={intl.formatMessage(messages.settings_subheading)} />
+                { preferencesLink !== undefined && <ColumnLink icon='cog' text={intl.formatMessage(messages.preferences)} href={preferencesLink} /> }
+                <ColumnLink icon='cogs' text={intl.formatMessage(messages.settings)} onClick={openSettings} />
+              </React.Fragment>
+            )}
           </div>
 
           <LinkFooter />
         </div>
 
         {multiColumn && showTrends && <TrendsContainer />}
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.menu)}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

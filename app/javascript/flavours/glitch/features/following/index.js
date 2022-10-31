@@ -21,9 +21,10 @@ import ScrollableList from 'flavours/glitch/components/scrollable_list';
 import TimelineHint from 'flavours/glitch/components/timeline_hint';
 import LimitedAccountHint from '../account_timeline/components/limited_account_hint';
 import { getAccountHidden } from 'flavours/glitch/selectors';
+import { normalizeForLookup } from 'flavours/glitch/reducers/accounts_map';
 
 const mapStateToProps = (state, { params: { acct, id } }) => {
-  const accountId = id || state.getIn(['accounts_map', acct]);
+  const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
   if (!accountId) {
     return {

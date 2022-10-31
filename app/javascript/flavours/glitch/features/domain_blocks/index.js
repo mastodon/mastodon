@@ -11,6 +11,7 @@ import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_bloc
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ScrollableList from 'flavours/glitch/components/scrollable_list';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   heading: { id: 'column.domain_blocks', defaultMessage: 'Blocked domains' },
@@ -59,6 +60,7 @@ class Blocks extends ImmutablePureComponent {
     return (
       <Column bindToDocument={!multiColumn} icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
         <ColumnBackButtonSlim />
+
         <ScrollableList
           scrollKey='domain_blocks'
           onLoadMore={this.handleLoadMore}
@@ -70,6 +72,10 @@ class Blocks extends ImmutablePureComponent {
             <DomainContainer key={domain} domain={domain} />,
           )}
         </ScrollableList>
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

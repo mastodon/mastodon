@@ -16,7 +16,6 @@ function main() {
   const { messages } = getLocale();
   const React = require('react');
   const ReactDOM = require('react-dom');
-  const Rellax = require('rellax');
   const { createBrowserHistory } = require('history');
 
   const scrollToDetailedStatus = () => {
@@ -95,12 +94,6 @@ function main() {
       scrollToDetailedStatus();
     }
 
-    const parallaxComponents = document.querySelectorAll('.parallax');
-
-    if (parallaxComponents.length > 0 ) {
-      new Rellax('.parallax', { speed: -1 });
-    }
-
     delegate(document, '#registration_user_password_confirmation,#registration_user_password', 'input', () => {
       const password = document.getElementById('registration_user_password');
       const confirmation = document.getElementById('registration_user_password_confirmation');
@@ -151,8 +144,31 @@ function main() {
     });
   });
 
+  const toggleSidebar = () => {
+    const sidebar = document.querySelector('.sidebar ul');
+    const toggleButton = document.querySelector('.sidebar__toggle__icon');
+
+    if (sidebar.classList.contains('visible')) {
+      document.body.style.overflow = null;
+      toggleButton.setAttribute('aria-expanded', false);
+    } else {
+      document.body.style.overflow = 'hidden';
+      toggleButton.setAttribute('aria-expanded', true);
+    }
+
+    toggleButton.classList.toggle('active');
+    sidebar.classList.toggle('visible');
+  };
+
   delegate(document, '.sidebar__toggle__icon', 'click', () => {
-    document.querySelector('.sidebar ul').classList.toggle('visible');
+    toggleSidebar();
+  });
+
+  delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      toggleSidebar();
+    }
   });
 
   // Empty the honeypot fields in JS in case something like an extension

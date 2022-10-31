@@ -42,7 +42,7 @@ export const makeGetStatus = () => {
     ],
 
     (statusBase, statusReblog, accountBase, accountReblog, filters) => {
-      if (!statusBase) {
+      if (!statusBase || statusBase.get('isLoading')) {
         return null;
       }
 

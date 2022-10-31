@@ -1,87 +1,27 @@
 ---
 sv:
   about:
-    about_hashtag_html: Dessa är offentliga toots märkta med <strong>#%{hashtag}</strong>. Du kan interagera med dem om du har ett konto någonstans i federationen.
     about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
-    about_this: Om
-    active_count_after: aktiv
-    active_footnote: Månatligen Aktiva användare (MAU)
-    administered_by: 'Administreras av:'
-    api: API
-    apps: Mobilappar
-    apps_platforms: Använd Mastodon från iOS, Android och andra plattformar
-    browse_directory: Titta på en profilkatalog och filtrera enligt intressen
-    browse_local_posts: Titta på strömmande publika inlägg från denna server
-    browse_public_posts: Titta på strömmande publika inlägg på Mastodon
-    contact: Kontakt
     contact_missing: Inte inställd
     contact_unavailable: Ej tillämplig
-    continue_to_web: Fortsätt till webbtjänst
-    discover_users: Upptäck användare
-    documentation: Dokumentation
-    federation_hint_html: Med ett konto på %{instance} kommer du att kunna följa personer på alla Mastodon-servers och mer än så.
-    get_apps: Prova en mobilapp
     hosted_on: Mastodon-värd på %{domain}
-    instance_actor_flash: "Detta konto är en virtuell agent som används för att representera servern själv och inte någon individuell användare. Det används av sammanslutningsskäl och ska inte blockeras såvitt du inte vill blockera hela instansen, och för detta fall ska domänblockering användas. \n"
-    learn_more: Lär dig mer
-    logged_in_as_html: Inloggad som %{username}.
-    logout_before_registering: Du är redan inloggad.
-    rules: Serverns regler
-    rules_html: 'Nedan en sammanfattning av kontoreglerna för denna Mastodonserver:'
-    see_whats_happening: Se vad som händer
-    server_stats: 'Serverstatistik:'
-    source_code: Källkod
-    status_count_after:
-      one: status
-      other: statusar
-    status_count_before: Som skapat
-    unavailable_content: Otillgängligt innehåll
-    unavailable_content_description:
-      domain: Server
-      reason: Anledning
-      rejecting_media: 'Mediafiler från dessa servers kommer inte hanteras eller lagras, och inga miniatyrer kammer att visas, utan manuell klickning erfordras på originalfilen:'
-      rejecting_media_title: Filtrerade media
-      silenced: 'Poster från dessa servers kommer att döljas i publika tidslinjer och konversationer, och meddelanden kommer inte att genereras från deras användares handlingar, förutom om du följer dem:'
-      silenced_title: Ljuddämpade värddatorer
-      suspended: 'Ingen data från dessa serverdatorer kommer bearbetas, lagras eller bytas ut vilket omöjliggör kommunikation med användare från dessa serverdatorer:'
-      suspended_title: Avstängda värddatorer
-    unavailable_content_html: Mastodon låter dig se material från, och interagera med, andra användare i servernätverket. Det är undantag som gjorts på denna serverdator.
-    user_count_after:
-      one: användare
-      other: användare
-    user_count_before: Hem till
-    what_is_mastodon: Vad är Mastodon?
+    title: Om
   accounts:
-    choices_html: "%{name}s val:"
-    endorsements_hint: Från webbgränssnittet kan du rekommendera följare, som sedan visas här.
-    featured_tags_hint: Du kan använda fyrkanter som visas här.
     follow: Följa
     followers:
       one: Följare
       other: Följare
     following: Följer
     instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern själv och inte någon enskild användare. Den används för federationsändamål och bör inte upphävas.
-    joined: Gick med %{date}
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
-    media: Media
-    moved_html: "%{name} har flyttat till %{new_profile_link}:"
-    network_hidden: Denna information är inte tillgänglig
     nothing_here: Det finns inget här!
-    people_followed_by: Personer som %{name} följer
-    people_who_follow: Personer som följer %{name}
     pin_errors:
       following: Du måste vara följare av den person du vill godkänna
     posts:
       one: Tuta
       other: Tutor
     posts_tab_heading: Tutor
-    posts_with_replies: Toots med svar
-    roles:
-      bot: Robot
-      group: Grupp
-    unavailable: Profilen är inte tillgänglig
-    unfollow: Sluta följa
   admin:
     account_actions:
       action: Utför åtgärd
@@ -510,78 +450,17 @@ sv:
       edit: Ändra regel
       title: Serverns regler
     settings:
-      activity_api_enabled:
-        desc_html: Räkning av lokalt postade statusar, aktiva användare och nyregistreringar per vecka
-        title: Publicera uppsamlad statistik om användaraktivitet
-      bootstrap_timeline_accounts:
-        desc_html: Separera flera användarnamn med kommatecken. Endast lokala och olåsta konton kommer att fungera. Standard när det är tomt och alla är lokala administratörer.
-        title: Standard att följa för nya användare
-      contact_information:
-        email: Företag E-post
-        username: Användarnamn för kontakt
-      custom_css:
-        desc_html: Ändra utseendet genom CSS laddat på varje sida
-        title: Anpassad CSS
-      default_noindex:
-        desc_html: Påverkar alla användare som inte har ändrat denna inställning själva
-        title: Undantag användare från sökmotorindexering som standard
+      about:
+        title: Om
       domain_blocks:
         all: Till alla
         disabled: För ingen
-        title: Visa domän-blockeringar
         users: För inloggade lokala användare
-      domain_blocks_rationale:
-        title: Visa motiv
-      hero:
-        desc_html: Visas på framsidan. Minst 600x100px rekommenderas. Om inte angiven faller den tillbaka på instansens miniatyrbild
-        title: Hjältebild
-      mascot:
-        title: Maskot bild
-      peers_api_enabled:
-        desc_html: Domännamn denna instans har påträffat i fediverse
-        title: Publicera lista över upptäckta instanser
-      preview_sensitive_media:
-        title: Visa känsligt media i OpenGraph-förhandsvisningar
-      profile_directory:
-        desc_html: Tillåt användare att upptäckas
-        title: Aktivera profil-mapp
-      registrations:
-        closed_message:
-          desc_html: Visas på framsidan när registreringen är stängd. Du kan använda HTML-taggar
-          title: Stängt registreringsmeddelande
-        deletion:
-          desc_html: Tillåt vem som helst att radera sitt konto
-          title: Öppen kontoradering
-        require_invite_text:
-          desc_html: När nyregistrering kräver manuellt godkännande, gör det obligatoriskt att fylla i text i fältet "Varför vill du gå med?"
-          title: Kräv att nya användare fyller i en inbjudningsförfrågan
       registrations_mode:
         modes:
           approved: Godkännande krävs för registrering
           none: Ingen kan registrera
           open: Alla kan registrera
-        title: Registreringsläge
-      show_known_fediverse_at_about_page:
-        desc_html: När den växlas, kommer toots från hela fediverse visas på förhandsvisning. Annars visas bara lokala toots.
-        title: Visa det kända fediverse på tidslinjens förhandsgranskning
-      site_description:
-        desc_html: Inledande stycke på framsidan och i metataggar. Du kan använda HTML-taggar, i synnerhet <code>&lt;a&gt;</code> och <code>&lt;em&gt;</code>.
-        title: Instansbeskrivning
-      site_description_extended:
-        desc_html: Ett bra ställe för din uppförandekod, regler, riktlinjer och andra saker som stämmer med din instans. Du kan använda HTML-taggar
-        title: Egentillverkad utökad information
-      site_short_description:
-        title: Kort beskrivning av servern
-      site_title: Namn på instans
-      thumbnail:
-        desc_html: Används för förhandsgranskningar via OpenGraph och API. 1200x630px rekommenderas
-        title: Instans tumnagelbild
-      timeline_preview:
-        desc_html: Visa offentlig tidslinje på landingsidan
-        title: Förhandsgranska tidslinje
-      title: Sidans inställningar
-      trends:
-        title: Trendande hashtaggar
     site_uploads:
       delete: Radera uppladdad fil
     statuses:
@@ -650,9 +529,7 @@ sv:
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
-    apply_for_account: Be om en inbjudan
     change_password: Lösenord
-    checkbox_agreement_html: Jag accepterar <a href="%{rules_path}" target="_blank">serverreglerna</a> och <a href="%{terms_path}" target="_blank">villkoren för användning</a>
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
@@ -686,7 +563,6 @@ sv:
       confirming: Väntar på att e-postbekräftelsen ska slutföras.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
     too_fast: Formuläret har skickats för snabbt, försök igen.
-    trouble_logging_in: Har du problem med att logga in?
     use_security_key: Använd säkerhetsnyckel
   authorize_follow:
     already_following: Du följer redan detta konto
@@ -738,10 +614,6 @@ sv:
       irreversible: Du kan inte återställa eller återaktivera ditt konto
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
       username_unavailable: Ditt användarnamn kommer att fortsätta vara otillgängligt
-  directories:
-    directory: Profil-mapp
-    explanation: Upptäck användare baserat på deras intressen
-    explore_mastodon: Utforska %{title}
   disputes:
     strikes:
       approve_appeal: Godkänn förfrågan
@@ -802,9 +674,6 @@ sv:
     new:
       title: Lägg till nytt filter
   footer:
-    developers: Utvecklare
-    more: Mer…
-    resources: Resurser
     trending_now: Trendar nu
   generic:
     all: Alla
@@ -833,7 +702,6 @@ sv:
       following: Lista av följare
       muting: Lista av nertystade
     upload: Ladda upp
-  in_memoriam_html: Till minne av.
   invites:
     delete: Avaktivera
     expired: Utgånget
@@ -971,6 +839,8 @@ sv:
   preferences:
     other: Annat
     public_timelines: Publika tidslinjer
+  privacy_policy:
+    title: Integritetspolicy
   reactions:
     errors:
       unrecognized_emoji: är inte en igenkänd emoji
@@ -992,19 +862,7 @@ sv:
     remove_selected_follows: Sluta följ valda användare
     status: Kontostatus
   remote_follow:
-    acct: Ange ditt användarnamn@domän du vill följa från
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
-    no_account_html: Har du inget konto? Du kan <a href='%{sign_up_path}' target='_blank'>registrera dig här</a>
-    proceed: Fortsätt för att följa
-    prompt: 'Du kommer att följa:'
-    reason_html: "<strong>Varför är det här steget nödvändigt?</strong> <code>%{instance}</code> är kanske inte den server du är registrerad vid, så vi behöver dirigera dig till din hemserver först."
-  remote_interaction:
-    favourite:
-      proceed: Fortsätt till favorit
-      prompt: 'Du vill favorit-markera det här inlägget:'
-    reply:
-      proceed: Fortsätt till svar
-      prompt: 'Du vill svara på det här inlägget:'
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare
@@ -1199,20 +1057,11 @@ sv:
         suspend: Kontot avstängt
     welcome:
       edit_profile_action: Profilinställning
-      edit_profile_step: Du kan anpassa din profil genom att ladda upp en avatar, bakgrundsbild, ändra ditt visningsnamn och mer. Om du vill granska nya följare innan de får följa dig kan du låsa ditt konto.
       explanation: Här är några tips för att komma igång
       final_action: Börja posta
-      final_step: 'Börja posta! Även utan anhängare kan dina offentliga meddelanden ses av andra, till exempel på den lokala tidslinjen och i hashtags. Du får gärna presentera dig via hashtaggen #introductions.'
       full_handle: Ditt fullständiga användarnamn/mastodonadress
       full_handle_hint: Det här är vad du skulle berätta för dina vänner så att de kan meddela eller följa dig från en annan instans.
-      review_preferences_action: Ändra inställningar
-      review_preferences_step: Se till att du ställer in dina inställningar, t.ex. vilka e-postmeddelanden du vill ta emot eller vilken integritetsnivå du vill att dina inlägg ska vara. Om du inte har åksjuka, kan du välja att aktivera automatisk uppspelning av GIF-bilder.
       subject: Välkommen till Mastodon
-      tip_federated_timeline: Den förenade tidslinjen är en störtflodsvy av Mastodon-nätverket. Men det inkluderar bara människor som dina grannar följer, så det är inte komplett.
-      tip_following: Du följer din servers administratör(er) som standard. För att hitta fler intressanta personer, kolla de lokala och förenade tidslinjerna.
-      tip_local_timeline: Den lokala tidslinjen är en störtflodsvy av personer på %{instance}. Det här är dina närmaste grannar!
-      tip_mobile_webapp: Om din mobila webbläsare erbjuder dig att lägga till Mastodon på din hemskärm kan du få push-aviseringar. Det fungerar som en inbyggd app på många sätt!
-      tips: Tips
       title: Välkommen ombord, %{name}!
   users:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer

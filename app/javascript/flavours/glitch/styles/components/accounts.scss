@@ -541,6 +541,7 @@
     &__buttons {
       display: flex;
       align-items: center;
+      gap: 8px;
       padding-top: 55px;
       overflow: hidden;
 
@@ -549,14 +550,6 @@
         border-radius: 4px;
         box-sizing: content-box;
         padding: 2px;
-      }
-
-      & > .icon-button {
-        margin-right: 8px;
-      }
-
-      .button {
-        margin: 0 8px;
       }
     }
 

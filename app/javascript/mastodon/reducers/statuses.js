@@ -15,6 +15,8 @@ import {
   STATUS_COLLAPSE,
   STATUS_TRANSLATE_SUCCESS,
   STATUS_TRANSLATE_UNDO,
+  STATUS_FETCH_REQUEST,
+  STATUS_FETCH_FAIL,
 } from '../actions/statuses';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STATUS_IMPORT, STATUSES_IMPORT } from '../actions/importer';
@@ -37,6 +39,10 @@ const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
   switch(action.type) {
+  case STATUS_FETCH_REQUEST:
+    return state.setIn([action.id, 'isLoading'], true);
+  case STATUS_FETCH_FAIL:
+    return state.delete(action.id);
   case STATUS_IMPORT:
     return importStatus(state, action.status);
   case STATUSES_IMPORT:

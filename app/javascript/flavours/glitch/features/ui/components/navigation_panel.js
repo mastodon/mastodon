@@ -1,17 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink, Link } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
-import Icon from 'flavours/glitch/components/icon';
-import { showTrends } from 'flavours/glitch/initial_state';
-import { preferencesLink, relationshipsLink } from 'flavours/glitch/utils/backend_links';
-import NotificationsCounterIcon from './notifications_counter_icon';
-import FollowRequestsNavLink from './follow_requests_nav_link';
+import { defineMessages, injectIntl } from 'react-intl';
+import { Link } from 'react-router-dom';
+import { timelinePreview, showTrends } from 'flavours/glitch/initial_state';
+import ColumnLink from 'flavours/glitch/features/ui/components/column_link';
+import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
-import TrendsContainer from 'flavours/glitch/features/getting_started/containers/trends_container';
+import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
+import { preferencesLink, relationshipsLink } from 'flavours/glitch/utils/backend_links';
+import NavigationPortal from 'flavours/glitch/components/navigation_portal';
 
-export default class NavigationPanel extends React.Component {
+const messages = defineMessages({
+  home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
+  notifications: { id: 'tabs_bar.notifications', defaultMessage: 'Notifications' },
+  explore: { id: 'explore.title', defaultMessage: 'Explore' },
+  local: { id: 'tabs_bar.local_timeline', defaultMessage: 'Local' },
+  federated: { id: 'tabs_bar.federated_timeline', defaultMessage: 'Federated' },
+  direct: { id: 'navigation_bar.direct', defaultMessage: 'Direct messages' },
+  favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
+  bookmarks: { id: 'navigation_bar.bookmarks', defaultMessage: 'Bookmarks' },
+  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
+  followsAndFollowers: { id: 'navigation_bar.follows_and_followers', defaultMessage: 'Follows and followers' },
+  about: { id: 'navigation_bar.about', defaultMessage: 'About' },
+  search: { id: 'navigation_bar.search', defaultMessage: 'Search' },
+  app_settings: { id: 'navigation_bar.app_settings', defaultMessage: 'App settings' },
+});
+
+export default @injectIntl
+class NavigationPanel extends React.Component {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
@@ -23,54 +41,61 @@ export default class NavigationPanel extends React.Component {
   };
 
   render() {
+    const { intl, onOpenSettings } = this.props;
     const { signedIn } = this.context.identity;
-    const { onOpenSettings } = this.props;
 
     return (
       <div className='navigation-panel'>
         {signedIn && (
           <React.Fragment>
-            <NavLink className='column-link column-link--transparent' to='/home' data-preview-title-id='column.home' data-preview-icon='home' ><Icon className='column-link__icon' id='home' fixedWidth /><FormattedMessage id='tabs_bar.home' defaultMessage='Home' /></NavLink>
-            <NavLink className='column-link column-link--transparent' to='/notifications' data-preview-title-id='column.notifications' data-preview-icon='bell' ><NotificationsCounterIcon className='column-link__icon' /><FormattedMessage id='tabs_bar.notifications' defaultMessage='Notifications' /></NavLink>
-            <FollowRequestsNavLink />
+            <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
+            <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
+            <FollowRequestsColumnLink />
           </React.Fragment>
         )}
 
-        { showTrends && <NavLink className='column-link column-link--transparent' to='/explore' data-preview-title-id='explore.title' data-preview-icon='hashtag'><Icon className='column-link__icon' id='hashtag' fixedWidth /><FormattedMessage id='explore.title' defaultMessage='Explore' /></NavLink> }
+        {showTrends ? (
+          <ColumnLink transparent to='/explore' icon='hashtag' text={intl.formatMessage(messages.explore)} />
+        ) : (
+          <ColumnLink transparent to='/search' icon='search' text={intl.formatMessage(messages.search)} />
+        )}
 
-        <NavLink className='column-link column-link--transparent' to='/public/local' data-preview-title-id='column.community' data-preview-icon='users' ><Icon className='column-link__icon' id='users' fixedWidth /><FormattedMessage id='tabs_bar.local_timeline' defaultMessage='Local' /></NavLink>
-        <NavLink className='column-link column-link--transparent' exact to='/public' data-preview-title-id='column.public' data-preview-icon='globe' ><Icon className='column-link__icon' id='globe' fixedWidth /><FormattedMessage id='tabs_bar.federated_timeline' defaultMessage='Federated' /></NavLink>
+        {(signedIn || timelinePreview) && (
+          <>
+            <ColumnLink transparent to='/public/local' icon='users' text={intl.formatMessage(messages.local)} />
+            <ColumnLink transparent exact to='/public' icon='globe' text={intl.formatMessage(messages.federated)} />
+          </>
+        )}
 
         {!signedIn && (
-          <React.Fragment>
+          <div className='navigation-panel__sign-in-banner'>
             <hr />
             <SignInBanner />
-          </React.Fragment>
+          </div>
         )}
 
         {signedIn && (
           <React.Fragment>
-            <NavLink className='column-link column-link--transparent' to='/conversations'><Icon className='column-link__icon' id='envelope' fixedWidth /><FormattedMessage id='navigation_bar.direct' defaultMessage='Direct messages' /></NavLink>
-            <NavLink className='column-link column-link--transparent' to='/bookmarks'><Icon className='column-link__icon' id='bookmark' fixedWidth /><FormattedMessage id='navigation_bar.bookmarks' defaultMessage='Bookmarks' /></NavLink>
-            <NavLink className='column-link column-link--transparent' to='/lists'><Icon className='column-link__icon' id='list-ul' fixedWidth /><FormattedMessage id='navigation_bar.lists' defaultMessage='Lists' /></NavLink>
+            <ColumnLink transparent to='/conversations' icon='at' text={intl.formatMessage(messages.direct)} />
+            <ColumnLink transparent to='/favourites' icon='star' text={intl.formatMessage(messages.favourites)} />
+            <ColumnLink transparent to='/bookmarks' icon='bookmark' text={intl.formatMessage(messages.bookmarks)} />
+            <ColumnLink transparent to='/lists' icon='list-ul' text={intl.formatMessage(messages.lists)} />
 
             <ListPanel />
 
             <hr />
 
-            {!!preferencesLink && <a className='column-link column-link--transparent' href={preferencesLink} target='_blank'><Icon className='column-link__icon' id='cog' fixedWidth /><FormattedMessage id='navigation_bar.preferences' defaultMessage='Preferences' /></a>}
-            <a className='column-link column-link--transparent' href='#' onClick={onOpenSettings}><Icon className='column-link__icon' id='cogs' fixedWidth /><FormattedMessage id='navigation_bar.app_settings' defaultMessage='App settings' /></a>
-            {!!relationshipsLink && <a className='column-link column-link--transparent' href={relationshipsLink} target='_blank'><Icon className='column-link__icon' id='users' fixedWidth /><FormattedMessage id='navigation_bar.follows_and_followers' defaultMessage='Follows and followers' /></a>}
+            {!!preferencesLink && <ColumnLink transparent href={preferencesLink} icon='cog' text={intl.formatMessage(messages.preferences)} />}
+            <ColumnLink transparent href='#' onClick={onOpenSettings} icon='cogs' text={intl.formatMessage(messages.app_settings)} />
           </React.Fragment>
         )}
 
-        {showTrends && (
-          <React.Fragment>
-            <div className='flex-spacer' />
-            <TrendsContainer />
-          </React.Fragment>
-        )}
+        <div className='navigation-panel__legal'>
+          <hr />
+          <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
+        </div>
 
+        <NavigationPortal />
       </div>
     );
   }

@@ -9,6 +9,7 @@ class PublicFeed
   # @option [Boolean] :remote
   # @option [Boolean] :only_media
   # @option [Boolean] :allow_local_only
+  # @option [String]  :locale
   def initialize(account, options = {})
     @account = account
     @options = options
@@ -29,6 +30,7 @@ class PublicFeed
     scope.merge!(remote_only_scope) if remote_only?
     scope.merge!(account_filters_scope) if account?
     scope.merge!(media_only_scope) if media_only?
+    scope.merge!(language_scope)
 
     scope.cache_ids.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
   end
@@ -97,10 +99,19 @@ class PublicFeed
     Status.not_local_only
   end
 
+  def language_scope
+    if account&.chosen_languages.present?
+      Status.where(language: account.chosen_languages)
+    elsif @options[:locale].present?
+      Status.where(language: @options[:locale])
+    else
+      Status.all
+    end
+  end
+
   def account_filters_scope
     Status.not_excluded_by_account(account).tap do |scope|
       scope.merge!(Status.not_domain_blocked_by_account(account)) unless local_only?
-      scope.merge!(Status.in_chosen_languages(account)) if account.chosen_languages.present?
     end
   end
 end

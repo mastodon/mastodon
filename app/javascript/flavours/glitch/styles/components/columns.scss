@@ -42,14 +42,48 @@
     &__main {
       box-sizing: border-box;
       width: 100%;
-      max-width: 600px;
       flex: 0 0 auto;
       display: flex;
       flex-direction: column;
 
       @media screen and (min-width: $no-gap-breakpoint) {
         padding: 0 10px;
+        max-width: 600px;
       }
+    }
+  }
+}
+
+$ui-header-height: 55px;
+
+.ui__header {
+  display: none;
+  box-sizing: border-box;
+  height: $ui-header-height;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  justify-content: space-between;
+  align-items: center;
+
+  &__logo {
+    display: inline-flex;
+    padding: 15px;
+
+    .logo {
+      height: $ui-header-height - 30px;
+      width: auto;
+    }
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+
+    .button {
+      flex: 0 0 auto;
     }
   }
 }
@@ -57,12 +91,13 @@
 .tabs-bar__wrapper {
   background: darken($ui-base-color, 8%);
   position: sticky;
-  top: 0;
+  top: $ui-header-height;
   z-index: 2;
   padding-top: 0;
 
   @media screen and (min-width: $no-gap-breakpoint) {
     padding-top: 10px;
+    top: 0;
   }
 
   .tabs-bar {
@@ -179,6 +214,8 @@
   font-size: 16px;
   padding: 15px;
   text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
 
   &:hover,
   &:focus,
@@ -322,7 +359,8 @@
 
   > .scrollable {
     background: $ui-base-color;
-    border-radius: 0 0 4px 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 }
 
@@ -589,7 +627,6 @@
 }
 
 .empty-column-indicator,
-.error-column,
 .follow_requests-unlocked_explanation {
   color: $dark-text-color;
   background: $ui-base-color;
@@ -626,7 +663,48 @@
 }
 
 .error-column {
+  padding: 20px;
+  background: $ui-base-color;
+  border-radius: 4px;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+  cursor: default;
+
+  &__image {
+    width: 70%;
+    max-width: 350px;
+    margin-top: -50px;
+  }
+
+  &__message {
+    text-align: center;
+    color: $darker-text-color;
+    font-size: 15px;
+    line-height: 22px;
+
+    h1 {
+      font-size: 28px;
+      line-height: 33px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: $primary-text-color;
+    }
+
+    p {
+      max-width: 48ch;
+    }
+
+    &__actions {
+      margin-top: 30px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
 
 // more fixes for the navbar-under mode
@@ -868,7 +946,7 @@
 
 .column-actions {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   padding: 40px;
   padding-top: 40px;
@@ -898,5 +976,30 @@
     line-height: 24px;
     font-weight: 400;
     color: $darker-text-color;
+  }
+}
+
+.dismissable-banner {
+  background: $ui-base-color;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  &__message {
+    flex: 1 1 auto;
+    padding: 20px 15px;
+    cursor: default;
+    font-size: 14px;
+    line-height: 18px;
+    color: $primary-text-color;
+  }
+
+  &__action {
+    padding: 15px;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

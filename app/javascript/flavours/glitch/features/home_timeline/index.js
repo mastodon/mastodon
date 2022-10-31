@@ -15,7 +15,6 @@ import classNames from 'classnames';
 import IconWithBadge from 'flavours/glitch/components/icon_with_badge';
 import NotSignedInIndicator from 'flavours/glitch/components/not_signed_in_indicator';
 import { Helmet } from 'react-helmet';
-import { title } from 'flavours/glitch/initial_state';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -170,7 +169,8 @@ class HomeTimeline extends React.PureComponent {
         ) : <NotSignedInIndicator />}
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title)} - {title}</title>
+          <title>{intl.formatMessage(messages.title)}</title>
+          <meta name='robots' content='noindex' />
         </Helmet>
       </Column>
     );

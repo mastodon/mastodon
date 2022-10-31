@@ -99,13 +99,6 @@ describe InstancePresenter do
     end
   end
 
-  describe '#hero' do
-    it 'returns SiteUpload' do
-      hero = Fabricate(:site_upload, var: 'hero')
-      expect(instance_presenter.hero).to eq(hero)
-    end
-  end
-
   describe '#mascot' do
     it 'returns SiteUpload' do
       mascot = Fabricate(:site_upload, var: 'mascot')

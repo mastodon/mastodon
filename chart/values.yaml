@@ -24,12 +24,14 @@ mastodon:
     removeMedia:
       enabled: true
       schedule: "0 0 * * 0"
-  # available locales: https://github.com/tootsuite/mastodon/blob/master/config/application.rb#L43
+  # available locales: https://github.com/mastodon/mastodon/blob/main/config/application.rb#L71
   locale: en
   local_domain: mastodon.local
   # Use of WEB_DOMAIN requires careful consideration: https://docs.joinmastodon.org/admin/config/#federation
   # You must redirect the path LOCAL_DOMAIN/.well-known/ to WEB_DOMAIN/.well-known/ as described
   # web_domain: mastodon.example.com
+  # If set to true, the frontpage of your Mastodon server will always redirect to the first profile in the database and registrations will be disabled.
+  singleUserMode: false
   persistence:
     assets:
       # ReadWriteOnce is more widely supported than ReadWriteMany, but limits
@@ -261,7 +263,7 @@ externalAuth:
     #   search: "., -"
     #   replace: _
 
-# https://github.com/tootsuite/mastodon/blob/master/Dockerfile#L88
+# https://github.com/mastodon/mastodon/blob/main/Dockerfile#L75
 #
 # if you manually change the UID/GID environment variables, ensure these values
 # match:

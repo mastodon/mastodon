@@ -13,6 +13,8 @@ import {
   STATUS_REVEAL,
   STATUS_HIDE,
   STATUS_COLLAPSE,
+  STATUS_FETCH_REQUEST,
+  STATUS_FETCH_FAIL,
 } from 'flavours/glitch/actions/statuses';
 import {
   TIMELINE_DELETE,
@@ -37,6 +39,10 @@ const initialState = ImmutableMap();
 
 export default function statuses(state = initialState, action) {
   switch(action.type) {
+  case STATUS_FETCH_REQUEST:
+    return state.setIn([action.id, 'isLoading'], true);
+  case STATUS_FETCH_FAIL:
+    return state.delete(action.id);
   case STATUS_IMPORT:
     return importStatus(state, action.status);
   case STATUSES_IMPORT:

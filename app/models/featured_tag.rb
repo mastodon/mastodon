@@ -19,12 +19,22 @@ class FeaturedTag < ApplicationRecord
   validate :validate_tag_name, on: :create
   validate :validate_featured_tags_limit, on: :create
 
+  before_validation :strip_name
+
   before_create :set_tag
   before_create :reset_data
+
+  scope :by_name, ->(name) { joins(:tag).where(tag: { name: HashtagNormalizer.new.normalize(name) }) }
 
   delegate :display_name, to: :tag
 
   attr_writer :name
+
+  LIMIT = 10
+
+  def sign?
+    true
+  end
 
   def name
     tag_id.present? ? tag.name : @name
@@ -40,6 +50,12 @@ class FeaturedTag < ApplicationRecord
 
   private
 
+  def strip_name
+    return unless defined?(@name)
+
+    @name = @name&.strip&.gsub(/\A#/, '')
+  end
+
   def set_tag
     self.tag = Tag.find_or_create_by_names(@name)&.first
   end
@@ -50,11 +66,12 @@ class FeaturedTag < ApplicationRecord
   end
 
   def validate_featured_tags_limit
-    errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= 10
+    errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= LIMIT
   end
 
   def validate_tag_name
     errors.add(:name, :blank) if @name.blank?
     errors.add(:name, :invalid) unless @name.match?(/\A(#{Tag::HASHTAG_NAME_RE})\z/i)
+    errors.add(:name, :taken) if FeaturedTag.by_name(@name).where(account_id: account_id).exists?
   end
 end

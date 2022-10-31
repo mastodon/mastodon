@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LoadingBarContainer from './containers/loading_bar_container';
 import ModalContainer from './containers/modal_container';
 import { connect } from 'react-redux';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom';
 import { layoutFromWindow } from 'flavours/glitch/is_mobile';
 import { debounce } from 'lodash';
 import { uploadCompose, resetCompose, changeComposeSpoilerness } from 'flavours/glitch/actions/compose';
@@ -15,6 +15,7 @@ import { clearHeight } from 'flavours/glitch/actions/height_cache';
 import { changeLayout } from 'flavours/glitch/actions/app';
 import { synchronouslySubmitMarkers, submitMarkers, fetchMarkers } from 'flavours/glitch/actions/markers';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
+import BundleColumnError from './components/bundle_column_error';
 import UploadArea from './components/upload_area';
 import PermaLink from 'flavours/glitch/components/permalink';
 import ColumnsAreaContainer from './containers/columns_area_container';
@@ -39,7 +40,6 @@ import {
   HashtagTimeline,
   Notifications,
   FollowRequests,
-  GenericNotFound,
   FavouritedStatuses,
   BookmarkedStatuses,
   ListTimeline,
@@ -52,12 +52,15 @@ import {
   Directory,
   Explore,
   FollowRecommendations,
+  About,
+  PrivacyPolicy,
 } from './util/async-components';
 import { HotKeys } from 'react-hotkeys';
-import { me, title } from 'flavours/glitch/initial_state';
+import initialState, { me, owner, singleUserMode, showTrends } from '../../initial_state';
 import { closeOnboarding, INTRODUCTION_VERSION } from 'flavours/glitch/actions/onboarding';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 import { Helmet } from 'react-helmet';
+import Header from './components/header';
 
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
@@ -156,7 +159,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
   setRef = c => {
     if (c) {
-      this.node = c.getWrappedInstance();
+      this.node = c;
     }
   }
 
@@ -172,8 +175,12 @@ class SwitchingColumnsArea extends React.PureComponent {
       } else {
         redirect = <Redirect from='/' to='/getting-started' exact />;
       }
-    } else {
+    } else if (singleUserMode && owner && initialState?.accounts[owner]) {
+      redirect = <Redirect from='/' to={`/@${initialState.accounts[owner].username}`} exact />;
+    } else if (showTrends) {
       redirect = <Redirect from='/' to='/explore' exact />;
+    } else {
+      redirect = <Redirect from='/' to='/about' exact />;
     }
 
     return (
@@ -183,6 +190,8 @@ class SwitchingColumnsArea extends React.PureComponent {
 
           <WrappedRoute path='/getting-started' component={GettingStarted} content={children} />
           <WrappedRoute path='/keyboard-shortcuts' component={KeyboardShortcuts} content={children} />
+          <WrappedRoute path='/about' component={About} content={children} />
+          <WrappedRoute path='/privacy-policy' component={PrivacyPolicy} content={children} />
 
           <WrappedRoute path={['/home', '/timelines/home']} component={HomeTimeline} content={children} />
           <WrappedRoute path={['/public', '/timelines/public']} exact component={PublicTimeline} content={children} />
@@ -202,9 +211,10 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path={['/publish', '/statuses/new']} component={Compose} content={children} />
 
           <WrappedRoute path={['/@:acct', '/accounts/:id']} exact component={AccountTimeline} content={children} />
+          <WrappedRoute path='/@:acct/tagged/:tagged?' exact component={AccountTimeline} content={children} />
           <WrappedRoute path={['/@:acct/with_replies', '/accounts/:id/with_replies']} component={AccountTimeline} content={children} componentParams={{ withReplies: true }} />
-          <WrappedRoute path={['/@:acct/followers', '/accounts/:id/followers']} component={Followers} content={children} />
-          <WrappedRoute path={['/@:acct/following', '/accounts/:id/following']} component={Following} content={children} />
+          <WrappedRoute path={['/accounts/:id/followers', '/users/:acct/followers', '/@:acct/followers']} component={Followers} content={children} />
+          <WrappedRoute path={['/accounts/:id/following', '/users/:acct/following', '/@:acct/following']} component={Following} content={children} />
           <WrappedRoute path={['/@:acct/media', '/accounts/:id/media']} component={AccountGallery} content={children} />
           <WrappedRoute path='/@:acct/:statusId' exact component={Status} content={children} />
           <WrappedRoute path='/@:acct/:statusId/reblogs' component={Reblogs} content={children} />
@@ -224,7 +234,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/lists' component={Lists} content={children} />
           <WrappedRoute path='/getting-started-misc' component={GettingStartedMisc} content={children} />
 
-          <WrappedRoute component={GenericNotFound} content={children} />
+          <Route component={BundleColumnError} />
         </WrappedSwitch>
       </ColumnsAreaContainer>
     );
@@ -652,6 +662,9 @@ class UI extends React.Component {
               )}}
             />
           </div>)}
+
+          <Header />
+
           <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'single-column'} navbarUnder={navbarUnder}>
             {children}
           </SwitchingColumnsArea>
@@ -661,10 +674,6 @@ class UI extends React.Component {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
-
-          <Helmet>
-            <title>{title}</title>
-          </Helmet>
         </div>
       </HotKeys>
     );

@@ -20,6 +20,11 @@
   background: transparent;
   padding: 0;
   cursor: pointer;
+  text-decoration: none;
+
+  &--destructive {
+    color: $error-value-color;
+  }
 
   &:hover,
   &:active {
@@ -189,6 +194,15 @@
     color: $highlight-text-color;
   }
 
+  &.copyable {
+    transition: background 300ms linear;
+  }
+
+  &.copied {
+    background: $valid-value-color;
+    transition: none;
+  }
+
   &::-moz-focus-inner {
     border: 0;
   }
@@ -243,11 +257,12 @@
     display: inline-flex;
     align-items: center;
     width: auto !important;
+    padding: 0 4px 0 2px;
   }
 
   &__counter {
     display: inline-block;
-    width: 14px;
+    width: auto;
     margin-left: 4px;
     font-size: 12px;
     font-weight: 500;
@@ -1034,6 +1049,7 @@
     padding: 10px;
     padding-top: 20px;
     z-index: 1;
+    font-size: 13px;
 
     ul {
       margin-bottom: 10px;
@@ -1045,7 +1061,6 @@
 
     p {
       color: $dark-text-color;
-      font-size: 13px;
       margin-bottom: 20px;
 
       a {
@@ -1778,3 +1793,5 @@ noscript {
 @import 'announcements';
 @import 'explore';
 @import 'signed_out';
+@import 'privacy_policy';
+@import 'about';

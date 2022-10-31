@@ -1,15 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
+import { mountConversations, unmountConversations, expandConversations } from 'flavours/glitch/actions/conversations';
+import { connectDirectStream } from 'flavours/glitch/actions/streaming';
+import { expandDirectTimeline } from 'flavours/glitch/actions/timelines';
 import Column from 'flavours/glitch/components/column';
 import ColumnHeader from 'flavours/glitch/components/column_header';
-import { expandDirectTimeline } from 'flavours/glitch/actions/timelines';
-import { mountConversations, unmountConversations, expandConversations } from 'flavours/glitch/actions/conversations';
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { connectDirectStream } from 'flavours/glitch/actions/streaming';
 import ConversationsListContainer from './containers/conversations_list_container';
 
 const messages = defineMessages({
@@ -143,6 +144,11 @@ class DirectTimeline extends React.PureComponent {
         </ColumnHeader>
 
         {contents}
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

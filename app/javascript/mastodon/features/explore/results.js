@@ -10,7 +10,6 @@ import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { List as ImmutableList } from 'immutable';
 import LoadMore from 'mastodon/components/load_more';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
-import { title } from 'mastodon/initial_state';
 import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
@@ -118,7 +117,7 @@ class Results extends React.PureComponent {
         </div>
 
         <Helmet>
-          <title>{intl.formatMessage(messages.title, { q })} - {title}</title>
+          <title>{intl.formatMessage(messages.title, { q })}</title>
         </Helmet>
       </React.Fragment>
     );

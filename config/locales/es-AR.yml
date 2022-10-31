@@ -1,91 +1,27 @@
 ---
 es-AR:
   about:
-    about_hashtag_html: Estos son mensajes públicos etiquetados con <strong>#%{hashtag}</strong>. Si tenés una cuenta en cualquier parte del fediverso, podés interactuar con ellos.
     about_mastodon_html: 'La red social del futuro: ¡sin publicidad, sin vigilancia corporativa, con diseño ético y descentralización! ¡Con Mastodon vos sos el dueño de tus datos!'
-    about_this: Acerca de Mastodon
-    active_count_after: activo
-    active_footnote: Usuarios activos mensualmente (MAU)
-    administered_by: 'Administrado por:'
-    api: API
-    apps: Aplicaciones móviles
-    apps_platforms: Usá Mastodon desde iOS, Android y otras plataformas
-    browse_directory: Explorá el directorio de perfiles y filtrá por intereses
-    browse_local_posts: Explorá un flujo en tiempo real de mensajes públicos en este servidor
-    browse_public_posts: Explorá un flujo en tiempo real de mensajes públicos en Mastodon
-    contact: Contacto
     contact_missing: No establecido
     contact_unavailable: No disponible
-    continue_to_web: Continuar con la aplicación web
-    discover_users: Descubrí usuarios
-    documentation: Documentación
-    federation_hint_html: Con una cuenta en %{instance} vas a poder seguir a cuentas de cualquier servidor de Mastodon y más allá.
-    get_apps: Probá una aplicación móvil
     hosted_on: Mastodon alojado en %{domain}
-    instance_actor_flash: |
-      Esta cuenta es un actor virtual usado para representar al propio servidor y no a ningún usuario individual.
-      Se usa para fines federativos y no debe ser bloqueado a menos que quieras bloquear toda la instancia, en cuyo caso deberías usar un bloqueo de dominio.
-    learn_more: Aprendé más
-    logged_in_as_html: Actualmente iniciaste sesión como %{username}.
-    logout_before_registering: Ya iniciaste sesión.
-    privacy_policy: Política de privacidad
-    rules: Reglas del servidor
-    rules_html: 'Abajo hay un resumen de las reglas que tenés que seguir si querés tener una cuenta en este servidor de Mastodon:'
-    see_whats_happening: Esto es lo que está pasando ahora
-    server_stats: 'Estadísticas del servidor:'
-    source_code: Código fuente
-    status_count_after:
-      one: mensaje
-      other: mensajes
-    status_count_before: Que enviaron
-    tagline: Red social descentralizada
-    unavailable_content: Servidores moderados
-    unavailable_content_description:
-      domain: Servidor
-      reason: Motivo
-      rejecting_media: 'Los archivos de medios de este servidor no van a ser procesados y no se mostrarán miniaturas, lo que requiere un clic manual hacia el archivo original:'
-      rejecting_media_title: Medios filtrados
-      silenced: 'Los mensajes de estos servidores se ocultarán en las líneas temporales y conversaciones públicas, y no se generarán notificaciones de las interacciones de sus usuarios, a menos que los estés siguiendo:'
-      silenced_title: Servidores limitados
-      suspended: 'No se procesarán, almacenarán o intercambiarán datos de estos servidores, haciendo imposible cualquier interacción o comunicación con los usuarios de estos servidores:'
-      suspended_title: Servidores suspendidos
-    unavailable_content_html: Mastodon generalmente te permite ver contenido e interactuar con usuarios de cualquier otro servidor en el fediverso. Estas son las excepciones que se hicieron en este servidor en particular.
-    user_count_after:
-      one: usuario
-      other: usuarios
-    user_count_before: Hogar de
-    what_is_mastodon: "¿Qué es Mastodon?"
+    title: Información
   accounts:
-    choices_html: 'Recomendados de %{name}:'
-    endorsements_hint: Podés recomendar, desde la interface web, a cuentas que seguís, y van a aparecer acá.
-    featured_tags_hint: Podés destacar etiquetas específicas que se mostrarán acá.
     follow: Seguir
     followers:
       one: Seguidor
       other: Seguidores
     following: Siguiendo
     instance_actor_flash: Esta cuenta es un actor virtual usado para representar al servidor en sí mismo y no a ningún usuario individual. Se usa para propósitos de la federación y no debe ser suspendido.
-    joined: En este servidor desde %{date}
     last_active: última actividad
     link_verified_on: La propiedad de este enlace fue verificada el %{date}
-    media: Medios
-    moved_html: "%{name} se mudó a %{new_profile_link}:"
-    network_hidden: Esta información no está disponible
     nothing_here: "¡No hay nada acá!"
-    people_followed_by: "%{name} sigue a estas personas"
-    people_who_follow: Estas personas siguen a %{name}
     pin_errors:
       following: Ya tenés que estar siguiendo a la cuenta que querés recomendar
     posts:
       one: Mensaje
       other: Mensajes
     posts_tab_heading: Mensajes
-    posts_with_replies: Mensajes y respuestas
-    roles:
-      bot: Bot
-      group: Grupo
-    unavailable: Perfil no disponible
-    unfollow: Dejar de seguir
   admin:
     account_actions:
       action: Ejecutar acción
@@ -388,6 +324,7 @@ es-AR:
       listed: Listados
       new:
         title: Agregar nuevo emoji personalizado
+      no_emoji_selected: No se cambió ningún emoji, ya que ninguno fue seleccionado
       not_permitted: No tenés permiso para realizar esta acción
       overwrite: Sobreescribir
       shortcode: Código corto
@@ -488,7 +425,7 @@ es-AR:
       status: Estado
       suppress: Eliminar recomendación de cuentas para seguir
       suppressed: Eliminado
-      title: Recomendaciones de cuentas para seguir
+      title: Recom. de cuentas a seguir
       unsuppress: Restablecer recomendaciones de cuentas para seguir
     instances:
       availability:
@@ -730,102 +667,67 @@ es-AR:
       empty: Aún no se han definido las reglas del servidor.
       title: Reglas del servidor
     settings:
-      activity_api_enabled:
-        desc_html: Conteos de mensajes publicados localmente, usuarios activos y nuevos registros en tandas semanales
-        title: Publicar estadísticas agregadas sobre la actividad del usuario en la API
-      bootstrap_timeline_accounts:
-        desc_html: Separar múltiples nombres de usuario con coma. Sólo funcionarán las cuentas locales y desbloqueadas. Predeterminadamente, cuando está vacío se trata de todos los administradores locales.
-        title: Recomendar estas cuentas a usuarios nuevos
-      contact_information:
-        email: Correo electrónico de negocios
-        username: Nombre de usuario de contacto
-      custom_css:
-        desc_html: Modificá la apariencia con CSS cargado en cada página
-        title: CSS personalizado
-      default_noindex:
-        desc_html: Afecta a todos los usuarios que no cambiaron esta configuración por sí mismos
-        title: Quitar predeterminadamente a los usuarios de la indexación de los motores de búsqueda
+      about:
+        manage_rules: Administrar reglas del servidor
+        preamble: Proveé información en profundidad sobre cómo el servidor es operado, moderado y financiado.
+        rules_hint: Hay un área dedicada para las reglas a las que se espera que tus usuarios se adhieran.
+        title: Información
+      appearance:
+        preamble: Personalizá la interface web de Mastodon.
+        title: Apariencia
+      branding:
+        preamble: La marca de tu servidor lo diferencia de otros servidores de la red. Esta información puede mostrarse a través de una variedad de entornos, como en la interface web de Mastodon, en aplicaciones nativas, en previsualizaciones de enlaces en otros sitios web y en aplicaciones de mensajería, etc. Por esta razón, es mejor mantener esta información clara, breve y concisa.
+        title: Marca
+      content_retention:
+        preamble: Controlá cómo el contenido generado por el usuario se almacena en Mastodon.
+        title: Retención de contenido
+      discovery:
+        follow_recommendations: Recom. de cuentas a seguir
+        preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
+        profile_directory: Directorio de perfiles
+        public_timelines: Líneas temporales públicas
+        title: Descubrí
+        trends: Tendencias
       domain_blocks:
         all: A todos
         disabled: A nadie
-        title: Mostrar dominios bloqueados
         users: A usuarios locales con sesiones abiertas
-      domain_blocks_rationale:
-        title: Mostrar razonamiento
-      hero:
-        desc_html: Mostrado en la página principal. Se recomienda un tamaño mínimo de 600x100 píxeles. Predeterminadamente se establece a la miniatura del servidor
-        title: Imagen de portada
-      mascot:
-        desc_html: Mostrado en múltiples páginas. Se recomienda un tamaño mínimo de 293x205 píxeles. Cuando no se especifica, se muestra la mascota predeterminada
-        title: Imagen de la mascota
-      peers_api_enabled:
-        desc_html: Nombres de dominio que este servidor encontró en el fediverso
-        title: Publicar lista de servidores descubiertos en la API
-      preview_sensitive_media:
-        desc_html: Las previsualizaciones de enlaces en otros sitios web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
-        title: Mostrar medios sensibles en previsualizaciones de OpenGraph
-      profile_directory:
-        desc_html: Permitir que los usuarios puedan ser descubiertos
-        title: Habilitar directorio de perfiles
       registrations:
-        closed_message:
-          desc_html: Mostrado en la página principal cuando los registros de nuevas cuentas están cerrados. Podés usar etiquetas HTML
-          title: Mensaje de registro de nuevas cuentas cerrado
-        deletion:
-          desc_html: Permitir que cualquiera elimine su cuenta
-          title: Abrir eliminación de cuenta
-        require_invite_text:
-          desc_html: Cuando los registros requieran aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
-          title: Requerir que los nuevos usuarios llenen un texto de solicitud de invitación
+        preamble: Controlá quién puede crear una cuenta en tu servidor.
+        title: Registros
       registrations_mode:
         modes:
           approved: Se requiere aprobación para registrarse
           none: Nadie puede registrarse
           open: Cualquiera puede registrarse
-        title: Modo de registros
-      show_known_fediverse_at_about_page:
-        desc_html: Cuando está deshabilitado, restringe la línea temporal pública enlazada desde la página de inicio para mostrar sólo contenido local
-        title: Incluir contenido federado en la página de línea temporal pública no autenticada
-      site_description:
-        desc_html: Párrafo introductorio en la API. Describe qué hace especial a este servidor de Mastodon y todo lo demás que sea importante. Podés usar etiquetas HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
-        title: Descripción del servidor
-      site_description_extended:
-        desc_html: Un buen lugar para tu código de conducta, reglas, directrices y otras cosas que definen tu servidor. Podés usar etiquets HTML
-        title: Información extendida personalizada
-      site_short_description:
-        desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe qué es Mastodon y qué hace especial a este servidor en un solo párrafo.
-        title: Descripción corta del servidor
-      site_terms:
-        desc_html: Podés escribir tu propia política de privacidad. Podés usar etiquetas HTML
-        title: Política de privacidad personalizada
-      site_title: Nombre del servidor
-      thumbnail:
-        desc_html: Usado para previsualizaciones vía OpenGraph y APIs. Se recomienda 1200x630 píxeles
-        title: Miniatura del servidor
-      timeline_preview:
-        desc_html: Mostrar enlace a la línea temporal pública en la página de inicio y permitir el acceso a la API a la línea temporal pública sin autenticación
-        title: Permitir acceso no autorizado a la línea temporal pública
-      title: Configuración del sitio
-      trendable_by_default:
-        desc_html: El contenido de tendencias específicas todavía puede ser explícitamente desactivado
-        title: Permitir tendencias sin revisión previa
-      trends:
-        desc_html: Mostrar públicamente etiquetas previamente revisadas que son tendencia actualmente
-        title: Tendencias
+      title: Configuraciones del servidor
     site_uploads:
       delete: Eliminar archivo subido
       destroyed_msg: "¡Subida al sitio eliminada exitosamente!"
     statuses:
+      account: Autor
+      application: Aplicación
       back_to_account: Volver a la página de la cuenta
       back_to_report: Volver a la página de la denuncia
       batch:
         remove_from_report: Quitar de la denuncia
         report: Denunciar
       deleted: Eliminado
+      favourites: Favoritos
+      history: Historial de versiones
+      in_reply_to: Respondiendo a
+      language: Idioma
       media:
         title: Medios
+      metadata: Metadatos
       no_status_selected: No se cambió ningún mensaje, ya que ninguno fue seleccionado
+      open: Abrir mensaje
+      original_status: Mensaje original
+      reblogs: Adhesiones
+      status_changed: Mensaje cambiado
       title: Mensajes de la cuenta
+      trending: En tendencia
+      visibility: Visibilidad
       with_media: Con medios
     strikes:
       actions:
@@ -865,6 +767,9 @@ es-AR:
         description_html: Estos son enlaces que actualmente están siendo muy compartidos por cuentas desde las que tu servidor ve los mensajes. Esto puede ayudar a tus usuarios a averiguar qué está pasando en el mundo. No hay enlaces que se muestren públicamente hasta que autoricés al publicador. También podés permitir o rechazar enlaces individuales.
         disallow: Rechazar enlace
         disallow_provider: Rechazar medio
+        no_link_selected: No se cambió ningún enlace, ya que ninguno fue seleccionado
+        publishers:
+          no_publisher_selected: No se cambió ningún medio, ya que ninguno fue seleccionado
         shared_by_over_week:
           one: Compartido por una persona durante la última semana
           other: Compartido por %{count} personas durante la última semana
@@ -884,6 +789,7 @@ es-AR:
         description_html: Estos son mensajes que tu servidor detecta que están siendo compartidos y marcados como favoritos muchas veces en este momento. Esto puede ayudar a tus usuarios nuevos y retornantes a encontrar más cuentas para seguir. No hay mensajes que se muestren públicamente hasta que aprobés al autor, y el autor permita que su cuenta sea sugerida a otros. También podés permitir o rechazar mensajes individuales.
         disallow: Rechazar mensaje
         disallow_account: Rechazar autor
+        no_status_selected: No se cambió ningún mensaje en tendencia, ya que ninguno fue seleccionado
         not_discoverable: El autor optó ser detectable
         shared_by:
           one: Compartido o marcado como favorito una vez
@@ -899,6 +805,7 @@ es-AR:
           tag_uses_measure: usos totales
         description_html: Estas son etiquetas que están apareciendo en muchos mensajes que tu servidor ve. Esto puede ayudar a tus usuarios a averiguar de qué habla la gente en estos momentos. No hay etiquetas que se muestren públicamente hasta que las aprobés.
         listable: Pueden ser recomendadas
+        no_tag_selected: No se cambió ninguna etiqueta, ya que ninguna fue seleccionada
         not_listable: No serán recomendadas
         not_trendable: No aparecerán en tendencias
         not_usable: No podrán ser usadas
@@ -962,12 +869,8 @@ es-AR:
     new_trends:
       body: 'Los siguientes elementos necesitan una revisión antes de que se puedan mostrar públicamente:'
       new_trending_links:
-        no_approved_links: Actualmente no hay enlaces en tendencia aprobados.
-        requirements: 'Cualquiera de estos candidatos podría superar el enlace de tendencia aprobado de #%{rank}, que actualmente es "%{lowest_link_title}" con una puntuación de %{lowest_link_score}.'
         title: Enlaces en tendencia
       new_trending_statuses:
-        no_approved_statuses: Actualmente no hay mensajes en tendencia aprobados.
-        requirements: 'Cualquiera de estos candidatos podría superar el mensaje de tendencia aprobado de #%{rank}, que actualmente es %{lowest_status_url} con una puntuación de %{lowest_status_score}.'
         title: Mensajes en tendencia
       new_trending_tags:
         no_approved_tags: Actualmente no hay etiquetas en tendencia aprobadas.
@@ -1008,10 +911,8 @@ es-AR:
     warning: Ojo con estos datos. ¡Nunca los compartas con nadie!
     your_token: Tu clave de acceso
   auth:
-    apply_for_account: Solicitar una invitación
+    apply_for_account: Entrar en la lista de espera
     change_password: Contraseña
-    checkbox_agreement_html: Acepto las <a href="%{rules_path}" target="_blank">reglas del servidor</a> y los <a href="%{terms_path}" target="_blank">términos del servicio</a>
-    checkbox_agreement_without_rules_html: Acepto los <a href="%{terms_path}" target="_blank">términos del servicio</a>
     delete_account: Eliminar cuenta
     delete_account_html: Si querés eliminar tu cuenta, podés <a href="%{path}">seguir por acá</a>. Se te va a pedir una confirmación.
     description:
@@ -1030,6 +931,7 @@ es-AR:
     migrate_account: Mudarse a otra cuenta
     migrate_account_html: Si querés redireccionar esta cuenta a otra distinta, podés <a href="%{path}">configurar eso acá</a>.
     or_log_in_with: O iniciar sesión con
+    privacy_policy_agreement_html: Leí y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidad</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1037,12 +939,18 @@ es-AR:
     registration_closed: "%{instance} no está aceptando nuevos miembros"
     resend_confirmation: Reenviar correo electrónico de confirmación
     reset_password: Cambiar contraseña
+    rules:
+      preamble: Estas reglas son establecidas y aplicadas por los moderadores de %{domain}.
+      title: Algunas reglas básicas.
     security: Seguridad
     set_new_password: Establecer nueva contraseña
     setup:
       email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, podés cambiarla acá y recibir un nuevo correo electrónico de confirmación.
       email_settings_hint_html: Se envió el correo electrónico de confirmación a %{email}. Si esa dirección de correo electrónico no es correcta, podés cambiarla en la configuración de la cuenta.
       title: Configuración
+    sign_up:
+      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra cuenta en la red, independientemente de en qué servidor esté alojada su cuenta.
+      title: Dejá que te preparemos en %{domain}.
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
@@ -1051,7 +959,6 @@ es-AR:
       redirecting_to: Tu cuenta se encuentra inactiva porque está siendo redirigida a %{acct}.
       view_strikes: Ver incumplimientos pasados contra tu cuenta
     too_fast: Formulario enviado demasiado rápido, probá de nuevo.
-    trouble_logging_in: "¿Tenés problemas para iniciar sesión?"
     use_security_key: Usar la llave de seguridad
   authorize_follow:
     already_following: Ya estás siguiendo a esta cuenta
@@ -1109,10 +1016,6 @@ es-AR:
       more_details_html: Para más detalles, leé la <a href="%{terms_path}">política de privacidad</a>.
       username_available: Tu nombre de usuario volverá a estar disponible
       username_unavailable: Tu nombre de usuario no estará disponible
-  directories:
-    directory: Directorio de perfiles
-    explanation: Descubrí usuarios basados en sus intereses
-    explore_mastodon: Navegá %{title}
   disputes:
     strikes:
       action_taken: Acción tomada
@@ -1226,9 +1129,6 @@ es-AR:
         hint: Este filtro se aplica a la selección de mensajes individuales, independientemente de otros criterios. Podés agregar más mensajes a este filtro desde la interface web.
         title: Mensajes filtrados
   footer:
-    developers: Desarrolladores
-    more: Más…
-    resources: Recursos
     trending_now: Tendencia ahora
   generic:
     all: Todas
@@ -1271,7 +1171,6 @@ es-AR:
       following: Lista de seguidos
       muting: Lista de silenciados
     upload: Subir
-  in_memoriam_html: Cuenta conmemorativa.
   invites:
     delete: Desactivar
     expired: Vencidas
@@ -1427,6 +1326,8 @@ es-AR:
     other: Otras opciones
     posting_defaults: Configuración predeterminada de mensajes
     public_timelines: Líneas temporales públicas
+  privacy_policy:
+    title: Política de privacidad
   reactions:
     errors:
       limit_reached: Se alcanzó el límite de reacciones diferentes
@@ -1449,22 +1350,7 @@ es-AR:
     remove_selected_follows: Dejar de seguir a los usuarios seleccionados
     status: Estado de la cuenta
   remote_follow:
-    acct: Ingresá tu usuario@dominio desde el que querés continuar
     missing_resource: No se pudo encontrar la dirección web de redireccionamiento requerida para tu cuenta
-    no_account_html: "¿No tenés cuenta? Podés <a href='%{sign_up_path}' target='_blank'>registrarte acá</a>"
-    proceed: Proceder para seguir
-    prompt: 'Vas a seguir a:'
-    reason_html: "<strong>¿Por qué es necesario este paso?</strong> <code>%{instance}</code> puede que no sea el servidor donde estás registrado, así que necesitamos redirigirte primero a tu servidor de origen."
-  remote_interaction:
-    favourite:
-      proceed: Proceder para marcar como favorito
-      prompt: 'Vas a marcar este mensaje como favorito:'
-    reblog:
-      proceed: Proceder para adherir
-      prompt: 'Vas a adherir a este mensaje:'
-    reply:
-      proceed: Proceder para responder
-      prompt: 'Vas a responder a este mensaje:'
   reports:
     errors:
       invalid_rules: no hace referencia a reglas válidas
@@ -1538,9 +1424,9 @@ es-AR:
     preferences: Configuración
     profile: Perfil
     relationships: Seguimientos
-    statuses_cleanup: Eliminación automática de mensajes
+    statuses_cleanup: Eliminación auto. de mensajes
     strikes: Moderación de incumplimientos
-    two_factor_authentication: Autenticación de dos factores
+    two_factor_authentication: Aut. de dos factores
     webauthn_authentication: Llaves de seguridad
   statuses:
     attached:
@@ -1636,89 +1522,6 @@ es-AR:
       too_late: Es demasiado tarde para apelar este incumplimiento
   tags:
     does_not_match_previous_name: no coincide con el nombre anterior
-  terms:
-    body_html: |
-      <h2>Política de privacidad</h2>
-      <h3 id="collect">¿Qué información recolectamos?</h3>
-
-      <ul>
-      <li><em>Información básica de la cuenta</em>: Si te registrás en este servidor, se te va a pedir que ingresés un nombre de usuario, una dirección de correo electrónico y una contraseña. También podés ingresar información adicional de perfil, como un nombre a mostrar y una biografía/descripción sobre vos mismo, así como subir una imagen de avatar y una imagen de cabecera. El nombre de usuario, el nombre a mostrar, la biografía y las imágenes de avatar y cabecera siempre se muestran públicamente.</li>
-      <li><em>Mensajes, seguimientos y otra información pública</em>: La lista de gente que seguís se muestra públicamente; lo mismo ocurre con tus seguidores. Cuando enviás un mensaje, la fecha y la hora de ese mensajes queda registrada, así como el nombre del programa o la aplicación que usaste para enviar dicho mensaje. Los mensajes pueden contener archivos adjuntos de medios, como audios, imágenes o videos. No sólo los mensajes públicos están disponibles públicamente, sino también aquellos mensajes no listados. Cuando destacás un mensaje en tu perfil, esta información también está disponible de modo público. Tus mensajes son entregados a tus seguidores; en muchos casos, eso significa que son entregados a diferentes servidores y que las copias de esos mensajes quedan almacenadas allí. Cuando eliminás mensajes, esta acción también es entregada a tus seguidores. La acción de adherir a un mensaje o de marcarlo como favorito siempre es pública.</li>
-      <li><em>Mensajes sólo para seguidores y directos</em>: Todos los mensajes son almacenados y procesados en el servidor. Los mensajes sólo para seguidores son entregados a tus seguidores y a los usuarios que son mencionados en ellos, mientras que los mensajes directos son entregados sólo a los usuarios mencionados en ellos; en muchos casos, eso significa que son entregados a diferentes servidores y las copias de esos mensajes quedan almacenadas allí. Hacemos el esfuerzo de buena fe para limitar el acceso a esos mensajes sólo a las cuentas autorizadas, pero otros servidores podrían no seguir estas pautas. Por lo tanto, es importante revisar los servidores a los cuales pertenecen tus seguidores. Podés activar una opción para aprobar y rechazar nuevos seguidores manualmente en la configuración de tu cuenta de Mastodon. <em>Por favor, tené en mente que los operadores del servidor y de cualquier servidor receptor podría ver tales mensajes</em>, y que los destinatarios podrías tomar capturas de pantalla, copiarlos o recompartirlos entre ellos. <em>No compartas ninguna información sensible al usar Mastodon.</em></li>
-      <li><em>Dirección IP y otros metadatos</em>: Cuando iniciás sesión, registramos tu dirección IP, así como el nombre de tu navegador web o programa/aplicación. Todas las sesiones registradas están disponibles para que la revisés y revoqués en la configuración de tu cuenta de Mastodon. La última dirección IP usada es almacenada por hasta 12 meses. También podríamos retener registros de servidor, los cuales incluyen la dirección IP de cada solicitud a nuestro servidor.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">¿Para qué usamos esta información?</h3>
-
-      <p>Cualquier información que recolectamos de vos puede ser usada de las siguientes maneras:</p>
-
-      <ul>
-      <li>Para proveer la funcionalidad central de Mastodon. Sólo podés interactuar con el contenido de otras cuentas y enviar tu propio contenido cuando iniciaste sesión. Por ejemplo, podrías seguir otras cuentas para ver sus mensajes combinados en tu propia línea temporal principal personalizada.</li>
-      <li>Para ayudar a la moderación de la comunidad, por ejemplo comparando tu dirección IP con otras conocidas, para determinar la evasión de expulsaciones u otras violaciones.</li>
-      <li>La dirección de correo electrónico que ofrecés puede ser usada para enviarte información, notificaciones sobre otras cuentas interactuando con tu contenido o enviándote mensajes, y responder a consultas y/u otras solicitudes o consultas.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">¿Cómo protegemos tu información?</h3>
-
-      <p>Implementamos una variedad de medidas de seguridad para mantener la seguridad de tu información personal cuando ingresás, enviás o accedés a tu información personal. Entre otras cosas, la sesión de tu navegador web o programa/aplicación, así como el tráfico entre tus aplicaciones y la API, están aseguradas con SSL, y tu contraseña está cifrada usando un fuerte algoritmo de un solo sentido. Podés habilitar la autenticación de dos factores para fortalecer el acceso seguro a tu cuenta.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">¿Cuál es nuestra política de retención?</h3>
-
-      <p>Haremos el esfuerzo de buena fe para:</p>
-
-      <ul>
-       <li>Retener los registros de servidor conteniendo las direcciones IP de todas las solicitudes a este servidor, por no más de 90 días.</li>
-      <li>Retener las direcciones IP asociadas a los usuarios registrados por no más de 12 meses.</li>
-      </ul>
-
-      <p>Podés solicitar y descargar un archivo de tu contenido, incluyendo tus mensajes, archivos adjuntos de medios e imágenes de avatar y cabecera.</p>
-
-      <p>Podés eliminar tu cuenta de forma irreversible en cualquier momento.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">¿Usamos cookies?</h3>
-
-      <p>Sí. Las cookies son diminutos archivos que un sitio web o su provedor de servicio transfiere a la unidad de almacenamiento de tu computadora a través de tu navegador web (si así lo permitís). Estas cookies habilitan al sitio web a reconocer a tu navegador web y, si tenés una cuenta registrada, asociarlo a tu cuenta registrada.</p>
-
-      <p>Usamos cookies para entender y guardar tu configuración para futuras visitas.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">¿Revelamos alguna información a entidades externas?</h3>
-
-      <p>No vendemos, intercambiamos ni transferimos tu información personal identificable a entidades externas. Esto no incluye terceros de confianza quienes nos asisten en operar nuestro sitio web, dirigir nuestro negocio u ofrecerte servicios, mientras esos terceros acepten conservar esa información de modo confidencial. También podríamos liberar tu información cuando creemos que liberarla es apropiado para cumplir con la ley, enforzar nuestras políticas del sitio web, o proteger nuestros u otros derechos, propiedad o seguridad.</p>
-
-      <p>Tu contenido público puede ser descargado por otros servidores en la red. Tus mensajes públicos y sólo para seguidores son entregados a los servidores en donde tus seguidores tienen cuenta, y los mensajes directos son entregados a los servidores de los destinatarios, es decir en los servidores en los que esos seguidores o destinatarios tengan su cuenta, diferentes de este servidor.</p>
-
-      <p>Cuando autorizás a un programa o aplicación a usar tu cuenta, dependiendo del alcance de los permisos que aprobés, podría acceder a tu información pública de perfil, tu lista de seguimientos, tus listas, todos tus mensajes y tus mensajes marcados como favoritos. Los programas o aplicaciones jamás pueden acceder a tu dirección de correo electrónico o contraseña.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Sitio web usado por niños</h3>
-
-      <p>Si este servidor está ubicado geográficamente en la Unión Europea o en el Espacio Económico Europeo: Nuestro sitio web, productos y servicios son todos dirigios a personas de al menos 16 años de edad. Si tenés menos de 16 años, por los requerimientos del GDPR (<a href="https://es.wikipedia.org/wiki/Reglamento_General_de_Protecci%C3%B3n_de_Datos">Reglamento General de Protección de Datos</a>) no usés este sitio web.</p>
-
-      <p>Si este servidor está ubicado geográficamente en los Estados Unidos de América: Nuestro sitio web, productos y servicios son todos dirigidos a personas de al menos 13 años de edad. Si tenés menos de 13 años, por los requerimientos de la COPPA (<a href="https://es.wikipedia.org/wiki/Ley_de_Protecci%C3%B3n_de_la_Privacidad_en_L%C3%ADnea_para_Ni%C3%B1os">Ley de Protección de la Privacidad en Línea para Niños</a>) no usés este sitio web.</p>
-
-      <p>Los requerimientos legales pueden ser diferente en este servidor si se encuentra geográficamente en otra jurisdicción.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Cambios a nuestra Política de privacidad</h3>
-
-      <p>Si decidimos cambiar nuestra política de privacidad, publicaremos dichos cambios en esta página.</p>
-
-      <p>Este documento se publica bajo la licencia CC-BY-SA (Creative Commons - Atribución - CompartirIgual) y fue actualizado por última vez el 26 de mayo de 2022.</p>
-
-      <p>Originalmente adaptado de la <a href="https://github.com/discourse/discourse">Política de privacidad de Discourse</a>.</p>
-    title: Política de privacidad de %{instance}
   themes:
     contrast: Alto contraste
     default: Oscuro
@@ -1797,20 +1600,13 @@ es-AR:
         suspend: Cuenta suspendida
     welcome:
       edit_profile_action: Configurar perfil
-      edit_profile_step: Podés personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre para mostrar y más cosas. Si querés revisar a tus nuevos seguidores antes de que se les permita seguirte, podés hacer tu cuenta privada.
+      edit_profile_step: Podés personalizar tu perfil subiendo un avatar (imagen de perfil), cambiando tu nombre a mostrar y más. Podés optar por revisar a los nuevos seguidores antes de que puedan seguirte.
       explanation: Aquí hay algunos consejos para empezar
       final_action: Empezá a enviar mensajes
-      final_step: ¡Empezá a enviar mensajes! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea temporal local, y con etiquetas. Capaz que quieras presentarte al mundo con la etiqueta "#presentación".
+      final_step: "¡Empezá a enviar mensajes! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea temporal local o al usar etiquetas. Capaz que quieras presentarte al mundo con la etiqueta «#presentación»."
       full_handle: Tu nombre de usuario completo
       full_handle_hint: Esto es lo que le dirás a tus contactos para que ellos puedan enviarte mensajes o seguirte desde otro servidor.
-      review_preferences_action: Cambiar configuración
-      review_preferences_step: Asegurate de establecer tu configuración, como qué tipo de correos electrónicos te gustaría recibir, o qué nivel de privacidad te gustaría que sea el predeterminado para tus mensajes. Si no sufrís de mareos, podrías elegir habilitar la reproducción automática de GIFs.
       subject: Bienvenido a Mastodon
-      tip_federated_timeline: La línea temporal federada es una línea contínua global de la red de Mastodon. Pero sólo incluye gente que tus vecinos están siguiendo, así que no es completa.
-      tip_following: Predeterminadamente seguís al / a los administrador/es de tu servidor. Para encontrar más gente interesante, revisá las lineas temporales local y federada.
-      tip_local_timeline: La línea temporal local es una línea contínua global de cuentas en %{instance}. ¡Estos son tus vecinos inmediatos!
-      tip_mobile_webapp: Si tu navegador web móvil te ofrece agregar Mastodon a tu página de inicio, podés recibir notificaciones push. ¡Actúa como una aplicación nativa de muchas maneras!
-      tips: Consejos
       title: "¡Bienvenido a bordo, %{name}!"
   users:
     follow_limit_reached: No podés seguir a más de %{limit} cuentas

@@ -14,6 +14,8 @@ import SearchResultsContainer from './containers/search_results_container';
 import { me, mascot } from 'flavours/glitch/initial_state';
 import { cycleElefriendCompose } from 'flavours/glitch/actions/compose';
 import HeaderContainer from './containers/header_container';
+import Column from 'flavours/glitch/components/column';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   compose: { id: 'navigation_bar.compose', defaultMessage: 'Compose new post' },
@@ -21,7 +23,7 @@ const messages = defineMessages({
 
 const mapStateToProps = (state, ownProps) => ({
   elefriend: state.getIn(['compose', 'elefriend']),
-  showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : ownProps.isSearchPage,
+  showSearch: ownProps.multiColumn ? state.getIn(['search', 'submitted']) && !state.getIn(['search', 'hidden']) : false,
 });
 
 const mapDispatchToProps = (dispatch, { intl }) => ({
@@ -44,7 +46,6 @@ class Compose extends React.PureComponent {
   static propTypes = {
     multiColumn: PropTypes.bool,
     showSearch: PropTypes.bool,
-    isSearchPage: PropTypes.bool,
     elefriend: PropTypes.number,
     onClickElefriend: PropTypes.func,
     onMount: PropTypes.func,
@@ -53,19 +54,11 @@ class Compose extends React.PureComponent {
   };
 
   componentDidMount () {
-    const { isSearchPage } = this.props;
-
-    if (!isSearchPage) {
-      this.props.onMount();
-    }
+    this.props.onMount();
   }
 
   componentWillUnmount () {
-    const { isSearchPage } = this.props;
-
-    if (!isSearchPage) {
-      this.props.onUnmount();
-    }
+    this.props.onUnmount();
   }
 
   render () {
@@ -74,37 +67,49 @@ class Compose extends React.PureComponent {
       intl,
       multiColumn,
       onClickElefriend,
-      isSearchPage,
       showSearch,
     } = this.props;
     const computedClass = classNames('drawer', `mbstobon-${elefriend}`);
 
-    return (
-      <div className={computedClass} role='region' aria-label={intl.formatMessage(messages.compose)}>
-        {multiColumn && <HeaderContainer />}
+    if (multiColumn) {
+      return (
+        <div className={computedClass} role='region' aria-label={intl.formatMessage(messages.compose)}>
+          <HeaderContainer />
 
-        {(multiColumn || isSearchPage) && <SearchContainer />}
+          {multiColumn && <SearchContainer />}
 
-        <div className='drawer__pager'>
-          {!isSearchPage && <div className='drawer__inner'>
-            <NavigationContainer />
+          <div className='drawer__pager'>
+            <div className='drawer__inner'>
+              <NavigationContainer />
 
-            <ComposeFormContainer />
+              <ComposeFormContainer />
 
-            <div className='drawer__inner__mastodon'>
-              {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}
-            </div>
-          </div>}
-
-          <Motion defaultStyle={{ x: isSearchPage ? 0 : -100 }} style={{ x: spring(showSearch || isSearchPage ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
-            {({ x }) => (
-              <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
-                <SearchResultsContainer />
+              <div className='drawer__inner__mastodon'>
+                {mascot ? <img alt='' draggable='false' src={mascot} /> : <button className='mastodon' onClick={onClickElefriend} />}
               </div>
-            )}
-          </Motion>
+            </div>
+
+            <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
+              {({ x }) => (
+                <div className='drawer__inner darker' style={{ transform: `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
+                  <SearchResultsContainer />
+                </div>
+              )}
+            </Motion>
+          </div>
         </div>
-      </div>
+      );
+    }
+
+    return (
+      <Column>
+        <NavigationContainer />
+        <ComposeFormContainer />
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
+      </Column>
     );
   }
 

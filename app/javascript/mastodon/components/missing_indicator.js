@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import illustration from 'mastodon/../images/elephant_ui_disappointed.svg';
 import classNames from 'classnames';
+import { Helmet } from 'react-helmet';
 
 const MissingIndicator = ({ fullPage }) => (
   <div className={classNames('regeneration-indicator', { 'regeneration-indicator--without-header': fullPage })}>
@@ -14,6 +15,10 @@ const MissingIndicator = ({ fullPage }) => (
       <FormattedMessage id='missing_indicator.label' tagName='strong' defaultMessage='Not found' />
       <FormattedMessage id='missing_indicator.sublabel' defaultMessage='This resource could not be found' />
     </div>
+
+    <Helmet>
+      <meta name='robots' content='noindex' />
+    </Helmet>
   </div>
 );
 

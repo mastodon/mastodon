@@ -97,7 +97,7 @@ module LanguagesHelper
     lg: ['Ganda', 'Luganda'].freeze,
     li: ['Limburgish', 'Limburgs'].freeze,
     ln: ['Lingala', 'Lingála'].freeze,
-    lo: ['Lao', 'ພາສາ'].freeze,
+    lo: ['Lao', 'ລາວ'].freeze,
     lt: ['Lithuanian', 'lietuvių kalba'].freeze,
     lu: ['Luba-Katanga', 'Tshiluba'].freeze,
     lv: ['Latvian', 'latviešu valoda'].freeze,

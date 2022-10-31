@@ -7,10 +7,6 @@ class StatusPolicy < ApplicationPolicy
     @preloaded_relations = preloaded_relations
   end
 
-  def index?
-    role.can?(:manage_reports, :manage_users)
-  end
-
   def show?
     return false if author.suspended?
     return false if local_only? && (current_account.nil? || !current_account.local?)
@@ -33,17 +29,13 @@ class StatusPolicy < ApplicationPolicy
   end
 
   def destroy?
-    role.can?(:manage_reports) || owned?
+    owned?
   end
 
   alias unreblog? destroy?
 
   def update?
-    role.can?(:manage_reports) || owned?
-  end
-
-  def review?
-    role.can?(:manage_taxonomies)
+    owned?
   end
 
   private

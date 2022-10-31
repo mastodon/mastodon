@@ -8,6 +8,7 @@ const messages = {
   'layout.single': 'モバイル',
   'navigation_bar.app_settings': 'アプリ設定',
   'navigation_bar.featured_users': '紹介しているアカウント',
+  'navigation_bar.misc': 'その他',
   'getting_started.onboarding': '解説を表示',
   'onboarding.page_one.federation': '{domain}はMastodonのインスタンスです。Mastodonとは、独立したサーバが連携して作るソーシャルネットワークです。これらのサーバーをインスタンスと呼びます。',
   'onboarding.page_one.welcome': '{domain}へようこそ！',

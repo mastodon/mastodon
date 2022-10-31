@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { createSelector } from 'reselect';
 import { fetchStatus } from 'flavours/glitch/actions/statuses';
 import MissingIndicator from 'flavours/glitch/components/missing_indicator';
+import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
 import DetailedStatus from './components/detailed_status';
 import ActionBar from './components/action_bar';
 import Column from 'flavours/glitch/features/ui/components/column';
@@ -47,7 +48,7 @@ import { openModal } from 'flavours/glitch/actions/modal';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { HotKeys } from 'react-hotkeys';
-import { boostModal, favouriteModal, deleteModal, title } from 'flavours/glitch/initial_state';
+import { boostModal, favouriteModal, deleteModal } from 'flavours/glitch/initial_state';
 import { attachFullscreenListener, detachFullscreenListener, isFullscreen } from '../ui/util/fullscreen';
 import { autoUnfoldCW } from 'flavours/glitch/utils/content_warning';
 import { textForScreenReader, defaultMediaVisibility } from 'flavours/glitch/components/status';
@@ -135,6 +136,7 @@ const makeMapStateToProps = () => {
     }
 
     return {
+      isLoading: state.getIn(['statuses', props.params.statusId, 'isLoading']),
       status,
       ancestorsIds,
       descendantsIds,
@@ -178,6 +180,7 @@ class Status extends ImmutablePureComponent {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
     status: ImmutablePropTypes.map,
+    isLoading: PropTypes.bool,
     settings: ImmutablePropTypes.map.isRequired,
     ancestorsIds: ImmutablePropTypes.list,
     descendantsIds: ImmutablePropTypes.list,
@@ -589,8 +592,16 @@ class Status extends ImmutablePureComponent {
 
   render () {
     let ancestors, descendants;
-    const { status, settings, ancestorsIds, descendantsIds, intl, domain, multiColumn, usingPiP } = this.props;
+    const { isLoading, status, settings, ancestorsIds, descendantsIds, intl, domain, multiColumn, usingPiP } = this.props;
     const { fullscreen } = this.state;
+
+    if (isLoading) {
+      return (
+        <Column>
+          <LoadingIndicator />
+        </Column>
+      );
+    }
 
     if (status === null) {
       return (
@@ -610,6 +621,9 @@ class Status extends ImmutablePureComponent {
     if (descendantsIds && descendantsIds.size > 0) {
       descendants = <div>{this.renderChildren(descendantsIds)}</div>;
     }
+
+    const isLocal = status.getIn(['account', 'acct'], '').indexOf('@') === -1;
+    const isIndexable = !status.getIn(['account', 'noindex']);
 
     const handlers = {
       moveUp: this.handleHotkeyMoveUp,
@@ -684,7 +698,8 @@ class Status extends ImmutablePureComponent {
         </ScrollContainer>
 
         <Helmet>
-          <title>{titleFromStatus(status)} - {title}</title>
+          <title>{titleFromStatus(status)}</title>
+          <meta name='robots' content={(isLocal && isIndexable) ? 'all' : 'noindex'} />
         </Helmet>
       </Column>
     );

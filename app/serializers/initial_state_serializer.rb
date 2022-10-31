@@ -42,6 +42,10 @@ class InitialStateSerializer < ActiveModel::Serializer
       profile_directory: Setting.profile_directory,
       trends: Setting.trends,
       registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
+      timeline_preview: Setting.timeline_preview,
+      activity_api_enabled: Setting.activity_api_enabled,
+      single_user_mode: Rails.configuration.x.single_user_mode,
+      translation_enabled: TranslationService.configured?,
     }
 
     if object.current_account
@@ -70,6 +74,10 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:crop_images]   = Setting.crop_images
     end
 
+    if Rails.configuration.x.single_user_mode
+      store[:owner] = object.owner&.id&.to_s
+    end
+
     store
   end
   # rubocop:enable Metrics/AbcSize
@@ -93,6 +101,7 @@ class InitialStateSerializer < ActiveModel::Serializer
     store = {}
     store[object.current_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
     store[object.admin.id.to_s]           = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
+    store[object.owner.id.to_s]           = ActiveModelSerializers::SerializableResource.new(object.owner, serializer: REST::AccountSerializer) if object.owner
     store
   end
 

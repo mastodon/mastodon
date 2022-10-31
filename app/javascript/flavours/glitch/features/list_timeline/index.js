@@ -1,20 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { Helmet } from 'react-helmet';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
-import Column from 'flavours/glitch/components/column';
-import ColumnHeader from 'flavours/glitch/components/column_header';
-import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
-import { connectListStream } from 'flavours/glitch/actions/streaming';
-import { expandListTimeline } from 'flavours/glitch/actions/timelines';
+import { connect } from 'react-redux';
+import { addColumn, removeColumn, moveColumn } from 'flavours/glitch/actions/columns';
 import { fetchList, deleteList, updateList } from 'flavours/glitch/actions/lists';
 import { openModal } from 'flavours/glitch/actions/modal';
-import MissingIndicator from 'flavours/glitch/components/missing_indicator';
-import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import { connectListStream } from 'flavours/glitch/actions/streaming';
+import { expandListTimeline } from 'flavours/glitch/actions/timelines';
+import Column from 'flavours/glitch/components/column';
+import ColumnBackButton from 'flavours/glitch/components/column_back_button';
+import ColumnHeader from 'flavours/glitch/components/column_header';
 import Icon from 'flavours/glitch/components/icon';
+import LoadingIndicator from 'flavours/glitch/components/loading_indicator';
+import MissingIndicator from 'flavours/glitch/components/missing_indicator';
 import RadioButton from 'flavours/glitch/components/radio_button';
+import StatusListContainer from 'flavours/glitch/features/ui/containers/status_list_container';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -210,6 +212,11 @@ class ListTimeline extends React.PureComponent {
           emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet.' />}
           bindToDocument={!multiColumn}
         />
+
+        <Helmet>
+          <title>{title}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }
