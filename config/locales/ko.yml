@@ -96,7 +96,7 @@ ko:
       moderation_notes: 중재 기록
       most_recent_activity: 최근 활동
       most_recent_ip: 최근 IP
-      no_account_selected: 아무 계정도 선택 되지 않아 아무 것도 변경 되지 않았습니다
+      no_account_selected: 아무 것도 선택 되지 않아 어떤 계정도 변경 되지 않았습니다
       no_limits_imposed: 제한 없음
       no_role_assigned: 할당된 역할 없음
       not_subscribed: 구독하지 않음
@@ -321,6 +321,7 @@ ko:
       listed: 목록에 실림
       new:
         title: 새 커스텀 에모지 추가
+      no_emoji_selected: 아무 것도 선택 되지 않아 어떤 에모지도 바뀌지 않았습니다
       not_permitted: 이 작업을 수행할 권한이 없습니다
       overwrite: 덮어쓰기
       shortcode: 짧은 코드
@@ -656,29 +657,59 @@ ko:
     settings:
       about:
         manage_rules: 서버 규칙 관리
+        title: 정보
+      appearance:
+        preamble: 마스토돈의 웹 인터페이스를 변경
+        title: 외관
+      branding:
+        title: 브랜딩
+      content_retention:
+        title: 콘텐츠 보존기한
+      discovery:
+        follow_recommendations: 팔로우 추천
+        profile_directory: 프로필 책자
+        public_timelines: 공개 타임라인
+        title: 발견하기
+        trends: 유행
       domain_blocks:
         all: 모두에게
         disabled: 아무에게도 안 함
         users: 로그인 한 사용자에게
+      registrations:
+        title: 가입
       registrations_mode:
         modes:
           approved: 가입하려면 승인이 필요함
           none: 아무도 가입 할 수 없음
           open: 누구나 가입 할 수 있음
+      title: 서버 설정
     site_uploads:
       delete: 업로드한 파일 삭제
       destroyed_msg: 사이트 업로드를 성공적으로 삭제했습니다!
     statuses:
+      account: 작성자
+      application: 애플리케이션
       back_to_account: 계정으로 돌아가기
       back_to_report: 신고 페이지로 돌아가기
       batch:
         remove_from_report: 신고에서 제거
         report: 신고
       deleted: 삭제됨
+      favourites: 좋아요
+      history: 버전 이력
+      in_reply_to: '회신 대상:'
+      language: 언어
       media:
         title: 미디어
-      no_status_selected: 아무 게시물도 선택 되지 않아 아무 것도 바뀌지 않았습니다
+      metadata: 메타데이터
+      no_status_selected: 아무 것도 선택 되지 않아 어떤 게시물도 바뀌지 않았습니다
+      open: 게시물 열기
+      original_status: 원본 게시물
+      reblogs: 리블로그
+      status_changed: 게시물 변경됨
       title: 계정 게시물
+      trending: 유행중
+      visibility: 공개 설정
       with_media: 미디어 있음
     strikes:
       actions:
@@ -718,6 +749,9 @@ ko:
         description_html: 현재 서버에서 게시물을 볼 수 있는 계정에서 많이 공유되고 있는 링크들입니다. 사용자가 세상 돌아가는 상황을 파악하는 데 도움이 됩니다. 출처를 승인할 때까지 링크는 공개적으로 게시되지 않습니다. 각각의 링크를 개별적으로 허용하거나 거부할 수도 있습니다.
         disallow: 링크 거부하기
         disallow_provider: 출처 거부하기
+        no_link_selected: 아무 것도 선택 되지 않아 어떤 링크도 바뀌지 않았습니다
+        publishers:
+          no_publisher_selected: 아무 것도 선택 되지 않아 어떤 게시자도 바뀌지 않았습니다
         shared_by_over_week:
           other: 지난 주 동안 %{count} 명의 사람들이 공유했습니다
         title: 유행하는 링크
@@ -736,6 +770,7 @@ ko:
         description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
         disallow: 게시물 불허
         disallow_account: 작성자 불허
+        no_status_selected: 아무 것도 선택 되지 않아 어떤 유행중인 게시물도 바뀌지 않았습니다
         not_discoverable: 작성자가 발견되기를 원치 않습니다
         shared_by:
           other: "%{friendly_count} 번 공유되고 마음에 들어했습니다"
@@ -750,6 +785,7 @@ ko:
           tag_uses_measure: 총 사용
         description_html: 현재 서버에서 볼 수 있는 게시물에서 많이 공유되고 있는 해시태그들입니다. 현재 사람들이 무슨 이야기를 하고 있는지 사용자들이 파악할 수 있도록 도움이 됩니다. 승인하지 않는 한 해시태그는 공개적으로 게시되지 않습니다.
         listable: 추천될 수 있습니다
+        no_tag_selected: 아무 것도 선택 되지 않아 어떤 태그도 바뀌지 않았습니다
         not_listable: 추천될 수 없습니다
         not_trendable: 유행 목록에 나타나지 않습니다
         not_usable: 사용불가

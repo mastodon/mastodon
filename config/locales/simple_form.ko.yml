@@ -75,8 +75,14 @@ ko:
           warn: 필터에 걸러진 글을 필터 제목과 함께 경고 뒤에 가리기
       form_admin_settings:
         backups_retention_period: 생성된 사용자 아카이브를 며칠동안 저장할 지.
+        closed_registrations_message: 새 가입을 차단했을 때 표시됩니다
         content_cache_retention_period: 양수가 설정되었다면 다른 서버의 게시물은 여기서 설정된 일수가 지나면 삭제될 것입니다. 되돌릴 수 없는 작업일 수 있습니다.
+        custom_css: 사용자 지정 스타일을 웹 버전의 마스토돈에 지정할 수 있습니다.
+        mascot: 고급 사용자 인터페이스에 있는 일러스트를 교체합니다.
         media_cache_retention_period: 양수로 설정된 경우 다운로드된 미디어 파일들은 지정된 일수가 지나면 삭제될 것이고 필요할 때 다시 다운로드 될 것입니다.
+        site_contact_email: 사람들이 법적이나 도움 요청을 위해 당신에게 연락할 방법.
+        site_contact_username: 사람들이 마스토돈에서 당신에게 연락할 방법.
+        theme: 로그인 하지 않은 사용자나 새로운 사용자가 보게 될 테마.
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다
       imports:
@@ -213,8 +219,28 @@ ko:
           warn: 경고와 함께 숨기기
       form_admin_settings:
         backups_retention_period: 사용자 아카이브 유지 기한
+        bootstrap_timeline_accounts: 새로운 사용자들에게 추천할 계정들
+        closed_registrations_message: 가입이 불가능 할 때의 사용자 지정 메시지
         content_cache_retention_period: 컨텐트 캐시 유지 기한
+        custom_css: 사용자 정의 CSS
+        mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한
+        profile_directory: 프로필 책자 활성화
+        registrations_mode: 누가 가입할 수 있는지
+        require_invite_text: 가입 하는 이유를 필수로 입력하게 하기
+        show_domain_blocks: 도메인 차단 보여주기
+        show_domain_blocks_rationale: 왜 도메인이 차단되었는지 보여주기
+        site_contact_email: 연락처 이메일
+        site_contact_username: 연락 받을 관리자 사용자명
+        site_extended_description: 확장된 설명
+        site_short_description: 서버 설명
+        site_terms: 개인정보 정책
+        site_title: 서버 이름
+        theme: 기본 테마
+        thumbnail: 서버 썸네일
+        timeline_preview: 로그인 하지 않고 공개 타임라인에 접근하는 것을 허용
+        trendable_by_default: 사전 리뷰 없이 트렌드에 오르는 것을 허용
+        trends: 유행 활성화
       interactions:
         must_be_follower: 나를 팔로우 하지 않는 사람에게서 온 알림을 차단
         must_be_following: 내가 팔로우 하지 않는 사람에게서 온 알림을 차단

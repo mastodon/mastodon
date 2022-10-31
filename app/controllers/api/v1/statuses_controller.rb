@@ -65,6 +65,7 @@ class Api::V1::StatusesController < Api::BaseController
       text: status_params[:status],
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
+      language: status_params[:language],
       spoiler_text: status_params[:spoiler_text],
       poll: status_params[:poll]
     )

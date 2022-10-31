@@ -445,7 +445,12 @@ class Account < ApplicationRecord
 
   class << self
     DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/.freeze
-    TEXTSEARCH = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
+    TEXTSEARCH = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'A') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
+
+    REPUTATION_SCORE_FUNCTION = '(greatest(0, coalesce(s.followers_count, 0)) / (greatest(0, coalesce(s.following_count, 0)) + 1.0))'
+    FOLLOWERS_SCORE_FUNCTION  = 'log(greatest(0, coalesce(s.followers_count, 0)) + 2)'
+    TIME_DISTANCE_FUNCTION    = '(case when s.last_status_at is null then 0 else exp(-1.0 * ((greatest(0, abs(extract(DAY FROM age(s.last_status_at))) - 30.0)^2) / (2.0 * ((-1.0 * 30^2) / (2.0 * ln(0.3)))))) end)'
+    BOOST                     = "((#{REPUTATION_SCORE_FUNCTION} + #{FOLLOWERS_SCORE_FUNCTION} + #{TIME_DISTANCE_FUNCTION}) / 3.0)"
 
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
@@ -462,9 +467,10 @@ class Account < ApplicationRecord
       sql = <<-SQL.squish
         SELECT
           accounts.*,
-          ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+          #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
         FROM accounts
         LEFT JOIN users ON accounts.id = users.account_id
+        LEFT JOIN account_stats AS s ON accounts.id = s.account_id
         WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
           AND accounts.suspended_at IS NULL
           AND accounts.moved_to_account_id IS NULL
@@ -526,14 +532,15 @@ class Account < ApplicationRecord
           )
           SELECT
             accounts.*,
-            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
+          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
             AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
-          GROUP BY accounts.id
+          GROUP BY accounts.id, s.id
           ORDER BY rank DESC
           LIMIT :limit OFFSET :offset
         SQL
@@ -541,15 +548,16 @@ class Account < ApplicationRecord
         <<-SQL.squish
           SELECT
             accounts.*,
-            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
           LEFT JOIN users ON accounts.id = users.account_id
+          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
           WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
             AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
             AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-          GROUP BY accounts.id
+          GROUP BY accounts.id, s.id
           ORDER BY rank DESC
           LIMIT :limit OFFSET :offset
         SQL

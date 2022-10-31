@@ -667,15 +667,32 @@ de:
       empty: Es wurden bis jetzt keine Server-Regeln definiert.
       title: Server-Regeln
     settings:
+      about:
+        rules_hint: Es gibt einen eigenen Bereich für Regeln, an die sich Ihre Benutzer halten sollen.
+        title: Über
+      appearance:
+        preamble: Passen Sie Mastodons Weboberfläche an.
+        title: Darstellung
+      branding:
+        title: Branding
+      content_retention:
+        preamble: Steuern Sie, wie nutzergenerierte Inhalte in Mastodon gespeichert werden.
+      discovery:
+        follow_recommendations: Folgeempfehlungen
+        title: Entdecken
+        trends: Trends
       domain_blocks:
         all: An alle
         disabled: An niemanden
         users: Für angemeldete lokale Benutzer
+      registrations:
+        title: Registrierungen
       registrations_mode:
         modes:
           approved: Zustimmung benötigt zur Registrierung
           none: Niemand kann sich registrieren
           open: Jeder kann sich registrieren
+      title: Servereinstellungen
     site_uploads:
       delete: Hochgeladene Datei löschen
       destroyed_msg: Upload erfolgreich gelöscht!
@@ -902,7 +919,7 @@ de:
     resend_confirmation: Bestätigungs-Mail erneut versenden
     reset_password: Passwort zurücksetzen
     rules:
-      preamble: Diese werden von den Moderatoren von %{domain} erzwungn.
+      preamble: Diese werden von den Moderatoren von %{domain} erzwungen.
       title: Einige Grundregeln.
     security: Sicherheit
     set_new_password: Neues Passwort setzen

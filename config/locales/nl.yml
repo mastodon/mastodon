@@ -17,7 +17,7 @@ nl:
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
     nothing_here: Hier is niets!
     pin_errors:
-      following: Je moet dit account wel al volgen, alvorens je het kan aanbevelen
+      following: Je moet dit account wel al volgen, alvorens je het kunt aanbevelen
     posts:
       one: Toot
       other: Berichten
@@ -394,6 +394,9 @@ nl:
       view: Domeinblokkade bekijken
     email_domain_blocks:
       add_new: Nieuwe toevoegen
+      attempts_over_week:
+        one: "%{count} registratiepoging tijdens de afgelopen week"
+        other: "%{count} registratiepogingen tijdens de afgelopen week"
       created_msg: Blokkeren e-maildomein geslaagd
       delete: Verwijderen
       dns:
@@ -404,6 +407,8 @@ nl:
         create: Blokkeren
         resolve: Domein opzoeken
         title: Nieuw e-maildomein blokkeren
+      resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
+      resolved_through_html: Geblokkeerd via %{domain}
       title: Geblokkeerde e-maildomeinen
     follow_recommendations:
       description_html: "<strong>Deze aanbevolen accounts helpen nieuwe gebruikers snel interessante inhoud</strong>te vinden. Wanneer een gebruiker niet met andere gebruikers genoeg interactie heeft gehad om gepersonaliseerde aanbevelingen te krijgen, worden in plaats daarvan deze accounts aanbevolen. Deze accounts worden dagelijks opnieuw berekend met behulp van accounts met het hoogste aantal recente interacties en het hoogste aantal lokale volgers in een bepaalde taal."
@@ -544,6 +549,7 @@ nl:
         delete: Verwijderen
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
         title: Opmerkingen
+      remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
       reported_account: Gerapporteerde account
@@ -607,29 +613,64 @@ nl:
       empty: Voor deze server zijn nog geen regels opgesteld.
       title: Serverregels
     settings:
+      about:
+        manage_rules: Serverregels beheren
+        title: Over
+      appearance:
+        preamble: Mastodons webomgeving aanpassen.
+        title: Weergave
+      branding:
+        preamble: De branding van jouw server laat zien hoe het met andere servers in het netwerk verschilt. Deze informatie wordt op verschillende plekken getoond, zoals in de webomgeving van Mastodon, in mobiele apps, in voorvertoningen op andere websites en berichten-apps, enz. Daarom is het belangrijk om de informatie helder, kort en beknopt te houden.
+        title: Branding
+      content_retention:
+        preamble: Toezicht houden op hoe berichten en media van gebruikers op Mastodon worden bewaard.
+        title: Bewaartermijn berichten
+      discovery:
+        follow_recommendations: Aanbevolen accounts
+        profile_directory: Gebruikersgids
+        public_timelines: Openbare tijdlijnen
+        title: Ontdekken
+        trends: Trends
       domain_blocks:
         all: Aan iedereen
         disabled: Aan niemand
         users: Aan ingelogde lokale gebruikers
+      registrations:
+        preamble: Toezicht houden op wie een account op deze server kan registreren.
+        title: Registraties
       registrations_mode:
         modes:
           approved: Goedkeuring vereist om te kunnen registreren
           none: Niemand kan zich registreren
           open: Iedereen kan zich registreren
+      title: Serverinstellingen
     site_uploads:
       delete: Geüpload bestand verwijderen
       destroyed_msg: Verwijderen website-upload geslaagd!
     statuses:
+      account: Account
+      application: Toepassing
       back_to_account: Terug naar accountpagina
       back_to_report: Terug naar de rapportage
       batch:
         remove_from_report: Uit de rapportage verwijderen
         report: Rapportage
       deleted: Verwijderd
+      favourites: Favorieten
+      history: Versiegeschiedenis
+      in_reply_to: Reactie op
+      language: Taal
       media:
         title: Media
+      metadata: Metagegevens
       no_status_selected: Er werden geen berichten gewijzigd, omdat er geen enkele werd geselecteerd
+      open: Bericht tonen
+      original_status: Oorspronkelijk bericht
+      reblogs: Boosts
+      status_changed: Bericht veranderd
       title: Berichten van account
+      trending: Trending
+      visibility: Zichtbaarheid
       with_media: Met media
     strikes:
       actions:
@@ -640,6 +681,9 @@ nl:
     system_checks:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
+      elasticsearch_version_check:
+        message_html: 'Incompatibele Elasticsearch-versie: %{value}'
+        version_comparison: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
       rules_check:
         action: Serverregels beheren
         message_html: Je hebt voor deze server geen regels opgesteld.
@@ -650,31 +694,35 @@ nl:
       updated_msg: Instellingen hashtag succesvol bijgewerkt
     title: Beheer
     trends:
-      allow: Toestaan
-      approved: Toegestaan
-      disallow: Weigeren
+      allow: Goedkeuren
+      approved: Goedgekeurde
+      disallow: Afkeuren
       links:
-        allow: Link toestaan
+        allow: Link goedkeuren
         allow_provider: Website goedkeuren
         description_html: Dit zijn links die momenteel veel worden gedeeld door accounts waar jouw server berichten van ontvangt. Hierdoor kunnen jouw gebruikers zien wat er in de wereld aan de hand is. Er worden geen links weergeven totdat je de website hebt goedgekeurd. Je kunt ook individuele links goed- of afkeuren.
-        disallow: Link toestaan
+        disallow: Link afkeuren
         disallow_provider: Website afkeuren
         no_link_selected: Er werden geen links gewijzigd, omdat er geen enkele werd geselecteerd
         publishers:
           no_publisher_selected: Er werden geen websites gewijzigd, omdat er geen enkele werd geselecteerd
+        shared_by_over_week:
+          one: Deze week door één persoon gedeeld
+          other: Deze week door %{count} mensen gedeeld
         title: Trending links
-      only_allowed: Alleen toegestaan
+        usage_comparison: Vandaag %{today} keer gedeeld, vergeleken met %{yesterday} keer gisteren
+      only_allowed: Alleen goedgekeurde
       pending_review: In afwachting van beoordeling
       preview_card_providers:
         allowed: Links van deze website kunnen trending worden
         rejected: Links naar deze nieuwssite kunnen niet trending worden
         title: Websites
-      rejected: Afgewezen
+      rejected: Afgekeurd
       statuses:
-        allow: Bericht toestaan
-        allow_account: Gebruiker toestaan
-        disallow: Bericht niet toestaan
-        disallow_account: Gebruiker niet toestaan
+        allow: Bericht goedkeuren
+        allow_account: Account goedkeuren
+        disallow: Bericht afkeuren
+        disallow_account: Account afkeuren
         no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
         not_discoverable: Gebruiker heeft geen toestemming gegeven om vindbaar te zijn
         title: Trending berichten
@@ -746,6 +794,7 @@ nl:
         title: Trending berichten
       new_trending_tags:
         title: Trending hashtags
+      subject: Nieuwe trends te beoordelen op %{instance}
   aliases:
     add_new: Alias aanmaken
     created_msg: Succesvol een nieuwe alias aangemaakt. Je kunt nu met de verhuizing vanaf het oude account beginnen.
@@ -898,9 +947,11 @@ nl:
       approve_appeal: Bezwaar goedkeuren
       associated_report: Bijbehorende rapportage
       created_at: Datum en tijd
+      description_html: Dit zijn acties die op jouw account zijn toegepast en waarschuwingen die door medewerkers van %{instance} naar je zijn gestuurd.
       recipient: Geadresseerd aan
       reject_appeal: Bezwaar afgewezen
       status: 'Bericht #%{id}'
+      status_removed: Bericht is al van de server verwijderd
       title: "%{action} van %{date}"
       title_actions:
         delete_statuses: Verwijdering bericht
@@ -964,6 +1015,7 @@ nl:
       add_keyword: Trefwoord toevoegen
       keywords: Trefwoorden
       statuses: Individuele berichten
+      statuses_hint_html: Dit filter is van toepassing om individuele berichten te selecteren, ongeacht of ze overeenkomen met de onderstaande trefwoorden. <a href="%{path}">Berichten van het filter bekijken of verwijderen</a>.
       title: Filter bewerken
     errors:
       deprecated_api_multiple_keywords: Deze instellingen kunnen niet via deze applicatie worden veranderd, omdat er meer dan één trefwoord wordt gebruikt. Gebruik een meer recente applicatie of de webomgeving.
@@ -992,6 +1044,7 @@ nl:
       batch:
         remove: Uit het filter verwijderen
       index:
+        hint: Dit filter is van toepassing om individuele berichten te selecteren, ongeacht andere critiria. Je kunt in de webomgeving meer berichten aan dit filter toevoegen.
         title: Gefilterde berichten
   footer:
     trending_now: Trends
@@ -1067,6 +1120,10 @@ nl:
       password: wachtwoord
       sign_in_token: beveiligingscode via e-mail
       webauthn: beveiligingssleutels
+    description_html: Wanneer je activiteit ziet die je niet herkent, overweeg dan uw wachtwoord te wijzigen en tweestapsverificatie in te schakelen.
+    empty: Geen inloggeschiedenis beschikbaar
+    failed_sign_in_html: Mislukte inlogpoging met %{method} van %{ip} (%{browser})
+    successful_sign_in_html: Succesvol ingelogd met %{method} van %{ip} (%{browser})
     title: Inloggeschiedenis
   media_attachments:
     validations:
@@ -1212,8 +1269,14 @@ nl:
     status: Accountstatus
   remote_follow:
     missing_resource: Kon vereiste doorverwijzings-URL voor jouw account niet vinden
+  reports:
+    errors:
+      invalid_rules: verwijst niet naar geldige regels
   rss:
     content_warning: 'Inhoudswaarschuwing:'
+    descriptions:
+      account: Openbare berichten van @%{acct}
+      tag: 'Openbare berichten met hashtag #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Je hebt de limiet van %{limit} in te plannen berichten voor vandaag overschreden
     over_total_limit: Je hebt de limiet van %{limit} in te plannen berichten overschreden
@@ -1259,6 +1322,7 @@ nl:
     revoke: Intrekken
     revoke_success: Sessie succesvol ingetrokken
     title: Sessies
+    view_authentication_history: Inloggeschiedenis van jouw account bekijken
   settings:
     account: Account
     account_settings: Accountinstellingen
@@ -1296,6 +1360,7 @@ nl:
         other: "%{count} video's"
     boosted_from_html: Geboost van %{acct_link}
     content_warning: 'Inhoudswaarschuwing: %{warning}'
+    default_language: Hetzelfde als de taal van de gebruikersomgeving
     disallowed_hashtags:
       one: 'bevatte een niet toegestane hashtag: %{tags}'
       other: 'bevatte niet toegestane hashtags: %{tags}'
@@ -1305,6 +1370,7 @@ nl:
     open_in_web: In de webapp openen
     over_character_limit: Limiet van %{max} tekens overschreden
     pin_errors:
+      direct: Berichten die alleen zichtbaar zijn voor vermelde gebruikers, kunnen niet worden vastgezet
       limit: Je hebt het maximaal aantal bericht al vastgemaakt
       ownership: Een bericht van iemand anders kan niet worden vastgemaakt
       reblog: Een boost kan niet worden vastgezet
@@ -1331,12 +1397,20 @@ nl:
       unlisted: Minder openbaar
       unlisted_long: Aan iedereen tonen, maar niet op openbare tijdlijnen
   statuses_cleanup:
+    enabled: Automatisch oude berichten verwijderen
+    enabled_hint: Verwijder uw berichten automatisch zodra ze een bepaalde leeftijdsgrens bereiken, tenzij ze overeenkomen met een van de onderstaande uitzonderingen
     exceptions: Uitzonderingen
+    explanation: Doordat het verwijderen van berichten de server zwaar belast, gebeurt dit geleidelijk aan op momenten dat de server niet bezig is. Om deze reden kunnen uw berichten een tijdje nadat ze de leeftijdsgrens hebben bereikt worden verwijderd.
     ignore_favs: Favorieten negeren
     ignore_reblogs: Boosts negeren
+    interaction_exceptions: Uitzonderingen op basis van interacties
+    interaction_exceptions_explanation: Merk op dat er geen garantie is dat berichten worden verwijderd, wanneer eenmaal het aantal favorieten of boosts boven de ingestelde grenswaarde zijn geweest.
     keep_direct: Directe berichten behouden
+    keep_direct_hint: Verwijdert geen enkel directe bericht van jou
     keep_media: Berichten met mediabijlagen behouden
+    keep_media_hint: Verwijdert geen enkel bericht met mediabijlagen
     keep_pinned: Vastgemaakte berichten behouden
+    keep_pinned_hint: Verwijdert geen enkel vastgezet bericht van jou
     keep_polls: Polls behouden
     keep_polls_hint: Geen enkele poll van jou wordt verwijderd
     keep_self_bookmark: Bladwijzers behouden
@@ -1353,7 +1427,10 @@ nl:
       '63113904': 2 jaar
       '7889238': 3 maanden
     min_age_label: Te verwijderen na
-    min_favs: Berichten die minstens zoveel keer als favoriet zijn gemarkeerd behouden
+    min_favs: Berichten die tenminste zoveel keer als favoriet zijn gemarkeerd behouden
+    min_favs_hint: Verwijdert geen berichten die tenminste zoveel keer als favoriet zijn gemarkeerd. Laat leeg om berichten ongeacht het aantal favorieten te verwijderen
+    min_reblogs: Berichten die minstens zoveel keer zijn geboost behouden
+    min_reblogs_hint: Verwijdert geen berichten die tenminste zoveel keer zijn geboost. Laat leeg om berichten ongeacht het aantal boosts te verwijderen
   stream_entries:
     pinned: Vastgemaakt bericht
     reblogged: boostte
@@ -1402,26 +1479,39 @@ nl:
       subject: Jouw archief staat klaar om te worden gedownload
       title: Archief ophalen
     suspicious_sign_in:
-      change_password: jouw wachtwoord wijzigen
+      change_password: je wachtwoord te wijzigen
+      details: 'Hier zijn de details van inlogpoging:'
+      explanation: We hebben vastgesteld dat iemand vanaf een nieuw IP-adres op jouw account is ingelogd.
+      further_actions_html: Wanneer jij dit niet was, adviseren wij om onmiddellijk %{action} en om tweestapsverificatie in te schakelen, om zo je account veilig te houden.
+      subject: Jouw account is vanaf een nieuw IP-adres benaderd
       title: Een nieuwe registratie
     warning:
       appeal: Bezwaar indienen
       appeal_description: Wanneer je denkt dat dit een fout is, kun je een bezwaar indienen bij de medewerkers van %{instance}.
       categories:
         spam: Spam
+        violation: De inhoud is in strijd met de volgende communityrichtlijnen
       explanation:
+        delete_statuses: Er is vastgesteld dat sommige van jouw berichten in strijd zijn met één of meerdere communityrichtlijnen en daarom door de moderatoren van %{instance} zijn verwijderd.
+        disable: Je kunt niet langer jouw account gebruiken, maar jouw profiel en andere gegevens zijn nog wel intact. Je kunt een backup van je gegevens opvragen, accountinstellingen wijzigen of je account verwijderen.
         mark_statuses_as_sensitive: Sommige van jouw berichten zijn als gevoelig gemarkeerd door de moderatoren van %{instance}. Dit betekent dat mensen op de media in de berichten moeten klikken/tikken om deze weer te geven. Je kunt media in de toekomst ook zelf als gevoelig markeren.
         sensitive: Vanaf nu worden al jouw geüploade media als gevoelig gemarkeerd en verborgen achter een waarschuwing.
+        silence: Je kunt nog steeds jouw account gebruiken, maar alleen mensen die jou al volgen kunnen jouw berichten zien, en je kunt minder goed worden gevonden. Andere kunnen je echter nog wel steeds handmatig volgen.
+        suspend: Je kunt niet langer jouw account gebruiken, en jouw profiel en andere gegevens zijn niet langer toegankelijk. Je kunt nog steeds inloggen om een backup van jouw gegevens op te vragen, totdat deze na 30 dagen volledig worden verwijderd. We zullen wel enkele basisgegevens behouden om te voorkomen dat je onder je schorsing uit probeert te komen.
       reason: 'Reden:'
       statuses: 'Gerapporteerde berichten:'
       subject:
+        delete_statuses: Deze berichten van %{acct} zijn verwijderd
         disable: Jouw account %{acct} is bevroren
+        mark_statuses_as_sensitive: Deze berichten van %{acct} zijn als gevoelig gemarkeerd
         none: Waarschuwing voor %{acct}
+        sensitive: Berichten van %{acct} zullen vanaf nu altijd als gevoelig worden gemarkeerd
         silence: Jouw account %{acct} is nu beperkt
         suspend: Jouw account %{acct} is opgeschort
       title:
         delete_statuses: Berichten verwijderd
         disable: Account bevroren
+        mark_statuses_as_sensitive: Berichten als gevoelig gemarkeerd
         none: Waarschuwing
         sensitive: Account is als gevoelig gemarkeerd
         silence: Account beperkt

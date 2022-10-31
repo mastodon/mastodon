@@ -5,6 +5,7 @@ zh-CN:
     contact_missing: 未设定
     contact_unavailable: 未公开
     hosted_on: 运行在 %{domain} 上的 Mastodon 站点
+    title: 关于本站
   accounts:
     follow: 关注
     followers:
@@ -320,6 +321,7 @@ zh-CN:
       listed: 已显示
       new:
         title: 添加新的自定义表情
+      no_emoji_selected: 因为没有选中任何表情，所以没有更改
       not_permitted: 你没有权限进行此操作
       overwrite: 覆盖
       shortcode: 短代码
@@ -651,29 +653,67 @@ zh-CN:
       empty: 尚未定义服务器规则。
       title: 实例规则
     settings:
+      about:
+        manage_rules: 管理服务器规则
+        preamble: 提供此服务器如何运营、资金状况等的深入信息。
+        rules_hint: 有一个专门区域用于显示用户需要遵守的规则。
+        title: 关于本站
+      appearance:
+        preamble: 自定义 Mastodon 的网页界面。
+        title: 外观
+      branding:
+        preamble: 你的服务器与网络中其他服务器的招牌区别。此信息将可能在多种环境下显示，包括 Mastodon 网页界面、原生应用和其他网站的链接预览等。因此应尽量简明扼要。
+        title: 招牌
+      content_retention:
+        preamble: 控制用户生成的内容在 Mastodon 中如何存储。
+        title: 内容保留
+      discovery:
+        follow_recommendations: 关注推荐
+        preamble: 露出有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
+        profile_directory: 个人资料目录
+        public_timelines: 公共时间轴
+        title: 发现
+        trends: 流行趋势
       domain_blocks:
         all: 对所有人
         disabled: 不对任何人
         users: 对本地已登录用户
+      registrations:
+        preamble: 控制谁可以在你的服务器上创建账号。
+        title: 注册
       registrations_mode:
         modes:
           approved: 注册时需要批准
           none: 关闭注册
           open: 开放注册
+      title: 服务器设置
     site_uploads:
       delete: 删除已上传的文件
       destroyed_msg: 站点上传的文件已经成功删除！
     statuses:
+      account: 作者
+      application: 应用
       back_to_account: 返回帐户信息页
       back_to_report: 返回举报页
       batch:
         remove_from_report: 从报告中移除
         report: 举报
       deleted: 已删除
+      favourites: 收藏
+      history: 版本历史记录
+      in_reply_to: 回复给
+      language: 语言
       media:
         title: 媒体文件
+      metadata: 元数据
       no_status_selected: 因为没有嘟文被选中，所以没有更改
+      open: 展开嘟文
+      original_status: 原始嘟文
+      reblogs: 转发
+      status_changed: 嘟文已编辑
       title: 帐户嘟文
+      trending: 当前热门
+      visibility: 可见性
       with_media: 含有媒体文件
     strikes:
       actions:
@@ -713,6 +753,9 @@ zh-CN:
         description_html: 这些是当前此服务器可见账号的嘟文中被大量分享的链接。它可以帮助用户了解正在发生的事情。发布者获得批准前不会公开显示任何链接。你也可以批准或拒绝个别链接。
         disallow: 不允许链接
         disallow_provider: 不允许发布者
+        no_link_selected: 因为没有选中任何链接，所以没有更改
+        publishers:
+          no_publisher_selected: 因为没有选中任何发布者，所以没有更改
         shared_by_over_week:
           other: 过去一周内被 %{count} 个人分享过
         title: 热门链接
@@ -731,6 +774,7 @@ zh-CN:
         description_html: 这些是当前此服务器可见的被大量分享和喜欢的嘟文。这些嘟文可以帮助新老用户找到更多可关注的账号。批准发布者且发布者允许将其账号推荐给其他用户前，不会公开显示任何嘟文。你也可以批准或拒绝个别嘟文。
         disallow: 禁止嘟文
         disallow_account: 禁止发布者
+        no_status_selected: 因为没有选中任何热门嘟文，所以没有更改
         not_discoverable: 发布者选择不被发现
         shared_by:
           other: 被分享和喜欢%{friendly_count}次
@@ -745,6 +789,7 @@ zh-CN:
           tag_uses_measure: 总使用
         description_html: 这些是当前此服务器可见嘟文中大量出现的标签。它可以帮助用户发现其他人正关注的话题。在获得批准前不会公开显示任何标签。
         listable: 可被推荐
+        no_tag_selected: 因为没有选中任何标签，所以没有更改
         not_listable: 不会被推荐
         not_trendable: 不会出现在热门列表中
         not_usable: 不可使用
@@ -1255,6 +1300,8 @@ zh-CN:
     other: 其他
     posting_defaults: 发布默认值
     public_timelines: 公共时间轴
+  privacy_policy:
+    title: 隐私政策
   reactions:
     errors:
       limit_reached: 互动种类的限制
