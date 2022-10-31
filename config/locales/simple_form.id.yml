@@ -80,6 +80,10 @@ id:
         site_terms: Gunakan kebijakan privasi Anda sendiri atau tinggalkan kosong untuk menggunakan bawaan. Dapat distruktur dengan sintaks Markdown.
         site_title: Bagaimana orang dapat memberitahu tentang server selain nama domain.
         theme: Tema yang dilihat oleh pengunjung yang keluar dan pengguna baru.
+        thumbnail: Gambar sekitar 2:1 yang ditampilkan di samping informasi server Anda.
+        timeline_preview: Pengunjung yang keluar akan dapat menjelajahi kiriman publik terkini yang tersedia di server.
+        trendable_by_default: Lewati tinjauan manual dari konten tren. Item individu masih dapat dihapus dari tren setelah faktanya.
+        trends: Tren yang menampilkan kiriman, tagar, dan cerita berita apa yang sedang tren di server Anda.
       form_challenge:
         current_password: Anda memasuki area aman
       imports:
@@ -92,6 +96,7 @@ id:
         ip: Masukkan alamat IPv4 atau IPv6. Anda dapat memblokir seluruh rentang dengan sintaks CIDR. Hati-hati, jangan mengunci Anda sendiri!
         severities:
           no_access: Blokir akses ke seluruh sumber daya
+          sign_up_block: Pendaftaran baru tidak akan dimungkinkan
           sign_up_requires_approval: Pendaftaran baru memerlukan persetujuan Anda
         severity: Pilih apa yang akan dilakukan dengan permintaan dari IP ini
       rule:
@@ -103,6 +108,16 @@ id:
         name: Anda hanya dapat mengubahnya ke huruf kecil/besar, misalnya, agar lebih mudah dibaca
       user:
         chosen_languages: Ketika dicentang, hanya toot dalam bahasa yang dipilih yang akan ditampilkan di linimasa publik
+        role: Peran mengatur izin apa yang dimiliki pengguna
+      user_role:
+        color: Warna yang digunakan untuk peran di antarmuka pengguna, sebagai RGB dalam format hex
+        highlighted: Ini membuat peran terlihat secara publik
+        name: Nama publik peran, jika peran ditampilkan sebagai lencana
+        permissions_as_keys: Pengguna dengan peran ini mendapatkan akses ke...
+        position: Peran lebih tinggi dapat menyelesaikan konflik dalam beberapa situasi. Beberapa tindakan hanya dapat dilakukan pada peran dengan prioritas lebih rendah
+      webhook:
+        events: Pilih peristiwa untuk dikirim
+        url: Di mana peristiwa akan dikirim
     labels:
       account:
         fields:
@@ -203,6 +218,30 @@ id:
         actions:
           hide: Sembunyikan seluruhnya
           warn: Sembunyikan dengan peringatan
+      form_admin_settings:
+        backups_retention_period: Rentang retensi arsip pengguna
+        bootstrap_timeline_accounts: Selalu rekomendasikan akun ini ke pengguna baru
+        closed_registrations_message: Pesan kustom ketika pendaftaran tidak tersedia
+        content_cache_retention_period: Rentang retensi tembolok konten
+        custom_css: CSS kustom
+        mascot: Maskot kustom (lawas)
+        media_cache_retention_period: Rentang retensi tembolok media
+        profile_directory: Aktifkan direktori profil
+        registrations_mode: Siapa yang dapat mendaftar
+        require_invite_text: Membutuhkan alasan untuk bergabung
+        show_domain_blocks: Tampilkan pemblokiran domain
+        show_domain_blocks_rationale: Tampilkan kenapa domain diblokir
+        site_contact_email: Surel kontak
+        site_contact_username: Nama pengguna kontak
+        site_extended_description: Deskripsi panjang
+        site_short_description: Deskripsi server
+        site_terms: Kebijakan Privasi
+        site_title: Nama server
+        theme: Tema bawaan
+        thumbnail: Gambar kecil server
+        timeline_preview: Perbolehkan akses tidak terotentikasi ke linimasa publik
+        trendable_by_default: Perbolehkan tren tanpa tinjauan
+        trends: Aktifkan tren
       interactions:
         must_be_follower: Blokir notifikasi dari non-pengikut
         must_be_following: Blokir notifikasi dari orang yang tidak anda ikuti
@@ -216,6 +255,7 @@ id:
         ip: IP
         severities:
           no_access: Blok akses
+          sign_up_block: Blokir pendaftaran
           sign_up_requires_approval: Batasi pendaftaran
         severity: Aturan
       notification_emails:
@@ -236,6 +276,8 @@ id:
         name: Tagar
         trendable: Izinkan tagar ini muncul di bawah tren
         usable: Izinkan toot memakai tagar ini
+      user:
+        role: Peran
       webhook:
         events: Acara yang diaktifkan
     'no': 'Tidak'
