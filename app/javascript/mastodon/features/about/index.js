@@ -125,7 +125,7 @@ class About extends React.PureComponent {
             <div className='about__meta__column'>
               <h4><FormattedMessage id='server_banner.administered_by' defaultMessage='Administered by:' /></h4>
 
-              <Account id={server.getIn(['contact', 'account', 'id'])} />
+              <Account id={server.getIn(['contact', 'account', 'id'])} size={36} />
             </div>
 
             <hr className='about__meta__divider' />
@@ -209,6 +209,10 @@ class About extends React.PureComponent {
           </Section>
 
           <LinkFooter />
+
+          <div className='about__footer'>
+            <p><FormattedMessage id='about.disclaimer' defaultMessage='Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.' /></p>
+          </div>
         </div>
 
         <Helmet>
