@@ -14,7 +14,7 @@ de:
     instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert und nicht ein einzelner Benutzer. Es wird für Föderationszwecke verwendet und sollte nicht gesperrt werden.
     last_active: zuletzt aktiv
     link_verified_on: Das Profil mit dieser E-Mail-Adresse wurde bereits am %{date} bestätigt
-    nothing_here: Hier gibt es nichts!
+    nothing_here: Keine Accounts mit dieser Auswahl vorhanden.
     pin_errors:
       following: Du musst dieser Person bereits folgen, um sie empfehlen zu können
     posts:
@@ -1089,9 +1089,9 @@ de:
     contexts:
       account: Profile
       home: Startseite
-      notifications: Benachrichtigungen
+      notifications: Mitteilungen
       public: Öffentliche Timelines
-      thread: Gespräche
+      thread: Unterhaltungen
     edit:
       add_keyword: Stichwort hinzufügen
       keywords: Stichwörter
@@ -1104,7 +1104,7 @@ de:
     index:
       contexts: Filter in %{contexts}
       delete: Löschen
-      empty: Du hast keine Filter.
+      empty: Du hast noch keine Filter gesetzt.
       expires_in: Läuft ab in %{distance}
       expires_on: Läuft am %{date} ab
       keywords:
@@ -1285,9 +1285,9 @@ de:
     update:
       subject: "%{name} bearbeitete einen Beitrag"
   notifications:
-    email_events: Ereignisse für E-Mail-Benachrichtigungen
-    email_events_hint: 'Wähle Ereignisse, für die du Benachrichtigungen erhalten möchtest:'
-    other_settings: Weitere Benachrichtigungseinstellungen
+    email_events: Benachrichtigungen per E-Mail
+    email_events_hint: 'Eine E-Mail erhalten, ...'
+    other_settings: Weitere Einstellungen
   number:
     human:
       decimal_units:
@@ -1324,7 +1324,7 @@ de:
       too_few_options: muss mindestens einen Eintrag haben
       too_many_options: kann nicht mehr als %{max} Einträge beinhalten
   preferences:
-    other: Weiteres
+    other: Erweitert
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Timelines
   privacy_policy:
