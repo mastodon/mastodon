@@ -71,6 +71,14 @@ ja:
         backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
         content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
+        require_invite_text: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストを必須入力にする
+        site_contact_email: 法律またはサポートに関する問い合わせ先
+        site_contact_username: マストドンでの連絡方法
+        site_extended_description: 訪問者やユーザーに役立つかもしれない任意の追加情報。Mastodon 構文が使用できます。
+        site_short_description: 誰が運営しているのか、誰に向けたものなのかなど、サーバーを特定する短い説明。
+        site_terms: 独自のプライバシーポリシーを使用するか、空白にしてデフォルトのプライバシーポリシーを使用します。Mastodon 構文が使用できます。
+        trendable_by_default: トレンドコンテンツの手動レビューをスキップする。個々のコンテンツは後でトレンドから削除できます。
+        trends: トレンドは、サーバー上でどの投稿、ハッシュタグ、ニュース記事が人気を集めているかを示します。
       form_challenge:
         current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
