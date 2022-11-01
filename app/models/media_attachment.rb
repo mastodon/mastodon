@@ -72,7 +72,7 @@ class MediaAttachment < ApplicationRecord
     }.freeze,
 
     small: {
-      pixels: 160_000, # 400x400px
+      pixels: 230_400, # 640x360px
       file_geometry_parser: FastGeometryParser,
       blurhash: BLURHASH_OPTIONS,
     }.freeze,
@@ -248,11 +248,11 @@ class MediaAttachment < ApplicationRecord
   attr_writer :delay_processing
 
   def delay_processing?
-    @delay_processing
+    @delay_processing && larger_media_format?
   end
 
   def delay_processing_for_attachment?(attachment_name)
-    @delay_processing && attachment_name == :file
+    delay_processing? && attachment_name == :file
   end
 
   after_commit :enqueue_processing, on: :create
