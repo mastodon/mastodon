@@ -1,4 +1,3 @@
----
 hu:
   activerecord:
     attributes:
@@ -29,6 +28,10 @@ hu:
           attributes:
             website:
               invalid: nem érvényes URL
+        import:
+          attributes:
+            data:
+              malformed: hibás
         status:
           attributes:
             reblog:
