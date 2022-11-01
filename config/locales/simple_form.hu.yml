@@ -1,4 +1,3 @@
----
 hu:
   simple_form:
     hints:
@@ -75,8 +74,16 @@ hu:
           warn: A szűrt tartalom a szűrő címét említő figyelmeztetés mögé rejtése
       form_admin_settings:
         backups_retention_period: Az előállított felhasználói archívumok megtartása a megadott napokig.
+        bootstrap_timeline_accounts: Ezek a fiókok ki lesznek tűzve az új felhasználók követési javaslatainak élére.
+        closed_registrations_message: Akkor jelenik meg, amikor a regisztráció le van zárva
         content_cache_retention_period: A más kiszolgálókról származó bejegyzések megadott számú nap után törölve lesznek, ha pozitív értékre van állítva. Ez lehet, hogy nem fordítható vissza.
+        custom_css: A Mastodon webes verziójában használhatsz egyedi stílusokat.
+        mascot: Felülvágja a haladó webes felületen található illusztrációt.
         media_cache_retention_period: A letöltött médiafájlok megadott számú nap után törölve lesznek, ha pozitív értékre van állítva, és igény szerint újból le lesznek töltve.
+        profile_directory: A profilok jegyzéke minden olyan felhasználót felsorol, akik engedélyezték a felfedezhetőségüket.
+        require_invite_text: Ha a regisztrációhoz manuális jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
+        site_contact_email: Hogyan érhetnek el jogi vagy támogatási kérésekkel.
+        site_contact_username: Hogyan érhetnek el Mastodonon.
         site_short_description: Rövid leírás, amely segíthet a kiszolgálód egyedi azonosításában. Ki futtatja, kinek készült?
         site_title: Hogyan hivatkozhatnak mások a kiszolgálódra a domain nevén kívül.
         thumbnail: Egy durván 2:1 arányú kép, amely a kiszolgálóinformációk mellett jelenik meg.
@@ -283,7 +290,7 @@ hu:
       webhook:
         events: Engedélyezett események
         url: Végponti URL
-    'no': Nem
+    'no': 'Nem'
     not_recommended: Nem ajánlott
     recommended: Ajánlott
     required:
@@ -292,4 +299,4 @@ hu:
     title:
       sessions:
         webauthn: Használd valamelyik biztonsági kulcsodat a bejelentkezéshez
-    'yes': Igen
+    'yes': 'Igen'
