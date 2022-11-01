@@ -248,11 +248,11 @@ class MediaAttachment < ApplicationRecord
   attr_writer :delay_processing
 
   def delay_processing?
-    @delay_processing
+    @delay_processing && larger_media_format?
   end
 
   def delay_processing_for_attachment?(attachment_name)
-    @delay_processing && attachment_name == :file
+    delay_processing? && attachment_name == :file
   end
 
   after_commit :enqueue_processing, on: :create
