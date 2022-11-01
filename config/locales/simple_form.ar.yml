@@ -67,6 +67,8 @@ ar:
         with_dns_records: سوف تُبذل محاولة لحل سجلات DNS الخاصة بالنطاق المعني، كما ستُمنع النتائج
       featured_tag:
         name: 'رُبَّما تريد·ين استخدام واحد مِن بين هذه:'
+      form_admin_settings:
+        site_contact_username: كيف يمكن للناس أن يصلوا إليك في ماستدون.
       form_challenge:
         current_password: إنك بصدد الدخول إلى منطقة آمنة
       imports:
@@ -185,11 +187,21 @@ ar:
         with_dns_records: تضمين سجلات MX و عناوين IP للنطاق
       featured_tag:
         name: الوسم
+      filters:
+        actions:
+          hide: إخفاء بالكامل
       form_admin_settings:
+        custom_css: سي أس أس CSS مخصص
+        profile_directory: تفعيل دليل الصفحات التعريفية
+        registrations_mode: من يمكنه التسجيل
+        require_invite_text: يتطلب سببا للانضمام
+        site_extended_description: الوصف الموسع
+        site_short_description: وصف الخادم
         site_terms: سياسة الخصوصية
         site_title: اسم الخادم
         theme: الحُلَّة الإفتراضية
         thumbnail: الصورة المصغرة للخادم
+        trends: تمكين المتداوَلة
       interactions:
         must_be_follower: حظر الإخطارات القادمة من حسابات لا تتبعك
         must_be_following: حظر الإخطارات القادمة من الحسابات التي لا تتابعها
@@ -203,6 +215,7 @@ ar:
         ip: عنوان IP
         severities:
           no_access: حظر الوصول
+          sign_up_block: حظر التسجيلات
           sign_up_requires_approval: حد التسجيلات
         severity: قانون
       notification_emails:
@@ -225,6 +238,9 @@ ar:
         role: الدور
       user_role:
         color: لون الشارة
+        name: التسمية
+        permissions_as_keys: الصلاحيات
+        position: الأولوية
     'no': لا
     not_recommended: غير مستحسن
     recommended: موصى بها

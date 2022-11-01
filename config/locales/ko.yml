@@ -657,6 +657,8 @@ ko:
     settings:
       about:
         manage_rules: 서버 규칙 관리
+        preamble: 이 서버가 어떻게 운영되고, 중재되고, 자금을 조달하는지 등에 관한 자세한 정보를 기입하세요.
+        rules_hint: 사용자들이 준수해야 할 규칙들을 위한 전용 공간입니다.
         title: 정보
       appearance:
         preamble: 마스토돈의 웹 인터페이스를 변경
@@ -664,6 +666,7 @@ ko:
       branding:
         title: 브랜딩
       content_retention:
+        preamble: 마스토돈에 저장된 사용자 콘텐츠를 어떻게 다룰지 제어합니다.
         title: 콘텐츠 보존기한
       discovery:
         follow_recommendations: 팔로우 추천
@@ -676,6 +679,7 @@ ko:
         disabled: 아무에게도 안 함
         users: 로그인 한 사용자에게
       registrations:
+        preamble: 누가 이 서버에 계정을 만들 수 있는 지 제어합니다.
         title: 가입
       registrations_mode:
         modes:
@@ -1219,6 +1223,8 @@ ko:
     carry_blocks_over_text: 이 사용자는 당신이 차단한 %{acct}로부터 이주 했습니다.
     carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
     copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
+  navigation:
+    toggle_menu: 토글 메뉴
   notification_mailer:
     admin:
       report:

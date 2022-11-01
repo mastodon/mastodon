@@ -58,6 +58,7 @@ nl:
       demote: Degraderen
       destroyed_msg: De verwijdering van de gegevens van %{username} staat nu in de wachtrij
       disable: Bevriezen
+      disable_sign_in_token_auth: E-mail token authenticatie uitschakelen
       disable_two_factor_authentication: 2FA uitschakelen
       disabled: Bevroren
       display_name: Weergavenaam
@@ -66,6 +67,7 @@ nl:
       email: E-mail
       email_status: E-mailstatus
       enable: Ontdooien
+      enable_sign_in_token_auth: E-mail token authenticatie inschakelen
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
       followers: Volgers
@@ -420,6 +422,9 @@ nl:
       unsuppress: Account weer aanbevelen
     instances:
       availability:
+        failures_recorded:
+          one: Mislukte poging op %{count} dag.
+          other: Mislukte pogingen op %{count} verschillende dagen.
         no_failures_recorded: Geen storingen bekend.
         title: Beschikbaarheid
         warning: De laatste poging om met deze server te verbinden was onsuccesvol
@@ -674,6 +679,7 @@ nl:
       with_media: Met media
     strikes:
       actions:
+        delete_statuses: "%{name} heeft de toots van %{target} verwijderd"
         silence: "%{name} beperkte het account %{target}"
         suspend: "%{name} schortte het account %{target} op"
       appeal_approved: Bezwaar ingediend
@@ -737,8 +743,10 @@ nl:
         listable: Kan worden aanbevolen
         no_tag_selected: Er werden geen hashtags gewijzigd, omdat er geen enkele werd geselecteerd
         not_listable: Wordt niet aanbevolen
+        not_trendable: Zal niet onder trends verschijnen
         not_usable: Kan niet worden gebruikt
         title: Trending hashtags
+        trendable: Kan onder trends verschijnen
         trending_rank: 'Trending #%{rank}'
         usable: Kan worden gebruikt
       title: Trends

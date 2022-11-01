@@ -398,13 +398,16 @@ ar:
           reject_media: رفض الوسائط
           reject_reports: رفض الشكاوى
           silence: كتم
+          suspend: علّق الحساب
         policy: القواعد
         reason: السبب العلني
         title: سياسات المحتوى
       dashboard:
         instance_accounts_dimension: الحسابات الأكثر متابعة
         instance_accounts_measure: حسابات مخزنة
+        instance_follows_measure: متابِعوهم هنا
         instance_languages_dimension: اللغات الأكثر استخدامًا
+        instance_media_attachments_measure: مرفقات الوسائط المخزَّنة
       delivery:
         all: الكل
         clear: مسح أخطاء التسليم
@@ -552,8 +555,11 @@ ar:
         manage_roles: إدارة الأدوار
         manage_rules: إدارة القواعد
         manage_settings: إدارة الإعدادات
+        manage_taxonomies: إدارة التصنيفات
+        manage_taxonomies_description: السماح للمستخدمين بمراجعة المحتوى المتداول وتحديث إعدادات الوسم
         manage_user_access: إدارة وصول المستخدم
         manage_users: إدارة المستخدمين
+        view_dashboard: عرض لوحة التحكم
       title: الأدوار
     rules:
       add_new: إضافة قاعدة
@@ -567,6 +573,7 @@ ar:
         manage_rules: إدارة قواعد الخادم
         title: عن
       appearance:
+        preamble: تخصيص واجهة الويب لماستدون.
         title: المظهر
       branding:
         title: العلامة
@@ -602,12 +609,19 @@ ar:
         report: إبلاغ
       deleted: محذوف
       favourites: المفضلة
+      in_reply_to: رَدًا على
       language: اللغة
       media:
         title: الوسائط
       metadata: البيانات الوصفية
       no_status_selected: لم يطرأ أي تغيير على أي منشور بما أنه لم يتم اختيار أي واحد
+      open: افتح المنشور
+      original_status: المنشور الأصلي
+      reblogs: المعاد تدوينها
+      status_changed: عُدّل المنشور
       title: منشورات الحساب
+      trending: المتداولة
+      visibility: مدى الظهور
       with_media: تحتوي على وسائط
     strikes:
       actions:
@@ -675,6 +689,11 @@ ar:
       title: إدارة نماذج التحذير
     webhooks:
       delete: حذف
+      disable: تعطيل
+      disabled: معطَّل
+      edit: تعديل نقطة النهاية
+      enable: تشغيل
+      enabled: نشِط
   admin_mailer:
     new_appeal:
       actions:
@@ -768,6 +787,8 @@ ar:
       email_below_hint_html: إذا كان عنوان البريد الإلكتروني التالي غير صحيح، فيمكنك تغييره هنا واستلام بريد إلكتروني جديد للتأكيد.
       email_settings_hint_html: لقد تم إرسال رسالة بريد إلكترونية للتأكيد إلى %{email}. إن كان عنوان البريد الإلكتروني غير صحيح ، يمكنك تغييره في إعدادات حسابك.
       title: الضبط
+    sign_up:
+      title: دعنا نجهّز %{domain}.
     status:
       account_status: حالة الحساب
       confirming: في انتظار اكتمال تأكيد البريد الإلكتروني.
@@ -916,6 +937,8 @@ ar:
       title: عوامل التصفية
     new:
       title: إضافة عامل تصفية جديد
+    statuses:
+      back_to_filter: العودة إلى عامل التصفية
   footer:
     trending_now: المتداولة الآن
   generic:
