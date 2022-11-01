@@ -112,7 +112,7 @@ de:
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Profil neu laden
-      redownloaded_msg: Profil von %{username} erfolgreich von Ursprung aktualisiert
+      redownloaded_msg: Das Profil von %{username} wurde von der Quelle erfolgreich aktualisiert
       reject: Ablehnen
       rejected_msg: Anmeldeantrag von %{username} erfolgreich abgelehnt
       remove_avatar: Profilbild entfernen
@@ -208,12 +208,12 @@ de:
         reopen_report: Meldung wieder eröffnen
         reset_password_user: Passwort zurücksetzen
         resolve_report: Bericht lösen
-        sensitive_account: Markiere die Medien in deinem Konto als NSFW
+        sensitive_account: Zwangssensibles Konto
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
         unassigned_report: Meldung widerrufen
         unblock_email_account: E-Mail Adresse entsperren
-        unsensitive_account: Markiere die Medien in deinem Konto nicht mehr als NSFW
+        unsensitive_account: Zwangssensibles Konto rückgängig machen
         unsilence_account: Konto nicht mehr stummschalten
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
@@ -271,7 +271,7 @@ de:
         suspend_account_html: "%{name} hat das Konto von %{target} verbannt"
         unassigned_report_html: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
         unblock_email_account_html: "%{name} entsperrte die E-Mail-Adresse von %{target}"
-        unsensitive_account_html: "%{name} hob die Inhaltswarnung für Medien von %{target} auf"
+        unsensitive_account_html: "%{name} hat die Inhaltswarnung für Medien von %{target} aufgehoben"
         unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account_html: "%{name} hat die Verbannung von %{target} aufgehoben"
         update_announcement_html: "%{name} aktualisierte Ankündigung %{target}"
@@ -568,7 +568,7 @@ de:
       forwarded: Weitergeleitet
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
-      mark_as_sensitive: Mit einer Inhaltswarnung (NSFW) versehen
+      mark_as_sensitive: Mit einer Inhaltswarnung versehen
       mark_as_unresolved: Als ungelöst markieren
       no_one_assigned: Niemand
       notes:
@@ -596,7 +596,7 @@ de:
       unassign: Zuweisung entfernen
       unresolved: Ungelöst
       updated_at: Aktualisiert
-      view_profile: Zeige Profil
+      view_profile: Profil anzeigen
     roles:
       add_new: Rolle hinzufügen
       assigned_users:
@@ -683,7 +683,7 @@ de:
       discovery:
         follow_recommendations: Folgeempfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimmen Sie, wie verschiedene Suchfunktionen auf Ihrem Server funktionieren.
-        profile_directory: Benutzerverzeichnis
+        profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timelines
         title: Entdecken
         trends: Trends
@@ -732,7 +732,7 @@ de:
       actions:
         delete_statuses: "%{name} hat die Beiträge von %{target} entfernt"
         disable: "%{name} hat das Konto von %{target} eingefroren"
-        mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung (NSFW) versehen"
+        mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung versehen"
         none: "%{name} hat eine Warnung an %{target} gesendet"
         sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung (NSFW) versehen"
         silence: "%{name} hat das Konto von %{target} eingeschränkt"
@@ -900,7 +900,7 @@ de:
     salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     view: 'Ansehen:'
-    view_profile: Zeige Profil
+    view_profile: Profil anzeigen
     view_status: Beitrag öffnen
   applications:
     created: Anwendung erfolgreich erstellt
@@ -968,7 +968,7 @@ de:
     following: 'Erfolg! Du folgst nun:'
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
-      return: Zeige das Profil
+      return: Das Benutzerprofil anzeigen
       web: In der Benutzeroberfläche öffnen
     title: '%{acct} folgen'
   challenge:
@@ -1600,7 +1600,7 @@ de:
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:
-      edit_profile_action: Profil einstellen
+      edit_profile_action: Profil einrichten
       edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst, deinen Anzeigenamen änderst und viel mehr. Du kannst optional einstellen, ob du Accounts, die dir folgen wollen, akzeptieren musst, bevor sie dies können.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten
