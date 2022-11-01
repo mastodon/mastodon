@@ -408,6 +408,7 @@ nl:
         create: Blokkeren
         resolve: Domein opzoeken
         title: Nieuw e-maildomein blokkeren
+      no_email_domain_block_selected: Er werden geen e-maildomeinblokkaden gewijzigd, omdat er geen enkele werd geselecteerd
       resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
       resolved_through_html: Geblokkeerd via %{domain}
       title: Geblokkeerde e-maildomeinen
@@ -431,6 +432,7 @@ nl:
       back_to_limited: Beperkt
       back_to_warning: Waarschuwing
       by_domain: Domein
+      confirm_purge: Weet je zeker dat je de gegevens van dit domein permanent wilt verwijderen?
       content_policies:
         comment: Interne reden
         description_html: Je kunt het beleid bepalen dat op de accounts van dit domein en alle subdomeinen van toepassing is.
@@ -461,6 +463,7 @@ nl:
       delivery_available: Bezorging is mogelijk
       delivery_error_days: Dagen met bezorgfouten
       delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.
+      destroyed_msg: Gegevens van %{domain} staan nu in de wachtrij voor aanstaande verwijdering.
       empty: Geen domeinen gevonden.
       known_accounts:
         one: "%{count} bekend account"
@@ -472,6 +475,7 @@ nl:
       private_comment: Privé-opmerking
       public_comment: Openbare opmerking
       purge: Volledig verwijderen
+      purge_description_html: Als je denkt dat dit domein definitief offline is, kunt je alle accountrecords en bijbehorende gegevens van dit domein verwijderen van uw opslag. Dit kan een tijdje duren.
       title: Federatie
       total_blocked_by_us: Door ons geblokkeerd
       total_followed_by_them: Door hun gevolgd
@@ -538,6 +542,7 @@ nl:
       category: Category
       comment:
         none: Geen
+      comment_description_html: 'Om meer informatie te verstrekken, schreef %{name}:'
       created_at: Gerapporteerd op
       delete_and_resolve: Bericht verwijderen
       forwarded: Doorgestuurd
@@ -678,7 +683,9 @@ nl:
       with_media: Met media
     strikes:
       actions:
-        delete_statuses: "%{name} heeft de toots van %{target} verwijderd"
+        delete_statuses: "%{name} heeft de berichten van %{target} verwijderd"
+        disable: "Account %{target} is door %{name} bevroren"
+        mark_statuses_as_sensitive: "%{name} markeerde de berichten van %{target} als gevoelig"
         silence: "%{name} beperkte het account %{target}"
         suspend: "%{name} schortte het account %{target} op"
       appeal_approved: Bezwaar ingediend
