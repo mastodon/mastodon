@@ -478,6 +478,7 @@ class User < ApplicationRecord
   end
 
   def prepare_new_user!
+    TriggerWebhookWorker.perform_async('account.prepared', 'Account', account_id)
     BootstrapTimelineWorker.perform_async(account_id)
     ActivityTracker.increment('activity:accounts:local')
     UserMailer.welcome(self).deliver_later
