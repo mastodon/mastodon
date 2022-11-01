@@ -104,6 +104,9 @@ eu:
       pending: Berrikusketa egiteke
       perform_full_suspension: Kanporatu
       previous_strikes: Aurreko neurriak
+      previous_strikes_description_html:
+        one: Kontu honen aurka neurri <strong>bat</strong> hartu da.
+        other: Kontu honen aurka <strong>%{count}</strong> neurri hartu dira.
       promote: Sustatu
       protocol: Protokoloa
       public: Publikoa
@@ -338,6 +341,18 @@ eu:
       media_storage: Multimedia biltegiratzea
       new_users: erabiltzaile berri
       opened_reports: txosten irekita
+      pending_appeals_html:
+        one: "Apelazio <strong>%{count}</strong> zain"
+        other: "<strong>%{count}</strong> apelazio zain"
+      pending_reports_html:
+        one: "Txosten <strong>%{count}</strong> zain"
+        other: "<strong>%{count}</strong> txosten zain"
+      pending_tags_html:
+        one: "Traola <strong>%{count}</strong> zain"
+        other: "<strong>%{count}</strong> traola zain"
+      pending_users_html:
+        one: "Erabiltzaile <strong>%{count}</strong> zain"
+        other: "<strong>%{count}</strong> erabiltzaile zain"
       resolved_reports: txosten konponduta
       software: Softwarea
       sources: Izen emate jatorriak
@@ -386,6 +401,9 @@ eu:
       view: Ikusi domeinuaren blokeoa
     email_domain_blocks:
       add_new: Gehitu berria
+      attempts_over_week:
+        one: "Izen-emateko saiakera %{count} azken astean"
+        other: "Izen-emateko %{count} saiakera azken astean"
       created_msg: Ongi gehitu da e-mail helbidea domeinuen zerrenda beltzera
       delete: Ezabatu
       dns:
@@ -414,6 +432,9 @@ eu:
           one: Domeinura entregatzeak arrakastarik gabe huts egiten badu <strong>egun %{count} </strong>igaro ondoren, ez da entregatzeko saiakera gehiago egingo, ez bada domeinu <em>horretatik</em> entregarik jasotzen.
           other: Domeinura entregatzeak arrakastarik gabe huts egiten badu <strong>%{count} egun</strong> igaro ondoren, ez da entregatzeko saiakera gehiago egingo, ez bada domeinu <em>horretatik</em> entregarik jasotzen.
         failure_threshold_reached: Hutsegite atalasera iritsi da %{date} datan.
+        failures_recorded:
+          one: Huts egindako saiakera egun %{count}ean.
+          other: Huts egindako saiakera %{count} egun desberdinetan.
         no_failures_recorded: Ez dago hutsegiterik erregistroan.
         title: Egoera
         warning: Zerbitzari honetara konektatzeko azken saiakerak huts egin du
@@ -578,6 +599,9 @@ eu:
       view_profile: Ikusi profila
     roles:
       add_new: Gehitu rola
+      assigned_users:
+        one: "Erabiltzaile %{count}"
+        other: "%{count} erabiltzaile"
       categories:
         administration: Administrazioa
         devops: Devops
@@ -589,6 +613,9 @@ eu:
       edit: Editatu '%{name}' rola
       everyone: Baimen lehenetsiak
       everyone_full_description_html: Hau <strong>erabiltzaile guztiei</strong> eragiten dien <strong>oinarrizko rola</strong> da, rol bat esleitu gabekoei ere bai. Gainerako rolek honetatik heredatzen dituzte baimenak.
+      permissions_count:
+        one: "Baimen %{count}"
+        other: "%{count} baimen"
       privileges:
         administrator: Administratzailea
         administrator_description: Baimen hau duten erabiltzaileak baimen guztien gainetik pasako dira
@@ -758,6 +785,7 @@ eu:
       statuses:
         allow: Onartu bidalketa
         allow_account: Onartu egilea
+        description_html: Hauek dira une honetan asko partekatu eta gogokoak diren bidalketak (zure zerbitzariak ezagutzen dituenak). Erabiltzaile berrientzat eta bueltan itzuli direnentzat lagungarriak izan daitezke nor jarraitu aurkitzeko. Bidalketak ez dira publikoki erakusten zuk egilea onartu arte eta egileak gomendatua izatea onartu arte. Bidalketak banan bana ere onartu edo baztertu ditzakezu.
         disallow: Ez onartu bidalketa
         disallow_account: Ez onartu egilea
         no_status_selected: Ez da joerarik aldatu ez delako bat ere hautatu
@@ -786,6 +814,9 @@ eu:
         trending_rank: '%{rank}. joera'
         usable: Erabili daiteke
         usage_comparison: '%{today} aldiz erabili da gaur, atzo %{yesterday} aldiz'
+        used_by_over_week:
+          one: Pertsona batek erabilia azken astean
+          other: '%{count} pertsonak erabilia azken astean'
       title: Joerak
       trending: Joerak
     warning_presets:
@@ -804,6 +835,9 @@ eu:
       empty: Ez duzu webhook amaiera-punturik konfiguratu oraindik.
       enable: Gaitu
       enabled: Aktiboa
+      enabled_events:
+        one: Gaitutako gertaera bat
+        other: "Gaitutako %{count} gertaera"
       events: Gertaerak
       new: Webhook berria
       rotate_secret: Biratu sekretua
@@ -1073,6 +1107,12 @@ eu:
       empty: Ez duzu iragazkirik.
       expires_in: '%{distance}(a)n iraungitzen da'
       expires_on: '%{date}(a)n iraungitzen da'
+      keywords:
+        one: "Gako-hitz %{count}"
+        other: "%{count} gako-hitz"
+      statuses:
+        one: "Bidalketa %{count}"
+        other: "%{count} bidalketa"
       statuses_long:
         one: "Banako bidalketa %{count} ezkutatuta"
         other: "Banako %{count} bidalketa ezkutatuta"
@@ -1091,12 +1131,22 @@ eu:
     trending_now: Joera orain
   generic:
     all: Denak
+    all_items_on_page_selected_html:
+      one: "Orri honetako elementu <strong>%{count}</strong> hautatuta."
+      other: Orri honetako <strong>%{count}</strong> elementuak hautatuta.
+    all_matching_items_selected_html:
+      one: "Zure bilaketarekin bat datorren elementu <strong>%{count}</strong> hautatuta."
+      other: Zure bilaketarekin bat datozen <strong>%{count}</strong> elementu hautatuta.
     changes_saved_msg: Aldaketak ongi gorde dira!
     copy: Kopiatu
     delete: Ezabatu
+    deselect: Desautatu guztiak
     none: Bat ere ez
     order_by: Ordenatze-irizpidea
     save_changes: Gorde aldaketak
+    select_all_matching_items:
+      one: Hautatu zure bilaketarekin bat datorren elementu %{count}.
+      other: Hautatu zure bilaketarekin bat datozen %{count} elementuak.
     today: gaur
     validation_errors:
       one: Zerbait ez dabil ongi! Egiaztatu beheko errorea mesedez
@@ -1515,25 +1565,46 @@ eu:
       change_password: aldatu pasahitza
       details: 'Hemen daude saio hasieraren xehetasunak:'
       explanation: Zure kontuan IP helbide berri batetik saioa hasi dela detektatu dugu.
+      further_actions_html: Ez bazara zu izan, lehenbailehen %{action} gomendatzen dizugu eta bi faktoreko autentifikazioa gaitzea zure kontua seguru mantentzeko.
+      subject: Zure kontura sarbidea egon da IP helbide berri batetik
+      title: Saio hasiera berria
     warning:
+      appeal: Bidali apelazioa
+      appeal_description: Hau errore bat dela uste baduzu, apelazio bat bidali diezaiekezu %{instance} instantziako arduradunei.
+      categories:
+        spam: Spama
+        violation: Edukiak komunitatearen gidalerro hauek urratzen ditu
       explanation:
+        delete_statuses: Zure bidalketetako batzuk komunitatearen gidalerro bat edo gehiago urratzen dituztela aurkitu da eta ondorioz %{instance} instantziako moderatzaileek ezabatu egin dituzte.
+        disable: Ezin duzu zure kontua erabili, baina zure profilak eta beste datuek hor diraute. Zure datuen babeskopia eskatu dezakezu, kontuaren ezarpenak aldatu edo kontua ezabatu.
+        mark_statuses_as_sensitive: Zure bidalketetako batzuk hunkigarri bezala markatu dituzte %{instance} instantziako moderatzaileek. Horrek esan nahi du jendeak klik egin beharko duela bidalketetako multimedia edukian aurrebista bistaratzeko. Etorkizunean zuk zeuk markatu ditzakezu multimediak hunkigarri bezala.
+        sensitive: Hemendik aurrera, igotzen dituzun multimedia fitxategi guztiak hunkigarri gisa markatuko dira eta abisuan klik egin beharko da ikusteko.
+        silence: Zure kontua erabili dezakezu oraindik, baina dagoeneko jarraitzen zaituen jendeak soilik ikusi ahal izango ditu zure bidalketak zerbitzari honetan, eta aurkikuntza-ezaugarrietatik baztertua izango zara. Hala ere, besteek eskuz jarrai zaitzakete oraindik.
         suspend: Ezin duzu zure kontua erabili, eta zure profila eta beste datuak ez daude eskuragarri jada. Hala ere, saioa hasi dezakezu zure datuen babeskopia eskatzeko, 30 egun inguru barru behin betiko ezabatu aurretik. Zure oinarrizko informazioa gordeko da kanporatzea saihestea eragozteko.
       reason: 'Arrazoia:'
       statuses: 'Aipatutako bidalketak:'
       subject:
+        delete_statuses: '%{acct} zerbitzarian zure bidalketak ezabatu dira'
         disable: Zure  %{acct} kontua izoztu da
+        mark_statuses_as_sensitive: '%{acct} zerbitzarian zure bidalketak hunkigarri gisa markatu dira'
         none: '%{acct} konturako abisua'
+        sensitive: '%{acct} zerbitzarian zure bidalketak hunkigarri gisa markatuko dira hemendik aurrera'
         silence: Zure  %{acct} kontua murriztu da
         suspend: Zure %{acct} kontua kanporatua izan da
       title:
+        delete_statuses: Bidalketak ezabatuta
         disable: Kontu izoztua
+        mark_statuses_as_sensitive: Bidalketak hunkigarri gisa markatuta
         none: Abisua
+        sensitive: Kontua hunkigarri gisa markatuta
         silence: Kontu murriztua
         suspend: Kontu kanporatua
     welcome:
       edit_profile_action: Ezarri profila
+      edit_profile_step: Pertsonalizatu profila abatar bat igoz, zure pantaila-izena aldatuz eta gehiago. Jarraitzaile berriak onartu aurretik berrikusi nahi badituzu, kontuari giltzarrapoa jarri diezaiokezu.
       explanation: Hona hasteko aholku batzuk
       final_action: Hasi bidalketak argitaratzen
+      final_step: 'Hasi argitaratzen! Jarraitzailerik ez baduzu ere zure bidalketa publikoak besteek ikusi ditzakete, esaterako denbora-lerro lokalean eta traoletan. Zure burua aurkeztu nahi baduzu #aurkezpenak traola erabili zenezake.'
       full_handle: Zure erabiltzaile-izen osoa
       full_handle_hint: Hau da lagunei esango zeniekeena beste zerbitzari batetik zu jarraitzeko edo zuri mezuak bidaltzeko.
       subject: Ongi etorri Mastodon-era
