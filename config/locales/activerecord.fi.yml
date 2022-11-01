@@ -1,4 +1,3 @@
----
 fi:
   activerecord:
     attributes:
@@ -29,6 +28,10 @@ fi:
           attributes:
             website:
               invalid: ei ole kelvollinen URL
+        import:
+          attributes:
+            data:
+              malformed: on väärin muodostettu
         status:
           attributes:
             reblog:
