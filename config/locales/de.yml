@@ -120,7 +120,7 @@ de:
       removed_avatar_msg: Profilbild von %{username} erfolgreich entfernt
       removed_header_msg: Titelbild von %{username} wurde erfolgreich entfernt
       resend_confirmation:
-        already_confirmed: Diese_r Benutzer_in wurde bereits bestätigt
+        already_confirmed: Dieses Profil wurde bereits bestätigt
         send: Bestätigungs-E-Mail erneut senden
         success: Bestätigungs-E-Mail erfolgreich gesendet!
       reset: Zurücksetzen
@@ -239,7 +239,7 @@ de:
         create_ip_block_html: "%{name} hat eine Regel für IP %{target} erstellt"
         create_unavailable_domain_html: "%{name} hat die Lieferung an die Domain %{target} eingestellt"
         create_user_role_html: "%{name} hat die Rolle %{target} erstellt"
-        demote_user_html: "%{name} stufte Benutzer_in %{target} herunter"
+        demote_user_html: "%{name} hat die Nutzungsrechte von %{target} heruntergestuft"
         destroy_announcement_html: "%{name} hat die neue Ankündigung %{target} gelöscht"
         destroy_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} freigegeben"
         destroy_custom_emoji_html: "%{name} hat das %{target} Emoji gelöscht"
@@ -251,13 +251,13 @@ de:
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
         destroy_user_role_html: "%{name} hat die Rolle %{target} gelöscht"
-        disable_2fa_user_html: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
+        disable_2fa_user_html: "%{name} hat die Zwei-Faktor-Authentisierung für %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
         disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token Authentifizierung für %{target} deaktiviert"
-        disable_user_html: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
+        disable_user_html: "%{name} hat den Zugang für %{target} deaktiviert"
         enable_custom_emoji_html: "%{name} hat das %{target} Emoji aktiviert"
         enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} aktiviert"
-        enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
+        enable_user_html: "%{name} hat den Zugang für %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user_html: "%{name} hat %{target} befördert"
         reject_appeal_html: "%{name} hat die Moderationsbeschlüsse von %{target} abgelehnt"
@@ -377,7 +377,7 @@ de:
       domain: Domain
       edit: Domainblockade bearbeiten
       existing_domain_block: Du hast %{name} bereits stärker eingeschränkt.
-      existing_domain_block_html: Es gibt schon eine Blockade für %{name}, diese muss erst <a href="%{unblock_url}">aufgehoben</a> werden.
+      existing_domain_block_html: Du hast bereits strengere Beschränkungen für die Domain %{name} verhängt. Du musst diese erst <a href="%{unblock_url}">aufheben</a>.
       new:
         create: Blockade einrichten
         hint: Die Domain-Blockade wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden. Aber es werden rückwirkend und automatisch alle Moderationsmethoden auf diese Konten angewendet.
@@ -556,7 +556,7 @@ de:
       add_to_report: Mehr zur Meldung hinzufügen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
-      assigned: Zugewiesene_r Moderator_in
+      assigned: Zugewiesene*r Moderator*in
       by_target_domain: Domain des gemeldeten Kontos
       category: Kategorie
       category_description_html: Der Grund, warum dieses Konto und/oder der Inhalt gemeldet wurden, wird in der Kommunikation mit dem gemeldeten Konto zitiert
