@@ -5,6 +5,7 @@ eu:
     contact_missing: Ezarri gabe
     contact_unavailable: E/E
     hosted_on: Mastodon %{domain} domeinuan ostatatua
+    title: Honi buruz
   accounts:
     follow: Jarraitu
     followers:
@@ -37,11 +38,17 @@ eu:
       avatar: Abatarra
       by_domain: Domeinua
       change_email:
+        changed_msg: Eposta kontua ongi aldatu da!
         current_email: Uneko e-mail helbidea
         label: Aldatu e-mail helbidea
         new_email: E-mail berria
         submit: Aldatu e-mail helbidea
         title: Aldatu %{username}(r)en e-mail helbidea
+      change_role:
+        changed_msg: Rola ondo aldatu da!
+        label: Aldatu rola
+        no_role: Rolik ez
+        title: Aldatu %{username} erabiltzailearen rola
       confirm: Berretsi
       confirmed: Berretsita
       confirming: Berresten
@@ -85,13 +92,15 @@ eu:
         active: Aktiboa
         all: Denak
         pending: Zain
+        silenced: Mugatua
         suspended: Kanporatua
         title: Moderazioa
       moderation_notes: Moderazio oharrak
       most_recent_activity: Azken jarduera
       most_recent_ip: Azken IP-a
-      no_account_selected: Ez da konturik aldatu ez delako bata bera hautatu
+      no_account_selected: Ez da konturik aldatu ez delako bat ere hautatu
       no_limits_imposed: Ez da mugarik ezarri
+      no_role_assigned: Ez du rolik esleituta
       not_subscribed: Harpidetu gabe
       pending: Berrikusketa egiteke
       perform_full_suspension: Kanporatu
@@ -118,6 +127,7 @@ eu:
       reset: Berrezarri
       reset_password: Berrezarri pasahitza
       resubscribe: Berriro harpidetu
+      role: Rola
       search: Bilatu
       search_same_email_domain: E-mail domeinu bera duten beste erabiltzailean
       search_same_ip: IP bera duten beste erabiltzaileak
@@ -160,17 +170,21 @@ eu:
         approve_user: Onartu erabiltzailea
         assigned_to_self_report: Esleitu salaketa
         change_email_user: Aldatu erabiltzailearen e-maila
+        change_role_user: Aldatu erabiltzailearen rola
         confirm_user: Berretsi erabiltzailea
         create_account_warning: Sortu abisua
         create_announcement: Sortu iragarpena
+        create_canonical_email_block: Sortu eposta blokeoa
         create_custom_emoji: Sortu emoji pertsonalizatua
         create_domain_allow: Sortu domeinu baimena
         create_domain_block: Sortu domeinu blokeoa
         create_email_domain_block: Sortu e-mail domeinu blokeoa
         create_ip_block: Sortu IP araua
         create_unavailable_domain: Sortu eskuragarri ez dagoen domeinua
+        create_user_role: Sortu rola
         demote_user: Jaitsi erabiltzailearen maila
         destroy_announcement: Ezabatu iragarpena
+        destroy_canonical_email_block: Ezabatu eposta blokeoa
         destroy_custom_emoji: Ezabatu emoji pertsonalizatua
         destroy_domain_allow: Ezabatu domeinu baimena
         destroy_domain_block: Ezabatu domeinu blokeoa
@@ -179,6 +193,7 @@ eu:
         destroy_ip_block: Ezabatu IP araua
         destroy_status: Ezabatu bidalketa
         destroy_unavailable_domain: Ezabatu eskuragarri ez dagoen domeinua
+        destroy_user_role: Ezabatu rola
         disable_2fa_user: Desgaitu 2FA
         disable_custom_emoji: Desgaitu emoji pertsonalizatua
         disable_sign_in_token_auth_user: Desgaitu e-posta token autentifikazioa erabiltzailearentzat
@@ -205,23 +220,30 @@ eu:
         update_announcement: Eguneratu iragarpena
         update_custom_emoji: Eguneratu emoji pertsonalizatua
         update_domain_block: Eguneratu domeinu-blokeoa
+        update_ip_block: Eguneratu IP araua
         update_status: Eguneratu bidalketa
+        update_user_role: Eguneratu rola
       actions:
         approve_appeal_html: "%{name} erabiltzaileak %{target} erabiltzailearen moderazio erabakiaren apelazioa onartu du"
         approve_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen izen-ematea onartu du"
         assigned_to_self_report_html: "%{name} erabiltzaileak %{target} salaketa bere buruari esleitu dio"
         change_email_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea aldatu du"
+        change_role_user_html: "%{name} erabiltzaileak %{target} kontuaren rola aldatu du"
         confirm_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen e-posta helbidea berretsi du"
         create_account_warning_html: "%{name} erabiltzaileak abisua bidali dio %{target} erabiltzaileari"
         create_announcement_html: "%{name} erabiltzaileak %{target} iragarpen berria sortu du"
+        create_canonical_email_block_html: "%{name} erabiltzaileak %{target} hash-a duen helbide elektronikoa blokeatu du"
         create_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji berria kargatu du"
         create_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federazioa onartu du"
         create_domain_block_html: "%{name} erabiltzaileak %{target} domeinua blokeatu du"
         create_email_domain_block_html: "%{name} erabiltzaileak %{target} e-posta helbideen domeinua blokeatu du"
         create_ip_block_html: "%{name} kontuak %{target} IParen araua sortu du"
         create_unavailable_domain_html: "%{name}(e)k %{target} domeinurako banaketa gelditu du"
+        create_user_role_html: "%{name} erabiltzaileak %{target} rola sortu du"
         demote_user_html: "%{name} erabiltzaileak %{target} erabiltzailea mailaz jaitsi du"
         destroy_announcement_html: "%{name} erabiltzaileak %{target} iragarpena ezabatu du"
+        destroy_canonical_email_block_html: "%{name} erabiltzaileak %{target} hash-a duen helbide elektronikoa desblokeatu du"
+        destroy_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a ezabatu du"
         destroy_domain_allow_html: "%{name} erabiltzaileak %{target} domeinuarekin federatzea debekatu du"
         destroy_domain_block_html: "%{name} erabiltzaileak %{target} domeinua desblokeatu du"
         destroy_email_domain_block_html: "%{name} erabiltzaileak %{target} e-posta helbideen domeinua desblokeatu du"
@@ -229,6 +251,7 @@ eu:
         destroy_ip_block_html: "%{name} erabiltzaileak %{target} IParen araua ezabatu du"
         destroy_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa kendu du"
         destroy_unavailable_domain_html: "%{name}(e)k %{target} domeinurako banaketari berrekin dio"
+        destroy_user_role_html: "%{name} erabiltzaileak %{target} rola ezabatu du"
         disable_2fa_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen bi faktoreko autentifikazioa desgaitu du"
         disable_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a desgaitu du"
         disable_sign_in_token_auth_user_html: "%{name} erabiltzaileak e-posta token autentifikazioa desgaitu du %{target} helburuan"
@@ -255,7 +278,9 @@ eu:
         update_announcement_html: "%{name} erabiltzaileak %{target} iragarpena eguneratu du"
         update_custom_emoji_html: "%{name} erabiltzaileak %{target} emoji-a eguneratu du"
         update_domain_block_html: "%{name} erabiltzaileak %{target} domeinu-blokeoa eguneratu du"
+        update_ip_block_html: "%{name} erabiltzaileak %{target} IParen araua aldatu du"
         update_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa eguneratu du"
+        update_user_role_html: "%{name} erabiltzaileak %{target} rola aldatu du"
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
       filter_by_user: Iragazi erabiltzaileen arabera
@@ -299,6 +324,7 @@ eu:
       listed: Zerrendatua
       new:
         title: Gehitu emoji pertsonal berria
+      no_emoji_selected: Ez da emojirik aldatu ez delako bat ere hautatu
       not_permitted: Ez daukazu ekintza hau burutzeko baimenik
       overwrite: Gainidatzi
       shortcode: Laster-kodea
@@ -339,6 +365,7 @@ eu:
       destroyed_msg: Domeinuaren blokeoa desegin da
       domain: Domeinua
       edit: Editatu domeinu-blokeoa
+      existing_domain_block: Aurretik muga zorrotzagoak ezarriak dituzu %{name} domeinuan.
       existing_domain_block_html: '%{name} domeinuan muga zorrotzagoak ezarri dituzu jada, aurretik <a href="%{unblock_url}">desblokeatu</a> beharko duzu.'
       new:
         create: Sortu blokeoa
@@ -371,8 +398,11 @@ eu:
       domain: Domeinua
       new:
         create: Gehitu domeinua
+        resolve: Ebatzi domeinua
         title: Sarrera berria e-mail zerrenda beltzean
-      no_email_domain_block_selected: Ez da eposta domeinu blokeorik aldatu ez delako bat bera ere hautatu
+      no_email_domain_block_selected: Ez da eposta domeinu blokeorik aldatu ez delako bat ere hautatu
+      resolved_dns_records_hint_html: Domeinu-izena ondorengo MX domeinuetara ebazten da, zeinek eposta onartzeko ardura duten. MX domeinu bat blokeatzeak MX domeinu hori erabiltzen duen edozein helbide elektronikotatik izena-ematea blokeatzen du, baita ikusgai dagoen domeinu-izena beste bat bada ere. <strong>Kontuz ibili eposta hornitzaile nagusiak blokeatu gabe.</strong>
+      resolved_through_html: "%{domain} domeinuaren bidez ebatzia"
       title: E-mail zerrenda beltza
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
@@ -419,6 +449,7 @@ eu:
       delivery:
         all: Guztiak
         clear: Garbitu banaketa erroreak
+        failing: Huts egiten du
         restart: Berrabiarazi banaketa
         stop: Gelditu banaketa
         unavailable: Eskuraezina
@@ -466,7 +497,7 @@ eu:
         '94670856': 3 urte
       new:
         title: Sortu IP arau berria
-      no_ip_block_selected: Ez da IP araurik aldatu, ez delako batere hautatu
+      no_ip_block_selected: Ez da IP araurik aldatu, ez delako bat ere hautatu
       title: IP arauak
     relationships:
       title: "%{acct}(e)ren erlazioak"
@@ -499,6 +530,7 @@ eu:
       action_taken_by: Neurrien hartzailea
       actions:
         delete_description_html: Salatutako bidalketak ezabatuko dira eta abisu bat gordeko da, etorkizunean kontu berarekin elkarrekintzarik baduzu kontuan izan dezazun.
+        mark_as_sensitive_description_html: Salatutako bidalketetako multimedia edukia hunkigarri bezala eta abisu bat gordeko da, etorkizunean kontu honek arau-hausterik egiten badu kontuan izan dezazun.
         other_description_html: Ikusi kontuaren portaera kontrolatzeko eta salatutako kontuarekin komunikazioa pertsonalizatzeko aukera gehiago.
         resolve_description_html: Ez da neurririk hartuko salatutako kontuaren aurka, ez da abisurik gordeko eta salaketa itxiko da.
         silence_description_html: Profila dagoeneko jarraitzen dutenei edo eskuz bilatzen dutenei bakarrik agertuko zaie, bere irismena asko mugatuz. Beti bota daiteke atzera.
@@ -548,6 +580,61 @@ eu:
       unresolved: Konpondu gabea
       updated_at: Eguneratua
       view_profile: Ikusi profila
+    roles:
+      add_new: Gehitu rola
+      categories:
+        administration: Administrazioa
+        devops: Devops
+        invites: Gonbidapenak
+        moderation: Moderazioa
+        special: Berezia
+      delete: Ezabatu
+      description_html: "<strong>Erabiltzaile rolak</strong> erabiliz erabiltzaileek Mastodonen ze funtzio eta lekutara sarbidea duten pertsonalizatu dezakezu."
+      edit: Editatu '%{name}' rola
+      everyone: Baimen lehenetsiak
+      everyone_full_description_html: Hau <strong>erabiltzaile guztiei</strong> eragiten dien <strong>oinarrizko rola</strong> da, rol bat esleitu gabekoei ere bai. Gainerako rolek honetatik heredatzen dituzte baimenak.
+      privileges:
+        administrator: Administratzailea
+        administrator_description: Baimen hau duten erabiltzaileak baimen guztien gainetik pasako dira
+        delete_user_data: Ezabatu erabiltzaileen datuak
+        delete_user_data_description: Baimendu erabiltzaileek beste erabiltzaileen datuak atzerapenik gabe ezabatzea
+        invite_users: Gonbidatu erabiltzaileak
+        invite_users_description: Baimendu erabiltzaileek zerbitzarira jende berria gonbidatzea
+        manage_announcements: Kudeatu iragarpenak
+        manage_announcements_description: Baimendu erabiltzaileek zerbitzariko iragarpenak kudeatzea
+        manage_appeals: Kudeatu apelazioak
+        manage_appeals_description: Baimendu erabiltzaileek moderazio ekintzen aurkako apelazioak berrikustea
+        manage_blocks: Kudeatu blokeatzeak
+        manage_blocks_description: Baimendu erabiltzaileek eposta hornitzaile eta IP helbideak blokeatzea
+        manage_custom_emojis: Kudeatu emoji pertsonalizatuak
+        manage_custom_emojis_description: Baimendu erabiltzaileek zerbitzariko emoji pertsonalizatuak kudeatzea
+        manage_federation: Kudeatu federazioa
+        manage_federation_description: Baimendu erabiltzaileek beste domeinuak blokeatu edo federazioa onartzea, eta banagarritasuna kontrolatzea
+        manage_invites: Kudeatu gonbidapenak
+        manage_invites_description: Baimendu erabiltzaileek gonbidapen estekak arakatu eta desaktibatzea
+        manage_reports: Kudeatu txostenak
+        manage_reports_description: Baimendu erabiltzaileek txostenak berrikusi eta moderazio ekintzak burutzea
+        manage_roles: Kudeatu rolak
+        manage_roles_description: Baimendu erabiltzaileek beren mailaren azpiko rolak kudeatu eta esleitzea
+        manage_rules: Kudeatu arauak
+        manage_rules_description: Baimendu erabiltzaileek zerbitzariaren arauak aldatzea
+        manage_settings: Kudeatu ezarpenak
+        manage_settings_description: Baimendu erabiltzaileek gunearen ezarpenak aldatzea
+        manage_taxonomies: Kudeatu taxonomiak
+        manage_taxonomies_description: Baimendu erabiltzaileek joerak berrikustea eta traolen ezarpenak eguneratzea
+        manage_user_access: Kudeatu erabiltzaileen sarbidea
+        manage_user_access_description: Baimendu erabiltzaileek beste erabiltzaileen bi faktoreko autentifikazioa desaktibatzea, eposta helbideak aldatzea eta pasahitzak berrezartzea
+        manage_users: Kudeatu erabiltzaileak
+        manage_users_description: Baimendu erabiltzaileek beste erabiltzaileen xehetasunak ikusi eta moderazio ekintzak burutzea
+        manage_webhooks: Kudeatu webhook-ak
+        manage_webhooks_description: Baimendu erabiltzaileek webhook-ak konfiguratzea gertaera administratiboentzat
+        view_audit_log: Ikusi auditoria-egunkaria
+        view_audit_log_description: Baimendu erabiltzaileek zerbitzariko administrazio-ekintzen historia ikustea
+        view_dashboard: Ikusi aginte-panela
+        view_dashboard_description: Baimendu erabiltzaileek aginte-panela eta hainbat estatistika ikustea
+        view_devops: Devops
+        view_devops_description: Baimendu erabiltzaileek Sidekiq eta pgHero aginte-paneletara sarbidea izatea
+      title: Rolak
     rules:
       add_new: Gehitu araua
       delete: Ezabatu
@@ -556,29 +643,66 @@ eu:
       empty: Ez da zerbitzariko araurik definitu oraindik.
       title: Zerbitzariaren arauak
     settings:
+      about:
+        manage_rules: Kudeatu zerbitzariaren arauak
+        preamble: Zerbitzaria nola gobernatzen, moderatzen eta finantzatzen den azaltzen duen informazio xehea eman.
+        rules_hint: Erabiltzaileek jarraitu behar dituzten arauei eskainitako atal bat dago.
+        title: Honi buruz
+      appearance:
+        preamble: Mastodonen web interfazea pertsonalizatu.
+        title: Itxura
+      branding:
+        preamble: 'Zure zerbitzariaren markak sareko beste zerbitzarietatik bereizten du. Informazio hau hainbat ingurunetan bistaratuko da: Mastodonen web interfazean, aplikazio natiboetan, esteken aurrebistak beste webguneetan eta mezularitza aplikazioetan eta abar. Horregatik, informazio hau garbia eta laburra izatea komeni da.'
+        title: Marka
+      content_retention:
+        preamble: Kontrolatu erabiltzaileek sortutako edukia nola biltegiratzen den Mastodonen.
+        title: Edukia atxikitzea
+      discovery:
+        follow_recommendations: Jarraitzeko gomendioak
+        profile_directory: Profil-direktorioa
+        public_timelines: Denbora-lerro publikoak
+        title: Aurkitzea
+        trends: Joerak
       domain_blocks:
         all: Guztiei
         disabled: Inori ez
         users: Saioa hasita duten erabiltzaile lokalei
+      registrations:
+        preamble: Kontrolatu nork sortu dezakeen kontua zerbitzarian.
+        title: Izen emateak
       registrations_mode:
         modes:
           approved: Izena emateko onarpena behar da
           none: Ezin du inork izena eman
           open: Edonork eman dezake izena
+      title: Zerbitzariaren ezarpenak
     site_uploads:
       delete: Ezabatu igotako fitxategia
       destroyed_msg: Guneko igoera ongi ezabatu da!
     statuses:
+      account: Egilea
+      application: Aplikazioa
       back_to_account: Atzera kontuaren orrira
       back_to_report: Atzera txostenaren orrira
       batch:
         remove_from_report: Kendu txostenetik
         report: Salatu
       deleted: Ezabatuta
+      favourites: Gogokoak
+      history: Bertsio-historia
+      in_reply_to: Honi erantzuten
+      language: Hizkuntza
       media:
         title: Multimedia
-      no_status_selected: Ez da bidalketarik aldatu ez delako bidalketarik aukeratu
+      metadata: Metadatuak
+      no_status_selected: Ez da bidalketarik aldatu ez delako bat ere hautatu
+      open: Ireki bidalketa
+      original_status: Jatorrizko bidalketa
+      reblogs: Bultzadak
+      status_changed: Bidalketa aldatuta
       title: Kontuaren bidalketak
+      trending: Joera
+      visibility: Ikusgaitasuna
       with_media: Multimediarekin
     strikes:
       actions:
@@ -618,11 +742,15 @@ eu:
         description_html: Esteka hauek zure zerbitzariak ikusten dituen kontuek asko zabaltzen ari diren estekak dira. Zure erabiltzaileei munduan ze berri den jakiteko lagungarriak izan daitezke. Ez da estekarik bistaratzen argitaratzaileak onartu arte. Esteka bakoitza onartu edo baztertu dezakezu.
         disallow: Ukatu esteka
         disallow_provider: Ukatu argitaratzailea
+        no_link_selected: Ez da estekarik aldatu ez delako bat ere hautatu
+        publishers:
+          no_publisher_selected: Ez da argitaratzailerik aldatu ez delako bat ere hautatu
         shared_by_over_week:
           one: Pertsona batek partekatua azken astean
           other: "%{count} pertsonak partekatua azken astean"
         title: Esteken joerak
         usage_comparison: "%{today} aldiz partekatua gaur, atzo %{yesterday} aldiz"
+      only_allowed: Soilik onartutakoak
       pending_review: Berrikusketaren zain
       preview_card_providers:
         allowed: Argitaratzaile honen estekak joera izan daitezke
@@ -634,6 +762,7 @@ eu:
         allow_account: Onartu egilea
         disallow: Ez onartu bidalketa
         disallow_account: Ez onartu egilea
+        no_status_selected: Ez da joerarik aldatu ez delako bat ere hautatu
       tags:
         current_score: Uneko emaitza%{score}
         dashboard:
@@ -643,6 +772,7 @@ eu:
           tag_servers_measure: zerbitzari desberdin
           tag_uses_measure: erabilera guztira
         listable: Gomendatu daiteke
+        no_tag_selected: Ez da etiketarik aldatu ez delako bat ere hautatu
         not_listable: Ez da gomendatuko
         not_trendable: Ez da joeretan agertuko
         not_usable: Ezin da erabili
@@ -653,13 +783,39 @@ eu:
         usable: Erabili daiteke
         usage_comparison: "%{today} aldiz erabili da gaur, atzo %{yesterday} aldiz"
       title: Joerak
+      trending: Joerak
     warning_presets:
       add_new: Gehitu berria
       delete: Ezabatu
       edit_preset: Editatu abisu aurre-ezarpena
       empty: Ez duzu abisu aurrezarpenik definitu oraindik.
       title: Kudeatu abisu aurre-ezarpenak
+    webhooks:
+      add_new: Gehitu amaiera-puntua
+      delete: Ezabatu
+      disable: Desgaitu
+      disabled: Desgaituta
+      edit: Editatu amaiera-puntua
+      empty: Ez duzu webhook amaiera-punturik konfiguratu oraindik.
+      enable: Gaitu
+      enabled: Aktiboa
+      events: Gertaerak
+      new: Webhook berria
+      rotate_secret: Biratu sekretua
+      secret: Sinatze-sekretua
+      status: Egoera
+      title: Webhook-ak
+      webhook: Webhook
   admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: bidalketak ezabatzea
+        disable: kontua blokeatzea
+        mark_statuses_as_sensitive: bidalketak hunkigarri gisa markatzea
+        none: abisu bat
+        sensitive: kontua hunkigarri gisa markatzea
+        silence: kontua mugatzea
+        suspend: kontua kanporatzea
     new_pending_account:
       body: Kontu berriaren xehetasunak azpian daude. Eskaera hau onartu edo ukatu dezakezu.
       subject: Kontu berria berrikusteko %{instance} instantzian (%{username})
@@ -808,6 +964,8 @@ eu:
       appeals:
         submit: Bidali apelazioa
       recipient: Honi zuzendua
+      title_actions:
+        suspend: Kontua kanporatzea
   domain_validator:
     invalid_domain: ez da domeinu izen baliogarria
   errors:
@@ -1254,6 +1412,8 @@ eu:
       subject: Zure artxiboa deskargatzeko prest dago
       title: Artxiboa jasotzea
     warning:
+      explanation:
+        suspend: Ezin duzu zure kontua erabili, eta zure profila eta beste datuak ez daude eskuragarri jada. Hala ere, saioa hasi dezakezu zure datuen babeskopia eskatzeko, 30 egun inguru barru behin betiko ezabatu aurretik. Zure oinarrizko informazioa gordeko da kanporatzea saihestea eragozteko.
       subject:
         disable: Zure  %{acct} kontua izoztu da
         none: "%{acct} konturako abisua"

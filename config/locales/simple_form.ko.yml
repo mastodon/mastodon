@@ -75,13 +75,19 @@ ko:
           warn: 필터에 걸러진 글을 필터 제목과 함께 경고 뒤에 가리기
       form_admin_settings:
         backups_retention_period: 생성된 사용자 아카이브를 며칠동안 저장할 지.
+        bootstrap_timeline_accounts: 이 계정들은 팔로우 추천 목록 상단에 고정됩니다.
         closed_registrations_message: 새 가입을 차단했을 때 표시됩니다
         content_cache_retention_period: 양수가 설정되었다면 다른 서버의 게시물은 여기서 설정된 일수가 지나면 삭제될 것입니다. 되돌릴 수 없는 작업일 수 있습니다.
         custom_css: 사용자 지정 스타일을 웹 버전의 마스토돈에 지정할 수 있습니다.
         mascot: 고급 사용자 인터페이스에 있는 일러스트를 교체합니다.
         media_cache_retention_period: 양수로 설정된 경우 다운로드된 미디어 파일들은 지정된 일수가 지나면 삭제될 것이고 필요할 때 다시 다운로드 될 것입니다.
+        profile_directory: 프로필 책자는 발견되기를 희망하는 모든 사람들의 목록을 나열합니다.
+        require_invite_text: 가입이 수동 승인을 필요로 할 때, "왜 가입하려고 하나요?" 항목을 선택사항으로 두는 것보다는 필수로 두는 것이 낫습니다
         site_contact_email: 사람들이 법적이나 도움 요청을 위해 당신에게 연락할 방법.
         site_contact_username: 사람들이 마스토돈에서 당신에게 연락할 방법.
+        site_extended_description: 방문자와 사용자에게 유용할 수 있는 추가정보들. 마크다운 문법을 사용할 수 있습니다.
+        site_short_description: 이 서버를 특별하게 구분할 수 있는 짧은 설명. 누가 운영하고, 누구를 위한 것인가요?
+        site_terms: 자신만의 개인정보 정책을 사용하거나 비워두는 것으로 기본값을 사용할 수 있습니다. 마크다운 문법을 사용할 수 있습니다.
         theme: 로그인 하지 않은 사용자나 새로운 사용자가 보게 될 테마.
       form_challenge:
         current_password: 당신은 보안 구역에 진입하고 있습니다

@@ -6,7 +6,7 @@ class PushUpdateWorker
 
   def perform(account_id, status_id, timeline_id = nil, options = {})
     @account     = Account.find(account_id)
-    @status      = Status.find(status_id)
+    @status      = Status.includes(active_mentions: :account, reblog: { active_mentions: :account }).find(status_id)
     @timeline_id = timeline_id || "timeline:#{account.id}"
     @options     = options.symbolize_keys
 

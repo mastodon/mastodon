@@ -897,6 +897,10 @@
       {
         "defaultMessage": "Reason",
         "id": "about.domain_blocks.comment"
+      },
+      {
+        "defaultMessage": "Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.",
+        "id": "about.disclaimer"
       }
     ],
     "path": "app/javascript/mastodon/features/about/index.json"
@@ -1641,6 +1645,10 @@
         "id": "search.placeholder"
       },
       {
+        "defaultMessage": "Search or paste URL",
+        "id": "search.search_or_paste"
+      },
+      {
         "defaultMessage": "Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.",
         "id": "search_popout.tips.full_text"
       },
@@ -1679,11 +1687,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Processing…",
+        "id": "upload_progress.processing"
+      },
+      {
         "defaultMessage": "Uploading…",
         "id": "upload_progress.label"
       }
     ],
-    "path": "app/javascript/mastodon/features/compose/components/upload_form.json"
+    "path": "app/javascript/mastodon/features/compose/components/upload_progress.json"
   },
   {
     "descriptors": [
@@ -3960,48 +3972,32 @@
         "id": "confirmations.logout.confirm"
       },
       {
-        "defaultMessage": "Get the app",
-        "id": "navigation_bar.apps"
-      },
-      {
         "defaultMessage": "About",
-        "id": "navigation_bar.info"
-      },
-      {
-        "defaultMessage": "About Mastodon",
-        "id": "getting_started.what_is_mastodon"
-      },
-      {
-        "defaultMessage": "Documentation",
-        "id": "getting_started.documentation"
-      },
-      {
-        "defaultMessage": "Privacy Policy",
-        "id": "getting_started.privacy_policy"
-      },
-      {
-        "defaultMessage": "Hotkeys",
-        "id": "navigation_bar.keyboard_shortcuts"
-      },
-      {
-        "defaultMessage": "Directory",
-        "id": "getting_started.directory"
+        "id": "footer.about"
       },
       {
         "defaultMessage": "Invite people",
-        "id": "getting_started.invite"
+        "id": "footer.invite"
       },
       {
-        "defaultMessage": "Security",
-        "id": "getting_started.security"
+        "defaultMessage": "Profiles directory",
+        "id": "footer.directory"
       },
       {
-        "defaultMessage": "Logout",
-        "id": "navigation_bar.logout"
+        "defaultMessage": "Privacy policy",
+        "id": "footer.privacy_policy"
       },
       {
-        "defaultMessage": "Mastodon is free, open source software. You can view the source code, contribute or report issues at {repository}.",
-        "id": "getting_started.free_software_notice"
+        "defaultMessage": "Get the app",
+        "id": "footer.get_app"
+      },
+      {
+        "defaultMessage": "Keyboard shortcuts",
+        "id": "footer.keyboard_shortcuts"
+      },
+      {
+        "defaultMessage": "View source code",
+        "id": "footer.source_code"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/link_footer.json"
