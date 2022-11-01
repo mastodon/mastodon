@@ -27,7 +27,7 @@ See the guidelines below.
 
  - - -
 
-You should also try to follow the guidelines set out in the original `CONTRIBUTING.md` from `tootsuite/mastodon`, reproduced below.
+You should also try to follow the guidelines set out in the original `CONTRIBUTING.md` from `mastodon/mastodon`, reproduced below.
 
 <blockquote>
 

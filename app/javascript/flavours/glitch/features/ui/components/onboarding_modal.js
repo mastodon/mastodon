@@ -148,7 +148,7 @@ const PageSix = ({ admin, domain }) => {
           values={{
             domain,
             fork: <a href='https://en.wikipedia.org/wiki/Fork_(software_development)' target='_blank' rel='noopener'>fork</a>,
-            Mastodon: <a href='https://github.com/tootsuite/mastodon' target='_blank' rel='noopener'>Mastodon</a>,
+            Mastodon: <a href='https://github.com/mastodon/mastodon' target='_blank' rel='noopener'>Mastodon</a>,
             github: <a href={source_url} target='_blank' rel='noopener'>GitHub</a>,
           }}
         />

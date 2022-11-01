@@ -42,7 +42,7 @@ class LinkFooter extends React.PureComponent {
     e.stopPropagation();
 
     this.props.onLogout();
- 
+
     return false;
   }
 
@@ -84,7 +84,7 @@ class LinkFooter extends React.PureComponent {
             defaultMessage='Glitchsoc is open source software, a friendly fork of {Mastodon}. You can contribute or report issues on GitHub at {github}.'
             values={{
               github: <span><a href={source_url} rel='noopener noreferrer' target='_blank'>{repository}</a> (v{version})</span>,
-              Mastodon: <a href='https://github.com/tootsuite/mastodon' rel='noopener noreferrer' target='_blank'>Mastodon</a> }}
+              Mastodon: <a href='https://github.com/mastodon/mastodon' rel='noopener noreferrer' target='_blank'>Mastodon</a> }}
           />
         </p>
       </div>
