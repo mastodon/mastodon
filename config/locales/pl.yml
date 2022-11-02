@@ -1,29 +1,28 @@
----
 pl:
   about:
-    about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
+    about_mastodon_html: 'Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.'
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
     hosted_on: Mastodon uruchomiony na %{domain}
     title: O nas
   accounts:
-    follow: Śledź
+    follow: Obserwuj
     followers:
+      one: śledzący
       few: śledzących
       many: śledzących
-      one: śledzący
-      other: Śledzących
-    following: śledzonych
+      other: obserwujących
+    following: Obserwowanych
     instance_actor_flash: To konto jest wirtualnym profilem używanym do reprezentowania samego serwera, a nie żadnego indywidualnego użytkownika. Jest ono stosowane do celów federacji i nie powinien być zawieszany.
     last_active: ostatnio aktywny(-a)
     link_verified_on: Własność tego odnośnika została sprawdzona %{date}
     nothing_here: Niczego tu nie ma!
     pin_errors:
-      following: Musisz śledzić osobę, którą chcesz polecać
+      following: Musisz obserwować osobę, którą chcesz polecać
     posts:
+      one: wpis
       few: wpisy
       many: wpisów
-      one: wpis
       other: Wpisów
     posts_tab_heading: Wpisy
   admin:
@@ -60,7 +59,7 @@ pl:
       delete: Usuń dane
       deleted: Usunięto
       demote: Degraduj
-      destroyed_msg: Dane %{username} są teraz w kolejce do natychmiastowego usunięcia
+      destroyed_msg: "Dane %{username} są teraz w kolejce do natychmiastowego usunięcia"
       disable: Dezaktywuj
       disable_sign_in_token_auth: Wyłącz uwierzytelnianie tokenu e-mail
       disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
@@ -74,8 +73,8 @@ pl:
       enable_sign_in_token_auth: Włącz uwierzytelnianie tokenu e-mail
       enabled: Aktywowano
       enabled_msg: Pomyślnie odblokowano konto %{username}
-      followers: Śledzący
-      follows: Śledzeni
+      followers: Obserwujący
+      follows: Obserwowani
       header: Nagłówek
       inbox_url: Adres skrzynki
       invite_request_text: Powody rejestracji
@@ -110,9 +109,9 @@ pl:
       perform_full_suspension: Zawieś
       previous_strikes: Poprzednie ostrzeżenia
       previous_strikes_description_html:
+        one: To konto ma <strong>jedno</strong> ostrzeżenie.
         few: To konto ma <strong>%{count}</strong> ostrzeżenia.
         many: To konto ma <strong>%{count}</strong> ostrzeżeń.
-        one: To konto ma <strong>jedno</strong> ostrzeżenie.
         other: To konto ma <strong>%{count}</strong> ostrzeżeń.
       promote: Podnieś uprawnienia
       protocol: Protokół
@@ -349,24 +348,24 @@ pl:
       new_users: nowi użytkownicy
       opened_reports: otwarte zgłoszenia
       pending_appeals_html:
+        one: "<strong>%{count}</strong> oczekujących odwołań"
         few: "<strong>%{count}</strong> oczekujące odwołania"
         many: "<strong>%{count}</strong> oczekujących odwołań"
-        one: "<strong>%{count}</strong> oczekujących odwołań"
         other: "<strong>%{count}</strong> oczekujących odwołań"
       pending_reports_html:
+        one: "<strong>%{count}</strong> oczekujący raport"
         few: "<strong>%{count}</strong> oczekujące raporty"
         many: "<strong>%{count}</strong> oczekujących raportów"
-        one: "<strong>%{count}</strong> oczekujący raport"
         other: "<strong>%{count}</strong> oczekujących raportów"
       pending_tags_html:
+        one: "<strong>%{count}</strong> oczekujący hashtag"
         few: "<strong>%{count}</strong> oczekujące hashtagi"
         many: "<strong>%{count}</strong> oczekujących hashtagów"
-        one: "<strong>%{count}</strong> oczekujący hashtag"
         other: "<strong>%{count}</strong> oczekujących hashtagów"
       pending_users_html:
+        one: "<strong>%{count}</strong> oczekujący użytkownik"
         few: "<strong>%{count}</strong> oczekujących użytkowników"
         many: "<strong>%{count}</strong> oczekujących użytkowników"
-        one: "<strong>%{count}</strong> oczekujący użytkownik"
         other: "<strong>%{count}</strong> oczekujących użytkowników"
       resolved_reports: zamkniętych zgłoszeń
       software: Oprogramowanie
@@ -397,7 +396,7 @@ pl:
         create: Utwórz blokadę
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
-          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika widoczne tylko dla osób, które go śledzą. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
+          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika widoczne tylko dla osób, które go obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
           noop: Nic nie rób
           silence: Wycisz
           suspend: Zawieś
@@ -417,9 +416,9 @@ pl:
     email_domain_blocks:
       add_new: Dodaj nową
       attempts_over_week:
+        one: "%{count} próba w ciągu ostatniego tygodnia"
         few: "%{count} próby w ciągu ostatniego tygodnia"
         many: "%{count} prób w ciągu ostatniego tygodnia"
-        one: "%{count} próba w ciągu ostatniego tygodnia"
         other: "%{count} prób w ciągu ostatniego tygodnia"
       created_msg: Pomyślnie utworzono blokadę domeny e-mail
       delete: Usuń
@@ -436,25 +435,25 @@ pl:
       resolved_through_html: Rozwiązano przez %{domain}
       title: Blokowanie domen e-mail
     follow_recommendations:
-      description_html: "<strong>Polecane śledzenia pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
+      description_html: "<strong>Polecane obserwacje pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
       language: Dla języka
       status: Stan
-      suppress: Usuń polecenie śledzenia
+      suppress: Usuń polecenie obserwacji
       suppressed: Usunięto
       title: Polecane konta
-      unsuppress: Przywróć polecenie śledzenia konta
+      unsuppress: Przywróć polecenie obserwacji konta
     instances:
       availability:
         description_html:
+          one: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dzień</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
           few: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
           many: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
-          one: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dzień</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
           other: Jeśli dostarczenie do domeny nie powiedzie się <strong>%{count} dni</strong> bez powodzenia, nie zostaną podjęte dalsze próby dostawy, chyba że otrzymano dostawę <em>od</em> domeny.
         failure_threshold_reached: Próg niepowodzenia osiągnięty dnia %{date}.
         failures_recorded:
+          one: Nieudane próby %{count} dnia.
           few: Nieudane próby w %{count} różnych dniach.
           many: Nieudane próby w %{count} różnych dniach.
-          one: Nieudane próby %{count} dnia.
           other: Nieudane próby w %{count} różnych dniach.
         no_failures_recorded: Brak błędów w rejestrze.
         title: Dostępność
@@ -476,10 +475,10 @@ pl:
         reason: Powód publiczny
         title: Polityki zawartości
       dashboard:
-        instance_accounts_dimension: Najczęściej śledzone konta
+        instance_accounts_dimension: Najczęściej obserwowane konta
         instance_accounts_measure: przechowywane konta
-        instance_followers_measure: nasi śledzący tam
-        instance_follows_measure: ich śledzący tutaj
+        instance_followers_measure: nasi obserwujący tam
+        instance_follows_measure: ich obserwujący tutaj
         instance_languages_dimension: Najpopularniejsze języki
         instance_media_attachments_measure: przechowywane załączniki multimedialne
         instance_reports_measure: zgłoszenia dotyczące ich
@@ -497,9 +496,9 @@ pl:
       destroyed_msg: Dane z %{domain} są teraz w kolejce do bezpośredniego usunięcia.
       empty: Nie znaleziono domen.
       known_accounts:
+        one: "%{count} znane konto"
         few: "%{count} znane konta"
         many: "%{count} znanych kont"
-        one: "%{count} znane konto"
         other: "%{count} znane konta"
       moderation:
         all: Wszystkie
@@ -511,8 +510,8 @@ pl:
       purge_description_html: Jeśli uważasz, że ta domena została zamknięta na dobre, możesz usunąć wszystkie rejestry konta i powiązane dane z tej domeny z pamięci. Proces ten może chwilę potrwać.
       title: Znane instancje
       total_blocked_by_us: Zablokowane przez nas
-      total_followed_by_them: Śledzeni przez nich
-      total_followed_by_us: Śledzeni przez nas
+      total_followed_by_them: Obserwowani przez nich
+      total_followed_by_us: Obserwowani przez nas
       total_reported: Zgłoszenia dotyczące ich
       total_storage: Załączniki multimedialne
       totals_time_period_hint_html: Poniższe sumy zawierają dane od początku serwera.
@@ -540,11 +539,11 @@ pl:
       no_ip_block_selected: Żadna reguła nie została zmieniona, ponieważ żadna nie została wybrana
       title: Reguły adresów IP
     relationships:
-      title: Relacje %{acct}
+      title: "Relacje %{acct}"
     relays:
       add_new: Dodaj nowy
       delete: Usuń
-      description_html: "<strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznego śledzenia osób z innych serwerów."
+      description_html: <strong>Przekaźnik federacji</strong> jest pośredniczącym serwerem wymieniającym duże ilości publicznych wpisów pomiędzy serwerami które subskrybują je i publikują na nich. <strong>Pomaga to małym i średnim instancją poznawać nową zawartość z Fediwersum</strong>, co w innym przypadku wymagałoby od użytkowników ręcznej obserwacji osób z innych serwerów.
       disable: Wyłącz
       disabled: Wyłączony
       enable: Włącz
@@ -564,9 +563,9 @@ pl:
     reports:
       account:
         notes:
+          one: "%{count} notatka"
           few: "%{count} notatki"
           many: "%{count} notatek"
-          one: "%{count} notatka"
           other: "%{count} notatki"
       action_log: Dziennik audytu
       action_taken_by: Działanie podjęte przez
@@ -625,9 +624,9 @@ pl:
     roles:
       add_new: Dodaj rolę
       assigned_users:
+        one: "%{count} użytkownik"
         few: "%{count} użytkowników"
         many: "%{count} użytkowników"
-        one: "%{count} użytkownik"
         other: "%{count} użytkowników"
       categories:
         administration: Administracja
@@ -641,9 +640,9 @@ pl:
       everyone: Domyślnie uprawnienia
       everyone_full_description_html: To jest <strong>rola podstawowa</strong> wpływająca na <strong>wszystkich użytkowników</strong>, nawet tych, którzy nie mają przypisanej roli. Wszystkie inne role dziedziczą z niej uprawnienia.
       permissions_count:
+        one: "%{count} uprawnienie"
         few: "%{count} uprawnień"
         many: "%{count} uprawnień"
-        one: "%{count} uprawnienie"
         other: "%{count} uprawnień"
       privileges:
         administrator: Administrator
@@ -710,7 +709,7 @@ pl:
         preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
         title: Retencja treści
       discovery:
-        follow_recommendations: Postępuj zgodnie z zaleceniami
+        follow_recommendations: Polecane konta
         preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
@@ -799,9 +798,9 @@ pl:
         publishers:
           no_publisher_selected: Żadni publikujcy nie zostali zmienieni, ponieważ żadnych nie wybrano
         shared_by_over_week:
+          one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
           few: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
           many: Udostępnione przez %{count} osób w ciągu ostatniego tygodnia
-          one: Udostępnione przez jedną osobę w ciągu ostatniego tygodnia
           other: Udostępnione przez %{count} osoby w ciągu ostatniego tygodnia
         title: Popularne linki
         usage_comparison: Udostępnione %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
@@ -816,15 +815,15 @@ pl:
       statuses:
         allow: Zezwól na post
         allow_account: Zezwól na autora
-        description_html: Są to wpisy, o których Twój serwer wie i które są obecnie często udostępniane i dodawane do ulubionych. Może to pomóc nowym i powracającym użytkownikom znaleźć więcej osób do śledzenia. Żadne posty nie są wyświetlane publicznie, dopóki nie zatwierdzisz autora, a autor ustawi zezwolenie na wyświetlanie się w katalogu. Możesz również zezwolić lub odrzucić poszczególne posty.
+        description_html: Są to wpisy, o których Twój serwer wie i które są obecnie często udostępniane i dodawane do ulubionych. Może to pomóc nowym i powracającym użytkownikom znaleźć więcej osób do obserwacji. Żadne posty nie są wyświetlane publicznie, dopóki nie zatwierdzisz autora, a autor ustawi zezwolenie na wyświetlanie się w katalogu. Możesz również zezwolić lub odrzucić poszczególne posty.
         disallow: Nie zezwalaj na post
         disallow_account: Nie zezwalaj na autora
         no_status_selected: Żadne popularne wpisy nie zostały zmienione, ponieważ żadnych nie wybrano
         not_discoverable: Autor nie włączył opcji, by być wyświetlany w katalogu
         shared_by:
+          one: Udostępnione lub dodane do ulubionych jednorazowo
           few: Udostępnione i dodane do ulubionych %{friendly_count} razy
           many: Udostępnione i dodane do ulubionych %{friendly_count} razy
-          one: Udostępnione lub dodane do ulubionych jednorazowo
           other: Udostępnione i dodane do ulubionych %{friendly_count} razy
         title: Popularne teraz
       tags:
@@ -848,9 +847,9 @@ pl:
         usable: Może być użyty
         usage_comparison: Używane %{today} razy dzisiaj, w porównaniu z %{yesterday} wczoraj
         used_by_over_week:
+          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
           few: Użyte przez %{count} osoby w ciągu ostatniego tygodnia
           many: Użyte przez %{count} osób w ciągu ostatniego tygodnia
-          one: Użyte przez jedną osobę w ciągu ostatniego tygodnia
           other: Użyte przez %{count} osób w ciągu ostatniego tygodnia
       title: Na czasie
       trending: Popularne
@@ -863,7 +862,7 @@ pl:
     webhooks:
       add_new: Dodaj punkt końcowy
       delete: Usuń
-      description_html: "<strong>webhook</strong> umożliwia Mastodon dostarczanie <strong>powiadomień w czasie rzeczywistym</strong> o wybranych wydarzeniach do twojej aplikacji, aby mogła <strong>automatycznie wyzwalać reakcje</strong>."
+      description_html: <strong>webhook</strong> umożliwia Mastodon dostarczanie <strong>powiadomień w czasie rzeczywistym</strong> o wybranych wydarzeniach do twojej aplikacji, aby mogła <strong>automatycznie wyzwalać reakcje</strong>.
       disable: Wyłącz
       disabled: Wyłączone
       edit: Edytuj punkt końcowy
@@ -871,9 +870,9 @@ pl:
       enable: Włącz
       enabled: Aktywne
       enabled_events:
+        one: 1 włączone zdarzenie
         few: "%{count} włączone zdarzenia"
         many: "%{count} włączonych zdarzeń"
-        one: 1 włączone zdarzenie
         other: "%{count} włączonych zdarzeń"
       events: Zdarzenia
       new: Nowy webhook
@@ -899,9 +898,9 @@ pl:
       body: Poniżej znajdują się szczegóły dotycząće nowego konta. Możesz przyjąć lub odrzucić to podanie.
       subject: Nowe konto czeka na przegląd na %{instance} (%{username})
     new_report:
-      body: Użytkownik %{reporter} zgłosił(a) %{target}
+      body: "Użytkownik %{reporter} zgłosił(a) %{target}"
       body_remote: Użytkownik instancji %{domain} zgłosił(a) %{target}
-      subject: Nowe zgłoszenie na %{instance} (#%{id})
+      subject: 'Nowe zgłoszenie na %{instance} (#%{id})'
     new_trends:
       body: 'Następujące elementy potrzebują recenzji zanim będą mogły być wyświetlane publicznie:'
       new_trending_links:
@@ -922,7 +921,7 @@ pl:
     remove: Odłącz alias
   appearance:
     advanced_web_interface: Zaawansowany interfejs użytkownika
-    advanced_web_interface_hint: Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.
+    advanced_web_interface_hint: 'Jeśli chcesz użyć pełną szerokość swojego ekranu, zaawansowany interfejs użytkownika pozwala Ci skonfigurować wiele różnych kolumn, by zobaczyć jak najwięcej informacji kiedy tylko chcesz. Strona główna, Powiadomienia, Globalna oś czasu, dowolna ilość list i hasztagów.'
     animations_and_accessibility: Animacje i dostępność
     confirmation_dialogs: Dialogi potwierdzenia
     discovery: Odkrywanie
@@ -954,7 +953,7 @@ pl:
     description:
       prefix_invited_by_user: "@%{name} zaprasza Cię do dołączenia na ten serwer Mastodona!"
       prefix_sign_up: Zarejestruj się na Mastodon już dziś!
-      suffix: Mając konto, możesz śledzić ludzi, publikować wpisy i wymieniać się wiadomościami z użytkownikami innych serwerów Mastodona i nie tylko!
+      suffix: Mając konto, możesz obserwować ludzi, publikować wpisy i wymieniać się wiadomościami z użytkownikami innych serwerów Mastodona i nie tylko!
     didnt_get_confirmation: Nie otrzymałeś(-aś) instrukcji weryfikacji?
     dont_have_your_security_key: Nie masz klucza bezpieczeństwa?
     forgot_password: Nie pamiętasz hasła?
@@ -997,17 +996,17 @@ pl:
     too_fast: Zbyt szybko przesłano formularz, spróbuj ponownie.
     use_security_key: Użyj klucza bezpieczeństwa
   authorize_follow:
-    already_following: Już śledzisz to konto
-    already_requested: Już wysłałeś(-aś) prośbę o możliwość śledzenia tego konta
+    already_following: Już obserwujesz to konto
+    already_requested: Już wysłałeś(-aś) prośbę o możliwość obserwowania tego konta
     error: Niestety, podczas sprawdzania zdalnego konta wystąpił błąd
-    follow: Śledź
-    follow_request: 'Wysłano prośbę o pozwolenie na śledzenie:'
-    following: 'Pomyślnie! Od teraz śledzisz:'
+    follow: Obsewuj
+    follow_request: 'Wysłano prośbę o możliwość obserwowania:'
+    following: 'Pomyślnie! Od teraz obserwujesz:'
     post_follow:
       close: Ewentualnie, możesz po prostu zamknąć tę stronę.
       return: Pokaż stronę użytkownika
       web: Przejdź do sieci
-    title: Śledź %{acct}
+    title: Obserwuj %{acct}
   challenge:
     confirm: Kontynuuj
     hint_html: "<strong>Informacja:</strong> Nie będziemy prosić Cię o ponowne podanie hasła przez następną godzinę."
@@ -1145,19 +1144,19 @@ pl:
       expires_in: Wygasa za %{distance}
       expires_on: Wygasa %{date}
       keywords:
+        one: "%{count} słowo kluczowe"
         few: "%{count} słowa kluczowe"
         many: "%{count} słów kluczowych"
-        one: "%{count} słowo kluczowe"
         other: "%{count} słów kluczowych"
       statuses:
+        one: "%{count} post"
         few: "%{count} posty"
         many: "%{count} postów"
-        one: "%{count} post"
         other: "%{count} postów"
       statuses_long:
+        one: "%{count} ukryty post"
         few: "%{count} ukryte posty"
         many: "%{count} ukrytych postów"
-        one: "%{count} ukryty post"
         other: "%{count} postów ukrytych"
       title: Filtry
     new:
@@ -1175,14 +1174,14 @@ pl:
   generic:
     all: Wszystkie
     all_items_on_page_selected_html:
-      few: "<strong>%{count}</strong> elementy na tej stronie są wybrane."
-      many: "<strong>%{count}</strong> elementów na tej stronie jest wybrane."
       one: "<strong>%{count}</strong> element na tej stronie jest wybrany."
-      other: "<strong>%{count}</strong> elementów na tej stronie jest wybrane."
+      few: <strong>%{count}</strong> elementy na tej stronie są wybrane.
+      many: <strong>%{count}</strong> elementów na tej stronie jest wybrane.
+      other: <strong>%{count}</strong> elementów na tej stronie jest wybrane.
     all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> element pasujący do Twojego wyszukiwania został wybrany."
       few: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
       many: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
-      one: "<strong>%{count}</strong> element pasujący do Twojego wyszukiwania został wybrany."
       other: Wszystkie <strong>%{count}</strong> elementy pasujące do Twojego wyszukiwania zostały wybrane.
     changes_saved_msg: Ustawienia zapisane!
     copy: Kopiuj
@@ -1192,15 +1191,15 @@ pl:
     order_by: Uporządkuj według
     save_changes: Zapisz zmiany
     select_all_matching_items:
+      one: Zaznacz %{count} element pasujący do wyszukiwania.
       few: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
       many: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
-      one: Zaznacz %{count} element pasujący do wyszukiwania.
       other: Zaznacz wszystkie %{count} elementy pasujące do wyszukiwania.
     today: dzisiaj
     validation_errors:
+      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       few: Coś jest wciąż nie tak! Przejrzyj %{count} poniższe błędy
       many: Coś jest wciąż nie tak! Przejrzyj %{count} poniższych błędów
-      one: Coś jest wciąż nie tak! Przyjrzyj się poniższemu błędowi
       other: Coś jest wciąż nie tak! Przejrzyj poniższe błędy (%{count})
   html_validator:
     invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
@@ -1212,13 +1211,13 @@ pl:
       merge_long: Zachowaj obecne wpisy i dodaj nowe
       overwrite: Nadpisz
       overwrite_long: Zastąp obecne wpisy nowymi
-    preface: Możesz zaimportować pewne dane (np. lista kont, które śledzisz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
+    preface: Możesz zaimportować pewne dane (np. lista kont, które obserwujesz lub blokujesz) do swojego konta na tym serwerze, korzystając z danych wyeksportowanych z innego serwera.
     success: Twoje dane zostały załadowane i zostaną niebawem przetworzone
     types:
       blocking: Lista blokowanych
       bookmarks: Zakładki
       domain_blocking: Lista zablokowanych domen
-      following: Lista śledzonych
+      following: Lista obserwowanych
       muting: Lista wyciszonych
     upload: Załaduj
   invites:
@@ -1235,9 +1234,9 @@ pl:
     generate: Wygeneruj
     invited_by: 'Zostałeś(-aś) zaproszony(-a) przez:'
     max_uses:
+      one: jedno użycie
       few: "%{count} użycia"
       many: "%{count} użyć"
-      one: jedno użycie
       other: "%{count} użyć"
     max_uses_prompt: Bez ograniczenia
     prompt: Wygeneruj odnośniki i udostępnij je innym, aby pozwolić na rejestrację na tym serwerze
@@ -1267,7 +1266,7 @@ pl:
   migrations:
     acct: nazwa@domena nowego konta
     cancel: Anuluj przekierowanie
-    cancel_explanation: Anulowanie przekierowania aktywuje Twoje obecne konto ponownie, ale nie przeniesie z powrotem śledzących, których przeniesiono na tamto konto.
+    cancel_explanation: Anulowanie przekierowania aktywuje Twoje obecne konto ponownie, ale nie przeniesie z powrotem obserwujących, których przeniesiono na tamto konto.
     cancelled_msg: Pomyślnie anulowano przekierowanie.
     errors:
       already_moved: jest tym samym kontem, na które już się przeniosłeś(-aś)
@@ -1275,10 +1274,10 @@ pl:
       move_to_self: nie może być bieżącym kontem
       not_found: nie mogło zostać odnalezione
       on_cooldown: Nie możesz teraz przenieść konta
-    followers_count: Śledzący w chwili przenoszenia
+    followers_count: Obserwujący w chwili przenoszenia
     incoming_migrations: Przenoszenie z innego konta
     incoming_migrations_html: Aby przenieść się z innego konta na to, musisz najpierw <a href="%{path}">utworzyć alias konta</a>.
-    moved_msg: Twoje konto przekierowuje teraz na %{acct}, a śledzący są przenoszeni.
+    moved_msg: Twoje konto przekierowuje teraz na %{acct}, a obserwujący są przenoszeni.
     not_redirecting: Twoje konto nie przekierowuje obecnie na żadne inne konto.
     on_cooldown: Ostatnio przeniosłeś(-aś) swoje konto. Ta funkcja będzie dostępna ponownie za %{count} dni.
     past_migrations: Poprzednie migracje
@@ -1291,7 +1290,7 @@ pl:
       before: 'Zanim kontynuujesz, przeczytaj uważnie te uwagi:'
       cooldown: Po przeniesieniu się, istnieje okres przez który nie możesz ponownie się przenieść
       disabled_account: Twoje obecne konto nie będzie później całkowicie użyteczne. Możesz jednak uzyskać dostęp do eksportu danych i ponownie aktywować je.
-      followers: To działanie przeniesie wszystkich Twoich śledzących z obecnego konta na nowe
+      followers: To działanie przeniesie wszystkich Twoich obserwujących z obecnego konta na nowe
       only_redirect_html: Możesz też <a href="%{path}">po prostu skonfigurować przekierowanie na swój profil</a>.
       other_data: Żadne inne dane nie zostaną automatycznie przeniesione
       redirect: Twoje obecne konto zostanie uaktualnione o informację o przeniesieniu i wyłączone z wyszukiwania
@@ -1314,24 +1313,24 @@ pl:
       subject: "%{name} lubi Twój wpis"
       title: Nowe polubienie
     follow:
-      body: "%{name} Cię śledzi!"
-      subject: "%{name} Cię śledzi"
-      title: Nowy śledzący
+      body: "%{name} Cię obserwuje!"
+      subject: "%{name} Cię obserwuje"
+      title: Nowy obserwujący
     follow_request:
-      action: Zarządzaj prośbami o możliwość śledzenia
-      body: "%{name} poprosił(a) o możliwość śledzenia Cię"
-      subject: 'Prośba o możliwość śledzenia: %{name}'
-      title: Nowa prośba o możliwość śledzenia
+      action: Zarządzaj prośbami o możliwość obserwacji
+      body: "%{name} poprosił(a) o możliwość obserwowania Cię"
+      subject: 'Prośba o możliwość obserwowania: %{name}'
+      title: Nowa prośba o możliwość obsewowania
     mention:
       action: Odpowiedz
-      body: "%{name} wspomniał(a) o Tobie w:"
-      subject: "%{name} wspomniał(a) o Tobie"
+      body: '%{name} wspomniał(a) o Tobie w:'
+      subject: '%{name} wspomniał(a) o Tobie'
       title: Nowe wspomnienie o Tobie
     poll:
       subject: Ankieta %{name} zakończyła się
     reblog:
       body: 'Twój wpis został podbity przez %{name}:'
-      subject: Twój wpis został podbity przez %{name}
+      subject: "Twój wpis został podbity przez %{name}"
       title: Nowe podbicie
     status:
       subject: "%{name} właśnie opublikował(a) wpis"
@@ -1389,9 +1388,9 @@ pl:
   relationships:
     activity: Aktywność konta
     dormant: Uśpione
-    follow_selected_followers: Zacznij śledzić wybranych śledzących
-    followers: Śledzący
-    following: Śledzeni
+    follow_selected_followers: Zacznij obserwować wybranych obserwujących
+    followers: Obserwujący
+    following: Obserwowani
     invited: Zaproszeni
     last_active: Ostatnia aktywność
     most_recent: Ostatnie
@@ -1399,9 +1398,9 @@ pl:
     mutual: Wspólna
     primary: Jednostronna
     relationship: Relacja
-    remove_selected_domains: Usuń wszystkich śledzących z zaznaczonych domen
-    remove_selected_followers: Usuń zaznaczonych śledzących
-    remove_selected_follows: Przestań śledzić zaznaczonych użytkowników
+    remove_selected_domains: Usuń wszystkich obserwujących z zaznaczonych domen
+    remove_selected_followers: Usuń zaznaczonych obserwujących
+    remove_selected_follows: Przestań obserwować zaznaczonych użytkowników
     status: Stan konta
   remote_follow:
     missing_resource: Nie udało się znaleźć adresu przekierowania z Twojej domeny
@@ -1477,7 +1476,7 @@ pl:
     notifications: Powiadomienia
     preferences: Preferencje
     profile: Profil
-    relationships: Śledzeni i śledzący
+    relationships: Obserwowani i obserwujący
     statuses_cleanup: Automatyczne usuwanie posta
     strikes: Ostrzeżenia moderacyjne
     two_factor_authentication: Uwierzytelnianie dwuetapowe
@@ -1485,28 +1484,28 @@ pl:
   statuses:
     attached:
       audio:
+        one: "%{count} plik dźwiękowy"
         few: "%{count} pliki dźwiękowe"
         many: "%{count} plików dźwiękowych"
-        one: "%{count} plik dźwiękowy"
-        other: pliki dźwiękowe (%{count})
+        other: "pliki dźwiękowe (%{count})"
       description: 'Załączono: %{attached}'
       image:
+        one: "%{count} obraz"
         few: "%{count} obrazy"
         many: "%{count} obrazów"
-        one: "%{count} obraz"
         other: "%{count} obrazów"
       video:
+        one: "%{count} film"
         few: "%{count} filmy"
         many: "%{count} filmów"
-        one: "%{count} film"
         other: "%{count} filmów"
     boosted_from_html: Podbito przez %{acct_link}
     content_warning: 'Ostrzeżenie o zawartości: %{warning}'
     default_language: Taki sam jak język interfejsu użytkownika
     disallowed_hashtags:
+      one: 'zawiera niedozwolony hashtag: %{tags}'
       few: 'zawiera niedozwolone hashtagi: %{tags}'
       many: 'zawiera niedozwolone hashtagi: %{tags}'
-      one: 'zawiera niedozwolony hashtag: %{tags}'
       other: 'zawiera niedozwolone hashtagi: %{tags}'
     edited_at_html: Edytowane %{date}
     errors:
@@ -1520,14 +1519,14 @@ pl:
       reblog: Nie możesz przypiąć podbicia wpisu
     poll:
       total_people:
+        one: "%{count} osoba"
         few: "%{count} osoby"
         many: "%{count} osób"
-        one: "%{count} osoba"
         other: "%{count} osoby"
       total_votes:
+        one: "%{count} głos"
         few: "%{count} głosy"
         many: "%{count} głosy"
-        one: "%{count} głos"
         other: "%{count} głosy"
       vote: Głosuj
     show_more: Pokaż więcej
@@ -1538,8 +1537,8 @@ pl:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Bezpośredni
-      private: Tylko dla śledzących
-      private_long: Widoczne tylko dla osób, które Cię śledzą
+      private: Tylko dla obserwujących
+      private_long: Widoczne tylko dla osób, które Cię obserwują
       public: Publiczne
       public_long: Widoczne dla wszystkich użytkowników
       unlisted: Niewypisane
@@ -1644,7 +1643,7 @@ pl:
         disable: Nie możesz już używać swojego konta, ale Twój profil i inne dane pozostają nienaruszone. Możesz poprosić o kopię swoich danych, zmienić ustawienia konta lub usunąć swoje konto.
         mark_statuses_as_sensitive: Niektóre z Twoich postów zostały oznaczone jako wrażliwe przez moderatorów %{instance}. Oznacza to, że ludzie będą musieli dotknąć mediów w postach przed wyświetleniem podglądu. Możesz oznaczyć media jako wrażliwe podczas publikowania w przyszłości.
         sensitive: Od teraz wszystkie przesłane pliki multimedialne będą oznaczone jako wrażliwe i ukryte za ostrzeżeniem kliknięcia.
-        silence: Kiedy Twoje konto jest ograniczone, tylko osoby, które je śledzą, będą widzieć Twoje wpisy. Może ono też przestać być widoczne w funkcjach odkrywania. Inni wciąż mogą zacząć Cię śledzić.
+        silence: Kiedy Twoje konto jest ograniczone, tylko osoby, które je obserwują, będą widzieć Twoje wpisy. Może ono też przestać być widoczne w funkcjach odkrywania. Inni wciąż mogą zacząć Cię obserwować.
         suspend: Nie możesz już używać Twojego konta, a Twój profil i inne dane nie są już dostępne. Zanim w pełni usuniemy Twoje dane po około 30 dniach, możesz nadal zalogować się, aby uzyskać ich kopię. Zachowamy pewne podstawowe dane, aby zapobiegać obchodzeniu przez Ciebie zawieszenia.
       reason: 'Powód:'
       statuses: 'Cytowane posty:'
@@ -1666,16 +1665,16 @@ pl:
         suspend: Konto zawieszone
     welcome:
       edit_profile_action: Skonfiguruj profil
-      edit_profile_step: Możesz dostosować profil wysyłając awatar, zmieniając wyświetlaną nazwę i o wiele więcej. Jeżeli chcesz, możesz również włączyć przeglądanie i ręczne akceptowanie nowych zgłoszeń śledzenia Twojego profilu.
+      edit_profile_step: Możesz dostosować profil wysyłając awatar, zmieniając wyświetlaną nazwę i o wiele więcej. Jeżeli chcesz, możesz również włączyć przeglądanie i ręczne akceptowanie nowych próśb o możliwość obserwacji Twojego profilu.
       explanation: Kilka wskazówek, które pomogą Ci rozpocząć
       final_action: Zacznij pisać
-      final_step: 'Zacznij tworzyć! Nawet jeżeli nikt Cię nie śledzi, Twoje publiczne wiadomości będą widziane przez innych, na przykład na lokalnej osi czasu i w hashtagach. Możesz też utworzyć wpis wprowadzający używając hashtagu #introductions.'
+      final_step: 'Zacznij tworzyć! Nawet jeżeli nikt Cię nie obserwuje, Twoje publiczne wiadomości będą widziane przez innych, na przykład na lokalnej osi czasu i w hashtagach. Możesz też utworzyć wpis wprowadzający używając hashtagu #introductions.'
       full_handle: Twój pełny adres
-      full_handle_hint: Ten adres możesz podać znajomym, aby mogli skontaktować się z Tobą lub zacząć śledzić z innego serwera.
+      full_handle_hint: Ten adres możesz podać znajomym, aby mogli skontaktować się z Tobą lub zacząć obserwować z innego serwera.
       subject: Witaj w Mastodonie
       title: Witaj na pokładzie, %{name}!
   users:
-    follow_limit_reached: Nie możesz śledzić więcej niż %{limit} osób
+    follow_limit_reached: Nie możesz obserwować więcej niż %{limit} osób
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
