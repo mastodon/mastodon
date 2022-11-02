@@ -8,7 +8,7 @@ import { recoverHashtags } from 'flavours/glitch/utils/hashtag';
 import resizeImage from 'flavours/glitch/utils/resize_image';
 import { showAlert, showAlertForError } from './alerts';
 import { useEmoji } from './emojis';
-import { importFetchedAccounts } from './importer';
+import { importFetchedAccounts, importFetchedStatus } from './importer';
 import { openModal } from './modal';
 import { updateTimeline } from './timelines';
 
@@ -222,6 +222,10 @@ export function submitCompose(routerHistory) {
           dispatch(updateTimeline(timelineId, { ...response.data }));
         }
       };
+
+      if (statusId) {
+        dispatch(importFetchedStatus({ ...response.data }));
+      }
 
       if (statusId === null) {
         insertIfOnline('home');
