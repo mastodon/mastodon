@@ -112,6 +112,11 @@ class ImportService < BaseService
       next if status.nil? && ActivityPub::TagManager.instance.local_uri?(uri)
 
       status || ActivityPub::FetchRemoteStatusService.new.call(uri)
+    rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+      nil
+    rescue StandardError => e
+      Rails.logger.warn "Unexpected error when importing bookmark: #{e}"
+      nil
     end
 
     account_ids         = statuses.map(&:account_id)
