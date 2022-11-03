@@ -1,4 +1,3 @@
----
 th:
   activerecord:
     attributes:
@@ -29,6 +28,10 @@ th:
           attributes:
             website:
               invalid: ไม่ใช่ URL ที่ถูกต้อง
+        import:
+          attributes:
+            data:
+              malformed: ผิดรูปแบบ
         status:
           attributes:
             reblog:
