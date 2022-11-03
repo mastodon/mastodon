@@ -378,6 +378,7 @@ nl:
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
       edit: Domeinblokkade bewerken
+      existing_domain_block: Je hebt %{name} al strengere grenswaarden opgelegd.
       existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
       new:
         create: Blokkade aanmaken
@@ -602,24 +603,42 @@ nl:
       privileges:
         administrator: Beheerder
         delete_user_data: Gebruikersgegevens verwijderen
+        delete_user_data_description: Sta gebruikers toe om de gegevens van andere gebruikers zonder vertraging te verwijderen
         invite_users: Gebruikers uitnodigen
+        invite_users_description: Sta gebruikers toe om nieuwe mensen uit te nodigen voor de server
         manage_announcements: Aankondigingen beheren
+        manage_announcements_description: Sta gebruikers toe om mededelingen op de server te beheren
         manage_appeals: Bezwaren afhandelen
+        manage_appeals_description: Sta gebruikers toe om oproepen tegen moderatie acties te beoordelen
         manage_blocks: Blokkades beheren
+        manage_blocks_description: Sta gebruikers toe om e-mailproviders en IP-adressen te blokkeren
         manage_custom_emojis: Lokale emoji's beheren
+        manage_custom_emojis_description: Sta gebruikers toe om eigen emojis op de server te beheren
         manage_federation: Federatie beheren
+        manage_federation_description: Sta gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en de leverbaarheid te bepalen
         manage_invites: Uitnodigingen beheren
+        manage_invites_description: Sta gebruikers toe om uitnodigingslinks te bekijken en deactiveren
         manage_reports: Rapportages afhandelen
         manage_roles: Rollen beheren
+        manage_roles_description: Sta gebruikers toe om rollen onder hun rollen te beheren en toe te wijzen
         manage_rules: Serverregels wijzigen
+        manage_rules_description: Sta gebruikers toe om serverregels te wijzigen
         manage_settings: Server-instellingen wijzigen
+        manage_settings_description: Sta gebruikers toe de instellingen van de site te wijzigen
         manage_taxonomies: Trends en hashtags beheren
+        manage_taxonomies_description: Sta gebruikers toe om populaire inhoud te bekijken en hashtag instellingen te bijwerken
         manage_user_access: Gebruikerstoegang beheren
+        manage_user_access_description: Sta gebruikers toe om authenticatie in twee stappen van andere gebruikers uit te schakelen, hun e-mailadres te wijzigen en hun wachtwoord te resetten
         manage_users: Gebruikers beheren
+        manage_users_description: Sta gebruikers toe om details van andere gebruikers te bekijken en moderatie-acties tegen hen uit te voeren
         manage_webhooks: Webhooks beheren
+        manage_webhooks_description: Sta gebruikers toe om webhooks voor administratieve gebeurtenissen in te stellen
         view_audit_log: Auditlog bekijken
+        view_audit_log_description: Sta gebruikers toe om een geschiedenis van administratieve acties op de server te bekijken
         view_dashboard: Dashboard bekijken
+        view_dashboard_description: Geeft gebruikers toegang tot het dashboard en verschillende statistieken
         view_devops: Devops
+        view_devops_description: Geeft gebruikers toegang tot Sidekiq en pgHero dashboards
       title: Rollen
     rules:
       add_new: Regel toevoegen
@@ -631,6 +650,8 @@ nl:
     settings:
       about:
         manage_rules: Serverregels beheren
+        preamble: Geef diepgaande informatie over hoe de server werkt en hoe de server gemodereerd en gefinancierd wordt.
+        rules_hint: Er is een speciaal gebied voor regels waaraan uw gebruikers zich dienen te houden.
         title: Over
       appearance:
         preamble: Mastodons webomgeving aanpassen.
@@ -693,6 +714,8 @@ nl:
         delete_statuses: "%{name} heeft de berichten van %{target} verwijderd"
         disable: "Account %{target} is door %{name} bevroren"
         mark_statuses_as_sensitive: "%{name} markeerde de berichten van %{target} als gevoelig"
+        none: "%{name} verzond een waarschuwing naar %{target}"
+        sensitive: "%{name} markeerde de account van %{target} als gevoelig"
         silence: "%{name} beperkte het account %{target}"
         suspend: "%{name} schortte het account %{target} op"
       appeal_approved: Bezwaar ingediend
@@ -700,6 +723,8 @@ nl:
     system_checks:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
+      elasticsearch_running_check:
+        message_html: Kan geen verbinding maken met Elasticsearch. Controleer dat Elasticsearch uitgevoerd wordt, of schakel full-text zoeken uit
       elasticsearch_version_check:
         message_html: 'Incompatibele Elasticsearch-versie: %{value}'
         version_comparison: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
