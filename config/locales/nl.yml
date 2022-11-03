@@ -610,6 +610,7 @@ nl:
         other: "%{count} rechten"
       privileges:
         administrator: Beheerder
+        administrator_description: Deze gebruikers hebben volledige rechten en kun dus overal bij
         delete_user_data: Gebruikersgegevens verwijderen
         delete_user_data_description: Staat gebruikers toe om de gegevens van andere gebruikers zonder vertraging te verwijderen
         invite_users: Gebruikers uitnodigen
@@ -794,10 +795,15 @@ nl:
         not_listable: Wordt niet aanbevolen
         not_trendable: Zal niet onder trends verschijnen
         not_usable: Kan niet worden gebruikt
+        peaked_on_and_decaying: Piekte op %{date} en is nu weer op diens retour
         title: Trending hashtags
         trendable: Kan onder trends verschijnen
         trending_rank: 'Trending #%{rank}'
         usable: Kan worden gebruikt
+        usage_comparison: '%{today} keer vandaag gebruikt, vergeleken met %{yesterday} keer gisteren'
+        used_by_over_week:
+          one: Door één persoon tijdens de afgelopen week gebruikt
+          other: Door %{count} mensen tijdens de afgelopen week gebruikt
       title: Trends
       trending: Trending
     warning_presets:
@@ -812,6 +818,7 @@ nl:
       disable: Uitschakelen
       disabled: Uitgeschakeld
       edit: Eindpunt bewerken
+      empty: Je hebt nog geen webhook-eindpunten geconfigureerd.
       enable: Inschakelen
       enabled: Ingeschakeld
       enabled_events:
@@ -845,11 +852,13 @@ nl:
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: 'Nieuwe rapportage op %{instance} (#%{id})'
     new_trends:
+      body: 'De volgende items moeten worden beoordeeld voordat ze openbaar kunnen worden getoond:'
       new_trending_links:
         title: Trending links
       new_trending_statuses:
         title: Trending berichten
       new_trending_tags:
+        no_approved_tags: Op dit moment zijn er geen goedgekeurde hashtags.
         title: Trending hashtags
       subject: Nieuwe trends te beoordelen op %{instance}
   aliases:
