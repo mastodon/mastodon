@@ -120,6 +120,7 @@ sv:
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
+      role: Roll
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
@@ -165,6 +166,7 @@ sv:
         create_domain_block: Skapa blockerad domän
         create_ip_block: Skapa IP-regel
         create_unavailable_domain: Skapa otillgänglig domän
+        create_user_role: Skapa roll
         demote_user: Degradera användare
         destroy_announcement: Ta bort anslag
         destroy_custom_emoji: Radera egen emoji
@@ -197,6 +199,7 @@ sv:
         update_custom_emoji: Uppdatera egna emojis
         update_domain_block: Uppdatera blockerad domän
         update_status: Uppdatera status
+        update_user_role: Uppdatera roll
       actions:
         create_account_warning_html: "%{name} skickade en varning till %{target}"
         create_announcement_html: "%{name} skapade tillkännagivande %{target}"
@@ -340,6 +343,7 @@ sv:
       title: Följ rekommendationer
     instances:
       availability:
+        title: Tillgänglighet
         warning: Det senaste försöket att ansluta till denna värddator har misslyckats
       back_to_all: Alla
       back_to_limited: Begränsat
@@ -452,6 +456,21 @@ sv:
       unresolved: Olösta
       updated_at: Uppdaterad
       view_profile: Visa profil
+    roles:
+      add_new: Lägg till roll
+      categories:
+        invites: Inbjudningar
+      privileges:
+        administrator: Administratör
+        invite_users: Bjud in användare
+        manage_invites: Hantera inbjudningar
+        manage_reports: Hantera rapporter
+        manage_roles: Hantera roller
+        manage_rules: Hantera regler
+        manage_settings: Hantera inställningar
+        manage_users: Hantera användare
+        manage_webhooks: Hantera webhooks
+      title: Roller
     rules:
       add_new: Lägg till regel
       delete: Radera
@@ -460,6 +479,8 @@ sv:
     settings:
       about:
         title: Om
+      appearance:
+        title: Utseende
       domain_blocks:
         all: Till alla
         disabled: För ingen
@@ -469,6 +490,7 @@ sv:
           approved: Godkännande krävs för registrering
           none: Ingen kan registrera
           open: Alla kan registrera
+      title: Serverinställningar
     site_uploads:
       delete: Radera uppladdad fil
     statuses:
@@ -476,9 +498,15 @@ sv:
       batch:
         report: Rapportera
       deleted: Raderad
+      favourites: Favoriter
+      history: Versionshistorik
+      language: Språk
       media:
         title: Media
+      metadata: Metadata
+      open: Öppna inlägg
       title: Kontostatus
+      visibility: Synlighet
       with_media: med media
     strikes:
       actions:
@@ -494,13 +522,26 @@ sv:
     trends:
       allow: Tillåt
       approved: Godkänd
+      links:
+        allow: Tillåt länk
       statuses:
         allow: Godkänn inlägg
         allow_account: Godkänn författare
+      tags:
+        usable: Kan användas
       title: Trender
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
+    webhooks:
+      disable: Inaktivera
+      disabled: Inaktiverad
+      enable: Aktivera
+      enabled: Aktiv
+      new: Ny webhook
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -674,13 +715,19 @@ sv:
       public: Publika tidslinjer
       thread: Konversationer
     edit:
+      add_keyword: Lägg till nyckelord
+      keywords: Nyckelord
       title: Redigera filter
     index:
       delete: Radera
       empty: Du har inga filter.
       title: Filter
     new:
+      save: Spara nytt filter
       title: Lägg till nytt filter
+    statuses:
+      batch:
+        remove: Ta bort från filter
   footer:
     trending_now: Trendar nu
   generic:
@@ -688,6 +735,7 @@ sv:
     changes_saved_msg: Ändringar sparades framgångsrikt!
     copy: Kopiera
     delete: Radera
+    none: Ingen
     order_by: Sortera efter
     save_changes: Spara ändringar
     today: idag
@@ -1050,6 +1098,8 @@ sv:
       change_password: Ändra ditt lösenord
       title: En ny inloggning
     warning:
+      categories:
+        spam: Skräppost
       reason: 'Anledning:'
       statuses: 'Inlägg citerades:'
       subject:
