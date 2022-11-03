@@ -430,6 +430,7 @@ nl:
       unsuppress: Account weer aanbevelen
     instances:
       availability:
+        failure_threshold_reached: Fout-drempelwaarde bereikt op %{date}.
         failures_recorded:
           one: Mislukte poging op %{count} dag.
           other: Mislukte pogingen op %{count} verschillende dagen.
@@ -542,6 +543,10 @@ nl:
           other: "%{count} opmerkingen"
       action_log: Auditlog
       action_taken_by: Actie uitgevoerd door
+      actions:
+        delete_description_html: De gerapporteerde berichten worden verwijderd en er wordt een staking opgenomen om je te helpen om te escaleren bij toekomstige overtredingen van hetzelfde account.
+        mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een staking geregistreerd om je te helpen om toekomstige overtredingen door hetzelfde account te laten escaleren.
+        silence_description_html: Het profiel zal alleen zichtbaar zijn voor degenen die het al volgen of het handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Kan altijd worden teruggedraaid.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -566,6 +571,8 @@ nl:
         delete: Verwijderen
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
         title: Opmerkingen
+      notes_description_html: Bekijk en nalaat notities aan andere moderators en jouw toekomstige zelf
+      quick_actions_description_html: 'Neem een korte actie of scroll naar beneden om gerapporteerde inhoud te zien:'
       remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
