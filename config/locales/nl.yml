@@ -272,7 +272,7 @@ nl:
         silence_account_html: "Account %{target} is door %{name} beperkt"
         suspend_account_html: "Account %{target} is door %{name} opgeschort"
         unassigned_report_html: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
-        unblock_email_account_html: "%{name} deblokkeerde %{target}'s email adres"
+        unblock_email_account_html: "%{name} deblokkeerde het e-mailadres van %{target}"
         unsensitive_account_html: "%{name} markeerde media van %{target} als niet gevoelig"
         unsilence_account_html: "Beperking van account %{target} is door %{name} opgeheven"
         unsuspend_account_html: "Opschorten van account %{target} is door %{name} opgeheven"
@@ -378,7 +378,7 @@ nl:
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
       edit: Domeinblokkade bewerken
-      existing_domain_block: Je hebt %{name} al strengere grenswaarden opgelegd.
+      existing_domain_block: Je hebt al strengere limieten opgelegd aan %{name}.
       existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
       new:
         create: Blokkade aanmaken
@@ -430,7 +430,7 @@ nl:
       unsuppress: Account weer aanbevelen
     instances:
       availability:
-        failure_threshold_reached: Fout-drempelwaarde bereikt op %{date}.
+        failure_threshold_reached: Foutieve drempelwaarde bereikt op %{date}.
         failures_recorded:
           one: Mislukte poging op %{count} dag.
           other: Mislukte pogingen op %{count} verschillende dagen.
@@ -491,6 +491,7 @@ nl:
       total_followed_by_us: Door ons gevolgd
       total_reported: Rapportages over hun
       total_storage: Mediabijlagen
+      totals_time_period_hint_html: De hieronder getoonde totalen bevatten gegevens sinds het begin.
     invites:
       deactivate_all: Alles deactiveren
       filter:
@@ -544,9 +545,9 @@ nl:
       action_log: Auditlog
       action_taken_by: Actie uitgevoerd door
       actions:
-        delete_description_html: De gerapporteerde berichten worden verwijderd en er wordt een staking opgenomen om je te helpen om te escaleren bij toekomstige overtredingen van hetzelfde account.
-        mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een staking geregistreerd om je te helpen om toekomstige overtredingen door hetzelfde account te laten escaleren.
-        silence_description_html: Het profiel zal alleen zichtbaar zijn voor degenen die het al volgen of het handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Kan altijd worden teruggedraaid.
+        delete_description_html: De gerapporteerde berichten worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
+        mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
+        silence_description_html: Het profiel zal alleen zichtbaar zijn voor diegenen die het al volgen of het handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Kan altijd worden teruggedraaid.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -571,8 +572,8 @@ nl:
         delete: Verwijderen
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
         title: Opmerkingen
-      notes_description_html: Bekijk en nalaat notities aan andere moderators en jouw toekomstige zelf
-      quick_actions_description_html: 'Neem een korte actie of scroll naar beneden om gerapporteerde inhoud te zien:'
+      notes_description_html: Bekijk en laat opmerkingen achter voor andere moderatoren en voor jouw toekomstige zelf
+      quick_actions_description_html: 'Onderneem een snelle actie of scroll naar beneden om de gerapporteerde inhoud te zien:'
       remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
@@ -610,42 +611,42 @@ nl:
       privileges:
         administrator: Beheerder
         delete_user_data: Gebruikersgegevens verwijderen
-        delete_user_data_description: Sta gebruikers toe om de gegevens van andere gebruikers zonder vertraging te verwijderen
+        delete_user_data_description: Staat gebruikers toe om de gegevens van andere gebruikers zonder vertraging te verwijderen
         invite_users: Gebruikers uitnodigen
-        invite_users_description: Sta gebruikers toe om nieuwe mensen uit te nodigen voor de server
+        invite_users_description: Staat gebruikers toe om nieuwe mensen voor de server uit te nodigen
         manage_announcements: Aankondigingen beheren
-        manage_announcements_description: Sta gebruikers toe om mededelingen op de server te beheren
+        manage_announcements_description: Staat gebruikers toe om mededelingen op de server te beheren
         manage_appeals: Bezwaren afhandelen
-        manage_appeals_description: Sta gebruikers toe om oproepen tegen moderatie acties te beoordelen
+        manage_appeals_description: Staat gebruikers toe om bewaren tegen moderatie-acties te beoordelen
         manage_blocks: Blokkades beheren
-        manage_blocks_description: Sta gebruikers toe om e-mailproviders en IP-adressen te blokkeren
+        manage_blocks_description: Staat gebruikers toe om e-mailproviders en IP-adressen te blokkeren
         manage_custom_emojis: Lokale emoji's beheren
-        manage_custom_emojis_description: Sta gebruikers toe om eigen emojis op de server te beheren
+        manage_custom_emojis_description: Staat gebruikers toe om lokale emoji's op de server te beheren
         manage_federation: Federatie beheren
-        manage_federation_description: Sta gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en de leverbaarheid te bepalen
+        manage_federation_description: Staat gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en om de bezorging te bepalen
         manage_invites: Uitnodigingen beheren
-        manage_invites_description: Sta gebruikers toe om uitnodigingslinks te bekijken en deactiveren
+        manage_invites_description: Staat gebruikers toe om uitnodigingslinks te bekijken en te deactiveren
         manage_reports: Rapportages afhandelen
         manage_roles: Rollen beheren
-        manage_roles_description: Sta gebruikers toe om rollen onder hun rollen te beheren en toe te wijzen
+        manage_roles_description: Staat gebruikers toe om rollen te beheren en toe te wijzen die minder rechten hebben dan hun eigen rol(len)
         manage_rules: Serverregels wijzigen
-        manage_rules_description: Sta gebruikers toe om serverregels te wijzigen
+        manage_rules_description: Staat gebruikers toe om serverregels te wijzigen
         manage_settings: Server-instellingen wijzigen
-        manage_settings_description: Sta gebruikers toe de instellingen van de site te wijzigen
+        manage_settings_description: Staat gebruikers toe de instellingen van de site te wijzigen
         manage_taxonomies: Trends en hashtags beheren
-        manage_taxonomies_description: Sta gebruikers toe om populaire inhoud te bekijken en hashtag instellingen te bijwerken
+        manage_taxonomies_description: Staat gebruikers toe om trending inhoud te bekijken en om hashtag-instellingen bij te werken
         manage_user_access: Gebruikerstoegang beheren
-        manage_user_access_description: Sta gebruikers toe om authenticatie in twee stappen van andere gebruikers uit te schakelen, hun e-mailadres te wijzigen en hun wachtwoord te resetten
+        manage_user_access_description: Staat gebruikers toe om tweestapsverificatie van andere gebruikers uit te schakelen, om hun e-mailadres te wijzigen en om hun wachtwoord opnieuw in te stellen
         manage_users: Gebruikers beheren
-        manage_users_description: Sta gebruikers toe om details van andere gebruikers te bekijken en moderatie-acties tegen hen uit te voeren
+        manage_users_description: Staat gebruikers toe om gebruikersdetails van anderen te bekijken en moderatie-acties tegen hen uit te voeren
         manage_webhooks: Webhooks beheren
-        manage_webhooks_description: Sta gebruikers toe om webhooks voor administratieve gebeurtenissen in te stellen
+        manage_webhooks_description: Staat gebruikers toe om webhooks voor beheertaken in te stellen
         view_audit_log: Auditlog bekijken
-        view_audit_log_description: Sta gebruikers toe om een geschiedenis van administratieve acties op de server te bekijken
+        view_audit_log_description: Staat gebruikers toe om een geschiedenis van beheeracties op de server te bekijken
         view_dashboard: Dashboard bekijken
         view_dashboard_description: Geeft gebruikers toegang tot het dashboard en verschillende statistieken
         view_devops: Devops
-        view_devops_description: Geeft gebruikers toegang tot Sidekiq en pgHero dashboards
+        view_devops_description: Geeft gebruikers toegang tot de dashboards van Sidekiq en pgHero
       title: Rollen
     rules:
       add_new: Regel toevoegen
@@ -657,7 +658,7 @@ nl:
     settings:
       about:
         manage_rules: Serverregels beheren
-        preamble: Geef diepgaande informatie over hoe de server werkt en hoe de server gemodereerd en gefinancierd wordt.
+        preamble: Geef uitgebreide informatie over hoe de server wordt beheerd, gemodereerd en gefinancierd.
         rules_hint: Er is een speciaal gebied voor regels waaraan uw gebruikers zich dienen te houden.
         title: Over
       appearance:
@@ -722,7 +723,7 @@ nl:
         disable: "Account %{target} is door %{name} bevroren"
         mark_statuses_as_sensitive: "%{name} markeerde de berichten van %{target} als gevoelig"
         none: "%{name} verzond een waarschuwing naar %{target}"
-        sensitive: "%{name} markeerde de account van %{target} als gevoelig"
+        sensitive: "%{name} markeerde het account van %{target} als gevoelig"
         silence: "%{name} beperkte het account %{target}"
         suspend: "%{name} schortte het account %{target} op"
       appeal_approved: Bezwaar ingediend
@@ -731,7 +732,7 @@ nl:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
       elasticsearch_running_check:
-        message_html: Kan geen verbinding maken met Elasticsearch. Controleer dat Elasticsearch uitgevoerd wordt, of schakel full-text zoeken uit
+        message_html: Kon geen verbinding maken met Elasticsearch. Controleer dat Elasticsearch wordt uitgevoerd of schakel full-text-zoeken uit
       elasticsearch_version_check:
         message_html: 'Incompatibele Elasticsearch-versie: %{value}'
         version_comparison: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
@@ -776,6 +777,9 @@ nl:
         disallow_account: Account afkeuren
         no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
         not_discoverable: Gebruiker heeft geen toestemming gegeven om vindbaar te zijn
+        shared_by:
+          one: Een keer gedeeld of als favoriet gemarkeerd
+          other: '%{friendly_count} keer gedeeld of als favoriet gemarkeerd'
         title: Trending berichten
       tags:
         current_score: Huidige score is %{score}
@@ -1220,6 +1224,8 @@ nl:
     carry_blocks_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account geblokkeerd.
     carry_mutes_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account genegeerd.
     copy_account_note_text: 'Deze gebruiker is verhuisd vanaf %{acct}. Je hebt de volgende opmerkingen over dat account gemaakt:'
+  navigation:
+    toggle_menu: Menu tonen/verbergen
   notification_mailer:
     admin:
       report:
