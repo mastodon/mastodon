@@ -98,6 +98,7 @@ sv:
       most_recent_ip: Senaste IP
       no_account_selected: Inga konton har ändrats och inget har valts
       no_limits_imposed: Inga begränsningar har införts
+      no_role_assigned: Ingen roll tilldelad
       not_subscribed: Inte prenumererat
       pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
@@ -158,6 +159,7 @@ sv:
         approve_user: Godkänn användare
         assigned_to_self_report: Tilldela anmälan
         change_email_user: Ändra e-post för användare
+        change_role_user: Ändra roll för användaren
         confirm_user: Bekräfta användare
         create_account_warning: Skapa varning
         create_announcement: Skapa ett anslag
@@ -176,6 +178,7 @@ sv:
         destroy_ip_block: Radera IP-regel
         destroy_status: Ta bort status
         destroy_unavailable_domain: Ta bort otillgänglig domän
+        destroy_user_role: Förstör roll
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
         disable_user: Inaktivera användare
@@ -198,6 +201,7 @@ sv:
         update_announcement: Uppdatera meddelande
         update_custom_emoji: Uppdatera egna emojis
         update_domain_block: Uppdatera blockerad domän
+        update_ip_block: Uppdatera IP-regel
         update_status: Uppdatera status
         update_user_role: Uppdatera roll
       actions:
@@ -355,6 +359,11 @@ sv:
         policy: Policy
         reason: Offentlig orsak
         title: Riktlinjer för innehåll
+      dashboard:
+        instance_accounts_measure: lagrade konton
+        instance_followers_measure: våra följare där
+        instance_follows_measure: sina följare här
+        instance_statuses_measure: sparade inlägg
       delivery:
         all: Alla
         clear: Rensa leverans-fel
@@ -423,6 +432,7 @@ sv:
           one: "%{count} anteckning"
           other: "%{count} anteckningar"
       action_taken_by: Åtgärder vidtagna av
+      add_to_report: Lägg till mer i rapporten
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
@@ -431,6 +441,7 @@ sv:
       comment:
         none: Ingen
       created_at: Anmäld
+      delete_and_resolve: Ta bort inlägg
       forwarded: Vidarebefordrad
       forwarded_to: Vidarebefordrad till %{domain}
       mark_as_resolved: Markera som löst
@@ -450,6 +461,7 @@ sv:
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
       status: Status
+      statuses: Rapporterat innehåll
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
@@ -458,18 +470,27 @@ sv:
       view_profile: Visa profil
     roles:
       add_new: Lägg till roll
+      assigned_users:
+        one: "%{count} användare"
+        other: "%{count} användare"
       categories:
+        administration: Administration
         invites: Inbjudningar
+      delete: Ta bort
       privileges:
         administrator: Administratör
+        delete_user_data: Ta bort användardata
         invite_users: Bjud in användare
         manage_invites: Hantera inbjudningar
         manage_reports: Hantera rapporter
         manage_roles: Hantera roller
         manage_rules: Hantera regler
         manage_settings: Hantera inställningar
+        manage_taxonomies: Hantera taxonomier
+        manage_user_access: Hantera användaråtkomst
         manage_users: Hantera användare
         manage_webhooks: Hantera webhooks
+        view_dashboard: Visa instrumentpanel
       title: Roller
     rules:
       add_new: Lägg till regel
@@ -478,13 +499,18 @@ sv:
       title: Serverns regler
     settings:
       about:
+        manage_rules: Hantera serverregler
         title: Om
       appearance:
         title: Utseende
+      discovery:
+        trends: Trender
       domain_blocks:
         all: Till alla
         disabled: För ingen
         users: För inloggade lokala användare
+      registrations:
+        title: Registreringar
       registrations_mode:
         modes:
           approved: Godkännande krävs för registrering
@@ -494,18 +520,23 @@ sv:
     site_uploads:
       delete: Radera uppladdad fil
     statuses:
+      application: Applikation
       back_to_account: Tillbaka till kontosidan
+      back_to_report: Tillbaka till rapportsidan
       batch:
+        remove_from_report: Ta bort från rapport
         report: Rapportera
       deleted: Raderad
       favourites: Favoriter
       history: Versionshistorik
+      in_reply_to: Svarar på
       language: Språk
       media:
         title: Media
       metadata: Metadata
       open: Öppna inlägg
       title: Kontostatus
+      trending: Trendande
       visibility: Synlighet
       with_media: med media
     strikes:
@@ -524,21 +555,30 @@ sv:
       approved: Godkänd
       links:
         allow: Tillåt länk
+        allow_provider: Tillåt utgivare
+        title: Trendande länkar
       statuses:
         allow: Godkänn inlägg
         allow_account: Godkänn författare
+        title: Trendande inlägg
       tags:
+        dashboard:
+          tag_servers_measure: olika servrar
+        listable: Kan föreslås
+        not_usable: Kan inte användas
         usable: Kan användas
       title: Trender
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
     webhooks:
+      delete: Ta bort
       disable: Inaktivera
       disabled: Inaktiverad
       enable: Aktivera
       enabled: Aktiv
       new: Ny webhook
+      rotate_secret: Rotera hemlighet
       status: Status
       title: Webhooks
       webhook: Webhook
@@ -550,8 +590,14 @@ sv:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: 'Ny rapport för %{instance} (#%{id})'
+    new_trends:
+      new_trending_links:
+        title: Trendande länkar
+      new_trending_statuses:
+        title: Trendande inlägg
   aliases:
     add_new: Skapa alias
+    empty: Du har inga alias.
     remove: Avlänka alias
   appearance:
     advanced_web_interface: Avancerat webbgränssnitt
@@ -602,6 +648,8 @@ sv:
     registration_closed: "%{instance} accepterar inte nya medlemmar"
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
+    rules:
+      title: Några grundregler.
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
@@ -717,8 +765,10 @@ sv:
     edit:
       add_keyword: Lägg till nyckelord
       keywords: Nyckelord
+      statuses: Individuella inlägg
       title: Redigera filter
     index:
+      contexts: Filter i %{contexts}
       delete: Radera
       empty: Du har inga filter.
       title: Filter
@@ -726,8 +776,11 @@ sv:
       save: Spara nytt filter
       title: Lägg till nytt filter
     statuses:
+      back_to_filter: Tillbaka till filter
       batch:
         remove: Ta bort från filter
+      index:
+        title: Filtrerade inlägg
   footer:
     trending_now: Trendar nu
   generic:
@@ -825,6 +878,8 @@ sv:
     carry_blocks_over_text: Den här användaren flyttades från %{acct} som du hade blockerat.
     carry_mutes_over_text: Den här användaren flyttade från %{acct} som du hade tystat.
     copy_account_note_text: 'Den här användaren flyttade från %{acct}, här var dina föregående anteckningar om dem:'
+  navigation:
+    toggle_menu: Växla meny
   notification_mailer:
     admin:
       sign_up:
@@ -919,6 +974,8 @@ sv:
     status: Kontostatus
   remote_follow:
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
+  rss:
+    content_warning: 'Innehållsvarning:'
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare
