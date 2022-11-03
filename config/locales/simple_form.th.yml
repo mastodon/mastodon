@@ -1,4 +1,3 @@
----
 th:
   simple_form:
     hints:
@@ -73,6 +72,8 @@ th:
         actions:
           hide: ซ่อนเนื้อหาที่กรองอยู่อย่างสมบูรณ์ ทำเสมือนว่าไม่มีเนื้อหาอยู่
           warn: ซ่อนเนื้อหาที่กรองอยู่หลังคำเตือนที่กล่าวถึงชื่อเรื่องของตัวกรอง
+      form_admin_settings:
+        closed_registrations_message: แสดงเมื่อมีการปิดการลงทะเบียน
       form_challenge:
         current_password: คุณกำลังเข้าสู่พื้นที่ปลอดภัย
       imports:
@@ -272,7 +273,7 @@ th:
       webhook:
         events: เหตุการณ์ที่เปิดใช้งาน
         url: URL ปลายทาง
-    'no': ไม่
+    'no': 'ไม่'
     not_recommended: ไม่แนะนำ
     recommended: แนะนำ
     required:
@@ -281,4 +282,4 @@ th:
     title:
       sessions:
         webauthn: ใช้หนึ่งในกุญแจความปลอดภัยของคุณเพื่อลงชื่อเข้า
-    'yes': ใช่
+    'yes': 'ใช่'
