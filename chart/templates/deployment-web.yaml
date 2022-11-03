@@ -11,7 +11,8 @@ spec:
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" . | nindent 6 }}
-      component: rails
+      app.kubernetes.io/component: web
+      app.kubernetes.io/part-of: rails
   template:
     metadata:
     {{- with .Values.podAnnotations }}
@@ -22,7 +23,8 @@ spec:
     {{- end }}
       labels:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
-        component: rails
+        app.kubernetes.io/component: web
+        app.kubernetes.io/part-of: rails
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

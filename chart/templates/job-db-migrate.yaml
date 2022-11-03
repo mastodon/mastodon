@@ -27,7 +27,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-                - key: component
+                - key: app.kubernetes.io/part-of
                   operator: In
                   values:
                     - rails
