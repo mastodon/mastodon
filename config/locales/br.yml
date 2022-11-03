@@ -147,7 +147,7 @@ br:
     invalid_password: Ger-tremen diwiriek
   date:
     formats:
-      default: "%d %b %Y"
+      default: "%d a viz %b %Y"
       with_month_name: "%d a viz %B %Y"
   datetime:
     distance_in_words:
@@ -262,7 +262,9 @@ br:
     mastodon-light: Mastodoñ (Sklaer)
   time:
     formats:
-      default: "%He%M, %d %b %Y"
+      default: "%d a viz %b %Y, %H:%M"
+      month: "Miz %b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Ouzhpennañ
     disable: Diweredekaat
