@@ -32,15 +32,22 @@ sv:
     accounts:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
+      approved_msg: '%{username}s registreringsansökan godkändes'
       are_you_sure: Är du säker?
       avatar: Profilbild
       by_domain: Domän
       change_email:
+        changed_msg: E-postadressen har ändrats!
         current_email: Nuvarande E-postadress
         label: Byt E-postadress
         new_email: Ny E-postadress
         submit: Byt E-postadress
         title: Byt E-postadress för %{username}
+      change_role:
+        changed_msg: Rollen har ändrats!
+        label: Ändra roll
+        no_role: Ingen roll
+        title: Ändra roll för %{username}
       confirm: Bekräfta
       confirmed: Bekräftad
       confirming: Bekräftande
@@ -50,6 +57,7 @@ sv:
       demote: Degradera
       destroyed_msg: "%{username}'s data har nu lagts till kön för att raderas omedelbart"
       disable: inaktivera
+      disable_sign_in_token_auth: Inaktivera autentisering med e-post-token
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: inaktiverad
       display_name: Visningsnamn
@@ -58,6 +66,7 @@ sv:
       email: E-post
       email_status: E-poststatus
       enable: Aktivera
+      enable_sign_in_token_auth: Aktivera autentisering med e-post-token
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}'s konto lyckades
       followers: Följare
