@@ -203,6 +203,7 @@ ja:
         reject_user: ユーザーを拒否
         remove_avatar_user: アイコンを削除
         reopen_report: 未解決に戻す
+        resend_user: 確認メールを再送信する
         reset_password_user: パスワードをリセット
         resolve_report: 通報を解決済みにする
         sensitive_account: アカウントのメディアを閲覧注意にマーク
@@ -261,6 +262,7 @@ ja:
         reject_user_html: "%{target}から登録された%{name}さんを拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
+        resend_user_html: "%{name} が %{target} の確認メールを再送信しました"
         reset_password_user_html: "%{name}さんが%{target}さんのパスワードをリセットしました"
         resolve_report_html: "%{name}さんが通報 %{target}を解決済みにしました"
         sensitive_account_html: "%{name}さんが%{target}さんのメディアを閲覧注意にマークしました"
@@ -811,6 +813,7 @@ ja:
     webhooks:
       add_new: エンドポイントを追加
       delete: 削除
+      description_html: <strong>Webhook</strong> により、Mastodon は選択されたイベントの<strong>リアルタイム通知</strong>をアプリケーションにプッシュします。これにより、アプリケーションは<strong>自動的に処理を行うことができます</strong>。
       disable: 無効化
       disabled: 無効
       edit: エンドポイントを編集
@@ -822,6 +825,7 @@ ja:
       events: イベント
       new: 新しいwebhook
       rotate_secret: シークレットをローテートする
+      secret: シークレットに署名
       status: ステータス
       title: Webhooks
       webhook: Webhook
@@ -853,6 +857,7 @@ ja:
         title: トレンド投稿
       new_trending_tags:
         no_approved_tags: 承認されたトレンドハッシュタグはありません。
+        requirements: 'これらの候補はいずれも %{rank} 位の承認済みトレンドハッシュタグのスコアを上回ります。現在 #%{lowest_tag_name} のスコアは %{lowest_tag_score} です。'
         title: トレンドハッシュタグ
       subject: '%{instance}で新しいトレンドが審査待ちです'
   aliases:
@@ -1075,6 +1080,7 @@ ja:
       add_keyword: キーワードを追加
       keywords: キーワード
       statuses: 個別の投稿
+      statuses_hint_html: このフィルタは、以下のキーワードにマッチするかどうかに関わらず、個々の投稿を選択して適用されます。 <a href="%{path}">フィルターを確認または投稿を削除</a>。
       title: フィルターを編集
     errors:
       deprecated_api_multiple_keywords: これらのパラメータは複数のフィルタキーワードに適用されるため、このアプリケーションから変更できません。 最新のアプリケーションまたはWebインターフェースを使用してください。
