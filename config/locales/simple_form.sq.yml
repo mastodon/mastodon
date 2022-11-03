@@ -1,4 +1,3 @@
----
 sq:
   simple_form:
     hints:
@@ -75,8 +74,17 @@ sq:
           warn: Fshihe lëndën e filtruar pas një sinjalizimi që përmend titullin e filtrit
       form_admin_settings:
         backups_retention_period: Mbaji arkivat e prodhuara të përdoruesve për aq ditë sa numri i dhënë.
+        bootstrap_timeline_accounts: Këto llogari do të fiksohen në krye të rekomandimeve për ndjekje nga përdorues të rinj.
+        closed_registrations_message: Shfaqur kur mbyllen dritare regjistrimesh
         content_cache_retention_period: Postimet prej shërbyesve të tjerë do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive. Kjo mund të jetë e pakthyeshme.
+        custom_css: Stile vetjakë mund të aplikoni në versionin web të Mastodon-it.
+        mascot: Anashkalon ilustrimin te ndërfaqja web e thelluar.
         media_cache_retention_period: Kartelat media të shkarkuara do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive dhe rishkarkohen po u kërkua.
+        profile_directory: Drejtoria e profileve paraqet krejt përdoruesit që kanë zgjedhur të jenë të zbulueshëm.
+        require_invite_text: Kur regjistrimet lypin miratim dorazi, bëje tekstin “Përse doni të bëheni pjesë?” të detyrueshëm, në vend se opsional
+        site_contact_email: Si mund të lidhen me ju njerëzit, për çështje ligjore, ose për asistencë.
+        site_contact_username: Si mund të lidhen njerëzit me ju në Mastodon.
+        site_extended_description: Çfarëdo hollësie shtesë që mund të jetë e dobishme për vizitorët dhe përdoruesit tuaj. Mund të hartohet me sintaksë Markdown.
       form_challenge:
         current_password: Po hyni në një zonë të sigurt
       imports:
@@ -260,7 +268,7 @@ sq:
       webhook:
         events: Akte të aktivizuar
         url: URL pikëmbarimi
-    'no': Jo
+    'no': 'Jo'
     not_recommended: Jo e këshilluar
     recommended: E rekomanduar
     required:
@@ -269,4 +277,4 @@ sq:
     title:
       sessions:
         webauthn: Që të bëhet hyrja, përdorni një nga kyçet tuaj të sigurisë
-    'yes': Po
+    'yes': 'Po'
