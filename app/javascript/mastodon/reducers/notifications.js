@@ -58,6 +58,11 @@ const notificationToMap = notification => ImmutableMap({
 const normalizeNotification = (state, notification, usePendingItems) => {
   const top = state.get('top');
 
+  // Under currently unknown conditions, the client may receive duplicates from the server
+  if (state.get('pendingItems').some((item) => item?.get('id') === notification.id) || state.get('items').some((item) => item?.get('id') === notification.id)) {
+    return state;
+  }
+
   if (usePendingItems || !state.get('pendingItems').isEmpty()) {
     return state.update('pendingItems', list => list.unshift(notificationToMap(notification))).update('unread', unread => unread + 1);
   }
