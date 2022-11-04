@@ -11,7 +11,7 @@ class StatusCacheHydrator
 
     # If we're delivering to the author who disabled the display of the application used to create the
     # status, we need to hydrate the application, since it was not rendered for the basic payload
-    payload[:application] = ActiveModelSerializers::SerializableResource.new(@status.application, serializer: REST::StatusSerializer::ApplicationSerializer).as_json if payload[:application].nil? && @status.account_id == account_id
+    payload[:application] = ActiveModelSerializers::SerializableResource.new(@status.application, serializer: REST::StatusSerializer::ApplicationSerializer).as_json if payload[:application].nil? && @status.account_id == account_id && @status.application.present?
 
     # We take advantage of the fact that some relationships can only occur with an original status, not
     # the reblog that wraps it, so we can assume that some values are always false
@@ -23,7 +23,7 @@ class StatusCacheHydrator
 
       # If the reblogged status is being delivered to the author who disabled the display of the application
       # used to create the status, we need to hydrate it here too
-      payload[:reblog][:application] = ActiveModelSerializers::SerializableResource.new(@status.reblog.application, serializer: REST::StatusSerializer::ApplicationSerializer).as_json if payload[:reblog][:application].nil? && @status.reblog.account_id == account_id && @status.reblog.application_id.present?
+      payload[:reblog][:application] = ActiveModelSerializers::SerializableResource.new(@status.reblog.application, serializer: REST::StatusSerializer::ApplicationSerializer).as_json if payload[:reblog][:application].nil? && @status.reblog.account_id == account_id && @status.reblog.application.present?
 
       payload[:reblog][:favourited] = Favourite.where(account_id: account_id, status_id: @status.reblog_of_id).exists?
       payload[:reblog][:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.reblog_of_id).exists?
@@ -37,7 +37,7 @@ class StatusCacheHydrator
           payload[:reblog][:poll][:voted] = true
           payload[:reblog][:poll][:own_votes] = []
         else
-          own_votes = @status.reblog.poll.votes.where(account_id: account_id).pluck(:choice)
+          own_votes = PollVote.where(poll_id: @status.reblog.poll_id, account_id: account_id).pluck(:choice)
           payload[:reblog][:poll][:voted] = !own_votes.empty?
           payload[:reblog][:poll][:own_votes] = own_votes
         end
@@ -50,8 +50,13 @@ class StatusCacheHydrator
       payload[:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.id).exists?
       payload[:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.conversation_id).exists?
       payload[:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.id).exists?
-      payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists?
+      payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists? if @status.account_id == account_id
       payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(@status.id), @status).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
+
+      if payload[:poll]
+        payload[:poll][:voted] = @status.account_id == account_id
+        payload[:poll][:own_votes] = []
+      end
     end
 
     payload
