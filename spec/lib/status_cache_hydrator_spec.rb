@@ -11,8 +11,20 @@ describe StatusCacheHydrator do
 
     shared_examples 'shared behavior' do
       context 'when handling a new status' do
+        let(:poll) { Fabricate(:poll) }
+        let(:status) { Fabricate(:status, poll: poll) }
+
         it 'renders the same attributes as a full render' do
-          expect(subject).to include(compare_to_hash)
+          expect(subject).to eql(compare_to_hash)
+        end
+      end
+
+      context 'when handling a new status with own poll' do
+        let(:poll) { Fabricate(:poll, account: account) }
+        let(:status) { Fabricate(:status, poll: poll, account: account) }
+
+        it 'renders the same attributes as a full render' do
+          expect(subject).to eql(compare_to_hash)
         end
       end
 
@@ -26,7 +38,7 @@ describe StatusCacheHydrator do
           end
 
           it 'renders the same attributes as a full render' do
-            expect(subject).to include(compare_to_hash)
+            expect(subject).to eql(compare_to_hash)
           end
         end
 
@@ -36,7 +48,7 @@ describe StatusCacheHydrator do
           end
 
           it 'renders the same attributes as a full render' do
-            expect(subject).to include(compare_to_hash)
+            expect(subject).to eql(compare_to_hash)
           end
         end
 
@@ -48,7 +60,7 @@ describe StatusCacheHydrator do
           end
 
           it 'renders the same attributes as a full render' do
-            expect(subject).to include(compare_to_hash)
+            expect(subject).to eql(compare_to_hash)
           end
         end
 
@@ -62,7 +74,7 @@ describe StatusCacheHydrator do
           end
 
           it 'renders the same attributes as a full render' do
-            expect(subject).to include(compare_to_hash)
+            expect(subject).to eql(compare_to_hash)
           end
         end
 
@@ -71,7 +83,7 @@ describe StatusCacheHydrator do
           let(:reblog) { Fabricate(:status, poll: poll, account: account) }
 
           it 'renders the same attributes as a full render' do
-            expect(subject).to include(compare_to_hash)
+            expect(subject).to eql(compare_to_hash)
           end
         end
 
@@ -84,7 +96,7 @@ describe StatusCacheHydrator do
           end
 
           it 'renders the same attributes as a full render' do
-            expect(subject).to include(compare_to_hash)
+            expect(subject).to eql(compare_to_hash)
           end
         end
       end
