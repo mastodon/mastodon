@@ -50,8 +50,13 @@ class StatusCacheHydrator
       payload[:reblogged]  = Status.where(account_id: account_id, reblog_of_id: @status.id).exists?
       payload[:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.conversation_id).exists?
       payload[:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.id).exists?
-      payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists?
+      payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists? if @status.account_id == account_id
       payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(@status.id), @status).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
+
+      if payload[:poll]
+        payload[:poll][:voted] = @status.account_id == account_id
+        payload[:poll][:own_votes] = []
+      end
     end
 
     payload
