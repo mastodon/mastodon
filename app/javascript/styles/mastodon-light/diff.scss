@@ -41,7 +41,8 @@ html {
 }
 
 .about__meta,
-.about__section__title {
+.about__section__title,
+.interaction-modal {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
 }
@@ -414,6 +415,7 @@ html {
 
 .icon-with-badge__badge {
   border-color: $white;
+  color: $white;
 }
 
 .report-modal__comment {
@@ -430,8 +432,34 @@ html {
   border-top: 0;
 }
 
-.focal-point__preview strong {
+.dashboard__quick-access,
+.focal-point__preview strong,
+.admin-wrapper .content__heading__tabs a.selected {
   color: $white;
+}
+
+.button.button-tertiary {
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+  }
+}
+
+.button.button-secondary {
+  border-color: $darker-text-color;
+  color: $darker-text-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: darken($darker-text-color, 8%);
+    color: darken($darker-text-color, 8%);
+  }
+}
+
+.flash-message.warning {
+  color: lighten($gold-star, 16%);
 }
 
 .boost-modal__action-bar,
@@ -638,6 +666,16 @@ html {
   a {
     color: $ui-highlight-color;
   }
+}
+
+.reply-indicator {
+  background: transparent;
+  border: 1px solid lighten($ui-base-color, 8%);
+}
+
+.dismissable-banner {
+  border-left: 1px solid lighten($ui-base-color, 8%);
+  border-right: 1px solid lighten($ui-base-color, 8%);
 }
 
 .status__content,
