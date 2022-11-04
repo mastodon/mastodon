@@ -19,7 +19,7 @@ class RemoveStatusService < BaseService
     @options  = options
 
     with_lock("distribute:#{@status.id}") do
-      @status.discard
+      @status.discard_with_reblogs
 
       StatusPin.find_by(status: @status)&.destroy
 
@@ -102,7 +102,7 @@ class RemoveStatusService < BaseService
     # because once original status is gone, reblogs will disappear
     # without us being able to do all the fancy stuff
 
-    @status.reblogs.includes(:account).reorder(nil).find_each do |reblog|
+    @status.reblogs.rewhere(deleted_at: [nil, @status.deleted_at]).includes(:account).reorder(nil).find_each do |reblog|
       RemoveStatusService.new.call(reblog, original_removed: true)
     end
   end
