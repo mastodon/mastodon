@@ -1,4 +1,3 @@
----
 is:
   simple_form:
     hints:
@@ -66,8 +65,6 @@ is:
       email_domain_block:
         domain: Þetta getur verið lénið sem birtist í tölvupóstfanginu eða MX-færslunni sem það notar. Þetta verður yfirfarið við nýskráningu.
         with_dns_records: Tilraun verður gerð til að leysa DNS-færslur uppgefins léns og munu niðurstöðurnar einnig verða útilokaðar
-      featured_tag:
-        name: 'Þú gætir viljað nota eitt af þessum:'
       filters:
         action: Veldu hvaða aðgerð á að framkvæma þegar færsla samsvarar síunni
         actions:
@@ -297,7 +294,7 @@ is:
       webhook:
         events: Virkjaðir atburðir
         url: Slóð á endapunkt
-    'no': Nei
+    'no': 'Nei'
     not_recommended: Ekki mælt með þessu
     recommended: Mælt með
     required:
@@ -306,4 +303,4 @@ is:
     title:
       sessions:
         webauthn: Nota einn af öryggislyklunum þínum til að skrá inn
-    'yes': Já
+    'yes': 'Já'
