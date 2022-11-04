@@ -1,7 +1,6 @@
----
 sv:
   about:
-    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
+    about_mastodon_html: 'Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.'
     contact_missing: Inte inställd
     contact_unavailable: Ej tillämplig
     hosted_on: Mastodon-värd på %{domain}
@@ -33,7 +32,7 @@ sv:
     accounts:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
-      approved_msg: "%{username}s registreringsansökan godkändes"
+      approved_msg: '%{username}s registreringsansökan godkändes'
       are_you_sure: Är du säker?
       avatar: Profilbild
       by_domain: Domän
@@ -142,9 +141,11 @@ sv:
       subscribe: Prenumerera
       suspend: Stäng av
       suspended: Avstängd / Avstängt
+      suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp och återanvända kontot, men ingen data kommer att finnas kvar.
+      suspension_reversible_hint_html: Kontot har låsts, och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
       unblock_email: Avblockera e-postadress
-      unblocked_email_msg: "%{username}s e-postadress avblockerad"
+      unblocked_email_msg: '%{username}s e-postadress avblockerad'
       unconfirmed_email: Obekräftad E-postadress
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
@@ -277,6 +278,7 @@ sv:
       listed: Noterade
       new:
         title: Lägg till ny egen emoji
+      no_emoji_selected: Inga emojier ändrades eftersom inga valdes
       not_permitted: Du har inte behörighet att utföra denna åtgärd
       overwrite: Skriva över
       shortcode: Kortkod
@@ -296,6 +298,8 @@ sv:
       software: Programvara
       space: Utrymmesutnyttjande / Utrymmesanvändning
       title: Kontrollpanel
+      top_languages: Mest aktiva språk
+      top_servers: Mest aktiva servrar
       website: Hemsida
     disputes:
       appeals:
@@ -337,10 +341,14 @@ sv:
       add_new: Lägg till ny
       created_msg: E-postdomän har lagts till i domänblockslistan utan problem
       delete: Radera
+      dns:
+        types:
+          mx: MX-post
       domain: Domän
       new:
         create: Skapa domän
         title: Ny E-postdomänblocklistningsinmatning
+      no_email_domain_block_selected: Inga domänblockeringar för e-post ändrades eftersom inga valdes
       title: E-postdomänblock
     follow_recommendations:
       language: För språket
@@ -368,6 +376,7 @@ sv:
       delivery:
         all: Alla
         clear: Rensa leverans-fel
+        failing: Misslyckas
         restart: Starta om leverans
         stop: Stoppa leverans
         unavailable: Ej tillgänglig
@@ -433,6 +442,8 @@ sv:
           one: "%{count} anteckning"
           other: "%{count} anteckningar"
       action_taken_by: Åtgärder vidtagna av
+      actions:
+        suspend_description_html: Profilen och allt dess innehåll kommer att bli oåtkomligt tills det slutligen raderas. Det kommer inte vara möjligt att interagera med kontot. Går att ångra inom 30 dagar.
       add_to_report: Lägg till mer i rapporten
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
@@ -477,7 +488,12 @@ sv:
       categories:
         administration: Administration
         invites: Inbjudningar
+        moderation: Moderering
+        special: Särskild
       delete: Ta bort
+      description_html: Med <strong>användarroller</strong> kan du anpassa vilka funktioner och områden dina användare kan komma åt i Mastodon.
+      edit: Redigera roll för '%{name}'
+      everyone: Standardbehörigheter
       privileges:
         administrator: Administratör
         delete_user_data: Ta bort användardata
@@ -590,7 +606,7 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
     new_trends:
       new_trending_links:
         title: Trendande länkar
