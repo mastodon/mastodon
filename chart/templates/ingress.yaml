@@ -47,9 +47,9 @@ spec:
               servicePort: {{ $webPort }}
               {{- end }}
             {{- if or ($.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress") (not ($.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress")) }}
-            pathType: ImplementationSpecific
+            pathType: Prefix
             {{- end }}
-          - path: {{ .path }}api/v1/streaming
+          - path: {{ .path }}api/v1/streaming/
             backend:
               {{- if or ($.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress") (not ($.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress")) }}
               service:
@@ -61,7 +61,7 @@ spec:
               servicePort: {{ $streamingPort }}
               {{- end }}
             {{- if or ($.Capabilities.APIVersions.Has "networking.k8s.io/v1/Ingress") (not ($.Capabilities.APIVersions.Has "networking.k8s.io/v1beta1/Ingress")) }}
-            pathType: ImplementationSpecific
+            pathType: Exact
             {{- end }}
           {{- end }}
     {{- end }}
