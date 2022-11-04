@@ -1,10 +1,9 @@
----
 nn:
   about:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    hosted_on: "%{domain} er vert for Mastodon"
+    hosted_on: '%{domain} er vert for Mastodon'
     title: Om
   accounts:
     follow: Fylg
@@ -240,7 +239,7 @@ nn:
         create_email_domain_block_html: "%{name} blokkerte e-postdomenet %{target}"
         create_ip_block_html: "%{name} oppretta ein regel for IP-en %{target}"
         create_unavailable_domain_html: "%{name} stogga levering til domenet %{target}"
-        create_user_role_html: "%{name} oppretta %{target} rolle"
+        create_user_role_html: "%{name} oppretta rolla %{target}"
         demote_user_html: "%{name} degraderte brukaren %{target}"
         destroy_announcement_html: "%{name} sletta kunngjeringa %{target}"
         destroy_canonical_email_block_html: "%{name} avblokkerte e-post med hash %{target}"
@@ -248,8 +247,13 @@ nn:
         destroy_domain_allow_html: "%{name} forbydde føderasjon med domenet %{target}"
         destroy_domain_block_html: "%{name} avblokkerte domenet %{target}"
         destroy_email_domain_block_html: "%{name} avblokkerte e-postdomenet %{target}"
+        destroy_instance_html: "%{name} tømde domenet %{target}"
         destroy_ip_block_html: "%{name} sletta ein regel for IP-en %{target}"
         destroy_status_html: "%{name} fjerna innlegget frå %{target}"
+        destroy_unavailable_domain_html: "%{name} tok opp att levering til domenet %{target}"
+        destroy_user_role_html: "%{name} sletta rolla %{target}"
+        disable_2fa_user_html: "%{name} tok vekk krav om tofaktorautentisering for brukaren %{target}"
+        disable_custom_emoji_html: "%{name} deaktiverte emojien %{target}"
         reject_user_html: "%{name} avslo registrering fra %{target}"
         reset_password_user_html: "%{name} tilbakestilte passordet for brukaren %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
@@ -291,10 +295,12 @@ nn:
       enable: Slå på
       enabled: Slege på
       enabled_msg: Aktiverte kjensleteikn
+      image_hint: PNG eller GIF opp til %{size}
       list: Oppfør
       listed: Oppført
       new:
         title: Legg til eige kjensleteikn
+      no_emoji_selected: Ingen emojiar vart endra sidan ingen vart valde
       not_permitted: Du har ikkje løyve til å utføra denne handlinga
       overwrite: Skriv over
       shortcode: Stuttkode
@@ -307,7 +313,7 @@ nn:
       updated_msg: Kjensleteiknet er oppdatert!
       upload: Last opp
     dashboard:
-      active_users: aktive brukere
+      active_users: aktive brukarar
       interactions: interaksjoner
       media_storage: Medialagring
       new_users: nye brukere
@@ -361,6 +367,7 @@ nn:
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
+      resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
     follow_recommendations:
       description_html: "<strong>Følg anbefalinger hjelper nye brukere med å finne interessant innhold</strong>. Når en bruker ikke har kommunisert med andre nok til å danne personlig tilpassede følger anbefalinger, anbefales disse kontoene i stedet. De beregnes daglig på nytt fra en blanding av kontoer der de høyeste engasjementene er og med høyest lokal tilhenger for et gitt språk."
@@ -523,7 +530,7 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -993,7 +1000,7 @@ nn:
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Berre fylgjarar
