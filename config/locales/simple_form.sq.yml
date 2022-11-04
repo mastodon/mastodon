@@ -1,4 +1,3 @@
----
 sq:
   simple_form:
     hints:
@@ -66,8 +65,6 @@ sq:
       email_domain_block:
         domain: Ky mund të jetë emri i përkatësisë që shfaqet te adresa email, ose zëri MX që përdor. Do të kontrollohen gjatë regjistrimit.
         with_dns_records: Do të bëhet një përpjekje për ftillimin e zërave DNS të përkatësisë së dhënë dhe do të futen në listë bllokimesh edhe përfundimet
-      featured_tag:
-        name: 'Mund të doni të përdorni një nga këto:'
       filters:
         action: Zgjidhni cili veprim të kryhet, kur një postim ka përputhje me një filtër
         actions:
@@ -297,7 +294,7 @@ sq:
       webhook:
         events: Akte të aktivizuar
         url: URL pikëmbarimi
-    'no': Jo
+    'no': 'Jo'
     not_recommended: Jo e këshilluar
     recommended: E rekomanduar
     required:
@@ -306,4 +303,4 @@ sq:
     title:
       sessions:
         webauthn: Që të bëhet hyrja, përdorni një nga kyçet tuaj të sigurisë
-    'yes': Po
+    'yes': 'Po'
