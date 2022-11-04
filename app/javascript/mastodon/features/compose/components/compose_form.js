@@ -217,7 +217,7 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     return (
-      <div className='compose-form'>
+      <form className='compose-form'>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
@@ -279,10 +279,16 @@ class ComposeForm extends ImmutablePureComponent {
 
         <div className='compose-form__publish'>
           <div className='compose-form__publish-button-wrapper'>
-            <Button text={publishText} onClick={this.handleSubmit} disabled={!this.canSubmit()} block />
+            <Button
+              type="submit"
+              text={publishText}
+              onClick={this.handleSubmit}
+              disabled={!this.canSubmit()}
+              block
+            />
           </div>
         </div>
-      </div>
+      </form>
     );
   }
 
