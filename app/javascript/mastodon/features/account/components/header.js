@@ -337,10 +337,10 @@ class Header extends ImmutablePureComponent {
                   </dl>
 
                   {fields.map((pair, i) => (
-                    <dl key={i}>
+                    <dl key={i} className={classNames({ verified: pair.get('verified_at') })}>
                       <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
 
-                      <dd className={`${pair.get('verified_at') ? 'verified' : ''} translate`} title={pair.get('value_plain')}>
+                      <dd className='translate' title={pair.get('value_plain')}>
                         {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                       </dd>
                     </dl>
