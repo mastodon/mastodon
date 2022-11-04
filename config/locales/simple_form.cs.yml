@@ -1,4 +1,3 @@
----
 cs:
   simple_form:
     hints:
@@ -66,8 +65,6 @@ cs:
       email_domain_block:
         domain: Toto může být doménové jméno, které je v e-mailové adrese nebo MX záznam, který používá. Budou zkontrolovány při registraci.
         with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
-      featured_tag:
-        name: 'Nejspíš budete chtít použít jeden z těchto:'
       filters:
         action: Vyberte jakou akci provést, když příspěvek odpovídá filtru
         actions:
@@ -289,7 +286,7 @@ cs:
       webhook:
         events: Zapnuté události
         url: URL koncového bodu
-    'no': Ne
+    'no': 'Ne'
     not_recommended: Nedoporučuje se
     recommended: Doporučeno
     required:
@@ -298,4 +295,4 @@ cs:
     title:
       sessions:
         webauthn: K přihlášení použijte jeden z Vašich bezpečnostních klíčů
-    'yes': Ano
+    'yes': 'Ano'
