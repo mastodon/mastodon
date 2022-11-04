@@ -1,4 +1,3 @@
----
 hu:
   simple_form:
     hints:
@@ -66,8 +65,6 @@ hu:
       email_domain_block:
         domain: Ez lehet az e-mail címben szereplő domain név vagy az MX rekord, melyet ez használ. Ezeket feliratkozáskor ellenőrizzük.
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
-      featured_tag:
-        name: 'Ezeket esetleg használhatod:'
       filters:
         action: A végrehajtandó műveletet, ha a bejegyzés megfelel a szűrőnek
         actions:
@@ -297,7 +294,7 @@ hu:
       webhook:
         events: Engedélyezett események
         url: Végponti URL
-    'no': Nem
+    'no': 'Nem'
     not_recommended: Nem ajánlott
     recommended: Ajánlott
     required:
@@ -306,4 +303,4 @@ hu:
     title:
       sessions:
         webauthn: Használd valamelyik biztonsági kulcsodat a bejelentkezéshez
-    'yes': Igen
+    'yes': 'Igen'
