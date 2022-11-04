@@ -37,7 +37,7 @@ class StatusCacheHydrator
           payload[:reblog][:poll][:voted] = true
           payload[:reblog][:poll][:own_votes] = []
         else
-          own_votes = @status.reblog.poll.votes.where(account_id: account_id).pluck(:choice)
+          own_votes = PollVote.where(poll_id: @status.reblog.poll_id, account_id: account_id).pluck(:choice)
           payload[:reblog][:poll][:voted] = !own_votes.empty?
           payload[:reblog][:poll][:own_votes] = own_votes
         end
