@@ -66,7 +66,7 @@ class DisabledAccountBanner extends React.PureComponent {
               defaultMessage='Your account {disabledAccount} is currently disabled because you moved to {movedToAccount}.'
               values={{
                 disabledAccount: disabledAccountLink,
-                movedToAccount: <Link to={`/@${movedToAcct}`}>{movedToAcct.includes('@') ? movedToAcct : `${movedToAcct}@{domain}`}</Link>,
+                movedToAccount: <Link to={`/@${movedToAcct}`}>{movedToAcct.includes('@') ? movedToAcct : `${movedToAcct}@${domain}`}</Link>,
               }}
             />
           ) : (
