@@ -57,6 +57,9 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:crop_images]   = Setting.crop_images
     end
 
+    store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
+    store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
+
     if Rails.configuration.x.single_user_mode
       store[:owner] = object.owner&.id&.to_s
     end
@@ -85,6 +88,8 @@ class InitialStateSerializer < ActiveModel::Serializer
     store[object.current_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
     store[object.admin.id.to_s]           = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
     store[object.owner.id.to_s]           = ActiveModelSerializers::SerializableResource.new(object.owner, serializer: REST::AccountSerializer) if object.owner
+    store[object.disabled_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.disabled_account, serializer: REST::AccountSerializer) if object.disabled_account
+    store[object.moved_to_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.moved_to_account, serializer: REST::AccountSerializer) if object.moved_to_account
     store
   end
 
