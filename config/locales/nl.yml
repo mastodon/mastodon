@@ -430,6 +430,9 @@ nl:
       unsuppress: Account weer aanbevelen
     instances:
       availability:
+        description_html:
+          one: Als de levering aan het domein gedurende <strong>%{count} dag</strong> blijft mislukken, dan zullen er geen verdere pogingen tot aflevering worden gedaan tot een aflevering <em>van</em> het domein is ontvangen.
+          other: Als de levering aan het domein gedurende <strong>%{count} verschillende dagen</strong> blijft mislukken, dan zullen er geen verdere pogingen tot aflevering worden gedaan tot een aflevering <em>van</em> het domein is ontvangen.
         failure_threshold_reached: Foutieve drempelwaarde bereikt op %{date}.
         failures_recorded:
           one: Mislukte poging op %{count} dag.
@@ -547,6 +550,7 @@ nl:
       actions:
         delete_description_html: De gerapporteerde berichten worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
         mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
+        other_description_html: Bekijk meer opties voor het controleren van het gedrag van het account en pas communicatie aan op het gerapporteerde account.
         silence_description_html: Het profiel zal alleen zichtbaar zijn voor diegenen die het al volgen of het handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Kan altijd worden teruggedraaid.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
