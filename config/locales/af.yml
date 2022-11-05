@@ -1,15 +1,18 @@
----
 af:
   about:
     contact_unavailable: NVT
     hosted_on: Mastodon gehuisves op %{domain}
   admin:
+    accounts:
+      search: Soek
     announcements:
       publish: Publiseer
       published_msg: Aankondiging was suksesvol gepubliseer!
       unpublish: Depubliseer
     domain_blocks:
       existing_domain_block: Jy het alreeds strenger perke ingelê op %{name}.
+    statuses:
+      favourites: Gunstelinge
     trends:
       only_allowed: Slegs toegelate
       preview_card_providers:
@@ -30,6 +33,8 @@ af:
       status: Status
       title: Web-hoeke
       webhook: Web-hoek
+  appearance:
+    advanced_web_interface_hint: 'As jy jou hele skerm wydte wil gebruik, laat die gevorderde web koppelvlak jou toe om konfigurasie op te stel vir vele verskillende kolomme om so veel as moontlik inligting op dieselfde tyd te sien as wat jy wil: Tuis, kennisgewings, gefedereerde tydlyn, enige aantal lyste of hits-etikette.'
   disputes:
     strikes:
       approve_appeal: Aanvaar appêl
@@ -40,10 +45,15 @@ af:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    bookmarks: Boekmerke
+  imports:
+    types:
+      bookmarks: Boekmerke
   navigation:
     toggle_menu: Skakel-kieslys
   rss:
@@ -51,6 +61,8 @@ af:
     descriptions:
       account: Publieke plasings vanaf @%{acct}
       tag: 'Publieke plasings met die #%{hashtag} etiket'
+  statuses_cleanup:
+    ignore_favs: Ignoreer gunstelinge
   strikes:
     errors:
       too_late: Dit is te laat om hierdie staking te appelleer
