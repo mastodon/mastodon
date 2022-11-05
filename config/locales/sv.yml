@@ -91,6 +91,7 @@ sv:
         active: Aktiv
         all: Alla
         pending: Väntande
+        silenced: Begränsad
         suspended: Avstängd
         title: Moderering
       moderation_notes: Moderation anteckning
@@ -111,9 +112,13 @@ sv:
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera profil
+      redownloaded_msg: Uppdaterade %{username}s profil från server
       reject: Förkasta
+      rejected_msg: Avvisade %{username}s registreringsansökan
       remove_avatar: Ta bort avatar
       remove_header: Ta bort rubrik
+      removed_avatar_msg: Tog bort %{username}s profilbild
+      removed_header_msg: Tog bort %{username}s sidhuvudsbild
       resend_confirmation:
         already_confirmed: Den här användaren är redan bekräftad
         send: Skicka om e-postbekräftelse
@@ -147,9 +152,12 @@ sv:
       unblock_email: Avblockera e-postadress
       unblocked_email_msg: '%{username}s e-postadress avblockerad'
       unconfirmed_email: Obekräftad e-postadress
+      undo_sensitized: Ångra tvinga känsligt
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
+      unsilenced_msg: Begränsningen borttagen för %{username}s konto
       unsubscribe: Avsluta prenumeration
+      unsuspended_msg: Låste upp %{username}s konto
       username: Användarnamn
       view_domain: Visa sammanfattning för domän
       warn: Varna
@@ -187,8 +195,10 @@ sv:
         destroy_user_role: Förstör roll
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
+        disable_sign_in_token_auth_user: Inaktivera autentisering med e-post-token för användare
         disable_user: Inaktivera användare
         enable_custom_emoji: Aktivera egna emojis
+        enable_sign_in_token_auth_user: Aktivera autentisering med e-post-token för användare
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
         promote_user: Befordra användare
@@ -196,6 +206,7 @@ sv:
         reject_user: Avvisa användare
         remove_avatar_user: Ta bort avatar
         reopen_report: Öppna rapporten igen
+        resend_user: Skicka bekräftelse på nytt
         reset_password_user: Återställ lösenord
         resolve_report: Lös rapport
         sensitive_account: Markera mediet i ditt konto som känsligt
@@ -203,6 +214,8 @@ sv:
         suspend_account: Stäng av konto
         unassigned_report: Återkalla rapport
         unblock_email_account: Avblockera e-postadress
+        unsensitive_account: Ångra tvinga känsligt konto
+        unsilence_account: Ångra begränsa konto
         unsuspend_account: Återaktivera konto
         update_announcement: Uppdatera kungörelse
         update_custom_emoji: Uppdatera egna emojis
@@ -211,30 +224,55 @@ sv:
         update_status: Uppdatera inlägg
         update_user_role: Uppdatera roll
       actions:
+        approve_appeal_html: "%{name} godkände överklagande av modereringsbeslut från %{target}"
+        approve_user_html: "%{name} godkände registrering från %{target}"
+        assigned_to_self_report_html: "%{name} tilldelade rapporten %{target} till sig själva"
+        change_email_user_html: "%{name} bytte e-postadress för användare %{target}"
+        change_role_user_html: "%{name} ändrade roll för %{target}"
+        confirm_user_html: "%{name} bekräftade e-postadress för användare %{target}"
         create_account_warning_html: "%{name} skickade en varning till %{target}"
         create_announcement_html: "%{name} skapade kungörelsen %{target}"
+        create_canonical_email_block_html: "%{name} blockerade e-post med hashen %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
+        create_domain_allow_html: "%{name} vitlistade domän %{target}"
         create_domain_block_html: "%{name} blockerade domänen %{target}"
         create_email_domain_block_html: "%{name} blockerade e-postdomänen %{target}"
         create_ip_block_html: "%{name} skapade regel för IP %{target}"
+        create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
+        create_user_role_html: "%{name} skapade rollen %{target}"
+        demote_user_html: "%{name} nedgraderade användare %{target}"
         destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
+        destroy_canonical_email_block_html: "%{name} avblockerade e-post med hashen %{target}"
+        destroy_custom_emoji_html: "%{name} raderade emoji %{target}"
+        destroy_domain_allow_html: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
         destroy_email_domain_block_html: "%{name} avblockerade e-postdomänen %{target}"
+        destroy_instance_html: "%{name} rensade domän %{target}"
         destroy_ip_block_html: "%{name} tog bort regel för IP %{target}"
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
+        destroy_unavailable_domain_html: "%{name} återupptog leverans till domänen %{target}"
+        destroy_user_role_html: "%{name} raderade rollen %{target}"
+        disable_2fa_user_html: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användaren %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} inaktiverade e-posttokenautentisering för %{target}"
         disable_user_html: "%{name} stängde av inloggning för användaren %{target}"
         enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}'s konto till en minnessida"
         promote_user_html: "%{name} befordrade användaren %{target}"
+        reject_appeal_html: "%{name} avvisade överklagande av modereringsbeslut från %{target}"
+        reject_user_html: "%{name} avvisade registrering från %{target}"
         remove_avatar_user_html: "%{name} tog bort %{target}'s avatar"
         reopen_report_html: "%{name} öppnade rapporten igen %{target}"
+        resend_user_html: "%{name} skickade bekräftelsemail för %{target} på nytt"
         reset_password_user_html: "%{name} återställ användarens lösenord %{target}"
         resolve_report_html: "%{name} löste rapporten %{target}"
         sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
         silence_account_html: "%{name} begränsade %{target}'s konto"
         suspend_account_html: "%{name} stängde av %{target}'s konto"
+        unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
+        unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
         unsensitive_account_html: "%{name} avmarkerade %{target}'s media som känsligt"
         unsuspend_account_html: "%{name} tog bort avstängningen av %{target}'s konto"
         update_announcement_html: "%{name} uppdaterade kungörelsen %{target}"
