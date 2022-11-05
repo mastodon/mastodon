@@ -466,12 +466,14 @@ sv:
         delete: Radera
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
         title: Anteckningar
+      remote_user_placeholder: fjärranvändaren från %{instance}
       reopen: Återuppta anmälan
       report: 'Rapport #%{id}'
       reported_account: Anmält konto
       reported_by: Anmäld av
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
+      skip_to_actions: Hoppa till åtgärder
       status: Status
       statuses: Rapporterat innehåll
       target_origin: Ursprung för anmält konto
@@ -487,6 +489,7 @@ sv:
         other: "%{count} användare"
       categories:
         administration: Administration
+        devops: Devops
         invites: Inbjudningar
         moderation: Moderering
         special: Särskild
@@ -494,20 +497,45 @@ sv:
       description_html: Med <strong>användarroller</strong> kan du anpassa vilka funktioner och områden dina användare kan komma åt i Mastodon.
       edit: Redigera roll för '%{name}'
       everyone: Standardbehörigheter
+      everyone_full_description_html: Detta är den <strong>grundroll</strong> som påverkar <strong>alla användare</strong>, även de utan särskilt tilldelad roll. Alla andra roller ärver behörigheter från denna.
+      permissions_count:
+        one: "%{count} behörighet"
+        other: "%{count} behörigheter"
       privileges:
         administrator: Administratör
         delete_user_data: Ta bort användardata
+        delete_user_data_description: Tillåter användare att omedelbart radera andra användares data
         invite_users: Bjud in användare
+        invite_users_description: Tillåter användare att bjuda in nya personer till servern
+        manage_appeals: Hantera överklaganden
+        manage_appeals_description: Tillåter användare att granska överklaganden av modereringsåtgärder
+        manage_blocks_description: Tillåter användare att blockera e-postleverantörer och IP-adresser
+        manage_custom_emojis: Hantera egna emojier
+        manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
+        manage_federation: Hantera federering
+        manage_federation_description: Tillåter användare att blockera eller tillåta federering med andra domäner, samt kontrollera levererbarhet
         manage_invites: Hantera inbjudningar
+        manage_invites_description: Tillåter användare att granska och inaktivera inbjudningslänkar
         manage_reports: Hantera rapporter
+        manage_reports_description: Tillåter användare att granska rapporter och utföra modereringsåtgärder på dessa
         manage_roles: Hantera roller
+        manage_roles_description: Tillåter användare att hantera och tilldela roller underordnade deras
         manage_rules: Hantera regler
+        manage_rules_description: Tillåter användare att ändra serverregler
         manage_settings: Hantera inställningar
+        manage_settings_description: Tillåter användare att ändra webbplatsinställningar
         manage_taxonomies: Hantera taxonomier
+        manage_taxonomies_description: Tillåter användare att granska trendande innehåll och uppdatera inställningar för hashtaggar
         manage_user_access: Hantera användaråtkomst
+        manage_user_access_description: Tillåter användare att inaktivera andra användares tvåfaktorsautentisering, ändra deras e-postadress samt återställa deras lösenord
         manage_users: Hantera användare
+        manage_users_description: Tillåter användare att granska användares data och utföra modereringsåtgärder på dessa
         manage_webhooks: Hantera webhooks
+        manage_webhooks_description: Tillåter användare att konfigurera webhooks för administrativa händelser
+        view_audit_log: Visa granskningsloggen
+        view_audit_log_description: Tillåter användare att se historiken över administrativa åtgärder på servern
         view_dashboard: Visa instrumentpanel
+        view_devops: Devops
       title: Roller
     rules:
       add_new: Lägg till regel
@@ -520,7 +548,13 @@ sv:
         title: Om
       appearance:
         title: Utseende
+      branding:
+        title: Profilering
+      content_retention:
+        preamble: Kontrollera hur användargenererat innehåll lagras i Mastodon.
+        title: Bibehållande av innehåll
       discovery:
+        profile_directory: Profilkatalog
         trends: Trender
       domain_blocks:
         all: Till alla
@@ -580,11 +614,19 @@ sv:
         title: Trendande inlägg
       tags:
         dashboard:
+          tag_languages_dimension: Mest använda språk
+          tag_servers_dimension: Mest använda servrar
           tag_servers_measure: olika servrar
         listable: Kan föreslås
+        not_listable: Kommer ej föreslås
+        not_trendable: Kommer ej visas under trender
         not_usable: Kan inte användas
+        peaked_on_and_decaying: Nådde sin höjdpunkt %{date}, faller nu
+        title: Trendande hashtaggar
+        trendable: Kan visas under trender
         usable: Kan användas
       title: Trender
+      trending: Trendande
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
@@ -612,6 +654,8 @@ sv:
         title: Trendande länkar
       new_trending_statuses:
         title: Trendande inlägg
+      new_trending_tags:
+        title: Trendande hashtaggar
   aliases:
     add_new: Skapa alias
     empty: Du har inga alias.
