@@ -1,4 +1,3 @@
----
 fr:
   about:
     about_mastodon_html: 'Le réseau social de l''avenir : pas de publicité, pas de surveillance institutionnelle, conception éthique et décentralisation ! Gardez le contrôle de vos données avec Mastodon !'
@@ -56,7 +55,7 @@ fr:
       delete: Supprimer les données
       deleted: Supprimé
       demote: Rétrograder
-      destroyed_msg: Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment
+      destroyed_msg: "Les données de %{username} sont maintenant en file d’attente pour être supprimées imminemment"
       disable: Geler
       disable_sign_in_token_auth: Désactiver l'authentification basée sur les jetons envoyés par courriel
       disable_two_factor_authentication: Désactiver l’authentification à deux facteurs
@@ -520,7 +519,7 @@ fr:
       no_ip_block_selected: Aucune règle IP n’a été modifiée car aucune n’a été sélectionnée
       title: Règles IP
     relationships:
-      title: Relations de %{acct}
+      title: "Relations de %{acct}"
     relays:
       add_new: Ajouter un nouveau relais
       delete: Supprimer
@@ -685,6 +684,7 @@ fr:
         title: Rétention du contenu
       discovery:
         follow_recommendations: Suivre les recommandations
+        preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
         title: Découverte
@@ -866,7 +866,7 @@ fr:
     new_report:
       body: "%{reporter} a signalé %{target}"
       body_remote: Quelqu’un de %{domain} a signalé %{target}
-      subject: Nouveau signalement sur %{instance} (#%{id})
+      subject: 'Nouveau signalement sur %{instance} (#%{id})'
     new_trends:
       body: 'Les éléments suivants doivent être approuvés avant de pouvoir être affichés publiquement :'
       new_trending_links:
@@ -1098,6 +1098,7 @@ fr:
       add_keyword: Ajouter un mot-clé
       keywords: Mots-clés
       statuses: Publications individuelles
+      statuses_hint_html: Ce filtre s'applique à la sélection de messages individuels, qu'ils correspondent ou non aux mots-clés ci-dessous. <a href="%{path}">Revoir ou supprimer des messages du filtre</a>.
       title: Éditer le filtre
     errors:
       deprecated_api_multiple_keywords: Ces paramètres ne peuvent pas être modifiés depuis cette application, car ils s'appliquent à plus d'un filtre de mot-clé. Utilisez une application plus récente ou l'interface web.
@@ -1114,6 +1115,9 @@ fr:
       statuses:
         one: "%{count} message"
         other: "%{count} messages"
+      statuses_long:
+        one: "%{count} publication individuelle cachée"
+        other: "%{count} publications individuelles cachées"
       title: Filtres
     new:
       save: Enregistrer le nouveau filtre
@@ -1123,6 +1127,7 @@ fr:
       batch:
         remove: Retirer du filtre
       index:
+        hint: Ce filtre s'applique à la sélection de messages individuels, indépendamment d'autres critères. Vous pouvez ajouter plus de messages à ce filtre à partir de l'interface Web.
         title: Messages filtrés
   footer:
     trending_now: Tendance en ce moment
@@ -1254,7 +1259,7 @@ fr:
       sign_up:
         subject: "%{name} s'est inscrit·e"
     favourite:
-      body: "%{name} a ajouté votre message à ses favoris :"
+      body: '%{name} a ajouté votre message à ses favoris :'
       subject: "%{name} a ajouté votre message à ses favoris"
       title: Nouveau favori
     follow:
@@ -1268,8 +1273,8 @@ fr:
       title: Nouvelle demande d’abonnement
     mention:
       action: Répondre
-      body: "%{name} vous a mentionné⋅e dans :"
-      subject: "%{name} vous a mentionné·e"
+      body: '%{name} vous a mentionné⋅e dans :'
+      subject: '%{name} vous a mentionné·e'
       title: Nouvelle mention
     poll:
       subject: Un sondage de %{name} est terminé
@@ -1467,7 +1472,7 @@ fr:
     show_older: Plus anciens
     show_thread: Afficher le fil de discussion
     sign_in_to_participate: Inscrivez-vous pour prendre part à la conversation
-    title: "%{name} : « %{quote} »"
+    title: '%{name} : « %{quote} »'
     visibilities:
       direct: Direct
       private: Abonné⋅e⋅s uniquement
