@@ -1,4 +1,3 @@
----
 sv:
   about:
     about_mastodon_html: 'Framtidens sociala medium: Ingen reklam. Ingen övervakning. Etisk design och decentralisering! Äg din data med Mastodon!'
@@ -33,7 +32,7 @@ sv:
     accounts:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
-      approved_msg: "%{username}s registreringsansökan godkändes"
+      approved_msg: '%{username}s registreringsansökan godkändes'
       are_you_sure: Är du säker?
       avatar: Profilbild
       by_domain: Domän
@@ -151,7 +150,7 @@ sv:
       suspension_reversible_hint_html: Kontot har låsts, och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
       unblock_email: Avblockera e-postadress
-      unblocked_email_msg: "%{username}s e-postadress avblockerad"
+      unblocked_email_msg: '%{username}s e-postadress avblockerad'
       unconfirmed_email: Obekräftad e-postadress
       undo_sensitized: Ångra tvinga känsligt
       undo_silenced: Ångra tystnad
@@ -425,15 +424,19 @@ sv:
       language: För språket
       status: Status
       title: Följ rekommendationer
+      unsuppress: Återställ följrekommendation
     instances:
       availability:
+        failure_threshold_reached: Tröskeln för misslyckande nåddes den %{date}.
         title: Tillgänglighet
         warning: Det senaste försöket att ansluta till denna värddator har misslyckats
       back_to_all: Alla
       back_to_limited: Begränsat
       back_to_warning: Varning
       by_domain: Domän
+      confirm_purge: Är du säker på att du vill ta bort data permanent från den här domänen?
       content_policies:
+        comment: Intern anteckning
         policies:
           reject_reports: Avvisa rapporter
           silence: Gräns
@@ -529,6 +532,7 @@ sv:
       actions:
         delete_description_html: De rapporterade inläggen kommer raderas och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
+        other_description_html: Se fler alternativ för att kontrollera kontots beteende och anpassa kommunikationen till det rapporterade kontot.
         suspend_description_html: Profilen och allt dess innehåll kommer att bli oåtkomligt tills det slutligen raderas. Det kommer inte vara möjligt att interagera med kontot. Går att ångra inom 30 dagar.
       add_to_report: Lägg till mer i rapporten
       are_you_sure: Är du säker?
@@ -543,6 +547,7 @@ sv:
       forwarded: Vidarebefordrad
       forwarded_to: Vidarebefordrad till %{domain}
       mark_as_resolved: Markera som löst
+      mark_as_sensitive: Markera som känslig
       mark_as_unresolved: Markera som olöst
       no_one_assigned: Ingen
       notes:
@@ -552,6 +557,7 @@ sv:
         delete: Radera
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
         title: Anteckningar
+      quick_actions_description_html: 'Ta en snabb åtgärd eller bläddra ner för att se rapporterat innehåll:'
       remote_user_placeholder: fjärranvändaren från %{instance}
       reopen: Återuppta anmälan
       report: 'Rapport #%{id}'
@@ -562,6 +568,7 @@ sv:
       skip_to_actions: Hoppa till åtgärder
       status: Status
       statuses: Rapporterat innehåll
+      statuses_description_html: Stötande innehåll kommer att citeras i kommunikationen med det rapporterade kontot
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
@@ -597,6 +604,7 @@ sv:
         manage_announcements_description: Tillåt användare att hantera kungörelser på servern
         manage_appeals: Hantera överklaganden
         manage_appeals_description: Tillåter användare att granska överklaganden av modereringsåtgärder
+        manage_blocks: Hantera blockeringar
         manage_blocks_description: Tillåter användare att blockera e-postleverantörer och IP-adresser
         manage_custom_emojis: Hantera egna emojier
         manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
@@ -629,6 +637,7 @@ sv:
       add_new: Lägg till regel
       delete: Radera
       edit: Ändra regel
+      empty: Inga serverregler har ännu angetts.
       title: Serverns regler
     settings:
       about:
@@ -643,13 +652,17 @@ sv:
         preamble: Kontrollera hur användargenererat innehåll lagras i Mastodon.
         title: Bibehållande av innehåll
       discovery:
+        follow_recommendations: Följrekommendationer
         profile_directory: Profilkatalog
+        public_timelines: Offentliga tidslinjer
+        title: Upptäck
         trends: Trender
       domain_blocks:
         all: Till alla
         disabled: För ingen
         users: För inloggade lokala användare
       registrations:
+        preamble: Kontrollera vem som kan skapa ett konto på din server.
         title: Registreringar
       registrations_mode:
         modes:
@@ -660,6 +673,7 @@ sv:
     site_uploads:
       delete: Radera uppladdad fil
     statuses:
+      account: Författare
       application: Applikation
       back_to_account: Tillbaka till kontosidan
       back_to_report: Tillbaka till rapportsidan
@@ -675,6 +689,7 @@ sv:
         title: Media
       metadata: Metadata
       open: Öppna inlägg
+      original_status: Ursprungligt inlägg
       title: Kontoinlägg
       trending: Trendande
       visibility: Synlighet
@@ -802,7 +817,7 @@ sv:
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
-      subject: Ny rapport för %{instance} (#%{id})
+      subject: 'Ny rapport för %{instance} (#%{id})'
     new_trends:
       new_trending_links:
         title: Trendande länkar
@@ -1029,10 +1044,10 @@ sv:
     all: Alla
     all_items_on_page_selected_html:
       one: "<strong>%{count}</strong> objekt på denna sida valt."
-      other: "<strong>%{count}</strong> objekt på denna sida valda."
+      other: <strong>%{count}</strong> objekt på denna sida valda.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
-      other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
+      other: <strong>%{count}</strong> objekt som matchar din sökning är valda.
     changes_saved_msg: Ändringar sparades framgångsrikt!
     copy: Kopiera
     delete: Radera
