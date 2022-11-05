@@ -1,4 +1,3 @@
----
 da:
   simple_form:
     hints:
@@ -66,6 +65,8 @@ da:
       email_domain_block:
         domain: Dette kan være domænenavnet vist i den benyttede i e-mailadresse eller MX-post. Begge tjekkes under tilmelding.
         with_dns_records: Et forsøg på at opløse det givne domænes DNS-poster foretages, og resultaterne blokeres ligeledes
+      featured_tag:
+        name: 'Her er nogle af dine hyppigst brugte hashtags:'
       filters:
         action: Vælg handlingen til eksekvering, når et indlæg matcher filteret
         actions:
@@ -295,7 +296,7 @@ da:
       webhook:
         events: Aktive begivenheder
         url: Endepunkts-URL
-    'no': Nej
+    'no': 'Nej'
     not_recommended: Ikke anbefalet
     recommended: Anbefalet
     required:
@@ -304,4 +305,4 @@ da:
     title:
       sessions:
         webauthn: Brug en af dine sikkerhedskoder til indlogning
-    'yes': Ja
+    'yes': 'Ja'
