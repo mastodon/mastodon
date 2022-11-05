@@ -274,11 +274,14 @@ sv:
         unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
         unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
         unsensitive_account_html: "%{name} avmarkerade %{target}'s media som känsligt"
+        unsilence_account_html: "%{name} tog bort begränsning av %{target}s konto"
         unsuspend_account_html: "%{name} tog bort avstängningen av %{target}'s konto"
         update_announcement_html: "%{name} uppdaterade kungörelsen %{target}"
         update_custom_emoji_html: "%{name} uppdaterade emoji %{target}"
         update_domain_block_html: "%{name} uppdaterade domän-block för %{target}"
+        update_ip_block_html: "%{name} ändrade regel för IP %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
+        update_user_role_html: "%{name} ändrade rollen %{target}"
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
@@ -339,13 +342,22 @@ sv:
       interactions: interaktioner
       media_storage: Medialagring
       new_users: nya användare
+      opened_reports: öppnade rapporter
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> väntande överklagan"
+        other: "<strong>%{count}</strong> väntande överklaganden"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> väntande rapport"
+        other: "<strong>%{count}</strong> väntande rapporter"
       pending_tags_html:
         one: "<strong>%{count}</strong> väntande hashtagg"
         other: "<strong>%{count}</strong> väntande hashtaggar"
       pending_users_html:
         one: "<strong>%{count}</strong> väntande användare"
         other: "<strong>%{count}</strong> väntande användare"
+      resolved_reports: lösta rapporter
       software: Programvara
+      sources: Registreringskällor
       space: Utrymmesutnyttjande / Utrymmesanvändning
       title: Kontrollpanel
       top_languages: Mest aktiva språk
@@ -366,6 +378,7 @@ sv:
       destroyed_msg: Domänblockering har återtagits
       domain: Domän
       edit: Ändra domänblock
+      existing_domain_block: Du har redan satt strängare gränser för %{name}.
       existing_domain_block_html: Du har redan satt begränsningar för %{name} så <a href="%{unblock_url}">avblockera användaren</a> först.
       new:
         create: Skapa block
@@ -381,6 +394,7 @@ sv:
       private_comment: Privat kommentar
       private_comment_hint: Kommentar för moderatorer om denna domänbegränsning.
       public_comment: Offentlig kommentar
+      public_comment_hint: Kommentar om denna domänbegränsning för allmänheten, om listan över domänbegränsningar är publik.
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
       reject_reports: Avvisa rapporter
@@ -389,6 +403,9 @@ sv:
       view: Visa domänblock
     email_domain_blocks:
       add_new: Lägg till ny
+      attempts_over_week:
+        one: "%{count} försök under den senaste veckan"
+        other: "%{count} registreringsförsök under den senaste veckan"
       created_msg: Blockerade e-postdomänen
       delete: Radera
       dns:
@@ -397,6 +414,7 @@ sv:
       domain: Domän
       new:
         create: Skapa domän
+        resolve: Slå upp domän
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
       resolved_through_html: Uppslagen genom %{domain}
@@ -664,56 +682,121 @@ sv:
       actions:
         delete_statuses: "%{name} raderade %{target}s inlägg"
         disable: "%{name} frös %{target}s konto"
+        sensitive: "%{name} markerade %{target}s konto som känsligt"
         silence: "%{name} begränsade %{target}s konto"
+        suspend: "%{name} stängde av %{target}s konto"
       appeal_approved: Överklagad
+      appeal_pending: Överklagande väntar
     system_checks:
+      database_schema_check:
+        message_html: Det finns väntande databasmigreringar. Vänligen kör dem för att säkerställa att programmet beter sig som förväntat
+      elasticsearch_running_check:
+        message_html: Kunde inte ansluta till Elasticsearch. Kontrollera att det körs, eller inaktivera fulltextsökning
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-version: %{value}'
+        version_comparison: Elasticsearch %{running_version} körs medan %{required_version} krävs
       rules_check:
         action: Hantera serverregler
         message_html: Du har inte definierat några serverregler.
+      sidekiq_process_check:
+        message_html: Ingen Sidekiq-process körs för kön/köerna %{value}. Vänligen kontrollera din Sidekiq-konfiguration
+    tags:
+      review: Granskningsstatus
+      updated_msg: Hashtagg-inställningarna har uppdaterats
     title: Administration
     trends:
       allow: Tillåt
       approved: Godkänd
+      disallow: Neka
       links:
         allow: Tillåt länk
         allow_provider: Tillåt utgivare
+        description_html: Detta är länkar som för närvarande delas mycket av konton som din server ser inlägg från. Det kan hjälpa dina användare att ta reda på vad som händer i världen. Inga länkar visas offentligt tills du godkänner utgivaren. Du kan också tillåta eller avvisa enskilda länkar.
+        disallow: Blockera länk
+        disallow_provider: Blockera utgivare
+        no_link_selected: Inga länkar ändrades eftersom inga valdes
+        publishers:
+          no_publisher_selected: Inga utgivare ändrades eftersom inga valdes
+        shared_by_over_week:
+          one: Delad av en person under den senaste veckan
+          other: Delad av %{count} personer under den senaste veckan
         title: Trendande länkar
+        usage_comparison: Delade %{today} gånger idag, jämfört med %{yesterday} igår
+      only_allowed: Endast tillåtna
+      pending_review: Väntar på granskning
+      preview_card_providers:
+        allowed: Länkar från denna utgivare kan trenda
+        description_html: Detta är domäner från vilka länkar ofta delas på din server. Länkar kommer inte att trenda offentligt om inte deras domän godkänns. Ditt godkännande (eller avslag) omfattar underdomäner.
+        rejected: Länkar från denna utgivare kommer inte att trenda
+        title: Utgivare
+      rejected: Avvisade
       statuses:
         allow: Tillåt inlägg
         allow_account: Godkänn författare
+        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoriseras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
+        disallow: Tillåt inte inlägg
+        disallow_account: Tillåt inte författare
+        no_status_selected: Inga trendande inlägg ändrades eftersom inga valdes
+        not_discoverable: Författaren har valt att inte vara upptäckbar
+        shared_by:
+          one: Delad eller favoritmarkerad en gång
+          other: Delade och favoritmarkerade %{friendly_count} gånger
         title: Trendande inlägg
       tags:
+        current_score: Nuvarande poäng %{score}
         dashboard:
+          tag_accounts_measure: unika användningar
           tag_languages_dimension: Mest använda språk
           tag_servers_dimension: Mest använda servrar
           tag_servers_measure: olika servrar
+          tag_uses_measure: total användning
+        description_html: Detta är hashtaggar som just nu visas i många inlägg som din server ser. Det kan hjälpa dina användare att ta reda på vad människor talar mest om för tillfället. Inga hashtaggar visas offentligt tills du godkänner dem.
         listable: Kan föreslås
+        no_tag_selected: Inga taggar ändrades eftersom inga valdes
         not_listable: Kommer ej föreslås
         not_trendable: Kommer ej visas under trender
         not_usable: Kan inte användas
         peaked_on_and_decaying: Nådde sin höjdpunkt %{date}, faller nu
         title: Trendande hashtaggar
         trendable: Kan visas under trender
+        trending_rank: 'Trendande #%{rank}'
         usable: Kan användas
+        usage_comparison: Använd %{today} gånger idag, jämfört med %{yesterday} igår
+        used_by_over_week:
+          one: Använd av en person under den senaste veckan
+          other: Använd av %{count} personer under den senaste veckan
       title: Trender
       trending: Trendande
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
+      edit_preset: Redigera varningsförval
+      empty: Du har inte definierat några varningsförval ännu.
+      title: Hantera varningsförval
     webhooks:
+      add_new: Lägg till slutpunkt
       delete: Ta bort
+      description_html: En <strong>webhook</strong> gör det möjligt för Mastodon att skicka <strong>realtidsaviseringar</strong> om valda händelser till din egen applikation så att den <strong>automatiskt kan utlösa händelser</strong>.
       disable: Inaktivera
       disabled: Inaktiverad
+      edit: Redigera slutpunkt
+      empty: Du har inte några webhook-slutpunkter konfigurerade ännu.
       enable: Aktivera
       enabled: Aktiv
+      enabled_events:
+        one: 1 aktiverad händelse
+        other: "%{count} aktiverade händelser"
+      events: Händelser
       new: Ny webhook
       rotate_secret: Rotera hemlighet
+      secret: Signeringshemlighet
       status: Status
       title: Webhooks
       webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: att radera deras inlägg
         none: en varning
     new_report:
       body: "%{reporter} har rapporterat %{target}"
@@ -851,6 +934,12 @@ sv:
       status: 'Inlägg #%{id}'
       title_actions:
         none: Varning
+        sensitive: Märkning av konto som känslig
+        silence: Begränsning av konto
+        suspend: Avstängning av konto
+      your_appeal_approved: Din överklagan har godkänts
+      your_appeal_pending: Du har lämnat in en överklagan
+      your_appeal_rejected: Din överklagan har avvisats
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
@@ -866,9 +955,10 @@ sv:
     '500':
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Sidan kunde inte visas på grund av ett tillfälligt serverfel.
     noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
   existing_username_validator:
+    not_found: kunde inte hitta en lokal användare med det användarnamnet
     not_found_multiple: kunde inte hitta %{usernames}
   exports:
     archive_takeout:
@@ -887,6 +977,9 @@ sv:
     storage: Medialagring
   featured_tags:
     add_new: Lägg till ny
+    errors:
+      limit: Du har redan det maximala antalet utvalda hashtaggar
+    hint_html: "<strong>Vad är utvalda hashtaggar?</strong> De visas tydligt på din offentliga profil och låter andra bläddra bland dina offentliga inlägg specifikt under dessa hashtaggar. De är ett bra verktyg för att hålla reda på kreativa arbeten eller långsiktiga projekt."
   filters:
     contexts:
       account: Profiler
@@ -898,11 +991,26 @@ sv:
       add_keyword: Lägg till nyckelord
       keywords: Nyckelord
       statuses: Individuella inlägg
+      statuses_hint_html: Detta filter gäller för att välja enskilda inlägg oavsett om de matchar sökorden nedan. <a href="%{path}">Granska eller ta bort inlägg från filtret</a>.
       title: Redigera filter
+    errors:
+      deprecated_api_multiple_keywords: Dessa parametrar kan inte ändras från denna applikation eftersom de gäller mer än ett filtersökord. Använd en nyare applikation eller webbgränssnittet.
+      invalid_context: Ingen eller ogiltig kontext angiven
     index:
       contexts: Filter i %{contexts}
       delete: Radera
       empty: Du har inga filter.
+      expires_in: Förfaller om %{distance}
+      expires_on: Förfaller på %{date}
+      keywords:
+        one: "%{count} nyckelord"
+        other: "%{count} nyckelord"
+      statuses:
+        one: "%{count} inlägg"
+        other: "%{count} inlägg"
+      statuses_long:
+        one: "%{count} enskilt inlägg dolt"
+        other: "%{count} enskilda inlägg dolda"
       title: Filter
     new:
       save: Spara nytt filter
@@ -912,21 +1020,34 @@ sv:
       batch:
         remove: Ta bort från filter
       index:
+        hint: Detta filter gäller för att välja enskilda inlägg oavsett andra kriterier. Du kan lägga till fler inlägg till detta filter från webbgränssnittet.
         title: Filtrerade inlägg
   footer:
     trending_now: Trendar nu
   generic:
     all: Alla
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> objekt på denna sida valt."
+      other: <strong>%{count}</strong> objekt på denna sida valda.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
+      other: <strong>%{count}</strong> objekt som matchar din sökning är valda.
     changes_saved_msg: Ändringar sparades framgångsrikt!
     copy: Kopiera
     delete: Radera
+    deselect: Avmarkera alla
     none: Ingen
     order_by: Sortera efter
     save_changes: Spara ändringar
+    select_all_matching_items:
+      one: Välj %{count} objekt som matchar din sökning.
+      other: Välj alla %{count} objekt som matchar din sökning.
     today: idag
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
+  html_validator:
+    invalid_markup: 'innehåller ogiltig HTML: %{error}'
   imports:
     errors:
       over_rows_processing_limit: innehåller fler än %{count} rader
@@ -940,6 +1061,7 @@ sv:
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
+      domain_blocking: Domänblockeringslista
       following: Lista av följare
       muting: Lista av nertystade
     upload: Ladda upp
@@ -970,18 +1092,25 @@ sv:
       limit: Du har nått det maximala antalet listor
   login_activities:
     authentication_methods:
+      otp: tvåfaktorsautentiseringsapp
       password: lösenord
       sign_in_token: e-postsäkerhetskod
       webauthn: säkerhetsnycklar
     description_html: Om du ser aktivitet som du inte känner igen, överväg att byta ditt lösenord och aktivera tvåfaktor-autentisering.
+    empty: Ingen autentiseringshistorik tillgänglig
+    failed_sign_in_html: Misslyckat inloggningsförsök med %{method} från %{ip} (%{browser})
+    successful_sign_in_html: Lyckad inloggning med %{method} från %{ip} (%{browser})
+    title: Autentiseringshistorik
   media_attachments:
     validations:
       images_and_video: Det går inte att bifoga en video till ett inlägg som redan innehåller bilder
+      not_ready: Kan inte bifoga filer som inte har behandlats färdigt. Försök igen om ett ögonblick!
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
     cancel: Avbryt omdirigering
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
+    cancelled_msg: Avbröt omdirigeringen.
     errors:
       already_moved: är samma konto som du redan har flyttat till
       missing_also_known_as: är inte ett alias för det här kontot
@@ -1002,8 +1131,12 @@ sv:
     warning:
       backreference_required: Det nya kontot måste först vara konfigurerat till att bakåt-referera till det här
       before: 'Vänligen läs dessa anteckningar noggrant innan du fortsätter:'
+      cooldown: Efter flytten följer en vänteperiod under vilken du inte kan flytta igen
+      disabled_account: Ditt nuvarande konto kommer inte att kunna användas fullt ut efteråt. Du kommer dock att ha tillgång till dataexport samt återaktivering.
       followers: Den här åtgärden kommer att flytta alla följare från det nuvarande kontot till det nya kontot
+      only_redirect_html: Alternativt kan du <a href="%{path}">bara sätta upp en omdirigering på din profil</a>.
       other_data: Ingen annan data kommer att flyttas automatiskt
+      redirect: Ditt nuvarande kontos profil kommer att uppdateras med ett meddelande om omdirigering och uteslutas från sökningar
   moderation:
     title: Moderera
   move_handler:
@@ -1014,6 +1147,8 @@ sv:
     toggle_menu: Växla meny
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} skickade in en rapport"
       sign_up:
         subject: "%{name} registrerade sig"
     favourite:
@@ -1059,6 +1194,7 @@ sv:
           thousand: K
           trillion: T
   otp_authentication:
+    code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
     enable: Aktivera
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app i din telefon</strong>. Från och med nu så kommer den appen att generera symboler som du måste skriva in när du ska logga in."
     setup: Konfigurera
