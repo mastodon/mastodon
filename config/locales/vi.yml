@@ -59,7 +59,7 @@ vi:
       disable_sign_in_token_auth: Vô hiệu hóa xác minh bằng email
       disable_two_factor_authentication: Vô hiệu hóa xác minh 2 bước
       disabled: Tạm khóa
-      display_name: Tên hiển thị
+      display_name: Biệt danh
       domain: Máy chủ
       edit: Chỉnh sửa
       email: Email
@@ -204,6 +204,7 @@ vi:
         reject_user: Từ chối người dùng
         remove_avatar_user: Xóa ảnh đại diện
         reopen_report: Mở lại báo cáo
+        resend_user: Gửi lại email xác nhận
         reset_password_user: Đặt lại mật khẩu
         resolve_report: Xử lý báo cáo
         sensitive_account: Áp đặt nhạy cảm
@@ -262,6 +263,7 @@ vi:
         reject_user_html: "%{name} đã từ chối đăng ký từ %{target}"
         remove_avatar_user_html: "%{name} đã xóa ảnh đại diện của %{target}"
         reopen_report_html: "%{name} mở lại báo cáo %{target}"
+        resend_user_html: "%{name} gửi lại email xác nhận cho %{target}"
         reset_password_user_html: "%{name} đã đặt lại mật khẩu của %{target}"
         resolve_report_html: "%{name} đã xử lý báo cáo %{target}"
         sensitive_account_html: "%{name} đánh dấu nội dung của %{target} là nhạy cảm"
@@ -631,7 +633,7 @@ vi:
         manage_settings: Quản lý thiết lập
         manage_settings_description: Cho phép thay đổi thiết lập máy chủ
         manage_taxonomies: Quản lý phân loại
-        manage_taxonomies_description: Cho phép đánh giá nội dung xu hướng và cập nhật cài đặt hashtag
+        manage_taxonomies_description: Cho phép đánh giá nội dung thịnh hành và cập nhật cài đặt hashtag
         manage_user_access: Quản lý người dùng truy cập
         manage_user_access_description: Cho phép vô hiệu hóa xác thực hai bước của người dùng khác, thay đổi địa chỉ email và đặt lại mật khẩu của họ
         manage_users: Quản lý người dùng
@@ -673,7 +675,7 @@ vi:
         profile_directory: Cộng đồng
         public_timelines: Bảng tin
         title: Khám phá
-        trends: Xu hướng
+        trends: Thịnh hành
       domain_blocks:
         all: Tới mọi người
         disabled: Không ai
@@ -712,7 +714,7 @@ vi:
       reblogs: Lượt đăng lại
       status_changed: Tút đã thay đổi
       title: Toàn bộ tút
-      trending: Xu hướng
+      trending: Thịnh hành
       visibility: Hiển thị
       with_media: Có media
     strikes:
@@ -758,14 +760,14 @@ vi:
           no_publisher_selected: Không có nguồn đăng nào thay đổi vì không có nguồn đăng nào được chọn
         shared_by_over_week:
           other: "%{count} người chia sẻ tuần rồi"
-        title: Liên kết xu hướng
+        title: Liên kết nổi bật
         usage_comparison: Chia sẻ %{today} lần hôm nay, so với %{yesterday} lần hôm qua
       only_allowed: Chỉ cho phép
       pending_review: Đang chờ
       preview_card_providers:
-        allowed: Liên kết từ nguồn đăng này có thể thành xu hướng
-        description_html: Đây là những nguồn mà từ đó các liên kết thường được chia sẻ trên máy chủ của bạn. Các liên kết sẽ không được trở thành xu hướng trừ khi bạn cho phép nguồn. Sự cho phép (hoặc cấm) của bạn áp dụng luôn cho các tên miền phụ.
-        rejected: Liên kết từ nguồn đăng không thể thành xu hướng
+        allowed: Liên kết từ nguồn đăng này có thể nổi bật
+        description_html: Đây là những nguồn mà từ đó các liên kết thường được chia sẻ trên máy chủ của bạn. Các liên kết sẽ không thể thịnh hành trừ khi bạn cho phép nguồn. Sự cho phép (hoặc cấm) của bạn áp dụng luôn cho các tên miền phụ.
+        rejected: Liên kết từ nguồn đăng không thể nổi bật
         title: Nguồn đăng
       rejected: Đã cấm
       statuses:
@@ -778,7 +780,7 @@ vi:
         not_discoverable: Tác giả đã chọn không tham gia mục khám phá
         shared_by:
           other: Được thích và đăng lại %{friendly_count} lần
-        title: Tút xu hướng
+        title: Tút nổi bật
       tags:
         current_score: Chỉ số gần đây %{score}
         dashboard:
@@ -791,18 +793,18 @@ vi:
         listable: Có thể đề xuất
         no_tag_selected: Không có hashtag thịnh hành nào thay đổi vì không có hashtag nào được chọn
         not_listable: Không thể đề xuất
-        not_trendable: Không xuất hiện xu hướng
+        not_trendable: Không cho thịnh hành
         not_usable: Không được phép dùng
         peaked_on_and_decaying: Đỉnh điểm %{date}, giờ đang giảm
-        title: Hashtag xu hướng
-        trendable: Có thể trở thành xu hướng
-        trending_rank: 'Xu hướng #%{rank}'
+        title: Hashtag nổi bật
+        trendable: Cho phép thịnh hành
+        trending_rank: 'Nổi bật #%{rank}'
         usable: Có thể dùng
         usage_comparison: Dùng %{today} lần hôm nay, so với %{yesterday} hôm qua
         used_by_over_week:
           other: "%{count} người dùng tuần rồi"
       title: Xu hướng
-      trending: Xu hướng
+      trending: Thịnh hành
     warning_presets:
       add_new: Thêm mới
       delete: Xóa bỏ
@@ -851,14 +853,14 @@ vi:
     new_trends:
       body: 'Các mục sau đây cần được xem xét trước khi chúng hiển thị công khai:'
       new_trending_links:
-        title: Liên kết xu hướng
+        title: Liên kết nổi bật
       new_trending_statuses:
-        title: Tút xu hướng
+        title: Tút nổi bật
       new_trending_tags:
-        no_approved_tags: Hiện tại không có hashtag xu hướng nào được duyệt.
-        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt hashtag xu hướng, với hiện tại là "%{lowest_tag_name}" với điểm số %{lowest_tag_score}.'
-        title: Hashtag xu hướng
-      subject: Xu hướng mới chờ duyệt trên %{instance}
+        no_approved_tags: Hiện tại không có hashtag nổi bật nào được duyệt.
+        requirements: 'Bất kỳ ứng cử viên nào vượt qua #%{rank} duyệt hashtag nổi bật, với hiện tại là "%{lowest_tag_name}" với điểm số %{lowest_tag_score}.'
+        title: Hashtag nổi bật
+      subject: Nội dung nổi bật chờ duyệt trên %{instance}
   aliases:
     add_new: Kết nối tài khoản
     created_msg: Tạo thành công một tên hiển thị mới. Bây giờ bạn có thể bắt đầu di chuyển từ tài khoản cũ.
@@ -1108,7 +1110,7 @@ vi:
         hint: Bộ lọc này áp dụng để chọn các tút riêng lẻ bất kể các tiêu chí khác. Bạn có thể thêm các tút khác vào bộ lọc này từ giao diện web.
         title: Những tút đã lọc
   footer:
-    trending_now: Xu hướng
+    trending_now: Thịnh hành
   generic:
     all: Tất cả
     all_items_on_page_selected_html:
@@ -1380,13 +1382,13 @@ vi:
     revoke: Gỡ
     revoke_success: Gỡ phiên thành công
     title: Phiên
-    view_authentication_history: Xem lại lịch sử đăng nhập tài khoản của bạn
+    view_authentication_history: Xem lại lịch sử đăng nhập
   settings:
     account: Bảo mật
     account_settings: Cài đặt tài khoản
     aliases: Kết nối tài khoản
     appearance: Giao diện
-    authorized_apps: App đã dùng
+    authorized_apps: Ứng dụng
     back: Quay lại Mastodon
     delete: Xóa tài khoản
     development: Lập trình
@@ -1570,7 +1572,7 @@ vi:
         suspend: Tài khoản bị vô hiệu hóa
     welcome:
       edit_profile_action: Cài đặt trang hồ sơ
-      edit_profile_step: Bạn có thể chỉnh sửa trang hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, thay đổi tên hiển thị và hơn thế nữa. Bạn cũng có thể tự phê duyệt những người theo dõi mới.
+      edit_profile_step: Bạn có thể chỉnh sửa trang hồ sơ của mình bằng cách tải lên ảnh đại diện, ảnh bìa, đổi biệt danh và hơn thế nữa. Bạn cũng có thể tự phê duyệt những người theo dõi mới.
       explanation: Dưới đây là một số mẹo để giúp bạn bắt đầu
       final_action: Viết tút mới
       final_step: 'Viết tút mới! Ngay cả khi chưa có người theo dõi, người khác vẫn có thể xem tút công khai của bạn trên bảng tin máy chủ và qua hashtag. Hãy giới thiệu bản thân với hashtag #introductions.'

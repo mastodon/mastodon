@@ -10,9 +10,9 @@ ast:
       inactive: Entá nun s'activó la cuenta.
       last_attempt: Tienes un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
-      pending: La cuenta ta entá en revisión.
-      timeout: La sesión caducó. Volvi aniciar sesión pa siguir.
-      unauthenticated: Precises aniciar sesión o rexistrate enantes de siguir.
+      pending: La cuenta sigue en revisión.
+      timeout: La sesión caducó. Volvi aniciala pa siguir.
+      unauthenticated: Tienes d'aniciar la sesión o rexistrate enantes de siguir.
       unconfirmed: Tienes de confirmar la direición de corréu electrónicu enantes de siguir.
     mailer:
       confirmation_instructions:
@@ -30,9 +30,9 @@ ast:
         extra: Si nun solicitesti esto, inora esti corréu. La contraseña nun va camudar hasta que nun accedas al enllaz d'enriba y crees una nueva.
         subject: 'Mastodon: Instrucciones pa reafitar la contraseña'
       two_factor_disabled:
-        subject: 'Mastodon: Desactivóse l''autenticación en dos pasos'
+        subject: 'Mastodon: desactivóse l''autenticación en dos pasos'
       two_factor_enabled:
-        subject: 'Mastodon: Activóse l''autenticación en dos pasos'
+        subject: 'Mastodon: activóse l''autenticación en dos pasos'
       two_factor_recovery_codes_changed:
         subject: 'Mastodon: Rexeneráronse los códigos de l''autenticación en dos pasos'
       unlock_instructions:
@@ -43,16 +43,18 @@ ast:
       updated_not_active: La contraseña camudó con correutamente.
     registrations:
       signed_up: "¡Afáyate! Rexistréstite correutamente."
-      signed_up_but_inactive: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la to cuenta entá nun s'activó.
-      signed_up_but_locked: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la to cuenta ta bloquiada.
+      signed_up_but_inactive: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta entá nun s'activó.
+      signed_up_but_locked: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta ta bloquiada.
       signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la direición de corréu. Sigui l'enllaz p'activar la cuenta. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
       updated: La cuenta anovóse correutamente.
     sessions:
+      already_signed_out: Zarresti la sesión correutamente.
       signed_in: Aniciesti sesión correutamente.
+      signed_out: Zarresti la sesión correutamente.
     unlocks:
       send_instructions: Nunos minutos vas recibir un corréu coles instrucciones pa cómo desbloquiar la cuenta. Comprueba la carpeta Puxarra si nun lu recibiesti.
       send_paranoid_instructions: Si esiste la cuenta, nun momentu vas recibir un corréu coles instrucciones pa cómo desbloquiala. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
-      unlocked: La cuenta desbloquióse correutamente. Anicia sesión pa siguir.
+      unlocked: La cuenta desbloquióse correutamente. Anicia la sesión pa siguir.
   errors:
     messages:
       already_confirmed: yá se confirmó, volvi aniciar sesión

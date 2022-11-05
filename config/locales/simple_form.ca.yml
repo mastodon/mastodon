@@ -36,7 +36,7 @@ ca:
         context: Un o diversos contextos en què s'ha d'aplicar el filtre
         current_password: Per motius de seguretat, introdueix la contrasenya del compte actual
         current_username: Per confirmar-ho, introdueix el nom d'usuari del compte actual
-        digest: Només s'envia després d'un llarg període d'inactivitat amb un resum de les mencions que has rebut en la teva absència
+        digest: Només s'envia després d'un llarg període d'inactivitat i només si has rebut algun missatge personal durant la teva absència
         discoverable: Permet que el teu compte sigui descobert per desconeguts a través de recomanacions, etiquetes i altres característiques
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
@@ -67,9 +67,9 @@ ca:
         domain: Aquest pot ser el nom del domini que es mostra en l'adreça de correu o el registre MX que utilitza. Es revisaran ql registrar-se.
         with_dns_records: Es procurarà resoldre els registres DNS del domini determinat i els resultats també es llistaran a la llista negra
       featured_tag:
-        name: 'És possible que vulguis utilitzar una d''aquestes:'
+        name: 'Aquí estan algunes de les etiquetes que més has usat recentment:'
       filters:
-        action: Tria quina acció cal executar quan una publicació coincideixi amb el filtre
+        action: Tria quina acció cal executar quan un apunt coincideixi amb el filtre
         actions:
           hide: Ocultar completament el contingut filtrat, comportant-se com si no existís
           warn: Oculta el contingut filtrat rera un avís mencionant el títol del filtre
@@ -246,6 +246,12 @@ ca:
         site_extended_description: Descripció ampliada
         site_short_description: Descripció del servidor
         site_terms: Política de Privacitat
+        site_title: Nom del servidor
+        theme: Tema per defecte
+        thumbnail: Miniatura del servidor
+        timeline_preview: Permet l'accés no autenticat a les línies de temps públiques
+        trendable_by_default: Permet tendències sense revisió prèvia
+        trends: Activa les tendències
       interactions:
         must_be_follower: Bloqueja les notificacions de persones que no em segueixen
         must_be_following: Bloqueja les notificacions de persones no seguides

@@ -204,6 +204,7 @@ ja:
         reject_user: ユーザーを拒否
         remove_avatar_user: アイコンを削除
         reopen_report: 未解決に戻す
+        resend_user: 確認メールを再送信する
         reset_password_user: パスワードをリセット
         resolve_report: 通報を解決済みにする
         sensitive_account: アカウントのメディアを閲覧注意にマーク
@@ -262,6 +263,7 @@ ja:
         reject_user_html: "%{target}から登録された%{name}さんを拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
+        resend_user_html: "%{name} が %{target} の確認メールを再送信しました"
         reset_password_user_html: "%{name}さんが%{target}さんのパスワードをリセットしました"
         resolve_report_html: "%{name}さんが通報 %{target}を解決済みにしました"
         sensitive_account_html: "%{name}さんが%{target}さんのメディアを閲覧注意にマークしました"
@@ -812,6 +814,7 @@ ja:
     webhooks:
       add_new: エンドポイントを追加
       delete: 削除
+      description_html: "<strong>Webhook</strong> により、Mastodon は選択されたイベントの<strong>リアルタイム通知</strong>をアプリケーションにプッシュします。これにより、アプリケーションは<strong>自動的に処理を行うことができます</strong>。"
       disable: 無効化
       disabled: 無効
       edit: エンドポイントを編集
@@ -822,7 +825,8 @@ ja:
         other: "%{count}件の有効なイベント"
       events: イベント
       new: 新しいwebhook
-      rotate_secret: シークレットをローテーションする
+      rotate_secret: シークレットをローテートする
+      secret: シークレットに署名
       status: ステータス
       title: Webhooks
       webhook: Webhook
@@ -836,6 +840,7 @@ ja:
         sensitive: アカウントを閲覧注意にする
         silence: アカウントを制限する
         suspend: アカウントを停止する
+      body: "%{target} は %{date} に行われた %{action_taken_by} による %{type} のモデレーション判定に不服を申し立てています。内容は次の通りです:"
       next_steps: モデレーションの決定を取り消すために申し立てを承認するか、無視することができます。
       subject: "%{instance}で%{username}さんからモデレーションへの申し立てが届きました。"
     new_pending_account:
@@ -853,6 +858,7 @@ ja:
         title: トレンド投稿
       new_trending_tags:
         no_approved_tags: 承認されたトレンドハッシュタグはありません。
+        requirements: 'これらの候補はいずれも %{rank} 位の承認済みトレンドハッシュタグのスコアを上回ります。現在 #%{lowest_tag_name} のスコアは %{lowest_tag_score} です。'
         title: トレンドハッシュタグ
       subject: "%{instance}で新しいトレンドが審査待ちです"
   aliases:
@@ -1075,6 +1081,7 @@ ja:
       add_keyword: キーワードを追加
       keywords: キーワード
       statuses: 個別の投稿
+      statuses_hint_html: このフィルタは、以下のキーワードにマッチするかどうかに関わらず、個々の投稿を選択して適用されます。 <a href="%{path}">フィルターを確認または投稿を削除</a>。
       title: フィルターを編集
     errors:
       deprecated_api_multiple_keywords: これらのパラメータは複数のフィルタキーワードに適用されるため、このアプリケーションから変更できません。 最新のアプリケーションまたはWebインターフェースを使用してください。
@@ -1106,6 +1113,10 @@ ja:
     trending_now: トレンドタグ
   generic:
     all: すべて
+    all_items_on_page_selected_html:
+      other: このページの <strong>%{count}</strong> 件すべてが選択されています。
+    all_matching_items_selected_html:
+      other: 検索条件に一致する <strong>%{count}</strong> 件すべてが選択されています。
     changes_saved_msg: 正常に変更されました！
     copy: コピー
     delete: 削除
@@ -1114,7 +1125,7 @@ ja:
     order_by: 並び順
     save_changes: 変更を保存
     select_all_matching_items:
-      other: 検索条件に一致するすべての　%{count}　個の項目を選択
+      other: 検索条件に一致する %{count} 件をすべて選択
     today: 今日
     validation_errors:
       other: エラーが発生しました！ 以下の%{count}件のエラーを確認してください
@@ -1215,7 +1226,7 @@ ja:
     carry_mutes_over_text: このユーザーは、あなたがミュートしていた%{acct}から引っ越しました。
     copy_account_note_text: このユーザーは%{acct}から引っ越しました。これは以前のメモです。
   navigation:
-    toggle_menu: メニューを表示
+    toggle_menu: メニューを表示 / 非表示
   notification_mailer:
     admin:
       report:
@@ -1562,8 +1573,8 @@ ja:
     welcome:
       edit_profile_action: プロフィールを設定
       edit_profile_step: |-
-        プロフィール画像をアップロードしたり、ディスプレイネームを変更したりして、プロフィールをカスタマイズできます。
-        新しいフォロワーのフォローリクエストを承認される前に、新しいフォロワーの確認をオプトインすることができます。
+        プロフィール画像をアップロードしたり、表示名を変更したりして、プロフィールをカスタマイズできます。
+        新しいフォロワーからフォローリクエストを承認する前に、オプトインで確認できます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
       final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'

@@ -207,6 +207,7 @@ hu:
         reject_user: Felhasználó Elutasítása
         remove_avatar_user: Profilkép eltávolítása
         reopen_report: Jelentés újranyitása
+        resend_user: Megerősítő e-mail újraküldése
         reset_password_user: Jelszó visszaállítása
         resolve_report: Jelentés megoldása
         sensitive_account: A fiókodban minden média kényesnek jelölése
@@ -265,6 +266,7 @@ hu:
         reject_user_html: "%{name} elutasította %{target} regisztrációját"
         remove_avatar_user_html: "%{name} törölte %{target} profilképét"
         reopen_report_html: "%{name} újranyitotta a %{target} bejelentést"
+        resend_user_html: "%{name} újraküldte %{target} megerősítő e-mailjét"
         reset_password_user_html: "%{name} visszaállította %{target} felhasználó jelszavát"
         resolve_report_html: "%{name} megoldotta a %{target} bejelentést"
         sensitive_account_html: "%{name} kényesnek jelölte %{target} médiatartalmát"
@@ -670,13 +672,16 @@ hu:
       about:
         manage_rules: Kiszolgáló szabályainak kezelése
         preamble: Adj meg részletes információkat arról, hogy a kiszolgáló hogyan működik, miként moderálják és finanszírozzák.
+        rules_hint: Van egy helyünk a szabályoknak, melyeket a felhasználóidnak be kellene tartani.
         title: Névjegy
       appearance:
         preamble: A Mastodon webes felületének testreszabása.
         title: Megjelenés
       branding:
         preamble: A kiszolgáló márkajelzése különbözteti meg a hálózat többi kiszolgálójától. Ez az információ számos környezetben megjelenhet, például a Mastodon webes felületén, natív alkalmazásokban, más weboldalakon és üzenetküldő alkalmazásokban megjelenő hivatkozások előnézetben stb. Ezért a legjobb, ha ez az információ világos, rövid és tömör.
+        title: Branding
       content_retention:
+        preamble: Felhasználók által generált tartalom Mastodonon való tárolásának szabályozása.
         title: Tartalom megtartása
       discovery:
         follow_recommendations: Ajánlottak követése
