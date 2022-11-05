@@ -1,4 +1,3 @@
----
 de:
   about:
     about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung, dafür dezentral und mit Anstand! Starte jetzt mit Mastodon!'
@@ -45,10 +44,10 @@ de:
         submit: E-Mail-Adresse ändern
         title: E-Mail-Adresse für %{username} ändern
       change_role:
-        changed_msg: Benutzerrechte erfolgreich aktualisiert!
-        label: Benutzerrechte verändern
-        no_role: Keine Benutzerrechte
-        title: Benutzerrechte für %{username} bearbeiten
+        changed_msg: Benutzer*innen-Rechte erfolgreich aktualisiert!
+        label: Benutzer*innen-Rechte verändern
+        no_role: Keine Benutzer*innen-Rechte
+        title: Benutzer*innen-Rechte für %{username} bearbeiten
       confirm: Bestätigen
       confirmed: Bestätigt
       confirming: Verifiziert
@@ -56,7 +55,7 @@ de:
       delete: Daten löschen
       deleted: Gelöscht
       demote: Zurückstufen
-      destroyed_msg: Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht
+      destroyed_msg: "Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht"
       disable: Sperren
       disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentisierung (2FA) per E-Mail
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
@@ -87,7 +86,7 @@ de:
       media_attachments: Dateien
       memorialize: In Gedenkmal verwandeln
       memorialized: Memorialisiert
-      memorialized_msg: "%{username} wurde erfolgreich in ein In-Memoriam-Konto umgewandelt"
+      memorialized_msg: '%{username} wurde erfolgreich in ein In-Memoriam-Konto umgewandelt'
       moderation:
         active: Aktiv
         all: Alle
@@ -129,8 +128,8 @@ de:
       resubscribe: Wieder abonnieren
       role: Rolle
       search: Suche
-      search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
-      search_same_ip: Andere Benutzer mit derselben IP-Adresse
+      search_same_email_domain: Andere Benutzer*innen mit der gleichen E-Mail-Domain
+      search_same_ip: Andere Benutzer*innen mit derselben IP-Adresse
       security_measures:
         only_password: Nur Passwort
         password_and_2fa: Passwort und 2FA
@@ -167,11 +166,11 @@ de:
     action_logs:
       action_types:
         approve_appeal: Einspruch annehmen
-        approve_user: Benutzer genehmigen
+        approve_user: Benutzer*in genehmigen
         assigned_to_self_report: Bericht zuweisen
-        change_email_user: E-Mail des Benutzers ändern
-        change_role_user: Rolle des Benutzers ändern
-        confirm_user: Benutzer bestätigen
+        change_email_user: E-Mail des Accounts ändern
+        change_role_user: Rolle des Profils ändern
+        confirm_user: Benutzer*in bestätigen
         create_account_warning: Warnung erstellen
         create_announcement: Ankündigung erstellen
         create_canonical_email_block: E-Mail-Block erstellen
@@ -182,7 +181,7 @@ de:
         create_ip_block: IP-Regel erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
-        demote_user: Benutzer degradieren
+        demote_user: Benutzer*in herabstufen
         destroy_announcement: Ankündigung löschen
         destroy_canonical_email_block: E-Mail-Blockade löschen
         destroy_custom_emoji: Eigene Emojis löschen
@@ -197,14 +196,14 @@ de:
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
         disable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account deaktivieren
-        disable_user: Benutzer deaktivieren
+        disable_user: Benutzer*in deaktivieren
         enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
         enable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account aktivieren
-        enable_user: Benutzer aktivieren
+        enable_user: Benutzer*in aktivieren
         memorialize_account: Gedenkkonto
-        promote_user: Benutzer befördern
+        promote_user: Benutzer*in hochstufen
         reject_appeal: Einspruch ablehnen
-        reject_user: Benutzer ablehnen
+        reject_user: Benutzer*in ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
         resend_user: Bestätigungs-E-Mail erneut senden
@@ -285,7 +284,7 @@ de:
         update_user_role_html: "%{name} hat die Rolle %{target} geändert"
       empty: Keine Protokolle gefunden.
       filter_by_action: Nach Aktion filtern
-      filter_by_user: Nach Benutzer filtern
+      filter_by_user: Nach Benutzer*in filtern
       title: Überprüfungsprotokoll
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
@@ -339,10 +338,10 @@ de:
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     dashboard:
-      active_users: Aktive Benutzer
+      active_users: aktive Benutzer*innen
       interactions: Interaktionen
       media_storage: Medien
-      new_users: Neue Benutzer
+      new_users: neue Benutzer*innen
       opened_reports: Erstellte Meldungen
       pending_appeals_html:
         one: "<strong>%{count}</strong> ausstehender Einspruch"
@@ -354,8 +353,8 @@ de:
         one: "<strong>%{count}</strong> ausstehender Hashtag"
         other: "<strong>%{count}</strong> ausstehende Hashtags"
       pending_users_html:
-        one: "<strong>%{count}</strong> ausstehender Benutzer"
-        other: "<strong>%{count}</strong> ausstehende Benutzer"
+        one: "<strong>%{count}</strong> unerledigte*r Benutzer*in"
+        other: "<strong>%{count}</strong> unerledigte Benutzer*innen"
       resolved_reports: Gelöste Meldungen
       software: Software
       sources: Registrierungsquellen
@@ -520,7 +519,7 @@ de:
       no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurden
       title: IP-Regeln
     relationships:
-      title: Beziehungen von %{acct}
+      title: "Beziehungen von %{acct}"
     relays:
       add_new: Neues Relay hinzufügen
       delete: Löschen
@@ -583,7 +582,7 @@ de:
         title: Notizen
       notes_description_html: Zeige und hinterlasse Notizen an andere Moderator_innen und dein zukünftiges Ich
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
-      remote_user_placeholder: der entfernte Benutzer von %{instance}
+      remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
       report: 'Meldung #%{id}'
       reported_account: Gemeldetes Konto
@@ -612,24 +611,24 @@ de:
         moderation: Moderation
         special: Spezial
       delete: Löschen
-      description_html: Mit <strong>Benutzerrollen</strong>kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer zugreifen können.
-      edit: "'%{name}' Rolle bearbeiten"
+      description_html: Mit <strong>Benutzer*inn-Rollen</strong> kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer*innen zugreifen können.
+      edit: '''%{name}'' Rolle bearbeiten'
       everyone: Standardberechtigungen
-      everyone_full_description_html: Das ist die <strong>-Basis-Rolle</strong>, die <strong>jeden Benutzer</strong> betrifft, auch diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
+      everyone_full_description_html: Das ist die <strong>-Basis-Rolle</strong>, die <strong>alle Benutzer*innen</strong> betrifft, auch diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
       permissions_count:
         one: "%{count} Berechtigung"
         other: "%{count} Berechtigungen"
       privileges:
         administrator: Administrator
-        administrator_description: Benutzer mit dieser Berechtigung werden jede Berechtigung umgehen
-        delete_user_data: Benutzerdaten löschen
-        delete_user_data_description: Erlaubt Benutzern, die Daten anderer Benutzer ohne Verzögerung zu löschen
-        invite_users: Benutzer einladen
-        invite_users_description: Erlaubt Benutzern, neue Leute zum Server einzuladen
+        administrator_description: Benutzer*innen mit dieser Berechtigung werden alle Beschränkungen umgehen
+        delete_user_data: Löschen der Account-Daten
+        delete_user_data_description: Erlaubt Benutzer*innen, die Daten anderer Benutzer*innen sofort zu löschen
+        invite_users: Benutzer*innen einladen
+        invite_users_description: Erlaubt Benutzer*innen, neue Leute zum Server einzuladen
         manage_announcements: Ankündigungen verwalten
-        manage_announcements_description: Erlaubt Benutzern, Ankündigungen auf dem Server zu verwalten
+        manage_announcements_description: Erlaubt Benutzer*innen, Ankündigungen auf dem Server zu verwalten
         manage_appeals: Anträge verwalten
-        manage_appeals_description: Erlaubt es Benutzern, Anträge gegen Moderationsaktionen zu überprüfen
+        manage_appeals_description: Erlaubt es Benutzer*innen, Entscheidungen der Moderator*innen zu widersprechen
         manage_blocks: Geblocktes verwalten
         manage_blocks_description: Erlaubt Benutzern, E-Mail-Anbieter und IP-Adressen zu blockieren
         manage_custom_emojis: Benutzerdefinierte Emojis verwalten
@@ -795,7 +794,7 @@ de:
         not_discoverable: Der Autor hat sich nicht dafür entschieden, entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
-          other: "%{friendly_count} mal geteilt oder favorisiert"
+          other: '%{friendly_count} mal geteilt oder favorisiert'
         title: Angesagte Beiträge
       tags:
         current_score: Aktuelle Punktzahl %{score}
@@ -867,7 +866,7 @@ de:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
-      subject: Neue Meldung auf %{instance} (#%{id})
+      subject: 'Neue Meldung auf %{instance} (#%{id})'
     new_trends:
       body: 'Die folgenden Einträge müssen überprüft werden, bevor sie öffentlich angezeigt werden können:'
       new_trending_links:
@@ -888,7 +887,7 @@ de:
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Fortgeschrittene Benutzeroberfläche
-    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit der fortgeschrittenen Benutzeroberfläche weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die vereinigte Timeline sowie beliebig viele deiner Listen und Hashtags.
+    advanced_web_interface_hint: 'Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit der fortgeschrittenen Benutzeroberfläche weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die vereinigte Timeline sowie beliebig viele deiner Listen und Hashtags.'
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
@@ -973,7 +972,7 @@ de:
       close: Oder du schließt einfach dieses Fenster.
       return: Das Benutzerprofil anzeigen
       web: In der Benutzeroberfläche öffnen
-    title: "%{acct} folgen"
+    title: '%{acct} folgen'
   challenge:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
@@ -1274,8 +1273,8 @@ de:
       title: Neue Folge-Anfrage
     mention:
       action: Antworten
-      body: "%{name} hat dich erwähnt:"
-      subject: "%{name} hat dich erwähnt"
+      body: '%{name} hat dich erwähnt:'
+      subject: '%{name} hat dich erwähnt'
       title: Neue Erwähnung
     poll:
       subject: Eine Umfrage von %{name} ist beendet
@@ -1306,7 +1305,7 @@ de:
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich einloggen zu können.
     enable: Aktivieren
     instructions_html: "<strong>Scanne diesen QR-Code mit einer TOTP-App (wie dem Google Authenticator)</strong>. Die 2FA-App generiert dann zeitbasierte Codes, die du beim Login zusätzlich zum regulären Passwort eingeben musst."
-    manual_instructions: Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.
+    manual_instructions: 'Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.'
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Sind die Serverzeit und die Gerätezeit korrekt?
   pagination:
@@ -1351,7 +1350,7 @@ de:
     relationship: Beziehung
     remove_selected_domains: Entferne alle Follower von den ausgewählten Domains
     remove_selected_followers: Entferne ausgewählte Follower
-    remove_selected_follows: Entfolge ausgewählten Benutzern
+    remove_selected_follows: Entfolge ausgewählten Benutzer*innen
     status: Kontostatus
   remote_follow:
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
@@ -1422,7 +1421,7 @@ de:
     export: Export
     featured_tags: Empfohlene Hashtags
     import: Import
-    import_and_export: Importieren und Exportieren
+    import_and_export: Import und Export
     migrate: Konto-Umzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
