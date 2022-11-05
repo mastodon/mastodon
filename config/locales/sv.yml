@@ -11,7 +11,7 @@ sv:
       one: Följare
       other: Följare
     following: Följer
-    instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern själv och inte någon enskild användare. Den används för federationsändamål och bör inte upphävas.
+    instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern i sig och inte någon enskild användare. Den används för federeringsändamål och bör inte stängas av.
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
     nothing_here: Det finns inget här!
@@ -92,7 +92,7 @@ sv:
         all: Alla
         pending: Väntande
         silenced: Begränsad
-        suspended: Avstängd
+        suspended: Avstängda
         title: Moderering
       moderation_notes: Moderation anteckning
       most_recent_activity: Senaste aktivitet
@@ -102,7 +102,7 @@ sv:
       no_role_assigned: Ingen roll tilldelad
       not_subscribed: Inte prenumererat
       pending: Inväntar granskning
-      perform_full_suspension: Utför full avstängning
+      perform_full_suspension: Stäng av
       previous_strikes: Tidigare varningar
       previous_strikes_description_html:
         one: Detta konto har <strong>en</strong> varning.
@@ -145,9 +145,9 @@ sv:
       strikes: Föregående varningar
       subscribe: Prenumerera
       suspend: Stäng av
-      suspended: Avstängd / Avstängt
-      suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp och återanvända kontot, men ingen data kommer att finnas kvar.
-      suspension_reversible_hint_html: Kontot har låsts, och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
+      suspended: Avstängda
+      suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp kontot om du vill att det ska gå att använda, men ingen data kommer finnas kvar.
+      suspension_reversible_hint_html: Kontot har stängts av och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
       unblock_email: Avblockera e-postadress
       unblocked_email_msg: '%{username}s e-postadress avblockerad'
@@ -216,7 +216,7 @@ sv:
         unblock_email_account: Avblockera e-postadress
         unsensitive_account: Ångra tvinga känsligt konto
         unsilence_account: Ångra begränsa konto
-        unsuspend_account: Återaktivera konto
+        unsuspend_account: Ångra avstängning av konto
         update_announcement: Uppdatera kungörelse
         update_custom_emoji: Uppdatera egna emojis
         update_domain_block: Uppdatera blockerad domän
@@ -270,18 +270,19 @@ sv:
         resolve_report_html: "%{name} löste rapporten %{target}"
         sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
         silence_account_html: "%{name} begränsade %{target}'s konto"
-        suspend_account_html: "%{name} stängde av %{target}'s konto"
+        suspend_account_html: "%{name} stängde av %{target}s konto"
         unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
         unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
         unsensitive_account_html: "%{name} avmarkerade %{target}'s media som känsligt"
         unsilence_account_html: "%{name} tog bort begränsning av %{target}s konto"
-        unsuspend_account_html: "%{name} tog bort avstängningen av %{target}'s konto"
+        unsuspend_account_html: "%{name} ångrade avstängningen av %{target}s konto"
         update_announcement_html: "%{name} uppdaterade kungörelsen %{target}"
         update_custom_emoji_html: "%{name} uppdaterade emoji %{target}"
         update_domain_block_html: "%{name} uppdaterade domän-block för %{target}"
         update_ip_block_html: "%{name} ändrade regel för IP %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
         update_user_role_html: "%{name} ändrade rollen %{target}"
+      deleted_account: raderat konto
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
@@ -384,10 +385,10 @@ sv:
         create: Skapa block
         hint: Domänblockeringen hindrar inte skapandet av kontoposter i databasen, men kommer retroaktivt och automatiskt tillämpa specifika modereringsmetoder på dessa konton.
         severity:
-          desc_html: "<strong>Tysta ner</strong> kommer att göra kontoinlägg osynliga för alla som inte följer dem. <strong>Suspendera</strong> kommer ta bort allt av kontots innehåll, media och profildata. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
+          desc_html: "<strong>Tysta</strong> kommer att göra kontots inlägg osynliga för alla som inte följer det. <strong>Stäng av</strong> kommer ta bort allt kontoinnehåll, media och profildata. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
           noop: Ingen
           silence: Tysta ner
-          suspend: Suspendera
+          suspend: Stäng av
         title: Nytt domänblock
       obfuscate: Dölj domännamn
       obfuscate_hint: Dölj domännamnet i listan till viss del, om underrättelser för listan över domänbegränsningar aktiverats
@@ -423,6 +424,8 @@ sv:
       description_html: "<strong>Följrekommendationer hjälper nya användare att snabbt hitta intressant innehåll</strong>. När en användare inte har interagerat med andra tillräckligt mycket för att forma personliga följrekommendationer, rekommenderas istället dessa konton. De beräknas om varje dag från en mix av konton med nylig aktivitet och högst antal följare för ett givet språk."
       language: För språket
       status: Status
+      suppress: Tryck ner följrekommendation
+      suppressed: Undertryckt
       title: Följ rekommendationer
       unsuppress: Återställ följrekommendation
     instances:
@@ -440,6 +443,7 @@ sv:
         policies:
           reject_reports: Avvisa rapporter
           silence: Gräns
+          suspend: Stäng av
         policy: Policy
         reason: Offentlig orsak
         title: Riktlinjer för innehåll
@@ -698,6 +702,7 @@ sv:
       actions:
         delete_statuses: "%{name} raderade %{target}s inlägg"
         disable: "%{name} frös %{target}s konto"
+        none: "%{name} skickade en varning till %{target}"
         sensitive: "%{name} markerade %{target}s konto som känsligt"
         silence: "%{name} begränsade %{target}s konto"
         suspend: "%{name} stängde av %{target}s konto"
@@ -813,7 +818,12 @@ sv:
     new_appeal:
       actions:
         delete_statuses: att radera deras inlägg
+        disable: för att frysa deras konto
+        mark_statuses_as_sensitive: för att markera deras inlägg som känsliga
         none: en varning
+        sensitive: för att markera deras konto som känsligt
+        silence: för att begränsa deras konto
+        suspend: för att stänga av deras konto
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
@@ -855,6 +865,7 @@ sv:
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
+    apply_for_account: Skriv upp dig på väntelistan
     change_password: Lösenord
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
@@ -866,12 +877,14 @@ sv:
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
     link_to_otp: Ange en tvåfaktor-kod från din telefon eller en återställningskod
+    link_to_webauth: Använd din säkerhetsnyckel
     log_in_with: Logga in med
     login: Logga in
     logout: Logga ut
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
+    privacy_policy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
     providers:
       cas: CAS
       saml: SAML
@@ -880,6 +893,7 @@ sv:
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     rules:
+      preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
       title: Några grundregler.
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
@@ -938,7 +952,12 @@ sv:
     proceed: Radera konto
     success_msg: Ditt konto har raderats
     warning:
+      before: 'Läs dessa noteringar noga innan du fortsätter:'
+      caches: Innehåll som har cachats av andra servrar kan bibehållas
+      data_removal: Dina inlägg och annan data kommer permanent raderas
       email_change_html: Du kan <a href="%{path}">ändra din e-postadress</a> utan att radera ditt konto
+      email_contact_html: Om det fortfarande inte kommer kan du e-posta <a href="mailto:%{email}">%{email}</a> för support
+      email_reconfirmation_html: Om du inte får bekräftelsemeddelandet kan du <a href="%{path}">begära ett nytt</a>
       irreversible: Du kan inte återställa eller återaktivera ditt konto
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
       username_unavailable: Ditt användarnamn kommer att fortsätta vara otillgängligt
@@ -1446,6 +1465,8 @@ sv:
     warning:
       categories:
         spam: Skräppost
+      explanation:
+        suspend: Du kan inte längre använda ditt konto, din profil och annan data är heller inte längre tillgängliga. Du kan fortfarande logga in och begära en kopia av dina data tills dess att de fullkomligt raderas om cirka 30 dagar, vi kommer dock bibehålla viss metadata för att förhindra försök att kringgå avstängingen.
       reason: 'Anledning:'
       statuses: 'Inlägg citerades:'
       subject:
@@ -1458,7 +1479,7 @@ sv:
         disable: Kontot fruset
         none: Varning
         silence: Kontot begränsat
-        suspend: Kontot avstängt
+        suspend: Konto avstängt
     welcome:
       edit_profile_action: Profilinställning
       explanation: Här är några tips för att komma igång
