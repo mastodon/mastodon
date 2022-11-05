@@ -207,6 +207,7 @@ fi:
         reject_user: Hylkää käyttäjä
         remove_avatar_user: Profiilikuvan poisto
         reopen_report: Uudelleenavaa raportti
+        resend_user: Lähetä vahvistusviesti uudelleen
         reset_password_user: Nollaa salasana
         resolve_report: Selvitä raportti
         sensitive_account: Pakotus arkaluontoiseksi tiliksi
@@ -265,6 +266,7 @@ fi:
         reject_user_html: "%{name} hylkäsi käyttäjän rekisteröitymisen kohteesta %{target}"
         remove_avatar_user_html: "%{name} poisti käyttäjän %{target} profiilikuvan"
         reopen_report_html: "%{name} avasi uudelleen raportin %{target}"
+        resend_user_html: "%{name} lähetti vahvistusviestin sähköpostitse käyttäjälle %{target}"
         reset_password_user_html: "%{name} palautti käyttäjän %{target} salasanan"
         resolve_report_html: "%{name} ratkaisi raportin %{target}"
         sensitive_account_html: "%{name} merkitsi %{target} median arkaluonteiseksi"
@@ -885,11 +887,11 @@ fi:
     hint_html: Jos haluat siirtyä toisesta tilistä tähän tiliin, voit luoda aliasin, joka on pakollinen, ennen kuin voit siirtää seuraajia vanhasta tilistä tähän tiliin. Tämä toiminto on itsessään <strong>vaaraton ja palautuva</strong>. <strong>Tilin siirtyminen aloitetaan vanhalta tililtä</strong>.
     remove: Poista aliaksen linkitys
   appearance:
-    advanced_web_interface: Edistynyt web-käyttöliittymä
+    advanced_web_interface: Edistynyt selainkäyttöliittymä
     advanced_web_interface_hint: 'Jos haluat käyttää koko näytön leveyttä, edistyneen web-käyttöliittymän avulla voit määrittää useita eri sarakkeita näyttämään niin paljon tietoa samanaikaisesti kuin haluat: Koti, ilmoitukset, yhdistetty aikajana, mikä tahansa määrä luetteloita ja aihetunnisteita.'
     animations_and_accessibility: Animaatiot ja saavutettavuus
     confirmation_dialogs: Vahvistusvalinnat
-    discovery: Löytö
+    discovery: Löydöt
     localization:
       body: Mastodonin ovat kääntäneet vapaaehtoiset.
       guide_link: https://crowdin.com/project/mastodon
@@ -1249,6 +1251,8 @@ fi:
     carry_blocks_over_text: Tämä käyttäjä siirtyi paikasta %{acct}, jonka olit estänyt.
     carry_mutes_over_text: Tämä käyttäjä siirtyi paikasta %{acct}, jonka mykistit.
     copy_account_note_text: 'Tämä käyttäjä siirtyi paikasta %{acct}, tässä olivat aiemmat muistiinpanosi niistä:'
+  navigation:
+    toggle_menu: Avaa/sulje valikko
   notification_mailer:
     admin:
       report:
@@ -1482,12 +1486,12 @@ fi:
     enabled: Poista vanhat viestit automaattisesti
     enabled_hint: Poistaa viestit automaattisesti, kun ne saavuttavat tietyn ikärajan, elleivät ne täsmää yhtä alla olevista poikkeuksista
     exceptions: Poikkeukset
-    explanation: Koska viestien poistaminen on kallista toimintaa. Tämä tehdään hitaasti ajan mittaan, kun palvelin ei ole muuten kiireinen. Tästä syystä viestejäsi voidaan poistaa jonkin aikaa myöhemmin, kun ne ovat saavuttaneet ikärajan.
+    explanation: Koska viestien poistaminen on kallista toimintaa, sitä tehdään hitaasti ajan mittaan, kun palvelin ei ole muutoin kiireinen. Viestejäsi voidaankin siis poistaa myös viiveellä verrattuna niille määrittämääsi aikarajaan.
     ignore_favs: Ohita suosikit
     ignore_reblogs: Ohita tehostukset
     interaction_exceptions: Poikkeukset, jotka perustuvat vuorovaikutukseen
     interaction_exceptions_explanation: Huomaa, että ei ole takeita viestien poistamiselle, jos ne alittavat suosikki- tai tehostusrajan sen jälkeen, kun ne on kerran ylitetty.
-    keep_direct: Säilytä suorat viestit
+    keep_direct: Säilytä yksityisviestit
     keep_direct_hint: Ei poista mitään sinun suoria viestejä
     keep_media: Säilytä viestit, joissa on liitetiedostoja
     keep_media_hint: Ei poista viestejä, joissa on liitteitä
@@ -1495,7 +1499,7 @@ fi:
     keep_pinned_hint: Ei poista mitään kiinnitettyä viestiä
     keep_polls: Säilytä äänestykset
     keep_polls_hint: Ei poista yhtäkään äänestystä
-    keep_self_bookmark: Säilytä lisäämäsi viestit kirjanmerkkeihin
+    keep_self_bookmark: Säilytä kirjanmerkkeihin lisäämäsi viestit
     keep_self_bookmark_hint: Ei poista viestejäsi, jos olet lisännyt ne kirjanmerkkeihin
     keep_self_fav: Säilyttää viestit suosikeissa
     keep_self_fav_hint: Ei poista omia viestejäsi, jos olet lisännyt ne suosikkeihin

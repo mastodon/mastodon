@@ -66,8 +66,6 @@ cs:
       email_domain_block:
         domain: Toto může být doménové jméno, které je v e-mailové adrese nebo MX záznam, který používá. Budou zkontrolovány při registraci.
         with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
-      featured_tag:
-        name: 'Nejspíš budete chtít použít jeden z těchto:'
       filters:
         action: Vyberte jakou akci provést, když příspěvek odpovídá filtru
         actions:
@@ -81,10 +79,12 @@ cs:
         custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
         media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
         profile_directory: Adresář profilu obsahuje seznam všech uživatelů, kteří se přihlásili, aby mohli být nalezeni.
+        require_invite_text: Pokud přihlášení vyžaduje ruční schválení, měl by být textový vstup „Proč se chcete připojit?“ povinný spíše než volitelný
         site_contact_username: Jak vás lidé mohou oslovit na Mastodon.
         site_extended_description: Jakékoli další informace, které mohou být užitečné pro návštěvníky a vaše uživatele. Může být strukturováno pomocí Markdown syntaxe.
         site_terms: Použijte vlastní zásady ochrany osobních údajů nebo ponechte prázdné pro použití výchozího nastavení. Může být strukturováno pomocí Markdown syntaxe.
         thumbnail: Přibližně 2:1 obrázek zobrazený vedle informací o vašem serveru.
+        trends: Trendy zobrazují, které příspěvky, hashtagy a zprávy získávají na serveru pozornost.
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:

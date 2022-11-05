@@ -938,7 +938,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "This profile has been hidden by the moderators of your server.",
+        "defaultMessage": "This profile has been hidden by the moderators of {domain}.",
         "id": "limited_account_hint.title"
       },
       {
@@ -1913,6 +1913,10 @@
         "id": "account.cancel_follow_request"
       },
       {
+        "defaultMessage": "Withdraw request",
+        "id": "confirmations.cancel_follow_request.confirm"
+      },
+      {
         "defaultMessage": "Awaiting approval. Click to cancel follow request",
         "id": "account.requested"
       },
@@ -1935,6 +1939,10 @@
       {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
         "id": "confirmations.unfollow.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to withdraw your request to follow {name}?",
+        "id": "confirmations.cancel_follow_request.message"
       },
       {
         "defaultMessage": "Posts",

@@ -11,7 +11,7 @@ de:
     followers:
       one: Follower
       other: Folgende
-    following: Folgt
+    following: Folge ich
     instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert und nicht ein einzelner Benutzer. Es wird für Föderationszwecke verwendet und sollte nicht gesperrt werden.
     last_active: zuletzt aktiv
     link_verified_on: Das Profil mit dieser E-Mail-Adresse wurde bereits am %{date} bestätigt
@@ -113,7 +113,7 @@ de:
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Profil neu laden
-      redownloaded_msg: Profil von %{username} erfolgreich von Ursprung aktualisiert
+      redownloaded_msg: Das Profil von %{username} wurde von der Quelle erfolgreich aktualisiert
       reject: Ablehnen
       rejected_msg: Anmeldeantrag von %{username} erfolgreich abgelehnt
       remove_avatar: Profilbild entfernen
@@ -121,7 +121,7 @@ de:
       removed_avatar_msg: Profilbild von %{username} erfolgreich entfernt
       removed_header_msg: Titelbild von %{username} wurde erfolgreich entfernt
       resend_confirmation:
-        already_confirmed: Diese_r Benutzer_in wurde bereits bestätigt
+        already_confirmed: Dieses Profil wurde bereits bestätigt
         send: Bestätigungs-E-Mail erneut senden
         success: Bestätigungs-E-Mail erfolgreich gesendet!
       reset: Zurücksetzen
@@ -201,20 +201,21 @@ de:
         enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
         enable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account aktivieren
         enable_user: Benutzer aktivieren
-        memorialize_account: Account deaktivieren
+        memorialize_account: Gedenkkonto
         promote_user: Benutzer befördern
         reject_appeal: Einspruch ablehnen
         reject_user: Benutzer ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
+        resend_user: Bestätigungs-E-Mail erneut senden
         reset_password_user: Passwort zurücksetzen
         resolve_report: Bericht lösen
-        sensitive_account: Markiere die Medien in deinem Konto als NSFW
+        sensitive_account: Zwangssensibles Konto
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
         unassigned_report: Meldung widerrufen
         unblock_email_account: E-Mail Adresse entsperren
-        unsensitive_account: Markiere die Medien in deinem Konto nicht mehr als NSFW
+        unsensitive_account: Zwangssensibles Konto rückgängig machen
         unsilence_account: Konto nicht mehr stummschalten
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
@@ -240,7 +241,7 @@ de:
         create_ip_block_html: "%{name} hat eine Regel für IP %{target} erstellt"
         create_unavailable_domain_html: "%{name} hat die Lieferung an die Domain %{target} eingestellt"
         create_user_role_html: "%{name} hat die Rolle %{target} erstellt"
-        demote_user_html: "%{name} stufte Benutzer_in %{target} herunter"
+        demote_user_html: "%{name} hat die Nutzungsrechte von %{target} heruntergestuft"
         destroy_announcement_html: "%{name} hat die neue Ankündigung %{target} gelöscht"
         destroy_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} freigegeben"
         destroy_custom_emoji_html: "%{name} hat das %{target} Emoji gelöscht"
@@ -252,19 +253,20 @@ de:
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
         destroy_user_role_html: "%{name} hat die Rolle %{target} gelöscht"
-        disable_2fa_user_html: "%{name} hat Zwei-Faktor-Anforderung für Benutzer_in %{target} deaktiviert"
+        disable_2fa_user_html: "%{name} hat die Zwei-Faktor-Authentisierung für %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
         disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token Authentifizierung für %{target} deaktiviert"
-        disable_user_html: "%{name} hat Zugang von Benutzer_in %{target} deaktiviert"
+        disable_user_html: "%{name} hat den Zugang für %{target} deaktiviert"
         enable_custom_emoji_html: "%{name} hat das %{target} Emoji aktiviert"
         enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} aktiviert"
-        enable_user_html: "%{name} hat Zugang von Benutzer_in %{target} aktiviert"
+        enable_user_html: "%{name} hat den Zugang für %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
         promote_user_html: "%{name} hat %{target} befördert"
         reject_appeal_html: "%{name} hat die Moderationsbeschlüsse von %{target} abgelehnt"
         reject_user_html: "%{name} hat die Registrierung von %{target} abgelehnt"
         remove_avatar_user_html: "%{name} hat das Profilbild von %{target} entfernt"
         reopen_report_html: "%{name} hat die Meldung %{target} wieder geöffnet"
+        resend_user_html: "%{name} hat erneut eine Bestätigungs-E-Mail für %{target} gesendet"
         reset_password_user_html: "%{name} hat das Passwort von %{target} zurückgesetzt"
         resolve_report_html: "%{name} hat die Meldung %{target} bearbeitet"
         sensitive_account_html: "%{name} hat die Medien von %{target} mit einer Inhaltswarnung versehen"
@@ -272,7 +274,7 @@ de:
         suspend_account_html: "%{name} hat das Konto von %{target} verbannt"
         unassigned_report_html: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
         unblock_email_account_html: "%{name} entsperrte die E-Mail-Adresse von %{target}"
-        unsensitive_account_html: "%{name} hob die Inhaltswarnung für Medien von %{target} auf"
+        unsensitive_account_html: "%{name} hat die Inhaltswarnung für Medien von %{target} aufgehoben"
         unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account_html: "%{name} hat die Verbannung von %{target} aufgehoben"
         update_announcement_html: "%{name} aktualisierte Ankündigung %{target}"
@@ -378,7 +380,7 @@ de:
       domain: Domain
       edit: Domainblockade bearbeiten
       existing_domain_block: Du hast %{name} bereits stärker eingeschränkt.
-      existing_domain_block_html: Es gibt schon eine Blockade für %{name}, diese muss erst <a href="%{unblock_url}">aufgehoben</a> werden.
+      existing_domain_block_html: Du hast bereits strengere Beschränkungen für die Domain %{name} verhängt. Du musst diese erst <a href="%{unblock_url}">aufheben</a>.
       new:
         create: Blockade einrichten
         hint: Die Domain-Blockade wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden. Aber es werden rückwirkend und automatisch alle Moderationsmethoden auf diese Konten angewendet.
@@ -557,7 +559,7 @@ de:
       add_to_report: Mehr zur Meldung hinzufügen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
-      assigned: Zugewiesene_r Moderator_in
+      assigned: Zugewiesene*r Moderator*in
       by_target_domain: Domain des gemeldeten Kontos
       category: Kategorie
       category_description_html: Der Grund, warum dieses Konto und/oder der Inhalt gemeldet wurden, wird in der Kommunikation mit dem gemeldeten Konto zitiert
@@ -569,7 +571,7 @@ de:
       forwarded: Weitergeleitet
       forwarded_to: Weitergeleitet an %{domain}
       mark_as_resolved: Als gelöst markieren
-      mark_as_sensitive: Mit einer Inhaltswarnung (NSFW) versehen
+      mark_as_sensitive: Mit einer Inhaltswarnung versehen
       mark_as_unresolved: Als ungelöst markieren
       no_one_assigned: Niemand
       notes:
@@ -577,7 +579,7 @@ de:
         create_and_resolve: Mit Kommentar lösen
         create_and_unresolve: Mit Kommentar wieder öffnen
         delete: Löschen
-        placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
+        placeholder: Bitte beschreiben, welche Maßnahmen ergriffen wurden oder andere damit verbundene Aktualisierungen …
         title: Notizen
       notes_description_html: Zeige und hinterlasse Notizen an andere Moderator_innen und dein zukünftiges Ich
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
@@ -597,7 +599,7 @@ de:
       unassign: Zuweisung entfernen
       unresolved: Ungelöst
       updated_at: Aktualisiert
-      view_profile: Zeige Profil
+      view_profile: Profil anzeigen
     roles:
       add_new: Rolle hinzufügen
       assigned_users:
@@ -684,7 +686,7 @@ de:
       discovery:
         follow_recommendations: Folgeempfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimmen Sie, wie verschiedene Suchfunktionen auf Ihrem Server funktionieren.
-        profile_directory: Benutzerverzeichnis
+        profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timelines
         title: Entdecken
         trends: Trends
@@ -733,9 +735,9 @@ de:
       actions:
         delete_statuses: "%{name} hat die Beiträge von %{target} entfernt"
         disable: "%{name} hat das Konto von %{target} eingefroren"
-        mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung (NSFW) versehen"
+        mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung versehen"
         none: "%{name} hat eine Warnung an %{target} gesendet"
-        sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung (NSFW) versehen"
+        sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung versehen"
         silence: "%{name} hat das Konto von %{target} eingeschränkt"
         suspend: "%{name} hat das Konto von %{target} verbannt"
       appeal_approved: Einspruch angenommen
@@ -851,9 +853,9 @@ de:
       actions:
         delete_statuses: deren Beiträge zu löschen
         disable: deren Konto einzufrieren
-        mark_statuses_as_sensitive: um die Beiträge des Profils mit einer Inhaltswarnung (NSFW) zu versehen
+        mark_statuses_as_sensitive: um die Beiträge des Profils mit einer Inhaltswarnung zu versehen
         none: eine Warnung
-        sensitive: um das Profil mit einer Inhaltswarnung (NSFW) zu versehen
+        sensitive: um das Profil mit einer Inhaltswarnung zu versehen
         silence: deren Konto zu beschränken
         suspend: deren Konto zu sperren
       body: "%{target} hat etwas gegen eine Moderationsentscheidung von %{action_taken_by} von %{date}, die %{type} war. Die Person schrieb:"
@@ -894,14 +896,14 @@ de:
       body: Mastodon wurde von Freiwilligen übersetzt.
       guide_link: https://de.crowdin.com/project/mastodon
       guide_link_text: Jeder kann etwas dazu beitragen.
-    sensitive_content: Inhaltswarnung (NSFW)
+    sensitive_content: Inhaltswarnung
     toot_layout: Timeline-Layout
   application_mailer:
     notification_preferences: Ändere E-Mail-Einstellungen
     salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     view: 'Ansehen:'
-    view_profile: Zeige Profil
+    view_profile: Profil anzeigen
     view_status: Beitrag öffnen
   applications:
     created: Anwendung erfolgreich erstellt
@@ -931,7 +933,7 @@ de:
     migrate_account: Ziehe zu einem anderen Konto um
     migrate_account_html: Wenn du wünschst, dieses Konto zu einem anderen umzuziehen, kannst du <a href="%{path}">dies hier einstellen</a>.
     or_log_in_with: Oder anmelden mit
-    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
+    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzbestimmungen</a> gelesen und stimme ihnen zu
     providers:
       cas: CAS
       saml: SAML
@@ -969,7 +971,7 @@ de:
     following: 'Erfolg! Du folgst nun:'
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
-      return: Zeige das Profil
+      return: Das Benutzerprofil anzeigen
       web: In der Benutzeroberfläche öffnen
     title: "%{acct} folgen"
   challenge:
@@ -1038,9 +1040,9 @@ de:
       title_actions:
         delete_statuses: Post-Entfernung
         disable: Einfrieren des Kontos
-        mark_statuses_as_sensitive: Beiträge mit einer Inhaltswarnung (NSFW) versehen
+        mark_statuses_as_sensitive: Beiträge mit einer Inhaltswarnung versehen
         none: Warnung
-        sensitive: Profil mit einer Inhaltswarnung (NSFW) versehen
+        sensitive: Profil mit einer Inhaltswarnung versehen
         silence: Kontobeschränkung
         suspend: Kontosperre
       your_appeal_approved: Dein Einspruch wurde angenommen
@@ -1071,7 +1073,7 @@ de:
       date: Datum
       download: Dein Archiv herunterladen
       hint_html: Du kannst ein Archiv deiner <strong>Beiträge, Listen, hochgeladenen Medien, usw.</strong> anfordern. Die exportierten Daten werden in dem ActivityPub-Format gespeichert und können mit jeder passenden Software gelesen werden. Du kannst alle 7 Tage ein Archiv anfordern.
-      in_progress: Dein persönliches Archiv wird erstellt...
+      in_progress: Persönliches Archiv wird erstellt …
       request: Dein Archiv anfordern
       size: Größe
     blocks: Blockierte Accounts
@@ -1250,7 +1252,7 @@ de:
     carry_mutes_over_text: Das Profil wurde von %{acct} übertragen – und dieses hattest du stummgeschaltet.
     copy_account_note_text: 'Dieser Benutzer ist von %{acct} umgezogen, hier sind deine letzten Notizen zu diesem Benutzer:'
   navigation:
-    toggle_menu: Menü umschalten
+    toggle_menu: Menü ein-/ausblenden
   notification_mailer:
     admin:
       report:
@@ -1287,7 +1289,7 @@ de:
       subject: "%{name} bearbeitete einen Beitrag"
   notifications:
     email_events: Benachrichtigungen per E-Mail
-    email_events_hint: Eine E-Mail erhalten, ...
+    email_events_hint: 'Bitte die Ereignisse auswählen, für die du Benachrichtigungen erhalten möchtest:'
     other_settings: Weitere Einstellungen
   number:
     human:
@@ -1409,7 +1411,7 @@ de:
     view_authentication_history: Authentifizierungsverlauf deines Kontos anzeigen
   settings:
     account: Konto
-    account_settings: Konto & Sicherheit
+    account_settings: Kontoeinstellungen
     aliases: Kontoaliase
     appearance: Aussehen
     authorized_apps: Autorisierte Anwendungen
@@ -1518,7 +1520,7 @@ de:
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
-    sensitive_content: Inhaltswarnung (NSFW)
+    sensitive_content: Inhaltswarnung
   strikes:
     errors:
       too_late: Es ist zu spät, um gegen diese Verwarnung Einspruch zu erheben
@@ -1601,7 +1603,7 @@ de:
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:
-      edit_profile_action: Profil einstellen
+      edit_profile_action: Profil einrichten
       edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst, deinen Anzeigenamen änderst und viel mehr. Du kannst optional einstellen, ob du Accounts, die dir folgen wollen, akzeptieren musst, bevor sie dies können.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten

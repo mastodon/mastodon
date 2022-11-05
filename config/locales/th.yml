@@ -204,6 +204,7 @@ th:
         reject_user: ปฏิเสธผู้ใช้
         remove_avatar_user: เอาภาพประจำตัวออก
         reopen_report: เปิดรายงานใหม่
+        resend_user: ส่งจดหมายยืนยันใหม่
         reset_password_user: ตั้งรหัสผ่านใหม่
         resolve_report: แก้ปัญหารายงาน
         sensitive_account: บังคับให้บัญชีละเอียดอ่อน
@@ -262,6 +263,7 @@ th:
         reject_user_html: "%{name} ได้ปฏิเสธการลงทะเบียนจาก %{target}"
         remove_avatar_user_html: "%{name} ได้เอาภาพประจำตัวของ %{target} ออก"
         reopen_report_html: "%{name} ได้เปิดรายงาน %{target} ใหม่"
+        resend_user_html: "%{name} ได้ส่งอีเมลยืนยันสำหรับ %{target} ใหม่"
         reset_password_user_html: "%{name} ได้ตั้งรหัสผ่านของผู้ใช้ %{target} ใหม่"
         resolve_report_html: "%{name} ได้แก้ปัญหารายงาน %{target}"
         sensitive_account_html: "%{name} ได้ทำเครื่องหมายสื่อของ %{target} ว่าละเอียดอ่อน"
@@ -692,6 +694,7 @@ th:
       open: เปิดโพสต์
       original_status: โพสต์ดั้งเดิม
       reblogs: การดัน
+      status_changed: เปลี่ยนโพสต์แล้ว
       title: โพสต์ของบัญชี
       trending: กำลังนิยม
       visibility: การมองเห็น
@@ -1163,6 +1166,8 @@ th:
     carry_blocks_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ปิดกั้น
     carry_mutes_over_text: ผู้ใช้นี้ได้ย้ายจาก %{acct} ซึ่งคุณได้ซ่อน
     copy_account_note_text: 'ผู้ใช้นี้ได้ย้ายจาก %{acct} นี่คือหมายเหตุก่อนหน้านี้ของคุณเกี่ยวกับผู้ใช้:'
+  navigation:
+    toggle_menu: เปิด/ปิดเมนู
   notification_mailer:
     admin:
       report:
