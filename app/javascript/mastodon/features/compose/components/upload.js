@@ -17,7 +17,7 @@ export default class Upload extends ImmutablePureComponent {
     media: ImmutablePropTypes.map.isRequired,
     onUndo: PropTypes.func.isRequired,
     onOpenFocalPoint: PropTypes.func.isRequired,
-    isEditingStatus: PropTypes.func.isRequired,
+    isEditingStatus: PropTypes.bool.isRequired,
   };
 
   handleUndoClick = e => {
