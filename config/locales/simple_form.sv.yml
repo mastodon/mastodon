@@ -63,7 +63,8 @@ sv:
       domain_allow:
         domain: Denna domän kommer att kunna hämta data från denna server och inkommande data från den kommer att behandlas och lagras
       email_domain_block:
-        with_dns_records: Ett försök att lösa den givna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
+        domain: Detta kan vara domännamnet som dyker upp i e-postadressen eller MX-posten som används. De kommer kontrolleras vid registrering.
+        with_dns_records: Ett försök att slå upp den angivna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
       featured_tag:
         name: 'Här är några av de hashtaggar du använt nyligen:'
       filters:
@@ -72,7 +73,11 @@ sv:
           hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
           warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
       form_admin_settings:
+        backups_retention_period: Behåll genererade användararkiv i det angivna antalet dagar.
+        bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
         closed_registrations_message: Visas när nyregistreringar är avstängda
+        content_cache_retention_period: Inlägg från andra servrar kommer att raderas efter det angivna antalet dagar när detta är inställt på ett positivt värde. Åtgärden kan vara oåterkallelig.
+        custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
         media_cache_retention_period: Nedladdade mediefiler kommer raderas efter det angivna antalet dagar, om inställt till ett positivt värde, och laddas ned på nytt vid behov.
         profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
@@ -91,27 +96,27 @@ sv:
       form_challenge:
         current_password: Du går in i ett säkert område
       imports:
-        data: CSV-fil som exporteras från en annan Mastodon-instans
+        data: CSV-fil som exporterats från en annan Mastodon-server
       invite_request:
-        text: Det här kommer att hjälpa oss att granska din ansökan
+        text: Detta kommer hjälpa oss att granska din ansökan
       ip_block:
         comment: Valfritt. Kom ihåg varför du lade till denna regel.
         expires_in: IP-adresser är en ändlig resurs, de delas ibland och byter ofta händer. Av den här anledningen så rekommenderas inte IP-blockeringar på obestämd tid.
-        ip: Ange en IPv4 eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Var försiktig så att du inte låser ut dig själv!
+        ip: Ange en IPv4- eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Var försiktig så att du inte låser ute dig själv!
         severities:
           no_access: Blockera åtkomst till alla resurser
-          sign_up_block: Nya registreringar inte möjligt
+          sign_up_block: Nyregistreringar kommer inte vara möjliga
           sign_up_requires_approval: Nya registreringar kräver ditt godkännande
         severity: Välj vad som ska hända med förfrågningar från denna IP
       rule:
-        text: Beskriv en kort och enkel regel för användare på denna server
+        text: Beskriv en regel eller ett krav för användare av denna server. Försök hålla det kort och koncist
       sessions:
-        otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
-        webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, knacka på den.
+        otp: 'Ange tvåfaktorskoden som genererades av din telefonapp, eller använd någon av dina återställningskoder:'
+        webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, tryck på den.
       tag:
-        name: Du kan bara ändra bokstävernas typ av variant, till exempel för att göra det mer läsbart
+        name: Du kan bara ändra skriftläget av bokstäverna, till exempel, för att göra det mer läsbart
       user:
-        chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i den offentliga tidslinjen
+        chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
         role: Rollen bestämmer vilka behörigheter användaren har
       user_role:
         color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
@@ -144,7 +149,7 @@ sv:
           none: Skicka en varning
           sensitive: Känslig
           silence: Tysta
-          suspend: Stäng av
+          suspend: Pausa
         warning_preset_id: Använd en förinställd varning
       announcement:
         all_day: Heldagsevenemang
@@ -161,33 +166,33 @@ sv:
         chosen_languages: Filtrera språk
         confirm_new_password: Bekräfta nytt lösenord
         confirm_password: Bekräfta lösenord
-        context: Filter sammanhang
+        context: Filtrera sammanhang
         current_password: Nuvarande lösenord
         data: Data
-        discoverable: Lista detta konto i katalogen
+        discoverable: Föreslå konto för andra
         display_name: Visningsnamn
         email: E-postadress
-        expires_in: Förfaller efter
+        expires_in: Utgår efter
         fields: Profil-metadata
-        header: Bakgrundsbild
+        header: Sidhuvud
         honeypot: "%{label} (fyll inte i)"
-        inbox_url: URL för reläinkorg
+        inbox_url: Webbadress för ombudsinkorg
         irreversible: Släng istället för att dölja
-        locale: Språk
-        locked: Lås konto
-        max_uses: Högst antal  användningar
+        locale: Språk för gränssnittet
+        locked: Kräv följförfrågningar
+        max_uses: Max antal användningar
         new_password: Nytt lösenord
         note: Biografi
         otp_attempt: Tvåfaktorskod
         password: Lösenord
-        phrase: Nyckelord eller fras
+        phrase: Nyckelord eller -fras
         setting_advanced_layout: Aktivera avancerat webbgränssnitt
         setting_aggregate_reblogs: Gruppera boostningar i tidslinjer
         setting_always_send_emails: Skicka alltid e-postnotiser
-        setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
+        setting_auto_play_gif: Spela upp GIF:ar automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan boostningar
-        setting_crop_images: Beskär bilder i icke-utökade tutningar till 16x9
-        setting_default_language: Språk
+        setting_crop_images: Beskär bilder i icke-utökade inlägg till 16x9
+        setting_default_language: Inläggsspråk
         setting_default_privacy: Inläggsintegritet
         setting_default_sensitive: Markera alltid media som känsligt
         setting_delete_modal: Visa bekräftelsedialog innan radering av inlägg
@@ -247,8 +252,8 @@ sv:
         trendable_by_default: Tillåt trender utan föregående granskning
         trends: Aktivera trender
       interactions:
-        must_be_follower: Blockera aviseringar från icke-följare
-        must_be_following: Blockera aviseringar från personer du inte följer
+        must_be_follower: Blockera notiser från icke-följare
+        must_be_following: Blockera notiser från personer du inte följer
         must_be_following_dm: Blockera direktmeddelanden från personer du inte följer
       invite:
         comment: Kommentar
@@ -265,7 +270,7 @@ sv:
       notification_emails:
         appeal: Någon överklagar ett moderatorbeslut
         digest: Skicka e-postsammandrag
-        favourite: Någon favoriserar ditt inlägg
+        favourite: Någon favoritmarkerar ditt inlägg
         follow: Någon följt dig
         follow_request: Någon begärt att följa dig
         mention: Någon nämnt dig
@@ -276,10 +281,10 @@ sv:
       rule:
         text: Regel
       tag:
-        listable: Tillåt att denna hashtag visas i sökningar och förslag
-        name: Hashtag
-        trendable: Tillåt att denna hashtag visas under trender
-        usable: Tillåt tutningar att använda denna hashtag
+        listable: Tillåt denna hashtagg att visas i sökningar och förslag
+        name: Hashtagg
+        trendable: Tillåt denna hashtagg att visas under trender
+        usable: Tillåt inlägg att använda denna hashtagg
       user:
         role: Roll
       user_role:
@@ -296,7 +301,7 @@ sv:
     recommended: Rekommenderad
     required:
       mark: "*"
-      text: obligatorisk
+      text: krävs
     title:
       sessions:
         webauthn: Använd en av dina säkerhetsnycklar för att logga in
