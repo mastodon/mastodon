@@ -113,6 +113,8 @@ ingress:
     # nginx.ingress.kubernetes.io/proxy-body-size: 40m
     #   for the NGINX ingress controller:
     # nginx.org/client-max-body-size: 40m
+  # you can specify the ingressClassName if it differs from the default
+  ingressClassName:
   hosts:
     - host: mastodon.local
       paths:
