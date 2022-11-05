@@ -3200,23 +3200,49 @@ $ui-header-height: 55px;
 .setting-text {
   display: block;
   box-sizing: border-box;
-  width: 100%;
   margin: 0;
-  color: $darker-text-color;
-  background: transparent;
-  padding: 7px 0;
+  color: $inverted-text-color;
+  background: $white;
+  padding: 7px 10px;
   font-family: inherit;
   font-size: 14px;
-  resize: vertical;
-  border: 0;
-  border-bottom: 2px solid $ui-primary-color;
-  outline: 0;
+  line-height: 22px;
+  border-radius: 4px;
+  border: 1px solid $white;
 
-  &:focus,
-  &:active {
-    color: $primary-text-color;
-    border-bottom-color: $ui-highlight-color;
+  &:focus {
     outline: 0;
+    border-color: lighten($ui-highlight-color, 12%);
+  }
+
+  &__wrapper {
+    background: $white;
+    border: 1px solid $ui-secondary-color;
+    margin-bottom: 10px;
+    border-radius: 4px;
+
+    .setting-text {
+      border: 0;
+      margin-bottom: 0;
+      border-radius: 0;
+
+      &:focus {
+        border: 0;
+      }
+    }
+
+    &__modifiers {
+      color: $inverted-text-color;
+      font-family: inherit;
+      font-size: 14px;
+      background: $white;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   @media screen and (max-width: 600px) {
@@ -5503,65 +5529,20 @@ a.status-card.compact:hover {
     margin-bottom: 20px;
   }
 
-  .setting-text {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-    color: $inverted-text-color;
-    background: $white;
-    padding: 10px;
-    font-family: inherit;
-    font-size: 14px;
-    resize: none;
-    outline: 0;
-    border-radius: 4px;
-    border: 1px solid $ui-secondary-color;
-    min-height: 100px;
-    max-height: 50vh;
-    margin-bottom: 10px;
-
-    &:focus {
-      border: 1px solid darken($ui-secondary-color, 8%);
-    }
-
-    &__wrapper {
-      background: $white;
-      border: 1px solid $ui-secondary-color;
-      margin-bottom: 10px;
-      border-radius: 4px;
-
-      .setting-text {
-        border: 0;
-        margin-bottom: 0;
-        border-radius: 0;
-
-        &:focus {
-          border: 0;
-        }
-      }
-
-      &__modifiers {
-        color: $inverted-text-color;
-        font-family: inherit;
-        font-size: 14px;
-        background: $white;
-      }
-    }
-
-    &__toolbar {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-  }
-
   .setting-text-label {
     display: block;
     color: $inverted-text-color;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 10px;
+  }
+
+  .setting-text {
+    width: 100%;
+    resize: none;
+    min-height: 100px;
+    max-height: 50vh;
+    border: 0;
   }
 
   .setting-toggle {
@@ -6765,9 +6746,9 @@ noscript {
 
 .column-inline-form {
   padding: 15px;
-  padding-right: 0;
   display: flex;
   justify-content: flex-start;
+  gap: 15px;
   align-items: center;
   background: lighten($ui-base-color, 4%);
 
@@ -6776,16 +6757,7 @@ noscript {
 
     input {
       width: 100%;
-
-      &:focus {
-        outline: 0;
-      }
     }
-  }
-
-  .icon-button {
-    flex: 0 0 auto;
-    margin: 0 10px;
   }
 }
 
