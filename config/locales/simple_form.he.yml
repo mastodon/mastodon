@@ -1,4 +1,3 @@
----
 he:
   simple_form:
     hints:
@@ -66,6 +65,8 @@ he:
       email_domain_block:
         domain: זה יכול להיות שם הדומיין המופיע בכתובת הדוא"ל או רשומת ה-MX בה הוא משתמש. הם ייבדקו בהרשמה.
         with_dns_records: ייעשה נסיון למצוא את רשומות ה-DNS של דומיין נתון והתוצאות ייחסמו גם הן
+      featured_tag:
+        name: 'הנה כמה מההאשטגים שהשתמשת בהם לאחרונה:'
       filters:
         action: בחרו איזו פעולה לבצע כאשר פוסט מתאים למסנן
         actions:
@@ -250,7 +251,7 @@ he:
       webhook:
         events: אירועים מאופשרים
         url: כתובת URL של נקודת הקצה
-    'no': לא
+    'no': 'לא'
     not_recommended: לא מומלצים
     recommended: מומלץ
     required:
@@ -259,4 +260,4 @@ he:
     title:
       sessions:
         webauthn: נא להשתמש באחד ממפתחות האבטחה שלך כדי להכנס
-    'yes': כן
+    'yes': 'כן'
