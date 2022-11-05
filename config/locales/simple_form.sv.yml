@@ -17,19 +17,26 @@ sv:
           disable: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj innehållet.
           none: Använd det här för att skicka en varning till användaren, utan att trigga någon annan åtgärd.
           sensitive: Tvinga denna användares alla mediebilagor att flaggas som känsliga.
+          silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem.
+          suspend: Hindra all interaktion från eller till detta konto och radera allt dess innehåll. Går att ångra inom 30 dagar.
         warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
         ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
         scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
         starts_at: Valfritt. Om ditt meddelande är bundet till ett visst tidsintervall
+        text: Du kan använda inläggssyntax. Håll i åtanke hur mycket plats ditt meddelande tar upp på användarnas skärmar
       appeal:
         text: Du kan endast överklaga en varning en gång
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
+        context: Ett eller fler sammanhang där filtret ska tillämpas
+        current_password: Av säkerhetsskäl krävs lösenordet till det nuvarande kontot
+        current_username: Ange det nuvarande kontots användarnamn för att bekräfta
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
+        discoverable: Tillåt att ditt konto upptäcks av främlingar genom rekommendationer, trender och andra funktioner
         email: Du kommer att få ett bekräftelsemeddelande via e-post
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
@@ -37,14 +44,44 @@ sv:
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
+        setting_always_send_emails: E-postnotiser kommer vanligtvis inte skickas när du aktivt använder Mastodon
+        setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
+        setting_show_application: Applikationen du använder för att göra inlägg kommer visas i detaljvyn för dina inlägg
+        setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
+        setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
         username: Ditt användarnamn måste vara unikt på %{domain}
+        whole_word: När sökordet eller frasen endast är alfanumerisk, kommer det endast att tillämpas om det matchar hela ordet
+      domain_allow:
+        domain: Denna domän kommer att kunna hämta data från denna server och inkommande data från den kommer att behandlas och lagras
       email_domain_block:
         with_dns_records: Ett försök att lösa den givna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
+      featured_tag:
+        name: 'Här är några av de hashtaggar du använt nyligen:'
+      filters:
+        action: Välj vilken åtgärd som ska utföras när ett inlägg matchar filtret
+        actions:
+          hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
+          warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
+      form_admin_settings:
+        closed_registrations_message: Visas när nyregistreringar är avstängda
+        mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
+        require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
+        site_contact_email: Hur människor kan nå dig för juridiska spörsmål eller supportfrågor.
+        site_contact_username: Hur folk kan nå dig på Mastodon.
+        site_extended_description: Eventuell övrig information som kan vara användbar för besökare och dina användare. Kan struktureras med Markdown-syntax.
+        site_short_description: En kort beskrivning för att unikt identifiera din server. Vem är det som driver den, vilka är den till för?
+        site_terms: Använd din egen sekretesspolicy eller lämna tomt för att använda standardinställningen. Kan struktureras med Markdown-syntax.
+        site_title: Hur folk kan hänvisa till din server förutom med dess domännamn.
+        theme: Tema som utloggade besökare och nya användare ser.
+        thumbnail: En bild i cirka 2:1-proportioner som visas tillsammans med din serverinformation.
+        timeline_preview: Utloggade besökare kommer kunna bläddra bland de senaste offentliga inläggen som finns på servern.
+        trendable_by_default: Hoppa över manuell granskning av trendande innehåll. Enskilda objekt kan ändå raderas från trender retroaktivt.
+        trends: Trender visar vilka inlägg, hashtaggar och nyheter det pratas om på din server.
       form_challenge:
         current_password: Du går in i ett säkert område
       imports:
@@ -69,6 +106,15 @@ sv:
         name: Du kan bara ändra bokstävernas typ av variant, till exempel för att göra det mer läsbart
       user:
         chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i den offentliga tidslinjen
+        role: Rollen bestämmer vilka behörigheter användaren har
+      user_role:
+        color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
+        highlighted: Detta gör rollen synlig offentligt
+        name: Offentligt namn på rollen, om rollen är inställd på att visas som ett emblem
+        permissions_as_keys: Användare med denna roll kommer ha tillgång till...
+      webhook:
+        events: Välj händelser att skicka
+        url: Dit händelser kommer skickas
     labels:
       account:
         fields:
@@ -99,6 +145,8 @@ sv:
         scheduled_at: Schemalägg publicering
         starts_at: Evenemangets början
         text: Kungörelse
+      appeal:
+        text: Redogör anledningen till att detta beslut bör upphävas
       defaults:
         autofollow: Bjud in till att följa ditt konto
         avatar: Profilbild
@@ -128,6 +176,7 @@ sv:
         phrase: Nyckelord eller fras
         setting_advanced_layout: Aktivera avancerat webbgränssnitt
         setting_aggregate_reblogs: Gruppera knuffar i tidslinjer
+        setting_always_send_emails: Skicka alltid e-postnotiser
         setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
         setting_boost_modal: Visa bekräftelsedialog innan du knuffar
         setting_crop_images: Beskär bilder i icke-utökade tutningar till 16x9
@@ -153,6 +202,7 @@ sv:
         setting_use_pending_items: Långsamt läge
         severity: Strikthet
         sign_in_token_attempt: Säkerhetskod
+        title: Rubrik
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
@@ -166,11 +216,26 @@ sv:
           hide: Dölj helt
           warn: Dölj med en varning
       form_admin_settings:
+        backups_retention_period: Lagringsperiod för användararkivet
+        bootstrap_timeline_accounts: Rekommendera alltid dessa konton till nya användare
+        closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
+        content_cache_retention_period: Tid för bibehållande av innehållscache
+        custom_css: Anpassad CSS
+        mascot: Anpassad maskot (tekniskt arv)
+        media_cache_retention_period: Tid för bibehållande av mediecache
+        profile_directory: Aktivera profilkatalog
+        registrations_mode: Vem kan registrera sig
+        require_invite_text: Kräv anledning för att gå med
+        show_domain_blocks: Visa domänblockeringar
+        site_contact_email: Kontakt via e-post
+        site_contact_username: Användarnamn för kontakt
         site_extended_description: Utökad beskrivning
         site_short_description: Serverbeskrivning
         site_terms: Integritetspolicy
         site_title: Servernamn
         theme: Standardtema
+        thumbnail: Serverns tumnagelbild
+        timeline_preview: Tillåt oautentiserad åtkomst till offentliga tidslinjer
         trends: Aktivera trender
       interactions:
         must_be_follower: Blockera aviseringar från icke-följare
