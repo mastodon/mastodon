@@ -1,4 +1,3 @@
----
 fr:
   activerecord:
     attributes:
@@ -29,6 +28,10 @@ fr:
           attributes:
             website:
               invalid: n’est pas une URL valide
+        import:
+          attributes:
+            data:
+              malformed: est mal formé
         status:
           attributes:
             reblog:
