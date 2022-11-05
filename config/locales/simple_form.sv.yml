@@ -4,22 +4,22 @@ sv:
       account_alias:
         acct: Ange användarnamn@domän för kontot som du vill flytta från
       account_migration:
-        acct: Ange användarnamn@domän för kontot du flyttar till
+        acct: Ange användarnamn@domän för kontot du vill flytta till
       account_warning_preset:
         text: Du kan använda inläggssyntax som webbadresser, hashtaggar och omnämnanden
         title: Valfri. Inte synlig för mottagaren
       admin_account_action:
-        include_statuses: Användaren ser de toots som orsakat moderering eller varning
-        send_email_notification: Användaren kommer att få en förklaring av vad som hände med sitt konto
-        text_html: Extra. Du kan använda toot syntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
+        include_statuses: Användaren ser vilka inlägg som orsakat modereringsåtgärd eller varning
+        send_email_notification: Användaren kommer få en förklaring på vad som hände med deras konto
+        text_html: Valfri. Du kan använda inläggssyntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
         types:
-          disable: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj innehållet.
-          none: Använd det här för att skicka en varning till användaren, utan att trigga någon annan åtgärd.
-          sensitive: Tvinga denna användares alla mediebilagor att flaggas som känsliga.
+          disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
+          none: Använd det här för att skicka en varning till användaren, utan att vidta någon ytterligare åtgärd.
+          sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
           silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem.
           suspend: Hindra all interaktion från eller till detta konto och radera allt dess innehåll. Går att ångra inom 30 dagar.
-        warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
+        warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
         ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
@@ -40,10 +40,12 @@ sv:
         email: Du kommer att få ett bekräftelsemeddelande via e-post
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        inbox_url: Kopiera webbadressen från hemsidan av det ombud du vill använda
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
+        scopes: 'Vilka API: er applikationen kommer tillåtas åtkomst till. Om du väljer en omfattning på högstanivån behöver du inte välja individuella sådana.'
         setting_always_send_emails: E-postnotiser kommer vanligtvis inte skickas när du aktivt använder Mastodon
         setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
         setting_display_media_default: Dölj media markerad som känslig
@@ -70,6 +72,8 @@ sv:
       form_admin_settings:
         closed_registrations_message: Visas när nyregistreringar är avstängda
         mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
+        media_cache_retention_period: Nedladdade mediefiler kommer raderas efter det angivna antalet dagar, om inställt till ett positivt värde, och laddas ned på nytt vid behov.
+        profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
         require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
         site_contact_email: Hur människor kan nå dig för juridiska spörsmål eller supportfrågor.
         site_contact_username: Hur folk kan nå dig på Mastodon.
@@ -112,6 +116,7 @@ sv:
         highlighted: Detta gör rollen synlig offentligt
         name: Offentligt namn på rollen, om rollen är inställd på att visas som ett emblem
         permissions_as_keys: Användare med denna roll kommer ha tillgång till...
+        position: Högre roll avgör konfliktlösning i vissa situationer. Vissa åtgärder kan endast utföras på roller med lägre prioritet
       webhook:
         events: Välj händelser att skicka
         url: Dit händelser kommer skickas
@@ -227,6 +232,7 @@ sv:
         registrations_mode: Vem kan registrera sig
         require_invite_text: Kräv anledning för att gå med
         show_domain_blocks: Visa domänblockeringar
+        show_domain_blocks_rationale: Visa varför domäner blockerades
         site_contact_email: Kontakt via e-post
         site_contact_username: Användarnamn för kontakt
         site_extended_description: Utökad beskrivning
@@ -236,6 +242,7 @@ sv:
         theme: Standardtema
         thumbnail: Serverns tumnagelbild
         timeline_preview: Tillåt oautentiserad åtkomst till offentliga tidslinjer
+        trendable_by_default: Tillåt trender utan föregående granskning
         trends: Aktivera trender
       interactions:
         must_be_follower: Blockera aviseringar från icke-följare
@@ -254,6 +261,7 @@ sv:
           sign_up_requires_approval: Begränsa registreringar
         severity: Regel
       notification_emails:
+        appeal: Någon överklagar ett moderatorbeslut
         digest: Skicka sammandrag via e-post
         favourite: Skicka e-post när någon favoriserar din status
         follow: Skicka e-post när någon följer dig
@@ -261,6 +269,8 @@ sv:
         mention: Skicka e-post när någon nämner dig
         pending_account: Nytt konto behöver granskas
         reblog: Skicka e-post när någon knuffar din status
+        report: Ny rapport har skickats
+        trending_tag: Ny trend kräver granskning
       rule:
         text: Regel
       tag:
@@ -271,9 +281,14 @@ sv:
       user:
         role: Roll
       user_role:
+        color: Emblemsfärg
+        highlighted: Visa roll som emblem på användarprofiler
         name: Namn
         permissions_as_keys: Behörigheter
         position: Prioritet
+      webhook:
+        events: Aktiverade händelser
+        url: Slutpunkts-URL
     'no': 'Nej'
     not_recommended: Rekommenderas inte
     recommended: Rekommenderad
