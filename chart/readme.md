@@ -19,6 +19,20 @@ The variables that _must_ be configured are:
 
 - SMTP settings for your mailer in the `mastodon.smtp` group.
 
+# Administration
+
+You can run [admin CLI](https://docs.joinmastodon.org/admin/tootctl/) commands in the web deployment.
+
+```bash
+kubectl -n mastodon exec -it deployment/mastodon-web -- bash
+tootctl accounts modify admin --reset-password
+```
+
+or
+```bash
+kubectl -n mastodon exec -it deployment/mastodon-web -- tootctl accounts modify admin --reset-password
+```
+
 # Missing features
 
 Currently this chart does _not_ support:
