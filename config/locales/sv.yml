@@ -165,17 +165,21 @@ sv:
         confirm_user: Bekräfta användare
         create_account_warning: Skapa varning
         create_announcement: Skapa kungörelse
+        create_canonical_email_block: Skapa e-postblockering
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
+        create_email_domain_block: Skapa blockering av e-postdomän
         create_ip_block: Skapa IP-regel
         create_unavailable_domain: Skapa otillgänglig domän
         create_user_role: Skapa roll
         demote_user: Degradera användare
         destroy_announcement: Radera kungörelse
+        destroy_canonical_email_block: Radera e-postblockering
         destroy_custom_emoji: Radera egen emoji
         destroy_domain_allow: Ta bort tillåten domän
         destroy_domain_block: Ta bort blockerad domän
+        destroy_email_domain_block: Radera blockering av e-postdomän
         destroy_instance: Rensa domänen
         destroy_ip_block: Radera IP-regel
         destroy_status: Radera inlägg
@@ -297,6 +301,12 @@ sv:
       interactions: interaktioner
       media_storage: Medialagring
       new_users: nya användare
+      pending_tags_html:
+        one: "<strong>%{count}</strong> väntande hashtagg"
+        other: "<strong>%{count}</strong> väntande hashtaggar"
+      pending_users_html:
+        one: "<strong>%{count}</strong> väntande användare"
+        other: "<strong>%{count}</strong> väntande användare"
       software: Programvara
       space: Utrymmesutnyttjande / Utrymmesanvändning
       title: Kontrollpanel
@@ -351,8 +361,10 @@ sv:
         create: Skapa domän
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
+      resolved_through_html: Uppslagen genom %{domain}
       title: Blockerade e-postdomäner
     follow_recommendations:
+      description_html: "<strong>Följrekommendationer hjälper nya användare att snabbt hitta intressant innehåll</strong>. När en användare inte har interagerat med andra tillräckligt mycket för att forma personliga följrekommendationer, rekommenderas istället dessa konton. De beräknas om varje dag från en mix av konton med nylig aktivitet och högst antal följare för ett givet språk."
       language: För språket
       status: Status
       title: Följ rekommendationer
@@ -366,14 +378,19 @@ sv:
       by_domain: Domän
       content_policies:
         policies:
+          reject_reports: Avvisa rapporter
           silence: Gräns
         policy: Policy
         reason: Offentlig orsak
         title: Riktlinjer för innehåll
       dashboard:
+        instance_accounts_dimension: Mest följda konton
         instance_accounts_measure: lagrade konton
         instance_followers_measure: våra följare där
         instance_follows_measure: sina följare här
+        instance_languages_dimension: Mest använda språk
+        instance_media_attachments_measure: lagrade mediebilagor
+        instance_reports_measure: rapporter om dem
         instance_statuses_measure: sparade inlägg
       delivery:
         all: Alla
@@ -384,6 +401,9 @@ sv:
         unavailable: Ej tillgänglig
       delivery_available: Leverans är tillgängligt
       empty: Inga domäner hittades.
+      known_accounts:
+        one: "%{count} känt konto"
+        other: "%{count} kända konton"
       moderation:
         all: Alla
         limited: Begränsad
@@ -431,8 +451,11 @@ sv:
       enable: Aktivera
       enable_hint: Vid aktivering kommer din server börja prenumerera på alla offentliga inlägg från detta ombud, och kommer börja sända denna servers offentliga inlägg till den.
       enabled: Aktivera
+      inbox_url: Ombuds-URL
+      pending: Väntar på ombudets godkännande
       save_and_enable: Spara och aktivera
       setup: Konfigurera en relä-anslutning
+      signatures_not_enabled: Ombud fungerar inte korrekt medan säkert läge eller begränsat federeringsläge är aktiverade
       status: Status
       title: Relä
     report_notes:
@@ -444,6 +467,7 @@ sv:
         notes:
           one: "%{count} anteckning"
           other: "%{count} anteckningar"
+      action_log: Granskningslogg
       action_taken_by: Åtgärder vidtagna av
       actions:
         delete_description_html: De rapporterade inläggen kommer raderas och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
@@ -554,6 +578,7 @@ sv:
         manage_rules: Hantera serverregler
         title: Om
       appearance:
+        preamble: Anpassa Mastodons webbgränssnitt.
         title: Utseende
       branding:
         title: Profilering
@@ -677,6 +702,7 @@ sv:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
+    toot_layout: Inläggslayout
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     salutation: "%{name},"
