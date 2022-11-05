@@ -1,4 +1,3 @@
----
 sv:
   activerecord:
     attributes:
@@ -42,3 +41,14 @@ sv:
             email:
               blocked: använder en icke tillåten e-postleverantör
               unreachable: verkar inte existera
+            role_id:
+              elevated: kan inte vara högre än din nuvarande roll
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inkludera behörigheter som inte är säkra för grundrollen
+              elevated: kan inte inkludera behörigheter som din nuvarande roll inte innehar
+              own_role: kan inte ändras med din nuvarande roll
+            position:
+              elevated: kan inte vara högre än din nuvarande roll
+              own_role: kan inte ändras med din nuvarande roll
