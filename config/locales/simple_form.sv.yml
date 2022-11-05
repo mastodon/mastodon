@@ -22,10 +22,10 @@ sv:
         warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
-        ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
-        scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
-        starts_at: Valfritt. Om ditt meddelande är bundet till ett visst tidsintervall
-        text: Du kan använda inläggssyntax. Håll i åtanke hur mycket plats ditt meddelande tar upp på användarnas skärmar
+        ends_at: Valfri. Kungörelsen kommer automatiskt avpubliceras vid denna tidpunkt
+        scheduled_at: Lämna tomt för att publicera kungörelsen omedelbart
+        starts_at: Valfritt. Om din kungörelse är bunden till ett visst tidsintervall
+        text: Du kan använda inläggssyntax. Håll i åtanke hur mycket plats din kungörelse tar upp på användarnas skärmar
       appeal:
         text: Du kan endast överklaga en varning en gång
       defaults:
@@ -45,7 +45,9 @@ sv:
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
+        phrase: Matchas oavsett användande i text eller innehållsvarning för ett inlägg
         scopes: 'Vilka API: er applikationen kommer tillåtas åtkomst till. Om du väljer en omfattning på högstanivån behöver du inte välja individuella sådana.'
+        setting_aggregate_reblogs: Visa inte nya boostningar för inlägg som nyligen blivit boostade (påverkar endast nymottagna boostningar)
         setting_always_send_emails: E-postnotiser kommer vanligtvis inte skickas när du aktivt använder Mastodon
         setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
         setting_display_media_default: Dölj media markerad som känslig
@@ -134,12 +136,12 @@ sv:
         title: Rubrik
       admin_account_action:
         include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
-        send_email_notification: Meddela användaren via e-post
+        send_email_notification: Notifiera användaren via e-post
         text: Anpassad varning
         type: Åtgärd
         types:
-          disable: Inaktivera inloggning
-          none: Gör ingenting
+          disable: Frys
+          none: Skicka en varning
           sensitive: Känslig
           silence: Tysta
           suspend: Stäng av
@@ -180,15 +182,15 @@ sv:
         password: Lösenord
         phrase: Nyckelord eller fras
         setting_advanced_layout: Aktivera avancerat webbgränssnitt
-        setting_aggregate_reblogs: Gruppera knuffar i tidslinjer
+        setting_aggregate_reblogs: Gruppera boostningar i tidslinjer
         setting_always_send_emails: Skicka alltid e-postnotiser
         setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
-        setting_boost_modal: Visa bekräftelsedialog innan du knuffar
+        setting_boost_modal: Visa bekräftelsedialog innan boostningar
         setting_crop_images: Beskär bilder i icke-utökade tutningar till 16x9
         setting_default_language: Språk
-        setting_default_privacy: Postintegritet
+        setting_default_privacy: Inläggsintegritet
         setting_default_sensitive: Markera alltid media som känsligt
-        setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot
+        setting_delete_modal: Visa bekräftelsedialog innan radering av inlägg
         setting_disable_swiping: Inaktivera svepande rörelser
         setting_display_media: Mediavisning
         setting_display_media_default: Standard
@@ -262,15 +264,15 @@ sv:
         severity: Regel
       notification_emails:
         appeal: Någon överklagar ett moderatorbeslut
-        digest: Skicka sammandrag via e-post
-        favourite: Skicka e-post när någon favoriserar din status
-        follow: Skicka e-post när någon följer dig
-        follow_request: Skicka e-post när någon begär att följa dig
-        mention: Skicka e-post när någon nämner dig
-        pending_account: Nytt konto behöver granskas
-        reblog: Skicka e-post när någon knuffar din status
-        report: Ny rapport har skickats
-        trending_tag: Ny trend kräver granskning
+        digest: Skicka e-postsammandrag
+        favourite: Någon favoriserar ditt inlägg
+        follow: Någon följt dig
+        follow_request: Någon begärt att följa dig
+        mention: Någon nämnt dig
+        pending_account: Ett nytt konto behöver granskas
+        reblog: Någon boostar ditt inlägg
+        report: En ny rapport har skickats
+        trending_tag: En ny trend kräver granskning
       rule:
         text: Regel
       tag:
