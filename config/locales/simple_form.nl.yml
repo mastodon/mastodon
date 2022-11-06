@@ -66,7 +66,7 @@ nl:
       email_domain_block:
         with_dns_records: Er wordt een poging gewaagd om de desbetreffende DNS-records op te zoeken, waarna de resultaten ook worden geblokkeerd
       featured_tag:
-        name: 'Je wilt misschien een van deze gebruiken:'
+        name: 'Hier zijn enkele van de hashtags die je onlangs hebt gebruikt:'
       filters:
         action: Kies welke acties uitgevoerd moeten wanneer een bericht overeenkomt met het filter
         actions:
@@ -77,15 +77,17 @@ nl:
         bootstrap_timeline_accounts: Deze accounts worden bovenaan de aanbevelingen aan nieuwe gebruikers getoond. Meerdere gebruikersnamen met komma's scheiden.
         closed_registrations_message: Weergegeven wanneer registratie van nieuwe accounts is uitgeschakeld
         content_cache_retention_period: 'Berichten van andere servers worden na het opgegeven aantal dagen verwijderd. Let op: Dit is onomkeerbaar.'
-        custom_css: Je kunt aangepaste stijlen toepassen op de webversie van Mastodon.
-        mascot: Overschrijft de illustratie in de geavanceerde webinterface.
+        custom_css: Je kunt aangepaste CSS toepassen op de webversie van deze Mastodon-server.
+        mascot: Overschrijft de illustratie in de geavanceerde webomgeving.
         media_cache_retention_period: Mediabestanden die van andere servers zijn gedownload worden na het opgegeven aantal dagen verwijderd en worden op verzoek opnieuw gedownload.
         profile_directory: De gebruikersgids bevat een lijst van alle gebruikers die ervoor gekozen hebben om ontdekt te kunnen worden.
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
-        site_contact_email: Hoe mensen je kunnen bereiken voor juridische of ondersteunende onderzoeken.
-        site_contact_username: Hoe mensen je kunnen bereiken op Mastodon.
-        site_title: Hoe mensen naar uw server kunnen verwijzen naast de domeinnaam.
+        site_contact_email: Hoe mensen je kunnen bereiken voor juridische vragen of support.
+        site_contact_username: Hoe mensen je op Mastodon kunnen bereiken.
+        site_terms: Gebruik uw eigen privacybeleid of laat leeg om de standaardwaarde te gebruiken. Kan worden gestructureerd met Markdown syntax.
+        site_title: Hoe mensen buiten de domeinnaam naar je server kunnen verwijzen.
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
+        thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
         timeline_preview: Bezoekers (die niet zijn ingelogd) kunnen de meest recente, op de server aanwezige openbare berichten bekijken.
         trendable_by_default: Handmatige beoordeling van trends overslaan. Individuele items kunnen later alsnog worden afgekeurd.
         trends: Trends laten zien welke berichten, hashtags en nieuwsberichten op jouw server aan populariteit winnen.
@@ -115,6 +117,7 @@ nl:
         chosen_languages: Alleen berichten in de aangevinkte talen worden op de openbare tijdlijnen getoond
         role: De rol bepaalt welke rechten een gebruiker heeft
       user_role:
+        color: Kleur die gebruikt wordt voor de rol in de UI, als RGB in hexadecimale formaat
         highlighted: Dit maakt de rol openbaar zichtbaar
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...

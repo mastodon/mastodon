@@ -5,13 +5,14 @@ nn:
     contact_missing: Ikkje sett
     contact_unavailable: I/T
     hosted_on: "%{domain} er vert for Mastodon"
+    title: Om
   accounts:
     follow: Fylg
     followers:
       one: Fylgjar
       other: Fylgjarar
     following: Fylgjer
-    instance_actor_flash: Denne kontoen er en virtuell figur som brukes til å representere selve serveren og ikke noen individuell bruker. Den brukes til forbundsformål og bør ikke oppheves.
+    instance_actor_flash: Denne kontoen er ein virtuell figur som nyttast som representant for tenaren, og ikkje som individuell brukar. Den nyttast til forbundsformål og bør ikkje suspenderast.
     last_active: sist aktiv
     link_verified_on: Eigarskap for denne lenkja vart sist sjekka %{date}
     nothing_here: Her er det ingenting!
@@ -32,29 +33,32 @@ nn:
     accounts:
       add_email_domain_block: Gøym e-postdomene
       approve: Godtak
-      approved_msg: Godkjent %{username} sin registreringsapplikasjon
+      approved_msg: Godkjende %{username} sin registreringssøknad
       are_you_sure: Er du sikker?
       avatar: Bilete
       by_domain: Domene
       change_email:
+        changed_msg: Konto-e-posten er endra!
         current_email: Noverande e-post
         label: Byt e-post
         new_email: Ny e-post
         submit: Byt e-post
         title: Byt e-post for %{username}
       change_role:
+        changed_msg: Rolle endra!
         label: Endre rolle
         no_role: Inga rolle
         title: Endre rolle for %{username}
       confirm: Stadfest
       confirmed: Stadfesta
       confirming: Stadfestar
+      custom: Tilpassa
       delete: Slett data
       deleted: Sletta
       demote: Degrader
-      destroyed_msg: "%{username} sine data er nå i kø for å bli slettet minimum"
+      destroyed_msg: "%{username} sine data er no i slettekøa"
       disable: Slå av
-      disable_sign_in_token_auth: Deaktiver e-post token autentisering
+      disable_sign_in_token_auth: Slå av e-post token autentisering
       disable_two_factor_authentication: Slå av 2FA
       disabled: Slege av
       display_name: Synleg namn
@@ -63,14 +67,14 @@ nn:
       email: E-post
       email_status: E-poststatus
       enable: Slå på
-      enable_sign_in_token_auth: Aktiver godkjenning av e-post token
+      enable_sign_in_token_auth: Slå på e-post token autentisering
       enabled: Aktivert
-      enabled_msg: Frossent %{username} sin konto
+      enabled_msg: Gjenaktiverte %{username} sin konto
       followers: Fylgjarar
       follows: Fylgje
       header: Overskrift
       inbox_url: Innbokslenkje
-      invite_request_text: Begrunnelse for å bli med
+      invite_request_text: Grunngjeving for å bli med
       invited_by: Innboden av
       ip: IP-adresse
       joined: Vart med
@@ -82,12 +86,13 @@ nn:
       login_status: Innlogginsstatus
       media_attachments: Medievedlegg
       memorialize: Gjør om til et minne
-      memorialized: Minnet
-      memorialized_msg: Vellykket gjort av %{username} til en minnestedet
+      memorialized: Minna
+      memorialized_msg: Endra %{username} til ei minneside
       moderation:
         active: Aktiv
         all: Alle
         pending: Ventar på svar
+        silenced: Avgrensa
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsmerknader
@@ -95,21 +100,26 @@ nn:
       most_recent_ip: Nyast IP
       no_account_selected: Ingen kontoar vart endra sidan ingen var valde
       no_limits_imposed: Ingen grenser sett
+      no_role_assigned: Inga rolle tildelt
       not_subscribed: Ikkje tinga
       pending: Ventar på gjennomgang
       perform_full_suspension: Utvis
+      previous_strikes: Tidlegare prikkar
+      previous_strikes_description_html:
+        one: Denne kontoen har <strong>ein</strong> prikk.
+        other: Denne kontoen har <strong>%{count}</strong> prikkar.
       promote: Frem
       protocol: Protokoll
       public: Offentleg
       push_subscription_expires: PuSH-abonnent utløper
       redownload: Last inn profil på nytt
-      redownloaded_msg: Oppdatert %{username} sin profil fra opprinnelse
+      redownloaded_msg: Oppdaterte %{username} sin profil frå opphavstenar
       reject: Avvis
-      rejected_msg: Vellykket avvist %{username} sin registreringsapplikasjon
+      rejected_msg: Avviste %{username} sin registreringssøknad
       remove_avatar: Fjern bilete
       remove_header: Fjern overskrift
-      removed_avatar_msg: Fjernet %{username} sitt avatarbilde
-      removed_header_msg: Fjernet %{username} sin topptekst bilde
+      removed_avatar_msg: Fjerna %{username} sitt avatarbilete
+      removed_header_msg: Fjerna %{username} sitt toppbilete
       resend_confirmation:
         already_confirmed: Denne brukaren er allereie stadfesta
         send: Send stadfestings-e-posten på nytt
@@ -124,7 +134,8 @@ nn:
       security_measures:
         only_password: Kun passord
         password_and_2fa: Passord og 2FA
-      sensitized: Merket som følsom
+      sensitive: Tving sensitiv
+      sensitized: Avmerka som følsom
       shared_inbox_url: Delt Innboks URL
       show:
         created_reports: Rapportar frå denne kontoen
@@ -132,12 +143,17 @@ nn:
       silence: Togn
       silenced: Dempa
       statuses: Statusar
+      strikes: Tidlegare prikkar
       subscribe: Ting
+      suspend: Utvis og slett kontodata for godt
       suspended: Utvist
-      suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
-      suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
+      suspension_irreversible: Data frå denne kontoen har blitt ikkje-reverserbart sletta. Du kan oppheve suspenderinga av kontoen for å bruke den, men det vil ikkje gjenopprette alle data den tidligare har hatt.
+      suspension_reversible_hint_html: Kontoen har blitt suspendert, og data vil bli fullstendig fjerna den %{date}. Fram til då kan kontoen gjenopprettes uten negative effekter. Om du ynskjer å fjerne kontodata no, kan du gjere det nedanfor.
       title: Kontoar
+      unblock_email: Avblokker e-postadresse
+      unblocked_email_msg: Avblokkerte %{username} si e-postadresse
       unconfirmed_email: E-post utan stadfesting
+      undo_sensitized: Gjør om tving sensitiv
       undo_silenced: Angr målbinding
       undo_suspension: Angr utvising
       unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
@@ -150,50 +166,97 @@ nn:
       whitelisted: Kvitlista
     action_logs:
       action_types:
-        approve_user: Godkjenn bruker
+        approve_appeal: Godkjenn appell
+        approve_user: Godkjenn brukar
         assigned_to_self_report: Tilordne rapport
         change_email_user: Byt e-post for brukar
+        change_role_user: Endre brukarrolle
         confirm_user: Stadfest brukar
         create_account_warning: Opprett åtvaring
         create_announcement: Opprett lysing
+        create_canonical_email_block: Opprett e-post-blokkering
         create_custom_emoji: Opprett tilpassa emoji
         create_domain_allow: Opprett domene tillatt
         create_domain_block: Opprett domene-blokk
         create_email_domain_block: Opprett e-post domeneblokk
         create_ip_block: Opprett IP-regel
+        create_unavailable_domain: Opprett utilgjengeleg domene
+        create_user_role: Opprett rolle
         demote_user: Degrader brukar
         destroy_announcement: Slett lysinga
+        destroy_canonical_email_block: Slett e-post-blokkering
         destroy_custom_emoji: Slett tilpassa emoji
         destroy_domain_allow: Slett domenegodkjenning
         destroy_domain_block: Slett domenesperring
         destroy_email_domain_block: Slett e-postdomenesperring
+        destroy_instance: Slett domene
         destroy_ip_block: Slett IP-regel
         destroy_status: Slett status
+        destroy_unavailable_domain: Slett utilgjengeleg domene
+        destroy_user_role: Øydelegg rolle
         disable_2fa_user: Skruv av 2FA
         disable_custom_emoji: Skruv av tilpassa emoji
+        disable_sign_in_token_auth_user: Slå av e-post tokenautentisering for brukar
         disable_user: Skruv av brukar
         enable_custom_emoji: Skruv på tilpassa emoji
+        enable_sign_in_token_auth_user: Slå på e-post tokenautentisering for brukar
         enable_user: Skruv på brukar
+        memorialize_account: Opprett minnekonto
         promote_user: Forfrem brukar
-        reject_user: Avvis bruker
+        reject_appeal: Avvis appell
+        reject_user: Avvis brukar
         remove_avatar_user: Fjern avatar
         reopen_report: Opn rapport opp att
+        resend_user: Send stadfestings-epost på ny
         reset_password_user: Tilbakestill passord
         resolve_report: Løs rapport
+        sensitive_account: Tvangsfølsom konto
         silence_account: Demp konto
         suspend_account: Suspender kontoen
+        unassigned_report: Fjern tilordna rapport
+        unblock_email_account: Avblokker e-postadresse
+        unsensitive_account: Angre tvangsfølsom konto
+        unsilence_account: Angre avgrensing av konto
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
         update_custom_emoji: Oppdater tilpassa emoji
+        update_domain_block: Oppdater domene-sperring
+        update_ip_block: Oppdater IP-regel
         update_status: Oppdater tut
+        update_user_role: Oppdater rolla
       actions:
-        approve_user_html: "%{name} godkjente registrering fra %{target}"
-        create_custom_emoji_html: "%{name} lastet opp ny emoji %{target}"
-        create_domain_allow_html: "%{name} tillatt føderasjon med domenet %{target}"
-        create_domain_block_html: "%{name} blokkert domene %{target}"
-        create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
-        create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        approve_appeal_html: "%{name} godkjende klagen frå %{target} på modereringa"
+        approve_user_html: "%{name} godkjende registreringa til %{target}"
+        assigned_to_self_report_html: "%{name} tildelte rapport %{target} til seg sjølv"
+        change_email_user_html: "%{name} endra e-postadressa til brukaren %{target}"
+        change_role_user_html: "%{name} endra rolla til %{target}"
+        confirm_user_html: "%{name} stadfesta e-postadressa til brukaren %{target}"
+        create_account_warning_html: "%{name} sende ei åtvaring til %{target}"
+        create_announcement_html: "%{name} oppretta ei ny kunngjering %{target}"
+        create_canonical_email_block_html: "%{name} blokkerte e-post med hash %{target}"
+        create_custom_emoji_html: "%{name} lasta opp ein ny emoji %{target}"
+        create_domain_allow_html: "%{name} tillot føderasjon med domenet %{target}"
+        create_domain_block_html: "%{name} blokkerte domenet %{target}"
+        create_email_domain_block_html: "%{name} blokkerte e-postdomenet %{target}"
+        create_ip_block_html: "%{name} oppretta ein regel for IP-en %{target}"
+        create_unavailable_domain_html: "%{name} stogga levering til domenet %{target}"
+        create_user_role_html: "%{name} oppretta rolla %{target}"
+        demote_user_html: "%{name} degraderte brukaren %{target}"
+        destroy_announcement_html: "%{name} sletta kunngjeringa %{target}"
+        destroy_canonical_email_block_html: "%{name} avblokkerte e-post med hash %{target}"
+        destroy_custom_emoji_html: "%{name} sletta emojien %{target}"
+        destroy_domain_allow_html: "%{name} forbydde føderasjon med domenet %{target}"
+        destroy_domain_block_html: "%{name} avblokkerte domenet %{target}"
+        destroy_email_domain_block_html: "%{name} avblokkerte e-postdomenet %{target}"
+        destroy_instance_html: "%{name} tømde domenet %{target}"
+        destroy_ip_block_html: "%{name} sletta ein regel for IP-en %{target}"
+        destroy_status_html: "%{name} fjerna innlegget frå %{target}"
+        destroy_unavailable_domain_html: "%{name} tok opp att levering til domenet %{target}"
+        destroy_user_role_html: "%{name} sletta rolla %{target}"
+        disable_2fa_user_html: "%{name} tok vekk krav om tofaktorautentisering for brukaren %{target}"
+        disable_custom_emoji_html: "%{name} deaktiverte emojien %{target}"
         reject_user_html: "%{name} avslo registrering fra %{target}"
+        reset_password_user_html: "%{name} tilbakestilte passordet for brukaren %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
@@ -233,10 +296,12 @@ nn:
       enable: Slå på
       enabled: Slege på
       enabled_msg: Aktiverte kjensleteikn
+      image_hint: PNG eller GIF opp til %{size}
       list: Oppfør
       listed: Oppført
       new:
         title: Legg til eige kjensleteikn
+      no_emoji_selected: Ingen emojiar vart endra sidan ingen vart valde
       not_permitted: Du har ikkje løyve til å utføra denne handlinga
       overwrite: Skriv over
       shortcode: Stuttkode
@@ -249,7 +314,7 @@ nn:
       updated_msg: Kjensleteiknet er oppdatert!
       upload: Last opp
     dashboard:
-      active_users: aktive brukere
+      active_users: aktive brukarar
       interactions: interaksjoner
       media_storage: Medialagring
       new_users: nye brukere
@@ -303,6 +368,7 @@ nn:
       new:
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
+      resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
     follow_recommendations:
       description_html: "<strong>Følg anbefalinger hjelper nye brukere med å finne interessant innhold</strong>. Når en bruker ikke har kommunisert med andre nok til å danne personlig tilpassede følger anbefalinger, anbefales disse kontoene i stedet. De beregnes daglig på nytt fra en blanding av kontoer der de høyeste engasjementene er og med høyest lokal tilhenger for et gitt språk."
@@ -944,10 +1010,33 @@ nn:
       public_long: Alle kan sjå
       unlisted: Ikkje oppført
       unlisted_long: Alle kan sjå, men ikkje oppført på offentlege tidsliner
+  statuses_cleanup:
+    keep_pinned: Behald festa innlegg
+    keep_pinned_hint: Sletter ingen av dine festa innlegg
+    keep_polls: Behald røystingar
+    keep_polls_hint: Sletter ingen av dine røystingar
+    keep_self_bookmark: Behald bokmerka innlegg
+    keep_self_bookmark_hint: Sletter ikkje dine eigne innlegg om du har bokmerka dei
+    keep_self_fav: Behald innlegg som favoritt
+    keep_self_fav_hint: Sletter ikkje dine eigne innlegg om du har favorittmerka dei
+    min_age:
+      '1209600': 2 veker
+      '15778476': 6 månader
+      '2629746': 1 månad
+      '31556952': 1 år
+      '5259492': 2 månader
+      '604800': 1 veke
+      '63113904': 2 år
+      '7889238': 3 månader
+    min_age_label: Aldersterskel
+    min_favs_hint: Sletter ingen av dine innlegg som har mottatt minst dette antalet favorittmerkingar. Lat vere blank for å slette innlegg uavhengig av antal favorittmerkingar
   stream_entries:
     pinned: Festa tut
     reblogged: framheva
     sensitive_content: Følsomt innhold
+  strikes:
+    errors:
+      too_late: Det er for seint å klage på denne prikken
   tags:
     does_not_match_previous_name: stemmar ikkje med det førre namnet
   themes:
@@ -974,10 +1063,36 @@ nn:
     recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
     webauthn: Sikkerhetsnøkler
   user_mailer:
+    appeal_approved:
+      action: Gå til din konto
+      explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
+      title: Anke godkjend
+    appeal_rejected:
+      title: Anke avvist
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
+    suspicious_sign_in:
+      change_password: endre passord
+      details: 'Her er påloggingsdetaljane:'
+      explanation: Vi har oppdaga ei pålogging til din konto frå ei ny IP-adresse.
+      further_actions_html: Om dette ikkje var deg, tilrår vi at du %{action} no og aktiverar 2-trinnsinnlogging for å halde kontoen din sikker.
+      subject: Din konto er opna frå ei ny IP-adresse
+      title: Ei ny pålogging
     warning:
+      appeal: Send inn anke
+      appeal_description: Om du meiner dette er ein feil, kan du sende inn ei klage til gjengen i %{instance}.
+      categories:
+        spam: Søppelpost
+        violation: Innhald bryter følgjande retningslinjer
+      explanation:
+        delete_statuses: Nokre av innlegga dine er bryt éin eller fleire retningslinjer, og har så blitt fjerna av moderatorene på %{instance}.
+        disable: Du kan ikkje lenger bruke kontoen, men profilen din og andre data er intakt. Du kan be om ein sikkerhetskopi av dine data, endre kontoinnstillingar eller slette din konto.
+        sensitive: Frå no av vil alle dine opplasta mediefiler bli markert som sensitive og skjult bak ei klikk-åtvaring.
+        silence: Medan kontoen din er avgrensa, vil berre folk som allereie fylgjer deg sjå dine tutar på denne tenaren, og du kan bli ekskludert fra diverse offentlige oppføringer. Andre kan framleis fylgje deg manuelt.
+        suspend: Du kan ikkje lenger bruke kontoen din, og profilen og andre data er ikkje lenger tilgjengelege. Du kan framleis logge inn for å be om ein sikkerheitskopi av data før dei blir fullstendig sletta om omtrent 30 dagar, men vi beheld nokre grunnleggjande data for å forhindre deg å omgå suspenderinga.
+      reason: 'Årsak:'
+      statuses: 'Innlegg sitert:'
       subject:
         disable: Kontoen din, %{acct}, har blitt fryst
         none: Åtvaring for %{acct}

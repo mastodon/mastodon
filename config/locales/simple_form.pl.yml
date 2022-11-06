@@ -30,7 +30,7 @@ pl:
       appeal:
         text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
       defaults:
-        autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię śledzić
+        autofollow: Osoby, które zarejestrują się z Twojego zaproszenia automatycznie zaczną Cię obserwować
         avatar: PNG, GIF lub JPG. Maksymalnie %{size}. Zostanie zmniejszony do %{dimensions}px
         bot: To konto wykonuje głównie zautomatyzowane działania i może nie być monitorowane
         context: Jedno lub wiele miejsc, w których filtr zostanie zastosowany
@@ -44,7 +44,7 @@ pl:
         inbox_url: Skopiuj adres ze strony głównej przekaźnika, którego chcesz użyć
         irreversible: Filtrowane wpisy znikną bezpowrotnie, nawet gdy filtr zostanie usunięty
         locale: Język interfejsu, wiadomości e-mail i powiadomieniach push
-        locked: Musisz akceptować prośby o śledzenie
+        locked: Musisz akceptować prośby o możliwość obserwacji
         password: Użyj co najmniej 8 znaków
         phrase: Zostanie wykryte nawet, gdy znajduje się za ostrzeżeniem o zawartości
         scopes: Wybór API, do których aplikacja będzie miała dostęp. Jeżeli wybierzesz nadrzędny zakres, nie musisz wybierać jego elementów.
@@ -54,7 +54,7 @@ pl:
         setting_display_media_default: Ukrywaj zawartość multimedialną oznaczoną jako wrażliwa
         setting_display_media_hide_all: Zawsze ukrywaj zawartość multimedialną
         setting_display_media_show_all: Zawsze pokazuj zawartość multimedialną
-        setting_hide_network: Informacje o tym, kto Cię śledzi i kogo śledzisz nie będą widoczne
+        setting_hide_network: Informacje o tym, kto Cię obserwuje i kogo obserwujesz nie będą widoczne
         setting_noindex: Wpływa na widoczność strony profilu i Twoich wpisów
         setting_show_application: W informacjach o wpisie będzie widoczna informacja o aplikacji, z której został wysłany
         setting_use_blurhash: Gradienty są oparte na kolorach ukrywanej zawartości, ale uniewidaczniają wszystkie szczegóły
@@ -67,7 +67,7 @@ pl:
         domain: To może być nazwa domeny, która pojawia się w adresie e-mail lub rekordzie MX, którego używa. Zostaną one sprawdzone przy rejestracji.
         with_dns_records: Zostanie wykonana próba rozwiązania rekordów DNS podanej domeny, a wyniki również zostaną dodane na czarną listę
       featured_tag:
-        name: 'Sugerujemy użycie jednego z następujących:'
+        name: 'Oto niektóre hasztagi, których były ostatnio przez ciebie użyte:'
       filters:
         action: Wybierz akcję do wykonania, gdy post pasuje do filtra
         actions:
@@ -75,7 +75,7 @@ pl:
           warn: Ukryj filtrowaną zawartość za ostrzeżeniem wskazującym tytuł filtra
       form_admin_settings:
         backups_retention_period: Zachowaj wygenerowane archiwa użytkownika przez określoną liczbę dni.
-        bootstrap_timeline_accounts: Te konta zostaną przypięte na górze rekomendacji śledzenia nowych użytkowników.
+        bootstrap_timeline_accounts: Te konta zostaną przypięte na górze rekomendacji obserwacji nowych użytkowników.
         closed_registrations_message: Wyświetlane po zamknięciu rejestracji
         content_cache_retention_period: Posty z innych serwerów zostaną usunięte po określonej liczbie dni, kiedy liczba jest ustawiona na wartość dodatnią. Może to być nieodwracalne.
         custom_css: Możesz zastosować niestandardowe style w internetowej wersji Mastodon.
@@ -161,7 +161,7 @@ pl:
       appeal:
         text: Wyjaśnij, dlaczego ta decyzja powinna zostać cofnięta
       defaults:
-        autofollow: Zapraszaj do śledzenia swojego konta
+        autofollow: Zapraszaj do obserwacji swojego konta
         avatar: Awatar
         bot: To konto jest prowadzone przez bota
         chosen_languages: Filtrowanie języków
@@ -210,7 +210,7 @@ pl:
         setting_system_font_ui: Używaj domyślnej czcionki systemu
         setting_theme: Motyw strony
         setting_trends: Pokazuj dzisiejsze „Na czasie”
-        setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem śledzenia
+        setting_unfollow_modal: Pytaj o potwierdzenie przed cofnięciem obserwacji
         setting_use_blurhash: Pokazuj kolorowe gradienty dla ukrytej zawartości multimedialnej
         setting_use_pending_items: Tryb spowolniony
         severity: Priorytet
@@ -253,9 +253,9 @@ pl:
         trendable_by_default: Zezwalaj na trendy bez wcześniejszego przeglądu
         trends: Włącz trendy
       interactions:
-        must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie śledzą
-        must_be_following: Nie wyświetlaj powiadomień od osób, których nie śledzisz
-        must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie śledzisz
+        must_be_follower: Nie wyświetlaj powiadomień od osób, które Cię nie obserwują
+        must_be_following: Nie wyświetlaj powiadomień od osób, których nie obserwujesz
+        must_be_following_dm: Nie wyświetlaj wiadomości bezpośrednich od osób, których nie obserwujesz
       invite:
         comment: Komentarz
       invite_request:
@@ -272,8 +272,8 @@ pl:
         appeal: Ktoś odwołuje się od decyzji moderatora
         digest: Wysyłaj podsumowania e-mailem
         favourite: Powiadamiaj mnie e-mailem, gdy ktoś polubi mój wpis
-        follow: Powiadamiaj mnie e-mailem, gdy ktoś zacznie mnie śledzić
-        follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na śledzenie mnie
+        follow: Powiadamiaj mnie e-mailem, gdy ktoś zaobserwuje mnie
+        follow_request: Powiadamiaj mnie e-mailem, gdy ktoś poprosi o pozwolenie na obserwowanie mnie
         mention: Powiadamiaj mnie e-mailem, gdy ktoś o mnie wspomni
         pending_account: Wyślij e-mail kiedy nowe konto potrzebuje recenzji
         reblog: Powiadamiaj mnie e-mailem, gdy ktoś podbije mój wpis

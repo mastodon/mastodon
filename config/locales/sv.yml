@@ -1,7 +1,7 @@
 ---
 sv:
   about:
-    about_mastodon_html: Mastodon är ett socialt nätverk baserat på öppna webbprotokoll och gratis, öppen källkodsprogramvara. Det är decentraliserat som e-post.
+    about_mastodon_html: 'Framtidens sociala medium: Ingen reklam. Ingen övervakning. Etisk design och decentralisering! Äg din data med Mastodon!'
     contact_missing: Inte inställd
     contact_unavailable: Ej tillämplig
     hosted_on: Mastodon-värd på %{domain}
@@ -19,9 +19,9 @@ sv:
     pin_errors:
       following: Du måste vara följare av den person du vill godkänna
     posts:
-      one: Tuta
-      other: Tutor
-    posts_tab_heading: Tutor
+      one: Inlägg
+      other: Inlägg
+    posts_tab_heading: Inlägg
   admin:
     account_actions:
       action: Utför åtgärd
@@ -33,15 +33,22 @@ sv:
     accounts:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
+      approved_msg: "%{username}s registreringsansökan godkändes"
       are_you_sure: Är du säker?
       avatar: Profilbild
       by_domain: Domän
       change_email:
-        current_email: Nuvarande E-postadress
-        label: Byt E-postadress
-        new_email: Ny E-postadress
-        submit: Byt E-postadress
-        title: Byt E-postadress för %{username}
+        changed_msg: E-postadressen har ändrats!
+        current_email: Nuvarande e-postadress
+        label: Byt e-postadress
+        new_email: Ny e-postadress
+        submit: Byt e-postadress
+        title: Byt e-postadress för %{username}
+      change_role:
+        changed_msg: Rollen har ändrats!
+        label: Ändra roll
+        no_role: Ingen roll
+        title: Ändra roll för %{username}
       confirm: Bekräfta
       confirmed: Bekräftad
       confirming: Bekräftande
@@ -51,6 +58,7 @@ sv:
       demote: Degradera
       destroyed_msg: "%{username}'s data har nu lagts till kön för att raderas omedelbart"
       disable: inaktivera
+      disable_sign_in_token_auth: Inaktivera autentisering med e-post-token
       disable_two_factor_authentication: Inaktivera 2FA
       disabled: inaktiverad
       display_name: Visningsnamn
@@ -59,6 +67,7 @@ sv:
       email: E-post
       email_status: E-poststatus
       enable: Aktivera
+      enable_sign_in_token_auth: Aktivera autentisering med e-post-token
       enabled: Aktiverad
       enabled_msg: Uppfrysningen av %{username}'s konto lyckades
       followers: Följare
@@ -83,6 +92,7 @@ sv:
         active: Aktiv
         all: Alla
         pending: Väntande
+        silenced: Begränsad
         suspended: Avstängd
         title: Moderering
       moderation_notes: Moderation anteckning
@@ -90,6 +100,7 @@ sv:
       most_recent_ip: Senaste IP
       no_account_selected: Inga konton har ändrats och inget har valts
       no_limits_imposed: Inga begränsningar har införts
+      no_role_assigned: Ingen roll tilldelad
       not_subscribed: Inte prenumererat
       pending: Inväntar granskning
       perform_full_suspension: Utför full avstängning
@@ -102,9 +113,13 @@ sv:
       public: Offentlig
       push_subscription_expires: PuSH-prenumerationen löper ut
       redownload: Uppdatera profil
+      redownloaded_msg: Uppdaterade %{username}s profil från server
       reject: Förkasta
+      rejected_msg: Avvisade %{username}s registreringsansökan
       remove_avatar: Ta bort avatar
       remove_header: Ta bort rubrik
+      removed_avatar_msg: Tog bort %{username}s profilbild
+      removed_header_msg: Tog bort %{username}s sidhuvudsbild
       resend_confirmation:
         already_confirmed: Den här användaren är redan bekräftad
         send: Skicka om e-postbekräftelse
@@ -112,6 +127,7 @@ sv:
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
+      role: Roll
       search: Sök
       search_same_email_domain: Andra användare med samma e-postdomän
       search_same_ip: Annan användare med samma IP-adress
@@ -126,18 +142,23 @@ sv:
         targeted_reports: Anmälningar gjorda om detta konto
       silence: Tystnad
       silenced: Tystad / Tystat
-      statuses: Status
+      statuses: Inlägg
       strikes: Föregående varningar
       subscribe: Prenumerera
       suspend: Stäng av
       suspended: Avstängd / Avstängt
+      suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp och återanvända kontot, men ingen data kommer att finnas kvar.
+      suspension_reversible_hint_html: Kontot har låsts, och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
       unblock_email: Avblockera e-postadress
       unblocked_email_msg: "%{username}s e-postadress avblockerad"
-      unconfirmed_email: Obekräftad E-postadress
+      unconfirmed_email: Obekräftad e-postadress
+      undo_sensitized: Ångra tvinga känsligt
       undo_silenced: Ångra tystnad
       undo_suspension: Ångra avstängning
+      unsilenced_msg: Begränsningen borttagen för %{username}s konto
       unsubscribe: Avsluta prenumeration
+      unsuspended_msg: Låste upp %{username}s konto
       username: Användarnamn
       view_domain: Visa sammanfattning för domän
       warn: Varna
@@ -149,27 +170,36 @@ sv:
         approve_user: Godkänn användare
         assigned_to_self_report: Tilldela anmälan
         change_email_user: Ändra e-post för användare
+        change_role_user: Ändra roll för användaren
         confirm_user: Bekräfta användare
         create_account_warning: Skapa varning
-        create_announcement: Skapa ett anslag
+        create_announcement: Skapa kungörelse
+        create_canonical_email_block: Skapa e-postblockering
         create_custom_emoji: Skapa egen emoji
         create_domain_allow: Skapa tillåten domän
         create_domain_block: Skapa blockerad domän
+        create_email_domain_block: Skapa blockering av e-postdomän
         create_ip_block: Skapa IP-regel
         create_unavailable_domain: Skapa otillgänglig domän
+        create_user_role: Skapa roll
         demote_user: Degradera användare
-        destroy_announcement: Ta bort anslag
+        destroy_announcement: Radera kungörelse
+        destroy_canonical_email_block: Radera e-postblockering
         destroy_custom_emoji: Radera egen emoji
         destroy_domain_allow: Ta bort tillåten domän
         destroy_domain_block: Ta bort blockerad domän
+        destroy_email_domain_block: Radera blockering av e-postdomän
         destroy_instance: Rensa domänen
         destroy_ip_block: Radera IP-regel
-        destroy_status: Ta bort status
+        destroy_status: Radera inlägg
         destroy_unavailable_domain: Ta bort otillgänglig domän
+        destroy_user_role: Förstör roll
         disable_2fa_user: Inaktivera 2FA
         disable_custom_emoji: Inaktivera egna emojis
+        disable_sign_in_token_auth_user: Inaktivera autentisering med e-post-token för användare
         disable_user: Inaktivera användare
         enable_custom_emoji: Aktivera egna emojis
+        enable_sign_in_token_auth_user: Aktivera autentisering med e-post-token för användare
         enable_user: Aktivera användare
         memorialize_account: Minnesmärk konto
         promote_user: Befordra användare
@@ -177,6 +207,7 @@ sv:
         reject_user: Avvisa användare
         remove_avatar_user: Ta bort avatar
         reopen_report: Öppna rapporten igen
+        resend_user: Skicka bekräftelse på nytt
         reset_password_user: Återställ lösenord
         resolve_report: Lös rapport
         sensitive_account: Markera mediet i ditt konto som känsligt
@@ -184,61 +215,95 @@ sv:
         suspend_account: Stäng av konto
         unassigned_report: Återkalla rapport
         unblock_email_account: Avblockera e-postadress
+        unsensitive_account: Ångra tvinga känsligt konto
+        unsilence_account: Ångra begränsa konto
         unsuspend_account: Återaktivera konto
-        update_announcement: Uppdatera meddelande
+        update_announcement: Uppdatera kungörelse
         update_custom_emoji: Uppdatera egna emojis
         update_domain_block: Uppdatera blockerad domän
-        update_status: Uppdatera status
+        update_ip_block: Uppdatera IP-regel
+        update_status: Uppdatera inlägg
+        update_user_role: Uppdatera roll
       actions:
+        approve_appeal_html: "%{name} godkände överklagande av modereringsbeslut från %{target}"
+        approve_user_html: "%{name} godkände registrering från %{target}"
+        assigned_to_self_report_html: "%{name} tilldelade rapporten %{target} till sig själva"
+        change_email_user_html: "%{name} bytte e-postadress för användare %{target}"
+        change_role_user_html: "%{name} ändrade roll för %{target}"
+        confirm_user_html: "%{name} bekräftade e-postadress för användare %{target}"
         create_account_warning_html: "%{name} skickade en varning till %{target}"
-        create_announcement_html: "%{name} skapade tillkännagivande %{target}"
+        create_announcement_html: "%{name} skapade kungörelsen %{target}"
+        create_canonical_email_block_html: "%{name} blockerade e-post med hashen %{target}"
         create_custom_emoji_html: "%{name} laddade upp ny emoji %{target}"
+        create_domain_allow_html: "%{name} vitlistade domän %{target}"
         create_domain_block_html: "%{name} blockerade domänen %{target}"
-        create_email_domain_block_html: "%{name} svartlistade e-postdomän %{target}"
+        create_email_domain_block_html: "%{name} blockerade e-postdomänen %{target}"
         create_ip_block_html: "%{name} skapade regel för IP %{target}"
+        create_unavailable_domain_html: "%{name} stoppade leverans till domänen %{target}"
+        create_user_role_html: "%{name} skapade rollen %{target}"
+        demote_user_html: "%{name} nedgraderade användare %{target}"
+        destroy_announcement_html: "%{name} raderade kungörelsen %{target}"
+        destroy_canonical_email_block_html: "%{name} avblockerade e-post med hashen %{target}"
+        destroy_custom_emoji_html: "%{name} raderade emoji %{target}"
+        destroy_domain_allow_html: "%{name} raderade domän %{target} från vitlistan"
         destroy_domain_block_html: "%{name} avblockerade domänen %{target}"
-        destroy_email_domain_block_html: "%{name} avblockerade e-postdomän %{target}"
+        destroy_email_domain_block_html: "%{name} avblockerade e-postdomänen %{target}"
+        destroy_instance_html: "%{name} rensade domän %{target}"
         destroy_ip_block_html: "%{name} tog bort regel för IP %{target}"
         destroy_status_html: "%{name} tog bort inlägget av %{target}"
+        destroy_unavailable_domain_html: "%{name} återupptog leverans till domänen %{target}"
+        destroy_user_role_html: "%{name} raderade rollen %{target}"
+        disable_2fa_user_html: "%{name} inaktiverade tvåfaktorsautentiseringskrav för användaren %{target}"
         disable_custom_emoji_html: "%{name} inaktiverade emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} inaktiverade e-posttokenautentisering för %{target}"
         disable_user_html: "%{name} stängde av inloggning för användaren %{target}"
         enable_custom_emoji_html: "%{name} aktiverade emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktiverade e-posttokenautentisering för %{target}"
         enable_user_html: "%{name} aktiverade inloggning för användaren %{target}"
         memorialize_account_html: "%{name} gjorde %{target}'s konto till en minnessida"
         promote_user_html: "%{name} befordrade användaren %{target}"
+        reject_appeal_html: "%{name} avvisade överklagande av modereringsbeslut från %{target}"
+        reject_user_html: "%{name} avvisade registrering från %{target}"
         remove_avatar_user_html: "%{name} tog bort %{target}'s avatar"
         reopen_report_html: "%{name} öppnade rapporten igen %{target}"
+        resend_user_html: "%{name} skickade bekräftelsemail för %{target} på nytt"
         reset_password_user_html: "%{name} återställ användarens lösenord %{target}"
         resolve_report_html: "%{name} löste rapporten %{target}"
         sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
         silence_account_html: "%{name} begränsade %{target}'s konto"
         suspend_account_html: "%{name} stängde av %{target}'s konto"
+        unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
+        unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
         unsensitive_account_html: "%{name} avmarkerade %{target}'s media som känsligt"
+        unsilence_account_html: "%{name} tog bort begränsning av %{target}s konto"
         unsuspend_account_html: "%{name} tog bort avstängningen av %{target}'s konto"
-        update_announcement_html: "%{name} uppdaterade tillkännagivandet %{target}"
+        update_announcement_html: "%{name} uppdaterade kungörelsen %{target}"
         update_custom_emoji_html: "%{name} uppdaterade emoji %{target}"
         update_domain_block_html: "%{name} uppdaterade domän-block för %{target}"
+        update_ip_block_html: "%{name} ändrade regel för IP %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
+        update_user_role_html: "%{name} ändrade rollen %{target}"
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
       title: Revisionslogg
     announcements:
-      destroyed_msg: Borttagning av tillkännagivandet lyckades!
+      destroyed_msg: Kungörelsen raderades!
       edit:
-        title: Redigera tillkännagivande
-      empty: Inga tillkännagivanden hittades.
+        title: Redigera kungörelse
+      empty: Inga kungörelser hittades.
       live: Direkt
       new:
-        create: Skapa tillkännagivande
-        title: Nytt tillkännagivande
+        create: Skapa kungörelse
+        title: Ny kungörelse
       publish: Publicera
-      published_msg: Publiceringen av tillkännagivandet lyckades!
-      scheduled_for: Schemalagd för %{time}
-      scheduled_msg: Tillkännagivandet schemalades för publicering!
-      title: Tillkännagivanden
+      published_msg: Publicerade kungörelsen!
+      scheduled_for: Schemalagd till %{time}
+      scheduled_msg: Kungörelsen schemalades för publicering!
+      title: Kungörelser
       unpublish: Avpublicera
-      updated_msg: Uppdatering av tillkännagivandet lyckades!
+      unpublished_msg: Kungörelsen raderades!
+      updated_msg: Kungörelsen uppdaterades!
     custom_emojis:
       assign_category: Tilldela kategori
       by_domain: Domän
@@ -261,6 +326,7 @@ sv:
       listed: Noterade
       new:
         title: Lägg till ny egen emoji
+      no_emoji_selected: Inga emojier ändrades eftersom inga valdes
       not_permitted: Du har inte behörighet att utföra denna åtgärd
       overwrite: Skriva över
       shortcode: Kortkod
@@ -277,9 +343,26 @@ sv:
       interactions: interaktioner
       media_storage: Medialagring
       new_users: nya användare
+      opened_reports: öppnade rapporter
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> väntande överklagan"
+        other: "<strong>%{count}</strong> väntande överklaganden"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> väntande rapport"
+        other: "<strong>%{count}</strong> väntande rapporter"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> väntande hashtagg"
+        other: "<strong>%{count}</strong> väntande hashtaggar"
+      pending_users_html:
+        one: "<strong>%{count}</strong> väntande användare"
+        other: "<strong>%{count}</strong> väntande användare"
+      resolved_reports: lösta rapporter
       software: Programvara
+      sources: Registreringskällor
       space: Utrymmesutnyttjande / Utrymmesanvändning
       title: Kontrollpanel
+      top_languages: Mest aktiva språk
+      top_servers: Mest aktiva servrar
       website: Hemsida
     disputes:
       appeals:
@@ -296,10 +379,11 @@ sv:
       destroyed_msg: Domänblockering har återtagits
       domain: Domän
       edit: Ändra domänblock
+      existing_domain_block: Du har redan satt strängare gränser för %{name}.
       existing_domain_block_html: Du har redan satt begränsningar för %{name} så <a href="%{unblock_url}">avblockera användaren</a> först.
       new:
         create: Skapa block
-        hint: Domänblocket hindrar inte skapandet av kontoposter i databasen, men kommer retroaktivt, automatiskt att tillämpa specifika modereringsmetoder på dessa konton.
+        hint: Domänblockeringen hindrar inte skapandet av kontoposter i databasen, men kommer retroaktivt och automatiskt tillämpa specifika modereringsmetoder på dessa konton.
         severity:
           desc_html: "<strong>Tysta ner</strong> kommer att göra kontoinlägg osynliga för alla som inte följer dem. <strong>Suspendera</strong> kommer ta bort allt av kontots innehåll, media och profildata. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
           noop: Ingen
@@ -311,6 +395,7 @@ sv:
       private_comment: Privat kommentar
       private_comment_hint: Kommentar för moderatorer om denna domänbegränsning.
       public_comment: Offentlig kommentar
+      public_comment_hint: Kommentar om denna domänbegränsning för allmänheten, om listan över domänbegränsningar är publik.
       reject_media: Avvisa mediafiler
       reject_media_hint: Raderar lokalt lagrade mediefiler och förhindrar möjligheten att ladda ner något i framtiden. Irrelevant för suspensioner
       reject_reports: Avvisa rapporter
@@ -319,19 +404,30 @@ sv:
       view: Visa domänblock
     email_domain_blocks:
       add_new: Lägg till ny
-      created_msg: E-postdomän har lagts till i domänblockslistan utan problem
+      attempts_over_week:
+        one: "%{count} försök under den senaste veckan"
+        other: "%{count} registreringsförsök under den senaste veckan"
+      created_msg: Blockerade e-postdomänen
       delete: Radera
+      dns:
+        types:
+          mx: MX-post
       domain: Domän
       new:
         create: Skapa domän
-        title: Ny E-postdomänblocklistningsinmatning
-      title: E-postdomänblock
+        resolve: Slå upp domän
+        title: Blockera ny e-postdomän
+      no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
+      resolved_through_html: Uppslagen genom %{domain}
+      title: Blockerade e-postdomäner
     follow_recommendations:
+      description_html: "<strong>Följrekommendationer hjälper nya användare att snabbt hitta intressant innehåll</strong>. När en användare inte har interagerat med andra tillräckligt mycket för att forma personliga följrekommendationer, rekommenderas istället dessa konton. De beräknas om varje dag från en mix av konton med nylig aktivitet och högst antal följare för ett givet språk."
       language: För språket
       status: Status
       title: Följ rekommendationer
     instances:
       availability:
+        title: Tillgänglighet
         warning: Det senaste försöket att ansluta till denna värddator har misslyckats
       back_to_all: Alla
       back_to_limited: Begränsat
@@ -339,18 +435,32 @@ sv:
       by_domain: Domän
       content_policies:
         policies:
+          reject_reports: Avvisa rapporter
           silence: Gräns
         policy: Policy
         reason: Offentlig orsak
         title: Riktlinjer för innehåll
+      dashboard:
+        instance_accounts_dimension: Mest följda konton
+        instance_accounts_measure: lagrade konton
+        instance_followers_measure: våra följare där
+        instance_follows_measure: sina följare här
+        instance_languages_dimension: Mest använda språk
+        instance_media_attachments_measure: lagrade mediebilagor
+        instance_reports_measure: rapporter om dem
+        instance_statuses_measure: sparade inlägg
       delivery:
         all: Alla
         clear: Rensa leverans-fel
+        failing: Misslyckas
         restart: Starta om leverans
         stop: Stoppa leverans
         unavailable: Ej tillgänglig
       delivery_available: Leverans är tillgängligt
       empty: Inga domäner hittades.
+      known_accounts:
+        one: "%{count} känt konto"
+        other: "%{count} kända konton"
       moderation:
         all: Alla
         limited: Begränsad
@@ -392,13 +502,17 @@ sv:
     relays:
       add_new: Lägg till nytt relä
       delete: Radera
+      description_html: Ett <strong>federeringsombud</strong> är en mellanliggande server som utbyter höga antal offentliga inlägg mellan servrar som prenumererar på och publicerar till det. <strong>Det kan hjälpa små och medelstora servrar upptäcka innehåll från fediversumet</strong>, vilket annars skulle kräva att lokala användare manuellt följer personer på fjärrservrar.
       disable: Inaktivera
       disabled: Inaktiverad
       enable: Aktivera
-      enable_hint: När den är aktiverad kommer din server att prenumerera på alla publika toots från detta relay, och kommer att börja skicka serverns publika toots till den.
+      enable_hint: Vid aktivering kommer din server börja prenumerera på alla offentliga inlägg från detta ombud, och kommer börja sända denna servers offentliga inlägg till den.
       enabled: Aktivera
+      inbox_url: Ombuds-URL
+      pending: Väntar på ombudets godkännande
       save_and_enable: Spara och aktivera
       setup: Konfigurera en relä-anslutning
+      signatures_not_enabled: Ombud fungerar inte korrekt medan säkert läge eller begränsat federeringsläge är aktiverade
       status: Status
       title: Relä
     report_notes:
@@ -410,7 +524,13 @@ sv:
         notes:
           one: "%{count} anteckning"
           other: "%{count} anteckningar"
+      action_log: Granskningslogg
       action_taken_by: Åtgärder vidtagna av
+      actions:
+        delete_description_html: De rapporterade inläggen kommer raderas och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
+        mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
+        suspend_description_html: Profilen och allt dess innehåll kommer att bli oåtkomligt tills det slutligen raderas. Det kommer inte vara möjligt att interagera med kontot. Går att ångra inom 30 dagar.
+      add_to_report: Lägg till mer i rapporten
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
@@ -419,6 +539,7 @@ sv:
       comment:
         none: Ingen
       created_at: Anmäld
+      delete_and_resolve: Ta bort inlägg
       forwarded: Vidarebefordrad
       forwarded_to: Vidarebefordrad till %{domain}
       mark_as_resolved: Markera som löst
@@ -431,19 +552,79 @@ sv:
         delete: Radera
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
         title: Anteckningar
+      remote_user_placeholder: fjärranvändaren från %{instance}
       reopen: Återuppta anmälan
       report: 'Rapport #%{id}'
       reported_account: Anmält konto
       reported_by: Anmäld av
       resolved: Löst
       resolved_msg: Anmälan har lösts framgångsrikt!
+      skip_to_actions: Hoppa till åtgärder
       status: Status
+      statuses: Rapporterat innehåll
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
       unresolved: Olösta
       updated_at: Uppdaterad
       view_profile: Visa profil
+    roles:
+      add_new: Lägg till roll
+      assigned_users:
+        one: "%{count} användare"
+        other: "%{count} användare"
+      categories:
+        administration: Administration
+        devops: Devops
+        invites: Inbjudningar
+        moderation: Moderering
+        special: Särskild
+      delete: Ta bort
+      description_html: Med <strong>användarroller</strong> kan du anpassa vilka funktioner och områden dina användare kan komma åt i Mastodon.
+      edit: Redigera roll för '%{name}'
+      everyone: Standardbehörigheter
+      everyone_full_description_html: Detta är den <strong>grundroll</strong> som påverkar <strong>alla användare</strong>, även de utan särskilt tilldelad roll. Alla andra roller ärver behörigheter från denna.
+      permissions_count:
+        one: "%{count} behörighet"
+        other: "%{count} behörigheter"
+      privileges:
+        administrator: Administratör
+        delete_user_data: Ta bort användardata
+        delete_user_data_description: Tillåter användare att omedelbart radera andra användares data
+        invite_users: Bjud in användare
+        invite_users_description: Tillåter användare att bjuda in nya personer till servern
+        manage_announcements: Hantera kungörelser
+        manage_announcements_description: Tillåt användare att hantera kungörelser på servern
+        manage_appeals: Hantera överklaganden
+        manage_appeals_description: Tillåter användare att granska överklaganden av modereringsåtgärder
+        manage_blocks_description: Tillåter användare att blockera e-postleverantörer och IP-adresser
+        manage_custom_emojis: Hantera egna emojier
+        manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
+        manage_federation: Hantera federering
+        manage_federation_description: Tillåter användare att blockera eller tillåta federering med andra domäner, samt kontrollera levererbarhet
+        manage_invites: Hantera inbjudningar
+        manage_invites_description: Tillåter användare att granska och inaktivera inbjudningslänkar
+        manage_reports: Hantera rapporter
+        manage_reports_description: Tillåter användare att granska rapporter och utföra modereringsåtgärder på dessa
+        manage_roles: Hantera roller
+        manage_roles_description: Tillåter användare att hantera och tilldela roller underordnade deras
+        manage_rules: Hantera regler
+        manage_rules_description: Tillåter användare att ändra serverregler
+        manage_settings: Hantera inställningar
+        manage_settings_description: Tillåter användare att ändra webbplatsinställningar
+        manage_taxonomies: Hantera taxonomier
+        manage_taxonomies_description: Tillåter användare att granska trendande innehåll och uppdatera inställningar för hashtaggar
+        manage_user_access: Hantera användaråtkomst
+        manage_user_access_description: Tillåter användare att inaktivera andra användares tvåfaktorsautentisering, ändra deras e-postadress samt återställa deras lösenord
+        manage_users: Hantera användare
+        manage_users_description: Tillåter användare att granska användares data och utföra modereringsåtgärder på dessa
+        manage_webhooks: Hantera webhooks
+        manage_webhooks_description: Tillåter användare att konfigurera webhooks för administrativa händelser
+        view_audit_log: Visa granskningsloggen
+        view_audit_log_description: Tillåter användare att se historiken över administrativa åtgärder på servern
+        view_dashboard: Visa instrumentpanel
+        view_devops: Devops
+      title: Roller
     rules:
       add_new: Lägg till regel
       delete: Radera
@@ -451,58 +632,187 @@ sv:
       title: Serverns regler
     settings:
       about:
+        manage_rules: Hantera serverregler
         title: Om
+      appearance:
+        preamble: Anpassa Mastodons webbgränssnitt.
+        title: Utseende
+      branding:
+        title: Profilering
+      content_retention:
+        preamble: Kontrollera hur användargenererat innehåll lagras i Mastodon.
+        title: Bibehållande av innehåll
+      discovery:
+        profile_directory: Profilkatalog
+        trends: Trender
       domain_blocks:
         all: Till alla
         disabled: För ingen
         users: För inloggade lokala användare
+      registrations:
+        title: Registreringar
       registrations_mode:
         modes:
           approved: Godkännande krävs för registrering
           none: Ingen kan registrera
           open: Alla kan registrera
+      title: Serverinställningar
     site_uploads:
       delete: Radera uppladdad fil
     statuses:
+      application: Applikation
       back_to_account: Tillbaka till kontosidan
+      back_to_report: Tillbaka till rapportsidan
       batch:
+        remove_from_report: Ta bort från rapport
         report: Rapportera
       deleted: Raderad
+      favourites: Favoriter
+      history: Versionshistorik
+      in_reply_to: Svarar på
+      language: Språk
       media:
         title: Media
-      title: Kontostatus
+      metadata: Metadata
+      open: Öppna inlägg
+      title: Kontoinlägg
+      trending: Trendande
+      visibility: Synlighet
       with_media: med media
     strikes:
       actions:
         delete_statuses: "%{name} raderade %{target}s inlägg"
         disable: "%{name} frös %{target}s konto"
+        sensitive: "%{name} markerade %{target}s konto som känsligt"
         silence: "%{name} begränsade %{target}s konto"
+        suspend: "%{name} stängde av %{target}s konto"
       appeal_approved: Överklagad
+      appeal_pending: Överklagande väntar
     system_checks:
+      database_schema_check:
+        message_html: Det finns väntande databasmigreringar. Vänligen kör dem för att säkerställa att programmet beter sig som förväntat
+      elasticsearch_running_check:
+        message_html: Kunde inte ansluta till Elasticsearch. Kontrollera att det körs, eller inaktivera fulltextsökning
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-version: %{value}'
+        version_comparison: Elasticsearch %{running_version} körs medan %{required_version} krävs
       rules_check:
         action: Hantera serverregler
         message_html: Du har inte definierat några serverregler.
+      sidekiq_process_check:
+        message_html: Ingen Sidekiq-process körs för kön/köerna %{value}. Vänligen kontrollera din Sidekiq-konfiguration
+    tags:
+      review: Granskningsstatus
+      updated_msg: Hashtagg-inställningarna har uppdaterats
     title: Administration
     trends:
       allow: Tillåt
       approved: Godkänd
+      disallow: Neka
+      links:
+        allow: Tillåt länk
+        allow_provider: Tillåt utgivare
+        description_html: Detta är länkar som för närvarande delas mycket av konton som din server ser inlägg från. Det kan hjälpa dina användare att ta reda på vad som händer i världen. Inga länkar visas offentligt tills du godkänner utgivaren. Du kan också tillåta eller avvisa enskilda länkar.
+        disallow: Blockera länk
+        disallow_provider: Blockera utgivare
+        no_link_selected: Inga länkar ändrades eftersom inga valdes
+        publishers:
+          no_publisher_selected: Inga utgivare ändrades eftersom inga valdes
+        shared_by_over_week:
+          one: Delad av en person under den senaste veckan
+          other: Delad av %{count} personer under den senaste veckan
+        title: Trendande länkar
+        usage_comparison: Delade %{today} gånger idag, jämfört med %{yesterday} igår
+      only_allowed: Endast tillåtna
+      pending_review: Väntar på granskning
+      preview_card_providers:
+        allowed: Länkar från denna utgivare kan trenda
+        description_html: Detta är domäner från vilka länkar ofta delas på din server. Länkar kommer inte att trenda offentligt om inte deras domän godkänns. Ditt godkännande (eller avslag) omfattar underdomäner.
+        rejected: Länkar från denna utgivare kommer inte att trenda
+        title: Utgivare
+      rejected: Avvisade
       statuses:
-        allow: Godkänn inlägg
+        allow: Tillåt inlägg
         allow_account: Godkänn författare
+        description_html: Detta är inlägg som din server vet om som för närvarande delas och favoriseras mycket just nu. Det kan hjälpa dina nya och återvändande användare att hitta fler människor att följa. Inga inlägg visas offentligt förrän du godkänner författaren, och författaren tillåter att deras konto föreslås till andra. Du kan också tillåta eller avvisa enskilda inlägg.
+        disallow: Tillåt inte inlägg
+        disallow_account: Tillåt inte författare
+        no_status_selected: Inga trendande inlägg ändrades eftersom inga valdes
+        not_discoverable: Författaren har valt att inte vara upptäckbar
+        shared_by:
+          one: Delad eller favoritmarkerad en gång
+          other: Delade och favoritmarkerade %{friendly_count} gånger
+        title: Trendande inlägg
+      tags:
+        current_score: Nuvarande poäng %{score}
+        dashboard:
+          tag_accounts_measure: unika användningar
+          tag_languages_dimension: Mest använda språk
+          tag_servers_dimension: Mest använda servrar
+          tag_servers_measure: olika servrar
+          tag_uses_measure: total användning
+        description_html: Detta är hashtaggar som just nu visas i många inlägg som din server ser. Det kan hjälpa dina användare att ta reda på vad människor talar mest om för tillfället. Inga hashtaggar visas offentligt tills du godkänner dem.
+        listable: Kan föreslås
+        no_tag_selected: Inga taggar ändrades eftersom inga valdes
+        not_listable: Kommer ej föreslås
+        not_trendable: Kommer ej visas under trender
+        not_usable: Kan inte användas
+        peaked_on_and_decaying: Nådde sin höjdpunkt %{date}, faller nu
+        title: Trendande hashtaggar
+        trendable: Kan visas under trender
+        trending_rank: 'Trendande #%{rank}'
+        usable: Kan användas
+        usage_comparison: Använd %{today} gånger idag, jämfört med %{yesterday} igår
+        used_by_over_week:
+          one: Använd av en person under den senaste veckan
+          other: Använd av %{count} personer under den senaste veckan
       title: Trender
+      trending: Trendande
     warning_presets:
       add_new: Lägg till ny
       delete: Radera
+      edit_preset: Redigera varningsförval
+      empty: Du har inte definierat några varningsförval ännu.
+      title: Hantera varningsförval
+    webhooks:
+      add_new: Lägg till slutpunkt
+      delete: Ta bort
+      description_html: En <strong>webhook</strong> gör det möjligt för Mastodon att skicka <strong>realtidsaviseringar</strong> om valda händelser till din egen applikation så att den <strong>automatiskt kan utlösa händelser</strong>.
+      disable: Inaktivera
+      disabled: Inaktiverad
+      edit: Redigera slutpunkt
+      empty: Du har inte några webhook-slutpunkter konfigurerade ännu.
+      enable: Aktivera
+      enabled: Aktiv
+      enabled_events:
+        one: 1 aktiverad händelse
+        other: "%{count} aktiverade händelser"
+      events: Händelser
+      new: Ny webhook
+      rotate_secret: Rotera hemlighet
+      secret: Signeringshemlighet
+      status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: att radera deras inlägg
         none: en varning
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: Ny rapport för %{instance} (#%{id})
+    new_trends:
+      new_trending_links:
+        title: Trendande länkar
+      new_trending_statuses:
+        title: Trendande inlägg
+      new_trending_tags:
+        title: Trendande hashtaggar
   aliases:
     add_new: Skapa alias
+    empty: Du har inga alias.
     remove: Avlänka alias
   appearance:
     advanced_web_interface: Avancerat webbgränssnitt
@@ -514,13 +824,14 @@ sv:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alla kan bidra.
     sensitive_content: Känsligt innehåll
+    toot_layout: Inläggslayout
   application_mailer:
     notification_preferences: Ändra e-postinställningar
     salutation: "%{name},"
     settings: 'Ändra e-postinställningar: %{link}'
     view: 'Granska:'
     view_profile: Visa profil
-    view_status: Visa status
+    view_status: Visa inlägg
   applications:
     created: Ansökan är framgångsrikt skapad
     destroyed: Ansökan är framgångsrikt borttagen
@@ -553,10 +864,12 @@ sv:
     registration_closed: "%{instance} accepterar inte nya medlemmar"
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
+    rules:
+      title: Några grundregler.
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
-      email_settings_hint_html: Bekräftelsemeddelandet skickades till %{email}. Om den e-postadressen inte stämmer så kan du ändra den i kontoinställningarna.
+      email_settings_hint_html: E-postmeddelande för verifiering skickades till %{email}. Om e-postadressen inte stämmer kan du ändra den i kontoinställningarna.
       title: Ställ in
     status:
       account_status: Kontostatus
@@ -622,6 +935,12 @@ sv:
       status: 'Inlägg #%{id}'
       title_actions:
         none: Varning
+        sensitive: Märkning av konto som känslig
+        silence: Begränsning av konto
+        suspend: Avstängning av konto
+      your_appeal_approved: Din överklagan har godkänts
+      your_appeal_pending: Du har lämnat in en överklagan
+      your_appeal_rejected: Din överklagan har avvisats
   domain_validator:
     invalid_domain: är inte ett giltigt domännamn
   errors:
@@ -637,15 +956,16 @@ sv:
     '500':
       content: Vi är ledsna, men något gick fel från vårat håll.
       title: Den här sidan är inte korrekt
-    '503': The page could not be served due to a temporary server failure.
+    '503': Sidan kunde inte visas på grund av ett tillfälligt serverfel.
     noscript_html: För att använda Mastodon webbapplikationen, vänligen aktivera JavaScript. Alternativt kan du prova en av <a href="%{apps_path}">inhemska appar</a> för Mastodon för din plattform.
   existing_username_validator:
+    not_found: kunde inte hitta en lokal användare med det användarnamnet
     not_found_multiple: kunde inte hitta %{usernames}
   exports:
     archive_takeout:
       date: Datum
       download: Ladda ner ditt arkiv
-      hint_html: Du kan begära ett arkiv av dina <strong>toots och uppladdad media</strong>. Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel programvara. Du kan begära ett arkiv var sjunde dag.
+      hint_html: Du kan begära ett arkiv av dina <strong>inlägg och uppladdad media</strong>. Den exporterade datan kommer att vara i ActivityPub-format och läsbar av kompatibel programvara. Du kan begära ett arkiv var sjunde dag.
       in_progress: Kompilerar ditt arkiv...
       request: Efterfråga ditt arkiv
       size: Storlek
@@ -658,6 +978,9 @@ sv:
     storage: Medialagring
   featured_tags:
     add_new: Lägg till ny
+    errors:
+      limit: Du har redan det maximala antalet utvalda hashtaggar
+    hint_html: "<strong>Vad är utvalda hashtaggar?</strong> De visas tydligt på din offentliga profil och låter andra bläddra bland dina offentliga inlägg specifikt under dessa hashtaggar. De är ett bra verktyg för att hålla reda på kreativa arbeten eller långsiktiga projekt."
   filters:
     contexts:
       account: Profiler
@@ -666,26 +989,66 @@ sv:
       public: Publika tidslinjer
       thread: Konversationer
     edit:
+      add_keyword: Lägg till nyckelord
+      keywords: Nyckelord
+      statuses: Individuella inlägg
+      statuses_hint_html: Detta filter gäller för att välja enskilda inlägg oavsett om de matchar sökorden nedan. <a href="%{path}">Granska eller ta bort inlägg från filtret</a>.
       title: Redigera filter
+    errors:
+      deprecated_api_multiple_keywords: Dessa parametrar kan inte ändras från denna applikation eftersom de gäller mer än ett filtersökord. Använd en nyare applikation eller webbgränssnittet.
+      invalid_context: Ingen eller ogiltig kontext angiven
     index:
+      contexts: Filter i %{contexts}
       delete: Radera
       empty: Du har inga filter.
+      expires_in: Förfaller om %{distance}
+      expires_on: Förfaller på %{date}
+      keywords:
+        one: "%{count} nyckelord"
+        other: "%{count} nyckelord"
+      statuses:
+        one: "%{count} inlägg"
+        other: "%{count} inlägg"
+      statuses_long:
+        one: "%{count} enskilt inlägg dolt"
+        other: "%{count} enskilda inlägg dolda"
       title: Filter
     new:
+      save: Spara nytt filter
       title: Lägg till nytt filter
+    statuses:
+      back_to_filter: Tillbaka till filter
+      batch:
+        remove: Ta bort från filter
+      index:
+        hint: Detta filter gäller för att välja enskilda inlägg oavsett andra kriterier. Du kan lägga till fler inlägg till detta filter från webbgränssnittet.
+        title: Filtrerade inlägg
   footer:
     trending_now: Trendar nu
   generic:
     all: Alla
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> objekt på denna sida valt."
+      other: "<strong>%{count}</strong> objekt på denna sida valda."
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
+      other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
     changes_saved_msg: Ändringar sparades framgångsrikt!
     copy: Kopiera
     delete: Radera
+    deselect: Avmarkera alla
+    none: Ingen
     order_by: Sortera efter
     save_changes: Spara ändringar
+    select_all_matching_items:
+      one: Välj %{count} objekt som matchar din sökning.
+      other: Välj alla %{count} objekt som matchar din sökning.
     today: idag
     validation_errors:
       one: Något är inte riktigt rätt ännu! Kontrollera felet nedan
       other: Något är inte riktigt rätt ännu! Kontrollera dom %{count} felen nedan
+  html_validator:
+    invalid_markup: 'innehåller ogiltig HTML: %{error}'
   imports:
     errors:
       over_rows_processing_limit: innehåller fler än %{count} rader
@@ -699,6 +1062,7 @@ sv:
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken
+      domain_blocking: Domänblockeringslista
       following: Lista av följare
       muting: Lista av nertystade
     upload: Ladda upp
@@ -729,18 +1093,25 @@ sv:
       limit: Du har nått det maximala antalet listor
   login_activities:
     authentication_methods:
+      otp: tvåfaktorsautentiseringsapp
       password: lösenord
-      sign_in_token: säkerhetskod för e-post
+      sign_in_token: e-postsäkerhetskod
       webauthn: säkerhetsnycklar
     description_html: Om du ser aktivitet som du inte känner igen, överväg att byta ditt lösenord och aktivera tvåfaktor-autentisering.
+    empty: Ingen autentiseringshistorik tillgänglig
+    failed_sign_in_html: Misslyckat inloggningsförsök med %{method} från %{ip} (%{browser})
+    successful_sign_in_html: Lyckad inloggning med %{method} från %{ip} (%{browser})
+    title: Autentiseringshistorik
   media_attachments:
     validations:
-      images_and_video: Det går inte att bifoga en video till en status som redan innehåller bilder
+      images_and_video: Det går inte att bifoga en video till ett inlägg som redan innehåller bilder
+      not_ready: Kan inte bifoga filer som inte har behandlats färdigt. Försök igen om ett ögonblick!
       too_many: Det går inte att bifoga mer än 4 filer
   migrations:
     acct: användarnamn@domän av det nya kontot
     cancel: Avbryt omdirigering
     cancel_explanation: Avstängning av omdirigeringen kommer att återaktivera ditt nuvarande konto, men kommer inte att återskapa följare som har flyttats till det kontot.
+    cancelled_msg: Avbröt omdirigeringen.
     errors:
       already_moved: är samma konto som du redan har flyttat till
       missing_also_known_as: är inte ett alias för det här kontot
@@ -761,21 +1132,29 @@ sv:
     warning:
       backreference_required: Det nya kontot måste först vara konfigurerat till att bakåt-referera till det här
       before: 'Vänligen läs dessa anteckningar noggrant innan du fortsätter:'
+      cooldown: Efter flytten följer en vänteperiod under vilken du inte kan flytta igen
+      disabled_account: Ditt nuvarande konto kommer inte att kunna användas fullt ut efteråt. Du kommer dock att ha tillgång till dataexport samt återaktivering.
       followers: Den här åtgärden kommer att flytta alla följare från det nuvarande kontot till det nya kontot
+      only_redirect_html: Alternativt kan du <a href="%{path}">bara sätta upp en omdirigering på din profil</a>.
       other_data: Ingen annan data kommer att flyttas automatiskt
+      redirect: Ditt nuvarande kontos profil kommer att uppdateras med ett meddelande om omdirigering och uteslutas från sökningar
   moderation:
     title: Moderera
   move_handler:
     carry_blocks_over_text: Den här användaren flyttades från %{acct} som du hade blockerat.
     carry_mutes_over_text: Den här användaren flyttade från %{acct} som du hade tystat.
     copy_account_note_text: 'Den här användaren flyttade från %{acct}, här var dina föregående anteckningar om dem:'
+  navigation:
+    toggle_menu: Växla meny
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} skickade in en rapport"
       sign_up:
         subject: "%{name} registrerade sig"
     favourite:
-      body: 'Din status favoriserades av %{name}:'
-      subject: "%{name} favoriserade din status"
+      body: 'Din status favoritmarkerades av %{name}:'
+      subject: "%{name} favoritmarkerade din status"
       title: Ny favorit
     follow:
       body: "%{name} följer nu dig!"
@@ -794,15 +1173,15 @@ sv:
     poll:
       subject: En undersökning av %{name} har avslutats
     reblog:
-      body: 'Din status knuffades av %{name}:'
-      subject: "%{name} knuffade din status"
-      title: Ny knuff
+      body: 'Ditt inlägg boostades av %{name}:'
+      subject: "%{name} boostade ditt inlägg"
+      title: Ny boostning
     status:
-      subject: "%{name} publicerade nyss"
+      subject: "%{name} publicerade just ett inlägg"
     update:
       subject: "%{name} redigerade ett inlägg"
   notifications:
-    email_events: Händelser för e-postaviseringar
+    email_events: Händelser för e-postnotiser
     email_events_hint: 'Välj händelser som du vill ta emot aviseringar för:'
     other_settings: Andra aviseringsinställningar
   number:
@@ -816,6 +1195,7 @@ sv:
           thousand: K
           trillion: T
   otp_authentication:
+    code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
     enable: Aktivera
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app i din telefon</strong>. Från och med nu så kommer den appen att generera symboler som du måste skriva in när du ska logga in."
     setup: Konfigurera
@@ -838,6 +1218,7 @@ sv:
       too_many_options: kan inte innehålla mer än %{max} objekt
   preferences:
     other: Annat
+    posting_defaults: Standardinställningar för inlägg
     public_timelines: Publika tidslinjer
   privacy_policy:
     title: Integritetspolicy
@@ -863,6 +1244,8 @@ sv:
     status: Kontostatus
   remote_follow:
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
+  rss:
+    content_warning: 'Innehållsvarning:'
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare
@@ -920,7 +1303,7 @@ sv:
     preferences: Inställningar
     profile: Profil
     relationships: Följer och följare
-    statuses_cleanup: Automatisk borttagning av inlägg
+    statuses_cleanup: Automatisk radering av inlägg
     two_factor_authentication: Tvåfaktorsautentisering
     webauthn_authentication: Säkerhetsnycklar
   statuses:
@@ -935,7 +1318,7 @@ sv:
       video:
         one: "%{count} video"
         other: "%{count} videor"
-    boosted_from_html: Boosted från %{acct_link}
+    boosted_from_html: Boostad från %{acct_link}
     content_warning: 'Innehållsvarning: %{warning}'
     default_language: Samma som användargränssnittet
     disallowed_hashtags:
@@ -943,14 +1326,14 @@ sv:
       other: 'innehöll de otillåtna hashtagarna: %{tags}'
     edited_at_html: 'Ändrad: %{date}'
     errors:
-      in_reply_not_found: Statusen du försöker svara på existerar inte.
+      in_reply_not_found: Inlägget du försöker svara på verkar inte existera.
     open_in_web: Öppna på webben
     over_character_limit: teckengräns på %{max} har överskridits
     pin_errors:
       direct: Inlägg som endast är synliga för nämnda användare kan inte fästas
-      limit: Du har redan fäst det maximala antalet toots
-      ownership: Någon annans toot kan inte fästas
-      reblog: Knuffar kan inte fästas
+      limit: Du har redan fäst det maximala antalet inlägg
+      ownership: Någon annans inlägg kan inte fästas
+      reblog: En boost kan inte fästas
     poll:
       total_people:
         one: "%{count} person"
@@ -977,18 +1360,20 @@ sv:
     enabled: Ta automatiskt bort gamla inlägg
     exceptions: Undantag
     ignore_favs: Bortse från favoriter
+    ignore_reblogs: Ignorera boostningar
     interaction_exceptions: Undantag baserat på interaktioner
+    interaction_exceptions_explanation: Observera att det inte finns någon garanti att inlägg blir raderade om de går under favorit- eller boosttröskeln efter att en gång ha gått över dem.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
-    keep_media: Behåll inlägg med media-bilagor
-    keep_media_hint: Tar inte bort någon av dina inlägg som har media-bilagor
-    keep_pinned: Behåll fästade inlägg
-    keep_pinned_hint: Tar inte bort någon av dina fästade inlägg
+    keep_media: Behåll inlägg med mediebilagor
+    keep_media_hint: Tar inte bort någon av dina inlägg som har mediebilagor
+    keep_pinned: Behåll fästa inlägg
+    keep_pinned_hint: Raderar inte något av dina fästa inlägg
     keep_polls: Behåll undersökningar
     keep_polls_hint: Tar inte bort någon av dina undersökningar
-    keep_self_bookmark: Behåller inlägg som du har bokmärkt
+    keep_self_bookmark: Behåll inlägg du har bokmärkt
     keep_self_bookmark_hint: Tar inte bort dina egna inlägg om du har bokmärkt dem
-    keep_self_fav: Behåll inlägg som du har favorit-märkt
+    keep_self_fav: Behåll inlägg du favoritmarkerat
     min_age:
       '1209600': 2 veckor
       '15778476': 6 månader
@@ -999,8 +1384,10 @@ sv:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Åldersgräns
+    min_reblogs: Behåll boostade inlägg i minst
+    min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostningar
   stream_entries:
-    pinned: Fäst toot
+    pinned: Fäst inlägg
     reblogged: boostad
     sensitive_content: Känsligt innehåll
   strikes:
@@ -1042,6 +1429,8 @@ sv:
       change_password: Ändra ditt lösenord
       title: En ny inloggning
     warning:
+      categories:
+        spam: Skräppost
       reason: 'Anledning:'
       statuses: 'Inlägg citerades:'
       subject:
@@ -1058,7 +1447,7 @@ sv:
     welcome:
       edit_profile_action: Profilinställning
       explanation: Här är några tips för att komma igång
-      final_action: Börja posta
+      final_action: Börja göra inlägg
       full_handle: Ditt fullständiga användarnamn/mastodonadress
       full_handle_hint: Det här är vad du skulle berätta för dina vänner så att de kan meddela eller följa dig från en annan instans.
       subject: Välkommen till Mastodon
@@ -1067,7 +1456,7 @@ sv:
     follow_limit_reached: Du kan inte följa fler än %{limit} personer
     invalid_otp_token: Ogiltig tvåfaktorskod
     otp_lost_help_html: Om du förlorat åtkomst till båda kan du komma i kontakt med %{email}
-    seamless_external_login: Du är inloggad via en extern tjänst, så lösenord och e-postinställningar är inte tillgängliga.
+    seamless_external_login: Du är inloggad via en extern tjänst, inställningar för lösenord och e-post är därför inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
     verification: Bekräftelse

@@ -207,6 +207,7 @@ ku:
         reject_user: Bikarhêner nepejirîne
         remove_avatar_user: Avatarê rake
         reopen_report: Ragihandina ji nû ve veke
+        resend_user: E-nameya pejirandinê dîsa bişîne
         reset_password_user: Borînpeyvê ji nû ve saz bike
         resolve_report: Ragihandinê çareser bike
         sensitive_account: Ajimêra hêz-hestiyar
@@ -265,6 +266,7 @@ ku:
         reject_user_html: "%{name} tomarkirina ji %{target} nepejirand"
         remove_avatar_user_html: "%{name} avatara bikarhêner %{target} rakir"
         reopen_report_html: "%{name} ragihandina %{target} ji nû ve vekir"
+        resend_user_html: "%{name} e-nameya pejirandinê dîsa bişîne ji bo %{target}"
         reset_password_user_html: "%{name} borînpeyva bikarhêner %{target} ji nû ve saz kir"
         resolve_report_html: "%{name} ragihandina %{target} çareser kir"
         sensitive_account_html: "%{name} medyayê %{target} wekî hestiyarî nîşan kir"
@@ -320,8 +322,8 @@ ku:
       enabled: Çalakkirî
       enabled_msg: Ev hestok bi serkeftî hate çalak kirin
       image_hint: Mezinahiya PNG an jî GIF digîheje heya %{size}
-      list: Rêzok
-      listed: Rêzokkirî
+      list: Lîste
+      listed: Lîstekirî
       new:
         title: Hestokên kesane yên nû lê zêde bike
       no_emoji_selected: Tu emojî nehatin hilbijartin ji ber vê tu şandî jî nehatin guhertin
@@ -331,8 +333,8 @@ ku:
       shortcode_hint: Herê kêm 2 tîp, tenê tîpên alfahejmarî û yên bin xêzkirî
       title: Hestokên kesane
       uncategorized: Bêbeş
-      unlist: Dervî rêzokê
-      unlisted: Nerêzokkirî
+      unlist: Bêlîste
+      unlisted: Nelîstekirî
       update_failed_msg: Ev hestok nehate rojanekirin
       updated_msg: Emojî bi awayekî serkeftî hate rojanekirin!
       upload: Bar bike
@@ -391,11 +393,11 @@ ku:
           suspend: Dur bike
         title: Astengkirina navpera nû
       obfuscate: Navê navperê biveşêre
-      obfuscate_hint: Heke rêzoka sînorên navperê were çalakkirin navê navperê di rêzokê de bi qismî veşêre
+      obfuscate_hint: Heke lîsteya sînorên navperê were çalakkirin navê navperê di lîsteyê de bi qismî veşêre
       private_comment: Şîroveya taybet
       private_comment_hint: Derbarê sînorkirina vê navperê da ji bo bikaranîna hundirîn a moderatoran şîrove bikin.
       public_comment: Şîroveya gelemperî
-      public_comment_hint: Heke reklamkirina rêzoka sînorên navperê çalak be, derbarê sînorkirina vê navperê da ji bo raya giştî şîrove bikin.
+      public_comment_hint: Heke reklamkirina lîsteya sînorên navperê çalak be, derbarê sînorkirina vê navperê da ji bo raya giştî şîrove bikin.
       reject_media: Pelên medyayê red bike
       reject_media_hint: Pelên medyayê herêmî hatine tomarkirin radike û di pêşerojê de daxistinê red dike. Ji bo rawstandinê ne girîng e
       reject_reports: Ragihandinan red bike
@@ -1071,7 +1073,7 @@ ku:
     bookmarks: Şûnpel
     csv: CSV
     domain_blocks: Navperên astengkirî
-    lists: Rêzok
+    lists: Lîste
     mutes: Te bêdeng kir
     storage: Bîrdanaka medyayê
   featured_tags:
@@ -1082,7 +1084,7 @@ ku:
   filters:
     contexts:
       account: Profîl
-      home: Serrûpel û rêzok
+      home: Serûpel û lîste
       notifications: Agahdarî
       public: Demnameya gelemperî
       thread: Axaftin
@@ -1149,20 +1151,20 @@ ku:
     invalid_markup: 'di nav de nîşana HTML a nederbasdar heye: %{error}'
   imports:
     errors:
-      over_rows_processing_limit: ji %{count} zêdetir rêzok hene
+      over_rows_processing_limit: ji %{count} zêdetir lîste hene
     modes:
       merge: Bi hev re bike
       merge_long: Tomarên heyî bigire û yên nû lê zêde bike
       overwrite: Bi ser de binivsîne
       overwrite_long: Tomarkirinên heyî bi yên nû re biguherîne
-    preface: Tu dikarî têxistin ê daneyên bike ku te ji rajekareke din derxistî ye wek rêzoka kesên ku tu dişopîne an jî asteng dike.
+    preface: Tu dikarî têxistin ê daneyên bike ku te ji rajekareke din derxistî ye wek lîsteya kesên ku tu dişopîne an jî asteng dike.
     success: Daneyên te bi serkeftî hat barkirin û di dema xwe de were pêvajotin
     types:
-      blocking: Rêzoka astengkirinê
+      blocking: Lîsteya antengkiriyan
       bookmarks: Şûnpel
-      domain_blocking: Rêzoka navperên astengkirî
-      following: Rêzoka yên dişopînin
-      muting: Rêzoka bêdengiyê
+      domain_blocking: Lîsteya domaînên astengkirî
+      following: Lîsteyan şopîneran
+      muting: Lîsteya bêdengkiriyan
     upload: Bar bike
   invites:
     delete: Neçalak bike
@@ -1471,7 +1473,7 @@ ku:
       private_long: Tenê bo şopîneran nîşan bide
       public: Gelemperî
       public_long: Herkes dikare bibîne
-      unlisted: Nerêzokkirî
+      unlisted: Nelîstekirî
       unlisted_long: Herkes dikare bibîne, lê di demnameya gelemperî de nayê rêz kirin
   statuses_cleanup:
     enabled: Şandiyên berê bi xweberî va jê bibe
