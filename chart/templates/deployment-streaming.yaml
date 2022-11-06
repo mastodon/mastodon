@@ -5,18 +5,18 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-{{- end }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
+      {{- with .Values.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
       labels:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
     spec:
@@ -25,12 +25,16 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
@@ -64,8 +68,10 @@ spec:
             httpGet:
               path: /api/v1/streaming/health
               port: streaming
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
