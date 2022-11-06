@@ -75,6 +75,7 @@ nn:
         last_used_at: Sist brukt den %{date}
         never_used: Aldri brukt
         scopes: Løyve
+        superapp: Intern
         title: Dine autoriserte applikasjonar
     errors:
       messages:
@@ -84,8 +85,8 @@ nn:
         invalid_grant: Autoriseringen er ugyldig, utløpt, opphevet, stemmer ikke overens med omdirigerings-URIen eller var utstedt til en annen klient.
         invalid_redirect_uri: Omdirigerings-URLen er ikkje gyldig.
         invalid_request:
-          missing_param: 'Mangler påkrevd parameter: %{value}.'
-          request_not_authorized: Forespørselen må godkjennes. Påkrevd parameter for godkjenningsforespørselen mangler eller er ugyldig.
+          missing_param: 'Manglar naudsynt parameter: %{value}.'
+          request_not_authorized: Førespurnaden må godkjennast. Naudsynt parameter for godkjenning manglar eller er ugyldig.
           unknown: Forespørselen mangler en påkrevd parameter, inkluderer en ukjent parameterverdi, eller er utformet for noe annet.
         invalid_resource_owner: Ressurseierens detaljer er ikke gyldige, eller så er det ikke mulig å finne eieren
         invalid_scope: Det etterspurte omfanget er ugyldig, ukjent eller har feil struktur.
