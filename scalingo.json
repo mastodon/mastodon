@@ -6,7 +6,8 @@
   "env": {
     "LOCAL_DOMAIN": {
       "description": "The domain that your Mastodon instance will run on (this can be appname.scalingo.io or a custom domain)",
-      "required": true
+      "required": true,
+      "generator": "url"
     },
     "SECRET_KEY_BASE": {
       "description": "The secret key base",
