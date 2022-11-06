@@ -418,6 +418,7 @@ sv:
         resolve: Slå upp domän
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
+      resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
       title: Blockerade e-postdomäner
     follow_recommendations:
@@ -430,10 +431,14 @@ sv:
       unsuppress: Återställ följrekommendation
     instances:
       availability:
+        description_html:
+          one: Om leveranser till domänen misslyckas i <strong>%{count} dag</strong> kommer inga ytterligare leveransförsök att göras förrän en leverans <em>från</em> domänen tas emot.
+          other: Om leveranser till domänen misslyckas på <strong>%{count} olika dagar</strong> kommer inga ytterligare leveransförsök att göras förrän en leverans <em>från</em> domänen tas emot.
         failure_threshold_reached: Tröskeln för misslyckande nåddes den %{date}.
         failures_recorded:
           one: Misslyckat försök under %{count} dag.
           other: Misslyckade försök under %{count} olika dagar.
+        no_failures_recorded: Inga fel registrerade.
         title: Tillgänglighet
         warning: Det senaste försöket att ansluta till denna värddator har misslyckats
       back_to_all: Alla
@@ -443,7 +448,9 @@ sv:
       confirm_purge: Är du säker på att du vill ta bort data permanent från den här domänen?
       content_policies:
         comment: Intern anteckning
+        description_html: Du kan definiera innehållspolicyer som kommer tillämpas på alla konton från denna domän samt alla dess underdomäner.
         policies:
+          reject_media: Avvisa media
           reject_reports: Avvisa rapporter
           silence: Gräns
           suspend: Stäng av
@@ -481,12 +488,14 @@ sv:
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       purge: Rensa
+      purge_description_html: Om du tror att denna domän har kopplats ned för gott, kan du radera alla kontoposter och associerad data tillhörande denna domän från din lagringsyta. Detta kan ta tid.
       title: Kända instanser
       total_blocked_by_us: Blockerad av oss
       total_followed_by_them: Följs av dem
       total_followed_by_us: Följs av oss
       total_reported: Rapporter om dem
       total_storage: Media-bilagor
+      totals_time_period_hint_html: Totalsummorna som visas nedan inkluderar data för all tid.
     invites:
       deactivate_all: Inaktivera alla
       filter:
@@ -543,13 +552,17 @@ sv:
         delete_description_html: De rapporterade inläggen kommer raderas och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         other_description_html: Se fler alternativ för att kontrollera kontots beteende och anpassa kommunikationen till det rapporterade kontot.
+        resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
+        silence_description_html: Profilen kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Kan alltid ångras.
         suspend_description_html: Profilen och allt dess innehåll kommer att bli oåtkomligt tills det slutligen raderas. Det kommer inte vara möjligt att interagera med kontot. Går att ångra inom 30 dagar.
+      actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer en e-postnotis att skickas till dem, förutom om du valt kategorin <strong>Skräppost</strong>.
       add_to_report: Lägg till mer i rapporten
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
       by_target_domain: Domän för rapporterat konto
       category: Kategori
+      category_description_html: Anledningen till att kontot och/eller innehållet rapporterades kommer att visas i kommunikation med det rapporterade kontot
       comment:
         none: Ingen
       comment_description_html: 'För att ge mer information, skrev %{name}:'
@@ -651,17 +664,21 @@ sv:
     rules:
       add_new: Lägg till regel
       delete: Radera
+      description_html: Även om de flesta hävdar att de samtycker till tjänstevillkoren, läser folk ofta inte igenom dem förrän det uppstår problem. <strong>Gör dina serverregler mer lättöverskådliga genom att tillhandahålla dem i en enkel punktlista.</strong> Försök att hålla enskilda regler korta och koncisa utan att samtidigt separera dem till för många enskilda punkter.
       edit: Ändra regel
       empty: Inga serverregler har ännu angetts.
       title: Serverns regler
     settings:
       about:
         manage_rules: Hantera serverregler
+        preamble: Ange fördjupad information om hur servern driftas, modereras och finansieras.
+        rules_hint: Det finns ett dedikerat ställe för regler som användarna förväntas följa.
         title: Om
       appearance:
         preamble: Anpassa Mastodons webbgränssnitt.
         title: Utseende
       branding:
+        preamble: Din servers profilering differentierar den från andra servrar på nätverket. Denna information kan visas i en mängd olika miljöer, så som Mastodons webbgränssnitt, nativapplikationer, länkförhandsvisningar på andra webbsidor och i meddelandeapplikationer och så vidare. Av dessa anledningar är det bäst att hålla informationen tydlig, kort och koncis.
         title: Profilering
       content_retention:
         preamble: Kontrollera hur användargenererat innehåll lagras i Mastodon.
@@ -687,6 +704,7 @@ sv:
       title: Serverinställningar
     site_uploads:
       delete: Radera uppladdad fil
+      destroyed_msg: Webbplatsuppladdningen har raderats!
     statuses:
       account: Författare
       application: Applikation
@@ -703,6 +721,7 @@ sv:
       media:
         title: Media
       metadata: Metadata
+      no_status_selected: Inga inlägg ändrades eftersom inga valdes
       open: Öppna inlägg
       original_status: Ursprungligt inlägg
       reblogs: Ombloggningar
@@ -852,8 +871,11 @@ sv:
         title: Trendande inlägg
       new_trending_tags:
         title: Trendande hashtaggar
+      subject: Nya trender tillgängliga för granskning på %{instance}
   aliases:
     add_new: Skapa alias
+    created_msg: Ett nytt alias skapades. Du kan nu initiera flytten från det gamla kontot.
+    deleted_msg: Aliaset togs bort. Att flytta från det kontot till detta kommer inte längre vara möjligt.
     empty: Du har inga alias.
     remove: Avlänka alias
   appearance:
@@ -889,6 +911,7 @@ sv:
     description:
       prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
       prefix_sign_up: Registrera dig på Mastodon idag!
+      suffix: Med ett konto kommer du att kunna följa personer, göra inlägg och utbyta meddelanden med användare från andra Mastodon-servrar, och ännu mer!
     didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
     dont_have_your_security_key: Har du inte din säkerhetsnyckel?
     forgot_password: Glömt ditt lösenord?
@@ -915,8 +938,11 @@ sv:
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      email_below_hint_html: Om nedanstående e-postadress är felaktig kan du ändra den här, och få ett nytt bekräftelsemeddelande.
       email_settings_hint_html: E-postmeddelande för verifiering skickades till %{email}. Om e-postadressen inte stämmer kan du ändra den i kontoinställningarna.
       title: Ställ in
+    sign_up:
+      preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer på nätverket, oavsett vilken server deras konto tillhör.
     status:
       account_status: Kontostatus
       confirming: Väntar på att e-postbekräftelsen ska slutföras.
@@ -1546,13 +1572,16 @@ sv:
         disable: Du kan inte längre använda ditt konto, men din profil och övrig data bibehålls intakt. Du kan begära en kopia av dina data, ändra kontoinställningar eller radera ditt konto.
         mark_statuses_as_sensitive: Några av dina inlägg har markerats som känsliga av moderatorerna för %{instance}. Detta betyder att folk behöver trycka på medier i inläggen innan de kan se en förhandsvisning. Du kan själv markera medier som känsliga när du gör inlägg i framtiden.
         sensitive: Från och med nu markeras alla dina uppladdade mediefiler som känsliga och göms bakom en innehållsvarning som först måste tryckas bort.
+        silence: Du kan fortfarande använda ditt konto, men endast personer som redan följer dig kommer att se dina inlägg på denna server. Du kan även exkluderas från olika upptäcktsfunktioner, men andra kan fortfarande manuellt följa dig.
         suspend: Du kan inte längre använda ditt konto, din profil och annan data är heller inte längre tillgängliga. Du kan fortfarande logga in och begära en kopia av dina data tills dess att de fullkomligt raderas om cirka 30 dagar, vi kommer dock bibehålla viss metadata för att förhindra försök att kringgå avstängingen.
       reason: 'Anledning:'
       statuses: 'Inlägg citerades:'
       subject:
         delete_statuses: Dina inlägg under %{acct} har raderats
         disable: Ditt konto %{acct} har blivit fruset
+        mark_statuses_as_sensitive: Dina inlägg under %{acct} har markerats som känsliga
         none: Varning för %{acct}
+        sensitive: Från och med nu kommer dina inlägg under %{acct} markeras som känsliga
         silence: Ditt konto %{acct} har blivit begränsat
         suspend: Ditt konto %{acct} har stängts av
       title:
