@@ -104,6 +104,10 @@ ast:
       appeal_approved: Apellóse
       appeal_pending: Apellación pendiente
     title: Alministración
+    trends:
+      tags:
+        dashboard:
+          tag_accounts_measure: usos únicos
     webhooks:
       events: Eventos
   admin_mailer:
@@ -283,9 +287,20 @@ ast:
       body: '%{name} compartió''l to estáu:'
       subject: "%{name} compartió'l to estáu"
       title: Compartición nueva de barritu
+    update:
+      subject: "%{name} editó un artículu"
   notifications:
     email_events_hint: 'Esbilla los eventos de los que quies recibir avisos:'
     other_settings: Otros axustes
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: MM
+          million: M
+          quadrillion: mil B
+          thousand: mil
+          trillion: B
   pagination:
     next: Siguiente
   polls:
