@@ -1,4 +1,3 @@
----
 nn:
   simple_form:
     hints:
@@ -15,8 +14,8 @@ nn:
         text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
         type_html: Vel det du vil gjera med <strong>%{acct}</strong>
         types:
-          disable: Forhindre brukeren å bruke kontoen sin, men ikke slett eller skjule innholdet deres.
-          none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
+          disable: Hindre eigaren frå å bruke kontoen, men fjern eller skjul ikkje innhaldet deira.
+          none: Bruk dette for å senda ei åtvaring til brukaren utan å utløyse andre handlingar.
           sensitive: Tving alle denne brukerens medievedlegg til å bli markert som følsom.
           silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
           suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet der. Reversibel innen 30 dager.
@@ -80,7 +79,7 @@ nn:
       rule:
         text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
@@ -225,7 +224,7 @@ nn:
         position: Prioritet
       webhook:
         url: Endepunkts-URL
-    'no': Nei
+    'no': 'Nei'
     recommended: Tilrådt
     required:
       mark: "*"
@@ -233,4 +232,4 @@ nn:
     title:
       sessions:
         webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
-    'yes': Ja
+    'yes': 'Ja'
