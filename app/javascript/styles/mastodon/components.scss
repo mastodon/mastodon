@@ -2342,6 +2342,11 @@ $ui-header-height: 55px;
       padding-left: 10px;
     }
 
+    &[aria-label="Home"] {
+      flex-grow: 1;
+      max-width: 600px;
+    }
+
     &:last-child {
       padding-right: 10px;
     }
