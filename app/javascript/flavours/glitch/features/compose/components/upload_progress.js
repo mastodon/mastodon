@@ -29,17 +29,18 @@ export default class UploadProgress extends React.PureComponent {
     }
 
     return (
-      <div className='composer--upload_form--progress'>
-        <Icon id='upload' />
+      <div className='upload-progress'>
+        <div className='upload-progress__icon'>
+          <Icon id='upload' />
+        </div>
 
-        <div className='message'>
+        <div className='upload-progress__message'>
           {message}
 
-          <div className='backdrop'>
+          <div className='upload-progress__backdrop'>
             <Motion defaultStyle={{ width: 0 }} style={{ width: spring(progress) }}>
               {({ width }) =>
-                (<div className='tracker' style={{ width: `${width}%` }}
-                />)
+                <div className='upload-progress__tracker' style={{ width: `${width}%` }} />
               }
             </Motion>
           </div>

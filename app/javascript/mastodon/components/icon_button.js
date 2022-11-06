@@ -141,6 +141,7 @@ export default class IconButton extends React.PureComponent {
 
     return (
       <button
+        type='button'
         aria-label={title}
         aria-pressed={pressed}
         aria-expanded={expanded}

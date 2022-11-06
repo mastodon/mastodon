@@ -7,10 +7,10 @@ eu:
       account_migration:
         acct: Zehaztu migrazioaren xede den kontuaren erabiltzaile@domeinua
       account_warning_preset:
-        text: Toot sintaxia erabili dezakezu, URLak, traolak eta aipamenak
+        text: Bidalketaren sintaxia erabili dezakezu, hala nola, URLak, traolak eta aipamenak
         title: Aukerakoa. Hartzaileak ez du ikusiko
       admin_account_action:
-        include_statuses: Erabiltzaileak moderazio ekintza edo abisu bat eragin duten tootak ikusi ahal izango ditu
+        include_statuses: Erabiltzaileak moderazio ekintza edo abisu bat eragin duten bidalketak ikusi ahal izango ditu
         send_email_notification: Erabiltzaileak bere kontuarekin gertatutakoaren azalpen bat jasoko du
         text_html: Aukerakoa. Toot sintaxia erabili dezakezu. <a href="%{path}">Abisu aurre-ezarpenak</a> gehitu ditzakezu denbora aurrezteko
         type_html: Erabaki zer egin <strong>%{acct}</strong> kontuarekin
@@ -28,7 +28,7 @@ eu:
         starts_at: Aukerakoa. Zure iragarpena denbora-tarte batera lotuta dagoenerako
         text: Tootetako sintaxia erabili dezakezu. Kontuan izan iragarpenak erabiltzailearen pantailan hartuko duen neurria
       appeal:
-        text: Abisu bati errekurtsoa behin bakarrik jarri diezaiokezu
+        text: Neurri bati apelazioa behin bakarrik jarri diezaiokezu
       defaults:
         autofollow: Gonbidapena erabiliz izena ematen dutenek automatikoki jarraituko dizute
         avatar: PNG, GIF edo JPG. Gehienez %{size}. %{dimensions}px neurrira eskalatuko da
@@ -49,6 +49,7 @@ eu:
         phrase: Bat egingo du Maiuskula/minuskula kontuan hartu gabe eta edukiaren abisua kontuan hartu gabe
         scopes: Zeintzuk API atzitu ditzakeen aplikazioak. Goi mailako arloa aukeratzen baduzu, ez dituzu azpikoak aukeratu behar.
         setting_aggregate_reblogs: Ez erakutsi bultzada berriak berriki bultzada jaso duten tootentzat (berriki jasotako bultzadei eragiten die bakarrik)
+        setting_always_send_emails: Normalean eposta jakinarazpenak ez dira bidaliko Mastodon aktiboki erabiltzen ari zaren bitartean
         setting_default_sensitive: Multimedia hunkigarria lehenetsita ezkutatzen da, eta sakatuz ikusi daiteke
         setting_display_media_default: Ezkutatu hunkigarri gisa markatutako multimedia
         setting_display_media_hide_all: Ezkutatu multimedia guztia beti
@@ -65,8 +66,32 @@ eu:
       email_domain_block:
         domain: Hau eposta helbidean agertzen den domeinu-izena edo MX erregistroak erabiltzen duena izan daiteke. Izen-ematean egiaztatuko dira.
         with_dns_records: Emandako domeinuaren DNS erregistroak ebazteko saiakera bat egingo da eta emaitzak ere zerrenda beltzean sartuko dira
-      featured_tag:
-        name: 'Hauetakoren bat erabili zenezake:'
+      filters:
+        action: Aukeratu ze ekintza burutu behar den bidalketa bat iragazkiarekin bat datorrenean
+        actions:
+          hide: Ezkutatu erabat iragazitako edukia, existituko ez balitz bezala
+          warn: Ezkutatu iragazitako edukia iragazkiaren izenburua duen abisu batekin
+      form_admin_settings:
+        backups_retention_period: Mantendu sortutako erabiltzailearen artxiboa zehazturiko egun kopuruan.
+        bootstrap_timeline_accounts: Kontu hauek erabiltzaile berrien jarraitzeko gomendioen goiko aldean ainguratuko dira.
+        closed_registrations_message: Izen-ematea itxia dagoenean bistaratua
+        content_cache_retention_period: Balio positibo bat ezarriz gero, egun kopuru horretara iristean beste zerbitzarietako bidalketak ezabatuko dira. Hau ezin da desegin.
+        custom_css: Estilo pertsonalizatuak aplikatu ditzakezu Mastodonen web bertsioan.
+        mascot: Web interfaze aurreratuko ilustrazioa gainidazten du.
+        media_cache_retention_period: Balio positibo bat ezarriz gero, egun kopuru horretara iristean beste zerbitzarietatik deskargatutako multimedia fitxategiak ezabatuko dira. Ondoren, eskatu ahala deskargatuko dira berriz.
+        profile_directory: Profilen direktorioan ikusgai egotea aukeratu duten erabiltzaile guztiak zerrendatzen dira.
+        require_invite_text: Izen emateak eskuz onartu behar direnean, "Zergatik elkartu nahi duzu?" testu sarrera derrigorrezko bezala ezarri, ez hautazko
+        site_contact_email: Jendeak kontsulta legalak egin edo laguntza eskatzeko bidea.
+        site_contact_username: Jendea Mastodonen zurekin harremanetan jartzeko bidea.
+        site_extended_description: Bisitari eta erabiltzaileentzat erabilgarria izan daitekeen informazio gehigarria. Markdown sintaxiarekin egituratu daiteke.
+        site_short_description: Zure zerbitzaria identifikatzen laguntzen duen deskribapen laburra. Nork du ardura? Nori zuzendua dago?
+        site_terms: Erabili zure pribatutasun politika edo hutsik utzi lehenetsia erabiltzeko. Markdown sintaxiarekin egituratu daiteke.
+        site_title: Jendeak nola deituko dion zure zerbitzariari, domeinu-izenaz gain.
+        theme: Saioa hasi gabeko erabiltzaileek eta berriek ikusiko duten gaia.
+        thumbnail: Zerbitzariaren informazioaren ondoan erakusten den 2:1 inguruko irudia.
+        timeline_preview: Saioa hasi gabeko erabiltzaileek ezingo dituzte arakatu zerbitzariko bidalketa publiko berrienak.
+        trendable_by_default: Saltatu joeretako edukiaren eskuzko berrikuspena. Ondoren elementuak banan-bana kendu daitezke joeretatik.
+        trends: Joeretan zure zerbitzarian bogan dauden bidalketa, traola eta albisteak erakusten dira.
       form_challenge:
         current_password: Zonalde seguruan sartzen ari zara
       imports:
@@ -79,6 +104,7 @@ eu:
         ip: Sartu IPv4 edo IPv6 helbide bat. Tarte osoak blokeatu ditzakezu CIDR sintaxia erabiliz. Kontuz zure burua blokeatu gabe!
         severities:
           no_access: Blokeatu baliabide guztietarako sarbidea
+          sign_up_block: Ezingo da izen-emate berririk egin
           sign_up_requires_approval: Izen emate berriek zure onarpena beharko dute
         severity: Aukeratu zer gertatuko den IP honetatik datozen eskaerekin
       rule:
@@ -90,6 +116,16 @@ eu:
         name: Letrak maiuskula/minuskulara aldatu ditzakezu besterik ez, adibidez irakurterrazago egiteko
       user:
         chosen_languages: Ezer markatzekotan, hautatutako hizkuntzetan dauden tootak besterik ez dira erakutsiko
+        role: Rolak erabiltzaileak dituen baimenak kontrolatzen ditu
+      user_role:
+        color: Rolarentzat erabiltzaile interfazean erabiliko den kolorea, formatu hamaseitarreko RGB bezala
+        highlighted: Honek rola publikoki ikusgai jartzen du
+        name: Rolaren izen publikoa, rola bereizgarri bezala bistaratzeko ezarrita badago
+        permissions_as_keys: Rol hau duten erabiltzaileek sarbidea izango dute...
+        position: Maila goreneko rolak erabakitzen du gatazkaren konponbidea kasu batzuetan. Ekintza batzuk maila baxuagoko rolen gain bakarrik gauzatu daitezke
+      webhook:
+        events: Hautatu gertaerak bidaltzeko
+        url: Nora bidaliko diren gertaerak
     labels:
       account:
         fields:
@@ -151,6 +187,7 @@ eu:
         phrase: Hitz edo esaldi gakoa
         setting_advanced_layout: Gaitu web interfaze aurreratua
         setting_aggregate_reblogs: Taldekatu bultzadak denbora-lerroetan
+        setting_always_send_emails: Bidali beti eposta jakinarazpenak
         setting_auto_play_gif: Erreproduzitu GIF animatuak automatikoki
         setting_boost_modal: Erakutsi baieztapen elkarrizketa-koadroa bultzada eman aurretik
         setting_crop_images: Moztu irudiak hedatu gabeko tootetan 16x9 proportzioan
@@ -176,6 +213,7 @@ eu:
         setting_use_pending_items: Modu geldoa
         severity: Larritasuna
         sign_in_token_attempt: Segurtasun kodea
+        title: Izenburua
         type: Inportazio mota
         username: Erabiltzaile-izena
         username_or_email: Erabiltzaile-izena edo e-mail helbidea
@@ -184,6 +222,34 @@ eu:
         with_dns_records: Sartu ere domeinuaren MX erregistroak eta IPak
       featured_tag:
         name: Traola
+      filters:
+        actions:
+          hide: Ezkutatu guztiz
+          warn: Ezkutatu ohar batekin
+      form_admin_settings:
+        backups_retention_period: Erabiltzailearen artxiboa gordetzeko epea
+        bootstrap_timeline_accounts: Gomendatu beti kontu hauek erabiltzaile berriei
+        closed_registrations_message: Izen-emateak itxita daudenerako mezu pertsonalizatua
+        content_cache_retention_period: Edukiaren cache-a atxikitzeko epea
+        custom_css: CSS pertsonalizatua
+        mascot: Maskota pertsonalizatua (zaharkitua)
+        media_cache_retention_period: Multimediaren cachea atxikitzeko epea
+        profile_directory: Gaitu profil-direktorioa
+        registrations_mode: Nork eman dezake izena
+        require_invite_text: Eskatu arrazoi bat batzeko
+        show_domain_blocks: Erakutsi domeinu-blokeoak
+        show_domain_blocks_rationale: Erakutsi domeinuak zergatik blokeatu ziren
+        site_contact_email: Harremanetarako eposta
+        site_contact_username: Harremanetarako erabiltzaile-izena
+        site_extended_description: Deskribapen hedatua
+        site_short_description: Zerbitzariaren deskribapena
+        site_terms: Pribatutasun politika
+        site_title: Zerbitzariaren izena
+        theme: Lehenetsitako gaia
+        thumbnail: Zerbitzariaren koadro txikia
+        timeline_preview: Onartu autentifikatu gabeko sarbidea denbora lerro publikoetara
+        trendable_by_default: Onartu joerak aurrez berrikusi gabe
+        trends: Gaitu joerak
       interactions:
         must_be_follower: Blokeatu jarraitzaile ez direnen jakinarazpenak
         must_be_following: Blokeatu zuk jarraitzen ez dituzu horien jakinarazpenak
@@ -197,6 +263,7 @@ eu:
         ip: IP-a
         severities:
           no_access: Blokeatu sarbidea
+          sign_up_block: Blokeatu izen-emateak
           sign_up_requires_approval: Mugatu izen emateak
         severity: Araua
       notification_emails:
@@ -217,7 +284,19 @@ eu:
         name: Traola
         trendable: Baimendu traola hau joeretan agertzea
         usable: Baimendu tootek traola hau erabiltzea
+      user:
+        role: Rola
+      user_role:
+        color: Bereizgarriaren kolorea
+        highlighted: Bistaratu rola bereizgarri bezala erabiltzaileen profiletan
+        name: Izena
+        permissions_as_keys: Baimenak
+        position: Lehentasuna
+      webhook:
+        events: Gertaerak gaituta
+        url: Amaiera-puntuaren URLa
     'no': Ez
+    not_recommended: Ez gomendatua
     recommended: Aholkatua
     required:
       mark: "*"

@@ -4,10 +4,16 @@ af:
     contact_unavailable: NVT
     hosted_on: Mastodon gehuisves op %{domain}
   admin:
+    announcements:
+      publish: Publiseer
+      published_msg: Aankondiging was suksesvol gepubliseer!
+      unpublish: Depubliseer
     domain_blocks:
       existing_domain_block: Jy het alreeds strenger perke ingelê op %{name}.
     trends:
       only_allowed: Slegs toegelate
+      preview_card_providers:
+        title: Publiseerders
       trending: Gewild
     webhooks:
       add_new: Voeg end-punt by
@@ -38,6 +44,8 @@ af:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  navigation:
+    toggle_menu: Skakel-kieslys
   rss:
     content_warning: 'Inhoud waarskuwing:'
     descriptions:

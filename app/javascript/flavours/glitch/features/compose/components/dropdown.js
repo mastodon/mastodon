@@ -16,7 +16,6 @@ import { assignHandlers } from 'flavours/glitch/utils/react_helpers';
 export default class ComposerOptionsDropdown extends React.PureComponent {
 
   static propTypes = {
-    active: PropTypes.bool,
     disabled: PropTypes.bool,
     icon: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({
@@ -162,7 +161,6 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
   //  Rendering.
   render () {
     const {
-      active,
       disabled,
       title,
       icon,
@@ -174,35 +172,34 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       closeOnChange,
     } = this.props;
     const { open, placement } = this.state;
-    const computedClass = classNames('composer--options--dropdown', {
-      active,
-      open,
-      top: placement === 'top',
-    });
 
-    //  The result.
+    const active = value && items.findIndex(({ name }) => name === value) === (placement === 'bottom' ? 0 : (items.length - 1));
+
     return (
       <div
-        className={computedClass}
+        className={classNames('privacy-dropdown', placement, { active: open })}
         onKeyDown={this.handleKeyDown}
       >
-        <IconButton
-          active={open || active}
-          className='value'
-          disabled={disabled}
-          icon={icon}
-          inverted
-          onClick={this.handleToggle}
-          onMouseDown={this.handleMouseDown}
-          onKeyDown={this.handleButtonKeyDown}
-          onKeyPress={this.handleKeyPress}
-          size={18}
-          style={{
-            height: null,
-            lineHeight: '27px',
-          }}
-          title={title}
-        />
+        <div className={classNames('privacy-dropdown__value', { active })}>
+          <IconButton
+            active={open}
+            className='privacy-dropdown__value-icon'
+            disabled={disabled}
+            icon={icon}
+            inverted
+            onClick={this.handleToggle}
+            onMouseDown={this.handleMouseDown}
+            onKeyDown={this.handleButtonKeyDown}
+            onKeyPress={this.handleKeyPress}
+            size={18}
+            style={{
+              height: null,
+              lineHeight: '27px',
+            }}
+            title={title}
+          />
+        </div>
+
         <Overlay
           containerPadding={20}
           placement={placement}

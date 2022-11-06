@@ -14,11 +14,11 @@ export default class UploadForm extends ImmutablePureComponent {
     const { mediaIds } = this.props;
 
     return (
-      <div className='composer--upload_form'>
+      <div className='compose-form__upload-wrapper'>
         <UploadProgressContainer />
 
         {mediaIds.size > 0 && (
-          <div className='content'>
+          <div className='compose-form__uploads-wrapper'>
             {mediaIds.map(id => (
               <UploadContainer id={id} key={id} />
             ))}

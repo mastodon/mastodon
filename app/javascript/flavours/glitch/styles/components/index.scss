@@ -1044,43 +1044,6 @@
     color: $dark-text-color;
   }
 
-  &__footer {
-    flex: 0 0 auto;
-    padding: 10px;
-    padding-top: 20px;
-    z-index: 1;
-    font-size: 13px;
-
-    ul {
-      margin-bottom: 10px;
-    }
-
-    ul li {
-      display: inline;
-    }
-
-    p {
-      color: $dark-text-color;
-      margin-bottom: 20px;
-
-      a {
-        color: $dark-text-color;
-        text-decoration: underline;
-      }
-    }
-
-    a {
-      text-decoration: none;
-      color: $darker-text-color;
-
-      &:hover,
-      &:focus,
-      &:active {
-        text-decoration: underline;
-      }
-    }
-  }
-
   &__trends {
     flex: 0 1 auto;
     opacity: 1;
@@ -1775,7 +1738,7 @@ noscript {
 @import 'domains';
 @import 'status';
 @import 'modal';
-@import 'composer';
+@import 'compose_form';
 @import 'columns';
 @import 'regeneration_indicator';
 @import 'directory';

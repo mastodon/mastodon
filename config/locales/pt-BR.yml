@@ -5,6 +5,7 @@ pt-BR:
     contact_missing: Não definido
     contact_unavailable: Não disponível
     hosted_on: Instância Mastodon em %{domain}
+    title: Sobre
   accounts:
     follow: Seguir
     followers:
@@ -173,6 +174,7 @@ pt-BR:
         confirm_user: Confirmar Usuário
         create_account_warning: Criar Aviso
         create_announcement: Criar Anúncio
+        create_canonical_email_block: Criar bloqueio de Endereço eletrônico
         create_custom_emoji: Criar Emoji Personalizado
         create_domain_allow: Adicionar domínio permitido
         create_domain_block: Criar Bloqueio de Domínio
@@ -182,6 +184,7 @@ pt-BR:
         create_user_role: Criar Função
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
+        destroy_canonical_email_block: Excluir Bloqueio de Endereço Eletrônico
         destroy_custom_emoji: Excluir emoji personalizado
         destroy_domain_allow: Excluir domínio permitido
         destroy_domain_block: Excluir Bloqueio de Domínio
@@ -217,6 +220,7 @@ pt-BR:
         update_announcement: Editar anúncio
         update_custom_emoji: Editar Emoji Personalizado
         update_domain_block: Atualizar bloqueio de domínio
+        update_ip_block: Atualizar regra de IP
         update_status: Editar Status
         update_user_role: Atualizar função
       actions:
@@ -228,6 +232,7 @@ pt-BR:
         confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
+        create_canonical_email_block_html: "%{name} bloqueou o endereço com o marcador %{target}"
         create_custom_emoji_html: "%{name} enviou o novo emoji %{target}"
         create_domain_allow_html: "%{name} permitiu federação com domínio %{target}"
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
@@ -237,6 +242,8 @@ pt-BR:
         create_user_role_html: "%{name} criou a função %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueou o endereço com o marcador %{target}"
+        destroy_custom_emoji_html: "%{name} apagou o emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
         destroy_domain_block_html: "%{name} deixou de bloquear domínio %{target}"
         destroy_email_domain_block_html: "%{name} adicionou domínio de e-mail %{target} à lista branca"
@@ -271,6 +278,7 @@ pt-BR:
         update_announcement_html: "%{name} atualizou o comunicado %{target}"
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
+        update_ip_block_html: "%{name} alterou a regra para IP %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou a função %{target}"
       empty: Nenhum registro encontrado.
@@ -316,6 +324,7 @@ pt-BR:
       listed: Listado
       new:
         title: Adicionar novo emoji personalizado
+      no_emoji_selected: Nenhum emoji foi alterado, pois nenhum foi selecionado
       not_permitted: Você não tem permissão para executar esta ação
       overwrite: Sobrescrever
       shortcode: Atalho
@@ -538,9 +547,15 @@ pt-BR:
       action_log: Logs de auditoria
       action_taken_by: Atitude tomada por
       actions:
+        delete_description_html: As publicações denunciadas serão apagadas e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta cometa infrações no futuro.
+        mark_as_sensitive_description_html: Os conteúdos de mídia em publicações denunciadas serão marcados como sensíveis e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta comenta infrações no futuro.
         other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta reportada.
+        resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada, e a denúncia será encerrada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser sempre revertido.
         suspend_description_html: O perfil e todo o seu conteúdo ficarão inacessíveis até que seja eventualmente excluído. Interagir com a conta será impossível. Reversível dentro de 30 dias.
+      actions_description_html: 'Decida que medidas tomar para resolver esta denúncia. Se você receber uma ação punitiva contra a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>Spam</strong> for selecionada.
+
+        '
       add_to_report: Adicionar mais ao relatório
       are_you_sure: Você tem certeza?
       assign_to_self: Pegar
@@ -568,6 +583,7 @@ pt-BR:
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para o seu "eu" do futuro
       quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo relatado:'
+      remote_user_placeholder: o usuário remoto de %{instance}
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
       reported_account: Conta denunciada
@@ -591,6 +607,7 @@ pt-BR:
         other: "%{count} usuários"
       categories:
         administration: Administração
+        devops: Devops
         invites: Convites
         moderation: Moderação
         special: Especial
@@ -602,17 +619,24 @@ pt-BR:
       privileges:
         administrator: Administrador
         administrator_description: Usuários com essa permissão irão ignorar todas as permissões
+        delete_user_data: Apagar Dados de Usuário
+        delete_user_data_description: Permitir aos usuários apagar os dados de outros usuários instantaneamente
         invite_users: Convidar Usuários
         invite_users_description: Permite que os usuários convidem novas pessoas para o servidor
         manage_announcements: Gerenciar Avisos
         manage_announcements_description: Permite aos usuários gerenciar anúncios no servidor
+        manage_appeals: Gerenciar Apelações
+        manage_appeals_description: Permite aos usuários revisar as apelações contra ações de moderação
+        manage_blocks: Gerenciar Bloqueios
         manage_blocks_description: Permite aos usuários bloquear provedores de e-mail e endereços IP
+        manage_custom_emojis: Gerenciar Emojis Personalizados
         manage_custom_emojis_description: Permite aos usuários gerenciar emojis personalizados no servidor
         manage_federation: Gerenciar Federação
         manage_federation_description: Permite aos usuários bloquear ou permitir federação com outros domínios e controlar a entregabilidade
         manage_invites: Gerenciar convites
         manage_invites_description: Permite que os usuários naveguem e desativem os links de convites
         manage_reports: Gerenciar relatórios
+        manage_reports_description: Permite aos usuários avaliar denúncias e realizar ações de moderação contra elas
         manage_roles: Gerenciar Funções
         manage_roles_description: Permitir que os usuários gerenciem e atribuam papéis abaixo deles
         manage_rules: Gerenciar Regras
@@ -631,6 +655,8 @@ pt-BR:
         view_audit_log_description: Permite aos usuários ver um histórico de ações administrativas no servidor
         view_dashboard: Ver painel
         view_dashboard_description: Permite que os usuários acessem o painel e várias métricas
+        view_devops: Devops
+        view_devops_description: Permite aos usuários acessar os painéis da Sidekiq e pgHero
       title: Funções
     rules:
       add_new: Adicionar regra
@@ -640,6 +666,14 @@ pt-BR:
       empty: Nenhuma regra do servidor foi definida.
       title: Regras do servidor
     settings:
+      about:
+        title: Sobre
+      appearance:
+        title: Aparência
+      branding:
+        title: Marca
+      discovery:
+        trends: Tendências
       domain_blocks:
         all: Para todos
         disabled: Para ninguém
@@ -649,18 +683,26 @@ pt-BR:
           approved: Aprovação necessária para criar conta
           none: Ninguém pode criar conta
           open: Qualquer um pode criar conta
+      title: Configurações do Servidor
     site_uploads:
       delete: Excluir arquivo enviado
       destroyed_msg: Upload do site excluído com sucesso!
     statuses:
+      account: Autor
+      application: Aplicativo
       back_to_account: Voltar para página da conta
       back_to_report: Voltar às denúncias
       batch:
         remove_from_report: Remover do relatório
         report: Denunciar
       deleted: Excluídos
+      favourites: Favoritos
+      history: Histórico de versões
+      in_reply_to: Em resposta a
+      language: Idioma
       media:
         title: Mídia
+      metadata: Metadados
       no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Toots da conta
       with_media: Com mídia
@@ -736,14 +778,18 @@ pt-BR:
       enable: Habilitar
       enabled: Ativo
       events: Eventos
+      rotate_secret: Girar segredo
       status: Status
   admin_mailer:
     new_appeal:
       actions:
         delete_statuses: para excluir suas publicações
+        disable: para congelar sua conta
+        mark_statuses_as_sensitive: para marcar suas publicações como sensíveis
         none: um aviso
         sensitive: para marcar sua conta como sensível
         silence: para limitar sua conta
+        suspend: para suspender sua conta
     new_pending_account:
       body: Os detalhes da nova conta estão abaixo. Você pode aprovar ou vetar.
       subject: Nova conta para revisão em %{instance} (%{username})
@@ -988,6 +1034,7 @@ pt-BR:
     changes_saved_msg: Alterações foram salvas com sucesso!
     copy: Copiar
     delete: Excluir
+    deselect: Desmarcar todos
     none: Nenhum
     order_by: Ordenar por
     save_changes: Salvar alterações
@@ -1197,6 +1244,9 @@ pt-BR:
       invalid_rules: não faz referência a regras válidas
   rss:
     content_warning: 'Aviso de conteúdo:'
+    descriptions:
+      account: Publicações públicas de @%{acct}
+      tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Você excedeu o limite de %{limit} toots agendados para esse dia
     over_total_limit: Você excedeu o limite de %{limit} toots agendados
@@ -1355,6 +1405,9 @@ pt-BR:
     pinned: Toot fixado
     reblogged: deu boost
     sensitive_content: Conteúdo sensível
+  strikes:
+    errors:
+      too_late: É tarde demais para apelar esta violação
   tags:
     does_not_match_previous_name: não corresponde ao nome anterior
   themes:
@@ -1412,9 +1465,13 @@ pt-BR:
         disable: Você não poderá mais usar a sua conta, mas o seu perfil e outros dados permanecem intactos. Você pode solicitar um backup dos seus dados, mudar as configurações ou excluir sua conta.
         sensitive: A partir de agora, todos os seus arquivos de mídia enviados serão marcados como confidenciais e escondidos por trás de um aviso de clique.
       reason: 'Motivo:'
+      statuses: 'Publicações citadas:'
       subject:
+        delete_statuses: Suas publicações em %{acct} foram removidas
         disable: Sua conta %{acct} foi bloqueada
+        mark_statuses_as_sensitive: Suas publicações em %{acct} foram marcadas como sensíveis
         none: Aviso para %{acct}
+        sensitive: Suas publicações em %{acct} serão marcadas como sensíveis a partir de agora
         silence: Sua conta %{acct} foi silenciada
         suspend: Sua conta %{acct} foi banida
       title:
@@ -1422,6 +1479,7 @@ pt-BR:
         disable: Conta bloqueada
         mark_statuses_as_sensitive: Postagens marcadas como sensíveis
         none: Aviso
+        sensitive: Conta marcada como sensível
         silence: Conta silenciada
         suspend: Conta banida
     welcome:

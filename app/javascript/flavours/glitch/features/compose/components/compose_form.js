@@ -305,12 +305,12 @@ class ComposeForm extends ImmutablePureComponent {
     const countText = this.getFulltextForCharacterCounting();
 
     return (
-      <div className='composer'>
+      <div className='compose-form'>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
 
-        <div className={`composer--spoiler ${spoiler ? 'composer--spoiler--visible' : ''}`} ref={this.setRef}>
+        <div className={`spoiler-input ${spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef}>
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={spoilerText}
@@ -352,7 +352,7 @@ class ComposeForm extends ImmutablePureComponent {
           </div>
         </AutosuggestTextarea>
 
-        <div className='composer--options-wrapper'>
+        <div className='compose-form__buttons-wrapper'>
           <OptionsContainer
             advancedOptions={advancedOptions}
             disabled={isSubmitting}
@@ -364,7 +364,7 @@ class ComposeForm extends ImmutablePureComponent {
             sensitive={sensitive || (spoilersAlwaysOn && spoilerText && spoilerText.length > 0)}
             spoiler={spoilersAlwaysOn ? (spoilerText && spoilerText.length > 0) : spoiler}
           />
-          <div className='compose--counter-wrapper'>
+          <div className='character-counter__wrapper'>
             <CharacterCounter text={countText} max={maxChars} />
           </div>
         </div>

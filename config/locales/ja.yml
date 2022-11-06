@@ -5,7 +5,7 @@ ja:
     contact_missing: 未設定
     contact_unavailable: N/A
     hosted_on: Mastodon hosted on %{domain}
-    title: About
+    title: このサーバーについて
   accounts:
     follow: フォロー
     followers:
@@ -204,6 +204,7 @@ ja:
         reject_user: ユーザーを拒否
         remove_avatar_user: アイコンを削除
         reopen_report: 未解決に戻す
+        resend_user: 確認メールを再送信する
         reset_password_user: パスワードをリセット
         resolve_report: 通報を解決済みにする
         sensitive_account: アカウントのメディアを閲覧注意にマーク
@@ -229,6 +230,7 @@ ja:
         confirm_user_html: "%{name}さんが%{target}さんのメールアドレスを確認済みにしました"
         create_account_warning_html: "%{name}さんが%{target}さんに警告メールを送信しました"
         create_announcement_html: "%{name}さんが新しいお知らせ %{target}を作成しました"
+        create_canonical_email_block_html: "%{name} さんがハッシュ %{target} を持つメールをブロックしました。"
         create_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を追加しました"
         create_domain_allow_html: "%{name}さんが%{target}の連合を許可しました"
         create_domain_block_html: "%{name}さんがドメイン %{target}をブロックしました"
@@ -238,6 +240,7 @@ ja:
         create_user_role_html: "%{name}さんがロール『%{target}』を作成しました"
         demote_user_html: "%{name}さんが%{target}さんを降格しました"
         destroy_announcement_html: "%{name}さんがお知らせ %{target}を削除しました"
+        destroy_canonical_email_block_html: "%{name} さんがハッシュ %{target} を持つメールのブロックを解除しました。"
         destroy_custom_emoji_html: "%{name}さんがカスタム絵文字『%{target}』を削除しました"
         destroy_domain_allow_html: "%{name}さんが%{target}の連合許可を外しました"
         destroy_domain_block_html: "%{name}さんがドメイン %{target}のブロックを外しました"
@@ -260,6 +263,7 @@ ja:
         reject_user_html: "%{target}から登録された%{name}さんを拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
+        resend_user_html: "%{name} が %{target} の確認メールを再送信しました"
         reset_password_user_html: "%{name}さんが%{target}さんのパスワードをリセットしました"
         resolve_report_html: "%{name}さんが通報 %{target}を解決済みにしました"
         sensitive_account_html: "%{name}さんが%{target}さんのメディアを閲覧注意にマークしました"
@@ -273,6 +277,7 @@ ja:
         update_announcement_html: "%{name}さんがお知らせ %{target}を更新しました"
         update_custom_emoji_html: "%{name}さんがカスタム絵文字 %{target}を更新しました"
         update_domain_block_html: "%{name}さんが%{target}のドメインブロックを更新しました"
+        update_ip_block_html: "%{name} さんがIP %{target} のルールを更新しました"
         update_status_html: "%{name}さんが%{target}さんの投稿を更新しました"
         update_user_role_html: "%{name}さんがロール『%{target}』を変更しました"
       empty: ログが見つかりませんでした
@@ -318,6 +323,7 @@ ja:
       listed: 表示
       new:
         title: 新規カスタム絵文字の追加
+      no_emoji_selected: 何も選択されていないため、変更されていません
       not_permitted: この操作を実行する権限がありません。
       overwrite: 上書き
       shortcode: ショートコード
@@ -417,6 +423,8 @@ ja:
       unsuppress: おすすめフォローを復元
     instances:
       availability:
+        description_html:
+          other: ドメインへの配信が <strong>%{count}</strong> 日失敗した場合、そのドメイン<em>からの</em>配信を受信しない限り、それ以上の配信を行いません。
         failure_threshold_reached: "%{date}に失敗のしきい値に達しました。"
         failures_recorded:
           other: "%{count}日間試行に失敗しました。"
@@ -476,6 +484,7 @@ ja:
       total_followed_by_us: フォロー合計
       total_reported: 通報合計
       total_storage: 添付されたメディア
+      totals_time_period_hint_html: 以下に表示される合計には、すべての時間のデータが含まれています。
     invites:
       deactivate_all: すべて無効化
       filter:
@@ -614,9 +623,11 @@ ja:
         manage_federation: 連合の管理
         manage_federation_description: ユーザーが他のドメインとの連合をブロックまたは許可したり、配信を制御したりできます。
         manage_invites: 招待を管理
+        manage_invites_description: 招待リンクの閲覧・解除を可能にする。
         manage_reports: レポートの管理
         manage_reports_description: ユーザーがレポートを確認したり、モデレーションアクションを実行したりできます。
         manage_roles: ロールの管理
+        manage_roles_description: ユーザーが自分より下の役割を管理し、割り当てることができます。
         manage_rules: ルールの管理
         manage_rules_description: ユーザーがサーバールールを変更できるようにします
         manage_settings: 設定の管理
@@ -626,6 +637,7 @@ ja:
         manage_user_access: アクセス権を管理
         manage_user_access_description: 他のユーザーの2段階認証を無効にしたり、メールアドレスを変更したり、パスワードをリセットしたりすることができます。
         manage_users: ユーザーの管理
+        manage_users_description: 他のユーザーの詳細情報を閲覧し、モデレーションを行うことができます。
         manage_webhooks: Webhookの管理
         manage_webhooks_description: 管理者イベントのWebhookを設定できます。
         view_audit_log: 監査ログの表示
@@ -645,18 +657,24 @@ ja:
     settings:
       about:
         manage_rules: サーバーのルールを管理
+        preamble: サーバーの運営、管理、資金調達の方法について、詳細な情報を提供します。
+        rules_hint: ユーザーが守るべきルールのための専用エリアがあります。
         title: About
       appearance:
         preamble: ウェブインターフェースをカスタマイズします。
         title: 外観
       branding:
+        preamble: サーバーのブランディングは、ネットワーク上の他のサーバーと区別するためのものです。この情報は、Mastodon の Web インターフェース、ネイティブアプリケーション、他の Web サイトやメッセージングアプリのリンクプレビューなど、様々な所で表示される可能性があります。このため、明確で短く、簡潔に記載することをおすすめします。
         title: ブランディング
       content_retention:
+        preamble: ユーザーが生成したコンテンツがどのように Mastodon に保存されるかを管理します。
         title: コンテンツの保持
       discovery:
         follow_recommendations: おすすめフォロー
+        preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。
         profile_directory: ディレクトリ
         public_timelines: 公開タイムライン
+        title: 見つける
         trends: トレンド
       domain_blocks:
         all: 誰にでも許可
@@ -675,16 +693,29 @@ ja:
       delete: ファイルを削除
       destroyed_msg: ファイルを削除しました！
     statuses:
+      account: 作成者
+      application: アプリ
       back_to_account: アカウントページに戻る
       back_to_report: 通報ページに戻る
       batch:
         remove_from_report: 通報から削除
         report: 通報
       deleted: 削除済み
+      favourites: お気に入り
+      history: 更新履歴
+      in_reply_to: 返信先
+      language: 言語
       media:
         title: メディア
+      metadata: メタデータ
       no_status_selected: 何も選択されていないため、変更されていません
+      open: 投稿を開く
+      original_status: オリジナルの投稿
+      reblogs: ブースト
+      status_changed: 投稿を変更しました
       title: 投稿一覧
+      trending: トレンド
+      visibility: 公開範囲
       with_media: メディアあり
     strikes:
       actions:
@@ -724,6 +755,9 @@ ja:
         description_html: これらは、多くのユーザーに共有されているリンクです。あなたのユーザーが世の中の動きを知るのに役立ちます。あなたが公開者を承認するまで、リンクは一般に表示されません。また、個別のリンクの許可・拒否も可能です。
         disallow: リンクの拒否
         disallow_provider: 発行者の拒否
+        no_link_selected: 何も選択されていないため、変更されていません
+        publishers:
+          no_publisher_selected: 何も選択されていないため、変更されていません
         shared_by_over_week:
           other: 週間%{count}人に共有されました
         title: トレンドリンク
@@ -739,8 +773,13 @@ ja:
       statuses:
         allow: 掲載を許可
         allow_account: 投稿者を許可
+        description_html: これらは、このサーバーが知っている、たくさんシェアされ、お気に入り登録されている投稿です。新しいユーザーや久しぶりにアクセスするユーザーがフォローする人を探すのに役立ちます。あなたが投稿者を承認し、投稿者が許可するまで、表示されることはありません。また、個別の投稿を許可または拒否することもできます。
         disallow: 掲載を拒否
         disallow_account: 投稿者を拒否
+        no_status_selected: 何も選択されていないため、変更されていません
+        not_discoverable: 投稿者は発見可能であることに同意していません
+        shared_by:
+          other: "%{friendly_count} 回の共有、お気に入り"
         title: トレンド投稿
       tags:
         current_score: 現在のスコア %{score}
@@ -752,6 +791,7 @@ ja:
           tag_uses_measure: 合計利用数
         description_html: これらは、多くの投稿に使用されているハッシュタグです。あなたのユーザーが、人々が今一番話題にしていることを知るのに役立ちます。あなたが承認するまで、ハッシュタグは一般に表示されません。
         listable: おすすめに表示する
+        no_tag_selected: 何も選択されていないため、変更されていません
         not_listable: おすすめに表示しない
         not_trendable: トレンドに表示しない
         not_usable: 使用を禁止
@@ -774,15 +814,19 @@ ja:
     webhooks:
       add_new: エンドポイントを追加
       delete: 削除
+      description_html: "<strong>Webhook</strong> により、Mastodon は選択されたイベントの<strong>リアルタイム通知</strong>をアプリケーションにプッシュします。これにより、アプリケーションは<strong>自動的に処理を行うことができます</strong>。"
       disable: 無効化
       disabled: 無効
       edit: エンドポイントを編集
+      empty: まだWebhookエンドポイントが設定されていません。
       enable: 有効化
       enabled: アクティブ
       enabled_events:
         other: "%{count}件の有効なイベント"
       events: イベント
       new: 新しいwebhook
+      rotate_secret: シークレットをローテートする
+      secret: シークレットに署名
       status: ステータス
       title: Webhooks
       webhook: Webhook
@@ -796,6 +840,7 @@ ja:
         sensitive: アカウントを閲覧注意にする
         silence: アカウントを制限する
         suspend: アカウントを停止する
+      body: "%{target} は %{date} に行われた %{action_taken_by} による %{type} のモデレーション判定に不服を申し立てています。内容は次の通りです:"
       next_steps: モデレーションの決定を取り消すために申し立てを承認するか、無視することができます。
       subject: "%{instance}で%{username}さんからモデレーションへの申し立てが届きました。"
     new_pending_account:
@@ -813,6 +858,7 @@ ja:
         title: トレンド投稿
       new_trending_tags:
         no_approved_tags: 承認されたトレンドハッシュタグはありません。
+        requirements: 'これらの候補はいずれも %{rank} 位の承認済みトレンドハッシュタグのスコアを上回ります。現在 #%{lowest_tag_name} のスコアは %{lowest_tag_score} です。'
         title: トレンドハッシュタグ
       subject: "%{instance}で新しいトレンドが審査待ちです"
   aliases:
@@ -869,6 +915,7 @@ ja:
     migrate_account: 別のアカウントに引っ越す
     migrate_account_html: 引っ越し先を明記したい場合は<a href="%{path}">こちら</a>で設定できます。
     or_log_in_with: または次のサービスでログイン
+    privacy_policy_agreement_html: <a href="%{privacy_policy_path}" target="_blank">プライバシーポリシー</a>を読み、同意します
     providers:
       cas: CAS
       saml: SAML
@@ -876,12 +923,18 @@ ja:
     registration_closed: "%{instance}は現在、新規登録停止中です"
     resend_confirmation: 確認メールを再送する
     reset_password: パスワードを再発行
+    rules:
+      preamble: これらは %{domain} モデレータによって設定され、実施されます。
+      title: いくつかのルールがあります。
     security: セキュリティ
     set_new_password: 新しいパスワード
     setup:
       email_below_hint_html: 下記のメールアドレスが間違っている場合、ここで変更することで新たに確認メールを受信できます。
       email_settings_hint_html: 確認用のメールを%{email}に送信しました。メールアドレスが正しくない場合、以下より変更することができます。
       title: セットアップ
+    sign_up:
+      preamble: この Mastodon サーバーのアカウントがあれば、ネットワーク上の他の人のアカウントがどこでホストされているかに関係なく、その人をフォローすることができます。
+      title: さあ %{domain} でセットアップしましょう.
     status:
       account_status: アカウントの状態
       confirming: メールアドレスの確認が完了するのを待っています。
@@ -1028,8 +1081,10 @@ ja:
       add_keyword: キーワードを追加
       keywords: キーワード
       statuses: 個別の投稿
+      statuses_hint_html: このフィルタは、以下のキーワードにマッチするかどうかに関わらず、個々の投稿を選択して適用されます。 <a href="%{path}">フィルターを確認または投稿を削除</a>。
       title: フィルターを編集
     errors:
+      deprecated_api_multiple_keywords: これらのパラメータは複数のフィルタキーワードに適用されるため、このアプリケーションから変更できません。 最新のアプリケーションまたはWebインターフェースを使用してください。
       invalid_context: 対象がないか無効です
     index:
       contexts: "%{contexts}のフィルター"
@@ -1052,11 +1107,16 @@ ja:
       batch:
         remove: フィルターから削除する
       index:
+        hint: このフィルターは、他の条件に関係なく個々の投稿を選択する場合に適用されます。Webインターフェースからこのフィルターにさらに投稿を追加できます。
         title: フィルターされた投稿
   footer:
     trending_now: トレンドタグ
   generic:
     all: すべて
+    all_items_on_page_selected_html:
+      other: このページの <strong>%{count}</strong> 件すべてが選択されています。
+    all_matching_items_selected_html:
+      other: 検索条件に一致する <strong>%{count}</strong> 件すべてが選択されています。
     changes_saved_msg: 正常に変更されました！
     copy: コピー
     delete: 削除
@@ -1064,6 +1124,8 @@ ja:
     none: なし
     order_by: 並び順
     save_changes: 変更を保存
+    select_all_matching_items:
+      other: 検索条件に一致する %{count} 件をすべて選択
     today: 今日
     validation_errors:
       other: エラーが発生しました！ 以下の%{count}件のエラーを確認してください
@@ -1163,6 +1225,8 @@ ja:
     carry_blocks_over_text: このユーザーは、あなたがブロックしていた%{acct}から引っ越しました。
     carry_mutes_over_text: このユーザーは、あなたがミュートしていた%{acct}から引っ越しました。
     copy_account_note_text: このユーザーは%{acct}から引っ越しました。これは以前のメモです。
+  navigation:
+    toggle_menu: メニューを表示 / 非表示
   notification_mailer:
     admin:
       report:
@@ -1425,6 +1489,9 @@ ja:
     pinned: 固定された投稿
     reblogged: さんがブースト
     sensitive_content: 閲覧注意
+  strikes:
+    errors:
+      too_late: このストライクに抗議するには遅すぎます
   tags:
     does_not_match_previous_name: 以前の名前と一致しません
   themes:
@@ -1505,8 +1572,12 @@ ja:
         suspend: アカウントが停止されました
     welcome:
       edit_profile_action: プロフィールを設定
+      edit_profile_step: |-
+        プロフィール画像をアップロードしたり、表示名を変更したりして、プロフィールをカスタマイズできます。
+        新しいフォロワーからフォローリクエストを承認する前に、オプトインで確認できます。
       explanation: 始めるにあたってのアドバイスです
       final_action: 始めましょう
+      final_step: 'さあ、始めましょう！ たとえフォロワーがまだいなくても、あなたの公開した投稿はローカルタイムラインやハッシュタグなどを通じて誰かの目にとまるはずです。自己紹介をしたいときには #introductions ハッシュタグが便利かもしれません。'
       full_handle: あなたの正式なユーザーID
       full_handle_hint: 別のサーバーの友達とフォローやメッセージをやり取りする際には、これを伝えることになります。
       subject: Mastodonへようこそ

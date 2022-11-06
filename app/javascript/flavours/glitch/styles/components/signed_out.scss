@@ -4,6 +4,20 @@
   p {
     color: $darker-text-color;
     margin-bottom: 20px;
+
+    a {
+      color: $secondary-text-color;
+      text-decoration: none;
+      unicode-bidi: isolate;
+
+      &:hover {
+        text-decoration: underline;
+
+        .fa {
+          color: lighten($dark-text-color, 7%);
+        }
+      }
+    }
   }
 
   .button {
