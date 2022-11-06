@@ -49,10 +49,10 @@ class ReplyIndicator extends ImmutablePureComponent {
 
     //  The result.
     return (
-      <article className='composer--reply'>
-        <header>
+      <article className='reply-indicator'>
+        <header className='reply-indicator__header'>
           <IconButton
-            className='cancel'
+            className='reply-indicator__cancel'
             icon='times'
             onClick={this.handleClick}
             title={intl.formatMessage(messages.cancel)}
@@ -66,7 +66,7 @@ class ReplyIndicator extends ImmutablePureComponent {
           )}
         </header>
         <div
-          className='content translate'
+          className='reply-indicator__content translate'
           dangerouslySetInnerHTML={{ __html: content || '' }}
         />
         {attachments.size > 0 && (

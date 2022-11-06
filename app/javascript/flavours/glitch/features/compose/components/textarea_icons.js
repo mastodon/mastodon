@@ -38,7 +38,7 @@ class TextareaIcons extends ImmutablePureComponent {
   render () {
     const { advancedOptions, intl } = this.props;
     return (
-      <div className='composer--textarea--icons'>
+      <div className='compose-form__textarea-icons'>
         {advancedOptions ? iconMap.map(
           ([key, icon, message]) => advancedOptions.get(key) ? (
             <span

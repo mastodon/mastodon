@@ -1,4 +1,4 @@
-.composer {
+.compose-form {
   padding: 10px;
 
   .emoji-picker-dropdown {
@@ -25,16 +25,16 @@
   }
 }
 
-.no-reduce-motion .composer--spoiler {
+.no-reduce-motion .spoiler-input {
   transition: height 0.4s ease, opacity 0.4s ease;
 }
 
-.composer--spoiler {
+.spoiler-input {
   height: 0;
   transform-origin: bottom;
   opacity: 0.0;
 
-  &.composer--spoiler--visible {
+  &.spoiler-input--visible {
     height: 36px;
     margin-bottom: 11px;
     opacity: 1.0;
@@ -64,7 +64,7 @@
   }
 }
 
-.composer--warning {
+.compose-form__warning {
   color: $inverted-text-color;
   margin-bottom: 15px;
   background: $ui-primary-color;
@@ -123,7 +123,7 @@
   }
 }
 
-.composer--reply {
+.reply-indicator {
   margin: 0 0 10px;
   border-radius: 4px;
   padding: 10px;
@@ -131,117 +131,117 @@
   min-height: 23px;
   overflow-y: auto;
   flex: 0 2 auto;
+}
 
-  & > header {
-    margin-bottom: 5px;
-    overflow: hidden;
+.reply-indicator__header {
+  margin-bottom: 5px;
+  overflow: hidden;
 
-    & > .account.small { color: $inverted-text-color; }
+  & > .account.small { color: $inverted-text-color; }
+}
 
-    & > .cancel {
-      float: right;
-      line-height: 24px;
+.reply-indicator__cancel {
+  float: right;
+  line-height: 24px;
+}
+
+.reply-indicator__content {
+  position: relative;
+  margin: 10px 0;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: $inverted-text-color;
+  word-wrap: break-word;
+  font-weight: 400;
+  overflow: visible;
+  white-space: pre-wrap;
+  padding-top: 5px;
+  overflow: hidden;
+
+  p, pre, blockquote {
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
-  & > .content {
-    position: relative;
-    margin: 10px 0;
-    padding: 0 12px;
-    font-size: 14px;
-    line-height: 20px;
+  h1, h2, h3, h4, h5 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  h1, h2 {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  h3, h4, h5 {
+    font-weight: 500;
+  }
+
+  blockquote {
+    padding-left: 10px;
+    border-left: 3px solid $inverted-text-color;
     color: $inverted-text-color;
-    word-wrap: break-word;
-    font-weight: 400;
-    overflow: visible;
-    white-space: pre-wrap;
-    padding-top: 5px;
-    overflow: hidden;
+    white-space: normal;
 
-    p, pre, blockquote {
-      margin-bottom: 20px;
-      white-space: pre-wrap;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
+    p:last-child {
+      margin-bottom: 0;
     }
+  }
 
-    h1, h2, h3, h4, h5 {
-      margin-top: 20px;
-      margin-bottom: 20px;
+  b, strong {
+    font-weight: 700;
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  sub {
+    font-size: smaller;
+    vertical-align: sub;
+  }
+
+  sup {
+    font-size: smaller;
+    vertical-align: super;
+  }
+
+  ul, ol {
+    margin-left: 1em;
+
+    p {
+      margin: 0;
     }
+  }
 
-    h1, h2 {
-      font-weight: 700;
-      font-size: 18px;
-    }
+  ul {
+    list-style-type: disc;
+  }
 
-    h2 {
-      font-size: 16px;
-    }
+  ol {
+    list-style-type: decimal;
+  }
 
-    h3, h4, h5 {
-      font-weight: 500;
-    }
+  a {
+    color: $lighter-text-color;
+    text-decoration: none;
 
-    blockquote {
-      padding-left: 10px;
-      border-left: 3px solid $inverted-text-color;
-      color: $inverted-text-color;
-      white-space: normal;
+    &:hover { text-decoration: underline }
 
-      p:last-child {
-        margin-bottom: 0;
-      }
-    }
+    &.mention {
+      &:hover {
+        text-decoration: none;
 
-    b, strong {
-      font-weight: 700;
-    }
-
-    em, i {
-      font-style: italic;
-    }
-
-    sub {
-      font-size: smaller;
-      vertical-align: sub;
-    }
-
-    sup {
-      font-size: smaller;
-      vertical-align: super;
-    }
-
-    ul, ol {
-      margin-left: 1em;
-
-      p {
-        margin: 0;
-      }
-    }
-
-    ul {
-      list-style-type: disc;
-    }
-
-    ol {
-      list-style-type: decimal;
-    }
-
-    a {
-      color: $lighter-text-color;
-      text-decoration: none;
-
-      &:hover { text-decoration: underline }
-
-      &.mention {
-        &:hover {
-          text-decoration: none;
-
-          span { text-decoration: underline }
-        }
+        span { text-decoration: underline }
       }
     }
   }
@@ -253,8 +253,12 @@
   }
 }
 
-.compose-form__autosuggest-wrapper,
-.autosuggest-input {
+.compose-form .compose-form__autosuggest-wrapper {
+  position: relative;
+}
+
+.compose-form .autosuggest-textarea,
+.compose-form .autosuggest-input {
   position: relative;
   width: 100%;
 
@@ -284,10 +288,6 @@
         all: unset;
       }
 
-      &:disabled {
-        background: $ui-secondary-color;
-      }
-
       &:focus {
         outline: 0;
       }
@@ -304,7 +304,7 @@
   }
 }
 
-.composer--textarea--icons {
+.compose-form__textarea-icons {
   display: block;
   position: absolute;
   top: 29px;
@@ -401,25 +401,25 @@
   }
 }
 
-.composer--upload_form {
+.compose-form__upload-wrapper {
   overflow: hidden;
-
-  & > .content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-family: inherit;
-    padding: 5px;
-    overflow: hidden;
-  }
 }
 
-.composer--upload_form--item {
+.compose-form__uploads-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-family: inherit;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.compose-form__upload {
   flex: 1 1 0;
   margin: 5px;
   min-width: 40%;
 
-  & > div {
+  .compose-form__upload-thumbnail {
     position: relative;
     border-radius: 4px;
     height: 140px;
@@ -459,52 +459,52 @@
   }
 }
 
-.composer--upload_form--actions {
+.compose-form__upload__actions {
   background: linear-gradient(180deg, rgba($base-shadow-color, 0.8) 0, rgba($base-shadow-color, 0.35) 80%, transparent);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 }
 
-.composer--upload_form--progress {
+.upload-progress {
   display: flex;
   padding: 10px;
   color: $darker-text-color;
   overflow: hidden;
 
-  & > .fa {
+  .fa {
     font-size: 34px;
     margin-right: 10px;
   }
 
-  & > .message {
-    flex: 1 1 auto;
-
-    & > span {
-      display: block;
-      font-size: 12px;
-      font-weight: 500;
-      text-transform: uppercase;
-    }
-
-    & > .backdrop {
-      position: relative;
-      margin-top: 5px;
-      border-radius: 6px;
-      width: 100%;
-      height: 6px;
-      background: $ui-base-lighter-color;
-
-      & > .tracker {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 6px;
-        border-radius: 6px;
-        background: $ui-highlight-color;
-      }
-    }
+  span {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
   }
+}
+
+.upload-progress__message {
+  flex: 1 1 auto;
+}
+
+.upload-progress__backdrop {
+  position: relative;
+  margin-top: 5px;
+  border-radius: 6px;
+  width: 100%;
+  height: 6px;
+  background: $ui-base-lighter-color;
+}
+
+.upload-progress__tracker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 6px;
+  border-radius: 6px;
+  background: $ui-highlight-color;
 }
 
 .compose-form__modifiers {
@@ -514,7 +514,7 @@
   background: $simple-background-color;
 }
 
-.composer--options-wrapper {
+.compose-form__buttons-wrapper {
   padding: 10px;
   background: darken($simple-background-color, 8%);
   border-radius: 0 0 4px 4px;
@@ -524,7 +524,7 @@
   flex: 0 0 auto;
 }
 
-.composer--options {
+.compose-form__buttons {
   display: flex;
   flex: 0 0 auto;
 
@@ -551,30 +551,41 @@
   }
 }
 
-.compose--counter-wrapper {
+.character-counter__wrapper {
   align-self: center;
   margin-right: 4px;
 }
 
-.composer--options--dropdown {
-  &.open {
-    & > .value {
-      border-radius: 4px 4px 0 0;
-      box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
-      color: $primary-text-color;
-      background: $ui-highlight-color;
+.privacy-dropdown.active {
+  .privacy-dropdown__value {
+    background: $simple-background-color;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -4px 4px rgba($base-shadow-color, 0.1);
+
+    .icon-button {
       transition: none;
     }
-    &.top {
-      & > .value {
-        border-radius: 0 0 4px 4px;
-        box-shadow: 0 4px 4px rgba($base-shadow-color, 0.1);
+
+    &.active {
+      background: $ui-highlight-color;
+
+      .icon-button {
+        color: $primary-text-color;
       }
     }
   }
+
+  &.top .privacy-dropdown__value {
+    border-radius: 0 0 4px 4px;
+  }
+
+  .privacy-dropdown__dropdown {
+    display: block;
+    box-shadow: 2px 4px 6px rgba($base-shadow-color, 0.1);
+  }
 }
 
-.composer--options--dropdown--content {
+.privacy-dropdown__dropdown {
   position: absolute;
   border-radius: 4px;
   box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
@@ -583,14 +594,14 @@
   transform-origin: 50% 0;
 }
 
-.composer--options--dropdown--content--item {
+.privacy-dropdown__option {
   display: flex;
   align-items: center;
   padding: 10px;
   color: $inverted-text-color;
   cursor: pointer;
 
-  & > .content {
+  .privacy-dropdown__option__content {
     flex: 1 1 auto;
     color: $lighter-text-color;
 
@@ -608,7 +619,7 @@
     background: $ui-highlight-color;
     color: $primary-text-color;
 
-    & > .content {
+    .privacy-dropdown__option__content {
       color: $primary-text-color;
 
       strong { color: $primary-text-color }
@@ -618,31 +629,25 @@
   &.active:hover { background: lighten($ui-highlight-color, 4%) }
 }
 
-.composer--publisher {
-  padding-top: 10px;
-  text-align: right;
-  white-space: nowrap;
-  overflow: hidden;
+.compose-form__publish {
+  display: flex;
   justify-content: flex-end;
+  min-width: 0;
   flex: 0 0 auto;
+  column-gap: 5px;
 
-  & > .primary {
-    display: inline-block;
-    margin: 0;
-    padding: 7px 10px;
-    text-align: center;
-  }
+  .compose-form__publish-button-wrapper {
+    overflow: hidden;
+    padding-top: 10px;
 
-  & > .side_arm {
-    display: inline-block;
-    margin: 0 5px;
-    padding: 7px 0;
-    width: 36px;
-    text-align: center;
-  }
+    button {
+      padding: 7px 10px;
+      text-align: center;
+    }
 
-  &.over {
-    & > .count { color: $warning-red }
+    & > .side_arm {
+      width: 36px;
+    }
   }
 }
 

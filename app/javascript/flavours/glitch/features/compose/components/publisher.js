@@ -48,7 +48,7 @@ class Publisher extends ImmutablePureComponent {
     const { countText, disabled, intl, onSecondarySubmit, privacy, sideArm, isEditing } = this.props;
 
     const diff = maxChars - length(countText || '');
-    const computedClass = classNames('composer--publisher', {
+    const computedClass = classNames('compose-form__publish', {
       disabled: disabled,
       over: diff < 0,
     });
@@ -72,22 +72,26 @@ class Publisher extends ImmutablePureComponent {
     return (
       <div className={computedClass}>
         {sideArm && !isEditing && sideArm !== 'none' ? (
-          <Button
-            className='side_arm'
-            disabled={disabled}
-            onClick={onSecondarySubmit}
-            style={{ padding: null }}
-            text={<Icon id={privacyIcons[sideArm]} />}
-            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${sideArm}.short` })}`}
-          />
+          <div className='compose-form__publish-button-wrapper'>
+            <Button
+              className='side_arm'
+              disabled={disabled}
+              onClick={onSecondarySubmit}
+              style={{ padding: null }}
+              text={<Icon id={privacyIcons[sideArm]} />}
+              title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${sideArm}.short` })}`}
+            />
+          </div>
         ) : null}
-        <Button
-          className='primary'
-          text={publishText}
-          title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${privacy}.short` })}`}
-          onClick={this.handleSubmit}
-          disabled={disabled}
-        />
+        <div className='compose-form__publish-button-wrapper'>
+          <Button
+            className='primary'
+            text={publishText}
+            title={`${intl.formatMessage(messages.publish)}: ${intl.formatMessage({ id: `privacy.${privacy}.short` })}`}
+            onClick={this.handleSubmit}
+            disabled={disabled}
+          />
+        </div>
       </div>
     );
   };
