@@ -104,8 +104,8 @@ mastodon:
 ingress:
   enabled: true
   annotations:
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: "true"
+    #kubernetes.io/ingress.class: nginx
+    #kubernetes.io/tls-acme: "true"
     # cert-manager.io/cluster-issuer: "letsencrypt"
     #
     # ensure that NGINX's upload size matches Mastodon's
