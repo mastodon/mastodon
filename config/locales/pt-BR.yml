@@ -206,6 +206,7 @@ pt-BR:
         reject_user: Rejeitar Usuário
         remove_avatar_user: Remover Avatar
         reopen_report: Reabrir Relatório
+        resend_user: Reenviar o E-mail de Confirmação
         reset_password_user: Redefinir a senha
         resolve_report: Resolver Relatório
         sensitive_account: Marcar a mídia na sua conta como sensível
@@ -280,6 +281,7 @@ pt-BR:
         update_ip_block_html: "%{name} alterou a regra para IP %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou a função %{target}"
+      deleted_account: conta excluída
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por usuário
@@ -664,17 +666,24 @@ pt-BR:
       title: Regras do servidor
     settings:
       about:
+        manage_rules: Gerenciar regras do servidor
         title: Sobre
       appearance:
         title: Aparência
       branding:
         title: Marca
       discovery:
+        follow_recommendations: Seguir recomendações
+        public_timelines: Timelines públicas
+        title: Descobrir
         trends: Tendências
       domain_blocks:
         all: Para todos
         disabled: Para ninguém
         users: Para usuários locais logados
+      registrations:
+        preamble: Controle quem pode criar uma conta no seu servidor.
+        title: Inscrições
       registrations_mode:
         modes:
           approved: Aprovação necessária para criar conta
@@ -702,7 +711,12 @@ pt-BR:
       metadata: Metadados
       no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       open: Abrir post
+      original_status: Postagem original
+      reblogs: Reblogs
+      status_changed: Publicação alterada
       title: Toots da conta
+      trending: Em alta
+      visibility: Visibilidade
       with_media: Com mídia
     strikes:
       appeal_approved: Apelado
@@ -770,14 +784,23 @@ pt-BR:
       empty: Você ainda não definiu nenhuma predefinição de alerta.
       title: Gerenciar os avisos pré-definidos
     webhooks:
+      add_new: Adicionar endpoint
       delete: Excluir
       disable: Desabilitar
       disabled: Desativado
+      edit: Editar endpoint
       enable: Habilitar
       enabled: Ativo
+      enabled_events:
+        one: 1 evento habilitado
+        other: "%{count} eventos ativados"
       events: Eventos
+      new: Novo webhook
       rotate_secret: Girar segredo
+      secret: Assinatura secreta
       status: Status
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -788,6 +811,7 @@ pt-BR:
         sensitive: para marcar sua conta como sensível
         silence: para limitar sua conta
         suspend: para suspender sua conta
+      body: "%{target} está apelando por uma decisão de moderação de %{action_taken_by} em %{date}, que era %{type}. Escreveu:"
     new_pending_account:
       body: Os detalhes da nova conta estão abaixo. Você pode aprovar ou vetar.
       subject: Nova conta para revisão em %{instance} (%{username})
@@ -796,6 +820,8 @@ pt-BR:
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trends:
+      new_trending_links:
+        title: Links em destaque
       new_trending_statuses:
         title: Publicações em alta
       new_trending_tags:
