@@ -16,6 +16,7 @@ ast:
     mailer:
       confirmation_instructions:
         explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un calcu d'activala. Si nun fuisti tu, inora esti corréu.
+        extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> y <a href="%{policy_path}">los nuesos términos del serviciu</a>.
       email_changed:
         explanation: 'La direición de corréu de la cuenta camudó a:'
         subject: 'Mastodón: Camudó la direición de corréu'
