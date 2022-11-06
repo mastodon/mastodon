@@ -282,6 +282,7 @@ es:
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
         update_status_html: "%{name} actualizó el estado de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
+      deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
@@ -950,8 +951,8 @@ es:
       email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
       title: Configuración
     sign_up:
-      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente de en qué servidor esté su cuenta.
-      title: Vamos a configurar el %{domain}.
+      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente de en qué servidor esté tu cuenta.
+      title: Crear cuenta de Mastodon en %{domain}.
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
