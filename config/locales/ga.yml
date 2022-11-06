@@ -1,38 +1,144 @@
 ---
 ga:
+  about:
+    contact_unavailable: N/B
+    title: Maidir le
   accounts:
+    follow: Lean
+    following: Ag leanúint
+    nothing_here: Níl rud ar bith anseo!
+    posts:
+      few: Postálacha
+      many: Postálacha
+      one: Postáil
+      other: Postálacha
+      two: Postálacha
     posts_tab_heading: Postálacha
   admin:
+    account_actions:
+      action: Déan gníomh
+      title: Déan modhnóireacht ar %{acct}
+    account_moderation_notes:
+      create: Fág nóta
     accounts:
+      approve: Faomh
       are_you_sure: An bhfuil tú cinnte?
+      avatar: Abhatár
+      change_email:
+        current_email: Ríomhphost reatha
+        label: Athraigh ríomhphost
+        new_email: Ríomhphost nua
+        submit: Athraigh ríomhphost
+        title: Athraigh ríomhphost %{username}
+      change_role:
+        changed_msg: D'athraigh ró go rathúil!
+        label: Athraigh ról
+        no_role: Níl aon ról ann
+        title: Athraigh ról %{username}
       confirm: Deimhnigh
       confirmed: Deimhnithe
       confirming: Ag deimhniú
+      custom: Saincheaptha
+      delete: Scrios sonraí
+      deleted: Scriosta
+      demote: Ísligh
+      disable: Reoigh
+      disabled: Reoite
+      display_name: Ainm taispeána
+      edit: Cuir in eagar
       email: Ríomhphost
       email_status: Stádas ríomhphoist
+      enabled: Ar chumas
       followers: Leantóirí
+      follows: Ag leanúint
       ip: IP
       location:
         all: Uile
+      promote: Ardaigh
       public: Poiblí
       reject: Diúltaigh
+      role: Ról
       search: Cuardaigh
       statuses: Postálacha
       title: Cuntais
+      web: Gréasán
     announcements:
       live: Beo
       publish: Foilsigh
     custom_emojis:
       delete: Scrios
+      disable: Díchumasaigh
+      disabled: Díchumasaithe
       emoji: Emoji
+      enable: Cumasaigh
       list: Liosta
+      upload: Uaslódáil
+    dashboard:
+      software: Bogearraí
+      title: Deais
+      website: Suíomh Gréasáin
+    domain_blocks:
+      new:
+        severity:
+          silence: Ciúnaigh
     email_domain_blocks:
       delete: Scrios
+    follow_recommendations:
+      status: Stádas
     instances:
+      back_to_all: Uile
       content_policies:
         policy: Polasaí
       delivery:
         all: Uile
+        unavailable: Níl ar fáil
+      moderation:
+        all: Uile
+    invites:
+      filter:
+        all: Uile
+        available: Ar fáil
+    ip_blocks:
+      delete: Scrios
+      expires_in:
+        '1209600': Coicís
+        '15778476': 6 mhí
+        '2629746': Mí amháin
+        '31556952': Bliain amháin
+        '86400': Lá amháin
+        '94670856': 3 bhliain
+    relays:
+      delete: Scrios
+      disable: Díchumasaigh
+      disabled: Díchumasaithe
+      enable: Cumasaigh
+      enabled: Ar chumas
+      status: Stádas
+    reports:
+      category: Catagóir
+      no_one_assigned: Duine ar bith
+      notes:
+        delete: Scrios
+        title: Nótaí
+      status: Stádas
+      title: Tuairiscí
+    roles:
+      delete: Scrios
+    statuses:
+      account: Údar
+      deleted: Scriosta
+      language: Teanga
+      open: Oscail postáil
+      original_status: Bunphostáil
+      with_media: Le meáin
+    tags:
+      review: Stádas athbhreithnithe
+    trends:
+      allow: Ceadaigh
+      disallow: Dícheadaigh
+      statuses:
+        allow: Ceadaigh postáil
+        allow_account: Ceadaigh údar
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.

@@ -58,7 +58,7 @@ nl:
       demote: Degraderen
       destroyed_msg: De verwijdering van de gegevens van %{username} staat nu in de wachtrij
       disable: Bevriezen
-      disable_sign_in_token_auth: E-mail token authenticatie uitschakelen
+      disable_sign_in_token_auth: Verificatie met een toegangscode via e-mail uitschakelen
       disable_two_factor_authentication: 2FA uitschakelen
       disabled: Bevroren
       display_name: Weergavenaam
@@ -67,7 +67,7 @@ nl:
       email: E-mail
       email_status: E-mailstatus
       enable: Ontdooien
-      enable_sign_in_token_auth: E-mail token authenticatie inschakelen
+      enable_sign_in_token_auth: Verificatie met een toegangscode via e-mail inschakelen
       enabled: Ingeschakeld
       enabled_msg: Het ontdooien van het account van %{username} is geslaagd
       followers: Volgers
@@ -122,7 +122,7 @@ nl:
       removed_header_msg: Het verwijderen van de omslagfoto van %{username} is geslaagd
       resend_confirmation:
         already_confirmed: Deze gebruiker is al bevestigd
-        send: Verzend bevestigingsmail opnieuw
+        send: Bevestigingsmail opnieuw verzenden
         success: Bevestigingsmail succesvol verzonden!
       reset: Opnieuw
       reset_password: Wachtwoord opnieuw instellen
@@ -196,8 +196,10 @@ nl:
         destroy_user_role: Rol permanent verwijderen
         disable_2fa_user: Tweestapsverificatie uitschakelen
         disable_custom_emoji: Lokale emojij uitschakelen
+        disable_sign_in_token_auth_user: Verificatie met een toegangscode via e-mail voor de gebruiker uitschakelen
         disable_user: Gebruiker uitschakelen
         enable_custom_emoji: Lokale emoji inschakelen
+        enable_sign_in_token_auth_user: Verificatie met een toegangscode via e-mail voor de gebruiker inschakelen
         enable_user: Gebruiker inschakelen
         memorialize_account: Het account in een In memoriam veranderen
         promote_user: Gebruiker promoveren
@@ -205,6 +207,7 @@ nl:
         reject_user: Gebruiker afwijzen
         remove_avatar_user: Avatar verwijderen
         reopen_report: Rapportage heropenen
+        resend_user: Bevestigingsmail opnieuw verzenden
         reset_password_user: Wachtwoord opnieuw instellen
         resolve_report: Rapportage oplossen
         sensitive_account: De media in jouw account als gevoelig markeren
@@ -252,8 +255,10 @@ nl:
         destroy_user_role_html: "%{name} verwijderde de rol %{target}"
         disable_2fa_user_html: De vereiste tweestapsverificatie voor %{target} is door %{name} uitgeschakeld
         disable_custom_emoji_html: Emoji %{target} is door %{name} uitgeschakeld
+        disable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail uitgeschakeld voor %{target}"
         disable_user_html: Inloggen voor %{target} is door %{name} uitgeschakeld
         enable_custom_emoji_html: Emoji %{target} is door %{name} ingeschakeld
+        enable_sign_in_token_auth_user_html: "%{name} heeft verificatie met een toegangscode via e-mail ingeschakeld voor %{target}"
         enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
         promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
@@ -261,12 +266,14 @@ nl:
         reject_user_html: "%{name} heeft de registratie van %{target} afgewezen"
         remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
         reopen_report_html: "%{name} heeft rapportage %{target} heropend"
+        resend_user_html: "%{name} heeft de bevestigingsmail voor %{target} opnieuw verzonden"
         reset_password_user_html: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
         resolve_report_html: "%{name} heeft rapportage %{target} opgelost"
         sensitive_account_html: "%{name} markeerde de media van %{target} als gevoelig"
         silence_account_html: Account %{target} is door %{name} beperkt
         suspend_account_html: Account %{target} is door %{name} opgeschort
         unassigned_report_html: "%{name} heeft het toewijzen van rapportage %{target} ongedaan gemaakt"
+        unblock_email_account_html: "%{name} deblokkeerde het e-mailadres van %{target}"
         unsensitive_account_html: "%{name} markeerde media van %{target} als niet gevoelig"
         unsilence_account_html: Beperking van account %{target} is door %{name} opgeheven
         unsuspend_account_html: Opschorten van account %{target} is door %{name} opgeheven
@@ -372,6 +379,7 @@ nl:
       destroyed_msg: Domeinblokkade is ongedaan gemaakt
       domain: Domein
       edit: Domeinblokkade bewerken
+      existing_domain_block: Je hebt al strengere limieten opgelegd aan %{name}.
       existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
       new:
         create: Blokkade aanmaken
@@ -409,6 +417,7 @@ nl:
         create: Blokkeren
         resolve: Domein opzoeken
         title: Nieuw e-maildomein blokkeren
+      no_email_domain_block_selected: Er werden geen e-maildomeinblokkades gewijzigd, omdat er geen enkele werd geselecteerd
       resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
       resolved_through_html: Geblokkeerd via %{domain}
       title: Geblokkeerde e-maildomeinen
@@ -422,6 +431,7 @@ nl:
       unsuppress: Account weer aanbevelen
     instances:
       availability:
+        failure_threshold_reached: Foutieve drempelwaarde bereikt op %{date}.
         failures_recorded:
           one: Mislukte poging op %{count} dag.
           other: Mislukte pogingen op %{count} verschillende dagen.
@@ -432,6 +442,7 @@ nl:
       back_to_limited: Beperkt
       back_to_warning: Waarschuwing
       by_domain: Domein
+      confirm_purge: Weet je zeker dat je de gegevens van dit domein permanent wilt verwijderen?
       content_policies:
         comment: Interne reden
         description_html: Je kunt het beleid bepalen dat op de accounts van dit domein en alle subdomeinen van toepassing is.
@@ -462,6 +473,7 @@ nl:
       delivery_available: Bezorging is mogelijk
       delivery_error_days: Dagen met bezorgfouten
       delivery_error_hint: Wanneer de bezorging voor %{count} dagen niet mogelijk is, wordt de bezorging automatisch als niet beschikbaar gemarkeerd.
+      destroyed_msg: Gegevens van %{domain} staan nu in de wachtrij voor aanstaande verwijdering.
       empty: Geen domeinen gevonden.
       known_accounts:
         one: "%{count} bekend account"
@@ -473,12 +485,14 @@ nl:
       private_comment: Privé-opmerking
       public_comment: Openbare opmerking
       purge: Volledig verwijderen
+      purge_description_html: Als je denkt dat dit domein definitief offline is, kunt je alle accountrecords en bijbehorende gegevens van dit domein verwijderen. Dit kan een tijdje duren.
       title: Federatie
       total_blocked_by_us: Door ons geblokkeerd
       total_followed_by_them: Door hun gevolgd
       total_followed_by_us: Door ons gevolgd
       total_reported: Rapportages over hun
       total_storage: Mediabijlagen
+      totals_time_period_hint_html: De hieronder getoonde totalen bevatten gegevens sinds het begin.
     invites:
       deactivate_all: Alles deactiveren
       filter:
@@ -531,6 +545,10 @@ nl:
           other: "%{count} opmerkingen"
       action_log: Auditlog
       action_taken_by: Actie uitgevoerd door
+      actions:
+        delete_description_html: De gerapporteerde berichten worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
+        mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
+        silence_description_html: Het profiel zal alleen zichtbaar zijn voor diegenen die het al volgen of het handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Kan altijd worden teruggedraaid.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -539,6 +557,7 @@ nl:
       category: Category
       comment:
         none: Geen
+      comment_description_html: 'Om meer informatie te verstrekken, schreef %{name}:'
       created_at: Gerapporteerd op
       delete_and_resolve: Bericht verwijderen
       forwarded: Doorgestuurd
@@ -554,6 +573,8 @@ nl:
         delete: Verwijderen
         placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
         title: Opmerkingen
+      notes_description_html: Bekijk en laat opmerkingen achter voor andere moderatoren en voor jouw toekomstige zelf
+      quick_actions_description_html: 'Onderneem een snelle actie of scroll naar beneden om de gerapporteerde inhoud te zien:'
       remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
@@ -582,6 +603,7 @@ nl:
         moderation: Moderatie
         special: Speciaal
       delete: Verwijderen
+      description_html: Met <strong>gebruikersrollen</strong> kunt je aanpassen op welke functies en gebieden van Mastodon jouw gebruikers toegang hebben.
       edit: Rol '%{name}' bewerken
       everyone: Standaardrechten
       everyone_full_description_html: Dit is de <strong>basisrol</strong> die van toepassing is op <strong>alle gebruikers</strong>, zelfs voor diegenen zonder toegewezen rol. Alle andere rollen hebben de rechten van deze rol als minimum.
@@ -590,25 +612,45 @@ nl:
         other: "%{count} rechten"
       privileges:
         administrator: Beheerder
+        administrator_description: Deze gebruikers hebben volledige rechten en kun dus overal bij
         delete_user_data: Gebruikersgegevens verwijderen
+        delete_user_data_description: Staat gebruikers toe om de gegevens van andere gebruikers zonder vertraging te verwijderen
         invite_users: Gebruikers uitnodigen
+        invite_users_description: Staat gebruikers toe om nieuwe mensen voor de server uit te nodigen
         manage_announcements: Aankondigingen beheren
+        manage_announcements_description: Staat gebruikers toe om mededelingen op de server te beheren
         manage_appeals: Bezwaren afhandelen
+        manage_appeals_description: Staat gebruikers toe om bewaren tegen moderatie-acties te beoordelen
         manage_blocks: Blokkades beheren
+        manage_blocks_description: Staat gebruikers toe om e-mailproviders en IP-adressen te blokkeren
         manage_custom_emojis: Lokale emoji's beheren
+        manage_custom_emojis_description: Staat gebruikers toe om lokale emoji's op de server te beheren
         manage_federation: Federatie beheren
+        manage_federation_description: Staat gebruikers toe om federatie met andere domeinen te blokkeren of toe te staan en om de bezorging te bepalen
         manage_invites: Uitnodigingen beheren
+        manage_invites_description: Staat gebruikers toe om uitnodigingslinks te bekijken en te deactiveren
         manage_reports: Rapportages afhandelen
+        manage_reports_description: Sta gebruikers toe om rapporten te bekijken om actie tegen hen te nemen
         manage_roles: Rollen beheren
+        manage_roles_description: Staat gebruikers toe om rollen te beheren en toe te wijzen die minder rechten hebben dan hun eigen rol(len)
         manage_rules: Serverregels wijzigen
+        manage_rules_description: Staat gebruikers toe om serverregels te wijzigen
         manage_settings: Server-instellingen wijzigen
+        manage_settings_description: Staat gebruikers toe de instellingen van de site te wijzigen
         manage_taxonomies: Trends en hashtags beheren
+        manage_taxonomies_description: Staat gebruikers toe om trending inhoud te bekijken en om hashtag-instellingen bij te werken
         manage_user_access: Gebruikerstoegang beheren
+        manage_user_access_description: Staat gebruikers toe om tweestapsverificatie van andere gebruikers uit te schakelen, om hun e-mailadres te wijzigen en om hun wachtwoord opnieuw in te stellen
         manage_users: Gebruikers beheren
+        manage_users_description: Staat gebruikers toe om gebruikersdetails van anderen te bekijken en moderatie-acties tegen hen uit te voeren
         manage_webhooks: Webhooks beheren
+        manage_webhooks_description: Staat gebruikers toe om webhooks voor beheertaken in te stellen
         view_audit_log: Auditlog bekijken
+        view_audit_log_description: Staat gebruikers toe om een geschiedenis van beheeracties op de server te bekijken
         view_dashboard: Dashboard bekijken
+        view_dashboard_description: Geeft gebruikers toegang tot het dashboard en verschillende statistieken
         view_devops: Devops
+        view_devops_description: Geeft gebruikers toegang tot de dashboards van Sidekiq en pgHero
       title: Rollen
     rules:
       add_new: Regel toevoegen
@@ -620,6 +662,8 @@ nl:
     settings:
       about:
         manage_rules: Serverregels beheren
+        preamble: Geef uitgebreide informatie over hoe de server wordt beheerd, gemodereerd en gefinancierd.
+        rules_hint: Er is een speciaal gebied voor regels waaraan uw gebruikers zich dienen te houden.
         title: Over
       appearance:
         preamble: Mastodons webomgeving aanpassen.
@@ -679,7 +723,11 @@ nl:
       with_media: Met media
     strikes:
       actions:
-        delete_statuses: "%{name} heeft de toots van %{target} verwijderd"
+        delete_statuses: "%{name} heeft de berichten van %{target} verwijderd"
+        disable: Account %{target} is door %{name} bevroren
+        mark_statuses_as_sensitive: "%{name} markeerde de berichten van %{target} als gevoelig"
+        none: "%{name} verzond een waarschuwing naar %{target}"
+        sensitive: "%{name} markeerde het account van %{target} als gevoelig"
         silence: "%{name} beperkte het account %{target}"
         suspend: "%{name} schortte het account %{target} op"
       appeal_approved: Bezwaar ingediend
@@ -687,6 +735,8 @@ nl:
     system_checks:
       database_schema_check:
         message_html: Niet alle databasemigraties zijn voltooid. Je moet deze uitvoeren om er voor te zorgen dat de applicatie blijft werken zoals het hoort
+      elasticsearch_running_check:
+        message_html: Kon geen verbinding maken met Elasticsearch. Controleer dat Elasticsearch wordt uitgevoerd of schakel full-text-zoeken uit
       elasticsearch_version_check:
         message_html: 'Incompatibele Elasticsearch-versie: %{value}'
         version_comparison: Je gebruikt Elasticsearch %{running_version}, maar %{required_version} is vereist
@@ -721,6 +771,7 @@ nl:
       pending_review: In afwachting van beoordeling
       preview_card_providers:
         allowed: Links van deze website kunnen trending worden
+        description_html: Dit zijn domeinen waarvan links vaak worden gedeeld op jouw server. Links zullen niet in het openbaar verlopen, maar niet als het domein van de link wordt goedgekeurd. Jouw goedkeuring (of afwijzing) strekt zich uit tot subdomeinen.
         rejected: Links naar deze nieuwssite kunnen niet trending worden
         title: Websites
       rejected: Afgekeurd
@@ -731,6 +782,9 @@ nl:
         disallow_account: Account afkeuren
         no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
         not_discoverable: Gebruiker heeft geen toestemming gegeven om vindbaar te zijn
+        shared_by:
+          one: Een keer gedeeld of als favoriet gemarkeerd
+          other: "%{friendly_count} keer gedeeld of als favoriet gemarkeerd"
         title: Trending berichten
       tags:
         current_score: Huidige score is %{score}
@@ -745,10 +799,15 @@ nl:
         not_listable: Wordt niet aanbevolen
         not_trendable: Zal niet onder trends verschijnen
         not_usable: Kan niet worden gebruikt
+        peaked_on_and_decaying: Piekte op %{date} en is nu weer op diens retour
         title: Trending hashtags
         trendable: Kan onder trends verschijnen
         trending_rank: 'Trending #%{rank}'
         usable: Kan worden gebruikt
+        usage_comparison: "%{today} keer vandaag gebruikt, vergeleken met %{yesterday} keer gisteren"
+        used_by_over_week:
+          one: Door één persoon tijdens de afgelopen week gebruikt
+          other: Door %{count} mensen tijdens de afgelopen week gebruikt
       title: Trends
       trending: Trending
     warning_presets:
@@ -763,6 +822,7 @@ nl:
       disable: Uitschakelen
       disabled: Uitgeschakeld
       edit: Eindpunt bewerken
+      empty: Je hebt nog geen webhook-eindpunten geconfigureerd.
       enable: Inschakelen
       enabled: Ingeschakeld
       enabled_events:
@@ -796,11 +856,13 @@ nl:
       body_remote: Iemand van %{domain} heeft %{target} gerapporteerd
       subject: Nieuwe rapportage op %{instance} (#%{id})
     new_trends:
+      body: 'De volgende items moeten worden beoordeeld voordat ze openbaar kunnen worden getoond:'
       new_trending_links:
         title: Trending links
       new_trending_statuses:
         title: Trending berichten
       new_trending_tags:
+        no_approved_tags: Op dit moment zijn er geen goedgekeurde hashtags.
         title: Trending hashtags
       subject: Nieuwe trends te beoordelen op %{instance}
   aliases:
@@ -1052,7 +1114,7 @@ nl:
       batch:
         remove: Uit het filter verwijderen
       index:
-        hint: Dit filter is van toepassing om individuele berichten te selecteren, ongeacht andere critiria. Je kunt in de webomgeving meer berichten aan dit filter toevoegen.
+        hint: Dit filter is van toepassing om individuele berichten te selecteren, ongeacht andere criteria. Je kunt in de webomgeving meer berichten aan dit filter toevoegen.
         title: Gefilterde berichten
   footer:
     trending_now: Trends
@@ -1175,6 +1237,8 @@ nl:
     carry_blocks_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account geblokkeerd.
     carry_mutes_over_text: Deze gebruiker is verhuisd vanaf %{acct}. Je hebt dat account genegeerd.
     copy_account_note_text: 'Deze gebruiker is verhuisd vanaf %{acct}. Je hebt de volgende opmerkingen over dat account gemaakt:'
+  navigation:
+    toggle_menu: Menu tonen/verbergen
   notification_mailer:
     admin:
       report:
@@ -1250,7 +1314,7 @@ nl:
       too_many_options: kan niet meer dan %{max} items bevatten
   preferences:
     other: Overig
-    posting_defaults: Standaardinstellingen voor posten
+    posting_defaults: Standaardinstellingen voor berichten
     public_timelines: Openbare tijdlijnen
   privacy_policy:
     title: Privacybeleid

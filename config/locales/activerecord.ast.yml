@@ -3,6 +3,7 @@ ast:
   activerecord:
     attributes:
       user:
+        email: Direición de corréu electrónicu
         locale: Locale
         password: Contraseña
       user/account:
@@ -19,3 +20,7 @@ ast:
           attributes:
             website:
               invalid: nun ye una URL válida
+        user:
+          attributes:
+            email:
+              unreachable: nun paez qu'esista

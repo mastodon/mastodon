@@ -8,7 +8,7 @@ de:
         acct: Gib den benutzernamen@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
         text: Du kannst Beitragssyntax benutzen, wie z.B. URLs, Hashtags und Erwähnungen
-        title: Freiwillige Angabe. Die Accounts können dies nicht sehen
+        title: Optional. Für den Empfänger nicht sichtbar
       admin_account_action:
         include_statuses: Der Benutzer wird sehen, welche Beiträge diese Maßnahme verursacht haben
         send_email_notification: Benutzer_in wird Bescheid gegeben, was mit dem Konto geschehen ist
@@ -67,7 +67,7 @@ de:
         domain: Dies kann der Domänenname sein, der in der E-Mail-Adresse oder dem von ihm verwendeten MX-Eintrag angezeigt wird. Er wird bei der Anmeldung überprüft.
         with_dns_records: Ein Versuch, die DNS-Einträge der Domain aufzulösen, wurde unternommen, und diese Ergebnisse werden unter anderem auch blockiert
       featured_tag:
-        name: 'Du möchtest vielleicht einen von diesen benutzen:'
+        name: 'Hier sind ein paar Hashtags, die du in letzter Zeit am häufigsten genutzt hast:'
       filters:
         action: Wählen Sie, welche Aktion ausgeführt werden soll, wenn ein Beitrag dem Filter entspricht
         actions:
@@ -123,7 +123,7 @@ de:
         color: Die Farbe, die für die Rolle im gesamten UI verwendet wird, als RGB im Hexformat
         highlighted: Dies macht die Rolle öffentlich sichtbar
         name: Öffentlicher Name der Rolle, wenn die Rolle als Abzeichen angezeigt werden soll
-        permissions_as_keys: Benutzer mit dieser Rolle haben Zugriff auf...
+        permissions_as_keys: Benutzer mit dieser Rolle haben Zugriff auf …
         position: Die höhere Rolle entscheidet über die Konfliktlösung in bestimmten Situationen. Bestimmte Aktionen können nur in Rollen mit geringerer Priorität ausgeführt werden
       webhook:
         events: Zu sendende Ereignisse auswählen
@@ -148,7 +148,7 @@ de:
         types:
           disable: Deaktivieren
           none: Nichts tun
-          sensitive: Inhaltswarnung (NSFW)
+          sensitive: Inhaltswarnung
           silence: Stummschalten
           suspend: Deaktivieren und Benutzerdaten unwiderruflich löschen
         warning_preset_id: Benutze eine Warnungsvorlage
@@ -236,7 +236,7 @@ de:
         custom_css: Benutzerdefiniertes CSS
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für den Medien-Cache
-        profile_directory: Benutzerliste aktivieren
+        profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer kann sich registrieren
         require_invite_text: Grund für den Beitritt verlangen
         show_domain_blocks: Zeige Domain-Blockaden

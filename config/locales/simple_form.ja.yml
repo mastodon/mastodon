@@ -67,11 +67,12 @@ ja:
         domain: 電子メールアドレスのドメイン名、または使用されるMXレコードを指定できます。新規登録時にチェックされます。
         with_dns_records: 指定したドメインのDNSレコードを取得し、その結果もメールドメインブロックに登録されます
       featured_tag:
-        name: 'これらを使うといいかもしれません:'
+        name: '最近使用したハッシュタグ:'
       filters:
         action: 投稿がフィルタに一致したときに実行するアクションを選択します
         actions:
           hide: フィルタリングされたコンテンツを完全に隠し、存在しないかのようにします
+          warn: フィルタリングされたコンテンツを、フィルタータイトルの警告の後ろに隠します。
       form_admin_settings:
         backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
         bootstrap_timeline_accounts: これらのアカウントは、新しいユーザーのフォロー推奨の一番上にピン留めされます。
@@ -80,13 +81,17 @@ ja:
         custom_css: ウェブ版の Mastodon でカスタムスタイルを適用できます。
         mascot: 上級者向けWebインターフェースのイラストを上書きします。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
-        profile_directory: プロファイルディレクトリには、検出可能にオプトイン設定したすべてのユーザーが一覧に表示されます。
+        profile_directory: ディレクトリには、掲載する設定をしたすべてのユーザーが一覧表示されます。
         require_invite_text: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストを必須入力にする
         site_contact_email: 法律またはサポートに関する問い合わせ先
         site_contact_username: マストドンでの連絡方法
         site_extended_description: 訪問者やユーザーに役立つかもしれない任意の追加情報。Mastodon 構文が使用できます。
         site_short_description: 誰が運営しているのか、誰に向けたものなのかなど、サーバーを特定する短い説明。
         site_terms: 独自のプライバシーポリシーを使用するか、空白にしてデフォルトのプライバシーポリシーを使用します。Mastodon 構文が使用できます。
+        site_title: ドメイン名以外でサーバーを参照する方法です。
+        theme: ログインしていない人と新規ユーザーに表示されるテーマ。
+        thumbnail: サーバー情報と共に表示される、アスペクト比が約 2:1 の画像。
+        timeline_preview: ログアウトした人は、サーバー上で利用可能な最新の公開投稿を閲覧することができます。
         trendable_by_default: トレンドコンテンツの手動レビューをスキップする。個々のコンテンツは後でトレンドから削除できます。
         trends: トレンドは、サーバー上でどの投稿、ハッシュタグ、ニュース記事が人気を集めているかを示します。
       form_challenge:
@@ -119,6 +124,7 @@ ja:
         highlighted: これによりロールが公開されます。
         name: ロールのバッジを表示する際の表示名
         permissions_as_keys: このロールを持つユーザーは次の機能にアクセスできます
+        position: 特定の状況では、より高いロールが競合の解決を決定します。特定のアクションは優先順位が低いロールでのみ実行できます。
       webhook:
         events: 送信するイベントを選択
         url: イベントの送信先
@@ -230,9 +236,9 @@ ja:
         custom_css: カスタムCSS
         mascot: カスタムマスコット（レガシー）
         media_cache_retention_period: メディアキャッシュの保持期間
-        profile_directory: プロファイル ディレクトリを有効設定にする
-        registrations_mode: 新規登録が可能な方
-        require_invite_text: 参加する理由を提出してください。
+        profile_directory: ディレクトリを有効にする
+        registrations_mode: 新規登録が可能な人
+        require_invite_text: 意気込み理由の入力を必須にする。
         show_domain_blocks: ドメインブロックを表示
         show_domain_blocks_rationale: ドメインがブロックされた理由を表示
         site_contact_email: 連絡先メールアドレス
