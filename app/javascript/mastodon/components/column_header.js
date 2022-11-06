@@ -57,9 +57,7 @@ class ColumnHeader extends React.PureComponent {
   }
 
   handleTitleClick = () => {
-    if (this.props.onClick) {
-      this.props.onClick();
-    }
+    this.props.onClick?.();
   }
 
   handleMoveLeft = () => {
