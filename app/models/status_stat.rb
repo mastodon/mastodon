@@ -18,15 +18,33 @@ class StatusStat < ApplicationRecord
   after_commit :reset_parent_cache
 
   def replies_count
-    [attributes['replies_count'], 0].max
+    replies_count = attributes['replies_count']
+
+    if replies_count.positive?
+      replies_count
+    else
+      0
+    end
   end
 
   def reblogs_count
-    [attributes['reblogs_count'], 0].max
+    reblogs_count = attributes['reblogs_count']
+
+    if reblogs_count.positive?
+      reblogs_count
+    else
+      0
+    end
   end
 
   def favourites_count
-    [attributes['favourites_count'], 0].max
+    favourites_count = attributes['favourites_count']
+
+    if favourites_count.positive?
+      favourites_count
+    else
+      0
+    end
   end
 
   private

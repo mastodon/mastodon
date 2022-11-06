@@ -22,14 +22,32 @@ class AccountStat < ApplicationRecord
   update_index('accounts', :account)
 
   def following_count
-    [attributes['following_count'], 0].max
+    following_count = attributes['following_count']
+
+    if following_count > 0
+      following_count
+    else
+      0
+    end
   end
 
   def followers_count
-    [attributes['followers_count'], 0].max
+    followers_count = attributes['followers_count']
+
+    if followers_count > 0
+      followers_count
+    else
+      0
+    end
   end
 
   def statuses_count
-    [attributes['statuses_count'], 0].max
+    statuses_count = attributes['statuses_count']
+
+    if statuses_count > 0
+      statuses_count
+    else
+      0
+    end
   end
 end
