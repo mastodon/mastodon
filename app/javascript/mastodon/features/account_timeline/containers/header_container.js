@@ -60,6 +60,8 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
           confirm: intl.formatMessage(messages.cancelFollowRequestConfirm),
           onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
         }));
+      } else {
+        dispatch(unfollowAccount(account.get('id')));
       }
     } else {
       dispatch(followAccount(account.get('id')));

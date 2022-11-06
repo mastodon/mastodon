@@ -27,7 +27,7 @@ uk:
       confirmations:
         destroy: Ви впевнені?
       edit:
-        title: Редагувати додаток
+        title: Редагувати застосунок
       form:
         error: Отакої! Перевірте свою форму на помилки
       help:
@@ -35,24 +35,24 @@ uk:
         redirect_uri: Використовуйте одну стрічку на URI
         scopes: Відділяйте області видимості пробілами. Залишайте порожніми, щоб використовувати області видимості за промовчуванням.
       index:
-        application: Додаток
+        application: Застосунок
         callback_url: URL зворотнього виклику
         delete: Видалити
         empty: У вас немає створених додатків.
         name: Назва
-        new: Новий додаток
+        new: Новий застосунок
         scopes: Області видимості
         show: Показати
         title: Ваші додатки
       new:
-        title: Новий додаток
+        title: Новий застосунок
       show:
         actions: Дії
-        application_id: ID додатку
+        application_id: Ключ застосунку
         callback_urls: URL зворотніх викликів
         scopes: Дозволи
         secret: Таємниця
-        title: 'Додаток: %{name}'
+        title: 'Застосунок: %{name}'
     authorizations:
       buttons:
         authorize: Авторизувати
@@ -64,7 +64,7 @@ uk:
         review_permissions: Переглянути дозволи
         title: Необхідна авторизація
       show:
-        title: Скопіюйте цей код авторизації та вставте його у додаток.
+        title: Скопіюйте цей код авторизації та вставте його у застосунок.
     authorized_applications:
       buttons:
         revoke: Відкликати авторизацію
@@ -84,7 +84,7 @@ uk:
         credential_flow_not_configured: Не вдалося перевірити парольні дані клієнту через неналаштований параметр Doorkeeper.configure.resource_owner_from_credentials.
         invalid_client: Не вдалося аутентифікувати клієнта (клієнт невідомий, аутентифікацію клієнта не увімкнено, або непідтримуваний метод аутентифікації).
         invalid_grant: Наданий санкціонований дозвіл недійсний, прострочений, анульований, не відповідає URI перенаправлення, що використовується в запиті авторизації, або був виданий іншому клієнту.
-        invalid_redirect_uri: Включений URI перенаправлення не є дійсним.
+        invalid_redirect_uri: Включений uri перенаправлення не є дійсним.
         invalid_request:
           missing_param: 'Відсутній обов''язковий параметр: %{value}.'
           request_not_authorized: Запит повинен бути авторизований. Необхідний параметр запиту авторизації відсутній або хибний.
@@ -104,11 +104,11 @@ uk:
     flash:
       applications:
         create:
-          notice: Додаток створено.
+          notice: Застосунок створено.
         destroy:
-          notice: Додаток видалено.
+          notice: Застосунок видалено.
         update:
-          notice: Додаток оновлено.
+          notice: Застосунок оновлено.
       authorized_applications:
         destroy:
           notice: Авторизацію додатка відкликано.
@@ -160,7 +160,7 @@ uk:
       read:accounts: бачити інформацію про облікові записи
       read:blocks: бачити Ваші блокування
       read:bookmarks: бачити ваші закладки
-      read:favourites: бачити Ваші вподобані пости
+      read:favourites: бачити вподобані дописи
       read:filters: бачити Ваші фільтри
       read:follows: бачити Ваші підписки
       read:lists: бачити Ваші списки
@@ -172,7 +172,7 @@ uk:
       write: змінювати усі дані вашого облікового запису
       write:accounts: змінювати ваш профіль
       write:blocks: блокувати облікові записи і домени
-      write:bookmarks: додавати пости в закладки
+      write:bookmarks: додавати дописи до закладок
       write:conversations: нехтувати й видалити бесіди
       write:favourites: вподобані статуси
       write:filters: створювати фільтри

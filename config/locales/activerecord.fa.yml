@@ -21,6 +21,18 @@ fa:
             username:
               invalid: تنها حروف، اعداد، و زیرخط
               reserved: محفوظ است
+        admin/webhook:
+          attributes:
+            url:
+              invalid: نشانی معتبری نیست
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: نشانی معتبری نیست
+        import:
+          attributes:
+            data:
+              malformed: بدریخت است
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ fa:
             email:
               blocked: از فراهم‌کنندهٔ رایانامهٔ غیرمجازی استفاده می‌کند
               unreachable: به نظر نمی‌رسد وجود داشته باشد
+            role_id:
+              elevated: نمی‌تواند بالاتر از نقش کنونیتان باشد
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: شاما اجازه‌هایی که برای نقش پایه امن نیستند
+              elevated: نمی‌تواند شامل اجازه‌هایی باشد که نقش کنونیتان ندارد
+              own_role: نمی‌تواند با نقش کنونیتان تغییر کند
+            position:
+              elevated: نمی‌تواند بالاتر از نقش کنونیتان باشد
+              own_role: نمی‌تواند با نقش کنونیتان تغییر کند

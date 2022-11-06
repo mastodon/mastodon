@@ -25,7 +25,8 @@ ast:
       ip: IP
       location:
         local: Llocal
-        title: Allugamientu
+        remote: Remotu
+        title: Llugar
       most_recent_activity: L'actividá más recién
       most_recent_ip: La IP más recién
       protocol: Protocolu
@@ -33,9 +34,10 @@ ast:
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
         send: Reunviar les instrucciones
-      statuses: Estaos
+      statuses: Artículos
       title: Cuentes
       username: Nome d'usuariu
+      web: Web
     announcements:
       destroyed_msg: "¡L'anunciu desanicióse correutamente!"
       new:
@@ -130,7 +132,7 @@ ast:
     didnt_get_confirmation: "¿Nun recibiesti les instrucciones de confirmación?"
     dont_have_your_security_key: "¿Nun tienes una clave de seguranza?"
     forgot_password: "¿Escaeciesti la contraseña?"
-    login: Aniciar sesión
+    login: Aniciar la sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
     providers:
@@ -378,7 +380,6 @@ ast:
     visibilities:
       private: Namái siguidores
       private_long: Namái s'amuesen a los siguidores
-      public_long: Tol mundu puen velos
       unlisted: Nun llistar
       unlisted_long: Tol mundu puen velos pero nun se llisten nes llinies temporales públiques
   statuses_cleanup:
@@ -399,8 +400,8 @@ ast:
     does_not_match_previous_name: nun concasa col nome anterior
   themes:
     contrast: Contraste altu
-    default: Mastodon
-    mastodon-light: Claridá
+    default: Mastodon (escuridá)
+    mastodon-light: Mastodon (claridá)
   two_factor_authentication:
     disable: Desactivar
     enabled: L'autenticación en dos pasos ta activada
@@ -419,7 +420,6 @@ ast:
         none: Alvertencia
         suspend: Cuenta suspendida
     welcome:
-      full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate mensaxes o siguite dende otra instancia.
       subject: Afáyate en Mastodon
   users:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones

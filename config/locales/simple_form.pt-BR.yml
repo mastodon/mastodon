@@ -66,13 +66,17 @@ pt-BR:
       email_domain_block:
         domain: Este pode ser o nome de domínio que aparece no endereço de e-mail ou no registro MX que ele utiliza. Eles serão verificados após a inscrição.
         with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
-      featured_tag:
-        name: 'Você pode querer usar um destes:'
       filters:
         action: Escolher qual ação executar quando um post corresponder ao filtro
         actions:
           hide: Esconder completamente o conteúdo filtrado, comportando-se como se ele não existisse
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
+      form_admin_settings:
+        backups_retention_period: Manter os arquivos de usuário gerados pelo número de dias especificados.
+        bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
+        closed_registrations_message: Exibido quando as inscrições estiverem fechadas
+        site_contact_username: Como as pessoas podem chegar até você no Mastodon.
+        site_extended_description: Quaisquer informações adicionais que possam ser úteis para os visitantes e seus usuários. Podem ser estruturadas com formato Markdown.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
@@ -199,6 +203,10 @@ pt-BR:
         actions:
           hide: Ocultar completamente
           warn: Ocultar com um aviso
+      form_admin_settings:
+        registrations_mode: Quem pode se inscrever
+        site_contact_email: E-mail de contato
+        trends: Habilitar tendências
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de não-seguidos

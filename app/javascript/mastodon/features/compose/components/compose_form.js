@@ -94,7 +94,7 @@ class ComposeForm extends ImmutablePureComponent {
     return !(isSubmitting || isUploading || isChangingUpload || length(fulltext) > maxChars || (isOnlyWhitespace && !anyMedia));
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
     if (this.props.text !== this.autosuggestTextarea.textarea.value) {
       // Something changed the text inside the textarea (e.g. browser extensions like Grammarly)
       // Update the state to match the current text
@@ -106,6 +106,10 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     this.props.onSubmit(this.context.router ? this.context.router.history : null);
+
+    if (e) {
+      e.preventDefault();
+    }
   }
 
   onSuggestionsClearRequested = () => {
@@ -218,7 +222,7 @@ class ComposeForm extends ImmutablePureComponent {
     }
 
     return (
-      <div className='compose-form'>
+      <form className='compose-form' onSubmit={this.handleSubmit}>
         <WarningContainer />
 
         <ReplyIndicatorContainer />
@@ -280,10 +284,15 @@ class ComposeForm extends ImmutablePureComponent {
 
         <div className='compose-form__publish'>
           <div className='compose-form__publish-button-wrapper'>
-            <Button text={publishText} onClick={this.handleSubmit} disabled={!this.canSubmit()} block />
+            <Button
+              type='submit'
+              text={publishText}
+              disabled={!this.canSubmit()}
+              block
+            />
           </div>
         </div>
-      </div>
+      </form>
     );
   }
 
