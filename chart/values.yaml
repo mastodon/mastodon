@@ -140,8 +140,8 @@ mastodon:
     tls: false
     login:
     password:
-    # -- you can also specify the name of an existing Secret
-    # with the keys login and password
+    # -- Instead of defining login/password above, you can specify the name of an existing secret here. Login and
+    # password must be located in keys named `login` and `password` respectively.
     existingSecret:
   streaming:
     port: 4000

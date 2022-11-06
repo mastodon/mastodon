@@ -71,14 +71,8 @@ data:
   {{- with .Values.mastodon.smtp.from_address }}
   SMTP_FROM_ADDRESS: {{ . }}
   {{- end }}
-  {{- with .Values.mastodon.smtp.login }}
-  SMTP_LOGIN: {{ . }}
-  {{- end }}
   {{- with .Values.mastodon.smtp.openssl_verify_mode }}
   SMTP_OPENSSL_VERIFY_MODE: {{ . }}
-  {{- end }}
-  {{- with .Values.mastodon.smtp.password }}
-  SMTP_PASSWORD: {{ . }}
   {{- end }}
   {{- with .Values.mastodon.smtp.port }}
   SMTP_PORT: {{ . | quote }}

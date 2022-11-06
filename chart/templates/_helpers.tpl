@@ -99,6 +99,17 @@ Get the mastodon secret.
 {{- end -}}
 
 {{/*
+Get the smtp secret.
+*/}}
+{{- define "mastodon.smtp.secretName" -}}
+{{- if .Values.mastodon.smtp.existingSecret }}
+    {{- printf "%s" (tpl .Values.mastodon.smtp.existingSecret $) -}}
+{{- else -}}
+    {{- printf "%s-smtp" (include "common.names.fullname" .) -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Get the postgresql secret.
 */}}
 {{- define "mastodon.postgresql.secretName" -}}
