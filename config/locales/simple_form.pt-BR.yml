@@ -1,4 +1,3 @@
----
 pt-BR:
   simple_form:
     hints:
@@ -66,6 +65,8 @@ pt-BR:
       email_domain_block:
         domain: Este pode ser o nome de domínio que aparece no endereço de e-mail ou no registro MX que ele utiliza. Eles serão verificados após a inscrição.
         with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
+      featured_tag:
+        name: 'Aqui estão algumas ‘hashtags’ utilizadas recentemente:'
       filters:
         action: Escolher qual ação executar quando um post corresponder ao filtro
         actions:
@@ -243,7 +244,7 @@ pt-BR:
       webhook:
         events: Eventos habilitados
         url: URL do Endpoint
-    'no': Não
+    'no': 'Não'
     recommended: Recomendado
     required:
       mark: "*"
@@ -251,4 +252,4 @@ pt-BR:
     title:
       sessions:
         webauthn: Utilize uma das suas chaves de segurança para entrar
-    'yes': Sim
+    'yes': 'Sim'
