@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     /blocks
     /domain_blocks
     /mutes
+    /statuses/(*any)
   ).freeze
 
   root 'home#index'
