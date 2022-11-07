@@ -686,29 +686,51 @@ he:
       empty: שום כללי שרת לא הוגדרו עדיין.
       title: כללי שרת
     settings:
+      discovery:
+        profile_directory: מדריך פרופילים
+        public_timelines: פידים פומביים
+        title: איתור
+        trends: נושאים חמים
       domain_blocks:
         all: לכולם
         disabled: לאף אחד
         users: למשתמשים מקומיים מחוברים
+      registrations:
+        preamble: שליטה בהרשאות יצירת חשבון בשרת שלך.
+        title: הרשמות
       registrations_mode:
         modes:
           approved: נדרש אישור הרשמה
           none: אף אחד לא יכול להרשם
           open: כל אחד יכול להרשם
+      title: הגדרות שרת
     site_uploads:
       delete: מחיקת קובץ שהועלה
       destroyed_msg: העלאת אתר נמחקה בהצלחה!
     statuses:
+      account: מחבר
+      application: יישום
       back_to_account: חזרה לדף החשבון
       back_to_report: חזרה לעמוד הדיווח
       batch:
         remove_from_report: הסרה מהדיווח
         report: דווח
       deleted: מחוקים
+      favourites: חיבובים
+      history: היסטורית גרסאות
+      in_reply_to: השיבו ל־
+      language: שפה
       media:
         title: מדיה
+      metadata: נתוני-מטא
       no_status_selected: לא בוצעו שינויים בחצרוצים שכן לא נבחרו חצרוצים
+      open: פתח הודעה
+      original_status: הודעה מקורית
+      reblogs: שיתופים
+      status_changed: הודעה שונתה
       title: חצרוצי חשבון
+      trending: נושאים חמים
+      visibility: נראות
       with_media: עם מדיה
     strikes:
       actions:
@@ -748,6 +770,9 @@ he:
         description_html: בקישוריות אלה נעשה כרגע שימוש על ידי חשבונות רבים שהשרת שלך רואה חצרוצים מהם. זה עשוי לסייע למשתמשיך לברר מה קורה בעולם. שום קישוריות לא יוצגו עד שתאשרו את המפרסם. ניתן גם לאפשר או לדחות קישוריות ספציפיות.
         disallow: לא לאשר קישורית
         disallow_provider: לא לאשר מפרסם
+        no_link_selected: לא בוצעו שינויים בקישורים שכן לא נבחרו כאלו
+        publishers:
+          no_publisher_selected: לא בוצעו שינויים במפרסמים שכן לא נבחרו כאלו
         shared_by_over_week:
           one: הופץ על ידי אדם אחד בשבוע האחרון
           two: הופץ על ידי %{count} אנשים בשבוע האחרון
@@ -769,6 +794,7 @@ he:
         description_html: אלו הם חצרוצים שהשרת שלך מכיר וזוכים להדהודים וחיבובים רבים כרגע. זה עשוי למשתמשיך החדשים והחוזרים למצוא עוד נעקבים. החצרוצים לא מוצגים עד שיאושר המחבר/ת, והמחבר/ת יאשרו שחשבונים יומלץ לאחרים. ניתן לאשר או לדחות חצרוצים ספציפיים.
         disallow: לדחות פוסט
         disallow_account: לא לאשר מחבר/ת
+        no_status_selected: לא בוצעו שינויים בהודעות חמות שכן לא נבחרו כאלו
         not_discoverable: המחבר/ת לא בחר/ה לאפשר את גילויים
         shared_by:
           one: הודהד או חובב פעם אחת
@@ -786,6 +812,7 @@ he:
           tag_uses_measure: כלל השימושים
         description_html: אלו הן האשתגיות שמופיעות הרבה כרגע בחצרוצים המגיעים לשרת. זה עשוי לעזור למשתמשיך למצוא על מה אנשים מרבים לדבר כרגע. שום האשתגיות לא יוצגו בפומבי עד שתאושרנה.
         listable: ניתנות להצעה
+        no_tag_selected: לא בוצעו שינויים בתגיות שכן לא נבחרו כאלו
         not_listable: לא תוצענה
         not_trendable: לא תופענה תחת נושאים חמים
         not_usable: לא שמישות
@@ -811,6 +838,7 @@ he:
     webhooks:
       add_new: הוספת נקודת קצה
       delete: מחיקה
+      description_html: כלי <strong>webhook</strong> מאפשר למסטודון לשגר <strong>התראות זמן-אמת</strong> לגבי אירועים נבחרים ליישומון שלך כדי שהוא יוכל <strong>להגיב אוטומטית</strong>.
       disable: כיבוי
       disabled: כבוי
       edit: עריכת נקודת קצה
@@ -894,6 +922,7 @@ he:
     warning: זהירות רבה נדרשת עם מידע זה. אין לחלוק אותו אף פעם עם אף אחד!
     your_token: אסימון הגישה שלך
   auth:
+    apply_for_account: להכנס לרשימת המתנה
     change_password: סיסמה
     delete_account: מחיקת חשבון
     delete_account_html: אם ברצונך למחוק את החשבון, ניתן <a href="%{path}">להמשיך כאן</a>. תתבקש/י לספק אישור נוסף.
@@ -913,6 +942,7 @@ he:
     migrate_account: מעבר לחשבון אחר
     migrate_account_html: אם ברצונך להכווין את החשבון לעבר חשבון אחר, ניתן <a href="%{path}">להגדיר זאת כאן</a>.
     or_log_in_with: או התחבר באמצעות
+    privacy_policy_agreement_html: קארתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
     providers:
       cas: CAS
       saml: SAML
@@ -920,12 +950,18 @@ he:
     registration_closed: "%{instance} לא מקבל חברים חדשים"
     resend_confirmation: שלח הוראות אימות בשנית
     reset_password: איפוס סיסמה
+    rules:
+      preamble: אלו נקבעים ונאכפים ע"י המנחים של %{domain}.
+      title: כמה חוקים בסיסיים.
     security: אבטחה
     set_new_password: סיסמה חדשה
     setup:
       email_below_hint_html: אם כתובת הדוא"ל להלן לא נכונה, ניתן לשנותה כאן ולקבל דוא"ל אישור חדש.
       email_settings_hint_html: דוא"ל האישור נשלח ל-%{email}. אם כתובת הדוא"ל הזו לא נכונה, ניתן לשנותה בהגדרות החשבון.
       title: הגדרות
+    sign_up:
+      preamble: כיוון שמסטודון מבוזרת, תוכל/י להשתמש בחשבון שלך משרתי מסטודון או רשתות תואמות אחרות אם אין לך חשבון על שרת זה.
+      title: הבא נקים לך את השרת בכתובת %{domain}.
     status:
       account_status: מצב חשבון
       confirming: ממתין שדוא"ל האישור יושלם.
@@ -1072,6 +1108,7 @@ he:
       add_keyword: הוספת מילת מפתח
       keywords: מילות מפתח
       statuses: פוסטים יחידים
+      statuses_hint_html: הסנן פועל על בחירה ידנית של הודעות בין אם הן מתאימות למילות המפתח להלן ואם לאו. posts regardless of whether they match the keywords below. <a href="%{path}">בחינה או הסרה של ההודעות מהסנן</a>.
       title: ערוך מסנן
     errors:
       deprecated_api_multiple_keywords: לא ניתן לשנות פרמטרים אלו מהיישומון הזה בגלל שהם חלים על יותר ממילת מפתח אחת. ניתן להשתמש ביישומון מעודכן יותר או בממשק הוובי.
@@ -1087,6 +1124,16 @@ he:
         two: "%{count} מילות מפתח"
         many: "%{count} מילות מפתח"
         other: "%{count} מילות מפתח"
+      statuses:
+        one: "הודעה %{count}"
+        two: "%{count} הודעותיים"
+        many: "%{count} הודעות"
+        other: "%{count} הודעות"
+      statuses_long:
+        one: "הודעה %{count} יחידה הוסתרה"
+        two: "הודעותיים %{count} הוסתרו"
+        many: "%{count} הודעות הוסתרו"
+        other: "%{count} הודעות הוסתרו"
       title: מסננים
     new:
       save: שמירת מסנן חדש
@@ -1214,6 +1261,8 @@ he:
     carry_blocks_over_text: חשבון זה עבר מ-%{acct}, אותו חסמת בעבר.
     carry_mutes_over_text: חשבון זה עבר מ-%{acct}, אותו השתקת בעבר.
     copy_account_note_text: 'חשבון זה הועבר מ-%{acct}, הנה הערותיך הקודמות לגביהם:'
+  navigation:
+    toggle_menu: הצגת\הסתרת תפריט
   notification_mailer:
     admin:
       report:
@@ -1291,6 +1340,8 @@ he:
     other: שונות
     posting_defaults: ברירות מחדל לפוסטים
     public_timelines: פידים פומביים
+  privacy_policy:
+    title: מדיניות פרטיות
   reactions:
     errors:
       limit_reached: גבול מספר התגובות השונות הושג
@@ -1575,8 +1626,10 @@ he:
         suspend: חשבון מושעה
     welcome:
       edit_profile_action: הגדרת פרופיל
+      edit_profile_step: תוכל.י להתאים אישית את הפרופיל באמצעות העלאת יצגן (אוואטר), כותרת, שינוי כינוי ועוד. אם תרצה.י לסקור את עוקביך/ייך החדשים לפני שתרשה.י להם לעקוב אחריך/ייך.
       explanation: הנה כמה טיפים לעזור לך להתחיל
       final_action: התחל/ילי לחצרץ
+      final_step: 'התחל/ילי לפרסם הודעות! אפילו ללא עוקבים ייתכן שההודעות הפומביות שלך יראו ע"י אחרים, למשל בציר הזמן המקומי או בתגיות הקבצה (האשתגים). כדאי להציג את עצמך תחת התגית #introductions או #היכרות.'
       full_handle: שם המשתמש המלא שלך
       full_handle_hint: זה מה שתאמר.י לחברייך כדי שיוכלו לשלוח לך הודעה או לעקוב אחרייך ממופע אחר.
       subject: ברוכים הבאים למסטודון
