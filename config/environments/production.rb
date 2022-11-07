@@ -122,7 +122,7 @@ Rails.application.configure do
     'X-Frame-Options'        => 'DENY',
     'X-Content-Type-Options' => 'nosniff',
     'X-XSS-Protection'       => '0',
-    'Permissions-Policy'     => 'interest-cohort=()',
+    'Permissions-Policy'     => 'interest-cohort=(), browsing-topics=()',
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
