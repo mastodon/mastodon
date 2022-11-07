@@ -1,15 +1,40 @@
 ---
 af:
   about:
+    contact_missing: Nie ingestel nie
     contact_unavailable: NVT
     hosted_on: Mastodon gehuisves op %{domain}
+    title: Aangaande
   admin:
+    accounts:
+      location:
+        local: Plaaslik
+      moderation:
+        silenced: Beperk
+      search: Soek
+      silenced: Beperk
+    action_logs:
+      actions:
+        silence_account_html: "%{name} het %{target} se rekening beperk"
+      deleted_account: geskrapte rekening
     announcements:
       publish: Publiseer
       published_msg: Aankondiging was suksesvol gepubliseer!
       unpublish: Depubliseer
     domain_blocks:
       existing_domain_block: Jy het alreeds strenger perke ingelê op %{name}.
+    instances:
+      back_to_limited: Beperk
+      moderation:
+        limited: Beperk
+    settings:
+      about:
+        title: Aangaande
+    statuses:
+      favourites: Gunstelinge
+    strikes:
+      actions:
+        silence: "%{name} het %{target} se rekening beperk"
     trends:
       only_allowed: Slegs toegelate
       preview_card_providers:
@@ -30,6 +55,18 @@ af:
       status: Status
       title: Web-hoeke
       webhook: Web-hoek
+  appearance:
+    advanced_web_interface_hint: 'As jy jou hele skerm wydte wil gebruik, laat die gevorderde web koppelvlak jou toe om konfigurasie op te stel vir vele verskillende kolomme om so veel as moontlik inligting op dieselfde tyd te sien as wat jy wil: Tuis, kennisgewings, gefedereerde tydlyn, enige aantal lyste of hits-etikette.'
+  application_mailer:
+    notification_preferences: Verander epos voorkeure
+    settings: 'Verander epos voorkeure: %{link}'
+  auth:
+    logout: Teken Uit
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} ure"
+      about_x_months: "%{count} maande"
+      about_x_years: "%{count} jare"
   disputes:
     strikes:
       approve_appeal: Aanvaar appêl
@@ -44,13 +81,41 @@ af:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    bookmarks: Boekmerke
+  imports:
+    types:
+      bookmarks: Boekmerke
   navigation:
     toggle_menu: Skakel-kieslys
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+  preferences:
+    other: Ander
+    posting_defaults: Plasing verstekte
+    public_timelines: Publieke tydlyne
+  privacy_policy:
+    title: Privaatheidsbeleid
   rss:
     content_warning: 'Inhoud waarskuwing:'
     descriptions:
       account: Publieke plasings vanaf @%{acct}
       tag: 'Publieke plasings met die #%{hashtag} etiket'
+  settings:
+    edit_profile: Redigeer profiel
+    preferences: Voorkeure
+  statuses:
+    content_warning: 'Inhoud waarskuwing: %{warning}'
+  statuses_cleanup:
+    ignore_favs: Ignoreer gunstelinge
   strikes:
     errors:
       too_late: Dit is te laat om hierdie staking te appelleer
+  user_mailer:
+    warning:
+      title:
+        silence: Beperkte rekening
+    welcome:
+      edit_profile_action: Stel profiel op

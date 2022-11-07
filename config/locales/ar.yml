@@ -46,6 +46,7 @@ ar:
       avatar: الصورة الرمزية
       by_domain: النطاق
       change_email:
+        changed_msg: تم تغيير البريد بنجاح!
         current_email: عنوان البريد الإلكتروني الحالي
         label: تعديل عنوان البريد الإلكتروني
         new_email: عنوان البريد الإلكتروني الجديد
@@ -188,6 +189,7 @@ ar:
         destroy_ip_block: حذف قانون IP
         destroy_status: حذف المنشور
         destroy_unavailable_domain: حذف نطاق غير متوفر
+        destroy_user_role: حذف الدور
         disable_2fa_user: تعطيل 2FA
         disable_custom_emoji: تعطيل الإيموجي المخصص
         disable_sign_in_token_auth_user: تعطيل مصادقة رمز البريد الإلكتروني للمستخدم
@@ -201,6 +203,7 @@ ar:
         reject_user: ارفض المستخدم
         remove_avatar_user: احذف الصورة الرمزية
         reopen_report: إعادة فتح التقرير
+        resend_user: إعادة إرسال بريد التأكيد
         reset_password_user: إعادة تعيين كلمة المرور
         resolve_report: حل الشكوى
         sensitive_account: وضع علامة على الوسائط في حسابك على أنها حساسة
@@ -214,7 +217,9 @@ ar:
         update_announcement: تحديث الإعلان
         update_custom_emoji: تحديث الإيموجي المخصص
         update_domain_block: تحديث كتلة النطاق
+        update_ip_block: تحديث قاعدة IP
         update_status: تحديث الحالة
+        update_user_role: تحديث الدور
       actions:
         approve_user_html: قبل %{name} تسجيل %{target}
         assigned_to_self_report_html: قام %{name} بتعيين التقرير %{target} لأنفسهم
@@ -370,6 +375,9 @@ ar:
       add_new: إضافة
       created_msg: لقد دخل حظر نطاق البريد الإلكتروني حيّز الخدمة
       delete: حذف
+      dns:
+        types:
+          mx: سجل MX
       domain: النطاق
       new:
         create: إضافة نطاق
@@ -538,6 +546,13 @@ ar:
       view_profile: اعرض الصفحة التعريفية
     roles:
       add_new: إضافة دور
+      assigned_users:
+        few: "%{count} مستخدمًا"
+        many: "%{count} مستخدمين"
+        one: مستخدم واحد %{count}
+        other: "%{count} مستخدم"
+        two: مستخدمان %{count}
+        zero: "%{count} لا مستخدم"
       categories:
         administration: الإدارة
         invites: الدعوات
@@ -547,8 +562,11 @@ ar:
       everyone: الصلاحيات الافتراضية
       privileges:
         administrator: مدير
+        invite_users: دعوة مستخدمين
         manage_announcements: ادارة الاعلانات
         manage_appeals: إدارة الاستئنافات
+        manage_custom_emojis: إدارة الرموز التعبيريّة المخصصة
+        manage_custom_emojis_description: السماح للمستخدمين بإدارة الرموز التعبيريّة المخصصة على الخادم
         manage_federation: إدارة الفديرالية
         manage_invites: إدارة الدعوات
         manage_reports: إدارة التقارير
@@ -560,6 +578,8 @@ ar:
         manage_user_access: إدارة وصول المستخدم
         manage_users: إدارة المستخدمين
         view_dashboard: عرض لوحة التحكم
+        view_devops: DevOps
+        view_devops_description: السماح للمستخدمين بالوصول إلى لوحة Sidekiq و pgHero
       title: الأدوار
     rules:
       add_new: إضافة قاعدة
@@ -609,6 +629,7 @@ ar:
         report: إبلاغ
       deleted: محذوف
       favourites: المفضلة
+      history: تاريخ التعديلات
       in_reply_to: رَدًا على
       language: اللغة
       media:
@@ -651,6 +672,7 @@ ar:
         disallow_provider: عدم السماح للناشر
         title: الروابط المتداولة
         usage_comparison: تمت مشاركته %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
+      only_allowed: من سُمِحَ لهم فقط
       pending_review: في انتظار المراجعة
       preview_card_providers:
         title: الناشرون
@@ -936,9 +958,12 @@ ar:
       empty: ليست لديك أية عوامل تصفية.
       title: عوامل التصفية
     new:
+      save: حفظ عامل التصفية الجديد
       title: إضافة عامل تصفية جديد
     statuses:
       back_to_filter: العودة إلى عامل التصفية
+      index:
+        title: الرسائل المصفّاة
   footer:
     trending_now: المتداولة الآن
   generic:

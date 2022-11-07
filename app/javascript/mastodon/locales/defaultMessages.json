@@ -951,8 +951,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{name} has moved to:",
+        "defaultMessage": "{name} has indicated that their new account is now:",
         "id": "account.moved_to"
+      },
+      {
+        "defaultMessage": "Go to profile",
+        "id": "account.go_to_profile"
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/components/moved_note.json"
@@ -3835,6 +3839,31 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/confirmation_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Are you sure you want to log out?",
+        "id": "confirmations.logout.message"
+      },
+      {
+        "defaultMessage": "Log out",
+        "id": "confirmations.logout.confirm"
+      },
+      {
+        "defaultMessage": "Your account {disabledAccount} is currently disabled because you moved to {movedToAccount}.",
+        "id": "moved_to_account_banner.text"
+      },
+      {
+        "defaultMessage": "Your account {disabledAccount} is currently disabled.",
+        "id": "disabled_account_banner.text"
+      },
+      {
+        "defaultMessage": "Account settings",
+        "id": "disabled_account_banner.account_settings"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/disabled_account_banner.json"
   },
   {
     "descriptors": [
