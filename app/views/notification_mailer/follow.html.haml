@@ -39,5 +39,5 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  = link_to web_url("accounts/#{@account.id}") do
+                                  = link_to web_url("@#{@account.pretty_acct}") do
                                     %span= t 'application_mailer.view_profile'
