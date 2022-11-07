@@ -685,6 +685,7 @@ nl:
         title: Bewaartermijn berichten
       discovery:
         follow_recommendations: Aanbevolen accounts
+        preamble: Dat ontdekken van interessante content is van essentieel belang voor het onboarden van nieuwe gebruikers die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende zoekfuncties werken op jouw server.
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
         title: Ontdekken
@@ -787,6 +788,7 @@ nl:
       statuses:
         allow: Bericht goedkeuren
         allow_account: Account goedkeuren
+        description_html: Dit zijn posts waarvan jouw server weet die op dit moment zeer veel worden gedeeld en worden gefavoriseerd. Het kan je nieuwe en terugkomende gebruikers helpen meer mensen te vinden om te volgen. Er worden geen berichten in het openbaar weergegeven totdat je de auteur goedkeurt, en de auteur laat hun account aan anderen aanbevelen. Je kunt ook individuele berichten toestaan of weigeren.
         disallow: Bericht afkeuren
         disallow_account: Account afkeuren
         no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
@@ -803,6 +805,7 @@ nl:
           tag_servers_dimension: Populaire servers
           tag_servers_measure: verschillende servers
           tag_uses_measure: totaal aantal keer gebruikt
+        description_html: Dit zijn hashtags die momenteel worden weergegeven in een groot aantal berichten die jouw server ziet. Het kan je gebruikers helpen erachter te komen waar mensen het meest over praten op dit moment. Er worden geen hashtags getoond totdat je ze goedkeurt.
         listable: Kan worden aanbevolen
         no_tag_selected: Er werden geen hashtags gewijzigd, omdat er geen enkele werd geselecteerd
         not_listable: Wordt niet aanbevolen
@@ -828,6 +831,7 @@ nl:
     webhooks:
       add_new: Eindpunt toevoegen
       delete: Verwijderen
+      description_html: Met een <strong>webhook</strong> kan Mastodon <strong>real-time meldingen</strong> over gekozen evenementen naar jouw eigen applicatie sturen, dus je applicatie kan <strong>automatisch reacties oproepen</strong>.
       disable: Uitschakelen
       disabled: Uitgeschakeld
       edit: Eindpunt bewerken
@@ -872,6 +876,7 @@ nl:
         title: Trending berichten
       new_trending_tags:
         no_approved_tags: Op dit moment zijn er geen goedgekeurde hashtags.
+        requirements: 'Elk van deze kandidaten kan door de #%{rank} goedgekeurde populaire hashtag overtreffen, die momenteel #%{lowest_tag_name} is met een score van %{lowest_tag_score}.'
         title: Trending hashtags
       subject: Nieuwe trends te beoordelen op %{instance}
   aliases:
