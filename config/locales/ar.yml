@@ -45,6 +45,7 @@ ar:
       avatar: الصورة الرمزية
       by_domain: النطاق
       change_email:
+        changed_msg: تم تغيير البريد بنجاح!
         current_email: عنوان البريد الإلكتروني الحالي
         label: تعديل عنوان البريد الإلكتروني
         new_email: عنوان البريد الإلكتروني الجديد
@@ -544,6 +545,13 @@ ar:
       view_profile: اعرض الصفحة التعريفية
     roles:
       add_new: إضافة دور
+      assigned_users:
+        zero: "%{count} لا مستخدم"
+        one: "مستخدم واحد %{count}"
+        two: "مستخدمان %{count}"
+        few: "%{count} مستخدمًا"
+        many: "%{count} مستخدمين"
+        other: "%{count} مستخدم"
       categories:
         administration: الإدارة
         invites: الدعوات
@@ -949,9 +957,12 @@ ar:
       empty: ليست لديك أية عوامل تصفية.
       title: عوامل التصفية
     new:
+      save: حفظ عامل التصفية الجديد
       title: إضافة عامل تصفية جديد
     statuses:
       back_to_filter: العودة إلى عامل التصفية
+      index:
+        title: الرسائل المصفّاة
   footer:
     trending_now: المتداولة الآن
   generic:
