@@ -1,0 +1,5493 @@
+openapi: '3.0.3'
+info:
+  title: Mastodon API Specification (https://github.com/mastodon/mastodon)
+  version: '1.0'
+  contact:
+    name: Sardorbek Pulatov
+    email: sardo@hey.com
+servers:
+  - url: https://mastodon.social
+paths:
+  /api/v1/apps:
+    post:
+      tags:
+        - apps
+      description: Create a new application to obtain OAuth2 credentials.
+      requestBody:
+          content:
+            application/form-data:
+              schema:
+                type: object
+                required:
+                  - client_name
+                  - redirect_uris
+                properties:
+                  client_name:
+                    description: A name for your application
+                    type: string
+                  redirect_uris:
+                    description: Where the user should be redirected after authorization. To display the authorization code to the user instead of redirecting to a web page, use urn:ietf:wg:oauth:2.0:oob in this parameter.
+                    type: string
+                  scopes:
+                    description: Space separated list of scopes. If none is provided, defaults to read.
+                    type: string
+                  website:
+                    description: A URL to the homepage of your app
+                    type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema: 
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                   type: string
+                  website:
+                    type: string
+                  redirect_uri:
+                    type: string
+                  client_id:
+                    type: string
+                  client_secret:
+                    type: string
+                  vapid_key:
+                    type: string
+        '422':
+          description: If a required parameter is missing or improperly formatted, the request will fail.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/apps/verify_credentials:
+    get:
+      tags:
+        - apps
+      description: Confirm that the app's OAuth2 credentials work.
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: If the Authorization header was provided with a valid token, you should see your app returned as an Application entity.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Application"
+        '401':
+          description: If the Authorization header contains an invalid token, is malformed, or is not present, an error will be returned indicating an authorization failure.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /oauth/authorize:
+    description: Generate and manage OAuth tokens.
+    get:
+      tags:
+        - oauth
+      description: Displays an authorization form to the user. If approved, it will create and return an authorization code, then redirect to the desired redirect_uri, or show the authorization code if urn:ietf:wg:oauth:2.0:oob was requested. The authorization code can be used while requesting a token to obtain access to user-level methods.
+      parameters:
+        - name: response_type
+          description: Should be set equal to code.
+          in: query
+          required: true
+          schema: 
+            type: string
+        - name: client_id
+          description: Client ID, obtained during app registration.
+          in: query
+          required: true
+          schema: 
+            type: string
+        - name: redirect_uri
+          description: Set a URI to redirect the user to. If this parameter is set to urn:ietf:wg:oauth:2.0:oob then the authorization code will be shown instead. Must match one of the redirect URIs declared during app registration.
+          in: query
+          required: true
+          schema: 
+            type: string
+        - name: scope
+          description: List of requested OAuth scopes, separated by spaces (or by pluses, if using query parameters). Must be a subset of scopes declared during app registration. If not provided, defaults to read.
+          in: query
+          schema: 
+            type: string
+        - name: force_login
+          description: Added in 2.6.0. Forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance.
+          in: query
+          schema: 
+            type: boolean
+      responses:
+        '200':
+          description: The authorization code will be returned as a query parameter named code.
+        '400':
+          description: If the authorization code is incorrect or has been used already, the request will fail.
+          content:
+            application/json:
+             schema: 
+              $ref: "#/components/schemas/Error"
+  
+  /oauth/token:
+    description: Obtain a token
+    post:
+      tags:
+        - oauth
+      description: Returns an access token, to be used during API calls that are not public.
+      requestBody:
+          content:
+            application/form-data:
+              schema:
+                type: object
+                required:
+                  - grant_type
+                  - client_id
+                  - client_secret
+                  - redirect_uri
+                properties:
+                  grant_type:
+                    description: Set equal to authorization_code if code is provided in order to gain user-level access. Otherwise, set equal to client_credentials to obtain app-level access only.
+                    type: string
+                  client_id:
+                    description: Client ID, obtained during app registration
+                    type: string
+                  client_secret:
+                    description: Client secret, obtained during app registration
+                    type: string
+                  redirect_uri:
+                    description: Set a URI to redirect the user to. If this parameter is set to urn:ietf:wg:oauth:2.0:oob then the token will be shown instead. Must match one of the redirect URIs declared during app registration.
+                    type: string
+                  scopes:
+                    description: List of requested OAuth scopes, separated by spaces. Must be a subset of scopes declared during app registration. If not provided, defaults to read.
+                    type: string
+                  code: 
+                    description: A user authorization code, obtained via /oauth/authorize
+                    type: string
+      responses:
+        '200':
+          description: Store this access_token for later use with auth-required methods. The token should be passed as an HTTP Authorization header when making API calls, with the value Bearer access_token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    example: ZA-Yj3aBD8U8Cm7lKUp-lm9O9BmDgdhHzDeqsY8tlL0
+                    type: string
+                  token_type:
+                    example: Bearer
+                    type: string
+                  scope:
+                    example: read write follow push
+                    type: string
+                  created_at:
+                    description: UNIX timestamp
+                    example: 1573979017
+                    type: integer
+        '400':
+          description: If you try to request a scope that was not included when registering the app, the request will fail.
+          content:
+            application/json:
+             schema: 
+              $ref: "#/components/schemas/Error"
+        '401':
+          description: If client_id and client_secret do not match or are invalid, the request will fail.
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Error"
+
+  /oauth/revoke:
+    post:
+      tags:
+        - oauth
+      description: Revoke an access token to make it no longer valid for use.
+      requestBody:
+          content:
+            application/form-data:
+              schema:
+                type: object
+                required:
+                  - client_id
+                  - client_secret
+                  - token
+                properties:
+                  client_id:
+                    description: Client ID, obtained during app registration
+                    type: string
+                  client_secret:
+                    description: Client secret, obtained during app registration
+                    type: string
+                  token:
+                    description: The previously obtained token, to be invalidated
+                    type: string
+      responses:
+        '200':
+          description: If you own the provided token, the API call will provide an empty response. This operation is idempotent, so calling this API multiple times will still return OK.
+        '403':
+          description: If you provide a token you do not own, or no token at all, the API call will return a 403 error.
+          content:
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/accounts:
+    post:
+      tags:
+        - TODOSecurity
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Creates a user and account records. Returns an account access token for the app that initiated the request. The app should save this token for later, and should wait for the user to confirm their account by clicking a link in their email inbox.
+      requestBody:
+          content:
+            application/form-data:
+              schema:
+                type: object
+                required:
+                  - username
+                  - email
+                  - token
+                  - password
+                  - agreement
+                  - locale
+                properties:
+                  username:
+                    description: The desired username for the account
+                    type: string
+                  email:
+                    description: The email address to be used for login
+                    type: string
+                  password:
+                    description: The password to be used for login
+                    type: string
+                    format: password
+                  agreement:
+                    description: Whether the user agrees to the local rules, terms, and policies. These should be presented to the user in order to allow them to consent before setting this parameter to TRUE.
+                    type: boolean
+                  locale:
+                    description: The language of the confirmation email that will be sent
+                    type: string
+                  reason:
+                    description: Text that will be reviewed by moderators if registrations require manual approval.
+                    type: string
+      responses:
+        '200':
+          description: Success
+        '401':
+          description: Unauthorized
+
+  /api/v1/accounts/verify_credentials:
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Test to make sure that the user token works.
+      responses:
+        '200':
+          description: Note the extra `source` property, which is not visible on accounts other than your own. Also note that plain-text is used within `source` and HTML is used for their corresponding properties such as `note` and `fields`.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        '401':
+          description: Your credential verification will fail if the token is invalid or incorrect.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Your user account is currently disabled, missing a confirmed email address, or pending approval.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/accounts/update_credentials:
+    patch:
+      tags:
+        - accounts
+      description: Update the user's display and preferences.
+      security:
+        - bearerAuth: []
+      requestBody:
+          content:
+            application/form-data:
+              schema:
+                type: object
+                properties:
+                  discoverable:
+                    description: Whether the account should be shown in the profile directory.
+                    type: string
+                  bot:
+                    description: Whether the account has a bot flag.
+                    type: boolean
+                  display_name:
+                    description: The display name to use for the profile.
+                    type: string
+                  note:
+                    description: The account bio.
+                    type: string
+                  avatar:
+                    description: Avatar image encoded using multipart/form-data
+                    type: string
+                  header: 
+                    description: Header image encoded using multipart/form-data
+                    type: string
+                  locked:
+                    description: Whether manual approval of follow requests is required.
+                    type: boolean
+                  source:
+                    type: object
+                    properties:
+                      privacy:
+                        description: Default post privacy for authored statuses.
+                        type: string
+                      sensitive:
+                        description: Whether to mark authored statuses as sensitive by default.
+                        type: boolean
+                      language:
+                        description: Default language to use for authored statuses. (ISO 6391)
+                        type: string
+                  fields_attributes:
+                    description: Profile metadata `name` and `value`. (By default, max 4 fields and 255 characters per property/value)
+                    type: object
+      responses:
+        '200':
+          description: You should use `accounts/verify_credentials` to first obtain plaintext representations from within the `source` parameter, then allow the user to edit these plaintext representations before submitting them through this API. The server will generate the corresponding HTML.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/accounts/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Account record will be returned. Note that `acct` of local users does not include the domain name.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        '401':
+          description: If the instance is in whitelist mode and the Authorization header is missing or invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Account does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '410':
+          description: Account is suspended
+  
+  /api/v1/accounts/{id}/statuses:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Statuses posted to the given account.
+      responses:
+        '200':
+          description: Statuses posted to the given account. Public (for public statuses only), or user token + read:statuses (for private statuses the user is authorized to see)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Status"
+        '401':
+          description: Instance is in whitelist mode or running a version of Mastodon older than 2.7.0, and the Authorization header is invalid or missing
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Account is deleted or does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '410':
+          description: Account is suspended
+
+  /api/v1/accounts/{id}/followers:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Accounts which follow the given account, if network is not hidden by the account owner.
+      parameters:
+         - name: max_id
+           description: Internal parameter. Use HTTP `Link` header for pagination.
+           in: query
+           schema: 
+            type: string
+         - name: since_id
+           description: Internal parameter. Use HTTP `Link` header for pagination.
+           in: query
+           schema: 
+            type: string
+         - name: limit
+           description: Maximum number of results to return. Defaults to 40.
+           in: query
+           schema:
+            type: integer
+            default: 40
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          description: Invalid or missing Authorization header, or instance is in whitelist mode and your token is not authorized with a user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Account is deleted or does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '410':
+          description: Account is suspended
+
+  /api/v1/accounts/{id}/following:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Accounts which the given account is following, if network is not hidden by the account owner.
+      parameters:
+         - name: max_id
+           description: Internal parameter. Use HTTP `Link` header for pagination.
+           in: query
+           schema: 
+            type: string
+         - name: since_id
+           description: Internal parameter. Use HTTP `Link` header for pagination.
+           in: query
+           schema: 
+            type: string
+         - name: limit
+           description: Maximum number of results to return. Defaults to 40.
+           in: query
+           schema:
+            type: integer
+            default: 40
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          description: Invalid or missing Authorization header, or instance is in whitelist mode and your token is not authorized with a user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Account is deleted or does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '410':
+          description: Account is suspended
+
+  /api/v1/accounts/{id}/featured_tags:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Tags featured by this account.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FeaturedTag"
+        '401':
+          description: Invalid or missing Authorization header, or instance is in whitelist mode and your token is not authorized with a user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/accounts/{id}/lists:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: User lists that you have added this account to.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/List"
+        '401':
+          description: Invalid or missing Authorization header, or instance is in whitelist mode and your token is not authorized with a user
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Account is deleted or does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '410':
+          description: Account is suspended
+  
+  /api/v1/accounts/{id}/identity_proofs:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Array of IdentityProof
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/IdentityProof"
+        '404':
+          description: Account is deleted or does not exist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '410':
+          description: Account with given id is suspended
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/accounts/{id}/follow:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Follow the given account. Can also be used to update whether to show reblogs or enable notifications.
+      requestBody:
+        content:
+            application/form-data:
+              schema:
+                type: object
+                properties:
+                  reblogs:
+                    description: Receive this account's reblogs in home timeline? Defaults to true.
+                    type: boolean
+                    default: true
+                  notify:
+                    description: Receive notifications when this account posts a status? Defaults to false.
+                    type: boolean
+                    default: false
+      responses:
+        '200':
+          description: Successfully followed, or account was already followed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '403':
+          description: Trying to follow someone that you block or that blocks you
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/accounts/{id}/unfollow:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Unfollow the given account.
+      responses:
+        '200':
+          description: Successfully unfollowed, or account was already not followed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/accounts/{id}/block:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Block the given account. Clients should filter statuses from this account if received (e.g. due to a boost in the Home timeline).
+      responses:
+        '200':
+          description: Successfully blocked, or account was already blocked
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/accounts/{id}/unblock:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Block the given account. Clients should filter statuses from this account if received (e.g. due to a boost in the Home timeline).
+      responses:
+        '200':
+          description: Successfully unblocked, or account was already not blocked
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/accounts/{id}/mute:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Mute the given account. Clients should filter statuses and notifications from this account, if received (e.g. due to a boost in the Home timeline).
+      requestBody:
+        content:
+            application/form-data:
+              schema:
+                type: object
+                properties:
+                  notifications:
+                    description: Mute notifications in addition to statuses? Defaults to true.
+                    type: boolean
+                    default: true
+                  duration:
+                    description: How long the mute should last, in seconds. Defaults to 0 (indefinite).
+                    type: integer
+                    default: 0
+      responses:
+        '200':
+          description: Successfully muted, or account was already muted. Note that you can call this API method again with notifications=false to update the relationship so that only statuses are muted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/accounts/{id}/unmute:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Unmute the given account.
+      responses:
+        '200':
+          description: Successfully unmuted, or account was already unmuted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/accounts/{id}/pin:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Add the given account to the user's featured profiles. (Featured profiles are currently shown on the user's own public profile.)
+      responses:
+        '200':
+          description: Successfully unmuted, or account was already unmuted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '403':
+          description: Token is not authorized with a valid user or is missing a required scope
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '422':
+          description: You are not following this account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '500':
+          description: Account already endorsed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/accounts/{id}/unpin:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Remove the given account from the user's featured profiles.
+      responses:
+        '200':
+          description: Successfully unmuted, or account was already unmuted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '422':
+          description: Unprocessable Entity
+  
+  /api/v1/accounts/{id}/note:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Sets a private note on a user.
+      requestBody:
+        content:
+            application/form-data:
+              schema:
+                type: object
+                properties:
+                  comment:
+                    description: The comment to be set on that user. Provide an empty string or leave out this parameter to clear the currently set note.
+                    type: string
+      responses:
+        '200':
+          description: Successfully unmuted, or account was already unmuted.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '422':
+          description: Unprocessable Entity
+
+  /api/v1/accounts/relationships:
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Sets a private note on a user.
+      parameters:
+        - in: query
+          name: id
+          description: Array of account IDs to check
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/accounts/search:
+    get:
+      tags:
+        - accounts
+      security:
+        - bearerAuth: []
+      description: Search for matching accounts by username or display name.
+      parameters:
+        - name: q
+          in: query
+          description: What to search for
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results. Defaults to 40.
+          schema:
+            type: integer
+            default: 40
+        - name: resolve
+          in: query
+          description: Attempt WebFinger lookup. Defaults to false. Use this when `q` is an exact address.
+          schema:
+            type: string
+        - name: following
+          in: query
+          description: Only who the user is following. Defaults to false.
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Accounts matching `q` in username or display name
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '503':
+          description: resolve=true, but the domain part of the user@domain address is not a currently live website
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/bookmarks:
+    get:
+      security:
+        - bearerAuth: []
+      description: Statuses the user has bookmarked.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: max_id
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Status"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/favourites:
+    get:
+      security:
+        - bearerAuth: []
+      description: Statuses the user has favourited.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: max_id
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Status"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/mutes:
+    get:
+      security:
+        - bearerAuth: []
+      description: Accounts the user has muted.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: string
+        - name: max_id
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/blocks:
+    get:
+      security:
+        - bearerAuth: []
+      description: Get blocked users.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: max_id
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              
+  /api/v1/domain_blocks:
+    get:
+      security:
+        - bearerAuth: []
+      description: View domains the user has blocked.
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: max_id
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      security:
+        - bearerAuth: []
+      description: |
+        "Block a domain to:
+        - hide all public posts from it
+        - hide all notifications from it
+        - remove all followers from it
+        - prevent following new users from it (but does not remove existing follows)"
+      requestBody:
+        content:
+          application/form-data:
+            schema:
+              type: object
+              required:
+                - domain
+              properties:
+                domain:
+                  description: Domain to block.
+                  type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '422':
+          description: If `domain` is not provided or contains spaces, the request will fail.
+
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      security:
+        - bearerAuth: []
+      description: Remove a domain block, if it exists in the user's array of blocked domains.
+      requestBody:
+        content:
+          application/form-data:
+            schema:
+              type: object
+              required:
+                - domain
+              properties:
+                domain:
+                  description: Domain to unblock.
+                  type: string
+      responses:
+        '200':
+          description: success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '422':
+          description: If `domain` is not provided or contains spaces, the request will fail.
+
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        
+  /api/v1/filters:
+    get:
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Excerpts of various filters in different contexts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Filter"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/form-data:
+            schema:
+              type: object
+              required:
+                - phrase
+                - context
+              properties:
+                phrase:
+                  description: Text to be filtered.
+                  type: string
+                context:
+                  description: Array of enumerable strings `home`, `notifications`, `public`, `thread`. At least one context must be specified.
+                  type: array
+                  items: 
+                    type: string
+                    enum:
+                      - home
+                      - notifications
+                      - public
+                      - thread
+                irreversible:
+                  description: Should the server irreversibly drop matching entities from home and notifications?
+                  type: boolean
+                whole_word:
+                  description: Consider word boundaries?
+                  type: boolean
+                expires_in:
+                  description: Number of seconds from now the filter should expire. Otherwise, null for a filter that doesn't expire.
+                  type: integer
+      responses:
+        '200':
+          description: The newly-created filter will be returned.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Filter"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '422':
+          description: If phrase or context are not provided properly
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/filters/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    get:
+      security:
+        - bearerAuth: []
+      description: Get one filter.
+      responses:
+        '200':
+          description: Filter returned successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Filter"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Filter ID does not exist, or is not owned by you
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      security:
+        - bearerAuth: []
+      description: Update a filter.
+      requestBody:
+        content:
+          application/form-data:
+            schema:
+              type: object
+              required:
+                - phrase
+                - context
+              properties:
+                phrase:
+                  description: Text to be filtered.
+                  type: string
+                context:
+                  description: Array of enumerable strings `home`, `notifications`, `public`, `thread`. At least one context must be specified.
+                  type: array
+                  items: 
+                    type: string
+                    enum:
+                      - home
+                      - notifications
+                      - public
+                      - thread
+                irreversible:
+                  description: Should the server irreversibly drop matching entities from home and notifications?
+                  type: boolean
+                whole_word:
+                  description: Consider word boundaries?
+                  type: boolean
+                expires_in:
+                  description: Number of seconds from now the filter should expire. Otherwise, null for a filter that doesn't expire.
+                  type: integer
+      responses:
+        '200':
+          description: Filter updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Filter"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Filter ID does not exist, or is not owned by you
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '422':
+          description: If phrase or context are not provided properly
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      security:
+        - bearerAuth: []
+      description: Delete a filter.
+      responses:
+        '200':
+          description: The filter has been deleted successfully, so an empty object will be returned.
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Filter ID does not exist, or is not owned by you
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/reports:
+    post:
+      security:
+        - bearerAuth: []
+      description: File a report.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - account_id
+              properties:
+                account_id:
+                  description: ID of the account to report
+                  type: string
+                status_ids:
+                  description: Array of Statuses to attach to the report, for context
+                  type: array
+                  items:
+                    type: string
+                comment:
+                  description: Reason for the report (default max 1000 characters)
+                  type: string
+                forward:
+                  description: If the account is remote, should the report be forwarded to the remote admin?
+                  type: boolean
+      responses:
+        '200':
+          description: Successfully reported.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Report"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/follow_requests:
+    get:
+      security:
+        - bearerAuth: []
+      description: Pending Follows
+      parameters:
+        - name: limit
+          description: Maximum number of results to return. Defaults to 40. Paginate using the HTTP Link header.
+          in: query
+          schema:
+            type: integer
+            default: 40
+      responses:
+        '200':
+          description: Accounts that are requesting a follow.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/follow_requests/{id}/authorize:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Accept Follow
+      responses:
+        '200':
+          description: Your Relationship with this account should be updated so that you are followed_by this account.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: No pending follow request from that user ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/follow_requests/{id}/reject:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the account in the database
+        required: true
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Accept Follow
+      responses:
+        '200':
+          description: Your Relationship with this Account should be unchanged.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Relationship"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: No pending follow request from that user ID
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/endorsements:
+    get:
+      security:
+        - bearerAuth: []
+      description: Accounts that the user is currently featuring on their profile.
+      parameters:
+        - name: limit
+          description: Maximum number of results to return. Defaults to 40. Paginate using the HTTP Link header.
+          in: query
+          schema:
+            type: integer
+            default: 40
+        - name: max_id
+          description: Internal parameter. Use HTTP Link header from response for pagination
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Internal parameter. Use HTTP Link header from response for pagination.
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Success. Because endorsement ids are private, you must parse the HTTP Link header to find next and previous pages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        
+  /api/v1/featured_tags:
+    get:
+      security:
+        - bearerAuth: []
+      description: View your featured tags.
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FeaturedTag"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      security:
+        - bearerAuth: []
+      description: Create a feature a tag.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FeaturedTag"
+        '422':
+          description: If name is not a valid hashtag, e.g. contains illegal characters or only numbers
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/featured_tags/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: The id of the FeaturedTag to be unfeatured.
+        required: true
+        schema:
+          type: string
+    delete:
+      security:
+        - bearerAuth: []
+      description: Unfeature a tag
+      responses:
+        '200':
+          description: An empty object will be returned if the featured tag was successfully deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+        '404':
+          description: If the ID does not exist or is not owned by you
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/featured_tags/suggestions:
+    get:
+      security:
+        - bearerAuth: []
+      description: Shows your 10 most-used tags, with usage history for the past week.
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FeaturedTag"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/preferences:
+    get:
+      security:
+        - bearerAuth: []
+      description: Shows your 10 most-used tags, with usage history for the past week.
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Preferences"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /api/v1/suggestions:
+    get:
+      security:
+        - bearerAuth: []
+      description: Accounts the user has had past positive interactions with, but is not yet following.
+      parameters:
+        - name: limit
+          description: Maximum number of results to return. Defaults to 40.
+          in: query
+          schema:
+            type: integer
+            default: 40
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Account"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/suggestions/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: id of the account in the database to be removed from suggestions
+        required: true
+        schema:
+          type: string
+    delete:
+      security:
+        - bearerAuth: []
+      description: Delete user suggestion
+      responses:
+        '200':
+          description: Successfully removed
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/statuses:
+    parameters:
+      - in: header
+        name: Idempotency-Key
+        description: Prevent duplicate submissions of the same status. Idempotency keys are stored for up to 1 hour, and can be any arbitrary string. Consider using a hash or UUID generated client-side.
+        schema:
+          type: string
+    
+    post:
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              properties:
+                status:
+                  description: Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
+                  type: string
+                media_ids:
+                  description: Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+                  type: array
+                  items:
+                    type: string
+                poll:
+                  type: array
+                  items:
+                    type: object
+                  additionalProperties: true
+                in_reply_to_id:
+                  description: ID of the status being replied to, if status is a reply
+                  type: string
+                sensitive:
+                  description: Mark status and attached media as sensitive?
+                  type: boolean
+                spoiler_text:
+                  description: Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
+                  type: string
+                visibility:
+                  description: Visibility of the posted status. Enumerable oneOf public, unlisted, private, direct.
+                  type: string
+                  enum:
+                    - public
+                    - unlisted
+                    - private
+                    - direct
+                scheduled_at:
+                  description: ISO 8601 Datetime at which to schedule a status. Providing this paramter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+                  type: string
+                language:
+                  description: ISO 639 language code for this status.
+                  type: string
+      responses:
+        '200':
+          description: Status will be posted with chosen parameters. If scheduled_at is provided, then a ScheduledStatus will be returned instead.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                 - $ref: "#/components/schemas/Status"
+                 - $ref: "#/components/schemas/ScheduledStatus"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        
+
+  /api/v1/statuses/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    get:
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Status will be posted with chosen parameters. If scheduled_at is provided, then a ScheduledStatus will be returned instead.
+          content:
+            application/json:
+              schema:
+                 $ref: "#/components/schemas/Status"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Status does not exist, is deleted, or is private.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Status will be posted with chosen parameters. If scheduled_at is provided, then a ScheduledStatus will be returned instead.
+          content:
+            application/json:
+              schema:
+                 $ref: "#/components/schemas/Status"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: Status does not exist, is deleted, or is private.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/statuses/{id}/context:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    get:
+      security:
+        - bearerAuth: []
+      responses:
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Context"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/statuses/{id}/reblogged_by:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    get:
+      description: View who boosted a given status.
+      responses:
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Account"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"  
+
+  /api/v1/statuses/{id}/favourited_by:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    get:
+      description: View who favourited a given status.
+      responses:
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Account"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/statuses/{id}/favourite:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Add a status to your favourites list.
+      responses:
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/statuses/{id}/unfavourite:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Remove a status from your favourites list.
+      responses:
+          '200':
+            description: Success
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/statuses/{id}/reblog:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Reshare a status.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                visibility:
+                  description: any visibility except limited or direct (i.e. public, unlisted, private). Defaults to public. Currently unused in UI.
+                  type: string
+      responses:
+          '200':
+            description: Status has been reblogged. Note that the top-level id has changed. The id of the boosted status is now inside the reblog property. The top-level id is the id of the reblog itself. Also note that reblogs cannot be pinned.
+
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/statuses/{id}/unreblog:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Undo a reshare of a status.
+      responses:
+          '200':
+            description: Status no longer reblogged
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/statuses/{id}/bookmark:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Privately bookmark a status.
+      responses:
+          '200':
+            description: Status bookmarked
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+                  
+  /api/v1/statuses/{id}/unbookmark:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Remove a status from your private bookmarks.
+      responses:
+          '200':
+            description: Status unbookmarked
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/statuses/{id}/mute:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Do not receive notifications for the thread that this status is part of. Must be a thread in which you are a participant.
+      responses:
+          '200':
+            description: Status's conversation muted, or was already muted
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/statuses/{id}/unmute:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Status's conversation unmuted, or was already unmuted
+      responses:
+          '200':
+            description: Status's conversation muted, or was already muted
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/statuses/{id}/pin:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Feature one of your own public statuses at the top of your profile.
+      responses:
+          '200':
+            description: Status pinned. Note the status is not a reblog and its authoring account is your own.
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '422':
+            description: Status is not owned by you, or is not public. You cannot pin one of your private statuses because private statuses cannot be fetched from remote sites, and must be delivered.
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/statuses/{id}/unpin:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of a status in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Unfeature a status from the top of your profile.
+      responses:
+          '200':
+            description: Status unpinned, or was already not pinned
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Status"
+          '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+          '404':
+            description: Status does not exist, is deleted, or is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/media:
+    post:
+      security:
+        - bearerAuth: []
+      description: Creates an attachment to be used with a new status.
+      requestBody:
+        content:
+          application/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  description: The file to be attached, using multipart form data.
+                  type: string
+                  format: binary
+                thumbnail:
+                  description: The custom thumbnail of the media to be attached, using multipart form data.
+                  type: string
+                  format: binary
+                description:
+                  description: A plain-text description of the media, for accessibility purposes.
+                  type: string
+                focus:
+                  description: Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0 (see “Focal points” below)
+                  type: string
+      responses:
+        '200':
+          description: Attachment created successfully. Note that the Attachment will be created even if the file is not understood correctly.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attachment"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '422':
+          description: File or file type is unsupported or invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/media/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: The id of the Attachment entity to be updated.
+        schema:
+          type: string
+    get:
+      security:
+        - bearerAuth: []
+      description: Get an attachement.
+      responses:
+        '200':
+          description: Attachment created successfully. Note that the Attachment will be created even if the file is not understood correctly.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attachment"
+        '206':
+          description: Attachment is not yet ready.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attachment"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Attachment does not exist, is deleted, or was not created by you
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '422':
+          description: File or file type is unsupported or invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    
+    post:
+      security:
+        - bearerAuth: []
+      description: Update an Attachment, before it is attached to a status and posted.
+      requestBody:
+        content:
+          application/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  description: The file to be attached, using multipart form data.
+                  type: string
+                  format: binary
+                thumbnail:
+                  description: The custom thumbnail of the media to be attached, using multipart form data.
+                  type: string
+                  format: binary
+                description:
+                  description: A plain-text description of the media, for accessibility purposes.
+                  type: string
+                focus:
+                  description: Two floating points (x,y), comma-delimited, ranging from -1.0 to 1.0 (see “Focal points” below)
+                  type: string
+      responses:
+        '200':
+          description: Attachment updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Attachment"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Attachment does not exist, is deleted, or was not created by you
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '422':
+          description: File or file type is unsupported or invalid
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+  /api/v1/polls/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the poll in the database.
+        schema:
+          type: string
+    get:
+      description: View a poll.
+      responses:
+        '200':
+          description: Get one poll.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Poll"
+        '404':
+            description: Poll does not exist, or poll's parent status is private
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    
+    post:
+      security:
+        - bearerAuth: []
+      description: Vote on a poll.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - choices
+              properties:
+                choices:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Get one poll.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Poll"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Poll does not exist, or poll's parent status is private.
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '422':
+            description: Already voted or poll is expired.
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/scheduled_statuses:
+    get:
+      security:
+          - bearerAuth: []
+      description: View scheduled statuses
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - choices
+              properties:
+                limit:
+                  description: Max number of results to return. Defaults to 20.
+                  type: integer
+                  default: 20
+                max_id:
+                  description: Return results older than ID
+                  type: string
+                since_id:
+                  description: Return results newer than ID
+                  type: string
+                min_id:
+                  description: Return results immediately newer than ID
+                  type: string
+      responses:
+        '200':
+          description: Get scheduled statuses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ScheduledStatus"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/scheduled_statuses/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the scheduled status in the database.
+        schema:
+          type: string
+    get:
+      security:
+          - bearerAuth: []
+      description: View a single scheduled status
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledStatus"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    put:
+      security:
+          - bearerAuth: []
+      description: View a single scheduled status
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                scheduled_at:
+                  description: ISO 8601 Datetime at which the status will be published. Must be at least 5 minutes into the future.
+                  type: string
+                  format: date-time
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledStatus"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '422':
+            description: Unprocessable Entity
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    delete:
+      security:
+          - bearerAuth: []
+      description: Cancel a scheduled status
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/timelines/public:
+    get:
+      description: Public timeline
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                local:
+                  description: Show only local statuses? Defaults to false.
+                  type: boolean
+                  default: false
+                remote:
+                  description: Show only local statuses? Defaults to false.
+                  type: boolean
+                  default: false
+                only_media:
+                  description: Show only statuses with media attached? Defaults to false..
+                  type: boolean
+                  default: false
+                max_id:
+                  description: Return results older than this id.
+                  type: string
+                since_id:
+                  description: Return results newer than this id.
+                  type: string
+                min_id:
+                  description: Return results immediately newer than this id.
+                  type: string
+                limit:
+                  description: Maximum number of results to return. Defaults to 20.
+                  type: integer
+                  default: 20
+      responses:
+        '200':
+          description: get statuses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Status"
+
+  /api/v1/timelines/tag/{hashtag}:
+    parameters:
+      - in: path
+        name: hashtag
+        required: true
+        description: Content of a `#hashtag``, not including `#` symbol..
+        schema:
+          type: string
+    get:
+      description: View public statuses containing the given hashtag.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                local:
+                  description: Show only local statuses? Defaults to false.
+                  type: boolean
+                  default: false
+                remote:
+                  description: Show only local statuses? Defaults to false.
+                  type: boolean
+                  default: false
+                only_media:
+                  description: Show only statuses with media attached? Defaults to false..
+                  type: boolean
+                  default: false
+                max_id:
+                  description: Return results older than this id.
+                  type: string
+                since_id:
+                  description: Return results newer than this id.
+                  type: string
+                min_id:
+                  description: Return results immediately newer than this id.
+                  type: string
+                limit:
+                  description: Maximum number of results to return. Defaults to 20.
+                  type: integer
+                  default: 20
+      responses:
+        '200':
+          description: Get statuses.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Status"
+
+  /api/v1/timelines/home:
+    get:
+      security:
+        - bearerAuth: []
+      description: View statuses from followed users.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                local:
+                  description: Show only local statuses? Defaults to false.
+                  type: boolean
+                  default: false
+                max_id:
+                  description: Return results older than this id.
+                  type: string
+                since_id:
+                  description: Return results newer than this id.
+                  type: string
+                min_id:
+                  description: Return results immediately newer than this id.
+                  type: string
+                limit:
+                  description: Maximum number of results to return. Defaults to 20.
+                  type: integer
+                  default: 20
+      responses:
+        '200':
+          description: Get statuses for home.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Status"
+        '206':
+          description: Home feed is regenerating
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/timelines/list/{list_id}:
+    parameters:
+      - in: path
+        name: list_id
+        required: true
+        description: Local ID of the list in the database.
+        schema:
+          type: string
+    get:
+      security:
+        - bearerAuth: []
+      description: View statuses in the given list timeline.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                max_id:
+                  description: Return results older than this id.
+                  type: string
+                since_id:
+                  description: Return results newer than this id.
+                  type: string
+                min_id:
+                  description: Return results immediately newer than this id.
+                  type: string
+                limit:
+                  description: Maximum number of results to return. Defaults to 20.
+                  type: integer
+                  default: 20
+      responses:
+        '200':
+          description: Statuses in this list will be returned..
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Status"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/conversations:
+    get:
+      security:
+        - bearerAuth: []
+      description: Show conversation.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                max_id:
+                  description: Return results older than this id.
+                  type: string
+                since_id:
+                  description: Return results newer than this id.
+                  type: string
+                min_id:
+                  description: Return results immediately newer than this id.
+                  type: string
+                limit:
+                  description: Maximum number of results to return. Defaults to 20.
+                  type: integer
+                  default: 20
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Conversation"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/conversations/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the conversation in the database
+        schema:
+          type: string
+    delete:
+      security:
+          - bearerAuth: []
+      description: Remove converstation
+      responses:
+        '200':
+          description: Success.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/conversations/{id}/read:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the conversation in the database
+        schema:
+          type: string
+    post:
+      security:
+          - bearerAuth: []
+      description: Remove converstation
+      responses:
+        '200':
+          description: The value of unread has been changed to false..
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Conversation"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+  
+  /api/v1/lists:
+    get:
+      security:
+          - bearerAuth: []
+      description: Fetch all lists that the user owns.
+      responses:
+        '200':
+          description: Use id as a parameter for related API calls.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/List"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    post:
+      security:
+          - bearerAuth: []
+      description: Create a new list.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+              properties:
+                title:
+                  description: The title of the list to be created.
+                  type: string
+                replies_policy:
+                  description: Enumerable oneOf followed list none. Defaults to list.
+                  type: string
+                  default: list
+                  enum:
+                    - followed
+                    - list
+                    - none
+      responses:
+        '200':
+          description: A list was created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/List"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    put:
+      security:
+          - bearerAuth: []
+      description: Change the title of a list, or which replies to show.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  description: The title of the list to be created.
+                  type: string
+                replies_policy:
+                  description: Enumerable oneOf followed list none. Defaults to list.
+                  type: string
+                  default: list
+                  enum:
+                    - followed
+                    - list
+                    - none
+      responses:
+        '200':
+          description: A list was updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/List"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '422':
+            description: Unprocessable Entity
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    delete:
+      security:
+          - bearerAuth: []
+      description: Delete a list
+      responses:
+        '200':
+          description: A list was deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+
+  /api/v1/lists/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the list in the database
+        schema:
+          type: string
+    get:
+      security:
+          - bearerAuth: []
+      description: Remove converstation
+      responses:
+        '200':
+          description: The value of unread has been changed to false..
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/List"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/lists/{id}/accounts:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the list in the database
+        schema:
+          type: string
+    get:
+      security:
+          - bearerAuth: []
+      description: View accounts in List
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                max_id:
+                  description: Return results older than this id.
+                  type: string
+                since_id:
+                  description: Return results newer than this id.
+                  type: string
+                limit:
+                  description: Maximum number of results. Defaults to 40. Max 40. Set to 0 in order to get all accounts without pagination. Pagination is done with the HTTP Link header.
+                  type: integer
+                  default: 40
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    post:
+      security:
+          - bearerAuth: []
+      description: Add accounts to the given list. Note that the user must be following these accounts.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - account_ids
+              properties:
+                account_ids:
+                  description: Array of account IDs to add to the list.
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '422':
+            description: Unprocessable Entity
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    delete:
+      security:
+          - bearerAuth: []
+      description: Remove accounts from the given list.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - account_ids
+              properties:
+                account_ids:
+                  description: Array of account IDs to add to the list.
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Account was successfully removed from the list, or it was already not in the list.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '422':
+            description: Unprocessable Entity
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/markers:
+    get:
+      security:
+          - bearerAuth: []
+      description: Get saved timeline position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - timeline
+              properties:
+                timeline:
+                  description: Array of markers to fetch. String enum anyOf home, notifications. If not provided, an empty object will be returned.
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: Account was successfully removed from the list, or it was already not in the list.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    post:
+      security:
+          - bearerAuth: []
+      description: Get saved timeline position
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Account was successfully removed from the list, or it was already not in the list.
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+        '409':
+            description: Conflict, If object is stale while being updated, an error will occur.
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/notifications:
+    get:
+      security:
+          - bearerAuth: []
+      description: Notifications concerning the user. This API returns Link headers containing links to the next/previous page. However, the links can also be constructed dynamically using query params and id values.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                max_id:
+                  description: Return results older than this id.
+                  type: string
+                min_id:
+                  description: Return results immediately newer than this ID
+                  type: string
+                since_id:
+                  description: Return results newer than this id.
+                  type: string
+                limit:
+                  description: Maximum number of results to return (default 20).
+                  type: integer
+                  default: 20
+                exclude_types:
+                  description: Array of types to exclude (follow, favourite, reblog, mention, poll, follow_request)
+                  type: array
+                  items:
+                    type: string
+                account_id:
+                  description: Return only notifications received from this account
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Notification"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/notifications/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the notification in the database.
+        schema:
+          type: string
+    get:
+      security:
+          - bearerAuth: []
+      description: View information about a notification with a given ID.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/notifications/clear:
+    post:
+      security:
+          - bearerAuth: []
+      description: Clear all notifications from the server.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+
+  /api/v1/notifications/{id}/dismiss:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the notification in the database.
+        schema:
+          type: string
+    post:
+      security:
+          - bearerAuth: []
+      description: Clear a single notification from the server.
+      responses:
+        '200':
+          description: Notification with given ID successfully dismissed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Notification"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    
+  /api/v1/push/subscription:
+    post:
+      security:
+          - bearerAuth: []
+      description: Add a Web Push API subscription to receive notifications. Each access token can have one push subscription. If you create a new subscription, the old subscription is deleted.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - subscription
+                - data
+              properties:
+                subscription:
+                  type: string
+                data:
+                  type: string
+      responses:
+        '200':
+          description: PushSubscription created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PushSubscription"
+        '401':
+            description: Invalid or missing Authorization header
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    get:
+      security:
+          - bearerAuth: []
+      description: View the PushSubscription currently associated with this access token.
+      responses:
+        '200':
+          description: Get one PushSubscription
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PushSubscription"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    put:
+      security:
+          - bearerAuth: []
+      description: Updates the current push subscription. Only the data part can be updated. To change fundamentals, a new subscription must be created instead.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - data
+              properties:
+                data:
+                  type: string
+      responses:
+        '200':
+          description: Updating a PushSubscription to only receive mention alerts
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PushSubscription"
+        '404':
+            description: Not Found
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/Error"
+    delete:
+      security:
+          - bearerAuth: []
+      description: Updates the current push subscription. Only the data part can be updated. To change fundamentals, a new subscription must be created instead.
+      responses:
+        '200':
+          description: Updating a PushSubscription to only receive mention alerts
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /api/v2/search:
+    get:
+      security:
+        - bearerAuth: []
+      description: Search results
+      parameters:
+        - name: q
+          in: query
+          description: What to search for
+          required: true
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: Maximum number of results. Defaults to 40.
+          schema:
+            type: integer
+            default: 20
+        - name: resolve
+          in: query
+          description: Attempt WebFinger lookup.
+          schema:
+            type: string
+        - name: following
+          in: query
+          description: Only who the user is following. Defaults to false.
+          schema:
+            type: boolean
+        - name: account_id
+          in: query
+          description: If provided, statuses returned will be authored only by this account
+          schema:
+            type: string
+        - name: max_id
+          in: query
+          description: Return results older than this id
+          schema:
+            type: string
+        - name: min_id
+          in: query
+          description: Return results immediately newer than this id
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: Enum(accounts, hashtags, statuses)
+          schema:
+            type: string
+            enum:
+              - accounts
+              - hashtags
+              - statuses
+        - name: exclude_unreviewed
+          in: query
+          description: Filter out unreviewed tags? Defaults to false. Use true when trying to find trending tags.
+          schema:
+            type: boolean
+        - name: offset
+          in: query
+          description: Offset in search results. Used for pagination. Defaults to 0.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accounts:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Account"
+                  statuses:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Tag"
+                  hashtags:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Status"
+        '401':
+          description: Invalid or missing Authorization header
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/v1/instance:
+    get:
+      description: Information about the server.
+      responses:
+        '200':
+          description: Result
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Instance"
+
+  /api/v1/instance/peers:
+    get:
+      description: Information about the server.
+      responses:
+        '200':
+          description: Domains that this instance is aware of.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+  
+  /api/v1/instance/activity:
+    get:
+      description: Instance activity over the last 3 months, binned weekly.
+      responses:
+        '200':
+          description: Domains that this instance is aware of.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Activity"
+  
+  /api/v1/trends:
+    get:
+      description: Tags that are being used more frequently within the past week.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                limit:
+                  description: Maximum number of results to return. Defaults to 10.
+                  type: integer
+                  default: 10
+      responses:
+        '200':
+          description: Domains that this instance is aware of.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Tag"
+
+  /api/v1/directory:
+    get:
+      description: List accounts visible in the directory.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                limit:
+                  description: Maximum number of results to return. Defaults to 10.
+                  type: integer
+                  default: 40
+                offset:
+                  description: How many accounts to skip before returning results. Default 0.
+                  type: integer
+                  default: 0
+                order:
+                  description: the `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles.
+                  type: string
+                  enum:
+                    - active
+                    - new
+                  default: "active"
+                local:
+                  description: Only return local accounts.
+                  type: boolean
+      responses:
+        '200':
+          description: List of accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Account"
+
+  /api/v1/custom_emojis:
+    get:
+      description: Returns custom emojis that are available on the server.
+      responses:
+        '200':
+          description: List of Emojis
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Emoji"
+  
+  /api/v1/admin/accounts:
+    get:
+      security:
+        - bearerAuth: []
+      description: View accounts matching certain criteria for filtering, up to 100 at a time. Pagination may be done with the HTTP Link header in the response.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                limit:
+                  description: Maximum number of results to return. Defaults to 10.
+                  type: integer
+                  default: 40
+                local:
+                  description: Filter for local accounts?
+                  type: boolean
+                remote:
+                  description: Filter for remote accounts?
+                  type: boolean
+                by_domain: 
+                  description: Filter by the given domain
+                  type: string
+                active:
+                  description: Filter for currently active accounts?
+                  type: boolean
+                pending:
+                  description: Filter for currently pending accounts?
+                  type: boolean
+                disabled:
+                  description: Filter for currently disabled accounts?
+                  type: boolean
+                silenced:
+                  description: Filter for currently silenced accounts?
+                  type: boolean
+                suspended:
+                  description: Filter for currently suspended accounts?
+                  type: boolean
+                username:
+                  description: Username to search for
+                  type: string
+                display_name:
+                  description: Display name to search for
+                  type: string
+                email:
+                  description: Lookup a user with this email
+                  type: string
+                ip:
+                  description: Lookup a user with this IP
+                  type: string
+                staff:
+                  description: Filter for staff accounts?
+                  type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AdminAccount"
+  
+  /api/v1/admin/accounts/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the account
+        schema:
+          type: string
+    get:
+      security:
+        - bearerAuth: []
+      description: View admin-level information about the given account.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminAccount"
+
+  /api/v1/admin/accounts/{id}/action:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the account
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Perform an action against an account and log this action in the moderation history.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  description: "Type of action to be taken. Enumerable oneOf: none disable silence suspend"
+                  type: string
+                  enum:
+                    - none
+                    - disable
+                    - silence
+                    - suspend
+                report_id:
+                  description: ID of an associated report that caused this action to be taken
+                  type: string
+                warning_preset_id:
+                  description: ID of a preset warning
+                  type: string
+                text: 
+                  description: Additional text for clarification of why this action was taken
+                  type: string
+                send_email_notification:
+                  description: Whether an email should be sent to the user with the above information.
+                  type: boolean
+      responses:
+        '200':
+          description: Success
+  
+  /api/v1/admin/accounts/{id}/approve:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the account
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Approve the given local account if it is currently pending approval.
+      responses:
+        '200':
+          description: Success
+
+  /api/v1/admin/accounts/{id}/reject:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the account
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Reject the given local account if it is currently pending approval.
+      responses:
+        '200':
+          description: Success
+  
+  /api/v1/admin/accounts/{id}/enable:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the account
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Re-enable a local account whose login is currently disabled.
+      responses:
+        '200':
+          description: Success
+
+  /api/v1/admin/accounts/{id}/unsilence:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the account
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Unsilence a currently silenced account.
+      responses:
+        '200':
+          description: Success
+
+  /api/v1/admin/accounts/{id}/unsuspend:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the account
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Unsuspend a currently suspended account.
+      responses:
+        '200':
+          description: Success
+
+  /api/v1/admin/reports:
+    get:
+      security:
+        - bearerAuth: []
+      description: View all reports. Pagination may be done with HTTP Link header in the response.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                resolved:
+                  type: boolean
+                account_id:
+                  type: string
+                target_account_id:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AdminReport"
+
+  /api/v1/admin/reports/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the report
+        schema:
+          type: string
+    get:
+      security:
+        - bearerAuth: []
+      description: View information about the report with the given ID.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminReport"
+
+  /api/v1/admin/reports/{id}/assign_to_self:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the report
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Claim the handling of this report to yourself.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminReport"
+
+  /api/v1/admin/reports/{id}/unassign:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the report
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Unassign a report so that someone else can claim it.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminReport"
+
+  /api/v1/admin/reports/{id}/resolve:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the report
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Mark a report as resolved with no further action taken.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminReport"
+
+  /api/v1/admin/reports/{id}/reopen:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: ID of the report
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Mark a report as resolved with no further action taken.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminReport"
+
+  /api/v1/announcements:
+    get:
+      security:
+        - bearerAuth: []
+      description: See all currently active announcements set by admins.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                with_dismissed:
+                  description: If true, response will include announcements dismissed by the user. Defaults to false.
+                  type: boolean
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Announcement"
+
+  /api/v1/announcements/{id}/dismiss:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of an announcement in the database.
+        schema:
+          type: string
+    post:
+      security:
+        - bearerAuth: []
+      description: Allows a user to mark the announcement as read.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+
+
+  /api/v1/announcements/{id}/reactions/{name}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        description: Local ID of an announcement in the database.
+        schema:
+          type: string
+      - in: path
+        name: name
+        required: true
+        description: Unicode emoji, or shortcode of custom emoji
+        schema:
+          type: string
+    put:
+      security:
+        - bearerAuth: []
+      description: Allows a user to mark the announcement as read.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    delete:
+      security:
+        - bearerAuth: []
+      description: Undo a react emoji to an announcement.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/proofs:
+    get:
+      description: View identity proof
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider:
+                  description: The identity provider to be looked up. Currently only supports keybase (case-sensitive)
+                  type: string
+                username:
+                  description: The username on the selected identity provider
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/IdentityProof"
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+  /api/oembed:
+    get:
+      description: OEmbed as JSON
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  description: URL of a status
+                  type: string
+                maxwidth:
+                  description: width of the iframe. Defaults to 400
+                  type: integer
+                  default: 400
+                maxheight:
+                  description: height of the iframe. Defaults to null
+                  type: integer
+                  nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Card"
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+
+components:
+  schemas:
+    Account:
+      description: Represents a user of Mastodon and their associated profile.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/account/
+      type: object
+      properties:
+        # Base Attributes
+        id:
+          description: The account id `header`.
+          type: string
+        username:
+          description: The username of the account, not including domain.
+          type: string
+        acct:
+          description: The Webfinger account URI. Equal to `username` for local users, or `username@domain` for 
+          type: string
+        url:
+          description: The location of the user's profile page. (HTTPS URL)
+          type: string
+        # Display Attributes
+        display_name: 
+          description: The profile's display name.
+          type: string
+        note:
+          description: The profile's bio / description.
+          type: string
+        avatar: 
+          description: An image icon that is shown next to statuses and in the profile. The format is URL.
+          type: string
+        avatar_static:
+          description: A static version of the avatar. Equal to `avatar` if its value is a static image; different if `avatar` is an animated GIF. The format is URL.
+          type: string
+        header:
+          description: An image banner that is shown above the profile and in profile cards. The format is URL.
+          type: string
+        header_static:
+          description: A static version of the header. Equal to `header` if its value is a static image; different if `header` is an animated GIF. The format is URL.
+          type: string
+        locked:
+          description: Whether the account manually approves follow requests.
+          type: boolean
+        emojis:
+          description: Custom emoji entities to be used when rendering the profile. If none, an empty array will be returned.
+          type: array
+          items:
+            $ref: "#/components/schemas/Emoji"
+        discoverable:
+          description: Whether the account has opted into discovery features such as the profile directory.
+          type: boolean
+        # Statistical attributes
+        created_at:
+          description: When the account was created.
+          type: string
+          format: date-time
+        last_status_at:
+          description: When the most recent status was posted.
+          type: string
+          format: date-time
+        statuses_count:
+          description: How many statuses are attached to this account.
+          type: integer
+        followers_count:
+          description: The reported followers of this profile.
+          type: integer
+        following_count:
+          description: The reported follows of this profile.
+          type: integer
+        # Optional attributes
+        moved:
+          description: Indicates that the profile is currently inactive and that its user has moved to a new account.
+          $ref: "#/components/schemas/Account"
+        fields:
+          description: Additional metadata attached to a profile as name-value pairs.
+          type: array
+          items:
+            $ref: "#/components/schemas/Field"
+        bot:
+          description: A presentational flag. Indicates that the account may perform automated actions, may not be monitored, or identifies as a robot.
+          type: boolean
+        source:
+          description: An extra entity to be used with API methods to [verify credentials](https://docs.joinmastodon.org/methods/accounts/#verify-account-credentials) and [update credentials](https://docs.joinmastodon.org/methods/accounts/#update-account-credentials).
+          $ref: "#/components/schemas/Source"
+        suspended:
+          description: An extra entity returned when an account is suspended.
+          type: boolean
+        mute_expires_at:
+          description: When a timed mute will expire, if applicable. ISO 8601 Datetime.
+          type: string
+          format: date-time
+
+    Activity:
+      description: Represents a weekly bucket of instance activity.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/activity/
+      type: object
+      properties:
+        week: 
+          description: Midnight at the first day of the week.  (UNIX Timestamp).
+          type: string
+        statuses:
+          description: Statuses created since the week began, String (cast from an integer).
+          type: string
+        logins:
+          description: User logins since the week began, String (cast from an integer).
+          type: string
+        registrations:
+          description: User registrations since the week began, String (cast from an integer).
+          type: string
+
+    AdminAccount:
+      description: Admin-level information about a given account.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/admin-account/
+      type: object
+      properties:
+        id:
+          description: The ID of the account in the database. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        username:
+          description: The username of the account.
+          type: string
+        created_at:
+          description: When the account was first discovered.
+          type: string
+          format: date-time
+        email:
+          description: The email address associated with the account.
+          type: string
+        ip:
+          description: The IP address last used to login to this account.
+          type: string
+        locale:
+          description: The locale of the account. ISO 639 Part 1 two-letter language code.
+          type: string
+        invite_request:
+          description: Invite request text ???
+          type: string
+        # State Attributes
+        role:
+          description: The current role of the account. Enumerable oneOf.
+          type: string
+        confirmed:
+          description: Whether the account has confirmed their email address.
+          type: boolean
+        approved:
+          description: Whether the account is currently approved.
+          type: boolean
+        disabled:
+          description: Whether the account is currently disabled.
+          type: boolean
+        silenced: 
+          description: Whether the account is currently silenced.
+          type: boolean
+        suspended: 
+          description: Whether the account is currently suspended.
+          type: boolean
+        account: 
+          description: User-level information about the account.
+          $ref: "#/components/schemas/Account"
+        # Nullable attributes
+        created_by_application_id:
+          description: The ID of the application that created this account. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        invited_by_account_id:
+          description: The ID of the account that invited this user. Cast from an integer, but not guaranteed to be a number.
+          type: string
+    
+    AdminReport:
+      description: Admin-level information about a filed report.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/admin-report/
+      type: object
+      properties:
+        id:
+          description: The ID of the report in the database. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        action_taken:
+          description: The action taken to resolve this report. Enumerable oneOf.
+          type: string
+        comment:
+          description: An optional reason for reporting.
+          type: string
+        created_at:
+          description: The time the report was filed.
+          type: string
+          format: date-time
+        updated_at:
+          description: The time of last action on this report.
+          type: string 
+          format: date-time
+        account: 
+          description: The account which filed the report.
+          $ref: "#/components/schemas/Account"
+        target_account: 
+          description: The account being reported.
+          $ref: "#/components/schemas/Account"
+        assigned_account: 
+          description: The account of the moderator assigned to this report.
+          $ref: "#/components/schemas/Account"
+        statuses: 
+          description: Statuses attached to the report, for context.
+          type: array
+          items:
+            $ref: "#/components/schemas/Status"
+
+    Announcement:
+      description: Represents an announcement set by an administrator.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/announcement/
+      required:
+        - id
+        - text
+        - published
+        - all_day
+        - created_at
+        - updated_at
+        - read
+      properties:
+        id:
+          description: The announcement id. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        text:
+          description: The content of the announcement.
+          type: string
+        published:
+          description: Whether the announcement is currently active.
+          type: boolean
+        all_day:
+          description: Whether the announcement has a start/end time.
+          type: boolean
+        created_at:
+          description: When the announcement was created.
+          type: string
+        updated_at:
+          description: When the announcement was last updated. ISO 8601 Datetime.
+          type: string
+        read:
+          description: Whether the announcement has been read by the user.
+          type: boolean
+        # Optional attributes
+        scheduled_at:
+          description: When the future announcement was scheduled. ISO 8601 Datetime.
+          type: string
+        starts_at:
+          description: When the future announcement will start. ISO 8601 Datetime.
+          type: string
+        ends_at:
+          description: When the future announcement will end. ISO 8601 Datetime.
+          type: string
+
+    AnnouncementReaction:
+      description: Represents an emoji reaction to an Announcement.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/announcementreaction/
+      properties:
+        name:
+          description: The emoji used for the reaction. Either a unicode emoji, or a custom emoji's shortcode.
+          type: string
+        count:
+          description: The total number of users who have added this reaction.
+          type: integer
+        me:
+          description: Whether the authorized user has added this reaction to the announcement.
+          type: boolean
+        # Custom emoji attributes
+        url:
+          description: A link to the custom emoji (URL).
+          type: string
+        static_url:
+          description: A link to a non-animated version of the custom emoji (URL).
+          type: string
+
+    Application:
+      description: Represents an application that interfaces with the REST API to access accounts or post statuses.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/application/
+      required:
+        - name
+      properties:
+        name: 
+          description: The name of your application.
+          type: string
+        website:
+          description: The website associated with your application. Must be URL.
+          type: string
+        vapid_key:
+          description: Used for Push Streaming API. Returned with [POST /api/v1/apps](https://docs.joinmastodon.org/methods/apps/#create-an-application). Equivalent to [PushSubscription#server_key](https://docs.joinmastodon.org/entities/pushsubscription/#server_key)
+          type: string
+        # Client attributes
+        client_id:
+          description: Client ID key, to be used for obtaining OAuth tokens
+          type: string
+        client_secret: 
+          description: Client secret key, to be used for obtaining OAuth tokens
+          type: string
+
+    Attachment:
+      description: Represents a file or media attachment that can be added to a status.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/attachment/
+      required:
+        - id
+        - type
+        - url
+        - preview_url
+      properties:
+        id: 
+          description: The ID of the attachment in the database. Cast from an integer but not guaranteed to be a number
+          type: string
+        type: 
+          description: The type of the attachment.
+          type: string
+          enum:
+            - unknown
+            - image
+            - gifv
+            - video
+            - audio
+        url: 
+          description: The location of the original full-size attachment.
+          type: string
+        preview_url:
+          description: The location of a scaled-down preview of the attachment.
+          type: string
+        # Optional attributes
+        remote_url:
+          description: The location of the full-size original attachment on the remote website. String or null if the attachment is local.
+          type: string
+        meta: 
+          description: Metadata returned by Paperclip.
+          type: object
+        description:
+          description: Alternate text that describes what is in the media attachment, to be used for the visually impaired or when media attachments do not load.
+          type: string
+        blurhash:
+          description: A hash computed by the [BlurHash algorithm](https://github.com/woltapp/blurhash), for generating colorful preview thumbnails when media has not been downloaded yet.
+          type: string
+        # Deprecated attributes
+        text_url:
+          description: A shorter URL for the attachment.
+          deprecated: true
+          type: string
+
+    Card:
+      description: Represents a rich preview card that is generated using OpenGraph tags from a URL.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/card/
+      required:
+        - url
+        - title
+        - description
+        - type
+      properties:
+        url:
+          description: Location of linked resource.
+          type: string
+        title:
+          description: Title of linked resource.
+          type: string
+        description:
+          description: Description of preview.
+          type: string
+        type:
+          description: The type of the preview card. String (Enumerable, oneOf).
+          type: string
+          enum:
+            - link
+            - photo
+            - video
+            - rich
+        author_name:
+          description: The author of the original resource.
+          type: string
+        author_url:
+          description: A link to the author of the original resource.
+          type: string
+        provider_name:
+          description: The provider of the original resource.
+          type: string
+        provider_url:
+          description: A link to the provider of the original resource.
+          type: string
+        html:
+          description: HTML to be used for generating the preview card.
+          type: string
+        width:
+          description: Width of preview, in pixels.
+          type: integer
+        height:
+          description: Height of preview, in pixels.
+          type: integer
+        image:
+          description: Preview thumbnail (URL).
+          type: string
+        blurhash:
+          description: A hash computed by the [BlurHash algorithm](https://github.com/woltapp/blurhash), for generating colorful preview thumbnails when media has not been downloaded yet.
+          type: string
+    
+    Context:
+      description: Represents the tree around a given status. Used for reconstructing threads of statuses.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/context/
+      required:
+        - ancestors
+        - descendants
+      properties:
+        ancestors:
+          description: Parents in the thread.
+          type: array
+          items:
+            $ref: "#/components/schemas/Status"
+        descendants:
+          description: Children in the thread.
+          type: array
+          items:
+            $ref: "#/components/schemas/Status"
+    
+    Conversation:
+      description: Represents a conversation with "direct message" visibility.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/conversation/
+      required:
+        - id
+        - accounts
+        - unread
+      properties:
+        id:
+          description: Local database ID of the conversation. Cast from an integer, but not guaranteed to be a number
+          type: string
+        accounts:
+          description: Participants in the conversation.
+          type: array
+          items:
+            $ref: "#/components/schemas/Account"
+        unread:
+          description:  Is the conversation currently marked as unread?
+          type: boolean
+        last_status:
+          description: The last status in the conversation, to be used for optional display.
+          $ref: "#/components/schemas/Status"
+
+    Emoji:
+      description: Represents a custom emoji.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/emoji/
+      type: object
+      required:
+        - shortcode
+        - url
+        - static_url
+        - visible_in_picker
+      properties:
+        shortcode:
+          description: The name of the custom emoji.
+          type: string
+        url:
+          description: A link to the custom emoji. The format is URL.
+          type: string
+        static_url:
+          description: A link to a static copy of the custom emoji. The format is URL.
+          type: string
+        visible_in_picker:
+          description: Whether this Emoji should be visible in the picker or unlisted.
+          type: boolean
+        category:
+          description: Used for sorting custom emoji in the picker.
+          type: string
+
+    Error:
+      description: Represents an error message.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/error/
+      type: object
+      required:
+        - error
+      properties:
+        error:
+         type: string
+        error_description:
+          type: string
+    
+    FeaturedTag:
+      description: Represents a hashtag that is featured on a profile.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/featuredtag/
+      properties:
+        id:
+          description: The internal ID of the featured tag in the database. Cast from integer but not guaranteed to be a number
+          type: string
+        name:
+          description: The name of the hashtag being featured.
+          type: string
+        url:
+          description: A link to all statuses by a user that contain this hashtag.
+          type: string
+        statuses_count:
+          description: The number of authored statuses containing this hashtag.
+          type: integer
+        last_status_at:
+          description: The timestamp of the last authored status containing this hashtag. ISO 8601 Datetime.
+          type: string
+          format: date-time
+
+    Field:
+      description: Represents a profile field as a name-value pair with optional verification.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/field/
+      type: object
+      properties:
+        name:
+          description: The key of a given field's key-value pair.
+          type: string
+        value:
+          description: The value associated with the `name` key.
+          type: string
+        verified_at:
+          description: Timestamp of when the server verified a URL value for a rel="me” link. If `value` is a verified URL. Otherwise, null
+          type: string
+          format: date-time
+
+    Filter:
+      description: Represents a user-defined filter for determining which statuses should not be shown to the user.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/filter/
+      properties:
+        id:
+          description: The ID of the filter in the database. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        phrase:
+          description: The text to be filtered.
+          type: string
+        context:
+          description: The contexts in which the filter should be applied.
+          type: array
+          items:
+            type: string
+            enum:
+              - home
+              - notifications
+              - public
+              - thread
+        expires_at:
+          description: When the filter should no longer be applied. ISO 8601 Datetime, or null if the filter does not expire
+          type: string
+        irreversible:
+          description: Should matching entities in home and notifications be dropped by the server?
+          type: boolean
+        whole_word:
+          description: Should the filter consider word boundaries?
+          type: boolean
+        
+    History:
+      description: Represents daily usage history of a hashtag.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/history/
+      required:
+        - day
+        - uses
+        - accounts
+      properties:
+        day: 
+          description: UNIX timestamp on midnight of the given day.
+          type: string
+        uses:
+          description: the counted usage of the tag within that day. Cast from an integer.
+          type: string
+        accounts:
+          description: the total of accounts using the tag within that day. Cast from an integer.
+          type: string
+    
+    IdentityProof:
+      description: Represents a proof from an external identity provider.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/identityproof/
+      properties:
+        provider:
+          description: The name of the identity provider.
+          type: string
+        provider_username:
+          description: The account owner's username on the identity provider's service.
+          type: string
+        profile_url:
+          description: The account owner's profile URL on the identity provider.
+          type: string
+        proof_url:
+          description: A link to a statement of identity proof, hosted by the identity provider.
+          type: string
+        updated_at:
+          description: When the identity proof was last updated. ISO 8601 Datetime.
+          type: string
+    
+    Instance:
+      description: Represents the software instance of Mastodon running on this domain.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/instance/
+      required:
+        - uri
+        - title
+        - description
+        - short_description
+        - email
+        - version
+        - languages
+        - registrations
+        - approval_required
+        - invites_enabled
+        - urls
+        - stats
+        - user_count
+        - status_count
+        - domain_count
+      properties:
+        uri:
+          description: The domain name of the instance.
+          type: string
+        title:
+          description: The title of the website.
+          type: string
+        description:
+          description: Admin-defined description of the Mastodon site.
+          type: string
+        short_description:
+          description: A shorter description defined by the admin.
+          type: string
+        email:
+          description: An email that may be contacted for any inquiries.
+          type: string
+        version:
+          description: The version of Mastodon installed on the instance.
+          type: string
+        languages:
+          description: Primary languages of the website and its staff. ISO 639 Part 1-5 language codes.
+          type: array
+          items:
+            type: string
+        registrations:
+          description: Whether registrations are enabled.
+          type: boolean
+        approval_required:
+          description: Whether registrations require moderator approval.
+          type: boolean
+        invites_enabled:
+          description: Whether invites are enabled.
+          type: boolean
+        urls:
+          description: URLs of interest for clients apps.
+          type: object
+        stats:
+          description: Statistics about how much information the instance contains.
+          type: object
+        thumbnail:
+          description: Banner image for the website.
+          type: string
+          nullable: true
+        contact_account:
+          description: A user that can be contacted, as an alternative to `email`.
+          $ref: "#/components/schemas/Account"
+          nullable: true
+    
+    List:
+      description: Represents a list of some users that the authenticated user follows.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/list/
+      required:
+        - id
+        - title
+        - replies_policy
+      properties:
+        id: 
+          description: The internal database ID of the list. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        title:
+          description: The user-defined title of the list.
+          type: string
+        replies_policy:
+          description: The user-defined title of the list.
+          type: string
+          enum:
+            - followed
+            - list
+            - none
+    
+    Marker:
+      description: Represents the last read position within a user's timelines.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/marker/
+      properties:
+        home:
+          description: Information about the user's position in the home timeline.
+          type: object
+        notifications:
+          description: Information about the user's position in their notifications.
+          type: object
+        last_read_id:
+          description: The ID of the most recently viewed entity. Cast from integer but not guaranteed to be a number
+          type: string
+        updated_at:
+          description: The timestamp of when the marker was set. ISO 8601 Datetime.
+          type: string
+          format: date-time
+        version:
+          description: Used for locking to prevent write conflicts.
+          type: integer
+
+    Mention:
+      description: Represents a mention of a user within the content of a status.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/mention/
+      required:
+        - id
+        - username
+        - acct
+        - url
+      properties:
+        id:
+          description: The account id of the mentioned user. Cast from an integer, but not guaranteed to be a number
+          type: string
+        username:
+          description: The username of the mentioned user.
+          type: string
+        acct:
+          description: The webfinger acct URI of the mentioned user. Equivalent to `username` for local users, or `username@domain` for remote users.
+          type: string
+        url:
+          description: The location of the mentioned user's profile.
+          type: string
+
+    Notification:
+      description: Represents a notification of an event relevant to the user.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/notification/
+      required:
+        - id
+        - type
+        - created_at
+        - account
+      properties:
+        id: 
+          description: The id of the notification in the database. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        type:
+          description: The type of event that resulted in the notification.
+          type: string
+          enum:
+            - follow
+            - follow_request
+            - mention
+            - reblog
+            - favourite
+            - poll
+            - status
+        created_at:
+          description: The timestamp of the notification. ISO 8601 Datetime.
+          type: string
+          format: date-time
+        account:
+          description: The account that performed the action that generated the notification.
+          $ref: "#/components/schemas/Account"
+        status:
+          description: Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls.
+          $ref: "#/components/schemas/Status"
+        
+    Poll:
+      description: Represents a poll attached to a status.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/poll/
+      properties:
+        id:
+          description: The ID of the poll in the database. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        expires_at:
+          description: When the poll ends. ISO 8601 Datetime, or null if the poll does not end.
+          type: string
+          format: date-time
+        expired:
+          description: Is the poll currently expired?
+          type: boolean
+        multiple:
+          description: Does the poll allow multiple-choice answers?
+          type: boolean
+        votes_count:
+          description: How many votes have been received.
+          type: integer
+        voters_count:
+          description: How many unique accounts have voted on a multiple-choice poll. Number, or null if `multiple` is false.
+          type: integer
+        voted:
+          description: When called with a user token, has the authorized user voted? Boolean, or null if no current user
+          type: boolean
+        own_votes:
+          description: When called with a user token, which options has the authorized user chosen? Contains an array of index values for `options`. Array of Number, or null if no current user
+          type: array
+          items:
+            type: integer
+        options:
+          description: Possible answers for the poll.
+          type: array
+        emojis: 
+          description: Custom emoji to be used for rendering poll options.
+          type: array
+          items:
+            $ref: "#/components/schemas/Emoji"
+
+    Preferences:
+      description: Represents a user's preferences.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/preferences/
+      properties:
+        posting:default:visibility:
+          description: Default visibility for new posts. Equivalent to [Source#privacy](https://docs.joinmastodon.org/entities/source/#privacy).
+          type: string
+          enum:
+            - public
+            - unlisted
+            - private
+            - direct
+        posting:default:sensitive:
+          description: Default sensitivity flag for new posts. Equivalent to [Source#sensitive](https://docs.joinmastodon.org/entities/source/#sensitive).
+          type: boolean
+        posting:default:language:
+          description: Default language for new posts. Equivalent to [Source#language](https://docs.joinmastodon.org/entities/source/#language). ISO 639-1 language two-letter code, or null
+          type: string
+        reading:expand:media:
+          description: Whether media attachments should be automatically displayed or blurred/hidden.
+          type: string
+          enum:
+            - default
+            - show_all
+            - hide_all
+        reading:expand:spoilers:
+          description: Whether CWs should be expanded by default.
+          type: boolean
+
+    PushSubscription:
+      description: Represents a subscription to the push streaming server.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/pushsubscription/
+      required:
+        - id
+        - endpoint
+        - server_key
+        - alerts
+      properties:
+        id:
+          description: The ID of the push subscription in the database. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        endpoint:
+          description: Where push alerts will be sent to.
+          type: string
+        server_key:
+          description: The streaming server's VAPID key.
+          type: string
+        alerts:
+          description: Which alerts should be delivered to the `endpoint`.
+          type: object
+
+    Relationship:
+      description: Represents the relationship between accounts, such as following / blocking / muting / etc.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/relationship/
+      required:
+        - id
+        - following
+        - requested
+        - endorsed
+        - followed_by
+        - muting
+        - muting_notifications
+        - showing_reblogs
+        - notifying
+        - blocking
+        - domain_blocking
+        - blocked_by
+        - note
+      properties:
+        id:
+          description: The account id. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        following:
+          description: Are you following this user?
+          type: boolean
+        requested:
+          description: Do you have a pending follow request for this user?
+          type: boolean
+        endorsed:
+          description: Are you featuring this user on your profile?
+          type: boolean
+        followed_by:
+          description: Are you followed by this user?
+          type: boolean
+        muting:
+          description: Are you muting this user?
+          type: boolean
+        muting_notifications:
+          description: Are you muting notifications from this user?
+          type: boolean
+        showing_reblogs:
+          description: Are you receiving this user's boosts in your home timeline?
+          type: boolean
+        notifying:
+          description: Have you enabled notifications for this user?
+          type: boolean
+        blocking:
+          description: Are you blocking this user?
+          type: boolean
+        domain_blocking:
+          description: Are you blocking this user's domain?
+          type: boolean
+        blocked_by:
+          description: Is this user blocking you?
+          type: boolean
+        note:
+          description: This user's profile bio
+          type: string
+    
+    Report:
+      description: Reports filed against users and/or statuses, to be taken action on by moderators.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/report/
+      properties:
+        id:
+          type: string
+        action_taken:
+          type: boolean
+        action_taken_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        category:
+          type: string
+          enum:
+            - other
+            - spam
+            - violation
+        comment:
+          type: string
+        forwarded:
+          type: boolean
+        status_ids:
+          type: array
+          items:
+            type: integer
+        rule_ids:
+          type: array
+          items:
+            type: integer
+        target_account:
+          $ref: "#/components/schemas/Account"
+        
+    Results:
+      description: Represents the results of a search.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/results/
+      required:
+        - accounts
+        - statuses
+        - hashtags
+      properties:
+        accounts:
+          description: Accounts which match the given query.
+          type: array
+          items:
+            $ref: "#/components/schemas/Account"
+        statuses:
+          description: Statuses which match the given query.
+          type: array
+          items:
+            $ref: "#/components/schemas/Status"
+        hashtags:
+          description: Hashtags which match the given query.
+          type: array
+          items:
+            $ref: "#/components/schemas/Tag"
+
+    ScheduledStatus:
+      description: Represents a status that will be published at a future scheduled date. 
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/scheduledstatus/
+      required:
+        - id
+        - scheduled_at
+        - params
+        - media_attachments
+      properties:
+        id:
+          description: ID of the scheduled status in the database. Cast from an integer, but not guaranteed to be a number.
+          type: string
+        scheduled_at:
+          description: ID of the status in the database. ISO 8601 Datetime.
+          type: string
+          format: date-time
+        params:
+          description: Parameters
+          $ref: "#/components/schemas/StatusParams"
+        media_attachments:
+          description: Array of attachements
+          type: array
+          items:
+            $ref: "#/components/schemas/Attachment"
+
+
+    StatusParams:
+      properties:
+        text:
+          description: text
+          type: string
+        in_reply_to_id:
+          description: in_reply_to_id
+          type: string
+        media_ids:
+          description: media_ids
+          type: array
+          items:
+            type: string
+        sensitive:
+          description: sensitive
+          type: boolean
+        spoiler_text:
+          description: spoiler_text
+          type: string
+        visibility:
+          description: visibility
+          type: string
+        scheduled_at:
+          description: scheduled_at
+          type: string
+          format: date-time
+        application_id:
+          description: application_id
+          type: string
+      
+    Source:
+      description: Represents display or publishing preferences of user's own account. Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/source/
+      type: object
+      properties:
+        # Base attributes
+        note:
+          description: Profile bio
+          type: string
+        fields:
+          description: Metadata about the account.
+          type: array
+          items:
+            $ref: "#/components/schemas/Field"
+        # Nullable attributes
+        privacy:
+          description: The default post privacy to be used for new statuses.
+          type: string
+          enum: 
+            - "public"
+            - "unlisted"
+            - "private"
+            - "direct"
+        sensitive:
+          description: Whether new statuses should be marked sensitive by default.
+          type: boolean
+        language:
+          description: The default posting language for new statuses, ISO 639-1 language two-letter code.
+          type: string
+        follow_requests_count:
+          description: The number of pending follow requests
+          type: integer
+    
+    Status:
+      description: Represents a status posted by an account.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/status/
+      type: object
+      properties:
+        id:
+          description: ID of the status in the database. Cast from an integer but not guaranteed to be a number.
+          type: string
+        uri: 
+          description: URI of the status used for federation.
+          type: string
+        created_at:
+          description: The date when this status was created.
+          type: string
+          format: date-time
+        account:
+          description: The account that authored this status.
+          $ref: "#/components/schemas/Account"
+        content:
+          description: HTML-encoded status content.
+          type: string
+        visibility:
+          description: Visibility of this status.
+          type: string
+          enum:
+            - public # Visible to everyone, shown in public timelines.
+            - unlisted # Visible to public, but not included in public timelines.
+            - private # Visible to followers only, and to any mentioned users.
+            - direct # Visible only to mentioned users.
+        sensitive:
+          description: Is this status marked as sensitive content?
+          type: boolean
+        spoiler_text:
+          description: Subject or summary line, below which status content is collapsed until expanded.
+          type: string
+        media_attachments:
+          description: Media that is attached to this status.
+          type: array
+          items:
+            $ref: "#/components/schemas/Attachment"
+        application:
+          description: The application used to post this status.
+          $ref: "#/components/schemas/Application"
+        # Rendering attributes
+        mentions:
+          description: Mentions of users within the status content.
+          type: array
+          items:
+            $ref: "#/components/schemas/Mention"
+        tags:
+          description: Hashtags used within the status content.
+          type: array
+          items:
+            $ref: "#/components/schemas/Tag"
+        emojis:
+          description: Custom emoji to be used when rendering status content.
+          type: array
+          items:
+            $ref: "#/components/schemas/Emoji"
+        # Informational attributes
+        reblogs_count:
+          description: How many boosts this status has received.
+          type: integer
+        favourites_count:
+          description: How many favourites this status has received.
+          type: integer
+        replies_count:
+          description: How many replies this status has received.
+          type: integer
+        # Nullable attributes
+        url:
+          description: A link to the status's HTML representation.
+          type: string
+        in_reply_to_id:
+          description: ID of the status being replied. Cast from an integer but not guaranteed to be a number.
+          type: string
+        in_reply_to_account_id:
+          description: ID of the account being replied to.
+          type: string
+        reblog:
+          description: The status being reblogged.
+          $ref: "#/components/schemas/Status"
+        poll:
+          description: The poll attached to the status.
+          $ref: "#/components/schemas/Poll"
+        card:
+          description: Preview card for links included within status content.
+          $ref: "#/components/schemas/Card"
+        language:
+          description: Primary language of this status. ISO 639 Part 1 two-letter language code.
+          type: string
+        text:
+          description: Plain-text source of a status. Returned instead of `content` when status is deleted, so the user may redraft from the source text without the client having to reverse-engineer the original text from the HTML content.
+          type: string
+        # Authorized user attributes
+        favourited:
+          description: Have you favourited this status?
+          type: boolean
+        reblogged:
+          description: Have you boosted this status?
+          type: boolean
+        muted:
+          description: Have you muted notifications for this status's conversation?
+          type: boolean
+        bookmarked:
+          description: Have you bookmarked this status?
+          type: boolean
+        pinned:
+          description: Have you pinned this status? Only appears if the status is pinnable.
+          type: boolean
+        
+
+    Tag:
+      description: Represents a hashtag used within the content of a status.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/tag/
+      required:
+        - name
+        - url
+      properties:
+        name:
+          description: The value of the hashtag after the `#` sign.
+          type: string
+        url:
+          description: A link to the hashtag on the instance.
+          type: string
+        history:
+          description: Usage statistics for given days.
+          type: array
+          items:
+            $ref: "#/components/schemas/History"
+    
+    Token:
+      description: Represents an OAuth token used for authenticating with the API and performing actions.
+      externalDocs:
+        url: https://docs.joinmastodon.org/entities/token/
+      properties:
+        access_token:
+          description: An OAuth token to be used for authorization.
+          type: string
+        token_type:
+          description: The OAuth token type. Mastodon uses `Bearer` tokens.
+          type: string
+        scope:
+          description: The OAuth scopes granted by this token, space-separated.
+          type: string
+        created_at:
+          description: When the token was generated. UNIX Timestamp.
+          type: integer
+  
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+    oauth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            "read:accounts": read accounts
+            "write:accounts": write accounts
+            "read:blocks": read blocks
+            "write:blocks": write blocks
+            "read:bookmarks": read bookmarks
+            "write:bookmarks": write bookmarks
+            "write:conversations": write conversations
+            "read:favourites": read favourites
+            "write:favourites": write favourites
+            "read:filters": read filters
+            "write:filters": write filters
+            "read:follows": read follows
+            "write:follows": write follows
+            "read:lists": read lists
+            "write:lists": write lists
+            "write:media": write media
+            "read:mutes": read mutes
+            "write:mutes": write mutes
+            "read:notifications": read notifications
+            "write:notifications": write notifications
+            "write:reports": write reports
+            "read:search": read search
+            "read:statuses": read statuses
+            "write:statuses": write statuses
+            "admin:read": admin read
+            "admin:write": admin write
+            "admin:read:accounts": read accounts
+            "admin:write:accounts": write accounts
+            "admin:read:reports": read reports
+            "admin:write:reports": write reports
