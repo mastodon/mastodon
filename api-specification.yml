@@ -39,7 +39,7 @@ paths:
           description: Success
           content:
             application/json:
-              schema: 
+              schema:
                 type: object
                 properties:
                   id:
@@ -95,29 +95,29 @@ paths:
           description: Should be set equal to code.
           in: query
           required: true
-          schema: 
+          schema:
             type: string
         - name: client_id
           description: Client ID, obtained during app registration.
           in: query
           required: true
-          schema: 
+          schema:
             type: string
         - name: redirect_uri
           description: Set a URI to redirect the user to. If this parameter is set to urn:ietf:wg:oauth:2.0:oob then the authorization code will be shown instead. Must match one of the redirect URIs declared during app registration.
           in: query
           required: true
-          schema: 
+          schema:
             type: string
         - name: scope
           description: List of requested OAuth scopes, separated by spaces (or by pluses, if using query parameters). Must be a subset of scopes declared during app registration. If not provided, defaults to read.
           in: query
-          schema: 
+          schema:
             type: string
         - name: force_login
           description: Added in 2.6.0. Forces the user to re-login, which is necessary for authorizing with multiple accounts from the same instance.
           in: query
-          schema: 
+          schema:
             type: boolean
       responses:
         '200':
@@ -126,9 +126,9 @@ paths:
           description: If the authorization code is incorrect or has been used already, the request will fail.
           content:
             application/json:
-             schema: 
+             schema:
               $ref: "#/components/schemas/Error"
-  
+
   /oauth/token:
     description: Obtain a token
     post:
@@ -161,7 +161,7 @@ paths:
                   scopes:
                     description: List of requested OAuth scopes, separated by spaces. Must be a subset of scopes declared during app registration. If not provided, defaults to read.
                     type: string
-                  code: 
+                  code:
                     description: A user authorization code, obtained via /oauth/authorize
                     type: string
       responses:
@@ -189,13 +189,13 @@ paths:
           description: If you try to request a scope that was not included when registering the app, the request will fail.
           content:
             application/json:
-             schema: 
+             schema:
               $ref: "#/components/schemas/Error"
         '401':
           description: If client_id and client_secret do not match or are invalid, the request will fail.
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: "#/components/schemas/Error"
 
   /oauth/revoke:
@@ -229,7 +229,7 @@ paths:
           description: If you provide a token you do not own, or no token at all, the API call will return a 403 error.
           content:
             application/json:
-              schema: 
+              schema:
                 $ref: "#/components/schemas/Error"
 
   /api/v1/accounts:
@@ -304,7 +304,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/accounts/update_credentials:
     patch:
       tags:
@@ -333,7 +333,7 @@ paths:
                   avatar:
                     description: Avatar image encoded using multipart/form-data
                     type: string
-                  header: 
+                  header:
                     description: Header image encoded using multipart/form-data
                     type: string
                   locked:
@@ -402,7 +402,7 @@ paths:
                 $ref: "#/components/schemas/Error"
         '410':
           description: Account is suspended
-  
+
   /api/v1/accounts/{id}/statuses:
     parameters:
       - in: path
@@ -459,12 +459,12 @@ paths:
          - name: max_id
            description: Internal parameter. Use HTTP `Link` header for pagination.
            in: query
-           schema: 
+           schema:
             type: string
          - name: since_id
            description: Internal parameter. Use HTTP `Link` header for pagination.
            in: query
-           schema: 
+           schema:
             type: string
          - name: limit
            description: Maximum number of results to return. Defaults to 40.
@@ -514,12 +514,12 @@ paths:
          - name: max_id
            description: Internal parameter. Use HTTP `Link` header for pagination.
            in: query
-           schema: 
+           schema:
             type: string
          - name: since_id
            description: Internal parameter. Use HTTP `Link` header for pagination.
            in: query
-           schema: 
+           schema:
             type: string
          - name: limit
            description: Maximum number of results to return. Defaults to 40.
@@ -618,7 +618,7 @@ paths:
                 $ref: "#/components/schemas/Error"
         '410':
           description: Account is suspended
-  
+
   /api/v1/accounts/{id}/identity_proofs:
     parameters:
       - in: path
@@ -726,7 +726,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/accounts/{id}/block:
     parameters:
       - in: path
@@ -754,7 +754,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/accounts/{id}/unblock:
     parameters:
       - in: path
@@ -782,7 +782,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/accounts/{id}/mute:
     parameters:
       - in: path
@@ -824,7 +824,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/accounts/{id}/unmute:
     parameters:
       - in: path
@@ -928,7 +928,7 @@ paths:
                 $ref: "#/components/schemas/Error"
         '422':
           description: Unprocessable Entity
-  
+
   /api/v1/accounts/{id}/note:
     parameters:
       - in: path
@@ -1051,7 +1051,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/bookmarks:
     get:
       security:
@@ -1089,7 +1089,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/favourites:
     get:
       security:
@@ -1123,7 +1123,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/mutes:
     get:
       security:
@@ -1157,7 +1157,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/blocks:
     get:
       security:
@@ -1191,7 +1191,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-              
+
   /api/v1/domain_blocks:
     get:
       security:
@@ -1269,17 +1269,13 @@ paths:
       security:
         - bearerAuth: []
       description: Remove a domain block, if it exists in the user's array of blocked domains.
-      requestBody:
-        content:
-          application/form-data:
-            schema:
-              type: object
-              required:
-                - domain
-              properties:
-                domain:
-                  description: Domain to unblock.
-                  type: string
+      parameters:
+        - name: domain
+          description: Domain to unblock.
+          in: query
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: success
@@ -1300,7 +1296,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        
+
   /api/v1/filters:
     get:
       security:
@@ -1338,7 +1334,7 @@ paths:
                 context:
                   description: Array of enumerable strings `home`, `notifications`, `public`, `thread`. At least one context must be specified.
                   type: array
-                  items: 
+                  items:
                     type: string
                     enum:
                       - home
@@ -1424,7 +1420,7 @@ paths:
                 context:
                   description: Array of enumerable strings `home`, `notifications`, `public`, `thread`. At least one context must be specified.
                   type: array
-                  items: 
+                  items:
                     type: string
                     enum:
                       - home
@@ -1484,7 +1480,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/reports:
     post:
       security:
@@ -1525,7 +1521,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/follow_requests:
     get:
       security:
@@ -1553,7 +1549,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/follow_requests/{id}/authorize:
     parameters:
       - in: path
@@ -1655,7 +1651,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        
+
   /api/v1/featured_tags:
     get:
       security:
@@ -1701,7 +1697,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/featured_tags/{id}:
     parameters:
       - in: path
@@ -1727,7 +1723,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/featured_tags/suggestions:
     get:
       security:
@@ -1748,7 +1744,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/preferences:
     get:
       security:
@@ -1826,7 +1822,7 @@ paths:
         description: Prevent duplicate submissions of the same status. Idempotency keys are stored for up to 1 hour, and can be any arbitrary string. Consider using a hash or UUID generated client-side.
         schema:
           type: string
-    
+
     post:
       security:
         - bearerAuth: []
@@ -1835,43 +1831,45 @@ paths:
           application/json:
             schema:
               type: array
-              properties:
-                status:
-                  description: Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
-                  type: string
-                media_ids:
-                  description: Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
-                  type: array
-                  items:
+              items:
+                type: object
+                properties:
+                  status:
+                    description: Text content of the status. If `media_ids` is provided, this becomes optional. Attaching a `poll` is optional while `status` is provided.
                     type: string
-                poll:
-                  type: array
-                  items:
-                    type: object
-                  additionalProperties: true
-                in_reply_to_id:
-                  description: ID of the status being replied to, if status is a reply
-                  type: string
-                sensitive:
-                  description: Mark status and attached media as sensitive?
-                  type: boolean
-                spoiler_text:
-                  description: Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
-                  type: string
-                visibility:
-                  description: Visibility of the posted status. Enumerable oneOf public, unlisted, private, direct.
-                  type: string
-                  enum:
-                    - public
-                    - unlisted
-                    - private
-                    - direct
-                scheduled_at:
-                  description: ISO 8601 Datetime at which to schedule a status. Providing this paramter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
-                  type: string
-                language:
-                  description: ISO 639 language code for this status.
-                  type: string
+                  media_ids:
+                    description: Array of Attachment ids to be attached as media. If provided, `status` becomes optional, and `poll` cannot be used.
+                    type: array
+                    items:
+                      type: string
+                  poll:
+                    type: array
+                    items:
+                      type: object
+                    additionalProperties: true
+                  in_reply_to_id:
+                    description: ID of the status being replied to, if status is a reply
+                    type: string
+                  sensitive:
+                    description: Mark status and attached media as sensitive?
+                    type: boolean
+                  spoiler_text:
+                    description: Text to be shown as a warning or subject before the actual content. Statuses are generally collapsed behind this field.
+                    type: string
+                  visibility:
+                    description: Visibility of the posted status. Enumerable oneOf public, unlisted, private, direct.
+                    type: string
+                    enum:
+                      - public
+                      - unlisted
+                      - private
+                      - direct
+                  scheduled_at:
+                    description: ISO 8601 Datetime at which to schedule a status. Providing this paramter will cause ScheduledStatus to be returned instead of Status. Must be at least 5 minutes in the future.
+                    type: string
+                  language:
+                    description: ISO 639 language code for this status.
+                    type: string
       responses:
         '200':
           description: Status will be posted with chosen parameters. If scheduled_at is provided, then a ScheduledStatus will be returned instead.
@@ -1887,7 +1885,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        
+
 
   /api/v1/statuses/{id}:
     parameters:
@@ -1941,7 +1939,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/statuses/{id}/context:
     parameters:
       - in: path
@@ -1989,7 +1987,7 @@ paths:
             content:
               application/json:
                 schema:
-                  $ref: "#/components/schemas/Error"  
+                  $ref: "#/components/schemas/Error"
 
   /api/v1/statuses/{id}/favourited_by:
     parameters:
@@ -2046,7 +2044,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/statuses/{id}/unfavourite:
     parameters:
       - in: path
@@ -2120,7 +2118,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/statuses/{id}/unreblog:
     parameters:
       - in: path
@@ -2184,7 +2182,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-                  
+
   /api/v1/statuses/{id}/unbookmark:
     parameters:
       - in: path
@@ -2216,7 +2214,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/statuses/{id}/mute:
     parameters:
       - in: path
@@ -2280,7 +2278,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/statuses/{id}/pin:
     parameters:
       - in: path
@@ -2350,7 +2348,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/media:
     post:
       security:
@@ -2397,7 +2395,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/media/{id}:
     parameters:
       - in: path
@@ -2441,7 +2439,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-    
+
     post:
       security:
         - bearerAuth: []
@@ -2493,7 +2491,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
   /api/v1/polls/{id}:
     parameters:
       - in: path
@@ -2517,7 +2515,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-    
+
     post:
       security:
         - bearerAuth: []
@@ -2559,33 +2557,34 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/scheduled_statuses:
     get:
       security:
           - bearerAuth: []
       description: View scheduled statuses
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - choices
-              properties:
-                limit:
-                  description: Max number of results to return. Defaults to 20.
-                  type: integer
-                  default: 20
-                max_id:
-                  description: Return results older than ID
-                  type: string
-                since_id:
-                  description: Return results newer than ID
-                  type: string
-                min_id:
-                  description: Return results immediately newer than ID
-                  type: string
+      parameters:
+        - name: limit
+          description: Max number of results to return. Defaults to 20.
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: max_id
+          description: Return results older than ID
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Return results newer than ID
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          description: Return results immediately newer than ID
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Get scheduled statuses.
@@ -2699,37 +2698,46 @@ paths:
   /api/v1/timelines/public:
     get:
       description: Public timeline
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                local:
-                  description: Show only local statuses? Defaults to false.
-                  type: boolean
-                  default: false
-                remote:
-                  description: Show only local statuses? Defaults to false.
-                  type: boolean
-                  default: false
-                only_media:
-                  description: Show only statuses with media attached? Defaults to false..
-                  type: boolean
-                  default: false
-                max_id:
-                  description: Return results older than this id.
-                  type: string
-                since_id:
-                  description: Return results newer than this id.
-                  type: string
-                min_id:
-                  description: Return results immediately newer than this id.
-                  type: string
-                limit:
-                  description: Maximum number of results to return. Defaults to 20.
-                  type: integer
-                  default: 20
+      parameters:
+        - name: local
+          description: Show only local statuses? Defaults to false.
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: remote
+          description: Show only local statuses? Defaults to false.
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: only_media
+          description: Show only statuses with media attached? Defaults to false..
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: limit
+          description: Max number of results to return. Defaults to 20.
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: max_id
+          description: Return results older than ID
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Return results newer than ID
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          description: Return results immediately newer than ID
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: get statuses.
@@ -2750,37 +2758,46 @@ paths:
           type: string
     get:
       description: View public statuses containing the given hashtag.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                local:
-                  description: Show only local statuses? Defaults to false.
-                  type: boolean
-                  default: false
-                remote:
-                  description: Show only local statuses? Defaults to false.
-                  type: boolean
-                  default: false
-                only_media:
-                  description: Show only statuses with media attached? Defaults to false..
-                  type: boolean
-                  default: false
-                max_id:
-                  description: Return results older than this id.
-                  type: string
-                since_id:
-                  description: Return results newer than this id.
-                  type: string
-                min_id:
-                  description: Return results immediately newer than this id.
-                  type: string
-                limit:
-                  description: Maximum number of results to return. Defaults to 20.
-                  type: integer
-                  default: 20
+      parameters:
+        - name: local
+          description: Show only local statuses? Defaults to false.
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: remote
+          description: Show only local statuses? Defaults to false.
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: only_media
+          description: Show only statuses with media attached? Defaults to false..
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: limit
+          description: Max number of results to return. Defaults to 20.
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: max_id
+          description: Return results older than ID
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Return results newer than ID
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          description: Return results immediately newer than ID
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Get statuses.
@@ -2796,29 +2813,34 @@ paths:
       security:
         - bearerAuth: []
       description: View statuses from followed users.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                local:
-                  description: Show only local statuses? Defaults to false.
-                  type: boolean
-                  default: false
-                max_id:
-                  description: Return results older than this id.
-                  type: string
-                since_id:
-                  description: Return results newer than this id.
-                  type: string
-                min_id:
-                  description: Return results immediately newer than this id.
-                  type: string
-                limit:
-                  description: Maximum number of results to return. Defaults to 20.
-                  type: integer
-                  default: 20
+      parameters:
+        - name: local
+          description: Show only local statuses? Defaults to false.
+          in: query
+          schema:
+            type: boolean
+            default: false
+        - name: limit
+          description: Max number of results to return. Defaults to 20.
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: max_id
+          description: Return results older than ID
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Return results newer than ID
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          description: Return results immediately newer than ID
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Get statuses for home.
@@ -2849,25 +2871,28 @@ paths:
       security:
         - bearerAuth: []
       description: View statuses in the given list timeline.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                max_id:
-                  description: Return results older than this id.
-                  type: string
-                since_id:
-                  description: Return results newer than this id.
-                  type: string
-                min_id:
-                  description: Return results immediately newer than this id.
-                  type: string
-                limit:
-                  description: Maximum number of results to return. Defaults to 20.
-                  type: integer
-                  default: 20
+      parameters:
+        - name: limit
+          description: Max number of results to return. Defaults to 20.
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: max_id
+          description: Return results older than ID
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Return results newer than ID
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          description: Return results immediately newer than ID
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Statuses in this list will be returned..
@@ -2883,31 +2908,34 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/conversations:
     get:
       security:
         - bearerAuth: []
       description: Show conversation.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                max_id:
-                  description: Return results older than this id.
-                  type: string
-                since_id:
-                  description: Return results newer than this id.
-                  type: string
-                min_id:
-                  description: Return results immediately newer than this id.
-                  type: string
-                limit:
-                  description: Maximum number of results to return. Defaults to 20.
-                  type: integer
-                  default: 20
+      parameters:
+        - name: limit
+          description: Max number of results to return. Defaults to 20.
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: max_id
+          description: Return results older than ID
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Return results newer than ID
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          description: Return results immediately newer than ID
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Success.
@@ -2955,7 +2983,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/conversations/{id}/read:
     parameters:
       - in: path
@@ -2987,7 +3015,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-  
+
   /api/v1/lists:
     get:
       security:
@@ -3153,22 +3181,23 @@ paths:
       security:
           - bearerAuth: []
       description: View accounts in List
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                max_id:
-                  description: Return results older than this id.
-                  type: string
-                since_id:
-                  description: Return results newer than this id.
-                  type: string
-                limit:
-                  description: Maximum number of results. Defaults to 40. Max 40. Set to 0 in order to get all accounts without pagination. Pagination is done with the HTTP Link header.
-                  type: integer
-                  default: 40
+      parameters:
+        - name: limit
+          description: Maximum number of results. Defaults to 40. Max 40. Set to 0 in order to get all accounts without pagination. Pagination is done with the HTTP Link header.
+          in: query
+          schema:
+            type: integer
+            default: 40
+        - name: max_id
+          description: Return results older than ID
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Return results newer than ID
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Success
@@ -3236,19 +3265,15 @@ paths:
       security:
           - bearerAuth: []
       description: Remove accounts from the given list.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - account_ids
-              properties:
-                account_ids:
-                  description: Array of account IDs to add to the list.
-                  type: array
-                  items:
-                    type: string
+      parameters:
+        - name: account_ids
+          description: Array of account IDs to add to the list.
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
+              type: string
       responses:
         '200':
           description: Account was successfully removed from the list, or it was already not in the list.
@@ -3280,19 +3305,15 @@ paths:
       security:
           - bearerAuth: []
       description: Get saved timeline position
-      requestBody:
-        content:
-          application/json:
-            schema:
+      parameters:
+        - name: timeline
+          description: Array of markers to fetch. String enum anyOf home, notifications. If not provided, an empty object will be returned.
+          in: query
+          required: true
+          schema:
+            type: array
+            items:
               type: object
-              required:
-                - timeline
-              properties:
-                timeline:
-                  description: Array of markers to fetch. String enum anyOf home, notifications. If not provided, an empty object will be returned.
-                  type: array
-                  items:
-                    type: object
       responses:
         '200':
           description: Account was successfully removed from the list, or it was already not in the list.
@@ -3340,33 +3361,40 @@ paths:
       security:
           - bearerAuth: []
       description: Notifications concerning the user. This API returns Link headers containing links to the next/previous page. However, the links can also be constructed dynamically using query params and id values.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                max_id:
-                  description: Return results older than this id.
-                  type: string
-                min_id:
-                  description: Return results immediately newer than this ID
-                  type: string
-                since_id:
-                  description: Return results newer than this id.
-                  type: string
-                limit:
-                  description: Maximum number of results to return (default 20).
-                  type: integer
-                  default: 20
-                exclude_types:
-                  description: Array of types to exclude (follow, favourite, reblog, mention, poll, follow_request)
-                  type: array
-                  items:
-                    type: string
-                account_id:
-                  description: Return only notifications received from this account
-                  type: string
+      parameters:
+        - name: limit
+          description: Max number of results to return. Defaults to 20.
+          in: query
+          schema:
+            type: integer
+            default: 20
+        - name: max_id
+          description: Return results older than ID
+          in: query
+          schema:
+            type: string
+        - name: since_id
+          description: Return results newer than ID
+          in: query
+          schema:
+            type: string
+        - name: min_id
+          description: Return results immediately newer than ID
+          in: query
+          schema:
+            type: string
+        - name: exclude_types
+          description: Array of types to exclude (follow, favourite, reblog, mention, poll, follow_request)
+          in: query
+          schema:
+            type: array
+            items:
+              type: string
+        - name: account_id
+          description: Return only notifications received from this account
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Success
@@ -3453,7 +3481,7 @@ paths:
               application/json:
                 schema:
                   $ref: "#/components/schemas/Error"
-    
+
   /api/v1/push/subscription:
     post:
       security:
@@ -3653,7 +3681,7 @@ paths:
                 type: array
                 items:
                   type: string
-  
+
   /api/v1/instance/activity:
     get:
       description: Instance activity over the last 3 months, binned weekly.
@@ -3666,20 +3694,17 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Activity"
-  
+
   /api/v1/trends:
     get:
       description: Tags that are being used more frequently within the past week.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                limit:
-                  description: Maximum number of results to return. Defaults to 10.
-                  type: integer
-                  default: 10
+      parameters:
+        - name: limit
+          description: Max number of results to return. Defaults to 10.
+          in: query
+          schema:
+            type: integer
+            default: 10
       responses:
         '200':
           description: Domains that this instance is aware of.
@@ -3693,30 +3718,33 @@ paths:
   /api/v1/directory:
     get:
       description: List accounts visible in the directory.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                limit:
-                  description: Maximum number of results to return. Defaults to 10.
-                  type: integer
-                  default: 40
-                offset:
-                  description: How many accounts to skip before returning results. Default 0.
-                  type: integer
-                  default: 0
-                order:
-                  description: the `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles.
-                  type: string
-                  enum:
-                    - active
-                    - new
-                  default: "active"
-                local:
-                  description: Only return local accounts.
-                  type: boolean
+      parameters:
+        - name: limit
+          description: How many accounts to load. Default 40.
+          in: query
+          schema:
+            type: integer
+            default: 40
+        - name: offset
+          description: How many accounts to skip before returning results. Default 0.
+          in: query
+          schema:
+            type: integer
+            default: 0
+        - name: order
+          description: the `active` to sort by most recently posted statuses (default) or `new` to sort by most recently created profiles.
+          in: query
+          schema:
+            type: string
+            enum:
+              - active
+              - new
+            default: "active"
+        - name: local
+          description: Only return local accounts.
+          in: query
+          schema:
+            type: boolean
       responses:
         '200':
           description: List of accounts
@@ -3739,61 +3767,78 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Emoji"
-  
+
   /api/v1/admin/accounts:
     get:
       security:
         - bearerAuth: []
       description: View accounts matching certain criteria for filtering, up to 100 at a time. Pagination may be done with the HTTP Link header in the response.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                limit:
-                  description: Maximum number of results to return. Defaults to 10.
-                  type: integer
-                  default: 40
-                local:
-                  description: Filter for local accounts?
-                  type: boolean
-                remote:
-                  description: Filter for remote accounts?
-                  type: boolean
-                by_domain: 
-                  description: Filter by the given domain
-                  type: string
-                active:
-                  description: Filter for currently active accounts?
-                  type: boolean
-                pending:
-                  description: Filter for currently pending accounts?
-                  type: boolean
-                disabled:
-                  description: Filter for currently disabled accounts?
-                  type: boolean
-                silenced:
-                  description: Filter for currently silenced accounts?
-                  type: boolean
-                suspended:
-                  description: Filter for currently suspended accounts?
-                  type: boolean
-                username:
-                  description: Username to search for
-                  type: string
-                display_name:
-                  description: Display name to search for
-                  type: string
-                email:
-                  description: Lookup a user with this email
-                  type: string
-                ip:
-                  description: Lookup a user with this IP
-                  type: string
-                staff:
-                  description: Filter for staff accounts?
-                  type: boolean
+      parameters:
+        - name: local
+          description: Filter for local accounts?
+          in: query
+          schema:
+            type: boolean
+        - name: remote
+          description: Filter for remote accounts?
+          in: query
+          schema:
+            type: boolean
+        - name: by_domain
+          description: Filter by the given domain
+          in: query
+          schema:
+            type: string
+        - name: active
+          description: Filter for currently active accounts?
+          in: query
+          schema:
+            type: boolean
+        - name: pending
+          description: Filter for currently pending accounts?
+          in: query
+          schema:
+            type: boolean
+        - name: disabled
+          description: Filter for currently disabled accounts?
+          in: query
+          schema:
+            type: boolean
+        - name: silenced
+          description: Filter for currently silenced accounts?
+          in: query
+          schema:
+            type: boolean
+        - name: suspended
+          description: Filter for currently suspended accounts?
+          in: query
+          schema:
+            type: boolean
+        - name: staff
+          description: Filter for staff accounts?
+          in: query
+          schema:
+            type: boolean
+        - name: username
+          description: Username to search for
+          in: query
+          schema:
+            type: string
+        - name: display_name
+          description: Display name to search for
+          in: query
+          schema:
+            type: string
+        - name: email
+          description: Lookup a user with this email
+          in: query
+          schema:
+            type: string
+        - name: ip
+          description: Lookup a user with this IP
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Success
@@ -3803,7 +3848,7 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/AdminAccount"
-  
+
   /api/v1/admin/accounts/{id}:
     parameters:
       - in: path
@@ -3856,7 +3901,7 @@ paths:
                 warning_preset_id:
                   description: ID of a preset warning
                   type: string
-                text: 
+                text:
                   description: Additional text for clarification of why this action was taken
                   type: string
                 send_email_notification:
@@ -3865,7 +3910,7 @@ paths:
       responses:
         '200':
           description: Success
-  
+
   /api/v1/admin/accounts/{id}/approve:
     parameters:
       - in: path
@@ -3897,7 +3942,7 @@ paths:
       responses:
         '200':
           description: Success
-  
+
   /api/v1/admin/accounts/{id}/enable:
     parameters:
       - in: path
@@ -3951,18 +3996,19 @@ paths:
       security:
         - bearerAuth: []
       description: View all reports. Pagination may be done with HTTP Link header in the response.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                resolved:
-                  type: boolean
-                account_id:
-                  type: string
-                target_account_id:
-                  type: string
+      parameters:
+        - name: resolved
+          in: query
+          schema:
+            type: boolean
+        - name: account_id
+          in: query
+          schema:
+            type: string
+        - name: target_account_id
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Success
@@ -4078,15 +4124,12 @@ paths:
       security:
         - bearerAuth: []
       description: See all currently active announcements set by admins.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                with_dismissed:
-                  description: If true, response will include announcements dismissed by the user. Defaults to false.
-                  type: boolean
+      parameters:
+        - name: with_dismissed
+          description: If true, response will include announcements dismissed by the user. Defaults to false.
+          in: query
+          schema:
+            type: boolean
       responses:
         '200':
           description: Success
@@ -4170,18 +4213,17 @@ paths:
   /api/proofs:
     get:
       description: View identity proof
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                provider:
-                  description: The identity provider to be looked up. Currently only supports keybase (case-sensitive)
-                  type: string
-                username:
-                  description: The username on the selected identity provider
-                  type: string
+      parameters:
+        - name: provider
+          description: The identity provider to be looked up. Currently only supports keybase (case-sensitive)
+          in: query
+          schema:
+            type: string
+        - name: username
+          description: The username on the selected identity provider
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: Success
@@ -4199,23 +4241,23 @@ paths:
   /api/oembed:
     get:
       description: OEmbed as JSON
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                url:
-                  description: URL of a status
-                  type: string
-                maxwidth:
-                  description: width of the iframe. Defaults to 400
-                  type: integer
-                  default: 400
-                maxheight:
-                  description: height of the iframe. Defaults to null
-                  type: integer
-                  nullable: true
+      parameters:
+        - name: url
+          description: URL of a status
+          in: query
+          schema:
+            type: string
+        - name: maxwidth
+          description: width of the iframe. Defaults to 400
+          in: query
+          schema:
+            type: integer
+            default: 400
+        - name: maxheight
+          description: height of the iframe. Defaults to null
+          in: query
+          schema:
+            type: integer
       responses:
         '200':
           description: Success
@@ -4246,19 +4288,19 @@ components:
           description: The username of the account, not including domain.
           type: string
         acct:
-          description: The Webfinger account URI. Equal to `username` for local users, or `username@domain` for 
+          description: The Webfinger account URI. Equal to `username` for local users, or `username@domain` for
           type: string
         url:
           description: The location of the user's profile page. (HTTPS URL)
           type: string
         # Display Attributes
-        display_name: 
+        display_name:
           description: The profile's display name.
           type: string
         note:
           description: The profile's bio / description.
           type: string
-        avatar: 
+        avatar:
           description: An image icon that is shown next to statuses and in the profile. The format is URL.
           type: string
         avatar_static:
@@ -4301,7 +4343,6 @@ components:
           type: integer
         # Optional attributes
         moved:
-          description: Indicates that the profile is currently inactive and that its user has moved to a new account.
           $ref: "#/components/schemas/Account"
         fields:
           description: Additional metadata attached to a profile as name-value pairs.
@@ -4312,7 +4353,6 @@ components:
           description: A presentational flag. Indicates that the account may perform automated actions, may not be monitored, or identifies as a robot.
           type: boolean
         source:
-          description: An extra entity to be used with API methods to [verify credentials](https://docs.joinmastodon.org/methods/accounts/#verify-account-credentials) and [update credentials](https://docs.joinmastodon.org/methods/accounts/#update-account-credentials).
           $ref: "#/components/schemas/Source"
         suspended:
           description: An extra entity returned when an account is suspended.
@@ -4328,7 +4368,7 @@ components:
         url: https://docs.joinmastodon.org/entities/activity/
       type: object
       properties:
-        week: 
+        week:
           description: Midnight at the first day of the week.  (UNIX Timestamp).
           type: string
         statuses:
@@ -4382,14 +4422,13 @@ components:
         disabled:
           description: Whether the account is currently disabled.
           type: boolean
-        silenced: 
+        silenced:
           description: Whether the account is currently silenced.
           type: boolean
-        suspended: 
+        suspended:
           description: Whether the account is currently suspended.
           type: boolean
-        account: 
-          description: User-level information about the account.
+        account:
           $ref: "#/components/schemas/Account"
         # Nullable attributes
         created_by_application_id:
@@ -4398,12 +4437,11 @@ components:
         invited_by_account_id:
           description: The ID of the account that invited this user. Cast from an integer, but not guaranteed to be a number.
           type: string
-    
+
     AdminReport:
       description: Admin-level information about a filed report.
       externalDocs:
         url: https://docs.joinmastodon.org/entities/admin-report/
-      type: object
       properties:
         id:
           description: The ID of the report in the database. Cast from an integer, but not guaranteed to be a number.
@@ -4420,18 +4458,15 @@ components:
           format: date-time
         updated_at:
           description: The time of last action on this report.
-          type: string 
+          type: string
           format: date-time
-        account: 
-          description: The account which filed the report.
+        account:
           $ref: "#/components/schemas/Account"
-        target_account: 
-          description: The account being reported.
+        target_account:
           $ref: "#/components/schemas/Account"
-        assigned_account: 
-          description: The account of the moderator assigned to this report.
+        assigned_account:
           $ref: "#/components/schemas/Account"
-        statuses: 
+        statuses:
           description: Statuses attached to the report, for context.
           type: array
           items:
@@ -4511,7 +4546,7 @@ components:
       required:
         - name
       properties:
-        name: 
+        name:
           description: The name of your application.
           type: string
         website:
@@ -4524,7 +4559,7 @@ components:
         client_id:
           description: Client ID key, to be used for obtaining OAuth tokens
           type: string
-        client_secret: 
+        client_secret:
           description: Client secret key, to be used for obtaining OAuth tokens
           type: string
 
@@ -4538,10 +4573,10 @@ components:
         - url
         - preview_url
       properties:
-        id: 
+        id:
           description: The ID of the attachment in the database. Cast from an integer but not guaranteed to be a number
           type: string
-        type: 
+        type:
           description: The type of the attachment.
           type: string
           enum:
@@ -4550,7 +4585,7 @@ components:
             - gifv
             - video
             - audio
-        url: 
+        url:
           description: The location of the original full-size attachment.
           type: string
         preview_url:
@@ -4560,7 +4595,7 @@ components:
         remote_url:
           description: The location of the full-size original attachment on the remote website. String or null if the attachment is local.
           type: string
-        meta: 
+        meta:
           description: Metadata returned by Paperclip.
           type: object
         description:
@@ -4629,7 +4664,7 @@ components:
         blurhash:
           description: A hash computed by the [BlurHash algorithm](https://github.com/woltapp/blurhash), for generating colorful preview thumbnails when media has not been downloaded yet.
           type: string
-    
+
     Context:
       description: Represents the tree around a given status. Used for reconstructing threads of statuses.
       externalDocs:
@@ -4648,7 +4683,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/Status"
-    
+
     Conversation:
       description: Represents a conversation with "direct message" visibility.
       externalDocs:
@@ -4670,7 +4705,6 @@ components:
           description:  Is the conversation currently marked as unread?
           type: boolean
         last_status:
-          description: The last status in the conversation, to be used for optional display.
           $ref: "#/components/schemas/Status"
 
     Emoji:
@@ -4712,7 +4746,7 @@ components:
          type: string
         error_description:
           type: string
-    
+
     FeaturedTag:
       description: Represents a hashtag that is featured on a profile.
       externalDocs:
@@ -4782,7 +4816,7 @@ components:
         whole_word:
           description: Should the filter consider word boundaries?
           type: boolean
-        
+
     History:
       description: Represents daily usage history of a hashtag.
       externalDocs:
@@ -4792,7 +4826,7 @@ components:
         - uses
         - accounts
       properties:
-        day: 
+        day:
           description: UNIX timestamp on midnight of the given day.
           type: string
         uses:
@@ -4801,7 +4835,7 @@ components:
         accounts:
           description: the total of accounts using the tag within that day. Cast from an integer.
           type: string
-    
+
     IdentityProof:
       description: Represents a proof from an external identity provider.
       externalDocs:
@@ -4822,7 +4856,7 @@ components:
         updated_at:
           description: When the identity proof was last updated. ISO 8601 Datetime.
           type: string
-    
+
     Instance:
       description: Represents the software instance of Mastodon running on this domain.
       externalDocs:
@@ -4887,10 +4921,8 @@ components:
           type: string
           nullable: true
         contact_account:
-          description: A user that can be contacted, as an alternative to `email`.
           $ref: "#/components/schemas/Account"
-          nullable: true
-    
+
     List:
       description: Represents a list of some users that the authenticated user follows.
       externalDocs:
@@ -4900,7 +4932,7 @@ components:
         - title
         - replies_policy
       properties:
-        id: 
+        id:
           description: The internal database ID of the list. Cast from an integer, but not guaranteed to be a number.
           type: string
         title:
@@ -4913,7 +4945,7 @@ components:
             - followed
             - list
             - none
-    
+
     Marker:
       description: Represents the last read position within a user's timelines.
       externalDocs:
@@ -4969,7 +5001,7 @@ components:
         - created_at
         - account
       properties:
-        id: 
+        id:
           description: The id of the notification in the database. Cast from an integer, but not guaranteed to be a number.
           type: string
         type:
@@ -4988,12 +5020,10 @@ components:
           type: string
           format: date-time
         account:
-          description: The account that performed the action that generated the notification.
           $ref: "#/components/schemas/Account"
         status:
-          description: Status that was the object of the notification, e.g. in mentions, reblogs, favourites, or polls.
           $ref: "#/components/schemas/Status"
-        
+
     Poll:
       description: Represents a poll attached to a status.
       externalDocs:
@@ -5029,7 +5059,7 @@ components:
         options:
           description: Possible answers for the poll.
           type: array
-        emojis: 
+        emojis:
           description: Custom emoji to be used for rendering poll options.
           type: array
           items:
@@ -5146,7 +5176,7 @@ components:
         note:
           description: This user's profile bio
           type: string
-    
+
     Report:
       description: Reports filed against users and/or statuses, to be taken action on by moderators.
       externalDocs:
@@ -5182,7 +5212,7 @@ components:
             type: integer
         target_account:
           $ref: "#/components/schemas/Account"
-        
+
     Results:
       description: Represents the results of a search.
       externalDocs:
@@ -5209,7 +5239,7 @@ components:
             $ref: "#/components/schemas/Tag"
 
     ScheduledStatus:
-      description: Represents a status that will be published at a future scheduled date. 
+      description: Represents a status that will be published at a future scheduled date.
       externalDocs:
         url: https://docs.joinmastodon.org/entities/scheduledstatus/
       required:
@@ -5226,14 +5256,12 @@ components:
           type: string
           format: date-time
         params:
-          description: Parameters
           $ref: "#/components/schemas/StatusParams"
         media_attachments:
           description: Array of attachements
           type: array
           items:
             $ref: "#/components/schemas/Attachment"
-
 
     StatusParams:
       properties:
@@ -5264,7 +5292,7 @@ components:
         application_id:
           description: application_id
           type: string
-      
+
     Source:
       description: Represents display or publishing preferences of user's own account. Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
       externalDocs:
@@ -5284,7 +5312,7 @@ components:
         privacy:
           description: The default post privacy to be used for new statuses.
           type: string
-          enum: 
+          enum:
             - "public"
             - "unlisted"
             - "private"
@@ -5298,7 +5326,7 @@ components:
         follow_requests_count:
           description: The number of pending follow requests
           type: integer
-    
+
     Status:
       description: Represents a status posted by an account.
       externalDocs:
@@ -5308,7 +5336,7 @@ components:
         id:
           description: ID of the status in the database. Cast from an integer but not guaranteed to be a number.
           type: string
-        uri: 
+        uri:
           description: URI of the status used for federation.
           type: string
         created_at:
@@ -5316,7 +5344,6 @@ components:
           type: string
           format: date-time
         account:
-          description: The account that authored this status.
           $ref: "#/components/schemas/Account"
         content:
           description: HTML-encoded status content.
@@ -5341,7 +5368,6 @@ components:
           items:
             $ref: "#/components/schemas/Attachment"
         application:
-          description: The application used to post this status.
           $ref: "#/components/schemas/Application"
         # Rendering attributes
         mentions:
@@ -5380,13 +5406,10 @@ components:
           description: ID of the account being replied to.
           type: string
         reblog:
-          description: The status being reblogged.
           $ref: "#/components/schemas/Status"
         poll:
-          description: The poll attached to the status.
           $ref: "#/components/schemas/Poll"
         card:
-          description: Preview card for links included within status content.
           $ref: "#/components/schemas/Card"
         language:
           description: Primary language of this status. ISO 639 Part 1 two-letter language code.
@@ -5410,7 +5433,7 @@ components:
         pinned:
           description: Have you pinned this status? Only appears if the status is pinnable.
           type: boolean
-        
+
 
     Tag:
       description: Represents a hashtag used within the content of a status.
@@ -5431,7 +5454,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/History"
-    
+
     Token:
       description: Represents an OAuth token used for authenticating with the API and performing actions.
       externalDocs:
@@ -5449,7 +5472,7 @@ components:
         created_at:
           description: When the token was generated. UNIX Timestamp.
           type: integer
-  
+
   securitySchemes:
     bearerAuth:
       type: http
