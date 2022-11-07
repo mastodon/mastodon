@@ -332,7 +332,7 @@ export default class StatusContent extends React.PureComponent {
           >
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={lang} />
             {' '}
-            <button tabIndex='0' className='status__content__spoiler-link' onClick={this.handleSpoilerClick}>
+            <button type='button' className='status__content__spoiler-link' onClick={this.handleSpoilerClick} aria-expanded={!hidden}>
               {toggleText}
             </button>
           </p>
