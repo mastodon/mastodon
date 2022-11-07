@@ -1,4 +1,3 @@
----
 ar:
   simple_form:
     hints:
@@ -79,6 +78,7 @@ ar:
         ip: أدخل عنوان IPv4 أو IPv6. يمكنك حظر نطاقات كاملة باستخدام بناء الـCIDR. كن حذراً على أن لا تَحظر نفسك!
         severities:
           no_access: حظر الوصول إلى جميع المصادر
+          sign_up_block: لا يمكن إنشاء حسابات جديدة
           sign_up_requires_approval: التسجيلات الجديدة سوف تتطلب موافقتك
         severity: اختر ما سيحدث مع الطلبات من هذا الـIP
       rule:
@@ -239,7 +239,7 @@ ar:
         name: التسمية
         permissions_as_keys: الصلاحيات
         position: الأولوية
-    'no': لا
+    'no': 'لا'
     not_recommended: غير مستحسن
     recommended: موصى بها
     required:
@@ -248,4 +248,4 @@ ar:
     title:
       sessions:
         webauthn: استخدم أحد مفاتيح الأمان الخاصة بك لتسجيل الدخول
-    'yes': نعم
+    'yes': 'نعم'
