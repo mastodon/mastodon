@@ -1,4 +1,3 @@
----
 nn:
   simple_form:
     hints:
@@ -68,6 +67,24 @@ nn:
         with_dns_records: Eit forsøk på å løysa gjeve domene som DNS-data vil vera gjord og resultata vert svartelista
       featured_tag:
         name: 'Her er nokre av dei mest brukte hashtaggane dine i det siste:'
+      filters:
+        action: Velg kva som skal gjerast når eit innlegg samsvarar med filteret
+        actions:
+          hide: Skjul filtrert innhald fullstendig og lat som om det ikkje finst
+          warn: Skjul det filtrerte innhaldet bak ei åtvaring som nemner tittelen på filteret
+      form_admin_settings:
+        backups_retention_period: Ta vare på genererte brukararkiv i angitt antal dagar.
+        bootstrap_timeline_accounts: Desse kontoane vil bli festa øverst på fylgjaranbefalingane til nye brukarar.
+        closed_registrations_message: Vist når det er stengt for registrering
+        content_cache_retention_period: Innlegg frå andre tenarar vil bli sletta etter det angitte talet på dagar når det er sett til ein positiv verdi. Dette kan vera irreversibelt.
+        custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
+        mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
+        media_cache_retention_period: Mediafiler som har blitt lasta ned vil bli sletta etter det angitte talet på dagar når det er sett til ein positiv verdi, og lasta ned på nytt ved etterspørsel.
+        profile_directory: Profilkatalogen viser alle brukarar som har valt å kunne bli oppdaga.
+        require_invite_text: Når registrering krev manuell godkjenning, lyt du gjera tekstfeltet "Kvifor vil du bli med?" obligatorisk i staden for valfritt
+        site_contact_email: Korleis kan ein få tak i deg når det gjeld juridiske spørsmål eller spørsmål om støtte.
+        site_contact_username: Korleis folk kan koma i kontakt med deg på Mastodon.
+        site_extended_description: Tilleggsinformasjon som kan vera nyttig for besøkjande og brukarar. Kan strukturerast med Markdown-syntaks.
       form_challenge:
         current_password: Du går inn i eit trygt område
       imports:
@@ -85,7 +102,7 @@ nn:
       rule:
         text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
@@ -230,7 +247,7 @@ nn:
         position: Prioritet
       webhook:
         url: Endepunkts-URL
-    'no': Nei
+    'no': 'Nei'
     recommended: Tilrådt
     required:
       mark: "*"
@@ -238,4 +255,4 @@ nn:
     title:
       sessions:
         webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
-    'yes': Ja
+    'yes': 'Ja'
