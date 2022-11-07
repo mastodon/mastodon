@@ -416,7 +416,6 @@
 }
 
 .boost-modal,
-.favourite-modal,
 .confirmation-modal,
 .report-modal,
 .actions-modal,
@@ -461,7 +460,7 @@
   }
 }
 
-.favourite-modal .status-direct {
+.boost-modal .status-direct {
   background-color: inherit;
 }
 
@@ -478,8 +477,7 @@
   }
 }
 
-.boost-modal__container,
-.favourite-modal__container {
+.boost-modal__container {
   overflow-x: scroll;
   padding: 10px;
 
@@ -490,7 +488,6 @@
 }
 
 .boost-modal__action-bar,
-.favourite-modal__action-bar,
 .confirmation-modal__action-bar,
 .mute-modal__action-bar,
 .block-modal__action-bar {
@@ -512,13 +509,11 @@
   }
 }
 
-.boost-modal__status-header,
-.favourite-modal__status-header {
+.boost-modal__status-header {
   font-size: 15px;
 }
 
-.boost-modal__status-time,
-.favourite-modal__status-time {
+.boost-modal__status-time {
   float: right;
   font-size: 14px;
 }
