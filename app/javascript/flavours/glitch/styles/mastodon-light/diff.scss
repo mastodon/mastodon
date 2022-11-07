@@ -268,7 +268,8 @@ html {
 .status__content .status__content__spoiler-link {
   background: $ui-base-color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: lighten($ui-base-color, 4%);
   }
 }
