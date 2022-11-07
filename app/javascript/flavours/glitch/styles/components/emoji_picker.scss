@@ -132,6 +132,10 @@
     &:active {
       outline: 0 !important;
     }
+
+    &::-webkit-search-cancel-button {
+      display: none;
+    }
   }
 }
 
