@@ -15,11 +15,11 @@ nn:
         text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
         type_html: Vel det du vil gjera med <strong>%{acct}</strong>
         types:
-          disable: Forhindre brukeren å bruke kontoen sin, men ikke slett eller skjule innholdet deres.
-          none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
-          sensitive: Tving alle denne brukerens medievedlegg til å bli markert som følsom.
-          silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
-          suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet der. Reversibel innen 30 dager.
+          disable: Hindre eigaren frå å bruke kontoen, men fjern eller skjul ikkje innhaldet deira.
+          none: Bruk dette for å senda ei åtvaring til brukaren utan å utløyse andre handlingar.
+          sensitive: Tving markering for sensitivt innhald på alle mediavedlegga til denne brukaren.
+          silence: Hindre brukaren frå å publisere offentlege innlegg og i å skjule eigne innlegg og varsel frå folk som ikkje fylgjer dei.
+          suspend: Hindre samhandling med– og slett innhaldet til denne kontoen. Kan omgjerast innan 30 dagar.
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       announcement:
         all_day: Når merka, vil berre datoane til tidsramma synast
@@ -27,6 +27,8 @@ nn:
         scheduled_at: Lat stå blankt for å gjeva ut lysinga med ein gong
         starts_at: Valfritt. Om lysinga di er bunden til eit tidspunkt
         text: Du kan bruka tut-syntaks. Ver merksam på plassen lysinga tek på brukaren sin skjerm
+      appeal:
+        text: Ei åtvaring kan kun ankast ein gong
       defaults:
         autofollow: Folk som lagar ein konto gjennom innbydinga fylgjer deg automatisk
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
@@ -35,6 +37,7 @@ nn:
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        discoverable: La kontoen din bli oppdaga av ukjende gjennom anbefalingar, trendar og andre funksjonar
         email: Du får snart ein stadfestings-e-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
@@ -46,6 +49,7 @@ nn:
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
+        setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
         setting_default_sensitive: Nærtakande media vert gøymd som standard og kan synast med eit klikk
         setting_display_media_default: Gøym media som er merka som nærtakande
         setting_display_media_hide_all: Alltid skjul alt media
@@ -60,6 +64,7 @@ nn:
       domain_allow:
         domain: Dette domenet er i stand til å henta data frå denne tenaren og innkomande data vert handsama og lagra
       email_domain_block:
+        domain: Dette kan vera domenenamnet som blir vist i e-postadressa eller den MX-oppføringa den brukar. Dei vil bli kontrollert ved registrering.
         with_dns_records: Eit forsøk på å løysa gjeve domene som DNS-data vil vera gjord og resultata vert svartelista
       featured_tag:
         name: 'Her er nokre av dei mest brukte hashtaggane dine i det siste:'
