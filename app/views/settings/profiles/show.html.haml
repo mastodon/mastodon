@@ -54,7 +54,7 @@
 
       .input-copy
         .input-copy__wrapper
-          %textarea{ maxlength: '999', spellcheck: 'false', readonly: 'true' }= link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: 'me').to_str
+          %textarea{ maxlength: '999', spellcheck: 'false', readonly: 'true', rows: '5', resize: 'none' }= link_to('Mastodon', ActivityPub::TagManager.instance.url_for(@account), rel: 'me').to_str
         %button{ type: :button }= t('generic.copy')
 
   .actions
