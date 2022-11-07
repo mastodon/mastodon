@@ -573,7 +573,7 @@ he:
       action_log: ביקורת יומן
       action_taken_by: פעולה בוצעה ע"י
       actions:
-        delete_description_html: הפוסטים המדווחים יימחקו ותרשם עבירה על מנת להקל בהעלאה של דיווחים עתידיים על אותה חשבון.
+        delete_description_html: ההודעות המדווחות יימחקו ותרשם עבירה על מנת להקל בהעלאה של דיווחים עתידיים על אותו החשבון.
         mark_as_sensitive_description_html: המדיה בהודעות מדווחות תסומן כרגישה ועבירה תרשם כדי לעזור לך להסלים באינטראקציות עתידיות עם אותו החשבון.
         other_description_html: ראו אפשרויות נוספות לשליטה בהתנהגות החשבון וכדי לבצע התאמות בתקשורת עם החשבון המדווח.
         resolve_description_html: אף פעולה לא תבוצע נגד החשבון עליו דווח, לא תירשם עבירה, והדיווח ייסגר.
@@ -1134,7 +1134,7 @@ he:
     edit:
       add_keyword: הוספת מילת מפתח
       keywords: מילות מפתח
-      statuses: פוסטים יחידים
+      statuses: הודעות מסויימות
       statuses_hint_html: הסנן פועל על בחירה ידנית של הודעות בין אם הן מתאימות למילות המפתח להלן ואם לאו. posts regardless of whether they match the keywords below. <a href="%{path}">בחינה או הסרה של ההודעות מהסנן</a>.
       title: ערוך מסנן
     errors:
@@ -1170,8 +1170,8 @@ he:
       batch:
         remove: הסרה מפילטר
       index:
-        hint: פילטר זה חל באופן של בחירת פוסטים בודדים ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד פוסטים לפילטר זה ממשק הווב.
-        title: פוסטים שסוננו
+        hint: סנן זה חל באופן של בחירת הודעות בודדות ללא תלות בקריטריונים אחרים. תוכלו להוסיף עוד הודעות לסנן זה ממנשק הווב.
+        title: הודעות שסוננו
   footer:
     trending_now: נושאים חמים
   generic:
@@ -1323,7 +1323,7 @@ he:
     status:
       subject: "%{name} בדיוק פרסם"
     update:
-      subject: "%{name} ערכו פוסט"
+      subject: "%{name} ערכו הודעה"
   notifications:
     email_events: ארועים להתראות דוא"ל
     email_events_hint: 'בחר/י ארועים עבורים תרצה/י לקבל התראות:'
@@ -1398,8 +1398,8 @@ he:
   rss:
     content_warning: 'אזהרת תוכן:'
     descriptions:
-      account: פוסטים ציבוריים מחשבון @%{acct}
-      tag: 'פוסטים ציבוריים עם תיוג #%{hashtag}'
+      account: הודעות ציבוריות מחשבון @%{acct}
+      tag: 'הודעות ציבוריות עם תיוג #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: חרגת מהמספר המקסימלי של הודעות מתוזמנות להיום, שהוא %{limit}
     over_total_limit: חרגת מהמספר המקסימלי של הודעות מתוזמנות, שהוא %{limit}
@@ -1479,7 +1479,7 @@ he:
       description: 'מצורף: %{attached}'
       image:
         one: "תמונה %{count}"
-        two: "%{count} תמונות"
+        two: "%{count} תמונותיים"
         many: "%{count} תמונות"
         other: "%{count} תמונות"
       video:
@@ -1636,7 +1636,7 @@ he:
       reason: 'סיבה:'
       statuses: 'הודעות מצוטטות:'
       subject:
-        delete_statuses: הפוסטים שלכם ב%{acct} הוסרו
+        delete_statuses: ההודעות שלכם ב%{acct} הוסרו
         disable: חשבונך %{acct} הוקפא
         mark_statuses_as_sensitive: הודעותיך ב-%{acct} סומנו כרגישות
         none: אזהרה עבור %{acct}
@@ -1644,7 +1644,7 @@ he:
         silence: חשבונך %{acct} הוגבל
         suspend: חשבונך %{acct} הושעה
       title:
-        delete_statuses: פוסטים שהוסרו
+        delete_statuses: הודעות הוסרו
         disable: חשבון קפוא
         mark_statuses_as_sensitive: הודעות סומנו כרגישות
         none: אזהרה
