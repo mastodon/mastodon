@@ -69,7 +69,7 @@ ku:
       enable: Çalak bike
       enable_sign_in_token_auth: E-name ya rastandina token çalak bike
       enabled: Çalakkirî
-      enabled_msg: Ajimêra %{username} bi serkeftî hat çalak kirin
+      enabled_msg: Hesabê %{username} bi serkeftî hat çalakkirin
       followers: Şopîner
       follows: Dişopîne
       header: Jormalper
@@ -87,7 +87,7 @@ ku:
       media_attachments: Pêvekên medya
       memorialize: Vegerîne bîranînê
       memorialized: Bû bîranîn
-      memorialized_msg: "%{username} bi serkeftî veguherî ajimêra bîranînê"
+      memorialized_msg: "%{username} bi serkeftî veguherî hesabê bîranînê"
       moderation:
         active: Çalak
         all: Hemû
@@ -98,7 +98,7 @@ ku:
       moderation_notes: Nîşeyên Rêvebirinê
       most_recent_activity: Çalakîyên dawî
       most_recent_ip: IP' a dawî
-      no_account_selected: Tu ajimêr nehat hilbijartin ji ber vê tu ajimêr nehat guhertin
+      no_account_selected: Tu hesab nehat hilbijartin ji ber vê tu hesab nehat guhertin
       no_limits_imposed: Sînor nay danîn
       no_role_assigned: Ti rol nehatin diyarkirin
       not_subscribed: Beşdar nebû
@@ -149,7 +149,7 @@ ku:
       suspended: Hatiye rawestandin
       suspension_irreversible: Daneyên vê ajimêrê bêveger hatine jêbirin. Tu dikarî ajimêra xwe ji rawestandinê vegerinî da ku ew bi kar bînî lê ew ê tu daneya ku berê hebû venegere.
       suspension_reversible_hint_html: Ajimêr hat qerisandin, û daneyên di %{date} de hemû were rakirin. Hetta vê demê, ajimêr bê bandorên nebaş dikare dîsa vegere. Heke tu dixwazî hemû daneyan ajimêrê niha rakî, tu dikarî li jêrê bikî.
-      title: Ajimêr
+      title: Hesab
       unblock_email: Astengiyê li ser navnîşana e-nameyê rake
       unblocked_email_msg: Bi serkeftî astengiya li ser navnîşana e-nameyê %{username} hate rakirin
       unconfirmed_email: E-nameya nepejirandî
@@ -211,8 +211,8 @@ ku:
         reset_password_user: Borînpeyvê ji nû ve saz bike
         resolve_report: Ragihandinê çareser bike
         sensitive_account: Ajimêra hêz-hestiyar
-        silence_account: Ajimêrê bi sînor bike
-        suspend_account: Ajimêr rawestîne
+        silence_account: Hesab bi sînor bike
+        suspend_account: Hesab rawestîne
         unassigned_report: Ragihandinê diyar neke
         unblock_email_account: Astengiyê li ser navnîşana e-nameyê rake
         unsensitive_account: Medyayên di ajimêrê te de wek hestyarî nepejirîne
@@ -283,6 +283,7 @@ ku:
         update_ip_block_html: "%{name} rolê %{target} guhert ji bo IP"
         update_status_html: "%{name} şandiya bikarhêner %{target} rojane kir"
         update_user_role_html: "%{name} rola %{target} guherand"
+      deleted_account: ajimêrê jêbirî
       empty: Tomarkirin nehate dîtin.
       filter_by_action: Li gorî çalakiyê biparzinîne
       filter_by_user: Li gorî bikarhênerê biparzinîne
@@ -322,8 +323,8 @@ ku:
       enabled: Çalakkirî
       enabled_msg: Ev hestok bi serkeftî hate çalak kirin
       image_hint: Mezinahiya PNG an jî GIF digîheje heya %{size}
-      list: Lîste
-      listed: Lîstekirî
+      list: Rêzok
+      listed: Rêzokkirî
       new:
         title: Hestokên kesane yên nû lê zêde bike
       no_emoji_selected: Tu emojî nehatin hilbijartin ji ber vê tu şandî jî nehatin guhertin
@@ -333,8 +334,8 @@ ku:
       shortcode_hint: Herê kêm 2 tîp, tenê tîpên alfahejmarî û yên bin xêzkirî
       title: Hestokên kesane
       uncategorized: Bêbeş
-      unlist: Bêlîste
-      unlisted: Nelîstekirî
+      unlist: Dervî rêzokê
+      unlisted: Nerêzokkirî
       update_failed_msg: Ev hestok nehate rojanekirin
       updated_msg: Emojî bi awayekî serkeftî hate rojanekirin!
       upload: Bar bike
@@ -393,11 +394,11 @@ ku:
           suspend: Dur bike
         title: Astengkirina navpera nû
       obfuscate: Navê navperê biveşêre
-      obfuscate_hint: Heke lîsteya sînorên navperê were çalakkirin navê navperê di lîsteyê de bi qismî veşêre
+      obfuscate_hint: Heke rêzoka sînorên navperê were çalakkirin navê navperê di rêzokê de bi qismî veşêre
       private_comment: Şîroveya taybet
       private_comment_hint: Derbarê sînorkirina vê navperê da ji bo bikaranîna hundirîn a moderatoran şîrove bikin.
       public_comment: Şîroveya gelemperî
-      public_comment_hint: Heke reklamkirina lîsteya sînorên navperê çalak be, derbarê sînorkirina vê navperê da ji bo raya giştî şîrove bikin.
+      public_comment_hint: Heke reklamkirina rêzoka sînorên navperê çalak be, derbarê sînorkirina vê navperê da ji bo raya giştî şîrove bikin.
       reject_media: Pelên medyayê red bike
       reject_media_hint: Pelên medyayê herêmî hatine tomarkirin radike û di pêşerojê de daxistinê red dike. Ji bo rawstandinê ne girîng e
       reject_reports: Ragihandinan red bike
@@ -683,12 +684,14 @@ ku:
         title: Parastina naverokê
       discovery:
         follow_recommendations: Pêşniyarên şopandinê
+        title: Vekolîne
         trends: Rojev
       domain_blocks:
         all: Bo herkesî
         disabled: Bo tu kesî
         users: Ji bo bikarhênerên herêmî yên xwe tomar kirine
       registrations:
+        preamble: Kontrol bike ka kî dikare li ser rajekarê te ajimêrekê biafirîne.
         title: Tomarkirin
       registrations_mode:
         modes:
@@ -1073,7 +1076,7 @@ ku:
     bookmarks: Şûnpel
     csv: CSV
     domain_blocks: Navperên astengkirî
-    lists: Lîste
+    lists: Rêzok
     mutes: Te bêdeng kir
     storage: Bîrdanaka medyayê
   featured_tags:
@@ -1084,7 +1087,7 @@ ku:
   filters:
     contexts:
       account: Profîl
-      home: Serûpel û lîste
+      home: Serrûpel û rêzok
       notifications: Agahdarî
       public: Demnameya gelemperî
       thread: Axaftin
@@ -1151,20 +1154,20 @@ ku:
     invalid_markup: 'di nav de nîşana HTML a nederbasdar heye: %{error}'
   imports:
     errors:
-      over_rows_processing_limit: ji %{count} zêdetir lîste hene
+      over_rows_processing_limit: ji %{count} zêdetir rêzok hene
     modes:
       merge: Bi hev re bike
       merge_long: Tomarên heyî bigire û yên nû lê zêde bike
       overwrite: Bi ser de binivsîne
       overwrite_long: Tomarkirinên heyî bi yên nû re biguherîne
-    preface: Tu dikarî têxistin ê daneyên bike ku te ji rajekareke din derxistî ye wek lîsteya kesên ku tu dişopîne an jî asteng dike.
+    preface: Tu dikarî têxistin ê daneyên bike ku te ji rajekareke din derxistî ye wek rêzoka kesên ku tu dişopîne an jî asteng dike.
     success: Daneyên te bi serkeftî hat barkirin û di dema xwe de were pêvajotin
     types:
-      blocking: Lîsteya antengkiriyan
+      blocking: Rêzoka astengkirinê
       bookmarks: Şûnpel
-      domain_blocking: Lîsteya domaînên astengkirî
-      following: Lîsteyan şopîneran
-      muting: Lîsteya bêdengkiriyan
+      domain_blocking: Rêzoka navperên astengkirî
+      following: Rêzoka yên dişopînin
+      muting: Rêzoka bêdengiyê
     upload: Bar bike
   invites:
     delete: Neçalak bike
@@ -1473,7 +1476,7 @@ ku:
       private_long: Tenê bo şopîneran nîşan bide
       public: Gelemperî
       public_long: Herkes dikare bibîne
-      unlisted: Nelîstekirî
+      unlisted: Nerêzokkirî
       unlisted_long: Herkes dikare bibîne, lê di demnameya gelemperî de nayê rêz kirin
   statuses_cleanup:
     enabled: Şandiyên berê bi xweberî va jê bibe
