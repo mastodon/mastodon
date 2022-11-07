@@ -3,9 +3,9 @@
     = link_to ActivityPub::TagManager.instance.url_for(status.account), class: 'detailed-status__display-name u-url', target: stream_link_target, rel: 'noopener' do
       .detailed-status__display-avatar
         - if prefers_autoplay?
-          = image_tag status.account.avatar_original_url, alt: '', class: 'account__avatar u-photo'
+          = image_tag status.account.avatar_original_url, alt: status.account.username, class: 'account__avatar u-photo'
         - else
-          = image_tag status.account.avatar_static_url, alt: '', class: 'account__avatar u-photo'
+          = image_tag status.account.avatar_static_url, alt: status.account.username, class: 'account__avatar u-photo'
       %span.display-name
         %bdi
           %strong.display-name__html.p-name.emojify= display_name(status.account, custom_emojify: true, autoplay: prefers_autoplay?)
