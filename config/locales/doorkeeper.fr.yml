@@ -1,4 +1,3 @@
----
 fr:
   activerecord:
     attributes:
@@ -86,7 +85,7 @@ fr:
         invalid_grant: L’autorisation accordée est invalide, expirée, annulée, ne concorde pas avec l’URL de redirection utilisée dans la requête d’autorisation, ou a été délivrée à un autre client.
         invalid_redirect_uri: L’URL de redirection n’est pas valide.
         invalid_request:
-          missing_param: 'Parramètre requis manquant: %{value}.'
+          missing_param: 'Paramètre requis manquant: %{value}.'
           request_not_authorized: La requête doit être autorisée. Le paramètre requis pour l'autorisation de la requête est manquant ou non valide.
           unknown: La requête omet un paramètre requis, inclut une valeur de paramètre non prise en charge ou est autrement mal formée.
         invalid_resource_owner: Les identifiants fournis par le propriétaire de la ressource ne sont pas valides ou le propriétaire de la ressource ne peut être trouvé
@@ -147,39 +146,39 @@ fr:
       application:
         title: Autorisation OAuth requise
     scopes:
-      admin:read: lire toutes les données du serveur
-      admin:read:accounts: lire les informations sensibles de tous les comptes
-      admin:read:reports: lire les informations sensibles de tous les signalements et des comptes signalés
-      admin:write: modifier toutes les données sur le serveur
-      admin:write:accounts: effectuer des actions de modération sur les comptes
-      admin:write:reports: effectuer des actions de modération sur les signalements
+      "admin:read": lire toutes les données du serveur
+      "admin:read:accounts": lire les informations sensibles de tous les comptes
+      "admin:read:reports": lire les informations sensibles de tous les signalements et des comptes signalés
+      "admin:write": modifier toutes les données sur le serveur
+      "admin:write:accounts": effectuer des actions de modération sur les comptes
+      "admin:write:reports": effectuer des actions de modération sur les signalements
       crypto: utiliser le chiffrement de bout-en-bout
       follow: modifier les relations du compte
       push: recevoir vos notifications poussées
       read: lire toutes les données de votre compte
-      read:accounts: voir les informations des comptes
-      read:blocks: voir vos blocages
-      read:bookmarks: voir vos marque-pages
-      read:favourites: voir vos favoris
-      read:filters: voir vos filtres
-      read:follows: voir vos abonnements
-      read:lists: voir vos listes
-      read:mutes: voir vos masquages
-      read:notifications: voir vos notifications
-      read:reports: voir vos signalements
-      read:search: rechercher en votre nom
-      read:statuses: voir tous les messages
+      "read:accounts": voir les informations des comptes
+      "read:blocks": voir vos blocages
+      "read:bookmarks": voir vos marque-pages
+      "read:favourites": voir vos favoris
+      "read:filters": voir vos filtres
+      "read:follows": voir vos abonnements
+      "read:lists": voir vos listes
+      "read:mutes": voir vos masquages
+      "read:notifications": voir vos notifications
+      "read:reports": voir vos signalements
+      "read:search": rechercher en votre nom
+      "read:statuses": voir tous les messages
       write: modifier toutes les données de votre compte
-      write:accounts: modifier votre profil
-      write:blocks: bloquer des comptes et des domaines
-      write:bookmarks: mettre des messages en marque-pages
-      write:conversations: masquer et effacer les conversations
-      write:favourites: mettre des messages en favori
-      write:filters: créer des filtres
-      write:follows: suivre des personnes
-      write:lists: créer des listes
-      write:media: téléverser des fichiers média
-      write:mutes: masquer des comptes et des conversations
-      write:notifications: effacer vos notifications
-      write:reports: signaler d’autres personnes
-      write:statuses: publier des messages
+      "write:accounts": modifier votre profil
+      "write:blocks": bloquer des comptes et des domaines
+      "write:bookmarks": mettre des messages en marque-pages
+      "write:conversations": masquer et effacer les conversations
+      "write:favourites": mettre des messages en favori
+      "write:filters": créer des filtres
+      "write:follows": suivre des personnes
+      "write:lists": créer des listes
+      "write:media": téléverser des fichiers média
+      "write:mutes": masquer des comptes et des conversations
+      "write:notifications": effacer vos notifications
+      "write:reports": signaler d’autres personnes
+      "write:statuses": publier des messages
