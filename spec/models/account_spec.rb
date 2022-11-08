@@ -255,7 +255,7 @@ RSpec.describe Account, type: :model do
         Fabricate(:status, reblog: original_status, account: author)
       end
 
-      it 'is is true when this account has favourited it' do
+      it 'is true when this account has favourited it' do
         Fabricate(:favourite, status: original_reblog, account: subject)
 
         expect(subject.favourited?(original_status)).to eq true
@@ -267,7 +267,7 @@ RSpec.describe Account, type: :model do
     end
 
     context 'when the status is an original status' do
-      it 'is is true when this account has favourited it' do
+      it 'is true when this account has favourited it' do
         Fabricate(:favourite, status: original_status, account: subject)
 
         expect(subject.favourited?(original_status)).to eq true
