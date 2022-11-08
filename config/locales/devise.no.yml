@@ -1,19 +1,18 @@
----
-'no':
+"no":
   devise:
     confirmations:
       confirmed: E-postaddressen din er blitt bekreftet.
-      send_instructions: Du vil motta en e-post med instruksjoner for bekreftelse om noen få minutter.
-      send_paranoid_instructions: Hvis din e-postaddresse finnes i vår database vil du motta en e-post med instruksjoner for bekreftelse om noen få minutter.
+      send_instructions: Du vil motta en e-post med instruksjoner for bekreftelse om noen få minutter. Sjekk spam-mappen hvis du ikke mottok e-posten.
+      send_paranoid_instructions: Hvis e-postadressen din finnes i databasen vår vil du om noen få minutter motta en e-post med instruksjoner for bekreftelse. Sjekk spam-mappen din hvis du ikke mottok e-posten.
     failure:
       already_authenticated: Du er allerede innlogget.
-      inactive: Din konto er ikke blitt aktivert ennå.
+      inactive: Kontoen din er ikke blitt aktivert ennå.
       invalid: Ugyldig %{authentication_keys} eller passord.
       last_attempt: Du har ett forsøk igjen før kontoen din låses.
-      locked: Din konto er låst.
+      locked: Kontoen din er låst.
       not_found_in_database: Ugyldig %{authentication_keys} eller passord.
       pending: Kontoen din er fortsatt under gjennomgang.
-      timeout: Økten din løp ut på tid. Logg inn på nytt for å fortsette.
+      timeout: Økten din har utløpt. Logg inn igjen for å fortsette.
       unauthenticated: Du må logge inn eller registrere deg før du kan fortsette.
       unconfirmed: Du må bekrefte e-postadressen din før du kan fortsette.
     mailer:
@@ -73,6 +72,7 @@
         subject: 'Mastodon: Autentisering med sikkerhetsnøkler ble skrudd av'
         title: Sikkerhetsnøkler deaktivert
       webauthn_enabled:
+        explanation: Sikkerhetsnøkkel-autentisering er aktivert for din konto. Din sikkerhetsnøkkel kan nå brukes til innlogging.
         subject: 'Mastodon: Sikkerhetsnøkkelsautentisering ble skrudd på'
         title: Sikkerhetsnøkler aktivert
     omniauth_callbacks:
