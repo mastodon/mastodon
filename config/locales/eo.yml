@@ -1,9 +1,10 @@
 eo:
   about:
     about_mastodon_html: 'Mastodon estas socia retejo de la estonteco: sen reklamo, sen kompania gvato, etika dezajno kaj malcentraligo! Vi regu viajn datumojn kun Mastodon!'
-    contact_missing: Ne ŝargita
+    contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
     hosted_on: '%{domain} estas nodo de Mastodon'
+    title: Pri
   accounts:
     follow: Sekvi
     followers:
@@ -17,22 +18,22 @@ eo:
     pin_errors:
       following: Vi devas sekvi la homon, kiun vi volas proponi
     posts:
-      one: Mesaĝo
+      one: Afiŝo
       other: Mesaĝoj
-    posts_tab_heading: Mesaĝoj
+    posts_tab_heading: Afiŝoj
   admin:
     account_actions:
       action: Plenumi agon
       title: Plenumi kontrolan agon al %{acct}
     account_moderation_notes:
       create: Lasi noton
-      created_msg: Noto de mederigado sukcese kreita!
+      created_msg: Noto de mederigado estis sukcese kreita!
       destroyed_msg: Noto de moderigado sukcese detruita!
     accounts:
       add_email_domain_block: Bloki retadresan domajnon
       approve: Aprobi
       are_you_sure: Ĉu vi certas?
-      avatar: Rolfiguro
+      avatar: Profilbildo
       by_domain: Domajno
       change_email:
         current_email: Nuna retadreso
@@ -40,6 +41,10 @@ eo:
         new_email: Nova retadreso
         submit: Ŝanĝi retadreson
         title: Ŝanĝi retadreson por %{username}
+      change_role:
+        label: Ŝanĝi rolon
+        no_role: Neniu rolo
+        title: Ŝanĝi rolon por %{username}
       confirm: Konfirmi
       confirmed: Konfirmita
       confirming: Konfirmante
