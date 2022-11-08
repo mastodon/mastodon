@@ -760,6 +760,7 @@ pt-BR:
         allow_provider: Permitir editor
         disallow: Proibir link
         disallow_provider: Anular editor
+        no_link_selected: Nenhum link foi alterado como nenhum foi selecionado
         title: Em alta no momento
         usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
       only_allowed: Somente permitido
@@ -774,6 +775,8 @@ pt-BR:
         allow: Permitir postagem
         allow_account: Permitir autor
         description_html: Estes são posts que seu servidor sabe que estão sendo muito compartilhados e favorecidos no momento. Isso pode ajudar seus usuários, novos e retornantes, a encontrar mais pessoas para seguir. Nenhum post é exibido publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar postagens individuais.
+        disallow: Poribir post
+        disallow_account: Proibir autor
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -905,6 +908,8 @@ pt-BR:
     registration_closed: "%{instance} não está aceitando novos membros"
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Redefinir senha
+    rules:
+      title: Algumas regras básicas.
     security: Segurança
     set_new_password: Definir uma nova senha
     setup:
@@ -1067,6 +1072,11 @@ pt-BR:
     new:
       save: Salvar novo filtro
       title: Adicionar filtro
+    statuses:
+      batch:
+        remove: Remover do filtro
+      index:
+        title: Postagens filtradas
   footer:
     trending_now: Em alta no momento
   generic:
