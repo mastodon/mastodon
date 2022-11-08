@@ -14,8 +14,15 @@ const emojiFilenames = (emojis) => {
 const darkEmoji = emojiFilenames(['🎱', '🐜', '⚫', '🖤', '⬛', '◼️', '◾', '◼️', '✒️', '▪️', '💣', '🎳', '📷', '📸', '♣️', '🕶️', '✴️', '🔌', '💂‍♀️', '📽️', '🍳', '🦍', '💂', '🔪', '🕳️', '🕹️', '🕋', '🖊️', '🖋️', '💂‍♂️', '🎤', '🎓', '🎥', '🎼', '♠️', '🎩', '🦃', '📼', '📹', '🎮', '🐃', '🏴', '🐞', '🕺', '📱', '📲', '🚲']);
 const lightEmoji = emojiFilenames(['👽', '⚾', '🐔', '☁️', '💨', '🕊️', '👀', '🍥', '👻', '🐐', '❕', '❔', '⛸️', '🌩️', '🔊', '🔇', '📃', '🌧️', '🐏', '🍚', '🍙', '🐓', '🐑', '💀', '☠️', '🌨️', '🔉', '🔈', '💬', '💭', '🏐', '🏳️', '⚪', '⬜', '◽', '◻️', '▫️']);
 
-const emojiFilename = (filename) => {
-  const borderedEmoji = (document.body && document.body.classList.contains('theme-mastodon-light')) ? lightEmoji : darkEmoji;
+const emojiFilenameInSystemLightMode = (filename) => {
+  const bodyClasses = document.body?.classList;
+  const borderedEmoji = bodyClasses.contains('theme-mastodon-light') || bodyClasses.contains('theme-system') ? lightEmoji : darkEmoji;
+  return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
+};
+
+const emojiFilenameInSystemDarkMode = (filename) => {
+  const bodyClasses = document.body?.classList;
+  const borderedEmoji = bodyClasses.contains('theme-mastodon-light') ? lightEmoji : darkEmoji;
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
@@ -73,7 +80,7 @@ const emojify = (str, customEmojis = {}) => {
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
-      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${emojiFilename(filename)}.svg" />`;
+      replacement = `<picture><source media="(prefers-color-scheme: dark)" srcset="${assetHost}/emoji/${emojiFilenameInSystemDarkMode(filename)}.svg" /><img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${emojiFilenameInSystemLightMode(filename)}.svg" /></picture>`;
       rend = i + match.length;
       // If the matched character was followed by VS15 (for selecting text presentation), skip it.
       if (str.codePointAt(rend) === 65038) {
