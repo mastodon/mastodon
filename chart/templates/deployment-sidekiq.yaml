@@ -14,12 +14,12 @@ spec:
       component: rails
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
+      {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
+      {{- end }}
         # roll the pods to pick up any db migrations
         rollme: {{ randAlphaNum 5 | quote }}
-    {{- end }}
       labels:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
         component: rails
