@@ -88,6 +88,18 @@ fy:
           missing_param: 'Untbrekkende fereaske parameter: %{value}.'
           request_not_authorized: It fersyk moat autorisearre wurde. De fereaske parameter foar it autorisaasjefersyk ûntbrekt of is ûnjildich.
           unknown: It fersyk mist in fereaske parameter, befettet in net-stipe parameterwearde of is op in oare manier net krekt.
+        invalid_resource_owner: De opjûne boarne-eigenersgegevens binne ûnjildich of de boarne-eigener kin net fûn wurde
+        invalid_scope: De opfrege tastimming is ûnjildich, ûnbekend of net krekt.
+        invalid_token:
+          expired: Tagongskoade ferrûn
+          revoked: Tagongskoade ynlutsen
+          unknown: Tagongskoade ûnjildich
+        resource_owner_authenticator_not_configured: It opsykjen fan de boarne-eigener is mislearre, omdat Doorkeeper.configure.resource_owner_authenticator net ynsteld is.
+        server_error: De autorisaasjeserver is in ûnferwachte situaasje tsjinkaam dy’t it fersyk behindere.
+        temporarily_unavailable: De autorisaasjeserver is op dit stuit net yn steat it fersyk te behanneljen as gefolch fan in tydlike oerbelêsting of ûnderhâld oan de server.
+        unauthorized_client: De client is net autorisearre om dit fersyk op dizze manier út te fieren.
+        unsupported_grant_type: It type autorisaasje wurdt net troch de autorisaasjeserver stipe.
+        unsupported_response_type: De autorisaasjeserver stipet dit antwurdtype net.
     flash:
       applications:
         create:
