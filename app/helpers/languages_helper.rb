@@ -189,8 +189,12 @@ module LanguagesHelper
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
+    jbo: ['Lojban', 'Lojban'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
+    ldn: ['Láadan', 'Láadan'].freeze,
+    tok: ['Toki Pona', 'Toki Pona'].freeze,
+    zba: ['Balaibalan', 'ليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
