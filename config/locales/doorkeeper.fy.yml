@@ -82,6 +82,12 @@ fy:
         access_denied: De boarne-eigener of autorisaasjeserver hat it fersyk wegere.
         credential_flow_not_configured: De wachtwurdgegevens-flow fan de boarne-eigener is mislearre, omdat Doorkeeper.configure.resource_owner_from_credentials net ynsteld is.
         invalid_client: Clientferifikaasje is mislearre troch in ûnbekende client, ûntbrekkende client-autentikaasje of in net stipe autentikaasjemetoade.
+        invalid_grant: De opjûne autorisaasje is ûnjildich, ferrûn, ynlutsen, komt net oerien mei de redirect-URI dy’t opjûn is of útjûn waard oan in oere client.
+        invalid_redirect_uri: De opjûne redirect-URI is ûnjildich.
+        invalid_request:
+          missing_param: 'Untbrekkende fereaske parameter: %{value}.'
+          request_not_authorized: It fersyk moat autorisearre wurde. De fereaske parameter foar it autorisaasjefersyk ûntbrekt of is ûnjildich.
+          unknown: It fersyk mist in fereaske parameter, befettet in net-stipe parameterwearde of is op in oare manier net krekt.
     flash:
       applications:
         create:
