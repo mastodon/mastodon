@@ -2,14 +2,14 @@ nn:
   simple_form:
     hints:
       account_alias:
-        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja frå
+        acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta frå
       account_migration:
-        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja til
+        acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta til
       account_warning_preset:
         text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og nemningar
         title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
-        include_statuses: Brukaren får sjå kva tut som gjorde moderatorhandllinga eller -åtvaringa
+        include_statuses: Brukaren får sjå kva tut som førte til moderatorhandlinga eller -åtvaringa
         send_email_notification: Brukaren får ei forklåring av kva som har hendt med kontoen sin
         text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
         type_html: Vel det du vil gjera med <strong>%{acct}</strong>
@@ -55,18 +55,18 @@ nn:
         setting_display_media_show_all: Vis alltid media
         setting_hide_network: Kven du fylgjer og kven som fylgjer deg vert ikkje vist på profilen din
         setting_noindex: Påverkar den offentlege profilen og statussidene dine
-        setting_show_application: Programmet du brukar for å tuta synast i den detaljerte visninga av tuta dine
-        setting_use_blurhash: Overgangar er bygt på dei løynde sine leter, men gjer detaljar utydelege
-        setting_use_pending_items: Gøym tidslineoppdateringar ved eit klikk, i staden for å bla ned hendestraumen automatisk
+        setting_show_application: Programmet du brukar for å tuta blir vist i den detaljerte visninga av tuta dine
+        setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
+        setting_use_pending_items: Gøym tidslineoppdateringar bak eit klikk, i staden for å rulla ned automatisk
         username: Brukarnamnet ditt vert unikt på %{domain}
         whole_word: Når søkjeordet eller setninga berre er alfanumerisk, nyttast det berre om det samsvarar med heile ordet
       domain_allow:
         domain: Dette domenet er i stand til å henta data frå denne tenaren og innkomande data vert handsama og lagra
       email_domain_block:
         domain: Dette kan vera domenenamnet som blir vist i e-postadressa eller den MX-oppføringa den brukar. Dei vil bli kontrollert ved registrering.
-        with_dns_records: Eit forsøk på å løysa gjeve domene som DNS-data vil vera gjord og resultata vert svartelista
+        with_dns_records: Det vil bli gjort eit forsøk på å avgjera DNS-oppføringa til domenet og resultata vil bli tilsvarande blokkert
       featured_tag:
-        name: 'Her er nokre av dei mest brukte hashtaggane dine i det siste:'
+        name: 'Her er nokre av emneknaggane du har brukt i det siste:'
       filters:
         action: Velg kva som skal gjerast når eit innlegg samsvarar med filteret
         actions:
@@ -157,6 +157,8 @@ nn:
         scheduled_at: Planlegg publisering
         starts_at: Byrjing av hendinga
         text: Lysing
+      appeal:
+        text: Forklar kvifor denne avgjerda bør gjerast om
       defaults:
         autofollow: Bed om å fylgja kontoen din
         avatar: Bilete
@@ -225,6 +227,30 @@ nn:
         actions:
           hide: Gøym totalt
           warn: Gøym med ei advarsel
+      form_admin_settings:
+        backups_retention_period: Arkiveringsperiode for brukararkiv
+        bootstrap_timeline_accounts: Tilrå alltid desse kontoane for nye brukarar
+        closed_registrations_message: Eigendefinert melding når registrering ikkje er mogleg
+        content_cache_retention_period: Oppbevaringsperiode for innhaldsbuffer
+        custom_css: Egendefinert CSS
+        mascot: Eigendefinert maskot (eldre funksjon)
+        media_cache_retention_period: Oppbevaringsperiode for mediebuffer
+        profile_directory: Aktiver profilkatalog
+        registrations_mode: Kven kan registrera seg
+        require_invite_text: Krev ei grunngjeving for å få bli med
+        show_domain_blocks: Vis domeneblokkeringar
+        show_domain_blocks_rationale: Vis grunngjeving for domeneblokkeringar
+        site_contact_email: E-postadresse for kontakt
+        site_contact_username: Brukarnamn for kontakt
+        site_extended_description: Utvida omtale av tenaren
+        site_short_description: Stutt om tenaren
+        site_terms: Personvernsreglar
+        site_title: Tenarnamn
+        theme: Standardtema
+        thumbnail: Miniatyrbilete for tenaren
+        timeline_preview: Tillat uautentisert tilgang til offentleg tidsline
+        trendable_by_default: Tillat trendar utan gjennomgang på førehand
+        trends: Aktiver trendar
       interactions:
         must_be_follower: Gøym varslingar frå folk som ikkje fylgjer deg
         must_be_following: Gøym varslingar frå folk du ikkje fylgjer
@@ -238,9 +264,11 @@ nn:
         ip: IP
         severities:
           no_access: Blokker tilgang
+          sign_up_block: Blokker registrering
           sign_up_requires_approval: Begrens påmeldinger
         severity: Oppføring
       notification_emails:
+        appeal: Nokon klagar på ei moderatoravgjerd
         digest: Send samandrag på e-post
         favourite: Send e-post når nokon merkjer statusen din som favoritt
         follow: Send e-post når nokon fylgjer deg
@@ -249,6 +277,7 @@ nn:
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
         report: Ny rapport er sendt
+        trending_tag: Ny trend krev gjennomgang
       rule:
         text: Regler
       tag:
@@ -259,11 +288,16 @@ nn:
       user:
         role: Rolle
       user_role:
+        color: Emblemfarge
+        highlighted: Vis rolle som emblem på brukarprofil
         name: Namn
+        permissions_as_keys: Løyve
         position: Prioritet
       webhook:
+        events: Aktiverte hendingar
         url: Endepunkts-URL
     'no': 'Nei'
+    not_recommended: Ikkje anbefalt
     recommended: Tilrådt
     required:
       mark: "*"
