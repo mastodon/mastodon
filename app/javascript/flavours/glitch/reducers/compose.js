@@ -573,6 +573,7 @@ export default function compose(state = initialState, action) {
         'advanced_options',
         map => map.merge(new ImmutableMap({ do_not_federate }))
       );
+      map.set('id', null);
 
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
