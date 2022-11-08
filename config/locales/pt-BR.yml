@@ -265,6 +265,7 @@ pt-BR:
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
+        resend_user_html: "%{name} reenviou um e-mail de confirmação para %{target}"
         reset_password_user_html: "%{name} redefiniu a senha de %{target}"
         resolve_report_html: "%{name} fechou a denúncia %{target}"
         sensitive_account_html: "%{name} marcou a mídia de %{target} como sensível"
@@ -667,6 +668,7 @@ pt-BR:
     settings:
       about:
         manage_rules: Gerenciar regras do servidor
+        preamble: Forneça informações detalhadas sobre como o servidor é operado, moderado e financiado.
         rules_hint: Existe uma área dedicada para as regras que os usuários devem aderir.
         title: Sobre
       appearance:
@@ -1254,6 +1256,8 @@ pt-BR:
     other: Outro
     posting_defaults: Padrões de publicação
     public_timelines: Linhas públicas
+  privacy_policy:
+    title: Política de Privacidade
   reactions:
     errors:
       limit_reached: Limite de reações diferentes atingido
@@ -1500,6 +1504,7 @@ pt-BR:
         spam: Spam
         violation: O conteúdo viola as seguintes diretrizes da comunidade
       explanation:
+        delete_statuses: Alguns de seus posts infringiram um ou mais diretrizes da comunidade e foram removidos pelos moderadores de %{instance}.
         disable: Você não poderá mais usar a sua conta, mas o seu perfil e outros dados permanecem intactos. Você pode solicitar um backup dos seus dados, mudar as configurações ou excluir sua conta.
         sensitive: A partir de agora, todos os seus arquivos de mídia enviados serão marcados como confidenciais e escondidos por trás de um aviso de clique.
       reason: 'Motivo:'
