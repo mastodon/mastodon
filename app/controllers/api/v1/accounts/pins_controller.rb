@@ -8,7 +8,7 @@ class Api::V1::Accounts::PinsController < Api::BaseController
   before_action :set_account
 
   def create
-    if AccountPin.exists?(account: current_account, target_account: @account)
+    unless AccountPin.exists?(account: current_account, target_account: @account)
       AccountPin.create!(account: current_account, target_account: @account)
     end
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships_presenter
