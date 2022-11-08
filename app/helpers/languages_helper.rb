@@ -193,6 +193,7 @@ module LanguagesHelper
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
+    lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
