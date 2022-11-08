@@ -85,6 +85,14 @@ nn:
         site_contact_email: Korleis kan ein få tak i deg når det gjeld juridiske spørsmål eller spørsmål om støtte.
         site_contact_username: Korleis folk kan koma i kontakt med deg på Mastodon.
         site_extended_description: Tilleggsinformasjon som kan vera nyttig for besøkjande og brukarar. Kan strukturerast med Markdown-syntaks.
+        site_short_description: Ein kort omtale for lettare å finne tenaren blant alle andre. Kven driftar han, kven er i målgruppa?
+        site_terms: Bruk eigen personvernpolicy eller la stå tom for å bruka standard. Kan strukturerast med Markdown-syntaks.
+        site_title: Kva ein kan kalla tenaren, utanom domenenamnet.
+        theme: Tema som er synleg for nye brukarar og besøkjande som ikkje er logga inn.
+        thumbnail: Eit omlag 2:1 bilete vist saman med informasjon om tenaren.
+        timeline_preview: Besøkjande som ikkje er logga inn vil kunne bla gjennom dei siste offentlege innlegga på tenaren.
+        trendable_by_default: Hopp over manuell gjennomgang av populært innhald. Enkeltståande innlegg kan fjernast frå trendar i etterkant.
+        trends: Trendar viser kva for nokre innlegg, emneknaggar og nyheiter som er i støytet på tenaren.
       form_challenge:
         current_password: Du går inn i eit trygt område
       imports:
@@ -92,25 +100,33 @@ nn:
       invite_request:
         text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
       ip_block:
-        comment: Valgfritt. Husk hvorfor du la til denne regelen.
-        expires_in: IP-adressene er en helt begrenset ressurs, de deles og endres ofte hender. Ubestemte IP-blokker anbefales ikke.
-        ip: Skriv inn en IPv4 eller IPv6-adresse. Du kan blokkere alle områder ved å bruke CIDR-syntaksen. Pass på å ikke låse deg selv!
+        comment: Valfritt. Hugs kvifor du la til denne regelen.
+        expires_in: IP-adresser er ein avgrensa ressurs, er av og til delte og byter ofte eigar. På grunn av dette er det ikkje tilrådd med uavgrensa IP-blokkeringar.
+        ip: Skriv inn ei IPv4 eller IPv6 adresse. Du kan blokkere heile IP-områder ved bruk av CIDR-syntaks. Pass på å ikkje blokkera deg sjølv!
         severities:
           no_access: Blokker tilgang til alle ressurser
-          sign_up_requires_approval: Nye registreringer vil kreve din godkjenning
-        severity: Velg hva som vil skje med forespørsler fra denne IP
+          sign_up_block: Nye registreringar vil ikkje vera mogleg
+          sign_up_requires_approval: Du må godkjenna nye registreringar
+        severity: Vel kva som skal skje ved førespurnader frå denne IP
       rule:
-        text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
+        text: Forklar ein regel eller eit krav for brukarar på denne tenaren. Prøv å skriva kort og lettfattleg
       sessions:
         otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
+        webauthn: Om det er ein USB-nøkkel må du setja han inn og om nødvendig trykkja på han.
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
         role: Rolla kontrollerer kva tilgangar brukaren har
       user_role:
+        color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
         highlighted: Dette gjer rolla synleg offentleg
+        name: Offentleg namn på rolla, dersom rolla skal visast som eit emblem
         permissions_as_keys: Brukarar med denne rolla vil ha tilgang til...
+        position: Høgare rolle avgjer konfliktløysing i visse situasjonar. Visse handlingar kan kun utførast på rollar med lågare prioritet
+      webhook:
+        events: Vel hendingar å senda
+        url: Kvar hendingar skal sendast
     labels:
       account:
         fields:
@@ -131,7 +147,7 @@ nn:
         types:
           disable: Slå av innlogging
           none: Gjer inkje
-          sensitive: Sensitiv
+          sensitive: Ømtolig
           silence: Togn
           suspend: Utvis og slett kontodata for godt
         warning_preset_id: Bruk åtvaringsoppsett
