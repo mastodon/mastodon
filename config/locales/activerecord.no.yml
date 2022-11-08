@@ -1,5 +1,4 @@
----
-'no':
+"no":
   activerecord:
     attributes:
       poll:
@@ -20,7 +19,26 @@
             username:
               invalid: bare bokstaver, tall og understreker
               reserved: er reservert
+        admin/webhook:
+          attributes:
+            url:
+              invalid: er ikke en gyldig nettadresse
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: er ikke en gyldig nettadresse
+        import:
+          attributes:
+            data:
+              malformed: er feilformet
         status:
           attributes:
             reblog:
               taken: av status eksisterer allerede
+        user:
+          attributes:
+            email:
+              blocked: bruker en forbudt e-postleverandør
+              unreachable: ser ikke ut til å finnes
+            role_id:
+              elevated: kan ikke være høyere enn din nåværende rolle
