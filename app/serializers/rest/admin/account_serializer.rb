@@ -31,7 +31,7 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
   def silenced
     object.silenced?
   end
-  
+
   def sensitized
     object.sensitized?
   end
