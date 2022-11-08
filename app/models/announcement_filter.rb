@@ -12,7 +12,7 @@ class AnnouncementFilter
     @params = params
   end
 
-  def results
+  def results ()
     scope = Announcement.unscoped
 
     params.each do |key, value|
@@ -21,7 +21,7 @@ class AnnouncementFilter
       scope.merge!(scope_for(key, value.to_s.strip)) if value.present?
     end
 
-    scope.chronological
+    scope.reverse_chronological
   end
 
   private
