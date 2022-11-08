@@ -146,8 +146,10 @@ postgresql:
     # be rotated on each upgrade:
     # https://github.com/bitnami/charts/tree/master/bitnami/postgresql#upgrade
     password: ""
-    # Set same value as above
-    postgresPassword: ""
+    # Set the password for the "postgres" admin user
+    # set this to the same value as above if you've previously installed
+    # this chart and you're having problems getting mastodon to connect to the DB
+    # postgresPassword: ""
     # you can also specify the name of an existing Secret
     # with a key of password set to the password you want
     existingSecret: ""
