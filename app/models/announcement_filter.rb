@@ -12,7 +12,7 @@ class AnnouncementFilter
     @params = params
   end
 
-  def results ()
+  def results
     scope = Announcement.unscoped
 
     params.each do |key, value|
