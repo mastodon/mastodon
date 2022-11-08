@@ -146,6 +146,8 @@ postgresql:
     # be rotated on each upgrade:
     # https://github.com/bitnami/charts/tree/master/bitnami/postgresql#upgrade
     password: ""
+    # Set same value as above
+    postgresPassword: ""
     # you can also specify the name of an existing Secret
     # with a key of postgres-password set to the password you want
     existingSecret: ""
