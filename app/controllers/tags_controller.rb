@@ -65,7 +65,7 @@ class TagsController < ApplicationController
       id: tag_url(@tag),
       type: :ordered,
       size: @tag.statuses.count,
-      items: @statuses.map { |s| ActivityPub::TagManager.instance.uri_for(s) }
+      items: @statuses.map { |status| ActivityPub::TagManager.instance.uri_for(status) }
     )
   end
 end

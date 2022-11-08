@@ -66,7 +66,7 @@ class FollowingAccountsController < ApplicationController
         id: account_following_index_url(@account, page: params.fetch(:page, 1)),
         type: :ordered,
         size: @account.following_count,
-        items: follows.map { |f| ActivityPub::TagManager.instance.uri_for(f.target_account) },
+        items: follows.map { |follow| ActivityPub::TagManager.instance.uri_for(follow.target_account) },
         part_of: account_following_index_url(@account),
         next: next_page_url,
         prev: prev_page_url

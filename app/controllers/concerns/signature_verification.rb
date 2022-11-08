@@ -28,8 +28,8 @@ module SignatureVerification
   end
 
   class SignatureParamsTransformer < Parslet::Transform
-    rule(params: subtree(:p)) do
-      (p.is_a?(Array) ? p : [p]).each_with_object({}) { |(key, val), h| h[key] = val }
+    rule(params: subtree(:param)) do
+      (param.is_a?(Array) ? param : [param]).each_with_object({}) { |(key, value), hash| hash[key] = value }
     end
 
     rule(param: { key: simple(:key), value: simple(:val) }) do
