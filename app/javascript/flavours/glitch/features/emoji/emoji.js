@@ -19,15 +19,23 @@ const emojiFilename = (filename) => {
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
-const emojify = (str, customEmojis = {}) => {
-  const tagCharsWithoutEmojis = '<&';
-  const tagCharsWithEmojis = Object.keys(customEmojis).length ? '<&:' : '<&';
-  let rtn = '', tagChars = tagCharsWithEmojis, invisible = 0;
+const emojifyTextNode = (node, customEmojis) => {
+  const parentElement = node.parentElement;
+  let str = node.textContent;
+
   for (;;) {
-    let match, i = 0, tag;
-    while (i < str.length && (tag = tagChars.indexOf(str[i])) === -1 && (invisible || useSystemEmojiFont || !(match = trie.search(str.slice(i))))) {
-      i += str.codePointAt(i) < 65536 ? 1 : 2;
+    let match, i = 0;
+
+    if (customEmojis === null) {
+      while (i < str.length && !(match = trie.search(str.slice(i)))) {
+        i += str.codePointAt(i) < 65536 ? 1 : 2;
+      }
+    } else {
+      while (i < str.length && str[i] !== ':' && !(match = trie.search(str.slice(i)))) {
+        i += str.codePointAt(i) < 65536 ? 1 : 2;
+      }
     }
+
     let rend, replacement = '';
     if (i === str.length) {
       break;
@@ -35,8 +43,6 @@ const emojify = (str, customEmojis = {}) => {
       if (!(() => {
         rend = str.indexOf(':', i + 1) + 1;
         if (!rend) return false; // no pair of ':'
-        const lt = str.indexOf('<', i + 1);
-        if (!(lt === -1 || lt >= rend)) return false; // tag appeared before closing ':'
         const shortname = str.slice(i, rend);
         // now got a replacee as ':shortname:'
         // if you want additional emoji handler, add statements below which set replacement and return true.
@@ -47,29 +53,6 @@ const emojify = (str, customEmojis = {}) => {
         }
         return false;
       })()) rend = ++i;
-    } else if (tag >= 0) { // <, &
-      rend = str.indexOf('>;'[tag], i + 1) + 1;
-      if (!rend) {
-        break;
-      }
-      if (tag === 0) {
-        if (invisible) {
-          if (str[i + 1] === '/') { // closing tag
-            if (!--invisible) {
-              tagChars = tagCharsWithEmojis;
-            }
-          } else if (str[rend - 2] !== '/') { // opening tag
-            invisible++;
-          }
-        } else {
-          if (str.startsWith('<span class="invisible">', i)) {
-            // avoid emojifying on invisible text
-            invisible = 1;
-            tagChars = tagCharsWithoutEmojis;
-          }
-        }
-      }
-      i = rend;
     } else if (!useSystemEmojiFont) { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
@@ -80,10 +63,39 @@ const emojify = (str, customEmojis = {}) => {
         rend += 1;
       }
     }
-    rtn += str.slice(0, i) + replacement;
+
+    node.textContent = str.slice(0, i);
+    parentElement.insertAdjacentHTML('beforeend', replacement);
     str = str.slice(rend);
+    node = document.createTextNode(str);
+    parentElement.append(node);
   }
-  return rtn + str;
+};
+
+const emojifyNode = (node, customEmojis) => {
+  for (const child of node.childNodes) {
+    switch(child.nodeType) {
+    case Node.TEXT_NODE:
+      emojifyTextNode(child, customEmojis);
+      break;
+    case Node.ELEMENT_NODE:
+      if (!child.classList.contains('invisible'))
+        emojifyNode(child, customEmojis);
+      break;
+    }
+  }
+};
+
+const emojify = (str, customEmojis = {}) => {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = str;
+
+  if (!Object.keys(customEmojis).length)
+    customEmojis = null;
+
+  emojifyNode(wrapper, customEmojis);
+
+  return wrapper.innerHTML;
 };
 
 export default emojify;
