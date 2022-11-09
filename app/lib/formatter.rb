@@ -8,6 +8,8 @@ class Formatter
 
   include ActionView::Helpers::TextHelper
 
+  DISALLOWED_BOUNDING_REGEX = /[[:alnum:]:]/.freeze
+
   def format(status, **options)
     if status.reblog?
       prepend_reblog = status.reblog.account.acct
@@ -140,54 +142,49 @@ class Formatter
 
     emoji_map = emojis.each_with_object({}) { |e, h| h[e.shortcode] = [full_asset_url(e.image.url), full_asset_url(e.image.url(:static))] }
 
-    i                     = -1
-    tag_open_index        = nil
-    inside_shortname      = false
-    shortname_start_index = -1
-    invisible_depth       = 0
+    tree = Nokogiri::HTML.fragment(html)
+    tree.xpath('./text()|.//text()[not(ancestor[@class="invisible"])]').to_a.each do |node|
+      i                     = -1
+      inside_shortname      = false
+      shortname_start_index = -1
+      last_index            = 0
+      text                  = node.content
+      result                = Nokogiri::XML::NodeSet.new(tree.document)
 
-    while i + 1 < html.size
-      i += 1
+      while i + 1 < text.size
+        i += 1
 
-      if invisible_depth.zero? && inside_shortname && html[i] == ':'
-        shortcode = html[shortname_start_index + 1..i - 1]
-        emoji     = emoji_map[shortcode]
+        if inside_shortname && text[i] == ':'
+          inside_shortname = false
+          shortcode = text[shortname_start_index + 1..i - 1]
+          char_after = text[i + 1]
 
-        if emoji
+          next unless (char_after.nil? || !DISALLOWED_BOUNDING_REGEX.match?(char_after)) && (emoji = emoji_map[shortcode])
+
           original_url, static_url = emoji
-          replacement = begin
+
+          result << Nokogiri::XML::Text.new(text[last_index..shortname_start_index - 1], tree.document) if shortname_start_index.positive?
+
+          result << Nokogiri::HTML.fragment(
             if animate
               image_tag(original_url, draggable: false, class: 'emojione', alt: ":#{shortcode}:", title: ":#{shortcode}:")
             else
               image_tag(original_url, draggable: false, class: 'emojione custom-emoji', alt: ":#{shortcode}:", title: ":#{shortcode}:", data: { original: original_url, static: static_url })
             end
-          end
-          before_html = shortname_start_index.positive? ? html[0..shortname_start_index - 1] : ''
-          html        = before_html + replacement + html[i + 1..-1]
-          i          += replacement.size - (shortcode.size + 2) - 1
-        else
-          i -= 1
-        end
+          )
 
-        inside_shortname = false
-      elsif tag_open_index && html[i] == '>'
-        tag = html[tag_open_index..i]
-        tag_open_index = nil
-        if invisible_depth.positive?
-          invisible_depth += count_tag_nesting(tag)
-        elsif tag == '<span class="invisible">'
-          invisible_depth = 1
+          last_index = i + 1
+        elsif text[i] == ':' && (i.zero? || !DISALLOWED_BOUNDING_REGEX.match?(text[i - 1]))
+          inside_shortname = true
+          shortname_start_index = i
         end
-      elsif html[i] == '<'
-        tag_open_index   = i
-        inside_shortname = false
-      elsif !tag_open_index && html[i] == ':'
-        inside_shortname      = true
-        shortname_start_index = i
       end
+
+      result << Nokogiri::XML::Text.new(text[last_index..-1], tree.document)
+      node.replace(result)
     end
 
-    html
+    tree.to_html
   end
   # rubocop:enable Metrics/BlockNesting
 
