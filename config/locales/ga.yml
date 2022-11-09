@@ -63,12 +63,14 @@ ga:
       web: Gréasán
     action_logs:
       action_types:
-        assigned_to_self_report: Tabhair tuairisc do dhuine
+        assigned_to_self_report: Sann tuairisc
         create_account_warning: Cruthaigh rabhadh
         destroy_announcement: Scrios Fógra
         destroy_ip_block: Scrios riail IP
         destroy_status: Scrios postáil
         reopen_report: Athoscail tuairisc
+        resolve_report: Réitigh tuairisc
+        unassigned_report: Cealaigh tuairisc a shann
       actions:
         create_account_warning_html: "Sheol %{name} rabhadh do %{target}"
       deleted_account: cuntas scriosta
