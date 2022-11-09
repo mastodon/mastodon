@@ -63,6 +63,8 @@ class FeaturedTag < ApplicationRecord
   end
 
   def validate_featured_tags_limit
+    return unless account.local?
+
     errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= LIMIT
   end
 
