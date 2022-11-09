@@ -63,10 +63,12 @@ ga:
       web: Gréasán
     action_logs:
       action_types:
+        assigned_to_self_report: Tabhair tuairisc do dhuine
         create_account_warning: Cruthaigh rabhadh
         destroy_announcement: Scrios Fógra
         destroy_ip_block: Scrios riail IP
         destroy_status: Scrios postáil
+        reopen_report: Athoscail tuairisc
       actions:
         create_account_warning_html: "Sheol %{name} rabhadh do %{target}"
       deleted_account: cuntas scriosta
@@ -169,12 +171,18 @@ ga:
         none: rabhadh
   auth:
     delete_account: Scrios cuntas
+    too_fast: Chuireadh foirm róthapa, bain triail arís.
   deletes:
     proceed: Scrios cuntas
   disputes:
     strikes:
+      appeal_submitted_at: Achomharc curtha isteach
+      appealed_msg: Bhí d'achomharc curtha isteach. Má ceadaítear é, cuirfidh ar an eolas tú.
+      appeals:
+        submit: Cuir achomharc isteach
       title_actions:
         none: Rabhadh
+      your_appeal_pending: Chuir tú achomharc isteach
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -192,6 +200,10 @@ ga:
       delete: Scrios
   generic:
     delete: Scrios
+  notification_mailer:
+    admin:
+      report:
+        subject: "Chuir %{name} tuairisc isteach"
   rss:
     content_warning: 'Rabhadh ábhair:'
   statuses:
@@ -201,6 +213,7 @@ ga:
     show_thread: Taispeáin snáithe
   user_mailer:
     warning:
+      appeal: Cuir achomharc isteach
       categories:
         spam: Turscar
       reason: 'Fáth:'
