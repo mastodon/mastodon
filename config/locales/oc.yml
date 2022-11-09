@@ -5,6 +5,7 @@ oc:
     contact_missing: Pas parametrat
     contact_unavailable: Pas disponible
     hosted_on: Mastodon albergat sus %{domain}
+    title: A prepaus
   accounts:
     follow: Sègre
     followers:
@@ -40,6 +41,9 @@ oc:
         new_email: Novèla adreça
         submit: Cambiar l’adreça
         title: Cambiar l’adreça a %{username}
+      change_role:
+        label: Cambiar lo ròtle
+        no_role: Cap de ròtle
       confirm: Confirmar
       confirmed: Confirmat
       confirming: Confirmacion
@@ -102,6 +106,7 @@ oc:
       reset: Reïnicializar
       reset_password: Reïnicializar lo senhal
       resubscribe: Se tornar abonar
+      role: Ròtle
       search: Cercar
       search_same_ip: Autres utilizaires amb la meteissa IP
       security_measures:
@@ -367,6 +372,16 @@ oc:
     rules:
       title: Règlas del servidor
     settings:
+      about:
+        title: A prepaus
+      appearance:
+        title: Aparéncia
+      discovery:
+        follow_recommendations: Recomandacions d’abonaments
+        profile_directory: Annuari de perfils
+        public_timelines: Fluxes d’actualitats publics
+        title: Descobèrta
+        trends: Tendéncias
       domain_blocks:
         all: A tot lo monde
         disabled: A degun
@@ -376,15 +391,20 @@ oc:
           approved: Validacion necessària per s’inscriure
           none: Degun pòt pas se marcar
           open: Tot lo monde se pòt marcar
+      title: Paramètres del servidor
     site_uploads:
       delete: Suprimir lo fichièr enviat
     statuses:
+      account: Autor
+      application: Aplicacion
       back_to_account: Tornar a la pagina Compte
       deleted: Suprimits
+      language: Lenga
       media:
         title: Mèdia
       no_status_selected: Cap d’estatut pas cambiat estant que cap èra pas seleccionat
       title: Estatuts del compte
+      visibility: Visibilitat
       with_media: Amb mèdia
     system_checks:
       rules_check:
@@ -395,7 +415,10 @@ oc:
       updated_msg: Paramètres d’etiquetas corrèctament actualizats
     title: Administracion
     trends:
+      statuses:
+        title: Publicacions endavant
       tags:
+        current_score: Marca actuala %{score}
         dashboard:
           tag_languages_dimension: Lengas principalas
           tag_servers_dimension: Servidors principals
@@ -404,6 +427,13 @@ oc:
       delete: Escafar
       edit_preset: Modificar lo tèxt predefinit d’avertiment
       title: Gerir los tèxtes predefinits
+    webhooks:
+      delete: Suprimir
+      disable: Desactivar
+      disabled: Desactivat
+      enable: Activar
+      enabled: Actiu
+      events: Eveniments
   admin_mailer:
     new_pending_account:
       body: Los detalhs del nòu compte son çai-jos. Podètz validar o regetar aquesta demanda.
@@ -450,11 +480,14 @@ oc:
     didnt_get_confirmation: Avètz pas recebut las instruccions de confirmacion ?
     forgot_password: Senhal oblidat ?
     invalid_reset_password_token: Lo geton de reïnicializacion es invalid o acabat. Tornatz demandar un geton se vos plai.
+    link_to_webauth: Utilizar un aparelh de claus de seguretat
+    log_in_with: Connexion amb
     login: Se connectar
     logout: Se desconnectar
     migrate_account: Mudar endacòm mai
     migrate_account_html: Se volètz mandar los visitors d’aqueste compte a un autre, podètz<a href="%{path}"> o configurar aquí</a>.
     or_log_in_with: O autentificatz-vos amb
+    privacy_policy_agreement_html: Ai legit e accepti la <a href="%{privacy_policy_path}" target="_blank">politica de confidencialitat</a>
     providers:
       cas: CAS
       saml: SAML
@@ -468,6 +501,7 @@ oc:
       title: Configuracion
     status:
       account_status: Estat del compte
+      functional: Vòstre compte es complètament foncional.
     use_security_key: Utilizar clau de seguretat
   authorize_follow:
     already_following: Seguètz ja aqueste compte
@@ -517,6 +551,10 @@ oc:
       more_details_html: Per mai d’informacion, vejatz la <a href="%{terms_path}">politica de confidencialitat</a>.
       username_available: Vòstre nom d’utilizaire serà disponible de nòu
       username_unavailable: Vòstre nom d’utilizaire demorarà pas disponible
+  disputes:
+    strikes:
+      title_actions:
+        none: Avertiment
   domain_validator:
     invalid_domain: es pas un nom de domeni valid
   errors:
@@ -564,12 +602,22 @@ oc:
       public: Flux public
       thread: Conversacions
     edit:
+      add_keyword: Apondre un mot clau
+      keywords: Mots clau
       title: Modificar lo filtre
     errors:
       invalid_context: Cap de contèxte o contèxte invalid fornit
     index:
       delete: Suprimir
       empty: Avètz pas cap de filtre.
+      expires_in: Expira d’aquí %{distance}
+      expires_on: Expira lo %{date}
+      keywords:
+        one: "%{count} mot clau"
+        other: "%{count} mots clau"
+      statuses:
+        one: "%{count} publicacion"
+        other: "%{count} publicacions"
       title: Filtres
     new:
       title: Ajustar un nòu filtre
@@ -647,6 +695,7 @@ oc:
       on_cooldown: Sètz en temps de recargament
     followers_count: Seguidors al moment de mudar
     incoming_migrations: Mudar d’un compte diferent
+    incoming_migrations_html: Per venir d’un autre compte cap a aqueste, vos cal d’en primièr <a href="%{path}">crear un alias de compte</a>.
     moved_msg: Vòstre compte manda ara a %{acct} e vòstres seguidors son desplaçats.
     not_redirecting: Vòstre compte manda pas enlòc pel moment.
     past_migrations: Migracions passadas
@@ -660,6 +709,9 @@ oc:
   moderation:
     title: Moderacion
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} se marquèt"
     favourite:
       body: "%{name} a mes vòstre estatut en favorit :"
       subject: "%{name} a mes vòstre estatut en favorit"
@@ -678,12 +730,16 @@ oc:
       body: "%{name} vos a mencionat dins :"
       subject: "%{name} vos a mencionat"
       title: Novèla mencion
+    poll:
+      subject: Un sondatge de %{name} es terminat
     reblog:
       body: "%{name} a tornat partejar vòstre estatut :"
       subject: "%{name} a tornat partejar vòstre estatut"
       title: Novèl partatge
     status:
       subject: "%{name} ven de publicar"
+    update:
+      subject: "%{name} modifiquèt sa publicacion"
   notifications:
     email_events: Eveniments per las notificacions per corrièl
     email_events_hint: 'Seleccionatz los eveniments que volètz recebre :'
@@ -715,6 +771,8 @@ oc:
     other: Autre
     posting_defaults: Valors per defaut de las publicacions
     public_timelines: Fluxes d’actualitats publics
+  privacy_policy:
+    title: Politica de confidencialitat
   reactions:
     errors:
       limit_reached: La limita de las reaccions diferentas es estada atenguda
@@ -737,6 +795,8 @@ oc:
     status: Estat del compte
   remote_follow:
     missing_resource: URL de redireccion pas trobada
+  rss:
+    content_warning: 'Avís de contengut :'
   scheduled_statuses:
     over_daily_limit: Avètz passat la limita de %{limit}  tuts programats per aquel jorn
     over_total_limit: Avètz passat la limita de %{limit}  tuts programats
@@ -801,6 +861,7 @@ oc:
     preferences: Preferéncias
     profile: Perfil
     relationships: Abonaments e seguidors
+    statuses_cleanup: Supression auto de las publicacions
     two_factor_authentication: Autentificacion en dos temps
     webauthn_authentication: Claus de seguretat
   statuses:
@@ -817,9 +878,13 @@ oc:
         other: "%{count} vidèos"
     boosted_from_html: Partejat de %{acct_link}
     content_warning: 'Avertiment de contengut : %{warning}'
+    default_language: Parièr que la lenga d’interfàcia
     disallowed_hashtags:
       one: 'conten una etiqueta desactivada : %{tags}'
       other: 'conten las etiquetas desactivadas : %{tags}'
+    edited_at_html: Modificat %{date}
+    errors:
+      in_reply_not_found: La publicacion que respondètz sembla pas mai exisitir.
     open_in_web: Dobrir sul web
     over_character_limit: limit de %{max} caractèrs passat
     pin_errors:
@@ -841,6 +906,7 @@ oc:
     sign_in_to_participate: Inscrivètz-vos per participar a la conversacion
     title: '%{name} : "%{quote}"'
     visibilities:
+      direct: Dirècte
       private: Seguidors solament
       private_long: Mostrar pas qu’als seguidors
       public: Public
@@ -849,18 +915,37 @@ oc:
       unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
   statuses_cleanup:
     enabled: Supression automatica de publicacions ancianas
+    enabled_hint: Suprimís automaticament vòstras publicacions quand correspondon al critèri d’atge causit, levat se correspondon tanben a las excepcions çai-jos
+    explanation: Perque la supression es una operacion costosa en ressorsa, es realizat doçament quand lo servidor es pas ocupat a quicòm mai. Per aquò, vòstras publicacions seràn benlèu pas suprimidas aprèp aver atengut lo critèri d’atge.
+    ignore_favs: Ignorar los favorits
+    ignore_reblogs: Ignorar los partatges
+    interaction_exceptions: Excepcions basadas sus las interaccions
     keep_direct: Gardar los messatges dirèctes
+    keep_direct_hint: Suprimís pas vòstres messatges dirèctes
     keep_media: Gardar las publicacions amb pèça-junta
+    keep_media_hint: Suprimís pas vòstras publicacions s’an de mèdias junts
     keep_pinned: Gardar las publicacions penjadas
+    keep_pinned_hint: Suprimís pas vòstras publicacions penjadas
+    keep_polls: Gardar los sondatges
+    keep_polls_hint: Suprimir pas vòstres sondatges
+    keep_self_bookmark: Gardar las publicacions que metèretz en favorit
+    keep_self_bookmark_hint: Suprimís pas vòstras publicacions se las avètz mesas en marcapaginas
+    keep_self_fav: Gardar las publicacions que metèretz en favorit
+    keep_self_fav_hint: Suprimís pas vòstras publicacions se las avètz mesas en favorits
     min_age:
       '1209600': 2 setmanas
       '15778476': 6 meses
       '2629746': 1 mes
       '31556952': 1 an
       '5259492': 2 meses
-      '604800': 1 week
+      '604800': 1 setmana
       '63113904': 2 ans
       '7889238': 3 meses
+    min_age_label: Sulhet d’ancianetat
+    min_favs: Gardar al mens las publicacion en favorit
+    min_favs_hint: Suprimís pas las publicacions qu’an recebut al mens aquesta quantitat de favorits. Daissar blanc per suprimir las publicacion quina quantitat de favorits qu’ajan
+    min_reblogs: Gardar las publicacions partejadas al mens
+    min_reblogs_hint: Suprimís pas vòstras publicacions qu’an agut aqueste nombre de partiment. Daissar blanc per suprimir las publicacions sens far cas als partiments
   stream_entries:
     pinned: Tut penjat
     reblogged: a partejat
@@ -885,23 +970,28 @@ oc:
     generate_recovery_codes: Generar los còdis de recuperacion
     lost_recovery_codes: Los còdi de recuperacion vos permeton d’accedir a vòstre compte se perdètz vòstre mobil. S’avètz perdut vòstres còdis de recuperacion los podètz tornar generar aquí. Los ancians còdis seràn pas mai valides.
     methods: Metòde en dos temps
+    otp: Aplicacion d’autentificacion
     recovery_codes: Salvar los còdis de recuperacion
     recovery_codes_regenerated: Los còdis de recuperacion son ben estats tornats generar
     recovery_instructions_html: Se vos arriba de perdre vòstre mobil, podètz utilizar un dels còdis de recuperacion cai-jos per poder tornar accedir a vòstre compte. <strong>Gardatz los còdis en seguretat</strong>, per exemple, imprimissètz los e gardatz los amb vòstres documents importants.
     webauthn: Claus de seguretat
   user_mailer:
+    appeal_approved:
+      action: Anatz al vòstre compte
     backup_ready:
       explanation: Avètz demandat una salvagarda complèta de vòstre compte Mastodon. Es prèsta per telecargament !
       subject: Vòstre archiu es prèst per telecargament
       title: Archiu per emportar
     warning:
       reason: 'Motiu :'
+      statuses: 'Publicacion citada :'
       subject:
         disable: Vòstre compte %{acct} es gelat
         none: Avertiment per %{acct}
         silence: Vòstre compte %{acct} es limitat
         suspend: Vòstre compte %{acct} es suspendut
       title:
+        delete_statuses: Publicacion levada
         disable: Compte gelat
         none: Avertiment
         silence: Compte limitat

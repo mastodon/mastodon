@@ -2,9 +2,10 @@
 eo:
   about:
     about_mastodon_html: 'Mastodon estas socia retejo de la estonteco: sen reklamo, sen kompania gvato, etika dezajno kaj malcentraligo! Vi regu viajn datumojn kun Mastodon!'
-    contact_missing: Ne ŝargita
+    contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
     hosted_on: "%{domain} estas nodo de Mastodon"
+    title: Pri
   accounts:
     follow: Sekvi
     followers:
@@ -18,22 +19,22 @@ eo:
     pin_errors:
       following: Vi devas sekvi la homon, kiun vi volas proponi
     posts:
-      one: Mesaĝo
+      one: Afiŝo
       other: Mesaĝoj
-    posts_tab_heading: Mesaĝoj
+    posts_tab_heading: Afiŝoj
   admin:
     account_actions:
       action: Plenumi agon
       title: Plenumi kontrolan agon al %{acct}
     account_moderation_notes:
       create: Lasi noton
-      created_msg: Noto de mederigado sukcese kreita!
+      created_msg: Noto de mederigado estis sukcese kreita!
       destroyed_msg: Noto de moderigado sukcese detruita!
     accounts:
       add_email_domain_block: Bloki retadresan domajnon
       approve: Aprobi
       are_you_sure: Ĉu vi certas?
-      avatar: Rolfiguro
+      avatar: Profilbildo
       by_domain: Domajno
       change_email:
         current_email: Nuna retadreso
@@ -41,22 +42,26 @@ eo:
         new_email: Nova retadreso
         submit: Ŝanĝi retadreson
         title: Ŝanĝi retadreson por %{username}
+      change_role:
+        label: Ŝanĝi rolon
+        no_role: Neniu rolo
+        title: Ŝanĝi rolon por %{username}
       confirm: Konfirmi
       confirmed: Konfirmita
       confirming: Konfirmante
-      custom: Kutimo
+      custom: Aliaj agordoj
       delete: Forigi datumojn
       deleted: Forigita
       demote: Degradi
       disable: Frostigi
-      disable_two_factor_authentication: Malaktivigi 2FA-n
+      disable_two_factor_authentication: Malŝalti 2FA-n
       disabled: Frostigita
       display_name: Montrata nomo
       domain: Domajno
       edit: Redakti
-      email: Retadreso
-      email_status: Retadreso Stato
-      enable: Ebligi
+      email: Retpoŝto
+      email_status: Stato de retpoŝto
+      enable: Malfrostigi
       enabled: Ebligita
       followers: Sekvantoj
       follows: Sekvatoj
@@ -67,7 +72,7 @@ eo:
       ip: IP
       joined: Aliĝis
       location:
-        all: Ĉio
+        all: Ĉiuj
         local: Lokaj
         remote: Foraj
         title: Loko
@@ -76,19 +81,19 @@ eo:
       memorialize: Ŝanĝi al memoro
       memorialized: Memorita
       moderation:
-        active: Aktiva
+        active: Aktivaj
         all: Ĉio
         pending: Pritraktata
         suspended: Suspendita
         title: Moderigado
       moderation_notes: Notoj de moderigado
-      most_recent_activity: Lasta ago
+      most_recent_activity: Lastaj afiŝoj
       most_recent_ip: Lasta IP
       no_account_selected: Neniu konto estis ŝanĝita ĉar neniu estis selektita
       no_limits_imposed: Neniu limito trudita
       not_subscribed: Ne abonita
       pending: Pritraktata recenzo
-      perform_full_suspension: Haltigi
+      perform_full_suspension: Suspendi
       promote: Plirangigi
       protocol: Protokolo
       public: Publika
@@ -100,8 +105,8 @@ eo:
       removed_avatar_msg: La bildo de la rolfiguro de %{username} estas sukcese forigita
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
-        send: Resendi konfirman retmesaĝon
-        success: Konfirma retmesaĝo sukcese sendita!
+        send: Resendi konfirman retpoŝton
+        success: Konfirma retpoŝto estis sukcese sendita!
       reset: Restarigi
       reset_password: Restarigi pasvorton
       resubscribe: Reaboni
@@ -119,7 +124,7 @@ eo:
         targeted_reports: Raporitaj de alia
       silence: Mutigita
       silenced: Silentigita
-      statuses: Mesaĝoj
+      statuses: Afiŝoj
       subscribe: Aboni
       suspend: Haltigu
       suspended: Suspendita
@@ -127,7 +132,7 @@ eo:
       title: Kontoj
       unblock_email: Malbloki retpoŝtadresojn
       unblocked_email_msg: Sukcese malblokis la retpoŝtadreson de %{username}
-      unconfirmed_email: Nekonfirmita retadreso
+      unconfirmed_email: Nekonfirmita retpoŝto
       undo_sensitized: Malfari sentema
       undo_silenced: Malfari kaŝon
       undo_suspension: Malfari haltigon
@@ -137,23 +142,23 @@ eo:
       view_domain: Vidi la resumon de la domajno
       warn: Averti
       web: Reto
-      whitelisted: En la blanka listo
+      whitelisted: Permesita por federacio
     action_logs:
       action_types:
         approve_user: Aprobi Uzanton
         assigned_to_self_report: Atribui Raporton
-        change_email_user: Ŝanĝi retadreson de uzanto
-        confirm_user: Konfermi uzanto
-        create_account_warning: Krei averton
+        change_email_user: Ŝanĝi retpoŝton de uzanto
+        confirm_user: Konfirmi uzanton
+        create_account_warning: Krei Averton
         create_announcement: Krei Anoncon
-        create_custom_emoji: Krei Propran emoĝion
+        create_custom_emoji: Krei Propran Emoĝion
         create_domain_allow: Krei Domajnan Permeson
-        create_domain_block: Krei blokadon de domajno
-        create_email_domain_block: Krei blokadon de retpoŝta domajno
+        create_domain_block: Krei Blokadon De Domajno
+        create_email_domain_block: Krei Blokadon De Retpoŝta Domajno
         create_ip_block: Krei IP-regulon
-        demote_user: Malpromocii uzanton
+        demote_user: Malpromocii Uzanton
         destroy_announcement: Forigi Anoncon
-        destroy_custom_emoji: Forigi Propran emoĝion
+        destroy_custom_emoji: Forigi Propran Emoĝion
         destroy_domain_allow: Forigi Domajnan Permeson
         destroy_domain_block: Forigi blokadon de domajno
         destroy_email_domain_block: Forigi blokadon de retpoŝta domajno
@@ -176,12 +181,12 @@ eo:
         resolve_report: Solvitaj reporto
         sensitive_account: Marki tikla la aŭdovidaĵojn de via konto
         silence_account: Silentigi konton
-        suspend_account: Haltigi konton
+        suspend_account: Suspendi la konton
         unassigned_report: Malatribui Raporton
         unblock_email_account: Malbloki retpoŝtadreson
         unsensitive_account: Malmarku la amaskomunikilojn en via konto kiel sentemaj
         unsilence_account: Malsilentigi konton
-        unsuspend_account: Malhaltigi konton
+        unsuspend_account: Reaktivigi la konton
         update_announcement: Ĝisdatigi anoncon
         update_custom_emoji: Ĝisdatigi proprajn emoĝiojn
         update_domain_block: Ĝigdatigi domajnan blokadon
@@ -219,6 +224,7 @@ eo:
         suspend_account_html: "%{name} suspendis la konton de %{target}"
         unsuspend_account_html: "%{name} reaktivigis la konton de %{target}"
         update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
+      deleted_account: forigita konto
       empty: Neniu protokolo trovita.
       filter_by_action: Filtri per ago
       filter_by_user: Filtri per uzanto
@@ -254,7 +260,7 @@ eo:
       disabled: Neebligita
       disabled_msg: La emoĝio sukcese neebligita
       emoji: Emoĝio
-      enable: Ebligi
+      enable: Enŝalti
       enabled: Ebligita
       enabled_msg: Tiu emoĝio estis sukcese ebligita
       list: Listo
@@ -303,7 +309,7 @@ eo:
           desc_html: "<strong>Kaŝi</strong> igos la mesaĝojn de la konto nevideblaj al tiuj, kiuj ne sekvas tiun. <strong>Haltigi</strong> forigos ĉiujn enhavojn, aŭdovidaĵojn kaj datumojn de la konto. Uzu <strong>Nenio</strong> se vi simple volas malakcepti aŭdovidaĵojn."
           noop: Nenio
           silence: Mutigi
-          suspend: Haltigi
+          suspend: Suspendi
         title: Nova domajna blokado
       obfuscate: Malklara domajna nomo
       private_comment: Privata komento
@@ -342,6 +348,7 @@ eo:
           reject_media: Malakcepti la aŭdovidaĵojn
           reject_reports: Malakcepti raportojn
           silence: Kaŝu
+          suspend: Suspendi
         policy: Politiko
       dashboard:
         instance_accounts_dimension: Plej sekvataj kontoj
@@ -400,7 +407,7 @@ eo:
       description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
       disable: Neebligi
       disabled: Neebligita
-      enable: Ebligi
+      enable: Enŝalti
       enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
       enabled: Ebligita
       inbox_url: URL de la ripetilo
@@ -511,18 +518,18 @@ eo:
       allow: Permesi
       disallow: Malpermesi
       links:
-        allow: Permesi ligilon
-        disallow: Malpermesi ligilon
+        allow: Permesi la ligilon
+        disallow: Malpermesi la ligilon
         title: Tendencantaj ligiloj
       pending_review: Atendante revizion
       statuses:
-        allow: Permesi afiŝon
-        allow_account: Permesi aŭtoron
-        disallow: Malpermesi afiŝon
-        disallow_account: Malpermesi aŭtoron
+        allow: Permesi la afiŝon
+        allow_account: Permesi la aŭtoron
+        disallow: Malpermesi la afiŝon
+        disallow_account: Malpermesi la aŭtoron
         shared_by:
-          one: Kundividita kaj aldonita al preferaĵoj unufoje
-          other: Kundividita kaj aldonita al preferaĵoj %{friendly_count}-foje
+          one: Kundividita kaj aldonita al la preferaĵoj unufoje
+          other: Kundividita kaj aldonita al la preferaĵoj %{friendly_count}-foje
         title: Tendencantaj afiŝoj
       tags:
         dashboard:
@@ -536,10 +543,13 @@ eo:
       delete: Forviŝi
       edit_preset: Redakti la antaŭagordojn de averto
       title: Administri avertajn antaŭagordojn
+    webhooks:
+      enabled: Aktiva
   admin_mailer:
     new_appeal:
       actions:
         disable: por frostigi ties konton
+        suspend: por suspendi iliajn kontojn
     new_pending_account:
       body: La detaloj de la nova konto estas sube. Vi povas aprobi aŭ Malakcepti ĉi kandidatiĝo.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
@@ -873,7 +883,7 @@ eo:
           trillion: Dn
   otp_authentication:
     code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
-    enable: Ebligi
+    enable: Enŝalti
     instructions_html: "<strong>Skanu ĉi tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo en via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos enmeti."
     manual_instructions: 'Se vi ne povas skani la QR-kodon kaj bezonas enmeti ĝin mane, jen la tut-teksta sekreto:'
     setup: Agordi

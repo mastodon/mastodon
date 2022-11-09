@@ -118,7 +118,7 @@ vi:
       removed_avatar_msg: Đã xóa bỏ ảnh đại diện của %{username}
       removed_header_msg: Đã xóa bỏ ảnh bìa của %{username}
       resend_confirmation:
-        already_confirmed: Người dùng này đã được xác minh
+        already_confirmed: Người này đã được xác minh
         send: Gửi lại email xác nhận
         success: Email xác nhận đã gửi thành công!
       reset: Đặt lại
@@ -144,7 +144,7 @@ vi:
       subscribe: Đăng ký
       suspend: Vô hiệu hóa
       suspended: Vô hiệu hóa
-      suspension_irreversible: Toàn bộ dữ liệu của người dùng này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
+      suspension_irreversible: Toàn bộ dữ liệu của người này sẽ bị xóa hết. Bạn vẫn có thể ngừng vô hiệu hóa nhưng dữ liệu sẽ không thể phục hồi.
       suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa sạch vào %{date}. Trước thời hạn này, dữ liệu vẫn có thể phục hồi. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
       title: Tài khoản
       unblock_email: Mở khóa địa chỉ email
@@ -166,10 +166,10 @@ vi:
         approve_appeal: Chấp nhận kháng cáo
         approve_user: Chấp nhận người dùng
         assigned_to_self_report: Tự xử lý báo cáo
-        change_email_user: Đổi email người dùng
+        change_email_user: Đổi email
         change_role_user: Thay đổi vai trò
-        confirm_user: Xác minh người dùng
-        create_account_warning: Cảnh cáo người dùng
+        confirm_user: Xác minh
+        create_account_warning: Cảnh cáo
         create_announcement: Tạo thông báo mới
         create_canonical_email_block: Tạo chặn tên miền email mới
         create_custom_emoji: Tạo emoji
@@ -193,10 +193,10 @@ vi:
         destroy_user_role: Xóa vai trò
         disable_2fa_user: Vô hiệu hóa 2FA
         disable_custom_emoji: Vô hiệu hóa emoji
-        disable_sign_in_token_auth_user: Vô hiệu hóa xác minh bằng email cho người dùng
+        disable_sign_in_token_auth_user: Vô hiệu hóa xác minh bằng email
         disable_user: Vô hiệu hóa đăng nhập
         enable_custom_emoji: Cho phép emoji
-        enable_sign_in_token_auth_user: Bật xác minh bằng email cho người dùng
+        enable_sign_in_token_auth_user: Bật xác minh bằng email
         enable_user: Bỏ vô hiệu hóa đăng nhập
         memorialize_account: Đánh dấu tưởng niệm
         promote_user: Chỉ định vai trò
@@ -280,6 +280,7 @@ vi:
         update_ip_block_html: "%{name} cập nhật chặn IP %{target}"
         update_status_html: "%{name} cập nhật tút của %{target}"
         update_user_role_html: "%{name} đã thay đổi vai trò %{target}"
+      deleted_account: tài khoản đã xóa
       empty: Không tìm thấy bản ghi.
       filter_by_action: Theo hành động
       filter_by_user: Theo người
@@ -336,10 +337,10 @@ vi:
       updated_msg: Cập nhật thành công Emoji!
       upload: Tải lên
     dashboard:
-      active_users: người dùng hoạt động
+      active_users: người hoạt động
       interactions: tương tác
       media_storage: Dung lượng lưu trữ
-      new_users: người dùng mới
+      new_users: người mới
       opened_reports: tổng báo cáo
       pending_appeals_html:
         other: "<strong>%{count}</strong> kháng cáo đang chờ"
@@ -348,7 +349,7 @@ vi:
       pending_tags_html:
         other: "<strong>%{count}</strong> hashtag đang chờ"
       pending_users_html:
-        other: "<strong>%{count}</strong> người dùng đang chờ"
+        other: "<strong>%{count}</strong> người đang chờ"
       resolved_reports: báo cáo đã xử lí
       software: Phần mềm
       sources: Nguồn đăng ký
@@ -414,7 +415,7 @@ vi:
       resolved_through_html: Đã xử lý thông qua %{domain}
       title: Tên miền email đã chặn
     follow_recommendations:
-      description_html: "<strong>Gợi ý theo dõi là cách giúp những người dùng mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người dùng chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những tài khoản này sẽ được đề xuất. Nó bao gồm các tài khoản có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
+      description_html: "<strong>Gợi ý theo dõi là cách giúp những người mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những người này sẽ được đề xuất. Nó bao gồm những người có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
       language: Theo ngôn ngữ
       status: Trạng thái
       suppress: Tắt gợi ý theo dõi
@@ -513,7 +514,7 @@ vi:
     relays:
       add_new: Thêm liên hợp mới
       delete: Loại bỏ
-      description_html: "<strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người dùng ở máy chủ này vẫn có thể theo dõi người dùng khác trên các máy chủ khác."
+      description_html: "<strong>Liên hợp</strong> nghĩa là cho phép bài đăng công khai của máy chủ này xuất hiện trên bảng tin của máy chủ khác và ngược lại. <strong>Nó giúp các máy chủ vừa và nhỏ tiếp cận nội dung từ các máy chủ lớn hơn</strong>. Nếu không chọn, người ở máy chủ này vẫn có thể theo dõi người khác trên các máy chủ khác."
       disable: Tắt
       disabled: Đã tắt
       enable: Kích hoạt
@@ -571,7 +572,7 @@ vi:
         title: Lưu ý
       notes_description_html: Xem và để lại lưu ý cho các kiểm duyệt viên khác
       quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
-      remote_user_placeholder: người dùng ở %{instance}
+      remote_user_placeholder: người ở %{instance}
       reopen: Mở lại báo cáo
       report: 'Báo cáo #%{id}'
       reported_account: Tài khoản bị báo cáo
@@ -599,18 +600,18 @@ vi:
         moderation: Kiểm duyệt
         special: Đặc biệt
       delete: Xóa
-      description_html: Thông qua <strong>vai trò người dùng</strong>, bạn có thể tùy chỉnh những tính năng và vị trí của Mastodon mà người dùng có thể truy cập.
+      description_html: Thông qua <strong>vai trò</strong>, bạn có thể tùy chỉnh những tính năng và vị trí của Mastodon mà mọi người có thể truy cập.
       edit: Sửa vai trò '%{name}'
       everyone: Quyền hạn mặc định
-      everyone_full_description_html: Đây <strong>vai trò cơ bản</strong> ảnh hưởng tới <strong>mọi người dùng khác</strong>, kể cả những người không có vai trò được chỉ định. Tất cả các vai trò khác đều kế thừa quyền từ vai trò đó.
+      everyone_full_description_html: Đây <strong>vai trò cơ bản</strong> ảnh hưởng tới <strong>mọi người khác</strong>, kể cả những người không có vai trò được chỉ định. Tất cả các vai trò khác đều kế thừa quyền từ vai trò đó.
       permissions_count:
         other: "%{count} quyền hạn"
       privileges:
         administrator: Quản trị viên
-        administrator_description: Người dùng này có thể truy cập mọi quyền hạn
-        delete_user_data: Xóa dữ liệu người dùng
-        delete_user_data_description: Cho phép xóa dữ liệu của người dùng khác lập tức
-        invite_users: Mời người dùng
+        administrator_description: Người này có thể truy cập mọi quyền hạn
+        delete_user_data: Xóa dữ liệu
+        delete_user_data_description: Cho phép xóa dữ liệu của mọi người khác lập tức
+        invite_users: Mời tham gia
         invite_users_description: Cho phép mời những người mới vào máy chủ
         manage_announcements: Quản lý thông báo
         manage_announcements_description: Cho phép quản lý thông báo trên máy chủ
@@ -634,10 +635,10 @@ vi:
         manage_settings_description: Cho phép thay đổi thiết lập máy chủ
         manage_taxonomies: Quản lý phân loại
         manage_taxonomies_description: Cho phép đánh giá nội dung thịnh hành và cập nhật cài đặt hashtag
-        manage_user_access: Quản lý người dùng truy cập
-        manage_user_access_description: Cho phép vô hiệu hóa xác thực hai bước của người dùng khác, thay đổi địa chỉ email và đặt lại mật khẩu của họ
-        manage_users: Quản lý người dùng
-        manage_users_description: Cho phép xem thông tin chi tiết của người dùng khác và thực hiện các hành động kiểm duyệt đối với họ
+        manage_user_access: Quản lý người truy cập
+        manage_user_access_description: Cho phép vô hiệu hóa xác thực hai bước của người khác, thay đổi địa chỉ email và đặt lại mật khẩu của họ
+        manage_users: Quản lý người
+        manage_users_description: Cho phép xem thông tin chi tiết của người khác và thực hiện các hành động kiểm duyệt
         manage_webhooks: Quản lý Webhook
         manage_webhooks_description: Cho phép thiết lập webhook cho các sự kiện quản trị
         view_audit_log: Xem nhật ký
@@ -650,7 +651,7 @@ vi:
     rules:
       add_new: Thêm quy tắc
       delete: Xóa bỏ
-      description_html: Mặc dù được yêu cầu chấp nhận điều khoản dịch vụ khi đăng ký, nhưng người dùng thường không đọc cho đến khi vấn đề gì đó xảy ra. <strong>Hãy làm điều này rõ ràng hơn bằng cách liệt kê quy tắc máy chủ theo gạch đầu dòng.</strong> Cố gắng viết ngắn và đơn giản, nhưng đừng tách ra quá nhiều mục.
+      description_html: Mặc dù được yêu cầu chấp nhận điều khoản dịch vụ khi đăng ký, nhưng mọi người thường không đọc cho đến khi vấn đề gì đó xảy ra. <strong>Hãy làm điều này rõ ràng hơn bằng cách liệt kê quy tắc máy chủ theo gạch đầu dòng.</strong> Cố gắng viết ngắn và đơn giản, nhưng đừng tách ra quá nhiều mục.
       edit: Sửa quy tắc
       empty: Chưa có quy tắc máy chủ.
       title: Quy tắc máy chủ
@@ -658,7 +659,7 @@ vi:
       about:
         manage_rules: Sửa quy tắc máy chủ
         preamble: Cung cấp thông tin chuyên sâu về cách máy chủ được vận hành, kiểm duyệt, tài trợ.
-        rules_hint: Có một khu vực dành riêng cho các quy tắc mà người dùng của bạn phải tuân thủ.
+        rules_hint: Có một khu vực dành riêng cho các quy tắc mà người tham gia máy chủ của bạn phải tuân thủ.
         title: Giới thiệu
       appearance:
         preamble: Tùy chỉnh giao diện web của Mastodon.
@@ -667,7 +668,7 @@ vi:
         preamble: Thương hiệu máy chủ của bạn phân biệt nó với các máy chủ khác trong mạng. Thông tin này có thể được hiển thị trên nhiều môi trường khác nhau, chẳng hạn như giao diện web của Mastodon, các ứng dụng gốc, trong bản xem trước liên kết trên các trang web khác và trong các ứng dụng nhắn tin, v.v. Vì lý do này, cách tốt nhất là giữ cho thông tin này rõ ràng, ngắn gọn và súc tích.
         title: Thương hiệu
       content_retention:
-        preamble: Kiểm soát cách lưu trữ nội dung do người dùng tạo trong Mastodon.
+        preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
         title: Lưu giữ nội dung
       discovery:
         follow_recommendations: Gợi ý theo dõi
@@ -679,7 +680,7 @@ vi:
       domain_blocks:
         all: Tới mọi người
         disabled: Không ai
-        users: Để đăng nhập người dùng cục bộ
+        users: Để đăng nhập người cục bộ
       registrations:
         preamble: Kiểm soát những ai có thể tạo tài khoản trên máy chủ của bạn.
         title: Đăng ký
@@ -723,7 +724,7 @@ vi:
         disable: "%{name} đã ẩn %{target}"
         mark_statuses_as_sensitive: "%{name} đã đánh dấu tút của %{target} là nhạy cảm"
         none: "%{name} đã gửi cảnh cáo %{target}"
-        sensitive: "%{name} đã đánh dấu người dùng %{target} là nhạy cảm"
+        sensitive: "%{name} đã đánh dấu %{target} là nhạy cảm"
         silence: "%{name} đã ẩn %{target}"
         suspend: "%{name} đã vô hiệu hóa %{target}"
       appeal_approved: Đã khiếu nại
@@ -773,7 +774,7 @@ vi:
       statuses:
         allow: Cho phép tút
         allow_account: Cho phép người đăng
-        description_html: Đây là những tút đang được đăng lại và yêu thích rất nhiều trên máy chủ của bạn. Nó có thể giúp người dùng mới và người dùng cũ tìm thấy nhiều người hơn để theo dõi. Không có tút nào được hiển thị công khai cho đến khi bạn cho phép người đăng và người cho phép đề xuất tài khoản của họ cho người khác. Bạn cũng có thể cho phép hoặc từ chối từng tút riêng.
+        description_html: Đây là những tút đang được đăng lại và yêu thích rất nhiều trên máy chủ của bạn. Nó có thể giúp người mới và người cũ tìm thấy nhiều người hơn để theo dõi. Không có tút nào được hiển thị công khai cho đến khi bạn cho phép người đăng và người cho phép đề xuất tài khoản của họ cho người khác. Bạn cũng có thể cho phép hoặc từ chối từng tút riêng.
         disallow: Cấm tút
         disallow_account: Cấm người đăng
         no_status_selected: Không có tút thịnh hành nào thay đổi vì không có tút nào được chọn
@@ -788,8 +789,8 @@ vi:
           tag_languages_dimension: Top ngôn ngữ
           tag_servers_dimension: Top máy chủ
           tag_servers_measure: máy chủ khác
-          tag_uses_measure: tổng người dùng
-        description_html: Đây là những hashtag đang xuất hiện trong rất nhiều tút trên máy chủ của bạn. Nó có thể giúp người dùng của bạn tìm ra những gì mọi người đang quan tâm nhiều nhất vào lúc này. Không có hashtag nào được hiển thị công khai cho đến khi bạn cho phép chúng.
+          tag_uses_measure: tổng lượt dùng
+        description_html: Đây là những hashtag đang xuất hiện trong rất nhiều tút trên máy chủ của bạn. Nó có thể giúp mọi người tìm ra những gì đang được quan tâm nhiều nhất vào lúc này. Không có hashtag nào được hiển thị công khai cho đến khi bạn cho phép chúng.
         listable: Có thể đề xuất
         no_tag_selected: Không có hashtag thịnh hành nào thay đổi vì không có hashtag nào được chọn
         not_listable: Không thể đề xuất
@@ -902,7 +903,7 @@ vi:
     description:
       prefix_invited_by_user: "@%{name} mời bạn tham gia máy chủ Mastodon này!"
       prefix_sign_up: Tham gia Mastodon ngay hôm nay!
-      suffix: Với tài khoản, bạn sẽ có thể theo dõi mọi người, đăng tút và nhắn tin với người dùng từ bất kỳ máy chủ Mastodon khác!
+      suffix: Với tài khoản, bạn sẽ có thể theo dõi mọi người, đăng tút và nhắn tin với người từ bất kỳ máy chủ Mastodon khác!
     didnt_get_confirmation: Gửi lại email xác minh?
     dont_have_your_security_key: Bạn có khóa bảo mật chưa?
     forgot_password: Quên mật khẩu

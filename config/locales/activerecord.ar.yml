@@ -21,6 +21,18 @@ ar:
             username:
               invalid: يجب فقط أن يحتوي على حروف، وأرقام، وخطوط سفلية
               reserved: محجوز
+        admin/webhook:
+          attributes:
+            url:
+              invalid: رابط غير صحيح
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: رابط غير صحيح
+        import:
+          attributes:
+            data:
+              malformed: معتل
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ ar:
             email:
               blocked: يستخدم مزوّد بريد إلكتروني غير مسموح به
               unreachable: يبدو أنه لا وجود
+            role_id:
+              elevated: لا يمكن أن يكون أعلى من الدور الحالي
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: تضمين استأذانات ليست آمنة للدور الأساسي
+              elevated: لا يمكن تضمين استأذانات التي لا يملكها دورك الحالي
+              own_role: لا يمكن تغييرها مع دورك الحالي
+            position:
+              elevated: لا يمكن أن يكون أعلى من دورك الحالي
+              own_role: لا يمكن تغييرها مع دورك الحالي

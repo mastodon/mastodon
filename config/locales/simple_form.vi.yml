@@ -26,7 +26,7 @@ vi:
         ends_at: Tùy chọn. Thông báo sẽ tự động hủy vào lúc này
         scheduled_at: Để trống nếu muốn đăng thông báo ngay lập tức
         starts_at: Tùy chọn. Trong trường hợp thông báo của bạn đăng vào một khoảng thời gian cụ thể
-        text: Bạn có thể dùng URL, hashtag và nhắc đến. Cố gắng ngắn gọn bởi vì thông báo sẽ xuất hiện trên màn hình điện thoại của người dùng
+        text: Bạn có thể dùng URL, hashtag và nhắc đến. Cố gắng ngắn gọn bởi vì thông báo sẽ xuất hiện trên màn hình điện thoại
       appeal:
         text: Bạn chỉ có thể khiếu nại mỗi lần một cảnh cáo
       defaults:
@@ -75,13 +75,13 @@ vi:
           warn: Ẩn nội dung đã lọc đằng sau một cảnh báo đề cập đến tiêu đề của bộ lọc
       form_admin_settings:
         backups_retention_period: Lưu trữ dữ liệu người dùng đã tạo trong số ngày được chỉ định.
-        bootstrap_timeline_accounts: Các tài khoản này sẽ được ghim vào đầu các gợi ý theo dõi của người dùng mới.
+        bootstrap_timeline_accounts: Những người này sẽ được ghim vào đầu các gợi ý theo dõi của người mới.
         closed_registrations_message: Được hiển thị khi đóng đăng ký
         content_cache_retention_period: Tút từ các máy chủ khác sẽ bị xóa sau số ngày được chỉ định. Sau đó có thể không thể phục hồi được.
         custom_css: Bạn có thể tùy chỉnh phong cách trên bản web của Mastodon.
         mascot: Ghi đè hình minh họa trong giao diện web nâng cao.
         media_cache_retention_period: Media đã tải xuống sẽ bị xóa sau số ngày được chỉ định và sẽ tải xuống lại theo yêu cầu.
-        profile_directory: Liệt kê tất cả người dùng đã chọn tham gia để có thể khám phá.
+        profile_directory: Liệt kê tất cả người đã chọn tham gia để có thể khám phá.
         require_invite_text: Khi đăng ký yêu cầu phê duyệt thủ công, hãy đặt câu hỏi "Tại sao bạn muốn tham gia?" nhập văn bản bắt buộc thay vì tùy chọn
         site_contact_email: Cách mọi người có thể liên hệ với bạn khi có thắc mắc về pháp lý hoặc hỗ trợ.
         site_contact_username: Cách mọi người có thể liên hệ với bạn trên Mastodon.
@@ -89,7 +89,7 @@ vi:
         site_short_description: Mô tả ngắn gọn để giúp nhận định máy chủ của bạn. Ai đang điều hành nó, nó là cho ai?
         site_terms: Sử dụng chính sách bảo mật của riêng bạn hoặc để trống để sử dụng mặc định. Có thể soạn bằng cú pháp Markdown.
         site_title: Cách mọi người có thể tham chiếu đến máy chủ của bạn ngoài tên miền của nó.
-        theme: Chủ đề mà khách truy cập đăng xuất và người dùng mới nhìn thấy.
+        theme: Chủ đề mà khách truy cập đăng xuất và người mới nhìn thấy.
         thumbnail: 'Một hình ảnh tỉ lệ 2: 1 được hiển thị cùng với thông tin máy chủ của bạn.'
         timeline_preview: Khách truy cập đã đăng xuất sẽ có thể xem các tút công khai gần đây nhất trên máy chủ.
         trendable_by_default: Bỏ qua việc duyệt thủ công nội dung thịnh hành. Các mục riêng lẻ vẫn có thể bị xóa khỏi xu hướng sau này.
@@ -123,7 +123,7 @@ vi:
         color: Màu được sử dụng cho vai trò trong toàn bộ giao diện người dùng, dưới dạng RGB ở định dạng hex
         highlighted: Vai trò sẽ hiển thị công khai
         name: Tên công khai của vai trò, nếu vai trò được đặt để hiển thị dưới dạng huy hiệu
-        permissions_as_keys: Người dùng có vai trò này sẽ có quyền truy cập vào...
+        permissions_as_keys: Người có vai trò này sẽ có quyền truy cập vào...
         position: Vai trò cao hơn sẽ có quyền quyết định xung đột trong các tình huống. Các vai trò có mức độ ưu tiên thấp hơn chỉ có thể thực hiện một số hành động nhất định
       webhook:
         events: Chọn sự kiện để gửi
@@ -183,7 +183,7 @@ vi:
         locked: Yêu cầu theo dõi
         max_uses: Số lần dùng tối đa
         new_password: Mật khẩu mới
-        note: Tiểu sử
+        note: Giới thiệu
         otp_attempt: Mã xác minh 2 bước
         password: Mật khẩu
         phrase: Từ khóa hoặc cụm từ
@@ -230,7 +230,7 @@ vi:
           warn: Ẩn kèm theo cảnh báo
       form_admin_settings:
         backups_retention_period: Thời hạn lưu trữ nội dung người dùng sao lưu
-        bootstrap_timeline_accounts: Luôn đề xuất những tài khoản này đến người dùng mới
+        bootstrap_timeline_accounts: Luôn đề xuất những người này đến người mới
         closed_registrations_message: Thông báo tùy chỉnh khi tắt đăng ký
         content_cache_retention_period: Thời hạn lưu trữ cache nội dung
         custom_css: Tùy chỉnh CSS

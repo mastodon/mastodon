@@ -255,9 +255,23 @@ nn:
         destroy_user_role_html: "%{name} sletta rolla %{target}"
         disable_2fa_user_html: "%{name} tok vekk krav om tofaktorautentisering for brukaren %{target}"
         disable_custom_emoji_html: "%{name} deaktiverte emojien %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} deaktivert e-post token for godkjenning for %{target}"
+        disable_user_html: "%{name} slo av innlogging for brukaren %{target}"
+        enable_custom_emoji_html: "%{name} aktiverte emojien %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktiverte e-post token autentisering for %{target}"
+        enable_user_html: "%{name} aktiverte innlogging for brukaren %{target}"
+        memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
+        promote_user_html: "%{name} fremja brukaren %{target}"
+        reject_appeal_html: "%{name} avviste klagen frå %{target} på modereringa"
         reject_user_html: "%{name} avslo registrering fra %{target}"
+        remove_avatar_user_html: "%{name} fjerna %{target} sitt profilbilete"
+        reopen_report_html: "%{name} opna rapporten %{target} på nytt"
+        resend_user_html: "%{name} sendte bekreftelsesepost for %{target} på nytt"
         reset_password_user_html: "%{name} tilbakestilte passordet for brukaren %{target}"
+        resolve_report_html: "%{name} løyste ein rapport %{target}"
+        sensitive_account_html: "%{name} markerte %{target} sitt media som sensitivt"
         silence_account_html: "%{name} begrenset %{target} sin konto"
+      deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
       filter_by_user: Sorter etter brukar

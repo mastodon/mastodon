@@ -211,6 +211,7 @@ cs:
         reject_user: Odmítnout uživatele
         remove_avatar_user: Odstranit avatar
         reopen_report: Znovu otevřít hlášení
+        resend_user: Znovu odeslat potvrzovací e-mail
         reset_password_user: Obnovit heslo
         resolve_report: Označit hlášení jako vyřešené
         sensitive_account: Vynucení citlivosti účtu
@@ -243,8 +244,10 @@ cs:
         create_email_domain_block_html: Uživatel %{name} zablokoval e-mailovou doménu %{target}
         create_ip_block_html: Uživatel %{name} vytvořil pravidlo pro IP %{target}
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
+        create_user_role_html: "%{name} vytvořil %{target} roli"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
+        destroy_canonical_email_block_html: "%{name} odblokoval e-mail s hashem %{target}"
         destroy_custom_emoji_html: "%{name} odstranil emoji %{target}"
         destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
@@ -267,6 +270,7 @@ cs:
         reject_user_html: "%{name} odmítl registraci od %{target}"
         remove_avatar_user_html: Uživatel %{name} odstranil avatar uživatele %{target}
         reopen_report_html: Uživatel %{name} znovu otevřel hlášení %{target}
+        resend_user_html: "%{name} znovu odeslal potvrzovací e-mail pro %{target}"
         reset_password_user_html: Uživatel %{name} obnovil heslo uživatele %{target}
         resolve_report_html: Uživatel %{name} vyřešil hlášení %{target}
         sensitive_account_html: "%{name} označil média účtu %{target} jako citlivá"
@@ -283,6 +287,7 @@ cs:
         update_ip_block_html: "%{name} změnil pravidlo pro IP %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
         update_user_role_html: "%{name} změnil %{target} roli"
+      deleted_account: smazaný účet
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
@@ -700,6 +705,7 @@ cs:
         preamble: Přizpůsobte si webové rozhraní Mastodon.
         title: Vzhled
       branding:
+        preamble: Značka vašeho serveru jej odlišuje od ostatních serverů v síti. Tyto informace se mohou zobrazovat v různých prostředích, například ve webovém rozhraní Mastodonu, v nativních aplikacích, v náhledech odkazů na jiných webových stránkách a v aplikacích pro zasílání zpráv atd. Z tohoto důvodu je nejlepší, aby tyto informace byly jasné, krátké a stručné.
         title: Značka
       content_retention:
         preamble: Určuje, jak je obsah generovaný uživatelem uložen v Mastodonu.
@@ -729,6 +735,7 @@ cs:
       destroyed_msg: Upload stránky byl úspěšně smazán!
     statuses:
       account: Autor
+      application: Aplikace
       back_to_account: Zpět na stránku účtu
       back_to_report: Zpět na stránku hlášení
       batch:
@@ -745,8 +752,10 @@ cs:
       no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
       open: Otevřít příspěvek
       original_status: Původní příspěvek
+      reblogs: Boosty
       status_changed: Příspěvek změněn
       title: Příspěvky účtu
+      trending: Populární
       visibility: Viditelnost
       with_media: S médii
     strikes:
@@ -978,6 +987,7 @@ cs:
       title: Nastavení
     sign_up:
       preamble: S účtem na tomto serveru Mastodon budete moci sledovat jakoukoliv jinou osobu v síti bez ohledu na to, kde je jejich účet hostován.
+      title: Pojďme vás nastavit na %{domain}.
     status:
       account_status: Stav účtu
       confirming: Čeká na dokončení potvrzení e-mailu.
@@ -1167,6 +1177,11 @@ cs:
     none: Žádné
     order_by: Seřadit podle
     save_changes: Uložit změny
+    select_all_matching_items:
+      few: Vybrat %{count} položky odpovídající vašemu hledání.
+      many: Vybrat všech %{count} položek odpovídajících vašemu hledání.
+      one: Vybrat %{count} položku odpovídající vašemu hledání.
+      other: Vybrat všech %{count} položek odpovídajících vašemu hledání.
     today: dnes
     validation_errors:
       few: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyby uvedené níže

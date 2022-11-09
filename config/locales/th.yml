@@ -280,6 +280,7 @@ th:
         update_ip_block_html: "%{name} ได้เปลี่ยนกฎสำหรับ IP %{target}"
         update_status_html: "%{name} ได้อัปเดตโพสต์โดย %{target}"
         update_user_role_html: "%{name} ได้เปลี่ยนบทบาท %{target}"
+      deleted_account: บัญชีที่ลบแล้ว
       empty: ไม่พบรายการบันทึก
       filter_by_action: กรองตามการกระทำ
       filter_by_user: กรองตามผู้ใช้
@@ -664,6 +665,7 @@ th:
         disabled: ให้กับไม่มีใคร
         users: ให้กับผู้ใช้ในเซิร์ฟเวอร์ที่เข้าสู่ระบบ
       registrations:
+        preamble: ควบคุมผู้ที่สามารถสร้างบัญชีในเซิร์ฟเวอร์ของคุณ
         title: การลงทะเบียน
       registrations_mode:
         modes:
@@ -887,6 +889,7 @@ th:
     resend_confirmation: ส่งคำแนะนำการยืนยันใหม่
     reset_password: ตั้งรหัสผ่านใหม่
     rules:
+      preamble: มีการตั้งและบังคับใช้กฎโดยผู้ควบคุมของ %{domain}
       title: กฎพื้นฐานบางประการ
     security: ความปลอดภัย
     set_new_password: ตั้งรหัสผ่านใหม่

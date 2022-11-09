@@ -280,6 +280,7 @@ ko:
         update_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 수정했습니다"
         update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트 했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
+      deleted_account: 계정을 삭제했습니다
       empty: 로그를 찾을 수 없습니다
       filter_by_action: 행동으로 거르기
       filter_by_user: 사용자로 거르기
@@ -666,12 +667,14 @@ ko:
         preamble: 마스토돈의 웹 인터페이스를 변경
         title: 외관
       branding:
+        preamble: 이 서버의 브랜딩은 네트워크의 다른 서버와 차별점을 부여합니다. 이 정보는 여러 환경에서 보여질 수 있는데, 예를 들면 마스토돈 인터페이스, 네이티브 앱, 다른 웹사이트나 메시지 앱에서 보이는 링크 미리보기, 기타 등등이 있습니다. 이러한 이유로 인해, 이 정보를 명확하고 짧고 간결하게 유지하는 것이 가장 좋습니다.
         title: 브랜딩
       content_retention:
         preamble: 마스토돈에 저장된 사용자 콘텐츠를 어떻게 다룰지 제어합니다.
         title: 콘텐츠 보존기한
       discovery:
         follow_recommendations: 팔로우 추천
+        preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
         title: 발견하기

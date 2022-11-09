@@ -283,6 +283,7 @@ ca:
         update_ip_block_html: "%{name} ha canviat la norma per la IP %{target}"
         update_status_html: "%{name} ha actualitzat l'estat de %{target}"
         update_user_role_html: "%{name} ha canviat el rol %{target}"
+      deleted_account: compte eliminat
       empty: No s’han trobat registres.
       filter_by_action: Filtra per acció
       filter_by_user: Filtra per usuari
@@ -723,10 +724,10 @@ ca:
         title: Contingut multimèdia
       metadata: Metadada
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
-      open: Obrir apunt
-      original_status: Apunt original
+      open: Obrir publicació
+      original_status: Publicació original
       reblogs: Impulsos
-      status_changed: Apunt canviat
+      status_changed: Publicació canviada
       title: Estats del compte
       trending: Tendència
       visibility: Visibilitat
@@ -791,7 +792,7 @@ ca:
         description_html: Aquestes son publicacions que el teu servidor veu i que ara mateix s'estan compartint i afavorint molt. Poden ajudar als teus nous usuaris i als que retornen a trobar més gent a qui seguir. Cap publicació es mostra publicament fins que no aprovis l'autor i l'autor permeti que el seu compte sigui sugerit a altres. També pots aceptar o rebutjar publicacions individuals.
         disallow: Rebutja publicació
         disallow_account: Rebutja autor
-        no_status_selected: No s'ha canviat els apunts en tendència perquè cap ha estat seleccionat
+        no_status_selected: No s'han canviat les publicacions en tendència perquè cap ha estat seleccionada
         not_discoverable: L'autor no ha activat poder ser detectable
         shared_by:
           one: Compartit o afavorit una vegada
@@ -1098,8 +1099,8 @@ ca:
     edit:
       add_keyword: Afegeix paraula clau
       keywords: Paraules clau
-      statuses: Apunts individuals
-      statuses_hint_html: Aquest filtre aplica als apunts individuals seleccionats independentment de si coincideixen amb les paraules clau de sota. <a href="%{path}">Revisa o elimina els apunts des d'el filtre</a>.
+      statuses: Publicacions individuals
+      statuses_hint_html: Aquest filtre s'aplica a la selecció de publicacions individuals, independentment de si coincideixen amb les paraules clau següents. <a href="%{path}">Revisa o elimina publicacions del filtre</a>.
       title: Editar filtre
     errors:
       deprecated_api_multiple_keywords: Aquests paràmetres no poden ser canviats des d'aquesta aplicació perquè apliquen a més d'un filtre per paraula clau. Utilitza una aplicació més recent o la interfície web.
@@ -1114,11 +1115,11 @@ ca:
         one: "%{count} paraula clau"
         other: "%{count} paraules clau"
       statuses:
-        one: "%{count} apunt"
-        other: "%{count} apunts"
+        one: "%{count} publicació"
+        other: "%{count} publicacions"
       statuses_long:
-        one: "%{count} apunt individual oculta"
-        other: "%{count} apunts individuals ocultats"
+        one: "%{count} publicació individual ocultada"
+        other: "%{count} publicacions individuals ocultades"
       title: Filtres
     new:
       save: Desa el nou filtre
@@ -1128,8 +1129,8 @@ ca:
       batch:
         remove: Eliminar del filtre
       index:
-        hint: Aquest filtre aplica als apunts seleccionats independentment d'altres criteris. Pots afegir més apunts a aquest filtre des de l'interfície Web.
-        title: Apunts filtrats
+        hint: Aquest filtre aplica als apunts seleccionats independentment d'altres criteris. Pots afegir més publicacions a aquest filtre des de la interfície Web.
+        title: Publicacions filtrades
   footer:
     trending_now: En tendència
   generic:

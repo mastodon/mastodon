@@ -45,10 +45,10 @@ de:
         submit: E-Mail-Adresse ändern
         title: E-Mail-Adresse für %{username} ändern
       change_role:
-        changed_msg: Benutzerrechte erfolgreich aktualisiert!
-        label: Benutzerrechte verändern
-        no_role: Keine Benutzerrechte
-        title: Benutzerrechte für %{username} bearbeiten
+        changed_msg: Benutzer*innen-Rechte erfolgreich aktualisiert!
+        label: Benutzer*innen-Rechte verändern
+        no_role: Keine Benutzer*innen-Rechte
+        title: Benutzer*innen-Rechte für %{username} bearbeiten
       confirm: Bestätigen
       confirmed: Bestätigt
       confirming: Verifiziert
@@ -129,8 +129,8 @@ de:
       resubscribe: Wieder abonnieren
       role: Rolle
       search: Suche
-      search_same_email_domain: Andere Benutzer mit der gleichen E-Mail-Domain
-      search_same_ip: Andere Benutzer mit derselben IP-Adresse
+      search_same_email_domain: Andere Benutzer*innen mit der gleichen E-Mail-Domain
+      search_same_ip: Andere Benutzer*innen mit derselben IP-Adresse
       security_measures:
         only_password: Nur Passwort
         password_and_2fa: Passwort und 2FA
@@ -167,11 +167,11 @@ de:
     action_logs:
       action_types:
         approve_appeal: Einspruch annehmen
-        approve_user: Benutzer genehmigen
+        approve_user: Benutzer*in genehmigen
         assigned_to_self_report: Bericht zuweisen
-        change_email_user: E-Mail des Benutzers ändern
-        change_role_user: Rolle des Benutzers ändern
-        confirm_user: Benutzer bestätigen
+        change_email_user: E-Mail des Accounts ändern
+        change_role_user: Rolle des Profils ändern
+        confirm_user: Benutzer*in bestätigen
         create_account_warning: Warnung erstellen
         create_announcement: Ankündigung erstellen
         create_canonical_email_block: E-Mail-Block erstellen
@@ -182,7 +182,7 @@ de:
         create_ip_block: IP-Regel erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
-        demote_user: Benutzer degradieren
+        demote_user: Benutzer*in herabstufen
         destroy_announcement: Ankündigung löschen
         destroy_canonical_email_block: E-Mail-Blockade löschen
         destroy_custom_emoji: Eigene Emojis löschen
@@ -197,14 +197,14 @@ de:
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
         disable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account deaktivieren
-        disable_user: Benutzer deaktivieren
+        disable_user: Benutzer*in deaktivieren
         enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
         enable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account aktivieren
-        enable_user: Benutzer aktivieren
+        enable_user: Benutzer*in aktivieren
         memorialize_account: Gedenkkonto
-        promote_user: Benutzer befördern
+        promote_user: Benutzer*in hochstufen
         reject_appeal: Einspruch ablehnen
-        reject_user: Benutzer ablehnen
+        reject_user: Benutzer*in ablehnen
         remove_avatar_user: Profilbild entfernen
         reopen_report: Meldung wieder eröffnen
         resend_user: Bestätigungs-E-Mail erneut senden
@@ -283,9 +283,10 @@ de:
         update_ip_block_html: "%{name} hat die Regel für IP %{target} geändert"
         update_status_html: "%{name} hat einen Beitrag von %{target} aktualisiert"
         update_user_role_html: "%{name} hat die Rolle %{target} geändert"
+      deleted_account: gelöschtes Konto
       empty: Keine Protokolle gefunden.
       filter_by_action: Nach Aktion filtern
-      filter_by_user: Nach Benutzer filtern
+      filter_by_user: Nach Benutzer*in filtern
       title: Überprüfungsprotokoll
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
@@ -339,10 +340,10 @@ de:
       updated_msg: Emoji erfolgreich aktualisiert!
       upload: Hochladen
     dashboard:
-      active_users: Aktive Benutzer
+      active_users: aktive Benutzer*innen
       interactions: Interaktionen
       media_storage: Medien
-      new_users: Neue Benutzer
+      new_users: neue Benutzer*innen
       opened_reports: Erstellte Meldungen
       pending_appeals_html:
         one: "<strong>%{count}</strong> ausstehender Einspruch"
@@ -354,8 +355,8 @@ de:
         one: "<strong>%{count}</strong> ausstehender Hashtag"
         other: "<strong>%{count}</strong> ausstehende Hashtags"
       pending_users_html:
-        one: "<strong>%{count}</strong> ausstehender Benutzer"
-        other: "<strong>%{count}</strong> ausstehende Benutzer"
+        one: "<strong>%{count}</strong> unerledigte*r Benutzer*in"
+        other: "<strong>%{count}</strong> unerledigte Benutzer*innen"
       resolved_reports: Gelöste Meldungen
       software: Software
       sources: Registrierungsquellen
@@ -583,7 +584,7 @@ de:
         title: Notizen
       notes_description_html: Zeige und hinterlasse Notizen an andere Moderator_innen und dein zukünftiges Ich
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
-      remote_user_placeholder: der entfernte Benutzer von %{instance}
+      remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
       report: 'Meldung #%{id}'
       reported_account: Gemeldetes Konto
@@ -612,54 +613,54 @@ de:
         moderation: Moderation
         special: Spezial
       delete: Löschen
-      description_html: Mit <strong>Benutzerrollen</strong>kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer zugreifen können.
+      description_html: Mit <strong>Benutzer*inn-Rollen</strong> kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer*innen zugreifen können.
       edit: "'%{name}' Rolle bearbeiten"
       everyone: Standardberechtigungen
-      everyone_full_description_html: Das ist die <strong>-Basis-Rolle</strong>, die <strong>jeden Benutzer</strong> betrifft, auch diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
+      everyone_full_description_html: Das ist die <strong>-Basis-Rolle</strong>, die <strong>alle Benutzer*innen</strong> betrifft, auch diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
       permissions_count:
         one: "%{count} Berechtigung"
         other: "%{count} Berechtigungen"
       privileges:
         administrator: Administrator
-        administrator_description: Benutzer mit dieser Berechtigung werden jede Berechtigung umgehen
-        delete_user_data: Benutzerdaten löschen
-        delete_user_data_description: Erlaubt Benutzern, die Daten anderer Benutzer ohne Verzögerung zu löschen
-        invite_users: Benutzer einladen
-        invite_users_description: Erlaubt Benutzern, neue Leute zum Server einzuladen
+        administrator_description: Benutzer*innen mit dieser Berechtigung werden alle Beschränkungen umgehen
+        delete_user_data: Löschen der Account-Daten
+        delete_user_data_description: Erlaubt Benutzer*innen, die Daten anderer Benutzer*innen sofort zu löschen
+        invite_users: Benutzer*innen einladen
+        invite_users_description: Erlaubt Benutzer*innen, neue Leute zum Server einzuladen
         manage_announcements: Ankündigungen verwalten
-        manage_announcements_description: Erlaubt Benutzern, Ankündigungen auf dem Server zu verwalten
+        manage_announcements_description: Erlaubt Benutzer*innen, Ankündigungen auf dem Server zu verwalten
         manage_appeals: Anträge verwalten
-        manage_appeals_description: Erlaubt es Benutzern, Anträge gegen Moderationsaktionen zu überprüfen
+        manage_appeals_description: Erlaubt es Benutzer*innen, Entscheidungen der Moderator*innen zu widersprechen
         manage_blocks: Geblocktes verwalten
-        manage_blocks_description: Erlaubt Benutzern, E-Mail-Anbieter und IP-Adressen zu blockieren
+        manage_blocks_description: Erlaubt Benutzer*innen, E-Mail-Provider und IP-Adressen zu blockieren
         manage_custom_emojis: Benutzerdefinierte Emojis verwalten
-        manage_custom_emojis_description: Erlaubt es Benutzern, eigene Emojis auf dem Server zu verwalten
+        manage_custom_emojis_description: Erlaubt es Benutzer*innen, eigene Emojis auf dem Server zu verwalten
         manage_federation: Föderation verwalten
-        manage_federation_description: Erlaubt es Benutzern, Föderation mit anderen Domains zu blockieren oder zuzulassen und die Zustellbarkeit zu kontrollieren
+        manage_federation_description: Erlaubt es Benutzer*innen, den Zusammenschluss mit anderen Domains zu blockieren oder zuzulassen und die Zustellbarkeit zu kontrollieren
         manage_invites: Einladungen verwalten
-        manage_invites_description: Erlaubt es Benutzern, Einladungslinks zu durchsuchen und zu deaktivieren
+        manage_invites_description: Erlaubt es Benutzer*innen, Einladungslinks zu durchsuchen und zu deaktivieren
         manage_reports: Meldungen verwalten
-        manage_reports_description: Erlaubt es Benutzern, Meldungen zu überprüfen und Moderationsaktionen gegen sie durchzuführen
+        manage_reports_description: Erlaubt es Benutzer*innen, Meldungen zu überprüfen und Vorfälle zu moderieren
         manage_roles: Rollen verwalten
-        manage_roles_description: Erlaubt es Benutzern, Rollen unter ihren Rollen zu verwalten und zuzuweisen
+        manage_roles_description: Erlaubt es Benutzer*innen, Rollen, die sich unterhalb der eigenen Rolle befinden, zu verwalten und zuzuweisen
         manage_rules: Regeln verwalten
-        manage_rules_description: Erlaubt es Benutzern, Serverregeln zu ändern
+        manage_rules_description: Erlaubt es Benutzer*innen, Serverregeln zu ändern
         manage_settings: Einstellungen verwalten
-        manage_settings_description: Erlaubt es Benutzern, Seiten-Einstellungen zu ändern
+        manage_settings_description: Erlaubt es Benutzer*innen, Einstellungen dieser Instanz zu ändern
         manage_taxonomies: Taxonomien verwalten
-        manage_taxonomies_description: Ermöglicht Benutzern die Überprüfung angesagter Inhalte und das Aktualisieren der Hashtag-Einstellungen
-        manage_user_access: Benutzerzugriff verwalten
+        manage_taxonomies_description: Ermöglicht Benutzer*innen, die Trends zu überprüfen und die Hashtag-Einstellungen zu aktualisieren
+        manage_user_access: Benutzer*in-Zugriff verwalten
         manage_user_access_description: Erlaubt es Benutzer*innen, die Zwei-Faktor-Authentisierung (2FA) anderer Benutzer zu deaktivieren, ihre E-Mail-Adresse zu ändern und ihr Passwort zurückzusetzen
-        manage_users: Benutzer verwalten
-        manage_users_description: Erlaubt es Benutzern, die Details anderer Benutzer anzuzeigen und Moderationsaktionen gegen sie auszuführen
+        manage_users: Benutzer*innen verwalten
+        manage_users_description: Erlaubt es Benutzer*innen, die Details anderer Profile einzusehen und diese Accounts zu moderieren
         manage_webhooks: Webhooks verwalten
-        manage_webhooks_description: Erlaubt es Benutzern, Webhooks für administrative Ereignisse einzurichten
+        manage_webhooks_description: Erlaubt es Benutzer*innen, Webhooks für administrative Vorkommnisse einzurichten
         view_audit_log: Audit-Log anzeigen
-        view_audit_log_description: Erlaubt es Benutzern, den Verlauf von administrativen Aktionen auf dem Server zu sehen
+        view_audit_log_description: Erlaubt es Benutzer*innen, den Verlauf der administrativen Handlungen auf diesem Server einzusehen
         view_dashboard: Dashboard anzeigen
-        view_dashboard_description: Gewährt Benutzern den Zugriff auf das Dashboard und verschiedene Metriken
+        view_dashboard_description: Gewährt Benutzer*innen den Zugriff auf das Dashboard und verschiedene Metriken
         view_devops: DevOps
-        view_devops_description: Erlaubt es Benutzern, auf die Sidekiq- und pgHero-Dashboards zuzugreifen
+        view_devops_description: Erlaubt es Benutzer*innen, auf die Sidekiq- und pgHero-Dashboards zuzugreifen
       title: Rollen
     rules:
       add_new: Regel hinzufügen
@@ -672,7 +673,7 @@ de:
       about:
         manage_rules: Serverregeln verwalten
         preamble: Schildere ausführlich, wie Dein Server betrieben, moderiert und finanziert wird.
-        rules_hint: Es gibt einen eigenen Bereich für Regeln, an die sich Ihre Benutzer halten sollen.
+        rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
         title: Über
       appearance:
         preamble: Passen Sie Mastodons Weboberfläche an.
@@ -693,7 +694,7 @@ de:
       domain_blocks:
         all: An alle
         disabled: An niemanden
-        users: Für angemeldete lokale Benutzer
+        users: Für angemeldete lokale Benutzer*innen
       registrations:
         preamble: Lege fest, wer auf Deinem Server ein Konto erstellen darf.
         title: Registrierungen
@@ -766,7 +767,7 @@ de:
       links:
         allow: Erlaube Link
         allow_provider: Erlaube Herausgeber
-        description_html: Dies sind Links, die derzeit von Konten geteilt werden, von denen dein Server Beiträge sieht. Es kann deinen Benutzern helfen herauszufinden, was in der Welt vor sich geht. Es werden keine Links öffentlich angezeigt, bis du den Publisher genehmigst. Du kannst auch einzelne Links zulassen oder ablehnen.
+        description_html: Dies sind Links, die derzeit von zahlreichen Accounts geteilt werden und die deinem Server aufgefallen sind. Die Benutzer*innen können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgeber*innen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
         disallow: Verbiete Link
         disallow_provider: Verbiete Herausgeber
         no_link_selected: Keine Links wurden geändert, da keine ausgewählt wurden
@@ -1351,7 +1352,7 @@ de:
     relationship: Beziehung
     remove_selected_domains: Entferne alle Follower von den ausgewählten Domains
     remove_selected_followers: Entferne ausgewählte Follower
-    remove_selected_follows: Entfolge ausgewählten Benutzern
+    remove_selected_follows: Entfolge ausgewählten Benutzer*innen
     status: Kontostatus
   remote_follow:
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
@@ -1422,7 +1423,7 @@ de:
     export: Export
     featured_tags: Empfohlene Hashtags
     import: Import
-    import_and_export: Importieren und Exportieren
+    import_and_export: Import und Export
     migrate: Konto-Umzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
@@ -1471,7 +1472,7 @@ de:
     show_more: Mehr anzeigen
     show_newer: Neuere anzeigen
     show_older: Ältere anzeigen
-    show_thread: Zeige Konversation
+    show_thread: Unterhaltung anzeigen
     sign_in_to_participate: Melde dich an, um an der Konversation teilzuhaben
     title: '%{name}: "%{quote}"'
     visibilities:
