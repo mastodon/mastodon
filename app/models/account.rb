@@ -255,7 +255,7 @@ class Account < ApplicationRecord
     update!(memorial: true)
   end
 
-  def trendable
+  def trendable?
     boolean_with_default('trendable', Setting.trendable_by_default)
   end
 
