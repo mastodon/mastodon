@@ -28,10 +28,10 @@ br:
       by_domain: Domani
       change_email:
         changed_msg: Chomlec'h postel kemmet !
-        current_email: Postel bremanel
-        label: Kemm ar postel
+        current_email: Postel a vremañ
+        label: Kemmañ ar postel
         new_email: Postel nevez
-        submit: Kemm ar postel
+        submit: Kemmañ ar postel
       deleted: Dilamet
       domain: Domani
       edit: Aozañ
@@ -134,6 +134,12 @@ br:
     statuses:
       deleted: Dilamet
       open: Digeriñ ar c'hannad
+      original_status: Kannad orin
+      status_changed: Kannad kemmet
+      title: Kannadoù ar gont
+    strikes:
+      actions:
+        delete_statuses: "Dilamet eo bet kannadoù %{target} gant %{name}"
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -194,7 +200,16 @@ br:
       notifications: Kemennoù
     index:
       delete: Dilemel
+      statuses:
+        one: "%{count} c'hannad"
+        two: "%{count} gannad"
+        few: "%{count} a gannadoù"
+        many: "%{count} a gannadoù"
+        other: "%{count} a gannadoù"
       title: Siloù
+    statuses:
+      index:
+        title: Kannadoù silet
   generic:
     all: Pep tra
     copy: Eilañ
@@ -215,6 +230,12 @@ br:
       title: Heulier nevez
     mention:
       action: Respont
+    reblog:
+      subject: "Skignet ho kannad gant %{name}"
+    status:
+      subject: "Embannet ez eus bet traoù gant %{name}"
+    update:
+      subject: "Kemmet eo bet ur c'hannad gant %{name}"
   otp_authentication:
     enable: Gweredekaat
     setup: Kefluniañ
@@ -267,7 +288,7 @@ br:
     visibilities:
       public: Publik
   stream_entries:
-    pinned: Toud spilhennet
+    pinned: Kannad spilhennet
   themes:
     default: Mastodoñ (Teñval)
     mastodon-light: Mastodoñ (Sklaer)
@@ -282,6 +303,7 @@ br:
     edit: Aozañ
   user_mailer:
     warning:
+      statuses: 'Kannadoù meneget :'
       title:
         none: Diwall
     welcome:
