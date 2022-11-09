@@ -92,7 +92,7 @@ eo:
       no_limits_imposed: Neniu limito trudita
       not_subscribed: Ne abonita
       pending: Pritraktata recenzo
-      perform_full_suspension: Haltigi
+      perform_full_suspension: Suspendi
       promote: Plirangigi
       protocol: Protokolo
       public: Publika
@@ -180,12 +180,12 @@ eo:
         resolve_report: Solvitaj reporto
         sensitive_account: Marki tikla la aŭdovidaĵojn de via konto
         silence_account: Silentigi konton
-        suspend_account: Haltigi konton
+        suspend_account: Suspendi la konton
         unassigned_report: Malatribui Raporton
         unblock_email_account: Malbloki retpoŝtadreson
         unsensitive_account: Malmarku la amaskomunikilojn en via konto kiel sentemaj
         unsilence_account: Malsilentigi konton
-        unsuspend_account: Malhaltigi konton
+        unsuspend_account: Reaktivigi la konton
         update_announcement: Ĝisdatigi anoncon
         update_custom_emoji: Ĝisdatigi proprajn emoĝiojn
         update_domain_block: Ĝigdatigi domajnan blokadon
@@ -308,7 +308,7 @@ eo:
           desc_html: "<strong>Kaŝi</strong> igos la mesaĝojn de la konto nevideblaj al tiuj, kiuj ne sekvas tiun. <strong>Haltigi</strong> forigos ĉiujn enhavojn, aŭdovidaĵojn kaj datumojn de la konto. Uzu <strong>Nenio</strong> se vi simple volas malakcepti aŭdovidaĵojn."
           noop: Nenio
           silence: Mutigi
-          suspend: Haltigi
+          suspend: Suspendi
         title: Nova domajna blokado
       obfuscate: Malklara domajna nomo
       private_comment: Privata komento
@@ -347,6 +347,7 @@ eo:
           reject_media: Malakcepti la aŭdovidaĵojn
           reject_reports: Malakcepti raportojn
           silence: Kaŝu
+          suspend: Suspendi
         policy: Politiko
       dashboard:
         instance_accounts_dimension: Plej sekvataj kontoj
@@ -545,6 +546,7 @@ eo:
     new_appeal:
       actions:
         disable: por frostigi ties konton
+        suspend: por suspendi iliajn kontojn
     new_pending_account:
       body: La detaloj de la nova konto estas sube. Vi povas aprobi aŭ Malakcepti ĉi kandidatiĝo.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
