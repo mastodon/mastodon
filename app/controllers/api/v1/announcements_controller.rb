@@ -27,4 +27,3 @@ class Api::V1::AnnouncementsController < Api::BaseController
     @announcement = Announcement.published.find(params[:id])
   end
 end
-xxx
