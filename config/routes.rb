@@ -579,7 +579,7 @@ Rails.application.routes.draw do
 
         resource :pin, only: :create, controller: 'accounts/pins'
         post :unpin, to: 'accounts/pins#destroy'
-        resource :note, only: :create, controller: 'accounts/notes'
+        resource :note, only: [:create, :update], to: 'accounts/notes#create'
       end
 
       resources :tags, only: [:show] do
