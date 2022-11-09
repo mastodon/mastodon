@@ -79,3 +79,7 @@ postgresql:
     password: <same password>
     postgresPassword: <same password>
 ```
+
+And make sure to set `password` to the same value as `postgres-password`
+in your `mastodon-postgresql` secret:
+```kubectl edit secret mastodon-postgresql```
