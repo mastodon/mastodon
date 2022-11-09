@@ -3,7 +3,7 @@ pt-BR:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
     contact_missing: Não definido
     contact_unavailable: Não disponível
-    hosted_on: Instância Mastodon em %{domain}
+    hosted_on: Servidor Mastodon em %{domain}
     title: Sobre
   accounts:
     follow: Seguir
@@ -616,6 +616,9 @@ pt-BR:
       edit: Editar função de '%{name}'
       everyone: Permissões padrão
       everyone_full_description_html: Esta é a <strong>função base</strong> que afeta <strong>todos os usuários</strong>, mesmo aqueles sem uma função atribuída. Todas as outras funções dela herdam as suas permissões.
+      permissions_count:
+        one: "%{count} permissão"
+        other: "%{count} permissões"
       privileges:
         administrator: Administrador
         administrator_description: Usuários com essa permissão irão ignorar todas as permissões
@@ -788,6 +791,7 @@ pt-BR:
           tag_languages_dimension: Idiomas principais
           tag_servers_dimension: Servidores mais populares
           tag_servers_measure: servidores diferentes
+          tag_uses_measure: usos
         listable: Pode ser sugerido
         not_listable: Não será sugerido
         not_trendable: Não aparecerá em alta
@@ -889,9 +893,9 @@ pt-BR:
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
     description:
-      prefix_invited_by_user: "@%{name} convidou você para entrar nesta instância Mastodon!"
+      prefix_invited_by_user: "@%{name} convidou você para entrar neste servidor Mastodon!"
       prefix_sign_up: Crie uma conta no Mastodon hoje!
-      suffix: Com uma conta, você poderá seguir pessoas, postar atualizações, trocar mensagens com usuários de qualquer instância Mastodon e muito mais!
+      suffix: Com uma conta, você poderá seguir pessoas, publicar atualizações, trocar mensagens com usuários de qualquer servidor Mastodon e muito mais!
     didnt_get_confirmation: Não recebeu instruções de confirmação?
     dont_have_your_security_key: Não está com a sua chave de segurança?
     forgot_password: Esqueceu a sua senha?
@@ -975,7 +979,7 @@ pt-BR:
     success_msg: A sua conta foi excluída com sucesso
     warning:
       before: 'Antes de prosseguir, por favor leia com cuidado:'
-      caches: Conteúdo que foi armazenado em cache por outras instâncias pode continuar a existir
+      caches: Conteúdo que foi armazenado em cache por outros servidores pode continuar a existir
       data_removal: Seus toots e outros dados serão removidos permanentemente
       email_change_html: Você pode <a href="%{path}">alterar seu endereço de e-mail</a> sem excluir sua conta
       email_contact_html: Se você ainda não recebeu, você pode enviar um e-mail pedindo ajuda para <a href="mailto:%{email}">%{email}</a>
@@ -1071,6 +1075,8 @@ pt-BR:
     index:
       delete: Remover
       empty: Sem filtros.
+      expires_in: Expira em %{distance}
+      expires_on: Expira em %{date}
       title: Filtros
     new:
       save: Salvar novo filtro
@@ -1105,7 +1111,7 @@ pt-BR:
       merge_long: Manter os registros existentes e adicionar novos
       overwrite: Sobrescrever
       overwrite_long: Substituir os registros atuais com os novos
-    preface: Você pode importar dados que você exportou de outra instância, como a lista de pessoas que você segue ou bloqueou.
+    preface: Você pode importar dados que você exportou de outro servidor, como a lista de pessoas que você segue ou bloqueou.
     success: Os seus dados foram enviados com sucesso e serão processados em instantes
     types:
       blocking: Lista de bloqueio
@@ -1131,7 +1137,7 @@ pt-BR:
       one: 1 uso
       other: "%{count} usos"
     max_uses_prompt: Sem limite
-    prompt: Gere e compartilhe links para permitir acesso a essa instância
+    prompt: Gere e compartilhe links para permitir acesso a esse servidor
     table:
       expires_at: Expira em
       uses: Usos
