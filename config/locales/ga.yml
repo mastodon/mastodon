@@ -61,6 +61,11 @@ ga:
       statuses: Postálacha
       title: Cuntais
       web: Gréasán
+    action_logs:
+      action_types:
+        create_account_warning: Cruthaigh rabhadh
+      actions:
+        create_account_warning_html: "Sheol %{name} rabhadh do %{target}"
     announcements:
       live: Beo
       publish: Foilsigh
@@ -86,6 +91,7 @@ ga:
       status: Stádas
     instances:
       back_to_all: Uile
+      back_to_warning: Rabhadh
       content_policies:
         policy: Polasaí
       delivery:
@@ -138,6 +144,16 @@ ga:
       statuses:
         allow: Ceadaigh postáil
         allow_account: Ceadaigh údar
+    warning_presets:
+      delete: Scrios
+  admin_mailer:
+    new_appeal:
+      actions:
+        none: rabhadh
+  disputes:
+    strikes:
+      title_actions:
+        none: Rabhadh
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -148,3 +164,16 @@ ga:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  rss:
+    content_warning: 'Rabhadh ábhair:'
+  statuses:
+    content_warning: 'Rabhadh ábhair: %{warning}'
+  user_mailer:
+    warning:
+      categories:
+        spam: Turscar
+      reason: 'Fáth:'
+      subject:
+        none: Rabhadh do %{acct}
+      title:
+        none: Rabhadh
