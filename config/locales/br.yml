@@ -13,12 +13,12 @@ br:
     last_active: oberiantiz ziwezhañ
     nothing_here: N'eus netra amañ !
     posts:
-      one: Toud
-      two: Toud
-      few: Toud
-      many: Toud
-      other: Toud
-    posts_tab_heading: Toudoù
+      one: Kannad
+      two: Kannadoù
+      few: Kannadoù
+      many: Kannadoù
+      other: Kannadoù
+    posts_tab_heading: Kannadoù
   admin:
     accounts:
       add_email_domain_block: Stankañ an domani postel
@@ -54,12 +54,17 @@ br:
       reset: Adderaouekaat
       reset_password: Adderaouekaat ar ger-tremen
       search: Klask
+      statuses: Kannadoù
       suspended: Astalet
       title: Kontoù
       username: Anv
     action_logs:
       action_types:
-        destroy_status: Dilemel ar statud
+        destroy_status: Dilemel ar c'hannad
+        update_status: Hizivaat ar c'hannad
+      actions:
+        destroy_status_html: "Dilamet eo bet kannad %{target} gant %{name}"
+        update_status_html: "Hizivaet eo bet kannad %{target} gant %{name}"
     announcements:
       new:
         create: Sevel ur gemenn
@@ -94,6 +99,8 @@ br:
         create: Ouzhpenniñ un domani
     instances:
       by_domain: Domani
+      dashboard:
+        instance_statuses_measure: kannadoù stoket
       moderation:
         all: Pep tra
     invites:
@@ -116,6 +123,7 @@ br:
           many: "%{count} a notennoù"
           other: "%{count} a notennoù"
       are_you_sure: Ha sur oc'h?
+      delete_and_resolve: Dilemel ar c'hannadoù
       notes:
         delete: Dilemel
       status: Statud
@@ -125,6 +133,7 @@ br:
         all: D'an holl dud
     statuses:
       deleted: Dilamet
+      open: Digeriñ ar c'hannad
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -209,6 +218,8 @@ br:
   otp_authentication:
     enable: Gweredekaat
     setup: Kefluniañ
+  preferences:
+    posting_defaults: Arventennoù embann dre ziouer
   relationships:
     followers: Heulier·ezed·ien
     following: O heuliañ
