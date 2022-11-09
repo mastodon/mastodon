@@ -1,4 +1,3 @@
----
 pt-BR:
   about:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
@@ -28,8 +27,8 @@ pt-BR:
       title: Moderar %{acct}
     account_moderation_notes:
       create: Deixar nota
-      created_msg: Nota de moderação criada com sucesso!
-      destroyed_msg: Nota de moderação excluída com sucesso!
+      created_msg: Nota de moderação criada!
+      destroyed_msg: Nota de moderação excluída!
     accounts:
       add_email_domain_block: Bloquear domínio de e-mail
       approve: Aprovar
@@ -38,7 +37,7 @@ pt-BR:
       avatar: Imagem de perfil
       by_domain: Domínio
       change_email:
-        changed_msg: E-mail alterado com sucesso!
+        changed_msg: E-mail alterado!
         current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
@@ -56,7 +55,7 @@ pt-BR:
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
+      destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
       disable: Congelar
       disable_sign_in_token_auth: Desativar autenticação via token por email
       disable_two_factor_authentication: Desativar autenticação de dois fatores
@@ -69,7 +68,7 @@ pt-BR:
       enable: Descongelar
       enable_sign_in_token_auth: Ativar autenticação via token por email
       enabled: Ativada
-      enabled_msg: Descongelada com sucesso a conta de %{username}
+      enabled_msg: A conta de %{username} foi descongelada
       followers: Seguidores
       follows: Seguindo
       header: Capa
@@ -87,23 +86,23 @@ pt-BR:
       media_attachments: Mídias anexadas
       memorialize: Converter em memorial
       memorialized: Convertidas em memorial
-      memorialized_msg: Transformou com sucesso %{username} em uma conta memorial
+      memorialized_msg: A conta de %{username} foi transformada em uma conta memorial
       moderation:
         active: Ativo
         all: Todos
         pending: Pendente
         silenced: Limitado
-        suspended: Banidos
+        suspended: Suspendido
         title: Moderação
       moderation_notes: Notas de moderação
       most_recent_activity: Atividade mais recente
       most_recent_ip: IP mais recente
       no_account_selected: Nenhuma conta foi alterada, pois nenhuma conta foi selecionada
       no_limits_imposed: Sem limite imposto
-      no_role_assigned: Nenhuma função atribuída
+      no_role_assigned: Sem cargo
       not_subscribed: Não inscrito
       pending: Revisão pendente
-      perform_full_suspension: Banir
+      perform_full_suspension: Suspender
       previous_strikes: Ataques anteriores
       previous_strikes_description_html:
         one: Esta conta tem <strong>um</strong> ataque.
@@ -113,21 +112,21 @@ pt-BR:
       public: Público
       push_subscription_expires: Inscrição PuSH expira
       redownload: Atualizar perfil
-      redownloaded_msg: Atualizado com sucesso o perfil de %{username} a partir da origem
-      reject: Vetar
-      rejected_msg: Rejeitado com sucesso o pedido de registro de %{username}
+      redownloaded_msg: O perfil de %{username} foi atualizado a partir da origem
+      reject: Rejeitar
+      rejected_msg: O pedido de registro de %{username} foi rejeitado
       remove_avatar: Remover imagem de perfil
       remove_header: Remover capa
-      removed_avatar_msg: Removida com sucesso a imagem de avatar de %{username}
-      removed_header_msg: Removida com sucesso a imagem de capa de %{username}
+      removed_avatar_msg: A imagem de perfil de %{username} foi removida
+      removed_header_msg: A capa de %{username} foi removida
       resend_confirmation:
         already_confirmed: Este usuário já está confirmado
         send: Reenviar o e-mail de confirmação
-        success: E-mail de confirmação enviado com sucesso!
+        success: E-mail de confirmação enviado!
       reset: Redefinir
       reset_password: Redefinir senha
       resubscribe: Reinscrever-se
-      role: Função
+      role: Cargo
       search: Pesquisar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
@@ -151,14 +150,14 @@ pt-BR:
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       title: Contas
       unblock_email: Desbloquear endereço de e-mail
-      unblocked_email_msg: Endereço de e-mail de %{username} desbloqueado com sucesso
+      unblocked_email_msg: O endereço de e-mail de %{username} foi desbloqueado
       unconfirmed_email: E-mail não confirmado
       undo_sensitized: Desfazer sensível
       undo_silenced: Desfazer silêncio
       undo_suspension: Desbanir
-      unsilenced_msg: Removidas com sucesso as limitações da conta de %{username}
+      unsilenced_msg: As limitações da conta de %{username} foram removidas
       unsubscribe: Cancelar inscrição
-      unsuspended_msg: Removida com sucesso a suspensão da conta de %{username}
+      unsuspended_msg: A suspensão da conta de %{username} foi removida
       username: Nome de usuário
       view_domain: Ver resumo para o domínio
       warn: Notificar
@@ -205,7 +204,7 @@ pt-BR:
         promote_user: Promover usuário
         reject_appeal: Rejeitar recurso
         reject_user: Rejeitar Usuário
-        remove_avatar_user: Remover Avatar
+        remove_avatar_user: Remover imagem de perfil
         reopen_report: Reabrir Relatório
         resend_user: Reenviar o E-mail de Confirmação
         reset_password_user: Redefinir a senha
@@ -289,7 +288,7 @@ pt-BR:
       filter_by_user: Filtrar por usuário
       title: Auditar histórico
     announcements:
-      destroyed_msg: Anúncio excluído com sucesso!
+      destroyed_msg: Anúncio excluído!
       edit:
         title: Editar anúncio
       empty: Sem anúncios.
@@ -298,30 +297,30 @@ pt-BR:
         create: Criar anúncio
         title: Novo anúncio
       publish: Publicar
-      published_msg: Anúncio publicado com sucesso!
+      published_msg: Anúncio publicado!
       scheduled_for: Agendado para %{time}
       scheduled_msg: Anúncio agendado para publicação!
       title: Anúncios
       unpublish: Cancelar publicação
-      unpublished_msg: Anúncio despublicado com sucesso!
-      updated_msg: Anúncio atualizado com sucesso!
+      unpublished_msg: Anúncio desfeito!
+      updated_msg: Anúncio atualizado!
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
-      copied_msg: Cópia local do emoji criada com sucesso
+      copied_msg: Emoji copiado localmente
       copy: Copiar
       copy_failed_msg: Não foi possível criar cópia local do emoji
       create_new_category: Criar nova categoria
-      created_msg: Emoji criado com sucesso!
+      created_msg: Emoji criado!
       delete: Excluir
-      destroyed_msg: Emoji excluído com sucesso!
+      destroyed_msg: Emoji excluído!
       disable: Desativar
       disabled: Desativado
-      disabled_msg: Emoji desativado com sucesso
+      disabled_msg: Emoji desativado
       emoji: Emoji
       enable: Ativar
       enabled: Ativado
-      enabled_msg: Emoji ativado com sucesso
+      enabled_msg: Emoji ativado
       image_hint: PNG ou GIF até %{size}
       list: Listar
       listed: Listado
@@ -337,7 +336,7 @@ pt-BR:
       unlist: Não listar
       unlisted: Não-listado
       update_failed_msg: Não foi possível atualizar esse emoji
-      updated_msg: Emoji atualizado com sucesso!
+      updated_msg: Emoji atualizado!
       upload: Enviar
     dashboard:
       active_users: usuários ativos
@@ -408,7 +407,7 @@ pt-BR:
       attempts_over_week:
         one: "%{count} tentativa na última semana"
         other: "%{count} tentativas de inscrição na última semana"
-      created_msg: Domínio de e-mail adicionado à lista negra com sucesso
+      created_msg: O domínio de e-mail foi adicionado à lista negra
       delete: Excluir
       dns:
         types:
@@ -433,8 +432,8 @@ pt-BR:
     instances:
       availability:
         description_html:
-          one: Se a entrega ao domínio falhar <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>de</em> do domínio seja recebida.
-          other: Se a entrega ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>de</em> do domínio seja recebida.
+          one: Se a entrega ao domínio falhar em <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>do</em> domínio seja recebida.
+          other: Se a entrega ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de entrega será feita a menos que uma entrega <em>do</em> domínio seja recebida.
         failure_threshold_reached: Limite de falhas atingido em %{date}.
         failures_recorded:
           one: Falha na tentativa em %{count} dia.
@@ -521,7 +520,7 @@ pt-BR:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -556,9 +555,7 @@ pt-BR:
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada, e a denúncia será encerrada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser sempre revertido.
         suspend_description_html: O perfil e todo o seu conteúdo ficarão inacessíveis até que seja eventualmente excluído. Interagir com a conta será impossível. Reversível dentro de 30 dias.
-      actions_description_html: 'Decida que medidas tomar para resolver esta denúncia. Se você receber uma ação punitiva contra a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>Spam</strong> for selecionada.
-
-        '
+      actions_description_html: "Decida que medidas tomar para resolver esta denúncia. Se você receber uma ação punitiva contra a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>Spam</strong> for selecionada.\n"
       add_to_report: Adicionar mais ao relatório
       are_you_sure: Você tem certeza?
       assign_to_self: Pegar
@@ -758,7 +755,7 @@ pt-BR:
         message_html: Você não definiu nenhuma regra de servidor.
     tags:
       review: Status da revisão
-      updated_msg: Configurações de hashtag atualizadas com sucesso
+      updated_msg: Configurações de hashtag atualizadas
     title: Administração
     trends:
       allow: Permitir
@@ -847,7 +844,7 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: Nova denúncia sobre %{instance} (#%{id})
+      subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trends:
       new_trending_links:
         title: Links em destaque
@@ -1215,7 +1212,7 @@ pt-BR:
       sign_up:
         subject: "%{name} se inscreveu"
     favourite:
-      body: "%{name} favoritou sua publicação:"
+      body: '%{name} favoritou sua publicação:'
       subject: "%{name} favoritou sua publicação"
       title: Novo favorito
     follow:
@@ -1229,13 +1226,13 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: "%{name} te mencionou em:"
-      subject: "%{name} te mencionou"
+      body: '%{name} te mencionou em:'
+      subject: '%{name} te mencionou'
       title: Nova menção
     poll:
       subject: Uma enquete por %{name} terminou
     reblog:
-      body: "%{name} deu boost no seu toot:"
+      body: '%{name} deu boost no seu toot:'
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
     status:
