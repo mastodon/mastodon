@@ -2333,7 +2333,8 @@ $ui-header-height: 55px;
 
   .column,
   .drawer {
-    flex: 0 0 auto;
+    max-width: 450px;
+    flex: 1 0 auto;
     padding: 10px;
     padding-left: 5px;
     padding-right: 5px;
@@ -2414,6 +2415,7 @@ $ui-header-height: 55px;
 .columns-area--mobile {
   flex-direction: column;
   width: 100%;
+  max-width: 100%;
   height: 100%;
   margin: 0 auto;
 
