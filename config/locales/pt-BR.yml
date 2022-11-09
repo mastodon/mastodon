@@ -98,7 +98,7 @@ pt-BR:
       most_recent_activity: Atividade mais recente
       most_recent_ip: IP mais recente
       no_account_selected: Nenhuma conta foi alterada, pois nenhuma conta foi selecionada
-      no_limits_imposed: Nenhum limite imposto
+      no_limits_imposed: Sem limite imposto
       no_role_assigned: Nenhuma função atribuída
       not_subscribed: Não inscrito
       pending: Revisão pendente
@@ -141,7 +141,7 @@ pt-BR:
         targeted_reports: Denúncias sobre esta conta
       silence: Silenciar
       silenced: Silenciado
-      statuses: Toots
+      statuses: Publicações
       strikes: Ataques anteriores
       subscribe: Inscrever-se
       suspend: Suspender
@@ -249,7 +249,7 @@ pt-BR:
         destroy_email_domain_block_html: "%{name} adicionou domínio de e-mail %{target} à lista branca"
         destroy_instance_html: "%{name} purgou o domínio %{target}"
         destroy_ip_block_html: "%{name} excluiu regra para o IP %{target}"
-        destroy_status_html: "%{name} excluiu post de %{target}"
+        destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         destroy_user_role_html: "%{name} excluiu a função %{target}"
         disable_2fa_user_html: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
@@ -385,7 +385,7 @@ pt-BR:
         create: Criar bloqueio
         hint: O bloqueio de domínio não vai prevenir a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> vai fazer os posts da conta invisíveis para qualquer um que não os esteja seguindo. <strong>Suspender</strong> vai remover todo o conteúdo, mídia, e dados de perfil da conta. Use <strong>Nenhum</strong> se você só quer rejeitar arquivos de mídia."
+          desc_html: "<strong>Silenciar</strong> vai tornar as publicações da conta invisíveis para qualquer um que não o esteja seguindo. <strong>Suspender</strong> vai remover todo o conteúdo, mídia e dados de perfil da conta. Use <strong>Nenhum</strong> se você só quer rejeitar arquivos de mídia."
           noop: Nenhum
           silence: Silenciar
           suspend: Banir
@@ -593,7 +593,7 @@ pt-BR:
       skip_to_actions: Pular para ações
       status: Situação
       statuses: Conteúdo denunciado
-      statuses_description_html: Conteúdo Ofensivo será citado em comunicação com a conta relatada
+      statuses_description_html: Conteúdo ofensivo será citado em comunicação com a conta denunciada
       target_origin: Origem da conta relatada
       title: Denúncias
       unassign: Largar
@@ -722,12 +722,12 @@ pt-BR:
       media:
         title: Mídia
       metadata: Metadados
-      no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
-      open: Abrir post
-      original_status: Postagem original
+      no_status_selected: Nenhuma publicação foi modificada porque nenhuma estava selecionada
+      open: Publicação aberta
+      original_status: Publicação original
       reblogs: Reblogs
       status_changed: Publicação alterada
-      title: Toots da conta
+      title: Publicações da conta
       trending: Em alta
       visibility: Visibilidade
       with_media: Com mídia
@@ -760,12 +760,12 @@ pt-BR:
     trends:
       allow: Permitir
       approved: Aprovado
-      disallow: Anular
+      disallow: Impedir
       links:
         allow: Permitir link
         allow_provider: Permitir editor
-        disallow: Proibir link
-        disallow_provider: Anular editor
+        disallow: Impedir link
+        disallow_provider: Impedir publicador
         no_link_selected: Nenhum link foi alterado como nenhum foi selecionado
         title: Em alta no momento
         usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
@@ -778,11 +778,11 @@ pt-BR:
         title: Editor
       rejected: Rejeitado
       statuses:
-        allow: Permitir postagem
+        allow: Permitir publicação
         allow_account: Permitir autor
-        description_html: Estes são posts que seu servidor sabe que estão sendo muito compartilhados e favorecidos no momento. Isso pode ajudar seus usuários, novos e retornantes, a encontrar mais pessoas para seguir. Nenhum post é exibido publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar postagens individuais.
-        disallow: Poribir post
-        disallow_account: Proibir autor
+        description_html: Estes são as publicações que seu servidor sabe que estão sendo muito compartilhadas e favorecidas no momento. Isso pode ajudar seus usuários, novos e atuais, a encontrar mais pessoas para seguir. Nenhuma publicação é exibida publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
+        disallow: Impedir publicação
+        disallow_account: Impedir autor
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -1004,13 +1004,13 @@ pt-BR:
       description_html: Estas são ações tomadas contra sua conta e avisos que foram enviados a você pela equipe de %{instance}.
       recipient: Endereçado para
       reject_appeal: Rejeitar recurso
-      status: 'Postagem #%{id}'
-      status_removed: Postagem já removida do sistema
+      status: 'Publicação #%{id}'
+      status_removed: Publicação já removida do sistema
       title: "%{action} de %{date}"
       title_actions:
         delete_statuses: Remoção de publicações
         disable: Congelamento de conta
-        mark_statuses_as_sensitive: Marcar as postagens como sensíveis
+        mark_statuses_as_sensitive: Marcar as publicações como sensíveis
         none: Aviso
         sensitive: Marcar a conta como sensível
         silence: Limitação da conta
@@ -1068,7 +1068,7 @@ pt-BR:
     edit:
       add_keyword: Adicionar palavra-chave
       keywords: Palavras-chave
-      statuses: Postagens individuais
+      statuses: Publicações individuais
       title: Editar filtro
     errors:
       invalid_context: Contexto inválido ou nenhum contexto informado
@@ -1077,6 +1077,12 @@ pt-BR:
       empty: Sem filtros.
       expires_in: Expira em %{distance}
       expires_on: Expira em %{date}
+      keywords:
+        one: "%{count} palavra-chave"
+        other: "%{count} palavras-chave"
+      statuses:
+        one: "%{count} publicação"
+        other: "%{count} publicações"
       title: Filtros
     new:
       save: Salvar novo filtro
@@ -1085,7 +1091,7 @@ pt-BR:
       batch:
         remove: Remover do filtro
       index:
-        title: Postagens filtradas
+        title: Publicações filtradas
   footer:
     trending_now: Em alta no momento
   generic:
@@ -1205,8 +1211,8 @@ pt-BR:
       sign_up:
         subject: "%{name} se inscreveu"
     favourite:
-      body: '%{name} favoritou seu toot:'
-      subject: "%{name} favoritou seu toot"
+      body: '%{name} favoritou sua publicação:'
+      subject: "%{name} favoritou sua publicação"
       title: Novo favorito
     follow:
       body: "%{name} te seguiu!"
@@ -1229,7 +1235,7 @@ pt-BR:
       subject: "%{name} deu boost no seu toot"
       title: Novo boost
     status:
-      subject: "%{name} acabou de postar"
+      subject: "%{name} acabou de publicar"
     update:
       subject: "%{name} editou uma publicação"
   notifications:
@@ -1309,8 +1315,8 @@ pt-BR:
       account: Publicações públicas de @%{acct}
       tag: 'Publicações públicas marcadas com #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Você excedeu o limite de %{limit} toots agendados para esse dia
-    over_total_limit: Você excedeu o limite de %{limit} toots agendados
+    over_daily_limit: Você excedeu o limite de %{limit} publicações agendadas para esse dia
+    over_total_limit: Você excedeu o limite de %{limit} publicações agendadas
     too_soon: A data agendada precisa ser no futuro
   sessions:
     activity: Última atividade
@@ -1389,22 +1395,22 @@ pt-BR:
       video:
         one: "%{count} vídeo"
         other: "%{count} vídeos"
-    boosted_from_html: Boost de %{acct_link}
-    content_warning: 'Aviso de Conteúdo: %{warning}'
+    boosted_from_html: Impulso de %{acct_link}
+    content_warning: 'Aviso de conteúdo: %{warning}'
     default_language: Igual ao idioma da interface
     disallowed_hashtags:
       one: 'continha hashtag não permitida: %{tags}'
       other: 'continha hashtags não permitidas: %{tags}'
     edited_at_html: Editado em %{date}
     errors:
-      in_reply_not_found: O toot que você quer responder parece não existir.
+      in_reply_not_found: A publicação que você quer responder parece não existir.
     open_in_web: Abrir no navegador
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
-      direct: Posts visíveis apenas para usuários mencionados não podem ser fixados
+      direct: Publicações visíveis apenas para usuários mencionados não podem ser fixadas
       limit: Quantidade máxima de toots excedida
-      ownership: Toots dos outros não podem ser fixados
-      reblog: Boosts não podem ser fixados
+      ownership: Publicações dos outros não podem ser fixadas
+      reblog: Um impulso não pode ser fixado
     poll:
       total_people:
         one: "%{count} pessoa"
@@ -1421,33 +1427,33 @@ pt-BR:
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direto
-      private: Privado
-      private_long: Posta apenas para seguidores
+      private: Apenas seguidores
+      private_long: Exibir apenas para seguidores
       public: Público
-      public_long: Posta em linhas públicas
-      unlisted: Não-listado
-      unlisted_long: Não posta em linhas públicas
+      public_long: Todos podem ver
+      unlisted: Não listado
+      unlisted_long: Todos podem ver, mas não é listado em linhas do tempo públicas
   statuses_cleanup:
     enabled: Excluir publicações antigas automaticamente
     enabled_hint: Exclui suas publicações automaticamente assim que elas alcançam sua validade, a não ser que se enquadrem em alguma das exceções abaixo
     exceptions: Exceções
     explanation: Já que a exclusão de publicações é uma operação custosa, ela é feita lentamente quando o servidor não está ocupado. Por isso suas publicações podem ser excluídas algum tempo depois de alcançarem sua validade.
     ignore_favs: Ignorar favoritos
-    ignore_reblogs: Ignorar boosts
+    ignore_reblogs: Ignorar impulsos
     interaction_exceptions: Exceções baseadas nas interações
     interaction_exceptions_explanation: Note que não há garantia de que as publicações sejam excluídas se ficarem abaixo do limite de favoritos ou boosts depois de tê-lo ultrapassado.
     keep_direct: Manter mensagens diretas
-    keep_direct_hint: Não deleta nenhuma de suas mensagens diretas
+    keep_direct_hint: Não exclui nenhuma de suas mensagens diretas
     keep_media: Manter publicações com mídia
     keep_media_hint: Não exclui nenhuma de suas publicações com mídia
     keep_pinned: Manter publicações fixadas
-    keep_pinned_hint: Não exclui nenhuma publicação fixada
+    keep_pinned_hint: Não exclui nenhuma de suas publicações fixadas
     keep_polls: Manter enquetes
     keep_polls_hint: Não exclui nenhuma de suas enquetes
     keep_self_bookmark: Manter publicações que você salvou
-    keep_self_bookmark_hint: Não exclui suas próprias publicações se você as tiver salvado
+    keep_self_bookmark_hint: Não exclui suas próprias publicações se você as salvou
     keep_self_fav: Manter publicações que você favoritou
-    keep_self_fav_hint: Não exclui suas próprias publicações se você as tiver favoritado
+    keep_self_fav_hint: Não exclui suas próprias publicações se você as favoritou
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1459,9 +1465,9 @@ pt-BR:
       '7889238': 3 meses
     min_age_label: Validade
     min_favs: Manter publicações favoritadas por ao menos
-    min_favs_hint: Não exclui publicações que tiverem sido favoritados ao menos essa quantidade de vezes. Deixe em branco para excluir publicações independente da quantidade de favoritos
-    min_reblogs: Manter publicações boostadas por ao menos
-    min_reblogs_hint: Não exclui publicações que tiverem sido boostadas ao menos essa quantidade de vezes. Deixe em branco para excluir publicações independente da quantidade de boosts
+    min_favs_hint: Não exclui publicações que receberam pelo menos esta quantidade de favoritos. Deixe em branco para excluir publicações independentemente da quantidade de favoritos
+    min_reblogs: Manter publicações impulsionadas por ao menos
+    min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
     pinned: Toot fixado
     reblogged: deu boost
@@ -1523,7 +1529,7 @@ pt-BR:
         spam: Spam
         violation: O conteúdo viola as seguintes diretrizes da comunidade
       explanation:
-        delete_statuses: Alguns de seus posts infringiram um ou mais diretrizes da comunidade e foram removidos pelos moderadores de %{instance}.
+        delete_statuses: Algumas de suas publicações infringiram uma ou mais diretrizes da comunidade e foram removidas pelos moderadores de %{instance}.
         disable: Você não poderá mais usar a sua conta, mas o seu perfil e outros dados permanecem intactos. Você pode solicitar um backup dos seus dados, mudar as configurações ou excluir sua conta.
         sensitive: A partir de agora, todos os seus arquivos de mídia enviados serão marcados como confidenciais e escondidos por trás de um aviso de clique.
       reason: 'Motivo:'
@@ -1539,7 +1545,7 @@ pt-BR:
       title:
         delete_statuses: Publicações removidas
         disable: Conta bloqueada
-        mark_statuses_as_sensitive: Postagens marcadas como sensíveis
+        mark_statuses_as_sensitive: Publicações marcadas como sensíveis
         none: Aviso
         sensitive: Conta marcada como sensível
         silence: Conta silenciada
