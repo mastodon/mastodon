@@ -64,8 +64,12 @@ ga:
     action_logs:
       action_types:
         create_account_warning: Cruthaigh rabhadh
+        destroy_announcement: Scrios Fógra
+        destroy_ip_block: Scrios riail IP
+        destroy_status: Scrios postáil
       actions:
         create_account_warning_html: "Sheol %{name} rabhadh do %{target}"
+      deleted_account: cuntas scriosta
     announcements:
       live: Beo
       publish: Foilsigh
@@ -121,6 +125,7 @@ ga:
       status: Stádas
     reports:
       category: Catagóir
+      delete_and_resolve: Scrios postála
       no_one_assigned: Duine ar bith
       notes:
         delete: Scrios
@@ -129,6 +134,12 @@ ga:
       title: Tuairiscí
     roles:
       delete: Scrios
+      privileges:
+        delete_user_data: Scrios sonraí úsáideora
+    rules:
+      delete: Scrios
+    site_uploads:
+      delete: Scrios comhad uaslódáilte
     statuses:
       account: Údar
       deleted: Scriosta
@@ -136,6 +147,9 @@ ga:
       open: Oscail postáil
       original_status: Bunphostáil
       with_media: Le meáin
+    strikes:
+      actions:
+        delete_statuses: "Scrios %{name} postála %{target}"
     tags:
       review: Stádas athbhreithnithe
     trends:
@@ -146,10 +160,17 @@ ga:
         allow_account: Ceadaigh údar
     warning_presets:
       delete: Scrios
+    webhooks:
+      delete: Scrios
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: chun postála acu a scrios
         none: rabhadh
+  auth:
+    delete_account: Scrios cuntas
+  deletes:
+    proceed: Scrios cuntas
   disputes:
     strikes:
       title_actions:
@@ -164,10 +185,20 @@ ga:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    contexts:
+      thread: Comhráite
+    index:
+      delete: Scrios
+  generic:
+    delete: Scrios
   rss:
     content_warning: 'Rabhadh ábhair:'
   statuses:
     content_warning: 'Rabhadh ábhair: %{warning}'
+    show_more: Taispeáin níos mó
+    show_newer: Taispeáin níos déanaí
+    show_thread: Taispeáin snáithe
   user_mailer:
     warning:
       categories:
@@ -177,3 +208,5 @@ ga:
         none: Rabhadh do %{acct}
       title:
         none: Rabhadh
+  webauthn_credentials:
+    delete: Scrios
