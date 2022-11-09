@@ -295,7 +295,7 @@ class Account < ApplicationRecord
 
   def fields
     (self[:fields] || []).map do |f|
-      Field.new(self, f)
+      Account::Field.new(self, f)
     rescue
       nil
     end.compact
@@ -399,48 +399,6 @@ class Account < ApplicationRecord
 
   def requires_review_notification?
     requires_review? && !requested_review?
-  end
-
-  class Field < ActiveModelSerializers::Model
-    attributes :name, :value, :verified_at, :account
-
-    def initialize(account, attributes)
-      @original_field = attributes
-      string_limit = account.local? ? 255 : 2047
-      super(
-        account:     account,
-        name:        attributes['name'].strip[0, string_limit],
-        value:       attributes['value'].strip[0, string_limit],
-        verified_at: attributes['verified_at']&.to_datetime,
-      )
-    end
-
-    def verified?
-      verified_at.present?
-    end
-
-    def value_for_verification
-      @value_for_verification ||= begin
-        if account.local?
-          value
-        else
-          ActionController::Base.helpers.strip_tags(value)
-        end
-      end
-    end
-
-    def verifiable?
-      value_for_verification.present? && value_for_verification.start_with?('http://', 'https://')
-    end
-
-    def mark_verified!
-      self.verified_at = Time.now.utc
-      @original_field['verified_at'] = verified_at
-    end
-
-    def to_h
-      { name: name, value: value, verified_at: verified_at }
-    end
   end
 
   class << self
