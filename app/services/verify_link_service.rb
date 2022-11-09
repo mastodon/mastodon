@@ -30,10 +30,11 @@ class VerifyLinkService < BaseService
 
     if links.any? { |link| link['href'].downcase == @link_back.downcase }
       true
+    elsif link.any? { |link| link_redirects_back?(link['href']) }
+      true
     elsif links.empty?
       false
     else
-      link_redirects_back?(links.first['href'])
     end
   end
 
