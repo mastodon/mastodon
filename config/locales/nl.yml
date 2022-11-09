@@ -35,7 +35,7 @@ nl:
       approve: Goedkeuren
       approved_msg: Het goedkeuren van het account van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
-      avatar: Avatar
+      avatar: Profielfoto
       by_domain: Domein
       change_email:
         changed_msg: E-mailadres succesvol veranderd!
@@ -116,9 +116,9 @@ nl:
       redownloaded_msg: Het herstellen van het oorspronkelijke profiel van %{username} is geslaagd
       reject: Afwijzen
       rejected_msg: Het afwijzen van het registratieverzoek van %{username} is geslaagd
-      remove_avatar: Avatar verwijderen
+      remove_avatar: Profielfoto verwijderen
       remove_header: Omslagfoto verwijderen
-      removed_avatar_msg: Het verwijderen van de avatar van %{username} is geslaagd
+      removed_avatar_msg: Het verwijderen van de profielfoto van %{username} is geslaagd
       removed_header_msg: Het verwijderen van de omslagfoto van %{username} is geslaagd
       resend_confirmation:
         already_confirmed: Deze gebruiker is al bevestigd
@@ -205,7 +205,7 @@ nl:
         promote_user: Gebruiker promoveren
         reject_appeal: Bezwaar afwijzen
         reject_user: Gebruiker afwijzen
-        remove_avatar_user: Avatar verwijderen
+        remove_avatar_user: Profielfoto verwijderen
         reopen_report: Rapportage heropenen
         resend_user: Bevestigingsmail opnieuw verzenden
         reset_password_user: Wachtwoord opnieuw instellen
@@ -264,7 +264,7 @@ nl:
         promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
         reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} afgewezen"
         reject_user_html: "%{name} heeft de registratie van %{target} afgewezen"
-        remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
+        remove_avatar_user_html: "%{name} verwijderde de profielfoto van %{target}"
         reopen_report_html: "%{name} heeft rapportage %{target} heropend"
         resend_user_html: "%{name} heeft de bevestigingsmail voor %{target} opnieuw verzonden"
         reset_password_user_html: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
@@ -686,6 +686,7 @@ nl:
         title: Bewaartermijn berichten
       discovery:
         follow_recommendations: Aanbevolen accounts
+        preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van gebruikers op jouw server werken.
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
         title: Ontdekken
@@ -788,6 +789,7 @@ nl:
       statuses:
         allow: Bericht goedkeuren
         allow_account: Account goedkeuren
+        description_html: Dit zijn berichten die op jouw server bekend zijn en die momenteel veel worden gedeeld en als favoriet worden gemarkeerd. Hiermee kunnen nieuwe en terugkerende gebruikers meer mensen vinden om te volgen. Er worden geen berichten in het openbaar weergegeven totdat het account door jou is goedgekeurd en de gebruiker toestaat dat diens account aan anderen wordt aanbevolen. Je kunt ook individuele berichten goed- of afkeuren.
         disallow: Bericht afkeuren
         disallow_account: Account afkeuren
         no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
@@ -804,6 +806,7 @@ nl:
           tag_servers_dimension: Populaire servers
           tag_servers_measure: verschillende servers
           tag_uses_measure: totaal aantal keer gebruikt
+        description_html: Deze hashtags verschijnen momenteel in veel berichten die op jouw server zichtbaar zijn. Hiermee kunnen jouw gebruikers zien waar mensen op dit moment het meest over praten. Er worden geen hashtags in het openbaar weergegeven totdat je ze goedkeurt.
         listable: Kan worden aanbevolen
         no_tag_selected: Er werden geen hashtags gewijzigd, omdat er geen enkele werd geselecteerd
         not_listable: Wordt niet aanbevolen
@@ -829,6 +832,7 @@ nl:
     webhooks:
       add_new: Eindpunt toevoegen
       delete: Verwijderen
+      description_html: Met een <strong>webhook</strong> kan Mastodon <strong>meldingen in real-time</strong> over gekozen gebeurtenissen naar jouw eigen toepassing sturen, zodat je applicatie <strong>automatisch reacties kan genereren</strong>.
       disable: Uitschakelen
       disabled: Uitgeschakeld
       edit: Eindpunt bewerken
@@ -873,6 +877,7 @@ nl:
         title: Trending berichten
       new_trending_tags:
         no_approved_tags: Op dit moment zijn er geen goedgekeurde hashtags.
+        requirements: 'Elk van deze kandidaten kan de #%{rank} goedgekeurde trending hashtag overtreffen, die momenteel #%{lowest_tag_name} is met een score van %{lowest_tag_score}.'
         title: Trending hashtags
       subject: Nieuwe trends te beoordelen op %{instance}
   aliases:
@@ -1600,7 +1605,7 @@ nl:
         suspend: Account opgeschort
     welcome:
       edit_profile_action: Profiel instellen
-      edit_profile_step: Je kunt jouw profiel aanpassen door een profielafbeelding (avatar) te uploaden, jouw weergavenaam aan te passen en meer. Je kunt het handmatig goedkeuren van volgers instellen.
+      edit_profile_step: Je kunt jouw profiel aanpassen door een profielfoto te uploaden, jouw weergavenaam aan te passen en meer. Je kunt het handmatig goedkeuren van volgers instellen.
       explanation: Hier zijn enkele tips om je op weg te helpen
       final_action: Begin berichten te plaatsen
       final_step: 'Begin berichten te plaatsen! Zelfs zonder volgers kunnen jouw openbare berichten door anderen bekeken worden, bijvoorbeeld op de lokale tijdlijn en onder hashtags. Je kunt jezelf voorstellen met het gebruik van de hashtag #introductions.'

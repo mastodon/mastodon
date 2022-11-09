@@ -501,6 +501,7 @@ oc:
       title: Configuracion
     status:
       account_status: Estat del compte
+      functional: Vòstre compte es complètament foncional.
     use_security_key: Utilizar clau de seguretat
   authorize_follow:
     already_following: Seguètz ja aqueste compte
@@ -694,6 +695,7 @@ oc:
       on_cooldown: Sètz en temps de recargament
     followers_count: Seguidors al moment de mudar
     incoming_migrations: Mudar d’un compte diferent
+    incoming_migrations_html: Per venir d’un autre compte cap a aqueste, vos cal d’en primièr <a href="%{path}">crear un alias de compte</a>.
     moved_msg: Vòstre compte manda ara a %{acct} e vòstres seguidors son desplaçats.
     not_redirecting: Vòstre compte manda pas enlòc pel moment.
     past_migrations: Migracions passadas
@@ -859,6 +861,7 @@ oc:
     preferences: Preferéncias
     profile: Perfil
     relationships: Abonaments e seguidors
+    statuses_cleanup: Supression auto de las publicacions
     two_factor_authentication: Autentificacion en dos temps
     webauthn_authentication: Claus de seguretat
   statuses:
@@ -912,13 +915,23 @@ oc:
       unlisted_long: Tot lo monde pòt veire mai serà pas visible sul flux public
   statuses_cleanup:
     enabled: Supression automatica de publicacions ancianas
+    enabled_hint: Suprimís automaticament vòstras publicacions quand correspondon al critèri d’atge causit, levat se correspondon tanben a las excepcions çai-jos
+    explanation: Perque la supression es una operacion costosa en ressorsa, es realizat doçament quand lo servidor es pas ocupat a quicòm mai. Per aquò, vòstras publicacions seràn benlèu pas suprimidas aprèp aver atengut lo critèri d’atge.
+    ignore_favs: Ignorar los favorits
+    ignore_reblogs: Ignorar los partatges
+    interaction_exceptions: Excepcions basadas sus las interaccions
     keep_direct: Gardar los messatges dirèctes
+    keep_direct_hint: Suprimís pas vòstres messatges dirèctes
     keep_media: Gardar las publicacions amb pèça-junta
+    keep_media_hint: Suprimís pas vòstras publicacions s’an de mèdias junts
     keep_pinned: Gardar las publicacions penjadas
+    keep_pinned_hint: Suprimís pas vòstras publicacions penjadas
     keep_polls: Gardar los sondatges
     keep_polls_hint: Suprimir pas vòstres sondatges
     keep_self_bookmark: Gardar las publicacions que metèretz en favorit
+    keep_self_bookmark_hint: Suprimís pas vòstras publicacions se las avètz mesas en marcapaginas
     keep_self_fav: Gardar las publicacions que metèretz en favorit
+    keep_self_fav_hint: Suprimís pas vòstras publicacions se las avètz mesas en favorits
     min_age:
       '1209600': 2 setmanas
       '15778476': 6 meses
@@ -930,6 +943,9 @@ oc:
       '7889238': 3 meses
     min_age_label: Sulhet d’ancianetat
     min_favs: Gardar al mens las publicacion en favorit
+    min_favs_hint: Suprimís pas las publicacions qu’an recebut al mens aquesta quantitat de favorits. Daissar blanc per suprimir las publicacion quina quantitat de favorits qu’ajan
+    min_reblogs: Gardar las publicacions partejadas al mens
+    min_reblogs_hint: Suprimís pas vòstras publicacions qu’an agut aqueste nombre de partiment. Daissar blanc per suprimir las publicacions sens far cas als partiments
   stream_entries:
     pinned: Tut penjat
     reblogged: a partejat
