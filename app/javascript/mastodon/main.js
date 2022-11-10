@@ -25,17 +25,17 @@ function main() {
         import('mastodon/initial_state'),
       ]);
 
-      const wb = new Workbox('/sw.js');
-
-      try {
-        await wb.register();
-      } catch (err) {
-        console.error(err);
-
-        return;
-      }
-
       if (me) {
+        const wb = new Workbox('/sw.js');
+
+        try {
+          await wb.register();
+        } catch (err) {
+          console.error(err);
+
+          return;
+        }
+
         const registerPushNotifications = await import('mastodon/actions/push_notifications');
 
         store.dispatch(registerPushNotifications.register());
