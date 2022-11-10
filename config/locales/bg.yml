@@ -322,9 +322,17 @@ bg:
     security: Сигурност
     set_new_password: Задаване на нова парола
   authorize_follow:
+    already_following: Вече следвате този акаунт
     error: Възникна грешка в откриването на потребителя
     follow: Последвай
+    follow_request: 'Изпратихте следната заявка до:'
+    post_follow:
+      return: Показване на профила на потребителя
+      web: Към мрежата
     title: Последвай %{acct}
+  challenge:
+    confirm: Продължаване
+    invalid_password: Невалидна парола
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ч."
@@ -339,20 +347,43 @@ bg:
       x_minutes: "%{count} мин"
       x_months: "%{count} м"
       x_seconds: "%{count} сек"
+  deletes:
+    proceed: Изтриване на акаунта
+  disputes:
+    strikes:
+      title_actions:
+        none: Предупреждение
   errors:
     '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
+    '403': Нямате позволение да разгледате тази страница.
+    '404': Търсената от вас страница не е тук.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422':
-    '429': Too many requests
+      title: Неуспешна проверка за сигурност
+    '429': Премного заявки
     '500':
+      title: Страницата не е правилна
     '503': The page could not be served due to a temporary server failure.
   exports:
+    archive_takeout:
+      date: Дата
+      download: Изтегляне на архива ви
+      size: Размер
     blocks: Вашите блокирания
+    bookmarks: Отметки
+    lists: Списъци
     storage: Съхранение на мултимедия
   filters:
+    contexts:
+      account: Профили
+      notifications: Известия
+      thread: Разговори
+    edit:
+      add_keyword: Добавяне на ключова дума
+      keywords: Ключови думи
+      statuses: Отделни публикации
+      title: Редактиране на филтър
     index:
       delete: Изтриване
       empty: Нямате филтри.
@@ -363,6 +394,15 @@ bg:
         one: "%{count} публикация"
         other: "%{count} публикации"
       title: Филтри
+    new:
+      save: Запазване на нов филтър
+      title: Добавяне на нов филтър
+    statuses:
+      back_to_filter: Обратно към филтъра
+      batch:
+        remove: Премахване от филтъра
+      index:
+        title: Филтрирани публикации
   generic:
     all: Всичко
     changes_saved_msg: Успешно запазване на промените!
@@ -400,11 +440,19 @@ bg:
       one: 1 употреба
       other: "%{count} употреби"
     max_uses_prompt: Без ограничение
+    title: Поканете хора
+  login_activities:
+    authentication_methods:
+      password: парола
+      webauthn: ключове за сигурност
+    empty: Няма налична история на удостоверяване
+    title: Историята на удостоверяване
   media_attachments:
     validations:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
       too_many: Не мога да прикача повече от 4 файла
   migrations:
+    past_migrations: Минали миграции
     redirected_msg: Вашият акаунт сега се пренасочва към %{acct}.
     redirecting_to: Вашият акаунт е пренасочен към %{acct}.
     set_redirect: Задаване на пренасочване
@@ -448,11 +496,23 @@ bg:
   pagination:
     next: Напред
     prev: Назад
+  polls:
+    errors:
+      expired: Анкетата вече е приключила
+  preferences:
+    other: Друго
+  privacy_policy:
+    title: Политика за поверителност
   relationships:
     activity: Дейност на акаунта
     followers: Последователи
+    invited: С покана
     last_active: Последна дейност
+    most_recent: Най-наскоро
+    moved: Преместено
     remove_selected_domains: Премахване на всички последователи от избраните домейни
+    remove_selected_followers: Премахване на избраните последователи
+    remove_selected_follows: Стоп на следването на избраните потребители
     status: Състояние на акаунта
   remote_follow:
     missing_resource: Неуспешно търсене на нужния URL за пренасочване за твоя акаунт
@@ -488,15 +548,46 @@ bg:
       android: Android
       blackberry: Blackberry
       chrome_os: Оп. сист. Chrome
+      firefox_os: Оп. сист. Firefox
+      ios: iOS
+      linux: Линукс
+      mac: macOS
+      other: неизвестна платформа
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Сесии
+    view_authentication_history: Преглед на историята на удостоверяване на акаунта ви
   settings:
+    account: Акаунт
+    account_settings: Настройки на акаунта
+    appearance: Външен вид
     authorized_apps: Упълномощени приложения
     back: Обратно към Mastodon
+    delete: Изтриване на акаунта
+    development: Развой
     edit_profile: Редактирай профила си
     export: Експортиране на данни
     import: Импортиране
+    import_and_export: Внос и износ
+    migrate: Миграция на акаунта
+    notifications: Известия
     preferences: Предпочитания
+    profile: Профил
+    relationships: Последвания и последователи
     two_factor_authentication: Двустепенно удостоверяване
+    webauthn_authentication: Ключове за сигурност
   statuses:
+    attached:
+      audio:
+        one: "%{count} звукозапис"
+        other: "%{count} звукозаписа"
+      image:
+        one: "%{count} образ"
+        other: "%{count} образа"
+      video:
+        one: "%{count} видео"
+        other: "%{count} видеозаписа"
     default_language: Същият като езика на интерфейса
     open_in_web: Отвори в уеб
     over_character_limit: прехвърлен лимит от %{max} символа
@@ -508,7 +599,10 @@ bg:
       public: Публично
       unlisted: Публично, но не показвай в публичния канал
   statuses_cleanup:
+    enabled: Автоматично изтриване на стари публикации
     exceptions: Изключения
+    ignore_favs: Пренебрегване на любими
+    keep_pinned: Държа на закачените публикации
     min_age:
       '1209600': 2 седмици
       '15778476': 6 месеца
@@ -518,14 +612,22 @@ bg:
       '604800': 1 седмица
       '63113904': 2 години
       '7889238': 3 месеца
+    min_age_label: Възрастов праг
   stream_entries:
     pinned: Закачена публикация
     reblogged: споделено
     sensitive_content: Деликатно съдържание
+  themes:
+    contrast: Mastodon (висок контраст)
+    default: Mastodon (тъмно)
+    mastodon-light: Mastodon (светло)
   time:
     formats:
       default: "%d %b, %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
+    add: Добавяне
     disable: Деактивирай
     edit: Редактиране
     enabled: Двуфакторното удостоверяване е включено
