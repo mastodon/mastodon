@@ -319,8 +319,8 @@ bg:
     register: Регистрация
     resend_confirmation: Изпрати отново инструкции за потвърждение
     reset_password: Подновяване на паролата
-    security: Идентификационни данни
-    set_new_password: Задай нова парола
+    security: Сигурност
+    set_new_password: Задаване на нова парола
   authorize_follow:
     error: Възникна грешка в откриването на потребителя
     follow: Последвай
@@ -497,6 +497,7 @@ bg:
     preferences: Предпочитания
     two_factor_authentication: Двустепенно удостоверяване
   statuses:
+    default_language: Същият като езика на интерфейса
     open_in_web: Отвори в уеб
     over_character_limit: прехвърлен лимит от %{max} символа
     poll:
@@ -518,6 +519,7 @@ bg:
       '63113904': 2 години
       '7889238': 3 месеца
   stream_entries:
+    pinned: Закачена публикация
     reblogged: споделено
     sensitive_content: Деликатно съдържание
   time:
@@ -529,10 +531,43 @@ bg:
     enabled: Двуфакторното удостоверяване е включено
     enabled_success: Двуфакторното удостоверяване е успешно включено
     methods: Двуфакторни начини
+    webauthn: Ключове за сигурност
   user_mailer:
+    appeal_approved:
+      action: Към акаунта ви
+    backup_ready:
+      subject: Вашият архив е готов за изтегляне
     warning:
       categories:
         spam: Спам
       reason: 'Причина:'
+      statuses: 'Цитирани публ.:'
+      subject:
+        delete_statuses: Ваши публикации в %{acct} са били премахнати
+      title:
+        delete_statuses: Публикацията е премахната
+        disable: Акаунтът е замразен
+        mark_statuses_as_sensitive: Публикацията отбелязана като деликатна
+        none: Предупреждение
+    welcome:
+      edit_profile_action: Настройване на профила
+      explanation: Ето няколко стъпки за начало
+      subject: Добре дошли в Mastodon
+      title: Добре дошли на борда, %{name}!
   users:
+    follow_limit_reached: Не може да последвате повече от %{limit} души
     invalid_otp_token: Невалиден код
+  verification:
+    verification: Проверка
+  webauthn_credentials:
+    add: Добавяне на нов ключ за сигурност
+    create:
+      error: Възникна проблем, добавяйки ключ за сигурност. Опитайте пак.
+      success: Вашият ключ за сигурност беше добавен успешно.
+    delete: Изтриване
+    destroy:
+      error: Възникна проблем, изтривайки ключа си за сигурност. Опитайте пак.
+      success: Вашият ключ за сигурност беше изтрит успешно.
+    invalid_credential: Невалиден ключ за сигурност
+    not_supported: Този браузър не поддържа ключове за сигурност
+    otp_required: Първо включете двуфакторното удостоверяване, за да използвате ключовете за сигурност.
