@@ -1,10 +1,9 @@
----
 nn:
   about:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    hosted_on: "%{domain} er vert for Mastodon"
+    hosted_on: '%{domain} er vert for Mastodon'
     title: Om
   accounts:
     follow: Fylg
@@ -270,7 +269,15 @@ nn:
         reset_password_user_html: "%{name} tilbakestilte passordet for brukaren %{target}"
         resolve_report_html: "%{name} løyste ein rapport %{target}"
         sensitive_account_html: "%{name} markerte %{target} sitt media som sensitivt"
-        silence_account_html: "%{name} begrenset %{target} sin konto"
+        silence_account_html: "%{name} begrensa %{target} sin konto"
+        suspend_account_html: "%{name} utviste %{target} sin konto"
+        unassigned_report_html: "%{name} løyste ein rapport %{target}"
+        unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
+        unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som sensitivt"
+        update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
+        update_ip_block_html: "%{name} endret regel for IP %{target}"
+        update_status_html: "%{name} oppdaterte innlegg av %{target}"
+        update_user_role_html: "%{name} endret %{target} -rolle"
       deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
@@ -329,10 +336,10 @@ nn:
       upload: Last opp
     dashboard:
       active_users: aktive brukarar
-      interactions: interaksjoner
-      media_storage: Medialagring
-      new_users: nye brukere
-      opened_reports: rapporter åpnet
+      interactions: interaksjonar
+      media_storage: Medielagring
+      new_users: nye brukarar
+      opened_reports: rapportar opna
       resolved_reports: rapporter løst
       software: Programvare
       sources: Kilder for registreringer
@@ -376,6 +383,9 @@ nn:
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
+      attempts_over_week:
+        one: "%{count} forsøk i løpet av den siste uken"
+        other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Slett
       domain: Domene
@@ -393,10 +403,29 @@ nn:
       title: Følg anbefalinger
       unsuppress: Gjenopprett følg-anbefaling
     instances:
+      availability:
+        failure_threshold_reached: Feilterskelen ble nådd %{date}.
+        no_failures_recorded: Ingen feil registrert.
+        title: Tilgjengelighet
+        warning: Det siste forsøket på å koble til denne serveren lyktes ikke
       back_to_all: All
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
+      content_policies:
+        comment: Internt notat
+        policies:
+          reject_media: Avvis media
+        reason: Offentlig årsak
+        title: Retningslinjer for innhold
+      dashboard:
+        instance_accounts_measure: lagrede kontoer
+        instance_followers_measure: våre følgere der
+        instance_follows_measure: deres følgere her
+        instance_languages_dimension: Mest brukte språk
+        instance_media_attachments_measure: lagrede mediavedlegg
+        instance_reports_measure: rapporter om dem
+        instance_statuses_measure: lagrede innlegg
       delivery:
         all: All
         clear: Feil ved fjerning
@@ -404,6 +433,8 @@ nn:
         stop: Stopp levering
         unavailable: Ikke tilgjengelig
       delivery_available: Levering er tilgjengelig
+      delivery_error_hint: Dersom levering ikke er mulig i løpet av %{count} dager, blir det automatisk merket som ikke mulig å levere.
+      empty: Ingen domener funnet.
       moderation:
         all: Alle
         limited: Avgrensa
@@ -495,6 +526,16 @@ nn:
       unassign: Avset
       unresolved: Uløyst
       updated_at: Oppdatert
+      view_profile: Vis profil
+    roles:
+      add_new: Legg til rolle
+      assigned_users:
+        one: "%{count} bruker"
+        other: "%{count} brukere"
+      categories:
+        administration: Administrasjon
+        devops: DevOps
+        invites: Invitasjoner
     rules:
       add_new: Legg til et filter
       delete: Slett
@@ -545,7 +586,7 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -915,6 +956,10 @@ nn:
     status: Kontostatus
   remote_follow:
     missing_resource: Kunne ikke finne URLen for din konto
+  rss:
+    descriptions:
+      account: Offentlige innlegg fra @%{acct}
+      tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
@@ -980,6 +1025,8 @@ nn:
     preferences: Innstillingar
     profile: Profil
     relationships: Fylgjar og fylgjarar
+    statuses_cleanup: Automatisert sletting av innlegg
+    strikes: Modereringsadvarsler
     two_factor_authentication: Tostegsautorisering
     webauthn_authentication: Sikkerhetsnøkler
   statuses:
@@ -996,6 +1043,7 @@ nn:
     disallowed_hashtags:
       one: 'inneheldt ein emneknagg som ikkje var tillaten: %{tags}'
       other: 'inneheldt emneknaggen som ikkje var tillaten: %{tags}'
+    edited_at_html: Redigert %{date}
     errors:
       in_reply_not_found: Det ser ut til at tutet du freistar å svara ikkje finst.
     open_in_web: Opn på nett
@@ -1015,7 +1063,7 @@ nn:
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Berre fylgjarar
@@ -1025,6 +1073,9 @@ nn:
       unlisted: Ikkje oppført
       unlisted_long: Alle kan sjå, men ikkje oppført på offentlege tidsliner
   statuses_cleanup:
+    enabled: Slett gamle innlegg automatisk
+    enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
+    exceptions: Unntak
     keep_pinned: Behald festa innlegg
     keep_pinned_hint: Sletter ingen av dine festa innlegg
     keep_polls: Behald røystingar
@@ -1061,6 +1112,7 @@ nn:
     formats:
       default: "%d.%b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Legg til
     disable: Slå av
@@ -1108,17 +1160,24 @@ nn:
       reason: 'Årsak:'
       statuses: 'Innlegg sitert:'
       subject:
+        delete_statuses: Dine innlegg på %{acct} har blitt fjernet
         disable: Kontoen din, %{acct}, har blitt fryst
+        mark_statuses_as_sensitive: Dine innlegg på %{acct} har blitt merket som sensitivt innhold
         none: Åtvaring for %{acct}
+        sensitive: Dine innlegg på %{acct} vil bli merket som sensitive fra nå
         silence: Kontoen din, %{acct}, er vorten avgrensa
         suspend: Kontoen din, %{acct}, er vorten utvist
       title:
+        delete_statuses: Innlegg fjernet
         disable: Konto frosen
+        mark_statuses_as_sensitive: Innlegg markert som sensitive
         none: Åtvaring
+        sensitive: Konto markert som sensitiv
         silence: Konto avgrensa
         suspend: Konto utvist
     welcome:
       edit_profile_action: Lag til profil
+      edit_profile_step: Du kan tilpasse profilen din ved å laste opp et profilbilde, endre visningsnavnet ditt og mer. Du kan velge at nye følgere må godkjennes av deg før de får lov til å følge deg.
       explanation: Her er nokre tips for å koma i gang
       final_action: Kom i gang med å leggja ut
       full_handle: Det fulle brukarnamnet ditt
@@ -1137,9 +1196,11 @@ nn:
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
     create:
+      error: Det oppstod et problem med å legge til sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket lagt til.
     delete: Slett
     delete_confirmation: Er du sikker på at du vil slette denne sikkerhetsnøkkelen?
+    description_html: Dersom du aktiverer <strong>sikkerhetsnøkkelautentisering</strong>, vil innlogging kreve at du bruker en av sikkerhetsnøklene dine.
     destroy:
       error: Det oppsto et problem med å slette sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket slettet.
