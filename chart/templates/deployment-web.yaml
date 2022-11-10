@@ -96,13 +96,18 @@ spec:
               containerPort: {{ .Values.mastodon.web.port }}
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /health
+            tcpSocket:
               port: http
           readinessProbe:
             httpGet:
               path: /health
               port: http
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 30
+            periodSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
