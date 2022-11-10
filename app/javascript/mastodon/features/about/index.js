@@ -195,7 +195,7 @@ class About extends React.PureComponent {
                   <tbody>
                     {domainBlocks.get('items').map(block => (
                       <tr key={block.get('domain')}>
-                        <td><span title={`SHA-256: ${block.get('digest')}`}>{block.get('domain')}</span></td>
+                        <td className='about__domain-blocks__domain'><span title={`SHA-256: ${block.get('digest')}`}>{block.get('domain')}</span></td>
                         <td><span title={intl.formatMessage(severityMessages[block.get('severity')].explanation)}>{intl.formatMessage(severityMessages[block.get('severity')].title)}</span></td>
                         <td>{block.get('comment')}</td>
                       </tr>
