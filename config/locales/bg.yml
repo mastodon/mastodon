@@ -126,6 +126,8 @@ bg:
       subscribe: Абониране
       suspend: Спиране
       suspended: Спряно
+      title: Акаунти
+      unconfirmed_email: Непотвърден имейл
       unsubscribe: Отписване
       username: Потребителско име
       warn: Предупреждение
@@ -141,6 +143,7 @@ bg:
         destroy_announcement: Изтриване на оповестяване
         destroy_custom_emoji: Изтриване на персонализирано емоджи
         destroy_status: Изтриване на статус
+        destroy_user_role: Унищожаване на роля
         disable_2fa_user: Деактивиране на 2FA
         disable_custom_emoji: Деактивиране на персонализирано емоджи
         disable_user: Деактивиране на потребител
@@ -152,9 +155,11 @@ bg:
         reset_password_user: Нулиране на парола
       deleted_account: изтрит акаунт
     announcements:
+      live: На живо
       publish: Публикуване
     custom_emojis:
       by_domain: Домейн
+      copy: Копиране
       create_new_category: Създаване на нова категория
       created_msg: Успешно сътворено емоджи!
       delete: Изтриване
@@ -197,6 +202,13 @@ bg:
       appeals:
         empty: Няма намерени обжалвания.
         title: Жалби
+    domain_blocks:
+      domain: Домейн
+      new:
+        severity:
+          silence: Тишина
+      private_comment: Личен коментар
+      private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
     email_domain_blocks:
       title: Блокирани домейни на имейл
     follow_recommendations:
@@ -205,6 +217,8 @@ bg:
     instances:
       by_domain: Домейн
       content_policies:
+        policies:
+          silence: Ограничение
         policy: Политика
       dashboard:
         instance_languages_dimension: Водещи езици
@@ -216,7 +230,14 @@ bg:
       delivery_available: Доставката е налична
       delivery_error_days: Грешни дни на доставяне
       empty: Няма намерени домейни.
+      moderation:
+        all: Всичко
+      title: Федерация
+      total_blocked_by_us: Блокирано от нас
+      total_followed_by_them: Последвани от тях
+      total_followed_by_us: Последвано от нас
     invites:
+      deactivate_all: Деактивиране на всички
       filter:
         all: Всичко
         available: Налично
@@ -246,6 +267,20 @@ bg:
       today_at: Днес от %{time}
     reports:
       are_you_sure: Сигурни ли сте?
+      category: Категория
+      created_at: Докладвано
+      forwarded: Препратено
+      forwarded_to: Препратено до %{domain}
+      notes:
+        create: Добавяне на бележка
+        delete: Изтриване
+        title: Бележки
+      reopen: Отваряне пак на доклад
+      reported_account: Докладван акаунт
+      reported_by: Докладвано от
+      resolved: Разрешено
+      status: Състояние
+      statuses: Докладвано съдържание
       updated_at: Обновено
       view_profile: Преглед на профила
     roles:
@@ -256,6 +291,7 @@ bg:
         moderation: Mодериране
       delete: Изтриване
       privileges:
+        administrator: Администратор
         manage_invites: Управление на поканите
         manage_reports: Управление на докладите
         manage_roles: Управление на ролите
@@ -269,11 +305,28 @@ bg:
     settings:
       about:
         manage_rules: Управление на правилата на сървъра
+      appearance:
+        title: Външен вид
+      registrations:
+        title: Регистрации
+      title: Настройки на сървъра
     statuses:
       account: Автор
+      application: Приложение
+      back_to_account: Назад към страницата на акаунта
+      back_to_report: Назад към страницата на доклада
       batch:
+        remove_from_report: Премахване от доклада
         report: Докладване
       deleted: Изтрито
+      favourites: Любими
+      history: История на версиите
+      language: Език
+      media:
+        title: Мултимедия
+      metadata: Метаданни
+      open: Отваряне на публикация
+      original_status: Първообразна публикация
       visibility: Видимост
     trends:
       tags:
@@ -317,22 +370,33 @@ bg:
     login: Влизане
     logout: Излизане
     register: Регистрация
+    registration_closed: "%{instance} не приема нови членуващи"
     resend_confirmation: Изпрати отново инструкции за потвърждение
     reset_password: Подновяване на паролата
     security: Сигурност
     set_new_password: Задаване на нова парола
+    setup:
+      title: Настройка
+    status:
+      account_status: Състояние на акаунта
   authorize_follow:
     already_following: Вече следвате този акаунт
     error: Възникна грешка в откриването на потребителя
     follow: Последвай
     follow_request: 'Изпратихте следната заявка до:'
     post_follow:
+      close: Или просто затворете този прозорец.
       return: Показване на профила на потребителя
       web: Към мрежата
     title: Последвай %{acct}
   challenge:
     confirm: Продължаване
     invalid_password: Невалидна парола
+    prompt: Потвърдете паролата, за да продължите
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} ч."
@@ -348,9 +412,18 @@ bg:
       x_months: "%{count} м"
       x_seconds: "%{count} сек"
   deletes:
+    challenge_not_passed: Въвели сте неправилна информация
+    confirm_username: Въведете потребителското си име, за да потвърдите процедурата
     proceed: Изтриване на акаунта
+    success_msg: Вашият акаунт е успешно изтрит
+    warning:
+      before: 'Прочетете внимателно тези бележки преди да продължите:'
+      data_removal: Ваши публикации и други данни ще бъдат завинаги премахнати
+      username_available: Вашето потребителско име ще стане налично отново
+      username_unavailable: Вашето потребителско име ще остане неналично
   disputes:
     strikes:
+      title: "%{action} от %{date}"
       title_actions:
         none: Предупреждение
   errors:
