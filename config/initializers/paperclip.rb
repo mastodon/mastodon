@@ -108,9 +108,8 @@ if ENV['S3_ENABLED'] == 'true'
     module Storage
       module S3SignedExtensions
         def url(style_name = default_style)
-          time = 3600
           if path(style_name)
-            base_options = { expires_in: time }
+            base_options = { expires_in: 1.week.to_i, time: Date.current.beginning_of_week.to_time }
             s3_url = ENV['S3_BUCKET'] + '.s3.' + ENV['S3_REGION'] + '.amazonaws.com'
             s3_object(style_name).presigned_url(
               :get,
