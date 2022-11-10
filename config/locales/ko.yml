@@ -58,7 +58,7 @@ ko:
       disable_sign_in_token_auth: 이메일 토큰 인증 비활성화
       disable_two_factor_authentication: 2단계 인증을 비활성화
       disabled: 비활성화된
-      display_name: 보여지는 이름
+      display_name: 표시되는 이름
       domain: 도메인
       edit: 편집
       email: 이메일
@@ -221,7 +221,7 @@ ko:
         update_status: 게시물 게시
         update_user_role: 역할 수정
       actions:
-        approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 승인했습니다"
+        approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 승인했습니다"
         approve_user_html: "%{name} 님이 %{target}의 가입을 승인했습니다"
         assigned_to_self_report_html: "%{name} 님이 신고 %{target}을 자신에게 할당했습니다"
         change_email_user_html: "%{name} 님이 사용자 %{target}의 이메일 주소를 변경했습니다"
@@ -250,15 +250,15 @@ ko:
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target}의 2FA를 비활성화 했습니다"
-        disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화 했습니다"
-        disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화 했습니다"
-        disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화 했습니다"
-        enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화 했습니다"
-        enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화 했습니다"
-        enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화 했습니다"
+        disable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 비활성화했습니다"
+        disable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 비활성화했습니다"
+        disable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 비활성화했습니다"
+        enable_custom_emoji_html: "%{name} 님이 에모지 %{target}를 활성화했습니다"
+        enable_sign_in_token_auth_user_html: "%{name} 님이 %{target} 님의 이메일 토큰 인증을 활성화했습니다"
+        enable_user_html: "%{name} 님이 사용자 %{target}의 로그인을 활성화했습니다"
         memorialize_account_html: "%{name} 님이 %{target}의 계정을 추모비 페이지로 전환했습니다"
         promote_user_html: "%{name} 님이 사용자 %{target}를 승급시켰습니다"
-        reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의제기를 거절했습니다"
+        reject_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 거절했습니다"
         reject_user_html: "%{name} 님이 %{target}의 가입을 거부했습니다"
         remove_avatar_user_html: "%{name} 님이 %{target}의 아바타를 지웠습니다"
         reopen_report_html: "%{name} 님이 신고 %{target}을 다시 열었습니다"
@@ -269,7 +269,7 @@ ko:
         silence_account_html: "%{name} 님이 %{target}의 계정을 침묵시켰습니다"
         suspend_account_html: "%{name} 님이 %{target}의 계정을 정지시켰습니다"
         unassigned_report_html: "%{name} 님이 신고 %{target}을 할당 해제했습니다"
-        unblock_email_account_html: "%{name} 님이 %{target}의 이메일 주소를 차단 해제했습니다."
+        unblock_email_account_html: "%{name} 님이 %{target}의 이메일 주소를 차단 해제했습니다"
         unsensitive_account_html: "%{name} 님이 %{target}의 미디어를 민감하지 않음으로 표시했습니다"
         unsilence_account_html: "%{name} 님이 %{target}의 계정에 대한 침묵을 해제했습니다"
         unsuspend_account_html: "%{name} 님이 %{target}의 계정에 대한 정지를 해제했습니다"
@@ -277,7 +277,7 @@ ko:
         update_custom_emoji_html: "%{name} 님이 에모지 %{target}를 업데이트 했습니다"
         update_domain_block_html: "%{name} 님이 %{target}에 대한 도메인 차단을 갱신했습니다"
         update_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 수정했습니다"
-        update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트 했습니다"
+        update_status_html: "%{name} 님이 %{target}의 게시물을 업데이트했습니다"
         update_user_role_html: "%{name} 님이 %{target} 역할을 수정했습니다"
       deleted_account: 계정을 삭제했습니다
       empty: 로그를 찾을 수 없습니다
@@ -316,7 +316,7 @@ ko:
       disabled_msg: 성공적으로 비활성화하였습니다
       emoji: 에모지
       enable: 활성화
-      enabled: 활성됨
+      enabled: 활성화됨
       enabled_msg: 성공적으로 활성화하였습니다
       image_hint: '%{size} 이하의 PNG 또는 GIF'
       list: 목록에 추가
@@ -465,7 +465,7 @@ ko:
         unavailable: 사용불가
       delivery_available: 전송 가능
       delivery_error_days: 전달 에러가 난 날짜들
-      delivery_error_hint: 만약 %{count}일동안 전달이 불가능하다면, 자동으로 전달불가로 표시됩니다.
+      delivery_error_hint: 만약 %{count}일 동안 전달이 불가능하다면, 자동으로 전달 불가로 표시됩니다.
       destroyed_msg: '%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다.'
       empty: 도메인이 하나도 없습니다.
       known_accounts:
@@ -847,7 +847,7 @@ ko:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
       subject: '%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다'
     new_report:
-      body: "%{reporter} 가 %{target} 를 신고했습니다"
+      body: "%{reporter} 님이 %{target}를 신고했습니다"
       body_remote: '%{domain}의 누군가가 %{target}을 신고했습니다'
       subject: '%{instance} 에 새 신고 등록됨 (#%{id})'
     new_trends:
@@ -1238,8 +1238,8 @@ ko:
       subject: "%{name} 님이 내 게시물을 마음에 들어했습니다"
       title: 새 좋아요
     follow:
-      body: "%{name} 님이 나를 팔로우 했습니다!"
-      subject: "%{name} 님이 나를 팔로우 했습니다"
+      body: "%{name} 님이 나를 팔로우했습니다!"
+      subject: "%{name} 님이 나를 팔로우했습니다"
       title: 새 팔로워
     follow_request:
       action: 팔로우 요청 관리
@@ -1308,7 +1308,7 @@ ko:
     title: 개인정보 정책
   reactions:
     errors:
-      limit_reached: 다른 리액션 제한에 도달했습니다
+      limit_reached: 리액션 갯수 제한에 도달했습니다
       unrecognized_emoji: 인식 되지 않은 에모지입니다
   relationships:
     activity: 계정 활동
@@ -1412,7 +1412,7 @@ ko:
         other: "%{count}개의 오디오"
       description: '첨부: %{attached}'
       image:
-        other: "%{count} 이미지"
+        other: "%{count}장의 이미지"
       video:
         other: "%{count}개의 영상"
     boosted_from_html: '%{acct_link}의 글을 부스트'
@@ -1584,7 +1584,7 @@ ko:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
-    seamless_external_login: 외부 서비스를 이용해 로그인 했습니다, 패스워드와 이메일 설정을 할 수 없습니다.
+    seamless_external_login: 외부 서비스를 이용해 로그인했으므로, 이메일과 비밀번호는 설정할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
@@ -1592,13 +1592,13 @@ ko:
   webauthn_credentials:
     add: 보안 키 추가
     create:
-      error: 보안 키를 추가하는데 문제가 발생했습니다. 다시 시도해보십시오.
+      error: 보안 키를 추가하는 데 문제가 발생했습니다. 다시 시도해보십시오.
       success: 보안 키가 성공적으로 추가되었습니다.
     delete: 삭제
     delete_confirmation: 정말로 이 보안 키를 삭제하시겠습니까?
     description_html: <strong>보안 키 인증</strong>을 활성화 하면, 로그인 시 보안 키 중 하나가 필요합니다.
     destroy:
-      error: 보안 키를 삭제하는데 문제가 발생했습니다. 다시 시도해보십시오.
+      error: 보안 키를 삭제하는 데 문제가 발생했습니다. 다시 시도해보십시오.
       success: 보안 키가 성공적으로 삭제되었습니다.
     invalid_credential: 올바르지 않은 보안 키
     nickname_hint: 새 보안 키의 별명을 입력해 주세요
