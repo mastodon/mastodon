@@ -77,7 +77,7 @@ mastodon:
     ca_file: /etc/ssl/certs/ca-certificates.crt
     delivery_method: smtp
     domain:
-    enable_starttls_auto: true
+    enable_starttls: 'auto'
     from_address: notifications@example.com
     openssl_verify_mode: peer
     port: 587

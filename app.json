@@ -79,8 +79,13 @@
       "description": "SMTP server certificate verification mode. Defaults is 'peer'.",
       "required": false
     },
+    "SMTP_ENABLE_STARTTLS": {
+      "description": "Enable STARTTLS? Default is 'auto'.",
+      "value": "auto",
+      "required": false
+    },
     "SMTP_ENABLE_STARTTLS_AUTO": {
-      "description": "Enable STARTTLS if SMTP server supports it? Default is true.",
+      "description": "Enable STARTTLS if SMTP server supports it? Deprecated by SMTP_ENABLE_STARTTLS.",
       "required": false
     }
   },
