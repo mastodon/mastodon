@@ -120,6 +120,11 @@ RSpec.describe AccountsController, type: :controller do
           expect(response.body).to include(I18n.t('stream_entries.pinned'))
         end
 
+        it 'does not render private pinned status' do
+          account.pinned_statuses << status_private
+          expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_private))
+        end
+
         it 'does not render private status' do
           expect(response.body).to_not include(ActivityPub::TagManager.instance.url_for(status_private))
         end
