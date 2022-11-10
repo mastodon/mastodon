@@ -1,4 +1,3 @@
----
 id:
   simple_form:
     hints:
@@ -66,6 +65,8 @@ id:
       email_domain_block:
         domain: Ini bisa berupa nama domain yang tampil di alamat email atau data MX yang memakainya. Mereka akan diperiksa saat mendaftar.
         with_dns_records: Usaha untuk menyelesaikan data DNS domain yang diberikan akan dilakukan dan hasilnya akan masuk daftar hitam
+      featured_tag:
+        name: 'Ini adalah beberapa tagar yang sering Anda gunakan:'
       filters:
         action: Pilih tindakan apa yang dilakukan ketika sebuah kiriman cocok dengan saringan
         actions:
@@ -295,7 +296,7 @@ id:
       webhook:
         events: Acara yang diaktifkan
         url: URL Titik Akhir
-    'no': Tidak
+    'no': 'Tidak'
     not_recommended: Tidak disarankan
     recommended: Direkomendasikan
     required:
@@ -304,4 +305,4 @@ id:
     title:
       sessions:
         webauthn: Gunakan salah satu kunci keamanan untuk masuk
-    'yes': Ya
+    'yes': 'Ya'
