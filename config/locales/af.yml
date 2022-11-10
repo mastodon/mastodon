@@ -31,6 +31,7 @@ af:
         title: Aangaande
     statuses:
       favourites: Gunstelinge
+      in_reply_to: Reaksie op
     strikes:
       actions:
         silence: "%{name} het %{target} se rekening beperk"
@@ -89,6 +90,9 @@ af:
     description_html: Indien jy onbekende aktiwiteite gewaar, oorweeg dit om jou wagwoord te verander en twee-faktor verifikasie te aktiveer.
   navigation:
     toggle_menu: Skakel-kieslys
+  notification_mailer:
+    mention:
+      action: Reageer
   number:
     human:
       decimal_units:
@@ -109,6 +113,8 @@ af:
     preferences: Voorkeure
   statuses:
     content_warning: 'Inhoud waarskuwing: %{warning}'
+    errors:
+      in_reply_not_found: Die plasing waarop jy probeer reageer blyk nie te bestaan nie.
   statuses_cleanup:
     ignore_favs: Ignoreer gunstelinge
   strikes:
