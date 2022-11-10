@@ -208,3 +208,7 @@ gem 'rubyzip', '~> 2.3'
 gem 'hcaptcha', '~> 7.1'
 
 gem 'mail', '~> 2.8'
+
+gem 'opentelemetry-sdk', require: false
+gem 'opentelemetry-exporter-otlp', require: false
+gem 'opentelemetry-instrumentation-all', require: false
