@@ -1,10 +1,10 @@
----
 bg:
   about:
-    about_mastodon_html: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
+    about_mastodon_html: 'Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.'
     contact_missing: Не е зададено
     contact_unavailable: Не е приложимо
     hosted_on: Mastodon е хостван на %{domain}
+    title: Относно
   accounts:
     follow: Последвай
     followers:
@@ -33,18 +33,25 @@ bg:
       avatar: Аватар
       by_domain: Домейн
       change_email:
+        changed_msg: Успешно променен имейл!
         current_email: Текущ имейл
         label: Промяна на имейл
         new_email: Нов имейл
         submit: Промяна на имейл
         title: Промяна на имейл за %{username}
+      change_role:
+        changed_msg: Успешно променена роля!
+        label: Промяна на ролята
+        no_role: Няма роля
+        title: Промяна на ролята за %{username}
       confirm: Потвърждаване
       confirmed: Потвърдено
       confirming: Потвърждаване
+      custom: Потребителско
       delete: Изтриване на данни
       deleted: Изтрито
       demote: Понижаване
-      destroyed_msg: Данните на %{username} вече са на опашка за незабавно изтриване
+      destroyed_msg: "Данните на %{username} вече са на опашка за незабавно изтриване"
       disable: Замразяване
       disable_two_factor_authentication: Изключване на 2FA
       disabled: Замразено
@@ -55,6 +62,8 @@ bg:
       email_status: Състояние на имейл
       enable: Размразяване
       enabled: Включено
+      enabled_msg: Успешно размразяване на акаунта на %{username}
+      followers: Последователи
       follows: Последвания
       header: Заглавна част
       inbox_url: Входящ URL
@@ -73,6 +82,7 @@ bg:
         active: Активно
         all: Всичко
         pending: Чакащо
+        silenced: Ограничено
         suspended: Спряно
         title: Модерация
       moderation_notes: Модераторни бележки
@@ -80,6 +90,7 @@ bg:
       most_recent_ip: Последен IP
       no_account_selected: Нито един акаунт не е променен, тъй като нито един не е избран
       no_limits_imposed: Няма наложени ограничения
+      no_role_assigned: Няма поставена роля
       not_subscribed: Без абонамент
       pending: Изчаква преглед
       perform_full_suspension: Спиране
@@ -92,6 +103,29 @@ bg:
       rejected_msg: Успешно отхвърлена заявка за регистрация на %{username}
       remove_avatar: Премахване на аватар
       remove_header: Премахване на заглавна част
+      resend_confirmation:
+        already_confirmed: Този потребител вече е потвърден
+      reset: Нулиране
+      reset_password: Нулиране на паролата
+      resubscribe: Абониране пак
+      role: Роля
+      search: Търсене
+      search_same_email_domain: Други потребители със същия домейн за имейл
+      search_same_ip: Други потребители със същия IP
+      security_measures:
+        only_password: Само парола
+        password_and_2fa: Парола и двуфакторно удостоверяване
+      sensitized: Отбелязано като деликатно съдържание
+      shared_inbox_url: URL адрес на споделена входяща кутия
+      show:
+        created_reports: Докладвания
+        targeted_reports: Докладвано от други
+      silence: Ограничение
+      silenced: Ограничено
+      statuses: Публикации
+      subscribe: Абониране
+      suspend: Спиране
+      suspended: Спряно
       unsubscribe: Отписване
       username: Потребителско име
       warn: Предупреждение
@@ -116,6 +150,102 @@ bg:
         remove_avatar_user: Премахване на аватар
         reopen_report: Повторно отваряне на доклад
         reset_password_user: Нулиране на парола
+      deleted_account: изтрит акаунт
+    announcements:
+      publish: Публикуване
+    custom_emojis:
+      by_domain: Домейн
+      create_new_category: Създаване на нова категория
+      created_msg: Успешно сътворено емоджи!
+      delete: Изтриване
+      destroyed_msg: Успешно унищожено емоджи!
+      disable: Изключване
+      disabled: Изключено
+      disabled_msg: Успешно изключване на това емоджи
+      emoji: Емоджи
+      enable: Включване
+      enabled: Включено
+      enabled_msg: Успешно включване на това емоджи
+      image_hint: PNG или GIF до %{size}
+      list: Списък
+      listed: В списъка
+      new:
+        title: Добавяне на ново потребителско емоджи
+      not_permitted: Нямате право да извършвате това действие
+      overwrite: Презаписване
+      shortcode: Кратък код
+      shortcode_hint: Поне 2 символа, само азбучно-цифрови символи и долни черти
+      title: Потребителски емоджита
+      uncategorized: Некатегоризирано
+      update_failed_msg: Не може да се обнови това емоджи
+      updated_msg: Успешно осъвременено емоджи!
+      upload: Качване
+    dashboard:
+      active_users: дейни потребители
+      interactions: взаимодействия
+      media_storage: Мултимедийно хранилище
+      new_users: нови потребители
+      opened_reports: отворени доклади
+      resolved_reports: разрешени доклади
+      software: Софтуер
+      space: Използвано пространство
+      title: Табло за управление
+      top_languages: Водещи дейни езици
+      top_servers: Водещи дейни сървъри
+      website: Уебсайт
+    disputes:
+      appeals:
+        empty: Няма намерени обжалвания.
+        title: Жалби
+    email_domain_blocks:
+      title: Блокирани домейни на имейл
+    follow_recommendations:
+      language: За език
+      status: Състояние
+    instances:
+      by_domain: Домейн
+      content_policies:
+        policy: Политика
+      dashboard:
+        instance_languages_dimension: Водещи езици
+      delivery:
+        clear: Изчистване на грешките за доставка
+        restart: Рестартиране на доставката
+        stop: Спиране на доставката
+        unavailable: Неналично
+      delivery_available: Доставката е налична
+      delivery_error_days: Грешни дни на доставяне
+      empty: Няма намерени домейни.
+    invites:
+      filter:
+        all: Всичко
+        available: Налично
+        expired: Изтекло
+        title: Филтър
+      title: Покани
+    ip_blocks:
+      add_new: Създаване на правило
+      delete: Изтриване
+      expires_in:
+        '1209600': 2 седмици
+        '15778476': 6 месеца
+        '2629746': 1 месец
+        '31556952': 1 година
+        '86400': 1 ден
+        '94670856': 3 години
+    relationships:
+      title: "Отношения на %{acct}"
+    relays:
+      delete: Изтриване
+      disable: Изключване
+      disabled: Изключено
+      enable: Включване
+      enabled: Включено
+      status: Състояние
+    report_notes:
+      today_at: Днес от %{time}
+    reports:
+      are_you_sure: Сигурни ли сте?
   application_mailer:
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
     view: 'Преглед:'
@@ -153,9 +283,9 @@ bg:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     blocks: Вашите блокирания
@@ -185,8 +315,8 @@ bg:
       body: "%{name} помоли за разрешение да те последва"
       subject: 'Чакащ последовател: %{name}'
     mention:
-      body: "%{name} те спомена в:"
-      subject: "%{name} те спомена"
+      body: '%{name} те спомена в:'
+      subject: '%{name} те спомена'
     reblog:
       body: 'Твоята публикация беше споделена от %{name}:'
       subject: "%{name} сподели публикацията ти"
