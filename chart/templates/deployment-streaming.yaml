@@ -14,10 +14,12 @@ spec:
       app.kubernetes.io/component: streaming
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+        {{- end }}
+        # roll the pods to pick up any db migrations or other changes
+        {{- include "mastodon.rollingPodAnnotations" . | nindent 8 }}
       labels:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: streaming
