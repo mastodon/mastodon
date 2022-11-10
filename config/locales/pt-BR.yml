@@ -32,7 +32,7 @@ pt-BR:
     accounts:
       add_email_domain_block: Bloquear domínio de e-mail
       approve: Aprovar
-      approved_msg: O registro de %{username} foi aprovado com sucesso
+      approved_msg: O registro de %{username} foi aprovado
       are_you_sure: Você tem certeza?
       avatar: Imagem de perfil
       by_domain: Domínio
@@ -44,7 +44,7 @@ pt-BR:
         submit: Alterar e-mail
         title: Alterar e-mail para %{username}
       change_role:
-        changed_msg: Cargo alterado com sucesso!
+        changed_msg: Cargo alterado!
         label: Alterar cargo
         no_role: Sem cargo
         title: Alterar cargo para %{username}
@@ -127,12 +127,12 @@ pt-BR:
       reset_password: Redefinir senha
       resubscribe: Reinscrever-se
       role: Cargo
-      search: Pesquisar
+      search: Buscar
       search_same_email_domain: Outros usuários com o mesmo domínio de e-mail
       search_same_ip: Outros usuários com o mesmo IP
       security_measures:
-        only_password: Somente senha
-        password_and_2fa: Senha e 2FA
+        only_password: Apenas senha
+        password_and_2fa: Senha e autenticação de dois fatores
       sensitive: Sensíveis
       sensitized: marcadas como sensíveis
       shared_inbox_url: Link da caixa de entrada compartilhada
@@ -252,7 +252,7 @@ pt-BR:
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
         destroy_user_role_html: "%{name} excluiu a função %{target}"
-        disable_2fa_user_html: "%{name} desativou a exigência de autenticação de dois fatores para o usuário %{target}"
+        disable_2fa_user_html: "%{name} desativou a exigência da autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desativou a autenticação via token por email para %{target}"
         disable_user_html: "%{name} desativou o login para %{target}"
@@ -506,7 +506,7 @@ pt-BR:
       title: Convites
     ip_blocks:
       add_new: Criar regra
-      created_msg: Nova regra de IP adicionada com sucesso
+      created_msg: Nova regra de IP adicionada
       delete: Excluir
       expires_in:
         '1209600': 2 semanas
@@ -538,8 +538,8 @@ pt-BR:
       status: Situação
       title: Repetidores
     report_notes:
-      created_msg: Nota de denúncia criada com sucesso!
-      destroyed_msg: Nota de denúncia excluída com sucesso!
+      created_msg: Nota de denúncia criada!
+      destroyed_msg: Nota de denúncia excluída!
       today_at: Hoje às %{time}
     reports:
       account:
@@ -589,7 +589,7 @@ pt-BR:
       reported_account: Conta denunciada
       reported_by: Denunciada por
       resolved: Resolvido
-      resolved_msg: Denúncia resolvida com sucesso!
+      resolved_msg: Denúncia resolvida!
       skip_to_actions: Pular para ações
       status: Situação
       statuses: Conteúdo denunciado
@@ -744,9 +744,9 @@ pt-BR:
       appeal_pending: Recurso pendente
     system_checks:
       database_schema_check:
-        message_html: Existem migrações de banco de dados pendentes. Por favor, execute-as para garantir que o aplicativo se comporte como esperado
+        message_html: Existem migrações de banco de dados pendentes. Execute-as para garantir que o aplicativo se comporte como esperado
       elasticsearch_running_check:
-        message_html: Não foi possível conectar ao Elasticsearch. Por favor, verifique se está em execução, ou desabilite a pesquisa de texto completo
+        message_html: Não foi possível conectar ao Elasticsearch. Verifique se ele está em execução ou desative a pesquisa de texto completo
       elasticsearch_version_check:
         message_html: 'Versão de Elasticsearch incompatível: %{value}'
         version_comparison: A versão %{running_version} de Elasticsearch está em execução, porém é obrigatória a versão %{required_version}
@@ -857,8 +857,8 @@ pt-BR:
       subject: Novas tendências para revisão em %{instance}
   aliases:
     add_new: Criar alias
-    created_msg: Um novo alias foi criado com sucesso. Agora você pode iniciar a mudança da conta antiga.
-    deleted_msg: Alias removido com sucesso. Não será mais possível se mudar daquela conta para esta conta.
+    created_msg: Um novo atalho foi criado. Agora você pode iniciar a mudança da conta antiga.
+    deleted_msg: O atalho foi removido. Não será mais possível se mudar daquela conta para esta conta.
     empty: Você não tem alias.
     hint_html: Se você quiser migrar de uma outra conta para esta, você pode criar um alias aqui, o que é necessário antes que você possa migrar os seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada pela conta antiga</strong>.
     remove: Desvincular alias
@@ -885,7 +885,7 @@ pt-BR:
     created: Aplicativo criado com sucesso
     destroyed: Aplicativo excluído com sucesso
     regenerate_token: Gerar código de acesso
-    token_regenerated: Código de acesso gerado com sucesso
+    token_regenerated: Código de acesso gerado
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
     your_token: Seu código de acesso
   auth:
@@ -900,7 +900,7 @@ pt-BR:
     didnt_get_confirmation: Não recebeu instruções de confirmação?
     dont_have_your_security_key: Não está com a sua chave de segurança?
     forgot_password: Esqueceu a sua senha?
-    invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Por favor, solicite um novo.
+    invalid_reset_password_token: Código de alteração de senha é inválido ou expirou. Solicite um novo.
     link_to_otp: Digite um código de duas etapas do seu telefone ou um código de recuperação
     link_to_webauth: Use seu dispositivo de chave de segurança
     log_in_with: Iniciar sessão com
@@ -939,7 +939,7 @@ pt-BR:
     error: Infelizmente, ocorreu um erro ao buscar a conta remota
     follow: Seguir
     follow_request: 'Você mandou solicitação para seguir para:'
-    following: 'Sucesso! Você agora está seguindo:'
+    following: 'Sucesso! Agora você está seguindo:'
     post_follow:
       close: Ou você pode simplesmente fechar esta janela.
       return: Mostrar o perfil do usuário
@@ -977,9 +977,9 @@ pt-BR:
     confirm_password: Digite a sua senha atual para verificar a sua identidade
     confirm_username: Digite seu nome de usuário para confirmar o procedimento
     proceed: Excluir conta
-    success_msg: A sua conta foi excluída com sucesso
+    success_msg: Sua conta foi excluída
     warning:
-      before: 'Antes de prosseguir, por favor leia com cuidado:'
+      before: 'Antes de prosseguir, leia com cuidado:'
       caches: Conteúdo que foi armazenado em cache por outros servidores pode continuar a existir
       data_removal: Seus toots e outros dados serão removidos permanentemente
       email_change_html: Você pode <a href="%{path}">alterar seu endereço de e-mail</a> sem excluir sua conta
@@ -1035,7 +1035,7 @@ pt-BR:
       content: Desculpe, algo deu errado por aqui.
       title: Esta página não está certa
     '503': A página não pôde ser carregada devido a uma falha temporária do servidor.
-    noscript_html: Para usar o aplicativo web do Mastodon, por favor ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">aplicativos nativos</a> para o Mastodon em sua plataforma.
+    noscript_html: Para usar o aplicativo web do Mastodon, ative o JavaScript. Ou, se quiser, experimente um dos <a href="%{apps_path}">aplicativos nativos</a> para o Mastodon em sua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um usuário local com esse nome de usuário
     not_found_multiple: não foi possível encontrar %{usernames}
@@ -1097,7 +1097,7 @@ pt-BR:
     trending_now: Em alta no momento
   generic:
     all: Tudo
-    changes_saved_msg: Alterações foram salvas com sucesso!
+    changes_saved_msg: Alterações salvas!
     copy: Copiar
     delete: Excluir
     deselect: Desmarcar todos
@@ -1106,8 +1106,8 @@ pt-BR:
     save_changes: Salvar alterações
     today: hoje
     validation_errors:
-      one: Algo errado não está certo! Por favor, analise o erro abaixo
-      other: Algo errado não está certo! Por favor, analise os %{count} erros abaixo
+      one: Algo não está certo! Analise o erro abaixo
+      other: Algo não está certo! Analise os %{count} erros abaixo
   html_validator:
     invalid_markup: 'contém HTML inválido: %{error}'
   imports:
@@ -1119,7 +1119,7 @@ pt-BR:
       overwrite: Sobrescrever
       overwrite_long: Substituir os registros atuais com os novos
     preface: Você pode importar dados que você exportou de outro servidor, como a lista de pessoas que você segue ou bloqueou.
-    success: Os seus dados foram enviados com sucesso e serão processados em instantes
+    success: Seus dados foram enviados e serão processados em instantes
     types:
       blocking: Lista de bloqueio
       bookmarks: Marcadores
@@ -1172,7 +1172,7 @@ pt-BR:
     acct: Mudou-se para
     cancel: Cancelar redirecionamento
     cancel_explanation: Cancelar o redirecionamento reativará a sua conta atual, mas não trará de volta os seguidores que não foram migrados para aquela conta.
-    cancelled_msg: Redirecionamento cancelado com sucesso.
+    cancelled_msg: Redirecionamento cancelado.
     errors:
       already_moved: é a mesma conta que você migrou
       missing_also_known_as: não está referenciando esta conta
@@ -1192,7 +1192,7 @@ pt-BR:
     set_redirect: Definir redirecionamento
     warning:
       backreference_required: A nova conta deve primeiro ser configurada para que esta seja referenciada
-      before: 'Antes de prosseguir, por favor leia com cuidado:'
+      before: 'Antes de prosseguir, leia com cuidado:'
       cooldown: Depois de se mudar, há um período de espera para poder efetuar uma nova mudança
       disabled_account: Sua conta não estará totalmente funcional ao término deste processo. Entretanto, você terá acesso à exportação de dados bem como à reativação.
       followers: Esta ação moverá todos os seguidores da conta atual para a nova conta
@@ -1255,7 +1255,7 @@ pt-BR:
           trillion: TRI
   otp_authentication:
     code_hint: Digite o código gerado pelo seu aplicativo autenticador para confirmar
-    description_html: Se você habilitar a <strong>autenticação de dois fatores</strong> usando um aplicativo autenticador, o login exigirá que você esteja com o seu telefone, que gerará tokens para você entrar.
+    description_html: Se você ativar a <strong>autenticação de dois fatores</strong> usando um aplicativo autenticador, ao se conectar será exigido que você esteja com o seu telefone, que gerará tokens para você entrar.
     enable: Habilitar
     instructions_html: "<strong>Escaneie este código QR no Google Authenticator ou em um aplicativo TOTP similar no seu telefone</strong>. A partir de agora, esse aplicativo irá gerar tokens que você terá que digitar ao fazer login."
     manual_instructions: 'Se você não pode escanear o código QR e precisa digitá-lo manualmente, aqui está o segredo em texto:'
@@ -1358,7 +1358,7 @@ pt-BR:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Fechar
-    revoke_success: Sessão fechada com sucesso
+    revoke_success: Sessão fechada
     title: Sessões
     view_authentication_history: Ver histórico de autenticação da sua conta
   settings:
@@ -1489,18 +1489,18 @@ pt-BR:
       time: "%H:%M"
   two_factor_authentication:
     add: Adicionar
-    disable: Desativar
-    disabled_success: Autenticação de dois fatores desabilitada com sucesso
+    disable: Desativar autenticação de dois fatores
+    disabled_success: Autenticação de dois fatores desativada
     edit: Editar
     enabled: Autenticação de dois fatores ativada
-    enabled_success: Autenticação de dois fatores ativada com sucesso
+    enabled_success: Autenticação de dois fatores ativada
     generate_recovery_codes: Gerar códigos de recuperação
-    lost_recovery_codes: Códigos de recuperação permitem que você recupere o acesso à sua conta caso perca o seu celular. Se você perdeu seus códigos de recuperação, você pode gerá-los novamente aqui. Seus códigos de recuperação anteriores serão invalidados.
-    methods: Métodos de dois fatores
+    lost_recovery_codes: Os códigos de recuperação permitem que você recupere o acesso à sua conta caso perca o seu celular. Se você perdeu seus códigos de recuperação, você pode gerá-los novamente aqui. Seus códigos de recuperação anteriores serão invalidados.
+    methods: Métodos de autenticação de dois fatores
     otp: Aplicativo autenticador
     recovery_codes: Códigos de recuperação de reserva
-    recovery_codes_regenerated: Códigos de recuperação gerados com sucesso
-    recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto com outros documentos importantes.
+    recovery_codes_regenerated: Códigos de recuperação gerados
+    recovery_instructions_html: Se você perder acesso ao seu celular, você pode usar um dos códigos de recuperação abaixo para acessar a sua conta. <strong>Mantenha os códigos de recuperação em um local seguro</strong>. Por exemplo, você pode imprimi-los e guardá-los junto a outros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
     appeal_approved:
@@ -1572,16 +1572,16 @@ pt-BR:
     add: Adicionar nova chave de segurança
     create:
       error: Houve um problema ao adicionar sua chave de segurança. Tente novamente.
-      success: A sua chave de segurança foi adicionada com sucesso.
+      success: Sua chave de segurança foi adicionada.
     delete: Excluir
     delete_confirmation: Você tem certeza de que deseja excluir esta chave de segurança?
     description_html: Se você habilitar a <strong>autenticação por chave de segurança</strong>, o login exigirá que você use uma das suas chaves de segurança.
     destroy:
       error: Houve um problema ao excluir sua chave de segurança. Tente novamente.
-      success: Sua chave de segurança foi excluída com sucesso.
+      success: Sua chave de segurança foi excluída.
     invalid_credential: Chave de segurança inválida
     nickname_hint: Digite o apelido da sua nova chave de segurança
     not_enabled: Você ainda não habilitou o WebAuthn
     not_supported: Este navegador não tem suporte a chaves de segurança
-    otp_required: Para usar chaves de segurança, por favor habilite primeiro a autenticação de dois fatores.
+    otp_required: Para usar chaves de segurança, ative a autenticação de dois fatores.
     registered_on: Registrado em %{date}
