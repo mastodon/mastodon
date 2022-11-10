@@ -199,7 +199,8 @@ class Request
         rescue IPAddr::InvalidAddressError
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
-            addresses = dns.getaddresses(host).take(2)
+            addresses = dns.getaddresses(host)
+            addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
           end
         end
 

@@ -17,7 +17,7 @@ class FeaturedTag < ApplicationRecord
   belongs_to :account, inverse_of: :featured_tags
   belongs_to :tag, inverse_of: :featured_tags, optional: true # Set after validation
 
-  validates :name, presence: true, format: { with: /\A(#{Tag::HASHTAG_NAME_RE})\z/i }, on: :create
+  validates :name, presence: true, format: { with: Tag::HASHTAG_NAME_RE }, on: :create
 
   validate :validate_tag_uniqueness, on: :create
   validate :validate_featured_tags_limit, on: :create

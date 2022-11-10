@@ -51,7 +51,7 @@ zh-TW:
         subject: Mastodon：已停用兩階段驗證
         title: 已停用 2FA
       two_factor_enabled:
-        explanation: 已對您的帳號啟用兩階段驗證。登入時將需要配對之 TOTP 應用程式所產生之 Token。
+        explanation: 已對您的帳號啟用兩階段驗證。登入時將需要已配對的 TOTP 應用程式所產生之 Token。
         subject: Mastodon：已啟用兩階段驗證
         title: 已啟用 2FA
       two_factor_recovery_codes_changed:
@@ -70,9 +70,9 @@ zh-TW:
           subject: Mastodon：安全密鑰已移除
           title: 您的一支安全密鑰已經被移除
       webauthn_disabled:
-        explanation: 您的帳號並沒有啟用安全密鑰認證方式。只能以 TOTP app 產生地成對 token 登入。
-        subject: Mastodon：安全密鑰認證方式已關閉
-        title: 已關閉安全密鑰
+        explanation: 您的帳號已停用安全密鑰認證。只能透過已配對的 TOTP 應用程式所產生之 Token 登入。
+        subject: Mastodon：安全密鑰認證方式已停用
+        title: 已停用安全密鑰
       webauthn_enabled:
         explanation: 您的帳號已啟用安全密鑰認證。您可以使用安全密鑰登入了。
         subject: Mastodon：已啟用安全密鑰認證

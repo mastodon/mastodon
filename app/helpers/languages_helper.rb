@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable Metrics/ModuleLength, Style/WordArray
 
 module LanguagesHelper
   ISO_639_1 = {
@@ -189,8 +190,13 @@ module LanguagesHelper
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
+    jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
+    ldn: ['Láadan', 'Láadan'].freeze,
+    lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
+    tok: ['Toki Pona', 'toki pona'].freeze,
+    zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
@@ -259,3 +265,5 @@ module LanguagesHelper
     locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
   end
 end
+
+# rubocop:enable Metrics/ModuleLength, Style/WordArray
