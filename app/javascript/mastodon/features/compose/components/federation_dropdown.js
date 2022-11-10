@@ -18,6 +18,8 @@ const messages = defineMessages({
 
 const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 
+const getValue = element => element.dataset.index === 'true';
+
 class FederationDropdownMenu extends React.PureComponent {
 
   static propTypes = {
@@ -40,7 +42,7 @@ class FederationDropdownMenu extends React.PureComponent {
 
   handleKeyDown = e => {
     const { items } = this.props;
-    const value = Boolean(e.currentTarget.getAttribute('data-index'));
+    const value = getValue(e.currentTarget);
     const index = items.findIndex(item => {
       return (item.value === value);
     });
@@ -57,40 +59,38 @@ class FederationDropdownMenu extends React.PureComponent {
       element = this.node.childNodes[index + 1];
       if (element) {
         element.focus();
-        this.props.onChange(Boolean(element.getAttribute('data-index')));
+        this.props.onChange(getValue(element));
       }
       break;
     case 'ArrowUp':
       element = this.node.childNodes[index - 1];
       if (element) {
         element.focus();
-        this.props.onChange(Boolean(element.getAttribute('data-index')));
+        this.props.onChange(getValue(element));
       }
       break;
     case 'Home':
       element = this.node.firstChild;
       if (element) {
         element.focus();
-        this.props.onChange(Boolean(element.getAttribute('data-index')));
+        this.props.onChange(getValue(element));
       }
       break;
     case 'End':
       element = this.node.lastChild;
       if (element) {
         element.focus();
-        this.props.onChange(Boolean(element.getAttribute('data-index')));
+        this.props.onChange(getValue(element));
       }
       break;
     }
   }
 
   handleClick = e => {
-    const value = Boolean(e.currentTarget.getAttribute('data-index'));
-
     e.preventDefault();
 
     this.props.onClose();
-    this.props.onChange(value);
+    this.props.onChange(getValue(e.currentTarget));
   }
 
   componentDidMount () {
@@ -125,7 +125,7 @@ class FederationDropdownMenu extends React.PureComponent {
           // react-overlays
           <div className='privacy-dropdown__dropdown' style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} role='listbox' ref={this.setRef}>
             {items.map(item => (
-              <div role='option' tabIndex='0' key={item.value} data-index={item.value ? item.value : undefined} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
+              <div role='option' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
                 <div className='privacy-dropdown__option__icon'>
                   <i className={`fa fa-fw fa-${item.icon}`} />
                 </div>
