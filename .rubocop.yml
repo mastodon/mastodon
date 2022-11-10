@@ -185,3 +185,11 @@ Style/TrailingCommaInHashLiteral:
 
 Style/SymbolArray:
   Enabled: false
+
+# Reason: Prefer less intendation in conditional assignments
+# https://docs.rubocop.org/rubocop/cops_style.html#styleredundantbegin
+Style/RedundantBegin:
+  Enabled: false
+
+RSpec/NamedSubject:
+  EnforcedStyle: named_only
