@@ -1,10 +1,9 @@
----
 eo:
   about:
     about_mastodon_html: 'Mastodon estas socia retejo de la estonteco: sen reklamo, sen kompania gvato, etika dezajno kaj malcentraligo! Vi regu viajn datumojn kun Mastodon!'
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
-    hosted_on: "%{domain} estas nodo de Mastodon"
+    hosted_on: '%{domain} estas nodo de Mastodon'
     title: Pri
   accounts:
     follow: Sekvi
@@ -33,16 +32,19 @@ eo:
     accounts:
       add_email_domain_block: Bloki retadresan domajnon
       approve: Aprobi
+      approved_msg: Sukcese aprobis aliĝilon de %{username}
       are_you_sure: Ĉu vi certas?
       avatar: Profilbildo
       by_domain: Domajno
       change_email:
+        changed_msg: Retpoŝta adreso estis sukcese ŝanĝita!
         current_email: Nuna retadreso
         label: Ŝanĝi retadreson
         new_email: Nova retadreso
         submit: Ŝanĝi retadreson
         title: Ŝanĝi retadreson por %{username}
       change_role:
+        changed_msg: Rolo estis sukcese ŝanĝita!
         label: Ŝanĝi rolon
         no_role: Neniu rolo
         title: Ŝanĝi rolon por %{username}
@@ -53,7 +55,9 @@ eo:
       delete: Forigi datumojn
       deleted: Forigita
       demote: Degradi
+      destroyed_msg: "Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ"
       disable: Frostigi
+      disable_sign_in_token_auth: Malŝalti retpoŝtan ĵetonan aŭtentigon
       disable_two_factor_authentication: Malŝalti 2FA-n
       disabled: Frostigita
       display_name: Montrata nomo
@@ -62,6 +66,7 @@ eo:
       email: Retpoŝto
       email_status: Stato de retpoŝto
       enable: Malfrostigi
+      enable_sign_in_token_auth: Ŝalti retpoŝtan ĵetonan aŭtentigon
       enabled: Ebligita
       followers: Sekvantoj
       follows: Sekvatoj
@@ -91,6 +96,7 @@ eo:
       most_recent_ip: Lasta IP
       no_account_selected: Neniu konto estis ŝanĝita ĉar neniu estis selektita
       no_limits_imposed: Neniu limito trudita
+      no_role_assigned: Sen rolo
       not_subscribed: Ne abonita
       pending: Pritraktata recenzo
       perform_full_suspension: Suspendi
@@ -110,6 +116,7 @@ eo:
       reset: Restarigi
       reset_password: Restarigi pasvorton
       resubscribe: Reaboni
+      role: Rolo
       search: Serĉi
       search_same_email_domain: Aliaj uzantoj kun la sama retpoŝta domajno
       search_same_ip: Aliaj uzantoj kun la sama IP
@@ -156,8 +163,10 @@ eo:
         create_domain_block: Krei Blokadon De Domajno
         create_email_domain_block: Krei Blokadon De Retpoŝta Domajno
         create_ip_block: Krei IP-regulon
+        create_user_role: Krei Rolon
         demote_user: Malpromocii Uzanton
         destroy_announcement: Forigi Anoncon
+        destroy_canonical_email_block: Forigi blokadon de retpoŝta adreso
         destroy_custom_emoji: Forigi Propran Emoĝion
         destroy_domain_allow: Forigi Domajnan Permeson
         destroy_domain_block: Forigi blokadon de domajno
@@ -191,6 +200,7 @@ eo:
         update_custom_emoji: Ĝisdatigi proprajn emoĝiojn
         update_domain_block: Ĝigdatigi domajnan blokadon
         update_status: Ĝisdatigi staton
+        update_user_role: Ĝisdatigi Rolon
       actions:
         approve_user_html: "%{name} aprobis registriĝon de %{target}"
         assigned_to_self_report_html: "%{name} asignis signalon %{target} al si mem"
@@ -400,11 +410,11 @@ eo:
       no_ip_block_selected: Neniu IP-regulo estis ŝanĝita ĉar neniu estis elektita
       title: IP-reguloj
     relationships:
-      title: Rilatoj de %{acct}
+      title: "Rilatoj de %{acct}"
     relays:
       add_new: Aldoni novan ripetilon
       delete: Forigi
-      description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
+      description_html: <strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj.
       disable: Neebligi
       disabled: Neebligita
       enable: Enŝalti
@@ -556,7 +566,7 @@ eo:
     new_report:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
-      subject: Nova signalo por %{instance} (#%{id})
+      subject: 'Nova signalo por %{instance} (#%{id})'
     new_trends:
       new_trending_links:
         title: Tendencantaj ligiloj
@@ -699,9 +709,7 @@ eo:
       content: Ni bedaŭras, io malsukcesis niaflanke.
       title: Ĉi tiu paĝo ne estas ĝusta
     '503': The page could not be served due to a temporary server failure.
-    noscript_html: |-
-      Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
-      <a href="%{apps_path}">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
+    noscript_html: "Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la\n<a href=\"%{apps_path}\">operaciumaj aplikaĵoj</a> por Mastodon por via platformo."
   existing_username_validator:
     not_found: Ne povas trovi lokaj uzanto kun tiu uzantnomo
     not_found_multiple: Ne povas trovi %{usernames}
@@ -842,7 +850,7 @@ eo:
     title: Moderigado
   notification_mailer:
     favourite:
-      body: "%{name} stelumis vian mesaĝon:"
+      body: '%{name} stelumis vian mesaĝon:'
       subject: "%{name} stelumis vian mesaĝon"
       title: Nova stelumo
     follow:
@@ -852,12 +860,12 @@ eo:
     follow_request:
       action: Administri petojn de sekvado
       body: "%{name} petis sekvi vin"
-      subject: "%{name} petis sekvi vin"
+      subject: '%{name} petis sekvi vin'
       title: Nova peto de sekvado
     mention:
       action: Respondi
-      body: "%{name} menciis vin en:"
-      subject: "%{name} menciis vin"
+      body: '%{name} menciis vin en:'
+      subject: '%{name} menciis vin'
       title: Nova mencio
     reblog:
       body: 'Via mesaĝo estas suprenigita de %{name}:'
@@ -1037,7 +1045,7 @@ eo:
     show_older: Montri pli malnovajn
     show_thread: Montri la mesaĝaron
     sign_in_to_participate: Ensaluti por partopreni en la konversacio
-    title: "%{name}: “%{quote}”"
+    title: '%{name}: “%{quote}”'
     visibilities:
       direct: Rekta
       private: Montri nur al sekvantoj
