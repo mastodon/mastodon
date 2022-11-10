@@ -552,6 +552,8 @@ eo:
       reblogs: Reblogaĵoj
       status_changed: Afiŝo ŝanĝiĝis
       title: Mesaĝoj de la konto
+      trending: Popularaĵoj
+      visibility: Videbleco
       with_media: Kun aŭdovidaĵoj
     strikes:
       actions:
@@ -559,9 +561,12 @@ eo:
         disable: "%{name} frostigis la konton de %{target}"
         suspend: "%{name} suspendis la konton de %{target}"
       appeal_approved: Apelaciita
+      appeal_pending: Apelacio pritraktiĝos
     system_checks:
       database_schema_check:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
+      elasticsearch_running_check:
+        message_html: Ne eblas konekti Elasticsearch. Bonvolu kontroli ke ĝi funkcias, aǔ malŝaltu plentekstan serĉon
       rules_check:
         action: Administri servilajn regulojn
         message_html: Vi ne difinis iujn servilajn regulojn.
@@ -571,6 +576,7 @@ eo:
     title: Administrado
     trends:
       allow: Permesi
+      approved: Aprobita
       disallow: Malpermesi
       links:
         allow: Permesi la ligilon
