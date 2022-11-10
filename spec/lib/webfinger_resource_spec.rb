@@ -50,7 +50,7 @@ describe WebfingerResource do
       end
 
       it 'finds the username in a mixed case http route' do
-        resource = 'HTTp://exAMPLEe.com/users/alice'
+        resource = 'HTTp://exAMPLe.com/users/alice'
 
         result = WebfingerResource.new(resource).username
         expect(result).to eq 'alice'

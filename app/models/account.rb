@@ -64,6 +64,7 @@ class Account < ApplicationRecord
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
   URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
+  USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 
   include Attachmentable
   include AccountAssociations
@@ -88,7 +89,7 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations
-  validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
+  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
@@ -295,7 +296,7 @@ class Account < ApplicationRecord
 
   def fields
     (self[:fields] || []).map do |f|
-      Field.new(self, f)
+      Account::Field.new(self, f)
     rescue
       nil
     end.compact
@@ -397,48 +398,6 @@ class Account < ApplicationRecord
 
   def requires_review_notification?
     requires_review? && !requested_review?
-  end
-
-  class Field < ActiveModelSerializers::Model
-    attributes :name, :value, :verified_at, :account
-
-    def initialize(account, attributes)
-      @original_field = attributes
-      string_limit = account.local? ? 255 : 2047
-      super(
-        account:     account,
-        name:        attributes['name'].strip[0, string_limit],
-        value:       attributes['value'].strip[0, string_limit],
-        verified_at: attributes['verified_at']&.to_datetime,
-      )
-    end
-
-    def verified?
-      verified_at.present?
-    end
-
-    def value_for_verification
-      @value_for_verification ||= begin
-        if account.local?
-          value
-        else
-          ActionController::Base.helpers.strip_tags(value)
-        end
-      end
-    end
-
-    def verifiable?
-      value_for_verification.present? && value_for_verification.start_with?('http://', 'https://')
-    end
-
-    def mark_verified!
-      self.verified_at = Time.now.utc
-      @original_field['verified_at'] = verified_at
-    end
-
-    def to_h
-      { name: name, value: value, verified_at: verified_at }
-    end
   end
 
   class << self
