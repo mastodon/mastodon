@@ -48,6 +48,24 @@ upgrading Mastodon versions, it may sometimes be necessary to manually delete
 the Rails and Sidekiq pods so that they are recreated against the latest
 migration.
 
+# Upgrades in 2.1.0
+
+## ingressClassName and tls-acme changes
+The annotations previously defaulting to nginx have been removed and support
+ for ingressClassName has been added.
+```yaml
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+```
+
+To restore the old functionality simply add the above snippet to your `values.yaml`,
+but the recommendation is to replace these with `ingress.ingressClassName` and use
+cert-manager's issuer/cluster-issuer instead of tls-acme.
+If you're uncertain about your current setup leave `ingressClassName` empty and add
+`kubernetes.io/tls-acme` to `ingress.annotations` in your `values.yaml`.
+
 # Upgrades in 2.0.0
 
 ## Fixed labels
