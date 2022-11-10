@@ -15,6 +15,7 @@ import DoodleModal from './doodle_modal';
 import ConfirmationModal from './confirmation_modal';
 import FocalPointModal from './focal_point_modal';
 import DeprecatedSettingsModal from './deprecated_settings_modal';
+import ImageModal from './image_modal';
 import {
   OnboardingModal,
   MuteModal,
@@ -38,6 +39,7 @@ const MODAL_COMPONENTS = {
   'ONBOARDING': OnboardingModal,
   'VIDEO': () => Promise.resolve({ default: VideoModal }),
   'AUDIO': () => Promise.resolve({ default: AudioModal }),
+  'IMAGE': () => Promise.resolve({ default: ImageModal }),
   'BOOST': () => Promise.resolve({ default: BoostModal }),
   'FAVOURITE': () => Promise.resolve({ default: FavouriteModal }),
   'DOODLE': () => Promise.resolve({ default: DoodleModal }),
