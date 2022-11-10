@@ -3,7 +3,7 @@
 class Account::Field < ActiveModelSerializers::Model
   MAX_CHARACTERS_LOCAL  = 255
   MAX_CHARACTERS_COMPAT = 2_047
-  ACCEPTED_SCHEMES      = %w(http https).freeze
+  ACCEPTED_SCHEMES      = %w(https).freeze
 
   attributes :name, :value, :verified_at, :account
 
