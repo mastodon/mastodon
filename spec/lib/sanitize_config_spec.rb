@@ -41,5 +41,17 @@ describe Sanitize::Config do
     it 'keeps a with href' do
       expect(Sanitize.fragment('<a href="http://example.com">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
     end
+
+    it 'keeps math' do
+      MATHML = '<math display="block"><mrow><mrow><munder><mo movablelimits="false">∑</mo><mrow><mi>a</mi><mo>∈</mo><mi>𝔄</mi></mrow></munder></mrow><mn>2</mn><mo>⁢</mo><mi>a</mi><mo>+</mo><mn>1</mn></mrow></math>'
+      expect(Sanitize.fragment(MATHML, subject)).to eq MATHML
+    end
+
+    it 'correctly sanitizes linethickness' do
+      expect(Sanitize.fragment('<math><mfrac linethickness="0"><mn>1</mn><mn>2</mn></mfrac></math>', subject)).to eq '<math><mfrac linethickness="0"><mn>1</mn><mn>2</mn></mfrac></math>'
+      expect(Sanitize.fragment('<math><mfrac linethickness="1"><mn>1</mn><mn>2</mn></mfrac></math>', subject)).to eq '<math><mfrac><mn>1</mn><mn>2</mn></mfrac></math>'
+    end
+
+    ''
   end
 end
