@@ -47,3 +47,39 @@ Sidekiq deployments, it’s possible they will occur in the wrong order.  After
 upgrading Mastodon versions, it may sometimes be necessary to manually delete
 the Rails and Sidekiq pods so that they are recreated against the latest
 migration.
+
+# Upgrades in 2.0.0
+
+## Fixed labels
+Because of the changes in [#19706](https://github.com/mastodon/mastodon/pull/19706) the upgrade may fail with the following error:
+```Error: UPGRADE FAILED: cannot patch "mastodon-sidekiq"```
+
+If you want an easy upgrade and you're comfortable with some downtime then
+simply delete the -sidekiq, -web, and -streaming Deployments manually.
+
+If you require a no-downtime upgrade then:
+1. run `helm template` instead of `helm upgrade`
+2. Copy the new -web and -streaming services into `services.yml`
+3. Copy the new -web and -streaming deployments into `deployments.yml`
+4. Append -temp to the name of each deployment in `deployments.yml`
+5. `kubectl apply -f deployments.yml` then wait until all pods are ready
+6. `kubectl apply -f services.yml`
+7. Delete the old -sidekiq, -web, and -streaming deployments manually
+8. `helm upgrade` like normal
+9. `kubectl delete -f deployments.yml` to clear out the temporary deployments
+
+## PostgreSQL passwords
+If you've previously installed the chart and you're having problems with 
+postgres not accepting your password then make sure to set `username` to
+`postgres` and `password` and `postgresPassword` to the same passwords.
+```yaml
+postgresql:
+  auth:
+    username: postgres
+    password: <same password>
+    postgresPassword: <same password>
+```
+
+And make sure to set `password` to the same value as `postgres-password`
+in your `mastodon-postgresql` secret:
+```kubectl edit secret mastodon-postgresql```
