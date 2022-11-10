@@ -12,7 +12,11 @@ data:
   {{- end }}
   DB_NAME: {{ .Values.postgresql.auth.database }}
   DB_POOL: {{ .Values.mastodon.sidekiq.concurrency | quote }}
+  {{- if .Values.postgresql.auth.port }}
+  DB_PORT: {{ .Values.postgresql.auth.port }}
+  {{- else }}
   DB_PORT: "5432"
+  {{- end }}
   DB_USER: {{ .Values.postgresql.auth.username }}
   DEFAULT_LOCALE: {{ .Values.mastodon.locale }}
   {{- if .Values.elasticsearch.enabled }}
