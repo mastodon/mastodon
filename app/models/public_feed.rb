@@ -51,6 +51,10 @@ class PublicFeed
     options[:local]
   end
 
+  def without_local_only?
+    options[:without_local_only]
+  end
+
   def remote_only?
     options[:remote]
   end
@@ -73,6 +77,10 @@ class PublicFeed
 
   def remote_only_scope
     Status.remote
+  end
+
+  def without_local_only_scope
+    Status.without_local_only
   end
 
   def without_replies_scope

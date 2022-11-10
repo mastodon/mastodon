@@ -57,6 +57,12 @@ describe TagFeed, type: :service do
       expect(results).to_not include status1
     end
 
+    it 'excludes local-only posts when specified' do
+      status1.update(local_only: true)
+      results = described_class.new(tag1, nil, any: [tag2.name], without_local_only: true).get(20)
+      expect(results).to_not include status1
+    end
+
     it 'allows replies to be included' do
       original = Fabricate(:status)
       status = Fabricate(:status, tags: [tag1], in_reply_to_id: original.id)
