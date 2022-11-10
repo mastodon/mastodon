@@ -340,14 +340,24 @@ nn:
       media_storage: Medielagring
       new_users: nye brukarar
       opened_reports: rapportar opna
-      resolved_reports: rapporter løst
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> ventande ankar"
+        other: "<strong>%{count}</strong> ventande klagar"
+      pending_users_html:
+        one: "<strong>%{count}</strong> ventande brukarar"
+        other: "<strong>%{count}</strong> ventande brukarar"
+      resolved_reports: rapportar løyst
       software: Programvare
-      sources: Kilder for registreringer
+      sources: Kjelder for registreringar
       space: Lagrinsplass nytta
       title: Dashbord
       top_languages: Mest aktive språk
-      top_servers: Mest aktive servere
+      top_servers: Mest aktive serverar
       website: Nettside
+    disputes:
+      appeals:
+        empty: Ingen ankar funne.
+        title: Ankar
     domain_allows:
       add_new: Kvitlist domene
       created_msg: Domene er vorte kvitlista
@@ -388,9 +398,13 @@ nn:
         other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Slett
+      dns:
+        types:
+          mx: MX post
       domain: Domene
       new:
         create: Legg til domene
+        resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
@@ -399,14 +413,14 @@ nn:
       language: For språk
       status: Status
       suppress: Undertrykk anbefalte følger
-      suppressed: Dempet
-      title: Følg anbefalinger
+      suppressed: Dempa
+      title: Følg gjerne desse
       unsuppress: Gjenopprett følg-anbefaling
     instances:
       availability:
         failure_threshold_reached: Feilterskelen ble nådd %{date}.
         no_failures_recorded: Ingen feil registrert.
-        title: Tilgjengelighet
+        title: Tilgjenge
         warning: Det siste forsøket på å koble til denne serveren lyktes ikke
       back_to_all: All
       back_to_limited: Begrenset
