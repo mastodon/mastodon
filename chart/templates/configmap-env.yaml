@@ -31,8 +31,16 @@ data:
   MALLOC_ARENA_MAX: "2"
   NODE_ENV: "production"
   RAILS_ENV: "production"
+  {{- if .Values.redis.enabled }}
   REDIS_HOST: {{ template "mastodon.redis.fullname" . }}-master
+  {{- else }}
+  REDIS_HOST: {{ .Values.redis.hostname }}
+  {{- end }}
+  {{- if .Values.redis.port }}
+  REDIS_PORT: {{ .Values.redis.port }}
+  {{- else }}
   REDIS_PORT: "6379"
+  {{- end }}
   {{- if .Values.mastodon.s3.enabled }}
   S3_BUCKET: {{ .Values.mastodon.s3.bucket }}
   S3_ENABLED: "true"
