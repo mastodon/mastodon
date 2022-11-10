@@ -276,7 +276,7 @@ Some of the features in this release have been funded through the [NGI0 Discover
 
 ### Fixed
 
-- Fix error resposes for `from` search prefix ([single-right-quote](https://github.com/mastodon/mastodon/pull/17963))
+- Fix error responses for `from` search prefix ([single-right-quote](https://github.com/mastodon/mastodon/pull/17963))
 - Fix dangling language-specific trends ([Gargron](https://github.com/mastodon/mastodon/pull/17997))
 - Fix extremely rare race condition when deleting a status or account ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17994))
 - Fix trends returning less results per page when filtered in REST API ([Gargron](https://github.com/mastodon/mastodon/pull/17996))
@@ -411,7 +411,7 @@ Some of the features in this release have been funded through the [NGI0 Discover
 - Remove profile directory link from main navigation panel in web UI ([Gargron](https://github.com/mastodon/mastodon/pull/17688))
 - **Remove language detection through cld3** ([Gargron](https://github.com/mastodon/mastodon/pull/17478), [ykzts](https://github.com/mastodon/mastodon/pull/17539), [Gargron](https://github.com/mastodon/mastodon/pull/17496), [Gargron](https://github.com/mastodon/mastodon/pull/17722))
   - cld3 is very inaccurate on short-form content even with unique alphabets
-  - Post language can be overriden individually using `language` param
+  - Post language can be overridden individually using `language` param
   - Otherwise, it defaults to the user's interface language
 - Remove support for `OAUTH_REDIRECT_AT_SIGN_IN` ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/17287))
   - Use `OMNIAUTH_ONLY` instead

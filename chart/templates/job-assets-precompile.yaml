@@ -27,7 +27,7 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
-                - key: component
+                - key: app.kubernetes.io/part-of
                   operator: In
                   values:
                     - rails
@@ -60,7 +60,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ template "mastodon.postgresql.secretName" . }}
-                  key: postgres-password
+                  key: password
             - name: "REDIS_PASSWORD"
               valueFrom:
                 secretKeyRef:

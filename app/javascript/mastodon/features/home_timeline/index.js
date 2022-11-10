@@ -130,7 +130,6 @@ class HomeTimeline extends React.PureComponent {
           className={classNames('column-header__button', { 'active': showAnnouncements })}
           title={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
-          aria-pressed={showAnnouncements ? 'true' : 'false'}
           onClick={this.handleToggleAnnouncementsClick}
         >
           <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
