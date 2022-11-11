@@ -682,6 +682,10 @@
       {
         "defaultMessage": "Filter this post",
         "id": "status.filter"
+      },
+      {
+        "defaultMessage": "Open original page",
+        "id": "account.open_original_page"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -887,16 +891,8 @@
         "id": "about.domain_blocks.preamble"
       },
       {
-        "defaultMessage": "Domain",
-        "id": "about.domain_blocks.domain"
-      },
-      {
-        "defaultMessage": "Severity",
-        "id": "about.domain_blocks.severity"
-      },
-      {
-        "defaultMessage": "Reason",
-        "id": "about.domain_blocks.comment"
+        "defaultMessage": "Reason not available",
+        "id": "about.domain_blocks.no_reason_available"
       },
       {
         "defaultMessage": "Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.",
@@ -1186,6 +1182,10 @@
       {
         "defaultMessage": "Change subscribed languages",
         "id": "account.languages"
+      },
+      {
+        "defaultMessage": "Open original page",
+        "id": "account.open_original_page"
       },
       {
         "defaultMessage": "Follows you",
@@ -2603,7 +2603,7 @@
         "id": "interaction_modal.on_another_server"
       },
       {
-        "defaultMessage": "Simply copy and paste this URL into the search bar of your favourite app or the web interface where you are signed in.",
+        "defaultMessage": "Copy and paste this URL into the search field of your favourite Mastodon app or the web interface of your Mastodon server.",
         "id": "interaction_modal.other_server_instructions"
       }
     ],
@@ -3598,6 +3598,10 @@
       {
         "defaultMessage": "Unblock @{name}",
         "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Open original page",
+        "id": "account.open_original_page"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
@@ -3997,6 +4001,15 @@
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/header.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/image_modal.json"
   },
   {
     "descriptors": [
