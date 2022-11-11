@@ -63,6 +63,8 @@ module Mastodon
       dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
       prefix          = options[:prefix]
 
+      exit_cleanly = true
+
       case Paperclip::Attachment.default_options[:storage]
       when :s3
         paperclip_instance = MediaAttachment.new.file
@@ -78,6 +80,7 @@ module Mastodon
             rescue => e
               progress.log(pastel.red("Error fetching list of files: #{e}"))
               progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
+              exit_cleanly = false
               break
             end
           end
@@ -118,6 +121,7 @@ module Mastodon
               progress.log("Found and removed orphan: #{object.key}")
             rescue => e
               progress.log(pastel.red("Error processing #{object.key}: #{e}"))
+              exit_cleanly = false
             end
           end
         end
@@ -174,6 +178,7 @@ module Mastodon
             progress.log("Found and removed orphan: #{key}")
           rescue => e
             progress.log(pastel.red("Error processing #{key}: #{e}"))
+            exit_cleanly = false
           end
         end
       end
@@ -182,6 +187,8 @@ module Mastodon
       progress.finish
 
       say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
+
+      exit(1) unless exit_cleanly
     end
 
     option :account, type: :string
