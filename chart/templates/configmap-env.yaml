@@ -12,11 +12,7 @@ data:
   {{- end }}
   DB_NAME: {{ .Values.postgresql.auth.database }}
   DB_POOL: {{ .Values.mastodon.sidekiq.concurrency | quote }}
-  {{- if .Values.postgresql.auth.port }}
-  DB_PORT: {{ .Values.postgresql.auth.port }}
-  {{- else }}
-  DB_PORT: "5432"
-  {{- end }}
+  DB_PORT: {{ .Values.postgresql.auth.port | default "5432" | quote }}
   DB_USER: {{ .Values.postgresql.auth.username }}
   DEFAULT_LOCALE: {{ .Values.mastodon.locale }}
   {{- if .Values.elasticsearch.enabled }}
@@ -40,11 +36,7 @@ data:
   {{- else }}
   REDIS_HOST: {{ .Values.redis.hostname }}
   {{- end }}
-  {{- if .Values.redis.port }}
-  REDIS_PORT: {{ .Values.redis.port }}
-  {{- else }}
-  REDIS_PORT: "6379"
-  {{- end }}
+  REDIS_PORT: {{ .Values.redis.port | default "6379" | quote }}
   {{- if .Values.mastodon.s3.enabled }}
   S3_BUCKET: {{ .Values.mastodon.s3.bucket }}
   S3_ENABLED: "true"
