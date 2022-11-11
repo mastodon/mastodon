@@ -371,8 +371,8 @@ pt-BR:
     domain_allows:
       add_new: Permitir domínio
       created_msg: Domínio foi permitido
-      destroyed_msg: Domínio foi bloqueado
-      undo: Bloquear
+      destroyed_msg: Domínio foi proibido de federar
+      undo: Bloquear federação com domínio
     domain_blocks:
       add_new: Adicionar novo bloqueio de domínio
       created_msg: Domínio está sendo bloqueado
@@ -753,6 +753,8 @@ pt-BR:
       rules_check:
         action: Gerenciar regras do servidor
         message_html: Você não definiu nenhuma regra de servidor.
+      sidekiq_process_check:
+        message_html: Nenhum processo Sidekiq rodando para a(s) fila(s) %{value}. Por favor, revise a sua configuração para Sidekiq
     tags:
       review: Status da revisão
       updated_msg: Configurações de hashtag atualizadas
@@ -764,8 +766,9 @@ pt-BR:
       links:
         allow: Permitir link
         allow_provider: Permitir editor
-        disallow: Impedir link
-        disallow_provider: Impedir publicador
+        description_html: Estes são links que estão sendo compartilhados por contas que seu servidor vê. Você pode ajudar seus usuários a descobrir o que está acontecendo no mundo. Nenhum link é exibido publicamente até que você aprove o editor. Você também pode permitir ou rejeitar links individuais.
+        disallow: Proibir link
+        disallow_provider: Proibir autor
         no_link_selected: Nenhum link foi alterado como nenhum foi selecionado
         title: Em alta no momento
         usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
@@ -781,8 +784,8 @@ pt-BR:
         allow: Permitir publicação
         allow_account: Permitir autor
         description_html: Estes são as publicações que seu servidor sabe que estão sendo muito compartilhadas e favorecidas no momento. Isso pode ajudar seus usuários, novos e atuais, a encontrar mais pessoas para seguir. Nenhuma publicação é exibida publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
-        disallow: Impedir publicação
-        disallow_account: Impedir autor
+        disallow: Proibir publicação
+        disallow_account: Proibir autor
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
