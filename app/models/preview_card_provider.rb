@@ -25,7 +25,7 @@ class PreviewCardProvider < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
-  has_attached_file :icon, styles: { static: { format: 'png', convert_options: '-coalesce -strip' } }, validate_media_type: false
+  has_attached_file :icon, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set modify-date +set create-date' } }, validate_media_type: false
   validates_attachment :icon, content_type: { content_type: ICON_MIME_TYPES }, size: { less_than: LIMIT }
   remotable_attachment :icon, LIMIT
 
