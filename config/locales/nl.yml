@@ -25,7 +25,7 @@ nl:
   admin:
     account_actions:
       action: Actie uitvoeren
-      title: Moderatieactie op %{acct} uitvoeren
+      title: Moderatiemaatregel tegen %{acct} nemen
     account_moderation_notes:
       create: Laat een opmerking achter
       created_msg: Aanmaken van opmerking voor moderatoren geslaagd!
@@ -35,7 +35,7 @@ nl:
       approve: Goedkeuren
       approved_msg: Het goedkeuren van het account van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
-      avatar: Avatar
+      avatar: Profielfoto
       by_domain: Domein
       change_email:
         changed_msg: E-mailadres succesvol veranderd!
@@ -116,9 +116,9 @@ nl:
       redownloaded_msg: Het herstellen van het oorspronkelijke profiel van %{username} is geslaagd
       reject: Afwijzen
       rejected_msg: Het afwijzen van het registratieverzoek van %{username} is geslaagd
-      remove_avatar: Avatar verwijderen
+      remove_avatar: Profielfoto verwijderen
       remove_header: Omslagfoto verwijderen
-      removed_avatar_msg: Het verwijderen van de avatar van %{username} is geslaagd
+      removed_avatar_msg: Het verwijderen van de profielfoto van %{username} is geslaagd
       removed_header_msg: Het verwijderen van de omslagfoto van %{username} is geslaagd
       resend_confirmation:
         already_confirmed: Deze gebruiker is al bevestigd
@@ -205,7 +205,7 @@ nl:
         promote_user: Gebruiker promoveren
         reject_appeal: Bezwaar afwijzen
         reject_user: Gebruiker afwijzen
-        remove_avatar_user: Avatar verwijderen
+        remove_avatar_user: Profielfoto verwijderen
         reopen_report: Rapportage heropenen
         resend_user: Bevestigingsmail opnieuw verzenden
         reset_password_user: Wachtwoord opnieuw instellen
@@ -225,7 +225,7 @@ nl:
         update_status: Bericht bijwerken
         update_user_role: Rol bijwerken
       actions:
-        approve_appeal_html: "%{name} heeft het bezwaar tegen de moderatie-actie van %{target} goedgekeurd"
+        approve_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} goedgekeurd"
         approve_user_html: "%{name} heeft het account van %{target} goedgekeurd"
         assigned_to_self_report_html: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user_html: "%{name} veranderde het e-mailadres van gebruiker %{target}"
@@ -262,9 +262,9 @@ nl:
         enable_user_html: Inloggen voor %{target} is door %{name} ingeschakeld
         memorialize_account_html: Het account %{target} is door %{name} in een In memoriam veranderd
         promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
-        reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatie-actie van %{target} afgewezen"
+        reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} afgewezen"
         reject_user_html: "%{name} heeft de registratie van %{target} afgewezen"
-        remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
+        remove_avatar_user_html: "%{name} verwijderde de profielfoto van %{target}"
         reopen_report_html: "%{name} heeft rapportage %{target} heropend"
         resend_user_html: "%{name} heeft de bevestigingsmail voor %{target} opnieuw verzonden"
         reset_password_user_html: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
@@ -283,6 +283,7 @@ nl:
         update_ip_block_html: "%{name} wijzigde de IP-regel voor %{target}"
         update_status_html: "%{name} heeft de berichten van %{target} bijgewerkt"
         update_user_role_html: "%{name} wijzigde de rol %{target}"
+      deleted_account: verwijderd account
       empty: Geen logs gevonden.
       filter_by_action: Op actie filteren
       filter_by_user: Op gebruiker filteren
@@ -431,6 +432,9 @@ nl:
       unsuppress: Account weer aanbevelen
     instances:
       availability:
+        description_html:
+          one: Als de bezorging aan het domein gedurende <strong>%{count} dag</strong> blijft mislukken, dan zullen er geen verdere pogingen tot bezorging worden gedaan tot een bezorging <em>van</em> het domein is ontvangen.
+          other: Als de bezorging aan het domein gedurende <strong>%{count} verschillende dagen</strong> blijft mislukken, dan zullen er geen verdere pogingen tot bezorging worden gedaan tot een bezorging <em>van</em> het domein is ontvangen.
         failure_threshold_reached: Foutieve drempelwaarde bereikt op %{date}.
         failures_recorded:
           one: Mislukte poging op %{count} dag.
@@ -544,17 +548,22 @@ nl:
           one: "%{count} opmerking"
           other: "%{count} opmerkingen"
       action_log: Auditlog
-      action_taken_by: Actie uitgevoerd door
+      action_taken_by: Maatregel genomen door
       actions:
         delete_description_html: De gerapporteerde berichten worden verwijderd en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
         mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
+        other_description_html: Bekijk meer opties voor het controleren van het gedrag van en de communicatie met het gerapporteerde account.
+        resolve_description_html: Er wordt tegen het gerapporteerde account geen maatregel genomen, geen overtreding geregistreerd en de rapportage wordt gemarkeerd als opgelost.
         silence_description_html: Het profiel zal alleen zichtbaar zijn voor diegenen die het al volgen of het handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Kan altijd worden teruggedraaid.
+        suspend_description_html: Het profiel en alle accountgegevens worden eerst ontoegankelijk gemaakt, totdat deze uiteindelijk onomkeerbaar worden verwijderd. Het is niet meer mogelijk om interactie te hebben met het account. Dit kan binnen 30 dagen worden teruggedraaid.
+      actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
       assigned: Toegewezen moderator
       by_target_domain: Domein van gerapporteerde account
       category: Category
+      category_description_html: De reden waarom dit account en/of inhoud werd gerapporteerd wordt aan het gerapporteerde account medegedeeld
       comment:
         none: Geen
       comment_description_html: 'Om meer informatie te verstrekken, schreef %{name}:'
@@ -571,10 +580,10 @@ nl:
         create_and_resolve: Oplossen met opmerking
         create_and_unresolve: Heropenen met opmerking
         delete: Verwijderen
-        placeholder: Beschrijf welke acties zijn ondernomen of andere gerelateerde opmerkingen…
+        placeholder: Beschrijf welke maatregelen zijn genomen of andere gerelateerde opmerkingen...
         title: Opmerkingen
       notes_description_html: Bekijk en laat opmerkingen achter voor andere moderatoren en voor jouw toekomstige zelf
-      quick_actions_description_html: 'Onderneem een snelle actie of scroll naar beneden om de gerapporteerde inhoud te zien:'
+      quick_actions_description_html: 'Neem een snelle maatregel of scroll naar beneden om de gerapporteerde inhoud te bekijken:'
       remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
       report: 'Rapportage #%{id}'
@@ -582,9 +591,10 @@ nl:
       reported_by: Gerapporteerd door
       resolved: Opgelost
       resolved_msg: Rapportage succesvol opgelost!
-      skip_to_actions: Ga direct naar de acties
+      skip_to_actions: Ga direct naar de maatregelen
       status: Rapportages
       statuses: Gerapporteerde inhoud
+      statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
       target_origin: Herkomst van de gerapporteerde accounts
       title: Rapportages
       unassign: Niet langer toewijzen
@@ -603,7 +613,7 @@ nl:
         moderation: Moderatie
         special: Speciaal
       delete: Verwijderen
-      description_html: Met <strong>gebruikersrollen</strong> kunt je aanpassen op welke functies en gebieden van Mastodon jouw gebruikers toegang hebben.
+      description_html: Met <strong>gebruikersrollen</strong> kun je de functies en onderdelen van Mastodon waar jouw gebruikers toegang tot hebben aanpassen.
       edit: Rol '%{name}' bewerken
       everyone: Standaardrechten
       everyone_full_description_html: Dit is de <strong>basisrol</strong> die van toepassing is op <strong>alle gebruikers</strong>, zelfs voor diegenen zonder toegewezen rol. Alle andere rollen hebben de rechten van deze rol als minimum.
@@ -620,7 +630,7 @@ nl:
         manage_announcements: Aankondigingen beheren
         manage_announcements_description: Staat gebruikers toe om mededelingen op de server te beheren
         manage_appeals: Bezwaren afhandelen
-        manage_appeals_description: Staat gebruikers toe om bewaren tegen moderatie-acties te beoordelen
+        manage_appeals_description: Staat gebruikers toe om bewaren tegen moderatiemaatregelen te beoordelen
         manage_blocks: Blokkades beheren
         manage_blocks_description: Staat gebruikers toe om e-mailproviders en IP-adressen te blokkeren
         manage_custom_emojis: Lokale emoji's beheren
@@ -630,7 +640,7 @@ nl:
         manage_invites: Uitnodigingen beheren
         manage_invites_description: Staat gebruikers toe om uitnodigingslinks te bekijken en te deactiveren
         manage_reports: Rapportages afhandelen
-        manage_reports_description: Sta gebruikers toe om rapporten te bekijken om actie tegen hen te nemen
+        manage_reports_description: Staat gebruikers toe om rapportages te beoordelen en om aan de hand hiervan moderatiemaatregelen te nemen
         manage_roles: Rollen beheren
         manage_roles_description: Staat gebruikers toe om rollen te beheren en toe te wijzen die minder rechten hebben dan hun eigen rol(len)
         manage_rules: Serverregels wijzigen
@@ -642,7 +652,7 @@ nl:
         manage_user_access: Gebruikerstoegang beheren
         manage_user_access_description: Staat gebruikers toe om tweestapsverificatie van andere gebruikers uit te schakelen, om hun e-mailadres te wijzigen en om hun wachtwoord opnieuw in te stellen
         manage_users: Gebruikers beheren
-        manage_users_description: Staat gebruikers toe om gebruikersdetails van anderen te bekijken en moderatie-acties tegen hen uit te voeren
+        manage_users_description: Staat gebruikers toe om gebruikersdetails van anderen te bekijken en moderatiemaatregelen tegen hen te nemen
         manage_webhooks: Webhooks beheren
         manage_webhooks_description: Staat gebruikers toe om webhooks voor beheertaken in te stellen
         view_audit_log: Auditlog bekijken
@@ -676,6 +686,7 @@ nl:
         title: Bewaartermijn berichten
       discovery:
         follow_recommendations: Aanbevolen accounts
+        preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van gebruikers op jouw server werken.
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
         title: Ontdekken
@@ -771,13 +782,14 @@ nl:
       pending_review: In afwachting van beoordeling
       preview_card_providers:
         allowed: Links van deze website kunnen trending worden
-        description_html: Dit zijn domeinen waarvan links vaak worden gedeeld op jouw server. Links zullen niet in het openbaar verlopen, maar niet als het domein van de link wordt goedgekeurd. Jouw goedkeuring (of afwijzing) strekt zich uit tot subdomeinen.
+        description_html: Dit zijn domeinen waarvan er links vaak op jouw server worden gedeeld. Links zullen niet in het openbaar trending worden, voordat het domein van de link wordt goedgekeurd. Jouw goedkeuring (of afwijzing) geldt ook voor subdomeinen.
         rejected: Links naar deze nieuwssite kunnen niet trending worden
         title: Websites
       rejected: Afgekeurd
       statuses:
         allow: Bericht goedkeuren
         allow_account: Account goedkeuren
+        description_html: Dit zijn berichten die op jouw server bekend zijn en die momenteel veel worden gedeeld en als favoriet worden gemarkeerd. Hiermee kunnen nieuwe en terugkerende gebruikers meer mensen vinden om te volgen. Er worden geen berichten in het openbaar weergegeven totdat het account door jou is goedgekeurd en de gebruiker toestaat dat diens account aan anderen wordt aanbevolen. Je kunt ook individuele berichten goed- of afkeuren.
         disallow: Bericht afkeuren
         disallow_account: Account afkeuren
         no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
@@ -794,6 +806,7 @@ nl:
           tag_servers_dimension: Populaire servers
           tag_servers_measure: verschillende servers
           tag_uses_measure: totaal aantal keer gebruikt
+        description_html: Deze hashtags verschijnen momenteel in veel berichten die op jouw server zichtbaar zijn. Hiermee kunnen jouw gebruikers zien waar mensen op dit moment het meest over praten. Er worden geen hashtags in het openbaar weergegeven totdat je ze goedkeurt.
         listable: Kan worden aanbevolen
         no_tag_selected: Er werden geen hashtags gewijzigd, omdat er geen enkele werd geselecteerd
         not_listable: Wordt niet aanbevolen
@@ -819,6 +832,7 @@ nl:
     webhooks:
       add_new: Eindpunt toevoegen
       delete: Verwijderen
+      description_html: Met een <strong>webhook</strong> kan Mastodon <strong>meldingen in real-time</strong> over gekozen gebeurtenissen naar jouw eigen toepassing sturen, zodat je applicatie <strong>automatisch reacties kan genereren</strong>.
       disable: Uitschakelen
       disabled: Uitgeschakeld
       edit: Eindpunt bewerken
@@ -845,9 +859,9 @@ nl:
         sensitive: het gevoelig forceren van diens account
         silence: het beperken van diens account
         suspend: het opschorten van diens account
-      body: "%{target} maakt bezwaar tegen een moderatie-actie door %{action_taken_by} op %{date}, betreffende %{type}. De gebruiker schrijft:"
-      next_steps: Je kunt het bezwaar goedkeuren om daarmee de moderatie-actie ongedaan te maken, of je kunt het verwerpen.
-      subject: "%{username} maakt bezwaar tegen een moderatie-actie op %{instance}"
+      body: "%{target} maakt bezwaar tegen een moderatiemaatregel door %{action_taken_by} op %{date}, betreffende %{type}. De gebruiker schrijft:"
+      next_steps: Je kunt het bezwaar goedkeuren om daarmee de moderatiemaatregel ongedaan te maken, of je kunt het verwerpen.
+      subject: "%{username} maakt bezwaar tegen een moderatiemaatregel op %{instance}"
     new_pending_account:
       body: Zie hieronder de details van het nieuwe account. Je kunt de aanvraag goedkeuren of afwijzen.
       subject: Er dient een nieuw account op %{instance} te worden beoordeeld (%{username})
@@ -863,6 +877,7 @@ nl:
         title: Trending berichten
       new_trending_tags:
         no_approved_tags: Op dit moment zijn er geen goedgekeurde hashtags.
+        requirements: 'Elk van deze kandidaten kan de #%{rank} goedgekeurde trending hashtag overtreffen, die momenteel #%{lowest_tag_name} is met een score van %{lowest_tag_score}.'
         title: Trending hashtags
       subject: Nieuwe trends te beoordelen op %{instance}
   aliases:
@@ -1017,7 +1032,7 @@ nl:
       approve_appeal: Bezwaar goedkeuren
       associated_report: Bijbehorende rapportage
       created_at: Datum en tijd
-      description_html: Dit zijn acties die op jouw account zijn toegepast en waarschuwingen die door medewerkers van %{instance} naar je zijn gestuurd.
+      description_html: Dit zijn maatregelen die tegen jouw account zijn genomen en waarschuwingen die door medewerkers van %{instance} naar je zijn gestuurd.
       recipient: Geadresseerd aan
       reject_appeal: Bezwaar afgewezen
       status: 'Bericht #%{id}'
@@ -1590,7 +1605,7 @@ nl:
         suspend: Account opgeschort
     welcome:
       edit_profile_action: Profiel instellen
-      edit_profile_step: Je kunt jouw profiel aanpassen door een profielafbeelding (avatar) te uploaden, jouw weergavenaam aan te passen en meer. Je kunt het handmatig goedkeuren van volgers instellen.
+      edit_profile_step: Je kunt jouw profiel aanpassen door een profielfoto te uploaden, jouw weergavenaam aan te passen en meer. Je kunt het handmatig goedkeuren van volgers instellen.
       explanation: Hier zijn enkele tips om je op weg te helpen
       final_action: Begin berichten te plaatsen
       final_step: 'Begin berichten te plaatsen! Zelfs zonder volgers kunnen jouw openbare berichten door anderen bekeken worden, bijvoorbeeld op de lokale tijdlijn en onder hashtags. Je kunt jezelf voorstellen met het gebruik van de hashtag #introductions.'

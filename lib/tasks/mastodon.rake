@@ -271,6 +271,7 @@ namespace :mastodon do
           env['SMTP_PORT'] = 25
           env['SMTP_AUTH_METHOD'] = 'none'
           env['SMTP_OPENSSL_VERIFY_MODE'] = 'none'
+          env['SMTP_ENABLE_STARTTLS'] = 'auto'
         else
           env['SMTP_SERVER'] = prompt.ask('SMTP server:') do |q|
             q.required true
@@ -299,6 +300,8 @@ namespace :mastodon do
           end
 
           env['SMTP_OPENSSL_VERIFY_MODE'] = prompt.select('SMTP OpenSSL verify mode:', %w(none peer client_once fail_if_no_peer_cert))
+
+          env['SMTP_ENABLE_STARTTLS'] = prompt.select('Enable STARTTLS:', %w(auto always never))
         end
 
         env['SMTP_FROM_ADDRESS'] = prompt.ask('E-mail address to send e-mails "from":') do |q|
@@ -312,6 +315,20 @@ namespace :mastodon do
         send_to = prompt.ask('Send test e-mail to:', required: true)
 
         begin
+          enable_starttls = nil
+          enable_starttls_auto = nil
+
+          case env['SMTP_ENABLE_STARTTLS']
+          when 'always'
+            enable_starttls = true
+          when 'never'
+            enable_starttls = false
+          when 'auto'
+            enable_starttls_auto = true
+          else
+            enable_starttls_auto = env['SMTP_ENABLE_STARTTLS_AUTO'] != 'false'
+          end
+
           ActionMailer::Base.smtp_settings = {
             port:                 env['SMTP_PORT'],
             address:              env['SMTP_SERVER'],
@@ -320,7 +337,8 @@ namespace :mastodon do
             domain:               env['LOCAL_DOMAIN'],
             authentication:       env['SMTP_AUTH_METHOD'] == 'none' ? nil : env['SMTP_AUTH_METHOD'] || :plain,
             openssl_verify_mode:  env['SMTP_OPENSSL_VERIFY_MODE'],
-            enable_starttls_auto: true,
+            enable_starttls:      enable_starttls,
+            enable_starttls_auto: enable_starttls_auto,
           }
 
           ActionMailer::Base.default_options = {

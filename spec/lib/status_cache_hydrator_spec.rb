@@ -28,6 +28,18 @@ describe StatusCacheHydrator do
         end
       end
 
+      context 'when handling a filtered status' do
+        let(:status) { Fabricate(:status, text: 'this toot is about that banned word') }
+
+        before do
+          account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
+        end
+
+        it 'renders the same attributes as a full render' do
+          expect(subject).to eql(compare_to_hash)
+        end
+      end
+
       context 'when handling a reblog' do
         let(:reblog) { Fabricate(:status) }
         let(:status) { Fabricate(:status, reblog: reblog) }
@@ -93,6 +105,18 @@ describe StatusCacheHydrator do
 
           before do
             VoteService.new.call(account, poll, [0])
+          end
+
+          it 'renders the same attributes as a full render' do
+            expect(subject).to eql(compare_to_hash)
+          end
+        end
+
+        context 'that matches account filters' do
+          let(:reblog) { Fabricate(:status, text: 'this toot is about that banned word') }
+
+          before do
+            account.custom_filters.create!(phrase: 'filter1', context: %w(home), action: :hide, keywords_attributes: [{ keyword: 'banned' }, { keyword: 'irrelevant' }])
           end
 
           it 'renders the same attributes as a full render' do

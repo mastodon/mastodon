@@ -66,8 +66,10 @@ pt-BR:
       email_domain_block:
         domain: Este pode ser o nome de domínio que aparece no endereço de e-mail ou no registro MX que ele utiliza. Eles serão verificados após a inscrição.
         with_dns_records: Será feita uma tentativa de resolver os registros DNS do domínio em questão e os resultados também serão colocados na lista negra
+      featured_tag:
+        name: 'Aqui estão algumas hashtags usadas recentemente:'
       filters:
-        action: Escolher qual ação executar quando um post corresponder ao filtro
+        action: Escolher qual ação executar quando uma publicação corresponder ao filtro
         actions:
           hide: Esconder completamente o conteúdo filtrado, comportando-se como se ele não existisse
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
@@ -77,10 +79,11 @@ pt-BR:
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
         site_contact_username: Como as pessoas podem chegar até você no Mastodon.
         site_extended_description: Quaisquer informações adicionais que possam ser úteis para os visitantes e seus usuários. Podem ser estruturadas com formato Markdown.
+        site_title: Como as pessoas podem se referir ao seu servidor além do nome do domínio.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
-        data: Arquivo CSV exportado de outra instância Mastodon
+        data: Arquivo CSV exportado de outro servidor Mastodon
       invite_request:
         text: Isso vai nos ajudar a revisar sua aplicação
       ip_block:
@@ -204,8 +207,16 @@ pt-BR:
           hide: Ocultar completamente
           warn: Ocultar com um aviso
       form_admin_settings:
+        custom_css: CSS personalizável
+        profile_directory: Ativar diretório de perfis
         registrations_mode: Quem pode se inscrever
         site_contact_email: E-mail de contato
+        site_extended_description: Descrição estendida
+        site_short_description: Descrição do servidor
+        site_terms: Política de privacidade
+        site_title: Nome do servidor
+        theme: Tema padrão
+        thumbnail: Miniatura do servidor
         trends: Habilitar tendências
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
@@ -220,6 +231,7 @@ pt-BR:
         ip: IP
         severities:
           no_access: Bloquear acesso
+          sign_up_block: Bloquear registros
           sign_up_requires_approval: Limitar novas contas
         severity: Regra
       notification_emails:
@@ -240,10 +252,18 @@ pt-BR:
         name: Hashtag
         trendable: Permitir que esta hashtag fique em alta
         usable: Permitir que toots usem esta hashtag
+      user:
+        role: Cargo
+      user_role:
+        color: Cor do emblema
+        name: Nome
+        permissions_as_keys: Permissões
+        position: Prioridade
       webhook:
         events: Eventos habilitados
         url: URL do Endpoint
     'no': Não
+    not_recommended: Não recomendado
     recommended: Recomendado
     required:
       mark: "*"

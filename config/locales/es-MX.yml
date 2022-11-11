@@ -207,6 +207,7 @@ es-MX:
         reject_user: Rechazar Usuario
         remove_avatar_user: Eliminar Avatar
         reopen_report: Reabrir Reporte
+        resend_user: Reenviar Correo de Confirmación
         reset_password_user: Restablecer Contraseña
         resolve_report: Resolver Reporte
         sensitive_account: Marcar multimedia en tu cuenta como sensible
@@ -265,6 +266,7 @@ es-MX:
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} eliminó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió el informe %{target}"
+        resend_user_html: "%{name} ha reenviado el correo de confirmación para %{target}"
         reset_password_user_html: "%{name} reinició la contraseña del usuario %{target}"
         resolve_report_html: "%{name} resolvió el informe %{target}"
         sensitive_account_html: "%{name} marcó la multimedia de %{target} como sensible"
@@ -281,6 +283,7 @@ es-MX:
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
         update_status_html: "%{name} actualizó el estado de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
+      deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
@@ -705,16 +708,29 @@ es-MX:
       delete: Eliminar archivo subido
       destroyed_msg: "¡Carga del sitio eliminada con éxito!"
     statuses:
+      account: Autor
+      application: Aplicación
       back_to_account: Volver a la cuenta
       back_to_report: Volver a la página de reporte
       batch:
         remove_from_report: Eliminar del reporte
         report: Reportar
       deleted: Eliminado
+      favourites: Favoritos
+      history: Historial de versiones
+      in_reply_to: En respuesta a
+      language: Idioma
       media:
         title: Multimedia
+      metadata: Metadatos
       no_status_selected: No se cambió ningún estado al no seleccionar ninguno
+      open: Abrir publicación
+      original_status: Publicación original
+      reblogs: Impulsos
+      status_changed: Publicación cambiada
       title: Estado de las cuentas
+      trending: En tendencia
+      visibility: Visibilidad
       with_media: Con multimedia
     strikes:
       actions:
@@ -936,8 +952,8 @@ es-MX:
       email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
       title: Configuración
     sign_up:
-      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente de en qué servidor esté su cuenta.
-      title: Vamos a configurar el %{domain}.
+      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente del servidor en el que se encuentre.
+      title: Crear cuenta de Mastodon en %{domain}.
     status:
       account_status: Estado de la cuenta
       confirming: Esperando confirmación de correo electrónico.
@@ -1290,7 +1306,7 @@ es-MX:
     code_hint: Introduce el código generado por tu aplicación de autentificación para confirmar
     description_html: Si habilitas <strong>autenticación de dos factores</strong> a través de una aplicación de autenticación, el ingreso requerirá que estés en posesión de tu teléfono, que generará códigos para que ingreses.
     enable: Activar
-    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrásque ingresar cuando quieras iniciar sesión."
+    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en tu teléfono</strong>. A partir de ahora, esta aplicación generará códigos que tendrás que ingresar cuando quieras iniciar sesión."
     manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
     setup: Configurar
     wrong_code: "¡El código ingresado es inválido! ¿Es correcta la hora del dispositivo y el servidor?"

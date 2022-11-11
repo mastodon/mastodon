@@ -280,6 +280,7 @@ zh-TW:
         update_ip_block_html: "%{name} 已經更新了 IP %{target} 之規則"
         update_status_html: "%{name} 更新了 %{target} 的嘟文"
         update_user_role_html: "%{name} 變更了 %{target} 角色"
+      deleted_account: 已刪除帳號
       empty: 找不到 log
       filter_by_action: 按動作過濾
       filter_by_user: 按使用者過濾
@@ -1145,7 +1146,7 @@ zh-TW:
     success: 資料檔上傳成功，正在匯入，請稍候
     types:
       blocking: 您封鎖的使用者名單
-      bookmarks: 我的最愛
+      bookmarks: 書籤
       domain_blocking: 域名封鎖名單
       following: 您跟隨的使用者名單
       muting: 您靜音的使用者名單
@@ -1281,7 +1282,7 @@ zh-TW:
     code_hint: 請輸入您驗證應用程式所產生的代碼以確認
     description_html: 若您啟用使用驗證應用程式的<strong>兩階段驗證</strong>，您每次登入都需要輸入由您的手機所產生之 Token。
     enable: 啟用
-    instructions_html: "<strong>請用您手機上的 Google Authenticator 或類似的 TOTP 應用程式掃描此 QR code</strong>。從現在開始，該應用程式將會產生您每次登入都必須輸入的權杖。"
+    instructions_html: "<strong>請用您手機上的 Google Authenticator 或類似的 TOTP 應用程式掃描此 QR code</strong>。從現在開始，該應用程式將會產生您每次登入都必須輸入的 token。"
     manual_instructions: 如果您無法掃描 QR code，則必須手動輸入此明文密碼：
     setup: 設定
     wrong_code: 您輸入的驗證碼無效！伺服器時間或是裝置時間無誤嗎？
@@ -1469,8 +1470,8 @@ zh-TW:
     keep_pinned_hint: 不會刪除您的釘選嘟文
     keep_polls: 保留投票
     keep_polls_hint: 不會刪除您的投票
-    keep_self_bookmark: 保留您已標記為書簽之嘟文
-    keep_self_bookmark_hint: 不會刪除您已標記為書簽之嘟文
+    keep_self_bookmark: 保留您已標記為書籤之嘟文
+    keep_self_bookmark_hint: 不會刪除您已標記為書籤之嘟文
     keep_self_fav: 保留您已標記為最愛之嘟文
     keep_self_fav_hint: 不會刪除您已標記為最愛之嘟文
     min_age:

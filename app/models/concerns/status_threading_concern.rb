@@ -7,8 +7,8 @@ module StatusThreadingConcern
     find_statuses_from_tree_path(ancestor_ids(limit), account)
   end
 
-  def descendants(limit, account = nil, max_child_id = nil, since_child_id = nil, depth = nil)
-    find_statuses_from_tree_path(descendant_ids(limit, max_child_id, since_child_id, depth), account, promote: true)
+  def descendants(limit, account = nil, depth = nil)
+    find_statuses_from_tree_path(descendant_ids(limit, depth), account, promote: true)
   end
 
   def self_replies(limit)
@@ -50,22 +50,17 @@ module StatusThreadingConcern
     SQL
   end
 
-  def descendant_ids(limit, max_child_id, since_child_id, depth)
-    descendant_statuses(limit, max_child_id, since_child_id, depth).pluck(:id)
-  end
-
-  def descendant_statuses(limit, max_child_id, since_child_id, depth)
+  def descendant_ids(limit, depth)
     # use limit + 1 and depth + 1 because 'self' is included
     depth += 1 if depth.present?
     limit += 1 if limit.present?
 
-    descendants_with_self = Status.find_by_sql([<<-SQL.squish, id: id, limit: limit, max_child_id: max_child_id, since_child_id: since_child_id, depth: depth])
-      WITH RECURSIVE search_tree(id, path)
-      AS (
+    descendants_with_self = Status.find_by_sql([<<-SQL.squish, id: id, limit: limit, depth: depth])
+      WITH RECURSIVE search_tree(id, path) AS (
         SELECT id, ARRAY[id]
         FROM statuses
-        WHERE id = :id AND COALESCE(id < :max_child_id, TRUE) AND COALESCE(id > :since_child_id, TRUE)
-        UNION ALL
+        WHERE id = :id
+      UNION ALL
         SELECT statuses.id, path || statuses.id
         FROM search_tree
         JOIN statuses ON statuses.in_reply_to_id = search_tree.id
@@ -77,7 +72,7 @@ module StatusThreadingConcern
       LIMIT :limit
     SQL
 
-    descendants_with_self - [self]
+    descendants_with_self.pluck(:id) - [id]
   end
 
   def find_statuses_from_tree_path(ids, account, promote: false)
