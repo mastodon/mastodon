@@ -524,11 +524,11 @@ pt-BR:
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
-      description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca um grande volume de toots públicos entre instâncias que se inscrevem e publicam nele. <strong>O repetidor pode ser usado para ajudar instâncias pequenas e médias a descobrir conteúdo pelo fediverso</strong>, que normalmente precisariam que usuários locais manualmente seguissem outras pessoas em instâncias remotas.
+      description_html: Um <strong>repetidor de federação</strong> é um servidor intermediário que troca um grande volume de publicações públicas entre servidores que se inscrevem e publicam nele. <strong>Ele pode ser usado para ajudar os servidores pequenos e médios a descobrir o conteúdo pelo fediverso</strong>, que normalmente precisariam que usuários locais manualmente seguissem outras pessoas em servidores remotas.
       disable: Desativar
       disabled: Desativado
       enable: Ativar
-      enable_hint: Uma vez ativado, sua instância se inscreverá para receber todos os toots públicos desse repetidor; E vai começar a enviar todos os toots públicos desta instância para o repetidor.
+      enable_hint: Uma vez ativado, seu servidor se inscreverá para receber todas as publicações deste repetidor e começará a enviar todas as publicações deste servidor para o repetidor.
       enabled: Ativado
       inbox_url: Link do repetidor
       pending: Esperando pela aprovação do repetidor
@@ -879,14 +879,14 @@ pt-BR:
       guide_link: https://br.crowdin.com/project/mastodon
       guide_link_text: Todos podem contribuir.
     sensitive_content: Conteúdo sensível
-    toot_layout: Layout do Toot
+    toot_layout: Formato da publicação
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
     settings: 'Alterar e-mail de preferência: %{link}'
     view: 'Ver:'
     view_profile: Ver perfil
-    view_status: Ver toot
+    view_status: Ver publicação
   applications:
     created: Aplicativo criado com sucesso
     destroyed: Aplicativo excluído com sucesso
@@ -987,7 +987,7 @@ pt-BR:
     warning:
       before: 'Antes de prosseguir, leia com cuidado:'
       caches: Conteúdo que foi armazenado em cache por outros servidores pode continuar a existir
-      data_removal: Seus toots e outros dados serão removidos permanentemente
+      data_removal: Suas publicações e outros dados serão removidos permanentemente
       email_change_html: Você pode <a href="%{path}">alterar seu endereço de e-mail</a> sem excluir sua conta
       email_contact_html: Se você ainda não recebeu, você pode enviar um e-mail pedindo ajuda para <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Se você não está recebendo o e-mail de confirmação, você pode <a href="%{path}">solicitá-lo novamente</a>
@@ -1049,7 +1049,7 @@ pt-BR:
     archive_takeout:
       date: Data
       download: Baixe o seu arquivo
-      hint_html: Você pode pedir um arquivo dos seus <strong>toots e mídias enviadas</strong>. Os dados exportados estarão no formato ActivityPub, que podem ser lidos por qualquer software compatível. Você pode pedir um arquivo a cada 7 dias.
+      hint_html: Você pode pedir um arquivo das suas <strong>publicações e mídias enviadas</strong>. Os dados exportados estarão no formato ActivityPub, que podem ser lidos por qualquer software compatível. Você pode pedir um arquivo a cada 7 dias.
       in_progress: Preparando o seu arquivo...
       request: Solicitar o seu arquivo
       size: Tamanho
@@ -1064,7 +1064,7 @@ pt-BR:
     add_new: Adicionar hashtag
     errors:
       limit: Você atingiu o limite de hashtags em destaque
-    hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são mostradas no seu perfil público e permitem que as pessoas acessem seus toots públicos que contenham especificamente essas hashtags. São uma excelente ferramenta para acompanhar os trabalhos criativos ou os projetos de longo prazo."
+    hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são exibidas no seu perfil público e permitem que as pessoas acessem suas publicações públicos que contenham especificamente essas hashtags. São uma excelente ferramenta para acompanhar os trabalhos criativos ou os projetos de longo prazo."
   filters:
     contexts:
       account: Perfis
@@ -1171,7 +1171,7 @@ pt-BR:
     title: Histórico de autenticação
   media_attachments:
     validations:
-      images_and_video: Não foi possível anexar um vídeo a um toot que já contém imagens
+      images_and_video: Não foi possível anexar um vídeo a uma publicação que já contém imagens
       not_ready: Não é possível anexar arquivos que não terminaram de ser processados. Tente novamente daqui a pouco!
       too_many: Não foi possível anexar mais de 4 imagens
   migrations:
@@ -1238,8 +1238,8 @@ pt-BR:
     poll:
       subject: Uma enquete por %{name} terminou
     reblog:
-      body: '%{name} deu boost no seu toot:'
-      subject: "%{name} deu boost no seu toot"
+      body: '%{name} impulsionou a sua publicação:'
+      subject: "%{name} impulsionou a sua publicação"
       title: Novo boost
     status:
       subject: "%{name} acabou de publicar"
@@ -1415,8 +1415,8 @@ pt-BR:
     over_character_limit: limite de caracteres de %{max} excedido
     pin_errors:
       direct: Publicações visíveis apenas para usuários mencionados não podem ser fixadas
-      limit: Quantidade máxima de toots excedida
-      ownership: Publicações dos outros não podem ser fixadas
+      limit: Você alcançou o número limite de publicações fixadas
+      ownership: As publicações dos outros não podem ser fixadas
       reblog: Um impulso não pode ser fixado
     poll:
       total_people:
@@ -1476,7 +1476,7 @@ pt-BR:
     min_reblogs: Manter publicações impulsionadas por ao menos
     min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
-    pinned: Toot fixado
+    pinned: Publicação fixada
     reblogged: deu boost
     sensitive_content: Conteúdo sensível
   strikes:
@@ -1560,9 +1560,9 @@ pt-BR:
     welcome:
       edit_profile_action: Configurar perfil
       explanation: Aqui estão algumas dicas para você começar
-      final_action: Comece a tootar
+      final_action: Comece a publicar
       full_handle: Seu nome de usuário completo
-      full_handle_hint: Isso é o que você compartilha com aos seus amigos para que eles possam te mandar toots ou te seguir a partir de outra instância.
+      full_handle_hint: Isso é o que você compartilha com seus amigos para que eles possam te mandar mensagens ou te seguir a partir de outro servidor.
       subject: Boas-vindas ao Mastodon
       title: Boas vindas, %{name}!
   users:
