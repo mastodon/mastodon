@@ -103,9 +103,9 @@ pt-BR:
       not_subscribed: Não inscrito
       pending: Revisão pendente
       perform_full_suspension: Suspender
-      previous_strikes: Ataques anteriores
+      previous_strikes: Avisos anteriores
       previous_strikes_description_html:
-        one: Esta conta tem <strong>um</strong> ataque.
+        one: Esta conta tem <strong>um</strong> aviso.
         other: Esta conta tem <strong>%{count}</strong> ataques.
       promote: Promover
       protocol: Protocolo
@@ -142,7 +142,7 @@ pt-BR:
       silence: Silenciar
       silenced: Silenciado
       statuses: Publicações
-      strikes: Ataques anteriores
+      strikes: Avisos anteriores
       subscribe: Inscrever-se
       suspend: Suspender
       suspended: Banido
@@ -936,7 +936,7 @@ pt-BR:
       functional: Sua conta está totalmente operacional.
       pending: Sua solicitação está com revisão pendente por parte de nossa equipe. Você receberá um e-mail se ela for aprovada.
       redirecting_to: Sua conta está inativa porque atualmente está redirecionando para %{acct}.
-      view_strikes: Veja os ataques anteriores contra a sua conta
+      view_strikes: Veja os avisos anteriores em relação à sua conta
     too_fast: O formulário foi enviado muito rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
   authorize_follow:
@@ -1387,7 +1387,7 @@ pt-BR:
     profile: Perfil
     relationships: Seguindo e seguidores
     statuses_cleanup: Exclusão automatizada de publicações
-    strikes: Moderação de ataques
+    strikes: Avisos de moderação
     two_factor_authentication: Autenticação de dois fatores
     webauthn_authentication: Chaves de segurança
   statuses:
@@ -1511,11 +1511,11 @@ pt-BR:
   user_mailer:
     appeal_approved:
       action: Acessar perfil
-      explanation: O recurso do ataque contra sua conta em %{strike_date} que você submeteu em %{appeal_date} foi aprovado. Sua conta está novamente em situação regular.
+      explanation: O recurso contra o aviso dado à sua conta em %{strike_date} que você submeteu em %{appeal_date} foi aprovado. Sua conta está novamente em situação regular.
       subject: Seu recurso de %{date} foi aprovado
       title: Contestação aprovada
     appeal_rejected:
-      explanation: O recurso do ataque contra sua conta em %{strike_date} que você submeteu em %{appeal_date} foi rejeitado.
+      explanation: O recurso contra o aviso dado à sua conta em %{strike_date} que você submeteu em %{appeal_date} foi rejeitado.
       subject: Seu recurso de %{date} foi rejeitado
       title: Contestação rejeitada
     backup_ready:
