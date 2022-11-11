@@ -199,7 +199,7 @@ ko:
         enable_user: 사용자 활성화
         memorialize_account: 추모계정으로 전환
         promote_user: 사용자 승급
-        reject_appeal: 이의제기 거절
+        reject_appeal: 이의 신청 거절
         reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
@@ -1247,7 +1247,7 @@ ko:
       subject: '%{name} 님이 보낸 팔로우 요청'
       title: 새 팔로우 요청
     mention:
-      action: 답장
+      action: 답글
       body: '%{name} 님이 나를 언급했습니다:'
       subject: '%{name} 님이 나를 언급했습니다'
       title: 새 멘션
@@ -1376,9 +1376,9 @@ ko:
       linux: 리눅스
       mac: 맥OS
       other: 알 수 없는 플랫폼
-      windows: 윈도우즈
-      windows_mobile: 윈도우즈 모바일
-      windows_phone: 윈도우즈 폰
+      windows: 윈도우
+      windows_mobile: 윈도우 모바일
+      windows_phone: 윈도우 폰
     revoke: 삭제
     revoke_success: 세션이 성공적으로 삭제되었습니다
     title: 세션
@@ -1401,7 +1401,7 @@ ko:
     notifications: 알림
     preferences: 사용자 설정
     profile: 프로필
-    relationships: 팔로잉과 팔로워
+    relationships: 팔로잉 및 팔로워
     statuses_cleanup: 게시물 자동 삭제
     strikes: 중재 기록
     two_factor_authentication: 2단계 인증
@@ -1527,7 +1527,7 @@ ko:
     appeal_rejected:
       explanation: '%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했지만 거절되었습니다.'
       subject: '%{date}에 작성한 소명이 거절되었습니다'
-      title: 이의제기가 거절되었습니다
+      title: 거절된 이의 신청
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
@@ -1576,7 +1576,7 @@ ko:
       explanation: 시작하기 전에 몇가지 팁들을 준비했습니다
       final_action: 포스팅 시작하기
       final_step: '게시물을 올리세요! 팔로워가 없더라도, 공개 게시물들은 다른 사람에게 보여질 수 있습니다, 예를 들자면 로컬이나 연합 타임라인 등이 있습니다. 사람들에게 자신을 소개하고 싶다면 #툿친소 해시태그를 이용해보세요.'
-      full_handle: 당신의 풀 핸들
+      full_handle: 내 전체 사용자 이름
       full_handle_hint: 이것을 당신의 친구들에게 알려주면 다른 서버에서 팔로우 하거나 메시지를 보낼 수 있습니다.
       subject: 마스토돈에 오신 것을 환영합니다
       title: 환영합니다 %{name} 님!
