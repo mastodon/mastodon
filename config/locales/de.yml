@@ -2,26 +2,26 @@
 de:
   about:
     about_hashtag_html: Das sind öffentliche Beiträge, die mit <strong>#%{hashtag}</strong> getaggt wurden. Wenn du irgendwo im Fediversum ein Konto besitzt, kannst du mit ihnen interagieren.
-    about_mastodon_html: %{title} ist ein Fork von Mastodon, ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
+    about_mastodon_html: Mastodon ist ein soziales Netzwerk. Es basiert auf offenen Web-Protokollen und freier, quelloffener Software. Es ist dezentral (so wie E-Mail!).
     about_this: Über diesen Server
     active_count_after: aktiv
     active_footnote: Monatlich Aktive User (MAU)
     administered_by: 'Betrieben von:'
     api: API
     apps: Mobile Apps
-    apps_platforms: Benutze %{title} auf iOS, Android und anderen Plattformen
+    apps_platforms: Benutze Mastodon auf iOS, Android und anderen Plattformen
     browse_directory: Durchsuche das Profilverzeichnis und filtere nach Interessen
     browse_local_posts: Durchsuche einen Live-Stream von öffentlichen Beiträgen von diesem Server
-    browse_public_posts: Stöbere durch öffentliche Beiträge auf %{title}
+    browse_public_posts: Stöbere durch öffentliche Beiträge auf Mastodon
     contact: Kontakt
     contact_missing: Nicht angegeben
     contact_unavailable: Nicht verfügbar
     continue_to_web: Weiter zur Web App
     discover_users: Benutzer entdecken
     documentation: Dokumentation
-    federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein Nutzern auf irgendeinem %{title}-Server und darüber hinaus zu folgen.
+    federation_hint_html: Mit einem Account auf %{instance} wirst du in der Lage sein Nutzern auf irgendeinem Mastodon-Server und darüber hinaus zu folgen.
     get_apps: Versuche eine mobile App
-    hosted_on: %{title}, gehostet auf %{domain}
+    hosted_on: Mastodon, gehostet auf %{domain}
     instance_actor_flash: |
       Dieses Konto ist ein virtueller Akteur, der den Server selbst und nicht einen einzelnen Benutzer repräsentiert.
       Dieser wird für Föderationszwecke verwendet und sollte nicht blockiert werden, es sei denn du möchtest die gesamte Instanz blockieren.
@@ -30,7 +30,7 @@ de:
     logout_before_registering: Du bist bereits angemeldet.
     privacy_policy: Datenschutzerklärung
     rules: Server-Regeln
-    rules_html: 'Unten ist eine Zusammenfassung der Regeln, denen du folgen musst, wenn du ein Konto auf diesem %{title}-Server haben möchtest:'
+    rules_html: 'Unten ist eine Zusammenfassung der Regeln, denen du folgen musst, wenn du ein Konto auf diesem Mastodon-Server haben möchtest:'
     see_whats_happening: Finde heraus, was gerade in der Welt los ist
     server_stats: 'Serverstatistiken:'
     source_code: Quellcode
@@ -50,12 +50,12 @@ de:
       silenced_title: Stummgeschaltete Server
       suspended: Du kannst niemanden von diesem Server folgen, und keine Daten werden verarbeitet oder gespeichert und keine Daten ausgetauscht.
       suspended_title: Gesperrte Server
-    unavailable_content_html: %{title} erlaubt es dir generell, mit Inhalten zu interagieren, diese anzuzeigen und mit anderen Nutzern im Fediversum über Server hinweg zu interagieren. Dies sind die Ausnahmen, die auf diesem bestimmten Server gemacht wurden.
+    unavailable_content_html: Mastodon erlaubt es dir generell, mit Inhalten zu interagieren, diese anzuzeigen und mit anderen Nutzern im Fediversum über Server hinweg zu interagieren. Dies sind die Ausnahmen, die auf diesem bestimmten Server gemacht wurden.
     user_count_after:
       one: Profil
       other: Profile
     user_count_before: Hostet
-    what_is_mastodon: Was ist %{title}?
+    what_is_mastodon: Was ist Mastodon?
   accounts:
     choices_html: "%{name} empfiehlt:"
     endorsements_hint: Du kannst Personen, denen du über die Weboberfläche folgst, auswählen, und sie werden hier angezeigt.
@@ -441,7 +441,7 @@ de:
       obfuscate: Domainname verschleiern
       obfuscate_hint: Den Domainnamen in der Liste teilweise verschleiern, wenn die Liste der Domänenbeschränkungen aktiviert ist
       private_comment: Privater Kommentar
-      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator_innen.
+      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderatoren.
       public_comment: Öffentlicher Kommentar
       public_comment_hint: Kommentar zu dieser Domain-Beschränkung für die allgemeine Öffentlichkeit, wenn das Veröffentlichen der Blockliste aktiviert ist.
       reject_media: Mediendateien ablehnen
@@ -607,7 +607,7 @@ de:
       add_to_report: Mehr zur Meldung hinzufügen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
-      assigned: Zugewiesene_r Moderator_in
+      assigned: Zugewiesener Moderator
       by_target_domain: Domain des gemeldeten Kontos
       category: Kategorie
       category_description_html: Der Grund, warum dieses Konto und/oder der Inhalt gemeldet wurden, wird in der Kommunikation mit dem gemeldeten Konto zitiert
@@ -629,7 +629,7 @@ de:
         delete: Löschen
         placeholder: Beschreibe, welche Maßnahmen ergriffen wurden oder irgendwelche andere Neuigkeiten…
         title: Notizen
-      notes_description_html: Zeige und hinterlasse Notizen an andere Moderator_innen und dein zukünftiges Ich
+      notes_description_html: Zeige und hinterlasse Notizen an andere Moderatoren und dein zukünftiges Selbst
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: der entfernte Benutzer von %{instance}
       reopen: Meldung wieder eröffnen
@@ -719,13 +719,13 @@ de:
         desc_html: Zeige Mitarbeiter-Badge auf Benutzerseite
         title: Zeige Mitarbeiter-Badge
       site_description:
-        desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diesen %{title}-Server ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
+        desc_html: Einleitungsabschnitt auf der Frontseite. Beschreibe, was diesen Mastodon-Server ausmacht. Du kannst HTML-Tags benutzen, insbesondere <code>&lt;a&gt;</code> und <code>&lt;em&gt;</code>.
         title: Beschreibung des Servers
       site_description_extended:
         desc_html: Bietet sich für Verhaltenskodizes, Regeln, Richtlinien und weiteres an, was deinen Server auszeichnet. Du kannst HTML-Tags benutzen
         title: Erweiterte Beschreibung des Servers
       site_short_description:
-        desc_html: Wird angezeigt in der Seitenleiste und in Meta-Tags. Beschreibe in einem einzigen Abschnitt, was %{title} ist und was diesen Server von anderen unterscheidet. Falls leer, wird die Server-Beschreibung verwendet.
+        desc_html: Wird angezeigt in der Seitenleiste und in Meta-Tags. Beschreibe in einem einzigen Abschnitt, was Mastodon ist und was diesen Server von anderen unterscheidet. Falls leer, wird die Server-Beschreibung verwendet.
         title: Kurze Beschreibung des Servers
       site_terms:
         desc_html: Hier kannst du deine eigenen Geschäftsbedingungen, Datenschutzerklärung und anderes rechtlich Relevante eintragen. Du kannst HTML-Tags nutzen
@@ -802,7 +802,6 @@ de:
           other: In der letzten Woche von %{count} Personen geteilt
         title: Angesagte Links
         usage_comparison: Heute %{today} mal geteilt, gestern %{yesterday} mal
-      only_allowed: Nur Erlaubte
       pending_review: Überprüfung ausstehend
       preview_card_providers:
         allowed: Links von diesem Herausgeber können angesagt sein
@@ -844,7 +843,6 @@ de:
           one: In der letzten Woche von einer Person genutzt
           other: In der letzten Woche von %{count} Personen genutzt
       title: Trends
-      trending: Häufig diskutiert
     warning_presets:
       add_new: Neu hinzufügen
       delete: Löschen
@@ -900,7 +898,7 @@ de:
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
     localization:
-      body: %{title} wurde von Freiwilligen übersetzt.
+      body: Mastodon wurde von Freiwilligen übersetzt.
       guide_link: https://de.crowdin.com/project/mastodon
       guide_link_text: Jeder kann etwas dazu beitragen.
     sensitive_content: NSFW
@@ -928,9 +926,9 @@ de:
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
     description:
-      prefix_invited_by_user: "@%{name} lädt dich ein, diesem Server von %{title} beizutreten!"
-      prefix_sign_up: Melde dich heute bei %{title} an!
-      suffix: Mit einem Konto kannst du Leuten folgen, Updates veröffentlichen und Nachrichten mit Benutzern von jedem %{title}-Server austauschen und mehr!
+      prefix_invited_by_user: "@%{name} lädt dich ein, diesem Server von Mastodon beizutreten!"
+      prefix_sign_up: Melde dich heute bei Mastodon an!
+      suffix: Mit einem Konto kannst du Leuten folgen, Updates veröffentlichen und Nachrichten mit Benutzern von jedem Mastodon-Server austauschen und mehr!
     didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
     dont_have_your_security_key: Hast du keinen Sicherheitsschlüssel?
     forgot_password: Passwort vergessen?
@@ -1036,12 +1034,10 @@ de:
       appealed_msg: Dein Einspruch wurde abgesendet. Wenn er angenommen wird, wirst du benachrichtigt.
       appeals:
         submit: Einspruch erheben
-      approve_appeal: Einspruch annehmen
       associated_report: Zugehöriger Bericht
       created_at: Datum
       description_html: Dies sind Aktionen gegen dein Konto und Warnungen, die von den Mitarbeitern von %{instance} an dich gesendet wurden.
       recipient: Adressiert an
-      reject_appeal: Einspruch ablehnen
       status: 'Beitrag #%{id}'
       status_removed: Beitrag bereits vom System entfernt
       title: "%{action} vom %{date}"
@@ -1072,9 +1068,9 @@ de:
       content: Bitte verzeih, etwas ist bei uns schief gegangen.
       title: Diese Seite ist kaputt
     '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
-    noscript_html: Bitte aktiviere JavaScript, um die %{title}-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen %{title}-Anwendungen</a> für deine Plattform probieren.
+    noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
-    not_found: kann lokalen Benutzer nicht mit diesem Nutzernamen finden
+    not_found: kann lokalen Benutzer nicht mit diesem Nuternamen finden
     not_found_multiple: kann %{usernames} nicht finden
   exports:
     archive_takeout:
@@ -1329,7 +1325,7 @@ de:
     last_active: Zuletzt aktiv
     most_recent: Neuste
     moved: Umgezogen
-    mutual: Gegenseitig
+    mutual: Bekannt
     primary: Primär
     relationship: Beziehung
     remove_selected_domains: Entferne alle Follower von den ausgewählten Domains
@@ -1356,11 +1352,6 @@ de:
   reports:
     errors:
       invalid_rules: verweist nicht auf gültige Regeln
-  rss:
-    content_warning: 'Inhaltswarnung:'
-    descriptions:
-      account: Öffentliche Beiträge von @%{acct}
-      tag: 'Öffentliche Beiträge mit dem Tag #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, für heute erreicht
     over_total_limit: Du hast das Limit für geplante Beiträge, dass %{limit} beträgt, erreicht
@@ -1388,7 +1379,7 @@ de:
       weibo: Weibo
     current_session: Aktuelle Sitzung
     description: "%{browser} auf %{platform}"
-    explanation: Dies sind die Webbrowser, die derzeit in deinem %{title}-Konto eingeloggt sind.
+    explanation: Dies sind die Webbrowser, die derzeit in deinem Mastodon-Konto eingeloggt sind.
     ip: IP-Adresse
     platforms:
       adobe_air: Adobe Air
@@ -1413,7 +1404,7 @@ de:
     aliases: Kontoaliase
     appearance: Aussehen
     authorized_apps: Autorisierte Anwendungen
-    back: Zurück zu %{title}
+    back: Zurück zu Mastodon
     delete: Konto löschen
     development: Entwicklung
     edit_profile: Profil bearbeiten
@@ -1484,7 +1475,7 @@ de:
     enabled: Automatisch alte Beiträge löschen
     enabled_hint: Löscht automatisch deine Beiträge, sobald sie einen bestimmten Altersgrenzwert erreicht haben, es sei denn, sie entsprechen einer der folgenden Ausnahmen
     exceptions: Ausnahmen
-    explanation: Damit Mastodon nicht durch das Löschen von Beiträgen ausgebremst wird, wartet der Server damit bis wenig los ist. Aus diesem Grund werden deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht.
+    explanation: Da das Löschen von Beiträgen eine kostspielige Operation ist, geschieht dies langsam im Laufe der Zeit, wenn der Server sonst nicht beschäftigt ist. Aus diesem Grund können deine Beiträge gelöscht werden, eine Weile nachdem sie die Altersgrenze erreicht haben.
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Boosts ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
@@ -1519,9 +1510,6 @@ de:
     pinned: Angehefteter Beitrag
     reblogged: teilte
     sensitive_content: NSFW
-  strikes:
-    errors:
-      too_late: Es ist zu spät, um gegen diese Verwarnung Einspruch zu erheben
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   terms:
@@ -1532,7 +1520,7 @@ de:
       <ul>
       <li><em>Grundlegende Kontoinformationen</em>: Wenn du dich auf diesem Server registrierst, wirst du darum gebeten, einen Benutzernamen, eine E-Mail-Adresse und ein Passwort einzugeben. Du kannst auch zusätzliche Profilinformationen wie etwa einen Anzeigenamen oder eine Biografie eingeben und ein Profilbild oder ein Headerbild hochladen. Der Benutzername, der Anzeigename, die Biografie, das Profilbild und das Headerbild werden immer öffentlich angezeigt.</li>
       <li><em>Beiträge, Folge- und andere öffentliche Informationen</em>: Die Liste der Leute, denen du folgst, wird öffentlich gezeigt, das gleiche gilt für deine Folgenden (Follower). Sobald du eine Nachricht übermittelst, wird das Datum und die Uhrzeit gemeinsam mit der Information, welche Anwendung du dafür verwendet hast, gespeichert. Nachricht können Medienanhänge enthalten, etwa Bilder und Videos. Öffentliche und ungelistete Beiträge sind öffentlich verfügbar. Sobald du einen Beitrag auf deinem Profil anpinnst, sind dies auch öffentlich verfügbare Informationen. Deine Beiträge werden an deine Folgenden ausgeliefert, was in manchen Fällen bedeutet, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Sobald du Beiträge löschst, wird dies ebenso an deine Follower ausgeliefert. Die Handlungen des Teilens und Favorisieren eines anderen Beitrages ist immer öffentlich.</li>
-      <li><em>Direkte und "Nur Folgende"-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. "Nur Folgende"-Beiträge werden an deine Folgenden und an Benutzer, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer. In manchen Fällen bedeutet dass, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen könnten, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile nicht irgendwelche gefährlichen Informationen über %{title}.</em></li>
+      <li><em>Direkte und "Nur Folgende"-Beiträge</em>: Alle Beiträge werden auf dem Server gespeichert und verarbeitet. "Nur Folgende"-Beiträge werden an deine Folgenden und an Benutzer, die du in ihnen erwähnst, ausgeliefert, direkte Beiträge nur an in ihnen erwähnte Benutzer. In manchen Fällen bedeutet dass, dass sie an andere Server ausgeliefert werden und dort Kopien gespeichert werden. Wir bemühen uns nach bestem Wissen und Gewissen, den Zugriff auf diese Beiträge auf nur autorisierte Personen einzuschränken, jedoch könnten andere Server dabei scheitern. Deswegen ist es wichtig, die Server, zu denen deine Folgenden gehören, zu überprüfen. Du kannst eine Option in den Einstellungen umschalten, um neue Folgenden manuell anzunehmen oder abzuweisen. <em>Bitte beachte, dass die Betreiber des Server und jedes empfangenden Servers solche Nachrichten anschauen könnten</em> und dass Empfänger von diesen eine Bildschirmkopie erstellen könnten, sie kopieren oder anderweitig weiterverteilen könnten. <em>Teile nicht irgendwelche gefährlichen Informationen über Mastodon.</em></li>
       <li><em>Internet Protocol-Adressen (IP-Adressen) und andere Metadaten</em>: Sobald du dich anmeldest, erfassen wir sowohl die IP-Adresse, von der aus du dich anmeldest, als auch den Namen deine Browseranwendung. Alle angemeldeten Sitzungen (Sessions) sind für deine Überprüfung und Widerruf in den Einstellungen verfügbar. Die letzte verwendete IP-Adresse wird bis zu 12 Monate lang gespeichert. Wir könnten auch Serverprotokoll behalten, welche die IP-Adresse von jeder Anfrage an unseren Server enthalten.</li>
       </ul>
 
@@ -1543,7 +1531,7 @@ de:
       <p>Jede der von dir gesammelten Information kann in den folgenden Weisen verwendet werden:</p>
 
       <ul>
-      <li>Um die Kernfunktionalität von %{title} bereitzustellen. Du kannst du mit dem Inhalt anderer Leute interagieren und deine eigenen Inhalte beitragen, wenn du angemeldet bist. Zum Beispiel kannst du anderen folgen, um deren kombinierten Beiträge in deine personalisierten Start-Timeline zu sehen.</li>
+      <li>Um die Kernfunktionalität von Mastodon bereitzustellen. Du kannst du mit dem Inhalt anderer Leute interagieren und deine eigenen Inhalte beitragen, wenn du angemeldet bist. Zum Beispiel kannst du anderen folgen, um deren kombinierten Beiträge in deine personalisierten Start-Timeline zu sehen.</li>
       <li>Um Moderation der Community zu ermöglichen, zum Beispiel beim Vergleichen deiner IP-Adresse mit anderen bekannten, um Verbotsumgehung oder andere Vergehen festzustellen.</li>
       <li>Die E-Mail-Adresse, die du bereitstellst, kann dazu verwendet werden, dir Informationen, Benachrichtigungen über andere Leute, die mit deinen Inhalten interagieren oder dir Nachrichten senden, und auf Anfragen, Wünsche und/oder Fragen zu antworten.</li>
       </ul>
@@ -1610,9 +1598,9 @@ de:
       <p>Ursprünglich übernommen von der <a href="https://github.com/discourse/discourse">Discourse-Datenschutzerklärung</a>.</p>
     title: "%{instance} Nutzungsbedingungen und Datenschutzerklärung"
   themes:
-    contrast: %{title} (Hoher Kontrast)
-    default: %{title} (Dunkel)
-    mastodon-light: %{title} (Hell)
+    contrast: Mastodon (Hoher Kontrast)
+    default: Mastodon (Dunkel)
+    mastodon-light: Mastodon (Hell)
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
@@ -1644,7 +1632,7 @@ de:
       subject: Dein Einspruch vom %{date} wurde abgelehnt
       title: Einspruch abgelehnt
     backup_ready:
-      explanation: Du hast ein vollständiges Backup von deinem %{title}-Konto angefragt. Es kann jetzt heruntergeladen werden!
+      explanation: Du hast ein vollständiges Backup von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
       subject: Dein Archiv ist bereit zum Download
       title: Archiv-Download
     suspicious_sign_in:
@@ -1656,14 +1644,14 @@ de:
       title: Eine neue Anmeldung
     warning:
       appeal: Einspruch einsenden
-      appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.
+      appeal_description: Wenn du glaubst, dass dies ein Fehler ist, kannst du einen Einspruch an die Mitarbeiter von %{instance} senden.
       categories:
         spam: Spam
         violation: Inhalt verletzt die folgenden Community-Richtlinien
       explanation:
-        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Communityrichtlinien erkannt und von den Moderator_innen von %{instance} entfernt.
+        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Communityrichtlinien erkannt und von den Moderatoren von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst ein Backup deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
-        mark_statuses_as_sensitive: Einige deiner Beiträge wurden von den Moderator_innen von %{instance} als NSFW markiert. Das bedeutet, dass die Nutzer die Medien in den Beiträgen antippen müssen, bevor eine Vorschau angezeigt wird. Du kannst Medien in Zukunft als NSFW markieren, wenn du Beiträge verfasst.
+        mark_statuses_as_sensitive: Einige deiner Beiträge wurden von den Moderatoren von %{instance} als NSFW markiert. Das bedeutet, dass die Nutzer die Medien in den Beiträgen antippen müssen, bevor eine Vorschau angezeigt wird. Du kannst Medien in Zukunft als NSFW markieren, wenn du Beiträge verfasst.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
@@ -1695,11 +1683,11 @@ de:
       full_handle_hint: Dies ist was du deinen Freunden sagen kannst, damit sie dich anschreiben oder von einem anderen Server folgen können.
       review_preferences_action: Einstellungen ändern
       review_preferences_step: Stelle sicher, dass du deine Einstellungen einstellst, wie zum Beispiel welche E-Mails du gerne erhalten möchtest oder was für Privatsphäreneinstellungen voreingestellt werden sollten. Wenn dir beim Ansehen von GIFs nicht schwindelig wird, dann kannst du auch das automatische Abspielen dieser aktivieren.
-      subject: Willkommen bei %{title}
-      tip_federated_timeline: Die föderierte Zeitleiste ist die sehr große Ansicht vom %{title}-Netzwerk. Sie enthält aber auch nur Leute, denen du und deine Nachbarn folgen, sie ist also nicht komplett.
+      subject: Willkommen bei Mastodon
+      tip_federated_timeline: Die föderierte Zeitleiste ist die sehr große Ansicht vom Mastodon-Netzwerk. Sie enthält aber auch nur Leute, denen du und deine Nachbarn folgen, sie ist also nicht komplett.
       tip_following: Du folgst standardmäßig deinen Server-Admin(s). Um mehr interessante Leute zu finden, kannst du die lokale oder öffentliche Zeitleiste durchsuchen.
       tip_local_timeline: Die lokale Zeitleiste ist eine Ansicht aller Leute auf %{instance}. Diese sind deine Nachbarn!
-      tip_mobile_webapp: Wenn dein mobiler Browser dir anbietet %{title} zu deinem Startbildschirm hinzuzufügen, dann kannst du Benachrichtigungen erhalten. Es verhält sich wie eine native App in vielen Wegen!
+      tip_mobile_webapp: Wenn dein mobiler Browser dir anbietet Mastodon zu deinem Startbildschirm hinzuzufügen, dann kannst du Benachrichtigungen erhalten. Es verhält sich wie eine native App in vielen Wegen!
       tips: Tipps
       title: Willkommen an Bord, %{name}!
   users:
@@ -1709,7 +1697,7 @@ de:
     seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
     signed_in_as: 'Angemeldet als:'
   verification:
-    explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein %{title}-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:'
+    explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:'
     verification: Verifizierung
   webauthn_credentials:
     add: Sicherheitsschlüssel hinzufügen
