@@ -1,3 +1,6 @@
+# Publish the mastdodon helm chart to mastodon.github.io/mastodon as a .tgz file.
+# helm/chart-releaser-action will push an index.yaml file to the gh-pages branch with a reference to the .tgz file.
+# The tgz file is stored as a release asset in github.
 name: Publish helm chart
 
 concurrency: release-helm
@@ -10,8 +13,7 @@ on:
 
 jobs:
   release:
-    # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
-    # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+    # Write permission is required to write to the gh-pages branch.
     permissions:
       contents: write
     runs-on: ubuntu-latest
@@ -25,11 +27,6 @@ jobs:
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Install Helm
-        uses: azure/setup-helm@v3
-        with:
-          version: v3.10.0
 
       - name: Update chart dependencies
         run: |
