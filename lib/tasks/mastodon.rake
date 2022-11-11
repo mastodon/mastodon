@@ -326,7 +326,7 @@ namespace :mastodon do
           when 'auto'
             enable_starttls_auto = true
           else
-            enable_starttls_auto = ENV['SMTP_ENABLE_STARTTLS_AUTO'] != 'false'
+            enable_starttls_auto = env['SMTP_ENABLE_STARTTLS_AUTO'] != 'false'
           end
 
           ActionMailer::Base.smtp_settings = {
