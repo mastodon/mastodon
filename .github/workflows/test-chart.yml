@@ -1,0 +1,58 @@
+# This is a GitHub workflow defining a set of jobs with a set of steps.
+# ref: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+#
+name: Test chart
+
+on:
+  pull_request:
+    paths:
+      - "chart/**"
+      - "!**.md"
+      - ".github/workflows/test-chart.yml"
+  push:
+    paths:
+      - "chart/**"
+      - "!**.md"
+      - ".github/workflows/test-chart.yml"
+    branches-ignore:
+      - "dependabot/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lint_templates:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: chart
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies (yamllint)
+        run: pip install yamllint
+
+      - run: helm dependency update
+
+      - name: helm lint
+        run: |
+          helm lint . \
+              --set mastodon.secrets.existingSecret=dummy
+
+      - name: helm template
+        run: |
+          helm template . \
+              --set mastodon.secrets.existingSecret=dummy \
+              --output-dir rendered-templates
+
+      - name: yamllint (only on templates we manage)
+        run: |
+          rm -rf rendered-templates/mastodon/charts
+
+          yamllint rendered-templates \
+            --config-data "{rules: {indentation: {spaces: 2}, line-length: disable}}"
