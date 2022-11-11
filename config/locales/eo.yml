@@ -227,8 +227,10 @@ eo:
         create_domain_block_html: "%{name} blokis domajnon %{target}"
         create_email_domain_block_html: "%{name} blokis retpoŝtan domajnon %{target}"
         create_ip_block_html: "%{name} kreis regulon por IP %{target}"
+        create_user_role_html: "%{name} kreis rolon de %{target}"
         demote_user_html: "%{name} degradis uzanton %{target}"
         destroy_announcement_html: "%{name} forigis anoncon %{target}"
+        destroy_custom_emoji_html: "%{name} forigis emoĝion %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
         destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
@@ -309,6 +311,9 @@ eo:
       media_storage: Memorilo de aŭdovidaĵoj
       new_users: novaj uzantoj
       opened_reports: raportoj malfermitaj
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pritraktota kradvorto"
+        other: "<strong>%{count}</strong> pritraktotaj kradvortoj"
       resolved_reports: raportoj solvitaj
       software: Programo
       space: Memorspaca uzado
@@ -367,6 +372,10 @@ eo:
       title: Rekomendoj de sekvado
     instances:
       availability:
+        failures_recorded:
+          one: Malsukcesa provo dum %{count} tago.
+          other: Malsukcesa provo dum %{count} apartaj tagoj.
+        no_failures_recorded: Neniuj malsukcesoj en protokolo.
         title: Disponebleco
         warning: La lasta provo por konektiĝi al ĉi tiu servilo estis malsukcesa
       back_to_all: Ĉiuj
@@ -394,10 +403,16 @@ eo:
         instance_statuses_measure: konservitaj afiŝoj
       delivery:
         all: Ĉiuj
+        clear: Forviŝi liverajn erarojn
         failing: Malsukcesas
+        restart: Restarti liveradon
+        stop: Halti liveradon
         unavailable: Nedisponebla
       delivery_available: Liverado disponeblas
       empty: Neniuj domajnoj trovitaj.
+      known_accounts:
+        one: "%{count} konata konto"
+        other: "%{count} konataj kontoj"
       moderation:
         all: Ĉiuj
         limited: Limigita
@@ -460,6 +475,7 @@ eo:
         notes:
           one: "%{count} noto"
           other: "%{count} notoj"
+      action_log: Kontrola protokolo
       action_taken_by: Ago farita de
       actions:
         other_description_html: Vidu pli da elektebloj por kontroli la agadon de la konto kaj personecigi la komunikadon kun la konto pri kiu raporto.
@@ -476,6 +492,7 @@ eo:
       forwarded: Plusendita
       forwarded_to: Plusendita al %{domain}
       mark_as_resolved: Marki solvita
+      mark_as_sensitive: Marki kiel tiklan
       mark_as_unresolved: Marki nesolvita
       no_one_assigned: Neniu
       notes:
@@ -485,6 +502,7 @@ eo:
         delete: Forigi
         placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
         title: Notoj
+      remote_user_placeholder: la ekstera uzanto de %{instance}
       reopen: Remalfermi signalon
       report: 'Signalo #%{id}'
       reported_account: Signalita konto
@@ -512,14 +530,24 @@ eo:
         moderation: Kontrolado
         special: Specialaj
       delete: Forigi
+      edit: Redakti rolon de '%{name}'
       everyone: Implicitaj permesoj
+      everyone_full_description_html: Jen la <strong>baza rolo</strong>, kiu afektas <strong>ĉiujn uzantojn</strong>, eĉ tiuj sen atribuata rolo. Ĉiuj aliaj roloj heredas permesojn de ĝi.
+      permissions_count:
+        one: "%{count} permeso"
+        other: "%{count} permesoj"
       privileges:
+        administrator: Administranto
+        administrator_description: Uzantoj kun ĉi tiu permeso preterpasos ĉiun permeson
         delete_user_data: Forviŝi la datumojn de la uzanto
+        invite_users: Inviti Uzantojn
         manage_announcements: Administri Anoncojn
         manage_announcements_description: Permesas uzantojn administri anoncojn ĉe la servilo
         manage_appeals: Administri Apelaciojn
         manage_appeals_description: Rajtigas al uzantoj kontroli apelaciojn kontraǔ kontrolaj agoj
         manage_blocks: Administri Blokojn
+        manage_federation: Administri Federacion
+        manage_federation_description: Permesas al uzantoj bloki aǔ permesi federacion kun aliaj domajnoj, kaj regi liveradon
         manage_invites: Administri Invitojn
         manage_roles: Administri Rolojn
         manage_rules: Administri Regulojn
@@ -535,6 +563,8 @@ eo:
         title: Pri
       appearance:
         title: Apero
+      discovery:
+        title: Eltrovado
       domain_blocks:
         all: Al ciuj
         disabled: Al neniu
@@ -548,6 +578,7 @@ eo:
       delete: Forigi elŝutitan dosieron
       destroyed_msg: Reteja alŝuto sukcese forigita!
     statuses:
+      account: Skribanto
       back_to_account: Reveni al konta paĝo
       batch:
         remove_from_report: Forigi de raporto
@@ -606,17 +637,27 @@ eo:
       tags:
         dashboard:
           tag_accounts_measure: unikaj uzoj
+          tag_servers_dimension: Ĉefaj serviloj
           tag_servers_measure: malsamaj serviloj
         not_usable: Ne povas esti uzata
         title: Tendencantaj kradvortoj
+        trending_rank: 'Populara #%{rank}'
+        usable: Povas esti uzata
       title: Tendencoj
+      trending: Popularaĵoj
     warning_presets:
       add_new: Aldoni novan
       delete: Forviŝi
       edit_preset: Redakti la antaŭagordojn de averto
       title: Administri avertajn antaŭagordojn
     webhooks:
+      delete: Forigi
+      disable: Neebligi
+      disabled: Neebligita
+      edit: Redakti finpunkton
+      enable: Ŝalti
       enabled: Aktiva
+      events: Eventoj
   admin_mailer:
     new_appeal:
       actions:
@@ -910,6 +951,8 @@ eo:
       other_data: Neniu alia datumo estos movita aŭtomate
   moderation:
     title: Moderigado
+  navigation:
+    toggle_menu: Baskuli menuon
   notification_mailer:
     favourite:
       body: '%{name} stelumis vian mesaĝon:'
@@ -1004,6 +1047,8 @@ eo:
     missing_resource: La bezonata URL de plusendado por via konto ne estis trovita
   rss:
     content_warning: 'Averto pri enhavo:'
+    descriptions:
+      tag: 'Publikaj afiŝoj pri #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Vi transpasis la limigon al %{limit} samtage planitaj mesaĝoj
     over_total_limit: Vi transpasis la limigon al %{limit} planitaj mesaĝoj
@@ -1088,6 +1133,7 @@ eo:
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
+    edited_at_html: Redaktis je %{date}
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
@@ -1165,10 +1211,18 @@ eo:
     recovery_instructions_html: Se vi perdas aliron al via telefono, vi povas uzi unu el la subaj realiraj kodoj por rehavi aliron al via konto. <strong>Konservu realirajn kodojn sekure</strong>. Ekzemple, vi povas printi ilin kaj konservi ilin kun aliaj gravaj dokumentoj.
     webauthn: Sekurecaj ŝlosiloj
   user_mailer:
+    appeal_approved:
+      action: Iri al via konto
+      title: Apelacio estis aprobita
+    appeal_rejected:
+      subject: Via apelacio de %{date} estis malaprobita
+      title: Apelacio estis malaprobita
     backup_ready:
       explanation: Vi petis kompletan arkivon de via Mastodon-konto. Ĝi nun pretas por elŝutado!
       subject: Via arkivo estas preta por elŝutado
       title: Arkiva elŝuto
+    suspicious_sign_in:
+      change_password: ŝanĝi vian pasvorton
     warning:
       categories:
         spam: Spamo
@@ -1187,6 +1241,7 @@ eo:
       edit_profile_action: Agordi profilon
       explanation: Jen kelkaj konsiloj por helpi vin komenci
       final_action: Ekmesaĝi
+      final_step: 'Ekmesaĝu! Eĉ sen sekvantoj, viaj publikaj mesaĝoj povas esti vidataj de aliaj, ekzemple en la loka templinio aŭ per kradvortoj. Eble vi ŝatus prezenti vin per la kradvorto #introductions / #konigo.'
       full_handle: Via kompleta uzantnomo
       full_handle_hint: Jen kion vi dirus al viaj amikoj, por ke ili mesaĝu aŭ sekvu vin de alia servilo.
       subject: Bonvenon en Mastodon
