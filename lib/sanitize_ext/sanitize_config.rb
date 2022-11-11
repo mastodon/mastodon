@@ -74,14 +74,14 @@ class Sanitize
       elements: %w(p br span a),
 
       attributes: {
-        'a'    => %w(href rel class),
-        'span' => %w(class),
+        a: %w(href rel class),
+        span: %w(class),
       },
 
       add_attributes: {
-        'a' => {
-          'rel' => 'nofollow noopener noreferrer',
-          'target' => '_blank',
+        a: {
+          rel: 'nofollow noopener noreferrer',
+          target: '_blank',
         },
       },
 
@@ -110,9 +110,9 @@ class Sanitize
 
       protocols: merge(
         RELAXED[:protocols],
-        'embed'  => { 'src' => HTTP_PROTOCOLS },
-        'iframe' => { 'src' => HTTP_PROTOCOLS },
-        'source' => { 'src' => HTTP_PROTOCOLS }
+        'embed'  => { src: HTTP_PROTOCOLS },
+        'iframe' => { src: HTTP_PROTOCOLS },
+        'source' => { src: HTTP_PROTOCOLS }
       )
     )
   end

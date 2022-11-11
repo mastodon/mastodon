@@ -12,7 +12,7 @@
       %samp.qr-alternative__code= @new_otp_secret.scan(/.{4}/).join(' ')
 
   .fields-group
-    = f.input :otp_attempt, wrapper: :with_label, hint: t('otp_authentication.code_hint'), label: t('simple_form.labels.defaults.otp_attempt'), input_html: { :autocomplete => 'off' }, required: true
+    = f.input :otp_attempt, wrapper: :with_label, hint: t('otp_authentication.code_hint'), label: t('simple_form.labels.defaults.otp_attempt'), input_html: { autocomplete: 'off' }, required: true
 
   .actions
     = f.button :button, t('otp_authentication.enable'), type: :submit

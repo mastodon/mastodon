@@ -275,7 +275,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   end
 
   def broadcast_updates!
-    ::DistributionWorker.perform_async(@status.id, { 'update' => true })
+    ::DistributionWorker.perform_async(@status.id, { update: true })
   end
 
   def queue_poll_notifications!

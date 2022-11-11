@@ -124,7 +124,7 @@ class UpdateStatusService < BaseService
   end
 
   def broadcast_updates!
-    DistributionWorker.perform_async(@status.id, { 'update' => true })
+    DistributionWorker.perform_async(@status.id, { update: true })
     ActivityPub::StatusUpdateDistributionWorker.perform_async(@status.id)
   end
 

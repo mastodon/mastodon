@@ -21,7 +21,7 @@ class ActivityPub::FetchRemoteStatusService < BaseService
 
     if expected_object_type?
       actor_uri     = value_or_id(first_of_value(@json['attributedTo']))
-      activity_json = { 'type' => 'Create', 'actor' => actor_uri, 'object' => @json }
+      activity_json = { type: 'Create', actor: actor_uri, object: @json }
       object_uri    = uri_from_bearcap(@json['id'])
     elsif expected_activity_type?
       actor_uri     = value_or_id(first_of_value(@json['actor']))

@@ -95,17 +95,17 @@ class MediaAttachment < ApplicationRecord
     vfr_frame_rate_threshold: MAX_VIDEO_FRAME_RATE,
     convert_options: {
       output: {
-        'loglevel' => 'fatal',
-        'movflags' => 'faststart',
-        'pix_fmt' => 'yuv420p',
-        'vf' => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
-        'vsync' => 'cfr',
+        loglevel: 'fatal',
+        movflags: 'faststart',
+        pix_fmt: 'yuv420p',
+        vf: 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
+        vsync: 'cfr',
         'c:v' => 'h264',
-        'maxrate' => '1300K',
-        'bufsize' => '1300K',
+        maxrate: '1300K',
+        bufsize: '1300K',
         'frames:v' => 60 * 60 * 3,
-        'crf' => 18,
-        'map_metadata' => '-1',
+        crf: 18,
+        map_metadata: '-1',
       }.freeze,
     }.freeze,
   }.freeze
@@ -118,8 +118,8 @@ class MediaAttachment < ApplicationRecord
       format: 'mp4',
       convert_options: {
         output: {
-          'loglevel' => 'fatal',
-          'map_metadata' => '-1',
+          loglevel: 'fatal',
+          map_metadata: '-1',
           'c:v' => 'copy',
           'c:a' => 'copy',
         }.freeze,
@@ -131,7 +131,7 @@ class MediaAttachment < ApplicationRecord
     small: {
       convert_options: {
         output: {
-          'loglevel' => 'fatal',
+          loglevel: 'fatal',
           vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
         }.freeze,
       }.freeze,
@@ -150,7 +150,7 @@ class MediaAttachment < ApplicationRecord
       content_type: 'audio/mpeg',
       convert_options: {
         output: {
-          'loglevel' => 'fatal',
+          loglevel: 'fatal',
           'q:a' => 2,
         }.freeze,
       }.freeze,
@@ -242,7 +242,7 @@ class MediaAttachment < ApplicationRecord
     x, y = (point.is_a?(Enumerable) ? point : point.split(',')).map(&:to_f)
 
     meta = (file.instance_read(:meta) || {}).with_indifferent_access.slice(*META_KEYS)
-    meta['focus'] = { 'x' => x, 'y' => y }
+    meta['focus'] = { x: x, y: y }
 
     file.instance_write(:meta, meta)
   end

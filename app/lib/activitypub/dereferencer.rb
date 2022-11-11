@@ -28,7 +28,7 @@ class ActivityPub::Dereferencer
   end
 
   def fetch_with_token!
-    perform_request(bear_cap['u'], headers: { 'Authorization' => "Bearer #{bear_cap['t']}" })
+    perform_request(bear_cap['u'], headers: { Authorization: "Bearer #{bear_cap['t']}" })
   end
 
   def fetch_with_signature!

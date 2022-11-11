@@ -34,9 +34,9 @@ class ActivityPub::LinkedDataSignature
 
   def sign!(creator, sign_with: nil)
     options = {
-      'type'    => 'RsaSignature2017',
-      'creator' => ActivityPub::TagManager.instance.key_uri_for(creator),
-      'created' => Time.now.utc.iso8601,
+      type: 'RsaSignature2017',
+      creator: ActivityPub::TagManager.instance.key_uri_for(creator),
+      created: Time.now.utc.iso8601,
     }
 
     options_hash  = hash(options.without('type', 'id', 'signatureValue').merge('@context' => CONTEXT))

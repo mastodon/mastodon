@@ -106,7 +106,7 @@ class ActivityPub::Activity
       actor_id = value_or_id(first_of_value(@object['attributedTo']))
 
       if actor_id == @account.uri
-        return ActivityPub::Activity.factory({ 'type' => 'Create', 'actor' => actor_id, 'object' => @object }, @account).perform
+        return ActivityPub::Activity.factory({ type: 'Create', actor: actor_id, object: @object }, @account).perform
       end
     end
 

@@ -64,7 +64,7 @@ class Admin::StatusBatchAction
     end
 
     UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
-    RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { 'preserve' => target_account.local?, 'immediate' => !target_account.local? }] }
+    RemovalWorker.push_bulk(status_ids) { |status_id| [status_id, { preserve: target_account.local?, immediate: !target_account.local? }] }
   end
 
   def handle_mark_as_sensitive!
