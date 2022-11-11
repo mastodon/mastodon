@@ -630,6 +630,7 @@ ar:
       content_retention:
         title: الاحتفاظ بالمحتوى
       discovery:
+        follow_recommendations: اتبع التوصيات
         profile_directory: دليل الصفحات التعريفية
         public_timelines: الخيوط الزمنية العامة
         title: الاستكشاف
@@ -639,6 +640,7 @@ ar:
         disabled: لا أحد
         users: للمستخدمين المتصلين محليا
       registrations:
+        preamble: تحكّم في مَن الذي يمكنه إنشاء حساب على خادمك الخاص.
         title: التسجيلات
       registrations_mode:
         modes:
@@ -676,6 +678,8 @@ ar:
       with_media: تحتوي على وسائط
     strikes:
       actions:
+        delete_statuses: "حَذَفَ %{name} رسائل %{target}"
+        disable: "جَمّدَ %{name} حساب %{target}"
         suspend: "قام %{name} بتعليق حساب %{target}"
       appeal_approved: طُعِن فيه
       appeal_pending: طعن قيد المراجعة
