@@ -88,7 +88,7 @@ ko:
       moderation:
         active: 활동
         all: 전체
-        pending: 대기중
+        pending: 대기 중
         silenced: 제한됨
         suspended: 정지 중
         title: 중재
@@ -148,7 +148,7 @@ ko:
       title: 계정
       unblock_email: 이메일 주소 차단 해제
       unblocked_email_msg: '%{username}의 이메일 주소를 성공적으로 차단 해제했습니다'
-      unconfirmed_email: 미확인 된 이메일 주소
+      unconfirmed_email: 확인되지 않은 이메일 주소
       undo_sensitized: 민감함으로 설정 취소
       undo_silenced: 침묵 해제
       undo_suspension: 정지 해제
@@ -520,7 +520,7 @@ ko:
       enable_hint: 활성화 되면, 이 릴레이의 모든 공개 게시물을 구독하고 이 서버의 공개 게시물을 전송하게 됩니다.
       enabled: 활성화 됨
       inbox_url: 릴레이 URL
-      pending: 릴레이의 승인 대기중
+      pending: 릴레이의 승인 대기 중
       save_and_enable: 저장하고 활성화
       setup: 릴레이 연결 설정
       signatures_not_enabled: 시큐어모드나 제한된 페더레이션 모드를 사용하고 있다면 릴레이는 제대로 동작하지 않을 것입니다
@@ -547,7 +547,7 @@ ko:
       add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
-      assigned: 할당 된 중재자
+      assigned: 할당된 중재자
       by_target_domain: 신고된 계정의 도메인
       category: 카테고리
       category_description_html: 이 계정 또는 게시물이 신고된 이유는 신고된 계정과의 의사소통 과정에 인용됩니다
@@ -569,7 +569,7 @@ ko:
         delete: 삭제
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
         title: 노트
-      notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
+      notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 노트를 작성합니다
       quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
       remote_user_placeholder: '%{instance}의 리모트 사용자'
       reopen: 리포트 다시 열기
@@ -730,7 +730,7 @@ ko:
       appeal_pending: 이의제기 대기중
     system_checks:
       database_schema_check:
-        message_html: 데이터베이스 마이그레이션이 대기중입니다. 응용프로그램이 예상한대로 동작할 수 있도록 마이그레이션을 실행해 주세요
+        message_html: 대기 중인 데이터베이스 마이그레이션이 있습니다. 애플리케이션이 예상대로 동작할 수 있도록 마이그레이션을 실행해 주세요
       elasticsearch_running_check:
         message_html: Elasticsearch에 연결할 수 없습니다. 실행중인지 확인하거나, 전문검색을 비활성화하세요
       elasticsearch_version_check:
@@ -939,7 +939,7 @@ ko:
       account_status: 계정 상태
       confirming: 이메일 확인 과정이 완료되기를 기다리는 중.
       functional: 계정이 완벽히 작동합니다.
-      pending: 당신의 가입 신청은 스태프의 검사를 위해 대기중입니다. 이것은 시간이 다소 소요됩니다. 가입 신청이 승인 될 경우 이메일을 받게 됩니다.
+      pending: 당신의 가입 신청은 스태프의 검사를 위해 대기 중입니다. 시간이 조금 걸릴 수 있습니다. 가입 신청이 승인되면 이메일을 받게 됩니다.
       redirecting_to: 계정이 %{acct}로 리다이렉트 중이기 때문에 비활성 상태입니다.
       view_strikes: 내 계정에 대한 과거 중재 기록 보기
     too_fast: 너무 빠르게 양식이 제출되었습니다, 다시 시도하세요.
@@ -991,7 +991,7 @@ ko:
     success_msg: 계정이 성공적으로 삭제되었습니다
     warning:
       before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
-      caches: 다른 서버에 캐싱 된 정보들은 남아있을 수 있습니다
+      caches: 다른 서버에 캐싱된 정보들은 남아있을 수 있습니다
       data_removal: 당신의 게시물과 다른 정보들은 영구적으로 삭제 됩니다
       email_change_html: 계정을 지우지 않고도 <a href="%{path}">이메일 주소를 수정할 수 있습니다</a>
       email_contact_html: 아직 도착하지 않았다면, <a href="mailto:%{email}">%{email}</a>에 메일을 보내 도움을 요청할 수 있습니다
@@ -1140,7 +1140,7 @@ ko:
       overwrite: 덮어쓰기
       overwrite_long: 기존 것을 모두 지우고 새로 추가
     preface: 다른 서버에서 내보내기 한 파일에서 팔로우 / 차단 정보를 이 계정으로 불러올 수 있습니다.
-    success: 파일이 정상적으로 업로드 되었으며, 현재 처리 중입니다
+    success: 파일이 정상적으로 업로드되었으며, 현재 처리 중입니다
     types:
       blocking: 차단한 계정 목록
       bookmarks: 보관함
@@ -1364,7 +1364,7 @@ ko:
       weibo: 웨이보
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
-    explanation: 내 마스토돈 계정에 현재 로그인 중인 웹 브라우저 목록입니다.
+    explanation: 내 마스토돈 계정에 로그인되어 있는 웹 브라우저 목록입니다.
     ip: IP
     platforms:
       adobe_air: 어도비 Air
@@ -1486,7 +1486,7 @@ ko:
     min_reblogs: 해당 횟수 이상 부스트된 게시물 유지
     min_reblogs_hint: 이 횟수 이상의 부스트가 된 게시물은 삭제하지 않습니다. 부스트 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
   stream_entries:
-    pinned: 고정글
+    pinned: 고정된 게시물
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 콘텐츠
   strikes:
