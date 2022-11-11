@@ -1,4 +1,3 @@
----
 bg:
   simple_form:
     hints:
@@ -6,11 +5,25 @@ bg:
         avatar: PNG, GIF или JPG. До %{size}. Ще бъде смалена до %{dimensions} пиксела
         header: PNG, GIF или JPG. До %{size}. Ще бъде смалена до %{dimensions} пиксела
         locked: Изисква ръчно одобрение на последователите. По подразбиране, публикациите са достъпни само до последователи.
+        password: Използвайте поне 8 символа
+        setting_default_sensitive: Деликатната мултимедия е скрита по подразбиране и може да се разкрие с едно щракване
+        setting_display_media_default: Скриване на мултимедия отбелязана като деликатна
+        setting_display_media_hide_all: Винаги да се скрива мултимедията
+        setting_display_media_show_all: Винаги да се показва мултимедията
+        setting_hide_network: В профила ви ще бъде скрито кой може да последвате и кой може да ви последва
+        username: Вашето потребителско име ще е неповторим в %{domain}
       imports:
         data: CSV файл, експортиран от друга инстанция на Mastodon
+      ip_block:
+        severities:
+          no_access: Блокиране на достъп до всички ресурси
+      webhook:
+        events: Изберете събития за изпращане
+        url: До къде ще се изпращат събитията
     labels:
       account:
         fields:
+          name: Етикет
           value: Съдържание
       account_warning_preset:
         title: Заглавие
@@ -21,27 +34,63 @@ bg:
           sensitive: Деликатно
           silence: Ограничение
           suspend: Спиране
+      announcement:
+        ends_at: Край на събитието
+        starts_at: Начало на събитието
       defaults:
         avatar: Аватар
+        chosen_languages: Прецеждане на езиците
         confirm_new_password: Потвърди новата парола
         confirm_password: Потвърди паролата
         current_password: Текуща парола
         data: Данни
         display_name: Показвано име
-        email: E-mail адрес
+        email: Адрес на имейла
         header: Заглавен ред
-        locale: Език
+        locale: Език на интерфейса
         locked: Направи акаунта поверителен
         new_password: Нова парола
-        note: Био
-        otp_attempt: Двустепенен код
+        note: Биография
+        otp_attempt: Двуфакторен код
         password: Парола
+        phrase: Ключова дума или фраза
+        setting_auto_play_gif: Самопускащи се анимирани гифчета
+        setting_default_language: Език на публикуване
         setting_default_privacy: Поверителност на публикациите
+        setting_display_media_default: Стандартно
+        setting_display_media_hide_all: Скриване на всичко
+        setting_display_media_show_all: Показване на всичко
+        setting_theme: Тема на сайта
+        setting_use_pending_items: Бавен режим
+        sign_in_token_attempt: Код за сигурност
+        title: Заглавие
         type: Тип на импортиране
         username: Потребителско име
+        username_or_email: Потребителско име или имейл
+        whole_word: Цяла дума
+      featured_tag:
+        name: Хаштаг
+      form_admin_settings:
+        require_invite_text: Изисква се причина за присъединяване
+        site_contact_username: Потребителско име на контакт
+        site_extended_description: Разширено описание
+        site_short_description: Описание на сървъра
+        site_terms: Политика за поверителност
+        site_title: Име на сървъра
+        theme: Стандартна тема
+        thumbnail: Миниобраз на сървъра
       interactions:
         must_be_follower: Блокирай известия от не-последователи
         must_be_following: Блокирай известия от хора, които не следваш
+      invite:
+        comment: Коментар
+      invite_request:
+        text: Защо искате да се присъедините?
+      ip_block:
+        comment: Коментар
+        severities:
+          no_access: Блокиране на адреса
+        severity: Правило
       notification_emails:
         digest: Изпращай извлечения на съобщенията
         favourite: Изпращай e-mail, когато някой хареса твоя публикация
@@ -49,7 +98,21 @@ bg:
         follow_request: Изпращай e-mail, когато някой пожелае да те последва
         mention: Изпращай e-mail, когато някой те спомене
         reblog: Изпращай e-mail, когато някой сподели твоя публикация
-    'no': Не
+      rule:
+        text: Правило
+      tag:
+        name: Хаштаг
+      user:
+        role: Роля
+      user_role:
+        color: Цвят на значката
+        name: Име
+        permissions_as_keys: Разрешения
+        position: Приоритет
+    'no': 'Не'
+    not_recommended: Не се препоръчва
+    recommended: Препоръчано
     required:
+      mark: "*"
       text: задължително
-    'yes': Да
+    'yes': 'Да'
