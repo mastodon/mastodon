@@ -104,7 +104,7 @@ Rails.application.configure do
   enable_starttls = nil
   enable_starttls_auto = nil
 
-  case env['SMTP_ENABLE_STARTTLS']
+  case ENV['SMTP_ENABLE_STARTTLS']
   when 'always'
     enable_starttls = true
   when 'never'
