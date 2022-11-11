@@ -786,6 +786,9 @@ pt-BR:
         description_html: Estes são as publicações que seu servidor sabe que estão sendo muito compartilhadas e favorecidas no momento. Isso pode ajudar seus usuários, novos e atuais, a encontrar mais pessoas para seguir. Nenhuma publicação é exibida publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
         disallow: Proibir publicação
         disallow_account: Proibir autor
+        shared_by:
+          one: Compartilhado ou favoritado uma vez
+          other: Compartilhado e favoritado %{friendly_count} vezes
         title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
@@ -863,7 +866,7 @@ pt-BR:
     created_msg: Um novo atalho foi criado. Agora você pode iniciar a mudança da conta antiga.
     deleted_msg: O atalho foi removido. Não será mais possível se mudar daquela conta para esta conta.
     empty: Você não tem alias.
-    hint_html: Se você quiser migrar de uma outra conta para esta, você pode criar um alias aqui, o que é necessário antes que você possa migrar os seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada pela conta antiga</strong>.
+    hint_html: Se você quiser migrar de uma outra conta para esta, você pode criar um atalho aqui, o que é necessário antes que você possa migrar os seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada pela conta antiga</strong>.
     remove: Desvincular alias
   appearance:
     advanced_web_interface: Interface avançada de colunas
