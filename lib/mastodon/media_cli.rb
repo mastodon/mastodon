@@ -57,138 +57,26 @@ module Mastodon
       Please mind that some storage providers charge for the necessary API requests to list objects.
     LONG_DESC
     def remove_orphans
-      progress        = create_progress_bar(nil)
-      reclaimed_bytes = 0
-      removed         = 0
-      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
-      prefix          = options[:prefix]
+      progress = create_progress_bar(nil)
+      dry_run  = options[:dry_run] ? ' (DRY RUN)' : ''
 
-      exit_cleanly = true
-
-      case Paperclip::Attachment.default_options[:storage]
-      when :s3
-        paperclip_instance = MediaAttachment.new.file
-        s3_interface       = paperclip_instance.s3_interface
-        s3_permissions     = Paperclip::Attachment.default_options[:s3_permissions]
-        bucket             = s3_interface.bucket(Paperclip::Attachment.default_options[:s3_credentials][:bucket])
-        last_key           = options[:start_after]
-
-        loop do
-          objects = begin
-            begin
-              bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
-            rescue => e
-              progress.log(pastel.red("Error fetching list of files: #{e}"))
-              progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
-              exit_cleanly = false
-              break
-            end
-          end
-
-          break if objects.empty?
-
-          last_key   = objects.last.key
-          record_map = preload_records_from_mixed_objects(objects)
-
-          objects.each do |object|
-            object.acl.put(acl: s3_permissions) if options[:fix_permissions] && !options[:dry_run]
-
-            path_segments = object.key.split('/')
-            path_segments.delete('cache')
-
-            unless [7, 10].include?(path_segments.size)
-              progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
-              next
-            end
-
-            model_name      = path_segments.first.classify
-            attachment_name = path_segments[1].singularize
-            record_id       = path_segments[2..-2].join.to_i
-            file_name       = path_segments.last
-            record          = record_map.dig(model_name, record_id)
-            attachment      = record&.public_send(attachment_name)
-
-            progress.increment
-
-            next unless attachment.blank? || !attachment.variant?(file_name)
-
-            begin
-              object.delete unless options[:dry_run]
-
-              reclaimed_bytes += object.size
-              removed += 1
-
-              progress.log("Found and removed orphan: #{object.key}")
-            rescue => e
-              progress.log(pastel.red("Error processing #{object.key}: #{e}"))
-              exit_cleanly = false
-            end
-          end
-        end
-      when :fog
-        say('The fog storage driver is not supported for this operation at this time', :red)
-        exit(1)
-      when :filesystem
-        require 'find'
-
-        root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')).gsub(':rails_root', Rails.root.to_s)
-
-        Find.find(File.join(*[root_path, prefix].compact)) do |path|
-          next if File.directory?(path)
-
-          key = path.gsub("#{root_path}#{File::SEPARATOR}", '')
-
-          path_segments = key.split(File::SEPARATOR)
-          path_segments.delete('cache')
-
-          unless [7, 10].include?(path_segments.size)
-            progress.log(pastel.yellow("Unrecognized file found: #{key}"))
-            next
-          end
-
-          model_name      = path_segments.first.classify
-          record_id       = path_segments[2..-2].join.to_i
-          attachment_name = path_segments[1].singularize
-          file_name       = path_segments.last
-
-          next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
-
-          record     = model_name.constantize.find_by(id: record_id)
-          attachment = record&.public_send(attachment_name)
-
-          progress.increment
-
-          next unless attachment.blank? || !attachment.variant?(file_name)
-
-          begin
-            size = File.size(path)
-
-            unless options[:dry_run]
-              File.delete(path)
-              begin
-                FileUtils.rmdir(File.dirname(path), parents: true)
-              rescue Errno::ENOTEMPTY
-                # OK
-              end
-            end
-
-            reclaimed_bytes += size
-            removed += 1
-
-            progress.log("Found and removed orphan: #{key}")
-          rescue => e
-            progress.log(pastel.red("Error processing #{key}: #{e}"))
-            exit_cleanly = false
-          end
-        end
-      end
+      result = case Paperclip::Attachment.default_options[:storage]
+               when :s3
+                 remove_orphans_from_s3(progress, options)
+               when :fog
+                 remove_orphans_from_fog(progress, options)
+               when :filesystem
+                 remove_orphans_from_filesystem(progress, options)
+               else
+                 { success: false, removed: 0, reclaimed_bytes: 0 }
+               end
 
       progress.total = progress.progress
       progress.finish
 
-      say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
+      say("Removed #{result[:removed]} orphans (approx. #{number_to_human_size(result[:reclaimed_bytes])})#{dry_run}", :green, true)
 
-      exit(1) unless exit_cleanly
+      exit(1) unless result[:success]
     end
 
     option :account, type: :string
@@ -345,6 +233,141 @@ module Mastodon
       preload_map.each_with_object({}) do |(model_name, record_ids), model_map|
         model_map[model_name] = model_name.constantize.where(id: record_ids).index_by(&:id)
       end
+    end
+
+    def remove_orphans_from_s3(progress, options)
+      success         = true
+      reclaimed_bytes = 0
+      removed         = 0
+      prefix          = options[:prefix]
+
+      paperclip_instance = MediaAttachment.new.file
+      s3_interface       = paperclip_instance.s3_interface
+      s3_permissions     = Paperclip::Attachment.default_options[:s3_permissions]
+      bucket             = s3_interface.bucket(Paperclip::Attachment.default_options[:s3_credentials][:bucket])
+      last_key           = options[:start_after]
+
+      loop do
+        objects = begin
+          begin
+            bucket.objects(start_after: last_key, prefix: prefix).limit(1000).map { |x| x }
+          rescue => e
+            progress.log(pastel.red("Error fetching list of files: #{e}"))
+            progress.log("If you want to continue from this point, add --start-after=#{last_key} to your command") if last_key
+            success = false
+            break
+          end
+        end
+
+        break if objects.empty?
+
+        last_key   = objects.last.key
+        record_map = preload_records_from_mixed_objects(objects)
+
+        objects.each do |object|
+          object.acl.put(acl: s3_permissions) if options[:fix_permissions] && !options[:dry_run]
+
+          path_segments = object.key.split('/')
+          path_segments.delete('cache')
+
+          unless [7, 10].include?(path_segments.size)
+            progress.log(pastel.yellow("Unrecognized file found: #{object.key}"))
+            next
+          end
+
+          model_name      = path_segments.first.classify
+          attachment_name = path_segments[1].singularize
+          record_id       = path_segments[2..-2].join.to_i
+          file_name       = path_segments.last
+          record          = record_map.dig(model_name, record_id)
+          attachment      = record&.public_send(attachment_name)
+
+          progress.increment
+
+          next unless attachment.blank? || !attachment.variant?(file_name)
+
+          begin
+            object.delete unless options[:dry_run]
+
+            reclaimed_bytes += object.size
+            removed += 1
+
+            progress.log("Found and removed orphan: #{object.key}")
+          rescue => e
+            progress.log(pastel.red("Error processing #{object.key}: #{e}"))
+            success = false
+          end
+        end
+      end
+
+      { success: success, removed: removed, reclaimed_bytes: reclaimed_bytes }
+    end
+
+    def remove_orphans_from_fog(_progress, _options)
+      say('The fog storage driver is not supported for this operation at this time', :red)
+      exit(1)
+    end
+
+    def remove_orphans_from_filesystem(progress, options)
+      success         = true
+      reclaimed_bytes = 0
+      removed         = 0
+      prefix          = options[:prefix]
+
+      require 'find'
+
+      root_path = ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')).gsub(':rails_root', Rails.root.to_s)
+
+      Find.find(File.join(*[root_path, prefix].compact)) do |path|
+        next if File.directory?(path)
+
+        key = path.gsub("#{root_path}#{File::SEPARATOR}", '')
+
+        path_segments = key.split(File::SEPARATOR)
+        path_segments.delete('cache')
+
+        unless [7, 10].include?(path_segments.size)
+          progress.log(pastel.yellow("Unrecognized file found: #{key}"))
+          next
+        end
+
+        model_name      = path_segments.first.classify
+        record_id       = path_segments[2..-2].join.to_i
+        attachment_name = path_segments[1].singularize
+        file_name       = path_segments.last
+
+        next unless PRELOAD_MODEL_WHITELIST.include?(model_name)
+
+        record     = model_name.constantize.find_by(id: record_id)
+        attachment = record&.public_send(attachment_name)
+
+        progress.increment
+
+        next unless attachment.blank? || !attachment.variant?(file_name)
+
+        begin
+          size = File.size(path)
+
+          unless options[:dry_run]
+            File.delete(path)
+            begin
+              FileUtils.rmdir(File.dirname(path), parents: true)
+            rescue Errno::ENOTEMPTY
+              # OK
+            end
+          end
+
+          reclaimed_bytes += size
+          removed += 1
+
+          progress.log("Found and removed orphan: #{key}")
+        rescue => e
+          progress.log(pastel.red("Error processing #{key}: #{e}"))
+          success = false
+        end
+      end
+
+      { success: success, removed: removed, reclaimed_bytes: reclaimed_bytes }
     end
   end
 end
