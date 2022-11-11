@@ -4,6 +4,7 @@
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
     hosted_on: Mastodon driftet på %{domain}
+    title: Om
   accounts:
     follow: Følg
     followers:
@@ -50,6 +51,7 @@
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
+      custom: Tilpasset
       delete: Slett data
       deleted: Slettet
       demote: Degrader
@@ -89,6 +91,7 @@
         active: Aktive
         all: Alle
         pending: Avventer
+        silenced: Stilnet
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsnotater
@@ -141,6 +144,7 @@
       statuses: Statuser
       strikes: Tidligere advarsler
       subscribe: Abonnere
+      suspend: Suspender
       suspended: Suspendert
       suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
       suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
@@ -148,6 +152,7 @@
       unblock_email: Avblokker e-postadresse
       unblocked_email_msg: Fjernet blokkering av %{username} sin e-postadresse
       unconfirmed_email: Ubekreftet E-postadresse
+      undo_sensitized: Gjør om tving sensitiv
       undo_silenced: Angre målbinding
       undo_suspension: Angre utvisning
       unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
@@ -160,6 +165,7 @@
       whitelisted: Hvitelistet
     action_logs:
       action_types:
+        approve_appeal: Godkjenn anke
         approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
         change_email_user: Endre brukerens E-postadresse
