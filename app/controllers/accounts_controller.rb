@@ -29,7 +29,7 @@ class AccountsController < ApplicationController
         end
 
         if current_user.nil?
-          @pinned_statuses = cache_collection(@account.pinned_statuses.without_local_only, Status) if show_pinned_statuses?
+          @pinned_statuses = cache_collection(filtered_pinned_statuses.without_local_only, Status) if show_pinned_statuses?
         else
           @pinned_statuses = cache_collection(@account.pinned_statuses, Status) if show_pinned_statuses?
         end
