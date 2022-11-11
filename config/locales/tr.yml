@@ -1036,10 +1036,12 @@ tr:
       appealed_msg: İtiraz gönderildi. Kabul edilirse bilgilendirileceksiniz.
       appeals:
         submit: İtirazı gönder
+      approve_appeal: İtirazı kabul et
       associated_report: İlişkili rapor
       created_at: Tarih
       description_html: Bunlar hesabınıza yönelik eylemler ve %{instance} yönetimi tarafından size gönderilen uyarılardır.
       recipient: Kime
+      reject_appeal: İtirazı reddet
       status: 'Gönderi #%{id}'
       status_removed: Gönderi zaten sistemden kaldırıldı
       title: "%{date} tarihli %{action}"
@@ -1354,6 +1356,11 @@ tr:
   reports:
     errors:
       invalid_rules: geçerli kurallara işaret etmez
+  rss:
+    content_warning: 'İçerik uyarısı:'
+    descriptions:
+      account: "@%{acct} hesabından herkese açık gönderiler"
+      tag: "#%{hashtag} etiketli herkese açık gönderiler"
   scheduled_statuses:
     over_daily_limit: O gün için %{limit} zamanlanmış toot sınırını aştınız
     over_total_limit: "%{limit} zamanlanmış toot sınırını aştınız"
@@ -1512,6 +1519,9 @@ tr:
     pinned: Sabitlenmiş toot
     reblogged: boostladı
     sensitive_content: Hassas içerik
+  strikes:
+    errors:
+      too_late: Bu eyleme itiraz etmek için çok geç
   tags:
     does_not_match_previous_name: önceki adla eşleşmiyor
   terms:

@@ -15,6 +15,7 @@
 
 class AccountMigration < ApplicationRecord
   include Redisable
+  include Lockable
 
   COOLDOWN_PERIOD = 30.days.freeze
 
@@ -41,12 +42,8 @@ class AccountMigration < ApplicationRecord
 
     return false unless errors.empty?
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        save
-      else
-        raise Mastodon::RaceConditionError
-      end
+    with_lock("account_migration:#{account.id}") do
+      save
     end
   end
 
@@ -82,9 +79,5 @@ class AccountMigration < ApplicationRecord
 
   def validate_migration_cooldown
     errors.add(:base, I18n.t('migrations.errors.on_cooldown')) if account.migrations.within_cooldown.exists?
-  end
-
-  def lock_options
-    { redis: redis, key: "account_migration:#{account.id}" }
   end
 end

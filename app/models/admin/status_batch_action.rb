@@ -103,7 +103,7 @@ class Admin::StatusBatchAction
 
   def handle_report!
     @report = Report.new(report_params) unless with_report?
-    @report.status_ids = (@report.status_ids + status_ids.map(&:to_i)).uniq
+    @report.status_ids = (@report.status_ids + allowed_status_ids).uniq
     @report.save!
 
     @report_id = @report.id
@@ -134,5 +134,9 @@ class Admin::StatusBatchAction
 
   def report_params
     { account: current_account, target_account: target_account }
+  end
+
+  def allowed_status_ids
+    AccountStatusesFilter.new(@report.target_account, current_account).results.with_discarded.where(id: status_ids).pluck(:id)
   end
 end

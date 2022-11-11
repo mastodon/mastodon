@@ -92,6 +92,10 @@ class Admin::AccountAction
       text: text_for_warning,
       status_ids: status_ids
     )
+
+    # A log entry is only interesting if the warning contains
+    # custom text from someone. Otherwise it's just noise.
+    log_action(:create, @warning) if @warning.text.present? && type == 'none'
   end
 
   def process_reports!
@@ -160,8 +164,8 @@ class Admin::AccountAction
 
   def reports
     @reports ||= begin
-      if type == 'none' && with_report?
-        [report]
+      if type == 'none'
+        with_report? ? [report] : []
       else
         Report.where(target_account: target_account).unresolved
       end

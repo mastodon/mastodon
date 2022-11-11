@@ -1070,10 +1070,12 @@ cs:
       appealed_msg: Vaše odvolání bylo podáno. Pokud bude schváleno, budete informováni.
       appeals:
         submit: Podat odvolání
+      approve_appeal: Schválit odvolání
       associated_report: Přidružené hlášení
       created_at: Datováno
       description_html: Toto jsou kroky podniknuté proti vašemu účtu a varování, která vám byla poslána personálem %{instance}.
       recipient: Adresováno
+      reject_appeal: Zamítnout odvolání
       status: 'Příspěvek #%{id}'
       status_removed: Příspěvek už byl ze systému odstraněn
       title: "%{action} ze dne %{date}"
@@ -1396,6 +1398,11 @@ cs:
   reports:
     errors:
       invalid_rules: neodkazuje na platná pravidla
+  rss:
+    content_warning: 'Varování o obsahu:'
+    descriptions:
+      account: Veřejné příspěvky od @%{acct}
+      tag: 'Veřejné příspěvky s hashtagem #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Překročili jste limit %{limit} příspěvků naplánovaných na tento den
     over_total_limit: Překročili jste limit %{limit} naplánovaných příspěvků
@@ -1566,6 +1573,9 @@ cs:
     pinned: Připnutý příspěvek
     reblogged: boostnul
     sensitive_content: Citlivý obsah
+  strikes:
+    errors:
+      too_late: Na odvolání proti tomuto prohřešku už je pozdě
   tags:
     does_not_match_previous_name: se neshoduje s předchozím názvem
   terms:

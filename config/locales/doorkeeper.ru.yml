@@ -3,7 +3,7 @@ ru:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Название
+        name: Название приложения
         redirect_uri: URI перенаправления
         scopes: Разрешения
         website: Веб-сайт приложения
@@ -36,7 +36,7 @@ ru:
         scopes: Разделяйте список разрешений пробелами. Оставьте незаполненным для использования разрешений по умолчанию.
       index:
         application: Приложение
-        callback_url: URL обратной связи
+        callback_url: URL-адреса обратного вызова
         delete: Удалить
         empty: У вас нет созданных приложений.
         name: Название
@@ -48,8 +48,8 @@ ru:
         title: Создание приложения
       show:
         actions: Действия
-        application_id: Id приложения
-        callback_urls: Callback urls
+        application_id: Ключ клиента
+        callback_urls: URL-адреса обратного вызова
         scopes: Разрешения
         secret: Секрет
         title: 'Приложение: %{name}'
@@ -118,7 +118,9 @@ ru:
         write: Доступ только для записи
       title:
         accounts: Учётные записи
+        admin/accounts: Управление учётными записями
         admin/all: Все административные функции
+        admin/reports: Управление отчётами
         all: Все
         blocks: Блокировки
         bookmarks: Закладки
@@ -150,6 +152,7 @@ ru:
       admin:write: модифицировать все данные на сервере
       admin:write:accounts: производить модерацию учётных записей
       admin:write:reports: производить модерацию жалоб
+      crypto: использ. сквозное шифрование
       follow: управлять подписками и списком блокировок
       push: получать push-уведомления
       read: просматривать данные вашей учётной записи

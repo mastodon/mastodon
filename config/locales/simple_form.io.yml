@@ -2,42 +2,229 @@
 io:
   simple_form:
     hints:
+      account_alias:
+        acct: Partikulare pozez uzantonomo@domeno di konto quon vua volas ektransferesar
+      account_migration:
+        acct: Partikulare pozez uzantonomo@domeno di konto quon vua volas entransferesar
+      account_warning_preset:
+        text: Vu povas uzar postosintaxo tale URL, hashtagi e mencioni
+        title: Neobligata. Nevidebla da recevanto
+      admin_account_action:
+        include_statuses: Uzanto vidos quala posti quo kauzigas jero o averto
+        send_email_notification: Uzanto ganos expliko pri quo eventas a olia konto
+        text_html: Neobligata. Vu povas uzar postosintaxo. Vu povas <a href="%{path}">insertar avertofixiti</a> por sparar tempo
+        type_html: Selektez ago per <strong>%{acct}</strong>
+        types:
+          disable: Preventez uzanto de uzar olia konto ma ne efacez o celez olia kontenaji.
+          none: Uzez co por sendar averto a la uzanto sen eventigar irga altra ago.
+          sensitive: Koaktez omna mediiatachaji da ca uzanto markizesar quale sentoza.
+          silence: Preventez la uzanto de povar postar per publika videbleso, celez olia posti e avizi de personi quo ne sequas oli.
+          suspend: Preventez irga interago de o a ca konto e efacez ola kontenaji. Inversebla til 30 dii.
+        warning_preset_id: Neobligata. Vu povas ankore insertar kustume texto a extremajo di fixito
+      announcement:
+        all_day: Kande kontrolesas, nur tempoporteodato montresos
+        ends_at: Neobligata. Anunco automatika depublikigesos dum ta tempo
+        scheduled_at: Restez quale vakua por publikigar anunco quik
+        starts_at: Neobligata. Por vua anunco limitizesas a partikulare tempoporteo
+        text: Vu povas uzar postosintaxo. Notez intervalo quon anunco uzas che skreno de uzanto
+      appeal:
+        text: Vu povas nur apelar striko unafoye
       defaults:
+        autofollow: Personi quo registresesas tra invito automatika sequos vu
         avatar: En la formato PNG, GIF o JPG. Til %{size}. Esos mikrigita a %{dimensions}px
+        bot: Signalez a altra personi ke la konto precipue havas automatikigita agi e forsan ne surveyesas
+        context: Situeso kande filtrilo debas aplikesar
+        current_password: Por sekuresorezoni, pozez pasvorto di ca konto
+        current_username: Por konfirmar, pozez uzantonomo di ca konto
+        digest: Nur sendesas pos longa neaktiveso e nur se vu ganis irga mesaji dum ke vu esas neprezenta
+        discoverable: Permisez vua konto deskovresar da nekonociti tra rekomendi, tendenci e altra traiti
+        email: Vu sendesos konfirmretposto
+        fields: On povas havar maxime 4 kozi quo montresas quale tabelo che ona profilo
         header: En la formato PNG, GIF o JPG. Til %{size}. Esos mikrigita a %{dimensions}px
+        inbox_url: Kopiez URL de frontpagino de relayo quon vu volas uzar
+        irreversible: Filtrita posti neinversigeble desaparos, mem se filtro efacesas pose
+        locale: Linguo di uzantointervizajo, retposti e pulsavizi
         locked: Tu devos aprobar omna demandi di sequado, e tua mesaji esos senchanje nur por tua sequanti.
+        password: Uzes minime 8 litri
+        phrase: Parigesos ne ye textosituaciono o konteneyoaverto di posto
+        scopes: Quala API quon softwaro permisesas acesar. Se vu selektas alta skopo, vu ne mustas selektar individui.
+        setting_aggregate_reblogs: Ne montrez nova busti di posti quo recente bustesas (nova busti)
+        setting_always_send_emails: Normale retpostoavizi ne sendesas kande vu aktiva uzas Mastodon
+        setting_default_sensitive: Sentoza medii originala celesas e povas revelesar per klikto
+        setting_display_media_default: Celez medii quo markizesis quale sentoza
+        setting_display_media_hide_all: Sempre celez medii
+        setting_display_media_show_all: Sempre montrez medii
+        setting_hide_network: Vua sequato e sequanto celesos che vua profilo
+        setting_noindex: Efektigar vua publika profilo e postopagini
+        setting_show_application: Softwaro quon vu uzar por postigar montresos che detala vidajo di vua posti
+        setting_use_blurhash: Inklini esas segun kolori di celesis vidaji ma kovras irga detali
+        setting_use_pending_items: Celez tempolineonovi dop kliktar e ne automatike movigar niuzeto
+        username: Vua uzantonomo esos nura che %{domain}
+        whole_word: Kande klefvorto o fraz esas nur litera e nombra, ol nur aplikesos se ol parigesas la tota vorto
+      domain_allow:
+        domain: Ca domeno povas ganar informi de ca servilo e venanta informo de ol procedagesos e sparesos
+      email_domain_block:
+        domain: Co povas esas domennomo quo montresas che retposto o registrajo MX quon ol uzas. Oli kontrolesos kande registro.
+        with_dns_records: Probo di rezolvar registri DNS di la domeno agesos e rezulti anke preventesos
+      featured_tag:
+        name: 'Vu forsan volas uzar 1 de co:'
+      form_challenge:
+        current_password: Vu eniras sekura areo
       imports:
         data: Dosiero CSV de altra instaluro di Mastodon
+      invite_request:
+        text: Co helpos ni kontrolar vua apliko
+      ip_block:
+        comment: Neobligata. Memorez por quo vu insertas ca regulo.
+        expires_in: IP-Adresi esas finita moyeno, oli kelkafoye partigesas e frequenta uzesas da multa personi. Do, nedefinita IP-restrikti ne rekomendesas.
+        ip: Tipez adreso di IPv4 o IPv6. Vu povas restrikar tota porteo per sintaxo CIDR. Sorgemez por ke vu ne klefklozas su!
+        severities:
+          no_access: Restriktez aceso a omna moyeni
+          sign_up_requires_approval: Nova registro bezonos vua aprobo
+        severity: Selektez quo eventos kun demandi de ca IP
+      rule:
+        text: Deskriptez regulo o bezonaj por uzanti en ca servilo. Vu debas lasar lu esar korta e simpla
       sessions:
         otp: Enter the Two-factor code from your phone or use one of your recovery codes.
+        webauthn: Se ol esas klefo di USB, certigar ke vu insertas e se bezonesas, tushetez.
+      tag:
+        name: Vu povas nur chanjar literkaso, por exemplo, por kauzigar lu divenar plu lektebla
+      user:
+        chosen_languages: Kande marketigesis, nur posti en selektesis lingui montresos en publika tempolinei
     labels:
+      account:
+        fields:
+          name: Etiketo
+          value: Kontenajo
+      account_alias:
+        acct: Nomo di olda konto
+      account_migration:
+        acct: Nomo di nova konto
+      account_warning_preset:
+        text: Fixita texto
+        title: Titulo
+      admin_account_action:
+        include_statuses: Inkluzez raportizita posti en retposto
+        send_email_notification: Notifikez la uzanto di retposto
+        text: Kustumizita averto
+        type: Ago
+        types:
+          disable: Cesez
+          none: Sendez averto
+          sensitive: Privata
+          silence: Limitigez
+          suspend: Desaprobez
+        warning_preset_id: Uzez avertfixito
+      announcement:
+        all_day: Evento di tota dio
+        ends_at: Fino di evento
+        scheduled_at: Skemigez publikigito
+        starts_at: Komenco di evento
+        text: Anunco
+      appeal:
+        text: Explikar por quo ca decidajo debas inversigesar
       defaults:
+        autofollow: Invitez por sequar vua konto
         avatar: Profilimajo
+        bot: Co esas botkonto
+        chosen_languages: Filtrez lingui
         confirm_new_password: Konfirmar nova pasvorto
         confirm_password: Konfirmar nova pasvorto
+        context: Filtrez kuntexti
         current_password: Nuna pasvorto
         data: Datumi
+        discoverable: Sugestez konto a altra personi
         display_name: Publika nomo
         email: Retpost-adreso
+        expires_in: Expiras pos
+        fields: Profilmetadato
         header: Kapimajo
+        honeypot: "%{label} (ne plenigez)"
+        inbox_url: URL di relayomesajbuxo
+        irreversible: Deslevez e ne celez
         locale: Linguo
         locked: Privatigar la konto
+        max_uses: Maxima uzi
         new_password: Nova pasvorto
         note: Suprizento
         otp_attempt: Dufaktora identigilo
         password: Pasvorto
+        phrase: Klefvorto o frazo
+        setting_advanced_layout: Aktivigez avancata retintervizajo
+        setting_aggregate_reblogs: Grupbusti en tempolinei
+        setting_always_send_emails: Sempre sendez retpostoavizi
+        setting_auto_play_gif: Automate pleez animigita GIFi
+        setting_boost_modal: Montrez konfirmdialogo ante bustar
+        setting_crop_images: Ektranchez imaji en neexpansigita posti a 16x9
+        setting_default_language: Postolinguo
         setting_default_privacy: Videbleso di la mesaji
+        setting_default_sensitive: Sempre markizez medii quale sentoza
+        setting_delete_modal: Montrez konfirmdialogo ante efacar posto
+        setting_disable_swiping: Desaktivigez fingromovi
+        setting_display_media: Mediomontrajo
+        setting_display_media_default: Originalo
+        setting_display_media_hide_all: Celez omno
+        setting_display_media_show_all: Montrez omno
+        setting_expand_spoilers: Sempre expansigez posti quo markizesis kun kontenajaverti
+        setting_hide_network: Celez vua sociala grafiko
+        setting_noindex: Desjuntez trovmotorindexigo
+        setting_reduce_motion: Diminutez moveso di animacii
+        setting_show_application: Montrez softwaro quo uzesis por sendar posti
+        setting_system_font_ui: Uzez originala literfonto di sistemo
+        setting_theme: Sittemo
+        setting_trends: Montrez tendenco di hodie
+        setting_unfollow_modal: Montrez konfirmdialogo ante desequar ulu
+        setting_use_blurhash: Montrez koloroza inklini por celata medii
+        setting_use_pending_items: Modo lenta
+        severity: Severeso
+        sign_in_token_attempt: Sekureskodexo
         type: Tipo di importaco
         username: Uzernomo
+        username_or_email: Uzantonomo o retposto
+        whole_word: Tota vorto
+      email_domain_block:
+        with_dns_records: Inkluzez registraji MX e IPi di domeno
+      featured_tag:
+        name: Hashtago
       interactions:
         must_be_follower: Celar la savigi da homi, qui ne sequas tu
         must_be_following: Celar la savigi da homi, quin tu ne sequas
+        must_be_following_dm: Obstruktez direta mesaji de personi quon vu ne sequas
+      invite:
+        comment: Komento
+      invite_request:
+        text: Por quo vu volas juntar?
+      ip_block:
+        comment: Komento
+        ip: IP
+        severities:
+          no_access: Depermisez aceso
+          sign_up_requires_approval: Limitigez registri
+        severity: Regulo
       notification_emails:
+        appeal: Ulu apelas jererdecidajo
         digest: Sendar rezuma retpost-mesaji
         favourite: Sendar retpost-mesajo, kande ulu favoras mesajo da tu
         follow: Sendar retpost-mesajo, kande ulu sequeskas tu
         follow_request: Sendar retpost-mesajo, kande ulu diskonocigas mesajo da tu
         mention: Sendar retpost-mesajo, kande ulu mencionas tu
+        pending_account: Nova konto bezonas kontrolo
         reblog: Sendar retpost-mesajo, kande ulu diskonocigas mesajo da tu
+        report: Nova raport sendesas
+        trending_tag: Nova tendenco bezonas kontrolo
+      rule:
+        text: Regulo
+      tag:
+        listable: Permisez ca hashtago aparar en trovaji e sugestaji
+        name: Hashtago
+        trendable: Permisez ca hashtago aparar che tendenci
+        usable: Permisez posti uzar ca hashtago
+    'no': Ne
+    recommended: Rekomendito
     required:
+      mark: "*"
       text: bezonata
+    title:
+      sessions:
+        webauthn: Uzez 1 de vua sekuresklefti por enirar
+    'yes': 'Yes'

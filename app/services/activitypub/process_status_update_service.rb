@@ -3,6 +3,7 @@
 class ActivityPub::ProcessStatusUpdateService < BaseService
   include JsonLdHelper
   include Redisable
+  include Lockable
 
   def call(status, json)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
@@ -33,41 +34,32 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     last_edit_date = @status.edited_at.presence || @status.created_at
 
     # Only allow processing one create/update per status at a time
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        Status.transaction do
-          record_previous_edit!
-          update_media_attachments!
-          update_poll!
-          update_immediate_attributes!
-          update_metadata!
-          create_edits!
-        end
-
-        queue_poll_notifications!
-
-        next unless significant_changes?
-
-        reset_preview_card!
-        broadcast_updates!
-      else
-        raise Mastodon::RaceConditionError
+    with_lock("create:#{@uri}") do
+      Status.transaction do
+        record_previous_edit!
+        update_media_attachments!
+        update_poll!
+        update_immediate_attributes!
+        update_metadata!
+        create_edits!
       end
+
+      queue_poll_notifications!
+
+      next unless significant_changes?
+
+      reset_preview_card!
+      broadcast_updates!
     end
 
     forward_activity! if significant_changes? && @status_parser.edited_at > last_edit_date
   end
 
   def handle_implicit_update!
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        update_poll!(allow_significant_changes: false)
-      else
-        raise Mastodon::RaceConditionError
-      end
+    with_lock("create:#{@uri}") do
+      update_poll!(allow_significant_changes: false)
+      queue_poll_notifications!
     end
-
-    queue_poll_notifications!
   end
 
   def update_media_attachments!
@@ -239,10 +231,6 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
   def expected_type?
     equals_or_includes_any?(@json['type'], %w(Note Question))
-  end
-
-  def lock_options
-    { redis: redis, key: "create:#{@uri}", autorelease: 15.minutes.seconds }
   end
 
   def record_previous_edit!

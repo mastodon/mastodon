@@ -29,7 +29,7 @@ zh-CN:
     logged_in_as_html: 您当前以 %{username} 登录。
     logout_before_registering: 您已登录。
     privacy_policy: 隐私政策
-    rules: 实例规则
+    rules: 服务器规则
     rules_html: 如果你想要在此Mastodon服务器上拥有一个账户，你必须遵守相应的规则，摘要如下：
     see_whats_happening: 看看有什么新鲜事
     server_stats: 服务器统计数据：
@@ -646,8 +646,8 @@ zh-CN:
         desc_html: 本站一周内的嘟文数、活跃用户数以及新用户数
         title: 公开用户活跃度的统计数据
       bootstrap_timeline_accounts:
-        desc_html: 用半角逗号分隔多个用户名。只能添加来自本站且未开启保护的帐户。如果留空，则默认关注本站所有的管理员。
-        title: 新用户默认关注
+        desc_html: 用半角逗号分隔多个用户名。这些账户一定会在推荐关注中展示。
+        title: 新用户推荐关注
       contact_information:
         email: 用于联系的公开电子邮件地址
         username: 用于联系的公开用户名
@@ -1019,10 +1019,12 @@ zh-CN:
       appealed_msg: 你的申诉已经提交。如果申诉通过，你将收到通知。
       appeals:
         submit: 提交申诉
+      approve_appeal: 批准申诉
       associated_report: 相关举报
       created_at: 日期
       description_html: 这些是针对您的帐户采取的行动和警告，已经由 %{instance} 的工作人员发送给您。
       recipient: 发送至
+      reject_appeal: 驳回申诉
       status: '嘟文 #%{id}'
       status_removed: 嘟文已从系统中删除
       title: "%{action} 于 %{date}"
@@ -1070,7 +1072,7 @@ zh-CN:
     csv: CSV
     domain_blocks: 域名屏蔽
     lists: 列表
-    mutes: 你隐藏的用户
+    mutes: 已被你隐藏的
     storage: 媒体文件存储
   featured_tags:
     add_new: 添加新条目
@@ -1333,6 +1335,11 @@ zh-CN:
   reports:
     errors:
       invalid_rules: 没有引用有效的规则
+  rss:
+    content_warning: 内容警告：
+    descriptions:
+      account: "@%{acct} 的公开嘟文"
+      tag: "#%{hashtag} 标签下的公开嘟文"
   scheduled_statuses:
     over_daily_limit: 你已超出每日定时嘟文的上限（%{limit} 条）
     over_total_limit: 你已超出定时嘟文的上限（%{limit} 条）
@@ -1423,8 +1430,8 @@ zh-CN:
     over_character_limit: 超过了 %{max} 字的限制
     pin_errors:
       direct: 仅对被提及的用户可见的帖子不能被置顶
-      limit: 你所置顶的嘟文数量已经达到上限
-      ownership: 不能置顶他人的嘟文
+      limit: 你所固定的嘟文数量已达到上限
+      ownership: 不能置顶别人的嘟文
       reblog: 不能置顶转嘟
     poll:
       total_people:
@@ -1460,7 +1467,7 @@ zh-CN:
     keep_media: 保留带媒体附件的嘟文
     keep_media_hint: 不会删除任何包含媒体附件的嘟文
     keep_pinned: 保留置顶嘟文
-    keep_pinned_hint: 不会删除你的任何置顶嘟文
+    keep_pinned_hint: 没有删除任何你已经固定的嘟文
     keep_polls: 保留投票
     keep_polls_hint: 不会删除你的任何投票
     keep_self_bookmark: 保存被你加入书签的嘟文
@@ -1485,6 +1492,9 @@ zh-CN:
     pinned: 置顶嘟文
     reblogged: 转嘟
     sensitive_content: 敏感内容
+  strikes:
+    errors:
+      too_late: 已来不及对此次处罚提出申诉
   tags:
     does_not_match_previous_name: 和之前的名称不匹配
   terms:
@@ -1624,7 +1634,7 @@ zh-CN:
       explanation:
         delete_statuses: 你的一些嘟文被发现违反了一条或多条社区准则，并已被 %{instance} 的监察员删除。
         disable: 你不能再使用你的帐户，但你的个人资料和其他数据保持不变。你可以请求数据备份，更改账户设置或删除账户。
-        mark_statuses_as_sensitive: 你的一些嘟文已经被 %{instance} 检察员标记为敏感内容。这意味着人们需要在嘟文中点击媒体，才能显示媒体预览。你可以在今后发嘟时自行将媒体标记为敏感内容。
+        mark_statuses_as_sensitive: 你的一些嘟文已经被 %{instance} 检察员标记为敏感内容。这意味着别人需要在嘟文中点击媒体，才能显示媒体预览。你可以在今后发嘟时自行将媒体标记为敏感内容。
         sensitive: 即刻起，你上传的所有媒体文件都将被标记为敏感内容并隐藏，在点击警告后才能查看。
         silence: 你可以继续使用你的账号，但只有已关注你的人才能在看到你在此服务器上的嘟文，并且你会被排除在各类公共列表之外。其他用户仍可以手动关注你。
         suspend: 你不能再使用你的帐户，并且你的个人资料和其他数据都将无法访问。在大约30天内，你仍可以登录并请求数据备份，之后相关数据将被完全删除。我们会保留一些基础数据以避免封禁失效。
@@ -1635,7 +1645,7 @@ zh-CN:
         disable: 你的帐户 %{acct} 已被冻结
         mark_statuses_as_sensitive: 你在 %{acct} 的嘟文已被标记为敏感内容
         none: 对 %{acct} 的警告
-        sensitive: 你在 %{acct} 的嘟文将从此被标记为敏感内容
+        sensitive: 你在 %{acct} 的嘟文今后将被标记为敏感内容
         silence: 你的帐户 %{acct} 已被隐藏
         suspend: 你的帐户 %{acct} 已被封禁。
       title:
@@ -1645,7 +1655,7 @@ zh-CN:
         none: 警示
         sensitive: 账户已被标记为敏感内容
         silence: 帐户被隐藏
-        suspend: 账号被挂起
+        suspend: 账号被封禁
     welcome:
       edit_profile_action: 设置个人资料
       edit_profile_step: 你可以自定义你的个人资料，包括上传头像、横幅图片、更改昵称等等。如果你想在新的关注者关注你之前对他们进行审核，你也可以选择为你的帐户开启保护。

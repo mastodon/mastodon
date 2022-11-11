@@ -3,7 +3,7 @@ he:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: שם
+        name: שם יישום
         redirect_uri: קישורית הפניה
         scopes: תחומים
         website: אתר יישום
@@ -38,6 +38,7 @@ he:
         application: יישום
         callback_url: כתובת גישה חוזרת (Callback URL)
         delete: למחוק
+        empty: אין לך אפליקציות.
         name: שם
         new: ישום חדש
         scopes: תחומים
@@ -48,7 +49,7 @@ he:
       show:
         actions: פעולות
         application_id: זהות ישום
-        callback_urls: כתובות לקריאה חוזרת (Callback URLs)
+        callback_urls: קישורית Callback
         scopes: תחומים
         secret: סוד
         title: 'ישום: %{name}'
@@ -59,6 +60,8 @@ he:
       error:
         title: התרחשה שגיאה
       new:
+        prompt_html: "%{client_name} מעוניין בהרשאה לגשת לחשבונך. זוהי אפליקציית צד-שלישי. <strong>אם יש סיבה לא לבטוח בה, נא לא לאשר.</strong>"
+        review_permissions: עיון בהרשאות
         title: נדרשת הרשאה
       show:
         title: יש להעתיק את קוד ההרשאה הזה ולהדביקו ביישום שביקש אותו.
@@ -68,6 +71,12 @@ he:
       confirmations:
         revoke: בטוח?
       index:
+        authorized_at: אושר ב-%{date}
+        description_html: אלה אפליקציות שיכולות לגשת לחשבונך בעזרת הממשק. אם ישנן כאן אפליקציות שאינך מזהה, או אפליקציה שאינה פועלת כראוי, ניתן להסיר את הגישה שלה.
+        last_used_at: נראה לאחרונה ב-%{date}
+        never_used: מעולם לא היה בשימוש
+        scopes: הרשאות
+        superapp: פנימי
         title: ישומיך המאושרים
     errors:
       messages:
@@ -76,6 +85,10 @@ he:
         invalid_client: הרשאת הלקוח נכשלה עקב לקוח שאינו ידוע, חוסר בהרשאת לקוח או שיטת הרשאה שאינה נתמכת.
         invalid_grant: חוזה ההרשאה המצורף אינו חוקי, אינו תקף, מבוטל, או שאינו מתאים לקישורית ההפניה שבשימוש על ידי בקשת ההרשאה, או שהופק על ידי לקוח אחר.
         invalid_redirect_uri: קישורית ההפניה המצורפת אינה חוקית.
+        invalid_request:
+          missing_param: 'חסר פרמטר נדרש: %{value}.'
+          request_not_authorized: יש לאשר את הבקשה. פרמטר הנדרש על מנת לאשר את הבקשה חסר או לקוי.
+          unknown: הבקשה חסרה פרמטר נדרש, כוללת ערך שלא נתמך או לקויה בדרך אחרת.
         invalid_resource_owner: הרשאות בעלי המשאב שהוזנו אינן חוקיות, או שלא ניתן למצוא את בעלי המשאב
         invalid_scope: התחום המבוקש אינו חוקי, אינו ידוע, או שתצורותו שגויה.
         invalid_token:
@@ -99,6 +112,33 @@ he:
       authorized_applications:
         destroy:
           notice: הישום בוטל.
+    grouped_scopes:
+      access:
+        read: גישה לקריאה בלבד
+        read/write: גישה לקריאה ולכתיבה
+        write: גישה לכתיבה בלבד
+      title:
+        accounts: חשבונות
+        admin/accounts: חשבונות ניהול
+        admin/all: כל פעולות האדמין
+        admin/reports: ניהול דיווחים
+        all: הכל
+        blocks: חסימות
+        bookmarks: סימניות
+        conversations: שיחות
+        crypto: הצפנה מקצה לקצה
+        favourites: חיבובים
+        filters: מסננים
+        follow: יחסים
+        follows: נעקבים
+        lists: רשימות
+        media: קבצי מדיה מצורפים
+        mutes: השתקות
+        notifications: התראות
+        push: התראות בדחיפה
+        reports: דיווחים
+        search: חיפוש
+        statuses: חצרוצים
     layouts:
       admin:
         nav:
@@ -107,6 +147,39 @@ he:
       application:
         title: נדרשת הרשאת OAuth
     scopes:
+      admin:read: לקרוא את כל המידע על השרת
+      admin:read:accounts: לקרוא מידע רגיש בכל החשבונות
+      admin:read:reports: לקרוא מידע רגיש בכל הדוחות וכל החשבונות המדווחים
+      admin:write: לשנות את כל המידע על השרת
+      admin:write:accounts: ביצוע פעולות הנהלה על חשבונות
+      admin:write:reports: ביצוע פעולות הנהלה על חשבונות
+      crypto: שימוש בהצפנה מקצה לקצה
       follow: לעקוב, לחסום, להסיר חסימה ולהפסיק לעקוב אחרי חשבונות
+      push: קבלת התראות בדחיפה
       read: לקרוא את המידע שבחשבונך
+      read:accounts: צפיה במידע על חשבונות
+      read:blocks: צפייה בחסימות
+      read:bookmarks: צפייה בסימניות
+      read:favourites: צפייה בחיבובים
+      read:filters: צפייה במסננים
+      read:follows: צפייה בנעקבים
+      read:lists: צפיה ברשימותיך
+      read:mutes: צפיה במושתקיך
+      read:notifications: צפיה בהתראותיך
+      read:reports: צפיה בדוחותיך
+      read:search: חיפוש מטעם עצמך
+      read:statuses: צפיה בכל החצרוצים
       write: להפיץ הודעות בשמך
+      write:accounts: שינוי הפרופיל שלך
+      write:blocks: חסימת חשבונות ודומיינים
+      write:bookmarks: סימון חצרוצים
+      write:conversations: השתקת ומחיקת שיחות
+      write:favourites: חצרוצים מחובבים
+      write:filters: יצירת מסננים
+      write:follows: עקיבה אחר אנשים
+      write:lists: יצירת רשימות
+      write:media: העלאת קבצי מדיה
+      write:mutes: השתקת אנשים ושיחות
+      write:notifications: ניקוי התראותיך
+      write:reports: דיווח על אנשים אחרים
+      write:statuses: פרסום חצרוצים

@@ -11,7 +11,7 @@ ko:
         title: 선택사항. 수신자에게는 보이지 않습니다
       admin_account_action:
         include_statuses: 사용자는 어떤 게시물에 대해 경고나 조치가 취해졌는지 볼 수 있게 됩니다
-        send_email_notification: 유저는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
+        send_email_notification: 사용자는 어떤 일이 일어났는 지에 대한 설명을 받게 됩니다
         text_html: 선택사항. 게시물 문법을 사용할 수 있습니다. <a href="%{path}">경고 틀을 추가</a>하여 시간을 절약할 수 있습니다
         type_html: "<strong>%{acct}</strong>에 대해 취할 행동 선택"
         types:
@@ -43,7 +43,7 @@ ko:
         header: PNG, GIF 혹은 JPG. 최대 %{size}. %{dimensions}px로 축소 됨
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
-        locale: 유저 인터페이스, 이메일, 푸시 알림 언어
+        locale: 사용자 인터페이스, 이메일, 푸시 알림 언어
         locked: 팔로우 요청을 승인함으로써 누가 당신을 팔로우 할 수 있는지를 수동으로 제어합니다.
         password: 최소 8글자
         phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
@@ -59,7 +59,7 @@ ko:
         setting_show_application: 당신이 게시물을 작성하는데에 사용한 앱이 게시물의 상세정보에 표시 됩니다
         setting_use_blurhash: 그라디언트는 숨겨진 내용의 색상을 기반으로 하지만 상세 내용은 보이지 않게 합니다
         setting_use_pending_items: 타임라인의 새 게시물을 자동으로 보여 주는 대신, 클릭해서 나타내도록 합니다
-        username: 당신의 유저네임은 %{domain} 안에서 유일해야 합니다
+        username: 당신의 사용자명은 %{domain} 안에서 유일해야 합니다
         whole_word: 키워드가 영문과 숫자로만 이루어 진 경우, 단어 전체에 매칭 되었을 때에만 작동하게 합니다
       domain_allow:
         domain: 이 도메인은 이 서버에서 데이터를 가져갈 수 있고 이 도메인에서 보내진 데이터는 처리되고 저장 됩니다
@@ -105,7 +105,7 @@ ko:
         title: 제목
       admin_account_action:
         include_statuses: 신고된 게시물을 이메일에 포함
-        send_email_notification: 이메일로 유저에게 알리기
+        send_email_notification: 이메일로 사용자에게 알리기
         text: 커스텀 경고
         type: 조치
         types:
@@ -179,8 +179,8 @@ ko:
         severity: 심각도
         sign_in_token_attempt: 보안 코드
         type: 불러오기 종류
-        username: 유저 이름
-        username_or_email: 유저네임 또는 이메일
+        username: 사용자명
+        username_or_email: 사용자명 또는 이메일
         whole_word: 단어 전체에 매칭
       email_domain_block:
         with_dns_records: 도메인의 IP와 MX 레코드 값을 포함

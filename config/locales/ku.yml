@@ -804,6 +804,7 @@ ku:
           other: Di nava hefteya dawî de ji aliyê %{count} ve hate parvekirin
         title: Girêdanên di rojevê de
         usage_comparison: Îro %{today} car hate parvekirin, li gorî %{yesterday} duh
+      only_allowed: Tenê yên mafdayî
       pending_review: Li benda nirxandinê ye
       preview_card_providers:
         allowed: Girêdanên ji vê weşangerê dikarin bibin rojev
@@ -845,6 +846,7 @@ ku:
           one: Di nava hefteya dawî de ji aliyê kesekî ve hatiye bikaranîn
           other: Di nava hefteya dawî de ji %{count} kes ve hatiye bikaranîn
       title: Rojev
+      trending: Rojev
     warning_presets:
       add_new: Yeka nû tevlî bike
       delete: Jê bibe
@@ -1036,10 +1038,12 @@ ku:
       appealed_msg: Îtîraza te hatiye şandin. Ku were pejirandin, tu yê werî agahdarkirin.
       appeals:
         submit: Îtîrazê bişîne
+      approve_appeal: Îtîrazê bipejirîne
       associated_report: Ragihandina têkildar
       created_at: Dîrok
       description_html: Ev kiryarên ku li dijî ajimêrê te hatine kirin û hişyariyên ku ji hêla xebatkarên %{instance} ve ji te re hatine şandinin.
       recipient: Ji kê re
+      reject_appeal: Îtîrazê nepejirîne
       status: 'Şandî #%{id}'
       status_removed: Şandî jixwe ji pergalê hatî rakirin
       title: "%{action} ji %{date}"
@@ -1354,6 +1358,11 @@ ku:
   reports:
     errors:
       invalid_rules: rêbazên derbasdar nîşan nadê
+  rss:
+    content_warning: 'Hişyariya naverokê:'
+    descriptions:
+      account: Şandiyên gelemperî ji @%{acct}
+      tag: 'Şandiyên gelemperî yên nîşankirî #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Te sînorê %{limit} şandiyên demsazkirî yên ji bo îro derbas kir
     over_total_limit: Te sînorê %{limit} şandiyên demsazkirî derbas kir
@@ -1512,6 +1521,9 @@ ku:
     pinned: Şandiya derzîkirî
     reblogged: bilindkirî
     sensitive_content: Naveroka hestiyarî
+  strikes:
+    errors:
+      too_late: Pir dereng e ji bo îtîrazê li ser vê binpêkirinê
   tags:
     does_not_match_previous_name: bi navê berê re li hev nayê
   terms:

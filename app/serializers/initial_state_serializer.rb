@@ -3,7 +3,7 @@
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
-             :max_toot_chars
+             :max_toot_chars, :languages
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
 
@@ -65,6 +65,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_privacy]   = object.visibility || object.current_account.user.setting_default_privacy
       store[:default_sensitive] = object.current_account.user.setting_default_sensitive
       store[:default_federation] = object.current_account.user.setting_default_federation
+      store[:default_language]  = object.current_account.user.preferred_posting_language
     end
 
     store[:text] = object.text if object.text
@@ -81,6 +82,10 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def media_attachments
     { accept_content_types: MediaAttachment.supported_file_extensions + MediaAttachment.supported_mime_types }
+  end
+
+  def languages
+    LanguagesHelper::SUPPORTED_LOCALES.map { |(key, value)| [key, value[0], value[1]] }
   end
 
   private

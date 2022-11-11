@@ -1027,10 +1027,12 @@ sq:
       appealed_msg: Apelimi juaj u parashtruar. Nëse miratohet, do të njoftoheni.
       appeals:
         submit: Parashtroni apelim
+      approve_appeal: Miratoni apelimin
       associated_report: Raportimi i përshoqëruar
       created_at: Datuar
       description_html: Këto janë veprime të ndërmara kundër llogarisë tuaj dhe sinjalizime që ju janë dërguar nga stafi i %{instance}.
       recipient: Drejtuar
+      reject_appeal: Hidheni poshtë apelimin
       status: "#%{id} postimi"
       status_removed: Postim i hequr tashmë nga sistemi
       title: "%{action} prej %{date}"
@@ -1345,6 +1347,11 @@ sq:
   reports:
     errors:
       invalid_rules: s’i referohet ndonjë rregulli të vlefshëm
+  rss:
+    content_warning: 'Sinjalizim lënde:'
+    descriptions:
+      account: Postime publike prej @%{acct}
+      tag: 'Postime publike etiketuar me #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Keni tejkaluar kufirin e %{limit} mesazheve të planifikuara për atë ditë
     over_total_limit: Keni tejkaluar kufirin prej %{limit} mesazhesh të planifikuara

@@ -18,6 +18,8 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
   unmute_notifications: { id: 'account.unmute_notifications', defaultMessage: 'Unmute notifications from @{name}' },
+  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
+  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
 
 export default @injectIntl
@@ -33,6 +35,7 @@ class Account extends ImmutablePureComponent {
     hidden: PropTypes.bool,
     actionIcon: PropTypes.string,
     actionTitle: PropTypes.string,
+    defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
   };
 
@@ -61,7 +64,7 @@ class Account extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, hidden, onActionClick, actionIcon, actionTitle } = this.props;
+    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction } = this.props;
 
     if (!account) {
       return <div />;
@@ -105,6 +108,10 @@ class Account extends ImmutablePureComponent {
             {hidingNotificationsButton}
           </Fragment>
         );
+      } else if (defaultAction === 'mute') {
+        buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
+      } else if (defaultAction === 'block') {
+        buttons = <IconButton icon='lock' title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (!account.get('moved') || following) {
         buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
       }

@@ -62,7 +62,7 @@ th:
       new:
         prompt_html: "%{client_name} ต้องการสิทธิอนุญาตเพื่อเข้าถึงบัญชีของคุณ แอปพลิเคชันเป็นแอปพลิเคชันจากบุคคลที่สาม <strong>หากคุณไม่เชื่อถือแอปพลิเคชัน คุณไม่ควรอนุญาตแอปพลิเคชัน</strong>"
         review_permissions: ตรวจทานสิทธิอนุญาต
-        title: ต้องมีการอนุญาต
+        title: ต้องการการอนุญาต
       show:
         title: คัดลอกรหัสการอนุญาตนี้แล้ววางลงในแอปพลิเคชัน
     authorized_applications:
@@ -81,6 +81,7 @@ th:
     errors:
       messages:
         access_denied: เจ้าของทรัพยากรหรือเซิร์ฟเวอร์การอนุญาตปฏิเสธคำขอ
+        invalid_redirect_uri: URI การเปลี่ยนเส้นทางที่รวมอยู่ไม่ถูกต้อง
         invalid_request:
           missing_param: 'พารามิเตอร์ที่จำเป็นขาดหายไป: %{value}'
         invalid_scope: ขอบเขตที่ขอไม่ถูกต้อง ไม่รู้จัก หรือผิดรูปแบบ
@@ -135,7 +136,7 @@ th:
           applications: แอปพลิเคชัน
           oauth2_provider: ผู้ให้บริการ OAuth2
       application:
-        title: ต้องมีการอนุญาต OAuth
+        title: ต้องการการอนุญาต OAuth
     scopes:
       admin:read: อ่านข้อมูลทั้งหมดในเซิร์ฟเวอร์
       admin:read:accounts: อ่านข้อมูลที่ละเอียดอ่อนของบัญชีทั้งหมด

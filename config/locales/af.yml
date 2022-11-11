@@ -1,5 +1,21 @@
 ---
 af:
+  about:
+    contact_unavailable: NVT
+    continue_to_web: Gaan voort na web toepassing
+    discover_users: Verken gebruikers
+    documentation: Dokumentasie
+    federation_hint_html: Met 'n rekening op %{instance} sal jy in staat wees om mense op enige Mastodon en federasie bediener te volg.
+    get_apps: Probeer 'n mobiele toepassing
+    hosted_on: Mastodon gehuisves op %{domain}
+  admin:
+    trends:
+      only_allowed: Slegs toegelate
+      trending: Gewild
+  disputes:
+    strikes:
+      approve_appeal: Aanvaar appêl
+      reject_appeal: Verwerp appêl
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -10,3 +26,11 @@ af:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  rss:
+    content_warning: 'Inhoud waarskuwing:'
+    descriptions:
+      account: Publieke plasings vanaf @%{acct}
+      tag: 'Publieke plasings met die #%{hashtag} etiket'
+  strikes:
+    errors:
+      too_late: Dit is te laat om hierdie staking te appelleer

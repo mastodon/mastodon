@@ -164,9 +164,9 @@ it:
       not_subscribed: Non sottoscritto
       pending: Revisioni in attesa
       perform_full_suspension: Sospendi
-      previous_strikes: Provvedimenti precedenti
+      previous_strikes: Sanzioni precedenti
       previous_strikes_description_html:
-        one: Questo account ha <strong>una</strong> violazione.
+        one: Questo account ha <strong>una</strong> sanzione.
         other: Questo account ha <strong>%{count}</strong> violazioni.
       promote: Promuovi
       protocol: Protocollo
@@ -208,7 +208,7 @@ it:
       silence: Silenzia
       silenced: Silenziato
       statuses: Stati
-      strikes: Provvedimenti precedenti
+      strikes: Sanzioni precedenti
       subscribe: Sottoscrivi
       suspend: Sospendi
       suspended: Sospeso
@@ -597,10 +597,10 @@ it:
       action_log: Registro di controllo
       action_taken_by: Azione intrapresa da
       actions:
-        delete_description_html: I post segnalati saranno eliminati e la violazione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
-        mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una violazione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        delete_description_html: I post segnalati saranno eliminati e la sanzione sarà registrata per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
+        mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
-        resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna violazione registrata, e la segnalazione sarà chiusa.
+        resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
         silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
         suspend_description_html: Il profilo e tutti i suoi contenuti diventeranno inaccessibili fino a quando non sarà cancellato. L'interazione con l'account sarà impossibile. Annullabile entro 30 giorni.
       actions_description_html: Decidete quali azioni intraprendere per risolvere la segnalazione. Se si intraprende un'azione punitiva contro l'account segnalato, gli sarà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
@@ -802,6 +802,7 @@ it:
           other: Condiviso da %{count} persone nell'ultima settimana
         title: Link in tendenza
         usage_comparison: Condiviso %{today} volte oggi, rispetto a %{yesterday} ieri
+      only_allowed: Solo consentiti
       pending_review: Revisione in sospeso
       preview_card_providers:
         allowed: I link da questa fonte possono essere in tendenza
@@ -843,6 +844,7 @@ it:
           one: Usato da una persona nell'ultima settimana
           other: Usato da %{count} persone nell'ultima settimana
       title: Tendenze
+      trending: Di tendenza
     warning_presets:
       add_new: Aggiungi nuovo
       delete: Cancella
@@ -962,7 +964,7 @@ it:
       functional: Il tuo profilo è completamente operativo.
       pending: La tua richiesta è in attesa di esame da parte del nostro staff. Potrebbe richiedere un po' di tempo. Riceverai una e-mail se la richiesta è approvata.
       redirecting_to: Il tuo account è inattivo perché attualmente reindirizza a %{acct}.
-      view_strikes: Visualizza gli avvisi passati contro il tuo profilo
+      view_strikes: Visualizza le sanzioni precedenti prese nei confronti del tuo account
     too_fast: Modulo inviato troppo velocemente, riprova.
     trouble_logging_in: Problemi di accesso?
     use_security_key: Usa la chiave di sicurezza
@@ -1036,10 +1038,12 @@ it:
       appealed_msg: Il tuo appello è stato presentato. Se sarà approvato, sarai informato.
       appeals:
         submit: Presenta un appello
+      approve_appeal: Approva ricorso
       associated_report: Segnalazione associata
       created_at: Data
       description_html: Queste sono azioni intraprese contro il tuo profilo e avvisi inviati a te dallo staff di %{instance}.
       recipient: Indirizzata a
+      reject_appeal: Respingi ricorso
       status: 'Post #%{id}'
       status_removed: Post già rimosso dal sistema
       title: "%{action} da %{date}"
@@ -1354,6 +1358,11 @@ it:
   reports:
     errors:
       invalid_rules: non fa riferimento a regole valide
+  rss:
+    content_warning: 'Avviso sul contenuto:'
+    descriptions:
+      account: Post pubblici di @%{acct}
+      tag: 'Post pubblici taggati #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Hai superato il limite di %{limit} post programmati per questo giorno
     over_total_limit: Hai superato il limite di %{limit} post programmati
@@ -1420,7 +1429,7 @@ it:
     profile: Profilo
     relationships: Follows e followers
     statuses_cleanup: Cancellazione automatica dei post
-    strikes: Avvisi di moderazione
+    strikes: Sanzioni di moderazione
     two_factor_authentication: Autenticazione a due fattori
     webauthn_authentication: Chiavi di sicurezza
   statuses:
@@ -1512,6 +1521,9 @@ it:
     pinned: Post fissato in cima
     reblogged: condiviso
     sensitive_content: Materiale sensibile
+  strikes:
+    errors:
+      too_late: È troppo tardi per fare appello contro questa sanzione
   tags:
     does_not_match_previous_name: non corrisponde al nome precedente
   terms:

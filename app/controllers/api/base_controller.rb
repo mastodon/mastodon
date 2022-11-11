@@ -11,6 +11,7 @@ class Api::BaseController < ApplicationController
   skip_before_action :require_functional!, unless: :whitelist_mode?
 
   before_action :require_authenticated_user!, if: :disallow_unauthenticated_api_access?
+  before_action :require_not_suspended!
   before_action :set_cache_headers
 
   protect_from_forgery with: :null_session
@@ -95,6 +96,10 @@ class Api::BaseController < ApplicationController
 
   def require_authenticated_user!
     render json: { error: 'This method requires an authenticated user' }, status: 401 unless current_user
+  end
+
+  def require_not_suspended!
+    render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.suspended?
   end
 
   def require_user!
