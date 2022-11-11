@@ -68,6 +68,7 @@ eo:
       enable: Malfrostigi
       enable_sign_in_token_auth: Ŝalti retpoŝtan ĵetonan aŭtentigon
       enabled: Ebligita
+      enabled_msg: Sukcese malfrostigis konton de %{username}
       followers: Sekvantoj
       follows: Sekvatoj
       header: Kapa bildo
@@ -233,6 +234,7 @@ eo:
         destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
         destroy_ip_block_html: "%{name} forigis regulon por IP %{target}"
         destroy_status_html: "%{name} forigis mesaĝojn de %{target}"
+        destroy_user_role_html: "%{name} forigis rolon de %{target}"
         disable_2fa_user_html: "%{name} malaktivigis la postulon de la dufaktora aŭtentigo por la uzanto %{target}"
         disable_custom_emoji_html: "%{name} neebligis la emoĝion %{target}"
         disable_user_html: "%{name} neebligis la saluton de la uzanto %{target}"
@@ -311,8 +313,13 @@ eo:
       software: Programo
       space: Memorspaca uzado
       title: Kontrolpanelo
+      top_languages: Plej aktivaj lingvoj
       top_servers: Plej aktivaj serviloj
       website: Retejo
+    disputes:
+      appeals:
+        empty: Neniuj apelacioj estas trovitaj.
+        title: Apelacioj
     domain_allows:
       add_new: Aldoni domajnon al la blanka listo
       created_msg: Domajno estis sukcese aldonita al la blanka listo
@@ -374,16 +381,20 @@ eo:
           silence: Kaŝu
           suspend: Suspendi
         policy: Politiko
+        reason: Publika kialo
+        title: Regularo de enhavo
       dashboard:
         instance_accounts_dimension: Plej sekvataj kontoj
         instance_accounts_measure: konservitaj kontoj
         instance_followers_measure: niaj sekvantoj tie
         instance_follows_measure: iliaj sekvantoj ĉi tie
+        instance_languages_dimension: Ĉefaj lingvoj
         instance_media_attachments_measure: stokitaj aŭdovidaj aldonaĵoj
         instance_reports_measure: raportoj pri ili
         instance_statuses_measure: konservitaj afiŝoj
       delivery:
         all: Ĉiuj
+        failing: Malsukcesas
         unavailable: Nedisponebla
       delivery_available: Liverado disponeblas
       empty: Neniuj domajnoj trovitaj.
