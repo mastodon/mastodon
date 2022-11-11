@@ -43,12 +43,12 @@ jobs:
       - name: helm lint
         run: |
           helm lint . \
-              --set mastodon.secrets.existingSecret=dummy
+              --values dev-values.yaml
 
       - name: helm template
         run: |
           helm template . \
-              --set mastodon.secrets.existingSecret=dummy \
+              --values dev-values.yaml \
               --output-dir rendered-templates
 
       - name: yamllint (only on templates we manage)
@@ -59,11 +59,12 @@ jobs:
             --config-data "{rules: {indentation: {spaces: 2}, line-length: disable}}"
 
   # This job helps us validate that rendered templates are valid k8s resources
-  # against a k8s api-server, via "helm template --validate".
+  # against a k8s api-server, via "helm template --validate", but also that a
+  # basic configuration can be used to successfully startup mastodon.
   #
-  validate-templates:
+  test-install:
     runs-on: ubuntu-22.04
-    timeout-minutes: 5
+    timeout-minutes: 15
 
     strategy:
       fail-fast: false
@@ -93,7 +94,7 @@ jobs:
       # This action starts a k8s cluster with NetworkPolicy enforcement and
       # installs both kubectl and helm.
       #
-      # ref: https://github.com/jupyterhub/action-k3s-helm/
+      # ref: https://github.com/jupyterhub/action-k3s-helm#readme
       #
       - uses: jupyterhub/action-k3s-helm@v3
         with:
@@ -106,7 +107,32 @@ jobs:
       - run: helm dependency update
 
       # Validate rendered helm templates against the k8s api-server
-      - name: Helm template --validate
+      - name: helm template --validate
         run: |
           helm template --validate mastodon . \
-              --set mastodon.secrets.existingSecret=dummy
+              --values dev-values.yaml
+
+      - name: helm install
+        run: |
+          helm install mastodon . \
+              --values dev-values.yaml \
+              --timeout 10m
+
+      # This actions provides a report about the state of the k8s cluster,
+      # providing logs etc on anything that has failed and workloads marked as
+      # important.
+      #
+      # ref: https://github.com/jupyterhub/action-k8s-namespace-report#readme
+      #
+      - name: Kubernetes namespace report
+        uses: jupyterhub/action-k8s-namespace-report@v1
+        if: always()
+        with:
+          important-workloads: >-
+            deploy/mastodon-sidekiq
+            deploy/mastodon-streaming
+            deploy/mastodon-web
+            job/mastodon-assets-precompile
+            job/mastodon-chewy-upgrade
+            job/mastodon-create-admin
+            job/mastodon-db-migrate
