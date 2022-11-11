@@ -222,7 +222,7 @@ function appendMedia(state, media, file) {
     if (media.get('type') === 'image') {
       media = media.set('file', file);
     }
-    map.update('media_attachments', list => list.push(media));
+    map.update('media_attachments', list => list.push(media.set('unattached', true)));
     map.set('is_uploading', false);
     map.set('is_processing', false);
     map.set('resetFileKey', Math.floor((Math.random() * 0x10000)));
@@ -563,7 +563,7 @@ export default function compose(state = initialState, action) {
       map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
-      map.set('media_attachments', action.status.get('media_attachments'));
+      map.set('media_attachments', action.status.get('media_attachments').map((media) => media.set('unattached', true)));
       map.set('focusDate', new Date());
       map.set('caretPosition', null);
       map.set('idempotencyKey', uuid());
