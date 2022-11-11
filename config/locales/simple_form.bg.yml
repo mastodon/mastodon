@@ -17,6 +17,10 @@ bg:
       ip_block:
         severities:
           no_access: Блокиране на достъп до всички ресурси
+      sessions:
+        otp: 'Въведете двуфакторния код, породен от приложението на телефона си или използвайте един от кодовете си за възстановяване:'
+      user_role:
+        permissions_as_keys: Потребители с тази роля ще имат достъп до...
       webhook:
         events: Изберете събития за изпращане
         url: До къде ще се изпращат събитията
@@ -28,6 +32,7 @@ bg:
       account_warning_preset:
         title: Заглавие
       admin_account_action:
+        include_statuses: Включва докладваните публикации в е-писмо
         type: Действие
         types:
           disable: Замразяване
@@ -35,10 +40,13 @@ bg:
           silence: Ограничение
           suspend: Спиране
       announcement:
+        all_day: Целодневно събитие
         ends_at: Край на събитието
         starts_at: Начало на събитието
+        text: Оповестяване
       defaults:
         avatar: Аватар
+        bot: Този акаунт е бот
         chosen_languages: Прецеждане на езиците
         confirm_new_password: Потвърди новата парола
         confirm_password: Потвърди паролата
@@ -49,6 +57,7 @@ bg:
         header: Заглавен ред
         locale: Език на интерфейса
         locked: Направи акаунта поверителен
+        max_uses: Най-голям брой употреби
         new_password: Нова парола
         note: Биография
         otp_attempt: Двуфакторен код
