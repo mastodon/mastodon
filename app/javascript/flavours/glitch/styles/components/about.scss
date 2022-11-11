@@ -247,28 +247,45 @@
 
   &__domain-blocks {
     margin-top: 30px;
-    width: 100%;
-    border-collapse: collapse;
-    break-inside: auto;
+    background: darken($ui-base-color, 4%);
+    border: 1px solid lighten($ui-base-color, 4%);
+    border-radius: 4px;
 
-    th {
-      text-align: left;
-      font-weight: 500;
+    &__domain {
+      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      padding: 10px;
+      font-size: 15px;
       color: $darker-text-color;
-    }
 
-    thead tr,
-    tbody tr {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
-    }
+      &:nth-child(2n) {
+        background: darken($ui-base-color, 2%);
+      }
 
-    tbody tr:last-child {
-      border-bottom: 0;
-    }
+      &:last-child {
+        border-bottom: 0;
+      }
 
-    th,
-    td {
-      padding: 8px;
+      &__header {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      h6 {
+        color: $secondary-text-color;
+        font-size: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
