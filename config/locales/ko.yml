@@ -11,7 +11,7 @@ ko:
       other: 팔로워
     following: 팔로잉
     instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
-    last_active: 최근 활동
+    last_active: 마지막 활동
     link_verified_on: '%{date}에 이 링크의 소유가 확인되었습니다'
     nothing_here: 아무 것도 없습니다!
     pin_errors:
@@ -93,7 +93,7 @@ ko:
         suspended: 정지 중
         title: 중재
       moderation_notes: 중재 기록
-      most_recent_activity: 최근 활동
+      most_recent_activity: 가장 최근 활동
       most_recent_ip: 최근 IP
       no_account_selected: 아무 것도 선택 되지 않아 어떤 계정도 변경 되지 않았습니다
       no_limits_imposed: 제한 없음
@@ -171,7 +171,7 @@ ko:
         create_account_warning: 경고 생성
         create_announcement: 공지사항 생성
         create_canonical_email_block: 이메일 차단 생성
-        create_custom_emoji: 커스텀 에모지 생성
+        create_custom_emoji: 사용자 지정 이모티콘 만들기
         create_domain_allow: 도메인 허용 생성
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
@@ -181,7 +181,7 @@ ko:
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
-        destroy_custom_emoji: 커스텀 에모지 삭제
+        destroy_custom_emoji: 사용자 지정 이모티콘 지우기
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
@@ -191,10 +191,10 @@ ko:
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
-        disable_custom_emoji: 커스텀 에모지 비활성화
+        disable_custom_emoji: 사용자 지정 이모티콘 비활성화
         disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
         disable_user: 사용자 비활성화
-        enable_custom_emoji: 커스텀 에모지 활성화
+        enable_custom_emoji: 사용자 지정 이모티콘 활성화
         enable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 활성화
         enable_user: 사용자 활성화
         memorialize_account: 추모계정으로 전환
@@ -215,7 +215,7 @@ ko:
         unsilence_account: 계정 침묵 취소
         unsuspend_account: 계정 정지 취소
         update_announcement: 공지사항 업데이트
-        update_custom_emoji: 커스텀 에모지 업데이트
+        update_custom_emoji: 사용자 지정 이모티콘 갱신
         update_domain_block: 도메인 차단 갱신
         update_ip_block: IP 규칙 수정
         update_status: 게시물 게시
@@ -322,13 +322,13 @@ ko:
       list: 목록에 추가
       listed: 목록에 실림
       new:
-        title: 새 커스텀 에모지 추가
+        title: 사용자 지정 이모티콘 새로 넣기
       no_emoji_selected: 아무 것도 선택 되지 않아 어떤 에모지도 바뀌지 않았습니다
       not_permitted: 이 작업을 수행할 권한이 없습니다
       overwrite: 덮어쓰기
       shortcode: 짧은 코드
       shortcode_hint: 최소 2글자, 영문자, 숫자, _만 사용 가능
-      title: 커스텀 에모지
+      title: 사용자 지정 이모티콘
       uncategorized: 분류되지 않음
       unlist: 목록에서 제거
       unlisted: 목록에 없음
@@ -1110,7 +1110,7 @@ ko:
         hint: 이 필터는 다른 기준에 관계 없이 선택된 개별적인 게시물들에 적용됩니다. 웹 인터페이스에서 더 많은 게시물들을 이 필터에 추가할 수 있습니다.
         title: 필터링된 게시물
   footer:
-    trending_now: 지금 유행중
+    trending_now: 지금 뜨는 해시태그
   generic:
     all: 모두
     all_items_on_page_selected_html:
@@ -1416,7 +1416,7 @@ ko:
       video:
         other: "%{count}개의 영상"
     boosted_from_html: '%{acct_link}의 글을 부스트'
-    content_warning: '열람 주의: %{warning}'
+    content_warning: '내용 경고: %{warning}'
     default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
@@ -1463,7 +1463,7 @@ ko:
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
     keep_media_hint: 미디어가 첨부된 게시물을 삭제하지 않습니다
-    keep_pinned: 고정된 게시물 유지
+    keep_pinned: 고정글 유지
     keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
     keep_polls: 투표 유지
     keep_polls_hint: 투표를 삭제하지 않습니다
@@ -1486,7 +1486,7 @@ ko:
     min_reblogs: 해당 횟수 이상 부스트된 게시물 유지
     min_reblogs_hint: 이 횟수 이상의 부스트가 된 게시물은 삭제하지 않습니다. 부스트 수와 관계없이 게시물을 지우고 싶다면 공백으로 두세요
   stream_entries:
-    pinned: 고정된 게시물
+    pinned: 고정글
     reblogged: 님이 부스트 했습니다
     sensitive_content: 민감한 콘텐츠
   strikes:
