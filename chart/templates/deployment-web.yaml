@@ -6,7 +6,7 @@ metadata:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.mastodon.web.replicaCount | default .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
@@ -112,9 +112,12 @@ spec:
               port: http
             failureThreshold: 30
             periodSeconds: 5
-          {{- with .Values.resources }}
+          {{- if .Values.mastodon.web.resources }}
           resources:
-            {{- toYaml . | nindent 12 }}
+            {{- toYaml .Values.mastodon.web.resources | nindent 12 }}
+          {{- else if .Values.resources }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
           {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
