@@ -5,6 +5,7 @@
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
     hosted_on: Mastodon driftet på %{domain}
+    title: Om
   accounts:
     follow: Følg
     followers:
@@ -51,6 +52,7 @@
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
+      custom: Tilpasset
       delete: Slett data
       deleted: Slettet
       demote: Degrader
@@ -90,6 +92,7 @@
         active: Aktive
         all: Alle
         pending: Avventer
+        silenced: Stilnet
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsnotater
@@ -142,6 +145,7 @@
       statuses: Statuser
       strikes: Tidligere advarsler
       subscribe: Abonnere
+      suspend: Suspender
       suspended: Suspendert
       suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
       suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
@@ -149,6 +153,7 @@
       unblock_email: Avblokker e-postadresse
       unblocked_email_msg: Fjernet blokkering av %{username} sin e-postadresse
       unconfirmed_email: Ubekreftet E-postadresse
+      undo_sensitized: Gjør om tving sensitiv
       undo_silenced: Angre målbinding
       undo_suspension: Angre utvisning
       unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
@@ -161,6 +166,7 @@
       whitelisted: Hvitelistet
     action_logs:
       action_types:
+        approve_appeal: Godkjenn anke
         approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
         change_email_user: Endre brukerens E-postadresse
@@ -168,37 +174,48 @@
         confirm_user: Bekreft brukeren
         create_account_warning: Opprett en advarsel
         create_announcement: Opprett en kunngjøring
+        create_canonical_email_block: Opprett e-post-blokkering
         create_custom_emoji: Opprett en tilpasset emoji
         create_domain_allow: Opprett domene tillatt
         create_domain_block: Opprett domene-blokk
         create_email_domain_block: Opprett e-post domeneblokk
         create_ip_block: Opprett IP-regel
+        create_unavailable_domain: Opprett utilgjengelig domene
         create_user_role: Opprett rolle
         demote_user: Degrader bruker
         destroy_announcement: Slett kunngjøringen
         destroy_canonical_email_block: Slett blokkering av e-post
         destroy_custom_emoji: Slett den tilpassede emojien
+        destroy_domain_allow: Slett domenegodkjenning
         destroy_domain_block: Slett blokkering av domene
         destroy_email_domain_block: Slett blokkering av e-postdomene
+        destroy_instance: Slett domene
         destroy_ip_block: Slett IP-regel
         destroy_status: Slett statusen
         destroy_unavailable_domain: Slett utilgjengelig domene
         destroy_user_role: Slett rolle
         disable_2fa_user: Skru av 2-trinnsinnlogging
         disable_custom_emoji: Skru av tilpassede emojier
+        disable_sign_in_token_auth_user: Skru av e-post-tokenautentisering for bruker
         disable_user: Deaktiver bruker
         enable_custom_emoji: Skru på tilpassede emojier
+        enable_sign_in_token_auth_user: Skru på e-post-tokenautentisering for bruker
         enable_user: Aktiver bruker
+        memorialize_account: Opprett minnekonto
         promote_user: Promoter bruker
+        reject_appeal: Avvis anke
         reject_user: Avvis bruker
         remove_avatar_user: Fjern Avatar
         reopen_report: Gjenåpne rapporten
         resend_user: Send e-post med bekreftelse på nytt
         reset_password_user: Tilbakestill passord
         resolve_report: Løs rapport
+        sensitive_account: Tving sensitiv konto
         silence_account: Demp konto
         suspend_account: Suspender kontoen
+        unassigned_report: Fjern tilordnet rapport
         unblock_email_account: Fjern blokkering av e-postadresse
+        unsensitive_account: Angre tving sensitiv konto
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
         update_custom_emoji: Oppdater tilpasset Emoji
@@ -219,8 +236,20 @@
         create_domain_block_html: "%{name} blokkert domene %{target}"
         create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        create_user_role_html: "%{name} opprettet rollen %{target}"
+        destroy_announcement_html: "%{name} slettet kunngjøring %{target}"
+        destroy_custom_emoji_html: "%{name} slettet emoji %{target}"
+        destroy_ip_block_html: "%{name} slettet regel for IP %{target}"
+        destroy_status_html: "%{name} fjernet innlegget av %{target}"
+        destroy_user_role_html: "%{name} slettet %{target} -rolle"
         reject_user_html: "%{name} avslo registrering fra %{target}"
+        reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
+        update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
+        update_ip_block_html: "%{name} endret regel for IP %{target}"
+        update_status_html: "%{name} oppdaterte innlegg av %{target}"
+        update_user_role_html: "%{name} endret %{target} -rolle"
+      deleted_account: slettet konto
       empty: Ingen loggføringer ble funnet.
       filter_by_action: Sorter etter handling
       filter_by_user: Sorter etter bruker
@@ -259,10 +288,12 @@
       enable: Aktivere
       enabled: Skrudd på
       enabled_msg: Aktiverte emojien uten problem
+      image_hint: PNG eller GIF opptil %{size}
       list: Før opp
       listed: Oppførte
       new:
         title: Legg til ny egen emoji
+      no_emoji_selected: Ingen emojis ble endret da ingen var valgt
       not_permitted: Du har ikke rettigheter til å utføre denne handlingen
       overwrite: Overskrive
       shortcode: Kortkode
@@ -323,6 +354,9 @@
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
+      attempts_over_week:
+        one: "%{count} forsøk i løpet av den siste uken"
+        other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Fjern
       domain: Domene
@@ -339,10 +373,29 @@
       title: Følg anbefalinger
       unsuppress: Gjenopprett følg-anbefaling
     instances:
+      availability:
+        failure_threshold_reached: Feilterskelen ble nådd %{date}.
+        no_failures_recorded: Ingen feil registrert.
+        title: Tilgjengelighet
+        warning: Det siste forsøket på å koble til denne serveren lyktes ikke
       back_to_all: All
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
+      content_policies:
+        comment: Internt notat
+        policies:
+          reject_media: Avvis media
+        reason: Offentlig årsak
+        title: Retningslinjer for innhold
+      dashboard:
+        instance_accounts_measure: lagrede kontoer
+        instance_followers_measure: våre følgere der
+        instance_follows_measure: deres følgere her
+        instance_languages_dimension: Mest brukte språk
+        instance_media_attachments_measure: lagrede mediavedlegg
+        instance_reports_measure: rapporter om dem
+        instance_statuses_measure: lagrede innlegg
       delivery:
         all: All
         clear: Feil ved fjerning
@@ -350,6 +403,8 @@
         stop: Stopp levering
         unavailable: Ikke tilgjengelig
       delivery_available: Levering er tilgjengelig
+      delivery_error_hint: Dersom levering ikke er mulig i løpet av %{count} dager, blir det automatisk merket som ikke mulig å levere.
+      empty: Ingen domener funnet.
       moderation:
         all: Alt
         limited: Begrenset
@@ -441,6 +496,16 @@
       unassign: Fjern tilegning
       unresolved: Uløst
       updated_at: Oppdatert
+      view_profile: Vis profil
+    roles:
+      add_new: Legg til rolle
+      assigned_users:
+        one: "%{count} bruker"
+        other: "%{count} brukere"
+      categories:
+        administration: Administrasjon
+        devops: DevOps
+        invites: Invitasjoner
     rules:
       add_new: Legg til et filter
       delete: Slett

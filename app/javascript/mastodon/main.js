@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { setupBrowserNotifications } from 'mastodon/actions/notifications';
 import Mastodon, { store } from 'mastodon/containers/mastodon';
+import { me } from 'mastodon/initial_state';
 import ready from 'mastodon/ready';
 
 const perf = require('mastodon/performance');
@@ -19,23 +20,19 @@ function main() {
     ReactDOM.render(<Mastodon {...props} />, mountNode);
     store.dispatch(setupBrowserNotifications());
 
-    if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-      const [{ Workbox }, { me }] = await Promise.all([
-        import('workbox-window'),
-        import('mastodon/initial_state'),
-      ]);
-
+    if (process.env.NODE_ENV === 'production' && me && 'serviceWorker' in navigator) {
+      const { Workbox } = await import('workbox-window');
       const wb = new Workbox('/sw.js');
+      /** @type {ServiceWorkerRegistration} */
+      let registration;
 
       try {
-        await wb.register();
+        registration = await wb.register();
       } catch (err) {
         console.error(err);
-
-        return;
       }
 
-      if (me) {
+      if (registration) {
         const registerPushNotifications = await import('mastodon/actions/push_notifications');
 
         store.dispatch(registerPushNotifications.register());

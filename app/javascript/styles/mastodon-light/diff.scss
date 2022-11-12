@@ -203,21 +203,14 @@ html {
 // Change the colors used in compose-form
 .compose-form {
   .compose-form__modifiers {
-    .compose-form__upload__actions .icon-button {
+    .compose-form__upload__actions .icon-button,
+    .compose-form__upload__warning .icon-button {
       color: lighten($white, 7%);
 
       &:active,
       &:focus,
       &:hover {
         color: $white;
-      }
-    }
-
-    .compose-form__upload-description input {
-      color: lighten($white, 7%);
-
-      &::placeholder {
-        color: lighten($white, 7%);
       }
     }
   }

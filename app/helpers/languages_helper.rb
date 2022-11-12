@@ -195,6 +195,7 @@ module LanguagesHelper
     kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     ldn: ['Láadan', 'Láadan'].freeze,
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
+    sco: ['Scots', 'Scots'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,

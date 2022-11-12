@@ -18,7 +18,6 @@ export default class Upload extends ImmutablePureComponent {
     media: ImmutablePropTypes.map.isRequired,
     onUndo: PropTypes.func.isRequired,
     onOpenFocalPoint: PropTypes.func.isRequired,
-    isEditingStatus: PropTypes.bool.isRequired,
   };
 
   handleUndoClick = e => {
@@ -32,7 +31,7 @@ export default class Upload extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, media, isEditingStatus } = this.props;
+    const { media } = this.props;
     const focusX = media.getIn(['meta', 'focus', 'x']);
     const focusY = media.getIn(['meta', 'focus', 'y']);
     const x = ((focusX /  2) + .5) * 100;
@@ -45,10 +44,10 @@ export default class Upload extends ImmutablePureComponent {
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
               <div className='compose-form__upload__actions'>
                 <button className='icon-button' onClick={this.handleUndoClick}><Icon id='times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
-                {!isEditingStatus && (<button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='pencil' /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>)}
+                {!!media.get('unattached') && (<button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='pencil' /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>)}
               </div>
 
-              {(media.get('description') || '').length === 0 && (
+              {(media.get('description') || '').length === 0 && !!media.get('unattached') && (
                 <div className='compose-form__upload__warning'>
                   <button className='icon-button' onClick={this.handleFocalPointClick}><Icon id='info-circle' /> <FormattedMessage id='upload_form.description_missing' defaultMessage='No description added' /></button>
                 </div>
