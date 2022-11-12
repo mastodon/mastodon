@@ -19,8 +19,20 @@ cy:
         account:
           attributes:
             username:
-              invalid: dim ond llythrennau, rhifau a tanlinellau
+              invalid: gall gynnwys dim ond llythrennau, rhifau a tanlinellau
               reserved: yn neilltuedig
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nid yw'n URL dilys
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nid yw'n URL dilys
+        import:
+          attributes:
+            data:
+              malformed: wedi'i gamffurfio
         status:
           attributes:
             reblog:
@@ -28,5 +40,16 @@ cy:
         user:
           attributes:
             email:
-              blocked: yn defnyddio darparwr e-bost nas caniateir
-              unreachable: nid yw'n bodoli
+              blocked: yn defnyddio darparwr e-bost nd yw'n cael ei ganiatáu
+              unreachable: nid yw i weld yn bodoli
+            role_id:
+              elevated: nid yw'n gallu bod yn uwch na'ch rôl presennol
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: yn cynnwys caniatâd nad ydynt yn ddiogel ar gyfer rôl sail
+              elevated: yn methu a chynnwys caniatâd nad yw eich rôl cyfredol yn ei gynnwys
+              own_role: nid oes modd ei newid gyda'ch rôl cyfredol
+            position:
+              elevated: nid yw'n gallu bod yn uwch na'ch rôl cyfredol
+              own_role: nid oes modd ei newid gyda'ch rôl cyfredol

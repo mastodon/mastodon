@@ -77,4 +77,4 @@
 
     - if user_signed_in?
       ·
-      = link_to t('statuses.open_in_web'), web_url("statuses/#{status.id}"), class: 'detailed-status__application', target: '_blank'
+      = link_to t('statuses.open_in_web'), web_url("@#{status.account.pretty_acct}/#{status.id}"), class: 'detailed-status__application', target: '_blank'

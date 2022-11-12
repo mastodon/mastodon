@@ -207,6 +207,7 @@ is:
         reject_user: Hafna notanda
         remove_avatar_user: Fjarlægja auðkennismynd
         reopen_report: Enduropna kæru
+        resend_user: Endursenda staðfestingarpóst
         reset_password_user: Endurstilla lykilorð
         resolve_report: Leysa kæru
         sensitive_account: Merkja myndefni á aðgangnum þínum sem viðkvæmt
@@ -265,6 +266,7 @@ is:
         reject_user_html: "%{name} hafnaði nýskráningu frá %{target}"
         remove_avatar_user_html: "%{name} fjarlægði auðkennismynd af %{target}"
         reopen_report_html: "%{name} enduropnaði kæru %{target}"
+        resend_user_html: "%{name} endursendi staðfestingarpóst vegna %{target}"
         reset_password_user_html: "%{name} endurstillti lykilorð fyrir notandann %{target}"
         resolve_report_html: "%{name} leysti kæru %{target}"
         sensitive_account_html: "%{name} merkti myndefni frá %{target} sem viðkvæmt"
@@ -281,6 +283,7 @@ is:
         update_ip_block_html: "%{name} breytti reglu fyrir IP-vistfangið %{target}"
         update_status_html: "%{name} uppfærði færslu frá %{target}"
         update_user_role_html: "%{name} breytti hlutverki %{target}"
+      deleted_account: eyddur notandaaðgangur
       empty: Engar atvikaskrár fundust.
       filter_by_action: Sía eftir aðgerð
       filter_by_user: Sía eftir notanda
@@ -1249,6 +1252,8 @@ is:
     carry_blocks_over_text: Þessi notandi fluttist frá %{acct}, sem þú hafðir útilokað.
     carry_mutes_over_text: Þessi notandi fluttist frá %{acct}, sem þú hafðir þaggað niður í.
     copy_account_note_text: 'Þessi notandi fluttist frá %{acct}, hér eru fyrri minnispunktar þínir um hann:'
+  navigation:
+    toggle_menu: Víxla valmynd af/á
   notification_mailer:
     admin:
       report:

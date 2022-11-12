@@ -1,5 +1,7 @@
 ---
 br:
+  about:
+    title: Diwar-benn
   accounts:
     follow: Heuliañ
     followers:
@@ -8,23 +10,29 @@ br:
       one: Heulier·ez
       other: Heulier·ez
       two: Heulier·ez
-    following: O heuliañ
+    following: Koumanantoù
+    last_active: oberiantiz ziwezhañ
+    nothing_here: N'eus netra amañ !
     posts:
-      few: Toud
-      many: Toud
-      one: Toud
-      other: Toud
-      two: Toud
-    posts_tab_heading: Toudoù
+      few: Kannadoù
+      many: Kannadoù
+      one: Kannad
+      other: Kannadoù
+      two: Kannadoù
+    posts_tab_heading: Kannadoù
   admin:
     accounts:
+      add_email_domain_block: Stankañ an domani postel
+      approve: Aprouiñ
+      are_you_sure: Ha sur oc'h?
       avatar: Avatar
       by_domain: Domani
       change_email:
-        current_email: Postel bremanel
-        label: Kemm ar postel
+        changed_msg: Chomlec'h postel kemmet !
+        current_email: Postel a vremañ
+        label: Kemmañ ar postel
         new_email: Postel nevez
-        submit: Kemm ar postel
+        submit: Kemmañ ar postel
       deleted: Dilamet
       domain: Domani
       edit: Aozañ
@@ -47,12 +55,17 @@ br:
       reset: Adderaouekaat
       reset_password: Adderaouekaat ar ger-tremen
       search: Klask
+      statuses: Kannadoù
       suspended: Astalet
       title: Kontoù
       username: Anv
     action_logs:
       action_types:
-        destroy_status: Dilemel ar statud
+        destroy_status: Dilemel ar c'hannad
+        update_status: Hizivaat ar c'hannad
+      actions:
+        destroy_status_html: Dilamet eo bet kannad %{target} gant %{name}
+        update_status_html: Hizivaet eo bet kannad %{target} gant %{name}
     announcements:
       new:
         create: Sevel ur gemenn
@@ -87,6 +100,8 @@ br:
         create: Ouzhpenniñ un domani
     instances:
       by_domain: Domani
+      dashboard:
+        instance_statuses_measure: kannadoù stoket
       moderation:
         all: Pep tra
     invites:
@@ -109,6 +124,7 @@ br:
           other: "%{count} a notennoù"
           two: "%{count} a notennoù"
       are_you_sure: Ha sur oc'h?
+      delete_and_resolve: Dilemel ar c'hannadoù
       notes:
         delete: Dilemel
       status: Statud
@@ -118,6 +134,13 @@ br:
         all: D'an holl dud
     statuses:
       deleted: Dilamet
+      open: Digeriñ ar c'hannad
+      original_status: Kannad orin
+      status_changed: Kannad kemmet
+      title: Kannadoù ar gont
+    strikes:
+      actions:
+        delete_statuses: Dilamet eo bet kannadoù %{target} gant %{name}
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
@@ -140,7 +163,7 @@ br:
     invalid_password: Ger-tremen diwiriek
   date:
     formats:
-      default: "%d %b %Y"
+      default: "%d a viz %b %Y"
       with_month_name: "%d a viz %B %Y"
   datetime:
     distance_in_words:
@@ -178,7 +201,16 @@ br:
       notifications: Kemennoù
     index:
       delete: Dilemel
+      statuses:
+        few: "%{count} a gannadoù"
+        many: "%{count} a gannadoù"
+        one: "%{count} c'hannad"
+        other: "%{count} a gannadoù"
+        two: "%{count} gannad"
       title: Siloù
+    statuses:
+      index:
+        title: Kannadoù silet
   generic:
     all: Pep tra
     copy: Eilañ
@@ -199,9 +231,17 @@ br:
       title: Heulier nevez
     mention:
       action: Respont
+    reblog:
+      subject: Skignet ho kannad gant %{name}
+    status:
+      subject: Embannet ez eus bet traoù gant %{name}
+    update:
+      subject: Kemmet eo bet ur c'hannad gant %{name}
   otp_authentication:
     enable: Gweredekaat
     setup: Kefluniañ
+  preferences:
+    posting_defaults: Arventennoù embann dre ziouer
   relationships:
     followers: Heulier·ezed·ien
     following: O heuliañ
@@ -249,19 +289,22 @@ br:
     visibilities:
       public: Publik
   stream_entries:
-    pinned: Toud spilhennet
+    pinned: Kannad spilhennet
   themes:
     default: Mastodoñ (Teñval)
     mastodon-light: Mastodoñ (Sklaer)
   time:
     formats:
-      default: "%He%M, %d %b %Y"
+      default: "%d a viz %b %Y, %H:%M"
+      month: Miz %b %Y
+      time: "%H:%M"
   two_factor_authentication:
     add: Ouzhpennañ
     disable: Diweredekaat
     edit: Aozañ
   user_mailer:
     warning:
+      statuses: 'Kannadoù meneget :'
       title:
         none: Diwall
     welcome:

@@ -41,5 +41,5 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  = link_to web_url("statuses/#{@status.id}") do
+                                  = link_to web_url("@#{@status.account.pretty_acct}/#{@status.id}") do
                                     %span= t 'application_mailer.view_status'

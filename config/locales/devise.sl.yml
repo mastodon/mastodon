@@ -4,7 +4,7 @@ sl:
     confirmations:
       confirmed: Vaš e-poštni naslov je bil uspešno potrjen.
       send_instructions: V nekaj minutah boste prejeli e-poštno sporočilo z navodili za potrditev vašega e-poštnega naslova. Če niste prejeli e-poštnega sporočila, preverite mapo neželena pošta.
-      send_paranoid_instructions: Če vaš e-poštni naslov obstaja v naši podatkovni bazi, boste v nekaj minutah prejeli e-poštno sporočilo z navodili za potrditev vašega e-poštnega naslova. Če niste prejeli e-poštnega sporočila, preverite mapo neželena pošta.
+      send_paranoid_instructions: Če vaš e-poštni naslov obstaja v naši zbirki podatkov, boste v nekaj minutah prejeli e-poštno sporočilo z navodili za potrditev vašega e-poštnega naslova. Če niste prejeli e-poštnega sporočila, preverite mapo neželena pošta.
     failure:
       already_authenticated: Ste že prijavljeni.
       inactive: Vaš račun še ni aktiviran.
@@ -21,37 +21,37 @@ sl:
         action: Potrdi e-poštni naslov
         action_with_app: Potrdi in se vrni v %{app}
         explanation: S tem e-poštnim naslovom ste ustvarili račun na %{host}. Z enim samim klikom ga aktivirate. Če to niste bili vi, prosimo, prezrite to e-poštno sporočilo.
-        explanation_when_pending: S tem e-poštnim naslovom ste zaprosili za povabilo na %{host}. Ko potrdite svoj e-poštni naslov, bomo pregledali vašo prijavo. Do takrat se ne morete prijaviti. Če bo vaša prijava zavrnjena, bodo vaši podatki odstranjeni, zato ne bo potrebno nadaljnje ukrepanje. Če to niste bili vi, prezrite to e-poštno sporočilo.
-        extra_html: Preverite tudi <a href="%{terms_path}">pravila vozlišča</a> in <a href="%{policy_path}">naše pogoje storitve</a>.
+        explanation_when_pending: S tem e-poštnim naslovom ste zaprosili za povabilo na %{host}. Ko potrdite svoj e-poštni naslov, bomo pregledali vašo prijavo. Do takrat se ne morete prijaviti. Če bo vaša prijava zavrnjena, bodo vaši podatki odstranjeni, zato nadaljnje ukrepanje ne bo potrebno. Če to niste bili vi, prezrite to e-poštno sporočilo.
+        extra_html: Preverite tudi <a href="%{terms_path}">pravila strežnika</a> in <a href="%{policy_path}">naše pogoje storitve</a>.
         subject: 'Mastodon: Navodila za potrditev za %{instance}'
         title: Potrdi e-poštni naslov
       email_changed:
-        explanation: 'E-poštni naslov za vaš račun je spremenjen na:'
-        extra: Če niste spremenili e-pošte, je verjetno, da je nekdo pridobil dostop do vašega računa. Prosim, zamenjajte geslo takoj. Če ste blokirani iz svojega računa  se obrnite na skrbnika vozlišča.
-        subject: 'Mastodon: E-pošta je spremenjena'
+        explanation: 'E-poštni naslov za vaš račun je spremenjen v:'
+        extra: Če niste spremenili e-pošte, je verjetno, da je nekdo pridobil dostop do vašega računa. Prosimo, zamenjajte geslo takoj ali se obrnite na skbrnika, če ste izklopljeni iz svojega računa.
+        subject: 'Mastodon: e-poštni naslov je spremenjen'
         title: Novi e-poštni naslov
       password_change:
         explanation: Geslo za vaš račun je bilo spremenjeno.
-        extra: Če niste spremenili gesla, je verjetno, da je nekdo pridobil dostop do vašega računa. Prosim, zamenjajte geslo takoj. Če ste blokirani iz svojega računa  se obrnite na skrbnika vozlišča.
-        subject: 'Mastodon: Geslo je spremenjeno'
+        extra: Če niste spremenili gesla, je verjetno, da je nekdo pridobil dostop do vašega računa. Prosimo, zamenjajte geslo takoj. Če ste blokirani iz svojega računa, se obrnite na skrbnika strežnika.
+        subject: 'Mastodon: geslo je spremenjeno'
         title: Geslo je spremenjeno
       reconfirmation_instructions:
         explanation: Potrdite novi naslov, da spremenite svoj e-poštni naslov.
-        extra: Če te spremembe niste sprožili, prezrite to e-poštno sporočilo. E-poštni naslov za račun Mastodon se ne bo spremenil, dokler ne kliknete na zgornjo povezavo.
-        subject: 'Mastodon: Potrdite e-pošto za %{instance}'
+        extra: Če te spremembe niste sprožili, prezrite to e-poštno sporočilo. E-poštni naslov za račun Mastodon se ne bo spremenil, dokler ne kliknete zgornje povezave.
+        subject: 'Mastodon: potrdite e-pošto za %{instance}'
         title: Potrdi e-poštni naslov
       reset_password_instructions:
         action: Spremeni geslo
         explanation: Zahtevali ste novo geslo za svoj račun.
-        extra: Če tega niste zahtevali, prezrite to e-poštno sporočilo. Vaše geslo se ne bo spremenilo, dokler ne kliknete na zgornjo povezavo in ustvarite novega.
-        subject: 'Mastodon: Navodila za ponastavitev gesla'
-        title: Ponastavi geslo
+        extra: Če tega niste zahtevali, prezrite to e-poštno sporočilo. Vaše geslo se ne bo spremenilo, dokler ne kliknete zgornje povezave in ustvarite novega.
+        subject: 'Mastodon: navodila za ponastavitev gesla'
+        title: Ponastavitev gesla
       two_factor_disabled:
         explanation: Dvojno oz. dvofazno preverjanje pristnosti je za vaš račun onemogočeno. Prijava je zdaj možna le z e-poštnim naslovom in geslom.
         subject: 'Mastodon: dvojno preverjanje pristnosti je onemogočeno'
         title: 2FA onemogočeno
       two_factor_enabled:
-        explanation: Dvojno oz. dvofazno preverjanje pristnosti je za vaš račun omogočena. Žeton, izdelan z aplikacijo TOTP, bo zahtevan zs prijavo.
+        explanation: Dvojno oz. dvofazno preverjanje pristnosti je za vaš račun omogočeno. Žeton, izdelan z aplikacijo TOTP, bo zahtevan zs prijavo.
         subject: 'Mastodon: dvojno preverjanje pristnosti je omogočeno'
         title: 2FA omogočeno
       two_factor_recovery_codes_changed:
@@ -59,7 +59,7 @@ sl:
         subject: 'Mastodon: varnostne obnovitvene kode za dvojno preverjanje pristnosti so ponovno izdelane'
         title: obnovitvene kode 2FA spremenjene
       unlock_instructions:
-        subject: 'Mastodon: Odkleni navodila'
+        subject: 'Mastodon: navodila za odklepanje'
       webauthn_credential:
         added:
           explanation: Naslednja varnostna koda je dodana vašemu računu
@@ -70,30 +70,30 @@ sl:
           subject: 'Mastodon: varnostna koda izbrisana'
           title: Ena od vaših varnostnih kod je bila izbrisana
       webauthn_disabled:
-        explanation: Overjanje pristnosti z varnostnimi ključi je za vaš račun onemogočeno. Prijava je zdaj možna le z uporabo žetona, ki ga izdela aplikacijo TOTP.
+        explanation: Overjanje pristnosti z varnostnimi kodami je za vaš račun onemogočeno. Prijava je zdaj možna le z uporabo žetona, ki ga izdela oparjena aplikacija TOTP.
         subject: 'Mastodon: overjanje pristnosti z varnosnimi kodami je onemogočeno'
         title: Varnostne kode onemogočene
       webauthn_enabled:
-        explanation: Overjanje z varnostnim ključem je omogočeno za vaš račun. Svoj varnostni ključ lahko zdaj uporabite za prijavo.
+        explanation: Overjanje z varnostno kodo je za vaš račun omogočeno. Svojo varnostno kodo lahko zdaj uporabite za prijavo.
         subject: 'Mastodon: preverjanje pristnosti z varnostno kodo je omogočeno'
         title: Varnostne kode omogočene
     omniauth_callbacks:
       failure: Overitev iz %{kind} ni možna zaradi "%{reason}".
       success: Overitev iz računa %{kind} je bila uspešna.
     passwords:
-      no_token: Do te strani ne morete dostopati, ne da bi prišli iz e-poštne za ponastavitev gesla. Če prihajate iz e-poštne za ponastavitev gesla, se prepričajte, da ste uporabili celoten navedeni URL.
-      send_instructions: Če vaš e-poštni naslov obstaja v naši bazi podatkov, boste v nekaj minutah na vaš e-poštni naslov prejeli povezavo za obnovitev gesla. Če niste prejeli e-pošte, preverite mapo z neželeno pošto.
-      send_paranoid_instructions: Če vaš e-poštni naslov obstaja v naši bazi podatkov, boste v nekaj minutah na vaš e-poštni naslov prejeli povezavo za obnovitev gesla. Če niste prejeli e-pošte, preverite mapo z neželeno pošto.
+      no_token: Do te strani ne morete dostopati, ne da bi prišli iz e-pošte za ponastavitev gesla. Če prihajate iz e-pošte za ponastavitev gesla, se prepričajte, da ste uporabili celoten navedeni URL.
+      send_instructions: Če vaš e-poštni naslov obstaja v naši zbirki podatkov, boste v nekaj minutah na svoj e-poštni naslov prejeli povezavo za obnovitev gesla. Če niste prejeli e-pošte, preverite mapo z neželeno pošto.
+      send_paranoid_instructions: Če vaš e-poštni naslov obstaja v naši zbirki podatkov, boste v nekaj minutah na svoj e-poštni naslov prejeli povezavo za obnovitev gesla. Če niste prejeli e-pošte, preverite mapo z neželeno pošto.
       updated: Vaše geslo je bilo uspešno spremenjeno. Zdaj ste prijavljeni.
       updated_not_active: Vaše geslo je bilo uspešno spremenjeno.
     registrations:
-      destroyed: Adijo! Vaš račun je bil uspešno preklican. Upamo, da vas bomo kmalu spet videli.
+      destroyed: Srečno! Vaš račun je bil uspešno preklican. Upamo, da vas bomo kmalu spet videli.
       signed_up: Dobrodošli! Uspešno ste se vpisali.
       signed_up_but_inactive: Uspešno ste se vpisali. Vendar vas nismo mogli prijaviti, ker vaš račun še ni aktiviran.
       signed_up_but_locked: Uspešno ste se vpisali. Vendar vas nismo mogli prijaviti, ker je vaš račun zaklenjen.
-      signed_up_but_pending: Na vaš e-poštni naslov je bilo poslano sporočilo s povezavo za potrditev. Ko kliknete na povezavo, bomo pregledali vašo prijavo. Obveščeni boste, če bo odobren.
+      signed_up_but_pending: Na vaš e-poštni naslov je bilo poslano sporočilo s povezavo za potrditev. Ko kliknete povezavo, bomo pregledali vašo prijavo. Obveščeni boste, če bo odobrena.
       signed_up_but_unconfirmed: Na vaš e-poštni naslov je bilo poslano sporočilo s povezavo za potrditev. Sledite povezavi, da aktivirate svoj račun. Če niste prejeli te e-pošte, preverite mapo z neželeno pošto.
-      update_needs_confirmation: Uspešno ste posodobili račun, vendar moramo potrditi vaš novi e-poštni naslov. Preverite svojo e-pošto in sledite povezavi za potrditev, da potrdite nov e-poštni naslov. Če niste prejeli te e-poše, preverite mapo z neželeno pošto.
+      update_needs_confirmation: Uspešno ste posodobili račun, vendar moramo potrditi vaš novi e-poštni naslov. Preverite svojo e-pošto in sledite povezavi za potrditev, da potrdite nov e-poštni naslov. Če niste prejeli te e-pošte, preverite mapo z neželeno pošto.
       updated: Vaš račun je bil uspešno posodobljen.
     sessions:
       already_signed_out: Uspešno ste se odjavili.
@@ -111,7 +111,7 @@ sl:
       not_found: ni najdeno
       not_locked: ni bil zaklenjen
       not_saved:
-        few: "%{count} napake so preprečile shranjevanje %{resource}:"
+        few: "%{count} napake so preprečile shranjevanje vira %{resource}:"
         one: '1 napaka je preprečila shranjevanje %{resource}:'
-        other: "%{count} napak je preprečilo shranjevanje %{resource}:"
-        two: "%{count} napaki sta preprečili shranjevanje %{resource}:"
+        other: "%{count} napak je preprečilo shranjevanje vira %{resource}:"
+        two: "%{count} napaki sta preprečili shranjevanje vira %{resource}:"

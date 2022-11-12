@@ -682,6 +682,10 @@
       {
         "defaultMessage": "Filter this post",
         "id": "status.filter"
+      },
+      {
+        "defaultMessage": "Open original page",
+        "id": "account.open_original_page"
       }
     ],
     "path": "app/javascript/mastodon/components/status_action_bar.json"
@@ -887,16 +891,12 @@
         "id": "about.domain_blocks.preamble"
       },
       {
-        "defaultMessage": "Domain",
-        "id": "about.domain_blocks.domain"
+        "defaultMessage": "Reason not available",
+        "id": "about.domain_blocks.no_reason_available"
       },
       {
-        "defaultMessage": "Severity",
-        "id": "about.domain_blocks.severity"
-      },
-      {
-        "defaultMessage": "Reason",
-        "id": "about.domain_blocks.comment"
+        "defaultMessage": "Mastodon is free, open-source software, and a trademark of Mastodon gGmbH.",
+        "id": "about.disclaimer"
       }
     ],
     "path": "app/javascript/mastodon/features/about/index.json"
@@ -934,7 +934,7 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "This profile has been hidden by the moderators of your server.",
+        "defaultMessage": "This profile has been hidden by the moderators of {domain}.",
         "id": "limited_account_hint.title"
       },
       {
@@ -947,8 +947,12 @@
   {
     "descriptors": [
       {
-        "defaultMessage": "{name} has moved to:",
+        "defaultMessage": "{name} has indicated that their new account is now:",
         "id": "account.moved_to"
+      },
+      {
+        "defaultMessage": "Go to profile",
+        "id": "account.go_to_profile"
       }
     ],
     "path": "app/javascript/mastodon/features/account_timeline/components/moved_note.json"
@@ -1178,6 +1182,10 @@
       {
         "defaultMessage": "Change subscribed languages",
         "id": "account.languages"
+      },
+      {
+        "defaultMessage": "Open original page",
+        "id": "account.open_original_page"
       },
       {
         "defaultMessage": "Follows you",
@@ -1641,6 +1649,10 @@
         "id": "search.placeholder"
       },
       {
+        "defaultMessage": "Search or paste URL",
+        "id": "search.search_or_paste"
+      },
+      {
         "defaultMessage": "Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.",
         "id": "search_popout.tips.full_text"
       },
@@ -1679,11 +1691,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Processing…",
+        "id": "upload_progress.processing"
+      },
+      {
         "defaultMessage": "Uploading…",
         "id": "upload_progress.label"
       }
     ],
-    "path": "app/javascript/mastodon/features/compose/components/upload_form.json"
+    "path": "app/javascript/mastodon/features/compose/components/upload_progress.json"
   },
   {
     "descriptors": [
@@ -1901,6 +1917,10 @@
         "id": "account.cancel_follow_request"
       },
       {
+        "defaultMessage": "Withdraw request",
+        "id": "confirmations.cancel_follow_request.confirm"
+      },
+      {
         "defaultMessage": "Awaiting approval. Click to cancel follow request",
         "id": "account.requested"
       },
@@ -1923,6 +1943,10 @@
       {
         "defaultMessage": "Are you sure you want to unfollow {name}?",
         "id": "confirmations.unfollow.message"
+      },
+      {
+        "defaultMessage": "Are you sure you want to withdraw your request to follow {name}?",
+        "id": "confirmations.cancel_follow_request.message"
       },
       {
         "defaultMessage": "Posts",
@@ -2579,7 +2603,7 @@
         "id": "interaction_modal.on_another_server"
       },
       {
-        "defaultMessage": "Simply copy and paste this URL into the search bar of your favourite app or the web interface where you are signed in.",
+        "defaultMessage": "Copy and paste this URL into the search field of your favourite Mastodon app or the web interface of your Mastodon server.",
         "id": "interaction_modal.other_server_instructions"
       }
     ],
@@ -3574,6 +3598,10 @@
       {
         "defaultMessage": "Unblock @{name}",
         "id": "account.unblock"
+      },
+      {
+        "defaultMessage": "Open original page",
+        "id": "account.open_original_page"
       }
     ],
     "path": "app/javascript/mastodon/features/status/components/action_bar.json"
@@ -3819,6 +3847,31 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Are you sure you want to log out?",
+        "id": "confirmations.logout.message"
+      },
+      {
+        "defaultMessage": "Log out",
+        "id": "confirmations.logout.confirm"
+      },
+      {
+        "defaultMessage": "Your account {disabledAccount} is currently disabled because you moved to {movedToAccount}.",
+        "id": "moved_to_account_banner.text"
+      },
+      {
+        "defaultMessage": "Your account {disabledAccount} is currently disabled.",
+        "id": "disabled_account_banner.text"
+      },
+      {
+        "defaultMessage": "Account settings",
+        "id": "disabled_account_banner.account_settings"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/disabled_account_banner.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Close",
         "id": "lightbox.close"
       },
@@ -3952,6 +4005,15 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "Close",
+        "id": "lightbox.close"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/ui/components/image_modal.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Are you sure you want to log out?",
         "id": "confirmations.logout.message"
       },
@@ -3960,48 +4022,32 @@
         "id": "confirmations.logout.confirm"
       },
       {
-        "defaultMessage": "Get the app",
-        "id": "navigation_bar.apps"
-      },
-      {
         "defaultMessage": "About",
-        "id": "navigation_bar.info"
-      },
-      {
-        "defaultMessage": "About Mastodon",
-        "id": "getting_started.what_is_mastodon"
-      },
-      {
-        "defaultMessage": "Documentation",
-        "id": "getting_started.documentation"
-      },
-      {
-        "defaultMessage": "Privacy Policy",
-        "id": "getting_started.privacy_policy"
-      },
-      {
-        "defaultMessage": "Hotkeys",
-        "id": "navigation_bar.keyboard_shortcuts"
-      },
-      {
-        "defaultMessage": "Directory",
-        "id": "getting_started.directory"
+        "id": "footer.about"
       },
       {
         "defaultMessage": "Invite people",
-        "id": "getting_started.invite"
+        "id": "footer.invite"
       },
       {
-        "defaultMessage": "Security",
-        "id": "getting_started.security"
+        "defaultMessage": "Profiles directory",
+        "id": "footer.directory"
       },
       {
-        "defaultMessage": "Logout",
-        "id": "navigation_bar.logout"
+        "defaultMessage": "Privacy policy",
+        "id": "footer.privacy_policy"
       },
       {
-        "defaultMessage": "Mastodon is free, open source software. You can view the source code, contribute or report issues at {repository}.",
-        "id": "getting_started.free_software_notice"
+        "defaultMessage": "Get the app",
+        "id": "footer.get_app"
+      },
+      {
+        "defaultMessage": "Keyboard shortcuts",
+        "id": "footer.keyboard_shortcuts"
+      },
+      {
+        "defaultMessage": "View source code",
+        "id": "footer.source_code"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/link_footer.json"

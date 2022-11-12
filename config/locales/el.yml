@@ -184,6 +184,7 @@ el:
         reject_user: Απόρριψη Χρήστη
         remove_avatar_user: Αφαίρεση Avatar
         reopen_report: Ξανάνοιγμα Καταγγελίας
+        resend_user: Επαναποστολή του email επιβεβαίωσης
         reset_password_user: Επαναφορά Συνθηματικού
         resolve_report: Επίλυση Καταγγελίας
         sensitive_account: Σήμανση των πολυμέσων στον λογαριασμό σας ως ευαίσθητων
@@ -202,6 +203,7 @@ el:
         destroy_instance_html: Ο/Η %{name} εκκαθάρισε τον τομέα %{target}
         reject_user_html: "%{name} απορρίφθηκε εγγραφή από %{target}"
         unblock_email_account_html: "%{name} ξεμπλόκαρε τη διεύθυνση ηλεκτρονικού ταχυδρομείου του %{target}"
+      deleted_account: διαγραμμένος λογαριασμός
       empty: Δεν βρέθηκαν αρχεία καταγραφής.
       filter_by_action: Φιλτράρισμα ανά ενέργεια
       filter_by_user: Φιλτράρισμα ανά χρήστη
@@ -824,6 +826,8 @@ el:
     carry_blocks_over_text: Ο/Η χρήστης μετακόμισε από το %{acct}, που είχες αποκλείσει.
     carry_mutes_over_text: Ο/Η χρήστης μετακόμισε από το %{acct}, που είχες αποσιωπήσει.
     copy_account_note_text: 'Ο/Η χρήστης μετακόμισε από το %{acct}, ορίστε οι προηγούμενες σημειώσεις σου:'
+  navigation:
+    toggle_menu: Εμφάνιση/Απόκρυψη μενού
   notification_mailer:
     admin:
       report:

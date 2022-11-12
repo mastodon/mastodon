@@ -1,7 +1,26 @@
 ---
 fy:
   devise:
+    confirmations:
+      confirmed: Dyn account is befêstige.
+      send_instructions: Do ûntfangst fia in e-mailberjocht ynstruksjes hoe’tsto dyn account befêstigje kinst. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      send_paranoid_instructions: As dyn e-mailadres yn de database stiet, ûntfangsto fia in e-mailberjocht ynstruksjes hoe’tsto dyn account befêstigje kinst. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
     failure:
+      already_authenticated: Do bist al oanmeld.
       inactive: Jo account is not net aktivearre.
+      invalid: "%{authentication_keys} of wachtwurd ûnjildich."
+      last_attempt: Do hast noch ien besykjen oer eardat dyn account blokkearre wurdt.
+      locked: Dyn account is blokkearre.
+      not_found_in_database: "%{authentication_keys} of wachtwurd ûnjildich."
+      pending: Dyn account moat noch hieltyd beoardiele wurde.
+      timeout: Dyn sesje is ferrûn, meld dy opnij oan.
+      unauthenticated: Do moatst oanmelde of registrearje.
+      unconfirmed: Do moatst earst dyn account befêstigje.
+    mailer:
+      confirmation_instructions:
+        action: E-mailadres ferifiearje
+        action_with_app: Befêstigje en nei %{app} tebekgean
+        explanation: Do hast in account op %{host} oanmakke en mei ien klik kinsto dizze aktivearje. Wannear’tsto dit account net oanmakke hast, meisto dit e-mailberjocht negearje.
+        explanation_when_pending: Do fregest mei dit e-mailadres in útnûging oan foar %{host}. Neidatsto dyn e-mailadres befêstige hast, beoardielje wy dyn oanfraach. Do kinst oant dan noch net oanmelde. Wannear’t dyn oanfraach ôfwêzen wurdt, wurde dyn gegevens fuortsmiten en hoechsto dêrnei fierder neat mear te dwaan. Wannear’tsto dit net wiest, kinsto dit e-mailberjocht negearje.
     passwords:
       updated_not_active: Jo wachtwurd is mei sukses feroare.

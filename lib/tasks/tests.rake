@@ -53,6 +53,41 @@ namespace :tests do
         VALUES
           (1, 2, 'test', '{ "home", "public" }', true, true, now(), now()),
           (2, 2, 'take', '{ "home" }', false, false, now(), now());
+
+        -- Orphaned admin action logs
+
+        INSERT INTO "admin_action_logs"
+          (account_id, action, target_type, target_id, created_at, updated_at)
+        VALUES
+          (1, 'destroy', 'Account', 1312, now(), now()),
+          (1, 'destroy', 'User', 1312, now(), now()),
+          (1, 'destroy', 'Report', 1312, now(), now()),
+          (1, 'destroy', 'DomainBlock', 1312, now(), now()),
+          (1, 'destroy', 'EmailDomainBlock', 1312, now(), now()),
+          (1, 'destroy', 'Status', 1312, now(), now()),
+          (1, 'destroy', 'CustomEmoji', 1312, now(), now());
+
+        -- Admin action logs with linked objects
+
+        INSERT INTO "domain_blocks"
+          (id, domain, created_at, updated_at)
+        VALUES
+          (1, 'example.org', now(), now());
+
+        INSERT INTO "email_domain_blocks"
+          (id, domain, created_at, updated_at)
+        VALUES
+          (1, 'example.org', now(), now());
+
+        INSERT INTO "admin_action_logs"
+          (account_id, action, target_type, target_id, created_at, updated_at)
+        VALUES
+          (1, 'destroy', 'Account', 1, now(), now()),
+          (1, 'destroy', 'User', 1, now(), now()),
+          (1, 'destroy', 'DomainBlock', 1312, now(), now()),
+          (1, 'destroy', 'EmailDomainBlock', 1312, now(), now()),
+          (1, 'destroy', 'Status', 1, now(), now()),
+          (1, 'destroy', 'CustomEmoji', 3, now(), now());
       SQL
     end
 
@@ -207,18 +242,18 @@ namespace :tests do
         -- custom emoji
 
         INSERT INTO "custom_emojis"
-          (shortcode, created_at, updated_at)
+          (id, shortcode, created_at, updated_at)
         VALUES
-          ('test', now(), now()),
-          ('Test', now(), now()),
-          ('blobcat', now(), now());
+          (1, 'test', now(), now()),
+          (2, 'Test', now(), now()),
+          (3, 'blobcat', now(), now());
 
         INSERT INTO "custom_emojis"
-          (shortcode, domain, uri, created_at, updated_at)
+          (id, shortcode, domain, uri, created_at, updated_at)
         VALUES
-          ('blobcat', 'remote.org', 'https://remote.org/emoji/blobcat', now(), now()),
-          ('blobcat', 'Remote.org', 'https://remote.org/emoji/blobcat', now(), now()),
-          ('Blobcat', 'remote.org', 'https://remote.org/emoji/Blobcat', now(), now());
+          (4, 'blobcat', 'remote.org', 'https://remote.org/emoji/blobcat', now(), now()),
+          (5, 'blobcat', 'Remote.org', 'https://remote.org/emoji/blobcat', now(), now()),
+          (6, 'Blobcat', 'remote.org', 'https://remote.org/emoji/Blobcat', now(), now());
 
         -- favourites
 

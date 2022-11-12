@@ -742,6 +742,20 @@
   p {
     color: $darker-text-color;
     margin-bottom: 20px;
+
+    a {
+      color: $secondary-text-color;
+      text-decoration: none;
+      unicode-bidi: isolate;
+
+      &:hover {
+        text-decoration: underline;
+
+        .fa {
+          color: lighten($dark-text-color, 7%);
+        }
+      }
+    }
   }
 
   .button {
@@ -1289,6 +1303,7 @@
   display: inline-block;
   font-weight: 500;
   font-size: 12px;
+  line-height: 17px;
   margin-left: 6px;
 }
 
@@ -3120,43 +3135,6 @@ $ui-header-height: 55px;
   color: $dark-text-color;
   overflow: auto;
 
-  &__footer {
-    flex: 0 0 auto;
-    padding: 10px;
-    padding-top: 20px;
-    z-index: 1;
-    font-size: 13px;
-
-    ul {
-      margin-bottom: 10px;
-    }
-
-    ul li {
-      display: inline;
-    }
-
-    p {
-      color: $dark-text-color;
-      margin-bottom: 20px;
-
-      a {
-        color: $dark-text-color;
-        text-decoration: underline;
-      }
-    }
-
-    a {
-      text-decoration: none;
-      color: $darker-text-color;
-
-      &:hover,
-      &:focus,
-      &:active {
-        text-decoration: underline;
-      }
-    }
-  }
-
   &__trends {
     flex: 0 1 auto;
     opacity: 1;
@@ -3223,23 +3201,49 @@ $ui-header-height: 55px;
 .setting-text {
   display: block;
   box-sizing: border-box;
-  width: 100%;
   margin: 0;
-  color: $darker-text-color;
-  background: transparent;
-  padding: 7px 0;
+  color: $inverted-text-color;
+  background: $white;
+  padding: 7px 10px;
   font-family: inherit;
   font-size: 14px;
-  resize: vertical;
-  border: 0;
-  border-bottom: 2px solid $ui-primary-color;
-  outline: 0;
+  line-height: 22px;
+  border-radius: 4px;
+  border: 1px solid $white;
 
-  &:focus,
-  &:active {
-    color: $primary-text-color;
-    border-bottom-color: $ui-highlight-color;
+  &:focus {
     outline: 0;
+    border-color: lighten($ui-highlight-color, 12%);
+  }
+
+  &__wrapper {
+    background: $white;
+    border: 1px solid $ui-secondary-color;
+    margin-bottom: 10px;
+    border-radius: 4px;
+
+    .setting-text {
+      border: 0;
+      margin-bottom: 0;
+      border-radius: 0;
+
+      &:focus {
+        border: 0;
+      }
+    }
+
+    &__modifiers {
+      color: $inverted-text-color;
+      font-family: inherit;
+      font-size: 14px;
+      background: $white;
+    }
+  }
+
+  &__toolbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   @media screen and (max-width: 600px) {
@@ -5526,65 +5530,20 @@ a.status-card.compact:hover {
     margin-bottom: 20px;
   }
 
-  .setting-text {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-    color: $inverted-text-color;
-    background: $white;
-    padding: 10px;
-    font-family: inherit;
-    font-size: 14px;
-    resize: none;
-    outline: 0;
-    border-radius: 4px;
-    border: 1px solid $ui-secondary-color;
-    min-height: 100px;
-    max-height: 50vh;
-    margin-bottom: 10px;
-
-    &:focus {
-      border: 1px solid darken($ui-secondary-color, 8%);
-    }
-
-    &__wrapper {
-      background: $white;
-      border: 1px solid $ui-secondary-color;
-      margin-bottom: 10px;
-      border-radius: 4px;
-
-      .setting-text {
-        border: 0;
-        margin-bottom: 0;
-        border-radius: 0;
-
-        &:focus {
-          border: 0;
-        }
-      }
-
-      &__modifiers {
-        color: $inverted-text-color;
-        font-family: inherit;
-        font-size: 14px;
-        background: $white;
-      }
-    }
-
-    &__toolbar {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-  }
-
   .setting-text-label {
     display: block;
     color: $inverted-text-color;
     font-size: 14px;
     font-weight: 500;
     margin-bottom: 10px;
+  }
+
+  .setting-text {
+    width: 100%;
+    resize: none;
+    min-height: 100px;
+    max-height: 50vh;
+    border: 0;
   }
 
   .setting-toggle {
@@ -6756,36 +6715,29 @@ noscript {
   }
 }
 
-.account__moved-note {
-  padding: 14px 10px;
-  padding-bottom: 16px;
+.moved-account-banner {
+  padding: 20px;
   background: lighten($ui-base-color, 4%);
-  border-top: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
   &__message {
-    position: relative;
-    margin-left: 58px;
-    color: $dark-text-color;
+    color: $darker-text-color;
     padding: 8px 0;
     padding-top: 0;
     padding-bottom: 4px;
     font-size: 14px;
-
-    > span {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 16px;
   }
 
-  &__icon-wrapper {
-    left: -26px;
-    position: absolute;
-  }
-
-  .detailed-status__display-avatar {
-    position: relative;
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
   }
 
   .detailed-status__display-name {
@@ -6795,9 +6747,9 @@ noscript {
 
 .column-inline-form {
   padding: 15px;
-  padding-right: 0;
   display: flex;
   justify-content: flex-start;
+  gap: 15px;
   align-items: center;
   background: lighten($ui-base-color, 4%);
 
@@ -6806,16 +6758,7 @@ noscript {
 
     input {
       width: 100%;
-
-      &:focus {
-        outline: 0;
-      }
     }
-  }
-
-  .icon-button {
-    flex: 0 0 auto;
-    margin: 0 10px;
   }
 }
 
@@ -7180,12 +7123,27 @@ noscript {
         color: lighten($ui-highlight-color, 8%);
       }
 
-      dl:first-child .verified {
-        border-radius: 0 4px 0 0;
-      }
+      .verified {
+        border: 1px solid rgba($valid-value-color, 0.5);
 
-      .verified a {
-        color: $valid-value-color;
+        &:first-child {
+          border-top-left-radius: 4px;
+          border-top-right-radius: 4px;
+        }
+
+        &:last-child {
+          border-bottom-left-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
+
+        dt,
+        dd {
+          color: $valid-value-color;
+        }
+
+        a {
+          color: $valid-value-color;
+        }
       }
     }
   }
@@ -8382,11 +8340,47 @@ noscript {
   }
 }
 
+.link-footer {
+  flex: 0 0 auto;
+  padding: 10px;
+  padding-top: 20px;
+  z-index: 1;
+  font-size: 13px;
+
+  p {
+    color: $dark-text-color;
+    margin-bottom: 20px;
+
+    strong {
+      font-weight: 500;
+    }
+
+    a {
+      color: $dark-text-color;
+      text-decoration: underline;
+
+      &:hover,
+      &:focus,
+      &:active {
+        text-decoration: none;
+      }
+    }
+  }
+}
+
 .about {
   padding: 20px;
 
   @media screen and (min-width: $no-gap-breakpoint) {
     border-radius: 4px;
+  }
+
+  &__footer {
+    color: $dark-text-color;
+    text-align: center;
+    font-size: 15px;
+    line-height: 22px;
+    margin-top: 20px;
   }
 
   &__header {
@@ -8509,7 +8503,7 @@ noscript {
     }
   }
 
-  .getting-started__footer {
+  .link-footer {
     padding: 0;
     margin-top: 60px;
     text-align: center;
@@ -8563,28 +8557,45 @@ noscript {
 
   &__domain-blocks {
     margin-top: 30px;
-    width: 100%;
-    border-collapse: collapse;
-    break-inside: auto;
+    background: darken($ui-base-color, 4%);
+    border: 1px solid lighten($ui-base-color, 4%);
+    border-radius: 4px;
 
-    th {
-      text-align: left;
-      font-weight: 500;
+    &__domain {
+      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      padding: 10px;
+      font-size: 15px;
       color: $darker-text-color;
-    }
 
-    thead tr,
-    tbody tr {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
-    }
+      &:nth-child(2n) {
+        background: darken($ui-base-color, 2%);
+      }
 
-    tbody tr:last-child {
-      border-bottom: 0;
-    }
+      &:last-child {
+        border-bottom: 0;
+      }
 
-    th,
-    td {
-      padding: 8px;
+      &__header {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      h6 {
+        color: $secondary-text-color;
+        font-size: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
