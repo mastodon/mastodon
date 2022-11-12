@@ -103,8 +103,8 @@ mastodon:
 
   metrics:
     statsd:
-      # Enable statsd publishing
-      # address: statsd:9125
+      # Enable statsd publishing via STATSD_ADDR environment variable
+      address: ""
 
 ingress:
   enabled: true
