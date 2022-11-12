@@ -103,7 +103,7 @@ class ToggleOption extends ImmutablePureComponent {
       <React.Fragment>
         <Toggle checked={checked} onChange={this.handleChange} />
 
-        <div className='content'>
+        <div className='privacy-dropdown__option__content'>
           <strong>{text}</strong>
           {meta}
         </div>
