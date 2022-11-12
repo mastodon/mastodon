@@ -11,7 +11,7 @@ ko:
       other: 팔로워
     following: 팔로잉
     instance_actor_flash: 이 계정은 서버 자신을 나타내기 위한 가상의 계정이며 개인 사용자가 아닙니다. 이 계정은 연합을 위해 사용되며 정지되지 않아야 합니다.
-    last_active: 마지막 활동
+    last_active: 최근 활동
     link_verified_on: '%{date}에 이 링크의 소유가 확인되었습니다'
     nothing_here: 아무 것도 없습니다!
     pin_errors:
@@ -93,7 +93,7 @@ ko:
         suspended: 정지 중
         title: 중재
       moderation_notes: 중재 기록
-      most_recent_activity: 가장 최근 활동
+      most_recent_activity: 최근 활동순
       most_recent_ip: 최근 IP
       no_account_selected: 아무 것도 선택 되지 않아 어떤 계정도 변경 되지 않았습니다
       no_limits_imposed: 제한 없음
@@ -103,7 +103,7 @@ ko:
       perform_full_suspension: 정지
       previous_strikes: 이전의 처벌들
       previous_strikes_description_html:
-        other: 이 계정은 <strong>%{count}</strong> 번의 처벌이 있었습니다.
+        other: 이 계정에는 <strong>%{count}</strong>번의 처벌이 있었습니다.
       promote: 승급
       protocol: 프로토콜
       public: 공개
@@ -171,7 +171,7 @@ ko:
         create_account_warning: 경고 생성
         create_announcement: 공지사항 생성
         create_canonical_email_block: 이메일 차단 생성
-        create_custom_emoji: 사용자 지정 이모티콘 만들기
+        create_custom_emoji: 커스텀 에모지 생성
         create_domain_allow: 도메인 허용 생성
         create_domain_block: 도메인 차단 추가
         create_email_domain_block: 이메일 도메인 차단 생성
@@ -181,7 +181,7 @@ ko:
         demote_user: 사용자 강등
         destroy_announcement: 공지사항 삭제
         destroy_canonical_email_block: 이메일 차단 삭제
-        destroy_custom_emoji: 사용자 지정 이모티콘 지우기
+        destroy_custom_emoji: 커스텀 에모지 삭제
         destroy_domain_allow: 도메인 허용 삭제
         destroy_domain_block: 도메인 차단 삭제
         destroy_email_domain_block: 이메일 도메인 차단 삭제
@@ -191,15 +191,15 @@ ko:
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
-        disable_custom_emoji: 사용자 지정 이모티콘 비활성화
+        disable_custom_emoji: 커스텀 에모지 비활성화
         disable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 비활성화
         disable_user: 사용자 비활성화
-        enable_custom_emoji: 사용자 지정 이모티콘 활성화
+        enable_custom_emoji: 커스텀 에모지 활성화
         enable_sign_in_token_auth_user: 사용자에 대한 이메일 토큰 인증 활성화
         enable_user: 사용자 활성화
         memorialize_account: 추모계정으로 전환
         promote_user: 사용자 승급
-        reject_appeal: 이의 신청 거절
+        reject_appeal: 이의 제기 거절
         reject_user: 사용자 거부
         remove_avatar_user: 아바타 지우기
         reopen_report: 신고 다시 열기
@@ -215,7 +215,7 @@ ko:
         unsilence_account: 계정 침묵 취소
         unsuspend_account: 계정 정지 취소
         update_announcement: 공지사항 업데이트
-        update_custom_emoji: 사용자 지정 이모티콘 갱신
+        update_custom_emoji: 커스텀 에모지 업데이트
         update_domain_block: 도메인 차단 갱신
         update_ip_block: IP 규칙 수정
         update_status: 게시물 게시
@@ -322,13 +322,13 @@ ko:
       list: 목록에 추가
       listed: 목록에 실림
       new:
-        title: 사용자 지정 이모티콘 새로 넣기
+        title: 새 커스텀 에모지 추가
       no_emoji_selected: 아무 것도 선택 되지 않아 어떤 에모지도 바뀌지 않았습니다
       not_permitted: 이 작업을 수행할 권한이 없습니다
       overwrite: 덮어쓰기
       shortcode: 짧은 코드
       shortcode_hint: 최소 2글자, 영문자, 숫자, _만 사용 가능
-      title: 사용자 지정 이모티콘
+      title: 커스텀 에모지
       uncategorized: 분류되지 않음
       unlist: 목록에서 제거
       unlisted: 목록에 없음
@@ -342,13 +342,13 @@ ko:
       new_users: 새로운 사용자
       opened_reports: 신고 열림
       pending_appeals_html:
-        other: "<strong>%{count}</strong> 개의 대기 중인 이의제기"
+        other: "<strong>%{count}</strong>개의 대기 중인 이의 제기"
       pending_reports_html:
-        other: "<strong>%{count}</strong> 건의 대기 중인 신고"
+        other: "<strong>%{count}</strong>건의 대기 중인 신고"
       pending_tags_html:
-        other: "<strong>%{count}</strong> 개의 대기 중인 해시태그"
+        other: "<strong>%{count}</strong>개의 대기 중인 해시태그"
       pending_users_html:
-        other: "<strong>%{count}</strong> 명의 대기 중인 사용자"
+        other: "<strong>%{count}</strong>명의 대기 중인 사용자"
       resolved_reports: 신고 해결됨
       software: 소프트웨어
       sources: 가입 출처
@@ -398,7 +398,7 @@ ko:
     email_domain_blocks:
       add_new: 새로 추가
       attempts_over_week:
-        other: "지난 주 동안 %{count} 건의 가입 시도가 있었습니다"
+        other: "지난 주 동안 %{count}건의 가입 시도가 있었습니다"
       created_msg: 이메일 도메인 차단 규칙을 생성했습니다
       delete: 삭제
       dns:
@@ -469,7 +469,7 @@ ko:
       destroyed_msg: '%{domain}의 데이터는 곧바로 지워지도록 대기열에 들어갔습니다.'
       empty: 도메인이 하나도 없습니다.
       known_accounts:
-        other: "%{count} 개의 알려진 계정"
+        other: "%{count}개의 알려진 계정"
       moderation:
         all: 모두
         limited: 제한됨
@@ -591,7 +591,7 @@ ko:
     roles:
       add_new: 역할 추가
       assigned_users:
-        other: "%{count} 명의 사용자"
+        other: "%{count}명의 사용자"
       categories:
         administration: 관리
         devops: 데브옵스
@@ -604,7 +604,7 @@ ko:
       everyone: 기본 권한
       everyone_full_description_html: 이것은 <strong>모든 사용자</strong>에게 적용될 <strong>기본 역할</strong>이며, 역할을 지정하지 않아도 적용됩니다. 다른 모든 역할들은 여기에서 권한을 상속합니다.
       permissions_count:
-        other: "%{count} 개의 권한"
+        other: "%{count}개의 권한"
       privileges:
         administrator: 관리자
         administrator_description: 이 권한을 가진 사용자는 모든 권한을 우회합니다
@@ -1015,7 +1015,7 @@ ko:
       created_at: 날짜
       description_html: 이 결정사항들은 당신에 계정에 대해 행해졌고 %{instance}의 스태프에 의해 경고가 발송되었습니다.
       recipient: 수신자
-      reject_appeal: 이의제기 거절
+      reject_appeal: 이의 제기 거절
       status: '게시물 #%{id}'
       status_removed: 게시물이 이미 시스템에서 지워졌습니다
       title: "%{action} (%{date}에)"
@@ -1110,13 +1110,13 @@ ko:
         hint: 이 필터는 다른 기준에 관계 없이 선택된 개별적인 게시물들에 적용됩니다. 웹 인터페이스에서 더 많은 게시물들을 이 필터에 추가할 수 있습니다.
         title: 필터링된 게시물
   footer:
-    trending_now: 지금 뜨는 해시태그
+    trending_now: 지금 유행중
   generic:
     all: 모두
     all_items_on_page_selected_html:
-      other: 현재 페이지에서 <strong>%{count}</strong> 개의 항목이 선택되었습니다
+      other: 현재 페이지에서 <strong>%{count}</strong>개의 항목이 선택되었습니다
     all_matching_items_selected_html:
-      other: 검색에 잡히는 <strong>%{count}</strong> 개의 항목이 선택되었습니다
+      other: 검색에 잡힌 <strong>%{count}</strong>개의 항목이 모두 선택되었습니다
     changes_saved_msg: 정상적으로 변경되었습니다!
     copy: 복사
     delete: 삭제
@@ -1125,7 +1125,7 @@ ko:
     order_by: 순서
     save_changes: 변경 사항을 저장
     select_all_matching_items:
-      other: 검색에 잡힌 %{count} 개의 항목을 모두 선택하기
+      other: 검색에 잡힌 %{count}개의 항목을 모두 선택하기
     today: 오늘
     validation_errors:
       other: 오류가 발생했습니다. 아래 %{count}개 오류를 확인해 주십시오
@@ -1162,7 +1162,7 @@ ko:
     generate: 생성
     invited_by: '당신을 초대한 사람:'
     max_uses:
-      other: "%{count} 회"
+      other: "%{count}회"
     max_uses_prompt: 제한 없음
     prompt: 이 서버에 대한 초대 링크를 만들고 공유합니다
     table:
@@ -1247,7 +1247,7 @@ ko:
       subject: '%{name} 님이 보낸 팔로우 요청'
       title: 새 팔로우 요청
     mention:
-      action: 답글
+      action: 답장
       body: '%{name} 님이 나를 언급했습니다:'
       subject: '%{name} 님이 나를 언급했습니다'
       title: 새 멘션
@@ -1401,7 +1401,7 @@ ko:
     notifications: 알림
     preferences: 사용자 설정
     profile: 프로필
-    relationships: 팔로잉 및 팔로워
+    relationships: 팔로잉과 팔로워
     statuses_cleanup: 게시물 자동 삭제
     strikes: 중재 기록
     two_factor_authentication: 2단계 인증
@@ -1416,7 +1416,7 @@ ko:
       video:
         other: "%{count}개의 영상"
     boosted_from_html: '%{acct_link}의 글을 부스트'
-    content_warning: '내용 경고: %{warning}'
+    content_warning: '열람 주의: %{warning}'
     default_language: 화면 표시 언어와 동일하게
     disallowed_hashtags:
       other: '허용되지 않은 해시태그를 포함하고 있습니다: %{tags}'
@@ -1463,7 +1463,7 @@ ko:
     keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
     keep_media_hint: 미디어가 첨부된 게시물을 삭제하지 않습니다
-    keep_pinned: 고정글 유지
+    keep_pinned: 고정된 게시물 유지
     keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
     keep_polls: 투표 유지
     keep_polls_hint: 투표를 삭제하지 않습니다
@@ -1527,7 +1527,7 @@ ko:
     appeal_rejected:
       explanation: '%{strike_date}에 일어난 중재결정에 대한 소명을 %{appeal_date}에 작성했지만 거절되었습니다.'
       subject: '%{date}에 작성한 소명이 거절되었습니다'
-      title: 거절된 이의 신청
+      title: 이의 제기가 거절되었습니다
     backup_ready:
       explanation: 당신이 요청한 계정의 풀 백업이 이제 다운로드 가능합니다!
       subject: 당신의 아카이브를 다운로드 가능합니다
@@ -1576,7 +1576,7 @@ ko:
       explanation: 시작하기 전에 몇가지 팁들을 준비했습니다
       final_action: 포스팅 시작하기
       final_step: '게시물을 올리세요! 팔로워가 없더라도, 공개 게시물들은 다른 사람에게 보여질 수 있습니다, 예를 들자면 로컬이나 연합 타임라인 등이 있습니다. 사람들에게 자신을 소개하고 싶다면 #툿친소 해시태그를 이용해보세요.'
-      full_handle: 내 전체 사용자 이름
+      full_handle: 내 전체 핸들
       full_handle_hint: 이것을 당신의 친구들에게 알려주면 다른 서버에서 팔로우 하거나 메시지를 보낼 수 있습니다.
       subject: 마스토돈에 오신 것을 환영합니다
       title: 환영합니다 %{name} 님!
@@ -1584,7 +1584,7 @@ ko:
     follow_limit_reached: 당신은 %{limit}명의 사람을 넘어서 팔로우 할 수 없습니다
     invalid_otp_token: 2단계 인증 코드가 올바르지 않습니다
     otp_lost_help_html: 만약 양쪽 모두를 잃어버렸다면 %{email}을 통해 복구할 수 있습니다
-    seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 비밀번호는 설정할 수 없습니다.
+    seamless_external_login: 외부 서비스를 이용해 로그인했으므로 이메일과 암호는 설정할 수 없습니다.
     signed_in_as: '다음과 같이 로그인 중:'
   verification:
     explanation_html: '당신은 <strong>프로필 메타데이터의 링크 소유자임을 검증할 수 있습니다</strong>. 이것을 하기 위해서는, 링크 된 웹사이트에서 당신의 마스토돈 프로필을 역으로 링크해야 합니다. 역링크는 <strong>반드시</strong> <code>rel="me"</code> 속성을 가지고 있어야 합니다. 링크의 텍스트는 상관이 없습니다. 여기 예시가 있습니다:'
