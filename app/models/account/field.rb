@@ -76,8 +76,8 @@ class Account::Field < ActiveModelSerializers::Model
   def extract_url_from_html
     doc = Nokogiri::HTML(value).at_xpath('//body')
 
-    return if doc.nil?
-    return if doc.children.size > 1
+    # check that there is exactly one child
+    return if (doc&.children&.size || 0) != 1
 
     element = doc.children.first
 
