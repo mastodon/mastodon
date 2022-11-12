@@ -7,7 +7,7 @@ fallback_prefix = ENV.fetch('REDIS_NAMESPACE') { nil }
 prefix          = ENV.fetch('ES_PREFIX') { fallback_prefix }
 
 Chewy.settings = {
-  host: "#{host}:#{port}",
+  host: "https://#{host}:#{port}",
   prefix: prefix,
   enabled: enabled,
   journal: false,
