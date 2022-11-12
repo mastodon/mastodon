@@ -41,6 +41,7 @@ class UserSettingsDecorator
     user.settings['bigger_publish']      = bigger_publish_preference if change?('setting_bigger_publish')
     user.settings['wider_column']        = wider_column_preference if change?('setting_wider_column')
     user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
+    user.settings['compact_padding']     = compact_padding_preference if change?('setting_compact_padding')
   end
 
   def merged_notification_emails
@@ -145,6 +146,10 @@ class UserSettingsDecorator
 
   def always_send_emails_preference
     boolean_cast_setting 'setting_always_send_emails'
+  end
+
+  def compact_padding_preference
+    boolean_cast_setting 'setting_compact_padding'
   end
 
   def boolean_cast_setting(key)

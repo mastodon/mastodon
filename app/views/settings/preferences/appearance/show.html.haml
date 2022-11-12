@@ -20,6 +20,9 @@
   .fields-group
     = f.input :setting_bigger_publish, as: :boolean, wrapper: :with_label, hint: true
 
+  .fields-group
+    = f.input :setting_compact_padding, as: :boolean, wrapper: :with_label, hint: true
+
   %h4= t 'appearance.advanced_web_interface'
 
   %p.hint= t 'appearance.advanced_web_interface_hint'

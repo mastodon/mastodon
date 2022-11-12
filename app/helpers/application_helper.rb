@@ -173,6 +173,7 @@ module ApplicationHelper
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'bigger-publish' if current_account&.user&.setting_bigger_publish
     output << 'wider-column' if (current_account&.user&.setting_advanced_layout && current_account&.user&.setting_wider_column)
+    output << 'compact-padding' if current_account&.user&.setting_compact_padding
     output << 'rtl' if locale_direction == 'rtl'
     output.reject(&:blank?).join(' ')
   end
