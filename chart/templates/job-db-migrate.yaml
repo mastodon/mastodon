@@ -1,3 +1,4 @@
+{{- if .Values.mastodon.migrate.enabled -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -75,3 +76,4 @@ spec:
             - name: system
               mountPath: /opt/mastodon/public/system
           {{- end }}
+{{- end }}

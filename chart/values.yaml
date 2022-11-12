@@ -19,6 +19,11 @@ mastodon:
     enabled: false
     username: not_gargron
     email: not@example.com
+  # Run database migration before upgrade.
+  migrate:
+    # This should always be enabled, but can be turned off if you want to redeploy to fix a failing database. Otherwise,
+    # the pre-upgrade migrate job would never succeed, preventing the upgrade to be applied.
+    enabled: true
   cron:
     # run `tootctl media remove` every week
     removeMedia:
