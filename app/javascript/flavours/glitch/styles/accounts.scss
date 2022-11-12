@@ -204,7 +204,8 @@
 }
 
 .account-role,
-.simple_form .recommended {
+.simple_form .recommended,
+.simple_form .not_recommended {
   display: inline-block;
   padding: 4px 6px;
   cursor: default;
@@ -227,6 +228,12 @@
     background-color: rgba(lighten($error-red, 12%), 0.1);
     border-color: rgba(lighten($error-red, 12%), 0.5);
   }
+}
+
+.simple_form .not_recommended {
+  color: lighten($error-red, 12%);
+  background-color: rgba(lighten($error-red, 12%), 0.1);
+  border-color: rgba(lighten($error-red, 12%), 0.5);
 }
 
 .account__header__fields {
