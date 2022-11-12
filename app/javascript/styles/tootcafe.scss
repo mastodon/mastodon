@@ -23,3 +23,8 @@ $base-shadow-color: $color8;
 $base-overlay-background: $color8;
 
 @import 'application';
+
+// Change the color of button texts to improve a11y
+.button, .simple_form button, .simple_form .button, .simple_form .block-button {
+  color: #141414;
+}
