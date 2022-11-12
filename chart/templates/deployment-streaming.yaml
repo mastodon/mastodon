@@ -5,19 +5,21 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-{{- end }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" . | nindent 6 }}
       app.kubernetes.io/component: streaming
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+        {{- end }}
+        # roll the pods to pick up any db migrations or other changes
+        {{- include "mastodon.rollingPodAnnotations" . | nindent 8 }}
       labels:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: streaming
@@ -27,12 +29,16 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
@@ -66,8 +72,10 @@ spec:
             httpGet:
               path: /api/v1/streaming/health
               port: streaming
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

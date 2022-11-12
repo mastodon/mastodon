@@ -12,10 +12,10 @@ spec:
   template:
     metadata:
       name: {{ include "mastodon.fullname" . }}-db-migrate
-    {{- with .Values.jobAnnotations }}
+      {{- with .Values.jobAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
     spec:
       restartPolicy: Never
       {{- if (not .Values.mastodon.s3.enabled) }}

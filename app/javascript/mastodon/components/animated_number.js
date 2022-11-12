@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FormattedNumber } from 'react-intl';
+import ShortNumber from 'mastodon/components/short_number';
 import TransitionMotion from 'react-motion/lib/TransitionMotion';
 import spring from 'react-motion/lib/spring';
 import { reduceMotion } from 'mastodon/initial_state';
@@ -51,7 +51,7 @@ export default class AnimatedNumber extends React.PureComponent {
     const { direction } = this.state;
 
     if (reduceMotion) {
-      return obfuscate ? obfuscatedCount(value) : <FormattedNumber value={value} />;
+      return obfuscate ? obfuscatedCount(value) : <ShortNumber value={value} />;
     }
 
     const styles = [{
@@ -65,7 +65,7 @@ export default class AnimatedNumber extends React.PureComponent {
         {items => (
           <span className='animated-number'>
             {items.map(({ key, data, style }) => (
-              <span key={key} style={{ position: (direction * style.y) > 0 ? 'absolute' : 'static', transform: `translateY(${style.y * 100}%)` }}>{obfuscate ? obfuscatedCount(data) : <FormattedNumber value={data} />}</span>
+              <span key={key} style={{ position: (direction * style.y) > 0 ? 'absolute' : 'static', transform: `translateY(${style.y * 100}%)` }}>{obfuscate ? obfuscatedCount(data) : <ShortNumber value={data} />}</span>
             ))}
           </span>
         )}

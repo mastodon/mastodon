@@ -1,4 +1,4 @@
-{{- if .Values.mastodon.createAdmin.enabled }}
+{{- if .Values.mastodon.createAdmin.enabled -}}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -13,10 +13,10 @@ spec:
   template:
     metadata:
       name: {{ include "mastodon.fullname" . }}-create-admin
-    {{- with .Values.jobAnnotations }}
+      {{- with .Values.jobAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
-    {{- end }}
+      {{- end }}
     spec:
       restartPolicy: Never
       {{- if (not .Values.mastodon.s3.enabled) }}

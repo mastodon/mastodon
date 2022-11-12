@@ -3,6 +3,7 @@
 class Account::Field < ActiveModelSerializers::Model
   MAX_CHARACTERS_LOCAL  = 255
   MAX_CHARACTERS_COMPAT = 2_047
+  ACCEPTED_SCHEMES      = %w(https).freeze
 
   attributes :name, :value, :verified_at, :account
 
@@ -34,7 +35,20 @@ class Account::Field < ActiveModelSerializers::Model
   end
 
   def verifiable?
-    value_for_verification.present? && /\A#{FetchLinkCardService::URL_PATTERN}\z/.match?(value_for_verification)
+    return false if value_for_verification.blank?
+
+    # This is slower than checking through a regular expression, but we
+    # need to confirm that it's not an IDN domain.
+
+    parsed_url = Addressable::URI.parse(value_for_verification)
+
+    ACCEPTED_SCHEMES.include?(parsed_url.scheme) &&
+      parsed_url.user.nil? &&
+      parsed_url.password.nil? &&
+      parsed_url.host.present? &&
+      parsed_url.normalized_host == parsed_url.host
+  rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+    false
   end
 
   def requires_verification?
@@ -62,6 +76,7 @@ class Account::Field < ActiveModelSerializers::Model
   def extract_url_from_html
     doc = Nokogiri::HTML(value).at_xpath('//body')
 
+    return if doc.nil?
     return if doc.children.size > 1
 
     element = doc.children.first
