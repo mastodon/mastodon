@@ -1,6 +1,7 @@
 ---
 en:
   simple_form:
+    glitch_only: glitch-soc
     hints:
       defaults:
         fields: You can have up to %{count} items displayed as a table on your profile
@@ -8,6 +9,7 @@ en:
         setting_default_content_type_markdown: When writing toots, assume they are using Markdown for rich text formatting, unless specified otherwise
         setting_default_content_type_plain: When writing toots, assume they are plain text with no special formatting, unless specified otherwise (default Mastodon behavior)
         setting_default_language: The language of your toots can be detected automatically, but it's not always accurate
+        setting_hide_followers_count: Hide your followers count from everybody, including you. Some applications may display a negative followers count.
         setting_skin: Reskins the selected Mastodon flavour
     labels:
       defaults:

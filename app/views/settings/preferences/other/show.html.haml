@@ -15,7 +15,7 @@
 
   - unless Setting.hide_followers_count
     .fields-group
-      = f.input :setting_hide_followers_count, as: :boolean, wrapper: :with_label
+      = f.input :setting_hide_followers_count, as: :boolean, wrapper: :with_label, glitch_only: true
 
   %h4= t 'preferences.posting_defaults'
 
@@ -33,7 +33,7 @@
     = f.input :setting_show_application, as: :boolean, wrapper: :with_label, recommended: true
 
   .fields-group
-    = f.input :setting_default_content_type, collection: ['text/plain', 'text/markdown', 'text/html'], wrapper: :with_label, include_blank: false, label_method: lambda { |item| safe_join([t("simple_form.labels.defaults.setting_default_content_type_#{item.split('/')[1]}"), content_tag(:span, t("simple_form.hints.defaults.setting_default_content_type_#{item.split('/')[1]}"), class: 'hint')]) }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+    = f.input :setting_default_content_type, collection: ['text/plain', 'text/markdown', 'text/html'], wrapper: :with_label, include_blank: false, label_method: lambda { |item| safe_join([t("simple_form.labels.defaults.setting_default_content_type_#{item.split('/')[1]}"), content_tag(:span, t("simple_form.hints.defaults.setting_default_content_type_#{item.split('/')[1]}"), class: 'hint')]) }, required: false, as: :radio_buttons, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', glitch_only: true
 
   %h4= t 'preferences.public_timelines'
 
