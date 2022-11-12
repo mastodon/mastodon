@@ -91,14 +91,14 @@
         active: Aktive
         all: Alle
         pending: Avventer
-        silenced: Stilnet
+        silenced: Begrenset
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsnotater
       most_recent_activity: Nyligste aktivitet
       most_recent_ip: Nyligste IP
       no_account_selected: Ingen brukere ble forandret da ingen var valgt
-      no_limits_imposed: Ingen grenser er tatt i bruk
+      no_limits_imposed: Ingen pålagte begrensninger
       no_role_assigned: Ingen rolle tildelt
       not_subscribed: Ikke abonnért
       pending: Avventer gjennomgang
@@ -139,8 +139,8 @@
       show:
         created_reports: Rapporter laget av denne kontoen
         targeted_reports: Rapporter laget om denne kontoen
-      silence: Målbind
-      silenced: Stilnet
+      silence: Begrens
+      silenced: Begrenset
       statuses: Statuser
       strikes: Tidligere advarsler
       subscribe: Abonnere
@@ -153,9 +153,9 @@
       unblocked_email_msg: Fjernet blokkering av %{username} sin e-postadresse
       unconfirmed_email: Ubekreftet E-postadresse
       undo_sensitized: Gjør om tving sensitiv
-      undo_silenced: Angre målbinding
+      undo_silenced: Angre begrensning
       undo_suspension: Angre utvisning
-      unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
+      unsilenced_msg: Opphevde begrensningen av %{username}s konto
       unsubscribe: Avslutt abonnementet
       unsuspended_msg: Opphevde vellykket suspenderingen av %{username} sin konto
       username: Brukernavn
@@ -215,6 +215,7 @@
         unassigned_report: Fjern tilordnet rapport
         unblock_email_account: Fjern blokkering av e-postadresse
         unsensitive_account: Angre tving sensitiv konto
+        unsilence_account: Angre begrensning av konto
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
         update_custom_emoji: Oppdater tilpasset Emoji
@@ -244,6 +245,7 @@
         reject_user_html: "%{name} avslo registrering fra %{target}"
         reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
         silence_account_html: "%{name} begrenset %{target} sin konto"
+        unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
         update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
@@ -329,6 +331,7 @@
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
       edit: Rediger domeneblokkering
+      existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       new:
         create: Lag blokkering
@@ -385,6 +388,7 @@
         comment: Internt notat
         policies:
           reject_media: Avvis media
+          silence: Begrens
         reason: Offentlig årsak
         title: Retningslinjer for innhold
       dashboard:
@@ -466,6 +470,8 @@
           one: "%{count} notis"
           other: "%{count} notiser"
       action_taken_by: Handling utført av
+      actions:
+        silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilegnet moderator
@@ -533,6 +539,9 @@
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
       with_media: Med media
+    strikes:
+      actions:
+        silence: "%{name} begrenset %{target}s konto"
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -546,6 +555,9 @@
       add_new: Legg til ny
       delete: Slett
   admin_mailer:
+    new_appeal:
+      actions:
+        silence: for å begrense deres konto
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -672,6 +684,10 @@
       more_details_html: For mere detaljer, se <a href="%{terms_path}">privatlivsretningslinjene</a>.
       username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
+  disputes:
+    strikes:
+      title_actions:
+        silence: Kontobegrensning
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:
@@ -709,6 +725,8 @@
     storage: Medialagring
   featured_tags:
     add_new: Legg til ny
+    errors:
+      limit: Du har allerede fremhevet det maksimale antal hashtags
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
@@ -739,6 +757,8 @@
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
+    errors:
+      over_rows_processing_limit: inneholder flere enn %{count} rader
     modes:
       merge: Slå sammen
       overwrite: Overskriv
@@ -918,7 +938,7 @@
       tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
-    over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
+    over_total_limit: Du har overskredet grensen på %{limit} planlagte innlegg
     too_soon: Den planlagte datoen må være i fremtiden
   sessions:
     activity: Siste aktivitet
