@@ -77,7 +77,7 @@ mastodon:
     ca_file: /etc/ssl/certs/ca-certificates.crt
     delivery_method: smtp
     domain:
-    enable_starttls_auto: true
+    enable_starttls: 'auto'
     from_address: notifications@example.com
     openssl_verify_mode: peer
     port: 587
@@ -104,8 +104,11 @@ mastodon:
 ingress:
   enabled: true
   annotations:
-    kubernetes.io/ingress.class: nginx
-    kubernetes.io/tls-acme: "true"
+    # For choosing an ingress ingressClassName is preferred over annotations
+    # kubernetes.io/ingress.class: nginx
+    #
+    # To automatically request TLS certificates use one of the following
+    # kubernetes.io/tls-acme: "true"
     # cert-manager.io/cluster-issuer: "letsencrypt"
     #
     # ensure that NGINX's upload size matches Mastodon's
@@ -113,6 +116,8 @@ ingress:
     # nginx.ingress.kubernetes.io/proxy-body-size: 40m
     #   for the NGINX ingress controller:
     # nginx.org/client-max-body-size: 40m
+  # you can specify the ingressClassName if it differs from the default
+  ingressClassName:
   hosts:
     - host: mastodon.local
       paths:
@@ -146,8 +151,10 @@ postgresql:
     # be rotated on each upgrade:
     # https://github.com/bitnami/charts/tree/master/bitnami/postgresql#upgrade
     password: ""
-    # Set same value as above
-    postgresPassword: ""
+    # Set the password for the "postgres" admin user
+    # set this to the same value as above if you've previously installed
+    # this chart and you're having problems getting mastodon to connect to the DB
+    # postgresPassword: ""
     # you can also specify the name of an existing Secret
     # with a key of password set to the password you want
     existingSecret: ""

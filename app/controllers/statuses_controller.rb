@@ -2,7 +2,6 @@
 
 class StatusesController < ApplicationController
   include WebAppControllerConcern
-  include StatusControllerConcern
   include SignatureAuthentication
   include Authorization
   include AccountOwnedConcern

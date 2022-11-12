@@ -76,6 +76,8 @@ It is not always possible to phrase every change in such a manner, but it is des
 - Code style rules (rubocop, eslint)
 - Normalization of locale files (i18n-tasks)
 
+**Note**: You may need to log in and authorise the GitHub account your fork of this repository belongs to with CircleCI to enable some of the automated checks to run.
+
 ## Documentation
 
 The [Mastodon documentation](https://docs.joinmastodon.org) is a statically generated site. You can [submit merge requests to mastodon/documentation](https://github.com/mastodon/documentation).
