@@ -30,7 +30,6 @@ jobs:
 
       - name: Update chart dependencies
         run: |
-          helm repo add bitnami https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
           helm dependency update charts/mastodon
 
       - name: Run chart-releaser
