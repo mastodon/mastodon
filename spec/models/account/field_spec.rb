@@ -141,6 +141,14 @@ RSpec.describe Account::Field, type: :model do
           expect(subject.verifiable?).to be false
         end
       end
+      
+      context 'for text which is blank' do
+        let(:value) { '' }
+
+        it 'returns false' do
+          expect(subject.verifiable?).to be false
+        end
+      end
     end
   end
 end
