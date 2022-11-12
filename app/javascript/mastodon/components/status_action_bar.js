@@ -15,6 +15,8 @@ const messages = defineMessages({
   redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
   direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
+  unfollow: { id: 'status.unfollow', defaultMessage: 'Unfollow @{name}' },
+  follow: { id: 'status.follow', defaultMessage: 'Follow @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
@@ -68,6 +70,8 @@ class StatusActionBar extends ImmutablePureComponent {
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
     onDirect: PropTypes.func,
+    onUnfollow: PropTypes.func,
+    onFollow: PropTypes.func,
     onMention: PropTypes.func,
     onMute: PropTypes.func,
     onUnmute: PropTypes.func,
@@ -154,6 +158,14 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handlePinClick = () => {
     this.props.onPin(this.props.status);
+  }
+
+  handleUnfollowClick = () => {
+    this.props.onUnfollow(this.props.status.get('account'));
+  }
+
+  handleFollowClick = () => {
+    this.props.onFollow(this.props.status.get('account'));
   }
 
   handleMentionClick = () => {
@@ -284,6 +296,11 @@ class StatusActionBar extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
       menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
     } else {
+      if(relationship && relationship.get('following')){
+        menu.push({ text: intl.formatMessage(messages.unfollow, { name: account.get('username') }), action: this.handleUnfollowClick });
+      } else {
+        menu.push({ text: intl.formatMessage(messages.follow, { name: account.get('username') }), action: this.handleFollowClick });
+      }
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.handleMentionClick });
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.handleDirectClick });
       menu.push(null);

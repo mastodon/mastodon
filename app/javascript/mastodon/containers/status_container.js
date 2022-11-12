@@ -31,6 +31,8 @@ import {
 import {
   unmuteAccount,
   unblockAccount,
+  followAccount,
+  unfollowAccount,
 } from '../actions/accounts';
 import {
   blockDomain,
@@ -46,10 +48,11 @@ import { initReport } from '../actions/reports';
 import { openModal } from '../actions/modal';
 import { deployPictureInPicture } from '../actions/picture_in_picture';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { boostModal, deleteModal } from '../initial_state';
+import { boostModal, deleteModal, unfollowModal } from '../initial_state';
 import { showAlertForError } from '../actions/alerts';
 
 const messages = defineMessages({
+  unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
@@ -162,6 +165,26 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
 
   onDirect (account, router) {
     dispatch(directCompose(account, router));
+  },
+
+  onUnfollow(account){
+    if (unfollowModal) {
+      dispatch(openModal('CONFIRM', {
+        message: <FormattedMessage
+          id='confirmations.unfollow.message'
+          defaultMessage='Are you sure you want to unfollow {name}?'
+          values={{ name: <strong>@{account.get('acct')}</strong> }}
+        />,
+        confirm: intl.formatMessage(messages.unfollowConfirm),
+        onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+      }));
+    } else {
+      dispatch(unfollowAccount(account.get('id')));
+    }
+  },
+
+  onFollow (account) {
+    dispatch(followAccount(account.get('id')));
   },
 
   onMention (account, router) {
