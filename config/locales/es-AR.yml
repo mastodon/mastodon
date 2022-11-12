@@ -207,6 +207,7 @@ es-AR:
         reject_user: Rechazar usuario
         remove_avatar_user: Quitar avatar
         reopen_report: Reabrir denuncia
+        resend_user: Reenviar correo electrónico de confirmación
         reset_password_user: Cambiar contraseña
         resolve_report: Resolver denuncia
         sensitive_account: Forzar cuenta como sensible
@@ -265,6 +266,7 @@ es-AR:
         reject_user_html: "%{name} rechazó el registro de %{target}"
         remove_avatar_user_html: "%{name} quitó el avatar de %{target}"
         reopen_report_html: "%{name} reabrió la denuncia %{target}"
+        resend_user_html: "%{name} reenvió el correo electrónico de confirmación para %{target}"
         reset_password_user_html: "%{name} cambió la contraseña del usuario %{target}"
         resolve_report_html: "%{name} resolvió la denuncia %{target}"
         sensitive_account_html: "%{name} marcó los medios de %{target} como sensibles"
@@ -281,6 +283,7 @@ es-AR:
         update_ip_block_html: "%{name} cambió la regla para la dirección IP %{target}"
         update_status_html: "%{name} actualizó el mensaje de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
+      deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
@@ -1249,6 +1252,8 @@ es-AR:
     carry_blocks_over_text: Este usuario se mudó desde %{acct}, que habías bloqueado.
     carry_mutes_over_text: Este usuario se mudó desde %{acct}, que habías silenciado.
     copy_account_note_text: 'Este usuario se mudó desde %{acct}, acá están tus notas previas sobre él/ella:'
+  navigation:
+    toggle_menu: Cambiar menú
   notification_mailer:
     admin:
       report:

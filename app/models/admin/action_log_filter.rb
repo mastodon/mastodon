@@ -47,6 +47,7 @@ class Admin::ActionLogFilter
     promote_user: { target_type: 'User', action: 'promote' }.freeze,
     remove_avatar_user: { target_type: 'User', action: 'remove_avatar' }.freeze,
     reopen_report: { target_type: 'Report', action: 'reopen' }.freeze,
+    resend_user: { target_type: 'User', action: 'resend' }.freeze,
     reset_password_user: { target_type: 'User', action: 'reset_password' }.freeze,
     resolve_report: { target_type: 'Report', action: 'resolve' }.freeze,
     sensitive_account: { target_type: 'Account', action: 'sensitive' }.freeze,

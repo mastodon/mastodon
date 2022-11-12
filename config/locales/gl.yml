@@ -207,6 +207,7 @@ gl:
         reject_user: Rexeitar Usuaria
         remove_avatar_user: Eliminar avatar
         reopen_report: Reabrir denuncia
+        resend_user: Reenviar o email de confirmación
         reset_password_user: Restabelecer contrasinal
         resolve_report: Resolver denuncia
         sensitive_account: Marca o multimedia da túa conta como sensible
@@ -265,6 +266,7 @@ gl:
         reject_user_html: "%{name} rexeitou o rexistro de %{target}"
         remove_avatar_user_html: "%{name} eliminou o avatar de %{target}"
         reopen_report_html: "%{name} reabriu a denuncia %{target}"
+        resend_user_html: "%{name} reenviou o email de confirmación para %{target}"
         reset_password_user_html: "%{name} restableceu o contrasinal da usuaria %{target}"
         resolve_report_html: "%{name} resolveu a denuncia %{target}"
         sensitive_account_html: "%{name} marcou o multimedia de %{target} como sensible"
@@ -281,6 +283,7 @@ gl:
         update_ip_block_html: "%{name} cambiou a regra para IP %{target}"
         update_status_html: "%{name} actualizou a publicación de %{target}"
         update_user_role_html: "%{name} cambiou o rol %{target}"
+      deleted_account: conta eliminada
       empty: Non se atoparon rexistros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuaria
@@ -1249,6 +1252,8 @@ gl:
     carry_blocks_over_text: Esta usuaria chegou desde %{acct}, que ti tes bloqueada.
     carry_mutes_over_text: Esta usuaria chegou desde %{acct}, que ti tes acalada.
     copy_account_note_text: 'Esta usuaria chegou desde %{acct}, aquí están as túas notas previas acerca dela:'
+  navigation:
+    toggle_menu: Activa o menú
   notification_mailer:
     admin:
       report:

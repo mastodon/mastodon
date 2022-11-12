@@ -53,6 +53,7 @@ const messages = defineMessages({
   add_or_remove_from_list: { id: 'account.add_or_remove_from_list', defaultMessage: 'Add or Remove from lists' },
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
+  openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
 
 const titleFromAccount = account => {
@@ -97,6 +98,7 @@ class Header extends ImmutablePureComponent {
     onEditAccountNote: PropTypes.func.isRequired,
     onChangeLanguages: PropTypes.func.isRequired,
     onInteractionModal: PropTypes.func.isRequired,
+    onOpenAvatar: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
     domain: PropTypes.string.isRequired,
     hidden: PropTypes.bool,
@@ -140,6 +142,13 @@ class Header extends ImmutablePureComponent {
     }
   }
 
+  handleAvatarClick = e => {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      this.props.onOpenAvatar();
+    }
+  }
+
   render () {
     const { account, hidden, intl, domain } = this.props;
     const { signedIn } = this.context.identity;
@@ -148,7 +157,9 @@ class Header extends ImmutablePureComponent {
       return null;
     }
 
-    const suspended = account.get('suspended');
+    const suspended    = account.get('suspended');
+    const isRemote     = account.get('acct') !== account.get('username');
+    const remoteDomain = isRemote ? account.get('acct').split('@')[1] : null;
 
     let info        = [];
     let actionBtn   = '';
@@ -197,6 +208,11 @@ class Header extends ImmutablePureComponent {
     if (signedIn && account.get('id') !== me) {
       menu.push({ text: intl.formatMessage(messages.mention, { name: account.get('username') }), action: this.props.onMention });
       menu.push({ text: intl.formatMessage(messages.direct, { name: account.get('username') }), action: this.props.onDirect });
+      menu.push(null);
+    }
+
+    if (isRemote) {
+      menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: account.get('url') });
       menu.push(null);
     }
 
@@ -250,15 +266,13 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.report, { name: account.get('username') }), action: this.props.onReport });
     }
 
-    if (signedIn && account.get('acct') !== account.get('username')) {
-      const domain = account.get('acct').split('@')[1];
-
+    if (signedIn && isRemote) {
       menu.push(null);
 
       if (account.getIn(['relationship', 'domain_blocking'])) {
-        menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain }), action: this.props.onUnblockDomain });
+        menu.push({ text: intl.formatMessage(messages.unblockDomain, { domain: remoteDomain }), action: this.props.onUnblockDomain });
       } else {
-        menu.push({ text: intl.formatMessage(messages.blockDomain, { domain }), action: this.props.onBlockDomain });
+        menu.push({ text: intl.formatMessage(messages.blockDomain, { domain: remoteDomain }), action: this.props.onBlockDomain });
       }
     }
 
@@ -296,7 +310,7 @@ class Header extends ImmutablePureComponent {
 
         <div className='account__header__bar'>
           <div className='account__header__tabs'>
-            <a className='avatar' href={account.get('url')} rel='noopener noreferrer' target='_blank'>
+            <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
 
@@ -337,10 +351,10 @@ class Header extends ImmutablePureComponent {
                   </dl>
 
                   {fields.map((pair, i) => (
-                    <dl key={i}>
+                    <dl key={i} className={classNames({ verified: pair.get('verified_at') })}>
                       <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
 
-                      <dd className={`${pair.get('verified_at') ? 'verified' : ''} translate`} title={pair.get('value_plain')}>
+                      <dd className='translate' title={pair.get('value_plain')}>
                         {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                       </dd>
                     </dl>

@@ -54,7 +54,7 @@ export default class Avatar extends React.PureComponent {
 
     return (
       <div className={classNames('account__avatar', { 'account__avatar-inline': inline })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} style={style}>
-        <img src={src} alt={account?.get('acct')} />
+        {src && <img src={src} alt={account?.get('acct')} />}
       </div>
     );
   }

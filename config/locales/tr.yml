@@ -207,6 +207,7 @@ tr:
         reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
         reopen_report: Şikayeti Tekrar Aç
+        resend_user: Doğrulama E-postasını Tekrar Gönder
         reset_password_user: Parolayı Sıfırla
         resolve_report: Şikayeti Çöz
         sensitive_account: Hesabınızdaki medyayı hassas olarak işaretleyin
@@ -265,6 +266,7 @@ tr:
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
+        resend_user_html: "%{name}, %{target} için doğrulama e-postasını tekrar gönderdi"
         reset_password_user_html: "%{name}, %{target} kullanıcısının parolasını sıfırladı"
         resolve_report_html: "%{name}, %{target} şikayetini çözdü"
         sensitive_account_html: "%{name}, %{target} kullanıcısının medyasını hassas olarak işaretledi"
@@ -281,6 +283,7 @@ tr:
         update_ip_block_html: "%{name}, %{target} IP adresi için kuralı güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
+      deleted_account: hesap silindi
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
       filter_by_user: Kullanıcıya göre filtre
@@ -1249,6 +1252,8 @@ tr:
     carry_blocks_over_text: Bu kullanıcı engellediğiniz %{acct} adresinden taşındı.
     carry_mutes_over_text: Bu kullanıcı sessize aldığınız %{acct} adresinden taşındı.
     copy_account_note_text: 'Bu kullanıcı %{acct} adresinden taşındı, işte onlarla ilgili önceki notlarınız:'
+  navigation:
+    toggle_menu: Menüyü aç/kapa
   notification_mailer:
     admin:
       report:

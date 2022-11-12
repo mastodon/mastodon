@@ -6,6 +6,7 @@ export default class Button extends React.PureComponent {
 
   static propTypes = {
     text: PropTypes.node,
+    type: PropTypes.string,
     onClick: PropTypes.func,
     disabled: PropTypes.bool,
     block: PropTypes.bool,
@@ -15,8 +16,12 @@ export default class Button extends React.PureComponent {
     children: PropTypes.node,
   };
 
+  static defaultProps = {
+    type: 'button',
+  };
+
   handleClick = (e) => {
-    if (!this.props.disabled) {
+    if (!this.props.disabled && this.props.onClick) {
       this.props.onClick(e);
     }
   }
@@ -42,6 +47,7 @@ export default class Button extends React.PureComponent {
         onClick={this.handleClick}
         ref={this.setRef}
         title={this.props.title}
+        type={this.props.type}
       >
         {this.props.text || this.props.children}
       </button>

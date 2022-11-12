@@ -23,9 +23,11 @@ ast:
       email: Corréu
       followers: Siguidores
       ip: IP
+      joined: Data de xunión
       location:
         local: Llocal
-        title: Allugamientu
+        remote: Remotu
+        title: Llugar
       most_recent_activity: L'actividá más recién
       most_recent_ip: La IP más recién
       protocol: Protocolu
@@ -33,9 +35,10 @@ ast:
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
         send: Reunviar les instrucciones
-      statuses: Estaos
+      statuses: Artículos
       title: Cuentes
       username: Nome d'usuariu
+      web: Web
     announcements:
       destroyed_msg: "¡L'anunciu desanicióse correutamente!"
       new:
@@ -97,7 +100,16 @@ ast:
       permissions_count:
         one: "%{count} permisu"
         other: "%{count} permisos"
+    statuses:
+      metadata: Metadatos
+    strikes:
+      appeal_approved: Apellóse
+      appeal_pending: Apellación pendiente
     title: Alministración
+    trends:
+      tags:
+        dashboard:
+          tag_accounts_measure: usos únicos
     webhooks:
       events: Eventos
   admin_mailer:
@@ -124,13 +136,13 @@ ast:
   auth:
     change_password: Contraseña
     delete_account: Desaniciu de la cuenta
-    delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir equí</a>. Va pidísete la confirmación.
+    delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Va pidísete que confirmes l'aición.
     description:
       suffix: "¡Con una cuenta, vas ser a siguir a persones, espublizar anovamientos ya intercambiar mensaxes con usuarios de cualesquier sirvidor de Mastodon y más!"
     didnt_get_confirmation: "¿Nun recibiesti les instrucciones de confirmación?"
     dont_have_your_security_key: "¿Nun tienes una clave de seguranza?"
     forgot_password: "¿Escaeciesti la contraseña?"
-    login: Aniciar sesión
+    login: Aniciar la sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
     providers:
@@ -196,6 +208,7 @@ ast:
     storage: Almacenamientu multimedia
   featured_tags:
     add_new: Amestar
+    hint_html: "<strong>¿Qué son les etiquetes destacaes?</strong> Apaecen de forma bien visible nel perfil públicu y permite que les persones restolen los tos artículos públicos per duana d'eses etiquetes. Son una gran ferramienta pa tener un rexistru de trabayos creativos o de proyeutos a plazu llongu."
   filters:
     contexts:
       notifications: Avisos
@@ -276,9 +289,20 @@ ast:
       body: "%{name} compartió'l to estáu:"
       subject: "%{name} compartió'l to estáu"
       title: Compartición nueva de barritu
+    update:
+      subject: "%{name} editó un artículu"
   notifications:
     email_events_hint: 'Esbilla los eventos de los que quies recibir avisos:'
     other_settings: Otros axustes
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: MM
+          million: M
+          quadrillion: mil B
+          thousand: mil
+          trillion: B
   pagination:
     next: Siguiente
   polls:
@@ -378,7 +402,6 @@ ast:
     visibilities:
       private: Namái siguidores
       private_long: Namái s'amuesen a los siguidores
-      public_long: Tol mundu puen velos
       unlisted: Nun llistar
       unlisted_long: Tol mundu puen velos pero nun se llisten nes llinies temporales públiques
   statuses_cleanup:
@@ -399,8 +422,8 @@ ast:
     does_not_match_previous_name: nun concasa col nome anterior
   themes:
     contrast: Contraste altu
-    default: Mastodon
-    mastodon-light: Claridá
+    default: Mastodon (escuridá)
+    mastodon-light: Mastodon (claridá)
   two_factor_authentication:
     disable: Desactivar
     enabled: L'autenticación en dos pasos ta activada
@@ -419,7 +442,6 @@ ast:
         none: Alvertencia
         suspend: Cuenta suspendida
     welcome:
-      full_handle_hint: Esto ye lo que-yos diríes a los collacios pa que puean unviate mensaxes o siguite dende otra instancia.
       subject: Afáyate en Mastodon
   users:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
@@ -427,4 +449,5 @@ ast:
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
     seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que los axustes de la contraseña y corréu nun tán disponibles.
   verification:
+    explanation_html: 'Pues <strong>verificate como la persona propietaria de los enllaces nos metadatos del to perfil</strong>. Pa ello, el sitiu web enllaciáu ha contener un enllaz al to perfil de Mastodon. Esti enllaz <strong>ha</strong> tener l''atributu <code>rel="me"</code>. El testu del enllaz nun importa. Equí tienes un exemplu:'
     verification: Verificación
