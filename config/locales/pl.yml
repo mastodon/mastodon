@@ -134,13 +134,13 @@ pl:
       resubscribe: Ponów subskrypcję
       role: Rola
       search: Szukaj
-      search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
+      search_same_email_domain: Inni użytkownicy z tym samym e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
       security_measures:
         only_password: Tylko hasło
         password_and_2fa: Hasło i 2FA
       sensitive: Wrażliwe
-      sensitized: oznaczono jako wrażliwe
+      sensitized: Oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
@@ -258,7 +258,7 @@ pl:
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
-        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
+        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem e-mail dla %{target}"
         disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
@@ -1608,7 +1608,7 @@ pl:
     enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
     generate_recovery_codes: Generuj kody zapasowe
     lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione.
-    methods: Metody uwierzytelniania dwuetapowego
+    methods: Metody uwierzytelniania dwuskładnikowego
     otp: Aplikacja uwierzytelniająca
     recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
@@ -1681,7 +1681,7 @@ pl:
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
-    signed_in_as: 'Zalogowany jako:'
+    signed_in_as: 'Zalogowano jako:'
   verification:
     explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja
