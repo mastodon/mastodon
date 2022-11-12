@@ -598,6 +598,7 @@ GEM
       nokogiri (>= 1.10.5)
       rexml
     ruby2_keywords (0.0.5)
+    rubyzip (2.3.2)
     rufus-scheduler (3.8.2)
       fugit (~> 1.1, >= 1.1.6)
     safety_net_attestation (0.4.0)
@@ -620,6 +621,9 @@ GEM
       rufus-scheduler (~> 3.2)
       sidekiq (>= 4, < 7)
       tilt (>= 1.4.0)
+    sidekiq-undertaker (1.6.0)
+      rubyzip (~> 2.3)
+      sidekiq (>= 6.4, < 8)
     sidekiq-unique-jobs (7.1.27)
       brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
@@ -836,6 +840,7 @@ DEPENDENCIES
   sidekiq (~> 6.5)
   sidekiq-bulk (~> 0.2.0)
   sidekiq-scheduler (~> 4.0)
+  sidekiq-undertaker (~> 1.6)
   sidekiq-unique-jobs (~> 7.1)
   simple-navigation (~> 4.4)
   simple_form (~> 5.1)
@@ -854,3 +859,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.0.4p208
+
+BUNDLED WITH
+   2.2.33
