@@ -19,7 +19,7 @@
     = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, recommended: :not_recommended
 
   .fields-group
-    = f.input :trending_status_cw, as: :boolean, wrapper: :with_label, label: t('admin.settings.trending_status_cw.title'), hint: t('admin.settings.trending_status_cw.desc_html')
+    = f.input :trending_status_cw, as: :boolean, wrapper: :with_label, label: t('admin.settings.trending_status_cw.title'), hint: t('admin.settings.trending_status_cw.desc_html'), glitch_only: true
 
   %h4= t('admin.settings.discovery.public_timelines')
 

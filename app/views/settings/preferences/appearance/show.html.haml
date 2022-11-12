@@ -29,7 +29,7 @@
     = f.input :setting_reduce_motion, as: :boolean, wrapper: :with_label
     = f.input :setting_disable_swiping, as: :boolean, wrapper: :with_label
     = f.input :setting_system_font_ui, as: :boolean, wrapper: :with_label
-    = f.input :setting_system_emoji_font, as: :boolean, wrapper: :with_label
+    = f.input :setting_system_emoji_font, as: :boolean, wrapper: :with_label, glitch_only: true
 
   %h4= t 'appearance.toot_layout'
 
@@ -46,7 +46,7 @@
   .fields-group
     = f.input :setting_unfollow_modal, as: :boolean, wrapper: :with_label
     = f.input :setting_boost_modal, as: :boolean, wrapper: :with_label
-    = f.input :setting_favourite_modal, as: :boolean, wrapper: :with_label
+    = f.input :setting_favourite_modal, as: :boolean, wrapper: :with_label, glitch_only: true
     = f.input :setting_delete_modal, as: :boolean, wrapper: :with_label
 
   %h4= t 'appearance.sensitive_content'
