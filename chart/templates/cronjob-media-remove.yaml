@@ -1,4 +1,4 @@
-{{ if .Values.mastodon.cron.removeMedia.enabled }}
+{{ if .Values.mastodon.cron.removeMedia.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -12,10 +12,10 @@ spec:
       template:
         metadata:
           name: {{ include "mastodon.fullname" . }}-media-remove
-        {{- with .Values.jobAnnotations }}
+          {{- with .Values.jobAnnotations }}
           annotations:
             {{- toYaml . | nindent 12 }}
-        {{- end }}
+          {{- end }}
         spec:
           restartPolicy: OnFailure
           {{- if (not .Values.mastodon.s3.enabled) }}

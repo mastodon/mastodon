@@ -14,6 +14,8 @@ oc:
         send_email_notification: L’utilizaire recebrà una explicacion de çò qu’arribèt a son compte
         text_html: Opcional. Podètz utilizar la sintaxi dels tuts. Podètz <a href="%{path}">ajustar un avertiment personalizat</a> per estalviar de temps
         type_html: Causir de qué far amb <strong>%{acct}</strong>
+        types:
+          disable: Empachar l’utilizaire d’utilizar son compte mas suprimir o amagar pas son contengut.
         warning_preset_id: Opcional. Podètz ajustar un tèxt personalizat a a fin de çò predefinit
       announcement:
         all_day: Se son marcadas, solament las datas de l’interval de temps seràn mostrada
@@ -176,6 +178,11 @@ oc:
           hide: Rescondre complètament
           warn: Rescondre amb avertiment
       form_admin_settings:
+        custom_css: CSS personalizada
+        media_cache_retention_period: Durada de conservacion dels mèdias en cache
+        profile_directory: Activar l’annuari de perfils
+        registrations_mode: Qual se pòt marcar
+        require_invite_text: Requerir una rason per s’inscriure
         site_contact_email: Adreça de contacte
         site_contact_username: Nom d’utilizaire de contacte
         site_extended_description: Descripcion espandida
@@ -183,6 +190,7 @@ oc:
         site_terms: Politica de confidencialitat
         site_title: Nom del servidor
         theme: Tèma per defaut
+        thumbnail: Miniatura del servidor
       interactions:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas
@@ -221,6 +229,7 @@ oc:
         permissions_as_keys: Autorizacions
         position: Prioritat
     'no': Non
+    not_recommended: Pas recomandat
     recommended: Recomandat
     required:
       mark: "*"

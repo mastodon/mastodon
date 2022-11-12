@@ -5,9 +5,9 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-{{- end }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" . | nindent 6 }}
@@ -16,11 +16,11 @@ spec:
   template:
     metadata:
       annotations:
-      {{- with .Values.podAnnotations }}
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-        # roll the pods to pick up any db migrations
-        rollme: {{ randAlphaNum 5 | quote }}
+        {{- end }}
+        # roll the pods to pick up any db migrations or other changes
+        {{- include "mastodon.rollingPodAnnotations" . | nindent 8 }}
       labels:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: sidekiq
@@ -31,8 +31,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- if (not .Values.mastodon.s3.enabled) }}
       # ensure we run on the same node as the other rails components; only
       # required when using PVCs that are ReadWriteOnce
@@ -95,7 +97,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mastodon.s3.existingSecret }}
                   key: AWS_ACCESS_KEY_ID
-            {{- end -}}
+            {{- end }}
             {{- if .Values.mastodon.smtp.existingSecret }}
             - name: "SMTP_LOGIN"
               valueFrom:
@@ -108,7 +110,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mastodon.smtp.existingSecret }}
                   key: password
-            {{- end -}}
+            {{- end }}
           {{- if (not .Values.mastodon.s3.enabled) }}
           volumeMounts:
             - name: assets

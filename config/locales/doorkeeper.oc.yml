@@ -60,6 +60,7 @@ oc:
       error:
         title: I a agut un error
       new:
+        prompt_html: "%{client_name} volria l’autorizacion d’accedir a vòstre compte. Es una aplicacion tèrça.<strong>Se vos fisatz pas a ela, alara deuriatz pas l’autorizacion.</strong>"
         review_permissions: Repassar las autorizacions
         title: Cal l’autorizacion
       show:
@@ -71,6 +72,7 @@ oc:
         revoke: Ne sètz segur ?
       index:
         authorized_at: Autorizada lo %{date}
+        description_html: Aquestas aplicacions pòdon accedir a vòstre compte via l’API. S’i a d’aplicacions que coneissètz pas aicí o qu’una aplicacion se compòrta pas coma cal, podètz revocar son accès.
         last_used_at: Darrièra utilizacion lo %{date}
         never_used: Pas jamai utilizada
         scopes: Autorizacions

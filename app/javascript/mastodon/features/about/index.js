@@ -183,25 +183,18 @@ class About extends React.PureComponent {
               <>
                 <p><FormattedMessage id='about.domain_blocks.preamble' defaultMessage='Mastodon generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.' /></p>
 
-                <table className='about__domain-blocks'>
-                  <thead>
-                    <tr>
-                      <th><FormattedMessage id='about.domain_blocks.domain' defaultMessage='Domain' /></th>
-                      <th><FormattedMessage id='about.domain_blocks.severity' defaultMessage='Severity' /></th>
-                      <th><FormattedMessage id='about.domain_blocks.comment' defaultMessage='Reason' /></th>
-                    </tr>
-                  </thead>
+                <div className='about__domain-blocks'>
+                  {domainBlocks.get('items').map(block => (
+                    <div className='about__domain-blocks__domain' key={block.get('domain')}>
+                      <div className='about__domain-blocks__domain__header'>
+                        <h6><span title={`SHA-256: ${block.get('digest')}`}>{block.get('domain')}</span></h6>
+                        <span className='about__domain-blocks__domain__type' title={intl.formatMessage(severityMessages[block.get('severity')].explanation)}>{intl.formatMessage(severityMessages[block.get('severity')].title)}</span>
+                      </div>
 
-                  <tbody>
-                    {domainBlocks.get('items').map(block => (
-                      <tr key={block.get('domain')}>
-                        <td><span title={`SHA-256: ${block.get('digest')}`}>{block.get('domain')}</span></td>
-                        <td><span title={intl.formatMessage(severityMessages[block.get('severity')].explanation)}>{intl.formatMessage(severityMessages[block.get('severity')].title)}</span></td>
-                        <td>{block.get('comment')}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                      <p>{(block.get('comment') || '').length > 0 ? block.get('comment') : <FormattedMessage id='about.domain_blocks.no_reason_available' defaultMessage='Reason not available' />}</p>
+                    </div>
+                  ))}
+                </div>
               </>
             ) : (
               <p><FormattedMessage id='about.not_available' defaultMessage='This information has not been made available on this server.' /></p>

@@ -180,6 +180,7 @@ cs:
         confirm_user: Potvrdit uživatele
         create_account_warning: Vytvořit varování
         create_announcement: Nové oznámení
+        create_canonical_email_block: Zablokovat email
         create_custom_emoji: Vytvořit vlastní emoji
         create_domain_allow: Vytvořit povolení domény
         create_domain_block: Vytvořit blokaci domény
@@ -189,6 +190,7 @@ cs:
         create_user_role: Vytvořit roli
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
+        destroy_canonical_email_block: Odblokovat email
         destroy_custom_emoji: Odstranit vlastní emoji
         destroy_domain_allow: Odstranit povolení domény
         destroy_domain_block: Odstranit blokaci domény
@@ -1155,6 +1157,11 @@ cs:
         many: "%{count} příspěvků"
         one: "%{count} příspěvek"
         other: "%{count} příspěvků"
+      statuses_long:
+        few: "%{count} skryté příspěvky"
+        many: "%{count} skrytých příspěvků"
+        one: "%{count} skrytý příspěvek"
+        other: "%{count} skrytých příspěvků"
       title: Filtry
     new:
       save: Uložit nový filtr

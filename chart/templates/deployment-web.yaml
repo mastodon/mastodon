@@ -5,9 +5,9 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-{{- end }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" . | nindent 6 }}
@@ -16,11 +16,11 @@ spec:
   template:
     metadata:
       annotations:
-      {{- with .Values.podAnnotations }}
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-      {{- end }}
-        # roll the pods to pick up any db migrations
-        rollme: {{ randAlphaNum 5 | quote }}
+        {{- end }}
+        # roll the pods to pick up any db migrations or other changes
+        {{- include "mastodon.rollingPodAnnotations" . | nindent 8 }}
       labels:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: web
@@ -31,8 +31,10 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- if (not .Values.mastodon.s3.enabled) }}
       volumes:
         - name: assets
@@ -44,8 +46,10 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
@@ -83,7 +87,7 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.mastodon.s3.existingSecret }}
                   key: AWS_ACCESS_KEY_ID
-            {{- end -}}
+            {{- end }}
           {{- if (not .Values.mastodon.s3.enabled) }}
           volumeMounts:
             - name: assets
@@ -96,15 +100,22 @@ spec:
               containerPort: {{ .Values.mastodon.web.port }}
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /health
+            tcpSocket:
               port: http
           readinessProbe:
             httpGet:
               path: /health
               port: http
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 30
+            periodSeconds: 5
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

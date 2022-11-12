@@ -3,7 +3,7 @@
 class Account::Field < ActiveModelSerializers::Model
   MAX_CHARACTERS_LOCAL  = 255
   MAX_CHARACTERS_COMPAT = 2_047
-  ACCEPTED_SCHEMES      = %w(http https).freeze
+  ACCEPTED_SCHEMES      = %w(https).freeze
 
   attributes :name, :value, :verified_at, :account
 
@@ -76,6 +76,7 @@ class Account::Field < ActiveModelSerializers::Model
   def extract_url_from_html
     doc = Nokogiri::HTML(value).at_xpath('//body')
 
+    return if doc.nil?
     return if doc.children.size > 1
 
     element = doc.children.first
