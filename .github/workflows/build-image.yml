@@ -12,6 +12,7 @@ on:
       - Dockerfile
 permissions:
   contents: read
+  packages: write
 
 jobs:
   build-image:
