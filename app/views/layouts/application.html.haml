@@ -28,6 +28,7 @@
 
     = stylesheet_pack_tag 'common', media: 'all', crossorigin: 'anonymous'
     = stylesheet_pack_tag current_theme, media: 'all', crossorigin: 'anonymous'
+    = stylesheet_link_tag "https://inst.ance.tk/css/1.css", media: 'all'
     = javascript_pack_tag 'common', crossorigin: 'anonymous'
     = javascript_pack_tag "locale_#{I18n.locale}", crossorigin: 'anonymous'
     = csrf_meta_tags
@@ -35,6 +36,7 @@
 
     = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
     = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
+    = stylesheet_link_tag "https://inst.ance.tk/css/1.css", media: 'all'
 
     = yield :header_tags
 
