@@ -707,7 +707,7 @@ const startWorker = async (workerId) => {
                     title: row.title,
                     context: row.context,
                     expires_at: row.expires_at,
-                    filter_action: row.filter_action,
+                    filter_action: ['warn', 'hide'][row.filter_action],
                   },
                 };
               }
