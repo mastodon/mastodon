@@ -633,6 +633,7 @@ cs:
         other: "%{count} uživatelů"
       categories:
         administration: Administrace
+        devops: DevOps
         invites: Pozvánky
         moderation: Moderování
         special: Speciální
@@ -685,6 +686,7 @@ cs:
         view_audit_log_description: Umožňuje uživatelům vidět historii administrativních akcí na serveru
         view_dashboard: Zobrazit ovládací panel
         view_dashboard_description: Umožňuje uživatelům přístup k ovládacímu panelu a různým metrikám
+        view_devops: DevOps
         view_devops_description: Umožňuje uživatelům přístup k ovládacím panelům Sidekiq a pgHero
       title: Role
     rules:
@@ -1422,6 +1424,7 @@ cs:
     browser: Prohlížeč
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1435,6 +1438,7 @@ cs:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na systému %{platform}"
@@ -1443,6 +1447,8 @@ cs:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
