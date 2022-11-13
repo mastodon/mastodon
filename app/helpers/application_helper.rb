@@ -166,6 +166,12 @@ module ApplicationHelper
     content_tag(:div, nil, data: { 'admin-component': name.to_s.camelcase, props: Oj.dump({ locale: I18n.locale }.merge(props)) })
   end
 
+  WEBUI_STYLES = {
+    'default' => '',
+    'compact' => 'compact-padding',
+    'legacy' => 'legacy-style',
+  }.freeze
+
   def body_classes
     output = (@body_classes || '').split(' ')
     output << "theme-#{current_theme.parameterize}"
@@ -173,7 +179,7 @@ module ApplicationHelper
     output << (current_account&.user&.setting_reduce_motion ? 'reduce-motion' : 'no-reduce-motion')
     output << 'bigger-publish' if current_account&.user&.setting_bigger_publish
     output << 'wider-column' if (current_account&.user&.setting_advanced_layout && current_account&.user&.setting_wider_column)
-    output << 'compact-padding' if current_account&.user&.setting_compact_padding
+    output << WEBUI_STYLES[current_account&.user&.setting_webui_styles]
     output << 'rtl' if locale_direction == 'rtl'
     output.reject(&:blank?).join(' ')
   end

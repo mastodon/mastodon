@@ -21,7 +21,7 @@
     = f.input :setting_bigger_publish, as: :boolean, wrapper: :with_label, hint: true
 
   .fields-group
-    = f.input :setting_compact_padding, as: :boolean, wrapper: :with_label, hint: true
+    = f.input :setting_webui_styles, collection: ['default', 'compact', 'legacy'],label_method: lambda { |item| t("simple_form.hints.defaults.setting_webui_styles_#{item}") }, wrapper: :with_label, include_blank: false, hint: t('simple_form.hints.defaults.setting_webui_styles_hint')
 
   %h4= t 'appearance.advanced_web_interface'
 

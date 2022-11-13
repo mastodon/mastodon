@@ -1,0 +1,85 @@
+.legacy-style {
+    .status__prepend {
+        padding-top: 0.25em;
+        padding-left: 2.15em;
+        padding-bottom: 0;
+    }
+    .status {
+        padding: 0.5em 0.5em 0.5em 4.75em;
+        position: relative;
+    }
+    .status-reply {
+        padding-top: 0.25em;
+    }
+    .status .status__info {
+        margin-bottom: 0;
+    }
+    .status .status__relative-time {
+        height: auto;
+        line-height: normal;
+    }
+    .status .status__avatar {  
+        width: 3em;
+        height: 3em;
+        position: absolute;
+        left: 0.5em;
+        top: 0.5em;
+    }
+    .status .display-name:not(.detailed-status__display-name) bdi {
+        padding-right: 0.25em;
+    }
+    .status .display-name:not(.detailed-status__display-name) {
+        display: flex;
+    }
+    .detailed-status .status-card {
+        padding: 0.25em;
+    }
+    .account {
+        padding: 0.5em;
+    }
+    .account__wrapper .display-name, .detailed-status .display-name {
+        padding-left: 0;
+    }
+    .status__action-bar {
+        margin-top: 0.25em;
+        justify-content: flex-start;
+    }
+    .status .media-gallery, .detailed-status .status-card, .detailed-status__meta {
+        margin-top: 0.5em;
+    }
+    .status .attachment-list {
+        margin-top: 0.25em;
+    }
+    .notification__message {
+        padding: 0.5em 0.5em 0 2.35em;
+    }
+    .muted {
+        padding-top: 0.5em;
+    }
+    .detailed-status__display-name {
+        margin-bottom: 0.5em;
+    }
+    .mods__announcements__item {
+        margin: 10px;   
+    }
+    .drawer__inner .navigation-bar, .drawer__inner .compose-form {
+        padding: 10px;
+    }
+    .account__header__bar {
+        padding: 0 12px;
+    }
+    .account__header__tabs__name {
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+    .account__header__bio .account__header__fields {
+        margin: 12px 0 0;
+    }
+    .account__header__bio .account__header__fields dl {
+        padding: 8px 12px;
+    }
+    .account__header__extra__links {
+        margin: 0 -8px;
+        padding-top: 12px;
+    }
+}
