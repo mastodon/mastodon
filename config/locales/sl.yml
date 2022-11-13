@@ -633,6 +633,7 @@ sl:
         other: "%{count} uporabnikov"
       categories:
         administration: Upravljanje
+        devops: DevOps
         invites: Povabila
         moderation: Moderiranje
         special: Posebno
@@ -685,6 +686,7 @@ sl:
         view_audit_log_description: Omogoča, da uporabnik vidi zgodovino skrbniških opravil na strežniku
         view_dashboard: Pokaži nadzorno ploščo
         view_dashboard_description: Omogoča uporabnikom, da dostopajo do nadzorne plošče in različnih meritev
+        view_devops: DevOps
         view_devops_description: Omogoča uporabnikom, da dostopajo do nadzornih plošč Sidekiq in phHero
       title: Vloge
     rules:
@@ -1422,6 +1424,7 @@ sl:
     browser: Brskalnik
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1435,6 +1438,7 @@ sl:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Trenutna seja
     description: "%{browser} na %{platform}"
@@ -1443,6 +1447,8 @@ sl:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
