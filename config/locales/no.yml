@@ -547,6 +547,8 @@
     strikes:
       actions:
         delete_statuses: "%{name} slettet %{target}s innlegg"
+        disable: "%{name} frøs %{target}s konto"
+        mark_statuses_as_sensitive: "%{name} markerte %{target}s innlegg som sensitive"
         silence: "%{name} begrenset %{target}s konto"
     system_checks:
       database_schema_check:
