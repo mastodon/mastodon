@@ -4,7 +4,7 @@ import { Sparklines, SparklinesCurve } from 'react-sparklines';
 import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import Permalink from './permalink';
+import { Link } from "react-router-dom";
 import ShortNumber from 'mastodon/components/short_number';
 import Skeleton from 'mastodon/components/skeleton';
 import classNames from 'classnames';
@@ -67,9 +67,9 @@ ImmutableHashtag.propTypes = {
 const Hashtag = ({ name, href, to, people, uses, history, className, description, withGraph }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
-      <Permalink href={href} to={to}>
+      <Link to={to}>
         {name ? <React.Fragment>#<span>{name}</span></React.Fragment> : <Skeleton width={50} />}
-      </Permalink>
+      </Link>
 
       {description ? (
         <span>{description}</span>
