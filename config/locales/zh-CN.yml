@@ -594,6 +594,7 @@ zh-CN:
         other: "%{count} 用户"
       categories:
         administration: 管理
+        devops: 开发运维
         invites: 邀请
         moderation: 监察
         special: 特殊
@@ -643,6 +644,7 @@ zh-CN:
         view_audit_log_description: 允许用户在服务器上查看管理操作历史
         view_dashboard: 查看仪表板
         view_dashboard_description: 允许用户访问仪表盘和各种指标
+        view_devops: 开发运维
         view_devops_description: 允许用户访问 Sidekiq 和 pgHero 仪表板
       title: 角色
     rules:
@@ -1344,6 +1346,7 @@ zh-CN:
     browser: 浏览器
     browsers:
       alipay: 支付宝
+      blackberry: 黑莓
       chrome: Chrome
       edge: 微软 Edge
       electron: Electron
@@ -1357,6 +1360,7 @@ zh-CN:
       phantom_js: PhantomJS
       qq: QQ浏览器
       safari: Safari
+      uc_browser: UC 浏览器
       weibo: 新浪微博
     current_session: 当前会话
     description: "%{platform} 上的 %{browser}"
@@ -1365,6 +1369,8 @@ zh-CN:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: 黑莓
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
