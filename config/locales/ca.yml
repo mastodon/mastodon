@@ -607,6 +607,7 @@ ca:
         other: "%{count} usuaris"
       categories:
         administration: Administració
+        devops: Operadors de desenvolupament
         invites: Invitacions
         moderation: Moderació
         special: Especial
@@ -657,6 +658,7 @@ ca:
         view_audit_log_description: Permet als usuaris veure un historial d'accions administratives al servidor
         view_dashboard: Veure panell
         view_dashboard_description: Permet als usuaris accedir al tauler i a diverses mètriques
+        view_devops: Operadors de desenvolupament
         view_devops_description: Permet als usuaris accedir als taulers de control de Sidekiq i pgHero
       title: Rols
     rules:
@@ -1370,6 +1372,7 @@ ca:
     browser: Navegador
     browsers:
       alipay: Alipay
+      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1383,6 +1386,7 @@ ca:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: Navegador UC
       weibo: Weibo
     current_session: Sessió actual
     description: "%{browser} de %{platform}"
@@ -1391,6 +1395,8 @@ ca:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
