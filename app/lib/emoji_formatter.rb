@@ -3,7 +3,7 @@
 class EmojiFormatter
   include RoutingHelper
 
-  DISALLOWED_BOUNDING_REGEX = /[[:alnum:]:]/.freeze
+  DISALLOWED_BOUNDING_REGEX = /[[:alnum:]:]/
 
   attr_reader :html, :custom_emojis, :options
 
@@ -62,7 +62,7 @@ class EmojiFormatter
       end
     end
 
-    result << html[last_index..-1]
+    result << html[last_index..]
 
     result.html_safe # rubocop:disable Rails/OutputSafety
   end

@@ -132,7 +132,7 @@ class MediaAttachment < ApplicationRecord
       convert_options: {
         output: {
           'loglevel' => 'fatal',
-          vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
+          :vf => 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
         }.freeze,
       }.freeze,
       format: 'png',

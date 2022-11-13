@@ -3,7 +3,7 @@
 class PlainTextFormatter
   include ActionView::Helpers::TextHelper
 
-  NEWLINE_TAGS_RE = /(<br \/>|<br>|<\/p>)+/.freeze
+  NEWLINE_TAGS_RE = /(<br \/>|<br>|<\/p>)+/
 
   attr_reader :text, :local
 

@@ -290,7 +290,6 @@ module Mastodon
     # less "complex" without introducing extra methods (which actually will
     # make things _more_ complex).
     #
-    # rubocop: disable Metrics/AbcSize
     def update_column_in_batches(table_name, column, value)
       if transaction_open?
         raise 'update_column_in_batches can not be run inside a transaction, ' \

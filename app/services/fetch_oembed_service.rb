@@ -2,7 +2,7 @@
 
 class FetchOEmbedService
   ENDPOINT_CACHE_EXPIRES_IN = 24.hours.freeze
-  URL_REGEX                 = /(=(http[s]?(%3A|:)(\/\/|%2F%2F)))([^&]*)/i.freeze
+  URL_REGEX                 = /(=(http[s]?(%3A|:)(\/\/|%2F%2F)))([^&]*)/i
 
   attr_reader :url, :options, :format, :endpoint_url
 

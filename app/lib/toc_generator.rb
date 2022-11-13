@@ -53,7 +53,7 @@ class TOCGenerator
 
       next unless LISTED_ELEMENTS.include?(node.name)
 
-      depth          = node.name[1..-1]
+      depth          = node.name[1..]
       latest_section = @headers.last
 
       if latest_section.nil? || latest_section.depth >= depth
