@@ -8,7 +8,7 @@ import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
 import { autoPlayGif, languages as preloadedLanguages, translationEnabled } from 'mastodon/initial_state';
 
-const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
+const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
 class TranslateButton extends React.PureComponent {
 
@@ -77,16 +77,21 @@ class StatusContent extends React.PureComponent {
       return;
     }
 
+    const { status, onCollapsedToggle } = this.props;
     const links = node.querySelectorAll('a');
 
+    let link, mention;
+
     for (var i = 0; i < links.length; ++i) {
-      let link = links[i];
+      link = links[i];
+
       if (link.classList.contains('status-link')) {
         continue;
       }
+
       link.classList.add('status-link');
 
-      let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -101,16 +106,16 @@ class StatusContent extends React.PureComponent {
       }
     }
 
-    if (this.props.status.get('collapsed', null) === null) {
-      let collapsed =
-          this.props.collapsable
-          && this.props.onClick
+    if (status.get('collapsed', null) === null && onCollapsedToggle) {
+      const { collapsable, onClick } = this.props;
+
+      const collapsed =
+          collapsable
+          && onClick
           && node.clientHeight > MAX_HEIGHT
-          && this.props.status.get('spoiler_text').length === 0;
+          && status.get('spoiler_text').length === 0;
 
-      if(this.props.onCollapsedToggle) this.props.onCollapsedToggle(collapsed);
-
-      this.props.status.set('collapsed', collapsed);
+      onCollapsedToggle(collapsed);
     }
   }
 
