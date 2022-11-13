@@ -44,7 +44,7 @@ ko:
         inbox_url: 사용 할 릴레이 서버의 프론트페이지에서 URL을 복사합니다
         irreversible: 필터링 된 게시물은 나중에 필터가 사라지더라도 돌아오지 않게 됩니다
         locale: 사용자 인터페이스, 이메일, 푸시 알림 언어
-        locked: 팔로우 요청을 승인함으로써 누가 당신을 팔로우 할 수 있는지를 수동으로 제어합니다.
+        locked: 팔로우 요청을 승인제로 두어 누가 당신을 팔로우 할 수 있는지를 수동으로 제어합니다.
         password: 최소 8글자
         phrase: 게시물 내용이나 열람주의 내용 안에서 대소문자 구분 없이 매칭 됩니다
         scopes: 애플리케이션에 허용할 API들입니다. 최상위 스코프를 선택하면 개별적인 것은 선택하지 않아도 됩니다.
@@ -77,7 +77,7 @@ ko:
         backups_retention_period: 생성된 사용자 아카이브를 며칠동안 저장할 지.
         bootstrap_timeline_accounts: 이 계정들은 팔로우 추천 목록 상단에 고정됩니다.
         closed_registrations_message: 새 가입을 차단했을 때 표시됩니다
-        content_cache_retention_period: 양수가 설정되었다면 다른 서버의 게시물은 여기서 설정된 일수가 지나면 삭제될 것입니다. 되돌릴 수 없는 작업일 수 있습니다.
+        content_cache_retention_period: 양수로 설정되었다면 다른 서버의 게시물은 여기서 설정된 일수가 지나면 삭제될 것입니다. 되돌릴 수 없는 작업일 수 있습니다.
         custom_css: 사용자 지정 스타일을 웹 버전의 마스토돈에 지정할 수 있습니다.
         mascot: 고급 사용자 인터페이스에 있는 일러스트를 교체합니다.
         media_cache_retention_period: 양수로 설정된 경우 다운로드된 미디어 파일들은 지정된 일수가 지나면 삭제될 것이고 필요할 때 다시 다운로드 될 것입니다.
@@ -195,7 +195,7 @@ ko:
         setting_crop_images: 확장되지 않은 게시물의 이미지를 16x9로 자르기
         setting_default_language: 게시물 언어
         setting_default_privacy: 게시물 프라이버시
-        setting_default_sensitive: 미디어를 언제나 민감한 컨텐츠로 설정
+        setting_default_sensitive: 미디어를 언제나 민감한 콘텐츠로 설정
         setting_delete_modal: 게시물 삭제 전 확인 창을 표시
         setting_disable_swiping: 스와이프 모션 비활성화
         setting_display_media: 미디어 표시
@@ -207,7 +207,7 @@ ko:
         setting_noindex: 검색엔진의 인덱싱을 거절
         setting_reduce_motion: 애니메이션 줄이기
         setting_show_application: 툿 작성에 사용한 앱을 공개
-        setting_system_font_ui: 시스템의 초기 설정 폰트를 사용
+        setting_system_font_ui: 시스템의 기본 글꼴을 사용
         setting_theme: 사이트 테마
         setting_trends: 오늘의 유행 보이기
         setting_unfollow_modal: 언팔로우 전 언팔로우 확인 표시
@@ -232,7 +232,7 @@ ko:
         backups_retention_period: 사용자 아카이브 유지 기한
         bootstrap_timeline_accounts: 새로운 사용자들에게 추천할 계정들
         closed_registrations_message: 가입이 불가능 할 때의 사용자 지정 메시지
-        content_cache_retention_period: 컨텐트 캐시 유지 기한
+        content_cache_retention_period: 콘텐츠 캐시 유지 기한
         custom_css: 사용자 정의 CSS
         mascot: 사용자 정의 마스코트 (legacy)
         media_cache_retention_period: 미디어 캐시 유지 기한

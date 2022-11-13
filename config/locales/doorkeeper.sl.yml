@@ -15,7 +15,7 @@ sl:
               fragment_present: ne more vsebovati fragmenta.
               invalid_uri: mora biti veljaven URI.
               relative_uri: mora biti absolutni URI.
-              secured_uri: mora biti HTTPS/SSL URI.
+              secured_uri: mora biti URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -27,7 +27,7 @@ sl:
       confirmations:
         destroy: Ali ste prepričani?
       edit:
-        title: Uredi aplikacijo
+        title: Uredi program
       form:
         error: Ups! Preverite obrazec za morebitne napake
       help:
@@ -82,7 +82,7 @@ sl:
       messages:
         access_denied: Lastnik virov ali strežnik pooblastil je zavrnil zahtevo.
         credential_flow_not_configured: Pretok geselskih pooblastil lastnika virov ni uspel, ker Doorkeeper.configure.resource_owner_from_credentials ni nastavljen.
-        invalid_client: Overitev odjemalca ni uspelo zaradi neznanega odjemalca, zaradi nevključitve overitve odjemalca ali zaradi nepodprte metode overitve.
+        invalid_client: Overitev odjemalca ni uspela zaradi neznanega odjemalca, zaradi nevključitve overitve odjemalca ali zaradi nepodprte metode overitve.
         invalid_grant: Predložena odobritev za pooblastilo je neveljavna, potekla, preklicana, se ne ujema z URI preusmeritvijo, ki je uporabljena v zahtevi za pooblastilo ali je bila izdana drugemu odjemalcu.
         invalid_redirect_uri: URI za preusmeritev ni veljaven.
         invalid_request:
@@ -121,7 +121,7 @@ sl:
         accounts: Računi
         admin/accounts: Upravljanje računov
         admin/all: Vse skrbniške funkcije
-        admin/reports: Upravljanje poročil
+        admin/reports: Upravljanje prijav
         all: Vse
         blocks: Blokira
         bookmarks: Zaznamki
@@ -136,7 +136,7 @@ sl:
         mutes: Utišani
         notifications: Obvestila
         push: Potisna obvestila
-        reports: Poročila
+        reports: Prijave
         search: Iskanje
         statuses: Objave
     layouts:
@@ -145,7 +145,7 @@ sl:
           applications: Programi
           oauth2_provider: Ponudnik OAuth2
       application:
-        title: Potrebna je OAuth pooblastitev
+        title: Potrebna je pooblastitev OAuth
     scopes:
       admin:read: preberi vse podatke na strežniku
       admin:read:accounts: preberi občutljive informacije vseh računov
@@ -159,7 +159,7 @@ sl:
       read: preberi vse podatke svojega računa
       read:accounts: oglejte si podrobnosti računov
       read:blocks: oglejte si svoje blokirane
-      read:bookmarks: glejte svoje zaznamke
+      read:bookmarks: oglejte si svoje zaznamke
       read:favourites: oglejte si svoje priljubljene
       read:filters: oglejte si svoje filtre
       read:follows: oglejte si svoje sledilce
