@@ -555,7 +555,10 @@ nn:
         other: "%{count} brukere"
       categories:
         administration: Administrasjon
+        devops: DevOps
         invites: Invitasjoner
+      privileges:
+        view_devops: DevOps
     rules:
       add_new: Legg til et filter
       delete: Slett
@@ -682,6 +685,7 @@ nn:
       confirming: Ventar på stadfesting av e-post.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      view_strikes: Vis tidligere advarsler mot kontoen din
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -737,8 +741,9 @@ nn:
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
   disputes:
     strikes:
+      appeal_approved: Denne advarselen ble anket og er ikke lenger gyldig
       title_actions:
-        silence: Kontobegrensning
+        silence: Begrensning av konto
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:
@@ -1001,6 +1006,7 @@ nn:
     browser: Nettlesar
     browsers:
       alipay: AliPay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1014,6 +1020,7 @@ nn:
       phantom_js: PhantomJS
       qq: QQ-lesar
       safari: Safari
+      uc_browser: QQ-lesar
       weibo: Weibo
     current_session: Noverande økt
     description: "%{browser} på %{platform}"
@@ -1022,6 +1029,8 @@ nn:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: IOS
       linux: Linux
