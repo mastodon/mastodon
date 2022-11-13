@@ -149,6 +149,7 @@ postgresql:
   # must match those of that external postgres instance
   enabled: true
   # postgresqlHostname: preexisting-postgresql
+  # postgresqlPort: 5432
   auth:
     database: mastodon_production
     username: mastodon
