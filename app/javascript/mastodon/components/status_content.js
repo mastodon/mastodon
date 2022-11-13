@@ -91,8 +91,10 @@ class StatusContent extends React.PureComponent {
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
+        link.setAttribute('href', `/@${mention.get('acct')}`)
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
+        link.setAttribute('href', `/tags/${link.text.substring(1)}`)
       } else {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
