@@ -53,7 +53,7 @@ export const accountsCountRenderer = (displayNumber, pluralReady) => (
 export const ImmutableHashtag = ({ hashtag }) => (
   <Hashtag
     name={hashtag.get('name')}
-    href={hashtag.get('url')}
+    href={`/tags/${hashtag.get('name')}`}
     to={`/tags/${hashtag.get('name')}`}
     people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
     history={hashtag.get('history').reverse().map((day) => day.get('uses')).toArray()}

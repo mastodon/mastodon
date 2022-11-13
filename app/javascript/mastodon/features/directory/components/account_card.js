@@ -169,7 +169,7 @@ class AccountCard extends ImmutablePureComponent {
 
     return (
       <div className='account-card'>
-        <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='account-card__permalink'>
+        <Permalink href={`/@${account.get('acct')}`} to={`/@${account.get('acct')}`} className='account-card__permalink'>
           <div className='account-card__header'>
             <img
               src={

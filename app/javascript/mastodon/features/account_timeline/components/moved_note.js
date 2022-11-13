@@ -23,12 +23,12 @@ export default class MovedNote extends ImmutablePureComponent {
         </div>
 
         <div className='moved-account-banner__action'>
-          <Permalink href={to.get('url')} to={`/@${to.get('acct')}`} className='detailed-status__display-name'>
+          <Permalink href={`/@${to.get('acct')}`} to={`/@${to.get('acct')}`} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'><AvatarOverlay account={to} friend={from} /></div>
             <DisplayName account={to} />
           </Permalink>
 
-          <Permalink href={to.get('url')} to={`/@${to.get('acct')}`} className='button'><FormattedMessage id='account.go_to_profile' defaultMessage='Go to profile' /></Permalink>
+          <Permalink href={`/@${to.get('acct')}`} to={`/@${to.get('acct')}`} className='button'><FormattedMessage id='account.go_to_profile' defaultMessage='Go to profile' /></Permalink>
         </div>
       </div>
     );
