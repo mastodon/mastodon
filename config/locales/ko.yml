@@ -594,6 +594,7 @@ ko:
         other: "%{count}명의 사용자"
       categories:
         administration: 관리
+        devops: 데브옵스
         invites: 초대
         moderation: 중재
         special: 특수
@@ -643,6 +644,7 @@ ko:
         view_audit_log_description: 사용자가 서버의 감사 기록을 볼 수 있도록 허용
         view_dashboard: 대시보드 보기
         view_dashboard_description: 사용자가 여러 통계정보를 볼 수 있는 대시보드에 접근할 수 있도록 허용
+        view_devops: 데브옵스
         view_devops_description: Sidekiq과 pgHero 대시보드에 접근할 수 있도록 허용
       title: 역할
     rules:
@@ -1344,6 +1346,7 @@ ko:
     browser: 브라우저
     browsers:
       alipay: 알리페이
+      blackberry: 블랙베리
       chrome: 크롬
       edge: 마이크로소프트 엣지
       electron: 일렉트론
@@ -1357,6 +1360,7 @@ ko:
       phantom_js: 팬텀JS
       qq: QQ 브라우저
       safari: 사파리
+      uc_browser: UC 브라우저
       weibo: 웨이보
     current_session: 현재 세션
     description: "%{platform}의 %{browser}"
@@ -1365,6 +1369,8 @@ ko:
     platforms:
       adobe_air: 어도비 Air
       android: 안드로이드
+      blackberry: 블랙베리
+      chrome_os: 크롬OS
       firefox_os: 파이어폭스OS
       ios: iOS
       linux: 리눅스
