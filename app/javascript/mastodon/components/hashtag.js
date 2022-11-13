@@ -53,7 +53,6 @@ export const accountsCountRenderer = (displayNumber, pluralReady) => (
 export const ImmutableHashtag = ({ hashtag }) => (
   <Hashtag
     name={hashtag.get('name')}
-    href={`/tags/${hashtag.get('name')}`}
     to={`/tags/${hashtag.get('name')}`}
     people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
     history={hashtag.get('history').reverse().map((day) => day.get('uses')).toArray()}
@@ -64,7 +63,7 @@ ImmutableHashtag.propTypes = {
   hashtag: ImmutablePropTypes.map.isRequired,
 };
 
-const Hashtag = ({ name, href, to, people, uses, history, className, description, withGraph }) => (
+const Hashtag = ({ name, to, people, uses, history, className, description, withGraph }) => (
   <div className={classNames('trends__item', className)}>
     <div className='trends__item__name'>
       <Link to={to}>
@@ -98,7 +97,6 @@ const Hashtag = ({ name, href, to, people, uses, history, className, description
 
 Hashtag.propTypes = {
   name: PropTypes.string,
-  href: PropTypes.string,
   to: PropTypes.string,
   people: PropTypes.number,
   description: PropTypes.node,
