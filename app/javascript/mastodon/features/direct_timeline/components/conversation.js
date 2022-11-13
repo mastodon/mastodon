@@ -7,7 +7,7 @@ import AttachmentList from 'mastodon/components/attachment_list';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import DropdownMenuContainer from 'mastodon/containers/dropdown_menu_container';
 import AvatarComposite from 'mastodon/components/avatar_composite';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import IconButton from 'mastodon/components/icon_button';
 import RelativeTimestamp from 'mastodon/components/relative_timestamp';
 import { HotKeys } from 'react-hotkeys';

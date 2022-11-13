@@ -9,7 +9,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from '../initial_state';
 import RelativeTimestamp from './relative_timestamp';
 import Skeleton from 'mastodon/components/skeleton';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },

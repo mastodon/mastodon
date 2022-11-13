@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import AvatarOverlay from '../../../components/avatar_overlay';
 import DisplayName from '../../../components/display_name';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default class MovedNote extends ImmutablePureComponent {
 

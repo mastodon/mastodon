@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { makeGetAccount } from 'mastodon/selectors';
 import Avatar from 'mastodon/components/avatar';
 import DisplayName from 'mastodon/components/display_name';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import Button from 'mastodon/components/button';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';

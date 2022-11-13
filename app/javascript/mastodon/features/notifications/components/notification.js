@@ -10,7 +10,7 @@ import AccountContainer from 'mastodon/containers/account_container';
 import Report from './report';
 import FollowRequestContainer from '../containers/follow_request_container';
 import Icon from 'mastodon/components/icon';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 const messages = defineMessages({

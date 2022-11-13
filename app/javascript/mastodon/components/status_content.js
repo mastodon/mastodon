@@ -2,7 +2,7 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
