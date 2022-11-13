@@ -293,7 +293,6 @@ module Mastodon
             progress.log("Found and removed orphan: #{object.key}")
           rescue => e
             progress.log(pastel.red("Error processing #{object.key}: #{e}"))
-            success = false
           end
         end
       end
@@ -361,7 +360,6 @@ module Mastodon
           progress.log("Found and removed orphan: #{key}")
         rescue => e
           progress.log(pastel.red("Error processing #{key}: #{e}"))
-          success = false
         end
       end
 
