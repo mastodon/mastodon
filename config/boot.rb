@@ -1,4 +1,9 @@
 unless ENV.key?('RAILS_ENV')
+  # Load RAILS_ENV from '.env', when file present.
+  require 'dotenv/load'
+end
+
+unless ENV.key?('RAILS_ENV')
   STDERR.puts 'ERROR: Missing RAILS_ENV environment variable, please set it to "production", "development", or "test".'
   exit 1
 end
