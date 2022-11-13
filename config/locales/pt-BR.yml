@@ -1,3 +1,4 @@
+---
 pt-BR:
   about:
     about_mastodon_html: 'A rede social do futuro: Sem anúncios, sem vigilância corporativa, com design ético e muita descentralização! Possua seus próprios dados com o Mastodon!'
@@ -55,7 +56,7 @@ pt-BR:
       delete: Excluir dados
       deleted: Excluído
       demote: Rebaixar
-      destroyed_msg: "Os dados de %{username} estão na fila para serem excluídos em breve"
+      destroyed_msg: Os dados de %{username} estão na fila para serem excluídos em breve
       disable: Congelar
       disable_sign_in_token_auth: Desativar autenticação via token por email
       disable_two_factor_authentication: Desativar autenticação de dois fatores
@@ -520,7 +521,7 @@ pt-BR:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: "Relações de %{acct}"
+      title: Relações de %{acct}
     relays:
       add_new: Adicionar novo repetidor
       delete: Excluir
@@ -555,7 +556,9 @@ pt-BR:
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada, e a denúncia será encerrada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser sempre revertido.
         suspend_description_html: O perfil e todo o seu conteúdo ficarão inacessíveis até que seja eventualmente excluído. Interagir com a conta será impossível. Reversível dentro de 30 dias.
-      actions_description_html: "Decida que medidas tomar para resolver esta denúncia. Se você receber uma ação punitiva contra a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>Spam</strong> for selecionada.\n"
+      actions_description_html: 'Decida que medidas tomar para resolver esta denúncia. Se você receber uma ação punitiva contra a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>Spam</strong> for selecionada.
+
+        '
       add_to_report: Adicionar mais ao relatório
       are_you_sure: Você tem certeza?
       assign_to_self: Pegar
@@ -851,7 +854,7 @@ pt-BR:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém da instância %{domain} reportou %{target}
-      subject: 'Nova denúncia sobre %{instance} (#%{id})'
+      subject: Nova denúncia sobre %{instance} (#%{id})
     new_trends:
       new_trending_links:
         title: Links em destaque
@@ -1219,7 +1222,7 @@ pt-BR:
       sign_up:
         subject: "%{name} se inscreveu"
     favourite:
-      body: '%{name} favoritou sua publicação:'
+      body: "%{name} favoritou sua publicação:"
       subject: "%{name} favoritou sua publicação"
       title: Novo favorito
     follow:
@@ -1233,13 +1236,13 @@ pt-BR:
       title: Novo seguidor pendente
     mention:
       action: Responder
-      body: '%{name} te mencionou em:'
-      subject: '%{name} te mencionou'
+      body: "%{name} te mencionou em:"
+      subject: "%{name} te mencionou"
       title: Nova menção
     poll:
       subject: Uma enquete por %{name} terminou
     reblog:
-      body: '%{name} impulsionou a sua publicação:'
+      body: "%{name} impulsionou a sua publicação:"
       subject: "%{name} impulsionou a sua publicação"
       title: Novo boost
     status:
