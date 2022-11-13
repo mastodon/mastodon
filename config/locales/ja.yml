@@ -594,6 +594,7 @@ ja:
         other: "%{count}人"
       categories:
         administration: 管理
+        devops: 開発者
         invites: 招待
         moderation: モデレーション
         special: スペシャル
@@ -643,6 +644,7 @@ ja:
         view_audit_log_description: ユーザーがサーバー上で管理アクションの履歴を表示できるようにします
         view_dashboard: ダッシュボードの表示
         view_dashboard_description: ユーザーがダッシュボードやさまざまなメトリクスにアクセスできるようにします
+        view_devops: 開発者
         view_devops_description: Sidekiq と pgHero ダッシュボードにアクセスできるようにします
       title: ロール
     rules:
@@ -1344,6 +1346,7 @@ ja:
     browser: ブラウザ
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1357,6 +1360,7 @@ ja:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: 現在のセッション
     description: "%{platform}上の%{browser}"
@@ -1365,6 +1369,8 @@ ja:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
