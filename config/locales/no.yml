@@ -244,7 +244,7 @@
         destroy_user_role_html: "%{name} slettet %{target} -rolle"
         reject_user_html: "%{name} avslo registrering fra %{target}"
         reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
-        silence_account_html: "%{name} begrenset %{target} sin konto"
+        silence_account_html: "%{name} begrenset %{target}s konto"
         unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
         update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
@@ -332,7 +332,7 @@
       domain: Domene
       edit: Rediger domeneblokkering
       existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
-      existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
+      existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du må <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       new:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
@@ -458,7 +458,7 @@
       pending: Avventer overgangens godkjenning
       save_and_enable: Lagre og skru på
       setup: Sett opp en overgangsforbindelse
-      signatures_not_enabled: Videreformidling vil ikke fungere riktig mens sikkermodus eller begrenset føderasjon er aktiv
+      signatures_not_enabled: Videreformidlere vil ikke fungere riktig mens sikkermodus eller begrenset føderasjon er aktiv
       status: Status
       title: Overganger
     report_notes:
@@ -686,7 +686,7 @@
   disputes:
     strikes:
       title_actions:
-        silence: Kontobegrensning
+        silence: Begrensning av konto
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:
@@ -910,7 +910,7 @@
     public_timelines: Offentlige tidslinjer
   reactions:
     errors:
-      limit_reached: Grensen for forskjellige reaksjoner nådd
+      limit_reached: Grensen for ulike reaksjoner nådd
       unrecognized_emoji: er ikke en gjenkjent emoji
   relationships:
     activity: Kontoaktivitet
@@ -1021,10 +1021,10 @@
     errors:
       in_reply_not_found: Posten du prøver å svare ser ikke ut til eksisterer.
     open_in_web: Åpne i nettleser
-    over_character_limit: grense på %{max} tegn overskredet
+    over_character_limit: grensen på %{max} tegn overskredet
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
-      limit: Du har allerede festet det maksimale antall tuter
+      limit: Du har allerede festet det maksimale antall innlegg
       ownership: Kun egne tuter kan festes
       reblog: En fremheving kan ikke festes
     poll:
