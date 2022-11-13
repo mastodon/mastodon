@@ -101,6 +101,11 @@ mastodon:
   web:
     port: 3000
 
+  metrics:
+    statsd:
+      # Enable statsd publishing via STATSD_ADDR environment variable
+      address: ""
+
 ingress:
   enabled: true
   annotations:

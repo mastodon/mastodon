@@ -310,3 +310,6 @@ data:
   LDAP_UID_CONVERSION_REPLACE: {{ .Values.externalAuth.ldap.uid_conversion.replace }}
   {{- end }}
   {{- end }}
+  {{- with .Values.mastodon.metrics.statsd.address }}
+  STATSD_ADDR: {{ . }}
+  {{- end }}
