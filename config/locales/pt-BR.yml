@@ -610,7 +610,6 @@ pt-BR:
         other: "%{count} usuários"
       categories:
         administration: Administração
-        devops: Devops
         invites: Convites
         moderation: Moderação
         special: Especial
@@ -661,7 +660,6 @@ pt-BR:
         view_audit_log_description: Permite aos usuários ver um histórico de ações administrativas no servidor
         view_dashboard: Ver painel
         view_dashboard_description: Permite que os usuários acessem o painel e várias métricas
-        view_devops: Devops
         view_devops_description: Permite aos usuários acessar os painéis da Sidekiq e pgHero
       title: Funções
     rules:
@@ -810,6 +808,9 @@ pt-BR:
         trending_rank: 'Em alta #%{rank}'
         usable: Pode ser usado
         usage_comparison: Usado %{today} vezes hoje, em comparação com %{yesterday} de ontem
+        used_by_over_week:
+          one: Usado por uma pessoa na última semana
+          other: Usado por %{count} pessoas na última semana
       title: Em alta
       trending: Em alta
     warning_presets:
@@ -1333,7 +1334,6 @@ pt-BR:
     browser: Navegador
     browsers:
       alipay: Alipay
-      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1347,7 +1347,6 @@ pt-BR:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
       weibo: Weibo
     current_session: Sessão atual
     description: "%{browser} em %{platform}"
@@ -1356,8 +1355,6 @@ pt-BR:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: BlackBerry
-      chrome_os: Chrome OS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

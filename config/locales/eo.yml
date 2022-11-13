@@ -317,6 +317,7 @@ eo:
         other: "<strong>%{count}</strong> pritraktotaj kradvortoj"
       resolved_reports: raportoj solvitaj
       software: Programo
+      sources: Fontoj de konto-kreado
       space: Memorspaca uzado
       title: Kontrolpanelo
       top_languages: Plej aktivaj lingvoj
@@ -526,7 +527,6 @@ eo:
         other: "%{count} uzantoj"
       categories:
         administration: Administrado
-        devops: Programado kaj Operaciado
         invites: Invitoj
         moderation: Kontrolado
         special: Specialaj
@@ -552,7 +552,6 @@ eo:
         manage_invites: Administri Invitojn
         manage_roles: Administri Rolojn
         manage_rules: Administri Regulojn
-        view_devops: Programado kaj Operaciado
       title: Roloj
     rules:
       add_new: Aldoni regulon
@@ -689,7 +688,7 @@ eo:
     confirmation_dialogs: Konfirmaj fenestroj
     discovery: Eltrovo
     localization:
-      body: Mastodon estas tradukita per volontuloj.
+      body: Mastodon estas tradukita de volontuloj.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Ĉiu povas kontribui.
     sensitive_content: Tikla enhavo
@@ -714,7 +713,7 @@ eo:
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
       prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
-      prefix_sign_up: Registriĝi ĉe Mastodon hodiaŭ!
+      prefix_sign_up: Registriĝu ĉe Mastodon hodiaŭ!
       suffix: Kun konto, vi povos sekvi aliajn homojn, skribi afiŝojn kaj interŝanĝi mesaĝojn kun la uzantoj de iu ajn Mastodon'a servilo kaj multe pli!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
@@ -722,7 +721,7 @@ eo:
     invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida. Bonvolu peti novan.
     link_to_webauth: Uzi vian sekurecan ŝlosilon
     log_in_with: Ensaluti per
-    login: Saluti
+    login: Ensaluti
     logout: Adiaŭi
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
@@ -730,7 +729,7 @@ eo:
     providers:
       cas: CAS
       saml: SAML
-    register: Registriĝi
+    register: Krei konton
     registration_closed: "%{instance} ne estas akcepti nova uzantojn"
     resend_confirmation: Resendi la instrukciojn por konfirmi
     reset_password: Restarigi pasvorton
@@ -957,6 +956,9 @@ eo:
   navigation:
     toggle_menu: Baskuli menuon
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} registriĝis"
     favourite:
       body: "%{name} stelumis vian mesaĝon:"
       subject: "%{name} stelumis vian mesaĝon"
@@ -1075,7 +1077,7 @@ eo:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Nuna seanco
     description: "%{browser} en %{platform}"
@@ -1155,7 +1157,7 @@ eo:
     show_newer: Montri pli novajn
     show_older: Montri pli malnovajn
     show_thread: Montri la mesaĝaron
-    sign_in_to_participate: Ensaluti por partopreni en la konversacio
+    sign_in_to_participate: Ensalutu por partopreni la konversacion
     title: "%{name}: “%{quote}”"
     visibilities:
       direct: Rekta
