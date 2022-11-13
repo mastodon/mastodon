@@ -589,6 +589,7 @@ th:
         other: "%{count} ผู้ใช้"
       categories:
         administration: การดูแล
+        devops: DevOps
         invites: คำเชิญ
         moderation: การควบคุม
         special: พิเศษ
@@ -636,6 +637,7 @@ th:
         view_audit_log_description: อนุญาตให้ผู้ใช้ดูประวัติการกระทำการดูแลในเซิร์ฟเวอร์
         view_dashboard: ดูแดชบอร์ด
         view_dashboard_description: อนุญาตให้ผู้ใช้เข้าถึงแดชบอร์ดและเมตริกต่าง ๆ
+        view_devops: DevOps
         view_devops_description: อนุญาตให้ผู้ใช้เข้าถึงแดชบอร์ด Sidekiq และ pgHero
       title: บทบาท
     rules:
@@ -1313,6 +1315,7 @@ th:
     browser: เบราว์เซอร์
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1326,6 +1329,7 @@ th:
       phantom_js: PhantomJS
       qq: เบราว์เซอร์ QQ
       safari: Safari
+      uc_browser: เบราว์เซอร์ UC
       weibo: Weibo
     current_session: เซสชันปัจจุบัน
     description: "%{browser} ใน %{platform}"
@@ -1334,6 +1338,8 @@ th:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
