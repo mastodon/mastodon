@@ -1,11 +1,11 @@
 require:
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 2.5
   NewCops: disable
   Exclude:
-    - 'spec/**/*'
     - 'db/**/*'
     - 'app/views/**/*'
     - 'config/**/*'
