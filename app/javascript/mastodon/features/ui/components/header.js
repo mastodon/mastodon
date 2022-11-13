@@ -4,16 +4,15 @@ import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { registrationsOpen, me } from 'mastodon/initial_state';
 import Avatar from 'mastodon/components/avatar';
-import Permalink from 'mastodon/components/permalink';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
 }))(({ account }) => (
-  <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} title={account.get('acct')}>
+  <Link to={`/@${account.get('acct')}`} title={account.get('acct')}>
     <Avatar account={account} size={35} />
-  </Permalink>
+  </Link>
 ));
 
 export default @withRouter
