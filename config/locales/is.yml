@@ -607,6 +607,7 @@ is:
         other: "%{count} notendur"
       categories:
         administration: Stjórnun
+        devops: DevOps
         invites: Boðsgestir
         moderation: Umsjón
         special: Sérstakt
@@ -657,6 +658,7 @@ is:
         view_audit_log_description: Leyfir notendum að skoða feril stjórnunaraðgerða á netþjóninum
         view_dashboard: Skoða stjórnborð
         view_dashboard_description: Leyfir notendum að skoða stjórnborðið og sjá ýmsar mælingar
+        view_devops: DevOps
         view_devops_description: Leyfir notendum að skoða Sidekiq og pgHero stjórnborð
       title: Hlutverk
     rules:
@@ -1370,6 +1372,7 @@ is:
     browser: Vafri
     browsers:
       alipay: Alipay
+      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1383,6 +1386,7 @@ is:
       phantom_js: PhantomJS
       qq: QQ vafri
       safari: Safari
+      uc_browser: UC-vafrinn
       weibo: Weibo
     current_session: Núverandi seta
     description: "%{browser} á %{platform}"
@@ -1391,6 +1395,8 @@ is:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
