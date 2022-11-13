@@ -631,6 +631,7 @@
       confirming: Venter på at e-postbekreftelsen er fullført.
       pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      view_strikes: Vis tidligere advarsler mot kontoen din
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du følger allerede denne kontoen
@@ -685,6 +686,7 @@
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
   disputes:
     strikes:
+      appeal_approved: Denne advarselen ble anket og er ikke lenger gyldig
       title_actions:
         silence: Begrensning av konto
   domain_validator:
@@ -1067,6 +1069,9 @@
     pinned: Festet tut
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
+  strikes:
+    errors:
+      too_late: Det er for sent å klage på denne advarselen
   tags:
     does_not_match_previous_name: samsvarer ikke med det forrige navnet
   themes:
