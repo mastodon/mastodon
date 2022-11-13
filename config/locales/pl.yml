@@ -633,6 +633,7 @@ pl:
         other: "%{count} użytkowników"
       categories:
         administration: Administracja
+        devops: DevOps
         invites: Zaproszenia
         moderation: Moderacja
         special: Specjalne
@@ -685,6 +686,7 @@ pl:
         view_audit_log_description: Pozwala użytkownikom zobaczyć historię działań administracyjnych na serwerze
         view_dashboard: Wyświetl panel
         view_dashboard_description: Pozwala użytkownikom na dostęp do panelu i różnych metryk
+        view_devops: DevOps
         view_devops_description: Pozwala użytkownikom na dostęp do paneli Sidekiq i pgHero
       title: Role
     rules:
@@ -1422,6 +1424,7 @@ pl:
     browser: Przeglądarka
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1435,6 +1438,7 @@ pl:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Obecna sesja
     description: "%{browser} na %{platform}"
@@ -1443,6 +1447,8 @@ pl:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
