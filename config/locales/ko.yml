@@ -24,9 +24,9 @@ ko:
       action: 조치 취하기
       title: '%{acct} 계정에 중재 취하기'
     account_moderation_notes:
-      create: 중재 기록 작성하기
-      created_msg: 중재 기록이 성공적으로 작성되었습니다!
-      destroyed_msg: 중재 기록이 성공적으로 삭제되었습니다!
+      create: 기록 남기기
+      created_msg: 중재용 기록이 성공적으로 작성되었습니다!
+      destroyed_msg: 중재용 기록이 성공적으로 삭제되었습니다!
     accounts:
       add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 승인
@@ -92,7 +92,7 @@ ko:
         silenced: 제한됨
         suspended: 정지 중
         title: 중재
-      moderation_notes: 중재 기록
+      moderation_notes: 중재용 기록
       most_recent_activity: 최근 활동순
       most_recent_ip: 최근 IP
       no_account_selected: 아무 것도 선택 되지 않아 어떤 계정도 변경 되지 않았습니다
@@ -527,8 +527,8 @@ ko:
       status: 상태
       title: 릴레이
     report_notes:
-      created_msg: 리포트 노트가 성공적으로 작성되었습니다!
-      destroyed_msg: 리포트 노트가 성공적으로 삭제되었습니다!
+      created_msg: 신고용 기록이 성공적으로 작성되었습니다!
+      destroyed_msg: 신고용 기록이 성공적으로 삭제되었습니다!
       today_at: 오늘 %{time}
     reports:
       account:
@@ -563,13 +563,13 @@ ko:
       mark_as_unresolved: 미해결로 표시
       no_one_assigned: 아무도 없음
       notes:
-        create: 기록 추가
+        create: 기록을 넣기
         create_and_resolve: 기록을 작성하고 해결됨으로 표시
         create_and_unresolve: 기록 작성과 함께 미해결로 표시
         delete: 삭제
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
-        title: 노트
-      notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 노트를 작성합니다
+        title: 기록
+      notes_description_html: 다른 중재자와 미래의 자신에게 기록을 남깁니다
       quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
       remote_user_placeholder: '%{instance}의 리모트 사용자'
       reopen: 리포트 다시 열기
@@ -696,7 +696,7 @@ ko:
       account: 작성자
       application: 애플리케이션
       back_to_account: 계정으로 돌아가기
-      back_to_report: 신고 페이지로 돌아가기
+      back_to_report: 신고로 돌아가기
       batch:
         remove_from_report: 신고에서 제거
         report: 신고
@@ -1035,7 +1035,7 @@ ko:
   errors:
     '400': 제출한 요청이 올바르지 않습니다.
     '403': 이 페이지를 표시할 권한이 없습니다.
-    '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
+    '404': 찾으려는 페이지가 존재하지 않습니다.
     '406': 이 페이지는 요청한 자료형으로 제공되지 않습니다.
     '410': 당신이 보려는 페이지는 더이상 여기에 존재하지 않습니다.
     '422':
@@ -1059,7 +1059,7 @@ ko:
       request: 아카이브 요청하기
       size: 크기
     blocks: 차단
-    bookmarks: 보관함
+    bookmarks: 책갈피
     csv: CSV
     domain_blocks: 도메인 차단
     lists: 리스트
@@ -1143,7 +1143,7 @@ ko:
     success: 파일이 정상적으로 업로드되었으며, 현재 처리 중입니다
     types:
       blocking: 차단한 계정 목록
-      bookmarks: 보관함
+      bookmarks: 책갈피
       domain_blocking: 도메인 차단 목록
       following: 팔로우 중인 계정 목록
       muting: 뮤트 중인 계정 목록
@@ -1224,7 +1224,7 @@ ko:
   move_handler:
     carry_blocks_over_text: 이 사용자는 당신이 차단한 %{acct}로부터 이주 했습니다.
     carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
-    copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
+    copy_account_note_text: '이 사용자는 %{acct}에서 옮겨왔으며 이전의 기록은 다음과 같습니다:'
   navigation:
     toggle_menu: 토글 메뉴
   notification_mailer:
@@ -1250,7 +1250,7 @@ ko:
       action: 답장
       body: '%{name} 님이 나를 언급했습니다:'
       subject: '%{name} 님이 나를 언급했습니다'
-      title: 새 멘션
+      title: 새 답글
     poll:
       subject: '%{name}의 투표가 종료되었습니다'
     reblog:
@@ -1389,7 +1389,7 @@ ko:
     aliases: 계정 별명
     appearance: 외관
     authorized_apps: 인증된 애플리케이션
-    back: 돌아가기
+    back: 마스토돈으로 돌아가기
     delete: 계정 삭제
     development: 개발
     edit_profile: 프로필 편집
@@ -1426,7 +1426,7 @@ ko:
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
-      direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
+      direct: 언급한 사용자만이 보이는 글은 고정할 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
@@ -1467,8 +1467,8 @@ ko:
     keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
     keep_polls: 투표 유지
     keep_polls_hint: 투표를 삭제하지 않습니다
-    keep_self_bookmark: 북마크된 게시물 유지
-    keep_self_bookmark_hint: 내 스스로 북마크한 본인의 게시물을 삭제하지 않습니다
+    keep_self_bookmark: 책갈피에 넣은 글을 보존하기
+    keep_self_bookmark_hint: 책갈피에 넣은 내 글을 삭제하지 않습니다
     keep_self_fav: 마음에 들어한 게시물 유지
     keep_self_fav_hint: 내 스스로 마음에  들어한 본인의 게시물을 삭제하지 않습니다
     min_age:
@@ -1555,7 +1555,7 @@ ko:
       reason: '사유:'
       statuses: '인용한 글: '
       subject:
-        delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
+        delete_statuses: '%{acct}의 글이 삭제되었습니다'
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         mark_statuses_as_sensitive: '%{acct}로 작성한 당신의 게시물은 민감한 것으로 표시되었습니다'
         none: '%{acct}에게의 경고'
