@@ -3,7 +3,7 @@
 This is a [Helm](https://helm.sh/) chart for installing Mastodon into a
 Kubernetes cluster.  The basic usage is:
 
-```
+```bash
 helm upgrade --install --repo=https://mastodon.github.io/mastodon --namespace=mastodon --create-namespace my-mastodon-release mastodon --values=path/to/my/my-non-default-values.yaml
 ```
 
@@ -102,21 +102,7 @@ And make sure to set `password` to the same value as `postgres-password`
 in your `mastodon-postgresql` secret:
 ```kubectl edit secret mastodon-postgresql```
 
-# Contributing
+# Publishing new versions
 
-We're happy to have changes from the community to help build and improve the Mastodon helm chart.
-All changes should be accompanied by an update to the `charts/mastodon/CHANGELOG.md` file.
-
-## Versioning
-
-When a contributor is ready to deploy a new version of the helm chart, please take the following steps:
-
-1. Update the `charts/mastodon/CHANGELOG.md` file with a new header section with the release number and today's date
-  - Such as `[2.4.0] - 2022-11-14`
-1. Update the version number in `charts/mastodon/Chart.yaml`
-
-After the PR is merged into main, a new release will be created in Github and the chart will be deployed to Github pages.
-
-## Notes
-
-- Any changes to `appVersion` in `Chart.yaml` should also have at least a minor version increase to the helm chart `version`.
+The `.github/workflows/publish-helm-chart.yaml` action will run on all pushes to `main`.
+When the `Chart.yaml` has an update to the `version` a new release will be published in Github called `mastodon-X.Y.Z` and the `index.yaml` file will be updated in the `gh-pages` branch.
