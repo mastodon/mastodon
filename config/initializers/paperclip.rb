@@ -125,6 +125,8 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
     },
+    
+    fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
 
     fog_directory: ENV['SWIFT_CONTAINER'],
     fog_host: ENV['SWIFT_OBJECT_URL'],

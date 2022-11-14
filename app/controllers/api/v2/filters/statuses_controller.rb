@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Api::V1::Filters::StatusesController < Api::BaseController
+class Api::V2::Filters::StatusesController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: [:index, :show]
   before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: [:index, :show]
   before_action :require_user!
