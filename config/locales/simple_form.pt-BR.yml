@@ -88,6 +88,10 @@ pt-BR:
         site_terms: Use a sua própria política de privacidade ou deixe em branco para usar o padrão. Pode ser estruturado com o formato Markdown.
         site_title: Como as pessoas podem se referir ao seu servidor além do nome do domínio.
         theme: Tema que visitantes e novos usuários veem.
+        thumbnail: Uma imagem de aproximadamente 2:1 exibida ao lado da informação de sua instância.
+        timeline_preview: Visitantes conseguirão navegar pelas postagens públicas mais recentes disponíveis na instância.
+        trendable_by_default: Pular a revisão manual do conteúdo em tendência. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
+        trends: Tendências mostram quais publicações, hashtags e notícias estão ganhando destaque na sua instância.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
@@ -100,7 +104,8 @@ pt-BR:
         ip: Digite um endereço IPv4 ou IPv6. Você pode bloquear intervalos inteiros usando a sintaxe CIDR. Tenha cuidado para não bloquear a si mesmo!
         severities:
           no_access: Bloquear o acesso a todos os recursos
-          sign_up_requires_approval: Novos registros exigirão sua aprovação
+          sign_up_block: Não serão possíveis novas inscrições
+          sign_up_requires_approval: Novas inscrições exigirão sua aprovação
         severity: Escolha o que acontecerá com as solicitações deste IP
       rule:
         text: Descreva uma regra ou requisito para os usuários neste servidor. Tente mantê-la curta e simples.
@@ -111,6 +116,13 @@ pt-BR:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
       user:
         chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
+        role: A função controla que permissões o usuário tem
+      user_role:
+        color: Cor a ser usada para a função em toda a interface do usuário, como RGB no formato hexadecimal
+        highlighted: Isso torna a função publicamente visível
+        name: Nome público da função, se a função é definida para ser exibida como um distintivo
+        permissions_as_keys: Usuários com essa função terão acesso a...
+        position: Uma função superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas em funções com menor prioridade
       webhook:
         events: Selecione eventos para enviar
         url: Aonde os eventos serão enviados
