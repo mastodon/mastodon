@@ -6,24 +6,24 @@ example.com {
 		file_server
 	}
 
-    reverse_proxy /api/v1/streaming* :4000
+	reverse_proxy /api/v1/streaming* :4000
 
-    reverse_proxy :3000
+	reverse_proxy :3000
 
 	encode gzip
 
 	@mastodonfiles {
 		path /sw.js */assets/* */avatars/* */emoji/* */headers/* */packs/* */shortcuts/* */sounds/* */system/*
 	}
-    
+
 	header @mastodonfiles {
 		Cache-Control "public, max-age=2419200, must-revalidate"
 		Strict-Transport-Security "max-age=63072000; includeSubDomains"
 	}
 
-    header /api/v1/streaming* {
-        Strict-Transport-Security "max-age=63072000; includeSubDomains"
-    }
+	header /api/v1/streaming* {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains"
+	}
 
 	handle_errors {
 		rewrite 500.html
