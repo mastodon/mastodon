@@ -542,8 +542,22 @@
       delete: Slett
       edit: Rediger rollen '%{name}'
       everyone: Standard-tillatelser
+      everyone_full_description_html: Dette er <strong>basis-rollen</strong> som påvirker <strong>alle brukere</strong>, selv de uten en tilordnet rolle. Alle andre roller arver tillatelser fra den.
+      permissions_count:
+        one: "%{count} tillatelse"
+        other: "%{count} tillatelser"
       privileges:
+        administrator: Administrator
+        administrator_description: Brukere med denne tillatelsen omgår enhver tillatelse
+        delete_user_data: Slett brukerdata
+        delete_user_data_description: Lar brukere slette andre brukeres data uten forsinkelse
+        invite_users: Invitere brukere
+        invite_users_description: Lar brukere invitere nye personer til serveren
+        manage_invites_description: Lar brukere bla gjennom og deaktivere invitasjonslenker
+        view_dashboard: Vis dashbord
+        view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
         view_devops: DevOps
+        view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
     rules:
       add_new: Legg til et filter
       delete: Slett
@@ -552,6 +566,8 @@
       empty: Ingen serverregler har blitt definert ennå.
       title: Server regler
     settings:
+      discovery:
+        trends: Trender
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -561,16 +577,27 @@
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melde seg inn
           open: Hvem som helst kan melde seg inn
+      title: Serverinnstillinger
     site_uploads:
       delete: Slett den opplastede filen
       destroyed_msg: Vellykket sletting av sideopplasting!
     statuses:
+      account: Forfatter
+      application: Applikasjon
       back_to_account: Tilbake til kontosiden
+      batch:
+        remove_from_report: Fjern fra rapport
       deleted: Slettet
+      history: Versjonshistorikk
+      language: Språk
       media:
         title: Media
+      metadata: Metadata
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
+      original_status: Opprinnelig innlegg
+      status_changed: Innlegg endret
       title: Kontostatuser
+      visibility: Synlighet
       with_media: Med media
     strikes:
       actions:
@@ -586,15 +613,43 @@
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      elasticsearch_running_check:
+        message_html: Kunne ikke koble til Elasticsearch. Kontroller at den kjører, eller deaktiver fulltekstsøk
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-versjon: %{value}'
+        version_comparison: Elasticsearch %{running_version} kjører mens %{required_version} er påkrevd
       rules_check:
         action: Behandle serverregler
         message_html: Du har ikke definert noen serverregler.
+      sidekiq_process_check:
+        message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
     tags:
       review: Gjennomgangsstatus
     title: Administrasjon
+    trends:
+      allow: Tillat
+      approved: Godkjent
+      disallow: Ikke tillat
+      links:
+        allow: Tillat lenke
+        disallow: Ikke tillat lenke
+        no_link_selected: Ingen lenker ble endret da ingen var valgt
+        shared_by_over_week:
+          one: Delt av %{count} person i løpet av den siste uken
+          other: Delt av %{count} personer i løpet av den siste uken
+        usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      pending_review: Avventer gjennomgang
+      rejected: Avvist
+      statuses:
+        allow: Tillat innlegg
+        allow_account: Tillat forfatter
+        disallow: Ikke tillat innlegg
     warning_presets:
       add_new: Legg til ny
       delete: Slett
+      title: Endre forhåndsinnstillinger for advarsler
+    webhooks:
+      add_new: Legg til endepunkt
   admin_mailer:
     new_appeal:
       actions:
