@@ -535,8 +535,11 @@
   &__tabs {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     padding: 7px 10px;
     margin-top: -55px;
+    gap: 8px;
+    overflow: hidden;
 
     &__buttons {
       display: flex;
@@ -544,6 +547,15 @@
       gap: 8px;
       padding-top: 55px;
       overflow: hidden;
+
+      .button {
+        flex-shrink: 1;
+        white-space: nowrap;
+
+        @media screen and (max-width: $no-gap-breakpoint) {
+          min-width: 0;
+        }
+      }
 
       .icon-button {
         border: 1px solid lighten($ui-base-color, 12%);
