@@ -124,7 +124,7 @@ en_GB:
         active: Active
         all: All
         pending: Pending
-        silenced: Limited
+        silenced: Silenced
         suspended: Suspended
         title: Moderation
       moderation_notes: Moderation notes
@@ -160,8 +160,8 @@ en_GB:
       show:
         created_reports: Made reports
         targeted_reports: Reported by others
-      silence: Limit
-      silenced: Limited
+      silence: Silence
+      silenced: Silenced
       statuses: Statuses
       subscribe: Subscribe
       suspended: Suspended
@@ -262,9 +262,9 @@ en_GB:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
-          desc_html: "<strong>Limit</strong> will make the posts from accounts at this domain invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all content, media, and profile data from your server for any accounts at this domain. Use <strong>None</strong> if you just want to reject media files."
+          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
           noop: None
-          silence: Limit
+          silence: Silence
           suspend: Suspend
         title: New domain block
       reject_media: Reject media files
