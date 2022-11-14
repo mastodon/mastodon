@@ -1,1 +1,29 @@
 ms:
+  devise:
+    confirmations:
+      confirmed: Alamat e-mel anda telah berjaya disahkan.
+      send_instructions: Anda akan menerima e-mel dengan arahan untuk mengesahkan alamat e-mel anda dalam beberapa minit lagi. Sila semak folder spam anda jika tidak menerima e-mel ini.
+      send_paranoid_instructions: Jika e-mel anda wujud dalam database kami, anda akan menerima e-mel dengan arahan untuk mengesahkan alamat e-mel anda dalam beberapa minit lagi. Sila semak folder spam anda jika tidak menerima e-mel ini.
+    failure:
+      already_authenticated: Anda sudah daftar masuk.
+      inactive: Akaun anda belum diaktifkan.
+      invalid: '%{authentication_keys} atau kata laluan tidak sah.'
+    mailer:
+      confirmation_instructions:
+        action: Sahkan alamat e-mel
+        explanation: Anda telah mencipta akaun pada %{host} dengan alamat e-mel ini. Anda satu klik sahaja daripada mengaktifkannya. Jika anda tidak mencipta akaun tersebut, sila abaikan e-mel ini.
+        title: Sahkan alamat e-mel
+      email_changed:
+        explanation: 'Alamat e-mel untuk akaun anda sedang diubah kepada:'
+        subject: 'Mastodon: E-mel ditukar'
+        title: Alamat e-mel baru
+      password_change:
+        explanation: Kata laluan untuk akaun anda telah ditukar.
+        subject: 'Mastodon: Kata laluan diubah'
+        title: Kata laluan ditukar
+      reconfirmation_instructions:
+        title: Sahkan alamat e-mel
+      reset_password_instructions:
+        action: Tukar kata laluan
+        explanation: Anda meminta kata laluan baru untuk akaun anda.
+        title: Set semula kata laluan
