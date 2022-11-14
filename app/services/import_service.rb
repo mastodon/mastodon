@@ -136,7 +136,7 @@ class ImportService < BaseService
   end
 
   def import_data
-    Paperclip.io_adapters.for(@import.data).read
+    Paperclip.io_adapters.for(@import.data).read.force_encoding(Encoding::UTF_8)
   end
 
   def relations_map_for_account(account, account_ids)

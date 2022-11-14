@@ -1,7 +1,7 @@
 - content_for :page_title do
   = t('.title')
 
-= simple_form_for @announcement, url: admin_announcement_path(@announcement) do |f|
+= simple_form_for @announcement, url: admin_announcement_path(@announcement), html: { novalidate: false } do |f|
   = render 'shared/error_messages', object: @announcement
 
   .fields-group

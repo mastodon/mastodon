@@ -608,7 +608,7 @@ fi:
         other: "%{count} käyttäjää"
       categories:
         administration: Ylläpito
-        devops: Operaattorit
+        devops: DevOps
         invites: Kutsut
         moderation: Moderointi
         special: Erikois
@@ -659,7 +659,7 @@ fi:
         view_audit_log_description: Sallii käyttäjien nähdä palvelimen hallinnollisten toimien historian
         view_dashboard: Näytä koontinäyttö
         view_dashboard_description: Sallii käyttäjien käyttää kojelautaa ja erilaisia mittareita
-        view_devops: Operaattorit
+        view_devops: DevOps
         view_devops_description: Sallii käyttäjille oikeuden käyttää Sidekiq ja pgHero dashboardeja
       title: Roolit
     rules:
@@ -1065,7 +1065,7 @@ fi:
       content: Valitettavasti jokin meni pieleen meidän päässämme.
       title: Sivu ei ole oikein
     '503': Sivua ei voitu näyttää palvelimen väliaikaisen vian vuoksi.
-    noscript_html: Mastodon-selainsovelluksen käyttöön vaaditaan JavaScript. Voit vaihtoehtoisesti kokeilla jotakin omalle käyttöjärjestelmällesi tehtyä Mastodon<a href="%{apps_path}">sovellusta</a>.
+    noscript_html: Käyttääksesi Mastodon-verkkopalvelua, ota JavaScript käyttöön. Vaihtoehtoisesti voit kokeilla myös jotakin juuri käyttämällesi alustalle kehitettyä Mastodon-<a href="%{apps_path}">sovellusta</a>.
   existing_username_validator:
     not_found: paikallista käyttäjää ei löydy kyseisellä käyttäjänimellä
     not_found_multiple: "%{usernames} ei löytynyt"
@@ -1373,7 +1373,7 @@ fi:
     browser: Selain
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1387,22 +1387,22 @@ fi:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Nykyinen istunto
-    description: "%{browser}, %{platform}"
+    description: "%{browser} alustalla %{platform}"
     explanation: Nämä verkkoselaimet ovat tällä hetkellä kirjautuneet Mastodon-tilillesi.
     ip: IP-osoite
     platforms:
-      adobe_air: Adobe Air
+      adobe_air: Adobe AIR
       android: Android
-      blackberry: Blackberry
-      chrome_os: Chrome OS
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
       mac: macOS
-      other: tuntematon järjestelmä
+      other: tuntematon alusta
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
