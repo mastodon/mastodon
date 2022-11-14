@@ -1,0 +1,427 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths: {}
+security:
+  - bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    CustomEmoji:
+      type: object
+      properties:
+        shortcode:
+          type: string
+        url:
+          type: string
+        static_url:
+          type: string
+          nullable: true
+        visible_in_picker:
+          type: boolean
+          nullable: true
+        category:
+          type: string
+          nullable: true
+    AccountField:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        verified_at:
+          type: string
+      required:
+        - name
+        - value
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+          example: '10999'
+        username:
+          type: string
+        acct:
+          type: string
+          example: bob@example.com
+        display_name:
+          type: string
+        locked:
+          type: boolean
+          nullable: true
+        bot:
+          type: boolean
+        discoverable:
+          type: boolean
+        group:
+          type: boolean
+          nullable: true
+        created_at:
+          type: string
+          format: datetime
+          example: '2022-11-13T21:24:59.474Z'
+        note:
+          type: string
+        url:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+        avatar_static:
+          type: string
+        header:
+          type: string
+        header_static:
+          type: string
+        followers_count:
+          type: integer
+        following_count:
+          type: integer
+        statuses_count:
+          type: integer
+        last_status_at:
+          type: string
+          format: date
+          example: '2022-11-13'
+          nullable: true
+        moved:
+          $ref: '#/components/schemas/Account'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountField'
+        suspended:
+          type: boolean
+        silenced:
+          type: boolean
+        noindex:
+          type: boolean
+      required:
+        - id
+        - username
+    MediaAttachment:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+          example: '10999'
+        type:
+          type: string
+          enum:
+            - image
+            - gifv
+            - video
+            - unknown
+            - audio
+        url:
+          type: string
+          nullable: true
+        preview_url:
+          type: string
+          nullable: true
+        remote_url:
+          type: string
+          nullable: true
+        preview_remote_url:
+          type: string
+          nullable: true
+        text_url:
+          type: string
+          nullable: true
+        meta:
+          type: string
+        description:
+          type: string
+        blurhash:
+          type: string
+      required:
+        - id
+        - type
+    Mention:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+          example: '10999'
+        username:
+          type: string
+        url:
+          type: string
+          nullable: true
+        acct:
+          type: string
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        following:
+          type: boolean
+          nullable: true
+        history:
+          type: array
+          nullable: true
+          items:
+            type: object
+    PollVote:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+          example: '10999'
+        type:
+          type: string
+        actor:
+          type: string
+        to:
+          type: string
+        object:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+            name:
+              type: string
+            attributed_to:
+              type: string
+            in_reply_to:
+              type: string
+            to:
+              type: string
+    Poll:
+      type: object
+      properties:
+        id:
+          type: string
+        expires_at:
+          type: string
+          format: datetime
+        expired:
+          type: boolean
+        multiple:
+          type: string
+        votes_count:
+          type: string
+        voters_count:
+          type: integer
+        voted:
+          type: boolean
+          nullable: true
+        own_votes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PollVote'    
+        emojis:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomEmoji'
+        options:
+          type: object
+          properties:
+            title:
+              type: string
+            votes_count:
+              type: integer
+      required:
+        - id
+    PreviewCard:
+      type: object
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+            - link
+            - photo
+            - video
+            - rich
+        author_name:
+          type: string
+        author_url:
+          type: string
+        provider_name:
+          type: string
+        provider_url:
+          type: string
+        html:
+          type: string
+        width:
+          type: string
+        height:
+          type: string
+        image:
+          type: string
+          nullable: true
+        embed_url:
+          type: string
+        blurhash:
+          type: string
+          nullable: true
+    Status:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+          example: '10999'
+        in_reply_to_id:
+          type: string
+          pattern: '[0-9]+'
+          example: '10999'
+          nullable: true
+        in_reply_to_account_id:
+          type: string
+          pattern: '[0-9]+'
+          example: '10999'
+          nullable: true
+        created_at:
+          type: string
+          format: datetime
+          example: '2022-11-13T21:24:59.474Z'
+        edited_at:
+          type: string
+          format: datetime
+          example: '2022-11-13T21:24:59.474Z'
+          nullable: true
+        sensitive:
+          type: boolean
+        spoiler_text:
+          type: string
+        visibility:
+          type: string
+          enum:
+            - public
+            - unlisted
+            - private
+            - direct
+            - limited
+        language:
+          type: string
+          nullable: true
+        uri:
+          type: string
+          example: 3140471290b4d12608d949fc6550017a0a0d236f6a93d4b36006c69a6a09e7ca
+        url:
+          type: string
+          nullable: true
+        text:
+          type: string
+        content:
+          type: string
+        
+        replies_count:
+          type: integer
+        reblogs_count:
+          type: integer
+        favourites_count:
+          type: integer
+        favourited:
+          type: boolean
+        reblogged:
+          type: boolean
+        muted:
+          type: boolean
+        bookmarked:
+          type: boolean
+        pinned:
+          type: boolean
+
+        reblog:
+          $ref: '#/components/schemas/Status'
+          nullable: true
+        account:
+          $ref: '#/components/schemas/Account'
+        media_attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/MediaAttachment'
+        mentions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mention'
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        emojis:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomEmoji'
+        application:
+          type: object
+          nullable: true
+          properties:
+            name:
+              type: string
+            website:
+              type: string
+        poll:
+          nullable: true
+          $ref: '#/components/schemas/Poll'
+        card:
+          nullable: true
+          $ref: '#/components/schemas/PreviewCard'
+
+      required:
+        - id
+        - created_at
+        - media_attachments
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+          example: '1'
+        action_taken:
+          type: boolean
+        action_taken_at:
+          type: string
+          format: datetime
+          nullable: true
+        category:
+          type: string
+          enum:
+            - other
+            - spam
+            - violation
+        comment:
+          type: string
+        forwarded:
+          type: boolean
+        created_at:
+          type: string
+          format: datetime
+        status_ids:
+          type: array
+          items:
+            type: string
+            pattern: '[0-9]+'
+        rule_ids:
+          type: array
+          nullable: true
+          items:
+            type: string
+            pattern: '[0-9]+'
+        target_account:
+          $ref: '#/components/schemas/Account'
