@@ -1,10 +1,10 @@
 ---
 pl:
   about:
-    about_mastodon_html: Mastodon jest wolną i otwartą siecią społecznościową, zdecentralizowaną alternatywą dla zamkniętych, komercyjnych platform.
+    about_mastodon_html: 'Sieć społecznościowa przyszłości: Bez reklam, bez inwigilacji, zaprojektowana etycznie i zdecentralizowanie! Władaj swoimi danymi z Mastodonem!'
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
-    hosted_on: Mastodon uruchomiony na %{domain}
+    hosted_on: Mastodon hostowany na %{domain}
     title: O nas
   accounts:
     follow: Obserwuj
@@ -63,7 +63,7 @@ pl:
       destroyed_msg: Dane %{username} są teraz w kolejce do natychmiastowego usunięcia
       disable: Dezaktywuj
       disable_sign_in_token_auth: Wyłącz uwierzytelnianie tokenu e-mail
-      disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuetapowe
+      disable_two_factor_authentication: Wyłącz uwierzytelnianie dwuskładnikowe
       disabled: Dezaktywowano
       display_name: Wyświetlana nazwa
       domain: Domena
@@ -81,7 +81,7 @@ pl:
       invite_request_text: Powody rejestracji
       invited_by: Zaproszony(-a) przez
       ip: Adres IP
-      joined: Dołączył(-a)
+      joined: Dołączono
       location:
         all: Wszystkie
         local: Lokalne
@@ -135,13 +135,13 @@ pl:
       resubscribe: Ponów subskrypcję
       role: Rola
       search: Szukaj
-      search_same_email_domain: Inni użytkownicy z e-mail w tej domenie
+      search_same_email_domain: Inni użytkownicy z tym samym e-mail w tej domenie
       search_same_ip: Inni użytkownicy z tym samym IP
       security_measures:
         only_password: Tylko hasło
         password_and_2fa: Hasło i 2FA
       sensitive: Wrażliwe
-      sensitized: oznaczono jako wrażliwe
+      sensitized: Oznaczono jako wrażliwe
       shared_inbox_url: Adres udostępnianej skrzynki
       show:
         created_reports: Zgłoszenia tego użytkownika
@@ -259,7 +259,7 @@ pl:
         destroy_status_html: "%{name} usunął(-ęła) wpis użytkownika %{target}"
         destroy_unavailable_domain_html: "%{name} wznowił(a) doręczanie do domeny %{target}"
         destroy_user_role_html: "%{name} usunął rolę %{target}"
-        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwustopniowe użytkownikowi %{target}"
+        disable_2fa_user_html: "%{name} wyłączył(a) uwierzytelnianie dwuskładnikowe użytkownikowi %{target}"
         disable_custom_emoji_html: "%{name} wyłączył(a) emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} wyłączył/a uwierzytelnianie tokenem e-mail dla %{target}"
         disable_user_html: "%{name} zablokował(a) możliwość logowania użytkownikowi %{target}"
@@ -687,7 +687,7 @@ pl:
         view_audit_log_description: Pozwala użytkownikom zobaczyć historię działań administracyjnych na serwerze
         view_dashboard: Wyświetl panel
         view_dashboard_description: Pozwala użytkownikom na dostęp do panelu i różnych metryk
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Pozwala użytkownikom na dostęp do paneli Sidekiq i pgHero
       title: Role
     rules:
@@ -1425,7 +1425,7 @@ pl:
     browser: Przeglądarka
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1439,7 +1439,7 @@ pl:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Obecna sesja
     description: "%{browser} na %{platform}"
@@ -1448,7 +1448,7 @@ pl:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
@@ -1609,7 +1609,7 @@ pl:
     enabled_success: Pomyślnie aktywowano uwierzytelnianie dwuetapowe
     generate_recovery_codes: Generuj kody zapasowe
     lost_recovery_codes: Kody zapasowe pozwolą uzyskać dostęp do portalu, jeżeli utracisz dostęp do telefonu. Jeżeli utracisz dostęp do nich, możesz wygenerować je ponownie tutaj. Poprzednie zostaną unieważnione.
-    methods: Metody uwierzytelniania dwuetapowego
+    methods: Metody uwierzytelniania dwuskładnikowego
     otp: Aplikacja uwierzytelniająca
     recovery_codes: Przywróć kody zapasowe
     recovery_codes_regenerated: Pomyślnie wygenerowano ponownie kody zapasowe
@@ -1682,7 +1682,7 @@ pl:
     invalid_otp_token: Kod uwierzytelniający jest niepoprawny
     otp_lost_help_html: Jeżeli utracisz dostęp do obu, możesz skontaktować się z %{email}
     seamless_external_login: Zalogowano z użyciem zewnętrznej usługi, więc ustawienia hasła i adresu e-mail nie są dostępne.
-    signed_in_as: 'Zalogowany jako:'
+    signed_in_as: 'Zalogowano jako:'
   verification:
     explanation_html: 'Możesz <strong>zweryfikować siebie jako właściciela stron, do których odnośniki znajdują się w metadanych</strong>. Aby to zrobić, strona musi zawierać odnośnik do Twojego profilu na Mastodonie. Odnośnik <strong>musi</strong> zawierać atrybut <code>rel="me"</code>. Jego zawartość nie ma znaczenia. Przykład:'
     verification: Weryfikacja
