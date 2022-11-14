@@ -8,6 +8,9 @@ ms:
       already_authenticated: Anda sudah daftar masuk.
       inactive: Akaun anda belum diaktifkan.
       invalid: '%{authentication_keys} atau kata laluan tidak sah.'
+      pending: Akaun anda masih dalam semakan.
+      unauthenticated: Anda perlu daftar masuk atau mendaftar sebelum meneruskan.
+      unconfirmed: Anda perlu menyesahkan alamat e-mel anda sebelum meneruskan.
     mailer:
       confirmation_instructions:
         action: Sahkan alamat e-mel
@@ -22,8 +25,28 @@ ms:
         subject: 'Mastodon: Kata laluan diubah'
         title: Kata laluan ditukar
       reconfirmation_instructions:
+        explanation: Sahkan alamat baru untuk menukarkan e-mel anda.
         title: Sahkan alamat e-mel
       reset_password_instructions:
         action: Tukar kata laluan
         explanation: Anda meminta kata laluan baru untuk akaun anda.
         title: Set semula kata laluan
+      two_factor_disabled:
+        title: 2FA dinyahaktifkan
+      two_factor_enabled:
+        title: 2FA diaktifkan
+    passwords:
+      updated: Kata laluan anda telah berjaya ditukar. Anda telah didaftar masuk.
+      updated_not_active: Kata laluan anda telah berjaya ditukar.
+    registrations:
+      destroyed: Selamat tinggal! Akaun anda telah berjaya dibatalkan. Kami harap berjumpa lagi.
+      signed_up: Selamat datang! Anda telah berjaya mendaftar.
+      signed_up_but_inactive: Anda telah berjaya mendaftar. Namun, kami tidak dapat mendaftar masuk anda kerana akaun anda belum diaktifkan.
+    sessions:
+      already_signed_out: Daftar keluar berjaya.
+      signed_in: Daftar masuk berjaya.
+      signed_out: Daftar keluar berjaya.
+  errors:
+    messages:
+      already_confirmed: sudah disahkan, sila cuba mendaftar masuk
+      not_found: tidak dijumpai
