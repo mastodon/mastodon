@@ -5884,6 +5884,31 @@ a.status-card.compact:hover {
   }
 }
 
+/*
+  TODO:
+  This is probably not the right place for this
+  Maybe a mixin that goes in the appropriate sections
+*/
+.media-gallery__item-thumbnail img:not([alt]),
+.audio-player__canvas:not([title]),
+.video-player video:not([title]),
+.media-gallery__gifv video:not([title]) {
+  border: medium dashed red;
+  box-sizing: border-box;
+}
+
+.media-gallery__item-thumbnail:has(img:not([alt]))::after {
+    content: "No image description";
+    background: maroon;
+    color: mistyrose;
+    display: inline-block;
+    padding: 0.1rem 0.4rem;
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-end: 0;
+}
+/* end AX css */
+  
 .media-gallery__item-thumbnail {
   cursor: zoom-in;
   display: block;
@@ -5897,6 +5922,8 @@ a.status-card.compact:hover {
     height: 100%;
     width: 100%;
   }
+  
+  
 
   img {
     object-fit: cover;
