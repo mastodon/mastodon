@@ -1,0 +1,44 @@
+# frozen_string_literal: true
+require 'swagger_helper'
+
+RSpec.describe Api::V1::Statuses::FavouritesController, type: :request do
+  path '/api/v1/statuses/{status_id}/favourite' do
+    # You'll want to customize the parameter types...
+    parameter name: 'status_id', in: :path, type: :string, description: 'status_id'
+
+    post('create favourite') do
+      tags 'Api', 'V1', 'Statuses', 'Favourites'
+      operationId 'v1StatusesFavouritesCreateFavourite'
+      rswag_bearer_auth
+
+      include_context 'user token auth'
+
+      response(200, 'successful') do
+        let(:status_id) { '123' }
+
+        rswag_add_examples!
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/statuses/{status_id}/unfavourite' do
+    # You'll want to customize the parameter types...
+    parameter name: 'status_id', in: :path, type: :string, description: 'status_id'
+
+    post('delete favourite') do
+      tags 'Api', 'V1', 'Statuses', 'Favourites'
+      operationId 'v1StatusesFavouritesDeleteFavourite'
+      rswag_bearer_auth
+
+      include_context 'user token auth'
+
+      response(200, 'successful') do
+        let(:status_id) { '123' }
+
+        rswag_add_examples!
+        run_test!
+      end
+    end
+  end
+end

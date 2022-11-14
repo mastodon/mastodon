@@ -1,0 +1,6538 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
+security:
+- bearerAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    CustomEmoji:
+      type: object
+      properties:
+        shortcode:
+          type: string
+        url:
+          type: string
+        static_url:
+          type: string
+          nullable: true
+        visible_in_picker:
+          type: boolean
+          nullable: true
+        category:
+          type: string
+          nullable: true
+    AccountField:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        verified_at:
+          type: string
+      required:
+      - name
+      - value
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+          example: '10999'
+        username:
+          type: string
+        acct:
+          type: string
+          example: bob@example.com
+        display_name:
+          type: string
+        locked:
+          type: boolean
+          nullable: true
+        bot:
+          type: boolean
+        discoverable:
+          type: boolean
+        group:
+          type: boolean
+          nullable: true
+        created_at:
+          type: string
+          format: datetime
+          example: '2022-11-13T21:24:59.474Z'
+        note:
+          type: string
+        url:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+        avatar_static:
+          type: string
+        header:
+          type: string
+        header_static:
+          type: string
+        followers_count:
+          type: integer
+        following_count:
+          type: integer
+        statuses_count:
+          type: integer
+        last_status_at:
+          type: string
+          format: date
+          example: '2022-11-13'
+          nullable: true
+        moved:
+          "$ref": "#/components/schemas/Account"
+        fields:
+          type: array
+          items:
+            "$ref": "#/components/schemas/AccountField"
+        suspended:
+          type: boolean
+        silenced:
+          type: boolean
+        noindex:
+          type: boolean
+      required:
+      - id
+      - username
+    MediaAttachment:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+          example: '10999'
+        type:
+          type: string
+          enum:
+          - image
+          - gifv
+          - video
+          - unknown
+          - audio
+        url:
+          type: string
+          nullable: true
+        preview_url:
+          type: string
+          nullable: true
+        remote_url:
+          type: string
+          nullable: true
+        preview_remote_url:
+          type: string
+          nullable: true
+        text_url:
+          type: string
+          nullable: true
+        meta:
+          type: string
+        description:
+          type: string
+        blurhash:
+          type: string
+      required:
+      - id
+      - type
+    Mention:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+          example: '10999'
+        username:
+          type: string
+        url:
+          type: string
+          nullable: true
+        acct:
+          type: string
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        following:
+          type: boolean
+          nullable: true
+        history:
+          type: array
+          nullable: true
+          items:
+            type: object
+    PollVote:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+          example: '10999'
+        type:
+          type: string
+        actor:
+          type: string
+        to:
+          type: string
+        object:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+            name:
+              type: string
+            attributed_to:
+              type: string
+            in_reply_to:
+              type: string
+            to:
+              type: string
+    Poll:
+      type: object
+      properties:
+        id:
+          type: string
+        expires_at:
+          type: string
+          format: datetime
+        expired:
+          type: boolean
+        multiple:
+          type: string
+        votes_count:
+          type: string
+        voters_count:
+          type: integer
+        voted:
+          type: boolean
+          nullable: true
+        own_votes:
+          type: array
+          items:
+            "$ref": "#/components/schemas/PollVote"
+        emojis:
+          type: array
+          items:
+            "$ref": "#/components/schemas/CustomEmoji"
+        options:
+          type: object
+          properties:
+            title:
+              type: string
+            votes_count:
+              type: integer
+      required:
+      - id
+    PreviewCard:
+      type: object
+      properties:
+        url:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum:
+          - link
+          - photo
+          - video
+          - rich
+        author_name:
+          type: string
+        author_url:
+          type: string
+        provider_name:
+          type: string
+        provider_url:
+          type: string
+        html:
+          type: string
+        width:
+          type: string
+        height:
+          type: string
+        image:
+          type: string
+          nullable: true
+        embed_url:
+          type: string
+        blurhash:
+          type: string
+          nullable: true
+    Status:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+          example: '10999'
+        in_reply_to_id:
+          type: string
+          pattern: "[0-9]+"
+          example: '10999'
+          nullable: true
+        in_reply_to_account_id:
+          type: string
+          pattern: "[0-9]+"
+          example: '10999'
+          nullable: true
+        created_at:
+          type: string
+          format: datetime
+          example: '2022-11-13T21:24:59.474Z'
+        edited_at:
+          type: string
+          format: datetime
+          example: '2022-11-13T21:24:59.474Z'
+          nullable: true
+        sensitive:
+          type: boolean
+        spoiler_text:
+          type: string
+        visibility:
+          type: string
+          enum:
+          - public
+          - unlisted
+          - private
+          - direct
+          - limited
+        language:
+          type: string
+          nullable: true
+        uri:
+          type: string
+          example: 3140471290b4d12608d949fc6550017a0a0d236f6a93d4b36006c69a6a09e7ca
+        url:
+          type: string
+          nullable: true
+        text:
+          type: string
+        content:
+          type: string
+        replies_count:
+          type: integer
+        reblogs_count:
+          type: integer
+        favourites_count:
+          type: integer
+        favourited:
+          type: boolean
+        reblogged:
+          type: boolean
+        muted:
+          type: boolean
+        bookmarked:
+          type: boolean
+        pinned:
+          type: boolean
+        reblog:
+          "$ref": "#/components/schemas/Status"
+          nullable: true
+        account:
+          "$ref": "#/components/schemas/Account"
+        media_attachments:
+          type: array
+          items:
+            "$ref": "#/components/schemas/MediaAttachment"
+        mentions:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Mention"
+        tags:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Tag"
+        emojis:
+          type: array
+          items:
+            "$ref": "#/components/schemas/CustomEmoji"
+        application:
+          type: object
+          nullable: true
+          properties:
+            name:
+              type: string
+            website:
+              type: string
+        poll:
+          nullable: true
+          "$ref": "#/components/schemas/Poll"
+        card:
+          nullable: true
+          "$ref": "#/components/schemas/PreviewCard"
+      required:
+      - id
+      - created_at
+      - media_attachments
+    Report:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+          example: '1'
+        action_taken:
+          type: boolean
+        action_taken_at:
+          type: string
+          format: datetime
+          nullable: true
+        category:
+          type: string
+          enum:
+          - other
+          - spam
+          - violation
+        comment:
+          type: string
+        forwarded:
+          type: boolean
+        created_at:
+          type: string
+          format: datetime
+        status_ids:
+          type: array
+          items:
+            type: string
+            pattern: "[0-9]+"
+        rule_ids:
+          type: array
+          nullable: true
+          items:
+            type: string
+            pattern: "[0-9]+"
+        target_account:
+          "$ref": "#/components/schemas/Account"
+paths:
+  "/api/v1/accounts/verify_credentials":
+    get:
+      summary: show credential
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Credentials
+      operationId: v1AccountsCredentialsShowCredential
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    id: '109342921025365875'
+                    username: daniel0
+                    acct: daniel0
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-14T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@daniel0
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    source:
+                      privacy: public
+                      sensitive: false
+                      language:
+                      note: ''
+                      fields: []
+                      follow_requests_count: 0
+                    emojis: []
+                    fields: []
+                    role:
+                      id: "-99"
+                      name: ''
+                      permissions: '65536'
+                      color: ''
+                      highlighted: false
+  "/api/v1/accounts/update_credentials":
+    patch:
+      summary: update credential
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Credentials
+      operationId: v1AccountsCredentialsUpdateCredential
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    id: '109342921029923155'
+                    username: giuseppe1
+                    acct: giuseppe1
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-14T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@giuseppe1
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    source:
+                      privacy: public
+                      sensitive: false
+                      language:
+                      note: ''
+                      fields: []
+                      follow_requests_count: 0
+                    emojis: []
+                    fields: []
+                    role:
+                      id: "-99"
+                      name: ''
+                      permissions: '65536'
+                      color: ''
+                      highlighted: false
+  "/api/v1/accounts/familiar_followers":
+    get:
+      summary: list familiar_followers
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - FamiliarFollowers
+      operationId: v1AccountsFamiliarfollowersListFamiliarFollower
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/accounts/{account_id}/featured_tags":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list featured_tags
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - FeaturedTags
+      operationId: v1AccountsFeaturedtagsListFeaturedTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{account_id}/followers":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list follower_accounts
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - FollowerAccounts
+      operationId: v1AccountsFolloweraccountsListFollowerAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{account_id}/following":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list following_accounts
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - FollowingAccounts
+      operationId: v1AccountsFollowingaccountsListFollowingAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{account_id}/identity_proofs":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list identity_proofs
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - IdentityProofs
+      operationId: v1AccountsIdentityproofsListIdentityProof
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{account_id}/lists":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list lists
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Lists
+      operationId: v1AccountsListsListList
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/lookup":
+    get:
+      summary: show lookup
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Lookup
+      operationId: v1AccountsLookupShowLookup
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{account_id}/note":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create note
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Notes
+      operationId: v1AccountsNotesCreateNote
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{account_id}/pin":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create pin
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Pins
+      operationId: v1AccountsPinsCreatePin
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{account_id}/unpin":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: delete pin
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Pins
+      operationId: v1AccountsPinsDeletePin
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/relationships":
+    get:
+      summary: list relationships
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Relationships
+      operationId: v1AccountsRelationshipsListRelationship
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/accounts/search":
+    get:
+      summary: show search
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Search
+      operationId: v1AccountsSearchShowSearch
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              example: []
+  "/api/v1/accounts/{id}/follow":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: follow account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsFollowAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{id}/unfollow":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: unfollow account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsUnfollowAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{id}/remove_from_followers":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: remove_from_followers account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsRemoveFromFollowersAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{id}/block":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: block account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsBlockAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{id}/unblock":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: unblock account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsUnblockAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{id}/mute":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: mute account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsMuteAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts/{id}/unmute":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: unmute account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsUnmuteAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/accounts":
+    post:
+      summary: create account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsCreateAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: E-mail address can''t be blank, Password
+                      can''t be blank, Username can''t be blank, Service agreement
+                      must be accepted'
+                    details:
+                      email:
+                      - error: ERR_BLANK
+                        description: can't be blank
+                      password:
+                      - error: ERR_BLANK
+                        description: can't be blank
+                      username:
+                      - error: ERR_BLANK
+                        description: can't be blank
+                      agreement:
+                      - error: ERR_ACCEPTED
+                        description: must be accepted
+  "/api/v1/accounts/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show account
+      tags:
+      - Api
+      - V1
+      - Accounts
+      operationId: v1AccountsShowAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/admin/accounts/{account_id}/action":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create account_action
+      tags:
+      - Api
+      - V1
+      - Admin
+      - AccountActions
+      operationId: v1AdminAccountactionsCreateAccountAction
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/accounts/{id}/enable":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: enable account
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsEnableAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/accounts/{id}/unsensitive":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: unsensitive account
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsUnsensitiveAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/accounts/{id}/unsilence":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: unsilence account
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsUnsilenceAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/accounts/{id}/unsuspend":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: unsuspend account
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsUnsuspendAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/accounts/{id}/approve":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: approve account
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsApproveAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/accounts/{id}/reject":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: reject account
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsRejectAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/accounts":
+    get:
+      summary: list accounts
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsListAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/accounts/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show account
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsShowAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    delete:
+      summary: delete account
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Accounts
+      operationId: v1AdminAccountsDeleteAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/canonical_email_blocks/test":
+    post:
+      summary: test canonical_email_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - CanonicalEmailBlocks
+      operationId: v1AdminCanonicalemailblocksTestCanonicalEmailBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/canonical_email_blocks":
+    get:
+      summary: list canonical_email_blocks
+      tags:
+      - Api
+      - V1
+      - Admin
+      - CanonicalEmailBlocks
+      operationId: v1AdminCanonicalemailblocksListCanonicalEmailBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    post:
+      summary: create canonical_email_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - CanonicalEmailBlocks
+      operationId: v1AdminCanonicalemailblocksCreateCanonicalEmailBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/canonical_email_blocks/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show canonical_email_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - CanonicalEmailBlocks
+      operationId: v1AdminCanonicalemailblocksShowCanonicalEmailBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    delete:
+      summary: delete canonical_email_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - CanonicalEmailBlocks
+      operationId: v1AdminCanonicalemailblocksDeleteCanonicalEmailBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/dimensions":
+    post:
+      summary: create dimension
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Dimensions
+      operationId: v1AdminDimensionsCreateDimension
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/domain_allows":
+    get:
+      summary: list domain_allows
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainAllows
+      operationId: v1AdminDomainallowsListDomainAllow
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    post:
+      summary: create domain_allow
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainAllows
+      operationId: v1AdminDomainallowsCreateDomainAllow
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/domain_allows/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show domain_allow
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainAllows
+      operationId: v1AdminDomainallowsShowDomainAllow
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    delete:
+      summary: delete domain_allow
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainAllows
+      operationId: v1AdminDomainallowsDeleteDomainAllow
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/domain_blocks":
+    get:
+      summary: list domain_blocks
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainBlocks
+      operationId: v1AdminDomainblocksListDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    post:
+      summary: create domain_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainBlocks
+      operationId: v1AdminDomainblocksCreateDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/domain_blocks/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show domain_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainBlocks
+      operationId: v1AdminDomainblocksShowDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    patch:
+      summary: update domain_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainBlocks
+      operationId: v1AdminDomainblocksUpdateDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    put:
+      summary: update domain_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainBlocks
+      operationId: v1AdminDomainblocksUpdateDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    delete:
+      summary: delete domain_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - DomainBlocks
+      operationId: v1AdminDomainblocksDeleteDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/email_domain_blocks":
+    get:
+      summary: list email_domain_blocks
+      tags:
+      - Api
+      - V1
+      - Admin
+      - EmailDomainBlocks
+      operationId: v1AdminEmaildomainblocksListEmailDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    post:
+      summary: create email_domain_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - EmailDomainBlocks
+      operationId: v1AdminEmaildomainblocksCreateEmailDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/email_domain_blocks/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show email_domain_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - EmailDomainBlocks
+      operationId: v1AdminEmaildomainblocksShowEmailDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    delete:
+      summary: delete email_domain_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - EmailDomainBlocks
+      operationId: v1AdminEmaildomainblocksDeleteEmailDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/ip_blocks":
+    get:
+      summary: list ip_blocks
+      tags:
+      - Api
+      - V1
+      - Admin
+      - IpBlocks
+      operationId: v1AdminIpblocksListIpBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    post:
+      summary: create ip_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - IpBlocks
+      operationId: v1AdminIpblocksCreateIpBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/ip_blocks/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show ip_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - IpBlocks
+      operationId: v1AdminIpblocksShowIpBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    patch:
+      summary: update ip_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - IpBlocks
+      operationId: v1AdminIpblocksUpdateIpBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    put:
+      summary: update ip_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - IpBlocks
+      operationId: v1AdminIpblocksUpdateIpBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    delete:
+      summary: delete ip_block
+      tags:
+      - Api
+      - V1
+      - Admin
+      - IpBlocks
+      operationId: v1AdminIpblocksDeleteIpBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/measures":
+    post:
+      summary: create measure
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Measures
+      operationId: v1AdminMeasuresCreateMeasure
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/reports/{id}/assign_to_self":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: assign_to_self report
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Reports
+      operationId: v1AdminReportsAssignToSelfReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/reports/{id}/unassign":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: unassign report
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Reports
+      operationId: v1AdminReportsUnassignReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/reports/{id}/reopen":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: reopen report
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Reports
+      operationId: v1AdminReportsReopenReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/reports/{id}/resolve":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: resolve report
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Reports
+      operationId: v1AdminReportsResolveReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/reports":
+    get:
+      summary: list reports
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Reports
+      operationId: v1AdminReportsListReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/reports/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show report
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Reports
+      operationId: v1AdminReportsShowReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    patch:
+      summary: update report
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Reports
+      operationId: v1AdminReportsUpdateReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    put:
+      summary: update report
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Reports
+      operationId: v1AdminReportsUpdateReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/retention":
+    post:
+      summary: create retention
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Retention
+      operationId: v1AdminRetentionCreateRetention
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/trends/links":
+    get:
+      summary: list links
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Trends
+      - Links
+      operationId: v1AdminTrendsLinksListLink
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/trends/statuses":
+    get:
+      summary: list statuses
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Trends
+      - Statuses
+      operationId: v1AdminTrendsStatusesListStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/admin/trends/tags":
+    get:
+      summary: list tags
+      tags:
+      - Api
+      - V1
+      - Admin
+      - Trends
+      - Tags
+      operationId: v1AdminTrendsTagsListTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/announcements/{announcement_id}/reactions/{id}":
+    parameters:
+    - name: announcement_id
+      in: path
+      description: announcement_id
+      required: true
+      schema:
+        type: string
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update reaction
+      tags:
+      - Api
+      - V1
+      - Announcements
+      - Reactions
+      operationId: v1AnnouncementsReactionsUpdateReaction
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update reaction
+      tags:
+      - Api
+      - V1
+      - Announcements
+      - Reactions
+      operationId: v1AnnouncementsReactionsUpdateReaction
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete reaction
+      tags:
+      - Api
+      - V1
+      - Announcements
+      - Reactions
+      operationId: v1AnnouncementsReactionsDeleteReaction
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/announcements/{id}/dismiss":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: dismiss announcement
+      tags:
+      - Api
+      - V1
+      - Announcements
+      operationId: v1AnnouncementsDismissAnnouncement
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/announcements":
+    get:
+      summary: list announcements
+      tags:
+      - Api
+      - V1
+      - Announcements
+      operationId: v1AnnouncementsListAnnouncement
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/apps/verify_credentials":
+    get:
+      summary: show credential
+      tags:
+      - Api
+      - V1
+      - Apps
+      - Credentials
+      operationId: v1AppsCredentialsShowCredential
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/apps":
+    post:
+      summary: create app
+      tags:
+      - Api
+      - V1
+      - Apps
+      operationId: v1AppsCreateApp
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: Application name can''t be blank, Redirect
+                      URI can''t be blank'
+  "/api/v1/blocks":
+    get:
+      summary: list blocks
+      tags:
+      - Api
+      - V1
+      - Blocks
+      operationId: v1BlocksListBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/bookmarks":
+    get:
+      summary: list bookmarks
+      tags:
+      - Api
+      - V1
+      - Bookmarks
+      operationId: v1BookmarksListBookmark
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/conversations/{id}/read":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: read conversation
+      tags:
+      - Api
+      - V1
+      - Conversations
+      operationId: v1ConversationsReadConversation
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/conversations":
+    get:
+      summary: list conversations
+      tags:
+      - Api
+      - V1
+      - Conversations
+      operationId: v1ConversationsListConversation
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/conversations/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete conversation
+      tags:
+      - Api
+      - V1
+      - Conversations
+      operationId: v1ConversationsDeleteConversation
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/custom_emojis":
+    get:
+      summary: list custom_emojis
+      tags:
+      - Api
+      - V1
+      - CustomEmojis
+      operationId: v1CustomemojisListCustomEmoji
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/directory":
+    get:
+      summary: show directory
+      tags:
+      - Api
+      - V1
+      - Directories
+      operationId: v1DirectoriesShowDirectory
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                  - id: '109342921363755787'
+                    username: ashlea_pfannerstill86
+                    acct: ashlea_pfannerstill86
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-14T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@ashlea_pfannerstill86
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+  "/api/v1/domain_blocks":
+    get:
+      summary: show domain_block
+      tags:
+      - Api
+      - V1
+      - DomainBlocks
+      operationId: v1DomainblocksShowDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+    delete:
+      summary: delete domain_block
+      tags:
+      - Api
+      - V1
+      - DomainBlocks
+      operationId: v1DomainblocksDeleteDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}
+    post:
+      summary: create domain_block
+      tags:
+      - Api
+      - V1
+      - DomainBlocks
+      operationId: v1DomainblocksCreateDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: Domain can''t be blank'
+  "/api/v1/emails/confirmations":
+    post:
+      summary: create confirmation
+      tags:
+      - Api
+      - V1
+      - Emails
+      - Confirmations
+      operationId: v1EmailsConfirmationsCreateConfirmation
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This method is only available while the e-mail is awaiting
+                      confirmation
+  "/api/v1/endorsements":
+    get:
+      summary: list endorsements
+      tags:
+      - Api
+      - V1
+      - Endorsements
+      operationId: v1EndorsementsListEndorsement
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/favourites":
+    get:
+      summary: list favourites
+      tags:
+      - Api
+      - V1
+      - Favourites
+      operationId: v1FavouritesListFavourite
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/featured_tags/suggestions":
+    get:
+      summary: list suggestions
+      tags:
+      - Api
+      - V1
+      - FeaturedTags
+      - Suggestions
+      operationId: v1FeaturedtagsSuggestionsListSuggestion
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/featured_tags":
+    get:
+      summary: list featured_tags
+      tags:
+      - Api
+      - V1
+      - FeaturedTags
+      operationId: v1FeaturedtagsListFeaturedTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+    post:
+      summary: create featured_tag
+      tags:
+      - Api
+      - V1
+      - FeaturedTags
+      operationId: v1FeaturedtagsCreateFeaturedTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/featured_tags/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete featured_tag
+      tags:
+      - Api
+      - V1
+      - FeaturedTags
+      operationId: v1FeaturedtagsDeleteFeaturedTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/filters/{filter_id}/keywords":
+    parameters:
+    - name: filter_id
+      in: path
+      description: filter_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list keywords
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Keywords
+      operationId: v1FiltersKeywordsListKeyword
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    post:
+      summary: create keyword
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Keywords
+      operationId: v1FiltersKeywordsCreateKeyword
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/filters/keywords/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show keyword
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Keywords
+      operationId: v1FiltersKeywordsShowKeyword
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    patch:
+      summary: update keyword
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Keywords
+      operationId: v1FiltersKeywordsUpdateKeyword
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update keyword
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Keywords
+      operationId: v1FiltersKeywordsUpdateKeyword
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete keyword
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Keywords
+      operationId: v1FiltersKeywordsDeleteKeyword
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/filters/{filter_id}/statuses":
+    parameters:
+    - name: filter_id
+      in: path
+      description: filter_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list statuses
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Statuses
+      operationId: v1FiltersStatusesListStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    post:
+      summary: create status
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Statuses
+      operationId: v1FiltersStatusesCreateStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/filters/statuses/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show status
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Statuses
+      operationId: v1FiltersStatusesShowStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete status
+      tags:
+      - Api
+      - V1
+      - Filters
+      - Statuses
+      operationId: v1FiltersStatusesDeleteStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/filters":
+    get:
+      summary: list filters
+      tags:
+      - Api
+      - V1
+      - Filters
+      operationId: v1FiltersListFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+    post:
+      summary: create filter
+      tags:
+      - Api
+      - V1
+      - Filters
+      operationId: v1FiltersCreateFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: Title can''t be blank, Context can''t
+                      be blank, Context None or invalid context supplied'
+  "/api/v1/filters/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show filter
+      tags:
+      - Api
+      - V1
+      - Filters
+      operationId: v1FiltersShowFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    patch:
+      summary: update filter
+      tags:
+      - Api
+      - V1
+      - Filters
+      operationId: v1FiltersUpdateFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update filter
+      tags:
+      - Api
+      - V1
+      - Filters
+      operationId: v1FiltersUpdateFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete filter
+      tags:
+      - Api
+      - V1
+      - Filters
+      operationId: v1FiltersDeleteFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/follow_requests/{id}/authorize":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: authorize follow_request
+      tags:
+      - Api
+      - V1
+      - FollowRequests
+      operationId: v1FollowrequestsAuthorizeFollowRequest
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/follow_requests/{id}/reject":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: reject follow_request
+      tags:
+      - Api
+      - V1
+      - FollowRequests
+      operationId: v1FollowrequestsRejectFollowRequest
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/follow_requests":
+    get:
+      summary: list follow_requests
+      tags:
+      - Api
+      - V1
+      - FollowRequests
+      operationId: v1FollowrequestsListFollowRequest
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/followed_tags":
+    get:
+      summary: list followed_tags
+      tags:
+      - Api
+      - V1
+      - FollowedTags
+      operationId: v1FollowedtagsListFollowedTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/instance/activity":
+    get:
+      summary: show activity
+      tags:
+      - Api
+      - V1
+      - Instances
+      - Activity
+      operationId: v1InstancesActivityShowActivity
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                  - week: '1668440574'
+                    statuses: '0'
+                    logins: '1'
+                    registrations: '0'
+                  - week: '1667835774'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1667230974'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1666626174'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1666021374'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1665416574'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1664811774'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1664206974'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1663602174'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1662997374'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1662392574'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+                  - week: '1661787774'
+                    statuses: '0'
+                    logins: '0'
+                    registrations: '0'
+  "/api/v1/instance/domain_blocks":
+    get:
+      summary: list domain_blocks
+      tags:
+      - Api
+      - V1
+      - Instances
+      - DomainBlocks
+      operationId: v1InstancesDomainblocksListDomainBlock
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/instance/extended_description":
+    get:
+      summary: show extended_description
+      tags:
+      - Api
+      - V1
+      - Instances
+      - ExtendedDescriptions
+      operationId: v1InstancesExtendeddescriptionsShowExtendedDescription
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    updated_at:
+                    content: ''
+  "/api/v1/instance/peers":
+    get:
+      summary: list peers
+      tags:
+      - Api
+      - V1
+      - Instances
+      - Peers
+      operationId: v1InstancesPeersListPeer
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/instance/privacy_policy":
+    get:
+      summary: show privacy_policy
+      tags:
+      - Api
+      - V1
+      - Instances
+      - PrivacyPolicies
+      operationId: v1InstancesPrivacypoliciesShowPrivacyPolicy
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    updated_at: '2022-10-07T00:00:00+00:00'
+                    content: |
+                      <p>This privacy policy describes how cb6e6126.ngrok.io (&quot;cb6e6126.ngrok.io&quot;, &quot;we&quot;, &quot;us&quot;) collects, protects and uses the personally identifiable information you may provide through the cb6e6126.ngrok.io website or its API. The policy also describes the choices available to you regarding our use of your personal information and how you can access and update this information. This policy does not apply to the practices of companies that cb6e6126.ngrok.io does not own or control, or to individuals that cb6e6126.ngrok.io does not employ or manage.</p>
+
+                      <h1>What information do we collect?</h1>
+
+                      <ul>
+                      <li><strong>Basic account information</strong>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
+                      <li><strong>Posts, following and other public information</strong>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
+                      <li><strong>Direct and followers-only posts</strong>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it&#39;s important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <strong>Please keep in mind that the operators of the server and any receiving server may view such messages</strong>, and that recipients may screenshot, copy or otherwise re-share them. <strong>Do not share any sensitive information over Mastodon.</strong></li>
+                      <li><strong>IPs and other metadata</strong>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
+                      </ul>
+
+                      <h1>What do we use your information for?</h1>
+
+                      <p>Any of the information we collect from you may be used in the following ways:</p>
+
+                      <ul>
+                      <li>To provide the core functionality of Mastodon. You can only interact with other people&#39;s content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
+                      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
+                      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
+                      </ul>
+
+                      <h1>How do we protect your information?</h1>
+
+                      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
+
+                      <h1>What is our data retention policy?</h1>
+
+                      <p>We will make a good faith effort to:</p>
+
+                      <ul>
+                      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
+                      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
+                      </ul>
+
+                      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
+
+                      <p>You may irreversibly delete your account at any time.</p>
+
+                      <h1>Do we use cookies?</h1>
+
+                      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer&#39;s hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
+
+                      <p>We use cookies to understand and save your preferences for future visits.</p>
+
+                      <h1>Do we disclose any information to outside parties?</h1>
+
+                      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
+
+                      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
+
+                      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
+
+                      <h1>Site usage by children</h1>
+
+                      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (General Data Protection Regulation) do not use this site.</p>
+
+                      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (Children&#39;s Online Privacy Protection Act) do not use this site.</p>
+
+                      <p>Law requirements can be different if this server is in another jurisdiction.</p>
+
+                      <hr>
+
+                      <p>This document is CC-BY-SA. Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
+  "/api/v1/instance/rules":
+    get:
+      summary: list rules
+      tags:
+      - Api
+      - V1
+      - Instances
+      - Rules
+      operationId: v1InstancesRulesListRule
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/instance":
+    get:
+      summary: show instance
+      tags:
+      - Api
+      - V1
+      - Instances
+      operationId: v1InstancesShowInstance
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    uri: cb6e6126.ngrok.io
+                    title: Mastodon
+                    short_description: ''
+                    description: ''
+                    email: ''
+                    version: 4.0.0rc3
+                    urls:
+                      streaming_api: ws://localhost:4000
+                    stats:
+                      user_count: 1
+                      status_count: 0
+                      domain_count: 0
+                    thumbnail: https://cb6e6126.ngrok.io/packs-test/media/images/preview-6399aebd96ccf025654e2977454f168f.png
+                    languages:
+                    - en
+                    registrations: true
+                    approval_required: false
+                    invites_enabled: true
+                    configuration:
+                      accounts:
+                        max_featured_tags: 10
+                      statuses:
+                        max_characters: 500
+                        max_media_attachments: 4
+                        characters_reserved_per_url: 23
+                      media_attachments:
+                        supported_mime_types:
+                        - image/jpeg
+                        - image/png
+                        - image/gif
+                        - image/heic
+                        - image/heif
+                        - image/webp
+                        - image/avif
+                        - video/webm
+                        - video/mp4
+                        - video/quicktime
+                        - video/ogg
+                        - audio/wave
+                        - audio/wav
+                        - audio/x-wav
+                        - audio/x-pn-wave
+                        - audio/vnd.wave
+                        - audio/ogg
+                        - audio/vorbis
+                        - audio/mpeg
+                        - audio/mp3
+                        - audio/webm
+                        - audio/flac
+                        - audio/aac
+                        - audio/m4a
+                        - audio/x-m4a
+                        - audio/mp4
+                        - audio/3gpp
+                        - video/x-ms-asf
+                        image_size_limit: 10485760
+                        image_matrix_limit: 16777216
+                        video_size_limit: 41943040
+                        video_frame_rate_limit: 60
+                        video_matrix_limit: 2304000
+                      polls:
+                        max_options: 4
+                        max_characters_per_option: 50
+                        min_expiration: 300
+                        max_expiration: 2629746
+                    contact_account:
+                    rules: []
+  "/api/v1/lists/{list_id}/accounts":
+    parameters:
+    - name: list_id
+      in: path
+      description: list_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show account
+      tags:
+      - Api
+      - V1
+      - Lists
+      - Accounts
+      operationId: v1ListsAccountsShowAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete account
+      tags:
+      - Api
+      - V1
+      - Lists
+      - Accounts
+      operationId: v1ListsAccountsDeleteAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    post:
+      summary: create account
+      tags:
+      - Api
+      - V1
+      - Lists
+      - Accounts
+      operationId: v1ListsAccountsCreateAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/lists":
+    get:
+      summary: list lists
+      tags:
+      - Api
+      - V1
+      - Lists
+      operationId: v1ListsListList
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+    post:
+      summary: create list
+      tags:
+      - Api
+      - V1
+      - Lists
+      operationId: v1ListsCreateList
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: Title can''t be blank'
+  "/api/v1/lists/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show list
+      tags:
+      - Api
+      - V1
+      - Lists
+      operationId: v1ListsShowList
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    patch:
+      summary: update list
+      tags:
+      - Api
+      - V1
+      - Lists
+      operationId: v1ListsUpdateList
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update list
+      tags:
+      - Api
+      - V1
+      - Lists
+      operationId: v1ListsUpdateList
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete list
+      tags:
+      - Api
+      - V1
+      - Lists
+      operationId: v1ListsDeleteList
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/markers":
+    get:
+      summary: list markers
+      tags:
+      - Api
+      - V1
+      - Markers
+      operationId: v1MarkersListMarker
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}
+    post:
+      summary: create marker
+      tags:
+      - Api
+      - V1
+      - Markers
+      operationId: v1MarkersCreateMarker
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}
+  "/api/v1/media":
+    post:
+      summary: create medium
+      tags:
+      - Api
+      - V1
+      - Media
+      operationId: v1MediaCreateMedium
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: File can''t be blank'
+  "/api/v1/media/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show medium
+      tags:
+      - Api
+      - V1
+      - Media
+      operationId: v1MediaShowMedium
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    patch:
+      summary: update medium
+      tags:
+      - Api
+      - V1
+      - Media
+      operationId: v1MediaUpdateMedium
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update medium
+      tags:
+      - Api
+      - V1
+      - Media
+      operationId: v1MediaUpdateMedium
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/mutes":
+    get:
+      summary: list mutes
+      tags:
+      - Api
+      - V1
+      - Mutes
+      operationId: v1MutesListMute
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/notifications/clear":
+    post:
+      summary: clear notification
+      tags:
+      - Api
+      - V1
+      - Notifications
+      operationId: v1NotificationsClearNotification
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}
+  "/api/v1/notifications/{id}/dismiss":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: dismiss notification
+      tags:
+      - Api
+      - V1
+      - Notifications
+      operationId: v1NotificationsDismissNotification
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/notifications":
+    get:
+      summary: list notifications
+      tags:
+      - Api
+      - V1
+      - Notifications
+      operationId: v1NotificationsListNotification
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/notifications/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show notification
+      tags:
+      - Api
+      - V1
+      - Notifications
+      operationId: v1NotificationsShowNotification
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/polls/{poll_id}/votes":
+    parameters:
+    - name: poll_id
+      in: path
+      description: poll_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create vote
+      tags:
+      - Api
+      - V1
+      - Polls
+      - Votes
+      operationId: v1PollsVotesCreateVote
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/polls":
+    post:
+      summary: create poll
+      tags:
+      - Api
+      - V1
+      - Polls
+      operationId: v1PollsCreatePoll
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/polls/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show poll
+      tags:
+      - Api
+      - V1
+      - Polls
+      operationId: v1PollsShowPoll
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/preferences":
+    get:
+      summary: list preferences
+      tags:
+      - Api
+      - V1
+      - Preferences
+      operationId: v1PreferencesListPreference
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    posting:default:visibility: public
+                    posting:default:sensitive: false
+                    posting:default:language: en
+                    reading:expand:media: default
+                    reading:expand:spoilers: false
+  "/api/v1/push/subscription":
+    get:
+      summary: show subscription
+      tags:
+      - Api
+      - V1
+      - Push
+      - Subscriptions
+      operationId: v1PushSubscriptionsShowSubscription
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    patch:
+      summary: update subscription
+      tags:
+      - Api
+      - V1
+      - Push
+      - Subscriptions
+      operationId: v1PushSubscriptionsUpdateSubscription
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    put:
+      summary: update subscription
+      tags:
+      - Api
+      - V1
+      - Push
+      - Subscriptions
+      operationId: v1PushSubscriptionsUpdateSubscription
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    delete:
+      summary: delete subscription
+      tags:
+      - Api
+      - V1
+      - Push
+      - Subscriptions
+      operationId: v1PushSubscriptionsDeleteSubscription
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+    post:
+      summary: create subscription
+      tags:
+      - Api
+      - V1
+      - Push
+      - Subscriptions
+      operationId: v1PushSubscriptionsCreateSubscription
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              example:
+                error: This action is outside the authorized scopes
+  "/api/v1/scheduled_statuses":
+    get:
+      summary: list scheduled_statuses
+      tags:
+      - Api
+      - V1
+      - ScheduledStatuses
+      operationId: v1ScheduledstatusesListScheduledStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/scheduled_statuses/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show scheduled_status
+      tags:
+      - Api
+      - V1
+      - ScheduledStatuses
+      operationId: v1ScheduledstatusesShowScheduledStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    patch:
+      summary: update scheduled_status
+      tags:
+      - Api
+      - V1
+      - ScheduledStatuses
+      operationId: v1ScheduledstatusesUpdateScheduledStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update scheduled_status
+      tags:
+      - Api
+      - V1
+      - ScheduledStatuses
+      operationId: v1ScheduledstatusesUpdateScheduledStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete scheduled_status
+      tags:
+      - Api
+      - V1
+      - ScheduledStatuses
+      operationId: v1ScheduledstatusesDeleteScheduledStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/bookmark":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create bookmark
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Bookmarks
+      operationId: v1StatusesBookmarksCreateBookmark
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/unbookmark":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: delete bookmark
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Bookmarks
+      operationId: v1StatusesBookmarksDeleteBookmark
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/favourited_by":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list favourited_by_accounts
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - FavouritedByAccounts
+      operationId: v1StatusesFavouritedbyaccountsListFavouritedByAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/favourite":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create favourite
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Favourites
+      operationId: v1StatusesFavouritesCreateFavourite
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/unfavourite":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: delete favourite
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Favourites
+      operationId: v1StatusesFavouritesDeleteFavourite
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/history":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show history
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Histories
+      operationId: v1StatusesHistoriesShowHistory
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/mute":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create mute
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Mutes
+      operationId: v1StatusesMutesCreateMute
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/unmute":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: delete mute
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Mutes
+      operationId: v1StatusesMutesDeleteMute
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/pin":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create pin
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Pins
+      operationId: v1StatusesPinsCreatePin
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/unpin":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: delete pin
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Pins
+      operationId: v1StatusesPinsDeletePin
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/reblogged_by":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list reblogged_by_accounts
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - RebloggedByAccounts
+      operationId: v1StatusesRebloggedbyaccountsListRebloggedByAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/reblog":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create reblog
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Reblogs
+      operationId: v1StatusesReblogsCreateReblog
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/unreblog":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: delete reblog
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Reblogs
+      operationId: v1StatusesReblogsDeleteReblog
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/source":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show source
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Sources
+      operationId: v1StatusesSourcesShowSource
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{status_id}/translate":
+    parameters:
+    - name: status_id
+      in: path
+      description: status_id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: create translation
+      tags:
+      - Api
+      - V1
+      - Statuses
+      - Translations
+      operationId: v1StatusesTranslationsCreateTranslation
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses/{id}/context":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: context status
+      tags:
+      - Api
+      - V1
+      - Statuses
+      operationId: v1StatusesContextStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/statuses":
+    post:
+      summary: create status
+      tags:
+      - Api
+      - V1
+      - Statuses
+      operationId: v1StatusesCreateStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: Text can''t be blank'
+  "/api/v1/statuses/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show status
+      tags:
+      - Api
+      - V1
+      - Statuses
+      operationId: v1StatusesShowStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    patch:
+      summary: update status
+      tags:
+      - Api
+      - V1
+      - Statuses
+      operationId: v1StatusesUpdateStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update status
+      tags:
+      - Api
+      - V1
+      - Statuses
+      operationId: v1StatusesUpdateStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete status
+      tags:
+      - Api
+      - V1
+      - Statuses
+      operationId: v1StatusesDeleteStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/streaming":
+    get:
+      summary: list streamings
+      tags:
+      - Api
+      - V1
+      - Streaming
+      operationId: v1StreamingListStreaming
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/suggestions":
+    get:
+      summary: list suggestions
+      tags:
+      - Api
+      - V1
+      - Suggestions
+      operationId: v1SuggestionsListSuggestion
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/suggestions/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    delete:
+      summary: delete suggestion
+      tags:
+      - Api
+      - V1
+      - Suggestions
+      operationId: v1SuggestionsDeleteSuggestion
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}
+  "/api/v1/tags/{id}/follow":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: follow tag
+      tags:
+      - Api
+      - V1
+      - Tags
+      operationId: v1TagsFollowTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Not Found
+  "/api/v1/tags/{id}/unfollow":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    post:
+      summary: unfollow tag
+      tags:
+      - Api
+      - V1
+      - Tags
+      operationId: v1TagsUnfollowTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Not Found
+  "/api/v1/tags/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show tag
+      tags:
+      - Api
+      - V1
+      - Tags
+      operationId: v1TagsShowTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Not Found
+  "/api/v1/timelines/home":
+    get:
+      summary: show home
+      tags:
+      - Api
+      - V1
+      - Timelines
+      - Home
+      operationId: v1TimelinesHomeShowHome
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/timelines/list/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show list
+      tags:
+      - Api
+      - V1
+      - Timelines
+      - List
+      operationId: v1TimelinesListShowList
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v1/timelines/public":
+    get:
+      summary: show public
+      tags:
+      - Api
+      - V1
+      - Timelines
+      - Public
+      operationId: v1TimelinesPublicShowPublic
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/timelines/tag/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show tag
+      tags:
+      - Api
+      - V1
+      - Timelines
+      - Tag
+      operationId: v1TimelinesTagShowTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/trends/links":
+    get:
+      summary: list links
+      tags:
+      - Api
+      - V1
+      - Trends
+      - Links
+      operationId: v1TrendsLinksListLink
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/trends/statuses":
+    get:
+      summary: list statuses
+      tags:
+      - Api
+      - V1
+      - Trends
+      - Statuses
+      operationId: v1TrendsStatusesListStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/trends":
+    get:
+      summary: list tags
+      tags:
+      - Api
+      - V1
+      - Trends
+      - Tags
+      operationId: v1TrendsTagsListTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v1/trends/tags":
+    get:
+      summary: list tags
+      tags:
+      - Api
+      - V1
+      - Trends
+      - Tags
+      operationId: v1TrendsTagsListTag
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/v2/admin/accounts":
+    get:
+      summary: list accounts
+      tags:
+      - Api
+      - V2
+      - Admin
+      - Accounts
+      operationId: v2AdminAccountsListAccount
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v2/filters":
+    get:
+      summary: list filters
+      tags:
+      - Api
+      - V2
+      - Filters
+      operationId: v2FiltersListFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+    post:
+      summary: create filter
+      tags:
+      - Api
+      - V2
+      - Filters
+      operationId: v2FiltersCreateFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: Title can''t be blank, Context can''t
+                      be blank, Context None or invalid context supplied'
+  "/api/v2/filters/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show filter
+      tags:
+      - Api
+      - V2
+      - Filters
+      operationId: v2FiltersShowFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    patch:
+      summary: update filter
+      tags:
+      - Api
+      - V2
+      - Filters
+      operationId: v2FiltersUpdateFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update filter
+      tags:
+      - Api
+      - V2
+      - Filters
+      operationId: v2FiltersUpdateFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete filter
+      tags:
+      - Api
+      - V2
+      - Filters
+      operationId: v2FiltersDeleteFilter
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v2/instance":
+    get:
+      summary: show instance
+      tags:
+      - Api
+      - V2
+      - Instances
+      operationId: v2InstancesShowInstance
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    domain: cb6e6126.ngrok.io
+                    title: Mastodon
+                    version: 4.0.0rc3
+                    source_url: https://github.com/mastodon/mastodon
+                    description: ''
+                    usage:
+                      users:
+                        active_month: 0
+                    thumbnail:
+                      url: https://cb6e6126.ngrok.io/packs-test/media/images/preview-6399aebd96ccf025654e2977454f168f.png
+                    languages:
+                    - en
+                    configuration:
+                      urls:
+                        streaming: ws://localhost:4000
+                      accounts:
+                        max_featured_tags: 10
+                      statuses:
+                        max_characters: 500
+                        max_media_attachments: 4
+                        characters_reserved_per_url: 23
+                      media_attachments:
+                        supported_mime_types:
+                        - image/jpeg
+                        - image/png
+                        - image/gif
+                        - image/heic
+                        - image/heif
+                        - image/webp
+                        - image/avif
+                        - video/webm
+                        - video/mp4
+                        - video/quicktime
+                        - video/ogg
+                        - audio/wave
+                        - audio/wav
+                        - audio/x-wav
+                        - audio/x-pn-wave
+                        - audio/vnd.wave
+                        - audio/ogg
+                        - audio/vorbis
+                        - audio/mpeg
+                        - audio/mp3
+                        - audio/webm
+                        - audio/flac
+                        - audio/aac
+                        - audio/m4a
+                        - audio/x-m4a
+                        - audio/mp4
+                        - audio/3gpp
+                        - video/x-ms-asf
+                        image_size_limit: 10485760
+                        image_matrix_limit: 16777216
+                        video_size_limit: 41943040
+                        video_frame_rate_limit: 60
+                        video_matrix_limit: 2304000
+                      polls:
+                        max_options: 4
+                        max_characters_per_option: 50
+                        min_expiration: 300
+                        max_expiration: 2629746
+                      translation:
+                        enabled: false
+                    registrations:
+                      enabled: true
+                      approval_required: false
+                      message:
+                    contact:
+                      email: ''
+                      account:
+                    rules: []
+  "/api/v2/media":
+    post:
+      summary: create medium
+      tags:
+      - Api
+      - V2
+      - Media
+      operationId: v2MediaCreateMedium
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: 'Validation failed: File can''t be blank'
+  "/api/v2/search":
+    get:
+      summary: list searches
+      tags:
+      - Api
+      - V2
+      - Search
+      operationId: v2SearchListSearch
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: |-
+                      param is missing or the value is empty: q
+                      Did you mean?  search
+                                     action
+                                     controller
+  "/api/v2/suggestions":
+    get:
+      summary: list suggestions
+      tags:
+      - Api
+      - V2
+      - Suggestions
+      operationId: v2SuggestionsListSuggestion
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: []
+  "/api/web/embed":
+    post:
+      summary: create embed
+      tags:
+      - Api
+      - Web
+      - Embeds
+      operationId: webEmbedsCreateEmbed
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/web/push_subscriptions/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    put:
+      summary: update push_subscription
+      tags:
+      - Api
+      - Web
+      - PushSubscriptions
+      operationId: webPushsubscriptionsUpdatePushSubscription
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/web/push_subscriptions":
+    post:
+      summary: create push_subscription
+      tags:
+      - Api
+      - Web
+      - PushSubscriptions
+      operationId: webPushsubscriptionsCreatePushSubscription
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/web/settings":
+    patch:
+      summary: update setting
+      tags:
+      - Api
+      - Web
+      - Settings
+      operationId: webSettingsUpdateSetting
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}
+    put:
+      summary: update setting
+      tags:
+      - Api
+      - Web
+      - Settings
+      operationId: webSettingsUpdateSetting
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}

@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+require 'swagger_helper'
+
+RSpec.describe Api::V1::Timelines::HomeController, type: :request do
+  path '/api/v1/timelines/home' do
+    get('show home') do
+      tags 'Api', 'V1', 'Timelines', 'Home'
+      operationId 'v1TimelinesHomeShowHome'
+      rswag_bearer_auth
+
+      include_context 'user token auth'
+
+      response(200, 'successful') do
+        rswag_add_examples!
+        run_test!
+      end
+    end
+  end
+end
