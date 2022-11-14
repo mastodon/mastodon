@@ -65,7 +65,7 @@ class Keys::QueryService < BaseService
   def query_remote_devices!
     return if @account.devices_url.blank?
 
-    json = fetch_resource(@account.devices_url)
+    json = fetch_resource(@account.devices_url, @account.id)
 
     return if json['items'].blank?
 
