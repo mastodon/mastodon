@@ -225,6 +225,7 @@
         update_user_role: Oppdater rolle
       actions:
         approve_user_html: "%{name} godkjente registrering fra %{target}"
+        assigned_to_self_report_html: "%{name} tildelte rapport %{target} til seg selv"
         change_email_user_html: "%{name} endret e-postadressen til brukeren %{target}"
         change_role_user_html: "%{name} endret rolle for %{target}"
         confirm_user_html: "%{name} bekreftet e-postadressen til brukeren %{target}"
@@ -236,15 +237,31 @@
         create_domain_block_html: "%{name} blokkert domene %{target}"
         create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        create_unavailable_domain_html: "%{name} stoppet levering til domenet %{target}"
         create_user_role_html: "%{name} opprettet rollen %{target}"
+        demote_user_html: "%{name} degraderte bruker %{target}"
         destroy_announcement_html: "%{name} slettet kunngjøring %{target}"
         destroy_custom_emoji_html: "%{name} slettet emoji %{target}"
         destroy_ip_block_html: "%{name} slettet regel for IP %{target}"
         destroy_status_html: "%{name} fjernet innlegget av %{target}"
+        destroy_unavailable_domain_html: "%{name} gjenopptok levering til domenet %{target}"
         destroy_user_role_html: "%{name} slettet %{target} -rolle"
+        disable_2fa_user_html: "%{name} deaktiverte tofaktor-autentiseringskravet for bruker %{target}"
+        disable_custom_emoji_html: "%{name} deaktiverte emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} deaktiverte autentisering med e-post-token for %{target}"
+        disable_user_html: "%{name} deaktiverte innlogging for bruker %{target}"
+        enable_custom_emoji_html: "%{name} aktiverte emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktiverte autentisering med e-post-token for %{target}"
+        enable_user_html: "%{name} aktiverte innlogging for bruker %{target}"
+        memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
+        promote_user_html: "%{name} forfremmet bruker %{target}"
+        reject_appeal_html: "%{name} avviste moderasjonsavgjørelsesklagen fra %{target}"
         reject_user_html: "%{name} avslo registrering fra %{target}"
+        reopen_report_html: "%{name} gjenåpnet rapporten %{target}"
+        resend_user_html: "%{name} sendte e-postbekreftelse på nytt for %{target}"
         reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
         silence_account_html: "%{name} begrenset %{target}s konto"
+        suspend_account_html: "%{name} suspenderte %{target}s konto"
         unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
         update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
@@ -320,6 +337,10 @@
       top_languages: Mest aktive språk
       top_servers: Mest aktive servere
       website: Nettside
+    disputes:
+      appeals:
+        empty: Ingen klager funnet.
+        title: Klager
     domain_allows:
       add_new: Hvitelist domene
       created_msg: Domenet har blitt hvitelistet
@@ -384,11 +405,15 @@
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
+      confirm_purge: Er du sikker på at du vil slette data permanent fra dette domenet?
       content_policies:
         comment: Internt notat
+        description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
         policies:
           reject_media: Avvis media
+          reject_reports: Avvis rapporter
           silence: Begrens
+          suspend: Suspender
         reason: Offentlig årsak
         title: Retningslinjer for innhold
       dashboard:
@@ -514,6 +539,9 @@
         administration: Administrasjon
         devops: DevOps
         invites: Invitasjoner
+      delete: Slett
+      edit: Rediger rollen '%{name}'
+      everyone: Standard-tillatelser
       privileges:
         view_devops: DevOps
     rules:
