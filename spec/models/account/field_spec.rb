@@ -89,6 +89,14 @@ RSpec.describe Account::Field, type: :model do
           expect(subject.verifiable?).to be false
         end
       end
+      
+      context 'for text which is blank' do
+        let(:value) { '' }
+
+        it 'returns false' do
+          expect(subject.verifiable?).to be false
+        end
+      end
     end
 
     context 'for remote accounts' do
@@ -128,6 +136,14 @@ RSpec.describe Account::Field, type: :model do
 
       context 'for text that is a URL but is not linked' do
         let(:value) { 'https://example.com/foo' }
+
+        it 'returns false' do
+          expect(subject.verifiable?).to be false
+        end
+      end
+      
+      context 'for text which is blank' do
+        let(:value) { '' }
 
         it 'returns false' do
           expect(subject.verifiable?).to be false

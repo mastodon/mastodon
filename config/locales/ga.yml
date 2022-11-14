@@ -1,7 +1,10 @@
 ---
 ga:
   about:
+    about_mastodon_html: 'Líonra sóisialta a sheasfaidh an aimsir: Gan fógraíocht, gan faire chorparáideach, le leagan amach eiticiúil agus dílárú. Bíodh do chuid sonraí agatsa féin le Mastodon!'
+    contact_missing: Gan socrú
     contact_unavailable: N/B
+    hosted_on: Mastodon arna óstáil ar %{domain}
     title: Maidir le
   accounts:
     follow: Lean
@@ -17,24 +20,25 @@ ga:
   admin:
     account_actions:
       action: Déan gníomh
-      title: Déan modhnóireacht ar %{acct}
+      title: Dean gníomh modhnóireachta ar %{acct}
     account_moderation_notes:
       create: Fág nóta
     accounts:
       approve: Faomh
       are_you_sure: An bhfuil tú cinnte?
       avatar: Abhatár
+      by_domain: Fearann
       change_email:
         current_email: Ríomhphost reatha
         label: Athraigh ríomhphost
         new_email: Ríomhphost nua
         submit: Athraigh ríomhphost
-        title: Athraigh ríomhphost %{username}
+        title: Athraigh ríomhphost do %{username}
       change_role:
-        changed_msg: D'athraigh ró go rathúil!
+        changed_msg: Athraíodh ról go rathúil!
         label: Athraigh ról
-        no_role: Níl aon ról ann
-        title: Athraigh ról %{username}
+        no_role: Gan ról
+        title: Athraigh ról do %{username}
       confirm: Deimhnigh
       confirmed: Deimhnithe
       confirming: Ag deimhniú
@@ -43,43 +47,66 @@ ga:
       deleted: Scriosta
       demote: Ísligh
       disable: Reoigh
+      disable_two_factor_authentication: Díchumasaigh 2FA
       disabled: Reoite
       display_name: Ainm taispeána
+      domain: Fearann
       edit: Cuir in eagar
       email: Ríomhphost
       email_status: Stádas ríomhphoist
+      enable: Dí-reoigh
       enabled: Ar chumas
       followers: Leantóirí
       follows: Ag leanúint
+      header: Ceanntásc
       ip: IP
       location:
         all: Uile
+        local: Áitiúil
+        remote: Cian
       promote: Ardaigh
+      protocol: Prótacal
       public: Poiblí
+      redownload: Athnuaigh próifíl
       reject: Diúltaigh
+      remove_avatar: Bain abhatár
+      remove_header: Bain ceanntásc
+      resend_confirmation:
+        success: Seoladh go rathúil ríomhphost deimhnithe!
+      reset: Athshocraigh
+      reset_password: Athshocraigh pasfhocal
+      resubscribe: Athchláraigh
       role: Ról
       search: Cuardaigh
       statuses: Postálacha
+      subscribe: Cláraigh
       title: Cuntais
       web: Gréasán
     action_logs:
       action_types:
-        assigned_to_self_report: Sann tuairisc
-        create_account_warning: Cruthaigh rabhadh
+        assigned_to_self_report: Sann Tuairisc
+        create_account_warning: Cruthaigh Rabhadh
         destroy_announcement: Scrios Fógra
         destroy_ip_block: Scrios riail IP
-        destroy_status: Scrios postáil
+        destroy_status: Scrios Postáil
+        remove_avatar_user: Bain Abhatár
         reopen_report: Athoscail tuairisc
+        reset_password_user: Athshocraigh Pasfhocal
         resolve_report: Réitigh tuairisc
-        unassigned_report: Cealaigh tuairisc a shann
+        unassigned_report: Díshann Tuairisc
+        update_announcement: Nuashonraigh Fógra
+        update_status: Nuashonraigh Postáil
+        update_user_role: Nuashonraigh Ról
       actions:
-        create_account_warning_html: Sheol %{name} rabhadh do %{target}
+        create_account_warning_html: Sheol %{name} rabhadh chuig %{target}
       deleted_account: cuntas scriosta
     announcements:
       live: Beo
       publish: Foilsigh
     custom_emojis:
+      created_msg: Cruthaíodh emoji go rathúil!
       delete: Scrios
+      destroyed_msg: Scriosadh emoji go rathúil!
       disable: Díchumasaigh
       disabled: Díchumasaithe
       emoji: Emoji
@@ -91,6 +118,7 @@ ga:
       title: Deais
       website: Suíomh Gréasáin
     domain_blocks:
+      domain: Fearann
       new:
         severity:
           silence: Ciúnaigh
@@ -108,6 +136,8 @@ ga:
         unavailable: Níl ar fáil
       moderation:
         all: Uile
+      purge: Glan
+      title: Cónascadh
     invites:
       filter:
         all: Uile
@@ -127,10 +157,11 @@ ga:
       disabled: Díchumasaithe
       enable: Cumasaigh
       enabled: Ar chumas
+      save_and_enable: Sábháil agus cumasaigh
       status: Stádas
     reports:
       category: Catagóir
-      delete_and_resolve: Scrios postála
+      delete_and_resolve: Scrios postálacha
       no_one_assigned: Duine ar bith
       notes:
         delete: Scrios
@@ -140,7 +171,7 @@ ga:
     roles:
       delete: Scrios
       privileges:
-        delete_user_data: Scrios sonraí úsáideora
+        delete_user_data: Scrios Sonraí Úsáideora
     rules:
       delete: Scrios
     site_uploads:
@@ -149,17 +180,25 @@ ga:
       account: Údar
       deleted: Scriosta
       language: Teanga
+      media:
+        title: Meáin
+      metadata: Meiteashonraí
       open: Oscail postáil
       original_status: Bunphostáil
+      reblogs: Athbhlaganna
+      status_changed: Athraíodh postáil
+      trending: Ag treochtáil
       with_media: Le meáin
     strikes:
       actions:
-        delete_statuses: Scrios %{name} postála %{target}
+        delete_statuses: Scrios %{name} postálacha de chuid %{target}
     tags:
       review: Stádas athbhreithnithe
     trends:
       allow: Ceadaigh
       disallow: Dícheadaigh
+      preview_card_providers:
+        title: Foilsitheoirí
       statuses:
         allow: Ceadaigh postáil
         allow_account: Ceadaigh údar
@@ -170,17 +209,17 @@ ga:
   admin_mailer:
     new_appeal:
       actions:
-        delete_statuses: chun postála acu a scrios
+        delete_statuses: a gcuid postálacha a scrios
         none: rabhadh
   auth:
     delete_account: Scrios cuntas
-    too_fast: Chuireadh foirm róthapa, bain triail arís.
+    too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
   deletes:
     proceed: Scrios cuntas
   disputes:
     strikes:
       appeal_submitted_at: Achomharc curtha isteach
-      appealed_msg: Bhí d'achomharc curtha isteach. Má ceadaítear é, cuirfidh ar an eolas tú.
+      appealed_msg: Cuireadh isteach d'achomharc. Má ceadófar é, cuirfear ar an eolas tú.
       appeals:
         submit: Cuir achomharc isteach
       title_actions:
@@ -212,7 +251,7 @@ ga:
   statuses:
     content_warning: 'Rabhadh ábhair: %{warning}'
     show_more: Taispeáin níos mó
-    show_newer: Taispeáin níos déanaí
+    show_newer: Taispeáin níos nuaí
     show_thread: Taispeáin snáithe
   user_mailer:
     warning:

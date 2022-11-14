@@ -77,7 +77,73 @@ en-GB:
         never_used: Never used
         scopes: Permissions
         superapp: Internal
+        title: Your authorised applications
+    errors:
+      messages:
+        access_denied: The resource owner or authorisation server denied the request.
+        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_grant: The provided authorisation grant is invalid, expired, revoked, does not match the redirection URI used in the authorisation request, or was issued to another client.
+        invalid_redirect_uri: The redirect URI included is not valid.
+        invalid_request:
+          missing_param: 'Missing required parameter: %{value}.'
+          request_not_authorized: Request need to be authorised. Required parameter for authorising request is missing or invalid.
+          unknown: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
+        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
+        invalid_scope: The requested scope is invalid, unknown, or malformed.
+        invalid_token:
+          expired: The access token expired
+          revoked: The access token was revoked
+          unknown: The access token is invalid
+        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        server_error: The authorisation server encountered an unexpected condition which prevented it from fulfilling the request.
+        temporarily_unavailable: The authorisation server is currently unable to handle the request due to a temporary overloading or maintenance of the server.
+        unauthorized_client: The client is not authorised to perform this request using this method.
+        unsupported_grant_type: The authorisation grant type is not supported by the authorisation server.
+        unsupported_response_type: The authorisation server does not support this response type.
+    flash:
+      applications:
+        create:
+          notice: Application created.
+        destroy:
+          notice: Application deleted.
+        update:
+          notice: Application updated.
+      authorized_applications:
+        destroy:
+          notice: Application revoked.
+    grouped_scopes:
+      access:
+        read: Read-only access
+        read/write: Read and write access
+        write: Write-only access
+      title:
+        accounts: Accounts
+        admin/accounts: Administration of accounts
+        admin/all: All administrative functions
+        admin/reports: Administration of reports
+        all: Everything
+        blocks: Blocks
+        bookmarks: Bookmarks
+        conversations: Conversations
+        crypto: End-to-end encryption
+        favourites: Favourites
+        filters: Filters
+        follow: Relationships
+        follows: Follows
+        lists: Lists
+        media: Media attachments
+        mutes: Mutes
+        notifications: Notifications
+        push: Push notifications
+        reports: Reports
+        search: Search
+        statuses: Posts
     layouts:
+      admin:
+        nav:
+          applications: Applications
+          oauth2_provider: OAuth2 Provider
       application:
         title: OAuth authorisation required
     scopes:

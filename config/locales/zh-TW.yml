@@ -37,11 +37,11 @@ zh-TW:
       by_domain: 站點
       change_email:
         changed_msg: 電子郵件已成功變更！
-        current_email: 目前的電子信箱地址
-        label: 變更電子信箱地址
-        new_email: 新的電子信箱地址
-        submit: 變更電子信箱地址
-        title: 為 %{username} 變更電子信箱地址
+        current_email: 目前的電子郵件地址
+        label: 變更電子郵件地址
+        new_email: 新的電子郵件地址
+        submit: 變更電子郵件地址
+        title: 為 %{username} 變更電子郵件地址
       change_role:
         changed_msg: 成功修改角色！
         label: 變更角色
@@ -56,16 +56,16 @@ zh-TW:
       demote: 降級
       destroyed_msg: 即將刪除 %{username} 的數據
       disable: 停用
-      disable_sign_in_token_auth: 停用電子信箱 token 驗證
+      disable_sign_in_token_auth: 停用電子郵件 token 驗證
       disable_two_factor_authentication: 停用兩階段認證
       disabled: 已停用
       display_name: 暱稱
       domain: 站點
       edit: 編輯
-      email: 電子信箱地址
-      email_status: 電子信箱狀態
+      email: 電子郵件地址
+      email_status: 電子郵件狀態
       enable: 啟用
-      enable_sign_in_token_auth: 啟用電子信箱 token 驗證
+      enable_sign_in_token_auth: 啟用電子郵件 token 驗證
       enabled: 已啟用
       enabled_msg: 成功解除 %{username} 帳號的凍結
       followers: 跟隨者
@@ -149,7 +149,7 @@ zh-TW:
       title: 帳號
       unblock_email: 解除封鎖電子郵件地址
       unblocked_email_msg: 成功解除封鎖 %{username} 的電子郵件地址
-      unconfirmed_email: 未確認的電子信箱地址
+      unconfirmed_email: 未確認的電子郵件地址
       undo_sensitized: 取消敏感狀態
       undo_silenced: 取消靜音
       undo_suspension: 取消停權
@@ -166,7 +166,7 @@ zh-TW:
         approve_appeal: 批准申訴
         approve_user: 批准使用者
         assigned_to_self_report: 指派回報
-        change_email_user: 變更使用者的電子信箱地址
+        change_email_user: 變更使用者的電子郵件地址
         change_role_user: 變更使用者角色
         confirm_user: 確認使用者
         create_account_warning: 建立警告
@@ -175,7 +175,7 @@ zh-TW:
         create_custom_emoji: 建立自訂顏文字
         create_domain_allow: 建立允許網域
         create_domain_block: 建立阻擋網域
-        create_email_domain_block: 封鎖電子郵件站台
+        create_email_domain_block: 新增電子郵件網域封鎖
         create_ip_block: 新增IP規則
         create_unavailable_domain: 新增無法存取的網域
         create_user_role: 建立角色
@@ -193,10 +193,10 @@ zh-TW:
         destroy_user_role: 移除角色
         disable_2fa_user: 停用兩階段認證
         disable_custom_emoji: 停用自訂顏文字
-        disable_sign_in_token_auth_user: 停用使用者電子信箱 token 驗證
+        disable_sign_in_token_auth_user: 停用使用者電子郵件 token 驗證
         disable_user: 停用帳號
         enable_custom_emoji: 啓用自訂顏文字
-        enable_sign_in_token_auth_user: 啟用使用者電子信箱 token 驗證
+        enable_sign_in_token_auth_user: 啟用使用者電子郵件 token 驗證
         enable_user: 啓用帳號
         memorialize_account: 設定成紀念帳號
         promote_user: 把用戶升級
@@ -225,16 +225,16 @@ zh-TW:
         approve_appeal_html: "%{name} 批准了來自 %{target} 的審核決定申訴"
         approve_user_html: "%{name} 批准了從 %{target} 而來的註冊"
         assigned_to_self_report_html: "%{name} 將報告 %{target} 指派給自己"
-        change_email_user_html: "%{name} 變更了使用者 %{target} 的電子信箱地址"
+        change_email_user_html: "%{name} 變更了使用者 %{target} 的電子郵件地址"
         change_role_user_html: "%{name} 變更了 %{target} 的角色"
-        confirm_user_html: "%{name} 確認了使用者 %{target} 的電子信箱位址"
+        confirm_user_html: "%{name} 確認了使用者 %{target} 的電子郵件位址"
         create_account_warning_html: "%{name} 已對 %{target} 送出警告"
         create_announcement_html: "%{name} 新增了公告 %{target}"
         create_canonical_email_block_html: "%{name} 已封鎖了 hash 為 %{target} 之 e-mail"
         create_custom_emoji_html: "%{name} 上傳了新自訂表情符號 %{target}"
         create_domain_allow_html: "%{name} 允許 %{target} 網域加入聯邦宇宙"
         create_domain_block_html: "%{name} 封鎖了網域 %{target}"
-        create_email_domain_block_html: "%{name} 封鎖了電子信箱網域 %{target}"
+        create_email_domain_block_html: "%{name} 封鎖了電子郵件網域 %{target}"
         create_ip_block_html: "%{name} 已經設定了IP %{target} 的規則"
         create_unavailable_domain_html: "%{name} 停止發送至網域 %{target}"
         create_user_role_html: "%{name} 建立了 %{target} 角色"
@@ -244,7 +244,7 @@ zh-TW:
         destroy_custom_emoji_html: "%{name} 刪除了表情符號 %{target}"
         destroy_domain_allow_html: "%{name} 不允許與網域 %{target} 加入聯邦宇宙"
         destroy_domain_block_html: "%{name} 取消了對網域 %{target} 的封鎖"
-        destroy_email_domain_block_html: "%{name} 取消了對電子信箱網域 %{target} 的封鎖"
+        destroy_email_domain_block_html: "%{name} 取消了對電子郵件網域 %{target} 的封鎖"
         destroy_instance_html: "%{name} 清除了網域 %{target}"
         destroy_ip_block_html: "%{name} 刪除了 IP %{target} 的規則"
         destroy_status_html: "%{name} 刪除了 %{target} 的嘟文"
@@ -252,10 +252,10 @@ zh-TW:
         destroy_user_role_html: "%{name} 刪除了 %{target} 角色"
         disable_2fa_user_html: "%{name} 停用了使用者 %{target} 的兩階段認證"
         disable_custom_emoji_html: "%{name} 停用了自訂表情符號 %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} 停用了 %{target} 之使用者電子信箱 token 驗證"
+        disable_sign_in_token_auth_user_html: "%{name} 停用了 %{target} 之使用者電子郵件 token 驗證"
         disable_user_html: "%{name} 將使用者 %{target} 設定為禁止登入"
         enable_custom_emoji_html: "%{name} 啟用了自訂表情符號 %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} 啟用了 %{target} 之使用者電子信箱 token 驗證"
+        enable_sign_in_token_auth_user_html: "%{name} 啟用了 %{target} 之使用者電子郵件 token 驗證"
         enable_user_html: "%{name} 將使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 將 %{target} 設定為追悼帳號"
         promote_user_html: "%{name} 對使用者 %{target} 進行了晉級操作"
@@ -400,7 +400,7 @@ zh-TW:
       add_new: 加入新項目
       attempts_over_week:
         other: 上週共有 %{count} 次註冊嘗試
-      created_msg: 已成功將電子信箱網域加入黑名單
+      created_msg: 已成功將電子郵件網域加入黑名單
       delete: 刪除
       dns:
         types:
@@ -409,11 +409,11 @@ zh-TW:
       new:
         create: 新增站點
         resolve: 解析網域
-        title: 新增電子信箱黑名單項目
-      no_email_domain_block_selected: 因未選取項目，而未更改電子信箱網域封鎖清單
+        title: 新增電子郵件黑名單項目
+      no_email_domain_block_selected: 因未選取項目，而未更改電子郵件網域黑名單
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
-      title: 電子信箱黑名單
+      title: 電子郵件黑名單
     follow_recommendations:
       description_html: |-
         <strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>. 當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推荐。這些帳號將基於某選定語言之高互動和高本地跟隨者數量帳號而
@@ -597,7 +597,7 @@ zh-TW:
         other: "%{count} 個使用者"
       categories:
         administration: 管理員
-        devops: Devops
+        devops: DevOps
         invites: 邀請
         moderation: 站務
         special: 特殊
@@ -647,7 +647,7 @@ zh-TW:
         view_audit_log_description: 允許使用者檢視伺服器上的管理動作歷史
         view_dashboard: 檢視儀表板
         view_dashboard_description: 允許使用者存取儀表板與各種指標
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: 允許使用者存取 Sidekiq 與 pgHero 儀表板
       title: 角色
     rules:
@@ -884,9 +884,9 @@ zh-TW:
     sensitive_content: 敏感內容
     toot_layout: 嘟文排版
   application_mailer:
-    notification_preferences: 變更電子信件設定
+    notification_preferences: 變更電子郵件設定
     salutation: "%{name}、"
-    settings: 變更電子信箱設定︰%{link}
+    settings: 變更電子郵件設定︰%{link}
     view: '進入瀏覽:'
     view_profile: 檢視個人檔案
     view_status: 檢視嘟文
@@ -1349,7 +1349,6 @@ zh-TW:
     browser: 瀏覽器
     browsers:
       alipay: 支付寶
-      blackberry: 黑莓機
       chrome: Chrome 瀏覽器
       edge: Microsoft Edge 瀏覽器
       electron: Electron 瀏覽器
@@ -1372,8 +1371,7 @@ zh-TW:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: 黑莓機 （Blackberry）
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

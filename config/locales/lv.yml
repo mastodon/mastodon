@@ -621,7 +621,7 @@ lv:
         zero: "%{count} lietotāju"
       categories:
         administration: Administrēšana
-        devops: Izstrādātāji
+        devops: DevOps
         invites: Uzaicinājumi
         moderation: Moderācija
         special: Īpašās
@@ -673,7 +673,7 @@ lv:
         view_audit_log_description: Ļauj lietotājiem redzēt serverī veikto administratīvo darbību vēsturi
         view_dashboard: Skatīt Informācijas Paneli
         view_dashboard_description: Ļauj lietotājiem piekļūt informācijas panelim un dažādiem rādītājiem
-        view_devops: Izstrādātāji
+        view_devops: DevOps
         view_devops_description: Ļauj lietotājiem piekļūt Sidekiq un pgHero informācijas paneļiem
       title: Lomas
     rules:
@@ -1307,9 +1307,9 @@ lv:
     poll:
       subject: "%{name} aptauja ir beigusies"
     reblog:
-      body: 'Tavu ziņu paaugstināja %{name}:'
-      subject: "%{name} paaugstināja tavu ziņu"
-      title: Jauns stimuls
+      body: 'Tavu ziņu pastiprināja %{name}:'
+      subject: "%{name} pastiprināja tavu ziņu"
+      title: Jauns pastiprinājums
     status:
       subject: "%{name} tikko publicēja"
     update:
@@ -1399,7 +1399,7 @@ lv:
     browser: Pārlūks
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1413,7 +1413,7 @@ lv:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Pārlūks
       weibo: Weibo
     current_session: Pašreizējā sesija
     description: "%{browser} uz %{platform}"
@@ -1422,8 +1422,8 @@ lv:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
-      chrome_os: Chrome OS
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1474,7 +1474,7 @@ lv:
         one: "%{count} video"
         other: "%{count} video"
         zero: "%{count} video"
-    boosted_from_html: Paaugstināja %{acct_link}
+    boosted_from_html: Pastiprināja %{acct_link}
     content_warning: 'Satura brīdinājums: %{warning}'
     default_language: Tāda, kā saskarnes valoda
     disallowed_hashtags:
@@ -1490,7 +1490,7 @@ lv:
       direct: Ziņojumus, kas ir redzami tikai minētajiem lietotājiem, nevar piespraust
       limit: Tu jau esi piespraudis maksimālo ziņu skaitu
       ownership: Citas personas ziņu nevar piespraust
-      reblog: Paaugstinātās ziņas nevar piespraust
+      reblog: Pastiprinātu ierakstu nevar piespraust
     poll:
       total_people:
         one: "%{count} persona"
@@ -1521,9 +1521,9 @@ lv:
     exceptions: Izņēmumi
     explanation: Tā kā ziņu dzēšana ir dārga darbība, tā tiek veikta lēnām laika gaitā, kad serveris nav citādi aizņemts. Šī iemesla dēļ tavas ziņas var tikt izdzēstas kādu laiku pēc vecuma sliekšņa sasniegšanas.
     ignore_favs: Ignorēt izlasi
-    ignore_reblogs: Ignorēt paaugstinātās
+    ignore_reblogs: Ignorēt pastiprinātos ierakstus
     interaction_exceptions: Izņēmumi, kuru pamatā ir mijiedarbība
-    interaction_exceptions_explanation: Ņem vērā, ka nav garantijas, ka ziņas tiks dzēstas, ja tās ir zemākas par izlases vai paaugstinājuma slieksni pēc to pārsniegšanas.
+    interaction_exceptions_explanation: Ņem vērā, ka ieraksti var netikt dzēsti, ja tie noslīd zem par izlases vai pastiprinājuma sliekšņa pēc tam, kad to reiz pārsnieguši.
     keep_direct: Saglabāt tiešos ziņojumus
     keep_direct_hint: Nedzēš nevienu tavu tiešo ziņojumu
     keep_media: Saglabāt ziņas ar mediju pielikumiem
@@ -1548,11 +1548,11 @@ lv:
     min_age_label: Vecuma slieksnis
     min_favs: Saglabāt ziņas izlsasē vismaz
     min_favs_hint: Nedzēš nevienu tavu ziņu, kas ir saņēmusi vismaz tik daudz izlases. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izlases skaita
-    min_reblogs: Saglabāt ziņas paaugstinātas vismaz
-    min_reblogs_hint: Neizdzēš nevienu no tavām ziņām, kas ir paaugstinātas vismaz tik reižu. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to paaugstinājumu skaita
+    min_reblogs: Saglabāt ierakstus pastiprinātus vismaz
+    min_reblogs_hint: Neizdzēš nevienu no taviem ierakstiem, kas ir pastiprināts vismaz tik reižu. Atstāj tukšu, lai dzēstu ierakstus neatkarīgi no to pastiprinājumu skaita
   stream_entries:
     pinned: Piespraustā ziņa
-    reblogged: paaugstinātās
+    reblogged: pastiprinātie
     sensitive_content: Sensitīvs saturs
   strikes:
     errors:

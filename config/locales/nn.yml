@@ -270,7 +270,18 @@ nn:
         reset_password_user_html: "%{name} tilbakestilte passordet for brukaren %{target}"
         resolve_report_html: "%{name} løyste ein rapport %{target}"
         sensitive_account_html: "%{name} markerte %{target} sitt media som sensitivt"
-        silence_account_html: "%{name} begrenset %{target} sin konto"
+        silence_account_html: "%{name} begrensa %{target} sin konto"
+        suspend_account_html: "%{name} utviste %{target} sin konto"
+        unassigned_report_html: "%{name} løyste ein rapport %{target}"
+        unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
+        unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som sensitivt"
+        unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
+        update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
+        update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
+        update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
+        update_ip_block_html: "%{name} endret regel for IP %{target}"
+        update_status_html: "%{name} oppdaterte innlegg av %{target}"
+        update_user_role_html: "%{name} endret %{target} -rolle"
       deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
@@ -329,18 +340,28 @@ nn:
       upload: Last opp
     dashboard:
       active_users: aktive brukarar
-      interactions: interaksjoner
-      media_storage: Medialagring
-      new_users: nye brukere
-      opened_reports: rapporter åpnet
-      resolved_reports: rapporter løst
+      interactions: interaksjonar
+      media_storage: Medielagring
+      new_users: nye brukarar
+      opened_reports: rapportar opna
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> ventande ankar"
+        other: "<strong>%{count}</strong> ventande klagar"
+      pending_users_html:
+        one: "<strong>%{count}</strong> ventande brukarar"
+        other: "<strong>%{count}</strong> ventande brukarar"
+      resolved_reports: rapportar løyst
       software: Programvare
-      sources: Kilder for registreringer
+      sources: Kjelder for registreringar
       space: Lagrinsplass nytta
       title: Dashbord
       top_languages: Mest aktive språk
-      top_servers: Mest aktive servere
+      top_servers: Mest aktive serverar
       website: Nettside
+    disputes:
+      appeals:
+        empty: Ingen ankar funne.
+        title: Ankar
     domain_allows:
       add_new: Kvitlist domene
       created_msg: Domene er vorte kvitlista
@@ -352,6 +373,7 @@ nn:
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
       edit: Rediger domeneblokkering
+      existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       new:
         create: Lag blokkering
@@ -363,7 +385,7 @@ nn:
           suspend: Utvis
         title: Ny domeneblokkering
       obfuscate: Obfuskere domenenavn
-      obfuscate_hint: Delvis skjule domenenavnet i listen hvis det er aktivert for å annonsere listen over domenebegrensninger
+      obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
       private_comment: Privat kommentar
       private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
       public_comment: Offentleg kommentar
@@ -376,11 +398,18 @@ nn:
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
+      attempts_over_week:
+        one: "%{count} forsøk i løpet av den siste uken"
+        other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Slett
+      dns:
+        types:
+          mx: MX post
       domain: Domene
       new:
         create: Legg til domene
+        resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
@@ -389,14 +418,34 @@ nn:
       language: For språk
       status: Status
       suppress: Undertrykk anbefalte følger
-      suppressed: Dempet
-      title: Følg anbefalinger
+      suppressed: Dempa
+      title: Følg gjerne desse
       unsuppress: Gjenopprett følg-anbefaling
     instances:
+      availability:
+        failure_threshold_reached: Feilterskelen ble nådd %{date}.
+        no_failures_recorded: Ingen feil registrert.
+        title: Tilgjenge
+        warning: Det siste forsøket på å koble til denne serveren lyktes ikke
       back_to_all: All
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
+      content_policies:
+        comment: Internt notat
+        policies:
+          reject_media: Avvis media
+          silence: Begrens
+        reason: Offentlig årsak
+        title: Retningslinjer for innhold
+      dashboard:
+        instance_accounts_measure: lagrede kontoer
+        instance_followers_measure: våre følgere der
+        instance_follows_measure: deres følgere her
+        instance_languages_dimension: Mest brukte språk
+        instance_media_attachments_measure: lagrede mediavedlegg
+        instance_reports_measure: rapporter om dem
+        instance_statuses_measure: lagrede innlegg
       delivery:
         all: All
         clear: Feil ved fjerning
@@ -404,6 +453,8 @@ nn:
         stop: Stopp levering
         unavailable: Ikke tilgjengelig
       delivery_available: Levering er tilgjengelig
+      delivery_error_hint: Dersom levering ikke er mulig i løpet av %{count} dager, blir det automatisk merket som ikke mulig å levere.
+      empty: Ingen domener funnet.
       moderation:
         all: Alle
         limited: Avgrensa
@@ -466,6 +517,8 @@ nn:
           one: "%{count} notis"
           other: "%{count} notiser"
       action_taken_by: Handling gjort av
+      actions:
+        silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilsett moderator
@@ -495,6 +548,18 @@ nn:
       unassign: Avset
       unresolved: Uløyst
       updated_at: Oppdatert
+      view_profile: Vis profil
+    roles:
+      add_new: Legg til rolle
+      assigned_users:
+        one: "%{count} bruker"
+        other: "%{count} brukere"
+      categories:
+        administration: Administrasjon
+        devops: DevOps
+        invites: Invitasjoner
+      privileges:
+        view_devops: DevOps
     rules:
       add_new: Legg til et filter
       delete: Slett
@@ -523,6 +588,9 @@ nn:
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
       title: Kontostatusar
       with_media: Med media
+    strikes:
+      actions:
+        silence: "%{name} begrenset %{target}s konto"
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -539,6 +607,9 @@ nn:
       edit_preset: Endr åtvaringsoppsett
       title: Handsam åtvaringsoppsett
   admin_mailer:
+    new_appeal:
+      actions:
+        silence: for å begrense deres konto
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -615,6 +686,7 @@ nn:
       confirming: Ventar på stadfesting av e-post.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      view_strikes: Vis tidligere advarsler mot kontoen din
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -668,6 +740,11 @@ nn:
       more_details_html: For fleire detaljar, sjå <a href="%{terms_path}">personvernsvilkåra</a>.
       username_available: Brukarnamnet ditt vert tilgjengeleg igjen
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
+  disputes:
+    strikes:
+      appeal_approved: Denne advarselen ble anket og er ikke lenger gyldig
+      title_actions:
+        silence: Begrensning av konto
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:
@@ -741,6 +818,8 @@ nn:
   html_validator:
     invalid_markup: 'rommar ugild HTML-kode: %{error}'
   imports:
+    errors:
+      over_rows_processing_limit: inneholder flere enn %{count} rader
     modes:
       merge: Set saman
       merge_long: Hald på eksisterande data og legg til nye
@@ -915,6 +994,10 @@ nn:
     status: Kontostatus
   remote_follow:
     missing_resource: Kunne ikke finne URLen for din konto
+  rss:
+    descriptions:
+      account: Offentlige innlegg fra @%{acct}
+      tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
@@ -938,7 +1021,7 @@ nn:
       phantom_js: PhantomJS
       qq: QQ-lesar
       safari: Safari
-      uc_browser: UC-lesar
+      uc_browser: QQ-lesar
       weibo: Weibo
     current_session: Noverande økt
     description: "%{browser} på %{platform}"
@@ -948,7 +1031,7 @@ nn:
       adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: IOS
       linux: Linux
@@ -980,6 +1063,8 @@ nn:
     preferences: Innstillingar
     profile: Profil
     relationships: Fylgjar og fylgjarar
+    statuses_cleanup: Automatisert sletting av innlegg
+    strikes: Modereringsadvarsler
     two_factor_authentication: Tostegsautorisering
     webauthn_authentication: Sikkerhetsnøkler
   statuses:
@@ -996,6 +1081,7 @@ nn:
     disallowed_hashtags:
       one: 'inneheldt ein emneknagg som ikkje var tillaten: %{tags}'
       other: 'inneheldt emneknaggen som ikkje var tillaten: %{tags}'
+    edited_at_html: Redigert %{date}
     errors:
       in_reply_not_found: Det ser ut til at tutet du freistar å svara ikkje finst.
     open_in_web: Opn på nett
@@ -1025,6 +1111,9 @@ nn:
       unlisted: Ikkje oppført
       unlisted_long: Alle kan sjå, men ikkje oppført på offentlege tidsliner
   statuses_cleanup:
+    enabled: Slett gamle innlegg automatisk
+    enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
+    exceptions: Unntak
     keep_pinned: Behald festa innlegg
     keep_pinned_hint: Sletter ingen av dine festa innlegg
     keep_polls: Behald røystingar
@@ -1061,6 +1150,7 @@ nn:
     formats:
       default: "%d.%b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Legg til
     disable: Slå av
@@ -1108,17 +1198,24 @@ nn:
       reason: 'Årsak:'
       statuses: 'Innlegg sitert:'
       subject:
+        delete_statuses: Dine innlegg på %{acct} har blitt fjernet
         disable: Kontoen din, %{acct}, har blitt fryst
+        mark_statuses_as_sensitive: Dine innlegg på %{acct} har blitt merket som sensitivt innhold
         none: Åtvaring for %{acct}
+        sensitive: Dine innlegg på %{acct} vil bli merket som sensitive fra nå
         silence: Kontoen din, %{acct}, er vorten avgrensa
         suspend: Kontoen din, %{acct}, er vorten utvist
       title:
+        delete_statuses: Innlegg fjernet
         disable: Konto frosen
+        mark_statuses_as_sensitive: Innlegg markert som sensitive
         none: Åtvaring
+        sensitive: Konto markert som sensitiv
         silence: Konto avgrensa
         suspend: Konto utvist
     welcome:
       edit_profile_action: Lag til profil
+      edit_profile_step: Du kan tilpasse profilen din ved å laste opp et profilbilde, endre visningsnavnet ditt og mer. Du kan velge at nye følgere må godkjennes av deg før de får lov til å følge deg.
       explanation: Her er nokre tips for å koma i gang
       final_action: Kom i gang med å leggja ut
       full_handle: Det fulle brukarnamnet ditt
@@ -1137,9 +1234,11 @@ nn:
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
     create:
+      error: Det oppstod et problem med å legge til sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket lagt til.
     delete: Slett
     delete_confirmation: Er du sikker på at du vil slette denne sikkerhetsnøkkelen?
+    description_html: Dersom du aktiverer <strong>sikkerhetsnøkkelautentisering</strong>, vil innlogging kreve at du bruker en av sikkerhetsnøklene dine.
     destroy:
       error: Det oppsto et problem med å slette sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket slettet.

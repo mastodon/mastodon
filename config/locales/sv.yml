@@ -608,7 +608,7 @@ sv:
         other: "%{count} användare"
       categories:
         administration: Administration
-        devops: Devops
+        devops: DevOps
         invites: Inbjudningar
         moderation: Moderering
         special: Särskild
@@ -659,7 +659,7 @@ sv:
         view_audit_log_description: Tillåter användare att se historiken över administrativa åtgärder på servern
         view_dashboard: Visa instrumentpanel
         view_dashboard_description: Ger användare tillgång till instrumentpanelen och olika mätvärden
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Ger användare tillgång till instrumentpanelerna Sidekiq och pgHero
       title: Roller
     rules:
@@ -1283,7 +1283,7 @@ sv:
     reblog:
       body: 'Ditt inlägg boostades av %{name}:'
       subject: "%{name} boostade ditt inlägg"
-      title: Ny boostning
+      title: Ny boost
     status:
       subject: "%{name} publicerade just ett inlägg"
     update:
@@ -1373,7 +1373,7 @@ sv:
     browser: Webbläsare
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1387,7 +1387,7 @@ sv:
       phantom_js: PhantomJS
       qq: QQ browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Nuvarande session
     description: "%{browser} på %{platform}"
@@ -1396,8 +1396,8 @@ sv:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
-      chrome_os: Chrome OS
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1489,9 +1489,9 @@ sv:
     exceptions: Undantag
     explanation: Eftersom inläggsradering är resursintensivt görs detta stegvis när servern inte är högbelastad. Därför kan det dröja innan dina inlägg raderas efter att de uppnått ålderströskeln.
     ignore_favs: Bortse från favoriter
-    ignore_reblogs: Ignorera boostningar
+    ignore_reblogs: Ignorera boostar
     interaction_exceptions: Undantag baserat på interaktioner
-    interaction_exceptions_explanation: Observera att det inte finns någon garanti att inlägg blir raderade om de går under favorit- eller boosttröskeln efter att en gång ha gått över dem.
+    interaction_exceptions_explanation: Observera att det inte finns någon garanti att inlägg blir raderade om de går under favorit- eller boost-tröskeln efter att en gång ha gått över dem.
     keep_direct: Behåll direktmeddelanden
     keep_direct_hint: Tar inte bort någon av dina direktmeddelanden
     keep_media: Behåll inlägg med mediebilagor
@@ -1517,7 +1517,7 @@ sv:
     min_favs: Behåll favoritmarkerade inlägg i minst
     min_favs_hint: Raderar inte något av dina inlägg som har blivit favoritmarkerat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal favoritmarkeringar
     min_reblogs: Behåll boostade inlägg i minst
-    min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostningar
+    min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostar
   stream_entries:
     pinned: Fäst inlägg
     reblogged: boostad

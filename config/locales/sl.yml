@@ -1,7 +1,7 @@
 ---
 sl:
   about:
-    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
+    about_mastodon_html: 'Družbeno omrežje prihodnosti: brez oglasov, brez nadzora korporacij, etično oblikovanje in decentralizacija! Ohranite lastništvo nad svojimi podatki z Mastodonom!'
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
     hosted_on: Mastodon gostuje na %{domain}
@@ -13,18 +13,18 @@ sl:
       one: Sledilec
       other: Sledilcev
       two: Sledilca
-    following: Sledim
+    following: Sledi
     instance_actor_flash: Ta račun je navidezni akter, ki se uporablja za predstavljanje strežnika samega in ne posameznega uporabnika. Uporablja se za namene federacije in se ne sme začasno ustaviti.
     last_active: zadnja dejavnost
-    link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
+    link_verified_on: Lastništvo te povezave je bilo preverjeno %{date}
     nothing_here: Tukaj ni ničesar!
     pin_errors:
       following: Verjetno že sledite osebi, ki jo želite potrditi
     posts:
-      few: Tuti
-      one: Tut
+      few: Objave
+      one: Objava
       other: Objav
-      two: Tuta
+      two: Objavi
     posts_tab_heading: Objave
   admin:
     account_actions:
@@ -32,45 +32,45 @@ sl:
       title: Izvedi moderirano dejanje za %{acct}
     account_moderation_notes:
       create: Pusti opombo
-      created_msg: Moderirana opomba je uspešno ustvarjena!
-      destroyed_msg: Moderirana opomba je uspešno uničena!
+      created_msg: Opomba moderiranja je uspešno ustvarjena!
+      destroyed_msg: Opomba moderiranja je uspešno uničena!
     accounts:
       add_email_domain_block: Blokiraj domeno e-pošte
       approve: Odobri
-      approved_msg: Uspešno odobrena aplikacija prijave uporabnika %{username}
+      approved_msg: Uspešno odobrena vloga prijave uporabnika %{username}
       are_you_sure: Ali ste prepričani?
       avatar: Podoba
       by_domain: Domena
       change_email:
         changed_msg: E-pošni naslov uspešno spremenjen!
-        current_email: Trenutna e-pošta
-        label: Spremeni e-pošto
-        new_email: Nova e-pošta
-        submit: Spremeni e-pošto
-        title: Spremeni e-pošto za %{username}
+        current_email: Trenutni e-naslov
+        label: Spremeni e-naslov
+        new_email: Nov e-naslov
+        submit: Spremeni e-naslov
+        title: Spremeni e-naslov za %{username}
       change_role:
         changed_msg: Vloga uspešno spremenjena!
         label: Spremeni vlogo
-        no_role: Ni vloge
+        no_role: Brez vloge
         title: Spremeni vlogo za %{username}
       confirm: Potrdi
       confirmed: Potrjeno
-      confirming: Potrjujem
+      confirming: V potrjevanju
       custom: Po meri
       delete: Izbriši podatke
       deleted: Izbrisano
-      demote: Degradiraj
+      demote: Ponižaj
       destroyed_msg: Podatki uporabnika %{username} so zdaj v vrsti za trajen izbris
-      disable: Onemogoči
+      disable: Zamrzni
       disable_sign_in_token_auth: Onemogoči overjanje z žetonom po e-pošti
       disable_two_factor_authentication: Onemogoči 2FA
-      disabled: Onemogočeno
-      display_name: Prikazno ime
+      disabled: Zamrznjeno
+      display_name: Pojavno ime
       domain: Domena
       edit: Uredi
-      email: E-pošta
-      email_status: Stanje e-pošte
-      enable: Omogoči
+      email: E-naslov
+      email_status: Stanje e-naslova
+      enable: Odmrzni
       enable_sign_in_token_auth: Omogoči overjanje z žetonom po e-pošti
       enabled: Omogočeno
       enabled_msg: Uspešno odmrznjen račun uporabnika %{username}
@@ -79,18 +79,18 @@ sl:
       header: Glava
       inbox_url: URL mape "Prejeto"
       invite_request_text: Razlogi za pridružitev
-      invited_by: Povabljen od
+      invited_by: Na povabilo
       ip: IP
-      joined: Pridružil
+      joined: Pridružen_a
       location:
         all: Vse
-        local: Lokalni
+        local: Krajevni
         remote: Oddaljeni
         title: Lokacija
       login_status: Stanje prijave
       media_attachments: Predstavnostne priloge
-      memorialize: Spremenite v spomin
-      memorialized: Spomenificirano
+      memorialize: Spremenite v pomnik
+      memorialized: Spominificirano
       memorialized_msg: Uspešno preoblikovan %{username} v spominski račun
       moderation:
         active: Dejaven
@@ -105,7 +105,7 @@ sl:
       no_account_selected: Noben račun ni bil spremenjen, ker ni bil izbran noben
       no_limits_imposed: Brez omejitev
       no_role_assigned: Dodeljena ni nobena vloga
-      not_subscribed: Ni naročen
+      not_subscribed: Ni naročnin
       pending: Čakanje na pregled
       perform_full_suspension: Suspendiraj
       previous_strikes: Predhodni ukrepi
@@ -121,21 +121,21 @@ sl:
       redownload: Osveži profil
       redownloaded_msg: Uspešno osvežen profil %{username} iz izvirnika
       reject: Zavrni
-      rejected_msg: Uspešno zavrnjena aplikacija prijave uporabnika %{username}
+      rejected_msg: Uspešno zavrnjena vloga prijave uporabnika %{username}
       remove_avatar: Odstrani podobo
       remove_header: Odstrani glavo
       removed_avatar_msg: Uspešno odstranjena slika avatarja uporabnika %{username}
       removed_header_msg: Uspešno odstranjena naslovna slika uporabnika %{username}
       resend_confirmation:
         already_confirmed: Ta uporabnik je že potrjen
-        send: Ponovno pošlji potrditveno e-pošto
-        success: Potrditvena e-pošta je uspešno poslana!
+        send: Ponovno pošlji potrditveno e-sporočilo
+        success: Potrditveno e-sporočilo je uspešno poslano!
       reset: Ponastavi
       reset_password: Ponastavi geslo
       resubscribe: Ponovno se naroči
       role: Vloga
       search: Iskanje
-      search_same_email_domain: Drugi uporabniki z isto domeno e-pošte
+      search_same_email_domain: Drugi uporabniki z isto e-poštno domeno
       search_same_ip: Drugi uporabniki z istim IP
       security_measures:
         only_password: Samo geslo
@@ -146,24 +146,24 @@ sl:
       show:
         created_reports: Opravljene prijave
         targeted_reports: Prijavili drugi
-      silence: Utišaj
-      silenced: Utišan
+      silence: Omeji
+      silenced: Omejen
       statuses: Objave
       strikes: Predhodni ukrepi
       subscribe: Naroči
       suspend: Suspendiraj
       suspended: Suspendiran
-      suspension_irreversible: Podatki tega računa so bili nepovrazno izbrisani. Račun lahko vrnete iz suspenza, da bo ponovno uporaben, vendar preteklih podatkov ne boste mogli obnoviti.
+      suspension_irreversible: Podatki tega računa so bili nepovratno izbrisani. Račun lahko vrnete iz suspenza, da bo ponovno uporaben, vendar preteklih podatkov ne boste mogli obnoviti.
       suspension_reversible_hint_html: Račun je bil suspendiran, podatki pa bodo v celoti odstranjeni %{date}. Do takrat je mogoče račun obnoviti brez negativnih posledic. Če želite takoj odstraniti vse podatke računa, lahko to storite spodaj.
       title: Računi
       unblock_email: Odblokiraj e-poštni naslov
       unblocked_email_msg: E-poštni naslov uporabnika %{username} uspešno odblokiran
-      unconfirmed_email: Nepotrjena e-pošta
+      unconfirmed_email: Nepotrjen e-naslov
       undo_sensitized: Ni občutljivo
-      undo_silenced: Razveljavi utišanje
-      undo_suspension: Razveljavi suspendiranje
+      undo_silenced: Razveljavi omejitve
+      undo_suspension: Razveljavi suspenz
       unsilenced_msg: Uspešno razveljavljena omejitev računa uporabnika %{username}
-      unsubscribe: Odjavi se od naročnine
+      unsubscribe: Odjavi od naročnine
       unsuspended_msg: Uspešno preklican suspenz računa uporabnika %{username}
       username: Uporabniško ime
       view_domain: Pokaži povzetek za domeno
@@ -175,12 +175,12 @@ sl:
         approve_appeal: Odobri pritožbo
         approve_user: Odobri uporabnika
         assigned_to_self_report: Dodeli prijavo
-        change_email_user: Spremeni e-poštni naslov uporabnika
+        change_email_user: Spremeni e-naslov uporabnika
         change_role_user: Spremeni vlogo uporabnika
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
-        create_canonical_email_block: Ustvari blokado e-pošte
+        create_canonical_email_block: Ustvari blokado e-naslova
         create_custom_emoji: Ustvari emotikon po meri
         create_domain_allow: Ustvari odobritev domene
         create_domain_block: Ustvari blokado domene
@@ -190,7 +190,7 @@ sl:
         create_user_role: Ustvari vlogo
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
-        destroy_canonical_email_block: Izbriši blokado e-pošte
+        destroy_canonical_email_block: Izbriši blokado e-naslova
         destroy_custom_emoji: Izbriši emotikon po meri
         destroy_domain_allow: Izbriši odobritev domene
         destroy_domain_block: Izbriši blokado domene
@@ -198,7 +198,7 @@ sl:
         destroy_instance: Očisti domeno
         destroy_ip_block: Izbriši pravilo IP
         destroy_status: Izbriši objavo
-        destroy_unavailable_domain: Izbriši domeno, ki ni na voljo
+        destroy_unavailable_domain: Izbriši nedosegljivo domeno
         destroy_user_role: Uniči vlogo
         disable_2fa_user: Onemogoči
         disable_custom_emoji: Onemogoči emotikon po meri
@@ -213,7 +213,7 @@ sl:
         reject_user: Zavrni uporabnika
         remove_avatar_user: Odstrani avatar
         reopen_report: Ponovno odpri prijavo
-        resend_user: Ponovno pošlji potrditveno e-pošto
+        resend_user: Ponovno pošlji potrditveno e-sporočilo
         reset_password_user: Ponastavi geslo
         resolve_report: Razreši prijavo
         sensitive_account: Občutljivi račun
@@ -634,7 +634,7 @@ sl:
         two: "%{count} uporabnika"
       categories:
         administration: Upravljanje
-        devops: Razvojniki
+        devops: DevOps
         invites: Povabila
         moderation: Moderiranje
         special: Posebno
@@ -687,7 +687,7 @@ sl:
         view_audit_log_description: Omogoča, da uporabnik vidi zgodovino skrbniških opravil na strežniku
         view_dashboard: Pokaži nadzorno ploščo
         view_dashboard_description: Omogoča uporabnikom, da dostopajo do nadzorne plošče in različnih meritev
-        view_devops: Razvojniki
+        view_devops: DevOps
         view_devops_description: Omogoča uporabnikom, da dostopajo do nadzornih plošč Sidekiq in phHero
       title: Vloge
     rules:
@@ -1449,7 +1449,7 @@ sl:
       adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

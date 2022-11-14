@@ -5,6 +5,7 @@
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
     hosted_on: Mastodon driftet på %{domain}
+    title: Om
   accounts:
     follow: Følg
     followers:
@@ -51,6 +52,7 @@
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
+      custom: Tilpasset
       delete: Slett data
       deleted: Slettet
       demote: Degrader
@@ -90,13 +92,14 @@
         active: Aktive
         all: Alle
         pending: Avventer
+        silenced: Begrenset
         suspended: Utvist
         title: Moderasjon
       moderation_notes: Moderasjonsnotater
       most_recent_activity: Nyligste aktivitet
       most_recent_ip: Nyligste IP
       no_account_selected: Ingen brukere ble forandret da ingen var valgt
-      no_limits_imposed: Ingen grenser er tatt i bruk
+      no_limits_imposed: Ingen pålagte begrensninger
       no_role_assigned: Ingen rolle tildelt
       not_subscribed: Ikke abonnért
       pending: Avventer gjennomgang
@@ -137,11 +140,12 @@
       show:
         created_reports: Rapporter laget av denne kontoen
         targeted_reports: Rapporter laget om denne kontoen
-      silence: Målbind
-      silenced: Stilnet
+      silence: Begrens
+      silenced: Begrenset
       statuses: Statuser
       strikes: Tidligere advarsler
       subscribe: Abonnere
+      suspend: Suspender
       suspended: Suspendert
       suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
       suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
@@ -149,9 +153,10 @@
       unblock_email: Avblokker e-postadresse
       unblocked_email_msg: Fjernet blokkering av %{username} sin e-postadresse
       unconfirmed_email: Ubekreftet E-postadresse
-      undo_silenced: Angre målbinding
+      undo_sensitized: Gjør om tving sensitiv
+      undo_silenced: Angre begrensning
       undo_suspension: Angre utvisning
-      unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
+      unsilenced_msg: Opphevde begrensningen av %{username}s konto
       unsubscribe: Avslutt abonnementet
       unsuspended_msg: Opphevde vellykket suspenderingen av %{username} sin konto
       username: Brukernavn
@@ -161,6 +166,7 @@
       whitelisted: Hvitelistet
     action_logs:
       action_types:
+        approve_appeal: Godkjenn anke
         approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
         change_email_user: Endre brukerens E-postadresse
@@ -168,37 +174,49 @@
         confirm_user: Bekreft brukeren
         create_account_warning: Opprett en advarsel
         create_announcement: Opprett en kunngjøring
+        create_canonical_email_block: Opprett e-post-blokkering
         create_custom_emoji: Opprett en tilpasset emoji
         create_domain_allow: Opprett domene tillatt
         create_domain_block: Opprett domene-blokk
         create_email_domain_block: Opprett e-post domeneblokk
         create_ip_block: Opprett IP-regel
+        create_unavailable_domain: Opprett utilgjengelig domene
         create_user_role: Opprett rolle
         demote_user: Degrader bruker
         destroy_announcement: Slett kunngjøringen
         destroy_canonical_email_block: Slett blokkering av e-post
         destroy_custom_emoji: Slett den tilpassede emojien
+        destroy_domain_allow: Slett domenegodkjenning
         destroy_domain_block: Slett blokkering av domene
         destroy_email_domain_block: Slett blokkering av e-postdomene
+        destroy_instance: Slett domene
         destroy_ip_block: Slett IP-regel
         destroy_status: Slett statusen
         destroy_unavailable_domain: Slett utilgjengelig domene
         destroy_user_role: Slett rolle
         disable_2fa_user: Skru av 2-trinnsinnlogging
         disable_custom_emoji: Skru av tilpassede emojier
+        disable_sign_in_token_auth_user: Skru av e-post-tokenautentisering for bruker
         disable_user: Deaktiver bruker
         enable_custom_emoji: Skru på tilpassede emojier
+        enable_sign_in_token_auth_user: Skru på e-post-tokenautentisering for bruker
         enable_user: Aktiver bruker
+        memorialize_account: Opprett minnekonto
         promote_user: Promoter bruker
+        reject_appeal: Avvis anke
         reject_user: Avvis bruker
         remove_avatar_user: Fjern Avatar
         reopen_report: Gjenåpne rapporten
         resend_user: Send e-post med bekreftelse på nytt
         reset_password_user: Tilbakestill passord
         resolve_report: Løs rapport
-        silence_account: Demp konto
+        sensitive_account: Tving sensitiv konto
+        silence_account: Begrens konto
         suspend_account: Suspender kontoen
+        unassigned_report: Fjern tilordnet rapport
         unblock_email_account: Fjern blokkering av e-postadresse
+        unsensitive_account: Angre tving sensitiv konto
+        unsilence_account: Angre begrensning av konto
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
         update_custom_emoji: Oppdater tilpasset Emoji
@@ -219,8 +237,21 @@
         create_domain_block_html: "%{name} blokkert domene %{target}"
         create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        create_user_role_html: "%{name} opprettet rollen %{target}"
+        destroy_announcement_html: "%{name} slettet kunngjøring %{target}"
+        destroy_custom_emoji_html: "%{name} slettet emoji %{target}"
+        destroy_ip_block_html: "%{name} slettet regel for IP %{target}"
+        destroy_status_html: "%{name} fjernet innlegget av %{target}"
+        destroy_user_role_html: "%{name} slettet %{target} -rolle"
         reject_user_html: "%{name} avslo registrering fra %{target}"
-        silence_account_html: "%{name} begrenset %{target} sin konto"
+        reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
+        silence_account_html: "%{name} begrenset %{target}s konto"
+        unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
+        update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
+        update_ip_block_html: "%{name} endret regel for IP %{target}"
+        update_status_html: "%{name} oppdaterte innlegg av %{target}"
+        update_user_role_html: "%{name} endret %{target} -rolle"
+      deleted_account: slettet konto
       empty: Ingen loggføringer ble funnet.
       filter_by_action: Sorter etter handling
       filter_by_user: Sorter etter bruker
@@ -259,10 +290,12 @@
       enable: Aktivere
       enabled: Skrudd på
       enabled_msg: Aktiverte emojien uten problem
+      image_hint: PNG eller GIF opptil %{size}
       list: Før opp
       listed: Oppførte
       new:
         title: Legg til ny egen emoji
+      no_emoji_selected: Ingen emojis ble endret da ingen var valgt
       not_permitted: Du har ikke rettigheter til å utføre denne handlingen
       overwrite: Overskrive
       shortcode: Kortkode
@@ -299,7 +332,8 @@
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
       edit: Rediger domeneblokkering
-      existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
+      existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
+      existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du må <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       new:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
@@ -310,11 +344,11 @@
           suspend: Utvis
         title: Ny domeneblokkering
       obfuscate: Obfuskere domenenavn
-      obfuscate_hint: Delvis skjule domenenavnet i listen hvis det er aktivert for å annonsere listen over domenebegrensninger
+      obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
       private_comment: Privat kommentar
-      private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
+      private_comment_hint: Kommentar angående denne domenebegrensningen for internt bruk av moderatorene.
       public_comment: Offentlig kommentar
-      public_comment_hint: Kommenter angående denne domenebegrensningen for offentligheten, hvis publisering av domenebegrensningslisten er slått på.
+      public_comment_hint: Kommentar angående denne domenebegrensningen for offentligheten, hvis publisering av listen over domenebegrensninger er slått på.
       reject_media: Avvis mediefiler
       reject_media_hint: Fjerner lokalt lagrede mediefiler og nekter å laste dem ned i fremtiden. Irrelevant for utvisninger
       reject_reports: Avslå rapporter
@@ -323,6 +357,9 @@
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
+      attempts_over_week:
+        one: "%{count} forsøk i løpet av den siste uken"
+        other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Fjern
       domain: Domene
@@ -339,10 +376,30 @@
       title: Følg anbefalinger
       unsuppress: Gjenopprett følg-anbefaling
     instances:
+      availability:
+        failure_threshold_reached: Feilterskelen ble nådd %{date}.
+        no_failures_recorded: Ingen feil registrert.
+        title: Tilgjengelighet
+        warning: Det siste forsøket på å koble til denne serveren lyktes ikke
       back_to_all: All
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
+      content_policies:
+        comment: Internt notat
+        policies:
+          reject_media: Avvis media
+          silence: Begrens
+        reason: Offentlig årsak
+        title: Retningslinjer for innhold
+      dashboard:
+        instance_accounts_measure: lagrede kontoer
+        instance_followers_measure: våre følgere der
+        instance_follows_measure: deres følgere her
+        instance_languages_dimension: Mest brukte språk
+        instance_media_attachments_measure: lagrede mediavedlegg
+        instance_reports_measure: rapporter om dem
+        instance_statuses_measure: lagrede innlegg
       delivery:
         all: All
         clear: Feil ved fjerning
@@ -350,6 +407,8 @@
         stop: Stopp levering
         unavailable: Ikke tilgjengelig
       delivery_available: Levering er tilgjengelig
+      delivery_error_hint: Dersom levering ikke er mulig i løpet av %{count} dager, blir det automatisk merket som ikke mulig å levere.
+      empty: Ingen domener funnet.
       moderation:
         all: Alt
         limited: Begrenset
@@ -400,7 +459,7 @@
       pending: Avventer overgangens godkjenning
       save_and_enable: Lagre og skru på
       setup: Sett opp en overgangsforbindelse
-      signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
+      signatures_not_enabled: Videreformidlere vil ikke fungere riktig mens sikkermodus eller begrenset føderasjon er aktiv
       status: Status
       title: Overganger
     report_notes:
@@ -412,6 +471,8 @@
           one: "%{count} notis"
           other: "%{count} notiser"
       action_taken_by: Handling utført av
+      actions:
+        silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilegnet moderator
@@ -441,6 +502,18 @@
       unassign: Fjern tilegning
       unresolved: Uløst
       updated_at: Oppdatert
+      view_profile: Vis profil
+    roles:
+      add_new: Legg til rolle
+      assigned_users:
+        one: "%{count} bruker"
+        other: "%{count} brukere"
+      categories:
+        administration: Administrasjon
+        devops: DevOps
+        invites: Invitasjoner
+      privileges:
+        view_devops: DevOps
     rules:
       add_new: Legg til et filter
       delete: Slett
@@ -469,6 +542,9 @@
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
       title: Kontostatuser
       with_media: Med media
+    strikes:
+      actions:
+        silence: "%{name} begrenset %{target}s konto"
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -482,6 +558,9 @@
       add_new: Legg til ny
       delete: Slett
   admin_mailer:
+    new_appeal:
+      actions:
+        silence: for å begrense deres konto
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -504,7 +583,7 @@
       body: Mastodon er oversatt av frivillige.
       guide_link_text: Alle kan bidra.
     sensitive_content: Sensitivt innhold
-    toot_layout: Tut-utseende
+    toot_layout: Innleggsoppsett
   application_mailer:
     notification_preferences: Endre E-postinnstillingene
     salutation: "%{name},"
@@ -556,6 +635,7 @@
       confirming: Venter på at e-postbekreftelsen er fullført.
       pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      view_strikes: Vis tidligere advarsler mot kontoen din
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du følger allerede denne kontoen
@@ -608,6 +688,11 @@
       more_details_html: For mere detaljer, se <a href="%{terms_path}">privatlivsretningslinjene</a>.
       username_available: Brukernavnet ditt vil bli gjort tilgjengelig igjen
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
+  disputes:
+    strikes:
+      appeal_approved: Denne advarselen ble anket og er ikke lenger gyldig
+      title_actions:
+        silence: Begrensning av konto
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:
@@ -645,6 +730,8 @@
     storage: Medialagring
   featured_tags:
     add_new: Legg til ny
+    errors:
+      limit: Du har allerede fremhevet det maksimale antal hashtags
     hint_html: "<strong>Hva er utvalgte emneknagger?</strong> De vises frem tydelig på din offentlige profil, og lar folk bla i dine offentlige innlegg som spesifikt har de emneknaggene. De er et bra verktøy for å holde styr på kreative verk eller langtidsprosjekter."
   filters:
     contexts:
@@ -675,6 +762,8 @@
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
+    errors:
+      over_rows_processing_limit: inneholder flere enn %{count} rader
     modes:
       merge: Slå sammen
       overwrite: Overskriv
@@ -827,7 +916,7 @@
     public_timelines: Offentlige tidslinjer
   reactions:
     errors:
-      limit_reached: Grensen for forskjellige reaksjoner nådd
+      limit_reached: Grensen for ulike reaksjoner nådd
       unrecognized_emoji: er ikke en gjenkjent emoji
   relationships:
     activity: Kontoaktivitet
@@ -854,7 +943,7 @@
       tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
-    over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
+    over_total_limit: Du har overskredet grensen på %{limit} planlagte innlegg
     too_soon: Den planlagte datoen må være i fremtiden
   sessions:
     activity: Siste aktivitet
@@ -885,7 +974,7 @@
       adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -942,10 +1031,10 @@
     errors:
       in_reply_not_found: Posten du prøver å svare ser ikke ut til eksisterer.
     open_in_web: Åpne i nettleser
-    over_character_limit: grense på %{max} tegn overskredet
+    over_character_limit: grensen på %{max} tegn overskredet
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
-      limit: Du har allerede festet det maksimale antall tuter
+      limit: Du har allerede festet det maksimale antall innlegg
       ownership: Kun egne tuter kan festes
       reblog: En fremheving kan ikke festes
     poll:
@@ -988,6 +1077,9 @@
     pinned: Festet tut
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
+  strikes:
+    errors:
+      too_late: Det er for sent å klage på denne advarselen
   tags:
     does_not_match_previous_name: samsvarer ikke med det forrige navnet
   themes:
