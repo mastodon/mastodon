@@ -6,7 +6,7 @@ RSpec.describe Api::V1::FollowedTagsController, type: :request do
     get('list followed_tags') do
       tags 'Api', 'V1', 'FollowedTags'
       operationId 'v1FollowedtagsListFollowedTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

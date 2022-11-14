@@ -9,15 +9,29 @@ RSpec.describe Api::V1::Accounts::ListsController, type: :request do
     get('list lists') do
       tags 'Api', 'V1', 'Accounts', 'Lists'
       operationId 'v1AccountsListsListList'
-      rswag_bearer_auth
+      rswag_auth_scope %w(read read:lists)
 
-      include_context 'user token auth'
+      let(:account) { Fabricate(:account) }
+      include_context 'user token auth' do
+        let(:user) { account.user }
+      end
+
+      let!(:list) { account.lists.create(title: 'TestList', account: account) }
 
       response(200, 'successful') do
-        let(:account_id) { '123' }
+        schema type: :array, items: { '$ref' => '#/components/schemas/List' }
+        let(:account_id) { account.id.to_s }
 
         rswag_add_examples!
-        run_test!
+
+        run_test! do |response|
+          body = rswag_parse_body(response)
+          expect(body).to match_array(
+            [
+              list.slice('title', 'replies_policy').merge(id: list.id.to_s).stringify_keys,
+            ]
+          )
+        end
       end
     end
   end

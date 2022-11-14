@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :request do
     get('list domain_allows') do
       tags 'Api', 'V1', 'Admin', 'DomainAllows'
       operationId 'v1AdminDomainallowsListDomainAllow'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :request do
     post('create domain_allow') do
       tags 'Api', 'V1', 'Admin', 'DomainAllows'
       operationId 'v1AdminDomainallowsCreateDomainAllow'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :request do
     get('show domain_allow') do
       tags 'Api', 'V1', 'Admin', 'DomainAllows'
       operationId 'v1AdminDomainallowsShowDomainAllow'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::Admin::DomainAllowsController, type: :request do
     delete('delete domain_allow') do
       tags 'Api', 'V1', 'Admin', 'DomainAllows'
       operationId 'v1AdminDomainallowsDeleteDomainAllow'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -9,12 +9,16 @@ RSpec.describe Api::V1::AnnouncementsController, type: :request do
     post('dismiss announcement') do
       tags 'Api', 'V1', 'Announcements'
       operationId 'v1AnnouncementsDismissAnnouncement'
-      rswag_bearer_auth
+      rswag_auth_scope %w(write write:accounts)
 
       include_context 'user token auth'
+      let(:account) { Fabricate(:account) }
+      let!(:announcement) { Fabricate(:announcement) }
+
+      before { announcement.publish! }
 
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:id) { announcement.id }
 
         rswag_add_examples!
         run_test!
@@ -26,11 +30,14 @@ RSpec.describe Api::V1::AnnouncementsController, type: :request do
     get('list announcements') do
       tags 'Api', 'V1', 'Announcements'
       operationId 'v1AnnouncementsListAnnouncement'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
+      let!(:announcement) { Fabricate(:announcement) }
+      before { announcement.publish! }
 
       response(200, 'successful') do
+        schema type: :array, items: { '$ref' => '#/components/schemas/Announcement' }
         rswag_add_examples!
         run_test!
       end

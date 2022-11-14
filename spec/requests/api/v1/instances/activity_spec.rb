@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Instances::ActivityController, type: :request do
     get('show activity') do
       tags 'Api', 'V1', 'Instances', 'Activity'
       operationId 'v1InstancesActivityShowActivity'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

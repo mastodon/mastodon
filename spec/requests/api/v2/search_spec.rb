@@ -6,7 +6,7 @@ RSpec.describe Api::V2::SearchController, type: :request do
     get('list searches') do
       tags 'Api', 'V2', 'Search'
       operationId 'v2SearchListSearch'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -10,7 +10,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :request do
     patch('update reaction') do
       tags 'Api', 'V1', 'Announcements', 'Reactions'
       operationId 'v1AnnouncementsReactionsUpdateReaction'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -26,7 +26,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :request do
     put('update reaction') do
       tags 'Api', 'V1', 'Announcements', 'Reactions'
       operationId 'v1AnnouncementsReactionsUpdateReaction'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -42,7 +42,7 @@ RSpec.describe Api::V1::Announcements::ReactionsController, type: :request do
     delete('delete reaction') do
       tags 'Api', 'V1', 'Announcements', 'Reactions'
       operationId 'v1AnnouncementsReactionsDeleteReaction'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

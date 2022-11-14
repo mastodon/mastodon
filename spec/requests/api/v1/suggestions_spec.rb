@@ -6,7 +6,7 @@ RSpec.describe Api::V1::SuggestionsController, type: :request do
     get('list suggestions') do
       tags 'Api', 'V1', 'Suggestions'
       operationId 'v1SuggestionsListSuggestion'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::SuggestionsController, type: :request do
     delete('delete suggestion') do
       tags 'Api', 'V1', 'Suggestions'
       operationId 'v1SuggestionsDeleteSuggestion'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

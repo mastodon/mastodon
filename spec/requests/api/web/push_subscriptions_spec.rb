@@ -9,7 +9,7 @@ RSpec.describe Api::Web::PushSubscriptionsController, type: :request do
     put('update push_subscription') do
       tags 'Api', 'Web', 'PushSubscriptions'
       operationId 'webPushsubscriptionsUpdatePushSubscription'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -26,7 +26,7 @@ RSpec.describe Api::Web::PushSubscriptionsController, type: :request do
     post('create push_subscription') do
       tags 'Api', 'Web', 'PushSubscriptions'
       operationId 'webPushsubscriptionsCreatePushSubscription'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Instances::PeersController, type: :request do
     get('list peers') do
       tags 'Api', 'V1', 'Instances', 'Peers'
       operationId 'v1InstancesPeersListPeer'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

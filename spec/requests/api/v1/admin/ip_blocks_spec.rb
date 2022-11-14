@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::IpBlocksController, type: :request do
     get('list ip_blocks') do
       tags 'Api', 'V1', 'Admin', 'IpBlocks'
       operationId 'v1AdminIpblocksListIpBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::Admin::IpBlocksController, type: :request do
     post('create ip_block') do
       tags 'Api', 'V1', 'Admin', 'IpBlocks'
       operationId 'v1AdminIpblocksCreateIpBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::Admin::IpBlocksController, type: :request do
     get('show ip_block') do
       tags 'Api', 'V1', 'Admin', 'IpBlocks'
       operationId 'v1AdminIpblocksShowIpBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::Admin::IpBlocksController, type: :request do
     patch('update ip_block') do
       tags 'Api', 'V1', 'Admin', 'IpBlocks'
       operationId 'v1AdminIpblocksUpdateIpBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -67,7 +67,7 @@ RSpec.describe Api::V1::Admin::IpBlocksController, type: :request do
     put('update ip_block') do
       tags 'Api', 'V1', 'Admin', 'IpBlocks'
       operationId 'v1AdminIpblocksUpdateIpBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::Admin::IpBlocksController, type: :request do
     delete('delete ip_block') do
       tags 'Api', 'V1', 'Admin', 'IpBlocks'
       operationId 'v1AdminIpblocksDeleteIpBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

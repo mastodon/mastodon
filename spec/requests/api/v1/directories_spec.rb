@@ -6,7 +6,7 @@ RSpec.describe Api::V1::DirectoriesController, type: :request do
     get('show directory') do
       tags 'Api', 'V1', 'Directories'
       operationId 'v1DirectoriesShowDirectory'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

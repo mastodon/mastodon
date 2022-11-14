@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::FavouritesController, type: :request do
     post('create favourite') do
       tags 'Api', 'V1', 'Statuses', 'Favourites'
       operationId 'v1StatusesFavouritesCreateFavourite'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::Statuses::FavouritesController, type: :request do
     post('delete favourite') do
       tags 'Api', 'V1', 'Statuses', 'Favourites'
       operationId 'v1StatusesFavouritesDeleteFavourite'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

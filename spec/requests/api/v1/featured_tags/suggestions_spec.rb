@@ -6,7 +6,7 @@ RSpec.describe Api::V1::FeaturedTags::SuggestionsController, type: :request do
     get('list suggestions') do
       tags 'Api', 'V1', 'FeaturedTags', 'Suggestions'
       operationId 'v1FeaturedtagsSuggestionsListSuggestion'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

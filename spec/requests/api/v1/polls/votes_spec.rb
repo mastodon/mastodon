@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Polls::VotesController, type: :request do
     post('create vote') do
       tags 'Api', 'V1', 'Polls', 'Votes'
       operationId 'v1PollsVotesCreateVote'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

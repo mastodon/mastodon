@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::ReblogsController, type: :request do
     post('create reblog') do
       tags 'Api', 'V1', 'Statuses', 'Reblogs'
       operationId 'v1StatusesReblogsCreateReblog'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::Statuses::ReblogsController, type: :request do
     post('delete reblog') do
       tags 'Api', 'V1', 'Statuses', 'Reblogs'
       operationId 'v1StatusesReblogsDeleteReblog'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

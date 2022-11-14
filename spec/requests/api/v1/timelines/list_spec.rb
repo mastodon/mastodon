@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Timelines::ListController, type: :request do
     get('show list') do
       tags 'Api', 'V1', 'Timelines', 'List'
       operationId 'v1TimelinesListShowList'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -9,7 +9,7 @@ RSpec.describe Api::V1::StatusesController, type: :request do
     get('context status') do
       tags 'Api', 'V1', 'Statuses'
       operationId 'v1StatusesContextStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -26,7 +26,7 @@ RSpec.describe Api::V1::StatusesController, type: :request do
     post('create status') do
       tags 'Api', 'V1', 'Statuses'
       operationId 'v1StatusesCreateStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -44,7 +44,7 @@ RSpec.describe Api::V1::StatusesController, type: :request do
     get('show status') do
       tags 'Api', 'V1', 'Statuses'
       operationId 'v1StatusesShowStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::StatusesController, type: :request do
     patch('update status') do
       tags 'Api', 'V1', 'Statuses'
       operationId 'v1StatusesUpdateStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -74,7 +74,7 @@ RSpec.describe Api::V1::StatusesController, type: :request do
     put('update status') do
       tags 'Api', 'V1', 'Statuses'
       operationId 'v1StatusesUpdateStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -89,7 +89,7 @@ RSpec.describe Api::V1::StatusesController, type: :request do
     delete('delete status') do
       tags 'Api', 'V1', 'Statuses'
       operationId 'v1StatusesDeleteStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Trends::LinksController, type: :request do
     get('list links') do
       tags 'Api', 'V1', 'Trends', 'Links'
       operationId 'v1TrendsLinksListLink'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

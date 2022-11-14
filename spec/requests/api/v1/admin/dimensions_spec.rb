@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::DimensionsController, type: :request do
     post('create dimension') do
       tags 'Api', 'V1', 'Admin', 'Dimensions'
       operationId 'v1AdminDimensionsCreateDimension'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Instances::DomainBlocksController, type: :request do
     get('list domain_blocks') do
       tags 'Api', 'V1', 'Instances', 'DomainBlocks'
       operationId 'v1InstancesDomainblocksListDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Lists::AccountsController, type: :request do
     get('show account') do
       tags 'Api', 'V1', 'Lists', 'Accounts'
       operationId 'v1ListsAccountsShowAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::Lists::AccountsController, type: :request do
     delete('delete account') do
       tags 'Api', 'V1', 'Lists', 'Accounts'
       operationId 'v1ListsAccountsDeleteAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::Lists::AccountsController, type: :request do
     post('create account') do
       tags 'Api', 'V1', 'Lists', 'Accounts'
       operationId 'v1ListsAccountsCreateAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

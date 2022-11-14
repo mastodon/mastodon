@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::CanonicalEmailBlocksController, type: :request do
     post('test canonical_email_block') do
       tags 'Api', 'V1', 'Admin', 'CanonicalEmailBlocks'
       operationId 'v1AdminCanonicalemailblocksTestCanonicalEmailBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -21,7 +21,7 @@ RSpec.describe Api::V1::Admin::CanonicalEmailBlocksController, type: :request do
     get('list canonical_email_blocks') do
       tags 'Api', 'V1', 'Admin', 'CanonicalEmailBlocks'
       operationId 'v1AdminCanonicalemailblocksListCanonicalEmailBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -34,7 +34,7 @@ RSpec.describe Api::V1::Admin::CanonicalEmailBlocksController, type: :request do
     post('create canonical_email_block') do
       tags 'Api', 'V1', 'Admin', 'CanonicalEmailBlocks'
       operationId 'v1AdminCanonicalemailblocksCreateCanonicalEmailBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::Admin::CanonicalEmailBlocksController, type: :request do
     get('show canonical_email_block') do
       tags 'Api', 'V1', 'Admin', 'CanonicalEmailBlocks'
       operationId 'v1AdminCanonicalemailblocksShowCanonicalEmailBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -67,7 +67,7 @@ RSpec.describe Api::V1::Admin::CanonicalEmailBlocksController, type: :request do
     delete('delete canonical_email_block') do
       tags 'Api', 'V1', 'Admin', 'CanonicalEmailBlocks'
       operationId 'v1AdminCanonicalemailblocksDeleteCanonicalEmailBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

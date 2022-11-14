@@ -11,7 +11,77 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
+    oauth:
+      type: oauth2
+      flows: 
+        authorizationCode:
+          authorizationUrl: /oauth/authorize
+          tokenUrl: /oauth/token
+          scopes:
+            read: | 
+              Grants access to read data.
+              Requesting read will also grant child scopes shown in the left column of the table below.
+            write: |
+              Grants access to write data.
+              Requesting write will also grant child scopes shown in the right column of the table below.
+            follow: |
+              Grants access to manage relationships.  
+              Requesting follow will also grant the following child scopes, shown in bold in the table:
+
+              read:blocks, write:blocks
+              read:follows, write:follows
+              read:mutes, write:mutes
+            push: |
+              Grants access to [Web Push API subscriptions](https://docs.joinmastodon.org/methods/notifications/push/).
+              Added in Mastodon 2.4.0.
+            admin:read: |
+              - admin:read:accounts
+              - admin:read:reports
+              Used for moderation API. Added in Mastodon 2.9.1.
+            admin:write: |
+              - admin:write:accounts
+              - admin:write:reports
+              Used for moderation API. Added in Mastodon 2.9.1.
+            read:accounts: Read accounts
+            write:accounts: Write accounts 
+            read:blocks: Read blocks
+            write:blocks: Write blocks 
+            read:bookmarks: Read bookmarks
+            write:bookmarks: Write bookmarks 
+            write:conversations: Write conversations
+            read:favourites: Read favourites
+            write:favourites: Write favourites 
+            read:filters: Read filters
+            write:filters: Write filters 
+            read:follows: Read follows
+            write:follows: Write follows 
+            read:lists: Read lists
+            write:lists: Write lists 
+            write:media: Write media
+            read:mutes: Read mutes
+            write:mutes: Write mutes 
+            read:notifications: Read notifications
+            write:notifications: Write notifications 
+            write:reports: Write reports
+            read:search: Read search
+            read:statuses: Read statuses
+            write:statuses: Write statuses 
+            admin:read:accounts: Admin read accounts
+            admin:write:accounts: Admin write accounts
+            admin:read:reports: Admin read reports
+            admin:write:reports: Admin write reports
+
   schemas:
+    boolOrStrBool:
+      anyOf:
+        - type: boolean
+        - type: string
+          enum:
+            - '1'
+            - '0'
+            - 'true'
+            - 'false'
+    
     CustomEmoji:
       type: object
       properties:
@@ -28,18 +98,85 @@ components:
         category:
           type: string
           nullable: true
-    AccountField:
+    
+    
+    Field:
       type: object
       properties:
         name:
           type: string
         value:
           type: string
-        verified_at:
-          type: string
       required:
         - name
         - value
+    AccountField:
+      allOf:
+        - $ref: '#/components/schemas/Field' 
+        - type: object
+          properties:
+            verified_at:
+              type: string
+      required:
+        - name
+        - value
+   
+    SourceParam:
+      type: object
+      properties:
+        privacy:
+          description: |
+            The default post privacy to be used for new statuses.
+
+            public = Public post
+            unlisted = Unlisted post
+            private = Followers-only post
+            direct = Direct post
+          type: string
+          enum:
+            - private
+            - public
+            - unlisted
+            - direct
+          nullable: true
+        sensitive:
+          description: Whether new statuses should be marked sensitive by default.
+          type: boolean
+          nullable: true
+        language:
+          description: The default posting language for new statuses.
+          type: string
+          pattern: '[a-z]{2}'
+          nullable: true
+
+    Source:
+      description: |
+        Represents display or publishing preferences of user's own account.  
+        Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
+      allOf:
+        - $ref: '#/components/schemas/SourceParam'
+        - type: object
+          properties:
+            note:
+              description: Profile bio.
+              type: string
+            fields:
+              description: Metadata about the account.
+              type: array
+              items: { $ref: '#/components/schemas/AccountField' }
+            follow_requests_count:
+              description: The number of pending follow requests.
+              type: integer
+              nullable: true
+
+    Credential:
+      type: object
+      properties:
+        role: { $ref: '#/components/schemas/Role' }
+        source: { $ref: '#/components/schemas/Source' }
+ 
+
+  
     Account:
       type: object
       properties:
@@ -49,64 +186,142 @@ components:
           example: '10999'
         username:
           type: string
+          description: The username of the account, not including domain.
         acct:
           type: string
           example: bob@example.com
-        display_name:
+          description: |
+            The Webfinger account URI. 
+            Equal to username for local users, or username@domain for remote users.
+        display_name: &account_display_name
+          description: The display name to use for the profile.
           type: string
-        locked:
-          type: boolean
+        note: &account_note
+          type: string
+          description: The profile's bio / description.
+        fields:
+          description: Additional metadata attached to a profile as name-value pairs.
+          type: array
+          items: { $ref: '#/components/schemas/AccountField' }
+          
+        url:
+          type: string
+          description: The location of the user's profile page.
           nullable: true
-        bot:
-          type: boolean
-        discoverable:
-          type: boolean
-        group:
-          type: boolean
-          nullable: true
+        avatar:
+          type: string
+          description: An image icon that is shown next to statuses and in the profile.
+        avatar_static:
+          type: string
+          description: |
+            A static version of the `avatar`. 
+            Equal to `avatar` if its value is a static image; different if `avatar` is an animated GIF.
+        header:
+          type: string
+          description: An image banner that is shown above the profile and in profile cards.
+        header_static:
+          type: string
+          description: |
+            A static version of the `header`. 
+            Equal to `header` if its value is a static image; different if `header` is an animated GIF.
+        followers_count:
+          type: integer
+          description: The reported followers of this profile.
+        following_count:
+          type: integer
+          description: The reported follows of this profile.
+        statuses_count:
+          type: integer
+          description: How many statuses are attached to this account.
+        source:
+          $ref: '#/components/schemas/Source'
+        moved:
+          description: |
+            Indicates that the profile is currently inactive and that its user has moved to a new account.
+          $ref: '#/components/schemas/Account'
+        emojis:
+          description: |
+            Custom emoji entities to be used when rendering the profile. 
+            If none, an empty array will be returned.
+          type: array
+          items: { $ref: '#/components/schemas/CustomEmoji' }
+        
         created_at:
           type: string
           format: datetime
           example: '2022-11-13T21:24:59.474Z'
-        note:
-          type: string
-        url:
-          type: string
-          nullable: true
-        avatar:
-          type: string
-        avatar_static:
-          type: string
-        header:
-          type: string
-        header_static:
-          type: string
-        followers_count:
-          type: integer
-        following_count:
-          type: integer
-        statuses_count:
-          type: integer
         last_status_at:
           type: string
           format: date
           example: '2022-11-13'
           nullable: true
-        moved:
-          $ref: '#/components/schemas/Account'
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/AccountField'
+          description: When the most recent status was posted.
+            
+        bot: &account_bot
+          type: boolean
+          description: |
+            A presentational flag.  
+            Indicates that the account may perform automated actions, may not be monitored, or identifies as a robot.
         suspended:
           type: boolean
         silenced:
           type: boolean
         noindex:
           type: boolean
+        discoverable: &account_discoverable
+          type: boolean
+          description: Whether the account has opted into discovery features such as the profile directory.
+        locked: &account_locked
+          type: boolean
+          nullable: true
+          description: Whether the account manually approves follow requests.
+        group:
+          type: boolean
+          nullable: true
+  
       required:
         - id
         - username
+        - acct
+        - url
+
+    AccountUpdateCredentialsParams:
+      type: object
+      properties:
+        display_name: *account_display_name
+        note: *account_note
+        locked: *account_locked
+        discoverable: *account_discoverable
+        bot: *account_bot
+        avatar:
+          description: Avatar image encoded using multipart/form-data
+          type: string
+        header:
+          description: Avatar image encoded using multipart/form-data
+          type: string
+        fields_attributes:
+          type: array
+          items: { $ref: '#/components/schemas/Field' }
+        source: { $ref: '#/components/schemas/SourceParam' }
+      example:
+        display_name: Jane Doe
+        note: The bio
+        avatar: ''
+        header: ''
+        locked: false
+        discoverable: true
+        bot: false
+        fields_attributes:
+          - name: Location
+            value: Nowhere
+          - name: Occupation
+            value: Sourcerer
+        source:
+          privacy: public
+          sensitive: false
+          language: en
+        
+    
     MediaAttachment:
       type: object
       properties:
@@ -146,6 +361,7 @@ components:
       required:
         - id
         - type
+    
     Mention:
       type: object
       properties:
@@ -160,6 +376,7 @@ components:
           nullable: true
         acct:
           type: string
+    
     Tag:
       type: object
       properties:
@@ -175,6 +392,25 @@ components:
           nullable: true
           items:
             type: object
+    FeaturedTag:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+          example: '1'
+        name:
+          type: string
+        url:
+          type: string
+        statuses_count:
+          type: string
+          pattern: '[0-9]+'
+        last_status_at:
+          type: string
+          format: date
+          nullable: true
+    
     PollVote:
       type: object
       properties:
@@ -203,6 +439,7 @@ components:
               type: string
             to:
               type: string
+    
     Poll:
       type: object
       properties:
@@ -239,6 +476,7 @@ components:
               type: integer
       required:
         - id
+    
     PreviewCard:
       type: object
       properties:
@@ -277,6 +515,7 @@ components:
         blurhash:
           type: string
           nullable: true
+    
     Status:
       type: object
       properties:
@@ -386,6 +625,7 @@ components:
         - id
         - created_at
         - media_attachments
+    
     Report:
       type: object
       properties:
@@ -423,5 +663,237 @@ components:
           items:
             type: string
             pattern: '[0-9]+'
-        target_account:
-          $ref: '#/components/schemas/Account'
+        target_account: { $ref: '#/components/schemas/Account' }
+
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+          example: '1'
+        name:
+          type: string
+        permissions:
+          type: string
+        color:
+          type: string
+        highlighted:
+          type: boolean
+  
+    List:
+      description: Represents a list of some users that the authenticated user follows.
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: '[0-9]+'
+        title:
+          description: The user-defined title of the list.
+          type: string
+        replies_policy:
+          description: |
+            followed = Show replies to any followed user
+            list = Show replies to members of the list
+            none = Show replies to no one
+          type: string
+          enum:
+            - followed
+            - list
+            - none
+  
+    Relationship:
+      description: Represents the relationship between accounts, such as following / blocking / muting / etc.
+      type: object
+      properties:
+        id:
+          description: The account id.
+          type: string
+          pattern: '[0-9]+'
+        following:
+          description: Are you following this user?
+          type: boolean
+        requested:
+          description: Do you have a pending follow request for this user?
+          type: boolean
+        endorsed:
+          description: Are you featuring this user on your profile?
+          type: boolean
+        muting:
+          description: Are you muting this user?
+          type: boolean
+        muting_notifications:
+          description: Are you muting notifications from this user?
+          type: boolean
+        showing_reblogs:
+          description: Are you receiving this user's boosts in your home timeline?
+          type: boolean
+        notifying:
+          description: Have you enabled notifications for this user?
+          type: boolean
+        languages:
+          description: dead attribute defined in REST::RelationshipSerializer
+          deprecated: true
+          nullable: true
+        followed_by:
+          description: Are you followed by this user?
+          type: boolean
+        blocking:
+          description: Are you blocking this user?
+          type: boolean
+        blocked_by:
+          description: Is this user blocking you?
+          type: boolean
+        domain_blocking:
+          description: Are you blocking this user's domain?
+          type: boolean
+        note:
+          description: This user's profile bio
+          type: string
+  
+    Reaction:
+      description: Represents an announcement set by an administrator.
+      type: object
+      properties:
+        name:
+          type: string
+        me:
+          type: boolean
+        url:
+          type: string
+        static_url:
+          type: string
+
+    Announcement:
+      description: Represents an announcement set by an administrator.
+      type: object
+      properties:
+        id:
+          description: The announcement id.
+          type: string
+          pattern: '[0-9]+'
+        content:
+          description: ''
+          type: string
+        starts_at:
+          description: ''
+          type: string
+          nullable: true
+        ends_at:
+          description: ''
+          type: string
+          nullable: true
+        all_day:
+          description: ''
+          type: boolean
+        published_at:
+          description: ''
+          type: string
+        updated_at:
+          description: ''
+          type: string
+        read:
+          description: Whether the announcement has been read by the user.
+          type: boolean
+        mentions:
+          type: array
+          items:
+            type: object
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: '[0-9]+'
+              url:
+                type: string
+        statuses:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: '[0-9]+'
+              url:
+                type: string
+        reactions:
+          type: array
+          items: { $ref: '#/components/schemas/Reaction' }
+
+    ApplicationRequestBody:
+      type: object
+      properties:
+          client_name:
+            type: string
+            description: 'A name for your application'
+          redirect_uris:
+            type: string
+            description: |
+              Where the user should be redirected after authorization.
+              
+              To display the authorization code to the user instead of redirecting to a web page,
+              use urn:ietf:wg:oauth:2.0:oob in this parameter.
+          scopes:
+            type: string
+            description: 'Space separated list of scopes. If none is provided, defaults to read.'
+          website:
+            type: string
+            description: 'A URL to the homepage of your app'
+      required:
+        - client_name
+        - redirect_uris
+
+    Application:
+      type: object
+      properties:
+        id:
+          description: The application id.
+          type: string
+          pattern: '[0-9]+'
+        name:
+          type: string
+        website:
+          type: string
+          nullable: true
+        redirect_uri:
+          type: string
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        vapid_key:
+          type: string
+
+        
+        
+  
+  
+  requestBodies:
+    v1AccountsUpdateCredentials:
+      required: false
+      content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/AccountUpdateCredentialsParams"
+  callbacks: {}
+  parameters: {}
+  responses: {}
+  examples: {}
+  headers:
+    'X-RateLimit-Limit':
+      description: Number of requests permitted per time period
+      schema:
+        type: string
+    'X-RateLimit-Remaining':
+      description: Number of requests you can still make
+      schema:
+        type: string
+    'X-RateLimit-Reset':
+      description: Timestamp when your rate limit will reset
+      schema:
+        type: string
+
+  links: {}

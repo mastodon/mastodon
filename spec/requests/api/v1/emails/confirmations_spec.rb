@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Emails::ConfirmationsController, type: :request do
     post('create confirmation') do
       tags 'Api', 'V1', 'Emails', 'Confirmations'
       operationId 'v1EmailsConfirmationsCreateConfirmation'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

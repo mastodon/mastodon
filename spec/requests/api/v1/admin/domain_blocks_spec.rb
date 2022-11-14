@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :request do
     get('list domain_blocks') do
       tags 'Api', 'V1', 'Admin', 'DomainBlocks'
       operationId 'v1AdminDomainblocksListDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :request do
     post('create domain_block') do
       tags 'Api', 'V1', 'Admin', 'DomainBlocks'
       operationId 'v1AdminDomainblocksCreateDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :request do
     get('show domain_block') do
       tags 'Api', 'V1', 'Admin', 'DomainBlocks'
       operationId 'v1AdminDomainblocksShowDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :request do
     patch('update domain_block') do
       tags 'Api', 'V1', 'Admin', 'DomainBlocks'
       operationId 'v1AdminDomainblocksUpdateDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -67,7 +67,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :request do
     put('update domain_block') do
       tags 'Api', 'V1', 'Admin', 'DomainBlocks'
       operationId 'v1AdminDomainblocksUpdateDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::Admin::DomainBlocksController, type: :request do
     delete('delete domain_block') do
       tags 'Api', 'V1', 'Admin', 'DomainBlocks'
       operationId 'v1AdminDomainblocksDeleteDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

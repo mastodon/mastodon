@@ -6,7 +6,7 @@ RSpec.describe Api::V1::PollsController, type: :request do
     post('create poll') do
       tags 'Api', 'V1', 'Polls'
       operationId 'v1PollsCreatePoll'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::PollsController, type: :request do
     get('show poll') do
       tags 'Api', 'V1', 'Polls'
       operationId 'v1PollsShowPoll'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

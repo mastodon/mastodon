@@ -6,7 +6,7 @@ RSpec.describe Api::V1::FeaturedTagsController, type: :request do
     get('list featured_tags') do
       tags 'Api', 'V1', 'FeaturedTags'
       operationId 'v1FeaturedtagsListFeaturedTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::FeaturedTagsController, type: :request do
     post('create featured_tag') do
       tags 'Api', 'V1', 'FeaturedTags'
       operationId 'v1FeaturedtagsCreateFeaturedTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::FeaturedTagsController, type: :request do
     delete('delete featured_tag') do
       tags 'Api', 'V1', 'FeaturedTags'
       operationId 'v1FeaturedtagsDeleteFeaturedTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::EndorsementsController, type: :request do
     get('list endorsements') do
       tags 'Api', 'V1', 'Endorsements'
       operationId 'v1EndorsementsListEndorsement'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

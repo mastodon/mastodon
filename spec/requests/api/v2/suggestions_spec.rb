@@ -6,7 +6,7 @@ RSpec.describe Api::V2::SuggestionsController, type: :request do
     get('list suggestions') do
       tags 'Api', 'V2', 'Suggestions'
       operationId 'v2SuggestionsListSuggestion'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

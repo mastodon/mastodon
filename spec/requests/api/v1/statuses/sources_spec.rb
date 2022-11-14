@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::SourcesController, type: :request do
     get('show source') do
       tags 'Api', 'V1', 'Statuses', 'Sources'
       operationId 'v1StatusesSourcesShowSource'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

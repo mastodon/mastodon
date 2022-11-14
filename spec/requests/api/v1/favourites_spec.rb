@@ -6,7 +6,7 @@ RSpec.describe Api::V1::FavouritesController, type: :request do
     get('list favourites') do
       tags 'Api', 'V1', 'Favourites'
       operationId 'v1FavouritesListFavourite'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

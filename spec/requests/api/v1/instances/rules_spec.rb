@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Instances::RulesController, type: :request do
     get('list rules') do
       tags 'Api', 'V1', 'Instances', 'Rules'
       operationId 'v1InstancesRulesListRule'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

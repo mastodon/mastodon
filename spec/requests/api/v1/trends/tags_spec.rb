@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Trends::TagsController, type: :request do
     get('list tags') do
       tags 'Api', 'V1', 'Trends', 'Tags'
       operationId 'v1TrendsTagsListTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -21,7 +21,7 @@ RSpec.describe Api::V1::Trends::TagsController, type: :request do
     get('list tags') do
       tags 'Api', 'V1', 'Trends', 'Tags'
       operationId 'v1TrendsTagsListTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

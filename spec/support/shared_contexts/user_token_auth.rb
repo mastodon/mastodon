@@ -3,7 +3,7 @@ shared_context 'user token auth' do
   let(:user_args) { {} }
   let!(:user) { Fabricate(:user, user_args) }
   let(:user_token_args) { {} }
-  let(:user_token_scopes) { 'read write delete' }
+  let(:user_token_scopes) { 'read write follow push admin:read admin:write' }
   let!(:user_token) do
     Fabricate(
       :accessible_access_token,

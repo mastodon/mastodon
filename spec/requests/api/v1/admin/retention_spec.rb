@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::RetentionController, type: :request do
     post('create retention') do
       tags 'Api', 'V1', 'Admin', 'Retention'
       operationId 'v1AdminRetentionCreateRetention'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

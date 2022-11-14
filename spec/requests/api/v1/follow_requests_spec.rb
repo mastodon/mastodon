@@ -9,7 +9,7 @@ RSpec.describe Api::V1::FollowRequestsController, type: :request do
     post('authorize follow_request') do
       tags 'Api', 'V1', 'FollowRequests'
       operationId 'v1FollowrequestsAuthorizeFollowRequest'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::FollowRequestsController, type: :request do
     post('reject follow_request') do
       tags 'Api', 'V1', 'FollowRequests'
       operationId 'v1FollowrequestsRejectFollowRequest'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -46,7 +46,7 @@ RSpec.describe Api::V1::FollowRequestsController, type: :request do
     get('list follow_requests') do
       tags 'Api', 'V1', 'FollowRequests'
       operationId 'v1FollowrequestsListFollowRequest'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

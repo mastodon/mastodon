@@ -6,7 +6,7 @@ RSpec.describe Api::Web::SettingsController, type: :request do
     patch('update setting') do
       tags 'Api', 'Web', 'Settings'
       operationId 'webSettingsUpdateSetting'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::Web::SettingsController, type: :request do
     put('update setting') do
       tags 'Api', 'Web', 'Settings'
       operationId 'webSettingsUpdateSetting'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

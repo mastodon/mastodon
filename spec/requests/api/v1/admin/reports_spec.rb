@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :request do
     post('assign_to_self report') do
       tags 'Api', 'V1', 'Admin', 'Reports'
       operationId 'v1AdminReportsAssignToSelfReport'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :request do
     post('unassign report') do
       tags 'Api', 'V1', 'Admin', 'Reports'
       operationId 'v1AdminReportsUnassignReport'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :request do
     post('reopen report') do
       tags 'Api', 'V1', 'Admin', 'Reports'
       operationId 'v1AdminReportsReopenReport'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :request do
     post('resolve report') do
       tags 'Api', 'V1', 'Admin', 'Reports'
       operationId 'v1AdminReportsResolveReport'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -86,7 +86,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :request do
     get('list reports') do
       tags 'Api', 'V1', 'Admin', 'Reports'
       operationId 'v1AdminReportsListReport'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -104,7 +104,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :request do
     get('show report') do
       tags 'Api', 'V1', 'Admin', 'Reports'
       operationId 'v1AdminReportsShowReport'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -119,7 +119,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :request do
     patch('update report') do
       tags 'Api', 'V1', 'Admin', 'Reports'
       operationId 'v1AdminReportsUpdateReport'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -134,7 +134,7 @@ RSpec.describe Api::V1::Admin::ReportsController, type: :request do
     put('update report') do
       tags 'Api', 'V1', 'Admin', 'Reports'
       operationId 'v1AdminReportsUpdateReport'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::ScheduledStatusesController, type: :request do
     get('list scheduled_statuses') do
       tags 'Api', 'V1', 'ScheduledStatuses'
       operationId 'v1ScheduledstatusesListScheduledStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::ScheduledStatusesController, type: :request do
     get('show scheduled_status') do
       tags 'Api', 'V1', 'ScheduledStatuses'
       operationId 'v1ScheduledstatusesShowScheduledStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::ScheduledStatusesController, type: :request do
     patch('update scheduled_status') do
       tags 'Api', 'V1', 'ScheduledStatuses'
       operationId 'v1ScheduledstatusesUpdateScheduledStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -54,7 +54,7 @@ RSpec.describe Api::V1::ScheduledStatusesController, type: :request do
     put('update scheduled_status') do
       tags 'Api', 'V1', 'ScheduledStatuses'
       operationId 'v1ScheduledstatusesUpdateScheduledStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::ScheduledStatusesController, type: :request do
     delete('delete scheduled_status') do
       tags 'Api', 'V1', 'ScheduledStatuses'
       operationId 'v1ScheduledstatusesDeleteScheduledStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

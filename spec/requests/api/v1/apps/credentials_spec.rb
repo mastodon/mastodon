@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Apps::CredentialsController, type: :request do
     get('show credential') do
       tags 'Api', 'V1', 'Apps', 'Credentials'
       operationId 'v1AppsCredentialsShowCredential'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::NotificationsController, type: :request do
     post('clear notification') do
       tags 'Api', 'V1', 'Notifications'
       operationId 'v1NotificationsClearNotification'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::NotificationsController, type: :request do
     post('dismiss notification') do
       tags 'Api', 'V1', 'Notifications'
       operationId 'v1NotificationsDismissNotification'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -41,7 +41,7 @@ RSpec.describe Api::V1::NotificationsController, type: :request do
     get('list notifications') do
       tags 'Api', 'V1', 'Notifications'
       operationId 'v1NotificationsListNotification'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -59,7 +59,7 @@ RSpec.describe Api::V1::NotificationsController, type: :request do
     get('show notification') do
       tags 'Api', 'V1', 'Notifications'
       operationId 'v1NotificationsShowNotification'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

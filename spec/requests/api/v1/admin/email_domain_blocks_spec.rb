@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::EmailDomainBlocksController, type: :request do
     get('list email_domain_blocks') do
       tags 'Api', 'V1', 'Admin', 'EmailDomainBlocks'
       operationId 'v1AdminEmaildomainblocksListEmailDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::Admin::EmailDomainBlocksController, type: :request do
     post('create email_domain_block') do
       tags 'Api', 'V1', 'Admin', 'EmailDomainBlocks'
       operationId 'v1AdminEmaildomainblocksCreateEmailDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::Admin::EmailDomainBlocksController, type: :request do
     get('show email_domain_block') do
       tags 'Api', 'V1', 'Admin', 'EmailDomainBlocks'
       operationId 'v1AdminEmaildomainblocksShowEmailDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::Admin::EmailDomainBlocksController, type: :request do
     delete('delete email_domain_block') do
       tags 'Api', 'V1', 'Admin', 'EmailDomainBlocks'
       operationId 'v1AdminEmaildomainblocksDeleteEmailDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

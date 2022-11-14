@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::BookmarksController, type: :request do
     post('create bookmark') do
       tags 'Api', 'V1', 'Statuses', 'Bookmarks'
       operationId 'v1StatusesBookmarksCreateBookmark'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::Statuses::BookmarksController, type: :request do
     post('delete bookmark') do
       tags 'Api', 'V1', 'Statuses', 'Bookmarks'
       operationId 'v1StatusesBookmarksDeleteBookmark'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::DomainBlocksController, type: :request do
     get('show domain_block') do
       tags 'Api', 'V1', 'DomainBlocks'
       operationId 'v1DomainblocksShowDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::DomainBlocksController, type: :request do
     delete('delete domain_block') do
       tags 'Api', 'V1', 'DomainBlocks'
       operationId 'v1DomainblocksDeleteDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -32,7 +32,7 @@ RSpec.describe Api::V1::DomainBlocksController, type: :request do
     post('create domain_block') do
       tags 'Api', 'V1', 'DomainBlocks'
       operationId 'v1DomainblocksCreateDomainBlock'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

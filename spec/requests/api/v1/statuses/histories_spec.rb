@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::HistoriesController, type: :request do
     get('show history') do
       tags 'Api', 'V1', 'Statuses', 'Histories'
       operationId 'v1StatusesHistoriesShowHistory'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

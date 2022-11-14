@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::RebloggedByAccountsController, type: :request 
     get('list reblogged_by_accounts') do
       tags 'Api', 'V1', 'Statuses', 'RebloggedByAccounts'
       operationId 'v1StatusesRebloggedbyaccountsListRebloggedByAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::Web::EmbedsController, type: :request do
     post('create embed') do
       tags 'Api', 'Web', 'Embeds'
       operationId 'webEmbedsCreateEmbed'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::MutesController, type: :request do
     post('create mute') do
       tags 'Api', 'V1', 'Statuses', 'Mutes'
       operationId 'v1StatusesMutesCreateMute'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::Statuses::MutesController, type: :request do
     post('delete mute') do
       tags 'Api', 'V1', 'Statuses', 'Mutes'
       operationId 'v1StatusesMutesDeleteMute'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

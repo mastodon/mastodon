@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::FavouritedByAccountsController, type: :request
     get('list favourited_by_accounts') do
       tags 'Api', 'V1', 'Statuses', 'FavouritedByAccounts'
       operationId 'v1StatusesFavouritedbyaccountsListFavouritedByAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

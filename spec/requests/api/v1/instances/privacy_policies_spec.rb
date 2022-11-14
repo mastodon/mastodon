@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Instances::PrivacyPoliciesController, type: :request do
     get('show privacy_policy') do
       tags 'Api', 'V1', 'Instances', 'PrivacyPolicies'
       operationId 'v1InstancesPrivacypoliciesShowPrivacyPolicy'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

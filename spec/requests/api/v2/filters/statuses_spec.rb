@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Filters::StatusesController, type: :request do
-  path '/api/v1/filters/{filter_id}/statuses' do
+RSpec.describe Api::V2::Filters::StatusesController, type: :request do
+  path '/api/v2/filters/{filter_id}/statuses' do
     # You'll want to customize the parameter types...
     parameter name: 'filter_id', in: :path, type: :string, description: 'filter_id'
 
     get('list statuses') do
-      tags 'Api', 'V1', 'Filters', 'Statuses'
-      operationId 'v1FiltersStatusesListStatus'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Statuses'
+      operationId 'v2FiltersStatusesListStatus'
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -22,9 +22,9 @@ RSpec.describe Api::V1::Filters::StatusesController, type: :request do
     end
 
     post('create status') do
-      tags 'Api', 'V1', 'Filters', 'Statuses'
-      operationId 'v1FiltersStatusesCreateStatus'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Statuses'
+      operationId 'v2FiltersStatusesCreateStatus'
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,14 +37,14 @@ RSpec.describe Api::V1::Filters::StatusesController, type: :request do
     end
   end
 
-  path '/api/v1/filters/statuses/{id}' do
+  path '/api/v2/filters/statuses/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show status') do
-      tags 'Api', 'V1', 'Filters', 'Statuses'
-      operationId 'v1FiltersStatusesShowStatus'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Statuses'
+      operationId 'v2FiltersStatusesShowStatus'
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -57,9 +57,9 @@ RSpec.describe Api::V1::Filters::StatusesController, type: :request do
     end
 
     delete('delete status') do
-      tags 'Api', 'V1', 'Filters', 'Statuses'
-      operationId 'v1FiltersStatusesDeleteStatus'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Statuses'
+      operationId 'v2FiltersStatusesDeleteStatus'
+      rswag_auth_scope
 
       include_context 'user token auth'
 

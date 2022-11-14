@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::TranslationsController, type: :request do
     post('create translation') do
       tags 'Api', 'V1', 'Statuses', 'Translations'
       operationId 'v1StatusesTranslationsCreateTranslation'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

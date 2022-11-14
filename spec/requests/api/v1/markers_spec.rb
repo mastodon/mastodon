@@ -6,7 +6,7 @@ RSpec.describe Api::V1::MarkersController, type: :request do
     get('list markers') do
       tags 'Api', 'V1', 'Markers'
       operationId 'v1MarkersListMarker'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::MarkersController, type: :request do
     post('create marker') do
       tags 'Api', 'V1', 'Markers'
       operationId 'v1MarkersCreateMarker'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

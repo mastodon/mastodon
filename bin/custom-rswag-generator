@@ -29,7 +29,7 @@ def patch_lines(line, index, klass_name, tags)
     line,
     indent("tags #{tags.map { |tag| "'#{tag}'" }.join(', ')}", 6),
     indent(operation_id(line, tags), 6),
-    indent('rswag_bearer_auth', 6),
+    indent('rswag_auth_scope', 6),
     '',
     indent("include_context 'user token auth'", 6),
     '',

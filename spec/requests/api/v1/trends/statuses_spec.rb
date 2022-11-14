@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Trends::StatusesController, type: :request do
     get('list statuses') do
       tags 'Api', 'V1', 'Trends', 'Statuses'
       operationId 'v1TrendsStatusesListStatus'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

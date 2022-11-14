@@ -9,7 +9,7 @@ RSpec.describe Api::V1::ConversationsController, type: :request do
     post('read conversation') do
       tags 'Api', 'V1', 'Conversations'
       operationId 'v1ConversationsReadConversation'
-      rswag_bearer_auth
+      rswag_auth_scope %w(write write:conversations)
 
       include_context 'user token auth'
 
@@ -26,7 +26,7 @@ RSpec.describe Api::V1::ConversationsController, type: :request do
     get('list conversations') do
       tags 'Api', 'V1', 'Conversations'
       operationId 'v1ConversationsListConversation'
-      rswag_bearer_auth
+      rswag_auth_scope %w(read read:statuses)
 
       include_context 'user token auth'
 
@@ -44,15 +44,27 @@ RSpec.describe Api::V1::ConversationsController, type: :request do
     delete('delete conversation') do
       tags 'Api', 'V1', 'Conversations'
       operationId 'v1ConversationsDeleteConversation'
-      rswag_bearer_auth
+      rswag_auth_scope %w(write write:conversations)
 
       include_context 'user token auth'
+      let(:account) { Fabricate(:account) }
+
+      before do
+        user.account.follow!(account)
+        account.follow!(user.account)
+
+        result = PostStatusService.new.call(account, text: 'Hey @alice', visibility: 'direct')
+        binding.pry
+      end
 
       response(200, 'successful') do
-        let(:id) { '123' }
+        let(:id) { account_conversation.id }
 
         rswag_add_examples!
-        run_test!
+        run_test! do |response|
+          body = rswag_parse_body(response)
+          binding.pry
+        end
       end
     end
   end

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::InstancesController, type: :request do
     get('show instance') do
       tags 'Api', 'V1', 'Instances'
       operationId 'v1InstancesShowInstance'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

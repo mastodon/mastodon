@@ -6,7 +6,7 @@ RSpec.describe Api::V1::StreamingController, type: :request do
     get('list streamings') do
       tags 'Api', 'V1', 'Streaming'
       operationId 'v1StreamingListStreaming'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

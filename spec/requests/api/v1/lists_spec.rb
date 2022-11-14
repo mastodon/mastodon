@@ -6,7 +6,7 @@ RSpec.describe Api::V1::ListsController, type: :request do
     get('list lists') do
       tags 'Api', 'V1', 'Lists'
       operationId 'v1ListsListList'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::ListsController, type: :request do
     post('create list') do
       tags 'Api', 'V1', 'Lists'
       operationId 'v1ListsCreateList'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::ListsController, type: :request do
     get('show list') do
       tags 'Api', 'V1', 'Lists'
       operationId 'v1ListsShowList'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::ListsController, type: :request do
     patch('update list') do
       tags 'Api', 'V1', 'Lists'
       operationId 'v1ListsUpdateList'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -67,7 +67,7 @@ RSpec.describe Api::V1::ListsController, type: :request do
     put('update list') do
       tags 'Api', 'V1', 'Lists'
       operationId 'v1ListsUpdateList'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::ListsController, type: :request do
     delete('delete list') do
       tags 'Api', 'V1', 'Lists'
       operationId 'v1ListsDeleteList'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

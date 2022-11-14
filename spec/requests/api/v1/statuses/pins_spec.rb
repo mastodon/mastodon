@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Statuses::PinsController, type: :request do
     post('create pin') do
       tags 'Api', 'V1', 'Statuses', 'Pins'
       operationId 'v1StatusesPinsCreatePin'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::Statuses::PinsController, type: :request do
     post('delete pin') do
       tags 'Api', 'V1', 'Statuses', 'Pins'
       operationId 'v1StatusesPinsDeletePin'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

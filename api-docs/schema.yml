@@ -15,7 +15,71 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
+    oauth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: "/oauth/authorize"
+          tokenUrl: "/oauth/token"
+          scopes:
+            read: |
+              Grants access to read data.
+              Requesting read will also grant child scopes shown in the left column of the table below.
+            write: |
+              Grants access to write data.
+              Requesting write will also grant child scopes shown in the right column of the table below.
+            follow: "Grants access to manage relationships.  \nRequesting follow will
+              also grant the following child scopes, shown in bold in the table:\n\nread:blocks,
+              write:blocks\nread:follows, write:follows\nread:mutes, write:mutes\n"
+            push: |
+              Grants access to [Web Push API subscriptions](https://docs.joinmastodon.org/methods/notifications/push/).
+              Added in Mastodon 2.4.0.
+            admin:read: |
+              - admin:read:accounts
+              - admin:read:reports
+              Used for moderation API. Added in Mastodon 2.9.1.
+            admin:write: |
+              - admin:write:accounts
+              - admin:write:reports
+              Used for moderation API. Added in Mastodon 2.9.1.
+            read:accounts: Read accounts
+            write:accounts: Write accounts
+            read:blocks: Read blocks
+            write:blocks: Write blocks
+            read:bookmarks: Read bookmarks
+            write:bookmarks: Write bookmarks
+            write:conversations: Write conversations
+            read:favourites: Read favourites
+            write:favourites: Write favourites
+            read:filters: Read filters
+            write:filters: Write filters
+            read:follows: Read follows
+            write:follows: Write follows
+            read:lists: Read lists
+            write:lists: Write lists
+            write:media: Write media
+            read:mutes: Read mutes
+            write:mutes: Write mutes
+            read:notifications: Read notifications
+            write:notifications: Write notifications
+            write:reports: Write reports
+            read:search: Read search
+            read:statuses: Read statuses
+            write:statuses: Write statuses
+            admin:read:accounts: Admin read accounts
+            admin:write:accounts: Admin write accounts
+            admin:read:reports: Admin read reports
+            admin:write:reports: Admin write reports
   schemas:
+    boolOrStrBool:
+      anyOf:
+      - type: boolean
+      - type: string
+        enum:
+        - '1'
+        - '0'
+        - 'true'
+        - 'false'
     CustomEmoji:
       type: object
       properties:
@@ -32,18 +96,80 @@ components:
         category:
           type: string
           nullable: true
-    AccountField:
+    Field:
       type: object
       properties:
         name:
           type: string
         value:
           type: string
-        verified_at:
-          type: string
       required:
       - name
       - value
+    AccountField:
+      allOf:
+      - "$ref": "#/components/schemas/Field"
+      - type: object
+        properties:
+          verified_at:
+            type: string
+      required:
+      - name
+      - value
+    SourceParam:
+      type: object
+      properties:
+        privacy:
+          description: |
+            The default post privacy to be used for new statuses.
+
+            public = Public post
+            unlisted = Unlisted post
+            private = Followers-only post
+            direct = Direct post
+          type: string
+          enum:
+          - private
+          - public
+          - unlisted
+          - direct
+          nullable: true
+        sensitive:
+          description: Whether new statuses should be marked sensitive by default.
+          type: boolean
+          nullable: true
+        language:
+          description: The default posting language for new statuses.
+          type: string
+          pattern: "[a-z]{2}"
+          nullable: true
+    Source:
+      description: "Represents display or publishing preferences of user's own account.
+        \ \nReturned as an additional entity when verifying and updated credentials,
+        as an attribute of Account.\n"
+      allOf:
+      - "$ref": "#/components/schemas/SourceParam"
+      - type: object
+        properties:
+          note:
+            description: Profile bio.
+            type: string
+          fields:
+            description: Metadata about the account.
+            type: array
+            items:
+              "$ref": "#/components/schemas/AccountField"
+          follow_requests_count:
+            description: The number of pending follow requests.
+            type: integer
+            nullable: true
+    Credential:
+      type: object
+      properties:
+        role:
+          "$ref": "#/components/schemas/Role"
+        source:
+          "$ref": "#/components/schemas/Source"
     Account:
       type: object
       properties:
@@ -53,64 +179,151 @@ components:
           example: '10999'
         username:
           type: string
+          description: The username of the account, not including domain.
         acct:
           type: string
           example: bob@example.com
+          description: "The Webfinger account URI. \nEqual to username for local users,
+            or username@domain for remote users.\n"
         display_name:
+          description: The display name to use for the profile.
           type: string
-        locked:
-          type: boolean
+        note:
+          type: string
+          description: The profile's bio / description.
+        fields:
+          description: Additional metadata attached to a profile as name-value pairs.
+          type: array
+          items:
+            "$ref": "#/components/schemas/AccountField"
+        url:
+          type: string
+          description: The location of the user's profile page.
           nullable: true
-        bot:
-          type: boolean
-        discoverable:
-          type: boolean
-        group:
-          type: boolean
-          nullable: true
+        avatar:
+          type: string
+          description: An image icon that is shown next to statuses and in the profile.
+        avatar_static:
+          type: string
+          description: "A static version of the `avatar`. \nEqual to `avatar` if its
+            value is a static image; different if `avatar` is an animated GIF.\n"
+        header:
+          type: string
+          description: An image banner that is shown above the profile and in profile
+            cards.
+        header_static:
+          type: string
+          description: "A static version of the `header`. \nEqual to `header` if its
+            value is a static image; different if `header` is an animated GIF.\n"
+        followers_count:
+          type: integer
+          description: The reported followers of this profile.
+        following_count:
+          type: integer
+          description: The reported follows of this profile.
+        statuses_count:
+          type: integer
+          description: How many statuses are attached to this account.
+        source:
+          "$ref": "#/components/schemas/Source"
+        moved:
+          description: 'Indicates that the profile is currently inactive and that
+            its user has moved to a new account.
+
+            '
+          "$ref": "#/components/schemas/Account"
+        emojis:
+          description: "Custom emoji entities to be used when rendering the profile.
+            \nIf none, an empty array will be returned.\n"
+          type: array
+          items:
+            "$ref": "#/components/schemas/CustomEmoji"
         created_at:
           type: string
           format: datetime
           example: '2022-11-13T21:24:59.474Z'
-        note:
-          type: string
-        url:
-          type: string
-          nullable: true
-        avatar:
-          type: string
-        avatar_static:
-          type: string
-        header:
-          type: string
-        header_static:
-          type: string
-        followers_count:
-          type: integer
-        following_count:
-          type: integer
-        statuses_count:
-          type: integer
         last_status_at:
           type: string
           format: date
           example: '2022-11-13'
           nullable: true
-        moved:
-          "$ref": "#/components/schemas/Account"
-        fields:
-          type: array
-          items:
-            "$ref": "#/components/schemas/AccountField"
+          description: When the most recent status was posted.
+        bot:
+          type: boolean
+          description: "A presentational flag.  \nIndicates that the account may perform
+            automated actions, may not be monitored, or identifies as a robot.\n"
         suspended:
           type: boolean
         silenced:
           type: boolean
         noindex:
           type: boolean
+        discoverable:
+          type: boolean
+          description: Whether the account has opted into discovery features such
+            as the profile directory.
+        locked:
+          type: boolean
+          nullable: true
+          description: Whether the account manually approves follow requests.
+        group:
+          type: boolean
+          nullable: true
       required:
       - id
       - username
+      - acct
+      - url
+    AccountUpdateCredentialsParams:
+      type: object
+      properties:
+        display_name:
+          description: The display name to use for the profile.
+          type: string
+        note:
+          type: string
+          description: The profile's bio / description.
+        locked:
+          type: boolean
+          nullable: true
+          description: Whether the account manually approves follow requests.
+        discoverable:
+          type: boolean
+          description: Whether the account has opted into discovery features such
+            as the profile directory.
+        bot:
+          type: boolean
+          description: "A presentational flag.  \nIndicates that the account may perform
+            automated actions, may not be monitored, or identifies as a robot.\n"
+        avatar:
+          description: Avatar image encoded using multipart/form-data
+          type: string
+        header:
+          description: Avatar image encoded using multipart/form-data
+          type: string
+        fields_attributes:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Field"
+        source:
+          "$ref": "#/components/schemas/SourceParam"
+      example:
+        display_name: Jane Doe
+        note: The bio
+        avatar: ''
+        header: ''
+        locked: false
+        discoverable: true
+        bot: false
+        fields_attributes:
+        - name: Location
+          value: Nowhere
+        - name: Occupation
+          value: Sourcerer
+        source:
+          privacy: public
+          sensitive: false
+          language: en
     MediaAttachment:
       type: object
       properties:
@@ -179,6 +392,24 @@ components:
           nullable: true
           items:
             type: object
+    FeaturedTag:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+          example: '1'
+        name:
+          type: string
+        url:
+          type: string
+        statuses_count:
+          type: string
+          pattern: "[0-9]+"
+        last_status_at:
+          type: string
+          format: date
+          nullable: true
     PollVote:
       type: object
       properties:
@@ -426,6 +657,229 @@ components:
             pattern: "[0-9]+"
         target_account:
           "$ref": "#/components/schemas/Account"
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+          example: '1'
+        name:
+          type: string
+        permissions:
+          type: string
+        color:
+          type: string
+        highlighted:
+          type: boolean
+    List:
+      description: Represents a list of some users that the authenticated user follows.
+      type: object
+      properties:
+        id:
+          type: string
+          pattern: "[0-9]+"
+        title:
+          description: The user-defined title of the list.
+          type: string
+        replies_policy:
+          description: |
+            followed = Show replies to any followed user
+            list = Show replies to members of the list
+            none = Show replies to no one
+          type: string
+          enum:
+          - followed
+          - list
+          - none
+    Relationship:
+      description: Represents the relationship between accounts, such as following
+        / blocking / muting / etc.
+      type: object
+      properties:
+        id:
+          description: The account id.
+          type: string
+          pattern: "[0-9]+"
+        following:
+          description: Are you following this user?
+          type: boolean
+        requested:
+          description: Do you have a pending follow request for this user?
+          type: boolean
+        endorsed:
+          description: Are you featuring this user on your profile?
+          type: boolean
+        muting:
+          description: Are you muting this user?
+          type: boolean
+        muting_notifications:
+          description: Are you muting notifications from this user?
+          type: boolean
+        showing_reblogs:
+          description: Are you receiving this user's boosts in your home timeline?
+          type: boolean
+        notifying:
+          description: Have you enabled notifications for this user?
+          type: boolean
+        languages:
+          description: dead attribute defined in REST::RelationshipSerializer
+          deprecated: true
+          nullable: true
+        followed_by:
+          description: Are you followed by this user?
+          type: boolean
+        blocking:
+          description: Are you blocking this user?
+          type: boolean
+        blocked_by:
+          description: Is this user blocking you?
+          type: boolean
+        domain_blocking:
+          description: Are you blocking this user's domain?
+          type: boolean
+        note:
+          description: This user's profile bio
+          type: string
+    Reaction:
+      description: Represents an announcement set by an administrator.
+      type: object
+      properties:
+        name:
+          type: string
+        me:
+          type: boolean
+        url:
+          type: string
+        static_url:
+          type: string
+    Announcement:
+      description: Represents an announcement set by an administrator.
+      type: object
+      properties:
+        id:
+          description: The announcement id.
+          type: string
+          pattern: "[0-9]+"
+        content:
+          description: ''
+          type: string
+        starts_at:
+          description: ''
+          type: string
+          nullable: true
+        ends_at:
+          description: ''
+          type: string
+          nullable: true
+        all_day:
+          description: ''
+          type: boolean
+        published_at:
+          description: ''
+          type: string
+        updated_at:
+          description: ''
+          type: string
+        read:
+          description: Whether the announcement has been read by the user.
+          type: boolean
+        mentions:
+          type: array
+          items:
+            type: object
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: "[0-9]+"
+              url:
+                type: string
+        statuses:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                pattern: "[0-9]+"
+              url:
+                type: string
+        reactions:
+          type: array
+          items:
+            "$ref": "#/components/schemas/Reaction"
+    ApplicationRequestBody:
+      type: object
+      properties:
+        client_name:
+          type: string
+          description: A name for your application
+        redirect_uris:
+          type: string
+          description: |
+            Where the user should be redirected after authorization.
+
+            To display the authorization code to the user instead of redirecting to a web page,
+            use urn:ietf:wg:oauth:2.0:oob in this parameter.
+        scopes:
+          type: string
+          description: Space separated list of scopes. If none is provided, defaults
+            to read.
+        website:
+          type: string
+          description: A URL to the homepage of your app
+      required:
+      - client_name
+      - redirect_uris
+    Application:
+      type: object
+      properties:
+        id:
+          description: The application id.
+          type: string
+          pattern: "[0-9]+"
+        name:
+          type: string
+        website:
+          type: string
+          nullable: true
+        redirect_uri:
+          type: string
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        vapid_key:
+          type: string
+  requestBodies:
+    v1AccountsUpdateCredentials:
+      required: false
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/AccountUpdateCredentialsParams"
+  callbacks: {}
+  parameters: {}
+  responses: {}
+  examples: {}
+  headers:
+    X-RateLimit-Limit:
+      description: Number of requests permitted per time period
+      schema:
+        type: string
+    X-RateLimit-Remaining:
+      description: Number of requests you can still make
+      schema:
+        type: string
+    X-RateLimit-Reset:
+      description: Timestamp when your rate limit will reset
+      schema:
+        type: string
+  links: {}
 paths:
   "/api/v1/accounts/verify_credentials":
     get:
@@ -438,6 +892,9 @@ paths:
       operationId: v1AccountsCredentialsShowCredential
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:accounts
       parameters:
       - name: authorization
         in: header
@@ -452,17 +909,17 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109342921025365875'
-                    username: daniel0
-                    acct: daniel0
+                    id: '109344988017914228'
+                    username: dan_abshire0
+                    acct: dan_abshire0
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-14T00:00:00.000Z'
+                    created_at: '2022-11-15T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@daniel0
+                    url: https://cb6e6126.ngrok.io/@dan_abshire0
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -487,6 +944,11 @@ paths:
                       permissions: '65536'
                       color: ''
                       highlighted: false
+              schema:
+                type: object
+                allOf:
+                - "$ref": "#/components/schemas/Account"
+                - "$ref": "#/components/schemas/Credential"
   "/api/v1/accounts/update_credentials":
     patch:
       summary: update credential
@@ -498,6 +960,9 @@ paths:
       operationId: v1AccountsCredentialsUpdateCredential
       security:
       - bearerAuth: []
+      - oauth:
+        - write
+        - write:accounts
       parameters:
       - name: authorization
         in: header
@@ -512,17 +977,17 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109342921029923155'
-                    username: giuseppe1
-                    acct: giuseppe1
-                    display_name: ''
+                    id: '109344988023118318'
+                    username: shawn1
+                    acct: shawn1
+                    display_name: Changed
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-14T00:00:00.000Z'
+                    created_at: '2022-11-15T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@giuseppe1
+                    url: https://cb6e6126.ngrok.io/@shawn1
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -547,6 +1012,16 @@ paths:
                       permissions: '65536'
                       color: ''
                       highlighted: false
+              schema:
+                type: object
+                allOf:
+                - "$ref": "#/components/schemas/Account"
+                - "$ref": "#/components/schemas/Credential"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/requestBodies/v1AccountsUpdateCredentials"
   "/api/v1/accounts/familiar_followers":
     get:
       summary: list familiar_followers
@@ -558,20 +1033,67 @@ paths:
       operationId: v1AccountsFamiliarfollowersListFamiliarFollower
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:follows
       parameters:
       - name: authorization
         in: header
         required: true
         schema:
           type: string
+      - name: id[]
+        in: query
+        schema:
+          type: string
       responses:
         '200':
-          description: successful
+          description: no familiar follows
           content:
             application/json:
               examples:
-                successful:
-                  value: []
+                lists_familiar_follows:
+                  value:
+                  - id: '109344988031871153'
+                    accounts:
+                    - id: '109344988031871152'
+                      username: roxane3
+                      acct: roxane3
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2022-11-15T00:00:00.000Z'
+                      note: ''
+                      url: https://cb6e6126.ngrok.io/@roxane3
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 1
+                      following_count: 1
+                      statuses_count: 0
+                      last_status_at:
+                      noindex: false
+                      emojis: []
+                      fields: []
+                no_familiar_follows:
+                  value:
+                  - id: '109344988041727734'
+                    accounts: []
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      pattern: "[0-9]+"
+                    accounts:
+                      type: array
+                      items:
+                        "$ref": "#/components/schemas/Account"
   "/api/v1/accounts/{account_id}/featured_tags":
     parameters:
     - name: account_id
@@ -588,14 +1110,6 @@ paths:
       - Accounts
       - FeaturedTags
       operationId: v1AccountsFeaturedtagsListFeaturedTag
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: successful
@@ -604,7 +1118,15 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                  - id: '17'
+                    name: test_featured_tag
+                    url: https://cb6e6126.ngrok.io/@calvin_schmidt8/tagged/test_featured_tag
+                    statuses_count: '0'
+                    last_status_at:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/FeaturedTag"
   "/api/v1/accounts/{account_id}/followers":
     parameters:
     - name: account_id
@@ -623,10 +1145,31 @@ paths:
       operationId: v1AccountsFolloweraccountsListFollowerAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:accounts
       parameters:
       - name: authorization
         in: header
         required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return. Defaults to 40.
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
         schema:
           type: string
       responses:
@@ -637,7 +1180,54 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                  - id: '109344988057704735'
+                    username: tamika_kunze12
+                    acct: tamika_kunze12
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@tamika_kunze12
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 1
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+                  - id: '109344988057704733'
+                    username: chante_franecki10
+                    acct: chante_franecki10
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@chante_franecki10
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 1
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Account"
   "/api/v1/accounts/{account_id}/following":
     parameters:
     - name: account_id
@@ -656,10 +1246,31 @@ paths:
       operationId: v1AccountsFollowingaccountsListFollowingAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:accounts
       parameters:
       - name: authorization
         in: header
         required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return. Defaults to 40.
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
         schema:
           type: string
       responses:
@@ -670,7 +1281,54 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                  - id: '109344988073541499'
+                    username: gavin17
+                    acct: gavin17
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@gavin17
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 1
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+                  - id: '109344988073541498'
+                    username: senaida_windler16
+                    acct: senaida_windler16
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@senaida_windler16
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 1
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Account"
   "/api/v1/accounts/{account_id}/identity_proofs":
     parameters:
     - name: account_id
@@ -689,6 +1347,9 @@ paths:
       operationId: v1AccountsIdentityproofsListIdentityProof
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:account
       parameters:
       - name: authorization
         in: header
@@ -702,8 +1363,9 @@ paths:
             application/json:
               examples:
                 successful:
-                  value:
-                    error: Record not found
+                  value: []
+              schema:
+                type: array
   "/api/v1/accounts/{account_id}/lists":
     parameters:
     - name: account_id
@@ -722,6 +1384,9 @@ paths:
       operationId: v1AccountsListsListList
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:lists
       parameters:
       - name: authorization
         in: header
@@ -736,7 +1401,13 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                  - id: '16'
+                    title: TestList
+                    replies_policy: list
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/List"
   "/api/v1/accounts/lookup":
     get:
       summary: show lookup
@@ -745,12 +1416,23 @@ paths:
       - V1
       - Accounts
       - Lookup
+      description: Allows converting a username@domain into a local ID quickly (unlike
+        search, it does not resolve anything, and as such, is available without an
+        API token)
       operationId: v1AccountsLookupShowLookup
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:accounts
       parameters:
       - name: authorization
         in: header
+        required: true
+        schema:
+          type: string
+      - name: acct
+        in: query
         required: true
         schema:
           type: string
@@ -762,7 +1444,29 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988115539482'
+                    username: tester
+                    acct: tester@nothere.com
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url:
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    emojis: []
+                    fields: []
+              schema:
+                "$ref": "#/components/schemas/Account"
   "/api/v1/accounts/{account_id}/note":
     parameters:
     - name: account_id
@@ -781,6 +1485,9 @@ paths:
       operationId: v1AccountsNotesCreateNote
       security:
       - bearerAuth: []
+      - oauth:
+        - write
+        - write:accounts
       parameters:
       - name: authorization
         in: header
@@ -795,7 +1502,28 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988131421511'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: testing comment
+              schema:
+                "$ref": "#/components/schemas/Relationship"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
   "/api/v1/accounts/{account_id}/pin":
     parameters:
     - name: account_id
@@ -814,6 +1542,9 @@ paths:
       operationId: v1AccountsPinsCreatePin
       security:
       - bearerAuth: []
+      - oauth:
+        - write
+        - write:accounts
       parameters:
       - name: authorization
         in: header
@@ -828,7 +1559,22 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988141865412'
+                    following: true
+                    showing_reblogs: true
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: true
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/{account_id}/unpin":
     parameters:
     - name: account_id
@@ -847,6 +1593,9 @@ paths:
       operationId: v1AccountsPinsDeletePin
       security:
       - bearerAuth: []
+      - oauth:
+        - write
+        - write:accounts
       parameters:
       - name: authorization
         in: header
@@ -861,7 +1610,22 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988150244685'
+                    following: true
+                    showing_reblogs: true
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/relationships":
     get:
       summary: list relationships
@@ -873,12 +1637,20 @@ paths:
       operationId: v1AccountsRelationshipsListRelationship
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:follows
       parameters:
       - name: authorization
         in: header
         required: true
         schema:
           type: string
+      - name: id
+        in: query
+        description: account_ids
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
@@ -886,7 +1658,25 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '109344988165500728'
+                    following: true
+                    showing_reblogs: true
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/search":
     get:
       summary: show search
@@ -898,12 +1688,40 @@ paths:
       operationId: v1AccountsSearchShowSearch
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:accounts
       parameters:
       - name: authorization
         in: header
         required: true
         schema:
           type: string
+      - name: q
+        in: query
+        required: true
+        description: What to search for
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results. Defaults to 40.
+        schema:
+          type: integer
+      - name: resolve
+        in: query
+        required: false
+        description: Attempt WebFinger lookup. Defaults to false. Use this when q
+          is an exact address.
+        schema:
+          type: string
+      - name: following
+        in: query
+        required: false
+        description: Only who the user is following. Defaults to false.
+        schema:
+          type: boolean
       responses:
         '200':
           description: successful
@@ -911,7 +1729,33 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '109344988199420311'
+                    username: account3
+                    acct: account3
+                    display_name: account no3
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@account3
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Account"
   "/api/v1/accounts/{account_id}/statuses":
     parameters:
     - name: account_id
@@ -930,6 +1774,9 @@ paths:
       operationId: v1AccountsStatusesListStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:statuses
       parameters:
       - name: authorization
         in: header
@@ -944,20 +1791,20 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109342958612889502'
-                    created_at: '2022-11-14T15:52:20.973Z'
+                  - id: '109344988206318084'
+                    created_at: '2022-11-15T00:28:30.096Z'
                     in_reply_to_id:
                     in_reply_to_account_id:
                     sensitive: false
                     spoiler_text: ''
                     visibility: public
                     language: en
-                    uri: 7b258dbc9b67daf5ecc1c6fee7ac06a56a96bb3b60a707d942658cebf5f05cec
+                    uri: 7bd49e3735c93fd38474157f13915a813529f7580fef28bc465aee491235b75a
                     url:
                     replies_count: 0
                     reblogs_count: 0
                     favourites_count: 0
-                    edited_at: '2022-11-14T15:52:20.971Z'
+                    edited_at: '2022-11-15T00:28:30.094Z'
                     favourited: false
                     reblogged: false
                     muted: false
@@ -966,7 +1813,7 @@ paths:
                     filtered: []
                     reblog:
                     account:
-                      id: '109342958612895444'
+                      id: '109344988206311027'
                       username: bob
                       acct: bob@example.com
                       display_name: ''
@@ -974,7 +1821,7 @@ paths:
                       bot: false
                       discoverable: true
                       group: false
-                      created_at: '2022-11-14T00:00:00.000Z'
+                      created_at: '2022-11-15T00:00:00.000Z'
                       note: ''
                       url:
                       avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
@@ -984,12 +1831,12 @@ paths:
                       followers_count: 0
                       following_count: 0
                       statuses_count: 2
-                      last_status_at: '2022-11-14'
+                      last_status_at: '2022-11-15'
                       emojis: []
                       fields: []
                     media_attachments: []
                     mentions:
-                    - id: '109342958612895445'
+                    - id: '109344988206311028'
                       username: jane
                       url:
                       acct: jane@example.com
@@ -1016,8 +1863,14 @@ paths:
       - V1
       - Accounts
       operationId: v1AccountsFollowAccount
+      description: Follow the given account. Can also be used to update whether to
+        show reblogs or enable notifications.
       security:
       - bearerAuth: []
+      - oauth:
+        - follow
+        - write
+        - write:follows
       parameters:
       - name: authorization
         in: header
@@ -1026,13 +1879,58 @@ paths:
           type: string
       responses:
         '200':
-          description: successful
+          description: follow already following
           content:
             application/json:
               examples:
-                successful:
+                follow_not_following:
                   value:
-                    error: Record not found
+                    id: '109344988221466091'
+                    following: true
+                    showing_reblogs: true
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+                follow_already_following:
+                  value:
+                    id: '109344988232079054'
+                    following: true
+                    showing_reblogs: true
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reblogs:
+                  type: boolean
+                  description: Receive this account's reblogs in home timeline? Defaults
+                    to true.
+                notify:
+                  type: boolean
+                  description: Receive notifications when this account posts a status?
+                    Defaults to false.
   "/api/v1/accounts/{id}/unfollow":
     parameters:
     - name: id
@@ -1050,6 +1948,10 @@ paths:
       operationId: v1AccountsUnfollowAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - follow
+        - write
+        - write:follows
       parameters:
       - name: authorization
         in: header
@@ -1058,13 +1960,44 @@ paths:
           type: string
       responses:
         '200':
-          description: successful
+          description: unfollow not following
           content:
             application/json:
               examples:
-                successful:
+                unfollow_following:
                   value:
-                    error: Record not found
+                    id: '109344988238070775'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+                unfollow_not_following:
+                  value:
+                    id: '109344988250339876'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/{id}/remove_from_followers":
     parameters:
     - name: id
@@ -1082,6 +2015,10 @@ paths:
       operationId: v1AccountsRemoveFromFollowersAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - follow
+        - write
+        - write:follows
       parameters:
       - name: authorization
         in: header
@@ -1096,7 +2033,22 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988289612903'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/{id}/block":
     parameters:
     - name: id
@@ -1114,6 +2066,10 @@ paths:
       operationId: v1AccountsBlockAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - follow
+        - write
+        - write:blocks
       parameters:
       - name: authorization
         in: header
@@ -1128,7 +2084,22 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988296402531'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: true
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/{id}/unblock":
     parameters:
     - name: id
@@ -1146,6 +2117,10 @@ paths:
       operationId: v1AccountsUnblockAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - follow
+        - write
+        - write:blocks
       parameters:
       - name: authorization
         in: header
@@ -1160,7 +2135,22 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988306302591'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/{id}/mute":
     parameters:
     - name: id
@@ -1178,6 +2168,10 @@ paths:
       operationId: v1AccountsMuteAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - follow
+        - write
+        - write:mutes
       parameters:
       - name: authorization
         in: header
@@ -1192,7 +2186,22 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988312310738'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: true
+                    muting_notifications: true
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/{id}/unmute":
     parameters:
     - name: id
@@ -1210,6 +2219,10 @@ paths:
       operationId: v1AccountsUnmuteAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - follow
+        - write
+        - write:mutes
       parameters:
       - name: authorization
         in: header
@@ -1224,47 +2237,22 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
-  "/api/v1/accounts":
-    post:
-      summary: create account
-      tags:
-      - Api
-      - V1
-      - Accounts
-      operationId: v1AccountsCreateAccount
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: 'Validation failed: E-mail address can''t be blank, Password
-                      can''t be blank, Username can''t be blank, Service agreement
-                      must be accepted'
-                    details:
-                      email:
-                      - error: ERR_BLANK
-                        description: can't be blank
-                      password:
-                      - error: ERR_BLANK
-                        description: can't be blank
-                      username:
-                      - error: ERR_BLANK
-                        description: can't be blank
-                      agreement:
-                      - error: ERR_ACCEPTED
-                        description: must be accepted
+                    id: '109344988318529581'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/accounts/{id}":
     parameters:
     - name: id
@@ -1282,6 +2270,9 @@ paths:
       operationId: v1AccountsShowAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:accounts
       parameters:
       - name: authorization
         in: header
@@ -1296,7 +2287,30 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109344988323974079'
+                    username: ellis_cummings54
+                    acct: ellis_cummings54
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@ellis_cummings54
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/admin/accounts/{account_id}/action":
     parameters:
     - name: account_id
@@ -1315,6 +2329,8 @@ paths:
       operationId: v1AdminAccountactionsCreateAccountAction
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1329,7 +2345,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/accounts/{id}/enable":
     parameters:
     - name: id
@@ -1348,6 +2364,8 @@ paths:
       operationId: v1AdminAccountsEnableAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1362,7 +2380,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/accounts/{id}/unsensitive":
     parameters:
     - name: id
@@ -1381,6 +2399,8 @@ paths:
       operationId: v1AdminAccountsUnsensitiveAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1395,7 +2415,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/accounts/{id}/unsilence":
     parameters:
     - name: id
@@ -1414,6 +2434,8 @@ paths:
       operationId: v1AdminAccountsUnsilenceAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1428,7 +2450,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/accounts/{id}/unsuspend":
     parameters:
     - name: id
@@ -1447,6 +2469,8 @@ paths:
       operationId: v1AdminAccountsUnsuspendAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1461,7 +2485,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/accounts/{id}/approve":
     parameters:
     - name: id
@@ -1480,6 +2504,8 @@ paths:
       operationId: v1AdminAccountsApproveAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1494,7 +2520,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/accounts/{id}/reject":
     parameters:
     - name: id
@@ -1513,6 +2539,8 @@ paths:
       operationId: v1AdminAccountsRejectAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1527,7 +2555,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/accounts":
     get:
       summary: list accounts
@@ -1539,6 +2567,8 @@ paths:
       operationId: v1AdminAccountsListAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1553,7 +2583,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/accounts/{id}":
     parameters:
     - name: id
@@ -1572,6 +2602,8 @@ paths:
       operationId: v1AdminAccountsShowAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1586,7 +2618,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     delete:
       summary: delete account
       tags:
@@ -1597,6 +2629,8 @@ paths:
       operationId: v1AdminAccountsDeleteAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1611,7 +2645,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/canonical_email_blocks/test":
     post:
       summary: test canonical_email_block
@@ -1623,6 +2657,8 @@ paths:
       operationId: v1AdminCanonicalemailblocksTestCanonicalEmailBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1632,12 +2668,6 @@ paths:
       responses:
         '200':
           description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: This action is outside the authorized scopes
   "/api/v1/admin/canonical_email_blocks":
     get:
       summary: list canonical_email_blocks
@@ -1649,6 +2679,8 @@ paths:
       operationId: v1AdminCanonicalemailblocksListCanonicalEmailBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1663,7 +2695,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
     post:
       summary: create canonical_email_block
       tags:
@@ -1674,6 +2706,8 @@ paths:
       operationId: v1AdminCanonicalemailblocksCreateCanonicalEmailBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1688,7 +2722,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/canonical_email_blocks/{id}":
     parameters:
     - name: id
@@ -1707,6 +2741,8 @@ paths:
       operationId: v1AdminCanonicalemailblocksShowCanonicalEmailBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1721,7 +2757,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     delete:
       summary: delete canonical_email_block
       tags:
@@ -1732,6 +2768,8 @@ paths:
       operationId: v1AdminCanonicalemailblocksDeleteCanonicalEmailBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1746,7 +2784,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/dimensions":
     post:
       summary: create dimension
@@ -1758,6 +2796,8 @@ paths:
       operationId: v1AdminDimensionsCreateDimension
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1772,7 +2812,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/domain_allows":
     get:
       summary: list domain_allows
@@ -1784,6 +2824,8 @@ paths:
       operationId: v1AdminDomainallowsListDomainAllow
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1798,7 +2840,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
     post:
       summary: create domain_allow
       tags:
@@ -1809,6 +2851,8 @@ paths:
       operationId: v1AdminDomainallowsCreateDomainAllow
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1823,7 +2867,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/domain_allows/{id}":
     parameters:
     - name: id
@@ -1842,6 +2886,8 @@ paths:
       operationId: v1AdminDomainallowsShowDomainAllow
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1856,7 +2902,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     delete:
       summary: delete domain_allow
       tags:
@@ -1867,6 +2913,8 @@ paths:
       operationId: v1AdminDomainallowsDeleteDomainAllow
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1881,7 +2929,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/domain_blocks":
     get:
       summary: list domain_blocks
@@ -1893,6 +2941,8 @@ paths:
       operationId: v1AdminDomainblocksListDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1907,7 +2957,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
     post:
       summary: create domain_block
       tags:
@@ -1918,6 +2968,8 @@ paths:
       operationId: v1AdminDomainblocksCreateDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1932,7 +2984,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/domain_blocks/{id}":
     parameters:
     - name: id
@@ -1951,6 +3003,8 @@ paths:
       operationId: v1AdminDomainblocksShowDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1965,7 +3019,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     patch:
       summary: update domain_block
       tags:
@@ -1976,6 +3030,8 @@ paths:
       operationId: v1AdminDomainblocksUpdateDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -1990,7 +3046,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     put:
       summary: update domain_block
       tags:
@@ -2001,6 +3057,8 @@ paths:
       operationId: v1AdminDomainblocksUpdateDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2015,7 +3073,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     delete:
       summary: delete domain_block
       tags:
@@ -2026,6 +3084,8 @@ paths:
       operationId: v1AdminDomainblocksDeleteDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2040,7 +3100,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/email_domain_blocks":
     get:
       summary: list email_domain_blocks
@@ -2052,6 +3112,8 @@ paths:
       operationId: v1AdminEmaildomainblocksListEmailDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2066,7 +3128,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
     post:
       summary: create email_domain_block
       tags:
@@ -2077,6 +3139,8 @@ paths:
       operationId: v1AdminEmaildomainblocksCreateEmailDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2091,7 +3155,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/email_domain_blocks/{id}":
     parameters:
     - name: id
@@ -2110,6 +3174,8 @@ paths:
       operationId: v1AdminEmaildomainblocksShowEmailDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2124,7 +3190,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     delete:
       summary: delete email_domain_block
       tags:
@@ -2135,6 +3201,8 @@ paths:
       operationId: v1AdminEmaildomainblocksDeleteEmailDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2149,7 +3217,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/ip_blocks":
     get:
       summary: list ip_blocks
@@ -2161,6 +3229,8 @@ paths:
       operationId: v1AdminIpblocksListIpBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2175,7 +3245,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
     post:
       summary: create ip_block
       tags:
@@ -2186,6 +3256,8 @@ paths:
       operationId: v1AdminIpblocksCreateIpBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2200,7 +3272,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/ip_blocks/{id}":
     parameters:
     - name: id
@@ -2219,6 +3291,8 @@ paths:
       operationId: v1AdminIpblocksShowIpBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2233,7 +3307,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     patch:
       summary: update ip_block
       tags:
@@ -2244,6 +3318,8 @@ paths:
       operationId: v1AdminIpblocksUpdateIpBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2258,7 +3334,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     put:
       summary: update ip_block
       tags:
@@ -2269,6 +3345,8 @@ paths:
       operationId: v1AdminIpblocksUpdateIpBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2283,7 +3361,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     delete:
       summary: delete ip_block
       tags:
@@ -2294,6 +3372,8 @@ paths:
       operationId: v1AdminIpblocksDeleteIpBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2308,7 +3388,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/measures":
     post:
       summary: create measure
@@ -2320,6 +3400,8 @@ paths:
       operationId: v1AdminMeasuresCreateMeasure
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2334,7 +3416,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/reports/{id}/assign_to_self":
     parameters:
     - name: id
@@ -2353,6 +3435,8 @@ paths:
       operationId: v1AdminReportsAssignToSelfReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2367,7 +3451,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/reports/{id}/unassign":
     parameters:
     - name: id
@@ -2386,6 +3470,8 @@ paths:
       operationId: v1AdminReportsUnassignReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2400,7 +3486,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/reports/{id}/reopen":
     parameters:
     - name: id
@@ -2419,6 +3505,8 @@ paths:
       operationId: v1AdminReportsReopenReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2433,7 +3521,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/reports/{id}/resolve":
     parameters:
     - name: id
@@ -2452,6 +3540,8 @@ paths:
       operationId: v1AdminReportsResolveReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2466,7 +3556,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/reports":
     get:
       summary: list reports
@@ -2478,6 +3568,8 @@ paths:
       operationId: v1AdminReportsListReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2492,7 +3584,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/reports/{id}":
     parameters:
     - name: id
@@ -2511,6 +3603,8 @@ paths:
       operationId: v1AdminReportsShowReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2525,7 +3619,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     patch:
       summary: update report
       tags:
@@ -2536,6 +3630,8 @@ paths:
       operationId: v1AdminReportsUpdateReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2550,7 +3646,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
     put:
       summary: update report
       tags:
@@ -2561,6 +3657,8 @@ paths:
       operationId: v1AdminReportsUpdateReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2575,7 +3673,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Record not found
   "/api/v1/admin/retention":
     post:
       summary: create retention
@@ -2587,6 +3685,8 @@ paths:
       operationId: v1AdminRetentionCreateRetention
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2601,7 +3701,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
   "/api/v1/admin/trends/links":
     get:
       summary: list links
@@ -2614,6 +3714,8 @@ paths:
       operationId: v1AdminTrendsLinksListLink
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2627,8 +3729,7 @@ paths:
             application/json:
               examples:
                 successful:
-                  value:
-                    error: This action is outside the authorized scopes
+                  value: []
   "/api/v1/admin/trends/statuses":
     get:
       summary: list statuses
@@ -2641,6 +3742,8 @@ paths:
       operationId: v1AdminTrendsStatusesListStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2654,8 +3757,7 @@ paths:
             application/json:
               examples:
                 successful:
-                  value:
-                    error: This action is outside the authorized scopes
+                  value: []
   "/api/v1/admin/trends/tags":
     get:
       summary: list tags
@@ -2668,6 +3770,8 @@ paths:
       operationId: v1AdminTrendsTagsListTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2681,8 +3785,7 @@ paths:
             application/json:
               examples:
                 successful:
-                  value:
-                    error: This action is outside the authorized scopes
+                  value: []
   "/api/v1/announcements/{announcement_id}/reactions/{id}":
     parameters:
     - name: announcement_id
@@ -2707,6 +3810,8 @@ paths:
       operationId: v1AnnouncementsReactionsUpdateReaction
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2732,6 +3837,8 @@ paths:
       operationId: v1AnnouncementsReactionsUpdateReaction
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2757,6 +3864,8 @@ paths:
       operationId: v1AnnouncementsReactionsDeleteReaction
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2789,6 +3898,35 @@ paths:
       operationId: v1AnnouncementsDismissAnnouncement
       security:
       - bearerAuth: []
+      - oauth:
+        - write
+        - write:accounts
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}
+  "/api/v1/announcements":
+    get:
+      summary: list announcements
+      tags:
+      - Api
+      - V1
+      - Announcements
+      operationId: v1AnnouncementsListAnnouncement
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2803,31 +3941,23 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
-  "/api/v1/announcements":
-    get:
-      summary: list announcements
-      tags:
-      - Api
-      - V1
-      - Announcements
-      operationId: v1AnnouncementsListAnnouncement
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value: []
+                  - id: '26'
+                    content: "<p>Assumenda qui cumque. Facere minus accusamus.</p>"
+                    starts_at:
+                    ends_at:
+                    all_day: false
+                    published_at: '2022-11-15T00:28:36.445Z'
+                    updated_at: '2022-11-15T00:28:36.445Z'
+                    read: false
+                    mentions: []
+                    statuses: []
+                    tags: []
+                    emojis: []
+                    reactions: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Announcement"
   "/api/v1/apps/verify_credentials":
     get:
       summary: show credential
@@ -2839,6 +3969,8 @@ paths:
       operationId: v1AppsCredentialsShowCredential
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2856,8 +3988,11 @@ paths:
       - V1
       - Apps
       operationId: v1AppsCreateApp
+      description: Create a new application to obtain OAuth2 credentials.
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2872,8 +4007,19 @@ paths:
               examples:
                 successful:
                   value:
-                    error: 'Validation failed: Application name can''t be blank, Redirect
-                      URI can''t be blank'
+                    id: '32'
+                    name: testclient
+                    website:
+                    redirect_uri: urn:ietf:wg:oauth:2.0:oob
+                    client_id: RrmMEdPVwj01TrNTw9bTqBxZDBkx3BBs2XeHku7pMJw
+                    client_secret: bEtUHs0E4a9iYbXVeYV1nE8W-T7jcHvACXXKkoYgAG0
+                    vapid_key: BGUyMI925QEuOKuSGN1FSA8UK8Fbh5gEluDwZtsKmxHtDP6b6wKvL8mIH2_Va6itP3VRPTNz2b-IxhaxyPRHSWQ=
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/ApplicationRequestBody"
+        required: true
   "/api/v1/blocks":
     get:
       summary: list blocks
@@ -2882,12 +4028,35 @@ paths:
       - V1
       - Blocks
       operationId: v1BlocksListBlock
+      description: View your blocks. See also accounts/:id/{block,unblock}
       security:
       - bearerAuth: []
+      - oauth:
+        - follow
+        - read
+        - read:blocks
       parameters:
       - name: authorization
         in: header
         required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return. Defaults to 40.
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
         schema:
           type: string
       responses:
@@ -2897,7 +4066,55 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '109344988642425408'
+                    username: rickey_keeling114
+                    acct: rickey_keeling114
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@rickey_keeling114
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+                  - id: '109344988642425407'
+                    username: osvaldo_boehm113
+                    acct: osvaldo_boehm113
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2022-11-15T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@osvaldo_boehm113
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Account"
   "/api/v1/bookmarks":
     get:
       summary: list bookmarks
@@ -2908,10 +4125,37 @@ paths:
       operationId: v1BookmarksListBookmark
       security:
       - bearerAuth: []
+      - oauth:
+        - read
+        - read:bookmarks
       parameters:
       - name: authorization
         in: header
         required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return. Defaults to 40.
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: min_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
         schema:
           type: string
       responses:
@@ -2921,7 +4165,62 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '109344988652485201'
+                    created_at: '2022-11-15T00:28:36.956Z'
+                    in_reply_to_id:
+                    in_reply_to_account_id:
+                    sensitive: false
+                    spoiler_text: ''
+                    visibility: public
+                    language:
+                    uri: https://cb6e6126.ngrok.io/users/michal_volkman116/statuses/109344988652485201
+                    url: https://cb6e6126.ngrok.io/@michal_volkman116/109344988652485201
+                    replies_count: 0
+                    reblogs_count: 0
+                    favourites_count: 0
+                    edited_at:
+                    favourited: false
+                    reblogged: false
+                    muted: false
+                    bookmarked: true
+                    content: "<p>Lorem ipsum dolor sit amet</p>"
+                    filtered: []
+                    reblog:
+                    application:
+                    account:
+                      id: '109344988652491854'
+                      username: michal_volkman116
+                      acct: michal_volkman116
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2022-11-15T00:00:00.000Z'
+                      note: ''
+                      url: https://cb6e6126.ngrok.io/@michal_volkman116
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 1
+                      following_count: 0
+                      statuses_count: 1
+                      last_status_at: '2022-11-15'
+                      noindex: false
+                      emojis: []
+                      fields: []
+                    media_attachments: []
+                    mentions: []
+                    tags: []
+                    emojis: []
+                    card:
+                    poll:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Status"
   "/api/v1/conversations/{id}/read":
     parameters:
     - name: id
@@ -2939,6 +4238,8 @@ paths:
       operationId: v1ConversationsReadConversation
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2964,6 +4265,8 @@ paths:
       operationId: v1ConversationsListConversation
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -2995,6 +4298,8 @@ paths:
       operationId: v1ConversationsDeleteConversation
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3020,6 +4325,8 @@ paths:
       operationId: v1CustomemojisListCustomEmoji
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3044,6 +4351,8 @@ paths:
       operationId: v1DirectoriesShowDirectory
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3058,17 +4367,17 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109342921363755787'
-                    username: ashlea_pfannerstill86
-                    acct: ashlea_pfannerstill86
+                  - id: '109344988681312871'
+                    username: sydney_mraz121
+                    acct: sydney_mraz121
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-14T00:00:00.000Z'
+                    created_at: '2022-11-15T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@ashlea_pfannerstill86
+                    url: https://cb6e6126.ngrok.io/@sydney_mraz121
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -3090,6 +4399,8 @@ paths:
       operationId: v1DomainblocksShowDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3113,6 +4424,8 @@ paths:
       operationId: v1DomainblocksDeleteDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3136,6 +4449,8 @@ paths:
       operationId: v1DomainblocksCreateDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3162,6 +4477,8 @@ paths:
       operationId: v1EmailsConfirmationsCreateConfirmation
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3188,6 +4505,8 @@ paths:
       operationId: v1EndorsementsListEndorsement
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3212,6 +4531,8 @@ paths:
       operationId: v1FavouritesListFavourite
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3237,6 +4558,8 @@ paths:
       operationId: v1FeaturedtagsSuggestionsListSuggestion
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3261,6 +4584,8 @@ paths:
       operationId: v1FeaturedtagsListFeaturedTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3284,6 +4609,8 @@ paths:
       operationId: v1FeaturedtagsCreateFeaturedTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3310,288 +4637,8 @@ paths:
       operationId: v1FeaturedtagsDeleteFeaturedTag
       security:
       - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-  "/api/v1/filters/{filter_id}/keywords":
-    parameters:
-    - name: filter_id
-      in: path
-      description: filter_id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: list keywords
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Keywords
-      operationId: v1FiltersKeywordsListKeyword
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-    post:
-      summary: create keyword
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Keywords
-      operationId: v1FiltersKeywordsCreateKeyword
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-  "/api/v1/filters/keywords/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: show keyword
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Keywords
-      operationId: v1FiltersKeywordsShowKeyword
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-    patch:
-      summary: update keyword
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Keywords
-      operationId: v1FiltersKeywordsUpdateKeyword
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-    put:
-      summary: update keyword
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Keywords
-      operationId: v1FiltersKeywordsUpdateKeyword
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-    delete:
-      summary: delete keyword
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Keywords
-      operationId: v1FiltersKeywordsDeleteKeyword
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-  "/api/v1/filters/{filter_id}/statuses":
-    parameters:
-    - name: filter_id
-      in: path
-      description: filter_id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: list statuses
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Statuses
-      operationId: v1FiltersStatusesListStatus
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-    post:
-      summary: create status
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Statuses
-      operationId: v1FiltersStatusesCreateStatus
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-  "/api/v1/filters/statuses/{id}":
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
-    get:
-      summary: show status
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Statuses
-      operationId: v1FiltersStatusesShowStatus
-      security:
-      - bearerAuth: []
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value:
-                    error: Record not found
-    delete:
-      summary: delete status
-      tags:
-      - Api
-      - V1
-      - Filters
-      - Statuses
-      operationId: v1FiltersStatusesDeleteStatus
-      security:
-      - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3617,6 +4664,8 @@ paths:
       operationId: v1FiltersListFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3640,6 +4689,8 @@ paths:
       operationId: v1FiltersCreateFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3673,6 +4724,8 @@ paths:
       operationId: v1FiltersShowFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3697,6 +4750,8 @@ paths:
       operationId: v1FiltersUpdateFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3721,6 +4776,8 @@ paths:
       operationId: v1FiltersUpdateFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3745,6 +4802,8 @@ paths:
       operationId: v1FiltersDeleteFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3777,6 +4836,8 @@ paths:
       operationId: v1FollowrequestsAuthorizeFollowRequest
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3809,6 +4870,8 @@ paths:
       operationId: v1FollowrequestsRejectFollowRequest
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3834,6 +4897,8 @@ paths:
       operationId: v1FollowrequestsListFollowRequest
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3858,6 +4923,8 @@ paths:
       operationId: v1FollowedtagsListFollowedTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3883,6 +4950,8 @@ paths:
       operationId: v1InstancesActivityShowActivity
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3897,51 +4966,51 @@ paths:
               examples:
                 successful:
                   value:
-                  - week: '1668440574'
+                  - week: '1668472118'
                     statuses: '0'
                     logins: '1'
                     registrations: '0'
-                  - week: '1667835774'
+                  - week: '1667867318'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1667230974'
+                  - week: '1667262518'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1666626174'
+                  - week: '1666657718'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1666021374'
+                  - week: '1666052918'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1665416574'
+                  - week: '1665448118'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1664811774'
+                  - week: '1664843318'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1664206974'
+                  - week: '1664238518'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1663602174'
+                  - week: '1663633718'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1662997374'
+                  - week: '1663028918'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1662392574'
+                  - week: '1662424118'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1661787774'
+                  - week: '1661819318'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
@@ -3956,6 +5025,8 @@ paths:
       operationId: v1InstancesDomainblocksListDomainBlock
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -3976,6 +5047,8 @@ paths:
       operationId: v1InstancesExtendeddescriptionsShowExtendedDescription
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4003,6 +5076,8 @@ paths:
       operationId: v1InstancesPeersListPeer
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4028,6 +5103,8 @@ paths:
       operationId: v1InstancesPrivacypoliciesShowPrivacyPolicy
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4118,6 +5195,8 @@ paths:
       operationId: v1InstancesRulesListRule
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4142,6 +5221,8 @@ paths:
       operationId: v1InstancesShowInstance
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4161,7 +5242,7 @@ paths:
                     short_description: ''
                     description: ''
                     email: ''
-                    version: 4.0.0rc3
+                    version: 4.0.1
                     urls:
                       streaming_api: ws://localhost:4000
                     stats:
@@ -4241,6 +5322,8 @@ paths:
       operationId: v1ListsAccountsShowAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4266,6 +5349,8 @@ paths:
       operationId: v1ListsAccountsDeleteAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4291,6 +5376,8 @@ paths:
       operationId: v1ListsAccountsCreateAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4316,6 +5403,8 @@ paths:
       operationId: v1ListsListList
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4339,6 +5428,8 @@ paths:
       operationId: v1ListsCreateList
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4371,6 +5462,8 @@ paths:
       operationId: v1ListsShowList
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4395,6 +5488,8 @@ paths:
       operationId: v1ListsUpdateList
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4419,6 +5514,8 @@ paths:
       operationId: v1ListsUpdateList
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4443,6 +5540,8 @@ paths:
       operationId: v1ListsDeleteList
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4468,6 +5567,8 @@ paths:
       operationId: v1MarkersListMarker
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4491,6 +5592,8 @@ paths:
       operationId: v1MarkersCreateMarker
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4515,6 +5618,8 @@ paths:
       operationId: v1MediaCreateMedium
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4547,6 +5652,8 @@ paths:
       operationId: v1MediaShowMedium
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4571,6 +5678,8 @@ paths:
       operationId: v1MediaUpdateMedium
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4595,6 +5704,8 @@ paths:
       operationId: v1MediaUpdateMedium
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4620,6 +5731,8 @@ paths:
       operationId: v1MutesListMute
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4644,6 +5757,8 @@ paths:
       operationId: v1NotificationsClearNotification
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4675,6 +5790,8 @@ paths:
       operationId: v1NotificationsDismissNotification
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4700,6 +5817,8 @@ paths:
       operationId: v1NotificationsListNotification
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4731,6 +5850,8 @@ paths:
       operationId: v1NotificationsShowNotification
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4764,6 +5885,8 @@ paths:
       operationId: v1PollsVotesCreateVote
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4789,6 +5912,8 @@ paths:
       operationId: v1PollsCreatePoll
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4815,6 +5940,8 @@ paths:
       operationId: v1PollsShowPoll
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4840,6 +5967,8 @@ paths:
       operationId: v1PreferencesListPreference
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4870,6 +5999,8 @@ paths:
       operationId: v1PushSubscriptionsShowSubscription
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4884,7 +6015,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Not Found
     patch:
       summary: update subscription
       tags:
@@ -4895,6 +6026,8 @@ paths:
       operationId: v1PushSubscriptionsUpdateSubscription
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4909,7 +6042,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Not Found
     put:
       summary: update subscription
       tags:
@@ -4920,6 +6053,8 @@ paths:
       operationId: v1PushSubscriptionsUpdateSubscription
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4934,7 +6069,7 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: Not Found
     delete:
       summary: delete subscription
       tags:
@@ -4945,6 +6080,8 @@ paths:
       operationId: v1PushSubscriptionsDeleteSubscription
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4958,8 +6095,7 @@ paths:
             application/json:
               examples:
                 successful:
-                  value:
-                    error: This action is outside the authorized scopes
+                  value: {}
     post:
       summary: create subscription
       tags:
@@ -4970,6 +6106,8 @@ paths:
       operationId: v1PushSubscriptionsCreateSubscription
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -4984,7 +6122,11 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: |-
+                      param is missing or the value is empty: subscription
+                      Did you mean?  subscription
+                                     action
+                                     controller
   "/api/v1/reports":
     post:
       summary: create report
@@ -4995,6 +6137,8 @@ paths:
       operationId: v1ReportsCreateReport
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5009,28 +6153,28 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '18'
+                    id: '31'
                     action_taken: false
                     action_taken_at:
                     category: other
                     comment: reasons
                     forwarded: false
-                    created_at: '2022-11-14T15:50:34.414Z'
+                    created_at: '2022-11-15T00:28:40.922Z'
                     status_ids:
-                    - '109342951623893446'
+                    - '109344988912307390'
                     rule_ids:
                     target_account:
-                      id: '109342951623926694'
-                      username: arnold153
-                      acct: arnold153
+                      id: '109344988912331554'
+                      username: len_wyman178
+                      acct: len_wyman178
                       display_name: ''
                       locked: false
                       bot: false
                       discoverable: true
                       group: false
-                      created_at: '2022-11-14T00:00:00.000Z'
+                      created_at: '2022-11-15T00:00:00.000Z'
                       note: ''
-                      url: https://cb6e6126.ngrok.io/@arnold153
+                      url: https://cb6e6126.ngrok.io/@len_wyman178
                       avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -5038,7 +6182,7 @@ paths:
                       followers_count: 0
                       following_count: 0
                       statuses_count: 1
-                      last_status_at: '2022-11-14'
+                      last_status_at: '2022-11-15'
                       noindex: false
                       emojis: []
                       fields: []
@@ -5083,6 +6227,8 @@ paths:
       operationId: v1ScheduledstatusesListScheduledStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5114,6 +6260,8 @@ paths:
       operationId: v1ScheduledstatusesShowScheduledStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5138,6 +6286,8 @@ paths:
       operationId: v1ScheduledstatusesUpdateScheduledStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5162,6 +6312,8 @@ paths:
       operationId: v1ScheduledstatusesUpdateScheduledStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5186,6 +6338,8 @@ paths:
       operationId: v1ScheduledstatusesDeleteScheduledStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5219,6 +6373,8 @@ paths:
       operationId: v1StatusesBookmarksCreateBookmark
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5252,6 +6408,8 @@ paths:
       operationId: v1StatusesBookmarksDeleteBookmark
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5285,6 +6443,8 @@ paths:
       operationId: v1StatusesFavouritedbyaccountsListFavouritedByAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5318,6 +6478,8 @@ paths:
       operationId: v1StatusesFavouritesCreateFavourite
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5351,6 +6513,8 @@ paths:
       operationId: v1StatusesFavouritesDeleteFavourite
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5384,6 +6548,8 @@ paths:
       operationId: v1StatusesHistoriesShowHistory
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5417,6 +6583,8 @@ paths:
       operationId: v1StatusesMutesCreateMute
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5450,6 +6618,8 @@ paths:
       operationId: v1StatusesMutesDeleteMute
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5483,6 +6653,8 @@ paths:
       operationId: v1StatusesPinsCreatePin
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5516,6 +6688,8 @@ paths:
       operationId: v1StatusesPinsDeletePin
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5549,6 +6723,8 @@ paths:
       operationId: v1StatusesRebloggedbyaccountsListRebloggedByAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5582,6 +6758,8 @@ paths:
       operationId: v1StatusesReblogsCreateReblog
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5615,6 +6793,8 @@ paths:
       operationId: v1StatusesReblogsDeleteReblog
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5648,6 +6828,8 @@ paths:
       operationId: v1StatusesSourcesShowSource
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5681,6 +6863,8 @@ paths:
       operationId: v1StatusesTranslationsCreateTranslation
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5713,6 +6897,8 @@ paths:
       operationId: v1StatusesContextStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5738,6 +6924,8 @@ paths:
       operationId: v1StatusesCreateStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5770,6 +6958,8 @@ paths:
       operationId: v1StatusesShowStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5794,6 +6984,8 @@ paths:
       operationId: v1StatusesUpdateStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5818,6 +7010,8 @@ paths:
       operationId: v1StatusesUpdateStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5842,6 +7036,8 @@ paths:
       operationId: v1StatusesDeleteStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5867,6 +7063,8 @@ paths:
       operationId: v1StreamingListStreaming
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5886,6 +7084,8 @@ paths:
       operationId: v1SuggestionsListSuggestion
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5917,6 +7117,8 @@ paths:
       operationId: v1SuggestionsDeleteSuggestion
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5948,6 +7150,8 @@ paths:
       operationId: v1TagsFollowTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -5980,6 +7184,8 @@ paths:
       operationId: v1TagsUnfollowTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6012,6 +7218,8 @@ paths:
       operationId: v1TagsShowTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6038,6 +7246,8 @@ paths:
       operationId: v1TimelinesHomeShowHome
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6070,6 +7280,8 @@ paths:
       operationId: v1TimelinesListShowList
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6096,6 +7308,8 @@ paths:
       operationId: v1TimelinesPublicShowPublic
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6128,6 +7342,8 @@ paths:
       operationId: v1TimelinesTagShowTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6153,6 +7369,8 @@ paths:
       operationId: v1TrendsLinksListLink
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6178,6 +7396,8 @@ paths:
       operationId: v1TrendsStatusesListStatus
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6203,6 +7423,8 @@ paths:
       operationId: v1TrendsTagsListTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6228,6 +7450,8 @@ paths:
       operationId: v1TrendsTagsListTag
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6253,6 +7477,8 @@ paths:
       operationId: v2AdminAccountsListAccount
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6267,7 +7493,309 @@ paths:
               examples:
                 successful:
                   value:
-                    error: This action is outside the authorized scopes
+                    error: This action is not allowed
+  "/api/v2/filters/{filter_id}/keywords":
+    parameters:
+    - name: filter_id
+      in: path
+      description: filter_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list keywords
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Keywords
+      operationId: v2FiltersKeywordsListKeyword
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    post:
+      summary: create keyword
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Keywords
+      operationId: v2FiltersKeywordsCreateKeyword
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v2/filters/keywords/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show keyword
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Keywords
+      operationId: v2FiltersKeywordsShowKeyword
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    patch:
+      summary: update keyword
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Keywords
+      operationId: v2FiltersKeywordsUpdateKeyword
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    put:
+      summary: update keyword
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Keywords
+      operationId: v2FiltersKeywordsUpdateKeyword
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete keyword
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Keywords
+      operationId: v2FiltersKeywordsDeleteKeyword
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v2/filters/{filter_id}/statuses":
+    parameters:
+    - name: filter_id
+      in: path
+      description: filter_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list statuses
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Statuses
+      operationId: v2FiltersStatusesListStatus
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    post:
+      summary: create status
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Statuses
+      operationId: v2FiltersStatusesCreateStatus
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+  "/api/v2/filters/statuses/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: show status
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Statuses
+      operationId: v2FiltersStatusesShowStatus
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
+    delete:
+      summary: delete status
+      tags:
+      - Api
+      - V2
+      - Filters
+      - Statuses
+      operationId: v2FiltersStatusesDeleteStatus
+      security:
+      - bearerAuth: []
+      - oauth:
+        - read
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    error: Record not found
   "/api/v2/filters":
     get:
       summary: list filters
@@ -6278,6 +7806,8 @@ paths:
       operationId: v2FiltersListFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6301,6 +7831,8 @@ paths:
       operationId: v2FiltersCreateFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6334,6 +7866,8 @@ paths:
       operationId: v2FiltersShowFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6358,6 +7892,8 @@ paths:
       operationId: v2FiltersUpdateFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6382,6 +7918,8 @@ paths:
       operationId: v2FiltersUpdateFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6406,6 +7944,8 @@ paths:
       operationId: v2FiltersDeleteFilter
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6431,6 +7971,8 @@ paths:
       operationId: v2InstancesShowInstance
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6447,7 +7989,7 @@ paths:
                   value:
                     domain: cb6e6126.ngrok.io
                     title: Mastodon
-                    version: 4.0.0rc3
+                    version: 4.0.1
                     source_url: https://github.com/mastodon/mastodon
                     description: ''
                     usage:
@@ -6526,6 +8068,8 @@ paths:
       operationId: v2MediaCreateMedium
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6551,6 +8095,8 @@ paths:
       operationId: v2SearchListSearch
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6580,6 +8126,8 @@ paths:
       operationId: v2SuggestionsListSuggestion
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6604,6 +8152,8 @@ paths:
       operationId: webEmbedsCreateEmbed
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6636,6 +8186,8 @@ paths:
       operationId: webPushsubscriptionsUpdatePushSubscription
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6661,6 +8213,8 @@ paths:
       operationId: webPushsubscriptionsCreatePushSubscription
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6680,6 +8234,8 @@ paths:
       operationId: webSettingsUpdateSetting
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header
@@ -6703,6 +8259,8 @@ paths:
       operationId: webSettingsUpdateSetting
       security:
       - bearerAuth: []
+      - oauth:
+        - read
       parameters:
       - name: authorization
         in: header

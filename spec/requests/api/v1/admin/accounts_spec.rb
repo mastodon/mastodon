@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     post('enable account') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsEnableAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     post('unsensitive account') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsUnsensitiveAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     post('unsilence account') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsUnsilenceAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -69,7 +69,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     post('unsuspend account') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsUnsuspendAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -89,7 +89,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     post('approve account') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsApproveAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -109,7 +109,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     post('reject account') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsRejectAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -126,7 +126,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     get('list accounts') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsListAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -144,7 +144,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     get('show account') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsShowAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -159,7 +159,7 @@ RSpec.describe Api::V1::Admin::AccountsController, type: :request do
     delete('delete account') do
       tags 'Api', 'V1', 'Admin', 'Accounts'
       operationId 'v1AdminAccountsDeleteAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

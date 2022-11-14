@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Timelines::PublicController, type: :request do
     get('show public') do
       tags 'Api', 'V1', 'Timelines', 'Public'
       operationId 'v1TimelinesPublicShowPublic'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

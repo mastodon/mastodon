@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Instances::ExtendedDescriptionsController, type: :reques
     get('show extended_description') do
       tags 'Api', 'V1', 'Instances', 'ExtendedDescriptions'
       operationId 'v1InstancesExtendeddescriptionsShowExtendedDescription'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

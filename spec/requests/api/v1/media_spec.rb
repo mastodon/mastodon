@@ -6,7 +6,7 @@ RSpec.describe Api::V1::MediaController, type: :request do
     post('create medium') do
       tags 'Api', 'V1', 'Media'
       operationId 'v1MediaCreateMedium'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -24,7 +24,7 @@ RSpec.describe Api::V1::MediaController, type: :request do
     get('show medium') do
       tags 'Api', 'V1', 'Media'
       operationId 'v1MediaShowMedium'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -39,7 +39,7 @@ RSpec.describe Api::V1::MediaController, type: :request do
     patch('update medium') do
       tags 'Api', 'V1', 'Media'
       operationId 'v1MediaUpdateMedium'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -54,7 +54,7 @@ RSpec.describe Api::V1::MediaController, type: :request do
     put('update medium') do
       tags 'Api', 'V1', 'Media'
       operationId 'v1MediaUpdateMedium'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

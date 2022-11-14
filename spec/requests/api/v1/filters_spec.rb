@@ -6,7 +6,7 @@ RSpec.describe Api::V1::FiltersController, type: :request do
     get('list filters') do
       tags 'Api', 'V1', 'Filters'
       operationId 'v1FiltersListFilter'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::FiltersController, type: :request do
     post('create filter') do
       tags 'Api', 'V1', 'Filters'
       operationId 'v1FiltersCreateFilter'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,7 +37,7 @@ RSpec.describe Api::V1::FiltersController, type: :request do
     get('show filter') do
       tags 'Api', 'V1', 'Filters'
       operationId 'v1FiltersShowFilter'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::FiltersController, type: :request do
     patch('update filter') do
       tags 'Api', 'V1', 'Filters'
       operationId 'v1FiltersUpdateFilter'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -67,7 +67,7 @@ RSpec.describe Api::V1::FiltersController, type: :request do
     put('update filter') do
       tags 'Api', 'V1', 'Filters'
       operationId 'v1FiltersUpdateFilter'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::FiltersController, type: :request do
     delete('delete filter') do
       tags 'Api', 'V1', 'Filters'
       operationId 'v1FiltersDeleteFilter'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

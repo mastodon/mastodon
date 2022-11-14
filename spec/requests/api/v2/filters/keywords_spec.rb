@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Filters::KeywordsController, type: :request do
-  path '/api/v1/filters/{filter_id}/keywords' do
+RSpec.describe Api::V2::Filters::KeywordsController, type: :request do
+  path '/api/v2/filters/{filter_id}/keywords' do
     # You'll want to customize the parameter types...
     parameter name: 'filter_id', in: :path, type: :string, description: 'filter_id'
 
     get('list keywords') do
-      tags 'Api', 'V1', 'Filters', 'Keywords'
-      operationId 'v1FiltersKeywordsListKeyword'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Keywords'
+      operationId 'v2FiltersKeywordsListKeyword'
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -22,9 +22,9 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :request do
     end
 
     post('create keyword') do
-      tags 'Api', 'V1', 'Filters', 'Keywords'
-      operationId 'v1FiltersKeywordsCreateKeyword'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Keywords'
+      operationId 'v2FiltersKeywordsCreateKeyword'
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -37,14 +37,14 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :request do
     end
   end
 
-  path '/api/v1/filters/keywords/{id}' do
+  path '/api/v2/filters/keywords/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'
 
     get('show keyword') do
-      tags 'Api', 'V1', 'Filters', 'Keywords'
-      operationId 'v1FiltersKeywordsShowKeyword'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Keywords'
+      operationId 'v2FiltersKeywordsShowKeyword'
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -57,9 +57,9 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :request do
     end
 
     patch('update keyword') do
-      tags 'Api', 'V1', 'Filters', 'Keywords'
-      operationId 'v1FiltersKeywordsUpdateKeyword'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Keywords'
+      operationId 'v2FiltersKeywordsUpdateKeyword'
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -72,9 +72,9 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :request do
     end
 
     put('update keyword') do
-      tags 'Api', 'V1', 'Filters', 'Keywords'
-      operationId 'v1FiltersKeywordsUpdateKeyword'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Keywords'
+      operationId 'v2FiltersKeywordsUpdateKeyword'
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -87,9 +87,9 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :request do
     end
 
     delete('delete keyword') do
-      tags 'Api', 'V1', 'Filters', 'Keywords'
-      operationId 'v1FiltersKeywordsDeleteKeyword'
-      rswag_bearer_auth
+      tags 'Api', 'V2', 'Filters', 'Keywords'
+      operationId 'v2FiltersKeywordsDeleteKeyword'
+      rswag_auth_scope
 
       include_context 'user token auth'
 

@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Timelines::HomeController, type: :request do
     get('show home') do
       tags 'Api', 'V1', 'Timelines', 'Home'
       operationId 'v1TimelinesHomeShowHome'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

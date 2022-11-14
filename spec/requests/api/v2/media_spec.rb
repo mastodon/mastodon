@@ -6,7 +6,7 @@ RSpec.describe Api::V2::MediaController, type: :request do
     post('create medium') do
       tags 'Api', 'V2', 'Media'
       operationId 'v2MediaCreateMedium'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

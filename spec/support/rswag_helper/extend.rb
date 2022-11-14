@@ -5,8 +5,11 @@ module RswagHelper
       produces('application/json')
     end
 
-    def rswag_bearer_auth
-      security [bearerAuth: []]
+    def rswag_auth_scope(scopes = ['read'])
+      security [
+        { bearerAuth: [] },
+        { oauth: scopes }
+      ]
       parameter name: :authorization, in: :header, type: :string, required: true
       rswag_json_endpoint
     end
@@ -15,7 +18,7 @@ module RswagHelper
     def analyse_body_run_test!
       run_test! do |response|
         body_symbolized = rswag_parse_body_sym(response)
-        body = rswag_parse_body(response, symbolize: false)
+        body = rswag_parse_body(response)
         body_yaml = body.to_yaml
         # rubocop:disable Lint/Debugger
         binding.pry

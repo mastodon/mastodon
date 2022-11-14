@@ -9,7 +9,7 @@ RSpec.describe Api::V1::Admin::AccountActionsController, type: :request do
     post('create account_action') do
       tags 'Api', 'V1', 'Admin', 'AccountActions'
       operationId 'v1AdminAccountactionsCreateAccountAction'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

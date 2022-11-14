@@ -6,7 +6,7 @@ RSpec.describe Api::V1::Admin::MeasuresController, type: :request do
     post('create measure') do
       tags 'Api', 'V1', 'Admin', 'Measures'
       operationId 'v1AdminMeasuresCreateMeasure'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

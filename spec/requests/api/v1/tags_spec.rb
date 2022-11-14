@@ -9,7 +9,7 @@ RSpec.describe Api::V1::TagsController, type: :request do
     post('follow tag') do
       tags 'Api', 'V1', 'Tags'
       operationId 'v1TagsFollowTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -29,7 +29,7 @@ RSpec.describe Api::V1::TagsController, type: :request do
     post('unfollow tag') do
       tags 'Api', 'V1', 'Tags'
       operationId 'v1TagsUnfollowTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 
@@ -49,7 +49,7 @@ RSpec.describe Api::V1::TagsController, type: :request do
     get('show tag') do
       tags 'Api', 'V1', 'Tags'
       operationId 'v1TagsShowTag'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

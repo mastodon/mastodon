@@ -6,7 +6,7 @@ RSpec.describe Api::V2::Admin::AccountsController, type: :request do
     get('list accounts') do
       tags 'Api', 'V2', 'Admin', 'Accounts'
       operationId 'v2AdminAccountsListAccount'
-      rswag_bearer_auth
+      rswag_auth_scope
 
       include_context 'user token auth'
 

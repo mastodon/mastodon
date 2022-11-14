@@ -12,7 +12,7 @@ RSpec.describe Api::V1::ReportsController, type: :request do
     post('create report') do
       tags 'Api', 'V1', 'Reports'
       operationId 'v1ReportsCreateReport'
-      rswag_bearer_auth
+      rswag_auth_scope
       parameter name: :payload, in: :body, type: :object, schema: {
         type: :object,
         properties: {
