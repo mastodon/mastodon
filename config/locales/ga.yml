@@ -62,6 +62,19 @@ ga:
       statuses: Postálacha
       title: Cuntais
       web: Gréasán
+    action_logs:
+      action_types:
+        assigned_to_self_report: Sann tuairisc
+        create_account_warning: Cruthaigh rabhadh
+        destroy_announcement: Scrios Fógra
+        destroy_ip_block: Scrios riail IP
+        destroy_status: Scrios postáil
+        reopen_report: Athoscail tuairisc
+        resolve_report: Réitigh tuairisc
+        unassigned_report: Cealaigh tuairisc a shann
+      actions:
+        create_account_warning_html: Sheol %{name} rabhadh do %{target}
+      deleted_account: cuntas scriosta
     announcements:
       live: Beo
       publish: Foilsigh
@@ -87,6 +100,7 @@ ga:
       status: Stádas
     instances:
       back_to_all: Uile
+      back_to_warning: Rabhadh
       content_policies:
         policy: Polasaí
       delivery:
@@ -116,6 +130,7 @@ ga:
       status: Stádas
     reports:
       category: Catagóir
+      delete_and_resolve: Scrios postála
       no_one_assigned: Duine ar bith
       notes:
         delete: Scrios
@@ -124,6 +139,12 @@ ga:
       title: Tuairiscí
     roles:
       delete: Scrios
+      privileges:
+        delete_user_data: Scrios sonraí úsáideora
+    rules:
+      delete: Scrios
+    site_uploads:
+      delete: Scrios comhad uaslódáilte
     statuses:
       account: Údar
       deleted: Scriosta
@@ -131,6 +152,9 @@ ga:
       open: Oscail postáil
       original_status: Bunphostáil
       with_media: Le meáin
+    strikes:
+      actions:
+        delete_statuses: Scrios %{name} postála %{target}
     tags:
       review: Stádas athbhreithnithe
     trends:
@@ -139,6 +163,29 @@ ga:
       statuses:
         allow: Ceadaigh postáil
         allow_account: Ceadaigh údar
+    warning_presets:
+      delete: Scrios
+    webhooks:
+      delete: Scrios
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: chun postála acu a scrios
+        none: rabhadh
+  auth:
+    delete_account: Scrios cuntas
+    too_fast: Chuireadh foirm róthapa, bain triail arís.
+  deletes:
+    proceed: Scrios cuntas
+  disputes:
+    strikes:
+      appeal_submitted_at: Achomharc curtha isteach
+      appealed_msg: Bhí d'achomharc curtha isteach. Má ceadaítear é, cuirfidh ar an eolas tú.
+      appeals:
+        submit: Cuir achomharc isteach
+      title_actions:
+        none: Rabhadh
+      your_appeal_pending: Chuir tú achomharc isteach
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -149,3 +196,33 @@ ga:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    contexts:
+      thread: Comhráite
+    index:
+      delete: Scrios
+  generic:
+    delete: Scrios
+  notification_mailer:
+    admin:
+      report:
+        subject: Chuir %{name} tuairisc isteach
+  rss:
+    content_warning: 'Rabhadh ábhair:'
+  statuses:
+    content_warning: 'Rabhadh ábhair: %{warning}'
+    show_more: Taispeáin níos mó
+    show_newer: Taispeáin níos déanaí
+    show_thread: Taispeáin snáithe
+  user_mailer:
+    warning:
+      appeal: Cuir achomharc isteach
+      categories:
+        spam: Turscar
+      reason: 'Fáth:'
+      subject:
+        none: Rabhadh do %{acct}
+      title:
+        none: Rabhadh
+  webauthn_credentials:
+    delete: Scrios

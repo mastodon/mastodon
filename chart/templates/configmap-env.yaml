@@ -58,6 +58,9 @@ data:
   {{- if .Values.mastodon.smtp.domain }}
   SMTP_DOMAIN: {{ .Values.mastodon.smtp.domain }}
   {{- end }}
+  {{- if .Values.mastodon.smtp.enable_starttls }}
+  SMTP_ENABLE_STARTTLS: {{ .Values.mastodon.smtp.enable_starttls | quote }}
+  {{- end }}
   {{- if .Values.mastodon.smtp.enable_starttls_auto }}
   SMTP_ENABLE_STARTTLS_AUTO: {{ .Values.mastodon.smtp.enable_starttls_auto | quote }}
   {{- end }}

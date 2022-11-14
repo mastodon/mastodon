@@ -3,23 +3,23 @@ nn:
   simple_form:
     hints:
       account_alias:
-        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja frå
+        acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta frå
       account_migration:
-        acct: Spesifiser brukarnamn@domenet til brukaren du vil flytja til
+        acct: Angi brukarnamn@domene til brukaren du ynskjer å flytta til
       account_warning_preset:
         text: Du kan bruka tut-syntaks, som t. d. URL-ar, emneknaggar og nemningar
         title: Valfritt. Ikkje synleg for mottakar
       admin_account_action:
-        include_statuses: Brukaren får sjå kva tut som gjorde moderatorhandllinga eller -åtvaringa
+        include_statuses: Brukaren får sjå kva tut som førte til moderatorhandlinga eller -åtvaringa
         send_email_notification: Brukaren får ei forklåring av kva som har hendt med kontoen sin
         text_html: Valfritt. Du kan bruka tut-syntaks. Du kan <a href="%{path}">leggja til åtvaringsførehandsinnstillingar</a> for å spara tid
         type_html: Vel det du vil gjera med <strong>%{acct}</strong>
         types:
-          disable: Forhindre brukeren å bruke kontoen sin, men ikke slett eller skjule innholdet deres.
-          none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
-          sensitive: Tving alle denne brukerens medievedlegg til å bli markert som følsom.
-          silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
-          suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet der. Reversibel innen 30 dager.
+          disable: Hindre eigaren frå å bruke kontoen, men fjern eller skjul ikkje innhaldet deira.
+          none: Bruk dette for å senda ei åtvaring til brukaren utan å utløyse andre handlingar.
+          sensitive: Tving markering for sensitivt innhald på alle mediavedlegga til denne brukaren.
+          silence: Hindre brukaren frå å publisere offentlege innlegg og i å skjule eigne innlegg og varsel frå folk som ikkje fylgjer dei.
+          suspend: Hindre samhandling med– og slett innhaldet til denne kontoen. Kan omgjerast innan 30 dagar.
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       announcement:
         all_day: Når merka, vil berre datoane til tidsramma synast
@@ -27,6 +27,8 @@ nn:
         scheduled_at: Lat stå blankt for å gjeva ut lysinga med ein gong
         starts_at: Valfritt. Om lysinga di er bunden til eit tidspunkt
         text: Du kan bruka tut-syntaks. Ver merksam på plassen lysinga tek på brukaren sin skjerm
+      appeal:
+        text: Ei åtvaring kan kun ankast ein gong
       defaults:
         autofollow: Folk som lagar ein konto gjennom innbydinga fylgjer deg automatisk
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
@@ -35,6 +37,7 @@ nn:
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: Skriv inn brukarnamnet til den noverande kontoen for å stadfesta
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        discoverable: La kontoen din bli oppdaga av ukjende gjennom anbefalingar, trendar og andre funksjonar
         email: Du får snart ein stadfestings-e-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Minkast til %{dimensions}px
@@ -46,23 +49,51 @@ nn:
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
         scopes: API-ane som programmet vil få tilgjenge til. Ettersom du vel eit toppnivåomfang tarv du ikkje velja einskilde API-ar.
         setting_aggregate_reblogs: Ikkje vis nye framhevingar for tut som nyleg har vorte heva fram (Påverkar berre nylege framhevingar)
+        setting_always_send_emails: Vanlegvis vil ikkje e-postvarsel bli sendt når du brukar Mastodon aktivt
         setting_default_sensitive: Nærtakande media vert gøymd som standard og kan synast med eit klikk
         setting_display_media_default: Gøym media som er merka som nærtakande
         setting_display_media_hide_all: Alltid skjul alt media
         setting_display_media_show_all: Vis alltid media
         setting_hide_network: Kven du fylgjer og kven som fylgjer deg vert ikkje vist på profilen din
         setting_noindex: Påverkar den offentlege profilen og statussidene dine
-        setting_show_application: Programmet du brukar for å tuta synast i den detaljerte visninga av tuta dine
-        setting_use_blurhash: Overgangar er bygt på dei løynde sine leter, men gjer detaljar utydelege
-        setting_use_pending_items: Gøym tidslineoppdateringar ved eit klikk, i staden for å bla ned hendestraumen automatisk
+        setting_show_application: Programmet du brukar for å tuta blir vist i den detaljerte visninga av tuta dine
+        setting_use_blurhash: Overgangar er basert på fargane til skjulte grafikkelement, men gjer detaljar utydelege
+        setting_use_pending_items: Gøym tidslineoppdateringar bak eit klikk, i staden for å rulla ned automatisk
         username: Brukarnamnet ditt vert unikt på %{domain}
         whole_word: Når søkjeordet eller setninga berre er alfanumerisk, nyttast det berre om det samsvarar med heile ordet
       domain_allow:
         domain: Dette domenet er i stand til å henta data frå denne tenaren og innkomande data vert handsama og lagra
       email_domain_block:
-        with_dns_records: Eit forsøk på å løysa gjeve domene som DNS-data vil vera gjord og resultata vert svartelista
+        domain: Dette kan vera domenenamnet som blir vist i e-postadressa eller den MX-oppføringa den brukar. Dei vil bli kontrollert ved registrering.
+        with_dns_records: Det vil bli gjort eit forsøk på å avgjera DNS-oppføringa til domenet og resultata vil bli tilsvarande blokkert
       featured_tag:
-        name: 'Her er nokre av dei mest brukte hashtaggane dine i det siste:'
+        name: 'Her er nokre av emneknaggane du har brukt i det siste:'
+      filters:
+        action: Velg kva som skal gjerast når eit innlegg samsvarar med filteret
+        actions:
+          hide: Skjul filtrert innhald fullstendig og lat som om det ikkje finst
+          warn: Skjul det filtrerte innhaldet bak ei åtvaring som nemner tittelen på filteret
+      form_admin_settings:
+        backups_retention_period: Ta vare på genererte brukararkiv i angitt antal dagar.
+        bootstrap_timeline_accounts: Desse kontoane vil bli festa øverst på fylgjaranbefalingane til nye brukarar.
+        closed_registrations_message: Vist når det er stengt for registrering
+        content_cache_retention_period: Innlegg frå andre tenarar vil bli sletta etter det angitte talet på dagar når det er sett til ein positiv verdi. Dette kan vera irreversibelt.
+        custom_css: Du kan bruka eigendefinerte stilar på nettversjonen av Mastodon.
+        mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
+        media_cache_retention_period: Mediafiler som har blitt lasta ned vil bli sletta etter det angitte talet på dagar når det er sett til ein positiv verdi, og lasta ned på nytt ved etterspørsel.
+        profile_directory: Profilkatalogen viser alle brukarar som har valt å kunne bli oppdaga.
+        require_invite_text: Når registrering krev manuell godkjenning, lyt du gjera tekstfeltet "Kvifor vil du bli med?" obligatorisk i staden for valfritt
+        site_contact_email: Korleis kan ein få tak i deg når det gjeld juridiske spørsmål eller spørsmål om støtte.
+        site_contact_username: Korleis folk kan koma i kontakt med deg på Mastodon.
+        site_extended_description: Tilleggsinformasjon som kan vera nyttig for besøkjande og brukarar. Kan strukturerast med Markdown-syntaks.
+        site_short_description: Ein kort omtale for lettare å finne tenaren blant alle andre. Kven driftar han, kven er i målgruppa?
+        site_terms: Bruk eigen personvernpolicy eller la stå tom for å bruka standard. Kan strukturerast med Markdown-syntaks.
+        site_title: Kva ein kan kalla tenaren, utanom domenenamnet.
+        theme: Tema som er synleg for nye brukarar og besøkjande som ikkje er logga inn.
+        thumbnail: Eit omlag 2:1 bilete vist saman med informasjon om tenaren.
+        timeline_preview: Besøkjande som ikkje er logga inn vil kunne bla gjennom dei siste offentlege innlegga på tenaren.
+        trendable_by_default: Hopp over manuell gjennomgang av populært innhald. Enkeltståande innlegg kan fjernast frå trendar i etterkant.
+        trends: Trendar viser kva for nokre innlegg, emneknaggar og nyheiter som er i støytet på tenaren.
       form_challenge:
         current_password: Du går inn i eit trygt område
       imports:
@@ -70,25 +101,33 @@ nn:
       invite_request:
         text: Dette kjem til å hjelpa oss med å gå gjennom søknaden din
       ip_block:
-        comment: Valgfritt. Husk hvorfor du la til denne regelen.
-        expires_in: IP-adressene er en helt begrenset ressurs, de deles og endres ofte hender. Ubestemte IP-blokker anbefales ikke.
-        ip: Skriv inn en IPv4 eller IPv6-adresse. Du kan blokkere alle områder ved å bruke CIDR-syntaksen. Pass på å ikke låse deg selv!
+        comment: Valfritt. Hugs kvifor du la til denne regelen.
+        expires_in: IP-adresser er ein avgrensa ressurs, er av og til delte og byter ofte eigar. På grunn av dette er det ikkje tilrådd med uavgrensa IP-blokkeringar.
+        ip: Skriv inn ei IPv4 eller IPv6 adresse. Du kan blokkere heile IP-områder ved bruk av CIDR-syntaks. Pass på å ikkje blokkera deg sjølv!
         severities:
           no_access: Blokker tilgang til alle ressurser
-          sign_up_requires_approval: Nye registreringer vil kreve din godkjenning
-        severity: Velg hva som vil skje med forespørsler fra denne IP
+          sign_up_block: Nye registreringar vil ikkje vera mogleg
+          sign_up_requires_approval: Du må godkjenna nye registreringar
+        severity: Vel kva som skal skje ved førespurnader frå denne IP
       rule:
-        text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
+        text: Forklar ein regel eller eit krav for brukarar på denne tenaren. Prøv å skriva kort og lettfattleg
       sessions:
         otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        webauthn: Om det er ein USB-nøkkel må du setja han inn og om nødvendig trykkja på han.
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
       user:
         chosen_languages: Når merka vil berre tuta på dei valde språka synast på offentlege tidsliner
         role: Rolla kontrollerer kva tilgangar brukaren har
       user_role:
+        color: Fargen som skal nyttast for denne rolla i heile brukargrensesnittet, som RGB i hex-format
         highlighted: Dette gjer rolla synleg offentleg
+        name: Offentleg namn på rolla, dersom rolla skal visast som eit emblem
         permissions_as_keys: Brukarar med denne rolla vil ha tilgang til...
+        position: Høgare rolle avgjer konfliktløysing i visse situasjonar. Visse handlingar kan kun utførast på rollar med lågare prioritet
+      webhook:
+        events: Vel hendingar å senda
+        url: Kvar hendingar skal sendast
     labels:
       account:
         fields:
@@ -109,7 +148,7 @@ nn:
         types:
           disable: Slå av innlogging
           none: Gjer inkje
-          sensitive: Sensitiv
+          sensitive: Ømtolig
           silence: Togn
           suspend: Utvis og slett kontodata for godt
         warning_preset_id: Bruk åtvaringsoppsett
@@ -119,6 +158,8 @@ nn:
         scheduled_at: Planlegg publisering
         starts_at: Byrjing av hendinga
         text: Lysing
+      appeal:
+        text: Forklar kvifor denne avgjerda bør gjerast om
       defaults:
         autofollow: Bed om å fylgja kontoen din
         avatar: Bilete
@@ -187,6 +228,30 @@ nn:
         actions:
           hide: Gøym totalt
           warn: Gøym med ei advarsel
+      form_admin_settings:
+        backups_retention_period: Arkiveringsperiode for brukararkiv
+        bootstrap_timeline_accounts: Tilrå alltid desse kontoane for nye brukarar
+        closed_registrations_message: Eigendefinert melding når registrering ikkje er mogleg
+        content_cache_retention_period: Oppbevaringsperiode for innhaldsbuffer
+        custom_css: Egendefinert CSS
+        mascot: Eigendefinert maskot (eldre funksjon)
+        media_cache_retention_period: Oppbevaringsperiode for mediebuffer
+        profile_directory: Aktiver profilkatalog
+        registrations_mode: Kven kan registrera seg
+        require_invite_text: Krev ei grunngjeving for å få bli med
+        show_domain_blocks: Vis domeneblokkeringar
+        show_domain_blocks_rationale: Vis grunngjeving for domeneblokkeringar
+        site_contact_email: E-postadresse for kontakt
+        site_contact_username: Brukarnamn for kontakt
+        site_extended_description: Utvida omtale av tenaren
+        site_short_description: Stutt om tenaren
+        site_terms: Personvernsreglar
+        site_title: Tenarnamn
+        theme: Standardtema
+        thumbnail: Miniatyrbilete for tenaren
+        timeline_preview: Tillat uautentisert tilgang til offentleg tidsline
+        trendable_by_default: Tillat trendar utan gjennomgang på førehand
+        trends: Aktiver trendar
       interactions:
         must_be_follower: Gøym varslingar frå folk som ikkje fylgjer deg
         must_be_following: Gøym varslingar frå folk du ikkje fylgjer
@@ -200,9 +265,11 @@ nn:
         ip: IP
         severities:
           no_access: Blokker tilgang
+          sign_up_block: Blokker registrering
           sign_up_requires_approval: Begrens påmeldinger
         severity: Oppføring
       notification_emails:
+        appeal: Nokon klagar på ei moderatoravgjerd
         digest: Send samandrag på e-post
         favourite: Send e-post når nokon merkjer statusen din som favoritt
         follow: Send e-post når nokon fylgjer deg
@@ -211,6 +278,7 @@ nn:
         pending_account: Send e-post når ein ny konto treng gjennomgang
         reblog: Send e-post når nokon framhevar statusen din
         report: Ny rapport er sendt
+        trending_tag: Ny trend krev gjennomgang
       rule:
         text: Regler
       tag:
@@ -221,11 +289,16 @@ nn:
       user:
         role: Rolle
       user_role:
+        color: Emblemfarge
+        highlighted: Vis rolle som emblem på brukarprofil
         name: Namn
+        permissions_as_keys: Løyve
         position: Prioritet
       webhook:
+        events: Aktiverte hendingar
         url: Endepunkts-URL
     'no': Nei
+    not_recommended: Ikkje anbefalt
     recommended: Tilrådt
     required:
       mark: "*"

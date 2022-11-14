@@ -40,6 +40,7 @@ oc:
         phrase: Serà pres en compte que siá en majuscula o minuscula o dins un avertiment de contengut sensible
         scopes: A quinas APIs poiràn accedir las aplicacions. Se seleccionatz un encastre de naut nivèl, fa pas mestièr de seleccionar los nivèls mai basses.
         setting_aggregate_reblogs: Mostrar pas los nòus partatges que son estats partejats recentament (afecta pas que los nòus partatges recebuts)
+        setting_always_send_emails: Normalament enviam pas los corrièls de notificacion se sètz a utilizar Mastodon activament
         setting_default_sensitive: Los mèdias sensibles son resconduts per defaut e se revelhan amb un clic
         setting_display_media_default: Rescondre los mèdias marcats coma sensibles
         setting_display_media_hide_all: Totjorn rescondre los mèdias
@@ -135,6 +136,7 @@ oc:
         phrase: Senhal o frasa
         setting_advanced_layout: Activar l’interfàcia web avançada
         setting_aggregate_reblogs: Agropar los partatges dins lo flux d’actualitat
+        setting_always_send_emails: Totjorn enviar los corrièls de notificacion
         setting_auto_play_gif: Lectura automatica dels GIFS animats
         setting_boost_modal: Mostrar una fenèstra de confirmacion abans de partejar un estatut
         setting_crop_images: Retalhar los imatges dins los tuts pas desplegats a 16x9
@@ -160,6 +162,7 @@ oc:
         setting_use_pending_items: Mòde lent
         severity: Severitat
         sign_in_token_attempt: Còdi de seguretat
+        title: Títol
         type: Tipe d’impòrt
         username: Nom d’utilizaire
         username_or_email: Nom d’utilizaire o corrièl
@@ -168,6 +171,18 @@ oc:
         with_dns_records: Inclure los enregistraments MX e las IP del domeni
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Rescondre complètament
+          warn: Rescondre amb avertiment
+      form_admin_settings:
+        site_contact_email: Adreça de contacte
+        site_contact_username: Nom d’utilizaire de contacte
+        site_extended_description: Descripcion espandida
+        site_short_description: Descripcion del servidor
+        site_terms: Politica de confidencialitat
+        site_title: Nom del servidor
+        theme: Tèma per defaut
       interactions:
         must_be_follower: Blocar las notificacions del mond que vos sègon pas
         must_be_following: Blocar las notificacions del mond que seguètz pas
@@ -198,6 +213,13 @@ oc:
         name: Etiqueta
         trendable: Permetre a aquesta etiqueta d’aparéisser a las tendéncias
         usable: Permetre als tuts d’utilizar aquesta etiqueta
+      user:
+        role: Ròtle
+      user_role:
+        color: Color del badge
+        name: Nom
+        permissions_as_keys: Autorizacions
+        position: Prioritat
     'no': Non
     recommended: Recomandat
     required:

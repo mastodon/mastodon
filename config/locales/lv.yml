@@ -286,6 +286,7 @@ lv:
         update_ip_block_html: "%{name} mainīja nosacījumu priekš IP %{target}"
         update_status_html: "%{name} atjaunināja ziņu %{target}"
         update_user_role_html: "%{name} nomainīja %{target} lomu"
+      deleted_account: dzēsts konts
       empty: Žurnāli nav atrasti.
       filter_by_action: Filtrēt pēc darbības
       filter_by_user: Filtrēt pēc lietotāja
@@ -905,7 +906,7 @@ lv:
     hint_html: Ja vēlies pāriet no cita konta uz šo, šeit vari izveidot aizstājvārdu, kas ir nepieciešams, lai varētu turpināt sekotāju pārvietošanu no vecā konta uz šo. Šī darbība pati par sevi ir <strong>nekaitīga un atgriezeniska</strong>. <strong>Konta migrācija tiek sākta no vecā konta</strong>.
     remove: Atsaistīt aizstājvārdu
   appearance:
-    advanced_web_interface: Paplašinātais web interfeiss
+    advanced_web_interface: Paplašinātā tīmekļa saskarne
     advanced_web_interface_hint: 'Ja vēlies izmantot visu ekrāna platumu, uzlabotā tīmekļa saskarne ļauj konfigurēt daudzas dažādas kolonnas, lai vienlaikus redzētu tik daudz informācijas, cik vēlies: Sākums, paziņojumi, federētā ziņu lenta, neierobežots skaits sarakstu un tēmturu.'
     animations_and_accessibility: Animācijas un pieejamība
     confirmation_dialogs: Apstiprināšanas dialogi
@@ -1094,12 +1095,12 @@ lv:
       in_progress: Notiek tava arhīva apkopošana...
       request: Pieprasi savu arhīvu
       size: Izmērs
-    blocks: Tu bloķē
+    blocks: Bloķētie konti
     bookmarks: Grāmatzīmes
     csv: CSV
     domain_blocks: Bloķētie domēni
     lists: Saraksti
-    mutes: Tu apklusini
+    mutes: Apklusinātie konti
     storage: Mediju krātuve
   featured_tags:
     add_new: Pievienot jaunu
@@ -1185,7 +1186,7 @@ lv:
     errors:
       over_rows_processing_limit: satur vairāk, nekā %{count} rindas
     modes:
-      merge: Savienot
+      merge: Apvienot
       merge_long: Saglabāt esošos ierakstus un pievienot jaunus
       overwrite: Pārrakstīt
       overwrite_long: Nomainīt pašreizējos ierakstus ar jauniem
@@ -1194,9 +1195,9 @@ lv:
     types:
       blocking: Bloķēšanas saraksts
       bookmarks: Grāmatzīmes
-      domain_blocking: Domēnu bloķēšanas saraksts
-      following: Šāds saraksts
-      muting: Izslēgšanas saraksts
+      domain_blocking: Bloķēto domēnu saraksts
+      following: Sekojamo lietotāju saraksts
+      muting: Apklusināto lietotāju saraksts
     upload: Augšupielādēt
   invites:
     delete: Deaktivizēt
@@ -1453,7 +1454,7 @@ lv:
     notifications: Paziņojumi
     preferences: Iestatījumi
     profile: Profils
-    relationships: Man seko un sekotāji
+    relationships: Sekojamie un sekotāji
     statuses_cleanup: Automātiska ziņu dzēšana
     strikes: Moderācijas aizrādījumi
     two_factor_authentication: Divfaktoru Aut
@@ -1475,7 +1476,7 @@ lv:
         zero: "%{count} video"
     boosted_from_html: Paaugstināja %{acct_link}
     content_warning: 'Satura brīdinājums: %{warning}'
-    default_language: Tāda, kā interfeisa valoda
+    default_language: Tāda, kā saskarnes valoda
     disallowed_hashtags:
       one: 'saturēja neatļautu tēmturi: %{tags}'
       other: 'saturēja neatļautus tēmturus: %{tags}'
@@ -1640,7 +1641,7 @@ lv:
       explanation: Šeit ir daži padomi, kā sākt darbu
       final_action: Sāc publicēt
       final_step: 'Sāc publicēt! Pat bez sekotājiem tavas publiskās ziņas var redzēt citi, piemēram, vietējā ziņu lentā vai atsaucēs. Iespējams, tu vēlēsies iepazīstināt ar sevi, izmantojot tēmturi #introductions.'
-      full_handle: Tavs pilnais rokturis
+      full_handle: Tavs pilnais lietotājvārds
       full_handle_hint: Šis ir tas, ko tu pasaki saviem draugiem, lai viņi varētu tev ziņot vai sekot tev no cita servera.
       subject: Laipni lūgts Mastodon
       title: Laipni lūgts uz borta, %{name}!

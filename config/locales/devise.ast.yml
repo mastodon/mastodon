@@ -6,7 +6,7 @@ ast:
       send_instructions: Nunos minutos, vas recibir un corréu coles instrucciones pa cómo confirmar la direición de corréu. Comprueba la carpeta Puxarra si nun lu recibiesti.
       send_paranoid_instructions: Si la direición de corréu esiste na nuesa base de datos, nunos minutos vas recibir un corréu coles instrucciones pa cómo confirmala. Comprueba la carpeta Puxarra si nun lu recibiesti.
     failure:
-      already_authenticated: Yá aniciesti sesión.
+      already_authenticated: Xá aniciesti la sesión.
       inactive: Entá nun s'activó la cuenta.
       last_attempt: Tienes un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
@@ -17,6 +17,7 @@ ast:
     mailer:
       confirmation_instructions:
         explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un calcu d'activala. Si nun fuisti tu, inora esti corréu.
+        extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> y <a href="%{policy_path}">los nuesos términos del serviciu</a>.
       email_changed:
         explanation: 'La direición de corréu de la cuenta camudó a:'
         subject: 'Mastodón: Camudó la direición de corréu'
@@ -49,7 +50,7 @@ ast:
       updated: La cuenta anovóse correutamente.
     sessions:
       already_signed_out: Zarresti la sesión correutamente.
-      signed_in: Aniciesti sesión correutamente.
+      signed_in: Aniciesti la sesión correutamente.
       signed_out: Zarresti la sesión correutamente.
     unlocks:
       send_instructions: Nunos minutos vas recibir un corréu coles instrucciones pa cómo desbloquiar la cuenta. Comprueba la carpeta Puxarra si nun lu recibiesti.

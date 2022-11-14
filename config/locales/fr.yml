@@ -283,6 +283,7 @@ fr:
         update_ip_block_html: "%{name} a modifié la règle pour l'IP %{target}"
         update_status_html: "%{name} a mis à jour le message de %{target}"
         update_user_role_html: "%{name} a changé le rôle %{target}"
+      deleted_account: compte supprimé
       empty: Aucun journal trouvé.
       filter_by_action: Filtrer par action
       filter_by_user: Filtrer par utilisateur·ice
@@ -685,6 +686,7 @@ fr:
         title: Rétention du contenu
       discovery:
         follow_recommendations: Suivre les recommandations
+        preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
         title: Découverte
@@ -1098,6 +1100,7 @@ fr:
       add_keyword: Ajouter un mot-clé
       keywords: Mots-clés
       statuses: Publications individuelles
+      statuses_hint_html: Ce filtre s'applique à la sélection de messages individuels, qu'ils correspondent ou non aux mots-clés ci-dessous. <a href="%{path}">Revoir ou supprimer des messages du filtre</a>.
       title: Éditer le filtre
     errors:
       deprecated_api_multiple_keywords: Ces paramètres ne peuvent pas être modifiés depuis cette application, car ils s'appliquent à plus d'un filtre de mot-clé. Utilisez une application plus récente ou l'interface web.
@@ -1114,6 +1117,9 @@ fr:
       statuses:
         one: "%{count} message"
         other: "%{count} messages"
+      statuses_long:
+        one: "%{count} publication individuelle cachée"
+        other: "%{count} publications individuelles cachées"
       title: Filtres
     new:
       save: Enregistrer le nouveau filtre
@@ -1123,6 +1129,7 @@ fr:
       batch:
         remove: Retirer du filtre
       index:
+        hint: Ce filtre s'applique à la sélection de messages individuels, indépendamment d'autres critères. Vous pouvez ajouter plus de messages à ce filtre à partir de l'interface Web.
         title: Messages filtrés
   footer:
     trending_now: Tendance en ce moment

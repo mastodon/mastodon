@@ -163,6 +163,7 @@ module Mastodon
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.deliver_later_queue_name = 'mailers'
 
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware

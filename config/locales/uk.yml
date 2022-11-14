@@ -9,10 +9,10 @@ uk:
   accounts:
     follow: Підписатися
     followers:
-      few: Підписника
+      few: Підписники
       many: Підписників
       one: Підписник
-      other: Підписників
+      other: Підписники
     following: Підписані
     instance_actor_flash: Цей обліковий запис є віртуальним персонажем, який використовується для показу самого сервера, а не будь-якого окремого користувача. Він використовується з метою федералізації і не повинен бути зупинений.
     last_active: остання активність
@@ -69,7 +69,7 @@ uk:
       domain: Домен
       edit: Змінити
       email: Електронна пошта
-      email_status: Статус електронної пошти
+      email_status: Стан електронної пошти
       enable: Увімкнути
       enable_sign_in_token_auth: Увімкнути автентифікацію за допомогою е-пошти
       enabled: Увімкнено
@@ -81,13 +81,13 @@ uk:
       invite_request_text: Причини приєднатися
       invited_by: Запросив
       ip: IP
-      joined: Приєднався
+      joined: Дата приєднання
       location:
         all: Усі
         local: Локальні
         remote: Віддалені
         title: Розміщення
-      login_status: Статус авторизації
+      login_status: Стан входу
       media_attachments: Мультимедійні вкладення
       memorialize: Зробити пам'ятником
       memorialized: Перетворено на пам'ятник
@@ -148,7 +148,7 @@ uk:
         targeted_reports: Скарги на цей обліковий запис
       silence: Глушення
       silenced: Заглушені
-      statuses: Статуси
+      statuses: Дописи
       strikes: Попередні попередження
       subscribe: Підписатися
       suspend: Призупинити
@@ -228,7 +228,7 @@ uk:
         update_custom_emoji: Оновити користувацькі емодзі
         update_domain_block: Оновити блокування домену
         update_ip_block: Оновити правило IP
-        update_status: Оновити статус
+        update_status: Оновити допис
         update_user_role: Оновити роль
       actions:
         approve_appeal_html: "%{name} затвердили звернення на оскарження рішення від %{target}"
@@ -256,7 +256,7 @@ uk:
         destroy_email_domain_block_html: "%{name} розблоковує домен електронної пошти %{target}"
         destroy_instance_html: "%{name} очищує домен %{target}"
         destroy_ip_block_html: "%{name} видаляє правило для IP %{target}"
-        destroy_status_html: "%{name} видаляє статус %{target}"
+        destroy_status_html: "%{name} вилучає допис %{target}"
         destroy_unavailable_domain_html: "%{name} відновлює доставляння на домен %{target}"
         destroy_user_role_html: "%{name} видаляє роль %{target}"
         disable_2fa_user_html: "%{name} вимикає двоетапну перевірку для користувача %{target}"
@@ -287,8 +287,9 @@ uk:
         update_custom_emoji_html: "%{name} оновлює емодзі %{target}"
         update_domain_block_html: "%{name} оновлює блокування домену для %{target}"
         update_ip_block_html: "%{name} змінює правило для IP %{target}"
-        update_status_html: "%{name} змінює статус користувача %{target}"
+        update_status_html: "%{name} оновлює допис %{target}"
         update_user_role_html: "%{name} змінює роль %{target}"
+      deleted_account: видалений обліковий запис
       empty: Не знайдено жодного журналу.
       filter_by_action: Фільтрувати за дією
       filter_by_user: Фільтрувати за користувачем
@@ -557,7 +558,7 @@ uk:
       save_and_enable: Зберегти та увімкнути
       setup: Налаштування з'єднання з ретранслятором
       signatures_not_enabled: Ретранслятори не будуть добре працювати поки ввімкнений безопасний режим або режим білого списка
-      status: Статус
+      status: Стан
       title: Ретранслятори
     report_notes:
       created_msg: Скарга успішно створена!
@@ -615,7 +616,7 @@ uk:
       resolved: Вирішено
       resolved_msg: Скаргу успішно вирішено!
       skip_to_actions: Перейти до дій
-      status: Статус
+      status: Стан
       statuses: Вміст, на який поскаржилися
       statuses_description_html: Замінений вміст буде цитований у спілкуванні з обліковим записом, на який поскаржилися
       target_origin: Походження облікового запису, на який скаржаться
@@ -750,12 +751,12 @@ uk:
       media:
         title: Медіа
       metadata: Метадані
-      no_status_selected: Жодного статуса не було змінено, оскільки жодного не було вибрано
+      no_status_selected: Жодного допису не було змінено, оскільки жодного з них не було вибрано
       open: Відкрити допис
       original_status: Оригінальний допис
       reblogs: Поширення
       status_changed: Допис змінено
-      title: Статуси облікових записів
+      title: Дописи облікових записів
       trending: Популярне
       visibility: Видимість
       with_media: З медіа
@@ -784,7 +785,7 @@ uk:
       sidekiq_process_check:
         message_html: Не працює процес Sidekiq для %{value} черги. Перегляньте конфігурації вашого Sidekiq
     tags:
-      review: Переглянути статус
+      review: Переглянути допис
       updated_msg: Параметри хештеґів успішно оновлені
     title: Адміністрування
     trends:
@@ -940,7 +941,7 @@ uk:
     settings: 'Змінити налаштування e-mail: %{link}'
     view: 'Перегляд:'
     view_profile: Показати профіль
-    view_status: Показати статус
+    view_status: Показати допис
   applications:
     created: Застосунок успішно створений
     destroyed: Застосунок успішно видалений
@@ -957,7 +958,7 @@ uk:
       prefix_invited_by_user: "@%{name} запрошує вас приєднатися до цього сервера Mastodon!"
       prefix_sign_up: Зареєструйтеся на Mastodon сьогодні!
       suffix: Маючи обліковий запис, ви зможете підписуватися на людей, публікувати дописи та листуватися з користувачами будь-якого сервера Mastodon!
-    didnt_get_confirmation: Ви не отримали інструкції з підтвердження?
+    didnt_get_confirmation: Не отримали інструкції з підтвердження?
     dont_have_your_security_key: Не маєте ключа безпеки?
     forgot_password: Забули пароль?
     invalid_reset_password_token: Токен скидання паролю неправильний або просрочений. Спробуйте попросити новий.
@@ -990,7 +991,7 @@ uk:
       preamble: За допомогою облікового запису на цьому сервері Mastodon, ви зможете слідкувати за будь-якою іншою людиною в мережі, не зважаючи на те, де розміщений обліковий запис.
       title: Налаштуймо вас на %{domain}.
     status:
-      account_status: Статус облікового запису
+      account_status: Стан облікового запису
       confirming: Очікуємо на завершення підтвердження за допомогою електронної пошти.
       functional: Ваш обліковий запис повністю робочий.
       pending: Ваша заява очікує на розгляд нашим персоналом. Це може зайняти деякий час. Ви отримаєте електронний лист, якщо ваша заява буде схвалена.
@@ -1263,7 +1264,7 @@ uk:
     title: Історія входів
   media_attachments:
     validations:
-      images_and_video: Не можна додати відео до статусу з зображеннями
+      images_and_video: Не можна додати відео до допису з зображеннями
       not_ready: Не можна прикріпити файли, оброблення яких ще не закінчилося. Спробуйте ще раз через хвилину!
       too_many: Не можна додати більше 4 файлів
   migrations:
@@ -1312,8 +1313,8 @@ uk:
       sign_up:
         subject: "%{name} приєднується"
     favourite:
-      body: 'Ваш статус подобається %{name}:'
-      subject: Ваш статус сподобався %{name}
+      body: 'Ваш допис подобається %{name}:'
+      subject: Ваш допис сподобався %{name}
       title: Нове вподобання
     follow:
       body: "%{name} тепер підписаний на вас!"
@@ -1332,7 +1333,7 @@ uk:
     poll:
       subject: Опитування від %{name} завершено
     reblog:
-      body: 'Ваш статус було передмухнуто %{name}:'
+      body: "%{name} поширює ваш допис:"
       subject: "%{name} поширив ваш статус"
       title: Нове передмухування
     status:
@@ -1404,7 +1405,7 @@ uk:
     remove_selected_domains: Видалити усіх підписників з обраних доменів
     remove_selected_followers: Видалити обраних підписників
     remove_selected_follows: Не стежити за обраними користувачами
-    status: Статус облікового запису
+    status: Стан облікового запису
   remote_follow:
     missing_resource: Не вдалося знайти необхідний URL переадресації для вашого облікового запису
   reports:
@@ -1512,7 +1513,7 @@ uk:
       other: 'заборонених хештеґів: %{tags}'
     edited_at_html: Відредаговано %{date}
     errors:
-      in_reply_not_found: Статуса, на який ви намагаєтеся відповісти, не існує.
+      in_reply_not_found: Допису, на який ви намагаєтеся відповісти, не існує.
     open_in_web: Відкрити у вебі
     over_character_limit: перевищено ліміт символів %{max}
     pin_errors:

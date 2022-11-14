@@ -280,6 +280,7 @@ ja:
         update_ip_block_html: "%{name} さんがIP %{target} のルールを更新しました"
         update_status_html: "%{name}さんが%{target}さんの投稿を更新しました"
         update_user_role_html: "%{name}さんがロール『%{target}』を変更しました"
+      deleted_account: 削除されたアカウント
       empty: ログが見つかりませんでした
       filter_by_action: アクションでフィルター
       filter_by_user: ユーザーでフィルター
@@ -659,7 +660,7 @@ ja:
         manage_rules: サーバーのルールを管理
         preamble: サーバーの運営、管理、資金調達の方法について、詳細な情報を提供します。
         rules_hint: ユーザーが守るべきルールのための専用エリアがあります。
-        title: About
+        title: このサーバーについて
       appearance:
         preamble: ウェブインターフェースをカスタマイズします。
         title: 外観
@@ -682,7 +683,7 @@ ja:
         users: ログイン済みローカルユーザーのみ許可
       registrations:
         preamble: あなたのサーバー上でアカウントを作成できるユーザーを制御します。
-        title: 登録
+        title: アカウント作成
       registrations_mode:
         modes:
           approved: 登録には承認が必要
@@ -827,7 +828,7 @@ ja:
       new: 新しいwebhook
       rotate_secret: シークレットをローテートする
       secret: シークレットに署名
-      status: ステータス
+      status: 投稿
       title: Webhooks
       webhook: Webhook
   admin_mailer:
@@ -1533,7 +1534,7 @@ ja:
       subject: アーカイブの準備ができました
       title: アーカイブの取り出し
     suspicious_sign_in:
-      change_password: パスワードを変更する
+      change_password: パスワードを変更
       details: 'ログインの詳細は以下のとおりです:'
       explanation: 新しいIPアドレスからあなたのアカウントへのサインインが検出されました。
       further_actions_html: あなたがログインしていない場合は、すぐに%{action}し、アカウントを安全に保つために二要素認証を有効にすることをお勧めします。

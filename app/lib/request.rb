@@ -62,8 +62,6 @@ class Request
     end
 
     begin
-      response = response.extend(ClientLimit)
-
       # If we are using a persistent connection, we have to
       # read every response to be able to move forward at all.
       # However, simply calling #to_s or #flush may not be safe,
@@ -181,6 +179,14 @@ class Request
     end
   end
 
+  if ::HTTP::Response.methods.include?(:body_with_limit) && !Rails.env.production?
+    abort 'HTTP::Response#body_with_limit is already defined, the monkey patch will not be applied'
+  else
+    class ::HTTP::Response
+      include Request::ClientLimit
+    end
+  end
+
   class Socket < TCPSocket
     class << self
       def open(host, *args)
@@ -193,7 +199,8 @@ class Request
         rescue IPAddr::InvalidAddressError
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
-            addresses = dns.getaddresses(host).take(2)
+            addresses = dns.getaddresses(host)
+            addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
           end
         end
 

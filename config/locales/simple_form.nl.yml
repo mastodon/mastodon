@@ -10,16 +10,16 @@ nl:
         text: Je kunt specifieke tekst voor berichten gebruiken, zoals URL's, hashtags en vermeldingen
         title: Optioneel. Niet zichtbaar voor de ontvanger
       admin_account_action:
-        include_statuses: De gebruiker ziet welke berichten verantwoordelijk zijn voor de moderatieactie of waarschuwing
+        include_statuses: De gebruiker ziet welke berichten verantwoordelijk zijn voor de moderatiemaatregel of waarschuwing
         send_email_notification: De gebruiker ontvangt een uitleg over wat er met diens account is gebeurd
         text_html: Optioneel. Je kunt specifieke tekst voor berichten gebruiken. Om tijd te besparen kun je <a href="%{path}">presets voor waarschuwingen toevoegen</a>
         type_html: Kies wat er met <strong>%{acct}</strong> moet gebeuren
         types:
           disable: Voorkom dat de gebruiker diens account gebruikt, maar verwijder of verberg de inhoud niet.
-          none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere actie wordt uitgevoerd.
+          none: Gebruik dit om een waarschuwing naar de gebruiker te sturen, zonder dat nog een andere maatregel wordt genomen.
           sensitive: Forceer dat alle mediabijlagen van deze gebruiker als gevoelig worden gemarkeerd.
           silence: Voorkom dat de gebruiker openbare berichten kan versturen, verberg diens berichten en meldingen voor mensen die diegene niet volgen.
-          suspend: Alle interacties van en met dit account blokkeren en de inhoud verwijderen. Dit kan binnen dertig dagen worden teruggedraaid.
+          suspend: Alle interacties van en met dit account voorkomen, en de accountgegevens verwijderen. Dit kan binnen 30 dagen worden teruggedraaid.
         warning_preset_id: Optioneel. Je kunt nog steeds handmatig tekst toevoegen aan het eind van de voorinstelling
       announcement:
         all_day: Wanneer dit is aangevinkt worden alleen de datums binnen het tijdvak getoond
@@ -64,6 +64,7 @@ nl:
       domain_allow:
         domain: Dit domein is in staat om gegevens van deze server op te halen, en binnenkomende gegevens worden verwerkt en opgeslagen
       email_domain_block:
+        domain: Dit kan de domeinnaam zijn die wordt weergegeven in het e-mailadres of in het MX-record dat het gebruikt. Ze worden gecontroleerd tijdens de registratie.
         with_dns_records: Er wordt een poging gewaagd om de desbetreffende DNS-records op te zoeken, waarna de resultaten ook worden geblokkeerd
       featured_tag:
         name: 'Hier zijn enkele van de hashtags die je onlangs hebt gebruikt:'
@@ -84,7 +85,9 @@ nl:
         require_invite_text: Maak het invullen van "Waarom wil je je hier registreren?" verplicht in plaats van optioneel, wanneer registraties handmatig moeten worden goedgekeurd
         site_contact_email: Hoe mensen je kunnen bereiken voor juridische vragen of support.
         site_contact_username: Hoe mensen je op Mastodon kunnen bereiken.
-        site_terms: Gebruik uw eigen privacybeleid of laat leeg om de standaardwaarde te gebruiken. Kan worden gestructureerd met Markdown syntax.
+        site_extended_description: Alle aanvullende informatie die nuttig kan zijn voor bezoekers en jouw gebruikers. Kan worden opgemaakt met Markdown.
+        site_short_description: Een korte beschrijving om het unieke karakter van je server te tonen. Wie beheert de server, wat is de doelgroep?
+        site_terms: Gebruik je eigen privacybeleid of laat leeg om de standaardwaarde te gebruiken. Kan worden opgemaakt met Markdown.
         site_title: Hoe mensen buiten de domeinnaam naar je server kunnen verwijzen.
         theme: Thema die (niet ingelogde) bezoekers en nieuwe gebruikers zien.
         thumbnail: Een afbeelding van ongeveer een verhouding van 2:1 die naast jouw serverinformatie wordt getoond.
@@ -121,6 +124,7 @@ nl:
         highlighted: Dit maakt de rol openbaar zichtbaar
         name: Openbare naam van de rol, wanneer de rol als badge op profielpagina's wordt getoond
         permissions_as_keys: Gebruikers met deze rol hebben toegang tot...
+        position: Een hogere rol beslist in bepaalde situaties over het oplossen van conflicten. Bepaalde acties kunnen alleen worden uitgevoerd op rollen met een lagere prioriteit
       webhook:
         events: Selecteer de te verzenden gebeurtenissen
         url: Waar gebeurtenissen naartoe worden verzonden
@@ -158,7 +162,7 @@ nl:
         text: Leg uit waarom deze beslissing volgens jou teruggedraaid moet worden
       defaults:
         autofollow: Uitnodigen om jouw account te volgen
-        avatar: Avatar
+        avatar: Profielfoto
         bot: Dit is een bot-account
         chosen_languages: Talen filteren
         confirm_new_password: Nieuw wachtwoord bevestigen

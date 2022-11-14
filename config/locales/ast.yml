@@ -23,6 +23,7 @@ ast:
       email: Corréu
       followers: Siguidores
       ip: IP
+      joined: Data de xunión
       location:
         local: Llocal
         remote: Remotu
@@ -99,7 +100,16 @@ ast:
       permissions_count:
         one: "%{count} permisu"
         other: "%{count} permisos"
+    statuses:
+      metadata: Metadatos
+    strikes:
+      appeal_approved: Apellóse
+      appeal_pending: Apellación pendiente
     title: Alministración
+    trends:
+      tags:
+        dashboard:
+          tag_accounts_measure: usos únicos
     webhooks:
       events: Eventos
   admin_mailer:
@@ -126,7 +136,7 @@ ast:
   auth:
     change_password: Contraseña
     delete_account: Desaniciu de la cuenta
-    delete_account_html: Si deseyes desaniciar la to cuenta, pues <a href="%{path}">siguir equí</a>. Va pidísete la confirmación.
+    delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Va pidísete que confirmes l'aición.
     description:
       suffix: "¡Con una cuenta, vas ser a siguir a persones, espublizar anovamientos ya intercambiar mensaxes con usuarios de cualesquier sirvidor de Mastodon y más!"
     didnt_get_confirmation: "¿Nun recibiesti les instrucciones de confirmación?"
@@ -198,6 +208,7 @@ ast:
     storage: Almacenamientu multimedia
   featured_tags:
     add_new: Amestar
+    hint_html: "<strong>¿Qué son les etiquetes destacaes?</strong> Apaecen de forma bien visible nel perfil públicu y permite que les persones restolen los tos artículos públicos per duana d'eses etiquetes. Son una gran ferramienta pa tener un rexistru de trabayos creativos o de proyeutos a plazu llongu."
   filters:
     contexts:
       notifications: Avisos
@@ -278,9 +289,20 @@ ast:
       body: "%{name} compartió'l to estáu:"
       subject: "%{name} compartió'l to estáu"
       title: Compartición nueva de barritu
+    update:
+      subject: "%{name} editó un artículu"
   notifications:
     email_events_hint: 'Esbilla los eventos de los que quies recibir avisos:'
     other_settings: Otros axustes
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: MM
+          million: M
+          quadrillion: mil B
+          thousand: mil
+          trillion: B
   pagination:
     next: Siguiente
   polls:
@@ -427,4 +449,5 @@ ast:
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
     seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que los axustes de la contraseña y corréu nun tán disponibles.
   verification:
+    explanation_html: 'Pues <strong>verificate como la persona propietaria de los enllaces nos metadatos del to perfil</strong>. Pa ello, el sitiu web enllaciáu ha contener un enllaz al to perfil de Mastodon. Esti enllaz <strong>ha</strong> tener l''atributu <code>rel="me"</code>. El testu del enllaz nun importa. Equí tienes un exemplu:'
     verification: Verificación

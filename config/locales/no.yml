@@ -37,11 +37,17 @@
       avatar: Profilbilde
       by_domain: Domene
       change_email:
+        changed_msg: E-post ble endret!
         current_email: Nåværende E-post
         label: Endre e-post
         new_email: Ny E-post
         submit: Endre e-post
         title: Endre E-postadressen til %{username}
+      change_role:
+        changed_msg: Rollen ble endret!
+        label: Endre rolle
+        no_role: Ingen rolle
+        title: Endre rolle for %{username}
       confirm: Bekreft
       confirmed: Bekreftet
       confirming: Bekrefte
@@ -91,9 +97,14 @@
       most_recent_ip: Nyligste IP
       no_account_selected: Ingen brukere ble forandret da ingen var valgt
       no_limits_imposed: Ingen grenser er tatt i bruk
+      no_role_assigned: Ingen rolle tildelt
       not_subscribed: Ikke abonnért
       pending: Avventer gjennomgang
       perform_full_suspension: Utfør full utvisning
+      previous_strikes: Tidligere advarsler
+      previous_strikes_description_html:
+        one: Denne kontoen har <strong>en</strong> advarsel.
+        other: Denne kontoen har <strong>%{count}</strong> advarsler.
       promote: Oppgradere
       protocol: Protokoll
       public: Offentlig
@@ -113,12 +124,14 @@
       reset: Tilbakestill
       reset_password: Nullstill passord
       resubscribe: Abonner på nytt
+      role: Rolle
       search: Søk
       search_same_email_domain: Andre brukere med samme E-postdomene
       search_same_ip: Andre brukere med den samme IP-en
       security_measures:
         only_password: Bare passord
         password_and_2fa: Passord og 2FA
+      sensitive: Sensitiv
       sensitized: Merket som følsom
       shared_inbox_url: Delt Innboks URL
       show:
@@ -127,11 +140,14 @@
       silence: Målbind
       silenced: Stilnet
       statuses: Statuser
+      strikes: Tidligere advarsler
       subscribe: Abonnere
       suspended: Suspendert
       suspension_irreversible: Dataene fra denne kontoen har blitt ikke reverserbart slettet. Du kan oppheve suspenderingen av kontoen for å gjøre den brukbart, men den vil ikke gjenopprette alle data den tidligere har hatt.
       suspension_reversible_hint_html: Kontoen har blitt suspendert, og dataene vil bli fullstendig fjernet den %{date}. Frem til da kan kontoen gjenopprettes uten negative effekter. Hvis du ønsker å fjerne alle kontoens data umiddelbart, kan du gjøre det nedenfor.
       title: Kontoer
+      unblock_email: Avblokker e-postadresse
+      unblocked_email_msg: Fjernet blokkering av %{username} sin e-postadresse
       unconfirmed_email: Ubekreftet E-postadresse
       undo_silenced: Angre målbinding
       undo_suspension: Angre utvisning
@@ -148,6 +164,7 @@
         approve_user: Godkjenn bruker
         assigned_to_self_report: Tilordne rapport
         change_email_user: Endre brukerens E-postadresse
+        change_role_user: Endre rolle for brukeren
         confirm_user: Bekreft brukeren
         create_account_warning: Opprett en advarsel
         create_announcement: Opprett en kunngjøring
@@ -156,11 +173,17 @@
         create_domain_block: Opprett domene-blokk
         create_email_domain_block: Opprett e-post domeneblokk
         create_ip_block: Opprett IP-regel
+        create_user_role: Opprett rolle
         demote_user: Degrader bruker
         destroy_announcement: Slett kunngjøringen
+        destroy_canonical_email_block: Slett blokkering av e-post
         destroy_custom_emoji: Slett den tilpassede emojien
+        destroy_domain_block: Slett blokkering av domene
+        destroy_email_domain_block: Slett blokkering av e-postdomene
         destroy_ip_block: Slett IP-regel
         destroy_status: Slett statusen
+        destroy_unavailable_domain: Slett utilgjengelig domene
+        destroy_user_role: Slett rolle
         disable_2fa_user: Skru av 2-trinnsinnlogging
         disable_custom_emoji: Skru av tilpassede emojier
         disable_user: Deaktiver bruker
@@ -175,12 +198,22 @@
         resolve_report: Løs rapport
         silence_account: Demp konto
         suspend_account: Suspender kontoen
+        unblock_email_account: Fjern blokkering av e-postadresse
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
         update_custom_emoji: Oppdater tilpasset Emoji
+        update_domain_block: Oppdater blokkering av domene
+        update_ip_block: Oppdater IP-regel
         update_status: Oppdater statusen
+        update_user_role: Oppdater rolle
       actions:
         approve_user_html: "%{name} godkjente registrering fra %{target}"
+        change_email_user_html: "%{name} endret e-postadressen til brukeren %{target}"
+        change_role_user_html: "%{name} endret rolle for %{target}"
+        confirm_user_html: "%{name} bekreftet e-postadressen til brukeren %{target}"
+        create_account_warning_html: "%{name} sendte en advarsel til %{target}"
+        create_announcement_html: "%{name} opprettet ny kunngjøring %{target}"
+        create_canonical_email_block_html: "%{name} blokkerte e-post med hash %{target}"
         create_custom_emoji_html: "%{name} lastet opp ny emoji %{target}"
         create_domain_allow_html: "%{name} tillatt føderasjon med domenet %{target}"
         create_domain_block_html: "%{name} blokkert domene %{target}"
@@ -815,6 +848,10 @@
     status: Kontostatus
   remote_follow:
     missing_resource: Kunne ikke finne URLen for din konto
+  rss:
+    descriptions:
+      account: Offentlige innlegg fra @%{acct}
+      tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
@@ -880,6 +917,8 @@
     preferences: Innstillinger
     profile: Profil
     relationships: Følginger og følgere
+    statuses_cleanup: Automatisert sletting av innlegg
+    strikes: Modereringsadvarsler
     two_factor_authentication: Tofaktorautentisering
     webauthn_authentication: Sikkerhetsnøkler
   statuses:
@@ -896,6 +935,10 @@
         other: "%{count} videoer"
     boosted_from_html: Boostet fra %{acct_link}
     content_warning: 'Innholdsadvarsel: %{warning}'
+    disallowed_hashtags:
+      one: 'inneholdt en ikke tillatt hashtag: %{tags}'
+      other: 'inneholdt de ikke tillatte hashtaggene: %{tags}'
+    edited_at_html: Redigert %{date}
     errors:
       in_reply_not_found: Posten du prøver å svare ser ikke ut til eksisterer.
     open_in_web: Åpne i nettleser
@@ -927,6 +970,20 @@
       public_long: Synlig for alle
       unlisted: Uoppført
       unlisted_long: Synlig for alle, men ikke på offentlige tidslinjer
+  statuses_cleanup:
+    enabled: Slett gamle innlegg automatisk
+    enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
+    exceptions: Unntak
+    min_age:
+      '1209600': 2 uker
+      '15778476': 6 måneder
+      '2629746': 1 måned
+      '31556952': 1 år
+      '5259492': 2 måneder
+      '604800': 1 uke
+      '63113904': 2 år
+      '7889238': 3 måneder
+    min_age_label: Terskel for alder
   stream_entries:
     pinned: Festet tut
     reblogged: fremhevde
@@ -941,6 +998,7 @@
     formats:
       default: "%-d. %b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Legg til
     disable: Skru av
@@ -957,22 +1015,41 @@
     recovery_instructions_html: Hvis du skulle miste tilgang til telefonen din, kan du bruke en av gjenopprettingskodene nedenfor til å gjenopprette tilgang til din konto. <strong>Oppbevar gjenopprettingskodene sikkert</strong>, for eksempel ved å skrive dem ut og gjemme dem på et lurt sted bare du vet om.
     webauthn: Sikkerhetsnøkler
   user_mailer:
+    appeal_approved:
+      action: Gå til kontoen din
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
+    suspicious_sign_in:
+      change_password: endre passord
+      details: 'Her er detaljer om påloggingen:'
+      explanation: Vi har oppdaget en pålogging til din konto fra en ny IP-adresse.
+      further_actions_html: Hvis dette ikke var deg, anbefaler vi at du %{action} umiddelbart og aktiverer tofaktorautentisering for å holde kontoen din sikker.
+      title: En ny pålogging
     warning:
+      categories:
+        spam: Søppelpost
+      reason: 'Årsak:'
+      statuses: 'Innlegg angitt:'
       subject:
+        delete_statuses: Dine innlegg på %{acct} har blitt fjernet
         disable: Kontoen din, %{acct}, har blitt fryst
+        mark_statuses_as_sensitive: Dine innlegg på %{acct} har blitt merket som sensitivt innhold
         none: Advarsel for %{acct}
+        sensitive: Dine innlegg på %{acct} vil bli merket som sensitive fra nå
         silence: Kontoen din, %{acct}, har blitt begrenset
         suspend: Kontoen din, %{acct}, har blitt suspendert
       title:
+        delete_statuses: Innlegg fjernet
         disable: Kontoen er fryst
+        mark_statuses_as_sensitive: Innlegg markert som sensitive
         none: Advarsel
+        sensitive: Konto markert som sensitiv
         silence: Kontoen er begrenset
         suspend: Kontoen er suspendert
     welcome:
       edit_profile_action: Sett opp profil
+      edit_profile_step: Du kan tilpasse profilen din ved å laste opp et profilbilde, endre visningsnavnet ditt og mer. Du kan velge at nye følgere må godkjennes av deg før de får lov til å følge deg.
       explanation: Her er noen tips for å komme i gang
       final_action: Start postingen
       full_handle: Ditt fullstendige brukernavn
@@ -991,9 +1068,11 @@
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
     create:
+      error: Det oppstod et problem med å legge til sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket lagt til.
     delete: Slett
     delete_confirmation: Er du sikker på at du vil slette denne sikkerhetsnøkkelen?
+    description_html: Dersom du aktiverer <strong>sikkerhetsnøkkelautentisering</strong>, vil innlogging kreve at du bruker en av sikkerhetsnøklene dine.
     destroy:
       error: Det oppsto et problem med å slette sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket slettet.

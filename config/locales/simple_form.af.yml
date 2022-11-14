@@ -4,10 +4,16 @@ af:
     hints:
       announcement:
         scheduled_at: Los blanko om die aankondiging onmiddelik te publiseer
+      featured_tag:
+        name: 'Hier is van die hits-etikette wat jy onlangs gebruik het:'
       webhook:
         events: Kies gebeurtenisse om te stuur
         url: Waarheen gebeurtenisse gestuur sal word
     labels:
+      defaults:
+        locale: Koppelvlak taal
+      form_admin_settings:
+        site_terms: Privaatheidsbeleid
       webhook:
         events: Geaktiveerde gebeurtenisse
         url: End-punt URL

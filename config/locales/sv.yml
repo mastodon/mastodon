@@ -12,7 +12,7 @@ sv:
       one: Följare
       other: Följare
     following: Följer
-    instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern själv och inte någon enskild användare. Den används för federationsändamål och bör inte upphävas.
+    instance_actor_flash: Detta konto är en virtuell aktör som används för att representera servern i sig och inte någon enskild användare. Den används för federeringsändamål och bör inte stängas av.
     last_active: senast aktiv
     link_verified_on: Ägarskap för denna länk kontrollerades den %{date}
     nothing_here: Det finns inget här!
@@ -29,7 +29,7 @@ sv:
     account_moderation_notes:
       create: Lämna kommentar
       created_msg: Modereringsnotering skapad utan problem!
-      destroyed_msg: Modereringsnotering borttagen utan problem!
+      destroyed_msg: Modereringsanteckning borttagen!
     accounts:
       add_email_domain_block: Blockera e-postdomän
       approve: Godkänn
@@ -93,7 +93,7 @@ sv:
         all: Alla
         pending: Väntande
         silenced: Begränsad
-        suspended: Avstängd
+        suspended: Avstängda
         title: Moderering
       moderation_notes: Moderation anteckning
       most_recent_activity: Senaste aktivitet
@@ -103,7 +103,7 @@ sv:
       no_role_assigned: Ingen roll tilldelad
       not_subscribed: Inte prenumererat
       pending: Inväntar granskning
-      perform_full_suspension: Utför full avstängning
+      perform_full_suspension: Stäng av
       previous_strikes: Tidigare varningar
       previous_strikes_description_html:
         one: Detta konto har <strong>en</strong> varning.
@@ -146,9 +146,9 @@ sv:
       strikes: Föregående varningar
       subscribe: Prenumerera
       suspend: Stäng av
-      suspended: Avstängd / Avstängt
-      suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp och återanvända kontot, men ingen data kommer att finnas kvar.
-      suspension_reversible_hint_html: Kontot har låsts, och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
+      suspended: Avstängda
+      suspension_irreversible: All data som tillhör detta konto har permanent raderats. Du kan låsa upp kontot om du vill att det ska gå att använda, men ingen data kommer finnas kvar.
+      suspension_reversible_hint_html: Kontot har stängts av och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       title: Konton
       unblock_email: Avblockera e-postadress
       unblocked_email_msg: "%{username}s e-postadress avblockerad"
@@ -217,7 +217,7 @@ sv:
         unblock_email_account: Avblockera e-postadress
         unsensitive_account: Ångra tvinga känsligt konto
         unsilence_account: Ångra begränsa konto
-        unsuspend_account: Återaktivera konto
+        unsuspend_account: Ångra avstängning av konto
         update_announcement: Uppdatera kungörelse
         update_custom_emoji: Uppdatera egna emojis
         update_domain_block: Uppdatera blockerad domän
@@ -271,18 +271,19 @@ sv:
         resolve_report_html: "%{name} löste rapporten %{target}"
         sensitive_account_html: "%{name} markerade %{target}'s media som känsligt"
         silence_account_html: "%{name} begränsade %{target}'s konto"
-        suspend_account_html: "%{name} stängde av %{target}'s konto"
+        suspend_account_html: "%{name} stängde av %{target}s konto"
         unassigned_report_html: "%{name} tog bort tilldelning av rapporten %{target}"
         unblock_email_account_html: "%{name} avblockerade %{target}s e-postadress"
         unsensitive_account_html: "%{name} avmarkerade %{target}'s media som känsligt"
         unsilence_account_html: "%{name} tog bort begränsning av %{target}s konto"
-        unsuspend_account_html: "%{name} tog bort avstängningen av %{target}'s konto"
+        unsuspend_account_html: "%{name} ångrade avstängningen av %{target}s konto"
         update_announcement_html: "%{name} uppdaterade kungörelsen %{target}"
         update_custom_emoji_html: "%{name} uppdaterade emoji %{target}"
         update_domain_block_html: "%{name} uppdaterade domän-block för %{target}"
         update_ip_block_html: "%{name} ändrade regel för IP %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
         update_user_role_html: "%{name} ändrade rollen %{target}"
+      deleted_account: raderat konto
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
@@ -385,10 +386,10 @@ sv:
         create: Skapa block
         hint: Domänblockeringen hindrar inte skapandet av kontoposter i databasen, men kommer retroaktivt och automatiskt tillämpa specifika modereringsmetoder på dessa konton.
         severity:
-          desc_html: "<strong>Tysta ner</strong> kommer att göra kontoinlägg osynliga för alla som inte följer dem. <strong>Suspendera</strong> kommer ta bort allt av kontots innehåll, media och profildata. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
+          desc_html: "<strong>Tysta</strong> kommer att göra kontots inlägg osynliga för alla som inte följer det. <strong>Stäng av</strong> kommer ta bort allt kontoinnehåll, media och profildata. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
           noop: Ingen
           silence: Tysta ner
-          suspend: Suspendera
+          suspend: Stäng av
         title: Nytt domänblock
       obfuscate: Dölj domännamn
       obfuscate_hint: Dölj domännamnet i listan till viss del, om underrättelser för listan över domänbegränsningar aktiverats
@@ -418,25 +419,42 @@ sv:
         resolve: Slå upp domän
         title: Blockera ny e-postdomän
       no_email_domain_block_selected: Inga blockeringar av e-postdomäner ändrades eftersom inga valdes
+      resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
       title: Blockerade e-postdomäner
     follow_recommendations:
       description_html: "<strong>Följrekommendationer hjälper nya användare att snabbt hitta intressant innehåll</strong>. När en användare inte har interagerat med andra tillräckligt mycket för att forma personliga följrekommendationer, rekommenderas istället dessa konton. De beräknas om varje dag från en mix av konton med nylig aktivitet och högst antal följare för ett givet språk."
       language: För språket
       status: Status
+      suppress: Tryck ner följrekommendation
+      suppressed: Undertryckt
       title: Följ rekommendationer
+      unsuppress: Återställ följrekommendation
     instances:
       availability:
+        description_html:
+          one: Om leveranser till domänen misslyckas i <strong>%{count} dag</strong> kommer inga ytterligare leveransförsök att göras förrän en leverans <em>från</em> domänen tas emot.
+          other: Om leveranser till domänen misslyckas på <strong>%{count} olika dagar</strong> kommer inga ytterligare leveransförsök att göras förrän en leverans <em>från</em> domänen tas emot.
+        failure_threshold_reached: Tröskeln för misslyckande nåddes den %{date}.
+        failures_recorded:
+          one: Misslyckat försök under %{count} dag.
+          other: Misslyckade försök under %{count} olika dagar.
+        no_failures_recorded: Inga fel registrerade.
         title: Tillgänglighet
         warning: Det senaste försöket att ansluta till denna värddator har misslyckats
       back_to_all: Alla
       back_to_limited: Begränsat
       back_to_warning: Varning
       by_domain: Domän
+      confirm_purge: Är du säker på att du vill ta bort data permanent från den här domänen?
       content_policies:
+        comment: Intern anteckning
+        description_html: Du kan definiera innehållspolicyer som kommer tillämpas på alla konton från denna domän samt alla dess underdomäner.
         policies:
+          reject_media: Avvisa media
           reject_reports: Avvisa rapporter
           silence: Gräns
+          suspend: Stäng av
         policy: Policy
         reason: Offentlig orsak
         title: Riktlinjer för innehåll
@@ -457,6 +475,9 @@ sv:
         stop: Stoppa leverans
         unavailable: Ej tillgänglig
       delivery_available: Leverans är tillgängligt
+      delivery_error_days: Leveransfelsdagar
+      delivery_error_hint: Om leverans inte är möjligt i %{count} dagar, kommer det automatiskt markeras som ej levererbart.
+      destroyed_msg: Data från %{domain} står nu i kö för förestående radering.
       empty: Inga domäner hittades.
       known_accounts:
         one: "%{count} känt konto"
@@ -468,12 +489,14 @@ sv:
       private_comment: Privat kommentar
       public_comment: Offentlig kommentar
       purge: Rensa
+      purge_description_html: Om du tror att denna domän har kopplats ned för gott, kan du radera alla kontoposter och associerad data tillhörande denna domän från din lagringsyta. Detta kan ta tid.
       title: Kända instanser
       total_blocked_by_us: Blockerad av oss
       total_followed_by_them: Följs av dem
       total_followed_by_us: Följs av oss
       total_reported: Rapporter om dem
       total_storage: Media-bilagor
+      totals_time_period_hint_html: Totalsummorna som visas nedan inkluderar data för all tid.
     invites:
       deactivate_all: Inaktivera alla
       filter:
@@ -529,20 +552,27 @@ sv:
       actions:
         delete_description_html: De rapporterade inläggen kommer raderas och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
+        other_description_html: Se fler alternativ för att kontrollera kontots beteende och anpassa kommunikationen till det rapporterade kontot.
+        resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
+        silence_description_html: Profilen kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Kan alltid ångras.
         suspend_description_html: Profilen och allt dess innehåll kommer att bli oåtkomligt tills det slutligen raderas. Det kommer inte vara möjligt att interagera med kontot. Går att ångra inom 30 dagar.
+      actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer en e-postnotis att skickas till dem, förutom om du valt kategorin <strong>Skräppost</strong>.
       add_to_report: Lägg till mer i rapporten
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
       assigned: Tilldelad moderator
       by_target_domain: Domän för rapporterat konto
       category: Kategori
+      category_description_html: Anledningen till att kontot och/eller innehållet rapporterades kommer att visas i kommunikation med det rapporterade kontot
       comment:
         none: Ingen
+      comment_description_html: 'För att ge mer information, skrev %{name}:'
       created_at: Anmäld
       delete_and_resolve: Ta bort inlägg
       forwarded: Vidarebefordrad
       forwarded_to: Vidarebefordrad till %{domain}
       mark_as_resolved: Markera som löst
+      mark_as_sensitive: Markera som känslig
       mark_as_unresolved: Markera som olöst
       no_one_assigned: Ingen
       notes:
@@ -552,6 +582,8 @@ sv:
         delete: Radera
         placeholder: Beskriv vilka åtgärder som vidtagits eller andra uppdateringar till den här anmälan.
         title: Anteckningar
+      notes_description_html: Visa och lämna anteckningar till andra moderatorer och ditt framtida jag
+      quick_actions_description_html: 'Ta en snabb åtgärd eller bläddra ner för att se rapporterat innehåll:'
       remote_user_placeholder: fjärranvändaren från %{instance}
       reopen: Återuppta anmälan
       report: 'Rapport #%{id}'
@@ -562,6 +594,7 @@ sv:
       skip_to_actions: Hoppa till åtgärder
       status: Status
       statuses: Rapporterat innehåll
+      statuses_description_html: Stötande innehåll kommer att citeras i kommunikationen med det rapporterade kontot
       target_origin: Ursprung för anmält konto
       title: Anmälningar
       unassign: Otilldela
@@ -589,6 +622,7 @@ sv:
         other: "%{count} behörigheter"
       privileges:
         administrator: Administratör
+        administrator_description: Användare med denna behörighet kommer att kringgå alla behörigheter
         delete_user_data: Ta bort användardata
         delete_user_data_description: Tillåter användare att omedelbart radera andra användares data
         invite_users: Bjud in användare
@@ -597,6 +631,7 @@ sv:
         manage_announcements_description: Tillåt användare att hantera kungörelser på servern
         manage_appeals: Hantera överklaganden
         manage_appeals_description: Tillåter användare att granska överklaganden av modereringsåtgärder
+        manage_blocks: Hantera blockeringar
         manage_blocks_description: Tillåter användare att blockera e-postleverantörer och IP-adresser
         manage_custom_emojis: Hantera egna emojier
         manage_custom_emojis_description: Tillåter användare att hantera egna emojier på servern
@@ -623,33 +658,45 @@ sv:
         view_audit_log: Visa granskningsloggen
         view_audit_log_description: Tillåter användare att se historiken över administrativa åtgärder på servern
         view_dashboard: Visa instrumentpanel
+        view_dashboard_description: Ger användare tillgång till instrumentpanelen och olika mätvärden
         view_devops: Devops
+        view_devops_description: Ger användare tillgång till instrumentpanelerna Sidekiq och pgHero
       title: Roller
     rules:
       add_new: Lägg till regel
       delete: Radera
+      description_html: Även om de flesta hävdar att de samtycker till tjänstevillkoren, läser folk ofta inte igenom dem förrän det uppstår problem. <strong>Gör dina serverregler mer lättöverskådliga genom att tillhandahålla dem i en enkel punktlista.</strong> Försök att hålla enskilda regler korta och koncisa utan att samtidigt separera dem till för många enskilda punkter.
       edit: Ändra regel
+      empty: Inga serverregler har ännu angetts.
       title: Serverns regler
     settings:
       about:
         manage_rules: Hantera serverregler
+        preamble: Ange fördjupad information om hur servern driftas, modereras och finansieras.
+        rules_hint: Det finns ett dedikerat ställe för regler som användarna förväntas följa.
         title: Om
       appearance:
         preamble: Anpassa Mastodons webbgränssnitt.
         title: Utseende
       branding:
+        preamble: Din servers profilering differentierar den från andra servrar på nätverket. Denna information kan visas i en mängd olika miljöer, så som Mastodons webbgränssnitt, nativapplikationer, länkförhandsvisningar på andra webbsidor och i meddelandeapplikationer och så vidare. Av dessa anledningar är det bäst att hålla informationen tydlig, kort och koncis.
         title: Profilering
       content_retention:
         preamble: Kontrollera hur användargenererat innehåll lagras i Mastodon.
         title: Bibehållande av innehåll
       discovery:
+        follow_recommendations: Följrekommendationer
+        preamble: Att visa intressant innehåll är avgörande i onboarding av nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din server.
         profile_directory: Profilkatalog
+        public_timelines: Offentliga tidslinjer
+        title: Upptäck
         trends: Trender
       domain_blocks:
         all: Till alla
         disabled: För ingen
         users: För inloggade lokala användare
       registrations:
+        preamble: Kontrollera vem som kan skapa ett konto på din server.
         title: Registreringar
       registrations_mode:
         modes:
@@ -659,7 +706,9 @@ sv:
       title: Serverinställningar
     site_uploads:
       delete: Radera uppladdad fil
+      destroyed_msg: Webbplatsuppladdningen har raderats!
     statuses:
+      account: Författare
       application: Applikation
       back_to_account: Tillbaka till kontosidan
       back_to_report: Tillbaka till rapportsidan
@@ -674,7 +723,11 @@ sv:
       media:
         title: Media
       metadata: Metadata
+      no_status_selected: Inga inlägg ändrades eftersom inga valdes
       open: Öppna inlägg
+      original_status: Ursprungligt inlägg
+      reblogs: Ombloggningar
+      status_changed: Inlägg ändrat
       title: Kontoinlägg
       trending: Trendande
       visibility: Synlighet
@@ -683,6 +736,8 @@ sv:
       actions:
         delete_statuses: "%{name} raderade %{target}s inlägg"
         disable: "%{name} frös %{target}s konto"
+        mark_statuses_as_sensitive: "%{name} markerade %{target}s inlägg som känsliga"
+        none: "%{name} skickade en varning till %{target}"
         sensitive: "%{name} markerade %{target}s konto som känsligt"
         silence: "%{name} begränsade %{target}s konto"
         suspend: "%{name} stängde av %{target}s konto"
@@ -798,24 +853,43 @@ sv:
     new_appeal:
       actions:
         delete_statuses: att radera deras inlägg
+        disable: för att frysa deras konto
+        mark_statuses_as_sensitive: för att markera deras inlägg som känsliga
         none: en varning
+        sensitive: för att markera deras konto som känsligt
+        silence: för att begränsa deras konto
+        suspend: för att stänga av deras konto
+      body: "%{target} överklagade ett modereringsbeslut av typen %{type}, taget av %{action_taken_by} den %{date}. De skrev:"
+      next_steps: Du kan godkänna överklagan för att ångra modereringsbeslutet, eller ignorera det.
+      subject: "%{username} överklagar ett modereringsbeslut på %{instance}"
+    new_pending_account:
+      body: Detaljerna för det nya kontot finns nedan. Du kan godkänna eller avvisa denna ansökan.
+      subject: Nytt konto flaggat för granskning på %{instance} (%{username})
     new_report:
       body: "%{reporter} har rapporterat %{target}"
       body_remote: Någon från %{domain} har rapporterat %{target}
       subject: Ny rapport för %{instance} (#%{id})
     new_trends:
+      body: 'Följande objekt behöver granskas innan de kan visas publikt:'
       new_trending_links:
         title: Trendande länkar
       new_trending_statuses:
         title: Trendande inlägg
       new_trending_tags:
+        no_approved_tags: Det finns för närvarande inga godkända trendande hashtaggar.
+        requirements: 'Någon av dessa kandidater skulle kunna överträffa #%{rank} godkända trendande hashtaggar, som för närvarande är #%{lowest_tag_name} med en poäng på %{lowest_tag_score}.'
         title: Trendande hashtaggar
+      subject: Nya trender tillgängliga för granskning på %{instance}
   aliases:
     add_new: Skapa alias
+    created_msg: Ett nytt alias skapades. Du kan nu initiera flytten från det gamla kontot.
+    deleted_msg: Aliaset togs bort. Att flytta från det kontot till detta kommer inte längre vara möjligt.
     empty: Du har inga alias.
+    hint_html: Om du vill flytta från ett annat konto till detta kan du skapa ett alias här, detta krävs innan du kan fortsätta med att flytta följare från det gamla kontot till detta. Denna åtgärd är <strong>ofarlig och kan ångras</strong>. <strong>Kontomigreringen initieras från det gamla kontot.</strong>.
     remove: Avlänka alias
   appearance:
     advanced_web_interface: Avancerat webbgränssnitt
+    advanced_web_interface_hint: 'Om du vill utnyttja hela skärmens bredd så kan du i det avancerade webbgränssnittet ställa in många olika kolumner för att se så mycket information samtidigt som du vill: Hem, notiser, federerad tidslinje, valfritt antal listor och hashtaggar.'
     animations_and_accessibility: Animationer och tillgänglighet
     confirmation_dialogs: Bekräftelsedialoger
     discovery: Upptäck
@@ -840,23 +914,27 @@ sv:
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
+    apply_for_account: Skriv upp dig på väntelistan
     change_password: Lösenord
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
     description:
       prefix_invited_by_user: "@%{name} bjuder in dig att gå med i en Mastodon-server!"
       prefix_sign_up: Registrera dig på Mastodon idag!
+      suffix: Med ett konto kommer du att kunna följa personer, göra inlägg och utbyta meddelanden med användare från andra Mastodon-servrar, och ännu mer!
     didnt_get_confirmation: Fick du inte instruktioner om bekräftelse?
     dont_have_your_security_key: Har du inte din säkerhetsnyckel?
     forgot_password: Glömt ditt lösenord?
     invalid_reset_password_token: Lösenordsåterställningstoken är ogiltig eller utgått. Vänligen be om en ny.
     link_to_otp: Ange en tvåfaktor-kod från din telefon eller en återställningskod
+    link_to_webauth: Använd din säkerhetsnyckel
     log_in_with: Logga in med
     login: Logga in
     logout: Logga ut
     migrate_account: Flytta till ett annat konto
     migrate_account_html: Om du vill omdirigera detta konto till ett annat, kan du <a href="%{path}">konfigurera det här</a>.
     or_log_in_with: Eller logga in med
+    privacy_policy_agreement_html: Jag har läst och godkänner <a href="%{privacy_policy_path}" target="_blank">integritetspolicyn</a>
     providers:
       cas: CAS
       saml: SAML
@@ -865,16 +943,24 @@ sv:
     resend_confirmation: Skicka instruktionerna om bekräftelse igen
     reset_password: Återställ lösenord
     rules:
+      preamble: Dessa bestäms och upprätthålls av moderatorerna för %{domain}.
       title: Några grundregler.
     security: Säkerhet
     set_new_password: Skriv in nytt lösenord
     setup:
+      email_below_hint_html: Om nedanstående e-postadress är felaktig kan du ändra den här, och få ett nytt bekräftelsemeddelande.
       email_settings_hint_html: E-postmeddelande för verifiering skickades till %{email}. Om e-postadressen inte stämmer kan du ändra den i kontoinställningarna.
       title: Ställ in
+    sign_up:
+      preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer på nätverket, oavsett vilken server deras konto tillhör.
+      title: Låt oss få igång dig på %{domain}.
     status:
       account_status: Kontostatus
       confirming: Väntar på att e-postbekräftelsen ska slutföras.
+      functional: Ditt konto fungerar som det ska.
+      pending: Din ansökan inväntar granskning. Detta kan ta tid. Du kommer att få ett e-postmeddelande om din ansökan godkänns.
       redirecting_to: Ditt konto är inaktivt eftersom det för närvarande dirigeras om till %{acct}.
+      view_strikes: Visa tidigare prickar på ditt konto
     too_fast: Formuläret har skickats för snabbt, försök igen.
     use_security_key: Använd säkerhetsnyckel
   authorize_follow:
@@ -923,17 +1009,39 @@ sv:
     proceed: Radera konto
     success_msg: Ditt konto har raderats
     warning:
+      before: 'Läs dessa noteringar noga innan du fortsätter:'
+      caches: Innehåll som har cachats av andra servrar kan bibehållas
+      data_removal: Dina inlägg och annan data kommer permanent raderas
       email_change_html: Du kan <a href="%{path}">ändra din e-postadress</a> utan att radera ditt konto
+      email_contact_html: Om det fortfarande inte kommer kan du e-posta <a href="mailto:%{email}">%{email}</a> för support
+      email_reconfirmation_html: Om du inte får bekräftelsemeddelandet kan du <a href="%{path}">begära ett nytt</a>
       irreversible: Du kan inte återställa eller återaktivera ditt konto
+      more_details_html: För mer information, se <a href="%{terms_path}">integritetspolicyn</a>.
       username_available: Ditt användarnamn kommer att bli tillgängligt igen
       username_unavailable: Ditt användarnamn kommer att fortsätta vara otillgängligt
   disputes:
     strikes:
+      action_taken: Vidtagen åtgärd
+      appeal: Överklaga
+      appeal_approved: Pricken är inte längre giltig då överklagan godkändes
+      appeal_rejected: Överklagan har avvisats
+      appeal_submitted_at: Överklagan inskickad
+      appealed_msg: Din överklagan har skickats in. Du blir notifierad om den godkänns.
+      appeals:
+        submit: Skicka överklagan
       approve_appeal: Godkänn förfrågan
+      associated_report: Associerad rapport
       created_at: Daterad
+      description_html: Dessa är åtgärder som vidtas mot ditt konto och varningar som har skickats till dig av administratörerna för %{instance}.
+      recipient: Adressat
       reject_appeal: Avvisa förfrågan
       status: 'Inlägg #%{id}'
+      status_removed: Inlägget har redan raderats från systemet
+      title: "%{action} den %{date}"
       title_actions:
+        delete_statuses: Borttagning av inlägg
+        disable: Kontofrysning
+        mark_statuses_as_sensitive: Markering av inlägg som känsliga
         none: Varning
         sensitive: Märkning av konto som känslig
         silence: Begränsning av konto
@@ -1196,8 +1304,10 @@ sv:
           trillion: T
   otp_authentication:
     code_hint: Ange koden som genererats av din autentiseringsapp för att bekräfta
+    description_html: Om du aktiverar <strong>tvåfaktorsautentisering</strong> med en autentiseringsapp kommer du behöva din mobiltelefon för att logga in, som kommer generera koder för dig att ange.
     enable: Aktivera
     instructions_html: "<strong>Skanna den här QR-koden i Google Authenticator eller en liknande TOTP-app i din telefon</strong>. Från och med nu så kommer den appen att generera symboler som du måste skriva in när du ska logga in."
+    manual_instructions: 'Om du inte kan skanna QR-koden och istället behöver skriva in nyckeln i oformatterad text, finns den här:'
     setup: Konfigurera
     wrong_code: Den ifyllda koden är ogiltig! Är server-tiden och enhetens tid korrekt?
   pagination:
@@ -1214,6 +1324,7 @@ sv:
       duration_too_short: är för tidigt
       expired: Undersökningen har redan avslutats
       invalid_choice: Det valda röstalternativet finns inte
+      over_character_limit: kan inte vara längre än %{max} tecken var
       too_few_options: måste ha mer än ett objekt
       too_many_options: kan inte innehålla mer än %{max} objekt
   preferences:
@@ -1224,6 +1335,7 @@ sv:
     title: Integritetspolicy
   reactions:
     errors:
+      limit_reached: Gränsen för unika reaktioner uppnådd
       unrecognized_emoji: är inte en igenkänd emoji
   relationships:
     activity: Kontoaktivitet
@@ -1244,8 +1356,18 @@ sv:
     status: Kontostatus
   remote_follow:
     missing_resource: Det gick inte att hitta den begärda omdirigeringsadressen för ditt konto
+  reports:
+    errors:
+      invalid_rules: refererar inte till giltiga regler
   rss:
     content_warning: 'Innehållsvarning:'
+    descriptions:
+      account: Offentliga inlägg från @%{acct}
+      tag: 'Offentliga inlägg taggade med #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Du har överskridit dygnsgränsen på %{limit} schemalagda inlägg
+    over_total_limit: Du har överskridit gränsen på %{limit} schemalagda inlägg
+    too_soon: Schemaläggningsdatumet måste vara i framtiden
   sessions:
     activity: Senaste aktivitet
     browser: Webbläsare
@@ -1259,9 +1381,11 @@ sv:
       generic: Okänd browser
       ie: Internet Explorer
       micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
+      qq: QQ browser
       safari: Safari
       uc_browser: UCBrowser
       weibo: Weibo
@@ -1285,6 +1409,7 @@ sv:
     revoke: Återkalla
     revoke_success: Sessionen återkallas framgångsrikt
     title: Sessioner
+    view_authentication_history: Visa autentiseringshistoriken för ditt konto
   settings:
     account: Konto
     account_settings: Kontoinställningar
@@ -1296,6 +1421,7 @@ sv:
     development: Utveckling
     edit_profile: Redigera profil
     export: Exportera data
+    featured_tags: Utvalda hashtaggar
     import: Importera
     import_and_export: Import och export
     migrate: Kontoflytt
@@ -1304,6 +1430,7 @@ sv:
     profile: Profil
     relationships: Följer och följare
     statuses_cleanup: Automatisk radering av inlägg
+    strikes: Modereringsprickar
     two_factor_authentication: Tvåfaktorsautentisering
     webauthn_authentication: Säkerhetsnycklar
   statuses:
@@ -1358,7 +1485,9 @@ sv:
       unlisted_long: Alla kan se, men listas inte på offentliga tidslinjer
   statuses_cleanup:
     enabled: Ta automatiskt bort gamla inlägg
+    enabled_hint: Raderar dina inlägg automatiskt när de når en specifik ålder, såvida de inte matchar något av undantagen nedan
     exceptions: Undantag
+    explanation: Eftersom inläggsradering är resursintensivt görs detta stegvis när servern inte är högbelastad. Därför kan det dröja innan dina inlägg raderas efter att de uppnått ålderströskeln.
     ignore_favs: Bortse från favoriter
     ignore_reblogs: Ignorera boostningar
     interaction_exceptions: Undantag baserat på interaktioner
@@ -1374,6 +1503,7 @@ sv:
     keep_self_bookmark: Behåll inlägg du har bokmärkt
     keep_self_bookmark_hint: Tar inte bort dina egna inlägg om du har bokmärkt dem
     keep_self_fav: Behåll inlägg du favoritmarkerat
+    keep_self_fav_hint: Tar inte bort dina egna inlägg om du har favoritmarkerat dem
     min_age:
       '1209600': 2 veckor
       '15778476': 6 månader
@@ -1384,6 +1514,8 @@ sv:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Åldersgräns
+    min_favs: Behåll favoritmarkerade inlägg i minst
+    min_favs_hint: Raderar inte något av dina inlägg som har blivit favoritmarkerat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal favoritmarkeringar
     min_reblogs: Behåll boostade inlägg i minst
     min_reblogs_hint: Raderar inte något av dina inlägg som har blivit boostat minst detta antal gånger. Lämna tomt för att radera inlägg oavsett antal boostningar
   stream_entries:
@@ -1407,6 +1539,7 @@ sv:
   two_factor_authentication:
     add: Lägg till
     disable: Inaktivera
+    disabled_success: Tvåfaktorsautentisering inaktiverat
     edit: Redigera
     enabled: Tvåfaktorsautentisering är aktiverad
     enabled_success: Tvåfaktorsautentisering aktiverad
@@ -1421,33 +1554,61 @@ sv:
   user_mailer:
     appeal_approved:
       action: Gå till ditt konto
+      explanation: Överklagandet du skickade in den %{appeal_date} för pricken på ditt konto den %{strike_date} har godkänts. Ditt konto har återigen bra anseende.
+      subject: Din överklagan den %{date} har godkänts
+      title: Överklagan godkänd
+    appeal_rejected:
+      explanation: Överklagandet du skickade in den %{appeal_date} för pricken på ditt konto den %{strike_date} har avslagits.
+      subject: Din överklagan den %{date} har avslagits
+      title: Överklagan avslagen
     backup_ready:
       explanation: Du begärde en fullständig säkerhetskopiering av ditt Mastodon-konto. Det är nu klart för nedladdning!
       subject: Ditt arkiv är klart för nedladdning
       title: Arkivuttagning
     suspicious_sign_in:
       change_password: Ändra ditt lösenord
+      details: 'Här är inloggningsdetaljerna:'
+      explanation: Vi har upptäckt en inloggning till ditt konto från en ny IP-adress.
+      further_actions_html: Om detta inte var du, rekommenderar vi att du snarast %{action} och aktiverar tvåfaktorsautentisering för att hålla ditt konto säkert.
+      subject: Ditt konto har nåtts från en ny IP-adress
       title: En ny inloggning
     warning:
+      appeal: Skicka överklagan
+      appeal_description: Om du anser detta felaktigt kan du skicka överklagan till administratörerna av %{instance}.
       categories:
         spam: Skräppost
+        violation: Innehållet bryter mot följande gemenskapsprinciper
+      explanation:
+        delete_statuses: Några av dina inlägg har ansetts bryta mot en eller flera gemenskapsprinciper, de har därför raderats av moderatorerna för %{instance}.
+        disable: Du kan inte längre använda ditt konto, men din profil och övrig data bibehålls intakt. Du kan begära en kopia av dina data, ändra kontoinställningar eller radera ditt konto.
+        mark_statuses_as_sensitive: Några av dina inlägg har markerats som känsliga av moderatorerna för %{instance}. Detta betyder att folk behöver trycka på medier i inläggen innan de kan se en förhandsvisning. Du kan själv markera medier som känsliga när du gör inlägg i framtiden.
+        sensitive: Från och med nu markeras alla dina uppladdade mediefiler som känsliga och göms bakom en innehållsvarning som först måste tryckas bort.
+        silence: Du kan fortfarande använda ditt konto, men endast personer som redan följer dig kommer att se dina inlägg på denna server. Du kan även exkluderas från olika upptäcktsfunktioner, men andra kan fortfarande manuellt följa dig.
+        suspend: Du kan inte längre använda ditt konto, din profil och annan data är heller inte längre tillgängliga. Du kan fortfarande logga in och begära en kopia av dina data tills dess att de fullkomligt raderas om cirka 30 dagar, vi kommer dock bibehålla viss metadata för att förhindra försök att kringgå avstängingen.
       reason: 'Anledning:'
       statuses: 'Inlägg citerades:'
       subject:
+        delete_statuses: Dina inlägg under %{acct} har raderats
         disable: Ditt konto %{acct} har blivit fruset
+        mark_statuses_as_sensitive: Dina inlägg under %{acct} har markerats som känsliga
         none: Varning för %{acct}
+        sensitive: Från och med nu kommer dina inlägg under %{acct} markeras som känsliga
         silence: Ditt konto %{acct} har blivit begränsat
         suspend: Ditt konto %{acct} har stängts av
       title:
         delete_statuses: Inlägg borttagna
         disable: Kontot fruset
+        mark_statuses_as_sensitive: Inlägg markerade som känsliga
         none: Varning
+        sensitive: Konto markerat som känsligt
         silence: Kontot begränsat
-        suspend: Kontot avstängt
+        suspend: Konto avstängt
     welcome:
       edit_profile_action: Profilinställning
+      edit_profile_step: Du kan anpassa din profil genom att ladda upp en profilbild, ändra ditt visningsnamn med mera. Du kan välja att granska nya följare innan de får följa dig.
       explanation: Här är några tips för att komma igång
       final_action: Börja göra inlägg
+      final_step: 'Börja skriv inlägg! Även utan följare kan dina offentliga inlägg ses av andra, exempelvis på den lokala tidslinjen eller i hashtaggar. Du kanske vill introducera dig själv under hashtaggen #introduktion eller #introductions.'
       full_handle: Ditt fullständiga användarnamn/mastodonadress
       full_handle_hint: Det här är vad du skulle berätta för dina vänner så att de kan meddela eller följa dig från en annan instans.
       subject: Välkommen till Mastodon
@@ -1459,13 +1620,22 @@ sv:
     seamless_external_login: Du är inloggad via en extern tjänst, inställningar för lösenord och e-post är därför inte tillgängliga.
     signed_in_as: 'Inloggad som:'
   verification:
+    explanation_html: 'Du kan <strong>verifiera dig själv som ägare av länkar i din profilmetadata</strong>, genom att på den länkade webbplatsen även länka tillbaka till din Mastodon-profil. Länken tillbaka <strong>måste</strong> ha attributet <code>rel="me"</code>. Textinnehållet i länken spelar ingen roll. Här är ett exempel:'
     verification: Bekräftelse
   webauthn_credentials:
     add: Lägg till ny säkerhetsnyckel
+    create:
+      error: Det gick inte att lägga till din säkerhetsnyckel. Försök igen.
+      success: Din säkerhetsnyckel har lagts till.
     delete: Radera
     delete_confirmation: Är du säker på att du vill ta bort denna säkerhetsnyckel?
+    description_html: Om du aktiverar <strong>autentisering med säkerhetsnyckel</strong>, kommer inloggning kräva att du använder en av dina säkerhetsnycklar.
     destroy:
+      error: Det gick inte att ta bort din säkerhetsnyckel. Försök igen.
       success: Din säkerhetsnyckel har raderats.
     invalid_credential: Ogiltig säkerhetsnyckel
+    nickname_hint: Ange smeknamnet på din nya säkerhetsnyckel
     not_enabled: Du har inte aktiverat WebAuthn än
+    not_supported: Denna webbläsare stöder inte säkerhetsnycklar
+    otp_required: För att använda säkerhetsnycklar måste du först aktivera tvåfaktorsautentisering.
     registered_on: Registrerad den %{date}

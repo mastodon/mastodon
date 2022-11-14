@@ -60,6 +60,7 @@ oc:
       error:
         title: I a agut un error
       new:
+        review_permissions: Repassar las autorizacions
         title: Cal l’autorizacion
       show:
         title: Copiatz lo còdi d’autorizacion e pegatz-lo dins l’aplicacion.
@@ -69,6 +70,11 @@ oc:
       confirmations:
         revoke: Ne sètz segur ?
       index:
+        authorized_at: Autorizada lo %{date}
+        last_used_at: Darrièra utilizacion lo %{date}
+        never_used: Pas jamai utilizada
+        scopes: Autorizacions
+        superapp: Intèrna
         title: Las vòstras aplicacions autorizadas
     errors:
       messages:
@@ -105,14 +111,32 @@ oc:
         destroy:
           notice: Aplicacion revocada.
     grouped_scopes:
+      access:
+        read: Accès lectura sola
+        read/write: Accès lectura e escritura
+        write: Accès escritura sola
       title:
         accounts: Comptes
+        admin/accounts: Administracion de comptes
+        admin/all: Totas las foncions administrativas
+        admin/reports: Administracion de senhalaments
+        all: Tot
+        blocks: Blocatges
         bookmarks: Marcadors
+        conversations: Conversacions
+        crypto: Chiframent del cap a la fin
+        favourites: Favorits
         filters: Filtres
+        follow: Relacions
+        follows: Abonaments
         lists: Listas
         media: Fichièrs junts
+        mutes: Resconduts
         notifications: Notificacions
+        push: Notificacions Push
+        reports: Senhalament
         search: Recercar
+        statuses: Publicacions
     layouts:
       admin:
         nav:
@@ -127,6 +151,7 @@ oc:
       admin:write: modificacion de las donadas del servidor
       admin:write:accounts: realizacion d’accions de moderacion suls comptes
       admin:write:reports: realizacion d’accions suls senhalaments
+      crypto: utilizar lo chiframent del cap a la fin
       follow: modificar las relacions del compte
       push: recebre vòstras notificacions push
       read: legir totas las donadas de vòstre compte
@@ -146,6 +171,7 @@ oc:
       write:accounts: modificar vòstre perfil
       write:blocks: blocar de comptes e de domenis
       write:bookmarks: ajustar als marcadors
+      write:conversations: amudir e suprimir las conversacions
       write:favourites: metre en favorit
       write:filters: crear de filtres
       write:follows: sègre de mond

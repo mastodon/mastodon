@@ -67,31 +67,31 @@ ja:
         domain: 電子メールアドレスのドメイン名、または使用されるMXレコードを指定できます。新規登録時にチェックされます。
         with_dns_records: 指定したドメインのDNSレコードを取得し、その結果もメールドメインブロックに登録されます
       featured_tag:
-        name: '最近使用したハッシュタグ:'
+        name: 最近使用したハッシュタグ
       filters:
-        action: 投稿がフィルタに一致したときに実行するアクションを選択します
+        action: 投稿がフィルタに一致したときに実行するアクションを選択
         actions:
-          hide: フィルタリングされたコンテンツを完全に隠し、存在しないかのようにします
+          hide: フィルタリングしたコンテンツを完全に隠し、あたかも存在しないかのようにします
           warn: フィルタリングされたコンテンツを、フィルタータイトルの警告の後ろに隠します。
       form_admin_settings:
         backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
-        bootstrap_timeline_accounts: これらのアカウントは、新しいユーザーのフォロー推奨の一番上にピン留めされます。
-        closed_registrations_message: サインアップ終了時に表示されます
+        bootstrap_timeline_accounts: これらのアカウントは、新しいユーザーのフォロー推奨リストの一番上にピン留めされます。
+        closed_registrations_message: アカウント作成を停止している時に表示されます
         content_cache_retention_period: 正の値に設定されている場合、他のサーバーの投稿は指定された日数の後に削除されます。元に戻せません。
-        custom_css: ウェブ版の Mastodon でカスタムスタイルを適用できます。
+        custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
         mascot: 上級者向けWebインターフェースのイラストを上書きします。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
-        profile_directory: ディレクトリには、掲載する設定をしたすべてのユーザーが一覧表示されます。
-        require_invite_text: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストを必須入力にする
+        profile_directory: プロフィールディレクトリには、掲載するよう設定したすべてのユーザーが一覧表示されます。
+        require_invite_text: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストの入力を必須にする
         site_contact_email: 法律またはサポートに関する問い合わせ先
         site_contact_username: マストドンでの連絡方法
-        site_extended_description: 訪問者やユーザーに役立つかもしれない任意の追加情報。Mastodon 構文が使用できます。
+        site_extended_description: 訪問者やユーザーに役立つかもしれない任意の追加情報。Markdownが使えます。
         site_short_description: 誰が運営しているのか、誰に向けたものなのかなど、サーバーを特定する短い説明。
-        site_terms: 独自のプライバシーポリシーを使用するか、空白にしてデフォルトのプライバシーポリシーを使用します。Mastodon 構文が使用できます。
+        site_terms: 独自のプライバシーポリシーを使用するか空白にしてデフォルトのプライバシーポリシーを使用します。Markdownが使えます。
         site_title: ドメイン名以外でサーバーを参照する方法です。
         theme: ログインしていない人と新規ユーザーに表示されるテーマ。
         thumbnail: サーバー情報と共に表示される、アスペクト比が約 2:1 の画像。
-        timeline_preview: ログアウトした人は、サーバー上で利用可能な最新の公開投稿を閲覧することができます。
+        timeline_preview: ログアウトした人でも、サーバー上で利用可能な最新の公開投稿を閲覧することができます。
         trendable_by_default: トレンドコンテンツの手動レビューをスキップする。個々のコンテンツは後でトレンドから削除できます。
         trends: トレンドは、サーバー上でどの投稿、ハッシュタグ、ニュース記事が人気を集めているかを示します。
       form_challenge:

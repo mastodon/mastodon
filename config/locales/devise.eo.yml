@@ -24,11 +24,11 @@ eo:
         explanation_when_pending: Vi petis inviton al %{host} per ĉi tiu retpoŝta adreso. Kiam vi konfirmas vian retpoŝtan adreson, ni revizios vian kandidatiĝon. Vi ne povas ensaluti ĝis tiam. Se via kandidatiĝo estas rifuzita, viaj datumoj estos forigitaj, do neniu alia ago estos postulita de vi. Se tio ne estis vi, bonvolu ignori ĉi tiun retpoŝton.
         extra_html: Bonvolu rigardi <a href="%{terms_path}">la regulojn de la servilo</a> kaj <a href="%{policy_path}">niajn uzkondiĉojn</a>.
         subject: 'Mastodon: Konfirmaj instrukcioj por %{instance}'
-        title: Konfirmi retadreson
+        title: Konfirmi retpoŝton
       email_changed:
-        explanation: 'La retadreso de via konto ŝanĝiĝas al:'
+        explanation: 'La retpoŝtadreso de via konto ŝanĝiĝas al:'
         extra: Se vi ne volis ŝanĝi vian retadreson, iu verŝajne aliris al via konto. Bonvolu tuj ŝanĝi vian pasvorton aŭ kontakti la administranton de la servilo, se vi estas blokita ekster via konto.
-        subject: 'Mastodon: Retadreso ŝanĝita'
+        subject: 'Mastodon: Retpoŝton ŝanĝiĝis'
         title: Nova retadreso
       password_change:
         explanation: La pasvorto de via konto estis ŝanĝita.
@@ -36,10 +36,10 @@ eo:
         subject: 'Mastodon: Pasvorto ŝanĝita'
         title: Pasvorto ŝanĝita
       reconfirmation_instructions:
-        explanation: Retajpu la novan adreson por ŝanĝi vian retadreson.
+        explanation: Retajpu la novan adreson por ŝanĝi vian retpoŝtadreson.
         extra: Se ĉi tiu ŝanĝo ne estis komencita de vi, bonvolu ignori ĉi tiun retmesaĝon. La retadreso por la Mastodon-konto ne ŝanĝiĝos se vi ne aliras la supran ligilon.
-        subject: 'Mastodon: Konfirmi retadreson por %{instance}'
-        title: Kontrolu retadreson
+        subject: 'Mastodon: Konfirmi retpoŝton por %{instance}'
+        title: Kontrolu retpoŝtadreson
       reset_password_instructions:
         action: Ŝanĝi pasvorton
         explanation: Vi petis novan pasvorton por via konto.
@@ -53,7 +53,7 @@ eo:
       two_factor_enabled:
         explanation: Dufaktora aŭtentigo sukcese ebligita por via akonto. Vi bezonos ĵetonon kreitan per parigitan aplikaĵon por ensaluti.
         subject: 'Mastodon: dufaktora aŭtentigo ebligita'
-        title: la du-etapa aŭtentigo estas ŝaltita
+        title: 2FA aktivigita
       two_factor_recovery_codes_changed:
         explanation: La antaŭaj reakiraj kodoj estis nuligitaj kaj novaj estis generitaj.
         subject: 'Mastodon: Reakiraj kodoj de dufaktora aŭtentigo rekreitaj'

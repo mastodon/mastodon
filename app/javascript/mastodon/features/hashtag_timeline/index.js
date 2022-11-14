@@ -194,7 +194,7 @@ class HashtagTimeline extends React.PureComponent {
       const following = tag.get('following');
 
       followButton = (
-        <button className={classNames('column-header__button')} onClick={this.handleFollow} disabled={!signedIn} title={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-label={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-pressed={following ? 'true' : 'false'}>
+        <button className={classNames('column-header__button')} onClick={this.handleFollow} disabled={!signedIn} title={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)} aria-label={intl.formatMessage(following ? messages.unfollowHashtag : messages.followHashtag)}>
           <Icon id={following ? 'user-times' : 'user-plus'} fixedWidth className='column-header__icon' />
         </button>
       );

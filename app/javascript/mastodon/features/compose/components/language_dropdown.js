@@ -51,6 +51,15 @@ class LanguageDropdownMenu extends React.PureComponent {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
     this.setState({ mounted: true });
+
+    // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
+    // to wait for a frame before focusing
+    requestAnimationFrame(() => {
+      if (this.node) {
+        const element = this.node.querySelector('input[type="search"]');
+        if (element) element.focus();
+      }
+    });
   }
 
   componentWillUnmount () {
@@ -226,7 +235,7 @@ class LanguageDropdownMenu extends React.PureComponent {
           // react-overlays
           <div className={`language-dropdown__dropdown ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
             <div className='emoji-mart-search'>
-              <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} autoFocus />
+              <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
               <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}>{!isSearching ? loupeIcon : deleteIcon}</button>
             </div>
 

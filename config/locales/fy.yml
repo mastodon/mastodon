@@ -4,22 +4,116 @@ fy:
     last_active: letst warber
   admin:
     accounts:
+      delete: Gegevens fuortsmite
+      deleted: Fuortsmiten
+      domain: Domein
+      edit: Bewurkje
+      followers: Folgers
+      follows: Folgjend
+      header: Omslachfoto
+      inbox_url: Ynboks-URL
+      ip: IP
+      joined: Registrearre
+      location:
+        all: Alle
+        local: Lokaal
+        remote: Ekstern
+        title: Lokaasje
+      login_status: Oanmeldsteat
+      media_attachments: Mediabylagen
       moderation:
         active: Aktyf
+        all: Alle
+        pending: Yn ôfwachting
+        silenced: Beheind
+        suspended: Utsteld
+        title: Moderaasje
+      perform_full_suspension: Utstelle
+      promote: Promovearje
+      protocol: Protokol
+      public: Iepenbier
+      reject: Wegerje
       security_measures:
         only_password: Allinnich wachtwurd
         password_and_2fa: Wachtwurd en 2FA
+      title: Accounts
+      unblock_email: E-mailadres deblokkearje
+      warn: Warskôgje
+      web: Web-app
+    action_logs:
+      action_types:
+        destroy_announcement: Meidieling fuortsmite
+      deleted_account: fuortsmiten account
+    custom_emojis:
+      copy: Kopiearje
+      delete: Fuortsmite
+      disable: Utskeakelje
+      disabled: Utskeakele
+      emoji: Emoji
+      enable: Ynskeakelje
+      enabled: Ynskeakele
+      image_hint: PNG of GIF net grutter as %{size}
+      list: Yn list
+      listed: Werjaan
+      upload: Oplade
     dashboard:
       active_users: warbere brûkers
+      interactions: ynteraksjes
+      title: Dashboerd
       top_languages: Meast aktive talen
       top_servers: Meast aktive tsjinners
+      website: Website
+    disputes:
+      appeals:
+        empty: Gjin beswieren fûn.
+        title: Beswieren
+    email_domain_blocks:
+      delete: Fuortsmite
+      domain: Domein
+      new:
+        create: Domain tafoegje
+        resolve: Domein opsykje
+    follow_recommendations:
+      status: Steat
     instances:
+      back_to_all: Alle
+      back_to_limited: Beheind
+      back_to_warning: Warskôging
+      by_domain: Domein
       confirm_purge: Wolle jo werklik alle gegevens fan dit domein foar ivich fuortsmite?
+      content_policies:
+        comment: Ynterne reden
+        policies:
+          silence: Beheind
+          suspend: Utsteld
+        policy: Belied
       dashboard:
         instance_accounts_measure: bewarre accounts
+    ip_blocks:
+      delete: Fuortsmite
+    relays:
+      delete: Fuortsmite
+    reports:
+      delete_and_resolve: Berjocht fuortsmite
+      notes:
+        delete: Fuortsmite
+    roles:
+      delete: Fuortsmite
+    rules:
+      delete: Fuortsmite
+    statuses:
+      deleted: Fuortsmiten
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+    warning_presets:
+      delete: Fuortsmite
+    webhooks:
+      delete: Fuortsmite
+  auth:
+    delete_account: Account fuortsmite
+  deletes:
+    proceed: Account fuortsmite
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -33,6 +127,12 @@ fy:
   filters:
     contexts:
       thread: Petearen
+    index:
+      delete: Fuortsmite
+  generic:
+    delete: Fuortsmite
+  invites:
+    delete: Deaktivearje
   notification_mailer:
     mention:
       action: Beäntwurdzje
@@ -43,7 +143,11 @@ fy:
     last_active: Letst warber
   rss:
     content_warning: 'Ynhâldswarskôging:'
+  settings:
+    delete: Account fuortsmite
   statuses:
     content_warning: 'Ynhâldswarskôging: %{warning}'
     pin_errors:
       direct: Berjochten dy allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
+  webauthn_credentials:
+    delete: Fuortsmite

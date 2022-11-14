@@ -4,16 +4,26 @@ ga:
     attributes:
       doorkeeper/application:
         name: Ainm feidhmchláir
+        redirect_uri: Atreoraigh URI
+        website: Suíomh gréasáin feidhmchláir
   doorkeeper:
     applications:
       buttons:
         authorize: Ceadaigh
+        cancel: Cealaigh
         destroy: Scrios
         edit: Cuir in eagar
+        submit: Cuir isteach
       confirmations:
         destroy: An bhfuil tú cinnte?
       index:
+        delete: Scrios
         name: Ainm
+        show: Taispeáin
+      show:
+        application_id: Eochair chliaint
+        secret: Rún cliaint
+        title: 'Ainm feidhmchláir: %{name}'
     authorizations:
       buttons:
         deny: Diúltaigh
