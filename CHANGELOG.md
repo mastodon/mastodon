@@ -3,6 +3,11 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [4.0.1] - 2022-11-14
+### Fixed
+
+- Fix nodes order being sometimes mangled when rewriting emoji ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20677))
+
 ## [4.0.0] - 2022-11-14
 
 Some of the features in this release have been funded through the [NGI0 Discovery](https://nlnet.nl/discovery) Fund, a fund established by [NLnet](https://nlnet.nl/) with financial support from the European Commission's [Next Generation Internet](https://ngi.eu/) programme, under the aegis of DG Communications Networks, Content and Technology under grant agreement No 825322.
