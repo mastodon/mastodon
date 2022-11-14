@@ -3,6 +3,18 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.5.4] - 2022-11-14
+### Fixed
+
+- Fix error when a remote report includes a private post the server has no access to ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18760))
+
+### Security
+
+- Fix emoji substitution not applying only to text nodes in backend code ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20641))
+- Fix emoji substitution not applying only to text nodes in Web UI ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20640))
+- Fix rate limiting for paths with formats ([Gargron](https://github.com/mastodon/mastodon/pull/20675))
+- Fix out-of-bound reads in blurhash transcoder ([delroth](https://github.com/mastodon/mastodon/pull/20388))
+
 ## [3.5.3] - 2022-05-26
 ### Added
 
