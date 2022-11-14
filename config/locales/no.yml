@@ -549,7 +549,12 @@
         delete_statuses: "%{name} slettet %{target}s innlegg"
         disable: "%{name} frøs %{target}s konto"
         mark_statuses_as_sensitive: "%{name} markerte %{target}s innlegg som sensitive"
+        none: "%{name} sendte en advarsel til %{target}"
+        sensitive: "%{name} markerte %{target}s konto som sensitiv"
         silence: "%{name} begrenset %{target}s konto"
+        suspend: "%{name} suspenderte %{target}s konto"
+      appeal_approved: Klage tatt til følge
+      appeal_pending: Klage behandles
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -695,9 +700,34 @@
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
   disputes:
     strikes:
+      action_taken: Handling utført
+      appeal: Klage
       appeal_approved: Denne advarselens klage ble tatt til følge og er ikke lenger gyldig
+      appeal_rejected: Klagen ble avvist
+      appeal_submitted_at: Klage levert
+      appealed_msg: Din klage har blitt levert. Du får beskjed om den blir godkjent.
+      appeals:
+        submit: Lever klage
+      approve_appeal: Godkjenn klage
+      associated_report: Tilhørende rapport
+      created_at: Datert
+      description_html: Dette er tiltakene mot din konto og advarsler som har blitt sent til deg av %{instance}-personalet.
+      recipient: Adressert til
+      reject_appeal: Avvis klage
+      status: 'Innlegg #%{id}'
+      status_removed: Innlegg allerede fjernet fra systemet
+      title: "%{action} fra %{date}"
       title_actions:
+        delete_statuses: Fjerning av innlegg
+        disable: Frysing av konto
+        mark_statuses_as_sensitive: Merking av innlegg som sensitive
+        none: Advarsel
+        sensitive: Merking av konto som sensitiv
         silence: Begrensning av konto
+        suspend: Suspensjon av konto
+      your_appeal_approved: Din klage har blitt godkjent
+      your_appeal_pending: Du har levert en klage
+      your_appeal_rejected: Din klage har blitt avvist
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:
