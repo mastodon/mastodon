@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+require 'active_support/inflector'
+
+# path to your application root.
+APP_ROOT = File.expand_path('..', __dir__)
+
+HTTP_VERBS = %w(get post put patch delete)
+INDENTS = (2..8).map { |depth| [depth, ' ' * depth ] }.to_h
+
+def indent(string, amount = 2)
+  "#{INDENTS[amount]}#{string}"
+end
+
+def operation_id(line, tags)
+  test_title = line.strip.split("('").last.split("'").first.split(' ')
+  operation_fullname = ActiveSupport::Inflector.classify(
+    "#{tags[1..-1].join('_')}_#{test_title.join('_')}"
+  )
+  "operationId '#{operation_fullname.slice(0).downcase}#{operation_fullname[1..-1]}'"
+end
+
+def patch_lines(line, index, klass_name, tags)
+  return "RSpec.describe #{klass_name}, type: :request do" if index <= 3 && line.start_with?('RSpec.describe')
+
+  return line unless HTTP_VERBS.include?(line.strip.split("('").first)
+
+  [
+    line,
+    indent("tags #{tags.map { |tag| "'#{tag}'" }.join(', ')}", 6),
+    indent(operation_id(line, tags), 6),
+    indent('rswag_bearer_auth', 6),
+    '',
+    indent("include_context 'user token auth'", 6),
+    '',
+  ]
+end
+
+FileUtils.chdir APP_ROOT do
+  controllers = ARGV.size > 0 ? ARGV : Dir['app/controllers/api/*/**/*_controller.rb']
+  controllers.map do |path|
+    klass_name = File.read(path).match(/^class ([\w:]+)/)[0]&.split('class ').last
+    tags = klass_name.split('Controller').first.split('::')
+    route_path = path.split('app/controllers/').last.split('_controller.rb').first
+    spec_path = "spec/requests/#{route_path}_spec.rb"
+    File.delete(spec_path) if File.exist?(spec_path)
+    puts `bundle exec rails g rspec:swagger #{klass_name}`
+    next unless File.exist?(spec_path)
+
+    spec_source = File.read(spec_path)
+    lines = spec_source.split("\n").each_with_index.flat_map do |line, index|
+      patch_lines(line, index, klass_name, tags)
+    end
+
+    cleaned = ''
+    start_index = 0
+    lines.each_with_index do |line, index|
+      next if index < start_index
+
+      next unless line.include?('after do |example|')
+
+      indent_depth = line.size - line.strip.size
+      stripped_lines = lines[start_index..(index - 1)] + [indent('rswag_add_examples!', indent_depth)]
+      cleaned = [cleaned, stripped_lines].join("\n")
+      start_index = lines[index..-1].find_index { |line| line.include?('end') } + index + 1
+    end
+    cleaned = ([cleaned] + lines[start_index..-1] + ['']).join("\n")
+
+    spec_file = File.open(spec_path, 'w')
+    spec_file.write(cleaned)
+    spec_file.close
+    puts `rubocop -A #{spec_path} | tail -n 1`
+  end
+end
