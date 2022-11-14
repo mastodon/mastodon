@@ -30,11 +30,11 @@ const emojifyTextNode = (node, customEmojis) => {
     let match, i = 0;
 
     if (customEmojis === null) {
-      while (i < str.length && !(match = trie.search(str.slice(i)))) {
+      while (i < str.length && (useSystemEmojiFont || !(match = trie.search(str.slice(i))))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     } else {
-      while (i < str.length && str[i] !== ':' && !(match = trie.search(str.slice(i)))) {
+      while (i < str.length && str[i] !== ':' && (useSystemEmojiFont || !(match = trie.search(str.slice(i))))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
       }
     }
