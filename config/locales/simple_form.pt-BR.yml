@@ -34,29 +34,29 @@ pt-BR:
         avatar: PNG, GIF or JPG. Arquivos de até %{size}. Serão redimensionados para %{dimensions}px
         bot: Essa conta executa principalmente ações automatizadas e pode não ser monitorada
         context: Um ou mais contextos onde o filtro deve atuar
-        current_password: Para fins de segurança, por favor, digite a senha da conta atual
-        current_username: Para confirmar, por favor, digite o nome de usuário da conta atual
+        current_password: Para fins de segurança, digite a senha da conta atual
+        current_username: Para confirmar, digite o nome de usuário da conta atual
         digest: Enviado apenas após um longo período de inatividade com um resumo das menções recebidas durante ausência
         discoverable: Permita que a sua conta seja descoberta por estranhos através de recomendações, tendências e outros recursos
         email: Você receberá um e-mail de confirmação
         fields: Você pode ter até 4 itens mostrados em forma de tabela no seu perfil
-        header: PNG, GIF or JPG. Arquivos de até %{size}. Serão redimensionados para %{dimensions}px
+        header: PNG, GIF ou JPG de até %{size}. Serão redimensionados para %{dimensions}px
         inbox_url: Copie o link da página inicial do repetidor que você deseja usar
-        irreversible: Toots filtrados desaparecerão irreversivelmente, mesmo se o filtro for removido depois
+        irreversible: As publicações filtradas desaparecerão irreversivelmente, mesmo se o filtro for removido depois
         locale: O idioma da interface do usuário, e-mails e notificações
         locked: Requer aprovação manual de seguidores
         password: Use pelo menos 8 caracteres
         phrase: Corresponderá independente de maiúsculas ou minúsculas, no texto ou no Aviso de Conteúdo de um toot
         scopes: Quais APIs o aplicativo vai ter permissão de acessar. Se você selecionar uma autorização de alto nível, você não precisa selecionar individualmente os outros.
-        setting_aggregate_reblogs: Não mostra novos boosts para toots que receberam boost recentemente (afeta somente os boosts mais recentes)
+        setting_aggregate_reblogs: Não mostra novos impulsos para publicações já receberam recentemente (afeta somente os impulsos mais recentes)
         setting_always_send_emails: Normalmente, as notificações por e-mail não serão enviadas enquanto você estiver usando ativamente o Mastodon
         setting_default_sensitive: Mídia sensível está oculta por padrão e pode ser revelada com um clique
         setting_display_media_default: Sempre ocultar mídia sensível
         setting_display_media_hide_all: Sempre ocultar todas as mídias
         setting_display_media_show_all: Sempre mostrar mídia sensível
         setting_hide_network: Quem você segue e seus seguidores não serão mostrados no seu perfil
-        setting_noindex: Afeta seu perfil público e as páginas dos seus toots
-        setting_show_application: O aplicativo que você usar para tootar será mostrado na visão detalhada dos seus toots
+        setting_noindex: Afeta seu perfil público e as páginas das suas publicações
+        setting_show_application: O aplicativo que você usar para publicar será exibido na visão detalhada das suas publicações
         setting_use_blurhash: O blur é baseado nas cores da imagem oculta, ofusca a maioria dos detalhes
         setting_use_pending_items: Ocultar atualizações da linha do tempo atrás de um clique ao invés de rolar automaticamente
         username: Seu nome de usuário será único em %{domain}
@@ -77,6 +77,10 @@ pt-BR:
         backups_retention_period: Manter os arquivos de usuário gerados pelo número de dias especificados.
         bootstrap_timeline_accounts: Estas contas serão fixadas no topo das recomendações de novos usuários para seguir.
         closed_registrations_message: Exibido quando as inscrições estiverem fechadas
+        content_cache_retention_period: Postagens de outros servidores serão excluídas após o número de dias especificados, quando definido com um valor positivo. Isso pode ser irreversível.
+        custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
+        mascot: Substitui a ilustração na interface web avançada.
+        media_cache_retention_period: Os arquivos de mídia baixados serão excluídos após o número especificado de dias, quando definido para um valor positivo, e baixados novamente na demanda.
         site_contact_username: Como as pessoas podem chegar até você no Mastodon.
         site_extended_description: Quaisquer informações adicionais que possam ser úteis para os visitantes e seus usuários. Podem ser estruturadas com formato Markdown.
         site_title: Como as pessoas podem se referir ao seu servidor além do nome do domínio.
@@ -102,7 +106,7 @@ pt-BR:
       tag:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
       user:
-        chosen_languages: Apenas toots dos idiomas selecionados serão mostrados nas linhas públicas
+        chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
       webhook:
         events: Selecione eventos para enviar
         url: Aonde os eventos serão enviados
@@ -170,7 +174,7 @@ pt-BR:
         setting_always_send_emails: Sempre enviar notificações por e-mail
         setting_auto_play_gif: Reproduzir GIFs automaticamente
         setting_boost_modal: Solicitar confirmação antes de dar boost
-        setting_crop_images: Cortar imagens no formato 16x9 em toots não expandidos
+        setting_crop_images: Cortar imagens no formato 16x9 em publicações não expandidas
         setting_default_language: Idioma dos toots
         setting_default_privacy: Privacidade dos toots
         setting_default_sensitive: Sempre marcar mídia como sensível
@@ -184,7 +188,7 @@ pt-BR:
         setting_hide_network: Ocultar suas relações
         setting_noindex: Não quero ser indexado por mecanismos de pesquisa
         setting_reduce_motion: Reduzir animações
-        setting_show_application: Mostrar o aplicativo usado para enviar os toots
+        setting_show_application: Mostrar o aplicativo usado para enviar as publicações
         setting_system_font_ui: Usar fonte padrão do sistema
         setting_theme: Tema do site
         setting_trends: Mostrar em alta hoje

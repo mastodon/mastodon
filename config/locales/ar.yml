@@ -53,7 +53,10 @@ ar:
         submit: تعديل عنوان البريد الإلكتروني
         title: تعديل عنوان البريد الإلكتروني الخاص بـ %{username}
       change_role:
+        changed_msg: تم تغيير بنجاح!
         label: تغيير الدور
+        no_role: لا رتب
+        title: تم تغيير الرتب ل %{username}
       confirm: تأكيد
       confirmed: مؤكَّد
       confirming: التأكد
@@ -97,6 +100,7 @@ ar:
         active: نشِط
         all: الكل
         pending: قيد المراجعة
+        silenced: محدود
         suspended: مُجَمَّد
         title: الإشراف
       moderation_notes: ملاحظات الإشراف
@@ -104,6 +108,7 @@ ar:
       most_recent_ip: أحدث عنوان إيبي
       no_account_selected: لم يطرأ أي تغيير على أي حساب بما أنه لم يتم اختيار أي واحد
       no_limits_imposed: مِن دون حدود مشروطة
+      no_role_assigned: "'لم يتم تعيين أدوار`"
       not_subscribed: غير مشترك
       pending: في انتظار المراجعة
       perform_full_suspension: تعليق الحساب
@@ -170,17 +175,21 @@ ar:
         approve_user: الموافقة على المستخدم
         assigned_to_self_report: أسند التقرير
         change_email_user: تغيير عنوان البريد الإلكتروني الخاص بالمستخدم
+        change_role_user: تم تغيير الرتبه للمستخدم
         confirm_user: تأكيد المستخدم
         create_account_warning: إنشاء تحذير
         create_announcement: إنشاء إعلان
+        create_canonical_email_block: إنشاء نطاق للبريد
         create_custom_emoji: إنشاء إيموجي مخصص
         create_domain_allow: إنشاء نطاق المسموح به
         create_domain_block: إنشاء كتلة نطاق
         create_email_domain_block: إنشاء كتلة نطاق بريد إلكتروني
         create_ip_block: إنشاء قاعدة IP جديدة
         create_unavailable_domain: إنشاء نطاق غير متوفر
+        create_user_role: انشاء رتبه
         demote_user: إنزال رتبة المستخدم
         destroy_announcement: احذف الإعلان
+        destroy_canonical_email_block: حذف نطاق للبريد
         destroy_custom_emoji: احذف الإيموجي المخصص
         destroy_domain_allow: حذف النطاق المسموح به
         destroy_domain_block: حذف كتلة النطاق
@@ -221,26 +230,34 @@ ar:
         update_status: تحديث الحالة
         update_user_role: تحديث الدور
       actions:
+        approve_appeal_html: وافق %{name} على استئناف قرار الاعتدال من %{target}
         approve_user_html: قبل %{name} تسجيل %{target}
         assigned_to_self_report_html: قام %{name} بتعيين التقرير %{target} لأنفسهم
         change_email_user_html: غيّر %{name} عنوان البريد الإلكتروني للمستخدم %{target}
+        change_role_user_html: قام %{name} بإنشاء قاعدة للـIP %{target}
         confirm_user_html: "%{name} قد قام بتأكيد عنوان البريد الإلكتروني لـ %{target}"
         create_account_warning_html: قام %{name} بإرسال تحذير إلى %{target}
         create_announcement_html: قام %{name} بإنشاء إعلان جديد %{target}
+        create_canonical_email_block_html: قام %{name} بحظر نطاق البريد الإلكتروني %{target}
         create_custom_emoji_html: "%{name} قام برفع إيموجي جديد %{target}"
         create_domain_allow_html: قام %{name} بإضافة النطاق %{target} إلى القائمة البيضاء
         create_domain_block_html: "%{name} قام بحجب نطاق %{target}"
         create_email_domain_block_html: قام %{name} بحظر نطاق البريد الإلكتروني %{target}
         create_ip_block_html: قام %{name} بإنشاء قاعدة للـIP %{target}
         create_unavailable_domain_html: قام %{name} بتوقيف التوصيل للنطاق %{target}
+        create_user_role_html: "%{name} أنشأ رتبه %{target}"
         demote_user_html: قام %{name} بخفض الرتبة الوظيفية لـ%{target}
         destroy_announcement_html: قام %{name} بحذف الإعلان %{target}
+        destroy_canonical_email_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
+        destroy_custom_emoji_html: قام %{name} بتحديث الإيموجي %{target}
         destroy_domain_allow_html: قام %{name} بمنع الاتحاد مع النطاق %{target}
         destroy_domain_block_html: قام %{name} برفع الحظر عن النطاق %{target}
         destroy_email_domain_block_html: قام %{name} برفع الحظر عن نطاق البريد الإلكتروني %{target}
+        destroy_instance_html: "%{name} قام بحجب نطاق %{target}"
         destroy_ip_block_html: قام %{name} بحذف قاعدة للـIP %{target}
         destroy_status_html: قام %{name} بحذف منشور من %{target}
         destroy_unavailable_domain_html: قام %{name} باستئناف التوصيل للنطاق %{target}
+        destroy_user_role_html: "%{name} أنشأ رتبه %{target}"
         disable_2fa_user_html: قام %{name} بتعطيل المصادقة بخطوتين للمستخدم %{target}
         disable_custom_emoji_html: قام %{name} بتعطيل الإيموجي %{target}
         disable_sign_in_token_auth_user_html: "%{name} تعطيل مصادقة رمز البريد الإلكتروني لـ %{target}"
@@ -250,22 +267,28 @@ ar:
         enable_user_html: قام %{name} بتنشيط تسجيل الدخول للمستخدم %{target}
         memorialize_account_html: قام %{name} بتحويل حساب %{target} إلى صفحة تذكارية
         promote_user_html: قام %{name} بترويج المستخدم %{target}
+        reject_appeal_html: وافق %{name} على استئناف قرار الاعتدال من %{target}
         reject_user_html: رفض %{name} تسجيل %{target}
         remove_avatar_user_html: قام %{name} بإزالة صورة %{target} الرمزية
         reopen_report_html: قام %{name} بإعادة فتح الشكوى %{target}
+        resend_user_html: "%{name} إعادة إرسال البريد الإلكتروني للتأكيد لـ %{target}"
         reset_password_user_html: قام %{name} بإعادة تعيين كلمة مرور المستخدم %{target}
         resolve_report_html: قام %{name} بحل الشكوى %{target}
         sensitive_account_html: قام %{name} بوضع علامة حساس على محتوى %{target}
         silence_account_html: قام %{name} بكتم حساب %{target}
         suspend_account_html: قام %{name} بتعليق حساب %{target}
         unassigned_report_html: قام %{name} بإلغاء تعيين الشكوى %{target}
+        unblock_email_account_html: "%{name} إلغاء حظر %{target} عنوان البريد الإلكتروني"
         unsensitive_account_html: قام %{name} بإزالة علامة حساس على محتوى %{target}
         unsilence_account_html: قام %{name} بإلغاء كتم المستخدم %{target}
         unsuspend_account_html: قام %{name} بإلغاء تعليق حساب %{target}
         update_announcement_html: قام %{name} بتحديث الإعلان %{target}
         update_custom_emoji_html: قام %{name} بتحديث الإيموجي %{target}
         update_domain_block_html: قام %{name} بتحديث كتلة النطاق %{target}
+        update_ip_block_html: قام %{name} بإنشاء قاعدة للـIP %{target}
         update_status_html: قام %{name} بتحديث منشور من %{target}
+        update_user_role_html: "%{name} تغيير رتبه %{target}"
+      deleted_account: احذف الحساب
       empty: لم يتم العثور على سجلات.
       filter_by_action: تصفية بحسب الإجراء
       filter_by_user: تصفية حسب المستخدم
@@ -309,6 +332,7 @@ ar:
       listed: مُدرَج
       new:
         title: إضافة إيموجي خاص جديد
+      no_emoji_selected: لم يطرأ أي تغيير على أي حساب بما أنه لم يتم اختيار أي واحد
       not_permitted: غير مسموح لك بتنفيذ هذا الإجراء
       overwrite: إعادة الكتابة
       shortcode: الترميز المُصَغّر
@@ -326,6 +350,13 @@ ar:
       media_storage: تخزين الوسائط
       new_users: مستخدمون جدد
       opened_reports: تقارير مفتوحة
+      pending_appeals_html:
+        few: "<strong>%{count}</strong> مستخدمين معلقين"
+        many: "<strong>%{count}</strong> مستخدمين معلقين"
+        one: "<strong>%{count}</strong> مستخدمين معلقين"
+        other: "<strong>%{count}</strong> تقارير معلقة"
+        two: "<strong>%{count}</strong> مستخدمين معلقين"
+        zero: "<strong>%{count}</strong> وسماً معلقاً"
       resolved_reports: تقارير تم حلها
       software: البرنامج
       sources: مصادر التسجيل
@@ -578,7 +609,6 @@ ar:
         manage_user_access: إدارة وصول المستخدم
         manage_users: إدارة المستخدمين
         view_dashboard: عرض لوحة التحكم
-        view_devops: DevOps
         view_devops_description: السماح للمستخدمين بالوصول إلى لوحة Sidekiq و pgHero
       title: الأدوار
     rules:
@@ -600,6 +630,7 @@ ar:
       content_retention:
         title: الاحتفاظ بالمحتوى
       discovery:
+        follow_recommendations: اتبع التوصيات
         profile_directory: دليل الصفحات التعريفية
         public_timelines: الخيوط الزمنية العامة
         title: الاستكشاف
@@ -609,6 +640,7 @@ ar:
         disabled: لا أحد
         users: للمستخدمين المتصلين محليا
       registrations:
+        preamble: تحكّم في مَن الذي يمكنه إنشاء حساب على خادمك الخاص.
         title: التسجيلات
       registrations_mode:
         modes:
@@ -646,6 +678,8 @@ ar:
       with_media: تحتوي على وسائط
     strikes:
       actions:
+        delete_statuses: حَذَفَ %{name} رسائل %{target}
+        disable: جَمّدَ %{name} حساب %{target}
         suspend: قام %{name} بتعليق حساب %{target}
       appeal_approved: طُعِن فيه
       appeal_pending: طعن قيد المراجعة
@@ -1196,7 +1230,6 @@ ar:
     browser: المتصفح
     browsers:
       alipay: أليباي
-      blackberry: بلاك بيري
       chrome: كروم
       edge: مايكروسوفت إيدج
       electron: إلكترون
@@ -1210,7 +1243,6 @@ ar:
       phantom_js: فانتوم جي آس
       qq: متصفح كيوكيو
       safari: سفاري
-      uc_browser: متصفح يوسي براوزر
       weibo: وايبو
     current_session: الجلسة الحالية
     description: "%{browser} على %{platform}"
@@ -1219,8 +1251,6 @@ ar:
     platforms:
       adobe_air: أدوبي إيير
       android: أندرويد
-      blackberry: بلاك بيري
-      chrome_os: نظام كروم أواس
       firefox_os: نظام فايرفكس أواس
       ios: نظام آي أواس
       linux: لينكس

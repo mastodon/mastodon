@@ -263,7 +263,7 @@ zh-CN:
         reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
         remove_avatar_user_html: "%{name} 删除了 %{target} 的头像"
         reopen_report_html: "%{name} 重开了举报 %{target}"
-        resend_user_html: "%{name} 给 %{target} 发送了重新确认电子邮件"
+        resend_user_html: "%{name} 给 %{target} 重新发送了确认电子邮件"
         reset_password_user_html: "%{name} 重置了用户 %{target} 的密码"
         resolve_report_html: "%{name} 处理了举报 %{target}"
         sensitive_account_html: "%{name} 将 %{target} 的媒体标记为敏感内容"
@@ -280,7 +280,7 @@ zh-CN:
         update_ip_block_html: "%{name} 修改了对 IP %{target} 的规则"
         update_status_html: "%{name} 刷新了 %{target} 的嘟文"
         update_user_role_html: "%{name} 更改了 %{target} 角色"
-      deleted_account: 删除帐户
+      deleted_account: 账号已注销
       empty: 没有找到日志
       filter_by_action: 根据行为过滤
       filter_by_user: 根据用户过滤
@@ -1007,7 +1007,7 @@ zh-CN:
       appeal: 申诉
       appeal_approved: 此次处罚已申诉成功并不再生效
       appeal_rejected: 此次申诉已被驳回
-      appeal_submitted_at: 申诉已提交
+      appeal_submitted_at: 已提出申诉
       appealed_msg: 你的申诉已经提交。如果申诉通过，你将收到通知。
       appeals:
         submit: 提交申诉
@@ -1227,7 +1227,7 @@ zh-CN:
     carry_mutes_over_text: 这个用户迁移自你隐藏过的 %{acct}
     copy_account_note_text: 这个用户迁移自 %{acct}，你曾为其添加备注：
   navigation:
-    toggle_menu: 切换菜单
+    toggle_menu: 隐藏/显示菜单
   notification_mailer:
     admin:
       report:
@@ -1361,7 +1361,7 @@ zh-CN:
       phantom_js: PhantomJS
       qq: QQ浏览器
       safari: Safari
-      uc_browser: UC浏览器
+      uc_browser: UC 浏览器
       weibo: 新浪微博
     current_session: 当前会话
     description: "%{platform} 上的 %{browser}"
@@ -1371,7 +1371,7 @@ zh-CN:
       adobe_air: Adobe Air
       android: Android
       blackberry: 黑莓
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1465,7 +1465,7 @@ zh-CN:
     keep_media: 保留带媒体附件的嘟文
     keep_media_hint: 不会删除任何包含媒体附件的嘟文
     keep_pinned: 保留置顶嘟文
-    keep_pinned_hint: 没有删除任何你已经固定的嘟文
+    keep_pinned_hint: 不会删除你的任何置顶嘟文
     keep_polls: 保留投票
     keep_polls_hint: 不会删除你的任何投票
     keep_self_bookmark: 保存被你加入书签的嘟文

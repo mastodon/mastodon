@@ -51,13 +51,13 @@ de:
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail verschickt, wenn du gerade auf Mastodon aktiv bist
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung (NSFW) versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
-        setting_display_media_default: Verberge alle Medien, die mit einer Inhaltswarnung (NSFW) versehen sind
-        setting_display_media_hide_all: Alle Medien immer verstecken
+        setting_display_media_default: Alle Medien verbergen, die mit einer Inhaltswarnung (NSFW) versehen sind
+        setting_display_media_hide_all: Alle Medien immer verbergen
         setting_display_media_show_all: Alle Medien immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft alle öffentlichen Daten deines Profils, z. B. deine Beiträge, Account-Empfehlungen und „Über mich“
         setting_show_application: Die Anwendung die du nutzt wird in der detaillierten Ansicht deiner Beiträge angezeigt
-        setting_use_blurhash: Die Farbverläufe basieren auf den Farben der versteckten Medien, aber verstecken jegliche Details
+        setting_use_blurhash: Die Farbverläufe basieren auf den Farben der verborgenen Medien, aber verstecken jegliche Details
         setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken, anstatt automatisch zu scrollen
         username: Dein Benutzername wird auf %{domain} einzigartig sein
         whole_word: Wenn das Wort oder die Formulierung nur aus Buchstaben oder Zahlen besteht, tritt der Filter nur dann in Kraft, wenn er exakt dieser Zeichenfolge entspricht
@@ -78,22 +78,22 @@ de:
         bootstrap_timeline_accounts: Diese Konten werden bei den Folge-Empfehlungen für neue Nutzerinnen und Nutzer oben angeheftet.
         closed_registrations_message: Wird angezeigt, wenn Anmeldungen geschlossen sind
         content_cache_retention_period: Beiträge von anderen Servern werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht. Dies kann eventuell nicht rückgängig gemacht werden.
-        custom_css: Sie können benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
+        custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
         mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
         media_cache_retention_period: Heruntergeladene Mediendateien werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht und bei Bedarf erneut heruntergeladen.
         profile_directory: Das Profilverzeichnis listet alle Benutzer auf, die sich für die Auffindbarkeit entschieden haben.
-        require_invite_text: Wenn Anmeldungen eine manuelle Genehmigung erfordern, machen Sie die Texteingabe „Warum möchten Sie beitreten?” obligatorisch und nicht optional.
-        site_contact_email: Wie man Sie bei rechtlichen oder unterstützenden Fragen erreichen kann.
-        site_contact_username: Wie man Sie auf Mastodon erreichen kann.
+        require_invite_text: Wenn Registrierungen eine manuelle Genehmigung erfordern, dann werden Nutzer einen Grund für ihre Registrierung angeben müssen
+        site_contact_email: Wie man dich oder dein Team bei rechtlichen oder unterstützenden Fragen erreichen kann.
+        site_contact_username: Wie man dich oder dein Team auf Mastodon erreichen kann.
         site_extended_description: Alle zusätzlichen Informationen, die für Besucher und Nutzer nützlich sein könnten. Kann mit der Markdown-Syntax strukturiert werden.
-        site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung Ihres Servers. Wer betreibt ihn, für wen ist er bestimmt?
-        site_terms: Verwenden Sie Ihre eigene Datenschutzrichtlinie oder lassen Sie sie leer, um die Standardeinstellung zu verwenden. Kann mit Markdown-Syntax strukturiert werden.
-        site_title: Wie Personen neben dem Domainnamen auf Ihren Server verweisen können.
-        theme: Design, das abgemeldete und neue Benutzer*innen.
+        site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung des Servers. Wer betreibt ihn, für wen ist er bestimmt?
+        site_terms: Verwende eine eigene Datenschutzrichtlinie oder lasse das Feld leer, um die Standardeinstellung zu verwenden. Kann mit Markdown-Syntax strukturiert werden.
+        site_title: Wie Personen neben dem Domainnamen auf deinen Server verweisen können.
+        theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
         timeline_preview: Ausgeloggte Besucherinnen und Besucher können die neuesten öffentlichen Beiträge auf dem Server ansehen.
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
-        trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf Ihrem Server an Bedeutung gewinnen.
+        trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
       form_challenge:
         current_password: Du betrittst einen sicheren Bereich
       imports:
@@ -180,7 +180,7 @@ de:
         inbox_url: Inbox-URL des Relais
         irreversible: Endgültig, nicht nur temporär ausblenden
         locale: Sprache der Benutzeroberfläche
-        locked: Follower müssen zugelassen werden
+        locked: Geschütztes Profil
         max_uses: Maximale Verwendungen
         new_password: Neues Passwort
         note: Über mich
@@ -197,7 +197,7 @@ de:
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_sensitive: Eigene Medien immer mit einer Inhaltswarnung (NSFW) versehen
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
-        setting_disable_swiping: Deaktiviere Wischgesten
+        setting_disable_swiping: Wischgesten deaktivieren
         setting_display_media: Medien-Anzeige
         setting_display_media_default: Standard
         setting_display_media_hide_all: Alle Medien verstecken
@@ -211,7 +211,7 @@ de:
         setting_theme: Design
         setting_trends: Heutige Trends anzeigen
         setting_unfollow_modal: Bestätigungsdialog anzeigen, bevor jemandem entfolgt wird
-        setting_use_blurhash: Farbverlauf für versteckte Medien anzeigen
+        setting_use_blurhash: Farbverlauf für verborgene Medien anzeigen
         setting_use_pending_items: Langsamer Modus
         severity: Schweregrad
         sign_in_token_attempt: Sicherheitscode

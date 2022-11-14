@@ -27,11 +27,17 @@ af:
       back_to_limited: Beperk
       moderation:
         limited: Beperk
+    roles:
+      categories:
+        devops: DevOps
+      privileges:
+        view_devops: DevOps
     settings:
       about:
         title: Aangaande
     statuses:
       favourites: Gunstelinge
+      in_reply_to: Reaksie op
     strikes:
       actions:
         silence: "%{name} het %{target} se rekening beperk"
@@ -73,7 +79,7 @@ af:
       reject_appeal: Verwerp appêl
   errors:
     '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
+    '403': Jy het nie toestemming om hierdie bladsy te besigtig nie.
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
@@ -86,8 +92,13 @@ af:
   imports:
     types:
       bookmarks: Boekmerke
+  login_activities:
+    description_html: Indien jy onbekende aktiwiteite gewaar, oorweeg dit om jou wagwoord te verander en twee-faktor verifikasie te aktiveer.
   navigation:
     toggle_menu: Skakel-kieslys
+  notification_mailer:
+    mention:
+      action: Reageer
   number:
     human:
       decimal_units:
@@ -103,11 +114,20 @@ af:
     descriptions:
       account: Publieke plasings vanaf @%{acct}
       tag: 'Publieke plasings met die #%{hashtag} etiket'
+  sessions:
+    browsers:
+      blackberry: BlackBerry
+      uc_browser: UC Browser
+    platforms:
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
   settings:
     edit_profile: Redigeer profiel
     preferences: Voorkeure
   statuses:
     content_warning: 'Inhoud waarskuwing: %{warning}'
+    errors:
+      in_reply_not_found: Die plasing waarop jy probeer reageer blyk nie te bestaan nie.
   statuses_cleanup:
     ignore_favs: Ignoreer gunstelinge
   strikes:

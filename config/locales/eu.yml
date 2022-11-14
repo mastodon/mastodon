@@ -207,6 +207,7 @@ eu:
         reject_user: Baztertu erabiltzailea
         remove_avatar_user: Kendu abatarra
         reopen_report: Berrireki txostena
+        resend_user: Birbidali berrespen posta
         reset_password_user: Berrezarri pasahitza
         resolve_report: Konpondu txostena
         sensitive_account: Markatu zure kontuko multimedia hunkigarri bezala
@@ -265,6 +266,7 @@ eu:
         reject_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen izen-ematea baztertu du"
         remove_avatar_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen abatarra kendu du"
         reopen_report_html: "%{name} erabiltzaileak %{target} txostena berrireki du"
+        resend_user_html: "%{name} kontuak berrespen eposta bidali du %{target} kontuarentzat"
         reset_password_user_html: "%{name} erabiltzaileak %{target} erabiltzailearen pasahitza berrezarri du"
         resolve_report_html: "%{name} erabiltzaileak %{target} txostena konpondu du"
         sensitive_account_html: "%{name} erabiltzaileak %{target} erabiltzailearen multimedia hunkigarri bezala markatu du"
@@ -281,6 +283,7 @@ eu:
         update_ip_block_html: "%{name} erabiltzaileak %{target} IParen araua aldatu du"
         update_status_html: "%{name} erabiltzaileak %{target} erabiltzailearen bidalketa eguneratu du"
         update_user_role_html: "%{name} erabiltzaileak %{target} rola aldatu du"
+      deleted_account: ezabatu kontua
       empty: Ez da egunkaririk aurkitu.
       filter_by_action: Iragazi ekintzen arabera
       filter_by_user: Iragazi erabiltzaileen arabera
@@ -605,7 +608,7 @@ eu:
         other: "%{count} erabiltzaile"
       categories:
         administration: Administrazioa
-        devops: Devops
+        devops: DevOps
         invites: Gonbidapenak
         moderation: Moderazioa
         special: Berezia
@@ -656,7 +659,7 @@ eu:
         view_audit_log_description: Baimendu erabiltzaileek zerbitzariko administrazio-ekintzen historia ikustea
         view_dashboard: Ikusi aginte-panela
         view_dashboard_description: Baimendu erabiltzaileek aginte-panela eta hainbat estatistika ikustea
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Baimendu erabiltzaileek Sidekiq eta pgHero aginte-paneletara sarbidea izatea
       title: Rolak
     rules:
@@ -1370,7 +1373,7 @@ eu:
     browser: Nabigatzailea
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,7 +1387,7 @@ eu:
       phantom_js: PhantomJS
       qq: QQ nabigatzailea
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC nabigatzailea
       weibo: Weibo
     current_session: Uneko saioa
     description: "%{browser} - %{platform}"
@@ -1393,7 +1396,7 @@ eu:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS

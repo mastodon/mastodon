@@ -12,10 +12,10 @@
       admin_account_action:
         include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
         send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
-        text_html: Valgfritt. Du kan bruke tut syntaks. Du kan <a href="%{path}">legge til advarsels-forhåndsinnstillinger</a> for å spare tid
+        text_html: Valgfritt. Du kan bruke innlegg-syntaks. Du kan <a href="%{path}">legge til advarsels-forhåndsinnstillinger</a> for å spare tid
         type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
         types:
-          disable: Forhindre brukeren å bruke kontoen sin, men ikke slett eller skjule innholdet deres.
+          disable: Forhindre brukeren fra å bruke kontoen sin, men ikke slett eller skjul innholdet deres.
           none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
           sensitive: Tving alle denne brukerens medievedlegg til å bli markert som følsom.
           silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
@@ -60,6 +60,7 @@
       domain_allow:
         domain: Dette domenet vil være i stand til å hente data fra denne serveren og dets innkommende data vil bli prosessert og lagret
       email_domain_block:
+        domain: Dette kan være domenenavnet som vises i e-postadressen eller MX-oppføringen den bruker. De vil bli sjekket ved oppretting av konto.
         with_dns_records: Et forsøk på å løse det gitte domenets DNS-poster vil bli gjort, og resultatene vil også bli svartelistet
       form_challenge:
         current_password: Du går inn i et sikkert område
@@ -104,7 +105,7 @@
           disable: Deaktiver pålogging
           none: Ikke gjør noe
           sensitive: Sensitiv
-          silence: Stilne
+          silence: Begrens
           suspend: Suspender og ugjenkallelig slett brukerdata
         warning_preset_id: Bruk en advarsels-forhåndsinnstilling
       announcement:

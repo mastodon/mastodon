@@ -180,6 +180,7 @@ cs:
         confirm_user: Potvrdit uživatele
         create_account_warning: Vytvořit varování
         create_announcement: Nové oznámení
+        create_canonical_email_block: Zablokovat email
         create_custom_emoji: Vytvořit vlastní emoji
         create_domain_allow: Vytvořit povolení domény
         create_domain_block: Vytvořit blokaci domény
@@ -189,6 +190,7 @@ cs:
         create_user_role: Vytvořit roli
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
+        destroy_canonical_email_block: Odblokovat email
         destroy_custom_emoji: Odstranit vlastní emoji
         destroy_domain_allow: Odstranit povolení domény
         destroy_domain_block: Odstranit blokaci domény
@@ -632,7 +634,7 @@ cs:
         other: "%{count} uživatelů"
       categories:
         administration: Administrace
-        devops: Devops
+        devops: DevOps
         invites: Pozvánky
         moderation: Moderování
         special: Speciální
@@ -685,7 +687,7 @@ cs:
         view_audit_log_description: Umožňuje uživatelům vidět historii administrativních akcí na serveru
         view_dashboard: Zobrazit ovládací panel
         view_dashboard_description: Umožňuje uživatelům přístup k ovládacímu panelu a různým metrikám
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Umožňuje uživatelům přístup k ovládacím panelům Sidekiq a pgHero
       title: Role
     rules:
@@ -1155,6 +1157,11 @@ cs:
         many: "%{count} příspěvků"
         one: "%{count} příspěvek"
         other: "%{count} příspěvků"
+      statuses_long:
+        few: "%{count} skryté příspěvky"
+        many: "%{count} skrytých příspěvků"
+        one: "%{count} skrytý příspěvek"
+        other: "%{count} skrytých příspěvků"
       title: Filtry
     new:
       save: Uložit nový filtr
@@ -1170,6 +1177,16 @@ cs:
     trending_now: Právě populární
   generic:
     all: Všechny
+    all_items_on_page_selected_html:
+      few: "<strong>%{count}</strong> položky na této stránce jsou vybrány."
+      many: "<strong>%{count}</strong> položek na této stránce je vybráno."
+      one: "<strong>%{count}</strong> položka na této stránce vybrána."
+      other: Všech <strong>%{count}</strong> položek na této stránce vybráno.
+    all_matching_items_selected_html:
+      few: "<strong>%{count}</strong> položky odpovídající vašemu hledání jsou vybrány."
+      many: "<strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno."
+      one: "<strong>%{count}</strong> položka odpovídající vašemu hledání je vybrána."
+      other: Všech <strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno.
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
     delete: Smazat
@@ -1422,7 +1439,7 @@ cs:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na systému %{platform}"
@@ -1431,8 +1448,8 @@ cs:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
-      chrome_os: Chrome OS
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
