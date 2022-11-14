@@ -9,7 +9,7 @@ data:
   DB_HOST: {{ template "mastodon.postgresql.fullname" . }}
   DB_PORT: "5432"
   {{- else }}
-  DB_HOST: {{ .Values.postgresql.postgresqlHostname }}
+  DB_HOST: {{ .Values.postgresql.postgresqlHostname }
   DB_PORT: {{ .Values.postgresql.postgresqlPort | default "5432" | quote }}
   {{- end }}
   DB_NAME: {{ .Values.postgresql.auth.database }}
