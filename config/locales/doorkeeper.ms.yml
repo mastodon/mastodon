@@ -1,1 +1,28 @@
 ms:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Nama aplikasi
+  doorkeeper:
+    applications:
+      buttons:
+        cancel: Batal
+        edit: Sunting
+        submit: Hantar
+      confirmations:
+        destroy: Anda pasti?
+      index:
+        delete: Padam
+        name: Nama
+        show: Paparkan
+    authorized_applications:
+      index:
+        superapp: Dalaman
+    grouped_scopes:
+      title:
+        accounts: Akaun
+        all: Semua
+        conversations: Perbualan
+        notifications: Pemberitahuan
+    scopes:
+      "admin:read": baca semua data pada pelayan
