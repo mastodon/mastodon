@@ -103,10 +103,10 @@ de:
       not_subscribed: Nicht abonniert
       pending: Überprüfung ausstehend
       perform_full_suspension: Sperren
-      previous_strikes: Vorherige Strikes
+      previous_strikes: Vorherige Verstöße
       previous_strikes_description_html:
-        one: Dieses Konto hat <strong>einen</strong> Strike.
-        other: Dieses Konto hat <strong>%{count}</strong> Strikes.
+        one: Dieses Konto hat <strong>einen</strong> Verstoß.
+        other: Dieses Konto hat <strong>%{count}</strong> Verstöße.
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -142,7 +142,7 @@ de:
       silence: Stummschalten
       silenced: Stummgeschaltet
       statuses: Beiträge
-      strikes: Vorherige Strikes
+      strikes: Vorherige Verstöße
       subscribe: Abonnieren
       suspend: Sperren
       suspended: Gesperrt
@@ -154,7 +154,7 @@ de:
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_sensitized: Inhaltswarnung aufheben
       undo_silenced: Stummschaltung aufheben
-      undo_suspension: Verbannung aufheben
+      undo_suspension: Sperre aufheben
       unsilenced_msg: Konto von %{username} erfolgreich freigegeben
       unsubscribe: Abbestellen
       unsuspended_msg: Kontosperre von %{username} erfolgreich aufgehoben
@@ -393,7 +393,7 @@ de:
       obfuscate: Domainname verschleiern
       obfuscate_hint: Den Domainnamen in der Liste teilweise verschleiern, wenn die Liste der Domänenbeschränkungen aktiviert ist
       private_comment: Privater Kommentar
-      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator_innen.
+      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator*innen.
       public_comment: Öffentlicher Kommentar
       public_comment_hint: Kommentar zu dieser Domain-Beschränkung für die allgemeine Öffentlichkeit, wenn das Veröffentlichen der Blockliste aktiviert ist.
       reject_media: Mediendateien ablehnen
@@ -581,7 +581,7 @@ de:
         delete: Löschen
         placeholder: Bitte beschreibe, welche Maßnahmen ergriffen wurden oder andere damit verbundene Aktualisierungen …
         title: Notizen
-      notes_description_html: Zeige und hinterlasse Notizen an andere Moderator_innen und dein zukünftiges Ich
+      notes_description_html: Notizen an andere Moderator*innen und dein zukünftiges Ich anzeigen und hinterlassen
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
@@ -628,7 +628,7 @@ de:
         invite_users_description: Erlaubt Benutzer*innen, neue Leute zum Server einzuladen
         manage_announcements: Ankündigungen verwalten
         manage_announcements_description: Erlaubt Benutzer*innen, Ankündigungen auf dem Server zu verwalten
-        manage_appeals: Anträge verwalten
+        manage_appeals: Einsprüche verwalten
         manage_appeals_description: Erlaubt es Benutzer*innen, Entscheidungen der Moderator*innen zu widersprechen
         manage_blocks: Geblocktes verwalten
         manage_blocks_description: Erlaubt Benutzer*innen, E-Mail-Provider und IP-Adressen zu blockieren
@@ -851,12 +851,12 @@ de:
   admin_mailer:
     new_appeal:
       actions:
-        delete_statuses: deren Beiträge zu löschen
-        disable: um deren Konto einzufrieren
-        mark_statuses_as_sensitive: um die Beiträge des Profils mit einer Inhaltswarnung zu versehen
+        delete_statuses: das Löschen der Beiträge
+        disable: das Einfrieren der Konten
+        mark_statuses_as_sensitive: das Markieren der Beiträge mit einer Inhaltswarnung
         none: eine Warnung
-        sensitive: um das Profil mit einer Inhaltswarnung zu versehen
-        silence: um deren Konto zu beschränken
+        sensitive: das Markieren des Kontos mit einer Inhaltswarnung
+        silence: das Beschränken des Kontos
         suspend: um deren Konto zu sperren
       body: "%{target} hat etwas gegen eine Moderationsentscheidung von %{action_taken_by} vom %{date}, die %{type} war. Die Person schrieb:"
       next_steps: Du kannst dem Einspruch zustimmen und die Moderationsentscheidung rückgängig machen oder ignorieren.
@@ -942,7 +942,7 @@ de:
     resend_confirmation: Bestätigungs-Mail erneut versenden
     reset_password: Passwort zurücksetzen
     rules:
-      preamble: Diese werden von den Moderatoren von %{domain} erzwungen.
+      preamble: Diese werden von den %{domain}-Moderator*innen festgelegt und erzwungen.
       title: Einige Grundregeln.
     security: Sicherheit
     set_new_password: Neues Passwort setzen
@@ -959,7 +959,7 @@ de:
       functional: Dein Konto ist voll funktionsfähig.
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
-      view_strikes: Zeige frühere Streiks gegen dein Konto
+      view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell gesendet, versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
@@ -1022,10 +1022,10 @@ de:
     strikes:
       action_taken: Maßnahme ergriffen
       appeal: Einspruch
-      appeal_approved: Dieser Strike wurde erfolgreich beeinsprucht und ist nicht mehr gültig
+      appeal_approved: Dieser Verstoß wurde erfolgreich beeinsprucht und ist nicht mehr gültig
       appeal_rejected: Der Einspruch wurde abgelehnt
-      appeal_submitted_at: Einspruch eingelegt
-      appealed_msg: Dein Einspruch wurde abgesendet. Wenn er angenommen wird, wirst du benachrichtigt.
+      appeal_submitted_at: Einspruch eingereicht
+      appealed_msg: Dein Einspruch wurde übermittelt. Wenn er angenommen wird, wirst du benachrichtigt.
       appeals:
         submit: Einspruch erheben
       approve_appeal: Einspruch annehmen
@@ -1038,7 +1038,7 @@ de:
       status_removed: Beitrag bereits vom System entfernt
       title: "%{action} vom %{date}"
       title_actions:
-        delete_statuses: Post-Entfernung
+        delete_statuses: Beitragsentfernung
         disable: Einfrieren des Kontos
         mark_statuses_as_sensitive: Beiträge mit einer Inhaltswarnung versehen
         none: Warnung
@@ -1189,7 +1189,7 @@ de:
     max_uses:
       one: 1 mal verwendet
       other: "%{count} mal verwendet"
-    max_uses_prompt: Kein Limit
+    max_uses_prompt: Keine Einschränkung
     prompt: Generiere und teile Links, um Zugang zu diesem Server zu erteilen
     table:
       expires_at: Läuft ab
@@ -1429,7 +1429,7 @@ de:
     profile: Profil
     relationships: Folge ich und Follower
     statuses_cleanup: Automatische Löschung
-    strikes: Strikes
+    strikes: Moderieren von Verstößen
     two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
     webauthn_authentication: Sicherheitsschlüssel
   statuses:
@@ -1523,7 +1523,7 @@ de:
     sensitive_content: Inhaltswarnung
   strikes:
     errors:
-      too_late: Es ist zu spät, um gegen diese Verwarnung Einspruch zu erheben
+      too_late: Es ist zu spät, um gegen diesen Verstoß Einspruch zu erheben
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   themes:
@@ -1553,11 +1553,11 @@ de:
   user_mailer:
     appeal_approved:
       action: Gehe zu deinem Konto
-      explanation: Der Einspruch gegen dem Strike vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in gutem Zustand.
+      explanation: Der Einspruch gegen dem Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in gutem Zustand.
       subject: Dein Einspruch vom %{date} wurde angenommen
       title: Einspruch angenommen
     appeal_rejected:
-      explanation: Der Einspruch gegen dem Strike vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde abgelehnt.
+      explanation: Der Einspruch gegen dem Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde abgelehnt.
       subject: Dein Einspruch vom %{date} wurde abgelehnt
       title: Einspruch abgelehnt
     backup_ready:
@@ -1576,11 +1576,11 @@ de:
       appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.
       categories:
         spam: Spam
-        violation: Inhalt verstößt gegen die folgenden Community-Richtlinien
+        violation: Inhalt verstößt gegen die folgenden Gemeinschaftsrichtlinien
       explanation:
-        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Communityrichtlinien erkannt und von den Moderator_innen von %{instance} entfernt.
+        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Gemeinschaftsrichtlinien erkannt und von den Moderator*innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst ein Backup deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
-        mark_statuses_as_sensitive: Ein oder mehrere Deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung (NSFW) versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
+        mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden, und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
