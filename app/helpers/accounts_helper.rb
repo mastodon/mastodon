@@ -20,54 +20,10 @@ module AccountsHelper
   end
 
   def account_action_button(account)
-    if user_signed_in?
-      if account.id == current_user.account_id
-        link_to settings_profile_url, class: 'button logo-button' do
-          safe_join([logo_as_symbol, t('settings.edit_profile')])
-        end
-      elsif current_account.following?(account) || current_account.requested?(account)
-        link_to account_unfollow_path(account), class: 'button logo-button button--destructive', data: { method: :post } do
-          safe_join([logo_as_symbol, t('accounts.unfollow')])
-        end
-      elsif !(account.memorial? || account.moved?)
-        link_to account_follow_path(account), class: "button logo-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post } do
-          safe_join([logo_as_symbol, t('accounts.follow')])
-        end
-      end
-    elsif !(account.memorial? || account.moved?)
-      link_to account_remote_follow_path(account), class: 'button logo-button modal-button', target: '_new' do
-        safe_join([logo_as_symbol, t('accounts.follow')])
-      end
-    end
-  end
+    return if account.memorial? || account.moved?
 
-  def minimal_account_action_button(account)
-    if user_signed_in?
-      return if account.id == current_user.account_id
-
-      if current_account.following?(account) || current_account.requested?(account)
-        link_to account_unfollow_path(account), class: 'icon-button active', data: { method: :post }, title: t('accounts.unfollow') do
-          fa_icon('user-times fw')
-        end
-      elsif !(account.memorial? || account.moved?)
-        link_to account_follow_path(account), class: "icon-button#{account.blocking?(current_account) ? ' disabled' : ''}", data: { method: :post }, title: t('accounts.follow') do
-          fa_icon('user-plus fw')
-        end
-      end
-    elsif !(account.memorial? || account.moved?)
-      link_to account_remote_follow_path(account), class: 'icon-button modal-button', target: '_new', title: t('accounts.follow') do
-        fa_icon('user-plus fw')
-      end
-    end
-  end
-
-  def account_badge(account)
-    if account.bot?
-      content_tag(:div, content_tag(:div, t('accounts.roles.bot'), class: 'account-role bot'), class: 'roles')
-    elsif account.group?
-      content_tag(:div, content_tag(:div, t('accounts.roles.group'), class: 'account-role group'), class: 'roles')
-    elsif account.user_role&.highlighted?
-      content_tag(:div, content_tag(:div, account.user_role.name, class: "account-role user-role-#{account.user_role.id}"), class: 'roles')
+    link_to ActivityPub::TagManager.instance.url_for(account), class: 'button logo-button', target: '_new' do
+      safe_join([logo_as_symbol, t('accounts.follow')])
     end
   end
 

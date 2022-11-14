@@ -12,55 +12,8 @@ describe 'statuses/show.html.haml', without_verify_partial_doubles: true do
     allow(view).to receive(:local_time)
     allow(view).to receive(:local_time_ago)
     allow(view).to receive(:current_account).and_return(nil)
+    allow(view).to receive(:single_user_mode?).and_return(false)
     assign(:instance_presenter, InstancePresenter.new)
-  end
-
-  it 'has valid author h-card and basic data for a detailed_status' do
-    alice  = Fabricate(:account, username: 'alice', display_name: 'Alice')
-    bob    = Fabricate(:account, username: 'bob', display_name: 'Bob')
-    status = Fabricate(:status, account: alice, text: 'Hello World')
-    media  = Fabricate(:media_attachment, account: alice, status: status, type: :video)
-    reply  = Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
-
-    assign(:status, status)
-    assign(:account, alice)
-    assign(:descendant_threads, [])
-
-    render
-
-    mf2 = Microformats.parse(rendered)
-
-    expect(mf2.entry.url.to_s).not_to be_empty
-    expect(mf2.entry.author.name.to_s).to eq alice.display_name
-    expect(mf2.entry.author.url.to_s).not_to be_empty
-  end
-
-  it 'has valid h-cites for p-in-reply-to and p-comment' do
-    alice   = Fabricate(:account, username: 'alice', display_name: 'Alice')
-    bob     = Fabricate(:account, username: 'bob', display_name: 'Bob')
-    carl    = Fabricate(:account, username: 'carl', display_name: 'Carl')
-    status  = Fabricate(:status, account: alice, text: 'Hello World')
-    media   = Fabricate(:media_attachment, account: alice, status: status, type: :video)
-    reply   = Fabricate(:status, account: bob, thread: status, text: 'Hello Alice')
-    comment = Fabricate(:status, account: carl, thread: reply, text: 'Hello Bob')
-
-    assign(:status, reply)
-    assign(:account, alice)
-    assign(:ancestors, reply.ancestors(1, bob))
-    assign(:descendant_threads, [{ statuses: reply.descendants(1) }])
-
-    render
-
-    mf2 = Microformats.parse(rendered)
-
-    expect(mf2.entry.url.to_s).not_to be_empty
-    expect(mf2.entry.comment.url.to_s).not_to be_empty
-    expect(mf2.entry.comment.author.name.to_s).to eq carl.display_name
-    expect(mf2.entry.comment.author.url.to_s).not_to be_empty
-
-    expect(mf2.entry.in_reply_to.url.to_s).not_to be_empty
-    expect(mf2.entry.in_reply_to.author.name.to_s).to eq alice.display_name
-    expect(mf2.entry.in_reply_to.author.url.to_s).not_to be_empty
   end
 
   it 'has valid opengraph tags' do

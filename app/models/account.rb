@@ -62,8 +62,9 @@ class Account < ApplicationRecord
   )
 
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
-  MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:alnum:]\.\-]+[[:alnum:]]+)?)/i
+  MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
   URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
+  USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 
   include Attachmentable
   include AccountAssociations
@@ -84,7 +85,7 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations
-  validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
+  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
@@ -134,6 +135,7 @@ class Account < ApplicationRecord
            :role,
            :locale,
            :shows_application?,
+           :prefers_noindex?,
            to: :user,
            prefix: true,
            allow_nil: true
@@ -188,10 +190,6 @@ class Account < ApplicationRecord
 
   def to_webfinger_s
     "acct:#{local_username_and_domain}"
-  end
-
-  def searchable?
-    !(suspended? || moved?) && (!local? || (approved? && confirmed?))
   end
 
   def possibly_stale?
@@ -258,6 +256,10 @@ class Account < ApplicationRecord
     update!(memorial: true)
   end
 
+  def trendable?
+    boolean_with_default('trendable', Setting.trendable_by_default)
+  end
+
   def sign?
     true
   end
@@ -294,7 +296,7 @@ class Account < ApplicationRecord
 
   def fields
     (self[:fields] || []).map do |f|
-      Field.new(self, f)
+      Account::Field.new(self, f)
     rescue
       nil
     end.compact
@@ -362,6 +364,10 @@ class Account < ApplicationRecord
     username
   end
 
+  def to_log_human_identifier
+    acct
+  end
+
   def excluded_from_timeline_account_ids
     Rails.cache.fetch("exclude_account_ids_for:#{id}") { block_relationships.pluck(:target_account_id) + blocked_by_relationships.pluck(:account_id) + mute_relationships.pluck(:target_account_id) }
   end
@@ -396,51 +402,14 @@ class Account < ApplicationRecord
     requires_review? && !requested_review?
   end
 
-  class Field < ActiveModelSerializers::Model
-    attributes :name, :value, :verified_at, :account
-
-    def initialize(account, attributes)
-      @original_field = attributes
-      string_limit = account.local? ? 255 : 2047
-      super(
-        account:     account,
-        name:        attributes['name'].strip[0, string_limit],
-        value:       attributes['value'].strip[0, string_limit],
-        verified_at: attributes['verified_at']&.to_datetime,
-      )
-    end
-
-    def verified?
-      verified_at.present?
-    end
-
-    def value_for_verification
-      @value_for_verification ||= begin
-        if account.local?
-          value
-        else
-          ActionController::Base.helpers.strip_tags(value)
-        end
-      end
-    end
-
-    def verifiable?
-      value_for_verification.present? && value_for_verification.start_with?('http://', 'https://')
-    end
-
-    def mark_verified!
-      self.verified_at = Time.now.utc
-      @original_field['verified_at'] = verified_at
-    end
-
-    def to_h
-      { name: name, value: value, verified_at: verified_at }
-    end
-  end
-
   class << self
     DISALLOWED_TSQUERY_CHARACTERS = /['?\\:‘’]/.freeze
     TEXTSEARCH = "(setweight(to_tsvector('simple', accounts.display_name), 'A') || setweight(to_tsvector('simple', accounts.username), 'B') || setweight(to_tsvector('simple', coalesce(accounts.domain, '')), 'C'))"
+
+    REPUTATION_SCORE_FUNCTION = '(greatest(0, coalesce(s.followers_count, 0)) / (greatest(0, coalesce(s.following_count, 0)) + 1.0))'
+    FOLLOWERS_SCORE_FUNCTION  = 'log(greatest(0, coalesce(s.followers_count, 0)) + 2)'
+    TIME_DISTANCE_FUNCTION    = '(case when s.last_status_at is null then 0 else exp(-1.0 * ((greatest(0, abs(extract(DAY FROM age(s.last_status_at))) - 30.0)^2) / (2.0 * ((-1.0 * 30^2) / (2.0 * ln(0.3)))))) end)'
+    BOOST                     = "((#{REPUTATION_SCORE_FUNCTION} + #{FOLLOWERS_SCORE_FUNCTION} + #{TIME_DISTANCE_FUNCTION}) / 3.0)"
 
     def readonly_attributes
       super - %w(statuses_count following_count followers_count)
@@ -457,9 +426,10 @@ class Account < ApplicationRecord
       sql = <<-SQL.squish
         SELECT
           accounts.*,
-          ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+          #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
         FROM accounts
         LEFT JOIN users ON accounts.id = users.account_id
+        LEFT JOIN account_stats AS s ON accounts.id = s.account_id
         WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
           AND accounts.suspended_at IS NULL
           AND accounts.moved_to_account_id IS NULL
@@ -521,14 +491,15 @@ class Account < ApplicationRecord
           )
           SELECT
             accounts.*,
-            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id)
+          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
           WHERE accounts.id IN (SELECT * FROM first_degree)
             AND to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
             AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
-          GROUP BY accounts.id
+          GROUP BY accounts.id, s.id
           ORDER BY rank DESC
           LIMIT :limit OFFSET :offset
         SQL
@@ -536,15 +507,16 @@ class Account < ApplicationRecord
         <<-SQL.squish
           SELECT
             accounts.*,
-            (count(f.id) + 1) * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
           LEFT JOIN users ON accounts.id = users.account_id
+          LEFT JOIN account_stats AS s ON accounts.id = s.account_id
           WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
             AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
             AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-          GROUP BY accounts.id
+          GROUP BY accounts.id, s.id
           ORDER BY rank DESC
           LIMIT :limit OFFSET :offset
         SQL

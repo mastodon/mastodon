@@ -8,7 +8,7 @@ class FiltersController < ApplicationController
   before_action :set_body_classes
 
   def index
-    @filters = current_account.custom_filters.includes(:keywords).order(:phrase)
+    @filters = current_account.custom_filters.includes(:keywords, :statuses).order(:phrase)
   end
 
   def new

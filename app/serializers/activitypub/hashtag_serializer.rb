@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActivityPub::HashtagSerializer < ActivityPub::Serializer
+  context_extensions :hashtag
+
   include RoutingHelper
 
   attributes :type, :href, :name

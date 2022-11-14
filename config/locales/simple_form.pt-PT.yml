@@ -67,12 +67,33 @@ pt-PT:
         domain: Este pode ser o nome de domínio que aparece no endereço de e-mail ou o registo MX por ele utilizado. Eles serão verificados aquando da inscrição.
         with_dns_records: Será feita uma tentativa de resolver os registos DNS do domínio em questão e os resultados também serão colocados na lista negra
       featured_tag:
-        name: 'Poderás querer usar um destes:'
+        name: 'Aqui estão algumas das hashtags que utilizou recentemente:'
       filters:
         action: Escolha qual a ação a executar quando uma publicação corresponde ao filtro
         actions:
           hide: Ocultar completamente o conteúdo filtrado, comportando-se como se não existisse
           warn: Ocultar o conteúdo filtrado por trás de um aviso mencionando o título do filtro
+      form_admin_settings:
+        backups_retention_period: Manter os arquivos gerados pelos utilizadores por um número específico de dias.
+        bootstrap_timeline_accounts: Estas contas serão destacadas no topo das recomendações aos novos utilizadores.
+        closed_registrations_message: Exibido quando as inscrições estão encerradas
+        content_cache_retention_period: Publicações de outros servidores serão excluídos após o número de dias especificado, quando definido com um valor positivo. Isso pode ser irreversível.
+        custom_css: Pode aplicar estilos personalizados na versão web do Mastodon.
+        mascot: Sobrepõe-se à ilustração na interface web avançada.
+        media_cache_retention_period: Os ficheiros de media descarregados serão excluídos após o número de dias especificado, quando definido com um valor positivo, e descarregados novamente quando solicitados.
+        profile_directory: O diretório de perfis lista todos os utilizadores que optaram por a sua conta ser sugerida a outros.
+        require_invite_text: Quando as incrições exigirem aprovação manual, faça o texto "Porque se quer juntar a nós?" da solicitação de convite, obrigatório ao invés de opcional
+        site_contact_email: Como as pessoas podem entrar em contacto consigo para obter informações legais ou de suporte.
+        site_contact_username: Como as pessoas conseguem chegar até si no Mastodon.
+        site_extended_description: Qualquer informação adicional que possa ser útil para os visitantes e os seus utilizadores. Pode ser estruturada com a sintaxe Markdown.
+        site_short_description: Uma breve descrição para ajudar a identificar de forma única o seu servidor. Quem o está a gerir, para quem é?
+        site_terms: Use a sua própria política de privacidade ou deixe em branco para usar a política padrão. Pode ser estruturada com a sintaxe Markdown.
+        site_title: Como as pessoas podem referir-se ao seu servidor para além do seu nome de domínio.
+        theme: Tema que os visitantes e os novos utilizadores visualizam.
+        thumbnail: Uma imagem de aproximadamente 2:1, exibida ao lado da informação do seu servidor.
+        timeline_preview: Os visitantes sem sessão iniciada poderão consultar as publicações públicas mais recentes disponíveis no servidor.
+        trendable_by_default: Ignorar a revisão manual do conteúdo das tendências. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
+        trends: As tendências mostram quais as publicações, hashtags e notícias estão a ganhar destaque no seu servidor.
       form_challenge:
         current_password: Está a entrar numa área restrita
       imports:
@@ -85,6 +106,7 @@ pt-PT:
         ip: Introduza um endereço IPv4 ou IPv6. Pode bloquear intervalos inteiros usando a sintaxe CIDR. Tenha cuidado para não se bloquear a sí mesmo!
         severities:
           no_access: Bloquear o acesso a todos os recursos
+          sign_up_block: Não serão possíveis novas inscrições
           sign_up_requires_approval: Novas inscrições requererão a sua aprovação
         severity: Escolha o que acontecerá com as solicitações deste IP
       rule:
@@ -206,6 +228,30 @@ pt-PT:
         actions:
           hide: Ocultar por completo
           warn: Ocultar com um aviso
+      form_admin_settings:
+        backups_retention_period: Período de retenção de arquivos de utilizador
+        bootstrap_timeline_accounts: Sempre recomendar essas contas para novos utilizadores
+        closed_registrations_message: Mensagem personalizada quando as inscrições não estão disponíveis
+        content_cache_retention_period: Período de retenção de conteúdo em cache
+        custom_css: CSS Personalizado
+        mascot: Mascote personalizada (legado)
+        media_cache_retention_period: Período de retenção de ficheiros de media em cache
+        profile_directory: Habilitar diretório de perfis
+        registrations_mode: Quem pode inscrever-se
+        require_invite_text: Requerer uma razão para entrar
+        show_domain_blocks: Mostrar domínios bloqueados
+        show_domain_blocks_rationale: Mostrar porque os domínios foram bloqueados
+        site_contact_email: E-mail de contacto
+        site_contact_username: Nome de utilizador do contacto
+        site_extended_description: Descrição estendida
+        site_short_description: Descrição do servidor
+        site_terms: Política de Privacidade
+        site_title: Nome do servidor
+        theme: Tema predefinido
+        thumbnail: Miniatura do servidor
+        timeline_preview: Permitir acesso não autenticado às cronologias públicas
+        trendable_by_default: Permitir tendências sem revisão prévia
+        trends: Habilitar tendências
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
@@ -219,6 +265,7 @@ pt-PT:
         ip: IP
         severities:
           no_access: Bloquear acesso
+          sign_up_block: Bloquear inscrições
           sign_up_requires_approval: Limitar inscrições
         severity: Regra
       notification_emails:
@@ -251,6 +298,7 @@ pt-PT:
         events: Eventos ativados
         url: URL do Endpoint
     'no': Não
+    not_recommended: Não recomendado
     recommended: Recomendado
     required:
       mark: "*"

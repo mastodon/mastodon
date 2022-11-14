@@ -57,7 +57,7 @@ module Mastodon
     option :role
     option :reattach, type: :boolean
     option :force, type: :boolean
-    desc 'create USERNAME', 'Create a new user'
+    desc 'create USERNAME', 'Create a new user account'
     long_desc <<-LONG_DESC
       Create a new user account with a given USERNAME and an
       e-mail address provided with --email.
@@ -126,6 +126,7 @@ module Mastodon
     end
 
     option :role
+    option :remove_role, type: :boolean
     option :email
     option :confirm, type: :boolean
     option :enable, type: :boolean
@@ -133,11 +134,12 @@ module Mastodon
     option :disable_2fa, type: :boolean
     option :approve, type: :boolean
     option :reset_password, type: :boolean
-    desc 'modify USERNAME', 'Modify a user'
+    desc 'modify USERNAME', 'Modify a user account'
     long_desc <<-LONG_DESC
       Modify a user account.
 
-      With the --role option, update the user's role.
+      With the --role option, update the user's role. To remove the user's
+      role, i.e. demote to normal user, use --remove-role.
 
       With the --email option, update the user's e-mail address. With
       the --confirm option, mark the user's e-mail as confirmed.
@@ -171,6 +173,8 @@ module Mastodon
         end
 
         user.role_id = role.id
+      elsif options[:remove_role]
+        user.role_id = nil
       end
 
       password = SecureRandom.hex if options[:reset_password]

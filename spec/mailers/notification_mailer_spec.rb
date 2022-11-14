@@ -101,35 +101,4 @@ RSpec.describe NotificationMailer, type: :mailer do
       expect(mail.body.encoded).to match("bob has requested to follow you")
     end
   end
-
-  describe 'digest' do
-    before do
-      mention = Fabricate(:mention, account: receiver.account, status: foreign_status)
-      Fabricate(:notification, account: receiver.account, activity: mention)
-      sender.follow!(receiver.account)
-    end
-
-    context do
-      let!(:mail) { NotificationMailer.digest(receiver.account, since: 5.days.ago) }
-
-      include_examples 'localized subject', 'notification_mailer.digest.subject', count: 1, name: 'bob'
-
-      it 'renders the headers' do
-        expect(mail.subject).to match('notification since your last')
-        expect(mail.to).to eq([receiver.email])
-      end
-
-      it 'renders the body' do
-        expect(mail.body.encoded).to match('brief summary')
-        expect(mail.body.encoded).to include 'The body of the foreign status'
-        expect(mail.body.encoded).to include sender.username
-      end
-    end
-
-    it 'includes activities since the receiver last signed in' do
-      receiver.update!(last_emailed_at: nil, current_sign_in_at: '2000-03-01T00:00:00Z')
-      mail = NotificationMailer.digest(receiver.account)
-      expect(mail.body.encoded).to include 'Mar 01, 2000, 00:00'
-    end
-  end
 end

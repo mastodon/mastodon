@@ -13,6 +13,8 @@ import { fetchAnnouncements, toggleShowAnnouncements } from 'mastodon/actions/an
 import AnnouncementsContainer from 'mastodon/features/getting_started/containers/announcements_container';
 import classNames from 'classnames';
 import IconWithBadge from 'mastodon/components/icon_with_badge';
+import NotSignedInIndicator from 'mastodon/components/not_signed_in_indicator';
+import { Helmet } from 'react-helmet';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -31,6 +33,10 @@ const mapStateToProps = state => ({
 export default @connect(mapStateToProps)
 @injectIntl
 class HomeTimeline extends React.PureComponent {
+
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
@@ -113,16 +119,17 @@ class HomeTimeline extends React.PureComponent {
   render () {
     const { intl, hasUnread, columnId, multiColumn, hasAnnouncements, unreadAnnouncements, showAnnouncements } = this.props;
     const pinned = !!columnId;
+    const { signedIn } = this.context.identity;
 
     let announcementsButton = null;
 
     if (hasAnnouncements) {
       announcementsButton = (
         <button
+          type='button'
           className={classNames('column-header__button', { 'active': showAnnouncements })}
           title={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
           aria-label={intl.formatMessage(showAnnouncements ? messages.hide_announcements : messages.show_announcements)}
-          aria-pressed={showAnnouncements ? 'true' : 'false'}
           onClick={this.handleToggleAnnouncementsClick}
         >
           <IconWithBadge id='bullhorn' count={unreadAnnouncements} />
@@ -147,14 +154,21 @@ class HomeTimeline extends React.PureComponent {
           <ColumnSettingsContainer />
         </ColumnHeader>
 
-        <StatusListContainer
-          trackScroll={!pinned}
-          scrollKey={`home_timeline-${columnId}`}
-          onLoadMore={this.handleLoadMore}
-          timelineId='home'
-          emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
-          bindToDocument={!multiColumn}
-        />
+        {signedIn ? (
+          <StatusListContainer
+            trackScroll={!pinned}
+            scrollKey={`home_timeline-${columnId}`}
+            onLoadMore={this.handleLoadMore}
+            timelineId='home'
+            emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty! Follow more people to fill it up. {suggestions}' values={{ suggestions: <Link to='/start'><FormattedMessage id='empty_column.home.suggestions' defaultMessage='See some suggestions' /></Link> }} />}
+            bindToDocument={!multiColumn}
+          />
+        ) : <NotSignedInIndicator />}
+
+        <Helmet>
+          <title>{intl.formatMessage(messages.title)}</title>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

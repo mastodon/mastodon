@@ -10,24 +10,33 @@
 #  last_status_at :datetime
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  name           :string
 #
 
 class FeaturedTag < ApplicationRecord
   belongs_to :account, inverse_of: :featured_tags
   belongs_to :tag, inverse_of: :featured_tags, optional: true # Set after validation
 
-  validate :validate_tag_name, on: :create
+  validates :name, presence: true, format: { with: Tag::HASHTAG_NAME_RE }, on: :create
+
+  validate :validate_tag_uniqueness, on: :create
   validate :validate_featured_tags_limit, on: :create
+
+  before_validation :strip_name
 
   before_create :set_tag
   before_create :reset_data
 
-  delegate :display_name, to: :tag
+  scope :by_name, ->(name) { joins(:tag).where(tag: { name: HashtagNormalizer.new.normalize(name) }) }
 
-  attr_writer :name
+  LIMIT = 10
 
-  def name
-    tag_id.present? ? tag.name : @name
+  def sign?
+    true
+  end
+
+  def display_name
+    attributes['name'] || tag.display_name
   end
 
   def increment(timestamp)
@@ -40,8 +49,12 @@ class FeaturedTag < ApplicationRecord
 
   private
 
+  def strip_name
+    self.name = name&.strip&.gsub(/\A#/, '')
+  end
+
   def set_tag
-    self.tag = Tag.find_or_create_by_names(@name)&.first
+    self.tag = Tag.find_or_create_by_names(name)&.first
   end
 
   def reset_data
@@ -50,11 +63,12 @@ class FeaturedTag < ApplicationRecord
   end
 
   def validate_featured_tags_limit
-    errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= 10
+    return unless account.local?
+
+    errors.add(:base, I18n.t('featured_tags.errors.limit')) if account.featured_tags.count >= LIMIT
   end
 
-  def validate_tag_name
-    errors.add(:name, :blank) if @name.blank?
-    errors.add(:name, :invalid) unless @name.match?(/\A(#{Tag::HASHTAG_NAME_RE})\z/i)
+  def validate_tag_uniqueness
+    errors.add(:name, :taken) if FeaturedTag.by_name(name).where(account_id: account_id).exists?
   end
 end

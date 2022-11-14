@@ -29,6 +29,10 @@ pt-BR:
           attributes:
             website:
               invalid: não é uma URL válida
+        import:
+          attributes:
+            data:
+              malformed: está incorreto
         status:
           attributes:
             reblog:
@@ -38,3 +42,14 @@ pt-BR:
             email:
               blocked: usa provedor de e-mail não permitido
               unreachable: parece não existir
+            role_id:
+              elevated: não pode ser maior do que sua função atual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inlcuir permissões que não são seguras para a função base
+              elevated: não pode incluir permissões que a sua função atual não possui
+              own_role: não pode ser alterado com sua função atual
+            position:
+              elevated: não pode ser maior do que sua função atual
+              own_role: não pode ser alterado com sua função atual

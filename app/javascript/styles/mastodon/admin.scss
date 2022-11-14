@@ -31,22 +31,16 @@ $content-width: 840px;
 
     &__toggle {
       display: none;
-      background: lighten($ui-base-color, 8%);
-      height: 48px;
+      background: darken($ui-base-color, 4%);
+      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      align-items: center;
 
       &__logo {
         flex: 1 1 auto;
 
         a {
-          display: inline-block;
+          display: block;
           padding: 15px;
-        }
-
-        svg {
-          fill: $primary-text-color;
-          height: 20px;
-          position: relative;
-          bottom: -2px;
         }
       }
 
@@ -55,15 +49,27 @@ $content-width: 840px;
         color: $darker-text-color;
         text-decoration: none;
         flex: 0 0 auto;
-        font-size: 20px;
-        padding: 15px;
-      }
+        font-size: 18px;
+        padding: 10px;
+        margin: 5px 10px;
+        border-radius: 4px;
 
-      a {
-        &:hover,
-        &:focus,
-        &:active {
-          background: lighten($ui-base-color, 12%);
+        &:focus {
+          background: $ui-base-color;
+        }
+
+        .fa-times {
+          display: none;
+        }
+
+        &.active {
+          .fa-times {
+            display: block;
+          }
+
+          .fa-bars {
+            display: none;
+          }
         }
       }
     }
@@ -79,7 +85,7 @@ $content-width: 840px;
       display: inherit;
       margin: inherit;
       width: inherit;
-      height: 20px;
+      height: 25px;
     }
 
     @media screen and (max-width: $no-columns-breakpoint) {
@@ -188,21 +194,65 @@ $content-width: 840px;
       padding-top: 30px;
     }
 
-    &-heading {
-      display: flex;
-      padding-bottom: 36px;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
-      margin: -15px -15px 40px 0;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
+    &__heading {
+      margin-bottom: 45px;
 
-      & > * {
-        margin-top: 15px;
-        margin-right: 15px;
+      &__row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        margin: -15px -15px 0 0;
+
+        & > * {
+          margin-top: 15px;
+          margin-right: 15px;
+        }
       }
 
-      &-actions {
+      &__tabs {
+        margin-top: 30px;
+        width: 100%;
+
+        & > div {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 5px;
+        }
+
+        a {
+          font-size: 14px;
+          display: inline-flex;
+          align-items: center;
+          padding: 7px 10px;
+          border-radius: 4px;
+          color: $darker-text-color;
+          text-decoration: none;
+          font-weight: 500;
+          gap: 5px;
+          white-space: nowrap;
+
+          &:hover,
+          &:focus,
+          &:active {
+            background: lighten($ui-base-color, 4%);
+          }
+
+          &.selected {
+            font-weight: 700;
+            color: $primary-text-color;
+            background: $ui-highlight-color;
+
+            &:hover,
+            &:focus,
+            &:active {
+              background: lighten($ui-highlight-color, 4%);
+            }
+          }
+        }
+      }
+
+      &__actions {
         display: inline-flex;
 
         & > :not(:first-child) {
@@ -228,11 +278,7 @@ $content-width: 840px;
       color: $secondary-text-color;
       font-size: 24px;
       line-height: 36px;
-      font-weight: 400;
-
-      @media screen and (max-width: $no-columns-breakpoint) {
-        font-weight: 700;
-      }
+      font-weight: 700;
     }
 
     h3 {
@@ -337,6 +383,14 @@ $content-width: 840px;
 
         &.visible {
           display: block;
+          position: fixed;
+          z-index: 10;
+          width: 100%;
+          height: calc(100vh - 56px);
+          left: 0;
+          bottom: 0;
+          overflow-y: auto;
+          background: $ui-base-color;
         }
       }
 
@@ -435,6 +489,11 @@ body,
         display: inline-block;
         margin-right: 5px;
       }
+    }
+
+    & > div {
+      display: flex;
+      gap: 5px;
     }
 
     strong {
@@ -1143,7 +1202,7 @@ a.name-tag,
 
     path:first-child {
       fill: rgba($highlight-text-color, 0.25) !important;
-      fill-opacity: 1 !important;
+      fill-opacity: 100% !important;
     }
 
     path:last-child {
@@ -1699,6 +1758,70 @@ a.sparkline {
       &.negative {
         background: $error-value-color;
       }
+    }
+  }
+}
+
+.history {
+  counter-reset: step 0;
+  font-size: 15px;
+  line-height: 22px;
+
+  li {
+    counter-increment: step 1;
+    padding-left: 2.5rem;
+    padding-bottom: 8px;
+    position: relative;
+    margin-bottom: 8px;
+
+    &::before {
+      position: absolute;
+      content: counter(step);
+      font-size: 0.625rem;
+      font-weight: 500;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(1.375rem + 1px);
+      height: calc(1.375rem + 1px);
+      background: $ui-base-color;
+      border: 1px solid $highlight-text-color;
+      color: $highlight-text-color;
+      border-radius: 8px;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 1px;
+      background: $highlight-text-color;
+      bottom: 0;
+      top: calc(1.875rem + 1px);
+      left: 0.6875rem;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__entry {
+    h5 {
+      font-weight: 500;
+      color: $primary-text-color;
+      line-height: 25px;
+      margin-bottom: 16px;
+    }
+
+    .status {
+      border: 1px solid lighten($ui-base-color, 4%);
+      background: $ui-base-color;
+      border-radius: 4px;
     }
   }
 }

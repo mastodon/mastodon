@@ -111,7 +111,7 @@
   position: relative;
 
   input {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     padding: 7px 9px;
     padding-right: 25px;
@@ -131,6 +131,10 @@
     &:focus,
     &:active {
       outline: 0 !important;
+    }
+
+    &::-webkit-search-cancel-button {
+      display: none;
     }
   }
 }

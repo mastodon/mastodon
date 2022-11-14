@@ -7,7 +7,7 @@ eo:
         options: Elektoj
       user:
         agreement: Servo-interkonsento
-        email: Retadreso
+        email: Retpoŝtadreso
         locale: Lokaĵaro
         password: Pasvorto
       user/account:
@@ -21,12 +21,35 @@ eo:
             username:
               invalid: nur leteroj, ciferoj kaj substrekoj
               reserved: rezervita
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ne estas valida URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ne estas valida URL
+        import:
+          attributes:
+            data:
+              malformed: estas misformita
         status:
           attributes:
             reblog:
-              taken: de statuso jam ekzistas
+              taken: de afiŝo jam ekzistas
         user:
           attributes:
             email:
               blocked: uzas nepermesitan retpoŝtan provizanton
               unreachable: ne ŝajnas ekzisti
+            role_id:
+              elevated: ne povas esti pli altranga ol via aktuala rolo
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inkluzivi permesojn kiuj ne estas sekuraj por la baza rolo
+              elevated: ne povas inkluzivi permesojn kiujn via aktuala rolo ne rajtas
+              own_role: ne eblas esti ŝanĝita per via aktuala rolo
+            position:
+              elevated: ne povas esti pli altranga ol via aktuala rolo
+              own_role: ne eblas esti ŝanĝita per via aktuala rolo

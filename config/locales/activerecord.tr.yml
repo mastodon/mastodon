@@ -29,6 +29,10 @@ tr:
           attributes:
             website:
               invalid: geçerli bir URL değil
+        import:
+          attributes:
+            data:
+              malformed: bozulmuştur
         status:
           attributes:
             reblog:
@@ -45,5 +49,7 @@ tr:
             permissions_as_keys:
               dangerous: temel rol için güvenli olmayan izinleri içerir
               elevated: mevcut rolünüzün sahip olmadığı izinleri içeremez
+              own_role: mevcut rolünüzle değiştirilemez
             position:
               elevated: mevcut rolünüzden yüksek olamaz
+              own_role: mevcut rolünüzle değiştirilemez

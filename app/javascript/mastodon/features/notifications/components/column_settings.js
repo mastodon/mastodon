@@ -21,7 +21,7 @@ export default class ColumnSettings extends React.PureComponent {
     onRequestNotificationPermission: PropTypes.func,
     alertsEnabled: PropTypes.bool,
     browserSupport: PropTypes.bool,
-    browserPermission: PropTypes.bool,
+    browserPermission: PropTypes.string,
   };
 
   onPushChange = (path, checked) => {
@@ -170,7 +170,7 @@ export default class ColumnSettings extends React.PureComponent {
           </div>
         </div>
 
-        {(this.context.identity.permissions & PERMISSION_MANAGE_USERS === PERMISSION_MANAGE_USERS) && (
+        {((this.context.identity.permissions & PERMISSION_MANAGE_USERS) === PERMISSION_MANAGE_USERS) && (
           <div role='group' aria-labelledby='notifications-admin-sign-up'>
             <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.sign_up' defaultMessage='New sign-ups:' /></span>
 
@@ -183,7 +183,7 @@ export default class ColumnSettings extends React.PureComponent {
           </div>
         )}
 
-        {(this.context.identity.permissions & PERMISSION_MANAGE_REPORTS === PERMISSION_MANAGE_REPORTS) && (
+        {((this.context.identity.permissions & PERMISSION_MANAGE_REPORTS) === PERMISSION_MANAGE_REPORTS) && (
           <div role='group' aria-labelledby='notifications-admin-report'>
             <span id='notifications-status' className='column-settings__section'><FormattedMessage id='notifications.column_settings.admin.report' defaultMessage='New reports:' /></span>
 

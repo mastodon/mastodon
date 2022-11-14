@@ -26,7 +26,7 @@ eo:
         ends_at: Laŭvola. La anonco estos aŭtomate maleldonita ĉi tiam
         scheduled_at: Lasi malplena por eldoni la anoncon tuj
         starts_at: Laŭvola. Se via anonco estas ligita al specifa tempo
-        text: Vi povas uzi afiŝo-sintakson. Bonvolu mensemi pri la spaco, kiun la anonco okupos sur la ekrano de la uzanto
+        text: Vi povas uzi la sintakso de afiŝoj. Bonvolu zorgi pri la spaco, kiun la anonco okupos sur la ekrano de la uzanto
       defaults:
         autofollow: Homoj, kiuj registriĝos per la invito aŭtomate sekvos vin
         avatar: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
@@ -39,7 +39,7 @@ eo:
         fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
         inbox_url: Kopiu la URL de la ĉefpaĝo de la ripetilo, kiun vi volas uzi
-        irreversible: La filtritaj mesaĝoj malaperos por eterne, eĉ se la filtrilo estas forigita poste
+        irreversible: La filtritaj mesaĝoj malaperos por eterne, eĉ se la filtrilo poste estas forigita
         locale: La lingvo de la fasado, de retpoŝtaĵoj, kaj de sciigoj
         locked: Vi devos aprobi ĉiun peton de sekvado mane
         password: Uzu almenaŭ 8 signojn
@@ -61,7 +61,7 @@ eo:
       domain_allow:
         domain: Ĉi tiu domajno povos akiri datumon de ĉi tiu servilo kaj envenanta datumo estos prilaborita kaj konservita
       featured_tag:
-        name: 'Vi povus uzi iun el la jenaj:'
+        name: 'Jen kelkaj el la kradvortoj, kiujn vi uzis lastatempe:'
       filters:
         actions:
           warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
@@ -75,7 +75,7 @@ eo:
         comment: Laŭvola. Memoru, kial vi aldonis ĉi tiun regulon.
         severities:
           no_access: Bloki aliron al ĉiuj rimedoj
-          sign_up_requires_approval: Novaj registriĝoj devigos vian aprobon
+          sign_up_requires_approval: Novaj registriĝoj bezonos vian aprobon
         severity: Elektu, kio okazos pri petoj de ĉi tiu IP
       rule:
         text: Priskribu regulon aŭ neceson por uzantoj en ĉi tiu servilo. Provu fari ĝin mallonga kaj simpla
@@ -108,7 +108,7 @@ eo:
           none: Fari nenion
           sensitive: Tikla
           silence: Silentigi
-          suspend: Haltigi kaj nemalfereble forigi kontajn datumojn
+          suspend: Suspendi
         warning_preset_id: Uzi antaŭagorditan averton
       announcement:
         all_day: Ĉiutaga evento
@@ -182,6 +182,8 @@ eo:
         actions:
           hide: Kaŝi komplete
           warn: Kaŝi malantaŭ averto
+      form_admin_settings:
+        registrations_mode: Kiu povas krei konton
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas

@@ -66,8 +66,6 @@ si:
       email_domain_block:
         domain: මෙය විද්‍යුත් තැපැල් ලිපිනයේ හෝ එය භාවිතා කරන MX වාර්තාවේ පෙන්වන ඩොමේන් නාමය විය හැක. ලියාපදිංචි වූ පසු ඒවා පරීක්ෂා කරනු ලැබේ.
         with_dns_records: ලබා දී ඇති වසමේ DNS වාර්තා විසඳීමට උත්සාහ කරන අතර ප්‍රතිඵල ද අවහිර කරනු ලැබේ
-      featured_tag:
-        name: 'ඔබට මේවායින් එකක් භාවිතා කිරීමට අවශ්‍ය විය හැකිය:'
       filters:
         action: පළ කිරීමක් පෙරහනට ගැළපෙන විට සිදු කළ යුතු ක්‍රියාව තෝරන්න
         actions:
@@ -102,7 +100,7 @@ si:
     labels:
       account:
         fields:
-          name: ලේබලය
+          name: නම්පත
           value: අන්තර්ගතය
       account_alias:
         acct: පැරණි ගිණුමේ හැසිරවීම
@@ -115,13 +113,13 @@ si:
         include_statuses: විද්‍යුත් තැපෑලෙහි වාර්තා කරන ලද පළ කිරීම් ඇතුළත් කරන්න
         send_email_notification: විද්‍යුත් තැපෑලෙන් පරිශීලකයාට දැනුම් දෙන්න
         text: අභිරුචි අනතුරු ඇඟවීම
-        type: ක්‍රියාව
+        type: ක්‍රියාමාර්ගය
         types:
           disable: කැටි කරන්න
           none: අනතුරු ඇඟවීමක් යවන්න
           sensitive: පවතී
           silence: සීමාව
-          suspend: අවශ්ය
+          suspend: අත්හිටුවන්න
         warning_preset_id: අනතුරු ඇඟවීමේ පෙරසිටුවක් භාවිතා කරන්න
       announcement:
         all_day: දවස පුරා සිදුවීම
@@ -156,7 +154,7 @@ si:
         new_password: නව මුරපදය
         note: ජෛව
         otp_attempt: ද්වි සාධක කේතය
-        password: මුර පදය
+        password: මුරපදය
         phrase: මූල පදය හෝ වාක්‍ය ඛණ්ඩය
         setting_advanced_layout: උසස් වෙබ් අතුරු මුහුණත සබල කරන්න
         setting_aggregate_reblogs: කණ්ඩායම් කාලරේඛාව වැඩි කරයි
@@ -179,17 +177,17 @@ si:
         setting_reduce_motion: සජීවිකරණවල චලනය අඩු කරන්න
         setting_show_application: පළ කිරීම් යැවීමට භාවිතා කරන යෙදුම හෙළි කරන්න
         setting_system_font_ui: පද්ධතියේ පෙරනිමි අකුරු භාවිතා කරන්න
-        setting_theme: අඩවියේ මාතෘකාව
+        setting_theme: අඩවියේ තේමාව
         setting_trends: අද ප්‍රවණතා පෙන්වන්න
         setting_unfollow_modal: යමෙකු අනුගමනය නොකිරීමට පෙර තහවුරු කිරීමේ සංවාදය පෙන්වන්න
         setting_use_blurhash: සැඟවුණු මාධ්‍ය සඳහා වර්ණවත් අනුක්‍රමික පෙන්වන්න
         setting_use_pending_items: මන්දගාමී මාදිලිය
         severity: බරපතලකම
-        sign_in_token_attempt: ආරක්ෂණ කේතය
+        sign_in_token_attempt: ආරක්‍ෂණ කේතය
         title: ශීර්ෂය
         type: ආයාත වර්ගය
         username: පරිශීලක නාමය
-        username_or_email: පරිශීලක නාමය හෝ වි-තැපෑල
+        username_or_email: පරි. නාමය හෝ වි-තැපෑල
         whole_word: සමස්ත වචනය
       email_domain_block:
         with_dns_records: වසමෙහි MX වාර්තා සහ IP ඇතුළත් කරන්න
@@ -239,7 +237,7 @@ si:
     recommended: නිර්දේශිත
     required:
       mark: "*"
-      text: අවශ්යයි
+      text: අවශ්‍යයි
     title:
       sessions:
         webauthn: පුරනය වීමට ඔබගේ ආරක්ෂක යතුරු වලින් එකක් භාවිතා කරන්න

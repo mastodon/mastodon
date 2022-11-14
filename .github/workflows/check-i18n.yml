@@ -9,6 +9,9 @@ on:
 env:
   RAILS_ENV: test
 
+permissions:
+  contents: read
+
 jobs:
   check-i18n:
     runs-on: ubuntu-latest

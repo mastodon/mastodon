@@ -56,7 +56,7 @@
       - else
         = link_to status.application.name, status.application.website, class: 'detailed-status__application', target: '_blank', rel: 'noopener noreferrer'
       ·
-    = link_to remote_interaction_path(status, type: :reply), class: 'modal-button detailed-status__link' do
+    %span.detailed-status__link
       - if status.in_reply_to_id.nil?
         = fa_icon('reply')
       - else
@@ -65,16 +65,16 @@
       = " "
     ·
     - if status.public_visibility? || status.unlisted_visibility?
-      = link_to remote_interaction_path(status, type: :reblog), class: 'modal-button detailed-status__link' do
+      %span.detailed-status__link
         = fa_icon('retweet')
         %span.detailed-status__reblogs>= friendly_number_to_human status.reblogs_count
         = " "
       ·
-    = link_to remote_interaction_path(status, type: :favourite), class: 'modal-button detailed-status__link' do
+    %span.detailed-status__link
       = fa_icon('star')
       %span.detailed-status__favorites>= friendly_number_to_human status.favourites_count
       = " "
 
     - if user_signed_in?
       ·
-      = link_to t('statuses.open_in_web'), web_url("statuses/#{status.id}"), class: 'detailed-status__application', target: '_blank'
+      = link_to t('statuses.open_in_web'), web_url("@#{status.account.pretty_acct}/#{status.id}"), class: 'detailed-status__application', target: '_blank'

@@ -1,0 +1,64 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
+
+- content_for :heading_actions do
+  = link_to t('admin.statuses.open'), ActivityPub::TagManager.instance.url_for(@status), class: 'button', target: '_blank'
+
+%h3= t('admin.statuses.metadata')
+
+.table-wrapper
+  %table.table.horizontal-table
+    %tbody
+      %tr
+        %th= t('admin.statuses.account')
+        %td= admin_account_link_to @status.account
+      - if @status.reply?
+        %tr
+          %th= t('admin.statuses.in_reply_to')
+          %td= admin_account_link_to @status.in_reply_to_account, path: admin_account_status_path(@status.thread.account_id, @status.in_reply_to_id)
+      %tr
+        %th= t('admin.statuses.application')
+        %td= @status.application&.name
+      %tr
+        %th= t('admin.statuses.language')
+        %td= standard_locale_name(@status.language)
+      %tr
+        %th= t('admin.statuses.visibility')
+        %td= t("statuses.visibilities.#{@status.visibility}")
+      - if @status.trend
+        %tr
+          %th= t('admin.statuses.trending')
+          %td
+            - if @status.trend.allowed?
+              %abbr{ title: t('admin.trends.tags.current_score', score: @status.trend.score) }= t('admin.trends.tags.trending_rank', rank: @status.trend.rank)
+            - elsif @status.trend.requires_review?
+              = t('admin.trends.pending_review')
+            - else
+              = t('admin.trends.not_allowed_to_trend')
+      %tr
+        %th= t('admin.statuses.reblogs')
+        %td= friendly_number_to_human @status.reblogs_count
+      %tr
+        %th= t('admin.statuses.favourites')
+        %td= friendly_number_to_human @status.favourites_count
+
+%hr.spacer/
+
+%h3= t('admin.statuses.history')
+
+%ol.history
+  - @status.edits.includes(:account, status: [:account]).each.with_index do |status_edit, i|
+    %li
+      .history__entry
+        %h5
+          - if i.zero?
+            = t('admin.statuses.original_status')
+          - else
+            = t('admin.statuses.status_changed')
+          ·
+          %time.formatted{ datetime: status_edit.created_at.iso8601, title: l(status_edit.created_at) }= l(status_edit.created_at)
+
+        = render status_edit

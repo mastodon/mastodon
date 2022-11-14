@@ -94,7 +94,7 @@ class User < ApplicationRecord
   validates :invite_request, presence: true, on: :create, if: :invite_text_required?
 
   validates :locale, inclusion: I18n.available_locales.map(&:to_s), if: :locale?
-  validates_with BlacklistedEmailValidator, if: -> { !confirmed? }
+  validates_with BlacklistedEmailValidator, if: -> { ENV['EMAIL_DOMAIN_LISTS_APPLY_AFTER_CONFIRMATION'] == 'true' || !confirmed? }
   validates_with EmailMxValidator, if: :validate_email_dns?
   validates :agreement, acceptance: { allow_nil: false, accept: [true, 'true', '1'] }, on: :create
 
@@ -179,6 +179,14 @@ class User < ApplicationRecord
 
   def enable!
     update!(disabled: false)
+  end
+
+  def to_log_human_identifier
+    account.acct
+  end
+
+  def to_log_route_param
+    account_id
   end
 
   def confirm
@@ -273,16 +281,16 @@ class User < ApplicationRecord
     save!
   end
 
+  def prefers_noindex?
+    setting_noindex
+  end
+
   def preferred_posting_language
-    valid_locale_cascade(settings.default_language, locale)
+    valid_locale_cascade(settings.default_language, locale, I18n.locale)
   end
 
   def setting_default_privacy
     settings.default_privacy || (account.locked? ? 'private' : 'public')
-  end
-
-  def allows_digest_emails?
-    settings.notification_emails['digest']
   end
 
   def allows_report_emails?

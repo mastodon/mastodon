@@ -10,7 +10,7 @@ class UserRolePolicy < ApplicationPolicy
   end
 
   def update?
-    role.can?(:manage_roles) && role.overrides?(record)
+    role.can?(:manage_roles) && (role.overrides?(record) || role.id == record.id)
   end
 
   def destroy?

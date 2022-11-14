@@ -141,15 +141,22 @@ const excludeTypesFromFilter = filter => {
 
 const noOp = () => {};
 
-export function expandNotifications({ maxId } = {}, done = noOp) {
+let expandNotificationsController = new AbortController();
+
+export function expandNotifications({ maxId, forceLoad } = {}, done = noOp) {
   return (dispatch, getState) => {
     const activeFilter = getState().getIn(['settings', 'notifications', 'quickFilter', 'active']);
     const notifications = getState().get('notifications');
     const isLoadingMore = !!maxId;
 
     if (notifications.get('isLoading')) {
-      done();
-      return;
+      if (forceLoad) {
+        expandNotificationsController.abort();
+        expandNotificationsController = new AbortController();
+      } else {
+        done();
+        return;
+      }
     }
 
     const params = {
@@ -174,7 +181,7 @@ export function expandNotifications({ maxId } = {}, done = noOp) {
 
     dispatch(expandNotificationsRequest(isLoadingMore));
 
-    api(getState).get('/api/v1/notifications', { params }).then(response => {
+    api(getState).get('/api/v1/notifications', { params, signal: expandNotificationsController.signal }).then(response => {
       const next = getLinks(response).refs.find(link => link.rel === 'next');
 
       dispatch(importFetchedAccounts(response.data.map(item => item.account)));
@@ -215,7 +222,7 @@ export function expandNotificationsFail(error, isLoadingMore) {
     type: NOTIFICATIONS_EXPAND_FAIL,
     error,
     skipLoading: !isLoadingMore,
-    skipAlert: !isLoadingMore,
+    skipAlert: !isLoadingMore || error.name === 'AbortError',
   };
 };
 
@@ -243,7 +250,7 @@ export function setFilter (filterType) {
       path: ['notifications', 'quickFilter', 'active'],
       value: filterType,
     });
-    dispatch(expandNotifications());
+    dispatch(expandNotifications({ forceLoad: true }));
     dispatch(saveSettings());
   };
 };
