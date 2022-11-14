@@ -57,7 +57,7 @@ class Api::BaseController < ApplicationController
     render json: { error: I18n.t('errors.429') }, status: 429
   end
 
-  rescue_from ActionController::ParameterMissing do |e|
+  rescue_from ActionController::ParameterMissing, Mastodon::InvalidParameterError do |e|
     render json: { error: e.to_s }, status: 400
   end
 
