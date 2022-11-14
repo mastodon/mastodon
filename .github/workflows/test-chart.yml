@@ -38,7 +38,10 @@ jobs:
       - name: Install dependencies (yamllint)
         run: pip install yamllint
 
-      - run: helm dependency update
+      - name: Build dependencies
+        run: |
+          helm repo add bitnami https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+          helm dependency build
 
       - name: helm lint
         run: |
@@ -104,7 +107,10 @@ jobs:
           traefik-enabled: false
           docker-enabled: false
 
-      - run: helm dependency update
+      - name: Build dependencies
+        run: |
+          helm repo add bitnami https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+          helm dependency build
 
       # Validate rendered helm templates against the k8s api-server
       - name: helm template --validate
