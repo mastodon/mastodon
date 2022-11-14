@@ -185,6 +185,7 @@ Some of the features in this release have been funded through the [NGI0 Discover
 - Fix `CDN_HOST` not being used in some asset URLs ([tribela](https://github.com/mastodon/mastodon/pull/18662))
 - Fix `CAS_DISPLAY_NAME`, `SAML_DISPLAY_NAME` and `OIDC_DISPLAY_NAME` being ignored ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/18568))
 - Fix various typos in comments throughout the codebase ([luzpaz](https://github.com/mastodon/mastodon/pull/18604))
+- Fix CSV upload no longer breaks if an server domain includes UTF-8 characters ([HamptonMakes]())
 
 ### Security
 
