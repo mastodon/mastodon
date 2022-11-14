@@ -1,4 +1,3 @@
----
 pt-BR:
   simple_form:
     hints:
@@ -81,9 +80,14 @@ pt-BR:
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
         mascot: Substitui a ilustração na interface web avançada.
         media_cache_retention_period: Os arquivos de mídia baixados serão excluídos após o número especificado de dias, quando definido para um valor positivo, e baixados novamente na demanda.
+        profile_directory: O diretório de perfis lista todos os usuários que optaram por permitir que suas contas sejam descobertas.
+        site_contact_email: Como as pessoas podem entrar em contato com você para obter informações legais ou de suporte.
         site_contact_username: Como as pessoas podem chegar até você no Mastodon.
         site_extended_description: Quaisquer informações adicionais que possam ser úteis para os visitantes e seus usuários. Podem ser estruturadas com formato Markdown.
+        site_short_description: Uma curta descrição para ajudar unicamente a identificar a sua instância. Quem está o administrando, e para quem é direcionado?
+        site_terms: Use a sua própria política de privacidade ou deixe em branco para usar o padrão. Pode ser estruturado com o formato Markdown.
         site_title: Como as pessoas podem se referir ao seu servidor além do nome do domínio.
+        theme: Tema que visitantes e novos usuários veem.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
@@ -211,16 +215,28 @@ pt-BR:
           hide: Ocultar completamente
           warn: Ocultar com um aviso
       form_admin_settings:
+        backups_retention_period: Período de retenção do arquivo de usuário
+        bootstrap_timeline_accounts: Sempre recomendar essas contas para novos usuários
+        closed_registrations_message: Mensagem personalizada quando inscrições não estão disponíveis
+        content_cache_retention_period: Período de retenção do cachê de conteúdo
         custom_css: CSS personalizável
+        mascot: Mascote personalizado (legado)
+        media_cache_retention_period: Período de retenção do cachê de mídia
         profile_directory: Ativar diretório de perfis
         registrations_mode: Quem pode se inscrever
+        require_invite_text: Exigir uma razão para entrar
+        show_domain_blocks: Mostrar domínios bloqueados
+        show_domain_blocks_rationale: Mostrar por que domínios foram bloqueados
         site_contact_email: E-mail de contato
+        site_contact_username: Usuário de contato
         site_extended_description: Descrição estendida
         site_short_description: Descrição do servidor
         site_terms: Política de privacidade
         site_title: Nome do servidor
         theme: Tema padrão
         thumbnail: Miniatura do servidor
+        timeline_preview: Permitir acesso não autenticado às linhas do tempo públicas
+        trendable_by_default: Permitir tendências sem revisão prévia
         trends: Habilitar tendências
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
@@ -260,13 +276,14 @@ pt-BR:
         role: Cargo
       user_role:
         color: Cor do emblema
+        highlighted: Exibir função como distintivo nos perfis de usuários
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
       webhook:
         events: Eventos habilitados
         url: URL do Endpoint
-    'no': Não
+    'no': 'Não'
     not_recommended: Não recomendado
     recommended: Recomendado
     required:
@@ -275,4 +292,4 @@ pt-BR:
     title:
       sessions:
         webauthn: Utilize uma das suas chaves de segurança para entrar
-    'yes': Sim
+    'yes': 'Sim'
