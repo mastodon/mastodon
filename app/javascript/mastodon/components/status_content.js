@@ -2,13 +2,13 @@ import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import Permalink from './permalink';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
 import { autoPlayGif, languages as preloadedLanguages, translationEnabled } from 'mastodon/initial_state';
 
-const MAX_HEIGHT = 642; // 20px * 32 (+ 2px padding at the top)
+const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
 class TranslateButton extends React.PureComponent {
 
@@ -77,38 +77,45 @@ class StatusContent extends React.PureComponent {
       return;
     }
 
+    const { status, onCollapsedToggle } = this.props;
     const links = node.querySelectorAll('a');
 
+    let link, mention;
+
     for (var i = 0; i < links.length; ++i) {
-      let link = links[i];
+      link = links[i];
+
       if (link.classList.contains('status-link')) {
         continue;
       }
+
       link.classList.add('status-link');
 
-      let mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
+      mention = this.props.status.get('mentions').find(item => link.href === item.get('url'));
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
+        link.setAttribute('href', `/@${mention.get('acct')}`);
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
+        link.setAttribute('href', `/tags/${link.text.slice(1)}`);
       } else {
         link.setAttribute('title', link.href);
         link.classList.add('unhandled-link');
       }
     }
 
-    if (this.props.status.get('collapsed', null) === null) {
-      let collapsed =
-          this.props.collapsable
-          && this.props.onClick
+    if (status.get('collapsed', null) === null && onCollapsedToggle) {
+      const { collapsable, onClick } = this.props;
+
+      const collapsed =
+          collapsable
+          && onClick
           && node.clientHeight > MAX_HEIGHT
-          && this.props.status.get('spoiler_text').length === 0;
+          && status.get('spoiler_text').length === 0;
 
-      if(this.props.onCollapsedToggle) this.props.onCollapsedToggle(collapsed);
-
-      this.props.status.set('collapsed', collapsed);
+      onCollapsedToggle(collapsed);
     }
   }
 
@@ -242,9 +249,9 @@ class StatusContent extends React.PureComponent {
       let mentionsPlaceholder = '';
 
       const mentionLinks = status.get('mentions').map(item => (
-        <Permalink to={`/@${item.get('acct')}`} href={item.get('url')} key={item.get('id')} className='mention'>
+        <Link to={`/@${item.get('acct')}`} key={item.get('id')} className='mention'>
           @<span>{item.get('username')}</span>
-        </Permalink>
+        </Link>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
       const toggleText = hidden ? <FormattedMessage id='status.show_more' defaultMessage='Show more' /> : <FormattedMessage id='status.show_less' defaultMessage='Show less' />;

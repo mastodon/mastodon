@@ -275,7 +275,10 @@ nn:
         unassigned_report_html: "%{name} løyste ein rapport %{target}"
         unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
         unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som sensitivt"
-        update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
+        unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
+        update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
+        update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
+        update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
         update_user_role_html: "%{name} endret %{target} -rolle"
@@ -370,6 +373,7 @@ nn:
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
       edit: Rediger domeneblokkering
+      existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       new:
         create: Lag blokkering
@@ -381,7 +385,7 @@ nn:
           suspend: Utvis
         title: Ny domeneblokkering
       obfuscate: Obfuskere domenenavn
-      obfuscate_hint: Delvis skjule domenenavnet i listen hvis det er aktivert for å annonsere listen over domenebegrensninger
+      obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
       private_comment: Privat kommentar
       private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
       public_comment: Offentleg kommentar
@@ -431,6 +435,7 @@ nn:
         comment: Internt notat
         policies:
           reject_media: Avvis media
+          silence: Begrens
         reason: Offentlig årsak
         title: Retningslinjer for innhold
       dashboard:
@@ -512,6 +517,8 @@ nn:
           one: "%{count} notis"
           other: "%{count} notiser"
       action_taken_by: Handling gjort av
+      actions:
+        silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilsett moderator
@@ -551,6 +558,8 @@ nn:
         administration: Administrasjon
         devops: DevOps
         invites: Invitasjoner
+      privileges:
+        view_devops: DevOps
     rules:
       add_new: Legg til et filter
       delete: Slett
@@ -579,6 +588,9 @@ nn:
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
       title: Kontostatusar
       with_media: Med media
+    strikes:
+      actions:
+        silence: "%{name} begrenset %{target}s konto"
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
@@ -595,6 +607,9 @@ nn:
       edit_preset: Endr åtvaringsoppsett
       title: Handsam åtvaringsoppsett
   admin_mailer:
+    new_appeal:
+      actions:
+        silence: for å begrense deres konto
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -671,6 +686,7 @@ nn:
       confirming: Ventar på stadfesting av e-post.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      view_strikes: Vis tidligere advarsler mot kontoen din
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -724,6 +740,11 @@ nn:
       more_details_html: For fleire detaljar, sjå <a href="%{terms_path}">personvernsvilkåra</a>.
       username_available: Brukarnamnet ditt vert tilgjengeleg igjen
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
+  disputes:
+    strikes:
+      appeal_approved: Denne advarselen ble anket og er ikke lenger gyldig
+      title_actions:
+        silence: Begrensning av konto
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:
@@ -797,6 +818,8 @@ nn:
   html_validator:
     invalid_markup: 'rommar ugild HTML-kode: %{error}'
   imports:
+    errors:
+      over_rows_processing_limit: inneholder flere enn %{count} rader
     modes:
       merge: Set saman
       merge_long: Hald på eksisterande data og legg til nye
@@ -998,7 +1021,7 @@ nn:
       phantom_js: PhantomJS
       qq: QQ-lesar
       safari: Safari
-      uc_browser: UC-lesar
+      uc_browser: QQ-lesar
       weibo: Weibo
     current_session: Noverande økt
     description: "%{browser} på %{platform}"
@@ -1008,7 +1031,7 @@ nn:
       adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: IOS
       linux: Linux
