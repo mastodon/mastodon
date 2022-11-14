@@ -909,7 +909,98 @@ paths:
           description: successful
           content:
             application/json:
-              example: []
+              examples:
+                successful:
+                  value: []
+  "/api/v1/accounts/{account_id}/statuses":
+    parameters:
+    - name: account_id
+      in: path
+      description: account_id
+      required: true
+      schema:
+        type: string
+    get:
+      summary: list statuses
+      tags:
+      - Api
+      - V1
+      - Accounts
+      - Statuses
+      operationId: v1AccountsStatusesListStatus
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                  - id: '109342958612889502'
+                    created_at: '2022-11-14T15:52:20.973Z'
+                    in_reply_to_id:
+                    in_reply_to_account_id:
+                    sensitive: false
+                    spoiler_text: ''
+                    visibility: public
+                    language: en
+                    uri: 7b258dbc9b67daf5ecc1c6fee7ac06a56a96bb3b60a707d942658cebf5f05cec
+                    url:
+                    replies_count: 0
+                    reblogs_count: 0
+                    favourites_count: 0
+                    edited_at: '2022-11-14T15:52:20.971Z'
+                    favourited: false
+                    reblogged: false
+                    muted: false
+                    bookmarked: false
+                    content: Lorem ipsum dolor sit amet
+                    filtered: []
+                    reblog:
+                    account:
+                      id: '109342958612895444'
+                      username: bob
+                      acct: bob@example.com
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2022-11-14T00:00:00.000Z'
+                      note: ''
+                      url:
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 0
+                      following_count: 0
+                      statuses_count: 2
+                      last_status_at: '2022-11-14'
+                      emojis: []
+                      fields: []
+                    media_attachments: []
+                    mentions:
+                    - id: '109342958612895445'
+                      username: jane
+                      url:
+                      acct: jane@example.com
+                    tags: []
+                    emojis: []
+                    card:
+                    poll:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Status"
   "/api/v1/accounts/{id}/follow":
     parameters:
     - name: id
@@ -4890,8 +4981,98 @@ paths:
           description: successful
           content:
             application/json:
-              example:
-                error: This action is outside the authorized scopes
+              examples:
+                successful:
+                  value:
+                    error: This action is outside the authorized scopes
+  "/api/v1/reports":
+    post:
+      summary: create report
+      tags:
+      - Api
+      - V1
+      - Reports
+      operationId: v1ReportsCreateReport
+      security:
+      - bearerAuth: []
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    id: '18'
+                    action_taken: false
+                    action_taken_at:
+                    category: other
+                    comment: reasons
+                    forwarded: false
+                    created_at: '2022-11-14T15:50:34.414Z'
+                    status_ids:
+                    - '109342951623893446'
+                    rule_ids:
+                    target_account:
+                      id: '109342951623926694'
+                      username: arnold153
+                      acct: arnold153
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2022-11-14T00:00:00.000Z'
+                      note: ''
+                      url: https://cb6e6126.ngrok.io/@arnold153
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 0
+                      following_count: 0
+                      statuses_count: 1
+                      last_status_at: '2022-11-14'
+                      noindex: false
+                      emojis: []
+                      fields: []
+              schema:
+                type: object
+                "$ref": "#/components/schemas/Report"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status_ids:
+                  type: array
+                  items:
+                    type: integer
+                account_id:
+                  type: integer
+                comment:
+                  type: string
+                category:
+                  type: string
+                  nullable: true
+                rule_ids:
+                  type: array
+                  items:
+                    type: string
+                  nullable: true
+                forward:
+                  type: boolean
+                  nullable: true
+              required:
+              - status_ids
+              - account_id
   "/api/v1/scheduled_statuses":
     get:
       summary: list scheduled_statuses
