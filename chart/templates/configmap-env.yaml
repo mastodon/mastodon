@@ -40,6 +40,9 @@ data:
   S3_ENDPOINT: {{ .Values.mastodon.s3.endpoint }}
   S3_HOSTNAME: {{ .Values.mastodon.s3.hostname }}
   S3_PROTOCOL: "https"
+  {{- if .Values.mastodon.s3.permission }}
+  S3_PERMISSION: {{ .Values.mastodon.s3.permission }}
+  {{- end }}
   {{- if .Values.mastodon.s3.region }}
   S3_REGION: {{ .Values.mastodon.s3.region }}
   {{- end }}
