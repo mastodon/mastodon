@@ -547,7 +547,7 @@ export default function compose(state = initialState, action) {
       .setIn(['media_modal', 'dirty'], false)
       .update('media_attachments', list => list.map(item => {
         if (item.get('id') === action.media.id) {
-          return fromJS(action.media);
+          return fromJS(action.media).set('unattached', true);
         }
 
         return item;
