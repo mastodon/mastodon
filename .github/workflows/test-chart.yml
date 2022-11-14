@@ -23,7 +23,7 @@ permissions:
 
 defaults:
   run:
-    working-directory: chart
+    working-directory: charts/mastodon
 
 jobs:
   lint-templates:
@@ -43,12 +43,12 @@ jobs:
       - name: helm lint
         run: |
           helm lint . \
-              --values dev-values.yaml
+              --values config/dev-values.yaml
 
       - name: helm template
         run: |
           helm template . \
-              --values dev-values.yaml \
+              --values config/dev-values.yaml \
               --output-dir rendered-templates
 
       - name: yamllint (only on templates we manage)
@@ -110,12 +110,12 @@ jobs:
       - name: helm template --validate
         run: |
           helm template --validate mastodon . \
-              --values dev-values.yaml
+              --values config/dev-values.yaml
 
       - name: helm install
         run: |
           helm install mastodon . \
-              --values dev-values.yaml \
+              --values config/dev-values.yaml \
               --timeout 10m
 
       # This actions provides a report about the state of the k8s cluster,

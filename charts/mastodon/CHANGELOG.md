@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Move helm chart from `chart` directory to `charts/mastodon`
+- Move `dev-values.yaml` to `config` subdirectory
 
 ## [2.3.0] - 2022-11-13
 ### Added
