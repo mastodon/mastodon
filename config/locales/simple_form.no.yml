@@ -185,6 +185,8 @@
         name: Emneknagg
       form_admin_settings:
         registrations_mode: Hvem kan opprette konto
+        site_contact_email: E-postadresse for kontakt
+        site_title: Servernavn
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
@@ -215,7 +217,14 @@
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å vises under trender
         usable: Tillat tuter å bruke denne emneknaggen
+      user:
+        role: Rolle
+      user_role:
+        name: Navn
+        permissions_as_keys: Tillatelser
+        position: Prioritet
     'no': 'Nei'
+    not_recommended: Ikke anbefalt
     recommended: Anbefalt
     required:
       mark: "*"
