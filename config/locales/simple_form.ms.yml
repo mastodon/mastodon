@@ -23,6 +23,8 @@ ms:
       ip_block:
         severities:
           no_access: Menyekat akses kepada semua sumber
+          sign_up_block: Pendaftaran baru tidak akan dibenarkan
+          sign_up_requires_approval: Pendaftaran baru akan memerlukan kelulusan anda
     labels:
       account:
         fields:
@@ -41,9 +43,12 @@ ms:
         text: Pengumuman
       defaults:
         bot: Ini ialah akaun bot
+        confirm_new_password: Sahkan kata laluan baru
         confirm_password: Sahkan kata laluan
+        context: Konteks penapis
         current_password: Kata laluan semasa
         data: Data
+        discoverable: Mencadangkan akaun kepada pengguna lain
         display_name: Nama paparan
         email: Alamat e-mel
         expires_in: Tamat tempoh selepas
@@ -61,7 +66,9 @@ ms:
         setting_display_media_default: Lalai
         setting_display_media_hide_all: Sembunyikan semua
         setting_display_media_show_all: Paparkan semua
+        setting_system_font_ui: Gunakan fon lalai sistem
         setting_theme: Tema halaman
+        setting_trends: Paparkan trend hari ini
         sign_in_token_attempt: Kod keselamatan
         title: Tajuk
         type: Jenis import
