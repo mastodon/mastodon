@@ -499,7 +499,7 @@ module Mastodon
 
     def deduplicate_tags!
       remove_index_if_exists!(:tags, 'index_tags_on_name_lower')
-      remove_index_if_exists!(:tags, 'index_tags_on_lower_btree')
+      remove_index_if_exists!(:tags, 'index_tags_on_name_lower_btree')
 
       @prompt.say 'Deduplicating tags…'
       ActiveRecord::Base.connection.select_all("SELECT string_agg(id::text, ',') AS ids FROM tags GROUP BY lower((name)::text) HAVING count(*) > 1").each do |row|
