@@ -1,4 +1,3 @@
----
 gl:
   about:
     about_mastodon_html: 'A rede social do futuro: Sen publicidade, sen seguimento por empresas, deseño ético e descentralización! En Mastodon ti posúes os teus datos!'
@@ -56,7 +55,7 @@ gl:
       delete: Eliminar datos
       deleted: Eliminado
       demote: Rebaixar
-      destroyed_msg: Os datos de %{username} están na cola para ser eliminados axiña
+      destroyed_msg: "Os datos de %{username} están na cola para ser eliminados axiña"
       disable: Desactivar
       disable_sign_in_token_auth: Desactivar a autenticación por token nun email
       disable_two_factor_authentication: Desactivar 2FA
@@ -521,7 +520,7 @@ gl:
       no_ip_block_selected: Non se cambiou ningunha regra iP porque non seleccionaches ningunha
       title: Regras IP
     relationships:
-      title: Relacións de %{acct}
+      title: "Relacións de %{acct}"
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
@@ -608,6 +607,7 @@ gl:
         other: "%{count} usuarias"
       categories:
         administration: Administración
+        devops: DevOps
         invites: Convites
         moderation: Moderación
         special: Especial
@@ -658,6 +658,7 @@ gl:
         view_audit_log_description: Permite ver o historial de accións administrativas no servidor
         view_dashboard: Ver Taboleiro
         view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
+        view_devops: DevOps
         view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
       title: Roles
     rules:
@@ -866,7 +867,7 @@ gl:
     new_report:
       body: "%{reporter} informou sobre %{target}"
       body_remote: Alguén desde %{domain} informou sobre %{target}
-      subject: Nova denuncia sobre %{instance} (#%{id})
+      subject: 'Nova denuncia sobre %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes elementos precisan revisión antes de ser mostrados públicamente:'
       new_trending_links:
@@ -887,7 +888,7 @@ gl:
     remove: Desligar alcume
   appearance:
     advanced_web_interface: Interface web avanzada
-    advanced_web_interface_hint: Se queres empregar todo o ancho da pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como queiras. Inicio, notificacións, cronoloxía federada, varias listaxes e cancelos.
+    advanced_web_interface_hint: 'Se queres empregar todo o ancho da pantalla, a interface web avanzada permíteche configurar diferentes columnas para ver tanta información como queiras. Inicio, notificacións, cronoloxía federada, varias listaxes e cancelos.'
     animations_and_accessibility: Animacións e accesibilidade
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrir
@@ -921,7 +922,7 @@ gl:
       prefix_sign_up: Rexístrate agora en Mastodon!
       suffix: Ao abrir unha conta, poderás seguir a xente, actualizacións das publicacións e intercambiar mensaxes coas usuarias de calquera servidor de Mastodon e moito máis!
     didnt_get_confirmation: Non recibiches as instruccións de confirmación?
-    dont_have_your_security_key: "¿Non tes a túa chave de seguridade?"
+    dont_have_your_security_key: '¿Non tes a túa chave de seguridade?'
     forgot_password: Non lembras o contrasinal?
     invalid_reset_password_token: O token para restablecer o contrasinal non é válido ou caducou. Por favor solicita un novo.
     link_to_otp: Escribe o código do segundo factor do móbil ou un código de recuperación
@@ -1263,8 +1264,8 @@ gl:
       subject: "%{name} marcou como favorita a túa publicación"
       title: Nova favorita
     follow:
-      body: Agora %{name} séguete!
-      subject: Agora %{name} séguete
+      body: "Agora %{name} séguete!"
+      subject: "Agora %{name} séguete"
       title: Nova seguidora
     follow_request:
       action: Xestionar peticións de seguimento
@@ -1273,7 +1274,7 @@ gl:
       title: Nova petición de seguimento
     mention:
       action: Responder
-      body: "%{name} mencionoute en:"
+      body: '%{name} mencionoute en:'
       subject: Foches mencionada por %{name}
       title: Nova mención
     poll:
@@ -1371,6 +1372,7 @@ gl:
     browser: Navegador
     browsers:
       alipay: Alipay
+      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,6 +1386,7 @@ gl:
       phantom_js: PhantomJS
       qq: Navegador QQ
       safari: Safari
+      uc_browser: Navegador QQ
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1392,6 +1395,8 @@ gl:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1622,7 +1627,7 @@ gl:
       error: Houbo un problema ó engadir a chave de seguridade, inténtao outra vez.
       success: Engadeuse correctamente a chave de seguridade.
     delete: Eliminar
-    delete_confirmation: "¿Tes a certeza de que queres eliminar a chave de seguridade?"
+    delete_confirmation: '¿Tes a certeza de que queres eliminar a chave de seguridade?'
     description_html: Se activas a <strong>autenticación con chave de seguridade</strong>, pediráseche que uses unha das túas chaves para acceder.
     destroy:
       error: Houbo un problema ó eliminar a túa chave de seguridade, inténtao outra vez.
