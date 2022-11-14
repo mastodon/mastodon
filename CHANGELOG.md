@@ -3,6 +3,11 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [3.4.5] - 2022-11-14
+## Fixed
+
+- Fix nodes order being sometimes mangled when rewriting emoji ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20677))
+
 ## [3.5.4] - 2022-11-14
 ### Fixed
 
