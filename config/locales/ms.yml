@@ -322,6 +322,10 @@ ms:
       sources: Sumber pendaftaran
       space: Kegunaan ruang
       title: Papan pemuka
+      website: Laman web
+    disputes:
+      appeals:
+        title: Rayuan
     domain_allows:
       add_new: Benarkan persekutuan dengan domain
       created_msg: Domain telah berjaya dibenarkan untuk persekutuan
@@ -359,6 +363,9 @@ ms:
       add_new: Tambah baharu
       created_msg: Telah berjaya menyekat domain e-mel
       delete: Padam
+      dns:
+        types:
+          mx: Rekod MX
       domain: Domain
       new:
         create: Tambah domain
@@ -377,6 +384,9 @@ ms:
       back_to_limited: Terhad
       back_to_warning: Amaran
       by_domain: Domain
+      dashboard:
+        instance_followers_measure: pengikut kami di situ
+        instance_follows_measure: pengikut mereka di sini
       delivery:
         all: Semua
         clear: Buang ralat penghantaran
@@ -452,6 +462,7 @@ ms:
       assign_to_self: Menugaskan kepada saya
       assigned: Penyederhana yang ditugaskan
       by_target_domain: Domain bagi akaun yang dilaporkan
+      category: Kumpulan
       comment:
         none: Tiada
       created_at: Dilaporkan
@@ -476,6 +487,7 @@ ms:
       unassign: Nyahtugaskan
       unresolved: Nyahselesaikan
       updated_at: Dikemaskini
+      view_profile: Lihat profil
     rules:
       add_new: Tambah peraturan
       delete: Padam
@@ -495,15 +507,15 @@ ms:
       return: Tunjukkan profil pengguna
       web: Pergi ke web
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '400': Permintaan yang anda serahkan tidak sah atau salah bentuk.
+    '403': Anda tidak mempunyai kebenaran untuk melihat halaman ini.
+    '404': Halaman yang anda cari tiada di sini.
+    '406': Halaman ini tidak tersedia dalam format yang diminta.
+    '410': Halaman yang anda cari tidak wujud di sini lagi.
     '422':
-    '429': Too many requests
+    '429': Terlalu banyak permintaan
     '500':
-    '503': The page could not be served due to a temporary server failure.
+    '503': Halaman tidak dapat disampaikan kerana kegagalan pelayan sementara.
   exports:
     archive_takeout:
       in_progress: Mengkompil arkib anda...
