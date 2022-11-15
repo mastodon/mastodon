@@ -1,4 +1,25 @@
 fo:
+  admin:
+    custom_emojis:
+      delete: Strika
+      list: Listi
+    email_domain_blocks:
+      delete: Strika
+    ip_blocks:
+      delete: Strika
+    relays:
+      delete: Strika
+    reports:
+      notes:
+        delete: Strika
+    roles:
+      delete: Strika
+    rules:
+      delete: Strika
+    warning_presets:
+      delete: Strika
+    webhooks:
+      delete: Strika
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -9,3 +30,12 @@ fo:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    lists: Listar
+  filters:
+    index:
+      delete: Strika
+  generic:
+    delete: Strika
+  webauthn_credentials:
+    delete: Strika
