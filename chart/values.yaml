@@ -278,8 +278,8 @@ externalAuth:
     #   verified:
     #   verified_email:
   oauth_global:
-    # Force redirect local login to CAS. Does not function with SAML or LDAP.
-    oauth_redirect_at_sign_in: false
+    # -- Automatically redirect to OIDC, CAS or SAML, and don't use local account authentication when clicking on Sign-In
+    omniauth_only: false
   cas:
     enabled: false
     # url: https://sso.myserver.com

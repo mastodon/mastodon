@@ -205,8 +205,8 @@ data:
   SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL: {{ . | quote }}
   {{- end }}
   {{- end }}
-  {{- with .Values.externalAuth.oauth_global.oauth_redirect_at_sign_in }}
-  OAUTH_REDIRECT_AT_SIGN_IN: {{ . | quote }}
+  {{- with .Values.externalAuth.oauth_global.omniauth_only }}
+  OMNIAUTH_ONLY: {{ . | quote }}
   {{- end }}
   {{- if .Values.externalAuth.cas.enabled }}
   CAS_ENABLED: {{ .Values.externalAuth.cas.enabled | quote }}
