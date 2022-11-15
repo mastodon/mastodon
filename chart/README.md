@@ -7,7 +7,7 @@ Kubernetes cluster.  The basic usage is:
 1. `helm dep update`
 1. `helm install --namespace mastodon --create-namespace my-mastodon ./ -f path/to/additional/values.yaml`
 
-This chart has been tested on Helm 3.0.1 and above.
+This chart is tested with k8s 1.21+ and helm 3.6.0+.
 
 # Configuration
 

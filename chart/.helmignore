@@ -1,3 +1,17 @@
+# A helm chart's templates and default values can be packaged into a .tgz file.
+# When doing that, not everything should be bundled into the .tgz file. This
+# file describes what to not bundle.
+#
+# Manually added by us
+# --------------------
+#
+dev-values.yaml
+mastodon-*.tgz
+
+
+# Boilerplate .helmignore from `helm create mastodon`
+# ---------------------------------------------------
+#
 # Patterns to ignore when building packages.
 # This supports shell glob matching, relative path matching, and
 # negation (prefixed with !). Only one pattern per line.
@@ -21,4 +35,3 @@
 .idea/
 *.tmproj
 .vscode/
-mastodon-*.tgz

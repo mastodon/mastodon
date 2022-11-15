@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { makeGetAccount } from 'mastodon/selectors';
 import Avatar from 'mastodon/components/avatar';
 import DisplayName from 'mastodon/components/display_name';
-import Permalink from 'mastodon/components/permalink';
+import { Link } from 'react-router-dom';
 import Button from 'mastodon/components/button';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import { autoPlayGif, me, unfollowModal } from 'mastodon/initial_state';
@@ -169,7 +169,7 @@ class AccountCard extends ImmutablePureComponent {
 
     return (
       <div className='account-card'>
-        <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='account-card__permalink'>
+        <Link to={`/@${account.get('acct')}`} className='account-card__permalink'>
           <div className='account-card__header'>
             <img
               src={
@@ -183,7 +183,7 @@ class AccountCard extends ImmutablePureComponent {
             <div className='account-card__title__avatar'><Avatar account={account} size={56} /></div>
             <DisplayName account={account} />
           </div>
-        </Permalink>
+        </Link>
 
         {account.get('note').length > 0 && (
           <div
