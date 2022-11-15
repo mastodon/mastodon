@@ -11,6 +11,10 @@ metadata:
     app.kubernetes.io/part-of: rails
 spec:
   replicas: {{ .replicas }}
+  {{- if (has "scheduler" .queues) }}
+  strategy:
+    type: Recreate
+  {{- end }}
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" $context | nindent 6 }}
