@@ -1,4 +1,3 @@
----
 br:
   simple_form:
     hints:
@@ -38,6 +37,7 @@ br:
         header: Talbenn
         locale: Yezh ar c'hetal
         new_password: Ger-tremen nevez
+        note: Kinnig
         password: Ger-tremen
         phrase: Ger-alc'hwez pe frazenn
         setting_display_media_default: Dre ziouer
@@ -51,14 +51,21 @@ br:
         comment: Evezhiadenn
       ip_block:
         ip: IP
+        severity: Reolenn
       notification_emails:
         follow: Heuliañ a ra {name} ac'hanoc'h
+      rule:
+        text: Reolenn
       tag:
         name: Ger-klik
         trendable: Aotren an hashtag-mañ da zont war wel dindan tuadurioù
-    'no': Ket
+      user:
+        role: Roll
+      user_role:
+        name: Anv
+    'no': 'Ket'
     recommended: Erbedet
     required:
       mark: "*"
       text: rekis
-    'yes': Ya
+    'yes': 'Ya'
