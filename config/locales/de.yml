@@ -1,4 +1,3 @@
----
 de:
   about:
     about_mastodon_html: 'Das soziale Netzwerk der Zukunft: Keine Werbung, keine Überwachung, dafür dezentral und mit Anstand! Starte jetzt mit Mastodon!'
@@ -56,7 +55,7 @@ de:
       delete: Daten löschen
       deleted: Gelöscht
       demote: Zurückstufen
-      destroyed_msg: Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht
+      destroyed_msg: "Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht"
       disable: Sperren
       disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentisierung (2FA) per E-Mail
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
@@ -84,10 +83,10 @@ de:
         remote: Fern
         title: Ursprung
       login_status: Loginstatus
-      media_attachments: Dateien
+      media_attachments: Medienanhänge
       memorialize: In Gedenkmal verwandeln
       memorialized: Memorialisiert
-      memorialized_msg: "%{username} wurde erfolgreich in ein In-Memoriam-Konto umgewandelt"
+      memorialized_msg: '%{username} wurde erfolgreich in ein In-Memoriam-Konto umgewandelt'
       moderation:
         active: Aktiv
         all: Alle
@@ -521,7 +520,7 @@ de:
       no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurden
       title: IP-Regeln
     relationships:
-      title: Beziehungen von %{acct}
+      title: "Beziehungen von %{acct}"
     relays:
       add_new: Neues Relay hinzufügen
       delete: Löschen
@@ -551,7 +550,7 @@ de:
       action_taken_by: Maßnahme ergriffen durch
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
-        mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung (NSFW) versehen und der Vorfall wird gesichert, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
+        mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und ein Verstoß wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
         other_description_html: Weitere Optionen zur Kontrolle des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
         silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die ihm bereits folgen oder es manuell nachschlagen, und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
@@ -614,7 +613,7 @@ de:
         special: Spezial
       delete: Löschen
       description_html: Mit <strong>Benutzer*inn-Rollen</strong> kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer*innen zugreifen können.
-      edit: "'%{name}' Rolle bearbeiten"
+      edit: '''%{name}'' Rolle bearbeiten'
       everyone: Standardberechtigungen
       everyone_full_description_html: Das ist die <strong>-Basis-Rolle</strong>, die <strong>alle Benutzer*innen</strong> betrifft, auch diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
       permissions_count:
@@ -796,7 +795,7 @@ de:
         not_discoverable: Der Autor hat sich nicht dafür entschieden, entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
-          other: "%{friendly_count}-mal geteilt oder favorisiert"
+          other: '%{friendly_count}-mal geteilt oder favorisiert'
         title: Angesagte Beiträge
       tags:
         current_score: Aktuelle Punktzahl %{score}
@@ -856,7 +855,7 @@ de:
         disable: das Einfrieren der Konten
         mark_statuses_as_sensitive: das Markieren der Beiträge mit einer Inhaltswarnung
         none: eine Warnung
-        sensitive: das Markieren des Kontos mit einer Inhaltswarnung
+        sensitive: das Markieren des Profils mit einer Inhaltswarnung
         silence: das Beschränken des Kontos
         suspend: um deren Konto zu sperren
       body: "%{target} hat etwas gegen eine Moderationsentscheidung von %{action_taken_by} vom %{date}, die %{type} war. Die Person schrieb:"
@@ -868,7 +867,7 @@ de:
     new_report:
       body: "%{reporter} hat %{target} gemeldet"
       body_remote: Jemand von %{domain} hat %{target} gemeldet
-      subject: Neue Meldung auf %{instance} (#%{id})
+      subject: 'Neue Meldung auf %{instance} (#%{id})'
     new_trends:
       body: 'Die folgenden Einträge müssen überprüft werden, bevor sie öffentlich angezeigt werden können:'
       new_trending_links:
@@ -889,7 +888,7 @@ de:
     remove: Alle Aliase aufheben
   appearance:
     advanced_web_interface: Erweitertes Webinterface
-    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
+    advanced_web_interface_hint: 'Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.'
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
@@ -931,8 +930,8 @@ de:
     log_in_with: Anmelden mit
     login: Anmelden
     logout: Abmelden
-    migrate_account: Ziehe zu einem anderen Konto um
-    migrate_account_html: Wenn du wünschst, dieses Konto zu einem anderen umzuziehen, kannst du <a href="%{path}">dies hier einstellen</a>.
+    migrate_account: Auf ein anderes Konto umziehen
+    migrate_account_html: Wenn du dieses Konto auf ein anderes umleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
     privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzbestimmungen</a> gelesen und stimme ihnen zu
     providers:
@@ -974,7 +973,7 @@ de:
       close: Oder du schließt einfach dieses Fenster.
       return: Das Benutzerprofil anzeigen
       web: In der Benutzeroberfläche öffnen
-    title: "%{acct} folgen"
+    title: '%{acct} folgen'
   challenge:
     confirm: Fortfahren
     hint_html: "<strong>Hinweis:</strong> Wir werden dich für die nächste Stunde nicht erneut nach deinem Passwort fragen."
@@ -1108,7 +1107,7 @@ de:
     index:
       contexts: Filter in %{contexts}
       delete: Löschen
-      empty: Du hast noch keine Filter gesetzt.
+      empty: Du hast noch keine Filter erstellt.
       expires_in: Läuft ab in %{distance}
       expires_on: Läuft am %{date} ab
       keywords:
@@ -1227,7 +1226,7 @@ de:
       not_found: kann nicht gefunden werden
       on_cooldown: Die Abklingzeit läuft gerade
     followers_count: Anzahl der Follower zum Zeitpunkt der Migration des Accounts
-    incoming_migrations: Ziehe von einem anderen Konto um
+    incoming_migrations: Von einem anderen Konto umziehen
     incoming_migrations_html: Um von einem anderen Konto zu diesem zu wechseln, musst du zuerst <a href="%{path}">einen Kontoalias</a> erstellen.
     moved_msg: Dein altes Profil wird jetzt zum neuen Account %{acct} weitergeleitet und deine Follower werden übertragen.
     not_redirecting: Dein Konto wird derzeit nicht auf ein anderes Konto weitergeleitet.
@@ -1275,8 +1274,8 @@ de:
       title: Neue Folge-Anfrage
     mention:
       action: Antworten
-      body: "%{name} hat dich erwähnt:"
-      subject: "%{name} hat dich erwähnt"
+      body: '%{name} hat dich erwähnt:'
+      subject: '%{name} hat dich erwähnt'
       title: Neue Erwähnung
     poll:
       subject: Eine Umfrage von %{name} ist beendet
@@ -1304,10 +1303,10 @@ de:
           trillion: T
   otp_authentication:
     code_hint: Gib den von deiner Authentifizierungs-App generierten Code ein, um deine Anmeldung zu bestätigen
-    description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich einloggen zu können.
+    description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
     enable: Aktivieren
     instructions_html: "<strong>Scanne diesen QR-Code mit einer TOTP-App (wie dem Google Authenticator)</strong>. Die 2FA-App generiert dann zeitbasierte Codes, die du beim Login zusätzlich zum regulären Passwort eingeben musst."
-    manual_instructions: Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.
+    manual_instructions: 'Wenn du den QR-Code nicht einscannen kannst, sondern die Zahlenfolge manuell eingeben musst, ist hier der geheime Token für deine 2FA-App.'
     setup: Einrichten
     wrong_code: Der eingegebene Code war ungültig! Sind die Serverzeit und die Gerätezeit korrekt?
   pagination:
@@ -1391,7 +1390,7 @@ de:
       weibo: Weibo
     current_session: Aktuelle Sitzung
     description: "%{browser} auf %{platform}"
-    explanation: Dies sind die Webbrowser, die derzeit in deinem Mastodon-Konto eingeloggt sind.
+    explanation: Dies sind die Webbrowser, die derzeit mit deinem Mastodon-Konto verbunden sind.
     ip: IP-Adresse
     platforms:
       adobe_air: Adobe Air
@@ -1420,10 +1419,10 @@ de:
     delete: Konto löschen
     development: Entwicklung
     edit_profile: Profil bearbeiten
-    export: Export
+    export: Exportieren
     featured_tags: Empfohlene Hashtags
-    import: Import
-    import_and_export: Import und Export
+    import: Importieren
+    import_and_export: Importieren und exportieren
     migrate: Konto-Umzug
     notifications: Benachrichtigungen
     preferences: Einstellungen
@@ -1515,9 +1514,9 @@ de:
       '7889238': 3 Monate
     min_age_label: Altersgrenze
     min_favs: Behalte Beiträge, die häufiger favorisiert wurden als ...
-    min_favs_hint: Lösche keine deiner Beiträge, die häufiger als diese Anzahl favorisiert worden sind. Lass das Feld leer, um alle Beiträge unabhängig der Anzahl der Favoriten zu löschen
+    min_favs_hint: Löscht keine deiner Beiträge, die mindestens diese Anzahl an Favoriten erhalten haben. Lass das Feld leer, um Beiträge unabhängig von ihrer Anzahl an Favoriten zu löschen
     min_reblogs: Behalte Beiträge, die häufiger geteilt wurden als ...
-    min_reblogs_hint: Lösche keine deiner Beiträge, die mehr als diese Anzahl geteilt wurden. Lasse das Feld leer, um alle Beiträge unabhängig der Anzahl der geteilten Beiträge zu löschen
+    min_reblogs_hint: Löscht keine deiner Beiträge, die mindestens so oft geteilt wurden. Lasse das Feld leer, um Beiträge unabhängig von der Anzahl der geteilten Beiträge zu löschen
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
@@ -1590,17 +1589,17 @@ de:
       subject:
         delete_statuses: Deine Beiträge auf %{acct} wurden entfernt
         disable: Dein Konto %{acct} wurde eingefroren
-        mark_statuses_as_sensitive: Die Beiträge deines Profils %{acct} wurden mit einer Inhaltswarnung (NSFW) versehen
+        mark_statuses_as_sensitive: Deine Beiträge auf %{acct} wurden mit einer Inhaltswarnung versehen
         none: Warnung für %{acct}
-        sensitive: Die Beiträge deines Profils %{acct} werden künftig mit einer Inhaltswarnung (NSFW) versehen
+        sensitive: Deine Beiträge auf %{acct} werden künftig mit einer Inhaltswarnung versehen
         silence: Dein Konto %{acct} wurde limitiert
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
         delete_statuses: Beiträge entfernt
         disable: Konto eingefroren
-        mark_statuses_as_sensitive: Mit einer Inhaltswarnung (NSFW) versehene Beiträge
+        mark_statuses_as_sensitive: Mit einer Inhaltswarnung versehene Beiträge
         none: Warnung
-        sensitive: Profil mit einer Inhaltswarnung (NSFW) versehen
+        sensitive: Profil mit einer Inhaltswarnung versehen
         silence: Konto limitiert
         suspend: Konto gesperrt
     welcome:
