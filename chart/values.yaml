@@ -36,6 +36,8 @@ mastodon:
   web_domain: null
   # If set to true, the frontpage of your Mastodon server will always redirect to the first profile in the database and registrations will be disabled.
   singleUserMode: false
+  # -- Enables "Secure Mode" for more details see: https://docs.joinmastodon.org/admin/config/#authorized_fetch
+  authorizedFetch: false
   persistence:
     assets:
       # -- ReadWriteOnce is more widely supported than ReadWriteMany, but limits
