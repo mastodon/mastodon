@@ -13,7 +13,7 @@ bg:
     following: Следва
     last_active: последна дейност
     link_verified_on: Собствеността върху тази връзка е проверена на %{date}
-    nothing_here: Тук няма никого!
+    nothing_here: Тук няма нищо!
     pin_errors:
       following: Трябва вече да следвате човека, когото искате да подкрепите
     posts:
@@ -57,7 +57,7 @@ bg:
       disabled: Замразено
       display_name: Показвано име
       domain: Домейн
-      edit: Редакция
+      edit: Редактиране
       email: Имейл
       email_status: Състояние на имейл
       enable: Размразяване
@@ -65,7 +65,7 @@ bg:
       enabled_msg: Успешно размразяване на акаунта на %{username}
       followers: Последователи
       follows: Последвания
-      header: Заглавна част
+      header: Заглавка
       inbox_url: Входящ URL
       invite_request_text: Причини за присъединяване
       invited_by: Покана от
@@ -601,9 +601,11 @@ bg:
           trillion: трлн
   otp_authentication:
     enable: Включване
+    wrong_code: Въведеният код е невалиден! Времето на сървъра и времето на устройството правилни ли са?
   pagination:
     next: Напред
     prev: Назад
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Вече сте гласували в тази анкета
@@ -623,6 +625,9 @@ bg:
     last_active: Последна дейност
     most_recent: Най-наскоро
     moved: Преместено
+    mutual: Взаимни
+    primary: Основно
+    relationship: Отношение
     remove_selected_domains: Премахване на всички последователи от избраните домейни
     remove_selected_followers: Премахване на избраните последователи
     remove_selected_follows: Стоп на следването на избраните потребители
@@ -710,8 +715,12 @@ bg:
     pin_errors:
       limit: Вече сте закачили максималния брой публикации
     poll:
+      total_people:
+        one: "%{count} човек"
+        other: "%{count} души"
       vote: Гласуване
     show_more: Покажи повече
+    title: '%{name}: „%{quote}“'
     visibilities:
       private: Покажи само на последователите си
       public: Публично
@@ -764,6 +773,8 @@ bg:
       statuses: 'Цитирани публ.:'
       subject:
         delete_statuses: Ваши публикации в %{acct} са били премахнати
+        disable: Вашият акаунт %{acct} е бил замразен
+        none: Предупреждение за %{acct}
       title:
         delete_statuses: Публикацията е премахната
         disable: Акаунтът е замразен
@@ -772,6 +783,7 @@ bg:
     welcome:
       edit_profile_action: Настройване на профила
       explanation: Ето няколко стъпки за начало
+      final_action: Начало на публикуване
       subject: Добре дошли в Mastodon
       title: Добре дошли на борда, %{name}!
   users:
