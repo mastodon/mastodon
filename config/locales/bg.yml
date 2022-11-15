@@ -1,7 +1,6 @@
----
 bg:
   about:
-    about_mastodon_html: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
+    about_mastodon_html: 'Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.'
     contact_missing: Не е зададено
     contact_unavailable: Не е приложимо
     hosted_on: Mastodon е хостван на %{domain}
@@ -52,7 +51,7 @@ bg:
       delete: Изтриване на данни
       deleted: Изтрито
       demote: Понижаване
-      destroyed_msg: Данните на %{username} вече са на опашка за незабавно изтриване
+      destroyed_msg: "Данните на %{username} вече са на опашка за незабавно изтриване"
       disable: Замразяване
       disable_two_factor_authentication: Изключване на 2FA
       disabled: Замразено
@@ -128,7 +127,9 @@ bg:
       suspend: Спиране
       suspended: Спряно
       title: Акаунти
+      unblock_email: Отблокиране на адреса на имейла
       unconfirmed_email: Непотвърден имейл
+      undo_silenced: Отмяна на ограничението
       unsubscribe: Отписване
       username: Потребителско име
       warn: Предупреждение
@@ -136,6 +137,8 @@ bg:
       whitelisted: Позволено за федерацията
     action_logs:
       action_types:
+        change_email_user: Промяна на имейл за потребител
+        change_role_user: Промяна на роля за потребител
         confirm_user: Потвърждаване на потребител
         create_account_warning: Създаване на предупреждение
         create_announcement: Създаване на оповестяване
@@ -158,6 +161,9 @@ bg:
         remove_avatar_user: Премахване на аватар
         reopen_report: Повторно отваряне на доклад
         reset_password_user: Нулиране на парола
+        update_ip_block: Обновяване на правило за IP
+        update_status: Обновяване на публикация
+        update_user_role: Обновяване на роля
       deleted_account: изтрит акаунт
     announcements:
       live: На живо
@@ -214,12 +220,21 @@ bg:
           silence: Тишина
       private_comment: Личен коментар
       private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
+      undo: Отмяна на блокиране на домейн
+      view: Преглед на блокиране на домейн
     email_domain_blocks:
+      delete: Изтриване
+      domain: Домейн
+      new:
+        create: Добавяне на домейн
       title: Блокирани домейни на имейл
     follow_recommendations:
       language: За език
       status: Състояние
     instances:
+      back_to_all: Всичко
+      back_to_limited: Ограничено
+      back_to_warning: Предупреждение
       by_domain: Домейн
       content_policies:
         policies:
@@ -237,6 +252,8 @@ bg:
       empty: Няма намерени домейни.
       moderation:
         all: Всичко
+        limited: Ограничено
+        title: Mодериране
       title: Федерация
       total_blocked_by_us: Блокирано от нас
       total_followed_by_them: Последвани от тях
@@ -260,7 +277,7 @@ bg:
         '86400': 1 ден
         '94670856': 3 години
     relationships:
-      title: Отношения на %{acct}
+      title: "Отношения на %{acct}"
     relays:
       delete: Изтриване
       disable: Изключване
@@ -274,8 +291,11 @@ bg:
       are_you_sure: Сигурни ли сте?
       category: Категория
       created_at: Докладвано
+      delete_and_resolve: Изтриване на публикациите
       forwarded: Препратено
       forwarded_to: Препратено до %{domain}
+      mark_as_resolved: Маркиране като решено
+      mark_as_sensitive: Означаване като деликатно
       notes:
         create: Добавяне на бележка
         delete: Изтриване
@@ -371,9 +391,14 @@ bg:
     change_password: Парола
     delete_account: Изтриване на акаунта
     didnt_get_confirmation: Не получих инструкции за потвърждение
+    dont_have_your_security_key: Нямате ли си ключ за сигурност?
     forgot_password: Забравих си паролата
+    link_to_otp: Въведете двуфакторния код от телефона си или кода за възстановяване
+    link_to_webauth: Използвайте ключа си за сигурност на устройството
     login: Влизане
     logout: Излизане
+    migrate_account: Преместване в различен акаунт
+    or_log_in_with: Или влизане с помощта на
     register: Регистрация
     registration_closed: "%{instance} не приема нови членуващи"
     resend_confirmation: Изпрати отново инструкции за потвърждение
@@ -384,11 +409,13 @@ bg:
       title: Настройка
     status:
       account_status: Състояние на акаунта
+    use_security_key: Употреба на ключ за сигурност
   authorize_follow:
     already_following: Вече следвате този акаунт
     error: Възникна грешка в откриването на потребителя
     follow: Последвай
     follow_request: 'Изпратихте следната заявка до:'
+    following: 'Успешно! Сега сте последвали:'
     post_follow:
       close: Или просто затворете този прозорец.
       return: Показване на профила на потребителя
@@ -396,6 +423,7 @@ bg:
     title: Последвай %{acct}
   challenge:
     confirm: Продължаване
+    hint_html: "<strong>Съвет</strong>: няма да ви питаме пак за паролата през следващия час."
     invalid_password: Невалидна парола
     prompt: Потвърдете паролата, за да продължите
   date:
@@ -428,6 +456,7 @@ bg:
       username_unavailable: Вашето потребителско име ще остане неналично
   disputes:
     strikes:
+      status: 'Публикация #%{id}'
       title: "%{action} от %{date}"
       title_actions:
         none: Предупреждение
@@ -451,6 +480,7 @@ bg:
     blocks: Вашите блокирания
     bookmarks: Отметки
     lists: Списъци
+    mutes: Заглушихте
     storage: Съхранение на мултимедия
   filters:
     contexts:
@@ -550,8 +580,8 @@ bg:
       subject: 'Чакащ последовател: %{name}'
     mention:
       action: Отговор
-      body: "%{name} те спомена в:"
-      subject: "%{name} те спомена"
+      body: '%{name} те спомена в:'
+      subject: '%{name} те спомена'
       title: Ново споменаване
     reblog:
       body: 'Твоята публикация беше споделена от %{name}:'
@@ -576,11 +606,16 @@ bg:
     prev: Назад
   polls:
     errors:
+      already_voted: Вече сте гласували в тази анкета
       expired: Анкетата вече е приключила
   preferences:
     other: Друго
+    public_timelines: Публични часови оси
   privacy_policy:
     title: Политика за поверителност
+  reactions:
+    errors:
+      limit_reached: Ограничението на различни реакции е достигнат
   relationships:
     activity: Дейност на акаунта
     followers: Последователи
@@ -595,6 +630,7 @@ bg:
   remote_follow:
     missing_resource: Неуспешно търсене на нужния URL за пренасочване за твоя акаунт
   rss:
+    content_warning: 'Предупреждение за съдържанието:'
     descriptions:
       account: Публични публикации от @%{acct}
   sessions:
@@ -602,6 +638,7 @@ bg:
     browser: Браузър
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Edge на Майкрософт
       electron: Electron
@@ -615,6 +652,7 @@ bg:
       phantom_js: PhantomJS
       qq: Браузър QQ
       safari: Сафари
+      uc_browser: Браузър UC
       weibo: Weibo
     current_session: Текуща сесия
     description: "%{browser} на %{platform}"
@@ -622,6 +660,8 @@ bg:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Оп. сист. Firefox
       ios: iOS
       linux: Линукс
@@ -656,6 +696,7 @@ bg:
       audio:
         one: "%{count} звукозапис"
         other: "%{count} звукозаписа"
+      description: 'Прикачено: %{attached}'
       image:
         one: "%{count} образ"
         other: "%{count} образа"
@@ -663,8 +704,11 @@ bg:
         one: "%{count} видео"
         other: "%{count} видеозаписа"
     default_language: Същият като езика на интерфейса
+    edited_at_html: Редактирано на %{date}
     open_in_web: Отвори в уеб
     over_character_limit: прехвърлен лимит от %{max} символа
+    pin_errors:
+      limit: Вече сте закачили максималния брой публикации
     poll:
       vote: Гласуване
     show_more: Покажи повече
