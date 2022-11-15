@@ -190,6 +190,11 @@ externalAuth:
     # uid_field: uid
     # client_id: mastodon
     # client_secret: SECRETKEY
+    #
+    # you can also specify the name of an existing Secret
+    # with key OIDC_CLIENT_SECRET
+    # existingsecret: ""
+    #
     # redirect_uri: https://example.com/auth/auth/openid_connect/callback
     # assume_email_is_verified: true
     # client_auth_method:

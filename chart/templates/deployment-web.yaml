@@ -76,6 +76,13 @@ spec:
                   key: redis-password
             - name: "PORT"
               value: {{ .Values.mastodon.web.port | quote }}
+            {{- if (and .Values.externalAuth.oidc.enabled .Values.externalAuth.oidc.existingSecret) }}
+            - name: "OIDC_CLIENT_SECRET"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.externalAuth.oidc.existingSecret }}
+                  key: OIDC_CLIENT_SECRET
+            {{- end }}
             {{- if (and .Values.mastodon.s3.enabled .Values.mastodon.s3.existingSecret) }}
             - name: "AWS_SECRET_ACCESS_KEY"
               valueFrom:
