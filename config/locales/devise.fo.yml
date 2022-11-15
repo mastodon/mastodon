@@ -1,1 +1,11 @@
 fo:
+  devise:
+    mailer:
+      email_changed:
+        subject: 'Mastodon: Teldupostur broyttur'
+        title: Nýggjur eldupostur
+      reset_password_instructions:
+        action: Broyt loyniorð
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: Nýggjur trygdarlykil'
