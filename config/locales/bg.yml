@@ -602,15 +602,24 @@ bg:
   otp_authentication:
     enable: Включване
     manual_instructions: 'Ако не може да сканирате QR-кода и трябва да го въведете ръчно, то ето го:'
+    setup: Настройване
     wrong_code: Въведеният код е невалиден! Времето на сървъра и времето на устройството правилни ли са?
   pagination:
+    newer: По-ново
     next: Напред
+    older: По-старо
     prev: Назад
     truncate: "&hellip;"
   polls:
     errors:
       already_voted: Вече сте гласували в тази анкета
+      duplicate_options: съдържа повтарящи се елементи
+      duration_too_long: е твърде далеч в бъдещето
+      duration_too_short: е твърде скоро
       expired: Анкетата вече е приключила
+      invalid_choice: Избраната възможност за гласуване не съществува
+      over_character_limit: не може по-дълго от %{max} символа всяко
+      too_few_options: трябва да има повече от един елемент
   preferences:
     other: Друго
     public_timelines: Публични часови оси
@@ -640,6 +649,8 @@ bg:
     content_warning: 'Предупреждение за съдържанието:'
     descriptions:
       account: Публични публикации от @%{acct}
+  scheduled_statuses:
+    too_soon: Заплануваната дата трябва да е в бъдеще
   sessions:
     activity: Последна активност
     browser: Браузър
@@ -730,10 +741,17 @@ bg:
         other: "%{count} души"
       vote: Гласуване
     show_more: Покажи повече
+    show_newer: Показване на по-нови
+    show_older: Показване на по-стари
+    show_thread: Показване на нишката
+    sign_in_to_participate: Влезте, за да участвате в разговора
     title: '%{name}: „%{quote}“'
     visibilities:
+      direct: Директно
       private: Покажи само на последователите си
+      private_long: Показване само на последователи
       public: Публично
+      public_long: Всеки може да вижда
       unlisted: Публично, но не показвай в публичния канал
   statuses_cleanup:
     enabled: Автоматично изтриване на стари публикации
@@ -799,6 +817,7 @@ bg:
   users:
     follow_limit_reached: Не може да последвате повече от %{limit} души
     invalid_otp_token: Невалиден код
+    signed_in_as: 'Влезли като:'
   verification:
     verification: Проверка
   webauthn_credentials:
