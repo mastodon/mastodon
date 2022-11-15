@@ -56,7 +56,7 @@ class ActionBar extends React.PureComponent {
     return (
       <div className='compose__action-bar'>
         <div className='compose__action-bar-dropdown'>
-          <DropdownMenuContainer items={menu} icon='chevron-down' size={16} direction='right' />
+          <DropdownMenuContainer items={menu} icon='ellipsis-v' size={18} direction='right' />
         </div>
       </div>
     );

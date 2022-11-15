@@ -22,7 +22,7 @@ import {
   FOLLOW_REQUESTS_EXPAND_FAIL,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
-} from '../actions/accounts';
+  } from '../actions/accounts';
 import {
   REBLOGS_FETCH_SUCCESS,
   FAVOURITES_FETCH_SUCCESS,
@@ -51,7 +51,12 @@ import {
   DIRECTORY_EXPAND_SUCCESS,
   DIRECTORY_EXPAND_FAIL,
 } from 'mastodon/actions/directory';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import {
+  FEATURED_TAGS_FETCH_REQUEST,
+  FEATURED_TAGS_FETCH_SUCCESS,
+  FEATURED_TAGS_FETCH_FAIL,
+} from 'mastodon/actions/featured_tags';
+import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialListState = ImmutableMap({
   next: null,
@@ -67,6 +72,7 @@ const initialState = ImmutableMap({
   follow_requests: initialListState,
   blocks: initialListState,
   mutes: initialListState,
+  featured_tags: initialListState,
 });
 
 const normalizeList = (state, path, accounts, next) => {
@@ -87,6 +93,18 @@ const normalizeFollowRequest = (state, notification) => {
   return state.updateIn(['follow_requests', 'items'], list => {
     return list.filterNot(item => item === notification.account.id).unshift(notification.account.id);
   });
+};
+
+const normalizeFeaturedTag = (featuredTags, accountId) => {
+  const normalizeFeaturedTag = { ...featuredTags, accountId: accountId };
+  return fromJS(normalizeFeaturedTag);
+};
+
+const normalizeFeaturedTags = (state, path, featuredTags, accountId) => {
+  return state.setIn(path, ImmutableMap({
+    items: ImmutableList(featuredTags.map(featuredTag => normalizeFeaturedTag(featuredTag, accountId)).sort((a, b) => b.get('statuses_count') - a.get('statuses_count'))),
+    isLoading: false,
+  }));
 };
 
 export default function userLists(state = initialState, action) {
@@ -160,6 +178,12 @@ export default function userLists(state = initialState, action) {
   case DIRECTORY_FETCH_FAIL:
   case DIRECTORY_EXPAND_FAIL:
     return state.setIn(['directory', 'isLoading'], false);
+  case FEATURED_TAGS_FETCH_SUCCESS:
+    return normalizeFeaturedTags(state, ['featured_tags', action.id], action.tags, action.id);
+  case FEATURED_TAGS_FETCH_REQUEST:
+    return state.setIn(['featured_tags', action.id, 'isLoading'], true);
+  case FEATURED_TAGS_FETCH_FAIL:
+    return state.setIn(['featured_tags', action.id, 'isLoading'], false);
   default:
     return state;
   }

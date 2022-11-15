@@ -5,32 +5,36 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
+  {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
-{{- end }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" . | nindent 6 }}
-      component: rails
+      app.kubernetes.io/component: web
+      app.kubernetes.io/part-of: rails
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
       annotations:
+        {{- with .Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
-        # roll the pods to pick up any db migrations
-        rollme: {{ randAlphaNum 5 | quote }}
-    {{- end }}
+        {{- end }}
+        # roll the pods to pick up any db migrations or other changes
+        {{- include "mastodon.rollingPodAnnotations" . | nindent 8 }}
       labels:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
-        component: rails
+        app.kubernetes.io/component: web
+        app.kubernetes.io/part-of: rails
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- if (not .Values.mastodon.s3.enabled) }}
       volumes:
         - name: assets
@@ -42,8 +46,10 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
+          {{- with .Values.securityContext }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command:
@@ -56,24 +62,32 @@ spec:
             - configMapRef:
                 name: {{ include "mastodon.fullname" . }}-env
             - secretRef:
-                name: {{ template "mastodon.fullname" . }}
+                name: {{ template "mastodon.secretName" . }}
           env:
             - name: "DB_PASS"
               valueFrom:
                 secretKeyRef:
-                  {{- if .Values.postgresql.enabled }}
-                  name: {{ .Release.Name }}-postgresql
-                  {{- else }}
-                  name: {{ template "mastodon.fullname" . }}
-                  {{- end }}
-                  key: postgresql-password
+                  name: {{ template "mastodon.postgresql.secretName" . }}
+                  key: password
             - name: "REDIS_PASSWORD"
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Release.Name }}-redis
+                  name: {{ template "mastodon.redis.secretName" . }}
                   key: redis-password
             - name: "PORT"
               value: {{ .Values.mastodon.web.port | quote }}
+            {{- if (and .Values.mastodon.s3.enabled .Values.mastodon.s3.existingSecret) }}
+            - name: "AWS_SECRET_ACCESS_KEY"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mastodon.s3.existingSecret }}
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: "AWS_ACCESS_KEY_ID"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.mastodon.s3.existingSecret }}
+                  key: AWS_ACCESS_KEY_ID
+            {{- end }}
           {{- if (not .Values.mastodon.s3.enabled) }}
           volumeMounts:
             - name: assets
@@ -86,15 +100,22 @@ spec:
               containerPort: {{ .Values.mastodon.web.port }}
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /health
+            tcpSocket:
               port: http
           readinessProbe:
             httpGet:
               path: /health
               port: http
+          startupProbe:
+            httpGet:
+              path: /health
+              port: http
+            failureThreshold: 30
+            periodSeconds: 5
+          {{- with .Values.resources }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

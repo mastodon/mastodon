@@ -1,96 +1,27 @@
 ---
 hu:
   about:
-    about_hashtag_html: Ezek a <strong>#%{hashtag}</strong> hashtaggel ellátott nyilvános bejegyzések. Reagálhatsz rájuk, ha már van felhasználói fiókod valahol a föderációban.
     about_mastodon_html: 'A jövő közösségi hálózata: Hirdetések és céges megfigyelés nélkül, etikus dizájnnal és decentralizációval! Legyél a saját adataid ura a Mastodonnal!'
-    about_this: Névjegy
-    active_count_after: aktív
-    active_footnote: Havonta aktív felhasználók
-    administered_by: 'Adminisztrátor:'
-    api: API
-    apps: Mobil appok
-    apps_platforms: Használd a Mastodont iOS-ről, Androidról vagy más platformról
-    browse_directory: Böngészd a profilokat és szűrj érdeklődési körre
-    browse_local_posts: Nézz bele a szerver élő, nyilvános bejegyzéseibe
-    browse_public_posts: Nézz bele a Mastodon élő, nyilvános bejegyzéseibe
-    contact: Kapcsolat
     contact_missing: Nincs megadva
     contact_unavailable: N/A
-    continue_to_web: Tovább a webes alkalmazáshoz
-    discover_users: Találj meg másokat
-    documentation: Dokumentáció
-    federation_hint_html: Egy %{instance} fiókkal bármely más Mastodon szerveren vagy a föderációban lévő felhasználót követni tudsz.
-    get_apps: Próbálj ki egy mobil appot
     hosted_on: "%{domain} Mastodon szerver"
-    instance_actor_flash: |
-      Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét
-      felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni, hacsak nem akarod a teljes szervert kitiltani, mely esetben a domain tiltásának használata javasolt.
-    learn_more: Tudj meg többet
-    logged_in_as_html: Belépve, mint %{username}.
-    logout_before_registering: Már be vagy jelentkezve.
-    privacy_policy: Adatvédelmi szabályzat
-    rules: Szerverünk szabályai
-    rules_html: 'Alább látod azon követendő szabályok összefoglalóját, melyet be kell tartanod, ha szeretnél fiókot ezen a szerveren:'
-    see_whats_happening: Nézd, mi történik
-    server_stats: 'Szerver statisztika:'
-    source_code: Forráskód
-    status_count_after:
-      one: bejegyzést írt
-      other: bejegyzést írt
-    status_count_before: Eddig
-    tagline: Kövess barátokat és találj újakat
-    terms: Felhasználási feltételek
-    unavailable_content: Kimoderált szerverek
-    unavailable_content_description:
-      domain: Szerver
-      reason: 'Indok:'
-      rejecting_media: A szerverről származó médiafájlok nem kerülnek feldolgozásra, és nem jelennek meg miniatűrök, amelyek kézi átkattintást igényelnek a másik szerverre.
-      rejecting_media_title: Kiszűrt média
-      silenced: 'Az ezen szerverekről származó bejegyzéseket elrejtjük a nyilvános idővonalakról és beszélgetésekből, a rajtuk lévő felhasználók műveleteiről nem küldünk értesítéseket, hacsak nem követed őket:'
-      silenced_title: Elnémított szerverek
-      suspended: Nem fogsz tudni követni senkit ebből a szerverből, és nem kerül feldolgozásra vagy tárolásra a tőle származó adat, és nincs adatcsere.
-      suspended_title: Felfüggesztett szerverek
-    unavailable_content_html: A Mastodon általában mindenféle tartalomcserét és interakciót lehetővé tesz bármelyik szerverrel a fediverzumban. Ezek azok a kivételek, melyek a mi szerverünkön érvényben vannak.
-    user_count_after:
-      one: felhasználónk
-      other: felhasználónk
-    user_count_before: Összesen
-    what_is_mastodon: Mi a Mastodon?
+    title: Névjegy
   accounts:
-    choices_html: "%{name} választásai:"
-    endorsements_hint: A webes felületen promózhatsz általad követett embereket, akik itt fognak megjelenni.
-    featured_tags_hint: Szerepeltethetsz bizonyos hashtageket, melyek itt jelennek majd meg.
     follow: Követés
     followers:
       one: Követő
       other: Követő
     following: Követett
-    instance_actor_flash: |-
-      Ez a fiók virtuális, magát a szervert reprezentálja, nem pedig konkrét
-      felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni.
-    joined: Csatlakozott %{date}
+    instance_actor_flash: Ez a fiók virtuális, magát a kiszolgálót reprezentálja, nem pedig konkrét felhasználót. Föderációs célokra szolgál, nem szabad tehát felfüggeszteni.
     last_active: utoljára aktív
     link_verified_on: 'A hivatkozás tulajdonosa ekkor volt ellenőrizve: %{date}'
-    media: Média
-    moved_html: "%{name} ide költözött: %{new_profile_link}"
-    network_hidden: Ez az információ nem elérhető
     nothing_here: Nincs itt semmi!
-    people_followed_by: "%{name} követettjei"
-    people_who_follow: "%{name} követői"
     pin_errors:
       following: Ehhez szükséges, hogy kövesd már a felhasználót
     posts:
       one: Bejegyzés
       other: Bejegyzés
     posts_tab_heading: Bejegyzés
-    posts_with_replies: Bejegyzés válaszokkal
-    roles:
-      admin: Adminisztrátor
-      bot: Bot
-      group: Csoport
-      moderator: Moderátor
-    unavailable: Nincs ilyen profil
-    unfollow: Követés vége
   admin:
     account_actions:
       action: Művelet végrehajtása
@@ -107,12 +38,17 @@ hu:
       avatar: Profilkép
       by_domain: Domain
       change_email:
-        changed_msg: A fiókhoz tartozó e-mailt megváltoztattuk!
+        changed_msg: Az emailt sikeresen megváltoztattuk!
         current_email: Jelenlegi e-mail
         label: E-mail megváltoztatása
         new_email: Új e-mail
         submit: E-mail megváltoztatása
         title: "%{username} felhasználó e-mail változás"
+      change_role:
+        changed_msg: A szerepet sikeresen megváltoztattuk!
+        label: Szerep megváltoztatása
+        no_role: Nincs szerep
+        title: "%{username} szerepének megváltoztatása"
       confirm: Megerősítés
       confirmed: Megerősítve
       confirming: Megerősítés alatt
@@ -156,6 +92,7 @@ hu:
         active: Aktív
         all: Összes
         pending: Függőben
+        silenced: Korlátozott
         suspended: Felfüggesztve
         title: Moderáció
       moderation_notes: Moderációs bejegyzés
@@ -163,6 +100,7 @@ hu:
       most_recent_ip: Legutóbbi IP-cím
       no_account_selected: Nem változott meg egy fiók sem, mert semmi sem volt kiválasztva
       no_limits_imposed: Nincs korlátozás
+      no_role_assigned: Nincs szerep hozzárendelve
       not_subscribed: Nincs feliratkozás
       pending: Engedélyezés alatt
       perform_full_suspension: Felfüggesztés
@@ -189,12 +127,7 @@ hu:
       reset: Visszaállítás
       reset_password: Jelszó visszaállítása
       resubscribe: Feliratkozás ismét
-      role: Engedélyek
-      roles:
-        admin: Adminisztrátor
-        moderator: Moderátor
-        staff: Stáb
-        user: Felhasználó
+      role: Szerep
       search: Keresés
       search_same_email_domain: Felhasználók ugyanezzel az email domainnel
       search_same_ip: Más felhasználók ugyanezzel az IP-vel
@@ -237,17 +170,21 @@ hu:
         approve_user: Felhasználó Jóváhagyása
         assigned_to_self_report: Jelentés hozzárendelése
         change_email_user: Felhasználó e-mail címének módosítása
+        change_role_user: Felhasználó szerepkörének módosítása
         confirm_user: Felhasználó megerősítése
         create_account_warning: Figyelmeztetés létrehozása
         create_announcement: Közlemény létrehozása
+        create_canonical_email_block: E-mail tiltás létrehozása
         create_custom_emoji: Egyéni emodzsi létrehozása
         create_domain_allow: Domain engedélyezés létrehozása
         create_domain_block: Domain tiltás létrehozása
         create_email_domain_block: E-mail domain tiltás létrehozása
         create_ip_block: IP szabály létrehozása
         create_unavailable_domain: Elérhetetlen domain létrehozása
+        create_user_role: Szerepkör létrehozása
         demote_user: Felhasználó lefokozása
         destroy_announcement: Közlemény törlése
+        destroy_canonical_email_block: E-mail tiltás törlése
         destroy_custom_emoji: Egyéni emodzsi törlése
         destroy_domain_allow: Domain engedélyezés törlése
         destroy_domain_block: Domain tiltás törlése
@@ -256,6 +193,7 @@ hu:
         destroy_ip_block: IP szabály törlése
         destroy_status: Bejegyzés törlése
         destroy_unavailable_domain: Elérhetetlen domain törlése
+        destroy_user_role: Szerepkör eltávolítása
         disable_2fa_user: Kétlépcsős hitelesítés letiltása
         disable_custom_emoji: Egyéni emodzsi letiltása
         disable_sign_in_token_auth_user: A felhasználó tokenes e-mail hitelesítésének letiltása
@@ -269,6 +207,7 @@ hu:
         reject_user: Felhasználó Elutasítása
         remove_avatar_user: Profilkép eltávolítása
         reopen_report: Jelentés újranyitása
+        resend_user: Megerősítő e-mail újraküldése
         reset_password_user: Jelszó visszaállítása
         resolve_report: Jelentés megoldása
         sensitive_account: A fiókodban minden média kényesnek jelölése
@@ -282,31 +221,38 @@ hu:
         update_announcement: Közlemény frissítése
         update_custom_emoji: Egyéni emodzsi frissítése
         update_domain_block: Domain tiltás frissítése
+        update_ip_block: IP-szabály frissítése
         update_status: Bejegyzés frissítése
+        update_user_role: Szerepkör frissítése
       actions:
         approve_appeal_html: "%{name} jóváhagyott egy fellebbezést %{target} moderátori döntéséről"
         approve_user_html: "%{name} jóváhagyta %{target} regisztrációját"
         assigned_to_self_report_html: "%{name} a %{target} bejelentést magához rendelte"
         change_email_user_html: "%{name} megváltoztatta %{target} felhasználó e-mail címét"
+        change_role_user_html: "%{name} módosította %{target} szerepkörét"
         confirm_user_html: "%{name} megerősítette %{target} e-mail-címét"
         create_account_warning_html: "%{name} figyelmeztetést küldött %{target} számára"
         create_announcement_html: "%{name} új közleményt hozott létre: %{target}"
+        create_canonical_email_block_html: "%{name} letiltotta a(z) %{target} hashű e-mailt"
         create_custom_emoji_html: "%{name} új emodzsit töltött fel: %{target}"
         create_domain_allow_html: "%{name} engedélyezte a föderációt %{target} domainnel"
         create_domain_block_html: "%{name} letiltotta a %{target} domaint"
         create_email_domain_block_html: "%{name} letiltotta a %{target} e-mail domaint"
-        create_ip_block_html: "%{name} létrehozott egy szabályt a %{target} IP-vel kapcsolatban"
+        create_ip_block_html: "%{name} létrehozta a(z) %{target} IP-címre vonatkozó szabályt"
         create_unavailable_domain_html: "%{name} leállította a kézbesítést a %{target} domainbe"
+        create_user_role_html: "%{name} létrehozta a(z) %{target} szerepkört"
         demote_user_html: "%{name} lefokozta %{target} felhasználót"
         destroy_announcement_html: "%{name} törölte a %{target} közleményt"
-        destroy_custom_emoji_html: "%{name} törölte az emodzsit: %{target}"
+        destroy_canonical_email_block_html: "%{name} engedélyezte a(z) %{target} hashű e-mailt"
+        destroy_custom_emoji_html: "%{name} törölte a(z) %{target} emodzsit"
         destroy_domain_allow_html: "%{name} letiltotta a föderációt a %{target} domainnel"
         destroy_domain_block_html: "%{name} engedélyezte a %{target} domaint"
         destroy_email_domain_block_html: "%{name} engedélyezte a %{target} e-mail domaint"
         destroy_instance_html: "%{name} véglegesen törölte a(z) %{target} domaint"
-        destroy_ip_block_html: "%{name} törölt egy szabályt a %{target} IP-vel kapcsolatban"
+        destroy_ip_block_html: "%{name} törölte a(z) %{target} IP-címre vonatkozó szabályt"
         destroy_status_html: "%{name} eltávolította %{target} felhasználó bejegyzését"
         destroy_unavailable_domain_html: "%{name} újraindította a kézbesítést a %{target} domainbe"
+        destroy_user_role_html: "%{name} törölte a(z) %{target} szerepkört"
         disable_2fa_user_html: "%{name} kikapcsolta a kétlépcsős azonosítást %{target} felhasználó fiókján"
         disable_custom_emoji_html: "%{name} letiltotta az emodzsit: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} letiltotta a tokenes e-mail hitelesítést %{target} felhasználóra"
@@ -320,6 +266,7 @@ hu:
         reject_user_html: "%{name} elutasította %{target} regisztrációját"
         remove_avatar_user_html: "%{name} törölte %{target} profilképét"
         reopen_report_html: "%{name} újranyitotta a %{target} bejelentést"
+        resend_user_html: "%{name} újraküldte %{target} megerősítő e-mailjét"
         reset_password_user_html: "%{name} visszaállította %{target} felhasználó jelszavát"
         resolve_report_html: "%{name} megoldotta a %{target} bejelentést"
         sensitive_account_html: "%{name} kényesnek jelölte %{target} médiatartalmát"
@@ -333,8 +280,10 @@ hu:
         update_announcement_html: "%{name} frissítette a %{target} közleményt"
         update_custom_emoji_html: "%{name} frissítette az emodzsit: %{target}"
         update_domain_block_html: "%{name} frissítette a %{target} domain tiltását"
+        update_ip_block_html: "%{name} módosította a(z) %{target} IP-címre vonatkozó szabályt"
         update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
-      deleted_status: "(törölt bejegyzés)"
+        update_user_role_html: "%{name} módosította a(z) %{target} szerepkört"
+      deleted_account: törölt fiók
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
       filter_by_user: Szűrés felhasználó alapján
@@ -378,6 +327,7 @@ hu:
       listed: Felsorolva
       new:
         title: Új egyéni emodzsi hozzáadása
+      no_emoji_selected: Nem változott meg egy emodzsi sem, mert semmi sem volt kiválasztva
       not_permitted: Nem vagy jogosult a művelet végrehajtására
       overwrite: Felülírás
       shortcode: Rövidítés
@@ -413,7 +363,7 @@ hu:
       space: Tárhely használat
       title: Műszerfal
       top_languages: Legaktívabb nyelvek
-      top_servers: Legaktívabb szerverek
+      top_servers: Legaktívabb kiszolgálók
       website: Weboldal
     disputes:
       appeals:
@@ -430,6 +380,7 @@ hu:
       destroyed_msg: A domain tiltása feloldva
       domain: Domain
       edit: Domain tiltás szerkesztése
+      existing_domain_block: 'Már szigorúbb korlátozások vonatkoznak a következőre: %{name}.'
       existing_domain_block_html: A %{name} domainen már szorosabb korlátokat állítottál be, először <a href="%{unblock_url}">oldd fel a tiltást</a>.
       new:
         create: Tiltás létrehozása
@@ -467,7 +418,7 @@ hu:
         create: Domain hozzáadása
         resolve: Domain feloldása
         title: Új e-mail domain tiltása
-      no_email_domain_block_selected: Nem változott meg egyetlen e-mail domain tiltás sem, mert nem volt egy sem kiválasztva
+      no_email_domain_block_selected: Nem változott meg egy domain tiltás sem, mert semmi sem volt kiválasztva
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
       title: Tiltott e-mail domainek
@@ -490,7 +441,7 @@ hu:
           other: Sikertelen próbálkozás %{count} különböző napon.
         no_failures_recorded: Nem rögzítettünk hibát.
         title: Elérhetőség
-        warning: Sikertelen volt az utolsó csatlakozási próbálkozás ehhez a szerverhez
+        warning: Az utolsó csatlakozási próbálkozás ehhez a kiszolgálóhoz sikertelen volt
       back_to_all: Mind
       back_to_limited: Korlátozott
       back_to_warning: Figyelmeztetés
@@ -567,7 +518,7 @@ hu:
         '94670856': 3 év
       new:
         title: Új IP szabály létrehozása
-      no_ip_block_selected: Nem változtattunk egy IP szabályon sem, mivel egy sem volt kiválasztva
+      no_ip_block_selected: Nem változott meg egy IP-szabály sem, mert semmi sem volt kiválasztva
       title: IP szabály
     relationships:
       title: "%{acct} kapcsolatai"
@@ -650,116 +601,134 @@ hu:
       unresolved: Megoldatlan
       updated_at: Frissítve
       view_profile: Profil megtekintése
+    roles:
+      add_new: Szerep hozzáadása
+      assigned_users:
+        one: "%{count} felhasználó"
+        other: "%{count} felhasználó"
+      categories:
+        administration: Adminisztráció
+        invites: Meghívások
+        moderation: Moderáció
+        special: Speciális
+      delete: Törlés
+      description_html: A <strong>felhasználói szerepekkel</strong> testreszabhatod, hogy a felhasználóid milyen Mastodon funkciókat és területeket érjenek el.
+      edit: "'%{name}' szerep szerkesztése"
+      everyone: Alapértelmezett engedélyek
+      everyone_full_description_html: Ez az <strong>alap szerep</strong>, mely <strong>minden felhasználóra</strong> kihat, azokra is, akiknek nincs hozzárendelt szerepük. Minden más szerep ebből örökli az engedélyeit.
+      permissions_count:
+        one: "%{count} engedély"
+        other: "%{count} engedély"
+      privileges:
+        administrator: Adminisztrátor
+        administrator_description: A felhasználók ezzel a szereppel minden jogosultsággal rendelkeznek
+        delete_user_data: Felhasználói adatok törlése
+        delete_user_data_description: Lehetővé teszi a felhasználónak, hogy azonnal törölhesse más felhasználó adatait
+        invite_users: Felhasználók meghívása
+        invite_users_description: Lehetővé teszi a felhasználónak, hogy új embereket hívjon meg a kiszolgálóra
+        manage_announcements: Hirdetmények kezelése
+        manage_announcements_description: Lehetővé teszi a felhasználónak, hogy a kiszolgáló hirdetményeit kezelje
+        manage_appeals: Fellebbezések kezelése
+        manage_appeals_description: Lehetővé teszi, hogy a felhasználó átnézze a moderációval kapcsolatos fellebbezéseket
+        manage_blocks: Letiltások kezelése
+        manage_blocks_description: Lehetővé teszi, hogy a felhasználó letiltson email szolgáltatókat és IP címeket
+        manage_custom_emojis: Egyedi emodzsik kezelése
+        manage_custom_emojis_description: Lehetővé teszi a felhasználó számára, hogy a kiszolgáló egyéni emodzsiait kezelje
+        manage_federation: Föderáció kezelése
+        manage_federation_description: Lehetővé teszi a felhasználó számára, hogy más domainnekkel való föderációt engedélyezzen vagy letiltson, illetve szabályozza a kézbesítést
+        manage_invites: Meghívások kezelése
+        manage_invites_description: Lehetővé teszi a felhasználó számára, hogy böngéssze és deaktiválja a meghívási hivatkozásokat
+        manage_reports: Bejelentések kezelése
+        manage_reports_description: Lehetővé teszi a felhasználó számára, hogy átnézze a bejelentéseket és moderáljon ezek alapján
+        manage_roles: Szerepek kezelése
+        manage_roles_description: Lehetővé teszi a felhasználó számára, hogy a sajátjánál alacsonyabb rangú szerepeket kezeljen és hozzárendeljen másokhoz
+        manage_rules: Szabályok kezelése
+        manage_rules_description: Lehetővé teszi a felhasználó számára, hogy megváltoztassa a kiszolgáló szabályait
+        manage_settings: Beállítások kezelése
+        manage_settings_description: Lehetővé teszi, hogy a felhasználó megváltoztassa az oldal beállításait
+        manage_taxonomies: Taxonómiák kezelése
+        manage_taxonomies_description: Lehetővé teszi, hogy a felhasználó átnézze a felkapott tartalmakat és frissítse a hashtagek beállításait
+        manage_user_access: Felhasználói hozzáférések kezelése
+        manage_user_access_description: Lehetővé teszi, hogy a felhasználó letiltsa mások kétlépcsős azonosítását, megváltoztassa az email címüket, és alaphelyzetbe állítsa a jelszavukat
+        manage_users: Felhasználók kezelése
+        manage_users_description: Lehetővé teszi, hogy a felhasználó megtekintse mások részletes adatait és moderálja őket
+        manage_webhooks: Webhookok kezelése
+        manage_webhooks_description: Lehetővé teszi, hogy a felhasználó webhookokat állítson be adminisztratív eseményekhez
+        view_audit_log: Audit napló megtekintése
+        view_audit_log_description: Lehetővé teszi, hogy a felhasználó megtekintse a kiszolgáló adminisztratív eseményeinek történetét
+        view_dashboard: Irányítópult megtekintése
+        view_dashboard_description: Lehetővé teszi, hogy a felhasználó elérje az irányítópultot és vele számos metrikát
+        view_devops_description: Lehetővé teszi, hogy a felhasználó elérje a Sidekiq és pgHero irányítópultjait
+      title: Szerepek
     rules:
       add_new: Szabály hozzáadása
       delete: Törlés
-      description_html: Bár a többség azt állítja, hogy elolvasták és egyetértenek a felhasználói feltételekkel, általában ez nem teljesül, amíg egy probléma elő nem jön. <strong>Tedd könnyebbé a szervered szabályainak áttekintését azzal, hogy pontokba foglalod azt egy listába.</strong> Próbáld meg a különálló szabályokat megtartani rövidnek, egyszerűnek. Próbáld meg azt is, hogy nem darabolod fel őket sok különálló kis pontra.
+      description_html: Bár a többség azt állítja, hogy elolvasták és egyetértenek a felhasználói feltételekkel, általában ez nem teljesül, amíg egy probléma elő nem jön. <strong>Tedd könnyebbé a kiszolgálód szabályainak áttekintését azzal, hogy pontokba foglalod azt egy listában.</strong> Az egyes szabályok legyenek rövidek és egyszerűek. Próbáld meg nem túl sok önálló pontra darabolni őket.
       edit: Szabály szerkesztése
-      empty: Nincsenek még szerver szabályok definiálva.
-      title: Szerverszabályzat
+      empty: Még nincsenek meghatározva a kiszolgáló szabályai.
+      title: Kiszolgáló szabályai
     settings:
-      activity_api_enabled:
-        desc_html: Helyi bejegyzések, aktív felhasználók és új regisztrációk száma heti bontásban
-        title: Felhasználói aktivitás összesített statisztikájának publikussá tétele
-      bootstrap_timeline_accounts:
-        desc_html: Az egyes felhasználóneveket vesszővel válaszd el! Csak helyi és aktivált fiókok esetében működik. Üresen (alapértelmezettként) minden helyi adminisztrátorra érvényes.
-        title: Alapértelmezett követések új felhasználók esetében
-      contact_information:
-        email: Kapcsolattartói e-mail cím
-        username: Kapcsolattartó felhasználóneve
-      custom_css:
-        desc_html: Változtasd meg a kinézetet ebben a CSS-ben, mely minden oldalon be fog töltődni
-        title: Egyéni CSS
-      default_noindex:
-        desc_html: Olyan felhasználókat érinti, akik nem módosították ezt a beállítást
-        title: Alapértelmezésként ne indexeljék a keresők a felhasználóinkat
+      about:
+        manage_rules: Kiszolgáló szabályainak kezelése
+        preamble: Adj meg részletes információkat arról, hogy a kiszolgáló hogyan működik, miként moderálják és finanszírozzák.
+        rules_hint: Van egy helyünk a szabályoknak, melyeket a felhasználóidnak be kellene tartani.
+        title: Névjegy
+      appearance:
+        preamble: A Mastodon webes felületének testreszabása.
+        title: Megjelenés
+      branding:
+        preamble: A kiszolgáló márkajelzése különbözteti meg a hálózat többi kiszolgálójától. Ez az információ számos környezetben megjelenhet, például a Mastodon webes felületén, natív alkalmazásokban, más weboldalakon és üzenetküldő alkalmazásokban megjelenő hivatkozások előnézetben stb. Ezért a legjobb, ha ez az információ világos, rövid és tömör.
+        title: Branding
+      content_retention:
+        preamble: Felhasználók által generált tartalom Mastodonon való tárolásának szabályozása.
+        title: Tartalom megtartása
+      discovery:
+        follow_recommendations: Ajánlottak követése
+        preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
+        profile_directory: Profiladatbázis
+        public_timelines: Nyilvános idővonalak
+        title: Felfedezés
+        trends: Trendek
       domain_blocks:
         all: Mindenkinek
         disabled: Senkinek
-        title: Domain tiltások megjelenitése
         users: Bejelentkezett helyi felhasználóknak
-      domain_blocks_rationale:
-        title: Mutasd meg az indokolást
-      hero:
-        desc_html: A kezdőoldalon látszik. Legalább 600x100px méret javasolt. Ha nincs beállítva, a szerver bélyegképet használjuk
-        title: Hősi kép
-      mascot:
-        desc_html: Több oldalon is látszik. Legalább 293×205px méret javasolt. Ha nincs beállítva, az alapértelmezett kabalát használjuk
-        title: Kabala kép
-      peers_api_enabled:
-        desc_html: Domainek, amelyekkel ez a szerver kapcsolatban áll
-        title: Szerverek listájának közzététele, melyekkel ez a szerver kapcsolatban áll
-      preview_sensitive_media:
-        desc_html: Más weboldalakon linkelt tartalmaink előnézetében mindenképp benne lesz egy bélyegkép még akkor is, ha a médiát kényesnek jelölték meg
-        title: Kényes média mutatása OpenGraph előnézetben
-      profile_directory:
-        desc_html: Lehetővé teszi, hogy a felhasználóinkat megtalálják
-        title: Profil adatbázis engedélyezése
       registrations:
-        closed_message:
-          desc_html: Ez az üzenet jelenik meg a főoldalon, ha a regisztráció nem engedélyezett. HTML-tageket is használhatsz
-          title: Üzenet, ha a regisztráció nem engedélyezett
-        deletion:
-          desc_html: Engedélyezed a felhasználóknak, hogy töröljék fiókjukat
-          title: Fiók törlésének engedélyezése
-        min_invite_role:
-          disabled: Senki
-          title: Meghívások engedélyezése
-        require_invite_text:
-          desc_html: Ha a regisztrációhoz kézi jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
-          title: Az új felhasználóktól legyen megkövetelve a meghívási kérés szövegének kitöltése
+        preamble: Szabályozd, hogy ki hozhat létre fiókot a kiszolgálón.
+        title: Regisztrációk
       registrations_mode:
         modes:
           approved: A regisztráció engedélyhez kötött
           none: Senki sem regisztrálhat
           open: Bárki regisztrálhat
-        title: Regisztrációs mód
-      show_known_fediverse_at_about_page:
-        desc_html: Ha le van tiltva, a nyilvános, főoldalról elérhető idővonalon csak helyi tartalmak jelennek meg
-        title: Mutassuk az általunk ismert föderációt az idővonal előnézetben
-      show_staff_badge:
-        desc_html: Stáb-jelvény megjelenítése a felhasználó oldalán
-        title: Stáb-jelvény megjelenítése
-      site_description:
-        desc_html: Rövid bemutatkozás a főoldalon és a meta fejlécekben. Írd le, mi teszi ezt a szervert különlegessé! Használhatod a <code>&lt;a&gt;</code> és <code>&lt;em&gt;</code> HTML tageket.
-        title: Kiszolgáló leírása
-      site_description_extended:
-        desc_html: Ide teheted például a közösségi és egyéb szabályzatot, útmutatókat és mindent, ami egyedivé teszi szerveredet. HTML-tageket is használhatsz
-        title: További egyéni információk
-      site_short_description:
-        desc_html: Oldalsávban és meta tag-ekben jelenik meg. Írd le, mi teszi ezt a szervert különlegessé egyetlen bekezdésben.
-        title: Rövid leírás
-      site_terms:
-        desc_html: Megírhatod saját adatkezelési szabályzatodat, felhasználási feltételeidet vagy más hasonló jellegű dokumentumodat. HTML-tageket is használhatsz
-        title: Egyéni felhasználási feltételek
-      site_title: A szerver neve
-      thumbnail:
-        desc_html: Az OpenGraph-on és API-n keresztüli előnézetekhez használatos. Ajánlott mérete 1200×630 képpont.
-        title: A szerver bélyegképe
-      timeline_preview:
-        desc_html: Nyilvános idővonal megjelenítése a főoldalon
-        title: Idővonal előnézete
-      title: Webhely beállításai
-      trendable_by_default:
-        desc_html: Azokra a hashtagekere hat, melyet előzőleg nem tiltottak le
-        title: Felkapott hashtagek engedélyezése előzetes ellenőrzés nélkül
-      trends:
-        desc_html: Előzetesen engedélyezett és most felkapott hashtagek nyilvános megjelenítése
-        title: Felkapott hashtagek
+      title: Kiszolgálóbeállítások
     site_uploads:
       delete: Feltöltött fájl törlése
       destroyed_msg: Sikeresen töröltük a site feltöltését!
     statuses:
+      account: Szerző
+      application: Alkalmazás
       back_to_account: Vissza a fiók oldalára
       back_to_report: Vissza a bejelentés oldalra
       batch:
         remove_from_report: Eltávolítás a bejelentésből
         report: Bejelentés
       deleted: Törölve
+      favourites: Kedvencek
+      history: Verziótörténet
+      in_reply_to: 'Válasz címzettje:'
+      language: Nyelv
       media:
         title: Média
+      metadata: Metaadatok
       no_status_selected: Nem változtattunk meg egy bejegyzést sem, mert semmi sem volt kiválasztva
+      open: Bejegyzés megnyitása
+      original_status: Eredeti bejegyzés
+      reblogs: Megosztások
+      status_changed: A bejegyzés megváltozott
       title: Fiók bejegyzései
+      trending: Felkapott
+      visibility: Láthatóság
       with_media: Médiával
     strikes:
       actions:
@@ -781,7 +750,7 @@ hu:
         message_html: 'Nem kompatibilis Elasticsearch verzió: %{value}'
         version_comparison: Az Elasticsearch %{running_version} fut, de %{required_version} szükséges
       rules_check:
-        action: Szerver szabályok menedzselése
+        action: Kiszolgáló szabályainak kezelése
         message_html: Még nem definiáltál egy szerver szabályt sem.
       sidekiq_process_check:
         message_html: Nincs Sidekiq folyamat, mely a %{value} sorhoz van rendelve. Kérlek, nézd át a Sidekiq beállításait
@@ -796,9 +765,12 @@ hu:
       links:
         allow: Hivatkozás engedélyezése
         allow_provider: Közzétevő engedélyezése
-        description_html: Ezek olyan hivatkozások, melyeket a szervered által látott fiókok mostanában sokat osztanak meg. Ez segíthet a felhasználóidnak rátalálni arra, hogy mi történik a világban. Egy hivatkozást sem mutatunk meg nyilvánosan, amíg a közzétevőt jóvá nem hagytad. A hivatkozásokat külön is engedélyezheted vagy visszautasíthatod.
+        description_html: Ezek olyan hivatkozások, melyeket a kiszolgálód által látott fiókok mostanában sokat osztanak meg. Ez segíthet a felhasználóidnak rátalálni arra, hogy mi történik a világban. Egy hivatkozást sem jelenik meg nyilvánosan, amíg a közzétevőt jóvá nem hagytad. A hivatkozásokat külön is engedélyezheted vagy elutasíthatod.
         disallow: Hivatkozás letiltása
         disallow_provider: Közzétevő letiltása
+        no_link_selected: Nem változott meg egy hivatkozás sem, mert semmi sem volt kiválasztva
+        publishers:
+          no_publisher_selected: Nem változott meg egy közzétevő sem, mert semmi sem volt kiválasztva
         shared_by_over_week:
           one: Egy ember osztotta meg a múlt héten
           other: "%{count} ember osztotta meg a múlt héten"
@@ -808,16 +780,17 @@ hu:
       pending_review: Áttekintésre vár
       preview_card_providers:
         allowed: A közzétevő hivatkozásai felkapottak lehetnek
-        description_html: Ezek olyan domainek, melyekre vonatkozó hivatkozásokat gyakran osztanak meg a szervereden. A hivatkozások nem lesznek nyilvánosan trendik, amíg a hivatkozás domainjét jóvá nem hagytad. A jóváhagyásod (vagy visszautasításod) az aldomainekre is vonatkozik.
+        description_html: Ezek olyan domainek, melyekre vonatkozó hivatkozásokat gyakran osztanak meg a kiszolgálódon. A hivatkozások nem lesznek nyilvánosan felkapottak, amíg a hivatkozás domainjét jóvá nem hagytad. A jóváhagyásod (vagy elutasításod) az aldomainekre is vonatkozik.
         rejected: A közzétevő hivatkozásai nem lesznek felkapottak
         title: Közzétévők
       rejected: Elutasított
       statuses:
         allow: Bejegyzés engedélyezése
         allow_account: Szerző engedélyezése
-        description_html: Ezek olyan, a szervered által ismert bejegyzések, melyeket mostanság gyakran osztanak meg vagy jelölnek kedvencnek. Ez segíthet az új vagy visszatérő felhasználóidnak, hogy több követhető személyt találjanak Egyetlen bejegyzést sem mutatunk meg nyilvánosan, amíg ennek szerzőjét nem hagytad jóvá és ő nem járult hozzá, hogy őt másoknak ajánlják. Bejegyzéseket egyenként is engedélyezhetsz vagy visszautasíthatsz.
+        description_html: Ezek olyan, a szervered által ismert bejegyzések, melyeket mostanság gyakran osztanak meg vagy jelölnek kedvencnek. Ez segíthet az új vagy visszatérő felhasználóidnak, hogy több követhető személyt találjanak. Egyetlen bejegyzés sem jelenik meg nyilvánosan, amíg ennek szerzőjét nem hagytad jóvá és ő nem járult hozzá, hogy őt másoknak ajánlják. Bejegyzéseket egyenként is engedélyezhetsz vagy visszautasíthatsz.
         disallow: Bejegyzés tiltása
         disallow_account: Szerző tiltása
+        no_status_selected: Nem változott meg egy felkapott bejegyzés sem, mert semmi sem volt kiválasztva
         not_discoverable: A szerző nem járult hozzá, hogy mások rátalálhassanak
         shared_by:
           one: Megosztva vagy kedvencnek jelölve egy alkalommal
@@ -831,8 +804,9 @@ hu:
           tag_servers_dimension: Legnépszerűbb kiszolgálók
           tag_servers_measure: különböző kiszolgáló
           tag_uses_measure: összes használat
-        description_html: Ezek olyan hashtag-ek, melyek mostanság nagyon sok bejegyzésben jelennek meg, melyet a szervered lát. Ez segíthet a felhasználóidnak abban, hogy megtudják, miről beszélnek legtöbbet az emberek az adott pillanatban. Egyetlen hashtag-et sem mutatunk meg nyilvánosan, amíg azt nem hagytad jóvá.
+        description_html: Ezek olyan hashtagek, melyek mostanság nagyon sok bejegyzésben jelennek meg, melyet a szervered lát. Ez segíthet a felhasználóidnak abban, hogy megtudják, miről beszélnek legtöbbet az emberek az adott pillanatban. Egyetlen hashtaget sem jelenik meg nyilvánosan, amíg azt nem hagytad jóvá.
         listable: Javasolható
+        no_tag_selected: Nem változott meg egy címke sem, mert semmi sem volt kiválasztva
         not_listable: Nem lesz javasolva
         not_trendable: Nem fog megjelenni a trendek alatt
         not_usable: Nem használható
@@ -853,6 +827,26 @@ hu:
       edit_preset: Figyelmeztetés szerkesztése
       empty: Nem definiáltál még egyetlen figyelmeztetést sem.
       title: Figyelmeztetések
+    webhooks:
+      add_new: Végpont hozzáadása
+      delete: Törlés
+      description_html: Egy <strong>webhook</strong> lehetővé teszi a Mastodon számára, hogy <strong>valósidejű értesítéseket</strong> küldjön le a kiválasztott eseményekről a te alkalmazásodnak, így az alkalmazásod <strong>automatikusan reagálhat</strong> ezekre.
+      disable: Letiltás
+      disabled: Letiltva
+      edit: Végpont szerkesztése
+      empty: Még nincs beállított webhook végpontod.
+      enable: Engedélyezés
+      enabled: Aktív
+      enabled_events:
+        one: 1 engedélyezett esemény
+        other: "%{count} engedélyezett esemény"
+      events: Események
+      new: Új webhook
+      rotate_secret: Titok forgatása
+      secret: Titok aláírása
+      status: Állapot
+      title: Webhookok
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -876,12 +870,8 @@ hu:
     new_trends:
       body: 'A következő elemeket ellenőrizni kell, mielőtt nyilvánosan megjelennének:'
       new_trending_links:
-        no_approved_links: Jelenleg nincsenek jóváhagyott felkapott hivatkozások.
-        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott hivatkozást, amely jelenleg a(z) „%{lowest_link_title}” ezzel a pontszámmal: %{lowest_link_score}.'
         title: Felkapott hivatkozások
       new_trending_statuses:
-        no_approved_statuses: Jelenleg nincsenek jóváhagyott felkapott bejegyzések.
-        requirements: 'Ezek közül bármelyik jelölt lehagyná a %{rank}. jóváhagyott felkapott bejegyzést, amely jelenleg a(z) „%{lowest_status_url}” ezzel a pontszámmal: %{lowest_status_score}.'
         title: Felkapott bejegyzések
       new_trending_tags:
         no_approved_tags: Jelenleg nincsenek jóváhagyott felkapott hashtagek.
@@ -917,20 +907,17 @@ hu:
   applications:
     created: Alkalmazás sikeresen létrehozva
     destroyed: Alkalmazás sikeresen eltávolítva
-    invalid_url: A megadott URL nem megfelelő
     regenerate_token: Hozzáférési kulcs újragenerálása
     token_regenerated: Hozzáférési kulcs sikeresen újragenerálva
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!
     your_token: Hozzáférési kulcsod
   auth:
-    apply_for_account: Meghívó kérése
+    apply_for_account: Felkerülés a várólistára
     change_password: Jelszó
-    checkbox_agreement_html: Egyetértek a <a href="%{rules_path}" target="_blank">szerver szabályaival</a> és a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
-    checkbox_agreement_without_rules_html: Egyetértek a <a href="%{terms_path}" target="_blank">felhasználási feltételekkel</a>
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     description:
-      prefix_invited_by_user: "@%{name} meghív téged, hogy csatlakozz erre a Mastodon szerverre!"
+      prefix_invited_by_user: "@%{name} meghív téged, hogy csatlakozz ehhez a Mastodon kiszolgálóhoz."
       prefix_sign_up: Regisztrláj még ma a Mastodonra!
       suffix: Egy fiókkal követhetsz másokat, bejegyzéseket tehetsz közzé, eszmét cserélhetsz más Mastodon szerverek felhasználóival!
     didnt_get_confirmation: Nem kaptad meg a megerősítési lépéseket?
@@ -945,6 +932,7 @@ hu:
     migrate_account: Felhasználói fiók költöztetése
     migrate_account_html: Ha szeretnéd átirányítani ezt a fiókodat egy másikra, a beállításokat <a href="%{path}">itt találod meg</a>.
     or_log_in_with: Vagy jelentkezz be ezzel
+    privacy_policy_agreement_html: Elolvastam és egyetértek az <a href="%{privacy_policy_path}" target="_blank">adatvédemi nyilatkozattal</a>
     providers:
       cas: CAS
       saml: SAML
@@ -952,12 +940,18 @@ hu:
     registration_closed: "%{instance} nem fogad új tagokat"
     resend_confirmation: Megerősítési lépések újraküldése
     reset_password: Jelszó visszaállítása
+    rules:
+      preamble: Ezeket a(z) %{domain} moderátorai adjak meg és tartatják be.
+      title: Néhány alapszabály.
     security: Biztonság
     set_new_password: Új jelszó beállítása
     setup:
       email_below_hint_html: Ha az alábbi e-mail cím nem megfelelő, itt megváltoztathatod és kaphatsz egy új igazoló e-mailt.
       email_settings_hint_html: A visszaigazoló e-mailt elküldtük ide %{email}. Ha az e-mail cím nem megfelelő, megváltoztathatod a fiókod beállításainál.
       title: Beállítás
+    sign_up:
+      preamble: Egy fiókkal ezen a Mastodon kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
+      title: Állítsuk be a fiókod a %{domain} kiszolgálón.
     status:
       account_status: Fiók állapota
       confirming: Várakozás az e-mailes visszaigazolásra.
@@ -966,7 +960,6 @@ hu:
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
       view_strikes: Fiókod elleni korábbi szankciók megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
-    trouble_logging_in: Problémád van a bejelentkezéssel?
     use_security_key: Biztonsági kulcs használata
   authorize_follow:
     already_following: Már követed ezt a felhasználót
@@ -1024,10 +1017,6 @@ hu:
       more_details_html: A részletekért nézd meg az <a href="%{terms_path}">adatvédelmi szabályzatot</a>.
       username_available: A fiókod ismét elérhetővé válik
       username_unavailable: A fiókod elérhetetlen marad
-  directories:
-    directory: Profilok
-    explanation: Találj másokra érdeklődésük alapján
-    explore_mastodon: "%{title} felfedezése"
   disputes:
     strikes:
       action_taken: Intézkedés
@@ -1073,7 +1062,7 @@ hu:
     '500':
       content: Sajnáljuk, valami hiba történt a mi oldalunkon.
       title: Az oldal nem megfelelő
-    '503': Az oldalt nem tudjuk megmutatni átmeneti szerverprobléma miatt.
+    '503': Az oldalt átmeneti kiszolgálóprobléma miatt nem lehet kiszolgálni.
     noscript_html: A Mastodon webalkalmazás használatához engedélyezned kell a JavaScriptet. A másik megoldás, hogy kipróbálsz egy platformodnak megfelelő <a href="%{apps_path}">alkalmazást</a>.
   existing_username_validator:
     not_found: ezzel a névvel nem találtunk helyi felhasználót
@@ -1106,29 +1095,60 @@ hu:
       public: Nyilvános idővonalak
       thread: Beszélgetések
     edit:
+      add_keyword: Kulcsszó hozzáadása
+      keywords: Kulcsszavak
+      statuses: Egyedi bejegyzések
+      statuses_hint_html: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik, függetlenül attól, hogy megfelelnek-e a lenti kulcsszavaknak. <a href="%{path}">Engedélyezze vagy távolítsa el a bejegyzéseket a szűrőből</a>.
       title: Szűrő szerkesztése
     errors:
+      deprecated_api_multiple_keywords: Ezek a paraméterek nem módosíthatóak az alkalmazásból, mert több mint egy szűrőkulcsszóra is hatással vannak. Használd az alkalmazás vagy a webes felület újabb verzióját.
       invalid_context: A megadott kontextus hamis vagy hiányzik
-      invalid_irreversible: Visszafordíthatatlan szűrést csak saját idővonalon vagy értesítéseken lehet végezni
     index:
+      contexts: 'Szűrés helye: %{contexts}'
       delete: Törlés
       empty: Nincs szűrés.
+      expires_in: 'Ennyi idő múlva jár le: %{distance}'
+      expires_on: 'Lejárat ideje: %{date}'
+      keywords:
+        one: "%{count} kulcsszó"
+        other: "%{count} kulcsszó"
+      statuses:
+        one: "%{count} bejegyzés"
+        other: "%{count} bejegyzés"
+      statuses_long:
+        one: "%{count} egyedi bejegyzés elrejtve"
+        other: "%{count} egyedi bejegyzés elrejtve"
       title: Szűrők
     new:
+      save: Új szűrő mentése
       title: Új szűrő hozzáadása
+    statuses:
+      back_to_filter: Vissza a szűrőhöz
+      batch:
+        remove: Eltávolítás a szűrőből
+      index:
+        hint: Ez a szűrő egyedi bejegyzések kiválasztására vonatkozik a megadott kritériumoktól függetlenül. Újabb bejegyzéseket adhatsz hozzá ehhez a szűrőhöz a webes felületen keresztül.
+        title: Megszűrt bejegyzések
   footer:
-    developers: Fejlesztőknek
-    more: Többet…
-    resources: Segédanyagok
     trending_now: Most felkapott
   generic:
     all: Mind
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> elem kiválasztva ezen az oldalon."
+      other: Mind a(z) <strong>%{count}</strong> elem kiválasztva ezen az oldalon.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva."
+      other: Mind a(z) <strong>%{count}</strong>, a keresésnek megfelelő elem kiválasztva.
     changes_saved_msg: A változásokat elmentettük!
     copy: Másolás
     delete: Törlés
+    deselect: Összes kiválasztás megszüntetése
     none: Nincs
     order_by: Rendezés
     save_changes: Változások mentése
+    select_all_matching_items:
+      one: "%{count}, a keresésnek megfelelő elem kiválasztása."
+      other: Mind a(z) %{count}, a keresésnek megfelelő elem kiválasztása.
     today: ma
     validation_errors:
       one: Valami nincs rendjén! Tekintsd meg a hibát lent
@@ -1143,7 +1163,7 @@ hu:
       merge_long: Megtartjuk a meglévő bejegyzéseket és hozzávesszük az újakat
       overwrite: Felülírás
       overwrite_long: Lecseréljük újakkal a jelenlegi bejegyzéseket
-    preface: Itt importálhatod egy másik szerverről lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
+    preface: Itt importálhatod egy másik kiszolgálóról lementett adataidat, például követettjeid és letiltott felhasználóid listáját.
     success: Adataidat sikeresen feltöltöttük és feldolgozásukat megkezdtük
     types:
       blocking: Letiltottak listája
@@ -1152,7 +1172,6 @@ hu:
       following: Követettjeid listája
       muting: Némított felhasználók listája
     upload: Feltöltés
-  in_memoriam_html: Emlékünkben.
   invites:
     delete: Visszavonás
     expired: Lejárt
@@ -1170,7 +1189,7 @@ hu:
       one: 1 használat
       other: "%{count} használat"
     max_uses_prompt: Nincs korlát
-    prompt: Az itt generált linkek megosztásával hívhatod meg ismerőseidet erre a szerverre
+    prompt: Az itt előállított hivatkozások megosztásával hívhatod meg ismerőseidet erre a kiszolgálóra
     table:
       expires_at: Lejárat
       uses: Használat
@@ -1231,21 +1250,14 @@ hu:
     carry_blocks_over_text: Ez a fiók elköltözött innen %{acct}, melyet letiltottatok.
     carry_mutes_over_text: Ez a fiók elköltözött innen %{acct}, melyet lenémítottatok.
     copy_account_note_text: 'Ez a fiók elköltözött innen %{acct}, itt vannak a bejegyzéseitek róla:'
+  navigation:
+    toggle_menu: Menü be/ki
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} bejelentést küldött"
       sign_up:
         subject: "%{name} feliratkozott"
-    digest:
-      action: Összes értesítés megtekintése
-      body: Itt a legutóbbi látogatásod (%{since}) óta írott üzenetek rövid összefoglalása
-      mention: "%{name} megemlített itt:"
-      new_followers_summary:
-        one: Sőt, egy új követőd is lett, amióta nem jártál itt. Hurrá!
-        other: Sőt, %{count} új követőd is lett, amióta nem jártál itt. Hihetetlen!
-      subject:
-        one: "1 új értesítés az utolsó látogatásod óta 🐘"
-        other: "%{count} új értesítés az utolsó látogatásod óta 🐘"
-      title: Amíg távol voltál…
     favourite:
       body: 'A bejegyzésedet kedvencnek jelölte %{name}:'
       subject: "%{name} kedvencnek jelölte a bejegyzésedet"
@@ -1295,7 +1307,7 @@ hu:
     instructions_html: "<strong>Olvasd be ezt a QR-kódot a telefonodon futó Google Authenticator vagy egyéb TOTP alkalmazással</strong>. A jövőben ez az alkalmazás fog számodra hozzáférési kódot generálni a belépéshez."
     manual_instructions: 'Ha nem sikerült a QR-kód beolvasása, itt a szöveges kulcs, amelyet manuálisan kell begépelned:'
     setup: Beállítás
-    wrong_code: A beírt kód nem érvényes! A szerver órája és az eszközöd órája szinkronban jár?
+    wrong_code: A beírt kód nem érvényes. A kiszolgáló órája és az eszközöd órája szinkronban jár?
   pagination:
     newer: Újabb
     next: Következő
@@ -1317,6 +1329,8 @@ hu:
     other: Egyéb
     posting_defaults: Bejegyzések alapértelmezései
     public_timelines: Nyilvános idővonalak
+  privacy_policy:
+    title: Adatvédelmi irányelvek
   reactions:
     errors:
       limit_reached: A különböző reakciók száma elérte a határértéket
@@ -1339,22 +1353,7 @@ hu:
     remove_selected_follows: Kiválasztottak követésének abbahagyása
     status: Fiók állapota
   remote_follow:
-    acct: Írd be a felhasználódat, amelyről követni szeretnéd felhasznalonev@domain formátumban
     missing_resource: A fiókodnál nem található a szükséges átirányítási URL
-    no_account_html: Nincs fiókod? <a href='%{sign_up_path}' target='_blank'>Regisztrálj itt</a>
-    proceed: Tovább a követéshez
-    prompt: 'Őt tervezed követni:'
-    reason_html: "<strong>Miért van erre szükség?</strong> <code>%{instance}</code> nem feltétlenül az a szerver, ahol regisztrálva vagy, ezért először a saját szerveredre irányítunk."
-  remote_interaction:
-    favourite:
-      proceed: Jelöljük kedvencnek
-      prompt: 'Ezt a bejegyzést szeretnéd kedvencnek jelölni:'
-    reblog:
-      proceed: Tovább a megtoláshoz
-      prompt: 'Ezt a bejegyzést szeretnéd megtolni:'
-    reply:
-      proceed: Válaszadás
-      prompt: 'Erre a bejegyzésre szeretnél válaszolni:'
   reports:
     errors:
       invalid_rules: nem hivatkozik érvényes szabályra
@@ -1372,7 +1371,6 @@ hu:
     browser: Böngésző
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1386,7 +1384,6 @@ hu:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
       weibo: Weibo
     current_session: Jelenlegi munkamenet
     description: "%{browser} az alábbi platformon: %{platform}"
@@ -1395,8 +1392,6 @@ hu:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
-      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1486,7 +1481,7 @@ hu:
     enabled: Régi bejegyzések automatikus törlése
     enabled_hint: Automatikusan törli a bejegyzéseidet, ahogy azok elérik a megadott korhatárt, kivéve azokat, melyek illeszkednek valamely alábbi kivételre
     exceptions: Kivételek
-    explanation: Mivel a bejegyzések törlése drága művelet, ezt időben elnyújtva tesszük meg, amikor a szerver éppen nem elfoglalt. Ezért lehetséges, hogy a bejegyzéseidet valamivel később töröljük, mint ahogy azok elérik a korhatárukat.
+    explanation: Mivel a bejegyzések törlése drága művelet, ezért ez időben elnyújtva történik, amikor a kiszolgáló épp nem elfoglalt. Ezért lehetséges, hogy a bejegyzéseid valamivel később lesznek törölve, mint ahogy azok elérik a korhatárukat.
     ignore_favs: Kedvencek kihagyása
     ignore_reblogs: Megtolások kihagyása
     interaction_exceptions: Interakció alapú kivételek
@@ -1526,89 +1521,6 @@ hu:
       too_late: Túl késő, hogy fellebbezd ezt a szankciót
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
-  terms:
-    body_html: |
-      <h2>Adatvédelmi nyilatkozat</h2>
-      <h3 id="collect">Milyen adatokat gyűjtünk?</h3>
-
-      <ul>
-      <li><em>Alapvető fiókadatok</em>: Ha regisztrálsz ezen a szerveren, kérhetünk tőled felhasználói nevet, e-mail címet és jelszót is. Megadhatsz magadról egyéb profil információt, megjelenítendő nevet, bemutatkozást, feltölthetsz profilképet, háttérképet. A felhasználói neved, megjelenítendő neved, bemutatkozásod, profil képed és háttér képed mindig nyilvános mindenki számára.</li>
-      <li><em>Bejegyzések, követések, más nyilvános adatok</em>: Az általad követett emberek listája nyilvános. Ugyanez igaz a te követőidre is. Ha küldesz egy üzenetet, ennek az idejét eltároljuk azzal az alkalmazással együtt, melyből az üzenetet küldted. Az üzenetek tartalmazhatnak média csatolmányt, képeket, videókat. A nyilvános és nem listázott bejegyzések bárki számára elérhetőek. Ha egy bejegyzést kiemelsz a profilodon, az is nyilvánossá válik. Amikor a bejegyzéseidet a követőidnek továbbítjuk, a bejegyzés más szerverekre is átkerülhet, melyeken így másolatok keletkezhetnek. Ha törölsz egy bejegyzést, ez is továbbítódik a követőid felé. A megtolás (reblog) és kedvencnek jelölés művelete is mindig nyilvános.</li>
-      <li><em>Közvetlen és csak követőknek szánt bejegyzések</em>: Minden bejegyzés a szerveren tárolódik. A csak követőknek szánt bejegyzéseidet a követőidnek és az ezekben megemlítetteknek továbbítjuk, míg a közvetlen üzeneteket kizárólag az ebben megemlítettek kapják. Néhány esetben ez azt jelenti, hogy ezek más szerverekre is továbbítódnak, így ott másolatok keletkezhetnek. Jóhiszeműen feltételezzük, hogy más szerverek is hasonlóan járnak el, mikor ezeket az üzeneteket csak az arra jogosultaknak mutatják meg. Ugyanakkor ez nem feltétlenül igaz. Érdemes ezért megvizsgálni azokat a szervereket, melyeken követőid vannak. Be tudod állítani, hogy minden követési kérelmet jóvá kelljen hagynod. <em>Tartsd észben, hogy a ennek és más szervereknek az üzemeltetői láthatják az ilyen üzeneteket</em>, illetve a fogadók képernyőképet, másolatot készíthetnek belőlük, vagy újraoszthatják őket. <em>Ne ossz meg semmilyen veszélyes információt a Mastodon hálózaton!</em></li>
-      <li><em>IP címek és egyéb metaadatok</em>: Bejelentkezéskor eltároljuk a használt böngésződet és IP címedet. Minden rögzített munkamenet elérhető és visszavonható a beállítások között. Az utoljára rögzített IP címet maximum 12 hónapig tároljuk. Egyéb szerver logokat is megtarthatunk, melyek HTTP kérésenként is tárolhatják az IP címedet.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Mire használjuk az adataidat?</h3>
-
-      <p>Bármely tőled begyűjtött adatot a következő célokra használhatjuk fel:</p>
-
-      <ul>
-      <li>Mastodon alapfunkcióinak biztosítása: Csak akkor léphetsz kapcsolatba másokkal, ha be vagy jelentkezve. Pl. követhetsz másokat a saját, személyre szabott idővonaladon.</li>
-      <li>Közösségi moderáció elősegítése: Pl. IP címek összehasonlítása másokéval, hogy kiszűrjük a kitiltások megkerülését.</li>
-      <li>Kapcsolattartás veled: Az általad megadott e-mail címen infókat, értesítéseket küldünk mások interakcióiról, kérésekről, kérdésekről.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Hogyan védjük az adataidat?</h3>
-
-      <p>Üzemben tartunk néhány biztonsági rendszert, hogy megvédjük a személyes adataidat, amikor eléred vagy karbantartod ezeket. Többek között a böngésződ munkamenete, a szerver oldal, valamint a böngésző közötti teljes kommunikáció SSL-lel van titkosítva, a jelszavadat pedig erős, egyirányú algoritmussal hash-eljük. Kétlépcsős azonosítást is bekapcsolhatsz, hogy még biztonságosabbá tedd a fiókodhoz való hozzáférést.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Mik az adatmegőrzési szabályaink?</h3>
-
-      <p>Mindent megteszünk, hogy:</p>
-
-      <ul>
-      <li>A szerver logokat, melyek kérésenként tartalmazzák a felhasználó IP címét maximum 90 napig tartsuk meg.</li>
-      <li>A regisztrált felhasználókat IP címeikkel összekötő adatokat maximum 12 hónapig tartsuk meg.</li>
-      </ul>
-
-      <p>Kérhetsz mentést minden tárolt adatodról, bejegyzésedről, média fájlodról, profil- és háttér képedről.</p>
-
-      <p>Bármikor visszaállíthatatlanul le is törölheted a fiókodat.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Használunk sütiket?</h3>
-
-      <p>Igen. A sütik pici állományok, melyeket az oldalunk a böngésződön keresztül a háttértáradra rak, ha engedélyezed ezt. Ezek a sütik teszik lehetővé, hogy az oldalunk felismerje a böngésződet, és ha regisztráltál, hozzá tudjon kötni a fiókodhoz.</p>
-
-      <p>Arra is használjuk a sütiket, hogy elmenthessük a beállításaidat egy következő látogatás alkalmára.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Átadunk bármilyen adatot harmadik személynek?</h3>
-
-      <p>Az azonosításodra alkalmazható adatokat nem adjuk el, nem kereskedünk vele, nem adjuk át külső szereplőnek. Ez nem foglalja magában azon harmadik személyeket, aki az üzemeltetésben, felhasználók kiszolgálásban és a tevékenységünkben segítenek, de csak addig, amíg ők is elfogadják, hogy ezeket az adatokat bizalmasan kezelik. Akkor is átadhatjuk ezeket az adatokat, ha erre hitünk szerint törvény kötelez minket, ha betartatjuk az oldalunk szabályzatát vagy megvédjük a saját vagy mások személyiségi jogait, tulajdonát, biztonságát.</p>
-
-      <p>A nyilvános tartalmaidat más hálózatban lévő szerverek letölthetik. A nyilvános és csak követőknek szánt bejegyzéseid olyan szerverekre is elküldődnek, melyeken követőid vannak. A közvetlen üzenetek is átkerülnek a címzettek szervereire, ha ők más szerveren regisztráltak.</p>
-
-      <p>Ha felhatalmazol egy alkalmazást, hogy használja a fiókodat, a jóváhagyott hatásköröktől függően ez elérheti a nyilvános profiladataidat, a követettjeid listáját, a követőidet, listáidat, bejegyzéseidet és kedvenceidet is. Ezek az alkalmazások ugyanakkor sosem érhetik el a jelszavadat és e-mail címedet.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Az oldal gyerekek általi használata</h3>
-
-      <p>Ha ez a szerver az EU-ban vagy EEA-ban található: Az oldalunk, szolgáltatásaink és termékeink mind 16 éven felülieket céloznak. Ha 16 évnél fiatalabb vagy, a GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) értelmében kérlek ne használd ezt az oldalt!</p>
-
-      <p>Ha ez a szerver az USA-ban található: Az oldalunk, szolgáltatásaink és termékeink mind 13 éven felülieket céloznak. Ha 13 évnél fiatalabb vagy, a COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) értelmében kérlek ne használd ezt az oldalt!</p>
-
-      <p>A jogi előírások különbözhetnek ettől a világ egyéb tájain.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Adatvédelmi nyilatkozat változásai</h3>
-
-      <p>Ha úgy döntünk, hogy megváltoztatjuk az adatvédelmi nyilatkozatot, ezt ezen az oldalon közzé fogjuk tenni.</p>
-
-      <p>Ez a dokumentum CC-BY-SA. Utoljára 2018.03.07 frissült.</p>
-
-      <p>Eredetileg innen adaptálva <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: "%{instance} Felhasználási feltételek és Adatkezelési nyilatkozat"
   themes:
     contrast: Mastodon (Nagy kontrasztú)
     default: Mastodon (Sötét)
@@ -1665,7 +1577,7 @@ hu:
         disable: Nem használhatod tovább a fiókodat, bár a profil- és egyéb adataid érintetlenül maradnak. Kérhetsz mentést az adataidról, megváltoztathatod a beállításaidat vagy törölheted a fiókodat.
         mark_statuses_as_sensitive: Néhány bejegyzésedet a %{instance} moderátorai érzékenynek jelölték. Ez azt jelenti, hogy az embereknek először rá kell nyomni a bejegyzés médiatartalmára, mielőtt egy előnézet megjelenne. A jövőben te is megjelölheted bejegyzés írása közben a médiatartalmat érzékenyként.
         sensitive: Mostantól minden feltöltött médiaállományodat érzékeny tartalomként jelölünk meg és kattintásos figyelmeztetés mögé rejtjük.
-        silence: A fiókodat most is használhatod, de ezen a kiszolgálón csak olyanok láthatják a bejegyzéseidet, akik már eddig is a követőid voltak, valamint kihagyunk különböző felfedezésre használható funkciókból. Ettől még mások továbbra is manuálisan be tudnak követni.
+        silence: A fiókodat most is használhatod, de ezen a kiszolgálón csak olyanok láthatják a bejegyzéseidet, akik már eddig is a követőid voltak, valamint kimaradhatsz a különböző felfedezési funkciókból. Viszont mások kézileg továbbra is be tudnak követni.
         suspend: Többé nem használhatod a fiókodat, a profilod és más adataid többé nem elérhetőek. Még be tudsz jelentkezni, hogy mentést kérj az adataidról addig, amíg kb. 30 nap múlva teljesen le nem töröljük őket. Néhány alapadatot megtartunk, hogy el tudjuk kerülni, hogy megkerüld a felfüggesztést.
       reason: 'Indok:'
       statuses: 'Bejegyzések idézve:'
@@ -1687,20 +1599,13 @@ hu:
         suspend: Felfüggesztett fiók
     welcome:
       edit_profile_action: Készítsd el profilod
-      edit_profile_step: 'Itt tudod egyedivé tenni a profilod: feltölthetsz profil- és borítóképet, megváltoztathatod a megjelenített neved és így tovább. Ha jóvá szeretnéd hagyni követőidet, mielőtt követhetnek, itt tudod a fiókodat zárttá tenni.'
+      edit_profile_step: Testreszabhatod a profilod egy profilkép feltöltésével, a megjelenített neved megváltoztatásával és így tovább. Bekapcsolhatod az új követőid jóváhagyását, mielőtt követhetnek.
       explanation: Néhány tipp a kezdeti lépésekhez
       final_action: Kezdj bejegyzéseket írni
-      final_step: 'Kezdj tülkölni! Nyilvános üzeneteid még követők híján is megjelennek másoknak, például a helyi idővonalon és a hashtageknél. Kezdd azzal, hogy bemutatkozol a #bemutatkozas vagy az #introductions hashtag használatával.'
+      final_step: 'Kezdj tülkölni! A nyilvános bejegyzéseid még követők híján is megjelennek másoknak, például a helyi idővonalon vagy a hashtageknél. Kezdd azzal, hogy bemutatkozol a #bemutatkozas vagy az #introductions hashtag használatával.'
       full_handle: Teljes felhasználóneved
       full_handle_hint: Ez az, amit megadhatsz másoknak, hogy üzenhessenek neked vagy követhessenek téged más szerverekről.
-      review_preferences_action: Beállítások módosítása
-      review_preferences_step: Tekintsd át a beállításaidat, például hogy milyen értesítéseket kérsz e-mailben, vagy hogy alapértelmezettként mi legyen a bejegyzéseid láthatósága. Ha nem vagy szédülős alkat, GIF-ek automatikus lejátszását is engedélyezheted.
       subject: Üdvözöl a Mastodon
-      tip_federated_timeline: A föderációs idővonal a Mastodon hálózat ütőere. Nem teljes, mivel csak azokat az embereket fogod látni, akiket a szervered többi felhasználója közül valaki már követ.
-      tip_following: Alapértelmezettként szervered adminisztrátorait követed. Látogasd meg a helyi és a nyilvános idővonalat, hogy más érdekes emberekre is rátalálj.
-      tip_local_timeline: A helyi idővonal a saját szervered (%{instance}) ütőere. Ezek a kedves emberek itt mind a szomszédaid!
-      tip_mobile_webapp: Ha a böngésződ lehetővé teszi, hogy a kezdőképernyődhöz add a Mastodont, még értesítéseket is fogsz kapni, akárcsak egy igazi alkalmazás esetében!
-      tips: Tippek
       title: Üdv a fedélzeten, %{name}!
   users:
     follow_limit_reached: Nem követhetsz több, mint %{limit} embert

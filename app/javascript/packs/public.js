@@ -4,6 +4,7 @@ import loadPolyfills from '../mastodon/load_polyfills';
 import ready from '../mastodon/ready';
 import { start } from '../mastodon/common';
 import loadKeyboardExtensions from '../mastodon/load_keyboard_extensions';
+import 'cocoon-js-vanilla';
 
 start();
 
@@ -32,7 +33,6 @@ function main() {
   const { messages } = getLocale();
   const React = require('react');
   const ReactDOM = require('react-dom');
-  const Rellax = require('rellax');
   const { createBrowserHistory } = require('history');
 
   const scrollToDetailedStatus = () => {
@@ -111,12 +111,6 @@ function main() {
       scrollToDetailedStatus();
     }
 
-    const parallaxComponents = document.querySelectorAll('.parallax');
-
-    if (parallaxComponents.length > 0 ) {
-      new Rellax('.parallax', { speed: -1 });
-    }
-
     delegate(document, '#registration_user_password_confirmation,#registration_user_password', 'input', () => {
       const password = document.getElementById('registration_user_password');
       const confirmation = document.getElementById('registration_user_password_confirmation');
@@ -165,28 +159,6 @@ function main() {
       const message = (statusEl.dataset.spoiler === 'expanded') ? (messages['status.show_less'] || 'Show less') : (messages['status.show_more'] || 'Show more');
       spoilerLink.textContent = (new IntlMessageFormat(message, locale)).format();
     });
-  });
-
-  delegate(document, '.webapp-btn', 'click', ({ target, button }) => {
-    if (button !== 0) {
-      return true;
-    }
-    window.location.href = target.href;
-    return false;
-  });
-
-  delegate(document, '.modal-button', 'click', e => {
-    e.preventDefault();
-
-    let href;
-
-    if (e.target.nodeName !== 'A') {
-      href = e.target.parentNode.href;
-    } else {
-      href = e.target.href;
-    }
-
-    window.open(href, 'mastodon-intent', 'width=445,height=600,resizable=no,menubar=no,status=no,scrollbars=yes');
   });
 
   delegate(document, '#account_display_name', 'input', ({ target }) => {
@@ -275,8 +247,31 @@ function main() {
     input.readonly = oldReadOnly;
   });
 
+  const toggleSidebar = () => {
+    const sidebar = document.querySelector('.sidebar ul');
+    const toggleButton = document.querySelector('.sidebar__toggle__icon');
+
+    if (sidebar.classList.contains('visible')) {
+      document.body.style.overflow = null;
+      toggleButton.setAttribute('aria-expanded', false);
+    } else {
+      document.body.style.overflow = 'hidden';
+      toggleButton.setAttribute('aria-expanded', true);
+    }
+
+    toggleButton.classList.toggle('active');
+    sidebar.classList.toggle('visible');
+  };
+
   delegate(document, '.sidebar__toggle__icon', 'click', () => {
-    document.querySelector('.sidebar ul').classList.toggle('visible');
+    toggleSidebar();
+  });
+
+  delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      toggleSidebar();
+    }
   });
 
   // Empty the honeypot fields in JS in case something like an extension

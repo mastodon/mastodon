@@ -38,7 +38,7 @@ class ProcessMentionsService < BaseService
       mentioned_account = Account.find_remote(username, domain)
 
       # Unapproved and unconfirmed accounts should not be mentionable
-      next if mentioned_account&.local? && !(mentioned_account.user_confirmed? && mentioned_account.user_approved?)
+      next match if mentioned_account&.local? && !(mentioned_account.user_confirmed? && mentioned_account.user_approved?)
 
       # If the account cannot be found or isn't the right protocol,
       # first try to resolve it
@@ -66,6 +66,16 @@ class ProcessMentionsService < BaseService
   end
 
   def assign_mentions!
+    # Make sure we never mention blocked accounts
+    unless @current_mentions.empty?
+      mentioned_domains = @current_mentions.map { |m| m.account.domain }.compact.uniq
+      blocked_domains   = Set.new(mentioned_domains.empty? ? [] : AccountDomainBlock.where(account_id: @status.account_id, domain: mentioned_domains))
+      mentioned_account_ids = @current_mentions.map(&:account_id)
+      blocked_account_ids = Set.new(@status.account.block_relationships.where(target_account_id: mentioned_account_ids).pluck(:target_account_id))
+
+      @current_mentions.select! { |mention| !(blocked_account_ids.include?(mention.account_id) || blocked_domains.include?(mention.account.domain)) }
+    end
+
     @current_mentions.each do |mention|
       mention.save if mention.new_record?
     end

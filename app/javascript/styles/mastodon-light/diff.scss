@@ -36,6 +36,21 @@ html {
   border-top: 0;
 }
 
+.column > .scrollable.about {
+  border-top: 1px solid lighten($ui-base-color, 8%);
+}
+
+.about__meta,
+.about__section__title,
+.interaction-modal {
+  background: $white;
+  border: 1px solid lighten($ui-base-color, 8%);
+}
+
+.rules-list li::before {
+  background: $ui-highlight-color;
+}
+
 .directory__card__img {
   background: lighten($ui-base-color, 12%);
 }
@@ -43,10 +58,6 @@ html {
 .filter-form {
   background: $white;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
-}
-
-.table-of-contents {
-  border: 1px solid lighten($ui-base-color, 8%);
 }
 
 .column-back-button,
@@ -67,7 +78,7 @@ html {
 .column-header__back-button,
 .column-header__button,
 .column-header__button.active,
-.account__header__bar {
+.account__header {
   background: $white;
 }
 
@@ -138,11 +149,6 @@ html {
 .compose-form__poll-wrapper select,
 .search__input,
 .setting-text,
-.box-widget input[type="text"],
-.box-widget input[type="email"],
-.box-widget input[type="password"],
-.box-widget textarea,
-.statuses-grid .detailed-status,
 .report-dialog-modal__textarea,
 .audio-player {
   border: 1px solid lighten($ui-base-color, 8%);
@@ -197,21 +203,14 @@ html {
 // Change the colors used in compose-form
 .compose-form {
   .compose-form__modifiers {
-    .compose-form__upload__actions .icon-button {
+    .compose-form__upload__actions .icon-button,
+    .compose-form__upload__warning .icon-button {
       color: lighten($white, 7%);
 
       &:active,
       &:focus,
       &:hover {
         color: $white;
-      }
-    }
-
-    .compose-form__upload-description input {
-      color: lighten($white, 7%);
-
-      &::placeholder {
-        color: lighten($white, 7%);
       }
     }
   }
@@ -262,7 +261,8 @@ html {
 .status__content .status__content__spoiler-link {
   background: $ui-base-color;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: lighten($ui-base-color, 4%);
   }
 }
@@ -409,6 +409,7 @@ html {
 
 .icon-with-badge__badge {
   border-color: $white;
+  color: $white;
 }
 
 .report-modal__comment {
@@ -425,8 +426,34 @@ html {
   border-top: 0;
 }
 
-.focal-point__preview strong {
+.dashboard__quick-access,
+.focal-point__preview strong,
+.admin-wrapper .content__heading__tabs a.selected {
   color: $white;
+}
+
+.button.button-tertiary {
+  &:hover,
+  &:focus,
+  &:active {
+    color: $white;
+  }
+}
+
+.button.button-secondary {
+  border-color: $darker-text-color;
+  color: $darker-text-color;
+
+  &:hover,
+  &:focus,
+  &:active {
+    border-color: darken($darker-text-color, 8%);
+    color: darken($darker-text-color, 8%);
+  }
+}
+
+.flash-message.warning {
+  color: lighten($gold-star, 16%);
 }
 
 .boost-modal__action-bar,
@@ -480,52 +507,16 @@ html {
   background: $white;
 }
 
-.tabs-bar {
-  background: $white;
-  border: 1px solid lighten($ui-base-color, 8%);
-  border-bottom: 0;
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border-top: 0;
-  }
-
-  &__link {
-    padding-bottom: 14px;
-    border-bottom-width: 1px;
-    border-bottom-color: lighten($ui-base-color, 8%);
-
-    &:hover,
-    &:active,
-    &:focus {
-      background: $ui-base-color;
-    }
-
-    &.active {
-      &:hover,
-      &:active,
-      &:focus {
-        background: transparent;
-        border-bottom-color: $ui-highlight-color;
-      }
-    }
-  }
-}
-
 // Change the default colors used on some parts of the profile pages
 .activity-stream-tabs {
   background: $account-background-color;
   border-bottom-color: lighten($ui-base-color, 8%);
 }
 
-.box-widget,
 .nothing-here,
 .page-header,
 .directory__tag > a,
-.directory__tag > div,
-.landing-page__call-to-action,
-.contact-widget,
-.landing .hero-widget__text,
-.landing-page__information.contact-widget {
+.directory__tag > div {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
 
@@ -536,16 +527,11 @@ html {
   }
 }
 
-.landing .hero-widget__text {
-  border-top: 0;
-  border-bottom: 0;
-}
-
 .simple_form {
-  input[type=text],
-  input[type=number],
-  input[type=email],
-  input[type=password],
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
   textarea {
     &:hover {
       border-color: lighten($ui-base-color, 12%);
@@ -553,24 +539,10 @@ html {
   }
 }
 
-.landing .hero-widget__footer {
-  background: $white;
-  border: 1px solid lighten($ui-base-color, 8%);
-  border-top: 0;
-
-  @media screen and (max-width: $no-gap-breakpoint) {
-    border: 0;
-  }
-}
-
 .picture-in-picture-placeholder {
   background: $white;
   border-color: lighten($ui-base-color, 8%);
   color: lighten($ui-base-color, 8%);
-}
-
-.brand__tagline {
-  color: $ui-secondary-color;
 }
 
 .directory__tag > a {
@@ -666,8 +638,7 @@ html {
   }
 }
 
-.simple_form,
-.table-form {
+.simple_form {
   .warning {
     box-shadow: none;
     background: rgba($error-red, 0.5);
@@ -691,6 +662,16 @@ html {
   }
 }
 
+.reply-indicator {
+  background: transparent;
+  border: 1px solid lighten($ui-base-color, 8%);
+}
+
+.dismissable-banner {
+  border-left: 1px solid lighten($ui-base-color, 8%);
+  border-right: 1px solid lighten($ui-base-color, 8%);
+}
+
 .status__content,
 .reply-indicator__content {
   a {
@@ -706,104 +687,12 @@ html {
   }
 }
 
-.public-layout {
-  .account__section-headline {
-    border: 1px solid lighten($ui-base-color, 8%);
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border-top: 0;
-    }
-  }
-
-  .header,
-  .public-account-header,
-  .public-account-bio {
-    box-shadow: none;
-  }
-
-  .public-account-bio,
-  .hero-widget__text {
-    background: $account-background-color;
-  }
-
-  .header {
-    background: $ui-base-color;
-    border: 1px solid lighten($ui-base-color, 8%);
-
-    @media screen and (max-width: $no-gap-breakpoint) {
-      border: 0;
-    }
-
-    .brand {
-      &:hover,
-      &:focus,
-      &:active {
-        background: lighten($ui-base-color, 4%);
-      }
-    }
-  }
-
-  .public-account-header {
-    &__image {
-      background: lighten($ui-base-color, 12%);
-
-      &::after {
-        box-shadow: none;
-      }
-    }
-
-    &__bar {
-      &::before {
-        background: $account-background-color;
-        border: 1px solid lighten($ui-base-color, 8%);
-        border-top: 0;
-      }
-
-      .avatar img {
-        border-color: $account-background-color;
-      }
-
-      @media screen and (max-width: $no-columns-breakpoint) {
-        background: $account-background-color;
-        border: 1px solid lighten($ui-base-color, 8%);
-        border-top: 0;
-      }
-    }
-
-    &__tabs {
-      &__name {
-        h1,
-        h1 small {
-          color: $white;
-
-          @media screen and (max-width: $no-columns-breakpoint) {
-            color: $primary-text-color;
-          }
-        }
-      }
-    }
-
-    &__extra {
-      .public-account-bio {
-        border: 0;
-      }
-
-      .public-account-bio .account__header__fields {
-        border-color: lighten($ui-base-color, 8%);
-      }
-    }
-  }
-}
-
 .notification__filter-bar button.active::after,
 .account__section-headline a.active::after {
   border-color: transparent transparent $white;
 }
 
 .hero-widget,
-.box-widget,
-.contact-widget,
-.landing-page__information.contact-widget,
 .moved-account-widget,
 .memoriam-widget,
 .activity-stream,

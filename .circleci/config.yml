@@ -134,6 +134,12 @@ jobs:
           command: ./bin/rails tests:migrations:populate_v2_4
           name: Populate database with test data
       - run:
+          command: ./bin/rails db:migrate VERSION=20180707154237
+          name: Run migrations up to v2.4.3
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2_4_3
+          name: Populate database with test data
+      - run:
           command: ./bin/rails db:migrate
           name: Run all remaining migrations
       - run:
@@ -168,13 +174,21 @@ jobs:
           command: ./bin/rails tests:migrations:populate_v2_4
           name: Populate database with test data
       - run:
+          command: ./bin/rails db:migrate VERSION=20180707154237
+          name: Run migrations up to v2.4.3
+          environment:
+            SKIP_POST_DEPLOYMENT_MIGRATIONS: true
+      - run:
+          command: ./bin/rails tests:migrations:populate_v2_4_3
+          name: Populate database with test data
+      - run:
           command: ./bin/rails db:migrate
-          name: Run all pre-deployment migrations
+          name: Run all remaining pre-deployment migrations
           environment:
             SKIP_POST_DEPLOYMENT_MIGRATIONS: true
       - run:
           command: ./bin/rails db:migrate
-          name: Run all post-deployment remaining migrations
+          name: Run all post-deployment migrations
       - run:
           command: ./bin/rails tests:migrations:check_database
           name: Check migration result

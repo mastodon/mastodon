@@ -3,7 +3,7 @@ lv:
   activerecord:
     attributes:
       poll:
-        expires_at: Deadline
+        expires_at: Gala termiņš
         options: Izvēles
       user:
         agreement: Pakalpojuma līgums
@@ -21,6 +21,18 @@ lv:
             username:
               invalid: drīkst saturēt tikai burtus, ciparus un pasvītras
               reserved: ir rezervēts
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nav derīgs URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nav derīgs URL
+        import:
+          attributes:
+            data:
+              malformed: ir nepareizi veidots
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ lv:
             email:
               blocked: lieto neatļautu epasta pakalpojuma sniedzēju
               unreachable: šķiet, ka neeksistē
+            role_id:
+              elevated: nevar būt augstāka par tavu pašreizējo lomu
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: ietver atļaujas, kas nav drošas pamata lomai
+              elevated: nevar ietvert atļaujas, kas nepieder tavai pašreizējai lomai
+              own_role: nevar mainīt pert tavu pašreizējo lomu
+            position:
+              elevated: nevar būt augstāka par tavu pašreizējo lomu
+              own_role: nevar mainīt pert tavu pašreizējo lomu

@@ -24,6 +24,10 @@ class Api::BaseController < ApplicationController
     render json: { error: 'Duplicate record' }, status: 422
   end
 
+  rescue_from Date::Error do
+    render json: { error: 'Invalid date supplied' }, status: 422
+  end
+
   rescue_from ActiveRecord::RecordNotFound do
     render json: { error: 'Record not found' }, status: 404
   end
@@ -53,7 +57,7 @@ class Api::BaseController < ApplicationController
     render json: { error: I18n.t('errors.429') }, status: 429
   end
 
-  rescue_from ActionController::ParameterMissing do |e|
+  rescue_from ActionController::ParameterMissing, Mastodon::InvalidParameterError do |e|
     render json: { error: e.to_s }, status: 400
   end
 
@@ -129,6 +133,12 @@ class Api::BaseController < ApplicationController
   end
 
   def disallow_unauthenticated_api_access?
-    authorized_fetch_mode?
+    ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] == 'true' || Rails.configuration.x.whitelist_mode
+  end
+
+  private
+
+  def respond_with_error(code)
+    render json: { error: Rack::Utils::HTTP_STATUS_CODES[code] }, status: code
   end
 end

@@ -20,13 +20,27 @@ class Trends::Statuses < Trends::Base
       clone.filtered_for!(account)
     end
 
+    def to_arel
+      scope = Status.joins(:trend).reorder(score: :desc)
+      scope = scope.reorder(language_order_clause.desc, score: :desc) if preferred_languages.present?
+      scope = scope.merge(StatusTrend.allowed) if @allowed
+      scope = scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account) if @account.present?
+      scope = scope.offset(@offset) if @offset.present?
+      scope = scope.limit(@limit) if @limit.present?
+      scope
+    end
+
     private
 
-    def apply_scopes(scope)
-      if @account.nil?
-        scope
+    def language_order_clause
+      Arel::Nodes::Case.new.when(StatusTrend.arel_table[:language].in(preferred_languages)).then(1).else(0)
+    end
+
+    def preferred_languages
+      if @account&.chosen_languages.present?
+        @account.chosen_languages
       else
-        scope.not_excluded_by_account(@account).not_domain_blocked_by_account(@account)
+        @locale
       end
     end
   end
@@ -36,9 +50,6 @@ class Trends::Statuses < Trends::Base
   end
 
   def add(status, _account_id, at_time = Time.now.utc)
-    # We rely on the total reblogs and favourites count, so we
-    # don't record which account did the what and when here
-
     record_used_id(status.id, at_time)
   end
 
@@ -47,18 +58,23 @@ class Trends::Statuses < Trends::Base
   end
 
   def refresh(at_time = Time.now.utc)
-    statuses = Status.where(id: (recently_used_ids(at_time) + currently_trending_ids(false, -1)).uniq).includes(:account, :media_attachments)
+    statuses = Status.where(id: (recently_used_ids(at_time) + StatusTrend.pluck(:status_id)).uniq).includes(:status_stat, :account)
     calculate_scores(statuses, at_time)
   end
 
   def request_review
-    statuses = Status.where(id: currently_trending_ids(false, -1)).includes(:account)
+    StatusTrend.pluck('distinct language').flat_map do |language|
+      score_at_threshold = StatusTrend.where(language: language, allowed: true).order(rank: :desc).where('rank <= ?', options[:review_threshold]).first&.score || 0
+      status_trends      = StatusTrend.where(language: language, allowed: false).joins(:status).includes(status: :account)
 
-    statuses.filter_map do |status|
-      next unless would_be_trending?(status.id) && !status.trendable? && status.requires_review_notification?
+      status_trends.filter_map do |trend|
+        status = trend.status
 
-      status.account.touch(:requested_review_at)
-      status
+        if trend.score > score_at_threshold && !status.trendable? && status.requires_review_notification?
+          status.account.touch(:requested_review_at)
+          status
+        end
+      end
     end
   end
 
@@ -75,14 +91,11 @@ class Trends::Statuses < Trends::Base
   private
 
   def eligible?(status)
-    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && status.spoiler_text.blank? && !status.sensitive? && !status.reply?
+    status.public_visibility? && status.account.discoverable? && !status.account.silenced? && status.spoiler_text.blank? && !status.sensitive? && !status.reply? && valid_locale?(status.language)
   end
 
   def calculate_scores(statuses, at_time)
-    global_items = []
-    locale_items = Hash.new { |h, key| h[key] = [] }
-
-    statuses.each do |status|
+    items = statuses.map do |status|
       expected  = 1.0
       observed  = (status.reblogs_count + status.favourites_count).to_f
 
@@ -94,29 +107,24 @@ class Trends::Statuses < Trends::Base
         end
       end
 
-      decaying_score = score * (0.5**((at_time.to_f - status.created_at.to_f) / options[:score_halflife].to_f))
+      decaying_score = begin
+        if score.zero? || !eligible?(status)
+          0
+        else
+          score * (0.5**((at_time.to_f - status.created_at.to_f) / options[:score_halflife].to_f))
+        end
+      end
 
-      next unless decaying_score >= options[:decay_threshold]
-
-      global_items << { score: decaying_score, item: status }
-      locale_items[status.language] << { account_id: status.account_id, score: decaying_score, item: status } if valid_locale?(status.language)
+      [decaying_score, status]
     end
 
-    replace_items('', global_items)
+    to_insert = items.filter { |(score, _)| score >= options[:decay_threshold] }
+    to_delete = items.filter { |(score, _)| score < options[:decay_threshold] }
 
-    Trends.available_locales.each do |locale|
-      replace_items(":#{locale}", locale_items[locale])
+    StatusTrend.transaction do
+      StatusTrend.upsert_all(to_insert.map { |(score, status)| { status_id: status.id, account_id: status.account_id, score: score, language: status.language, allowed: status.trendable? || false } }, unique_by: :status_id) if to_insert.any?
+      StatusTrend.where(status_id: to_delete.map { |(_, status)| status.id }).delete_all if to_delete.any?
+      StatusTrend.connection.exec_update('UPDATE status_trends SET rank = t0.calculated_rank FROM (SELECT id, row_number() OVER w AS calculated_rank FROM status_trends WINDOW w AS (PARTITION BY language ORDER BY score DESC)) t0 WHERE status_trends.id = t0.id')
     end
-  end
-
-  def filter_for_allowed_items(items)
-    # Show only one status per account, pick the one with the highest score
-    # that's also eligible to trend
-
-    items.group_by { |item| item[:account_id] }.values.filter_map { |account_items| account_items.select { |item| item[:item].trendable? && item[:item].account.discoverable? }.max_by { |item| item[:score] } }
-  end
-
-  def would_be_trending?(id)
-    score(id) > score_at_rank(options[:review_threshold] - 1)
   end
 end

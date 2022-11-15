@@ -2,30 +2,30 @@
 
 class CustomEmojiPolicy < ApplicationPolicy
   def index?
-    staff?
+    role.can?(:manage_custom_emojis)
   end
 
   def create?
-    admin?
+    role.can?(:manage_custom_emojis)
   end
 
   def update?
-    admin?
+    role.can?(:manage_custom_emojis)
   end
 
   def copy?
-    admin?
+    role.can?(:manage_custom_emojis)
   end
 
   def enable?
-    staff?
+    role.can?(:manage_custom_emojis)
   end
 
   def disable?
-    staff?
+    role.can?(:manage_custom_emojis)
   end
 
   def destroy?
-    admin?
+    role.can?(:manage_custom_emojis)
   end
 end

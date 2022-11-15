@@ -72,6 +72,7 @@ nl:
         revoke: Weet je het zeker?
       index:
         authorized_at: Toestemming verleent op %{date}
+        description_html: Dit zijn toepassingen die toegang hebben tot jouw account via de API. Als er toepassingen tussen staan die je niet herkent of een toepassing zich misdraagt, kun je de toegangsrechten van de toepassing intrekken.
         last_used_at: Voor het laatst gebruikt op %{date}
         never_used: Nooit gebruikt
         scopes: Toestemmingen
@@ -150,8 +151,8 @@ nl:
       admin:read:accounts: gevoelige informatie van alle accounts lezen
       admin:read:reports: gevoelige informatie van alle rapportages en gerapporteerde accounts lezen
       admin:write: wijzig alle gegevens op de server
-      admin:write:accounts: moderatieacties op accounts uitvoeren
-      admin:write:reports: moderatieacties op rapportages uitvoeren
+      admin:write:accounts: moderatiemaatregelen tegen accounts nemen
+      admin:write:reports: moderatiemaatregelen nemen in rapportages
       crypto: end-to-end-encryptie gebruiken
       follow: relaties tussen accounts bewerken
       push: jouw pushmeldingen ontvangen

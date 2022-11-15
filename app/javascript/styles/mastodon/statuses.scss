@@ -80,7 +80,7 @@
 .button.logo-button {
   flex: 0 auto;
   font-size: 14px;
-  background: $ui-highlight-color;
+  background: darken($ui-highlight-color, 2%);
   color: $primary-text-color;
   text-transform: none;
   line-height: 1.2;
@@ -104,7 +104,7 @@
   &:active,
   &:focus,
   &:hover {
-    background: lighten($ui-highlight-color, 10%);
+    background: $ui-highlight-color;
   }
 
   &:disabled,
@@ -137,9 +137,8 @@ a.button.logo-button {
   justify-content: center;
 }
 
-.embed,
-.public-layout {
-  .status__content[data-spoiler=folded] {
+.embed {
+  .status__content[data-spoiler="folded"] {
     .e-content {
       display: none;
     }

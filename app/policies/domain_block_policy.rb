@@ -2,22 +2,22 @@
 
 class DomainBlockPolicy < ApplicationPolicy
   def index?
-    admin?
+    role.can?(:manage_federation)
   end
 
   def show?
-    admin?
+    role.can?(:manage_federation)
   end
 
   def create?
-    admin?
+    role.can?(:manage_federation)
   end
 
   def update?
-    admin?
+    role.can?(:manage_federation)
   end
 
   def destroy?
-    admin?
+    role.can?(:manage_federation)
   end
 end

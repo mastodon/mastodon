@@ -7,6 +7,10 @@ class Api::V1::ListsController < Api::BaseController
   before_action :require_user!
   before_action :set_list, except: [:index, :create]
 
+  rescue_from ArgumentError do |e|
+    render json: { error: e.to_s }, status: 422
+  end
+
   def index
     @lists = List.where(account: current_account).all
     render json: @lists, each_serializer: REST::ListSerializer

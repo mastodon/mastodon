@@ -21,6 +21,18 @@ es:
             username:
               invalid: solo puede contener letras, números y guiones bajos
               reserved: está reservado
+        admin/webhook:
+          attributes:
+            url:
+              invalid: no es una URL válida
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: no es una URL válida
+        import:
+          attributes:
+            data:
+              malformed: tiene un formato incorrecto
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ es:
             email:
               blocked: utiliza un proveedor de correo no autorizado
               unreachable: no parece existir
+            role_id:
+              elevated: no puede ser mayor que tu rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: incluir permisos que no son seguros para el rol base
+              elevated: no se pueden incluir permisos que tu rol actual no posea
+              own_role: no se puede cambiar con tu rol actual
+            position:
+              elevated: no puede ser mayor que tu rol actual
+              own_role: no se puede cambiar con tu rol actual

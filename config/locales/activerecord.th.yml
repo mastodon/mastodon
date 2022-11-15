@@ -21,6 +21,18 @@ th:
             username:
               invalid: ต้องมีเฉพาะตัวอักษร, ตัวเลข และขีดล่างเท่านั้น
               reserved: ถูกสงวนไว้
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ไม่ใช่ URL ที่ถูกต้อง
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ไม่ใช่ URL ที่ถูกต้อง
+        import:
+          attributes:
+            data:
+              malformed: ผิดรูปแบบ
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ th:
             email:
               blocked: ใช้ผู้ให้บริการอีเมลที่ไม่ได้รับอนุญาต
               unreachable: ดูเหมือนว่าจะไม่มีอยู่
+            role_id:
+              elevated: ไม่สามารถสูงกว่าบทบาทปัจจุบันของคุณ
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: รวมสิทธิอนุญาตที่ไม่ปลอดภัยสำหรับบทบาทพื้นฐาน
+              elevated: ไม่สามารถรวมสิทธิอนุญาตที่บทบาทปัจจุบันของคุณไม่มี
+              own_role: ไม่สามารถเปลี่ยนด้วยบทบาทปัจจุบันของคุณ
+            position:
+              elevated: ไม่สามารถสูงกว่าบทบาทปัจจุบันของคุณ
+              own_role: ไม่สามารถเปลี่ยนด้วยบทบาทปัจจุบันของคุณ

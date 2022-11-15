@@ -1,29 +1,37 @@
 # frozen_string_literal: true
 
 class InitialStateSerializer < ActiveModel::Serializer
+  include RoutingHelper
+
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings,
              :languages
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
+  has_one :role, serializer: REST::RoleSerializer
 
+  # rubocop:disable Metrics/AbcSize
   def meta
     store = {
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
-      domain: Rails.configuration.x.local_domain,
-      title: instance_presenter.site_title,
+      domain: instance_presenter.domain,
+      title: instance_presenter.title,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
       repository: Mastodon::Version.repository,
-      source_url: Mastodon::Version.source_url,
-      version: Mastodon::Version.to_s,
-      invites_enabled: Setting.min_invite_role == 'user',
+      source_url: instance_presenter.source_url,
+      version: instance_presenter.version,
       limited_federation_mode: Rails.configuration.x.whitelist_mode,
       mascot: instance_presenter.mascot&.file&.url,
       profile_directory: Setting.profile_directory,
       trends: Setting.trends,
+      registrations_open: Setting.registrations_mode != 'none' && !Rails.configuration.x.single_user_mode,
+      timeline_preview: Setting.timeline_preview,
+      activity_api_enabled: Setting.activity_api_enabled,
+      single_user_mode: Rails.configuration.x.single_user_mode,
+      translation_enabled: TranslationService.configured?,
     }
 
     if object.current_account
@@ -39,7 +47,6 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:advanced_layout]   = object.current_account.user.setting_advanced_layout
       store[:use_blurhash]      = object.current_account.user.setting_use_blurhash
       store[:use_pending_items] = object.current_account.user.setting_use_pending_items
-      store[:is_staff]          = object.current_account.user.staff?
       store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
     else
@@ -50,8 +57,16 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:crop_images]   = Setting.crop_images
     end
 
+    store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account
+    store[:moved_to_account_id] = object.moved_to_account.id.to_s if object.moved_to_account
+
+    if Rails.configuration.x.single_user_mode
+      store[:owner] = object.owner&.id&.to_s
+    end
+
     store
   end
+  # rubocop:enable Metrics/AbcSize
 
   def compose
     store = {}
@@ -70,8 +85,15 @@ class InitialStateSerializer < ActiveModel::Serializer
 
   def accounts
     store = {}
-    store[object.current_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
-    store[object.admin.id.to_s]           = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
+
+    ActiveRecord::Associations::Preloader.new.preload([object.current_account, object.admin, object.owner, object.disabled_account, object.moved_to_account].compact, [:account_stat, :user, { moved_to_account: [:account_stat, :user] }])
+
+    store[object.current_account.id.to_s]  = ActiveModelSerializers::SerializableResource.new(object.current_account, serializer: REST::AccountSerializer) if object.current_account
+    store[object.admin.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.admin, serializer: REST::AccountSerializer) if object.admin
+    store[object.owner.id.to_s]            = ActiveModelSerializers::SerializableResource.new(object.owner, serializer: REST::AccountSerializer) if object.owner
+    store[object.disabled_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.disabled_account, serializer: REST::AccountSerializer) if object.disabled_account
+    store[object.moved_to_account.id.to_s] = ActiveModelSerializers::SerializableResource.new(object.moved_to_account, serializer: REST::AccountSerializer) if object.moved_to_account
+
     store
   end
 

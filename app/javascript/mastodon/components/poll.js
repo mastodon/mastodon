@@ -34,6 +34,10 @@ const makeEmojiMap = record => record.get('emojis').reduce((obj, emoji) => {
 export default @injectIntl
 class Poll extends ImmutablePureComponent {
 
+  static contextTypes = {
+    identity: PropTypes.object,
+  };
+
   static propTypes = {
     poll: ImmutablePropTypes.map,
     intl: PropTypes.object.isRequired,
@@ -217,7 +221,7 @@ class Poll extends ImmutablePureComponent {
         </ul>
 
         <div className='poll__footer'>
-          {!showResults && <button className='button button-secondary' disabled={disabled} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
+          {!showResults && <button className='button button-secondary' disabled={disabled || !this.context.identity.signedIn} onClick={this.handleVote}><FormattedMessage id='poll.vote' defaultMessage='Vote' /></button>}
           {showResults && !this.props.disabled && <span><button className='poll__link' onClick={this.handleRefresh}><FormattedMessage id='poll.refresh' defaultMessage='Refresh' /></button> · </span>}
           {votesCount}
           {poll.get('expires_at') && <span> · {timeRemaining}</span>}

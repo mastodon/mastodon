@@ -168,7 +168,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
 
   before do
     stub_const 'ActivityPub::RepliesController::DESCENDANTS_LIMIT', 5
-    allow(controller).to receive(:signed_request_account).and_return(remote_querier)
+    allow(controller).to receive(:signed_request_actor).and_return(remote_querier)
 
     Fabricate(:status, thread: status, visibility: :public)
     Fabricate(:status, thread: status, visibility: :public)
