@@ -1,5 +1,6 @@
 br:
   about:
+    contact_missing: Andermenet
     contact_unavailable: N'eus ket
     title: Diwar-benn
   accounts:
@@ -33,6 +34,9 @@ br:
         label: Kemmañ ar postel
         new_email: Postel nevez
         submit: Kemmañ ar postel
+      change_role:
+        no_role: Roll ebet
+      confirm: Kadarnaat
       deleted: Dilamet
       domain: Domani
       edit: Aozañ
@@ -40,6 +44,7 @@ br:
       enable: Gweredekaat
       enabled: Gweredekaet
       followers: Heulier·ezed·ien
+      follows: Koumanantoù
       header: Talbenn
       ip: IP
       location:
@@ -49,8 +54,11 @@ br:
       moderation:
         active: Oberiant
         all: Pep tra
+        pending: War ober
+        silenced: Bevennet
         suspended: Astalet
       perform_full_suspension: Astalañ
+      promote: Brudañ
       protocol: Komenad
       public: Publik
       reject: Nac'hañ
@@ -60,7 +68,9 @@ br:
       role: Roll
       search: Klask
       silence: Bevenniñ
+      silenced: Bevennet
       statuses: Kannadoù
+      suspend: Astalañ
       suspended: Astalet
       title: Kontoù
       username: Anv
@@ -78,6 +88,7 @@ br:
       new:
         create: Sevel ur gemenn
         title: Kemenn nevez
+      publish: Embann
       title: Kemennoù
     custom_emojis:
       by_domain: Domani
@@ -92,6 +103,10 @@ br:
     dashboard:
       software: Meziant
       title: Taolenn labour
+      website: Lec'hienn
+    disputes:
+      appeals:
+        title: Galvoù
     domain_blocks:
       domain: Domani
       new:
@@ -108,29 +123,36 @@ br:
         create: Ouzhpenniñ un domani
     instances:
       back_to_all: Pep tra
+      back_to_limited: Bevennet
+      back_to_warning: Diwall
       by_domain: Domani
       content_policies:
         policies:
           silence: Bevenniñ
+          suspend: Astalañ
       dashboard:
         instance_statuses_measure: kannadoù stoket
       delivery:
         all: Pep tra
+        failing: O faziañ
       moderation:
         all: Pep tra
+        limited: Bevennet
       purge: Spurjañ
     invites:
       filter:
         all: Pep tra
         available: Hegerzh
+        expired: Deuet d'an termen
+      title: Pedadennoù
     ip_blocks:
       expires_in:
-        '1209600': 2 weeks
+        '1209600': 2 sizhunvezh
         '15778476': 6 months
-        '2629746': 1 month
+        '2629746': 1 mizvezh
         '31556952': 1 year
         '86400': 1 devezh
-        '94670856': 3 years
+        '94670856': 3 bloavezh
     relays:
       delete: Dilemel
       disable: Diweredekaat
@@ -155,8 +177,12 @@ br:
         delete: Dilemel
         title: Notennoù
       status: Statud
+      title: Disklêriadennoù
       updated_at: Nevesaet
     roles:
+      categories:
+        invites: Pedadennoù
+        special: Ispisial
       title: Rolloù
     settings:
       about:
@@ -169,6 +195,7 @@ br:
         title: Media
       open: Digeriñ ar c'hannad
       original_status: Kannad orin
+      reblogs: Skignadennoù
       status_changed: Kannad kemmet
       title: Kannadoù ar gont
     strikes:
@@ -179,6 +206,9 @@ br:
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
+    webhooks:
+      disable: Diweredekaat
+      webhook: Webhook
   application_mailer:
     view: 'Sellet :'
   auth:
@@ -189,6 +219,7 @@ br:
     providers:
       cas: CAS
       saml: SAML
+    register: Lakaat ho anv
     reset_password: Adderaouekaat ar ger-tremen
     security: Diogelroez
     setup:
@@ -221,6 +252,8 @@ br:
   disputes:
     strikes:
       created_at: Deiziad
+      title_actions:
+        none: Diwall
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -266,6 +299,7 @@ br:
     modes:
       merge: Teuziñ
   invites:
+    expired: Deuet d'an termen
     expires_in:
       '1800': 30 munutenn
       '21600': 6 eur
@@ -307,8 +341,11 @@ br:
   preferences:
     posting_defaults: Arventennoù embann dre ziouer
   relationships:
+    dormant: O kousket
     followers: Heulier·ezed·ien
     following: O heuliañ
+    invited: Pedet
+    primary: Kentañ
   sessions:
     browser: Merdeer
     browsers:
@@ -330,8 +367,10 @@ br:
     description: "%{browser} war %{platform}"
     ip: IP
     platforms:
+      android: Android
       ios: iOS
       other: savenn dianav
+      windows: Windows
   settings:
     account: Kont
     account_settings: Arventennoù ar gont
@@ -354,8 +393,19 @@ br:
     show_more: Diskouez muioc'h
     visibilities:
       public: Publik
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 sizhunvezh
+      '15778476': 6 months
+      '2629746': 1 mizvezh
+      '31556952': 1 year
+      '5259492': 2 months
+      '604800': 1 week
+      '63113904': 2 vloavezh
+      '7889238': 3 months
   stream_entries:
     pinned: Kannad spilhennet
+    reblogged: en·he deus skignet
   themes:
     default: Mastodoñ (Teñval)
     mastodon-light: Mastodoñ (Sklaer)
@@ -372,6 +422,7 @@ br:
     warning:
       categories:
         spam: Spam
+      reason: 'Abeg :'
       statuses: 'Kannadoù meneget :'
       title:
         none: Diwall
