@@ -2,7 +2,7 @@ ku:
   about:
     about_mastodon_html: 'Tora civakî ya pêşerojê: Ne reklam, ne çavdêriya pargîdanî, sêwirana exlaqî, û desentralîzasyon! Bi Mastodon re bibe xwediyê daneyên xwe!'
     contact_missing: Nehate sazkirin
-    contact_unavailable: N/A
+    contact_unavailable: Tune
     hosted_on: Mastodon li ser %{domain} tê pêşkêşkirin
     title: Derbar
   accounts:
@@ -16,7 +16,7 @@ ku:
     link_verified_on: Xwedaniya li vê girêdanê di %{date} de hatiye kontrolkirin
     nothing_here: Li vir tiştek tune ye!
     pin_errors:
-      following: Kesê ku tu dixwazî bipejirînî jixwe tu vê dişopînî
+      following: Kesê ku tu dixwazî bipejirînî jixwe divê tu bişopînî
     posts:
       one: Şandî
       other: Şandî
@@ -607,6 +607,7 @@ ku:
         other: "%{count} bikarhêner"
       categories:
         administration: Rêvebirî
+        devops: DevOps
         invites: Vexwendin
         moderation: Çavdêrî
         special: Taybet
@@ -657,6 +658,7 @@ ku:
         view_audit_log_description: Mafê dide bikarhêneran ku dîroka çalakiyên rêveberî yên li ser rajekarê bibînin
         view_dashboard: Destgehê nîşan bide
         view_dashboard_description: Mafê dide bikarhêneran ku bigihîjin destgehê û pîvanên cuda
+        view_devops: DevOps
         view_devops_description: Mafê dide bikarhêneran ku bigihîjin destgehên Sidekiq û pgHero
       title: Rol
     rules:
@@ -675,10 +677,17 @@ ku:
       appearance:
         preamble: Navrûya tevnê ya Mastodon kesane bike.
         title: Xuyang
+      branding:
+        preamble: Navnîşa rajekarê te wê ji rajekarên din ên di torê de cuda bike. Dibe ku ev zanyarî li ser cihên cuda, wekî navrûya bikarhêneriyê tevnê ya Mastodon, sepanên resen, di pêşdîtinên girêdanê de li ser malperên din û di nav sepanên peyamî de, û hwd werin nîşandan. Ji bo vê yekê, çêtir e ku mirov van zanyariyan zelal, kurt û bê kêmasî werin nîşandan.
+        title: Marka
       content_retention:
+        preamble: Kontrol bike ka naveroka ku ji aliyê bikarhêner ve hatiye çêkirin di Mastodon de çawa tê tomarkirin.
         title: Parastina naverokê
       discovery:
         follow_recommendations: Pêşniyarên şopandinê
+        preamble: Rûbirûbûna naveroka balkêş ji bo bikarhênerên nû yên ku li ser Mastodon kesek nas nakin pir bi bandor e. Kontrol bike ka çend taybetmendiyên vekolînê li ser rajekarê te çawa dixebite.
+        profile_directory: Rêgeha profîlê
+        public_timelines: Demnameya gelemperî
         title: Vekolîne
         trends: Rojev
       domain_blocks:
@@ -1363,6 +1372,7 @@ ku:
     browser: Gerok
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1376,6 +1386,7 @@ ku:
       phantom_js: PhantomJS
       qq: Geroka QQ
       safari: Safari
+      uc_browser: Geroka UC
       weibo: Weibo
     current_session: Danişîna heyî
     description: "%{platform} ser %{browser}"
@@ -1384,6 +1395,8 @@ ku:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1475,7 +1488,7 @@ ku:
     exceptions: Awarte
     explanation: Ji ber ku jêbirina şandiyan pêvajoyeke biha ye, ev hêdî hêdî bi demê re tê kirin dema ku rajekar wekî din mijûl nebe. Ji ber vê sedemê, dibe ku şandiyên te demek şûnda ku bigihîjin sînorê temenê wê werin jêbirin.
     ignore_favs: Ecibandinan paşguh bike
-    ignore_reblogs: Bilindkirinê piştguh bike
+    ignore_reblogs: Bilindkirinan piştguh bike
     interaction_exceptions: Awarteyên li ser bingehên têkiliyan
     interaction_exceptions_explanation: Bizanibe ku heke şandiyeke ku ji binî ve têkeve jêrî bijare an bilindkirin ê piştî ku carek din di ser wan re derbas bibe, garantiyek tune ku werin jêbirin.
     keep_direct: Peyamên rasterast veşêre
