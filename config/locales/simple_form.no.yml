@@ -1,5 +1,4 @@
----
-'no':
+"no":
   simple_form:
     hints:
       account_alias:
@@ -7,10 +6,10 @@
       account_migration:
         acct: Spesifiser brukernavn@domene til brukeren du vil flytte til
       account_warning_preset:
-        text: Du kan bruke tut syntaks, f.eks. URLer, emneknagger og nevnelser
+        text: Du kan bruke innlegg-syntaks, f.eks. URLer, emneknagger og nevnelser
         title: Valgfritt. Ikke synlig for mottaker
       admin_account_action:
-        include_statuses: Brukeren vil se hvilke tuter som forårsaket moderator-handlingen eller -advarselen
+        include_statuses: Brukeren vil se hvilke innlegg som forårsaket moderator-handlingen eller -advarselen
         send_email_notification: Brukeren vil motta en forklaring på hva som har skjedd med deres bruker
         text_html: Valgfritt. Du kan bruke innlegg-syntaks. Du kan <a href="%{path}">legge til advarsels-forhåndsinnstillinger</a> for å spare tid
         type_html: Velg hva du vil gjøre med <strong>%{acct}</strong>
@@ -26,7 +25,7 @@
         ends_at: Valgfritt. Kunngjøring vil bli automatisk avpublisert på dette tidspunktet
         scheduled_at: La stå tomt for å publisere kunngjøringen umiddelbart
         starts_at: Valgfritt. I tilfellet din kunngjøring er bundet til en spesifikk tidsramme
-        text: Du kan bruke tut syntaks. Vennligst vær oppmerksom på plassen som kunngjøringen vil ta opp på brukeren sin skjerm
+        text: Du kan bruke innlegg-syntaks. Vennligst vær oppmerksom på plassen som kunngjøringen vil ta opp på brukeren sin skjerm
       appeal:
         text: Du kan kun klage på en advarsel en gang
       defaults:
@@ -42,13 +41,13 @@
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
         inbox_url: Kopier URLen fra forsiden til overgangen du vil bruke
-        irreversible: Filtrerte tuter vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
+        irreversible: Filtrerte innlegg vil ugjenkallelig forsvinne, selv om filteret senere blir fjernet
         locale: Språket til brukergrensesnittet, e-mailer og push-varsler
         locked: Krever at du manuelt godkjenner følgere
         password: Bruk minst 8 tegn
-        phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
+        phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til et innlegg
         scopes: Hvilke API-er programmet vil bli gitt tilgang til. Dersom du velger et toppnivåomfang, trenger du ikke å velge individuelle API-er.
-        setting_aggregate_reblogs: Ikke vis nye fremhevinger for tuter som nylig har blitt fremhever (Påvirker kun nylige fremhevinger)
+        setting_aggregate_reblogs: Ikke vis nye fremhevinger for innlegg som nylig har blitt fremhevet (påvirker kun nylige fremhevinger)
         setting_always_send_emails: E-postvarsler sendes normalt sett ikke mens du aktivt bruker Mastodon
         setting_default_sensitive: Sensitivt media blir skjult som standard og kan bli vist med et klikk
         setting_display_media_default: Skjul media som er merket som sensitivt
@@ -87,7 +86,7 @@
       rule:
         text: Beskriv en regel eller krav til brukere på denne serveren. Prøv å holde den kort og enkelt
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
       tag:
         name: Du kan bare forandre bruken av store/små bokstaver, f.eks. for å gjøre det mer lesbart
       user:
@@ -224,7 +223,7 @@
         name: Navn
         permissions_as_keys: Tillatelser
         position: Prioritet
-    'no': Nei
+    'no': 'Nei'
     not_recommended: Ikke anbefalt
     recommended: Anbefalt
     required:
@@ -233,4 +232,4 @@
     title:
       sessions:
         webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
-    'yes': Ja
+    'yes': 'Ja'
