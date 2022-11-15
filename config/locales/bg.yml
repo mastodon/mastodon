@@ -601,6 +601,7 @@ bg:
           trillion: трлн
   otp_authentication:
     enable: Включване
+    manual_instructions: 'Ако не може да сканирате QR-кода и трябва да го въведете ръчно, то ето го:'
     wrong_code: Въведеният код е невалиден! Времето на сървъра и времето на устройството правилни ли са?
   pagination:
     next: Напред
@@ -620,6 +621,7 @@ bg:
       limit_reached: Ограничението на различни реакции е достигнат
   relationships:
     activity: Дейност на акаунта
+    dormant: Спящо
     followers: Последователи
     invited: С покана
     last_active: Последна дейност
@@ -708,12 +710,20 @@ bg:
       video:
         one: "%{count} видео"
         other: "%{count} видеозаписа"
+    content_warning: 'Предупреждение за съдържание: %{warning}'
     default_language: Същият като езика на интерфейса
+    disallowed_hashtags:
+      one: 'съдържа непозволен хаштаг: %{tags}'
+      other: 'съдържа непозволени хаштагове: %{tags}'
     edited_at_html: Редактирано на %{date}
+    errors:
+      in_reply_not_found: Публикацията, на която се опитвате да отговорите не изглежда да съществува.
     open_in_web: Отвори в уеб
     over_character_limit: прехвърлен лимит от %{max} символа
     pin_errors:
+      direct: Публикациите, които са видими само за споменати потребители не може да се закачат
       limit: Вече сте закачили максималния брой публикации
+      ownership: Публикация на някого другиго не може да се закачи
     poll:
       total_people:
         one: "%{count} човек"
