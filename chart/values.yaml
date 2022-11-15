@@ -71,7 +71,54 @@ mastodon:
     # VAPID_PRIVATE_KEY and VAPID_PUBLIC_KEY
     existingSecret: ""
   sidekiq:
-    concurrency: 25
+    # -- Pod security context for all Pods, overwrites .Values.podSecurityContext
+    podSecurityContext: {}
+    # -- (Sidekiq Container) Security Context for all Pods, overwrites .Values.securityContext
+    securityContext: {}
+    resources: {}
+    # -- Affinity for all sidekiq pods unless overwritten, overwrites .Values.affinity
+    affinity: {}
+    # limits:
+    #   cpu: "1"
+    #   memory: 768Mi
+    # requests:
+    #   cpu: 250m
+    #   memory: 512Mi
+    workers:
+    - name: all-queues
+      # -- Number of threads / parallel sidekiq jobs that are executed per Pod
+      concurrency: 25
+      # -- Number of Pod replicas deployed by the Deployment
+      replicas: 1
+      # -- Resources defintion per worker to allow optimised scaling, overwrites .Values.mastodon.sidekiq.resources
+      resources: {}
+      # -- Affinity for this specific worker, overwrites .Values.affinity and .Values.mastodon.sidekiq.affinity
+      affinity: {}
+      # -- Sidekiq queues for Mastodon that are handled by this worker. See https://docs.joinmastodon.org/admin/scaling/#concurrency
+      # See https://github.com/mperham/sidekiq/wiki/Advanced-Options#queues for how to weight queues as argument
+      queues:
+        - default
+        - push
+        - mailers
+        - pull
+        - scheduler # Make sure the scheduler queue only exists once and with a worker that has 1 replica.
+    #- name: push-pull
+    #  concurrency: 50
+    #  resources: {}
+    #  replicas: 2
+    #  queues:
+    #    - push
+    #    - pull
+    #- name: mailers
+    #  concurrency: 25
+    #  replicas: 2
+    #  queues:
+    #    - mailers
+    #- name: default
+    #  concurrency: 25
+    #  replicas: 2
+    #  queues:
+    #    - default
   smtp:
     auth_method: plain
     ca_file: /etc/ssl/certs/ca-certificates.crt
@@ -322,4 +369,5 @@ nodeSelector: {}
 
 tolerations: []
 
+# -- Affinity for all pods unless overwritten
 affinity: {}
