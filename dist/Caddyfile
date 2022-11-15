@@ -12,9 +12,13 @@ example.com {
 		file_server
 	}
 
-	reverse_proxy /api/v1/streaming* :4000
+	handle /api/v1/streaming* {
+		reverse_proxy localhost:4000
+	}
 
-	reverse_proxy :3000
+	handle * {
+		reverse_proxy localhost:3000
+	}
 
 	encode gzip
 
