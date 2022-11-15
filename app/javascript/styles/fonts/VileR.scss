@@ -1,0 +1,94 @@
+// for all retro-fonts here, except PetMe
+// credit goes to VileR's page int10h.org - https://int10h.org/oldschool-pc-fonts/
+// PETMe comes from https://www.kreativekorp.com/software/fonts/c64/
+
+@font-face {
+  font-family: retro-font-ast-premium;
+  src:
+    local('AcPlus AST PremiumExec'),
+    //url('../fonts/ASTPremium/WebPlus_AST_PremiumExec.woff') format('woff2'),
+    url('../fonts/ASTPremium/WebPlus_AST_PremiumExec.woff') format('woff'),
+    url('../fonts/ASTPremium/AcPlus_AST_PremiumExec.ttf') format('truetype');
+    //url('../fonts/ASTPremium/WebPlus_AST_PremiumExec.woff') format('svg');
+  font-weight: normal;
+  font-display: swap;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: retro-font-hp-150;
+  src:
+    local('AcPlus HP 150 re.'),
+    url('../fonts/HP150/WebPlus_HP_150_re.woff') format('woff'),
+    url('../fonts/HP150/AcPlus_HP_150_re.ttf') format('truetype');
+  font-weight: bold;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: retro-font-tandy1k-ii;
+  src:
+    local('AcPlus Tandy1K-II 200L-2y'),
+    url('../fonts/Tandy1K-II/AcPlus_Tandy1K-II_200L-2y.ttf') format('woff'),
+    url('../fonts/Tandy1K-II/WebPlus_Tandy1K-II_200L-2y.woff') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: retro-font-toshiba-txl;
+  src:
+    local('AcPlus ToshibaTxL1 8x16'),
+    url('../fonts/ToshibaTxL1/WebPlus_ToshibaTxL1_8x16.woff') format('woff'),
+    url('../fonts/ToshibaTxL1/AcPlus_ToshibaTxL1_8x16.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: retro-font-vga8x16;
+  src:
+    local('AcPlus IBM VGA 8x16'),
+    url('../fonts/VGA8x16/WebPlus_IBM_VGA_8x16.woff') format('woff'),
+    url('../fonts/VGA8x16/AcPlus_IBM_VGA_8x16.ttf') format('truetype');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: retro-font-vga9x16;
+  src:
+    local('AcPlus IBM VGA 9x16'),
+    url('../fonts/VGA9x16/WebPlus_IBM_VGA_9x16.woff') format('woff'),
+    url('../fonts/VGA9x16/AcPlus_IBM_VGA_9x16.ttf') format('truetype');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
+// petMe
+
+
+@font-face {
+  font-family: retro-font-petme;
+  src:
+    local('Pet Me 64'),
+    url('../fonts/C64/PetMe64.ttf') format('truetype');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: retro-font-petme2y;
+  src:
+    local('Pet Me 64 2Y'),
+    url('../fonts/C64/PetMe642Y.ttf') format('truetype');
+  font-weight: normal;
+  font-display: swap;
+  font-style: normal;
+}
