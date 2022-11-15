@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
+  {{- if not .Values.mastodon.streaming.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       annotations:
-        {{- with .Values.podAnnotations }}
+        {{- with .Values.mastodon.streaming.podAnnotations }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
         # roll the pods to pick up any db migrations or other changes
@@ -24,7 +24,7 @@ spec:
         {{- include "mastodon.selectorLabels" . | nindent 8 }}
         app.kubernetes.io/component: streaming
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.image.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -72,7 +72,7 @@ spec:
             httpGet:
               path: /api/v1/streaming/health
               port: streaming
-          {{- with .Values.resources }}
+          {{- with .Values.mastodon.streaming.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}

@@ -1,0 +1,28 @@
+{{- if .Values.mastodon.web.autoscaling.enabled -}}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "mastodon.fullname" . }}-web
+  labels:
+    {{- include "mastodon.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "mastodon.fullname" . }}
+  minReplicas: {{ .Values.mastodon.web.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.mastodon.web.autoscaling.maxReplicas }}
+  metrics:
+    {{- if .Values.mastodon.web.autoscaling.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: {{ .Values.mastodon.web.autoscaling.targetCPUUtilizationPercentage }}
+    {{- end }}
+    {{- if .Values.mastodon.web.autoscaling.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: {{ .Values.mastodon.web.autoscaling.targetMemoryUtilizationPercentage }}
+    {{- end }}
+{{- end }}
