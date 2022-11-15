@@ -98,16 +98,16 @@ de:
       moderation_notes: Moderationsnotizen
       most_recent_activity: Letzte Aktivität
       most_recent_ip: Letzte IP-Adresse
-      no_account_selected: Keine Konten wurden geändert, da keine ausgewählt wurden
+      no_account_selected: Es wurden keine Konten geändert, da keine ausgewählt wurden
       no_limits_imposed: Keine Beschränkungen
       no_role_assigned: Keine Rolle zugewiesen
       not_subscribed: Nicht abonniert
-      pending: In Warteschlange
-      perform_full_suspension: Verbannen
-      previous_strikes: Vorherige Strikes
+      pending: Überprüfung ausstehend
+      perform_full_suspension: Sperren
+      previous_strikes: Vorherige Verstöße
       previous_strikes_description_html:
-        one: Dieses Konto hat <strong>einen</strong> Strike.
-        other: Dieses Konto hat <strong>%{count}</strong> Strikes.
+        one: Dieses Konto hat <strong>einen</strong> Verstoß.
+        other: Dieses Konto hat <strong>%{count}</strong> Verstöße.
       promote: Befördern
       protocol: Protokoll
       public: Öffentlich
@@ -143,10 +143,10 @@ de:
       silence: Stummschalten
       silenced: Stummgeschaltet
       statuses: Beiträge
-      strikes: Vorherige Strikes
+      strikes: Vorherige Verstöße
       subscribe: Abonnieren
-      suspend: Suspendieren
-      suspended: Verbannt
+      suspend: Sperren
+      suspended: Gesperrt
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es wieder brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
       title: Konten
@@ -155,10 +155,10 @@ de:
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_sensitized: Inhaltswarnung aufheben
       undo_silenced: Stummschaltung aufheben
-      undo_suspension: Verbannung aufheben
+      undo_suspension: Sperre aufheben
       unsilenced_msg: Konto von %{username} erfolgreich freigegeben
       unsubscribe: Abbestellen
-      unsuspended_msg: Konto von %{username} erfolgreich freigegeben
+      unsuspended_msg: Kontosperre von %{username} erfolgreich aufgehoben
       username: Profilname
       view_domain: Übersicht für Domain anzeigen
       warn: Warnen
@@ -271,12 +271,12 @@ de:
         resolve_report_html: "%{name} hat die Meldung %{target} bearbeitet"
         sensitive_account_html: "%{name} hat die Medien von %{target} mit einer Inhaltswarnung versehen"
         silence_account_html: "%{name} hat das Konto von %{target} stummgeschaltet"
-        suspend_account_html: "%{name} hat das Konto von %{target} verbannt"
+        suspend_account_html: "%{name} hat das Konto von %{target} gesperrt"
         unassigned_report_html: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
         unblock_email_account_html: "%{name} entsperrte die E-Mail-Adresse von %{target}"
         unsensitive_account_html: "%{name} hat die Inhaltswarnung für Medien von %{target} aufgehoben"
         unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
-        unsuspend_account_html: "%{name} hat die Verbannung von %{target} aufgehoben"
+        unsuspend_account_html: "%{name} hat die Kontosperre von %{target} aufgehoben"
         update_announcement_html: "%{name} aktualisierte Ankündigung %{target}"
         update_custom_emoji_html: "%{name} hat das %{target} Emoji geändert"
         update_domain_block_html: "%{name} hat den Domain-Block für %{target} aktualisiert"
@@ -384,17 +384,17 @@ de:
       existing_domain_block_html: Du hast bereits strengere Beschränkungen für die Domain %{name} verhängt. Du musst diese erst <a href="%{unblock_url}">aufheben</a>.
       new:
         create: Blockade einrichten
-        hint: Die Domain-Blockade wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden. Aber es werden rückwirkend und automatisch alle Moderationsmethoden auf diese Konten angewendet.
+        hint: Die Domainsperre wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden, sondern rückwirkend und automatisch alle Moderationsmethoden auf diese Konten anwenden.
         severity:
           desc_html: "<strong>Stummschaltung</strong> wird die Beiträge dieses Kontos für alle, die ihm nicht folgen, unsichtbar machen. Eine <strong>Sperre</strong> wird alle Beiträge, Medien und Profildaten dieses Kontos entfernen. Verwende <strong>Kein,</strong> um nur Mediendateien abzulehnen."
           noop: Kein
           silence: Stummschaltung
-          suspend: Sperre
+          suspend: Sperren
         title: Neue Domain-Blockade
       obfuscate: Domainname verschleiern
       obfuscate_hint: Den Domainnamen in der Liste teilweise verschleiern, wenn die Liste der Domänenbeschränkungen aktiviert ist
       private_comment: Privater Kommentar
-      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator_innen.
+      private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator*innen.
       public_comment: Öffentlicher Kommentar
       public_comment_hint: Kommentar zu dieser Domain-Beschränkung für die allgemeine Öffentlichkeit, wenn das Veröffentlichen der Blockliste aktiviert ist.
       reject_media: Mediendateien ablehnen
@@ -423,7 +423,7 @@ de:
       resolved_through_html: Durch %{domain} aufgelöst
       title: E-Mail-Domain-Blockade
     follow_recommendations:
-      description_html: "<strong>Folgeempfehlungen helfen neuen Nutzern dabei, schnell interessante Inhalte zu finden</strong>. Wenn ein Nutzer noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erstellen, werden stattdessen diese Benutzerkonten verwendet. Sie werden täglich basierend auf einer Mischung aus am meisten interagierenden Benutzerkonten und jenen mit den meisten Folgenden für eine bestimmte Sprache neuberechnet."
+      description_html: "<strong>Folgeempfehlungen helfen neuen Nutzern und Nutzerinnen dabei, schnell interessante Inhalte zu finden</strong>. Wenn ein:e Nutzer:in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Benutzerkonten verwendet. Sie werden täglich basierend auf einer Mischung aus am meisten interagierenden Benutzerkonten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
       language: Für Sprache
       status: Status
       suppress: Folgeempfehlungen unterdrücken
@@ -454,7 +454,7 @@ de:
           reject_media: Medien ablehnen
           reject_reports: Meldungen ablehnen
           silence: Stummschalten
-          suspend: Verbannen
+          suspend: Sperren
         policy: Richtlinie
         reason: Öffentlicher Grund
         title: Inhaltsrichtlinien
@@ -582,7 +582,7 @@ de:
         delete: Löschen
         placeholder: Bitte beschreibe, welche Maßnahmen ergriffen wurden oder andere damit verbundene Aktualisierungen …
         title: Notizen
-      notes_description_html: Zeige und hinterlasse Notizen an andere Moderator_innen und dein zukünftiges Ich
+      notes_description_html: Notizen an andere Moderator*innen und dein zukünftiges Ich anzeigen und hinterlassen
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
@@ -629,7 +629,7 @@ de:
         invite_users_description: Erlaubt Benutzer*innen, neue Leute zum Server einzuladen
         manage_announcements: Ankündigungen verwalten
         manage_announcements_description: Erlaubt Benutzer*innen, Ankündigungen auf dem Server zu verwalten
-        manage_appeals: Anträge verwalten
+        manage_appeals: Einsprüche verwalten
         manage_appeals_description: Erlaubt es Benutzer*innen, Entscheidungen der Moderator*innen zu widersprechen
         manage_blocks: Geblocktes verwalten
         manage_blocks_description: Erlaubt Benutzer*innen, E-Mail-Provider und IP-Adressen zu blockieren
@@ -676,7 +676,7 @@ de:
         rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
         title: Über
       appearance:
-        preamble: Passe die Weboberfläche von Mastodon an.
+        preamble: Passe das Webinterface von Mastodon an.
         title: Erscheinungsbild
       branding:
         preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
@@ -740,7 +740,7 @@ de:
         none: "%{name} hat eine Warnung an %{target} gesendet"
         sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung versehen"
         silence: "%{name} hat das Konto von %{target} eingeschränkt"
-        suspend: "%{name} hat das Konto von %{target} verbannt"
+        suspend: "%{name} hat das Konto von %{target} gesperrt"
       appeal_approved: Einspruch angenommen
       appeal_pending: Einspruch ausstehend
     system_checks:
@@ -852,14 +852,14 @@ de:
   admin_mailer:
     new_appeal:
       actions:
-        delete_statuses: deren Beiträge zu löschen
-        disable: deren Konto einzufrieren
-        mark_statuses_as_sensitive: um die Beiträge des Profils mit einer Inhaltswarnung zu versehen
+        delete_statuses: das Löschen der Beiträge
+        disable: das Einfrieren der Konten
+        mark_statuses_as_sensitive: das Markieren der Beiträge mit einer Inhaltswarnung
         none: eine Warnung
-        sensitive: um das Profil mit einer Inhaltswarnung zu versehen
-        silence: deren Konto zu beschränken
-        suspend: deren Konto zu sperren
-      body: "%{target} hat etwas gegen eine Moderationsentscheidung von %{action_taken_by} von %{date}, die %{type} war. Die Person schrieb:"
+        sensitive: das Markieren des Kontos mit einer Inhaltswarnung
+        silence: das Beschränken des Kontos
+        suspend: um deren Konto zu sperren
+      body: "%{target} hat etwas gegen eine Moderationsentscheidung von %{action_taken_by} vom %{date}, die %{type} war. Die Person schrieb:"
       next_steps: Du kannst dem Einspruch zustimmen und die Moderationsentscheidung rückgängig machen oder ignorieren.
       subject: "%{username} hat Einspruch gegen eine Moderationsentscheidung von %{instance} eingelegt"
     new_pending_account:
@@ -885,11 +885,11 @@ de:
     created_msg: Ein neuer Alias wurde erfolgreich erstellt. Du kannst nun den Wechsel vom alten Konto starten.
     deleted_msg: Der Alias wurde erfolgreich entfernt. Aus jenem Konto zu diesem zu verschieben, ist nicht mehr möglich.
     empty: Du hast keine Aliase.
-    hint_html: Wenn du von einem Konto zu einem anderem Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird, bevor du deine Folgenden vom altem Account zu diesen migrierst. Die Aktion alleine ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom altem Konto aus eingeleitet</strong>.
+    hint_html: Wenn du von einem Konto zu einem anderen Konto wechseln möchtest, dann kannst du einen Alias erstellen, welcher benötigt wird, bevor du deine Follower vom alten Account zu diesen migrierst. Die Aktion allein ist <strong>harmlos und wi­der­ruf­lich</strong>. <strong>Die Kontenmigration wird vom alten Konto aus eingeleitet</strong>.
     remove: Alle Aliase aufheben
   appearance:
-    advanced_web_interface: Fortgeschrittene Benutzeroberfläche
-    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit der fortgeschrittenen Benutzeroberfläche weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
+    advanced_web_interface: Erweitertes Webinterface
+    advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
@@ -943,7 +943,7 @@ de:
     resend_confirmation: Bestätigungs-Mail erneut versenden
     reset_password: Passwort zurücksetzen
     rules:
-      preamble: Diese werden von den Moderatoren von %{domain} erzwungen.
+      preamble: Diese werden von den %{domain}-Moderator*innen festgelegt und erzwungen.
       title: Einige Grundregeln.
     security: Sicherheit
     set_new_password: Neues Passwort setzen
@@ -960,7 +960,7 @@ de:
       functional: Dein Konto ist voll funktionsfähig.
       pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
-      view_strikes: Zeige frühere Streiks gegen dein Konto
+      view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell gesendet, versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
   authorize_follow:
@@ -1018,15 +1018,15 @@ de:
       irreversible: Du kannst dein Konto nicht reaktivieren
       more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzrichtlinie</a>.
       username_available: Dein Benutzername wird wieder verfügbar
-      username_unavailable: Dein Benutzername bleibt nicht verfügbar
+      username_unavailable: Dein Benutzername wird weiterhin nicht mehr verfügbar sein
   disputes:
     strikes:
       action_taken: Maßnahme ergriffen
       appeal: Einspruch
-      appeal_approved: Dieser Strike wurde erfolgreich beeinsprucht und ist nicht mehr gültig
+      appeal_approved: Dieser Verstoß wurde erfolgreich angefochten und ist nicht mehr gültig
       appeal_rejected: Der Einspruch wurde abgelehnt
-      appeal_submitted_at: Einspruch eingelegt
-      appealed_msg: Dein Einspruch wurde abgesendet. Wenn er angenommen wird, wirst du benachrichtigt.
+      appeal_submitted_at: Einspruch eingereicht
+      appealed_msg: Dein Einspruch wurde übermittelt. Wenn er angenommen wird, wirst du benachrichtigt.
       appeals:
         submit: Einspruch erheben
       approve_appeal: Einspruch annehmen
@@ -1039,7 +1039,7 @@ de:
       status_removed: Beitrag bereits vom System entfernt
       title: "%{action} vom %{date}"
       title_actions:
-        delete_statuses: Post-Entfernung
+        delete_statuses: Beitragsentfernung
         disable: Einfrieren des Kontos
         mark_statuses_as_sensitive: Beiträge mit einer Inhaltswarnung versehen
         none: Warnung
@@ -1103,7 +1103,7 @@ de:
       statuses_hint_html: Dieser Filter gilt für die Auswahl einzelner Beiträge, unabhängig davon, ob sie mit den unten stehenden Schlüsselwörtern übereinstimmen. <a href="%{path}">Beiträge im Filter ansehen oder entfernen.</a>.
       title: Filter bearbeiten
     errors:
-      deprecated_api_multiple_keywords: Diese Parameter können von dieser Anwendung nicht geändert werden, da sie auf mehr als ein Filterschlüsselwort angewendet werden. Verwende eine neuere Anwendung oder die Web-Schnittstelle.
+      deprecated_api_multiple_keywords: Diese Parameter können von dieser Anwendung nicht geändert werden, da sie auf mehr als ein Filterschlüsselwort angewendet werden. Verwende eine neuere Anwendung oder das Webinterface.
       invalid_context: Ungültiger oder fehlender Kontext übergeben
     index:
       contexts: Filter in %{contexts}
@@ -1129,7 +1129,7 @@ de:
       batch:
         remove: Vom Filter entfernen
       index:
-        hint: Dieser Filter wird verwendet, um einzelne Beiträge unabhängig von anderen Kriterien auszuwählen. Du kannst mehr Beiträge zu diesem Filter über die Webschnittstelle hinzufügen.
+        hint: Dieser Filter wird verwendet, um einzelne Beiträge unabhängig von anderen Kriterien auszuwählen. Du kannst mehr Beiträge zu diesem Filter über das Webinterface hinzufügen.
         title: Gefilterte Beiträge
   footer:
     trending_now: In den Trends
@@ -1190,7 +1190,7 @@ de:
     max_uses:
       one: 1 mal verwendet
       other: "%{count} mal verwendet"
-    max_uses_prompt: Kein Limit
+    max_uses_prompt: Keine Einschränkung
     prompt: Generiere und teile Links, um Zugang zu diesem Server zu erteilen
     table:
       expires_at: Läuft ab
@@ -1218,7 +1218,7 @@ de:
   migrations:
     acct: benutzername@domain des neuen Kontos
     cancel: Umleitung abbrechen
-    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Folgenden, die auf dieses Konto verschoben wurden, zurückholen.
+    cancel_explanation: Das Abbrechen der Umleitung wird dein aktuelles Konto erneut aktivieren, aber keine Follower, die auf dieses Konto verschoben wurden, zurückholen.
     cancelled_msg: Die Umleitung wurde erfolgreich abgebrochen.
     errors:
       already_moved: ist das gleiche Konto, zu dem du bereits umgezogen bist
@@ -1340,7 +1340,7 @@ de:
   relationships:
     activity: Kontoaktivität
     dormant: Inaktiv
-    follow_selected_followers: Ausgewählte Follower folgen
+    follow_selected_followers: Ausgewählten Followern folgen
     followers: Follower
     following: Folge ich
     invited: Eingeladen
@@ -1430,7 +1430,7 @@ de:
     profile: Profil
     relationships: Folge ich und Follower
     statuses_cleanup: Automatische Löschung
-    strikes: Strikes
+    strikes: Moderieren von Verstößen
     two_factor_authentication: Zwei-Faktor-Authentisierung (2FA)
     webauthn_authentication: Sicherheitsschlüssel
   statuses:
@@ -1524,7 +1524,7 @@ de:
     sensitive_content: Inhaltswarnung
   strikes:
     errors:
-      too_late: Es ist zu spät, um gegen diese Verwarnung Einspruch zu erheben
+      too_late: Es ist zu spät, um gegen diesen Verstoß Einspruch zu erheben
   tags:
     does_not_match_previous_name: entspricht nicht dem vorherigen Namen
   themes:
@@ -1554,11 +1554,11 @@ de:
   user_mailer:
     appeal_approved:
       action: Gehe zu deinem Konto
-      explanation: Der Einspruch gegen dem Strike vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in gutem Zustand.
+      explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde genehmigt. Dein Konto ist wieder in gutem Zustand.
       subject: Dein Einspruch vom %{date} wurde angenommen
       title: Einspruch angenommen
     appeal_rejected:
-      explanation: Der Einspruch gegen dem Strike vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde abgelehnt.
+      explanation: Der Einspruch gegen deinen Verstoß vom %{strike_date}, den du am %{appeal_date} eingereicht hast, wurde abgelehnt.
       subject: Dein Einspruch vom %{date} wurde abgelehnt
       title: Einspruch abgelehnt
     backup_ready:
@@ -1577,11 +1577,11 @@ de:
       appeal_description: Wenn du glaubst, dass es sich um einen Fehler handelt, kannst du einen Einspruch an die Administration von %{instance} senden.
       categories:
         spam: Spam
-        violation: Inhalt verstößt gegen die folgenden Community-Richtlinien
+        violation: Inhalt verstößt gegen die folgenden Gemeinschaftsrichtlinien
       explanation:
-        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Communityrichtlinien erkannt und von den Moderator_innen von %{instance} entfernt.
+        delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Gemeinschaftsrichtlinien erkannt und von den Moderator*innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst ein Backup deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
-        mark_statuses_as_sensitive: Ein oder mehrere Deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung (NSFW) versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
+        mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden, und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
