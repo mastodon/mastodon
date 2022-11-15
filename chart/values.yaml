@@ -1,5 +1,3 @@
-replicaCount: 1
-
 image:
   repository: tootsuite/mastodon
   # https://hub.docker.com/r/tootsuite/mastodon/tags
@@ -152,8 +150,40 @@ mastodon:
     # -- The base url for streaming can be set if the streaming API is deployed to
     # a different domain/subdomain.
     base_url: null
+    # -- Number of Streaming Pods running
+    replicas: 1
+    # -- Affinity for Streaming Pods, overwrites .Values.affinity
+    affinity: {}
+    # -- Pod Security Context for Streaming Pods, overwrites .Values.podSecurityContext
+    podSecurityContext: {}
+    # -- (Streaming Container) Security Context for Streaming Pods, overwrites .Values.securityContext
+    securityContext: {}
+    # -- (Streaming Container) Resources for Streaming Pods, overwrites .Values.resources
+    resources: {}
+    # limits:
+    #   cpu: "500m"
+    #   memory: 512Mi
+    # requests:
+    #   cpu: 250m
+    #   memory: 128Mi
   web:
     port: 3000
+    # -- Number of Web Pods running
+    replicas: 1
+    # -- Affinity for Web Pods, overwrites .Values.affinity
+    affinity: {}
+    # -- Pod Security Context for Web Pods, overwrites .Values.podSecurityContext
+    podSecurityContext: {}
+    # -- (Web Container) Security Context for Web Pods, overwrites .Values.securityContext
+    securityContext: {}
+    # -- (Web Container) Resources for Web Pods, overwrites .Values.resources
+    resources: {}
+    # limits:
+    #   cpu: "1"
+    #   memory: 1280Mi
+    # requests:
+    #   cpu: 250m
+    #   memory: 768Mi
 
   metrics:
     statsd:
