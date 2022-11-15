@@ -1,11 +1,10 @@
----
 de:
   simple_form:
     hints:
       account_alias:
-        acct: Gib den benutzernamen@domain des Kontos an, von dem du umziehen möchtest
+        acct: Gib profilname@domain des Kontos an, von dem du umziehen möchtest
       account_migration:
-        acct: Gib den benutzernamen@domain des Kontos an, zu dem du umziehen möchtest
+        acct: Gib profilname@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
         text: Du kannst Beitragssyntax verwenden, wie z. B. URLs, Hashtags und Erwähnungen
         title: Optional. Für den Empfänger nicht sichtbar
@@ -17,7 +16,7 @@ de:
         types:
           disable: Den Benutzer daran hindern, sein Konto zu verwenden, aber seinen Inhalt nicht löschen oder ausblenden.
           none: Verwende dies, um eine Warnung an den Benutzer zu senden, ohne eine andere Aktion auszulösen.
-          sensitive: Erzwinge, dass alle Medien-Dateien dieses Profils mit einer Inhaltswarnung (NSFW) versehen werden.
+          sensitive: Erzwinge, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindern, dass der Benutzer in der Lage ist, mit der öffentlichen Sichtbarkeit zu posten und seine Beiträge und Benachrichtigungen von Personen zu verstecken, die ihm nicht folgen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Kann innerhalb von 30 Tagen rückgängig gemacht werden.
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
@@ -46,12 +45,12 @@ de:
         locale: Die Sprache der Oberfläche, E-Mails und Push-Benachrichtigungen
         locked: Wer dir folgen und deine Inhalte sehen möchte, muss dein Follower sein und dafür um deine Erlaubnis bitten
         password: Verwende mindestens 8 Zeichen
-        phrase: Wird schreibungsunabhängig mit dem Text und Inhaltswarnung eines Beitrags verglichen
+        phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail verschickt, wenn du gerade auf Mastodon aktiv bist
-        setting_default_sensitive: Medien, die mit einer Inhaltswarnung (NSFW) versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
-        setting_display_media_default: Alle Medien verbergen, die mit einer Inhaltswarnung (NSFW) versehen sind
+        setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden erst nach einem zusätzlichen Klick angezeigt
+        setting_display_media_default: Alle Medien verbergen, die mit einer Inhaltswarnung versehen sind
         setting_display_media_hide_all: Alle Medien immer verbergen
         setting_display_media_show_all: Alle Medien immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
@@ -69,7 +68,7 @@ de:
       featured_tag:
         name: 'Hier sind ein paar Hashtags, die du in letzter Zeit am häufigsten genutzt hast:'
       filters:
-        action: Wählen Sie, welche Aktion ausgeführt werden soll, wenn ein Beitrag dem Filter entspricht
+        action: Gib an, welche Aktion ausgeführt werden soll, wenn ein Beitrag dem Filter entspricht
         actions:
           hide: Den gefilterten Inhalt vollständig ausblenden, als hätte er nie existiert
           warn: Den gefilterten Inhalt hinter einer Warnung ausblenden, die den Filtertitel beinhaltet
@@ -161,7 +160,7 @@ de:
       appeal:
         text: Erkläre, warum diese Entscheidung rückgängig gemacht werden soll
       defaults:
-        autofollow: Eingeladene Nutzer folgen dir automatisch
+        autofollow: Meinem Profil automatisch folgen
         avatar: Profilbild
         bot: Dieses Profil ist ein Bot
         chosen_languages: Nach Sprachen filtern
@@ -188,14 +187,14 @@ de:
         password: Passwort
         phrase: Wort oder Formulierung
         setting_advanced_layout: Erweitertes Webinterface verwenden
-        setting_aggregate_reblogs: Gruppiere erneut geteilte Beiträge in der Timeline deiner Startseite
+        setting_aggregate_reblogs: Geteilte Beiträge in den Timelines gruppieren
         setting_always_send_emails: Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
         setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
-        setting_default_sensitive: Eigene Medien immer mit einer Inhaltswarnung (NSFW) versehen
+        setting_default_sensitive: Eigene Medien immer mit einer Inhaltswarnung versehen
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
         setting_disable_swiping: Wischgesten deaktivieren
         setting_display_media: Medien-Anzeige
@@ -297,7 +296,7 @@ de:
       webhook:
         events: Aktivierte Ereignisse
         url: Endpunkt-URL
-    'no': Nein
+    'no': 'Nein'
     not_recommended: Nicht empfohlen
     recommended: Empfohlen
     required:
@@ -306,4 +305,4 @@ de:
     title:
       sessions:
         webauthn: Verwende einen deiner Sicherheitsschlüssel zum Anmelden
-    'yes': Ja
+    'yes': 'Ja'
