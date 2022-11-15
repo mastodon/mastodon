@@ -1,0 +1,3 @@
+<% @account.statuses.each do |status| %>
+<%= status.created_at %>	<%= extract_status_plain_text status %>
+<% end %>
