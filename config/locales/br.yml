@@ -22,6 +22,8 @@ br:
       other: Kannadoù
     posts_tab_heading: Kannadoù
   admin:
+    account_moderation_notes:
+      create: Leuskel un notenn
     accounts:
       add_email_domain_block: Stankañ an domani postel
       approve: Aprouiñ
@@ -37,7 +39,12 @@ br:
       change_role:
         no_role: Roll ebet
       confirm: Kadarnaat
+      confirming: O kadarnaat
+      custom: Personelaet
       deleted: Dilamet
+      demote: Argilañ
+      disable: Skornañ
+      disabled: Skornet
       domain: Domani
       edit: Aozañ
       email: Postel
@@ -46,7 +53,9 @@ br:
       followers: Heulier·ezed·ien
       follows: Koumanantoù
       header: Talbenn
+      invited_by: Pedet gant
       ip: IP
+      joined: Amañ abaoe
       location:
         all: Pep tra
         local: Lec'hel
@@ -57,6 +66,7 @@ br:
         pending: War ober
         silenced: Bevennet
         suspended: Astalet
+        title: Habaskadur
       perform_full_suspension: Astalañ
       promote: Brudañ
       protocol: Komenad
@@ -73,6 +83,7 @@ br:
       suspend: Astalañ
       suspended: Astalet
       title: Kontoù
+      undo_silenced: Dizober ar bevennañ
       username: Anv
       warn: Diwall
       web: Web
@@ -83,6 +94,7 @@ br:
       actions:
         destroy_status_html: "Dilamet eo bet kannad %{target} gant %{name}"
         update_status_html: "Hizivaet eo bet kannad %{target} gant %{name}"
+      title: Renabl aodit
     announcements:
       live: War-eeun
       new:
@@ -90,6 +102,7 @@ br:
         title: Kemenn nevez
       publish: Embann
       title: Kemennoù
+      unpublish: Diembann
     custom_emojis:
       by_domain: Domani
       copy: Eilañ
@@ -100,7 +113,13 @@ br:
       enable: Gweredekaat
       enabled: Gweredekaet
       list: Listenn
+      listed: Listennet
+      overwrite: Flastrañ
+      shortcode: Berradenn
+      unlist: Dilistennañ
+      upload: Ezkargañ
     dashboard:
+      new_users: implijerien·ezed nevez
       software: Meziant
       title: Taolenn labour
       website: Lec'hienn
@@ -118,9 +137,15 @@ br:
     email_domain_blocks:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
+      dns:
+        types:
+          mx: Enrolladenn MX
       domain: Domani
       new:
         create: Ouzhpenniñ un domani
+    follow_recommendations:
+      status: Statud
+      suppressed: Dilamet
     instances:
       back_to_all: Pep tra
       back_to_limited: Bevennet
@@ -130,6 +155,7 @@ br:
         policies:
           silence: Bevenniñ
           suspend: Astalañ
+        policy: Reolennoù
       dashboard:
         instance_statuses_measure: kannadoù stoket
       delivery:
@@ -138,19 +164,23 @@ br:
       moderation:
         all: Pep tra
         limited: Bevennet
+        title: Habaskadur
       purge: Spurjañ
+      title: Kevread
     invites:
       filter:
         all: Pep tra
         available: Hegerzh
         expired: Deuet d'an termen
+        title: Sil
       title: Pedadennoù
     ip_blocks:
+      delete: Dilemel
       expires_in:
         '1209600': 2 sizhunvezh
         '15778476': 6 months
         '2629746': 1 mizvezh
-        '31556952': 1 year
+        '31556952': 1 bloavezh
         '86400': 1 devezh
         '94670856': 3 bloavezh
     relays:
@@ -169,28 +199,50 @@ br:
           few: "%{count} a notennoù"
           many: "%{count} a notennoù"
           other: "%{count} a notennoù"
+      action_log: Renabl aodit
       are_you_sure: Ha sur oc'h?
       comment:
         none: Hini ebet
       delete_and_resolve: Dilemel ar c'hannadoù
+      forwarded: Treuzkaset
+      no_one_assigned: Den ebet
       notes:
         delete: Dilemel
         title: Notennoù
       status: Statud
       title: Disklêriadennoù
+      unresolved: Andiskoulmet
       updated_at: Nevesaet
     roles:
       categories:
+        devops: DevOps
         invites: Pedadennoù
+        moderation: Habaskadur
         special: Ispisial
+      delete: Dilemel
+      privileges:
+        view_devops: DevOps
       title: Rolloù
+    rules:
+      delete: Dilemel
+      edit: Kemmañ ar reolenn
     settings:
       about:
         title: Diwar-benn
+      appearance:
+        title: Neuz
+      discovery:
+        title: Dizoloadur
+        trends: Luskadoù
       domain_blocks:
         all: D'an holl dud
+        disabled: Da zen ebet
     statuses:
+      account: Aozer·ez
+      batch:
+        report: Disklêriañ
       deleted: Dilamet
+      favourites: Re vuiañ-karet
       media:
         title: Media
       open: Digeriñ ar c'hannad
@@ -198,19 +250,43 @@ br:
       reblogs: Skignadennoù
       status_changed: Kannad kemmet
       title: Kannadoù ar gont
+      visibility: Gwelusted
+      with_media: Gant mediaoù
     strikes:
       actions:
         delete_statuses: "Dilamet eo bet kannadoù %{target} gant %{name}"
     trends:
       allow: Aotren
+      links:
+        allow: Aotren al liamm
+      preview_card_providers:
+        title: Embannerien·ezed
+      statuses:
+        allow: Aotren ar c'hannad
+      tags:
+        dashboard:
+          tag_uses_measure: implijoù hollek
+      title: Luskadoù
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
     webhooks:
+      delete: Dilemel
       disable: Diweredekaat
+      enable: Bevaat
+      enabled: Bev
+      events: Darvoudoù
+      status: Statud
       webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        none: ur c'hemenn diwall
+  appearance:
+    discovery: Dizoloadur
   application_mailer:
     view: 'Sellet :'
+    view_status: Gwelet ar c'hannad
   auth:
     change_password: Ger-tremen
     delete_account: Dilemel ar gont
@@ -228,6 +304,8 @@ br:
       account_status: Statud ar gont
   authorize_follow:
     follow: Heuliañ
+    post_follow:
+      web: Distreiñ d'an etrefas web
     title: Heuliañ %{acct}
   challenge:
     confirm: Kenderc' hel
@@ -243,14 +321,18 @@ br:
       about_x_years: "%{count}b"
       almost_x_years: "%{count}b"
       half_a_minute: Diouzhtu
+      less_than_x_minutes: "%{count}mun"
       less_than_x_seconds: Diouzhtu
       over_x_years: "%{count}b"
+      x_days: "%{count}d"
+      x_minutes: "%{count}mun"
       x_months: "%{count}miz"
       x_seconds: "%{count}eil"
   deletes:
     proceed: Dilemel ar gont
   disputes:
     strikes:
+      appeal: Ober engalv
       created_at: Deiziad
       title_actions:
         none: Diwall
@@ -268,6 +350,8 @@ br:
     archive_takeout:
       date: Deiziad
       size: Ment
+    blocks: Stankañ a rit
+    bookmarks: Sinedoù
     csv: CSV
     lists: Listennoù
   featured_tags:
@@ -298,7 +382,12 @@ br:
   imports:
     modes:
       merge: Teuziñ
+      overwrite: Flastrañ
+    types:
+      bookmarks: Sinedoù
+    upload: Ezkargañ
   invites:
+    delete: Diweredekaat
     expired: Deuet d'an termen
     expires_in:
       '1800': 30 munutenn
@@ -311,6 +400,8 @@ br:
     table:
       uses: Implijoù
     title: Pediñ tud
+  moderation:
+    title: Habaskadur
   notification_mailer:
     follow:
       title: Heulier nevez
@@ -318,6 +409,7 @@ br:
       action: Respont
     reblog:
       subject: "Skignet ho kannad gant %{name}"
+      title: Skignadenn nevez
     status:
       subject: "Embannet ez eus bet traoù gant %{name}"
     update:
@@ -349,11 +441,13 @@ br:
     following: O heuliañ
     invited: Pedet
     moved: Dilojet
+    mutual: Kenetre
     primary: Kentañ
   sessions:
     browser: Merdeer
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -367,16 +461,19 @@ br:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     description: "%{browser} war %{platform}"
     ip: IP
     platforms:
+      adobe_air: Adobe Air
       android: Android
       ios: iOS
       linux: Linux
       mac: macOS
       other: savenn dianav
       windows: Windows
+    revoke: Dizober
   settings:
     account: Kont
     account_settings: Arventennoù ar gont
@@ -398,15 +495,16 @@ br:
       vote: Mouezhiañ
     show_more: Diskouez muioc'h
     visibilities:
+      direct: War-eeun
       public: Publik
   statuses_cleanup:
     min_age:
       '1209600': 2 sizhunvezh
       '15778476': 6 months
       '2629746': 1 mizvezh
-      '31556952': 1 year
+      '31556952': 1 bloavezh
       '5259492': 2 months
-      '604800': 1 week
+      '604800': 1 sizhunvezh
       '63113904': 2 vloavezh
       '7889238': 3 months
   stream_entries:
