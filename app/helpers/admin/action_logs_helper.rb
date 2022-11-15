@@ -2,64 +2,37 @@
 
 module Admin::ActionLogsHelper
   def log_target(log)
-    if log.target
-      linkable_log_target(log.target)
-    else
-      log_target_from_history(log.target_type, log.recorded_changes)
-    end
-  end
-
-  private
-
-  def linkable_log_target(record)
-    case record.class.name
+    case log.target_type
     when 'Account'
-      link_to record.acct, admin_account_path(record.id)
+      link_to (log.human_identifier.presence || I18n.t('admin.action_logs.deleted_account')), admin_account_path(log.target_id)
     when 'User'
-      link_to record.account.acct, admin_account_path(record.account_id)
-    when 'CustomEmoji'
-      record.shortcode
-    when 'Report'
-      link_to "##{record.id}", admin_report_path(record)
-    when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
-      link_to record.domain, "https://#{record.domain}"
-    when 'Status'
-      link_to record.account.acct, ActivityPub::TagManager.instance.url_for(record)
-    when 'AccountWarning'
-      link_to record.target_account.acct, admin_account_path(record.target_account_id)
-    when 'Announcement'
-      link_to truncate(record.text), edit_admin_announcement_path(record.id)
-    when 'IpBlock'
-      "#{record.ip}/#{record.ip.prefix} (#{I18n.t("simple_form.labels.ip_block.severities.#{record.severity}")})"
-    when 'Instance'
-      record.domain
-    when 'Appeal'
-      link_to record.account.acct, disputes_strike_path(record.strike)
-    end
-  end
-
-  def log_target_from_history(type, attributes)
-    case type
-    when 'User'
-      attributes['username']
-    when 'CustomEmoji'
-      attributes['shortcode']
-    when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
-      link_to attributes['domain'], "https://#{attributes['domain']}"
-    when 'Status'
-      tmp_status = Status.new(attributes.except('reblogs_count', 'favourites_count'))
-
-      if tmp_status.account
-        link_to tmp_status.account&.acct || "##{tmp_status.account_id}", admin_account_path(tmp_status.account_id)
+      if log.route_param.present?
+        link_to log.human_identifier, admin_account_path(log.route_param)
       else
-        I18n.t('admin.action_logs.deleted_status')
+        I18n.t('admin.action_logs.deleted_account')
       end
+    when 'UserRole'
+      link_to log.human_identifier, admin_roles_path(log.target_id)
+    when 'Report'
+      link_to "##{log.human_identifier.presence || log.target_id}", admin_report_path(log.target_id)
+    when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
+      link_to log.human_identifier, "https://#{log.human_identifier.presence}"
+    when 'Status'
+      link_to log.human_identifier, log.permalink
+    when 'AccountWarning'
+      link_to log.human_identifier, admin_account_path(log.target_id)
     when 'Announcement'
-      truncate(attributes['text'].is_a?(Array) ? attributes['text'].last : attributes['text'])
-    when 'IpBlock'
-      "#{attributes['ip']}/#{attributes['ip'].prefix} (#{I18n.t("simple_form.labels.ip_block.severities.#{attributes['severity']}")})"
-    when 'Instance'
-      attributes['domain']
+      link_to truncate(log.human_identifier), edit_admin_announcement_path(log.target_id)
+    when 'IpBlock', 'Instance', 'CustomEmoji'
+      log.human_identifier
+    when 'CanonicalEmailBlock'
+      content_tag(:samp, (log.human_identifier.presence || '')[0...7], title: log.human_identifier)
+    when 'Appeal'
+      if log.route_param.present?
+        link_to log.human_identifier, disputes_strike_path(log.route_param.presence)
+      else
+        I18n.t('admin.action_logs.deleted_account')
+      end
     end
   end
 end

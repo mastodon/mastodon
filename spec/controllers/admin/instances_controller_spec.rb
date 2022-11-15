@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin::InstancesController, type: :controller do
   render_views
 
-  let(:current_user) { Fabricate(:user, admin: true) }
+  let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   let!(:account)     { Fabricate(:account, domain: 'popular') }
   let!(:account2)    { Fabricate(:account, domain: 'popular') }
@@ -35,11 +35,11 @@ RSpec.describe Admin::InstancesController, type: :controller do
   describe 'DELETE #destroy' do
     subject { delete :destroy, params: { id: Instance.first.id } }
 
-    let(:current_user) { Fabricate(:user, admin: admin) }
+    let(:current_user) { Fabricate(:user, role: role) }
     let(:account) { Fabricate(:account) }
 
     context 'when user is admin' do
-      let(:admin) { true }
+      let(:role) { UserRole.find_by(name: 'Admin') }
 
       it 'succeeds in purging instance' do
         is_expected.to redirect_to admin_instances_path
@@ -47,7 +47,7 @@ RSpec.describe Admin::InstancesController, type: :controller do
     end
 
     context 'when user is not admin' do
-      let(:admin) { false }
+      let(:role) { nil }
 
       it 'fails to purge instance' do
         is_expected.to have_http_status :forbidden

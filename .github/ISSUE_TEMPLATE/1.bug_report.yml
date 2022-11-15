@@ -33,10 +33,24 @@ body:
       required: true
   - type: textarea
     attributes:
+      label: Detailed description
+    validations:
+      required: false
+  - type: textarea
+    attributes:
       label: Specifications
       description: |
         What version or commit hash of Mastodon did you find this bug in?
 
         If a front-end issue, what browser and operating systems were you using?
+      placeholder: |
+        Mastodon 3.5.3 (or Edge)
+        Ruby 2.7.6 (or v3.1.2)
+        Node.js 16.18.0
+
+        Google Chrome 106.0.5249.119
+        Firefox 105.0.3
+        
+        etc...
     validations:
       required: true

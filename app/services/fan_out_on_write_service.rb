@@ -14,8 +14,10 @@ class FanOutOnWriteService < BaseService
     @options   = options
 
     check_race_condition!
+    warm_payload_cache!
 
     fan_out_to_local_recipients!
+    fan_out_to_public_recipients! if broadcastable?
     fan_out_to_public_streams! if broadcastable?
   end
 
@@ -48,6 +50,10 @@ class FanOutOnWriteService < BaseService
       deliver_to_mentioned_followers!
       deliver_to_conversation!
     end
+  end
+
+  def fan_out_to_public_recipients!
+    deliver_to_hashtag_followers!
   end
 
   def fan_out_to_public_streams!
@@ -83,6 +89,14 @@ class FanOutOnWriteService < BaseService
     end
   end
 
+  def deliver_to_hashtag_followers!
+    TagFollow.where(tag_id: @status.tags.map(&:id)).select(:id, :account_id).reorder(nil).find_in_batches do |follows|
+      FeedInsertWorker.push_bulk(follows) do |follow|
+        [@status.id, follow.account_id, 'tags', { 'update' => update? }]
+      end
+    end
+  end
+
   def deliver_to_lists!
     @account.lists_for_local_distribution.select(:id).reorder(nil).find_in_batches do |lists|
       FeedInsertWorker.push_bulk(lists) do |list|
@@ -100,7 +114,7 @@ class FanOutOnWriteService < BaseService
   end
 
   def broadcast_to_hashtag_streams!
-    @status.tags.pluck(:name).each do |hashtag|
+    @status.tags.map(&:name).each do |hashtag|
       redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}", anonymous_payload)
       redis.publish("timeline:hashtag:#{hashtag.mb_chars.downcase}:local", anonymous_payload) if @status.local?
     end
@@ -122,11 +136,19 @@ class FanOutOnWriteService < BaseService
     AccountConversation.add_status(@account, @status) unless update?
   end
 
+  def warm_payload_cache!
+    Rails.cache.write("fan-out/#{@status.id}", rendered_status)
+  end
+
   def anonymous_payload
     @anonymous_payload ||= Oj.dump(
       event: update? ? :'status.update' : :update,
-      payload: InlineRenderer.render(@status, nil, :status)
+      payload: rendered_status
     )
+  end
+
+  def rendered_status
+    @rendered_status ||= InlineRenderer.render(@status, nil, :status)
   end
 
   def update?

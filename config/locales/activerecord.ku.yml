@@ -21,6 +21,18 @@ ku:
             username:
               invalid: pêdivî ye ku tenê tîp, hejmar û xêzikên jêrîn hebin
               reserved: hatiye bikaranîn
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ev girêdaneke nederbasdar e
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ev girêdaneke nederbasdar e
+        import:
+          attributes:
+            data:
+              malformed: xerab bûye
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ ku:
             email:
               blocked: dabînkerê e-nameya qedexe bi kar tîne
               unreachable: xuya ye ku tune ye
+            role_id:
+              elevated: nabe ku ji rola te ya heyî bilindtir be
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: mafdayînên ku ji bo rola bingehîn ne ewle ne tê de hene
+              elevated: di rola te ya heyî de nabe mafdayîn tê de hebin
+              own_role: bi rola te ya heyî nayê guhertin
+            position:
+              elevated: nabe ku ji rola te ya heyî bilindtir be
+              own_role: bi rola te ya heyî nayê guhertin

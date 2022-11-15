@@ -11,6 +11,7 @@ class InlineRenderer
     case @template
     when :status
       serializer = REST::StatusSerializer
+      preload_associations_for_status
     when :notification
       serializer = REST::NotificationSerializer
     when :conversation
@@ -34,6 +35,16 @@ class InlineRenderer
   end
 
   private
+
+  def preload_associations_for_status
+    ActiveRecord::Associations::Preloader.new.preload(@object, {
+      active_mentions: :account,
+
+      reblog: {
+        active_mentions: :account,
+      },
+    })
+  end
 
   def current_user
     @current_account&.user

@@ -5,72 +5,129 @@ sv:
       account_alias:
         acct: Ange användarnamn@domän för kontot som du vill flytta från
       account_migration:
-        acct: Ange användarnamn@domän för kontot du flyttar till
+        acct: Ange användarnamn@domän för kontot du vill flytta till
       account_warning_preset:
         text: Du kan använda inläggssyntax som webbadresser, hashtaggar och omnämnanden
         title: Valfri. Inte synlig för mottagaren
       admin_account_action:
-        include_statuses: Användaren ser de toots som orsakat moderering eller varning
-        send_email_notification: Användaren kommer att få en förklaring av vad som hände med sitt konto
-        text_html: Extra. Du kan använda toot syntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
+        include_statuses: Användaren ser vilka inlägg som orsakat modereringsåtgärd eller varning
+        send_email_notification: Användaren kommer få en förklaring på vad som hände med deras konto
+        text_html: Valfri. Du kan använda inläggssyntax. Du kan <a href="%{path}">lägga till förvalda varningar</a> för att spara tid
         type_html: Välj vad du vill göra med <strong>%{acct}</strong>
         types:
-          disable: Förhindra användaren från att använda sitt konto, men ta inte bort eller dölj innehållet.
-          none: Använd det här för att skicka en varning till användaren, utan att trigga någon annan åtgärd.
-          sensitive: Tvinga denna användares alla mediebilagor att flaggas som känsliga.
-        warning_preset_id: Extra. Du kan lägga till valfri text i slutet av förinställningen
+          disable: Förhindra användaren från att använda sitt konto, men radera eller dölj inte innehållet.
+          none: Använd det här för att skicka en varning till användaren, utan att vidta någon ytterligare åtgärd.
+          sensitive: Tvinga alla denna användares mediebilagor till att flaggas som känsliga.
+          silence: Hindra användaren från att kunna göra offentliga inlägg, göm deras inlägg och notiser från folk som inte följer dem.
+          suspend: Hindra all interaktion från eller till detta konto och radera allt dess innehåll. Går att ångra inom 30 dagar.
+        warning_preset_id: Valfri. Du kan lägga till anpassad text i slutet av förinställningen
       announcement:
         all_day: När det är markerat visas endast datum för tidsintervallet
-        ends_at: Frivillig. Meddelandet kommer automatiskt att publiceras just nu
-        scheduled_at: Lämna tomt för att publicera meddelandet omedelbart
-        starts_at: Valfritt. Om ditt meddelande är bundet till ett visst tidsintervall
+        ends_at: Valfri. Kungörelsen kommer automatiskt avpubliceras vid denna tidpunkt
+        scheduled_at: Lämna tomt för att publicera kungörelsen omedelbart
+        starts_at: Valfritt. Om din kungörelse är bunden till ett visst tidsintervall
+        text: Du kan använda inläggssyntax. Håll i åtanke hur mycket plats din kungörelse tar upp på användarnas skärmar
       appeal:
         text: Du kan endast överklaga en varning en gång
       defaults:
         autofollow: Användarkonton som skapas genom din inbjudan kommer automatiskt följa dig
         avatar: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
         bot: Detta konto utför huvudsakligen automatiserade åtgärder och kanske inte övervakas
+        context: Ett eller fler sammanhang där filtret ska tillämpas
+        current_password: Av säkerhetsskäl krävs lösenordet till det nuvarande kontot
+        current_username: Ange det nuvarande kontots användarnamn för att bekräfta
         digest: Skickas endast efter en lång period av inaktivitet och endast om du har fått några personliga meddelanden i din frånvaro
+        discoverable: Tillåt att ditt konto upptäcks av främlingar genom rekommendationer, trender och andra funktioner
         email: Du kommer att få ett bekräftelsemeddelande via e-post
         fields: Du kan ha upp till 4 objekt visade som en tabell på din profil
         header: PNG, GIF eller JPG. Högst %{size}. Kommer att skalas ner till %{dimensions}px
+        inbox_url: Kopiera webbadressen från hemsidan av det ombud du vill använda
         irreversible: Filtrerade inlägg kommer att försvinna oåterkalleligt, även om filter tas bort senare
         locale: Språket för användargränssnittet, e-postmeddelanden och push-aviseringar
         locked: Kräver att du manuellt godkänner följare
         password: Använd minst 8 tecken
+        phrase: Matchas oavsett användande i text eller innehållsvarning för ett inlägg
+        scopes: 'Vilka API: er applikationen kommer tillåtas åtkomst till. Om du väljer en omfattning på högstanivån behöver du inte välja individuella sådana.'
+        setting_aggregate_reblogs: Visa inte nya boostar för inlägg som nyligen blivit boostade (påverkar endast nymottagna boostar)
+        setting_always_send_emails: E-postnotiser kommer vanligtvis inte skickas när du aktivt använder Mastodon
+        setting_default_sensitive: Känslig media döljs som standard och kan visas med ett klick
         setting_display_media_default: Dölj media markerad som känslig
         setting_display_media_hide_all: Dölj alltid all media
         setting_display_media_show_all: Visa alltid media markerad som känslig
         setting_hide_network: Vem du följer och vilka som följer dig kommer inte att visas på din profilsida
         setting_noindex: Påverkar din offentliga profil och statussidor
+        setting_show_application: Applikationen du använder för att göra inlägg kommer visas i detaljvyn för dina inlägg
+        setting_use_blurhash: Gradienter är baserade på färgerna av de dolda objekten men fördunklar alla detaljer
+        setting_use_pending_items: Dölj tidslinjeuppdateringar bakom ett klick istället för att automatiskt bläddra i flödet
         username: Ditt användarnamn måste vara unikt på %{domain}
+        whole_word: När sökordet eller frasen endast är alfanumerisk, kommer det endast att tillämpas om det matchar hela ordet
+      domain_allow:
+        domain: Denna domän kommer att kunna hämta data från denna server och inkommande data från den kommer att behandlas och lagras
       email_domain_block:
-        with_dns_records: Ett försök att lösa den givna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
+        domain: Detta kan vara domännamnet som dyker upp i e-postadressen eller MX-posten som används. De kommer kontrolleras vid registrering.
+        with_dns_records: Ett försök att slå upp den angivna domänens DNS-poster kommer att göras och resultaten kommer också att blockeras
       featured_tag:
-        name: 'Du kan vilja använda en av dessa:'
+        name: 'Här är några av de hashtaggar du använt nyligen:'
+      filters:
+        action: Välj vilken åtgärd som ska utföras när ett inlägg matchar filtret
+        actions:
+          hide: Dölj det filtrerade innehållet helt (beter sig som om det inte fanns)
+          warn: Dölj det filtrerade innehållet bakom en varning som visar filtrets rubrik
+      form_admin_settings:
+        backups_retention_period: Behåll genererade användararkiv i det angivna antalet dagar.
+        bootstrap_timeline_accounts: Dessa konton kommer fästas högst upp i nya användares följrekommendationer.
+        closed_registrations_message: Visas när nyregistreringar är avstängda
+        content_cache_retention_period: Inlägg från andra servrar kommer att raderas efter det angivna antalet dagar när detta är inställt på ett positivt värde. Åtgärden kan vara oåterkallelig.
+        custom_css: Du kan använda anpassade stilar på webbversionen av Mastodon.
+        mascot: Åsidosätter illustrationen i det avancerade webbgränssnittet.
+        media_cache_retention_period: Nedladdade mediefiler kommer raderas efter det angivna antalet dagar, om inställt till ett positivt värde, och laddas ned på nytt vid behov.
+        profile_directory: Profilkatalogen visar alla användare som har samtyckt till att bli upptäckbara.
+        require_invite_text: Gör fältet "Varför vill du gå med?" obligatoriskt när nyregistreringar kräver manuellt godkännande
+        site_contact_email: Hur människor kan nå dig för juridiska spörsmål eller supportfrågor.
+        site_contact_username: Hur folk kan nå dig på Mastodon.
+        site_extended_description: Eventuell övrig information som kan vara användbar för besökare och dina användare. Kan struktureras med Markdown-syntax.
+        site_short_description: En kort beskrivning för att unikt identifiera din server. Vem är det som driver den, vilka är den till för?
+        site_terms: Använd din egen sekretesspolicy eller lämna tomt för att använda standardinställningen. Kan struktureras med Markdown-syntax.
+        site_title: Hur folk kan hänvisa till din server förutom med dess domännamn.
+        theme: Tema som utloggade besökare och nya användare ser.
+        thumbnail: En bild i cirka 2:1-proportioner som visas tillsammans med din serverinformation.
+        timeline_preview: Utloggade besökare kommer kunna bläddra bland de senaste offentliga inläggen som finns på servern.
+        trendable_by_default: Hoppa över manuell granskning av trendande innehåll. Enskilda objekt kan ändå raderas från trender retroaktivt.
+        trends: Trender visar vilka inlägg, hashtaggar och nyheter det pratas om på din server.
       form_challenge:
         current_password: Du går in i ett säkert område
       imports:
-        data: CSV-fil som exporteras från en annan Mastodon-instans
+        data: CSV-fil som exporterats från en annan Mastodon-server
       invite_request:
-        text: Det här kommer att hjälpa oss att granska din ansökan
+        text: Detta kommer hjälpa oss att granska din ansökan
       ip_block:
         comment: Valfritt. Kom ihåg varför du lade till denna regel.
         expires_in: IP-adresser är en ändlig resurs, de delas ibland och byter ofta händer. Av den här anledningen så rekommenderas inte IP-blockeringar på obestämd tid.
-        ip: Ange en IPv4 eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Var försiktig så att du inte låser ut dig själv!
+        ip: Ange en IPv4- eller IPv6-adress. Du kan blockera hela intervall med hjälp av CIDR-syntax. Var försiktig så att du inte låser ute dig själv!
         severities:
           no_access: Blockera åtkomst till alla resurser
+          sign_up_block: Nyregistreringar kommer inte vara möjliga
           sign_up_requires_approval: Nya registreringar kräver ditt godkännande
         severity: Välj vad som ska hända med förfrågningar från denna IP
       rule:
-        text: Beskriv en kort och enkel regel för användare på denna server
+        text: Beskriv en regel eller ett krav för användare av denna server. Försök hålla det kort och koncist
       sessions:
-        otp: 'Ange tvåfaktorkoden genererad från din telefonapp eller använd någon av dina återställningskoder:'
-        webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, knacka på den.
+        otp: 'Ange tvåfaktorskoden som genererades av din telefonapp, eller använd någon av dina återställningskoder:'
+        webauthn: Om det är en USB-nyckel se till att sätta in den och, om nödvändigt, tryck på den.
       tag:
-        name: Du kan bara ändra bokstävernas typ av variant, till exempel för att göra det mer läsbart
+        name: Du kan bara ändra skriftläget av bokstäverna, till exempel, för att göra det mer läsbart
       user:
-        chosen_languages: När aktiverat så visas bara inlägg i dina valda språk i den offentliga tidslinjen
+        chosen_languages: Vid aktivering visas bara inlägg på dina valda språk i offentliga tidslinjer
+        role: Rollen bestämmer vilka behörigheter användaren har
+      user_role:
+        color: Färgen som ska användas för rollen i användargränssnittet, som RGB i hex-format
+        highlighted: Detta gör rollen synlig offentligt
+        name: Offentligt namn på rollen, om rollen är inställd på att visas som ett emblem
+        permissions_as_keys: Användare med denna roll kommer ha tillgång till...
+        position: Högre roll avgör konfliktlösning i vissa situationer. Vissa åtgärder kan endast utföras på roller med lägre prioritet
+      webhook:
+        events: Välj händelser att skicka
+        url: Dit händelser kommer skickas
     labels:
       account:
         fields:
@@ -85,15 +142,15 @@ sv:
         title: Rubrik
       admin_account_action:
         include_statuses: Inkludera rapporterade inlägg i e-postmeddelandet
-        send_email_notification: Meddela användaren via e-post
+        send_email_notification: Notifiera användaren via e-post
         text: Anpassad varning
         type: Åtgärd
         types:
-          disable: Inaktivera inloggning
-          none: Gör ingenting
+          disable: Frys
+          none: Skicka en varning
           sensitive: Känslig
           silence: Tysta
-          suspend: Stäng av
+          suspend: Pausa
         warning_preset_id: Använd en förinställd varning
       announcement:
         all_day: Heldagsevenemang
@@ -101,6 +158,8 @@ sv:
         scheduled_at: Schemalägg publicering
         starts_at: Evenemangets början
         text: Kungörelse
+      appeal:
+        text: Redogör anledningen till att detta beslut bör upphävas
       defaults:
         autofollow: Bjud in till att följa ditt konto
         avatar: Profilbild
@@ -108,35 +167,36 @@ sv:
         chosen_languages: Filtrera språk
         confirm_new_password: Bekräfta nytt lösenord
         confirm_password: Bekräfta lösenord
-        context: Filter sammanhang
+        context: Filtrera sammanhang
         current_password: Nuvarande lösenord
         data: Data
-        discoverable: Lista detta konto i katalogen
+        discoverable: Föreslå konto för andra
         display_name: Visningsnamn
         email: E-postadress
-        expires_in: Förfaller efter
+        expires_in: Utgår efter
         fields: Profil-metadata
-        header: Bakgrundsbild
+        header: Sidhuvud
         honeypot: "%{label} (fyll inte i)"
-        inbox_url: URL för reläinkorg
+        inbox_url: Webbadress för ombudsinkorg
         irreversible: Släng istället för att dölja
-        locale: Språk
-        locked: Lås konto
-        max_uses: Högst antal  användningar
+        locale: Språk för gränssnittet
+        locked: Kräv följförfrågningar
+        max_uses: Max antal användningar
         new_password: Nytt lösenord
         note: Biografi
         otp_attempt: Tvåfaktorskod
         password: Lösenord
-        phrase: Nyckelord eller fras
+        phrase: Nyckelord eller -fras
         setting_advanced_layout: Aktivera avancerat webbgränssnitt
-        setting_aggregate_reblogs: Gruppera knuffar i tidslinjer
-        setting_auto_play_gif: Spela upp animerade GIF-bilder automatiskt
-        setting_boost_modal: Visa bekräftelsedialog innan du knuffar
-        setting_crop_images: Beskär bilder i icke-utökade tutningar till 16x9
-        setting_default_language: Språk
-        setting_default_privacy: Postintegritet
+        setting_aggregate_reblogs: Gruppera boostar i tidslinjer
+        setting_always_send_emails: Skicka alltid e-postnotiser
+        setting_auto_play_gif: Spela upp GIF:ar automatiskt
+        setting_boost_modal: Visa bekräftelsedialog innan boostning
+        setting_crop_images: Beskär bilder i icke-utökade inlägg till 16x9
+        setting_default_language: Inläggsspråk
+        setting_default_privacy: Inläggsintegritet
         setting_default_sensitive: Markera alltid media som känsligt
-        setting_delete_modal: Visa bekräftelsedialog innan du raderar en toot
+        setting_delete_modal: Visa bekräftelsedialog innan radering av inlägg
         setting_disable_swiping: Inaktivera svepande rörelser
         setting_display_media: Mediavisning
         setting_display_media_default: Standard
@@ -155,6 +215,7 @@ sv:
         setting_use_pending_items: Långsamt läge
         severity: Strikthet
         sign_in_token_attempt: Säkerhetskod
+        title: Rubrik
         type: Importtyp
         username: Användarnamn
         username_or_email: Användarnamn eller e-mail
@@ -163,9 +224,37 @@ sv:
         with_dns_records: Inkludera MX-poster och IP-adresser för domänen
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Dölj helt
+          warn: Dölj med en varning
+      form_admin_settings:
+        backups_retention_period: Lagringsperiod för användararkivet
+        bootstrap_timeline_accounts: Rekommendera alltid dessa konton till nya användare
+        closed_registrations_message: Anpassat meddelande när nyregistreringar inte är tillgängliga
+        content_cache_retention_period: Tid för bibehållande av innehållscache
+        custom_css: Anpassad CSS
+        mascot: Anpassad maskot (tekniskt arv)
+        media_cache_retention_period: Tid för bibehållande av mediecache
+        profile_directory: Aktivera profilkatalog
+        registrations_mode: Vem kan registrera sig
+        require_invite_text: Kräv anledning för att gå med
+        show_domain_blocks: Visa domänblockeringar
+        show_domain_blocks_rationale: Visa varför domäner blockerades
+        site_contact_email: Kontakt via e-post
+        site_contact_username: Användarnamn för kontakt
+        site_extended_description: Utökad beskrivning
+        site_short_description: Serverbeskrivning
+        site_terms: Integritetspolicy
+        site_title: Servernamn
+        theme: Standardtema
+        thumbnail: Serverns tumnagelbild
+        timeline_preview: Tillåt oautentiserad åtkomst till offentliga tidslinjer
+        trendable_by_default: Tillåt trender utan föregående granskning
+        trends: Aktivera trender
       interactions:
-        must_be_follower: Blockera aviseringar från icke-följare
-        must_be_following: Blockera aviseringar från personer du inte följer
+        must_be_follower: Blockera notiser från icke-följare
+        must_be_following: Blockera notiser från personer du inte följer
         must_be_following_dm: Blockera direktmeddelanden från personer du inte följer
       invite:
         comment: Kommentar
@@ -176,28 +265,44 @@ sv:
         ip: IP
         severities:
           no_access: Blockera åtkomst
+          sign_up_block: Blockera registreringar
           sign_up_requires_approval: Begränsa registreringar
         severity: Regel
       notification_emails:
-        digest: Skicka sammandrag via e-post
-        favourite: Skicka e-post när någon favoriserar din status
-        follow: Skicka e-post när någon följer dig
-        follow_request: Skicka e-post när någon begär att följa dig
-        mention: Skicka e-post när någon nämner dig
-        pending_account: Nytt konto behöver granskas
-        reblog: Skicka e-post när någon knuffar din status
+        appeal: Någon överklagar ett moderatorbeslut
+        digest: Skicka e-postsammandrag
+        favourite: Någon favoritmarkerar ditt inlägg
+        follow: Någon följt dig
+        follow_request: Någon begärt att följa dig
+        mention: Någon nämnt dig
+        pending_account: Ett nytt konto behöver granskas
+        reblog: Någon boostade ditt inlägg
+        report: En ny rapport har skickats
+        trending_tag: En ny trend kräver granskning
       rule:
         text: Regel
       tag:
-        listable: Tillåt att denna hashtag visas i sökningar och förslag
-        name: Hashtag
-        trendable: Tillåt att denna hashtag visas under trender
-        usable: Tillåt tutningar att använda denna hashtag
+        listable: Tillåt denna hashtagg att visas i sökningar och förslag
+        name: Hashtagg
+        trendable: Tillåt denna hashtagg att visas under trender
+        usable: Tillåt inlägg att använda denna hashtagg
+      user:
+        role: Roll
+      user_role:
+        color: Emblemsfärg
+        highlighted: Visa roll som emblem på användarprofiler
+        name: Namn
+        permissions_as_keys: Behörigheter
+        position: Prioritet
+      webhook:
+        events: Aktiverade händelser
+        url: Slutpunkts-URL
     'no': Nej
+    not_recommended: Rekommenderas inte
     recommended: Rekommenderad
     required:
       mark: "*"
-      text: obligatorisk
+      text: krävs
     title:
       sessions:
         webauthn: Använd en av dina säkerhetsnycklar för att logga in

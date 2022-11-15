@@ -37,7 +37,7 @@ hu:
         current_password: Biztonsági okok miatt kérlek, írd be a jelenlegi fiók jelszavát
         current_username: A jóváhagyáshoz írd be a jelenlegi fiók felhasználói nevét
         digest: Csak hosszú távollét esetén küldődik és csak ha személyes üzenetet kaptál távollétedben
-        discoverable: Engedélyezzük, hogy a fiókod idegenek által megtalálható legyen javaslatokon, trendeken és más funkciókon keresztül
+        discoverable: Engedélyezés, hogy a fiókod idegenek által megtalálható legyen javaslatokon, trendeken és más funkciókon keresztül
         email: Kapsz egy megerősítő e-mailt
         fields: A profilodon legfeljebb 4 bejegyzés szerepelhet táblázatos formában
         header: PNG, GIF vagy JPG. Maximum %{size}. Átméretezzük %{dimensions} pixelre
@@ -62,28 +62,55 @@ hu:
         username: A felhasználói neved egyedi lesz a %{domain} domainen
         whole_word: Ha a kulcsszó alfanumerikus, csak akkor minősül majd találatnak, ha teljes szóra illeszkedik
       domain_allow:
-        domain: Ez a domain adatot kérhet le a szerverünkről és az ettől érkező adatokat feldolgozzuk és mentjük
+        domain: Ez a domain adatokat kérhet le erről a kiszolgálóról, és a bejövő adatok fel lesznek dolgozva és tárolva lesznek
       email_domain_block:
         domain: Ez lehet az e-mail címben szereplő domain név vagy az MX rekord, melyet ez használ. Ezeket feliratkozáskor ellenőrizzük.
         with_dns_records: Megpróbáljuk a megadott domain DNS rekordjait lekérni, és az eredményeket hozzáadjuk a tiltólistához
       featured_tag:
-        name: 'Ezeket esetleg használhatod:'
+        name: 'Itt vannak azok a hashtagek, melyeket legutóbb használtál:'
+      filters:
+        action: A végrehajtandó műveletet, ha a bejegyzés megfelel a szűrőnek
+        actions:
+          hide: A szűrt tartalom teljes elrejtése, mintha nem is létezne
+          warn: A szűrt tartalom a szűrő címét említő figyelmeztetés mögé rejtése
+      form_admin_settings:
+        backups_retention_period: Az előállított felhasználói archívumok megtartása a megadott napokig.
+        bootstrap_timeline_accounts: Ezek a fiókok ki lesznek tűzve az új felhasználók követési javaslatainak élére.
+        closed_registrations_message: Akkor jelenik meg, amikor a regisztráció le van zárva
+        content_cache_retention_period: A más kiszolgálókról származó bejegyzések megadott számú nap után törölve lesznek, ha pozitív értékre van állítva. Ez lehet, hogy nem fordítható vissza.
+        custom_css: A Mastodon webes verziójában használhatsz egyedi stílusokat.
+        mascot: Felülvágja a haladó webes felületen található illusztrációt.
+        media_cache_retention_period: A letöltött médiafájlok megadott számú nap után törölve lesznek, ha pozitív értékre van állítva, és igény szerint újból le lesznek töltve.
+        profile_directory: A profilok jegyzéke minden olyan felhasználót felsorol, akik engedélyezték a felfedezhetőségüket.
+        require_invite_text: Ha a regisztrációhoz manuális jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
+        site_contact_email: Hogyan érhetnek el jogi vagy támogatási kérésekkel.
+        site_contact_username: Hogyan érhetnek el Mastodonon.
+        site_extended_description: Bármilyen egyéb információ, mely hasznos lehet a látogatóid vagy felhasználóid számára. Markdown szintaxis használható.
+        site_short_description: Rövid leírás, amely segíthet a kiszolgálód egyedi azonosításában. Ki futtatja, kinek készült?
+        site_terms: Használd a saját adatvédelmi irányelveidet, vagy hagyd üresen az alapértelmezett használatához. Markdown szintaxis használható.
+        site_title: Hogyan hivatkozhatnak mások a kiszolgálódra a domain nevén kívül.
+        theme: A téma, melyet a kijelentkezett látogatók és az új felhasználók látnak.
+        thumbnail: Egy durván 2:1 arányú kép, amely a kiszolgálóinformációk mellett jelenik meg.
+        timeline_preview: A kijelentkezett látogatók továbbra is böngészhetik a kiszolgáló legfrissebb nyilvános bejegyzéseit.
+        trendable_by_default: Kézi felülvizsgálat kihagyása a felkapott tartalmaknál. Az egyes elemek utólag távolíthatók el a trendek közül.
+        trends: A trendek azt mondják meg, hogy mely bejegyzések, hashtagek és hírbejegyzések felkapottak a kiszolgálódon.
       form_challenge:
         current_password: Beléptél egy biztonsági térben
       imports:
-        data: Egy másik Mastodon szerverről exportált CSV fájl
+        data: Egy másik Mastodon kiszolgálóról exportált CSV-fájl
       invite_request:
         text: Ez segít nekünk átnézni a jelentkezésedet
       ip_block:
-        comment: Opcionális. Emlékeztető, hogy miért is vetted fel ezt a szabályt.
+        comment: Nem kötelező. Emlékeztető, hogy miért is vetted fel ezt a szabályt.
         expires_in: Az IP címek korlátos erőforrások, ezért néha meg vannak osztva és gyakran gazdát is cserélnek. Ezért a korlátlan IP tiltások használatát nem javasoljuk.
         ip: Írj be egy IPv4 vagy IPv6 címet. A CIDR formátum használatával teljes tartományokat tilthatsz ki. Légy óvatos, hogy magadat véletlenül se zárd ki!
         severities:
           no_access: Elérés tiltása minden erőforráshoz
+          sign_up_block: Új feliratkozások nem lesznek lehetségesek
           sign_up_requires_approval: Új regisztrációk csak a jóváhagyásoddal történhetnek majd meg
         severity: Válaszd ki, mi történjen a kérésekkel erről az IP-ről
       rule:
-        text: Írd le, mi a szabály vagy elvárás ezen a szerveren a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni
+        text: Írd le, mi a szabály vagy elvárás ezen a kiszolgálón a felhasználók felé. Próbálj röviden, egyszerűen fogalmazni.
       sessions:
         otp: 'Add meg a telefonodon generált kétlépcsős azonosító kódodat vagy használd az egyik tartalék bejelentkező kódot:'
         webauthn: Ha ez egy USB kulcs, ellenőrizd, hogy csatlakoztattad és ha szükséges, aktiváltad is.
@@ -91,6 +118,16 @@ hu:
         name: Csak a kis/nagybetűséget változtathatod meg, pl. hogy olvashatóbb legyen
       user:
         chosen_languages: Ha aktív, csak a kiválasztott nyelvű bejegyzések jelennek majd meg a nyilvános idővonalon
+        role: A szerep szabályozza, hogy a felhasználó milyen jogosultságokkal rendelkezik
+      user_role:
+        color: A szerephez használandó szín mindenhol a felhasználói felületen, hexa RGB formátumban
+        highlighted: Ez nyilvánosan láthatóvá teszi a szerepet
+        name: A szerep nyilvános neve, ha a szerepet úgy állították be, hogy jelvényként látható legyen
+        permissions_as_keys: A felhasználók ezzel a szereppel elérhetik a...
+        position: A magasabb szerepkör oldja fel az ütközéseket bizonyos helyzetekben. Bizonyos műveleteket csak alacsonyabb prioritású szerepkörrel lehet elvégezni.
+      webhook:
+        events: Válaszd ki a küldendő eseményeket
+        url: Ahová az eseményket küldjük
     labels:
       account:
         fields:
@@ -178,6 +215,7 @@ hu:
         setting_use_pending_items: Lassú mód
         severity: Súlyosság
         sign_in_token_attempt: Biztonsági kód
+        title: Cím
         type: Importálás típusa
         username: Felhasználónév
         username_or_email: Felhasználónév vagy e-mail cím
@@ -186,6 +224,34 @@ hu:
         with_dns_records: Domain MX rekordjainak és IP-címeinek hozzávétele
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Teljes elrejtés
+          warn: Elrejtés figyelmeztetéssel
+      form_admin_settings:
+        backups_retention_period: Felhasználói archívum megtartási időszaka
+        bootstrap_timeline_accounts: Mindig javasoljuk ezeket a fiókokat az új felhasználók számára
+        closed_registrations_message: A feliratkozáskor megjelenő egyéni üzenet nem érhető el
+        content_cache_retention_period: Tartalom-gyorsítótár megtartási időszaka
+        custom_css: Egyéni CSS
+        mascot: Egyéni kabala (örökölt)
+        media_cache_retention_period: Média-gyorsítótár megtartási időszaka
+        profile_directory: Profiladatbázis engedélyezése
+        registrations_mode: Ki regisztrálhat
+        require_invite_text: Indok megkövetelése a csatlakozáshoz
+        show_domain_blocks: Domain tiltások megjelenitése
+        show_domain_blocks_rationale: A domainok blokkolásának okának megjelenítése
+        site_contact_email: Kapcsolattartó e-mail
+        site_contact_username: Kapcsolattartó felhasználóneve
+        site_extended_description: Bővített leírás
+        site_short_description: Kiszolgáló leírása
+        site_terms: Adatvédelmi szabályzat
+        site_title: Kiszolgáló neve
+        theme: Alapértelmezett téma
+        thumbnail: Kiszolgáló bélyegképe
+        timeline_preview: A nyilvános idővonalak hitelesítés nélküli elérésének engedélyezése
+        trendable_by_default: Trendek engedélyezése előzetes ellenőrzés nélkül
+        trends: Trendek engedélyezése
       interactions:
         must_be_follower: Nem követőidtől érkező értesítések tiltása
         must_be_following: Nem követettjeidtől érkező értesítések tiltása
@@ -199,6 +265,7 @@ hu:
         ip: IP
         severities:
           no_access: Elérés letiltása
+          sign_up_block: Feliratkozások letiltása
           sign_up_requires_approval: Regisztrációk korlátozása
         severity: Szabály
       notification_emails:
@@ -219,7 +286,19 @@ hu:
         name: Hashtag
         trendable: A hashtag megjelenhet a felkapottak között
         usable: Bejegyzések használhatják ezt a hashtaget
+      user:
+        role: Szerep
+      user_role:
+        color: Jelvény színe
+        highlighted: Szerep megjelenítése jelvényként a felhasználói profilokon
+        name: Név
+        permissions_as_keys: Engedélyek
+        position: Prioritás
+      webhook:
+        events: Engedélyezett események
+        url: Végponti URL
     'no': Nem
+    not_recommended: Nem ajánlott
     recommended: Ajánlott
     required:
       mark: "*"

@@ -5,7 +5,7 @@ module Admin
     def index
       authorize :ip_block, :index?
 
-      @ip_blocks = IpBlock.page(params[:page])
+      @ip_blocks = IpBlock.order(ip: :asc).page(params[:page])
       @form      = Form::IpBlockBatch.new
     end
 
@@ -29,6 +29,8 @@ module Admin
     end
 
     def batch
+      authorize :ip_block, :index?
+
       @form = Form::IpBlockBatch.new(form_ip_block_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing

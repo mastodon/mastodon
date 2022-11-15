@@ -19,8 +19,20 @@ ko:
         account:
           attributes:
             username:
-              invalid: 영문자, 숫자, _만 사용 가능
-              reserved: 이미 예약되어 있습니다
+              invalid: 영문자와 숫자, 밑줄만 사용 가능합니다
+              reserved: 예약되어 있습니다
+        admin/webhook:
+          attributes:
+            url:
+              invalid: 올바른 URL이 아닙니다
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: 올바른 URL이 아닙니다
+        import:
+          attributes:
+            data:
+              malformed: 데이터가 올바르지 않습니다
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ ko:
             email:
               blocked: 허용되지 않은 이메일 제공자입니다
               unreachable: 존재하지 않는 것 같습니다
+            role_id:
+              elevated: 당신의 현재 역할보다 높을 수 없습니다
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: 기본 역할로 사용하기에 안전하지 않은 권한을 포함하고 있습니다
+              elevated: 당신의 현재 역할이 가지고 있지 않은 권한은 포함할 수 없습니다
+              own_role: 당신의 현재 역할을 변경할 수 없습니다
+            position:
+              elevated: 당신의 현재 역할보다 높을 수 없습니다
+              own_role: 당신의 현재 역할을 변경할 수 없습니다

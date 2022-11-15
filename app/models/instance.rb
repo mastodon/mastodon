@@ -48,6 +48,8 @@ class Instance < ApplicationRecord
     domain
   end
 
+  alias to_log_human_identifier to_param
+
   delegate :exhausted_deliveries_days, to: :delivery_failure_tracker
 
   def availability_over_days(num_days, end_date = Time.now.utc.to_date)

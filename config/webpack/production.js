@@ -1,29 +1,16 @@
 // Note: You must restart bin/webpack-dev-server for changes to take effect
 
-const path = require('path');
-const { URL } = require('url');
+const { createHash } = require('crypto');
+const { readFileSync } = require('fs');
+const { resolve } = require('path');
 const { merge } = require('webpack-merge');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const OfflinePlugin = require('offline-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const { output } = require('./configuration');
+const { InjectManifest } = require('workbox-webpack-plugin');
 const sharedConfig = require('./shared');
 
-let attachmentHost;
-
-if (process.env.S3_ENABLED === 'true') {
-  if (process.env.S3_ALIAS_HOST || process.env.S3_CLOUDFRONT_HOST) {
-    attachmentHost = process.env.S3_ALIAS_HOST || process.env.S3_CLOUDFRONT_HOST;
-  } else {
-    attachmentHost = process.env.S3_HOSTNAME || `s3-${process.env.S3_REGION || 'us-east-1'}.amazonaws.com`;
-  }
-} else if (process.env.SWIFT_ENABLED === 'true') {
-  const { host } = new URL(process.env.SWIFT_OBJECT_URL);
-  attachmentHost = host;
-} else {
-  attachmentHost = null;
-}
+const root = resolve(__dirname, '..', '..');
 
 module.exports = merge(sharedConfig, {
   mode: 'production',
@@ -52,47 +39,28 @@ module.exports = merge(sharedConfig, {
       openAnalyzer: false,
       logLevel: 'silent', // do not bother Webpacker, who runs with --json and parses stdout
     }),
-    new OfflinePlugin({
-      publicPath: output.publicPath, // sw.js must be served from the root to avoid scope issues
-      safeToUseOptionalCaches: true,
-      caches: {
-        main: [':rest:'],
-        additional: [':externals:'],
-        optional: [
-          '**/locale_*.js', // don't fetch every locale; the user only needs one
-          '**/*_polyfills-*.js', // the user may not need polyfills
-          '**/*.woff2', // the user may have system-fonts enabled
-          // images/audio can be cached on-demand
-          '**/*.png',
-          '**/*.jpg',
-          '**/*.jpeg',
-          '**/*.svg',
-          '**/*.mp3',
-          '**/*.ogg',
-        ],
-      },
-      externals: [
-        '/emoji/1f602.svg', // used for emoji picker dropdown
-        '/emoji/sheet_10.png', // used in emoji-mart
+    new InjectManifest({
+      additionalManifestEntries: ['1f602.svg', 'sheet_13.png'].map((filename) => {
+        const path = resolve(root, 'public', 'emoji', filename);
+        const body = readFileSync(path);
+        const md5  = createHash('md5');
+
+        md5.update(body);
+
+        return {
+          revision: md5.digest('hex'),
+          url: `/emoji/${filename}`,
+        };
+      }),
+      exclude: [
+        /(?:base|extra)_polyfills-.*\.js$/,
+        /locale_.*\.js$/,
+        /mailer-.*\.(?:css|js)$/,
       ],
-      excludes: [
-        '**/*.gz',
-        '**/*.map',
-        'stats.json',
-        'report.html',
-        // any browser that supports ServiceWorker will support woff2
-        '**/*.eot',
-        '**/*.ttf',
-        '**/*-webfont-*.svg',
-        '**/*.woff',
-      ],
-      ServiceWorker: {
-        entry: `imports-loader?additionalCode=${encodeURIComponent(`var ATTACHMENT_HOST=${JSON.stringify(attachmentHost)};`)}!${encodeURI(path.join(__dirname, '../../app/javascript/mastodon/service_worker/entry.js'))}`,
-        cacheName: 'mastodon',
-        output: '../assets/sw.js',
-        publicPath: '/sw.js',
-        minify: true,
-      },
+      include: [/\.js$/, /\.css$/],
+      maximumFileSizeToCacheInBytes: 2 * 1_024 * 1_024, // 2 MiB
+      swDest: resolve(root, 'public', 'packs', 'sw.js'),
+      swSrc: resolve(root, 'app', 'javascript', 'mastodon', 'service_worker', 'entry.js'),
     }),
   ],
 });

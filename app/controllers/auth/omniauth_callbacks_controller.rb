@@ -18,7 +18,8 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         )
 
         sign_in_and_redirect @user, event: :authentication
-        set_flash_message(:notice, :success, kind: Devise.omniauth_configs[provider].strategy.display_name.capitalize) if is_navigational_format?
+        label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence || I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize)
+        set_flash_message(:notice, :success, kind: label) if is_navigational_format?
       else
         session["devise.#{provider}_data"] = request.env['omniauth.auth']
         redirect_to new_user_registration_url

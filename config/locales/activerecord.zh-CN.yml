@@ -19,14 +19,37 @@ zh-CN:
         account:
           attributes:
             username:
-              invalid: 只能使用字母、数字和下划线
+              invalid: 只能包含字母、数字和下划线
               reserved: 是保留关键字
+        admin/webhook:
+          attributes:
+            url:
+              invalid: 非有效网址
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: 非有效网址
+        import:
+          attributes:
+            data:
+              malformed: 格式错误
         status:
           attributes:
             reblog:
-              taken: 已经被转嘟过
+              taken: 已被转嘟过
         user:
           attributes:
             email:
               blocked: 使用了被封禁的电子邮件提供商
               unreachable: 似乎不存在
+            role_id:
+              elevated: 不能高于您当前的身份
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: 包含对基本角色不安全的权限
+              elevated: 不能包含您当前角色不拥有的权限
+              own_role: 无法以您当前的身份更改
+            position:
+              elevated: 不能高于您当前的角色
+              own_role: 无法以您当前的身份更改

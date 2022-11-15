@@ -30,7 +30,7 @@ module Mastodon
       changed since the last run. Index upgrades erase index data.
 
       Even if creating or upgrading indices is not necessary, data from the
-      database will be imported into the indices, unless overriden with --no-import.
+      database will be imported into the indices, unless overridden with --no-import.
     LONG_DESC
     def deploy
       if options[:concurrency] < 1

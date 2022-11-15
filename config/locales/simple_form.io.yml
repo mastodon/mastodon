@@ -66,8 +66,32 @@ io:
       email_domain_block:
         domain: Co povas esas domennomo quo montresas che retposto o registrajo MX quon ol uzas. Oli kontrolesos kande registro.
         with_dns_records: Probo di rezolvar registri DNS di la domeno agesos e rezulti anke preventesos
-      featured_tag:
-        name: 'Vu forsan volas uzar 1 de co:'
+      filters:
+        action: Selektez ago kande posto parigas filtrilo
+        actions:
+          hide: Komplete celez filtrita kontenajo quale ol ne existas
+          warn: Celez filtrita kontenajo dop avert quo montras titulo di filtrilo
+      form_admin_settings:
+        backups_retention_period: Retenez igita uzantoarkivi por la diiquanto.
+        bootstrap_timeline_accounts: Ca konti pinglagesos a super sequorekomendi di nova uzanti.
+        closed_registrations_message: Montresas kande registradi klozesas
+        content_cache_retention_period: Posti de altra servili efacesos pos la diiquanto kande fixesas a positiva nombro. Co darfas desagesar.
+        custom_css: Vu povas pozar kustumizita staili en retverso di Mastodon.
+        mascot: Remplas montreso en avanca retintervizajo.
+        media_cache_retention_period: Deschargita mediifaili efacesos pos la diiquanto kande fixesas a positiva nombro, e rideschargesas irgatempe.
+        profile_directory: La profilcheflisto montras omna uzanti quo voluntale volas esar deskovrebla.
+        require_invite_text: Kande registradi bezonas manuala aprobo, ol kauzigas "Por quo vu volas juntas?" textoenpozo esar obliganta
+        site_contact_email: Quale personi povas kontaktar vu por legala o suportquestioni.
+        site_contact_username: Quale personi povas kontaktar vu en Mastodon.
+        site_extended_description: Irga plusa informi quo forsan esar utila por vizitanti e uzanti. Povas strukturigesar per sintaxo di Markdown.
+        site_short_description: Kurta deskripto por helpar unala identifikar ca servilo. Qua funcionigar lu e por qua?
+        site_terms: Uzez vua sua privatesguidilo o ignorez por uzar la originalo. Povas strukturigesar per sintaxo di Markdown.
+        site_title: Quale personi vokas ca servilo se ne uzas domennomo.
+        theme: Temo quo videsas da ekirita vizitanti e nova uzanti.
+        thumbnail: Cirkum 2:1 imajo montresar kun informo di ca servilo.
+        timeline_preview: Ekirita vizitanti videsos maxim recenta publika posti quo esas displonebla en la servilo.
+        trendable_by_default: Ignorez manuala kontrolar di tendencoza kontenajo. Singla kozi povas ankore efacesar de tendenci pose.
+        trends: Tendenci montras quala posti, hashtagi e niuzrakonti famozeskas en ca servilo.
       form_challenge:
         current_password: Vu eniras sekura areo
       imports:
@@ -80,6 +104,7 @@ io:
         ip: Tipez adreso di IPv4 o IPv6. Vu povas restrikar tota porteo per sintaxo CIDR. Sorgemez por ke vu ne klefklozas su!
         severities:
           no_access: Restriktez aceso a omna moyeni
+          sign_up_block: Nova registrago ne esos posibla
           sign_up_requires_approval: Nova registro bezonos vua aprobo
         severity: Selektez quo eventos kun demandi de ca IP
       rule:
@@ -91,6 +116,16 @@ io:
         name: Vu povas nur chanjar literkaso, por exemplo, por kauzigar lu divenar plu lektebla
       user:
         chosen_languages: Kande marketigesis, nur posti en selektesis lingui montresos en publika tempolinei
+        role: Rolo dominacas permisi quon uzanto havas
+      user_role:
+        color: Koloro quo uzesas por rolo en tota UI, quale RGB kun hexformato
+        highlighted: Co kauzigas rolo divenar publike videbla
+        name: Publika nomo di ca rolo, se rolo ajustesas quale montresas quale insigno
+        permissions_as_keys: Uzanti kun ca rolo povas...
+        position: Plu alta rolo decidas problemsolvo en kelka situeso. Kelka agi povas nur eventar a roli kun plu basa prioreso
+      webhook:
+        events: Selektigez eventi por sendar
+        url: Ibe eventi sendesos
     labels:
       account:
         fields:
@@ -178,6 +213,7 @@ io:
         setting_use_pending_items: Modo lenta
         severity: Severeso
         sign_in_token_attempt: Sekureskodexo
+        title: Titulo
         type: Tipo di importaco
         username: Uzernomo
         username_or_email: Uzantonomo o retposto
@@ -186,6 +222,34 @@ io:
         with_dns_records: Inkluzez registraji MX e IPi di domeno
       featured_tag:
         name: Hashtago
+      filters:
+        actions:
+          hide: Tote celez
+          warn: Celez kun averto
+      form_admin_settings:
+        backups_retention_period: Uzantoarkivretendurtempo
+        bootstrap_timeline_accounts: Sempre rekomendez ca konti a nova uzanti
+        closed_registrations_message: Kustumizita mesajo kande registradi ne esas disponebla
+        content_cache_retention_period: Kontenajmemorajretendurtempo
+        custom_css: Kustumizita CSS
+        mascot: Kustumizita reprezentimajo (oldo)
+        media_cache_retention_period: Mediimemorajretendurtempo
+        profile_directory: Aktivigez profilcheflisto
+        registrations_mode: Qua povas registragar
+        require_invite_text: Mustez pozar motivo por juntar
+        show_domain_blocks: Montrez domenobstrukti
+        show_domain_blocks_rationale: Montrez por quo domeni obstruktesir
+        site_contact_email: Kontaktoretposto
+        site_contact_username: Kontaktouzantonomo
+        site_extended_description: Longa deskripto
+        site_short_description: Servildeskripto
+        site_terms: Privatesguidilo
+        site_title: Servilnomo
+        theme: Originala temo
+        thumbnail: Servilimajeto
+        timeline_preview: Permisez neyurizita aceso a publika tempolineo
+        trendable_by_default: Permisez tendenci sen bezonar kontrolo
+        trends: Aktivigez tendenci
       interactions:
         must_be_follower: Celar la savigi da homi, qui ne sequas tu
         must_be_following: Celar la savigi da homi, quin tu ne sequas
@@ -199,6 +263,7 @@ io:
         ip: IP
         severities:
           no_access: Depermisez aceso
+          sign_up_block: Obstruktez registragi
           sign_up_requires_approval: Limitigez registri
         severity: Regulo
       notification_emails:
@@ -219,7 +284,19 @@ io:
         name: Hashtago
         trendable: Permisez ca hashtago aparar che tendenci
         usable: Permisez posti uzar ca hashtago
+      user:
+        role: Rolo
+      user_role:
+        color: Insignokoloro
+        highlighted: Montrez rolo quale insigno en uzantoprofili
+        name: Nomo
+        permissions_as_keys: Permisi
+        position: Prioreso
+      webhook:
+        events: Aktivigita eventi
+        url: URL di finpunto
     'no': Ne
+    not_recommended: Ne rekomendesas
     recommended: Rekomendito
     required:
       mark: "*"

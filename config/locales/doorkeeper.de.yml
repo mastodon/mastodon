@@ -72,7 +72,7 @@ de:
         revoke: Bist du sicher?
       index:
         authorized_at: Autorisiert am %{date}
-        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle auf dein Konto zugreifen können. Wenn es Anwendungen gibt, die du hier nicht erkennst oder eine Anwendung sich falsch verhält, kannst du den Zugriff widerrufen.
+        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle (API) dieser Mastodon-Instanz auf dein Konto zugreifen können. Sollten hier Apps aufgeführt sein, die du nicht erkennst oder die sich verdächtig verhalten, solltest du den Zugriff schnellstmöglich widerrufen.
         last_used_at: Zuletzt verwendet am %{date}
         never_used: Nie verwendet
         scopes: Berechtigungen
@@ -83,13 +83,13 @@ de:
         access_denied: Die Anfrage wurde durch Benutzer_in oder Autorisierungs-Server verweigert.
         credential_flow_not_configured: Das Konto konnte nicht gefunden werden, da Doorkeeper.configure.resource_owner_from_credentials nicht konfiguriert ist.
         invalid_client: 'Client-Authentifizierung ist fehlgeschlagen: Client unbekannt, keine Authentisierung mitgeliefert oder Authentisierungsmethode wird nicht unterstützt.'
-        invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen, einem anderen Client ausgestellt oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
+        invalid_grant: Die beigefügte Autorisierung ist ungültig, abgelaufen, wurde widerrufen oder einem anderen Client ausgestellt, oder der Weiterleitungs-URI stimmt nicht mit der Autorisierungs-Anfrage überein.
         invalid_redirect_uri: Der beigefügte Weiterleitungs-URI ist ungültig.
         invalid_request:
           missing_param: 'Erforderlicher Parameter fehlt: %{value}.'
           request_not_authorized: Anfrage muss autorisiert werden. Benötigter Parameter für die Autorisierung der Anfrage fehlt oder ungültig.
           unknown: Der Anfrage fehlt ein benötigter Parameter, enthält einen nicht unterstützten Parameterwert oder ist anderweitig fehlerhaft.
-        invalid_resource_owner: Die angegebenen Zugangsdaten für das Konto sind ungültig oder das Konto kann nicht gefunden werden
+        invalid_resource_owner: Die angegebenen Zugangsdaten für das Konto sind ungültig, oder das Konto kann nicht gefunden werden
         invalid_scope: Die angeforderte Befugnis ist ungültig, unbekannt oder fehlerhaft.
         invalid_token:
           expired: Der Zugriffs-Token ist abgelaufen
@@ -130,7 +130,7 @@ de:
         favourites: Favoriten
         filters: Filter
         follow: Beziehungen
-        follows: Folgt
+        follows: Folge ich
         lists: Listen
         media: Medienanhänge
         mutes: Stummschaltungen

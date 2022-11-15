@@ -6,50 +6,138 @@ bg:
         avatar: PNG, GIF или JPG. До %{size}. Ще бъде смалена до %{dimensions} пиксела
         header: PNG, GIF или JPG. До %{size}. Ще бъде смалена до %{dimensions} пиксела
         locked: Изисква ръчно одобрение на последователите. По подразбиране, публикациите са достъпни само до последователи.
+        password: Използвайте поне 8 символа
+        setting_default_sensitive: Деликатната мултимедия е скрита по подразбиране и може да се разкрие с едно щракване
+        setting_display_media_default: Скриване на мултимедия отбелязана като деликатна
+        setting_display_media_hide_all: Винаги да се скрива мултимедията
+        setting_display_media_show_all: Винаги да се показва мултимедията
+        setting_hide_network: В профила ви ще бъде скрито кой може да последвате и кой може да ви последва
+        username: Вашето потребителско име ще е неповторим в %{domain}
+      form_admin_settings:
+        site_contact_username: Как хората могат да ви достигнат в Mastodon.
+        site_extended_description: Всяка допълнителна информация, която може да е полезна за посетителите и потребителите ви. Може да се структурира със синтаксиса на Markdown.
+        site_short_description: Кратък опис за помощ на неповторимата самоличност на сървъра ви. Кой го управлява, за кого е?
       imports:
         data: CSV файл, експортиран от друга инстанция на Mastodon
+      ip_block:
+        severities:
+          no_access: Блокиране на достъп до всички ресурси
+        severity: Изберете какво да се случва със заявките от този IP
+      rule:
+        text: Опишете правило или изискване за потребителите на този сървър. Опитайте се да го направите кратко и просто
+      sessions:
+        otp: 'Въведете двуфакторния код, породен от приложението на телефона си или използвайте един от кодовете си за възстановяване:'
+      user_role:
+        highlighted: Това прави ролята публично видима
+        permissions_as_keys: Потребители с тази роля ще имат достъп до...
+      webhook:
+        events: Изберете събития за изпращане
+        url: До къде ще се изпращат събитията
     labels:
       account:
         fields:
+          name: Етикет
           value: Съдържание
       account_warning_preset:
         title: Заглавие
       admin_account_action:
+        include_statuses: Включва докладваните публикации в е-писмо
         type: Действие
         types:
           disable: Замразяване
           sensitive: Деликатно
           silence: Ограничение
           suspend: Спиране
+      announcement:
+        all_day: Целодневно събитие
+        ends_at: Край на събитието
+        starts_at: Начало на събитието
+        text: Оповестяване
       defaults:
         avatar: Аватар
+        bot: Този акаунт е бот
+        chosen_languages: Прецеждане на езиците
         confirm_new_password: Потвърди новата парола
         confirm_password: Потвърди паролата
         current_password: Текуща парола
         data: Данни
         display_name: Показвано име
-        email: E-mail адрес
+        email: Адрес на имейла
         header: Заглавен ред
-        locale: Език
+        locale: Език на интерфейса
         locked: Направи акаунта поверителен
+        max_uses: Най-голям брой употреби
         new_password: Нова парола
-        note: Био
-        otp_attempt: Двустепенен код
+        note: Биография
+        otp_attempt: Двуфакторен код
         password: Парола
+        phrase: Ключова дума или фраза
+        setting_auto_play_gif: Самопускащи се анимирани гифчета
+        setting_default_language: Език на публикуване
         setting_default_privacy: Поверителност на публикациите
+        setting_default_sensitive: Винаги да се отбелязва мултимедията като деликатна
+        setting_display_media_default: Стандартно
+        setting_display_media_hide_all: Скриване на всичко
+        setting_display_media_show_all: Показване на всичко
+        setting_theme: Тема на сайта
+        setting_use_pending_items: Бавен режим
+        sign_in_token_attempt: Код за сигурност
+        title: Заглавие
         type: Тип на импортиране
         username: Потребителско име
+        username_or_email: Потребителско име или имейл
+        whole_word: Цяла дума
+      featured_tag:
+        name: Хаштаг
+      form_admin_settings:
+        require_invite_text: Изисква се причина за присъединяване
+        site_contact_username: Потребителско име на контакт
+        site_extended_description: Разширено описание
+        site_short_description: Описание на сървъра
+        site_terms: Политика за поверителност
+        site_title: Име на сървъра
+        theme: Стандартна тема
+        thumbnail: Миниобраз на сървъра
       interactions:
         must_be_follower: Блокирай известия от не-последователи
         must_be_following: Блокирай известия от хора, които не следваш
+        must_be_following_dm: Блокиране на директни съобщения от хора, които не следвате
+      invite:
+        comment: Коментар
+      invite_request:
+        text: Защо искате да се присъедините?
+      ip_block:
+        comment: Коментар
+        ip: IP адрес
+        severities:
+          no_access: Блокиране на адреса
+          sign_up_block: Блокиране на регистрации
+          sign_up_requires_approval: Ограничаване на регистриране
+        severity: Правило
       notification_emails:
         digest: Изпращай извлечения на съобщенията
         favourite: Изпращай e-mail, когато някой хареса твоя публикация
         follow: Изпращай e-mail, когато някой те последва
         follow_request: Изпращай e-mail, когато някой пожелае да те последва
         mention: Изпращай e-mail, когато някой те спомене
+        pending_account: Новите акаунти трябва да се прегледат
         reblog: Изпращай e-mail, когато някой сподели твоя публикация
+        report: Новият доклад е подаден
+      rule:
+        text: Правило
+      tag:
+        name: Хаштаг
+      user:
+        role: Роля
+      user_role:
+        color: Цвят на значката
+        name: Име
+        permissions_as_keys: Разрешения
+        position: Приоритет
     'no': Не
+    not_recommended: Не се препоръчва
+    recommended: Препоръчано
     required:
+      mark: "*"
       text: задължително
     'yes': Да

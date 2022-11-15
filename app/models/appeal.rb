@@ -52,6 +52,14 @@ class Appeal < ApplicationRecord
     update!(rejected_at: Time.now.utc, rejected_by_account: current_account)
   end
 
+  def to_log_human_identifier
+    account.acct
+  end
+
+  def to_log_route_param
+    account_warning_id
+  end
+
   private
 
   def validate_time_frame

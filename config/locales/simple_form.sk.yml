@@ -46,14 +46,15 @@ sk:
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       domain_allow:
         domain: Táto doména bude schopná získavať dáta z tohto servera, a prichádzajúce dáta ním budú spracovávané a uložené
-      featured_tag:
-        name: 'Možno by si chcel/a použiť niektoré z týchto:'
       form_challenge:
         current_password: Vstupuješ do zabezpečenej časti
       imports:
         data: CSV súbor vyexportovaný z iného Mastodon serveru
       invite_request:
         text: Toto pomôže s vyhodnocovaním tvojej žiadosti
+      ip_block:
+        severities:
+          sign_up_block: Nové registrácie nebudú možné
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       tag:
@@ -111,7 +112,7 @@ sk:
         max_uses: Najviac možno použiť
         new_password: Nové heslo
         note: O tebe
-        otp_attempt: Dvoj-faktorový overovací (2FA) kód
+        otp_attempt: Dvoj-faktorový overovací kód
         password: Heslo
         phrase: Kľúčové slovo, alebo fráza
         setting_advanced_layout: Zapni pokročilé užívateľské rozhranie
@@ -139,6 +140,7 @@ sk:
         setting_use_blurhash: Ukáž farebné prechody pre skryté médiá
         setting_use_pending_items: Pomalý režim
         severity: Závažnosť
+        sign_in_token_attempt: Bezpečnostný kód
         type: Typ importu
         username: Prezývka
         username_or_email: Prezývka, alebo email
