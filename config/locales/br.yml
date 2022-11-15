@@ -1,24 +1,24 @@
----
 br:
   about:
+    contact_unavailable: N'eus ket
     title: Diwar-benn
   accounts:
     follow: Heuliañ
     followers:
+      one: Heulier·ez
+      two: Heulier·ez
       few: Heulier·ez
       many: Heulier·ez
-      one: Heulier·ez
       other: Heulier·ez
-      two: Heulier·ez
     following: Koumanantoù
     last_active: oberiantiz ziwezhañ
     nothing_here: N'eus netra amañ !
     posts:
+      one: Kannad
+      two: Kannadoù
       few: Kannadoù
       many: Kannadoù
-      one: Kannad
       other: Kannadoù
-      two: Kannadoù
     posts_tab_heading: Kannadoù
   admin:
     accounts:
@@ -41,11 +41,14 @@ br:
       enabled: Gweredekaet
       followers: Heulier·ezed·ien
       header: Talbenn
+      ip: IP
       location:
+        all: Pep tra
         local: Lec'hel
         remote: A-bell
       moderation:
         active: Oberiant
+        all: Pep tra
         suspended: Astalet
       perform_full_suspension: Astalañ
       protocol: Komenad
@@ -54,19 +57,24 @@ br:
       remove_header: Dilemel an talbenn
       reset: Adderaouekaat
       reset_password: Adderaouekaat ar ger-tremen
+      role: Roll
       search: Klask
+      silence: Bevenniñ
       statuses: Kannadoù
       suspended: Astalet
       title: Kontoù
       username: Anv
+      warn: Diwall
+      web: Web
     action_logs:
       action_types:
         destroy_status: Dilemel ar c'hannad
         update_status: Hizivaat ar c'hannad
       actions:
-        destroy_status_html: Dilamet eo bet kannad %{target} gant %{name}
-        update_status_html: Hizivaet eo bet kannad %{target} gant %{name}
+        destroy_status_html: "Dilamet eo bet kannad %{target} gant %{name}"
+        update_status_html: "Hizivaet eo bet kannad %{target} gant %{name}"
     announcements:
+      live: War-eeun
       new:
         create: Sevel ur gemenn
         title: Kemenn nevez
@@ -99,14 +107,30 @@ br:
       new:
         create: Ouzhpenniñ un domani
     instances:
+      back_to_all: Pep tra
       by_domain: Domani
+      content_policies:
+        policies:
+          silence: Bevenniñ
       dashboard:
         instance_statuses_measure: kannadoù stoket
+      delivery:
+        all: Pep tra
       moderation:
         all: Pep tra
+      purge: Spurjañ
     invites:
       filter:
+        all: Pep tra
         available: Hegerzh
+    ip_blocks:
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 devezh
+        '94670856': 3 years
     relays:
       delete: Dilemel
       disable: Diweredekaat
@@ -118,37 +142,53 @@ br:
     reports:
       account:
         notes:
+          one: "%{count} a notennoù"
+          two: "%{count} a notennoù"
           few: "%{count} a notennoù"
           many: "%{count} a notennoù"
-          one: "%{count} a notennoù"
           other: "%{count} a notennoù"
-          two: "%{count} a notennoù"
       are_you_sure: Ha sur oc'h?
+      comment:
+        none: Hini ebet
       delete_and_resolve: Dilemel ar c'hannadoù
       notes:
         delete: Dilemel
+        title: Notennoù
       status: Statud
       updated_at: Nevesaet
+    roles:
+      title: Rolloù
     settings:
+      about:
+        title: Diwar-benn
       domain_blocks:
         all: D'an holl dud
     statuses:
       deleted: Dilamet
+      media:
+        title: Media
       open: Digeriñ ar c'hannad
       original_status: Kannad orin
       status_changed: Kannad kemmet
       title: Kannadoù ar gont
     strikes:
       actions:
-        delete_statuses: Dilamet eo bet kannadoù %{target} gant %{name}
+        delete_statuses: "Dilamet eo bet kannadoù %{target} gant %{name}"
+    trends:
+      allow: Aotren
     warning_presets:
       add_new: Ouzhpenniñ unan nevez
       delete: Dilemel
+  application_mailer:
+    view: 'Sellet :'
   auth:
     change_password: Ger-tremen
     delete_account: Dilemel ar gont
     login: Mont tre
     logout: Digennaskañ
+    providers:
+      cas: CAS
+      saml: SAML
     reset_password: Adderaouekaat ar ger-tremen
     security: Diogelroez
     setup:
@@ -178,20 +218,24 @@ br:
       x_seconds: "%{count}eil"
   deletes:
     proceed: Dilemel ar gont
+  disputes:
+    strikes:
+      created_at: Deiziad
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: Deiziad
       size: Ment
+    csv: CSV
     lists: Listennoù
   featured_tags:
     add_new: Ouzhpenniñ unan nevez
@@ -202,11 +246,11 @@ br:
     index:
       delete: Dilemel
       statuses:
+        one: "%{count} c'hannad"
+        two: "%{count} gannad"
         few: "%{count} a gannadoù"
         many: "%{count} a gannadoù"
-        one: "%{count} c'hannad"
         other: "%{count} a gannadoù"
-        two: "%{count} gannad"
       title: Siloù
     statuses:
       index:
@@ -215,7 +259,12 @@ br:
     all: Pep tra
     copy: Eilañ
     delete: Dilemel
+    none: Hini ebet
     order_by: Urzhiañ dre
+    today: hiziv
+  imports:
+    modes:
+      merge: Teuziñ
   invites:
     expires_in:
       '1800': 30 munutenn
@@ -225,6 +274,8 @@ br:
       '604800': 1 sizhun
       '86400': 1 deiz
     expires_in_prompt: Birviken
+    table:
+      uses: Implijoù
     title: Pediñ tud
   notification_mailer:
     follow:
@@ -232,14 +283,27 @@ br:
     mention:
       action: Respont
     reblog:
-      subject: Skignet ho kannad gant %{name}
+      subject: "Skignet ho kannad gant %{name}"
     status:
-      subject: Embannet ez eus bet traoù gant %{name}
+      subject: "Embannet ez eus bet traoù gant %{name}"
     update:
-      subject: Kemmet eo bet ur c'hannad gant %{name}
+      subject: "Kemmet eo bet ur c'hannad gant %{name}"
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: G
+          million: M
+          quadrillion: P
+          thousand: K
+          trillion: T
   otp_authentication:
     enable: Gweredekaat
     setup: Kefluniañ
+  pagination:
+    next: Da-heul
+    prev: A-raok
   preferences:
     posting_defaults: Arventennoù embann dre ziouer
   relationships:
@@ -264,7 +328,9 @@ br:
       safari: Safari
       weibo: Weibo
     description: "%{browser} war %{platform}"
+    ip: IP
     platforms:
+      ios: iOS
       other: savenn dianav
   settings:
     account: Kont
@@ -278,11 +344,13 @@ br:
   statuses:
     attached:
       image:
+        one: "%{count} skeudenn"
+        two: "%{count} skeudenn"
         few: "%{count} skeudenn"
         many: "%{count} skeudenn"
-        one: "%{count} skeudenn"
         other: "%{count} skeudenn"
-        two: "%{count} skeudenn"
+    poll:
+      vote: Mouezhiañ
     show_more: Diskouez muioc'h
     visibilities:
       public: Publik
@@ -294,7 +362,7 @@ br:
   time:
     formats:
       default: "%d a viz %b %Y, %H:%M"
-      month: Miz %b %Y
+      month: "Miz %b %Y"
       time: "%H:%M"
   two_factor_authentication:
     add: Ouzhpennañ
@@ -302,6 +370,8 @@ br:
     edit: Aozañ
   user_mailer:
     warning:
+      categories:
+        spam: Spam
       statuses: 'Kannadoù meneget :'
       title:
         none: Diwall
