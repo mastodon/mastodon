@@ -2,12 +2,47 @@ fo:
   activerecord:
     attributes:
       poll:
-        expires_at: Freist
+        expires_at: Freistin
         options: Val
       user:
+        agreement: Tænastusáttmáli
         email: Teldupostur
         password: Loyniorð
       user/account:
         username: Brúkaranavn
       user/invite_request:
         text: Orsøk
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: má bara innihalda bókstavir, tøl og botnstriku
+              reserved: er umbiðið
+        admin/webhook:
+          attributes:
+            url:
+              invalid: er ikki ein røtt leinkja
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: er ikki ein røtt leinkja
+        import:
+          attributes:
+            data:
+              malformed: eru bronglaði
+        status:
+          attributes:
+            reblog:
+              taken: frá posti sum longu finst
+        user:
+          attributes:
+            email:
+              blocked: brúkar ein ikki loyvdan teldopostveitara
+              unreachable: tykist ikki at vera til
+        user_role:
+          attributes:
+            permissions_as_keys:
+              own_role: kann ikki verða broytt við tínum verandi rættindum
+            position:
+              own_role: kann ikki verða broytt við tínum verandi rættindum
