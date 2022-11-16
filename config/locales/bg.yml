@@ -224,6 +224,9 @@ bg:
       view: Преглед на блокиране на домейн
     email_domain_blocks:
       delete: Изтриване
+      dns:
+        types:
+          mx: Запис MX
       domain: Домейн
       new:
         create: Добавяне на домейн
@@ -290,6 +293,8 @@ bg:
     reports:
       are_you_sure: Сигурни ли сте?
       category: Категория
+      comment:
+        none: Нищо
       created_at: Докладвано
       delete_and_resolve: Изтриване на публикациите
       forwarded: Препратено
@@ -306,6 +311,7 @@ bg:
       resolved: Разрешено
       status: Състояние
       statuses: Докладвано съдържание
+      title: Доклади
       updated_at: Обновено
       view_profile: Преглед на профила
     roles:
@@ -366,6 +372,7 @@ bg:
     warning_presets:
       delete: Изтриване
     webhooks:
+      add_new: Добавяне на крайна точка
       delete: Изтриване
       events: Събития
       status: Състояние
@@ -382,14 +389,19 @@ bg:
     sensitive_content: Деликатно съдържание
   application_mailer:
     notification_preferences: Промяна на предпочитанията за имейл
+    salutation: "%{name},"
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
     view: 'Преглед:'
     view_profile: Преглед на профила
     view_status: Преглед на публикацията
+  applications:
+    warning: Бъдете внимателни с тези данни. Никога не ги споделяйте с никого!
   auth:
     apply_for_account: Вземане в спсисъка за чакане
     change_password: Парола
     delete_account: Изтриване на акаунта
+    description:
+      prefix_invited_by_user: "@%{name} ви покани да се присъедините към този сървър на Mastodon!"
     didnt_get_confirmation: Не получих инструкции за потвърждение
     dont_have_your_security_key: Нямате ли си ключ за сигурност?
     forgot_password: Забравих си паролата
@@ -456,6 +468,7 @@ bg:
       username_unavailable: Вашето потребителско име ще остане неналично
   disputes:
     strikes:
+      created_at: Остаряло
       status: 'Публикация #%{id}'
       title: "%{action} от %{date}"
       title_actions:
@@ -865,3 +878,4 @@ bg:
     invalid_credential: Невалиден ключ за сигурност
     not_supported: Този браузър не поддържа ключове за сигурност
     otp_required: Първо включете двуфакторното удостоверяване, за да използвате ключовете за сигурност.
+    registered_on: Регистрирано на %{date}
