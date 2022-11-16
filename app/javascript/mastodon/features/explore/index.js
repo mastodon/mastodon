@@ -29,6 +29,10 @@ const mapStateToProps = state => ({
 // Removing width=100% from <a> also fixes it, as well as replacing <span> with <div>
 // We're choosing to wrap span with div to keep the changes local only to this tool bar.
 const WrapFormattedMessage = ({ children, ...props }) => <div><FormattedMessage {...props}>{children}</FormattedMessage></div>;
+WrapFormattedMessage.propTypes = {
+  children: PropTypes.any,
+};
+
 
 export default @connect(mapStateToProps)
 @injectIntl
