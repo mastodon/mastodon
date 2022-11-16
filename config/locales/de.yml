@@ -30,7 +30,7 @@ de:
       created_msg: Moderationshinweis erfolgreich abgespeichert!
       destroyed_msg: Moderationsnotiz erfolgreich gelöscht!
     accounts:
-      add_email_domain_block: E-Mail-Domain auf Blacklist setzen
+      add_email_domain_block: E-Mail-Domain sperren
       approve: Genehmigen
       approved_msg: Anmeldeantrag von %{username} erfolgreich genehmigt
       are_you_sure: Bist du dir sicher?
@@ -149,8 +149,8 @@ de:
       suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es wieder brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor hatte.
       suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
       title: Konten
-      unblock_email: E-Mail Adresse entsperren
-      unblocked_email_msg: Die E-Mail-Adresse von %{username} wurde erfolgreich entsperrt
+      unblock_email: E-Mail-Adresse entsperren
+      unblocked_email_msg: E-Mail-Adresse von %{username} erfolgreich entsperrt
       unconfirmed_email: Unbestätigte E-Mail-Adresse
       undo_sensitized: Inhaltswarnung aufheben
       undo_silenced: Stummschaltung aufheben
@@ -173,11 +173,11 @@ de:
         confirm_user: Benutzer*in bestätigen
         create_account_warning: Warnung erstellen
         create_announcement: Ankündigung erstellen
-        create_canonical_email_block: E-Mail-Block erstellen
+        create_canonical_email_block: E-Mail-Sperre erstellen
         create_custom_emoji: Eigene Emojis erstellen
         create_domain_allow: Domain erlauben
         create_domain_block: Domain blockieren
-        create_email_domain_block: E-Mail-Domain-Block erstellen
+        create_email_domain_block: E-Mail-Domainsperre erstellen
         create_ip_block: IP-Regel erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
@@ -187,7 +187,7 @@ de:
         destroy_custom_emoji: Eigene Emojis löschen
         destroy_domain_allow: Erlaube das Löschen von Domains
         destroy_domain_block: Domain-Blockade löschen
-        destroy_email_domain_block: E-Mail-Domain-Blockade löschen
+        destroy_email_domain_block: E-Mail-Domainsperre löschen
         destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
@@ -213,7 +213,7 @@ de:
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
         unassigned_report: Meldung widerrufen
-        unblock_email_account: E-Mail Adresse entsperren
+        unblock_email_account: E-Mail-Adresse entsperren
         unsensitive_account: Zwangssensibles Konto rückgängig machen
         unsilence_account: Konto nicht mehr stummschalten
         unsuspend_account: Konto nicht mehr sperren
@@ -227,26 +227,26 @@ de:
         approve_appeal_html: "%{name} genehmigte die Moderationsbeschlüsse von %{target}"
         approve_user_html: "%{name} genehmigte die Anmeldung von %{target}"
         assigned_to_self_report_html: "%{name} hat sich die Meldung %{target} selbst zugewiesen"
-        change_email_user_html: "%{name} hat die E-Mail-Adresse des Nutzers %{target} geändert"
+        change_email_user_html: "%{name} hat die E-Mail-Adresse von %{target} geändert"
         change_role_user_html: "%{name} hat die Rolle von %{target} geändert"
         confirm_user_html: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
         create_account_warning_html: "%{name} hat eine Warnung an %{target} gesendet"
         create_announcement_html: "%{name} hat die neue Ankündigung %{target} erstellt"
-        create_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} blockiert"
+        create_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} gesperrt"
         create_custom_emoji_html: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_allow_html: "%{name} hat die Domain %{target} gewhitelistet"
         create_domain_block_html: "%{name} hat die Domain %{target} blockiert"
-        create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} geblacklistet"
+        create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gesperrt"
         create_ip_block_html: "%{name} hat eine Regel für IP %{target} erstellt"
         create_unavailable_domain_html: "%{name} hat die Lieferung an die Domain %{target} eingestellt"
         create_user_role_html: "%{name} hat die Rolle %{target} erstellt"
         demote_user_html: "%{name} hat die Nutzungsrechte von %{target} heruntergestuft"
         destroy_announcement_html: "%{name} hat die neue Ankündigung %{target} gelöscht"
-        destroy_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} freigegeben"
+        destroy_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} entsperrt"
         destroy_custom_emoji_html: "%{name} hat das %{target} Emoji gelöscht"
         destroy_domain_allow_html: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block_html: "%{name} hat die Domain %{target} entblockt"
-        destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gewhitelistet"
+        destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} entsperrt"
         destroy_instance_html: "%{name} hat die Daten der Domain %{target} entfernt"
         destroy_ip_block_html: "%{name} hat eine Regel für IP %{target} gelöscht"
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
@@ -254,7 +254,7 @@ de:
         destroy_user_role_html: "%{name} hat die Rolle %{target} gelöscht"
         disable_2fa_user_html: "%{name} hat die Zwei-Faktor-Authentisierung für %{target} deaktiviert"
         disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
-        disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token Authentifizierung für %{target} deaktiviert"
+        disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} deaktiviert"
         disable_user_html: "%{name} hat den Zugang für %{target} deaktiviert"
         enable_custom_emoji_html: "%{name} hat das %{target} Emoji aktiviert"
         enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} aktiviert"
@@ -272,7 +272,7 @@ de:
         silence_account_html: "%{name} hat das Konto von %{target} stummgeschaltet"
         suspend_account_html: "%{name} hat das Konto von %{target} gesperrt"
         unassigned_report_html: "%{name} hat die Zuweisung der Meldung %{target} entfernt"
-        unblock_email_account_html: "%{name} entsperrte die E-Mail-Adresse von %{target}"
+        unblock_email_account_html: "%{name} hat die E-Mail-Adresse von %{target} entsperrt"
         unsensitive_account_html: "%{name} hat die Inhaltswarnung für Medien von %{target} aufgehoben"
         unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account_html: "%{name} hat die Kontosperre von %{target} aufgehoben"
@@ -407,7 +407,7 @@ de:
       attempts_over_week:
         one: "%{count} Registrierungsversuch in der letzten Woche"
         other: "%{count} Registrierungsversuche in der letzten Woche"
-      created_msg: E-Mail-Domain-Blockade erfolgreich erstellt
+      created_msg: E-Mail-Domain erfolgreich gesperrt
       delete: Löschen
       dns:
         types:
@@ -416,11 +416,11 @@ de:
       new:
         create: Blockade erstellen
         resolve: Domain auflösen
-        title: Neue E-Mail-Domain-Blockade
-      no_email_domain_block_selected: Es wurden keine E-Mail-Domain-Blockierungen geändert, da keine ausgewählt wurden
+        title: Neue E-Mail-Domain sperren
+      no_email_domain_block_selected: Es wurden keine E-Mail-Domainsperren geändert, da keine ausgewählt wurden
       resolved_dns_records_hint_html: Der Domain-Name wird an die folgenden MX-Domains aufgelöst, die letztendlich für die Annahme von E-Mails verantwortlich sind. Das Blockieren einer MX-Domain blockiert Anmeldungen von jeder E-Mail-Adresse, welche dieselbe MX-Domain verwendet, auch wenn der sichtbare Domainname anders ist. <strong>Achte darauf, große E-Mail-Anbieter nicht zu blockieren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
-      title: E-Mail-Domain-Blockade
+      title: Gesperrte E-Mail-Domains
     follow_recommendations:
       description_html: "<strong>Folgeempfehlungen helfen neuen Nutzern und Nutzerinnen dabei, schnell interessante Inhalte zu finden</strong>. Wenn ein:e Nutzer:in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Benutzerkonten verwendet. Sie werden täglich basierend auf einer Mischung aus am meisten interagierenden Benutzerkonten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
       language: Für Sprache
@@ -899,7 +899,7 @@ de:
     sensitive_content: Inhaltswarnung
     toot_layout: Timeline-Layout
   application_mailer:
-    notification_preferences: Ändere E-Mail-Einstellungen
+    notification_preferences: E-Mail-Einstellungen ändern
     salutation: "%{name},"
     settings: 'E-Mail-Einstellungen ändern: %{link}'
     view: 'Ansehen:'
@@ -933,7 +933,7 @@ de:
     migrate_account: Auf ein anderes Konto umziehen
     migrate_account_html: Wenn du dieses Konto auf ein anderes umleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
-    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzbestimmungen</a> gelesen und stimme ihnen zu
+    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzhinweise</a> gelesen und stimme ihnen zu
     providers:
       cas: CAS
       saml: SAML
@@ -957,7 +957,7 @@ de:
       account_status: Kontostatus
       confirming: Warte auf die Bestätigung der E-Mail.
       functional: Dein Konto ist voll funktionsfähig.
-      pending: Deine Bewerbung wird von unseren Mitarbeitern noch überprüft. Dies kann einige Zeit dauern. Du erhältst eine E-Mail, wenn deine Bewerbung genehmigt wurde.
+      pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
       redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
       view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell gesendet, versuche es erneut.
@@ -1202,7 +1202,7 @@ de:
     authentication_methods:
       otp: Zwei-Faktor-Authentifizierung-App
       password: Passwort
-      sign_in_token: E-Mail Sicherheitscode
+      sign_in_token: E-Mail-Sicherheitscode
       webauthn: Sicherheitsschlüssel
     description_html: Wenn du verdächtige Aktivitäten bemerkst, die du nicht verstehst oder zuordnen kannst, solltest du dringend dein Passwort ändern und ungeachtet dessen die Zwei-Faktor-Authentisierung (2FA) aktivieren.
     empty: Kein Authentifizierungsverlauf verfügbar
@@ -1331,7 +1331,7 @@ de:
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Timelines
   privacy_policy:
-    title: Datenschutzerklärung
+    title: Datenschutzhinweise
   reactions:
     errors:
       limit_reached: Limit für verschiedene Reaktionen erreicht
@@ -1616,7 +1616,7 @@ de:
     follow_limit_reached: Du kannst nicht mehr als %{limit} Leuten folgen
     invalid_otp_token: Ungültiger Code der Zwei-Faktor-Authentisierung (2FA)
     otp_lost_help_html: Wenn du beides nicht mehr weißt, melde dich bitte bei uns unter der E-Mail-Adresse %{email}
-    seamless_external_login: Du bist angemeldet über einen Drittanbieter-Dienst, weswegen Passwort- und E-Maileinstellungen nicht verfügbar sind.
+    seamless_external_login: Du bist über einen externen Dienst angemeldet, daher sind Passwort- und E-Mail-Einstellungen nicht verfügbar.
     signed_in_as: 'Angemeldet als:'
   verification:
     explanation_html: 'Du kannst <strong>bestätigen, dass die Links in deinen Profil-Metadaten dir gehören</strong>. Dafür muss die verlinkte Website einen Link zurück auf dein Mastodon-Profil enthalten. Dieser Link <strong>muss</strong> ein <code>rel="me"</code>-Attribut enthalten. Der Linktext ist dabei egal. Hier ist ein Beispiel:'
