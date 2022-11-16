@@ -12,10 +12,16 @@ fo:
       pending: Kontan hjá tær verður kannað enn.
       unauthenticated: Tú mást skriva teg inn aftur fyri at halda fram.
     mailer:
+      confirmation_instructions:
+        action: Vátta teldupostadressuna
+        action_with_app: Staðfest og far aftur til %{app}
+        explanation: Tú hevur stovnað eina kontu hjá %{host} við hesari teldupostadressuni og tú ert eitt klikk frá at virkja hana. Um tað ikki vart tú, vinarliga sí burtur frá hesum teldupostinum.
+        title: Vátta teldupostadressuna
       email_changed:
         subject: 'Mastodon: Teldupostur broyttur'
         title: Nýggjur eldupostur
       password_change:
+        extra: Um tú ikki hevur skift loyniorðið, er sannlíkt at onkur annar hevur fingið atgongd til tína kontu. Vinarliga skift loyniorðið beinanvegin. Um tú ikki sleppur inn á tína kontu, hav samband við fyrisitarin.
         title: Loyniorðið er broytt
       reset_password_instructions:
         action: Broyt loyniorð
