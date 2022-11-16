@@ -608,6 +608,7 @@ hu:
         other: "%{count} felhasználó"
       categories:
         administration: Adminisztráció
+        devops: DevOps
         invites: Meghívások
         moderation: Moderáció
         special: Speciális
@@ -658,6 +659,7 @@ hu:
         view_audit_log_description: Lehetővé teszi, hogy a felhasználó megtekintse a kiszolgáló adminisztratív eseményeinek történetét
         view_dashboard: Irányítópult megtekintése
         view_dashboard_description: Lehetővé teszi, hogy a felhasználó elérje az irányítópultot és vele számos metrikát
+        view_devops: DevOps
         view_devops_description: Lehetővé teszi, hogy a felhasználó elérje a Sidekiq és pgHero irányítópultjait
       title: Szerepek
     rules:
@@ -1371,6 +1373,7 @@ hu:
     browser: Böngésző
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,6 +1387,7 @@ hu:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Jelenlegi munkamenet
     description: "%{browser} az alábbi platformon: %{platform}"
@@ -1392,6 +1396,8 @@ hu:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
