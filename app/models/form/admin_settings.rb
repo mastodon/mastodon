@@ -31,6 +31,7 @@ class Form::AdminSettings
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
+    publish_button_text
   ).freeze
 
   INTEGER_KEYS = %i(

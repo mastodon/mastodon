@@ -80,6 +80,7 @@
  * @property {boolean=} use_pending_items
  * @property {string} version
  * @property {boolean} translation_enabled
+ * @property {string} publish_button_text
  */
 
 /**
@@ -132,5 +133,6 @@ export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
 export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
+export const publish_button_text = getMeta('publish_button_text');
 
 export default initialState;
