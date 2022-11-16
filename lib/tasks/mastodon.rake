@@ -124,7 +124,7 @@ namespace :mastodon do
           host: env['REDIS_HOST'],
           port: env['REDIS_PORT'],
           password: env['REDIS_PASSWORD'],
-          driver: :hiredis,
+          ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
         }
 
         begin

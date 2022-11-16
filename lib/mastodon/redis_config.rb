@@ -31,8 +31,8 @@ cache_namespace   = namespace ? namespace + '_cache' : 'cache'
 sidekiq_namespace = namespace
 
 REDIS_CACHE_PARAMS = {
-  driver: :hiredis,
   url: ENV['CACHE_REDIS_URL'],
+  ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
   expires_in: 10.minutes,
   namespace: cache_namespace,
   pool_size: Sidekiq.server? ? Sidekiq.options[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
@@ -40,8 +40,8 @@ REDIS_CACHE_PARAMS = {
 }.freeze
 
 REDIS_SIDEKIQ_PARAMS = {
-  driver: :hiredis,
   url: ENV['SIDEKIQ_REDIS_URL'],
+  ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE },
   namespace: sidekiq_namespace,
 }.freeze
 
