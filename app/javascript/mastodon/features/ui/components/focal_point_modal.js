@@ -320,7 +320,7 @@ class FocalPointModal extends ImmutablePureComponent {
               <React.Fragment>
                 <label className='setting-text-label' htmlFor='upload-modal__thumbnail'><FormattedMessage id='upload_form.thumbnail' defaultMessage='Change thumbnail' /></label>
 
-                <Button disabled={isUploadingThumbnail} text={intl.formatMessage(messages.chooseImage)} onClick={this.handleFileInputClick} />
+                <Button disabled={isUploadingThumbnail || !media.get('unattached')} text={intl.formatMessage(messages.chooseImage)} onClick={this.handleFileInputClick} />
 
                 <label>
                   <span style={{ display: 'none' }}>{intl.formatMessage(messages.chooseImage)}</span>
