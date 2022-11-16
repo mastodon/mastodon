@@ -81,9 +81,18 @@ pt-BR:
         custom_css: Você pode aplicar estilos personalizados na versão da web do Mastodon.
         mascot: Substitui a ilustração na interface web avançada.
         media_cache_retention_period: Os arquivos de mídia baixados serão excluídos após o número especificado de dias, quando definido para um valor positivo, e baixados novamente na demanda.
+        profile_directory: O diretório de perfis lista todos os usuários que optaram por permitir que suas contas sejam descobertas.
+        site_contact_email: Como as pessoas podem entrar em contato com você para obter informações legais ou de suporte.
         site_contact_username: Como as pessoas podem chegar até você no Mastodon.
         site_extended_description: Quaisquer informações adicionais que possam ser úteis para os visitantes e seus usuários. Podem ser estruturadas com formato Markdown.
+        site_short_description: Uma curta descrição para ajudar unicamente a identificar a sua instância. Quem está o administrando, e para quem é direcionado?
+        site_terms: Use a sua própria política de privacidade ou deixe em branco para usar o padrão. Pode ser estruturado com o formato Markdown.
         site_title: Como as pessoas podem se referir ao seu servidor além do nome do domínio.
+        theme: Tema que visitantes e novos usuários veem.
+        thumbnail: Uma imagem de aproximadamente 2:1 exibida ao lado da informação de sua instância.
+        timeline_preview: Visitantes conseguirão navegar pelas postagens públicas mais recentes disponíveis na instância.
+        trendable_by_default: Pular a revisão manual do conteúdo em tendência. Itens individuais ainda poderão ser removidos das tendências após a sua exibição.
+        trends: Tendências mostram quais publicações, hashtags e notícias estão ganhando destaque na sua instância.
       form_challenge:
         current_password: Você está entrando em uma área segura
       imports:
@@ -96,7 +105,8 @@ pt-BR:
         ip: Digite um endereço IPv4 ou IPv6. Você pode bloquear intervalos inteiros usando a sintaxe CIDR. Tenha cuidado para não bloquear a si mesmo!
         severities:
           no_access: Bloquear o acesso a todos os recursos
-          sign_up_requires_approval: Novos registros exigirão sua aprovação
+          sign_up_block: Não serão possíveis novas inscrições
+          sign_up_requires_approval: Novas inscrições exigirão sua aprovação
         severity: Escolha o que acontecerá com as solicitações deste IP
       rule:
         text: Descreva uma regra ou requisito para os usuários neste servidor. Tente mantê-la curta e simples.
@@ -107,6 +117,13 @@ pt-BR:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
       user:
         chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
+        role: A função controla que permissões o usuário tem
+      user_role:
+        color: Cor a ser usada para a função em toda a interface do usuário, como RGB no formato hexadecimal
+        highlighted: Isso torna a função publicamente visível
+        name: Nome público da função, se a função é definida para ser exibida como um distintivo
+        permissions_as_keys: Usuários com essa função terão acesso a...
+        position: Uma função superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas em funções com menor prioridade
       webhook:
         events: Selecione eventos para enviar
         url: Aonde os eventos serão enviados
@@ -211,16 +228,28 @@ pt-BR:
           hide: Ocultar completamente
           warn: Ocultar com um aviso
       form_admin_settings:
+        backups_retention_period: Período de retenção do arquivo de usuário
+        bootstrap_timeline_accounts: Sempre recomendar essas contas para novos usuários
+        closed_registrations_message: Mensagem personalizada quando inscrições não estão disponíveis
+        content_cache_retention_period: Período de retenção do cachê de conteúdo
         custom_css: CSS personalizável
+        mascot: Mascote personalizado (legado)
+        media_cache_retention_period: Período de retenção do cachê de mídia
         profile_directory: Ativar diretório de perfis
         registrations_mode: Quem pode se inscrever
+        require_invite_text: Exigir uma razão para entrar
+        show_domain_blocks: Mostrar domínios bloqueados
+        show_domain_blocks_rationale: Mostrar por que domínios foram bloqueados
         site_contact_email: E-mail de contato
+        site_contact_username: Usuário de contato
         site_extended_description: Descrição estendida
         site_short_description: Descrição do servidor
         site_terms: Política de privacidade
         site_title: Nome do servidor
         theme: Tema padrão
         thumbnail: Miniatura do servidor
+        timeline_preview: Permitir acesso não autenticado às linhas do tempo públicas
+        trendable_by_default: Permitir tendências sem revisão prévia
         trends: Habilitar tendências
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
@@ -260,6 +289,7 @@ pt-BR:
         role: Cargo
       user_role:
         color: Cor do emblema
+        highlighted: Exibir função como distintivo nos perfis de usuários
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade

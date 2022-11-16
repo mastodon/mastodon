@@ -2,7 +2,7 @@
 cy:
   devise:
     confirmations:
-      confirmed: Mae eich cyfeiriad e-bost wedi ei gadarnhau yn llwyddiannus.
+      confirmed: Mae eich cyfeiriad e-bost wedi'i gadarnhau'n llwyddiannus.
       send_instructions: Byddwch yn derbyn e-bost a chyfarwyddiadau am sut i gadarnhau eich cyfeiriad e-bost mewn rhai munudau. Os na dderbynioch chi'r e-bost hwn, edrychwch yn eich ffolder sbam os gwelwch yn dda.
       send_paranoid_instructions: Os yw eich cyfeiriad e-bost yn bodoli yn ein bas data, byddwch yn derbyn e-bost a chyfarwyddiadau am sut i gadarnhau eich cyfeiriad ebost mewn rhai munudau. Os na dderbynioch chi'r e-bost hwn, edrychwch yn eich ffolder sbam os gwelwch yn dda.
     failure:
@@ -42,13 +42,13 @@ cy:
         title: Gwirio cyfeiriad e-bost
       reset_password_instructions:
         action: Newid cyfrinair
-        explanation: Gofynnoch am gyfrinair newydd i'ch cyfrif.
-        extra: Os na wnaethoch gais am hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda. Ni fydd eich cyfrinair yn newid nes i chi fynd at y ddolen uchod a chreu un newydd.
+        explanation: Fe wnaethoch chi ofyn am gyfrinair newydd ar gyfer eich cyfrif.
+        extra: Os na wnaethoch ofyn am hyn, anwybyddwch yr e-bost hwn. Ni fydd eich cyfrinair yn newid nes i chi gyrchu'r ddolen uchod a chreu un newydd.
         subject: 'Mastodon: Ailosod cyfarwyddiadau cyfrinair'
         title: Ailosod cyfrinair
       two_factor_disabled:
         explanation: Mae dilysu dau ffactor ar gyfer eich cyfrif wedi'i anablu. Mae mewngofnodi bellach yn bosibl gan ddefnyddio cyfeiriad e-bost a chyfrinair yn unig.
-        subject: 'Mastodon: Dilysu dau ffactor yn anabl'
+        subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
         title: Dilysu dau ffactor yn anabl
       two_factor_enabled:
         explanation: Mae dilysu dau ffactor wedi'i alluogi ar gyfer eich cyfrif. Bydd angen tocyn a gynhyrchir gan yr ap TOTP pâr i fewngofnodi.
@@ -60,6 +60,23 @@ cy:
         title: Newidiodd codau adfer 2FA
       unlock_instructions:
         subject: 'Mastodon: Cyfarwyddiadau datgloi'
+      webauthn_credential:
+        added:
+          explanation: Mae'r allwedd ddiogelwch ganlynol wedi'i hychwanegu at eich cyfrif
+          subject: 'Mastodon: Allwedd ddiogelwch newydd'
+          title: Mae allwedd ddiogelwch newydd wedi'i hychwanegu
+        deleted:
+          explanation: Mae'r allwedd ddiogelwch ganlynol wedi'i dileu o'ch cyfrif
+          subject: 'Mastodon: Allwedd ddiogelwch wedi''i dileu'
+          title: Mae un o'ch allweddi diogelwch wedi'i ddileu
+      webauthn_disabled:
+        explanation: Mae dilysu gydag allweddi diogelwch wedi'i analluogi ar gyfer eich cyfrif. Mae mewngofnodi bellach yn bosibl gan ddefnyddio'r tocyn a gynhyrchir gan yr app TOTP pâr yn unig.
+        subject: 'Mastodon: Dilysiad gydag allweddi diogelwch wedi''i analluogi'
+        title: Allweddi diogelwch wedi'u hanalluogi
+      webauthn_enabled:
+        explanation: Mae dilysiad allwedd diogelwch wedi'i alluogi ar gyfer eich cyfrif. Gellir defnyddio'ch allwedd ddiogelwch nawr ar gyfer mewngofnodi.
+        subject: 'Mastodon: Dilysiad allwedd diogelwch wedi''i alluogi'
+        title: Allweddi diogelwch wedi'u galluogi
     omniauth_callbacks:
       failure: Methu eich dilysu o %{kind} oherwydd "%{reason}".
       success: Dilyswyd yn llwyddiannus o gyfrif %{kind}.

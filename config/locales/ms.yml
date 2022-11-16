@@ -5,6 +5,7 @@ ms:
     contact_missing: Tidak ditetapkan
     contact_unavailable: Tidak tersedia
     hosted_on: Mastodon dihoskan di %{domain}
+    title: Perihal
   accounts:
     follow: Ikut
     followers:
@@ -35,11 +36,17 @@ ms:
       avatar: Avatar
       by_domain: Domain
       change_email:
+        changed_msg: E-mel berjaya ditukar!
         current_email: E-mel semasa
         label: Ubah e-mel
         new_email: E-mel baharu
         submit: Ubah e-mel
         title: Ubah e-mel untuk %{username}
+      change_role:
+        changed_msg: Peranan berjaya ditukar!
+        label: Tukar peranan
+        no_role: Tiada peranan
+        title: Tukar peranan untuk %{username}
       confirm: Sahkan
       confirmed: Disahkan
       confirming: Mengesahkan
@@ -80,6 +87,7 @@ ms:
         active: Aktif
         all: Semua
         pending: Menunggu
+        silenced: Terhad
         suspended: Digantungkan
         title: Penyederhanaan
       moderation_notes: Catatan penyederhana
@@ -87,6 +95,7 @@ ms:
       most_recent_ip: Alamat IP terbaru
       no_account_selected: Tiada akaun diubah kerana tiada yang dipilih
       no_limits_imposed: Tiada pengehadan dikenakan
+      no_role_assigned: Tiada peranan ditugaskan
       not_subscribed: Tiada langganan
       pending: Menunggu semak semula
       perform_full_suspension: Gantung
@@ -109,9 +118,13 @@ ms:
       reset: Tetapkan semula
       reset_password: Tetapkan semula kata laluan
       resubscribe: Langgan semula
+      role: Peranan
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain e-mel yang sama
       search_same_ip: Pengguna lain dengan alamat IP yang sama
+      security_measures:
+        only_password: Kata laluan sahaja
+        password_and_2fa: Kata laluan dan 2FA
       sensitive: Sensitif
       sensitized: ditandakan sebagai sensitif
       shared_inbox_url: URL peti masuk berkongsi
@@ -122,10 +135,12 @@ ms:
       silenced: Dihadkan
       statuses: Hantaran
       subscribe: Langgan
+      suspend: Gantung
       suspended: Digantung
       suspension_irreversible: Data akaun ini telah dipadam secara kekal. Anda boleh nyahgantungkannya untuk membuatkan akaun ini boleh digunakan semula tetapi data lama tidak akan diperolehi.
       suspension_reversible_hint_html: Akaun ini telah digantung, dan datanya akan dibuang pada %{date}. Sebelum tarikh itu, akaun ini boleh diperoleh semula tanpa kesan buruk. Jika anda mahu memadamkan kesemua data akaun ini serta-merta, anda boleh melakukannya di bawah.
       title: Akaun
+      unblock_email: Menyahsekat alamat e-mel
       unconfirmed_email: E-mel belum disahkan
       undo_sensitized: Nyahtanda sensitif
       undo_silenced: Nyahdiamkan
@@ -140,26 +155,34 @@ ms:
       whitelisted: Dibenarkan untuk persekutuan
     action_logs:
       action_types:
+        approve_appeal: Meluluskan Rayuan
+        approve_user: Luluskan Pengguna
         assigned_to_self_report: Buat Laporan
         change_email_user: Ubah E-mel untuk Pengguna
+        change_role_user: Tukar Peranan Pengguna
         confirm_user: Sahkan Pengguna
         create_account_warning: Cipta Amaran
         create_announcement: Cipta Pengumuman
+        create_canonical_email_block: Cipta Penyekatan E-mel
         create_custom_emoji: Cipta Emoji Tersendiri
         create_domain_allow: Cipta Pelepasan Domain
         create_domain_block: Cipta Penyekatan Domain
         create_email_domain_block: Cipta Penyekatan Domain E-mel
         create_ip_block: Cipta peraturan alamat IP
         create_unavailable_domain: Cipta Domain Tidak Tersedia
+        create_user_role: Cipta Peranan
         demote_user: Turunkan Taraf Pengguna
         destroy_announcement: Padam Pengumuman
+        destroy_canonical_email_block: Padam Penyekatan E-mel
         destroy_custom_emoji: Padam Emoji Tersendiri
         destroy_domain_allow: Padam Pelepasan Domain
         destroy_domain_block: Padam Penyekatan Domain
         destroy_email_domain_block: Padam penyekatan domain e-mel
+        destroy_instance: Padamkan Domain
         destroy_ip_block: Padam peraturan alamat IP
         destroy_status: Padam Hantaran
         destroy_unavailable_domain: Padam Domain Tidak Tersedia
+        destroy_user_role: Padamkan Peranan
         disable_2fa_user: Nyahdayakan 2FA
         disable_custom_emoji: Nyahdayakan Emoji Tersendiri
         disable_user: Nyahdayakan Pengguna
@@ -167,21 +190,27 @@ ms:
         enable_user: Dayakan Pengguna
         memorialize_account: Jadikan Akaun Kenangan
         promote_user: Naikkan Taraf Pengguna
+        reject_appeal: Menolak Rayuan
+        reject_user: Menolak Pengguna
         remove_avatar_user: Buang Avatar
         reopen_report: Buka Semula Laporan
+        resend_user: Hantar Semula E-mel Pengesahan
         reset_password_user: Tetapkan Semula Kata Laluan
         resolve_report: Buat Keputusan Laporan
         sensitive_account: Tandakan media di akaun anda sebagai sensitif
         silence_account: Diamkan Akaun
         suspend_account: Gantungkan Akaun
         unassigned_report: Menyahtugaskan Laporan
+        unblock_email_account: Menyahsekat alamat e-mel
         unsensitive_account: Nyahtanda media di akaun anda sebagai sensitif
         unsilence_account: Nyahdiamkan Akaun
         unsuspend_account: Nyahgantungkan Akaun
         update_announcement: Kemas Kini Pengumuman
         update_custom_emoji: Kemas Kini Emoji Tersendiri
         update_domain_block: Kemas Kini Penyekatan Domain
+        update_ip_block: Kemas kini peraturan IP
         update_status: Kemas Kini Hantaran
+        update_user_role: Kemas Kini Peranan
       actions:
         assigned_to_self_report_html: "%{name} menugaskan laporan %{target} kepada dirinya sendiri"
         change_email_user_html: "%{name} telah mengubah alamat e-mel pengguna %{target}"
@@ -194,14 +223,19 @@ ms:
         create_email_domain_block_html: "%{name} telah menyekat domain e-mel %{target}"
         create_ip_block_html: "%{name} telah mencipta peraturan alamat IP %{target}"
         create_unavailable_domain_html: "%{name} telah menghentikan penghantaran ke domain %{target}"
+        create_user_role_html: "%{name} mewujudkan peranan %{target}"
         demote_user_html: "%{name} telah menurunkan taraf pengguna %{target}"
         destroy_announcement_html: "%{name} telah memadamkan pengumuman %{target}"
+        destroy_canonical_email_block_html: "%{name} telah menyahsekat e-mel dengan hash %{target}"
+        destroy_custom_emoji_html: "%{name} telah memadam emoji %{target}"
         destroy_domain_allow_html: "%{name} telah membuang kebenaran persekutuan dengan domain %{target}"
         destroy_domain_block_html: "%{name} telah menyahsekat domain %{target}"
         destroy_email_domain_block_html: "%{name} telah menyahsekat domain e-mel %{target}"
+        destroy_instance_html: "%{name} telah memadam domain %{target}"
         destroy_ip_block_html: "%{name} telah memadamkan peraturan untuk alamat IP %{target}"
         destroy_status_html: "%{name} telah membuang hantaran oleh %{target}"
         destroy_unavailable_domain_html: "%{name} telah menyambung penghantaran ke domain %{target}"
+        destroy_user_role_html: "%{name} telah memadam peranan %{target}"
         disable_2fa_user_html: "%{name} menyahdayakan keperluan dua faktor bagi pengguna %{target}"
         disable_custom_emoji_html: "%{name} telah menyahdayakan emoji %{target}"
         disable_user_html: "%{name} telah menyahdayakan log masuk bagi pengguna %{target}"
@@ -224,6 +258,7 @@ ms:
         update_custom_emoji_html: "%{name} telah mengemaskini emoji %{target}"
         update_domain_block_html: "%{name} telah mengemaskini penyekatan domain untuk %{target}"
         update_status_html: "%{name} telah mengemaskini hantaran oleh %{target}"
+      deleted_account: akaun dipadamkan
       empty: Tiada log dijumpai.
       filter_by_action: Tapis mengikut tindakan
       filter_by_user: Tapis mengikut pengguna
@@ -278,9 +313,20 @@ ms:
       updated_msg: Emoji berjaya dikemaskini!
       upload: Muat naik
     dashboard:
+      active_users: pengguna aktif
+      interactions: interaksi
+      media_storage: Penyimpanan media
+      new_users: pengguna baru
+      opened_reports: laporan dibuka
+      resolved_reports: laporan diselesaikan
       software: Perisian
+      sources: Sumber pendaftaran
       space: Kegunaan ruang
       title: Papan pemuka
+      website: Laman web
+    disputes:
+      appeals:
+        title: Rayuan
     domain_allows:
       add_new: Benarkan persekutuan dengan domain
       created_msg: Domain telah berjaya dibenarkan untuk persekutuan
@@ -318,6 +364,9 @@ ms:
       add_new: Tambah baharu
       created_msg: Telah berjaya menyekat domain e-mel
       delete: Padam
+      dns:
+        types:
+          mx: Rekod MX
       domain: Domain
       new:
         create: Tambah domain
@@ -336,6 +385,9 @@ ms:
       back_to_limited: Terhad
       back_to_warning: Amaran
       by_domain: Domain
+      dashboard:
+        instance_followers_measure: pengikut kami di situ
+        instance_follows_measure: pengikut mereka di sini
       delivery:
         all: Semua
         clear: Buang ralat penghantaran
@@ -411,6 +463,7 @@ ms:
       assign_to_self: Menugaskan kepada saya
       assigned: Penyederhana yang ditugaskan
       by_target_domain: Domain bagi akaun yang dilaporkan
+      category: Kumpulan
       comment:
         none: Tiada
       created_at: Dilaporkan
@@ -435,6 +488,7 @@ ms:
       unassign: Nyahtugaskan
       unresolved: Nyahselesaikan
       updated_at: Dikemaskini
+      view_profile: Lihat profil
     rules:
       add_new: Tambah peraturan
       delete: Padam
@@ -448,18 +502,37 @@ ms:
           approved: Kelulusan diperlukan untuk pendaftaran
           none: Tiada siapa boleh mendaftar
           open: Sesiapapun boleh mendaftar
+  authorize_follow:
+    post_follow:
+      close: Atau anda boleh tutup tetingkap ini.
+      return: Tunjukkan profil pengguna
+      web: Pergi ke web
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '400': Permintaan yang anda serahkan tidak sah atau salah bentuk.
+    '403': Anda tidak mempunyai kebenaran untuk melihat halaman ini.
+    '404': Halaman yang anda cari tiada di sini.
+    '406': Halaman ini tidak tersedia dalam format yang diminta.
+    '410': Halaman yang anda cari tidak wujud di sini lagi.
     '422': 
-    '429': Too many requests
+    '429': Terlalu banyak permintaan
     '500': 
-    '503': The page could not be served due to a temporary server failure.
+    '503': Halaman tidak dapat disampaikan kerana kegagalan pelayan sementara.
   exports:
     archive_takeout:
       in_progress: Mengkompil arkib anda...
+  statuses:
+    default_language: Sama dengan bahasa antara muka
+  statuses_cleanup:
+    enabled: Padam hantaran lama secara automatik
+    keep_pinned: Simpan hantaran disemat
+    keep_pinned_hint: Tidak memadamkan mana-mana hantaran yang anda sematkan
+    keep_self_bookmark: Simpan hantaran yang anda menandabuku
+    keep_self_bookmark_hint: Tidak memadamkan hantaran anda jika anda sudah menandabukunya
+    keep_self_fav: Simpan hantaran yang anda gemarkan
+    keep_self_fav_hint: Tidak memadamkan hantaran anda jika anda telah menggemarkannya
+    min_favs: Simpan hantaran digemarkan sekurang-kurangnya
+    min_favs_hint: Tidak memadamkan mana-mana hantaran anda yang telah menerima sekurang-kurangnya jumlah gemaran ini. Biarkan kosong untuk memadamkan hantaran tanpa mengira nombor gemaran
+  stream_entries:
+    pinned: Hantaran disemat
   users:
     follow_limit_reached: Anda tidak boleh mengikut lebih daripada %{limit} orang
