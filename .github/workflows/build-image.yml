@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'main'
-    tags:
-      - '*'
   pull_request:
     paths:
       - .github/workflows/build-image.yml
@@ -31,13 +29,10 @@ jobs:
         id: meta
         with:
           images: ghcr.io/${{ github.repository_owner }}/mastodon
-          flavor: |
-            latest=auto
           tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
             type=edge,branch=main
-            type=pep440,pattern={{raw}}
-            type=pep440,pattern=v{{major}}.{{minor}}
-            type=ref,event=pr
+            type=sha,prefix=,format=long
       - uses: docker/build-push-action@v3
         with:
           context: .
