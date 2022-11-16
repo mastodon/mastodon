@@ -50,6 +50,8 @@ export default class LocalSettingsPage extends React.PureComponent {
       <a
         href={href}
         className={finalClassName}
+        title={title}
+        aria-label={title}
       >
         {iconElem} <span>{title}</span>
       </a>
@@ -60,6 +62,8 @@ export default class LocalSettingsPage extends React.PureComponent {
         role='button'
         tabIndex='0'
         className={finalClassName}
+        title={title}
+        aria-label={title}
       >
         {iconElem} <span>{title}</span>
       </a>
