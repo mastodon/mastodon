@@ -7,6 +7,7 @@ fo:
       user:
         agreement: Tænastusáttmáli
         email: Teldupostur
+        locale: Staðbundið
         password: Loyniorð
       user/account:
         username: Brúkaranavn
@@ -40,6 +41,8 @@ fo:
             email:
               blocked: brúkar ein ikki loyvdan teldopostveitara
               unreachable: tykist ikki at vera til
+            role_id:
+              elevated: kann ikki vera hægri enn verandi støða
         user_role:
           attributes:
             permissions_as_keys:
