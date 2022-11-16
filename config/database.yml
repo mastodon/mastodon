@@ -26,9 +26,14 @@ test:
 
 production:
   <<: *default
-  database: <%= ENV['DB_NAME'] || 'mastodon_production' %>
-  username: <%= ENV['DB_USER'] || 'mastodon' %>
-  password: <%= (ENV['DB_PASS'] || '').to_json %>
-  host: <%= ENV['DB_HOST'] || 'localhost' %>
-  port: <%= ENV['DB_PORT'] || 5432 %>
-  prepared_statements: <%= ENV['PREPARED_STATEMENTS'] || 'true' %>
+  adapter: postgresql_makara
+  prepared_statements: false
+  makara:
+    id: postgres
+    sticky: true
+    connections:
+      - role: master
+        blacklist_duration: 0
+        url: <%= ENV['DB_URL_WHITE'] %>
+      - role: slave
+        url: <%= ENV['DB_URL_READ'] %>
