@@ -27,6 +27,8 @@
         scheduled_at: La stå tomt for å publisere kunngjøringen umiddelbart
         starts_at: Valgfritt. I tilfellet din kunngjøring er bundet til en spesifikk tidsramme
         text: Du kan bruke tut syntaks. Vennligst vær oppmerksom på plassen som kunngjøringen vil ta opp på brukeren sin skjerm
+      appeal:
+        text: Du kan kun klage på en advarsel en gang
       defaults:
         autofollow: Folk som lager en konto gjennom invitasjonen, vil automatisk følge deg
         avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
@@ -35,6 +37,7 @@
         current_password: For sikkerhetsgrunner, vennligst oppgi passordet til den nåværende bruker
         current_username: For å bekrefte, vennligst skriv inn brukernavnet til den nåværende kontoen
         digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        discoverable: La kontoen din bli oppdaget av ukjente gjennom anbefalinger, trender og andre funksjoner
         email: Du vil bli tilsendt en bekreftelses-E-post
         fields: Du kan ha opptil 4 gjenstander vist som en tabell på profilsiden din
         header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
@@ -46,6 +49,7 @@
         phrase: Vil bli samsvart med, uansett bruk av store/små bokstaver eller innholdsadvarselen til en tut
         scopes: Hvilke API-er programmet vil bli gitt tilgang til. Dersom du velger et toppnivåomfang, trenger du ikke å velge individuelle API-er.
         setting_aggregate_reblogs: Ikke vis nye fremhevinger for tuter som nylig har blitt fremhever (Påvirker kun nylige fremhevinger)
+        setting_always_send_emails: E-postvarsler sendes normalt sett ikke mens du aktivt bruker Mastodon
         setting_default_sensitive: Sensitivt media blir skjult som standard og kan bli vist med et klikk
         setting_display_media_default: Skjul media som er merket som sensitivt
         setting_display_media_hide_all: Skjul alltid all media
@@ -62,6 +66,10 @@
       email_domain_block:
         domain: Dette kan være domenenavnet som vises i e-postadressen eller MX-oppføringen den bruker. De vil bli sjekket ved oppretting av konto.
         with_dns_records: Et forsøk på å løse det gitte domenets DNS-poster vil bli gjort, og resultatene vil også bli svartelistet
+      filters:
+        action: Velg hvilken handling som skal utføres når et innlegg samsvarer med filteret
+        actions:
+          hide: Skjul filtrert innhold fullstendig, som om det ikke eksisterte
       form_challenge:
         current_password: Du går inn i et sikkert område
       imports:
@@ -176,6 +184,10 @@
         with_dns_records: Inkluder MX-poster og IP-adresser for domenet
       featured_tag:
         name: Emneknagg
+      form_admin_settings:
+        registrations_mode: Hvem kan opprette konto
+        site_contact_email: E-postadresse for kontakt
+        site_title: Servernavn
       interactions:
         must_be_follower: Blokker varslinger fra ikke-følgere
         must_be_following: Blokker varslinger fra personer du ikke følger
@@ -206,7 +218,14 @@
         name: Emneknagg
         trendable: Tillat denne emneknaggen til å vises under trender
         usable: Tillat tuter å bruke denne emneknaggen
+      user:
+        role: Rolle
+      user_role:
+        name: Navn
+        permissions_as_keys: Tillatelser
+        position: Prioritet
     'no': Nei
+    not_recommended: Ikke anbefalt
     recommended: Anbefalt
     required:
       mark: "*"

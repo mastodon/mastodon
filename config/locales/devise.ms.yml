@@ -1,1 +1,53 @@
+---
 ms:
+  devise:
+    confirmations:
+      confirmed: Alamat e-mel anda telah berjaya disahkan.
+      send_instructions: Anda akan menerima e-mel dengan arahan untuk mengesahkan alamat e-mel anda dalam beberapa minit lagi. Sila semak folder spam anda jika tidak menerima e-mel ini.
+      send_paranoid_instructions: Jika e-mel anda wujud dalam database kami, anda akan menerima e-mel dengan arahan untuk mengesahkan alamat e-mel anda dalam beberapa minit lagi. Sila semak folder spam anda jika tidak menerima e-mel ini.
+    failure:
+      already_authenticated: Anda sudah daftar masuk.
+      inactive: Akaun anda belum diaktifkan.
+      invalid: "%{authentication_keys} atau kata laluan tidak sah."
+      pending: Akaun anda masih dalam semakan.
+      unauthenticated: Anda perlu daftar masuk atau mendaftar sebelum meneruskan.
+      unconfirmed: Anda perlu menyesahkan alamat e-mel anda sebelum meneruskan.
+    mailer:
+      confirmation_instructions:
+        action: Sahkan alamat e-mel
+        explanation: Anda telah mencipta akaun pada %{host} dengan alamat e-mel ini. Anda satu klik sahaja daripada mengaktifkannya. Jika anda tidak mencipta akaun tersebut, sila abaikan e-mel ini.
+        title: Sahkan alamat e-mel
+      email_changed:
+        explanation: 'Alamat e-mel untuk akaun anda sedang diubah kepada:'
+        subject: 'Mastodon: E-mel ditukar'
+        title: Alamat e-mel baru
+      password_change:
+        explanation: Kata laluan untuk akaun anda telah ditukar.
+        subject: 'Mastodon: Kata laluan diubah'
+        title: Kata laluan ditukar
+      reconfirmation_instructions:
+        explanation: Sahkan alamat baru untuk menukarkan e-mel anda.
+        title: Sahkan alamat e-mel
+      reset_password_instructions:
+        action: Tukar kata laluan
+        explanation: Anda meminta kata laluan baru untuk akaun anda.
+        title: Set semula kata laluan
+      two_factor_disabled:
+        title: 2FA dinyahaktifkan
+      two_factor_enabled:
+        title: 2FA diaktifkan
+    passwords:
+      updated: Kata laluan anda telah berjaya ditukar. Anda telah didaftar masuk.
+      updated_not_active: Kata laluan anda telah berjaya ditukar.
+    registrations:
+      destroyed: Selamat tinggal! Akaun anda telah berjaya dibatalkan. Kami harap berjumpa lagi.
+      signed_up: Selamat datang! Anda telah berjaya mendaftar.
+      signed_up_but_inactive: Anda telah berjaya mendaftar. Namun, kami tidak dapat mendaftar masuk anda kerana akaun anda belum diaktifkan.
+    sessions:
+      already_signed_out: Daftar keluar berjaya.
+      signed_in: Daftar masuk berjaya.
+      signed_out: Daftar keluar berjaya.
+  errors:
+    messages:
+      already_confirmed: sudah disahkan, sila cuba mendaftar masuk
+      not_found: tidak dijumpai

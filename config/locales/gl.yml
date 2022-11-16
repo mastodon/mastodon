@@ -608,6 +608,7 @@ gl:
         other: "%{count} usuarias"
       categories:
         administration: Administración
+        devops: DevOps
         invites: Convites
         moderation: Moderación
         special: Especial
@@ -658,6 +659,7 @@ gl:
         view_audit_log_description: Permite ver o historial de accións administrativas no servidor
         view_dashboard: Ver Taboleiro
         view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
+        view_devops: DevOps
         view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
       title: Roles
     rules:
@@ -1371,6 +1373,7 @@ gl:
     browser: Navegador
     browsers:
       alipay: Alipay
+      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,6 +1387,7 @@ gl:
       phantom_js: PhantomJS
       qq: Navegador QQ
       safari: Safari
+      uc_browser: Navegador QQ
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1392,6 +1396,8 @@ gl:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

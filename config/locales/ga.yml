@@ -179,6 +179,7 @@ ga:
     statuses:
       account: Údar
       deleted: Scriosta
+      favourites: Toghanna
       language: Teanga
       media:
         title: Meáin
@@ -246,13 +247,19 @@ ga:
     admin:
       report:
         subject: Chuir %{name} tuairisc isteach
+    reblog:
+      subject: Mhol %{name} do phostáil
+      title: Moladh nua
   rss:
     content_warning: 'Rabhadh ábhair:'
   statuses:
+    boosted_from_html: Molta ó %{acct_link}
     content_warning: 'Rabhadh ábhair: %{warning}'
     show_more: Taispeáin níos mó
     show_newer: Taispeáin níos nuaí
     show_thread: Taispeáin snáithe
+  statuses_cleanup:
+    ignore_favs: Tabhair neamhaird ar toghanna
   user_mailer:
     warning:
       appeal: Cuir achomharc isteach

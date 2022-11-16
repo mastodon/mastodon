@@ -3,19 +3,19 @@ es:
   simple_form:
     hints:
       account_alias:
-        acct: Especifique el nombre de usuario@dominio de la cuenta desde la cual se desea migrar
+        acct: Especifique su nombre de usuario@dominio de la cuenta de donde se desea migrar
       account_migration:
-        acct: Especifique el nombre de usuario@dominio de la cuenta a la cual se desea migrar
+        acct: Especifique el nombre de usuario@dominio de la cuenta de la cual se desea migrar
       account_warning_preset:
         text: Puede usar sintaxis de publicaciones, como URLs, hashtags y menciones
-        title: Opcional. No visible para el destinatario
+        title: Opcional. No es visible para el destinatario
       admin_account_action:
         include_statuses: El usuario verá qué publicaciones han causado la acción de moderación o advertencia
-        send_email_notification: El usuario recibirá una explicación de lo que sucedió con respecto a su cuenta
+        send_email_notification: El usuario recibirá una explicación de lo que ha sucedido con su cuenta
         text_html: Opcional. Puede usar sintaxis de publicaciones. Puede añadir <a href="%{path}">configuraciones predefinidas de advertencia</a> para ahorrar tiempo
-        type_html: Elige qué hacer con <strong>%{acct}</strong>
+        type_html: Elige lo qué vas a hacer con <strong>%{acct}</strong>
         types:
-          disable: Evitar que el usuario utilice su cuenta, pero no eliminar ni ocultar sus contenidos.
+          disable: Evita que el usuario utilice su cuenta, pero no elimina ni oculta sus contenidos.
           none: Utilizar esto para enviar una advertencia al usuario, sin poner en marcha ninguna otra acción.
           sensitive: Forzar que todos los archivos multimedia de este usuario sean marcados como sensibles.
           silence: Evitar que el usuario pueda publicar con visibilidad pública, oculta sus mensajes y notificaciones a personas que no lo siguen.
