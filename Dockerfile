@@ -38,7 +38,8 @@ RUN apt-get update && \
 	cd ruby-$RUBY_VER && \
 	./configure --prefix=/opt/ruby \
 	  --with-jemalloc \
-	  --with-shared \
+	  --enable-shared \
+	  --disable-install-static-library \
 	  --disable-install-doc && \
 	make -j"$(nproc)" > /dev/null && \
 	make install && \
