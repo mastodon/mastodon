@@ -27,13 +27,13 @@ module AdminExportControllerConcern
     params.require(:admin_import).permit(:data)
   end
 
-  def import_data
-    Paperclip.io_adapters.for(@import.data).read
+  def import_data_path
+    params[:admin_import][:data].path
   end
 
   def parse_import_data!(default_headers)
-    data = CSV.parse(import_data, headers: true)
-    data = CSV.parse(import_data, headers: default_headers) unless data.headers&.first&.strip&.include?(default_headers[0])
+    data = CSV.read(import_data_path, headers: true, encoding: 'UTF-8')
+    data = CSV.read(import_data_path, headers: default_headers, encoding: 'UTF-8') unless data.headers&.first&.strip&.include?(default_headers[0])
     @data = data.reject(&:blank?)
   end
 end
