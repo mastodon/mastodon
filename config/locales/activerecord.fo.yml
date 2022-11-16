@@ -2,10 +2,10 @@ fo:
   activerecord:
     attributes:
       poll:
-        expires_at: Freistin
+        expires_at: Freist
         options: Val
       user:
-        agreement: Tænastusáttmáli
+        agreement: Tænastuavtala
         email: Teldupostur
         locale: Staðbundið
         password: Loyniorð
@@ -18,20 +18,20 @@ fo:
         account:
           attributes:
             username:
-              invalid: má bara innihalda bókstavir, tøl og botnstriku
+              invalid: kann bara innihalda bókstavir, tøl og botnstriku
               reserved: er umbiðið
         admin/webhook:
           attributes:
             url:
-              invalid: er ikki ein røtt leinkja
+              invalid: er ikki ein rætt leinki
         doorkeeper/application:
           attributes:
             website:
-              invalid: er ikki ein røtt leinkja
+              invalid: er ikki eitt rætt leinki
         import:
           attributes:
             data:
-              malformed: eru bronglaði
+              malformed: er avskeplað
         status:
           attributes:
             reblog:
@@ -46,6 +46,9 @@ fo:
         user_role:
           attributes:
             permissions_as_keys:
+              dangerous: inniheldur loyvi, ið ikki eru trygg, á grundstøði
+              elevated: rúmar ikki loyvum ið tín verandi støða loyvir
               own_role: kann ikki verða broytt við tínum verandi rættindum
             position:
+              elevated: loyvi kunnu ikki setast hægri, við verandi rættindum
               own_role: kann ikki verða broytt við tínum verandi rættindum
