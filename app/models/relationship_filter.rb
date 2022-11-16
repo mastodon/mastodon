@@ -53,7 +53,7 @@ class RelationshipFilter
     when 'activity'
       activity_scope(value)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 
@@ -68,7 +68,7 @@ class RelationshipFilter
     when 'invited'
       Account.joins(user: :invite).merge(Invite.where(user: account.user)).eager_load(:account_stat).reorder(nil)
     else
-      raise "Unknown relationship: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown relationship: #{value}"
     end
   end
 
@@ -83,7 +83,7 @@ class RelationshipFilter
     when 'remote'
       Account.remote
     else
-      raise "Unknown location: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown location: #{value}"
     end
   end
 
@@ -94,7 +94,7 @@ class RelationshipFilter
     when 'primary'
       Account.where(moved_to_account_id: nil)
     else
-      raise "Unknown status: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown status: #{value}"
     end
   end
 
@@ -105,7 +105,7 @@ class RelationshipFilter
     when 'recent'
       params[:relationship] == 'invited' ? Account.recent : Follow.recent
     else
-      raise "Unknown order: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown order: #{value}"
     end
   end
 
@@ -114,7 +114,7 @@ class RelationshipFilter
     when 'dormant'
       AccountStat.where(last_status_at: nil).or(AccountStat.where(AccountStat.arel_table[:last_status_at].lt(1.month.ago)))
     else
-      raise "Unknown activity: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown activity: #{value}"
     end
   end
 end

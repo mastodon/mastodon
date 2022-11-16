@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::Filters::KeywordsController, type: :controller do
+RSpec.describe Api::V2::Filters::StatusesController, type: :controller do
   render_views
 
   let(:user)         { Fabricate(:user) }
@@ -15,7 +15,7 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :controller do
 
   describe 'GET #index' do
     let(:scopes) { 'read:filters' }
-    let!(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
+    let!(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
 
     it 'returns http success' do
       get :index, params: { filter_id: filter.id }
@@ -33,25 +33,25 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :controller do
   describe 'POST #create' do
     let(:scopes)    { 'write:filters' }
     let(:filter_id) { filter.id }
+    let!(:status)   { Fabricate(:status) }
 
     before do
-      post :create, params: { filter_id: filter_id, keyword: 'magic', whole_word: false }
+      post :create, params: { filter_id: filter_id, status_id: status.id }
     end
 
     it 'returns http success' do
       expect(response).to have_http_status(200)
     end
 
-    it 'returns a keyword' do
+    it 'returns a status filter' do
       json = body_as_json
-      expect(json[:keyword]).to eq 'magic'
-      expect(json[:whole_word]).to eq false
+      expect(json[:status_id]).to eq status.id.to_s
     end
 
-    it 'creates a keyword' do
+    it 'creates a status filter' do
       filter = user.account.custom_filters.first
       expect(filter).to_not be_nil
-      expect(filter.keywords.pluck(:keyword)).to eq ['magic']
+      expect(filter.statuses.pluck(:status_id)).to eq [status.id]
     end
 
     context "when trying to add to another another's user filters" do
@@ -65,10 +65,10 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :controller do
 
   describe 'GET #show' do
     let(:scopes)  { 'read:filters' }
-    let(:keyword) { Fabricate(:custom_filter_keyword, keyword: 'foo', whole_word: false, custom_filter: filter) }
+    let!(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
 
     before do
-      get :show, params: { id: keyword.id }
+      get :show, params: { id: status_filter.id }
     end
 
     it 'returns http success' do
@@ -77,37 +77,11 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :controller do
 
     it 'returns expected data' do
       json = body_as_json
-      expect(json[:keyword]).to eq 'foo'
-      expect(json[:whole_word]).to eq false
+      expect(json[:status_id]).to eq status_filter.status_id.to_s
     end
 
     context "when trying to access another user's filter keyword" do
-      let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: other_filter) }
-
-      it 'returns http not found' do
-        expect(response).to have_http_status(404)
-      end
-    end
-  end
-
-  describe 'PUT #update' do
-    let(:scopes)  { 'write:filters' }
-    let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
-
-    before do
-      get :update, params: { id: keyword.id, keyword: 'updated' }
-    end
-
-    it 'returns http success' do
-      expect(response).to have_http_status(200)
-    end
-
-    it 'updates the keyword' do
-      expect(keyword.reload.keyword).to eq 'updated'
-    end
-
-    context "when trying to update another user's filter keyword" do
-      let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: other_filter) }
+      let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: other_filter) }
 
       it 'returns http not found' do
         expect(response).to have_http_status(404)
@@ -117,10 +91,10 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :controller do
 
   describe 'DELETE #destroy' do
     let(:scopes)  { 'write:filters' }
-    let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: filter) }
+    let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: filter) }
 
     before do
-      delete :destroy, params: { id: keyword.id }
+      delete :destroy, params: { id: status_filter.id }
     end
 
     it 'returns http success' do
@@ -128,11 +102,11 @@ RSpec.describe Api::V1::Filters::KeywordsController, type: :controller do
     end
 
     it 'removes the filter' do
-      expect { keyword.reload }.to raise_error ActiveRecord::RecordNotFound
+      expect { status_filter.reload }.to raise_error ActiveRecord::RecordNotFound
     end
 
     context "when trying to update another user's filter keyword" do
-      let(:keyword) { Fabricate(:custom_filter_keyword, custom_filter: other_filter) }
+      let(:status_filter) { Fabricate(:custom_filter_status, custom_filter: other_filter) }
 
       it 'returns http not found' do
         expect(response).to have_http_status(404)

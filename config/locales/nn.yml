@@ -275,7 +275,7 @@ nn:
         unassigned_report_html: "%{name} løyste ein rapport %{target}"
         unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
         unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som sensitivt"
-        unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
+        unsilence_account_html: "%{name} fjerna grensa på kontoen til %{target}"
         update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
         update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
         update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
@@ -518,6 +518,9 @@ nn:
           other: "%{count} notiser"
       action_taken_by: Handling gjort av
       actions:
+        delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som sensitive, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
         silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
@@ -590,6 +593,9 @@ nn:
       with_media: Med media
     strikes:
       actions:
+        delete_statuses: "%{name} slettet %{target}s innlegg"
+        disable: "%{name} frøs %{target}s konto"
+        mark_statuses_as_sensitive: "%{name} markerte %{target}s innlegg som sensitive"
         silence: "%{name} begrenset %{target}s konto"
     system_checks:
       database_schema_check:
@@ -742,7 +748,7 @@ nn:
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
   disputes:
     strikes:
-      appeal_approved: Denne advarselen ble anket og er ikke lenger gyldig
+      appeal_approved: Denne advarselens klage ble tatt til følge og er ikke lenger gyldig
       title_actions:
         silence: Begrensning av konto
   domain_validator:
@@ -1172,6 +1178,7 @@ nn:
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
       title: Anke godkjend
     appeal_rejected:
+      explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
       title: Anke avvist
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
