@@ -638,8 +638,8 @@ zh-CN:
         manage_user_access_description: 允许用户禁用其他用户的双重身份验证, 更改他们的电子邮件地址, 并重置他们的密码
         manage_users: 管理用户
         manage_users_description: 允许用户查看其他用户信息并对他们执行审核操作
-        manage_webhooks: 管理网钩
-        manage_webhooks_description: 允许用户为管理事件设置网钩
+        manage_webhooks: 管理 Webhooks
+        manage_webhooks_description: 允许用户为管理事件配置 Webhook
         view_audit_log: 查看审核日志
         view_audit_log_description: 允许用户在服务器上查看管理操作历史
         view_dashboard: 查看仪表板
@@ -812,24 +812,24 @@ zh-CN:
       empty: 你尚未定义任何警告预设。
       title: 管理预设警告
     webhooks:
-      add_new: 端点
+      add_new: 新增对端
       delete: 删除
-      description_html: <strong>webhook</strong> 使Mastodon能够推送 <strong>关于所选事件的实时通知</strong> 到您自己的应用程序。 所以您的应用程序可以自动触发反应 <strong></strong>。
+      description_html: <strong>Webhook</strong> 使 Mastodon 能够推送 <strong>关于所选事件的实时通知</strong> 到你自己的应用程序，进而由你的应用程序<strong>自动触发反应</strong>。
       disable: 禁用
       disabled: 已禁用
-      edit: 编辑端点
-      empty: 您尚未配置任何Web 钩子端点。
+      edit: 编辑对端
+      empty: 你尚未配置任何 Webhook 对端。
       enable: 启用
       enabled: 活跃
       enabled_events:
         other: "%{count} 启用的事件"
       events: 事件
-      new: 新建网钩
-      rotate_secret: 旋转密钥
+      new: 新建 Webhook
+      rotate_secret: 轮换密钥
       secret: 签名密钥
       status: 状态
-      title: 网钩
-      webhook: 网钩
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
