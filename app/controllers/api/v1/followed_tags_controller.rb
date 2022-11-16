@@ -43,7 +43,7 @@ class Api::V1::FollowedTagsController < Api::BaseController
   end
 
   def records_continue?
-    @results.size == limit_param(TAG_LIMIT)
+    @results.size == limit_param(TAGS_LIMIT)
   end
 
   def pagination_params(core_params)
