@@ -19,12 +19,6 @@ const normalizeAccounts = (state, accounts) => {
   return state;
 };
 
-const updateFollowing = (state, action, cb) => {
-  state = state.updateIn([action.relationship.id, 'followers_count'], cb);
-  state = state.updateIn([action.me, 'following_count'], cb);
-  return state;
-};
-
 const initialState = ImmutableMap();
 
 export default function accountsCounters(state = initialState, action) {
@@ -34,9 +28,10 @@ export default function accountsCounters(state = initialState, action) {
   case ACCOUNTS_IMPORT:
     return normalizeAccounts(state, action.accounts);
   case ACCOUNT_FOLLOW_SUCCESS:
-    return action.alreadyFollowing ? state : updateFollowing(state, action, num => num + 1);
+    return action.alreadyFollowing ? state :
+      state.updateIn([action.relationship.id, 'followers_count'], num => num + 1);
   case ACCOUNT_UNFOLLOW_SUCCESS:
-    return updateFollowing(state, action, num => Math.max(0, num - 1));
+    return state.updateIn([action.relationship.id, 'followers_count'], num => Math.max(0, num - 1));
   default:
     return state;
   }

@@ -52,7 +52,10 @@ import { boostModal, deleteModal, unfollowModal } from '../initial_state';
 import { showAlertForError } from '../actions/alerts';
 
 const messages = defineMessages({
+  cancelFollowRequestConfirm: { id: 'confirmations.cancel_follow_request.confirm', defaultMessage: 'Withdraw request' },
+  cancelFollowRequestMessage: { id: 'confirmations.cancel_follow_request.message', defaultMessage: 'Are you sure you want to withdraw your request to follow @{name}?' },
   unfollowConfirm: { id: 'confirmations.unfollow.confirm', defaultMessage: 'Unfollow' },
+  unfollowMessage: { id: 'confirmations.unfollow.message', defaultMessage: 'Are you sure you want to unfollow @{name}?' },
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
   deleteMessage: { id: 'confirmations.delete.message', defaultMessage: 'Are you sure you want to delete this status?' },
   redraftConfirm: { id: 'confirmations.redraft.confirm', defaultMessage: 'Delete & redraft' },
@@ -167,24 +170,27 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     dispatch(directCompose(account, router));
   },
 
-  onUnfollow(account){
-    if (unfollowModal) {
-      dispatch(openModal('CONFIRM', {
-        message: <FormattedMessage
-          id='confirmations.unfollow.message'
-          defaultMessage='Are you sure you want to unfollow {name}?'
-          values={{ name: <strong>@{account.get('acct')}</strong> }}
-        />,
-        confirm: intl.formatMessage(messages.unfollowConfirm),
-        onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
-      }));
+  onFollow (account, relationship) {
+    const isFollowing          = relationship && relationship.get('following');
+    const hasRequestedFollow   = relationship && relationship.get('requested');
+    if (isFollowing || hasRequestedFollow) {
+      if (unfollowModal) {
+        const message = hasRequestedFollow ? messages.cancelFollowRequestMessage :  messages.unfollowMessage;
+        const confirmMessage = hasRequestedFollow ? intl.formatMessage(messages.cancelFollowRequestConfirm) : intl.formatMessage(messages.unfollowConfirm);
+        dispatch(openModal('CONFIRM', {
+          message: <FormattedMessage
+            {...message}
+            values={{ name: <strong>@{account.get('acct')}</strong> }}
+          />,
+          confirm: confirmMessage,
+          onConfirm: () => dispatch(unfollowAccount(account.get('id'))),
+        }));
+      } else {
+        dispatch(unfollowAccount(account.get('id')));
+      }
     } else {
-      dispatch(unfollowAccount(account.get('id')));
+      dispatch(followAccount(account.get('id')));
     }
-  },
-
-  onFollow (account) {
-    dispatch(followAccount(account.get('id')));
   },
 
   onMention (account, router) {
