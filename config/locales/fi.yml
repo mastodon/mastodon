@@ -385,7 +385,9 @@ fi:
         create: Luo esto
         hint: Verkkotunnuksen esto ei estä tilien luomista ja lisäämistä tietokantaan, mutta se soveltaa näihin tileihin automaattisesti määrättyjä moderointitoimia tilin luomisen jälkeen.
         severity:
+          desc_html: "<strong>Rajoita</strong> piilottaa viestit tämän verkkotunnuksen tileiltä niiltä, jotka eivät seuraa tilejä. <strong>Lopeta</strong> poistaa kaiken sisällön, median ja profiilien tiedot tämän verkkotunnuksen tileiltä palvelimellasi. Käytä <strong>Ei mitään</strong>, jos haluat vain hylätä meditiedostoja."
           noop: Ei mitään
+          silence: Rajoita
           suspend: Jäähy
         title: Uusi verkkotunnuksen esto
       obfuscate: Peitä verkkotunnuksen nimi
@@ -911,6 +913,7 @@ fi:
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
     your_token: Pääsytunnus
   auth:
+    apply_for_account: Pyydä tiliä
     change_password: Salasana
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
