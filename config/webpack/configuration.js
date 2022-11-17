@@ -14,6 +14,7 @@ const themes = load(readFileSync(themePath), 'utf8');
 const output = {
   path: resolve('public', settings.public_output_path),
   publicPath: `/${settings.public_output_path}/`,
+  hashFunction: 'sha256',
 };
 
 module.exports = {
