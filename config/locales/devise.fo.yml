@@ -12,12 +12,15 @@ fo:
       locked: Kontan hjá tær er læst.
       not_found_in_database: Ogyldigur %{authentication_keys} ella loyniorð.
       pending: Kontan hjá tær verður kannað enn.
+      timeout: Tín innritan er útgingin. Innrita av nýggjum, fyri at hada fram.
       unauthenticated: Tú mást skriva teg inn aftur fyri at halda fram.
+      unconfirmed: Tú skal staðfesta tína teldupostasressu fyri at halda áfram.
     mailer:
       confirmation_instructions:
         action: Vátta teldupostadressuna
         action_with_app: Staðfest og far aftur til %{app}
         explanation: Tú hevur stovnað eina kontu hjá %{host} við hesari teldupostadressuni og tú ert eitt klikk frá at virkja hana. Um tað ikki vart tú, vinarliga sí burtur frá hesum teldupostinum.
+        explanation_when_pending: Tú hevur fingið innbjóðing tkl %{host}, við teldupostaddressu. Tá tú hevur vátta tín tína teldupostaddressu, verður umsóknin viðgjørd. Tú kann innrita og broyta ymsar stillingar, men flestu funkur kunnu ikki broytast, fyrr enn kontan er góðkend. Um kontan ikki verður góðkend, verða allar dátur um teg slettaðar. Um umsóknin ikki kom frá tær, skal tú síggja burtur frá teldupostinum.
         title: Vátta teldupostadressuna
       email_changed:
         subject: 'Mastodon: Teldupostur broyttur'
