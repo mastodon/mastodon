@@ -1,4 +1,3 @@
----
 it:
   about:
     about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
@@ -56,7 +55,7 @@ it:
       delete: Elimina dati
       deleted: Cancellato
       demote: Declassa
-      destroyed_msg: I dati di %{username} sono ora in coda per essere eliminati tra poco
+      destroyed_msg: "I dati di %{username} sono ora in coda per essere eliminati tra poco"
       disable: Disabilita
       disable_sign_in_token_auth: Disabilita autenticazione con token email
       disable_two_factor_authentication: Disabilita l'autenticazione a due fattori
@@ -373,6 +372,8 @@ it:
       add_new: Dominio nella whitelist
       created_msg: Il dominio è stato inserito nella whitelist
       destroyed_msg: Il dominio è stato eliminato dalla whitelist
+      export: Esportare
+      import: Importare
       undo: Elimina dalla whitelist
     domain_blocks:
       add_new: Aggiungi nuovo
@@ -382,6 +383,8 @@ it:
       edit: Modifica blocco di dominio
       existing_domain_block: Hai già imposto limiti più severi a %{name}.
       existing_domain_block_html: Hai già impostato limitazioni più stringenti su %{name}, dovresti <a href="%{unblock_url}">sbloccarlo</a> prima.
+      export: Esportare
+      import: Importare
       new:
         create: Crea blocco
         hint: Il blocco dominio non previene la creazione di utenti nel database, ma applicherà automaticamente e retroattivamente metodi di moderazione specifici su quegli account.
@@ -389,6 +392,8 @@ it:
           noop: Nessuno
           suspend: Sospendi
         title: Nuovo blocco dominio
+      no_domain_block_selected: Nessun blocco di dominio è stato modificato perché non ne è stato selezionato nessuno
+      not_permitted: Non hai il permesso di eseguire questa azione
       obfuscate: Nascondi nome di dominio
       obfuscate_hint: Nascondere parzialmente il nome di dominio, se è abilitata la visualizzazione pubblica dell'elenco delle limitazioni di dominio
       private_comment: Commento privato
@@ -420,6 +425,19 @@ it:
       resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
+    export_domain_allows:
+      new:
+        title: Importare i permessi di dominio
+      no_file: Nessun file selezionato
+    export_domain_blocks:
+      import:
+        description_html: Stai per importare un elenco di blocchi di domini. Si prega di rivedere questo elenco con molta attenzione, soprattutto se non si è creato personalmente questo elenco.
+        private_comment_description_html: 'Per aiutarti a tenere traccia della provenienza dei blocchi importati, i blocchi importati verranno creati con il seguente commento privato: <q>%{comment}</q>'
+        private_comment_template: Importato da %{source} il %{date}
+        title: Importare i blocchi di dominio
+      new:
+        title: Importare i blocchi di dominio
+      no_file: Nessun file selezionato
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
       language: Per lingua
@@ -519,7 +537,7 @@ it:
       no_ip_block_selected: Nessuna regola IP è stata modificata poiché nessuna è stata selezionata
       title: Regole IP
     relationships:
-      title: Relazioni di %{acct}
+      title: "Relazioni di %{acct}"
     relays:
       add_new: Aggiungi ripetitore
       delete: Cancella
@@ -866,7 +884,7 @@ it:
     new_report:
       body: "%{reporter} ha segnalato %{target}"
       body_remote: Qualcuno da %{domain} ha segnalato %{target}
-      subject: Nuova segnalazione per %{instance} (#%{id})
+      subject: 'Nuova segnalazione per %{instance} (#%{id})'
     new_trends:
       body: 'I seguenti elementi necessitano di un controllo prima che possano essere visualizzati pubblicamente:'
       new_trending_links:
@@ -887,9 +905,7 @@ it:
     remove: Scollega alias
   appearance:
     advanced_web_interface: Interfaccia web avanzata
-    advanced_web_interface_hint: |-
-      Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:
-      Home, notifiche, timeline federata, qualsiasi numero di liste e etichette.
+    advanced_web_interface_hint: "Se vuoi utilizzare l'intera larghezza dello schermo, l'interfaccia web avanzata ti consente di configurare varie colonne per mostrare più informazioni allo stesso tempo, secondo le tue preferenze:\nHome, notifiche, timeline federata, qualsiasi numero di liste e etichette."
     animations_and_accessibility: Animazioni e accessibilità
     confirmation_dialogs: Dialoghi di conferma
     discovery: Scoperta
@@ -1158,6 +1174,7 @@ it:
     invalid_markup: 'contiene markup HTML non valido: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       over_rows_processing_limit: contiene più di %{count} righe
     modes:
       merge: Fondi
