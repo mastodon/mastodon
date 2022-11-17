@@ -65,17 +65,18 @@ const emojifyTextNode = (node, customEmojis) => {
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
+      rend = i + match.length;
+      // If the matched character was followed by VS15 (for selecting text presentation), skip it.
+      if (str.codePointAt(rend - 1) !== 0xFE0F && str.codePointAt(rend) === 0xFE0E) {
+        i = rend + 1;
+        continue;
+      }
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', 'false');
       replacement.setAttribute('class', 'emojione');
       replacement.setAttribute('alt', match);
       replacement.setAttribute('title', title);
       replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
-      rend = i + match.length;
-      // If the matched character was followed by VS15 (for selecting text presentation), skip it.
-      if (str.codePointAt(rend) === 65038) {
-        rend += 1;
-      }
     }
 
     fragment.append(document.createTextNode(str.slice(0, i)));
