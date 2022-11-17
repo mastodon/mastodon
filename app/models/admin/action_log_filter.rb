@@ -95,7 +95,7 @@ class Admin::ActionLogFilter
       account = Account.find_or_initialize_by(id: value)
       Admin::ActionLog.where(target: [account, account.user].compact)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 end

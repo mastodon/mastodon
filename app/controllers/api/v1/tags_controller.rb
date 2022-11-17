@@ -12,7 +12,7 @@ class Api::V1::TagsController < Api::BaseController
   end
 
   def follow
-    TagFollow.create!(tag: @tag, account: current_account, rate_limit: true)
+    TagFollow.first_or_create!(tag: @tag, account: current_account, rate_limit: true)
     render json: @tag, serializer: REST::TagSerializer
   end
 
@@ -24,7 +24,7 @@ class Api::V1::TagsController < Api::BaseController
   private
 
   def set_or_create_tag
-    return not_found unless /\A(#{Tag::HASHTAG_NAME_RE})\z/.match?(params[:id])
+    return not_found unless Tag::HASHTAG_NAME_RE.match?(params[:id])
     @tag = Tag.find_normalized(params[:id]) || Tag.new(name: Tag.normalize(params[:id]), display_name: params[:id])
   end
 end

@@ -8,7 +8,7 @@ class HashtagNormalizer
   private
 
   def remove_invalid_characters(str)
-    str.gsub(/[^[:alnum:]#{Tag::HASHTAG_SEPARATORS}]/, '')
+    str.gsub(Tag::HASHTAG_INVALID_CHARS_RE, '')
   end
 
   def ascii_folding(str)

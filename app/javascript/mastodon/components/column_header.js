@@ -57,7 +57,7 @@ class ColumnHeader extends React.PureComponent {
   }
 
   handleTitleClick = () => {
-    this.props.onClick();
+    this.props.onClick?.();
   }
 
   handleMoveLeft = () => {
@@ -152,7 +152,6 @@ class ColumnHeader extends React.PureComponent {
           className={collapsibleButtonClassName}
           title={formatMessage(collapsed ? messages.show : messages.hide)}
           aria-label={formatMessage(collapsed ? messages.show : messages.hide)}
-          aria-pressed={collapsed ? 'false' : 'true'}
           onClick={this.handleToggleClick}
         >
           <i className='icon-with-badge'>

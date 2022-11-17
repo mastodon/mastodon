@@ -1,4 +1,4 @@
-{{ if .Values.mastodon.cron.removeMedia.enabled }}
+{{ if .Values.mastodon.cron.removeMedia.enabled -}}
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -12,10 +12,10 @@ spec:
       template:
         metadata:
           name: {{ include "mastodon.fullname" . }}-media-remove
-        {{- with .Values.jobAnnotations }}
+          {{- with .Values.jobAnnotations }}
           annotations:
             {{- toYaml . | nindent 12 }}
-        {{- end }}
+          {{- end }}
         spec:
           restartPolicy: OnFailure
           {{- if (not .Values.mastodon.s3.enabled) }}
@@ -25,13 +25,13 @@ spec:
           affinity:
             podAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
-              - labelSelector:
-                  matchExpressions:
-                    - key: component
-                      operator: In
-                      values:
-                        - rails
-                topologyKey: kubernetes.io/hostname
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/part-of
+                        operator: In
+                        values:
+                          - rails
+                  topologyKey: kubernetes.io/hostname
           {{- end }}
           volumes:
             - name: assets
@@ -59,7 +59,7 @@ spec:
                   valueFrom:
                     secretKeyRef:
                       name: {{ template "mastodon.postgresql.secretName" . }}
-                      key: postgres-password
+                      key: password
                 - name: "REDIS_PASSWORD"
                   valueFrom:
                     secretKeyRef:

@@ -39,6 +39,7 @@ const messages = defineMessages({
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   unblock: { id: 'account.unblock', defaultMessage: 'Unblock @{name}' },
+  openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
 });
 
 const mapStateToProps = (state, { status }) => ({
@@ -174,22 +175,8 @@ class ActionBar extends React.PureComponent {
   }
 
   handleCopy = () => {
-    const url      = this.props.status.get('url');
-    const textarea = document.createElement('textarea');
-
-    textarea.textContent    = url;
-    textarea.style.position = 'fixed';
-
-    document.body.appendChild(textarea);
-
-    try {
-      textarea.select();
-      document.execCommand('copy');
-    } catch (e) {
-
-    } finally {
-      document.body.removeChild(textarea);
-    }
+    const url = this.props.status.get('url');
+    navigator.clipboard.writeText(url);
   }
 
   render () {
@@ -201,10 +188,15 @@ class ActionBar extends React.PureComponent {
     const mutingConversation = status.get('muted');
     const account            = status.get('account');
     const writtenByMe        = status.getIn(['account', 'id']) === me;
+    const isRemote           = status.getIn(['account', 'username']) !== status.getIn(['account', 'acct']);
 
     let menu = [];
 
     if (publicStatus) {
+      if (isRemote) {
+        menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: status.get('url') });
+      }
+
       menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
       menu.push(null);

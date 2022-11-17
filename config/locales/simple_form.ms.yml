@@ -1,1 +1,148 @@
+---
 ms:
+  simple_form:
+    hints:
+      defaults:
+        email: Anda akan dihantar e-mel pengesahan
+        locale: Bahasa untuk antara muka pengguna, e-mel dan pemberitahuan segera
+        password: Gunakan sekurang-kurangnya 8 aksara
+        setting_always_send_emails: Biasanya pemberitahuan e-mel tidak akan dihantar apabila anda selalu menggunakan Mastodon
+        setting_display_media_default: Sembunyikan media yang ditanda sebagai sensitif
+        setting_display_media_hide_all: Sentiasa sembunyikan media
+        setting_display_media_show_all: Sentiasa paparkan media
+        setting_hide_network: Sesiapa yang anda ikuti dan sesiapa yang mengikuti anda akan disembunyi daripada profil anda
+        setting_noindex: Menjejaskan profil awam dan laman hantaran anda
+      form_admin_settings:
+        closed_registrations_message: Dipaparkan semasa pendaftaran ditutup
+        site_contact_username: Bagaimana orang boleh menghubungi anda pada Mastodon.
+        site_extended_description: Apa-apa maklumat tambahan yang mungkin berguna untuk pelawat dan pengguna anda. Boleh distruktur dengan sintaks Markdown.
+        site_terms: Gunakan dasar polisi anda atau biarkan kosong untuk menggunakan lalai. Boleh distruktur dengan sintaks Markdown.
+      form_challenge:
+        current_password: Anda sedang memasuki kawasan selamat
+      imports:
+        data: Fail CSV dieksport daripada pelayan Mastodon yang lain
+      invite_request:
+        text: Ini akan membantu kami menyemak permohonan anda
+      ip_block:
+        severities:
+          no_access: Menyekat akses kepada semua sumber
+          sign_up_block: Pendaftaran baru tidak akan dibenarkan
+          sign_up_requires_approval: Pendaftaran baru akan memerlukan kelulusan anda
+      user_role:
+        color: Warna yang akan digunakan untuk peranan ini dalam seluruh UI, sebagai RGB dalam format hex
+        highlighted: Ini menjadikan peranan ini dipaparkan secara umum
+        permissions_as_keys: Pengguna dengan peranan ini akan mempunyai akses kepada...
+    labels:
+      account:
+        fields:
+          value: Kandungan
+      account_warning_preset:
+        title: Tajuk
+      admin_account_action:
+        text: Amaran tersuai
+        type: Tindakan
+        types:
+          none: Hantar amaran
+          sensitive: Sensitif
+          silence: Hadkan
+          suspend: Gantung
+        warning_preset_id: Gunakan amaran yang ditetapkan
+      announcement:
+        text: Pengumuman
+      appeal:
+        text: Jelaskan mengapa keputusan ini patut diterbalikkan
+      defaults:
+        bot: Ini ialah akaun bot
+        chosen_languages: Tapis bahasa
+        confirm_new_password: Sahkan kata laluan baru
+        confirm_password: Sahkan kata laluan
+        context: Konteks penapis
+        current_password: Kata laluan semasa
+        data: Data
+        discoverable: Mencadangkan akaun kepada pengguna lain
+        display_name: Nama paparan
+        email: Alamat e-mel
+        expires_in: Tamat tempoh selepas
+        fields: Metadata profil
+        locale: Bahasa antara muka
+        new_password: Kata laluan baru
+        otp_attempt: Kod dua faktor
+        password: Kata laluan
+        phrase: Kata kunci atau frasa
+        setting_advanced_layout: Dayakan antara muka web lanjutan
+        setting_default_language: Bahasa hantaran
+        setting_default_privacy: Privasi hantaran
+        setting_default_sensitive: Selalu tandakan media sebagai sensitif
+        setting_display_media: Paparan media
+        setting_display_media_default: Lalai
+        setting_display_media_hide_all: Sembunyikan semua
+        setting_display_media_show_all: Paparkan semua
+        setting_system_font_ui: Gunakan fon lalai sistem
+        setting_theme: Tema halaman
+        setting_trends: Paparkan trend hari ini
+        sign_in_token_attempt: Kod keselamatan
+        title: Tajuk
+        type: Jenis import
+        username: Nama pengguna
+        username_or_email: Nama Pengguna atau E-mel
+        whole_word: Seluruh perkataan
+      featured_tag:
+        name: Tanda pagar
+      filters:
+        actions:
+          hide: Sembunyikan sepenuhnya
+          warn: Sembunyikan dengan amaran
+      form_admin_settings:
+        custom_css: CSS tersuai
+        profile_directory: Dayakan direktori profil
+        registrations_mode: Siapa boleh mendaftar
+        require_invite_text: Memerlukan sebab penyertaan
+        show_domain_blocks: Tunjukan sekatan domain
+        show_domain_blocks_rationale: Tunjukan sebab domain disekat
+        site_contact_email: E-mel hubungan
+        site_contact_username: Nama pengguna hubungan
+        site_extended_description: Penerangan lanjut
+        site_short_description: Penerangan pelayan
+        site_terms: Dasar Privasi
+        site_title: Nama pelayan
+        theme: Tema asal
+        trends: Dayakan trend
+      invite:
+        comment: Komen
+      invite_request:
+        text: Mengapa anda hendak menyertai?
+      ip_block:
+        comment: Komen
+        ip: IP
+        severities:
+          no_access: Sekat akses
+          sign_up_block: Sekat pendaftaran
+          sign_up_requires_approval: Hadkan pendaftaran
+        severity: Peraturan
+      notification_emails:
+        favourite: Seorang menggemarkan hantaran anda
+        follow: Seorang mengikuti anda
+        follow_request: Seorang meminta untuk mengikuti anda
+        mention: Seorang menyebut anda
+        pending_account: Akaun baru memerlukan semakan
+        reblog: Seorang menggalakan hantaran anda
+        report: Laporan baru telah dihantar
+        trending_tag: Trend baru memerlukan semakan
+      rule:
+        text: Peraturan
+      tag:
+        name: Tanda pagar
+        usable: Benarkan siaran untuk menggunakan tanda pagar ini
+      user:
+        role: Peranan
+      user_role:
+        color: Warna lencana
+        name: Nama
+        permissions_as_keys: Kebenaran
+        position: Keutamaan
+    'no': Tidak
+    not_recommended: Tidak disyorkan
+    recommended: Disyorkan
+    required:
+      text: diperlukan
+    'yes': Ya

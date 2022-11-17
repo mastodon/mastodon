@@ -19,7 +19,7 @@ class StatusCacheHydrator
       payload[:muted]      = false
       payload[:bookmarked] = false
       payload[:pinned]     = false if @status.account_id == account_id
-      payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(@status.reblog_of_id), @status.reblog).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
+      payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(account_id), @status.reblog).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
 
       # If the reblogged status is being delivered to the author who disabled the display of the application
       # used to create the status, we need to hydrate it here too
@@ -51,7 +51,7 @@ class StatusCacheHydrator
       payload[:muted]      = ConversationMute.where(account_id: account_id, conversation_id: @status.conversation_id).exists?
       payload[:bookmarked] = Bookmark.where(account_id: account_id, status_id: @status.id).exists?
       payload[:pinned]     = StatusPin.where(account_id: account_id, status_id: @status.id).exists? if @status.account_id == account_id
-      payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(@status.id), @status).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
+      payload[:filtered]   = CustomFilter.apply_cached_filters(CustomFilter.cached_filters_for(account_id), @status).map { |filter| ActiveModelSerializers::SerializableResource.new(filter, serializer: REST::FilterResultSerializer).as_json }
 
       if payload[:poll]
         payload[:poll][:voted] = @status.account_id == account_id

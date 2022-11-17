@@ -82,6 +82,7 @@ class MediaAttachment < ApplicationRecord
   IMAGE_CONVERTED_STYLES = {
     original: {
       format: 'jpeg',
+      content_type: 'image/jpeg',
     }.merge(IMAGE_STYLES[:original]).freeze,
 
     small: {
@@ -167,7 +168,7 @@ class MediaAttachment < ApplicationRecord
   }.freeze
 
   GLOBAL_CONVERT_OPTIONS = {
-    all: '-quality 90 -strip +set modify-date +set create-date',
+    all: '-quality 90 +profile "!icc,*" +set modify-date +set create-date',
   }.freeze
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true

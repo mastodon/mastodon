@@ -16,8 +16,12 @@ export default class Button extends React.PureComponent {
     children: PropTypes.node,
   };
 
+  static defaultProps = {
+    type: 'button',
+  };
+
   handleClick = (e) => {
-    if (!this.props.disabled) {
+    if (!this.props.disabled && this.props.onClick) {
       this.props.onClick(e);
     }
   }

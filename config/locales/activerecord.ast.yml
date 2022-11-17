@@ -2,7 +2,11 @@
 ast:
   activerecord:
     attributes:
+      poll:
+        options: Escoyetes
       user:
+        agreement: Alcuerdu de serviciu
+        email: Direición de corréu electrónicu
         locale: Locale
         password: Contraseña
       user/account:
@@ -11,6 +15,11 @@ ast:
         text: Motivu
     errors:
       models:
+        account:
+          attributes:
+            username:
+              invalid: ha contener namás lletres, númberos y guiones baxos
+              reserved: ta acutáu
         admin/webhook:
           attributes:
             url:
@@ -19,3 +28,27 @@ ast:
           attributes:
             website:
               invalid: nun ye una URL válida
+        import:
+          attributes:
+            data:
+              malformed: está mal fechu
+        status:
+          attributes:
+            reblog:
+              taken: d'artículos xá esisten
+        user:
+          attributes:
+            email:
+              blocked: usa un proveedor de corréu electrónicu nun permitíu
+              unreachable: nun paez qu'esista
+            role_id:
+              elevated: nun pue ser mayor que'l to rol actual
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: incluyer permisos que nun son seguros pal rol de base
+              elevated: nun pues incluyir permisos que nun tenga'l to rol actual
+              own_role: nun pue cámbiase col to rol actual
+            position:
+              elevated: nun pue ser mayor que'l to rol actual
+              own_role: nun pue cámbiase col to rol actual

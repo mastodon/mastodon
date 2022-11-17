@@ -52,6 +52,15 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
+Rolling pod annotations
+*/}}
+{{- define "mastodon.rollingPodAnnotations" -}}
+rollme: {{ .Release.Revision | quote }}
+checksum/config-secrets: {{ include ( print $.Template.BasePath "/secrets.yaml" ) . | sha256sum | quote }}
+checksum/config-configmap: {{ include ( print $.Template.BasePath "/configmap-env.yaml" ) . | sha256sum | quote }}
+{{- end }}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "mastodon.serviceAccountName" -}}

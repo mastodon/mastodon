@@ -7,12 +7,13 @@ metadata:
 data:
   {{- if .Values.postgresql.enabled }}
   DB_HOST: {{ template "mastodon.postgresql.fullname" . }}
+  DB_PORT: "5432"
   {{- else }}
   DB_HOST: {{ .Values.postgresql.postgresqlHostname }}
+  DB_PORT: {{ .Values.postgresql.postgresqlPort | default "5432" | quote }}
   {{- end }}
   DB_NAME: {{ .Values.postgresql.auth.database }}
   DB_POOL: {{ .Values.mastodon.sidekiq.concurrency | quote }}
-  DB_PORT: "5432"
   DB_USER: {{ .Values.postgresql.auth.username }}
   DEFAULT_LOCALE: {{ .Values.mastodon.locale }}
   {{- if .Values.elasticsearch.enabled }}
@@ -57,6 +58,9 @@ data:
   {{- end }}
   {{- if .Values.mastodon.smtp.domain }}
   SMTP_DOMAIN: {{ .Values.mastodon.smtp.domain }}
+  {{- end }}
+  {{- if .Values.mastodon.smtp.enable_starttls }}
+  SMTP_ENABLE_STARTTLS: {{ .Values.mastodon.smtp.enable_starttls | quote }}
   {{- end }}
   {{- if .Values.mastodon.smtp.enable_starttls_auto }}
   SMTP_ENABLE_STARTTLS_AUTO: {{ .Values.mastodon.smtp.enable_starttls_auto | quote }}
@@ -306,4 +310,7 @@ data:
   {{- if .Values.externalAuth.ldap.uid_conversion.replace }}
   LDAP_UID_CONVERSION_REPLACE: {{ .Values.externalAuth.ldap.uid_conversion.replace }}
   {{- end }}
+  {{- end }}
+  {{- with .Values.mastodon.metrics.statsd.address }}
+  STATSD_ADDR: {{ . }}
   {{- end }}

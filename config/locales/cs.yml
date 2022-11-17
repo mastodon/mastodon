@@ -180,6 +180,7 @@ cs:
         confirm_user: Potvrdit uživatele
         create_account_warning: Vytvořit varování
         create_announcement: Nové oznámení
+        create_canonical_email_block: Zablokovat email
         create_custom_emoji: Vytvořit vlastní emoji
         create_domain_allow: Vytvořit povolení domény
         create_domain_block: Vytvořit blokaci domény
@@ -189,6 +190,7 @@ cs:
         create_user_role: Vytvořit roli
         demote_user: Snížit roli uživatele
         destroy_announcement: Odstranit oznámení
+        destroy_canonical_email_block: Odblokovat email
         destroy_custom_emoji: Odstranit vlastní emoji
         destroy_domain_allow: Odstranit povolení domény
         destroy_domain_block: Odstranit blokaci domény
@@ -211,6 +213,7 @@ cs:
         reject_user: Odmítnout uživatele
         remove_avatar_user: Odstranit avatar
         reopen_report: Znovu otevřít hlášení
+        resend_user: Znovu odeslat potvrzovací e-mail
         reset_password_user: Obnovit heslo
         resolve_report: Označit hlášení jako vyřešené
         sensitive_account: Vynucení citlivosti účtu
@@ -243,8 +246,10 @@ cs:
         create_email_domain_block_html: Uživatel %{name} zablokoval e-mailovou doménu %{target}
         create_ip_block_html: Uživatel %{name} vytvořil pravidlo pro IP %{target}
         create_unavailable_domain_html: "%{name} zastavil doručování na doménu %{target}"
+        create_user_role_html: "%{name} vytvořil %{target} roli"
         demote_user_html: Uživatel %{name} degradoval uživatele %{target}
         destroy_announcement_html: Uživatel %{name} odstranil oznámení %{target}
+        destroy_canonical_email_block_html: "%{name} odblokoval e-mail s hashem %{target}"
         destroy_custom_emoji_html: "%{name} odstranil emoji %{target}"
         destroy_domain_allow_html: Uživatel %{name} zakázal federaci s doménou %{target}
         destroy_domain_block_html: Uživatel %{name} odblokoval doménu %{target}
@@ -267,6 +272,7 @@ cs:
         reject_user_html: "%{name} odmítl registraci od %{target}"
         remove_avatar_user_html: Uživatel %{name} odstranil avatar uživatele %{target}
         reopen_report_html: Uživatel %{name} znovu otevřel hlášení %{target}
+        resend_user_html: "%{name} znovu odeslal potvrzovací e-mail pro %{target}"
         reset_password_user_html: Uživatel %{name} obnovil heslo uživatele %{target}
         resolve_report_html: Uživatel %{name} vyřešil hlášení %{target}
         sensitive_account_html: "%{name} označil média účtu %{target} jako citlivá"
@@ -283,6 +289,7 @@ cs:
         update_ip_block_html: "%{name} změnil pravidlo pro IP %{target}"
         update_status_html: Uživatel %{name} aktualizoval příspěvek uživatele %{target}
         update_user_role_html: "%{name} změnil %{target} roli"
+      deleted_account: smazaný účet
       empty: Nebyly nalezeny žádné záznamy.
       filter_by_action: Filtrovat podle akce
       filter_by_user: Filtrovat podle uživatele
@@ -393,9 +400,7 @@ cs:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
         severity:
-          desc_html: "<strong>Ztišení</strong> skryje příspěvky z účtu komukoliv, kdo jej nesleduje. <strong>Pozastavení</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>."
           noop: Žádné
-          silence: Ztišit
           suspend: Pozastavit
         title: Nová blokace domény
       obfuscate: Obfuskovat doménu
@@ -627,7 +632,7 @@ cs:
         other: "%{count} uživatelů"
       categories:
         administration: Administrace
-        devops: Devops
+        devops: DevOps
         invites: Pozvánky
         moderation: Moderování
         special: Speciální
@@ -680,7 +685,7 @@ cs:
         view_audit_log_description: Umožňuje uživatelům vidět historii administrativních akcí na serveru
         view_dashboard: Zobrazit ovládací panel
         view_dashboard_description: Umožňuje uživatelům přístup k ovládacímu panelu a různým metrikám
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Umožňuje uživatelům přístup k ovládacím panelům Sidekiq a pgHero
       title: Role
     rules:
@@ -700,6 +705,7 @@ cs:
         preamble: Přizpůsobte si webové rozhraní Mastodon.
         title: Vzhled
       branding:
+        preamble: Značka vašeho serveru jej odlišuje od ostatních serverů v síti. Tyto informace se mohou zobrazovat v různých prostředích, například ve webovém rozhraní Mastodonu, v nativních aplikacích, v náhledech odkazů na jiných webových stránkách a v aplikacích pro zasílání zpráv atd. Z tohoto důvodu je nejlepší, aby tyto informace byly jasné, krátké a stručné.
         title: Značka
       content_retention:
         preamble: Určuje, jak je obsah generovaný uživatelem uložen v Mastodonu.
@@ -729,6 +735,7 @@ cs:
       destroyed_msg: Upload stránky byl úspěšně smazán!
     statuses:
       account: Autor
+      application: Aplikace
       back_to_account: Zpět na stránku účtu
       back_to_report: Zpět na stránku hlášení
       batch:
@@ -737,6 +744,7 @@ cs:
       deleted: Smazáno
       favourites: Oblíbené
       history: Historie verzí
+      in_reply_to: Odpověď na
       language: Jazyk
       media:
         title: Média
@@ -744,8 +752,10 @@ cs:
       no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
       open: Otevřít příspěvek
       original_status: Původní příspěvek
+      reblogs: Boosty
       status_changed: Příspěvek změněn
       title: Příspěvky účtu
+      trending: Populární
       visibility: Viditelnost
       with_media: S médii
     strikes:
@@ -938,7 +948,6 @@ cs:
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
-    apply_for_account: Přejít na čekací frontu
     change_password: Heslo
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.
@@ -977,6 +986,7 @@ cs:
       title: Nastavení
     sign_up:
       preamble: S účtem na tomto serveru Mastodon budete moci sledovat jakoukoliv jinou osobu v síti bez ohledu na to, kde je jejich účet hostován.
+      title: Pojďme vás nastavit na %{domain}.
     status:
       account_status: Stav účtu
       confirming: Čeká na dokončení potvrzení e-mailu.
@@ -1144,6 +1154,11 @@ cs:
         many: "%{count} příspěvků"
         one: "%{count} příspěvek"
         other: "%{count} příspěvků"
+      statuses_long:
+        few: "%{count} skryté příspěvky"
+        many: "%{count} skrytých příspěvků"
+        one: "%{count} skrytý příspěvek"
+        other: "%{count} skrytých příspěvků"
       title: Filtry
     new:
       save: Uložit nový filtr
@@ -1159,6 +1174,16 @@ cs:
     trending_now: Právě populární
   generic:
     all: Všechny
+    all_items_on_page_selected_html:
+      few: "<strong>%{count}</strong> položky na této stránce jsou vybrány."
+      many: "<strong>%{count}</strong> položek na této stránce je vybráno."
+      one: "<strong>%{count}</strong> položka na této stránce vybrána."
+      other: Všech <strong>%{count}</strong> položek na této stránce vybráno.
+    all_matching_items_selected_html:
+      few: "<strong>%{count}</strong> položky odpovídající vašemu hledání jsou vybrány."
+      many: "<strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno."
+      one: "<strong>%{count}</strong> položka odpovídající vašemu hledání je vybrána."
+      other: Všech <strong>%{count}</strong> položek odpovídající vašemu hledání je vybráno.
     changes_saved_msg: Změny byly úspěšně uloženy!
     copy: Kopírovat
     delete: Smazat
@@ -1166,6 +1191,11 @@ cs:
     none: Žádné
     order_by: Seřadit podle
     save_changes: Uložit změny
+    select_all_matching_items:
+      few: Vybrat %{count} položky odpovídající vašemu hledání.
+      many: Vybrat všech %{count} položek odpovídajících vašemu hledání.
+      one: Vybrat %{count} položku odpovídající vašemu hledání.
+      other: Vybrat všech %{count} položek odpovídajících vašemu hledání.
     today: dnes
     validation_errors:
       few: Něco ještě není úplně v pořádku! Zkontrolujte prosím %{count} chyby uvedené níže
@@ -1406,7 +1436,7 @@ cs:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Aktuální relace
     description: "%{browser} na systému %{platform}"
@@ -1415,8 +1445,8 @@ cs:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
-      chrome_os: Chrome OS
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

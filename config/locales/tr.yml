@@ -207,6 +207,7 @@ tr:
         reject_user: Kullanıcıyı Reddet
         remove_avatar_user: Profil Resmini Kaldır
         reopen_report: Şikayeti Tekrar Aç
+        resend_user: Doğrulama E-postasını Tekrar Gönder
         reset_password_user: Parolayı Sıfırla
         resolve_report: Şikayeti Çöz
         sensitive_account: Hesabınızdaki medyayı hassas olarak işaretleyin
@@ -265,6 +266,7 @@ tr:
         reject_user_html: "%{name}, %{target} konumundan kaydı reddetti"
         remove_avatar_user_html: "%{name}, %{target} kullanıcısının avatarını kaldırdı"
         reopen_report_html: "%{name}, %{target} şikayetini yeniden açtı"
+        resend_user_html: "%{name}, %{target} için doğrulama e-postasını tekrar gönderdi"
         reset_password_user_html: "%{name}, %{target} kullanıcısının parolasını sıfırladı"
         resolve_report_html: "%{name}, %{target} şikayetini çözdü"
         sensitive_account_html: "%{name}, %{target} kullanıcısının medyasını hassas olarak işaretledi"
@@ -281,6 +283,7 @@ tr:
         update_ip_block_html: "%{name}, %{target} IP adresi için kuralı güncelledi"
         update_status_html: "%{name}, %{target} kullanıcısının gönderisini güncelledi"
         update_user_role_html: "%{name}, %{target} rolünü değiştirdi"
+      deleted_account: hesap silindi
       empty: Kayıt bulunamadı.
       filter_by_action: Eyleme göre filtre
       filter_by_user: Kullanıcıya göre filtre
@@ -383,9 +386,7 @@ tr:
         create: Yeni blok oluştur
         hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak uygular.
         severity:
-          desc_html: "<strong>Susturma</strong>, uygulanan hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> hesabın bütün içeriğini, medya dosyalarını ve profil verisini siler. Sadece medya dosyalarını reddetmek için <strong>Hiçbiri</strong> kullanın."
           noop: Yok
-          silence: Sustur
           suspend: Uzaklaştır
         title: Yeni domain bloğu
       obfuscate: Alan adını gizle
@@ -605,7 +606,7 @@ tr:
         other: "%{count} kullanıcı"
       categories:
         administration: Yönetim
-        devops: Devops
+        devops: DevOps
         invites: Davetler
         moderation: Denetim
         special: Özel
@@ -656,7 +657,7 @@ tr:
         view_audit_log_description: Kullanıcıların sunucudaki yönetsel eylemlerin bir tarihçesini görüntülemesine izin verir
         view_dashboard: Ana Paneli Görüntüleme
         view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
       title: Roller
     rules:
@@ -911,7 +912,6 @@ tr:
     warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
     your_token: Erişim belirteciniz
   auth:
-    apply_for_account: Bekleme listesine gir
     change_password: Parola
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
@@ -1370,7 +1370,7 @@ tr:
     browser: Tarayıcı
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1393,7 +1393,7 @@ tr:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS

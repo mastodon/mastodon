@@ -86,7 +86,7 @@ da:
       login_status: Indlogningsstatus
       media_attachments: Medievedhæftninger
       memorialize: Omdan til mindekonto
-      memorialized: Memorialiseret
+      memorialized: Gjort til mindekonto
       memorialized_msg: "%{username} gjort til mindekonto"
       moderation:
         active: Aktiv
@@ -207,6 +207,7 @@ da:
         reject_user: Afvis bruger
         remove_avatar_user: Fjern profilbillede
         reopen_report: Genåbn anmeldelse
+        resend_user: Gensend bekræftelsese-mail
         reset_password_user: Nulstil adgangskode
         resolve_report: Løs anmeldelse
         sensitive_account: Gennemtving sensitiv konto
@@ -265,6 +266,7 @@ da:
         reject_user_html: "%{name} afviste tilmelding fra %{target}"
         remove_avatar_user_html: "%{name} fjernede %{target}s profilbillede"
         reopen_report_html: "%{name} genåbnede anmeldelsen %{target}"
+        resend_user_html: "%{name} gensendte bekræftelses-e-mail for %{target}"
         reset_password_user_html: "%{name} nulstillede adgangskoden for brugeren %{target}"
         resolve_report_html: "%{name} løste anmeldelsen %{target}"
         sensitive_account_html: "%{name} markerede %{target}s medier som sensitive"
@@ -281,6 +283,7 @@ da:
         update_ip_block_html: "%{name} ændrede reglen for IP'en %{target}"
         update_status_html: "%{name} opdaterede indlægget fra %{target}"
         update_user_role_html: "%{name} ændrede %{target}-rolle"
+      deleted_account: slettet konto
       empty: Ingen logger fundet.
       filter_by_action: Filtrér efter handling
       filter_by_user: Filtrér efter bruger
@@ -383,9 +386,7 @@ da:
         create: Opret blokering
         hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk føje særlige moderationsmetoder til disse konti.
         severity:
-          desc_html: "<strong>Tavsgørelse</strong> gør kontoens indlæg usynlige for alle, som ikke følger dem. <strong>Suspendering</strong> fjerner alt kontoindhold, medier og profildata. Brug <strong>Ingen</strong>, hvis mediefiler blot ønskes afvist."
           noop: Ingen
-          silence: Tavsgøre
           suspend: Suspendere
         title: Ny domæneblokering
       obfuscate: Slør domænenavn
@@ -605,7 +606,7 @@ da:
         other: "%{count} brugere"
       categories:
         administration: Håndtering
-        devops: Devops
+        devops: DevOps
         invites: Invitationer
         moderation: Moderering
         special: Speciel
@@ -622,7 +623,7 @@ da:
         administrator_description: Brugere med denne rolle kan omgå alle tilladelser
         delete_user_data: Slet brugerdata
         delete_user_data_description: Tillader brugere at slette andre brugeres data straks
-        invite_users: Invitere brugere
+        invite_users: Invitér brugere
         invite_users_description: Tillader brugere at invitere nye personer til serveren
         manage_announcements: Håndtere bekendtgørelser
         manage_announcements_description: Tillader brugere at håndtere bekendtgørelser på serveren
@@ -634,7 +635,7 @@ da:
         manage_custom_emojis_description: Tillader brugere at håndtere tilpassede emojier på serveren
         manage_federation: Håndtere federation
         manage_federation_description: Tillader brugere at blokere eller tillade federation med andre domæner og styre leverbarhed
-        manage_invites: Håndtere invitationer
+        manage_invites: Administrér invitationer
         manage_invites_description: Tillader brugere at gennemse og deaktivere invitationslinks
         manage_reports: Håndtere rapporter
         manage_reports_description: Tillader brugere at vurdere rapporter og, i overensstemmelse hermed, at udføre moderationshandlinger
@@ -656,7 +657,7 @@ da:
         view_audit_log_description: Tillader brugere at se en historik over administrative handlinger på serveren
         view_dashboard: Vis Dashboard
         view_dashboard_description: Tillader brugere at tilgå Dashboard'et og forskellige målinger
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
       title: Roller
     rules:
@@ -683,7 +684,7 @@ da:
         title: Indholdsopbevaring
       discovery:
         follow_recommendations: Følg-anbefalinger
-        preamble: At vise interessant indhold er vital ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
+        preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
         title: Opdagelse
@@ -911,12 +912,11 @@ da:
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
     your_token: Dit adgangstoken
   auth:
-    apply_for_account: Kom på ventelisten
     change_password: Adgangskode
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
-      prefix_invited_by_user: "@%{name} inviterer dig til at deltage på denne Mastodon-server!"
+      prefix_invited_by_user: "@%{name} inviterer dig ind på denne Mastodon-server!"
       prefix_sign_up: Tilmeld dig Mastodon i dag!
       suffix: Du vil med en konto kunne følge personer, indsende opdateringer og udveksle beskeder med brugere fra enhver Mastodon-server, og meget mere!
     didnt_get_confirmation: Ikke modtaget nogle bekræftelsesinstruktioner?
@@ -1249,6 +1249,8 @@ da:
     carry_blocks_over_text: Denne bruger er flyttet fra %{acct}, som du har haft blokeret.
     carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.
     copy_account_note_text: 'Denne bruger er flyttet fra %{acct}, hvor dine tidligere noter om dem var:'
+  navigation:
+    toggle_menu: Åbn/luk menu
   notification_mailer:
     admin:
       report:
@@ -1368,7 +1370,7 @@ da:
     browser: Browser
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1382,7 +1384,7 @@ da:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCbrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Aktuelle session
     description: "%{browser} på %{platform}"
@@ -1391,8 +1393,7 @@ da:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

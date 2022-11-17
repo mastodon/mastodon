@@ -211,6 +211,11 @@ module ApplicationHelper
       state_params[:admin]             = Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
     end
 
+    if user_signed_in? && !current_user.functional?
+      state_params[:disabled_account] = current_account
+      state_params[:moved_to_account] = current_account.moved_to_account
+    end
+
     if single_user_mode?
       state_params[:owner] = Account.local.without_suspended.where('id > 0').first
     end
