@@ -399,6 +399,8 @@ cy:
       add_new: Rhestrwch parth
       created_msg: Rhestrwyd wen parth yn llwyddiannus
       destroyed_msg: Mae parth wedi'i dynnu o'r rhestr wen
+      export: Allforio
+      import: Mewnforio
       undo: Tynnwch o'r rhestr wen
     domain_blocks:
       add_new: Ychwanegu bloc parth newydd
@@ -408,15 +410,19 @@ cy:
       edit: Golygu bloc parth
       existing_domain_block: Rydych chi eisoes wedi gosod terfynau llymach ar %{name}.
       existing_domain_block_html: Rydych yn barod wedi gosod cyfyngau fwy llym ar %{name}, mae rhaid i chi ei <a href="%{unblock_url}">ddadblocio</a> yn gyntaf.
+      export: Allforio
+      import: Mewnforio
       new:
         create: Creu bloc
         hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau cymedroli penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
         severity:
-          desc_html: "Mae <strong>Tawelu</strong> yn gwneud twtiau y cyfrif yn anweledig i unrhyw un nad yw'n dilyn y cyfrif. Mae <strong>Atal</strong> yn cael gwared ar holl gynnwys, cyfryngau a data proffil y cyfrif. Defnyddiwch <strong>Dim</strong> os ydych chi ond am wrthod dogfennau cyfryngau."
+          desc_html: "Bydd <strong>terfyn</strong> yn gwneud postiadau o gyfrifon yn y parth hwn yn anweledig i unrhyw un nad yw'n eu dilyn. Bydd <strong>Atal</strong> yn dileu'r holl gynnwys, cyfryngau a data proffil ar gyfer cyfrifon y parth hwn o'ch gweinydd. Defnyddiwch <strong>Dim</strong> os ydych am wrthod ffeiliau cyfryngau yn unig."
           noop: Dim
-          silence: Tawelwch
+          silence: Terfyn
           suspend: Atal
         title: Blocio parth newydd
+      no_domain_block_selected: Heb newid unrhyw flociau parth e-bost gan nad oes un wedi'i ddewis
+      not_permitted: Nid oes gennych caniatâd i gyflawni'r weithred hon
       obfuscate: Cuddio enw parth
       obfuscate_hint: Cuddio'r enw parth yn y rhestr yn rhannol os yw hysbysebu'r rhestr o gyfyngiadau parth wedi'i alluogi
       private_comment: Sylw preifat
@@ -452,6 +458,20 @@ cy:
       resolved_dns_records_hint_html: Mae'r enw parth yn cyd-fynd â'r parthau MX canlynol, sy'n gyfrifol yn y pen draw am dderbyn e-bost. Bydd rhwystro parth MX yn rhwystro cofrestriadau o unrhyw gyfeiriad e-bost sy'n defnyddio'r un parth MX, hyd yn oed os yw'r enw parth gweladwy yn wahanol. <strong>Byddwch yn ofalus i beidio â rhwystro darparwyr e-bost mawr.</strong>
       resolved_through_html: Wedi'i ddatrys trwy %{domain}
       title: Cosbrestr e-bost
+    export_domain_allows:
+      new:
+        title: Mewnforio parth yn caniatáu
+      no_file: Dim ffeil wedi'i dewis
+    export_domain_blocks:
+      import:
+        description_html: Rydych ar fin mewnforio rhestr o flociau parth. Adolygwch y rhestr hon yn ofalus iawn, yn enwedig os nad ydych wedi ysgrifennu'r rhestr hon eich hun.
+        existing_relationships_warning: Perthynas ddilyn sy'n bodoli
+        private_comment_description_html: 'I''ch helpu i olrhain o ble mae blociau wedi''u mewnforio yn dod, bydd blociau wedi''u mewnforio yn cael eu creu gyda''r sylw preifat canlynol: <q>%{comment}</q>'
+        private_comment_template: Mewnforiwyd o %{source} ar %{date}
+        title: Mewnforio blociau parth
+      new:
+        title: Mewnforio blociau parth
+      no_file: Dim ffeil wedi'i dewis
     follow_recommendations:
       description_html: "<strong>Mae dilyn yr argymhellion yn helpu i ddefnyddwyr newydd ddod o hyd i gynnwys diddorol yn gyflym</strong>. Pan nad yw defnyddiwr wedi rhyngweithio digon ag eraill i ffurfio argymhellion dilyn personol, argymhellir y cyfrifon hyn yn lle hynny. Cânt eu hailgyfrifo'n ddyddiol o gymysgedd o gyfrifon gyda'r ymgysylltiadau diweddar uchaf a'r cyfrif dilynwyr lleol uchaf ar gyfer iaith benodol."
       language: Ar gyfer iaith
@@ -982,6 +1002,7 @@ cy:
     warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
     your_token: Eich tocyn mynediad
   auth:
+    apply_for_account: Gofyn am gyfrif
     change_password: Cyfrinair
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
@@ -1250,6 +1271,7 @@ cy:
     invalid_markup: 'yn cynnwys marciad HTML annilys: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
       over_rows_processing_limit: yn cynnwys mwy na %{count} rhes
     modes:
       merge: Cyfuno
