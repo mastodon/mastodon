@@ -4,26 +4,6 @@ en:
     custom_emojis:
       batch_copy_error: 'An error occurred when copying some of the selected emoji: %{message}'
       batch_error: 'An error occurred: %{message}'
-    domain_allows:
-      export: Export
-      import: Import
-    domain_blocks:
-      export: Export
-      import: Import
-    export_domain_allows:
-      new:
-        title: Import domain allows
-      no_file: No file selected
-    export_domain_blocks:
-      import:
-        description_html: You are about to import a list of domain blocks. Please review this list very carefully, especially if you have not authored this list yourself.
-        existing_relationships_warning: Existing follow relationships
-        private_comment_description_html: 'To help you track where imported blocks come from, imported blocks will be created with the following private comment: <q>%{comment}</q>'
-        private_comment_template: Imported from %{source} on %{date}
-        title: Import domain blocks
-      new:
-        title: Import domain blocks
-      no_file: No file selected
     settings:
       captcha_enabled:
         desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.<br>Users that have been invited through a limited-use invite will not need to solve a CAPTCHA
