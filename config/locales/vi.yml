@@ -423,6 +423,16 @@ vi:
       new:
         title: Nhập tên miền cho phép
       no_file: Không có tập tin nào được chọn
+    export_domain_blocks:
+      import:
+        description_html: Bạn sắp nhập danh sách các tên miền chặn. Vui lòng xem lại danh sách này thật cẩn thận, đặc biệt nếu bạn không phải là tác giả của danh sách này.
+        existing_relationships_warning: Các mối quan hệ theo dõi hiện tại
+        private_comment_description_html: 'Để giúp bạn theo dõi nguồn gốc của các chặn tên miền đã nhập, các tên miền chặn đã nhập sẽ được tạo bằng nhận xét riêng tư sau: <q>%{comment}</q>'
+        private_comment_template: Nhập từ %{source} vào %{date}
+        title: Nhập máy chủ chặn
+      new:
+        title: Nhập máy chủ chặn
+      no_file: Không có tập tin nào được chọn
     follow_recommendations:
       description_html: "<strong>Gợi ý theo dõi là cách giúp những người mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những người này sẽ được đề xuất. Nó bao gồm những người có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
       language: Theo ngôn ngữ
@@ -1143,6 +1153,7 @@ vi:
     invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Tập tin CSV không hợp lệ. Lỗi: %{error}'
       over_rows_processing_limit: chứa nhiều hơn %{count} hàng
     modes:
       merge: Hợp nhất
