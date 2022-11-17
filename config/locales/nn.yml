@@ -378,9 +378,9 @@ nn:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
+          desc_html: "<strong>Målbind</strong> gjer kontoen sine postear usynlege for alle som ikkje følger den. <strong>Utvis</strong> fjernar alt innhald, media og profildata frå kontoen. Bruk <strong>Ingen</strong> viss du berre vil fjerne mediafiler."
           noop: Ingen
-          silence: Togn
+          silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
       obfuscate: Obfuskere domenenavn
@@ -721,6 +721,7 @@ nn:
     warning: Ver varsam med dette datumet. Aldri del det med nokon!
     your_token: Tilgangsnykelen din
   auth:
+    apply_for_account: Søk om ein konto
     change_password: Passord
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
