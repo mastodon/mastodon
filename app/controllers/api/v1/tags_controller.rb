@@ -12,7 +12,7 @@ class Api::V1::TagsController < Api::BaseController
   end
 
   def follow
-    TagFollow.create!(tag: @tag, account: current_account, rate_limit: true)
+    TagFollow.first_or_create!(tag: @tag, account: current_account, rate_limit: true)
     render json: @tag, serializer: REST::TagSerializer
   end
 
