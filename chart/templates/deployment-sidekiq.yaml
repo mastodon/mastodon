@@ -121,6 +121,7 @@ spec:
           {{- with .Values.mastodon.sidekiq.resources }}
           resources:
             {{- toYaml . | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
