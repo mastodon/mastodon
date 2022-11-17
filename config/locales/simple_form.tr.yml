@@ -3,16 +3,16 @@ tr:
   simple_form:
     hints:
       account_alias:
-        acct: Taşıyacağınız hesabı kullanıcıadı@alanadı şeklinde belirtin
+        acct: Taşımak istediğiniz hesabı kullanıcıadı@alanadı şeklinde belirtin
       account_migration:
         acct: Yeni hesabınızı kullanıcıadı@alanadını şeklinde belirtin
       account_warning_preset:
-        text: URL'ler, etiketler ve bahsedenler gibi toot sözdizimini kullanabilirsiniz
+        text: URL'ler, etiketler ve bahsedenler gibi gönderi sözdizimini kullanabilirsiniz
         title: İsteğe bağlı. Alıcıya görünmez
       admin_account_action:
-        include_statuses: Kullanıcı hangi tootların denetleme eylemi ya da uyarısına neden olduğunu görecektir
+        include_statuses: Kullanıcı hangi gönderilerin denetleme eylemi veya uyarısına neden olduğunu görecektir
         send_email_notification: Kullanıcı, hesabına ne olduğuna dair bir açıklama alacak
-        text_html: İsteğe bağlı. Toot sözdizimleri kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
+        text_html: İsteğe bağlı. Gönderi sözdizimini kullanabilirsiniz. Zamandan kazanmak için <a href="%{path}">uyarı ön-ayarları ekleyebilirsiniz</a>
         type_html: "<strong>%{acct}</strong> ile ne yapılacağını seçin"
         types:
           disable: Kullanıcının hesabını kullanmasını engelle ama içeriklerini silme veya gizleme.
@@ -26,7 +26,7 @@ tr:
         ends_at: İsteğe bağlı. Duyuru, bu tarihte otomatik olarak yayından kaldırılacak
         scheduled_at: Duyuruyu hemen yayınlamak için boş bırakın
         starts_at: İsteğe bağlı. Duyurunuzun belirli bir zaman aralığına bağlı olması durumunda
-        text: Toot söz dizimini kullanabilirsiniz. Lütfen duyurunun kullanıcının ekranında yer alacağı alanı göz önünde bulundurun
+        text: Gönderi sözdizimini kullanabilirsiniz. Lütfen duyurunun kullanıcının ekranında yer alacağı alanı göz önünde bulundurun
       appeal:
         text: Bir eyleme yalnızca bir kere itiraz edebilirsiniz
       defaults:
@@ -42,13 +42,13 @@ tr:
         fields: Profilinizde tablo olarak görüntülenen en fazla 4 ögeye sahip olabilirsiniz
         header: PNG, GIF ya da JPG. En fazla %{size}. %{dimensions}px boyutuna küçültülecek
         inbox_url: Kullanmak istediğiniz aktarıcının ön sayfasından URL'yi kopyalayın
-        irreversible: Filtre uygulanmış tootlar, filtre daha sonra çıkartılsa bile geri dönüşümsüz biçimde kaybolur
+        irreversible: Filtrelenmiş gönderiler, filtre daha sonra kaldırılsa bile, geri dönüşümsüz biçimde kaybolur
         locale: Kullanıcı arayüzünün dili, e-postalar ve push bildirimleri
         locked: Takipçilerinizi manuel olarak kabul etmenizi ve gönderilerinizi varsayılan olarak sadece takipçilerinizin göreceği şekilde paylaşmanızı sağlar.
         password: En az 8 karakter kullanın
-        phrase: Metnin büyük/küçük harf durumundan veya tootun içerik uyarısından bağımsız olarak eşleştirilecek
+        phrase: Metnin büyük/küçük harf durumundan veya gönderinin içerik uyarısından bağımsız olarak eşleştirilecek
         scopes: Uygulamanın erişmesine izin verilen API'ler. Üst seviye bir kapsam seçtiyseniz, bireysel kapsam seçmenize gerek yoktur.
-        setting_aggregate_reblogs: Yakın zamanda boostlanmış tootlar için yeni boostları göstermeyin (yalnızca yeni alınan boostları etkiler)
+        setting_aggregate_reblogs: Yakın zamanda teşvik edilmiş gönderiler için yeni teşvikleri göstermeyin (yalnızca yeni alınan teşvikleri etkiler)
         setting_always_send_emails: Normalde, Mastodon'u aktif olarak kullanırken e-posta bildirimleri gönderilmeyecektir
         setting_default_sensitive: Hassas medya varsayılan olarak gizlidir ve bir tıklama ile gösterilebilir
         setting_display_media_default: Hassas olarak işaretlenmiş medyayı gizle
@@ -56,7 +56,7 @@ tr:
         setting_display_media_show_all: Medyayı her zaman göster
         setting_hide_network: Takip ettiğiniz ve sizi takip eden kişiler profilinizde gösterilmeyecek
         setting_noindex: Herkese açık profilinizi ve durum sayfalarınızı etkiler
-        setting_show_application: Tootlamak için kullandığınız uygulama, tootlarınızın detaylı görünümünde gösterilecektir
+        setting_show_application: Gönderi gönderimi için kullandığınız uygulama, gönderilerinizin ayrıntılı görünümünde gösterilecektir
         setting_use_blurhash: Gradyenler gizli görsellerin renklerine dayanır, ancak detayları gizler
         setting_use_pending_items: Akışı otomatik olarak kaydırmak yerine, zaman çizelgesi güncellemelerini tek bir tıklamayla gizleyin
         username: Kullanıcı adınız %{domain} alanında benzersiz olacak
@@ -67,7 +67,33 @@ tr:
         domain: Bu e-posta adresinde görünen veya kullanılan MX kaydındaki alan adı olabilir. Kayıt sırasında denetleneceklerdir.
         with_dns_records: Belirli bir alanın DNS kayıtlarını çözmeyi deneyecek ve sonuçlar kara listeye eklenecek
       featured_tag:
-        name: 'Bunlardan birini kullanmak isteyebilirsiniz:'
+        name: 'Son zamanlarda sıkça kullandığınız etiketlerin bazıları:'
+      filters:
+        action: Bir gönderi filtreyle eşleştiğinde hangi eylemin yapılacağını seçin
+        actions:
+          hide: Filtrelenmiş içeriği tamamen gizle, sanki varolmamış gibi
+          warn: Filtrelenmiş içeriği, filtrenin başlığından söz eden bir uyarının arkasında gizle
+      form_admin_settings:
+        backups_retention_period: Üretilen kullanıcı arşivlerini belirli gün sayısı kadar sakla.
+        bootstrap_timeline_accounts: Bu hesaplar, yeni kullanıcıların takip önerilerinin tepesinde sabitlenecektir.
+        closed_registrations_message: Kayıt olma kapalıyken görüntülenir
+        content_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan gelen gönderiler belirli bir gün sonra silinecektir. Silme geri alınamayabilir.
+        custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
+        mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
+        media_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan indirilen medya dosyaları belirli bir gün sonra silinecektir, isteğe bağlı olarak tekrar indirilebilir.
+        profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
+        require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
+        site_contact_email: İnsanlar yasal konular veya destek hakkında bilgi edinmek için size nasıl ulaşabilir.
+        site_contact_username: İnsanlar size Mastodon'da nasıl ulaşabilir.
+        site_extended_description: Ziyaretçileriniz ve kullanıcılarınıza yardımı dokunabilecek herhangi bir ek bilgi. Markdown sözdizimiyle biçimlendirilebilir.
+        site_short_description: Sunucunuzu tekil olarak tanımlamaya yardımcı olacak kısa tanım. Kim işletiyor, kimin için?
+        site_terms: Kendi gizlilik politikanızı kullanın veya varsayılanı kullanmak için boş bırakın. Markdown sözdizimiyle biçimlendirilebilir.
+        site_title: İnsanlar sunucunuzu alan adı dışında nasıl isimlendirmeli.
+        theme: Giriş yapmamış ziyaretçilerin ve yeni kullanıcıların gördüğü tema.
+        thumbnail: Sunucu bilginizin yanında gösterilen yaklaşık 2:1'lik görüntü.
+        timeline_preview: Giriş yapmamış ziyaretçiler, sunucuda mevcut olan en son genel gönderileri tarayabilecekler.
+        trendable_by_default: Öne çıkan içeriğin elle incelenmesini atla. Tekil öğeler sonrada öne çıkanlardan kaldırılabilir.
+        trends: Öne çıkanlar, sunucunuzda ilgi toplayan gönderileri, etiketleri ve haber yazılarını gösterir.
       form_challenge:
         current_password: Güvenli bir bölgeye giriyorsunuz
       imports:
@@ -80,6 +106,7 @@ tr:
         ip: Bir IPv4 veya IPv6 adresi girin. CIDR sözdizimini kullanarak tüm aralıkları engelleyebilirsiniz. Kendinizi dışarıda bırakmamaya dikkat edin!
         severities:
           no_access: Tüm kaynaklara erişimi engelle
+          sign_up_block: Yeni kayıtlar mümkün olmayacaktır
           sign_up_requires_approval: Yeni kayıt onayınızı gerektirir
         severity: Bu IP'den gelen isteklere ne olacağını seçin
       rule:
@@ -90,7 +117,17 @@ tr:
       tag:
         name: Harflerin, örneğin daha okunabilir yapmak için, sadece büyük/küçük harf durumlarını değiştirebilirsiniz
       user:
-        chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki tootlar genel zaman çizelgelerinde görüntülenir
+        chosen_languages: İşaretlendiğinde, yalnızca seçilen dillerdeki gönderiler genel zaman çizelgelerinde görüntülenir
+        role: Rol, kullanıcıların sahip olduğu izinleri denetler
+      user_role:
+        color: Arayüz boyunca rol için kullanılacak olan renk, hex biçiminde RGB
+        highlighted: Bu rolü herkese açık hale getirir
+        name: Rolün, eğer rozet olarak görüntülenmesi ayarlandıysa kullanılacak herkese açık ismi
+        permissions_as_keys: Bu role sahip kullanıcıların şunlara erişimi var...
+        position: Belirli durumlarda çatışmayı çözmek için daha yüksek rol belirleyicidir. Bazı eylemler ancak daha düşük öncelikteki rollere uygulanabilir
+      webhook:
+        events: Gönderilecek etkinlikleri seçin
+        url: Olayların gönderileceği yer
     labels:
       account:
         fields:
@@ -104,7 +141,7 @@ tr:
         text: Ön ayarlı metin
         title: Başlık
       admin_account_action:
-        include_statuses: Bildirilen tootları e-postaya dahil et
+        include_statuses: Bildirilen gönderileri e-postaya dahil et
         send_email_notification: Kullanıcıyı e-posta ile bilgilendir
         text: Özel uyarı
         type: Eylem
@@ -155,21 +192,21 @@ tr:
         setting_always_send_emails: Her zaman e-posta bildirimleri gönder
         setting_auto_play_gif: Hareketli GIF'leri otomatik oynat
         setting_boost_modal: Boostlamadan önce onay iletişim kutusu göster
-        setting_crop_images: Genişletilmemiş tootlardaki resimleri 16x9 olarak kırp
+        setting_crop_images: Genişletilmemiş gönderilerdeki resimleri 16x9 olarak kırp
         setting_default_language: Gönderi dili
         setting_default_privacy: Gönderi gizliliği
         setting_default_sensitive: Medyayı her zaman hassas olarak işaretle
-        setting_delete_modal: Bir tootu silmeden önce onay iletişim kutusu göster
+        setting_delete_modal: Bir gönderiyi silmeden önce onay iletişim kutusu göster
         setting_disable_swiping: Kaydırma hareketlerini devre dışı bırak
         setting_display_media: Medya görüntüleme
         setting_display_media_default: Varsayılan
         setting_display_media_hide_all: Tümünü gizle
         setting_display_media_show_all: Tümünü göster
-        setting_expand_spoilers: İçerik uyarılarıyla işaretli tootları her zaman genişlet
+        setting_expand_spoilers: İçerik uyarılarıyla işaretli gönderileri her zaman genişlet
         setting_hide_network: Sosyal grafiğini gizle
         setting_noindex: Arama motoru dizinine eklemeyi iptal et
         setting_reduce_motion: Animasyonlarda hareketi azalt
-        setting_show_application: Tootları göndermek için kullanılan uygulamayı belirt
+        setting_show_application: Gönderileri göndermek için kullanılan uygulamayı belirt
         setting_system_font_ui: Sistemin varsayılan yazı tipini kullan
         setting_theme: Site teması
         setting_trends: Bugünün gündemini göster
@@ -178,6 +215,7 @@ tr:
         setting_use_pending_items: Yavaş mod
         severity: Önem derecesi
         sign_in_token_attempt: Güvenlik kodu
+        title: Başlık
         type: İçeri aktarma türü
         username: Kullanıcı adı
         username_or_email: Kullanıcı adı ya da e-posta
@@ -186,6 +224,34 @@ tr:
         with_dns_records: Alan adının MX kayıtlarını ve IP'lerini ekleyin
       featured_tag:
         name: Etiket
+      filters:
+        actions:
+          hide: Tamamen gizle
+          warn: Uyarıyla gizle
+      form_admin_settings:
+        backups_retention_period: Kullanıcı arşivi saklama süresi
+        bootstrap_timeline_accounts: Bu hesapları yeni kullanıcılara her zaman öner
+        closed_registrations_message: Kayıt olma mevcut değilken gösterilen özel ileti
+        content_cache_retention_period: İçerik önbelleği saklama süresi
+        custom_css: Özel CSS
+        mascot: Özel maskot (eski)
+        media_cache_retention_period: Medya önbelleği saklama süresi
+        profile_directory: Profil dizinini etkinleştir
+        registrations_mode: Kim kaydolabilir
+        require_invite_text: Katılmak için bir gerekçe iste
+        show_domain_blocks: Engellenen alan adlarını göster
+        show_domain_blocks_rationale: Alan adlarının neden engellendiğini göster
+        site_contact_email: İletişim e-postası
+        site_contact_username: İletişim kullanıcı adı
+        site_extended_description: Geniş açıklama
+        site_short_description: Sunucu açıklaması
+        site_terms: Gizlilik Politikası
+        site_title: Sunucu adı
+        theme: Öntanımlı tema
+        thumbnail: Sunucu küçük resmi
+        timeline_preview: Genel zaman çizelgelerine yetkisiz erişime izin ver
+        trendable_by_default: Ön incelemesiz öne çıkanlara izin ver
+        trends: Öne çıkanları etkinleştir
       interactions:
         must_be_follower: Takipçim olmayan kişilerden gelen bildirimleri engelle
         must_be_following: Takip etmediğim kişilerden gelen bildirimleri engelle
@@ -199,6 +265,7 @@ tr:
         ip: IP
         severities:
           no_access: Erişimi engelle
+          sign_up_block: Kayıt olmayı engelle
           sign_up_requires_approval: Kayıtları sınırla
         severity: Kural
       notification_emails:
@@ -218,8 +285,20 @@ tr:
         listable: Bu etiketin aramalarda ve profil dizininde görünmesine izin ver
         name: Etiket
         trendable: Bu etiketin gündem altında görünmesine izin ver
-        usable: Tootların bu etiketi kullanmasına izin ver
+        usable: Gönderilerin bu etiketi kullanmasına izin ver
+      user:
+        role: Rol
+      user_role:
+        color: Rozet rengi
+        highlighted: Rolü kullanıcıların profilinde rozet olarak görüntüle
+        name: Ad
+        permissions_as_keys: İzinler
+        position: Öncelik
+      webhook:
+        events: Etkin olaylar
+        url: Uç nokta URL’si
     'no': Hayır
+    not_recommended: Önerilmez
     recommended: Önerilen
     required:
       mark: "*"

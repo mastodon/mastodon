@@ -17,6 +17,7 @@ class EmailDomainBlock < ApplicationRecord
   )
 
   include DomainNormalizable
+  include Paginable
 
   belongs_to :parent, class_name: 'EmailDomainBlock', optional: true
   has_many :children, class_name: 'EmailDomainBlock', foreign_key: :parent_id, inverse_of: :parent, dependent: :destroy
@@ -26,36 +27,64 @@ class EmailDomainBlock < ApplicationRecord
   # Used for adding multiple blocks at once
   attr_accessor :other_domains
 
+  def to_log_human_identifier
+    domain
+  end
+
   def history
     @history ||= Trends::History.new('email_domain_blocks', id)
   end
 
-  def self.block?(domain_or_domains, attempt_ip: nil)
-    domains = Array(domain_or_domains).map do |str|
-      domain = begin
-        if str.include?('@')
-          str.split('@', 2).last
-        else
-          str
-        end
+  class Matcher
+    def initialize(domain_or_domains, attempt_ip: nil)
+      @uris       = extract_uris(domain_or_domains)
+      @attempt_ip = attempt_ip
+    end
+
+    def match?
+      blocking? || invalid_uri?
+    end
+
+    private
+
+    def invalid_uri?
+      @uris.any?(&:nil?)
+    end
+
+    def blocking?
+      blocks = EmailDomainBlock.where(domain: domains_with_variants).order(Arel.sql('char_length(domain) desc'))
+      blocks.each { |block| block.history.add(@attempt_ip) } if @attempt_ip.present?
+      blocks.any?
+    end
+
+    def domains_with_variants
+      @uris.flat_map do |uri|
+        next if uri.nil?
+
+        segments = uri.normalized_host.split('.')
+
+        segments.map.with_index { |_, i| segments[i..-1].join('.') }
       end
-
-      TagManager.instance.normalize_domain(domain) if domain.present?
-    rescue Addressable::URI::InvalidURIError
-      nil
     end
 
-    # If some of the inputs passed in are invalid, we definitely want to
-    # block the attempt, but we also want to register hits against any
-    # other valid matches
+    def extract_uris(domain_or_domains)
+      Array(domain_or_domains).map do |str|
+        domain = begin
+          if str.include?('@')
+            str.split('@', 2).last
+          else
+            str
+          end
+        end
 
-    blocked = domains.any?(&:nil?)
-
-    where(domain: domains).find_each do |block|
-      blocked = true
-      block.history.add(attempt_ip) if attempt_ip.present?
+        Addressable::URI.new.tap { |u| u.host = domain.strip } if domain.present?
+      rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
+        nil
+      end
     end
+  end
 
-    blocked
+  def self.block?(domain_or_domains, attempt_ip: nil)
+    Matcher.new(domain_or_domains, attempt_ip: attempt_ip).match?
   end
 end

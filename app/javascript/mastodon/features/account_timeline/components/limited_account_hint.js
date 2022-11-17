@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { revealAccount } from 'mastodon/actions/accounts';
 import { FormattedMessage } from 'react-intl';
 import Button from 'mastodon/components/button';
+import { domain } from 'mastodon/initial_state';
 
 const mapDispatchToProps = (dispatch, { accountId }) => ({
 
@@ -26,7 +27,7 @@ class LimitedAccountHint extends React.PureComponent {
 
     return (
       <div className='limited-account-hint'>
-        <p><FormattedMessage id='limited_account_hint.title' defaultMessage='This profile has been hidden by the moderators of your server.' /></p>
+        <p><FormattedMessage id='limited_account_hint.title' defaultMessage='This profile has been hidden by the moderators of {domain}.' values={{ domain }} /></p>
         <Button onClick={reveal}><FormattedMessage id='limited_account_hint.action' defaultMessage='Show profile anyway' /></Button>
       </div>
     );

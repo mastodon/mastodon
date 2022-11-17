@@ -4,20 +4,18 @@ $black: #000000;
 $classic-base-color: #282c37;
 $classic-primary-color: #9baec8;
 $classic-secondary-color: #d9e1e8;
-$classic-highlight-color: #2b90d9;
+$classic-highlight-color: #6364ff;
 
 $ui-base-color: $classic-base-color !default;
 $ui-primary-color: $classic-primary-color !default;
 $ui-secondary-color: $classic-secondary-color !default;
-
-// Differences
-$ui-highlight-color: #2b5fd9;
+$ui-highlight-color: $classic-highlight-color !default;
 
 $darker-text-color: lighten($ui-primary-color, 20%) !default;
 $dark-text-color: lighten($ui-primary-color, 12%) !default;
 $secondary-text-color: lighten($ui-secondary-color, 6%) !default;
-$highlight-text-color: $classic-highlight-color !default;
-$action-button-color: #8d9ac2;
+$highlight-text-color: lighten($ui-highlight-color, 10%) !default;
+$action-button-color: lighten($ui-base-color, 50%);
 
 $inverted-text-color: $black !default;
 $lighter-text-color: darken($ui-base-color, 6%) !default;

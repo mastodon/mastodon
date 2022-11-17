@@ -1,142 +1,76 @@
 ---
 sl:
   about:
-    about_hashtag_html: To so javne objave, označene z <strong>#%{hashtag}</strong>. Z njimi se lahko povežete, če imate račun kjerkoli v fediverzumu.
-    about_mastodon_html: Mastodon je socialno omrežje, ki temelji na odprtih spletnih protokolih in prosti ter odprtokodni programski opremi. Je decentraliziran, kot e-pošta.
-    about_this: O Mastodonu
-    active_count_after: dejavnih
-    active_footnote: Aktivni mesečni uporabniki (AMU)
-    administered_by: 'Upravlja:'
-    api: API (programerski vmesnik aplikacije)
-    apps: Mobilne aplikacije
-    apps_platforms: Uporabljajte Mastodon iz iOS, Android ali iz drugih platform
-    browse_directory: Brskajte po imeniku profilov in jih filtrirajte po interesih
-    browse_local_posts: Prebrskaj živi tok javnih objav s tega strežnika
-    browse_public_posts: Brskajte javnih objav v živo na Mastodonu
-    contact: Kontakt
+    about_mastodon_html: 'Družbeno omrežje prihodnosti: brez oglasov, brez nadzora korporacij, etično oblikovanje in decentralizacija! Ohranite lastništvo nad svojimi podatki z Mastodonom!'
     contact_missing: Ni nastavljeno
     contact_unavailable: Ni na voljo
-    continue_to_web: Nadaljuj v spletno aplikacijo
-    discover_users: Odkrijte uporabnike
-    documentation: Dokumentacija
-    federation_hint_html: Z računom na %{instance} boste lahko spremljali osebe na poljubnem strežniku Mastodon.
-    get_apps: Poskusite mobilno aplikacijo
     hosted_on: Mastodon gostuje na %{domain}
-    instance_actor_flash: |
-      Ta račun je navidezni igralec, ki predstavlja strežnik in ne posameznega uporabnika.
-      Uporablja se za namene federacije in se ne blokira, če ne želite blokirati celotne instance. V tem primeru blokirajte domeno.
-    learn_more: Nauči se več
-    logged_in_as_html: Trenutno ste prijavljeni kot %{username}.
-    logout_before_registering: Ste že prijavljeni.
-    privacy_policy: Pravilnik o zasebnosti
-    rules: Pravila strežnika
-    rules_html: 'Spodaj je povzetek pravil, ki jim morate slediti, če želite imeti račun na tem strežniku Mastodon:'
-    see_whats_happening: Poglejte, kaj se dogaja
-    server_stats: 'Statistika strežnika:'
-    source_code: Izvorna koda
-    status_count_after:
-      few: stanja
-      one: stanje
-      other: objav
-      two: stanja
-    status_count_before: Ki so avtorji
-    tagline: Sledite prijateljem in odkrijte nove
-    terms: Pogoji storitve
-    unavailable_content: Moderirani strežniki
-    unavailable_content_description:
-      domain: Strežnik
-      reason: Razlog
-      rejecting_media: 'Medijske datoteke s teh strežnikov ne bodo obdelane ali shranjene, nobene ogledne sličice ne bodo prikazane, kar bo zahtevalo ročno klikanje po izvorni datoteki:'
-      rejecting_media_title: Filtrirane datoteke
-      silenced: 'Objave s teh strežnikov bodo skrite v javnih časovnicah ter pogovorih in nobena obvestila ne bodo izdelana iz interakcij njihovih uporabnikov, razen če jim sledite:'
-      silenced_title: Omejeni strežniki
-      suspended: 'Nobeni podatki s teh strežnikov ne bodo obdelani, shranjeni ali izmenjani, zaradi česar je nemogoča kakršna koli interakcija ali komunikacija z uporabniki s teh strežnikov:'
-      suspended_title: Suspendirani strežniki
-    unavailable_content_html: Mastodon vam splošno omogoča ogled vsebin in interakcijo z uporabniki iz vseh drugih strežnikov v fediverzumu. To so izjeme, opravljene na tem strežniku.
-    user_count_after:
-      few: uporabniki
-      one: uporabnik
-      other: uporabnikov
-      two: uporabnika
-    user_count_before: Dom za
-    what_is_mastodon: Kaj je Mastodon?
+    title: O programu
   accounts:
-    choices_html: "%{name} izbire:"
-    endorsements_hint: Osebe, ki jim sledite, lahko podprete prek spletnega vmesnika in prikazane bodo tukaj.
-    featured_tags_hint: Izpostavite lahko določene ključnike, ki bodo prikazani na tem mestu.
     follow: Sledi
     followers:
       few: Sledilci
       one: Sledilec
       other: Sledilcev
       two: Sledilca
-    following: Sledim
+    following: Sledi
     instance_actor_flash: Ta račun je navidezni akter, ki se uporablja za predstavljanje strežnika samega in ne posameznega uporabnika. Uporablja se za namene federacije in se ne sme začasno ustaviti.
-    joined: Se je pridružil na %{date}
     last_active: zadnja dejavnost
-    link_verified_on: Lastništvo te povezave je bilo preverjeno na %{date}
-    media: Mediji
-    moved_html: "%{name} se je prestavil na %{new_profile_link}:"
-    network_hidden: Ta informacija ni na voljo
+    link_verified_on: Lastništvo te povezave je bilo preverjeno %{date}
     nothing_here: Tukaj ni ničesar!
-    people_followed_by: Ljudje, ki jim sledi %{name}
-    people_who_follow: Ljudje, ki sledijo %{name}
     pin_errors:
       following: Verjetno že sledite osebi, ki jo želite potrditi
     posts:
-      few: Tuti
-      one: Tut
+      few: Objave
+      one: Objava
       other: Objav
-      two: Tuta
+      two: Objavi
     posts_tab_heading: Objave
-    posts_with_replies: Objave in odgovori
-    roles:
-      admin: Skrbnik
-      bot: Robot
-      group: Skupina
-      moderator: Mod
-    unavailable: Profil ni na voljo
-    unfollow: Prenehaj slediti
   admin:
     account_actions:
       action: Izvedi dejanje
       title: Izvedi moderirano dejanje za %{acct}
     account_moderation_notes:
       create: Pusti opombo
-      created_msg: Moderirana opomba je uspešno ustvarjena!
-      destroyed_msg: Moderirana opomba je uspešno uničena!
+      created_msg: Opomba moderiranja je uspešno ustvarjena!
+      destroyed_msg: Opomba moderiranja je uspešno uničena!
     accounts:
       add_email_domain_block: Blokiraj domeno e-pošte
       approve: Odobri
-      approved_msg: Uspešno odobrena aplikacija prijave uporabnika %{username}
+      approved_msg: Uspešno odobrena vloga prijave uporabnika %{username}
       are_you_sure: Ali ste prepričani?
       avatar: Podoba
       by_domain: Domena
       change_email:
-        changed_msg: E-pošta računa je uspešno spremenjena!
-        current_email: Trenutna e-pošta
-        label: Spremeni e-pošto
-        new_email: Nova e-pošta
-        submit: Spremeni e-pošto
-        title: Spremeni e-pošto za %{username}
+        changed_msg: E-pošni naslov uspešno spremenjen!
+        current_email: Trenutni e-naslov
+        label: Spremeni e-naslov
+        new_email: Nov e-naslov
+        submit: Spremeni e-naslov
+        title: Spremeni e-naslov za %{username}
+      change_role:
+        changed_msg: Vloga uspešno spremenjena!
+        label: Spremeni vlogo
+        no_role: Brez vloge
+        title: Spremeni vlogo za %{username}
       confirm: Potrdi
       confirmed: Potrjeno
-      confirming: Potrjujem
+      confirming: V potrjevanju
       custom: Po meri
       delete: Izbriši podatke
       deleted: Izbrisano
-      demote: Degradiraj
+      demote: Ponižaj
       destroyed_msg: Podatki uporabnika %{username} so zdaj v vrsti za trajen izbris
-      disable: Onemogoči
+      disable: Zamrzni
       disable_sign_in_token_auth: Onemogoči overjanje z žetonom po e-pošti
       disable_two_factor_authentication: Onemogoči 2FA
-      disabled: Onemogočeno
-      display_name: Prikazno ime
+      disabled: Zamrznjeno
+      display_name: Pojavno ime
       domain: Domena
       edit: Uredi
-      email: E-pošta
-      email_status: Stanje e-pošte
-      enable: Omogoči
+      email: E-naslov
+      email_status: Stanje e-naslova
+      enable: Odmrzni
       enable_sign_in_token_auth: Omogoči overjanje z žetonom po e-pošti
       enabled: Omogočeno
       enabled_msg: Uspešno odmrznjen račun uporabnika %{username}
@@ -145,23 +79,24 @@ sl:
       header: Glava
       inbox_url: URL mape "Prejeto"
       invite_request_text: Razlogi za pridružitev
-      invited_by: Povabljen od
+      invited_by: Na povabilo
       ip: IP
-      joined: Pridružil
+      joined: Pridružen_a
       location:
         all: Vse
-        local: Lokalni
+        local: Krajevni
         remote: Oddaljeni
         title: Lokacija
       login_status: Stanje prijave
       media_attachments: Predstavnostne priloge
-      memorialize: Spremenite v spomin
-      memorialized: Spomenificirano
+      memorialize: Spremenite v pomnik
+      memorialized: Spominificirano
       memorialized_msg: Uspešno preoblikovan %{username} v spominski račun
       moderation:
         active: Dejaven
         all: Vse
         pending: Na čakanju
+        silenced: Omejeno
         suspended: Suspendiran
         title: Moderiranje
       moderation_notes: Opombe moderiranja
@@ -169,7 +104,8 @@ sl:
       most_recent_ip: Zadnji IP
       no_account_selected: Noben račun ni bil spremenjen, ker ni bil izbran noben
       no_limits_imposed: Brez omejitev
-      not_subscribed: Ni naročen
+      no_role_assigned: Dodeljena ni nobena vloga
+      not_subscribed: Ni naročnin
       pending: Čakanje na pregled
       perform_full_suspension: Suspendiraj
       previous_strikes: Predhodni ukrepi
@@ -185,26 +121,21 @@ sl:
       redownload: Osveži profil
       redownloaded_msg: Uspešno osvežen profil %{username} iz izvirnika
       reject: Zavrni
-      rejected_msg: Uspešno zavrnjena aplikacija prijave uporabnika %{username}
+      rejected_msg: Uspešno zavrnjena vloga prijave uporabnika %{username}
       remove_avatar: Odstrani podobo
       remove_header: Odstrani glavo
       removed_avatar_msg: Uspešno odstranjena slika avatarja uporabnika %{username}
       removed_header_msg: Uspešno odstranjena naslovna slika uporabnika %{username}
       resend_confirmation:
         already_confirmed: Ta uporabnik je že potrjen
-        send: Ponovno pošlji potrditveno e-pošto
-        success: Potrditvena e-pošta je uspešno poslana!
+        send: Ponovno pošlji potrditveno e-sporočilo
+        success: Potrditveno e-sporočilo je uspešno poslano!
       reset: Ponastavi
       reset_password: Ponastavi geslo
       resubscribe: Ponovno se naroči
-      role: Dovoljenja
-      roles:
-        admin: Skrbnik
-        moderator: Moderator
-        staff: Osebje
-        user: Uporabnik
+      role: Vloga
       search: Iskanje
-      search_same_email_domain: Drugi uporabniki z isto domeno e-pošte
+      search_same_email_domain: Drugi uporabniki z isto e-poštno domeno
       search_same_ip: Drugi uporabniki z istim IP
       security_measures:
         only_password: Samo geslo
@@ -215,24 +146,24 @@ sl:
       show:
         created_reports: Opravljene prijave
         targeted_reports: Prijavili drugi
-      silence: Utišaj
-      silenced: Utišan
+      silence: Omeji
+      silenced: Omejen
       statuses: Objave
       strikes: Predhodni ukrepi
       subscribe: Naroči
       suspend: Suspendiraj
       suspended: Suspendiran
-      suspension_irreversible: Podatki tega računa so bili nepovrazno izbrisani. Račun lahko vrnete iz suspenza, da bo ponovno uporaben, vendar preteklih podatkov ne boste mogli obnoviti.
+      suspension_irreversible: Podatki tega računa so bili nepovratno izbrisani. Račun lahko vrnete iz suspenza, da bo ponovno uporaben, vendar preteklih podatkov ne boste mogli obnoviti.
       suspension_reversible_hint_html: Račun je bil suspendiran, podatki pa bodo v celoti odstranjeni %{date}. Do takrat je mogoče račun obnoviti brez negativnih posledic. Če želite takoj odstraniti vse podatke računa, lahko to storite spodaj.
       title: Računi
       unblock_email: Odblokiraj e-poštni naslov
       unblocked_email_msg: E-poštni naslov uporabnika %{username} uspešno odblokiran
-      unconfirmed_email: Nepotrjena e-pošta
+      unconfirmed_email: Nepotrjen e-naslov
       undo_sensitized: Ni občutljivo
-      undo_silenced: Razveljavi utišanje
-      undo_suspension: Razveljavi suspendiranje
+      undo_silenced: Razveljavi omejitve
+      undo_suspension: Razveljavi suspenz
       unsilenced_msg: Uspešno razveljavljena omejitev računa uporabnika %{username}
-      unsubscribe: Odjavi se od naročnine
+      unsubscribe: Odjavi od naročnine
       unsuspended_msg: Uspešno preklican suspenz računa uporabnika %{username}
       username: Uporabniško ime
       view_domain: Pokaži povzetek za domeno
@@ -244,31 +175,36 @@ sl:
         approve_appeal: Odobri pritožbo
         approve_user: Odobri uporabnika
         assigned_to_self_report: Dodeli prijavo
-        change_email_user: Spremeni e-poštni naslov uporabnika
+        change_email_user: Spremeni e-naslov uporabnika
+        change_role_user: Spremeni vlogo uporabnika
         confirm_user: Potrdi uporabnika
         create_account_warning: Ustvari opozorilo
         create_announcement: Ustvari obvestilo
-        create_custom_emoji: Ustvari emodži po meri
+        create_canonical_email_block: Ustvari blokado e-naslova
+        create_custom_emoji: Ustvari emotikon po meri
         create_domain_allow: Ustvari odobritev domene
         create_domain_block: Ustvari blokado domene
         create_email_domain_block: Ustvari blokado domene e-pošte
         create_ip_block: Ustvari pravilo IP
         create_unavailable_domain: Ustvari domeno, ki ni na voljo
+        create_user_role: Ustvari vlogo
         demote_user: Ponižaj uporabnika
         destroy_announcement: Izbriši obvestilo
-        destroy_custom_emoji: Izbriši emodži po meri
+        destroy_canonical_email_block: Izbriši blokado e-naslova
+        destroy_custom_emoji: Izbriši emotikon po meri
         destroy_domain_allow: Izbriši odobritev domene
         destroy_domain_block: Izbriši blokado domene
         destroy_email_domain_block: Izbriši blokado domene e-pošte
         destroy_instance: Očisti domeno
         destroy_ip_block: Izbriši pravilo IP
         destroy_status: Izbriši objavo
-        destroy_unavailable_domain: Izbriši domeno, ki ni na voljo
+        destroy_unavailable_domain: Izbriši nedosegljivo domeno
+        destroy_user_role: Uniči vlogo
         disable_2fa_user: Onemogoči
-        disable_custom_emoji: Onemogoči emodži po meri
+        disable_custom_emoji: Onemogoči emotikon po meri
         disable_sign_in_token_auth_user: Onemogoči overjanje z žetonom po e-pošti za uporabnika
         disable_user: Onemogoči uporabnika
-        enable_custom_emoji: Omogoči emodži po meri
+        enable_custom_emoji: Omogoči emotikon po meri
         enable_sign_in_token_auth_user: Omogoči overjanje z žetonom po e-pošti za uporabnika
         enable_user: Omogoči uporabnika
         memorialize_account: Spomenificiraj račun
@@ -277,6 +213,7 @@ sl:
         reject_user: Zavrni uporabnika
         remove_avatar_user: Odstrani avatar
         reopen_report: Ponovno odpri prijavo
+        resend_user: Ponovno pošlji potrditveno e-sporočilo
         reset_password_user: Ponastavi geslo
         resolve_report: Razreši prijavo
         sensitive_account: Občutljivi račun
@@ -288,26 +225,32 @@ sl:
         unsilence_account: Razveljavi omejitev računa
         unsuspend_account: Prekliči začasno prekinitev računa
         update_announcement: Posodobi objavo
-        update_custom_emoji: Posodobi emodži po meri
+        update_custom_emoji: Posodobi emotikon po meri
         update_domain_block: Posodobi blokado domene
+        update_ip_block: Posodobi pravilo IP
         update_status: Posodobi objavo
+        update_user_role: Posodobi vlogo
       actions:
         approve_appeal_html: "%{name} je ugodil pritožbi uporabnika %{target} na moderatorsko odločitev"
         approve_user_html: "%{name} je odobril/a registracijo iz %{target}"
         assigned_to_self_report_html: "%{name} je dodelil/a prijavo %{target} sebi"
         change_email_user_html: "%{name} je spremenil/a naslov e-pošte uporabnika %{target}"
+        change_role_user_html: "%{name} je spremenil/a vlogo %{target}"
         confirm_user_html: "%{name} je potrdil/a naslov e-pošte uporabnika %{target}"
         create_account_warning_html: "%{name} je poslal/a opozorilo %{target}"
         create_announcement_html: "%{name} je ustvarila/a novo obvestilo %{target}"
+        create_canonical_email_block_html: "%{name} je dal/a na črni seznam e-pošto s ključnikom %{target}"
         create_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         create_domain_allow_html: "%{name} je dovolil/a federacijo z domeno %{target}"
         create_domain_block_html: "%{name} je blokiral/a domeno %{target}"
         create_email_domain_block_html: "%{name} je dal/a na črni seznam e-pošto domene %{target}"
         create_ip_block_html: "%{name} je ustvaril/a pravilo za IP %{target}"
         create_unavailable_domain_html: "%{name} je prekinil/a dostavo v domeno %{target}"
+        create_user_role_html: "%{name} je ustvaril/a vlogo %{target}"
         demote_user_html: "%{name} je ponižal/a uporabnika %{target}"
         destroy_announcement_html: "%{name} je izbrisal/a obvestilo %{target}"
-        destroy_custom_emoji_html: "%{name} je uničil/a emotikone %{target}"
+        destroy_canonical_email_block_html: "%{name} je odstranil/a s črnega seznama e-pošto s ključnikom %{target}"
+        destroy_custom_emoji_html: "%{name} je izbrisal/a emotikon %{target}"
         destroy_domain_allow_html: "%{name} ni dovolil/a federacije z domeno %{target}"
         destroy_domain_block_html: "%{name} je odblokiral/a domeno %{target}"
         destroy_email_domain_block_html: "%{name} je odblokiral/a e-pošto domene %{target}"
@@ -315,6 +258,7 @@ sl:
         destroy_ip_block_html: "%{name} je izbrisal/a pravilo za IP %{target}"
         destroy_status_html: "%{name} je odstranil/a objavo uporabnika %{target}"
         destroy_unavailable_domain_html: "%{name} je nadaljeval/a dostav v domeno %{target}"
+        destroy_user_role_html: "%{name} je izbrisal/a vlogo %{target}"
         disable_2fa_user_html: "%{name} je onemogočil/a dvofaktorsko zahtevo za uporabnika %{target}"
         disable_custom_emoji_html: "%{name} je onemogočil/a emotikone %{target}"
         disable_sign_in_token_auth_user_html: "%{name} je onemogočil/a overjanje z žetonom po e-pošti za uporabnika %{target}"
@@ -328,6 +272,7 @@ sl:
         reject_user_html: "%{name} je zavrnil/a registracijo iz %{target}"
         remove_avatar_user_html: "%{name} je odstranil podobo (avatar) uporabnika %{target}"
         reopen_report_html: "%{name} je ponovno odprl/a prijavo %{target}"
+        resend_user_html: "%{name} je ponovno poslal_a potrditveno e-sporočilo za %{target}"
         reset_password_user_html: "%{name} je ponastavil/a geslo uporabnika %{target}"
         resolve_report_html: "%{name} je razrešil/a prijavo %{target}"
         sensitive_account_html: "%{name} je označil/a medije računa %{target}'s kot občutljive"
@@ -341,8 +286,10 @@ sl:
         update_announcement_html: "%{name} je posodobil/a objavo %{target}"
         update_custom_emoji_html: "%{name} je posodobil/a emotikone %{target}"
         update_domain_block_html: "%{name} je posodobil/a domenski blok za %{target}"
+        update_ip_block_html: "%{name} je spremenil/a pravilo za IP %{target}"
         update_status_html: "%{name} je posodobil/a objavo uporabnika %{target}"
-      deleted_status: "(izbrisana objava)"
+        update_user_role_html: "%{name} je spremenil/a vlogo %{target}"
+      deleted_account: izbrisan račun
       empty: Ni najdenih zapisnikov.
       filter_by_action: Filtriraj po dejanjih
       filter_by_user: Filtriraj po uporabnikih
@@ -386,6 +333,7 @@ sl:
       listed: Navedeno
       new:
         title: Dodaj nove emotikone
+      no_emoji_selected: Noben emotikon ni bil spremenjen, ker noben ni bil izbran
       not_permitted: Nimate pravic za izvedbo tega dejanja.
       overwrite: Prepiši
       shortcode: Kratka koda
@@ -446,6 +394,7 @@ sl:
       destroyed_msg: Domenski blok je bil razveljavljen
       domain: Domena
       edit: Uredi domenski blok
+      existing_domain_block: Ste že uveljavili strožje omejitve na %{name}.
       existing_domain_block_html: Uvedli ste strožje omejitve za %{name}, sedaj ga morate najprej <a href="%{unblock_url}">odblokirati</a>.
       new:
         create: Ustvari blok
@@ -676,6 +625,71 @@ sl:
       unresolved: Nerešeni
       updated_at: Posodobljeni
       view_profile: Pokaži profil
+    roles:
+      add_new: Dodaj vlogo
+      assigned_users:
+        few: "%{count} uporabniki"
+        one: "%{count} uporabnik"
+        other: "%{count} uporabnikov"
+        two: "%{count} uporabnika"
+      categories:
+        administration: Upravljanje
+        devops: DevOps
+        invites: Povabila
+        moderation: Moderiranje
+        special: Posebno
+      delete: Izbriši
+      description_html: Z <strong>uporabniškimi vlogami</strong> lahko prilagodite, do katerih funkcij in področij Mastodona lahko dostopajo vaši uporabniki.
+      edit: Uredi vlogo %{name}
+      everyone: Privzete pravice
+      everyone_full_description_html: To je <strong>osnovna vloga</strong>, ki vpliva na <strong>vse uporabnike</strong>, celo na tiste brez dodeljene vloge. Vse druge vloge dedujejo njene pravice.
+      permissions_count:
+        few: "%{count} pravice"
+        one: "%{count} pravica"
+        other: "%{count} pravic"
+        two: "%{count} pravici"
+      privileges:
+        administrator: Skrbnik
+        administrator_description: Uporabniki s temi pravicami bodo zaobšli vse pravice
+        delete_user_data: Izbriši uporabniške podatke
+        delete_user_data_description: Omogoča uporabnikom, da izbrišejo podatke drugih uporabnikov brez časvnega zamika
+        invite_users: Povabi uporabnike
+        invite_users_description: Omogoča uporabnikom, da povabi nove osebe na strežnik
+        manage_announcements: Upravljaj obvestila
+        manage_announcements_description: Omogoča uporabnikom, da upravljajo obvestila na strežniku
+        manage_appeals: Upravljaj pritožbe
+        manage_appeals_description: Omogoča uporabnikom, da pregledajo pritožbe glede dejanj moderiranja
+        manage_blocks: Upravljaj blokirano
+        manage_blocks_description: Omogoča uporabnikom, da blokirajo ponudnike e-pošte in naslove IP
+        manage_custom_emojis: Upravljaj emotikone po meri
+        manage_custom_emojis_description: Omogoča uporabnikom, da upravljajo emotikone po meri na strežniku
+        manage_federation: Upravljaj beli seznam
+        manage_federation_description: Omogoča uporabnikom blokirati ali dovoljevati vstop na beli seznam z druimi domenami ter nadzirati dostavljivost
+        manage_invites: Upravljaj vabila
+        manage_invites_description: Omogoča uporabnikom, da brskajo in deaktivirajo povezave povabil
+        manage_reports: Upravljaj poročila
+        manage_reports_description: Omogoča uporabnikom, da pregledajo poročila in glede le-teh opravijo dejanja moderiranja
+        manage_roles: Upravljaj vloge
+        manage_roles_description: Omogoča uporabnikom upravljati in dodeljevati vloge pod svojo
+        manage_rules: Upravljaj pravila
+        manage_rules_description: Omogoča uporabnikom, da spremenijo pravila strežnika
+        manage_settings: Upravljaj nastavitve
+        manage_settings_description: Omogoča uporabnikom, da spremenijo nastavitve spletišča
+        manage_taxonomies: Upravljaj taksonomije
+        manage_taxonomies_description: Omogoča uporabnikom, da preverijo vsebino v trendu in posodobijo nastavitve ključnikov
+        manage_user_access: Upravljaj dostop uporabnikov
+        manage_user_access_description: Omogoča uporabnikom, da onemogočijo drugim uporabnikom dvofazno overjanje, spremenijo njihov e-naslov ter ponastavijo njihovo geslo
+        manage_users: Upravljaj uporabnike
+        manage_users_description: Omogoča uporabnikom, da vidijo podrobnosti drugih uporabnikov in nad njimi izvedejo dejanja moderiranja
+        manage_webhooks: Upravljaj spletne zanke
+        manage_webhooks_description: Omogoča uporabnikom, da vzpostavijo nove spletne zanke za skrbniške dogodke
+        view_audit_log: Pokaži revizijski zapisnik
+        view_audit_log_description: Omogoča, da uporabnik vidi zgodovino skrbniških opravil na strežniku
+        view_dashboard: Pokaži nadzorno ploščo
+        view_dashboard_description: Omogoča uporabnikom, da dostopajo do nadzorne plošče in različnih meritev
+        view_devops: DevOps
+        view_devops_description: Omogoča uporabnikom, da dostopajo do nadzornih plošč Sidekiq in phHero
+      title: Vloge
     rules:
       add_new: Dodaj pravilo
       delete: Izbriši
@@ -684,108 +698,67 @@ sl:
       empty: Zaenkrat še ni opredeljenih pravil.
       title: Pravila strežnika
     settings:
-      activity_api_enabled:
-        desc_html: Številke lokalno objavljenih objav, aktivnih uporabnikov in novih registracij na tedenskih seznamih
-        title: Objavi združeno statistiko o dejavnosti uporabnikov
-      bootstrap_timeline_accounts:
-        desc_html: Več uporabniških imen ločite z vejico. Deluje samo na lokalnih in odklenjenih računih. Privzeto, ko je prazno, je pri vseh lokalnih skrbnikih.
-        title: Privzeta sledenja za nove uporabnike
-      contact_information:
-        email: Poslovna e-pošta
-        username: Uporabniško ime stika
-      custom_css:
-        desc_html: Spremeni videz z naloženim CSS na vsaki strani
-        title: CSS po meri
-      default_noindex:
-        desc_html: Vpliva na vse uporabnike, ki niso sami spremenili te nastavitve
-        title: Privzeto izvzemi uporabnike iz indeksiranja iskalnika
+      about:
+        manage_rules: Upravljaj pravila strežnika
+        preamble: Podrobneje opišite, kako upravljate, moderirate in financirate strežnik.
+        rules_hint: Na voljo je poseben prostor za pravila, ki jih naj spoštujejo vaši uporabniki.
+        title: O programu
+      appearance:
+        preamble: Prilagodite spletni vmesnik Mastodona.
+        title: Videz
+      branding:
+        preamble: Blagovna znamka vašega strežnika ga loči od drugih strežnikov v omrežju. Podatki se lahko prikžejo prek številnih okolij, kot so spletni vmesnik Mastodona, domorodni programi, predogledi povezav na drugih spletiščih, aplikacije za sporočanje itn. Zatorej je najbolje, da te podatke ohranite jasne, kratke in pomenljive.
+        title: Blagovne znamke
+      content_retention:
+        preamble: Nazdor nad hrambo vsebine uporabnikov v Mastodonu.
+        title: Hramba vsebin
+      discovery:
+        follow_recommendations: Sledi priporočilom
+        preamble: Izpostavljanje zanimivih vsebin je ključno za pridobivanje novih uporabnikov, ki morda ne poznajo nikogar na Mastodonu. Nadzirajte, kako različne funkcionalnosti razkritja delujejo na vašem strežniku.
+        profile_directory: Imenik profilov
+        public_timelines: Javne časovnice
+        title: Razkrivanje
+        trends: Trendi
       domain_blocks:
         all: Vsem
         disabled: Nikomur
-        title: Domenske bloke pokaži
         users: Prijavljenim krajevnim uporabnikom
-      domain_blocks_rationale:
-        title: Pokaži razlago
-      hero:
-        desc_html: Prikazano na sprednji strani. Priporoča se vsaj 600x100px. Ko ni nastavljen, se vrne na sličico strežnika
-        title: Slika junaka
-      mascot:
-        desc_html: Prikazano na več straneh. Priporočena je najmanj 293 × 205 px. Ko ni nastavljen, se vrne na privzeto maskoto
-        title: Slika maskote
-      peers_api_enabled:
-        desc_html: Domene, na katere je ta strežnik naletel na fediverse-u
-        title: Objavi seznam odkritih strežnikov
-      preview_sensitive_media:
-        desc_html: Predogledi povezav na drugih spletiščih bodo prikazali sličico, tudi če je medij označen kot občutljiv
-        title: Prikaži občutljive medije v predogledih OpenGraph
-      profile_directory:
-        desc_html: Dovoli uporabnikom, da jih lahko odkrijejo
-        title: Omogoči imenik profilov
       registrations:
-        closed_message:
-          desc_html: Prikazano na prvi strani, ko so registracije zaprte. Lahko uporabite oznake HTML
-          title: Sporočilo o zaprti registraciji
-        deletion:
-          desc_html: Dovoli vsakomur, da izbriše svoj račun
-          title: Odpri brisanje računa
-        min_invite_role:
-          disabled: Nihče
-          title: Dovoli vabila od
-        require_invite_text:
-          desc_html: Če registracije zahtevajo ročno potrditev, nastavite vnos besedila pod »Zakaj se želite pridružiti?« za obveznega
-          title: Zahteva, da novi uprorabniki navedejo razlog, zakaj se želijo registrirati
+        preamble: Nadzirajte, kdo lahko ustvari račun na vašem strežniku.
+        title: Registracije
       registrations_mode:
         modes:
           approved: Potrebna je odobritev za prijavo
           none: Nihče se ne more prijaviti
           open: Vsakdo se lahko prijavi
-        title: Način registracije
-      show_known_fediverse_at_about_page:
-        desc_html: Ko preklopite, bo prikazal objave vseh znanih fediverzumov v predogledu. V nasprotnem primeru bodo prikazane samo krajevne objave.
-        title: Pokaži znane fediverse-e v predogledu časovnice
-      show_staff_badge:
-        desc_html: Prikaži značko osebja na uporabniški strani
-        title: Prikaži značko osebja
-      site_description:
-        desc_html: Uvodni odstavek na API-ju. Opišite, zakaj je ta Mastodon strežnik poseben in karkoli pomembnega. Lahko uporabite HTML oznake, zlasti <code>&lt;a&gt;</code> in <code>&lt;em&gt;</code>.
-        title: Opis strežnika
-      site_description_extended:
-        desc_html: Dober kraj za vaš kodeks ravnanja, pravila, smernice in druge stvari, ki ločujejo vaš strežnik. Lahko uporabite oznake HTML
-        title: Razširjene informacije po meri
-      site_short_description:
-        desc_html: Prikazano v stranski vrstici in metaoznakah. V enem odstavku opišite, kaj je Mastodon in kaj naredi ta strežnik poseben.
-        title: Kratek opis strežnika
-      site_terms:
-        desc_html: Lahko napišete svojo pravilnik o zasebnosti, pogoje storitve ali druge pravne dokumente. Lahko uporabite oznake HTML
-        title: Pogoji storitve po meri
-      site_title: Ime strežnika
-      thumbnail:
-        desc_html: Uporablja se za predogled prek OpenGrapha in API-ja. Priporočamo 1200x630px
-        title: Sličica strežnika
-      timeline_preview:
-        desc_html: Prikaži javno časovnico na ciljni strani
-        title: Predogled časovnice
-      title: Nastavitve strani
-      trendable_by_default:
-        desc_html: Velja za ključnike, ki niso bili poprej onemogočeni
-        title: Dovoli, da so ključniki v trendu brez predhodnega pregleda
-      trends:
-        desc_html: Javno prikaži poprej pregledano vsebino, ki je trenutno v trendu
-        title: Trendi
+      title: Nastavitve strežnika
     site_uploads:
       delete: Izbriši naloženo datoteko
       destroyed_msg: Prenos na strežnik uspešno izbrisan!
     statuses:
+      account: Avtor
+      application: Program
       back_to_account: Nazaj na stran računa
       back_to_report: Nazaj na stran prijave
       batch:
         remove_from_report: Odstrani iz prijave
         report: Poročaj
       deleted: Izbrisano
+      favourites: Priljubljeni
+      history: Zgodovina različic
+      in_reply_to: Odgovarja
+      language: Jezik
       media:
         title: Mediji
+      metadata: Metapodatki
       no_status_selected: Nobena objava ni bila spremenjena, ker ni bila nobena izbrana
+      open: Odpri objavo
+      original_status: Izvorna objava
+      reblogs: Ponovljeni blogi
+      status_changed: Objava spremenjena
       title: Objave računa
+      trending: V trendu
+      visibility: Vidnost
       with_media: Z mediji
     strikes:
       actions:
@@ -825,6 +798,9 @@ sl:
         description_html: To so povezave, ki jih trenutno veliko delijo računi, iz katerih vaš strežnik vidi objave. Vašim uporabnikom lahko pomaga izvedeti, kaj se dogaja po svetu. Nobene povezave niso javno prikazane, dokler ne odobrite izdajatelja. Posamezne povezave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli povezave
         disallow_provider: Ne dovoli izdajatelja
+        no_link_selected: Nobena povezava ni bila spremenjena, ker nobena ni bila izbrana
+        publishers:
+          no_publisher_selected: Noben izdajatelj ni bil spremenjen, ker noben ni bila izbran
         shared_by_over_week:
           few: Delile %{count} osebe v zadnjem tednu
           one: Delila %{count} oseba v zadnjem tednu
@@ -846,6 +822,7 @@ sl:
         description_html: To so objave, za katere vaš strežnik ve, da so trenutno v skupni rabi in med priljubljenimi. Vašim novim uporabnikom in uporabnikom, ki se vračajo, lahko pomaga najti več oseb, ki jim bodo sledili. Nobena objava ni javno prikazana, dokler avtorja ne odobrite in avtor ne dovoli, da se njegov račun predlaga drugim. Posamezne objave lahko tudi dovolite ali zavrnete.
         disallow: Ne dovoli objave
         disallow_account: Ne dovoli avtorja
+        no_status_selected: Nobena trendna objava ni bila spremenjena, ker ni bila nobena izbrana
         not_discoverable: Avtor ni dovolil, da bi ga bilo moč odkriti
         shared_by:
           few: Deljeno ali priljubljeno %{friendly_count}-krat
@@ -863,6 +840,7 @@ sl:
           tag_uses_measure: uporab skupaj
         description_html: To so ključniki, ki se trenutno pojavljajo v številnih objavah, ki jih vidi vaš strežnik. Uporabnikom lahko pomaga ugotoviti, o čem ljudje trenutno največ govorijo. Noben ključnik ni javno prikazan, dokler ga ne odobrite.
         listable: Je moč predlagati
+        no_tag_selected: Nobena značka ni bila spremenjena, ker nobena ni bila izbrana
         not_listable: Ne bo predlagano
         not_trendable: Se ne bo pojavilo med trendi
         not_usable: Ni mogoče uporabiti
@@ -885,6 +863,28 @@ sl:
       edit_preset: Uredi prednastavitev opozoril
       empty: Zaenkrat še niste določili nobenih opozorilnih prednastavitev.
       title: Upravljaj prednastavitev opozoril
+    webhooks:
+      add_new: Dodaj končno točko
+      delete: Izbriši
+      description_html: "<strong>Spletna zanka</strong> omogoča, da Mastodon potiska <strong>obvestila v resničnem času</strong> o izbranih dogodkih vašemu programu, tako da ta lahko <strong>samodejno proži odzive</strong>."
+      disable: Onemogoči
+      disabled: Onemogočeno
+      edit: Uredi končno točko
+      empty: Zaenkrat še nimate prilagojenih končnih točk spletnih zank.
+      enable: Omogoči
+      enabled: Dejaven
+      enabled_events:
+        few: "%{count} omogočeni dogodki"
+        one: "%{count} omogočen dogodek"
+        other: "%{count} omogočenih dogodkov"
+        two: "%{count} omogočena dogodka"
+      events: Dogodki
+      new: Nova spletna zanka
+      rotate_secret: Zasukaj skrivnost
+      secret: Skrivnost podpisovanja
+      status: Stanje
+      title: Spletne zanke
+      webhook: Spletna zanka
   admin_mailer:
     new_appeal:
       actions:
@@ -908,12 +908,8 @@ sl:
     new_trends:
       body: 'Naslednji elementi potrebujejo pregled, preden jih je možno javno prikazati:'
       new_trending_links:
-        no_approved_links: Trenutno ni odobrenih povezav v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreno povezavo v trendu št. %{rank}, ki je trenutno %{lowest_link_title} z rezultatom %{lowest_link_score}.
         title: Povezave v trendu
       new_trending_statuses:
-        no_approved_statuses: Trenutno ni odobrenih objav v trendu.
-        requirements: Vsak od teh kandidatov bi lahko presegel odobreno trendno objavo št. %{rank}, ki je trenutno %{lowest_status_url} z rezultatom %{lowest_status_score}.
         title: Trendne objave
       new_trending_tags:
         no_approved_tags: Trenutno ni odobrenih ključnikov v trendu.
@@ -949,16 +945,13 @@ sl:
   applications:
     created: Aplikacija je bila uspešno ustvarjena
     destroyed: Aplikacija je bila uspešno izbrisana
-    invalid_url: Navedeni URL je neveljaven
     regenerate_token: Obnovite dostopni žeton
     token_regenerated: Dostopni žeton je bil uspešno regeneriran
     warning: Bodite zelo previdni s temi podatki. Nikoli jih ne delite z nikomer!
     your_token: Vaš dostopni žeton
   auth:
-    apply_for_account: Zahtevajte povabilo
+    apply_for_account: Vpišite se na čakalni seznam
     change_password: Geslo
-    checkbox_agreement_html: Strinjam se s <a href="%{rules_path}" target="_blank">pravili strežnika</a> in <a href="%{terms_path}" target="_blank">pogoji storitve</a>
-    checkbox_agreement_without_rules_html: Strinjam se s <a href="%{terms_path}" target="_blank">pogoji storitve</a>
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
     description:
@@ -977,6 +970,7 @@ sl:
     migrate_account: Premakni se na drug račun
     migrate_account_html: Če želite ta račun preusmeriti na drugega, ga lahko <a href="%{path}">nastavite tukaj</a>.
     or_log_in_with: Ali se prijavite z
+    privacy_policy_agreement_html: Prebral_a sem in se strinjam s <a href="%{privacy_policy_path}" target="_blank">pravilnikom o zasebnosti</a>.
     providers:
       cas: CAS
       saml: SAML
@@ -984,12 +978,18 @@ sl:
     registration_closed: "%{instance} ne sprejema novih članov"
     resend_confirmation: Ponovno pošlji navodila za potrditev
     reset_password: Ponastavi geslo
+    rules:
+      preamble: Slednje določajo in njihovo spoštovanje zagotavljajo moderatorji %{domain}.
+      title: Nekaj osnovnih pravil.
     security: Varnost
     set_new_password: Nastavi novo geslo
     setup:
       email_below_hint_html: Če spodnji e-poštni naslov ni pravilen, ga lahko spremenite tukaj in prejmete novo potrditveno e-pošto.
       email_settings_hint_html: Potrditvena e-pošta je bila poslana na %{email}. Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
       title: Nastavitev
+    sign_up:
+      preamble: Z računom na strežniku Mastodon boste lahko sledili vsem drugim v tem omrežju, ne glede na to, kje gostuje njihov račun.
+      title: Naj vas namestimo na %{domain}.
     status:
       account_status: Stanje računa
       confirming: Čakanje na potrditev e-pošte.
@@ -998,7 +998,6 @@ sl:
       redirecting_to: Vaš račun ni dejaven, ker trenutno preusmerja na račun %{acct}.
       view_strikes: Pokaži pretekle ukrepe proti mojemu računu
     too_fast: Obrazec oddan prehitro, poskusite znova.
-    trouble_logging_in: Težave pri prijavi?
     use_security_key: Uporabi varnostni ključ
   authorize_follow:
     already_following: Temu računu že sledite
@@ -1056,10 +1055,6 @@ sl:
       more_details_html: Za podrobnosti glejte <a href="%{terms_path}">politiko zasebnosti</a>.
       username_available: Vaše uporabniško ime bo znova na voljo
       username_unavailable: Vaše uporabniško ime še vedno ne bo na voljo
-  directories:
-    directory: Imenik profilov
-    explanation: Odkrijte uporabnike glede na njihove interese
-    explore_mastodon: Razišči %{title}
   disputes:
     strikes:
       action_taken: Izvedeno dejanje
@@ -1138,29 +1133,72 @@ sl:
       public: Javne časovnice
       thread: Pogovori
     edit:
+      add_keyword: Dodaj ključno besedo
+      keywords: Ključne besede
+      statuses: Posamezne objave
+      statuses_hint_html: Ta filter velja za izbrane posamezne objave, ne glede na to, ali se ujemajo s spodnjimi ključnimi besedami. <a href="%{path}">Preglejte ali odstarnite objave iz filtra</a>.
       title: Uredite filter
     errors:
+      deprecated_api_multiple_keywords: Teh parametrov ni mogoče spremeniti iz tega programa, ker veljajo za več kot eno ključno besedo filtra. Uporabite novejšo izdaj programa ali spletni vmesnik.
       invalid_context: Ne vsebuje nobenega ali vsebuje neveljaven kontekst
-      invalid_irreversible: Nepovratno filtriranje deluje le v kontekstu doma ali obvestil
     index:
+      contexts: Filtri v %{contexts}
       delete: Izbriši
       empty: Nimate filtrov.
+      expires_in: Poteče čez %{distance}
+      expires_on: Poteče %{date}
+      keywords:
+        few: "%{count} ključne besede"
+        one: "%{count} ključna beseda"
+        other: "%{count} ključnih besed"
+        two: "%{count} ključni besedi"
+      statuses:
+        few: "%{count} objave"
+        one: "%{count} objava"
+        other: "%{count} objav"
+        two: "%{count} objavi"
+      statuses_long:
+        few: "%{count} posamezne objave skrite"
+        one: "%{count} posamezna objava skrita"
+        other: "%{count} posameznih objav skritih"
+        two: "%{count} posamezni objavi skriti"
       title: Filtri
     new:
+      save: Shrani nov filter
       title: Dodaj nov filter
+    statuses:
+      back_to_filter: Nazaj na filter
+      batch:
+        remove: Odstrani iz filtra
+      index:
+        hint: Ta filter se nanaša na posamezne objave ne glede na druge pogoje. Filtru lahko dodate več objav prek spletnega vmesnika.
+        title: Filtrirane objave
   footer:
-    developers: Razvijalci
-    more: Več…
-    resources: Viri
     trending_now: Zdaj v trendu
   generic:
     all: Vse
+    all_items_on_page_selected_html:
+      few: Na tej strani so izbrani <strong>%{count}</strong> elementi.
+      one: Na tej strani je izbran <strong>%{count}</strong> element.
+      other: Na tej strani je izbranih <strong>%{count}</strong> elementov.
+      two: Na tej strani sta izbrana <strong>%{count}</strong> elementa.
+    all_matching_items_selected_html:
+      few: Izbrani so <strong>%{count}</strong> elementi, ki ustrezajo vašemu iskanju.
+      one: Izbran je <strong>%{count}</strong> element, ki ustreza vašemu iskanju.
+      other: Izbranih je <strong>%{count}</strong> elementov, ki ustrezajo vašemu iskanju.
+      two: Izbrana sta <strong>%{count}</strong> elementa, ki ustrezata vašemu iskanju.
     changes_saved_msg: Spremembe so uspešno shranjene!
     copy: Kopiraj
     delete: Izbriši
+    deselect: Prekliči ves izbor
     none: Brez
     order_by: Razvrsti po
     save_changes: Shrani spremembe
+    select_all_matching_items:
+      few: Izberite %{count} elemente, ki ustrezajo vašemu iskanju.
+      one: Izberite %{count} element, ki ustreza vašemu iskanju.
+      other: Izberite %{count} elementov, ki ustrezajo vašemu iskanju.
+      two: Izberite %{count} elementa, ki ustrezata vašemu iskanju.
     today: danes
     validation_errors:
       few: Nekaj še ni čisto v redu! Spodaj si oglejte %{count} napake
@@ -1186,7 +1224,6 @@ sl:
       following: Seznam uporabnikov, katerim sledite
       muting: Seznam utišanih
     upload: Pošlji
-  in_memoriam_html: V spomin.
   invites:
     delete: Onemogoči
     expired: Poteklo
@@ -1267,25 +1304,14 @@ sl:
     carry_blocks_over_text: Ta uporabnik se je preselil iz računa %{acct}, ki ste ga blokirali.
     carry_mutes_over_text: Ta uporabnik se je preselil iz računa %{acct}, ki ste ga utišali.
     copy_account_note_text: 'Ta uporabnik se je preselil iz %{acct}, tukaj so vaše poprejšnje opombe o njem:'
+  navigation:
+    toggle_menu: Preklopi meni
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} je oddal/a prijavo"
       sign_up:
         subject: "%{name} se je vpisal/a"
-    digest:
-      action: Prikaži vsa obvestila
-      body: Tukaj je kratek povzetek sporočil, ki ste jih zamudili od vašega zadnjega obiska v %{since}
-      mention: "%{name} vas je omenil/a v:"
-      new_followers_summary:
-        few: Prav tako ste pridobili %{count} nove sledilce, ko ste bili odsotni! Juhu!
-        one: Prav tako ste pridobili enega novega sledilca, ko ste bili odsotni! Juhu!
-        other: Prav tako ste pridobili %{count} novih sledilcev, ko ste bili odsotni! Juhu!
-        two: Prav tako ste pridobili %{count} nova sledilca, ko ste bili odsotni! Juhu!
-      subject:
-        few: "%{count} nova obvestila od vašega zadnjega obiska 🐘"
-        one: "%{count} novo obvestilo od vašega zadnjega obiska 🐘"
-        other: "%{count} novih obvestil od vašega zadnjega obiska 🐘"
-        two: "%{count} novi obvestili od vašega zadnjega obiska 🐘"
-      title: V vaši odsotnosti...
     favourite:
       body: "%{name} je vzljubil/a vašo objavo:"
       subject: "%{name} je vzljubil/a vašo objavo"
@@ -1357,6 +1383,8 @@ sl:
     other: Ostalo
     posting_defaults: Privzete nastavitev objavljanja
     public_timelines: Javne časovnice
+  privacy_policy:
+    title: Pravilnik o zasebnosti
   reactions:
     errors:
       limit_reached: Dosežena omejitev različnih reakcij/odzivov
@@ -1379,22 +1407,7 @@ sl:
     remove_selected_follows: Prenehaj slediti izbranim uporabnikom
     status: Stanje računa
   remote_follow:
-    acct: Vnesite uporabniško_ime@domena, iz katerega želite delovati
     missing_resource: Za vaš račun ni bilo mogoče najti zahtevanega URL-ja za preusmeritev
-    no_account_html: Še nimate računa? Tukaj se lahko <a href='%{sign_up_path}' target='_blank'>prijavite</a>
-    proceed: Nadaljujte
-    prompt: 'Sledili boste:'
-    reason_html: "<strong>Zakaj je ta korak potreben?</strong> <code>%{instance}</code> morda ni strežnik, kjer ste registrirani, zato vas moramo najprej preusmeriti na domači strežnik."
-  remote_interaction:
-    favourite:
-      proceed: Nadaljuj s priljubljenim
-      prompt: 'Želite vzljubiti to objavo:'
-    reblog:
-      proceed: Nadaljuj s izpostavljanjem
-      prompt: 'Želite izpostaviti to objavo:'
-    reply:
-      proceed: Nadaljuj z odgovorom
-      prompt: 'Želite odgovoriti na to objavo:'
   reports:
     errors:
       invalid_rules: se ne sklicuje na veljavna pravila
@@ -1436,7 +1449,7 @@ sl:
       adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1578,89 +1591,6 @@ sl:
       too_late: Prepozno je, da bi se pritožili na ta ukrep
   tags:
     does_not_match_previous_name: se ne ujema s prejšnjim imenom
-  terms:
-    body_html: |
-      <h2>Pravilnik o zasebnosti</h2>
-      <h3 id="collect">Katere informacije zbiramo?</h3>
-
-      <ul>
-      <li><em>Osnovni podatki o računu</em>: Če se registrirate na tem strežniku, boste morda morali vnesti uporabniško ime, e-poštni naslov in geslo. Vnesete lahko tudi dodatne informacije o profilu, na primer prikazno ime in biografijo, ter naložite sliko profila in sliko glave. Uporabniško ime, prikazno ime, biografija, slika profila in slika glave so vedno javno dostopni.</li>
-      <li><em>Objave, sledenja in druge javne informacije</em>: Seznam oseb, ki jim sledite, je javno dostopen, enako velja za vaše sledilce. Ko pošljete sporočilo, sta datum in čas shranjena, kot tudi aplikacija, iz katere ste poslali sporočilo. Sporočila lahko vsebujejo medijske priloge, kot so slike in video posnetki. Javne in neprikazane objave so javno dostopne. Ko v profilu vključite objavo, je to tudi javno dostopna informacija. Vaše objave, ki so dostavljene vašim sledilcem, so včasih dostavljeni na različne strežnike, kjer se kopije objav tudi shranijo. Ko izbrišete objave, se to prav tako dostavi vašim sledilcem. Spodbujanje in vzljubitev drugih objav sta veno javni.</li>
-      <li><em>Neposredne objave in objave samo za sledilce</em>: Vse objave so shranjene in obdelane na strežniku. Objave samo za sledilce se dostavijo vašim sledilcem in uporabnikom, ki so v njih omenjeni. Neposredne objave se posredujejo samo uporabnikom, ki so v njih omenjeni. V nekaterih primerih so dostavljeni na različne strežnike, kopije pa se shranijo tam. V dobri veri si prizadevamo omejiti dostop do teh objav samo pooblaščenim osebam, vendar drugi strežniki to morda ne bodo storili. Zato je pomembno, da pregledate strežnike, na katerih so sledilci. V nastavitvah lahko preklapljate med možnostmi za odobritev in zavrnitev novih sledilcev. <em> Ne pozabite, da lahko operaterji strežnika in kateri koli prejemni strežnik takšna sporočila pregledajo </em> in da jih lahko prejemniki posnamejo, kopirajo ali drugače ponovno delijo. <em> Ne pošiljajte nevarnih informacij skozi Mastodon. </em> </li>
-      <li><em>IP-ji in drugi metapodatki</em>: Ko se prijavite, zabeležimo naslov IP, s katerega se prijavljate, in ime aplikacije brskalnika. V nastavitvah so za pregled in preklic na voljo vse prijavljene seje. Zadnji uporabljeni IP naslov je shranjen do 12 mesecev. Prav tako lahko obdržimo dnevnike strežnikov, ki vsebujejo IP naslov vsake zahteve na naš strežnik. </li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">Za kaj uporabljamo vaše podatke?</h3>
-
-      <p>Vse informacije, ki jih zbiramo od vas, so lahko uporabljene na naslednje načine:</p>
-
-      <ul>
-      <li>Za zagotavljanje osrednje funkcionalnosti Mastodona. Komunicirate lahko z vsebino drugih oseb in objavljate lastno vsebino, ko ste prijavljeni. Na primer, lahko spremljate druge osebe in si ogledate njihove kombinirane objave v svoji prilagojeni domači časovnici.</li>
-      <li>Za pomoč pri moderiranju skupnosti, na primer primerjavo vašega naslova IP naslova z drugimi znanimi, za izobčitev izmikanja ali drugih kršitev.</li>
-      <li>E-poštni naslov, ki ga navedete, se lahko uporabi za pošiljanje informacij, obvestil o drugih osebah, ki komunicirajo z vašo vsebino ali pošiljanju sporočil, ter za odzivanje na poizvedbe in/ali druge zahteve ali vprašanja.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">Kako zaščitimo vaše podatke?</h3>
-
-      <p>Za ohranitev varnosti vaših osebnih podatkov izvajamo različne varnostne ukrepe, ko vnašate, pošiljate ali dostopate do vaših osebnih podatkov. Med drugim je seja brskalnika, pa tudi promet med vašimi aplikacijami in API-jem zaščitena s SSL-jem, geslo pa je zgoščeno z uporabo močnega enosmernega algoritma. Če želite omogočiti varen dostop do računa, lahko omogočite dvofaktorsko preverjanje pristnosti.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">Kakšna je naša politika hrambe podatkov?</h3>
-
-      <p>Prizadevali si bomo za:</p>
-
-      <ul>
-      <li>Shranjevanje dnevnike strežnikov, ki vsebujejo naslov IP vseh zahtev za ta strežnik, če so hranjeni, največ 90 dni.</li>
-      <li>Obdržiitev naslovov IP, povezane z registriranimi uporabniki, ne več kot 12 mesecev.</li>
-      </ul>
-
-      <p>Lahko zahtevate in prenesete arhiv vaše vsebine, vključno z objavami, predstavnostnimi prilogami, sliko profila in sliko glave.</p>
-
-      <p>Račun lahko kadar koli nepovratno izbrišete.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Ali uporabljamo piškotke?</h3>
-
-      <p>Da. Piškotki so majhne datoteke, ki jih spletno mesto ali njegov ponudnik storitev prenese na trdi disk vašega računalnika prek spletnega brskalnika (če dovolite). Ti piškotki omogočajo, da spletno mesto prepozna vaš brskalnik in ga, če imate registriran račun, povežete z vašim registriranim računom.</p>
-
-      <p>Piškotke uporabljamo za razumevanje in shranjevanje vaših nastavitev za prihodnje obiske.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Ali razkrivamo informacije zunanjim strankam?</h3>
-
-      <p>Vaših osebnih podatkov ne prodajamo, preprodajamo ali kako drugače posredujemo zunanjim osebam. To ne vključuje zaupanja vrednih tretjih oseb, ki nam pomagajo pri upravljanju naše spletne strani, vodenju našega poslovanja ali storitev, če se te strani strinjajo, da bodo te informacije zaupne. Vaše podatke lahko tudi objavimo, če menimo, da je objava ustrezna in v skladu z zakonom, uveljavlja pravilnike o spletnih mestih ali ščiti naše ali druge pravice, lastnino ali varnost.</p>
-
-      <p>Vaše javne vsebine lahko prenesejo drugi strežniki v omrežju. Vaše objave in objave samo za sledilce so dostavljene na strežnike, na katerih prebivajo vaši sledilci, in neposredna sporočila so dostavljena na strežnike prejemnikov, če so ti sledilci ali prejemniki na drugem strežniku.</p>
-
-      <p>Ko odobrite aplikacijo za uporabo vašega računa, lahko glede na obseg dovoljenj, ki jih odobravate, dostopa do vaših javnih podatkov o profilu, seznama osebam, ki jim sledite, vaših sledilcev, seznamov, vseh vaših objav in priljubljenih. Aplikacije ne morejo nikoli dostopati do vašega e-poštnega naslova ali gesla.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Uporaba strani s strani otrok</h3>
-
-      <p>Če je ta strežnik v EU ali EEA: Naše spletno mesto, izdelki in storitve so namenjeni ljudem, ki so stari vsaj 16 let. Če ste mlajši od 16 let, po zahtevah GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) ne uporabljajte tega spletnega mesta.</p>
-
-      <p>Če je ta strežnik v ZDA Naše spletno mesto, izdelki in storitve so namenjeni ljudem, ki so stari vsaj 13 let. Če ste mlajši od 13 let, po zahtevah COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) ne uporabljajte tega spletnega mesta.</p>
-
-      <p>Če je ta strežnik v drugi jurisdikciji, so lahko zakonske zahteve drugačne.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Spremembe našega pravilnika o zasebnosti</h3>
-
-      <p>Če se odločimo za spremembo našega pravilnika o zasebnosti, bomo te spremembe objavili na tej strani.</p>
-
-      <p>Ta dokument je CC-BY-SA. Zadnja posodobitev je bila 7. marca 2018.</p>
-
-      <p>Prvotno je bila prilagojena v skladu s <a href="https://github.com/discourse/discourse">pravilnikom o zasebnosti diskurza</a>.</p>
-    title: "%{instance} Pogoji storitve in pravilnik o zasebnosti"
   themes:
     contrast: Mastodon (Visok kontrast)
     default: Mastodon (Temna)
@@ -1739,20 +1669,13 @@ sl:
         suspend: Račun je suspendiran
     welcome:
       edit_profile_action: Nastavitve profila
-      edit_profile_step: Profil lahko prilagodite tako, da naložite podobo, glavo, spremenite prikazno ime in drugo. Če želite pregledati nove sledilce, preden jim dovolite sledenje, lahko zaklenete svoj račun.
+      edit_profile_step: Profil lahko prilagodite tako, da naložite sliko profila, spremenite pojavno ime in drugo. Lahko izberete, da želite pregledati nove sledilce, preden jim dovolite sledenje.
       explanation: Tu je nekaj nasvetov za začetek
       final_action: Začnite objavljati
-      final_step: 'Začnite objavljati! Tudi brez sledilcev bodo vaša javna sporočila videli drugi, na primer na lokalni časovnici in v ključnikih. Morda se želite predstaviti s ključnikom #introductions.'
+      final_step: 'Začnite objavljati! Tudi brez sledilcev bodo vaše javne objave videli drugi, npr. na krajevni časovnici ali v ključnikih. Morda se želite predstaviti s ključnikom #introductions.'
       full_handle: Vaša polna ročica
       full_handle_hint: To bi povedali svojim prijateljem, da vam lahko pošljejo sporočila ali vam sledijo iz drugega strežnika.
-      review_preferences_action: Spremenite nastavitve
-      review_preferences_step: Poskrbite, da določite svoje nastavitve, na primer, katera e-poštna sporočila želite prejemati ali katere privzete ravni zasebnosti bodo imele vaše objave. Če nimate potovalne slabosti, lahko omogočite samodejno predvajanje GIF-ov.
       subject: Dobrodošli na Mastodon
-      tip_federated_timeline: Združena časovnica je pogled na mrežo Mastodona. Vključuje pa samo ljudi, na katere so naročeni vaši sosedje, zato ni popolna.
-      tip_following: Privzeto sledite skrbnikom strežnika. Če želite najti več zanimivih ljudi, preverite lokalne in združene časovnice.
-      tip_local_timeline: Lokalna časovnica je strežniški pogled ljudi na %{instance}. To so vaši neposredni sosedje!
-      tip_mobile_webapp: Če vam mobilni brskalnik ponuja, da dodate Mastodon na domači zaslon, lahko prejmete potisna obvestila. Deluje kot lastna aplikacija na več načinov!
-      tips: Nasveti
       title: Dobrodošli, %{name}!
   users:
     follow_limit_reached: Ne morete spremljati več kot %{limit} ljudi

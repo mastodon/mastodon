@@ -76,7 +76,7 @@ class NotifyService < BaseService
   end
 
   def from_staff?
-    @notification.from_account.local? && @notification.from_account.user.present? && @notification.from_account.user.staff?
+    @notification.from_account.local? && @notification.from_account.user.present? && @notification.from_account.user_role&.overrides?(@recipient.user_role)
   end
 
   def optional_non_following_and_direct?

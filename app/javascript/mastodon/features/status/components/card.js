@@ -247,7 +247,7 @@ export default class Card extends React.PureComponent {
             {revealed && (
               <div className='status-card__actions'>
                 <div>
-                  <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
+                  <button type='button' onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
                   {horizontal && <a href={card.get('url')} target='_blank' rel='noopener noreferrer'><Icon id='external-link' /></a>}
                 </div>
               </div>

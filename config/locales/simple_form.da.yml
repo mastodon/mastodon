@@ -67,7 +67,33 @@ da:
         domain: Dette kan være domænenavnet vist i den benyttede i e-mailadresse eller MX-post. Begge tjekkes under tilmelding.
         with_dns_records: Et forsøg på at opløse det givne domænes DNS-poster foretages, og resultaterne blokeres ligeledes
       featured_tag:
-        name: 'Et af flg. ønskes måske anvendt:'
+        name: 'Her er nogle af dine hyppigst brugte hashtags:'
+      filters:
+        action: Vælg handlingen til eksekvering, når et indlæg matcher filteret
+        actions:
+          hide: Skjul filtreret indhold helt (adfærd som om, det ikke fandtes)
+          warn: Skjul filtreret indhold bag en advarsel, der nævner filterets titel
+      form_admin_settings:
+        backups_retention_period: Behold genererede brugerarkiver i det angivne antal dage.
+        bootstrap_timeline_accounts: Disse konti fastgøres øverst på nye brugeres følg-anbefalinger.
+        closed_registrations_message: Vises, når tilmeldinger er lukket
+        content_cache_retention_period: Indlæg fra andre servere slettes efter det angivne antal dage, når sat til en positiv værdi. Dette kan være irreversibelt.
+        custom_css: Man kan anvende tilpassede stilarter på Mastodon-webversionen.
+        mascot: Tilsidesætter illustrationen i den avancerede webgrænseflade.
+        media_cache_retention_period: Downloadede mediefiler slettes efter det angivne antal dage, når sat til en positiv værdi, og gendownloades på forlangende.
+        profile_directory: Profilmappen oplister alle brugere, som har valgt at kunne opdages.
+        require_invite_text: Når tilmelding kræver manuel godkendelse, så gør “Hvorfor ønsker du at deltage?” tekstinput obligatorisk i stedet for valgfrit
+        site_contact_email: Hvordan folk kan opnå kontakt ifm. juridiske eller supportforespørgsler.
+        site_contact_username: Hvordan folk kan kontakte dig på Mastodon.
+        site_extended_description: Evt. yderligere oplysninger, som kan være nyttige for både besøgende og brugere. Kan struktureres vha. Markdown-syntaks.
+        site_short_description: En kort beskrivelse mhp. entydigt at kunne identificere denne server. Hvem kører den, hvem er den for?
+        site_terms: Brug egen fortrolighedspolitik eller lad stå tomt for standardpolitikken. Kan struktureres med Markdown-syntaks.
+        site_title: Hvordan folk kan henvise til serveren udover domænenavnet.
+        theme: Tema, som udloggede besøgende og nye brugere ser.
+        thumbnail: Et ca. 2:1 billede vist sammen med serveroplysningerne.
+        timeline_preview: Udloggede besøgende kan gennemse serverens seneste offentlige indlæg.
+        trendable_by_default: Spring manuel gennemgang af trendindhold over. Individuelle elementer kan stadig fjernes fra trends efter kendsgerningen.
+        trends: Tendenser viser, hvilke indlæg, hashtags og nyheder opnår momentum på serveren.
       form_challenge:
         current_password: Du bevæger dig ind på et sikkert område
       imports:
@@ -80,6 +106,7 @@ da:
         ip: Angiv en IPv4- eller IPv6-adresse. Hele intervaller kan blokeres vha. CIDR-syntaksen. Pas på med ikke selv at blive låst ude!
         severities:
           no_access: Blokér adgang til alle ressourcer
+          sign_up_block: Nye tilmeldinger vil ikke være mulige
           sign_up_requires_approval: Nye tilmeldinger kræver din godkendelse
         severity: Afgør, hvordan forespørgsler fra denne IP behandles
       rule:
@@ -91,6 +118,16 @@ da:
         name: Kun bogstavtyper (store/små) kan ændres, eksempelvis for at gøre det mere læsbart
       user:
         chosen_languages: Når markeret, vil kun indlæg på de valgte sprog fremgå på offentlige tidslinjer
+        role: Rollen styrer, hvilke tilladelser brugeren har
+      user_role:
+        color: Farven, i RGB hex-format, der skal bruges til rollen i hele UI'en
+        highlighted: Dette gør rollen offentligt synlig
+        name: Offentligt rollennavn, hvis rollen er opsat til fremstå som et badge
+        permissions_as_keys: Brugere med denne rolle vil kunne tilgå...
+        position: Højere rolle bestemmer konfliktløsning i visse situationer. Visse handlinger kan kun udføres på roller med lavere prioritet
+      webhook:
+        events: Vælg begivenheder at sende
+        url: Hvor begivenheder sendes til
     labels:
       account:
         fields:
@@ -178,6 +215,7 @@ da:
         setting_use_pending_items: Langsom tilstand
         severity: Alvorlighed
         sign_in_token_attempt: Sikkerhedskode
+        title: Titel
         type: Importtype
         username: Brugernavn
         username_or_email: Brugernavn eller e-mail
@@ -186,6 +224,34 @@ da:
         with_dns_records: Inkludér domænets MX-poster og IP'er
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Skjul helt
+          warn: Skjul bag en advarsel
+      form_admin_settings:
+        backups_retention_period: Brugerarkivs opbevaringsperiode
+        bootstrap_timeline_accounts: Anbefal altid disse konti til nye brugere
+        closed_registrations_message: Tilpasset besked, når tilmelding er utilgængelig
+        content_cache_retention_period: Indholds-cache opbevaringsperiode
+        custom_css: Tilpasset CSS
+        mascot: Tilpasset maskot (ældre funktion)
+        media_cache_retention_period: Media-cache opbevaringsperiode
+        profile_directory: Aktivér profiloversigt
+        registrations_mode: Hvem, der kan tilmelde sig
+        require_invite_text: Kræv tilmeldingsbegrundelse
+        show_domain_blocks: Vis domæneblokeringer
+        show_domain_blocks_rationale: Vis, hvorfor domæner blev blokeret
+        site_contact_email: Kontakt e-mail
+        site_contact_username: Kontakt brugernavn
+        site_extended_description: Udvidet beskrivelse
+        site_short_description: Serverbeskrivelse
+        site_terms: Fortrolighedspolitik
+        site_title: Servernavn
+        theme: Standardtema
+        thumbnail: Serverminiaturebillede
+        timeline_preview: Tillad ikke-godkendt adgang til offentlige tidslinjer
+        trendable_by_default: Tillad ikke-reviderede tendenser
+        trends: Aktivér trends
       interactions:
         must_be_follower: Blokér notifikationer fra ikke-følgere
         must_be_following: Blokér notifikationer fra folk, som ikke følges
@@ -199,6 +265,7 @@ da:
         ip: IP
         severities:
           no_access: Blokér adgang
+          sign_up_block: Blokér tilmeldinger
           sign_up_requires_approval: Begræns tilmeldinger
         severity: Regel
       notification_emails:
@@ -219,7 +286,19 @@ da:
         name: Hashtag
         trendable: Tillad visning af dette hashtag under trends
         usable: Tillad indlæg at benytte dette hashtag
+      user:
+        role: Rolle
+      user_role:
+        color: Badge-farve
+        highlighted: Vis rolle som badge på brugerprofiler
+        name: Navn
+        permissions_as_keys: Tilladelser
+        position: Prioritet
+      webhook:
+        events: Aktive begivenheder
+        url: Endepunkts-URL
     'no': Nej
+    not_recommended: Ikke anbefalet
     recommended: Anbefalet
     required:
       mark: "*"

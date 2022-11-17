@@ -74,6 +74,18 @@ describe MoveWorker do
     end
   end
 
+  shared_examples 'followers count handling' do
+    it 'updates the source account followers count' do
+      subject.perform(source_account.id, target_account.id)
+      expect(source_account.reload.followers_count).to eq(source_account.passive_relationships.count)
+    end
+
+    it 'updates the target account followers count' do
+      subject.perform(source_account.id, target_account.id)
+      expect(target_account.reload.followers_count).to eq(target_account.passive_relationships.count)
+    end
+  end
+
   context 'both accounts are distant' do
     describe 'perform' do
       it 'calls UnfollowFollowWorker' do
@@ -83,6 +95,7 @@ describe MoveWorker do
 
       include_examples 'user note handling'
       include_examples 'block and mute handling'
+      include_examples 'followers count handling'
     end
   end
 
@@ -97,6 +110,7 @@ describe MoveWorker do
 
       include_examples 'user note handling'
       include_examples 'block and mute handling'
+      include_examples 'followers count handling'
     end
   end
 
@@ -112,6 +126,7 @@ describe MoveWorker do
 
       include_examples 'user note handling'
       include_examples 'block and mute handling'
+      include_examples 'followers count handling'
 
       it 'does not fail when a local user is already following both accounts' do
         double_follower = Fabricate(:account)

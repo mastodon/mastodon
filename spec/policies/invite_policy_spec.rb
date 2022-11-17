@@ -5,8 +5,8 @@ require 'pundit/rspec'
 
 RSpec.describe InvitePolicy do
   let(:subject) { described_class }
-  let(:admin)   { Fabricate(:user, admin: true).account }
-  let(:john)    { Fabricate(:account) }
+  let(:admin)   { Fabricate(:user, role: UserRole.find_by(name: 'Admin')).account }
+  let(:john)    { Fabricate(:user).account }
 
   permissions :index? do
     context 'staff?' do
@@ -17,16 +17,22 @@ RSpec.describe InvitePolicy do
   end
 
   permissions :create? do
-    context 'min_required_role?' do
+    context 'has privilege' do
+      before do
+        UserRole.everyone.update(permissions: UserRole::FLAGS[:invite_users])
+      end
+
       it 'permits' do
-        allow_any_instance_of(described_class).to receive(:min_required_role?) { true }
         expect(subject).to permit(john, Invite)
       end
     end
 
-    context 'not min_required_role?' do
+    context 'does not have privilege' do
+      before do
+        UserRole.everyone.update(permissions: UserRole::Flags::NONE)
+      end
+
       it 'denies' do
-        allow_any_instance_of(described_class).to receive(:min_required_role?) { false }
         expect(subject).to_not permit(john, Invite)
       end
     end
@@ -54,39 +60,15 @@ RSpec.describe InvitePolicy do
     end
 
     context 'not owner?' do
-      context 'Setting.min_invite_role == "admin"' do
-        before do
-          Setting.min_invite_role = 'admin'
-        end
-
-        context 'admin?' do
-          it 'permits' do
-            expect(subject).to permit(admin, Fabricate(:invite))
-          end
-        end
-
-        context 'not admin?' do
-          it 'denies' do
-            expect(subject).to_not permit(john, Fabricate(:invite))
-          end
+      context 'admin?' do
+        it 'permits' do
+          expect(subject).to permit(admin, Fabricate(:invite))
         end
       end
 
-      context 'Setting.min_invite_role != "admin"' do
-        before do
-          Setting.min_invite_role = 'else'
-        end
-
-        context 'staff?' do
-          it 'permits' do
-            expect(subject).to permit(admin, Fabricate(:invite))
-          end
-        end
-
-        context 'not staff?' do
-          it 'denies' do
-            expect(subject).to_not permit(john, Fabricate(:invite))
-          end
+      context 'not admin?' do
+        it 'denies' do
+          expect(subject).to_not permit(john, Fabricate(:invite))
         end
       end
     end

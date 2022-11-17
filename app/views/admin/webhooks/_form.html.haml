@@ -1,0 +1,11 @@
+= simple_form_for @webhook, url: @webhook.new_record? ? admin_webhooks_path : admin_webhook_path(@webhook) do |f|
+  = render 'shared/error_messages', object: @webhook
+
+  .fields-group
+    = f.input :url, wrapper: :with_block_label, input_html: { placeholder: 'https://' }
+
+  .fields-group
+    = f.input :events, collection: Webhook::EVENTS, wrapper: :with_block_label, include_blank: false, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li'
+
+  .actions
+    = f.button :button, @webhook.new_record? ? t('admin.webhooks.add_new') : t('generic.save_changes'), type: :submit

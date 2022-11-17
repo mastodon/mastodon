@@ -5,7 +5,7 @@ module Mastodon
     module_function
 
     def major
-      1
+      2
     end
 
     def minor
@@ -13,7 +13,7 @@ module Mastodon
     end
 
     def patch
-      7
+      0
     end
 
     def flags
@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def suffix
-      '+3.5.5'
+      '+4.0.0'
     end
 
     def to_a

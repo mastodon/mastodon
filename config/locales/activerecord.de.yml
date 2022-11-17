@@ -3,7 +3,7 @@ de:
   activerecord:
     attributes:
       poll:
-        expires_at: Frist
+        expires_at: Abstimmungsende
         options: Wahlmöglichkeiten
       user:
         agreement: Service-Vereinbarung
@@ -20,7 +20,19 @@ de:
           attributes:
             username:
               invalid: nur Buchstaben, Ziffern und Unterstriche
-              reserved: ist reserviert
+              reserved: ist bereits vergeben
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ist keine gültige URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ist keine gültige URL
+        import:
+          attributes:
+            data:
+              malformed: ist fehlerhaft
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ de:
             email:
               blocked: verwendet einen nicht erlaubten E-Mail-Anbieter
               unreachable: scheint nicht zu existieren
+            role_id:
+              elevated: Kann nicht höher als Ihre aktuelle Rolle sein
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: enthalte Berechtigungen, die für die Basisrolle nicht sicher sind
+              elevated: kann keine Berechtigungen enthalten, die deine aktuelle Rolle nicht besitzt
+              own_role: kann nicht mit deiner aktuellen Rolle geändert werden
+            position:
+              elevated: kann nicht höher sein als deine aktuelle Rolle
+              own_role: kann nicht mit deiner aktuellen Rolle geändert werden

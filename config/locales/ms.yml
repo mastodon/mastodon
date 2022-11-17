@@ -1,87 +1,24 @@
 ---
 ms:
   about:
-    about_hashtag_html: Ini semua hantaran awam yang ditandakan dengan <strong>#%{hashtag}</strong>. Anda boleh berinteraksi dengan mereka jika anda mempunyai akaun di mana-mana dunia persekutuan.
     about_mastodon_html: 'Rangkaian sosial masa hadapan: Tiada iklan, tiada pengawasan korporat, reka bentuk beretika, dan desentralisasi! Miliki data anda dengan Mastodon!'
-    about_this: Perihal
-    active_count_after: aktif
-    active_footnote: Pengguna Aktif Bulanan (MAU)
-    administered_by: 'Ditadbir oleh:'
-    api: API
-    apps: Aplikasi mudah alih
-    apps_platforms: Guna Mastodon daripada iOS, Android dan platform yang lain
-    browse_directory: Layari direktori profil dan tapis mengikut minat
-    browse_local_posts: Layari strim langsung hantaran awam daripada pelayan ini
-    browse_public_posts: Layari strim langsung hantaran awam di Mastodon
-    contact: Hubungi kami
     contact_missing: Tidak ditetapkan
     contact_unavailable: Tidak tersedia
-    discover_users: Terokai pengguna
-    documentation: Pendokumenan
-    federation_hint_html: Dengan akaun di %{instance} anda akan mampu mengikuti orang di mana-mana pelayan Mastodon dan lebih lagi.
-    get_apps: Cuba aplikasi mudah alih
     hosted_on: Mastodon dihoskan di %{domain}
-    instance_actor_flash: |
-      Akaun ini ialah pelaku maya yang digunakan untuk mewakili pelayan itu sendiri dan bukannya mana-mana pengguna individu.
-      Ia digunakan untuk tujuan persekutuan dan tidak patut disekat melainkan anda ingin menyekat keseluruhan tika, yang mana anda sepatutnya gunakan sekatan domain.
-    learn_more: Ketahui lebih lanjut
-    privacy_policy: Polisi privasi
-    rules: Peraturan pelayan
-    rules_html: 'Di bawah ini ringkasan peraturan yang anda perlu ikuti jika anda ingin mempunyai akaun di pelayan Mastodon yang ini:'
-    see_whats_happening: Lihat apa yang sedang berlaku
-    server_stats: 'Statistik pelayan:'
-    source_code: Kod sumber
-    status_count_after:
-      other: hantaran
-    status_count_before: Siapa terbitkan
-    tagline: Ikuti rakan lama dan terokai rakan baharu
-    terms: Terma perkhidmatan
-    unavailable_content: Pelayan disederhanakan
-    unavailable_content_description:
-      domain: Pelayan
-      reason: Sebab
-      rejecting_media: 'Fail-fail media daripada pelayan-pelayan ini tidak akan diproses atau disimpan, dan tiada gambar kecil yang akan dipaparkan, memerlukan anda untuk klik fail asal:'
-      rejecting_media_title: Media ditapis
-      silenced: 'Hantaran daripada pelayan-pelayan ini akan disembunyikan di garis masa dan perbualan awam, dan tiada pemberitahuan yang akan dijana daripada interaksi pengguna mereka, melainkan anda mengikuti mereka:'
-      silenced_title: Pelayan didiamkan
-      suspended: 'Tiada data daripada pelayan-pelayan ini yang akan diproses, disimpan atau ditukar, membuatkan sebarang interaksi atau perhubungan dengan pengguna daripada pelayan-pelayan ini menjadi mustahil:'
-      suspended_title: Pelayan digantung
-    unavailable_content_html: Mastodon secara amnya membenarkan anda melihat kandungan daripada dan berinteraksi dengan pengguna daripada mana-mana pelayan dalam dunia persekutuan. Ini pengecualian yang telah dilakukan di pelayan ini secara khususnya.
-    user_count_after:
-      other: pengguna
-    user_count_before: Rumah bagi
-    what_is_mastodon: Apakah itu Mastodon?
   accounts:
-    choices_html: 'Pilihan %{name}:'
-    endorsements_hint: Anda boleh syorkan orang yang anda ikuti menggunakan antara muka sesawang, dan mereka akan ditunjukkan di sini.
-    featured_tags_hint: Anda boleh mempromosikan tanda pagar khusus yang akan dipaparkan di sini.
     follow: Ikut
     followers:
       other: Pengikut
     following: Mengikuti
     instance_actor_flash: Akaun ini ialah pelaku maya yang digunakan untuk mewakili pelayan itu sendiri dan bukan mana-mana pengguna individu. Ia digunakan untuk tujuan persekutuan dan tidak patut digantung.
-    joined: Sertai pada %{date}
     last_active: aktif terakhir
     link_verified_on: Pemilikan pautan ini diperiksa pada %{date}
-    media: Media
-    moved_html: "%{name} telah berpindah ke %{new_profile_link}:"
-    network_hidden: Maklumat ini tidak tersedia
     nothing_here: Tiada apa-apa di sini!
-    people_followed_by: Orang yang %{name} ikuti
-    people_who_follow: Orang yang mengikut %{name}
     pin_errors:
       following: Anda mestilah sudah mengikuti orang yang anda ingin syorkan
     posts:
       other: Hantaran
     posts_tab_heading: Hantaran
-    posts_with_replies: Hantaran dan balasan
-    roles:
-      admin: Pentadbir
-      bot: Bot
-      group: Kumpulan
-      moderator: Penyederhana
-    unavailable: Profil tidak tersedia
-    unfollow: Nyahikut
   admin:
     account_actions:
       action: Ambil tindakan
@@ -98,7 +35,6 @@ ms:
       avatar: Avatar
       by_domain: Domain
       change_email:
-        changed_msg: E-mel akaun telah berjaya ditukar!
         current_email: E-mel semasa
         label: Ubah e-mel
         new_email: E-mel baharu
@@ -173,12 +109,6 @@ ms:
       reset: Tetapkan semula
       reset_password: Tetapkan semula kata laluan
       resubscribe: Langgan semula
-      role: Kebenaran
-      roles:
-        admin: Pentadbir
-        moderator: Penyederhana
-        staff: Kakitangan
-        user: Pengguna
       search: Cari
       search_same_email_domain: Pengguna lain dengan domain e-mel yang sama
       search_same_ip: Pengguna lain dengan alamat IP yang sama
@@ -266,7 +196,6 @@ ms:
         create_unavailable_domain_html: "%{name} telah menghentikan penghantaran ke domain %{target}"
         demote_user_html: "%{name} telah menurunkan taraf pengguna %{target}"
         destroy_announcement_html: "%{name} telah memadamkan pengumuman %{target}"
-        destroy_custom_emoji_html: "%{name} telah memusnahkan emoji %{target}"
         destroy_domain_allow_html: "%{name} telah membuang kebenaran persekutuan dengan domain %{target}"
         destroy_domain_block_html: "%{name} telah menyahsekat domain %{target}"
         destroy_email_domain_block_html: "%{name} telah menyahsekat domain e-mel %{target}"
@@ -295,7 +224,6 @@ ms:
         update_custom_emoji_html: "%{name} telah mengemaskini emoji %{target}"
         update_domain_block_html: "%{name} telah mengemaskini penyekatan domain untuk %{target}"
         update_status_html: "%{name} telah mengemaskini hantaran oleh %{target}"
-      deleted_status: "(hantaran telah dipadam)"
       empty: Tiada log dijumpai.
       filter_by_action: Tapis mengikut tindakan
       filter_by_user: Tapis mengikut pengguna
@@ -515,33 +443,11 @@ ms:
       empty: Masih belum ada peraturan pelayan yang ditakrifkan.
       title: Peraturan pelayan
     settings:
-      peers_api_enabled:
-        title: Terbitkan senarai pelayan ditemukan dalam aplikasi
-      preview_sensitive_media:
-        desc_html: Pratonton laman sesawang daripada pautan akan terpapar di gambar kecil meski jika media itu ditanda sebagai sensitif
-        title: Papar media sensitif di pratonton OpenGraph
-      profile_directory:
-        desc_html: Benarkan pengguna untuk ditemukan
-        title: Benarkan direktori profil
-      registrations:
-        closed_message:
-          desc_html: Dipaparkan di muka depan apabil pendaftaran ditutup. Anda boleh menggunakan penanda HTML
-          title: Mesej pendaftaran telah ditutup
-        deletion:
-          desc_html: Benarkan sesiapapun memadamkan akaun mereka
-          title: Buka pemadaman akaun
-        min_invite_role:
-          disabled: Tiada sesiapa
-          title: Benarkan jemputan dari
-        require_invite_text:
-          desc_html: Apabila pendaftaran memerlukan kelulusan manual, tandakan input teks "Kenapa anda mahu menyertai?" sebagai wajib, bukan pilihan
-          title: Memerlukan alasan bagi pengguna baru untuk menyertai
       registrations_mode:
         modes:
           approved: Kelulusan diperlukan untuk pendaftaran
           none: Tiada siapa boleh mendaftar
           open: Sesiapapun boleh mendaftar
-        title: Mod pendaftaran
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -555,8 +461,5 @@ ms:
   exports:
     archive_takeout:
       in_progress: Mengkompil arkib anda...
-  notification_mailer:
-    digest:
-      title: Ketika anda tiada di sini...
   users:
     follow_limit_reached: Anda tidak boleh mengikut lebih daripada %{limit} orang

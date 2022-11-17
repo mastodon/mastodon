@@ -21,6 +21,18 @@ it:
             username:
               invalid: solo lettere, numeri e trattini bassi
               reserved: è riservato
+        admin/webhook:
+          attributes:
+            url:
+              invalid: non è un URL valido
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: non è un URL valido
+        import:
+          attributes:
+            data:
+              malformed: è malformato
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ it:
             email:
               blocked: utilizza un provider di posta elettronica non autorizzato
               unreachable: non sembra esistere
+            role_id:
+              elevated: non può essere superiore al tuo ruolo attuale
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: include i permessi non sicuri per il ruolo di base
+              elevated: non è possibile includere i permessi che il tuo ruolo attuale non possiede
+              own_role: non può essere modificato con il tuo ruolo attuale
+            position:
+              elevated: non può essere superiore al tuo ruolo attuale
+              own_role: non può essere modificato con il tuo ruolo attuale

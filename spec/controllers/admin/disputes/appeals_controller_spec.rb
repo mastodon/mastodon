@@ -14,7 +14,7 @@ RSpec.describe Admin::Disputes::AppealsController, type: :controller do
   end
 
   describe 'POST #approve' do
-    let(:current_user) { Fabricate(:user, admin: true) }
+    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     before do
       allow(UserMailer).to receive(:appeal_approved).and_return(double('email', deliver_later: nil))
@@ -35,7 +35,7 @@ RSpec.describe Admin::Disputes::AppealsController, type: :controller do
   end
 
   describe 'POST #reject' do
-    let(:current_user) { Fabricate(:user, admin: true) }
+    let(:current_user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
     before do
       allow(UserMailer).to receive(:appeal_rejected).and_return(double('email', deliver_later: nil))

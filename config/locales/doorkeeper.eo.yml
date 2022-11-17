@@ -60,6 +60,7 @@ eo:
       error:
         title: Eraro okazis
       new:
+        review_permissions: Revizu permesojn
         title: Rajtigo bezonata
       show:
         title: Kopiu ĉi tiun rajtigan kodon kaj gluu ĝin al la aplikaĵo.
@@ -69,6 +70,9 @@ eo:
       confirmations:
         revoke: Ĉu vi certas?
       index:
+        never_used: Neniam uzata
+        scopes: Permesoj
+        superapp: Interna
         title: Viaj rajtigitaj aplikaĵoj
     errors:
       messages:
@@ -92,7 +96,7 @@ eo:
         temporarily_unavailable: La rajtiga servilo ne povas nun plenumi la peton pro dumtempa troŝarĝo aŭ servila prizorgado.
         unauthorized_client: Kliento ne rajtas fari ĉi tian peton per ĉi tiu metodo.
         unsupported_grant_type: La tipo de la rajtiga konsento ne estas subtenata de la rajtiga servilo.
-        unsupported_response_type: La rajtiga servilo ne subtenas ĉi tian respondon.
+        unsupported_response_type: La aŭtentiga servilo ne subtenas ĉi tian respondon.
     flash:
       applications:
         create:
@@ -106,10 +110,18 @@ eo:
           notice: Aplikaĵo malrajtigita.
     grouped_scopes:
       title:
+        accounts: Kontoj
+        all: Ĉio
         blocks: Blokita
         bookmarks: Legosignoj
+        conversations: Konversacioj
+        favourites: Preferaĵoj
+        filters: Filtriloj
+        follows: Sekvas
         lists: Listoj
         mutes: Silentigitaj
+        notifications: Sciigoj
+        reports: Raportoj
         search: Serĉi
         statuses: Afiŝoj
     layouts:

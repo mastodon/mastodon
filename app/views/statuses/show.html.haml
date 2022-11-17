@@ -2,7 +2,7 @@
   = t('statuses.title', name: display_name(@account), quote: truncate(@status.spoiler_text.presence || @status.text, length: 50, omission: '…', escape: false))
 
 - content_for :header_tags do
-  - if @account.user&.setting_noindex
+  - if @account.user_prefers_noindex?
     %meta{ name: 'robots', content: 'noindex, noarchive' }/
 
   %link{ rel: 'alternate', type: 'application/json+oembed', href: api_oembed_url(url: short_account_status_url(@account, @status), format: 'json') }/
@@ -17,9 +17,4 @@
   = render 'og_description', activity: @status
   = render 'og_image', activity: @status, account: @account
 
-.grid
-  .column-0
-    .activity-stream.h-entry
-      = render partial: 'status', locals: { status: @status, include_threads: true }
-  .column-1
-    = render 'application/sidebar'
+= render 'shared/web_app'
