@@ -1,4 +1,3 @@
----
 br:
   about:
     contact_missing: Andermenet
@@ -7,21 +6,21 @@ br:
   accounts:
     follow: Heuliañ
     followers:
+      one: Heulier·ez
+      two: Heulier·ez
       few: Heulier·ez
       many: Heulier·ez
-      one: Heulier·ez
       other: Heulier·ez
-      two: Heulier·ez
     following: Koumanantoù
     last_active: oberiantiz ziwezhañ
     nothing_here: N'eus netra amañ !
     posts:
-      few: Kannadoù
-      many: Kannadoù
-      one: Kannad
-      other: Kannadoù
-      two: Kannadoù
-    posts_tab_heading: Kannadoù
+      one: Toud
+      two: Toudoù
+      few: Toudoù
+      many: Toudoù
+      other: Toud
+    posts_tab_heading: Toudoù
   admin:
     account_moderation_notes:
       create: Leuskel un notenn
@@ -80,7 +79,7 @@ br:
       search: Klask
       silence: Bevenniñ
       silenced: Bevennet
-      statuses: Kannadoù
+      statuses: Toudoù
       suspend: Astalañ
       suspended: Astalet
       title: Kontoù
@@ -93,8 +92,8 @@ br:
         destroy_status: Dilemel ar c'hannad
         update_status: Hizivaat ar c'hannad
       actions:
-        destroy_status_html: Dilamet eo bet kannad %{target} gant %{name}
-        update_status_html: Hizivaet eo bet kannad %{target} gant %{name}
+        destroy_status_html: "Dilamet eo bet toud %{target} gant %{name}"
+        update_status_html: "Hizivaet eo bet toud %{target} gant %{name}"
       title: Renabl aodit
     announcements:
       live: War-eeun
@@ -157,7 +156,7 @@ br:
           suspend: Astalañ
         policy: Reolennoù
       dashboard:
-        instance_statuses_measure: kannadoù stoket
+        instance_statuses_measure: toudoù stoket
       delivery:
         all: Pep tra
         failing: O faziañ
@@ -194,11 +193,11 @@ br:
     reports:
       account:
         notes:
+          one: "%{count} a notennoù"
+          two: "%{count} a notennoù"
           few: "%{count} a notennoù"
           many: "%{count} a notennoù"
-          one: "%{count} a notennoù"
           other: "%{count} a notennoù"
-          two: "%{count} a notennoù"
       action_log: Renabl aodit
       are_you_sure: Ha sur oc'h?
       comment:
@@ -246,15 +245,15 @@ br:
       media:
         title: Media
       open: Digeriñ ar c'hannad
-      original_status: Kannad orin
+      original_status: Toud orin
       reblogs: Skignadennoù
-      status_changed: Kannad kemmet
-      title: Kannadoù ar gont
+      status_changed: Toud kemmet
+      title: Toudoù ar gont
       visibility: Gwelusted
       with_media: Gant mediaoù
     strikes:
       actions:
-        delete_statuses: Dilamet eo bet kannadoù %{target} gant %{name}
+        delete_statuses: "Dilamet eo bet toudoù %{target} gant %{name}"
     trends:
       allow: Aotren
       links:
@@ -342,9 +341,9 @@ br:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
@@ -363,15 +362,15 @@ br:
     index:
       delete: Dilemel
       statuses:
+        one: "%{count} c'hannad"
+        two: "%{count} gannad"
         few: "%{count} a gannadoù"
         many: "%{count} a gannadoù"
-        one: "%{count} c'hannad"
         other: "%{count} a gannadoù"
-        two: "%{count} gannad"
       title: Siloù
     statuses:
       index:
-        title: Kannadoù silet
+        title: Toudoù silet
   generic:
     all: Pep tra
     copy: Eilañ
@@ -408,12 +407,12 @@ br:
     mention:
       action: Respont
     reblog:
-      subject: Skignet ho kannad gant %{name}
+      subject: "Gant %{name} eo bet skignet ho toud "
       title: Skignadenn nevez
     status:
-      subject: Embannet ez eus bet traoù gant %{name}
+      subject: "Embannet ez eus bet traoù gant %{name}"
     update:
-      subject: Kemmet eo bet ur c'hannad gant %{name}
+      subject: "Kemmet eo bet ur c'hannad gant %{name}"
   number:
     human:
       decimal_units:
@@ -486,11 +485,11 @@ br:
   statuses:
     attached:
       image:
+        one: "%{count} skeudenn"
+        two: "%{count} skeudenn"
         few: "%{count} skeudenn"
         many: "%{count} skeudenn"
-        one: "%{count} skeudenn"
         other: "%{count} skeudenn"
-        two: "%{count} skeudenn"
     poll:
       vote: Mouezhiañ
     show_more: Diskouez muioc'h
@@ -508,7 +507,7 @@ br:
       '63113904': 2 vloavezh
       '7889238': 3 months
   stream_entries:
-    pinned: Kannad spilhennet
+    pinned: Toud spilhennet
     reblogged: en·he deus skignet
   themes:
     default: Mastodoñ (Teñval)
@@ -516,7 +515,7 @@ br:
   time:
     formats:
       default: "%d a viz %b %Y, %H:%M"
-      month: Miz %b %Y
+      month: "Miz %b %Y"
       time: "%H:%M"
   two_factor_authentication:
     add: Ouzhpennañ
@@ -527,7 +526,7 @@ br:
       categories:
         spam: Spam
       reason: 'Abeg :'
-      statuses: 'Kannadoù meneget :'
+      statuses: 'Toudoù meneget :'
       title:
         none: Diwall
     welcome:
