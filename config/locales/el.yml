@@ -268,6 +268,8 @@ el:
       add_new: Έγκριση τομέα
       created_msg: Ο τομέας εγκρίθηκε με επιτυχία
       destroyed_msg: Ο τομέας δεν είναι πια εγκεκριμένος
+      export: Εξαγωγή
+      import: Εισαγωγή
       undo: Αφαίρεση έγκρισης
     domain_blocks:
       add_new: Προσθήκη νέου
@@ -277,11 +279,14 @@ el:
       edit: Διαχείρηση αποκλεισμένου τομέα
       existing_domain_block: Έχετε ήδη επιβάλει αυστηρότερα όρια στο %{name}.
       existing_domain_block_html: Έχεις ήδη επιβάλλει αυστηρότερους περιορισμούς στο %{name}, πρώτα θα πρέπει να τους <a href="%{unblock_url}">αναιρέσεις</a>.
+      export: Εξαγωγή
+      import: Εισαγωγή
       new:
         create: Δημιουργία αποκλεισμού
         hint: Ο αποκλεισμός τομέα δεν θα αποτρέψει νέες καταχωρίσεις λογαριασμών στην βάση δεδομένων, αλλά θα εφαρμόσει αναδρομικά και αυτόματα συγκεκριμένες πολιτικές μεσολάβησης σε αυτούς τους λογαριασμούς.
         severity:
           noop: Κανένα
+          silence: Περιορισμός
           suspend: Αναστολή
         title: Αποκλεισμός νέου τομέα
       private_comment: Ιδιωτικό σχόλιο
@@ -309,6 +314,10 @@ el:
         create: Πρόσθεση τομέα
         title: Νέα εγγραφή email στη μαύρη λίστα
       title: Μαύρη λίστα email
+    export_domain_allows:
+      no_file: Δεν επιλέχθηκε αρχείο
+    export_domain_blocks:
+      no_file: Δεν επιλέχθηκε αρχείο
     follow_recommendations:
       status: Κατάσταση
     instances:
@@ -564,6 +573,7 @@ el:
     warning: Μεγάλη προσοχή με αυτά τα στοιχεία. Μην τα μοιραστείς ποτέ με κανέναν!
     your_token: Το διακριτικό πρόσβασής σου (access token)
   auth:
+    apply_for_account: Ζητήστε έναν λογαριασμό
     change_password: Συνθηματικό
     delete_account: Διαγραφή λογαριασμού
     delete_account_html: Αν θέλεις να διαγράψεις το λογαριασμό σου, μπορείς <a href="%{path}">να συνεχίσεις εδώ</a>. Θα σου ζητηθεί επιβεβαίωση.
@@ -743,6 +753,7 @@ el:
     invalid_markup: 'περιέχει λάθος μορφοποίηση HTML: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Μη έγκυρο αρχείο CSV. Σφάλμα: %{error}'
       over_rows_processing_limit: περιέχει περισσότερες από %{count} γραμμές
     modes:
       merge: Συγχώνευση
