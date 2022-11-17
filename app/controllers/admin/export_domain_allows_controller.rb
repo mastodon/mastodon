@@ -8,8 +8,6 @@ module Admin
 
     before_action :set_dummy_import!, only: [:new]
 
-    ROWS_PROCESSING_LIMIT = 20_000
-
     def new
       authorize :domain_allow, :create?
     end
@@ -23,9 +21,11 @@ module Admin
       authorize :domain_allow, :create?
       begin
         @import = Admin::Import.new(import_params)
+        return render :new unless @import.validate
+
         parse_import_data!(export_headers)
 
-        @data.take(ROWS_PROCESSING_LIMIT).each do |row|
+        @data.take(Admin::Import::ROWS_PROCESSING_LIMIT).each do |row|
           domain = row['#domain'].strip
           next if DomainAllow.allowed?(domain)
 

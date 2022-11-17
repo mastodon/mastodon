@@ -2,28 +2,31 @@
 
 # A non-activerecord helper class for csv upload
 class Admin::Import
-  extend ActiveModel::Callbacks
   include ActiveModel::Model
-  include Paperclip::Glue
 
-  FILE_TYPES = %w(text/plain text/csv application/csv).freeze
+  ROWS_PROCESSING_LIMIT = 20_000
 
-  # Paperclip required callbacks
-  define_model_callbacks :save, only: [:after]
-  define_model_callbacks :destroy, only: [:before, :after]
+  attr_accessor :data
 
-  attr_accessor :data_file_name, :data_content_type
+  validates :data, presence: true
+  validate :validate_data
 
-  has_attached_file :data
-  validates_attachment_content_type :data, content_type: FILE_TYPES
-  validates_attachment_presence :data
-  validates_with AdminImportValidator, on: :create
-
-  def save
-    run_callbacks :save
+  def data_file_name
+    data.original_filename
   end
 
-  def destroy
-    run_callbacks :destroy
+  private
+
+  def validate_data
+    return if data.blank?
+
+    csv_data = CSV.read(data.path, encoding: 'UTF-8')
+
+    row_count  = csv_data.size
+    row_count -= 1 if csv_data.first&.first == '#domain'
+
+    errors.add(:data, I18n.t('imports.errors.over_rows_processing_limit', count: ROWS_PROCESSING_LIMIT)) if row_count > ROWS_PROCESSING_LIMIT
+  rescue CSV::MalformedCSVError => e
+    errors.add(:data, I18n.t('imports.errors.invalid_csv_file', error: e.message))
   end
 end
