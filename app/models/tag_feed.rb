@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class TagFeed < PublicFeed
-  LIMIT_PER_MODE = 4
-
   # @param [Tag] tag
   # @param [Account] account
   # @param [Hash] options
@@ -51,6 +49,6 @@ class TagFeed < PublicFeed
   end
 
   def tags_for(names)
-    Tag.matching_name(Array(names).take(LIMIT_PER_MODE)).pluck(:id) if names.present?
+    Tag.matching_name(Array(names)).pluck(:id) if names.present?
   end
 end
