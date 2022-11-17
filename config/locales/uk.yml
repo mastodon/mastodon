@@ -400,9 +400,8 @@ uk:
         create: Створити блокування
         hint: Блокування домену не завадить створенню нових облікових записів у базі даних, але ретроактивно та автоматично застосує до них конкретні методи модерації.
         severity:
-          desc_html: "<strong>Глушення</strong> зробить дописи облікового запису невидимими для всіх, окрім його підписників. <strong>Заморожування</strong> видалить усі матеріали, медіа та дані профілю облікового запису. Якщо ви хочете лише заборонити медіафайли, оберіть <strong>Нічого</strong>."
           noop: Нічого
-          silence: Глушення
+          silence: Ліміт
           suspend: Блокування
         title: Нове блокування домену
       obfuscate: Сховати назву домена
@@ -634,6 +633,7 @@ uk:
         other: "%{count} користувача"
       categories:
         administration: Адміністрування
+        devops: DevOps
         invites: Запрошення
         moderation: Модерація
         special: Спеціальні
@@ -686,6 +686,7 @@ uk:
         view_audit_log_description: Дозволяє користувачам бачити історію адміністративних дій на сервері
         view_dashboard: Переглядати панель керування
         view_dashboard_description: Дозволяє користувачам доступ до панелі керування та різних метрик
+        view_devops: DevOps
         view_devops_description: Дозволяє користувачам доступ до Sidekiq і панелі pgHero
       title: Ролі
     rules:
@@ -948,7 +949,7 @@ uk:
     warning: Будьте дуже обережні з цими даними. Ніколи не діліться ними ні з ким!
     your_token: Ваш токен доступу
   auth:
-    apply_for_account: Приєднатися до списку очікування
+    apply_for_account: Запит облікового запису
     change_password: Пароль
     delete_account: Видалити обліковий запис
     delete_account_html: Якщо ви хочете видалити свій обліковий запис, ви можете <a href="%{path}">перейти сюди</a>. Вас попросять підтвердити дію.
@@ -1423,6 +1424,7 @@ uk:
     browser: Браузер
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Хром
       edge: Microsoft Edge
       electron: Electron
@@ -1436,6 +1438,7 @@ uk:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Сафарі
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Активна сесія
     description: "%{browser} на %{platform}"
@@ -1444,6 +1447,8 @@ uk:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

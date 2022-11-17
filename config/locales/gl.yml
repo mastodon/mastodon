@@ -386,9 +386,7 @@ gl:
         create: Crear bloqueo
         hint: O bloqueo do dominio non previrá a creación de entradas de contas na base de datos, pero aplicará de xeito retroactivo e automático regras específicas de moderación sobre esas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> fará invisíbeis as mensaxes das contas para calquera que non os siga. <strong>Suspender</strong> eliminará todo o contido das contas, ficheiros multimedia, e datos de perfil. Emprega a opción de <strong>Ningún</strong> se só queres rexeitar ficheiros multimedia."
           noop: Ningún
-          silence: Silenciar
           suspend: Suspender
         title: Novo bloqueo de dominio
       obfuscate: Ofuscar o nome de dominio
@@ -608,6 +606,7 @@ gl:
         other: "%{count} usuarias"
       categories:
         administration: Administración
+        devops: DevOps
         invites: Convites
         moderation: Moderación
         special: Especial
@@ -658,6 +657,7 @@ gl:
         view_audit_log_description: Permite ver o historial de accións administrativas no servidor
         view_dashboard: Ver Taboleiro
         view_dashboard_description: Permite acceder ao taboleiro e varias métricas do servidor
+        view_devops: DevOps
         view_devops_description: Permite acceder aos taboleiros Sidekiq e phHero
       title: Roles
     rules:
@@ -912,7 +912,6 @@ gl:
     warning: Ten moito tino con estos datos. Non os compartas nunca con ninguén!
     your_token: O seu testemuño de acceso
   auth:
-    apply_for_account: Solicita o acceso
     change_password: Contrasinal
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
@@ -930,7 +929,7 @@ gl:
     login: Acceder
     logout: Pechar sesión
     migrate_account: Mover a unha conta diferente
-    migrate_account_html: Se queres redirixir esta conta hacia outra diferente, pode <a href="%{path}">configuralo aquí</a>.
+    migrate_account_html: Se queres redirixir esta conta hacia outra diferente, podes <a href="%{path}">facelo aquí</a>.
     or_log_in_with: Ou accede con
     privacy_policy_agreement_html: Lin e acepto a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     providers:
@@ -1071,9 +1070,9 @@ gl:
     archive_takeout:
       date: Data
       download: Descargue o seu ficheiro
-      hint_html: Pode solicitar un ficheiro coas <strong>súas publicacións e ficheiros de medios</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquera software que o siga. Podes solicitar un ficheiro cada 7 días.
+      hint_html: Podes solicitar un ficheiro coas <strong>túas publicacións e ficheiros multimedia</strong>. Os datos estarán en formato ActivityPub e son compatibles con calquera software que o siga. Podes solicitar un ficheiro cada 7 días.
       in_progress: Xerando o seu ficheiro...
-      request: Solicite o ficheiro
+      request: Solicita o ficheiro
       size: Tamaño
     blocks: Bloqueadas
     bookmarks: Marcadores
@@ -1371,6 +1370,7 @@ gl:
     browser: Navegador
     browsers:
       alipay: Alipay
+      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,6 +1384,7 @@ gl:
       phantom_js: PhantomJS
       qq: Navegador QQ
       safari: Safari
+      uc_browser: Navegador QQ
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1392,6 +1393,8 @@ gl:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

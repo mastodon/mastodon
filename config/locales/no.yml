@@ -19,9 +19,9 @@
     pin_errors:
       following: Du må allerede følge personen du vil fremheve
     posts:
-      one: Tut
-      other: Tuter
-    posts_tab_heading: Tuter
+      one: Innlegg
+      other: Innlegg
+    posts_tab_heading: Innlegg
   admin:
     account_actions:
       action: Utfør handling
@@ -226,6 +226,7 @@
         update_user_role: Oppdater rolle
       actions:
         approve_user_html: "%{name} godkjente registrering fra %{target}"
+        assigned_to_self_report_html: "%{name} tildelte rapport %{target} til seg selv"
         change_email_user_html: "%{name} endret e-postadressen til brukeren %{target}"
         change_role_user_html: "%{name} endret rolle for %{target}"
         confirm_user_html: "%{name} bekreftet e-postadressen til brukeren %{target}"
@@ -237,15 +238,31 @@
         create_domain_block_html: "%{name} blokkert domene %{target}"
         create_email_domain_block_html: "%{name} blokkert e-post domene %{target}"
         create_ip_block_html: "%{name} opprettet regel for IP %{target}"
+        create_unavailable_domain_html: "%{name} stoppet levering til domenet %{target}"
         create_user_role_html: "%{name} opprettet rollen %{target}"
+        demote_user_html: "%{name} degraderte bruker %{target}"
         destroy_announcement_html: "%{name} slettet kunngjøring %{target}"
         destroy_custom_emoji_html: "%{name} slettet emoji %{target}"
         destroy_ip_block_html: "%{name} slettet regel for IP %{target}"
         destroy_status_html: "%{name} fjernet innlegget av %{target}"
+        destroy_unavailable_domain_html: "%{name} gjenopptok levering til domenet %{target}"
         destroy_user_role_html: "%{name} slettet %{target} -rolle"
+        disable_2fa_user_html: "%{name} deaktiverte tofaktor-autentiseringskravet for bruker %{target}"
+        disable_custom_emoji_html: "%{name} deaktiverte emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} deaktiverte autentisering med e-post-token for %{target}"
+        disable_user_html: "%{name} deaktiverte innlogging for bruker %{target}"
+        enable_custom_emoji_html: "%{name} aktiverte emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} aktiverte autentisering med e-post-token for %{target}"
+        enable_user_html: "%{name} aktiverte innlogging for bruker %{target}"
+        memorialize_account_html: "%{name} endret %{target}s konto til en minneside"
+        promote_user_html: "%{name} forfremmet bruker %{target}"
+        reject_appeal_html: "%{name} avviste moderasjonsavgjørelsesklagen fra %{target}"
         reject_user_html: "%{name} avslo registrering fra %{target}"
+        reopen_report_html: "%{name} gjenåpnet rapporten %{target}"
+        resend_user_html: "%{name} sendte e-postbekreftelse på nytt for %{target}"
         reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
         silence_account_html: "%{name} begrenset %{target}s konto"
+        suspend_account_html: "%{name} suspenderte %{target}s konto"
         unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
         update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
@@ -321,6 +338,10 @@
       top_languages: Mest aktive språk
       top_servers: Mest aktive servere
       website: Nettside
+    disputes:
+      appeals:
+        empty: Ingen klager funnet.
+        title: Klager
     domain_allows:
       add_new: Hvitelist domene
       created_msg: Domenet har blitt hvitelistet
@@ -338,9 +359,7 @@
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
           noop: Ingen
-          silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
       obfuscate: Obfuskere domenenavn
@@ -385,11 +404,15 @@
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
+      confirm_purge: Er du sikker på at du vil slette data permanent fra dette domenet?
       content_policies:
         comment: Internt notat
+        description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
         policies:
           reject_media: Avvis media
+          reject_reports: Avvis rapporter
           silence: Begrens
+          suspend: Suspender
         reason: Offentlig årsak
         title: Retningslinjer for innhold
       dashboard:
@@ -449,11 +472,11 @@
     relays:
       add_new: Legg til ny overgang
       delete: Slett
-      description_html: En <strong>federert overgang</strong> er en mellomleddsserver som utveksler store mengder av offentlige tuter mellom servere som abonnerer og publiserer til den. <strong>Det kan hjelpe små og mellomstore servere til å oppdage innhold fra strømiverset</strong>, noe som ellers ville ha krevd at lokale brukere manuelt fulgte andre personer på fjerne servere.
+      description_html: En <strong>federert overgang</strong> er en mellomleddsserver som utveksler store mengder av offentlige innlegg mellom servere som abonnerer og publiserer til den. <strong>Det kan hjelpe små og mellomstore servere til å oppdage innhold fra strømiverset</strong>, noe som ellers ville ha krevd at lokale brukere manuelt fulgte andre personer på fjerne servere.
       disable: Skru av
       disabled: Skrudd av
       enable: Skru på
-      enable_hint: Når dette har blitt skrudd på, vil tjeneren din abonnere på alle offentlige tuter fra denne overgangen, og vil begynne å sende denne tjenerens offentlige tuter til den.
+      enable_hint: Når dette har blitt skrudd på, vil tjeneren din abonnere på alle offentlige innlegg fra denne overgangen, og vil begynne å sende denne tjenerens offentlige innlegg til den.
       enabled: Skrudd på
       inbox_url: Overførings-URL
       pending: Avventer overgangens godkjenning
@@ -472,6 +495,9 @@
           other: "%{count} notiser"
       action_taken_by: Handling utført av
       actions:
+        delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som sensitive, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
         silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
@@ -512,8 +538,25 @@
         administration: Administrasjon
         devops: DevOps
         invites: Invitasjoner
+      delete: Slett
+      edit: Rediger rollen '%{name}'
+      everyone: Standard-tillatelser
+      everyone_full_description_html: Dette er <strong>basis-rollen</strong> som påvirker <strong>alle brukere</strong>, selv de uten en tilordnet rolle. Alle andre roller arver tillatelser fra den.
+      permissions_count:
+        one: "%{count} tillatelse"
+        other: "%{count} tillatelser"
       privileges:
+        administrator: Administrator
+        administrator_description: Brukere med denne tillatelsen omgår enhver tillatelse
+        delete_user_data: Slett brukerdata
+        delete_user_data_description: Lar brukere slette andre brukeres data uten forsinkelse
+        invite_users: Invitere brukere
+        invite_users_description: Lar brukere invitere nye personer til serveren
+        manage_invites_description: Lar brukere bla gjennom og deaktivere invitasjonslenker
+        view_dashboard: Vis dashbord
+        view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
         view_devops: DevOps
+        view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
     rules:
       add_new: Legg til et filter
       delete: Slett
@@ -522,6 +565,8 @@
       empty: Ingen serverregler har blitt definert ennå.
       title: Server regler
     settings:
+      discovery:
+        trends: Trender
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -531,32 +576,79 @@
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melde seg inn
           open: Hvem som helst kan melde seg inn
+      title: Serverinnstillinger
     site_uploads:
       delete: Slett den opplastede filen
       destroyed_msg: Vellykket sletting av sideopplasting!
     statuses:
+      account: Forfatter
+      application: Applikasjon
       back_to_account: Tilbake til kontosiden
+      batch:
+        remove_from_report: Fjern fra rapport
       deleted: Slettet
+      history: Versjonshistorikk
+      language: Språk
       media:
         title: Media
+      metadata: Metadata
       no_status_selected: Ingen statuser ble endret da ingen ble valgt
+      original_status: Opprinnelig innlegg
+      status_changed: Innlegg endret
       title: Kontostatuser
+      visibility: Synlighet
       with_media: Med media
     strikes:
       actions:
+        delete_statuses: "%{name} slettet %{target}s innlegg"
+        disable: "%{name} frøs %{target}s konto"
+        mark_statuses_as_sensitive: "%{name} markerte %{target}s innlegg som sensitive"
+        none: "%{name} sendte en advarsel til %{target}"
+        sensitive: "%{name} markerte %{target}s konto som sensitiv"
         silence: "%{name} begrenset %{target}s konto"
+        suspend: "%{name} suspenderte %{target}s konto"
+      appeal_approved: Klage tatt til følge
+      appeal_pending: Klage behandles
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      elasticsearch_running_check:
+        message_html: Kunne ikke koble til Elasticsearch. Kontroller at den kjører, eller deaktiver fulltekstsøk
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-versjon: %{value}'
+        version_comparison: Elasticsearch %{running_version} kjører mens %{required_version} er påkrevd
       rules_check:
         action: Behandle serverregler
         message_html: Du har ikke definert noen serverregler.
+      sidekiq_process_check:
+        message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
     tags:
       review: Gjennomgangsstatus
     title: Administrasjon
+    trends:
+      allow: Tillat
+      approved: Godkjent
+      disallow: Ikke tillat
+      links:
+        allow: Tillat lenke
+        disallow: Ikke tillat lenke
+        no_link_selected: Ingen lenker ble endret da ingen var valgt
+        shared_by_over_week:
+          one: Delt av %{count} person i løpet av den siste uken
+          other: Delt av %{count} personer i løpet av den siste uken
+        usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      pending_review: Avventer gjennomgang
+      rejected: Avvist
+      statuses:
+        allow: Tillat innlegg
+        allow_account: Tillat forfatter
+        disallow: Ikke tillat innlegg
     warning_presets:
       add_new: Legg til ny
       delete: Slett
+      title: Endre forhåndsinnstillinger for advarsler
+    webhooks:
+      add_new: Legg til endepunkt
   admin_mailer:
     new_appeal:
       actions:
@@ -690,9 +782,34 @@
       username_unavailable: Brukernavnet ditt vil forbli utilgjengelig
   disputes:
     strikes:
-      appeal_approved: Denne advarselen ble anket og er ikke lenger gyldig
+      action_taken: Handling utført
+      appeal: Klage
+      appeal_approved: Denne advarselens klage ble tatt til følge og er ikke lenger gyldig
+      appeal_rejected: Klagen ble avvist
+      appeal_submitted_at: Klage levert
+      appealed_msg: Din klage har blitt levert. Du får beskjed om den blir godkjent.
+      appeals:
+        submit: Lever klage
+      approve_appeal: Godkjenn klage
+      associated_report: Tilhørende rapport
+      created_at: Datert
+      description_html: Dette er tiltakene mot din konto og advarsler som har blitt sent til deg av %{instance}-personalet.
+      recipient: Adressert til
+      reject_appeal: Avvis klage
+      status: 'Innlegg #%{id}'
+      status_removed: Innlegg allerede fjernet fra systemet
+      title: "%{action} fra %{date}"
       title_actions:
+        delete_statuses: Fjerning av innlegg
+        disable: Frysing av konto
+        mark_statuses_as_sensitive: Merking av innlegg som sensitive
+        none: Advarsel
+        sensitive: Merking av konto som sensitiv
         silence: Begrensning av konto
+        suspend: Suspensjon av konto
+      your_appeal_approved: Din klage har blitt godkjent
+      your_appeal_pending: Du har levert en klage
+      your_appeal_rejected: Din klage har blitt avvist
   domain_validator:
     invalid_domain: er ikke et gyldig domenenavn
   errors:
@@ -717,7 +834,7 @@
     archive_takeout:
       date: Dato
       download: Last ned arkivet ditt
-      hint_html: Du kan be om et arkiv med dine <strong>tuter og opplastede media</strong>. Den eksporterte dataen vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
+      hint_html: Du kan be om et arkiv med dine <strong>innlegg og opplastede media</strong>. Eksporterte data vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
       in_progress: Samler arkivet ditt...
       request: Be om ditt arkiv
       size: Størrelse
@@ -942,7 +1059,7 @@
       account: Offentlige innlegg fra @%{acct}
       tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
+    over_daily_limit: Du har overskredet grensen på %{limit} planlagte innlegg for i dag
     over_total_limit: Du har overskredet grensen på %{limit} planlagte innlegg
     too_soon: Den planlagte datoen må være i fremtiden
   sessions:
@@ -1035,7 +1152,7 @@
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
       limit: Du har allerede festet det maksimale antall innlegg
-      ownership: Kun egne tuter kan festes
+      ownership: Kun egne innlegg kan festes
       reblog: En fremheving kan ikke festes
     poll:
       total_people:
@@ -1074,7 +1191,7 @@
       '7889238': 3 måneder
     min_age_label: Terskel for alder
   stream_entries:
-    pinned: Festet tut
+    pinned: Festet innlegg
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
   strikes:
@@ -1109,6 +1226,9 @@
   user_mailer:
     appeal_approved:
       action: Gå til kontoen din
+      explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt godkjent. Din konto er nok en gang i god stand.
+    appeal_rejected:
+      explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned

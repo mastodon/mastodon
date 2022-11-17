@@ -386,9 +386,7 @@ da:
         create: Opret blokering
         hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk føje særlige moderationsmetoder til disse konti.
         severity:
-          desc_html: "<strong>Tavsgørelse</strong> gør kontoens indlæg usynlige for alle, som ikke følger dem. <strong>Suspendering</strong> fjerner alt kontoindhold, medier og profildata. Brug <strong>Ingen</strong>, hvis mediefiler blot ønskes afvist."
           noop: Ingen
-          silence: Tavsgøre
           suspend: Suspendere
         title: Ny domæneblokering
       obfuscate: Slør domænenavn
@@ -608,6 +606,7 @@ da:
         other: "%{count} brugere"
       categories:
         administration: Håndtering
+        devops: DevOps
         invites: Invitationer
         moderation: Moderering
         special: Speciel
@@ -658,6 +657,7 @@ da:
         view_audit_log_description: Tillader brugere at se en historik over administrative handlinger på serveren
         view_dashboard: Vis Dashboard
         view_dashboard_description: Tillader brugere at tilgå Dashboard'et og forskellige målinger
+        view_devops: DevOps
         view_devops_description: Tillader brugere at tilgå Sidekiq- og pgHero-dashboards
       title: Roller
     rules:
@@ -912,7 +912,6 @@ da:
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
     your_token: Dit adgangstoken
   auth:
-    apply_for_account: Kom på ventelisten
     change_password: Adgangskode
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
@@ -1371,6 +1370,7 @@ da:
     browser: Browser
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,6 +1384,7 @@ da:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Aktuelle session
     description: "%{browser} på %{platform}"
@@ -1392,6 +1393,7 @@ da:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

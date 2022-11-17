@@ -191,7 +191,7 @@ ca:
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
-        destroy_status: Esborrar la publicació
+        destroy_status: Esborra el tut
         destroy_unavailable_domain: Esborra domini no disponible
         destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
@@ -250,7 +250,7 @@ ca:
         destroy_email_domain_block_html: "%{name} ha desbloquejat el domini de correu electrònic %{target}"
         destroy_instance_html: "%{name} ha purgat el domini %{target}"
         destroy_ip_block_html: "%{name} ha esborrat la regla per a l'IP %{target}"
-        destroy_status_html: "%{name} ha eliminat la publicació de %{target}"
+        destroy_status_html: "%{name} ha eliminat el tut de %{target}"
         destroy_unavailable_domain_html: "%{name} ha représ el lliurament delivery al domini %{target}"
         destroy_user_role_html: "%{name} ha esborrat el rol %{target}"
         disable_2fa_user_html: "%{name} ha desactivat el requisit de dos factors per a l'usuari %{target}"
@@ -373,6 +373,8 @@ ca:
       add_new: Dominis autoritzats
       created_msg: El domini ha estat correctament autoritzat
       destroyed_msg: S'ha esborrat el domini de la llista blanca
+      export: Exporta
+      import: Importa
       undo: Treure de la llista blanca
     domain_blocks:
       add_new: Afegir nou bloqueig de domini
@@ -382,21 +384,25 @@ ca:
       edit: Editar el bloqueig del domini
       existing_domain_block: Ja s'han imposat mesures més estrictes a %{name}.
       existing_domain_block_html: Ja has imposat uns límits més estrictes a %{name}, l'hauries de <a href="%{unblock_url}">desbloquejar-lo</a> primer.
+      export: Exporta
+      import: Importa
       new:
         create: Crea un bloqueig
         hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s'aplicaran de manera retroactiva mètodes de moderació específics sobre aquests comptes.
         severity:
-          desc_html: "<strong>Silenci</strong> farà les publicacions del compte invisibles a tothom que no l'estigui seguint. <strong>La suspensió</strong> eliminarà tots els continguts, multimèdia i les dades del perfil del compte. Usa <strong>Cap</strong> si només vols rebutjar el fitxers multimèdia."
+          desc_html: "<strong>Limitar</strong> farà que les publicacions dels comptes d'aquest domini siguin invisibles per a qualsevol persona que no les segueixi. <strong>Suspendre</strong> eliminarà del vostre servidor tot el contingut, multimèdia i perfil dels comptes d'aquest domini. Utilitza <strong>Cap</strong> si només vols rebutjar fitxers multimèdia."
           noop: Cap
-          silence: Silenci
+          silence: Limitar
           suspend: Suspensió
         title: Bloqueig de domini nou
+      no_domain_block_selected: No s'ha canviat cap bloqueig de domini perquè no se n'ha seleccionat cap
+      not_permitted: No tens permís per a realitzar aquesta acció
       obfuscate: Oculta el nom del domini
       obfuscate_hint: Oculta parcialment el nom del domini si està activat mostrar la llista de dominis limitats
       private_comment: Comentari privat
       private_comment_hint: Comentari sobre aquesta limitació del domini per a ús intern dels moderadors.
       public_comment: Comentari públic
-      public_comment_hint: Comentari pel públic general sobre aquesta limitació del domini, si la publicació de la llista de limitacions de domini està habilitada.
+      public_comment_hint: Comentari sobre la limitació de domini per al públic en general, si la visibilitat de la llista de limitacions de domini està activada.
       reject_media: Rebutja els fitxers multimèdia
       reject_media_hint: Elimina els fitxers multimèdia emmagatzemats localment i impedeix baixar-ne cap en el futur. Irrellevant en les suspensions
       reject_reports: Rebutja informes
@@ -422,6 +428,20 @@ ca:
       resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Llista negra de correus electrònics
+    export_domain_allows:
+      new:
+        title: Importa dominis permesos
+      no_file: No s'ha seleccionat cap fitxer
+    export_domain_blocks:
+      import:
+        description_html: Estàs a punt d'importar una llista de bloqueig de dominis. Si us plau, revisa aquesta llista amb molta cura, especialment si no l'has creada tu mateix.
+        existing_relationships_warning: Relacions de seguiment existents
+        private_comment_description_html: 'Per ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
+        private_comment_template: Importar des de %{source} el %{date}
+        title: Importa dominis bloquejats
+      new:
+        title: Importa dominis bloquejats
+      no_file: No s'ha seleccionat cap fitxer
     follow_recommendations:
       description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
       language: Per idioma
@@ -724,10 +744,10 @@ ca:
         title: Contingut multimèdia
       metadata: Metadada
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
-      open: Obrir publicació
-      original_status: Publicació original
+      open: Obrir tut
+      original_status: Tut original
       reblogs: Impulsos
-      status_changed: Publicació canviada
+      status_changed: El tut ha canviat
       title: Estats del compte
       trending: Tendència
       visibility: Visibilitat
@@ -787,10 +807,10 @@ ca:
         title: Mitjans
       rejected: Rebutjat
       statuses:
-        allow: Permet publicació
+        allow: Permet tut
         allow_account: Permet autor
-        description_html: Aquestes son publicacions que el teu servidor veu i que ara mateix s'estan compartint i afavorint molt. Poden ajudar als teus nous usuaris i als que retornen a trobar més gent a qui seguir. Cap publicació es mostra publicament fins que no aprovis l'autor i l'autor permeti que el seu compte sigui sugerit a altres. També pots aceptar o rebutjar publicacions individuals.
-        disallow: Rebutja publicació
+        description_html: Aquests són tuts que el teu servidor veu i que ara mateix s'estan compartint i afavorint molt. Poden ajudar als teus nous usuaris i als que retornen a trobar més gent a qui seguir. Cap tut es mostra públicament fins que no aprovis l'autor i l'autor permeti que el seu compte sigui suggerit a altres. També pots acceptar o rebutjar tuts individualment.
+        disallow: Rebutja tut
         disallow_account: Rebutja autor
         no_status_selected: No s'han canviat les publicacions en tendència perquè cap ha estat seleccionada
         not_discoverable: L'autor no ha activat poder ser detectable
@@ -898,14 +918,14 @@ ca:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
-    toot_layout: Disseny de la publicació
+    toot_layout: Disseny del tut
   application_mailer:
     notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
     settings: 'Canvia les preferències de correu: %{link}'
     view: 'Visualització:'
     view_profile: Mostra el perfil
-    view_status: Mostra la publicació
+    view_status: Mostra el tut
   applications:
     created: L'aplicació s'ha creat correctament
     destroyed: L'aplicació s'ha suprimit correctament
@@ -914,7 +934,7 @@ ca:
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
     your_token: El teu identificador d'accés
   auth:
-    apply_for_account: Apunta't a la llista d'espera
+    apply_for_account: Sol·licitar un compte
     change_password: Contrasenya
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -1035,11 +1055,11 @@ ca:
       description_html: Aquestes son accions preses contra el teu compte i avisos que se t'han enviat per l'equip de %{instance}.
       recipient: Dirigida a
       reject_appeal: Rebutja l'apel·lació
-      status: 'Publicació #%{id}'
-      status_removed: Publicació ja esborrada del sistema
+      status: 'Tut #%{id}'
+      status_removed: Tut ja esborrat del sistema
       title: "%{action} del %{date}"
       title_actions:
-        delete_statuses: Eliminació de publicació
+        delete_statuses: Eliminació del tut
         disable: Congelació del compte
         mark_statuses_as_sensitive: Marcatge de les publicacions com a sensibles
         none: Avís
@@ -1116,7 +1136,7 @@ ca:
         other: "%{count} paraules clau"
       statuses:
         one: "%{count} publicació"
-        other: "%{count} publicacions"
+        other: "%{count} tuts"
       statuses_long:
         one: "%{count} publicació individual ocultada"
         other: "%{count} publicacions individuals ocultades"
@@ -1159,6 +1179,7 @@ ca:
     invalid_markup: 'conté HTML markup no vàlid: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Fitxer CSV invàlid. Error: %{error}'
       over_rows_processing_limit: conté més de %{count} files
     modes:
       merge: Fusionar
@@ -1329,7 +1350,7 @@ ca:
       too_many_options: no pot contenir més de %{max} opcions
   preferences:
     other: Altre
-    posting_defaults: Valors predeterminats de publicació
+    posting_defaults: Valors predeterminats del tut
     public_timelines: Línies de temps públiques
   privacy_policy:
     title: Política de Privacitat
@@ -1362,7 +1383,7 @@ ca:
   rss:
     content_warning: 'Avís de contingut:'
     descriptions:
-      account: Publicacions des de @%{acct}
+      account: Tuts des de @%{acct}
       tag: 'Publicacions etiquetades #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} publicacions programades per a avui
@@ -1453,13 +1474,13 @@ ca:
       other: 'conté les etiquetes no permeses: %{tags}'
     edited_at_html: Editat %{date}
     errors:
-      in_reply_not_found: La publicació a la qual intentes respondre sembla que no existeix.
+      in_reply_not_found: El tut al qual intentes respondre sembla que no existeix.
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
       direct: Les publicacions que només son visibles per els usuaris mencionats no poden ser fixades
       limit: Ja has fixat el màxim nombre de publicacions
-      ownership: No es pot fixar la publicació d'algú altre
+      ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
     poll:
       total_people:
@@ -1519,7 +1540,7 @@ ca:
     min_reblogs: Mantenir les publicacions impulsades més de
     min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest número de vegades. Deixa-ho en blanc per suprimir les publicacions independentment del nombre d'impulsos que tinguin
   stream_entries:
-    pinned: Publicació fixada
+    pinned: Tut fixat
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
   strikes:

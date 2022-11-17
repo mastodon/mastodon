@@ -1,1 +1,36 @@
+---
 ms:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Tarikh akhir
+        options: Pilihan
+      user:
+        agreement: Perjanjian perkhidmatan
+        email: Alamat e-mel
+        locale: Tempatan
+        password: Kata laluan
+      user/account:
+        username: Nama pengguna
+      user/invite_request:
+        text: Sebab
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: hanya mengandungi aksara, nombor dan garis bawah sahaja
+              reserved: dikhaskan
+        admin/webhook:
+          attributes:
+            url:
+              invalid: bukan merupakan URL yang sah
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: bukan merupakan URL yang sah
+        user:
+          attributes:
+            email:
+              blocked: menggunakan pembekal e-mel yang tidak dibenarkan
+              unreachable: nampaknya tidak wujud

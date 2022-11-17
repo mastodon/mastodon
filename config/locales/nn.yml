@@ -275,7 +275,7 @@ nn:
         unassigned_report_html: "%{name} løyste ein rapport %{target}"
         unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
         unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som sensitivt"
-        unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
+        unsilence_account_html: "%{name} fjerna grensa på kontoen til %{target}"
         update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
         update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
         update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
@@ -379,9 +379,9 @@ nn:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
+          desc_html: "<strong>Målbind</strong> gjer kontoen sine postear usynlege for alle som ikkje følger den. <strong>Utvis</strong> fjernar alt innhald, media og profildata frå kontoen. Bruk <strong>Ingen</strong> viss du berre vil fjerne mediafiler."
           noop: Ingen
-          silence: Togn
+          silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
       obfuscate: Obfuskere domenenavn
@@ -431,11 +431,15 @@ nn:
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
+      confirm_purge: Er du sikker på at du vil slette data permanent fra dette domenet?
       content_policies:
         comment: Internt notat
+        description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
         policies:
           reject_media: Avvis media
+          reject_reports: Avvis rapporter
           silence: Begrens
+          suspend: Suspender
         reason: Offentlig årsak
         title: Retningslinjer for innhold
       dashboard:
@@ -518,6 +522,9 @@ nn:
           other: "%{count} notiser"
       action_taken_by: Handling gjort av
       actions:
+        delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som sensitive, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
         silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
@@ -558,8 +565,25 @@ nn:
         administration: Administrasjon
         devops: DevOps
         invites: Invitasjoner
+      delete: Slett
+      edit: Rediger rollen '%{name}'
+      everyone: Standard-tillatelser
+      everyone_full_description_html: Dette er <strong>basis-rollen</strong> som påvirker <strong>alle brukere</strong>, selv de uten en tilordnet rolle. Alle andre roller arver tillatelser fra den.
+      permissions_count:
+        one: "%{count} tillatelse"
+        other: "%{count} tillatelser"
       privileges:
+        administrator: Administrator
+        administrator_description: Brukere med denne tillatelsen omgår enhver tillatelse
+        delete_user_data: Slett brukerdata
+        delete_user_data_description: Lar brukere slette andre brukeres data uten forsinkelse
+        invite_users: Invitere brukere
+        invite_users_description: Lar brukere invitere nye personer til serveren
+        manage_invites_description: Lar brukere bla gjennom og deaktivere invitasjonslenker
+        view_dashboard: Vis dashbord
+        view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
         view_devops: DevOps
+        view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
     rules:
       add_new: Legg til et filter
       delete: Slett
@@ -568,6 +592,8 @@ nn:
       empty: Ingen serverregler har blitt definert ennå.
       title: Server regler
     settings:
+      discovery:
+        trends: Trender
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -577,35 +603,81 @@ nn:
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
+      title: Serverinnstillinger
     site_uploads:
       delete: Slett opplasta fil
       destroyed_msg: Vellukka sletting av sideopplasting!
     statuses:
+      account: Forfatter
+      application: Applikasjon
       back_to_account: Tilbake til kontosida
+      batch:
+        remove_from_report: Fjern fra rapport
       deleted: Sletta
+      history: Versjonshistorikk
+      language: Språk
       media:
         title: Media
+      metadata: Metadata
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
+      original_status: Opprinnelig innlegg
+      status_changed: Innlegg endret
       title: Kontostatusar
+      visibility: Synlighet
       with_media: Med media
     strikes:
       actions:
+        delete_statuses: "%{name} slettet %{target}s innlegg"
+        disable: "%{name} frøs %{target}s konto"
+        mark_statuses_as_sensitive: "%{name} markerte %{target}s innlegg som sensitive"
+        none: "%{name} sendte en advarsel til %{target}"
+        sensitive: "%{name} markerte %{target}s konto som sensitiv"
         silence: "%{name} begrenset %{target}s konto"
+        suspend: "%{name} suspenderte %{target}s konto"
+      appeal_approved: Klage tatt til følge
+      appeal_pending: Klage behandles
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      elasticsearch_running_check:
+        message_html: Kunne ikke koble til Elasticsearch. Kontroller at den kjører, eller deaktiver fulltekstsøk
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-versjon: %{value}'
+        version_comparison: Elasticsearch %{running_version} kjører mens %{required_version} er påkrevd
       rules_check:
         action: Behandle serverregler
         message_html: Du har ikke definert noen serverregler.
+      sidekiq_process_check:
+        message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
     tags:
       review: Sjå gjennom status
       updated_msg: Emneknagginnstillingane er oppdaterte
     title: Leiing
+    trends:
+      allow: Tillat
+      approved: Godkjent
+      disallow: Ikke tillat
+      links:
+        allow: Tillat lenke
+        disallow: Ikke tillat lenke
+        no_link_selected: Ingen lenker ble endret da ingen var valgt
+        shared_by_over_week:
+          one: Delt av %{count} person i løpet av den siste uken
+          other: Delt av %{count} personer i løpet av den siste uken
+        usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      pending_review: Avventer gjennomgang
+      rejected: Avvist
+      statuses:
+        allow: Tillat innlegg
+        allow_account: Tillat forfatter
+        disallow: Ikke tillat innlegg
     warning_presets:
       add_new: Legg til ny
       delete: Slett
       edit_preset: Endr åtvaringsoppsett
       title: Handsam åtvaringsoppsett
+    webhooks:
+      add_new: Legg til endepunkt
   admin_mailer:
     new_appeal:
       actions:
@@ -650,6 +722,7 @@ nn:
     warning: Ver varsam med dette datumet. Aldri del det med nokon!
     your_token: Tilgangsnykelen din
   auth:
+    apply_for_account: Søk om ein konto
     change_password: Passord
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
@@ -742,9 +815,34 @@ nn:
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
   disputes:
     strikes:
-      appeal_approved: Denne advarselen ble anket og er ikke lenger gyldig
+      action_taken: Handling utført
+      appeal: Klage
+      appeal_approved: Denne advarselens klage ble tatt til følge og er ikke lenger gyldig
+      appeal_rejected: Klagen ble avvist
+      appeal_submitted_at: Klage levert
+      appealed_msg: Din klage har blitt levert. Du får beskjed om den blir godkjent.
+      appeals:
+        submit: Lever klage
+      approve_appeal: Godkjenn klage
+      associated_report: Tilhørende rapport
+      created_at: Datert
+      description_html: Dette er tiltakene mot din konto og advarsler som har blitt sent til deg av %{instance}-personalet.
+      recipient: Adressert til
+      reject_appeal: Avvis klage
+      status: 'Innlegg #%{id}'
+      status_removed: Innlegg allerede fjernet fra systemet
+      title: "%{action} fra %{date}"
       title_actions:
+        delete_statuses: Fjerning av innlegg
+        disable: Frysing av konto
+        mark_statuses_as_sensitive: Merking av innlegg som sensitive
+        none: Advarsel
+        sensitive: Merking av konto som sensitiv
         silence: Begrensning av konto
+        suspend: Suspensjon av konto
+      your_appeal_approved: Din klage har blitt godkjent
+      your_appeal_pending: Du har levert en klage
+      your_appeal_rejected: Din klage har blitt avvist
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:
@@ -1172,6 +1270,7 @@ nn:
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
       title: Anke godkjend
     appeal_rejected:
+      explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
       title: Anke avvist
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!

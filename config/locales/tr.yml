@@ -386,9 +386,7 @@ tr:
         create: Yeni blok oluştur
         hint: Domain bloğu, veri tabanında hesap kayıtlarının oluşturulmasını engellemez, fakat o hesapların üzerine otomatik olarak belirli yönetim metodlarını olarak uygular.
         severity:
-          desc_html: "<strong>Susturma</strong>, uygulanan hesabın gönderilerini, o hesabı takip etmeyen diğer herkese gizler. <strong>Uzaklaştırma</strong> hesabın bütün içeriğini, medya dosyalarını ve profil verisini siler. Sadece medya dosyalarını reddetmek için <strong>Hiçbiri</strong> kullanın."
           noop: Yok
-          silence: Sustur
           suspend: Uzaklaştır
         title: Yeni domain bloğu
       obfuscate: Alan adını gizle
@@ -608,6 +606,7 @@ tr:
         other: "%{count} kullanıcı"
       categories:
         administration: Yönetim
+        devops: DevOps
         invites: Davetler
         moderation: Denetim
         special: Özel
@@ -658,6 +657,7 @@ tr:
         view_audit_log_description: Kullanıcıların sunucudaki yönetsel eylemlerin bir tarihçesini görüntülemesine izin verir
         view_dashboard: Ana Paneli Görüntüleme
         view_dashboard_description: Kullanıcıların ana panele ve çeşitli ölçütlere erişmesine izin verir
+        view_devops: DevOps
         view_devops_description: Kullanıcıların Sidekiq ve pgHero panellerine erişmesine izin verir
       title: Roller
     rules:
@@ -912,7 +912,6 @@ tr:
     warning: Bu verilere çok dikkat edin. Asla kimseyle paylaşmayın!
     your_token: Erişim belirteciniz
   auth:
-    apply_for_account: Bekleme listesine gir
     change_password: Parola
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
@@ -1371,6 +1370,7 @@ tr:
     browser: Tarayıcı
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,6 +1384,7 @@ tr:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Geçerli oturum
     description: "%{platform} - %{browser}"
@@ -1392,6 +1393,8 @@ tr:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

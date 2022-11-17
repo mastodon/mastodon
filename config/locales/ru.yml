@@ -392,14 +392,7 @@ ru:
         create: Создать блокировку
         hint: Блокировка домена не предотвратит создание новых учётных записей в базе данных, но ретроактивно и автоматически применит указанные методы модерации для этих учётных записей.
         severity:
-          desc_html: |-
-            Используйте <strong>скрытие</strong> для того, чтобы публикуемые пользователями посты перестали быть видимыми для всех, кроме их подписчиков.<br>
-            <br>
-            <strong>Блокировка</strong> удалит весь локальный контент учётных записей с этого домена, включая мультимедийные вложения и данные профилей.<br>
-            <br>
-            <strong>Ничего</strong> же попросту скроет медиаконтент с домена.
           noop: Ничего
-          silence: Скрытие
           suspend: Блокировка
         title: Новая блокировка e-mail домена
       obfuscate: Скрыть доменное имя
@@ -619,6 +612,7 @@ ru:
         other: "%{count} пользователей"
       categories:
         administration: Администрация
+        devops: DevOps
         invites: Приглашения
         moderation: Модерация
         special: Особые
@@ -652,6 +646,7 @@ ru:
         view_audit_log: Посмотреть журнал аудита
         view_audit_log_description: Позволяет пользователям просматривать историю административных действий на сервере
         view_dashboard: Открыть панель управления
+        view_devops: DevOps
       title: Роли
     rules:
       add_new: Добавить правило
@@ -867,7 +862,6 @@ ru:
     warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
     your_token: Ваш токен доступа
   auth:
-    apply_for_account: Подать заявку
     change_password: Пароль
     delete_account: Удалить учётную запись
     delete_account_html: Удалить свою учётную запись <a href="%{path}">можно в два счёта здесь</a>, но прежде у вас будет спрошено подтверждение.
@@ -1311,6 +1305,7 @@ ru:
     browser: Браузер
     browsers:
       alipay: Alipay
+      blackberry: Blackberry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1324,6 +1319,7 @@ ru:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Текущая сессия
     description: "%{browser} на %{platform}"
@@ -1332,6 +1328,8 @@ ru:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

@@ -259,7 +259,6 @@ kab:
         create: Rnu-d iḥder
         severity:
           noop: Ula yiwen
-          silence: Sgugem
           suspend: Ḥbes di leεḍil
         title: Iḥder amaynut n taɣult
       private_comment: Awennit uslig
@@ -373,6 +372,8 @@ kab:
     roles:
       categories:
         administration: Tadbelt
+        moderation: Aseɣyed
+      delete: Kkes
       privileges:
         administrator: Anedbal
     rules:
@@ -382,19 +383,31 @@ kab:
       empty: Mazal ur ttwasbadun ara yilugan n uqeddac.
       title: Ilugan n uqeddac
     settings:
+      about:
+        title: Γef
+      appearance:
+        title: Udem
+      discovery:
+        profile_directory: Akaram n imaγnuten
+        trends: Ayen mucaɛen
       domain_blocks:
         all: I medden akk
         disabled: Γef ula yiwen
         users: Γef yimseqdacen idiganen i yeqqnen
+      registrations:
+        title: Ajerred
       registrations_mode:
         modes:
           none: Yiwen·t ur yzmir ad izeddi
           open: Zemren akk ad jerden
+      title: Iɣewwaṛen n uqeddac
     site_uploads:
       delete: Kkes afaylu yulin
     statuses:
+      application: Asnas
       back_to_account: Tuγalin γer usebter n umiḍan
       deleted: Yettwakkes
+      language: Tutlayt
       media:
         title: Taγwalt
       title: Tisuffiγin n umiḍan
@@ -405,6 +418,9 @@ kab:
     warning_presets:
       add_new: Rnu amaynut
       delete: Kkes
+    webhooks:
+      delete: Kkes
+      enable: Rmed
   admin_mailer:
     new_report:
       body: "%{reporter} yettwazen ɣef %{target}"
@@ -518,7 +534,12 @@ kab:
       empty: Ur tesɛid ara imzizdigen.
       title: Imzizdigen
     new:
+      save: Sekles amsizdeg amaynut
       title: Rnu yiwen umzizdig amaynut
+    statuses:
+      back_to_filter: Tuɣalin ɣer umsizdeg
+      batch:
+        remove: Kkes seg umsizdeg
   footer:
     trending_now: Ayen mucaɛen tura
   generic:
@@ -567,6 +588,8 @@ kab:
     acct: Ibeddel γer
     incoming_migrations: Tusiḍ-d seg umiḍan nniḍen
     proceed_with_move: Awid imeḍfaṛen-ik
+  moderation:
+    title: Aseɣyed
   notification_mailer:
     favourite:
       subject: "%{name} yesmenyaf addad-ik·im"
@@ -746,6 +769,7 @@ kab:
         silence: Amiḍan yesɛa talast
         suspend: Amiḍan yettwaḥebsen
     welcome:
+      final_action: Bdu asuffeɣ
       full_handle: Tansa umiḍan-ik takemmalit
       subject: Ansuf γer Maṣṭudun
       title: Ansuf yessek·em, %{name}!

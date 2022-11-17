@@ -14,7 +14,7 @@ bg:
     following: Следва
     last_active: последна дейност
     link_verified_on: Собствеността върху тази връзка е проверена на %{date}
-    nothing_here: Тук няма никого!
+    nothing_here: Тук няма нищо!
     pin_errors:
       following: Трябва вече да следвате човека, когото искате да подкрепите
     posts:
@@ -58,7 +58,7 @@ bg:
       disabled: Замразено
       display_name: Показвано име
       domain: Домейн
-      edit: Редакция
+      edit: Редактиране
       email: Имейл
       email_status: Състояние на имейл
       enable: Размразяване
@@ -66,7 +66,7 @@ bg:
       enabled_msg: Успешно размразяване на акаунта на %{username}
       followers: Последователи
       follows: Последвания
-      header: Заглавна част
+      header: Заглавка
       inbox_url: Входящ URL
       invite_request_text: Причини за присъединяване
       invited_by: Покана от
@@ -128,7 +128,9 @@ bg:
       suspend: Спиране
       suspended: Спряно
       title: Акаунти
+      unblock_email: Отблокиране на адреса на имейла
       unconfirmed_email: Непотвърден имейл
+      undo_silenced: Отмяна на ограничението
       unsubscribe: Отписване
       username: Потребителско име
       warn: Предупреждение
@@ -136,6 +138,8 @@ bg:
       whitelisted: Позволено за федерацията
     action_logs:
       action_types:
+        change_email_user: Промяна на имейл за потребител
+        change_role_user: Промяна на роля за потребител
         confirm_user: Потвърждаване на потребител
         create_account_warning: Създаване на предупреждение
         create_announcement: Създаване на оповестяване
@@ -158,6 +162,9 @@ bg:
         remove_avatar_user: Премахване на аватар
         reopen_report: Повторно отваряне на доклад
         reset_password_user: Нулиране на парола
+        update_ip_block: Обновяване на правило за IP
+        update_status: Обновяване на публикация
+        update_user_role: Обновяване на роля
       deleted_account: изтрит акаунт
     announcements:
       live: На живо
@@ -209,17 +216,26 @@ bg:
         title: Жалби
     domain_blocks:
       domain: Домейн
-      new:
-        severity:
-          silence: Тишина
       private_comment: Личен коментар
       private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
+      undo: Отмяна на блокиране на домейн
+      view: Преглед на блокиране на домейн
     email_domain_blocks:
+      delete: Изтриване
+      dns:
+        types:
+          mx: Запис MX
+      domain: Домейн
+      new:
+        create: Добавяне на домейн
       title: Блокирани домейни на имейл
     follow_recommendations:
       language: За език
       status: Състояние
     instances:
+      back_to_all: Всичко
+      back_to_limited: Ограничено
+      back_to_warning: Предупреждение
       by_domain: Домейн
       content_policies:
         policies:
@@ -237,6 +253,8 @@ bg:
       empty: Няма намерени домейни.
       moderation:
         all: Всичко
+        limited: Ограничено
+        title: Mодериране
       title: Федерация
       total_blocked_by_us: Блокирано от нас
       total_followed_by_them: Последвани от тях
@@ -273,9 +291,14 @@ bg:
     reports:
       are_you_sure: Сигурни ли сте?
       category: Категория
+      comment:
+        none: Нищо
       created_at: Докладвано
+      delete_and_resolve: Изтриване на публикациите
       forwarded: Препратено
       forwarded_to: Препратено до %{domain}
+      mark_as_resolved: Маркиране като решено
+      mark_as_sensitive: Означаване като деликатно
       notes:
         create: Добавяне на бележка
         delete: Изтриване
@@ -286,6 +309,7 @@ bg:
       resolved: Разрешено
       status: Състояние
       statuses: Докладвано съдържание
+      title: Доклади
       updated_at: Обновено
       view_profile: Преглед на профила
     roles:
@@ -346,6 +370,7 @@ bg:
     warning_presets:
       delete: Изтриване
     webhooks:
+      add_new: Добавяне на крайна точка
       delete: Изтриване
       events: Събития
       status: Състояние
@@ -362,18 +387,27 @@ bg:
     sensitive_content: Деликатно съдържание
   application_mailer:
     notification_preferences: Промяна на предпочитанията за имейл
+    salutation: "%{name},"
     settings: 'Промяна на предпочитанията за e-mail: %{link}'
     view: 'Преглед:'
     view_profile: Преглед на профила
     view_status: Преглед на публикацията
+  applications:
+    warning: Бъдете внимателни с тези данни. Никога не ги споделяйте с никого!
   auth:
-    apply_for_account: Вземане в спсисъка за чакане
     change_password: Парола
     delete_account: Изтриване на акаунта
+    description:
+      prefix_invited_by_user: "@%{name} ви покани да се присъедините към този сървър на Mastodon!"
     didnt_get_confirmation: Не получих инструкции за потвърждение
+    dont_have_your_security_key: Нямате ли си ключ за сигурност?
     forgot_password: Забравих си паролата
+    link_to_otp: Въведете двуфакторния код от телефона си или кода за възстановяване
+    link_to_webauth: Използвайте ключа си за сигурност на устройството
     login: Влизане
     logout: Излизане
+    migrate_account: Преместване в различен акаунт
+    or_log_in_with: Или влизане с помощта на
     register: Регистрация
     registration_closed: "%{instance} не приема нови членуващи"
     resend_confirmation: Изпрати отново инструкции за потвърждение
@@ -384,11 +418,13 @@ bg:
       title: Настройка
     status:
       account_status: Състояние на акаунта
+    use_security_key: Употреба на ключ за сигурност
   authorize_follow:
     already_following: Вече следвате този акаунт
     error: Възникна грешка в откриването на потребителя
     follow: Последвай
     follow_request: 'Изпратихте следната заявка до:'
+    following: 'Успешно! Сега сте последвали:'
     post_follow:
       close: Или просто затворете този прозорец.
       return: Показване на профила на потребителя
@@ -396,6 +432,7 @@ bg:
     title: Последвай %{acct}
   challenge:
     confirm: Продължаване
+    hint_html: "<strong>Съвет</strong>: няма да ви питаме пак за паролата през следващия час."
     invalid_password: Невалидна парола
     prompt: Потвърдете паролата, за да продължите
   date:
@@ -428,6 +465,8 @@ bg:
       username_unavailable: Вашето потребителско име ще остане неналично
   disputes:
     strikes:
+      created_at: Остаряло
+      status: 'Публикация #%{id}'
       title: "%{action} от %{date}"
       title_actions:
         none: Предупреждение
@@ -451,6 +490,7 @@ bg:
     blocks: Вашите блокирания
     bookmarks: Отметки
     lists: Списъци
+    mutes: Заглушихте
     storage: Съхранение на мултимедия
   filters:
     contexts:
@@ -492,6 +532,8 @@ bg:
     today: днес
   imports:
     modes:
+      merge: Сливане
+      merge_long: Пази текущите записи и добавя нови
       overwrite: Презаписване
       overwrite_long: Заменя текущите записи с новите
     preface: Можеш да импортираш някои данни, като например всички хора, които следваш или блокираш в акаунта си на тази инстанция, от файлове, създадени чрез експорт в друга инстанция.
@@ -500,6 +542,7 @@ bg:
       blocking: Списък на блокираните
       bookmarks: Отметки
       following: Списък на последователите
+      muting: Списък заглушавания
     upload: Качване
   invites:
     delete: Деактивиране
@@ -518,11 +561,20 @@ bg:
       one: 1 употреба
       other: "%{count} употреби"
     max_uses_prompt: Без ограничение
+    prompt: Пораждане и споделяне на връзки с други за даване на достъп до този сървър
+    table:
+      expires_at: Изтича
     title: Поканете хора
+  lists:
+    errors:
+      limit: Достигнахте максималния брой списъци
   login_activities:
     authentication_methods:
+      otp: приложение за двуфакторно удостоверяване
       password: парола
+      sign_in_token: код за сигурност на имейла
       webauthn: ключове за сигурност
+    description_html: Ако забележите неузнаваема дейност, то обмислете смяна на паролата си и включване на двуфакторното удостоверяване.
     empty: Няма налична история на удостоверяване
     title: Историята на удостоверяване
   media_attachments:
@@ -530,7 +582,14 @@ bg:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
       too_many: Не мога да прикача повече от 4 файла
   migrations:
+    cancelled_msg: Успешно отменено пренасочване.
+    errors:
+      move_to_self: не може да е текущия акаунт
+      not_found: не може да се намери
+    followers_count: Последователи по време на преместването
+    incoming_migrations: Преместване от различен акаунт
     past_migrations: Минали миграции
+    proceed_with_move: Още последователи
     redirected_msg: Вашият акаунт сега се пренасочва към %{acct}.
     redirecting_to: Вашият акаунт е пренасочен към %{acct}.
     set_redirect: Задаване на пренасочване
@@ -546,6 +605,7 @@ bg:
       subject: "%{name} те последва"
       title: Нов последовател
     follow_request:
+      action: Управляване на следните заявки
       body: "%{name} помоли за разрешение да те последва"
       subject: 'Чакащ последовател: %{name}'
     mention:
@@ -553,6 +613,8 @@ bg:
       body: "%{name} те спомена в:"
       subject: "%{name} те спомена"
       title: Ново споменаване
+    poll:
+      subject: Анкетата от %{name} приключи
     reblog:
       body: 'Твоята публикация беше споделена от %{name}:'
       subject: "%{name} сподели публикацията ти"
@@ -571,23 +633,46 @@ bg:
           trillion: трлн
   otp_authentication:
     enable: Включване
+    manual_instructions: 'Ако не може да сканирате QR-кода и трябва да го въведете ръчно, то ето го:'
+    setup: Настройване
+    wrong_code: Въведеният код е невалиден! Времето на сървъра и времето на устройството правилни ли са?
   pagination:
+    newer: По-ново
     next: Напред
+    older: По-старо
     prev: Назад
+    truncate: "&hellip;"
   polls:
     errors:
+      already_voted: Вече сте гласували в тази анкета
+      duplicate_options: съдържа повтарящи се елементи
+      duration_too_long: е твърде далеч в бъдещето
+      duration_too_short: е твърде скоро
       expired: Анкетата вече е приключила
+      invalid_choice: Избраната възможност за гласуване не съществува
+      over_character_limit: не може по-дълго от %{max} символа всяко
+      too_few_options: трябва да има повече от един елемент
+      too_many_options: не може да съдържа повече от %{max} елемента
   preferences:
     other: Друго
+    posting_defaults: Публикуване по подразбиране
+    public_timelines: Публични часови оси
   privacy_policy:
     title: Политика за поверителност
+  reactions:
+    errors:
+      limit_reached: Ограничението на различни реакции е достигнат
   relationships:
     activity: Дейност на акаунта
+    dormant: Спящо
     followers: Последователи
     invited: С покана
     last_active: Последна дейност
     most_recent: Най-наскоро
     moved: Преместено
+    mutual: Взаимни
+    primary: Основно
+    relationship: Отношение
     remove_selected_domains: Премахване на всички последователи от избраните домейни
     remove_selected_followers: Премахване на избраните последователи
     remove_selected_follows: Стоп на следването на избраните потребители
@@ -595,13 +680,17 @@ bg:
   remote_follow:
     missing_resource: Неуспешно търсене на нужния URL за пренасочване за твоя акаунт
   rss:
+    content_warning: 'Предупреждение за съдържанието:'
     descriptions:
       account: Публични публикации от @%{acct}
+  scheduled_statuses:
+    too_soon: Заплануваната дата трябва да е в бъдеще
   sessions:
     activity: Последна активност
     browser: Браузър
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Edge на Майкрософт
       electron: Electron
@@ -615,6 +704,7 @@ bg:
       phantom_js: PhantomJS
       qq: Браузър QQ
       safari: Сафари
+      uc_browser: Браузър UC
       weibo: Weibo
     current_session: Текуща сесия
     description: "%{browser} на %{platform}"
@@ -622,6 +712,8 @@ bg:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Оп. сист. Firefox
       ios: iOS
       linux: Линукс
@@ -656,26 +748,52 @@ bg:
       audio:
         one: "%{count} звукозапис"
         other: "%{count} звукозаписа"
+      description: 'Прикачено: %{attached}'
       image:
         one: "%{count} образ"
         other: "%{count} образа"
       video:
         one: "%{count} видео"
         other: "%{count} видеозаписа"
+    content_warning: 'Предупреждение за съдържание: %{warning}'
     default_language: Същият като езика на интерфейса
+    disallowed_hashtags:
+      one: 'съдържа непозволен хаштаг: %{tags}'
+      other: 'съдържа непозволени хаштагове: %{tags}'
+    edited_at_html: Редактирано на %{date}
+    errors:
+      in_reply_not_found: Публикацията, на която се опитвате да отговорите не изглежда да съществува.
     open_in_web: Отвори в уеб
     over_character_limit: прехвърлен лимит от %{max} символа
+    pin_errors:
+      direct: Публикациите, които са видими само за споменати потребители не може да се закачат
+      limit: Вече сте закачили максималния брой публикации
+      ownership: Публикация на някого другиго не може да се закачи
     poll:
+      total_people:
+        one: "%{count} човек"
+        other: "%{count} души"
       vote: Гласуване
     show_more: Покажи повече
+    show_newer: Показване на по-нови
+    show_older: Показване на по-стари
+    show_thread: Показване на нишката
+    sign_in_to_participate: Влезте, за да участвате в разговора
+    title: "%{name}: „%{quote}“"
     visibilities:
+      direct: Директно
       private: Покажи само на последователите си
+      private_long: Показване само на последователи
       public: Публично
+      public_long: Всеки може да вижда
       unlisted: Публично, но не показвай в публичния канал
   statuses_cleanup:
     enabled: Автоматично изтриване на стари публикации
+    enabled_hint: Автоматично изтрива публикациите ви щом достигнат указания възрастов праг, освен ако не съвпадне с някое от изключенията долу
     exceptions: Изключения
+    explanation: Тъй като изтриването на публикации е скъпа операция, това се прави бавно във времето, когато сървърът иначе не е зает. Поради тази причина публикациите ви може да се изтрият известно време след като достигнат възрастовия праг.
     ignore_favs: Пренебрегване на любими
+    interaction_exceptions: Изключения въз основа на взаимодействия
     keep_pinned: Държа на закачените публикации
     min_age:
       '1209600': 2 седмици
@@ -703,10 +821,14 @@ bg:
   two_factor_authentication:
     add: Добавяне
     disable: Деактивирай
+    disabled_success: Двуфакторното удостоверяване е успешно изключено
     edit: Редактиране
     enabled: Двуфакторното удостоверяване е включено
     enabled_success: Двуфакторното удостоверяване е успешно включено
+    generate_recovery_codes: Пораждане на кодове за възстановяване
+    lost_recovery_codes: Кодовете за възстановяване ви позволяват да възвърнете достъпа до акаунта си, ако загубите телефона си. Ако загубите кодовете си за възстановяване, то може да ги породите тук. Старите ви кодове за възстановяване ще станат невалидни.
     methods: Двуфакторни начини
+    otp: Приложение за удостоверяване
     webauthn: Ключове за сигурност
   user_mailer:
     appeal_approved:
@@ -720,6 +842,8 @@ bg:
       statuses: 'Цитирани публ.:'
       subject:
         delete_statuses: Ваши публикации в %{acct} са били премахнати
+        disable: Вашият акаунт %{acct} е бил замразен
+        none: Предупреждение за %{acct}
       title:
         delete_statuses: Публикацията е премахната
         disable: Акаунтът е замразен
@@ -728,11 +852,13 @@ bg:
     welcome:
       edit_profile_action: Настройване на профила
       explanation: Ето няколко стъпки за начало
+      final_action: Начало на публикуване
       subject: Добре дошли в Mastodon
       title: Добре дошли на борда, %{name}!
   users:
     follow_limit_reached: Не може да последвате повече от %{limit} души
     invalid_otp_token: Невалиден код
+    signed_in_as: 'Влезли като:'
   verification:
     verification: Проверка
   webauthn_credentials:
@@ -741,9 +867,12 @@ bg:
       error: Възникна проблем, добавяйки ключ за сигурност. Опитайте пак.
       success: Вашият ключ за сигурност беше добавен успешно.
     delete: Изтриване
+    delete_confirmation: Наистина ли искате да изтриете този ключ за сигурност?
+    description_html: Ако включите <strong>ключ за сигурност при удостоверяване</strong>, то влизането ще изисква да употребите един от ключовете ви за сигурност.
     destroy:
       error: Възникна проблем, изтривайки ключа си за сигурност. Опитайте пак.
       success: Вашият ключ за сигурност беше изтрит успешно.
     invalid_credential: Невалиден ключ за сигурност
     not_supported: Този браузър не поддържа ключове за сигурност
     otp_required: Първо включете двуфакторното удостоверяване, за да използвате ключовете за сигурност.
+    registered_on: Регистрирано на %{date}

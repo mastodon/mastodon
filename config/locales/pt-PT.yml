@@ -386,9 +386,7 @@ pt-PT:
         create: Criar bloqueio
         hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> irá fazer com que as publicações dessa conta sejam invisíveis para quem não a segue. <strong>Supender</strong> irá eliminar todo o conteúdo guardado dessa conta, media e informação de perfil. Use <strong>Nenhum</strong> se apenas deseja rejeitar arquivos de media."
           noop: Nenhum
-          silence: Silenciar
           suspend: Suspender
         title: Novo bloqueio de domínio
       obfuscate: Ofuscar nome de domínio
@@ -914,7 +912,6 @@ pt-PT:
     warning: Cuidado com estes dados. Não partilhar com ninguém!
     your_token: O teu token de acesso
   auth:
-    apply_for_account: Juntar-se à lista de espera
     change_password: Palavra-passe
     delete_account: Eliminar conta
     delete_account_html: Se deseja eliminar a sua conta, pode <a href="%{path}">continuar aqui</a>. Uma confirmação será solicitada.

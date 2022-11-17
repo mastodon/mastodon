@@ -119,9 +119,6 @@ ga:
       website: Suíomh Gréasáin
     domain_blocks:
       domain: Fearann
-      new:
-        severity:
-          silence: Ciúnaigh
     email_domain_blocks:
       delete: Scrios
     follow_recommendations:
@@ -174,11 +171,16 @@ ga:
         delete_user_data: Scrios Sonraí Úsáideora
     rules:
       delete: Scrios
+    settings:
+      appearance:
+        title: Cuma
     site_uploads:
       delete: Scrios comhad uaslódáilte
     statuses:
       account: Údar
+      back_to_account: Ar ais go leathanach cuntais
       deleted: Scriosta
+      favourites: Toghanna
       language: Teanga
       media:
         title: Meáin
@@ -213,6 +215,7 @@ ga:
         none: rabhadh
   auth:
     delete_account: Scrios cuntas
+    logout: Logáil Amach
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
   deletes:
     proceed: Scrios cuntas
@@ -240,19 +243,33 @@ ga:
       thread: Comhráite
     index:
       delete: Scrios
+      title: Scagairí
   generic:
     delete: Scrios
   notification_mailer:
     admin:
       report:
         subject: Chuir %{name} tuairisc isteach
+    reblog:
+      subject: Mhol %{name} do phostáil
+      title: Moladh nua
   rss:
     content_warning: 'Rabhadh ábhair:'
+  settings:
+    account: Cuntas
+    appearance: Cuma
+    back: Ar ais go Mastodon
+    development: Forbairt
+    edit_profile: Cuir an phróifíl in eagar
+    profile: Próifíl
   statuses:
+    boosted_from_html: Molta ó %{acct_link}
     content_warning: 'Rabhadh ábhair: %{warning}'
     show_more: Taispeáin níos mó
     show_newer: Taispeáin níos nuaí
     show_thread: Taispeáin snáithe
+  statuses_cleanup:
+    ignore_favs: Tabhair neamhaird ar toghanna
   user_mailer:
     warning:
       appeal: Cuir achomharc isteach

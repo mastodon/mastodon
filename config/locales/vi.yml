@@ -379,9 +379,7 @@ vi:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
-          desc_html: "<strong>Ẩn</strong> sẽ làm cho bài đăng của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Dùng <strong>Cảnh cáo</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không hoạt động
-          silence: Ẩn
           suspend: Vô hiệu hóa
         title: Máy chủ bị chặn mới
       obfuscate: Làm mờ tên máy chủ
@@ -595,6 +593,7 @@ vi:
         other: "%{count} người"
       categories:
         administration: Quản trị viên
+        devops: Nhà phát triển
         invites: Lời mời
         moderation: Kiểm duyệt
         special: Đặc biệt
@@ -644,6 +643,7 @@ vi:
         view_audit_log_description: Cho phép xem lịch sử của các hành động quản trị trên máy chủ
         view_dashboard: Xem quản trị
         view_dashboard_description: Cho phép truy cập trang tổng quan và các chỉ số khác
+        view_devops: Nhà phát triển
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
       title: Danh sách vai trò
     rules:
@@ -894,7 +894,6 @@ vi:
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
     your_token: Mã truy cập của bạn
   auth:
-    apply_for_account: Nhận thông báo khi mở
     change_password: Mật khẩu
     delete_account: Xóa tài khoản
     delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
@@ -1345,6 +1344,7 @@ vi:
     browser: Trình duyệt
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Edge
       electron: Electron
@@ -1358,6 +1358,7 @@ vi:
       phantom_js: PhantomJS
       qq: QQ
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Phiên hiện tại
     description: "%{browser} trên %{platform}"
@@ -1366,6 +1367,8 @@ vi:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Hệ điều hành Firefox
       ios: iOS
       linux: Linux

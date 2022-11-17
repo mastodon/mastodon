@@ -388,7 +388,6 @@ nl:
         severity:
           desc_html: "<strong>Negeren</strong> zorgt ervoor dat berichten van accounts van dit domein voor iedereen onzichtbaar zijn, behalve als een account wordt gevolgd. <strong>Opschorten</strong> zorgt ervoor dat alle berichten, media en profielgegevens van accounts van dit domein worden verwijderd. Gebruik <strong>Geen</strong> wanneer je alleen mediabestanden wilt weigeren."
           noop: Geen
-          silence: Negeren
           suspend: Opschorten
         title: Nieuwe domeinblokkade
       obfuscate: Domeinnaam verdoezelen
@@ -608,6 +607,7 @@ nl:
         other: "%{count} gebruikers"
       categories:
         administration: Beheer
+        devops: DevOps
         invites: Uitnodigingen
         moderation: Moderatie
         special: Speciaal
@@ -658,6 +658,7 @@ nl:
         view_audit_log_description: Staat gebruikers toe om een geschiedenis van beheeracties op de server te bekijken
         view_dashboard: Dashboard bekijken
         view_dashboard_description: Geeft gebruikers toegang tot het dashboard en verschillende statistieken
+        view_devops: DevOps
         view_devops_description: Geeft gebruikers toegang tot de dashboards van Sidekiq en pgHero
       title: Rollen
     rules:
@@ -912,7 +913,6 @@ nl:
     warning: Wees voorzichtig met deze gegevens. Deel het nooit met iemand anders!
     your_token: Jouw toegangscode
   auth:
-    apply_for_account: Zet jezelf op de wachtlijst
     change_password: Wachtwoord
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
@@ -1371,7 +1371,7 @@ nl:
     browser: Webbrowser
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1385,7 +1385,7 @@ nl:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: QQ Browser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Huidige sessie
     description: "%{browser} op %{platform}"
@@ -1394,7 +1394,7 @@ nl:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS

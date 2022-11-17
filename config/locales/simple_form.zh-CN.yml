@@ -118,16 +118,16 @@ zh-CN:
         name: 你只能改变字母的大小写，让它更易读
       user:
         chosen_languages: 仅选中语言的嘟文会出现在公共时间轴上（全不选则显示所有语言的嘟文）
-        role: 角色决定该用户拥有的权限
+        role: 角色用于控制用户拥有的权限
       user_role:
-        color: 整个用户界面中，该角色使用的颜色，以RGB 十六进制格式
-        highlighted: 这使角色公开可见
-        name: 角色的公开名称，如果角色设置为展示的徽章
+        color: 在界面各处用于标记该角色的颜色，以十六进制 RGB 格式表示
+        highlighted: 使角色公开可见
+        name: 角色的公开名称，将在设为展示徽章时使用
         permissions_as_keys: 具有此角色的用户将有权访问...
-        position: 较高的角色决定在某些情况下解决冲突。某些行动只能对优先级较低的角色执行
+        position: 用于在特定情况下处理决策冲突。一些特定操作只能对优先级更低的角色执行
       webhook:
         events: 选择要发送的事件
-        url: 事件将发送到哪个地点
+        url: 事件将被发往的目的地
     labels:
       account:
         fields:
@@ -290,13 +290,13 @@ zh-CN:
         role: 角色
       user_role:
         color: 徽章颜色
-        highlighted: 用户配置中以徽章显示角色
+        highlighted: 在用户资料中显示角色徽章
         name: 名称
         permissions_as_keys: 权限设置
-        position: 优先权
+        position: 优先级
       webhook:
         events: 已启用事件
-        url: 端点网址
+        url: 对端 URL
     'no': 否
     not_recommended: 不推荐
     recommended: 推荐

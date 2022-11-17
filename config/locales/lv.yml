@@ -338,7 +338,7 @@ lv:
       title: Pielāgotās emocijzīmes
       uncategorized: Nekategorizētās
       unlist: Izslēgt
-      unlisted: Neminētie
+      unlisted: Nerindota
       update_failed_msg: Nevarēja atjaunināt šo emocijzīmi
       updated_msg: Emocijzīme veiksmīgi atjaunināta!
       upload: Augšupielādēt
@@ -380,6 +380,8 @@ lv:
       add_new: Atļaut federāciju ar domēnu
       created_msg: Domēns ir veiksmīgi atļauts federācijai
       destroyed_msg: Domēns ir aizliegts federācijai
+      export: Eksportēt
+      import: Importēt
       undo: Aizliegt federāciju ar domēnu
     domain_blocks:
       add_new: Pievienot jaunu domēna bloku
@@ -389,15 +391,19 @@ lv:
       edit: Rediģēt domēna bloķēšanu
       existing_domain_block: Tu jau esi noteicis stingrākus ierobežojumus %{name}.
       existing_domain_block_html: Tu jau esi noteicis stingrākus ierobežojumus %{name}, vispirms tev <a href="%{unblock_url}">jāatbloķē</a>.
+      export: Eksportēt
+      import: Importēt
       new:
         create: Izveodot bloku
         hint: Domēna bloķēšana netraucēs izveidot kontu ierakstus datu bāzē, bet ar atpakaļejošu datumu un automātiski tiks piemērotas noteiktas moderēšanas metodes šajos kontos.
         severity:
-          desc_html: "<strong>Klusums</strong> padarīs konta ziņas neredzamas ikvienam, kurš tām neseko. <strong>Apturēt</strong> tiks noņemts viss konta saturs, mediji un profila dati. Izmanto <strong>Nevienu</strong>, ja vēlies noraidīt mediju failus."
+          desc_html: "<strong>Ierobežojums</strong> padarīs ziņas no šī domēna kontiem neredzamas ikvienam, kas tiem neseko. <strong>Apturēšana</strong> no tava servera noņems visu šī domēna kontu saturu, multividi un profila datus. Izmanto <strong>Nav</strong>, ja vēlies vienkārši noraidīt multivides failus."
           noop: Neviens
-          silence: Klusums
+          silence: Ierobežot
           suspend: Apturēt
         title: Jauns domēna bloks
+      no_domain_block_selected: Neviens e-pasta domēna bloks netika mainīts, jo neviens netika atlasīts
+      not_permitted: Tev nav atļauts veikt šo darbību
       obfuscate: Apslēpt domēna vārdu
       obfuscate_hint: Daļēji apslēpt domēna nosaukumu sarakstā, ja ir iespējota domēna ierobežojumu saraksta reklamēšana
       private_comment: Privāts komentārs
@@ -430,6 +436,20 @@ lv:
       resolved_dns_records_hint_html: Domēna nosaukums tiek izmantots tālāk norādītajos MX domēnos, kas galu galā ir atbildīgi par e-pasta pieņemšanu. Bloķējot MX domēnu, tiks bloķēta reģistrēšanās no jebkuras e-pasta adreses, kas izmanto vienu un to pašu MX domēnu, pat ja redzamais domēna nosaukums atšķiras. <strong>Esi uzmanīgs, lai nebloķētu lielākos e-pasta pakalpojumu sniedzējus.</strong>
       resolved_through_html: Atrisināts, izmantojot %{domain}
       title: Bloķētie e-pasta domēni
+    export_domain_allows:
+      new:
+        title: Importēt domēnu atļaujas
+      no_file: Nav atlasīts neviens fails
+    export_domain_blocks:
+      import:
+        description_html: Tu gatavojies importēt domēna bloku sarakstu. Lūdzu, ļoti rūpīgi pārskati šo sarakstu, it īpaši, ja tu pats neesi to veidojis.
+        existing_relationships_warning: Esošās sekošanas attiecības
+        private_comment_description_html: 'Lai palīdzētu tev izsekot, no kurienes nāk importētie bloki, tiks izveidoti importētie bloki ar šādu privātu komentāru: <q>%{comment}</q>'
+        private_comment_template: Importēt no %{source} %{date}
+        title: Importēt domēna blokus
+      new:
+        title: Importēt domēna blokus
+      no_file: Nav atlasīts neviens fails
     follow_recommendations:
       description_html: "<strong>Sekošana rekomendācijām palīdz jaunajiem lietotājiem ātri atrast interesantu saturu</strong>. Ja lietotājs nav pietiekami mijiedarbojies ar citiem, lai izveidotu personalizētus ieteikumus, ieteicams izmantot šos kontus. Tie tiek pārrēķināti katru dienu, izmantojot vairākus kontus ar visaugstākajām pēdējā laika saistībām un vislielāko vietējo sekotāju skaitu noteiktā valodā."
       language: Valodai
@@ -566,7 +586,7 @@ lv:
         mark_as_sensitive_description_html: Mediju faili ziņojumos, par kuriem ziņots, tiks atzīmēti kā sensitīvi, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākus pārkāpumus saistībā ar to pašu kontu.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
-        silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, stingri ierobežojot tās sasniedzamību. Šo vienmēr var atgriezt.
+        silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, tādējādi ievērojami ierobežojot tā sasniedzamību. Šo izvēli vienmēr var mainīt.
         suspend_description_html: Profils un viss tā saturs kļūs nepieejami, līdz tas beidzot tiek izdzēsts. Mijiedarbība ar kontu būs neiespējama. Atgriežams 30 dienu laikā.
       actions_description_html: Izlem, kādas darbības jāveic, lai atrisinātu šo ziņojumu. Ja veiksi sodīšanas darbību pret kontu, par kuru ziņots, tam tiks nosūtīts e-pasta paziņojums, izņemot gadījumus, kad ir atlasīta kategorija <strong>Spam</strong>.
       add_to_report: Pievienot varāk paziņošanai
@@ -932,7 +952,7 @@ lv:
     warning: Esi ļoti uzmanīgs ar šiem datiem. Nekad nedalies ne ar vienu ar tiem!
     your_token: Tavs piekļuves marķieris
   auth:
-    apply_for_account: Iekļūt gaidīšanas sarakstā
+    apply_for_account: Pieprasīt kontu
     change_password: Parole
     delete_account: Dzēst kontu
     delete_account_html: Ja vēlies dzēst savu kontu, tu vari <a href="%{path}">turpināt šeit</a>. Tev tiks lūgts apstiprinājums.
@@ -1184,6 +1204,7 @@ lv:
     invalid_markup: 'satur nederīgu HTML marķējumu: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Nederīgs CSV fails. Kļūda: %{error}'
       over_rows_processing_limit: satur vairāk, nekā %{count} rindas
     modes:
       merge: Apvienot
@@ -1413,7 +1434,7 @@ lv:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UC Pārlūks
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Pašreizējā sesija
     description: "%{browser} uz %{platform}"
@@ -1513,8 +1534,8 @@ lv:
       private_long: Rādīt tikai sekotājiem
       public: Publisks
       public_long: Visi var redzēt
-      unlisted: Neiekļautie
-      unlisted_long: Ikviens var redzēt, bet nav norādīts publiskajā ziņu lentā
+      unlisted: Nerindota
+      unlisted_long: Redzama visiem, bet nav iekļauta publiskajās ziņu lentās
   statuses_cleanup:
     enabled: Automātiski dzēst vecās ziņas
     enabled_hint: Automātiski izdzēš tavas ziņas, tiklīdz tās sasniedz noteiktu vecuma slieksni, ja vien tās neatbilst kādam no tālāk norādītajiem izņēmumiem

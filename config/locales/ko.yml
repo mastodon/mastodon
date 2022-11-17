@@ -25,9 +25,9 @@ ko:
       action: 조치 취하기
       title: "%{acct} 계정에 중재 취하기"
     account_moderation_notes:
-      create: 중재 기록 작성하기
-      created_msg: 중재 기록이 성공적으로 작성되었습니다!
-      destroyed_msg: 중재 기록이 성공적으로 삭제되었습니다!
+      create: 기록 남기기
+      created_msg: 중재용 기록이 성공적으로 작성되었습니다!
+      destroyed_msg: 중재용 기록이 성공적으로 삭제되었습니다!
     accounts:
       add_email_domain_block: 이 이메일 도메인을 차단하기
       approve: 승인
@@ -93,7 +93,7 @@ ko:
         silenced: 제한됨
         suspended: 정지 중
         title: 중재
-      moderation_notes: 중재 기록
+      moderation_notes: 중재용 기록
       most_recent_activity: 최근 활동순
       most_recent_ip: 최근 IP
       no_account_selected: 아무 것도 선택 되지 않아 어떤 계정도 변경 되지 않았습니다
@@ -139,7 +139,7 @@ ko:
         targeted_reports: 이 계정에 대한 신고
       silence: 침묵
       silenced: 침묵 됨
-      statuses: 게시물
+      statuses: 글
       strikes: 이전의 처벌들
       subscribe: 구독하기
       suspend: 정지
@@ -188,7 +188,7 @@ ko:
         destroy_email_domain_block: 이메일 도메인 차단 삭제
         destroy_instance: 도메인 제거
         destroy_ip_block: IP 규칙 삭제
-        destroy_status: 게시물 삭제
+        destroy_status: 글 삭제
         destroy_unavailable_domain: 사용 불가능한 도메인 제거
         destroy_user_role: 역할 삭제
         disable_2fa_user: 2단계 인증 비활성화
@@ -219,7 +219,7 @@ ko:
         update_custom_emoji: 커스텀 에모지 업데이트
         update_domain_block: 도메인 차단 갱신
         update_ip_block: IP 규칙 수정
-        update_status: 게시물 게시
+        update_status: 글 쓰기
         update_user_role: 역할 수정
       actions:
         approve_appeal_html: "%{name} 님이 %{target}의 중재 결정에 대한 이의 제기를 승인했습니다"
@@ -247,7 +247,7 @@ ko:
         destroy_email_domain_block_html: "%{name} 님이 이메일 도메인 %{target}을 차단 해제하였습니다"
         destroy_instance_html: "%{name} 님이 도메인 %{target}를 제거했습니다"
         destroy_ip_block_html: "%{name} 님이 IP 규칙 %{target}을 삭제하였습니다"
-        destroy_status_html: "%{name} 님이 %{target}의 게시물을 삭제했습니다"
+        destroy_status_html: "%{name} 님이 %{target} 님의 글을 삭제했습니다"
         destroy_unavailable_domain_html: "%{name} 님이 도메인 %{target}에 대한 전달을 재개"
         destroy_user_role_html: "%{name} 님이 %{target} 역할을 삭제했습니다"
         disable_2fa_user_html: "%{name} 님이 사용자 %{target}의 2FA를 비활성화 했습니다"
@@ -366,6 +366,8 @@ ko:
       add_new: 도메인 허용
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
       destroyed_msg: 도메인이 허용 목록에서 제거되었습니다
+      export: 내보내기
+      import: 불러오기
       undo: 허용 목록에서 제외
     domain_blocks:
       add_new: 도메인 차단 추가하기
@@ -375,17 +377,21 @@ ko:
       edit: 도메인 차단 수정
       existing_domain_block: 이미 %{name}에 대한 더 강력한 제한이 있습니다.
       existing_domain_block_html: 이미 %{name}에 대한 더 강력한 제한이 걸려 있습니다, <a href="%{unblock_url}">차단 해제</a>를 먼저 해야 합니다.
+      export: 내보내기
+      import: 불러오기
       new:
         create: 차단 추가
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 중재 규칙을 적용하게 할 수 있습니다.
         severity:
           desc_html: |-
-            <strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 게시물을 보이지 않게 합니다. <strong>정지</strong>는 계정의 콘텐츠, 미디어, 프로필 데이터를 삭제합니다.
-            미디어 파일만을 거부하고 싶다면 <strong>없음</strong>으로 두세요.
+            <strong>제한</strong>은 이 도메인에 있는 계정을 팔로우 하지 않는 사람들에게 게시물을 보이지 않게 설정합니다.
+            <strong>정지</strong>는 이 도메인에 있는 계정의 모든 콘텐츠, 미디어, 프로필 데이터를 삭제합니다. 미디어 파일만 거부하고 싶다면 <strong>없음</strong>을 사용하세요.
           noop: 없음
-          silence: 침묵
+          silence: 제한
           suspend: 정지
         title: 새로운 도메인 차단
+      no_domain_block_selected: 아무 것도 선택 되지 않아 어떤 도메인 차단도 변경되지 않았습니다
+      not_permitted: 이 작업을 수행할 권한이 없습니다
       obfuscate: 도메인 이름 난독화
       obfuscate_hint: 도메인 제한 목록을 공개하는 경우 도메인 이름의 일부를 난독화 합니다
       private_comment: 비공개 주석
@@ -416,6 +422,20 @@ ko:
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
       resolved_through_html: "%{domain}을 통해 해결됨"
       title: Email 도메인 차단
+    export_domain_allows:
+      new:
+        title: 도메인 허용 목록 불러오기
+      no_file: 선택된 파일이 없습니다
+    export_domain_blocks:
+      import:
+        description_html: 도메인 차단 목록을 불러오려고 합니다. 조심스럽게 검토하시고, 특히나 이 목록을 스스로 작성하지 않았을 경우엔 더 면밀히 검토하세요.
+        existing_relationships_warning: 이미 존재하는 팔로우 관계
+        private_comment_description_html: '어디서 불러온 것인지 추적을 원활하게 하기 위해서, 불러온 차단들은 다음과 같은 비공개 주석과 함께 생성될 것입니다: <q>%{comment}</q>'
+        private_comment_template: "%{date}에 %{source}에서 불러옴"
+        title: 도메인 차단 불러오기
+      new:
+        title: 도메인 차단 불러오기
+      no_file: 선택된 파일이 없습니다
     follow_recommendations:
       description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
       language: 언어 필터
@@ -530,8 +550,8 @@ ko:
       status: 상태
       title: 릴레이
     report_notes:
-      created_msg: 리포트 노트가 성공적으로 작성되었습니다!
-      destroyed_msg: 리포트 노트가 성공적으로 삭제되었습니다!
+      created_msg: 신고용 기록이 성공적으로 작성되었습니다!
+      destroyed_msg: 신고용 기록이 성공적으로 삭제되었습니다!
       today_at: 오늘 %{time}
     reports:
       account:
@@ -558,7 +578,7 @@ ko:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
       created_at: 리포트 시각
-      delete_and_resolve: 게시물 삭제
+      delete_and_resolve: 글 삭제
       forwarded: 전달됨
       forwarded_to: "%{domain}에게 전달됨"
       mark_as_resolved: 해결 완료 처리
@@ -566,13 +586,13 @@ ko:
       mark_as_unresolved: 미해결로 표시
       no_one_assigned: 아무도 없음
       notes:
-        create: 기록 추가
+        create: 기록을 넣기
         create_and_resolve: 기록을 작성하고 해결됨으로 표시
         create_and_unresolve: 기록 작성과 함께 미해결로 표시
         delete: 삭제
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
-        title: 노트
-      notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 노트를 작성합니다
+        title: 기록
+      notes_description_html: 다른 중재자와 미래의 자신에게 기록을 남깁니다
       quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
       remote_user_placeholder: "%{instance}의 리모트 사용자"
       reopen: 리포트 다시 열기
@@ -699,7 +719,7 @@ ko:
       account: 작성자
       application: 애플리케이션
       back_to_account: 계정으로 돌아가기
-      back_to_report: 신고 페이지로 돌아가기
+      back_to_report: 신고로 돌아가기
       batch:
         remove_from_report: 신고에서 제거
         report: 신고
@@ -722,7 +742,7 @@ ko:
       with_media: 미디어 있음
     strikes:
       actions:
-        delete_statuses: "%{name} 님이 %{target}의 게시물을 지웠습니다"
+        delete_statuses: "%{name} 님이 %{target} 님의 글을 삭제했습니다"
         disable: "%{name} 님이 %{target}의 계정을 동결시켰습니다"
         mark_statuses_as_sensitive: "%{name} 님이 %{target}의 게시물을 민감함으로 표시했습니다"
         none: "%{name} 님이 %{target}에게 경고를 보냈습니다"
@@ -774,10 +794,10 @@ ko:
         title: 출처
       rejected: 거부됨
       statuses:
-        allow: 게시물 허용
+        allow: 글 허용
         allow_account: 작성자 허용
         description_html: 당신의 서버가 알기로 현재 많은 수의 공유와 좋아요가 되고 있는 게시물들입니다. 새로운 사용자나 돌아오는 사용자들이 팔로우 할 사람들을 찾는 데 도움이 될 수 있습니다. 작성자를 승인하고, 작성자가 그들의 계정이 다른 계정에게 탐색되도록 설정하지 않는 한 게시물들은 공개적으로 표시되지 않습니다. 또한 각각의 게시물을 별개로 거절할 수도 있습니다.
-        disallow: 게시물 불허
+        disallow: 글 비허용
         disallow_account: 작성자 불허
         no_status_selected: 아무 것도 선택 되지 않아 어떤 유행중인 게시물도 바뀌지 않았습니다
         not_discoverable: 작성자가 발견되기를 원치 않습니다
@@ -852,7 +872,7 @@ ko:
     new_report:
       body: "%{reporter} 님이 %{target}를 신고했습니다"
       body_remote: "%{domain}의 누군가가 %{target}을 신고했습니다"
-      subject: "%{instance} 에 새 신고 등록됨 (#%{id})"
+      subject: "%{instance}의 새로운 신고(#%{id})"
     new_trends:
       body: '아래에 있는 항목들은 공개적으로 보여지기 전에 검토를 거쳐야 합니다:'
       new_trending_links:
@@ -878,7 +898,7 @@ ko:
     confirmation_dialogs: 확인 대화상자
     discovery: 발견하기
     localization:
-      body: 마스토돈은 자원봉사자들에 의해 번역되었습니다.
+      body: 마스토돈은 자원봉사자가 번역합니다.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: 누구나 기여할 수 있습니다.
     sensitive_content: 민감한 내용
@@ -898,10 +918,10 @@ ko:
     warning: 이 데이터를 조심히 다뤄 주세요. 다른 사람들과 절대로 공유하지 마세요!
     your_token: 액세스 토큰
   auth:
-    apply_for_account: 대기자 명단에 들어가기
+    apply_for_account: 가입 요청하기
     change_password: 패스워드
     delete_account: 계정 삭제
-    delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
+    delete_account_html: 계정은 <a href="%{path}">여기</a>에서 삭제할 수 있습니다. 계정을 삭제하려면 확인이 필요합니다.
     description:
       prefix_invited_by_user: "@%{name} 님이 당신을 이 마스토돈 서버로 초대했습니다!"
       prefix_sign_up: 마스토돈에 가입하세요!
@@ -1016,10 +1036,10 @@ ko:
       approve_appeal: 이의제기 승인
       associated_report: 관련된 신고
       created_at: 날짜
-      description_html: 이 결정사항들은 당신에 계정에 대해 행해졌고 %{instance}의 스태프에 의해 경고가 발송되었습니다.
+      description_html: 이것은 %{instance}의 관리자가 내 계정에 조치한 결정 및 나에게 보낸 경고입니다.
       recipient: 수신자
       reject_appeal: 이의 제기 거절
-      status: '게시물 #%{id}'
+      status: '글 #%{id}'
       status_removed: 게시물이 이미 시스템에서 지워졌습니다
       title: "%{action} (%{date}에)"
       title_actions:
@@ -1038,7 +1058,7 @@ ko:
   errors:
     '400': 제출한 요청이 올바르지 않습니다.
     '403': 이 페이지를 표시할 권한이 없습니다.
-    '404': 당신이 찾으려는 페이지는 존재하지 않습니다.
+    '404': 찾으려는 페이지가 존재하지 않습니다.
     '406': 이 페이지는 요청한 자료형으로 제공되지 않습니다.
     '410': 당신이 보려는 페이지는 더이상 여기에 존재하지 않습니다.
     '422':
@@ -1062,7 +1082,7 @@ ko:
       request: 아카이브 요청하기
       size: 크기
     blocks: 차단
-    bookmarks: 보관함
+    bookmarks: 책갈피
     csv: CSV
     domain_blocks: 도메인 차단
     lists: 리스트
@@ -1136,6 +1156,7 @@ ko:
     invalid_markup: '올바르지 않은 HTML 마크업을 포함하고 있습니다: %{error}'
   imports:
     errors:
+      invalid_csv_file: '올바르지 않은 CSV 파일입니다. 오류: %{error}'
       over_rows_processing_limit: "%{count}개 이상의 열을 포함합니다"
     modes:
       merge: 병합
@@ -1146,7 +1167,7 @@ ko:
     success: 파일이 정상적으로 업로드되었으며, 현재 처리 중입니다
     types:
       blocking: 차단한 계정 목록
-      bookmarks: 보관함
+      bookmarks: 책갈피
       domain_blocking: 도메인 차단 목록
       following: 팔로우 중인 계정 목록
       muting: 뮤트 중인 계정 목록
@@ -1227,7 +1248,7 @@ ko:
   move_handler:
     carry_blocks_over_text: 이 사용자는 당신이 차단한 %{acct}로부터 이주 했습니다.
     carry_mutes_over_text: 이 사용자는 당신이 뮤트한 %{acct}로부터 이주 했습니다.
-    copy_account_note_text: '이 사용자는 %{acct}로부터 이동하였습니다. 당신의 이전 노트는 이렇습니다:'
+    copy_account_note_text: '이 사용자는 %{acct}에서 옮겨왔으며 이전의 기록은 다음과 같습니다:'
   navigation:
     toggle_menu: 토글 메뉴
   notification_mailer:
@@ -1253,7 +1274,7 @@ ko:
       action: 답장
       body: "%{name} 님이 나를 언급했습니다:"
       subject: "%{name} 님이 나를 언급했습니다"
-      title: 새 멘션
+      title: 새 답글
     poll:
       subject: "%{name}의 투표가 종료되었습니다"
     reblog:
@@ -1305,7 +1326,7 @@ ko:
       too_many_options: 항목은 %{max}개를 넘을 수 없습니다
   preferences:
     other: 기타
-    posting_defaults: 게시물 기본설정
+    posting_defaults: 글 기본 설정
     public_timelines: 공개 타임라인
   privacy_policy:
     title: 개인정보 정책
@@ -1392,7 +1413,7 @@ ko:
     aliases: 계정 별명
     appearance: 외관
     authorized_apps: 인증된 애플리케이션
-    back: 돌아가기
+    back: 마스토돈으로 돌아가기
     delete: 계정 삭제
     development: 개발
     edit_profile: 프로필 편집
@@ -1429,7 +1450,7 @@ ko:
     open_in_web: Web으로 열기
     over_character_limit: 최대 %{max}자까지 입력할 수 있습니다
     pin_errors:
-      direct: 멘션된 사용자들에게만 보이는 게시물은 고정될 수 없습니다
+      direct: 언급한 사용자만이 보이는 글은 고정할 수 없습니다
       limit: 이미 너무 많은 게시물을 고정했습니다
       ownership: 다른 사람의 게시물은 고정될 수 없습니다
       reblog: 부스트는 고정될 수 없습니다
@@ -1470,8 +1491,8 @@ ko:
     keep_pinned_hint: 고정 게시물을 삭제하지 않습니다
     keep_polls: 투표 유지
     keep_polls_hint: 투표를 삭제하지 않습니다
-    keep_self_bookmark: 북마크된 게시물 유지
-    keep_self_bookmark_hint: 내 스스로 북마크한 본인의 게시물을 삭제하지 않습니다
+    keep_self_bookmark: 책갈피에 넣은 글을 보존하기
+    keep_self_bookmark_hint: 책갈피에 넣은 내 글을 삭제하지 않습니다
     keep_self_fav: 마음에 들어한 게시물 유지
     keep_self_fav_hint: 내 스스로 마음에  들어한 본인의 게시물을 삭제하지 않습니다
     min_age:
@@ -1556,9 +1577,9 @@ ko:
         silence: 당신은 여전히 당신의 계정을 사용할 수 있지만 당신을 팔로우 하고 있는 사람들만 당신의 게시물을 볼 수 있으며, 여러가지 탐색 기능에서 제외됩니다. 하지만, 여전히 다른 사람들은 수동으로 당신을 팔로우 할 수 있습니다.
         suspend: 당신은 더이상 당신의 계정을 사용할 수 없으며, 프로필과 데이터는 접근 불가능하게 됩니다. 데이터가 완전히 삭제되기 전인 30일동안은 여전히 백업을 요청하기 위해 로그인 할 수 있습니다, 하지만 계정 정지를 회피하는 것을 방지하기 위하여 몇 가지 정보는 유지됩니다.
       reason: '사유:'
-      statuses: '인용된 게시물:'
+      statuses: '인용한 글: '
       subject:
-        delete_statuses: 당신의 계정 %{acct}에서 작성한 게시물이 삭제되었습니다
+        delete_statuses: "%{acct}의 글이 삭제되었습니다"
         disable: 당신의 계정 %{acct}가 동결 되었습니다
         mark_statuses_as_sensitive: "%{acct}로 작성한 당신의 게시물은 민감한 것으로 표시되었습니다"
         none: "%{acct}에게의 경고"
@@ -1566,7 +1587,7 @@ ko:
         silence: 당신의 계정 %{acct}가 제한 되었습니다
         suspend: 당신의 계정 %{acct}가 정지 되었습니다
       title:
-        delete_statuses: 게시물 삭제됨
+        delete_statuses: 글이 삭제되었습니다
         disable: 계정 동결 됨
         mark_statuses_as_sensitive: 게시물이 민감함으로 표시됨
         none: 경고
@@ -1577,7 +1598,7 @@ ko:
       edit_profile_action: 프로필 설정
       edit_profile_step: 프로필 사진을 업로드하고, 사람들에게 표시 될 이름을 바꾸는 것 등으로 당신의 프로필을 커스텀 할 수 있습니다. 사람들이 당신을 팔로우 하기 전에 리뷰를 거치게 할 수도 있습니다.
       explanation: 시작하기 전에 몇가지 팁들을 준비했습니다
-      final_action: 포스팅 시작하기
+      final_action: 글 써 보기
       final_step: '게시물을 올리세요! 팔로워가 없더라도, 공개 게시물들은 다른 사람에게 보여질 수 있습니다, 예를 들자면 로컬이나 연합 타임라인 등이 있습니다. 사람들에게 자신을 소개하고 싶다면 #툿친소 해시태그를 이용해보세요.'
       full_handle: 내 전체 핸들
       full_handle_hint: 이것을 당신의 친구들에게 알려주면 다른 서버에서 팔로우 하거나 메시지를 보낼 수 있습니다.

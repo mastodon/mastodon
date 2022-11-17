@@ -42,7 +42,7 @@ cy:
         name: Enw
         new: Rhaglen newydd
         scopes: Rhinweddau
-        show: Dangoswch
+        show: Dangos
         title: Eich rhaglenni
       new:
         title: Rhaglen newydd
@@ -60,6 +60,8 @@ cy:
       error:
         title: Mae rhywbeth wedi mynd o'i le
       new:
+        prompt_html: Hoffai %{client_name} gael caniatâd i gael mynediad i'ch cyfrif. Mae'n gais trydydd parti. <strong>Os nad ydych yn ymddiried ynddo, yna ni ddylech ei awdurdodi.</strong>
+        review_permissions: Adolygu caniatâd
         title: Angen awdurdodi
       show:
         title: Copiwch y côd awdurdodi a gludiwch i'r rhaglen.
@@ -69,7 +71,12 @@ cy:
       confirmations:
         revoke: Ydych chi'n sicr?
       index:
+        authorized_at: Wedi'i awdurdodi ar %{date}
+        description_html: Mae'r rhain yn raglenni sy'n gallu cael mynediad i'ch cyfrif gan ddefnyddio'r API. Os oes yna rhaglenni nad ydych chi'n eu hadnabod yma, neu os yw rhaglen yn camymddwyn, gallwch chi ddiddymu ei fynediad.
+        last_used_at: Defnyddiwyd ddiwethaf ar %{date}
+        never_used: Erioed wedi'i ddefnyddio
         scopes: Caniatâd
+        superapp: Mewnol
         title: Eich rhaglenni awdurdodedig
     errors:
       messages:
@@ -78,6 +85,10 @@ cy:
         invalid_client: Methwyd dilysu cleient oherwydd cleient anhysbys, methiant i gynnwys dilysu cleient, neu defnydd o ddull dilysu nid yw'n cael ei gefnodi.
         invalid_grant: Mae'r grant dilysu a ddarparwyd yn annilys, wedi dod i ben, wedi'i wrthod, ddim yn cyfateb a'r URI ailgyferio a ddefnyddiwyd yn y cais dilysu, neu wedi ei ddarparu i gleient arall.
         invalid_redirect_uri: Nid yw'r uri ailgyfeirio cynnwysiedig yn gyfredol.
+        invalid_request:
+          missing_param: 'Paramedr gofynnol ar goll: %{value}.'
+          request_not_authorized: Mae angen awdurdodi'r cais. Mae'r paramedr gofynnol ar gyfer awdurdodi cais ar goll neu'n annilys.
+          unknown: Mae'r cais yn brin o baramedr gofynnol, yn cynnwys gwerth paramedr heb ei gefnogi, neu wedi ei gamffurfio fel arall.
         invalid_resource_owner: Nid yw meini prawf perchennog yr adnodd yn ddilys, neu ni ellir canfod perchennog yr adnodd
         invalid_scope: Mae'r sgôp a geisiwyd amdano yn annilys, anhysbys, neu'n gamffurfiedig.
         invalid_token:
@@ -102,11 +113,32 @@ cy:
         destroy:
           notice: Diddymwyd y cais.
     grouped_scopes:
+      access:
+        read: Mynediad darllen yn unig
+        read/write: Mynediad darllen ac ysgrifennu
+        write: Mynediad ysgrifennu yn unig
       title:
         accounts: Cyfrifon
+        admin/accounts: Gweinyddu cyfrifon
+        admin/all: Pob swyddogaeth weinyddol
+        admin/reports: Gweinyddu adroddiadau
+        all: Popeth
+        blocks: Blociau
         bookmarks: Tudalnodau
+        conversations: Sgyrsiau
+        crypto: Amgryptio o ben i ben
+        favourites: Ffefrynnau
         filters: Hidlyddion
+        follow: Perthnasau
+        follows: Yn dilyn
+        lists: Rhestrau
+        media: Atodiadau cyfryngau
+        mutes: Tewi
+        notifications: Hysbysiadau
+        push: Hysbysiadau gwthiadwy
+        reports: Adroddiadau
         search: Chwilio
+        statuses: Postiadau
     layouts:
       admin:
         nav:
@@ -121,6 +153,7 @@ cy:
       admin:write: addasu pob data ar y serfiwr
       admin:write:accounts: cyflawni camau cymedroli ar gyfrifon
       admin:write:reports: cyflawni camau cymedroli ar adroddiadau
+      crypto: defnyddio amgryptio ben i ben
       follow: addasu perthnasau cyfrif
       push: derbyn eich hysbysiadau gwthiadwy
       read: darllen holl ddata eich cyfrif
@@ -140,6 +173,7 @@ cy:
       write:accounts: addasu eich proffil
       write:blocks: blocio cyfrifon a parthau
       write:bookmarks: statwsau tudalnod
+      write:conversations: tewi a dileu sgyrsiau
       write:favourites: hoff dŵtiau
       write:filters: creu hidlwyr
       write:follows: dilyn pobl

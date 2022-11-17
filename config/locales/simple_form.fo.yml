@@ -1,0 +1,35 @@
+---
+fo:
+  simple_form:
+    hints:
+      account_warning_preset:
+        title: Valfrítt. Ikki sjónligt fyri móttakaran
+      defaults:
+        password: Skriva minst 8 tekin
+      featured_tag:
+        name: 'Her eru nakrir tvíkrossar, ið tú hevur brúkt í seinastuni:'
+    labels:
+      defaults:
+        data: Dáta
+        note: Ævilýsing
+        username: Brúkaranavn
+        username_or_email: Brúkaranavn ella teldupostur
+      featured_tag:
+        name: Tvíkrossur
+      ip_block:
+        ip: IP
+      notification_emails:
+        favourite: Onkur dámdi títt uppslag
+        follow_request: Onkur biður um at fylgja tær
+        mention: Onkur nevndi teg
+      tag:
+        listable: Loyva hesum tvíkrossið, at verða vístur í leitingum og uppskotum
+        name: Tvíkrossur
+        usable: Loyva uppsløgum at brúka hendan tvíkross
+      user_role:
+        name: Navn
+    'no': Nei
+    required:
+      mark: "*"
+      text: kravt
+    'yes': Ja

@@ -3,21 +3,21 @@ de:
   simple_form:
     hints:
       account_alias:
-        acct: Gib den benutzernamen@domain des Kontos an, von dem du umziehen möchtest
+        acct: Gib profilname@domain des Kontos an, von dem du umziehen möchtest
       account_migration:
-        acct: Gib den benutzernamen@domain des Kontos an, zu dem du umziehen möchtest
+        acct: Gib profilname@domain des Kontos an, zu dem du umziehen möchtest
       account_warning_preset:
-        text: Du kannst Beitragssyntax benutzen, wie z.B. URLs, Hashtags und Erwähnungen
+        text: Du kannst Beitragssyntax verwenden, wie z. B. URLs, Hashtags und Erwähnungen
         title: Optional. Für den Empfänger nicht sichtbar
       admin_account_action:
         include_statuses: Der Benutzer wird sehen, welche Beiträge diese Maßnahme verursacht haben
         send_email_notification: Benutzer_in wird Bescheid gegeben, was mit dem Konto geschehen ist
-        text_html: Optional. Du kannst Beitragssyntax nutzen. Du kannst <a href="%{path}">Warnungsvorlagen</a> benutzen um Zeit zu sparen
+        text_html: Optional. Du kannst Beitragssyntax verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
         types:
           disable: Den Benutzer daran hindern, sein Konto zu verwenden, aber seinen Inhalt nicht löschen oder ausblenden.
           none: Verwende dies, um eine Warnung an den Benutzer zu senden, ohne eine andere Aktion auszulösen.
-          sensitive: Erzwinge, dass alle Medien-Dateien dieses Profils mit einer Inhaltswarnung (NSFW) versehen werden.
+          sensitive: Erzwinge, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindern, dass der Benutzer in der Lage ist, mit der öffentlichen Sichtbarkeit zu posten und seine Beiträge und Benachrichtigungen von Personen zu verstecken, die ihm nicht folgen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Kann innerhalb von 30 Tagen rückgängig gemacht werden.
         warning_preset_id: Optional. Du kannst immer noch eigenen Text an das Ende der Vorlage hinzufügen
@@ -28,7 +28,7 @@ de:
         starts_at: Optional. Falls deine Ankündigung an einen bestimmten Zeitraum gebunden ist
         text: Du kannst die Beitrags-Syntax verwenden. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm der Benutzer*innen einnehmen wird
       appeal:
-        text: Du kannst nur einmal einen Einspruch bei einem Strike einlegen
+        text: Du kannst nur einmal Einspruch gegen einen Verstoß einlegen
       defaults:
         autofollow: Accounts, die sich über deine Einladung registrieren, folgen automatisch deinem Profil
         avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
@@ -46,12 +46,12 @@ de:
         locale: Die Sprache der Oberfläche, E-Mails und Push-Benachrichtigungen
         locked: Wer dir folgen und deine Inhalte sehen möchte, muss dein Follower sein und dafür um deine Erlaubnis bitten
         password: Verwende mindestens 8 Zeichen
-        phrase: Wird schreibungsunabhängig mit dem Text und Inhaltswarnung eines Beitrags verglichen
+        phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
         scopes: Welche Schnittstellen der Applikation erlaubt sind. Wenn du einen Top-Level-Scope auswählst, dann musst du nicht jeden einzelnen darunter auswählen.
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail verschickt, wenn du gerade auf Mastodon aktiv bist
-        setting_default_sensitive: Medien, die mit einer Inhaltswarnung (NSFW) versehen worden sind, werden – je nach Einstellung – erst nach einem zusätzlichen Klick angezeigt
-        setting_display_media_default: Alle Medien verbergen, die mit einer Inhaltswarnung (NSFW) versehen sind
+        setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden erst nach einem zusätzlichen Klick angezeigt
+        setting_display_media_default: Alle Medien verbergen, die mit einer Inhaltswarnung versehen sind
         setting_display_media_hide_all: Alle Medien immer verbergen
         setting_display_media_show_all: Alle Medien immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
@@ -69,7 +69,7 @@ de:
       featured_tag:
         name: 'Hier sind ein paar Hashtags, die du in letzter Zeit am häufigsten genutzt hast:'
       filters:
-        action: Wählen Sie, welche Aktion ausgeführt werden soll, wenn ein Beitrag dem Filter entspricht
+        action: Gib an, welche Aktion ausgeführt werden soll, wenn ein Beitrag dem Filter entspricht
         actions:
           hide: Den gefilterten Inhalt vollständig ausblenden, als hätte er nie existiert
           warn: Den gefilterten Inhalt hinter einer Warnung ausblenden, die den Filtertitel beinhaltet
@@ -141,8 +141,8 @@ de:
         text: Vorlagentext
         title: Titel
       admin_account_action:
-        include_statuses: Meldungen der E-Mail beifügen
-        send_email_notification: Benachrichtige den Nutzer per E-Mail
+        include_statuses: Gemeldete Beiträge der E-Mail beifügen
+        send_email_notification: Nutzer*in per E-Mail benachrichtigen
         text: Eigene Warnung
         type: Aktion
         types:
@@ -150,7 +150,7 @@ de:
           none: Nichts tun
           sensitive: Inhaltswarnung
           silence: Stummschalten
-          suspend: Deaktivieren und Benutzerdaten unwiderruflich löschen
+          suspend: Sperren
         warning_preset_id: Benutze eine Warnungsvorlage
       announcement:
         all_day: Ganztägiges Ereignis
@@ -161,7 +161,7 @@ de:
       appeal:
         text: Erkläre, warum diese Entscheidung rückgängig gemacht werden soll
       defaults:
-        autofollow: Eingeladene Nutzer folgen dir automatisch
+        autofollow: Meinem Profil automatisch folgen
         avatar: Profilbild
         bot: Dieses Profil ist ein Bot
         chosen_languages: Nach Sprachen filtern
@@ -187,15 +187,15 @@ de:
         otp_attempt: Zwei-Faktor-Authentifizierung
         password: Passwort
         phrase: Wort oder Formulierung
-        setting_advanced_layout: Fortgeschrittene Benutzeroberfläche benutzen
-        setting_aggregate_reblogs: Gruppiere erneut geteilte Beiträge auf der Startseite
+        setting_advanced_layout: Erweitertes Webinterface verwenden
+        setting_aggregate_reblogs: Geteilte Beiträge in den Timelines gruppieren
         setting_always_send_emails: Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
         setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
         setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
-        setting_default_sensitive: Eigene Medien immer mit einer Inhaltswarnung (NSFW) versehen
+        setting_default_sensitive: Eigene Medien immer mit einer Inhaltswarnung versehen
         setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
         setting_disable_swiping: Wischgesten deaktivieren
         setting_display_media: Medien-Anzeige
@@ -245,7 +245,7 @@ de:
         site_contact_username: Benutzername des Kontakts
         site_extended_description: Detaillierte Beschreibung
         site_short_description: Serverbeschreibung
-        site_terms: Datenschutzerklärung
+        site_terms: Datenschutzhinweise
         site_title: Servername
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
@@ -275,7 +275,7 @@ de:
         follow: wenn mir jemand folgt
         follow_request: wenn mir jemand folgen möchte
         mention: wenn mich jemand erwähnt
-        pending_account: E-Mail senden, wenn ein neues Benutzerkonto zur Überprüfung aussteht
+        pending_account: Ein neues Konto muss überprüft werden
         reblog: wenn jemand meinen Beitrag teilt
         report: E-Mail senden, wenn eine neue Meldung vorliegt
         trending_tag: Neuer Trend muss überprüft werden

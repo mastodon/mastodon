@@ -167,35 +167,35 @@ pt-BR:
     action_logs:
       action_types:
         approve_appeal: Aprovar recurso
-        approve_user: Aprovar Usuário
+        approve_user: Aprovar usuário
         assigned_to_self_report: Adicionar relatório
-        change_email_user: Editar e-mail do usuário
-        change_role_user: Alteração de Função do Usuário
-        confirm_user: Confirmar Usuário
-        create_account_warning: Criar Aviso
-        create_announcement: Criar Anúncio
-        create_canonical_email_block: Criar bloqueio de Endereço eletrônico
-        create_custom_emoji: Criar Emoji Personalizado
-        create_domain_allow: Adicionar domínio permitido
-        create_domain_block: Criar Bloqueio de Domínio
-        create_email_domain_block: Criar Bloqueio de Domínio de E-mail
+        change_email_user: Alterar e-mail do usuário
+        change_role_user: Alterar cargo do usuário
+        confirm_user: Confirmar usuário
+        create_account_warning: Criar aviso
+        create_announcement: Criar anúncio
+        create_canonical_email_block: Criar bloqueio de e-mail
+        create_custom_emoji: Criar emoji personalizado
+        create_domain_allow: Permitir domínio
+        create_domain_block: Bloquear domínio
+        create_email_domain_block: Bloquear domínio de e-mail
         create_ip_block: Criar regra de IP
         create_unavailable_domain: Criar domínio indisponível
-        create_user_role: Criar Função
+        create_user_role: Criar cargo
         demote_user: Rebaixar usuário
         destroy_announcement: Excluir anúncio
-        destroy_canonical_email_block: Excluir Bloqueio de Endereço Eletrônico
+        destroy_canonical_email_block: Desbloquear domínio de e-mail
         destroy_custom_emoji: Excluir emoji personalizado
         destroy_domain_allow: Excluir domínio permitido
-        destroy_domain_block: Excluir Bloqueio de Domínio
-        destroy_email_domain_block: Excluir bloqueio de domínio de e-mail
-        destroy_instance: Limpar Domínio
+        destroy_domain_block: Desbloquear domínio
+        destroy_email_domain_block: Desbloquear domínio de e-mail
+        destroy_instance: Limpar domínio
         destroy_ip_block: Excluir regra de IP
-        destroy_status: Excluir Status
-        destroy_unavailable_domain: Deletar domínio indisponível
-        destroy_user_role: Destruir Função
+        destroy_status: Excluir publicação
+        destroy_unavailable_domain: Excluir domínio indisponível
+        destroy_user_role: Destruir cargo
         disable_2fa_user: Desativar autenticação de dois fatores
-        disable_custom_emoji: Desativar Emoji Personalizado
+        disable_custom_emoji: Desativar emoji personalizado
         disable_sign_in_token_auth_user: Desativar autenticação via token por email para Usuário
         disable_user: Desativar usuário
         enable_custom_emoji: Ativar Emoji Personalizado
@@ -386,9 +386,7 @@ pt-BR:
         create: Criar bloqueio
         hint: O bloqueio de domínio não vai prevenir a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> vai tornar as publicações da conta invisíveis para qualquer um que não o esteja seguindo. <strong>Suspender</strong> vai remover todo o conteúdo, mídia e dados de perfil da conta. Use <strong>Nenhum</strong> se você só quer rejeitar arquivos de mídia."
           noop: Nenhum
-          silence: Silenciar
           suspend: Banir
         title: Novo bloqueio de domínio
       obfuscate: Ofuscar nome de domínio
@@ -771,6 +769,9 @@ pt-BR:
         disallow: Proibir link
         disallow_provider: Proibir autor
         no_link_selected: Nenhum link foi alterado como nenhum foi selecionado
+        shared_by_over_week:
+          one: Compartilhado por uma pessoa na última semana
+          other: Compartilhado por %{count} pessoas na última semana
         title: Em alta no momento
         usage_comparison: Compartilhado %{today} vezes hoje, em comparação com %{yesterday} de ontem
       only_allowed: Somente permitido
@@ -787,6 +788,8 @@ pt-BR:
         description_html: Estes são as publicações que seu servidor sabe que estão sendo muito compartilhadas e favorecidas no momento. Isso pode ajudar seus usuários, novos e atuais, a encontrar mais pessoas para seguir. Nenhuma publicação é exibida publicamente até que você aprove o autor e o autor permitir que sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individuais.
         disallow: Proibir publicação
         disallow_account: Proibir autor
+        no_status_selected: Nenhuma publicação em alta foi alterada, pois, nenhuma foi selecionada
+        not_discoverable: O autor optou por permitir que seja descoberto
         shared_by:
           one: Compartilhado ou favoritado uma vez
           other: Compartilhado e favoritado %{friendly_count} vezes
@@ -799,10 +802,13 @@ pt-BR:
           tag_servers_dimension: Servidores mais populares
           tag_servers_measure: servidores diferentes
           tag_uses_measure: usos
+        description_html: Estas são hashtags que atualmente estão aparecendo em várias postagens que sua instância vê. Isso pode ajudar seus usuários a descobrirem sobre o que as pessoas estão mais comentando no momento. Nenhuma hashtag é exibida publicamente até que você as aprove.
         listable: Pode ser sugerido
+        no_tag_selected: Nenhuma tag foi alterada, pois, nenhuma foi selecionada
         not_listable: Não será sugerido
         not_trendable: Não aparecerá em alta
         not_usable: Não pode ser usado
+        peaked_on_and_decaying: Atingiu o auge em %{date}, agora decaindo
         title: Hashtags em alta
         trendable: Aparecerá em alta
         trending_rank: 'Em alta #%{rank}'
@@ -856,6 +862,7 @@ pt-BR:
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
     new_trends:
+      body: 'Os seguintes itens precisam de uma análise antes que possam ser exibidos publicamente:'
       new_trending_links:
         title: Links em destaque
       new_trending_statuses:
@@ -899,7 +906,6 @@ pt-BR:
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
     your_token: Seu código de acesso
   auth:
-    apply_for_account: Entrar na lista de espera
     change_password: Senha
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
@@ -919,6 +925,7 @@ pt-BR:
     migrate_account: Mudar-se para outra conta
     migrate_account_html: Se você quer redirecionar essa conta para uma outra você pode <a href="%{path}">configurar isso aqui</a>.
     or_log_in_with: Ou entre com
+    privacy_policy_agreement_html: Eu li e concordo com a <a href="%{privacy_policy_path}" target="_blank">política de privacidade</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1084,6 +1091,7 @@ pt-BR:
     errors:
       invalid_context: Contexto inválido ou nenhum contexto informado
     index:
+      contexts: Filtros em %{contexts}
       delete: Remover
       empty: Sem filtros.
       expires_in: Expira em %{distance}
@@ -1094,19 +1102,30 @@ pt-BR:
       statuses:
         one: "%{count} publicação"
         other: "%{count} publicações"
+      statuses_long:
+        one: "%{count} publicação individual oculta"
+        other: "%{count} publicações individuais ocultas"
       title: Filtros
     new:
       save: Salvar novo filtro
       title: Adicionar filtro
     statuses:
+      back_to_filter: Voltar ao filtro
       batch:
         remove: Remover do filtro
       index:
+        hint: Este filtro se aplica a publicações individuais, independentemente de outros critérios. Você pode adicionar mais postagens a este filtro a partir da interface web.
         title: Publicações filtradas
   footer:
     trending_now: Em alta no momento
   generic:
     all: Tudo
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item nessa página está selecionado."
+      other: Todos os <strong>%{count}</strong> itens nessa página estão selecionados.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item correspondente à sua pesquisa está selecionado."
+      other: Todos os <strong>%{count}</strong> itens correspondentes à sua pesquisa estão selecionados.
     changes_saved_msg: Alterações salvas!
     copy: Copiar
     delete: Excluir
@@ -1114,6 +1133,9 @@ pt-BR:
     none: Nenhum
     order_by: Ordenar por
     save_changes: Salvar alterações
+    select_all_matching_items:
+      one: Selecione %{count} item correspondente à sua pesquisa.
+      other: Selecione todos os %{count} itens correspondentes à sua pesquisa.
     today: hoje
     validation_errors:
       one: Algo não está certo! Analise o erro abaixo
@@ -1215,6 +1237,8 @@ pt-BR:
     carry_blocks_over_text: Este usuário mudou de %{acct}, que você havia bloqueado.
     carry_mutes_over_text: Este usuário mudou de %{acct}, que você havia silenciado.
     copy_account_note_text: 'Este usuário saiu de %{acct}, aqui estão suas notas anteriores sobre ele:'
+  navigation:
+    toggle_menu: Alternar menu
   notification_mailer:
     admin:
       report:
@@ -1334,6 +1358,7 @@ pt-BR:
     browser: Navegador
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1355,6 +1380,8 @@ pt-BR:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1538,7 +1565,10 @@ pt-BR:
       explanation:
         delete_statuses: Algumas de suas publicações infringiram uma ou mais diretrizes da comunidade e foram removidas pelos moderadores de %{instance}.
         disable: Você não poderá mais usar a sua conta, mas o seu perfil e outros dados permanecem intactos. Você pode solicitar um backup dos seus dados, mudar as configurações ou excluir sua conta.
+        mark_statuses_as_sensitive: Algumas de suas postagens foram marcadas como sensíveis por moderadores da %{instance}. Isso significa que as pessoas terão que clicar nas mídias em publicações antes de ser exibida uma prévia. Você pode marcar uma mídia como sensível quando postar futuramente.
         sensitive: A partir de agora, todos os seus arquivos de mídia enviados serão marcados como confidenciais e escondidos por trás de um aviso de clique.
+        silence: Você ainda pode usar a sua conta, mas apenas pessoas que já te seguem verão suas publicações nessa instância, e você poderá ser excluído de vários recursos de descoberta. No entanto, outros ainda poderão te seguir manualmente.
+        suspend: Você não pode mais usar sua conta, e seu perfil e outros dados não estão mais acessíveis. Você ainda pode fazer o login para solicitar um backup dos seus dados até eles serem completamente removidos em cerca de 30 dias, porém manteremos alguns dados básicos para prevenir que você escape da suspensão.
       reason: 'Motivo:'
       statuses: 'Publicações citadas:'
       subject:
@@ -1559,8 +1589,10 @@ pt-BR:
         suspend: Conta banida
     welcome:
       edit_profile_action: Configurar perfil
+      edit_profile_step: Você pode personalizar seu perfil enviando uma foto de perfil, mudando seu nome de exibição e mais. Você pode optar por revisar novos seguidores antes que eles possam te seguir.
       explanation: Aqui estão algumas dicas para você começar
       final_action: Comece a publicar
+      final_step: 'Comece a postar! Mesmo sem seguidores, suas postagens públicas podem ser vistas pelos outros, por exemplo, na linha do tempo local ou nas hashtags. Você pode querer fazer uma introdução usando a hashtag #introduções.'
       full_handle: Seu nome de usuário completo
       full_handle_hint: Isso é o que você compartilha com seus amigos para que eles possam te mandar mensagens ou te seguir a partir de outro servidor.
       subject: Boas-vindas ao Mastodon

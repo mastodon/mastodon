@@ -14,6 +14,12 @@ cy:
         send_email_notification: Bydd y defnyddiwr yn derbyn esboniad o beth digwyddodd gyda'i cyfrif
         text_html: Yn ddewisol. Gallwch defnyddio cystrawen tŵt. Gallwch <a href="%{path}">ychwanegu rhagosodiadau rhybydd</a> i arbed amser
         type_html: Dewis beth i wneud gyda <strong>%{acct}</strong>
+        types:
+          disable: Yn atal y defnyddiwr rhag defnyddio ei gyfrif, ond peidio â dileu neu guddio ei gynnwys.
+          none: Defnyddio hwn i anfon rhybudd at y defnyddiwr, heb ysgogi unrhyw gamau eraill.
+          sensitive: Gorfodi holl atodiadau cyfryngau'r defnyddiwr hwn i gael eu nodi fel rhai sensitif.
+          silence: Atal y defnyddiwr rhag gallu postio gyda gwelededd cyhoeddus, cuddio ei bostiadau a'i hysbysiadau rhag pobl nad ydyn nhw'n eu dilyn.
+          suspend: Atal unrhyw ryngweithio o neu i'r cyfrif hwn a dileu ei gynnwys. Mae modd ei ddadwneud o fewn 30 diwrnod.
         warning_preset_id: Yn ddewisol. Gallwch dal ychwanegu testun addasiol I ddiwedd y rhagosodiad
       announcement:
         all_day: Pam ddewisir, caiff ddim ond dyddiau o'r amrediad amser ei ymddangos
@@ -21,6 +27,8 @@ cy:
         scheduled_at: Gadael yn wag i gyhoeddi'r cyhoeddiad ar unwaith
         starts_at: Dewisiol. Os mae eich cyhoeddiad yn gyfyniedig i amrediad amser penodol
         text: Gallwch defnyddio cystrawen tŵt. Byddwch yn ymwybodol o'r lle cymerir y cyhoeddiad ar sgrin y defnyddwr
+      appeal:
+        text: Dim ond unwaith y gallwch apelio yn erbyn rhybudd
       defaults:
         autofollow: Bydd pobl sy'n cofrestru drwy'r gwahoddiad yn eich dilyn yn awtomatig
         avatar: PNG, GIF neu JPG. %{size} ar y mwyaf. Caiff ei israddio i %{dimensions}px
@@ -29,6 +37,7 @@ cy:
         current_password: At ddibenion diogelwch, nodwch gyfrinair y cyfrif cyfredol
         current_username: I gadarnhau, nodwch enw defnyddiwr y cyfrif cyfredol
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
+        discoverable: Caniatáu i'ch cyfrif gael ei ddarganfod gan ddieithriaid trwy argymhellion, tueddiadau a nodweddion eraill
         email: Byddwch yn derbyn e-bost i gadarnhau
         fields: Mae modd i chi arddangos hyd at 4 eitem fel tabl ar eich proffil
         header: PNG, GIF neu JPG. %{size} ar y mwyaf. Ceith ei israddio i %{dimensions}px
@@ -40,6 +49,7 @@ cy:
         phrase: Caiff ei gyfateb heb ystyriaeth o briflythrennu mewn testun neu rhybudd ynghylch cynnwys tŵt
         scopes: Pa APIau y bydd gan y rhaglen ganiatad i gael mynediad iddynt. Os dewiswch maes lefel uchaf, yna nid oes angen dewis rhai unigol.
         setting_aggregate_reblogs: Paid dangos bŵstiau newydd ar gyfer tŵtiau sydd wedi'i fŵstio yn ddiweddar (dim ond yn effeithio bŵstiau newydd ei dderbyn)
+        setting_always_send_emails: Fel arfer ni fydd hysbysiadau e-bost yn cael eu hanfon pan fyddwch chi wrthi'n defnyddio Mastodon
         setting_default_sensitive: Mae cyfryngau sensitif yn cael ei gyddio'n rhagosodiedig, a gall cael eu dangos â chlic
         setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
@@ -56,6 +66,32 @@ cy:
       email_domain_block:
         domain: Gall hwn fod yr enw parth sy'n ymddangos yn y cyfeiriad e-bost neu'r cofnod MX y mae'n ei ddefnyddio. Byddant yn cael eu gwirio wrth gofrestru.
         with_dns_records: Bydd ceisiad i adfer cofnodau DNS y parth penodol yn cael ei wneud, a bydd y canlyniadau hefyd yn cael ei gosbrestru
+      featured_tag:
+        name: 'Dyma rai o’r hashnodau a ddefnyddiwyd gennych yn fwyaf diweddar:'
+      filters:
+        action: Dewiswch pa weithred i'w chyflawni pan fydd postiad yn cyfateb i'r hidlydd
+        actions:
+          hide: Cuddiwch y cynnwys wedi'i hidlo'n llwyr, gan ymddwyn fel pe na bai'n bodoli
+          warn: Cuddiwch y cynnwys wedi'i hidlo y tu ôl i rybudd sy'n sôn am deitl yr hidlydd
+      form_admin_settings:
+        backups_retention_period: Cadw archifau defnyddwyr a gynhyrchwyd am y nifer penodedig o ddyddiau.
+        bootstrap_timeline_accounts: Bydd y cyfrifon hyn yn cael eu pinio i frig argymhellion dilynol defnyddwyr newydd.
+        closed_registrations_message: Yn cael eu dangos pan fydd cofrestriadau wedi cau
+        content_cache_retention_period: Bydd postiadau o weinyddion eraill yn cael eu dileu ar ôl y nifer penodedig o ddyddiau pan fyddan nhw wedi'u gosod i werth positif. Gall nad oes modd dadwneud hyn.
+        custom_css: Gallwch gymhwyso arddulliau cyfaddas ar fersiwn gwe Mastodon.
+        mascot: Yn diystyru'r darlun yn y rhyngwyneb gwe uwch.
+        media_cache_retention_period: Bydd ffeiliau cyfryngau wedi'u llwytho i lawr yn cael eu dileu ar ôl y nifer penodedig o ddyddiau pan gânt eu gosod i werth cadarnhaol, a'u hail-lwytho i lawr ar alw.
+        profile_directory: Mae'r cyfeiriadur proffil yn rhestru'r holl ddefnyddwyr sydd wedi dewis i fod yn ddarganfyddiadwy.
+        require_invite_text: Pan fydd angen cymeradwyaeth â llaw ar gyfer cofrestriadau, gwnewch y “Pam ydych chi am ymuno?” mewnbwn testun yn orfodol yn hytrach na dewisol
+        site_contact_email: Sut y gall pobl gysylltu â chi ar gyfer ymholiadau cyfreithiol neu gymorth.
+        site_contact_username: Sut y gall pobl eich cyrraedd ar Mastodon.
+        site_extended_description: Unrhyw wybodaeth ychwanegol a allai fod yn ddefnyddiol i ymwelwyr a'ch defnyddwyr. Mae modd ei strwythuro gyda chystrawen Markdown.
+        site_short_description: Disgrifiad byr i helpu i adnabod eich gweinydd yn unigryw. Pwy sy'n ei redeg, ar gyfer pwy mae e?
+        site_terms: Defnyddiwch eich polisi preifatrwydd eich hun neu gadewch yn wag i ddefnyddio'r rhagosodiad. Mae modd ei strwythuro gyda chystrawen Markdown.
+        site_title: Sut y gall pobl gyfeirio at eich gweinydd ar wahân i'w enw parth.
+        theme: Thema sy'n allgofnodi ymwelwyr a defnyddwyr newydd yn gweld.
+        thumbnail: Delwedd tua 2:1 yn cael ei dangos ochr yn ochr â manylion eich gweinydd.
+        timeline_preview: Bydd ymwelwyr sydd wedi allgofnodi yn gallu pori drwy'r postiadau cyhoeddus diweddaraf sydd ar gael ar y gweinydd.
       form_challenge:
         current_password: Rydych chi'n mynd i mewn i ardal sicr
       imports:

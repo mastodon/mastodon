@@ -386,9 +386,7 @@ es:
         create: Crear bloque
         hint: El bloque de dominio no prevendrá la creación de entradas de cuenta en la base de datos, pero aplicará retroactiva y automáticamente métodos de moderación específica en dichas cuentas.
         severity:
-          desc_html: "<strong>Silenciar</strong> hará los posts de la cuenta invisibles a cualquiera que no lo esté siguiendo. <strong>Suspender</strong> eliminará todo el contenido, media, y datos del perfil. Usa <strong>Ninguno</strong> si solo quieres rechazar archivos multimedia."
           noop: Ninguno
-          silence: Silenciar
           suspend: Suspender
         title: Nuevo bloque de dominio
       obfuscate: Ocultar nombre de dominio
@@ -608,6 +606,7 @@ es:
         other: "%{count} usuarios"
       categories:
         administration: Administración
+        devops: DevOps
         invites: Invitaciones
         moderation: Moderación
         special: Especial
@@ -658,6 +657,7 @@ es:
         view_audit_log_description: Permite a los usuarios ver un historial de acciones administrativas en el servidor
         view_dashboard: Ver Panel de Control
         view_dashboard_description: Permite a los usuarios acceder al panel de control y varias métricas
+        view_devops: DevOps
         view_devops_description: Permite a los usuarios acceder a los paneles de control Sidekiq y pgHero
       title: Roles
     rules:
@@ -912,7 +912,6 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
-    apply_for_account: Entrar en la lista de espera
     change_password: Contraseña
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
@@ -1371,6 +1370,7 @@ es:
     browser: Navegador
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1384,6 +1384,7 @@ es:
       phantom_js: PhantomJS
       qq: Navegador QQ
       safari: Safari
+      uc_browser: Navegador UC
       weibo: Weibo
     current_session: Sesión actual
     description: "%{browser} en %{platform}"
@@ -1392,6 +1393,8 @@ es:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: GNU Linux

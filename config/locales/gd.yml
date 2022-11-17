@@ -400,9 +400,7 @@ gd:
         create: Cruthaich bacadh
         hint: Cha chuir bacadh na h-àrainne crìoch air cruthachadh chunntasan san stòr-dàta ach cuiridh e dòighean maorsainneachd sònraichte an sàs gu fèin-obrachail air a h-uile dàta a tha aig na cunntasan ud.
         severity:
-          desc_html: Falaichidh am <strong>mùchadh</strong> postaichean a’ chunntais do dhuine sam bith nach eil ’ga leantainn. Bheir an <strong>cur à rèim</strong> air falbh gach susbaint, meadhan is dàta pròifil a’ chunntais. Tagh <strong>Chan eil gin</strong> mur eil thu ach airson faidhlichean meadhain a dhiùltadh.
           noop: Chan eil gin
-          silence: Mùch
           suspend: Cuir à rèim
         title: Bacadh àrainne ùr
       obfuscate: Doilleirich ainm na h-àrainne
@@ -634,6 +632,7 @@ gd:
         two: "%{count} chleachdaiche"
       categories:
         administration: Rianachd
+        devops: DevOps
         invites: Cuiridhean
         moderation: Maorsainneachd
         special: Sònraichte
@@ -686,6 +685,7 @@ gd:
         view_audit_log_description: Leigidh seo le cleachdaichean coimhead air eachdraidh gnìomhan na rianachd air an fhrithealaiche
         view_dashboard: Coimhead air an deas-bhòrd
         view_dashboard_description: Leigidh seo le cleachdaichean an deas-bhòrd agus meatrachdan inntrigeadh
+        view_devops: DevOps
         view_devops_description: Leigidh seo le cleachdaichean na deas-bhùird aig Sidekiq is pgHero inntrigeadh
       title: Dreuchdan
     rules:
@@ -948,7 +948,6 @@ gd:
     warning: Bi glè chùramach leis an dàta seo. Na co-roinn le duine sam bith e!
     your_token: An tòcan inntrigidh agad
   auth:
-    apply_for_account: Faigh air an liosta-fheitheimh
     change_password: Facal-faire
     delete_account: Sguab às an cunntas
     delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
@@ -1423,6 +1422,7 @@ gd:
     browser: Brabhsair
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1436,6 +1436,7 @@ gd:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: An seisean làithreach
     description: "%{browser} air %{platform}"
@@ -1444,6 +1445,8 @@ gd:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
