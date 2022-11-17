@@ -75,7 +75,8 @@ class ProcessMentionsService < BaseService
       mentioned_account_ids = @current_mentions.map(&:account_id)
       blocked_account_ids = Set.new(@status.account.block_relationships.where(target_account_id: mentioned_account_ids).pluck(:target_account_id))
 
-      @current_mentions.select! { |mention| !(blocked_account_ids.include?(mention.account_id) || blocked_domains.include?(mention.account.domain)) }
+      dropped_mentions, @current_mentions = @current_mentions.partition { |mention| blocked_account_ids.include?(mention.account_id) || blocked_domains.include?(mention.account.domain) }
+      dropped_mentions.each(&:destroy)
     end
 
     @current_mentions.each do |mention|
