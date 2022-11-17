@@ -386,6 +386,8 @@ sl:
       add_new: Dodaj domeno na beli seznam
       created_msg: Domena je bila uspešno dodana na beli seznam
       destroyed_msg: Domena je bila odstranjena iz belega seznama
+      export: Izvozi
+      import: Uvozi
       undo: Odstrani iz belega seznama
     domain_blocks:
       add_new: Dodaj nov domenski blok
@@ -395,15 +397,18 @@ sl:
       edit: Uredi domenski blok
       existing_domain_block: Ste že uveljavili strožje omejitve na %{name}.
       existing_domain_block_html: Uvedli ste strožje omejitve za %{name}, sedaj ga morate najprej <a href="%{unblock_url}">odblokirati</a>.
+      export: Izvozi
+      import: Uvozi
       new:
         create: Ustvari blok
         hint: Domenski blok ne bo preprečil ustvarjanja vnosov računov v zbirko podatkov, ampak bo retroaktivno in samodejno uporabil posebne metode moderiranja na teh računih.
         severity:
-          desc_html: "<strong>Utišaj</strong> bo vse objave računa naredil nevidne vsem, ki jih ne sledijo. <strong>Suspendiraj</strong> bo odstranil vso vsebino, medije in podatke profila računa. Uporabi <strong>nič</strong>, če želite le zavrniti predstavnostne datoteke."
+          desc_html: "<strong>Omeji</strong> bo vse objave računa naredil nevidne vsem, ki jih ne sledijo. <strong>Suspendiraj</strong> bo odstranil vso vsebino, medije in podatke profila računov te domene na vašem strežniku. Uporabite <strong>Brez</strong>, če želite le zavrniti predstavnostne datoteke."
           noop: Brez
-          silence: Utišaj
+          silence: Omeji
           suspend: Suspendiraj
         title: Nov domenski blok
+      no_domain_block_selected: Nobena blokada domene ni bila spremenjena, saj nobena ni bila izbrana
       obfuscate: Zakrij ime domene
       obfuscate_hint: Delno zakrij ime domene na seznamu, če je omogočeno oglaševanje omejitev seznama domen
       private_comment: Zasebni komentar
@@ -437,6 +442,15 @@ sl:
       resolved_dns_records_hint_html: Ime domene se razreši na naslednje domene MX, ki so končno odgovorne za sprejemanje e-pošte. Blokiranje domene MX bo blokiralo prijave s poljubnega e-poštnega naslova, ki uporablja isto domeno MX, tudi če je vidno ime domene drugačno. <strong>Pazite, da ne blokirate večjih ponudnikov e-pošte.</strong>
       resolved_through_html: Razrešeno prek %{domain}
       title: Črni seznam e-pošt
+    export_domain_allows:
+      no_file: Nobena datoteka ni izbrana
+    export_domain_blocks:
+      import:
+        private_comment_template: Uvoženo iz %{source} %{date}
+        title: Uvozi blokade domen
+      new:
+        title: Uvozi blokade domen
+      no_file: Nobena datoteka ni izbrana
     follow_recommendations:
       description_html: "<strong>Sledi priporočilom pomaga novim uporabnikom, da hitro najdejo zanimivo vsebino</strong>. Če uporabnik ni dovolj komuniciral z drugimi, da bi oblikoval prilagojena priporočila za sledenje, se namesto tega priporočajo ti računi. Dnevno se ponovno izračunajo iz kombinacije računov z najvišjimi nedavnimi angažiranostmi in najvišjim številom krajevnih sledilcev za določen jezik."
       language: Za jezik
@@ -949,6 +963,7 @@ sl:
     warning: Bodite zelo previdni s temi podatki. Nikoli jih ne delite z nikomer!
     your_token: Vaš dostopni žeton
   auth:
+    apply_for_account: Zaprosite za račun
     change_password: Geslo
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
@@ -1207,6 +1222,7 @@ sl:
     invalid_markup: 'vsebuje neveljavno oznako HTML: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Neveljavna datoteka CSV. Napaka: %{error}'
       over_rows_processing_limit: vsebuje več kot %{count} vrstic
     modes:
       merge: Združi
