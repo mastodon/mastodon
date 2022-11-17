@@ -7,7 +7,7 @@ AllCops:
   TargetRubyVersion: 2.7
   NewCops: disable
   Exclude:
-    - 'db/**/*'
+    - db/schema.rb
     - 'app/views/**/*'
     - 'config/**/*'
     - 'bin/*'
