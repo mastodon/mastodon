@@ -372,6 +372,8 @@ pt-BR:
       add_new: Permitir domínio
       created_msg: Domínio foi permitido
       destroyed_msg: Domínio foi proibido de federar
+      export: Exportar
+      import: Importar
       undo: Bloquear federação com domínio
     domain_blocks:
       add_new: Adicionar novo bloqueio de domínio
@@ -381,6 +383,8 @@ pt-BR:
       edit: Editar bloqueio de domínio
       existing_domain_block: Você já impôs limites mais rigorosos em %{name}.
       existing_domain_block_html: Você já impôs limites mais estritos em %{name}, você precisa <a href="%{unblock_url}">desbloqueá-lo</a> primeiro.
+      export: Exportar
+      import: Importar
       new:
         create: Criar bloqueio
         hint: O bloqueio de domínio não vai prevenir a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nessas contas.
@@ -419,6 +423,15 @@ pt-BR:
       resolved_dns_records_hint_html: O nome de domínio resolve os seguintes domínios MX, que são responsáveis finais por aceitar o e-mail. Bloquear um domínio MX bloqueará inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo que o nome de domínio visível seja diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
       title: Lista de negra de e-mail
+    export_domain_allows:
+      no_file: Nenhum arquivo selecionado
+    export_domain_blocks:
+      import:
+        description_html: Você está prestes a importar uma lista de boqueio de domínio. Por favor, revise esta lista com muito cuidado, especialmente se você mesmo não criou esta lista.
+        title: Importar bloqueio de domínios
+      new:
+        title: Importar bloqueio de domínios
+      no_file: Nenhum arquivo selecionado
     follow_recommendations:
       description_html: "<strong>A recomendação de contas ajuda os novos usuários a encontrar rapidamente conteúdo interessante</strong>. Quando um usuário ainda não tiver interagido o suficiente para gerar recomendações de contas, essas contas serão recomendadas. Essas recomendações são recalculadas diariamente a partir de uma lista de contas com alto engajamento e maior número de seguidores locais em uma dada língua."
       language: Na língua
@@ -605,6 +618,7 @@ pt-BR:
         other: "%{count} usuários"
       categories:
         administration: Administração
+        devops: DevOps
         invites: Convites
         moderation: Moderação
         special: Especial
@@ -655,6 +669,7 @@ pt-BR:
         view_audit_log_description: Permite aos usuários ver um histórico de ações administrativas no servidor
         view_dashboard: Ver painel
         view_dashboard_description: Permite que os usuários acessem o painel e várias métricas
+        view_devops: DevOps
         view_devops_description: Permite aos usuários acessar os painéis da Sidekiq e pgHero
       title: Funções
     rules:
@@ -903,6 +918,7 @@ pt-BR:
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
     your_token: Seu código de acesso
   auth:
+    apply_for_account: Solicitar uma conta
     change_password: Senha
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
@@ -1141,6 +1157,7 @@ pt-BR:
     invalid_markup: 'contém HTML inválido: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
       over_rows_processing_limit: contém mais de %{count} linhas
     modes:
       merge: Juntar
