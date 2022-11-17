@@ -372,6 +372,8 @@ ku:
       add_new: Mafê bide navpera demnameya giştî
       created_msg: Ji bo demnameya giştî mafdayîna navperê bi serkeftî hate dayîn
       destroyed_msg: Ji bo demnameya giştî mafdayîna navperê nehat dayîn
+      export: Derxistin
+      import: Têxistin
       undo: Mafê nede navpera demnameya giştî
     domain_blocks:
       add_new: Astengkirina navpera nû
@@ -381,15 +383,17 @@ ku:
       edit: Astengkirina navperê serrast bike
       existing_domain_block: Jixwe te sînorên tundtir li ser %{name} daye kirine.
       existing_domain_block_html: Te jixwe sînorên mezintir li ser %{name} pêk aniye, divê tu pêşî <a href="%{unblock_url}">astengkirinê rakî</a>.
+      export: Derxistin
+      import: Têxistin
       new:
         create: Astengkirinekê çê bike
         hint: Navpera asteng kirî pêşî li çê kirina têketinên ajimêra ên di danegehê da negire, lê dê bi paş ve bizivirin û bi xweberî va ji ajimêran bi teybetî kontrola rêbazan bikin.
         severity:
-          desc_html: "<strong>Bêdeng kirî</strong> ajimêrên wusa çêkirine xêncî şopînerên vê kes nikare şandîyên vê bibîne.\n<strong>rawestî</strong> ajimêrên wusa çêkirine hemî naveroka, medya û daneyên profîlê jê bibe. Heke tu bixwazî pelên medyayê red bikî<strong>yek ji wan</strong>bi kar bîne."
+          desc_html: "<strong>Sînor</strong> wê şandiyan ji ajimêrên li ser vê navparê re ji her kesê ku wan naşopîne re nedîtî bike. <strong>Rawestandin</strong> wê hemû naverok, medya û daneyên profîlê yên ajimêrên vê navparê ji rajekarê te rake. Ku tu tenê dixwazî pelên medyayê nepejirînî\n<strong>Tu kes</strong> bi kar bîne."
           noop: Ne yek
-          silence: Bêdengî
           suspend: Dur bike
         title: Astengkirina navpera nû
+      no_domain_block_selected: Tu astengên navparê e-nameyê nehatin guhertin ji ber ku tu yek nehatine hilbijartin
       obfuscate: Navê navperê biveşêre
       obfuscate_hint: Heke rêzoka sînorên navperê were çalakkirin navê navperê di rêzokê de bi qismî veşêre
       private_comment: Şîroveya taybet
@@ -421,6 +425,10 @@ ku:
       resolved_dns_records_hint_html: Navê navparê ji MX ên jêrîn re çareser dike, ên ku di dawiyê de berpirsiyarin ji pejirandina e-nameyê. Astengkirina navparek MX wê tomarkirina ji her navnîşana e-nameyê ya ku heman navpara MX bi kar tîne asteng bike, tevlî ku navê navparê xuya cûda be. <strong>Hişyar be ku peydekarên sereke yên e-nameyê asteng nekî.</strong>
       resolved_through_html: Bi riya %{domain} ve hate çareserkirin
       title: Navparên e-nameyê astengkirî
+    export_domain_allows:
+      no_file: Tu pel nehatiye hilbijartin
+    export_domain_blocks:
+      no_file: Tu pel nehatiye hilbijartin
     follow_recommendations:
       description_html: "<strong>Şopandina pêşniyaran ji bo bikarhênerên nû re dibe alîkar ku zû naveroka balkêş bibînin</strong>. Gava ku bikarhênerek têra xwe bi kesên din re têkildar nebê da ku pêşnîyarên şopandina yên kesane bo xwe çêbike, li şûna van ajimêran têne pêşniyarkirin. Ew her roj ji tevliheviya ajimêrên bi tevlêbûnên herî dawîn ên herî bilind û jimara şopdarên herêmî yên herî pir ji bo zimaneke diyarkirî ji nû ve têne pêşniyarkirin."
       language: Bo zimanê
