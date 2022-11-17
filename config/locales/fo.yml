@@ -1,0 +1,78 @@
+---
+fo:
+  about:
+    title: Um
+  accounts:
+    follow: Fylg
+    followers:
+      one: Fylgjari
+      other: Fylgjarar
+  admin:
+    accounts:
+      by_domain: Økisnavn
+      domain: Økisnavn
+      reject: Nokta
+    custom_emojis:
+      delete: Strika
+      list: Listi
+    domain_allows:
+      export: Flyt út
+      import: Flyt inn
+    domain_blocks:
+      export: Flyt út
+      import: Flyt inn
+      no_domain_block_selected: Eingir domenu-blokkar vóru broyttir av tí at eingir vóru valdir
+      not_permitted: Tú hevur ikki rættindi at gera hetta
+    email_domain_blocks:
+      delete: Strika
+    export_domain_allows:
+      new:
+        title: Innflytandi domenið loyvir
+      no_file: Eingin fíla vald
+    export_domain_blocks:
+      import:
+        description_html: Tú er í ferð við at innflyta ein lista av domeni-blokkum. Vinarliga eftirkanna hendan listan gjølla, serliga um tú ikki hevur gjørt listan sjálv/ur.
+        existing_relationships_warning: Verandi fylgjarasambond
+        private_comment_description_html: Fyri at hjálpa tær at fylgja við í, hvar innfluttir blokkar koma frá, so verða innfluttu blokkarnir stovnaðir við hesi privatu viðmerkingini:<q>%{comment}</q>
+        private_comment_template: Innflutt frá %{source} tann %{date}
+        title: Innflyt domenu-blokkar
+      new:
+        title: Innflyt domenu-blokkar
+      no_file: Eingin fíla vald
+    ip_blocks:
+      delete: Strika
+    relays:
+      delete: Strika
+    reports:
+      notes:
+        delete: Strika
+    roles:
+      delete: Strika
+    rules:
+      delete: Strika
+    warning_presets:
+      delete: Strika
+    webhooks:
+      delete: Strika
+  errors:
+    '400': The request you submitted was invalid or malformed.
+    '403': You don't have permission to view this page.
+    '404': The page you are looking for isn't here.
+    '406': This page is not available in the requested format.
+    '410': The page you were looking for doesn't exist here anymore.
+    '422': 
+    '429': Too many requests
+    '500': 
+    '503': The page could not be served due to a temporary server failure.
+  exports:
+    lists: Listar
+  filters:
+    index:
+      delete: Strika
+  generic:
+    delete: Strika
+  imports:
+    errors:
+      invalid_csv_file: 'Ógildug CSV-fíla. Error: %{error}'
+  webauthn_credentials:
+    delete: Strika

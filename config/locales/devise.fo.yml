@@ -1,0 +1,38 @@
+---
+fo:
+  devise:
+    confirmations:
+      confirmed: Tín teldupostadressa er blivin góðkend.
+      send_instructions: Innanfyri fáar minuttir fer tú at fáa ein teldupost við vegleiðing til hvussu tú staðfestir tína teldupostadressu. Vinarliga leita í tínum spamfaldara um tú ikki móttekur hendan teldupostin.
+    failure:
+      already_authenticated: Tú ert longu innskrivað/ur.
+      inactive: Kontan hjá tær er ikki virkin enn.
+      invalid: Skeivt %{authentication_keys} ella loyniorð.
+      last_attempt: Tú kanst royna einaferð afturat áðrenn kontan verður stongd.
+      locked: Kontan hjá tær er læst.
+      pending: Kontan hjá tær verður kannað enn.
+      unauthenticated: Tú mást skriva teg inn aftur fyri at halda fram.
+    mailer:
+      confirmation_instructions:
+        action: Vátta teldupostadressuna
+        action_with_app: Staðfest og far aftur til %{app}
+        explanation: Tú hevur stovnað eina kontu hjá %{host} við hesari teldupostadressuni og tú ert eitt klikk frá at virkja hana. Um tað ikki vart tú, vinarliga sí burtur frá hesum teldupostinum.
+        title: Vátta teldupostadressuna
+      email_changed:
+        subject: 'Mastodon: Teldupostur broyttur'
+        title: Nýggjur eldupostur
+      password_change:
+        extra: Um tú ikki hevur skift loyniorðið, er sannlíkt at onkur annar hevur fingið atgongd til tína kontu. Vinarliga skift loyniorðið beinanvegin. Um tú ikki sleppur inn á tína kontu, hav samband við fyrisitarin.
+        title: Loyniorðið er broytt
+      reconfirmation_instructions:
+        title: Vátta teldupostadressu
+      reset_password_instructions:
+        action: Broyt loyniorð
+        explanation: Tú hevur biðið um eitt nýtt loyniorð til kontoina.
+        extra: Um tú ikki hevur umbiðið hetta, so skalt tú ikki gera nakað. Loyniorðið verður bert broytt, um tú brúkar leinkið omanfyri og gert eitt nýtt.
+        subject: 'Mastodon: Vegleiðing at skifta loyniorð'
+        title: Skift loyniorð
+      webauthn_credential:
+        added:
+          subject: 'Mastodon: Nýggjur trygdarlykil'
+          title: Nýggjur trygdarlykil er gjørdur

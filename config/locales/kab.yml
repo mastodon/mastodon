@@ -259,7 +259,6 @@ kab:
         create: Rnu-d iḥder
         severity:
           noop: Ula yiwen
-          silence: Sgugem
           suspend: Ḥbes di leεḍil
         title: Iḥder amaynut n taɣult
       private_comment: Awennit uslig
@@ -373,6 +372,8 @@ kab:
     roles:
       categories:
         administration: Tadbelt
+        moderation: Aseɣyed
+      delete: Kkes
       privileges:
         administrator: Anedbal
     rules:
@@ -393,6 +394,8 @@ kab:
         all: I medden akk
         disabled: Γef ula yiwen
         users: Γef yimseqdacen idiganen i yeqqnen
+      registrations:
+        title: Ajerred
       registrations_mode:
         modes:
           none: Yiwen·t ur yzmir ad izeddi
@@ -401,8 +404,10 @@ kab:
     site_uploads:
       delete: Kkes afaylu yulin
     statuses:
+      application: Asnas
       back_to_account: Tuγalin γer usebter n umiḍan
       deleted: Yettwakkes
+      language: Tutlayt
       media:
         title: Taγwalt
       title: Tisuffiγin n umiḍan
@@ -583,6 +588,8 @@ kab:
     acct: Ibeddel γer
     incoming_migrations: Tusiḍ-d seg umiḍan nniḍen
     proceed_with_move: Awid imeḍfaṛen-ik
+  moderation:
+    title: Aseɣyed
   notification_mailer:
     favourite:
       subject: "%{name} yesmenyaf addad-ik·im"

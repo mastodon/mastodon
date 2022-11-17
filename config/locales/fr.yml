@@ -386,9 +386,7 @@ fr:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
-          desc_html: "<strong>Masquer</strong> rendra les messages des comptes concernés invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu des comptes concernés, les médias, et les données du profil. Utilisez <strong>Aucune</strong> si vous voulez simplement rejeter les fichiers multimédia."
           noop: Aucune
-          silence: Masqué
           suspend: Suspendre
         title: Nouveau blocage de domaine
       obfuscate: Obfusquer le nom de domaine
@@ -914,7 +912,6 @@ fr:
     warning: Soyez prudent·e avec ces données. Ne les partagez pas !
     your_token: Votre jeton d’accès
   auth:
-    apply_for_account: S’inscrire sur la liste d’attente
     change_password: Mot de passe
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.

@@ -33,25 +33,25 @@ cy:
   admin:
     account_actions:
       action: Cyflawni gweithred
-      title: Perfformio gweithrediad goruwchwylio ar %{acct}
+      title: Perfformio gweithrediad cymedroli ar %{acct}
     account_moderation_notes:
       create: Gadael nodyn
-      created_msg: Crewyd nodyn goruwchwylio yn llwyddiannus!
-      destroyed_msg: Dinistrwyd nodyn goruwchwylio yn llwyddiannus!
+      created_msg: Crëwyd nodyn cymedroli'n llwyddiannus!
+      destroyed_msg: Dinistriwyd nodyn cymedroli yn llwyddiannus!
     accounts:
-      add_email_domain_block: Cosbrestru parth e-bost
+      add_email_domain_block: Rhwystro parth e-bost
       approve: Cymeradwyo
-      approved_msg: Wedi llwyddo cymeradwyo cais cofrestru %{username}
+      approved_msg: Wedi llwyddo i gymeradwyo cais cofrestru %{username}
       are_you_sure: Ydych chi'n siŵr?
       avatar: Afatar
       by_domain: Parth
       change_email:
         changed_msg: E-bost wedi newid yn llwyddiannus!
-        current_email: E-bost Cyfredol
-        label: Newid E-bost
-        new_email: E-bost Newydd
-        submit: Newid E-bost
-        title: Newid E-bost i %{username}
+        current_email: E-bost cyfredol
+        label: Newid e-bost
+        new_email: E-bost newydd
+        submit: Newid e-bost
+        title: Newid e-bost i %{username}
       change_role:
         changed_msg: Rôl wedi ei newid yn llwyddiannus!
         label: Newid rôl
@@ -59,29 +59,29 @@ cy:
         title: Newid rôl %{username}
       confirm: Cadarnhau
       confirmed: Cadarnhawyd
-      confirming: Cadarnhau
-      custom: Arbennig
+      confirming: Yn cadarnhau
+      custom: Cyfaddas
       delete: Dileu data
       deleted: Wedi dileu
       demote: Diraddio
       destroyed_msg: Mae data %{username} bellach mewn ciw i gael ei ddileu yn fuan
-      disable: Diffodd
+      disable: Rhewi
       disable_sign_in_token_auth: Analluogi dilysu tocynnau e-bost
       disable_two_factor_authentication: Diffodd 2FA
-      disabled: Wedi ei ddiffodd
-      display_name: Enw arddangos
+      disabled: Wedi rhewi
+      display_name: Enw dangos
       domain: Parth
       edit: Golygu
       email: E-bost
-      email_status: Statws E-bost
-      enable: Galluogi
+      email_status: Statws e-bost
+      enable: Dad rewi
       enable_sign_in_token_auth: Galluogi dilysu tocynnau e-bost
       enabled: Wedi ei alluogi
       enabled_msg: Wedi dadrewi cyfrif %{username} yn llwyddianus
       followers: Dilynwyr
       follows: Yn dilyn
-      header: Pennawd
-      inbox_url: URL Mewnflwch
+      header: Pennyn
+      inbox_url: URL blwch derbyn
       invite_request_text: Rhesymau dros ymuno
       invited_by: Gwahoddwyd gan
       ip: IP
@@ -92,7 +92,7 @@ cy:
         remote: Pell
         title: Lleoliad
       login_status: Statws mewngofnodi
-      media_attachments: Atodiadau
+      media_attachments: Atodiadau cyfryngau
       memorialize: Creu cyfrif coffa
       memorialized: Wedi troi'n gyfrif coffa
       memorialized_msg: Llwyddodd i droi %{username} yn gyfrif coffa
@@ -102,11 +102,11 @@ cy:
         pending: Yn aros
         silenced: Cyfyngedig
         suspended: Wedi ei atal
-        title: Goruwchwyliad
-      moderation_notes: Nodiadau goruwchwylio
+        title: Cymedroli
+      moderation_notes: Nodiadau cymedroli
       most_recent_activity: Gweithgarwch diweddaraf
       most_recent_ip: IP diweddaraf
-      no_account_selected: Ni newidwyd dim cyfrif achos ni ddewiswyd dim un
+      no_account_selected: Heb newid unrhyw gyfrif gan na ddewiswyd un
       no_limits_imposed: Dim terfynau wedi'i gosod
       no_role_assigned: Dim rôl wedi'i neilltuo
       not_subscribed: Heb danysgrifio
@@ -129,90 +129,90 @@ cy:
       reject: Gwrthod
       rejected_msg: Wedi gwrthod cais cofrestru %{username}
       remove_avatar: Dileu afatar
-      remove_header: Dileu pennawd
+      remove_header: Dileu pennyn
       removed_avatar_msg: Llwyddwyd i ddileu delwedd afatar %{username}
       removed_header_msg: Llwyddwyd i ddileu delwedd pennyn %{username}
       resend_confirmation:
         already_confirmed: Mae'r defnyddiwr hwn wedi ei gadarnhau yn barod
-        send: Ailanfonwch e-bost cadarnhad
+        send: Ail anfonwch e-bost cadarnhad
         success: E-bost cadarnhau wedi ei anfon yn llwyddiannus!
       reset: Ailosod
       reset_password: Ailosod cyfrinair
-      resubscribe: Aildanysgrifio
+      resubscribe: Ail danysgrifio
       role: Rôl
       search: Chwilio
-      search_same_email_domain: Defnyddwyr eraill gyda'r un parth ebost
+      search_same_email_domain: Defnyddwyr eraill gyda'r un parth e-bost
       search_same_ip: Defnyddwyr eraill gyda'r un IP
       security_measures:
         only_password: Cyfrinair yn unig
         password_and_2fa: Cyfrinair a 2FA
       sensitive: Grym-sensitif
       sensitized: Wedi'i farcio fel sensitif
-      shared_inbox_url: URL Mewnflwch wedi ei rannu
+      shared_inbox_url: URL blwch derbyn wedi ei rannu
       show:
         created_reports: Adroddiadau a wnaed
         targeted_reports: Adroddwyd gan eraill
-      silence: Tawelu
-      silenced: Tawelwyd
-      statuses: Statysau
-      strikes: Streiciau blaenorol
+      silence: Cyfyngu
+      silenced: Cyfyngwyd
+      statuses: Tŵtiau
+      strikes: Rhybuddion blaenorol
       subscribe: Tanysgrifio
       suspend: Atal
       suspended: Ataliwyd
       suspension_irreversible: Mae data'r cyfrif hwn wedi'i ddileu'n ddiwrthdro. Gallwch ddad-atal y cyfrif i'w wneud yn ddefnyddiadwy ond ni fydd yn adennill unrhyw ddata a oedd ganddo o'r blaen.
-      suspension_reversible_hint_html: Mae'r cyfrif wedi'i atal, a bydd y data'n cael ei ddileu yn llawn ar %{date}. Tan hynny, gellir adfer y cyfrif heb unrhyw effeithiau gwael. Os dymunwch gael gwared ar holl ddata'r cyfrif ar unwaith, gallwch wneud hynny isod.
+      suspension_reversible_hint_html: Mae'r cyfrif wedi'i atal, a bydd y data'n cael ei ddileu yn llawn ar %{date}. Tan hynny, mae modd adfer y cyfrif heb unrhyw effeithiau gwael. Os dymunwch gael gwared ar holl ddata'r cyfrif ar unwaith, gallwch wneud hynny isod.
       title: Cyfrifon
       unblock_email: Dadflocio cyfeiriad e-bost
       unblocked_email_msg: Llwyddwyd i ddadflocio cyfeiriad e-bost %{username}
       unconfirmed_email: E-bost heb ei gadarnhau
       undo_sensitized: Dadwneud grym-sensitif
-      undo_silenced: Dadwneud tawelu
+      undo_silenced: Dadwneud cyfyngu
       undo_suspension: Dadwneud ataliad
-      unsilenced_msg: Wedi llwyddo i ddadwneud terfyn cyfrif %{username}
+      unsilenced_msg: Wedi llwyddo i ddadwneud cyfyngiad cyfrif %{username}
       unsubscribe: Dad-danysgrifio
       unsuspended_msg: Llwyddwyd i ddad-atal cyfrif %{username}
       username: Enw defnyddiwr
       view_domain: Gweld crynodeb ar gyfer parth
       warn: Rhybuddio
       web: Gwe
-      whitelisted: Rhestredig wen
+      whitelisted: Caniatáu ar gyfer ffedereiddio
     action_logs:
       action_types:
         approve_appeal: Cymeradwyo'r Apêl
         approve_user: Cymeradwyo Defnyddiwr
         assigned_to_self_report: Neilltuo Adroddiad
-        change_email_user: Newid Ebost ar gyfer Defnyddiwr
+        change_email_user: Newid E-bost ar gyfer Defnyddiwr
         change_role_user: Newid Rôl y Defnyddiwr
         confirm_user: Cadarnhau Defnyddiwr
         create_account_warning: Creu Rhybydd
         create_announcement: Creu Cyhoeddiad
         create_canonical_email_block: Creu Bloc E-bost
-        create_custom_emoji: Creu Emoji Addasiedig
-        create_domain_allow: Creu Alluogiad Parth
+        create_custom_emoji: Creu Emoji Cyfaddas
+        create_domain_allow: Creu Caniatáu Parth
         create_domain_block: Creu Gwaharddiad Parth
-        create_email_domain_block: Creu Gwaharddiad Parth Ebost
+        create_email_domain_block: Creu Gwaharddiad Parth E-bost
         create_ip_block: Creu rheol IP
         create_unavailable_domain: Creu Parth Ddim ar Gael
         create_user_role: Creu Rôl
         demote_user: Diraddio Defnyddiwr
         destroy_announcement: Dileu Cyhoeddiad
         destroy_canonical_email_block: Dileu Bloc E-bost
-        destroy_custom_emoji: Dileu Emoji Addasiedig
-        destroy_domain_allow: Dileu Alluogiad Parth
+        destroy_custom_emoji: Dileu Emoji Cyfaddas
+        destroy_domain_allow: Dileu Caniatáu Parth
         destroy_domain_block: Dileu Gwaharddiad Parth
-        destroy_email_domain_block: Dileu gwaharddiad parth ebost
+        destroy_email_domain_block: Dileu gwaharddiad parth e-bost
         destroy_instance: Clirio Parth
         destroy_ip_block: Dileu rheol IP
         destroy_status: Dileu Statws
         destroy_unavailable_domain: Dileu Parth Ddim ar Gael
         destroy_user_role: Dinistrio Rôl
         disable_2fa_user: Diffodd 2FA
-        disable_custom_emoji: Analluogi Emoji Addasiedig
+        disable_custom_emoji: Analluogi Emoji Cyfaddas
         disable_sign_in_token_auth_user: Analluogi Dilysu Tocyn E-bost ar gyfer Defnyddiwr
         disable_user: Analluogi Defnyddiwr
-        enable_custom_emoji: Alluogi Emoji Addasiedig
+        enable_custom_emoji: Alluogi Emoji Cyfaddas
         enable_sign_in_token_auth_user: Galluogi Dilysu Tocyn E-bost ar gyfer Defnyddiwr
-        enable_user: Alluogi Defnyddiwr
+        enable_user: Galluogi Defnyddiwr
         memorialize_account: Cofadeilio Cyfrif
         promote_user: Dyrchafu Defnyddiwr
         reject_appeal: Gwrthod Apêl
@@ -223,15 +223,15 @@ cy:
         reset_password_user: Ailosod Cyfrinair
         resolve_report: Datrus Adroddiad
         sensitive_account: Cyfrif Grym-Sensitif
-        silence_account: Tawelu Cyfrif
+        silence_account: Cyfyngu Cyfrif
         suspend_account: Gwahardd Cyfrif Dros Dro
         unassigned_report: Dadneilltuo Adroddiad
         unblock_email_account: Dadflocio cyfeiriad e-bost
         unsensitive_account: Dadwneud Cyfrif Grym-Sensitif
-        unsilence_account: Dadawelu Cyfrif
+        unsilence_account: Dad-gyfyngu Cyfrif
         unsuspend_account: Tynnu Gwahardd Cyfrif Dros Dro
         update_announcement: Diweddaru Cyhoeddiad
-        update_custom_emoji: Diweddaru Emoji Addasiedig
+        update_custom_emoji: Diweddaru Emoji Cyfaddas
         update_domain_block: Diweddaru'r Blocio Parth
         update_ip_block: Diweddaru rheol IP
         update_status: Diweddaru Statws
@@ -239,7 +239,7 @@ cy:
       actions:
         approve_appeal_html: Mae %{name} wedi cymeradwyo penderfyniad cymedroli gan %{target}
         approve_user_html: Mae %{name} wedi cymeradwyo cofrestru gan %{target}
-        assigned_to_self_report_html: Mae %{name} wedi aseinio adroddiad %{target} iddyn nhw eu hunain
+        assigned_to_self_report_html: Mae %{name} wedi neilltuo adroddiad %{target} iddyn nhw eu hunain
         change_email_user_html: Mae %{name} wedi newid cyfeiriad e-bost defnyddiwr %{target}
         change_role_user_html: Mae %{name} wedi newid rôl %{target}
         confirm_user_html: Mae %{name}  wedi cadarnhau cyfeiriad e-bost defnyddiwr %{target}
@@ -400,6 +400,8 @@ cy:
       add_new: Rhestrwch parth
       created_msg: Rhestrwyd wen parth yn llwyddiannus
       destroyed_msg: Mae parth wedi'i dynnu o'r rhestr wen
+      export: Allforio
+      import: Mewnforio
       undo: Tynnwch o'r rhestr wen
     domain_blocks:
       add_new: Ychwanegu bloc parth newydd
@@ -409,15 +411,19 @@ cy:
       edit: Golygu bloc parth
       existing_domain_block: Rydych chi eisoes wedi gosod terfynau llymach ar %{name}.
       existing_domain_block_html: Rydych yn barod wedi gosod cyfyngau fwy llym ar %{name}, mae rhaid i chi ei <a href="%{unblock_url}">ddadblocio</a> yn gyntaf.
+      export: Allforio
+      import: Mewnforio
       new:
         create: Creu bloc
-        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau goruwchwylio penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
+        hint: Ni fydd y bloc parth yn atal cread cofnodion cyfrif yn y bas data, ond mi fydd yn gosod dulliau cymedroli penodol ôl-weithredol ac awtomatig ar y cyfrifau hynny.
         severity:
-          desc_html: Mae <strong>Tawelu</strong> yn gwneud twtiau y cyfrif yn anweledig i unrhyw un nad yw'n dilyn y cyfrif. Mae <strong>Atal</strong> yn cael gwared ar holl gynnwys, cyfryngau a data proffil y cyfrif. Defnyddiwch <strong>Dim</strong> os ydych chi ond am wrthod dogfennau cyfryngau.
+          desc_html: Bydd <strong>terfyn</strong> yn gwneud postiadau o gyfrifon yn y parth hwn yn anweledig i unrhyw un nad yw'n eu dilyn. Bydd <strong>Atal</strong> yn dileu'r holl gynnwys, cyfryngau a data proffil ar gyfer cyfrifon y parth hwn o'ch gweinydd. Defnyddiwch <strong>Dim</strong> os ydych am wrthod ffeiliau cyfryngau yn unig.
           noop: Dim
-          silence: Tawelwch
+          silence: Terfyn
           suspend: Atal
         title: Blocio parth newydd
+      no_domain_block_selected: Heb newid unrhyw flociau parth e-bost gan nad oes un wedi'i ddewis
+      not_permitted: Nid oes gennych caniatâd i gyflawni'r weithred hon
       obfuscate: Cuddio enw parth
       obfuscate_hint: Cuddio'r enw parth yn y rhestr yn rhannol os yw hysbysebu'r rhestr o gyfyngiadau parth wedi'i alluogi
       private_comment: Sylw preifat
@@ -453,6 +459,20 @@ cy:
       resolved_dns_records_hint_html: Mae'r enw parth yn cyd-fynd â'r parthau MX canlynol, sy'n gyfrifol yn y pen draw am dderbyn e-bost. Bydd rhwystro parth MX yn rhwystro cofrestriadau o unrhyw gyfeiriad e-bost sy'n defnyddio'r un parth MX, hyd yn oed os yw'r enw parth gweladwy yn wahanol. <strong>Byddwch yn ofalus i beidio â rhwystro darparwyr e-bost mawr.</strong>
       resolved_through_html: Wedi'i ddatrys trwy %{domain}
       title: Cosbrestr e-bost
+    export_domain_allows:
+      new:
+        title: Mewnforio parth yn caniatáu
+      no_file: Dim ffeil wedi'i dewis
+    export_domain_blocks:
+      import:
+        description_html: Rydych ar fin mewnforio rhestr o flociau parth. Adolygwch y rhestr hon yn ofalus iawn, yn enwedig os nad ydych wedi ysgrifennu'r rhestr hon eich hun.
+        existing_relationships_warning: Perthynas ddilyn sy'n bodoli
+        private_comment_description_html: 'I''ch helpu i olrhain o ble mae blociau wedi''u mewnforio yn dod, bydd blociau wedi''u mewnforio yn cael eu creu gyda''r sylw preifat canlynol: <q>%{comment}</q>'
+        private_comment_template: Mewnforiwyd o %{source} ar %{date}
+        title: Mewnforio blociau parth
+      new:
+        title: Mewnforio blociau parth
+      no_file: Dim ffeil wedi'i dewis
     follow_recommendations:
       description_html: "<strong>Mae dilyn yr argymhellion yn helpu i ddefnyddwyr newydd ddod o hyd i gynnwys diddorol yn gyflym</strong>. Pan nad yw defnyddiwr wedi rhyngweithio digon ag eraill i ffurfio argymhellion dilyn personol, argymhellir y cyfrifon hyn yn lle hynny. Cânt eu hailgyfrifo'n ddyddiol o gymysgedd o gyfrifon gyda'r ymgysylltiadau diweddar uchaf a'r cyfrif dilynwyr lleol uchaf ar gyfer iaith benodol."
       language: Ar gyfer iaith
@@ -983,7 +1003,7 @@ cy:
     warning: Byddwch yn ofalus a'r data hyn. Peidiwch a'i rannu byth!
     your_token: Eich tocyn mynediad
   auth:
-    apply_for_account: Ewch ar y rhestr aros
+    apply_for_account: Gofyn am gyfrif
     change_password: Cyfrinair
     delete_account: Dileu cyfrif
     delete_account_html: Os hoffech chi ddileu eich cyfrif, mae modd <a href="%{path}">parhau yma</a>. Bydd gofyn i chi gadarnhau.
@@ -1252,6 +1272,7 @@ cy:
     invalid_markup: 'yn cynnwys marciad HTML annilys: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
       over_rows_processing_limit: yn cynnwys mwy na %{count} rhes
     modes:
       merge: Cyfuno
