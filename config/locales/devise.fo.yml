@@ -1,15 +1,16 @@
----
 fo:
   devise:
     confirmations:
       confirmed: Tín teldupostadressa er blivin góðkend.
       send_instructions: Innanfyri fáar minuttir fer tú at fáa ein teldupost við vegleiðing til hvussu tú staðfestir tína teldupostadressu. Vinarliga leita í tínum spamfaldara um tú ikki móttekur hendan teldupostin.
+      send_paranoid_instructions: Um tín teldupostaddresa longu er í dátugrunninum, fær tú er um fáa minuttir ein teldupost, við frágreiðing um, hvussu hendan kann váttast. Kanna tín Spam faldara, um tú ikki sær henda.
     failure:
       already_authenticated: Tú ert longu innskrivað/ur.
       inactive: Kontan hjá tær er ikki virkin enn.
       invalid: Skeivt %{authentication_keys} ella loyniorð.
       last_attempt: Tú kanst royna einaferð afturat áðrenn kontan verður stongd.
       locked: Kontan hjá tær er læst.
+      not_found_in_database: Ogyldigur %{authentication_keys} ella loyniorð.
       pending: Kontan hjá tær verður kannað enn.
       unauthenticated: Tú mást skriva teg inn aftur fyri at halda fram.
     mailer:
