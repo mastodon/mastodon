@@ -1,3 +1,4 @@
+---
 ast:
   devise:
     confirmations:
@@ -7,10 +8,10 @@ ast:
     failure:
       already_authenticated: Xá aniciesti la sesión.
       inactive: Entá nun s'activó la cuenta.
-      invalid: '%{authentication_keys} o contraseña invalida.'
+      invalid: "%{authentication_keys} o contraseña invalida."
       last_attempt: Tienes un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
-      not_found_in_database: '%{authentication_keys} o contraseña invalida.'
+      not_found_in_database: "%{authentication_keys} o contraseña invalida."
       pending: La cuenta sigue en revisión.
       timeout: La sesión caducó. Volvi aniciala pa siguir.
       unauthenticated: Tienes d'aniciar la sesión o rexistrate enantes de siguir.
@@ -47,7 +48,7 @@ ast:
       send_paranoid_instructions: Si la direición de corréu esiste na base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña a esi corréu. Comprueba la carpeta Puxarra si nun lu recibiesti.
       updated_not_active: La contraseña camudó con correutamente.
     registrations:
-      signed_up: '¡Afáyate! Rexistréstite correutamente.'
+      signed_up: "¡Afáyate! Rexistréstite correutamente."
       signed_up_but_inactive: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta entá nun s'activó.
       signed_up_but_locked: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta ta bloquiada.
       signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la direición de corréu. Sigui l'enllaz p'activar la cuenta. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
