@@ -23,9 +23,10 @@ const emojifyTextNode = (node, customEmojis) => {
   let str = node.textContent;
 
   const fragment = new DocumentFragment();
+  let i = 0;
 
   for (;;) {
-    let match, i = 0;
+    let match;
 
     if (customEmojis === null) {
       while (i < str.length && !(match = trie.search(str.slice(i)))) {
@@ -41,26 +42,26 @@ const emojifyTextNode = (node, customEmojis) => {
     if (i === str.length) {
       break;
     } else if (str[i] === ':') {
-      if (!(() => {
-        rend = str.indexOf(':', i + 1) + 1;
-        if (!rend) return false; // no pair of ':'
-        const shortname = str.slice(i, rend);
-        // now got a replacee as ':shortname:'
-        // if you want additional emoji handler, add statements below which set replacement and return true.
-        if (shortname in customEmojis) {
-          const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
-          replacement = document.createElement('img');
-          replacement.setAttribute('draggable', 'false');
-          replacement.setAttribute('class', 'emojione custom-emoji');
-          replacement.setAttribute('alt', shortname);
-          replacement.setAttribute('title', shortname);
-          replacement.setAttribute('src', filename);
-          replacement.setAttribute('data-original', customEmojis[shortname].url);
-          replacement.setAttribute('data-static', customEmojis[shortname].static_url);
-          return true;
-        }
-        return false;
-      })()) rend = ++i;
+      rend = str.indexOf(':', i + 1) + 1;
+      if (!rend) {
+        continue; // no pair of ':'
+      }
+      const shortname = str.slice(i, rend);
+      // now got a replacee as ':shortname:'
+      // if you want additional emoji handler, add statements below which set replacement and return true.
+      if (shortname in customEmojis) {
+        const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
+        replacement = document.createElement('img');
+        replacement.setAttribute('draggable', 'false');
+        replacement.setAttribute('class', 'emojione custom-emoji');
+        replacement.setAttribute('alt', shortname);
+        replacement.setAttribute('title', shortname);
+        replacement.setAttribute('src', filename);
+        replacement.setAttribute('data-original', customEmojis[shortname].url);
+        replacement.setAttribute('data-static', customEmojis[shortname].static_url);
+      } else {
+        continue;
+      }
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
@@ -82,6 +83,7 @@ const emojifyTextNode = (node, customEmojis) => {
       fragment.append(replacement);
     }
     str = str.slice(rend);
+    i = 0;
   }
 
   fragment.append(document.createTextNode(str));
