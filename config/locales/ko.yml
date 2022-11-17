@@ -366,6 +366,8 @@ ko:
       add_new: 도메인 허용
       created_msg: 도메인이 성공적으로 허용 목록에 추가되었습니다
       destroyed_msg: 도메인이 허용 목록에서 제거되었습니다
+      export: 내보내기
+      import: 불러오기
       undo: 허용 목록에서 제외
     domain_blocks:
       add_new: 도메인 차단 추가하기
@@ -375,17 +377,21 @@ ko:
       edit: 도메인 차단 수정
       existing_domain_block: 이미 %{name}에 대한 더 강력한 제한이 있습니다.
       existing_domain_block_html: 이미 %{name}에 대한 더 강력한 제한이 걸려 있습니다, <a href="%{unblock_url}">차단 해제</a>를 먼저 해야 합니다.
+      export: 내보내기
+      import: 불러오기
       new:
         create: 차단 추가
         hint: 도메인 차단은 내부 데이터베이스에 계정이 생성되는 것까지는 막을 수 없지만, 그 도메인에서 생성된 계정에 자동적으로 특정한 중재 규칙을 적용하게 할 수 있습니다.
         severity:
           desc_html: |-
-            <strong>침묵</strong>은 계정을 팔로우 하지 않고 있는 사람들에겐 계정의 게시물을 보이지 않게 합니다. <strong>정지</strong>는 계정의 콘텐츠, 미디어, 프로필 데이터를 삭제합니다.
-            미디어 파일만을 거부하고 싶다면 <strong>없음</strong>으로 두세요.
+            <strong>제한</strong>은 이 도메인에 있는 계정을 팔로우 하지 않는 사람들에게 게시물을 보이지 않게 설정합니다.
+            <strong>정지</strong>는 이 도메인에 있는 계정의 모든 콘텐츠, 미디어, 프로필 데이터를 삭제합니다. 미디어 파일만 거부하고 싶다면 <strong>없음</strong>을 사용하세요.
           noop: 없음
-          silence: 침묵
+          silence: 제한
           suspend: 정지
         title: 새로운 도메인 차단
+      no_domain_block_selected: 아무 것도 선택 되지 않아 어떤 도메인 차단도 변경되지 않았습니다
+      not_permitted: 이 작업을 수행할 권한이 없습니다
       obfuscate: 도메인 이름 난독화
       obfuscate_hint: 도메인 제한 목록을 공개하는 경우 도메인 이름의 일부를 난독화 합니다
       private_comment: 비공개 주석
@@ -416,6 +422,20 @@ ko:
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
       resolved_through_html: "%{domain}을 통해 해결됨"
       title: Email 도메인 차단
+    export_domain_allows:
+      new:
+        title: 도메인 허용 목록 불러오기
+      no_file: 선택된 파일이 없습니다
+    export_domain_blocks:
+      import:
+        description_html: 도메인 차단 목록을 불러오려고 합니다. 조심스럽게 검토하시고, 특히나 이 목록을 스스로 작성하지 않았을 경우엔 더 면밀히 검토하세요.
+        existing_relationships_warning: 이미 존재하는 팔로우 관계
+        private_comment_description_html: '어디서 불러온 것인지 추적을 원활하게 하기 위해서, 불러온 차단들은 다음과 같은 비공개 주석과 함께 생성될 것입니다: <q>%{comment}</q>'
+        private_comment_template: "%{date}에 %{source}에서 불러옴"
+        title: 도메인 차단 불러오기
+      new:
+        title: 도메인 차단 불러오기
+      no_file: 선택된 파일이 없습니다
     follow_recommendations:
       description_html: "<strong>팔로우 추천은 새 사용자들이 관심 가는 콘텐트를 빠르게 찾을 수 있도록 도와줍니다</strong>. 사용자가 개인화 된 팔로우 추천이 만들어지기 위한 충분한 상호작용을 하지 않은 경우, 이 계정들이 대신 추천 됩니다. 이들은 해당 언어에 대해 많은 관심을 갖거나 많은 로컬 팔로워를 가지고 있는 계정들을 섞어서 날마다 다시 계산 됩니다."
       language: 언어 필터
@@ -898,7 +918,7 @@ ko:
     warning: 이 데이터를 조심히 다뤄 주세요. 다른 사람들과 절대로 공유하지 마세요!
     your_token: 액세스 토큰
   auth:
-    apply_for_account: 대기자 명단에 들어가기
+    apply_for_account: 가입 요청하기
     change_password: 패스워드
     delete_account: 계정 삭제
     delete_account_html: 계정은 <a href="%{path}">여기</a>에서 삭제할 수 있습니다. 계정을 삭제하려면 확인이 필요합니다.
@@ -1136,6 +1156,7 @@ ko:
     invalid_markup: '올바르지 않은 HTML 마크업을 포함하고 있습니다: %{error}'
   imports:
     errors:
+      invalid_csv_file: '올바르지 않은 CSV 파일입니다. 오류: %{error}'
       over_rows_processing_limit: "%{count}개 이상의 열을 포함합니다"
     modes:
       merge: 병합
@@ -1462,8 +1483,8 @@ ko:
     ignore_reblogs: 부스트 무시
     interaction_exceptions: 상호작용에 기반한 예외들
     interaction_exceptions_explanation: 좋아요나 부스트 수가 설정한 값을 넘은 후 다시 낮아진 경우에는 게시물이 삭제되는 것을 보장하지 못합니다.
-    keep_direct: 쪽지 보존하기
-    keep_direct_hint: 내 쪽지를 삭제하지 않습니다
+    keep_direct: 다이렉트 메시지 유지
+    keep_direct_hint: 다이렉트 메시지를 삭제하지 않습니다
     keep_media: 미디어가 있는 게시물 유지
     keep_media_hint: 미디어가 첨부된 게시물을 삭제하지 않습니다
     keep_pinned: 고정된 게시물 유지

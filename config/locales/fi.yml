@@ -386,9 +386,7 @@ fi:
         create: Luo esto
         hint: Verkkotunnuksen esto ei estä tilien luomista ja lisäämistä tietokantaan, mutta se soveltaa näihin tileihin automaattisesti määrättyjä moderointitoimia tilin luomisen jälkeen.
         severity:
-          desc_html: "<strong>Hiljennys</strong> estää tilin julkaisuja näkymästä muille kuin tilin seuraajille. <strong>Jäähy</strong> poistaa tilin kaiken sisällön, median ja profiilitiedot. Jos haluat vain hylätä mediatiedostot, valitse <strong>Ei mitään</strong>."
           noop: Ei mitään
-          silence: Hiljennys
           suspend: Jäähy
         title: Uusi verkkotunnuksen esto
       obfuscate: Peitä verkkotunnuksen nimi
@@ -914,7 +912,6 @@ fi:
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
     your_token: Pääsytunnus
   auth:
-    apply_for_account: Tule jonotuslistalle
     change_password: Salasana
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.

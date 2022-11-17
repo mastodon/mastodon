@@ -21,8 +21,19 @@ af:
       publish: Publiseer
       published_msg: Aankondiging was suksesvol gepubliseer!
       unpublish: Depubliseer
+    domain_allows:
+      export: Uitvoer
+      import: Invoer
     domain_blocks:
       existing_domain_block: Jy het alreeds strenger perke ingelê op %{name}.
+      export: Uitvoer
+      import: Invoer
+      new:
+        severity:
+          desc_html: "<strong>Beperk</strong> sal plasings deur rekeninge op hierdie domein onsigbaar maak vir enigeiemand wat nie volg nie. <strong>Opskort</strong> sal alle inhoud, media en profiel data vir hierdie domein se rekeninge van jou bediener verwyder. Gebruik <strong>Geen</strong> indien jy slegs media wil verwerp."
+          silence: Beperk
+    export_domain_allows:
+      no_file: Geen lêer is gekies nie
     instances:
       back_to_limited: Beperk
       moderation:
@@ -67,6 +78,7 @@ af:
     notification_preferences: Verander epos voorkeure
     settings: 'Verander epos voorkeure: %{link}'
   auth:
+    apply_for_account: Doen aansoek om 'n rekening
     logout: Teken Uit
   datetime:
     distance_in_words:

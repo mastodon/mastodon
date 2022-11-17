@@ -386,9 +386,7 @@ es:
         create: Crear bloque
         hint: El bloque de dominio no prevendrá la creación de entradas de cuenta en la base de datos, pero aplicará retroactiva y automáticamente métodos de moderación específica en dichas cuentas.
         severity:
-          desc_html: "<strong>Silenciar</strong> hará los posts de la cuenta invisibles a cualquiera que no lo esté siguiendo. <strong>Suspender</strong> eliminará todo el contenido, media, y datos del perfil. Usa <strong>Ninguno</strong> si solo quieres rechazar archivos multimedia."
           noop: Ninguno
-          silence: Silenciar
           suspend: Suspender
         title: Nuevo bloque de dominio
       obfuscate: Ocultar nombre de dominio
@@ -914,7 +912,6 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
-    apply_for_account: Entrar en la lista de espera
     change_password: Contraseña
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.

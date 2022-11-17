@@ -373,6 +373,8 @@ es-AR:
       add_new: Permitir federación con el dominio
       created_msg: El dominio fue exitosamente permitido para la federación
       destroyed_msg: El dominio no fue permitido para la federación
+      export: Exportar
+      import: Importar
       undo: No permitir federación con el dominio
     domain_blocks:
       add_new: Agregar nuevo bloqueo de dominio
@@ -382,15 +384,19 @@ es-AR:
       edit: Editar bloqueo de dominio
       existing_domain_block: Ya impusiste límites más estrictos a %{name}.
       existing_domain_block_html: Ya le aplicaste límites más estrictos a %{name}, por lo que primero necesitás <a href="%{unblock_url}">desbloquearlo</a>.
+      export: Exportar
+      import: Importar
       new:
         create: Crear bloqueo
         hint: El bloqueo de dominio no va a prevenir la creación de mensajes de cuenta en la base de datos, pero se aplicarán métodos específicos de moderación en esas cuentas, retroactiva y automáticamente.
         severity:
-          desc_html: "<strong>Silenciar</strong> hará que los mensajes de la cuenta sean invisibles a quienes no estén siguiendo esa cuenta. <strong>Suspender</strong> quitará todo el contenido, archivos de medio y datos de perfil de la cuenta. Usá <strong>Ninguno</strong> si simplemente querés rechazar archivos de medios."
+          desc_html: "<strong>Limitar</strong> hará que los mensajes de cuentas en este dominio sean invisibles a quienes no las estén siguiendo. <strong>Suspender</strong> quitará todo el contenido, archivos de medio y datos de perfil de cuentas en este dominio de tu servidor. Usá <strong>Ninguno</strong> si simplemente querés rechazar archivos de medios."
           noop: Ninguno
-          silence: Silenciar
+          silence: Limitar
           suspend: Suspender
         title: Nuevo bloqueo de dominio
+      no_domain_block_selected: No se cambiaron bloques de dominio, ya que ninguno fue seleccionado
+      not_permitted: No tenés permiso para realizar esta acción
       obfuscate: Obfuscar nombre de dominio
       obfuscate_hint: Obfusca parcialmente el nombre de dominio en la lista, si el anuncio de la lista de limitaciones de dominio está habilitado
       private_comment: Comentario privado
@@ -422,6 +428,20 @@ es-AR:
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tené cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
       title: Dominios bloqueados de correo electrónico
+    export_domain_allows:
+      new:
+        title: Importar permisos de dominio
+      no_file: No hay ningún archivo seleccionado
+    export_domain_blocks:
+      import:
+        description_html: Estás a punto de importar una lista de bloques de dominio. Por favor, revisá esta lista con mucho cuidado, especialmente si no creaste esta lista vos mismo.
+        existing_relationships_warning: Relaciones de seguimientos existentes
+        private_comment_description_html: 'Para ayudarte a rastrear de dónde vienen los bloques importados, se crearán los mismos con el siguiente comentario privado: <q>%{comment}</q>'
+        private_comment_template: Importado desde %{source} el %{date}
+        title: Importar bloques de dominio
+      new:
+        title: Importar bloques de dominio
+      no_file: No hay ningún archivo seleccionado
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas para seguir ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para formar recomendaciones personalizadas de seguimiento, se recomiendan estas cuentas, en su lugar. Se recalculan diariamente a partir de una mezcla de cuentas con las interacciones más recientes y el mayor número de seguidores para un idioma determinado."
       language: Por idioma
@@ -914,7 +934,7 @@ es-AR:
     warning: Ojo con estos datos. ¡Nunca los compartas con nadie!
     your_token: Tu clave de acceso
   auth:
-    apply_for_account: Entrar en la lista de espera
+    apply_for_account: Solicitar una cuenta
     change_password: Contraseña
     delete_account: Eliminar cuenta
     delete_account_html: Si querés eliminar tu cuenta, podés <a href="%{path}">seguir por acá</a>. Se te va a pedir una confirmación.
@@ -1159,6 +1179,7 @@ es-AR:
     invalid_markup: 'contiene markup HTML no válido: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
     modes:
       merge: Combinar

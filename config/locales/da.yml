@@ -386,9 +386,7 @@ da:
         create: Opret blokering
         hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk føje særlige moderationsmetoder til disse konti.
         severity:
-          desc_html: "<strong>Tavsgørelse</strong> gør kontoens indlæg usynlige for alle, som ikke følger dem. <strong>Suspendering</strong> fjerner alt kontoindhold, medier og profildata. Brug <strong>Ingen</strong>, hvis mediefiler blot ønskes afvist."
           noop: Ingen
-          silence: Tavsgøre
           suspend: Suspendere
         title: Ny domæneblokering
       obfuscate: Slør domænenavn
@@ -914,7 +912,6 @@ da:
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
     your_token: Dit adgangstoken
   auth:
-    apply_for_account: Kom på ventelisten
     change_password: Adgangskode
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
