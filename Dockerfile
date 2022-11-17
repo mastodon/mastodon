@@ -107,6 +107,10 @@ ENV NODE_ENV="production"
 ENV RAILS_SERVE_STATIC_FILES="true"
 ENV BIND="0.0.0.0"
 
+# Webpack and its plugins use the 'md4' hashing algorithm by default.
+# This algorithm is no longer included in Node.js v17+ by default: this flag re-enables it.
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
 # Set the run user
 USER mastodon
 
