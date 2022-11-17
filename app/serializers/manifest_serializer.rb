@@ -35,6 +35,7 @@ class ManifestSerializer < ActiveModel::Serializer
         src: full_pack_url("media/icons/android-chrome-#{size}x#{size}.png"),
         sizes: "#{size}x#{size}",
         type: 'image/png',
+        purpose: 'any maskable',
       }
     end
   end
