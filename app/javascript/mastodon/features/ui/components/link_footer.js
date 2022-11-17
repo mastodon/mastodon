@@ -80,6 +80,7 @@ class LinkFooter extends React.PureComponent {
           <a href='https://github.com/hometown-fork/hometown/wiki' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
           {' · '}
           <a href='https://github.com/hometown-fork/hometown/' rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
+          {' · '}
           v{version}
         </p>
 

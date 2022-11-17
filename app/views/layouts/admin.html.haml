@@ -7,8 +7,10 @@
     .sidebar-wrapper
       .sidebar-wrapper__inner
         .sidebar
-          = link_to root_path do
-            = site_title
+          .logo
+            %h2
+              = link_to root_path, class: 'brand' do
+                = site_title
 
           .sidebar__toggle
             .sidebar__toggle__logo

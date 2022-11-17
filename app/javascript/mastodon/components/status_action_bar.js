@@ -359,9 +359,12 @@ class StatusActionBar extends ImmutablePureComponent {
         <IconButton className='status__action-bar__button bookmark-icon' disabled={!signedIn} active={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
 
         {shareButton}
-        <IconButton className='status__action-bar-button bookmark-icon' disabled={anonymousAccess} active={status.get('bookmarked')} pressed={status.get('bookmarked')} title={intl.formatMessage(messages.bookmark)} icon='bookmark' onClick={this.handleBookmarkClick} />
 
         {filterButton}
+
+        { !federated &&
+          <IconButton className='status__action-bar-button' disabled title={intl.formatMessage(messages.local_only)} icon='chain-broken' />
+        }
 
         <div className='status__action-bar__dropdown'>
           <DropdownMenuContainer
@@ -375,9 +378,6 @@ class StatusActionBar extends ImmutablePureComponent {
             title={intl.formatMessage(messages.more)}
           />
         </div>
-        { !federated &&
-          <IconButton className='status__action-bar-button' disabled title={intl.formatMessage(messages.local_only)} icon='chain-broken' />
-        }
       </div>
     );
   }
