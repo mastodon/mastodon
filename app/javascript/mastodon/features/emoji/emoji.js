@@ -20,6 +20,9 @@ const emojiFilename = (filename) => {
 };
 
 const emojifyTextNode = (node, customEmojis) => {
+  const VS15 = 0xFE0E;
+  const VS16 = 0xFE0F;
+
   let str = node.textContent;
 
   const fragment = new DocumentFragment();
@@ -28,6 +31,7 @@ const emojifyTextNode = (node, customEmojis) => {
   for (;;) {
     let match;
 
+    // Skip to the next potential emoji to replace
     if (customEmojis === null) {
       while (i < str.length && !(match = trie.search(str.slice(i)))) {
         i += str.codePointAt(i) < 65536 ? 1 : 2;
@@ -38,14 +42,17 @@ const emojifyTextNode = (node, customEmojis) => {
       }
     }
 
-    let rend, replacement = null;
+    // We reached the end of the string, nothing to replace
     if (i === str.length) {
       break;
-    } else if (str[i] === ':') {
-      rend = str.indexOf(':', i + 1) + 1;
-      if (!rend) {
+    }
+
+    let rend, replacement = null;
+    if (str[i] === ':') { // Potentially the start of a custom emoji shortcode
+      if (!(rend = str.indexOf(':', i + 1) + 1)) {
         continue; // no pair of ':'
       }
+
       const shortname = str.slice(i, rend);
       // now got a replacee as ':shortname:'
       // if you want additional emoji handler, add statements below which set replacement and return true.
@@ -63,14 +70,17 @@ const emojifyTextNode = (node, customEmojis) => {
         continue;
       }
     } else { // matched to unicode emoji
-      const { filename, shortCode } = unicodeMapping[match];
-      const title = shortCode ? `:${shortCode}:` : '';
       rend = i + match.length;
+
       // If the matched character was followed by VS15 (for selecting text presentation), skip it.
-      if (str.codePointAt(rend - 1) !== 0xFE0F && str.codePointAt(rend) === 0xFE0E) {
+      if (str.codePointAt(rend - 1) !== VS16 && str.codePointAt(rend) === VS15) {
         i = rend + 1;
         continue;
       }
+
+      const { filename, shortCode } = unicodeMapping[match];
+      const title = shortCode ? `:${shortCode}:` : '';
+
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', 'false');
       replacement.setAttribute('class', 'emojione');
@@ -79,10 +89,9 @@ const emojifyTextNode = (node, customEmojis) => {
       replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
     }
 
+    // Add the processed-up-to-now string and the emoji replacement
     fragment.append(document.createTextNode(str.slice(0, i)));
-    if (replacement) {
-      fragment.append(replacement);
-    }
+    fragment.append(replacement);
     str = str.slice(rend);
     i = 0;
   }
