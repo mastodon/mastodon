@@ -372,6 +372,8 @@ fi:
       add_new: Salli liitto verkkotunnuksella
       created_msg: Verkkotunnus on onnistuneesti sallittu federaatiolle
       destroyed_msg: Verkkotunnus on estetty federaatiossa
+      export: Vie
+      import: Tuo
       undo: Estä liitto verkkotunnukselle
     domain_blocks:
       add_new: Lisää uusi
@@ -381,15 +383,19 @@ fi:
       edit: Muokkaa verkkotunnuksen estoa
       existing_domain_block: Olet jo asettanut tiukemmat rajoitukset %{name}.
       existing_domain_block_html: Olet jo asettanut %{name} tiukemmat rajat ja sinun täytyy <a href="%{unblock_url}">poistaa se</a> ensin.
+      export: Vie
+      import: Tuo
       new:
         create: Luo esto
         hint: Verkkotunnuksen esto ei estä tilien luomista ja lisäämistä tietokantaan, mutta se soveltaa näihin tileihin automaattisesti määrättyjä moderointitoimia tilin luomisen jälkeen.
         severity:
-          desc_html: "<strong>Rajoita</strong> piilottaa viestit tämän verkkotunnuksen tileiltä niiltä, jotka eivät seuraa tilejä. <strong>Lopeta</strong> poistaa kaiken sisällön, median ja profiilien tiedot tämän verkkotunnuksen tileiltä palvelimellasi. Käytä <strong>Ei mitään</strong>, jos haluat vain hylätä meditiedostoja."
+          desc_html: "<strong>Rajoita</strong> -valinta piilottaa tämän verkkoalueen tilien julkaisut heiltä, jotka eivät seuraa kyseisiä tilejä. <strong>Lopeta</strong> poistaa kaiken sisällön, median ja profiilien tiedot tämän verkkotunnuksen tileiltä palvelimellasi. Käytä valintaa <strong>Ei mitään</strong>, jos haluat vain estää mediatiedostojen julkaisemisen."
           noop: Ei mitään
           silence: Rajoita
           suspend: Jäähy
         title: Uusi verkkotunnuksen esto
+      no_domain_block_selected: Verkkoalue-estoihin ei tehty muutoksia, koska valintoja ei tehty
+      not_permitted: Nykyiset käyttöoikeutesi eivät kata tätä toimintoa
       obfuscate: Peitä verkkotunnuksen nimi
       obfuscate_hint: Peitä verkkotunnus osittain luettelossa, jos verkkotunnuksen rajoitusten luettelo on käytössä
       private_comment: Yksityinen kommentti
@@ -421,6 +427,20 @@ fi:
       resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää kirjautumisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
       resolved_through_html: Ratkaistu %{domain} kautta
       title: Sähköpostiestolista
+    export_domain_allows:
+      new:
+        title: Tuo sallitut verkkoalueet
+      no_file: Yhtäkään tiedostoa ei ole valittu
+    export_domain_blocks:
+      import:
+        description_html: Olet tuomassa järjestelmään luetteloa verkkoalue-estoista. Tarkista luettelo huolella – etenkin, ellet ole itse tehnyt listausta.
+        existing_relationships_warning: Olemassa olevat seuraussuhteet
+        private_comment_description_html: 'Tuodun estolistan alkuperän selvillä pitämiseksi, lisätään tietojen yhteyteen seuraava yksityinen kommentti: <q>%{comment}</q>'
+        private_comment_template: Tuotu lähteestä %{source}, pvm %{date}
+        title: Tuo luettelo verkkoalue-estoista
+      new:
+        title: Tuo luettelo verkkoalue-estoista
+      no_file: Yhtäkään tiedostoa ei ole valittu
     follow_recommendations:
       description_html: "<strong>Suositusten noudattaminen auttaa uusia käyttäjiä löytämään nopeasti mielenkiintoista sisältöä.</strong>. Jos käyttäjä ei ole ollut vuorovaikutuksessa tarpeeksi muiden kanssa luodakseen henkilökohtaisia seuraajia, näitä muita tilejä suositellaan sen sijaan. Ne lasketaan uudelleen päivittäin yhdistelmästä tilejä, joilla on korkein viimeaikainen käyttö ja korkein paikallinen seuraajien määrä tietyllä kielellä."
       language: Kielelle
@@ -1158,6 +1178,7 @@ fi:
     invalid_markup: 'sisältää virheellisen HTML-merkinnän: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Epäkelpo CSV-tiedosto. Virhe: %{error}'
       over_rows_processing_limit: sisältää yli %{count} riviä
     modes:
       merge: Yhdistä
