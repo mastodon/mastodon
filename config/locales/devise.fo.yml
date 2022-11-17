@@ -21,8 +21,11 @@ fo:
         action_with_app: Staðfest og far aftur til %{app}
         explanation: Tú hevur stovnað eina kontu hjá %{host} við hesari teldupostadressuni og tú ert eitt klikk frá at virkja hana. Um tað ikki vart tú, vinarliga sí burtur frá hesum teldupostinum.
         explanation_when_pending: Tú hevur fingið innbjóðing tkl %{host}, við teldupostaddressu. Tá tú hevur vátta tín tína teldupostaddressu, verður umsóknin viðgjørd. Tú kann innrita og broyta ymsar stillingar, men flestu funkur kunnu ikki broytast, fyrr enn kontan er góðkend. Um kontan ikki verður góðkend, verða allar dátur um teg slettaðar. Um umsóknin ikki kom frá tær, skal tú síggja burtur frá teldupostinum.
+        extra_html: Kanna eisini <a href="%{terms_path}">reglurnar fyri henda ambætaran</a> og <a href="%{policy_path}">okkara nýtslu treytir</a>.
+        subject: 'Mastodon: Góðkenningartreytir fyri %{instance}'
         title: Vátta teldupostadressuna
       email_changed:
+        explanation: 'Telupostaddressan ryri kontina verður broytt til:'
         subject: 'Mastodon: Teldupostur broyttur'
         title: Nýggjur eldupostur
       password_change:
