@@ -186,7 +186,7 @@ de:
         destroy_canonical_email_block: E-Mail-Blockade löschen
         destroy_custom_emoji: Eigene Emojis löschen
         destroy_domain_allow: Erlaube das Löschen von Domains
-        destroy_domain_block: Domain-Blockade löschen
+        destroy_domain_block: Domainsperre löschen
         destroy_email_domain_block: E-Mail-Domainsperre löschen
         destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
@@ -219,7 +219,7 @@ de:
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
         update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
-        update_domain_block: Domain-Blockade aktualisieren
+        update_domain_block: Domainsperre aktualisieren
         update_ip_block: IP-Regel aktualisieren
         update_status: Beitrag aktualisieren
         update_user_role: Rolle aktualisieren
@@ -378,9 +378,9 @@ de:
     domain_blocks:
       add_new: Neue Domainblockade hinzufügen
       created_msg: Die Domain ist jetzt blockiert bzw. eingeschränkt
-      destroyed_msg: Die Domain-Blockade wurde rückgängig gemacht
+      destroyed_msg: Die Domainsperre wurde rückgängig gemacht
       domain: Domain
-      edit: Domainblockade bearbeiten
+      edit: Domainsperre bearbeiten
       existing_domain_block: Du hast %{name} bereits stärker eingeschränkt.
       existing_domain_block_html: Du hast bereits strengere Beschränkungen für die Domain %{name} verhängt. Du musst diese erst <a href="%{unblock_url}">aufheben</a>.
       export: Exportieren
@@ -393,7 +393,7 @@ de:
           noop: Kein
           silence: Stummschaltung
           suspend: Sperren
-        title: Neue Domain-Blockade
+        title: Neue Domainsperre
       no_domain_block_selected: Keine Domains blockiert, weil keine ausgewählt wurde
       not_permitted: Du bist nicht berechtigt, diese Aktion durchzuführen
       obfuscate: Domainname verschleiern
@@ -406,8 +406,8 @@ de:
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
-      undo: Domainblockade zurücknehmen
-      view: Zeige Domain-Blockade
+      undo: Domainsperre rückgängig machen
+      view: Domainsperre ansehen
     email_domain_blocks:
       add_new: Neue hinzufügen
       attempts_over_week:
@@ -433,6 +433,8 @@ de:
       no_file: Keine Datei ausgewählt
     export_domain_blocks:
       import:
+        description_html: Du bist dabei, eine Liste von Domainsperren zu importieren. Bitte überprüfe diese Liste sehr sorgfältig, insbesondere wenn du sie nicht selbst verfasst hast.
+        private_comment_description_html: 'Damit du nachvollziehen kannst, woher die importierten Sperren stammen, werden die importierten Sperren mit dem folgenden privaten Kommentar erstellt: <q>%{comment}</q>'
         private_comment_template: Importiert von %{source} am %{date}
         title: Domainsperren importieren
       new:
@@ -930,7 +932,7 @@ de:
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
-    apply_for_account: Account beantragen
+    apply_for_account: Konto beantragen
     change_password: Passwort
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
@@ -1187,7 +1189,7 @@ de:
     types:
       blocking: Blockierliste
       bookmarks: Lesezeichen
-      domain_blocking: Domain-Blockliste
+      domain_blocking: Domainsperrliste
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Liste importieren
