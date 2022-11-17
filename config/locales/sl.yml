@@ -409,6 +409,7 @@ sl:
           suspend: Suspendiraj
         title: Nov domenski blok
       no_domain_block_selected: Nobena blokada domene ni bila spremenjena, saj nobena ni bila izbrana
+      not_permitted: Nimate pravic za izvedbo tega dejanja
       obfuscate: Zakrij ime domene
       obfuscate_hint: Delno zakrij ime domene na seznamu, če je omogočeno oglaševanje omejitev seznama domen
       private_comment: Zasebni komentar
@@ -443,9 +444,14 @@ sl:
       resolved_through_html: Razrešeno prek %{domain}
       title: Črni seznam e-pošt
     export_domain_allows:
+      new:
+        title: Uvozi prepustnice domen
       no_file: Nobena datoteka ni izbrana
     export_domain_blocks:
       import:
+        description_html: Uvozili boste seznam blokad domen. Pozorno preglejte ta seznam, še posebej, če ga niste sami pripravili.
+        existing_relationships_warning: Obstoječi odnosi sledenja
+        private_comment_description_html: 'Kot pomoč pri sledenju izvora uvoženih blokad bodo le-te ustvarjene z naslednjim zasebnim komentarjem: <q>%{comment}</q>'
         private_comment_template: Uvoženo iz %{source} %{date}
         title: Uvozi blokade domen
       new:
