@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.4
 FROM ubuntu:20.04 as build-dep
 
 # Use bash for the shell
@@ -65,8 +66,8 @@ RUN cd /opt/mastodon && \
 FROM ubuntu:20.04
 
 # Copy over all the langs needed for runtime
-COPY --from=build-dep /opt/node /opt/node
-COPY --from=build-dep /opt/ruby /opt/ruby
+COPY --from=build-dep --link /opt/node /opt/node
+COPY --from=build-dep --link /opt/ruby /opt/ruby
 
 # Add more PATHs to the PATH
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin:/opt/mastodon/bin"

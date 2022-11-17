@@ -237,6 +237,11 @@ class User < ApplicationRecord
   end
 
   def functional?
+
+    functional_or_moved?
+  end
+
+  def functional_or_moved?
     confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial?
   end
 

@@ -8,9 +8,9 @@
     = f.input :reset_password_token, as: :hidden
 
     .fields-group
-      = f.input :password, wrapper: :with_label, autofocus: true, label: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.new_password'), :autocomplete => 'new-password', :minlength => User.password_length.first, :maxlength => User.password_length.last }, required: true
+      = f.input :password, wrapper: :with_label, autofocus: true, label: t('simple_form.labels.defaults.new_password'), input_html: { 'aria-label': t('simple_form.labels.defaults.new_password'), autocomplete: 'new-password', minlength: User.password_length.first, maxlength: User.password_length.last }, required: true
     .fields-group
-      = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label' => t('simple_form.labels.defaults.confirm_new_password'), :autocomplete => 'new-password' }, required: true
+      = f.input :password_confirmation, wrapper: :with_label, label: t('simple_form.labels.defaults.confirm_new_password'), input_html: { 'aria-label': t('simple_form.labels.defaults.confirm_new_password'), autocomplete: 'new-password' }, required: true
 
     .actions
       = f.button :button, t('auth.set_new_password'), type: :submit

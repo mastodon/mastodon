@@ -19,7 +19,7 @@ module Admin
     rescue ActionController::ParameterMissing
       flash[:alert] = I18n.t('admin.email_domain_blocks.no_email_domain_block_selected')
     rescue Mastodon::NotPermittedError
-      flash[:alert] = I18n.t('admin.custom_emojis.not_permitted')
+      flash[:alert] = I18n.t('admin.email_domain_blocks.not_permitted')
     ensure
       redirect_to admin_email_domain_blocks_path
     end

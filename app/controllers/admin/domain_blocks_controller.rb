@@ -9,9 +9,9 @@ module Admin
       @form = Form::DomainBlockBatch.new(form_domain_block_batch_params.merge(current_account: current_account, action: action_from_button))
       @form.save
     rescue ActionController::ParameterMissing
-      flash[:alert] = I18n.t('admin.email_domain_blocks.no_domain_block_selected')
+      flash[:alert] = I18n.t('admin.domain_blocks.no_domain_block_selected')
     rescue Mastodon::NotPermittedError
-      flash[:alert] = I18n.t('admin.domain_blocks.created_msg')
+      flash[:alert] = I18n.t('admin.domain_blocks.not_permitted')
     else
       redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
     end
