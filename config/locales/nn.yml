@@ -365,6 +365,8 @@ nn:
       add_new: Kvitlist domene
       created_msg: Domene er vorte kvitlista
       destroyed_msg: Domene er fjerna frå kvitlista
+      export: Eksporter
+      import: Importer
       undo: Fjern frå kvitliste
     domain_blocks:
       add_new: Lag ny
@@ -374,6 +376,8 @@ nn:
       edit: Rediger domeneblokkering
       existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
+      export: Eksporter
+      import: Importer
       new:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
@@ -383,6 +387,8 @@ nn:
           silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
+      no_domain_block_selected: Ingen domeneblokkeringar vart endra sidan ingen var valde
+      not_permitted: Du har ikkje løyve til å utføra denne handlinga
       obfuscate: Obfuskere domenenavn
       obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
       private_comment: Privat kommentar
@@ -412,6 +418,20 @@ nn:
         title: Ny blokkeringsoppføring av e-postdomene
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
+    export_domain_allows:
+      new:
+        title: Importer domenetillatingar
+      no_file: Inga fil vald
+    export_domain_blocks:
+      import:
+        description_html: Du skal til å importera ei liste over domeneblokkeringar. Gjer vel og sjå nøye gjennom lista, særleg om du ikkje har laga ho sjølv.
+        existing_relationships_warning: Noverande fylgjeforhold
+        private_comment_description_html: 'For å hjelpa deg med å halda oversikt over kvar importerte blokkeringar kjem frå, vil dei bli oppretta med fylgjande private kommentar: <q>%{comment}</q>'
+        private_comment_template: Importert frå %{source} den %{date}
+        title: Importer domeneblokkeringar
+      new:
+        title: Importer domeneblokkeringar
+      no_file: Inga fil vald
     follow_recommendations:
       description_html: "<strong>Følg anbefalinger hjelper nye brukere med å finne interessant innhold</strong>. Når en bruker ikke har kommunisert med andre nok til å danne personlig tilpassede følger anbefalinger, anbefales disse kontoene i stedet. De beregnes daglig på nytt fra en blanding av kontoer der de høyeste engasjementene er og med høyest lokal tilhenger for et gitt språk."
       language: For språk
@@ -916,6 +936,7 @@ nn:
     invalid_markup: 'rommar ugild HTML-kode: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
       over_rows_processing_limit: inneholder flere enn %{count} rader
     modes:
       merge: Set saman
