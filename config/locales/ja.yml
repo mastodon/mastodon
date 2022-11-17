@@ -379,9 +379,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong>サイレンス</strong>はアカウントの投稿をフォローしていない人から隠します。<strong>停止</strong>はそのアカウントのコンテンツ、メディア、プロフィールデータをすべて削除します。メディアファイルを拒否したいだけの場合は<strong>なし</strong>を使います。"
           noop: なし
-          silence: サイレンス
           suspend: 停止
         title: 新規ドメインブロック
       obfuscate: ドメイン名を伏せ字にする
@@ -896,7 +894,6 @@ ja:
     warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
-    apply_for_account: ウェイトリストを取得する
     change_password: パスワード
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除する前に、確認画面があります。

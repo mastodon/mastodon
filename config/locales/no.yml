@@ -19,9 +19,9 @@
     pin_errors:
       following: Du må allerede følge personen du vil fremheve
     posts:
-      one: Tut
-      other: Tuter
-    posts_tab_heading: Tuter
+      one: Innlegg
+      other: Innlegg
+    posts_tab_heading: Innlegg
   admin:
     account_actions:
       action: Utfør handling
@@ -359,9 +359,7 @@
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
           noop: Ingen
-          silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
       obfuscate: Obfuskere domenenavn
@@ -474,11 +472,11 @@
     relays:
       add_new: Legg til ny overgang
       delete: Slett
-      description_html: En <strong>federert overgang</strong> er en mellomleddsserver som utveksler store mengder av offentlige tuter mellom servere som abonnerer og publiserer til den. <strong>Det kan hjelpe små og mellomstore servere til å oppdage innhold fra strømiverset</strong>, noe som ellers ville ha krevd at lokale brukere manuelt fulgte andre personer på fjerne servere.
+      description_html: En <strong>federert overgang</strong> er en mellomleddsserver som utveksler store mengder av offentlige innlegg mellom servere som abonnerer og publiserer til den. <strong>Det kan hjelpe små og mellomstore servere til å oppdage innhold fra strømiverset</strong>, noe som ellers ville ha krevd at lokale brukere manuelt fulgte andre personer på fjerne servere.
       disable: Skru av
       disabled: Skrudd av
       enable: Skru på
-      enable_hint: Når dette har blitt skrudd på, vil tjeneren din abonnere på alle offentlige tuter fra denne overgangen, og vil begynne å sende denne tjenerens offentlige tuter til den.
+      enable_hint: Når dette har blitt skrudd på, vil tjeneren din abonnere på alle offentlige innlegg fra denne overgangen, og vil begynne å sende denne tjenerens offentlige innlegg til den.
       enabled: Skrudd på
       inbox_url: Overførings-URL
       pending: Avventer overgangens godkjenning
@@ -836,7 +834,7 @@
     archive_takeout:
       date: Dato
       download: Last ned arkivet ditt
-      hint_html: Du kan be om et arkiv med dine <strong>tuter og opplastede media</strong>. Den eksporterte dataen vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
+      hint_html: Du kan be om et arkiv med dine <strong>innlegg og opplastede media</strong>. Eksporterte data vil være i ActivityPub-formatet, som kan leses av programmer som støtter det. Du kan be om et arkiv opptil hver 7. dag.
       in_progress: Samler arkivet ditt...
       request: Be om ditt arkiv
       size: Størrelse
@@ -1061,7 +1059,7 @@
       account: Offentlige innlegg fra @%{acct}
       tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
+    over_daily_limit: Du har overskredet grensen på %{limit} planlagte innlegg for i dag
     over_total_limit: Du har overskredet grensen på %{limit} planlagte innlegg
     too_soon: Den planlagte datoen må være i fremtiden
   sessions:
@@ -1154,7 +1152,7 @@
     pin_errors:
       direct: Innlegg som bare er synlige for nevnte brukere kan ikke festes
       limit: Du har allerede festet det maksimale antall innlegg
-      ownership: Kun egne tuter kan festes
+      ownership: Kun egne innlegg kan festes
       reblog: En fremheving kan ikke festes
     poll:
       total_people:
@@ -1193,7 +1191,7 @@
       '7889238': 3 måneder
     min_age_label: Terskel for alder
   stream_entries:
-    pinned: Festet tut
+    pinned: Festet innlegg
     reblogged: fremhevde
     sensitive_content: Følsomt innhold
   strikes:

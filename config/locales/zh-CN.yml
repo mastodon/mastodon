@@ -1,7 +1,7 @@
 ---
 zh-CN:
   about:
-    about_mastodon_html: Mastodon 是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
+    about_mastodon_html: 来自未来的社交网络：无广告、无监视、去中心化、合乎道德！使用 Mastodon 夺回你的数据！
     contact_missing: 未设定
     contact_unavailable: 未公开
     hosted_on: 运行在 %{domain} 上的 Mastodon 站点
@@ -366,6 +366,8 @@ zh-CN:
       add_new: 允许和域名跨站交互
       created_msg: 域名已被允许跨站交互
       destroyed_msg: 域名已被禁止跨站交互
+      export: 导出
+      import: 导入
       undo: 不允许和该域名跨站交互
     domain_blocks:
       add_new: 添加新屏蔽域名
@@ -375,6 +377,8 @@ zh-CN:
       edit: 编辑域名屏蔽
       existing_domain_block: 您已经对 %{name} 设置了更严格的限制。
       existing_domain_block_html: 你已经对 %{name} 施加了更严格的限制，你需要先 <a href="%{unblock_url}">解封</a>。
+      export: 导出
+      import: 导入
       new:
         create: 添加屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
@@ -384,6 +388,8 @@ zh-CN:
           silence: 隐藏
           suspend: 封禁
         title: 新增域名屏蔽
+      no_domain_block_selected: 由于没有选中，域名列表没有被改变。
+      not_permitted: 你没有权限进行此操作
       obfuscate: 混淆域名
       obfuscate_hint: 如果启用了域名列表公开限制，就部分混淆列表中的域名
       private_comment: 私密评论
@@ -414,6 +420,20 @@ zh-CN:
       resolved_dns_records_hint_html: 该域名解析的 MX 记录所指向的域名如下，这些域名被用于接收电子邮件。 即使电子邮件地址域名与 MX 域名不同，屏蔽一个 MX 域名意味着阻止任何使用相同 MX 域名的电子邮件地址注册本站账户。 <strong>请小心不要误屏蔽主要的电子邮件提供商。</strong>
       resolved_through_html: 通过 %{domain} 解析
       title: 电子邮件域名屏蔽
+    export_domain_allows:
+      new:
+        title: 导入域名允许列表
+      no_file: 没有选择文件
+    export_domain_blocks:
+      import:
+        description_html: 您即将导入域名列表，如果您不是此域名列表的作者，请仔细检查核对。
+        existing_relationships_warning: 现有的关注关系
+        private_comment_description_html: 为了帮助您追踪域名列表来源，导入的域名列表将被添加如下的私人注释：<q>%{comment}</q>
+        private_comment_template: 从 %{source} 导入 %{date}
+        title: 导入域名列表
+      new:
+        title: 导入域名列表
+      no_file: 没有选择文件
     follow_recommendations:
       description_html: "<strong>“关注推荐”可帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账户。推荐会每日更新，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
       language: 选择语言
@@ -514,7 +534,7 @@ zh-CN:
     relays:
       add_new: 订阅新的中继站
       delete: 删除
-      description_html: "<strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来交换大量公开嘟文。<strong>它可以帮助中小型服务器发现联邦宇宙中的其他服务器的内容</strong>，而无需本站用户手动关注其他远程服务器上的用户。"
+      description_html: "<strong>中继服务器</strong>是一个信息统合服务器，各服务器可以通过订阅中继服务器和向中继服务器推送信息来大量交换公开嘟文。<strong>它可以帮助中小型服务器发现联邦宇宙中的其他服务器的内容</strong>，而无需本站用户手动关注其他远程服务器上的用户。"
       disable: 禁用
       disabled: 已禁用
       enable: 启用
@@ -616,33 +636,33 @@ zh-CN:
         manage_announcements: 管理公告
         manage_announcements_description: 允许用户管理服务器上的通知
         manage_appeals: 管理申诉
-        manage_appeals_description: 允许用户审查对适度动作的上诉
-        manage_blocks: 管理版块
+        manage_appeals_description: 允许用户审阅针对管理操作的申诉
+        manage_blocks: 管理地址段
         manage_blocks_description: 允许用户屏蔽电子邮件提供商和IP地址
         manage_custom_emojis: 管理自定义表情
         manage_custom_emojis_description: 允许用户管理服务器上的自定义表情
-        manage_federation: 管理联邦
-        manage_federation_description: 允许用户阻止或允许使用其他域切换并控制可交付性
+        manage_federation: 管理邦联
+        manage_federation_description: 允许用户屏蔽或允许同其他域名的邦联，并控制消息投递能力
         manage_invites: 管理邀请
         manage_invites_description: 允许用户浏览和停用邀请链接
-        manage_reports: 管理报告
-        manage_reports_description: 允许用户查看报告并对其执行审核操作
+        manage_reports: 管理举报
+        manage_reports_description: 允许用户审核举报并执行管理操作
         manage_roles: 管理角色
         manage_roles_description: 允许用户管理和分配比他们权限低的角色
         manage_rules: 管理规则
         manage_rules_description: 允许用户更改服务器规则
         manage_settings: 管理设置
         manage_settings_description: 允许用户更改站点设置
-        manage_taxonomies: 管理分类法
+        manage_taxonomies: 管理分类
         manage_taxonomies_description: 允许用户查看热门内容并更新标签设置
         manage_user_access: 管理访问
         manage_user_access_description: 允许用户禁用其他用户的双重身份验证, 更改他们的电子邮件地址, 并重置他们的密码
         manage_users: 管理用户
-        manage_users_description: 允许用户查看其他用户信息并对他们执行审核操作
-        manage_webhooks: 管理网钩
-        manage_webhooks_description: 允许用户为管理事件设置网钩
+        manage_users_description: 允许用户查看其他用户的信息并执行管理操作
+        manage_webhooks: 管理 Webhooks
+        manage_webhooks_description: 允许用户为管理事件配置 Webhook
         view_audit_log: 查看审核日志
-        view_audit_log_description: 允许用户在服务器上查看管理操作历史
+        view_audit_log_description: 允许用户查看此服务器上的管理操作记录
         view_dashboard: 查看仪表板
         view_dashboard_description: 允许用户访问仪表盘和各种指标
         view_devops: 开发运维
@@ -813,24 +833,24 @@ zh-CN:
       empty: 你尚未定义任何警告预设。
       title: 管理预设警告
     webhooks:
-      add_new: 端点
+      add_new: 新增对端
       delete: 删除
-      description_html: "<strong>webhook</strong> 使Mastodon能够推送 <strong>关于所选事件的实时通知</strong> 到您自己的应用程序。 所以您的应用程序可以自动触发反应 <strong></strong>。"
+      description_html: "<strong>Webhook</strong> 使 Mastodon 能够推送 <strong>关于所选事件的实时通知</strong> 到你自己的应用程序，进而由你的应用程序<strong>自动触发反应</strong>。"
       disable: 禁用
       disabled: 已禁用
-      edit: 编辑端点
-      empty: 您尚未配置任何Web 钩子端点。
+      edit: 编辑对端
+      empty: 你尚未配置任何 Webhook 对端。
       enable: 启用
       enabled: 活跃
       enabled_events:
         other: "%{count} 启用的事件"
       events: 事件
-      new: 新建网钩
-      rotate_secret: 旋转密钥
+      new: 新建 Webhook
+      rotate_secret: 轮换密钥
       secret: 签名密钥
       status: 状态
-      title: 网钩
-      webhook: 网钩
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -896,7 +916,7 @@ zh-CN:
     warning: 一定小心，千万不要把它分享给任何人！
     your_token: 你的访问令牌
   auth:
-    apply_for_account: 前往申请
+    apply_for_account: 申请账户
     change_password: 密码
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
@@ -1134,6 +1154,7 @@ zh-CN:
     invalid_markup: '包含无效的 HTML 标记: %{error}'
   imports:
     errors:
+      invalid_csv_file: '无效的 CSV 文件。错误: %{error}'
       over_rows_processing_limit: 包含行数超过了 %{count}
     modes:
       merge: 合并
@@ -1201,7 +1222,7 @@ zh-CN:
       not_found: 找不到
       on_cooldown: 你正处于冷却状态
     followers_count: 迁移时的关注者
-    incoming_migrations: 从其它账号迁移
+    incoming_migrations: 从其它账号迁入
     incoming_migrations_html: 要把另一个账号移动到本账号，首先你需要<a href="%{path}">创建一个账号别名</a> 。
     moved_msg: 你的账号现在会跳转到 %{acct} ，同时关注者也会一并迁移 。
     not_redirecting: 你的账号当前未跳转到其它账号。
@@ -1231,7 +1252,7 @@ zh-CN:
   notification_mailer:
     admin:
       report:
-        subject: "%{name} 提交了报告"
+        subject: "%{name} 提交了举报"
       sign_up:
         subject: "%{name} 注册了"
     favourite:
@@ -1453,7 +1474,7 @@ zh-CN:
       unlisted_long: 所有人可见，但不会出现在公共时间轴上
   statuses_cleanup:
     enabled: 自动删除旧嘟文
-    enabled_hint: 当您的嘟文达到指定的过期时间后自动删除，除非它们与下面的例外之一相匹配
+    enabled_hint: 达到指定过期时间后自动删除您的嘟文，除非满足下列条件之一
     exceptions: 例外
     explanation: 删除嘟文是一个消耗系统资源的耗时操作，所以这个操作会在服务器空闲时完成。因此，您的嘟文可能会在达到过期阈值之后一段时间才会被删除。
     ignore_favs: 取消喜欢

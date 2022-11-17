@@ -60,6 +60,7 @@ eo:
       error:
         title: Eraro okazis
       new:
+        prompt_html: "%{client_name} volas permeso por aliri vian konton. <strong>Se vi ne konfidu ĝin, ne rajtigu ĝin.</strong>"
         review_permissions: Revizu permesojn
         title: Rajtigo bezonata
       show:
@@ -70,6 +71,9 @@ eo:
       confirmations:
         revoke: Ĉu vi certas?
       index:
+        authorized_at: Rajtigitas je %{date}
+        description_html: Ĉi tioj estas programaroj kiu povas aliri vian konton per API.
+        last_used_at: Laste uzita je %{date}
         never_used: Neniam uzata
         scopes: Permesoj
         superapp: Interna
@@ -109,18 +113,29 @@ eo:
         destroy:
           notice: Aplikaĵo malrajtigita.
     grouped_scopes:
+      access:
+        read: Legnura aliro
+        read/write: Lega kaj skriba aliro
+        write: Skribnura aliro
       title:
         accounts: Kontoj
+        admin/accounts: Administro de kontoj
+        admin/all: Ĉiuj administraj funkcioj
+        admin/reports: Administro de raportoj
         all: Ĉio
         blocks: Blokita
         bookmarks: Legosignoj
         conversations: Konversacioj
+        crypto: Fin-al-fina ĉifrado
         favourites: Preferaĵoj
         filters: Filtriloj
+        follow: Rilatoj
         follows: Sekvas
         lists: Listoj
+        media: Aŭdovidaj aldonaĵoj
         mutes: Silentigitaj
         notifications: Sciigoj
+        push: Puŝsciigoj
         reports: Raportoj
         search: Serĉi
         statuses: Afiŝoj
@@ -138,6 +153,7 @@ eo:
       admin:write: modifi ĉiujn datumojn en la servilo
       admin:write:accounts: plenumi agojn de kontrolo sur kontoj
       admin:write:reports: plenumi agojn de kontrolo sur signaloj
+      crypto: uzi fin-al-finan ĉifradon
       follow: ŝanĝi rilatojn al aliaj kontoj
       push: ricevi viajn puŝ-sciigojn
       read: legi ĉiujn datumojn de via konto
@@ -157,6 +173,7 @@ eo:
       write:accounts: ŝanĝi vian profilon
       write:blocks: bloki kontojn kaj domajnojn
       write:bookmarks: aldoni mesaĝojn al la legosignoj
+      write:conversations: mallautigi kaj forigi babiladojn
       write:favourites: stelumi mesaĝojn
       write:filters: krei filtrilojn
       write:follows: sekvi homojn

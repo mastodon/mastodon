@@ -8,15 +8,20 @@ ast:
     failure:
       already_authenticated: Xá aniciesti la sesión.
       inactive: Entá nun s'activó la cuenta.
+      invalid: "%{authentication_keys} o contraseña invalida."
       last_attempt: Tienes un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
+      not_found_in_database: "%{authentication_keys} o contraseña invalida."
       pending: La cuenta sigue en revisión.
       timeout: La sesión caducó. Volvi aniciala pa siguir.
       unauthenticated: Tienes d'aniciar la sesión o rexistrate enantes de siguir.
       unconfirmed: Tienes de confirmar la direición de corréu electrónicu enantes de siguir.
     mailer:
       confirmation_instructions:
+        action: Verifica la to direición de corréu
+        action_with_app: Confirma y vuelvi a %{app}
         explanation: Creesti una cuenta en %{host} con esta direición de corréu. Tas a un calcu d'activala. Si nun fuisti tu, inora esti corréu.
+        explanation_when_pending: Solicitaste una invitación a %{host} con esta dirección de corréu electrónicu. Una vez que confirmes la to direición de corréu electrónicu, revisaremos la to solicitú. Pues aniciar sesión pa camudar los tos datos o desaniciar la to cuenta, pero nun pues acceder a la mayoría de les funciones hasta que la to cuenta seya aprobada. Si so solicitú ye rechazada, sos datos serán desaniciáos, polo que nun sedrá necesaria ninguna acción adicional por so parte. Si no fuiste tú, por favor inora esti corréu electrónicu.
         extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> y <a href="%{policy_path}">los nuesos términos del serviciu</a>.
       email_changed:
         explanation: 'La direición de corréu de la cuenta camudó a:'

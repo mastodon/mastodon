@@ -27,6 +27,8 @@ eo:
         scheduled_at: Lasi malplena por eldoni la anoncon tuj
         starts_at: Laŭvola. Se via anonco estas ligita al specifa tempo
         text: Vi povas uzi la sintakso de afiŝoj. Bonvolu zorgi pri la spaco, kiun la anonco okupos sur la ekrano de la uzanto
+      appeal:
+        text: Oni povas apelaci strikin nur unufoje
       defaults:
         autofollow: Homoj, kiuj registriĝos per la invito aŭtomate sekvos vin
         avatar: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
@@ -35,6 +37,7 @@ eo:
         current_password: Pro sekuraj kialoj, bonvolu enigi la pasvorton de la nuna konto
         current_username: Por konfirmi, bonvolu enigi la uzantnomon de la nuna konto
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
+        discoverable: Permesi vian konton esti malkovrita de fremduloj per rekomendoj, tendencoj kaj aliaj funkcioj
         email: Vi ricevos retpoŝtaĵon de konfirmo
         fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
@@ -60,11 +63,37 @@ eo:
         whole_word: Kiam la vorto aŭ frazo estas nur litera aŭ cifera, ĝi estos uzata nur se ĝi kongruas kun la tuta vorto
       domain_allow:
         domain: Ĉi tiu domajno povos akiri datumon de ĉi tiu servilo kaj envenanta datumo estos prilaborita kaj konservita
+      email_domain_block:
+        domain: Ĉi tio povas esti la domajnnomo kiu montritas en la retadreso au la MX-rekordo uzitas.
+        with_dns_records: Provi de regajni DNS-rekordojn de la domajn farotas kaj la rezultaj ankorau blokitas
       featured_tag:
         name: 'Jen kelkaj el la kradvortoj, kiujn vi uzis lastatempe:'
       filters:
+        action: Elekti ago kiam mesaĝo kongruas la filtrilon
         actions:
+          hide: Tute kaŝigi la filtritajn enhavojn, kvazau ĝi ne ekzistis
           warn: Kaŝi la enhavon filtritan malantaŭ averto mencianta la nomon de la filtro
+      form_admin_settings:
+        backups_retention_period: Konservi generitajn uzantoarkivojn por la kvanto de tagoj.
+        bootstrap_timeline_accounts: Ĉi tiuj kontoj pinglitas al la supro de sekvorekomendoj de novaj uzantoj.
+        closed_registrations_message: Montrita kiam registroj fermitas
+        content_cache_retention_period: Mesaĝoj de aliaj serviloj forigitas post la kvanto de tagoj kiam fiksitas al pozitiva nombro.
+        custom_css: Vi povas meti kutimajn stilojn en la retversio de Mastodon.
+        mascot: Anstatauigi la ilustraĵon en la altnivela retinterfaco.
+        media_cache_retention_period: Elŝutitaj audovidaĵojn forigotas post la kvanto de tagoj kiam fiksitas al pozitiva nombro.
+        profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
+        require_invite_text: Kiam registroj bezonas permanan aprobon, igi la "Kial vi volas aliĝi?" tekstoenigon deviga anstau nedeviga
+        site_contact_email: Kiel personoj povas kontakti vin por juraj au subtenaj demandoj.
+        site_contact_username: Kial personoj povas kontakti vin ĉe Mastodon.
+        site_extended_description: Ajn aldonaj informo kiu eble estas utila al vizitantoj kaj via uzantoj.
+        site_short_description: Mallonga priskribo por helpi unike identigi vian servilon. Kiu faras, por kiu?
+        site_terms: Uzu vian sian privatecan politekon au ignoru por uzi la defaulton.
+        site_title: Kiel personoj voki vian servilon anstatau ĝia domajnnomo.
+        theme: Etoso kiun elsalutitaj vizitantoj kaj novaj uzantoj vidas.
+        thumbnail: Ĉirkaua 2:1 bildo montritas kun via servilinformo.
+        timeline_preview: Elsalutitaj vizitantoj povos vidi la plej lastajn publikajn mesaĝojn disponeblaj en la servilo.
+        trendable_by_default: Ignori permanan kontrolon de tendenca enhavo.
+        trends: Tendencoj montras kiu mesaĝoj, kradvortoj kaj novaĵoj populariĝas en via servilo.
       form_challenge:
         current_password: Vi eniras sekuran areon
       imports:
@@ -73,8 +102,11 @@ eo:
         text: Ĉi tio helpos nin revizii vian kandidatiĝon
       ip_block:
         comment: Laŭvola. Memoru, kial vi aldonis ĉi tiun regulon.
+        expires_in: IP-adresoj estas finia rimedo, ili kelkfoje kunhavitis kaj ofte malsame poseditas.
+        ip: Enigu IPv4 au IPv6-adreso. Ne elseruru vian sian!
         severities:
           no_access: Bloki aliron al ĉiuj rimedoj
+          sign_up_block: Novaj registroj ne estos ebla
           sign_up_requires_approval: Novaj registriĝoj bezonos vian aprobon
         severity: Elektu, kio okazos pri petoj de ĉi tiu IP
       rule:
@@ -86,6 +118,16 @@ eo:
         name: Vi povas ŝanĝi nur la majuskladon de la literoj, ekzemple, por igi ĝin pli legebla
       user:
         chosen_languages: Kiam estas elekto, nur mesaĝoj en elektitaj lingvoj aperos en publikaj templinioj
+        role: La rolregiloj kies permesojn la uzanto havas
+      user_role:
+        color: Koloro uzita por la rolo sur la UI, kun RGB-formato
+        highlighted: Ĉi tio igi la rolon publike videbla
+        name: Publika nomo de la rolo, se rolo fiksitas montritis kiel insigno
+        permissions_as_keys: Uzantoj kun ĉi tiu rolo gajnos aliro al...
+        position: Pli altaj rolo decidas konfliktosolvo en kelkaj situacioj
+      webhook:
+        events: Elektu eventojn por sendi
+        url: Kien eventoj sendotas
     labels:
       account:
         fields:
@@ -116,6 +158,8 @@ eo:
         scheduled_at: Plani publikigo
         starts_at: Komenco de evento
         text: Anonco
+      appeal:
+        text: Klarigu kial ĉi tiu decido devas inversigitis
       defaults:
         autofollow: Inviti al sekvi vian konton
         avatar: Rolfiguro
@@ -176,6 +220,8 @@ eo:
         username: Uzantnomo
         username_or_email: Uzantnomo aŭ Retadreso
         whole_word: Tuta vorto
+      email_domain_block:
+        with_dns_records: Inkluzu MX-rekordojn kaj IP de la domajno
       featured_tag:
         name: Kradvorto
       filters:
@@ -183,7 +229,29 @@ eo:
           hide: Kaŝi komplete
           warn: Kaŝi malantaŭ averto
       form_admin_settings:
+        backups_retention_period: Uzantoarkivretendauro
+        bootstrap_timeline_accounts: Ĉiam rekomendi ĉi tiujn kontojn al novaj uzantoj
+        closed_registrations_message: Kutimita mesaĝo kiam registroj ne estas disponeblaj
+        content_cache_retention_period: Enhavkaŝaĵretendauro
+        custom_css: Kutimita CSS
+        mascot: Kutimita maskoto
+        media_cache_retention_period: Audovidaĵkaŝaĵretendauro
+        profile_directory: Ebligi la profilujon
         registrations_mode: Kiu povas krei konton
+        require_invite_text: Bezoni kialo por aliĝi
+        show_domain_blocks: Montri domajnblokojn
+        show_domain_blocks_rationale: Montri kial domajnoj blokitas
+        site_contact_email: Kontaktoretadreso
+        site_contact_username: Kontaktouzantonomo
+        site_extended_description: Longa priskribo
+        site_short_description: Servilpriskribo
+        site_terms: Privateca politiko
+        site_title: Nomo de la servilo
+        theme: Implicita etoso
+        thumbnail: Bildeto de servilo
+        timeline_preview: Permesi la neaŭtentigitan aliron al la publikaj templinioj
+        trendable_by_default: Permesi tendencojn sen deviga kontrolo
+        trends: Ebligi tendencojn
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas
@@ -197,9 +265,11 @@ eo:
         ip: IP
         severities:
           no_access: Bloki atingon
+          sign_up_block: Malpermesi registrojn
           sign_up_requires_approval: Limigi registriĝojn
         severity: Regulo
       notification_emails:
+        appeal: Iu apelacias moderigantodecidon
         digest: Sendi resumajn retmesaĝojn
         favourite: Sendi retmesaĝon kiam iu stelumas vian mesaĝon
         follow: Sendi retmesaĝon kiam iu sekvas vin
@@ -207,13 +277,28 @@ eo:
         mention: Sendi retmesaĝon kiam iu mencias vin
         pending_account: Sendi retmesaĝon kiam nova konto bezonas kontrolon
         reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
+        report: Nova raporto senditas
+        trending_tag: Nova tendenco bezonas kontrolon
       rule:
         text: Regulo
       tag:
+        listable: Permesi ĉi tiun kradvorton aperi en serĉoj kaj sugestoj
         name: Kradvorto
         trendable: Permesi al ĉi tiu kradvorto aperi en furoraĵoj
         usable: Permesi mesaĝojn uzi ĉi tiun kradvorton
+      user:
+        role: Rolo
+      user_role:
+        color: Insignokoloro
+        highlighted: Montri rolo kiel insigno sur uzantoprofiloj
+        name: Nomo
+        permissions_as_keys: Permesoj
+        position: Prioritato
+      webhook:
+        events: Ebligi eventojn
+        url: Finpunkto-URL
     'no': Ne
+    not_recommended: Nerekomendita
     recommended: Rekomendita
     required:
       mark: "*"
