@@ -386,9 +386,9 @@ en:
         create: Create block
         hint: The domain block will not prevent creation of account entries in the database, but will retroactively and automatically apply specific moderation methods on those accounts.
         severity:
-          desc_html: "<strong>Silence</strong> will make the account's posts invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all of the account's content, media, and profile data. Use <strong>None</strong> if you just want to reject media files."
+          desc_html: "<strong>Limit</strong> will make posts from accounts at this domain invisible to anyone who isn't following them. <strong>Suspend</strong> will remove all content, media, and profile data for this domain's accounts from your server. Use <strong>None</strong> if you just want to reject media files."
           noop: None
-          silence: Silence
+          silence: Limit
           suspend: Suspend
         title: New domain block
       obfuscate: Obfuscate domain name
