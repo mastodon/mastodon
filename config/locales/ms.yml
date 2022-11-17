@@ -50,11 +50,13 @@ ms:
       confirm: Sahkan
       confirmed: Disahkan
       confirming: Mengesahkan
+      custom: Tersuai
       delete: Padam data
       deleted: Dipadamkan
       demote: Turunkan taraf
       destroyed_msg: Data %{username} kini menunggu giliran untuk dipadam sebentar lagi
       disable: Bekukan
+      disable_sign_in_token_auth: Nyahdaya pengesahan token e-mel
       disable_two_factor_authentication: Lumpuhkan 2FA
       disabled: Dibekukan
       display_name: Nama paparan
@@ -63,6 +65,7 @@ ms:
       email: E-mel
       email_status: Status e-mel
       enable: Nyahbekukan
+      enable_sign_in_token_auth: Dayakan pengesahan token e-mel
       enabled: Didayakan
       enabled_msg: Berjaya menyahbekukan akaun %{username}
       followers: Pengikut
@@ -323,9 +326,12 @@ ms:
       sources: Sumber pendaftaran
       space: Kegunaan ruang
       title: Papan pemuka
+      top_languages: Bahasa paling aktif
+      top_servers: Pelayan paling aktif
       website: Laman web
     disputes:
       appeals:
+        empty: Tiada rayuan ditemui.
         title: Rayuan
     domain_allows:
       add_new: Benarkan persekutuan dengan domain
@@ -343,9 +349,7 @@ ms:
         create: Cipta sekatan
         hint: Sekatan domain tidak akan menghindarkan penciptaan entri akaun dalam pangkalan data, tetapi akan dikenakan kaedah penyederhanaan khusus tertentu pada akaun-akaun tersebut secara retroaktif dan automatik.
         severity:
-          desc_html: "<strong>Diamkan</strong> akan membuatkan hantaran akaun tidak kelihatan kepada sesiapa yang tidak mengikut mereka. <strong>Gantungkan</strong> akan membuang kesemua kandungan, media, dan data profil akaun tersebut. Gunakan <strong>Tiada</strong> jika anda hanya ingin menolak fail media."
           noop: Tiada
-          silence: Diamkan
           suspend: Gantungkan
         title: Sekatan domain baharu
       obfuscate: Mengaburkan nama domain
@@ -385,7 +389,13 @@ ms:
       back_to_limited: Terhad
       back_to_warning: Amaran
       by_domain: Domain
+      content_policies:
+        policy: Dasar
+        reason: Sebab awam
+        title: Dasar kandungan
       dashboard:
+        instance_accounts_dimension: Akaun paling ramai diikuti
+        instance_accounts_measure: akaun disimpan
         instance_followers_measure: pengikut kami di situ
         instance_follows_measure: pengikut mereka di sini
       delivery:
@@ -489,6 +499,24 @@ ms:
       unresolved: Nyahselesaikan
       updated_at: Dikemaskini
       view_profile: Lihat profil
+    roles:
+      categories:
+        administration: Pentadbiran
+        invites: Undangan
+        special: Khas
+      everyone: Kebenaran lalai
+      permissions_count:
+        other: "%{count} kebenaran"
+      privileges:
+        delete_user_data: Padamkan Data Pengguna
+        manage_reports: Uruskan Laporan
+        manage_roles: Uruskan Peranan
+        manage_rules: Uruskan Peraturan
+        manage_settings: Uruskan Tetapan
+        manage_taxonomies: Uruskan Taksonomi
+        manage_user_access: Uruskan Akses Pengguna
+        manage_users: Uruskan Pengguna
+      title: Peranan
     rules:
       add_new: Tambah peraturan
       delete: Padam
@@ -497,31 +525,221 @@ ms:
       empty: Masih belum ada peraturan pelayan yang ditakrifkan.
       title: Peraturan pelayan
     settings:
+      about:
+        manage_rules: Uruskan peraturan pelayan
+      registrations:
+        title: Pendaftaran
       registrations_mode:
         modes:
           approved: Kelulusan diperlukan untuk pendaftaran
           none: Tiada siapa boleh mendaftar
           open: Sesiapapun boleh mendaftar
+      title: Tetapan Pelayan
+    statuses:
+      account: Penulis
+      deleted: Dipadamkan
+      favourites: Gemaran
+      history: Sejarah versi
+      language: Bahasa
+      open: Buka hantaran
+    strikes:
+      actions:
+        delete_statuses: "%{name} memadam hantaran %{target}"
+      appeal_approved: Dirayu
+    tags:
+      review: Semak status
+    trends:
+      allow: Izin
+      approved: Diluluskan
+      preview_card_providers:
+        title: Penerbit
+      statuses:
+        allow: Izinkan hantaran
+        allow_account: Izinkan penulis
+        title: Hantaran hangat
+  appearance:
+    sensitive_content: Kandungan sensitif
+  auth:
+    change_password: Kata laluan
+    delete_account: Padam akaun
+    description:
+      prefix_sign_up: Daftar pada Mastodon hari ini!
+    forgot_password: Terlupa kata laluan anda?
+    log_in_with: Daftar masuk dengan
+    login: Daftar masuk
+    logout: Daftar keluar
+    migrate_account: Pindah kepada akaun lain
+    register: Daftar
+    registration_closed: "%{instance} tidak menerima ahli-ahli baru"
+    security: Keselamatan
+    status:
+      account_status: Status akaun
+    use_security_key: Gunakan kunci keselamatan
   authorize_follow:
+    follow: Ikut
+    follow_request: 'Anda telah menghantar permintaan mengikut kepada:'
     post_follow:
       close: Atau anda boleh tutup tetingkap ini.
       return: Tunjukkan profil pengguna
       web: Pergi ke web
+    title: Ikuti %{acct}
+  challenge:
+    confirm: Teruskan
+    invalid_password: Kata laluan tidak sah
+    prompt: Sahkan kata laluan untuk teruskan
+  deletes:
+    proceed: Padam akaun
+  disputes:
+    strikes:
+      action_taken: Tindakan diambil
+      appeal: Rayu
+      appeal_rejected: Rayuan ini telah ditolak
+      appeal_submitted_at: Rayuan dihantar
+      appeals:
+        submit: Hantar rayuan
+      approve_appeal: Luluskan rayuan
+      associated_report: Laporan berkaitan
+      reject_appeal: Tolak rayuan
+      status: 'Hantaran #%{id}'
+      title_actions:
+        delete_statuses: Pemadaman hantaran
+        none: Amaran
+      your_appeal_approved: Rayuan anda telah diluluskan
+      your_appeal_pending: Anda telah menghantar rayuan
   errors:
     '400': Permintaan yang anda serahkan tidak sah atau salah bentuk.
     '403': Anda tidak mempunyai kebenaran untuk melihat halaman ini.
     '404': Halaman yang anda cari tiada di sini.
     '406': Halaman ini tidak tersedia dalam format yang diminta.
     '410': Halaman yang anda cari tidak wujud di sini lagi.
-    '422': 
+    '422':
+      title: Pengesahan keselamatan gagal
     '429': Terlalu banyak permintaan
     '500': 
     '503': Halaman tidak dapat disampaikan kerana kegagalan pelayan sementara.
   exports:
     archive_takeout:
       in_progress: Mengkompil arkib anda...
+      request: Minta arkib anda
+    csv: CSV
+    domain_blocks: Domain disekat
+    lists: Senarai
+  filters:
+    contexts:
+      account: Profil
+      notifications: Pemberitahuan
+    edit:
+      add_keyword: Tambah kata kunci
+      keywords: Kata kunci
+      title: Sunting penapis
+    index:
+      empty: Anda tiada penapis.
+      keywords:
+        other: "%{count} kata kunci"
+      statuses:
+        other: "%{count} hantaran"
+      title: Penapis
+    new:
+      save: Simpan penapis baru
+      title: Tambah penapis baru
+    statuses:
+      index:
+        title: Hantaran ditapis
+  generic:
+    all: Semua
+    copy: Salin
+    delete: Padam
+    deselect: Nyahpilih semua
+    none: Tiada
+  imports:
+    upload: Muat naik
+  invites:
+    expires_in:
+      '1800': 30 minit
+      '21600': 6 jam
+      '3600': Sejam
+      '43200': 12 jam
+      '604800': Seminggu
+      '86400': Sehari
+    expires_in_prompt: Jangan
+  login_activities:
+    authentication_methods:
+      password: kata laluan
+      sign_in_token: e-mel kod keselamatan
+      webauthn: kunci keselamatan
+  migrations:
+    acct: Dipindah ke
+    proceed_with_move: Pindah pengikut
+  notification_mailer:
+    follow:
+      title: Pengikut baru
+    follow_request:
+      title: Permintaan ikutan baru
+    mention:
+      action: Balas
+    update:
+      subject: "%{name} telah menyunting satu hantaran"
+  privacy_policy:
+    title: Dasar Privasi
+  relationships:
+    follow_selected_followers: Ikut pengikut yang dipilih
+    followers: Pengikut
+    following: Ikutan
+    last_active: Terakhir aktif
+    most_recent: Terkini
+    relationship: Hubungan
+    status: Status akaun
+  rss:
+    content_warning: 'Amaran kandungan:'
+  sessions:
+    activity: Aktiviti terakhir
+    browser: Pelayar
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      opera: Opera
+      otter: Otter
+      safari: Safari
+    current_session: Sesi sekarang
+    description: "%{browser} pada %{platform}"
+    explanation: Pelayar-pelayar web berikut sedang didaftar masuk pada akaun Mastodon anda.
+    ip: IP
+    platforms:
+      android: Android
+      ios: iOS
+      linux: Linux
+      other: platform tidak dikenali
+    title: Sesi
+  settings:
+    account: Akaun
+    account_settings: Tetapan akaun
+    delete: Pemadaman akaun
+    edit_profile: Sunting profil
+    export: Eksport data
+    featured_tags: Tanda pagar terpilih
+    import: Import
+    import_and_export: Import dan eksport
+    notifications: Pemberitahuan
+    preferences: Keutamaan
+    profile: Profil
+    relationships: Ikutan dan pengikut
+    statuses_cleanup: Pemadaman hantaran automatik
+    two_factor_authentication: Pengesahan Dua Faktor
+    webauthn_authentication: Kunci keselamatan
   statuses:
+    content_warning: 'Amaran kandungan: %{warning}'
     default_language: Sama dengan bahasa antara muka
+    edited_at_html: Disunting %{date}
+    poll:
+      vote: Undi
+    sign_in_to_participate: Daftar masuk untuk menyertai perbualan
+    visibilities:
+      direct: Terus
+      private: Pengikut sahaja
+      public: Awam
+      public_long: Semua orang boleh melihat
+      unlisted: Tidak tersenarai
   statuses_cleanup:
     enabled: Padam hantaran lama secara automatik
     keep_pinned: Simpan hantaran disemat
@@ -530,9 +748,44 @@ ms:
     keep_self_bookmark_hint: Tidak memadamkan hantaran anda jika anda sudah menandabukunya
     keep_self_fav: Simpan hantaran yang anda gemarkan
     keep_self_fav_hint: Tidak memadamkan hantaran anda jika anda telah menggemarkannya
+    min_age:
+      '1209600': 2 minggu
+      '15778476': 6 bulan
+      '2629746': Sebulan
+      '31556952': Setahun
+      '5259492': 2 bulan
+      '604800': Seminggu
+      '63113904': 2 tahun
+      '7889238': 3 bulan
     min_favs: Simpan hantaran digemarkan sekurang-kurangnya
     min_favs_hint: Tidak memadamkan mana-mana hantaran anda yang telah menerima sekurang-kurangnya jumlah gemaran ini. Biarkan kosong untuk memadamkan hantaran tanpa mengira nombor gemaran
   stream_entries:
     pinned: Hantaran disemat
+    sensitive_content: Kandungan sensitif
+  two_factor_authentication:
+    add: Tambah
+    disable: Nyahdayakan 2FA
+    edit: Sunting
+    methods: Kaedah dua faktor
+    otp: App pengesahan
+  user_mailer:
+    appeal_approved:
+      action: Pergi ke akaun anda
+      title: Rayuan diluluskan
+    appeal_rejected:
+      title: Rayuan ditolak
+    suspicious_sign_in:
+      title: Daftar masuk baru
+    welcome:
+      subject: Selamat datang kepada Mastodon
+      title: Selamat datang, %{name}!
   users:
     follow_limit_reached: Anda tidak boleh mengikut lebih daripada %{limit} orang
+    signed_in_as: 'Didaftar masuk sebagai:'
+  verification:
+    verification: Pengesahan
+  webauthn_credentials:
+    invalid_credential: Kunci keselamatan tidak sah
+    not_supported: Pelayan ini tidak menyokong kunci keselamatan
+    otp_required: Untuk menggunakan kunci keselamatan, sila mengaktifkan pengesahan dua faktor dahulu.
+    registered_on: Didaftar pada %{date}

@@ -15,6 +15,8 @@ ms:
       form_admin_settings:
         closed_registrations_message: Dipaparkan semasa pendaftaran ditutup
         site_contact_username: Bagaimana orang boleh menghubungi anda pada Mastodon.
+        site_extended_description: Apa-apa maklumat tambahan yang mungkin berguna untuk pelawat dan pengguna anda. Boleh distruktur dengan sintaks Markdown.
+        site_terms: Gunakan dasar polisi anda atau biarkan kosong untuk menggunakan lalai. Boleh distruktur dengan sintaks Markdown.
       form_challenge:
         current_password: Anda sedang memasuki kawasan selamat
       imports:
@@ -26,6 +28,10 @@ ms:
           no_access: Menyekat akses kepada semua sumber
           sign_up_block: Pendaftaran baru tidak akan dibenarkan
           sign_up_requires_approval: Pendaftaran baru akan memerlukan kelulusan anda
+      user_role:
+        color: Warna yang akan digunakan untuk peranan ini dalam seluruh UI, sebagai RGB dalam format hex
+        highlighted: Ini menjadikan peranan ini dipaparkan secara umum
+        permissions_as_keys: Pengguna dengan peranan ini akan mempunyai akses kepada...
     labels:
       account:
         fields:

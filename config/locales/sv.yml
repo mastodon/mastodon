@@ -283,7 +283,7 @@ sv:
         update_ip_block_html: "%{name} ändrade regel för IP %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
         update_user_role_html: "%{name} ändrade rollen %{target}"
-      deleted_account: raderat konto
+      deleted_account: raderat konto deleted account
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
@@ -373,6 +373,8 @@ sv:
       add_new: Vitlistedomän
       created_msg: Domänen har vitlistats
       destroyed_msg: Domänen har tagits bort från vitlistan
+      export: Exportera
+      import: Importera
       undo: Tag bort från vitlistan
     domain_blocks:
       add_new: Lägg till ny
@@ -382,15 +384,19 @@ sv:
       edit: Ändra domänblock
       existing_domain_block: Du har redan satt strängare gränser för %{name}.
       existing_domain_block_html: Du har redan satt begränsningar för %{name} så <a href="%{unblock_url}">avblockera användaren</a> först.
+      export: Exportera
+      import: Importera
       new:
         create: Skapa block
         hint: Domänblockeringen hindrar inte skapandet av kontoposter i databasen, men kommer retroaktivt och automatiskt tillämpa specifika modereringsmetoder på dessa konton.
         severity:
-          desc_html: "<strong>Tysta</strong> kommer att göra kontots inlägg osynliga för alla som inte följer det. <strong>Stäng av</strong> kommer ta bort allt kontoinnehåll, media och profildata. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
+          desc_html: "<strong>Gräns</strong> gör inlägg från konton på denna domän osynliga för alla som inte följer kontona. <strong>Avstängning</strong> tar bort allt innehåll, media och profildata för domänens konton från din server. Använd <strong>Ingen</strong> om du bara vill avvisa mediefiler."
           noop: Ingen
-          silence: Tysta ner
+          silence: Begränsa
           suspend: Stäng av
         title: Nytt domänblock
+      no_domain_block_selected: Inga blockeringar av domäner ändrades eftersom inga valdes
+      not_permitted: Du har inte behörighet att utföra denna åtgärd
       obfuscate: Dölj domännamn
       obfuscate_hint: Dölj domännamnet i listan till viss del, om underrättelser för listan över domänbegränsningar aktiverats
       private_comment: Privat kommentar
@@ -422,6 +428,20 @@ sv:
       resolved_dns_records_hint_html: Domännamnet ger uppslag till följande MX-domäner, vilka är ytterst ansvariga för att e-post tas emot. Att blockera en MX-domän blockerar även registreringar från alla e-postadresser som använder samma MX-domän, även om det synliga domännamnet är annorlunda. <strong>Var noga med att inte blockera stora e-postleverantörer.</strong>
       resolved_through_html: Uppslagen genom %{domain}
       title: Blockerade e-postdomäner
+    export_domain_allows:
+      new:
+        title: Importera domäntillåtelser
+      no_file: Ingen fil vald
+    export_domain_blocks:
+      import:
+        description_html: Du håller på att importera en lista med domänblockeringar. Granska denna lista mycket noga, särskilt om du inte har skapat listan själv.
+        existing_relationships_warning: Befintliga följ-relationer
+        private_comment_description_html: 'För att hjälpa dig spåra var importerade blockeringar kommer från kommer importerade blockeringar att skapas med följande privata kommentar: <q>%{comment}</q>'
+        private_comment_template: Importerad från %{source} den %{date}
+        title: Importera domänblockeringar
+      new:
+        title: Importera domänblockeringar
+      no_file: Ingen fil vald
     follow_recommendations:
       description_html: "<strong>Följrekommendationer hjälper nya användare att snabbt hitta intressant innehåll</strong>. När en användare inte har interagerat med andra tillräckligt mycket för att forma personliga följrekommendationer, rekommenderas istället dessa konton. De beräknas om varje dag från en mix av konton med nylig aktivitet och högst antal följare för ett givet språk."
       language: För språket
@@ -914,7 +934,7 @@ sv:
     warning: Var mycket försiktig med denna data. Dela aldrig den med någon!
     your_token: Din access token
   auth:
-    apply_for_account: Skriv upp dig på väntelistan
+    apply_for_account: Ansök om konto
     change_password: Lösenord
     delete_account: Radera konto
     delete_account_html: Om du vill radera ditt konto kan du <a href="%{path}">fortsätta här</a>. Du kommer att bli ombedd att bekräfta.
@@ -1159,6 +1179,7 @@ sv:
     invalid_markup: 'innehåller ogiltig HTML: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ogiltig CSV-fil. Felmeddelande: %{error}'
       over_rows_processing_limit: innehåller fler än %{count} rader
     modes:
       merge: Slå ihop

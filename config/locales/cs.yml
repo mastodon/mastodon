@@ -400,9 +400,7 @@ cs:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
         severity:
-          desc_html: "<strong>Ztišení</strong> skryje příspěvky z účtu komukoliv, kdo jej nesleduje. <strong>Pozastavení</strong> odstraní všechen obsah, média a profilová data účtu. Pro pouhé odmítnutí mediálních souborů použijte funkci <strong>Žádné</strong>."
           noop: Žádné
-          silence: Ztišit
           suspend: Pozastavit
         title: Nová blokace domény
       obfuscate: Obfuskovat doménu
@@ -950,7 +948,6 @@ cs:
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
-    apply_for_account: Přejít na čekací frontu
     change_password: Heslo
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.

@@ -18,7 +18,7 @@
         %tr
           %td
             %span{ title: session.user_agent }<
-              = fa_icon "#{session_device_icon(session)} fw", 'aria-label' => session_device_icon(session)
+              = fa_icon "#{session_device_icon(session)} fw", 'aria-label': session_device_icon(session)
               = ' '
               = t 'sessions.description', browser: t("sessions.browsers.#{session.browser}", default: "#{session.browser}"), platform: t("sessions.platforms.#{session.platform}", default: "#{session.platform}")
           %td

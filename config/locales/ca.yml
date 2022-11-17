@@ -373,6 +373,8 @@ ca:
       add_new: Dominis autoritzats
       created_msg: El domini ha estat correctament autoritzat
       destroyed_msg: S'ha esborrat el domini de la llista blanca
+      export: Exporta
+      import: Importa
       undo: Treure de la llista blanca
     domain_blocks:
       add_new: Afegir nou bloqueig de domini
@@ -382,15 +384,19 @@ ca:
       edit: Editar el bloqueig del domini
       existing_domain_block: Ja s'han imposat mesures més estrictes a %{name}.
       existing_domain_block_html: Ja has imposat uns límits més estrictes a %{name}, l'hauries de <a href="%{unblock_url}">desbloquejar-lo</a> primer.
+      export: Exporta
+      import: Importa
       new:
         create: Crea un bloqueig
         hint: El bloqueig de domini no impedirà la creació de nous comptes en la base de dades, però s'aplicaran de manera retroactiva mètodes de moderació específics sobre aquests comptes.
         severity:
-          desc_html: "<strong>Silenci</strong> farà les publicacions del compte invisibles a tothom que no l'estigui seguint. <strong>La suspensió</strong> eliminarà tots els continguts, multimèdia i les dades del perfil del compte. Usa <strong>Cap</strong> si només vols rebutjar el fitxers multimèdia."
+          desc_html: "<strong>Limitar</strong> farà que les publicacions dels comptes d'aquest domini siguin invisibles per a qualsevol persona que no les segueixi. <strong>Suspendre</strong> eliminarà del vostre servidor tot el contingut, multimèdia i perfil dels comptes d'aquest domini. Utilitza <strong>Cap</strong> si només vols rebutjar fitxers multimèdia."
           noop: Cap
-          silence: Silenci
+          silence: Limitar
           suspend: Suspensió
         title: Bloqueig de domini nou
+      no_domain_block_selected: No s'ha canviat cap bloqueig de domini perquè no se n'ha seleccionat cap
+      not_permitted: No tens permís per a realitzar aquesta acció
       obfuscate: Oculta el nom del domini
       obfuscate_hint: Oculta parcialment el nom del domini si està activat mostrar la llista de dominis limitats
       private_comment: Comentari privat
@@ -422,6 +428,20 @@ ca:
       resolved_dns_records_hint_html: El nom del domini resol als següents dominis MX, els quals son els responsables finals per a acceptar els correus. Bloquejar un domini MX bloquejarà els registres des de qualsevol adreça de correu que utilitzi el mateix domini MX, encara que el nom visible del domini sigui diferent. <strong>Ves amb compte no bloquegis els grans proveïdors de correu electrònic.</strong>
       resolved_through_html: Resolt mitjançant %{domain}
       title: Llista negra de correus electrònics
+    export_domain_allows:
+      new:
+        title: Importa dominis permesos
+      no_file: No s'ha seleccionat cap fitxer
+    export_domain_blocks:
+      import:
+        description_html: Estàs a punt d'importar una llista de bloqueig de dominis. Si us plau, revisa aquesta llista amb molta cura, especialment si no l'has creada tu mateix.
+        existing_relationships_warning: Relacions de seguiment existents
+        private_comment_description_html: 'Per ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
+        private_comment_template: Importar des de %{source} el %{date}
+        title: Importa dominis bloquejats
+      new:
+        title: Importa dominis bloquejats
+      no_file: No s'ha seleccionat cap fitxer
     follow_recommendations:
       description_html: "<strong>Seguir les recomanacions ajuda als nous usuaris a trobar ràpidament contingut interessant</strong>. Quan un usuari no ha interactuat prou amb d'altres com per a formar a qui seguir personalment, aquests comptes li seran recomanats. Es recalculen a diari a partir d'una barreja de comptes amb els compromisos recents més alts i el nombre més alt de seguidors locals per a un idioma determinat."
       language: Per idioma
@@ -914,7 +934,7 @@ ca:
     warning: Aneu amb compte amb aquestes dades. No les compartiu mai amb ningú!
     your_token: El teu identificador d'accés
   auth:
-    apply_for_account: Apunta't a la llista d'espera
+    apply_for_account: Sol·licitar un compte
     change_password: Contrasenya
     delete_account: Suprimeix el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
@@ -1159,6 +1179,7 @@ ca:
     invalid_markup: 'conté HTML markup no vàlid: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Fitxer CSV invàlid. Error: %{error}'
       over_rows_processing_limit: conté més de %{count} files
     modes:
       merge: Fusionar

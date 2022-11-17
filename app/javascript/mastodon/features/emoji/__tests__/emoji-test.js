@@ -88,5 +88,10 @@ describe('emoji', () => {
       expect(emojify('💂‍♀️💂‍♂️'))
         .toEqual('<img draggable="false" class="emojione" alt="💂\u200D♀️" title=":female-guard:" src="/emoji/1f482-200d-2640-fe0f_border.svg"><img draggable="false" class="emojione" alt="💂\u200D♂️" title=":male-guard:" src="/emoji/1f482-200d-2642-fe0f_border.svg">');
     });
+
+    it('keeps ordering as expected (issue fixed by PR 20677)', () => {
+      expect(emojify('<p>💕 <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener noreferrer" target="_blank">#<span>foo</span></a> test: foo.</p>'))
+        .toEqual('<p><img draggable="false" class="emojione" alt="💕" title=":two_hearts:" src="/emoji/1f495.svg"> <a class="hashtag" href="https://example.com/tags/foo" rel="nofollow noopener noreferrer" target="_blank">#<span>foo</span></a> test: foo.</p>');
+    });
   });
 });

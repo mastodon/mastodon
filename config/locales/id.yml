@@ -379,9 +379,9 @@ id:
         create: Buat pemblokiran
         hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database, tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
         severity:
-          desc_html: "<strong>Pendiaman</strong> akan membuat semua postingan tidak dapat dilihat oleh semua orang yang tidak mengikutinya. <strong>Suspen</strong> akan menghapus semua konten, media, dan profil dari akun yang bersangkutan."
+          desc_html: "<strong>Batas</strong> akan membuat postingan dari akun yang ada di domain ini terlihat oleh siapa saja yang tidak mengikuti mereka. <strong>Tangguhkan</strong> akan menghapus semua konten, media, dan data profil dari akun domain server Anda. Gunakan <strong>Catatan</strong> jika Anda ingin menolak berkas media."
           noop: Tidak ada
-          silence: Pendiaman
+          silence: Batas
           suspend: Suspen
         title: Pemblokiran domain baru
       obfuscate: Nama domain kabur
@@ -894,7 +894,7 @@ id:
     warning: Hati-hati dengan data ini. Jangan bagikan kepada siapapun!
     your_token: Token akses Anda
   auth:
-    apply_for_account: Masuk ke daftar tunggu
+    apply_for_account: Permintaan akun
     change_password: Kata sandi
     delete_account: Hapus akun
     delete_account_html: Jika Anda ingin menghapus akun Anda, Anda dapat <a href="%{path}">memproses ini</a>. Anda akan dikonfirmasi.

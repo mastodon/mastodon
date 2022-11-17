@@ -386,9 +386,7 @@ pt-BR:
         create: Criar bloqueio
         hint: O bloqueio de domínio não vai prevenir a criação de entradas de contas na base de dados, mas vai retroativamente e automaticamente aplicar métodos específicos de moderação nessas contas.
         severity:
-          desc_html: "<strong>Silenciar</strong> vai tornar as publicações da conta invisíveis para qualquer um que não o esteja seguindo. <strong>Suspender</strong> vai remover todo o conteúdo, mídia e dados de perfil da conta. Use <strong>Nenhum</strong> se você só quer rejeitar arquivos de mídia."
           noop: Nenhum
-          silence: Silenciar
           suspend: Banir
         title: Novo bloqueio de domínio
       obfuscate: Ofuscar nome de domínio
@@ -864,6 +862,7 @@ pt-BR:
       body_remote: Alguém da instância %{domain} reportou %{target}
       subject: Nova denúncia sobre %{instance} (#%{id})
     new_trends:
+      body: 'Os seguintes itens precisam de uma análise antes que possam ser exibidos publicamente:'
       new_trending_links:
         title: Links em destaque
       new_trending_statuses:
@@ -907,7 +906,6 @@ pt-BR:
     warning: Tenha cuidado com estes dados. Nunca compartilhe com alguém!
     your_token: Seu código de acesso
   auth:
-    apply_for_account: Entrar na lista de espera
     change_password: Senha
     delete_account: Excluir conta
     delete_account_html: Se você deseja excluir sua conta, você pode <a href="%{path}">fazer isso aqui</a>. Uma confirmação será solicitada.
@@ -1116,6 +1114,7 @@ pt-BR:
       batch:
         remove: Remover do filtro
       index:
+        hint: Este filtro se aplica a publicações individuais, independentemente de outros critérios. Você pode adicionar mais postagens a este filtro a partir da interface web.
         title: Publicações filtradas
   footer:
     trending_now: Em alta no momento
@@ -1382,6 +1381,7 @@ pt-BR:
       adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
