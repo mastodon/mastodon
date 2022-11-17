@@ -365,6 +365,8 @@ zh-CN:
       add_new: 允许和域名跨站交互
       created_msg: 域名已被允许跨站交互
       destroyed_msg: 域名已被禁止跨站交互
+      export: 导出
+      import: 导入
       undo: 不允许和该域名跨站交互
     domain_blocks:
       add_new: 添加新屏蔽域名
@@ -374,6 +376,8 @@ zh-CN:
       edit: 编辑域名屏蔽
       existing_domain_block: 您已经对 %{name} 设置了更严格的限制。
       existing_domain_block_html: 你已经对 %{name} 施加了更严格的限制，你需要先 <a href="%{unblock_url}">解封</a>。
+      export: 导出
+      import: 导入
       new:
         create: 添加屏蔽
         hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
@@ -383,6 +387,8 @@ zh-CN:
           silence: 隐藏
           suspend: 封禁
         title: 新增域名屏蔽
+      no_domain_block_selected: 由于没有选中，域名屏蔽列表没有被改变。
+      not_permitted: 你没有权限进行此操作
       obfuscate: 混淆域名
       obfuscate_hint: 如果启用了域名列表公开限制，就部分混淆列表中的域名
       private_comment: 私密评论
@@ -413,6 +419,20 @@ zh-CN:
       resolved_dns_records_hint_html: 该域名解析的 MX 记录所指向的域名如下，这些域名被用于接收电子邮件。 即使电子邮件地址域名与 MX 域名不同，屏蔽一个 MX 域名意味着阻止任何使用相同 MX 域名的电子邮件地址注册本站账户。 <strong>请小心不要误屏蔽主要的电子邮件提供商。</strong>
       resolved_through_html: 通过 %{domain} 解析
       title: 电子邮件域名屏蔽
+    export_domain_allows:
+      new:
+        title: 导入域名允许列表
+      no_file: 没有选择文件
+    export_domain_blocks:
+      import:
+        description_html: 您即将导入一张域名块列表。特别是如果您不是这张列表的作者的话，请非常仔细地检查这张列表。
+        existing_relationships_warning: 现有的关注关系
+        private_comment_description_html: '为了帮助您追踪域名列表来源，导入的域名列表将被添加如下的私人注释：<q>%{comment}</q>'
+        private_comment_template: 从 %{source} 导入 %{date}
+        title: 导入域名列表
+      new:
+        title: 导入域名列表
+      no_file: 没有选择文件
     follow_recommendations:
       description_html: "<strong>“关注推荐”可帮助新用户快速找到有趣的内容</strong>。 当用户与他人的互动不足以形成个性化的建议时，就会推荐关注这些账户。推荐会每日更新，基于选定语言的近期最高互动数和最多本站关注者数综合评估得出。"
       language: 选择语言
@@ -895,6 +915,7 @@ zh-CN:
     warning: 一定小心，千万不要把它分享给任何人！
     your_token: 你的访问令牌
   auth:
+    apply_for_account: 申请账户
     change_password: 密码
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
@@ -1132,6 +1153,7 @@ zh-CN:
     invalid_markup: '包含无效的 HTML 标记: %{error}'
   imports:
     errors:
+      invalid_csv_file: '无效的 CSV 文件。错误: %{error}'
       over_rows_processing_limit: 包含行数超过了 %{count}
     modes:
       merge: 合并
