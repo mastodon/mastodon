@@ -352,7 +352,9 @@ eo:
         create: Krei blokadon
         hint: La domajna blokado ne evitigos kreadon de novaj kontoj en la datumbazo, sed aplikos specifajn kontrolajn agojn sur ĉi tiujn kontojn aŭtomate kaj retroaktive.
         severity:
+          desc_html: "<strong>Limigi</strong> kaŝos la afiŝojn de kontoj ĉe ĉi tiu domajno al tiuj, kiuj ne sekvas tiujn. <strong>Haltigi</strong> forigos ĉiujn enhavojn, aŭdovidaĵojn kaj datumojn de la konto. Uzu <strong>Nenio</strong> se vi simple volas malakcepti aŭdovidaĵojn."
           noop: Nenio
+          silence: Limigi
           suspend: Suspendi
         title: Nova domajna blokado
       obfuscate: Malklara domajna nomo
@@ -716,6 +718,7 @@ eo:
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
     your_token: Via alira ĵetono
   auth:
+    apply_for_account: Peti konton
     change_password: Pasvorto
     delete_account: Forigi konton
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
