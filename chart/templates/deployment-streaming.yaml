@@ -6,7 +6,7 @@ metadata:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.mastodon.streaming.replicaCount | default .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:

@@ -1,3 +1,5 @@
+# Default replica count used for deployments which are missing a replica count
+# value.
 replicaCount: 1
 
 image:
@@ -71,6 +73,7 @@ mastodon:
     # VAPID_PRIVATE_KEY and VAPID_PUBLIC_KEY
     existingSecret: ""
   sidekiq:
+    replicaCount: 1
     concurrency: 25
   smtp:
     auth_method: plain
@@ -90,6 +93,7 @@ mastodon:
     # with the keys login and password
     existingSecret:
   streaming:
+    replicaCount: 1
     port: 4000
     # this should be set manually since os.cpus() returns the number of CPUs on
     # the node running the pod, which is unrelated to the resources allocated to
@@ -99,6 +103,7 @@ mastodon:
     # a different domain/subdomain.
     # base_url: wws://streaming.example.com
   web:
+    replicaCount: 1
     port: 3000
 
   metrics:
