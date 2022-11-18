@@ -372,6 +372,8 @@ ar:
       add_new: إضافة النطاق إلى القائمة البيضاء
       created_msg: تمت إضافة النطاق إلى القائمة البيضاء بنجاح
       destroyed_msg: تمت إزالة النطاق مِن القائمة البيضاء
+      export: تصدير
+      import: استيراد
       undo: إزالة من القائمة البيضاء
     domain_blocks:
       add_new: إضافة حجب جديد لنطاق
@@ -380,6 +382,8 @@ ar:
       domain: النطاق
       edit: تحرير النطاق المحظور
       existing_domain_block_html: لقد فرضت بالفعل سابقاً حدوداً أكثر صرامة على %{name}، تحتاج إلى <a href="%{unblock_url}">إلغاء حظره</a> أولاً.
+      export: تصدير
+      import: استيراد
       new:
         create: إنشاء حظر
         hint: لن تمنع كتلة المجال إنشاء إدخالات حساب في قاعدة البيانات ، ولكنها ستطبق طرق الإشراف المحددة بأثر رجعي وتلقائي على هذه الحسابات.
@@ -411,6 +415,10 @@ ar:
         create: إضافة نطاق
         title: إضافة نطاق بريد جديد إلى اللائحة السوداء
       title: القائمة السوداء للبريد الإلكتروني
+    export_domain_allows:
+      no_file: لم يتم تحديد أيّ ملف
+    export_domain_blocks:
+      no_file: لم يتم تحديد أيّ ملف
     follow_recommendations:
       description_html: "<strong>تساعد اقتراحات المتابعة المستخدمين في العثور بسرعة على محتوى مثير للاهتمام</strong>. عندما لا يتفاعل المستخدم مع الآخرين بشكل كافي لتشكيل اقتراحات متابعة مخصصة له، تظهر هذه الاقتراحات بدلاً من ذلك. يُعاد حسابهم بشكل يومي من مزيج حسابات لديها أكثر التفاعلات وأكثر عدد من المتابعين المحليين للغة معينة."
       language: للغة
@@ -590,6 +598,7 @@ ar:
       everyone: الصلاحيات الافتراضية
       privileges:
         administrator: مدير
+        delete_user_data: احذف بيانات المستخدم
         invite_users: دعوة مستخدمين
         manage_announcements: ادارة الاعلانات
         manage_appeals: إدارة الاستئنافات
@@ -741,6 +750,7 @@ ar:
       empty: لم تحدد أي إعدادات تحذير مسبقة بعد.
       title: إدارة نماذج التحذير
     webhooks:
+      add_new: إضافة نقطة نهاية
       delete: حذف
       disable: تعطيل
       disabled: معطَّل
@@ -805,6 +815,7 @@ ar:
     warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين!
     your_token: رمز نفاذك
   auth:
+    apply_for_account: اطلُب حسابًا
     change_password: الكلمة السرية
     delete_account: حذف الحساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
@@ -824,6 +835,7 @@ ar:
     migrate_account: الانتقال إلى حساب آخر
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
+    privacy_policy_agreement_html: لقد قرأتُ وأوافق على سياسة الخصوصية <a href="%{privacy_policy_path}" target="_blank"></a>
     providers:
       cas: CAS
       saml: SAML
@@ -1226,6 +1238,7 @@ ar:
     browser: المتصفح
     browsers:
       alipay: أليباي
+      blackberry: بلاك بيري
       chrome: كروم
       edge: مايكروسوفت إيدج
       electron: إلكترون
@@ -1239,6 +1252,7 @@ ar:
       phantom_js: فانتوم جي آس
       qq: متصفح كيوكيو
       safari: سفاري
+      uc_browser: متصفح UC Browser
       weibo: وايبو
     current_session: الجلسة الحالية
     description: "%{browser} على %{platform}"
@@ -1247,6 +1261,7 @@ ar:
     platforms:
       adobe_air: أدوبي إيير
       android: أندرويد
+      chrome_os: نظام كروم أواس
       firefox_os: نظام فايرفكس أواس
       ios: نظام آي أواس
       linux: لينكس
@@ -1395,6 +1410,9 @@ ar:
     pinned: منشور مثبّت
     reblogged: شارَكَه
     sensitive_content: محتوى حساس
+  strikes:
+    errors:
+      too_late: فات الأوان للطعن في هذه العقوبة
   tags:
     does_not_match_previous_name: لا يطابق الإسم السابق
   themes:
