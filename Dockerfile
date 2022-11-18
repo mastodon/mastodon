@@ -77,6 +77,10 @@ RUN apt-get update && \
 COPY --chown=mastodon:mastodon . /opt/mastodon
 COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
 
+RUN mkdir -p /opt/mastodon/public/system && \
+    chown mastodon:mastodon /opt/mastodon/public/system
+VOLUME /opt/mastodon/public/system
+
 ENV RAILS_ENV="production" \
     NODE_ENV="production" \
     RAILS_SERVE_STATIC_FILES="true" \
