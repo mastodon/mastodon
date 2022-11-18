@@ -44,6 +44,6 @@ class Settings::ImportsController < Settings::BaseController
   end
 
   def set_recent_imports
-    @recent_imports = current_account.bulk_imports
+    @recent_imports = current_account.bulk_imports.reorder(id: :desc).limit(10)
   end
 end

@@ -13,3 +13,34 @@
 
   .actions
     = f.button :button, t('imports.upload'), type: :submit
+
+- unless @recent_imports.empty?
+  %hr.spacer/
+
+  %h3= t('imports.recent_imports')
+
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('imports.type')
+          %th= t('imports.status')
+          %th= t('imports.imported')
+          %th= t('imports.time_started')
+          %th= t('imports.failures')
+      %tbody
+        - @recent_imports.each do |import|
+          %tr
+            %td= t("imports.types.#{import.type}")
+            %td
+              - if import.unconfirmed?
+                = link_to t("imports.states.#{import.state}"), settings_import_path(import)
+              - else
+                = t("imports.states.#{import.state}")
+            %td
+              #{import.imported_items} / #{import.total_items}
+            %td= l(import.created_at)
+            %td
+              - nb_failed = import.processed_items - import.imported_items
+              - if nb_failed.positive?
+                = nb_failed

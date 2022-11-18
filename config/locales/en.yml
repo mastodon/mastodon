@@ -1240,6 +1240,8 @@ en:
       invalid_csv_file: 'Invalid CSV file. Error: %{error}'
       over_rows_processing_limit: contains more than %{count} rows
       too_large: File is too large
+    failures: Failures
+    imported: Imported
     mismatched_types_warning: It appears you may have selected the wrong type for this import, please double-check.
     modes:
       merge: Merge
@@ -1259,13 +1261,22 @@ en:
       following_html: You are about to <strong>follow</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
       muting_html: You are about to <strong>mute</strong> up to <strong>%{total_items} accounts</strong> from <strong>%{filename}</strong>.
     preface: You can import data that you have exported from another server, such as a list of the people you are following or blocking.
+    recent_imports: Recent imports
+    states:
+      finished: Finished
+      in_progress: In progress
+      scheduled: Scheduled
+      unconfirmed: Unconfirmed
+    status: Status
     success: Your data was successfully uploaded and will be processed in due time
+    time_started: Started at
     titles:
       blocking: Importing blocked accounts
       bookmarks: Importing bookmarks
       domain_blocking: Importing blocked domains
       following: Importing followed accounts
       muting: Importing muted accounts
+    type: Import type
     types:
       blocking: Blocking list
       bookmarks: Bookmarks
