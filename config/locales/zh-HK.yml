@@ -221,7 +221,7 @@ zh-HK:
         update_status: 更新文章
         update_user_role: 更新身份
       actions:
-        approve_appeal_html: "%{name} 批准了 %{target} 的審核決定申訴"
+        approve_appeal_html: "%{name} 批准了 %{target} 的審核裁決申訴"
         approve_user_html: "%{name} 批准了 %{target} 的註冊"
         assigned_to_self_report_html: "%{name} 指派了 %{target} 的檢舉給自己"
         change_email_user_html: "%{name} 更改了使用者 %{target} 的 e-mail 地址"
@@ -258,7 +258,7 @@ zh-HK:
         enable_user_html: "%{name} 把使用者 %{target} 設定為允許登入"
         memorialize_account_html: "%{name} 把 %{target} 設定為追悼帳號"
         promote_user_html: "%{name} 提升了使用者 %{target} 的權限"
-        reject_appeal_html: "%{name} 拒絕了 %{target} 的審核決定申訴"
+        reject_appeal_html: "%{name} 拒絕了 %{target} 的審核裁決申訴"
         reject_user_html: "%{name} 拒絕了 %{target} 的註冊"
         remove_avatar_user_html: "%{name} 移除了 %{target} 的大頭貼"
         reopen_report_html: "%{name} 重新開啟 %{target} 的檢舉案例"
@@ -382,9 +382,13 @@ zh-HK:
         create: 新增域名阻隔
         hint: '「域名阻隔」不會隔絕該域名帳號進入本站資料庫，但是會在符合條件的帳號進入資料庫後，自動對它們套用特定審批操作。'
         severity:
+          desc_html: "<strong>限制</strong>將使沒有追蹤該網域帳號的人看不到他們的帖文。<strong>停權</strong>將從你的伺服器中，刪除此網域帳號的所有內容、媒體和個人檔案資料。如果你只想拒絕接收媒體檔案，請選擇<strong>無</strong>。"
           noop: 無
+          silence: 限制
           suspend: 自動刪除
         title: 新增域名阻隔
+      no_domain_block_selected: 未選取任何網域限制，因此並未變更
+      not_permitted: 你無權執行此操作
       obfuscate: 混淆域名名稱
       obfuscate_hint: 如果已經啟用了網域廣告列表限制，在列表部份混淆網域名稱
       private_comment: 私人留言
@@ -399,13 +403,36 @@ zh-HK:
       view: 顯示正被阻隔的網域
     email_domain_blocks:
       add_new: 新增
+      attempts_over_week:
+        other: "上週嘗試了註冊 %{count} 次"
       created_msg: 已新增電郵網域阻隔
       delete: 刪除
+      dns:
+        types:
+          mx: MX 紀錄
       domain: 網域
       new:
         create: 新增網域
+        resolve: 解析網域
         title: 新增電郵網域阻隔
+      no_email_domain_block_selected: 未選取任何電郵網域限制，因此並未變更
+      resolved_dns_records_hint_html: 域名解析為以下 MX 網域，這些網域主要用來接收電子郵件。封鎖一個 MX 網域，即使域名看起來不同，也會阻止任何用相同 MX 網域的電郵地址進行註冊。<strong>注意不要封鎖主要的電子郵件供應商。</strong>
+      resolved_through_html: 透過 %{domain} 解析
       title: 電郵網域阻隔
+    export_domain_allows:
+      new:
+        title: 匯入允許的網域
+      no_file: 未選擇檔案
+    export_domain_blocks:
+      import:
+        description_html: 你即將匯入網域封鎖列表。請審慎檢查，尤其是如果你並非親自編纂的。
+        existing_relationships_warning: 現存追蹤關係
+        private_comment_description_html: '為了幫助你追蹤匯入封鎖的源頭，匯入的封鎖會在建立時將會有以下的私密備註：<q>%{comment}</q>'
+        private_comment_template: 於 %{date} 從 %{source} 匯入
+        title: 匯入封鎖的網域
+      new:
+        title: 匯入封鎖的網域
+      no_file: 未選擇檔案
     follow_recommendations:
       description_html: "<strong>跟隨建議幫助新使用者快速找到有趣內容。</strong> 當使用者尚未和其他帳號足夠多的互動以產生個人化建議時，以下帳號將被推荐。這些是一句指定語言的近期參與度和本地粉絲數最高之帳戶組合每日重新計算。"
       language: 按語言
@@ -683,8 +710,9 @@ zh-HK:
       title: 管理警告預設
   admin_mailer:
     new_appeal:
-      next_steps: 您可以批准申訴以還原審核決定，又或者忽略它。
-      subject: "%{username} 對 %{instance} 上的審核決定提出上訴"
+      body: "%{target} 對 %{action_taken_by} 於 %{date} 做出的 %{type} 審核裁決提出申訴。他們寫道："
+      next_steps: 您可以批准此申訴以撤銷審核裁決，又或者忽略它。
+      subject: "%{username} 對 %{instance} 上的審核裁決提出申訴"
     new_pending_account:
       body: 以下是新帳戶的資訊。你可以審核這項申請。
       subject: 在 %{instance} 上未審核的新用戶(%{username})
@@ -846,6 +874,10 @@ zh-HK:
     strikes:
       action_taken: 已採取行動
       appeal: 申訴
+      appeal_approved: 該警告已被成功申訴，不再有效
+      appeal_rejected: 申訴已被駁回
+      appeal_submitted_at: 已提交申訴
+      appealed_msg: 已提交你的申訴。一旦申訴獲得批准，你將收到通知。
   domain_validator:
     invalid_domain: 不是一個可用域名
   errors:
