@@ -1,18 +1,18 @@
-import React from 'react';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import { connect } from 'react-redux';
+import { NavLink, Route, Switch } from 'react-router-dom';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import Search from 'mastodon/features/compose/containers/search_container';
+import { showTrends } from 'mastodon/initial_state';
 import Links from './links';
-import Tags from './tags';
+import SearchResults from './results';
 import Statuses from './statuses';
 import Suggestions from './suggestions';
-import Search from 'mastodon/features/compose/containers/search_container';
-import SearchResults from './results';
-import { Helmet } from 'react-helmet';
-import { showTrends } from 'mastodon/initial_state';
+import Tags from './tags';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
@@ -24,19 +24,9 @@ const mapStateToProps = state => ({
   isSearching: state.getIn(['search', 'submitted']) || !showTrends,
 });
 
-// Fix strange bug on Safari where <span> (rendered by FormattedMessage) disappears
-// after clicking around Explore top bar (issue #20885).
-// Removing width=100% from <a> also fixes it, as well as replacing <span> with <div>
-// We're choosing to wrap span with div to keep the changes local only to this tool bar.
-const WrapFormattedMessage = ({ children, ...props }) => <div><FormattedMessage {...props}>{children}</FormattedMessage></div>;
-WrapFormattedMessage.propTypes = {
-  children: PropTypes.any,
-};
-
-
-export default @connect(mapStateToProps)
+@connect(mapStateToProps)
 @injectIntl
-class Explore extends React.PureComponent {
+export default class Explore extends PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
@@ -78,12 +68,22 @@ class Explore extends React.PureComponent {
           {isSearching ? (
             <SearchResults />
           ) : (
-            <React.Fragment>
+            <>
               <div className='account__section-headline'>
-                <NavLink exact to='/explore'><WrapFormattedMessage id='explore.trending_statuses' defaultMessage='Posts' /></NavLink>
-                <NavLink exact to='/explore/tags'><WrapFormattedMessage id='explore.trending_tags' defaultMessage='Hashtags' /></NavLink>
-                <NavLink exact to='/explore/links'><WrapFormattedMessage id='explore.trending_links' defaultMessage='News' /></NavLink>
-                {signedIn && <NavLink exact to='/explore/suggestions'><WrapFormattedMessage id='explore.suggested_follows' defaultMessage='For you' /></NavLink>}
+                <NavLink exact to='/explore'>
+                  <FormattedMessage tagName='div' id='explore.trending_statuses' defaultMessage='Posts' />
+                </NavLink>
+                <NavLink exact to='/explore/tags'>
+                  <FormattedMessage tagName='div' id='explore.trending_tags' defaultMessage='Hashtags' />
+                </NavLink>
+                <NavLink exact to='/explore/links'>
+                  <FormattedMessage tagName='div' id='explore.trending_links' defaultMessage='News' />
+                </NavLink>
+                {signedIn && (
+                  <NavLink exact to='/explore/suggestions'>
+                    <FormattedMessage tagName='div' id='explore.suggested_follows' defaultMessage='For you' />
+                  </NavLink>
+                )}
               </div>
 
               <Switch>
@@ -97,7 +97,7 @@ class Explore extends React.PureComponent {
                 <title>{intl.formatMessage(messages.title)}</title>
                 <meta name='robots' content={isSearching ? 'noindex' : 'all'} />
               </Helmet>
-            </React.Fragment>
+            </>
           )}
         </div>
       </Column>
