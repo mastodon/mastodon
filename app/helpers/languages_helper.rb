@@ -190,6 +190,7 @@ module LanguagesHelper
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
     ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
+    cnr: ['Montenegrin', 'crnogorski'].freeze,
     jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
     kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
