@@ -137,16 +137,16 @@ pt-BR:
       sensitized: marcadas como sensíveis
       shared_inbox_url: Link da caixa de entrada compartilhada
       show:
-        created_reports: Denúncias desta conta
-        targeted_reports: Denúncias sobre esta conta
+        created_reports: Denúncias criadas
+        targeted_reports: Vezes denunciado
       silence: Silenciar
       silenced: Silenciado
       statuses: Publicações
       strikes: Avisos anteriores
       subscribe: Inscrever-se
       suspend: Suspender
-      suspended: Banido
-      suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não irá recuperar nenhum dado que ela possuía anteriormente.
+      suspended: Suspendido
+      suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível. Você pode remover a suspensão da conta para torná-la utilizável, mas ela não recuperará nenhum dado que ela possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente removidos em %{date}. Até lá, a conta pode ser restaurada sem nenhum efeito negativo. Se você deseja remover todos os dados da conta imediatamente, você pode fazer isso abaixo.
       title: Contas
       unblock_email: Desbloquear endereço de e-mail
@@ -167,7 +167,7 @@ pt-BR:
       action_types:
         approve_appeal: Aprovar recurso
         approve_user: Aprovar usuário
-        assigned_to_self_report: Adicionar relatório
+        assigned_to_self_report: Atribuir denúncia
         change_email_user: Alterar e-mail do usuário
         change_role_user: Alterar cargo do usuário
         confirm_user: Confirmar usuário
@@ -197,22 +197,22 @@ pt-BR:
         disable_custom_emoji: Desativar emoji personalizado
         disable_sign_in_token_auth_user: Desativar autenticação via token por email para Usuário
         disable_user: Desativar usuário
-        enable_custom_emoji: Ativar Emoji Personalizado
+        enable_custom_emoji: Ativar emoji personalizado
         enable_sign_in_token_auth_user: Ativar autenticação via token por email para Usuário
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
         reject_appeal: Rejeitar recurso
-        reject_user: Rejeitar Usuário
+        reject_user: Rejeitar usuário
         remove_avatar_user: Remover imagem de perfil
-        reopen_report: Reabrir Relatório
-        resend_user: Reenviar o E-mail de Confirmação
+        reopen_report: Reabrir relatório
+        resend_user: Reenviar o e-mail de confirmação
         reset_password_user: Redefinir a senha
-        resolve_report: Resolver Relatório
+        resolve_report: Resolver denúncia
         sensitive_account: Marcar a mídia na sua conta como sensível
         silence_account: Silenciar conta
-        suspend_account: Suspender Conta
-        unassigned_report: Remover relatório
+        suspend_account: Suspender conta
+        unassigned_report: Desatribuir denúncia
         unblock_email_account: Desbloquear endereço de e-mail
         unsensitive_account: Desmarcar a mídia na sua conta como sensível
         unsilence_account: Desfazer silenciar conta
@@ -222,41 +222,41 @@ pt-BR:
         update_domain_block: Atualizar bloqueio de domínio
         update_ip_block: Atualizar regra de IP
         update_status: Editar Status
-        update_user_role: Atualizar função
+        update_user_role: Atualizar cargo
       actions:
         approve_appeal_html: "%{name} aprovou o recurso de decisão de moderação de %{target}"
         approve_user_html: "%{name} aprovado inscrição de %{target}"
-        assigned_to_self_report_html: "%{name} atribuiu o relatório %{target} para si"
+        assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
-        change_role_user_html: "%{name} alterou a função de %{target}"
+        change_role_user_html: "%{name} alterou o cargo de %{target}"
         confirm_user_html: "%{name} confirmou o endereço de e-mail do usuário %{target}"
         create_account_warning_html: "%{name} enviou um aviso para %{target}"
         create_announcement_html: "%{name} criou o novo anúncio %{target}"
-        create_canonical_email_block_html: "%{name} bloqueou o endereço com o marcador %{target}"
+        create_canonical_email_block_html: "%{name} bloqueou o e-mail com o marcador %{target}"
         create_custom_emoji_html: "%{name} enviou o novo emoji %{target}"
         create_domain_allow_html: "%{name} permitiu federação com domínio %{target}"
         create_domain_block_html: "%{name} bloqueou o domínio %{target}"
-        create_email_domain_block_html: "%{name} bloqueou do domínio de e-mail %{target}"
-        create_ip_block_html: "%{name} criou regra para o IP %{target}"
+        create_email_domain_block_html: "%{name} bloqueou o domínio de e-mail %{target}"
+        create_ip_block_html: "%{name} criou a regra para o IP %{target}"
         create_unavailable_domain_html: "%{name} parou a entrega ao domínio %{target}"
-        create_user_role_html: "%{name} criou a função %{target}"
+        create_user_role_html: "%{name} criou o cargo %{target}"
         demote_user_html: "%{name} rebaixou o usuário %{target}"
         destroy_announcement_html: "%{name} excluiu o anúncio %{target}"
-        destroy_canonical_email_block_html: "%{name} desbloqueou o endereço com o marcador %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueou o e-mail com o marcador %{target}"
         destroy_custom_emoji_html: "%{name} apagou o emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueou federação com domínio %{target}"
-        destroy_domain_block_html: "%{name} deixou de bloquear domínio %{target}"
-        destroy_email_domain_block_html: "%{name} adicionou domínio de e-mail %{target} à lista branca"
-        destroy_instance_html: "%{name} purgou o domínio %{target}"
-        destroy_ip_block_html: "%{name} excluiu regra para o IP %{target}"
+        destroy_domain_block_html: "%{name} desbloqueou o domínio %{target}"
+        destroy_email_domain_block_html: "%{name} desbloqueou o domínio de e-mail %{target}"
+        destroy_instance_html: "%{name} limpou o domínio %{target}"
+        destroy_ip_block_html: "%{name} excluiu a regra para o IP %{target}"
         destroy_status_html: "%{name} removeu a publicação de %{target}"
         destroy_unavailable_domain_html: "%{name} retomou a entrega ao domínio %{target}"
-        destroy_user_role_html: "%{name} excluiu a função %{target}"
+        destroy_user_role_html: "%{name} excluiu o cargo %{target}"
         disable_2fa_user_html: "%{name} desativou a exigência da autenticação de dois fatores para o usuário %{target}"
         disable_custom_emoji_html: "%{name} desativou o emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} desativou a autenticação via token por email para %{target}"
         disable_user_html: "%{name} desativou o login para %{target}"
-        enable_custom_emoji_html: "%{name} desativou o emoji %{target}"
+        enable_custom_emoji_html: "%{name} ativou o emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ativou a autenticação via token por email para %{target}"
         enable_user_html: "%{name} ativou o login para %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
@@ -267,11 +267,11 @@ pt-BR:
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
         resend_user_html: "%{name} reenviou um e-mail de confirmação para %{target}"
         reset_password_user_html: "%{name} redefiniu a senha de %{target}"
-        resolve_report_html: "%{name} fechou a denúncia %{target}"
+        resolve_report_html: "%{name} resolveu a denúncia %{target}"
         sensitive_account_html: "%{name} marcou a mídia de %{target} como sensível"
         silence_account_html: "%{name} limitou a conta de %{target}"
         suspend_account_html: "%{name} suspendeu a conta de %{target}"
-        unassigned_report_html: "%{name} desvinculou a denúncia %{target}"
+        unassigned_report_html: "%{name} desatribuiu a denúncia %{target}"
         unblock_email_account_html: "%{name} desbloqueou o endereço de e-mail de %{target}"
         unsensitive_account_html: "%{name} desmarcou a mídia de %{target} como sensível"
         unsilence_account_html: "%{name} removeu a limitação da conta de %{target}"
@@ -281,7 +281,7 @@ pt-BR:
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
         update_ip_block_html: "%{name} alterou a regra para IP %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
-        update_user_role_html: "%{name} alterou a função %{target}"
+        update_user_role_html: "%{name} alterou o cargo %{target}"
       deleted_account: conta excluída
       empty: Nenhum registro encontrado.
       filter_by_action: Filtrar por ação
@@ -348,8 +348,8 @@ pt-BR:
         one: "<strong>%{count}</strong> recurso pendente"
         other: "<strong>%{count}</strong> recursos pendentes"
       pending_reports_html:
-        one: "<strong>%{count}</strong> relatório pendente"
-        other: "<strong>%{count}</strong> relatórios pendentes"
+        one: "<strong>%{count}</strong> denúncia pendente"
+        other: "<strong>%{count}</strong> denúncias pendentes"
       pending_tags_html:
         one: "<strong>%{count}</strong> hashtag pendente"
         other: "<strong>%{count}</strong> hashtags pendentes"
@@ -462,7 +462,7 @@ pt-BR:
         description_html: Você pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
         policies:
           reject_media: Rejeitar mídia
-          reject_reports: Rejeitar relatórios
+          reject_reports: Rejeitar denúncias
           silence: Limite
           suspend: Suspender
         policy: Políticas
@@ -475,7 +475,7 @@ pt-BR:
         instance_follows_measure: seus seguidores aqui
         instance_languages_dimension: Idiomas principais
         instance_media_attachments_measure: anexos de mídia armazenados
-        instance_reports_measure: relatórios sobre eles
+        instance_reports_measure: denúncias sobre eles
         instance_statuses_measure: publicações armazenadas
       delivery:
         all: Todos
@@ -562,18 +562,18 @@ pt-BR:
       actions:
         delete_description_html: As publicações denunciadas serão apagadas e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta cometa infrações no futuro.
         mark_as_sensitive_description_html: Os conteúdos de mídia em publicações denunciadas serão marcados como sensíveis e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta comenta infrações no futuro.
-        other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta reportada.
-        resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada, e a denúncia será encerrada.
+        other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta denunciada.
+        resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada e a denúncia será encerrada.
         silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser sempre revertido.
         suspend_description_html: O perfil e todo o seu conteúdo ficarão inacessíveis até que seja eventualmente excluído. Interagir com a conta será impossível. Reversível dentro de 30 dias.
-      actions_description_html: "Decida que medidas tomar para resolver esta denúncia. Se você receber uma ação punitiva contra a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>Spam</strong> for selecionada.\n"
-      add_to_report: Adicionar mais ao relatório
+      actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você tomar uma ação para punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
+      add_to_report: Adicionar mais à denúncia
       are_you_sure: Você tem certeza?
       assign_to_self: Pegar
       assigned: Moderador responsável
       by_target_domain: Domínio da conta denunciada
       category: Categoria
-      category_description_html: O motivo pelo qual esta conta e/ou conteúdo foi reportado será citado na comunicação com a conta reportada
+      category_description_html: O motivo pelo qual esta conta e/ou conteúdo foi denunciado será citado na comunicação com a conta denunciada
       comment:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
@@ -593,7 +593,7 @@ pt-BR:
         placeholder: Descreva que ações foram tomadas, ou quaisquer outras atualizações relacionadas…
         title: Notas
       notes_description_html: Visualize e deixe anotações para outros moderadores e para o seu "eu" do futuro
-      quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo relatado:'
+      quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo denunciado:'
       remote_user_placeholder: o usuário remoto de %{instance}
       reopen: Reabrir denúncia
       report: 'Denúncia #%{id}'
@@ -612,7 +612,7 @@ pt-BR:
       updated_at: Atualizado
       view_profile: Ver perfil
     roles:
-      add_new: Adicionar função
+      add_new: Adicionar cargo
       assigned_users:
         one: "%{count} usuário"
         other: "%{count} usuários"
@@ -624,9 +624,9 @@ pt-BR:
         special: Especial
       delete: Excluir
       description_html: Com as <strong>funções de usuário</strong>, você pode personalizar quais funções e áreas do Mastodon seus usuários podem acessar.
-      edit: Editar função de '%{name}'
+      edit: Editar cargo '%{name}'
       everyone: Permissões padrão
-      everyone_full_description_html: Esta é a <strong>função base</strong> que afeta <strong>todos os usuários</strong>, mesmo aqueles sem uma função atribuída. Todas as outras funções dela herdam as suas permissões.
+      everyone_full_description_html: Este é o <strong>cargo base</strong> que afeta <strong>todos os usuários</strong>, mesmo aqueles sem um cargo atribuído. Todos os outros cargos herdam as permissões dele.
       permissions_count:
         one: "%{count} permissão"
         other: "%{count} permissões"
@@ -871,7 +871,7 @@ pt-BR:
       subject: Nova conta para revisão em %{instance} (%{username})
     new_report:
       body: "%{reporter} denunciou %{target}"
-      body_remote: Alguém da instância %{domain} reportou %{target}
+      body_remote: Alguém de %{domain} denunciou %{target}
       subject: 'Nova denúncia sobre %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes itens precisam de uma análise antes que possam ser exibidos publicamente:'
