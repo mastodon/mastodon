@@ -206,6 +206,7 @@ workflows:
               ruby-version:
                 - '2.7'
                 - '3.0'
+                - '3.1'
           name: test-ruby<< matrix.ruby-version >>
           requires:
             - build
