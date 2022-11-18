@@ -329,6 +329,7 @@ cy:
       disable: Diffodd
       disabled: Wedi'i ddiffodd
       disabled_msg: Llwyddwyd i ddiffodd yr emoji hwnnw
+      emoji: Emoji
       enable: Galluogi
       enabled: Wedi ei alluogi
       enabled_msg: Llwyddwyd i alluogi yr emoji hwnnw
@@ -985,11 +986,13 @@ cy:
     discovery: Darganfyddiad
     localization:
       body: Caiff Mastodon ei gyfieithu gan wirfoddolwyr.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Gall pawb gyfrannu.
     sensitive_content: Cynnwys sensitif
     toot_layout: Gosodiad tŵt
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
+    salutation: "%{name},"
     settings: 'Newid gosodiadau e-bost: %{link}'
     view: 'Gweld:'
     view_profile: Gweld proffil
@@ -1023,6 +1026,9 @@ cy:
     migrate_account_html: Os hoffech chi ailgyfeirio'r cyfrif hwn at un gwahanol, mae modd <a href="%{path}">ei ffurfweddu yma</a>.
     or_log_in_with: Neu logiwch mewn a
     privacy_policy_agreement_html: Rwyf wedi darllen ac yn cytuno i'r <a href="%{privacy_policy_path}" target="_blank">polisi preifatrwydd</a>
+    providers:
+      cas: CAS
+      saml: SAML
     register: Cofrestru
     registration_closed: "Nid yw %{instance} yn derbyn aelodau newydd"
     resend_confirmation: Ailanfon cyfarwyddiadau cadarnhau
@@ -1164,6 +1170,7 @@ cy:
       size: Maint
     blocks: Yr ydych yn blocio
     bookmarks: Nodau Tudalen
+    csv: CSV
     domain_blocks: Blociau parth
     lists: Rhestrau
     mutes: Yr ydych yn tawelu
@@ -1412,6 +1419,7 @@ cy:
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: Biliwn
           million: Miliwn
@@ -1431,6 +1439,7 @@ cy:
     next: Nesaf
     older: Hŷn
     prev: Blaenorol
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Rydych chi barod wedi pleidleisio ar y pleidlais hon
@@ -1487,18 +1496,30 @@ cy:
     activity: Gweithgaredd ddiwethaf
     browser: Porwr
     browsers:
+      alipay: Alipay
       blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
       generic: Porwr anhysbys
       ie: Nid yw'r rhaglen hon yn gydnaws ag Internet Explorer
+      micro_messenger: MicroMessenger
       nokia: Porwr Nokia S40 Ovi
+      opera: Opera
       otter: dyfrgi
+      phantom_js: PhantomJS
       qq: Porwr QQ
       safari: Agor yn Safari
       uc_browser: UC Browser
+      weibo: Weibo
     current_session: Sesiwn cyfredol
     description: "%{browser} ar %{platform}"
     explanation: Dyma'r porwyr gwê sydd wedi mewngofnodi i'ch cyfrif Mastododon ar hyn o bryd.
+    ip: IP
     platforms:
+      adobe_air: Adobe Air
+      android: Android
       blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: OS Firefox
