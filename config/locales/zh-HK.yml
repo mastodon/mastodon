@@ -498,37 +498,83 @@ zh-HK:
         resolve_description_html: 不會對被檢舉的帳號採取任何動作，也不會記錄警告，檢舉報告將會結案。
         silence_description_html: 此個人檔案將會只有追蹤者和透過手動搜尋才可以看見，大幅限制了它的曝光。你可隨時恢復它。
         suspend_description_html: 直到最後刪除之前，此個人檔案及其內容將無法被存取。你將無法與此帳號互動。這動作可以在 30 天內還原。
-      actions_description_html: 決定對此檢舉採取哪種措施。如果對被檢舉帳號採取懲罰措施，除非選取了<strong>垃圾訊息</strong>類別，否則將向他們發送一封電郵通知，
+      actions_description_html: 決定對此檢舉採取哪種措施。如果對被檢舉帳號採取懲罰措施，除非選取了<strong>垃圾訊息</strong>分類，否則將向他們發送一封電郵通知。
       add_to_report: 加入更多到檢舉
       are_you_sure: 你確認嗎？
       assign_to_self: 指派給自己
       assigned: 指派版主
       by_target_domain: 被舉報帳號的域名
+      category: 分類
+      category_description_html: 此帳號及/或內容被檢舉的原因，將會被引用在與被檢舉帳號的通訊中。
       comment:
         none: 沒有
+      comment_description_html: '為了提供更多資訊，%{name} 寫道：'
       created_at: 日期
+      delete_and_resolve: 刪除帖文
       forwarded: 已轉寄
       forwarded_to: 已轉寄到 %{domain}
       mark_as_resolved: 標示為「已處理」
+      mark_as_sensitive: 標記為敏感內容
       mark_as_unresolved: 標示為「未處理」
+      no_one_assigned: 沒有人
       notes:
         create: 建立備註
         create_and_resolve: 標示為「已處理」並留下備註
         create_and_unresolve: 標示為「未處理」並留下備註
         delete: 刪除
         placeholder: 記錄已執行的動作，或其他相關的更新……
+        title: 筆記
+      notes_description_html: 查看並給其他管理員和日後的自己留下筆記
+      quick_actions_description_html: '採取快捷操作或向下捲動以查看檢舉內容：'
+      remote_user_placeholder: 來自 %{instance} 的遠端使用者
       reopen: 重開舉報個案
       report: '舉報 #%{id}'
       reported_account: 舉報用戶
       reported_by: 舉報者
       resolved: 已處理
       resolved_msg: 舉報個案已被處理！
+      skip_to_actions: 跳到行動
       status: 狀態
+      statuses: 被檢舉的內容
+      statuses_description_html: 違規內容將被引用在被檢舉帳號的通訊中
       target_origin: 被檢舉帳號來源
       title: 舉報
       unassign: 取消指派
       unresolved: 未處理
       updated_at: 更新
+      view_profile: 查看個人檔案
+    roles:
+      add_new: 新增身份
+      assigned_users:
+        other: "%{count} 個使用者"
+      categories:
+        administration: 管理
+        devops: DevOps
+        invites: 邀請
+        moderation: 審核
+        special: 特殊
+      delete: 刪除
+      description_html: 透過<strong>使用者身份</strong>，你可以自訂使用者可以存取 Mastodon 的哪些功能和區域。
+      edit: 編輯「%{name}」身份
+      everyone: 預設權限
+      everyone_full_description_html: 這是會影響所有<strong>使用者</strong>的<strong>基本身份</strong>，包括沒有被指派身份的使用者。所有身份都會繼承它的權限。
+      permissions_count:
+        other: "%{count} 個權限"
+      privileges:
+        administrator: 管理員
+        administrator_description: 擁有此權限的使用者將繞過所有權限
+        delete_user_data: 刪除使用者資料
+        delete_user_data_description: 允許使用者立即刪除其他使用者的資料
+        invite_users: 邀請使用者
+        invite_users_description: 允許使用者邀請新人加入伺服器
+        manage_announcements: 管理公告
+        manage_announcements_description: 允許使用者管理伺服器上的公告
+        manage_appeals: 管理申訴
+        manage_appeals_description: 允許使用者查看針對審核的申訴
+        manage_blocks: 管理封鎖
+        manage_blocks_description: 允許使用者封鎖電郵供應商和 IP 地址
+        manage_custom_emojis: 管理自訂表情符號
+        manage_custom_emojis_description: 允許使用者管理伺服器上的自訂表情符號
     rules:
       add_new: 新增規則
       delete: 刪除
@@ -551,15 +597,43 @@ zh-HK:
       destroyed_msg: 成功刪除站台的上傳項目！
     statuses:
       back_to_account: 返回帳戶信息頁
+      batch:
+        report: 檢舉
       deleted: 已刪除
+      favourites: 最愛
+      history: 版本紀錄
+      in_reply_to: 正在回覆
+      language: 語言
       media:
         title: 媒體檔案
+      metadata: Metadata
       no_status_selected: 因未選擇嘟文而未變更。
+      original_status: 原始帖文
+      reblogs: 轉發
+      status_changed: 帖文已變更
       title: 帳戶文章
+      trending: 熱門
+      visibility: 可見性
       with_media: 含有媒體檔案
+    strikes:
+      actions:
+        delete_statuses: "%{name} 刪除了 %{target} 的帖文"
+        disable: "%{name} 停用了 %{target} 的帳號"
+        mark_statuses_as_sensitive: "%{name} 標記 %{target} 的帖文為敏感內容"
+        none: "%{name} 向 %{target} 發出警告"
+        sensitive: "%{name} 將 %{target} 的帳號標記為敏感內容"
+        silence: "%{name} 限制了 %{target} 的帳號"
+        suspend: "%{name} 將 %{target} 的帳號停權"
+      appeal_approved: 已申訴
+      appeal_pending: 申訴待審中
     system_checks:
       database_schema_check:
         message_html: 有待處理的資料庫轉移 (database migration) 。請執行以確保應用程式行為合乎預期
+      elasticsearch_running_check:
+        message_html: 無法連接到 Elasticsearch。請檢查它是否運行中，或停用全文搜索。
+      elasticsearch_version_check:
+        message_html: '不相容的 Elasticsearch 版本：%{value}'
+        version_comparison: 正在運行 Elasticsearch 版本 %{running_version}，需要版本 %{required_version} 。
       rules_check:
         action: 管理伺服器規則
         message_html: 您尚未定義任何伺服器規則
@@ -569,6 +643,38 @@ zh-HK:
       review: 審核文章
       updated_msg: 成功更新主題標籤設定
     title: 管理
+    trends:
+      allow: 允許
+      approved: 批准
+      disallow: 不允許
+      links:
+        allow: 允許連結
+        allow_provider: 允許發佈者
+        description_html: 這些是你目前的伺服器中，帳號帖文大量分享的連結。它幫助你的使用者發掘世界上正在發生的事情。在你核准發佈者之前，連結不會公開顯示。你也可以核准或駁回個別的連結。
+        disallow: 不允許連結
+        disallow_provider: 不允許發佈者
+        no_link_selected: 未選取任何連結，因此並未變更
+        publishers:
+          no_publisher_selected: 未選取任何發佈者，因此並未變更
+        shared_by_over_week:
+          other: 上週有 %{count} 人分享
+        title: 熱門連結
+        usage_comparison: 今天被分享了 %{today} 次，相較於昨天 %{yesterday} 次
+      only_allowed: 僅允許
+      pending_review: 等待審核中
+      preview_card_providers:
+        allowed: 此發佈者的連結能登上熱門
+        description_html: 這些是經常在你的伺服器上分享連結的網域。除非對應網域獲得核准，否則連結不會公開在熱門中。你的核准 (或駁回) 將適用於子網域。
+        rejected: 此發佈者的連結不會登上熱門
+        title: 發佈者
+      rejected: 被拒絕
+      statuses:
+        allow: 允許帖文
+        allow_account: 允許作者
+        description_html: 這些是在你的伺服器上已知被大量分享和加入到最愛的帖文。它幫助你的新和老用戶找到更多人去追蹤。在你批准作者，而且作者允許將他們的帳號推薦給他人之前，帖文不會公開顯示。你也可以核准或駁回個別帖子。
+        disallow: 不允許帖文
+        disallow_account: 不允許作者
+        no_status_selected: 未選取任何熱門帖文，因此並未變更
     warning_presets:
       add_new: 新增
       delete: 刪除
