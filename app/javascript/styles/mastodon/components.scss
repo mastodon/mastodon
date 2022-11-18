@@ -7056,6 +7056,13 @@ noscript {
     &__name {
       margin-top: 16px;
       margin-bottom: 16px;
+      display: block;
+      text-decoration: none;
+      color: $primary-text-color;
+
+      &:hover h1 span {
+        text-decoration: underline;
+      }
 
       .account-role {
         vertical-align: top;
