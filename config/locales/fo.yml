@@ -21,7 +21,10 @@ fo:
       edit: Rætta
       location:
         all: Alt
+      public: Alment
       reject: Nokta
+      reset: Endurset
+      reset_password: Endurstilla loyniorð
     custom_emojis:
       delete: Strika
       list: Listi
@@ -51,6 +54,13 @@ fo:
       no_file: Eingin fíla vald
     ip_blocks:
       delete: Strika
+      expires_in:
+        '1209600': 2 vikur
+        '15778476': 6 mánaðir
+        '2629746': 1 mánaði
+        '31556952': 1 ár
+        '86400': 1 dag
+        '94670856': 3 ár
     relays:
       delete: Strika
     reports:
@@ -84,5 +94,11 @@ fo:
   imports:
     errors:
       invalid_csv_file: 'Ógildug CSV-fíla. Error: %{error}'
+  invites:
+    table:
+      expires_at: Rennir út
+  login_activities:
+    authentication_methods:
+      password: loyniorð
   webauthn_credentials:
     delete: Strika
