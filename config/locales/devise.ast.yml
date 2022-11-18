@@ -2,8 +2,8 @@ ast:
   devise:
     confirmations:
       confirmed: La direición de corréu confirmóse correutamente.
-      send_instructions: Nunos minutos, vas recibir un corréu coles instrucciones pa cómo confirmar la direición de corréu. Comprueba la carpeta Puxarra si nun lu recibiesti.
-      send_paranoid_instructions: Si la direición de corréu esiste na nuesa base de datos, nunos minutos vas recibir un corréu coles instrucciones pa cómo confirmala. Comprueba la carpeta Puxarra si nun lu recibiesti.
+      send_instructions: Nunos minutos vas recibir un mensaxe coles instrucciones pa saber cómo confirmar la direición de corréu electrónicu. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
+      send_paranoid_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un mensaxe coles instrucciones pa saber cómo confirmala. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
     failure:
       already_authenticated: Xá aniciesti la sesión.
       inactive: Entá nun s'activó la cuenta.
@@ -24,12 +24,17 @@ ast:
         extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> y <a href="%{policy_path}">los nuesos términos del serviciu</a>.
       email_changed:
         explanation: 'La direición de corréu electrónicu de la cuenta camudó a:'
+        extra: Si nun camudesti la direición de corréu electrónicu, ye probable que daquién accediere a la cuenta. Camuda la contraseña agora mesmo o ponte en contautu cola alministración del sirvidor si nun yes a acceder a la cuenta.
         subject: 'Mastodón: la direición de corréu electrónicu camudó'
         title: Direición de corréu electrónicu nueva
       password_change:
         explanation: Camudó la contraseña de la cuenta.
         extra: Si nun camudesti la contraseña, ye probable que daquién accediere a la cuenta. Camuda la contraseña agora mesmo o ponte en contautu cola alministración del sirvidor si nun yes a acceder a la cuenta.
         subject: 'Mastodon: la contraseña camudó'
+      reconfirmation_instructions:
+        extra: Si tu nun aniciesti esti cambéu, inora esti mensaxe. La direición de corréu electrónicu de la cuenta de Mastodon nun va camudar hasta que nun accedas al enllaz d'arriba.
+        subject: 'Mastodon: confirmación de la direición de corréu electrónicu de «%{instance}»'
+        title: Verificar la direición de corréu electrónicu
       reset_password_instructions:
         explanation: Solicitesti una contraseña nueva pa la to cuenta.
         extra: Si nun solicitesti esta aición, inora esti mensaxe. La contraseña nun va camudar hasta que nun accedas al enllaz d'arriba y crees una.
@@ -57,12 +62,12 @@ ast:
       signed_in: Aniciesti la sesión correutamente.
       signed_out: Zarresti la sesión correutamente.
     unlocks:
-      send_instructions: Nunos minutos vas recibir un corréu coles instrucciones pa cómo desbloquiar la cuenta. Comprueba la carpeta Puxarra si nun lu recibiesti.
+      send_instructions: Nunos minutos vas recibir un mensaxe coles instrucciones pa saber cómo desbloquiar la cuenta. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       send_paranoid_instructions: Si esiste la cuenta, nun momentu vas recibir un mensaxe coles instrucciones pa saber cómo desbloquiala. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       unlocked: La cuenta desbloquióse correutamente. Anicia la sesión pa siguir.
   errors:
     messages:
-      already_confirmed: yá se confirmó, volvi aniciar sesión
+      already_confirmed: xá se confirmó, prueba a aniciar la sesión
       not_found: nun s'alcontró
       not_saved:
         one: '1 fallu torgó que %{resource} se guardare:'
