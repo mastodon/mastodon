@@ -682,6 +682,9 @@ zh-HK:
       empty: 您尚未定義任何預設警告
       title: 管理警告預設
   admin_mailer:
+    new_appeal:
+      next_steps: 您可以批准申訴以還原審核決定，又或者忽略它。
+      subject: "%{username} 對 %{instance} 上的審核決定提出上訴"
     new_pending_account:
       body: 以下是新帳戶的資訊。你可以審核這項申請。
       subject: 在 %{instance} 上未審核的新用戶(%{username})
@@ -689,6 +692,17 @@ zh-HK:
       body: "%{reporter} 舉報了 %{target}"
       body_remote: 來自 %{domain} 的人舉報了 %{target}
       subject: '針對 %{instance} 的舉報（#%{id}）'
+    new_trends:
+      body: '以下項目需要經過審核才能公開顯示：'
+      new_trending_links:
+        title: 熱門連結
+      new_trending_statuses:
+        title: 熱門帖文
+      new_trending_tags:
+        no_approved_tags: 目前沒有經核准的熱門標籤。
+        requirements: '任何一個候選都可能超過 #%{rank} 被核准的標籤。目前是 %{lowest_tag_name} 標籤，得分為 %{lowest_tag_score}。'
+        title: 熱門標籤
+      subject: '%{instance} 上有待審核的新熱門'
   aliases:
     add_new: 建立別名 (Alias)
     created_msg: 成功建立別名 (alias)。你可以從舊帳號開始轉移。
@@ -723,6 +737,7 @@ zh-HK:
     warning: 警告，不要把它分享給任何人！
     your_token: token
   auth:
+    apply_for_account: 申請帳號
     change_password: 密碼
     delete_account: 刪除帳號
     delete_account_html: 如果你想刪除你的帳號，請<a href="%{path}">點擊這裡繼續</a>。你需要確認你的操作。
@@ -736,11 +751,13 @@ zh-HK:
     invalid_reset_password_token: 密碼重置 token 無效或已過期。請重新重設密碼。
     link_to_otp: 請輸入兩步䮕認證碼或恢復碼
     link_to_webauth: 使用你的安全密鑰裝置
+    log_in_with: 登入時使用
     login: 登入
     logout: 登出
     migrate_account: 轉移到另一個帳號
     migrate_account_html: 想要將這個帳號指向另一個帳號可<a href="%{path}">到這裡設定</a>。
     or_log_in_with: 或登入於
+    privacy_policy_agreement_html: 我已閱讀且同意<a href="%{privacy_policy_path}" target="_blank">私隱政策</a>
     providers:
       cas: CAS
       saml: SAML
@@ -748,17 +765,25 @@ zh-HK:
     registration_closed: "%{instance} 並不接受新成員請求"
     resend_confirmation: 重發確認指示電郵
     reset_password: 重設密碼
+    rules:
+      preamble: 這些是由 %{domain} 管理員制訂和執行的。
+      title: 一些基本規則。
     security: 登入資訊
     set_new_password: 設定新密碼
     setup:
       email_below_hint_html: 如果下面的電郵地址不正確，你可在此修改，然後接收電郵進行確認。
       email_settings_hint_html: 確認電郵已發送至 %{email}。電郵地址不正確的話，你可以在帳戶設置中進行更改。
       title: 設定
+    sign_up:
+      preamble: 有了這個 Mastodon 伺服器的帳號，無論將帳號託管在何處，你都可以追蹤網絡上任何人。
+      title: 讓我為你在 %{domain} 上設定好。
     status:
       account_status: 帳戶文章
       confirming: 正在等待確認電郵地址。
+      functional: 你的帳號已完全投入使用。
       pending: 管理員正在處理你的申請。可能會需要一點時間處理。我們將會在申請被批準的時候馬上寄電郵給你。
       redirecting_to: 你的帳戶因為正在重新定向到 %{acct}，所以暫時被停用。
+      view_strikes: 查看針對你的帳戶的過往警告
     too_fast: 你太快遞交了，請再試一次。
     use_security_key: 使用安全密鑰裝置
   authorize_follow:
@@ -817,6 +842,10 @@ zh-HK:
       more_details_html: 請參見<a href="%{terms_path}">隱私政策</a>以瀏覽細節。
       username_available: 你的登入名稱將可被其他人使用
       username_unavailable: 你的登入名稱將不能讓其他人使用
+  disputes:
+    strikes:
+      action_taken: 已採取行動
+      appeal: 申訴
   domain_validator:
     invalid_domain: 不是一個可用域名
   errors:
