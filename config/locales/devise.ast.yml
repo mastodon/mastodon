@@ -1,4 +1,3 @@
----
 ast:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ ast:
     failure:
       already_authenticated: Xá aniciesti la sesión.
       inactive: Entá nun s'activó la cuenta.
-      invalid: "%{authentication_keys} o contraseña invalida."
+      invalid: '%{authentication_keys} o contraseña invalida.'
       last_attempt: Tienes un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
-      not_found_in_database: "%{authentication_keys} o contraseña invalida."
+      not_found_in_database: '%{authentication_keys} o contraseña invalida.'
       pending: La cuenta sigue en revisión.
       timeout: La sesión caducó. Volvi aniciala pa siguir.
       unauthenticated: Tienes d'aniciar la sesión o rexistrate enantes de siguir.
@@ -24,16 +23,16 @@ ast:
         explanation_when_pending: Solicitaste una invitación a %{host} con esta dirección de corréu electrónicu. Una vez que confirmes la to direición de corréu electrónicu, revisaremos la to solicitú. Pues aniciar sesión pa camudar los tos datos o desaniciar la to cuenta, pero nun pues acceder a la mayoría de les funciones hasta que la to cuenta seya aprobada. Si so solicitú ye rechazada, sos datos serán desaniciáos, polo que nun sedrá necesaria ninguna acción adicional por so parte. Si no fuiste tú, por favor inora esti corréu electrónicu.
         extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> y <a href="%{policy_path}">los nuesos términos del serviciu</a>.
       email_changed:
-        explanation: 'La direición de corréu de la cuenta camudó a:'
-        subject: 'Mastodón: Camudó la direición de corréu'
-        title: Direición nueva de corréu
+        explanation: 'La direición de corréu electrónicu de la cuenta camudó a:'
+        subject: 'Mastodón: la direición de corréu electrónicu camudó'
+        title: Direición de corréu electrónicu nueva
       password_change:
         explanation: Camudó la contraseña de la cuenta.
         extra: Si nun camudesti la contraseña, ye probable que daquién accediere a la cuenta. Camuda la contraseña agora mesmo o ponte en contautu cola alministración del sirvidor si nun yes a acceder a la cuenta.
-        subject: 'Mastodon: La contraseña camudó'
+        subject: 'Mastodon: la contraseña camudó'
       reset_password_instructions:
-        explanation: Solicitesti una contraseña nueva pa la cuenta.
-        extra: Si nun solicitesti esto, inora esti corréu. La contraseña nun va camudar hasta que nun accedas al enllaz d'enriba y crees una nueva.
+        explanation: Solicitesti una contraseña nueva pa la to cuenta.
+        extra: Si nun solicitesti esta aición, inora esti mensaxe. La contraseña nun va camudar hasta que nun accedas al enllaz d'arriba y crees una.
         subject: 'Mastodon: Instrucciones pa reafitar la contraseña'
       two_factor_disabled:
         subject: 'Mastodon: desactivóse l''autenticación en dos pasos'
@@ -42,16 +41,16 @@ ast:
       two_factor_recovery_codes_changed:
         subject: 'Mastodon: Rexeneráronse los códigos de l''autenticación en dos pasos'
       unlock_instructions:
-        subject: 'Mastodon: Instrucciones de desbloquéu'
+        subject: 'Mastodon: instrucciones de desbloquéu'
     passwords:
-      send_instructions: Si la direición de corréu esiste na base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña a esi corréu. Comprueba la carpeta Puxarra si nun lu recibiesti.
-      send_paranoid_instructions: Si la direición de corréu esiste na base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña a esi corréu. Comprueba la carpeta Puxarra si nun lu recibiesti.
+      send_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
+      send_paranoid_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       updated_not_active: La contraseña camudó con correutamente.
     registrations:
-      signed_up: "¡Afáyate! Rexistréstite correutamente."
+      signed_up: '¡Afáyate! Rexistréstite correutamente.'
       signed_up_but_inactive: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta entá nun s'activó.
       signed_up_but_locked: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta ta bloquiada.
-      signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la direición de corréu. Sigui l'enllaz p'activar la cuenta. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
+      signed_up_but_unconfirmed: Unvióse un mensaxe de confirmación a la to direición de corréu electrónicu. Sigui l'enllaz p'activar la cuenta y revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       updated: La cuenta anovóse correutamente.
     sessions:
       already_signed_out: Zarresti la sesión correutamente.
@@ -59,7 +58,7 @@ ast:
       signed_out: Zarresti la sesión correutamente.
     unlocks:
       send_instructions: Nunos minutos vas recibir un corréu coles instrucciones pa cómo desbloquiar la cuenta. Comprueba la carpeta Puxarra si nun lu recibiesti.
-      send_paranoid_instructions: Si esiste la cuenta, nun momentu vas recibir un corréu coles instrucciones pa cómo desbloquiala. Comprueba la carpeta Puxarra si nun recibiesti esti corréu.
+      send_paranoid_instructions: Si esiste la cuenta, nun momentu vas recibir un mensaxe coles instrucciones pa saber cómo desbloquiala. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       unlocked: La cuenta desbloquióse correutamente. Anicia la sesión pa siguir.
   errors:
     messages:
