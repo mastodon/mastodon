@@ -276,10 +276,10 @@ pt-BR:
         unsensitive_account_html: "%{name} desmarcou a mídia de %{target} como sensível"
         unsilence_account_html: "%{name} removeu a limitação da conta de %{target}"
         unsuspend_account_html: "%{name} removeu a suspenção da conta de %{target}"
-        update_announcement_html: "%{name} atualizou o comunicado %{target}"
+        update_announcement_html: "%{name} atualizou o anúncio %{target}"
         update_custom_emoji_html: "%{name} atualizou o emoji %{target}"
         update_domain_block_html: "%{name} atualizou o bloqueio de domínio de %{target}"
-        update_ip_block_html: "%{name} alterou a regra para IP %{target}"
+        update_ip_block_html: "%{name} alterou a regra para o IP %{target}"
         update_status_html: "%{name} atualizou a publicação de %{target}"
         update_user_role_html: "%{name} alterou o cargo %{target}"
       deleted_account: conta excluída
@@ -557,19 +557,19 @@ pt-BR:
         notes:
           one: "%{count} nota"
           other: "%{count} notas"
-      action_log: Logs de auditoria
+      action_log: Registros de auditoria
       action_taken_by: Atitude tomada por
       actions:
         delete_description_html: As publicações denunciadas serão apagadas e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta cometa infrações no futuro.
         mark_as_sensitive_description_html: Os conteúdos de mídia em publicações denunciadas serão marcados como sensíveis e um aviso de violação será mantido para te informar sobre o agravamento caso essa mesma conta comenta infrações no futuro.
         other_description_html: Veja mais opções para controlar o comportamento da conta e personalizar a comunicação com a conta denunciada.
         resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma violação será guardada e a denúncia será encerrada.
-        silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser sempre revertido.
+        silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou que o procuram manualmente, limitando severamente seu alcance. Pode ser revertido a qualquer momento.
         suspend_description_html: O perfil e todo o seu conteúdo ficarão inacessíveis até que seja eventualmente excluído. Interagir com a conta será impossível. Reversível dentro de 30 dias.
-      actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você tomar uma ação para punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
+      actions_description_html: Decida que medidas tomar para resolver esta denúncia. Se você decidir punir a conta denunciada, ela receberá uma notificação por e-mail, exceto quando for selecionada a categoria <strong>spam</strong> for selecionada.
       add_to_report: Adicionar mais à denúncia
       are_you_sure: Você tem certeza?
-      assign_to_self: Pegar
+      assign_to_self: Atribuir para si
       assigned: Moderador responsável
       by_target_domain: Domínio da conta denunciada
       category: Categoria
@@ -578,7 +578,7 @@ pt-BR:
         none: Nenhum
       comment_description_html: 'Para fornecer mais informações, %{name} escreveu:'
       created_at: Denunciado
-      delete_and_resolve: Excluir mensagens
+      delete_and_resolve: Excluir publicações
       forwarded: Encaminhados
       forwarded_to: Encaminhado para %{domain}
       mark_as_resolved: Marcar como resolvido
@@ -590,9 +590,9 @@ pt-BR:
         create_and_resolve: Resolver com nota
         create_and_unresolve: Reabrir com nota
         delete: Excluir
-        placeholder: Descreva que ações foram tomadas, ou quaisquer outras atualizações relacionadas…
+        placeholder: Descreva quais ações foram tomadas ou quaisquer outras atualizações relacionadas...
         title: Notas
-      notes_description_html: Visualize e deixe anotações para outros moderadores e para o seu "eu" do futuro
+      notes_description_html: Visualize e deixe anotações para outros moderadores e para você mesmo no futuro
       quick_actions_description_html: 'Tome uma ação rápida ou role para baixo para ver o conteúdo denunciado:'
       remote_user_placeholder: o usuário remoto de %{instance}
       reopen: Reabrir denúncia
@@ -602,12 +602,12 @@ pt-BR:
       resolved: Resolvido
       resolved_msg: Denúncia resolvida!
       skip_to_actions: Pular para ações
-      status: Situação
+      status: Estado
       statuses: Conteúdo denunciado
       statuses_description_html: Conteúdo ofensivo será citado em comunicação com a conta denunciada
-      target_origin: Origem da conta relatada
+      target_origin: Origem da conta denunciada
       title: Denúncias
-      unassign: Largar
+      unassign: Desatribuir
       unresolved: Não resolvido
       updated_at: Atualizado
       view_profile: Ver perfil
@@ -649,10 +649,10 @@ pt-BR:
         manage_federation_description: Permite aos usuários bloquear ou permitir federação com outros domínios e controlar a entregabilidade
         manage_invites: Gerenciar convites
         manage_invites_description: Permite que os usuários naveguem e desativem os links de convites
-        manage_reports: Gerenciar relatórios
+        manage_reports: Gerenciar denúncias
         manage_reports_description: Permite aos usuários avaliar denúncias e realizar ações de moderação contra elas
         manage_roles: Gerenciar Funções
-        manage_roles_description: Permitir que os usuários gerenciem e atribuam papéis abaixo deles
+        manage_roles_description: Permitir que os usuários gerenciem e atribuam cargos abaixo deles
         manage_rules: Gerenciar Regras
         manage_rules_description: Permite que os usuários alterarem as regras do servidor
         manage_settings: Gerenciar Configurações
@@ -723,7 +723,7 @@ pt-BR:
       back_to_account: Voltar para página da conta
       back_to_report: Voltar às denúncias
       batch:
-        remove_from_report: Remover do relatório
+        remove_from_report: Remover da denúncia
         report: Denunciar
       deleted: Excluídos
       favourites: Favoritos
@@ -1030,7 +1030,7 @@ pt-BR:
       appeals:
         submit: Enviar recurso
       approve_appeal: Aprovar recurso
-      associated_report: Relatório associado
+      associated_report: Denúncia associada
       created_at: Datado
       description_html: Estas são ações tomadas contra sua conta e avisos que foram enviados a você pela equipe de %{instance}.
       recipient: Endereçado para
