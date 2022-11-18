@@ -522,6 +522,7 @@
       resolved: Løst
       resolved_msg: Rapport løst!
       status: Status
+      statuses: Rapportert innhold
       target_origin: Opprinnelse for innrapportert konto
       title: Rapporter
       unassign: Fjern tilegning
@@ -648,6 +649,7 @@
       title: Endre forhåndsinnstillinger for advarsler
     webhooks:
       add_new: Legg til endepunkt
+      status: Status
   admin_mailer:
     new_appeal:
       actions:
@@ -1179,6 +1181,14 @@
     enabled: Slett gamle innlegg automatisk
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
+    keep_pinned: Behold festede innlegg
+    keep_pinned_hint: Sletter ingen av de festede innleggene dine
+    keep_polls: Behold avstemninger
+    keep_polls_hint: Slettet ingen av avstemningene dine
+    keep_self_bookmark: Behold innlegg med dine bokmerker
+    keep_self_bookmark_hint: Sletter ikke dine egne innlegg hvis du har gitt dem et bokmerke
+    keep_self_fav: Behold favorittmarkerte innlegg
+    keep_self_fav_hint: Sletter ikke dine egne innlegg hvis du har favorittmarkert de
     min_age:
       '1209600': 2 uker
       '15778476': 6 måneder
@@ -1189,6 +1199,10 @@
       '63113904': 2 år
       '7889238': 3 måneder
     min_age_label: Terskel for alder
+    min_favs: Behold innlegg som er favorittmarkert av minst
+    min_favs_hint: Sletter ikke noen av dine innlegg som har mottatt minst dette antall favorittmarkeringer. La stå tom for å slette innlegg uavhengig av antall favorittmarkeringer
+    min_reblogs: Behold innlegg fremhevet av minst
+    min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
     pinned: Festet innlegg
     reblogged: fremhevet
