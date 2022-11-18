@@ -41,6 +41,9 @@
               #{import.imported_items} / #{import.total_items}
             %td= l(import.created_at)
             %td
-              - nb_failed = import.processed_items - import.imported_items
-              - if nb_failed.positive?
-                = nb_failed
+              - num_failed = import.processed_items - import.imported_items
+              - if num_failed.positive?
+                - if import.finished?
+                  = link_to num_failed, failures_settings_import_path(import, format: 'csv')
+                - else
+                  = num_failed

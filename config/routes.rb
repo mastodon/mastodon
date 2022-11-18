@@ -145,6 +145,7 @@ Rails.application.routes.draw do
     resources :imports, only: [:index, :show, :destroy, :create] do
       member do
         post :confirm
+        get :failures
       end
     end
 
