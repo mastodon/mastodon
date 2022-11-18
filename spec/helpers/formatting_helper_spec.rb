@@ -18,7 +18,7 @@ describe FormattingHelper, type: :helper do
     end
 
     it 'renders the poll' do
-      expect(html).to include('<radio disabled="disabled">Yes&lt;&gt;</radio><br />')
+      expect(html).to include('<radio disabled="disabled">Yes&lt;&gt;</radio><br>')
     end
   end
 end
