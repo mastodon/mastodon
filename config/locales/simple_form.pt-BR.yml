@@ -1,4 +1,3 @@
----
 pt-BR:
   simple_form:
     hints:
@@ -117,13 +116,13 @@ pt-BR:
         name: Você pode mudar a capitalização das letras, por exemplo, para torná-la mais legível
       user:
         chosen_languages: Apenas as publicações dos idiomas selecionados serão exibidas nas linhas públicas
-        role: A função controla que permissões o usuário tem
+        role: O cargo controla quais permissões o usuário tem
       user_role:
-        color: Cor a ser usada para a função em toda a interface do usuário, como RGB no formato hexadecimal
-        highlighted: Isso torna a função publicamente visível
-        name: Nome público da função, se a função é definida para ser exibida como um distintivo
-        permissions_as_keys: Usuários com essa função terão acesso a...
-        position: Uma função superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas em funções com menor prioridade
+        color: Cor a ser usada para o cargo em toda a interface do usuário, como RGB no formato hexadecimal
+        highlighted: Isso torna o cargo publicamente visível
+        name: Nome público do cargo, se ele for definido para ser exibido como um distintivo
+        permissions_as_keys: Usuários com esse cargo terão acesso a...
+        position: Um cargo superior decide a resolução de conflitos em certas situações. Certas ações só podem ser executadas com cargos de menor prioridade
       webhook:
         events: Selecione eventos para enviar
         url: Aonde os eventos serão enviados
@@ -289,14 +288,14 @@ pt-BR:
         role: Cargo
       user_role:
         color: Cor do emblema
-        highlighted: Exibir função como distintivo nos perfis de usuários
+        highlighted: Exibir cargo como distintivo nos perfis de usuários
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
       webhook:
         events: Eventos habilitados
         url: URL do Endpoint
-    'no': Não
+    'no': 'Não'
     not_recommended: Não recomendado
     recommended: Recomendado
     required:
@@ -305,4 +304,4 @@ pt-BR:
     title:
       sessions:
         webauthn: Utilize uma das suas chaves de segurança para entrar
-    'yes': Sim
+    'yes': 'Sim'
