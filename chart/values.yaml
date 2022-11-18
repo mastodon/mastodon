@@ -186,6 +186,12 @@ mastodon:
     # requests:
     #   cpu: 250m
     #   memory: 768Mi
+    # -- Puma-specific options. Below values are based on default behavior in
+    # config/puma.rb when no custom values are provided.
+    minThreads: "5"
+    maxThreads: "5"
+    workers: "2"
+    persistentTimeout: "20"
 
   metrics:
     statsd:

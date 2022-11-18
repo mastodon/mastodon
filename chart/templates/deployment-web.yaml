@@ -74,6 +74,22 @@ spec:
                   key: redis-password
             - name: "PORT"
               value: {{ .Values.mastodon.web.port | quote }}
+            {{- if .Values.mastodon.web.minThreads }}
+            - name: "MIN_THREADS"
+              value: {{ .Values.mastodon.web.minThreads | quote }}
+            {{- end }}
+            {{- if .Values.mastodon.web.maxThreads }}
+            - name: "MAX_THREADS"
+              value: {{ .Values.mastodon.web.maxThreads | quote }}
+            {{- end }}
+            {{- if .Values.mastodon.web.workers }}
+            - name: "WEB_CONCURRENCY"
+              value: {{ .Values.mastodon.web.workers | quote }}
+            {{- end }}
+            {{- if .Values.mastodon.web.persistentTimeout }}
+            - name: "PERSISTENT_TIMEOUT"
+              value: {{ .Values.mastodon.web.persistentTimeout | quote }}
+            {{- end }}
             {{- if (and .Values.mastodon.s3.enabled .Values.mastodon.s3.existingSecret) }}
             - name: "AWS_SECRET_ACCESS_KEY"
               valueFrom:
