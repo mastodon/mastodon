@@ -5,7 +5,6 @@ module Settings
     class WebauthnCredentialsController < BaseController
       skip_before_action :require_functional!
 
-      before_action :require_otp_enabled
       before_action :require_webauthn_enabled, only: [:index, :destroy]
 
       def index; end
@@ -83,13 +82,6 @@ module Settings
       end
 
       private
-
-      def require_otp_enabled
-        unless current_user.otp_enabled?
-          flash[:error] = t('webauthn_credentials.otp_required')
-          redirect_to settings_two_factor_authentication_methods_path
-        end
-      end
 
       def require_webauthn_enabled
         unless current_user.webauthn_enabled?

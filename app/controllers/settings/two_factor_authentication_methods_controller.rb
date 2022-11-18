@@ -7,7 +7,7 @@ module Settings
     skip_before_action :require_functional!
 
     before_action :require_challenge!, only: :disable
-    before_action :require_otp_enabled
+    before_action :require_two_factor_enabled, only: :disable
 
     def index; end
 
@@ -20,8 +20,8 @@ module Settings
 
     private
 
-    def require_otp_enabled
-      redirect_to settings_otp_authentication_path unless current_user.otp_enabled?
+    def require_two_factor_enabled
+      redirect_to settings_otp_authentication_path unless current_user.two_factor_enabled?
     end
   end
 end
