@@ -12,5 +12,11 @@ spec:
   resources:
     {{- toYaml . | nindent 4 }}
   {{- end }}
+  {{- if .Values.mastodon.persistence.assets.storageClassName }}
+  {{- if (eq "-" .Values.mastodon.persistence.assets.storageClassName) }}
+  storageClassName: ""
+  {{- else }}
   storageClassName: {{ .Values.mastodon.persistence.assets.storageClassName }}
+  {{- end }}
+  {{- end }}
 {{- end }}
