@@ -59,6 +59,8 @@ zh-HK:
       error:
         title: 發生錯誤
       new:
+        prompt_html: "%{client_name} 想得到存取你的帳號的權限。這是一個第三方的應用程式。<strong>如果你不信任它，就切勿授權它。</strong>"
+        review_permissions: 審核權限
         title: 需要用戶授權
       show:
         title: 請把這個授權碼複製到應用程式中。
@@ -68,6 +70,12 @@ zh-HK:
       confirmations:
         revoke: 是否確定要取消授權？
       index:
+        authorized_at: 授權於 %{date}
+        description_html: 這些應用程式可以使用 API 存取你的帳號。如果你不認識某些應用程式，或該程式行為不當，你可以撤銷其存取權。
+        last_used_at: 最後使用於 %{date}
+        never_used: 從未使用
+        scopes: 權限
+        superapp: 內部
         title: 已獲你授權的程用程式
     errors:
       messages:
@@ -103,6 +111,10 @@ zh-HK:
       authorized_applications:
         destroy:
           notice: 已取消應用程式授權。
+    grouped_scopes:
+      access:
+        read: 唯讀存取
+        read/write: 讀寫存取
     layouts:
       admin:
         nav:
