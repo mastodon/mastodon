@@ -22,6 +22,7 @@ ast:
         explanation: Creesti una cuenta en %{host} con esta direición de corréu electrónicu y tas a un calcu d'activala. Si nun fixesti esta aición, inora esti mensaxe.
         explanation_when_pending: Solicitesti una invitación a %{host} con esta direición de corréu electrónicu. Namás que confirmes la direición de corréu electrónicu, vamos revisar la solicitú. Entrín y non, pues aniciar la sesión pa camudar los detalles o desaniciar la cuenta, mas nun pues acceder a la mayoría de funciones hasta que la cuenta nun tea aprobada. Si se refuga la solicitú, nun ye necesario que faigas nada más o si, per otra parte, tu nun fixesti esta aición, inora esti mensaxe.
         extra_html: Revisa tamién <a href="%{terms_path}">les regles del sirvidor</a> y <a href="%{policy_path}">los nuesos términos del serviciu</a>.
+        subject: 'Mastodon: instrucciones de confirmación de «%{instance}»'
       email_changed:
         explanation: 'La direición de corréu electrónicu de la cuenta camudó a:'
         extra: Si nun camudesti la direición de corréu electrónicu, ye probable que daquién accediere a la cuenta. Camuda la contraseña agora mesmo o ponte en contautu cola alministración del sirvidor si nun yes a acceder a la cuenta.
@@ -34,7 +35,7 @@ ast:
       reconfirmation_instructions:
         explanation: Confirma la direición nueva pa camudar la direición de corréu electrónicu.
         extra: Si tu nun aniciesti esti cambéu, inora esti mensaxe. La direición de corréu electrónicu de la cuenta de Mastodon nun va camudar hasta que nun accedas al enllaz d'arriba.
-        subject: 'Mastodon: mensaxe de confirmación de «%{instance}»'
+        subject: 'Mastodon: confirmación de la direición de corréu electrónicu de «%{instance}»'
         title: Verificar la direición de corréu electrónicu
       reset_password_instructions:
         explanation: Solicitesti una contraseña nueva pa la to cuenta.
@@ -60,8 +61,10 @@ ast:
           title: Amestóse una llave de seguranza nueva
       webauthn_disabled:
         explanation: Desactivóse l'autenticación con llaves de seguranza na cuenta. Agora namás ye posible aniciar la sesión col pase xeneráu pola aplicación TOTP empareyada.
+        subject: 'Mastodon: desactivóse l''autenticación con llaves de seguranza'
       webauthn_enabled:
         explanation: Activóse l'autenticación con llaves de seguranza na cuenta. Agora pues usar la llave p'aniciar la sesión.
+        subject: 'Mastodon: activóse l''autenticación con llaves de seguranza'
     passwords:
       send_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       send_paranoid_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
