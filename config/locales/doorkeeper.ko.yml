@@ -2,18 +2,18 @@ ko:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 애플리케이션 이름
-        redirect_uri: 리디렉션 URI
+        name: 어플리케이션 이름
+        redirect_uri: 리다이렉트 URI
         scopes: 범위
-        website: 애플리케이션 웹사이트
+        website: 어플리케이션 웹사이트
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               fragment_present: fragment를 포함할 수 없습니다
-              invalid_uri: 올바른 URI여야 합니다.
-              relative_uri: 절대경로 URI여야 합니다
+              invalid_uri: 올바른 URI 이어야 합니다.
+              relative_uri: 절대경로 URI 이어야 합니다
               secured_uri: HTTPS/SSL URI여야 합니다.
   doorkeeper:
     applications:
@@ -21,7 +21,7 @@ ko:
         authorize: 승인
         cancel: 취소
         destroy: 제거
-        edit: 수정
+        edit: 편집
         submit: 제출
       confirmations:
         destroy: 확실합니까?
