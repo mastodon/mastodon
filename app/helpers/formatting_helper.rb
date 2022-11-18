@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 module FormattingHelper
-  HTML_SAFE_BR = '<br />'.html_safe
-
   def html_aware_format(text, local, options = {})
     HtmlAwareFormatter.new(text, local, options).to_s
   end
@@ -41,7 +39,8 @@ module FormattingHelper
           safe_join(
             status.preloadable_poll.options.map do |o|
               tag.send(status.preloadable_poll.multiple? ? 'checkbox' : 'radio', o, disabled: true)
-            end, HTML_SAFE_BR
+            end,
+            tag.br
           )
         end
       end
