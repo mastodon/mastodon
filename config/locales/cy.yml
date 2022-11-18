@@ -1523,8 +1523,12 @@ cy:
       blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: OS Firefox
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: platfform anhysbys
+      windows: Windows
+      windows_mobile: Windows Mobile
       windows_phone: Ffôn Windows
     revoke: Diddymu
     revoke_success: Sesiwn wedi ei ddiddymu yn llwyddiannus
@@ -1618,6 +1622,7 @@ cy:
     show_older: Dangos pethau hŷn
     show_thread: Dangos edefyn
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
+    title: '%{name}: "%{quote}"'
     visibilities:
       direct: Uniongyrchol
       private: Dilynwyr yn unig
@@ -1674,6 +1679,11 @@ cy:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)
     mastodon-light: Mastodon (golau)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Ychwanegu
     disable: Diffodd
