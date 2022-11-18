@@ -27,11 +27,11 @@ describe Admin::Users::TwoFactorAuthenticationsController do
       end
     end
 
-    context 'when user has OTP and WebAuthn enabled' do
+    context 'when user has WebAuthn enabled' do
       let(:fake_client) { WebAuthn::FakeClient.new('http://test.host') }
 
       before do
-        user.update(otp_required_for_login: true, webauthn_id: WebAuthn.generate_user_id)
+        user.update(webauthn_id: WebAuthn.generate_user_id)
 
         public_key_credential = WebAuthn::Credential.from_create(fake_client.create)
         Fabricate(:webauthn_credential,
@@ -45,7 +45,6 @@ describe Admin::Users::TwoFactorAuthenticationsController do
         delete :destroy, params: { user_id: user.id }
 
         user.reload
-        expect(user.otp_enabled?).to be false
         expect(user.webauthn_enabled?).to be false
         expect(response).to redirect_to(admin_account_path(user.account_id))
       end

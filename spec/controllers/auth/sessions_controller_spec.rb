@@ -321,15 +321,9 @@ RSpec.describe Auth::SessionsController do
         end
       end
 
-      context 'with WebAuthn and OTP enabled as second factor' do
+      context 'with WebAuthn as second factor' do
         let!(:user) do
-          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
-        end
-
-        let!(:recovery_codes) do
-          codes = user.generate_otp_backup_codes!
-          user.save
-          return codes
+          Fabricate(:user, email: 'x@y.com', password: 'abcdefgh')
         end
 
         let!(:webauthn_credential) do
@@ -400,13 +394,13 @@ RSpec.describe Auth::SessionsController do
   end
 
   describe 'GET #webauthn_options' do
-    context 'with WebAuthn and OTP enabled as second factor' do
+    context 'with WebAuthn as second factor' do
       let(:domain) { "#{Rails.configuration.x.use_https ? 'https' : 'http'}://#{Rails.configuration.x.web_domain}" }
 
       let(:fake_client) { WebAuthn::FakeClient.new(domain) }
 
       let!(:user) do
-        Fabricate(:user, email: 'x@y.com', password: 'abcdefgh', otp_required_for_login: true, otp_secret: User.generate_otp_secret(32))
+        Fabricate(:user, email: 'x@y.com', password: 'abcdefgh')
       end
 
       before do
