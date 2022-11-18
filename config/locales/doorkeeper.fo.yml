@@ -32,13 +32,32 @@ fo:
       help:
         native_redirect_uri: Nýt %{native_redirect_uri} til lokalar nároyndir
         redirect_uri: Nýt eina linju fyri hvørt URI
+        scopes: Atskil valmøguleikarnar við millumrúmum. Um standard vælmøguleikar verða valdir, lat so millumrúm verða í.
       index:
+        application: Skipan
+        callback_url: Afturkallingar URL
         delete: Strika
+        empty: T´´u hevur onga skipan.
         name: Navn
+        new: Nýggj skipan
+        scopes: Møguleikar
         show: Vís
+        title: Tínar skipanir
+      new:
+        title: Nýggj skipan
+      show:
+        actions: Skipan
+        application_id: Kunda lykil
+        callback_urls: Afturkallingar URL'ir
+        scopes: Møguleikar
+        secret: Kunda loyndir
+        title: 'Skipan: %{name}'
     authorizations:
       buttons:
+        authorize: Heimila
         deny: Nokta
+      error:
+        title: Ein feilur er íkomin
     authorized_applications:
       index:
         never_used: Ongantíð brúkt/ur
