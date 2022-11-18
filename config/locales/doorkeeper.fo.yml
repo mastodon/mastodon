@@ -2,7 +2,19 @@ fo:
   activerecord:
     attributes:
       doorkeeper/application:
+        name: Navnið á forritinum
+        redirect_uri: URL víðarisending
         scopes: Karmar
+        website: Netsíðan hjá forritinum
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kann ikki innihalda eitt petti.
+              invalid_uri: má vera eiitt gildugt URL.
+              relative_uri: má vera eitt treytaleyst URL.
+              secured_uri: má vera eitt HTTPS/SSL URI.
   doorkeeper:
     applications:
       buttons:
@@ -13,6 +25,10 @@ fo:
         submit: Send avstað
       confirmations:
         destroy: Ert tú vís/ur?
+      edit:
+        title: Broyt forrit
+      form:
+        error: Ups! Kanna frymilin fyri møguligar feilir
       index:
         delete: Strika
         name: Navn
