@@ -157,7 +157,7 @@ nn:
       undo_suspension: Angr utvising
       unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
       unsubscribe: Avmeld
-      unsuspended_msg: Opphevde vellykket suspenderingen av %{username} sin konto
+      unsuspended_msg: Oppheving av utvisinga av %{username} sin konto var vellykka
       username: Brukarnamn
       view_domain: Vis sammendrag for domenet
       warn: Åtvar
@@ -275,6 +275,7 @@ nn:
         unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
         unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som sensitivt"
         unsilence_account_html: "%{name} fjerna grensa på kontoen til %{target}"
+        unsuspend_account_html: "%{name} oppheva utvisinga av %{target} sin konto"
         update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
         update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
         update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
@@ -433,13 +434,13 @@ nn:
         title: Importer domeneblokkeringar
       no_file: Inga fil vald
     follow_recommendations:
-      description_html: "<strong>Følg anbefalinger hjelper nye brukere med å finne interessant innhold</strong>. Når en bruker ikke har kommunisert med andre nok til å danne personlig tilpassede følger anbefalinger, anbefales disse kontoene i stedet. De beregnes daglig på nytt fra en blanding av kontoer der de høyeste engasjementene er og med høyest lokal tilhenger for et gitt språk."
+      description_html: "<strong>Følgjeforslag hjelper nye brukarar å raskt finna interessant innhald</strong>. Om ein brukar ikkje har interagera nok med andre til å danne personlege følgjeforslag, vert disse kontiane føreslått i staden. Dei vert gjenkalkulert på dagleg basis ut frå ei blanding av dei konti med flest nylege engasjement og flest lokale følgjarar for eit gitt språk."
       language: For språk
       status: Status
-      suppress: Undertrykk anbefalte følger
+      suppress: Demp følgjeforslag
       suppressed: Dempa
-      title: Følg gjerne desse
-      unsuppress: Gjenopprett følg-anbefaling
+      title: Følgjeforslag
+      unsuppress: Tilbakestill følgjeforslag
     instances:
       availability:
         failure_threshold_reached: Feilterskelen ble nådd %{date}.
@@ -539,6 +540,7 @@ nn:
         notes:
           one: "%{count} notis"
           other: "%{count} notiser"
+      action_log: Tilsynslogg
       action_taken_by: Handling gjort av
       actions:
         delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
@@ -549,6 +551,7 @@ nn:
       assign_to_self: Tilegn til meg
       assigned: Tilsett moderator
       by_target_domain: Domenet av rapportert bruker
+      category: Kategori
       comment:
         none: Ingen
       created_at: Rapportert
@@ -569,6 +572,7 @@ nn:
       resolved: Oppløyst
       resolved_msg: Rapporten er løyst!
       status: Status
+      statuses: Rapportert innhold
       target_origin: Opprinnelse for innrapportert konto
       title: Rapportar
       unassign: Avset
@@ -612,6 +616,8 @@ nn:
       title: Server regler
     settings:
       discovery:
+        follow_recommendations: Følgjeforslag
+        preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
         trends: Trender
       domain_blocks:
         all: Til alle
@@ -652,7 +658,7 @@ nn:
         none: "%{name} sendte en advarsel til %{target}"
         sensitive: "%{name} markerte %{target}s konto som sensitiv"
         silence: "%{name} begrenset %{target}s konto"
-        suspend: "%{name} suspenderte %{target}s konto"
+        suspend: "%{name} utviste %{target} sin konto"
       appeal_approved: Klage tatt til følge
       appeal_pending: Klage behandles
     system_checks:
@@ -697,6 +703,7 @@ nn:
       title: Handsam åtvaringsoppsett
     webhooks:
       add_new: Legg til endepunkt
+      status: Status
   admin_mailer:
     new_appeal:
       actions:
@@ -1250,7 +1257,10 @@ nn:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Aldersterskel
+    min_favs: Behold innlegg som er favorittmarkert av minst
     min_favs_hint: Sletter ingen av dine innlegg som har mottatt minst dette antalet favorittmerkingar. Lat vere blank for å slette innlegg uavhengig av antal favorittmerkingar
+    min_reblogs: Behold innlegg fremhevet av minst
+    min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
     pinned: Festa tut
     reblogged: framheva
@@ -1323,7 +1333,7 @@ nn:
         none: Åtvaring for %{acct}
         sensitive: Dine innlegg på %{acct} vil bli merket som sensitive fra nå
         silence: Kontoen din, %{acct}, er vorten avgrensa
-        suspend: Kontoen din, %{acct}, er vorten utvist
+        suspend: Kontoen din, %{acct}, har vorte utvist
       title:
         delete_statuses: Innlegg fjernet
         disable: Konto frosen
