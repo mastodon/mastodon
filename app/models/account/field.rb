@@ -46,7 +46,8 @@ class Account::Field < ActiveModelSerializers::Model
       parsed_url.user.nil? &&
       parsed_url.password.nil? &&
       parsed_url.host.present? &&
-      parsed_url.normalized_host == parsed_url.host
+      parsed_url.normalized_host == parsed_url.host &&
+      (parsed_url.path.empty? || parsed_url.path == parsed_url.normalized_path)
   rescue Addressable::URI::InvalidURIError, IDN::Idna::IdnaError
     false
   end
