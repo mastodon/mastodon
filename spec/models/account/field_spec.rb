@@ -74,7 +74,7 @@ RSpec.describe Account::Field, type: :model do
         end
       end
 
-      context 'for a URL with a non-normalized path'
+      context 'for a URL with a non-normalized path' do
         let(:value) { 'https://github.com/octocatxxxxxxxx/../mastodon' }
 
         it 'returns false' do
