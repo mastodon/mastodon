@@ -403,9 +403,9 @@ cs:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
         severity:
-          desc_html: "<strong>Limit</strong> učiní příspěvky z účtů na této doméně neviditelnými pro každého, kdo je nesleduje. <strong>Pozastavit</strong> odstraní všechna data obsahu, médií a profilu pro účty této domény z vašeho serveru. Pokud chcete pouze odmítnout mediální soubory, použijte <strong>Nic</strong>."
+          desc_html: "<strong>Omezit</strong> zneviditelní příspěvky účtů z této domény všem, kdo je nesledují. <strong>Pozastavit</strong> odstraní z vašeho serveru všechna data obsahu, médií a profilu účtů z této domény. Pokud chcete pouze odmítnout mediální soubory, použijte <strong>Nic</strong>."
           noop: Žádné
-          silence: Limit
+          silence: Omezit
           suspend: Pozastavit
         title: Nová blokace domény
       no_domain_block_selected: Nebyly změněny žádné blokované domény, protože nebyla žádná vybrána
