@@ -1,4 +1,3 @@
----
 zh-CN:
   simple_form:
     hints:
@@ -10,7 +9,7 @@ zh-CN:
         text: 你可以使用嘟文格式，例如加入 URL、话题标签和“@”
         title: 可选。对接收者不可见
       admin_account_action:
-        include_statuses: 用户将会看到哪些嘟文导致了审核行为或警告
+        include_statuses: 用户将会看到哪些嘟文导致了管理操作或警告
         send_email_notification: 用户将收到关于其账号异动的解释
         text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
         type_html: 用<strong>%{acct}</strong>选择做什么
@@ -67,7 +66,7 @@ zh-CN:
         domain: 这可以是电子邮件地址的域名或它使用的 MX 记录所指向的域名。用户注册时，系统会对此检查。
         with_dns_records: Mastodon 会尝试解析所给域名的 DNS 记录，然后把解析结果一并封禁
       featured_tag:
-        name: 以下是你最近使用过的标签：
+        name: '以下是你最近使用过的标签：'
       filters:
         action: 选择在帖子匹配过滤器时要执行的操作
         actions:
@@ -112,7 +111,7 @@ zh-CN:
       rule:
         text: 描述这个服务器上的用户规则或要求。尽量确保简洁、清晰易懂
       sessions:
-        otp: 输入你手机应用上生成的双重认证码，或者任意一个恢复代码：
+        otp: '输入你手机应用上生成的双重认证码，或者任意一个恢复代码：'
         webauthn: 如果是 USB 密钥，请确保将其插入，如有必要，请点击它。
       tag:
         name: 你只能改变字母的大小写，让它更易读
@@ -297,7 +296,7 @@ zh-CN:
       webhook:
         events: 已启用事件
         url: 对端 URL
-    'no': 否
+    'no': '否'
     not_recommended: 不推荐
     recommended: 推荐
     required:
@@ -306,4 +305,4 @@ zh-CN:
     title:
       sessions:
         webauthn: 使用你的安全密钥登录
-    'yes': 是
+    'yes': '是'
