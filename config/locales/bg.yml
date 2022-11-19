@@ -104,6 +104,9 @@ bg:
       pending: Изчаква преглед
       perform_full_suspension: Спиране
       previous_strikes: Предишни провинения
+      previous_strikes_description_html:
+        one: "Този профил има \n <strong>едно</strong> провинение."
+        other: Този профил има <strong>%{count}</strong> провинения.
       promote: Повишаване
       protocol: Протокол
       public: Публично
@@ -130,6 +133,7 @@ bg:
       security_measures:
         only_password: Само парола
         password_and_2fa: Парола и двуфакторно удостоверяване
+      sensitive: Чувствителен
       sensitized: Отбелязано като деликатно съдържание
       shared_inbox_url: URL адрес на споделена входяща кутия
       show:
@@ -138,14 +142,22 @@ bg:
       silence: Ограничение
       silenced: Ограничено
       statuses: Публикации
+      strikes: Предишни провинения
       subscribe: Абониране
       suspend: Спиране
       suspended: Спряно
+      suspension_irreversible: Данните на този профил са безвъзвратно изтрити. Можете да възстановите достъпа на този профил, за да може да бъде отново използван, но данните отпреди няма да бъдат възстановени.
+      suspension_reversible_hint_html: Този профил е преустановен и данните от него ще бъдат напълно премахнати на %{date}. До тази дата профилът може да бъде възстановен без щети. Ако желаете, по-долу можете да премахнете всички данни от профила незабавно.
       title: Акаунти
       unblock_email: Отблокиране на адреса на имейла
+      unblocked_email_msg: Успешно разблокиране на имейл адреса на %{username}
       unconfirmed_email: Непотвърден имейл
+      undo_sensitized: Нeчувствителен
       undo_silenced: Отмяна на ограничението
+      undo_suspension: Връщане на достъпа
+      unsilenced_msg: Успешно премахване на ограниченията върху профила на %{username}
       unsubscribe: Отписване
+      unsuspended_msg: Успешно връщане на достъпа до профила на %{username}
       username: Потребителско име
       warn: Предупреждение
       web: Уеб
