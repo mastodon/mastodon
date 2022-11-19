@@ -129,7 +129,7 @@ ast:
       body: Mastodon tradúcenlu voluntarios,
       guide_link_text: tol mundu pue collaborar.
     sensitive_content: Conteníu sensible
-    toot_layout: Distribución de los barritos
+    toot_layout: Distribución de los artículos
   applications:
     created: L'aplicación creóse correutamente
     regenerate_token: Volver xenerar el pase d'accesu
@@ -146,6 +146,7 @@ ast:
     dont_have_your_security_key: '¿Nun tienes una clave de seguranza?'
     forgot_password: '¿Escaeciesti la contraseña?'
     login: Aniciar la sesión
+    logout: Zarrar la sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
     providers:
@@ -210,7 +211,10 @@ ast:
       in_progress: Compilando l'archivu...
       request: Solicitar l'archivu
       size: Tamañu
-    blocks: Xente que bloquiesti
+    blocks: Perfiles que bloquiesti
+    bookmarks: Marcadores
+    csv: CSV
+    domain_blocks: Dominios bloquiaos
     lists: Llistes
     mutes: Xente que silenciesti
     storage: Almacenamientu multimedia
@@ -396,8 +400,9 @@ ast:
         one: "%{count} videu"
         other: "%{count} vídeos"
     boosted_from_html: Compartióse'l barritu dende %{acct_link}
+    open_in_web: Abrir na web
     pin_errors:
-      limit: Yá fixesti'l númberu máximu de barritos
+      limit: Xá fixesti'l númberu máximu d'artículos
       ownership: Nun se pue fixar l'artículu d'otru perfil
       reblog: Nun pue fixase un barritu compartíu
     poll:
