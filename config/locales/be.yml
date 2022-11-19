@@ -51,7 +51,9 @@ be:
       deleted: Выдалены
       destroyed_msg: "Даныя %{username} цяпер у чарзе на прымусовае выдаленне"
       disable_two_factor_authentication: Адключыць 2FA
+      domain: Дамен
       edit: Рэдагаваць
+      enabled: Уключана
       follows: Падпісчыкі
       invite_request_text: Прычына далучэння
       invited_by: Запрошаны
@@ -78,7 +80,7 @@ be:
       perform_full_suspension: Прыпыніць
       protocol: Пратакол
       public: Публічны
-      redownload: Аднавіць профіль
+      redownload: Абнавіць профіль
       reject: Адхіліць
       remove_avatar: Выдаліць аватар
       remove_header: Выдаліць шапку
@@ -144,6 +146,7 @@ be:
         memorialize_account: Запомніць уліковы запіс
         promote_user: Павысіць правы Карыстальніка
         remove_avatar_user: Выдаліць аватар
+        suspend_account: Прыпыніць уліковы запіс
         update_announcement: Абнавіць аб'яву
         update_status: Абнавіць допіс
         update_user_role: Абнавіць ролю
@@ -209,7 +212,34 @@ be:
         many: "<strong>%{count}</strong> апеляцый у чарзе"
         other: "<strong>%{count}</strong> апеляцыі ў чарзе"
     domain_blocks:
+      domain: Дамен
       obfuscate: Схаваць назву дамена
+      undo: Скасаваць блакіраванне дамену
+    email_domain_blocks:
+      delete: Выдаліць
+      domain: Дамен
+      new:
+        create: Дадаць дамен
+    instances:
+      by_domain: Дамен
+    ip_blocks:
+      add_new: Стварыць правіла
+      delete: Выдаліць
+      expires_in:
+        '1209600': 2 тыдні
+        '15778476': 6 months
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 years
+    reports:
+      notes:
+        create: Дадаць нататку
+        delete: Выдаліць
+        title: Нататкі
+    roles:
+      privileges:
+        administrator: Адміністратар
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -222,4 +252,8 @@ be:
     '503': The page could not be served due to a temporary server failure.
   imports:
     modes:
+      merge: Аб'яднаць
+      merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
+  two_factor_authentication:
+    add: Дадаць
