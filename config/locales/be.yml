@@ -89,7 +89,7 @@ be:
       search: Пошук
       show:
         created_reports: Створана скарг
-        targeted_reports: Справаздачанае іншымі
+        targeted_reports: Атрымана скарг
       silence: Амбежаванне
       silenced: Абмежаванае
       statuses: Допісы
@@ -97,7 +97,7 @@ be:
       subscribe: Падпіска
       suspend: Прыпыніць
       suspended: Прыпынена
-      suspension_irreversible: Даныя гэтага ўліковага запісу былі канчаткова вынішчаны. Вы можаце аднавіць уліковы запіс каб зрабіць яго зноў працоўным, але гэта не адновіць даныя якія былі змешчаны на ім раней.
+      suspension_irreversible: Даныя гэтага ўліковага запісу былі канчаткова выдалены. Вы можаце аднавіць уліковы запіс каб зрабіць яго зноў працоўным, але гэта не адновіць даныя якія былі змешчаны на ім раней.
       suspension_reversible_hint_html: Уліковы запіс быў прыпынены і даныя будуць цалкам выдалены ад %{date}. Дагэтуль уліковы запіс можа быць адноўлены без якіх-небудзь шкодных наступстваў. Калі вы хочаце вынішчыць усе даныя ўліковага запісу зараз, вы можаце зрабіць гэта ніжэй.
       title: Уліковыя запісы
       unblock_email: Разблакіраваць адрас эл. пошты
@@ -110,7 +110,7 @@ be:
     action_logs:
       action_types:
         approve_user: Зацвердзіць карыстальніка
-        assigned_to_self_report: Зацвердзіць справаздачу
+        assigned_to_self_report: Прызначыць скаргу
         change_email_user: Змяніць E-mail карыстальніка
         change_role_user: Змяніць ролю карыстальніка
         confirm_user: Пацвердзіць карыстальніка
@@ -228,18 +228,53 @@ be:
       expires_in:
         '1209600': 2 тыдні
         '15778476': 6 months
-        '2629746': 1 month
-        '31556952': 1 year
-        '86400': 1 day
-        '94670856': 3 years
+        '2629746': 1 месяц
+        '31556952': 1 год
+        '86400': 1 дзень
+        '94670856': 3 гады
     reports:
       notes:
         create: Дадаць нататку
         delete: Выдаліць
         title: Нататкі
     roles:
+      categories:
+        devops: DevOps
+        invites: Запрашэнні
+      delete: Выдаліць
       privileges:
         administrator: Адміністратар
+      title: Ролі
+    rules:
+      add_new: Дадаць правіла
+      delete: Выдаліць
+      edit: Рэдагаваць правіла
+    statuses:
+      account: Аўтар
+      application: Праграма
+      language: Мова
+      media:
+        title: Медыя
+      open: Адкрыць допіс
+    trends:
+      allow: Дазволіць
+    warning_presets:
+      delete: Выдаліць
+    webhooks:
+      delete: Выдаліць
+  application_mailer:
+    salutation: "%{name},"
+  applications:
+    created: Праграма паспяхова створана
+    destroyed: Праграма паспяхова выдалена
+  auth:
+    login: Увайсці
+    logout: Выйсці
+    providers:
+      cas: CAS
+      saml: SAML
+    status:
+      account_status: Стан уліковага запісу
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -250,10 +285,105 @@ be:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      size: Памер
+    csv: CSV
+  filters:
+    contexts:
+      notifications: Апавяшчэнні
+    edit:
+      title: Рэдагаваць фільтр
+    index:
+      delete: Выдаліць
+      title: Фільтры
+    new:
+      save: Захаваць новы фільтр
+      title: Дадаць новы фільтр
+  generic:
+    delete: Выдаліць
+    today: сёння
   imports:
     modes:
       merge: Аб'яднаць
       merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
+  invites:
+    expires_in:
+      '1800': 30 хвілін
+      '21600': 6 гадзін
+      '3600': 1 гадзіна
+      '43200': 12 гадзін
+      '604800': 1 тыдзень
+      '86400': 1 дзень
+    expires_in_prompt: Ніколі
+    title: Запрасіць людзей
+  login_activities:
+    authentication_methods:
+      password: пароль
+  notification_mailer:
+    mention:
+      action: Адказаць
+  pagination:
+    next: Далей
+  relationships:
+    status: Стан уліковага запісу
+  sessions:
+    browser: Браўзер
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Невядомы браўзер
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
+    ip: IP
+    platforms:
+      adobe_air: Adobe AIR
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+  settings:
+    account: Уліковы запіс
+    authorized_apps: Аўтарызаваныя праграмы
+    profile: Профіль
+  statuses:
+    visibilities:
+      public: Публічны
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 тыдні
+      '15778476': 6 месяцаў
+      '2629746': 1 месяц
+      '31556952': 1 год
+      '5259492': 2 months
+      '604800': 1 тыдзень
+      '63113904': 2 гады
+      '7889238': 3 months
   two_factor_authentication:
     add: Дадаць
+    edit: Рэдагаваць
+  user_mailer:
+    warning:
+      categories:
+        spam: Спам
+  webauthn_credentials:
+    delete: Выдаліць
