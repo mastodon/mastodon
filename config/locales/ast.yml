@@ -40,6 +40,7 @@ ast:
       web: Web
     announcements:
       destroyed_msg: '¡L''anunciu desanicióse correutamente!'
+      empty: Nun s'atopó nengún anunciu.
       new:
         title: Anunciu nuevu
       published_msg: '¡L''anunciu espublizóse coreutamente!'
@@ -207,7 +208,7 @@ ast:
     archive_takeout:
       date: Data
       download: Baxar l'archivu
-      hint_html: Pues solicitar un archivu colos tos <strong>barritos y ficheros xubíos</strong>. Los datos esportaos van tar nel formatu ActivityPub, llexible pa cualesquier software que seya compatible. Pues solicitar un archivu cada 7 díes.
+      hint_html: Pues solicitar un archivu colos tos <strong>artículos y ficheros xubíos</strong>. Los datos esportaos van tar nel formatu ActivityPub, llexible pa cualesquier software que seya compatible. Pues solicitar un archivu cada 7 díes.
       in_progress: Compilando l'archivu...
       request: Solicitar l'archivu
       size: Tamañu
@@ -228,6 +229,12 @@ ast:
       thread: Conversaciones
     index:
       empty: Nun tienes peñeres.
+      keywords:
+        one: "%{count} pallabra clave"
+        other: "%{count} pallabres claves"
+      statuses:
+        one: "%{count} artículu"
+        other: "%{count} artículos"
       title: Peñeres
     new:
       title: Amestar una peñera nueva
@@ -320,6 +327,7 @@ ast:
     setup: Configurar
   pagination:
     next: Siguiente
+    truncate: "&hellip;"
   polls:
     errors:
       already_voted: Yá votesti nesta encuesta
@@ -347,9 +355,12 @@ ast:
       generic: Restolador desconocíu
       ie: Internet Explorer
       micro_messenger: MicroMessenger
+      nokia: Restolador Ovi pa S40 de Nokia
       opera: Opera
       otter: Otter
       phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
       weibo: Weibo
     current_session: Sesión actual
