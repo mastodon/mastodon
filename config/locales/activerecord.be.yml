@@ -7,7 +7,7 @@ be:
       user:
         agreement: Пагадненне аб абслугоўванні
         email: Адрас электроннай пошты
-        locale: Лакальныя
+        locale: Лакаль
         password: Пароль
       user/account:
         username: Імя карыстальніка
@@ -18,20 +18,20 @@ be:
         account:
           attributes:
             username:
-              invalid: павінна змяшчаць толькі літары, лічбы і ніжняя падкрэсліванне
+              invalid: павінна змяшчаць толькі літары, лічбы і ніжнія падкрэсліванні
               reserved: зарэзервавана
         admin/webhook:
           attributes:
             url:
-              invalid: Нядзейсны URL
+              invalid: нядзейсны URL
         doorkeeper/application:
           attributes:
             website:
-              invalid: Нядзейсны URL
+              invalid: нядзейсны URL
         import:
           attributes:
             data:
-              malformed: утрымлівае дэфармацыю
+              malformed: дэфармаваны
         status:
           attributes:
             reblog:
@@ -42,11 +42,11 @@ be:
               blocked: выкарыстоўвае забароненую крыніцу электроннай пошты
               unreachable: можа не існаваць
             role_id:
-              elevated: не можа быць вышэй за абраную роль
+              elevated: не можа быць вышэй за вашу бягучую ролю
         user_role:
           attributes:
             permissions_as_keys:
-              own_role: не можа быць вышэй за абраную роль
+              own_role: не можа быць зменены з вашай бягучай роляй
             position:
-              elevated: не можа быць вышэй за абраную роль
-              own_role: не можа быць вышэй за абраную роль
+              elevated: не можа быць вышэй за вашу бягучую ролю
+              own_role: не можа быць зменены з вашай бягучай роляй
