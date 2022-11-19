@@ -640,6 +640,33 @@ zh-HK:
         manage_blocks_description: 允許使用者封鎖電郵供應商和 IP 地址
         manage_custom_emojis: 管理自訂表情符號
         manage_custom_emojis_description: 允許使用者管理伺服器上的自訂表情符號
+        manage_federation: 管理跨站
+        manage_federation_description: 容許使用者封鎖或允許與其他網域跨站，並控制其傳遞能力
+        manage_invites: 管理邀請
+        manage_invites_description: 允許使用者瀏覽與停用邀請連結
+        manage_reports: 管理檢舉
+        manage_reports_description: 允許使用者查閱檢舉報告並對此執行審核動作
+        manage_roles: 管理身份
+        manage_roles_description: 允許使用者管理和指派低於他們自己的身份
+        manage_rules: 管理規則
+        manage_rules_description: 允許使用者變更伺服器規則
+        manage_settings: 管理設定
+        manage_settings_description: 允許使用者變更網站設定
+        manage_taxonomies: 管理分類
+        manage_taxonomies_description: 允許使用者審查熱門內容和更新標籤設定
+        manage_user_access: 管理使用者存取權
+        manage_user_access_description: 允許使用者禁用其他人的雙重認證，變更他們的電郵地址和重設密碼
+        manage_users: 管理使用者
+        manage_users_description: 允許使用者查看其他使用者的詳細資料，並對其進行審核動作
+        manage_webhooks: 管理 Webhooks
+        manage_webhooks_description: 允許使用者為管理事件設置 webhooks
+        view_audit_log: 查看審核日誌
+        view_audit_log_description: 允許使用者查看伺服器的管理動作歷史紀錄
+        view_dashboard: 查看儀表板
+        view_dashboard_description: 允許使用者存取儀表板及各種指標
+        view_devops: DevOps
+        view_devops_description: 允許使用者存取 Sidekiq 及 pgHero 儀表板
+      title: 身份
     rules:
       add_new: 新增規則
       delete: 刪除
@@ -648,21 +675,50 @@ zh-HK:
       empty: 尚未定義伺服器規則
       title: 伺服器守則
     settings:
+      about:
+        manage_rules: 管理伺服器規則
+        preamble: 提供有關如何運作、管理和資助伺服器的詳細資訊。
+        rules_hint: 這是有關你的使用者應遵守的規則的專區。
+        title: 關於
+      appearance:
+        preamble: 自訂 Mastodon 網頁介面。
+        title: 外觀
+      branding:
+        preamble: 你的伺服器的品牌使它與網絡上的其他伺服器區分開來。這些資訊可能會在各種情境下顯示，如 Mastodon 的網頁介面、原生應用程式，以及其他網站和通訊應用程式內的連結預覽等。因此，請盡量保持資訊簡短精煉。
+        title: 品牌
+      content_retention:
+        preamble: 控制使用者生成的內容如何儲存在 Mastodon。
+        title: 內容留存
+      discovery:
+        follow_recommendations: 追蹤建議
+        preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。
+        profile_directory: 個人檔案目錄
+        public_timelines: 公共時間軸
+        title: 探索
+        trends: 熱門
       domain_blocks:
         all: 給任何人
         disabled: 給沒有人
         users: 所有已登入的帳號
+      registrations:
+        preamble: 控制誰可在你的伺服器上建立帳號。
+        title: 註冊
       registrations_mode:
         modes:
           approved: 註冊需要核准
           none: 沒有人可註冊
           open: 任何人皆能註冊
+      title: 伺服器設定
     site_uploads:
       delete: 刪除上傳的檔案
       destroyed_msg: 成功刪除站台的上傳項目！
     statuses:
+      account: 作者
+      application: 應用程式
       back_to_account: 返回帳戶信息頁
+      back_to_report: 返回檢舉頁面
       batch:
+        remove_from_report: 從檢舉中移除
         report: 檢舉
       deleted: 已刪除
       favourites: 最愛
@@ -673,6 +729,7 @@ zh-HK:
         title: 媒體檔案
       metadata: Metadata
       no_status_selected: 因未選擇嘟文而未變更。
+      open: 公開帖文
       original_status: 原始帖文
       reblogs: 轉發
       status_changed: 帖文已變更
@@ -1001,24 +1058,49 @@ zh-HK:
     index:
       delete: 刪除
       empty: 你沒有過濾器。
+      expires_on: 於 %{date} 到期
+      keywords:
+        other: "%{count} 個關鍵字"
+      statuses:
+        other: "%{count} 則帖文"
+      statuses_long:
+        other: "%{count} 則個別隱藏的帖文"
       title: 篩選
     new:
+      save: 儲存新篩選器
       title: 新增篩選器
+    statuses:
+      back_to_filter: 返回篩選器
+      batch:
+        remove: 從篩選器移除
+      index:
+        hint: 不管其他條件如何，此篩選器會套用於所選的個別帖文。你可以在網頁介面上加入更多帖文到此篩選器。
+        title: 篩選帖文
   footer:
     trending_now: 今期流行
   generic:
     all: 全部
+    all_items_on_page_selected_html:
+      other: 已選取此頁面上的 <strong>%{count}</strong> 個項目。
+    all_matching_items_selected_html:
+      other: 已選取符合你搜尋的 <strong>%{count}</strong> 個項目。
     changes_saved_msg: 已成功儲存修改。
     copy: 複製
     delete: 刪除
+    deselect: 取消全選
+    none: 無
     order_by: 排序
     save_changes: 儲存修改
+    select_all_matching_items:
+      other: 選取 %{count} 個符合你搜尋的項目。
+    today: 今天
     validation_errors:
       other: 提交的資料有 %{count} 項問題
   html_validator:
     invalid_markup: '含有無效的HTML標記：%{error}'
   imports:
     errors:
+      invalid_csv_file: '無效的 CSV 檔案。錯誤：%{error}'
       over_rows_processing_limit: 包含超過 %{count} 行
     modes:
       merge: 合併
@@ -1111,7 +1193,14 @@ zh-HK:
     carry_blocks_over_text: 此用戶從%{acct} 轉移，該帳號已被你封鎖。
     carry_mutes_over_text: 此用戶從%{acct} 轉移，該帳號已被你靜音。
     copy_account_note_text: '此用戶從%{acct} 轉移，這是你之前在該帳號留下的備注：'
+  navigation:
+    toggle_menu: 切換選單
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} 提交了檢舉"
+      sign_up:
+        subject: "%{name} 已註冊"
     favourite:
       body: '你的文章被 %{name} 喜愛：'
       subject: "%{name} 喜歡你的文章"
@@ -1138,6 +1227,8 @@ zh-HK:
       title: 新的轉推
     status:
       subject: "%{name} 剛發表了文章"
+    update:
+      subject: "%{name} 編輯了帖文"
   notifications:
     email_events: 電郵通知活動
     email_events_hint: '選擇你想接收通知的活動：'
@@ -1181,6 +1272,8 @@ zh-HK:
     other: 其他
     posting_defaults: 發佈預設值
     public_timelines: 公共時間軸
+  privacy_policy:
+    title: 私隱政策
   reactions:
     errors:
       limit_reached: 已達到可以給予反應極限
@@ -1204,6 +1297,14 @@ zh-HK:
     status: 帳戶帖文
   remote_follow:
     missing_resource: 無法找到你用戶的轉接網址
+  reports:
+    errors:
+      invalid_rules: 未引用有效的規則
+  rss:
+    content_warning: '內容警告：'
+    descriptions:
+      account: 來自 @%{acct} 的公開帖文
+      tag: '#%{hashtag} 標籤的公開帖文'
   scheduled_statuses:
     over_daily_limit: 你已經超越了當天排定發文的限額 (%{limit})
     over_total_limit: 你已經超越了排定發文的限額 (%{limit})
@@ -1213,6 +1314,7 @@ zh-HK:
     browser: 瀏覽器
     browsers:
       alipay: 支付寶
+      blackberry: BlackBerry
       chrome: Chrome 瀏覽器
       edge: Microsoft Edge 瀏覽器
       electron: Electron 瀏覽器
@@ -1226,6 +1328,7 @@ zh-HK:
       phantom_js: PhantomJS 瀏覽器
       qq: QQ瀏覽器
       safari: Safari 瀏覽器
+      uc_browser: UC 瀏覽器
       weibo: 新浪微博
     current_session: 目前的作業階段
     description: "%{platform} 上的 %{browser}"
@@ -1234,6 +1337,8 @@ zh-HK:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1266,6 +1371,7 @@ zh-HK:
     profile: 個人資料
     relationships: 關注及追隨者
     statuses_cleanup: 自動嘟文刪除
+    strikes: 審核警告
     two_factor_authentication: 雙重認證
     webauthn_authentication: 安全鑰匙
   statuses:
@@ -1279,13 +1385,16 @@ zh-HK:
         other: "%{count} 段影片"
     boosted_from_html: 轉推自 %{acct_link}
     content_warning: '內容警告： %{warning}'
+    default_language: 與介面語言相同
     disallowed_hashtags:
       other: '包含不允許的標籤： %{tags}'
+    edited_at_html: 編輯於 %{date}
     errors:
       in_reply_not_found: 你所回覆的嘟文並不存在。
     open_in_web: 開啟網頁
     over_character_limit: 超過了 %{max} 字的限制
     pin_errors:
+      direct: 無法將只有被提及使用者可見的帖文置頂
       limit: 你所置頂的文章數量已經達到上限
       ownership: 不能置頂他人的文章
       reblog: 不能置頂轉推
@@ -1336,7 +1445,7 @@ zh-HK:
       '2629746': 1 個月
       '31556952': 1 年
       '5259492': 2 個月
-      '604800': 1 week
+      '604800': 一週
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 按時間篩選
@@ -1348,6 +1457,9 @@ zh-HK:
     pinned: 置頂文章
     reblogged: 轉推
     sensitive_content: 敏感內容
+  strikes:
+    errors:
+      too_late: 對此次警告提出申訴已經太遲
   tags:
     does_not_match_previous_name: 和舊有名稱並不符合
   themes:
@@ -1358,6 +1470,7 @@ zh-HK:
     formats:
       default: "%Y年%-m月%d日 %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: 新增
     disable: 停用
@@ -1374,11 +1487,28 @@ zh-HK:
     recovery_instructions_html: 如果你遺失了安裝認證器的裝置（如︰你的電話），你可以使用備用驗證碼進行登入。請確保將備用驗證碼收藏穩當，（如列印出來，和你其他重要文件一起存放）。
     webauthn: 安全密鑰
   user_mailer:
+    appeal_approved:
+      action: 前往你的帳號
+      explanation: 你在 %{appeal_date} 提交針對你帳號於 %{strike_date} 被警告的申訴已獲得批准。你的帳號再次回到良好狀態。
+      subject: 你在 %{date} 提出的申訴已獲批准
+      title: 申訴已批准
+    appeal_rejected:
+      explanation: 你在 %{appeal_date} 提交針對你帳號於 %{strike_date} 被警告的申訴已被駁回。
+      subject: 你在 %{date} 提出的申訴已被駁回
+      title: 申訴被駁回
     backup_ready:
       explanation: 你要求的 Mastodon 帳號完整備份檔案現已就緒，可供下載。
       subject: 你的備份檔已可供下載
       title: 檔案匯出
+    suspicious_sign_in:
+      change_password: 更改你的密碼
+      details: '以下是登入的細節：'
+      explanation: 我們偵測到有新的 IP 地址登入你的帳號。
+      further_actions_html: 如果這不是你，我們建議你立即 %{action} 並啟用雙重認證，以確保帳號安全。
+      subject: 你的帳號被一個新的 IP 地址存取
+      title: 新登入
     warning:
+      appeal: 提交申訴
       subject:
         disable: 你的帳號 %{acct} 已經被涷結
         none: 警告帳號%{acct}
