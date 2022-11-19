@@ -1,4 +1,3 @@
----
 ko:
   devise:
     confirmations:
@@ -19,7 +18,7 @@ ko:
     mailer:
       confirmation_instructions:
         action: 이메일 확인
-        action_with_app: 확인하고 %{app} 앱으로 돌아가기
+        action_with_app: 확인하고 %{app}으로 돌아가기
         explanation: 당신은 %{host}에서 이 이메일로 가입하셨습니다. 클릭만 하시면 계정이 활성화 됩니다. 만약 당신이 가입한 게 아니라면 이 메일을 무시해 주세요.
         explanation_when_pending: 당신은 %{host}에 가입 요청을 하셨습니다. 이 이메일이 확인 되면 우리가 가입 요청을 리뷰하고 승인할 수 있습니다. 그 전까지는 로그인을 할 수 없습니다. 당신의 가입 요청이 거부 될 경우 당신에 대한 정보는 모두 삭제 되며 따로 요청 할 필요는 없습니다. 만약 당신이 가입 요청을 한 게 아니라면 이 메일을 무시해 주세요.
         extra_html: <a href="%{terms_path}">서버의 규칙</a>과 <a href="%{policy_path}">이용 약관</a>도 확인해 주세요.
@@ -79,7 +78,7 @@ ko:
         title: 보안 키 활성화 됨
     omniauth_callbacks:
       failure: '"%{reason}" 때문에 당신을 %{kind}에서 인증할 수 없습니다.'
-      success: "%{kind} 계정을 성공적으로 인증했습니다."
+      success: '%{kind} 계정을 성공적으로 인증했습니다.'
     passwords:
       no_token: 패스워드 재설정 이메일을 거치지 않고는 여기에 올 수 없습니다. 만약 패스워드 재설정 메일에서 온 것이라면 URL이 맞는지 확인해 주세요.
       send_instructions: 당신의 이메일 주소가 우리의 DB에 있다면 패스워드 복구 링크가 몇 분 이내에 메일로 발송 됩니다. 만약 메일을 받지 못 하신 경우 스팸 폴더를 확인해 주세요.
@@ -106,7 +105,7 @@ ko:
   errors:
     messages:
       already_confirmed: 이미 확인 되었습니다, 로그인 하세요
-      confirmation_period_expired: "%{period} 안에 확인을 해야 합니다, 새로 요청하세요"
+      confirmation_period_expired: '%{period} 안에 확인을 해야 합니다, 새로 요청하세요'
       expired: 만료되었습니다, 새로 요청하세요
       not_found: 찾을 수 없습니다
       not_locked: 잠기지 않았습니다
