@@ -45,6 +45,91 @@ module Mastodon
       say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)}) #{dry_run}", :green, true)
     end
 
+    option :days, type: :numeric, default: 60, aliases: [:d]
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, default: false, aliases: [:v]
+    option :dry_run, type: :boolean, default: false
+    option :aggressive, type: :boolean, default: false, aliases: [:a]
+    desc 'prune-profile-media', 'Remove profile media files (headers, avatars)'
+    long_desc <<-DESC
+      Removes locally cached copies of profile media files from other servers.
+
+      The --days option specifies how old the last webfinger request to the user
+      has to be before they are removed. It defaults to 60 days.
+
+      If --aggressive is specified all non-local accounts will be pruned, by
+      default only accounts that are not followed by or following anyone locally
+      are pruned.
+    DESC
+    def prune_profile_media
+      time_ago   = options[:days].days.ago
+      dry_run    = options[:dry_run] ? '(DRY RUN)' : ''
+      aggressive = options[:aggressive]
+
+      processed, aggregate = parallelize_with_progress(
+        Account.where(last_webfingered_at: ..time_ago)
+               .left_outer_joins(:user)
+               .where(user: { id: nil })
+        ) do |account|
+        next if account.local?
+        next if (not account.avatar.present? and not account.header.present?)
+        next if not aggressive and Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
+        
+        size = (account.avatar_file_size || 0) + (account.header_file_size || 0)
+
+        unless options[:dry_run]
+          account.avatar.destroy
+          account.header.destroy
+          account.save
+        end
+        
+        size
+      end
+
+      say("Checked #{processed} accounts and removed avatars and header images (approx. #{number_to_human_size(aggregate)}) #{dry_run}", :green, true)
+    end
+
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, default: false, aliases: [:v]
+    option :dry_run, type: :boolean, default: false
+    desc 'fetch-profile-media', 'Re-download profile media files (headers, avatars)'
+    long_desc <<-DESC
+      Populates locally cached copies of profile media files from other servers.
+    DESC
+    def fetch_profile_media
+      dry_run    = options[:dry_run] ? '(DRY RUN)' : ''
+      aggressive = options[:aggressive]
+
+      processed, aggregate = parallelize_with_progress(
+        Account
+          .left_outer_joins(:user)
+          .where('avatar_file_name IS NULL OR header_file_name IS NULL')
+          .where(user: { id: nil })
+      ) do |account|
+
+        size = 0
+        unless options[:dry_run]
+          unless account.avatar.present? or account.avatar_remote_url.blank?
+            account.download_avatar!
+            if account.avatar_file_size?
+              size = size + account.avatar_file_size
+            end
+          end
+          unless account.header.present? or account.header_remote_url.blank?
+            account.download_header!
+            if account.header_file_size?
+              size = size + account.header_file_size
+            end
+          end
+          account.save
+        end
+        
+        size
+      end
+
+      say("Checked #{processed} accounts and downloaded avatars and header images (approx. #{number_to_human_size(aggregate)}) #{dry_run}", :green, true)
+    end
+
     option :start_after
     option :prefix
     option :fix_permissions, type: :boolean, default: false
