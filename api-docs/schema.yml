@@ -2354,10 +2354,13 @@ paths:
       - Admin
       - AccountActions
       operationId: v1AdminAccountactionsCreateAccountAction
+      description: Perform an action against an account and log this action in the
+        moderation history.
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - admin:write
+        - admin:write:accounts
       parameters:
       - name: authorization
         in: header
@@ -2366,13 +2369,77 @@ paths:
           type: string
       responses:
         '200':
-          description: successful
+          description: disable successful
           content:
             application/json:
               examples:
-                successful:
+                disable_successful:
+                  value: {}
+              schema:
+                type: object
+        '403':
+          description: not permitted
+          content:
+            application/json:
+              examples:
+                not_permitted:
+                  value:
+                    error: This action is not allowed
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '404':
+          description: account not found
+          content:
+            application/json:
+              examples:
+                account_not_found:
                   value:
                     error: Record not found
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  description: 'Type of action to be taken. Enumerable oneOf: none
+                    disable silence suspend'
+                  type: string
+                  enum:
+                  - none
+                  - disable
+                  - silence
+                  - suspend
+                report_id:
+                  type: string
+                  description: ID of an associated report that caused this action
+                    to be taken
+                warning_preset_id:
+                  type: string
+                  description: ID of a preset warning
+                text:
+                  type: string
+                  description: Additional text for clarification of why this action
+                    was taken
+                send_email_notification:
+                  type: boolean
+                  description: Whether an email should be sent to the user with the
+                    above information.
+              example:
+                type: disable
+                text: test action
+                warning_preset_id: '13'
+                report_id: '11'
+                send_email_notification: false
+        required: true
   "/api/v1/admin/accounts/{id}/enable":
     parameters:
     - name: id
