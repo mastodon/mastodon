@@ -10,11 +10,6 @@ COPY --link --from=ruby /opt/ruby /opt/ruby
 ENV DEBIAN_FRONTEND="noninteractive" \
     PATH="${PATH}:/opt/ruby/bin"
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-
-WORKDIR /opt/mastodon
-COPY Gemfile* package.json yarn.lock /opt/mastodon/
-
 RUN apt update && \
     apt-get install -y --no-install-recommends build-essential \
         ca-certificates \
@@ -31,12 +26,22 @@ RUN apt update && \
         ca-certificates \
         libreadline8 \
         python3 \
-        shared-mime-info && \
-    bundle config set --local deployment 'true' && \
+        shared-mime-info
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
+WORKDIR /opt/mastodon
+
+COPY Gemfile* /opt/mastodon/
+
+RUN bundle config set --local deployment 'true' && \
     bundle config set --local without 'development test' && \
     bundle config set silence_root_warning true && \
-    bundle install -j"$(nproc)" && \
-    yarn install --pure-lockfile
+    bundle install -j"$(nproc)"
+
+COPY streaming/package.json streaming/yarn.lock /opt/mastodon/streaming/
+
+RUN cd streaming && yarn install --pure-lockfile
 
 FROM node:${NODE_VERSION}
 
@@ -87,7 +92,9 @@ USER mastodon
 WORKDIR /opt/mastodon
 
 # Precompile assets
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
+RUN yarn install --pure-lockfile && \
+    OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
+    rm -rf node_modules && \
     yarn cache clean
 
 # Set the work dir and the container entry point
