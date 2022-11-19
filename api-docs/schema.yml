@@ -3870,13 +3870,36 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - admin:read
       parameters:
       - name: authorization
         in: header
         required: true
         schema:
           type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return. Defaults to 40.
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
@@ -3884,7 +3907,62 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '109370769409780228'
+                    created_at: '2022-11-19T13:45:00.065Z'
+                    in_reply_to_id:
+                    in_reply_to_account_id:
+                    sensitive: false
+                    spoiler_text: ''
+                    visibility: public
+                    language: en
+                    uri: https://cb6e6126.ngrok.io/users/marketta_reinger103/statuses/109370769409780228
+                    url: https://cb6e6126.ngrok.io/@marketta_reinger103/109370769409780228
+                    replies_count: 0
+                    reblogs_count: 0
+                    favourites_count: 0
+                    edited_at:
+                    favourited: false
+                    reblogged: false
+                    muted: false
+                    bookmarked: false
+                    content: "<p>Lorem ipsum dolor sit amet</p>"
+                    filtered: []
+                    reblog:
+                    application:
+                    account:
+                      id: '109370769409804209'
+                      username: marketta_reinger103
+                      acct: marketta_reinger103
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2022-11-19T00:00:00.000Z'
+                      note: ''
+                      url: https://cb6e6126.ngrok.io/@marketta_reinger103
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 0
+                      following_count: 0
+                      statuses_count: 1
+                      last_status_at: '2022-11-19'
+                      noindex: false
+                      emojis: []
+                      fields: []
+                    media_attachments: []
+                    mentions: []
+                    tags: []
+                    emojis: []
+                    card:
+                    poll:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Status"
   "/api/v1/admin/trends/tags":
     get:
       summary: list tags
