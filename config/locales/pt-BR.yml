@@ -165,7 +165,7 @@ pt-BR:
       whitelisted: Permitido
     action_logs:
       action_types:
-        approve_appeal: Aprovar recurso
+        approve_appeal: Aprovar revisão
         approve_user: Aprovar usuário
         assigned_to_self_report: Atribuir denúncia
         change_email_user: Alterar e-mail do usuário
@@ -202,7 +202,7 @@ pt-BR:
         enable_user: Ativar usuário
         memorialize_account: Converter conta em memorial
         promote_user: Promover usuário
-        reject_appeal: Rejeitar recurso
+        reject_appeal: Rejeitar revisão
         reject_user: Rejeitar usuário
         remove_avatar_user: Remover imagem de perfil
         reopen_report: Reabrir relatório
@@ -224,7 +224,7 @@ pt-BR:
         update_status: Editar Status
         update_user_role: Atualizar cargo
       actions:
-        approve_appeal_html: "%{name} aprovou o recurso de decisão de moderação de %{target}"
+        approve_appeal_html: "%{name} aprovou a revisão da decisão da moderação em %{target}"
         approve_user_html: "%{name} aprovado inscrição de %{target}"
         assigned_to_self_report_html: "%{name} atribuiu a denúncia %{target} para si"
         change_email_user_html: "%{name} alterou o endereço de e-mail do usuário %{target}"
@@ -261,7 +261,7 @@ pt-BR:
         enable_user_html: "%{name} ativou o login para %{target}"
         memorialize_account_html: "%{name} transformou a conta de %{target} em um memorial"
         promote_user_html: "%{name} promoveu o usuário %{target}"
-        reject_appeal_html: "%{name} rejeitou recurso de decisão de moderação de %{target}"
+        reject_appeal_html: "%{name} rejeitou a revisão da decisão da moderação em %{target}"
         reject_user_html: "%{name} rejeitou a inscrição de %{target}"
         remove_avatar_user_html: "%{name} removeu a imagem de perfil de %{target}"
         reopen_report_html: "%{name} reabriu a denúncia %{target}"
@@ -345,8 +345,8 @@ pt-BR:
       new_users: novos usuários
       opened_reports: denúncias abertas
       pending_appeals_html:
-        one: "<strong>%{count}</strong> recurso pendente"
-        other: "<strong>%{count}</strong> recursos pendentes"
+        one: "<strong>%{count}</strong> revisão pendente"
+        other: "<strong>%{count}</strong> revisões pendentes"
       pending_reports_html:
         one: "<strong>%{count}</strong> denúncia pendente"
         other: "<strong>%{count}</strong> denúncias pendentes"
@@ -366,8 +366,8 @@ pt-BR:
       website: Site
     disputes:
       appeals:
-        empty: Nenhum recurso encontrado.
-        title: Apelações
+        empty: Sem revisões.
+        title: Revisões
     domain_allows:
       add_new: Permitir domínio
       created_msg: Domínio foi permitido
@@ -428,6 +428,7 @@ pt-BR:
     export_domain_blocks:
       import:
         description_html: Você está prestes a importar uma lista de boqueio de domínio. Por favor, revise esta lista com muito cuidado, especialmente se você mesmo não criou esta lista.
+        private_comment_template: Importado de %{source} em %{date}
         title: Importar bloqueio de domínios
       new:
         title: Importar bloqueio de domínios
@@ -639,8 +640,8 @@ pt-BR:
         invite_users_description: Permite que os usuários convidem novas pessoas para o servidor
         manage_announcements: Gerenciar Avisos
         manage_announcements_description: Permite aos usuários gerenciar anúncios no servidor
-        manage_appeals: Gerenciar Apelações
-        manage_appeals_description: Permite aos usuários revisar as apelações contra ações de moderação
+        manage_appeals: Gerenciar revisões
+        manage_appeals_description: Permite aos usuários visualizar as revisões das decisões da moderação
         manage_blocks: Gerenciar Bloqueios
         manage_blocks_description: Permite aos usuários bloquear provedores de e-mail e endereços IP
         manage_custom_emojis: Gerenciar Emojis Personalizados
@@ -751,8 +752,8 @@ pt-BR:
         sensitive: "%{name} marcou as publicações de %{target} como sensíveis"
         silence: "%{name} limitou a conta de %{target}"
         suspend: "%{name} suspendeu a conta de %{target}"
-      appeal_approved: Apelado
-      appeal_pending: Recurso pendente
+      appeal_approved: Revisado
+      appeal_pending: Revisão pendente
     system_checks:
       database_schema_check:
         message_html: Existem migrações de banco de dados pendentes. Execute-as para garantir que o aplicativo se comporte como esperado
@@ -840,9 +841,11 @@ pt-BR:
     webhooks:
       add_new: Adicionar endpoint
       delete: Excluir
+      description_html: Um <strong>webhook</strong> permite que o Mastodon envie <strong>notificações em tempo real</strong> sobre os eventos escolhidos para a sua própria aplicação, então sua aplicação pode <strong>acionar reações automaticamente</strong>.
       disable: Desabilitar
       disabled: Desativado
       edit: Editar endpoint
+      empty: Você não tem webhooks configurados nos endpoints.
       enable: Habilitar
       enabled: Ativo
       enabled_events:
@@ -865,7 +868,9 @@ pt-BR:
         sensitive: para marcar sua conta como sensível
         silence: para limitar sua conta
         suspend: para suspender sua conta
-      body: "%{target} está apelando por uma decisão de moderação de %{action_taken_by} em %{date}, que era %{type}. Escreveu:"
+      body: "%{target} está solicitando uma revisão da decisão da moderação por %{action_taken_by} em %{date}, que era %{type}. Ele escreveu:"
+      next_steps: Você pode aprovar a revisão para desfazer a decisão da moderação ou ignorá-la.
+      subject: "%{username} está solicitando uma revisão da decisão da moderação em %{instance}"
     new_pending_account:
       body: Os detalhes da nova conta estão abaixo. Você pode aprovar ou vetar.
       subject: Nova conta para revisão em %{instance} (%{username})
@@ -1022,19 +1027,19 @@ pt-BR:
   disputes:
     strikes:
       action_taken: Ações tomadas
-      appeal: Recurso
-      appeal_approved: Este recurso foi contestado e não é mais válido
-      appeal_rejected: O recurso foi rejeitado
-      appeal_submitted_at: Recurso enviado
-      appealed_msg: Seu recurso foi enviado. Se ele for aprovado, você será notificado.
+      appeal: Revisão
+      appeal_approved: Esta punição foi revisada e não é mais válida
+      appeal_rejected: A revisão foi rejeitada
+      appeal_submitted_at: Revisão enviada
+      appealed_msg: Sua revisão foi enviada. Se ela for aprovada, você será notificado.
       appeals:
-        submit: Enviar recurso
-      approve_appeal: Aprovar recurso
+        submit: Enviar revisão
+      approve_appeal: Aprovar revisão
       associated_report: Denúncia associada
       created_at: Datado
       description_html: Estas são ações tomadas contra sua conta e avisos que foram enviados a você pela equipe de %{instance}.
       recipient: Endereçado para
-      reject_appeal: Rejeitar recurso
+      reject_appeal: Rejeitar revisão
       status: 'Publicação #%{id}'
       status_removed: Publicação já removida do sistema
       title: "%{action} de %{date}"
@@ -1046,9 +1051,9 @@ pt-BR:
         sensitive: Marcar a conta como sensível
         silence: Limitação da conta
         suspend: Suspensão de conta
-      your_appeal_approved: Seu recurso foi aprovado
-      your_appeal_pending: Você submeteu um recurso
-      your_appeal_rejected: Seu recurso foi rejeitado
+      your_appeal_approved: Sua revisão foi aprovada
+      your_appeal_pending: Você enviou uma revisão
+      your_appeal_rejected: Sua revisão foi rejeitada
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
@@ -1522,7 +1527,7 @@ pt-BR:
     sensitive_content: Conteúdo sensível
   strikes:
     errors:
-      too_late: É tarde demais para apelar esta violação
+      too_late: É tarde demais para solicitar uma revisão desta punição
   tags:
     does_not_match_previous_name: não corresponde ao nome anterior
   themes:
@@ -1552,13 +1557,13 @@ pt-BR:
   user_mailer:
     appeal_approved:
       action: Acessar perfil
-      explanation: O recurso contra o aviso dado à sua conta em %{strike_date} que você submeteu em %{appeal_date} foi aprovado. Sua conta está novamente em situação regular.
-      subject: Seu recurso de %{date} foi aprovado
-      title: Contestação aprovada
+      explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi aprovada. Sua conta está novamente em situação regular.
+      subject: Sua revisão de %{date} foi aprovada
+      title: Revisão aprovada
     appeal_rejected:
-      explanation: O recurso contra o aviso dado à sua conta em %{strike_date} que você submeteu em %{appeal_date} foi rejeitado.
-      subject: Seu recurso de %{date} foi rejeitado
-      title: Contestação rejeitada
+      explanation: A revisão da punição na sua conta em %{strike_date} que você enviou em %{appeal_date} foi rejeitada.
+      subject: Sua revisão de %{date} foi rejeitada
+      title: Revisão rejeitada
     backup_ready:
       explanation: Você pediu um backup completo da sua conta no Mastodon. E agora está pronto para ser baixado!
       subject: Seu arquivo está pronto para ser baixado
@@ -1571,8 +1576,8 @@ pt-BR:
       subject: Sua conta foi acessada a partir de um novo endereço IP
       title: Um novo login
     warning:
-      appeal: Enviar uma contestação
-      appeal_description: Se você acredita que isso é um erro, você pode enviar um apelo para a equipe de %{instance}.
+      appeal: Enviar uma revisão
+      appeal_description: Se você acredita que isso é um erro, você pode enviar uma revisão para a equipe de %{instance}.
       categories:
         spam: Spam
         violation: O conteúdo viola as seguintes diretrizes da comunidade
