@@ -19,7 +19,7 @@ RSpec.describe Api::V1::BlocksController, type: :request do
       let!(:accounts) do
         3.times.map { Fabricate(:account) }
       end
-      
+
       response(200, 'successful') do
         schema type: :array, items: { '$ref' => '#/components/schemas/Account' }
         let(:limit) { 2 }

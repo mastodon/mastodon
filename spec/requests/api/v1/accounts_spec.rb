@@ -271,7 +271,7 @@ RSpec.describe Api::V1::AccountsController, type: :request do
 
       let(:user)   { Fabricate(:user) }
       let(:scopes) { '' }
-      let!(:token)  { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
+      let!(:token) { Fabricate(:accessible_access_token, resource_owner_id: user.id, scopes: scopes) }
 
       let(:app) { Fabricate(:application) }
       let(:user_token) do
@@ -292,7 +292,7 @@ RSpec.describe Api::V1::AccountsController, type: :request do
             password: '12345678',
             agreement: 'true',
             locale: 'en',
-            reaon: 'something reasonable'
+            reaon: 'something reasonable',
           }
         end
         # TODO: Fix not working spec

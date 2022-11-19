@@ -31,7 +31,7 @@ RSpec.describe Api::V1::ReportsController, type: :request do
       end
 
       response(200, 'successful') do
-        schema type: :object, '$ref' => '#/components/schemas/Report'
+        schema :type => :object, '$ref' => '#/components/schemas/Report'
         let(:payload) do
           {
             status_ids: [status.id],
