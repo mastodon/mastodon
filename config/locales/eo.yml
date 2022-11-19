@@ -318,7 +318,7 @@ eo:
     dashboard:
       active_users: aktivaj uzantoj
       interactions: interago
-      media_storage: Memorilo de aŭdovidaĵoj
+      media_storage: Konservo de aŭdovidaĵoj
       new_users: novaj uzantoj
       opened_reports: raportoj malfermitaj
       pending_tags_html:
@@ -364,7 +364,7 @@ eo:
       obfuscate: Malklara domajna nomo
       private_comment: Privata komento
       public_comment: Publika komento
-      reject_media: Malakcepti la aŭdovidajn dosierojn
+      reject_media: Malakcepti aŭdovidajn dosierojn
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Ne koncernas haltigojn
       reject_reports: Malakcepti signalojn
       reject_reports_hint: Ignori ĉiujn signalojn el tiu domajno. Ne koncernas haltigojn
@@ -400,7 +400,7 @@ eo:
       content_policies:
         comment: Interna noto
         policies:
-          reject_media: Malakcepti la aŭdovidaĵojn
+          reject_media: Malakcepti aŭdovidaĵojn
           reject_reports: Malakcepti raportojn
           silence: Kaŝu
           suspend: Suspendi
@@ -413,7 +413,7 @@ eo:
         instance_followers_measure: niaj sekvantoj tie
         instance_follows_measure: iliaj sekvantoj ĉi tie
         instance_languages_dimension: Ĉefaj lingvoj
-        instance_media_attachments_measure: stokitaj aŭdovidaj aldonaĵoj
+        instance_media_attachments_measure: konservitaj ligitaj aŭdovidaĵoj
         instance_reports_measure: raportoj pri ili
         instance_statuses_measure: konservitaj afiŝoj
       delivery:
@@ -470,9 +470,9 @@ eo:
       add_new: Aldoni novan ripetilon
       delete: Forigi
       description_html: <strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj.
-      disable: Neebligi
-      disabled: Neebligita
-      enable: Enŝalti
+      disable: Malebligi
+      disabled: Malebligita
+      enable: Ebligi
       enable_hint: Post ebligo, via servilo abonos ĉiujn publikajn mesaĝojn de tiu ripetilo, kaj komencos sendi publikajn mesaĝojn de la servilo al ĝi.
       enabled: Ebligita
       inbox_url: URL de la ripetilo
@@ -493,7 +493,7 @@ eo:
       action_log: Kontrola protokolo
       action_taken_by: Ago farita de
       actions:
-        other_description_html: Vidu pli da elektebloj por kontroli la agadon de la konto kaj personecigi la komunikadon kun la konto pri kiu raporto.
+        other_description_html: Vidu pli da ebloj por regi la sintenon de la konto kaj por personigi la komunikadon kun la raportita konto.
       add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
@@ -545,7 +545,7 @@ eo:
         special: Specialaj
       delete: Forigi
       edit: Redakti rolon de '%{name}'
-      everyone: Implicitaj permesoj
+      everyone: Defaŭltaj permesoj
       everyone_full_description_html: Jen la <strong>baza rolo</strong>, kiu afektas <strong>ĉiujn uzantojn</strong>, eĉ tiuj sen atribuata rolo. Ĉiuj aliaj roloj heredas permesojn de ĝi.
       permissions_count:
         one: "%{count} permeso"
@@ -553,7 +553,7 @@ eo:
       privileges:
         administrator: Administranto
         administrator_description: Uzantoj kun ĉi tiu permeso preterpasos ĉiun permeson
-        delete_user_data: Forviŝi la datumojn de la uzanto
+        delete_user_data: Forigi la datumojn de la uzanto
         invite_users: Inviti Uzantojn
         manage_announcements: Administri Anoncojn
         manage_announcements_description: Permesas uzantojn administri anoncojn ĉe la servilo
@@ -603,6 +603,7 @@ eo:
         remove_from_report: Forigi de raporto
         report: Raporti
       deleted: Forigita
+      favourites: Stelumoj
       history: Versia historio
       language: Lingvo
       media:
@@ -642,18 +643,19 @@ eo:
       approved: Aprobita
       disallow: Malpermesi
       links:
-        allow: Permesi la ligilon
-        disallow: Malpermesi la ligilon
+        allow: Permesi ligilon
+        disallow: Malpermesi ligilon
         title: Tendencantaj ligiloj
       pending_review: Atendante revizion
       statuses:
-        allow: Permesi la afiŝon
-        allow_account: Permesi la aŭtoron
-        disallow: Malpermesi la afiŝon
-        disallow_account: Malpermesi la aŭtoron
+        allow: Permesi afiŝon
+        allow_account: Permesi aŭtoron
+        description_html: Oni multe diskonigas kaj stelumas ĉi tiujn mesaĝojn nuntempe laŭ via servilo. Tio povas helpi novajn kaj revenantajn uzantojn trovi pli da homoj por sekvi. Mesaĝo estas montrita publike nur se vi aprobis la aŭtoron kaj se la aŭtoro aprobis ke ties konto estu proponita al aliaj. Vi ankaŭ povas permesi aŭ malakcepti specifajn mesaĝojn.
+        disallow: Malpermesi afiŝon
+        disallow_account: Malpermesi aŭtoron
         shared_by:
-          one: Kundividita kaj aldonita al la preferaĵoj unufoje
-          other: Kundividita kaj aldonita al la preferaĵoj %{friendly_count}-foje
+          one: Diskonigita kaj stelumita unufoje
+          other: Diskonigita kaj stelumita %{friendly_count}-foje
         title: Tendencantaj afiŝoj
       tags:
         dashboard:
@@ -668,8 +670,8 @@ eo:
       trending: Popularaĵoj
     warning_presets:
       add_new: Aldoni novan
-      delete: Forviŝi
-      edit_preset: Redakti la antaŭagordojn de averto
+      delete: Forigi
+      edit_preset: Redakti avertan antaŭagordon
       title: Administri avertajn antaŭagordojn
     webhooks:
       add_new: Aldoni finpunkton
@@ -692,7 +694,7 @@ eo:
       actions:
         disable: por frostigi ties konton
         none: averto
-        suspend: por suspendi iliajn kontojn
+        suspend: por suspendi ties konton
     new_pending_account:
       body: La detaloj de la nova konto estas sube. Vi povas aprobi aŭ Malakcepti ĉi kandidatiĝo.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
@@ -745,7 +747,7 @@ eo:
     description:
       prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
       prefix_sign_up: Registriĝu ĉe Mastodon hodiaŭ!
-      suffix: Kun konto, vi povos sekvi aliajn homojn, skribi afiŝojn kaj interŝanĝi mesaĝojn kun la uzantoj de iu ajn Mastodon'a servilo kaj multe pli!
+      suffix: Per konto, vi povos sekvi aliajn homojn, afiŝi kaj interŝanĝi mesaĝojn kun uzantoj de ajna Mastodona servilo kaj multe pli!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
     forgot_password: Pasvorto forgesita?
@@ -763,7 +765,7 @@ eo:
     register: Krei konton
     registration_closed: "%{instance} ne estas akcepti nova uzantojn"
     resend_confirmation: Resendi la instrukciojn por konfirmi
-    reset_password: Restarigi pasvorton
+    reset_password: Ŝanĝi pasvorton
     security: Sekureco
     set_new_password: Elekti novan pasvorton
     setup:
@@ -886,7 +888,7 @@ eo:
       contexts: Filtriloj en %{contexts}
       delete: Forigi
       empty: Vi havas neniun filtrilon.
-      expires_in: Eksvalidiĝi en %{distance}
+      expires_in: Eksvalidiĝas en %{distance}
       expires_on: Eksvalidiĝi je %{date}
       keywords:
         one: "%{count} ĉefvorto"
@@ -946,7 +948,7 @@ eo:
       one: 1 uzo
       other: "%{count} uzoj"
     max_uses_prompt: Neniu limo
-    prompt: Generi kaj kundividi ligilojn kun aliaj personoj por doni aliron al ĉi tiu servilo
+    prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu servilo
     table:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
@@ -1012,9 +1014,9 @@ eo:
       subject: '%{name} menciis vin'
       title: Nova mencio
     reblog:
-      body: 'Via mesaĝo estas suprenigita de %{name}:'
-      subject: "%{name} suprenigis vian mesaĝon"
-      title: Nova suprenigo
+      body: '%{name} diskonigis vian mesaĝon:'
+      subject: "%{name} diskonigis vian mesaĝon"
+      title: Nova diskonigo
     status:
       subject: "%{name} ĵus afiŝita"
     update:
@@ -1035,16 +1037,16 @@ eo:
           trillion: Dn
   otp_authentication:
     code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
-    enable: Enŝalti
+    enable: Ebligi
     instructions_html: "<strong>Skanu ĉi tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo en via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos enmeti."
     manual_instructions: 'Se vi ne povas skani la QR-kodon kaj bezonas enmeti ĝin mane, jen la tut-teksta sekreto:'
     setup: Agordi
     wrong_code: La enmetita kodo estis nevalida! Ĉu la servila tempo kaj la aparata tempo ĝustas?
   pagination:
     newer: Pli nova
-    next: Antaŭen
+    next: Sekva
     older: Malpli nova
-    prev: Malantaŭen
+    prev: Antaŭa
     truncate: "&hellip;"
   polls:
     errors:
@@ -1059,7 +1061,7 @@ eo:
       too_many_options: ne povas enhavi pli da %{max} proponoj
   preferences:
     other: Aliaj aferoj
-    posting_defaults: Implicitaj agordoj de afiŝado
+    posting_defaults: Afiŝaj defaŭltoj
     public_timelines: Publikaj templinioj
   privacy_policy:
     title: Privateca politiko
@@ -1128,7 +1130,7 @@ eo:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: nekonata substrato
+      other: nekonata platformo
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1168,9 +1170,9 @@ eo:
       video:
         one: "%{count} video"
         other: "%{count} videoj"
-    boosted_from_html: Suprenigita de %{acct_link}
-    content_warning: 'Averto de la enhavo: %{warning}'
-    default_language: Same kiel lingvo de la fasado
+    boosted_from_html: Diskonigita de %{acct_link}
+    content_warning: 'Averto pri enhavo: %{warning}'
+    default_language: Sama lingvo kiel tiu de la interfaco
     disallowed_hashtags:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
@@ -1180,7 +1182,7 @@ eo:
     pin_errors:
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
-      reblog: Suprenigo ne povas esti alpinglita
+      reblog: Diskonigo ne povas esti alpinglita
     poll:
       total_people:
         one: "%{count} persono"
@@ -1206,13 +1208,15 @@ eo:
   statuses_cleanup:
     enabled: Aŭtomate forigi malnovajn postojn
     exceptions: Esceptoj
-    ignore_favs: Ignori la preferaĵojn
-    ignore_reblogs: Ignori la suprenigojn
+    ignore_favs: Ignori stelumojn
+    ignore_reblogs: Ignori diskonigojn
+    interaction_exceptions_explanation: Sciu ke estas neniu garantio ke mesaĝo estos forigita se ĝi iras sub la limo de diskonigoj aŭ stelumoj post atingi ĝin.
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
-    keep_media: Konservi la mesaĝojn kun aŭdovidaj aldonaĵoj
-    keep_media_hint: Ne forviŝi la mesaĝojn kiuj enhavas aŭdovidajn aldonaĵojn
-    keep_self_fav_hint: Ne forviŝi viajn proprajn afiŝojn, se vi aldonis ilin al viaj preferaĵoj
+    keep_media: Konservi mesaĝojn kun aŭdovidaj aldonaĵoj
+    keep_media_hint: Ne forigi mesaĝojn kiuj enhavas aŭdovidajn aldonaĵojn
+    keep_self_fav: Konservi mesaĝojn kiujn vi stelumis
+    keep_self_fav_hint: Ne forigi proprajn mesaĝojn se vi stelumis ilin
     min_age:
       '1209600': 2 semajnoj
       '15778476': 6 monatoj
@@ -1222,9 +1226,11 @@ eo:
       '604800': 1 semajno
       '63113904': 2 jaroj
       '7889238': 3 monatoj
+    min_favs: Konservi mesaĝojn stelumitajn almenaŭ
+    min_favs_hint: Ne forigas mesaĝojn de vi kiuj ricevis almenaŭ tiom da stelumoj. Lasu malplena por forigi mesaĝojn sendepende de la nombro de stelumoj
   stream_entries:
     pinned: Alpinglita
-    reblogged: suprenigita
+    reblogged: diskonigita
     sensitive_content: Tikla enhavo
   tags:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
@@ -1239,8 +1245,8 @@ eo:
       time: "%H:%M"
   two_factor_authentication:
     add: Aldoni
-    disable: Malaktivigi 2FA-n
-    disabled_success: Du-faktora aŭtentigo sukcese malaktivigita
+    disable: Malebligi 2FA-n
+    disabled_success: Dufaktora aŭtentigo sukcese malebligita
     edit: Redakti
     enabled: Dufaktora aŭtentigo ebligita
     enabled_success: Dufaktora aŭtentigo sukcese ebligita
