@@ -265,10 +265,11 @@ externalAuth:
   ldap:
     enabled: false
     # host: myservice.namespace.svc
-    # port: 389
+    # port: 636
     # method: simple_tls
+    # tls_no_verify: true
     # base:
-    # bind_on:
+    # bind_dn:
     # password:
     # uid: cn
     # mail: mail

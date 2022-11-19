@@ -281,13 +281,16 @@ data:
   {{- if .Values.externalAuth.ldap.enabled }}
   LDAP_ENABLED: {{ .Values.externalAuth.ldap.enabled | quote }}
   LDAP_HOST: {{ .Values.externalAuth.ldap.host }}
-  LDAP_PORT: {{ .Values.externalAuth.ldap.port }}
+  LDAP_PORT: {{ .Values.externalAuth.ldap.port | quote }}
   LDAP_METHOD: {{ .Values.externalAuth.ldap.method }}
+  {{- if .Values.externalAuth.ldap.tls_no_verify }}
+  LDAP_TLS_NO_VERIFY: {{ .Values.externalAuth.ldap.tls_no_verify | quote }}
+  {{- end }}
   {{- if .Values.externalAuth.ldap.base }}
   LDAP_BASE: {{ .Values.externalAuth.ldap.base }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.bind_on }}
-  LDAP_BIND_ON: {{ .Values.externalAuth.ldap.bind_on }}
+  {{- if .Values.externalAuth.ldap.bind_dn }}
+  LDAP_BIND_DN: {{ .Values.externalAuth.ldap.bind_dn }}
   {{- end }}
   {{- if .Values.externalAuth.ldap.password }}
   LDAP_PASSWORD: {{ .Values.externalAuth.ldap.password }}
