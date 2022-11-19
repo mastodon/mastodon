@@ -153,6 +153,11 @@ ast:
       saml: SAML
     register: Rexistrase
     security: Seguranza
+    setup:
+      email_settings_hint_html: Unvióse'l mensaxe de confirmación a %{email}. Si la direición de corréu electrónicu nun ye correuta, pues camudala nos axustes de la cuenta.
+    status:
+      account_status: Estáu de la cuenta
+      functional: La cuenta ta completamente operativa.
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
@@ -306,6 +311,9 @@ ast:
           quadrillion: mil B
           thousand: mil
           trillion: B
+  otp_authentication:
+    description_html: Si actives l'<strong>autenticación en dos pasos</strong> con una aplicación autenticadora, al aniciar la sesión va ser obligatorio que tengas el teléfonu a mano, preséu que xenera los pases que tienes d'introducir.
+    setup: Configurar
   pagination:
     next: Siguiente
   polls:
@@ -323,7 +331,6 @@ ast:
     most_recent: Lo más recién
     relationship: Rellación
     remove_selected_follows: Dexar de siguir a los usuarios seleicionaos
-    status: Estáu
   sessions:
     browser: Restolador
     browsers:
