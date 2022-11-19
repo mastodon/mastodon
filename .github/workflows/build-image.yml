@@ -10,25 +10,73 @@ on:
     paths:
       - .github/workflows/build-image.yml
       - Dockerfile
+
 permissions:
   contents: read
+  packages: write
+
+env:
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-image:
     runs-on: ubuntu-latest
     steps:
+      - name: Extract release name
+        env:
+          INPUT_IMAGE_NAME: ${{ secrets.IMAGE_NAME }}
+        shell: bash
+        run: |
+          if [ -z "$INPUT_IMAGE_NAME" ]; then
+              if [[ "$IMAGE_NAME" == "mastodon/mastodon" ]]; then
+                  image_name=tootsuite/mastodon
+              else
+                  image_name=$IMAGE_NAME
+              fi
+          else
+              image_name=$INPUT_IMAGE_NAME
+          fi
+          echo IMAGE_NAME=$image_name >> $GITHUB_ENV
+        id: extract_image_name
+
+      - name: Configure Docker
+        env:
+          DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+          REGISTRY: ${{ secrets.REGISTRY }}
+        shell: bash
+        run: |
+          if [ -z "$DOCKERHUB_TOKEN" ]; then
+              echo DOCKER_TOKEN=${{ secrets.GITHUB_TOKEN }} >> $GITHUB_ENV
+          else
+              echo DOCKER_TOKEN=$DOCKERHUB_TOKEN >> $GITHUB_ENV
+          fi
+          if [ -z "$DOCKERHUB_USERNAME" ]; then
+              echo DOCKER_USERNAME=${{ github.actor }} >> $GITHUB_ENV
+          else
+              echo DOCKER_USERNAME=$DOCKERHUB_USERNAME >> $GITHUB_ENV
+          fi
+          if [ ! -z "$REGISTRY" ]; then
+              echo REGISTRY=$REGISTRY >> $GITHUB_ENV
+              echo IMAGE=$REGISTRY/$IMAGE_NAME >> $GITHUB_ENV
+          else
+              echo IMAGE=$IMAGE_NAME >> $GITHUB_ENV
+          fi
+
       - uses: actions/checkout@v3
       - uses: docker/setup-qemu-action@v2
       - uses: docker/setup-buildx-action@v2
       - uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ env.DOCKER_USERNAME }}
+          password: ${{ env.DOCKER_TOKEN }}
         if: github.event_name != 'pull_request'
+
       - uses: docker/metadata-action@v4
         id: meta
         with:
-          images: tootsuite/mastodon
+          images: ${{ env.IMAGE }}
           flavor: |
             latest=auto
           tags: |
@@ -36,6 +84,7 @@ jobs:
             type=pep440,pattern={{raw}}
             type=pep440,pattern=v{{major}}.{{minor}}
             type=ref,event=pr
+
       - uses: docker/build-push-action@v3
         with:
           context: .
