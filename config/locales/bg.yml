@@ -11,6 +11,7 @@ bg:
       one: Последовател
       other: Последователи
     following: Следва
+    instance_actor_flash: Този профил е виртуално действащо лице, представляващо сървъра, а не индивидуален потребител. Използва се за федериране и не бива да бъде преустановен.
     last_active: последна дейност
     link_verified_on: Собствеността върху тази връзка е проверена на %{date}
     nothing_here: Тук няма нищо!
@@ -23,12 +24,15 @@ bg:
   admin:
     account_actions:
       action: Изпълняване на действие
+      title: Извършване на модериращо действие за %{acct}
     account_moderation_notes:
       create: Оставяне на бележка
       created_msg: Бележката за модерация е създадена успешно!
+      destroyed_msg: Бележката за модерация е успешно унищожена!
     accounts:
       add_email_domain_block: Блокиране на имейл домейн
       approve: Одобряване
+      approved_msg: Успешно одобрена заявка за регистрация на %{username}
       are_you_sure: Сигурни ли сте?
       avatar: Аватар
       by_domain: Домейн
@@ -53,6 +57,7 @@ bg:
       demote: Понижаване
       destroyed_msg: "Данните на %{username} вече са на опашка за незабавно изтриване"
       disable: Замразяване
+      disable_sign_in_token_auth: Изключване на удостоверяването с маркер по имейл
       disable_two_factor_authentication: Изключване на 2FA
       disabled: Замразено
       display_name: Показвано име
@@ -61,6 +66,7 @@ bg:
       email: Имейл
       email_status: Състояние на имейл
       enable: Размразяване
+      enable_sign_in_token_auth: Включване на удостоверяването с маркер по имейл
       enabled: Включено
       enabled_msg: Успешно размразяване на акаунта на %{username}
       followers: Последователи
@@ -78,6 +84,9 @@ bg:
         title: Местоположение
       login_status: Състояние на вход
       media_attachments: Прикачена мултимедия
+      memorialize: Възпоминание
+      memorialized: Възпоминателен
+      memorialized_msg: Успещно превръщане на %{username} във възпоминателен профил
       moderation:
         active: Активно
         all: Всичко
@@ -94,17 +103,23 @@ bg:
       not_subscribed: Без абонамент
       pending: Изчаква преглед
       perform_full_suspension: Спиране
+      previous_strikes: Предишни провинения
       promote: Повишаване
       protocol: Протокол
       public: Публично
       push_subscription_expires: PuSH абонаментът изтича
       redownload: Опресняване на профил
+      redownloaded_msg: Успешно обновяване на профила на %{username} от източника
       reject: Отхвърляне
       rejected_msg: Успешно отхвърлена заявка за регистрация на %{username}
       remove_avatar: Премахване на аватар
       remove_header: Премахване на заглавна част
+      removed_avatar_msg: Успешно премахване на изображението на аватара на %{username}
+      removed_header_msg: Успешно премахване на заглавното изображение на %{username}
       resend_confirmation:
         already_confirmed: Този потребител вече е потвърден
+        send: Повторно изпращане на имейла за потвърждение
+        success: Успешно изпращане на имейла за потвърждение!
       reset: Нулиране
       reset_password: Нулиране на паролата
       resubscribe: Абониране пак
