@@ -1,4 +1,3 @@
----
 zh-HK:
   simple_form:
     hints:
@@ -7,7 +6,7 @@ zh-HK:
       account_migration:
         acct: 指定欲移動至之帳戶的「使用者名稱@域名」
       account_warning_preset:
-        text: 你可使用 toot 格式，例如網址、「#」標籤和提及功能
+        text: '你可使用 toot 格式，例如網址、「#」標籤和提及功能'
         title: 可選，接收者不會見到
       admin_account_action:
         include_statuses: 使用者將會看到哪些文章導致檢舉或警告
@@ -27,6 +26,8 @@ zh-HK:
         scheduled_at: 留空此項以立即發布公告
         starts_at: 可選，你可以讓公告在指定時間範圍內顯示
         text: 你可以使用文章格式，但請小心別讓公告佔據太大的使用者畫面空間。
+      appeal:
+        text: 你每次只能提出一次申訴
       defaults:
         autofollow: 通過邀請網址註冊的用戶將會自動關注你
         avatar: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
@@ -35,6 +36,7 @@ zh-HK:
         current_password: 基於保安緣故，請輸入目前帳號的密碼
         current_username: 請輸入目前帳戶的使用者名稱以確認
         digest: 僅在你長時間未登錄，且收到了私信時發送
+        discoverable: 允許陌生人從推薦、熱門及其他功能發現你的帳號
         email: 你將收到一封確認電郵
         fields: 個人資料頁可顯示多至 4 個項目
         header: 支援 PNG, GIF 或 JPG 圖片，檔案最大為 %{size}，會縮裁成 %{dimensions}px
@@ -46,6 +48,7 @@ zh-HK:
         phrase: 過濾器會閱讀文章和內容警告標語的字眼，然後決定過濾與否
         scopes: 選擇應用程式可以存取的 API。 若你選擇最高階的權限範圍，則無須選擇個別項目。
         setting_aggregate_reblogs: 請勿顯示新近被轉推的文章（只影響最新被推的文章）
+        setting_always_send_emails: 通常當你積極使用 Mastodon 時，我們不會發送電郵通知給你
         setting_default_sensitive: 敏感媒體預設隱藏，且按一下即可重新顯示
         setting_display_media_default: 隱藏標為敏感的媒體
         setting_display_media_hide_all: 總是隱藏所有媒體
@@ -60,7 +63,25 @@ zh-HK:
       domain_allow:
         domain: 此網域將能從此站獲取資料，而此站發出的數據也會被處理和存儲。
       email_domain_block:
+        domain: 這可以是電郵地址所示的域名或它使用的 MX 紀錄。註冊時系統將檢查它。
         with_dns_records: Mastodon 會嘗試解析所給域名的 DNS 記錄，然後與解析結果一併封禁
+      featured_tag:
+        name: '以下是你最近常用的標籤：'
+      filters:
+        action: 選擇當帖文符合篩選器時要執行的動作
+        actions:
+          hide: 完全隱藏被篩選的內容，猶如它不存在般。
+          warn: 將已篩選的內容隱藏在篩選器標題的警告後面。
+      form_admin_settings:
+        backups_retention_period: 繼續封存生成的使用者到指定的天數。
+        bootstrap_timeline_accounts: 這些帳號會被置頂在新使用者的追蹤建議上。
+        closed_registrations_message: 關閉註冊時顯示
+        content_cache_retention_period: 當設定為正數時，來自其他伺服器的帖文將在指定天數後被刪除。無法還原這個操作。
+        custom_css: 你可以在 Mastodon 網頁版套用自訂樣式。
+        mascot: 覆蓋進階網頁介面中的插圖。
+        media_cache_retention_period: 當設定為正數時，已下載的媒體檔案將在指定天數後被刪除，並視乎需要重新下載。
+        profile_directory: 個人檔案目錄羅列了所有選擇被發現的使用者。
+        require_invite_text: 如果需要手動審核註冊，請將「為何你想加入？」文字欄設定為必填，而非選填。
       form_challenge:
         current_password: 你正要進入安全區域
       imports:
@@ -78,7 +99,7 @@ zh-HK:
       rule:
         text: 請描述在此伺服器上用戶需要遵守的規則或要求。請盡量保持簡短易明。
       sessions:
-        otp: 輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：
+        otp: '輸入你手機上生成的雙重認證碼，或者任意一個恢復代碼：'
         webauthn: 如果它是 USB 安全鑰匙的話，請先插入電腦。如鑰匙設計有需要，請按鍵啟用。
       tag:
         name: 你只能變更大小寫（以使其更易讀）。
@@ -206,7 +227,7 @@ zh-HK:
         name: 主題標籤
         trendable: 允許此主題標籤在趨勢下顯示
         usable: 允許文章使用此主題標籤
-    'no': 否
+    'no': '否'
     recommended: 建議
     required:
       mark: "*"
@@ -214,4 +235,4 @@ zh-HK:
     title:
       sessions:
         webauthn: 使用你的安全密鑰裝置來登入
-    'yes': 是
+    'yes': '是'
