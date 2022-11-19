@@ -1,6 +1,6 @@
 eo:
   about:
-    about_mastodon_html: 'Mastodon estas socia retejo de la estonteco: sen reklamo, sen kompania gvato, etika dezajno kaj malcentraligo! Vi regu viajn datumojn kun Mastodon!'
+    about_mastodon_html: 'La socia reto de la estonteco: sen reklamo, sen firmaa superrigardo, etika fasonado kaj malcentrigo! Regu viajn datumojn per Mastodon!'
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
     hosted_on: '%{domain} estas nodo de Mastodon'
@@ -11,7 +11,7 @@ eo:
       one: Sekvanto
       other: Sekvantoj
     following: Sekvatoj
-    instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniu individua uzanto. Ĝi estas uzata por celoj de la federaĵo kaj devas ne esti suspendita.
+    instance_actor_flash: Ĉi tiu konto estas virtuala agento uzata por reprezenti la servilon mem kaj neniun individuan uzanton. Ĝi estas uzata por federaciaj celoj kaj ĝi devas ne esti suspendita.
     last_active: laste aktiva
     link_verified_on: Proprieto de ĉi tiu ligilo estis kontrolita je %{date}
     nothing_here: Estas nenio ĉi tie!
@@ -27,7 +27,7 @@ eo:
       title: Plenumi kontrolan agon al %{acct}
     account_moderation_notes:
       create: Lasi noton
-      created_msg: Noto de mederigado estis sukcese kreita!
+      created_msg: Noto de moderigado sukcese kreita!
       destroyed_msg: Noto de moderigado sukcese detruita!
     accounts:
       add_email_domain_block: Bloki retadresan domajnon
@@ -56,16 +56,16 @@ eo:
       deleted: Forigita
       demote: Degradi
       destroyed_msg: "Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ"
-      disable: Frostigi
+      disable: Malebligi
       disable_sign_in_token_auth: Malŝalti retpoŝtan ĵetonan aŭtentigon
       disable_two_factor_authentication: Malŝalti 2FA-n
-      disabled: Frostigita
+      disabled: Malebligita
       display_name: Montrata nomo
       domain: Domajno
       edit: Redakti
       email: Retpoŝto
       email_status: Stato de retpoŝto
-      enable: Malfrostigi
+      enable: Ebligi
       enable_sign_in_token_auth: Ŝalti retpoŝtan ĵetonan aŭtentigon
       enabled: Ebligita
       enabled_msg: Sukcese malfrostigis konton de %{username}
@@ -83,7 +83,7 @@ eo:
         remote: Foraj
         title: Loko
       login_status: Ensaluta stato
-      media_attachments: Aŭdovidaj aldonaĵoj
+      media_attachments: Ligitaj aŭdovidaĵoj
       memorialize: Ŝanĝi al memoro
       memorialized: Memorita
       memorialized_msg: Sukcese ŝanĝis %{username} al memorkonto
@@ -115,9 +115,9 @@ eo:
       redownloaded_msg: Sukcese refreŝis profilon de %{username} de origino
       reject: Malakcepti
       rejected_msg: Sukcese malaprobis aliĝ-peton de %{username}
-      remove_avatar: Forigi la rolfiguron
+      remove_avatar: Forigi profilbildon
       remove_header: Forigi kapan bildon
-      removed_avatar_msg: La bildo de la rolfiguro de %{username} estas sukcese forigita
+      removed_avatar_msg: La profilbildo de %{username} estas sukcese forigita
       removed_header_msg: Sukcese forigis kapbildon de %{username}
       resend_confirmation:
         already_confirmed: Ĉi tiu uzanto jam estas konfirmita
@@ -138,8 +138,8 @@ eo:
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Faritaj raportoj
-        targeted_reports: Raporitaj de alia
-      silence: Mutigita
+        targeted_reports: Raporitaj de aliaj
+      silence: Limigi
       silenced: Silentigita
       statuses: Afiŝoj
       strikes: Antaǔaj admonoj
@@ -147,7 +147,7 @@ eo:
       suspend: Haltigu
       suspended: Suspendita
       suspension_irreversible: La datumoj de ĉi tiu konto neinverseble forigitas.
-      suspension_reversible_hint_html: La konto estas suspendita, kaj la datumoj estos komplete forgitaj en la %{date}. Ĝis tiam, la konto povas esti restaŭrita sen malutila efiko. Se vi deziras tuj forigi ĉiujn datumojn de la konto, vi povas fari ĉi-sube.
+      suspension_reversible_hint_html: La konto estas suspendita, kaj la datumoj estos komplete forigitaj je %{date}. Ĝis tiam, la konto povas esti malsuspendita sen flankefiko. Se vi deziras tuj forigi ĉiujn datumojn de la konto, vi povas fari tion sube.
       title: Kontoj
       unblock_email: Malbloki retpoŝtadresojn
       unblocked_email_msg: Sukcese malblokis la retpoŝtadreson de %{username}
@@ -157,7 +157,7 @@ eo:
       undo_suspension: Malfari haltigon
       unsilenced_msg: Sukcese senlimigis la konton de %{username}
       unsubscribe: Malaboni
-      unsuspended_msg: La konto de %{username} estas sukcese reaktivigita
+      unsuspended_msg: La konto de %{username} estas sukcese malsuspendita
       username: Uzantnomo
       view_domain: Vidi la resumon de la domajno
       warn: Averti
@@ -171,7 +171,7 @@ eo:
         change_email_user: Ŝanĝi retpoŝton de uzanto
         change_role_user: Ŝanĝi Rolon de Uzanton
         confirm_user: Konfirmi uzanton
-        create_account_warning: Krei Averton
+        create_account_warning: Krei averton
         create_announcement: Krei Anoncon
         create_canonical_email_block: Krei Blokadon de Retpoŝto
         create_custom_emoji: Krei Propran Emoĝion
@@ -193,18 +193,18 @@ eo:
         destroy_status: Forigi mesaĝon
         destroy_unavailable_domain: Forigi Nehaveblan Domajnon
         destroy_user_role: Detrui Rolon
-        disable_2fa_user: Malaktivigi 2FA-n
-        disable_custom_emoji: Malaktivigi la proprajn emoĝiojn
+        disable_2fa_user: Malebligi 2FA
+        disable_custom_emoji: Malebligi proprajn emoĝiojn
         disable_sign_in_token_auth_user: Malaktivigi Retpoŝtan Ĵetonon por Uzanto
         disable_user: Malaktivigi la uzanton
         enable_custom_emoji: Ebligi Propran Emoĝion
-        enable_sign_in_token_auth_user: Aktivigi la aŭtentigon de peco per retpoŝto por la uzanto
+        enable_sign_in_token_auth_user: Ebligi retpoŝtan ĵetonan aŭtentigon por la uzanto
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
         reject_appeal: Malaprobi Apelacion
         reject_user: Malakcepti Uzanton
-        remove_avatar_user: Forigi la rolfiguron
+        remove_avatar_user: Forigi la profilbildon
         reopen_report: Remalfermi signalon
         resend_user: Resendi konfirman retmesaĝon
         reset_password_user: Restarigi pasvorton
@@ -216,7 +216,7 @@ eo:
         unblock_email_account: Malbloki retpoŝtadreson
         unsensitive_account: Malmarku la amaskomunikilojn en via konto kiel sentemaj
         unsilence_account: Malsilentigi konton
-        unsuspend_account: Reaktivigi la konton
+        unsuspend_account: Malsuspendi la konton
         update_announcement: Ĝisdatigi anoncon
         update_custom_emoji: Ĝisdatigi proprajn emoĝiojn
         update_domain_block: Ĝigdatigi domajnan blokadon
@@ -245,20 +245,20 @@ eo:
         destroy_ip_block_html: "%{name} forigis regulon por IP %{target}"
         destroy_status_html: "%{name} forigis mesaĝojn de %{target}"
         destroy_user_role_html: "%{name} forigis rolon de %{target}"
-        disable_2fa_user_html: "%{name} malaktivigis la postulon de la dufaktora aŭtentigo por la uzanto %{target}"
-        disable_custom_emoji_html: "%{name} neebligis la emoĝion %{target}"
-        disable_user_html: "%{name} neebligis la saluton de la uzanto %{target}"
+        disable_2fa_user_html: "%{name} malebligis dufaktoran aŭtentigon por uzanto %{target}"
+        disable_custom_emoji_html: "%{name} malebligis emoĝion %{target}"
+        disable_user_html: "%{name} malebligis ensaluton por uzanto %{target}"
         enable_custom_emoji_html: "%{name} ebligis emoĝion %{target}"
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
         reject_user_html: "%{name} malakceptis registriĝon de %{target}"
-        remove_avatar_user_html: "%{name} forigis la rolfiguron de %{target}"
+        remove_avatar_user_html: "%{name} forigis profilbildon de %{target}"
         reopen_report_html: "%{name} remalfermis signalon %{target}"
         resend_user_html: "%{name} resendis konfirman retmesaĝon por %{target}"
         silence_account_html: "%{name} limigis la konton de %{target}"
         suspend_account_html: "%{name} suspendis la konton de %{target}"
-        unsuspend_account_html: "%{name} reaktivigis la konton de %{target}"
+        unsuspend_account_html: "%{name} malsuspendis la konton de %{target}"
         update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
       deleted_account: forigita konto
       empty: Neniu protokolo trovita.
@@ -292,11 +292,11 @@ eo:
       created_msg: Emoĝio sukcese kreita!
       delete: Forigi
       destroyed_msg: Emoĝio sukcese forigita!
-      disable: Neebligi
-      disabled: Neebligita
-      disabled_msg: La emoĝio sukcese neebligita
+      disable: Malebligi
+      disabled: Malebligita
+      disabled_msg: Emoĝio sukcese malebligita
       emoji: Emoĝio
-      enable: Enŝalti
+      enable: Ebligi
       enabled: Ebligita
       enabled_msg: Tiu emoĝio estis sukcese ebligita
       image_hint: PNG aŭ GIF malpli granda ol %{size}
@@ -340,6 +340,8 @@ eo:
       add_new: Aldoni domajnon al la blanka listo
       created_msg: Domajno estis sukcese aldonita al la blanka listo
       destroyed_msg: Domajno estis forigita el la blanka listo
+      export: Eksporti
+      import: Importi
       undo: Forigi el la blanka listo
     domain_blocks:
       add_new: Aldoni novan blokadon de domajno
@@ -348,6 +350,8 @@ eo:
       domain: Domajno
       edit: Redakti domajna blokado
       existing_domain_block_html: Vi jam trudis pli striktajn limojn al %{name}, vi devas <a href="%{unblock_url}">malbloki ĝin</a> unue.
+      export: Eksporti
+      import: Importi
       new:
         create: Krei blokadon
         hint: La domajna blokado ne evitigos kreadon de novaj kontoj en la datumbazo, sed aplikos specifajn kontrolajn agojn sur ĉi tiujn kontojn aŭtomate kaj retroaktive.
@@ -561,6 +565,7 @@ eo:
         manage_invites: Administri Invitojn
         manage_roles: Administri Rolojn
         manage_rules: Administri Regulojn
+        manage_webhooks: Administri rethokojn
       title: Roloj
     rules:
       add_new: Aldoni regulon
@@ -573,26 +578,32 @@ eo:
       appearance:
         title: Apero
       discovery:
+        public_timelines: Publikaj templinioj
         title: Eltrovado
       domain_blocks:
         all: Al ciuj
         disabled: Al neniu
         users: Al salutintaj lokaj uzantoj
+      registrations:
+        title: Registriĝoj
       registrations_mode:
         modes:
           approved: Bezonas aprobi por aliĝi
           none: Neniu povas aliĝi
           open: Iu povas aliĝi
+      title: Agordoj de la servilo
     site_uploads:
       delete: Forigi elŝutitan dosieron
       destroyed_msg: Reteja alŝuto sukcese forigita!
     statuses:
       account: Skribanto
+      application: Aplikaĵo
       back_to_account: Reveni al konta paĝo
       batch:
         remove_from_report: Forigi de raporto
         report: Raporti
       deleted: Forigita
+      history: Versia historio
       language: Lingvo
       media:
         title: Aŭdovidaĵoj
@@ -661,17 +672,26 @@ eo:
       edit_preset: Redakti la antaŭagordojn de averto
       title: Administri avertajn antaŭagordojn
     webhooks:
+      add_new: Aldoni finpunkton
       delete: Forigi
       disable: Neebligi
       disabled: Neebligita
       edit: Redakti finpunkton
       enable: Ŝalti
       enabled: Aktiva
+      enabled_events:
+        one: 1 ŝaltita evento
+        other: "%{count} ŝaltitaj eventoj"
       events: Eventoj
+      new: Nova rethoko
+      status: Stato
+      title: Rethokoj
+      webhook: Rethoko
   admin_mailer:
     new_appeal:
       actions:
         disable: por frostigi ties konton
+        none: averto
         suspend: por suspendi iliajn kontojn
     new_pending_account:
       body: La detaloj de la nova konto estas sube. Vi povas aprobi aŭ Malakcepti ĉi kandidatiĝo.
@@ -803,7 +823,9 @@ eo:
       username_unavailable: Via uzantnomo restos nedisponebla
   disputes:
     strikes:
+      appeal: Apelacii
       created_at: Datita
+      status: 'Afiŝo #%{id}'
       title_actions:
         delete_statuses: Forigo de afiŝo
         none: Averto
@@ -869,6 +891,9 @@ eo:
       keywords:
         one: "%{count} ĉefvorto"
         other: "%{count} ĉefvortoj"
+      statuses:
+        one: "%{count} afiŝo"
+        other: "%{count} afiŝoj"
       title: Filtriloj
     new:
       save: Konservi novan filtrilon
@@ -1036,6 +1061,8 @@ eo:
     other: Aliaj aferoj
     posting_defaults: Implicitaj agordoj de afiŝado
     public_timelines: Publikaj templinioj
+  privacy_policy:
+    title: Privateca politiko
   reactions:
     errors:
       limit_reached: Limito de malsamaj reagoj atinginta
@@ -1121,7 +1148,7 @@ eo:
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
     import: Importi
-    import_and_export: Enporti kaj elporti
+    import_and_export: Importi kaj eksporti
     migrate: Konta migrado
     notifications: Sciigoj
     preferences: Preferoj
@@ -1237,6 +1264,7 @@ eo:
       title: Arkiva elŝuto
     suspicious_sign_in:
       change_password: ŝanĝi vian pasvorton
+      title: Nova ensaluto
     warning:
       categories:
         spam: Spamo
@@ -1247,6 +1275,7 @@ eo:
         silence: Oni limigis vian konton %{acct}
         suspend: Via konto %{acct} estas suspendita
       title:
+        delete_statuses: Afiŝoj forigitaj
         disable: Konto frostigita
         none: Averto
         silence: Konto limigita
