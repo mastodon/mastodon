@@ -38,16 +38,16 @@ ast:
         user:
           attributes:
             email:
-              blocked: usa un proveedor de corréu electrónicu nun permitíu
+              blocked: usa un fornidor de corréu electrónicu que nun ta permitíu
               unreachable: nun paez qu'esista
             role_id:
               elevated: nun pue ser mayor que'l to rol actual
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: incluyer permisos que nun son seguros pal rol de base
+              dangerous: incluyir los permisos que nun son seguros pal rol base
               elevated: nun se puen incluyir los permisos que'l to rol nun poseye
-              own_role: nun pue cámbiase col to rol actual
+              own_role: nun se pue camudar col to rol actual
             position:
               elevated: nun pue ser mayor que'l to rol actual
-              own_role: nun pue cámbiase col to rol actual
+              own_role: nun se pue camudar col to rol actual
