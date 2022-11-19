@@ -13,10 +13,19 @@ be:
     following: Падпісаны
     last_active: апошняя актыўнасць
     nothing_here: Тут нічога няма!
-    posts_tab_heading: Публікацыі
+    posts:
+      one: Допіс
+      few: Допісы
+      many: Допісаў
+      other: Допісы
+    posts_tab_heading: Допісы
   admin:
     account_actions:
       action: Зрабіць дзеянне
+    account_moderation_notes:
+      create: Пакінуць нататку
+      created_msg: Нататка мадэратара паспяхова створана!
+      destroyed_msg: Нататка мадэратара паспяхова выдалена!
     accounts:
       add_email_domain_block: Заблакіраваць паштовы дамен
       approve: Пацвердзіць
@@ -26,19 +35,20 @@ be:
       change_email:
         changed_msg: Пошта паспяхова зменена!
         current_email: Бягучая эл. пошта
-        label: Змяніць адрас пошты
+        label: Змяніць адрас эл. пошты
         new_email: Новая эл. пошта
-        submit: Змяніць адрас пошты
+        submit: Змяніць адрас эл. пошты
         title: Змяніць адрас пошты для %{username}
       change_role:
         changed_msg: Роля паспяхова зменена!
         label: Змяніць ролю
         no_role: Няма ролі
+        title: Змяніць ролю для %{username}
       confirm: Пацвердзіць
       confirmed: Пацверджаны
       confirming: Ідзе пацвярджэнне
       deleted: Выдалены
-      disable_two_factor_authentication: Выключыць 2FA
+      disable_two_factor_authentication: Адключыць 2FA
       edit: Рэдагаваць
       ip: IP
       joined: Далучыўся
@@ -50,7 +60,7 @@ be:
       moderation:
         active: Актыўны
         all: Усе
-        pending: Чакае
+        pending: Чакаюць
         silenced: Абмежаваны
         suspended: Прыпынены
       most_recent_activity: Апошняя актыўнасць
@@ -76,13 +86,13 @@ be:
         create_announcement: Стварыць аб'яву
         create_user_role: Стварыць ролю
         destroy_announcement: Выдаліць аб'яву
-        destroy_status: Выдаліць публікацыю
-        disable_2fa_user: Выключыць 2FA
+        destroy_status: Выдаліць допіс
+        disable_2fa_user: Адключыць 2FA
         disable_user: Адключыць карыстальніка
         enable_user: Уключыць карыстальніка
         remove_avatar_user: Выдаліць аватар
-        update_announcement: Аднавіць аб'яву
-        update_status: Аднавіць пост
+        update_announcement: Абнавіць аб'яву
+        update_status: Абнавіць допіс
         update_user_role: Аднавіць ролю
       actions:
         approve_user_html: "%{name} пацвердзіў рэгістрацыю ад %{target}"
@@ -96,7 +106,7 @@ be:
         create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
         create_user_role_html: "%{name} зрабіў %{target} ролю"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
-        destroy_status_html: "%{name} выдаліў пост %{target}"
+        destroy_status_html: "%{name} выдаліў допіс %{target}"
         destroy_user_role_html: "%{name} выдаліў %{target} ролю"
         disable_user_html: "%{name} выключыў уваход для карыстальніка %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
@@ -117,7 +127,7 @@ be:
     custom_emojis:
       assign_category: Пазначыць катэгорыю
       by_domain: Дамен
-      copy: Скапіяваць
+      copy: Скапіраваць
       create_new_category: Стварыць новую катэгорыю
       delete: Выдаліць
       disable: Адключыць
@@ -134,7 +144,7 @@ be:
       uncategorized: Без катэгорыі
       unlist: Прыбраць
       unlisted: Не ў спісе
-      upload: Загрузіць
+      upload: Запампаваць
     dashboard:
       active_users: актыўныя карыстальнікі
       interactions: узаемадзеянні
