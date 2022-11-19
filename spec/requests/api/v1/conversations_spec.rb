@@ -54,7 +54,6 @@ RSpec.describe Api::V1::ConversationsController, type: :request do
         account.follow!(user.account)
 
         result = PostStatusService.new.call(account, text: 'Hey @alice', visibility: 'direct')
-        binding.pry
       end
 
       response(200, 'successful') do
@@ -63,7 +62,6 @@ RSpec.describe Api::V1::ConversationsController, type: :request do
         rswag_add_examples!
         run_test! do |response|
           body = rswag_parse_body(response)
-          binding.pry
         end
       end
     end

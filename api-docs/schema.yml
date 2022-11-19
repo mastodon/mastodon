@@ -501,9 +501,15 @@ components:
         html:
           type: string
         width:
-          type: string
+          anyOf:
+          - type: string
+            pattern: "[0-9]+"
+          - type: integer
         height:
-          type: string
+          anyOf:
+          - type: string
+            pattern: "[0-9]+"
+          - type: integer
         image:
           type: string
           nullable: true
@@ -512,6 +518,27 @@ components:
         blurhash:
           type: string
           nullable: true
+    TrendHistory:
+      type: object
+      properties:
+        day:
+          type: string
+          pattern: "[0-9]+"
+        accounts:
+          type: string
+          pattern: "[0-9]+"
+        uses:
+          type: string
+          pattern: "[0-9]+"
+    PreviewCardLink:
+      allOf:
+      - "$ref": "#/components/schemas/PreviewCard"
+      - type: object
+        properties:
+          history:
+            type: array
+            items:
+              "$ref": "#/components/schemas/TrendHistory"
     Status:
       type: object
       properties:
@@ -3715,13 +3742,36 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - admin:read
       parameters:
       - name: authorization
         in: header
         required: true
         schema:
           type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return. Defaults to 40.
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
@@ -3729,7 +3779,84 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - url: http://abernathy-lebsack.net/ambrose
+                    title: Mollitia numquam architecto at.
+                    description: Iusto quaerat et. Quos vitae voluptates. Consequatur
+                      voluptas voluptas.
+                    type: link
+                    author_name: ''
+                    author_url: ''
+                    provider_name: ''
+                    provider_url: ''
+                    html: ''
+                    width: 400
+                    height: 267
+                    image: https://cb6e6126.ngrok.io/system/cache/preview_cards/images/000/000/166/original/313baacd31ba91c4.jpg
+                    embed_url: ''
+                    blurhash: UDK-USu6.9t3-@K7obn#0:-;%1nOM|-.E2IU
+                    history:
+                    - day: '1668816000'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668729600'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668643200'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668556800'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668470400'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668384000'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668297600'
+                      accounts: '0'
+                      uses: '0'
+                  - url: http://littel.io/johnny
+                    title: Dignissimos beatae quam ea.
+                    description: Sint molestias iusto. Est illo sed. Illo qui et.
+                    type: link
+                    author_name: ''
+                    author_url: ''
+                    provider_name: ''
+                    provider_url: ''
+                    html: ''
+                    width: 400
+                    height: 267
+                    image: https://cb6e6126.ngrok.io/system/cache/preview_cards/images/000/000/165/original/34ead49fd799f111.jpg
+                    embed_url: ''
+                    blurhash: UDK-USu6.9t3-@K7obn#0:-;%1nOM|-.E2IU
+                    history:
+                    - day: '1668816000'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668729600'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668643200'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668556800'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668470400'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668384000'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1668297600'
+                      accounts: '0'
+                      uses: '0'
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/PreviewCardLink"
   "/api/v1/admin/trends/statuses":
     get:
       summary: list statuses

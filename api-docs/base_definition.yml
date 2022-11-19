@@ -504,9 +504,15 @@ components:
         html:
           type: string
         width:
-          type: string
+          anyOf:
+            - type: string
+              pattern: '[0-9]+'
+            - type: integer
         height:
-          type: string
+          anyOf:
+            - type: string
+              pattern: '[0-9]+'
+            - type: integer
         image:
           type: string
           nullable: true
@@ -515,6 +521,30 @@ components:
         blurhash:
           type: string
           nullable: true
+
+    TrendHistory:
+      type: object
+      properties:
+        day:
+          type: string
+          pattern: '[0-9]+'
+        accounts:
+          type: string
+          pattern: '[0-9]+'
+        uses:
+          type: string
+          pattern: '[0-9]+'
+
+    PreviewCardLink:
+      allOf:
+        - $ref: '#/components/schemas/PreviewCard'
+        - type: object
+          properties:
+            history:
+              type: array
+              items: { $ref: '#/components/schemas/TrendHistory' }
+
+
     
     Status:
       type: object
