@@ -19,6 +19,40 @@ The variables that _must_ be configured are:
 
 - SMTP settings for your mailer in the `mastodon.smtp` group.
 
+## GitOps (ArgoCD) configuration
+
+The helm hooks configured in the job manifests will break deployments in situations where GitOps tools like ArgoCD are used. To make sure the deployment works, you need to set the additional hook annotations in the `values.yaml` file. For ArgoCD, this means that the [resource hooks](https://argo-cd.readthedocs.io/en/stable/user-guide/resource_hooks/#usage) need to be used, in this case, the `PostSync` hook, which according to the docs, executes after all `Sync` hooks were completed and were successful, an application is successful, and all resources are in a Healthy state. This allows the resources to be synchronized first, and then the original helm hooks will be respected. Without this, ArgoCD will run the `db-migrate` job without deploying its dependencies, like the persistent volume claim.
+
+For example, you can set the following in the `values.yaml` configuration:
+
+```yaml
+mastodon:
+  job:
+    dbMigrate:
+      extraAnnotations:
+        "argocd.argoproj.io/hook": PostSync
+        "argocd.argoproj.io/sync-wave": "-2"
+        "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation,HookSucceeded
+
+    assetsPrecompile:
+      extraAnnotations:
+        "argocd.argoproj.io/hook": PostSync
+        "argocd.argoproj.io/sync-wave": "-2"
+        "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation,HookSucceeded
+
+    chewyUpgrade:
+      extraAnnotations:
+        "argocd.argoproj.io/hook": PostSync
+        "argocd.argoproj.io/sync-wave": "-1"
+        "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation,HookSucceeded
+
+    createAdmin:
+      extraAnnotations:
+        "argocd.argoproj.io/hook": PostSync
+        "argocd.argoproj.io/sync-wave": "-1"
+        "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation,HookSucceeded
+```
+
 # Administration
 
 You can run [admin CLI](https://docs.joinmastodon.org/admin/tootctl/) commands in the web deployment.
@@ -87,7 +121,7 @@ If you require a no-downtime upgrade then:
 9. `kubectl delete -f deployments.yml` to clear out the temporary deployments
 
 ## PostgreSQL passwords
-If you've previously installed the chart and you're having problems with 
+If you've previously installed the chart and you're having problems with
 postgres not accepting your password then make sure to set `username` to
 `postgres` and `password` and `postgresPassword` to the same passwords.
 ```yaml

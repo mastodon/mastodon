@@ -106,6 +106,40 @@ mastodon:
       # Enable statsd publishing via STATSD_ADDR environment variable
       address: ""
 
+  job:
+    dbMigrate:
+      # Allows for additional annotations for the db-migrate job, useful in GitOps scenarios like ArgoCD Helm deployments
+      # E.g.
+      # extraAnnotations:
+      #   "argocd.argoproj.io/hook": PostSync
+      #   "argocd.argoproj.io/sync-wave": "-2"
+      #   "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation,HookSucceeded
+      extraAnnotations: {}
+    assetsPrecompile:
+      # Allows for additional annotations for the assets-precompile job, useful in GitOps scenarios like ArgoCD Helm deployments
+      # E.g.
+      # extraAnnotations:
+      #   "argocd.argoproj.io/hook": PostSync
+      #   "argocd.argoproj.io/sync-wave": "-2"
+      #   "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation,HookSucceeded
+      extraAnnotations: {}
+    chewyUpgrade:
+      # Allows for additional annotations for the chewy-upgrade job, useful in GitOps scenarios like ArgoCD Helm deployments
+      # E.g.
+      # extraAnnotations:
+      #   "argocd.argoproj.io/hook": PostSync
+      #   "argocd.argoproj.io/sync-wave": "-1"
+      #   "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation,HookSucceeded
+      extraAnnotations: {}
+    createAdmin:
+      # Allows for additional annotations for the create-admin job, useful in GitOps scenarios like ArgoCD Helm deployments
+      # E.g.
+      # extraAnnotations:
+      #   "argocd.argoproj.io/hook": PostSync
+      #   "argocd.argoproj.io/sync-wave": "-1"
+      #   "argocd.argoproj.io/hook-delete-policy": BeforeHookCreation,HookSucceeded
+      extraAnnotations: {}
+
 ingress:
   enabled: true
   annotations:

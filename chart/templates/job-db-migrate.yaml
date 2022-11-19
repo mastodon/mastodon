@@ -8,6 +8,9 @@ metadata:
     "helm.sh/hook": post-install,pre-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
     "helm.sh/hook-weight": "-2"
+  {{- with .Values.mastodon.job.dbMigrate.extraAnnotations }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   template:
     metadata:
