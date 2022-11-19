@@ -63,6 +63,9 @@ ga:
         all: Uile
         local: Áitiúil
         remote: Cian
+      memorialize: Déan cuntas chuimhneacháin de
+      memorialized: Cuntas chuimhneacháin
+      previous_strikes: Cionta roimhe seo
       promote: Ardaigh
       protocol: Prótacal
       public: Poiblí
@@ -220,6 +223,9 @@ ga:
     logout: Logáil Amach
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
   authorize_follow:
+    follow: Lean
+    post_follow:
+      return: Taispeáin próifíl an úsáideora
     title: Lean %{acct}
   deletes:
     proceed: Scrios cuntas
@@ -255,13 +261,18 @@ ga:
       report:
         subject: "Chuir %{name} tuairisc isteach"
     follow:
+      body: "Tá %{name} do do leanúint anois!"
+      subject: "Tá %{name} do do leanúint anois"
       title: Leantóirí nua
     reblog:
       subject: "Mhol %{name} do phostáil"
       title: Moladh nua
   relationships:
+    follow_selected_followers: Lean leantóirí roghnaithe
     followers: Leantóirí
     following: Ag leanúint
+    remove_selected_followers: Bain leantóirí roghnaithe
+    remove_selected_follows: Dí-lean úsáideoirí roghnaithe
   rss:
     content_warning: 'Rabhadh ábhair:'
   settings:
