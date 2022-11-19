@@ -402,8 +402,10 @@ pl:
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
           noop: Nic nie rób
+          silence: Limit
           suspend: Zawieś
         title: Nowa blokada domen
+      not_permitted: Nie możesz wykonać tej czynności
       obfuscate: Ukryj nazwę domeny
       obfuscate_hint: Częściowo ukryj nazwę domeny na liście, gdy reklamowanie listy limitów domen jest włączone
       private_comment: Prywatny komentarz
@@ -437,6 +439,15 @@ pl:
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
       title: Blokowanie domen e-mail
+    export_domain_allows:
+      no_file: Nie wybrano pliku
+    export_domain_blocks:
+      import:
+        description_html: Zamierzasz zaimportować listę zablokowanych domen. Przejrzyj uważnie tę listę, zwłaszcza jeśli sam jej nie utworzyłeś.
+        title: Importuj zablokowane domeny
+      new:
+        title: Importuj zablokowane domeny
+      no_file: Nie wybrano pliku
     follow_recommendations:
       description_html: "<strong>Polecane obserwacje pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
       language: Dla języka
@@ -1207,6 +1218,7 @@ pl:
     invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
       over_rows_processing_limit: zawiera więcej niż %{count} wierszy
     modes:
       merge: Połącz
