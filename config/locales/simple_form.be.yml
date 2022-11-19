@@ -1,11 +1,25 @@
 be:
   simple_form:
     labels:
+      announcement:
+        text: Аб'ява
       defaults:
         avatar: Аватар
+        data: Даныя
+        header: Загаловак
         new_password: Новы пароль
         password: Пароль
         setting_display_media_default: Перадвызначана
         setting_display_media_hide_all: Схаваць усё
         setting_display_media_show_all: Паказаць усё
         username: Імя карыстальніка
+      ip_block:
+        ip: IP
+      user:
+        role: Роля
+      user_role:
+        name: Назва
+        permissions_as_keys: Дазволы
+    required:
+      mark: "*"
+      text: абавязкова
