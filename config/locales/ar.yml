@@ -385,9 +385,7 @@ ar:
         create: إنشاء حظر
         hint: لن تمنع كتلة المجال إنشاء إدخالات حساب في قاعدة البيانات ، ولكنها ستطبق طرق الإشراف المحددة بأثر رجعي وتلقائي على هذه الحسابات.
         severity:
-          desc_html: "<strong>Silence</strong> سيجعل مشاركات الحساب غير مرئية لأي شخص لا يتبعها. <strong>Suspend</strong> سيزيل كل محتوى الحساب ووسائطه وبيانات ملفه التعريفي. Use <strong>None</strong> إذا كنت تريد فقط رفض ملفات الوسائط."
           noop: لا شيء
-          silence: كتم
           suspend: تعليق
         title: حجب نطاق جديد
       obfuscate: تشويش اسم النطاق
@@ -609,7 +607,6 @@ ar:
         manage_user_access: إدارة وصول المستخدم
         manage_users: إدارة المستخدمين
         view_dashboard: عرض لوحة التحكم
-        view_devops: DevOps
         view_devops_description: السماح للمستخدمين بالوصول إلى لوحة Sidekiq و pgHero
       title: الأدوار
     rules:
@@ -809,7 +806,6 @@ ar:
     warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين!
     your_token: رمز نفاذك
   auth:
-    apply_for_account: انضم إلى قائمة الانتظار
     change_password: الكلمة السرية
     delete_account: حذف الحساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
@@ -1231,7 +1227,6 @@ ar:
     browser: المتصفح
     browsers:
       alipay: أليباي
-      blackberry: بلاك بيري
       chrome: كروم
       edge: مايكروسوفت إيدج
       electron: إلكترون
@@ -1245,7 +1240,6 @@ ar:
       phantom_js: فانتوم جي آس
       qq: متصفح كيوكيو
       safari: سفاري
-      uc_browser: متصفح يوسي براوزر
       weibo: وايبو
     current_session: الجلسة الحالية
     description: "%{browser} على %{platform}"
@@ -1254,8 +1248,6 @@ ar:
     platforms:
       adobe_air: أدوبي إيير
       android: أندرويد
-      blackberry: بلاك بيري
-      chrome_os: نظام كروم أواس
       firefox_os: نظام فايرفكس أواس
       ios: نظام آي أواس
       linux: لينكس

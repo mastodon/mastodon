@@ -1,0 +1,38 @@
+---
+fo:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        scopes: Karmar
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Heimila
+        cancel: Angra
+        submit: Send avstað
+      confirmations:
+        destroy: Ert tú vís/ur?
+      index:
+        name: Navn
+        show: Vís
+    authorizations:
+      buttons:
+        deny: Nokta
+    authorized_applications:
+      index:
+        never_used: Ongantíð brúkt/ur
+        scopes: Loyvi
+        superapp: Innanhýsis
+    grouped_scopes:
+      access:
+        read: Lesi-rættindir
+        read/write: Lesi- og skrivi-rættindir
+        write: Skrivi-rættindir
+      title:
+        accounts: Kontur
+        admin/accounts: Umsiting av kontum
+        follow: Sambond
+        lists: Listar
+    scopes:
+      read:accounts: vís kontuupplýsingar
+      write:accounts: broyt vangamyndina

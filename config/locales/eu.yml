@@ -386,9 +386,7 @@ eu:
         create: Sortu blokeoa
         hint: Domeinuaren blokeoak ez du eragotziko kontuen sarrerak sortzea datu-basean, baina automatikoki ezarriko zaizkie moderazio metodo bereziak iraganeko mezuetan ere.
         severity:
-          desc_html: "<strong>Isilarazi</strong>-k kontuko bidalketak jarraitzaileek besterik ez ikustea eragingo du. <strong>Kanporatu</strong>-k kontuaren edukia, multimedia eta profileko datuak ezabatuko ditu. <strong>Bat ere ez</strong> nahi duzun guztia multimedia fitxategiak ukatzea bada."
           noop: Bat ere ez
-          silence: Isilarazi
           suspend: Kanporatu
         title: Domeinuaren blokeo berria
       obfuscate: Lausotu domeinu-izena
@@ -608,7 +606,7 @@ eu:
         other: "%{count} erabiltzaile"
       categories:
         administration: Administrazioa
-        devops: Devops
+        devops: DevOps
         invites: Gonbidapenak
         moderation: Moderazioa
         special: Berezia
@@ -659,7 +657,7 @@ eu:
         view_audit_log_description: Baimendu erabiltzaileek zerbitzariko administrazio-ekintzen historia ikustea
         view_dashboard: Ikusi aginte-panela
         view_dashboard_description: Baimendu erabiltzaileek aginte-panela eta hainbat estatistika ikustea
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Baimendu erabiltzaileek Sidekiq eta pgHero aginte-paneletara sarbidea izatea
       title: Rolak
     rules:
@@ -914,7 +912,6 @@ eu:
     warning: Kontuz datu hauekin, ez partekatu inoiz inorekin!
     your_token: Zure sarbide token-a
   auth:
-    apply_for_account: Jarri itxarote-zerrendan
     change_password: Pasahitza
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
@@ -1373,7 +1370,7 @@ eu:
     browser: Nabigatzailea
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1387,7 +1384,7 @@ eu:
       phantom_js: PhantomJS
       qq: QQ nabigatzailea
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC nabigatzailea
       weibo: Weibo
     current_session: Uneko saioa
     description: "%{browser} - %{platform}"
@@ -1396,7 +1393,7 @@ eu:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
