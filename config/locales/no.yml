@@ -394,6 +394,20 @@
         create: Legg til domene
         title: Ny blokkeringsoppføring av e-postdomene
       title: Blokkering av e-postdomene
+    export_domain_allows:
+      new:
+        title: Importer domenetillatelser
+      no_file: Ingen fil valgt
+    export_domain_blocks:
+      import:
+        description_html: Du er i ferd med å importere en liste med domeneblokkeringer. Se gjennom listen svært nøye, spesielt hvis du ikke har laget denne listen selv.
+        existing_relationships_warning: Nåværende følgeforhold
+        private_comment_description_html: 'For å hjelpe deg med å holde oversikt over hvor importerte blokkeringer kommer fra, vil de bli opprettet med følgende private kommentar: <q>%{comment}</q>'
+        private_comment_template: Importert fra %{source} den %{date}
+        title: Importer domeneblokkeringer
+      new:
+        title: Importer domeneblokkeringer
+      no_file: Ingen fil valgt
     follow_recommendations:
       description_html: "<strong>Følg anbefalinger hjelper nye brukere med å finne interessant innhold</strong>. Når en bruker ikke har kommunisert med andre nok til å danne personlig tilpassede følger anbefalinger, anbefales disse kontoene i stedet. De beregnes daglig på nytt fra en blanding av kontoer der de høyeste engasjementene er og med høyest lokal tilhenger for et gitt språk."
       language: For språk
@@ -762,6 +776,10 @@
     errors:
       invalid_key: er ikke en gyldig Ed25519- eller Curve25519-nøkkel
       invalid_signature: er ikke en gyldig Ed25519-signatur
+  date:
+    formats:
+      default: "%d. %b, %Y"
+      with_month_name: "%d. %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count} timer"
@@ -871,6 +889,7 @@
       public: Offentlige tidslinjer
       thread: Samtaler
     edit:
+      add_keyword: Legg til stikkord
       title: Rediger filter
     index:
       delete: Slett
@@ -893,6 +912,7 @@
       other: Noe er ikke helt riktig ennå. Det er ennå %{count} feil å rette på
   imports:
     errors:
+      invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
       over_rows_processing_limit: inneholder flere enn %{count} rader
     modes:
       merge: Slå sammen
