@@ -191,7 +191,7 @@ ast:
     warning:
       email_contact_html: Si entá nun aportó, pues unviar un corréu a<a href="mailto:%{email}">%{email}</a> pa más ayuda
       email_reconfirmation_html: Si nun recibiesti'l mensaxe de confirmación, pues <a href="%{path}">volver solicitalu</a>
-      more_details_html: Pa más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
+      more_details_html: Pa consiguir más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   disputes:
     strikes:
       appeal_rejected: Refugóse l'apellación
@@ -233,6 +233,8 @@ ast:
       notifications: Avisos
       public: Llinies temporales públiques
       thread: Conversaciones
+    errors:
+      deprecated_api_multiple_keywords: Estos parámetros nun se puen camudar dende esta aplicación porque s'apliquen a más d'una pallabra clave de la peñera. Usa una aplicación más recién o la interfaz web.
     index:
       empty: Nun tienes peñeres.
       keywords:
@@ -440,6 +442,7 @@ ast:
       unlisted: Nun llistar
       unlisted_long: Tol mundu puen velos pero nun se llisten nes llinies temporales públiques
   statuses_cleanup:
+    exceptions: Esceiciones
     min_age:
       '1209600': 2 selmanes
       '15778476': 6 meses
@@ -456,7 +459,7 @@ ast:
   tags:
     does_not_match_previous_name: nun concasa col nome anterior
   themes:
-    contrast: Contraste altu
+    contrast: Mastodon (contraste altu)
     default: Mastodon (escuridá)
     mastodon-light: Mastodon (claridá)
   two_factor_authentication:
@@ -467,7 +470,7 @@ ast:
     lost_recovery_codes: Los códigos de recuperación permítente recuperar l'accesu a la cuenta si pierdes el teléfonu. Si tamién pierdes estos códigos, pues rexeneralos equí. Los códigos de recuperación vieyos van invalidase.
     recovery_codes: Códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación volvieron xenerase correutamente
-    webauthn: Claves d'autenticación
+    webauthn: Llaves de seguranza
   user_mailer:
     warning:
       explanation:
@@ -488,3 +491,6 @@ ast:
   verification:
     explanation_html: 'Pues <strong>verificate como la persona propietaria de los enllaces nos metadatos del to perfil</strong>. Pa ello, el sitiu web enllaciáu ha contener un enllaz al to perfil de Mastodon. Esti enllaz <strong>ha</strong> tener l''atributu <code>rel="me"</code>. El testu del enllaz nun importa. Equí tienes un exemplu:'
     verification: Verificación
+  webauthn_credentials:
+    create:
+      error: Hebo un problema al amestar la llave de seguranza. Volvi tentalo.
