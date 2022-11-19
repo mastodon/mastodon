@@ -1,8 +1,49 @@
 be:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Назва праграмы
+        website: Вэб-сайт праграмы
   doorkeeper:
     applications:
       buttons:
+        cancel: Скасаваць
+        destroy: Знішчыць
         edit: Рэдагаваць
         submit: Адправіць
+      edit:
+        title: Рэдагаваць праграму
       index:
+        application: Праграма
         delete: Выдаліць
+        empty: У вас няма праграм.
+        new: Новая праграма
+        title: Вашы праграмы
+      new:
+        title: Новая праграма
+      show:
+        actions: Дзеянні
+        title: 'Праграма: %{name}'
+    authorizations:
+      show:
+        title: Скапіруйце гэты код аўтарызацыі і ўстаўце яго ў праграму.
+    authorized_applications:
+      buttons:
+        revoke: Адклікаць
+      index:
+        scopes: Дазволы
+    flash:
+      applications:
+        create:
+          notice: Праграма створана.
+        destroy:
+          notice: Праграма выдалена.
+        update:
+          notice: Праграма абноўлена.
+      authorized_applications:
+        destroy:
+          notice: Праграма адклікана.
+    layouts:
+      admin:
+        nav:
+          applications: Праграмы
