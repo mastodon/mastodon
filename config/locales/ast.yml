@@ -100,6 +100,9 @@ ast:
       permissions_count:
         one: "%{count} permisu"
         other: "%{count} permisos"
+    settings:
+      branding:
+        preamble: La marca del to sirvidor estrémalu d'otros sirvidores de la rede. Ye posible qu'esta información apaeza nuna variedá d'entornos, como la interfaz web de Mastodon, les aplicaciones natives, nes previsualizaciones de los enllaces d'otros sitios web, dientro de les aplicaciones de mensaxería... etc. Por esti motivu, lo meyor ye qu'esta información seya clara, curtia y concisa.
     statuses:
       metadata: Metadatos
     strikes:
@@ -150,6 +153,7 @@ ast:
     logout: Zarrar la sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
+    privacy_policy_agreement_html: Lleí y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidá</a>
     providers:
       cas: CAS
       saml: SAML
@@ -163,7 +167,7 @@ ast:
   authorize_follow:
     already_following: Yá tas siguiendo a esta cuenta
     already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
-    error: Desafortunadamente, hebo un fallu guetando la cuenta remota
+    error: Desafortunadamente, hebo un error al buscar la cuenta remota
     follow_request: 'Unviesti una solicitú de siguimientu a:'
     post_follow:
       close: O pues zarrar esta ventana.
@@ -186,6 +190,7 @@ ast:
     confirm_password: Introduz la contraseña pa verificar la to identidá
     warning:
       email_contact_html: Si entá nun aportó, pues unviar un corréu a<a href="mailto:%{email}">%{email}</a> pa más ayuda
+      email_reconfirmation_html: Si nun recibiesti'l mensaxe de confirmación, pues <a href="%{path}">volver solicitalu</a>
       more_details_html: Pa más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   disputes:
     strikes:
@@ -204,6 +209,7 @@ ast:
     '429': Ficiéronse milenta solicitúes
     '500':
     '503': Nun se pudo sirvir la páxina pola mor d'un fallu temporal del sirvidor.
+    noscript_html: Pa usar l'aplicación web de Mastodon, activa JavaScript. Tamién pues probar una de les <a href="%{apps_path}">aplicaciones natives</a> de Mastodon pa la to plataforma.
   exports:
     archive_takeout:
       date: Data
@@ -326,6 +332,7 @@ ast:
           trillion: B
   otp_authentication:
     description_html: Si actives l'<strong>autenticación en dos pasos</strong> con una aplicación autenticadora, al aniciar la sesión va ser obligatorio que tengas el teléfonu a mano, preséu que xenera los pases que tienes d'introducir.
+    manual_instructions: 'Si nun pues escaniar el códigu QR y tienes d''introducilu manualmente, equí tienes el secretu en testu ensin formatu:'
     setup: Configurar
   pagination:
     next: Siguiente
@@ -463,6 +470,8 @@ ast:
     webauthn: Claves d'autenticación
   user_mailer:
     warning:
+      explanation:
+        disable: Xá nun pues usar la cuenta mas el perfil y otros datos siguen intautos. Pues solicitar una copia de seguranza de los datos, camudar la configuración de la cuenta o desaniciar la cuenta.
       reason: 'Motivu:'
       subject:
         suspend: Suspendióse la cuenta %{acct}
@@ -475,7 +484,7 @@ ast:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu nun ye válidu
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
-    seamless_external_login: Aniciesti sesión pente un serviciu esternu, polo que los axustes de la contraseña y corréu nun tán disponibles.
+    seamless_external_login: Aniciesti la sesión pente un serviciu esternu, polo que la configuración de la contraseña y de la direición de corréu electrónicu nun tán disponibles.
   verification:
     explanation_html: 'Pues <strong>verificate como la persona propietaria de los enllaces nos metadatos del to perfil</strong>. Pa ello, el sitiu web enllaciáu ha contener un enllaz al to perfil de Mastodon. Esti enllaz <strong>ha</strong> tener l''atributu <code>rel="me"</code>. El testu del enllaz nun importa. Equí tienes un exemplu:'
     verification: Verificación
