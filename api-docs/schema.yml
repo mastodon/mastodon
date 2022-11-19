@@ -3976,13 +3976,36 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - admin:read
       parameters:
       - name: authorization
         in: header
         required: true
         schema:
           type: string
+      - name: limit
+        in: query
+        required: false
+        description: Maximum number of results to return. Defaults to 40.
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: Internal parameter. Use HTTP Link header for pagination.
+        schema:
+          type: string
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
       responses:
         '200':
           description: successful
@@ -3991,6 +4014,10 @@ paths:
               examples:
                 successful:
                   value: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Tag"
   "/api/v1/announcements/{announcement_id}/reactions/{id}":
     parameters:
     - name: announcement_id
