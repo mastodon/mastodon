@@ -10,6 +10,7 @@ require 'bootsnap' # Speed up boot time by caching expensive operations.
 
 Bootsnap.setup(
   cache_dir:            File.expand_path('../tmp/cache', __dir__),
+  ignore_directories:   ['node_modules'],
   development_mode:     ENV.fetch('RAILS_ENV', 'development') == 'development',
   load_path_cache:      true,
   compile_cache_iseq:   false,
