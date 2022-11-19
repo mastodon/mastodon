@@ -389,8 +389,11 @@ ar:
         hint: لن تمنع كتلة المجال إنشاء إدخالات حساب في قاعدة البيانات ، ولكنها ستطبق طرق الإشراف المحددة بأثر رجعي وتلقائي على هذه الحسابات.
         severity:
           noop: لا شيء
+          silence: كتم
           suspend: تعليق
         title: حجب نطاق جديد
+      no_domain_block_selected: لم يطرأ أي تغيير على أي نطاق بما أنه لم يتم اختيار أي نطاق
+      not_permitted: غير مسموح لك بتنفيذ هذا الإجراء
       obfuscate: تشويش اسم النطاق
       obfuscate_hint: تشويش اسم النطاق جزئيا في القائمة إذا كان الإعلان عن قائمة قيود النطاق مفعلاً
       private_comment: تعليق خاص
@@ -413,11 +416,25 @@ ar:
       domain: النطاق
       new:
         create: إضافة نطاق
+        resolve: العثور على عنوان النطاق
         title: إضافة نطاق بريد جديد إلى اللائحة السوداء
+      no_email_domain_block_selected: لم يطرأ أي تغيير على أي نطاق بريد بما أنه لم يتم اختيار أي نطاق
+      resolved_dns_records_hint_html: عنوان النطاق يعود لخوادم البريد (MX) التالية وهو ما يسمح للنطاق باستقبال البريد. حظر خوادم البريد هذه سوف يتسبب في منع أي تسجيل خلال أي نطاق يستخدم هذه الخوادم حتى لو كان اسم النطاق مختلف عن اسماء خوادم البريد.<strong>احذر من حظر مزودي البريد العالميين.</strong>
+      resolved_through_html: الحصول على العنوان من خلال %{domain}
       title: القائمة السوداء للبريد الإلكتروني
     export_domain_allows:
+      new:
+        title: استيراد قامة النطاقات المسموحة
       no_file: لم يتم تحديد أيّ ملف
     export_domain_blocks:
+      import:
+        description_html: أنت على وشك استيراد قائمة نطاقات محظورة. يرجى مراجعة هذه القائمة بعناية شديدة، خاصة إذا لم تقم بكتابة هذه القائمة بنفسك.
+        existing_relationships_warning: تم العثور على متابعات مستركة
+        private_comment_description_html: 'لمساعدتك على تتبع سبب حظر النطاقات المستوردة، سيتم إنشاء الحظر مع التعليق الخاص التالي: <q>%{comment}</q>'
+        private_comment_template: تم الاستيراد من %{source} بتاريخ %{date}
+        title: استيراد قامة النطاقات المحظورة
+      new:
+        title: استيراد قامة النطاقات المحظورة
       no_file: لم يتم تحديد أيّ ملف
     follow_recommendations:
       description_html: "<strong>تساعد اقتراحات المتابعة المستخدمين في العثور بسرعة على محتوى مثير للاهتمام</strong>. عندما لا يتفاعل المستخدم مع الآخرين بشكل كافي لتشكيل اقتراحات متابعة مخصصة له، تظهر هذه الاقتراحات بدلاً من ذلك. يُعاد حسابهم بشكل يومي من مزيج حسابات لديها أكثر التفاعلات وأكثر عدد من المتابعين المحليين للغة معينة."
@@ -429,7 +446,10 @@ ar:
       unsuppress: إستعادة إقتراحات المتابعة
     instances:
       availability:
+        failure_threshold_reached: تم الوصول إلى أقصى حد للفشل بتاريخ %{date}.
+        no_failures_recorded: لم يتم العثور على أي فشل.
         title: التوفر
+        warning: فشلت المحاولة الأخيرة للاتصال بهذا النطاق
       back_to_all: الكل
       back_to_limited: محدود
       back_to_warning: تحذير
@@ -449,12 +469,16 @@ ar:
       dashboard:
         instance_accounts_dimension: الحسابات الأكثر متابعة
         instance_accounts_measure: حسابات مخزنة
+        instance_followers_measure: متابعينا هناك
         instance_follows_measure: متابِعوهم هنا
         instance_languages_dimension: اللغات الأكثر استخدامًا
         instance_media_attachments_measure: مرفقات الوسائط المخزَّنة
+        instance_reports_measure: تبليغات بخصوصهم
+        instance_statuses_measure: المنشورات المخزنة
       delivery:
         all: الكل
         clear: مسح أخطاء التسليم
+        failing: فشلت
         restart: إعادة تشغيل التوصيل
         stop: إيقاف التوصيل
         unavailable: غير متوفر
