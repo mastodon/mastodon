@@ -1,1 +1,51 @@
 be:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Дэдлайн
+        options: Выбар
+      user:
+        agreement: Пагадненне аб абслугоўванні
+        email: Адрас электроннай пошты
+        locale: Лакальныя
+        password: Пароль
+      user/account:
+        username: Імя карыстальніка
+      user/invite_request:
+        text: Прычына
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              reserved: зарэзервавана
+        admin/webhook:
+          attributes:
+            url:
+              invalid: Нядзейсны URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: Нядзейсны URL
+        import:
+          attributes:
+            data:
+              malformed: утрымлівае дэфармацыю
+        status:
+          attributes:
+            reblog:
+              taken: кантакт ужо існуе
+        user:
+          attributes:
+            email:
+              blocked: выкарыстоўвае забароненую крыніцу электроннай пошты
+              unreachable: можа не існаваць
+            role_id:
+              elevated: не можа быць вышэй за абраную роль
+        user_role:
+          attributes:
+            permissions_as_keys:
+              own_role: не можа быць вышэй за абраную роль
+            position:
+              elevated: не можа быць вышэй за абраную роль
+              own_role: не можа быць вышэй за абраную роль
