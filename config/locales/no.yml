@@ -346,6 +346,8 @@
       add_new: Hvitelist domene
       created_msg: Domenet har blitt hvitelistet
       destroyed_msg: Domenet har blitt fjernet fra hvitelisten
+      export: Eksporter
+      import: Importer
       undo: Fjern fra hvitelisten
     domain_blocks:
       add_new: Lag ny
@@ -355,13 +357,19 @@
       edit: Rediger domeneblokkering
       existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du må <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
+      export: Eksporter
+      import: Importer
       new:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
+          desc_html: "<strong>Begrens</strong> gjør at innlegg fra kontoer på dette domenet blir usynlig for de som ikke følger dem. <strong>Suspender</strong> fjerner alt innhold, media og profildata for kontoer fra dette domenet. Bruk <strong>Ingen</strong> hvis du kun ønsker å avvise mediefiler."
           noop: Ingen
+          silence: Begrens
           suspend: Utvis
         title: Ny domeneblokkering
+      no_domain_block_selected: Ingen domeneblokkering ble endret, siden ingen var valgt
+      not_permitted: Du har ikke tillatelse til å utføre denne handlingen
       obfuscate: Obfuskere domenenavn
       obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
       private_comment: Privat kommentar
@@ -695,6 +703,7 @@
     warning: Vær veldig forsiktig med denne data. Aldri del den med noen!
     your_token: Din tilgangsnøkkel
   auth:
+    apply_for_account: Be om en konto
     change_password: Passord
     delete_account: Slett konto
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
