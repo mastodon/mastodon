@@ -2,6 +2,9 @@
 
 require 'csv'
 
+# NOTE: This is a deprecated service, only kept to not break ongoing imports
+# on upgrade. See `BulkImportService` for its replacement.
+
 class ImportService < BaseService
   ROWS_PROCESSING_LIMIT = 20_000
 
