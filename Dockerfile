@@ -74,21 +74,24 @@ RUN apt-get update && \
 # Note: no, cleaning here since Debian does this automatically
 # See the file /etc/apt/apt.conf.d/docker-clean within the Docker image's filesystem
 
-COPY --chown=mastodon:mastodon . /opt/mastodon
-COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
+COPY --link --from=build /opt/mastodon /opt/mastodon
+COPY --link . /opt/mastodon
+
+RUN mkdir /opt/mastodon/tmp && chown mastodon:mastodon /opt/mastodon/tmp
 
 ENV RAILS_ENV="production" \
     NODE_ENV="production" \
     RAILS_SERVE_STATIC_FILES="true" \
     BIND="0.0.0.0"
 
-# Set the run user
-USER mastodon
 WORKDIR /opt/mastodon
 
 # Precompile assets
 RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
     yarn cache clean
+
+# Set the run user
+USER mastodon
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
