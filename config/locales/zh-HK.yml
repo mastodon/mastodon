@@ -834,8 +834,31 @@ zh-HK:
     webhooks:
       add_new: 新增端點
       delete: 刪除
+      description_html: <strong>Webhook</strong> 讓 Mastodon 將有關所選事件的<strong>實時通知</strong>推送到你自己的應用程式，如此應用程式便可以<strong>自動觸發反應</strong>。
+      disable: 停用
+      disabled: 已停用
+      edit: 編輯端點
+      empty: 你尚未設置 webhook 端點。
+      enable: 啟用
+      enabled: 活躍
+      enabled_events:
+        other: "%{count} 件已啟用的事件"
+      events: 事件
+      new: 新增 webhook
+      rotate_secret: 轉換密鑰
+      status: 狀態
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_appeal:
+      actions:
+        delete_statuses: 刪除他們的帖文
+        disable: 凍結他們的帳號
+        mark_statuses_as_sensitive: 標記他們的帖文為敏感內容
+        none: 警告
+        sensitive: 標記他們的帳號為敏感內容
+        silence: 限制他們的帳號
+        suspend: 停用他們的帳號
       body: "%{target} 對 %{action_taken_by} 於 %{date} 做出的 %{type} 審核裁決提出申訴。他們寫道："
       next_steps: 您可以批准此申訴以撤銷審核裁決，又或者忽略它。
       subject: "%{username} 對 %{instance} 上的審核裁決提出申訴"
@@ -1004,6 +1027,27 @@ zh-HK:
       appeal_rejected: 申訴已被駁回
       appeal_submitted_at: 已提交申訴
       appealed_msg: 已提交你的申訴。一旦申訴獲得批准，你將收到通知。
+      appeals:
+        submit: 提交申訴
+      approve_appeal: 批准申訴
+      associated_report: 相關檢舉
+      description_html: 這些是 %{instance} 工作人員針對你的帳號採取的行動和向你發出的警告。
+      recipient: 發送至
+      reject_appeal: 駁回申訴
+      status: '帖文 #%{id}'
+      status_removed: 帖文已從系統中刪除
+      title: "%{action} 於 %{date}"
+      title_actions:
+        delete_statuses: 移除帖文
+        disable: 帳號凍結
+        mark_statuses_as_sensitive: 標記帖文為敏感內容
+        none: 警告
+        sensitive: 標記帳號為敏感內容
+        silence: 帳號限制
+        suspend: 帳號停用
+      your_appeal_approved: 你的申訴已獲批准
+      your_appeal_pending: 你已提交申訴
+      your_appeal_rejected: 你的申訴已被駁回
   domain_validator:
     invalid_domain: 不是一個可用域名
   errors:
@@ -1052,12 +1096,19 @@ zh-HK:
       public: 公共時間軸
       thread: 對話
     edit:
+      add_keyword: 加入關鍵字
+      keywords: 關鍵字
+      statuses: 個別帖文
+      statuses_hint_html: 此篩選器會套用至所選的個別帖文，不論它符合下列的關鍵字與否。<a href="%{path}">查看或移除篩選器中的帖文</a>。
       title: 編輯篩選器
     errors:
+      deprecated_api_multiple_keywords: 無法從此應用程式更改這些參數，因為參數適用於多個篩選器關鍵字。請使用較新的應用程式或網頁介面。
       invalid_context: 沒有提供內文或內文無效
     index:
+      contexts: '%{contexts} 中的篩選器'
       delete: 刪除
       empty: 你沒有過濾器。
+      expires_in: 於 %{distance} 過期
       expires_on: 於 %{date} 到期
       keywords:
         other: "%{count} 個關鍵字"
@@ -1509,20 +1560,41 @@ zh-HK:
       title: 新登入
     warning:
       appeal: 提交申訴
+      appeal_description: 如果你認為這個有誤，你可以向 %{instance} 的工作人員提出申訴。
+      categories:
+        spam: 垃圾訊息
+        violation: 內容違反下列的社群守則
+      explanation:
+        delete_statuses: 你有些帖文被發現違反了一條或多條社群守則，並已被 %{instance} 的管理員刪除。
+        disable: 你無法再使用你的帳號，但你的個人檔案和其他資料仍然完整。你可以要求取得你的資料的備份，更改帳號設定或刪除你的帳號。
+        mark_statuses_as_sensitive: 你有些帖文已被 %{instance} 的管理員標記為敏感內容。這表示帖文上的媒體需要點擊才可預覽。日後你可以在發帖文時自行將媒體標記為敏感內容。
+        sensitive: 從今開始，你上傳的所有媒體檔案將被標記為敏感內容並隱藏，須點擊警告後方可查看。
+        silence: 你仍然可以使用你的帳號，但只有你的追蹤者方可看見你在此伺服器上的帖文，你亦可能會被排除在各種探索功能之外，但其他人仍然可以手動追蹤你。
+        suspend: 你不能再使用你的帳號及存取你的個人檔案和其他資料。你仍然可以登入並要求取得資料備份，直至資料在大約 30 天內被完全刪除為止，但我們將保留部份基本資料，以防止你規避處罰。
+      reason: '原因：'
+      statuses: '引用帖文：'
       subject:
+        delete_statuses: 你在 %{acct} 的帖文已被移除
         disable: 你的帳號 %{acct} 已經被涷結
+        mark_statuses_as_sensitive: 你在 %{acct} 的帖文已被標記為敏感內容
         none: 警告帳號%{acct}
+        sensitive: 從今開始，你在 %{acct} 的帖文將被標記為敏感內容
         silence: 你的帳號 %{acct} 已經被限制
         suspend: 你的帳號 %{acct} 已經被停權
       title:
+        delete_statuses: 已移除帖文
         disable: 帳號涷結
+        mark_statuses_as_sensitive: 標記為敏感內容的帖文
         none: 警告
+        sensitive: 標記為敏感內容的帳號
         silence: 賬戶已被限制
         suspend: 帳號已停用
     welcome:
       edit_profile_action: 設定個人資料
+      edit_profile_step: 你可以透過上傳頭像、更改顯示名稱等來自訂個人檔案。你可以選擇讓新使用者追蹤你之前先審查他們。
       explanation: 下面是幾個小貼士，希望它們能幫到你
       final_action: 開始發文
+      final_step: '開始發文吧！即使你沒有追蹤者，其他人仍然能在本站時間軸或標籤等地方，看到你的公開帖文。試着用 #introductions 標籤來介紹自己吧。'
       full_handle: 你的完整 Mastodon 地址
       full_handle_hint: 這訊息將顯示給你朋友們，讓他們能從另一個服務站發信息給你，或者關注你的。
       subject: 歡迎來到 Mastodon (萬象)
