@@ -27,7 +27,7 @@ be:
       created_msg: Нататка мадэратара паспяхова створана!
       destroyed_msg: Нататка мадэратара паспяхова выдалена!
     accounts:
-      add_email_domain_block: Заблакіраваць паштовы дамен
+      add_email_domain_block: Заблакіраваць дамен эл. пошты
       approve: Пацвердзіць
       are_you_sure: Вы ўпэўнены?
       avatar: Аватар
@@ -38,7 +38,7 @@ be:
         label: Змяніць адрас эл. пошты
         new_email: Новая эл. пошта
         submit: Змяніць адрас эл. пошты
-        title: Змяніць адрас пошты для %{username}
+        title: Змяніць адрас эл. пошты для %{username}
       change_role:
         changed_msg: Роля паспяхова зменена!
         label: Змяніць ролю
@@ -47,9 +47,14 @@ be:
       confirm: Пацвердзіць
       confirmed: Пацверджаны
       confirming: Ідзе пацвярджэнне
+      delete: Выдаліць дадзеныя
       deleted: Выдалены
+      destroyed_msg: "Дадзеныя %{username} цяпер у чарзе на прымусовае выдаленне"
       disable_two_factor_authentication: Адключыць 2FA
       edit: Рэдагаваць
+      follows: Падпісчыкі
+      invite_request_text: Прычына далучэння
+      invited_by: Запрошаны
       ip: IP
       joined: Далучыўся
       location:
@@ -57,12 +62,16 @@ be:
         local: Лакальны
         remote: Адлеглы
         title: Месцазнаходжанне
+      media_attachments: Медыя дадаткі
+      memorialize: Даданае да памяці
+      memorialized: Запомненае
       moderation:
         active: Актыўны
         all: Усе
         pending: Чакаюць
         silenced: Абмежаваны
         suspended: Прыпынены
+        title: Мадэрацыя
       most_recent_activity: Апошняя актыўнасць
       not_subscribed: Не падпісаны
       pending: Чакае праверкі
@@ -72,28 +81,72 @@ be:
       redownload: Аднавіць профіль
       reject: Адхіліць
       remove_avatar: Выдаліць аватар
+      remove_header: Выдаліць шапку
       resubscribe: Аднавіць падпіску
       role: Роля
       search: Пошук
-      unsubscribe: Адмовіцца ад падпіскі
+      show:
+        created_reports: Створана скарг
+        targeted_reports: Справаздачанае іншымі
+      silence: Амбежаванне
+      silenced: Абмежаванае
+      statuses: Допісы
+      strikes: Ранейшыя скаргі
+      subscribe: Падпіска
+      suspend: Прыпыніць
+      suspended: Прыпынена
+      suspension_irreversible: Дадзеныя гэтага ўліковага запісу былі канчаткова вынішчаны. Вы можаце аднавіць уліковы запіс каб зрабіць яго зноў працоўным, але гэта не аднавіць дадзеныя якія былі змешчаны на ім раней.
+      suspension_reversible_hint_html: Уліковы запіс быў прыпынены і дадзеныя будуць цалкам выдалены ад %{date}. Дагэтуль уліковы запіс можа быць адноўлены без якіх-небудзь шкодных наступстваў. Калі вы хочаце вынішчыць усе дадзеныя ўліковага запісу зараз, вы можаце зрабіць гэта ніжэй.
+      title: Уліковыя запісы
+      unblock_email: Разблакіраваць адрас эл. пошты
+      unblocked_email_msg: Паспяхова разблякавана электронная пошта %{username}
+      unconfirmed_email: Непацверджаны адрас эл. пошты
+      unsubscribe: Адпісацца
       username: Імя карыстальніка
+      warn: Папярэдзіць
       web: Інтэрнэт
     action_logs:
       action_types:
+        approve_user: Зацвердзіць карыстальніка
+        assigned_to_self_report: Зацвердзіць справаздачу
         change_email_user: Змяніць E-mail карыстальніка
         change_role_user: Змяніць ролю карыстальніка
         confirm_user: Пацвердзіць карыстальніка
+        create_account_warning: Стварыць папярэджванне
         create_announcement: Стварыць аб'яву
+        create_canonical_email_block: Стварыць блакіроўку электроннай пошты
+        create_custom_emoji: Стварыць асабістую Пачутку
+        create_domain_allow: Стварыць даменны дазвол
+        create_domain_block: Стварыць даменны блок
+        create_email_domain_block: Стварыць даменны блок электроннай пошты
+        create_ip_block: Стварыць IP правіла
+        create_unavailable_domain: Стварыць недаступны Дамен
         create_user_role: Стварыць ролю
+        demote_user: Панізіць карыстальніка
         destroy_announcement: Выдаліць аб'яву
+        destroy_canonical_email_block: Выдаліць блакіроўку электроннай пошты
+        destroy_custom_emoji: Выдаліць асабістую Пачутку
+        destroy_domain_allow: Выдаліць дамены дазвол
+        destroy_domain_block: Выдаліць даменны блок
+        destroy_email_domain_block: Выдаліць даменны блок электроннай пошты
+        destroy_instance: Вычысціць дамен
+        destroy_ip_block: Выдаліць IP правіла
         destroy_status: Выдаліць допіс
-        disable_2fa_user: Адключыць 2FA
+        destroy_unavailable_domain: Выдаліць недаступны дамен
+        destroy_user_role: Выдаліць ролю
+        disable_2fa_user: Адключыць двухэтапнае спраўджанне
+        disable_custom_emoji: Адключыць асабістую Пачутку
+        disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
         disable_user: Адключыць карыстальніка
+        enable_custom_emoji: Адклюыць асабістую Пачутку
+        enable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
         enable_user: Уключыць карыстальніка
+        memorialize_account: Запомніць уліковы запіс
+        promote_user: Павысіць правы Карыстальніка
         remove_avatar_user: Выдаліць аватар
         update_announcement: Абнавіць аб'яву
         update_status: Абнавіць допіс
-        update_user_role: Аднавіць ролю
+        update_user_role: Абнавіць ролю
       actions:
         approve_user_html: "%{name} пацвердзіў рэгістрацыю ад %{target}"
         change_email_user_html: "%{name} змяніў паштовы адрас карыстальніка %{target}"
@@ -101,14 +154,14 @@ be:
         confirm_user_html: "%{name} пацвердзіў паштовы адрас %{target}"
         create_announcement_html: "%{name} зрабіў новую аб'яву %{target}"
         create_domain_allow_html: "%{name} дазволіў федэрацыю з даменам %{target}"
-        create_domain_block_html: "%{name} блакіруе дамен %{target}"
-        create_email_domain_block_html: "%{name} блакіруе паштовы дамен %{target}"
+        create_domain_block_html: "%{name} заблакіраваў дамен %{target}"
+        create_email_domain_block_html: "%{name} заблакіраваў дамен эл. пошты %{target}"
         create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
-        create_user_role_html: "%{name} зрабіў %{target} ролю"
+        create_user_role_html: "%{name} зрабіў ролю %{target}"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
         destroy_status_html: "%{name} выдаліў допіс %{target}"
-        destroy_user_role_html: "%{name} выдаліў %{target} ролю"
-        disable_user_html: "%{name} выключыў уваход для карыстальніка %{target}"
+        destroy_user_role_html: "%{name} выдаліў ролю %{target}"
+        disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
         suspend_account_html: "%{name} прыпыніў акаунт %{target}"
     announcements:
@@ -125,7 +178,7 @@ be:
       unpublished_msg: Аб'ява паспяхова схована!
       updated_msg: Аб'ява паспяхова адноўлена!
     custom_emojis:
-      assign_category: Пазначыць катэгорыю
+      assign_category: Прызначыць катэгорыю
       by_domain: Дамен
       copy: Скапіраваць
       create_new_category: Стварыць новую катэгорыю
