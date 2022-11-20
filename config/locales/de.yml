@@ -192,7 +192,7 @@ de:
         destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
         destroy_unavailable_domain: Nicht verfügbare Domain löschen
-        destroy_user_role: Rolle löschen
+        destroy_user_role: Rolle entfernen
         disable_2fa_user: 2FA deaktivieren
         disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
         disable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account deaktivieren
@@ -231,7 +231,7 @@ de:
         change_role_user_html: "%{name} hat die Rolle von %{target} geändert"
         confirm_user_html: "%{name} hat die E-Mail-Adresse von %{target} bestätigt"
         create_account_warning_html: "%{name} hat eine Warnung an %{target} gesendet"
-        create_announcement_html: "%{name} hat die neue Ankündigung %{target} erstellt"
+        create_announcement_html: "%{name} hat die neue Ankündigung erstellt: %{target}"
         create_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} gesperrt"
         create_custom_emoji_html: "%{name} hat neues Emoji %{target} hochgeladen"
         create_domain_allow_html: "%{name} hat die Domain %{target} gewhitelistet"
@@ -696,7 +696,7 @@ de:
         title: Über
       appearance:
         preamble: Passe das Webinterface von Mastodon an.
-        title: Erscheinungsbild
+        title: Design
       branding:
         preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
         title: Branding
@@ -707,7 +707,7 @@ de:
         follow_recommendations: Folgeempfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
         profile_directory: Profilverzeichnis
-        public_timelines: Öffentliche Timelines
+        public_timelines: Öffentliche Timeline
         title: Entdecken
         trends: Trends
       domain_blocks:
@@ -719,9 +719,9 @@ de:
         title: Registrierungen
       registrations_mode:
         modes:
-          approved: Zustimmung benötigt zur Registrierung
+          approved: Registrierung muss genehmigt werden
           none: Niemand kann sich registrieren
-          open: Jeder kann sich registrieren
+          open: Alle können sich registrieren
       title: Servereinstellungen
     site_uploads:
       delete: Hochgeladene Datei löschen
@@ -1087,7 +1087,7 @@ de:
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
     not_found: kann lokale*n Benutzer*in mit diesem Profilnamen nicht finden
-    not_found_multiple: kann %{usernames} nicht finden
+    not_found_multiple: '%{usernames} können nicht gefunden werden'
   exports:
     archive_takeout:
       date: Datum
@@ -1434,7 +1434,7 @@ de:
     account: Konto
     account_settings: Kontoeinstellungen
     aliases: Kontoaliase
-    appearance: Erscheinungsbild
+    appearance: Design
     authorized_apps: Autorisierte Anwendungen
     back: Zurück zu Mastodon
     delete: Konto löschen
@@ -1582,14 +1582,14 @@ de:
       subject: Dein Einspruch vom %{date} wurde abgelehnt
       title: Einspruch abgelehnt
     backup_ready:
-      explanation: Du hast ein vollständiges Backup von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
-      subject: Dein persönliches Archiv ist bereit zum Download
-      title: Archiv-Download
+      explanation: Du hast eine vollständige Sicherung von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
+      subject: Dein persönliches Archiv ist bereit zum Herunterladen
+      title: Archivmitnahme
     suspicious_sign_in:
       change_password: dein Passwort zu ändern
       details: 'Hier sind die Details des Versuchs:'
       explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
-      further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung (2FA) für deinen Account zu aktivieren, um dein Konto abzusichern.
+      further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentifizierung (2FA) für dein Konto zu aktivieren, um es abzusichern.
       subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
       title: Eine neue Anmeldung
     warning:
@@ -1600,7 +1600,7 @@ de:
         violation: Inhalt verstößt gegen die folgenden Gemeinschaftsrichtlinien
       explanation:
         delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Gemeinschaftsrichtlinien erkannt und von den Moderator*innen von %{instance} entfernt.
-        disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst ein Backup deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
+        disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
         mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
