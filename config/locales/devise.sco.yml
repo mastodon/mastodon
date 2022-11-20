@@ -3,3 +3,19 @@ sco:
     confirmations:
       confirmed: Yer email address haes been successful confirmit.
       send_instructions: Ye'll get a email tellin ye hou tae confirm yer email address in a wee minute. Please tak a luik in yer mince folder if ye didnae get this email.
+      send_paranoid_instructions: Gin yer email address exists in wir database, ye'll get a email tellin ye hou tae mak siccar yer email address in a wee minute. Please check yer mince folder if ye didnae get this email.
+    failure:
+      already_authenticated: Ye'r signed in awriddy.
+      inactive: Yer accoont isnae activatit yit.
+      invalid: No a valid %{authentication_keys} or passwird.
+      last_attempt: Ye'v juist the ae mair attempt afore yer accoont is snibbed.
+      locked: Yer accoont is snibbed.
+      not_found_in_database: No a valid %{authentication_keys} or passwird.
+      pending: Yer accoont is stull gettin luiked at the noo.
+      timeout: Yer session is expirit. Please sign in again fit tae gae forret.
+      unauthenticated: Ye'r needin tae sign in or sign up afore gaein forret.
+      unconfirmed: Ye hae tae confirm yer email address afore gaun forret.
+    mailer:
+      confirmation_instructions:
+        action: Verify yer email address
+        action_with_app: Mak siccar an return tae %{app}
