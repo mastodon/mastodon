@@ -14,25 +14,70 @@ be:
         setting_display_media_hide_all: Заўсёды хаваць медыя
         setting_display_media_show_all: Заўсёды паказваць медыя
         setting_hide_network: Вашы падпіскі і вашы падпісчыкі будуць нябачны ў вашым профілі
+      form_admin_settings:
+        backups_retention_period: Захоўваць створаныя архівы карыстальніка адзначаную колькасць дзён.
+        bootstrap_timeline_accounts: Гэтыя ўліковыя запісы будуць замацаваны ў топе рэкамендацый для новых карыстальнікаў.
+        custom_css: Вы можаце прымяняць карыстальніцкія стылі ў вэб-версіі Mastodon.
+        mascot: Замяняе ілюстрацыю ў пашыраным вэб-інтэрфейсе.
     labels:
+      admin_account_action:
+        text: Карыстальніцкае папярэджанне
+        type: Дзеянне
+        types:
+          disable: Замарозіць
       announcement:
+        all_day: Падзея на ўвесь дзень
+        ends_at: Канец падзеі
+        scheduled_at: Запланаваць публікацыю
+        starts_at: Пачатак падзеі
         text: Аб'ява
+      appeal:
+        text: Растлумачце, чаму гэтае рашэнне павінна быць адменена
       defaults:
+        autofollow: Прапануйце падпісацца на ваш акаўнт
         avatar: Аватар
+        bot: Гэта бот
+        chosen_languages: Фільтр моў
+        confirm_new_password: Пацвердзіць новы пароль
+        confirm_password: Пацвердзіць пароль
+        context: Фільтр кантэкстаў
+        current_password: Бягучы пароль
         data: Даныя
+        discoverable: Парэкамендаваць акаўнт іншым
+        display_name: Адлюстраванае імя
+        email: Адрас электроннай пошты
         header: Загаловак
+        irreversible: Выдаляць, а не хаваць
+        locale: Мова інтэрфейсу
+        locked: Патрабуе запыт на падпіску
+        max_uses: Максімальная колькасць выкарыстанняў
         new_password: Новы пароль
+        note: Пра сябе
+        otp_attempt: Двухфактарны код
         password: Пароль
+        phrase: Ключавое слова ці фраза
+        setting_advanced_layout: Уключыць пашыраны вэб-інтэрфейс
+        setting_aggregate_reblogs: Групаваць прасоўванні ў стужках
+        setting_default_language: Мова допісаў
+        setting_default_privacy: Прыватнасць допісаў
+        setting_default_sensitive: Заўсёды пазначаць кантэнт як далікатны
+        setting_delete_modal: Паказваць дыялог пацверджання перад выдаленнем допісу
+        setting_disable_swiping: Адключыць прагортванні
         setting_display_media_default: Перадвызначана
         setting_display_media_hide_all: Схаваць усё
         setting_display_media_show_all: Паказаць усё
         setting_theme: Тэма сайта
+        setting_trends: Паказваць трэнды дня
         setting_use_pending_items: Павольны рэжым
+        severity: Узровень
         sign_in_token_attempt: Код бяспекі
         title: Загаловак
+        type: Тып імпарту
         username: Імя карыстальніка
         username_or_email: Імя карыст. або адрас эл. пошты
         whole_word: Слова цалкам
+      email_domain_block:
+        with_dns_records: Уключыць MX запісы і IP-адрасы дамену
       featured_tag:
         name: Хэштэг
       filters:
@@ -47,6 +92,7 @@ be:
         site_short_description: Апісанне сервера
         site_terms: Палітыка канфідэнцыйнасці
         site_title: Назва сервера
+        theme: Тэма па змаўчанні
         thumbnail: Мініяцюра сервера
       invite:
         comment: Каментар
@@ -84,4 +130,7 @@ be:
     required:
       mark: "*"
       text: абавязкова
+    title:
+      sessions:
+        webauthn: Выкарыстайце адзін са сваіх ключоў бяспекі для ўваходу
     'yes': 'Так'
