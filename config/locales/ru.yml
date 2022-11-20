@@ -248,6 +248,7 @@ ru:
         create_user_role_html: "%{name} создал(а) роль %{target}"
         demote_user_html: "%{name} разжаловал(а) пользователя %{target}"
         destroy_announcement_html: "%{name} удалил(а) объявление %{target}"
+        destroy_canonical_email_block_html: "%{name} снял(а) блокировку e-mail с хэшем %{target}"
         destroy_custom_emoji_html: "%{name} удалил(а) эмодзи %{target}"
         destroy_domain_allow_html: "%{name} запретил(а) федерацию с доменом %{target}"
         destroy_domain_block_html: "%{name} снял(а) блокировку с домена %{target}"
@@ -270,6 +271,7 @@ ru:
         reject_user_html: "%{name} отклонил(а) регистрацию %{target}"
         remove_avatar_user_html: "%{name} убрал(а) аватарку пользователя %{target}"
         reopen_report_html: "%{name} повторно открыл(а) жалобу %{target}"
+        resend_user_html: "%{name} переслал письмо с подтверждением для %{target}"
         reset_password_user_html: "%{name} сбросил(а) пароль пользователя %{target}"
         resolve_report_html: "%{name} решил(а) жалобу %{target}"
         sensitive_account_html: "%{name} установил(а) отметку файлов %{target} как «деликатного характера»"
@@ -648,17 +650,23 @@ ru:
         manage_appeals: Управление апелляциями
         manage_appeals_description: Позволяет пользователям просматривать апелляции на действия модерации
         manage_blocks: Управление блоками
+        manage_blocks_description: Позволяет пользователям блокировать домены электронной почты и IP адреса
         manage_custom_emojis: Управление смайлами
         manage_custom_emojis_description: Позволяет пользователям управлять пользовательскими эмодзи на сервере
         manage_federation: Управление Федерацией
         manage_federation_description: Позволяет пользователям блокировать или разрешить объединение с другими доменами и контролировать возможность доставки
         manage_invites: Управление приглашениями
+        manage_invites_description: Позволяет пользователям просматривать и деактивировать пригласительные ссылки
+        manage_reports: Управление жалобами
+        manage_reports_description: Позволяет пользователям просматривать жалобы и осуществлять модерацию по ним
         manage_roles: Управление ролями
         manage_roles_description: Разрешает пользователям управлять ролями и назначать их
         manage_rules: Управление правилами
         manage_rules_description: Разрешает пользователям изменять правила на сервере
         manage_settings: Управление параметрами
         manage_settings_description: Разрешает пользователям управлять параметрами сайта
+        manage_taxonomies: Управление трендами
+        manage_taxonomies_description: Позволяет пользователям модерировать список популярного контента и менять настройки хэштегов
         manage_user_access: Управление правами пользователей
         manage_user_access_description: Разрешает пользователям отключать двухэтапную аутентификацию другим пользователям, изменять их адрес электронной почты и сбрасывать их пароль
         manage_users: Управление пользователями
