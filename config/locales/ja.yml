@@ -365,6 +365,8 @@ ja:
       add_new: 連合を許可
       created_msg: 連合を許可しました
       destroyed_msg: 連合許可を外しました
+      export: エクスポート
+      import: インポート
       undo: 連合許可を外す
     domain_blocks:
       add_new: ドメインブロックを追加
@@ -374,11 +376,14 @@ ja:
       edit: ドメインブロックを編集
       existing_domain_block: あなたは既に%{name}さんに厳しい制限を課しています。
       existing_domain_block_html: 既に%{name}に対して、より厳しい制限を課しています。先に<a href="%{unblock_url}">その制限を解除</a>する必要があります。
+      export: エクスポート
+      import: インポート
       new:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
           noop: なし
+          silence: 制限
           suspend: 停止
         title: 新規ドメインブロック
       obfuscate: ドメイン名を伏せ字にする
