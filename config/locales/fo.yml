@@ -1,5 +1,9 @@
 fo:
   about:
+    about_mastodon_html: 'Framtíðar sosiali miðilin: ongar lýsingar, eingin stórfyritøku-yvirvøka, etiskt snið og desentralisering! Eig tínar dátur við Mastodon!'
+    contact_missing: Ikki sett
+    contact_unavailable: Ikki tøk/ur
+    hosted_on: Mastodon hýst á %{domain}
     title: Um
   accounts:
     follow: Fylg
@@ -7,24 +11,82 @@ fo:
       one: Fylgjari
       other: Fylgjarar
     following: Fylgir
+    instance_actor_flash: Hendan kontan er ein tykisligur aktørur, sum verður brúktur til at umboða ambætaran sjálvan og ikki nakran ávísan brúkara. Hon verður brúkt til sameind endamál og eigur ikki at vera tikin úr gildi.
     last_active: virkin seinast
+    link_verified_on: Eigaraskapur av hesum leinki var eftirkannaður tann %{date}
     nothing_here: Her er einki!
+    pin_errors:
+      following: Tú mást fylgja persóninum, sum tú ynskir at viðurkenna, framman undan
     posts:
       one: Uppslag
       other: Uppsløg
     posts_tab_heading: Uppsløg
   admin:
+    account_actions:
+      action: Frem atgerð
+      title: Frem kjakleiðsluatgerð á %{acct}
+    account_moderation_notes:
+      create: Skriva viðmerking
+      created_msg: Kjakleiðsluviðmerking stovnað!
+      destroyed_msg: Kjakleiðsluviðmerking strikað!
     accounts:
+      add_email_domain_block: Blokera teldupostdomeni
       approve: Vátta
+      approved_msg: Góðkent tilmeldingarumbøn hjá %{username}
+      are_you_sure: Ert tú vís/ur?
+      avatar: Eftirgjørdur skapningur
       by_domain: Økisnavn
+      change_email:
+        changed_msg: Teldupostur broyttur!
+        current_email: Núverandi teldupostur
+        label: Broyt teldupost
+        new_email: Nýggjur teldupostur
+        submit: Broyt teldupost
+        title: Broyt teldupostin hjá %{username}
+      change_role:
+        changed_msg: Leiklutur broyttur!
+        label: Broyt leiklut
+        no_role: Eingin leiklutur
+        title: Broyt leiklut hjá %{username}
       confirm: Vátta
       confirmed: Váttað
       confirming: Váttar
+      custom: Tillaga
+      delete: Strika dátur
       deleted: Strikað
+      demote: Lækka í tign
+      destroyed_msg: "Dáturnar hjá %{username} eru nú settar í bíðirøð at blíva strikaðar sum skjótast"
+      disable: Fryst
+      disable_sign_in_token_auth: Ger váttan við teldupostateknum óvirkna
+      disable_two_factor_authentication: Ger 2FA óvirkið
+      disabled: Fryst
+      display_name: Vís navn
       domain: Økisnavn
       edit: Rætta
+      email: Teldupostur
+      email_status: Teldupostastøða
+      enable: Tiðna
+      enable_sign_in_token_auth: Ger váttan við teldupostateknum virkna
+      enabled: Í gildi
+      enabled_msg: Tiðnaði kontuna hjá %{username}
+      followers: Fylgjarar
+      follows: Fylgir
+      header: Høvd
+      inbox_url: Innbakka-URL'ur
+      invite_request_text: Tilmeldingarorsakir
+      invited_by: Bjóðað av
+      ip: IP
+      joined: Tilmeldað/ur
       location:
         all: Alt
+        local: Lokalar
+        remote: Fjarar
+        title: Staður
+      login_status: Innritanarstøða
+      media_attachments: Viðfestir miðlar
+      memorialize: Broyt til minniskontu
+      memorialized: Gjørd til minniskontu
+      memorialized_msg: Gjørt %{username} til eina minniskontu
       public: Alment
       reject: Nokta
       reset: Endurset
@@ -32,6 +94,7 @@ fo:
     custom_emojis:
       delete: Strika
       list: Listi
+      unlist: Tak av listanum
     domain_allows:
       export: Flyt út
       import: Flyt inn
