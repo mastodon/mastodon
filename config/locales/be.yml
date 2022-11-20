@@ -2,6 +2,7 @@ be:
   about:
     about_mastodon_html: 'Сацыяльная сетка будучыні: без рэкламы, без карпаратыўнага назірання, этычны дызайн і дэцэнтралізацыя! Валодайце сваімі дадзенымі з Mastodon'
     contact_missing: Не зададзены
+    contact_unavailable: Недаступна
     hosted_on: Mastodon знаходзіцца на %{domain}
     title: Пра нас
   accounts:
@@ -12,9 +13,12 @@ be:
       many: Падпісчыкаў
       other: Падпісчыкі
     following: Падпісаны
+    instance_actor_flash: Гэты ўліковы запіс - лічбавы аватар, неабходны для рэпрэзентацыі самога сервера, а не якой-небудзь асобы. Ён выкарыстоўваецца для федэралізацыі і не можа быць замарожаны.
     last_active: апошняя актыўнасць
     link_verified_on: Права ўласнасці на гэтую спасылку праверана %{date}
     nothing_here: Тут нічога няма!
+    pin_errors:
+      following: Вы павінны быць падпісаны на чалавека, якога вы жадаеце ўхваліць
     posts:
       one: Допіс
       few: Допісы
@@ -24,6 +28,7 @@ be:
   admin:
     account_actions:
       action: Выканаць дзеянне
+      title: Мадэраваць %{acct}
     account_moderation_notes:
       create: Пакінуць нататку
       created_msg: Нататка мадэратара паспяхова створана!
@@ -31,6 +36,7 @@ be:
     accounts:
       add_email_domain_block: Заблакіраваць дамен эл. пошты
       approve: Пацвердзіць
+      approved_msg: Заяўка на рэгістрацыю %{username} ухваленая
       are_you_sure: Вы ўпэўнены?
       avatar: Аватар
       by_domain: Дамен
@@ -66,9 +72,11 @@ be:
       enable: Размарозіць
       enable_sign_in_token_auth: Уключыць аўтэнтыфікацыю па e-mail токену
       enabled: Уключана
+      enabled_msg: Уліковы запіс %{username} размарожаны
       followers: Падпісчыкі
       follows: Падпіскі
       header: Загаловак
+      inbox_url: URL уваходных
       invite_request_text: Прычына далучэння
       invited_by: Запрошаны
       ip: IP
@@ -82,6 +90,7 @@ be:
       media_attachments: Медыя дадаткі
       memorialize: Даданае да памяці
       memorialized: Запомненае
+      memorialized_msg: Уліковы запіс %{username} ператвораны ў мемарыяльны
       moderation:
         active: Актыўны
         all: Усе
@@ -93,30 +102,41 @@ be:
       most_recent_activity: Апошняя актыўнасць
       most_recent_ip: Нядаўнія IP
       no_account_selected: Ніякіх уліковых запісаў не было зменена таму што ні адзін не быў выбраны
+      no_limits_imposed: Без абмежаванняў
       no_role_assigned: Роля не прызначана
       not_subscribed: Не падпісаны
       pending: Чакае праверкі
       perform_full_suspension: Прыпыніць
       previous_strikes: Ранейшыя скаргі
+      promote: Павысіць
       protocol: Пратакол
       public: Публічны
       push_subscription_expires: Падпіска PuSH канчаецца
       redownload: Абнавіць профіль
       redownloaded_msg: Профіль %{username} паспяхова абноўлены за арыгіналу
       reject: Адхіліць
+      rejected_msg: Заяўка на рэгістрацыю %{username} адхіленая
       remove_avatar: Выдаліць аватар
       remove_header: Выдаліць шапку
+      removed_avatar_msg: Аватар %{username} выдалены
+      removed_header_msg: Выява загалоўку %{username} выдаленая
       resend_confirmation:
         already_confirmed: Гэты карыстальнік ужо пацверджаны
-        send: Даслаць пацвярджэнне на эл. пошту яшчэ раз
+        send: Даслаць пацвярджальны ліст зноў
+        success: Ліст з пацвярджэннем паспяхова дасланы!
       reset: Скінуць
       reset_password: Скід паролю
       resubscribe: Аднавіць падпіску
       role: Роля
       search: Пошук
       search_same_email_domain: Іншыя карыстальнікі з такім жа даменам эл. пошты
+      search_same_ip: Іншыя карыстальнікі з гэтым IP
       security_measures:
+        only_password: Толькі пароль
         password_and_2fa: Пароль і 2FA
+      sensitive: Прымусова пазначыць як далікатны
+      sensitized: Пазначаны як далікатны
+      shared_inbox_url: URL супольных уваходных
       show:
         created_reports: Створана скарг
         targeted_reports: Атрымана скарг
@@ -133,12 +153,17 @@ be:
       unblock_email: Разблакіраваць адрас эл. пошты
       unblocked_email_msg: Электронная пошта %{username} паспяхова разблакіраваная
       unconfirmed_email: Непацверджаны адрас эл. пошты
+      undo_sensitized: Прыбраць прымусовую пазнаку далікатнасці
+      undo_silenced: Адмяніць ліміт
       unsubscribe: Адпісацца
       username: Імя карыстальніка
+      view_domain: Паглядзець падсумаванне дамену
       warn: Папярэдзіць
       web: Інтэрнэт
+      whitelisted: Дазволена для федэрацыі
     action_logs:
       action_types:
+        approve_appeal: Ухваліць абскарджанне
         approve_user: Зацвердзіць карыстальніка
         assigned_to_self_report: Прызначыць скаргу
         change_email_user: Змяніць E-mail карыстальніка
@@ -175,10 +200,23 @@ be:
         enable_user: Уключыць карыстальніка
         memorialize_account: Запомніць уліковы запіс
         promote_user: Павысіць правы Карыстальніка
+        reject_appeal: Адхіліць абскарджанне
+        reject_user: Адмовіць карыстальніку
         remove_avatar_user: Выдаліць аватар
+        reopen_report: Пераадкрыць скаргу
+        resend_user: Даслаць пацвярджальны ліст зноў
+        reset_password_user: Скінуць пароль
+        resolve_report: Вырашыць скаргу
+        sensitive_account: Уліковы запіс прымусова пазначаны як далікатны
+        silence_account: Абмежаваць уліковы запіс
         suspend_account: Прыпыніць уліковы запіс
+        unassigned_report: Прыбраць прызначэнне скаргі
+        unblock_email_account: Разблакіраваць электронны адрас
+        unsensitive_account: Прымусовая пазнака далікатнасці прыбраная
+        unsilence_account: Уліковы запіс больш не абмежаваны
         update_announcement: Абнавіць аб'яву
         update_custom_emoji: Абнавіць уласныя эмодзі
+        update_ip_block: Абнавіць IP правіла
         update_status: Абнавіць допіс
         update_user_role: Абнавіць ролю
       actions:
@@ -193,6 +231,7 @@ be:
         create_unavailable_domain_html: "%{name} прыпыніў дастаўку да дамена %{target}"
         create_user_role_html: "%{name} зрабіў ролю %{target}"
         destroy_announcement_html: "%{name} выдаліў аб'яву %{target}"
+        destroy_custom_emoji_html: "%{name} выдаліў(а) эмоджі %{target}"
         destroy_status_html: "%{name} выдаліў допіс %{target}"
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
         disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
@@ -246,15 +285,45 @@ be:
         other: "<strong>%{count}</strong> апеляцыі ў чарзе"
     domain_blocks:
       domain: Дамен
+      existing_domain_block: Вы ўжо налажылі стражэйшыя абмежаванні на %{name}.
+      existing_domain_block_html: Вы ўжо налажылі стражэйшыя абмежаванні на %{name}, спачатку вам неабходна <a href="%{unblock_url}">разблакаваць гэты акаўнт</a>.
+      export: Экспарт
+      import: Імпарт
+      new:
+        create: Стварыць блакіроўку
+        severity:
+          noop: Пуста
+          silence: Амбежаваць
+          suspend: Заблакаваць
+        title: Новы блок дамену
+      no_domain_block_selected: Блакіроўкі даменаў не былі змененыя, таму што ні адзін з іх не быў выбраны
+      not_permitted: Вам забаронена выконваць гэта дзеянне
       obfuscate: Схаваць назву дамена
       undo: Скасаваць блакіраванне дамену
     email_domain_blocks:
+      add_new: Дадаць
       delete: Выдаліць
       domain: Дамен
       new:
         create: Дадаць дамен
+      title: Заблакаваныя паштовыя дамены
+    follow_recommendations:
+      language: Для мовы
+      status: Статус
     instances:
+      availability:
+        title: Дасяжнасць
+        warning: Апошняя спроба падключэння да гэтага серверу была няўдалай
+      back_to_all: Усе
+      back_to_limited: Абмежаваныя
+      back_to_warning: Папярэджанне
       by_domain: Дамен
+      confirm_purge: Вы ўпэўненыя, што хочаце незваротна выдаліць даныя з гэтага дамена?
+      content_policies:
+        comment: Унутраная нататка
+        policies:
+          suspend: Прыпыніць
+        policy: Палітыка
     ip_blocks:
       add_new: Стварыць правіла
       delete: Выдаліць
@@ -316,6 +385,10 @@ be:
       delete: Выдаліць
     webhooks:
       delete: Выдаліць
+  admin_mailer:
+    new_appeal:
+      actions:
+        suspend: каб выключыць уліковы запіс
   application_mailer:
     salutation: "%{name},"
   applications:
@@ -345,6 +418,10 @@ be:
       x_days: "%{count}д"
       x_minutes: "%{count}хв"
       x_months: "%{count}мес"
+  disputes:
+    strikes:
+      title_actions:
+        suspend: Выключэнне ўліковага запісу
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -488,7 +565,10 @@ be:
     warning:
       categories:
         spam: Спам
+      subject:
+        suspend: Ваш уліковы запіс %{acct} быў выключаны
       title:
         none: Папярэджанне
+        suspend: Уліковы запіс выключаны
   webauthn_credentials:
     delete: Выдаліць
