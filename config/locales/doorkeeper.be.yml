@@ -53,6 +53,10 @@ be:
       buttons:
         authorize: Аўтарызавацца
         deny: Адмовіць
+      error:
+        title: Узнікла памылка
+      new:
+        title: Патрабуецца аўтарызацыя
       show:
         title: Скапіруйце гэты код аўтарызацыі і ўстаўце яго ў праграму.
     authorized_applications:
@@ -70,6 +74,10 @@ be:
     errors:
       messages:
         access_denied: Уласнік рэсурсу або сервер аўтарызацыі адхіліў ваш запыт.
+        invalid_token:
+          expired: Тэрмін дзеяння токена доступу скончыўся
+          revoked: Токен доступу быў адкліканы
+          unknown: Токен доступу з'яўляецца несапраўдным
     flash:
       applications:
         create:
@@ -137,3 +145,4 @@ be:
       "read:statuses": бачыць усе допісы
       "write:accounts": змяніць ваш профіль
       "write:filters": ствараць фільтры
+      "write:lists": стварыць спiсы
