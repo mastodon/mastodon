@@ -15,6 +15,11 @@ class ActivityPub::Activity::Follow < ActivityPub::Activity
       return
     end
 
+    if DomainBlock.reject_follows?(@account.domain) && !target_account.following?(@account)
+      reject_follow_request!(target_account)
+      return
+    end
+
     if target_account.blocking?(@account) || target_account.domain_blocking?(@account.domain) || target_account.moved? || target_account.instance_actor?
       reject_follow_request!(target_account)
       return

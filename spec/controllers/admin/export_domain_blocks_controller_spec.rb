@@ -12,6 +12,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
       Fabricate(:domain_block, domain: 'bad.domain', severity: 'silence', public_comment: 'bad')
       Fabricate(:domain_block, domain: 'worse.domain', severity: 'suspend', reject_media: true, reject_reports: true, public_comment: 'worse', obfuscate: true)
       Fabricate(:domain_block, domain: 'reject.media', severity: 'noop', reject_media: true, public_comment: 'reject media')
+      Fabricate(:domain_block, domain: 'reject.follows', severity: 'silence', reject_follows: true, public_comment: 'reject follows')
       Fabricate(:domain_block, domain: 'no.op', severity: 'noop', public_comment: 'noop')
 
       get :export, params: { format: :csv }
@@ -24,7 +25,7 @@ RSpec.describe Admin::ExportDomainBlocksController, type: :controller do
     it 'blocks imported domains' do
       post :import, params: { admin_import: { data: fixture_file_upload('domain_blocks.csv') } }
 
-      expect(assigns(:domain_blocks).map(&:domain)).to match_array ['bad.domain', 'worse.domain', 'reject.media']
+      expect(assigns(:domain_blocks).map(&:domain)).to match_array ['bad.domain', 'worse.domain', 'reject.media', 'reject.follows']
     end
   end
 

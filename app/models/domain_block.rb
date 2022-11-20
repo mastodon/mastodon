@@ -13,6 +13,7 @@
 #  private_comment :text
 #  public_comment  :text
 #  obfuscate       :boolean          default(FALSE), not null
+#  reject_follows  :boolean          default(FALSE), not null
 #
 
 class DomainBlock < ApplicationRecord
@@ -40,7 +41,7 @@ class DomainBlock < ApplicationRecord
     if suspend?
       [:suspend]
     else
-      [severity.to_sym, reject_media? ? :reject_media : nil, reject_reports? ? :reject_reports : nil].reject { |policy| policy == :noop || policy.nil? }
+      [severity.to_sym, reject_media? ? :reject_media : nil, reject_reports? ? :reject_reports : nil, reject_follows? ? :reject_follows : nil].reject { |policy| policy == :noop || policy.nil? }
     end
   end
 
@@ -59,6 +60,10 @@ class DomainBlock < ApplicationRecord
 
     def reject_reports?(domain)
       !!rule_for(domain)&.reject_reports?
+    end
+
+    def reject_follows?(domain)
+      !!rule_for(domain)&.reject_follows?
     end
 
     alias blocked? suspend?
@@ -81,7 +86,7 @@ class DomainBlock < ApplicationRecord
     return false if other_block.suspend? && (silence? || noop?)
     return false if other_block.silence? && noop?
 
-    (reject_media || !other_block.reject_media) && (reject_reports || !other_block.reject_reports)
+    (reject_media || !other_block.reject_media) && (reject_reports || !other_block.reject_reports) && (reject_follows || !other_block.reject_follows)
   end
 
   def affected_accounts_count

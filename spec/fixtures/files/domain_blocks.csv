@@ -1,4 +1,5 @@
-#domain,#severity,#reject_media,#reject_reports,#public_comment,#obfuscate
-bad.domain,silence,false,false,bad,false
-worse.domain,suspend,true,true,worse,true
-reject.media,noop,true,false,reject media,false
+#domain,#severity,#reject_media,#reject_reports,#public_comment,#obfuscate,#reject_follows
+bad.domain,silence,false,false,bad,false,false
+worse.domain,suspend,true,true,worse,true,false
+reject.media,noop,true,false,reject media,false,false
+reject.follows,silence,false,false,reject follows,false,true

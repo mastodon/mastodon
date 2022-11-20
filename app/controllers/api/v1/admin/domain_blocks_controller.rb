@@ -71,7 +71,7 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   end
 
   def domain_block_params
-    params.permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
+    params.permit(:severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate, :reject_follows)
   end
 
   def insert_pagination_headers
@@ -103,6 +103,6 @@ class Api::V1::Admin::DomainBlocksController < Api::BaseController
   end
 
   def resource_params
-    params.permit(:domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate)
+    params.permit(:domain, :severity, :reject_media, :reject_reports, :private_comment, :public_comment, :obfuscate, :reject_follows)
   end
 end

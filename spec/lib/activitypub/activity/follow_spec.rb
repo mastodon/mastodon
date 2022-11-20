@@ -33,6 +33,62 @@ RSpec.describe ActivityPub::Activity::Follow do
         end
       end
 
+      context 'with a DomainBlock' do
+        let(:blocked) { Fabricate(:account, domain: 'blocked.xyz', protocol: :activitypub, inbox_url: 'http://example.com/inbox') }
+        let(:json) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            id: 'baz',
+            type: 'Follow',
+            actor: ActivityPub::TagManager.instance.uri_for(blocked),
+            object: ActivityPub::TagManager.instance.uri_for(recipient),
+          }.with_indifferent_access
+        end
+
+        subject { described_class.new(json, blocked) }
+
+        before do
+          stub_request(:post, 'http://example.com/inbox').to_return(status: 200)
+          DomainBlock.create!(domain: blocked.domain, severity: :silence, reject_follows: true)
+          subject.perform
+        end
+
+        it 'does not create a follow or request' do
+          expect(blocked.following?(recipient)).to be false
+          expect(blocked.requested?(recipient)).to be false
+        end
+      end
+
+      context 'with a DomainBlock but previously followed back' do
+        let(:blocked) { Fabricate(:account, domain: 'blocked.xyz') }
+        let(:json) do
+          {
+            '@context': 'https://www.w3.org/ns/activitystreams',
+            id: 'quux',
+            type: 'Follow',
+            actor: ActivityPub::TagManager.instance.uri_for(blocked),
+            object: ActivityPub::TagManager.instance.uri_for(recipient),
+          }.with_indifferent_access
+        end
+
+        subject { described_class.new(json, blocked) }
+
+        before do
+          recipient.active_relationships.create!(target_account: blocked, uri: 'followback')
+          DomainBlock.create!(domain: blocked.domain, severity: :silence, reject_follows: true)
+          subject.perform
+        end
+
+        it 'creates a follow from sender to recipient' do
+          expect(blocked.following?(recipient)).to be true
+          expect(blocked.active_relationships.find_by(target_account: recipient).uri).to eq 'quux'
+        end
+
+        it 'does not create a follow request' do
+          expect(blocked.requested?(recipient)).to be false
+        end
+      end
+
       context 'silenced account following an unlocked account' do
         before do
           sender.touch(:silenced_at)

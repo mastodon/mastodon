@@ -93,5 +93,11 @@ RSpec.describe DomainBlock, type: :model do
       newer = DomainBlock.new(domain: 'domain', severity: :silence, reject_media: false)
       expect(newer.stricter_than?(older)).to be false
     end
+
+    it 'returns false if the new block is less strict regarding follows' do
+      older = DomainBlock.new(domain: 'domain', severity: :silence, reject_follows: true)
+      newer = DomainBlock.new(domain: 'domain', severity: :silence, reject_follows: false)
+      expect(newer.stricter_than?(older)).to be false
+    end
   end
 end

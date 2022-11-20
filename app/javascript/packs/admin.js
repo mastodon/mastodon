@@ -109,6 +109,7 @@ delegate(document, '.filter-subset--with-select select', 'change', ({ target }) 
 const onDomainBlockSeverityChange = (target) => {
   const rejectMediaDiv   = document.querySelector('.input.with_label.domain_block_reject_media');
   const rejectReportsDiv = document.querySelector('.input.with_label.domain_block_reject_reports');
+  const rejectFollowsDiv = document.querySelector('.input.with_label.domain_block_reject_follows');
 
   if (rejectMediaDiv) {
     rejectMediaDiv.style.display = (target.value === 'suspend') ? 'none' : 'block';
@@ -116,6 +117,10 @@ const onDomainBlockSeverityChange = (target) => {
 
   if (rejectReportsDiv) {
     rejectReportsDiv.style.display = (target.value === 'suspend') ? 'none' : 'block';
+  }
+
+  if (rejectFollowsDiv) {
+    rejectFollowsDiv.style.display = (target.value === 'suspend') ? 'none' : 'block';
   }
 };
 

@@ -36,6 +36,7 @@ module Admin
                                        severity: row['#severity'].strip,
                                        reject_media: row['#reject_media'].strip,
                                        reject_reports: row['#reject_reports'].strip,
+                                       reject_follows: row['#reject_follows'].strip,
                                        private_comment: @global_private_comment,
                                        public_comment: row['#public_comment']&.strip,
                                        obfuscate: row['#obfuscate'].strip)
@@ -57,13 +58,13 @@ module Admin
     end
 
     def export_headers
-      %w(#domain #severity #reject_media #reject_reports #public_comment #obfuscate)
+      %w(#domain #severity #reject_media #reject_reports #public_comment #obfuscate #reject_follows)
     end
 
     def export_data
       CSV.generate(headers: export_headers, write_headers: true) do |content|
         DomainBlock.with_limitations.each do |instance|
-          content << [instance.domain, instance.severity, instance.reject_media, instance.reject_reports, instance.public_comment, instance.obfuscate]
+          content << [instance.domain, instance.severity, instance.reject_media, instance.reject_reports, instance.public_comment, instance.obfuscate, instance.reject_follows]
         end
       end
     end

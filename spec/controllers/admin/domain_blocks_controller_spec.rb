@@ -62,7 +62,7 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
       Fabricate(:domain_block, domain: 'example.com', severity: 'silence')
       allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
 
-      post :create, params: { domain_block: { domain: 'example.com', severity: 'silence', reject_media: true, reject_reports: true } }
+      post :create, params: { domain_block: { domain: 'example.com', severity: 'silence', reject_media: true, reject_reports: true, reject_follows: true } }
 
       expect(DomainBlockWorker).to have_received(:perform_async)
       expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')

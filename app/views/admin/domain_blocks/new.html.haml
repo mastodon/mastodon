@@ -21,6 +21,9 @@
     = f.input :reject_reports, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.reject_reports'), hint: I18n.t('admin.domain_blocks.reject_reports_hint')
 
   .fields-group
+    = f.input :reject_follows, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.reject_follows'), hint: I18n.t('admin.domain_blocks.reject_follows_hint')
+
+  .fields-group
     = f.input :obfuscate, as: :boolean, wrapper: :with_label, label: I18n.t('admin.domain_blocks.obfuscate'), hint: I18n.t('admin.domain_blocks.obfuscate_hint')
 
   .field-group
