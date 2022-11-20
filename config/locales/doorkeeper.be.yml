@@ -25,25 +25,49 @@ be:
         destroy: Вы ўпэўнены?
       edit:
         title: Рэдагаваць праграму
+      form:
+        error: Вой! Праверце вашу форму на магчымыя памылкі
+      help:
+        native_redirect_uri: Карыстайце %{native_redirect_uri} для лакальных тэстаў
       index:
         application: Праграма
+        callback_url: URL зваротнага выкліку
         delete: Выдаліць
         empty: У вас няма праграм.
+        name: Назва
         new: Новая праграма
+        scopes: Дазволы
+        show: Паказаць
         title: Вашы праграмы
       new:
         title: Новая праграма
       show:
         actions: Дзеянні
+        application_id: Ключ кліента
+        callback_urls: URL зваротных выклікаў
+        scopes: Дазволы
         title: 'Праграма: %{name}'
     authorizations:
+      buttons:
+        authorize: Аўтарызавацца
+        deny: Адмовіць
       show:
         title: Скапіруйце гэты код аўтарызацыі і ўстаўце яго ў праграму.
     authorized_applications:
       buttons:
         revoke: Адклікаць
+      confirmations:
+        revoke: Вы ўпэўнены?
       index:
+        authorized_at: Аўтарызавана %{date}
+        last_used_at: Апошні раз скарыстана %{date}
+        never_used: Не выкарыстоўвалася
         scopes: Дазволы
+        superapp: Унутраны
+        title: Вашы аўтарызаваныя праграмы
+    errors:
+      messages:
+        access_denied: Уласнік рэсурсу або сервер аўтарызацыі адхіліў ваш запыт.
     flash:
       applications:
         create:
@@ -91,6 +115,7 @@ be:
         title: Неабходна OAuth аўтарызацыя
     scopes:
       "admin:read": чытаць усе дадзеныя на гэтым серверы
+      "admin:read:accounts": бачыць канфідэнцыйную інфармацыю ўсіх акаўнтаў
       "admin:read:reports": чытаць далікатную інфармацыю са скарг і ўліковых запісаў, на якія пададзена скарга
       "admin:write": змяняць усе дадзеныя на гэтым серверы
       "admin:write:accounts": мадэраваць уліковыя запісы
@@ -106,3 +131,7 @@ be:
       "read:filters": бачыць свае фільтры
       "read:follows": бачыць свае падпіскі
       "read:lists": бачыць свае спіскі
+      "read:mutes": праглядзець спіс ігнараваных
+      "read:statuses": бачыць усе допісы
+      "write:accounts": змяніць ваш профіль
+      "write:filters": ствараць фільтры
