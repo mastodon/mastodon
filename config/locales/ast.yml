@@ -23,6 +23,7 @@ ast:
       domain: Dominiu
       email: Direición de corréu electrónicu
       followers: Siguidores
+      header: Testera
       ip: IP
       joined: Data de xunión
       location:
@@ -44,10 +45,29 @@ ast:
       web: Web
     action_logs:
       actions:
+        approve_user_html: "%{name} aprobó'l rexistru de: %{target}"
+        change_email_user_html: "%{name} camudó la direición de corréu electrónicu del perfil %{target}"
+        change_role_user_html: "%{name} camudó'l rol de: %{target}"
+        confirm_user_html: "%{name} confirmó la direición de corréu electrónicu del perfil %{target}"
+        create_account_warning_html: "%{name} unvió una alvertencia a %{target}"
+        create_announcement_html: "%{name} creó l'anunciu «%{target}»"
+        create_domain_allow_html: "%{name} permitió la federación col dominiu %{target}"
+        create_domain_block_html: "%{name} bloquió'l dominiu %{target}"
+        create_user_role_html: "%{name} creó'l rol «%{target}»"
+        destroy_announcement_html: "%{name} desanició l'anunciu «%{target}»"
         destroy_custom_emoji_html: "%{name} desanició'l fustaxe %{target}"
+        destroy_domain_block_html: "%{name} desbloquió'l dominiu %{target}"
+        destroy_status_html: "%{name} quitó l'artículu de: %{target}"
+        destroy_user_role_html: "%{name} desanició'l rol %{target}"
         disable_custom_emoji_html: "%{name} desactivó'l fustaxe «%{target}»"
         enable_custom_emoji_html: "%{name} activó'l fustaxe «%{target}»"
+        reject_user_html: "%{name} refugó'l rexistru de: %{target}"
+        remove_avatar_user_html: "%{name} quitó l'avatar de: %{target}"
+        update_announcement_html: "%{name} anovó l'anunciu «%{target}»"
         update_custom_emoji_html: "%{name} anovó'l fustaxe «%{target}»"
+        update_status_html: "%{name} anovó l'artículu de: %{target}"
+        update_user_role_html: "%{name} camudó'l rol %{target}"
+      empty: Nun s'atopó nengún rexistru.
     announcements:
       destroyed_msg: '¡L''anunciu desanicióse correutamente!'
       empty: Nun s'atopó nengún anunciu.
@@ -419,7 +439,7 @@ ast:
     export: Esportación de datos
     featured_tags: Etiquetes destacaes
     import: Importación
-    import_and_export: Importación y esportación
+    import_and_export: Importación ya esportación
     notifications: Avisos
     preferences: Preferencies
     profile: Perfil
