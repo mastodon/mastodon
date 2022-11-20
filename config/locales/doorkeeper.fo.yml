@@ -83,6 +83,34 @@ fo:
         credential_flow_not_configured: Resource Owner Password Credentials floymurin eydnaðist ikki. Orsøkin var, at Doorkeeper.configure.resource_owner_from_credentials var ikki sett upp.
         invalid_client: Viðskiftaraváttan miseydnaðist. Orsøkin var ein ókendur viðskiftari, at eingin viðskiftaraváttan var við ella at váttanarmannagongdin er ókend.
         invalid_grant: Veitta váttanarheimildin er antin ógildug, útgingin, tikin aftur, samsvarar ikki við endursendingar-URI'ið, sum bleiv brúkt í váttanarumbønini ella var flýggjað øðrum viðskiftara.
+        invalid_redirect_uri: Endursendingar-URI'ið, sum var viðheft, er ógyldugt.
+        invalid_request:
+          missing_param: 'Manglandi kravdur parametur: %{value}.'
+          request_not_authorized: Umbønin má váttast. Kravdi parameturin fyri váttanarumbønina manglar ella er ógyldugur.
+          unknown: Umbønin manglar ein kravdan parametur, inniheldur eitt óstuðlað parametur-virði ella hevur skeivt skap.
+        invalid_resource_owner: Veitta tilfarseigaraváttanin er ógyldug ella ber ikki til at finna tilfarseigaran
+        invalid_scope: Umbidna vavið er ógyldugt, ókent ella hevur skeivt skap.
+        invalid_token:
+          expired: Atgongdarfrámerkið er útgingið
+          revoked: Atgongdarfrámerkið varð tikið aftur
+          unknown: Atgongdarfrámerkið er ógyldugt
+        resource_owner_authenticator_not_configured: Av tí at Doorkeeper.configure.resource_owner_authenticator ikki var sett upp, bar ikki til at finna tilfarseigaran.
+        server_error: Váttnarambætarin rendi seg í eina óvæntaða støðu, sum forðaði honum í at fullføra umbønina.
+        temporarily_unavailable: Váttanarambætarain er í løtuni ikki førur fyri at handfara umbønina vegna bráðfeingis ovbyrjan ella ambætaraviðlíkahald.
+        unauthorized_client: Viðskiftarin hevur ikki rættindi at útføra hesa umbønina við hesi mannagongdini.
+        unsupported_grant_type: Váttanarloyvisslagið er ikki stuðlað av váttanarambætaranum.
+        unsupported_response_type: Váttanarambætarin stuðlar ikki hesum slagnum av svari.
+    flash:
+      applications:
+        create:
+          notice: Nýtsluskipan stovnað.
+        destroy:
+          notice: Nýtsluskipan strikað.
+        update:
+          notice: Nýtsluskipan dagførd.
+      authorized_applications:
+        destroy:
+          notice: Nýtsluskipan tikin aftur.
     grouped_scopes:
       access:
         read: Lesi-rættindir
@@ -91,16 +119,29 @@ fo:
       title:
         accounts: Kontur
         admin/accounts: Umsiting av kontum
+        admin/all: Allar umsitingarligar funktiónir
+        admin/reports: Umsiting av meldingum
+        all: Alt
+        blocks: Blokeringar
+        bookmarks: Bókamerki
+        conversations: Samrøður
+        crypto: Enda-til-enda bronglan
+        favourites: Yndispostar
         filters: Filtur
         follow: Sambond
         follows: Fylgir
         lists: Listar
+        media: Viðfestir miðlar
         mutes: Doyvir
+        notifications: Fráboðanir
+        push: Skumpifráboðanir
+        reports: Meldingar
         search: Leita
         statuses: Uppsløg
     layouts:
       admin:
         nav:
+          applications: Nýtsluskipanir
           oauth2_provider: OAuth2 veitari
       application:
         title: OAuth váttan kravd
