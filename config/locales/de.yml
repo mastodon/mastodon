@@ -56,10 +56,10 @@ de:
       deleted: Gelöscht
       demote: Zurückstufen
       destroyed_msg: "Daten von %{username} wurden zum Löschen in die Warteschlange eingereiht"
-      disable: Sperren
+      disable: Einfrieren
       disable_sign_in_token_auth: Deaktiviere die Zwei-Faktor-Authentisierung (2FA) per E-Mail
       disable_two_factor_authentication: Zwei-Faktor-Authentisierung (2FA) deaktivieren
-      disabled: Gesperrte
+      disabled: Eingefroren
       display_name: Angezeigter Name
       domain: Domain
       edit: Bearbeiten
@@ -81,7 +81,7 @@ de:
         all: Alle
         local: Lokal
         remote: Fern
-        title: Ursprung
+        title: Herkunft
       login_status: Loginstatus
       media_attachments: Medienanhänge
       memorialize: In Gedenkmal verwandeln
@@ -91,7 +91,7 @@ de:
         active: Aktiv
         all: Alle
         pending: In Warteschlange
-        silenced: Limitiert
+        silenced: Stummgeschaltet
         suspended: Gesperrt
         title: Moderation
       moderation_notes: Moderationsnotizen
@@ -168,7 +168,7 @@ de:
         approve_appeal: Einspruch annehmen
         approve_user: Benutzer*in genehmigen
         assigned_to_self_report: Bericht zuweisen
-        change_email_user: E-Mail des Accounts ändern
+        change_email_user: E-Mail des Profils ändern
         change_role_user: Rolle des Profils ändern
         confirm_user: Benutzer*in bestätigen
         create_account_warning: Warnung erstellen
@@ -184,7 +184,7 @@ de:
         demote_user: Benutzer*in herabstufen
         destroy_announcement: Ankündigung löschen
         destroy_canonical_email_block: E-Mail-Blockade löschen
-        destroy_custom_emoji: Eigene Emojis löschen
+        destroy_custom_emoji: Eigenes Emojis löschen
         destroy_domain_allow: Erlaube das Löschen von Domains
         destroy_domain_block: Domainsperre löschen
         destroy_email_domain_block: E-Mail-Domainsperre löschen
@@ -194,10 +194,10 @@ de:
         destroy_unavailable_domain: Nicht verfügbare Domain löschen
         destroy_user_role: Rolle entfernen
         disable_2fa_user: 2FA deaktivieren
-        disable_custom_emoji: Benutzerdefiniertes Emoji deaktivieren
+        disable_custom_emoji: Eigenes Emoji deaktivieren
         disable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account deaktivieren
         disable_user: Benutzer*in deaktivieren
-        enable_custom_emoji: Benutzerdefiniertes Emoji aktivieren
+        enable_custom_emoji: Eigenes Emoji aktivieren
         enable_sign_in_token_auth_user: Zwei-Faktor-Authentisierung (2FA) per E-Mail für diesen Account aktivieren
         enable_user: Benutzer*in aktivieren
         memorialize_account: Gedenkkonto
@@ -218,7 +218,7 @@ de:
         unsilence_account: Konto nicht mehr stummschalten
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
-        update_custom_emoji: Benutzerdefiniertes Emoji aktualisieren
+        update_custom_emoji: Eigenes Emoji aktualisieren
         update_domain_block: Domainsperre aktualisieren
         update_ip_block: IP-Regel aktualisieren
         update_status: Beitrag aktualisieren
@@ -233,17 +233,17 @@ de:
         create_account_warning_html: "%{name} hat eine Warnung an %{target} gesendet"
         create_announcement_html: "%{name} hat die neue Ankündigung erstellt: %{target}"
         create_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} gesperrt"
-        create_custom_emoji_html: "%{name} hat neues Emoji %{target} hochgeladen"
+        create_custom_emoji_html: "%{name} hat neues Emoji hochgeladen: %{target}"
         create_domain_allow_html: "%{name} hat die Domain %{target} gewhitelistet"
         create_domain_block_html: "%{name} hat die Domain %{target} blockiert"
         create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gesperrt"
         create_ip_block_html: "%{name} hat eine Regel für IP %{target} erstellt"
         create_unavailable_domain_html: "%{name} hat die Lieferung an die Domain %{target} eingestellt"
         create_user_role_html: "%{name} hat die Rolle %{target} erstellt"
-        demote_user_html: "%{name} hat die Nutzungsrechte von %{target} heruntergestuft"
+        demote_user_html: "%{name} hat %{target} heruntergestuft"
         destroy_announcement_html: "%{name} hat die neue Ankündigung %{target} gelöscht"
         destroy_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} entsperrt"
-        destroy_custom_emoji_html: "%{name} hat das %{target} Emoji gelöscht"
+        destroy_custom_emoji_html: "%{name} hat das Emoji gelöscht: %{target}"
         destroy_domain_allow_html: "%{name} hat die Domain %{target} von der Whitelist entfernt"
         destroy_domain_block_html: "%{name} hat die Domain %{target} entblockt"
         destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} entsperrt"
@@ -253,10 +253,10 @@ de:
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
         destroy_user_role_html: "%{name} hat die Rolle %{target} gelöscht"
         disable_2fa_user_html: "%{name} hat die Zwei-Faktor-Authentisierung für %{target} deaktiviert"
-        disable_custom_emoji_html: "%{name} hat das %{target} Emoji deaktiviert"
+        disable_custom_emoji_html: "%{name} hat das Emoji deaktiviert: %{target}"
         disable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} deaktiviert"
         disable_user_html: "%{name} hat den Zugang für %{target} deaktiviert"
-        enable_custom_emoji_html: "%{name} hat das %{target} Emoji aktiviert"
+        enable_custom_emoji_html: "%{name} hat das Emoji aktiviert: %{target}"
         enable_sign_in_token_auth_user_html: "%{name} hat die E-Mail-Token-Authentifizierung für %{target} aktiviert"
         enable_user_html: "%{name} hat den Zugang für %{target} aktiviert"
         memorialize_account_html: "%{name} hat das Konto von %{target} in eine Gedenkseite umgewandelt"
@@ -277,7 +277,7 @@ de:
         unsilence_account_html: "%{name} hat die Stummschaltung von %{target} aufgehoben"
         unsuspend_account_html: "%{name} hat die Kontosperre von %{target} aufgehoben"
         update_announcement_html: "%{name} aktualisierte Ankündigung %{target}"
-        update_custom_emoji_html: "%{name} hat das %{target} Emoji geändert"
+        update_custom_emoji_html: "%{name} hat das Emoji geändert: %{target}"
         update_domain_block_html: "%{name} hat den Domain-Block für %{target} aktualisiert"
         update_ip_block_html: "%{name} hat die Regel für IP %{target} geändert"
         update_status_html: "%{name} hat einen Beitrag von %{target} aktualisiert"
@@ -286,7 +286,7 @@ de:
       empty: Keine Protokolle gefunden.
       filter_by_action: Nach Aktion filtern
       filter_by_user: Nach Benutzer*in filtern
-      title: Überprüfungsprotokoll
+      title: Protokoll
     announcements:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
       edit:
@@ -311,9 +311,9 @@ de:
       copy: Kopieren
       copy_failed_msg: Es konnte keine lokale Kopie des Emojis erstellt werden
       create_new_category: Neue Kategorie erstellen
-      created_msg: Emoji erstellt!
+      created_msg: Emoji erfolgreich erstellt!
       delete: Löschen
-      destroyed_msg: Emoji gelöscht!
+      destroyed_msg: Emoji erfolgreich gelöscht!
       disable: Deaktivieren
       disabled: Deaktiviert
       disabled_msg: Das Emoji wurde deaktiviert
@@ -356,13 +356,13 @@ de:
       pending_users_html:
         one: "<strong>%{count}</strong> unerledigte*r Benutzer*in"
         other: "<strong>%{count}</strong> unerledigte Benutzer*innen"
-      resolved_reports: Gelöste Meldungen
+      resolved_reports: erledigte Meldungen
       software: Software
-      sources: Registrierungsquellen
+      sources: Registrierungsort
       space: Speicherverbrauch
       title: Übersicht
-      top_languages: Top aktive Sprachen
-      top_servers: Top aktive Server
+      top_languages: Häufigste Sprachen
+      top_servers: Aktivste Server
       website: Website
     disputes:
       appeals:
@@ -462,7 +462,7 @@ de:
         title: Verfügbarkeit
         warning: Der letzte Versuch, sich mit diesem Server zu verbinden, war nicht erfolgreich
       back_to_all: Alle
-      back_to_limited: Beschränkt
+      back_to_limited: Stummgeschaltet
       back_to_warning: Warnung
       by_domain: Domain
       confirm_purge: Bist du dir sicher, dass du die Daten für diese Domain für immer löschen möchtest?
@@ -481,15 +481,15 @@ de:
         instance_accounts_dimension: Meiste gefolgte Konten
         instance_accounts_measure: gespeicherte Konten
         instance_followers_measure: unsere Follower dort
-        instance_follows_measure: ihre Follower hier
+        instance_follows_measure: deren Follower hier
         instance_languages_dimension: Top Sprachen
         instance_media_attachments_measure: gespeicherte Medienanhänge
-        instance_reports_measure: über sie berichtet
+        instance_reports_measure: Meldungen über deren Accounts
         instance_statuses_measure: gespeicherte Beiträge
       delivery:
         all: Alle
         clear: Zustellfehler löschen
-        failing: Schlägt fehl
+        failing: Fehlerhaft
         restart: Lieferung neu starten
         stop: Lieferung stoppen
         unavailable: Nicht verfügbar
@@ -503,7 +503,7 @@ de:
         other: "%{count} bekannte Konten"
       moderation:
         all: Alle
-        limited: Eingeschränkt
+        limited: Stummgeschaltet
         title: Moderation
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
@@ -566,12 +566,12 @@ de:
         notes:
           one: "%{count} Notiz"
           other: "%{count} Notizen"
-      action_log: Überprüfungsprotokoll
+      action_log: Protokoll
       action_taken_by: Maßnahme ergriffen durch
       actions:
         delete_description_html: Der gemeldete Beitrag wird gelöscht und ein Strike wird aufgezeichnet, um dir bei zukünftigen Verstößen des gleichen Accounts zu helfen.
         mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und ein Verstoß wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
-        other_description_html: Weitere Optionen zur Kontrolle des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
+        other_description_html: Weitere Optionen zur Steuerung des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
         silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die ihm bereits folgen oder es manuell nachschlagen, und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
         suspend_description_html: Das Profil und alle seine Inhalte werden unzugänglich werden, bis es schließlich gelöscht wird. Interaktion mit dem Konto wird unmöglich sein. Reversibel innerhalb von 30 Tagen.
@@ -652,7 +652,7 @@ de:
         manage_appeals_description: Erlaubt es Benutzer*innen, Entscheidungen der Moderator*innen zu widersprechen
         manage_blocks: Geblocktes verwalten
         manage_blocks_description: Erlaubt Benutzer*innen, E-Mail-Provider und IP-Adressen zu blockieren
-        manage_custom_emojis: Benutzerdefinierte Emojis verwalten
+        manage_custom_emojis: Eigene Emojis verwalten
         manage_custom_emojis_description: Erlaubt es Benutzer*innen, eigene Emojis auf dem Server zu verwalten
         manage_federation: Föderation verwalten
         manage_federation_description: Erlaubt es Benutzer*innen, den Zusammenschluss mit anderen Domains zu blockieren oder zuzulassen und die Zustellbarkeit zu kontrollieren
@@ -695,7 +695,7 @@ de:
         rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
         title: Über
       appearance:
-        preamble: Passe das Webinterface von Mastodon an.
+        preamble: Die Oberfläche von Mastodon anpassen.
         title: Design
       branding:
         preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
@@ -722,7 +722,7 @@ de:
           approved: Registrierung muss genehmigt werden
           none: Niemand kann sich registrieren
           open: Alle können sich registrieren
-      title: Servereinstellungen
+      title: Server-Einstellungen
     site_uploads:
       delete: Hochgeladene Datei löschen
       destroyed_msg: Upload erfolgreich gelöscht!
@@ -758,7 +758,7 @@ de:
         mark_statuses_as_sensitive: "%{name} hat die Beiträge von %{target} mit einer Inhaltswarnung versehen"
         none: "%{name} hat eine Warnung an %{target} gesendet"
         sensitive: "%{name} hat das Profil von %{target} mit einer Inhaltswarnung versehen"
-        silence: "%{name} hat das Konto von %{target} eingeschränkt"
+        silence: "%{name} hat das Konto von %{target} stummgeschaltet"
         suspend: "%{name} hat das Konto von %{target} gesperrt"
       appeal_approved: Einspruch angenommen
       appeal_pending: Einspruch ausstehend
@@ -784,11 +784,11 @@ de:
       approved: Freigegeben
       disallow: Verbieten
       links:
-        allow: Erlaube Link
-        allow_provider: Erlaube Herausgeber
+        allow: Link erlauben
+        allow_provider: Herausgeber*in erlauben
         description_html: Dies sind Links, die derzeit von zahlreichen Accounts geteilt werden und die deinem Server aufgefallen sind. Die Benutzer*innen können darüber herausfinden, was in der Welt vor sich geht. Die Links werden allerdings erst dann öffentlich vorgeschlagen, wenn du die Herausgeber*innen genehmigt hast. Du kannst alternativ aber auch nur einzelne URLs zulassen oder ablehnen.
-        disallow: Verbiete Link
-        disallow_provider: Verbiete Herausgeber
+        disallow: Link verbieten
+        disallow_provider: Herausgeber*in verbieten
         no_link_selected: Keine Links wurden geändert, da keine ausgewählt wurden
         publishers:
           no_publisher_selected: Keine Herausgeber wurden geändert, da keine ausgewählt wurden
@@ -807,10 +807,10 @@ de:
       rejected: Abgelehnt
       statuses:
         allow: Beitrag erlauben
-        allow_account: Autor erlauben
+        allow_account: Autor*in erlauben
         description_html: Dies sind Beiträge, von denen dein Server weiß, dass sie derzeit viel geteilt und favorisiert werden. Dies kann neuen und wiederkehrenden Personen helfen, weitere Profile zu finden, denen sie folgen können. Die Beiträge werden erst dann öffentlich angezeigt, wenn du die Person genehmigst und sie es zulässt, dass ihr Profil anderen vorgeschlagen wird. Du kannst auch einzelne Beiträge zulassen oder ablehnen.
         disallow: Beitrag verbieten
-        disallow_account: Autor verbieten
+        disallow_account: Autor*in verweigern
         no_status_selected: Keine angesagten Beiträge wurden geändert, da keine ausgewählt wurden
         not_discoverable: Der Autor hat sich nicht dafür entschieden, entdeckt zu werden
         shared_by:
@@ -851,11 +851,11 @@ de:
     webhooks:
       add_new: Endpunkt hinzufügen
       delete: Löschen
-      description_html: Ein <strong>Webhook</strong> ermöglicht Mastodon <strong>Echtzeitbenachrichtigungen</strong> über ausgewählte Ereignisse an deine eigene Anwendung zu senden damit deine Anwendung <strong>automatisch Reaktionen auslösen kann</strong>.
+      description_html: Ein <strong>Webhook</strong> ermöglicht Mastodon, <strong>Echtzeitbenachrichtigungen</strong> über ausgewählte Ereignisse an deine eigene Anwendung zu senden, damit deine Anwendung <strong>automatisch Reaktionen auslösen kann</strong>.
       disable: Deaktivieren
       disabled: Deaktiviert
       edit: Endpunkt bearbeiten
-      empty: Du hast noch keine Webhook Endpunkte konfiguriert.
+      empty: Du hast noch keine Webhook-Endpunkte konfiguriert.
       enable: Aktivieren
       enabled: Aktiv
       enabled_events:
@@ -913,9 +913,9 @@ de:
     confirmation_dialogs: Bestätigungsfenster
     discovery: Entdecken
     localization:
-      body: Mastodon wurde von Freiwilligen übersetzt.
+      body: Mastodon wird von Freiwilligen übersetzt.
       guide_link: https://de.crowdin.com/project/mastodon
-      guide_link_text: Jeder kann etwas dazu beitragen.
+      guide_link_text: Alle können mitmachen und etwas dazu beitragen.
     sensitive_content: Inhaltswarnung
     toot_layout: Timeline-Layout
   application_mailer:
@@ -1211,7 +1211,7 @@ de:
       one: 1 mal verwendet
       other: "%{count} mal verwendet"
     max_uses_prompt: Keine Einschränkung
-    prompt: Generiere und teile Links, um Zugang zu diesem Server zu erteilen
+    prompt: Erstelle Einladungen und teile die dazugehörigen Links, um anderen einen Zugang zu diesem Server zu gewähren
     table:
       expires_at: Läuft ab
       uses: Verwendet
@@ -1613,7 +1613,7 @@ de:
         mark_statuses_as_sensitive: Deine Beiträge auf %{acct} wurden mit einer Inhaltswarnung versehen
         none: Warnung für %{acct}
         sensitive: Deine Beiträge auf %{acct} werden künftig mit einer Inhaltswarnung versehen
-        silence: Dein Konto %{acct} wurde limitiert
+        silence: Dein Konto %{acct} wurde stummgeschaltet
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
         delete_statuses: Beiträge entfernt
@@ -1621,11 +1621,11 @@ de:
         mark_statuses_as_sensitive: Mit einer Inhaltswarnung versehene Beiträge
         none: Warnung
         sensitive: Profil mit einer Inhaltswarnung versehen
-        silence: Konto limitiert
+        silence: Konto stummgeschaltet
         suspend: Konto gesperrt
     welcome:
       edit_profile_action: Profil einrichten
-      edit_profile_step: Du kannst dein Profil anpassen, indem du einen Avatar oder ein Titelbild hochlädst, deinen Anzeigenamen änderst und viel mehr. Du kannst optional einstellen, ob du Accounts, die dir folgen wollen, akzeptieren musst, bevor sie dies können.
+      edit_profile_step: Du kannst dein Profil anpassen, indem du ein Profilbild hochlädst, deinen Anzeigenamen änderst und vieles mehr. Du kannst dich dafür entscheiden, neue Follower zu überprüfen, bevor sie dir folgen dürfen.
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten
       final_step: 'Fang jetzt an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel in der lokalen Timeline oder über die Hashtags. Möglicherweise möchtest du dich allen mit dem Hashtag #neuhier vorstellen.'
