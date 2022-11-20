@@ -1,18 +1,18 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
+import React from 'react';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { NavLink, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Column from 'mastodon/components/column';
 import ColumnHeader from 'mastodon/components/column_header';
-import Search from 'mastodon/features/compose/containers/search_container';
-import { showTrends } from 'mastodon/initial_state';
+import { NavLink, Switch, Route } from 'react-router-dom';
 import Links from './links';
-import SearchResults from './results';
+import Tags from './tags';
 import Statuses from './statuses';
 import Suggestions from './suggestions';
-import Tags from './tags';
+import Search from 'mastodon/features/compose/containers/search_container';
+import SearchResults from './results';
+import { Helmet } from 'react-helmet';
+import { showTrends } from 'mastodon/initial_state';
 
 const messages = defineMessages({
   title: { id: 'explore.title', defaultMessage: 'Explore' },
@@ -24,9 +24,9 @@ const mapStateToProps = state => ({
   isSearching: state.getIn(['search', 'submitted']) || !showTrends,
 });
 
-@connect(mapStateToProps)
+export default @connect(mapStateToProps)
 @injectIntl
-export default class Explore extends PureComponent {
+class Explore extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
