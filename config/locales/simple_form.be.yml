@@ -10,7 +10,7 @@ be:
         email: Пацвярджэнне будзе выслана па электроннай пошце
         locale: Мова карыстальніцкага інтэрфейсу, электронных паведамленняў і апавяшчэнняў
         locked: Уручную кантралюйце, хто можа быць вашым падпісантам, ухваляючы запросы на падпіску
-        password: Мінімум 8 сімвалаў
+        password: Не менш за 8 сімвалаў
         setting_display_media_hide_all: Заўсёды хаваць медыя
         setting_display_media_show_all: Заўсёды паказваць медыя
         setting_hide_network: Вашы падпіскі і вашы падпісчыкі будуць нябачны ў вашым профілі
@@ -26,15 +26,61 @@ be:
         setting_display_media_default: Перадвызначана
         setting_display_media_hide_all: Схаваць усё
         setting_display_media_show_all: Паказаць усё
+        setting_theme: Тэма сайта
+        setting_use_pending_items: Павольны рэжым
+        sign_in_token_attempt: Код бяспекі
+        title: Загаловак
         username: Імя карыстальніка
+        username_or_email: Імя карыст. або адрас эл. пошты
+        whole_word: Слова цалкам
+      featured_tag:
+        name: Хэштэг
+      filters:
+        actions:
+          hide: Схаваць цалкам
+      form_admin_settings:
+        custom_css: CSS карыстальніка
+        profile_directory: Уключыць каталог профіляў
+        registrations_mode: Хто можа зарэгістравацца
+        require_invite_text: Каб далучыцца, патрэбна прычына
+        site_contact_email: Электронная пошта для сувязі
+        site_short_description: Апісанне сервера
+        site_terms: Палітыка канфідэнцыйнасці
+        site_title: Назва сервера
+        thumbnail: Мініяцюра сервера
+      invite:
+        comment: Каментар
+      invite_request:
+        text: Чаму вы жадаеце далучыцца?
       ip_block:
+        comment: Каментар
         ip: IP
+        severity: Правіла
+      notification_emails:
+        favourite: Хтосьці ўпадабаў ваш допіс
+        follow: Нехта падпісаўся на вас
+        follow_request: Нехта даслаў вам запыт на падпіску
+        mention: Хтосьці згадаў вас
+        pending_account: Новы акаўнт патрабуе разгляду
+        reblog: '{Хтосьці пашырыў ваш допіс'
+        report: Новая скарга даслана
+      rule:
+        text: Правіла
+      tag:
+        listable: Дазволіць паказ хэштэгу ў пошуку і ў каталозе профіляў
+        name: Хэштэг
+        usable: Дазволіць выкарыстанне хэштэгу ў допісах
       user:
         role: Роля
       user_role:
+        color: Колер значка
+        highlighted: Паказваць ролю як значок у профілях
         name: Назва
         permissions_as_keys: Дазволы
+        position: Прыярытэт
     'no': 'Не'
+    not_recommended: Не рэкамендавана
+    recommended: Рэкамендуем
     required:
       mark: "*"
       text: абавязкова
