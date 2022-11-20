@@ -58,11 +58,31 @@ fo:
         deny: Nokta
       error:
         title: Ein feilur er íkomin
+      new:
+        prompt_html: "%{client_name} kundi hugsa sær atgongd til tína kontu. Tað er ein triðjaparts-nýtsluskipan. <strong>Tú skal ikki geva henni hesa heimld, um tú ikki hevur álit á henni.</strong>"
+        review_permissions: Eftirkanna rættindi
+        title: Váttan kravd
+      show:
+        title: Kopiera hesa váttanarkodu og líma hana í nýtsluskipanini.
     authorized_applications:
+      buttons:
+        revoke: Tak aftur
+      confirmations:
+        revoke: Ert tú vís/ur?
       index:
+        authorized_at: Váttað tann %{date}
+        description_html: Hetta eru nýtsluskipaninar, sum hava atgongd til tína kontu umvegis API'ið. Tú kanst taka loyvið aftur, um tað eru nýtsluskipanir, ið tú ikki kennir aftur ella sum ikki skikka sær, sum tær eiga.
+        last_used_at: Seinast brúkt tann %{date}
         never_used: Ongantíð brúkt/ur
         scopes: Loyvi
         superapp: Innanhýsis
+        title: Tínar váttaðu nýtsluskipanir
+    errors:
+      messages:
+        access_denied: Tilfarseigarin ella váttanarambætarin noktaðu umbønina.
+        credential_flow_not_configured: Resource Owner Password Credentials floymurin eydnaðist ikki. Orsøkin var, at Doorkeeper.configure.resource_owner_from_credentials var ikki sett upp.
+        invalid_client: Viðskiftaraváttan miseydnaðist. Orsøkin var ein ókendur viðskiftari, at eingin viðskiftaraváttan var við ella at váttanarmannagongdin er ókend.
+        invalid_grant: Veitta váttanarheimildin er antin ógildug, útgingin, tikin aftur, samsvarar ikki við endursendingar-URI'ið, sum bleiv brúkt í váttanarumbønini ella var flýggjað øðrum viðskiftara.
     grouped_scopes:
       access:
         read: Lesi-rættindir
@@ -71,9 +91,53 @@ fo:
       title:
         accounts: Kontur
         admin/accounts: Umsiting av kontum
+        filters: Filtur
         follow: Sambond
         follows: Fylgir
         lists: Listar
+        mutes: Doyvir
+        search: Leita
+        statuses: Uppsløg
+    layouts:
+      admin:
+        nav:
+          oauth2_provider: OAuth2 veitari
+      application:
+        title: OAuth váttan kravd
     scopes:
+      "admin:read": les allar dátur á ambætaranum
+      "admin:read:accounts": les viðkvæmar upplýsingar úr øllum kontum
+      "admin:read:reports": les viðkvæmar upplýsingar um allar meldingar og meldaðar kontur
+      "admin:write": broyta allar dátur á ambætaranum
+      "admin:write:accounts": útinna kjakleiðsluatgerðir á kontum
+      "admin:write:reports": útinna kjakleiðsluatgerðir á meldingum
+      crypto: brúka enda-til-enda bronglan
+      follow: broyta viðurskifti millum kontur
+      push: móttaka tínar skumpifráboðanir
+      read: lesa allar dátur í tíni kontu
       "read:accounts": vís kontuupplýsingar
+      "read:blocks": síggja tínar blokeringar
+      "read:bookmarks": síggja tíni bókamerki
+      "read:favourites": síggja tínar yndispostar
+      "read:filters": síggja tíni filtur
+      "read:follows": síggja hvørji tú fylgir
+      "read:lists": síggja tínar listar
+      "read:mutes": síggja tínar doyvingar
+      "read:notifications": síggja tínar fráboðanir
+      "read:reports": síggja tínar meldingar
+      "read:search": leita vegna teg
+      "read:statuses": síggja allar postar
+      write: broyta allar dátur í tínari kontu
       "write:accounts": broyt vangamyndina
+      "write:blocks": blokera kontur og domenir
+      "write:bookmarks": bókamerkja postar
+      "write:conversations": doyva og strika samrøður
+      "write:favourites": yndismerkja postar
+      "write:filters": gera filtur
+      "write:follows": fylgja fólki
+      "write:lists": gera listar
+      "write:media": leggja miðlafílur upp
+      "write:mutes": doyva fólk og samrøður
+      "write:notifications": nullstilla tínar fráboðanir
+      "write:reports": melda onnur fólk
+      "write:statuses": útgeva postar
