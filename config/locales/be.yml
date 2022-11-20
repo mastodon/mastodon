@@ -62,7 +62,7 @@ be:
       enable_sign_in_token_auth: Уключыць аўтэнтыфікацыю па e-mail токену
       enabled: Уключана
       followers: Падпісчыкі
-      follows: Падпісчыкі
+      follows: Падпіскі
       header: Загаловак
       invite_request_text: Прычына далучэння
       invited_by: Запрошаны
@@ -130,7 +130,7 @@ be:
         create_account_warning: Стварыць папярэджванне
         create_announcement: Стварыць аб'яву
         create_canonical_email_block: Стварыць блакіроўку электроннай пошты
-        create_custom_emoji: Стварыць асабістую Пачутку
+        create_custom_emoji: Стварыць уласны эмодзі
         create_domain_allow: Стварыць даменны дазвол
         create_domain_block: Стварыць даменны блок
         create_email_domain_block: Стварыць даменны блок электроннай пошты
@@ -140,7 +140,7 @@ be:
         demote_user: Панізіць карыстальніка
         destroy_announcement: Выдаліць аб'яву
         destroy_canonical_email_block: Выдаліць блакіроўку электроннай пошты
-        destroy_custom_emoji: Выдаліць асабістую Пачутку
+        destroy_custom_emoji: Выдаліць уласны эмодзі
         destroy_domain_allow: Выдаліць дамены дазвол
         destroy_domain_block: Выдаліць даменны блок
         destroy_email_domain_block: Выдаліць даменны блок электроннай пошты
@@ -150,10 +150,10 @@ be:
         destroy_unavailable_domain: Выдаліць недаступны дамен
         destroy_user_role: Выдаліць ролю
         disable_2fa_user: Адключыць двухэтапнае спраўджанне
-        disable_custom_emoji: Адключыць асабістую Пачутку
+        disable_custom_emoji: Адключыць уласны эмодзі
         disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
         disable_user: Адключыць карыстальніка
-        enable_custom_emoji: Адклюыць асабістую Пачутку
+        enable_custom_emoji: Уключыць уласныя эмодзі
         enable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
         enable_user: Уключыць карыстальніка
         memorialize_account: Запомніць уліковы запіс
@@ -161,6 +161,7 @@ be:
         remove_avatar_user: Выдаліць аватар
         suspend_account: Прыпыніць уліковы запіс
         update_announcement: Абнавіць аб'яву
+        update_custom_emoji: Абнавіць уласныя эмодзі
         update_status: Абнавіць допіс
         update_user_role: Абнавіць ролю
       actions:
@@ -201,6 +202,7 @@ be:
       delete: Выдаліць
       disable: Адключыць
       disabled: Адключана
+      emoji: Эмодзі
       enable: Уключыць
       enabled: Уключана
       image_hint: PNG ці GIF да %{size}
@@ -210,6 +212,7 @@ be:
       overwrite: Перазапісаць
       shortcode: Кароткі код
       shortcode_hint: Як менш 2 сімвалы, толькі лічбы, лацінскія літары ці падкрэсліванне
+      title: Уласныя эмодзі
       uncategorized: Без катэгорыі
       unlist: Прыбраць
       unlisted: Не ў спісе
@@ -295,6 +298,22 @@ be:
       saml: SAML
     status:
       account_status: Стан уліковага запісу
+  date:
+    formats:
+      default: "%e %b %Y"
+      with_month_name: "%e %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}гадз"
+      about_x_months: "%{count}мес"
+      about_x_years: "%{count}г"
+      almost_x_years: "%{count}г"
+      half_a_minute: Толькі што
+      less_than_x_minutes: "%{count}хв"
+      less_than_x_seconds: Толькі што
+      x_days: "%{count}д"
+      x_minutes: "%{count}хв"
+      x_months: "%{count}мес"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -307,27 +326,38 @@ be:
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
+      date: Дата
       size: Памер
     csv: CSV
+  featured_tags:
+    add_new: Дадаць новы
   filters:
     contexts:
+      account: Профілі
       notifications: Апавяшчэнні
     edit:
+      add_keyword: Дадаць ключавое слова
+      keywords: Ключавыя словы
       title: Рэдагаваць фільтр
     index:
       delete: Выдаліць
+      empty: У вас няма фільтраў.
       title: Фільтры
     new:
       save: Захаваць новы фільтр
       title: Дадаць новы фільтр
   generic:
+    all: Усе
     delete: Выдаліць
+    order_by: Парадак
+    save_changes: Захаваць змены
     today: сёння
   imports:
     modes:
       merge: Аб'яднаць
       merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
+    upload: Запампаваць
   invites:
     expires_in:
       '1800': 30 хвілін
@@ -341,6 +371,7 @@ be:
   login_activities:
     authentication_methods:
       password: пароль
+      webauthn: ключы бяспекі
   notification_mailer:
     mention:
       action: Адказаць
@@ -368,6 +399,8 @@ be:
       safari: Safari
       uc_browser: UC Browser
       weibo: Weibo
+    current_session: Бягучая сесія
+    description: "%{browser} на %{platform}"
     ip: IP
     platforms:
       adobe_air: Adobe AIR
@@ -378,13 +411,27 @@ be:
       ios: iOS
       linux: Linux
       mac: macOS
+      other: невядомай платформе
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    title: Сесіі
   settings:
     account: Уліковы запіс
+    account_settings: Налады ўліковага запісу
+    appearance: Выгляд
     authorized_apps: Аўтарызаваныя праграмы
+    delete: Выдаленне ўліковага запісу
+    development: Распрацоўка
+    edit_profile: Рэдагаваць профіль
+    export: Экспарт даных
+    import: Імпарт
+    import_and_export: Імпарт і экспарт
+    notifications: Апавяшчэнні
+    preferences: Параметры
     profile: Профіль
+    two_factor_authentication: Двухфактарная аўтэнтыфікацыя
+    webauthn_authentication: Ключы бяспекі
   statuses:
     visibilities:
       public: Публічны
@@ -394,16 +441,23 @@ be:
       '15778476': 6 месяцаў
       '2629746': 1 месяц
       '31556952': 1 год
-      '5259492': 2 months
+      '5259492': 2 месяцы
       '604800': 1 тыдзень
       '63113904': 2 гады
-      '7889238': 3 months
+      '7889238': 3 месяцы
+  time:
+    formats:
+      default: "%e %b %Y, %H:%M"
+      time: "%H:%M"
   two_factor_authentication:
     add: Дадаць
     edit: Рэдагаваць
+    webauthn: Ключы бяспекі
   user_mailer:
     warning:
       categories:
         spam: Спам
+      title:
+        none: Папярэджанне
   webauthn_credentials:
     delete: Выдаліць
