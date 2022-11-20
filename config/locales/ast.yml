@@ -80,16 +80,30 @@ ast:
       by_domain: Dominiu
       copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
       emoji: Fustaxe
+      no_emoji_selected: Nun camudó nengún fustaxe darréu que nun se seleicionó nengún
       not_permitted: Nun tienes permisu pa facer esta aición
       update_failed_msg: Nun pudo anovase esi fustaxe
     dashboard:
       interactions: interaiciones
       media_storage: Almacenamientu multimedia
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apellación pendiente"
+        other: "<strong>%{count}</strong> apellaciones pendientes"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> informe pendiente"
+        other: "<strong>%{count}</strong> informes pendientes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> etiqueta pendiente"
+        other: "<strong>%{count}</strong> etiquetes pendientes"
+      pending_users_html:
+        one: "<strong>%{count}</strong> perfil pendiente"
+        other: "<strong>%{count}</strong> perfiles pendientes"
       software: Software
       top_languages: Les llingües más actives
       website: Sitiu web
     domain_blocks:
       domain: Dominiu
+      not_permitted: Nun tienes permisu pa facer esta aición
       private_comment: Comentariu priváu
       public_comment: Comentariu públicu
     email_domain_blocks:
@@ -102,6 +116,7 @@ ast:
         comment: Nota interna
         policy: Política
         reason: Motivu públicu
+      empty: Nun s'atopó nengún dominiu.
       private_comment: Comentariu priváu
       public_comment: Comentariu públicu
       title: Federación
@@ -182,7 +197,7 @@ ast:
       new_trending_tags:
         title: Etiquetes en tendencia
   aliases:
-    empty: Nun tienes nomatos.
+    empty: Nun tienes nengún nomatu.
   appearance:
     advanced_web_interface: Interfaz web avanzada
     advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol llargor de la pantalla, la interfaz web avanzada permítete configurar munches columnes estremaes pa ver tanta información al empar como quieras: Aniciu, avisos, llinia temporal federada, cualesquier cantidá de llistes y etiquetes...'
@@ -207,7 +222,7 @@ ast:
     description:
       suffix: '¡Con una cuenta, vas ser a siguir a persones, espublizar anovamientos ya intercambiar mensaxes con usuarios de cualesquier sirvidor de Mastodon y más!'
     didnt_get_confirmation: '¿Nun recibiesti les instrucciones de confirmación?'
-    dont_have_your_security_key: '¿Nun tienes una clave de seguranza?'
+    dont_have_your_security_key: '¿Nun tienes una llave de seguranza?'
     forgot_password: '¿Escaeciesti la contraseña?'
     login: Aniciar la sesión
     logout: Zarrar la sesión
@@ -252,7 +267,7 @@ ast:
     challenge_not_passed: La información qu'introduxesti nun yera correuta
     confirm_password: Introduz la contraseña pa verificar la to identidá
     warning:
-      email_contact_html: Si entá nun aportó, pues unviar un corréu a<a href="mailto:%{email}">%{email}</a> pa más ayuda
+      email_contact_html: Si entá nun aportó, pues unviar un mensaxe a <a href="mailto:%{email}">%{email}</a> pa consiguir más ayuda
       email_reconfirmation_html: Si nun recibiesti'l mensaxe de confirmación, pues <a href="%{path}">volver solicitalu</a>
       more_details_html: Pa consiguir más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   disputes:
@@ -268,10 +283,10 @@ ast:
     '403': Nun tienes permisu pa ver esta páxina.
     '404': La páxina que busques nun ta equí.
     '406': Esta páxina nun ta disponible nel formatu solicitáu.
-    '410': La páxina que tabes guetando yá nun esiste.
+    '410': La páxina que busques xá nun esiste.
     '422':
-      content: Falló la verificación de seguranza. ¿Tas bloquiando les cookies?
-      title: Falló la verificación de seguranza
+      content: La verificación de seguranza falló. ¿Tas bloquiando les cookies?
+      title: La verificación de seguranza falló
     '429': Ficiéronse milenta solicitúes
     '500':
       title: La páxina nun ye correuta
@@ -337,12 +352,12 @@ ast:
   imports:
     modes:
       merge: Mecíu
-      merge_long: Caltién los rexistros esistentes y amesta otros nuevos
+      merge_long: Caltién los rexistros esistentes y amiesta otros nuevos
       overwrite: Sobrescritura
       overwrite_long: Troca los rexistros actuales por otros nuevos
     preface: Pues importar los datos qu'esportares dende otru sirvidor, como la llista de perfiles bloquiaos o que sigas.
     types:
-      blocking: Llista de xente bloquiao
+      blocking: Llista de perfiles bloquiaos
       domain_blocking: Llista de dominios bloquiaos
       following: Llista de siguidores
       muting: Llista de xente silenciao
