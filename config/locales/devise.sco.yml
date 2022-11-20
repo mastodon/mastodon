@@ -19,3 +19,10 @@ sco:
       confirmation_instructions:
         action: Verify yer email address
         action_with_app: Mak siccar an return tae %{app}
+        explanation: Ye'v makkit a accoont on %{host} wi this email address. Ye'r ae click awa fae activatin it. If this wisnae yersel, please dinnae bother aboot this email.
+        explanation_when_pending: Ye applied fir a invite tae %{host} wi this email address. Ance ye mak siccar yer email address, we wull luik ower yer application. Ye kin log in tae chynge yer details or fir tae delete yer accoont, but ye cannae uise maist o the functions tae yer accoont is appruived. Gin yer application isnae taen on yer data wull get deletit, sae nae mair action wull be needit fae ye. Gin this wisnae yersel, please dinnae bother aboot this email.
+        extra_html: Please tak a deek at <a href="%{terms_path}">the rules o the server tae</a> an <a href="%{policy_path}">oor terms o service</a>.
+        subject: 'Mastodon: Confirmation instructions fir %{instance}'
+        title: Verify yer email address
+      email_changed:
+        explanation: 'The email address fir yer accoont is gettin chynged tae:'
