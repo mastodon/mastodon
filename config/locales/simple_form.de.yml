@@ -79,14 +79,14 @@ de:
         content_cache_retention_period: Beiträge von anderen Servern werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht. Dies kann eventuell nicht rückgängig gemacht werden.
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
         mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
-        media_cache_retention_period: Heruntergeladene Mediendateien werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht und bei Bedarf erneut heruntergeladen.
-        profile_directory: Das Profilverzeichnis listet alle Benutzer auf, die sich für die Auffindbarkeit entschieden haben.
+        media_cache_retention_period: Von anderen Instanzen übertragene Mediendateien werden nach der angegebenen Anzahl an Tagen – sofern das Feld eine positive Zahl enthält – aus dem Cache gelöscht und bei Bedarf erneut heruntergeladen.
+        profile_directory: Das Profilverzeichnis zeigt alle Benutzer*innen an, die sich dafür entschieden haben, entdeckt zu werden.
         require_invite_text: Wenn Registrierungen eine manuelle Genehmigung erfordern, dann werden Nutzer einen Grund für ihre Registrierung angeben müssen
-        site_contact_email: Wie man dich oder dein Team bei rechtlichen oder unterstützenden Fragen erreichen kann.
-        site_contact_username: Wie man dich oder dein Team auf Mastodon erreichen kann.
-        site_extended_description: Alle zusätzlichen Informationen, die für Besucher und Nutzer nützlich sein könnten. Kann mit der Markdown-Syntax strukturiert werden.
+        site_contact_email: Wie man dich bei rechtlichen oder Support-Anfragen erreichen kann.
+        site_contact_username: Wie man dich auf Mastodon erreichen kann.
+        site_extended_description: Alle zusätzlichen Informationen, die für Besucher*innen und deine Benutzer*innen nützlich sein könnten. Kann mit der Markdown-Syntax formatiert werden.
         site_short_description: Eine kurze Beschreibung zur eindeutigen Identifizierung des Servers. Wer betreibt ihn, für wen ist er bestimmt?
-        site_terms: Verwende eine eigene Datenschutzrichtlinie oder lasse das Feld leer, um die Standardeinstellung zu verwenden. Kann mit Markdown-Syntax strukturiert werden.
+        site_terms: Verwende eine eigene Datenschutzerklärung oder lasse das Feld leer, um die allgemeine Vorlage zu verwenden. Kann mit der Markdown-Syntax formatiert werden.
         site_title: Wie Personen neben dem Domainnamen auf deinen Server verweisen können.
         theme: Das Design, das abgemeldete Besucher und neue Benutzer sehen.
         thumbnail: Ein Bild ungefähr im 2:1-Format, das neben den Server-Informationen angezeigt wird.
@@ -122,7 +122,7 @@ de:
         color: Die Farbe, die für die Rolle im gesamten UI verwendet wird, als RGB im Hexformat
         highlighted: Dies macht die Rolle öffentlich sichtbar
         name: Öffentlicher Name der Rolle, wenn die Rolle als Abzeichen angezeigt werden soll
-        permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf …
+        permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
         position: Die höhere Rolle entscheidet über die Konfliktlösung in bestimmten Situationen. Bestimmte Aktionen können nur in Rollen mit geringerer Priorität ausgeführt werden
       webhook:
         events: Zu sendende Ereignisse auswählen
@@ -238,12 +238,13 @@ de:
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer kann sich registrieren
         require_invite_text: Grund für den Beitritt verlangen
-        show_domain_blocks: Domainsperren ansehen
-        show_domain_blocks_rationale: Anzeigen, warum Domains gesperrt wurden
+        show_domain_blocks: Anzeigen, welche Domains gesperrt wurden
+        show_domain_blocks_rationale: Anzeigen, weshalb Domains gesperrt wurden
+        site_contact_email: E-Mail-Adresse
         site_contact_username: Profilname
         site_extended_description: Detaillierte Beschreibung
         site_short_description: Serverbeschreibung
-        site_terms: Datenschutzhinweise
+        site_terms: Datenschutzerklärung
         site_title: Servername
         theme: Standard-Design
         thumbnail: Vorschaubild des Servers
