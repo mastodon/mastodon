@@ -730,44 +730,53 @@
     delete_account_html: Hvis du ønsker å slette kontoen din, kan du <a href="%{path}">gå hit</a>. Du vil bli spurt om bekreftelse.
     description:
       prefix_invited_by_user: "@%{name} inviterer deg til å bli med på denne serveren til Mastodon!"
-      prefix_sign_up: Meld deg opp på Mastodon i dag!
-      suffix: Med en konto, vil kunne følge folk, legge ut oppdateringer, og utveksle meldinger med brukere fra enhver Mastodon-tjener, og mer til!
+      prefix_sign_up: Registrer deg på Mastodon i dag!
+      suffix: Med en konto, vil kunne følge folk, skrive innlegg, og utveksle meldinger med brukere fra enhver Mastodon-tjener, og mer til!
     didnt_get_confirmation: Mottok du ikke instruksjoner om bekreftelse?
     dont_have_your_security_key: Har du ikke sikkerhetsnøkkelen din?
     forgot_password: Har du glemt passordet ditt?
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
-    link_to_otp: Skriv inn en 2-trinnskode fra din 2-trinnspåloggingsenhet eller en gjenopprettingskode
+    link_to_otp: Skriv inn en to-faktor-kode fra telefonen din, eller en gjenopprettingskode
     link_to_webauth: Bruk sikkerhetsnøkkel-enheten din
     log_in_with: Logg inn med
-    login: Logg på
+    login: Logg inn
     logout: Logg ut
     migrate_account: Flytt til en annen konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
-    or_log_in_with: Eller logg på med
+    or_log_in_with: Eller logg inn med
     privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     providers:
       cas: CAS
       saml: SAML
-    register: Bli med
-    registration_closed: "%{instance} godtar ikke nye medlemmer"
+    register: Meld deg på
+    registration_closed: "%{instance} tar ikke imot nye medlemmer"
     resend_confirmation: Send bekreftelsesinstruksjoner på nytt
-    reset_password: Nullstill passord
+    reset_password: Tilbakestill passord
+    rules:
+      preamble: Disse angis og håndheves av %{domain}-moderatorene.
+      title: Noen grunnregler.
     security: Sikkerhet
-    set_new_password: Sett nytt passord
+    set_new_password: Angi nytt passord
     setup:
       email_below_hint_html: Dersom E-postadressen nedenfor er feil, kan du endre det her og motta en ny bekreftelses-E-post.
       email_settings_hint_html: Bekreftelses-E-posten ble sendt til %{email}. Dersom den E-postadressen ikke var riktig, kan du endre den i kontoinnstillingene.
       title: Innstillinger
+    sign_up:
+      preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
+      title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
       confirming: Venter på at e-postbekreftelsen er fullført.
-      pending: Søknaden din avventer gjennomgang av styret vårt. Dette kan ta litt tid. Du vil motta en E-post dersom søknaden din blir godkjent.
+      functional: Kontoen din er fullt operativt.
+      pending: Søknaden din avventer gjennomgang av våre medarbeidere. Dette kan ta litt tid. Du vil motta en e-post dersom søknaden din blir godkjent.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
       view_strikes: Vis tidligere advarsler mot kontoen din
+    too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du følger allerede denne kontoen
-    error: Uheldigvis skjedde det en feil da vi prøvde å få tak i en bruker fra en annen instans
+    already_requested: Du har allerede sendt en følgeforespørsel til denne kontoen
+    error: Dessverre oppstod det en feil da vi prøvde å få tak i brukeren fra tjeneren
     follow: Følg
     follow_request: 'Du har sendt en følgeforespørsel til:'
     following: 'Suksess! Nå følger du:'
@@ -899,6 +908,7 @@
       thread: Samtaler
     edit:
       add_keyword: Legg til stikkord
+      statuses: Individuelle innlegg
       title: Rediger filter
     index:
       delete: Slett
@@ -962,11 +972,18 @@
       limit: Du har nådd det maksimale antall lister
   login_activities:
     authentication_methods:
+      otp: to-faktor autentiseringsapp
       password: passord
+      webauthn: sikkerhetsnøkler
+    description_html: Hvis du ser aktivitet som du ikke gjenkjenner, bør du vurdere å endre passordet ditt og aktivere to-trinnsinnlogging.
+    empty: Ingen innloggingshistorikk er tilgjengelig
+    failed_sign_in_html: Mislykket innloggingsforsøk med %{method} fra %{ip} (%{browser})
+    successful_sign_in_html: Vellykket innlogging med %{method} fra %{ip} (%{browser})
     title: Autentiseringshistorikk
   media_attachments:
     validations:
       images_and_video: Kan ikke legge ved video på en status som allerede inneholder bilder
+      not_ready: Kan ikke legge til filer som ikke er ferdigbehandlet. Prøv igjen om et øyeblikk!
       too_many: Kan ikke legge ved mer enn 4 filer
   migrations:
     acct: brukernavn@domene til den nye kontoen
@@ -1007,8 +1024,8 @@
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   notification_mailer:
     favourite:
-      body: 'Innlegget ditt ble likt av %{name}:'
-      subject: "%{name} likte innlegget ditt"
+      body: 'Innlegget ditt ble favorittmarkert av %{name}:'
+      subject: "%{name} favorittmarkerte innlegget ditt"
       title: Ny favoritt
     follow:
       body: "%{name} følger deg!"
