@@ -18,6 +18,8 @@ services:
     image: redis:7-alpine
     networks:
       - internal_network
+    cap_drop:
+      - ALL
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
     volumes:
@@ -72,8 +74,21 @@ services:
       - db
       - redis
       # - es
+    cap_drop:
+      - ALL
+    read_only: true
     volumes:
       - ./public/system:/mastodon/public/system
+      - type: tmpfs
+        target: /opt/mastodon/tmp/pids
+        tmpfs:
+          size: 64M
+      - type: tmpfs
+        target: /opt/mastodon/tmp/sockets
+        tmpfs:
+          size: 64M
+      - type: tmpfs
+        target: /tmp
 
   streaming:
     build: .
@@ -92,6 +107,9 @@ services:
     depends_on:
       - db
       - redis
+    cap_drop:
+      - ALL
+    read_only: true
 
   sidekiq:
     build: .
@@ -107,8 +125,13 @@ services:
       - internal_network
     volumes:
       - ./public/system:/mastodon/public/system
+      - type: tmpfs # Only the ingress and pull queues require a writeable /tmp/
+        target: /tmp
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
+    cap_drop:
+      - ALL
+    read_only: true
 
   ## Uncomment to enable federation with tor instances along with adding the following ENV variables
   ## http_proxy=http://privoxy:8118
