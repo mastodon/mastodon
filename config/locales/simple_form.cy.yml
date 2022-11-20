@@ -36,7 +36,7 @@ cy:
         current_password: At ddibenion diogelwch, nodwch gyfrinair y cyfrif cyfredol
         current_username: I gadarnhau, nodwch enw defnyddiwr y cyfrif cyfredol
         digest: Ond yn cael eu hanfon ar ôl cyfnod hir o anweithgarwch ac ond os ydych wedi derbyn unrhyw negeseuon personol yn eich absenoldeb
-        discoverable: Caniatáu i'ch cyfrif gael ei ddarganfod gan ddieithriaid trwy argymhellion, tueddiadau a nodweddion eraill
+        discoverable: Caniatáu i'ch cyfrif gael ei ddarganfod gan ddieithriaid trwy argymhellion, pynciau llosg a nodweddion eraill
         email: Byddwch yn derbyn e-bost cadarnhau
         fields: Mae modd i chi arddangos hyd at 4 eitem fel tabl ar eich proffil
         header: PNG, GIF neu JPG. %{size} ar y mwyaf. Ceith ei israddio i %{dimensions}px
@@ -53,7 +53,7 @@ cy:
         setting_display_media_default: Cuddio cyfryngau wedi eu marcio'n sensitif
         setting_display_media_hide_all: Cuddio cyfryngau bob tro
         setting_display_media_show_all: Dangos cyfryngau bob tro
-        setting_hide_network: Ni fydd y rheini yr ydych yn eu dilyn a phwy sy'n eich dilyn chi yn cael ei ddangos ar eich proffil
+        setting_hide_network: Ni fydd y pobl yr ydych chi'n eu dilyn a'ch dilynwyr yn ymddangos ar eich proffil
         setting_noindex: Mae hyn yn effeithio ar eich proffil cyhoeddus a'ch tudalennau statws
         setting_show_application: Bydd y offer frydych yn defnyddio i dŵtio yn cael ei arddangos yn golwg manwl eich tŵtiau
         setting_use_blurhash: Mae graddiannau wedi'u seilio ar liwiau'r delweddau cudd ond maent yn cuddio unrhyw fanylion
@@ -91,6 +91,7 @@ cy:
         theme: Thema sy'n allgofnodi ymwelwyr a defnyddwyr newydd yn gweld.
         thumbnail: Delwedd tua 2:1 yn cael ei dangos ochr yn ochr â manylion eich gweinydd.
         timeline_preview: Bydd ymwelwyr sydd wedi allgofnodi yn gallu pori drwy'r postiadau cyhoeddus diweddaraf sydd ar gael ar y gweinydd.
+        trends: Mae pynciau llosg yn dangos y tŵts, hashnodau, a newyddion sy'n denu sylw ar eich gweinydd.
       form_challenge:
         current_password: Rydych chi'n mynd i mewn i ardal sicr
       imports:
@@ -144,7 +145,7 @@ cy:
         current_password: Cyfrinair cyfredol
         data: Data
         discoverable: Awgrymu'r cyfrif hwn i bobl eraill
-        display_name: Enw arddangos
+        display_name: Enw sgrîn
         email: Cyfeiriad e-bost
         expires_in: Yn dod i ben ar ôl
         fields: Metadata proffil
@@ -180,7 +181,7 @@ cy:
         setting_show_application: Datguddio'r offer defnyddwyd i anfon tŵtiau
         setting_system_font_ui: Defnyddio ffont rhagosodedig y system
         setting_theme: Thema'r wefan
-        setting_trends: Dangos tueddiadau o heddiw ymlaen
+        setting_trends: Dangos pynciau llosg heddiw
         setting_unfollow_modal: Dangos deialog cadarnhau cyn dad-ddilyn rhywun
         setting_use_blurhash: Dangoswch raddiannau lliwgar ar gyfer cyfryngau cudd
         setting_use_pending_items: Modd araf
@@ -195,11 +196,20 @@ cy:
         with_dns_records: Cynnwys cofnodion MX a chyfeiriadau IP y parth
       featured_tag:
         name: Hashnod
+      filters:
+        actions:
+          hide: Cuddio'n llwyr
+          warn: Cuddio â rhybudd
       form_admin_settings:
+        custom_css: CSS wedi'i addasu
+        site_contact_email: E-bost cyswllt
+        site_contact_username: Enw defnyddiwr cyswllt
         site_short_description: Disgrifiad y gweinydd
         site_terms: Polisi Preifatrwydd
         site_title: Enw'r gweinydd
         theme: Thema ragosodedig
+        trendable_by_default: Caniatáu pynciau llosg heb adolygiad
+        trends: Galluogi pynciau llosg
       interactions:
         must_be_follower: Blocio hysbysiadau o bobl nad ydynt yn eich dilyn
         must_be_following: Blocio hysbysiadau o bobl nad ydych yn eu dilyn
@@ -221,12 +231,13 @@ cy:
         pending_account: Mae cyfrif newydd angen adolygiad
         reblog: Mae rhywun wedi bŵstio'ch tŵt
         report: Cyflwynwyd adroddiad newydd
+        trending_tag: Mae pwnc llosg newydd angen adolygiad
       rule:
         text: Rheol
       tag:
         listable: Caniatáu i'r hashnod hwn ymddangos mewn chwiliadau ac argymhelliadau
         name: Hashnod
-        trendable: Caniatáu i'r hashnod hwn ymddangos o dan dueddiadau
+        trendable: Caniatáu i'r hashnod hwn ymddangos o dan bynciau llosg
         usable: Caniatáu i tŵtiau ddefnyddio'r hashnod hwn
       user:
         role: Rôl
