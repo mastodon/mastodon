@@ -1023,6 +1023,11 @@
     carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} leverte en rapport"
+      sign_up:
+        subject: "%{name} registrerte seg"
     favourite:
       body: 'Innlegget ditt ble favorittmarkert av %{name}:'
       subject: "%{name} favorittmarkerte innlegget ditt"
@@ -1047,6 +1052,8 @@
       title: Ny fremheving
     status:
       subject: "%{name} postet nettopp"
+    update:
+      subject: "%{name} redigerte et innlegg"
   notifications:
     email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
@@ -1090,6 +1097,8 @@
     other: Annet
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlige tidslinjer
+  privacy_policy:
+    title: Retningslinjer for personvern
   reactions:
     errors:
       limit_reached: Grensen for ulike reaksjoner nådd
@@ -1113,6 +1122,9 @@
     status: Kontostatus
   remote_follow:
     missing_resource: Kunne ikke finne URLen for din konto
+  reports:
+    errors:
+      invalid_rules: refererer ikke til gyldige regler
   rss:
     descriptions:
       account: Offentlige innlegg fra @%{acct}
@@ -1200,6 +1212,7 @@
         other: "%{count} videoer"
     boosted_from_html: Boostet fra %{acct_link}
     content_warning: 'Innholdsvarsel: %{warning}'
+    default_language: Samme språk som brukergrensesnittet
     disallowed_hashtags:
       one: 'inneholdt en ikke tillatt hashtag: %{tags}'
       other: 'inneholdt de ikke tillatte hashtaggene: %{tags}'
@@ -1239,11 +1252,19 @@
     enabled: Slett gamle innlegg automatisk
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
+    explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
     ignore_favs: Ignorer favoritter
+    ignore_reblogs: Ignorer fremhevinger
+    interaction_exceptions: Unntak basert på interaksjoner
+    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
+    keep_direct: Behold direktemeldinger
+    keep_direct_hint: Sletter ingen av direktemeldingene dine
+    keep_media: Behold innlegg med mediavedlegg
+    keep_media_hint: Sletter ikke dine egne innlegg som har mediavedlegg
     keep_pinned: Behold festede innlegg
     keep_pinned_hint: Sletter ingen av de festede innleggene dine
     keep_polls: Behold avstemninger
-    keep_polls_hint: Slettet ingen av avstemningene dine
+    keep_polls_hint: Sletter ingen av avstemningene dine
     keep_self_bookmark: Behold innlegg med dine bokmerker
     keep_self_bookmark_hint: Sletter ikke dine egne innlegg hvis du har gitt dem et bokmerke
     keep_self_fav: Behold innlegg som favoritt
@@ -1299,18 +1320,26 @@
     appeal_approved:
       action: Gå til kontoen din
       explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt godkjent. Din konto er nok en gang i god stand.
+      subject: Din klage fra %{date} er godkjent
+      title: Klage godkjent
     appeal_rejected:
       explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
+      subject: Din klage fra %{date} er avvist
+      title: Klage avvist
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
+      title: Nedlasting av arkiv
     suspicious_sign_in:
       change_password: endre passord
       details: 'Her er detaljer om påloggingen:'
       explanation: Vi har oppdaget en pålogging til din konto fra en ny IP-adresse.
       further_actions_html: Hvis dette ikke var deg, anbefaler vi at du %{action} umiddelbart og aktiverer tofaktorautentisering for å holde kontoen din sikker.
+      subject: Din konto ble tatt i bruk fra en ny IP-adresse
       title: En ny pålogging
     warning:
+      appeal: Lever en klage
+      appeal_description: Hvis du mener dette er feil, kan du sende inn en klage til personalet i %{instance}.
       categories:
         spam: Søppelpost
       reason: 'Årsak:'
