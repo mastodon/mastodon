@@ -67,7 +67,15 @@ RSpec.describe Account::Field, type: :model do
       end
 
       context 'for an IDN URL' do
-        let(:value) { 'http://twitter.com∕dougallj∕status∕1590357240443437057.ê.cc/twitter.html' }
+        let(:value) { 'https://twitter.com∕dougallj∕status∕1590357240443437057.ê.cc/twitter.html' }
+
+        it 'returns false' do
+          expect(subject.verifiable?).to be false
+        end
+      end
+
+      context 'for a URL with a non-normalized path' do
+        let(:value) { 'https://github.com/octocatxxxxxxxx/../mastodon' }
 
         it 'returns false' do
           expect(subject.verifiable?).to be false
