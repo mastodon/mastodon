@@ -18,17 +18,18 @@ ast:
         setting_display_media_show_all: Amosalu siempres
         setting_hide_network: Les persones que sigas y les que te sigan nun van apaecer nel to perfil
         setting_show_application: L'aplicación qu'uses pa espublizar apaez na vista detallada de los tos artículos
-        username: El nome d'usuariu va ser únicu en %{domain}
+        username: 'El nome d''usuariu va ser únicu en: %{domain}'
       featured_tag:
         name: 'Equí tán dalgunes de les etiquetes qu''usesti apocayá:'
       form_admin_settings:
+        mascot: Anula la ilustración na interfaz web avanzada.
         site_short_description: Un descripción curtia qu'ayuda a identificar de forma única al sirvidor. ¿Quién lu lleva?, ¿pa quién ye?
       form_challenge:
-        current_password: Tas entrando nuna área segura
+        current_password: Tas entrando a una área segura
       imports:
-        data: El ficheru CSV esportáu dende otra instancia de Mastodon
+        data: El ficheru CSV que s'esportó d'otru sirvidor de Mastodon
       invite_request:
-        text: Esto va ayudanos a revisar la to aplicación
+        text: Esto va ayudanos a revisar la to solicitú
       ip_block:
         comment: Opcional. Acuérdate por qué amestesti esta regla.
         expires_in: Les direiciones IP son un recursu finitu, suelen compartise y cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos indefiníos de direiciones IP.
@@ -71,6 +72,7 @@ ast:
         password: Contraseña
         phrase: Pallabra clave o fras
         setting_advanced_layout: Activar la interfaz web avanzada
+        setting_aggregate_reblogs: Agrupar los artículos compartíos nes llinies temporales
         setting_auto_play_gif: Reproducir automáticamente los GIFs
         setting_boost_modal: Amosar el diálogu de confirmación enantes de compartir un artículu
         setting_default_language: Llingua de los artículos
@@ -87,6 +89,7 @@ ast:
         setting_use_pending_items: Mou lentu
         severity: Gravedá
         sign_in_token_attempt: Códigu de seguranza
+        title: Títulu
         type: Tipu de la importación
         username: Nome d'usuariu
         username_or_email: Nome d'usuariu o direición de corréu electrónicu
@@ -114,8 +117,9 @@ ast:
         mention: Daquién te mentó
         reblog: Daquién compartió'l to artículu
       tag:
-        listable: Permitir qu'esta etiqueta apaeza nes busques y nes suxerencies
         name: Etiqueta
+      user:
+        role: Rol
       user_role:
         name: Nome
         permissions_as_keys: Permisos
