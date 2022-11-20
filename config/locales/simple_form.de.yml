@@ -9,13 +9,13 @@ de:
         text: Du kannst Beitragssyntax verwenden, wie z. B. URLs, Hashtags und Erwähnungen
         title: Optional. Für den Empfänger nicht sichtbar
       admin_account_action:
-        include_statuses: Der Benutzer wird sehen, welche Beiträge diese Maßnahme verursacht haben
-        send_email_notification: Benutzer_in wird Bescheid gegeben, was mit dem Konto geschehen ist
+        include_statuses: Der Account wird sehen, welche seiner Inhalte dich zur Moderation veranlasst haben
+        send_email_notification: Benutzer*in wird eine Erklärung erhalten, was mit dem Konto geschehen ist
         text_html: Optional. Du kannst Beitragssyntax verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
         type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
         types:
-          disable: Den Benutzer daran hindern, sein Konto zu verwenden, aber seinen Inhalt nicht löschen oder ausblenden.
-          none: Verwende dies, um eine Warnung an den Benutzer zu senden, ohne eine andere Aktion auszulösen.
+          disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
+          none: Verwende dies, um dem Account eine Warnung zu schicken, ohne dabei eine andere Aktion vorzunehmen.
           sensitive: Erzwinge, dass alle Medienanhänge dieses Profils mit einer Inhaltswarnung versehen werden.
           silence: Verhindern, dass der Benutzer in der Lage ist, mit der öffentlichen Sichtbarkeit zu posten und seine Beiträge und Benachrichtigungen von Personen zu verstecken, die ihm nicht folgen.
           suspend: Verhindert jegliche Interaktion von oder zu diesem Konto und löscht dessen Inhalt. Kann innerhalb von 30 Tagen rückgängig gemacht werden.
@@ -34,7 +34,7 @@ de:
         bot: Dieses Konto führt lediglich automatisierte Aktionen durch und wird möglicherweise nicht überwacht
         context: In welchem Bereich soll der Filter aktiv sein?
         current_password: Aus Sicherheitsgründen gib bitte das Passwort des aktuellen Kontos ein
-        current_username: Um das zu bestätigen, gib den Benutzernamen des aktuellen Kontos ein
+        current_username: Um das zu bestätigen, gib den Profilnamen des aktuellen Kontos ein
         digest: Wenn du eine längere Zeit inaktiv bist oder du in deiner Abwesenheit eine Direktnachricht erhalten hast
         discoverable: Erlaube deinem Konto, durch Empfehlungen, Trends und andere Funktionen von Fremden entdeckt zu werden
         email: Du wirst eine E-Mail zur Verifizierung Deiner E-Mail-Adresse erhalten
@@ -58,7 +58,7 @@ de:
         setting_show_application: Die Anwendung die du nutzt wird in der detaillierten Ansicht deiner Beiträge angezeigt
         setting_use_blurhash: Die Farbverläufe basieren auf den Farben der verborgenen Medien, aber verstecken jegliche Details
         setting_use_pending_items: Neue Beiträge hinter einem Klick verstecken, anstatt automatisch zu scrollen
-        username: Dein Benutzername wird auf %{domain} einzigartig sein
+        username: Dein Profilname wird auf %{domain} einmalig sein
         whole_word: Wenn das Wort oder die Formulierung nur aus Buchstaben oder Zahlen besteht, tritt der Filter nur dann in Kraft, wenn er exakt dieser Zeichenfolge entspricht
       domain_allow:
         domain: Diese Domain kann Daten von diesem Server abrufen, und eingehende Daten werden verarbeitet und gespeichert
@@ -73,7 +73,7 @@ de:
           hide: Den gefilterten Beitrag vollständig ausblenden, als hätte er nie existiert
           warn: Den gefilterten Beitrag hinter einer Warnung, die den Filtertitel beinhaltet, ausblenden
       form_admin_settings:
-        backups_retention_period: Behalte generierte Benutzerarchive für die angegebene Anzahl von Tagen.
+        backups_retention_period: Behalte die Archive, die von den Benutzer*innen erstellt worden sind, für die angegebene Anzahl an Tagen.
         bootstrap_timeline_accounts: Diese Konten werden bei den Folge-Empfehlungen für neue Nutzerinnen und Nutzer oben angeheftet.
         closed_registrations_message: Wird angezeigt, wenn Anmeldungen geschlossen sind
         content_cache_retention_period: Beiträge von anderen Servern werden nach der angegebenen Anzahl von Tagen, wenn sie auf einen positiven Wert gesetzt werden, gelöscht. Dies kann eventuell nicht rückgängig gemacht werden.
@@ -109,7 +109,7 @@ de:
           sign_up_requires_approval: Neue Anmeldungen erfordern deine Zustimmung
         severity: Wähle aus, was mit Anfragen aus dieser IP passiert
       rule:
-        text: Beschreibe eine Regel oder Anforderung für Benutzer auf diesem Server. Versuche es kurz und einfach zu halten
+        text: Führe eine Regel oder Bedingung für Benutzer*innen auf diesem Server ein. Bleib dabei kurz und knapp
       sessions:
         otp: 'Gib die Zwei-Faktor-Authentifizierung von deinem Telefon ein oder benutze einen deiner Wiederherstellungscodes:'
         webauthn: Wenn es sich um einen USB-Schlüssel handelt, stelle sicher, dass du ihn einsteckst und ihn antippst.
@@ -117,12 +117,12 @@ de:
         name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
       user:
         chosen_languages: Wenn Du hier eine oder mehreren Sprachen auswählst, werden ausschließlich solche Beiträge in den öffentlichen Timelines angezeigt
-        role: Die Rolle kontrolliert welche Berechtigungen ein Benutzer hat
+        role: Die Rolle legt fest, welche Berechtigungen der Account hat
       user_role:
         color: Die Farbe, die für die Rolle im gesamten UI verwendet wird, als RGB im Hexformat
         highlighted: Dies macht die Rolle öffentlich sichtbar
         name: Öffentlicher Name der Rolle, wenn die Rolle als Abzeichen angezeigt werden soll
-        permissions_as_keys: Benutzer mit dieser Rolle haben Zugriff auf …
+        permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf …
         position: Die höhere Rolle entscheidet über die Konfliktlösung in bestimmten Situationen. Bestimmte Aktionen können nur in Rollen mit geringerer Priorität ausgeführt werden
       webhook:
         events: Zu sendende Ereignisse auswählen
@@ -178,7 +178,7 @@ de:
         honeypot: "%{label} (nicht ausfüllen)"
         inbox_url: Inbox-URL des Relais
         irreversible: Endgültig, nicht nur temporär ausblenden
-        locale: Sprache der Benutzeroberfläche
+        locale: Sprache des Webinterface
         locked: Geschütztes Profil
         max_uses: Maximale Verwendungen
         new_password: Neues Passwort
@@ -228,9 +228,9 @@ de:
           hide: Komplett ausblenden
           warn: Mit einer Warnung ausblenden
       form_admin_settings:
-        backups_retention_period: Aufbewahrungsfrist für Benutzerarchive
+        backups_retention_period: Aufbewahrungsfrist für Archive
         bootstrap_timeline_accounts: Neuen Nutzern immer diese Konten empfehlen
-        closed_registrations_message: Benutzerdefinierte Nachricht, wenn Anmeldungen nicht verfügbar sind
+        closed_registrations_message: Benutzerdefinierte Nachricht, wenn Registrierungen nicht möglich sind
         content_cache_retention_period: Aufbewahrungsfrist für Inhalte im Cache
         custom_css: Benutzerdefiniertes CSS
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
@@ -240,8 +240,7 @@ de:
         require_invite_text: Grund für den Beitritt verlangen
         show_domain_blocks: Domainsperren ansehen
         show_domain_blocks_rationale: Anzeigen, warum Domains gesperrt wurden
-        site_contact_email: E-Mail-Adresse des Kontakts
-        site_contact_username: Benutzername des Kontakts
+        site_contact_username: Profilname
         site_extended_description: Detaillierte Beschreibung
         site_short_description: Serverbeschreibung
         site_terms: Datenschutzhinweise
@@ -289,7 +288,7 @@ de:
         role: Rolle
       user_role:
         color: Abzeichenfarbe
-        highlighted: Rolle als Abzeichen in Benutzerprofilen anzeigen
+        highlighted: Rolle als Badge im Profil anzeigen
         name: Name
         permissions_as_keys: Berechtigungen
         position: Priorität
