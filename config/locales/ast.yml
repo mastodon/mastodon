@@ -135,13 +135,34 @@ ast:
         title: Tocante a
       branding:
         preamble: La marca del to sirvidor estrémalu d'otros sirvidores de la rede. Ye posible qu'esta información apaeza nuna variedá d'entornos, como la interfaz web de Mastodon, les aplicaciones natives, nes previsualizaciones de los enllaces d'otros sitios web, dientro de les aplicaciones de mensaxería... etc. Por esti motivu, lo meyor ye qu'esta información seya clara, curtia y concisa.
+      discovery:
+        public_timelines: Llinies de tiempu públiques
+        trends: Tendencies
+      domain_blocks:
+        all: A tol mundu
+        disabled: A naide
+      registrations:
+        title: Rexistros
     statuses:
+      language: Llingua
       metadata: Metadatos
+      original_status: Artículu orixinal
+      visibility: Visibilidá
     strikes:
+      actions:
+        delete_statuses: "%{name} desanició l'artículu de: %{target}"
+        mark_statuses_as_sensitive: "%{name} marcó l'artículu de %{target} como sensible"
+        none: "%{name} unvió una alvertencia a %{target}"
+        sensitive: "%{name} marcó la cuenta de %{target} como sensible"
       appeal_approved: Apellóse
       appeal_pending: Apellación pendiente
+    system_checks:
+      elasticsearch_running_check:
+        message_html: Nun se pudo conectar con Elasticsearch. Revisa que tea n'execución o desactiva la busca de testos completos
     title: Alministración
     trends:
+      statuses:
+        title: Artículos en tendencia
       tags:
         dashboard:
           tag_accounts_measure: usos únicos
@@ -153,6 +174,13 @@ ast:
     new_report:
       body: "%{reporter} informó de %{target}"
       body_remote: Daquién dende %{domain} informó de %{target}
+    new_trends:
+      new_trending_links:
+        title: Enllaces en tendencia
+      new_trending_statuses:
+        title: Artículos en tendencia
+      new_trending_tags:
+        title: Etiquetes en tendencia
   aliases:
     empty: Nun tienes nomatos.
   appearance:
@@ -192,7 +220,7 @@ ast:
     register: Rexistrase
     security: Seguranza
     setup:
-      email_settings_hint_html: Unvióse'l mensaxe de confirmación a %{email}. Si la direición de corréu electrónicu nun ye correuta, pues camudala nos axustes de la cuenta.
+      email_settings_hint_html: Unvióse'l mensaxe de confirmación a %{email}. Si la direición de corréu electrónicu nun ye correuta, pues camudala na configuración de la cuenta.
     sign_up:
       preamble: Con una cuenta nesti sirvidor de Mastodon vas ser a siguir a cualesquier perfil de la rede, independientemente del sirvidor onde s'agospie la so cuenta.
       title: 'Creación d''una cuenta en: %{domain}.'
@@ -206,7 +234,7 @@ ast:
     follow_request: 'Unviesti una solicitú de siguimientu a:'
     post_follow:
       close: O pues zarrar esta ventana.
-      return: Amosar el perfil del usuariu
+      return: Amosar el perfil de la cuenta
       web: Dir a la web
   datetime:
     distance_in_words:
@@ -232,6 +260,9 @@ ast:
       appeal_rejected: Refugóse l'apellación
       approve_appeal: Aprobar l'apellación
       reject_appeal: Refugar l'apellación
+      status: 'Artículu #%{id}'
+      status_removed: L'artículu xá se quitó del sistema
+      your_appeal_rejected: Refugóse la to apellación
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': Nun tienes permisu pa ver esta páxina.
@@ -243,6 +274,7 @@ ast:
       title: Falló la verificación de seguranza
     '429': Ficiéronse milenta solicitúes
     '500':
+      title: La páxina nun ye correuta
     '503': Nun se pudo sirvir la páxina pola mor d'un fallu temporal del sirvidor.
     noscript_html: Pa usar l'aplicación web de Mastodon, activa JavaScript. Tamién pues probar una de les <a href="%{apps_path}">aplicaciones natives</a> de Mastodon pa la to plataforma.
   exports:
@@ -265,9 +297,13 @@ ast:
     hint_html: "<strong>¿Qué son les etiquetes destacaes?</strong> Apaecen de forma bien visible nel perfil públicu y permite que les persones restolen los tos artículos públicos per duana d'eses etiquetes. Son una gran ferramienta pa tener un rexistru de trabayos creativos o de proyeutos a plazu llongu."
   filters:
     contexts:
+      account: Perfiles
       notifications: Avisos
-      public: Llinies temporales públiques
+      public: Llinies de tiempu públiques
       thread: Conversaciones
+    edit:
+      keywords: Pallabres clave
+      statuses: Artículos individuales
     errors:
       deprecated_api_multiple_keywords: Estos parámetros nun se puen camudar dende esta aplicación porque s'apliquen a más d'una pallabra clave de la peñera. Usa una aplicación más recién o la interfaz web.
     index:
@@ -281,9 +317,20 @@ ast:
       title: Peñeres
     new:
       title: Amestar una peñera nueva
+  footer:
+    trending_now: En tendencia
   generic:
     all: Too
+    all_items_on_page_selected_html:
+      one: "Seleicionóse <strong>%{count}</strong> elementu d'esta páxina."
+      other: Seleicionáronse <strong>%{count}</strong> elementos d'esta páxina.
+    all_matching_items_selected_html:
+      one: "Seleicionóse <strong>%{count}</strong> elementu que concasa cola busca."
+      other: Seleicionáronse <strong>%{count}</strong> elementos que concasen cola busca.
     changes_saved_msg: '¡Los cambeos guardáronse correutamente!'
+    copy: Copiar
+    delete: Desaniciar
+    deselect: Deseleicionar too
     order_by: Clasificación
     save_changes: Guardar los cambeos
     today: güei
@@ -325,6 +372,10 @@ ast:
   lists:
     errors:
       limit: Algamesti la cantidá máxima de llistes
+  login_activities:
+    authentication_methods:
+      password: contraseña
+      webauthn: llaves de seguranza
   media_attachments:
     validations:
       images_and_video: Nun se pue axuntar nengún videu a un artículu que yá contién imáxenes
@@ -340,18 +391,18 @@ ast:
       subject: "%{name} marcó'l to artículu como favoritu"
       title: Favoritu nuevu
     follow:
-      body: "¡Agora %{name} ta siguiéndote!"
+      body: "¡Agora %{name} siguete!"
       title: Siguidor nuevu
     follow_request:
       body: "%{name} solicitó siguite"
-      title: Petición nueva de siguimientu
+      title: Solicitú de siguimientu nueva
     mention:
       body: '%{name} mentóte en:'
       subject: '%{name} mentóte'
       title: Mención nueva
     reblog:
-      body: '%{name} compartió''l to estáu:'
-      subject: "%{name} compartió'l to estáu"
+      body: '%{name} compartió''l to artículu:'
+      subject: "%{name} compartió'l to artículu"
       title: Compartición nueva de barritu
     update:
       subject: "%{name} editó un artículu"
@@ -376,11 +427,11 @@ ast:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Yá votesti nesta encuesta
-      expired: La encuesta yá finó
+      already_voted: Xá votesti nesta encuesta
+      expired: La encuesta xá finó
       invalid_choice: La opción de votu escoyida nun esiste
   preferences:
-    public_timelines: Llinies temporales públiques
+    public_timelines: Llinies de tiempu públiques
   privacy_policy:
     title: Política de privacidá
   relationships:
@@ -388,7 +439,10 @@ ast:
     followers: Siguidores
     most_recent: Lo más recién
     relationship: Rellación
-    remove_selected_follows: Dexar de siguir a los usuarios seleicionaos
+    remove_selected_follows: Dexar de siguir a los perfiles seleicionaos
+  scheduled_statuses:
+    over_daily_limit: Superesti la llende de %{limit} artículos programaos pa güei
+    over_total_limit: Superesti la llende de %{limit} artículos programaos
   sessions:
     browser: Restolador
     browsers:
@@ -444,7 +498,7 @@ ast:
     preferences: Preferencies
     profile: Perfil
     two_factor_authentication: Autenticación en dos pasos
-    webauthn_authentication: Claves d'autenticación
+    webauthn_authentication: Llaves de seguranza
   statuses:
     attached:
       audio:
@@ -461,7 +515,7 @@ ast:
     pin_errors:
       limit: Xá fixesti'l númberu máximu d'artículos
       ownership: Nun se pue fixar l'artículu d'otru perfil
-      reblog: Nun pue fixase un barritu compartíu
+      reblog: Nun se pue fixar un artículu compartíu
     poll:
       total_people:
         one: "%{count} persona"
@@ -474,8 +528,9 @@ ast:
     visibilities:
       private: Namái siguidores
       private_long: Namái s'amuesen a los siguidores
+      public_long: Tol mundu pue velos
       unlisted: Nun llistar
-      unlisted_long: Tol mundu puen velos pero nun se llisten nes llinies temporales públiques
+      unlisted_long: Tol mundu pue velos, mas nun apaecen nes llinies de tiempu públiques
   statuses_cleanup:
     exceptions: Esceiciones
     min_age:
@@ -527,7 +582,7 @@ ast:
       title: '¡Afáyate, %{name}!'
   users:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
-    invalid_otp_token: El códigu nun ye válidu
+    invalid_otp_token: El códigu de l'autenticación en dos pasos nun ye válidu
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
     seamless_external_login: Aniciesti la sesión pente un serviciu esternu, polo que la configuración de la contraseña y de la direición de corréu electrónicu nun tán disponibles.
   verification:
