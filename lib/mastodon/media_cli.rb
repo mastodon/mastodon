@@ -72,8 +72,8 @@ module Mastodon
                .where(user: { id: nil })
         ) do |account|
         next if account.local?
-        next if (not account.avatar.present? and not account.header.present?)
-        next if not aggressive and Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
+        next if (!account.avatar.present? && !account.header.present?)
+        next if !aggressive && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
         
         size = (account.avatar_file_size || 0) + (account.header_file_size || 0)
 
@@ -109,13 +109,13 @@ module Mastodon
 
         size = 0
         unless options[:dry_run]
-          unless account.avatar.present? or account.avatar_remote_url.blank?
+          unless account.avatar.present? || account.avatar_remote_url.blank?
             account.download_avatar!
             if account.avatar_file_size?
               size = size + account.avatar_file_size
             end
           end
-          unless account.header.present? or account.header_remote_url.blank?
+          unless account.header.present? || account.header_remote_url.blank?
             account.download_header!
             if account.header_file_size?
               size = size + account.header_file_size
