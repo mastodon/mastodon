@@ -106,6 +106,10 @@ mastodon:
       # Enable statsd publishing via STATSD_ADDR environment variable
       address: ""
 
+  # Uncomment and set if there is a need to set the PREPARED_STATEMENTS
+  # environment variable for your postgresql hosting situation
+  # preparedStatements: false
+
 ingress:
   enabled: true
   annotations:

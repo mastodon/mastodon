@@ -15,6 +15,9 @@ data:
   DB_NAME: {{ .Values.postgresql.auth.database }}
   DB_POOL: {{ .Values.mastodon.sidekiq.concurrency | quote }}
   DB_USER: {{ .Values.postgresql.auth.username }}
+  {{- if .Values.mastodon.preparedStatements }}
+  PREPARED_STATEMENTS: {{ .Values.mastodon.preparedStatements | quote }}
+  {{- end }}
   DEFAULT_LOCALE: {{ .Values.mastodon.locale }}
   {{- if .Values.elasticsearch.enabled }}
   ES_ENABLED: "true"
