@@ -4,6 +4,7 @@ ast:
     contact_missing: Nun s'afitó
     contact_unavailable: N/D
     hosted_on: Mastodon ta agospiáu en %{domain}
+    title: Tocante a
   accounts:
     followers:
       one: Siguidor
@@ -38,6 +39,12 @@ ast:
       title: Cuentes
       username: Nome d'usuariu
       web: Web
+    action_logs:
+      actions:
+        destroy_custom_emoji_html: "%{name} desanició'l fustaxe %{target}"
+        disable_custom_emoji_html: "%{name} desactivó'l fustaxe «%{target}»"
+        enable_custom_emoji_html: "%{name} activó'l fustaxe «%{target}»"
+        update_custom_emoji_html: "%{name} anovó'l fustaxe «%{target}»"
     announcements:
       destroyed_msg: '¡L''anunciu desanicióse correutamente!'
       empty: Nun s'atopó nengún anunciu.
@@ -101,6 +108,8 @@ ast:
         one: "%{count} permisu"
         other: "%{count} permisos"
     settings:
+      about:
+        title: Tocante a
       branding:
         preamble: La marca del to sirvidor estrémalu d'otros sirvidores de la rede. Ye posible qu'esta información apaeza nuna variedá d'entornos, como la interfaz web de Mastodon, les aplicaciones natives, nes previsualizaciones de los enllaces d'otros sitios web, dientro de les aplicaciones de mensaxería... etc. Por esti motivu, lo meyor ye qu'esta información seya clara, curtia y concisa.
     statuses:
@@ -161,6 +170,8 @@ ast:
     security: Seguranza
     setup:
       email_settings_hint_html: Unvióse'l mensaxe de confirmación a %{email}. Si la direición de corréu electrónicu nun ye correuta, pues camudala nos axustes de la cuenta.
+    sign_up:
+      preamble: Con una cuenta nesti sirvidor de Mastodon vas ser a siguir a cualesquier perfil de la rede, independientemente del sirvidor onde s'agospie la so cuenta.
     status:
       account_status: Estáu de la cuenta
       functional: La cuenta ta completamente operativa.
@@ -467,7 +478,7 @@ ast:
     enabled: L'autenticación en dos pasos ta activada
     enabled_success: L'autenticación en dos pasos activóse correutamente
     generate_recovery_codes: Xenerar códigos de recuperación
-    lost_recovery_codes: Los códigos de recuperación permítente recuperar l'accesu a la cuenta si pierdes el teléfonu. Si tamién pierdes estos códigos, pues rexeneralos equí. Los códigos de recuperación vieyos van invalidase.
+    lost_recovery_codes: Los códigos de recuperación permítente recuperar l'accesu a la cuenta si pierdes el teléfonu. Si tamién pierdes estos códigos, pues volver xeneralos equí. Los códigos de recuperación antiguos van anulase.
     recovery_codes: Códigos de recuperación
     recovery_codes_regenerated: Los códigos de recuperación volvieron xenerase correutamente
     webauthn: Llaves de seguranza
