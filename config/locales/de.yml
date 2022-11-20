@@ -691,7 +691,7 @@ de:
     settings:
       about:
         manage_rules: Serverregeln verwalten
-        preamble: Schildere ausführlich, wie Dein Server betrieben, moderiert und finanziert wird.
+        preamble: Schildere ausführlich, wie dein Server betrieben, moderiert und finanziert wird.
         rules_hint: Es gibt einen eigenen Bereich für Regeln, die deine Benutzer*innen einhalten müssen.
         title: Über
       appearance:
@@ -701,8 +701,8 @@ de:
         preamble: Das Branding deines Servers unterscheidet ihn von anderen Servern im Netzwerk. Diese Informationen können in einer Vielzahl von Umgebungen angezeigt werden, z. B. in der Weboberfläche von Mastodon, in nativen Anwendungen, in Linkvorschauen auf anderen Websites und in Messaging-Apps und so weiter. Aus diesem Grund ist es am besten, diese Informationen klar, kurz und prägnant zu halten.
         title: Branding
       content_retention:
-        preamble: Steuern Sie, wie nutzergenerierte Inhalte in Mastodon gespeichert werden.
-        title: Aufbewahrung von Inhalten
+        preamble: Lege fest, wie lange nutzergenerierte Inhalte auf deiner Mastodon-Instanz gespeichert werden.
+        title: Cache & Archive
       discovery:
         follow_recommendations: Folgeempfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
@@ -711,9 +711,9 @@ de:
         title: Entdecken
         trends: Trends
       domain_blocks:
-        all: An alle
-        disabled: An niemanden
-        users: Für angemeldete lokale Benutzer*innen
+        all: Allen
+        disabled: Niemandem
+        users: Benutzer*innen deiner Instanz
       registrations:
         preamble: Lege fest, wer auf Deinem Server ein Konto erstellen darf.
         title: Registrierungen
@@ -953,7 +953,7 @@ de:
     migrate_account: Auf ein anderes Konto umziehen
     migrate_account_html: Wenn du dieses Konto auf ein anderes umleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
-    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzhinweise</a> gelesen und stimme ihnen zu
+    privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
     providers:
       cas: CAS
       saml: SAML
@@ -1035,7 +1035,7 @@ de:
       email_contact_html: Wenn die Bestätigungs-E-Mail immer noch nicht ankam, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> senden, um weitere Hilfe zu erhalten
       email_reconfirmation_html: Wenn du die Bestätigungs-E-Mail nicht erhalten hast, kannst du sie <a href="%{path}">erneut anfordern</a>
       irreversible: Du kannst dein Konto nicht reaktivieren
-      more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzrichtlinie</a>.
+      more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzerklärung</a>.
       username_available: Dein Profilname wird wieder verfügbar sein
       username_unavailable: Dein Profilname wird weiterhin nicht mehr verfügbar sein
   disputes:
@@ -1352,7 +1352,7 @@ de:
     posting_defaults: Standardeinstellungen für Beiträge
     public_timelines: Öffentliche Timelines
   privacy_policy:
-    title: Datenschutzhinweise
+    title: Datenschutzerklärung
   reactions:
     errors:
       limit_reached: Limit für verschiedene Reaktionen erreicht
