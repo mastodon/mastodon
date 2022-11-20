@@ -68,7 +68,7 @@ cy:
       disable_sign_in_token_auth: Analluogi dilysu tocynnau e-bost
       disable_two_factor_authentication: Diffodd 2FA
       disabled: Wedi rhewi
-      display_name: Enw dangos
+      display_name: Enw arddangos
       domain: Parth
       edit: Golygu
       email: E-bost
@@ -765,7 +765,7 @@ cy:
         profile_directory: Cyfeiriadur proffiliau
         public_timelines: Llinellau amser cyhoeddus
         title: Darganfod
-        trends: Tueddiadau
+        trends: Pynciau Llosg
       domain_blocks:
         all: I bawb
         disabled: I neb
@@ -855,7 +855,7 @@ cy:
           few: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
           many: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
           other: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
-        title: Dolenni tuedd
+        title: Dolenni llosg
         usage_comparison: Wedi'i rannu %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
       only_allowed: Derbyniwyd yn unig
       pending_review: Yn aros am adolygiad
@@ -880,7 +880,7 @@ cy:
           few: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
           many: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
           other: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
-        title: Postiadau tuedd
+        title: Tŵts llosg
       tags:
         current_score: Sgôr cyfredol %{score}
         dashboard:
@@ -893,11 +893,11 @@ cy:
         listable: Mae modd ei awgrymu
         no_tag_selected: Heb newid unrhyw dagiau gan na chafodd yr un ohonyn nhw eu dewis
         not_listable: Ni fydd yn cael ei awgrymu
-        not_trendable: Ni fydd yn ymddangos o dan dueddiadau
+        not_trendable: Ni fydd yn ymddangos o dan bynciau llosg
         not_usable: Nid oes modd ei ddefnyddio
         peaked_on_and_decaying: Ar ei anterth ar %{date}, bellach yn lleihau
-        title: Hashnodau yn tueddu
-        trendable: Gall ymddangos o dan dueddiadau
+        title: Hashnodau llosg
+        trendable: Gall ymddangos o dan bynciau llosg
         trending_rank: 'Yn tueddu #%{rank}'
         usable: Mae modd ei ddefnyddio
         usage_comparison: Wedi'i ddefnyddio %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
@@ -908,7 +908,7 @@ cy:
           few: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
           many: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
           other: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
-      title: Tueddiadau
+      title: Pynciau Llosg
       trending: Trendio
     warning_presets:
       add_new: Ychwanegu newydd
@@ -963,13 +963,13 @@ cy:
     new_trends:
       body: 'Mae angen adolygu''r eitemau canlynol cyn y mae modd eu dangos yn gyhoeddus:'
       new_trending_links:
-        title: Dolenni tuedd
+        title: Dolenni llosg
       new_trending_statuses:
-        title: Postiadau tuedd
+        title: Tŵts llosg
       new_trending_tags:
         no_approved_tags: Ar hyn o bryd nid oes unrhyw hashnodau tuedd cymeradwy.
         requirements: 'Gallai unrhyw un o''r ymgeiswyr hyn ragori ar yr hashnod tuedd cymeradwy #%{rank}, sef #%{lowest_tag_name} gyda sgôr o %{lowest_tag_score} ar hyn o bryd.'
-        title: Hashnodau sy'n tueddu
+        title: Hashnodau llosg
       subject: Tueddiadau newydd i'w hadolygu ar %{instance}
   aliases:
     add_new: Creu enw arall
@@ -1173,7 +1173,7 @@ cy:
     csv: CSV
     domain_blocks: Blociau parth
     lists: Rhestrau
-    mutes: Yr ydych yn tawelu
+    mutes: Rydych chi'n anwybyddu
     storage: Storio cyfryngau
   featured_tags:
     add_new: Ychwanegu
@@ -1235,7 +1235,7 @@ cy:
         hint: Mae'r hidlydd hwn yn berthnasol i ddethol postiadau unigol waeth beth fo'r meini prawf eraill. Gallwch ychwanegu mwy o bostiadau at yr hidlydd hwn o'r rhyngwyneb gwe.
         title: Postiadau wedi'u hidlo
   footer:
-    trending_now: Yn tueddu nawr
+    trending_now: Pynciau llosg
   generic:
     all: Popeth
     all_items_on_page_selected_html:
@@ -1303,7 +1303,7 @@ cy:
       '3600': 1 awr
       '43200': 12 awr
       '604800': 1 wythnos
-      '86400': 1 dydd
+      '86400': 1 diwrnod
     expires_in_prompt: Byth
     generate: Cynhyrchu
     invited_by: 'Cawsoch eich gwahodd gan:'
@@ -1374,7 +1374,7 @@ cy:
     title: Goruwchwyliad
   move_handler:
     carry_blocks_over_text: Wnaeth y defnyddiwr symud o %{acct}, a oeddech chi wedi'i flocio.
-    carry_mutes_over_text: Wnaeth y defnyddiwr symud o %{acct}, a oeddech chi wedi'i dawelu.
+    carry_mutes_over_text: Symudodd y defnyddiwr hwn o %{acct}, a oeddech chi wedi'i anwybyddu.
     copy_account_note_text: 'Wnaeth y defnyddiwr symud o %{acct}, dyma oedd eich hen nodiadau amdanynt:'
   navigation:
     toggle_menu: Toglo'r ddewislen
@@ -1553,7 +1553,7 @@ cy:
     preferences: Dewisiadau
     profile: Proffil
     relationships: Dilynion a dilynwyr
-    statuses_cleanup: Dileu postiadau awtomatig
+    statuses_cleanup: Dileu postiadau'n awtomatig
     strikes: Rhybuddion cymedroli
     two_factor_authentication: Awdurdodi dau-gam
     webauthn_authentication: Allweddi diogelwch
