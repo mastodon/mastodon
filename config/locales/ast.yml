@@ -19,6 +19,7 @@ ast:
       are_you_sure: '¿De xuru?'
       avatar: Avatar
       by_domain: Dominiu
+      display_name: Nome visible
       domain: Dominiu
       email: Corréu
       followers: Siguidores
@@ -35,6 +36,8 @@ ast:
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
         send: Reunviar les instrucciones
+      show:
+        created_reports: Informes fechos
       statuses: Artículos
       title: Cuentes
       username: Nome d'usuariu
@@ -269,7 +272,7 @@ ast:
       merge_long: Caltién los rexistros esistentes y amesta otros nuevos
       overwrite: Sobrescritura
       overwrite_long: Troca los rexistros actuales por otros nuevos
-    preface: Pues importar los datos qu'esportares dende otra instancia, como por exemplu la llista de persones que bloquiares o tuvieres siguiendo.
+    preface: Pues importar los datos qu'esportares dende otru sirvidor, como la llista de perfiles bloquiaos o que sigas.
     types:
       blocking: Llista de xente bloquiao
       domain_blocking: Llista de dominios bloquiaos
@@ -483,6 +486,9 @@ ast:
     recovery_codes_regenerated: Los códigos de recuperación volvieron xenerase correutamente
     webauthn: Llaves de seguranza
   user_mailer:
+    suspicious_sign_in:
+      explanation: Detectemos un aniciu de sesión a la to cuenta dende una direición IP nueva.
+      subject: Accedióse a la to cuenta dende una direición IP nueva
     warning:
       explanation:
         disable: Xá nun pues usar la cuenta mas el perfil y otros datos siguen intautos. Pues solicitar una copia de seguranza de los datos, camudar la configuración de la cuenta o desaniciar la cuenta.
@@ -493,7 +499,11 @@ ast:
         none: Alvertencia
         suspend: Cuenta suspendida
     welcome:
+      edit_profile_action: Configurar el perfil
+      explanation: Equí tienes dalgunos conseyos pa que comiences
+      final_action: Comenzar a espublizar
       subject: Afáyate en Mastodon
+      title: '¡Afáyate, %{name}!'
   users:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu nun ye válidu
