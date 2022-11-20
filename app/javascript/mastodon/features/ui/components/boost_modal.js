@@ -103,7 +103,7 @@ class BoostModal extends ImmutablePureComponent {
                 <RelativeTimestamp timestamp={status.get('created_at')} />
               </a>
 
-              <a onClick={this.handleAccountClick} href={`/@${status.getIn(['account', 'acct'])}`} className='status__display-name'>
+              <a onClick={this.handleAccountClick} href={status.getIn(['account', 'url'])} className='status__display-name'>
                 <div className='status__avatar'>
                   <Avatar account={status.get('account')} size={48} />
                 </div>
