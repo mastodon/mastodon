@@ -106,7 +106,7 @@ be:
       no_role_assigned: Роля не прызначана
       not_subscribed: Не падпісаны
       pending: Чакае праверкі
-      perform_full_suspension: Прыпыніць
+      perform_full_suspension: Выключыць
       previous_strikes: Ранейшыя скаргі
       promote: Павысіць
       protocol: Пратакол
@@ -155,7 +155,10 @@ be:
       unconfirmed_email: Непацверджаны адрас эл. пошты
       undo_sensitized: Прыбраць прымусовую пазнаку далікатнасці
       undo_silenced: Адмяніць ліміт
+      undo_suspension: Разблакаваць карыстальніка
+      unsilenced_msg: Блакіроўка акаунта карыстальніка  %{username} знятая
       unsubscribe: Адпісацца
+      unsuspended_msg: Уліковы запіс %{username} адноўлены
       username: Імя карыстальніка
       view_domain: Паглядзець падсумаванне дамену
       warn: Папярэдзіць
@@ -209,13 +212,15 @@ be:
         resolve_report: Вырашыць скаргу
         sensitive_account: Уліковы запіс прымусова пазначаны як далікатны
         silence_account: Абмежаваць уліковы запіс
-        suspend_account: Прыпыніць уліковы запіс
+        suspend_account: Выключыць уліковы запіс
         unassigned_report: Прыбраць прызначэнне скаргі
         unblock_email_account: Разблакіраваць электронны адрас
         unsensitive_account: Прымусовая пазнака далікатнасці прыбраная
         unsilence_account: Уліковы запіс больш не абмежаваны
+        unsuspend_account: Аднавіць уліковы запіс
         update_announcement: Абнавіць аб'яву
         update_custom_emoji: Абнавіць уласныя эмодзі
+        update_domain_block: Актуалізаваць блакіроўку дамена 
         update_ip_block: Абнавіць IP правіла
         update_status: Абнавіць допіс
         update_user_role: Абнавіць ролю
@@ -236,7 +241,8 @@ be:
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
         disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
-        suspend_account_html: "%{name} прыпыніў акаунт %{target}"
+        suspend_account_html: "Уліковы запіс %{target} выключаны %{name}"
+        unsuspend_account_html: "Уліковы запіс %{target} адноўлены %{name}"
     announcements:
       live: Ужывую
       new:
@@ -292,9 +298,10 @@ be:
       new:
         create: Стварыць блакіроўку
         severity:
+          desc_html: "<strong>Абмежаванне</strong> зробіць допісы людзей з гэтага дамену нябачнымі для тых, хто на іх не падпісаны. <strong>Выключэнне</strong> выдаліць усё змесціва, медыя і даныя профіляў дамену з вашага серверу. <strong>«Нічога»</strong> проста адхіліць медыя файлы."
           noop: Пуста
           silence: Амбежаваць
-          suspend: Заблакаваць
+          suspend: Выключыць
         title: Новы блок дамену
       no_domain_block_selected: Блакіроўкі даменаў не былі змененыя, таму што ні адзін з іх не быў выбраны
       not_permitted: Вам забаронена выконваць гэта дзеянне
@@ -322,7 +329,7 @@ be:
       content_policies:
         comment: Унутраная нататка
         policies:
-          suspend: Прыпыніць
+          suspend: Выключыць
         policy: Палітыка
     ip_blocks:
       add_new: Стварыць правіла
@@ -342,6 +349,8 @@ be:
       enabled: Уключана
       save_and_enable: Захаваць і ўключыць
     reports:
+      actions:
+        suspend_description_html: Профіль і яго змесціва стане недаступным да моманту канчатковага выдалення. Камунікацыя з уліковым запісам будзе немагчымай. Можна скасаваць на працягу 30 дзён.
       notes:
         create: Дадаць нататку
         delete: Выдаліць
@@ -368,6 +377,9 @@ be:
       media:
         title: Медыя
       open: Адкрыць допіс
+    strikes:
+      actions:
+        suspend: "Уліковы запіс %{target} выключаны %{name}"
     trends:
       allow: Дазволіць
       statuses:
@@ -565,6 +577,8 @@ be:
     warning:
       categories:
         spam: Спам
+      explanation:
+        suspend: Вы больш не можаце выкарыстоўваць свой уліковы запіс, а профіль і іншыя даныя сталі недаступнымі. Вы ўсё яшчэ можаце ўвайсці, каб запытаць архіў сваіх даных да моманту іх выдалення праз 30 дзён, але мы захаваем вашы базавыя даныя, каб не даць вам абысці выключэнне.
       subject:
         suspend: Ваш уліковы запіс %{acct} быў выключаны
       title:
