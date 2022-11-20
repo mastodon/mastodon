@@ -133,7 +133,7 @@
       security_measures:
         only_password: Bare passord
         password_and_2fa: Passord og 2FA
-      sensitive: Sensitiv
+      sensitive: Tving følsom
       sensitized: Merket som følsom
       shared_inbox_url: Delt Innboks URL
       show:
@@ -152,7 +152,7 @@
       unblock_email: Avblokker e-postadresse
       unblocked_email_msg: Fjernet blokkering av %{username}s e-postadresse
       unconfirmed_email: Ubekreftet E-postadresse
-      undo_sensitized: Gjør om tving sensitiv
+      undo_sensitized: Angre tving følsom
       undo_silenced: Angre begrensning
       undo_suspension: Angre utvisning
       unsilenced_msg: Opphevde begrensningen av %{username}s konto
@@ -209,12 +209,12 @@
         resend_user: Send e-post med bekreftelse på nytt
         reset_password_user: Tilbakestill passord
         resolve_report: Løs rapport
-        sensitive_account: Tving sensitiv konto
+        sensitive_account: Tving følsom konto
         silence_account: Begrens konto
         suspend_account: Suspender kontoen
         unassigned_report: Fjern tilordnet rapport
         unblock_email_account: Fjern blokkering av e-postadresse
-        unsensitive_account: Angre tving sensitiv konto
+        unsensitive_account: Angre tving følsom konto
         unsilence_account: Angre begrensning av konto
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
@@ -264,6 +264,7 @@
         reopen_report_html: "%{name} gjenåpnet rapporten %{target}"
         resend_user_html: "%{name} sendte e-postbekreftelse på nytt for %{target}"
         reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
+        sensitive_account_html: "%{name} merket %{target}s innlegg som følsomt"
         silence_account_html: "%{name} begrenset %{target}s konto"
         suspend_account_html: "%{name} suspenderte %{target}s konto"
         unblock_email_account_html: "%{name} fjernet blokkering av %{target}s e-postadresse"
@@ -525,7 +526,7 @@
       action_taken_by: Handling utført av
       actions:
         delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
-        mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som sensitive, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som følsomme, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
         silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
@@ -538,6 +539,7 @@
       forwarded: Videresendt
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Merk som løst
+      mark_as_sensitive: Merk som følsomt
       mark_as_unresolved: Merk som uoppklart
       notes:
         create: Legg til notat
@@ -634,9 +636,9 @@
       actions:
         delete_statuses: "%{name} slettet %{target}s innlegg"
         disable: "%{name} frøs %{target}s konto"
-        mark_statuses_as_sensitive: "%{name} markerte %{target}s innlegg som sensitive"
+        mark_statuses_as_sensitive: "%{name} markerte %{target}s innlegg som følsomt"
         none: "%{name} sendte en advarsel til %{target}"
-        sensitive: "%{name} markerte %{target}s konto som sensitiv"
+        sensitive: "%{name} merket %{target}s konto som følsom"
         silence: "%{name} begrenset %{target}s konto"
         suspend: "%{name} suspenderte %{target}s konto"
       appeal_approved: Klage tatt til følge
@@ -707,7 +709,7 @@
     localization:
       body: Mastodon er oversatt av frivillige.
       guide_link_text: Alle kan bidra.
-    sensitive_content: Sensitivt innhold
+    sensitive_content: Følsomt innhold
     toot_layout: Innleggsoppsett
   application_mailer:
     notification_preferences: Endre E-postinnstillingene
@@ -851,7 +853,7 @@
       title_actions:
         delete_statuses: Fjerning av innlegg
         disable: Frysing av konto
-        mark_statuses_as_sensitive: Merking av innlegg som sensitive
+        mark_statuses_as_sensitive: Merking av innlegg som følsomme
         none: Advarsel
         sensitive: Merking av konto som sensitiv
         silence: Begrensning av konto
@@ -1347,22 +1349,23 @@
         delete_statuses: Noen av innleggene dine anses å bryte en eller flere retningslinjer for fellesskapet, og har senere blitt fjernet av moderatorene på %{instance}.
         disable: Du kan ikke lenger bruke kontoen din, men profilen din og andre data forblir intakt. Du kan be om en sikkerhetskopi av dine data, endre kontoinnstillinger eller slette din konto.
         mark_statuses_as_sensitive: Noen av dine innlegg har blitt markert som følsomme av moderatorene på %{instance}. Dette betyr at folk må trykke på media i innleggene før en forhåndsvisning blir vist. Du kan markere media som følsom når du publiserer i fremtiden.
+        sensitive: Fra nå av, vil alle dine opplastede mediefiler bli markert som følsomme og skjult bak et klikk-advarsel.
       reason: 'Årsak:'
       statuses: 'Innlegg angitt:'
       subject:
         delete_statuses: Dine innlegg på %{acct} har blitt fjernet
         disable: Kontoen din, %{acct}, har blitt fryst
-        mark_statuses_as_sensitive: Dine innlegg på %{acct} har blitt merket som sensitivt innhold
+        mark_statuses_as_sensitive: Dine innlegg på %{acct} har blitt merket som følsomme
         none: Advarsel for %{acct}
-        sensitive: Dine innlegg på %{acct} vil bli merket som sensitive fra nå
+        sensitive: Dine innlegg på %{acct} vil bli merket som følsomme fra nå
         silence: Kontoen din, %{acct}, har blitt begrenset
         suspend: Kontoen din, %{acct}, har blitt suspendert
       title:
         delete_statuses: Innlegg fjernet
         disable: Kontoen er fryst
-        mark_statuses_as_sensitive: Innlegg markert som sensitive
+        mark_statuses_as_sensitive: Innlegg merket som følsomt
         none: Advarsel
-        sensitive: Konto markert som sensitiv
+        sensitive: Konto merket som følsom
         silence: Kontoen er begrenset
         suspend: Kontoen er suspendert
     welcome:
