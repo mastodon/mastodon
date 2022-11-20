@@ -249,6 +249,8 @@ zh-HK:
         theme: 預設主題
         thumbnail: 伺服器縮圖
         timeline_preview: 允許未經認證的人存取公共時間軸
+        trendable_by_default: 允許未經審核的趨勢
+        trends: 啟用趨勢
       interactions:
         must_be_follower: 隱藏你關注者以外的人的通知
         must_be_following: 隱藏你不關注的人的通知
@@ -262,9 +264,11 @@ zh-HK:
         ip: IP 位址
         severities:
           no_access: 封鎖
+          sign_up_block: 禁止註冊
           sign_up_requires_approval: 限制註冊
         severity: 規則
       notification_emails:
+        appeal: 有人對管理員的裁決提出申訴
         digest: 定期電郵摘要
         favourite: 有人喜歡你的文章
         follow: 當有人關注你時
@@ -272,6 +276,8 @@ zh-HK:
         mention: 當有人在文章提及你時
         pending_account: 有新帳號需要審核時
         reblog: 當有人轉推你的文章時
+        report: 新檢舉已提交
+        trending_tag: 新趨勢須經過審核
       rule:
         text: 規則
       tag:
@@ -279,7 +285,19 @@ zh-HK:
         name: 主題標籤
         trendable: 允許此主題標籤在趨勢下顯示
         usable: 允許文章使用此主題標籤
+      user:
+        role: 角色
+      user_role:
+        color: 徽章顏色
+        highlighted: 在使用者個人檔案上以徽章顯示角色
+        name: 名稱
+        permissions_as_keys: 權限
+        position: 優先權
+      webhook:
+        events: 已啟用事件
+        url: 端點網址
     'no': '否'
+    not_recommended: 不推薦
     recommended: 建議
     required:
       mark: "*"
