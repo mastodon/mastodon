@@ -6,12 +6,12 @@ eo:
       account_migration:
         acct: Specifu la uzantnomon@domajnon de la konto al kiu vi volas translokiĝi
       account_warning_preset:
-        text: Vi povas uzi skribmanierojn de mesaĝoj, kiel URL-ojn, kradvortojn kaj menciojn
+        text: Vi povas uzi skribmanierojn de afiŝoj, kiel URL-ojn, kradvortojn kaj menciojn
         title: Laŭvola. Ne videbla por la ricevanto
       admin_account_action:
         include_statuses: La uzanto vidos, kiujn afiŝojn kaŭzis la agon de moderigo aŭ de averto
         send_email_notification: La uzanto ricevos klarigon pri tio, kio okazis al ties konto
-        text_html: Malnepra. Vi povas uzi skribmanierojn de mesaĝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
+        text_html: Malnepra. Vi povas uzi sintaksojn de afiŝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
         type_html: Elektu kion fari kun <strong>%{acct}</strong>
         types:
           disable: Malhelpi la uzanton uzi sian konton, sed ne forigi aŭ kaŝi ties enhavojn.
@@ -37,12 +37,12 @@ eo:
         current_username: Por konfirmi, bonvolu enigi la uzantnomon de la nuna konto
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
         discoverable: Permesi vian konton esti malkovrita de fremduloj per rekomendoj, tendencoj kaj aliaj funkcioj
-        email: Vi ricevos retpoŝtaĵon de konfirmo
+        email: Vi ricevos konfirman retpoŝton
         fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
         inbox_url: Kopiu la URL de la ĉefpaĝo de la ripetilo, kiun vi volas uzi
         irreversible: La filtritaj mesaĝoj malaperos por eterne, eĉ se la filtrilo poste estas forigita
-        locale: La lingvo de la fasado, de retpoŝtaĵoj, kaj de sciigoj
+        locale: La lingvo de la interfaco, de retpoŝtaĵoj, kaj de sciigoj
         locked: Vi devos aprobi ĉiun peton de sekvado mane
         password: Uzu almenaŭ 8 signojn
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
@@ -54,8 +54,8 @@ eo:
         setting_display_media_hide_all: Ĉiam kaŝi la aŭdovidaĵojn
         setting_display_media_show_all: Ĉiam montri la aŭdovidaĵojn
         setting_hide_network: Tiuj kiujn vi sekvas, kaj tiuj kiuj sekvas vin estos kaŝitaj en via profilo
-        setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
-        setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj mesaĝoj
+        setting_noindex: Influas vian publikan profilon kaj afiŝajn paĝojn
+        setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj afiŝoj
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
         username: Via uzantnomo estos unika en %{domain}
@@ -140,7 +140,7 @@ eo:
         text: Antaŭagordita teksto
         title: Titolo
       admin_account_action:
-        include_statuses: Inkluzivi raportitajn afiŝojn en la retpoŝtmesaĝo
+        include_statuses: Inkluzivi raportitajn afiŝojn en la retpoŝto
         send_email_notification: Sciigi la uzanton retpoŝte
         text: Propra averto
         type: Ago
@@ -193,7 +193,7 @@ eo:
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_crop_images: Stuci bildojn en negrandigitaj mesaĝoj al 16x9
         setting_default_language: Publikada lingvo
-        setting_default_privacy: Mesaĝa videbleco
+        setting_default_privacy: Privateco de afiŝado
         setting_default_sensitive: Ĉiam marki aŭdovidaĵojn tiklaj
         setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_disable_swiping: Malebligi svingajn movojn
