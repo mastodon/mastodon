@@ -393,6 +393,9 @@
         other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Fjern
+      dns:
+        types:
+          mx: MX-post
       domain: Domene
       new:
         create: Legg til domene
@@ -735,11 +738,13 @@
     invalid_reset_password_token: Tilbakestillingsnøkkelen for passord er ugyldig eller utløpt. Vennligst be om en ny.
     link_to_otp: Skriv inn en 2-trinnskode fra din 2-trinnspåloggingsenhet eller en gjenopprettingskode
     link_to_webauth: Bruk sikkerhetsnøkkel-enheten din
+    log_in_with: Logg inn med
     login: Logg på
     logout: Logg ut
     migrate_account: Flytt til en annen konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     or_log_in_with: Eller logg på med
+    privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1177,7 +1182,7 @@
         one: "%{count} video"
         other: "%{count} videoer"
     boosted_from_html: Boostet fra %{acct_link}
-    content_warning: 'Innholdsadvarsel: %{warning}'
+    content_warning: 'Innholdsvarsel: %{warning}'
     disallowed_hashtags:
       one: 'inneholdt en ikke tillatt hashtag: %{tags}'
       other: 'inneholdt de ikke tillatte hashtaggene: %{tags}'
