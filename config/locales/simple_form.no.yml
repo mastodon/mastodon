@@ -16,7 +16,7 @@
         types:
           disable: Forhindre brukeren fra å bruke kontoen sin, men ikke slett eller skjul innholdet deres.
           none: Bruk dette for å sende en advarsel til brukeren uten å utløse noen andre handlinger.
-          sensitive: Tving alle denne brukerens medievedlegg til å bli markert som følsom.
+          sensitive: Tving alle denne brukerens medievedlegg til å bli merket som følsomme.
           silence: Hindre brukeren i å kunne skrive offentlig synlighet, skjule sine innlegg og varsler for personer som ikke kan følge dem.
           suspend: Forhindre interaksjon fra eller til denne kontoen og slett innholdet der. Reversibel innen 30 dager.
         warning_preset_id: Valgfritt. Du kan fortsatt legge til tilpasset tekst til slutten av forhåndsinnstillingen
@@ -49,8 +49,8 @@
         scopes: Hvilke API-er programmet vil bli gitt tilgang til. Dersom du velger et toppnivåomfang, trenger du ikke å velge individuelle API-er.
         setting_aggregate_reblogs: Ikke vis nye fremhevinger for innlegg som nylig har blitt fremhevet (påvirker kun nylige fremhevinger)
         setting_always_send_emails: E-postvarsler sendes normalt sett ikke mens du aktivt bruker Mastodon
-        setting_default_sensitive: Sensitivt media blir skjult som standard og kan bli vist med et klikk
-        setting_display_media_default: Skjul media som er merket som sensitivt
+        setting_default_sensitive: Følsomme media blir i utgangspunktet skjult, og kan vises frem ved hjelp av et klikk
+        setting_display_media_default: Skjul media som er merket som følsomt
         setting_display_media_hide_all: Skjul alltid all media
         setting_display_media_show_all: Alltid vis media som er merket som sensitivt
         setting_hide_network: De som du følger, og de som følger deg, vil ikke bli vist på profilen din
@@ -111,7 +111,7 @@
         types:
           disable: Deaktiver pålogging
           none: Ikke gjør noe
-          sensitive: Sensitiv
+          sensitive: Følsom
           silence: Begrens
           suspend: Suspender og ugjenkallelig slett brukerdata
         warning_preset_id: Bruk en advarsels-forhåndsinnstilling
@@ -155,7 +155,7 @@
         setting_crop_images: Klipp bilder i ikke-utvidede innlegg til 16:9
         setting_default_language: Innleggsspråk
         setting_default_privacy: Postintegritet
-        setting_default_sensitive: Marker alltid media som sensitivt
+        setting_default_sensitive: Merk alltid media som følsomt
         setting_delete_modal: Vis bekreftelse før du sletter et innlegg
         setting_disable_swiping: Skru av sveipebevegelser
         setting_display_media: Mediavisning
