@@ -442,7 +442,7 @@ de:
         title: Domainsperren importieren
       no_file: Keine Datei ausgewählt
     follow_recommendations:
-      description_html: "<strong>Folgeempfehlungen helfen neuen Nutzern und Nutzerinnen dabei, schnell interessante Inhalte zu finden</strong>. Wenn ein:e Nutzer:in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Benutzerkonten verwendet. Sie werden täglich basierend auf einer Mischung aus am meisten interagierenden Benutzerkonten und jenen mit den meisten Followern für eine bestimmte Sprache neu berechnet."
+      description_html: "<strong>Folgeempfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Profile verwendet. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache, neu berechnet."
       language: Für Sprache
       status: Status
       suppress: Folgeempfehlungen unterdrücken
@@ -669,7 +669,7 @@ de:
         manage_taxonomies: Taxonomien verwalten
         manage_taxonomies_description: Ermöglicht Benutzer*innen, die Trends zu überprüfen und die Hashtag-Einstellungen zu aktualisieren
         manage_user_access: Benutzer*in-Zugriff verwalten
-        manage_user_access_description: Erlaubt es Benutzer*innen, die Zwei-Faktor-Authentisierung (2FA) anderer Benutzer zu deaktivieren, ihre E-Mail-Adresse zu ändern und ihr Passwort zurückzusetzen
+        manage_user_access_description: Erlaubt es Benutzer*innen, die Zwei-Faktor-Authentisierung (2FA) anderer zu deaktivieren, ihre E-Mail-Adresse zu ändern und ihr Passwort zurückzusetzen
         manage_users: Benutzer*innen verwalten
         manage_users_description: Erlaubt es Benutzer*innen, die Details anderer Profile einzusehen und diese Accounts zu moderieren
         manage_webhooks: Webhooks verwalten
@@ -1024,7 +1024,7 @@ de:
   deletes:
     challenge_not_passed: Die eingegebenen Informationen waren nicht korrekt
     confirm_password: Gib dein derzeitiges Passwort ein, um deine Identität zu bestätigen
-    confirm_username: Gib deinen Benutzernamen ein, um das Verfahren zu bestätigen
+    confirm_username: Gib deinen Profilnamen ein, um den Vorgang zu bestätigen
     proceed: Konto löschen
     success_msg: Dein Konto wurde erfolgreich gelöscht
     warning:
@@ -1086,7 +1086,7 @@ de:
     '503': Die Seite konnte wegen eines temporären Serverfehlers nicht angezeigt werden.
     noscript_html: Bitte aktiviere JavaScript, um die Mastodon-Web-Anwendung zu verwenden. Alternativ kannst du auch eine der <a href="%{apps_path}">nativen Mastodon-Anwendungen</a> für deine Plattform probieren.
   existing_username_validator:
-    not_found: kann lokalen Benutzer nicht mit diesem Nutzernamen finden
+    not_found: kann lokale*n Benutzer*in mit diesem Profilnamen nicht finden
     not_found_multiple: kann %{usernames} nicht finden
   exports:
     archive_takeout:
@@ -1269,9 +1269,9 @@ de:
   moderation:
     title: Moderation
   move_handler:
-    carry_blocks_over_text: Dieses Benutzerkonto ist von %{acct} umgezogen, welches du blockiert hast.
-    carry_mutes_over_text: Das Profil wurde von %{acct} übertragen – und dieses hattest du stummgeschaltet.
-    copy_account_note_text: 'Dieser Benutzer ist von %{acct} umgezogen, hier sind deine letzten Notizen zu diesem Benutzer:'
+    carry_blocks_over_text: Dieses Konto ist von %{acct}, das du blockiert hast, umgezogen.
+    carry_mutes_over_text: Dieses Konto ist von %{acct}, das du stummgeschaltet hast, umgezogen.
+    copy_account_note_text: 'Dieses Konto ist von %{acct} umgezogen. Hier deine damals verfassten Notizen zum Profil:'
   navigation:
     toggle_menu: Menü ein-/ausblenden
   notification_mailer:
@@ -1477,7 +1477,7 @@ de:
     open_in_web: Im Web öffnen
     over_character_limit: Zeichenlimit von %{max} überschritten
     pin_errors:
-      direct: Beiträge, die nur für erwähnte Benutzer sichtbar sind, können nicht angepinnt werden
+      direct: Beiträge, die nur für erwähnte Profile sichtbar sind, können nicht angeheftet werden
       limit: Du hast bereits die maximale Anzahl an Beiträgen angeheftet
       ownership: Du kannst nur eigene Beiträge anheften
       reblog: Du kannst keine geteilten Beiträge anheften
@@ -1629,7 +1629,7 @@ de:
       explanation: Hier sind ein paar Tipps, um loszulegen
       final_action: Fang an zu posten
       final_step: 'Fang jetzt an zu posten! Selbst ohne Follower werden deine öffentlichen Beiträge von anderen gesehen, zum Beispiel in der lokalen Timeline oder über die Hashtags. Möglicherweise möchtest du dich allen mit dem Hashtag #neuhier vorstellen.'
-      full_handle: Dein vollständiger Benutzername
+      full_handle: Dein vollständiger Profilname
       full_handle_hint: Dies ist, was du deinen Freunden sagen kannst, damit sie dich anschreiben oder dir von einem anderen Server folgen können.
       subject: Willkommen bei Mastodon
       title: Willkommen an Bord, %{name}!
