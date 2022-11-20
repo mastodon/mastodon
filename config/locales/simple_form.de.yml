@@ -50,9 +50,9 @@ de:
         setting_aggregate_reblogs: Zeige denselben Beitrag nicht nochmal an, wenn er erneut geteilt wurde (dies betrifft nur neulich erhaltene erneut geteilte Beiträge)
         setting_always_send_emails: Normalerweise werden Benachrichtigungen nicht per E-Mail verschickt, wenn du gerade auf Mastodon aktiv bist
         setting_default_sensitive: Medien, die mit einer Inhaltswarnung versehen worden sind, werden erst nach einem zusätzlichen Klick angezeigt
-        setting_display_media_default: Alle Medien verbergen, die mit einer Inhaltswarnung versehen sind
-        setting_display_media_hide_all: Alle Medien immer verbergen
-        setting_display_media_show_all: Alle Medien immer anzeigen
+        setting_display_media_default: Medien mit Inhaltswarnung verbergen
+        setting_display_media_hide_all: Medien immer verbergen
+        setting_display_media_show_all: Medien mit Inhaltswarnung immer anzeigen
         setting_hide_network: Wem du folgst und wer dir folgt, wird in deinem Profil nicht angezeigt
         setting_noindex: Betrifft alle öffentlichen Daten deines Profils, z. B. deine Beiträge, Account-Empfehlungen und „Über mich“
         setting_show_application: Die Anwendung die du nutzt wird in der detaillierten Ansicht deiner Beiträge angezeigt
@@ -145,7 +145,7 @@ de:
         text: Eigene Warnung
         type: Aktion
         types:
-          disable: Deaktivieren
+          disable: Einfrieren
           none: Nichts tun
           sensitive: Inhaltswarnung
           silence: Stummschalten
@@ -201,7 +201,7 @@ de:
         setting_display_media_default: Standard
         setting_display_media_hide_all: Alle Medien verstecken
         setting_display_media_show_all: Alle Medien anzeigen
-        setting_expand_spoilers: Beiträge mit Inhaltswarnungen immer ausklappen
+        setting_expand_spoilers: Beiträge mit Inhaltswarnung immer ausklappen
         setting_hide_network: Deine Follower und „Folge ich“ nicht anzeigen
         setting_noindex: Suchmaschinen-Indexierung verhindern
         setting_reduce_motion: Bewegung in Animationen verringern
@@ -232,7 +232,7 @@ de:
         bootstrap_timeline_accounts: Neuen Nutzern immer diese Konten empfehlen
         closed_registrations_message: Benutzerdefinierte Nachricht, wenn Registrierungen nicht möglich sind
         content_cache_retention_period: Aufbewahrungsfrist für Inhalte im Cache
-        custom_css: Benutzerdefiniertes CSS
+        custom_css: Eigenes CSS
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für den Medien-Cache
         profile_directory: Profilverzeichnis aktivieren
@@ -268,16 +268,16 @@ de:
           sign_up_requires_approval: Anmeldungen begrenzen
         severity: Regel
       notification_emails:
-        appeal: Jemand hat Einspruch gegen eine Moderatorentscheidung eingelegt
+        appeal: wenn jemand einer Moderationsentscheidung widerspricht
         digest: Zusammenfassung senden
         favourite: wenn jemand meinen Beitrag favorisiert
         follow: wenn mir jemand folgt
         follow_request: wenn mir jemand folgen möchte
         mention: wenn mich jemand erwähnt
-        pending_account: Ein neues Konto muss überprüft werden
+        pending_account: wenn ein neues Konto überprüft werden muss
         reblog: wenn jemand meinen Beitrag teilt
-        report: E-Mail senden, wenn eine neue Meldung vorliegt
-        trending_tag: Neuer Trend muss überprüft werden
+        report: wenn eine neue Meldung vorliegt
+        trending_tag: wenn ein neuer Trend überprüft werden soll
       rule:
         text: Regel
       tag:
