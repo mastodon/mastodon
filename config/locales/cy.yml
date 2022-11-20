@@ -985,11 +985,11 @@ cy:
     confirmation_dialogs: Deialog cadarnhau
     discovery: Darganfyddiad
     localization:
-      body: Caiff Mastodon ei gyfieithu gan wirfoddolwyr.
+      body: Mae Mastodon yn cael ei gyfieithu gan wirfoddolwyr.
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Gall pawb gyfrannu.
     sensitive_content: Cynnwys sensitif
-    toot_layout: Gosodiad tŵt
+    toot_layout: Gwedd post
   application_mailer:
     notification_preferences: Newid gosodiadau e-bost
     salutation: "%{name},"
@@ -1179,7 +1179,7 @@ cy:
     add_new: Ychwanegu
     errors:
       limit: Yr ydych yn barod wedi cynnwys yr uchafswm o hashnodau
-    hint_html: "<strong>Beth yw hashnodau nodedig?</strong> Mae'r rhain yn cael ei arddangos yn amlwg ar eich proffil cyhoeddus ac yn gadael i bobl pori eich pyst cyhoeddus o dan y hashnodau rhain yn benodol. Rydynt yn declyn grêt ar gyfer tracio gweithiau creadigol neu brosiectau hir-dymor."
+    hint_html: "<strong>Beth yw prif hashnodau?</strong> Mae'r hashnodau hyn yn cael eu harddangos ar eich proffil cyhoeddus ac yn ffordd i bobl bori eich pyst cyhoeddus o dan y hashnodau hyn yn benodol. Maent yn declyn grêt i gadw trac ar weithiau creadigol neu brosiectau hir-dymor."
   filters:
     contexts:
       account: Proffilau
@@ -1257,7 +1257,7 @@ cy:
     delete: Dileu
     deselect: Dad-ddewis y cwbl
     none: Dim
-    order_by: Trefnu wrth
+    order_by: Trefnu yn ôl
     save_changes: Cadw newidiadau
     select_all_matching_items:
       zero: Dewiswch bob un o'r %{count} eitem sy'n cyfateb i'ch chwilio.
@@ -1291,12 +1291,12 @@ cy:
       blocking: Rhestr blocio
       bookmarks: Nodau Tudalen
       domain_blocking: Rhestr rhwystro parth
-      following: Rhestr dilyn
+      following: Rhestr ddilynion
       muting: Rhestr tawelu
     upload: Uwchlwytho
   invites:
     delete: Dadactifadu
-    expired: Wedi darfod
+    expired: Wedi dod i ben
     expires_in:
       '1800': 30 munud
       '21600': 6 awr
@@ -1315,9 +1315,9 @@ cy:
       many: "%{count} defnydd"
       other: "%{count} defnydd"
     max_uses_prompt: Dim terfyn
-    prompt: Cynhyrchwch a rhannwch ddolenni gyda eraill i ganiatau mynediad i'r achos hwn
+    prompt: Creu a rhannu dolenni â phobl eraill i roi mynediad iddynt i'r gweinydd hwn
     table:
-      expires_at: Darfod ar
+      expires_at: Yn dod i ben ar
       uses: Defnyddiau
     title: Gwahodd pobl
   lists:
@@ -1475,8 +1475,8 @@ cy:
     primary: Cynradd
     relationship: Perthynas
     remove_selected_domains: Tynnu pob dilynydd o'r parthau dewisiedig
-    remove_selected_followers: Tynnu'r dilynydd dewisiedig
-    remove_selected_follows: Dad-ddilyn y defnyddwyr dewisiedig
+    remove_selected_followers: Dileu'r dilynwyr a ddewiswyd
+    remove_selected_follows: Dad-ddilyn y defnyddwyr a ddewiswyd
     status: Statws cyfrif
   remote_follow:
     missing_resource: Ni ellir canfod yr URL ailgyferio angenrheidiol i'ch cyfrif
@@ -1545,7 +1545,7 @@ cy:
     development: Datblygu
     edit_profile: Golygu proffil
     export: Allforio data
-    featured_tags: Hashnodau Nodedig
+    featured_tags: Prif hashnodau
     import: Mewnforio
     import_and_export: Mewnfori ac allfori
     migrate: Mudo cyfrif
@@ -1600,7 +1600,7 @@ cy:
       direct: Nid oes modd pinio postiadau sy'n weladwy i ddefnyddwyr a grybwyllwyd yn unig
       limit: Yr ydych wedi pinio yr uchafswm posib o dŵtiau
       ownership: Ni ellir pinio tŵt rhywun arall
-      reblog: Ni ellir pinio bŵstiau
+      reblog: Ni ellir pinio hybiau
     poll:
       total_people:
         zero: "%{count} berson"
@@ -1637,7 +1637,7 @@ cy:
     exceptions: Eithriadau
     explanation: Oherwydd bod dileu postiadau yn weithrediad drud, mae hyn yn cael ei wneud yn araf dros amser pan nad yw'r gweinydd yn brysur fel arall. Am y rheswm hwn, efallai y bydd eich postiadau yn cael eu dileu ychydig ar ôl iddyn nhw gyrraedd y trothwy oed.
     ignore_favs: Anwybyddu ffefrynnau
-    ignore_reblogs: Anwybyddu bwstiau
+    ignore_reblogs: Anwybyddu hybiau
     interaction_exceptions: Eithriadau yn seiliedig ar ryngweithio
     interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy ffefrynnau neu fwstio ar ôl mynd drostyn nhw unwaith.
     keep_direct: Cadw negeseuon uniongyrchol
