@@ -124,7 +124,7 @@ class Search extends React.PureComponent {
     return (
       <div className='search'>
         <label>
-          <span style={{ display: 'none' }}>{intl.formatMessage(messages.placeholder)}</span>
+          <span>{intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}</span>
           <input
             ref={this.setRef}
             className='search__input'
