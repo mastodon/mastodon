@@ -134,3 +134,171 @@ sco:
           value: Content
       account_alias:
         acct: Haunnle o the auld accoont
+      account_migration:
+        acct: Haunnle o the new accoont
+      account_warning_preset:
+        text: Preset text
+        title: Title
+      admin_account_action:
+        include_statuses: Pit the clyped posts in the email
+        send_email_notification: Tell the uiser bi email
+        text: Custom warnin
+        type: Action
+        types:
+          disable: Freeze
+          none: Sen a warnin
+          sensitive: Sensitive
+          silence: Limit
+          suspend: Suspend
+        warning_preset_id: Uise a warnin preset
+      announcement:
+        all_day: Aw-day event
+        ends_at: En o event
+        scheduled_at: Schedule publication
+        starts_at: Stert o event
+        text: Annooncement
+      appeal:
+        text: Explain hou this decision shuid get reversed
+      defaults:
+        autofollow: Invite tae follae yer accoont
+        avatar: Avatar
+        bot: This is a bot accoont
+        chosen_languages: Filter leids
+        confirm_new_password: Confirm new passwird
+        confirm_password: Confirm passwird
+        context: Filter contexts
+        current_password: Current passwird
+        data: Data
+        discoverable: Suggest accoont tae ithers
+        display_name: Display nemm
+        email: Email address
+        expires_in: Rin oot efter
+        fields: Profile metadata
+        header: Heider
+        honeypot: "%{label} (dinnae full oot)"
+        inbox_url: URL o the relay inbox
+        irreversible: Drap insteid o plank
+        locale: Interface leid
+        locked: Require follae requests
+        max_uses: Maist nummer o uises
+        new_password: New passwird
+        note: Bio
+        otp_attempt: Twa-factor code
+        password: Passwird
+        phrase: Keywird or phrase
+        setting_advanced_layout: Turn on advanced web interface
+        setting_aggregate_reblogs: Group heezes in timelines
+        setting_always_send_emails: Aye sen email notifications
+        setting_auto_play_gif: Auto-pley animatit GIFs
+        setting_boost_modal: Shaw confirmation dialog afore heezin
+        setting_crop_images: Crap images in non-expandit posts tae 16x9
+        setting_default_language: Postin leid
+        setting_default_privacy: Postin privacy
+        setting_default_sensitive: Aye mairk media as sensitive
+        setting_delete_modal: Shaw confirmation dialog afore deletin a post
+        setting_disable_swiping: Turn aff swipin motions
+        setting_display_media: Media display
+        setting_display_media_default: Defaut
+        setting_display_media_hide_all: Plank aw
+        setting_display_media_show_all: Shaw aw
+        setting_expand_spoilers: Aye expand posts mairked wi content warnins
+        setting_hide_network: Plank yer social graph
+        setting_noindex: Opt-oot o seirch engine indexin
+        setting_reduce_motion: Reduce motion in animations
+        setting_show_application: Disclose application uised fir tae sen posts
+        setting_system_font_ui: Uise system's defaut font
+        setting_theme: Steid theme
+        setting_trends: Shaw the day's trends
+        setting_unfollow_modal: Shaw confirmation dialog afore unfollaein somebody
+        setting_use_blurhash: Shaw colourfu gradients fir hid media
+        setting_use_pending_items: Slaw mode
+        severity: Severity
+        sign_in_token_attempt: Security code
+        title: Title
+        type: Import type
+        username: Uisernemm
+        username_or_email: Uisernemm or Email
+        whole_word: Hail wird
+      email_domain_block:
+        with_dns_records: Include MX records an IPs o the domain
+      featured_tag:
+        name: Hashtag
+      filters:
+        actions:
+          hide: Plank awthegither
+          warn: Plank wi a warnin
+      form_admin_settings:
+        backups_retention_period: Uiser archive retention period
+        bootstrap_timeline_accounts: Aye recommend thir accoonts tae new uisers
+        closed_registrations_message: Custom message whan sign-ups urnae available
+        content_cache_retention_period: Content cache retention period
+        custom_css: Custom CSS
+        mascot: Custom mascot (legacy)
+        media_cache_retention_period: Media cache retention period
+        profile_directory: Enable profile directory
+        registrations_mode: Wha kin sign-up
+        require_invite_text: Require a raison fir tae jyne
+        show_domain_blocks: Shaw domain dingies
+        show_domain_blocks_rationale: Shaw whit domains war dingied fir
+        site_contact_email: Contack email
+        site_contact_username: Contact uisernemm
+        site_extended_description: Extendit description
+        site_short_description: Server description
+        site_terms: Privacy Policy
+        site_title: Server nemm
+        theme: Defaut theme
+        thumbnail: Server thoomnail
+        timeline_preview: Alloo unauthenticated access tae public timelines
+        trendable_by_default: Alloo trends athoot prior review
+        trends: Turn on trends
+      interactions:
+        must_be_follower: Dingie notes fae non-follaers
+        must_be_following: Dingie notes fae fowk ye dinnae follae
+        must_be_following_dm: Fingie direct messages fae fowk thit ye dinnae follae
+      invite:
+        comment: Comment
+      invite_request:
+        text: Whit dae ye want tae jyne fir?
+      ip_block:
+        comment: Comment
+        ip: IP
+        severities:
+          no_access: Dingie access
+          sign_up_block: Dingie sign-ups
+          sign_up_requires_approval: Limit sign-ups
+        severity: Rule
+      notification_emails:
+        appeal: Somebody appeals a moderator decision
+        digest: Sen digest emails
+        favourite: Somebody favouritit yer post
+        follow: Somebody follaed ye
+        follow_request: Somebody requestit fir tae follae ye
+        mention: Somebody menshied ye
+        pending_account: New accoont is needin reviewit
+        reblog: Somebody heezed yer post
+        report: New clype is submittit
+        trending_tag: New trend requires reviewin
+      rule:
+        text: Rule
+      tag:
+        listable: Alloo this hashtag tae appear in seirches an suggestions
+        name: Hashtag
+        trendable: Alloo this hashtag fir tae appear unner trends
+        usable: Alloo posts fir tae uise this hashtag
+      user:
+        role: Role
+      user_role:
+        color: Badge colour
+        highlighted: Display role as badge on uiser profiles
+        name: Nemm
+        permissions_as_keys: Permissions
+        position: Priority
+      webhook:
+        events: Enabilt events
+        url: Enpynt URL
+    'no': 'Naw'
+    not_recommended: No recommendit
+    recommended: Recommendit
+    required:
+      mark: "*"
+      text: requirit
