@@ -15,7 +15,7 @@ et:
     link_verified_on: Selle lingi autorsust kontrolliti %{date}
     nothing_here: Siin pole midagi!
     pin_errors:
-      following: Te peate juba olema selle kasutaja jälgija, keda te heaks kiidate
+      following: Te peate juba olema selle kasutaja jälgija, keda te soovitate
     posts:
       one: Postitus
       other: Postitused
@@ -238,6 +238,9 @@ et:
       pending_appeals_html:
         one: "<strong>%{count}</strong> ootel vaidlustus"
         other: "<strong>%{count}</strong> ootel vaidlustust"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> ootel silt"
+        other: "<strong>%{count}</strong> ootel silti"
       software: Tarkvara
       space: Kettakasutus
       title: Töölaud
@@ -429,6 +432,7 @@ et:
       appearance:
         title: Välimus
       discovery:
+        profile_directory: Kasutajate kataloog
         title: Avastus
         trends: Trendid
       domain_blocks:
@@ -469,6 +473,7 @@ et:
       allow: Luba
       approved: Kinnitatud
       tags:
+        title: Trendikad sildid
         usable: Kasutatav
       title: Trendid
     warning_presets:
@@ -495,6 +500,9 @@ et:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
       subject: 'Uus teavitus %{instance}-ile (#%{id})'
+    new_trends:
+      new_trending_tags:
+        title: Trendikad sildid
   aliases:
     add_new: Loo teine nimi
     created_msg: Teine nimi on edukalt loodud. Te saate nüüd alustada kolimist vanalt kontolt.
@@ -670,7 +678,7 @@ et:
     add_new: Lisa uus
     errors:
       limit: Olete jõudnud maksimum lubatud siltide arvuni
-    hint_html: "<strong>Mis on esile toodud sildid?</strong> Need sildid näidatakse nähtavalt Teie avalikul profiilil ning nad aitavad inimestel leida postitusi, millel on antud sildid. Nad on hea viis kuidas näiteks hoida järge loovtöödel või pikaajalistel projektidel."
+    hint_html: "<strong>Mis on esile toodud sildid?</strong> Need sildid näidatakse nähtavalt Teie avalikul profiilil ning nad aitavad inimestel leida postitusi, millel on antud sildid. Nad on hea viis, kuidas näiteks hoida järge loovtöödel või pikaajalistel projektidel."
   filters:
     contexts:
       account: Profiilid
@@ -866,6 +874,9 @@ et:
     status: Konto olek
   remote_follow:
     missing_resource: Ei suutnud leida vajalikku suunamise URLi Teie konto jaoks
+  rss:
+    descriptions:
+      tag: 'Avalikud postitused sildiga #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit} selle päeva kohta
     over_total_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit}
@@ -951,8 +962,9 @@ et:
     open_in_web: Ava veebis
     over_character_limit: tähtmärkide limiit %{max} ületatud
     pin_errors:
-      limit: Te olete juba maksimum arvu lubatud tuututusi kinnitanud
-      ownership: Kellegi teise tuututust ei saa kinnitada
+      direct: Ei saa kinnitada postitusi, mis on nähtavad vaid mainitud kasutajatele
+      limit: Maksimaalne arv postitusi on juba kinnitatud
+      ownership: Kellegi teise postitust ei saa kinnitada
       reblog: Upitust ei saa kinnitada
     poll:
       total_people:
@@ -977,6 +989,8 @@ et:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
     exceptions: Erandid
+    keep_pinned: Säilita kinnitatud postitused
+    keep_pinned_hint: Ei kustuta ühtegi kinnitatud postitust
     min_age:
       '1209600': 2 nädalat
       '15778476': 6 kuud
@@ -988,7 +1002,7 @@ et:
       '7889238': 3 kuud
     min_age_label: Ajalimiit
   stream_entries:
-    pinned: Kinnitatud tuut
+    pinned: Kinnitatud postitus
     reblogged: upitatud
     sensitive_content: Tundlik sisu
   tags:
@@ -1036,6 +1050,7 @@ et:
       edit_profile_action: Sea üles profiil
       explanation: Siin on mõned nõuanded, mis aitavad sul alustada
       final_action: Alusa postitamist
+      final_step: 'Alusta postitamist! Isegi ilma jälgijateta näevad teised Teie avalikke postitusi, näiteks kohalikul ajajoonel ning siltide kaudu. Te võite ennast tutvustada kasutades silti #tutvustus.'
       full_handle: Teie täisnimi
       full_handle_hint: See on mida oma sõpradega jagada, et nad saaksid Teile sõnumeid saata ning Teid jälgida teiselt serverilt.
       subject: Tere tulemast Mastodoni
@@ -1047,7 +1062,7 @@ et:
     seamless_external_login: Te olete sisse loginud läbi väljaspool asuva teenusega, niiet salasõna ja e-posti sätted pole saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
-    explanation_html: 'Te saate <strong>kinnitada ennast oma linkide omanikena oma profiili metaandmetes</strong>. Et seda teha, peab Teie lingitud veebilehel olema link tagasi Teie Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Tekstisisu lingil ei loe. Siin on üks näide:'
+    explanation_html: 'Te saate <strong>kinnitada ennast oma profiili veebiviidete omanikena</strong>. Et seda teha, peab Teie viidatud veebilehel olema link tagasi Teie Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Tekstisisu lingil ei loe. Siin on üks näide:'
     verification: Kinnitamine
   webauthn_credentials:
     delete: Kustuta
