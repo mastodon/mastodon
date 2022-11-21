@@ -105,7 +105,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
   end
 
   def sensitive
-    object.account.sensitized? || object.sensitive
+    true
   end
 
   def virtual_attachments
