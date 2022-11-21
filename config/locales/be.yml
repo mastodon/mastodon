@@ -254,11 +254,32 @@ be:
         destroy_unavailable_domain_html: "%{name} дазволіў працягнуць адпраўку на дамен %{target}"
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
         disable_2fa_user_html: "%{name} амяніў абавязковую двухфактарную верыфікацыю для карыстальніка %{target}"
+        disable_custom_emoji_html: "%{name} заблакіраваў эмодзі %{target}"
         disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
+        enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
+        promote_user_html: "%{name} павысіў карыстальніка %{target}"
+        reject_appeal_html: "%{name} адхіліў запыт на абскарджанне %{target}"
+        reject_user_html: "%{name} адхіліў рэгістрацыю з %{target}"
+        remove_avatar_user_html: "%{name} выдаліў аватар %{target}"
+        reopen_report_html: "%{name} зноў адкрыў скаргу %{target}"
+        resend_user_html: "%{name} зноў адправіў ліст з пацвярджэннем для %{target}"
+        sensitive_account_html: "%{name} адзначыў медыя %{target} як далікатнае"
+        silence_account_html: "%{name} абмежаваў уліковы запіс %{target}"
         suspend_account_html: "Уліковы запіс %{target} выключаны %{name}"
+        unblock_email_account_html: "%{name} разблакіраваў эл. пошту %{target}"
+        unsensitive_account_html: "%{name} зняў адзнаку далікатнае з медыя %{target}"
+        unsilence_account_html: "%{name} зняў ліміт з уліковага запісу %{target}"
         unsuspend_account_html: "Уліковы запіс %{target} адноўлены %{name}"
+        update_announcement_html: "%{name} абнавіў аб'яву %{target}"
+        update_custom_emoji_html: "%{name} абнавіў эмодзі %{target}"
+        update_domain_block_html: "%{name} абнавіў блакіроўку дамена для %{target}"
+        update_ip_block_html: "%{name} змяніў правіла для IP %{target}"
+        update_status_html: "%{name} абнавіў допіс %{target}"
+        update_user_role_html: "%{name} змяніў ролю %{target}"
       deleted_account: выдалены ўліковы запіс
+      empty: Логі не знойдзены.
+      filter_by_action: Фільтраваць па дзеянню
     announcements:
       live: Ужывую
       new:
@@ -275,8 +296,11 @@ be:
     custom_emojis:
       assign_category: Прызначыць катэгорыю
       by_domain: Дамен
+      copied_msg: Лакальная копія эмодзі паспяхова створана
       copy: Скапіраваць
+      copy_failed_msg: Немагчыма зрабіць лакальную копію гэтага эмодзі
       create_new_category: Стварыць новую катэгорыю
+      created_msg: Эмодзі паспяхова створана!
       delete: Выдаліць
       disable: Адключыць
       disabled: Адключана
@@ -294,6 +318,7 @@ be:
       uncategorized: Без катэгорыі
       unlist: Прыбраць
       unlisted: Не ў спісе
+      update_failed_msg: Немагчыма абнавіць гэта эмодзі
       upload: Запампаваць
     dashboard:
       active_users: актыўныя карыстальнікі
@@ -347,6 +372,8 @@ be:
         policies:
           suspend: Выключыць
         policy: Палітыка
+      dashboard:
+        instance_accounts_measure: захаваныя ўліковыя запісы
     ip_blocks:
       add_new: Стварыць правіла
       delete: Выдаліць
