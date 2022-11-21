@@ -1,4 +1,162 @@
 sco:
+  about:
+    about_mastodon_html: 'The social network o wir future: Nae adverts, nae corporate surveillance; ethical design, an decentralization! Ain yer ain data wi Mastodon!'
+    contact_missing: No set
+    contact_unavailable: N/A
+    hosted_on: Mastodon hostit on %{domain}
+    title: Aboot
+  accounts:
+    follow: Follae
+    followers:
+      one: Follaer
+      other: Follaers
+    following: Follaein
+    instance_actor_flash: This accoont is a virtual actor uised tae represent the server itsel an no onie individual uiser. It is uised fir federation purposes an shuidnae be suspendit.
+    last_active: last active
+    link_verified_on: Ainership o this link wis checkt on %{date}
+    nothing_here: There naethin here!
+    pin_errors:
+      following: Ye hae tae awriddy be follaein the person thit ye'r wantin tae endorse
+    posts:
+      one: Post
+      other: Posts
+    posts_tab_heading: Posts
+  admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
+    account_moderation_notes:
+      create: Lea note
+      created_msg: Moderation note successfully makkit!
+      destroyed_msg: Moderation note successfully destroyed!
+    accounts:
+      add_email_domain_block: Dingie email domain
+      approve: Approve
+      approved_msg: Successfully approvit %{username}'s sign-up application
+      are_you_sure: Ye sure?
+      avatar: Avatar
+      by_domain: Domain
+      change_email:
+        changed_msg: Email successfully chynged!
+        current_email: Current email
+        label: Chynge email
+        new_email: New email
+        submit: Chynge email
+        title: Chynge email fir %{username}
+      change_role:
+        changed_msg: Role successfully chynged!
+        label: Chynge role
+        no_role: Nae role
+        title: Chynge role fir %{username}
+      confirm: Mak siccar
+      confirmed: Makkit siccar
+      confirming: Makkin siccar
+      custom: Custom
+      delete: Delete data
+      deleted: Deletit
+      demote: Demote
+      destroyed_msg: "%{username}'s data is noo queued fir tae be deletit the noo"
+      disable: Freeze
+      disable_sign_in_token_auth: Turn aff email token authentication
+      disable_two_factor_authentication: Turn aff 2FA
+      disabled: Froze
+      display_name: Display nemm
+      domain: Domain
+      remove_header: Tak aff heider
+      removed_avatar_msg: Successfully taen aff %{username}'s avatar image
+      removed_header_msg: Successfully taen aff %{username}'s heider image
+      resend_confirmation:
+        already_confirmed: This uiser is awriddy confirmt
+        send: Resen confirmation email
+        success: Confirmation email successfully sent!
+      reset: Reset
+      reset_password: Reset passwird
+      resubscribe: Resubscribe
+      role: Role
+      search: Seirch
+      search_same_email_domain: Ither uisers wi the same email domain
+      search_same_ip: Ither uisers wi the same IP
+      security_measures:
+        only_password: Ainly passwird
+        password_and_2fa: Passwird an 2FA
+      sensitive: Force-sensitive
+      sensitized: Mairked as sensitive
+      shared_inbox_url: Shared inbox URL
+      show:
+        created_reports: Made clypes
+        targeted_reports: Clyped on bi ithers
+      silence: Limit
+      silenced: Limitit
+      statuses: Posts
+      strikes: Previous strikes
+      subscribe: Subscribe
+      suspend: Suspend
+      suspended: Suspendit
+      suspension_irreversible: The data o this accoont haes been irreversibly deletit. Ye kin unsuspend the accoont fir tae mak it uisable but it wullnae recover onie data it haed afore.
+      suspension_reversible_hint_html: The accoont haes been suspendit, an the data wull be fully removed on %{date}. Tae then, the accoont kin be restored athoot onie ill effecks. Gin ye'r wantin tae remove aw the accoont's data the noo, ye kin dae it ablow.
+      title: Accoonts
+      unblock_email: Undingie email address
+      unblocked_email_msg: Successfully undingied %{username}'s email address
+      unconfirmed_email: Email no confirmt
+      undo_sensitized: Undae force-sensitive
+      undo_silenced: Undae limit
+      undo_suspension: Undae suspension
+      unsilenced_msg: Successfully unduin the limitin o %{username}'s accoont
+      unsubscribe: Unsubscribe
+      unsuspended_msg: Successfully unsuspendit %{username}'s accoont
+      username: Uisernemm
+      view_domain: Deek at summary fir domain
+      warn: Warn
+      web: Wab
+      whitelisted: Allooed fir federation
+    action_logs:
+      action_types:
+        approve_appeal: Approve Appeal
+        approve_user: Approve Uiser
+        assigned_to_self_report: Assign Clype
+        change_email_user: Chynge Email fir Uiser
+        change_role_user: Chynge Role o Uiser
+        confirm_user: Confirm Uiser
+        update_status: Update Post
+        update_user_role: Update Role
+      actions:
+        approve_appeal_html: "%{name} approved moderation decision appeal fae %{target}"
+        approve_user_html: "%{name} approved sign-up fae %{target}"
+        assigned_to_self_report_html: "%{name} assigned clype %{target} tae theirsels"
+        change_email_user_html: "%{name} chynged the email address o uiser %{target}"
+        change_role_user_html: "%{name} chynged the role o %{target}"
+        confirm_user_html: "%{name} confirmt email address o uiser %{target}"
+        create_account_warning_html: "%{name} sent a warnin tae %{target}"
+        create_announcement_html: "%{name} creatit new annooncement %{target}"
+        create_canonical_email_block_html: "%{name} dingied email wi the hash %{target}"
+        create_custom_emoji_html: "%{name} uploadit new emoji %{target}"
+        create_domain_allow_html: "%{name} allooed federation wi domain %{target}"
+        create_domain_block_html: "%{name} dingied domain %{target}"
+        create_email_domain_block_html: "%{name} dingied email domain %{target}"
+        create_ip_block_html: "%{name} creatit rule fir IP %{target}"
+        create_unavailable_domain_html: "%{name} stapt delivery tae domain %{target}"
+        create_user_role_html: "%{name} creatit %{target} role"
+        demote_user_html: "%{name} demotit uiser %{target}"
+        destroy_announcement_html: "%{name} deletit annooncement %{target}"
+        destroy_canonical_email_block_html: "%{name} undingied email wi the hash %{target}"
+        destroy_custom_emoji_html: "%{name} deletit emoji %{target}"
+        destroy_domain_allow_html: "%{name} disallooed federation wi domain %{target}"
+        destroy_domain_block_html: "%{name} undingied domain %{target}"
+        destroy_email_domain_block_html: "%{name} undingied email domain %{target}"
+        destroy_instance_html: "%{name} purged domain %{target}"
+        destroy_ip_block_html: "%{name} deletit rule fir IP %{target}"
+        destroy_status_html: "%{name} taen doon post bi %{target}"
+        destroy_unavailable_domain_html: "%{name} restertit delivery tae domain %{target}"
+        destroy_user_role_html: "%{name} deletit %{target} role"
+        disable_2fa_user_html: "%{name} turnt aff twa factor requirement fir uiser %{target}"
+        disable_custom_emoji_html: "%{name} turnt aff emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} turnt aff email token authentication fir %{target}"
+        disable_user_html: "%{name} turnt aff login fir uiser %{target}"
+        enable_custom_emoji_html: "%{name} turnt on emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} turnt on email token authentication fir %{target}"
+        enable_user_html: "%{name} turnt on login fir uiser %{target}"
+        memorialize_account_html: "%{name} pit %{target}'s accoont ower intae a memorial page"
+        promote_user_html: "%{name} promotit uiser %{target}"
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
