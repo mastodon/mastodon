@@ -83,6 +83,7 @@ ast:
       no_emoji_selected: Nun camudó nengún fustaxe darréu que nun se seleicionó nengún
       not_permitted: Nun tienes permisu pa facer esta aición
       update_failed_msg: Nun pudo anovase esi fustaxe
+      updated_msg: '¡El fustaxe anovóse correutamente!'
     dashboard:
       interactions: interaiciones
       media_storage: Almacenamientu multimedia
@@ -99,8 +100,14 @@ ast:
         one: "<strong>%{count}</strong> perfil pendiente"
         other: "<strong>%{count}</strong> perfiles pendientes"
       software: Software
+      space: Usu del espaciu
+      title: Panel
       top_languages: Les llingües más actives
       website: Sitiu web
+    disputes:
+      appeals:
+        empty: Nun s'atopó nenguna apellación.
+        title: Apellaciones
     domain_blocks:
       domain: Dominiu
       not_permitted: Nun tienes permisu pa facer esta aición
@@ -136,6 +143,8 @@ ast:
         '31556952': 1 añu
         '86400': 1 día
         '94670856': 3 años
+    relationships:
+      title: "Rellaciones de: %{acct}"
     relays:
       save_and_enable: Guardar y activar
       status: Estáu
@@ -145,6 +154,7 @@ ast:
           one: "%{count} nota"
           other: "%{count} notes"
       are_you_sure: '¿De xuru?'
+      comment_description_html: 'Pa fornir más información, %{name} escribió:'
       report: 'Informe #%{id}'
       status: Estáu
       title: Informes
@@ -235,7 +245,7 @@ ast:
     empty: Nun tienes nengún nomatu.
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol llargor de la pantalla, la interfaz web avanzada permítete configurar munches columnes estremaes pa ver tanta información al empar como quieras: Aniciu, avisos, llinia temporal federada, cualesquier cantidá de llistes y etiquetes...'
+    advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol llargor de la pantalla, la interfaz web avanzada permítete configurar columnes estremaes pa ver muncha más información al empar: Aniciu, avisos, llinia de tiempu federada y cualesquier cantidá de llistes y etiquetes.'
     animations_and_accessibility: Animaciones y accesibilidá
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrición
