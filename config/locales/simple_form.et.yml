@@ -54,6 +54,9 @@ et:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
       email_domain_block:
         with_dns_records: Proovitakse ka üles vaadata selle domeeni DNS kirjed ning selle vastused samuti keelatakse
+      form_admin_settings:
+        bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
+        profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
       form_challenge:
         current_password: Te sisenete turvalisele alale
       imports:
@@ -110,7 +113,7 @@ et:
         display_name: Kuvanimi
         email: E-posti aadress
         expires_in: Aegu pärast
-        fields: Profiili metaandmed
+        fields: Veebiviited
         header: Päis
         honeypot: "%{label} (ära sisesta)"
         inbox_url: Relee sisendkausta URL
@@ -132,6 +135,7 @@ et:
         setting_default_privacy: Postituse privaatsus
         setting_default_sensitive: Alati märgista meedia tundlikuks
         setting_delete_modal: Näita kinnitusdialoogi enne tuututuse kustutamist
+        setting_disable_swiping: Keela pühkimisliigutused
         setting_display_media: Meedia kuvarežiim
         setting_display_media_default: Vaikimisi
         setting_display_media_hide_all: Peida kõik
@@ -160,6 +164,7 @@ et:
         name: Silt
       form_admin_settings:
         custom_css: Kohandatud CSS
+        profile_directory: Luba kasutajate kataloog
         site_contact_email: Kontaktisiku e-post
         site_contact_username: Kontaktisiku kasutajanimi
         site_extended_description: Serveri pikem kirjeldus
