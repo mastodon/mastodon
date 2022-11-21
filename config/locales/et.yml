@@ -55,7 +55,7 @@ et:
       disabled: Keelatud
       display_name: Kuvanimi
       domain: Domeen
-      edit: Redigeeri
+      edit: Muuda
       email: E-post
       email_status: E-posti staatus
       enable: Luba
@@ -129,8 +129,11 @@ et:
       whitelisted: Lubatud
     action_logs:
       action_types:
+        approve_appeal: Rahulda vaidlustus
+        approve_user: Kinnita kasutaja
         assigned_to_self_report: Määras Teavituse
         change_email_user: Kasutaja muutis e-postiaadressit
+        change_role_user: Muuda kasutaja rolli
         confirm_user: Kasutaja kinnitatud
         create_account_warning: Lisas hoiatuse
         create_announcement: Lisas teadaande
@@ -138,6 +141,7 @@ et:
         create_domain_allow: Lisas lubatud domeeni
         create_domain_block: Lisas domeeniblokeeringu
         create_email_domain_block: Lisas e-posti domeeni blokeeringu
+        create_user_role: Loo roll
         demote_user: Alandas kasutaja
         destroy_announcement: Eemaldas teadaande
         destroy_custom_emoji: Eemaldas kohandatud emotikoni
@@ -152,8 +156,10 @@ et:
         enable_user: Lubas kasutaja
         memorialize_account: Tegi kontole memoriaali
         promote_user: Edendas kasutaja
+        reject_appeal: Lükka vaidlustus tagasi
         remove_avatar_user: Kustutas profiilipildi
         reopen_report: Taasavas teavituse
+        resend_user: Saada kinnituskiri uuesti
         reset_password_user: Lähtestas salasõna
         resolve_report: Lahendas teadaande
         silence_account: Vaigistas konto
@@ -229,12 +235,16 @@ et:
       active_users: aktiivsed kasutajad
       interactions: interaktsioonid
       new_users: uued kasutajad
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> ootel vaidlustus"
+        other: "<strong>%{count}</strong> ootel vaidlustust"
       software: Tarkvara
       space: Kettakasutus
       title: Töölaud
       website: Veebileht
     disputes:
       appeals:
+        empty: Vaidlustusi pole.
         title: Vaidlustused
     domain_allows:
       add_new: Luba domeen
@@ -283,6 +293,8 @@ et:
         title: Uus e-posti keelunimekirja sisend
       title: E-posti keelunimekiri
     export_domain_allows:
+      no_file: Faili pole valitud
+    export_domain_blocks:
       no_file: Faili pole valitud
     follow_recommendations:
       language: Keel
@@ -400,6 +412,7 @@ et:
       delete: Kustuta
       privileges:
         administrator: Administraator
+        manage_appeals: Vaidlustuste haldamine
         manage_roles: Rollide haldamine
         manage_rules: Reeglite haldamine
         manage_users: Kasutajate haldamine
@@ -447,6 +460,7 @@ et:
       with_media: Meediaga
     strikes:
       appeal_approved: Vaidlustatud
+      appeal_pending: Vaidlustus on ootel
     tags:
       review: Staatuse ülevaade
       updated_msg: Sildi sätted edukalt uuendatud
@@ -606,10 +620,17 @@ et:
   disputes:
     strikes:
       appeal: Vaidlustus
+      appeal_submitted_at: Vaidlustus esitatud
+      appeals:
+        submit: Esita vaidlustus
+      approve_appeal: Rahulda vaidlustus
       created_at: Kuupäev
+      reject_appeal: Lükka vaidlustus tagasi
       status: 'Postitus #%{id}'
       title_actions:
         none: Hoiatus
+      your_appeal_approved: Teie vaidlustus on rahuldatud
+      your_appeal_pending: Vaidlustus on esitatud
   domain_validator:
     invalid_domain: ei ole sobiv domeeni nimi
   errors:
