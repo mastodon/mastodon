@@ -444,6 +444,9 @@ nn:
     instances:
       availability:
         failure_threshold_reached: Feilterskelen ble nådd %{date}.
+        failures_recorded:
+          one: Mislykkede forsøk på %{count} dag.
+          other: Mislykkede forsøk på %{count} ulike dager.
         no_failures_recorded: Ingen feil registrert.
         title: Tilgjenge
         warning: Det siste forsøket på å koble til denne serveren lyktes ikke
@@ -717,6 +720,8 @@ nn:
   admin_mailer:
     new_appeal:
       actions:
+        mark_statuses_as_sensitive: å merke innleggene sine som følsomme
+        sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
@@ -772,11 +777,13 @@ nn:
     invalid_reset_password_token: Tilgangsnykelen er ugyldig eller utgått. Ver venleg å beda om ein ny ein.
     link_to_otp: Skriv inn en 2-trinnskode fra din 2-trinnspåloggingsenhet eller en gjenopprettingskode
     link_to_webauth: Bruk sikkerhetsnøkkel-enheten din
+    log_in_with: Logg inn med
     login: Innlogging
     logout: Logg ut
     migrate_account: Flytt til ein annan konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     or_log_in_with: Eller logg inn med
+    privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     providers:
       cas: CAS
       saml: SAML
@@ -784,18 +791,26 @@ nn:
     registration_closed: "%{instance} tek ikkje imot nye medlemmar"
     resend_confirmation: Send stadfestingsinstruksjonar på nytt
     reset_password: Attstill passord
+    rules:
+      preamble: Disse angis og håndheves av %{domain}-moderatorene.
+      title: Noen grunnregler.
     security: Tryggleik
     set_new_password: Lag nytt passord
     setup:
       email_below_hint_html: Om e-posten nedfor ikkje er rett, kan du endra han her og få ein ny stadfestings-e-post.
       email_settings_hint_html: Stadfestings-e-posten vart send til %{email}. Om den e-postadressa ikkje er rett, kan du byta adresse i kontoinnstillingane.
       title: Oppsett
+    sign_up:
+      preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
+      title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
       confirming: Ventar på stadfesting av e-post.
+      functional: Kontoen din er fullt operativt.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
       view_strikes: Vis tidligere advarsler mot kontoen din
+    too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -818,6 +833,10 @@ nn:
     errors:
       invalid_key: er ikkje ein gild Ed25519 eller Curve25519 nykel
       invalid_signature: er ikkje ein gild Ed25519-signatur
+  date:
+    formats:
+      default: "%d. %b, %Y"
+      with_month_name: "%d. %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -890,7 +909,7 @@ nn:
     '422':
       content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
       title: Sikkerhetsverifisering feilet
-    '429': Overfyllt
+    '429': For mange forespørsler
     '500':
       content: Orsak. Vi har gjort noko feil.
       title: Denne sida er ikkje rett
@@ -927,6 +946,8 @@ nn:
       public: Offentlege tidsliner
       thread: Samtalar
     edit:
+      add_keyword: Legg til stikkord
+      statuses: Individuelle innlegg
       title: Endr filter
     errors:
       invalid_context: Ingen eller ugild kontekst gjeve
@@ -995,11 +1016,18 @@ nn:
       limit: Du har nådd grensa for kor mange lister du kan ha
   login_activities:
     authentication_methods:
+      otp: to-faktor autentiseringsapp
       password: passord
+      webauthn: sikkerhetsnøkler
+    description_html: Hvis du ser aktivitet som du ikke gjenkjenner, bør du vurdere å endre passordet ditt og aktivere to-trinnsinnlogging.
+    empty: Ingen innloggingshistorikk er tilgjengelig
+    failed_sign_in_html: Mislykket innloggingsforsøk med %{method} fra %{ip} (%{browser})
+    successful_sign_in_html: Vellykket innlogging med %{method} fra %{ip} (%{browser})
     title: Autentiseringshistorikk
   media_attachments:
     validations:
       images_and_video: Kan ikkje leggja ved video til status som allereie inneheld bilete
+      not_ready: Kan ikke legge til filer som ikke er ferdigbehandlet. Prøv igjen om et øyeblikk!
       too_many: Kan ikkje leggja til meir enn 4 filer
   migrations:
     acct: Flytta til
@@ -1039,6 +1067,11 @@ nn:
     carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} leverte en rapport"
+      sign_up:
+        subject: "%{name} registrerte seg"
     favourite:
       body: 'Statusen din vart merkt som favoritt av %{name}:'
       subject: "%{name} merkte statusen din som favoritt"
@@ -1063,6 +1096,8 @@ nn:
       title: Ny framheving
     status:
       subject: "%{name} postet nettopp"
+    update:
+      subject: "%{name} redigerte et innlegg"
   notifications:
     email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
@@ -1106,6 +1141,8 @@ nn:
     other: Anna
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlege tidsliner
+  privacy_policy:
+    title: Retningslinjer for personvern
   reactions:
     errors:
       limit_reached: Grensen for forskjellige reaksjoner nådd
@@ -1129,6 +1166,9 @@ nn:
     status: Kontostatus
   remote_follow:
     missing_resource: Kunne ikke finne URLen for din konto
+  reports:
+    errors:
+      invalid_rules: refererer ikke til gyldige regler
   rss:
     descriptions:
       account: Offentlige innlegg fra @%{acct}
@@ -1213,6 +1253,7 @@ nn:
         other: "%{count} bilete"
     boosted_from_html: Framheva av %{acct_link}
     content_warning: 'Innhaldsåtvaring: %{warning}'
+    default_language: Samme språk som brukergrensesnittet
     disallowed_hashtags:
       one: 'inneheldt ein emneknagg som ikkje var tillaten: %{tags}'
       other: 'inneheldt emneknaggen som ikkje var tillaten: %{tags}'
@@ -1249,6 +1290,15 @@ nn:
     enabled: Slett gamle innlegg automatisk
     enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
     exceptions: Unntak
+    explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
+    ignore_favs: Ignorer favoritter
+    ignore_reblogs: Ignorer fremhevinger
+    interaction_exceptions: Unntak basert på interaksjoner
+    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
+    keep_direct: Behold direktemeldinger
+    keep_direct_hint: Sletter ingen av direktemeldingene dine
+    keep_media: Behold innlegg med mediavedlegg
+    keep_media_hint: Sletter ikke dine egne innlegg som har mediavedlegg
     keep_pinned: Behald festa innlegg
     keep_pinned_hint: Sletter ingen av dine festa innlegg
     keep_polls: Behald røystingar
@@ -1308,13 +1358,16 @@ nn:
     appeal_approved:
       action: Gå til din konto
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
+      subject: Din klage fra %{date} er godkjent
       title: Anke godkjend
     appeal_rejected:
       explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
+      subject: Din klage fra %{date} er avvist
       title: Anke avvist
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
+      title: Nedlasting av arkiv
     suspicious_sign_in:
       change_password: endre passord
       details: 'Her er påloggingsdetaljane:'
@@ -1358,6 +1411,7 @@ nn:
       edit_profile_step: Du kan tilpasse profilen din ved å laste opp et profilbilde, endre visningsnavnet ditt og mer. Du kan velge at nye følgere må godkjennes av deg før de får lov til å følge deg.
       explanation: Her er nokre tips for å koma i gang
       final_action: Kom i gang med å leggja ut
+      final_step: 'Skriv innlegg! Selv uten følgere kan dine offentlige innlegg bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introduksjon.'
       full_handle: Det fulle brukarnamnet ditt
       full_handle_hint: Dette er det du fortel venene dine for at dei skal kunna senda deg meldingar eller fylgja deg frå ein annan tenar.
       subject: Velkomen til Mastodon
