@@ -24,11 +24,11 @@ fo:
   admin:
     account_actions:
       action: Frem atgerð
-      title: Frem kjakleiðsluatgerð á %{acct}
+      title: Frem umsjónaratgerð á %{acct}
     account_moderation_notes:
-      create: Skriva viðmerking
-      created_msg: Kjakleiðsluviðmerking stovnað!
-      destroyed_msg: Kjakleiðsluviðmerking strikað!
+      create: Skriva umsjónarviðmerking
+      created_msg: Umsjónarviðmerking stovnað!
+      destroyed_msg: Umsjónarviðmerking strikað!
     accounts:
       add_email_domain_block: Blokera teldupostdomeni
       approve: Vátta
@@ -97,6 +97,10 @@ fo:
       reject: Nokta
       reset: Endurset
       reset_password: Endurstilla loyniorð
+    action_logs:
+      actions:
+        approve_appeal_html: "%{name} góðkendi umsjónaráheitan frá %{target}"
+        reject_appeal_html: "%{name} avvísti umsjónaráheitan frá %{target}"
     custom_emojis:
       delete: Strika
       list: Listi
@@ -107,8 +111,11 @@ fo:
     domain_blocks:
       export: Flyt út
       import: Flyt inn
+      new:
+        hint: Domeniblokkurin forðar ikki stovnan av kontum í dátugrunninum, men fer afturlítandi og sjálvvirkandi at gera ávísar umsjónarmannagongdir á hesar kontur virknar.
       no_domain_block_selected: Eingir domenu-blokkar vóru broyttir, av tí at eingir vóru valdir
       not_permitted: Tú hevur ikki rættindi at gera hetta
+      private_comment_hint: Viðmerking um hesa domeniavmarking til innanhýsis nýtslu hjá umsjónarfólkunum.
     email_domain_blocks:
       delete: Strika
     export_domain_allows:
@@ -125,6 +132,10 @@ fo:
       new:
         title: Innflyt domenu-blokkar
       no_file: Eingin fíla vald
+    instances:
+      moderation:
+        all: Allir
+        limited: Avmarkaðir
     ip_blocks:
       delete: Strika
       expires_in:
@@ -137,9 +148,12 @@ fo:
     relays:
       delete: Strika
     reports:
+      assigned: Tilnevnt umsjónarfólk
       notes:
         delete: Strika
     roles:
+      categories:
+        moderation: Umsjón
       delete: Strika
     rules:
       delete: Strika
@@ -173,5 +187,7 @@ fo:
   login_activities:
     authentication_methods:
       password: loyniorð
+  moderation:
+    title: Umsjón
   webauthn_credentials:
     delete: Strika
