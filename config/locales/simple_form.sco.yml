@@ -84,5 +84,42 @@ sco:
         require_invite_text: Whan sign-ups require approval bi haun, mak the “Hou dae ye want tae jyne?” text input mandatory raither nor optional
         site_contact_email: Hou fowk kin reach ye fir legal or support inquiries.
         site_contact_username: Hou fowk kin reach ye on Mastodon.
-        site_extended_description: Onie mair information thit mibbie wad be uisefae tae visitors an yer uisers. Kin be structurt wi Markdoon syntax.
+        site_extended_description: Onie mair information thit mibbie wad be uisefae tae visitors an yer uisers. Kin be structurt wi Mairkdoon syntax.
         site_short_description: A wee description fir tae help uniquely identify yer server. Wha is rinnin it, wha is it fir?
+        site_terms: Uise yer ain privacy policy or lea blank fir tae uise the defaut. Kin be structurt wi Mairkdoon syntax.
+        site_title: Hou fowk kin refer tae yer server asides its domain nemm.
+        theme: Theme thit logged oot visitors an new uisers see.
+        thumbnail: A rochly 2:1 image displayit alangsides yer server information.
+        timeline_preview: Logged oot visitors wull be able tae broose the maist recent public posts available on the server.
+        trendable_by_default: Jouk the review bi haun o trendin content. Individual items kin stull get taen aff trends efter the fact.
+        trends: Trends shaw whit posts, hashtags an news stories is gettin traction on yer server.
+      form_challenge:
+        current_password: Ye'r enterin a secure area
+      imports:
+        data: CSV file exportit fae anither Mastodon server
+      invite_request:
+        text: This'll help us luik ower yer application
+      ip_block:
+        comment: Optional. Mind whit ye addit this rule fir.
+        expires_in: IP addresses is a finite resoorce, they'r sometimes shared an aften chynge hauns. Fir this raison, indefinite IP dingies urnae recommendit.
+        ip: Pit in a IPv4 or IPv6 address. Ye kin dingie entire ranges uisin the CIDR syntax. Be carefu no tae snib yersel oot!
+        severities:
+          no_access: Dingie access tae aw resoorces
+          sign_up_block: New sign-ups wullnae be possible
+          sign_up_requires_approval: New sign-ups wull be wantin yer approval
+        severity: Pick whit'll happen wi requests fae this IP
+      rule:
+        text: Describe a rule or requirement fir uisers on this server. Try tae keep it short an simple
+      sessions:
+        otp: 'Pit in the twa-factor code generatit bi yer phone app or uise ane o yer recovery codes:'
+        webauthn: Gin it's a USB key be sure fir tae insert it an, if necessary, tap it.
+      tag:
+        name: Ye kin ainly chynge the case o the letters, fir example, fir tae mak it mair readable
+      user:
+        chosen_languages: Whan ticked, ainly posts in selectit leids wull be displayit in public timelines
+        role: The role controls whit permissions the uiser haes
+      user_role:
+        color: Colour tae be uised fir the role throuoot the UI, as RGB in hex format
+        highlighted: This maks the role visible publicly
+        name: Public nemm o the role, if role is set tae be displayit as a badge
+        permissions_as_keys: Uisers wi this role wull hae access tae...
