@@ -255,18 +255,24 @@ be:
         destroy_user_role_html: "%{name} выдаліў ролю %{target}"
         disable_2fa_user_html: "%{name} амяніў абавязковую двухфактарную верыфікацыю для карыстальніка %{target}"
         disable_custom_emoji_html: "%{name} заблакіраваў эмодзі %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} выключыў токен аўэнтыфікацыі e-mail для %{target}"
         disable_user_html: "%{name} адключыў уваход для карыстальніка %{target}"
         enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} уключыў(ла) такенную e-mail праверку для %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
+        memorialize_account_html: "%{name} перакючыў(ла) %{target} аккаўнт у старонку мемарыялізацыі"
         promote_user_html: "%{name} павысіў карыстальніка %{target}"
         reject_appeal_html: "%{name} адхіліў запыт на абскарджанне %{target}"
         reject_user_html: "%{name} адхіліў рэгістрацыю з %{target}"
         remove_avatar_user_html: "%{name} выдаліў аватар %{target}"
         reopen_report_html: "%{name} зноў адкрыў скаргу %{target}"
         resend_user_html: "%{name} зноў адправіў ліст з пацвярджэннем для %{target}"
+        reset_password_user_html: "%{name} скінул(а) пароль для %{target}"
+        resolve_report_html: "%{name} вырашыў скаргу %{target}"
         sensitive_account_html: "%{name} адзначыў медыя %{target} як далікатнае"
         silence_account_html: "%{name} абмежаваў уліковы запіс %{target}"
         suspend_account_html: "Уліковы запіс %{target} выключаны %{name}"
+        unassigned_report_html: "%{name} знял(а) прызначэнне скаргі %{target}"
         unblock_email_account_html: "%{name} разблакіраваў эл. пошту %{target}"
         unsensitive_account_html: "%{name} зняў адзнаку далікатнае з медыя %{target}"
         unsilence_account_html: "%{name} зняў ліміт з уліковага запісу %{target}"
@@ -280,6 +286,7 @@ be:
       deleted_account: выдалены ўліковы запіс
       empty: Логі не знойдзены.
       filter_by_action: Фільтраваць па дзеянню
+      filter_by_user: Адфільтраваць па карыстальніку
     announcements:
       destroyed_msg: Аб'ява паспяхова выдалена!
       live: Ужывую
