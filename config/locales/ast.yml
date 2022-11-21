@@ -117,6 +117,9 @@ ast:
         policy: Política
         reason: Motivu públicu
       empty: Nun s'atopó nengún dominiu.
+      known_accounts:
+        one: "%{count} cuenta conocida"
+        other: "%{count} cuentes conocíes"
       private_comment: Comentariu priváu
       public_comment: Comentariu públicu
       title: Federación
@@ -137,14 +140,34 @@ ast:
       save_and_enable: Guardar y activar
       status: Estáu
     reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notes"
       are_you_sure: '¿De xuru?'
+      report: 'Informe #%{id}'
       status: Estáu
       title: Informes
     roles:
+      categories:
+        administration: Alministración
+        devops: DevOps
+        invites: Invitaciones
       everyone: Permisos predeterminaos
       permissions_count:
         one: "%{count} permisu"
         other: "%{count} permisos"
+      privileges:
+        manage_announcements: Xestionar los anuncios
+        manage_appeals: Xestionar les apellaciones
+        manage_blocks: Xestionar los bloqueos
+        manage_reports: Xestionar los informes
+        manage_roles: Xestionar los roles
+        manage_rules: Xestionar les regles
+        manage_settings: Xestionar la configuración
+        manage_taxonomies: Xestionar les taxonomíes
+        view_devops: DevOps
+      title: Roles
     settings:
       about:
         title: Tocante a
@@ -169,6 +192,7 @@ ast:
         mark_statuses_as_sensitive: "%{name} marcó l'artículu de %{target} como sensible"
         none: "%{name} unvió una alvertencia a %{target}"
         sensitive: "%{name} marcó la cuenta de %{target} como sensible"
+        suspend: "%{name} suspendió la cuenta de: %{target}"
       appeal_approved: Apellóse
       appeal_pending: Apellación pendiente
     system_checks:
@@ -176,11 +200,21 @@ ast:
         message_html: Nun se pudo conectar con Elasticsearch. Revisa que tea n'execución o desactiva la busca de testos completos
     title: Alministración
     trends:
+      links:
+        title: Enllaces en tendencia
+      pending_review: Revisión pendiente
       statuses:
         title: Artículos en tendencia
       tags:
         dashboard:
           tag_accounts_measure: usos únicos
+        listable: Pue suxerise
+        no_tag_selected: Nun camudó nenguna etiqueta darréu que nun se seleicionó nenguna
+        not_usable: Nun se pue usar
+        title: Etiquetes en tendencia
+        usable: Pue usase
+      title: Tendencies
+      trending: En tendencia
     webhooks:
       events: Eventos
   admin_mailer:
@@ -190,6 +224,7 @@ ast:
       body: "%{reporter} informó de %{target}"
       body_remote: Daquién dende %{domain} informó de %{target}
     new_trends:
+      body: 'Los elementos siguientes precisen una revisión enantes de que puedan apaecer públicamente:'
       new_trending_links:
         title: Enllaces en tendencia
       new_trending_statuses:
@@ -242,6 +277,7 @@ ast:
     status:
       account_status: Estáu de la cuenta
       functional: La cuenta ta completamente operativa.
+      pending: La to solicitú ta pendiente de que la revise'l nuesu personal y ye posible que tarde tiempu. Vas recibir un mensaxe si s'aprueba.
   authorize_follow:
     already_following: Xá tas siguiendo a esta cuenta
     already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
@@ -272,11 +308,17 @@ ast:
       more_details_html: Pa consiguir más detalles, mira la <a href="%{terms_path}">política de privacidá</a>.
   disputes:
     strikes:
+      action_taken: Aición tomada
+      appeal: Apellación
       appeal_rejected: Refugóse l'apellación
+      appeals:
+        submit: Unviu d'una apellación
       approve_appeal: Aprobar l'apellación
+      created_at: Data
       reject_appeal: Refugar l'apellación
       status: 'Artículu #%{id}'
       status_removed: L'artículu xá se quitó del sistema
+      your_appeal_pending: Unviesti una apellación
       your_appeal_rejected: Refugóse la to apellación
   errors:
     '400': The request you submitted was invalid or malformed.
@@ -445,6 +487,7 @@ ast:
       already_voted: Xá votesti nesta encuesta
       expired: La encuesta xá finó
       invalid_choice: La opción de votu escoyida nun esiste
+      too_many_options: nun pue contener más de %{max} elementos
   preferences:
     public_timelines: Llinies de tiempu públiques
   privacy_policy:
@@ -526,8 +569,11 @@ ast:
         one: "%{count} videu"
         other: "%{count} vídeos"
     boosted_from_html: Compartióse'l barritu dende %{acct_link}
+    errors:
+      in_reply_not_found: L'artículu al que tentes de responder paez que nun esiste.
     open_in_web: Abrir na web
     pin_errors:
+      direct: Nun se puen fixar los artículos que son visibles namás pa los usuarios mentaos
       limit: Xá fixesti'l númberu máximu d'artículos
       ownership: Nun se pue fixar l'artículu d'otru perfil
       reblog: Nun se pue fixar un artículu compartíu
@@ -539,6 +585,7 @@ ast:
         one: "%{count} votu"
         other: "%{count} votos"
     show_more: Amosar más
+    sign_in_to_participate: Anicia la sesión pa participar na conversación
     title: '%{name}: «%{quote}»'
     visibilities:
       private: Namái siguidores
