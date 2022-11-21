@@ -64,7 +64,6 @@ module Mastodon
       end
 
       progress.title = 'Estimating workload '
-      progress.total = indices.sum { |index| importers[index].estimate! }
 
       reset_connection_pools!
 
@@ -76,7 +75,6 @@ module Mastodon
         importer.optimize_for_import!
 
         importer.on_progress do |(indexed, deleted)|
-          progress.total = nil if progress.progress + indexed + deleted > progress.total
           progress.progress += indexed + deleted
           added   += indexed
           removed += deleted
