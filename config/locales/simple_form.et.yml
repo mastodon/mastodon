@@ -1,4 +1,3 @@
----
 et:
   simple_form:
     hints:
@@ -24,7 +23,7 @@ et:
       defaults:
         autofollow: Inimesed, kes loovad konto selle kutse läbi, automaatselt jälgivad Teid
         avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
-        bot: See konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
+        bot: Teavita teisi, et see konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
         current_password: Turvalisuse huvides palun sisestage praeguse konto salasõna
         current_username: Kinnitamiseks palun sisestage oma konto kasutajanimi
@@ -87,6 +86,7 @@ et:
         types:
           disable: Keela
           none: Ära tee midagi
+          sensitive: Tundlik
           silence: Vaigista
           suspend: Peata ja taastamatult kustuta konto andmed
         warning_preset_id: Kasuta hoiatuse eelseadistust
@@ -112,6 +112,7 @@ et:
         expires_in: Aegu pärast
         fields: Profiili metaandmed
         header: Päis
+        honeypot: "%{label} (ära sisesta)"
         inbox_url: Relee sisendkausta URL
         irreversible: Kustuta selle asemel, et peita
         locale: Kasutajaliidese keel
@@ -122,7 +123,7 @@ et:
         otp_attempt: Kahesammulise autentimise kood
         password: Salasõna
         phrase: Võtmesõna või fraas
-        setting_advanced_layout: Aktiveeri arenenud veebiliides
+        setting_advanced_layout: Aktiveeri kohandatud veebiliides
         setting_aggregate_reblogs: Grupita upitused ajajoontes
         setting_auto_play_gif: Mängi GIF-e automaatselt
         setting_boost_modal: Näita kinnitusdialoogi enne upitamist
@@ -147,6 +148,8 @@ et:
         setting_use_blurhash: Näita peidetud meedia asemel värvilist pilti
         setting_use_pending_items: Aeglane režiim
         severity: Tõsidus
+        sign_in_token_attempt: Turvakood
+        title: Pealkiri
         type: Impordi tüüp
         username: Kasutajanimi
         username_or_email: Kasutajanimi või e-post
@@ -155,6 +158,17 @@ et:
         with_dns_records: Kaasa domeeni MX kirjed ning IP aadressid
       featured_tag:
         name: Silt
+      form_admin_settings:
+        custom_css: Kohandatud CSS
+        site_contact_email: Kontaktisiku e-post
+        site_contact_username: Kontaktisiku kasutajanimi
+        site_extended_description: Serveri pikem kirjeldus
+        site_short_description: Serveri lühikirjeldus
+        site_terms: Privaatsuspoliitika
+        site_title: Serveri nimi
+        theme: Vaikmisi teema
+        thumbnail: Serveri pisipilt
+        trends: Luba trendid
       interactions:
         must_be_follower: Keela teavitused mittejälgijatelt
         must_be_following: Keela teavitused kasutajatelt, keda sa ei jälgi
@@ -163,6 +177,10 @@ et:
         comment: Kommenteerima
       invite_request:
         text: Miks Te soovite liituda?
+      ip_block:
+        comment: Kommentaar
+        ip: IP
+        severity: Reegel
       notification_emails:
         digest: Saada ülevaatlike e-kirju
         favourite: Saada e-kiri, kui keegi lisab teie staatuse lemmikuks
@@ -171,13 +189,25 @@ et:
         mention: Saada e-kiri, kui keegi mainib Teid
         pending_account: Saada e-kiri, kui uus konto vajab ülevaatlust
         reblog: Saada e-kiri, kui keegi upitab Teie staatust
+      rule:
+        text: Reegel
       tag:
         listable: Luba sellel sildil ilmuda profiilide kataloogis
         name: Silt
         trendable: Luba sellel sildil trendida
         usable: Luba tuututustel seda silti kasutada
-    'no': Ei
+      user:
+        role: Roll
+      user_role:
+        name: Nimi
+        position: Positsioon
+      webhook:
+        events: Lubatud sündmused
+        url: Lõpp-punkti URL
+    'no': 'Ei'
+    not_recommended: Pole soovitatav
     recommended: Soovituslik
     required:
+      mark: "*"
       text: kohustuslik
-    'yes': Jah
+    'yes': 'Jah'
