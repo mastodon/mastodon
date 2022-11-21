@@ -287,8 +287,12 @@ be:
       empty: Логі не знойдзены.
       filter_by_action: Фільтраваць па дзеянню
       filter_by_user: Адфільтраваць па карыстальніку
+      title: Правер логі
     announcements:
       destroyed_msg: Аб'ява паспяхова выдалена!
+      edit:
+        title: Рэдагаваць абвестку
+      empty: Не знайдзена ніводнай абвесткі
       live: Ужывую
       new:
         create: Стварыць аб'яву
@@ -310,14 +314,20 @@ be:
       create_new_category: Стварыць новую катэгорыю
       created_msg: Эмодзі паспяхова створана!
       delete: Выдаліць
+      destroyed_msg: Смайлік паспяхова прыбраны!
       disable: Адключыць
       disabled: Адключана
+      disabled_msg: Смайлік паспяхова адключаны
       emoji: Эмодзі
       enable: Уключыць
       enabled: Уключана
+      enabled_msg: Смайлік паспяхова ўключаны
       image_hint: PNG або GIF да %{size}
       list: Паказваць
       listed: Паказваецца
+      new:
+        title: Дадаць новы смайлік
+      no_emoji_selected: Не атрымалася змяніць ніводзін смайлік, бо ніводзін смайлік не быў абраны.
       not_permitted: Вам не дазволена выконваць гэта дзеянне
       overwrite: Перазапісаць
       shortcode: Кароткі код
@@ -327,12 +337,14 @@ be:
       unlist: Прыбраць
       unlisted: Не ў спісе
       update_failed_msg: Немагчыма абнавіць гэта эмодзі
+      updated_msg: Смайлік паспяхова абноўлены!
       upload: Запампаваць
     dashboard:
       active_users: актыўныя карыстальнікі
       interactions: узаемадзеянні
       media_storage: Медыясховішча
       new_users: новыя карыстальнікі
+      opened_reports: Справаздачы адчынены
       pending_appeals_html:
         one: "<strong>%{count}</strong> апеляцыя ў чарзе"
         few: "<strong>%{count}</strong> апеляцыі ў чарзе"
