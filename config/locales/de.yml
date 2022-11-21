@@ -112,7 +112,7 @@ de:
       public: Öffentlich
       push_subscription_expires: PuSH-Abonnement läuft aus
       redownload: Profil neu laden
-      redownloaded_msg: Das Profil von %{username} wurde von der Quelle erfolgreich aktualisiert
+      redownloaded_msg: Das Profil %{username} wurde vom externen Server erfolgreich aktualisiert
       reject: Ablehnen
       rejected_msg: Anmeldeantrag von %{username} erfolgreich abgelehnt
       remove_avatar: Profilbild entfernen
@@ -520,8 +520,8 @@ de:
       deactivate_all: Alle deaktivieren
       filter:
         all: Alle
-        available: Verfügbar
-        expired: Ausgelaufen
+        available: Noch gültig
+        expired: Abgelaufen
         title: Filter
       title: Einladungen
     ip_blocks:
@@ -601,7 +601,7 @@ de:
         delete: Löschen
         placeholder: Bitte beschreibe, welche Maßnahmen ergriffen wurden oder andere damit verbundene Aktualisierungen …
         title: Notizen
-      notes_description_html: Notizen an andere Moderator*innen und dein zukünftiges Ich anzeigen und hinterlassen
+      notes_description_html: Notiz an dich und andere Moderator*innen hinterlassen
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
@@ -1467,7 +1467,7 @@ de:
         other: "%{count} Videos"
     boosted_from_html: Geteilt von %{acct_link}
     content_warning: 'Inhaltswarnung: %{warning}'
-    default_language: Wie die Oberflächensprache
+    default_language: Wie die Sprache des Webinterface
     disallowed_hashtags:
       one: 'enthält einen verbotenen Hashtag: %{tags}'
       other: 'enthält verbotene Hashtags: %{tags}'
