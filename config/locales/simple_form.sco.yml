@@ -1,1 +1,30 @@
 sco:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Gie the username@domain o the accoont thit ye'r wantin tae flit fae
+      account_migration:
+        acct: Gie the username@domain o the accoont thit ye'r wantin tae flit tae
+      account_warning_preset:
+        text: Ye kin uise post syntax, sic as URLs, hashtags an menshies
+        title: Optional. No visible tae the recipient
+      admin_account_action:
+        include_statuses: The uiser wull see whit posts causit the moderation action or warnin
+        send_email_notification: The uiser wull get a explanation o whit happent wi their accoont
+        text_html: Optional. Ye kin uise post syntax. Ye kin <a href="%{path}">add warnin presets</a> tae save time
+        type_html: Pick whit tae dae wi <strong>%{acct}</strong>
+        types:
+          disable: Stap the uiser fae uisin their accoont, but dinnae delete or hide therir content.
+          none: Uise this fir tae sen a warnin tae the uiser, athoot stertin onie ither actions.
+          sensitive: Mak aw this uiser's media attachments hae a flag sayin it's sensitive.
+          silence: Stap the uiser fae bein able tae post wi public visibility, plank their posts an notes fae fowk no follaein them.
+          suspend: Stap onie interactions fae this accoont an delete its contents. Revertable athin 30 days.
+        warning_preset_id: Optional. Ye kin stull eik custom text tae the en o the preset
+      announcement:
+        all_day: Whan ticked, ainly the dates o the time range'll get shawn
+        ends_at: Optional. Annooncement wull get automatically unpublishit at this time
+        scheduled_at: Lea blank fir tae publish the annooncement the noo
+        starts_at: Optional. In case yer annooncement is boont tae a specific time range
+        text: Ye kin uise post syntax. Please be mindfae o the space the annooncement'll tak up on the uiser's screen
+      appeal:
+        text: Ye kin ainly appeal a strike the wance
