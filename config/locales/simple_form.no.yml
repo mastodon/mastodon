@@ -65,10 +65,30 @@
       email_domain_block:
         domain: Dette kan være domenenavnet som vises i e-postadressen eller MX-oppføringen den bruker. De vil bli sjekket ved oppretting av konto.
         with_dns_records: Et forsøk på å slå opp det gitte domenets DNS-poster vil bli gjort, og resultatene vil også bli blokkert
+      featured_tag:
+        name: 'Her er noen av emneknaggene du har brukt i det siste:'
       filters:
         action: Velg hvilken handling som skal utføres når et innlegg samsvarer med filteret
         actions:
           hide: Skjul filtrert innhold fullstendig, som om det ikke eksisterte
+          warn: Skjul det filtrerte innholdet bak et varsel som omtaler filterets tittel
+      form_admin_settings:
+        backups_retention_period: Behold genererte brukerarkiv i det angitte antall dager.
+        bootstrap_timeline_accounts: Disse kontoene vil bli festet til toppen av nye brukeres følge-anbefalinger.
+        closed_registrations_message: Vises når det er stengt for registrering
+        content_cache_retention_period: Innlegg fra andre tjenere vil slettes etter det angitte antall dager når det er satt til en positiv verdi. Dette kan være irreversibelt.
+        custom_css: Du kan bruke egendefinerte stiler på nettversjonen av Mastodon.
+        mascot: Overstyrer illustrasjonen i det avanserte webgrensesnittet.
+        media_cache_retention_period: Mediafiler som lastes ned vil bli slettet etter det angitte antall dager når det settes til en positiv verdi, og blir lastet ned på nytt ved behov.
+        profile_directory: Profilkatalogen viser alle brukere som har valgt å kunne bli oppdaget.
+        require_invite_text: Når registreringer krever manuell godkjenning, må du gjøre «Hvorfor vil du bli med?»-tekstinput obligatorisk i stedet for valgfritt
+        site_contact_email: Hvordan mennesker får tak i deg for rettslige spørsmål eller brukerstøtte.
+        site_contact_username: Hvordan mennesker kan få tak i deg på Mastodon.
+        site_extended_description: Eventuell ekstra informasjon som kan være nyttig for besøkende og dine brukere. Kan struktureres med Markdown-syntaks.
+        site_short_description: En kort beskrivelse for å bidra til å definere din tjeners identitet. Hvem kjører den, hvem er det for?
+        site_terms: Bruk dine egne personvernregler eller la stå tom for å bruke standarden. Kan struktureres med Markdown-syntaks.
+        site_title: Hva man kan kalle tjeneren din utover domenenavnet.
+        theme: Tema som vises for nye brukere og besøkende som ikke er logget inn.
       form_challenge:
         current_password: Du går inn i et sikkert område
       imports:
@@ -184,6 +204,7 @@
       featured_tag:
         name: Emneknagg
       form_admin_settings:
+        profile_directory: Aktiver profilkatalog
         registrations_mode: Hvem kan opprette konto
         show_domain_blocks_rationale: Vis grunnen til at domener ble blokkert
         site_contact_email: E-postadresse for kontakt
