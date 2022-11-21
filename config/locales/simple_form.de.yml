@@ -30,16 +30,16 @@ de:
         text: Du kannst nur einmal Einspruch gegen einen Verstoß einlegen
       defaults:
         autofollow: Accounts, die sich über deine Einladung registrieren, folgen automatisch deinem Profil
-        avatar: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
-        bot: Dieses Konto führt lediglich automatisierte Aktionen durch und wird möglicherweise nicht überwacht
+        avatar: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
+        bot: Hinweis an andere Nutzer*innen, dass dieses Konto hauptsächlich automatisierte Aktionen durchführt und möglicherweise nicht persönlich betreut wird
         context: In welchem Bereich soll der Filter aktiv sein?
         current_password: Aus Sicherheitsgründen gib bitte das Passwort des aktuellen Kontos ein
         current_username: Um das zu bestätigen, gib den Profilnamen des aktuellen Kontos ein
         digest: Wenn du eine längere Zeit inaktiv bist oder du in deiner Abwesenheit eine Direktnachricht erhalten hast
         discoverable: Erlaube deinem Konto, durch Empfehlungen, Trends und andere Funktionen von Fremden entdeckt zu werden
         email: Du wirst eine E-Mail zur Verifizierung Deiner E-Mail-Adresse erhalten
-        fields: Du kannst bis zu 4 Elemente auf deinem Profil anzeigen lassen, die als Tabelle dargestellt werden
-        header: PNG, GIF oder JPG. Maximal %{size}. Wird auf %{dimensions} px herunterskaliert
+        fields: Du kannst bis zu vier Metadaten auf deinem Profil anzeigen lassen, die als Tabelle dargestellt werden
+        header: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
         irreversible: Bereinigte Beiträge verschwinden unwiderruflich für dich, auch dann, wenn dieser Filter zu einem späteren wieder entfernt wird
         locale: Die Sprache der Oberfläche, E-Mails und Push-Benachrichtigungen
@@ -116,7 +116,7 @@ de:
       tag:
         name: Du kannst zum Beispiel nur die Groß- und Kleinschreibung der Buchstaben ändern, um es lesbarer zu machen
       user:
-        chosen_languages: Wenn Du hier eine oder mehreren Sprachen auswählst, werden ausschließlich solche Beiträge in den öffentlichen Timelines angezeigt
+        chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
         role: Die Rolle legt fest, welche Berechtigungen der Account hat
       user_role:
         color: Die Farbe, die für die Rolle im gesamten UI verwendet wird, als RGB im Hexformat
@@ -163,7 +163,7 @@ de:
         autofollow: Meinem Profil automatisch folgen
         avatar: Profilbild
         bot: Dieses Profil ist ein Bot
-        chosen_languages: Nach Sprachen filtern
+        chosen_languages: Sprachen einschränken
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
         context: Filter nach Bereichen
@@ -173,7 +173,7 @@ de:
         display_name: Anzeigename
         email: E-Mail-Adresse
         expires_in: Läuft ab
-        fields: Tabellenfelder
+        fields: Metadaten
         header: Titelbild
         honeypot: "%{label} (nicht ausfüllen)"
         inbox_url: Inbox-URL des Relais
@@ -254,7 +254,7 @@ de:
       interactions:
         must_be_follower: Benachrichtigungen von Profilen verbergen, die mir nicht folgen
         must_be_following: Benachrichtigungen von Profilen verbergen, denen ich nicht folge
-        must_be_following_dm: Direktnachrichten von Profilen, denen Du nicht folgst, verweigern
+        must_be_following_dm: Direktnachrichten von Profilen, denen ich nicht folge, ablehnen
       invite:
         comment: Kommentar
       invite_request:
