@@ -297,6 +297,8 @@ ast:
       close: O pues zarrar esta ventana.
       return: Amosar el perfil de la cuenta
       web: Dir a la web
+  challenge:
+    hint_html: "<strong>Conseyu:</strong> nun vamos volver pidite la contraseña hasta dientro d'una hora."
   datetime:
     distance_in_words:
       about_x_hours: "%{count} h"
@@ -552,7 +554,7 @@ ast:
     title: Sesiones
   settings:
     account: Cuenta
-    account_settings: Axustes de la cuenta
+    account_settings: Configuración de la cuenta
     appearance: Aspeutu
     authorized_apps: Aplicaciones autorizaes
     back: Volver a Mastodon
@@ -598,6 +600,7 @@ ast:
     sign_in_to_participate: Anicia la sesión pa participar na conversación
     title: '%{name}: «%{quote}»'
     visibilities:
+      direct: Mensaxe direutu
       private: Namái siguidores
       private_long: Namái s'amuesen a los siguidores
       public_long: Tol mundu pue velos
