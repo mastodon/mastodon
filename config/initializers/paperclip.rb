@@ -67,6 +67,12 @@ if ENV['S3_ENABLED'] == 'true'
       retry_limit: 0,
     }
   )
+  
+  if ENV['S3_PERMISSION'] == ''
+    Paperclip::Attachment.default_options.merge!(
+      s3_permissions: ->(*) { nil }
+    )
+  end
 
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
