@@ -41,7 +41,9 @@ class Vacuum::StatusesVacuum
   end
 
   def remove_from_account_conversations(statuses)
-    Status.where(id: statuses.select(&:direct_visibility?).map(&:id)).includes(:account, mentions: :account).each(&:unlink_from_conversations)
+    Status.where(id: statuses.select(&:direct_visibility?).map(&:id)).includes(:account, mentions: :account).each do |status|
+      status.send(:unlink_from_conversations)
+    end
   end
 
   def remove_from_search_index(statuses)
