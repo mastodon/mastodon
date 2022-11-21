@@ -157,6 +157,78 @@ sco:
         enable_user_html: "%{name} turnt on login fir uiser %{target}"
         memorialize_account_html: "%{name} pit %{target}'s accoont ower intae a memorial page"
         promote_user_html: "%{name} promotit uiser %{target}"
+        reject_appeal_html: "%{name} rejectit moderation decision appeal fae %{target}"
+        reject_user_html: "%{name} rejectit sign-up fae %{target}"
+        remove_avatar_user_html: "%{name} taen doon %{target}'s avatar"
+        reopen_report_html: "%{name} reopent clype %{target}"
+        resend_user_html: "%{name} resent confirmation email fir %{target}"
+        reset_password_user_html: "%{name} reset passwird fir uiser %{target}"
+        resolve_report_html: "%{name} resolved clype %{target}"
+        sensitive_account_html: "%{name} mairked %{target}'s media as sensitive"
+        silence_account_html: "%{name} limitit %{target}'s accoont"
+        suspend_account_html: "%{name} suspendit %{target}'s accoont"
+        unassigned_report_html: "%{name} unassigned clype %{target}"
+    custom_emojis:
+      not_permitted: Ye'r no permittit fir tae dae this action
+      overwrite: Owerwrite
+      shortcode: Shortcode
+      shortcode_hint: At least 2 chairacters, ainly alphanumeric chairacters an unnerscores
+      title: Custom emoji
+      uncategorized: No categorized
+      unlist: Unlist
+      unlisted: Unlistit
+      update_failed_msg: Cuidnae update that emoji
+      updated_msg: Emoji successfully updatit!
+      upload: Upload
+    dashboard:
+      active_users: active uisers
+      interactions: interactions
+      media_storage: Media storage
+      new_users: new uisers
+      opened_reports: clypes opent
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> pendin appeal"
+        other: "<strong>%{count}</strong> pendin appeals"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> pendin clype"
+        other: "<strong>%{count}</strong> pendin clypes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pendin hashtag"
+        other: "<strong>%{count}</strong> pendin hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> pendin uiser"
+        other: "<strong>%{count}</strong> pendin uisers"
+      resolved_reports: clypes resolvit
+      software: Saftware
+      sources: Sign-up soorces
+      space: Space uisage
+      title: Dashboord
+      top_languages: Tap active leids
+      top_servers: Tap active servers
+      website: Wabsteid
+    disputes:
+      appeals:
+        empty: Nae appeals fun.
+        title: Appeals
+    domain_allows:
+      add_new: Alloo federation wi domain
+      created_msg: Domain haes been successfully allooed fir federation
+      destroyed_msg: Domain haes been disallooed fae federation
+      export: Export
+      import: Import
+      undo: Disalloo federation wi domain
+    domain_blocks:
+      add_new: Add new domain dingie
+      created_msg: Domain dingie is noo gettin processed
+      destroyed_msg: Domain dingie haes been unduin
+      domain: Domain
+      edit: Edit domain dingie
+      existing_domain_block: Ye'v awriddy pitten stricter limits on %{name}.
+      existing_domain_block_html: Ye'v awriddy pitten stricter limits on %{name}, ye need tae <a href="%{unblock_url}">undingie it</a> furst.
+      export: Export
+      import: Import
+      new:
+        create: Mak dingie
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
