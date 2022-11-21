@@ -441,6 +441,7 @@ ru:
       no_file: Файл не выбран
     export_domain_blocks:
       import:
+        private_comment_template: Импортировано из %{source} %{date}
         title: Импорт доменных блокировок
       new:
         title: Импорт доменных блокировок
@@ -921,6 +922,7 @@ ru:
     warning: Будьте очень внимательны с этими данными. Не делитесь ими ни с кем!
     your_token: Ваш токен доступа
   auth:
+    apply_for_account: Запросить аккаунт
     change_password: Пароль
     delete_account: Удалить учётную запись
     delete_account_html: Удалить свою учётную запись <a href="%{path}">можно в два счёта здесь</a>, но прежде у вас будет спрошено подтверждение.
@@ -1135,6 +1137,7 @@ ru:
     changes_saved_msg: Изменения успешно сохранены!
     copy: Копировать
     delete: Удалить
+    deselect: Снять выделение
     none: Ничего
     order_by: Сортировка
     save_changes: Сохранить изменения
@@ -1148,6 +1151,7 @@ ru:
     invalid_markup: 'невалидная разметка HTML: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Неверный файл CSV. Ошибка: %{error}'
       over_rows_processing_limit: содержит более %{count} строк
     modes:
       merge: Объединить
