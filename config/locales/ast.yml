@@ -73,16 +73,16 @@ ast:
       empty: Nun s'atopó nengún anunciu.
       new:
         title: Anunciu nuevu
-      published_msg: '¡L''anunciu espublizóse coreutamente!'
+      published_msg: '¡L''anunciu espublizóse correutamente!'
       title: Anuncios
       updated_msg: '¡L''anunciu anovóse correutamente!'
     custom_emojis:
       by_domain: Dominiu
-      copy_failed_msg: Nun pudo facese una copia llocal d'esi fustaxe
+      copy_failed_msg: Nun se pudo facer una copia llocal d'esi fustaxe
       emoji: Fustaxe
       no_emoji_selected: Nun camudó nengún fustaxe darréu que nun se seleicionó nengún
       not_permitted: Nun tienes permisu pa facer esta aición
-      update_failed_msg: Nun pudo anovase esi fustaxe
+      update_failed_msg: Nun se pudo anovar esi fustaxe
       updated_msg: '¡El fustaxe anovóse correutamente!'
     dashboard:
       interactions: interaiciones
@@ -117,6 +117,7 @@ ast:
       domain: Dominiu
     instances:
       availability:
+        no_failures_recorded: Nun se rexistró nengún fallu.
         title: Disponibilidá
       by_domain: Dominiu
       content_policies:
@@ -181,8 +182,11 @@ ast:
     settings:
       about:
         title: Tocante a
+      appearance:
+        title: Aspeutu
       branding:
         preamble: La marca del to sirvidor estrémalu d'otros sirvidores de la rede. Ye posible qu'esta información apaeza nuna variedá d'entornos, como la interfaz web de Mastodon, les aplicaciones natives, nes previsualizaciones de los enllaces d'otros sitios web, dientro de les aplicaciones de mensaxería... etc. Por esti motivu, lo meyor ye qu'esta información seya clara, curtia y concisa.
+        title: Marca
       discovery:
         public_timelines: Llinies de tiempu públiques
         trends: Tendencies
@@ -288,6 +292,7 @@ ast:
       account_status: Estáu de la cuenta
       functional: La cuenta ta completamente operativa.
       pending: La to solicitú ta pendiente de que la revise'l nuesu personal y ye posible que tarde tiempu. Vas recibir un mensaxe si s'aprueba.
+    too_fast: El formulariu xubióse mui rápido, volvi tentalo.
   authorize_follow:
     already_following: Xá tas siguiendo a esta cuenta
     already_requested: Yá unviesti una solicitú de siguimientu a esa cuenta
@@ -376,7 +381,7 @@ ast:
     errors:
       deprecated_api_multiple_keywords: Estos parámetros nun se puen camudar dende esta aplicación porque s'apliquen a más d'una pallabra clave de la peñera. Usa una aplicación más recién o la interfaz web.
     index:
-      empty: Nun tienes peñeres.
+      empty: Nun tienes nenguna peñera.
       keywords:
         one: "%{count} pallabra clave"
         other: "%{count} pallabres claves"
@@ -451,6 +456,9 @@ ast:
       too_many: Nun se puen axuntar más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
+    errors:
+      missing_also_known_as: nun ye un nomatu d'esta cuenta
+      move_to_self: nun pue ser la cuenta actual
     incoming_migrations: Mudase dende otra cuenta
     warning:
       followers: Esta aición va mover tolos siguidores de la cuenta actual a la nueva
@@ -564,9 +572,11 @@ ast:
     featured_tags: Etiquetes destacaes
     import: Importación
     import_and_export: Importación ya esportación
+    migrate: Migración de la cuenta
     notifications: Avisos
     preferences: Preferencies
     profile: Perfil
+    statuses_cleanup: Desaniciu automáticu d'artículos
     two_factor_authentication: Autenticación en dos pasos
     webauthn_authentication: Llaves de seguranza
   statuses:
