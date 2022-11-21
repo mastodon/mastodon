@@ -58,6 +58,7 @@ ast:
         revoke: '¿De xuru?'
       index:
         description_html: Estes son les aplicaciones que puen acceder a la cuenta cola API. Si equí hai aplicaciones que nun conoces o hai dalguna aplicación que nun funciona correutamente, pues revocar el so accesu.
+        never_used: Enxamás s'usó
         scopes: Permisos
         title: Les aplicaciones qu'autoricesti
     errors:
@@ -72,6 +73,10 @@ ast:
         unauthorized_client: El veceru nun ta autorizáu pa facer esta solicitú con esti métodu.
         unsupported_response_type: El sirvidor d'autorización nun ye compatible con esti tipu de respuesta.
     grouped_scopes:
+      access:
+        read: Accesu de namás llectura
+        read/write: Accesu de llectura ya escritura
+        write: Accesu de namás escritura
       title:
         accounts: Cuentes
         admin/all: Toles funciones alministratives
