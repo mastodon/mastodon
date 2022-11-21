@@ -32,7 +32,6 @@ const messages = defineMessages({
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
-  share: { id: 'account.share', defaultMessage: 'Share @{name}\'s profile' },
   media: { id: 'account.media', defaultMessage: 'Media' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
@@ -213,11 +212,6 @@ class Header extends ImmutablePureComponent {
 
     if (isRemote) {
       menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: account.get('url') });
-      menu.push(null);
-    }
-
-    if ('share' in navigator) {
-      menu.push({ text: intl.formatMessage(messages.share, { name: account.get('username') }), action: this.handleShare });
       menu.push(null);
     }
 
