@@ -147,8 +147,60 @@ fo:
       suspend: Fyribils ikki í gyldi
       suspended: Ikki í gyldi
       suspension_irreversible: Dáturnar á hesu kontu er endaliga sletttaðar. Tú kann endurstovna kontuna, men dáturnar fáast ikki aftur.
+      suspension_reversible_hint_html: Kontan er gjørd óvirkin og dáturnar verða endaliga strikaðar tann %{date}. Inntil tá kann kontan endurskapast uttan fylgjur. Ynskir tú at strika allar dátur hjá kontuni beinan vegin, so kanst tú gera tað niðanfyri.
+      title: Kontur
+      unblock_email: Strika blokering av telduposti
+      unblocked_email_msg: Blokeringin av teldupostinum hjá %{username} varð strikað
+      unconfirmed_email: Óváttaður teldupostur
+      undo_sensitized: Angra tvingað viðbrekni
       undo_silenced: Strika markið
+      undo_suspension: Angra ógildi
+      unsilenced_msg: Avmarkingin av kontuni hjá %{username} var strikað
+      unsubscribe: Strika hald
+      unsuspended_msg: Kontan hjá %{username} varð gjørd virkin aftur
+      username: Brúkaranavn
+      view_domain: Vís samandrátt fyri domeni
+      warn: Ávara
+      web: Vev
+      whitelisted: Loyvd at sameina
     action_logs:
+      action_types:
+        approve_appeal: Góðkenn kæru
+        approve_user: Góðkenn brúkara
+        assigned_to_self_report: Tilluta melding
+        change_email_user: Broyt teldupost fyri brúkara
+        change_role_user: Broyt leiklut hjá brúkara
+        confirm_user: Vátta brúkara
+        create_account_warning: Stovna ávaring
+        create_announcement: Stovna kunngerð
+        create_canonical_email_block: Stovna teldupostblokering
+        create_custom_emoji: Stovna serligt kenslutekn
+        create_domain_allow: Stovna domeniloyvi
+        create_domain_block: Stovna domeniblokering
+        create_email_domain_block: Stovna teldupost-domeniblokering
+        create_ip_block: Stovna IP reglu
+        create_unavailable_domain: Stovna domeni, sum ikki er tøkt
+        create_user_role: Stovna leiklut
+        demote_user: Lækka brúkara í tign
+        destroy_announcement: Strika kunngerð
+        destroy_canonical_email_block: Strika teldupostblokering
+        destroy_custom_emoji: Strika serligt kenslutekn
+        destroy_domain_allow: Strika domeniloyvi
+        destroy_domain_block: Strika domeniblokering
+        destroy_email_domain_block: Strika teldupost-domeniblokering
+        destroy_instance: Reinsa domeni
+        destroy_ip_block: Strika IP reglu
+        destroy_status: Strika post
+        destroy_unavailable_domain: Strika domeni, sum ikki er tøkt
+        destroy_user_role: Bein burtur leiklut
+        disable_2fa_user: Ger 2FA óvirkið
+        disable_custom_emoji: Ger serligt kenslutekn óvirkið
+        disable_sign_in_token_auth_user: Ger váttan við teldupostateknum óvirkna fyri brúkara
+        disable_user: Ger brúkara óvirknan
+        enable_custom_emoji: Ger serligt kenslutekn virkið
+        enable_sign_in_token_auth_user: Ger váttan við teldupostateknum virkna fyri brúkara
+        enable_user: Ger brúkara virknan
+        memorialize_account: Minnst til Konto
       actions:
         approve_appeal_html: "%{name} góðkendi umsjónaráheitan frá %{target}"
         reject_appeal_html: "%{name} avvísti umsjónaráheitan frá %{target}"
