@@ -62,6 +62,41 @@ sco:
       disabled: Froze
       display_name: Display nemm
       domain: Domain
+      edit: Edit
+      email: Email
+      email_status: Email status
+      enable: Unfreeze
+      enable_sign_in_token_auth: Turn on email token authentication
+      enabled: Turnt on
+      enabled_msg: Successfully unfroze %{username}'s accoont
+      followers: Follaers
+      follows: Follaes
+      header: Heider
+      inbox_url: Inbox URL
+      invite_request_text: Raisons fir jynin
+      invited_by: Invitit bi
+      ip: IP
+      joined: Jynt
+      location:
+        all: Aw
+        local: Local
+        remote: Remote
+        title: Location
+      login_status: Login status
+      media_attachments: Media attachments
+      memorialize: Turn intae memorial
+      memorialized: Memorialized
+      memorialized_msg: Successfully turnt %{username} intae a memorial accoont
+      moderation:
+        active: Active
+        all: Aw
+        pending: Pendin
+        silenced: Limitit
+        suspended: Suspendit
+        title: Moderation
+      moderation_notes: Moderation notes
+      most_recent_activity: Maist recent activity
+      most_recent_ip: Maist recent IP
       remove_header: Tak aff heider
       removed_avatar_msg: Successfully taen aff %{username}'s avatar image
       removed_header_msg: Successfully taen aff %{username}'s heider image
@@ -229,6 +264,48 @@ sco:
       import: Import
       new:
         create: Mak dingie
+        hint: The domain dingie wullnae stap the makkin o accoont entries in the database, but wull retroactively an automatically apply specific moderation methods on thae accoonts.
+        severity:
+          desc_html: "<strong>Limit</strong> wull mak posts fae accoonts at this domain invisible tae oniebody thit isnae follaein them. <strong>Suspend</strong> wull tak doon aw content, media, an profile data fir this domain's accoonts fae yer server. Uise <strong>Naen</strong> if ye juist want tae reject media files."
+          noop: Naen
+          silence: Limit
+    instances:
+      availability:
+        warning: The last attempt tae connect tae this server haesnae been successful
+      back_to_all: Aw
+      back_to_limited: Limitit
+      back_to_warning: Warnin
+      by_domain: Domain
+      confirm_purge: Ye sure ye'r wantin tae delete data fae this domain fir ever?
+      content_policies:
+        comment: Internal note
+        description_html: Ye kin define content policies thit'll be applied tae aw accoonts fae this domain an onie o its subdomains.
+        policies:
+          reject_media: Reject media
+          reject_reports: Reject clypes
+          silence: Limit
+          suspend: Suspend
+        policy: Policy
+        reason: Public raison
+        title: Content policies
+      dashboard:
+        instance_accounts_dimension: Maist follaed accoonts
+        instance_accounts_measure: stowed accoonts
+        instance_followers_measure: oor follaers there
+        instance_follows_measure: their follaers here
+        instance_languages_dimension: Tap leids
+        instance_media_attachments_measure: stowed media attachments
+        instance_reports_measure: clypes aboot them
+        instance_statuses_measure: stowed posts
+      delivery:
+        all: Aw
+        clear: Claer delivery errors
+        failing: Failin
+        restart: Restert delivery
+        stop: Stap delivery
+        unavailable: No available
+      delivery_available: Delivery is available
+      delivery_error_days: Delivery error days
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
