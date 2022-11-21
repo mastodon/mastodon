@@ -115,6 +115,14 @@ fo:
       reject: Nokta
       reset: Endurset
       reset_password: Endurstilla loyniorð
+      search: Leita
+      search_same_ip: Aðrir brúkarar við somu IP
+      security_measures:
+        only_password: Bara loyniorð
+      sensitized: Frámerkt sum viðkvamt
+      silence: Mark
+      silenced: Avmarkað
+      undo_silenced: Strika markið
     action_logs:
       actions:
         approve_appeal_html: "%{name} góðkendi umsjónaráheitan frá %{target}"
@@ -207,5 +215,13 @@ fo:
       password: loyniorð
   moderation:
     title: Umsjón
+  user_mailer:
+    warning:
+      reason: 'Grund:'
+      title:
+        none: Ávaring
+        sensitive: Konto frámerkt sum viðvkæmur
+        silence: Kontoin er avmarkað
   webauthn_credentials:
     delete: Strika
+    registered_on: Skrásett %{date}
