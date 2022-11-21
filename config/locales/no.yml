@@ -268,6 +268,7 @@
         silence_account_html: "%{name} begrenset %{target}s konto"
         suspend_account_html: "%{name} suspenderte %{target}s konto"
         unblock_email_account_html: "%{name} fjernet blokkering av %{target}s e-postadresse"
+        unsensitive_account_html: "%{name} fjernet følsomt-merket på %{target}s innlegg"
         unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
         update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
@@ -526,7 +527,7 @@
       action_taken_by: Handling utført av
       actions:
         delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
-        mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som følsomme, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        mark_as_sensitive_description_html: Mediene i de rapporterte innleggene vil bli merket som følsomme, og en advarsel vil bli notert for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
         silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
@@ -636,7 +637,7 @@
       actions:
         delete_statuses: "%{name} slettet %{target}s innlegg"
         disable: "%{name} frøs %{target}s konto"
-        mark_statuses_as_sensitive: "%{name} markerte %{target}s innlegg som følsomt"
+        mark_statuses_as_sensitive: "%{name} merket %{target}s innlegg som følsomme"
         none: "%{name} sendte en advarsel til %{target}"
         sensitive: "%{name} merket %{target}s konto som følsom"
         silence: "%{name} begrenset %{target}s konto"
@@ -687,6 +688,8 @@
   admin_mailer:
     new_appeal:
       actions:
+        mark_statuses_as_sensitive: å merke innleggene sine som følsomme
+        sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
@@ -1348,8 +1351,8 @@
       explanation:
         delete_statuses: Noen av innleggene dine anses å bryte en eller flere retningslinjer for fellesskapet, og har senere blitt fjernet av moderatorene på %{instance}.
         disable: Du kan ikke lenger bruke kontoen din, men profilen din og andre data forblir intakt. Du kan be om en sikkerhetskopi av dine data, endre kontoinnstillinger eller slette din konto.
-        mark_statuses_as_sensitive: Noen av dine innlegg har blitt markert som følsomme av moderatorene på %{instance}. Dette betyr at folk må trykke på media i innleggene før en forhåndsvisning blir vist. Du kan markere media som følsom når du publiserer i fremtiden.
-        sensitive: Fra nå av, vil alle dine opplastede mediefiler bli markert som følsomme og skjult bak et klikk-advarsel.
+        mark_statuses_as_sensitive: Noen av dine innlegg har blitt merket som følsomme av moderatorene på %{instance}. Dette betyr at folk må trykke på media i innleggene før en forhåndsvisning blir vist. Du kan merke medier som følsomme når du publiserer i fremtiden.
+        sensitive: Fra nå av, vil alle dine opplastede mediefiler bli merket som følsomme og skjult bak et klikk-advarsel.
       reason: 'Årsak:'
       statuses: 'Innlegg angitt:'
       subject:
@@ -1357,7 +1360,7 @@
         disable: Kontoen din, %{acct}, har blitt fryst
         mark_statuses_as_sensitive: Dine innlegg på %{acct} har blitt merket som følsomme
         none: Advarsel for %{acct}
-        sensitive: Dine innlegg på %{acct} vil bli merket som følsomme fra nå
+        sensitive: Dine innlegg på %{acct} vil fra nå av bli merket som følsomme
         silence: Kontoen din, %{acct}, har blitt begrenset
         suspend: Kontoen din, %{acct}, har blitt suspendert
       title:
