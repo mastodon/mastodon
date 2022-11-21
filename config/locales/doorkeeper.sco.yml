@@ -86,7 +86,72 @@ sco:
         invalid_redirect_uri: The redirect uri includit isnae valid.
         invalid_request:
           missing_param: 'Missing requirit parameter: %{value}.'
+          request_not_authorized: Request need fir tae be authorized. Requirit parameter fir authorizin request is missin or invalid.
+          unknown: The request is missin a requirit parameter, includes a unsupportit parameter value, or is itherwise malformt.
+        invalid_resource_owner: The providit resoorce ainer credentials urnae valid, or resoorce ainer cannae be fun
+        invalid_scope: The requestit scope isnae valid, unkent, or malformt.
+        invalid_token:
+          expired: The access token expirit
+          revoked: The access token wis revokt
+          unknown: The access token isnae valid
+        resource_owner_authenticator_not_configured: Resoorce Ainer fin failt doon tae Doorkeeper.configure.resource_owner_authenticator bein unconfigurt.
+        server_error: The authorization server encoontert a unexpectit condition thit preventit it fae fulfillin the request.
+        temporarily_unavailable: The authorization server currently isnae able tae haunnle the request doon tae a temporary owerloadin or maintenance o the server.
+        unauthorized_client: The client isnae authorized fir tae perform this request uisin this method.
+        unsupported_grant_type: The authorization grant type isnae supportit bi the authorization server.
+        unsupported_response_type: The authorization server disnae support this response type.
+    flash:
+      applications:
+        create:
+          notice: Application makkit.
+        destroy:
+          notice: Application deletit.
+        update:
+          notice: Application updatit.
+      authorized_applications:
+        destroy:
+          notice: Application revokit.
+    grouped_scopes:
+      access:
+        read: Read-ainly access
+        read/write: Read an write access
+        write: Write-ainly access
+      title:
+        accounts: Accoonts
+        admin/accounts: Administration o accoonts
+        admin/all: Aw administrative functions
+        admin/reports: Administration o clypes
+        all: Awthin
+        blocks: Dingies
+        bookmarks: Buikmairks
+        conversations: Conversations
+        crypto: En-tae-en encryption
+        favourites: Favourites
+        filters: Filters
+        follow: Relationships
+        follows: Follaes
+        lists: Lists
+        media: Media attachments
+        mutes: Wheeshts
+        notifications: Notes
+        push: Push notes
+        reports: Clypes
+        search: Seirch
+        statuses: Posts
+    layouts:
+      admin:
+        nav:
+          applications: Applications
+          oauth2_provider: OAuth2 Provider
+      application:
+        title: OAuth authorization requirit
     scopes:
+      "admin:read": read aw data on the server
+      "admin:read:accounts": read sensitive information fae aw accoonts
+      "admin:read:reports": read sensitive information fae aw clyped an clyped on accoonts
+      "admin:write": modify aw data on the server
+      "admin:write:accounts": perform moderation actions on accoonts
+      "admin:write:reports": perform moderation actions on clypes
       crypto: uise en-tae-en encryption
       follow: modify accoont relationships
       push: get yer push notifications
