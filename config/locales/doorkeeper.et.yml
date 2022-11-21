@@ -68,6 +68,11 @@ et:
       confirmations:
         revoke: Olete kindel?
       index:
+        authorized_at: Autoriseeritud %{date}
+        last_used_at: Viimati kasutatud %{date}
+        never_used: Pole kasutatud
+        scopes: Õigused
+        superapp: Sisemine
         title: Autoriseeritud rakendused
     errors:
       messages:
@@ -99,6 +104,29 @@ et:
       authorized_applications:
         destroy:
           notice: Rakendus tagasi lükatud.
+    grouped_scopes:
+      access:
+        read: Vaid lugemisõigus
+        read/write: Lugemis- ja kirjutusõigus
+        write: Vaid kirjutusõigus
+      title:
+        accounts: Kontod
+        all: Kõik
+        bookmarks: Järjehoidjad
+        conversations: Vestlused
+        crypto: Otspunktkrüpteerimine
+        favourites: Lemmikud
+        filters: Filtrid
+        follow: Seosed
+        follows: Jälgimised
+        lists: Nimistud
+        media: Lisatud meedia
+        mutes: Vaigistused
+        notifications: Teavitused
+        push: Tõuketeated
+        reports: Teavitused
+        search: Otsing
+        statuses: Postitused
     layouts:
       admin:
         nav:
