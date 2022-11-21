@@ -199,7 +199,18 @@ el:
         update_status: Ενημέρωση Κατάστασης
       actions:
         approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
+        destroy_email_domain_block_html: "Ο/Η %{name} ξεμπλόκαρε το email domain %{target}"
         destroy_instance_html: "Ο/Η %{name} εκκαθάρισε τον τομέα %{target}"
+        destroy_ip_block_html: "Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}"
+        destroy_status_html: "Ο/Η %{name} αφαίρεσε την ανάρτηση του/της %{target}"
+        destroy_unavailable_domain_html: "Ο/Η %{name} ξανάρχισε να τροφοδοτεί το domain %{target}"
+        destroy_user_role_html: "Ο/Η %{name} διέγραψε τον ρόλο του %{target}"
+        disable_2fa_user_html: "Ο/Η %{name} απενεργοποίησε το two factor requirement για τον χρήστη %{target}"
+        disable_custom_emoji_html: "Ο/Η %{name} απενεργοποίησε το emoji %{target}"
+        disable_sign_in_token_auth_user_html: "Ο/Η %{name} απενεργοποίησε την πιστοποίηση e-mail token του %{target}"
+        disable_user_html: "Ο/Η %{name} απενεργοποίησε τη σύνδεση για τον χρήστη %{target}"
+        enable_custom_emoji_html: "Ο/Η %{name} ενεργοποίησε το emoji %{target}"
+        enable_sign_in_token_auth_user_html: "Ο/Η %{name} ενεργοποίησε την πιστοποίηση e-mail token του %{target}"
         reject_user_html: "%{name} απορρίφθηκε εγγραφή από %{target}"
         unblock_email_account_html: "%{name} ξεμπλόκαρε τη διεύθυνση ηλεκτρονικού ταχυδρομείου του %{target}"
       deleted_account: διαγραμμένος λογαριασμός
