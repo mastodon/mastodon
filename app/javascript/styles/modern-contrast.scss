@@ -1,0 +1,9 @@
+@import 'modern/contrast';
+@import 'application';
+@import 'modern/style';
+@import 'contrast/diff';
+
+.layout-multiple-columns .column {
+	flex-grow: 1;
+	max-width: 500px;
+}
