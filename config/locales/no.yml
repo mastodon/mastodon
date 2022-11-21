@@ -428,6 +428,9 @@
     instances:
       availability:
         failure_threshold_reached: Feilterskelen ble nådd %{date}.
+        failures_recorded:
+          one: Mislykkede forsøk på %{count} dag.
+          other: Mislykkede forsøk på %{count} ulike dager.
         no_failures_recorded: Ingen feil registrert.
         title: Tilgjengelighet
         warning: Det siste forsøket på å koble til denne serveren lyktes ikke
