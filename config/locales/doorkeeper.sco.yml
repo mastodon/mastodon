@@ -1,1 +1,119 @@
 sco:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Application nemm
+        redirect_uri: Redireck URI
+        scopes: Scopes
+        website: Application wabsteid
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: cannae contain a fragment.
+              invalid_uri: haes tae be a valid URI.
+              relative_uri: haes tae be an absolute URI.
+              secured_uri: haes tae be a HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Alloo
+        cancel: Cancel
+        destroy: Destroy
+        edit: Edit
+        submit: Pit in
+      confirmations:
+        destroy: Ye sure?
+      edit:
+        title: Edit application
+      form:
+        error: Ooft! Check yer form fir possible mistaks
+      help:
+        native_redirect_uri: Uise %{native_redirect_uri} fir local tests
+        redirect_uri: Uise ae line per URI
+        scopes: Separate scopes wi spaces. Lea blank fir tae uise the default scopes.
+      index:
+        application: Application
+        callback_url: Cawback URL
+        delete: Delete
+        empty: Ye'v nae applications.
+        name: Nemm
+        new: New application
+        scopes: Scopes
+        show: Shaw
+        title: Yer applications
+      new:
+        title: New application
+      show:
+        actions: Actions
+        application_id: Client key
+        callback_urls: Cawback URLs
+        scopes: Scopes
+        secret: Client secret
+        title: 'Application: %{name}'
+    authorizations:
+      buttons:
+        authorize: Authorize
+        deny: Deny
+      error:
+        title: A error haes occurrt
+      new:
+        prompt_html: "%{client_name} wad like permission fir tae access yer accoont. It is a third-party application. <strong>Gin ye dinnae trust it, then ye shuidnae authorize it.</strong>"
+        review_permissions: Luik ower permissions
+        title: Authorization requirt
+      show:
+        title: Copy this authorization code an paste it in tae the application.
+    authorized_applications:
+      buttons:
+        revoke: Tak awa
+      confirmations:
+        revoke: Ye sure?
+      index:
+        authorized_at: Authorized on %{date}
+        description_html: This is the applications thit kin access yer accoont uisin the API. Gin there applications thit ye dinnae recognize here, or a application isnae behavinnricht, ye kin tak awa its access.
+        last_used_at: Last uised on %{date}
+        never_used: Never uised
+        scopes: Permissions
+        superapp: Internal
+        title: Yer authorized applications
+    errors:
+      messages:
+        access_denied: The resoorce ainer or authorization server denied the request.
+        credential_flow_not_configured: Resoorce Ainer Passwird Credentials flow failed doon tae Doorkeeper.configure.resource_owner_from_credentials no bein configurt.
+        invalid_client: Client authentication failed doon tae unkent client, nae client authentication includit, or unsupportit authentication method.
+        invalid_grant: The provided authorization grant isnae valid, expirit, revokt, disnae match the redirection URI uised in the authorization request, or wis issued tae anither client.
+        invalid_redirect_uri: The redirect uri includit isnae valid.
+        invalid_request:
+          missing_param: 'Missing requirit parameter: %{value}.'
+    scopes:
+      crypto: uise en-tae-en encryption
+      follow: modify accoont relationships
+      push: get yer push notifications
+      read: read aw yer accoont's data
+      "read:accounts": see accoonts information
+      "read:blocks": see yer dingies
+      "read:bookmarks": see yer buikmairks
+      "read:favourites": see yer favourites
+      "read:filters": see yer filters
+      "read:follows": see yer follaes
+      "read:lists": see yer lists
+      "read:mutes": see yet wheeshts
+      "read:notifications": see yer notes
+      "read:reports": see yer clypes
+      "read:search": seirch on yer behauf
+      "read:statuses": see aw posts
+      write: modify aw yer accoont's data
+      "write:accounts": modify yer profile
+      "write:blocks": dingie accoonts an domains
+      "write:bookmarks": buikmairk posts
+      "write:conversations": wheesht an delete conversations
+      "write:favourites": favourite posts
+      "write:filters": mak filters
+      "write:follows": follae fowk
+      "write:lists": mak lists
+      "write:media": upload media files
+      "write:mutes": wheesht fowk an conversations
+      "write:notifications": claer yer notes
+      "write:reports": clype on ither fowk
+      "write:statuses": publish posts
