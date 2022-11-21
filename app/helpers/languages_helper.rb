@@ -197,7 +197,6 @@ module LanguagesHelper
     lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
     sco: ['Scots', 'Scots'].freeze,
     sma: ['Southern Sami', 'Åarjelsaemien Gïele'].freeze,
-    sme: ['Northern Sami', 'Davvisámegiella'].freeze,
     smj: ['Lule Sami', 'Julevsámegiella'].freeze,
     tok: ['Toki Pona', 'toki pona'].freeze,
     zba: ['Balaibalan', 'باليبلن'].freeze,
