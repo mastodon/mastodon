@@ -23,8 +23,8 @@ const messages = defineMessages({
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
-  canonical_link: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
-  external_link: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  canonical_link: { id: 'link.canonical', defaultMessage: 'Link to canonical resource' },
+  external_link: { id: 'link.external', defaultMessage: 'External link' },
 });
 
 export default  @injectIntl
