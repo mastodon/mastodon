@@ -4,7 +4,7 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
   attributes :id, :username, :domain, :created_at,
              :email, :ip, :role, :confirmed, :suspended,
              :silenced, :sensitized, :disabled, :approved, :locale,
-             :invite_request
+             :invite_request, :media_attachments
 
   attribute :created_by_application_id, if: :created_by_application?
   attribute :invited_by_account_id, if: :invited?
@@ -83,4 +83,9 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
   def ip
     ips&.first&.ip
   end
+
+  def media_attachments
+    object.media_attachments.sum(:file_file_size)
+  end
+
 end
