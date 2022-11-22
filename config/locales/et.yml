@@ -560,6 +560,8 @@ et:
     registration_closed: "%{instance} ei võta vastu uusi liikmeid"
     resend_confirmation: Saada kinnitusjuhendid uuesti
     reset_password: Lähtesta salasõna
+    rules:
+      title: Mõned põhireeglid.
     security: Turvalisus
     set_new_password: Määra uus salasõna
     setup:
@@ -571,6 +573,7 @@ et:
       confirming: Ootan e-posti kinnitust.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
       redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
+    too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
   authorize_follow:
     already_following: Te juba jälgite seda kontot
     already_requested: Te juba saatsite jälgimistaotluse sellele kontole
@@ -631,6 +634,7 @@ et:
     strikes:
       appeal: Vaidlustus
       appeal_submitted_at: Vaidlustus esitatud
+      appealed_msg: Vaidlustus esitatud. Selle rahuldamisel saabub teadaanne.
       appeals:
         submit: Esita vaidlustus
       approve_appeal: Rahulda vaidlustus
@@ -644,7 +648,7 @@ et:
   domain_validator:
     invalid_domain: ei ole sobiv domeeni nimi
   errors:
-    '400': Toiming oli vale või valesti vormindatud.
+    '400': Esitatud päring oli vigane või valesti vormindatud.
     '403': Sul puudub õigus seda lehte vaadata.
     '404': Soovitud lehte ei leitud.
     '406': See lehekülg ei ole soovitavas formaadis saadaval.
@@ -797,6 +801,9 @@ et:
   moderation:
     title: Moderatsioon
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} esitas raporti"
     favourite:
       body: '%{name} lisas Teie staatuse lemmikutesse:'
       subject: "%{name} märkis su staatuse lemmikuks"
@@ -1035,6 +1042,8 @@ et:
       subject: Teie arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
     warning:
+      appeal: Vaidlustuse esitamine
+      appeal_description: Kui see võib olla eksitus, on võimalik %{instance} haldajatele esitada vaidlustus.
       categories:
         spam: Rämpspost
       reason: 'Põhjus:'
