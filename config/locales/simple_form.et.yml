@@ -66,6 +66,9 @@ et:
         text: See aitab meil üle vaadata Teie taotlust
       ip_block:
         expires_in: IP-aadressid on lõplik ressurss ja on tihtipeale ühiskasutuses või vahetub kasutaja. Sel põhjusel pole kestvad IP-piirangud soovituslikud.
+        severities:
+          sign_up_block: Uued liitumised pole võimalikud
+          sign_up_requires_approval: Uued liitumised vajavad kinnitamist
       sessions:
         otp: 'Sisesta kahesammulise autentimise kood loodud Teie mobiilirakenduse poolt või sisesta mõni taastuskood:'
       tag:
@@ -189,6 +192,9 @@ et:
       ip_block:
         comment: Kommentaar
         ip: IP
+        severities:
+          sign_up_block: Keela liitumised
+          sign_up_requires_approval: Piira liitumisi
         severity: Reegel
       notification_emails:
         digest: Saada ülevaatlike e-kirju
