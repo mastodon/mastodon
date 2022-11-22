@@ -57,12 +57,16 @@ ast:
           explanation: Amestóse la llave de seguranza siguiente a la cuenta
           subject: 'Mastodon: llave de seguranza nueva'
           title: Amestóse una llave de seguranza nueva
+        deleted:
+          title: Desanicióse una de les to llaves de seguranza
       webauthn_disabled:
         explanation: Desactivóse l'autenticación con llaves de seguranza na cuenta. Agora namás ye posible aniciar la sesión col pase xeneráu pola aplicación TOTP empareyada.
         subject: 'Mastodon: desactivóse l''autenticación con llaves de seguranza'
+        title: Llaves de seguranza desactivaes
       webauthn_enabled:
         explanation: Activóse l'autenticación con llaves de seguranza na cuenta. Agora pues usar la llave p'aniciar la sesión.
         subject: 'Mastodon: activóse l''autenticación con llaves de seguranza'
+        title: Llaves de seguranza activaes
     passwords:
       send_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
       send_paranoid_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un enllaz pa recuperar la contraseña. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
