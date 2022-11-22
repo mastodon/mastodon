@@ -248,6 +248,10 @@ fo:
         destroy_domain_block_html: "%{name} strikaði blokering av navnaøkinum %{target}"
         destroy_email_domain_block_html: "%{name} strikaði blokering av teldupostanavnaøkinum %{target}"
         destroy_instance_html: "%{name} reinsaði navnaøkið %{target}"
+        destroy_ip_block_html: "%{name} slettaðar reglur fyri IP %{target}"
+        destroy_status_html: "%{name} slettaði upplegg hjá %{target}"
+        destroy_unavailable_domain_html: "%{name} tók upp aftir veiting til navnaøkið %{target}"
+        destroy_user_role_html: "%{name} slettaði leiklutin hjá %{target}"
         reject_appeal_html: "%{name} avvísti umsjónaráheitan frá %{target}"
       deleted_account: strikað konta
       empty: Eingir loggar funnir.
@@ -266,20 +270,31 @@ fo:
       publish: Legg út
       published_msg: Kunngerð útgivin!
     custom_emojis:
+      by_domain: Økisnavn
+      copy: Avrita
       delete: Strika
+      enable: Set í gildi
+      enabled: Í gildi
       list: Listi
       unlist: Tak av listanum
+    dashboard:
+      active_users: virknir brúkarar
+      new_users: nýggir brúkarar
     domain_allows:
       export: Flyt út
       import: Flyt inn
     domain_blocks:
+      domain: Økisnavn
       export: Flyt út
       import: Flyt inn
       new:
         hint: Navnaøkjablokeringin forðar ikki stovnan av kontum í dátugrunninum, men fer afturlítandi og sjálvvirkandi at gera ávísar umsjónarmannagongdir á hesar kontur virknar.
+        severity:
+          silence: Mark
       no_domain_block_selected: Ongar navnaøkjablokeringar vóru broyttar, tí ongar vóru valdar
       not_permitted: Tú hevur ikki rættindi at gera hetta
       private_comment_hint: Viðmerking um hesa navnaøkjaavmarking til innanhýsis nýtslu hjá umsjónarfólkunum.
+      public_comment: Sjónlig viðmerking
     email_domain_blocks:
       delete: Strika
     export_domain_allows:
@@ -297,10 +312,20 @@ fo:
         title: Innflyt navnaøkjablokeringar
       no_file: Eingin fíla vald
     instances:
+      by_domain: Økisnavn
+      content_policies:
+        policies:
+          silence: Mark
       moderation:
         all: Allir
         limited: Avmarkaðir
+    invites:
+      filter:
+        all: Alt
+        expired: Útgingið
+        title: Filtur
     ip_blocks:
+      add_new: Stovna reglu
       delete: Strika
       expires_in:
         '1209600': 2 vikur
@@ -309,12 +334,19 @@ fo:
         '31556952': 1 ár
         '86400': 1 dag
         '94670856': 3 ár
+      new:
+        title: Stovna nýggja IP reglu
     relays:
       delete: Strika
+      enable: Set í gildi
+    report_notes:
+      today_at: Í dag kl. %{time}
     reports:
       assigned: Tilnevnt umsjónarfólk
+      no_one_assigned: Eingin
       notes:
         delete: Strika
+        title: Viðmerkingar
     roles:
       categories:
         moderation: Umsjón
