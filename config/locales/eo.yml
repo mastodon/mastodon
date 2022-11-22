@@ -668,7 +668,7 @@ eo:
         manage_settings_description: Permesi uzantojn ŝanĝi retejoopciojn
         manage_taxonomies: Administri kategoriarojn
         manage_taxonomies_description: Permesi uzantojn kontroli popularan enhavon kaj ĝisdatigi kradvortopciojn
-        manage_user_access: Administri uzantotrairon
+        manage_user_access: Administri uzantoaliron
         manage_user_access_description: Permesi uzantojn malebligi autentiko kaj retpoŝtodetalo de aliaj uzantoj
         manage_users: Administri uzantojn
         manage_users_description: Permesi uzantaojn vidi detalojn de aliaj uzantoj kaj administri ilin
@@ -1268,10 +1268,16 @@ eo:
       redirect: Via nuna profilo de konto ĝisdatigotas kun alidirektoavizo
   moderation:
     title: Moderigado
+  move_handler:
+    carry_blocks_over_text: Ĉi tiu uzanto translokis de %{acct} kiun vi blokis.
+    carry_mutes_over_text: Ĉi tiu uzanto translokis de %{acct} kiun vi silentigis.
+    copy_account_note_text: 'Ĉi tiu uzanto translokis de %{acct}, ĉi tio estas viaj antauaj notoj pri ĝi:'
   navigation:
     toggle_menu: Baskuli menuon
   notification_mailer:
     admin:
+      report:
+        subject: "%{name} sendis raporton"
       sign_up:
         subject: "%{name} registriĝis"
     favourite:
@@ -1292,6 +1298,8 @@ eo:
       body: '%{name} menciis vin en:'
       subject: '%{name} menciis vin'
       title: Nova mencio
+    poll:
+      subject: Enketo de %{name} finitas
     reblog:
       body: '%{name} diskonigis vian mesaĝon:'
       subject: "%{name} diskonigis vian mesaĝon"
@@ -1316,6 +1324,7 @@ eo:
           trillion: Dn
   otp_authentication:
     code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
+    description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong> per autentilprogramaro, ensaluto bezonas vi havi vian telefonon.
     enable: Ebligi
     instructions_html: "<strong>Skanu ĉi tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo en via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos enmeti."
     manual_instructions: 'Se vi ne povas skani la QR-kodon kaj bezonas enmeti ĝin mane, jen la tut-teksta sekreto:'
@@ -1367,9 +1376,13 @@ eo:
     status: Statuso de la konto
   remote_follow:
     missing_resource: La bezonata URL de plusendado por via konto ne estis trovita
+  reports:
+    errors:
+      invalid_rules: ne referencas validajn regulojn
   rss:
     content_warning: 'Averto pri enhavo:'
     descriptions:
+      account: Publikaj mesaĝoj de @%{acct}
       tag: 'Publikaj afiŝoj pri #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Vi transpasis la limigon al %{limit} samtage planitaj mesaĝoj
@@ -1416,6 +1429,7 @@ eo:
     revoke: Malvalidigi
     revoke_success: Seanco sukcese malvalidigita
     title: Seancoj
+    view_authentication_history: Vidi autentighistorion de via konto
   settings:
     account: Konto
     account_settings: Agordoj de konto
@@ -1435,6 +1449,8 @@ eo:
     preferences: Preferoj
     profile: Profilo
     relationships: Sekvatoj kaj sekvantoj
+    statuses_cleanup: Automata mesaĝforigo
+    strikes: Kontroladmonoj
     two_factor_authentication: Dufaktora aŭtentigo
     webauthn_authentication: Sekurecaj ŝlosiloj
   statuses:
@@ -1456,9 +1472,12 @@ eo:
       one: 'enhavas malpermesitan kradvorton: %{tags}'
       other: 'enhavis malpermesitan kradvorton: %{tags}'
     edited_at_html: Redaktis je %{date}
+    errors:
+      in_reply_not_found: Mesaĝo kiun vi provas respondi ŝajnas ne ekzisti.
     open_in_web: Malfermi retumile
     over_character_limit: limo de %{max} signoj transpasita
     pin_errors:
+      direct: Mesaĝoj kiu videbla nun al la uzantoj ne povas alpinglitis
       limit: Vi jam atingis la maksimuman nombron de alpinglitaj mesaĝoj
       ownership: Mesaĝo de iu alia ne povas esti alpinglita
       reblog: Diskonigo ne povas esti alpinglita
@@ -1486,14 +1505,23 @@ eo:
       unlisted_long: Ĉiuj povas vidi, sed nelistigita en publikaj templinioj
   statuses_cleanup:
     enabled: Aŭtomate forigi malnovajn postojn
+    enabled_hint: Automate forigi viajn mesaĝojn kiam ili atingas la aĝlimon kaj havas escepton
     exceptions: Esceptoj
+    explanation: Forigi mesaĝojn estas rimeda ago, do ĉi tio malrapide sekve faratas kiam la servilo ne estas okupita.
     ignore_favs: Ignori stelumojn
     ignore_reblogs: Ignori diskonigojn
+    interaction_exceptions: Esceptoj lau interagoj
     interaction_exceptions_explanation: Sciu ke estas neniu garantio ke mesaĝo estos forigita se ĝi iras sub la limo de diskonigoj aŭ stelumoj post atingi ĝin.
     keep_direct: Konservi rektajn mesaĝojn
     keep_direct_hint: Ne forigos viajn rektajn mesagôjn
     keep_media: Konservi mesaĝojn kun aŭdovidaj aldonaĵoj
     keep_media_hint: Ne forigi mesaĝojn kiuj enhavas aŭdovidajn aldonaĵojn
+    keep_pinned: Konservi alpinglitajn mesaĝojn
+    keep_pinned_hint: Ne forigi viajn ajn alpinglitajn mesaĝojn
+    keep_polls: Konservi enketojn
+    keep_polls_hint: Ne forigi viajn ajn enketojn
+    keep_self_bookmark: Konservi mesaĝojn kiun vi legsignis
+    keep_self_bookmark_hint: Ne forigi viajn siajn mesaĝojn se vi legsignis ilin
     keep_self_fav: Konservi mesaĝojn kiujn vi stelumis
     keep_self_fav_hint: Ne forigi proprajn mesaĝojn se vi stelumis ilin
     min_age:
@@ -1505,12 +1533,18 @@ eo:
       '604800': 1 semajno
       '63113904': 2 jaroj
       '7889238': 3 monatoj
+    min_age_label: Aĝlimo
     min_favs: Konservi mesaĝojn stelumitajn almenaŭ
     min_favs_hint: Ne forigas mesaĝojn de vi kiuj ricevis almenaŭ tiom da stelumoj. Lasu malplena por forigi mesaĝojn sendepende de la nombro de stelumoj
+    min_reblogs: Konservi diskonitajn mesaĝojn almenau
+    min_reblogs_hint: Ne forigi ajn viajn mesaĝojn kiu diskonitas almenau ĉifoje
   stream_entries:
     pinned: Alpinglita
     reblogged: diskonigita
     sensitive_content: Tikla enhavo
+  strikes:
+    errors:
+      too_late: Estas tro malfrua por apelacii ĉi tiun admonon
   tags:
     does_not_match_previous_name: ne kongruas kun la antaŭa nomo
   themes:
@@ -1532,6 +1566,7 @@ eo:
     generate_recovery_codes: Krei realirajn kodojn
     lost_recovery_codes: Realiraj kodoj permesas rehavi aliron al via konto se vi perdis vian telefonon. Se vi perdis viajn realirajn kodojn, vi povas rekrei ilin ĉi tie. Viaj malnovaj realiraj kodoj iĝos eksvalidaj.
     methods: Metodoj de dufaktora aŭtentigo
+    otp: Aŭtentigprogramaro
     recovery_codes: Realiraj kodoj
     recovery_codes_regenerated: Realiraj kodoj sukcese rekreitaj
     recovery_instructions_html: Se vi perdas aliron al via telefono, vi povas uzi unu el la subaj realiraj kodoj por rehavi aliron al via konto. <strong>Konservu realirajn kodojn sekure</strong>. Ekzemple, vi povas printi ilin kaj konservi ilin kun aliaj gravaj dokumentoj.
@@ -1539,8 +1574,11 @@ eo:
   user_mailer:
     appeal_approved:
       action: Iri al via konto
+      explanation: La apelacio de la admono kontra via konto je %{strike_date} pri sendodato %{appeal_date} aprobitas.
+      subject: Via apelacio de %{date} aprobitas
       title: Apelacio estis aprobita
     appeal_rejected:
+      explanation: La apelacio je %{strike_date} pri dato %{appeal_date} malakceptitas.
       subject: Via apelacio de %{date} estis malaprobita
       title: Apelacio estis malaprobita
     backup_ready:
@@ -1549,24 +1587,45 @@ eo:
       title: Arkiva elŝuto
     suspicious_sign_in:
       change_password: ŝanĝi vian pasvorton
+      details: 'Detaloj pri ensaluto:'
+      explanation: Ni detektas ensaluton al via konto de nova IP-adreso.
+      further_actions_html: Se ne estas vi, ni rekomendas ke vi %{action} tuj por sekurigi vian konton.
+      subject: Via konto aliritas de nova IP-adreso
       title: Nova ensaluto
     warning:
+      appeal: Sendi apelacion
+      appeal_description: Se vi pensas ke ĉi tio estas eraro, vi povas sendi apelacion al la teamo de %{instance}.
       categories:
         spam: Spamo
+        violation: Enhavo malsekvas la komunumgvidilojn
+      explanation:
+        delete_statuses: Kelkaj viaj mesaĝoj trovitas malsekvi komunumgvidilojn kaj forigitas de kontrolantoj de %{instance}.
+        disable: Vi ne povas uzi vian konton plu sed via profilo kaj alia datumo restas bone.
+        mark_statuses_as_sensitive: Kelkaj viaj mesaĝoj markitas kiel sentemaj de kontrolantoj de %{instance}. Vi povas marki mem kiam mesaĝi dum la estonteco.
+        sensitive: Malantau ol nun, ĉiuj viaj alŝutitaj audovidaĵoj markitas kiel sentemaj kaj kaŝitas.
+        silence: Vi ankorau povas uzi vian konton sed nur personoj kiu jam sekvis vin vidos viaj mesaĝoj ĉe ĉi tiu servilo.
+        suspend: Vi ne povas uzi vian konton plu, kaj via profilo kaj aliaj datumoj ne estas disponeblaj plu.
       reason: 'Kialo:'
+      statuses: 'Mesaĝoj ripetitaj:'
       subject:
+        delete_statuses: Viaj mesaĝoj ĉe %{acct} forigitas
         disable: Via konto %{acct} estas frostigita
+        mark_statuses_as_sensitive: Viaj mesaĝoj ĉe %{acct} markitas kiel sentemaj
         none: Averto por %{acct}
+        sensitive: Viaj mesaĝoj ĉe %{acct} markitas kiel sentemaj malantau ol nun
         silence: Oni limigis vian konton %{acct}
         suspend: Via konto %{acct} estas suspendita
       title:
         delete_statuses: Afiŝoj forigitaj
         disable: Konto frostigita
+        mark_statuses_as_sensitive: Mesaĝoj markitaj kiel sentemaj
         none: Averto
+        sensitive: Konto markita kiel sentema
         silence: Konto limigita
         suspend: Konto suspendita
     welcome:
       edit_profile_action: Agordi profilon
+      edit_profile_step: Vi povas personecigi vian profilon per alŝuti profilbildon, ŝangi vian montronomo kaj pli.
       explanation: Jen kelkaj konsiloj por helpi vin komenci
       final_action: Ekmesaĝi
       final_step: 'Ekmesaĝu! Eĉ sen sekvantoj, viaj publikaj mesaĝoj povas esti vidataj de aliaj, ekzemple en la loka templinio aŭ per kradvortoj. Eble vi ŝatus prezenti vin per la kradvorto #introductions / #konigo.'
@@ -1586,10 +1645,17 @@ eo:
   webauthn_credentials:
     add: Aldoni novan sekurecan ŝlosilon
     create:
+      error: Havas problemon kiam aldoni vian sekurecŝlosilon.
       success: Via sekureca ŝlosilo estis sukcese aldonita.
     delete: Forigi
     delete_confirmation: Ĉu vi certas, ke vi volas forigi ĉi tiun sekurecan ŝlosilon?
+    description_html: Se vi ebligas <strong>sekurecŝlosilautentigo</strong>, ensaluto bezonas vin uzi tiojn.
     destroy:
+      error: Havas problemo kiam forigi vian sekurecŝlosilon.
       success: Via sekureca ŝlosilo estis sukcese forigita.
     invalid_credential: Nevalida sekureca ŝlosilo
+    nickname_hint: Enigu alinomon de via nova sekurecŝlosilo
+    not_enabled: Vu ne ebligas WebAuthn ĝis nun
+    not_supported: Ĉi tiu legilo ne povas uzi sekurecŝlosilojn
+    otp_required: Por uzi sekurecŝlosilojn, ebligu 2-faktoran autentigon unue.
     registered_on: Registrigita je %{date}
