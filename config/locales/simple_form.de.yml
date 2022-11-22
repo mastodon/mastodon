@@ -63,7 +63,7 @@ de:
       domain_allow:
         domain: Diese Domain kann Daten von diesem Server abrufen, und eingehende Daten werden verarbeitet und gespeichert
       email_domain_block:
-        domain: Dies kann der Domänenname sein, der in der E-Mail-Adresse oder dem von ihm verwendeten MX-Eintrag angezeigt wird. Er wird bei der Anmeldung überprüft.
+        domain: Dies kann die Domain aus einer E-Mail-Adresse oder einem MX-RR-Eintrag sein. Bei der Registrierung eines neuen Profils wird beides überprüft.
         with_dns_records: Ein Versuch, die DNS-Einträge der Domain aufzulösen, wurde unternommen, und diese Ergebnisse werden unter anderem auch blockiert
       featured_tag:
         name: 'Hier sind ein paar Hashtags, die du in letzter Zeit am häufigsten genutzt hast:'
@@ -100,14 +100,14 @@ de:
       invite_request:
         text: Dies wird uns helfen deine Anmeldungsanfrage besser zu verarbeiten
       ip_block:
-        comment: Optional. Denke daran, warum du diese Regel hinzugefügt hast.
-        expires_in: IP-Adressen sind eine endliche Ressource, sie werden manchmal geteilt und werden ab und zu ausgetauscht. Aus diesem Grund werden unbestimmte IP-Blöcke nicht empfohlen.
+        comment: Optional. Zur Erinnerung, weshalb du diese Regel eingeführt hast.
+        expires_in: IP-Adressen sind eine begrenzte Ressource. Sie können außerdem auf viele Computer aufgeteilt sein und auch die Zuordnungen ändern sich. Deshalb werden unbestimmte IP-Blöcke nicht empfohlen.
         ip: Gib eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht aussperrst!
         severities:
           no_access: Zugriff auf alle Ressourcen blockieren
           sign_up_block: Neue Anmeldungen werden nicht möglich sein
-          sign_up_requires_approval: Neue Anmeldungen erfordern deine Zustimmung
-        severity: Wähle aus, was mit Anfragen aus dieser IP passiert
+          sign_up_requires_approval: Neue Registrierungen müssen genehmigt werden
+        severity: Wähle aus, was mit Anfragen von dieser IP-Adresse geschehen soll
       rule:
         text: Führe eine Regel oder Bedingung für Benutzer*innen auf diesem Server ein. Bleib dabei kurz und knapp
       sessions:
@@ -183,7 +183,7 @@ de:
         max_uses: Maximale Verwendungen
         new_password: Neues Passwort
         note: Über mich
-        otp_attempt: Zwei-Faktor-Authentifizierung
+        otp_attempt: Zwei-Faktor-Authentisierung
         password: Passwort
         phrase: Wort oder Formulierung
         setting_advanced_layout: Erweiterte Weboberfläche aktivieren
@@ -263,9 +263,9 @@ de:
         comment: Kommentar
         ip: IP-Adresse
         severities:
-          no_access: Zugriff sperren
-          sign_up_block: Anmeldungen blockieren
-          sign_up_requires_approval: Anmeldungen begrenzen
+          no_access: Gesamten Zugriff sperren
+          sign_up_block: Registrierung blockieren
+          sign_up_requires_approval: Registrierungen begrenzen
         severity: Regel
       notification_emails:
         appeal: wenn jemand einer Moderationsentscheidung widerspricht
