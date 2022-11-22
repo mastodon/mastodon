@@ -273,6 +273,7 @@ et:
           silence: Vaigista
           suspend: Peata
         title: Uus domeeniblokeering
+      not_permitted: Puudub õigus seda teha
       private_comment: Privaatne kommentaar
       private_comment_hint: Kommenteeri selle domeeni limiteerimise kohta moderaatoritele.
       public_comment: Avalik kommentaar
@@ -294,6 +295,7 @@ et:
       new:
         create: Lisa domeen
         title: Uus e-posti keelunimekirja sisend
+      resolved_dns_records_hint_html: Domeeninimi lahendub järgnevateks MX-domeenideks, mis vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib liitumistaotlused kõigilt e-postiaadressidelt, mis kasutavad sama MX-domeeni, kuigi kasutatav domeeninimi on erinev. <strong>Ole tähelepanelik, et mitte blokeerida suuremaid e-postiteenuse pakkujaid.</strong>
       title: E-posti keelunimekiri
     export_domain_allows:
       no_file: Faili pole valitud
@@ -814,9 +816,9 @@ et:
       subject: '%{name} mainis Teid'
       title: Uus mainimine
     reblog:
-      body: '%{name} upitas Teie staatust:'
-      subject: "%{name} upitas su staatust"
-      title: Uus upitus
+      body: '%{name} jagas postitust:'
+      subject: "%{name} jagas postitust"
+      title: Uus jagamine
   notifications:
     email_events: E-posti teadete sündmused
     email_events_hint: 'Valige sündmused, millest soovite teavitusi:'
@@ -952,7 +954,7 @@ et:
       video:
         one: "%{count} video"
         other: "%{count} videot"
-    boosted_from_html: Upitatud %{acct_link}
+    boosted_from_html: '%{acct_link} jagamine'
     content_warning: 'Sisu hoiatus: %{warning}'
     disallowed_hashtags:
       one: 'sisaldab ebasobivat silti: %{tags}'
@@ -965,7 +967,7 @@ et:
       direct: Ei saa kinnitada postitusi, mis on nähtavad vaid mainitud kasutajatele
       limit: Maksimaalne arv postitusi on juba kinnitatud
       ownership: Kellegi teise postitust ei saa kinnitada
-      reblog: Upitust ei saa kinnitada
+      reblog: Jagamist ei saa kinnitada
     poll:
       total_people:
         one: "%{count} inimene"
@@ -1003,7 +1005,7 @@ et:
     min_age_label: Ajalimiit
   stream_entries:
     pinned: Kinnitatud postitus
-    reblogged: upitatud
+    reblogged: jagatud
     sensitive_content: Tundlik sisu
   tags:
     does_not_match_previous_name: ei ühti eelmise nimega
