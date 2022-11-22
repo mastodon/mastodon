@@ -24,7 +24,7 @@ de:
         all_day: Wenn aktiviert, werden nur die Daten des Zeitraums angezeigt
         ends_at: Optional. Die Ankündigung wird zu diesem Zeitpunkt automatisch zurückgezogen
         scheduled_at: Leer lassen, um die Ankündigung sofort zu veröffentlichen
-        starts_at: Optional. Falls deine Ankündigung an einen bestimmten Zeitraum gebunden ist
+        starts_at: Optional. Nur für den Fall, dass deine Ankündigung an einen bestimmten Zeitraum gebunden ist
         text: Du kannst die Beitrags-Syntax verwenden. Bitte beachte den Platz, den die Ankündigung auf dem Bildschirm der Benutzer*innen einnehmen wird
       appeal:
         text: Du kannst nur einmal Einspruch gegen einen Verstoß einlegen
@@ -119,9 +119,9 @@ de:
         chosen_languages: Wenn du hier eine oder mehrere Sprachen auswählst, werden ausschließlich Beiträge in diesen Sprachen in deinen öffentlichen Timelines angezeigt
         role: Die Rolle legt fest, welche Berechtigungen der Account hat
       user_role:
-        color: Die Farbe, die für die Rolle im gesamten UI verwendet wird, als RGB im Hexformat
-        highlighted: Dies macht die Rolle öffentlich sichtbar
-        name: Öffentlicher Name der Rolle, wenn die Rolle als Abzeichen angezeigt werden soll
+        color: Farbe, die für diese Rolle in der gesamten Benutzerschnittstelle verwendet wird, als RGB im Hexadezimalsystem
+        highlighted: Dies macht die Rolle öffentlich im Profil sichtbar
+        name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
         permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
         position: Die höhere Rolle entscheidet über die Konfliktlösung in bestimmten Situationen. Bestimmte Aktionen können nur in Rollen mit geringerer Priorität ausgeführt werden
       webhook:
@@ -153,9 +153,9 @@ de:
         warning_preset_id: Benutze eine Warnungsvorlage
       announcement:
         all_day: Ganztägiges Ereignis
-        ends_at: Ereignisende
+        ends_at: Ende der Ankündigung
         scheduled_at: Veröffentlichung planen
-        starts_at: Beginn des Ereignisses
+        starts_at: Beginn der Ankündigung
         text: Ankündigung
       appeal:
         text: Erkläre, warum diese Entscheidung rückgängig gemacht werden soll
@@ -288,7 +288,7 @@ de:
       user:
         role: Rolle
       user_role:
-        color: Abzeichenfarbe
+        color: Badge-Farbe
         highlighted: Rolle als Badge im Profil anzeigen
         name: Name
         permissions_as_keys: Berechtigungen
