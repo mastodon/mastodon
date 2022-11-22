@@ -535,11 +535,11 @@ cy:
         unavailable: Ddim ar gael
       delivery_available: Mae'r anfon ar gael
       delivery_error_days: Dyddiau gwall anfon
-      delivery_error_hint: Os nad yw'n bosibl anfon am %{count} diwrnod, caiff ei nodi'n awtomatig fel un nad oes modd ei anfon.
+      delivery_error_hint: Os nad yw'n bosibl anfon am %{count} o ddyddiau, caiff ei nodi'n awtomatig fel un nad oes modd ei anfon.
       destroyed_msg: Mae data o %{domain} bellach mewn ciw i'w ddileu'n syth.
       empty: Heb ganfod parthau.
       known_accounts:
-        zero: "%{count} cyfrifon hysbys"
+        zero: "%{count} o gyfrifon hysbys"
         one: "%{count} cyfrif hysbys"
         two: "%{count} gyfrif hysbys"
         few: "%{count} cyfrif hysbys"
@@ -608,8 +608,8 @@ cy:
     reports:
       account:
         notes:
-          zero: "%{count} nodyn"
-          one: "%{count} nodyn"
+          zero: "%{count} un nodyn"
+          one: "%{count} un nodyn"
           two: "%{count} nodyn"
           few: "%{count} nodyn"
           many: "%{count} nodyn"
@@ -927,7 +927,7 @@ cy:
       enable: Galluogi
       enabled: Gweithredol
       enabled_events:
-        zero: "%{count} digwyddiad wedi'u galluogi"
+        zero: "%{count} digwyddiadau wedi'u galluogi"
         one: 1 digwyddiad wedi'i alluogi
         two: "%{count} digwyddiad wedi'u galluogi"
         few: "%{count} digwyddiad wedi'u galluogi"
@@ -1239,14 +1239,14 @@ cy:
   generic:
     all: Popeth
     all_items_on_page_selected_html:
-      zero: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
+      zero: Does <strong>%{count}</strong> o eitemau ar y dudalen hon wedi'u dewis.
       one: "Mae <strong>%{count}</strong> eitem wedi'i dewis ar y dudalen hon."
       two: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
       few: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
       many: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
       other: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
     all_matching_items_selected_html:
-      zero: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
+      zero: Does <strong>%{count}</strong> o eitemau sy'n cyfateb i'ch chwiliad wedi'u dewis.
       one: "Mae <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'i dewis."
       two: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
       few: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
@@ -1260,15 +1260,15 @@ cy:
     order_by: Trefnu yn ôl
     save_changes: Cadw newidiadau
     select_all_matching_items:
-      zero: Dewiswch bob un o'r %{count} eitem sy'n cyfateb i'ch chwilio.
-      one: Dewiswch bob un o'r %{count} eitem sy'n cyfateb i'ch chwilio.
+      zero: Dewiswch bob un o'r %{count} eitemau sy'n cyfateb i'ch chwilio.
+      one: Dewiswch bob un o'r %{count} o eitemau sy'n cyfateb i'ch chwilio.
       two: Dewiswch bob un o'r %{count} eitem sy'n cyfateb i'ch chwilio.
       few: Dewiswch bob un o'r %{count} eitem sy'n cyfateb i'ch chwilio.
       many: Dewiswch bob un o'r %{count} eitem sy'n cyfateb i'ch chwilio.
       other: Dewiswch bob un o'r %{count} eitem sy'n cyfateb i'ch chwilio.
     today: heddiw
     validation_errors:
-      zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod, os gwelwch yn dda
+      zero: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} o wallau isod, os gwelwch yn dda
       one: Mae rhywbeth o'i le o hyd! Edrychwch ar y gwall isod, os gwelwch yn dda
       two: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod, os gwelwch yn dda
       few: Mae rhywbeth o'i le o hyd! Edrychwch ar y %{count} gwall isod, os gwelwch yn dda
@@ -1279,7 +1279,7 @@ cy:
   imports:
     errors:
       invalid_csv_file: 'Ffeil CSV annilys. Gwall: %{error}'
-      over_rows_processing_limit: yn cynnwys mwy na %{count} rhes
+      over_rows_processing_limit: yn cynnwys mwy na %{count} o resi
     modes:
       merge: Cyfuno
       merge_long: Cadw'r cofnodion presennol ac ychwanegu rhai newydd
@@ -1603,14 +1603,14 @@ cy:
       reblog: Nid oes modd pinio hwb
     poll:
       total_people:
-        zero: "%{count} person"
+        zero: "%{count} o bersonau"
         one: "%{count} berson"
         two: "%{count} person"
         few: "%{count} person"
         many: "%{count} person"
         other: "%{count} person"
       total_votes:
-        zero: "%{count} pleidlais"
+        zero: "%{count} o pleidleisiau"
         one: "%{count} bleidlais"
         two: "%{count} pleidlais"
         few: "%{count} pleidlais"
