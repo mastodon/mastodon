@@ -520,6 +520,9 @@ be:
       saml: SAML
     status:
       account_status: Стан уліковага запісу
+  authorize_follow:
+    already_requested: Вы ўжо адправілі запыт на гэты ўліковы запіс
+    follow_request: 'Вы адправілі запыт на падпіску:'
   date:
     formats:
       default: "%e %b %Y"
@@ -599,6 +602,10 @@ be:
       password: пароль
       webauthn: ключы бяспекі
   notification_mailer:
+    follow_request:
+      action: Кіраванне запытамі на падпіску
+      body: "%{name} хоча падпісацца на вас"
+      title: Новы запыт на падпіску
     mention:
       action: Адказаць
   pagination:
