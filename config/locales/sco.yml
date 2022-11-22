@@ -268,6 +268,12 @@ sco:
       enable: Turn on
       enabled: Turnt on
       enabled_msg: Successfully turnt on that emoji
+      image_hint: PNG or GIF up tae %{size}
+      list: List
+      listed: Listit
+      new:
+        title: Add new custom emoji
+      no_emoji_selected: Nae emojis wis chynged as naen wis selectit
       not_permitted: Ye'r no permittit fir tae dae this action
       overwrite: Owerwrite
       shortcode: Shortcode
@@ -333,6 +339,17 @@ sco:
           desc_html: "<strong>Limit</strong> wull mak posts fae accoonts at this domain invisible tae oniebody thit isnae follaein them. <strong>Suspend</strong> wull tak doon aw content, media, an profile data fir this domain's accoonts fae yer server. Uise <strong>Naen</strong> if ye juist want tae reject media files."
           noop: Naen
           silence: Limit
+          suspend: Suspend
+        title: New domain dingie
+      no_domain_block_selected: Nae domain dingies wis chynged as naen wis selectit
+      not_permitted: Ye urnae permittit tae dae this action
+      obfuscate: Obfuscate domain nemm
+      obfuscate_hint: Pairtly obfuscate the domain nemm in the list if advertisin the list o domain limitations is turnt on
+      private_comment: Private comment
+      private_comment_hint: Comment aboot this domain limitation fir internal uise bi the moderators.
+      public_comment: Public comment
+      public_comment_hint: Comment aboot this domain limitation fir the general public, if advertisin the list of domain limitations is turnt on.
+      reject_media: Rejeck media files
     instances:
       availability:
         warning: The last attempt tae connect tae this server haesnae been successful
