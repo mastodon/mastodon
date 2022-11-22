@@ -344,12 +344,13 @@ be:
       interactions: узаемадзеянні
       media_storage: Медыясховішча
       new_users: новыя карыстальнікі
-      opened_reports: Справаздачы адчынены
+      opened_reports: скарг прынята
       pending_appeals_html:
         one: "<strong>%{count}</strong> апеляцыя ў чарзе"
         few: "<strong>%{count}</strong> апеляцыі ў чарзе"
         many: "<strong>%{count}</strong> апеляцый у чарзе"
         other: "<strong>%{count}</strong> апеляцыі ў чарзе"
+      resolved_reports: скарг разгледжана
     domain_blocks:
       domain: Дамен
       existing_domain_block: Вы ўжо налажылі стражэйшыя абмежаванні на %{name}.
@@ -405,12 +406,15 @@ be:
         '86400': 1 дзень
         '94670856': 3 гады
     relays:
+      add_new: Дадаць новы рэтранслятар
       delete: Выдаліць
       disable: Адключыць
       disabled: Адключана
       enable: Уключыць
       enabled: Уключана
       save_and_enable: Захаваць і ўключыць
+      status: Стан
+      title: Рэтранслятары
     reports:
       actions:
         suspend_description_html: Профіль і яго змесціва стане недаступным да моманту канчатковага выдалення. Камунікацыя з уліковым запісам будзе немагчымай. Можна скасаваць на працягу 30 дзён.
@@ -418,6 +422,7 @@ be:
         create: Дадаць нататку
         delete: Выдаліць
         title: Нататкі
+      status: Стан
     roles:
       categories:
         devops: DevOps
@@ -430,6 +435,7 @@ be:
       add_new: Дадаць правіла
       delete: Выдаліць
       edit: Рэдагаваць правіла
+      title: Правілы сервера
     settings:
       discovery:
         trends: Актуальныя
@@ -460,10 +466,15 @@ be:
       delete: Выдаліць
     webhooks:
       delete: Выдаліць
+      status: Стан
   admin_mailer:
     new_appeal:
       actions:
         suspend: каб выключыць уліковы запіс
+  appearance:
+    localization:
+      guide_link: https://be.crowdin.com/project/mastodon/be
+      guide_link_text: Кожны можа зрабіць унёсак.
   application_mailer:
     salutation: "%{name},"
   applications:
