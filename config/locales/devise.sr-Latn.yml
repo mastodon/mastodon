@@ -1,4 +1,3 @@
----
 sr-Latn:
   devise:
     confirmations:
@@ -17,6 +16,7 @@ sr-Latn:
       unconfirmed: Pre nastavka morate potvrditi svoj nalog.
     mailer:
       confirmation_instructions:
+        action: Potvrdite adresu e-pošte
         subject: 'Mastodont: Uputstvo za potvrdu korisničkog naloga na instanci %{instance}'
       password_change:
         subject: 'Mastodont: Lozinka promenjena'
@@ -57,6 +57,6 @@ sr-Latn:
       not_found: nije pronađeno
       not_locked: nije zaključan
       not_saved:
-        few: "%{count} greške sprečavaju %{resource}a:"
         one: '1 greška sprečava %{resource}a:'
+        few: "%{count} greške sprečavaju %{resource}a:"
         other: "%{count} grešaka sprečavaju %{resource}a:"
