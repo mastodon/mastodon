@@ -1199,6 +1199,15 @@ body > [data-popper-placement] {
   order: 2;
   flex: 0 0 auto;
   color: $dark-text-color;
+  text-align: end;
+
+  &:hover > :not(span) {
+    text-decoration: underline;
+  }
+
+  .status__language-code {
+    display: block;
+  }
 }
 
 .notification__relative_time {
@@ -1868,7 +1877,6 @@ a.account__display-name {
   font-weight: 500;
 }
 
-.status__relative-time,
 .detailed-status__datetime {
   &:hover {
     text-decoration: underline;
