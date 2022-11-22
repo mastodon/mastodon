@@ -5,9 +5,11 @@ class VerifyLinkService < BaseService
     @link_back = ActivityPub::TagManager.instance.url_for(field.account)
     @url       = field.value_for_verification
 
-    perform_request!
+    unless link_redirects_back?(@url)
+      perform_request!
 
-    return unless link_back_present?
+      return unless link_back_present?
+    end
 
     field.mark_verified!
   rescue OpenSSL::SSL::SSLError, HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
