@@ -351,12 +351,16 @@ fo:
       categories:
         moderation: Umsjón
       delete: Strika
+      privileges:
+        manage_user_access_description: Loyvir brúkarum at gera 'váttan í tveimum stigum' (2FA) hjá øðrum brúkarum óvirkna, at broyta teirra teldupost og at nullstilla teirra loyniorð
     rules:
       delete: Strika
     warning_presets:
       delete: Strika
     webhooks:
       delete: Strika
+  auth:
+    link_to_otp: Skriva eina tvey-stigs kodu frá telefonini ella eina kodu til endurgerð
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -382,6 +386,7 @@ fo:
       expires_at: Rennir út
   login_activities:
     authentication_methods:
+      otp: app til váttan í tveimum stigum
       password: loyniorð
   moderation:
     title: Umsjón
