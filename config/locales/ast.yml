@@ -15,6 +15,8 @@ ast:
       other: Artículos
     posts_tab_heading: Artículos
   admin:
+    account_moderation_notes:
+      create: Dexar la nota
     accounts:
       are_you_sure: '¿De xuru?'
       avatar: Avatar
@@ -37,6 +39,8 @@ ast:
       resend_confirmation:
         already_confirmed: Esti usuariu yá ta confirmáu
         send: Reunviar les instrucciones
+      search_same_email_domain: Otros perfiles col mesmu dominiu de corréu electrónicu
+      search_same_ip: Otros perfiles cola mesma IP
       show:
         created_reports: Informes fechos
       statuses: Artículos
@@ -71,22 +75,38 @@ ast:
     announcements:
       destroyed_msg: '¡L''anunciu desanicióse correutamente!'
       empty: Nun s'atopó nengún anunciu.
+      live: En direuto
       new:
+        create: Crear l'anunciu
         title: Anunciu nuevu
+      publish: Espublizar
       published_msg: '¡L''anunciu espublizóse correutamente!'
+      scheduled_msg: '¡Programóse l''espublizamientu del anunciu!'
       title: Anuncios
+      unpublish: Dexar d'espublizar
+      unpublished_msg: '¡L''anunciu dexó d''espublizase correutamente!'
       updated_msg: '¡L''anunciu anovóse correutamente!'
     custom_emojis:
       by_domain: Dominiu
+      copy: Copiar
       copy_failed_msg: Nun se pudo facer una copia llocal d'esi fustaxe
       emoji: Fustaxe
+      list: Llistar
       no_emoji_selected: Nun camudó nengún fustaxe darréu que nun se seleicionó nengún
       not_permitted: Nun tienes permisu pa facer esta aición
+      shortcode: Códigu curtiu
+      shortcode_hint: De 2 caráuteres como muncho, namás caráuteres alfanumbéricos y guiones baxos
+      title: Fustaxes personalizaos
+      uncategorized: Ensin categoría
       update_failed_msg: Nun se pudo anovar esi fustaxe
       updated_msg: '¡El fustaxe anovóse correutamente!'
+      upload: Xubir
     dashboard:
+      active_users: perfiles n'activo
       interactions: interaiciones
       media_storage: Almacenamientu multimedia
+      new_users: perfiles nuevos
+      opened_reports: informes abiertos
       pending_appeals_html:
         one: "<strong>%{count}</strong> apellación pendiente"
         other: "<strong>%{count}</strong> apellaciones pendientes"
@@ -99,6 +119,7 @@ ast:
       pending_users_html:
         one: "<strong>%{count}</strong> perfil pendiente"
         other: "<strong>%{count}</strong> perfiles pendientes"
+      resolved_reports: informes resueltos
       software: Software
       space: Usu del espaciu
       title: Panel
@@ -115,6 +136,8 @@ ast:
       public_comment: Comentariu públicu
     email_domain_blocks:
       domain: Dominiu
+    follow_recommendations:
+      language: Pa la llingua
     instances:
       availability:
         no_failures_recorded: Nun se rexistró nengún fallu.
@@ -157,8 +180,12 @@ ast:
       are_you_sure: '¿De xuru?'
       comment_description_html: 'Pa fornir más información, %{name} escribió:'
       report: 'Informe #%{id}'
+      resolved: Resolvióse
+      resolved_msg: '¡L''informe resolvióse correutamente!'
       status: Estáu
+      target_origin: Orixe de la cuenta de la que s'infomó
       title: Informes
+      unresolved: Ensin resolver
     roles:
       categories:
         administration: Alministración
@@ -181,20 +208,36 @@ ast:
       title: Roles
     settings:
       about:
+        manage_rules: Xestionar les regles del sirvidor
         title: Tocante a
       appearance:
+        preamble: Personaliza la interfaz web de Mastodon.
         title: Aspeutu
       branding:
-        preamble: La marca del to sirvidor estrémalu d'otros sirvidores de la rede. Ye posible qu'esta información apaeza nuna variedá d'entornos, como la interfaz web de Mastodon, les aplicaciones natives, nes previsualizaciones de los enllaces d'otros sitios web, dientro de les aplicaciones de mensaxería... etc. Por esti motivu, lo meyor ye qu'esta información seya clara, curtia y concisa.
+        preamble: La marca del to sirvidor estrémalu d'otros sirvidores de la rede. Ye posible qu'esta información apaeza nuna variedá d'entornos, como la interfaz web de Mastodon, les aplicaciones natives, nes previsualizaciones de los enllaces d'otros sitios web, dientro de les aplicaciones de mensaxería, etc. Por esti motivu, lo meyor ye qu'esta información seya clara, curtia y concisa.
         title: Marca
+      content_retention:
+        preamble: Controla cómo s'atroxa'l conteníu xeneráu polos perfiles en Mastodon.
+        title: Retención del conteníu
       discovery:
         public_timelines: Llinies de tiempu públiques
+        title: Descubrimientu
         trends: Tendencies
       domain_blocks:
         all: A tol mundu
         disabled: A naide
+        users: A los perfiles llocales
       registrations:
+        preamble: Controla quién pue crear una cuenta nel sirvidor.
         title: Rexistros
+      registrations_mode:
+        modes:
+          approved: Tol mundu pente una aprobación
+          none: Naide
+          open: Tol mundu
+      title: Configuración del sirvidor
+    site_uploads:
+      delete: Desaniciar el ficheru xubíu
     statuses:
       language: Llingua
       metadata: Metadatos
@@ -216,6 +259,7 @@ ast:
     trends:
       links:
         title: Enllaces en tendencia
+      only_allowed: Namás lo permitío
       pending_review: Revisión pendiente
       statuses:
         title: Artículos en tendencia
@@ -252,7 +296,7 @@ ast:
     advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol llargor de la pantalla, la interfaz web avanzada permítete configurar columnes estremaes pa ver muncha más información al empar: Aniciu, avisos, llinia de tiempu federada y cualesquier cantidá de llistes y etiquetes.'
     animations_and_accessibility: Animaciones y accesibilidá
     confirmation_dialogs: Diálogos de confirmación
-    discovery: Descubrición
+    discovery: Descubrimientu
     localization:
       body: Mastodon tradúcenlu voluntarios,
       guide_link_text: tol mundu pue collaborar.
@@ -484,8 +528,8 @@ ast:
     update:
       subject: "%{name} editó un artículu"
   notifications:
-    email_events_hint: 'Esbilla los eventos de los que quies recibir avisos:'
-    other_settings: Otros axustes
+    email_events_hint: 'Seleiciona los eventos de los que quies recibir avisos:'
+    other_settings: Configuración d'otros avisos
   number:
     human:
       decimal_units:
