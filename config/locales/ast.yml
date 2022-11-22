@@ -206,6 +206,8 @@ ast:
         manage_taxonomies: Xestionar les taxonomíes
         view_devops: DevOps
       title: Roles
+    rules:
+      add_new: Amestar la regla
     settings:
       about:
         manage_rules: Xestionar les regles del sirvidor
@@ -720,3 +722,5 @@ ast:
   webauthn_credentials:
     create:
       error: Hebo un problema al amestar la llave de seguranza. Volvi tentalo.
+    not_supported: Esti restolador nun ye compatible coles llaves de seguranza
+    otp_required: Pa usar les llaves de seguranza, activa primero l'autenticación en dos pasos.
