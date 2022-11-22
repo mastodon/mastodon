@@ -632,6 +632,7 @@ eo:
         moderation: Kontrolado
         special: Specialaj
       delete: Forigi
+      description_html: Per <strong>uzantoroloj</strong>, vi povas kutimigi funkciojn kaj areon de Mastodon.
       edit: Redakti rolon de '%{name}'
       everyone: Defaŭltaj permesoj
       everyone_full_description_html: Jen la <strong>baza rolo</strong>, kiu afektas <strong>ĉiujn uzantojn</strong>, eĉ tiuj sen atribuata rolo. Ĉiuj aliaj roloj heredas permesojn de ĝi.
@@ -642,37 +643,79 @@ eo:
         administrator: Administranto
         administrator_description: Uzantoj kun ĉi tiu permeso preterpasos ĉiun permeson
         delete_user_data: Forigi la datumojn de la uzanto
+        delete_user_data_description: Permesi uzantojn forigi datumo de alia uzanto sen atendo
         invite_users: Inviti Uzantojn
+        invite_users_description: Permesi uzantoj inviti novajn personojn al la servilo
         manage_announcements: Administri Anoncojn
         manage_announcements_description: Permesas uzantojn administri anoncojn ĉe la servilo
         manage_appeals: Administri Apelaciojn
         manage_appeals_description: Rajtigas al uzantoj kontroli apelaciojn kontraǔ kontrolaj agoj
         manage_blocks: Administri Blokojn
+        manage_blocks_description: Permesi uzantojn bloki retpoŝtoservilojn kaj IP-adresojn
+        manage_custom_emojis: Administri propajn emoĝiojn
+        manage_custom_emojis_description: Permesi uzantojn administri propajn emoĝiojn ĉe la servilo
         manage_federation: Administri Federacion
         manage_federation_description: Permesas al uzantoj bloki aǔ permesi federacion kun aliaj domajnoj, kaj regi liveradon
         manage_invites: Administri Invitojn
+        manage_invites_description: Permesi uzantojn vidi kaj malaktivigi invitligilojn
+        manage_reports: Administri raportojn
+        manage_reports_description: Permesi uzantojn kontroli raportojn kaj administri ilin
         manage_roles: Administri Rolojn
+        manage_roles_description: Permesi uzantojn administri kaj asigni rolojn kiuj estas malaltaj ol ilia
         manage_rules: Administri Regulojn
+        manage_rules_description: Permesi uzantojn ŝanĝi servilregulojn
+        manage_settings: Administri opciojn
+        manage_settings_description: Permesi uzantojn ŝanĝi retejoopciojn
+        manage_taxonomies: Administri kategoriarojn
+        manage_taxonomies_description: Permesi uzantojn kontroli popularan enhavon kaj ĝisdatigi kradvortopciojn
+        manage_user_access: Administri uzantotrairon
+        manage_user_access_description: Permesi uzantojn malebligi autentiko kaj retpoŝtodetalo de aliaj uzantoj
+        manage_users: Administri uzantojn
+        manage_users_description: Permesi uzantaojn vidi detalojn de aliaj uzantoj kaj administri ilin
         manage_webhooks: Administri rethokojn
+        manage_webhooks_description: Permesi uzantojn komenci rethokojn por administraj eventoj
+        view_audit_log: Vidi protokolon
+        view_audit_log_description: Permesi uzantojn vidi historion de administraj agoj ĉe la servilo
+        view_dashboard: Vidi kontrolpanelon
+        view_dashboard_description: Permesi uzantojn aliri la kontrolpanelon kaj diversajn mezurarojn
+        view_devops: Programado kaj Operaciado
+        view_devops_description: Permesi uzantojn aliri Sidekiq kaj pgHero-kontrolpanelojn
       title: Roloj
     rules:
       add_new: Aldoni regulon
       delete: Forigi
+      description_html: Kvankam plej da personoj pretendas legi kaj asenti servkondiĉoj, personoj kutime ne komplete legi. <strong>Uzu mallonga kaj simpla listo.</strong>.
       edit: Redakti la regulon
+      empty: Neniuj servilregulojn definitas ĝis nun.
       title: Reguloj de la servilo
     settings:
       about:
+        manage_rules: Administri servilregulojn
+        preamble: Donu specifan informon pri kiel la servilo operaciitas, administras kaj financitas.
+        rules_hint: Havas apartan areon por regulojn kiujn via uzantoj devus sekvi.
         title: Pri
       appearance:
+        preamble: Personigi retinterfaco de Mastodon.
         title: Apero
+      branding:
+        preamble: Via markeco de servilo malsamigas ĝin de aliaj servilojn en la reto. Do, la informo devus esti simpla kaj mallonga.
+        title: Markeco
+      content_retention:
+        preamble: Regi kiel uzantogenerita enhavo konservitis en Mastodon.
+        title: Enhavkonservo
       discovery:
+        follow_recommendations: Sekvorekomendoj
+        preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
+        profile_directory: Profilujo
         public_timelines: Publikaj templinioj
         title: Eltrovado
+        trends: Tendencoj
       domain_blocks:
         all: Al ciuj
         disabled: Al neniu
         users: Al salutintaj lokaj uzantoj
       registrations:
+        preamble: Regi kiu povas krei konton ĉe via servilo.
         title: Registriĝoj
       registrations_mode:
         modes:
@@ -687,12 +730,14 @@ eo:
       account: Skribanto
       application: Aplikaĵo
       back_to_account: Reveni al konta paĝo
+      back_to_report: Reveni al raportpaĝo
       batch:
         remove_from_report: Forigi de raporto
         report: Raporti
       deleted: Forigita
       favourites: Stelumoj
       history: Versia historio
+      in_reply_to: Respondas al
       language: Lingvo
       media:
         title: Aŭdovidaĵoj
@@ -710,6 +755,9 @@ eo:
       actions:
         delete_statuses: "%{name} forigis afiŝojn de %{target}"
         disable: "%{name} frostigis la konton de %{target}"
+        mark_statuses_as_sensitive: "%{name} markis mesaĝojn de %{target} kiel sentemaj"
+        none: "%{name} sendis averton al %{target}"
+        sensitive: "%{name} markis konton de %{target} kiel sentema"
         silence: "%{name} limigis la konton de %{target}"
         suspend: "%{name} suspendis la konton de %{target}"
       appeal_approved: Apelaciita
@@ -719,9 +767,14 @@ eo:
         message_html: Estas pritraktataj datumbazaj migradoj. Bonvolu ekzekuti ilin por certigi, ke la apliko kondutas kiel atendite
       elasticsearch_running_check:
         message_html: Ne eblas konekti Elasticsearch. Bonvolu kontroli ke ĝi funkcias, aǔ malŝaltu plentekstan serĉon
+      elasticsearch_version_check:
+        message_html: 'Nekongrua Elasticsearch-versio: %{value}'
+        version_comparison: Elasticsearch %{running_version} instalitas sed %{required_version} bezonitas
       rules_check:
         action: Administri servilajn regulojn
         message_html: Vi ne difinis iujn servilajn regulojn.
+      sidekiq_process_check:
+        message_html: Neniu Sidekiq-procezo por la %{value} vico
     tags:
       review: La statuso de la recenzo
       updated_msg: Kradvorto agordoj ĝisdatigis sukcese
@@ -732,25 +785,53 @@ eo:
       disallow: Malpermesi
       links:
         allow: Permesi ligilon
+        allow_provider: Permesi publikiganto
+        description_html: Ĉioj estas ligiloj kiuj nun diskonitajs multe de kontoj kiujn via servilo vidas. Ligiloj ne montritas publike se vi ne aprobis la publikiganton.
         disallow: Malpermesi ligilon
+        disallow_provider: Malpermesi publikiganton
+        no_link_selected: Neniuj ligiloj ŝanĝitas ĉar nenio elektitas
+        publishers:
+          no_publisher_selected: Neniu publikigantoj estis ŝanĝita ĉar neniu estis elektita
+        shared_by_over_week:
+          one: Diskonita de 1 persono ekde lasta semajno
+          other: Diskonita de %{count} personoj ekde lasta semajno
         title: Tendencantaj ligiloj
+        usage_comparison: Diskonita %{today}-foje hodiau, sed estas %{yesterday} hierau
+      only_allowed: Nur permesitas
       pending_review: Atendante revizion
+      preview_card_providers:
+        allowed: Ligiloj de ĉi tiu publikiganto povas populariĝi
+        description_html: Ĉioj estas domajnoj kiuj havas ligiloj kiuj ofte diskonitas ĉe via servilo. Via aprobo inkluzivas subdomajnojn.
+        rejected: Ligiloj de ĉi tiu publikiganto ne populariĝos
+        title: Publikigantoj
+      rejected: Malakceptita
       statuses:
         allow: Permesi afiŝon
         allow_account: Permesi aŭtoron
         description_html: Oni multe diskonigas kaj stelumas ĉi tiujn mesaĝojn nuntempe laŭ via servilo. Tio povas helpi novajn kaj revenantajn uzantojn trovi pli da homoj por sekvi. Mesaĝo estas montrita publike nur se vi aprobis la aŭtoron kaj se la aŭtoro aprobis ke ties konto estu proponita al aliaj. Vi ankaŭ povas permesi aŭ malakcepti specifajn mesaĝojn.
         disallow: Malpermesi afiŝon
         disallow_account: Malpermesi aŭtoron
+        no_status_selected: Neniuj popularaj mesaĝoj ŝanĝitas ĉar nenio elektitas
+        not_discoverable: Autoro ne volonte estas malkovrebla
         shared_by:
           one: Diskonigita kaj stelumita unufoje
           other: Diskonigita kaj stelumita %{friendly_count}-foje
         title: Tendencantaj afiŝoj
       tags:
+        current_score: Nuna puento %{score}
         dashboard:
           tag_accounts_measure: unikaj uzoj
+          tag_languages_dimension: Ĉefaj lingvoj
           tag_servers_dimension: Ĉefaj serviloj
           tag_servers_measure: malsamaj serviloj
+          tag_uses_measure: uzkvanto
+        description_html: Ĉioj estas kradvortoj kiuj nun aperas kun multe mesaĝoj kiujn via servilo vidas. Kradvortoj ne montritas publike se vi ne aprobis ilin.
+        listable: Povas sugestitis
+        no_tag_selected: Neniuj etikedoj ŝanĝitas ĉar nenio elektitas
+        not_listable: Ne sugestotas
+        not_trendable: Ne aperos en tendencoj
         not_usable: Ne povas esti uzata
+        peaked_on_and_decaying: Maksimumo estas je %{date}, nun ĝi malpliiĝas
         title: Tendencantaj kradvortoj
         trending_rank: 'Populara #%{rank}'
         usable: Povas esti uzata
