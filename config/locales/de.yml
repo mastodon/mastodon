@@ -14,7 +14,7 @@ de:
     instance_actor_flash: Dieses Konto ist ein virtueller Akteur, der den Server selbst repräsentiert und nicht ein einzelner Benutzer. Es wird für Föderationszwecke verwendet und sollte nicht gesperrt werden.
     last_active: zuletzt aktiv
     link_verified_on: Das Profil mit dieser E-Mail-Adresse wurde bereits am %{date} bestätigt
-    nothing_here: Keine Accounts mit dieser Auswahl vorhanden.
+    nothing_here: Keine Treffer mit dieser Auswahl
     pin_errors:
       following: Du musst dieser Person bereits folgen, um sie empfehlen zu können
     posts:
@@ -80,7 +80,7 @@ de:
       location:
         all: Alle
         local: Lokal
-        remote: Fern
+        remote: Extern
         title: Herkunft
       login_status: Loginstatus
       media_attachments: Medienanhänge
@@ -306,7 +306,7 @@ de:
       updated_msg: Ankündigung erfolgreich geändert!
     custom_emojis:
       assign_category: Kategorie zuweisen
-      by_domain: Domain
+      by_domain: Domain der externen Instanz
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
       copy_failed_msg: Es konnte keine lokale Kopie des Emojis erstellt werden
@@ -329,7 +329,7 @@ de:
       no_emoji_selected: Keine Emojis wurden geändert, da keine ausgewählt wurden
       not_permitted: Du bist für die Durchführung dieses Vorgangs nicht berechtigt
       overwrite: Überschreiben
-      shortcode: Kürzel
+      shortcode: Shortcode
       shortcode_hint: Mindestens 2 Zeichen, nur Buchstaben, Ziffern und Unterstriche
       title: Eigene Emojis
       uncategorized: Nicht kategorisiert
@@ -684,10 +684,10 @@ de:
     rules:
       add_new: Regel hinzufügen
       delete: Löschen
-      description_html: Während die meisten behaupten, die Nutzungsbedingungen gelesen und akzeptiert zu haben, lesen die Menschen sie in der Regel erst nach einem Problem. <strong>Vereinfache es, die Regeln deines Servers auf einen Blick zu sehen, indem du sie in einer einfachen Auflistung zur Verfügung stellst.</strong> Versuche, die einzelnen Regeln kurz und einfach zu halten, aber versuche nicht, sie in viele verschiedene Elemente aufzuteilen.
+      description_html: Während die meisten behaupten, die Nutzungsbedingungen tatsächlich gelesen zu haben, bekommen viele sie erst nach einem Problem mit. <strong>Vereinfache und reduziere daher die Serverregeln mit Stichpunkten.</strong> Versuche dabei, die einzelnen Vorgaben kurz und einfach zu halten, aber vermeide, sie in viele verschiedene Elemente aufzuteilen.
       edit: Regel bearbeiten
-      empty: Es wurden bis jetzt keine Server-Regeln definiert.
-      title: Server-Regeln
+      empty: Es wurden bisher keine Serverregeln definiert.
+      title: Serverregeln
     settings:
       about:
         manage_rules: Serverregeln verwalten
