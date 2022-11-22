@@ -204,6 +204,23 @@ sco:
         promote_user: Promote Uiser
         reject_appeal: Rejeck Appeal
         reject_user: Rejeck Uiser
+        remove_avatar_user: Tak doon Avatar
+        reopen_report: Reopen Clype
+        resend_user: Resen Confirmation Email
+        reset_password_user: Reset Passwird
+        resolve_report: Sort Clype
+        sensitive_account: Force-Sensitive Accoont
+        silence_account: Limit Accoont
+        suspend_account: Suspend Accoont
+        unassigned_report: Unassign Clype
+        unblock_email_account: Undingie email address
+        unsensitive_account: Undae Force-Sensitive Accoont
+        unsilence_account: Undae Limit Accoont
+        unsuspend_account: Unsuspend Accoont
+        update_announcement: Update Annooncement
+        update_custom_emoji: Update Custom Emoji
+        update_domain_block: Update Domain Dingie
+        update_ip_block: Update IP rule
         update_status: Update Post
         update_user_role: Update Role
       actions:
@@ -255,7 +272,43 @@ sco:
         silence_account_html: "%{name} limitit %{target}'s accoont"
         suspend_account_html: "%{name} suspendit %{target}'s accoont"
         unassigned_report_html: "%{name} unassigned clype %{target}"
+        unblock_email_account_html: "%{name} undingied %{target}'s email address"
+        unsensitive_account_html: "%{name} unmairked %{target}'s media as sensitive"
+        unsilence_account_html: "%{name} undid limit o %{target}'s accoont"
+        unsuspend_account_html: "%{name} unsuspendit %{target}'s accoont"
+        update_announcement_html: "%{name} updatit annooncement %{target}"
+        update_custom_emoji_html: "%{name} updatit emoji %{target}"
+        update_domain_block_html: "%{name} updatit domain dingie fir %{target}"
+        update_ip_block_html: "%{name} chynged rule fir IP %{target}"
+        update_status_html: "%{name} updatit post bi %{target}"
+        update_user_role_html: "%{name} chynged %{target} role"
+      deleted_account: deletit accoont
+      empty: Nae logs fun.
+      filter_by_action: Filter bi action
+      filter_by_user: Filter bi uiser
+      title: Audit log
+    announcements:
+      destroyed_msg: Annooncement successfully deletit!
+      edit:
+        title: Edit annooncement
+      empty: Nae annooncements fun.
+      live: Live
+      new:
+        create: Mak annooncement
+        title: New annooncement
+      publish: Publish
+      published_msg: Annooncement successfully published!
+      scheduled_for: Schedult fir %{time}
+      scheduled_msg: Annooncement schedult fir publication!
+      title: Annooncements
+      unpublish: Unpublish
+      unpublished_msg: Annooncement successfully unpublished!
+      updated_msg: Annooncement successfully updatit!
     custom_emojis:
+      assign_category: Assign caitegory
+      by_domain: Domain
+      copied_msg: Successfully creatit local copy o the emoji
+      copy: Copy
       copy_failed_msg: Cuidnae mak a local copy o that emoji
       create_new_category: Mak new category
       created_msg: Emoji successfully creatit!
@@ -387,6 +440,34 @@ sco:
         unavailable: No available
       delivery_available: Delivery is available
       delivery_error_days: Delivery error days
+      title: Federation
+      total_blocked_by_us: Dingied bi us
+      total_followed_by_them: Follaed bi them
+      total_followed_by_us: Follaed bi us
+      total_reported: Clypes aboot them
+      total_storage: Media attachments
+      totals_time_period_hint_html: The totals shawn ablow include data fir aw time.
+    invites:
+      deactivate_all: Deactivate aw
+      filter:
+        all: Aw
+        available: Available
+        expired: Expirit
+        title: Filter
+      title: Invites
+    ip_blocks:
+      add_new: Mak rule
+      created_msg: Successfully addit new IP rule
+      delete: Delete
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 month
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 year
+      new:
+        title: Mak new IP rule
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
