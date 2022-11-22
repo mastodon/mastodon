@@ -833,21 +833,29 @@ eo:
         not_usable: Ne povas esti uzata
         peaked_on_and_decaying: Maksimumo estas je %{date}, nun ĝi malpliiĝas
         title: Tendencantaj kradvortoj
+        trendable: Povas aperi en tendencoj
         trending_rank: 'Populara #%{rank}'
         usable: Povas esti uzata
+        usage_comparison: Uzita %{today}-foje hodiau, sed estas %{yesterday} hierau
+        used_by_over_week:
+          one: Uzita de 1 persono ekde lasta semajno
+          other: Uzita de %{count} personoj ekde lasta semajno
       title: Tendencoj
       trending: Popularaĵoj
     warning_presets:
       add_new: Aldoni novan
       delete: Forigi
       edit_preset: Redakti avertan antaŭagordon
+      empty: Vi ne definis ajn avertantauopciojn ĝis nun.
       title: Administri avertajn antaŭagordojn
     webhooks:
       add_new: Aldoni finpunkton
       delete: Forigi
+      description_html: <strong>Rethoko</strong> ebligas Mastodon sendi <strong>realtempan sciigon</strong> pri kelkaj eventoj al la via sia programaro por <strong>automata ekigi</strong>.
       disable: Neebligi
       disabled: Neebligita
       edit: Redakti finpunkton
+      empty: Vi ne havas ajn fiksitaj rethokfinpunktojn ĝis nun.
       enable: Ŝalti
       enabled: Aktiva
       enabled_events:
@@ -855,15 +863,24 @@ eo:
         other: "%{count} ŝaltitaj eventoj"
       events: Eventoj
       new: Nova rethoko
+      rotate_secret: Movi sekreton
+      secret: Signosekreto
       status: Stato
       title: Rethokoj
       webhook: Rethoko
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: por forigi iliajn mesaĝojn
         disable: por frostigi ties konton
+        mark_statuses_as_sensitive: por marki iliajn mesaĝojn kiel sentemaj
         none: averto
+        sensitive: por marki ilian konton kiel sentema
+        silence: por limigi ilian konton
         suspend: por suspendi ties konton
+      body: "%{target} apelacias kontroldecido de %{action_taken_by} de %{date}, kiu estas %{type}. Ĝi skribis:"
+      next_steps: Vi povas aprobi apelacion por malfari kontroldecidon au ignori.
+      subject: "%{username} apelacias kontroldecidon ĉe %{instance}"
     new_pending_account:
       body: La detaloj de la nova konto estas sube. Vi povas aprobi aŭ Malakcepti ĉi kandidatiĝo.
       subject: Nova konto atendas por recenzo en %{instance} (%{username})
@@ -872,15 +889,22 @@ eo:
       body_remote: Iu de %{domain} signalis %{target}
       subject: 'Nova signalo por %{instance} (#%{id})'
     new_trends:
+      body: 'La eroj bezonas kontrolon antau ol ili povas montritas publike:'
       new_trending_links:
         title: Tendencantaj ligiloj
+      new_trending_statuses:
+        title: Popularaĝaj mesaĝoj
       new_trending_tags:
+        no_approved_tags: Nun ne havas aprobitajn popularajn kradvortojn.
+        requirements: 'Ajn ĉi tiu eroj povas superi la %{rank}an kradvorton kiu estas %{lowest_tag_name} kun %{lowest_tag_score} puentoj.'
         title: Tendencantaj kradvortoj
+      subject: Novaj popularaĵoj bezonas kontrolitis ĉe %{instance}
   aliases:
     add_new: Krei alinomon
     created_msg: Kreis novan alinomon sukcese. Vi povas inici la transloki el la malnovan konton nun.
     deleted_msg: Forigis la alinomon sukcese. Transloki el tiu konto al ĉi tiu ne plu eblos.
     empty: Vi havas neniun kaŝnomon.
+    hint_html: Se vi volas translokiĝi de alia konto al ĉi tie, kreu alinomon. Ĝi estas <strong>sekura kaj inversebla</strong>. <strong>Ĝi komencitas de malnova konto</strong>.
     remove: Malligili alinomon
   appearance:
     advanced_web_interface: Altnivela retpaĝa interfaco
@@ -921,6 +945,7 @@ eo:
     dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
     forgot_password: Pasvorto forgesita?
     invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida. Bonvolu peti novan.
+    link_to_otp: Enigu 2-faktorkodo de via telefono au regajnkodo
     link_to_webauth: Uzi vian sekurecan ŝlosilon
     log_in_with: Ensaluti per
     login: Ensaluti
@@ -928,6 +953,7 @@ eo:
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
     or_log_in_with: Aŭ ensaluti per
+    privacy_policy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
     providers:
       cas: CAS
       saml: SAML
@@ -935,12 +961,25 @@ eo:
     registration_closed: "%{instance} ne estas akcepti nova uzantojn"
     resend_confirmation: Resendi la instrukciojn por konfirmi
     reset_password: Ŝanĝi pasvorton
+    rules:
+      preamble: Ĉi tioj fiksitas kaj devigitas de kontrolantoj de %{domain}.
+      title: Bazaj reguloj.
     security: Sekureco
     set_new_password: Elekti novan pasvorton
     setup:
+      email_below_hint_html: Se malsupra retpoŝtoadreso estas neĝusta, vi povas ŝanĝi ĉi tie kaj ricevi novan konfirmretpoŝton.
+      email_settings_hint_html: La konfirmretpoŝto senditas al %{email}.
       title: Agordi
+    sign_up:
+      preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
+      title: Ni pretigu vin ĉe %{domain}.
     status:
       account_status: Statuso de la konto
+      confirming: Retpoŝtokonfirmo bezonas kompletigitis.
+      functional: Via konto estas tute funkcia.
+      pending: Via apliko ankarou bezonas kontrolon de nia teamo. Vi ricevos retpoŝto malantau ol aprobo.
+      redirecting_to: Via konto estas neaktiva ĉar ĝi nun alidirektas al %{acct}.
+      view_strikes: Vidi antauaj admonoj kontra via konto
     too_fast: Formularo sendita tro rapide, klopodu denove.
     use_security_key: Uzi sekurecan ŝlosilon
   authorize_follow:
@@ -957,6 +996,7 @@ eo:
     title: Sekvi %{acct}
   challenge:
     confirm: Daŭrigi
+    hint_html: "<strong>Konsileto:</strong> Ni ne demandos pri via pasvorto ĝis 1 horo."
     invalid_password: Nevalida pasvorto
     prompt: Konfirmi pasvorton por daŭrigi
   crypto:
@@ -988,25 +1028,53 @@ eo:
     proceed: Forigi konton
     success_msg: Via konto estis sukcese forigita
     warning:
+      before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
+      caches: Enhavo kiu kaŝmemorigitas de aliaj serviloj eble restas
+      data_removal: Viaj mesaĝoj kaj aliaj datumoj permanente forigotas
       email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
+      email_contact_html: Se ĝi ankorau ne venas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por ricevi helpon
+      email_reconfirmation_html: Se vi ne ricevas la konfirmretpoŝton, vi povas <a href="%{path}">denove peti</a>
+      irreversible: Vi ne povas regajni au reaktivigi vian konton
       more_details_html: Por pli da detaloj, vidi la <a href="%{terms_path}">privatecan politikon</a>.
       username_available: Via uzantnomo iĝos denove disponebla
       username_unavailable: Via uzantnomo restos nedisponebla
   disputes:
     strikes:
+      action_taken: Agito
       appeal: Apelacii
+      appeal_approved: Ĉi tiu admono sukcese apelaciitas kaj ne estas valida plu
+      appeal_rejected: La apelacio malakceptitas
+      appeal_submitted_at: Apelacio senditas
+      appealed_msg: Via apelacio senditas. Vi eble sciigitas.
+      appeals:
+        submit: Sendi apelacion
+      approve_appeal: Aprobi apelacion
+      associated_report: Rilata raporto
       created_at: Datita
+      description_html: Ĉioj estas agoj kaj vartoj kontra via konto de %{instance}.
+      recipient: Senditas por
+      reject_appeal: Malakcepti apelacion
       status: 'Afiŝo #%{id}'
+      status_removed: Mesaĝo jam forigitas de sistemo
+      title: "%{action} de %{date}"
       title_actions:
         delete_statuses: Forigo de afiŝo
+        disable: Frostigi konton
+        mark_statuses_as_sensitive: Marki mesaĝojn kiel sentemaj
         none: Averto
+        sensitive: Marki konton kiel sentema
+        silence: Limo de konto
+        suspend: Suspendi konton
+      your_appeal_approved: Via apelacio aprobitas
+      your_appeal_pending: Vi sendis apelacion
+      your_appeal_rejected: Via apelacio malakceptitas
   domain_validator:
     invalid_domain: ne estas valida domajna nomo
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': La peto kiun vi sendis estas nevalida au malformas.
     '403': Vi ne havas la rajton por vidi ĉi tiun paĝon.
     '404': La paĝo ke kiun vi serĉas ne ekzistas ĉi tie.
-    '406': This page is not available in the requested format.
+    '406': Ĉi tiu paĝo ne estas disponebla kun petita formato.
     '410': La paĝo, kiun vi serĉas, ne plu ekzistas ĉi tie.
     '422':
       content: Sekureca konfirmo malsukcesa. Ĉu vi blokas kuketojn?
@@ -1015,7 +1083,7 @@ eo:
     '500':
       content: Ni bedaŭras, io malsukcesis niaflanke.
       title: Ĉi tiu paĝo ne estas ĝusta
-    '503': The page could not be served due to a temporary server failure.
+    '503': La paĝo ne povas montritis pro malpermanenta servilmalfunkcio.
     noscript_html: "Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la\n<a href=\"%{apps_path}\">operaciumaj aplikaĵoj</a> por Mastodon por via platformo."
   existing_username_validator:
     not_found: Ne povas trovi lokaj uzanto kun tiu uzantnomo
@@ -1050,8 +1118,11 @@ eo:
     edit:
       add_keyword: Aldoni ĉefvorton
       keywords: Ĉefvortoj
+      statuses: Individuaj mesaĝoj
+      statuses_hint_html: Ĉi tiu filtrilo kongruas kelkajn mesaĝojn. <a href="%{path}">Kontrolu mesaĝojn de la filtrilo</a>.
       title: Ŝanĝi filtrilojn
     errors:
+      deprecated_api_multiple_keywords: Ĉi tiuj parametroj ne povas ŝanĝitis de ĉi tiu programaro. Uzu pli novan programaron.
       invalid_context: Neniu aŭ nevalida kunteksto donita
     index:
       contexts: Filtriloj en %{contexts}
@@ -1065,20 +1136,40 @@ eo:
       statuses:
         one: "%{count} afiŝo"
         other: "%{count} afiŝoj"
+      statuses_long:
+        one: "%{count} mesaĝo kaŝita"
+        other: "%{count} mesaĝoj kaŝita"
       title: Filtriloj
     new:
       save: Konservi novan filtrilon
       title: Aldoni novan filtrilon
+    statuses:
+      back_to_filter: Reveni al filtrilo
+      batch:
+        remove: Forigi de filtrilo
+      index:
+        hint: Ĉi tiu filtrilo kongruas kelkaj mesaĝoj sendepende de aliaj kriterioj.
+        title: Filtritaj mesaĝoj
   footer:
     trending_now: Nunaj furoraĵoj
   generic:
     all: Ĉio
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> ero ĉe ĉi tiu paĝo elektitas."
+      other: <strong>%{count}</strong> eroj ĉe ĉi tiu paĝo elektitas.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> ero kiu kongruas vian serĉon elektitas."
+      other: <strong>%{count}</strong> eroj kiuj kongruas vian serĉon elektitas.
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
     copy: Kopii
     delete: Forigi
+    deselect: Malelekti ĉiujn
     none: Neniu
     order_by: Ordigi de
     save_changes: Konservi ŝanĝojn
+    select_all_matching_items:
+      one: Elekti %{count} ero kiu kongruas vian serĉon.
+      other: Elekti ĉiuj %{count} eroj kiu kongruas vian serĉon.
     today: hodiaŭ
     validation_errors:
       one: Io mise okazis! Bonvolu konsulti la suban erar-raporton
@@ -1086,6 +1177,9 @@ eo:
   html_validator:
     invalid_markup: 'havas nevalidan HTML-markadon: %{error}'
   imports:
+    errors:
+      invalid_csv_file: 'Nevalida CSV-dosiero. %{error}'
+      over_rows_processing_limit: enhavas pli ol %{count} vicoj
     modes:
       merge: Kunigi
       merge_long: Konservi ekzistajn registrojn kaj aldoni novajn
@@ -1127,13 +1221,19 @@ eo:
       limit: Vi atingis la maksimuman kvanton de listoj
   login_activities:
     authentication_methods:
+      otp: 2-faktora autentigprogramaro
       password: pasvorto
       sign_in_token: retpoŝta sekureca kodo
       webauthn: sekurecaj ŝlosiloj
+    description_html: Se vi vidas nerekonitan agon, eble ŝanĝu vian pasvorton.
+    empty: Neniu autentighistorio disponebla
+    failed_sign_in_html: Malsukcese ensalutprovo per %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Sukcese ensaluto per %{method} de %{ip} (%{browser})
     title: Aŭtentiga historio
   media_attachments:
     validations:
       images_and_video: Aldoni videon al mesaĝo, kiu jam havas bildojn ne eblas
+      not_ready: Ne povas aldoni dosieron kiu ne finas procezitis.
       too_many: Aldoni pli ol 4 dosierojn ne eblas
   migrations:
     acct: Movigita al
