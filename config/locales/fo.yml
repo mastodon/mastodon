@@ -226,6 +226,15 @@ fo:
       actions:
         approve_appeal_html: "%{name} góðkendi umsjónaráheitan frá %{target}"
         approve_user_html: "%{name} góðtók umsókn frá %{target}"
+        assigned_to_self_report_html: "%{name} tillutaði frágreiðing %{target} til sín sjálvs"
+        change_email_user_html: "%{name} broytti teldupost addressuna hjá %{target}"
+        change_role_user_html: "%{name} broytti leiklutin hjá %{target}"
+        confirm_user_html: "%{name} góðtók teldupost addressuna hjá %{target}"
+        create_account_warning_html: "%{name} sendi eina ávarðing til %{target}"
+        create_announcement_html: "%{name} stovnaði eina fráboðan %{target}"
+        create_canonical_email_block_html: "%{name} forðaði telduposti við hash'inum %{target}"
+        create_custom_emoji_html: "%{name} legði upp nýtt kenslutekn %{target}"
+        create_domain_allow_html: "%{name} loyv sameining við domainið %{target}"
         reject_appeal_html: "%{name} avvísti umsjónaráheitan frá %{target}"
     custom_emojis:
       delete: Strika
