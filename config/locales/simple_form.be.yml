@@ -15,6 +15,10 @@ be:
         types:
           disable: Перадухіліць выкарыстанне акаунтаў, але не выдаляць і не хаваць іх змесціва.
           none: Выкарыстоўвай гэта для папярэджвання карыстальнікаў але без іншых наступстваў.
+      announcement:
+        ends_at: Неабавязкова. Аб'ява будзе аўтаматычна знята ў пэўны час
+        scheduled_at: Пакіньце пустым, каб апублікаваць аб'яву імаверна
+        starts_at: Неабавязкова. На выпадак, калі ваша аб'ява прывязана да пэўнага перыяду часу
       appeal:
         text: Вы можаце абскардзіць рашэнне толькі адзін раз
       defaults:
@@ -33,6 +37,10 @@ be:
         custom_css: Вы можаце прымяняць карыстальніцкія стылі ў вэб-версіі Mastodon.
         mascot: Замяняе ілюстрацыю ў пашыраным вэб-інтэрфейсе.
         site_contact_username: Як людзі могуць звязацца з вамі на Mastodon.
+      form_challenge:
+        current_password: Вы ўваходзіце ў бяспечную зону
+      imports:
+        data: Файл CSV экспартаваны з іншага сервера Mastodon
     labels:
       admin_account_action:
         text: Карыстальніцкае папярэджанне
@@ -72,7 +80,9 @@ be:
         phrase: Ключавое слова ці фраза
         setting_advanced_layout: Уключыць пашыраны вэб-інтэрфейс
         setting_aggregate_reblogs: Групаваць прасоўванні ў стужках
+        setting_auto_play_gif: Аўтапрайграванне анімаваных GIF
         setting_boost_modal: Паказваць акно пацвярджэння перад пашырэннем
+        setting_crop_images: У неразгорнутых допісах абразаць відарысы да 16:9
         setting_default_language: Мова допісаў
         setting_default_privacy: Прыватнасць допісаў
         setting_default_sensitive: Заўсёды пазначаць кантэнт як далікатны
@@ -81,6 +91,8 @@ be:
         setting_display_media_default: Перадвызначана
         setting_display_media_hide_all: Схаваць усё
         setting_display_media_show_all: Паказаць усё
+        setting_reduce_motion: Памяншэнне руху ў анімацыях
+        setting_system_font_ui: Выкарыстоўваць прадвызначаны сістэмны шрыфт
         setting_theme: Тэма сайта
         setting_trends: Паказваць трэнды дня
         setting_unfollow_modal: Паказваць акно пацвярджэння перад адпіскай
