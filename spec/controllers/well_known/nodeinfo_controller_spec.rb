@@ -1,5 +1,13 @@
 require 'rails_helper'
 
+RSpec::Matchers.define :match_response_schema do |schema|
+  match do |response|
+    schema_directory = "#{Dir.pwd}/spec/support/"
+    schema_path = "#{schema_directory}/#{schema}.json"
+    JSON::Validator.validate!(schema_path, response.body, strict: true)
+  end
+end
+
 describe WellKnown::NodeInfoController, type: :controller do
   render_views
 
@@ -26,7 +34,8 @@ describe WellKnown::NodeInfoController, type: :controller do
       expect(response.media_type).to eq 'application/json'
 
       json = body_as_json
-
+      
+      expect(json).to match_response_schema("node_info_2.0_schema")
       expect(json[:version]).to eq '2.0'
       expect(json[:usage]).to be_a Hash
       expect(json[:software]).to be_a Hash
