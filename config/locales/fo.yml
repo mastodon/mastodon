@@ -30,7 +30,7 @@ fo:
       created_msg: Umsjónarviðmerking stovnað!
       destroyed_msg: Umsjónarviðmerking strikað!
     accounts:
-      add_email_domain_block: Blokera teldupostdomeni
+      add_email_domain_block: Blokera teldupostanavnaøki
       approve: Vátta
       approved_msg: Góðkent tilmeldingarumbøn hjá %{username}
       are_you_sure: Ert tú vís/ur?
@@ -159,7 +159,7 @@ fo:
       unsubscribe: Strika hald
       unsuspended_msg: Kontan hjá %{username} varð gjørd virkin aftur
       username: Brúkaranavn
-      view_domain: Vís samandrátt fyri domeni
+      view_domain: Vís samandrátt fyri navnaøki
       warn: Ávara
       web: Vev
       whitelisted: Loyvd at sameina
@@ -175,23 +175,23 @@ fo:
         create_announcement: Stovna kunngerð
         create_canonical_email_block: Stovna teldupostblokering
         create_custom_emoji: Stovna serligt kenslutekn
-        create_domain_allow: Stovna domeniloyvi
-        create_domain_block: Stovna domeniblokering
-        create_email_domain_block: Stovna teldupost-domeniblokering
+        create_domain_allow: Stovna navnaøkjaloyvi
+        create_domain_block: Stovna navnaøkjablokering
+        create_email_domain_block: Stovna teldupostanavnaøkjablokering
         create_ip_block: Stovna IP reglu
-        create_unavailable_domain: Stovna domeni, sum ikki er tøkt
+        create_unavailable_domain: Stovna navnaøki, sum ikki er tøkt
         create_user_role: Stovna leiklut
         demote_user: Lækka brúkara í tign
         destroy_announcement: Strika kunngerð
         destroy_canonical_email_block: Strika teldupostblokering
         destroy_custom_emoji: Strika serligt kenslutekn
-        destroy_domain_allow: Strika domeniloyvi
-        destroy_domain_block: Strika domeniblokering
-        destroy_email_domain_block: Strika teldupost-domeniblokering
-        destroy_instance: Reinsa domeni
+        destroy_domain_allow: Strika navnaøkjaloyvi
+        destroy_domain_block: Strika navnaøkjablokering
+        destroy_email_domain_block: Strika teldupostanavnaøkjablokering
+        destroy_instance: Reinsa navnaøki
         destroy_ip_block: Strika IP reglu
         destroy_status: Strika post
-        destroy_unavailable_domain: Strika domeni, sum ikki er tøkt
+        destroy_unavailable_domain: Strika navnaøki, sum ikki er tøkt
         destroy_user_role: Bein burtur leiklut
         disable_2fa_user: Ger 2FA óvirkið
         disable_custom_emoji: Ger serligt kenslutekn óvirkið
@@ -235,7 +235,36 @@ fo:
         create_canonical_email_block_html: "%{name} forðaði telduposti við hash'inum %{target}"
         create_custom_emoji_html: "%{name} legði upp nýtt kenslutekn %{target}"
         create_domain_allow_html: "%{name} loyv sameining við domainið %{target}"
+        create_domain_block_html: "%{name} blokeraði navnaøkið %{target}"
+        create_email_domain_block_html: "%{name} blokeraði teldupostanavnaøkið %{target}"
+        create_ip_block_html: "%{name} gjørdi reglu fyri IP %{target}"
+        create_unavailable_domain_html: "%{name} steðgaði veiting til navnaøkið %{target}"
+        create_user_role_html: "%{name} stovnaði %{target} leiklutin"
+        demote_user_html: "%{name} lækkaði tignina hjá brúkaranum %{target}"
+        destroy_announcement_html: "%{name} strikaði kunngerðina %{target}"
+        destroy_canonical_email_block_html: "%{name} strikaði blokeringina av teldupostin við hashkodu %{target}"
+        destroy_custom_emoji_html: "%{name} strikaði kensluteknið %{target}"
+        destroy_domain_allow_html: "%{name} havnaði sameining við navnaøkið %{target}"
+        destroy_domain_block_html: "%{name} strikaði blokering av navnaøkinum %{target}"
+        destroy_email_domain_block_html: "%{name} strikaði blokering av teldupostanavnaøkinum %{target}"
+        destroy_instance_html: "%{name} reinsaði navnaøkið %{target}"
         reject_appeal_html: "%{name} avvísti umsjónaráheitan frá %{target}"
+      deleted_account: strikað konta
+      empty: Eingir loggar funnir.
+      filter_by_action: Filtrera eftir atgerð
+      filter_by_user: Filtrera eftir brúkara
+      title: Skoðanarloggur
+    announcements:
+      destroyed_msg: Kunngerð strikað!
+      edit:
+        title: Rætta kunngerð
+      empty: Ongar kunngerðir funnar.
+      live: Beinleiðis
+      new:
+        create: Stovna kunngerð
+        title: Nýggj kunngerð
+      publish: Legg út
+      published_msg: Kunngerð útgivin!
     custom_emojis:
       delete: Strika
       list: Listi
@@ -247,25 +276,25 @@ fo:
       export: Flyt út
       import: Flyt inn
       new:
-        hint: Domeniblokkurin forðar ikki stovnan av kontum í dátugrunninum, men fer afturlítandi og sjálvvirkandi at gera ávísar umsjónarmannagongdir á hesar kontur virknar.
-      no_domain_block_selected: Eingir domenu-blokkar vóru broyttir, av tí at eingir vóru valdir
+        hint: Navnaøkjablokeringin forðar ikki stovnan av kontum í dátugrunninum, men fer afturlítandi og sjálvvirkandi at gera ávísar umsjónarmannagongdir á hesar kontur virknar.
+      no_domain_block_selected: Ongar navnaøkjablokeringar vóru broyttar, tí ongar vóru valdar
       not_permitted: Tú hevur ikki rættindi at gera hetta
-      private_comment_hint: Viðmerking um hesa domeniavmarking til innanhýsis nýtslu hjá umsjónarfólkunum.
+      private_comment_hint: Viðmerking um hesa navnaøkjaavmarking til innanhýsis nýtslu hjá umsjónarfólkunum.
     email_domain_blocks:
       delete: Strika
     export_domain_allows:
       new:
-        title: Innflytandi domenið loyvir
+        title: Innflyt navnaøkjaloyvi
       no_file: Eingin fíla vald
     export_domain_blocks:
       import:
-        description_html: Tú er í holt við at innflyta ein lista av domeni-blokkum. Vinarliga eftirkanna listan gjølla, serliga um tú ikki hevur gjørt listan sjálv/ur.
+        description_html: Tú er í holt við at innflyta ein lista av navnaøkjablokeringum. Vinarliga eftirkanna listan gjølla, serliga um tú ikki hevur gjørt listan sjálv/ur.
         existing_relationships_warning: Verandi fylgjarasambond
         private_comment_description_html: 'Fyri at hjálpa tær at fylgja við í, hvaðani innfluttir blokkar koma, verða innfluttu blokkarnir stovnaðir við hesi privatu viðmerkingini:<q>%{comment}</q>'
         private_comment_template: Innflutt frá %{source} tann %{date}
-        title: Innflyt domenu-blokkar
+        title: Innflyt navnaøkjablokeringar
       new:
-        title: Innflyt domenu-blokkar
+        title: Innflyt navnaøkjablokeringar
       no_file: Eingin fíla vald
     instances:
       moderation:
