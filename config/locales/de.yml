@@ -291,8 +291,8 @@ de:
       destroyed_msg: Ankündigung erfolgreich gelöscht!
       edit:
         title: Ankündigung bearbeiten
-      empty: Keine Ankündigungen gefunden.
-      live: Live
+      empty: Keine Ankündigungen vorhanden.
+      live: Aktuell gültig
       new:
         create: Ankündigung erstellen
         title: Neue Ankündigung
@@ -555,7 +555,7 @@ de:
       save_and_enable: Speichern und aktivieren
       setup: Relaisverbindung einrichten
       signatures_not_enabled: Relais funktionieren nicht korrekt, während der sichere Modus oder der Whitelist-Modus aktiviert ist
-      status: Zustand
+      status: Status
       title: Relais
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
@@ -611,7 +611,7 @@ de:
       resolved: Gelöst
       resolved_msg: Meldung erfolgreich gelöst!
       skip_to_actions: Zu Aktionen springen
-      status: Zustand
+      status: Status
       statuses: Gemeldeter Inhalt
       statuses_description_html: Störende Inhalte werden in der Kommunikation mit dem gemeldeten Konto zitiert
       target_origin: Domain des gemeldeten Kontos
@@ -633,9 +633,9 @@ de:
         special: Spezial
       delete: Löschen
       description_html: Mit <strong>Benutzer*inn-Rollen</strong> kannst du die Funktionen und Bereiche von Mastodon anpassen, auf die deine Benutzer*innen zugreifen können.
-      edit: '''%{name}'' Rolle bearbeiten'
+      edit: Rolle „%{name}“ bearbeiten
       everyone: Standardberechtigungen
-      everyone_full_description_html: Das ist die <strong>-Basis-Rolle</strong>, die <strong>alle Benutzer*innen</strong> betrifft, auch diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
+      everyone_full_description_html: Das ist die <strong>Basis-Rolle</strong>, die für <strong>alle Benutzer*innen</strong> gilt – auch für diejenigen ohne zugewiesene Rolle. Alle anderen Rollen erben Berechtigungen davon.
       permissions_count:
         one: "%{count} Berechtigung"
         other: "%{count} Berechtigungen"
@@ -645,7 +645,7 @@ de:
         delete_user_data: Löschen der Account-Daten
         delete_user_data_description: Erlaubt Benutzer*innen, die Daten anderer Benutzer*innen sofort zu löschen
         invite_users: Benutzer*innen einladen
-        invite_users_description: Erlaubt Benutzer*innen, neue Leute zum Server einzuladen
+        invite_users_description: Erlaubt bereits registrierten Benutzer*innen, neue Leute zum Server einzuladen
         manage_announcements: Ankündigungen verwalten
         manage_announcements_description: Erlaubt Benutzer*innen, Ankündigungen auf dem Server zu verwalten
         manage_appeals: Einsprüche verwalten
