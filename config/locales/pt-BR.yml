@@ -426,6 +426,8 @@ pt-BR:
       resolved_through_html: Resolvido através de %{domain}
       title: Lista de negra de e-mail
     export_domain_allows:
+      new:
+        title: Importar domínios permitidos
       no_file: Nenhum arquivo selecionado
     export_domain_blocks:
       import:
@@ -961,6 +963,9 @@ pt-BR:
       email_below_hint_html: Se o endereço de e-mail abaixo não for seu, você pode alterá-lo aqui e receber um novo e-mail de confirmação.
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
       title: Configurações
+    sign_up:
+      preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
+      title: Então vamos lá criar uma conta em %{domain}.
     status:
       account_status: Status da conta
       confirming: Confirmação por e-mail pendente.
@@ -1109,6 +1114,7 @@ pt-BR:
       statuses: Publicações individuais
       title: Editar filtro
     errors:
+      deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir deste aplicativo porque se aplicam a mais de uma palavra-chave de filtro. Use um aplicativo mais recente ou a interface web.
       invalid_context: Contexto inválido ou nenhum contexto informado
     index:
       contexts: Filtros em %{contexts}
