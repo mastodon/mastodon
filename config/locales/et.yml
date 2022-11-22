@@ -553,6 +553,7 @@ et:
     migrate_account: Koli teisele kasutajale
     migrate_account_html: Kui Te soovite seda kontot ümber viia teisele, <a href="%{path}">saate teha seda siit</a>.
     or_log_in_with: Või logi sisse koos
+    privacy_policy_agreement_html: Olen lugenud ja nõustun <a href="%{privacy_policy_path}" target="_blank">privaatsuspoliitikaga</a>
     providers:
       cas: CAS
       saml: SAML
@@ -561,6 +562,7 @@ et:
     resend_confirmation: Saada kinnitusjuhendid uuesti
     reset_password: Lähtesta salasõna
     rules:
+      preamble: Neist kinnipidamist jälgivad %{domain} moderaatorid.
       title: Mõned põhireeglid.
     security: Turvalisus
     set_new_password: Määra uus salasõna
@@ -568,6 +570,9 @@ et:
       email_below_hint_html: Kui allolev e-posti aadress on vale, saate Te muuta seda siin ning Teile saadetakse uus kinnituskiri.
       email_settings_hint_html: Kinnituskiri saadeti e-posti aadressile %{email}. Kui see aadress pole õige, saate Te muuta seda oma konto sätetest.
       title: Seadistamine
+    sign_up:
+      preamble: Kontoga selles Mastodoni serveris on võimalik jälgida ükskõik keda võrgustikus, olenemata nende konto asukohast.
+      title: Konto andmed serveris %{domain}.
     status:
       account_status: Konto olek
       confirming: Ootan e-posti kinnitust.
@@ -713,6 +718,9 @@ et:
     none: Puudub
     order_by: Järjesta
     save_changes: Salvesta muudatused
+    select_all_matching_items:
+      one: Vali %{count} otsinguvaste.
+      other: Vali kõik %{count} otsinguvastet.
     today: täna
     validation_errors:
       one: Midagi pole ikka õigesti! Palun vaadake allolev veateade üle
@@ -804,6 +812,8 @@ et:
     admin:
       report:
         subject: "%{name} esitas raporti"
+      sign_up:
+        subject: "%{name} liitus"
     favourite:
       body: '%{name} lisas Teie staatuse lemmikutesse:'
       subject: "%{name} märkis su staatuse lemmikuks"
