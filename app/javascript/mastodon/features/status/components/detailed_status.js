@@ -23,6 +23,8 @@ const messages = defineMessages({
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers-only' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  canonical_link: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
+  external_link: { id: 'privacy.direct.short', defaultMessage: 'Direct' },
 });
 
 export default  @injectIntl
@@ -263,7 +265,7 @@ class DetailedStatus extends ImmutablePureComponent {
       externalLink = (
         <React.Fragment>
           <React.Fragment> </React.Fragment>
-          <Icon id='external-link' title='External link' aria-label='External link' />
+          <Icon id='external-link' title='${intl.formatMessage(messages.external_link)}' aria-label='${intl.formatMessage(messages.external_link)}' />
         </React.Fragment>
       );
     }
@@ -286,7 +288,7 @@ class DetailedStatus extends ImmutablePureComponent {
           {media}
 
           <div className='detailed-status__meta'>
-            <a className='detailed-status__datetime' href={`${status.get('url')}`} target='_blank' rel='noopener noreferrer' title='Link to canonical resource' aria-label='Link to canonical resource'>
+            <a className='detailed-status__datetime' href={`${status.get('url')}`} target='_blank' rel='noopener noreferrer' title='${intl.formatMessage(messages.canonical_link)}' aria-label='${intl.formatMessage(messages.canonical_link)}'>
               <FormattedDate value={new Date(status.get('created_at'))} hour12={false} year='numeric' month='short' day='2-digit' hour='2-digit' minute='2-digit' />
               {externalLink}
             </a>{edited}{visibilityLink}{applicationLink}{reblogLink} · {favouriteLink}
