@@ -175,7 +175,7 @@ be:
         create_account_warning: Стварыць папярэджванне
         create_announcement: Стварыць аб'яву
         create_canonical_email_block: Стварыць блакіроўку электроннай пошты
-        create_custom_emoji: Стварыць уласны эмодзі
+        create_custom_emoji: Стварыць адвольны эмодзі
         create_domain_allow: Стварыць даменны дазвол
         create_domain_block: Стварыць даменны блок
         create_email_domain_block: Стварыць даменны блок электроннай пошты
@@ -185,7 +185,7 @@ be:
         demote_user: Панізіць карыстальніка
         destroy_announcement: Выдаліць аб'яву
         destroy_canonical_email_block: Выдаліць блакіроўку электроннай пошты
-        destroy_custom_emoji: Выдаліць уласны эмодзі
+        destroy_custom_emoji: Выдаліць адвольны эмодзі
         destroy_domain_allow: Выдаліць дамены дазвол
         destroy_domain_block: Выдаліць даменны блок
         destroy_email_domain_block: Выдаліць даменны блок электроннай пошты
@@ -195,10 +195,10 @@ be:
         destroy_unavailable_domain: Выдаліць недаступны дамен
         destroy_user_role: Выдаліць ролю
         disable_2fa_user: Адключыць двухэтапнае спраўджанне
-        disable_custom_emoji: Адключыць уласны эмодзі
+        disable_custom_emoji: Адключыць адвольныя эмодзі
         disable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
         disable_user: Адключыць карыстальніка
-        enable_custom_emoji: Уключыць уласныя эмодзі
+        enable_custom_emoji: Уключыць адвольныя эмодзі
         enable_sign_in_token_auth_user: Адключыць аўтарызацыю праз электронную пошту для Карыстальніка
         enable_user: Уключыць карыстальніка
         memorialize_account: Запомніць уліковы запіс
@@ -219,7 +219,7 @@ be:
         unsilence_account: Уліковы запіс больш не абмежаваны
         unsuspend_account: Аднавіць уліковы запіс
         update_announcement: Абнавіць аб'яву
-        update_custom_emoji: Абнавіць уласныя эмодзі
+        update_custom_emoji: Абнавіць адвольныя эмодзі
         update_domain_block: Актуалізаваць блакіроўку дамена 
         update_ip_block: Абнавіць IP правіла
         update_status: Абнавіць допіс
@@ -326,13 +326,13 @@ be:
       list: Паказваць
       listed: Паказваецца
       new:
-        title: Дадаць новы смайлік
+        title: Дадаць новы адвольны эмодзі
       no_emoji_selected: Не атрымалася змяніць ніводзін смайлік, бо ніводзін смайлік не быў абраны.
       not_permitted: Вам не дазволена выконваць гэта дзеянне
       overwrite: Перазапісаць
       shortcode: Кароткі код
       shortcode_hint: Як менш 2 сімвалы, толькі лічбы, лацінскія літары ці падкрэсліванне
-      title: Уласныя эмодзі
+      title: Адвольныя эмодзі
       uncategorized: Без катэгорыі
       unlist: Прыбраць
       unlisted: Не ў спісе
@@ -430,6 +430,7 @@ be:
       delete: Выдаліць
       privileges:
         administrator: Адміністратар
+        manage_custom_emojis: Кіраванне адвольнымі эмодзі
       title: Ролі
     rules:
       add_new: Дадаць правіла
@@ -439,6 +440,8 @@ be:
     settings:
       discovery:
         trends: Актуальныя
+      domain_blocks:
+        users: Лакальным карыстальнікам, якія ўвайшлі
     statuses:
       account: Аўтар
       application: Праграма
@@ -473,6 +476,7 @@ be:
         suspend: каб выключыць уліковы запіс
   appearance:
     localization:
+      body: Mastodon перакладаецца добраахвотнікамі.
       guide_link: https://be.crowdin.com/project/mastodon/be
       guide_link_text: Кожны можа зрабіць унёсак.
   application_mailer:
