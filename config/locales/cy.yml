@@ -1364,18 +1364,18 @@ cy:
     warning:
       backreference_required: Bydd rhaid i'r cyfrif newydd olgyfeirio at y cyfrif hon yn gyntaf
       before: 'Cyn bwrw ymlaen, darllenwch y nodiadau hyn yn ofalus:'
-      cooldown: Ar ôl symud, bydd yna cyfnod oeriad trwy pa ystod ni fyddwch yn gallu symud eto
-      disabled_account: Ni fydd eich cyfrif presennol yn gwbl ddefyddiedig ar ôl hyn. Er hynny, byddwch dal gyda fynediad at allforiad data ac hefyd ail-actifadu.
-      followers: Bydd y gweithred hon yn symud pob un o'ch dilynwyr o'r cyfrif presennol i'r cyfrif newydd
-      only_redirect_html: Fel arall, gallwch <a href="%{path}">dim ond ychwanegu ailgyfeiriad ar eich proffil</a>.
+      cooldown: Ar ôl symud, bydd yna cyfnod aros na fydd modd i chi symud eto
+      disabled_account: Ni fydd modd defnyddio'ch cyfrif cyfredol yn llawn wedyn. Fodd bynnag, bydd gennych fynediad i allforio data yn ogystal ag ail agor.
+      followers: Bydd y weithred hon yn symud yr holl ddilynwyr o'r cyfrif cyfredol i'r cyfrif newydd
+      only_redirect_html: Fel arall, <a href="%{path}">dim ond ailgyfeiriad y gallwch chi ei osod ar eich proffil</a> .
       other_data: Ni fydd unrhyw data arall yn cael ei symud yn awtomatig
       redirect: Bydd proffil eich cyfrif presennol yn cael ei diweddaru gyda hysbysiad ailgyfeirio ac yn cael ei eithrio o chwiliadau
   moderation:
-    title: Goruwchwyliad
+    title: Cymedroil
   move_handler:
-    carry_blocks_over_text: Wnaeth y defnyddiwr symud o %{acct}, a oeddech chi wedi'i flocio.
-    carry_mutes_over_text: Symudodd y defnyddiwr hwn o %{acct}, a oeddech chi wedi'i anwybyddu.
-    copy_account_note_text: 'Wnaeth y defnyddiwr symud o %{acct}, dyma oedd eich hen nodiadau amdanynt:'
+    carry_blocks_over_text: Symudodd y defnyddiwr hwn o %{acct}, yr oeddech wedi'i rwystro.
+    carry_mutes_over_text: Wnaeth y defnyddiwr symud o %{acct}, a oeddech chi wedi'i dewi.
+    copy_account_note_text: 'Symudodd y defnyddiwr hwn o %{acct}, dyma oedd eich nodiadau blaenorol amdanynt:'
   navigation:
     toggle_menu: Toglo'r ddewislen
   notification_mailer:
@@ -1399,14 +1399,14 @@ cy:
       title: Cais dilynwr newydd
     mention:
       action: Ateb
-      body: 'Caswoch eich sôn amdano gan %{name} yn:'
-      subject: Cawsoch eich sôn amdano gan %{name}
+      body: 'Caswoch eich crybwyll gan %{name} yn:'
+      subject: Cawsoch eich crybwyll gan %{name}
       title: Crywbylliad newydd
     poll:
       subject: Mae arolwg barn gan %{name} wedi dod i ben
     reblog:
-      body: 'Cafodd eich statws ei fŵstio gan %{name}:'
-      subject: "Bŵstiodd %{name} eich statws"
+      body: 'Cafodd eich postiad ei hybu gan %{name}:'
+      subject: "Rhoddodd %{name} hwb i'ch postiad"
       title: Hwb newydd
     status:
       subject: "%{name} newydd ei bostio"
@@ -1414,7 +1414,7 @@ cy:
       subject: "Golygodd %{name} bostiad"
   notifications:
     email_events: Digwyddiadau ar gyfer hysbysiadau e-bost
-    email_events_hint: 'Dewis digwyddiadau hoffech derbyn hysbysiadau ar eu cyfer:'
+    email_events_hint: 'Dewiswch ddigwyddiadau yr ydych am dderbyn hysbysiadau ar eu cyfer:'
     other_settings: Gosodiadau hysbysiadau arall
   number:
     human:
@@ -1446,40 +1446,40 @@ cy:
       duplicate_options: yn cynnwys eitemau dyblyg
       duration_too_long: yn rhy bell yn y dyfodol
       duration_too_short: yn rhy fuan
-      expired: Mae'r pleidlais wedi gorffen yn barod
+      expired: Mae'r arolwg barn eisoes wedi dod i ben
       invalid_choice: Nid yw'r dewis pleidlais hyn yn bodoli
-      over_character_limit: ni all fod yn hirach na %{max} cymeriad yr un
-      too_few_options: rhaid cael fwy nag un eitem
-      too_many_options: ni all cynnwys fwy na %{max} o eitemau
+      over_character_limit: ni all fod yn hwy na %{max} nod yr un
+      too_few_options: rhaid cael mwy nag un eitem
+      too_many_options: ni all gynnwys mwy na %{max} eitem
   preferences:
     other: Arall
     posting_defaults: Rhagosodiadau postio
-    public_timelines: Ffrydau gyhoeddus
+    public_timelines: Ffrydiau cyhoeddus
   privacy_policy:
     title: Polisi preifatrwydd
   reactions:
     errors:
-      limit_reached: Cyfwng o ymatebion wahanol wedi'i cyrraedd
-      unrecognized_emoji: ddim yn emoji adnabyddwy
+      limit_reached: Cyrhaeddwyd terfyn y gwahanol adweithiau
+      unrecognized_emoji: nid yw'n emoji cydnabyddedig
   relationships:
     activity: Gweithgareddau cyfrif
     dormant: Segur
     follow_selected_followers: Dilynwch y dilynwyr a ddewiswyd
     followers: Dilynwyr
     following: Yn dilyn
-    invited: Wedi gwahodd
-    last_active: Gweithred ddiwethaf
-    most_recent: Yn diweddaraf
+    invited: Gwahoddwyd
+    last_active: Yn weithgar ddiwethaf
+    most_recent: Y diweddaraf
     moved: Wedi symud
-    mutual: Cydfuddiannol
+    mutual: Cydfudd
     primary: Cynradd
     relationship: Perthynas
-    remove_selected_domains: Tynnu pob dilynydd o'r parthau dewisiedig
+    remove_selected_domains: Tynnu'r holl ddilynwyr o'r parthau a ddewiswyd
     remove_selected_followers: Dileu'r dilynwyr a ddewiswyd
     remove_selected_follows: Dad-ddilyn y defnyddwyr a ddewiswyd
     status: Statws cyfrif
   remote_follow:
-    missing_resource: Ni ellir canfod yr URL ailgyferio angenrheidiol i'ch cyfrif
+    missing_resource: Methu â dod o hyd i'r URL ailgyfeirio gofynnol ar gyfer eich cyfrif
   reports:
     errors:
       invalid_rules: ddim yn cyfeirio at reolau dilys
@@ -1489,9 +1489,9 @@ cy:
       account: Postiadau cyhoeddus gan @%{acct}
       tag: 'Postiadau cyhoeddus wedi''u tagio #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig ar y dydd hynny
-    over_total_limit: Rydych wedi rhagori'r cyfwng o %{limit} o dŵtiau rhestredig
-    too_soon: Mae rhaid i'r dydd rhestredig fod yn y dyfodol
+    over_daily_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd ar gyfer heddiw
+    over_total_limit: Rydych wedi mynd dros y terfyn o %{limit} postiad a drefnwyd
+    too_soon: Rhaid i'r dyddiad a drefnwyd fod yn y dyfodol
   sessions:
     activity: Gweithgaredd ddiwethaf
     browser: Porwr
@@ -1513,9 +1513,9 @@ cy:
       safari: Agor yn Safari
       uc_browser: UC Browser
       weibo: Weibo
-    current_session: Sesiwn cyfredol
+    current_session: Sesiwn gyfredol
     description: "%{browser} ar %{platform}"
-    explanation: Dyma'r porwyr gwê sydd wedi mewngofnodi i'ch cyfrif Mastododon ar hyn o bryd.
+    explanation: Dyma'r porwyr gwe sydd wedi mewngofnodi i'ch cyfrif Mastodon ar hyn o bryd.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1530,8 +1530,8 @@ cy:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Ffôn Windows
-    revoke: Diddymu
-    revoke_success: Sesiwn wedi ei ddiddymu yn llwyddiannus
+    revoke: Dirymu
+    revoke_success: Diddymwyd y sesiwn yn llwyddiannus
     title: Sesiynau
     view_authentication_history: Gweld hanes dilysu eich cyfrif
   settings:
