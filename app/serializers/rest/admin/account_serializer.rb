@@ -87,5 +87,4 @@ class REST::Admin::AccountSerializer < ActiveModel::Serializer
   def media_attachments
     object.media_attachments.sum(:file_file_size)
   end
-
 end
