@@ -38,7 +38,8 @@ et:
         password: Sisestage vähemalt 8 tähemärki
         phrase: Kattub olenemata tuututuse teksti suurtähtedest või sisuhoiatusest
         scopes: Milliseid API-sid see rakendus tohib kasutada. Kui Te valite kõrgeima taseme, ei pea Te valima individuaalseid.
-        setting_aggregate_reblogs: Ära näita uusi upitusi tuututustele, mis on just hiljuti upitatud (ainult kehtib uutele upitusele)
+        setting_aggregate_reblogs: Ära kuva uusi postituste jagamisi, mis on hiljuti jagatud (kehtib vaid uutele jagamistele)
+        setting_always_send_emails: Kui aktiivselt Mastodoni kasutada, siis tavapäraselt e-postiga teavitusi ei saadeta
         setting_default_sensitive: Tundlik meedia on vaikimisi peidetud ning seda saab avada sellele klikkides
         setting_display_media_default: Peida tundlikuks märgitud meedia
         setting_display_media_hide_all: Alati peida kõik meedia
@@ -63,6 +64,8 @@ et:
         data: CSV fail eksporditi teisest Mastodoni serverist
       invite_request:
         text: See aitab meil üle vaadata Teie taotlust
+      ip_block:
+        expires_in: IP-aadressid on lõplik ressurss ja on tihtipeale ühiskasutuses või vahetub kasutaja. Sel põhjusel pole kestvad IP-piirangud soovituslikud.
       sessions:
         otp: 'Sisesta kahesammulise autentimise kood loodud Teie mobiilirakenduse poolt või sisesta mõni taastuskood:'
       tag:
@@ -127,9 +130,9 @@ et:
         password: Salasõna
         phrase: Võtmesõna või fraas
         setting_advanced_layout: Aktiveeri kohandatud veebiliides
-        setting_aggregate_reblogs: Grupita upitused ajajoontes
+        setting_aggregate_reblogs: Grupeeri jagamised ajajoontel
         setting_auto_play_gif: Mängi GIF-e automaatselt
-        setting_boost_modal: Näita kinnitusdialoogi enne upitamist
+        setting_boost_modal: Näita enne jagamist kinnitusdialoogi
         setting_crop_images: Kärbi suurendamata tuututuste pildid resolutsiooni 16x9
         setting_default_language: Postituse keel
         setting_default_privacy: Postituse privaatsus
@@ -163,6 +166,7 @@ et:
       featured_tag:
         name: Silt
       form_admin_settings:
+        closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         custom_css: Kohandatud CSS
         profile_directory: Luba kasutajate kataloog
         site_contact_email: Kontaktisiku e-post
@@ -193,7 +197,7 @@ et:
         follow_request: Saada e-kiri, kui keegi soovib Teid jälgida
         mention: Saada e-kiri, kui keegi mainib Teid
         pending_account: Saada e-kiri, kui uus konto vajab ülevaatlust
-        reblog: Saada e-kiri, kui keegi upitab Teie staatust
+        reblog: Keegi jagas postitust
       rule:
         text: Reegel
       tag:
