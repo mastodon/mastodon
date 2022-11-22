@@ -373,7 +373,7 @@ class User < ApplicationRecord
     super
   end
 
-  def clear_sessions!
+  def revoke_access!
     Doorkeeper::AccessGrant.by_resource_owner(self).update_all(revoked_at: Time.now.utc)
 
     Doorkeeper::AccessToken.by_resource_owner(self).in_batches do |batch|
@@ -390,7 +390,7 @@ class User < ApplicationRecord
     end
 
     # Then, remove all authorized applications and connected push subscriptions
-    clear_sessions!
+    revoke_access!
 
     # Finally, send a reset password prompt to the user
     send_reset_password_instructions

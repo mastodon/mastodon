@@ -11,7 +11,7 @@ class Auth::PasswordsController < Devise::PasswordsController
       if resource.errors.empty?
         resource.session_activations.destroy_all
 
-        resource.clear_sessions!
+        resource.revoke_access!
       end
     end
   end
