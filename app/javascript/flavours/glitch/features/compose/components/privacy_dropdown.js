@@ -32,7 +32,7 @@ class PrivacyDropdown extends React.PureComponent {
   };
 
   render () {
-    const { value, onChange, onModalOpen, onModalClose, disabled, noDirect, container, intl: { formatMessage } } = this.props;
+    const { value, onChange, onModalOpen, onModalClose, disabled, noDirect, container, isUserTouching, intl: { formatMessage } } = this.props;
 
     //  We predefine our privacy items so that we can easily pick the
     //  dropdown icon later.
@@ -75,6 +75,7 @@ class PrivacyDropdown extends React.PureComponent {
         icon={(privacyItems[value] || {}).icon}
         items={items}
         onChange={onChange}
+        isUserTouching={isUserTouching}
         onModalClose={onModalClose}
         onModalOpen={onModalOpen}
         title={formatMessage(messages.change_privacy)}
