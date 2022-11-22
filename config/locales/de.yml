@@ -187,7 +187,7 @@ de:
         destroy_custom_emoji: Eigenes Emojis löschen
         destroy_domain_allow: Erlaube das Löschen von Domains
         destroy_domain_block: Domainsperre löschen
-        destroy_email_domain_block: E-Mail-Domainsperre löschen
+        destroy_email_domain_block: E-Mail-Domain-Sperre löschen
         destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
         destroy_status: Beitrag löschen
@@ -420,7 +420,7 @@ de:
           mx: MX-Record
       domain: Domain
       new:
-        create: Blockade erstellen
+        create: E-Mail-Domain hinzufügen
         resolve: Domain auflösen
         title: Neue E-Mail-Domain sperren
       no_email_domain_block_selected: Keine E-Mail-Domainsperren wurden geändert, da keine ausgewählt wurden
@@ -1092,7 +1092,7 @@ de:
     archive_takeout:
       date: Datum
       download: Dein Archiv herunterladen
-      hint_html: Du kannst ein Archiv deiner <strong>Beiträge, Listen, hochgeladenen Medien, usw.</strong> anfordern. Die exportierten Daten werden in dem ActivityPub-Format gespeichert und können mit jeder passenden Software gelesen werden. Du kannst alle 7 Tage ein Archiv anfordern.
+      hint_html: Du kannst ein Archiv deiner <strong>Beiträge, Listen, hochgeladenen Medien usw.</strong> anfordern. Die exportierten Daten werden im ActivityPub-Format gespeichert und können mit geeigneter Software ausgewertet und angezeigt werden. Du kannst alle 7 Tage ein Archiv erstellen lassen.
       in_progress: Persönliches Archiv wird erstellt …
       request: Dein Archiv anfordern
       size: Größe
@@ -1221,7 +1221,7 @@ de:
       limit: Du hast die maximale Anzahl an Listen erreicht
   login_activities:
     authentication_methods:
-      otp: Zwei-Faktor-Authentifizierung-App
+      otp: Zwei-Faktor-Authentisierungs-App
       password: Passwort
       sign_in_token: E-Mail-Sicherheitscode
       webauthn: Sicherheitsschlüssel
@@ -1323,7 +1323,7 @@ de:
           thousand: K
           trillion: T
   otp_authentication:
-    code_hint: Gib den von deiner Authentifizierungs-App generierten Code ein, um deine Anmeldung zu bestätigen
+    code_hint: Gib den Code ein, den deine 2FA- bzw. TOTP-App generiert hat, um den Vorgang zu bestätigen
     description_html: Wenn du die <strong>Zwei-Faktor-Authentisierung</strong> (2FA) mit einer Authentifizierungs-App deines Smartphones aktivierst, benötigst du neben dem regulären Passwort zusätzlich auch den zeitbasierten Code der 2FA-App, um dich anmelden zu können.
     enable: Aktivieren
     instructions_html: "<strong>Scanne diesen QR-Code mit einer TOTP-App (wie dem Google Authenticator)</strong>. Die 2FA-App generiert dann zeitbasierte Codes, die du beim Login zusätzlich zum regulären Passwort eingeben musst."
@@ -1435,7 +1435,7 @@ de:
     account_settings: Kontoeinstellungen
     aliases: Kontoaliase
     appearance: Design
-    authorized_apps: Autorisierte Anwendungen
+    authorized_apps: Genehmigte Apps
     back: Zurück zu Mastodon
     delete: Konto löschen
     development: Entwicklung
