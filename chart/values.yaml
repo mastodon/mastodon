@@ -34,6 +34,8 @@ mastodon:
   singleUserMode: false
   persistence:
     assets:
+      # storageClassName will be populated automatically, once it has been you'll need to update the values here in order to run `helm upgrade`.
+      storageClassName:
       # ReadWriteOnce is more widely supported than ReadWriteMany, but limits
       # scalability, since it requires the Rails and Sidekiq pods to run on the
       # same node.
@@ -42,6 +44,7 @@ mastodon:
         requests:
           storage: 10Gi
     system:
+      storageClassName:
       accessMode: ReadWriteOnce
       resources:
         requests:
