@@ -1238,6 +1238,7 @@ eo:
   migrations:
     acct: Movigita al
     cancel: Nuligi alidirekton
+    cancel_explanation: Nuligi la alidirekton reaktivigos vian nunan konton sed ne regajnas sekvantojn.
     cancelled_msg: Sukcese forigis la alidirekton.
     errors:
       already_moved: estas la saman konton vi jam translokiĝis al
@@ -1248,14 +1249,23 @@ eo:
     followers_count: Sekvantoj en la momento de moviĝo
     incoming_migrations: Moviĝi el alia konto
     incoming_migrations_html: Por moviĝi el alia konto al ĉi tiu, vi unue devas <a href="%{path}">krei kromnomo de konto</a>.
+    moved_msg: Vua konto nun alidirektas al %{acct} kaj via sekvantoj translokigitas.
+    not_redirecting: Via konto ne alidirektas al ajn alia konto nun.
+    on_cooldown: Vi lastatempe translokigis vian konton. Ĝi estos disponebla malantau ol %{count} dioj.
     past_migrations: Pasintaj translokaj
     proceed_with_move: Translokigi sekvantoj
     redirected_msg: Via konto nun alidirektas al %{acct}.
     redirecting_to: Via konto alidirektas al %{acct}.
     set_redirect: Agordi alidirekton
     warning:
+      backreference_required: La nova konto devas unue fiksitis antaureferenci al ĉi tio
+      before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
+      cooldown: Malantau ol translokigo, havas atenddauro kiam vi ne povas translokigi denove
+      disabled_account: Via nuna konto ne estos tute uzebla poste.
+      followers: Ĉi tiu ago translokigos ĉi tiujn sekvantojn de la nuna konto al la nova konto
       only_redirect_html: Alie, vi povas <a href="%{path}">nur aldoni alidirekton en via profilo</a>.
       other_data: Neniu alia datumo estos movita aŭtomate
+      redirect: Via nuna profilo de konto ĝisdatigotas kun alidirektoavizo
   moderation:
     title: Moderigado
   navigation:
