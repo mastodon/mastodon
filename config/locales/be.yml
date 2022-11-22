@@ -360,8 +360,8 @@ be:
       website: Вэб-сайт
     disputes:
       appeals:
-        empty: Абскарджанні не знойдзены.
-        title: Абскарджанні
+        empty: Апеляцыі не знойдзены.
+        title: Апеляцыі
     domain_allows:
       add_new: Дазволіць федэрацыю з даменам
       created_msg: Дамен быў паспяхова дабаўлены да федэрацыі
@@ -453,6 +453,8 @@ be:
       delete: Выдаліць
       privileges:
         administrator: Адміністратар
+        manage_appeals: Кіраванне апеляцыямі
+        manage_appeals_description: Дазваляе карыстальнікам разглядаць апеляцыі на дзеянні мадэратара
         manage_custom_emojis: Кіраванне адвольнымі эмодзі
       title: Ролі
     rules:
@@ -497,6 +499,8 @@ be:
     new_appeal:
       actions:
         suspend: каб выключыць уліковы запіс
+    new_report:
+      body_remote: Нехта з %{domain} паскардзіўся на %{target}
   appearance:
     advanced_web_interface: Пашыраны вэб-інтэрфейс
     advanced_web_interface_hint: 'Калі вы хочаце выкарыстоўваць усю шырыню экрана, пашыраны вэб-інтэрфейс дазваляе вам наладзіць мноства розных слупкоў, каб бачыць столькі інфармацыі, колькі вам трэба: галоўная, апавяшчэнні, глабальная стужка, любая колькасць спісаў і хэштэгаў.'
@@ -541,6 +545,8 @@ be:
       x_months: "%{count}мес"
   disputes:
     strikes:
+      appeals:
+        submit: Падаць апеляцыю
       title_actions:
         suspend: Выключэнне ўліковага запісу
   errors:
@@ -666,6 +672,8 @@ be:
     two_factor_authentication: Двухфактарная аўтэнтыфікацыя
     webauthn_authentication: Ключы бяспекі
   statuses:
+    pin_errors:
+      ownership: Немагчыма замацаваць не свой допіс
     visibilities:
       public: Публічны
   statuses_cleanup:
