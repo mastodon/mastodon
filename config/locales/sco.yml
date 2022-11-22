@@ -403,6 +403,27 @@ sco:
       public_comment: Public comment
       public_comment_hint: Comment aboot this domain limitation fir the general public, if advertisin the list of domain limitations is turnt on.
       reject_media: Rejeck media files
+      reject_media_hint: Taks doon locally stored media files an refuses tae doonload onie in the future. Irrelevant fir suspensions
+      reject_reports: Rejeck clypes
+      reject_reports_hint: Ignore aw clypes comin fae this domain. Irrelevant fir suspensions
+      undo: Undae domain dingie
+      view: Luik at domain dingie
+    email_domain_blocks:
+      add_new: Add new
+      attempts_over_week:
+        one: "%{count} attempt ower the last week"
+        other: "%{count} sign-up attempts ower the last week"
+      created_msg: Successfully dingied email domain
+      delete: Delete
+      dns:
+        types:
+          mx: MX record
+      domain: Domain
+      new:
+        create: Add domain
+        resolve: Resolve domain
+        title: Dingie new email domain
+      no_email_domain_block_selected: Nae email domain dingies got chynged as naen wis selectit
     instances:
       availability:
         warning: The last attempt tae connect tae this server haesnae been successful
