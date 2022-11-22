@@ -224,42 +224,64 @@ eo:
         update_status: Ĝisdatigi staton
         update_user_role: Ĝisdatigi Rolon
       actions:
+        approve_appeal_html: "%{name} aprobis kontroldecidapelacion de %{target}"
         approve_user_html: "%{name} aprobis registriĝon de %{target}"
         assigned_to_self_report_html: "%{name} asignis signalon %{target} al si mem"
         change_email_user_html: "%{name} ŝanĝis retadreson de uzanto %{target}"
+        change_role_user_html: "%{name} ŝanĝis rolon de %{target}"
         confirm_user_html: "%{name} konfirmis retadreson de uzanto %{target}"
         create_account_warning_html: "%{name} sendis averton al %{target}"
         create_announcement_html: "%{name} kreis novan anoncon %{target}"
+        create_canonical_email_block_html: "%{name} blokis retpoŝtadreson per krado %{target}"
         create_custom_emoji_html: "%{name} alŝutis novan emoĝion %{target}"
         create_domain_allow_html: "%{name} aldonis domajnon %{target} al la blanka listo"
         create_domain_block_html: "%{name} blokis domajnon %{target}"
         create_email_domain_block_html: "%{name} blokis retpoŝtan domajnon %{target}"
         create_ip_block_html: "%{name} kreis regulon por IP %{target}"
+        create_unavailable_domain_html: "%{name} ĉesis sendon al domajno %{target}"
         create_user_role_html: "%{name} kreis rolon de %{target}"
         demote_user_html: "%{name} degradis uzanton %{target}"
         destroy_announcement_html: "%{name} forigis anoncon %{target}"
+        destroy_canonical_email_block_html: "%{name} malblokis retpoŝtadreson per krado %{target}"
         destroy_custom_emoji_html: "%{name} forigis emoĝion %{target}"
         destroy_domain_allow_html: "%{name} forigis domajnon %{target} el la blanka listo"
         destroy_domain_block_html: "%{name} malblokis domajnon %{target}"
         destroy_email_domain_block_html: "%{name} malblokis retpoŝtan domajnon %{target}"
+        destroy_instance_html: "%{name} forigis domajnon %{target}"
         destroy_ip_block_html: "%{name} forigis regulon por IP %{target}"
         destroy_status_html: "%{name} forigis mesaĝojn de %{target}"
+        destroy_unavailable_domain_html: "%{name} daurigis sendon al domajno %{target}"
         destroy_user_role_html: "%{name} forigis rolon de %{target}"
         disable_2fa_user_html: "%{name} malebligis dufaktoran aŭtentigon por uzanto %{target}"
         disable_custom_emoji_html: "%{name} malebligis emoĝion %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} malebligis retpoŝtoĵetonautentigon por %{target}"
         disable_user_html: "%{name} malebligis ensaluton por uzanto %{target}"
         enable_custom_emoji_html: "%{name} ebligis emoĝion %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ebligis retpoŝtoĵetonautentigon por %{target}"
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
+        reject_appeal_html: "%{name} malakceptis kontroldecidapelacion de %{target}"
         reject_user_html: "%{name} malakceptis registriĝon de %{target}"
         remove_avatar_user_html: "%{name} forigis profilbildon de %{target}"
         reopen_report_html: "%{name} remalfermis signalon %{target}"
         resend_user_html: "%{name} resendis konfirman retmesaĝon por %{target}"
+        reset_password_user_html: "%{name} restarigis pasvorton de usanto %{target}"
+        resolve_report_html: "%{name} solvis raporton %{target}"
+        sensitive_account_html: "%{name} markis audovidaĵojn de %{target} kiel sentemaj"
         silence_account_html: "%{name} limigis la konton de %{target}"
         suspend_account_html: "%{name} suspendis la konton de %{target}"
+        unassigned_report_html: "%{name} malasignis raporton %{target}"
+        unblock_email_account_html: "%{name} malblokis retpoŝtoadreson de %{target}"
+        unsensitive_account_html: "%{name} malmarkis audovidaĵojn de %{target} kiel sentemaj"
+        unsilence_account_html: "%{name} malfaris limon de konto de %{target}"
         unsuspend_account_html: "%{name} malsuspendis la konton de %{target}"
         update_announcement_html: "%{name} ĝisdatigis anoncon %{target}"
+        update_custom_emoji_html: "%{name} ĝisdatigis emoĝion %{target}"
+        update_domain_block_html: "%{name} ĝisdatigis domajnblokon por %{target}"
+        update_ip_block_html: "%{name} ŝanĝis regulon por IP %{target}"
+        update_status_html: "%{name} ĝisdatigis mesaĝon de %{target}"
+        update_user_role_html: "%{name} ŝanĝis rolon %{target}"
       deleted_account: forigita konto
       empty: Neniu protokolo trovita.
       filter_by_action: Filtri per ago
@@ -304,6 +326,7 @@ eo:
       listed: Listigita
       new:
         title: Aldoni novan propran emoĝion
+      no_emoji_selected: Neniuj emoĝioj ŝanĝitas ĉar nenio elektitas
       not_permitted: Vi ne rajtas plenumi ĉi tiun agon
       overwrite: Anstataŭigi
       shortcode: Mallonga kodo
@@ -321,9 +344,18 @@ eo:
       media_storage: Konservo de aŭdovidaĵoj
       new_users: novaj uzantoj
       opened_reports: raportoj malfermitaj
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> restanta apelacio"
+        other: "<strong>%{count}</strong> restantaj aplecioj"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> restanta raporto"
+        other: "<strong>%{count}</strong> restantaj raportoj"
       pending_tags_html:
         one: "<strong>%{count}</strong> pritraktota kradvorto"
         other: "<strong>%{count}</strong> pritraktotaj kradvortoj"
+      pending_users_html:
+        one: "<strong>%{count}</strong> restanta uzanto"
+        other: "<strong>%{count}</strong> restantaj uzantoj"
       resolved_reports: raportoj solvitaj
       software: Programo
       sources: Fontoj de konto-kreado
@@ -349,6 +381,7 @@ eo:
       destroyed_msg: Domajna blokado malfarita
       domain: Domajno
       edit: Redakti domajna blokado
+      existing_domain_block: Vi jam metis pli striktajn limojn al %{name}.
       existing_domain_block_html: Vi jam trudis pli striktajn limojn al %{name}, vi devas <a href="%{unblock_url}">malbloki ĝin</a> unue.
       export: Eksporti
       import: Importi
@@ -361,9 +394,14 @@ eo:
           silence: Limigi
           suspend: Suspendi
         title: Nova domajna blokado
+      no_domain_block_selected: Neniuj domajnblokoj ŝanĝitas ĉar nenio elektitas
+      not_permitted: Vi ne rajtas fari ĉi tiun agon
       obfuscate: Malklara domajna nomo
+      obfuscate_hint: Parte kaŝi la domajnnomo en la listo se ĝia reklamo ebligitas
       private_comment: Privata komento
+      private_comment_hint: Komento pri ĉi tiu domajnlimo por interna uzo de kontrolantoj.
       public_comment: Publika komento
+      public_comment_hint: Komento pri ĉi tiu domajnlimo por publiko, se ĝia reklamo ebligitas.
       reject_media: Malakcepti aŭdovidajn dosierojn
       reject_media_hint: Forigas aŭdovidaĵojn loke konservitajn kaj rifuzas alŝuti ajnan estonte. Ne koncernas haltigojn
       reject_reports: Malakcepti signalojn
@@ -372,25 +410,51 @@ eo:
       view: Vidi domajna blokado
     email_domain_blocks:
       add_new: Aldoni novan
+      attempts_over_week:
+        one: "%{count} provo ekde lasta semajno"
+        other: "%{count} registroprovoj ekde lasta semajno"
       created_msg: Retadreso sukcese aldonita al la nigra listo
       delete: Forigi
+      dns:
+        types:
+          mx: MX-rekordo
       domain: Domajno
       new:
         create: Aldoni domajnon
+        resolve: Solvi domajnon
         title: Nova blokado de retadresa domajno
+      no_email_domain_block_selected: Neniuj retpoŝtoadresodomajnblokoj ŝanĝitas ĉar nenio elektitas
+      resolved_dns_records_hint_html: La domajnnomo referencas al la MX-domajnoj kiuj akceptas retpoŝton. <strong>Ne bloku grandajn retpoŝtoservilojn.</strong>
+      resolved_through_html: Solvis tra %{domain}
       title: Nigra listo de retadresaj domajnoj
     export_domain_allows:
+      new:
+        title: Importi domajnpermesojn
       no_file: Neniu dosiero elektita
     export_domain_blocks:
+      import:
+        description_html: Vi importos liston de domajnblokoj.
+        existing_relationships_warning: Ekzistantaj sekvorilatoj
+        private_comment_description_html: 'Por helpi vin, importitaj blokoj kreitas kun la privata komento: <q>%{comment}</q>'
+        private_comment_template: Importita de %{source} je %{date}
+        title: Importi domajnblokojn
+      new:
+        title: Importi domajnblokojn
       no_file: Neniu dosiero elektita
     follow_recommendations:
+      description_html: "<strong>Sekvorekomendoj helpi novajn uzantojn rapide trovi interesa enhavo</strong>. Ili rekalkulitas ĉiutage lau interagoj kaj sekvantokvantoj."
       language: Por la lingvo
       status: Stato
       suppress: Subpremita sekvu rekomendojn
       suppressed: Subpremita
       title: Rekomendoj de sekvado
+      unsuppress: Regajni sekvorekomendon
     instances:
       availability:
+        description_html:
+          one: Se sendo la domajno malsukcesis por <strong>%{count} dio</strong>, ne estas sendprovo plu escepte <em>de</em> la dojmano.
+          other: Se sendo la domajno malsukcesis por <strong>%{count} dioj</strong>, ne estas sendprovo plu escepte <em>de</em> la dojmano.
+        failure_threshold_reached: Malsukceslimo atingitas je %{date}.
         failures_recorded:
           one: Malsukcesa provo dum %{count} tago.
           other: Malsukcesa provo dum %{count} apartaj tagoj.
@@ -401,8 +465,10 @@ eo:
       back_to_limited: Limigita
       back_to_warning: Averta
       by_domain: Domajno
+      confirm_purge: Ĉu vi certas ke vi volas porĉiame forigi datumojn de ĉi tiun domajno?
       content_policies:
         comment: Interna noto
+        description_html: Vi povas difini enhavopolitikojn al la ĉiuj kontoj.
         policies:
           reject_media: Malakcepti aŭdovidaĵojn
           reject_reports: Malakcepti raportojn
@@ -428,6 +494,9 @@ eo:
         stop: Halti liveradon
         unavailable: Nedisponebla
       delivery_available: Liverado disponeblas
+      delivery_error_days: Sendoerardioj
+      delivery_error_hint: Se sendo ne estas ebla por %{count} dioj, ĝi automate markotas kiel nesendebla.
+      destroyed_msg: Datumo de %{domain} nun vicitas por baldaua forigo.
       empty: Neniuj domajnoj trovitaj.
       known_accounts:
         one: "%{count} konata konto"
@@ -439,12 +508,14 @@ eo:
       private_comment: Privata komento
       public_comment: Publika komento
       purge: Purigu
+      purge_description_html: Se vi kredas ke ĉi tiuj domajno estas malreta, vi povas forigi ĉiujn kontorekordojn.
       title: Federacio
       total_blocked_by_us: Blokitaj de ni
       total_followed_by_them: Sekvataj de ili
       total_followed_by_us: Sekvataj de ni
       total_reported: Signaloj pri ili
       total_storage: Aŭdovidaj kunsendaĵoj
+      totals_time_period_hint_html: Sumo montritas malsupre inkluzivas datumo ekde komenco.
     invites:
       deactivate_all: Malaktivigi ĉion
       filter:
@@ -483,6 +554,7 @@ eo:
       pending: Atendante aprobon de la ripetilo
       save_and_enable: Konservi kaj ebligi
       setup: Agordi konekton al ripetilo
+      signatures_not_enabled: Ripetiloj ne ĝuste funkcias dum sekura reĝimo au limigita federacio reĝimo ebligitas
       status: Stato
       title: Ripetiloj
     report_notes:
@@ -497,15 +569,23 @@ eo:
       action_log: Kontrola protokolo
       action_taken_by: Ago farita de
       actions:
+        delete_description_html: Raportitaj mesaĝoj forigotas kaj admono rekorditas.
+        mark_as_sensitive_description_html: La audovidaĵo en la raportita mesaĝo markotas kiel sentema kaj admono rekorditas.
         other_description_html: Vidu pli da ebloj por regi la sintenon de la konto kaj por personigi la komunikadon kun la raportita konto.
+        resolve_description_html: Nenio okazotas al la raportita konto kaj la raporto fermotas.
+        silence_description_html: La profilo estas videbla nur de persono kiu jam sekvis au serĉis.
+        suspend_description_html: La profilo kaj ĉiuj ĝiaj enhavoj fariĝos nealirebla kaj ĝi fine forigotas.
+      actions_description_html: Decidu kiu ago por solvi ĉi tiuj raporto. <strong>Spamo</strong> kategorio elektitas.
       add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
       assign_to_self: Asigni al mi
       assigned: Asignita kontrolanto
       by_target_domain: Domajno de la signalita konto
       category: Kategorio
+      category_description_html: La kialo pri ĉi tiuj konto kaj enhavo raportitaj sendotas al la raportita konto
       comment:
         none: Nenio
+      comment_description_html: 'Por doni pli da informo, %{name} skribis:'
       created_at: Signalita
       delete_and_resolve: Forigi afiŝojn
       forwarded: Plusendita
@@ -521,6 +601,8 @@ eo:
         delete: Forigi
         placeholder: Priskribu faritajn agojn, aŭ ajnan novan informon pri tiu signalo…
         title: Notoj
+      notes_description_html: Vidi kaj lasi notojn por aliaj kontrolantoj kaj estonta vi
+      quick_actions_description_html: 'Agu au movu malsupre por vidi raportitajn enhavojn:'
       remote_user_placeholder: la ekstera uzanto de %{instance}
       reopen: Remalfermi signalon
       report: 'Signalo #%{id}'
@@ -531,6 +613,7 @@ eo:
       skip_to_actions: Salti al agoj
       status: Mesaĝoj
       statuses: Raportita enhavo
+      statuses_description_html: Sentema enhavo referencitas kun la raportita konto
       target_origin: Origino de raportita konto
       title: Signaloj
       unassign: Malasigni
@@ -544,6 +627,7 @@ eo:
         other: "%{count} uzantoj"
       categories:
         administration: Administrado
+        devops: Programado kaj Operaciado
         invites: Invitoj
         moderation: Kontrolado
         special: Specialaj
