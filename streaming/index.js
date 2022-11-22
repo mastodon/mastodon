@@ -7,6 +7,7 @@ const express = require('express');
 const http = require('http');
 const redis = require('redis');
 const pg = require('pg');
+const dbUrlToConfig = require('pg-connection-string').parse;
 const log = require('npmlog');
 const url = require('url');
 const uuid = require('uuid');
@@ -22,43 +23,6 @@ dotenv.config({
 });
 
 log.level = process.env.LOG_LEVEL || 'verbose';
-
-/**
- * @param {string} dbUrl
- * @return {Object.<string, any>}
- */
-const dbUrlToConfig = (dbUrl) => {
-  if (!dbUrl) {
-    return {};
-  }
-
-  const params = url.parse(dbUrl, true);
-  const config = {};
-
-  if (params.auth) {
-    [config.user, config.password] = params.auth.split(':');
-  }
-
-  if (params.hostname) {
-    config.host = params.hostname;
-  }
-
-  if (params.port) {
-    config.port = params.port;
-  }
-
-  if (params.pathname) {
-    config.database = params.pathname.split('/')[1];
-  }
-
-  const ssl = params.query && params.query.ssl;
-
-  if (ssl && ssl === 'true' || ssl === '1') {
-    config.ssl = true;
-  }
-
-  return config;
-};
 
 /**
  * @param {Object.<string, any>} defaultConfig
