@@ -277,7 +277,7 @@ cy:
         reject_user_html: "Mae %{name} wedi gwrthod cofrestriad gan %{target}"
         remove_avatar_user_html: "Mae %{name} wedi tynnu afatar %{target}"
         reopen_report_html: "Mae %{name} wedi ailagor adroddiad %{target}"
-        resend_user_html: "Mae %{name} wedi ail- anfon e-bost cadarnhau %{target}"
+        resend_user_html: "Mae %{name} wedi ail anfon e-bost cadarnhau %{target}"
         reset_password_user_html: "Mae %{name} wedi ailosod cyfrinair defnyddiwr %{target}"
         resolve_report_html: "Mae %{name} wedi datrys adroddiad %{target}"
         sensitive_account_html: "Mae %{name} wedi marcio cyfrwng %{target} fel un sensitif"
@@ -357,28 +357,28 @@ cy:
       new_users: defnyddwyr newydd
       opened_reports: adroddiadau wedi'u hagor
       pending_appeals_html:
-        zero: "<strong>%{count}</strong> apêl yn aros"
+        zero: "<strong>%{count}</strong> o apeliadau'n aros"
         one: "<strong>%{count}</strong> apêl yn aros"
         two: "<strong>%{count}</strong> apêl yn aros"
         few: "<strong>%{count}</strong> apêl yn aros"
         many: "<strong>%{count}</strong> apêl yn aros"
         other: "<strong>%{count}</strong> apêl yn aros"
       pending_reports_html:
-        zero: "<strong>%{count}</strong> adroddiad yn aros"
+        zero: "<strong>%{count}</strong> o adroddiadau'n aros"
         one: "<strong>%{count}</strong> adroddiad yn aros"
         two: "<strong>%{count}</strong> adroddiad yn aros"
         few: "<strong>%{count}</strong> adroddiad yn aros"
         many: "<strong>%{count}</strong> adroddiad yn aros"
         other: "<strong>%{count}</strong> adroddiad yn aros"
       pending_tags_html:
-        zero: "<strong>%{count}</strong> hashnodau ar y gweill"
-        one: "hashnod ar y gweill <strong>%{count}</strong>"
+        zero: "<strong>%{count}</strong> o hashnodau'n aros"
+        one: "<strong>%{count}</strong> hashnod yn aros"
         two: "<strong>%{count}</strong> hashnod yn aros"
         few: "<strong>%{count}</strong> hashnod yn aros"
         many: "<strong>%{count}</strong> hashnod yn aros"
         other: "<strong>%{count}</strong> hashnod yn aros"
       pending_users_html:
-        zero: "<strong>%{count}</strong> defnyddiwr yn aros"
+        zero: "<strong>%{count}</strong> o ddefnyddwyr yn aros"
         one: "<strong>%{count}</strong> defnyddiwr yn aros"
         two: "<strong>%{count}</strong> defnyddiwr yn aros"
         few: "<strong>%{count}</strong> defnyddiwr yn aros"
@@ -439,7 +439,7 @@ cy:
     email_domain_blocks:
       add_new: Ychwanegu
       attempts_over_week:
-        zero: "%{count} ymgais i gofrestru dros yr wythnos ddiwethaf"
+        zero: "%{count} o ymgeisiadau i gofrestru dros yr wythnos ddiwethaf"
         one: "%{count} ymgais dros yr wythnos ddiwethaf"
         two: "%{count} ymgais i gofrestru dros yr wythnos ddiwethaf"
         few: "%{count} ymgais i gofrestru dros yr wythnos ddiwethaf"
@@ -462,7 +462,7 @@ cy:
     export_domain_allows:
       new:
         title: Mewnforio parth yn caniatáu
-      no_file: Ni ddewiswyd ffeil
+      no_file: Heb ddewis ffeil
     export_domain_blocks:
       import:
         description_html: Rydych ar fin mewnforio rhestr o flociau parth. Edrychwch dros y rhestr hon yn ofalus iawn, yn enwedig os nad ydych chi wedi ei hysgrifennu.
@@ -472,7 +472,7 @@ cy:
         title: Mewnforio blociau parth
       new:
         title: Mewnforio blociau parth
-      no_file: Ni ddewiswyd ffeil
+      no_file: Heb ddewis ffeil
     follow_recommendations:
       description_html: "<strong>Mae dilyn yr argymhellion yn helpu i ddefnyddwyr newydd ddod o hyd i gynnwys diddorol yn gyflym</strong>. Pan nad yw defnyddiwr wedi rhyngweithio digon ag eraill i ffurfio argymhellion dilyn personol, argymhellir y cyfrifon hyn yn lle hynny. Cânt eu hailgyfrifo'n ddyddiol o gymysgedd o gyfrifon gyda'r ymgysylltiadau diweddar uchaf a'r cyfrif dilynwyr lleol uchaf ar gyfer iaith benodol."
       language: Ar gyfer iaith
@@ -492,9 +492,9 @@ cy:
           other: Os bydd anfon i'r parth yn methu ar <strong>%{count} o ddiwrnodau gwahanol</strong> heb lwyddo, ni fydd unrhyw ymdrechion dosbarthu pellach yn cael eu gwneud oni bai y bydd danfoniad yn cael ei dderbyn <em>o'r</em> parth.
         failure_threshold_reached: Trothwy methiant wedi'i gyrraedd ar %{date}.
         failures_recorded:
-          zero: Ymdrechion wedi methu ar %{count} diwrnod gwahanol.
+          zero: Ymdrechion wedi methu ar %{count} o ddyddiau gwahanol.
           one: Ymdrechion wedi methu ar %{count} diwrnod.
-          two: Ymdrechion wedi methu ar %{count} diwrnod gwahanol.
+          two: Ymdrechion wedi methu ar %{count} ddiwrnod gwahanol.
           few: Ymdrechion wedi methu ar %{count} diwrnod gwahanol.
           many: Ymdrechion wedi methu ar %{count} diwrnod gwahanol.
           other: Ymdrechion wedi methu ar %{count} diwrnod gwahanol.
@@ -539,9 +539,9 @@ cy:
       destroyed_msg: Mae data o %{domain} bellach mewn ciw i'w ddileu'n syth.
       empty: Heb ganfod parthau.
       known_accounts:
-        zero: "%{count} cyfrif hysbys"
+        zero: "%{count} cyfrifon hysbys"
         one: "%{count} cyfrif hysbys"
-        two: "%{count} cyfrif hysbys"
+        two: "%{count} gyfrif hysbys"
         few: "%{count} cyfrif hysbys"
         many: "%{count} cyfrif hysbys"
         other: "%{count} cyfrif hysbys"
@@ -617,7 +617,7 @@ cy:
       action_log: Log archwilio
       action_taken_by: Camau a gymerwyd gan
       actions:
-        delete_description_html: Bydd y postiadau yr adroddwyd amdanynt yn cael eu dileu a bydd rhybudd yn cael ei recordio i'ch helpu i gynyddu achosion o dordyletswyddau yn y dyfodol gan yr un cyfrif.
+        delete_description_html: Bydd y postiadau yr adroddwyd amdanyn nhw'n cael eu dileu a bydd rhybudd yn cael ei recordio i'ch helpu i gynyddu achosion o dordyletswydd yn y dyfodol gan yr un cyfrif.
         mark_as_sensitive_description_html: Bydd y cyfryngau yn y postiadau sy'n cael eu hadrodd yn cael eu marcio'n sensitif a bydd rhybudd yn cael ei recordio i'ch helpu i gynyddu achosion o dorri rheolau yn y dyfodol gan yr un cyfrif.
         other_description_html: Gweld rhagor o ddewisiadau rheoli ymddygiad y cyfrif a chyfaddasu cyfathrebiad i'r cyfrif a adroddwyd.
         resolve_description_html: Ni fydd unrhyw gamau yn cael eu cymryd yn erbyn y cyfrif a adroddwyd, ni chofnodwyd rhybudd, a bydd yr adroddiad yn cael ei gau.
@@ -639,7 +639,7 @@ cy:
       forwarded: Wedi'i Anfon Ymlaen
       forwarded_to: Wedi'i anfon ymlaen i %{domain}
       mark_as_resolved: Nodi fel wedi'i ddatrys
-      mark_as_sensitive: Marciwch fel sensitif
+      mark_as_sensitive: Marcio fel sensitif
       mark_as_unresolved: Nodi fel heb ei ddatrys
       no_one_assigned: Neb
       notes:
@@ -658,7 +658,7 @@ cy:
       reported_by: Adroddwyd gan
       resolved: Wedi ei ddatrys
       resolved_msg: Llwyddwyd i ddatrys yr adroddiad!
-      skip_to_actions: Symud i gamau gweithredu
+      skip_to_actions: Mynd i gamau gweithredu
       status: Statws
       statuses: Cynnwys wedi'i adrodd
       statuses_description_html: Bydd cynnwys tramgwyddus yn cael ei ddyfynnu wrth gyfathrebu â'r cyfrif a adroddwyd
@@ -671,9 +671,9 @@ cy:
     roles:
       add_new: Ychwanegu rôl
       assigned_users:
-        zero: "%{count} defnyddiwr"
+        zero: "%{count} defnyddiwyr"
         one: "%{count} defnyddiwr"
-        two: "%{count} defnyddiwr"
+        two: "%{count} ddefnyddiwr"
         few: "%{count} defnyddiwr"
         many: "%{count} defnyddiwr"
         other: "%{count} defnyddiwr"
@@ -691,7 +691,7 @@ cy:
       permissions_count:
         zero: "%{count} caniatâd"
         one: "%{count} caniatâd"
-        two: "%{count} caniatâd"
+        two: "%{count} ganiatâd"
         few: "%{count} caniatâd"
         many: "%{count} caniatâd"
         other: "%{count} caniatâd"
@@ -801,7 +801,7 @@ cy:
       no_status_selected: Heb newid statws gan na ddewiswyd dim un
       open: Agor post
       original_status: Post gwreiddiol
-      reblogs: Ailflogio
+      reblogs: Ailflogiadau
       status_changed: Post wedi'i newid
       title: Postiadau cyfrif
       trending: Trendio
@@ -868,7 +868,7 @@ cy:
       statuses:
         allow: Caniatáu post
         allow_account: Caniatáu awdur
-        description_html: Mae'r rhain yn bostiadau y mae eich gweinydd yn gwybod amdanynt sy'n cael eu rhannu a'u ffafrio llawer ar hyn o bryd. Gall helpu eich defnyddwyr newydd a'ch defnyddwyr sy'n dychwelyd i ddod o hyd i fwy o bobl i'w dilyn. Ni chaiff unrhyw bostiadau eu dangos yn gyhoeddus nes i chi gymeradwyo'r awdur, ac mae'r awdur yn caniatáu i'w cyfrif gael ei awgrymu i eraill. Gallwch hefyd ganiatáu neu wrthod postiadau unigol.
+        description_html: Mae'r rhain yn bostiadau y mae eich gweinydd yn gwybod amdanyn nhw sy'n cael eu rhannu a'u ffafrio llawer ar hyn o bryd. Gall helpu eich defnyddwyr newydd a'ch defnyddwyr sy'n dychwelyd i ddod o hyd i fwy o bobl i'w dilyn. Ni chaiff unrhyw bostiadau eu dangos yn gyhoeddus nes i chi gymeradwyo'r awdur, ac mae'r awdur yn caniatáu i'w cyfrif gael ei awgrymu i eraill. Gallwch hefyd ganiatáu neu wrthod postiadau unigol.
         disallow: Gwrthod post
         disallow_account: Gwrthod awdur
         no_status_selected: Heb newid unrhyw negeseuon tuedd gan na chafodd yr un ohonyn nhw eu dewis
@@ -880,7 +880,7 @@ cy:
           few: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
           many: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
           other: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
-        title: Tŵts llosg
+        title: Postiadau sy'n trendio
       tags:
         current_score: Sgôr cyfredol %{score}
         dashboard:
@@ -965,12 +965,12 @@ cy:
       new_trending_links:
         title: Dolenni llosg
       new_trending_statuses:
-        title: Tŵts llosg
+        title: Postiadau sy'n trendio
       new_trending_tags:
-        no_approved_tags: Ar hyn o bryd nid oes unrhyw hashnodau tuedd cymeradwy.
-        requirements: 'Gallai unrhyw un o''r ymgeiswyr hyn ragori ar yr hashnod tuedd cymeradwy #%{rank}, sef #%{lowest_tag_name} gyda sgôr o %{lowest_tag_score} ar hyn o bryd.'
-        title: Hashnodau llosg
-      subject: Tueddiadau newydd i'w hadolygu ar %{instance}
+        no_approved_tags: Ar hyn o bryd nid oes unrhyw hashnodau trendio cymeradwy.
+        requirements: 'Gallai unrhyw un o''r ymgeiswyr hyn ragori ar yr hashnod trendio cymeradwy #%{rank}, sef #%{lowest_tag_name} gyda sgôr o %{lowest_tag_score} ar hyn o bryd.'
+        title: Hashnodau sy'n trendio
+      subject: Trendiau newydd i'w hadolygu ar %{instance}
   aliases:
     add_new: Creu enw arall
     created_msg: Wedi creu enw arall yn llwyddiannus. Gallwch nawr ddechrau symud o'r hen gyfrif.
@@ -1200,26 +1200,26 @@ cy:
       contexts: Hidlau yn %{contexts}
       delete: Dileu
       empty: Nid oes gennych unrhyw hidlyddion.
-      expires_in: Yn dod i ben yn %{distance}
+      expires_in: Yn dod i ben ymhen %{distance}
       expires_on: Yn dod i ben ar %{date}
       keywords:
-        zero: "%{count} allweddair"
+        zero: "%{count} allweddeiriau"
         one: "%{count} allweddair"
         two: "%{count} allweddair"
         few: "%{count} allweddair"
         many: "%{count} allweddair"
         other: "%{count} allweddair"
       statuses:
-        zero: "%{count} postiad"
+        zero: "%{count} postiadau"
         one: "%{count} postiad"
         two: "%{count} postiad"
         few: "%{count} postiad"
         many: "%{count} postiad"
         other: "%{count} postiad"
       statuses_long:
-        zero: "%{count} postiad unigol wedi'u cuddio"
+        zero: "%{count} postiadau unigol wedi'u cuddio"
         one: "%{count} postiad unigol wedi'u cuddio"
-        two: "%{count} postiad unigol wedi'u cuddio"
+        two: "%{count} bostiad unigol wedi'u cuddio"
         few: "%{count} postiad unigol wedi'u cuddio"
         many: "%{count} postiad unigol wedi'u cuddio"
         other: "%{count} postiad unigol wedi'u cuddio"
@@ -1239,19 +1239,19 @@ cy:
   generic:
     all: Popeth
     all_items_on_page_selected_html:
-      zero: Mae pob <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
-      one: "Mae <strong>%{count}</strong> eitem wedi'i  dewis ar y dudalen hon."
-      two: Mae pob <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
-      few: Mae pob <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
-      many: Mae pob <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
-      other: Mae pob <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
+      zero: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
+      one: "Mae <strong>%{count}</strong> eitem wedi'i dewis ar y dudalen hon."
+      two: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
+      few: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
+      many: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
+      other: Mae pob un o'r <strong>%{count}</strong> eitem ar y dudalen hon wedi'u dewis.
     all_matching_items_selected_html:
-      zero: Mae pob <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
+      zero: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
       one: "Mae <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'i dewis."
-      two: Mae pob <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
-      few: Mae pob <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
-      many: Mae pob <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
-      other: Mae pob <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
+      two: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
+      few: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
+      many: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
+      other: Mae pob un o'r <strong>%{count}</strong> eitem sy'n cyfateb i'ch chwiliad wedi'u dewis.
     changes_saved_msg: Llwyddwyd i gadw'r newidiadau!
     copy: Copïo
     delete: Dileu
@@ -1537,22 +1537,22 @@ cy:
   settings:
     account: Cyfrif
     account_settings: Gosodiadau'r cyfrif
-    aliases: Aliasau cyfrif
+    aliases: Arallenwau cyfrif
     appearance: Golwg
     authorized_apps: Apiau awdurdodedig
-    back: Yn ôl i Mastodon
+    back: Nôl i Mastodon
     delete: Dileu cyfrif
     development: Datblygu
     edit_profile: Golygu proffil
     export: Allforio data
     featured_tags: Prif hashnodau
     import: Mewnforio
-    import_and_export: Mewnfori ac allfori
+    import_and_export: Mewnforio ac allforio
     migrate: Mudo cyfrif
     notifications: Hysbysiadau
     preferences: Dewisiadau
     profile: Proffil
-    relationships: Dilynion a dilynwyr
+    relationships: Yn dilyn a dilynwyr
     statuses_cleanup: Dileu postiadau'n awtomatig
     strikes: Rhybuddion cymedroli
     two_factor_authentication: Dilysu dau-ffactor
@@ -1560,20 +1560,20 @@ cy:
   statuses:
     attached:
       audio:
-        zero: "%{count} ffeil clywedol"
-        one: "%{count} ffeil clywedol"
-        two: "%{count} ffeil clywedol"
-        few: "%{count} ffeil clywedol"
-        many: "%{count} ffeil clywedol"
-        other: "%{count} ffeil clywedol"
+        zero: "%{count} sain"
+        one: "%{count} sain"
+        two: "%{count} sain"
+        few: "%{count} sain"
+        many: "%{count} sain"
+        other: "%{count} sain"
       description: 'Ynghlwm: %{attached}'
       image:
-        zero: "%{count} o luniau"
+        zero: "%{count} llun"
         one: "%{count} llun"
-        two: "%{count} o luniau"
-        few: "%{count} o luniau"
-        many: "%{count} o luniau"
-        other: "%{count} o luniau"
+        two: "%{count} lun"
+        few: "%{count} llun"
+        many: "%{count} llun"
+        other: "%{count} llun"
       video:
         zero: "%{count} fideo"
         one: "%{count} fideo"
@@ -1581,7 +1581,7 @@ cy:
         few: "%{count} fideo"
         many: "%{count} fideo"
         other: "%{count} fideo"
-    boosted_from_html: Wedi ei fŵstio %{acct_link}
+    boosted_from_html: Wedi'i hybu o %{acct_link}
     content_warning: 'Rhybudd cynnwys: %{warning}'
     default_language: Yr un fath a'r iaith rhyngwyneb
     disallowed_hashtags:
@@ -1593,34 +1593,34 @@ cy:
       other: 'yn cynnwys yr hashnod gwaharddedig: %{tags}'
     edited_at_html: Wedi'i olygu %{date}
     errors:
-      in_reply_not_found: Nid yw'r statws rydych yn ceisio ymateb i yn edrych fel ei fod yn bodoli.
-    open_in_web: Agor yn y wê
-    over_character_limit: wedi mynd heibio'r uchafswm nodyn o %{max}
+      in_reply_not_found: Nid yw'n ymddangos bod y postiad rydych chi'n ceisio ei ateb yn bodoli.
+    open_in_web: Agor yn y we
+    over_character_limit: wedi mynd y tu hwnt i'r terfyn nodau o %{max}
     pin_errors:
       direct: Nid oes modd pinio postiadau sy'n weladwy i ddefnyddwyr a grybwyllwyd yn unig
-      limit: Yr ydych wedi pinio yr uchafswm posib o dŵtiau
-      ownership: Ni ellir pinio tŵt rhywun arall
-      reblog: Ni ellir pinio hybiau
+      limit: Rydych chi eisoes wedi pinio uchafswm nifer y postiadau
+      ownership: Nid oes modd pinio postiad rhywun arall
+      reblog: Nid oes modd pinio hwb
     poll:
       total_people:
-        zero: "%{count} berson"
+        zero: "%{count} person"
         one: "%{count} berson"
-        two: "%{count} o bobl"
-        few: "%{count} o bobl"
-        many: "%{count} o bobl"
-        other: "%{count} o bobl"
+        two: "%{count} person"
+        few: "%{count} person"
+        many: "%{count} person"
+        other: "%{count} person"
       total_votes:
         zero: "%{count} pleidlais"
         one: "%{count} bleidlais"
-        two: "%{count} o bleidleisiau"
-        few: "%{count} o bleidleisiau"
-        many: "%{count} o bleidleisiau"
-        other: "%{count} o bleidleisiau"
-      vote: Pleidleisio
+        two: "%{count} pleidlais"
+        few: "%{count} pleidlais"
+        many: "%{count} pleidlais"
+        other: "%{count} pleidlais"
+      vote: Pleidlais
     show_more: Dangos mwy
     show_newer: Dangos y diweddaraf
     show_older: Dangos pethau hŷn
-    show_thread: Dangos edefyn
+    show_thread: Dangos trywydd
     sign_in_to_participate: Mengofnodwch i gymryd rhan yn y sgwrs
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1630,7 +1630,7 @@ cy:
       public: Cyhoeddus
       public_long: Gall pawb weld
       unlisted: Heb ei restru
-      unlisted_long: Gall pawb weld, ond heb ei restru ar ffrydiau cyhoeddus
+      unlisted_long: Gall pawb weld, ond heb eu rhestru ar linellau amser cyhoeddus
   statuses_cleanup:
     enabled: Dileu hen bostiadau'n awtomatig
     enabled_hint: Yn dileu eich postiadau yn awtomatig ar ôl iddyn nhw gyrraedd trothwy oed penodedig, oni bai eu bod yn cyfateb i un o'r eithriadau isod
@@ -1662,12 +1662,12 @@ cy:
       '63113904': 2 flynedd
       '7889238': 3 mis
     min_age_label: Trothwy oedran
-    min_favs: Cadw postiadau ffafriwyr am o leiaf
+    min_favs: Cadw postiadau ffafriwyd m o leiaf
     min_favs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi derbyn o leiaf y swm hwn o ffefrynnau. Gadewch yn wag i ddileu postiadau waeth beth fo'u ffefrynnau
-    min_reblogs: Cadw postiadau wedi eu bwstio o leiaf
-    min_reblogs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi cael bwst o leiaf y nifer hwn o weithiau. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o fwstio
+    min_reblogs: Cadw postiadau wedi eu hybu o leiaf
+    min_reblogs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi cael eu hybu o leiaf y nifer hwn o weithiau. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o hybiadau
   stream_entries:
-    pinned: Tŵt wedi'i binio
+    pinned: Postiad wedi'i binio
     reblogged: hybwyd
     sensitive_content: Cynnwys sensitif
   strikes:
@@ -1678,7 +1678,7 @@ cy:
   themes:
     contrast: Mastodon (Cyferbyniad uchel)
     default: Mastodon (Tywyll)
-    mastodon-light: Mastodon (golau)
+    mastodon-light: Mastodon (Golau)
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
@@ -1686,17 +1686,17 @@ cy:
       time: "%H:%M"
   two_factor_authentication:
     add: Ychwanegu
-    disable: Diffodd
+    disable: Analluogi 2FA
     disabled_success: Llwyddwyd i analluogi dilysu dau ffactor yn llwydiannus
     edit: Golygu
-    enabled: Galluogir dilysu dau-ffactor
+    enabled: Wedi galluogi dilysu dau-ffactor
     enabled_success: Wedi galluogi dilysu dau-ffactor yn llwyddiannus
-    generate_recovery_codes: Cynhyrchu côdau adfer
-    lost_recovery_codes: Mae côdau adfer yn caniatau i chi gael mynediad i'ch cyfrif eto os ydych yn colli'ch ffôn. Os ydych wedi colli eich côdau adfer, mae modd i chi gynhyrchu nhw eto yma. Bydd eich hen gôdau wedyn yn annilys.
+    generate_recovery_codes: Cynhyrchu codau adfer
+    lost_recovery_codes: Mae codau adfer yn caniatáu ichi adennill mynediad i'ch cyfrif os byddwch chi'n colli'ch ffôn. Os ydych chi wedi colli'ch codau adfer, gallwch chi eu hadfywio yma. Bydd eich hen godau adfer yn annilys.
     methods: Dulliau dau ffactor
     otp: Ap dilysu.
-    recovery_codes: Creu copi wrth gefn o gôdau adfywio
-    recovery_codes_regenerated: Llwyddwyd i ail greu côdau adfywio
+    recovery_codes: Creu copi wrth gefn o godau adfer
+    recovery_codes_regenerated: Llwyddwyd i ail greu codau adfer
     recovery_instructions_html: Os ydych chi'n colli mynediad i'ch ffôn, mae modd i chi ddefnyddio un o'r codau adfer isod i gael mynediad at eich cyfrif. <strong>Cadwch y codau adfer yn breifat</strong>. Er enghraifft, gallwch chi eu argraffu a'u cadw gyda dogfennau eraill pwysig.
     webauthn: Allweddi diogelwch
   user_mailer:
@@ -1708,7 +1708,7 @@ cy:
     appeal_rejected:
       explanation: Mae apêl y rhybudd yn erbyn eich cyfrif ar %{strike_date} a gyflwynwyd gennych ar %{appeal_date} wedi'i gwrthod.
       subject: Mae eich apêl ar %{date} wedi'i gwrthod
-      title: Apêl wedi'i gwrthod
+      title: Mae'r apêl wedi'i gwrthod
     backup_ready:
       explanation: Fe wnaethoch chi gais am gopi wrth gefn llawn o'ch cyfrif Mastodon. Mae nawr yn barod i'w lawrlwytho!
       subject: Mae eich archif yn barod i'w lawrlwytho
@@ -1758,7 +1758,7 @@ cy:
       final_action: Dechrau postio
       final_step: 'Dechreuwch bostio! Hyd yn oed heb ddilynwyr, efallai y bydd eraill yn gweld eich postiadau cyhoeddus, er enghraifft ar y llinell amser leol neu mewn hashnodau. Efallai y byddwch am gyflwyno eich hun ar yr hashnod #cyflwyniadau neu/a #introductions.'
       full_handle: Eich enw llawn
-      full_handle_hint: Dyma'r hyn y bysech yn dweud wrth eich ffrindiau er mwyn iddyn nhw gael anfon neges atoch o achos arall.
+      full_handle_hint: Dyma beth fyddech chi'n ei ddweud wrth eich ffrindiau fel y gallant anfon neges neu eich dilyn o weinydd arall.
       subject: Croeso i Mastodon
       title: Croeso, %{name}!
   users:
