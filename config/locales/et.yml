@@ -467,6 +467,12 @@ et:
     strikes:
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
+    system_checks:
+      elasticsearch_running_check:
+        message_html: Elasticsearch ei vasta. Kontrolli, kas see töötab või keela täistekstiotsing
+      elasticsearch_version_check:
+        message_html: 'Elasticsearch versioon ei sobi: %{value}'
+        version_comparison: Elasticsearch %{running_version} töötab, aga nõutud on %{required_version}
     tags:
       review: Staatuse ülevaade
       updated_msg: Sildi sätted edukalt uuendatud
@@ -712,6 +718,9 @@ et:
     trending_now: Praegu trendikad
   generic:
     all: Kõik
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> otsinguvaste valitud."
+      other: Kõik <strong>%{count}</strong> otsinguvastet valitud.
     changes_saved_msg: Muudatuste salvestamine õnnestus!
     copy: Kopeeri
     delete: Kustuta
