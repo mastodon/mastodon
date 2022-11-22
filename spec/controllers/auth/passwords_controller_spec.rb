@@ -60,7 +60,7 @@ describe Auth::PasswordsController, type: :controller do
       end
 
       it 'changes password' do
-        this_user = User.find_for_authentication(email: user.email)
+        this_user = User.find(user.id)
 
         expect(this_user).to_not be_nil
         expect(this_user.valid_password?(@password)).to be true
@@ -89,7 +89,10 @@ describe Auth::PasswordsController, type: :controller do
       end
 
       it 'retains password' do
-        expect(user.external_or_valid_password?(user.password)).to be true
+        this_user = User.find(user.id)
+
+        expect(this_user).to_not be_nil
+        expect(this_user.external_or_valid_password?(user.password)).to be true
       end
     end
   end
