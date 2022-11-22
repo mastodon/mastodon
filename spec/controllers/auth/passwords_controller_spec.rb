@@ -35,4 +35,62 @@ describe Auth::PasswordsController, type: :controller do
       end
     end
   end
+
+  describe 'POST #update' do
+    let(:user) { Fabricate(:user) }
+
+    before do
+      request.env['devise.mapping'] = Devise.mappings[:user]
+    end
+
+    context 'with valid reset_password_token' do
+      let!(:session_activation) { Fabricate(:session_activation, user: user) }
+      let!(:access_token) { Fabricate(:access_token, resource_owner_id: user.id) }
+      let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
+
+      before do
+        @password = 'reset0password'
+        @token = user.send_reset_password_instructions
+
+        post :update, params: { user: { password: @password, password_confirmation: @password, reset_password_token: @token } }
+      end
+
+      it 'returns http found' do
+        expect(response).to have_http_status(302)
+      end
+
+      it 'changes password' do
+        this_user = User.find_for_authentication(email: user.email)
+
+        expect(this_user).to_not be_nil
+        expect(this_user.valid_password?(@password)).to be true
+      end
+
+      it 'deactivates all sessions' do
+        expect(user.session_activations.count).to eq 0
+      end
+
+      it 'revokes all access tokens' do
+        expect(Doorkeeper::AccessToken.active_for(user).count).to eq 0
+      end
+
+      it 'removes push subscriptions' do
+        expect(Web::PushSubscription.where(user: user).or(Web::PushSubscription.where(access_token: access_token)).count).to eq 0
+      end
+    end
+
+    context 'with invalid reset_password_token' do
+      before do
+        post :update, params: { user: { reset_password_token: 'some_invalid_value' } }
+      end
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+
+      it 'retains password' do
+        expect(user.external_or_valid_password?(user.password)).to be true
+      end
+    end
+  end
 end
