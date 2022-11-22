@@ -442,6 +442,7 @@ be:
       delivery:
         all: Усе
         unavailable: Недаступна
+      empty: Даменаў не знойдзена.
       moderation:
         title: Мадэрацыя
       private_comment: Прыватны каментарый
@@ -450,10 +451,13 @@ be:
       title: Федэрацыя
       total_blocked_by_us: Заблакіравана намі
     invites:
+      deactivate_all: Дэактываваць усё
       filter:
         title: Фільтр
+      title: Запрашэнні
     ip_blocks:
       add_new: Стварыць правіла
+      created_msg: Новае IP правіла паспяхова дададзена
       delete: Выдаліць
       expires_in:
         '1209600': 2 тыдні
@@ -462,6 +466,9 @@ be:
         '31556952': 1 год
         '86400': 1 дзень
         '94670856': 3 гады
+      new:
+        title: Стварыць новае IP правіла
+      title: IP правілы
     relays:
       add_new: Дадаць новы рэтранслятар
       delete: Выдаліць
@@ -479,16 +486,23 @@ be:
       assign_to_self: Прызначыць мне
       assigned: Прызначаны мадэратар
       category: Катэгорыя
+      delete_and_resolve: Выдаліць допісы
       no_one_assigned: Ніводны
       notes:
         create: Дадаць нататку
         delete: Выдаліць
         title: Нататкі
+      resolved: Вырашана
       status: Стан
+      updated_at: Абноўлена
     roles:
+      add_new: Дадаць ролю
       categories:
+        administration: Адміністрацыя
         devops: DevOps
         invites: Запрашэнні
+        moderation: Мадэрацыя
+        special: Спецыяльны
       delete: Выдаліць
       privileges:
         administrator: Адміністратар
@@ -502,22 +516,36 @@ be:
       edit: Рэдагаваць правіла
       title: Правілы сервера
     settings:
+      appearance:
+        preamble: Наладзьце вэб-інтэрфейс Mastodon.
       discovery:
         trends: Актуальныя
       domain_blocks:
+        all: Для ўсіх
+        disabled: Нікому
         users: Лакальным карыстальнікам, якія ўвайшлі
+      registrations:
+        title: Рэгістрацыя
     statuses:
       account: Аўтар
       application: Праграма
+      deleted: Выдалены
       language: Мова
       media:
         title: Медыя
+      metadata: Метададзеныя
       open: Адкрыць допіс
     strikes:
       actions:
         suspend: "Уліковы запіс %{target} выключаны %{name}"
+    title: Адміністрацыя
     trends:
       allow: Дазволіць
+      approved: Пацверджаны
+      disallow: Забараніць
+      links:
+        allow: Дазволіць спасылка
+        allow_provider: Дазволіць выдаўца
       statuses:
         title: Актуальныя допісы
       tags:
@@ -530,6 +558,7 @@ be:
         not_usable: Немагчыма выкарыстаць
       title: Актуальныя
     warning_presets:
+      add_new: Дадаць новы
       delete: Выдаліць
     webhooks:
       delete: Выдаліць
@@ -556,19 +585,41 @@ be:
     created: Праграма паспяхова створана
     destroyed: Праграма паспяхова выдалена
   auth:
+    change_password: Пароль
+    forgot_password: Забылі свой пароль?
+    log_in_with: Увайсці праз
     login: Увайсці
     logout: Выйсці
+    or_log_in_with: Або ўвайсці з дапамогай
     providers:
       cas: CAS
       saml: SAML
+    register: Зарэгістравацца
+    reset_password: Скінуць пароль
+    security: Бяспека
+    set_new_password: Прызначыць новы пароль
     status:
       account_status: Стан уліковага запісу
   authorize_follow:
     already_requested: Вы ўжо адправілі запыт на гэты ўліковы запіс
+    follow: Падпісацца
     follow_request: 'Вы адправілі запыт на падпіску:'
+    following: 'Поспех! Цяпер вы падпісаны на:'
+    post_follow:
+      close: Або Вы можаце проста закрыць гэта акно.
+      return: Паказаць профіль карыстальніка
+  challenge:
+    confirm: Працягнуць
+    hint_html: "<strong>Парада:</strong> Мы не будзем запытваць ваш пароль зноўку на працягу наступнай гадзіны."
+    invalid_password: Няправільны пароль
+    prompt: Пацвердзіць пароль, каб працягнуць
+  crypto:
+    errors:
+      invalid_key: гэта не сапраўдны Ed25519 або Curve25519 ключ
+      invalid_signature: гэта не сапраўдная Ed25519 сігнатура
   date:
     formats:
-      default: "%e %b %Y"
+      default: "%d.%m.%Y"
       with_month_name: "%e %B %Y"
   datetime:
     distance_in_words:
@@ -582,6 +633,7 @@ be:
       x_days: "%{count}д"
       x_minutes: "%{count}хв"
       x_months: "%{count}мес"
+      x_seconds: "%{count}сек"
   disputes:
     strikes:
       appeals:
@@ -727,7 +779,7 @@ be:
       '7889238': 3 месяцы
   time:
     formats:
-      default: "%e %b %Y, %H:%M"
+      default: "%d.%m.%Y %H:%M"
       time: "%H:%M"
   two_factor_authentication:
     add: Дадаць
