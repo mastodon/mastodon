@@ -140,7 +140,7 @@ be:
       show:
         created_reports: Створана скарг
         targeted_reports: Атрымана скарг
-      silence: Амбежаванне
+      silence: Абмежаваць
       silenced: Абмежаванае
       statuses: Допісы
       strikes: Ранейшыя скаргі
@@ -351,13 +351,16 @@ be:
         many: "<strong>%{count}</strong> апеляцый у чарзе"
         other: "<strong>%{count}</strong> апеляцыі ў чарзе"
       resolved_reports: скарг разгледжана
+      software: Праграмнае забеспячэнне
       sources: Крыніцы рэгістрацыі
+      space: Выкарыстанне дыскавай прасторы
       title: Панэль кіравання
       top_languages: Найбольш актыўныя мовы
       top_servers: Найбольш актыўныя серверы
       website: Вэб-сайт
     disputes:
       appeals:
+        empty: Абскарджанні не знойдзены.
         title: Абскарджанні
     domain_allows:
       add_new: Дазволіць федэрацыю з даменам
@@ -376,12 +379,14 @@ be:
         severity:
           desc_html: "<strong>Абмежаванне</strong> зробіць допісы людзей з гэтага дамену нябачнымі для тых, хто на іх не падпісаны. <strong>Выключэнне</strong> выдаліць усё змесціва, медыя і даныя профіляў дамену з вашага серверу. <strong>«Нічога»</strong> проста адхіліць медыя файлы."
           noop: Пуста
-          silence: Амбежаваць
+          silence: Абмежаваць
           suspend: Выключыць
         title: Новы блок дамену
       no_domain_block_selected: Блакіроўкі даменаў не былі змененыя, таму што ні адзін з іх не быў выбраны
       not_permitted: Вам забаронена выконваць гэта дзеянне
       obfuscate: Схаваць назву дамена
+      private_comment: Прыватны каментарый
+      public_comment: Публічны каментарый
       undo: Скасаваць блакіраванне дамену
     email_domain_blocks:
       add_new: Дадаць
@@ -391,6 +396,8 @@ be:
       new:
         create: Дадаць дамен
       title: Заблакаваныя паштовыя дамены
+    export_domain_blocks:
+      no_file: Файл не выбраны
     follow_recommendations:
       language: Для мовы
       status: Статус
@@ -406,6 +413,7 @@ be:
       content_policies:
         comment: Унутраная нататка
         policies:
+          silence: Ліміт
           suspend: Выключыць
         policy: Палітыка
       dashboard:
