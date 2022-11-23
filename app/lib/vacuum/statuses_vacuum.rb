@@ -8,7 +8,7 @@ class Vacuum::StatusesVacuum
   end
 
   def perform
-    vacuum_statuses! if retention_period?
+    vacuum_statuses! if @retention_period.present?
   end
 
   private
@@ -42,9 +42,5 @@ class Vacuum::StatusesVacuum
 
   def remove_from_search_index(statuses)
     with_redis { |redis| redis.sadd('chewy:queue:StatusesIndex', statuses.map(&:id)) } if Chewy.enabled?
-  end
-
-  def retention_period?
-    @retention_period.present?
   end
 end
