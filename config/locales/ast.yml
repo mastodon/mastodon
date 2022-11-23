@@ -9,18 +9,22 @@ ast:
     followers:
       one: Siguidor
       other: Siguidores
+    last_active: Última actividá
     nothing_here: '¡Equí nun hai nada!'
     posts:
       one: Artículu
       other: Artículos
     posts_tab_heading: Artículos
   admin:
+    account_actions:
+      action: Facer l'aición
     account_moderation_notes:
       create: Dexar la nota
     accounts:
       are_you_sure: '¿De xuru?'
       avatar: Avatar
       by_domain: Dominiu
+      disabled: Conxelóse
       display_name: Nome visible
       domain: Dominiu
       email: Direición de corréu electrónicu
@@ -182,15 +186,35 @@ ast:
         notes:
           one: "%{count} nota"
           other: "%{count} notes"
+      actions_description_html: Decidi qué aición tomar pa resolver esti informe. Si tomes una aición punitiva escontra la cuenta de la que s'informó, va unviase un avisu per corréu electrónicu a esa cuenta, esceuto cuando se seleiciona la categoría <strong>Puxarra</strong>.
+      add_to_report: Amestar más al informe
       are_you_sure: '¿De xuru?'
+      category: Categoría
+      category_description_html: El motivu pol que s'informó d'esta cuenta y/o conteníu cítase na comunicación cola cuenta de la que s'informó
       comment_description_html: 'Pa fornir más información, %{name} escribió:'
+      created_at: Data del informe
+      delete_and_resolve: Desaniciar los artículos
+      mark_as_resolved: Marcar como resueltu
+      mark_as_sensitive: Marcar como sensible
+      mark_as_unresolved: Marcar como ensin resolver
+      no_one_assigned: Naide
+      notes:
+        create: Amestar la nota
+        create_and_resolve: Resolver con una nota
+        title: Notes
+      quick_actions_description_html: 'Toma una aición rápida o baxa pa ver el conteníu del que s''informó:'
       report: 'Informe #%{id}'
+      reported_by: Perfil qu'informó
       resolved: Resolvióse
       resolved_msg: '¡L''informe resolvióse correutamente!'
+      skip_to_actions: Saltar a les aiciones
       status: Estáu
+      statuses: Conteníu del que s'informó
+      statuses_description_html: El conteníu ofensivu cítase na comunicación cola cuenta de la que s'informó
       target_origin: Orixe de la cuenta de la que s'infomó
       title: Informes
       unresolved: Ensin resolver
+      view_profile: Ver el perfil
     roles:
       categories:
         administration: Alministración
@@ -281,14 +305,31 @@ ast:
       title: Tendencies
       trending: En tendencia
     webhooks:
+      add_new: Amestar un estremu
+      delete: Desaniciar
       description_html: Un <strong>webhook</strong> permite a Mastodon unviar <strong>avisos en tiempu real</strong> de los eventos escoyíos sobre la to aplicación pa qu'esta pueda <strong>executar aiciones automáticamente</strong>.
+      disable: Desactivar
+      disabled: Desactivóse
+      edit: Editar l'estremu
+      empty: Entá nun tienes nengún estremu de webhooks configuráu.
+      enable: Activar
+      enabled: N'activo
+      enabled_events:
+        one: 1 eventu activu
+        other: "%{count} eventos activos"
       events: Eventos
+      new: Webhook nuevu
+      rotate_secret: Cambiar el secretu
+      secret: Secretu de la firma
+      status: Estáu
+      title: Webhooks
+      webhook: Webhook
   admin_mailer:
     new_pending_account:
       body: Los detalles de la cuenta nueva tán abaxo. Pues aprobar o refugar esta solicitú.
     new_report:
-      body: "%{reporter} informó de %{target}"
-      body_remote: Daquién dende %{domain} informó de %{target}
+      body: "%{reporter} informó de: %{target}"
+      body_remote: 'Daquién dende %{domain} informó de: %{target}'
     new_trends:
       body: 'Los elementos siguientes precisen una revisión enantes de que puedan apaecer públicamente:'
       new_trending_links:
@@ -520,6 +561,9 @@ ast:
     warning:
       followers: Esta aición va mover tolos siguidores de la cuenta actual a la nueva
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} rexistróse"
     favourite:
       body: '%{name} marcó como favoritu''l to artículu:'
       subject: "%{name} marcó'l to artículu como favoritu"
@@ -572,6 +616,7 @@ ast:
   relationships:
     activity: Actividá
     followers: Siguidores
+    last_active: Última actividá
     most_recent: Lo más recién
     relationship: Rellación
     remove_selected_follows: Dexar de siguir a los perfiles seleicionaos
@@ -709,12 +754,16 @@ ast:
       explanation: Detectemos un aniciu de sesión a la to cuenta dende una direición IP nueva.
       subject: Accedióse a la to cuenta dende una direición IP nueva
     warning:
+      appeal: Unviar una apellación
+      appeal_description: Si te paez que ye un error, pues unviar una apellación al personal de %{instance}.
       explanation:
         disable: Xá nun pues usar la cuenta mas el perfil y otros datos siguen intautos. Pues solicitar una copia de seguranza de los datos, camudar la configuración de la cuenta o desaniciar la cuenta.
       reason: 'Motivu:'
       subject:
+        disable: Conxelóse la to cuenta %{acct}
         suspend: Suspendióse la cuenta %{acct}
       title:
+        disable: Cuenta conxelada
         none: Alvertencia
         suspend: Cuenta suspendida
     welcome:
