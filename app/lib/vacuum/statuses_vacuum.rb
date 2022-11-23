@@ -36,10 +36,6 @@ class Vacuum::StatusesVacuum
     Mastodon::Snowflake.id_at(@retention_period.ago, with_random: false)
   end
 
-  def analyze_statuses!
-    ActiveRecord::Base.connection.execute('ANALYZE statuses')
-  end
-
   def remove_from_account_conversations(statuses)
     Status.where(id: statuses.select(&:direct_visibility?).map(&:id)).includes(:account, mentions: :account).each(&:unlink_from_conversations)
   end
