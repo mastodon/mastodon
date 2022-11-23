@@ -13,6 +13,8 @@ et:
         send_email_notification: Konto omanik saab selgituse selle kohta, mis juhtus nende kontoga
         text_html: Valikuline. Te saate kasutada tuututuse süntaksi. Te saate <a href="%{path}">lisada hoiatuste eelseadistusi</a> aega säästmiseks
         type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
+        types:
+          suspend: Takistamaks suhtlust selle kontoga ja kustutamaks kogu sisu. Tagasivõetav 30 päeva jooksul.
         warning_preset_id: Valikuline. Te saate ikka lisada mis tahes teksti eelseadistuse lõppu
       announcement:
         all_day: Kui valitud, ainult kuupäevad antud ajavahemikus on kuvatud
@@ -54,6 +56,7 @@ et:
       domain_allow:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
       email_domain_block:
+        domain: See võib olla e-postiaadressis näha olev domeen või MX-kirje, mida aadress kasutab. Kontroll toimub liitumise käigus.
         with_dns_records: Proovitakse ka üles vaadata selle domeeni DNS kirjed ning selle vastused samuti keelatakse
       form_admin_settings:
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
@@ -65,10 +68,14 @@ et:
       invite_request:
         text: See aitab meil üle vaadata Teie taotlust
       ip_block:
+        comment: Valikuline. Talletamaks reegli lisamise põhjust.
         expires_in: IP-aadressid on lõplik ressurss ja on tihtipeale ühiskasutuses või vahetub kasutaja. Sel põhjusel pole kestvad IP-piirangud soovituslikud.
+        ip: IPv4 või IPv6 aadress. Vahemike keelamine on võimalik CIDR-süntaksit kasutades. Ettevaatust, et iseend uksetaha ei jäta!
         severities:
+          no_access: Keela ligipääs kõigile ressurssidele
           sign_up_block: Uued liitumised pole võimalikud
           sign_up_requires_approval: Uued liitumised vajavad kinnitamist
+        severity: Valik, mis juhtub päringutega sellelt IP-aadressilt
       sessions:
         otp: 'Kahe-etapise autentimise kood telefonirakendusest või mõni taastekood:'
       tag:
@@ -97,7 +104,7 @@ et:
           none: Ära tee midagi
           sensitive: Tundlik
           silence: Vaigista
-          suspend: Peata ja taastamatult kustuta konto andmed
+          suspend: Kustuta
         warning_preset_id: Kasuta hoiatuse eelseadistust
       announcement:
         all_day: Kogu päeva sündmus
@@ -172,6 +179,8 @@ et:
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         custom_css: Kohandatud CSS
         profile_directory: Luba kasutajate kataloog
+        show_domain_blocks: Näita domeenikeelde
+        show_domain_blocks_rationale: Näite domeenikeeldude põhjuseid
         site_contact_email: Kontaktisiku e-post
         site_contact_username: Kontaktisiku kasutajanimi
         site_extended_description: Serveri pikem kirjeldus
@@ -193,6 +202,7 @@ et:
         comment: Kommentaar
         ip: IP
         severities:
+          no_access: Keela ligipääs
           sign_up_block: Keela liitumised
           sign_up_requires_approval: Piira liitumisi
         severity: Reegel
