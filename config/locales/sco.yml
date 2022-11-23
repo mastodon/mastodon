@@ -431,6 +431,16 @@ sco:
       new:
         title: Import domain alloos
       no_file: Nae file selectit
+    export_domain_blocks:
+      import:
+        description_html: Ye'r aboot tae import a list o domain dingies. Please luik ower this list affa carefu like, especially if ye didnae write this list yersel.
+        existing_relationships_warning: Existin follae relationships
+        private_comment_description_html: 'Tae help ye track whaur importit dingies come fae, importit dingies wull be makkit wi the follaein private comment: <q>%{comment}</q>'
+        private_comment_template: Importit fae %{source} on %{date}
+        title: Import domain dingies
+      new:
+        title: Import domain dingies
+      no_file: Nae file selectit
     instances:
       availability:
         warning: The last attempt tae connect tae this server haesnae been successful
