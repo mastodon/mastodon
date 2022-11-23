@@ -4,6 +4,7 @@ ro:
     contact_missing: Nesetat
     contact_unavailable: Indisponibil
     hosted_on: Mastodon găzduit de %{domain}
+    title: Despre
   accounts:
     follow: Urmărește
     followers:
@@ -44,6 +45,11 @@ ro:
         new_email: E-mail nou
         submit: Schimbă adresa de email
         title: Schimbă e-mailul pentru %{username}
+      change_role:
+        changed_msg: Rol actualizat cu succes!
+        label: Schimbare rol
+        no_role: Niciun rol
+        title: Schimbă rolul pentru %{username}
       confirm: Confirmă
       confirmed: Confirmat
       confirming: Confirmare
@@ -87,6 +93,7 @@ ro:
         active: Activ
         all: Toate
         pending: În așteptare
+        silenced: Limitat
         suspended: Suspendate
         title: Moderare
       moderation_notes: Note de moderare
@@ -94,9 +101,11 @@ ro:
       most_recent_ip: Cel mai recent IP
       no_account_selected: Nici un cont nu a fost schimbat deoarece nici unul nu a fost selectat
       no_limits_imposed: Nicio limită impusă
+      no_role_assigned: Niciun rol atribuit
       not_subscribed: Nesubscrise
       pending: În așteptare
       perform_full_suspension: Suspendate
+      previous_strikes: Atenționări anterioare
       promote: Promovează
       protocol: Protocol
       public: Public
@@ -116,6 +125,7 @@ ro:
       reset: Resetează
       reset_password: Resetează parola
       resubscribe: Resubscrie-te
+      role: Rol
       search: Caută
       search_same_email_domain: Alţi utilizatori cu acelaşi domeniu de e-mail
       search_same_ip: Alţi utilizatori cu acelaşi IP
@@ -133,6 +143,7 @@ ro:
       statuses: Stări
       strikes: Atenționări anterioare
       subscribe: Subscrie
+      suspend: Suspendă
       suspended: Suspendate
       suspension_irreversible: Datele acestui cont au fost șterse în mod ireversibil. Poți să renunți la suspnedarea contului pentru a-l face utilizabil, dar acesta nu va recupera nicio informație pe care a avut-o anterior.
       suspension_reversible_hint_html: Contul a fost suspendat și datele vor fi șterse complet pe %{date}. Până atunci, contul poate fi restabilit fără efecte adverse. Dacă dorești să ştergi imediat toate datele contului, poți face acest lucru mai jos.
@@ -153,9 +164,11 @@ ro:
       whitelisted: Excluse la blocare
     action_logs:
       action_types:
+        approve_appeal: Aprobare apel
         approve_user: Aprobă Utilizatorul
         assigned_to_self_report: Atribuie raportul
         change_email_user: Schimbă e-mailul pentru utilizator
+        change_role_user: Schimbă rolul utilizatorului
         confirm_user: Confirmare Utilizator
         create_account_warning: Crează avertisment
         create_announcement: Creează Anunț
@@ -165,6 +178,7 @@ ro:
         create_email_domain_block: Creați blocare de domeniu e-mail
         create_ip_block: Creează regulă IP
         create_unavailable_domain: Crează domeniu indisponibil
+        create_user_role: Creează Rol
         demote_user: Retrogradare Utilizatorul
         destroy_announcement: Ștergere anunț
         destroy_custom_emoji: Ștergere Zâmbet Personalizat
@@ -184,14 +198,18 @@ ro:
         enable_user: Activează Utilizator
         memorialize_account: Comemoreză Contul
         promote_user: Promovează utilizator
+        reject_appeal: Respingere apel
         reject_user: Respinge Utilizatorul
         remove_avatar_user: Elimină avatar
         reopen_report: Redeschide Raport
         reset_password_user: Resetează Parola
         resolve_report: Rezolvă Raport
         sensitive_account: Cont Sensibil
+        silence_account: Limitează cont
         suspend_account: Suspendă Cont
         unassigned_report: Raport Neasignat
+        unblock_email_account: Deblochează adresa de e-mail
+        unsilence_account: Anulează Limitarea Contului
         unsuspend_account: Anulează Suspendarea Contului
         update_announcement: Actualizare Anunț
         update_custom_emoji: Actualizare Emoji Personalizat
