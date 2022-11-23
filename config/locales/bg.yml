@@ -414,11 +414,15 @@ bg:
       actions:
         none: предупреждение
   appearance:
+    advanced_web_interface: Разширен уеб интерфейс
+    advanced_web_interface_hint: 'Ако желаете да се възползвате от пълната ширина на своя екран, разширеният уеб интерфейс ще ви позволи да настроите най-различни колони, за да виждате едновременно множество информация: Начало, известия, федериран инфопоток, множество списъци и хаштагове.'
+    animations_and_accessibility: Анимация и достъпност
     localization:
       body: Mastodon е преведено от доброволци.
       guide_link: https://ru.crowdin.com/project/mastodon
-      guide_link_text: Всеки може да допринася.
+      guide_link_text: Всеки може да участва.
     sensitive_content: Деликатно съдържание
+    toot_layout: Оформление на публикацията
   application_mailer:
     notification_preferences: Промяна на предпочитанията за имейл
     salutation: "%{name},"
@@ -431,6 +435,7 @@ bg:
   auth:
     change_password: Парола
     delete_account: Изтриване на акаунта
+    delete_account_html: Ако желаете да изтриете акаунта си, можете <a href="%{path}">да сторите това тук</a>. Ще ви бъде поискано потвърждение.
     description:
       prefix_invited_by_user: "@%{name} ви покани да се присъедините към този сървър на Mastodon!"
     didnt_get_confirmation: Не получих инструкции за потвърждение
@@ -441,6 +446,7 @@ bg:
     login: Влизане
     logout: Излизане
     migrate_account: Преместване в различен акаунт
+    migrate_account_html: Ако желаете да пренасочите този акаунт към друг, можете да <a href="%{path}">настроите това тук</a>.
     or_log_in_with: Или влизане с помощта на
     register: Регистрация
     registration_closed: "%{instance} не приема нови членуващи"
@@ -526,6 +532,9 @@ bg:
     lists: Списъци
     mutes: Заглушихте
     storage: Съхранение на мултимедия
+  featured_tags:
+    add_new: Добавяне на нов
+    hint_html: "<strong>Какво представляват актуалните хаштагове?</strong> Те се показват ясно на вашия публичен профил и позволяват на хората да преглеждат публичните ви публикации с тези хаштагове. Те са чудесен инструмент, с който може да се следи творческа работа или дългосрочни проекти."
   filters:
     contexts:
       account: Профили
@@ -622,6 +631,7 @@ bg:
       not_found: не може да се намери
     followers_count: Последователи по време на преместването
     incoming_migrations: Преместване от различен акаунт
+    incoming_migrations_html: За да се преместите от друг акаунт към този, първо трябва да<a href="%{path}">създадете псевдоним за акаунта</a>.
     past_migrations: Минали миграции
     proceed_with_move: Още последователи
     redirected_msg: Вашият акаунт сега се пренасочва към %{acct}.
@@ -768,6 +778,7 @@ bg:
     development: Развой
     edit_profile: Редактирай профила си
     export: Експортиране на данни
+    featured_tags: Актуални хаштагове
     import: Импортиране
     import_and_export: Внос и износ
     migrate: Миграция на акаунта
@@ -894,6 +905,7 @@ bg:
     invalid_otp_token: Невалиден код
     signed_in_as: 'Влезли като:'
   verification:
+    explanation_html: 'Можете да <strong>удостоверите самоличността си като собственик на линковете в метаданните на своя профил</strong>. За целта сайтът, към който води линк от метаданните, трябва да съдържа линк обратно към вашия профил в Mastodon. Линкът от сайта <strong>трябва</strong> да съдържа атрибут <code>rel="me"</code>. Текстовото съдържание на линка няма значение. Ето пример:'
     verification: Проверка
   webauthn_credentials:
     add: Добавяне на нов ключ за сигурност
