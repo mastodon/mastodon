@@ -19,6 +19,23 @@ The variables that _must_ be configured are:
 
 - SMTP settings for your mailer in the `mastodon.smtp` group.
 
+If your PersistentVolumeClaim is `ReadWriteOnce` and you're unable to use a S3-compatible service or
+run a self-hosted compatible service like [Minio](https://min.io/docs/minio/kubernetes/upstream/index.html)
+then you need to set the pod affinity so the web and sidekiq pods are scheduled to the same node.
+
+Example configuration:
+```yaml
+podAffinity:
+  requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchExpressions:
+          - key: app.kubernetes.io/part-of
+            operator: In
+            values:
+              - rails
+      topologyKey: kubernetes.io/hostname
+```
+
 # Administration
 
 You can run [admin CLI](https://docs.joinmastodon.org/admin/tootctl/) commands in the web deployment.
