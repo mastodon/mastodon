@@ -57,7 +57,7 @@ et:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
       email_domain_block:
         domain: See võib olla e-postiaadressis näha olev domeen või MX-kirje, mida aadress kasutab. Kontroll toimub liitumise käigus.
-        with_dns_records: Proovitakse ka üles vaadata selle domeeni DNS kirjed ning selle vastused samuti keelatakse
+        with_dns_records: Püütakse lahendada selle domeeni DNS-kirjed ja ühtlasi blokeerida ka selle tulemused
       form_admin_settings:
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
@@ -172,7 +172,7 @@ et:
         username_or_email: Kasutajanimi või e-post
         whole_word: Terve sõna
       email_domain_block:
-        with_dns_records: Kaasa domeeni MX kirjed ning IP aadressid
+        with_dns_records: Kaasa domeeni MX-kirjed ning IP-aadressid
       featured_tag:
         name: Silt
       form_admin_settings:
