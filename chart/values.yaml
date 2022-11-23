@@ -104,9 +104,10 @@ mastodon:
       # -- Sidekiq queues for Mastodon that are handled by this worker. See https://docs.joinmastodon.org/admin/scaling/#concurrency
       # See https://github.com/mperham/sidekiq/wiki/Advanced-Options#queues for how to weight queues as argument
       queues:
-        - default
-        - push
-        - mailers
+        - default,8
+        - push,6
+        - ingress,4
+        - mailers,2
         - pull
         - scheduler # Make sure the scheduler queue only exists once and with a worker that has 1 replica.
     #- name: push-pull
