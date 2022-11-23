@@ -209,12 +209,12 @@ de:
         resend_user: Bestätigungs-E-Mail erneut senden
         reset_password_user: Passwort zurücksetzen
         resolve_report: Bericht lösen
-        sensitive_account: Zwangssensibles Konto
+        sensitive_account: Konto mit erzwungener Inhaltswarnung
         silence_account: Konto stummschalten
         suspend_account: Konto sperren
         unassigned_report: Meldung widerrufen
         unblock_email_account: E-Mail-Adresse entsperren
-        unsensitive_account: Zwangssensibles Konto rückgängig machen
+        unsensitive_account: Konto mit erzwungener Inhaltswarnung rückgängig machen
         unsilence_account: Konto nicht mehr stummschalten
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
@@ -503,7 +503,7 @@ de:
         other: "%{count} bekannte Konten"
       moderation:
         all: Alle
-        limited: Stummgeschaltet
+        limited: Eingeschränkt
         title: Moderation
       private_comment: Privater Kommentar
       public_comment: Öffentlicher Kommentar
@@ -1610,9 +1610,9 @@ de:
       subject:
         delete_statuses: Deine Beiträge auf %{acct} wurden entfernt
         disable: Dein Konto %{acct} wurde eingefroren
-        mark_statuses_as_sensitive: Deine Beiträge auf %{acct} wurden mit einer Inhaltswarnung versehen
+        mark_statuses_as_sensitive: Deine Beiträge von %{acct} wurden mit einer Inhaltswarnung versehen
         none: Warnung für %{acct}
-        sensitive: Deine Beiträge auf %{acct} werden künftig mit einer Inhaltswarnung versehen
+        sensitive: Deine Beiträge von %{acct} werden künftig mit einer Inhaltswarnung versehen
         silence: Dein Konto %{acct} wurde stummgeschaltet
         suspend: Dein Konto %{acct} wurde gesperrt
       title:
@@ -1620,7 +1620,7 @@ de:
         disable: Konto eingefroren
         mark_statuses_as_sensitive: Mit einer Inhaltswarnung versehene Beiträge
         none: Warnung
-        sensitive: Profil mit einer Inhaltswarnung versehen
+        sensitive: Konto mit einer Inhaltswarnung versehen
         silence: Konto stummgeschaltet
         suspend: Konto gesperrt
     welcome:
