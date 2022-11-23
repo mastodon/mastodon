@@ -343,6 +343,8 @@ fo:
       today_at: Í dag kl. %{time}
     reports:
       assigned: Tilnevnt umsjónarfólk
+      created_at: Meldað
+      delete_and_resolve: Strika postar
       no_one_assigned: Eingin
       notes:
         delete: Strika
@@ -350,17 +352,52 @@ fo:
     roles:
       categories:
         moderation: Umsjón
+        special: Serstakt
       delete: Strika
       privileges:
         manage_user_access_description: Loyvir brúkarum at gera 'váttan í tveimum stigum' (2FA) hjá øðrum brúkarum óvirkna, at broyta teirra teldupost og at nullstilla teirra loyniorð
     rules:
       delete: Strika
+    settings:
+      domain_blocks:
+        all: Til øll
+        disabled: Til ongan
+    statuses:
+      account: Høvundi
+    title: Umsiting
+    trends:
+      allow: Loyv
+      approved: Váttað
+      disallow: Tak loyvi aftur
+      links:
+        allow: Loyv leinki
     warning_presets:
       delete: Strika
     webhooks:
       delete: Strika
+  application_mailer:
+    salutation: "%{name}"
   auth:
+    change_password: Loyniorð
+    delete_account: Strika kontu
+    forgot_password: Hevur tú gloymt loyniorðið?
     link_to_otp: Skriva eina tvey-stigs kodu frá telefonini ella eina kodu til endurgerð
+    log_in_with: Innrita við
+    login: Innrita
+    logout: Rita út
+    or_log_in_with: Ella innrita við
+  authorize_follow:
+    follow: Fylg
+  challenge:
+    confirm: Hald á
+  deletes:
+    proceed: Strika kontu
+  disputes:
+    strikes:
+      title_actions:
+        none: Ávaring
+  domain_validator:
+    invalid_domain: er ikki eitt loyvt økisnavn
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -372,6 +409,8 @@ fo:
     '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
+    archive_takeout:
+      size: Stødd
     lists: Listar
   filters:
     index:
