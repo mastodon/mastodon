@@ -98,6 +98,11 @@ sr:
       authorized_applications:
         destroy:
           notice: Апликација опозвана.
+    grouped_scopes:
+      title:
+        lists: Листе
+        mutes: Утишани
+        notifications: Обавештења
     layouts:
       admin:
         nav:
@@ -108,4 +113,23 @@ sr:
     scopes:
       follow: прати, блокира, одблокира и отпрати налоге
       read: чита податке Вашег налога
+      "read:lists": погледај своје листе
+      "read:mutes": погледај своје утишане
+      "read:notifications": погледај своја обавештења
+      "read:reports": погледај своје пријаве
+      "read:search": претражи у своје име
+      "read:statuses": погледај све објаве
       write: објављује статусе у Ваше име
+      "write:accounts": измени свој профил
+      "write:blocks": блокирај налоге и домене
+      "write:bookmarks": обележи објаве
+      "write:conversations": утишај и обриши разговоре
+      "write:favourites": омиљене објаве
+      "write:filters": креирај филтере
+      "write:follows": прати кориснике
+      "write:lists": креирај листе
+      "write:media": отпреми медијске датотеке
+      "write:mutes": утишај коринсике и разговоре
+      "write:notifications": обриши своја обавештења
+      "write:reports": пријави друге кориснике
+      "write:statuses": објави објаве
