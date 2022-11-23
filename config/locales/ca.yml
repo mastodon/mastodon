@@ -397,7 +397,7 @@ ca:
       no_domain_block_selected: No s'ha canviat cap bloqueig de domini perquè no se n'ha seleccionat cap
       not_permitted: No tens permís per a realitzar aquesta acció
       obfuscate: Oculta el nom del domini
-      obfuscate_hint: Oculta parcialment el nom del domini si està activat mostrar la llista de dominis limitats
+      obfuscate_hint: Oculta parcialment el nom del domini si està activat "mostra la llista de dominis limitats"
       private_comment: Comentari privat
       private_comment_hint: Comentari sobre aquesta limitació del domini per a ús intern dels moderadors.
       public_comment: Comentari públic
@@ -1084,7 +1084,7 @@ ca:
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
       title: Aquesta pàgina no es correcta
     '503': La pàgina no podria ser servida a causa d'un error temporal del servidor.
-    noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la teva plataforma.
+    noscript_html: Per a usar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la teva plataforma.
   existing_username_validator:
     not_found: no s'ha pogut trobar cap usuari local amb aquest nom d'usuari
     not_found_multiple: no s'ha pogut trobar %{usernames}
@@ -1569,7 +1569,7 @@ ca:
     otp: Aplicació autenticadora
     recovery_codes: Codis de recuperació de còpia de seguretat
     recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
-    recovery_instructions_html: Si mai perds l'accés al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
+    recovery_instructions_html: Si mai perds l'accés al teu telèfon, pots fer servir un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     webauthn: Claus de seguretat
   user_mailer:
     appeal_approved:
@@ -1600,11 +1600,11 @@ ca:
         violation: El contingut viola les següents guies de la comunitat
       explanation:
         delete_statuses: Algunes de les teves publicacions s'han trobat que violen una o més directrius de la comunitat i, per tant, han estat eliminades pels moderadors de %{instance}.
-        disable: Ja no pots utilitzar el teu compte però el teu perfil i altres dades segueixen intactes. Pots demanar una copia de les teves dades, canviar els ajustaments del teu compte o esborrar-lo.
+        disable: Ja no pots utilitzar el teu compte, però el teu perfil i altres dades encara són intactes. Pots demanar una còpia de les teves dades, canviar els ajustaments del teu compte o esborrar-lo.
         mark_statuses_as_sensitive: Algunes de les teves publicacions han estat marcades com a sensibles pels moderadors de %{instance}. Això significa que la gent necessitarà tocar els mèdia en les publicacions perquè la previsualització es mostri. Tu mateix pots marcar els teus mèdia com a sensibles quan publiquis en el futur.
         sensitive: A partir d'ara, tots els mèdia pujats seran marcats com a sensibles i ocultats darrere d'un avís.
         silence: Encara pots fer servir el teu compte però només la gent que ja t'està seguint veuran les teves publicacions en aquest servidor i tu podries ser exclòs de les diverses opcions de descobriment. De totes maneres altres podrien encara seguir-te manualment.
-        suspend: Ja no pots utilitzar el teu compte i el teu perfil i altres dades ja no són accessibles. Encara pots iniciar sessió per a demanar una còpia de les teves dades fins que siguin totalment eliminades al cap de 30 dies, però es mantindran les dades bàsiques per evitar que esquivis la suspensió.
+        suspend: Ja no pots usar el teu compte i el teu perfil i altres dades ja no són accessibles. Encara pots iniciar sessió per a demanar una còpia de les teves dades fins que siguin totalment eliminades al cap de 30 dies, però es mantindran les dades bàsiques per a evitar que esquivis la suspensió.
       reason: 'Motiu:'
       statuses: 'Publicacions citades:'
       subject:
