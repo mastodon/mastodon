@@ -410,17 +410,33 @@ fo:
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
+      date: Dagfesting
       size: Stødd
     lists: Listar
   filters:
     index:
       delete: Strika
+  footer:
+    trending_now: Rák beint nú
   generic:
+    all: Alt
+    copy: Avrita
     delete: Strika
+    none: Einki
+    save_changes: Goym broytingar
   imports:
     errors:
       invalid_csv_file: 'Ógildug CSV-fíla. Error: %{error}'
   invites:
+    expired: Útgingið
+    expires_in:
+      '1800': 30 minuttir
+      '21600': 6 tímar
+      '3600': 1 tími
+      '43200': 12 tímar
+      '604800': 1 vika
+      '86400': 1 dag
+    expires_in_prompt: Ongantíð
     table:
       expires_at: Rennir út
   login_activities:
