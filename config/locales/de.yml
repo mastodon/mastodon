@@ -45,13 +45,13 @@ de:
         title: E-Mail-Adresse für %{username} ändern
       change_role:
         changed_msg: Benutzer*innen-Rechte erfolgreich aktualisiert!
-        label: Benutzer*innen-Rechte verändern
+        label: Rolle ändern
         no_role: Keine Benutzer*innen-Rechte
         title: Benutzer*innen-Rechte für %{username} bearbeiten
       confirm: Bestätigen
       confirmed: Bestätigt
       confirming: Verifiziert
-      custom: Benutzerdefiniert
+      custom: Angepasst
       delete: Daten löschen
       deleted: Gelöscht
       demote: Zurückstufen
@@ -642,7 +642,7 @@ de:
       privileges:
         administrator: Administrator
         administrator_description: Benutzer*innen mit dieser Berechtigung werden alle Beschränkungen umgehen
-        delete_user_data: Löschen der Account-Daten
+        delete_user_data: Profildaten löschen
         delete_user_data_description: Erlaubt Benutzer*innen, die Daten anderer Benutzer*innen sofort zu löschen
         invite_users: Benutzer*innen einladen
         invite_users_description: Erlaubt bereits registrierten Benutzer*innen, neue Leute zum Server einzuladen
@@ -1372,7 +1372,7 @@ de:
     relationship: Beziehung
     remove_selected_domains: Entferne alle Follower von den ausgewählten Domains
     remove_selected_followers: Entferne ausgewählte Follower
-    remove_selected_follows: Entfolge ausgewählten Benutzer*innen
+    remove_selected_follows: Ausgewählten Benutzer*innen entfolgen
     status: Kontostatus
   remote_follow:
     missing_resource: Die erforderliche Weiterleitungs-URL für dein Konto konnte nicht gefunden werden
@@ -1602,7 +1602,7 @@ de:
         delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Gemeinschaftsrichtlinien erkannt und von den Moderator*innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
         mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
-        sensitive: Von nun an werden alle deine hochgeladenen Mediendateien als sensibel markiert und hinter einer Warnung versteckt.
+        sensitive: Von nun an werden alle deine hochgeladenen Mediendateien mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden, und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
       reason: 'Grund:'
