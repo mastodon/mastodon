@@ -205,7 +205,7 @@ et:
         update_user_role: Uuenda rolli
       actions:
         demote_user_html: "%{name} alandas kasutajat %{target}"
-        disable_2fa_user_html: "%{name} eemaldas %{target} 2-etapise (2FA) nõude"
+        disable_2fa_user_html: "%{name} eemaldas kasutaja %{target} kahe etapise nõude"
         disable_custom_emoji_html: "%{name} keelas emotikooni %{target}"
         disable_sign_in_token_auth_user_html: "%{name} keelas kasutajal %{target} e-posti võtmega autentida"
         enable_custom_emoji_html: "%{name} lubas emotikooni %{target}"
@@ -466,7 +466,7 @@ et:
         manage_reports_description: Lubab kasutajail läbi vaadata ja viia läbi modereerimisotsuseid
         manage_roles: Rollide haldamine
         manage_rules: Reeglite haldamine
-        manage_user_access_description: Lubab kasutajail eemaldada teiste 2-etapise autentimise (2FA) nõue, muuta nende e-postiaadresse ja lähtestada salasõnu
+        manage_user_access_description: Lubab kasutajail eemaldada teiste kahe-etapise autentimise nõude, muuta nende e-postiaadresse ja lähtestada salasõnu
         manage_users: Kasutajate haldamine
         manage_users_description: Lubab kasutajail näha teiste kasutajate detailandmeid ja teha modereerimisotsuseid
         view_audit_log_description: Lubab kasutajail näha serveri administratiivsete otsuste ajalugu
@@ -604,6 +604,7 @@ et:
     didnt_get_confirmation: Ei saanud kinnituse juhendeid?
     forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
+    link_to_otp: Kahe-etapine kood telefonist või taastekood
     login: Logi sisse
     logout: Logi välja
     migrate_account: Koli teisele kasutajale
@@ -833,8 +834,9 @@ et:
       limit: Olete jõudnud maksimum lubatud nimekirjade arvuni
   login_activities:
     authentication_methods:
+      otp: kahe-etapise autentimise rakendus
       password: salasõna
-    description_html: Kui paistab tundmatauid tegevusi, tuleks vahetada salasõna ja aktiveerida 2-etapine autentimine (2FA).
+    description_html: Kui paistab tundmatauid tegevusi, tuleks vahetada salasõna ja aktiveerida kahe-etapine autentimine.
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video staatusele, millel on juba pildid
@@ -913,7 +915,7 @@ et:
           thousand: T
           trillion: Tr
   otp_authentication:
-    description_html: Kui aktiveerda <strong>2-astmeline autentimine</strong> autentimisäpi abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
+    description_html: Kui aktiveerda <strong>kahe-etapine autentimine</strong> autentimisrakenduse abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
     enable: Luba
     setup: Seadista
   pagination:
@@ -1028,7 +1030,7 @@ et:
     relationships: Jälgitud ja jälgijad
     statuses_cleanup: Automaatne kustutamine
     strikes: Modereerimisjuhtumid
-    two_factor_authentication: Kahesammuline autentimine
+    two_factor_authentication: Kahe-etapine autentimine
   statuses:
     attached:
       description: 'Manused: %{attached}'
@@ -1108,14 +1110,18 @@ et:
   two_factor_authentication:
     add: Lisa
     disable: Keela 2FA
+    disabled_success: Kahe-etapine autentimine keelatud
     edit: Muuda
-    enabled: Kaheastmeline autentimine on sisse lülitatud
-    enabled_success: Kaheastmeline autentimine on edukalt sisse lülitatud
-    generate_recovery_codes: Loo taastuskoodid
-    lost_recovery_codes: Taastuskoodide abil on Teil võimalik sisse logida kontosse, kui Te kaotate oma telefoni. Kui Te kaotate oma taastuskoodid, saate need uuesti luua siin. Teie vanad taastuskoodid tehakse kehtetuks.
-    recovery_codes: Tagavara taastuskoodid
-    recovery_codes_regenerated: Taastuskoodid edukalt taasloodud
-    recovery_instructions_html: Kui Te juhtute kunagi kaotama oma telefoni, saate kasutada ühte allpool olevatest taastuskoodidest, et saada ligipääsu oma kontole. <strong>Hoidke taastuskoodid turvaliselt</strong>. Näiteks võite Te need välja printida ning hoida need koos teiste tähtsate dokumentidega.
+    enabled: Kahe-etapine autentimine on lubatud
+    enabled_success: Kahe-etapine autentimine lubatud
+    generate_recovery_codes: Loo taastekoodid
+    lost_recovery_codes: Taastekoodide abil on võimalik telefoni kaotsimineku puhul kontole siseneda. Taastekoodide puudumisel saab need siin luua. Eelnevad taasetkoodid kaotavad kehtivuse.
+    methods: Kahe-etapised meetodid
+    otp: Autentimisrakendus
+    recovery_codes: Taastekoodide varundamine
+    recovery_codes_regenerated: Taastekoodid edukalt taasloodud
+    recovery_instructions_html: Kui telefon peaks kaotsi minema, on võimalik kontole sisenemisel kasutada ühte järgnevatest taastekoodidest. <strong>Hoia taastekoode turvaliselt</strong>. Näiteks võib neid prindituna hoida koos teiste tähtsate dokumentidega.
+    webauthn: Turvavõtmed
   user_mailer:
     backup_ready:
       explanation: Te taotlesite varukoopia oma Mastodoni kontost. See on nüüd valmis allalaadimiseks!
@@ -1123,6 +1129,8 @@ et:
       title: Arhiivi väljavõte
     suspicious_sign_in:
       change_password: salasõna muutmine
+      explanation: Täheldasime kontole sisenemise uuelt IP-aadressilt.
+      further_actions_html: Kui see tuleb üllatusena, soovitame %{action} viivitamata ja lülita konto turvamiseks sisse kahe-etapine autentimine.
     warning:
       appeal: Vaidlustuse esitamine
       appeal_description: Kui see võib olla eksitus, on võimalik %{instance} haldajatele esitada vaidlustus.
@@ -1150,7 +1158,7 @@ et:
       title: Tere tulemast pardale, %{name}!
   users:
     follow_limit_reached: Te ei saa jälgida rohkem kui %{limit} inimest
-    invalid_otp_token: Vale kaheastmelise autentimise kood
+    invalid_otp_token: Vale kahe-etapine võti
     otp_lost_help_html: Kui Te kaotasite ligipääsu mõlemale, saate võtta ühendust %{email}-iga
     seamless_external_login: Läbi välise teenuse sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
@@ -1159,3 +1167,4 @@ et:
     verification: Kinnitamine
   webauthn_credentials:
     delete: Kustuta
+    otp_required: Turvavõtmete kasutamiseks tuleb eelnevalt sisse lülitada kahe-etapine autentimine.
