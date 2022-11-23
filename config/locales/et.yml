@@ -149,6 +149,7 @@ et:
       unblock_email: Luba e-postiaadress
       unblocked_email_msg: Kasutaja %{username} e-postiaadress lubatud
       unconfirmed_email: Kinnitamata e-post
+      undo_sensitized: Eemalda tundliku sisu märge
       undo_silenced: Võta vaigistus tagasi
       undo_suspension: Võta peatamine tagasi
       unsubscribe: Tühista tellimus
@@ -203,10 +204,12 @@ et:
         resend_user: Saada kinnituskiri uuesti
         reset_password_user: Salasõna lähtestamine
         resolve_report: Lahendas teadaande
+        sensitive_account: Tundliku sisuga konto
         silence_account: Vaigistas konto
         suspend_account: Konto kustutamine
         unassigned_report: Määras teavituse maha
         unblock_email_account: Luba e-postiaadress
+        unsensitive_account: Pole tundliku sisuga konto
         unsilence_account: Konto vaigistus eemaldati
         unsuspend_account: Konto taastamine
         update_announcement: Uuenda teadaannet
@@ -233,8 +236,10 @@ et:
         memorialize_account_html: "%{name} märkis %{target} igaveselt lahkunuks"
         promote_user_html: "%{name} ülendas kasutajat %{target}"
         reset_password_user_html: "%{name} lähtestas %{target} salasõna"
+        sensitive_account_html: "%{name} märkis %{target} meedia kui tundlik sisu"
         suspend_account_html: "%{name} kustutas %{target} konto"
         unblock_email_account_html: "%{name} lubas %{target} e-postiaadressi"
+        unsensitive_account_html: "%{name} eemaldas %{target} meedia tundliku sisu märke"
         unsuspend_account_html: "%{name} taastas %{target} konto"
         update_domain_block_html: "%{name} uuendas domeeni %{target} keeldu"
         update_ip_block_html: "%{name} muutis IP-aadressi %{target} reeglit"
@@ -480,6 +485,7 @@ et:
       created_at: Teavitatud
       forwarded: Edastatud
       mark_as_resolved: Märgi lahendatuks
+      mark_as_sensitive: Märgi kui tundlik sisu
       mark_as_unresolved: Märgi lahendamata
       no_one_assigned: Eikeegi
       notes:
@@ -571,6 +577,8 @@ et:
       with_media: Meediaga
     strikes:
       actions:
+        mark_statuses_as_sensitive: "%{name} märkis %{target} postitused tundlikena"
+        sensitive: "%{name} märkis %{target} konto kui tundlik sisu"
         suspend: "%{name} kustutas %{target} konto"
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
@@ -607,7 +615,9 @@ et:
   admin_mailer:
     new_appeal:
       actions:
+        mark_statuses_as_sensitive: et märkida postitused kui tundlik sisu
         none: hoiatus
+        sensitive: et märkida konto kui tundlik sisu
         suspend: et konto kustutada
       body: "%{target} vaidlustab %{action_taken_by} modereerimisotsuse kuupäevaga %{date}: %{type}. Põhjendus:"
     new_pending_account:
@@ -768,7 +778,9 @@ et:
       status: 'Postitus #%{id}'
       title: "%{action} kuupäevaga %{date}"
       title_actions:
+        mark_statuses_as_sensitive: Postituste tundlikena märkimine
         none: Hoiatus
+        sensitive: Konto tundlikuna märkimine
         suspend: Konto kustutamine
       your_appeal_approved: Teie vaidlustus on rahuldatud
       your_appeal_pending: Vaidlustus on esitatud
@@ -1202,16 +1214,22 @@ et:
       categories:
         spam: Rämpspost
       explanation:
+        mark_statuses_as_sensitive: Mõned postitused märgiti %{instance} moderaatorite poolt kui tundlik sisu. See tähendab, et meedia eelvaadet vaikimisi ei kuvata. Edaspidi postitades on soovitatav seesugune meedia märkida kui tundlik sisu.
+        sensitive: Praegusest alates saab kogu Su üleslaetav meedia tundliku sisu märke ja selle eelvaadet ei kuvata enne hoiatust.
         suspend: Konto kasutamine pole enam võimalik ja profiil ja muud andmed pole enam kättesaadavad. Sisenemine on võimalik andmetest varukoopia saamiseks kuni nende lõpliku kustutamiseni 30 päeva pärast, ent säiltame mõned põhiandmed kustutamisest mööda hiilimise vältimiseks.
       reason: 'Põhjus:'
       subject:
         disable: Teie konto %{acct} on lukustatud
+        mark_statuses_as_sensitive: Konto %{acct} postitused on märgitud kui tundlik sisu
         none: Hoiatus kasutajale %{acct}
+        sensitive: Konto %{acct} postitused on nüüdsest märgitud kui tundlik sisu
         silence: Teie kontole %{acct} on kehtestatud limiidid
         suspend: Teie konto %{acct} on kustutatud
       title:
         disable: Konto lukustatud
+        mark_statuses_as_sensitive: Postitused märgitud kui tundlik sisu
         none: Hoiatus
+        sensitive: Konto märgitud kui tundlik sisu
         silence: Konto limiteeritud
         suspend: Konto kustutatud
     welcome:
