@@ -253,6 +253,9 @@ fo:
         destroy_unavailable_domain_html: "%{name} tók upp aftir veiting til navnaøkið %{target}"
         destroy_user_role_html: "%{name} slettaði leiklutin hjá %{target}"
         reject_appeal_html: "%{name} avvísti umsjónaráheitan frá %{target}"
+        sensitive_account_html: "%{name} hevur merkt media hjá %{target} sum viðkvæmt"
+        silence_account_html: "%{name} hevur avmarkað rættindini á kontuni %{target}"
+        unblock_email_account_html: "%{name} hevur læst teldubrævabústaðin hjá %{target} upp"
         update_user_role_html: "%{name} broyttir %{target} leiklutir"
       deleted_account: strikað konta
       empty: Eingir loggar funnir.
@@ -273,9 +276,13 @@ fo:
     custom_emojis:
       by_domain: Økisnavn
       copy: Avrita
+      create_new_category: Stovna nýggja flokking
       delete: Strika
+      disable: Ógilda
+      disabled: Ógildað
       enable: Set í gildi
       enabled: Í gildi
+      image_hint: PNG ella GIF upp til %{size}
       list: Listi
       unlist: Tak av listanum
     dashboard:
@@ -294,10 +301,14 @@ fo:
           silence: Mark
       no_domain_block_selected: Ongar navnaøkjablokeringar vóru broyttar, tí ongar vóru valdar
       not_permitted: Tú hevur ikki rættindi at gera hetta
+      private_comment: Privat viðmerking
       private_comment_hint: Viðmerking um hesa navnaøkjaavmarking til innanhýsis nýtslu hjá umsjónarfólkunum.
       public_comment: Sjónlig viðmerking
     email_domain_blocks:
+      add_new: Stovna
       delete: Strika
+      new:
+        create: Stovna nýtt økisnavn
     export_domain_allows:
       new:
         title: Innflyt navnaøkjaloyvi
@@ -312,11 +323,25 @@ fo:
       new:
         title: Innflyt navnaøkjablokeringar
       no_file: Eingin fíla vald
+    follow_recommendations:
+      status: Status
+      suppressed: Steðgað
     instances:
+      availability:
+        title: Tøki
+        warning: Seinasta royndin at fáa samband við ambætaran eydnaðist ikki
       by_domain: Økisnavn
       content_policies:
+        comment: Innanhýsis viðmerking
         policies:
           silence: Mark
+        policy: Reglur
+        title: Reglur fyri innihaldi
+      dashboard:
+        instance_languages_dimension: Mest nýtt mál
+      delivery:
+        unavailable: Ikki tøkt
+      delivery_available: Levering er møgulig
       moderation:
         all: Allir
         limited: Avmarkaðir
@@ -346,19 +371,36 @@ fo:
       assigned: Tilnevnt umsjónarfólk
       created_at: Meldað
       delete_and_resolve: Strika postar
+      forwarded: Víðarisent
+      forwarded_to: Víðarisent til %{domain}
+      mark_as_resolved: Marka sum loyst
+      mark_as_sensitive: Merkt sum viðkvæmt
+      mark_as_unresolved: Marka sum óloyst
       no_one_assigned: Eingin
       notes:
+        create_and_resolve: Marka sum loyst og ger viðmerking
+        create_and_unresolve: Lat upp aftur við viðmerking
         delete: Strika
         title: Viðmerkingar
+      resolved: Loyst
+      unresolved: Óloyst
+      updated_at: Dagført
+      view_profile: Vís vangamynd
     roles:
       categories:
+        devops: DevOps
         moderation: Umsjón
         special: Serstakt
       delete: Strika
       privileges:
+        administrator: Umsitari
+        delete_user_data: Sletta brúkaraupplýsingar
+        manage_appeals: Umsit kærur
         manage_user_access_description: Loyvir brúkarum at gera 'váttan í tveimum stigum' (2FA) hjá øðrum brúkarum óvirkna, at broyta teirra teldupost og at nullstilla teirra loyniorð
     rules:
+      add_new: Ger nýggja reglu
       delete: Strika
+      edit: Broyt reglur
     settings:
       domain_blocks:
         all: Til øll
