@@ -11,7 +11,7 @@ ca:
       admin_account_action:
         include_statuses: L'usuari veurà quines publicacions han provocat que s'hagi moderat o avisat
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
-        text_html: Opcional. A les publicacions, pots usar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
+        text_html: Opcional. En les publicacions, pots usar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
         types:
           disable: Evita que l'usuari faci servir el seu compte, però no esborris ni amaguis el seu contingut.
@@ -25,7 +25,7 @@ ca:
         ends_at: Opcional. En aquest moment, l'anunci no es publicarà automàticament
         scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
         starts_at: Opcional. En cas que el teu anunci estigui vinculat a un interval de temps específic
-        text: Pots utilitzar la sintaxi de publicacions. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
+        text: Pots fer servir la sintaxi de publicacions. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
       appeal:
         text: Només pots emetre una apel·lació per cada acció
       defaults:
@@ -40,7 +40,7 @@ ca:
         email: Se t'enviarà un correu electrònic de confirmació
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
-        inbox_url: Copia l'URL de la pàgina principal del relay que vols utilitzar
+        inbox_url: Copia l'URL de la pàgina principal del relay que vols usar
         irreversible: Les publicacions filtrades desapareixeran de manera irreversible, fins i tot si el filtre s'elimina més tard
         locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
         locked: Controla manualment qui et pot seguir, aprovant sol·licituds
@@ -49,7 +49,7 @@ ca:
         scopes: API permeses per a accedir a l'aplicació. Si selecciones un àmbit de nivell superior, no cal que en seleccionis un d'individual.
         setting_aggregate_reblogs: No mostris els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els nous impulsos rebuts)
         setting_always_send_emails: Normalment, no s'enviarà cap notificació per correu electrònic mentre facis servir Mastodon
-        setting_default_sensitive: El contingut gràfic i sensible està ocult per defecte i es pot mostrar fent-hi clic
+        setting_default_sensitive: El contingut sensible està ocult per defecte i es pot mostrar fent-hi clic
         setting_display_media_default: Ocultar el contingut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
         setting_display_media_show_all: Mostra sempre el contingut gràfic
@@ -119,7 +119,7 @@ ca:
         chosen_languages: Quan estigui marcat, només es mostraran les publicacions en les llengües seleccionades en les línies de temps públiques
         role: El rol controla quines permissions té l'usuari
       user_role:
-        color: Color que s'utilitzarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
+        color: Color que s'usarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
         highlighted: Això fa el rol visible públicament
         name: Nom públic del rol, si el rol està configurat per a ser mostrat com a insígnia
         permissions_as_keys: Els usuaris amb aquest rol tingran accés a...
