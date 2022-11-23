@@ -35,14 +35,17 @@ et:
       avatar: Profiilipilt
       by_domain: Domeen
       change_email:
+        changed_msg: E-postiaadress vahetatud!
         current_email: Praegune e-postiaadress
         label: Muuda e-posti aadressi
         new_email: Uus е-posti aadress
         submit: Muuda e-posti aadressi
         title: Muuda e-postiaadressi kasutajale %{username}
       change_role:
+        changed_msg: Roll on muudetud!
         label: Muuda rolli
         no_role: Roll puudub
+        title: '%{username} rolli muutmine'
       confirm: Kinnita
       confirmed: Kinnitatud
       confirming: Kinnitamine
@@ -50,7 +53,9 @@ et:
       delete: Kustuta andmed
       deleted: Kustutatud
       demote: Alanda
+      destroyed_msg: "%{username} andmed on nüüd lõpliku kustutamise ootel"
       disable: Keela
+      disable_sign_in_token_auth: Keela e-posti võtmetega autentimine
       disable_two_factor_authentication: Keela 2FA
       disabled: Keelatud
       display_name: Kuvanimi
@@ -59,11 +64,13 @@ et:
       email: E-post
       email_status: E-posti staatus
       enable: Luba
+      enable_sign_in_token_auth: Luba e-posti võtmetega autentimine
       enabled: Lubatud
       followers: Jälgijad
       follows: Jälgib
       header: Päis
       inbox_url: Sisendkausta URL
+      invite_request_text: Põhjendused liitumiseks
       invited_by: Kutsuja
       ip: IP
       joined: Liitus
@@ -74,7 +81,9 @@ et:
         title: Asukoht
       login_status: Sisselogimise olek
       media_attachments: Lisatud meedia
-      memorialize: Tee memoriaaliks
+      memorialize: Igaveseks lahkunud
+      memorialized: Igaveselt lahkunuks märgitud
+      memorialized_msg: '%{username} on märgitud igavaselt lahkunuks'
       moderation:
         active: Aktiivne
         all: Kõik
@@ -87,9 +96,14 @@ et:
       most_recent_ip: Kõige hiljutisem IP
       no_account_selected: Mitte ühtegi kontot muudeti sest midagi polnud valitud
       no_limits_imposed: Mitte ühtegi limiiti kehtestatud
+      no_role_assigned: Ühtegi rolli pole määratud
       not_subscribed: Ei ole tellitud
       pending: Ootab ülevaatamist
       perform_full_suspension: Peata
+      previous_strikes: Eelnevad juhtumid
+      previous_strikes_description_html:
+        one: Sel kontol on <strong>üks</strong> juhtum.
+        other: Sel kontol on <strong>%{count}</strong> juhtumit.
       promote: Edenda
       protocol: Protokoll
       public: Avalik
@@ -109,6 +123,11 @@ et:
       search: Otsi
       search_same_email_domain: Muud kasutajad sama e-posti domeeniga
       search_same_ip: Teised kasutajad, kellel on sama IP
+      security_measures:
+        only_password: Ainult salasõna
+        password_and_2fa: Salasõna ja 2-astmeline autentimine
+      sensitive: Tundlik sisu
+      sensitized: Märgitud kui tundlik sisu
       shared_inbox_url: Jagatud sisendkausta URL
       show:
         created_reports: Loodud teated
@@ -116,6 +135,7 @@ et:
       silence: Vaigista
       silenced: Vaigistatud
       statuses: Staatuseid
+      strikes: Eelnevad juhtumid
       subscribe: Telli
       suspended: Peatatud
       title: Kontod
@@ -137,24 +157,30 @@ et:
         confirm_user: Kasutaja kinnitatud
         create_account_warning: Lisas hoiatuse
         create_announcement: Lisas teadaande
+        create_canonical_email_block: E-posti blokeeringu lisamine
         create_custom_emoji: Lisas kohandatud emotikoni
         create_domain_allow: Lisas lubatud domeeni
         create_domain_block: Lisas domeeniblokeeringu
         create_email_domain_block: Lisas e-posti domeeni blokeeringu
+        create_ip_block: IP-reegli lisamine
+        create_unavailable_domain: Kättesaamatu domeeni lisamine
         create_user_role: Loo roll
         demote_user: Alandas kasutaja
         destroy_announcement: Eemaldas teadaande
+        destroy_canonical_email_block: E-posti blokeeringu kustutamine
         destroy_custom_emoji: Eemaldas kohandatud emotikoni
         destroy_domain_allow: Eemaldas lubatud domeeni
         destroy_domain_block: Eemaldas domeeniblokeeringu
         destroy_email_domain_block: Eemaldas e-posti domeeni blokeeringu
+        destroy_instance: Domeeni kustutamine
+        destroy_ip_block: IP-reegli kustutamine
         destroy_status: Eemaldas staatuse
         disable_2fa_user: Keelas 2FA
         disable_custom_emoji: Keelas kohandatud emotikoni
         disable_user: Keelas kasutaja
         enable_custom_emoji: Lubas kohandatud emotikoni
         enable_user: Lubas kasutaja
-        memorialize_account: Tegi kontole memoriaali
+        memorialize_account: Igaveselt lahkunuks märkimine
         promote_user: Edendas kasutaja
         reject_appeal: Lükka vaidlustus tagasi
         remove_avatar_user: Kustutas profiilipildi
@@ -175,6 +201,7 @@ et:
         demote_user_html: "%{name} alandas kasutajat %{target}"
         disable_custom_emoji_html: "%{name} keelas emotikooni %{target}"
         enable_custom_emoji_html: "%{name} lubas emotikooni %{target}"
+        memorialize_account_html: "%{name} märkis %{target} igaveselt lahkunuks"
         promote_user_html: "%{name} ülendas kasutajat %{target}"
       deleted_account: kustutatud konto
       empty: Logisi ei leitud.
@@ -375,6 +402,11 @@ et:
           other: "%{count} märkust"
       action_log: Auditilogi
       action_taken_by: Meetmeid kasutanud
+      actions:
+        delete_description_html: Raporteeritud postitused kustutatakse ja juhtum talletatakse hoiatusena tulevaste eksimuste ärahoidmiseks.
+        mark_as_sensitive_description_html: Raporteeritud meedia märgitakse kui tundlik sisu ja juhtum talletatakse hoiatusena tulevaste eksimuste ärahoidmiseks.
+        resolve_description_html: Raporteeritud konto suhtes ei võeta midagi ette, juhtumit ei registreerita ja raport suletakse.
+      actions_description_html: Otsustus, mida raporti lahendamiseks ette võtta. Karistava tegevuse korral saadetakse e-postiga teade, välja arvatud kategooria <strong>rämpspost</strong> puhul.
       are_you_sure: Olete kindel?
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
@@ -394,12 +426,14 @@ et:
         delete: Kustuta
         placeholder: Kirjelda, mis on ette võetud või muid seotud uuendusi...
         title: Märkmed
+      quick_actions_description_html: 'Võimalus teha kiire otsus või näha raporteeritud sisu allpool:'
       reopen: Taasava teavitus
       report: 'Teavitus #%{id}'
       reported_account: Teavitatud kontost
       reported_by: Teavitatud
       resolved: Lahendatud
       resolved_msg: Teavituse lahendamine õnnestus!
+      skip_to_actions: Otsuste juurde
       status: Staatus
       title: Teavitused
       unassign: Eemalda määramine
@@ -418,9 +452,13 @@ et:
       privileges:
         administrator: Administraator
         manage_appeals: Vaidlustuste haldamine
+        manage_appeals_description: Lubab kasutajail läbi vaadata modereerimisotsuste vaidlustusi
+        manage_reports_description: Lubab kasutajail läbi vaadata ja viia läbi modereerimisotsuseid
         manage_roles: Rollide haldamine
         manage_rules: Reeglite haldamine
         manage_users: Kasutajate haldamine
+        manage_users_description: Lubab kasutajail näha teiste kasutajate detailandmeid ja teha modereerimisotsuseid
+        view_audit_log_description: Lubab kasutajail näha serveri administratiivsete otsuste ajalugu
         view_devops: DevOps
       title: Rollid
     rules:
@@ -501,6 +539,7 @@ et:
     new_appeal:
       actions:
         none: hoiatus
+      body: "%{target} vaidlustab %{action_taken_by} modereerimisotsuse kuupäevaga %{date}: %{type}. Põhjendus:"
     new_pending_account:
       body: Uue konto üksikasjad on allpool. Te saate vastu võtta või tagasi lükata seda taotlust.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
@@ -584,6 +623,7 @@ et:
       confirming: Ootan e-posti kinnitust.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
       redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
+      view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
   authorize_follow:
     already_following: Te juba jälgite seda kontot
@@ -643,15 +683,19 @@ et:
       username_unavailable: Teie kasutajanimi jääb mitte kasutatavaks
   disputes:
     strikes:
+      action_taken: Tulemus
       appeal: Vaidlustus
+      appeal_approved: Selle juhtumi vaidlustus on rahuldatud ja pole enam kehtiv
       appeal_submitted_at: Vaidlustus esitatud
       appealed_msg: Vaidlustus esitatud. Selle rahuldamisel saabub teadaanne.
       appeals:
         submit: Esita vaidlustus
       approve_appeal: Rahulda vaidlustus
       created_at: Kuupäev
+      description_html: See on käesoleva konto hoiatuste ja tegevuste ajalugu, mis on %{instance} haldajate poolt ette võetud.
       reject_appeal: Lükka vaidlustus tagasi
       status: 'Postitus #%{id}'
+      title: "%{action} kuupäevaga %{date}"
       title_actions:
         none: Hoiatus
       your_appeal_approved: Teie vaidlustus on rahuldatud
@@ -970,6 +1014,7 @@ et:
     profile: Profiil
     relationships: Jälgitud ja jälgijad
     statuses_cleanup: Automaatne kustutamine
+    strikes: Modereerimisjuhtumid
     two_factor_authentication: Kahesammuline autentimine
   statuses:
     attached:
@@ -1033,6 +1078,9 @@ et:
     pinned: Kinnitatud postitus
     reblogged: jagatud
     sensitive_content: Tundlik sisu
+  strikes:
+    errors:
+      too_late: On hilja seda juhtumit vaidlustada
   tags:
     does_not_match_previous_name: ei ühti eelmise nimega
   themes:
