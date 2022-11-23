@@ -40,6 +40,7 @@ describe Auth::PasswordsController, type: :controller do
     let(:user) { Fabricate(:user) }
 
     before do
+      @password = 'reset0password'
       request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
@@ -49,14 +50,13 @@ describe Auth::PasswordsController, type: :controller do
       let!(:web_push_subscription) { Fabricate(:web_push_subscription, access_token: access_token) }
 
       before do
-        @password = 'reset0password'
         @token = user.send_reset_password_instructions
 
         post :update, params: { user: { password: @password, password_confirmation: @password, reset_password_token: @token } }
       end
 
-      it 'returns http found' do
-        expect(response).to have_http_status(302)
+      it 'redirect to sign in' do
+        expect(response).to redirect_to '/auth/sign_in'
       end
 
       it 'changes password' do
@@ -81,11 +81,11 @@ describe Auth::PasswordsController, type: :controller do
 
     context 'with invalid reset_password_token' do
       before do
-        post :update, params: { user: { reset_password_token: 'some_invalid_value' } }
+        post :update, params: { user: { password: @password, password_confirmation: @password, reset_password_token: 'some_invalid_value' } }
       end
 
-      it 'returns http success' do
-        expect(response).to have_http_status(200)
+      it 'renders reset password' do
+        expect(response).to render_template(:new)
       end
 
       it 'retains password' do
