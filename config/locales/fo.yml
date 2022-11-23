@@ -388,15 +388,30 @@ fo:
     authentication_methods:
       otp: app til váttan í tveimum stigum
       password: loyniorð
+    description_html: Sært tú virksemi, sum tú ikki kennir aftur, so eigur tú at umhugsa at broyta loyniorðið ella at gera váttan í tveimum stigum virkna.
   moderation:
     title: Umsjón
+  otp_authentication:
+    description_html: Ger tú <strong>váttan í tveimum stigum</strong> virkna við eini váttanar-app, so er neyðugt at hava telefonina tøka, tá tú skal rita inn, tí appin ger tekin til tín at lesa inn.
+  settings:
+    two_factor_authentication: Váttan í tveimum stigum
+  two_factor_authentication:
+    disabled_success: Váttan í tveimum stigum gjørd óvirkin
+    enabled: Váttan í tveimum stigum gjørd virkin
+    enabled_success: Váttan í tveimum stigum gjørd virkin
+    methods: Mannagongdir fyri váttan í tveimum stigum
   user_mailer:
+    suspicious_sign_in:
+      further_actions_html: Var hetta ikki tú, so mæla vit til, at tú %{action} beinan vegin og at tú ger váttan í tveimum stigum virkna fyri at konta tín kann vera trygg.
     warning:
       reason: 'Grund:'
       title:
         none: Ávaring
         sensitive: Konto frámerkt sum viðvkæmur
         silence: Kontoin er avmarkað
+  users:
+    invalid_otp_token: Ógyldug tvey-stigs koda
   webauthn_credentials:
     delete: Strika
+    otp_required: Fyri at brúka trygdarlyklar er neyðugt at gera váttan í tveimum stigum virkna fyrst.
     registered_on: Skrásett %{date}
