@@ -10,6 +10,14 @@ fo:
       featured_tag:
         name: 'Her eru nakrir tvíkrossar, ið tú hevur brúkt í seinastuni:'
     labels:
+      account_warning_preset:
+        title: Heiti
+      admin_account_action:
+        types:
+          disable: Fryst
+          none: Send eina ávaring
+          silence: Mark
+          suspend: Fyribils ikki í gildi
       defaults:
         data: Dáta
         note: Ævilýsing
@@ -18,18 +26,27 @@ fo:
       featured_tag:
         name: Tvíkrossur
       ip_block:
+        comment: Viðmerking
         ip: IP
+        severity: Regla
       notification_emails:
         favourite: Onkur dámdi títt uppslag
         follow_request: Onkur biður um at fylgja tær
         mention: Onkur nevndi teg
+      rule:
+        text: Regla
       tag:
         listable: Loyva hesum tvíkrossið, at verða vístur í leitingum og uppskotum
         name: Tvíkrossur
         usable: Loyva uppsløgum at brúka hendan tvíkross
+      user:
+        role: Leiklutur
       user_role:
         name: Navn
+        permissions_as_keys: Loyvi
     'no': 'Nei'
+    not_recommended: Ikki viðmælt
+    recommended: Viðmælt
     required:
       mark: "*"
       text: kravt
