@@ -7,6 +7,10 @@ import {
   expandHomeTimeline,
   connectTimeline,
   disconnectTimeline,
+  fillHomeTimelineGaps,
+  fillPublicTimelineGaps,
+  fillCommunityTimelineGaps,
+  fillListTimelineGaps,
 } from './timelines';
 import { updateNotifications, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
@@ -17,7 +21,6 @@ import {
   updateReaction as updateAnnouncementsReaction,
   deleteAnnouncement,
 } from './announcements';
-import { fetchFilters } from './filters';
 import { getLocale } from '../locales';
 
 const { messages } = getLocale();
@@ -35,6 +38,7 @@ const randomUpTo = max =>
  * @param {Object.<string, string>} params
  * @param {Object} options
  * @param {function(Function, Function): void} [options.fallback]
+ * @param {function(): void} [options.fillGaps]
  * @param {function(object): boolean} [options.accept]
  * @return {function(): void}
  */
@@ -60,6 +64,10 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
         if (pollingId) {
           clearTimeout(pollingId);
           pollingId = null;
+        }
+
+        if (options.fillGaps) {
+          dispatch(options.fillGaps());
         }
       },
 
@@ -87,9 +95,6 @@ export const connectTimelineStream = (timelineId, channelName, params = {}, opti
           break;
         case 'conversation':
           dispatch(updateConversations(JSON.parse(data.payload)));
-          break;
-        case 'filters_changed':
-          dispatch(fetchFilters());
           break;
         case 'announcement':
           dispatch(updateAnnouncements(JSON.parse(data.payload)));
@@ -119,7 +124,7 @@ const refreshHomeTimelineAndNotification = (dispatch, done) => {
  * @return {function(): void}
  */
 export const connectUserStream = () =>
-  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification });
+  connectTimelineStream('home', 'user', {}, { fallback: refreshHomeTimelineAndNotification, fillGaps: fillHomeTimelineGaps });
 
 /**
  * @param {Object} options
@@ -127,7 +132,7 @@ export const connectUserStream = () =>
  * @return {function(): void}
  */
 export const connectCommunityStream = ({ onlyMedia } = {}) =>
-  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`);
+  connectTimelineStream(`community${onlyMedia ? ':media' : ''}`, `public:local${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => (fillCommunityTimelineGaps({ onlyMedia })) });
 
 /**
  * @param {Object} options
@@ -136,7 +141,7 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @return {function(): void}
  */
 export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
-  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`);
+  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
 
 /**
  * @param {string} columnId
@@ -159,4 +164,4 @@ export const connectDirectStream = () =>
  * @return {function(): void}
  */
 export const connectListStream = listId =>
-  connectTimelineStream(`list:${listId}`, 'list', { list: listId });
+  connectTimelineStream(`list:${listId}`, 'list', { list: listId }, { fillGaps: () => fillListTimelineGaps(listId) });

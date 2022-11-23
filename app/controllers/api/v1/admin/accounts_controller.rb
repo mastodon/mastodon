@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Api::V1::Admin::AccountsController < Api::BaseController
-  protect_from_forgery with: :exception
-
   include Authorization
   include AccountableConcern
 
@@ -10,11 +8,11 @@ class Api::V1::Admin::AccountsController < Api::BaseController
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:accounts' }, only: [:index, :show]
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }, except: [:index, :show]
-  before_action :require_staff!
   before_action :set_accounts, only: :index
   before_action :set_account, except: :index
   before_action :require_local_account!, only: [:enable, :approve, :reject]
 
+  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   FILTER_PARAMS = %i(
@@ -62,13 +60,13 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   def reject
     authorize @account.user, :reject?
     DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
-    render json: @account, serializer: REST::Admin::AccountSerializer
+    render_empty
   end
 
   def destroy
     authorize @account, :destroy?
     Admin::AccountDeletionWorker.perform_async(@account.id)
-    render json: @account, serializer: REST::Admin::AccountSerializer
+    render_empty
   end
 
   def unsensitive
@@ -104,11 +102,27 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   end
 
   def filtered_accounts
-    AccountFilter.new(filter_params).results
+    AccountFilter.new(translated_filter_params).results
   end
 
   def filter_params
     params.permit(*FILTER_PARAMS)
+  end
+
+  def translated_filter_params
+    translated_params = { origin: 'local', status: 'active' }.merge(filter_params.slice(*AccountFilter::KEYS))
+
+    translated_params[:origin] = 'remote' if params[:remote].present?
+
+    %i(active pending disabled silenced suspended).each do |status|
+      translated_params[:status] = status.to_s if params[status].present?
+    end
+
+    if params[:staff].present?
+      translated_params[:role_ids] = UserRole.that_can(:manage_reports).map(&:id)
+    end
+
+    translated_params
   end
 
   def insert_pagination_headers

@@ -32,4 +32,5 @@
 ---
 <% end %>
 
-<%= t 'user_mailer.warning.get_in_touch', instance: @instance %>
+<%= t 'user_mailer.warning.appeal_description', instance: @instance %>
+<%= disputes_strike_url(@warning) %>

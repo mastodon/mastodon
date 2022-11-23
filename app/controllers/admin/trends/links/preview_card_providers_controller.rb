@@ -2,17 +2,19 @@
 
 class Admin::Trends::Links::PreviewCardProvidersController < Admin::BaseController
   def index
-    authorize :preview_card_provider, :index?
+    authorize :preview_card_provider, :review?
 
     @preview_card_providers = filtered_preview_card_providers.page(params[:page])
-    @form = Form::PreviewCardProviderBatch.new
+    @form = Trends::PreviewCardProviderBatch.new
   end
 
   def batch
-    @form = Form::PreviewCardProviderBatch.new(form_preview_card_provider_batch_params.merge(current_account: current_account, action: action_from_button))
+    authorize :preview_card_provider, :review?
+
+    @form = Trends::PreviewCardProviderBatch.new(trends_preview_card_provider_batch_params.merge(current_account: current_account, action: action_from_button))
     @form.save
   rescue ActionController::ParameterMissing
-    flash[:alert] = I18n.t('admin.accounts.no_account_selected')
+    flash[:alert] = I18n.t('admin.trends.links.publishers.no_publisher_selected')
   ensure
     redirect_to admin_trends_links_preview_card_providers_path(filter_params)
   end
@@ -20,15 +22,15 @@ class Admin::Trends::Links::PreviewCardProvidersController < Admin::BaseControll
   private
 
   def filtered_preview_card_providers
-    PreviewCardProviderFilter.new(filter_params).results
+    Trends::PreviewCardProviderFilter.new(filter_params).results
   end
 
   def filter_params
-    params.slice(:page, *PreviewCardProviderFilter::KEYS).permit(:page, *PreviewCardProviderFilter::KEYS)
+    params.slice(:page, *Trends::PreviewCardProviderFilter::KEYS).permit(:page, *Trends::PreviewCardProviderFilter::KEYS)
   end
 
-  def form_preview_card_provider_batch_params
-    params.require(:form_preview_card_provider_batch).permit(:action, preview_card_provider_ids: [])
+  def trends_preview_card_provider_batch_params
+    params.require(:trends_preview_card_provider_batch).permit(:action, preview_card_provider_ids: [])
   end
 
   def action_from_button

@@ -65,6 +65,24 @@
     }
   }
 
+  &.horizontal-table {
+    border-collapse: collapse;
+    border-style: hidden;
+
+    & > tbody > tr > th,
+    & > tbody > tr > td {
+      padding: 11px 10px;
+      background: transparent;
+      border: 1px solid lighten($ui-base-color, 8%);
+      color: $secondary-text-color;
+    }
+
+    & > tbody > tr > th {
+      color: $darker-text-color;
+      font-weight: 600;
+    }
+  }
+
   &.batch-table {
     & > thead > tr > th {
       background: $ui-base-color;
@@ -160,6 +178,9 @@ a.table-action-link {
   }
 
   &__toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     border: 1px solid darken($ui-base-color, 8%);
     background: $ui-base-color;
     border-radius: 4px 0 0;
@@ -169,6 +190,55 @@ a.table-action-link {
     &__actions {
       text-align: right;
       padding-right: 16px - 5px;
+    }
+  }
+
+  &__select-all {
+    background: $ui-base-color;
+    height: 47px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid darken($ui-base-color, 8%);
+    border-top: 0;
+    color: $secondary-text-color;
+    display: none;
+
+    &.active {
+      display: flex;
+    }
+
+    .selected,
+    .not-selected {
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    span {
+      padding: 8px;
+      display: inline-block;
+    }
+
+    button {
+      background: transparent;
+      border: 0;
+      font: inherit;
+      color: $highlight-text-color;
+      border-radius: 4px;
+      font-weight: 700;
+      padding: 8px;
+
+      &:hover,
+      &:focus,
+      &:active {
+        background: lighten($ui-base-color, 8%);
+      }
     }
   }
 
@@ -210,6 +280,7 @@ a.table-action-link {
     &__content {
       padding-top: 12px;
       padding-bottom: 16px;
+      overflow: hidden;
 
       &--unpadded {
         padding: 0;
@@ -295,4 +366,10 @@ a.table-action-link {
       display: none;
     }
   }
+}
+
+.one-liner {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

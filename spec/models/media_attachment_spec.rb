@@ -157,9 +157,9 @@ RSpec.describe MediaAttachment, type: :model do
       expect(media.file.meta["original"]["width"]).to eq 600
       expect(media.file.meta["original"]["height"]).to eq 400
       expect(media.file.meta["original"]["aspect"]).to eq 1.5
-      expect(media.file.meta["small"]["width"]).to eq 490
-      expect(media.file.meta["small"]["height"]).to eq 327
-      expect(media.file.meta["small"]["aspect"]).to eq 490.0 / 327
+      expect(media.file.meta["small"]["width"]).to eq 588
+      expect(media.file.meta["small"]["height"]).to eq 392
+      expect(media.file.meta["small"]["aspect"]).to eq 1.5
     end
 
     it 'gives the file a random name' do
@@ -184,14 +184,6 @@ RSpec.describe MediaAttachment, type: :model do
   it 'is invalid without file' do
     media = MediaAttachment.new(account: Fabricate(:account))
     expect(media.valid?).to be false
-  end
-
-  describe 'descriptions for remote attachments' do
-    it 'are cut off at 1500 characters' do
-      media = Fabricate(:media_attachment, description: 'foo' * 1000, remote_url: 'http://example.com/blah.jpg')
-
-      expect(media.description.size).to be <= 1_500
-    end
   end
 
   describe 'size limit validation' do

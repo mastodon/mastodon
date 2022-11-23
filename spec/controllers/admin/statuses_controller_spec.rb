@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Admin::StatusesController do
   render_views
 
-  let(:user) { Fabricate(:user, admin: true) }
+  let(:user) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
   let(:account) { Fabricate(:account) }
   let!(:status) { Fabricate(:status, account: account) }
   let(:media_attached_status) { Fabricate(:status, account: account, sensitive: !sensitive) }
@@ -41,7 +41,7 @@ describe Admin::StatusesController do
 
   describe 'POST #batch' do
     before do
-      post :batch, params: { :account_id => account.id, action => '', :admin_status_batch_action => { status_ids: status_ids } }
+      post :batch, params: { account_id: account.id, action => '', admin_status_batch_action: { status_ids: status_ids } }
     end
 
     let(:status_ids) { [media_attached_status.id] }

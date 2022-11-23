@@ -27,7 +27,9 @@ class ActivityPub::Parser::MediaAttachmentParser
   end
 
   def description
-    @json['summary'].presence || @json['name'].presence
+    str = @json['summary'].presence || @json['name'].presence
+    str = str.strip[0...MediaAttachment::MAX_DESCRIPTION_LENGTH] if str.present?
+    str
   end
 
   def focus
@@ -48,7 +50,7 @@ class ActivityPub::Parser::MediaAttachmentParser
     components = begin
       blurhash = @json['blurhash']
 
-      if blurhash.present? && /^[\w#$%*+-.:;=?@\[\]^{|}~]+$/.match?(blurhash)
+      if blurhash.present? && /^[\w#$%*+,-.:;=?@\[\]^{|}~]+$/.match?(blurhash)
         Blurhash.components(blurhash)
       end
     end

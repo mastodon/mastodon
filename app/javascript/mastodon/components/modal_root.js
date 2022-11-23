@@ -18,6 +18,7 @@ export default class ModalRoot extends React.PureComponent {
       g: PropTypes.number,
       b: PropTypes.number,
     }),
+    ignoreFocus: PropTypes.bool,
   };
 
   activeElement = this.props.children ? document.activeElement : null;
@@ -72,7 +73,9 @@ export default class ModalRoot extends React.PureComponent {
       // immediately selectable, we have to wait for observers to run, as
       // described in https://github.com/WICG/inert#performance-and-gotchas
       Promise.resolve().then(() => {
-        this.activeElement.focus({ preventScroll: true });
+        if (!this.props.ignoreFocus) {
+          this.activeElement.focus({ preventScroll: true });
+        }
         this.activeElement = null;
       }).catch(console.error);
 

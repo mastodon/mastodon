@@ -23,6 +23,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
   include Redisable
 
   ALLOWED_MIN_STATUS_AGE = [
+    1.week.seconds,
     2.weeks.seconds,
     1.month.seconds,
     2.months.seconds,
@@ -138,7 +139,12 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     # Filtering on `id` rather than `min_status_age` ago will treat
     # non-snowflake statuses as older than they really are, but Mastodon
     # has switched to snowflake IDs significantly over 2 years ago anyway.
-    max_id = [max_id, Mastodon::Snowflake.id_at(min_status_age.seconds.ago, with_random: false)].compact.min
+    snowflake_id = Mastodon::Snowflake.id_at(min_status_age.seconds.ago, with_random: false)
+
+    if max_id.nil? || snowflake_id < max_id
+      max_id = snowflake_id
+    end
+
     Status.where(Status.arel_table[:id].lteq(max_id))
   end
 

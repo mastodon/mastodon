@@ -5,17 +5,17 @@ AllCops:
   TargetRubyVersion: 2.5
   NewCops: disable
   Exclude:
-  - 'spec/**/*'
-  - 'db/**/*'
-  - 'app/views/**/*'
-  - 'config/**/*'
-  - 'bin/*'
-  - 'Rakefile'
-  - 'node_modules/**/*'
-  - 'Vagrantfile'
-  - 'vendor/**/*'
-  - 'lib/json_ld/*'
-  - 'lib/templates/**/*'
+    - 'spec/**/*'
+    - 'db/**/*'
+    - 'app/views/**/*'
+    - 'config/**/*'
+    - 'bin/*'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+    - 'Vagrantfile'
+    - 'vendor/**/*'
+    - 'lib/json_ld/*'
+    - 'lib/templates/**/*'
 
 Bundler/OrderedGems:
   Enabled: false
@@ -29,13 +29,17 @@ Layout/EmptyLineAfterMagicComment:
 Layout/EmptyLineAfterGuardClause:
   Enabled: false
 
+Layout/EmptyLineBetweenDefs:
+  AllowAdjacentOneLineDefs: true
+
 Layout/EmptyLinesAroundAttributeAccessor:
   Enabled: true
 
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
 Layout/HashAlignment:
   Enabled: false
-  # EnforcedHashRocketStyle: table
-  # EnforcedColonStyle: table
 
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
@@ -63,7 +67,7 @@ Lint/UselessAccessModifier:
     - class_methods
 
 Metrics/AbcSize:
-  Max: 100
+  Max: 115
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
@@ -80,7 +84,7 @@ Metrics/BlockNesting:
 
 Metrics/ClassLength:
   CountComments: false
-  Max: 400
+  Max: 500
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
@@ -239,6 +243,10 @@ Style/HashTransformKeys:
 Style/HashTransformValues:
   Enabled: false
 
+Style/HashSyntax:
+  Enabled: true
+  EnforcedStyle: ruby19_no_mixed_keys
+
 Style/IfUnlessModifier:
   Enabled: false
 
@@ -276,6 +284,9 @@ Style/RedundantRegexpEscape:
 
 Style/RedundantReturn:
   Enabled: true
+
+Style/RedundantBegin:
+  Enabled: false
 
 Style/RegexpLiteral:
   Enabled: false

@@ -10,9 +10,9 @@ import { requestBrowserPermission } from 'mastodon/actions/notifications';
 import { markAsPartial } from 'mastodon/actions/timelines';
 import Column from 'mastodon/features/ui/components/column';
 import Account from './components/account';
-import Logo from 'mastodon/components/logo';
 import imageGreeting from 'mastodon/../images/elephant_ui_greeting.svg';
 import Button from 'mastodon/components/button';
+import { Helmet } from 'react-helmet';
 
 const mapStateToProps = state => ({
   suggestions: state.getIn(['suggestions', 'items']),
@@ -78,7 +78,10 @@ class FollowRecommendations extends ImmutablePureComponent {
       <Column>
         <div className='scrollable follow-recommendations-container'>
           <div className='column-title'>
-            <Logo />
+            <svg viewBox='0 0 79 79' className='logo'>
+              <use xlinkHref='#logo-symbol-icon' />
+            </svg>
+
             <h3><FormattedMessage id='follow_recommendations.heading' defaultMessage="Follow people you'd like to see posts from! Here are some suggestions." /></h3>
             <p><FormattedMessage id='follow_recommendations.lead' defaultMessage="Posts from people you follow will show up in chronological order on your home feed. Don't be afraid to make mistakes, you can unfollow people just as easily any time!" /></p>
           </div>
@@ -102,6 +105,10 @@ class FollowRecommendations extends ImmutablePureComponent {
             </React.Fragment>
           )}
         </div>
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
       </Column>
     );
   }

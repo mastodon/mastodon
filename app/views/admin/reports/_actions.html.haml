@@ -1,0 +1,33 @@
+= form_tag admin_report_actions_path(@report), method: :post do
+  .report-actions
+    .report-actions__item
+      .report-actions__item__button
+        = link_to t('admin.reports.mark_as_resolved'), resolve_admin_report_path(@report), method: :post, class: 'button'
+      .report-actions__item__description
+        = t('admin.reports.actions.resolve_description_html')
+    - if @statuses.any? { |status| status.with_media? || status.with_preview_card? }
+      .report-actions__item
+        .report-actions__item__button
+          = button_tag t('admin.reports.mark_as_sensitive'), name: :mark_as_sensitive, class: 'button'
+        .report-actions__item__description
+          = t('admin.reports.actions.mark_as_sensitive_description_html')
+    .report-actions__item
+      .report-actions__item__button
+        = button_tag t('admin.reports.delete_and_resolve'), name: :delete, class: 'button button--destructive'
+      .report-actions__item__description
+        = t('admin.reports.actions.delete_description_html')
+    .report-actions__item
+      .report-actions__item__button
+        = button_tag t('admin.accounts.silence'), name: :silence, class: 'button button--destructive'
+      .report-actions__item__description
+        = t('admin.reports.actions.silence_description_html')
+    .report-actions__item
+      .report-actions__item__button
+        = button_tag t('admin.accounts.suspend'), name: :suspend, class: 'button button--destructive'
+      .report-actions__item__description
+        = t('admin.reports.actions.suspend_description_html')
+    .report-actions__item
+      .report-actions__item__button
+        = link_to t('admin.accounts.custom'), new_admin_account_action_path(@report.target_account_id, report_id: @report.id), class: 'button'
+      .report-actions__item__description
+        = t('admin.reports.actions.other_description_html')

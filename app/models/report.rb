@@ -33,6 +33,7 @@ class Report < ApplicationRecord
   belongs_to :assigned_account, class_name: 'Account', optional: true
 
   has_many :notes, class_name: 'ReportNote', foreign_key: :report_id, inverse_of: :report, dependent: :destroy
+  has_many :notifications, as: :activity, dependent: :destroy
 
   scope :unresolved, -> { where(action_taken_at: nil) }
   scope :resolved,   -> { where.not(action_taken_at: nil) }
@@ -55,6 +56,8 @@ class Report < ApplicationRecord
 
   before_validation :set_uri, only: :create
 
+  after_create_commit :trigger_webhooks
+
   def object_type
     :flag
   end
@@ -63,8 +66,20 @@ class Report < ApplicationRecord
     Status.with_discarded.where(id: status_ids)
   end
 
-  def media_attachments
-    MediaAttachment.where(status_id: status_ids)
+  def media_attachments_count
+    statuses_to_query = []
+    count = 0
+
+    statuses.pluck(:id, :ordered_media_attachment_ids).each do |id, ordered_ids|
+      if ordered_ids.nil?
+        statuses_to_query << id
+      else
+        count += ordered_ids.size
+      end
+    end
+
+    count += MediaAttachment.where(status_id: statuses_to_query).count unless statuses_to_query.empty?
+    count
   end
 
   def rules
@@ -101,6 +116,10 @@ class Report < ApplicationRecord
     Report.where.not(id: id).where(target_account_id: target_account_id).unresolved.exists?
   end
 
+  def to_log_human_identifier
+    id
+  end
+
   def history
     subquery = [
       Admin::ActionLog.where(
@@ -122,6 +141,8 @@ class Report < ApplicationRecord
     Admin::ActionLog.from(Arel::Nodes::As.new(subquery, Admin::ActionLog.arel_table))
   end
 
+  private
+
   def set_uri
     self.uri = ActivityPub::TagManager.instance.generate_uri_for(self) if uri.nil? && account.local?
   end
@@ -129,6 +150,10 @@ class Report < ApplicationRecord
   def validate_rule_ids
     return unless violation?
 
-    errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids.size
+    errors.add(:rule_ids, I18n.t('reports.errors.invalid_rules')) unless rules.size == rule_ids&.size
+  end
+
+  def trigger_webhooks
+    TriggerWebhookWorker.perform_async('report.created', 'Report', id)
   end
 end

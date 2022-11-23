@@ -33,11 +33,9 @@ sudo apt-get install \
   redis-tools \
   postgresql \
   postgresql-contrib \
-  protobuf-compiler \
   yarn \
   libicu-dev \
   libidn11-dev \
-  libprotobuf-dev \
   libreadline-dev \
   libpam0g-dev \
   -y

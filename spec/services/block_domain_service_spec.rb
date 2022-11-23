@@ -66,7 +66,7 @@ RSpec.describe BlockDomainService, type: :service do
       expect(Account.find_remote('badguy', 'evil.org').silenced_at).to_not eq DomainBlock.find_by(domain: 'evil.org').created_at
     end
 
-    it 'leaves the domains status and attachements, but clears media' do
+    it 'leaves the domains status and attachments, but clears media' do
       expect { bad_status1.reload }.not_to raise_error
       expect { bad_status2.reload }.not_to raise_error
       expect { bad_attachment.reload }.not_to raise_error

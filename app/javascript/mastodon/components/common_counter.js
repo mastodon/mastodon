@@ -25,7 +25,7 @@ export function counterRenderer(counterType, isBold = true) {
     return (displayNumber, pluralReady) => (
       <FormattedMessage
         id='account.statuses_counter'
-        defaultMessage='{count, plural, one {{counter} Toot} other {{counter} Toots}}'
+        defaultMessage='{count, plural, one {{counter} Post} other {{counter} Posts}}'
         values={{
           count: pluralReady,
           counter: renderCounter(displayNumber),

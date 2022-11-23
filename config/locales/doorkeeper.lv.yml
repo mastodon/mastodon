@@ -60,8 +60,8 @@ lv:
       error:
         title: Radās kļūda
       new:
-        able_to: Tā varēs
-        prompt: Lietotne %{client_name} prasa piekļuvi tavam kontam
+        prompt_html: "%{client_name} vēlas saņemt atļauju piekļūt tavam kontam. Tā ir trešās puses lietojumprogramma. <strong>Ja tu tam neuzticies, tad nevajadzētu to autorizēt.</strong>"
+        review_permissions: Pārskatīt atļaujas
         title: Nepieciešama autorizācija
       show:
         title: Nokopē šo autorizācijas kodu un ielīmē to lietotnē.
@@ -71,10 +71,12 @@ lv:
       confirmations:
         revoke: Vai esi pārliecināts?
       index:
-        application: Lietotne
-        created_at: Autorizēts
-        date_format: "%Y-%m-%d %H:%M:%S"
-        scopes: Darbības sfēras
+        authorized_at: Autorizētas %{date}
+        description_html: Šīs ir lietojumprogrammas, kas var piekļūt tavam kontam, izmantojot API. Ja ir lietojumprogrammas, kuras šeit neatpazīsti, vai lietojumprogramma nedarbojas pareizi, vari atsaukt tām piekļuvi.
+        last_used_at: Pēdējo reizi lietotas %{date}
+        never_used: Nekad nav lietotas
+        scopes: Atļaujas
+        superapp: Iekšējs
         title: Tevis autorizētās lietotnes
     errors:
       messages:
@@ -110,6 +112,33 @@ lv:
       authorized_applications:
         destroy:
           notice: Lietotne atsaukta.
+    grouped_scopes:
+      access:
+        read: Tikai lasīšanas piekļuve
+        read/write: Lasīšanas un rakstīšanas piekļuve
+        write: Tikai rakstīšanas piekļuve
+      title:
+        accounts: Konti
+        admin/accounts: Kontu administrēšana
+        admin/all: Visas administrēšanas funkcijas
+        admin/reports: Ziņojumu administrēšana
+        all: Visi
+        blocks: Bloķētie
+        bookmarks: Grāmatzīmes
+        conversations: Sarunas
+        crypto: Pilnīga šifrēšana
+        favourites: Izlases
+        filters: Filtri
+        follow: Attiecības
+        follows: Seko
+        lists: Saraksti
+        media: Mediju pielikumi
+        mutes: Apklusinātie
+        notifications: Paziņojumi
+        push: Uznirstošie paziņojumi
+        reports: Ziņojumi
+        search: Meklēt
+        statuses: Ziņas
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ lv:
       admin:write: modificēt visus datus uz servera
       admin:write:accounts: veikt moderācijas darbības kontos
       admin:write:reports: veikt moderācijas darbības pārskatos
+      crypto: lieto pilnīgu šifrēšanu
       follow: mainīt konta attiecības
       push: saņemt savus push paziņojumus
       read: lasīt visus sava konta datus
@@ -143,6 +173,7 @@ lv:
       write:accounts: labot manu profilu
       write:blocks: bloķēt kontus un domēnus
       write:bookmarks: pievienotās grāmatzīmes
+      write:conversations: apklusināt un dzēst sarunas
       write:favourites: iecienītākās ziņas
       write:filters: izveidot filtrus
       write:follows: seko cilvēkiem

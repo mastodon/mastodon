@@ -5,13 +5,14 @@ class Admin::SystemCheck
     Admin::SystemCheck::DatabaseSchemaCheck,
     Admin::SystemCheck::SidekiqProcessCheck,
     Admin::SystemCheck::RulesCheck,
+    Admin::SystemCheck::ElasticsearchCheck,
   ].freeze
 
-  def self.perform
+  def self.perform(current_user)
     ACTIVE_CHECKS.each_with_object([]) do |klass, arr|
-      check = klass.new
+      check = klass.new(current_user)
 
-      if check.pass?
+      if check.skip? || check.pass?
         arr
       else
         arr << check.message

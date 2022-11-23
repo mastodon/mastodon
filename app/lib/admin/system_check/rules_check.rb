@@ -3,6 +3,10 @@
 class Admin::SystemCheck::RulesCheck < Admin::SystemCheck::BaseCheck
   include RoutingHelper
 
+  def skip?
+    !current_user.can?(:manage_rules)
+  end
+
   def pass?
     Rule.kept.exists?
   end

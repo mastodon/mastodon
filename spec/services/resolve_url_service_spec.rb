@@ -7,13 +7,27 @@ describe ResolveURLService, type: :service do
 
   describe '#call' do
     it 'returns nil when there is no resource url' do
-      url     = 'http://example.com/missing-resource'
+      url           = 'http://example.com/missing-resource'
+      known_account = Fabricate(:account, uri: url)
       service = double
 
       allow(FetchResourceService).to receive(:new).and_return service
+      allow(service).to receive(:response_code).and_return(404)
       allow(service).to receive(:call).with(url).and_return(nil)
 
       expect(subject.call(url)).to be_nil
+    end
+
+    it 'returns known account on temporary error' do
+      url           = 'http://example.com/missing-resource'
+      known_account = Fabricate(:account, uri: url)
+      service = double
+
+      allow(FetchResourceService).to receive(:new).and_return service
+      allow(service).to receive(:response_code).and_return(500)
+      allow(service).to receive(:call).with(url).and_return(nil)
+
+      expect(subject.call(url)).to eq known_account
     end
 
     context 'searching for a remote private status' do
@@ -110,6 +124,25 @@ describe ResolveURLService, type: :service do
         it 'does not return the status by uri' do
           expect(subject.call(uri, on_behalf_of: account)).to be_nil
         end
+      end
+    end
+
+    context 'searching for a link that redirects to a local public status' do
+      let(:account) { Fabricate(:account) }
+      let(:poster)  { Fabricate(:account) }
+      let!(:status) { Fabricate(:status, account: poster, visibility: :public) }
+      let(:url)     { 'https://link.to/foobar' }
+      let(:status_url) { ActivityPub::TagManager.instance.url_for(status) }
+      let(:uri)     { ActivityPub::TagManager.instance.uri_for(status) }
+
+      before do
+        stub_request(:get, url).to_return(status: 302, headers: { 'Location' => status_url })
+        body = ActiveModelSerializers::SerializableResource.new(status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter).to_json
+        stub_request(:get, status_url).to_return(body: body, headers: { 'Content-Type' => 'application/activity+json' })
+      end
+
+      it 'returns status by url' do
+        expect(subject.call(url, on_behalf_of: account)).to eq(status)
       end
     end
   end

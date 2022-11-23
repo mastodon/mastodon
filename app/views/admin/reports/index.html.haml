@@ -59,11 +59,11 @@
 
               %span.report-card__summary__item__content__icon{ title: t('admin.accounts.statuses') }
                 = fa_icon('comment')
-                = report.statuses.count
+                = report.status_ids.size
 
               %span.report-card__summary__item__content__icon{ title: t('admin.accounts.media_attachments') }
                 = fa_icon('camera')
-                = report.media_attachments.count
+                = report.media_attachments_count
 
               - if report.forwarded?
                 ·

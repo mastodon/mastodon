@@ -2,6 +2,7 @@
 
 class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
+  include FormattingHelper
 
   attributes :id, :username, :acct, :display_name, :locked, :bot, :discoverable, :group, :created_at,
              :note, :url, :avatar, :avatar_static, :header, :header_static,
@@ -12,12 +13,16 @@ class REST::AccountSerializer < ActiveModel::Serializer
   has_many :emojis, serializer: REST::CustomEmojiSerializer
 
   attribute :suspended, if: :suspended?
+  attribute :silenced, key: :limited, if: :silenced?
+  attribute :noindex, if: :local?
 
   class FieldSerializer < ActiveModel::Serializer
+    include FormattingHelper
+
     attributes :name, :value, :verified_at
 
     def value
-      Formatter.instance.format_field(object.account, object.value)
+      account_field_value_format(object)
     end
   end
 
@@ -32,7 +37,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def note
-    object.suspended? ? '' : Formatter.instance.simplified_format(object)
+    object.suspended? ? '' : account_bio_format(object)
   end
 
   def url
@@ -95,7 +100,15 @@ class REST::AccountSerializer < ActiveModel::Serializer
     object.suspended?
   end
 
-  delegate :suspended?, to: :object
+  def silenced
+    object.silenced?
+  end
+
+  def noindex
+    object.user_prefers_noindex?
+  end
+
+  delegate :suspended?, :silenced?, :local?, to: :object
 
   def moved_and_not_nested?
     object.moved? && object.moved_to_account.moved_to_account_id.nil?

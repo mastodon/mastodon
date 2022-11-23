@@ -5,6 +5,7 @@ br:
       doorkeeper/application:
         name: Anv an arload
         redirect_uri: Dazkas URI
+        scopes: Dougoù
         website: Lec'hienn an arload
     errors:
       models:
@@ -37,6 +38,7 @@ br:
         empty: Arloadoù ebet ganeoc'h.
         name: Anv
         new: Arload nevez
+        scopes: Dougoù
         show: Diskouez
         title: Hoc'h arloadoù
       new:
@@ -45,6 +47,7 @@ br:
         actions: Obererezhioù
         application_id: Alc'hwez an arval
         callback_urls: URLoù adc'halv
+        scopes: Dougoù
         title: 'Arload : %{name}'
     authorizations:
       buttons:
@@ -53,8 +56,6 @@ br:
       error:
         title: Ur fazi a zo degouezhet
       new:
-        able_to: Gallout a raio
-        prompt: Arload %{client_name} a reket moned d'ho kont
         title: Aotre rekis
       show:
         title: Eilennit kod aotre-se ha pegit en arload.
@@ -64,9 +65,6 @@ br:
       confirmations:
         revoke: Ha sur oc'h ?
       index:
-        application: Arload
-        created_at: Aotreet
-        date_format: "%d-%m-%Y %H:%M:%S"
         title: Hoc'h arloadoù aotreet
     errors:
       messages:
@@ -98,6 +96,15 @@ br:
       authorized_applications:
         destroy:
           notice: Skarzhet eo bet an arload.
+    grouped_scopes:
+      title:
+        blocks: Re stanket
+        bookmarks: Sinedoù
+        filters: Siloù
+        lists: Listennoù
+        mutes: Kuzhet
+        search: Klask
+        statuses: Kannadoù
     layouts:
       admin:
         nav:

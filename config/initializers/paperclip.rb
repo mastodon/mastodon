@@ -67,6 +67,12 @@ if ENV['S3_ENABLED'] == 'true'
       retry_limit: 0,
     }
   )
+  
+  if ENV['S3_PERMISSION'] == ''
+    Paperclip::Attachment.default_options.merge!(
+      s3_permissions: ->(*) { nil }
+    )
+  end
 
   if ENV.has_key?('S3_ENDPOINT')
     Paperclip::Attachment.default_options[:s3_options].merge!(
@@ -82,6 +88,26 @@ if ENV['S3_ENABLED'] == 'true'
       url: ':s3_alias_url',
       s3_host_alias: ENV['S3_ALIAS_HOST'] || ENV['S3_CLOUDFRONT_HOST']
     )
+  end
+
+  # Some S3-compatible providers might not actually be compatible with some APIs
+  # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
+  if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
+    module Paperclip
+      module Storage
+        module S3Extensions
+          def copy_to_local_file(style, local_dest_path)
+            log("copying #{path(style)} to local file #{local_dest_path}")
+            s3_object(style).download_file(local_dest_path, { mode: 'single_request' })
+          rescue Aws::Errors::ServiceError => e
+            warn("#{e} - cannot copy #{path(style)} to local file #{local_dest_path}")
+            false
+          end
+        end
+      end
+    end
+
+    Paperclip::Storage::S3.prepend(Paperclip::Storage::S3Extensions)
   end
 elsif ENV['SWIFT_ENABLED'] == 'true'
   require 'fog/openstack'
@@ -99,6 +125,8 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
     },
+    
+    fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
 
     fog_directory: ENV['SWIFT_CONTAINER'],
     fog_host: ENV['SWIFT_OBJECT_URL'],

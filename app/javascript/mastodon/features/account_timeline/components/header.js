@@ -22,8 +22,12 @@ export default class Header extends ImmutablePureComponent {
     onUnblockDomain: PropTypes.func.isRequired,
     onEndorseToggle: PropTypes.func.isRequired,
     onAddToList: PropTypes.func.isRequired,
+    onChangeLanguages: PropTypes.func.isRequired,
+    onInteractionModal: PropTypes.func.isRequired,
+    onOpenAvatar: PropTypes.func.isRequired,
     hideTabs: PropTypes.bool,
     domain: PropTypes.string.isRequired,
+    hidden: PropTypes.bool,
   };
 
   static contextTypes = {
@@ -90,8 +94,20 @@ export default class Header extends ImmutablePureComponent {
     this.props.onEditAccountNote(this.props.account);
   }
 
+  handleChangeLanguages = () => {
+    this.props.onChangeLanguages(this.props.account);
+  }
+
+  handleInteractionModal = () => {
+    this.props.onInteractionModal(this.props.account);
+  }
+
+  handleOpenAvatar = () => {
+    this.props.onOpenAvatar(this.props.account);
+  }
+
   render () {
-    const { account, hideTabs } = this.props;
+    const { account, hidden, hideTabs } = this.props;
 
     if (account === null) {
       return null;
@@ -99,7 +115,7 @@ export default class Header extends ImmutablePureComponent {
 
     return (
       <div className='account-timeline__header'>
-        {account.get('moved') && <MovedNote from={account} to={account.get('moved')} />}
+        {(!hidden && account.get('moved')) && <MovedNote from={account} to={account.get('moved')} />}
 
         <InnerHeader
           account={account}
@@ -116,13 +132,17 @@ export default class Header extends ImmutablePureComponent {
           onEndorseToggle={this.handleEndorseToggle}
           onAddToList={this.handleAddToList}
           onEditAccountNote={this.handleEditAccountNote}
+          onChangeLanguages={this.handleChangeLanguages}
+          onInteractionModal={this.handleInteractionModal}
+          onOpenAvatar={this.handleOpenAvatar}
           domain={this.props.domain}
+          hidden={hidden}
         />
 
-        {!hideTabs && (
+        {!(hideTabs || hidden) && (
           <div className='account__section-headline'>
-            <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Toots' /></NavLink>
-            <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Toots and replies' /></NavLink>
+            <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Posts' /></NavLink>
+            <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
           </div>
         )}

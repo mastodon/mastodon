@@ -60,8 +60,8 @@ it:
       error:
         title: Si è verificato un errore
       new:
-        able_to: Non sarà in grado di
-        prompt: L'applicazione %{client_name} richiede l'accesso al tuo account
+        prompt_html: "%{client_name} vorrebbe l'autorizzazione ad accedere al tuo profilo. È un'applicazione di terze parti. <strong>Se non ti fidi, non dovresti autorizzarlo.</strong>"
+        review_permissions: Esamina le autorizzazioni
         title: Autorizzazione richiesta
       show:
         title: Copia questo codice di autorizzazione e incollalo nell'applicazione.
@@ -71,10 +71,12 @@ it:
       confirmations:
         revoke: Sei sicuro/a?
       index:
-        application: Applicazione
-        created_at: Autorizzato
-        date_format: "%d-%m-%Y %H:%M:%S"
-        scopes: Scopi
+        authorized_at: Autorizzato il %{date}
+        description_html: Queste sono le applicazioni che possono accedere al tuo profilo usando l'API. Se qui ci sono delle applicazioni che non riconosci, o un'applicazione si sta comportando erroneamente, puoi revocarne l'accesso.
+        last_used_at: Ultimo uso il %{date}
+        never_used: Mai usato
+        scopes: Autorizzazioni
+        superapp: Interno
         title: Applicazioni autorizzate
     errors:
       messages:
@@ -110,6 +112,33 @@ it:
       authorized_applications:
         destroy:
           notice: Applicazione disabilitata.
+    grouped_scopes:
+      access:
+        read: Accesso di sola lettura
+        read/write: Accesso di lettura e scrittura
+        write: Accesso di sola scrittura
+      title:
+        accounts: Profili
+        admin/accounts: Amministrazione dei profili
+        admin/all: Tutte le funzioni amministrative
+        admin/reports: Amministrazione dei rapporti
+        all: Tutto
+        blocks: Blocchi
+        bookmarks: Segnalibri
+        conversations: Conversazioni
+        crypto: Crittografia end-to-end
+        favourites: Preferiti
+        filters: Filtri
+        follow: Relazioni
+        follows: Segue
+        lists: Elenchi
+        media: Allegati multimediali
+        mutes: Silenziati
+        notifications: Notifiche
+        push: Notifiche push
+        reports: Rapporti
+        search: Cerca
+        statuses: Post
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ it:
       admin:write: modificare tutti i dati sul server
       admin:write:accounts: eseguire azioni di moderazione sugli account
       admin:write:reports: eseguire azioni di moderazione sulle segnalazioni
+      crypto: usa la crittografia end-to-end
       follow: modificare relazioni tra account
       push: ricevere le tue notifiche push
       read: leggere tutte le informazioni del tuo account
@@ -143,6 +173,7 @@ it:
       write:accounts: modificare il tuo profilo
       write:blocks: bloccare account e domini
       write:bookmarks: aggiungere post ai preferiti
+      write:conversations: silenzia ed elimina le conversazioni
       write:favourites: apprezzare post
       write:filters: creare filtri
       write:follows: seguire persone

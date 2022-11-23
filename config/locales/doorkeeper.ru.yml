@@ -3,7 +3,7 @@ ru:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Название
+        name: Название приложения
         redirect_uri: URI перенаправления
         scopes: Разрешения
         website: Веб-сайт приложения
@@ -36,7 +36,7 @@ ru:
         scopes: Разделяйте список разрешений пробелами. Оставьте незаполненным для использования разрешений по умолчанию.
       index:
         application: Приложение
-        callback_url: URL обратной связи
+        callback_url: URL-адреса обратного вызова
         delete: Удалить
         empty: У вас нет созданных приложений.
         name: Название
@@ -48,8 +48,8 @@ ru:
         title: Создание приложения
       show:
         actions: Действия
-        application_id: Id приложения
-        callback_urls: Callback urls
+        application_id: Ключ клиента
+        callback_urls: URL-адреса обратного вызова
         scopes: Разрешения
         secret: Секрет
         title: 'Приложение: %{name}'
@@ -60,8 +60,8 @@ ru:
       error:
         title: Произошла ошибка
       new:
-        able_to: Оно сможет
-        prompt: Приложение %{client_name} запрашивает доступ к Вашей учётной записи
+        prompt_html: "%{client_name} хочет получить доступ к вашему аккаунту. Это стороннее приложение. <strong>Если вы ему не доверяете, не разрешайте доступ.</strong>"
+        review_permissions: Просмотр разрешений
         title: Требуется авторизация
       show:
         title: Скопируйте этот код авторизации и вставьте его в приложении.
@@ -71,10 +71,12 @@ ru:
       confirmations:
         revoke: Вы уверены?
       index:
-        application: Приложение
-        created_at: Авторизовано
-        date_format: "%d.%m.%Y %H:%M:%S"
+        authorized_at: Доступ получен %{date}
+        description_html: Это приложения, которые могут получить доступ к вашей учетной записи с помощью API. Если здесь есть приложения, которые вы не узнаете, или приложения, работающие неправильно, вы можете отозвать их доступ.
+        last_used_at: Последнее использование %{date}
+        never_used: Не использовалось
         scopes: Разрешения
+        superapp: Внутреннее
         title: Ваши авторизованные приложения
     errors:
       messages:
@@ -110,6 +112,33 @@ ru:
       authorized_applications:
         destroy:
           notice: Авторизация приложения отозвана.
+    grouped_scopes:
+      access:
+        read: Доступ только для чтения
+        read/write: Доступ на чтение и запись
+        write: Доступ только для записи
+      title:
+        accounts: Учётные записи
+        admin/accounts: Управление учётными записями
+        admin/all: Все административные функции
+        admin/reports: Управление отчётами
+        all: Все
+        blocks: Блокировки
+        bookmarks: Закладки
+        conversations: Диалоги
+        crypto: Сквозное шифрование
+        favourites: Избранное
+        filters: Фильтры
+        follow: Взаимосвязи
+        follows: Подписки
+        lists: Списки
+        media: Медиафайлы
+        mutes: Игнорирует
+        notifications: Уведомления
+        push: Push-уведомления
+        reports: Обращения
+        search: Поиск
+        statuses: Посты
     layouts:
       admin:
         nav:
@@ -124,6 +153,7 @@ ru:
       admin:write: модифицировать все данные на сервере
       admin:write:accounts: производить модерацию учётных записей
       admin:write:reports: производить модерацию жалоб
+      crypto: использ. сквозное шифрование
       follow: управлять подписками и списком блокировок
       push: получать push-уведомления
       read: просматривать данные вашей учётной записи
@@ -134,7 +164,7 @@ ru:
       read:filters: видеть ваши фильтры
       read:follows: видеть ваши подписки
       read:lists: видеть ваши списки
-      read:mutes: видеть список игнорируемых
+      read:mutes: смотреть список игнорируемых
       read:notifications: получать уведомления
       read:reports: видеть ваши жалобы
       read:search: использовать поиск
@@ -143,12 +173,13 @@ ru:
       write:accounts: редактировать ваш профиль
       write:blocks: блокировать учётные записи и домены
       write:bookmarks: добавлять посты в закладки
+      write:conversations: игнорировать и удалить разговоры
       write:favourites: отмечать посты как избранные
       write:filters: создавать фильтры
       write:follows: подписываться на людей
       write:lists: создавать списки
       write:media: загружать медиафайлы
-      write:mutes: добавлять в игнорируемое людей и обсуждения
+      write:mutes: игнорировать людей и обсуждения
       write:notifications: очищать список уведомлений
       write:reports: отправлять жалобы на других
       write:statuses: публиковать посты

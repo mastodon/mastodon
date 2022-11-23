@@ -29,6 +29,58 @@ RSpec.describe ActivityPub::Activity::Create do
         subject.perform
       end
 
+      context 'object has been edited' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            published: '2022-01-22T15:00:00Z',
+            updated: '2022-01-22T16:00:00Z',
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.text).to eq 'Lorem ipsum'
+        end
+
+        it 'marks status as edited' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.edited?).to eq true
+        end
+      end
+
+      context 'object has update date equal to creation date' do
+        let(:object_json) do
+          {
+            id: [ActivityPub::TagManager.instance.uri_for(sender), '#bar'].join,
+            type: 'Note',
+            content: 'Lorem ipsum',
+            published: '2022-01-22T15:00:00Z',
+            updated: '2022-01-22T15:00:00Z',
+          }
+        end
+
+        it 'creates status' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.text).to eq 'Lorem ipsum'
+        end
+
+        it 'does not mark status as edited' do
+          status = sender.statuses.first
+
+          expect(status).to_not be_nil
+          expect(status.edited?).to eq false
+        end
+      end
+
       context 'unknown object type' do
         let(:object_json) do
           {

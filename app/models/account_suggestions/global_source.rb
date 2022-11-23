@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AccountSuggestions::GlobalSource < AccountSuggestions::Source
+  include Redisable
+
   def key
     :global
   end
@@ -28,7 +30,7 @@ class AccountSuggestions::GlobalSource < AccountSuggestions::Source
   end
 
   def account_ids_for_locale(locale)
-    Redis.current.zrevrange("follow_recommendations:#{locale}", 0, -1).map(&:to_i)
+    redis.zrevrange("follow_recommendations:#{locale}", 0, -1).map(&:to_i)
   end
 
   def to_ordered_list_key(account)

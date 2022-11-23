@@ -14,6 +14,8 @@
 #
 
 class AccountConversation < ApplicationRecord
+  include Redisable
+
   after_commit :push_to_streaming_api
 
   belongs_to :account
@@ -109,7 +111,7 @@ class AccountConversation < ApplicationRecord
   end
 
   def subscribed_to_timeline?
-    Redis.current.exists?("subscribed:#{streaming_channel}")
+    redis.exists?("subscribed:#{streaming_channel}")
   end
 
   def streaming_channel

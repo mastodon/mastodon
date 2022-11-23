@@ -15,7 +15,7 @@ RSpec.describe HomeFeed, type: :model do
 
     context 'when feed is generated' do
       before do
-        Redis.current.zadd(
+        redis.zadd(
           FeedManager.instance.key(:home, account.id),
           [[4, 4], [3, 3], [2, 2], [1, 1]]
         )
@@ -31,7 +31,7 @@ RSpec.describe HomeFeed, type: :model do
 
     context 'when feed is being generated' do
       before do
-        Redis.current.set("account:#{account.id}:regeneration", true)
+        redis.set("account:#{account.id}:regeneration", true)
       end
 
       it 'returns nothing' do

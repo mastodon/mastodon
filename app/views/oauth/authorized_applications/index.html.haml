@@ -1,24 +1,44 @@
 - content_for :page_title do
   = t('doorkeeper.authorized_applications.index.title')
 
-.table-wrapper
-  %table.table
-    %thead
-      %tr
-        %th= t('doorkeeper.authorized_applications.index.application')
-        %th= t('doorkeeper.authorized_applications.index.scopes')
-        %th= t('doorkeeper.authorized_applications.index.created_at')
-        %th
-    %tbody
-      - @applications.each do |application|
-        %tr
-          %td
-            - if application.website.blank?
-              = application.name
-            - else
-              = link_to application.name, application.website, target: '_blank', rel: 'noopener noreferrer'
-          %th!= application.scopes.map { |scope| t(scope, scope: [:doorkeeper, :scopes]) }.join(', ')
-          %td= l application.created_at
-          %td
-            - unless application.superapp? || current_account.suspended?
-              = table_link_to 'times', t('doorkeeper.authorized_applications.buttons.revoke'), oauth_authorized_application_path(application), method: :delete, data: { confirm: t('doorkeeper.authorized_applications.confirmations.revoke') }
+%p= t('doorkeeper.authorized_applications.index.description_html')
+
+%hr.spacer/
+
+.applications-list
+  - @applications.each do |application|
+    .applications-list__item
+      - if application.website.present?
+        = link_to application.name, application.website, target: '_blank', rel: 'noopener noreferrer', class: 'announcements-list__item__title'
+      - else
+        %strong.announcements-list__item__title
+          = application.name
+          - if application.superapp?
+            %span.account-role.moderator= t('doorkeeper.authorized_applications.index.superapp')
+
+      .announcements-list__item__action-bar
+        .announcements-list__item__meta
+          - if application.most_recently_used_access_token
+            = t('doorkeeper.authorized_applications.index.last_used_at', date: l(application.most_recently_used_access_token.last_used_at.to_date))
+          - else
+            = t('doorkeeper.authorized_applications.index.never_used')
+
+          •
+
+          = t('doorkeeper.authorized_applications.index.authorized_at', date: l(application.created_at.to_date))
+
+        - unless application.superapp? || current_account.suspended?
+          %div
+            = table_link_to 'times', t('doorkeeper.authorized_applications.buttons.revoke'), oauth_authorized_application_path(application), method: :delete, data: { confirm: t('doorkeeper.authorized_applications.confirmations.revoke') }
+
+      .announcements-list__item__permissions
+        %ul.permissions-list
+          - grouped_scopes(application.scopes).each do |scope|
+            %li.permissions-list__item
+              .permissions-list__item__icon
+                = fa_icon('check')
+              .permissions-list__item__text
+                .permissions-list__item__text__title
+                  = t(scope.key, scope: [:doorkeeper, :grouped_scopes, :title])
+                .permissions-list__item__text__type
+                  = t(scope.access, scope: [:doorkeeper, :grouped_scopes, :access])

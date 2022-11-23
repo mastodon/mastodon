@@ -2,7 +2,7 @@
 
 class VideoMetadataExtractor
   attr_reader :duration, :bitrate, :video_codec, :audio_codec,
-              :colorspace, :width, :height, :frame_rate
+              :colorspace, :width, :height, :frame_rate, :r_frame_rate
 
   def initialize(path)
     @path     = path
@@ -42,6 +42,7 @@ class VideoMetadataExtractor
         @width       = video_stream[:width]
         @height      = video_stream[:height]
         @frame_rate  = video_stream[:avg_frame_rate] == '0/0' ? nil : Rational(video_stream[:avg_frame_rate])
+        @r_frame_rate = video_stream[:r_frame_rate] == '0/0' ? nil : Rational(video_stream[:r_frame_rate])
       end
 
       if (audio_stream = audio_streams.first)

@@ -34,6 +34,6 @@ class Web::NotificationSerializer < ActiveModel::Serializer
 
   def body
     str = strip_tags(object.target_status&.spoiler_text&.presence || object.target_status&.text || object.from_account.note)
-    truncate(HTMLEntities.new.decode(str.to_str), length: 140) # Do not encode entities, since this value will not be used in HTML
+    truncate(HTMLEntities.new.decode(str.to_str), length: 140, escape: false) # Do not encode entities, since this value will not be used in HTML
   end
 end

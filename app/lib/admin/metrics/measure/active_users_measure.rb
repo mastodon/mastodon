@@ -5,19 +5,19 @@ class Admin::Metrics::Measure::ActiveUsersMeasure < Admin::Metrics::Measure::Bas
     'active_users'
   end
 
-  def total
+  protected
+
+  def perform_total_query
     activity_tracker.sum(time_period.first, time_period.last)
   end
 
-  def previous_total
+  def perform_previous_total_query
     activity_tracker.sum(previous_time_period.first, previous_time_period.last)
   end
 
-  def data
+  def perform_data_query
     activity_tracker.get(time_period.first, time_period.last).map { |date, value| { date: date.to_time(:utc).iso8601, value: value.to_s } }
   end
-
-  protected
 
   def activity_tracker
     @activity_tracker ||= ActivityTracker.new('activity:logins', :unique)

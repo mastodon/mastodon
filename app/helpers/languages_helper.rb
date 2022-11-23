@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# rubocop:disable Metrics/ModuleLength, Style/WordArray
 
 module LanguagesHelper
   ISO_639_1 = {
@@ -88,7 +89,7 @@ module LanguagesHelper
     ko: ['Korean', '한국어'].freeze,
     kr: ['Kanuri', 'Kanuri'].freeze,
     ks: ['Kashmiri', 'कश्मीरी'].freeze,
-    ku: ['Kurdish', 'Kurdî'].freeze,
+    ku: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
     kv: ['Komi', 'коми кыв'].freeze,
     kw: ['Cornish', 'Kernewek'].freeze,
     ky: ['Kyrgyz', 'Кыргызча'].freeze,
@@ -97,7 +98,7 @@ module LanguagesHelper
     lg: ['Ganda', 'Luganda'].freeze,
     li: ['Limburgish', 'Limburgs'].freeze,
     ln: ['Lingala', 'Lingála'].freeze,
-    lo: ['Lao', 'ພາສາ'].freeze,
+    lo: ['Lao', 'ລາວ'].freeze,
     lt: ['Lithuanian', 'lietuvių kalba'].freeze,
     lu: ['Luba-Katanga', 'Tshiluba'].freeze,
     lv: ['Latvian', 'latviešu valoda'].freeze,
@@ -108,7 +109,7 @@ module LanguagesHelper
     ml: ['Malayalam', 'മലയാളം'].freeze,
     mn: ['Mongolian', 'Монгол хэл'].freeze,
     mr: ['Marathi', 'मराठी'].freeze,
-    ms: ['Malay', 'Bahasa Malaysia'].freeze,
+    ms: ['Malay', 'Bahasa Melayu'].freeze,
     mt: ['Maltese', 'Malti'].freeze,
     my: ['Burmese', 'ဗမာစာ'].freeze,
     na: ['Nauru', 'Ekakairũ Naoero'].freeze,
@@ -117,7 +118,7 @@ module LanguagesHelper
     ne: ['Nepali', 'नेपाली'].freeze,
     ng: ['Ndonga', 'Owambo'].freeze,
     nl: ['Dutch', 'Nederlands'].freeze,
-    nn: ['Norwegian Nynorsk', 'Norsk nynorsk'].freeze,
+    nn: ['Norwegian Nynorsk', 'Norsk Nynorsk'].freeze,
     no: ['Norwegian', 'Norsk'].freeze,
     nr: ['Southern Ndebele', 'isiNdebele'].freeze,
     nv: ['Navajo', 'Diné bizaad'].freeze,
@@ -188,8 +189,15 @@ module LanguagesHelper
 
   ISO_639_3 = {
     ast: ['Asturian', 'Asturianu'].freeze,
+    ckb: ['Sorani (Kurdish)', 'سۆرانی'].freeze,
+    jbo: ['Lojban', 'la .lojban.'].freeze,
     kab: ['Kabyle', 'Taqbaylit'].freeze,
-    kmr: ['Northern Kurdish', 'Kurmancî'].freeze,
+    kmr: ['Kurmanji (Kurdish)', 'Kurmancî'].freeze,
+    ldn: ['Láadan', 'Láadan'].freeze,
+    lfn: ['Lingua Franca Nova', 'lingua franca nova'].freeze,
+    sco: ['Scots', 'Scots'].freeze,
+    tok: ['Toki Pona', 'toki pona'].freeze,
+    zba: ['Balaibalan', 'باليبلن'].freeze,
     zgh: ['Standard Moroccan Tamazight', 'ⵜⴰⵎⴰⵣⵉⵖⵜ'].freeze,
   }.freeze
 
@@ -241,7 +249,22 @@ module LanguagesHelper
     code
   end
 
+  def valid_locale_cascade(*arr)
+    arr.each do |str|
+      locale = valid_locale_or_nil(str)
+      return locale if locale.present?
+    end
+
+    nil
+  end
+
   def valid_locale?(locale)
-    SUPPORTED_LOCALES.key?(locale.to_sym)
+    locale.present? && SUPPORTED_LOCALES.key?(locale.to_sym)
+  end
+
+  def available_locale_or_nil(locale_name)
+    locale_name.to_sym if locale_name.present? && I18n.available_locales.include?(locale_name.to_sym)
   end
 end
+
+# rubocop:enable Metrics/ModuleLength, Style/WordArray

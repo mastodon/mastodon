@@ -1,16 +1,7 @@
 - content_for :header_tags do
-  = preload_pack_asset 'features/getting_started.js', crossorigin: 'anonymous'
-  = preload_pack_asset 'features/compose.js', crossorigin: 'anonymous'
-  = preload_pack_asset 'features/home_timeline.js', crossorigin: 'anonymous'
-  = preload_pack_asset 'features/notifications.js', crossorigin: 'anonymous'
+  - unless request.path == '/'
+    %meta{ name: 'robots', content: 'noindex' }/
 
-  %meta{name: 'applicationServerKey', content: Rails.configuration.x.vapid_public_key}
-  = render_initial_state
-  = javascript_pack_tag 'application', crossorigin: 'anonymous'
+  = render partial: 'shared/og'
 
-.notranslate.app-holder#mastodon{ data: { props: Oj.dump(default_props) } }
-  %noscript
-    = image_pack_tag 'logo.svg', alt: 'Mastodon'
-
-    %div
-      = t('errors.noscript_html', apps_path: 'https://joinmastodon.org/apps')
+= render 'shared/web_app'

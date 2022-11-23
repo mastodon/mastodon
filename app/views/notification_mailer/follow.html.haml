@@ -20,7 +20,7 @@
                                       = image_tag full_pack_url('media/images/mailer/icon_person_add.png'), alt: ''
 
                               %h1= t 'notification_mailer.follow.title'
-                              %p.lead= t('notification_mailer.follow.body', name: @account.acct)
+                              %p.lead= t('notification_mailer.follow.body', name: @account.pretty_acct)
 
 %table.email-table{ cellspacing: 0, cellpadding: 0 }
   %tbody
@@ -39,5 +39,5 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  = link_to web_url("accounts/#{@account.id}") do
+                                  = link_to web_url("@#{@account.pretty_acct}") do
                                     %span= t 'application_mailer.view_profile'

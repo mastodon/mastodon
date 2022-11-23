@@ -21,6 +21,10 @@ el:
             username:
               invalid: μόνο γράμματα, αριθμοί και κάτω παύλες
               reserved: είναι δεσμευμένο
+        import:
+          attributes:
+            data:
+              malformed: δεν είναι έγκυρα
         status:
           attributes:
             reblog:
@@ -30,3 +34,9 @@ el:
             email:
               blocked: χρησιμοποιεί μη επιτρεπόμενο πάροχο e-mail
               unreachable: δεν φαίνεται να υπάρχει
+        user_role:
+          attributes:
+            permissions_as_keys:
+              own_role: δεν μπορεί να αλλάξει με τον τρέχοντα ρόλο σας
+            position:
+              own_role: δεν μπορεί να αλλάξει με τον τρέχοντα ρόλο σας

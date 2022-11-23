@@ -1,6 +1,25 @@
-.speech-bubble.warning
-  .speech-bubble__bubble
-    = Formatter.instance.linkify(account_warning.text)
-  .speech-bubble__owner
-    = admin_account_link_to account_warning.account
-    %time.formatted{ datetime: account_warning.created_at.iso8601 }= l account_warning.created_at
+= link_to disputes_strike_path(account_warning), class: 'log-entry' do
+  .log-entry__header
+    .log-entry__avatar
+      .indicator-icon{ class: account_warning.overruled? ? 'success' : 'failure' }
+        = fa_icon 'warning'
+    .log-entry__content
+      .log-entry__title
+        = t(account_warning.action, scope: 'admin.strikes.actions', name: content_tag(:span, account_warning.account.username, class: 'username'), target: content_tag(:span, account_warning.target_account.pretty_acct, class: 'target')).html_safe
+      .log-entry__timestamp
+        %time.formatted{ datetime: account_warning.created_at.iso8601 }
+          = l(account_warning.created_at)
+
+        - if account_warning.report_id.present?
+          ·
+          = t('admin.reports.report', id: account_warning.report_id)
+
+        - if account_warning.overruled?
+          ·
+          %span.positive-hint= t('admin.strikes.appeal_approved')
+        - elsif account_warning.appeal&.pending?
+          ·
+          %span.warning-hint= t('admin.strikes.appeal_pending')
+        - elsif account_warning.appeal&.rejected?
+          ·
+          %span.negative-hint= t('admin.strikes.appeal_rejected')

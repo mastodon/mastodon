@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class FetchLinkCardService < BaseService
+  include Redisable
+  include Lockable
+
   URL_PATTERN = %r{
-    (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceeding chars
+    (#{Twitter::TwitterText::Regex[:valid_url_preceding_chars]})                                                                #   $1 preceding chars
     (                                                                                                                           #   $2 URL
       (https?:\/\/)                                                                                                             #   $3 Protocol (required)
       (#{Twitter::TwitterText::Regex[:valid_domain]})                                                                           #   $4 Domain(s)
@@ -20,13 +23,9 @@ class FetchLinkCardService < BaseService
 
     @url = @original_url.to_s
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        @card = PreviewCard.find_by(url: @url)
-        process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
-      else
-        raise Mastodon::RaceConditionError
-      end
+    with_lock("fetch:#{@original_url}") do
+      @card = PreviewCard.find_by(url: @url)
+      process_url if @card.nil? || @card.updated_at <= 2.weeks.ago || @card.missing_image?
     end
 
     attach_card if @card&.persisted?
@@ -134,7 +133,7 @@ class FetchLinkCardService < BaseService
     when 'video'
       @card.width            = embed[:width].presence  || 0
       @card.height           = embed[:height].presence || 0
-      @card.html             = Formatter.instance.sanitize(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+      @card.html             = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
       @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     when 'rich'
       # Most providers rely on <script> tags, which is a no-no
@@ -152,9 +151,5 @@ class FetchLinkCardService < BaseService
     @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
     @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
     @card.save_with_optional_image! unless @card.title.blank? && @card.html.blank?
-  end
-
-  def lock_options
-    { redis: Redis.current, key: "fetch:#{@original_url}", autorelease: 15.minutes.seconds }
   end
 end

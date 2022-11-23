@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe BlacklistedEmailValidator, type: :validator do
   describe '#validate' do
-    let(:user)   { double(email: 'info@mail.com', errors: errors) }
+    let(:user)   { double(email: 'info@mail.com', sign_up_ip: '1.2.3.4', errors: errors) }
     let(:errors) { double(add: nil) }
 
     before do

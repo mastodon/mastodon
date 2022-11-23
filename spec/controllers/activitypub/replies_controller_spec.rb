@@ -8,7 +8,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
   let(:remote_reply_id) { 'https://foobar.com/statuses/1234' }
   let(:remote_querier) { nil }
 
-  shared_examples 'cachable response' do
+  shared_examples 'cacheable response' do
     it 'does not set cookies' do
       expect(response.cookies).to be_empty
       expect(response.headers['Set-Cookies']).to be nil
@@ -93,7 +93,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
         expect(response.media_type).to eq 'application/activity+json'
       end
 
-      it_behaves_like 'cachable response'
+      it_behaves_like 'cacheable response'
 
       context 'without only_other_accounts' do
         it "returns items with thread author's replies" do
@@ -168,7 +168,7 @@ RSpec.describe ActivityPub::RepliesController, type: :controller do
 
   before do
     stub_const 'ActivityPub::RepliesController::DESCENDANTS_LIMIT', 5
-    allow(controller).to receive(:signed_request_account).and_return(remote_querier)
+    allow(controller).to receive(:signed_request_actor).and_return(remote_querier)
 
     Fabricate(:status, thread: status, visibility: :public)
     Fabricate(:status, thread: status, visibility: :public)

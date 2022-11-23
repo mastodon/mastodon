@@ -6,7 +6,7 @@ vi:
         expires_at: Hạn chót
         options: Lựa chọn
       user:
-        agreement: Đồng ý quy tắc
+        agreement: Thỏa thuận dịch vụ
         email: Địa chỉ email
         locale: Quốc gia
         password: Mật khẩu
@@ -21,6 +21,18 @@ vi:
             username:
               invalid: chỉ chấp nhận ký tự, số và dấu gạch dưới
               reserved: bị cấm sử dụng
+        admin/webhook:
+          attributes:
+            url:
+              invalid: không phải là một URL hợp lệ
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: không phải là một URL hợp lệ
+        import:
+          attributes:
+            data:
+              malformed: bị hỏng
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ vi:
             email:
               blocked: sử dụng dịch vụ email bị cấm
               unreachable: không tồn tại
+            role_id:
+              elevated: không thể cao hơn vai trò hiện tại của bạn
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: bao gồm các quyền không an toàn cho vai trò cơ bản
+              elevated: không thể bao gồm các quyền mà vai trò hiện tại của bạn không có
+              own_role: không thể thay đổi vai trò hiện tại của bạn
+            position:
+              elevated: không thể cao hơn vai trò hiện tại của bạn
+              own_role: không thể thay đổi vai trò hiện tại của bạn

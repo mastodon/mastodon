@@ -1,22 +1,33 @@
+- if !@user.confirmed?
+  .flash-message.warning
+    = t('auth.status.confirming')
+    = link_to t('auth.didnt_get_confirmation'), new_user_confirmation_path
+- elsif !@user.approved?
+  .flash-message.warning
+    = t('auth.status.pending')
+- elsif @user.account.moved_to_account_id.present?
+  .flash-message.warning
+    = t('auth.status.redirecting_to', acct: @user.account.moved_to_account.pretty_acct)
+    = link_to t('migrations.cancel'), settings_migration_path
+
 %h3= t('auth.status.account_status')
 
-.simple_form
-  %p.hint
-    - if @user.account.suspended?
-      %span.negative-hint= t('user_mailer.warning.explanation.suspend')
-    - elsif @user.disabled?
-      %span.negative-hint= t('user_mailer.warning.explanation.disable')
-    - elsif @user.account.silenced?
-      %span.warning-hint= t('user_mailer.warning.explanation.silence')
-    - elsif !@user.confirmed?
-      %span.warning-hint= t('auth.status.confirming')
-      = link_to t('auth.didnt_get_confirmation'), new_user_confirmation_path
-    - elsif !@user.approved?
-      %span.warning-hint= t('auth.status.pending')
-    - elsif @user.account.moved_to_account_id.present?
-      %span.positive-hint= t('auth.status.redirecting_to', acct: @user.account.moved_to_account.acct)
-      = link_to t('migrations.cancel'), settings_migration_path
-    - else
-      %span.positive-hint= t('auth.status.functional')
+%p.hint
+  - if @user.account.suspended?
+    %span.negative-hint= t('user_mailer.warning.explanation.suspend')
+  - elsif @user.disabled?
+    %span.negative-hint= t('user_mailer.warning.explanation.disable')
+  - elsif @user.account.silenced?
+    %span.warning-hint= t('user_mailer.warning.explanation.silence')
+  - else
+    %span.positive-hint= t('auth.status.functional')
+
+= render partial: 'account_warning', collection: @strikes
+
+- if @user.account.strikes.exists?
+  %hr.spacer/
+
+  %p.muted-hint
+    = link_to t('auth.status.view_strikes'), disputes_strikes_path
 
 %hr.spacer/

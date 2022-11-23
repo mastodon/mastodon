@@ -11,14 +11,13 @@ describe Report do
     end
   end
 
-  describe 'media_attachments' do
-    it 'returns media attachments from statuses' do
-      status = Fabricate(:status)
-      media_attachment = Fabricate(:media_attachment, status: status)
-      _other_media_attachment = Fabricate(:media_attachment)
-      report = Fabricate(:report, status_ids: [status.id])
+  describe 'media_attachments_count' do
+    it 'returns count of media attachments in statuses' do
+      status1 = Fabricate(:status, ordered_media_attachment_ids: [1, 2])
+      status2 = Fabricate(:status, ordered_media_attachment_ids: [5])
+      report  = Fabricate(:report, status_ids: [status1.id, status2.id])
 
-      expect(report.media_attachments).to eq [media_attachment]
+      expect(report.media_attachments_count).to eq 3
     end
   end
 
@@ -119,7 +118,7 @@ describe Report do
     end
   end
 
-  describe 'validatiions' do
+  describe 'validations' do
     it 'has a valid fabricator' do
       report = Fabricate(:report)
       report.valid?

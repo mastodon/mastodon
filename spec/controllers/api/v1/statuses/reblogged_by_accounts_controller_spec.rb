@@ -56,7 +56,7 @@ RSpec.describe Api::V1::Statuses::RebloggedByAccountsController, type: :controll
           Fabricate(:status, reblog_of_id: status.id)
         end
 
-        it 'returns http unautharized' do
+        it 'returns http unauthorized' do
           get :index, params: { status_id: status.id }
           expect(response).to have_http_status(404)
         end

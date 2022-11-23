@@ -1,4 +1,4 @@
-version: "2"
+version: '2'
 checks:
   argument-count:
     enabled: false
@@ -26,16 +26,14 @@ plugins:
   bundler-audit:
     enabled: true
   eslint:
-    enabled: true
-    channel: eslint-7
+    enabled: false
   rubocop:
-    enabled: true
-    channel: rubocop-1-9-1
+    enabled: false
   sass-lint:
-    enabled: true
+    enabled: false
 exclude_patterns:
-- spec/
-- vendor/asset/
+  - spec/
+  - vendor/asset/
 
-- app/javascript/mastodon/locales/**/*.json
-- config/locales/**/*.yml
+  - app/javascript/mastodon/locales/**/*.json
+  - config/locales/**/*.yml

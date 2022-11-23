@@ -13,7 +13,7 @@ class AuthorizeInteractionsController < ApplicationController
     if @resource.is_a?(Account)
       render :show
     elsif @resource.is_a?(Status)
-      redirect_to web_url("statuses/#{@resource.id}")
+      redirect_to web_url("@#{@resource.account.pretty_acct}/#{@resource.id}")
     else
       render :error
     end
@@ -25,15 +25,17 @@ class AuthorizeInteractionsController < ApplicationController
     else
       render :error
     end
-  rescue ActiveRecord::RecordNotFound, Mastodon::NotPermittedError
+  rescue ActiveRecord::RecordNotFound
     render :error
   end
 
   private
 
   def set_resource
-    @resource = located_resource || render(:error)
+    @resource = located_resource
     authorize(@resource, :show?) if @resource.is_a?(Status)
+  rescue Mastodon::NotPermittedError
+    not_found
   end
 
   def located_resource

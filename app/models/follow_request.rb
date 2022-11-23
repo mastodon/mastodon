@@ -11,6 +11,7 @@
 #  show_reblogs      :boolean          default(TRUE), not null
 #  uri               :string
 #  notify            :boolean          default(FALSE), not null
+#  languages         :string           is an Array
 #
 
 class FollowRequest < ApplicationRecord
@@ -27,9 +28,10 @@ class FollowRequest < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
 
   validates :account_id, uniqueness: { scope: :target_account_id }
+  validates :languages, language: true
 
   def authorize!
-    account.follow!(target_account, reblogs: show_reblogs, notify: notify, uri: uri, bypass_limit: true)
+    account.follow!(target_account, reblogs: show_reblogs, notify: notify, languages: languages, uri: uri, bypass_limit: true)
     MergeWorker.perform_async(target_account.id, account.id) if account.local?
     destroy!
   end

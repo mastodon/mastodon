@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AccountsIndex < Chewy::Index
-  settings index: { refresh_interval: '5m' }, analysis: {
+  settings index: { refresh_interval: '30s' }, analysis: {
     analyzer: {
       content: {
         tokenizer: 'whitespace',
@@ -23,7 +23,7 @@ class AccountsIndex < Chewy::Index
     },
   }
 
-  index_scope ::Account.searchable.includes(:account_stat), delete_if: ->(account) { account.destroyed? || !account.searchable? }
+  index_scope ::Account.searchable.includes(:account_stat)
 
   root date_detection: false do
     field :id, type: 'long'
@@ -36,8 +36,8 @@ class AccountsIndex < Chewy::Index
       field :edge_ngram, type: 'text', analyzer: 'edge_ngram', search_analyzer: 'content'
     end
 
-    field :following_count, type: 'long', value: ->(account) { account.following.local.count }
-    field :followers_count, type: 'long', value: ->(account) { account.followers.local.count }
+    field :following_count, type: 'long', value: ->(account) { account.following_count }
+    field :followers_count, type: 'long', value: ->(account) { account.followers_count }
     field :last_status_at, type: 'date', value: ->(account) { account.last_status_at || account.created_at }
   end
 end

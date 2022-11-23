@@ -22,7 +22,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
     let(:user) { Fabricate(:user, email: 'local-part@domain', otp_secret: with_otp_secret ? 'oldotpsecret' : nil) }
 
     describe 'GET #new' do
-      context 'when signed in and a new otp secret has been setted in the session' do
+      context 'when signed in and a new otp secret has been set in the session' do
         subject do
           sign_in user, scope: :user
           get :new, session: { challenge_passed_at: Time.now.utc, new_otp_secret: 'thisisasecretforthespecofnewview' }
@@ -36,7 +36,7 @@ describe Settings::TwoFactorAuthentication::ConfirmationsController do
         expect(response).to redirect_to('/auth/sign_in')
       end
 
-      it 'redirects if a new otp_secret has not been setted in the session' do
+      it 'redirects if a new otp_secret has not been set in the session' do
         sign_in user, scope: :user
         get :new, session: { challenge_passed_at: Time.now.utc }
         expect(response).to redirect_to('/settings/otp_authentication')

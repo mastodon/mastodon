@@ -3,12 +3,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import DisplayName from './display_name';
-import Permalink from './permalink';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from '../initial_state';
 import RelativeTimestamp from './relative_timestamp';
+import Skeleton from 'mastodon/components/skeleton';
+import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -18,13 +19,16 @@ const messages = defineMessages({
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   mute_notifications: { id: 'account.mute_notifications', defaultMessage: 'Mute notifications from @{name}' },
   unmute_notifications: { id: 'account.unmute_notifications', defaultMessage: 'Unmute notifications from @{name}' },
+  mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
+  block: { id: 'account.block', defaultMessage: 'Block @{name}' },
 });
 
 export default @injectIntl
 class Account extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    size: PropTypes.number,
+    account: ImmutablePropTypes.map,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
@@ -33,7 +37,12 @@ class Account extends ImmutablePureComponent {
     hidden: PropTypes.bool,
     actionIcon: PropTypes.string,
     actionTitle: PropTypes.string,
+    defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+  };
+
+  static defaultProps = {
+    size: 46,
   };
 
   handleFollow = () => {
@@ -61,10 +70,19 @@ class Account extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, hidden, onActionClick, actionIcon, actionTitle } = this.props;
+    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size } = this.props;
 
     if (!account) {
-      return <div />;
+      return (
+        <div className='account'>
+          <div className='account__wrapper'>
+            <div className='account__display-name'>
+              <div className='account__avatar-wrapper'><Skeleton width={36} height={36} /></div>
+              <DisplayName />
+            </div>
+          </div>
+        </div>
+      );
     }
 
     if (hidden) {
@@ -105,6 +123,10 @@ class Account extends ImmutablePureComponent {
             {hidingNotificationsButton}
           </Fragment>
         );
+      } else if (defaultAction === 'mute') {
+        buttons = <IconButton icon='volume-off' title={intl.formatMessage(messages.mute, { name: account.get('username') })} onClick={this.handleMute} />;
+      } else if (defaultAction === 'block') {
+        buttons = <IconButton icon='lock' title={intl.formatMessage(messages.block, { name: account.get('username') })} onClick={this.handleBlock} />;
       } else if (!account.get('moved') || following) {
         buttons = <IconButton icon={following ? 'user-times' : 'user-plus'} title={intl.formatMessage(following ? messages.unfollow : messages.follow)} onClick={this.handleFollow} active={following} />;
       }
@@ -118,11 +140,11 @@ class Account extends ImmutablePureComponent {
     return (
       <div className='account'>
         <div className='account__wrapper'>
-          <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+            <div className='account__avatar-wrapper'><Avatar account={account} size={size} /></div>
             {mute_expires_at}
             <DisplayName account={account} />
-          </Permalink>
+          </Link>
 
           <div className='account__relationship'>
             {buttons}

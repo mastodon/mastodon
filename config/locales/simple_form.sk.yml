@@ -22,7 +22,6 @@ sk:
         current_password: Z bezpečtnostných dôvodov prosím zadaj heslo súčasného účtu
         current_username: Pre potvrdenie prosím zadaj prezývku súčasného účtu
         digest: Odoslané iba v prípade dlhodobej neprítomnosti, a len ak si obdržal/a nejaké osobné správy kým si bol/a preč
-        discoverable: Zoznam profilov predstavuje ďalšiu cestu akou tvoj účet môže dosiahnúť väčšie publikum
         email: Bude ti odoslaný potvrdzujúci email
         fields: Až štyri položky môžeš mať na svojom profile zobrazené vo forme tabuľky
         header: PNG, GIF, alebo JPG. Maximálne %{size}. Bude zmenšený na %{dimensions}px
@@ -47,14 +46,15 @@ sk:
         whole_word: Ak je kľúčové slovo, alebo fráza poskladaná iba s písmen a čísel, bude použité iba ak sa zhoduje s celým výrazom
       domain_allow:
         domain: Táto doména bude schopná získavať dáta z tohto servera, a prichádzajúce dáta ním budú spracovávané a uložené
-      featured_tag:
-        name: 'Možno by si chcel/a použiť niektoré z týchto:'
       form_challenge:
         current_password: Vstupuješ do zabezpečenej časti
       imports:
         data: CSV súbor vyexportovaný z iného Mastodon serveru
       invite_request:
         text: Toto pomôže s vyhodnocovaním tvojej žiadosti
+      ip_block:
+        severities:
+          sign_up_block: Nové registrácie nebudú možné
       sessions:
         otp: 'Napíš sem dvoj-faktorový kód z telefónu, alebo použi jeden z tvojích obnovovacích kódov:'
       tag:
@@ -112,7 +112,7 @@ sk:
         max_uses: Najviac možno použiť
         new_password: Nové heslo
         note: O tebe
-        otp_attempt: Dvoj-faktorový overovací (2FA) kód
+        otp_attempt: Dvoj-faktorový overovací kód
         password: Heslo
         phrase: Kľúčové slovo, alebo fráza
         setting_advanced_layout: Zapni pokročilé užívateľské rozhranie
@@ -140,6 +140,7 @@ sk:
         setting_use_blurhash: Ukáž farebné prechody pre skryté médiá
         setting_use_pending_items: Pomalý režim
         severity: Závažnosť
+        sign_in_token_attempt: Bezpečnostný kód
         type: Typ importu
         username: Prezývka
         username_or_email: Prezývka, alebo email
@@ -154,6 +155,9 @@ sk:
         comment: Okomentuj
       invite_request:
         text: Prečo sa k nám chceš pridať?
+      ip_block:
+        comment: Komentár
+        severity: Pravidlo
       notification_emails:
         digest: Zasielať súhrnné emaily
         favourite: Zaslať email, ak si niekto obľúbi tvoj príspevok
@@ -162,8 +166,6 @@ sk:
         mention: Zaslať email, ak ťa niekto spomenie vo svojom príspevku
         pending_account: Zaslať email, ak treba prehodnotiť nový účet
         reblog: Zaslať email, ak niekto re-tootne tvoj príspevok
-        report: Zaslať email, ak niekto podá nové nahlásenie
-        trending_tag: Pošli email, ak sa neoverený haštag stane populárnym
       tag:
         listable: Povoľ zobrazovanie tohto haštagu v zozname profilov
         name: Haštag

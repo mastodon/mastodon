@@ -83,4 +83,15 @@ describe UserMailer, type: :mailer do
     include_examples 'localized subject',
                      'devise.mailer.email_changed.subject'
   end
+
+  describe 'warning' do
+    let(:strike) { Fabricate(:account_warning, target_account: receiver.account, text: 'dont worry its just the testsuite', action: 'suspend') }
+    let(:mail)   { UserMailer.warning(receiver, strike) }
+
+    it 'renders warning notification' do
+      receiver.update!(locale: nil)
+      expect(mail.body.encoded).to include I18n.t("user_mailer.warning.title.suspend", acct: receiver.account.acct)
+      expect(mail.body.encoded).to include strike.text
+    end
+  end
 end

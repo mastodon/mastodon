@@ -20,7 +20,7 @@
                                       = image_tag full_pack_url('media/images/mailer/icon_cached.png'), alt: ''
 
                               %h1= t 'notification_mailer.reblog.title'
-                              %p.lead= t('notification_mailer.reblog.body', name: @account.acct)
+                              %p.lead= t('notification_mailer.reblog.body', name: @account.pretty_acct)
 
 = render 'status', status: @status
 
@@ -41,5 +41,5 @@
                             %tbody
                               %tr
                                 %td.button-primary
-                                  = link_to web_url("statuses/#{@status.id}") do
+                                  = link_to web_url("@#{@status.account.pretty_acct}/#{@status.id}") do
                                     %span= t 'application_mailer.view_status'

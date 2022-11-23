@@ -18,7 +18,7 @@ class Scheduler::FollowRecommendationsScheduler
 
     fallback_recommendations = FollowRecommendation.order(rank: :desc).limit(SET_SIZE)
 
-    I18n.available_locales.map { |locale| locale.to_s.split(/[_-]/).first }.uniq.each do |locale|
+    Trends.available_locales.each do |locale|
       recommendations = begin
         if AccountSummary.safe.filtered.localized(locale).exists? # We can skip the work if no accounts with that language exist
           FollowRecommendation.localized(locale).order(rank: :desc).limit(SET_SIZE).map { |recommendation| [recommendation.account_id, recommendation.rank] }
@@ -49,11 +49,11 @@ class Scheduler::FollowRecommendationsScheduler
         end
       end
 
-      redis.pipelined do
-        redis.del(key(locale))
+      redis.multi do |multi|
+        multi.del(key(locale))
 
         recommendations.each do |(account_id, rank)|
-          redis.zadd(key(locale), rank, account_id)
+          multi.zadd(key(locale), rank, account_id)
         end
       end
     end

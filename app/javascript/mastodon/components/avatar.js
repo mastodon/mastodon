@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { autoPlayGif } from '../initial_state';
+import classNames from 'classnames';
 
 export default class Avatar extends React.PureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    account: ImmutablePropTypes.map,
     size: PropTypes.number.isRequired,
     style: PropTypes.object,
     inline: PropTypes.bool,
@@ -37,35 +38,24 @@ export default class Avatar extends React.PureComponent {
     const { account, size, animate, inline } = this.props;
     const { hovering } = this.state;
 
-    const src = account.get('avatar');
-    const staticSrc = account.get('avatar_static');
-
-    let className = 'account__avatar';
-
-    if (inline) {
-      className = className + ' account__avatar-inline';
-    }
-
     const style = {
       ...this.props.style,
       width: `${size}px`,
       height: `${size}px`,
-      backgroundSize: `${size}px ${size}px`,
     };
 
+    let src;
+
     if (hovering || animate) {
-      style.backgroundImage = `url(${src})`;
+      src = account?.get('avatar');
     } else {
-      style.backgroundImage = `url(${staticSrc})`;
+      src = account?.get('avatar_static');
     }
 
     return (
-      <div
-        className={className}
-        onMouseEnter={this.handleMouseEnter}
-        onMouseLeave={this.handleMouseLeave}
-        style={style}
-      />
+      <div className={classNames('account__avatar', { 'account__avatar-inline': inline })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave} style={style}>
+        {src && <img src={src} alt={account?.get('acct')} />}
+      </div>
     );
   }
 

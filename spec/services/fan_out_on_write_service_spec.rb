@@ -18,7 +18,7 @@ RSpec.describe FanOutOnWriteService, type: :service do
     ProcessMentionsService.new.call(status)
     ProcessHashtagsService.new.call(status)
 
-    allow(Redis.current).to receive(:publish)
+    allow(redis).to receive(:publish)
 
     subject.call(status)
   end
@@ -40,13 +40,13 @@ RSpec.describe FanOutOnWriteService, type: :service do
     end
 
     it 'is broadcast to the hashtag stream' do
-      expect(Redis.current).to have_received(:publish).with('timeline:hashtag:hoge', anything)
-      expect(Redis.current).to have_received(:publish).with('timeline:hashtag:hoge:local', anything)
+      expect(redis).to have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(redis).to have_received(:publish).with('timeline:hashtag:hoge:local', anything)
     end
 
     it 'is broadcast to the public stream' do
-      expect(Redis.current).to have_received(:publish).with('timeline:public', anything)
-      expect(Redis.current).to have_received(:publish).with('timeline:public:local', anything)
+      expect(redis).to have_received(:publish).with('timeline:public', anything)
+      expect(redis).to have_received(:publish).with('timeline:public:local', anything)
     end
   end
 
@@ -66,8 +66,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
     end
 
     it 'is not broadcast publicly' do
-      expect(Redis.current).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
-      expect(Redis.current).to_not have_received(:publish).with('timeline:public', anything)
+      expect(redis).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(redis).to_not have_received(:publish).with('timeline:public', anything)
     end
   end
 
@@ -84,8 +84,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
     end
 
     it 'is not broadcast publicly' do
-      expect(Redis.current).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
-      expect(Redis.current).to_not have_received(:publish).with('timeline:public', anything)
+      expect(redis).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(redis).to_not have_received(:publish).with('timeline:public', anything)
     end
   end
 
@@ -105,8 +105,8 @@ RSpec.describe FanOutOnWriteService, type: :service do
     end
 
     it 'is not broadcast publicly' do
-      expect(Redis.current).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
-      expect(Redis.current).to_not have_received(:publish).with('timeline:public', anything)
+      expect(redis).to_not have_received(:publish).with('timeline:hashtag:hoge', anything)
+      expect(redis).to_not have_received(:publish).with('timeline:public', anything)
     end
   end
 end

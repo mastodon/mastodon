@@ -59,8 +59,6 @@ sk:
       error:
         title: Nastala chyba
       new:
-        able_to: Bude môcť
-        prompt: Aplikácia %{client_name} vyžaduje prístup k tvojmu účtu
         title: Je potrebná autorizácia
       show:
         title: Skopíruj tento autorizačný kód a vlož ho do aplikácie.
@@ -70,9 +68,6 @@ sk:
       confirmations:
         revoke: Si si istý?
       index:
-        application: Aplikácia
-        created_at: Autorizované
-        scopes: Oprávnenia
         title: Tvoje povolené aplikácie
     errors:
       messages:
@@ -104,6 +99,10 @@ sk:
       authorized_applications:
         destroy:
           notice: Oprávnenia aplikácie zrušené.
+    grouped_scopes:
+      title:
+        blocks: Blokovania
+        mutes: Nevšímané
     layouts:
       admin:
         nav:
@@ -137,6 +136,7 @@ sk:
       write:accounts: uprav svoj profil
       write:blocks: blokuj účty a domény
       write:bookmarks: pridaj si príspevky k záložkám
+      write:conversations: stíš a vymaž konverzácie
       write:favourites: obľúbené príspevky
       write:filters: vytvor roztriedenie
       write:follows: následuj ľudí

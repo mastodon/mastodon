@@ -6,7 +6,7 @@ export const CircularProgress = ({ size, strokeWidth }) => {
   const radius  = (size - strokeWidth) / 2;
 
   return (
-    <svg width={size} heigh={size} viewBox={viewBox} className='circular-progress' role='progressbar'>
+    <svg width={size} height={size} viewBox={viewBox} className='circular-progress' role='progressbar'>
       <circle
         fill='none'
         cx={size / 2}

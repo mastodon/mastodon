@@ -27,6 +27,8 @@ es-AR:
         scheduled_at: Dejar en blanco para publicar el anuncio inmediatamente
         starts_at: Opcional. En caso de que tu anuncio esté vinculado a un rango de tiempo específico
         text: Podés usar sintaxis de mensajes. Por favor, tené en cuenta el espacio que ocupará el anuncio en la pantalla del usuario
+      appeal:
+        text: Sólo podés apelar un incumplimiento una vez
       defaults:
         autofollow: Los usuarios que se registren mediante la invitación te seguirán automáticamente
         avatar: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles'
@@ -35,8 +37,7 @@ es-AR:
         current_password: Por razones de seguridad, por favor, ingresá la contraseña de la cuenta actual
         current_username: Para confirmar, por favor, ingresá el nombre de usuario de la cuenta actual
         digest: Sólo enviado tras un largo periodo de inactividad, y sólo si recibiste mensajes personales en tu ausencia
-        discoverable: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones y otras funciones
-        discoverable_no_directory: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones y otras funciones
+        discoverable: Permití que tu cuenta sea descubierta por extraños a través de recomendaciones, tendencias y otras funciones
         email: Se te enviará un correo electrónico de confirmación
         fields: Podés tener hasta 4 elementos mostrados en una tabla en tu perfil
         header: 'PNG, GIF o JPG. Máximo: %{size}. Será subescalado a %{dimensions} píxeles'
@@ -48,6 +49,7 @@ es-AR:
         phrase: Se aplicará sin importar las mayúsculas o las advertencias de contenido de un mensaje
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionás el alcance de nivel más alto, no necesitás seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevas adhesiones de los mensajes que fueron recientemente adheridos (sólo afecta a las adhesiones recibidas recientemente)
+        setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_default_sensitive: El contenido de medios sensibles está oculto predeterminadamente y puede ser mostrado con un clic
         setting_display_media_default: Ocultar medios marcados como sensibles
         setting_display_media_hide_all: Siempre ocultar todos los medios
@@ -62,10 +64,36 @@ es-AR:
       domain_allow:
         domain: Este dominio podrá recolectar datos de este servidor, y los datos entrantes serán procesados y archivados
       email_domain_block:
-        domain: Puede ser el nombre de dominio que aparece en la dirección de correo electrónico, el registro MX hacia el cual resuelve el dominio, o la dirección IP del servidor hacia el cual resuelve ese registro MX. Esto se comprobará en el momento del registro del usuario, y el registro será rechazado.
+        domain: Este puede ser el nombre de dominio que aparece en la dirección de correo electrónico o el registro MX que se use. Se revisarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también bloqueados
       featured_tag:
-        name: 'Puede que quieras usar una de estas:'
+        name: 'Acá tenés algunas de las etiquetas que más usaste recientemente:'
+      filters:
+        action: Elegir qué acción realizar cuando un mensaje coincide con el filtro
+        actions:
+          hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
+          warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
+      form_admin_settings:
+        backups_retention_period: Conservar los archivos historiales generados por el usuario durante el número de días especificado.
+        bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
+        closed_registrations_message: Mostrado cuando los registros están cerrados
+        content_cache_retention_period: Los mensajes de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
+        mascot: Reemplaza la ilustración en la interface web avanzada.
+        media_cache_retention_period: Los archivos de medios descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se volverán a descargar a pedido.
+        profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
+        require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
+        site_contact_email: Cómo la gente puede estar en contacto con vos para consultas legales o de ayuda.
+        site_contact_username: Cómo la gente puede estar en contacto con vos en Mastodon.
+        site_extended_description: Cualquier información adicional que pueda ser útil para los visitantes y tus usuarios. Se puede estructurar con sintaxis Markdown.
+        site_short_description: Una breve descripción para ayudar a identificar individualmente a tu servidor. ¿Quién lo administra, a quién va dirigido?
+        site_terms: Usá tu propia política de privacidad o dejala en blanco para usar la predeterminada. Puede estructurarse con sintaxis Markdown.
+        site_title: Cómo la gente puede referirse a tu servidor además de su nombre de dominio.
+        theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
+        thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
+        timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
+        trendable_by_default: Omití la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
+        trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
       form_challenge:
         current_password: Estás ingresando en un área segura
       imports:
@@ -78,6 +106,7 @@ es-AR:
         ip: Ingresá una dirección IPv4 ó IPv6. Podés bloquear rangos completos usando la sintaxis CIDR. ¡Tené cuidado de no bloquearte vos mismo!
         severities:
           no_access: Bloquear acceso a todos los recursos
+          sign_up_block: Los nuevos registros se deshabilitarán
           sign_up_requires_approval: Los nuevos registros requerirán tu aprobación
         severity: Elegí lo que pasará con las solicitudes desde esta dirección IP
       rule:
@@ -89,6 +118,16 @@ es-AR:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
+        role: El rol controla qué permisos tiene el usuario
+      user_role:
+        color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
+        highlighted: Esto hace que el rol sea públicamente visible
+        name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
+        permissions_as_keys: Los usuarios con este rol tendrán acceso a…
+        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
+      webhook:
+        events: Seleccionar eventos para enviar
+        url: Adónde serán enviados los eventos
     labels:
       account:
         fields:
@@ -119,6 +158,8 @@ es-AR:
         scheduled_at: Programar publicación
         starts_at: Inicio del evento
         text: Anuncio
+      appeal:
+        text: Explicá por qué esta decisión debería ser revertida
       defaults:
         autofollow: Invitar para seguir tu cuenta
         avatar: Avatar
@@ -148,6 +189,7 @@ es-AR:
         phrase: Palabra clave o frase
         setting_advanced_layout: Habilitar interface web avanzada
         setting_aggregate_reblogs: Agrupar adhesiones en las líneas temporales
+        setting_always_send_emails: Siempre enviar notificaciones por correo electrónico
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar diálogo de confirmación antes de adherir
         setting_crop_images: Recortar imágenes en mensajes no expandidos a 16x9
@@ -173,6 +215,7 @@ es-AR:
         setting_use_pending_items: Modo lento
         severity: Severidad
         sign_in_token_attempt: Código de seguridad
+        title: Título
         type: Tipo de importación
         username: Nombre de usuario
         username_or_email: Nombre de usuario o correo electrónico
@@ -181,6 +224,34 @@ es-AR:
         with_dns_records: Incluir los registros MX y las direcciones IP del dominio
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Ocultar completamente
+          warn: Ocultar con una advertencia
+      form_admin_settings:
+        backups_retention_period: Período de retención del archivo historial del usuario
+        bootstrap_timeline_accounts: Siempre recomendar estas cuentas a usuarios nuevos
+        closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
+        content_cache_retention_period: Período de retención de la caché de contenido
+        custom_css: CSS personalizado
+        mascot: Mascota personalizada (legado)
+        media_cache_retention_period: Período de retención de la caché de medios
+        profile_directory: Habilitar directorio de perfiles
+        registrations_mode: Quién puede registrarse
+        require_invite_text: Requerir un motivo para unirse
+        show_domain_blocks: Mostrar dominios bloqueados
+        show_domain_blocks_rationale: Mostrar por qué se bloquearon los dominios
+        site_contact_email: Dirección de correo electrónico de contacto
+        site_contact_username: Nombre de usuario de contacto
+        site_extended_description: Descripción extendida
+        site_short_description: Descripción del servidor
+        site_terms: Política de privacidad
+        site_title: Nombre del servidor
+        theme: Tema predeterminado
+        thumbnail: Miniatura del servidor
+        timeline_preview: Permitir el acceso no autenticado a las líneas temporales públicas
+        trendable_by_default: Permitir tendencias sin revisión previa
+        trends: Habilitar tendencias
       interactions:
         must_be_follower: Bloquear notificaciones de cuentas que no te siguen
         must_be_following: Bloquear notificaciones de cuentas que no seguís
@@ -194,9 +265,11 @@ es-AR:
         ip: Dirección IP
         severities:
           no_access: Bloquear acceso
+          sign_up_block: Bloquear registros
           sign_up_requires_approval: Limitar registros
         severity: Regla
       notification_emails:
+        appeal: Alguien apela una solicitud de moderador
         digest: Enviar correos electrónicos compilatorios
         favourite: Una cuenta marca tu mensaje como favorito
         follow: Una cuenta te sigue
@@ -204,8 +277,8 @@ es-AR:
         mention: Una cuenta te menciona
         pending_account: Una nueva cuenta necesita revisión
         reblog: Una cuenta adhiere a tu mensaje
-        report: Se envía una nueva denuncia
-        trending_tag: Una nueva tendencia requiere aprobación
+        report: Se envió una nueva denuncia
+        trending_tag: Una nueva tendencia requiere revisión
       rule:
         text: Regla
       tag:
@@ -213,7 +286,19 @@ es-AR:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a los mensajes usar esta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de Insignia
+        highlighted: Mostrar rol como insignia en perfiles de usuario
+        name: Nombre
+        permissions_as_keys: Permisos
+        position: Prioridad
+      webhook:
+        events: Eventos habilitados
+        url: Dirección web del punto final
     'no': 'No'
+    not_recommended: No recomendado
     recommended: Opción recomendada
     required:
       mark: "*"

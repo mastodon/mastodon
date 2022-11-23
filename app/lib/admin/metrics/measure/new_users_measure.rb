@@ -5,15 +5,17 @@ class Admin::Metrics::Measure::NewUsersMeasure < Admin::Metrics::Measure::BaseMe
     'new_users'
   end
 
-  def total
+  protected
+
+  def perform_total_query
     User.where(created_at: time_period).count
   end
 
-  def previous_total
+  def perform_previous_total_query
     User.where(created_at: previous_time_period).count
   end
 
-  def data
+  def perform_data_query
     sql = <<-SQL.squish
       SELECT axis.*, (
         WITH new_users AS (
