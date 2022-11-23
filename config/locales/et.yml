@@ -110,6 +110,7 @@ et:
       push_subscription_expires: PuSH tellimus aegub
       redownload: Värskenda profiili
       reject: Hülga
+      rejected_msg: '%{username} liitumisavaldus tagasi lükatud'
       remove_avatar: Kustuta profiilipilt
       remove_header: Kustuta päis
       resend_confirmation:
@@ -117,7 +118,7 @@ et:
         send: Saada kinnituskiri uuesti
         success: Kinnituskiri saadetud edukalt!
       reset: Lähtesta
-      reset_password: Lähtesta salasõna
+      reset_password: Salasõna lähtestamine
       resubscribe: Telli taas
       role: Roll
       search: Otsi
@@ -125,7 +126,7 @@ et:
       search_same_ip: Teised kasutajad, kellel on sama IP
       security_measures:
         only_password: Ainult salasõna
-        password_and_2fa: Salasõna ja 2-astmeline autentimine
+        password_and_2fa: Salasõna ja 2-etapine autentimine (2FA)
       sensitive: Tundlik sisu
       sensitized: Märgitud kui tundlik sisu
       shared_inbox_url: Jagatud sisendkausta URL
@@ -175,18 +176,23 @@ et:
         destroy_instance: Domeeni kustutamine
         destroy_ip_block: IP-reegli kustutamine
         destroy_status: Eemaldas staatuse
-        disable_2fa_user: Keelas 2FA
+        destroy_unavailable_domain: Kättesaamatu domeeni kustutamine
+        destroy_user_role: Rolli kustutamine
+        disable_2fa_user: Keela 2FA
         disable_custom_emoji: Keelas kohandatud emotikoni
+        disable_sign_in_token_auth_user: E-posti võtmega autentimise keelamine
         disable_user: Keelas kasutaja
         enable_custom_emoji: Lubas kohandatud emotikoni
+        enable_sign_in_token_auth_user: E-posti võtmega autentimise lubamine
         enable_user: Lubas kasutaja
         memorialize_account: Igaveselt lahkunuks märkimine
         promote_user: Edendas kasutaja
         reject_appeal: Lükka vaidlustus tagasi
+        reject_user: Kasutaja tagasilükkamine
         remove_avatar_user: Kustutas profiilipildi
         reopen_report: Taasavas teavituse
         resend_user: Saada kinnituskiri uuesti
-        reset_password_user: Lähtestas salasõna
+        reset_password_user: Salasõna lähtestamine
         resolve_report: Lahendas teadaande
         silence_account: Vaigistas konto
         suspend_account: Peatas konto
@@ -199,10 +205,14 @@ et:
         update_user_role: Uuenda rolli
       actions:
         demote_user_html: "%{name} alandas kasutajat %{target}"
+        disable_2fa_user_html: "%{name} eemaldas %{target} 2-etapise (2FA) nõude"
         disable_custom_emoji_html: "%{name} keelas emotikooni %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} keelas kasutajal %{target} e-posti võtmega autentida"
         enable_custom_emoji_html: "%{name} lubas emotikooni %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} lubas kasutajal %{target} e-posti võtmega autentida"
         memorialize_account_html: "%{name} märkis %{target} igaveselt lahkunuks"
         promote_user_html: "%{name} ülendas kasutajat %{target}"
+        reset_password_user_html: "%{name} lähtestas %{target} salasõna"
       deleted_account: kustutatud konto
       empty: Logisi ei leitud.
       filter_by_action: Filtreeri tegevuse järgi
@@ -456,6 +466,7 @@ et:
         manage_reports_description: Lubab kasutajail läbi vaadata ja viia läbi modereerimisotsuseid
         manage_roles: Rollide haldamine
         manage_rules: Reeglite haldamine
+        manage_user_access_description: Lubab kasutajail eemaldada teiste 2-etapise autentimise (2FA) nõue, muuta nende e-postiaadresse ja lähtestada salasõnu
         manage_users: Kasutajate haldamine
         manage_users_description: Lubab kasutajail näha teiste kasutajate detailandmeid ja teha modereerimisotsuseid
         view_audit_log_description: Lubab kasutajail näha serveri administratiivsete otsuste ajalugu
@@ -591,7 +602,7 @@ et:
       prefix_sign_up: Loo Mastodoni konto juba täna!
       suffix: Kasutajakontoga saate jälgida inimesi, postitada uudiseid ning teha kirjavahetust üks kõik millisest Mastodoni serverist kasutajatega ja muud!
     didnt_get_confirmation: Ei saanud kinnituse juhendeid?
-    forgot_password: Unustasid oma salasõna?
+    forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
     login: Logi sisse
     logout: Logi välja
@@ -605,12 +616,12 @@ et:
     register: Loo konto
     registration_closed: "%{instance} ei võta vastu uusi liikmeid"
     resend_confirmation: Saada kinnitusjuhendid uuesti
-    reset_password: Lähtesta salasõna
+    reset_password: Salasõna lähtestamine
     rules:
       preamble: Neist kinnipidamist jälgivad %{domain} moderaatorid.
       title: Mõned põhireeglid.
     security: Turvalisus
-    set_new_password: Määra uus salasõna
+    set_new_password: Uue salasõna määramine
     setup:
       email_below_hint_html: Kui allolev e-posti aadress on vale, saate Te muuta seda siin ning Teile saadetakse uus kinnituskiri.
       email_settings_hint_html: Kinnituskiri saadeti e-posti aadressile %{email}. Kui see aadress pole õige, saate Te muuta seda oma konto sätetest.
@@ -639,9 +650,9 @@ et:
     title: Jälgi %{acct}
   challenge:
     confirm: Jätka
-    hint_html: "<strong>Nõuanne:</strong> Me ei küsi Teilt uuesti salasõna järgmise tunni jooksul."
+    hint_html: "<strong>Nõuanne:</strong> Me ei küsi salasõna uuesti järgmise tunni jooksul."
     invalid_password: Vigane salasõna
-    prompt: Jätkamiseks kinnitage salasõna
+    prompt: Jätkamiseks salasõna veelkord
   crypto:
     errors:
       invalid_key: ei ole õige Ed25519 ega Curve25519 võti
@@ -666,7 +677,7 @@ et:
       x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Informatsioon, mida sisestasite, oli vale
-    confirm_password: Sisesta oma praegune salasõna, et kinnitada oma identiteet
+    confirm_password: Praegune salasõna isikusamasuse kinnitamiseks
     confirm_username: Sisestage oma kasutajanimi protseduuri kinnitamiseks
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
@@ -823,6 +834,7 @@ et:
   login_activities:
     authentication_methods:
       password: salasõna
+    description_html: Kui paistab tundmatauid tegevusi, tuleks vahetada salasõna ja aktiveerida 2-etapine autentimine (2FA).
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video staatusele, millel on juba pildid
@@ -901,6 +913,7 @@ et:
           thousand: T
           trillion: Tr
   otp_authentication:
+    description_html: Kui aktiveerda <strong>2-astmeline autentimine</strong> autentimisäpi abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
     enable: Luba
     setup: Seadista
   pagination:
@@ -1094,7 +1107,7 @@ et:
       time: "%H:%M"
   two_factor_authentication:
     add: Lisa
-    disable: Lülita välja
+    disable: Keela 2FA
     edit: Muuda
     enabled: Kaheastmeline autentimine on sisse lülitatud
     enabled_success: Kaheastmeline autentimine on edukalt sisse lülitatud
@@ -1108,6 +1121,8 @@ et:
       explanation: Te taotlesite varukoopia oma Mastodoni kontost. See on nüüd valmis allalaadimiseks!
       subject: Teie arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
+    suspicious_sign_in:
+      change_password: salasõna muutmine
     warning:
       appeal: Vaidlustuse esitamine
       appeal_description: Kui see võib olla eksitus, on võimalik %{instance} haldajatele esitada vaidlustus.
@@ -1137,7 +1152,7 @@ et:
     follow_limit_reached: Te ei saa jälgida rohkem kui %{limit} inimest
     invalid_otp_token: Vale kaheastmelise autentimise kood
     otp_lost_help_html: Kui Te kaotasite ligipääsu mõlemale, saate võtta ühendust %{email}-iga
-    seamless_external_login: Te olete sisse loginud läbi väljaspool asuva teenusega, niiet salasõna ja e-posti sätted pole saadaval.
+    seamless_external_login: Läbi välise teenuse sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
     explanation_html: 'Te saate <strong>kinnitada ennast oma profiili veebiviidete omanikena</strong>. Et seda teha, peab Teie viidatud veebilehel olema link tagasi Teie Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Tekstisisu lingil ei loe. Siin on üks näide:'
