@@ -30,8 +30,8 @@ et:
         subject: 'Mastodon: e-post muudetud'
         title: Uus e-postiaadress
       password_change:
-        explanation: Teie konto salasõna on muudetud.
-        extra: Kui te ei muutnud oma salasõna, on tõenäoline, et kellelgi on ligipääs teie kontole. Palun muutke oma salasõna koheselt või võtke ühendust oma serveri administraatoriga, kui olete oma kontost välja lukustatud.
+        explanation: Konto salasõna on vahetatud.
+        extra: Kui Te ei muutnud oma salasõna, on tõenäoline, et keegi on teie kontole ligi pääsenud. Palun muutke viivitamata oma salasõna või võtke ühendust serveri haldajaga, kui oma kontole ligi ei pääse.
         subject: 'Mastodon: salasõna muudetud'
         title: Salasõna muudetud
       reconfirmation_instructions:
@@ -40,23 +40,23 @@ et:
         subject: 'Mastodon: kinnitake e-postiaadress %{instance} jaoks'
         title: Kinnita e-postiaadress
       reset_password_instructions:
-        action: Muuda salasõna
-        explanation: Te taotlesite oma kontole uut salasõna.
-        extra: Kui te ei soovinud seda, palun eirake seda kirja. Teie salasõna ei muutu, kuni te vajutate üleval olevale lingile ning loote uue.
+        action: Salasõna muutmine
+        explanation: Kontole on küsitud uut salasõna.
+        extra: Kui see tuleb üllatusena, võib seda kirja eirata. Salasõna ei muutu enne ülaoleva lingi külastamist ja uue salasõna määramist.
         subject: 'Mastodon: salasõna lähtestamisjuhendid'
         title: Salasõna lähtestamine
       two_factor_disabled:
         explanation: Kaheastmeline autentimine on teie konto jaoks välja lülitatud. Sisselogimine on nüüd ainult võimalik kasutades e-postiaadressit ja salasõna.
         subject: 'Mastodon: Kaheastmeline autentimine välja lülitatud'
-        title: 2FA väljas
+        title: 2-etapine autentimine (2FA) keelatud
       two_factor_enabled:
         explanation: Kaheastmeline autentimine on teie kontole sisse lülitatud. Teie TOTP rakenduse poolt loodud võtit läheb vaja igal sisselogimisel.
         subject: 'Mastodon: kaheastmeline autentimine sisse lülitatud'
-        title: 2FA sees
+        title: 2-etapine autentimine (2FA) lubatud
       two_factor_recovery_codes_changed:
         explanation: Eelmised taastuskoodid on kehtetuks tehtud ning uued loodud.
         subject: 'Mastodon: Kaheastmelise autentimise taastuskoodid taasloodud'
-        title: 2FA taastuskoodid muutusid
+        title: 2-etapise autentimise (2FA) taastekoodid muudetud
       unlock_instructions:
         subject: 'Mastodon: Lahti lukustamis juhendid'
       webauthn_credential:
