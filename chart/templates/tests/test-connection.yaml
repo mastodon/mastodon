@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "mastodon.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "mastodon.fullname" . }}-web:{{ .Values.service.port }}']
   restartPolicy: Never
