@@ -801,6 +801,30 @@ sco:
       pending_review: Pendin review
       preview_card_providers:
         allowed: Links fae this publisher kin trend
+        description_html: Thir's the domains thit links aften get shared fae on yer server. Links wullnae trend publicly unless the domain o the link is approved. Yer approval (or rejection) extends tae subdomains.
+        rejected: Links fae this publisher wullnae trend
+        title: Publishers
+      rejected: Rejectit
+      statuses:
+        allow: Alloo post
+        allow_account: Alloo author
+        description_html: Thir's posts thit yer server kens aboot thit's bein shared an favourited a lot the noo. It kin help yer new an returnin uisers fir tae fin mair fowk tae follae. Nae posts get displayed publicly tae ye approve the author, an the author alloos their accoont tae be suggestit tae ithers. Ye kin alloo or rejeck individual posts tae.
+        disallow: Disalloo post
+        disallow_account: Disalloo author
+        no_status_selected: Nae trendin posts wis chynged as naen wis selectit
+        not_discoverable: Author haesnae optit-in tae bein discoverable
+        shared_by:
+          one: Shared or favouritit ae time
+          other: Shared an favouritit %{friendly_count} times
+        title: Trendin posts
+      tags:
+        current_score: Current score %{score}
+        dashboard:
+          tag_accounts_measure: unique uises
+          tag_languages_dimension: Tap leids
+          tag_servers_dimension: Tap servers
+          tag_servers_measure: different servers
+          tag_uses_measure: total uises
     webhooks:
       events: Events
       new: New webhook
