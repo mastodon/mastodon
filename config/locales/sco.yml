@@ -723,6 +723,55 @@ sco:
       links:
         allow: Alloo link
         allow_provider: Alloo publisher
+        description_html: Thir's links thit ur bein shared aboot a lot the noo bi accoonts thit yer server sees posts fae. It kin help yer uisers fin oot whit's gaun on in the warld. Nae links ur displayed in public tae ye approve the publisher. Ye kin alloo or rejeck individual links tae.
+        disallow: Disalloo link
+        disallow_provider: Disalloo publisher
+        no_link_selected: Nae links wis chynged as naen wis selectit
+        publishers:
+          no_publisher_selected: Nae publishers wis chynged as naen wis selectit
+        shared_by_over_week:
+          one: Shared bi ae person ower the last week
+          other: Shared bi %{count} fowk ower the last week
+        title: Trendin links
+        usage_comparison: Shared %{today} times the day, compart tae %{yesterday} yisterday
+      only_allowed: Ainly allooed
+      pending_review: Pendin review
+    webhooks:
+      events: Events
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signin secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: tae delete their posts
+        disable: tae freeze their accoont
+        mark_statuses_as_sensitive: tae mairk their posts as sensitive
+        none: a warnin
+        sensitive: tae mairk their accoont as sensitive
+        silence: tae limit their accoont
+        suspend: tae suspend their accoont
+      body: "%{target} is appealin a moderation decision bi %{action_taken_by} fae %{date}, thit wis %{type}. They wrate:"
+      next_steps: Ye kin approve the appeal fir tae undae the moderation decision, or dingie it.
+      subject: "%{username} is appealin a moderation decision on %{instance}"
+    new_pending_account:
+      body: The details o the new accoont' ablow. Ye kin approve or rejeck this application.
+      subject: New accoont up fir review on %{instance} (%{username})
+    new_report:
+      body: "%{reporter} haes clyped on %{target}"
+      body_remote: Somebody fae %{domain} haes clyped on %{target}
+      subject: 'New coype fir %{instance} (#%{id})'
+    new_trends:
+      body: 'The follaein items need luiked ower afore they kin get displayit publicly:'
+      new_trending_links:
+        title: Trendin links
+      new_trending_statuses:
+        title: Trendin posts
+      new_trending_tags:
+        no_approved_tags: There nae approved trendin hashtags the noo.
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
