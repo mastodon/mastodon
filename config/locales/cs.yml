@@ -450,6 +450,8 @@ cs:
     export_domain_blocks:
       import:
         description_html: Chystáte se importovat seznam blokovaných domén. Zkontrolujte prosím tento seznam velmi opatrně, zejména pokud jste tento seznam nenapsali vy sami.
+        existing_relationships_warning: Existující vztahy sledování
+        private_comment_description_html: 'Abychom vám pomohli sledovat, odkud pochází importované bloky, budou tyto importované bloky vytvořeny s následující soukromou poznámkou: <q>%{comment}</q>'
         private_comment_template: Importováno z %{source} dne %{date}
         title: Importovat blokované domény
       new:
