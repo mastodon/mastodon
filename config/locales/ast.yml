@@ -1,6 +1,6 @@
 ast:
   about:
-    about_mastodon_html: 'La rede social del futuru: ¡ensin anuncios nin vixilancia, con un diseñu éticu y descentralizáu! Controla los tos datos con Mastodon.'
+    about_mastodon_html: 'La rede social del futuru: ¡ensin anuncios nin vixilancia, con un diseñu éticu ya descentralizáu! Controla los tos datos con Mastodon.'
     contact_missing: Nun s'afitó
     contact_unavailable: N/D
     hosted_on: Mastodon ta agospiáu en %{domain}
@@ -36,13 +36,15 @@ ast:
         local: Llocal
         remote: Remotu
         title: Llugar
+      moderation:
+        pending: Pendiente
       most_recent_activity: L'actividá más recién
       most_recent_ip: La IP más recién
       protocol: Protocolu
       reject: Refugar
       resend_confirmation:
-        already_confirmed: Esti usuariu yá ta confirmáu
-        send: Reunviar les instrucciones
+        already_confirmed: Esti usuariu xá ta confirmáu
+        send: Volver unviar el mensaxe de confirmación
       search_same_email_domain: Otros perfiles col mesmu dominiu de corréu electrónicu
       search_same_ip: Otros perfiles cola mesma IP
       show:
@@ -99,7 +101,7 @@ ast:
       no_emoji_selected: Nun camudó nengún fustaxe darréu que nun se seleicionó nengún
       not_permitted: Nun tienes permisu pa facer esta aición
       shortcode: Códigu curtiu
-      shortcode_hint: De 2 caráuteres como muncho, namás caráuteres alfanumbéricos y guiones baxos
+      shortcode_hint: De 2 caráuteres como muncho, namás caráuteres alfanumbéricos ya guiones baxos
       title: Fustaxes personalizaos
       uncategorized: Ensin categoría
       update_failed_msg: Nun se pudo anovar esi fustaxe
@@ -179,7 +181,7 @@ ast:
     relationships:
       title: "Rellaciones de: %{acct}"
     relays:
-      save_and_enable: Guardar y activar
+      save_and_enable: Guardar ya activar
       status: Estáu
     reports:
       account:
@@ -245,7 +247,7 @@ ast:
         preamble: Personaliza la interfaz web de Mastodon.
         title: Aspeutu
       branding:
-        preamble: La marca del to sirvidor estrémalu d'otros sirvidores de la rede. Ye posible qu'esta información apaeza nuna variedá d'entornos, como la interfaz web de Mastodon, les aplicaciones natives, nes previsualizaciones de los enllaces d'otros sitios web, dientro de les aplicaciones de mensaxería, etc. Por esti motivu, lo meyor ye qu'esta información seya clara, curtia y concisa.
+        preamble: La marca del to sirvidor estrémalu d'otros sirvidores de la rede. Ye posible qu'esta información apaeza nuna variedá d'entornos, como la interfaz web de Mastodon, les aplicaciones natives, nes previsualizaciones de los enllaces d'otros sitios web, dientro de les aplicaciones de mensaxería, etc. Por esti motivu, lo meyor ye qu'esta información seya clara, curtia ya concisa.
         title: Marca
       content_retention:
         preamble: Controla cómo s'atroxa'l conteníu xeneráu polos perfiles en Mastodon.
@@ -342,8 +344,8 @@ ast:
     empty: Nun tienes nengún nomatu.
   appearance:
     advanced_web_interface: Interfaz web avanzada
-    advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol llargor de la pantalla, la interfaz web avanzada permítete configurar columnes estremaes pa ver muncha más información al empar: Aniciu, avisos, llinia de tiempu federada y cualesquier cantidá de llistes y etiquetes.'
-    animations_and_accessibility: Animaciones y accesibilidá
+    advanced_web_interface_hint: 'Si quies asegúrate de que s''use tol llargor de la pantalla, la interfaz web avanzada permítete configurar columnes estremaes pa ver muncha más información al empar: Aniciu, avisos, llinia de tiempu federada ya cualesquier cantidá de llistes ya etiquetes.'
+    animations_and_accessibility: Animaciones ya accesibilidá
     confirmation_dialogs: Diálogos de confirmación
     discovery: Descubrimientu
     localization:
@@ -362,7 +364,7 @@ ast:
     delete_account: Desaniciu de la cuenta
     delete_account_html: Si quies desaniciar la cuenta, pues facelo <a href="%{path}">equí</a>. Va pidísete que confirmes l'aición.
     description:
-      suffix: '¡Con una cuenta, vas ser a siguir a persones, espublizar anovamientos ya intercambiar mensaxes con usuarios de cualesquier sirvidor de Mastodon y más!'
+      suffix: '¡Con una cuenta, vas ser a siguir a persones, espublizar anovamientos ya intercambiar mensaxes con usuarios de cualesquier sirvidor de Mastodon ya más!'
     didnt_get_confirmation: '¿Nun recibiesti les instrucciones de confirmación?'
     dont_have_your_security_key: '¿Nun tienes una llave de seguranza?'
     forgot_password: '¿Escaeciesti la contraseña?'
@@ -370,7 +372,7 @@ ast:
     logout: Zarrar la sesión
     migrate_account: Mudase a otra cuenta
     migrate_account_html: Si deseyes redirixir esta cuenta a otra, pues <a href="%{path}">configuralo equí</a>.
-    privacy_policy_agreement_html: Lleí y acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidá</a>
+    privacy_policy_agreement_html: Lleí ya acepto la <a href="%{privacy_policy_path}" target="_blank">política de privacidá</a>
     providers:
       cas: CAS
       saml: SAML
@@ -384,7 +386,7 @@ ast:
     status:
       account_status: Estáu de la cuenta
       functional: La cuenta ta completamente operativa.
-      pending: La to solicitú ta pendiente de que la revise'l nuesu personal y ye posible que tarde tiempu. Vas recibir un mensaxe si s'aprueba.
+      pending: La to solicitú ta pendiente de que la revise'l nuesu personal ya ye posible que tarde tiempu. Vas recibir un mensaxe si s'aprueba.
     too_fast: El formulariu xubióse mui rápido, volvi tentalo.
   authorize_follow:
     already_following: Xá tas siguiendo a esta cuenta
@@ -453,7 +455,7 @@ ast:
     archive_takeout:
       date: Data
       download: Baxar l'archivu
-      hint_html: Pues solicitar un archivu colos tos <strong>artículos y ficheros xubíos</strong>. Los datos esportaos van tar nel formatu ActivityPub, llexible pa cualesquier software que seya compatible. Pues solicitar un archivu cada 7 díes.
+      hint_html: Pues solicitar un archivu colos tos <strong>artículos ya ficheros xubíos</strong>. Los datos esportaos van tar nel formatu ActivityPub, llexible pa cualesquier software que seya compatible. Pues solicitar un archivu cada 7 díes.
       in_progress: Compilando l'archivu...
       request: Solicitar l'archivu
       size: Tamañu
@@ -466,7 +468,7 @@ ast:
     storage: Almacenamientu multimedia
   featured_tags:
     add_new: Amestar
-    hint_html: "<strong>¿Qué son les etiquetes destacaes?</strong> Apaecen de forma bien visible nel perfil públicu y permite que les persones restolen los tos artículos públicos per duana d'eses etiquetes. Son una gran ferramienta pa tener un rexistru de trabayos creativos o de proyeutos a plazu llongu."
+    hint_html: "<strong>¿Qué son les etiquetes destacaes?</strong> Apaecen de forma bien visible nel perfil públicu ya permite que les persones restolen los tos artículos públicos per duana d'eses etiquetes. Son una gran ferramienta pa tener un rexistru de trabayos creativos o de proyeutos a plazu llongu."
   filters:
     contexts:
       account: Perfiles
@@ -509,7 +511,7 @@ ast:
   imports:
     modes:
       merge: Mecíu
-      merge_long: Caltién los rexistros esistentes y amiesta otros nuevos
+      merge_long: Caltién los rexistros esistentes ya amiesta otros nuevos
       overwrite: Sobrescritura
       overwrite_long: Troca los rexistros actuales por otros nuevos
     preface: Pues importar los datos qu'esportares dende otru sirvidor, como la llista de perfiles bloquiaos o que sigas.
@@ -536,7 +538,7 @@ ast:
       one: 1 usu
       other: "%{count} usos"
     max_uses_prompt: Nun hai llende
-    prompt: Xenera y comparti enllaces con otros pa da-yos accesu a esti sirividor
+    prompt: Xenera ya comparti enllaces con otros pa da-yos accesu a esti sirividor
     table:
       expires_at: Data de caducidá
       uses: Usos
@@ -550,7 +552,7 @@ ast:
       webauthn: llaves de seguranza
   media_attachments:
     validations:
-      images_and_video: Nun se pue axuntar nengún videu a un artículu que yá contién imáxenes
+      images_and_video: Nun se pue axuntar nengún videu a un artículu que xá contién imáxenes
       too_many: Nun se puen axuntar más de 4 ficheros
   migrations:
     acct: nome_usuariu@dominiu de la cuenta nueva
@@ -598,7 +600,7 @@ ast:
           trillion: B
   otp_authentication:
     description_html: Si actives l'<strong>autenticación en dos pasos</strong> con una aplicación autenticadora, al aniciar la sesión va ser obligatorio que tengas el teléfonu a mano, preséu que xenera los pases que tienes d'introducir.
-    manual_instructions: 'Si nun pues escaniar el códigu QR y tienes d''introducilu manualmente, equí tienes el secretu en testu ensin formatu:'
+    manual_instructions: 'Si nun pues escaniar el códigu QR ya tienes d''introducilu manualmente, equí tienes el secretu en testu ensin formatu:'
     setup: Configurar
   pagination:
     next: Siguiente
@@ -757,7 +759,7 @@ ast:
       appeal: Unviar una apellación
       appeal_description: Si te paez que ye un error, pues unviar una apellación al personal de %{instance}.
       explanation:
-        disable: Xá nun pues usar la cuenta mas el perfil y otros datos siguen intautos. Pues solicitar una copia de seguranza de los datos, camudar la configuración de la cuenta o desaniciar la cuenta.
+        disable: Xá nun pues usar la cuenta mas el perfil ya otros datos siguen intautos. Pues solicitar una copia de seguranza de los datos, camudar la configuración de la cuenta o desaniciar la cuenta.
       reason: 'Motivu:'
       subject:
         disable: Conxelóse la to cuenta %{acct}
@@ -776,12 +778,14 @@ ast:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu de l'autenticación en dos pasos nun ye válidu
     otp_lost_help_html: Si pierdes l'accesu, contauta con %{email}
-    seamless_external_login: Aniciesti la sesión pente un serviciu esternu, polo que la configuración de la contraseña y de la direición de corréu electrónicu nun tán disponibles.
+    seamless_external_login: Aniciesti la sesión pente un serviciu esternu, polo que la configuración de la contraseña ya de la direición de corréu electrónicu nun tán disponibles.
   verification:
     explanation_html: 'Pues <strong>verificate como la persona propietaria de los enllaces nos metadatos del to perfil</strong>. Pa ello, el sitiu web enllaciáu ha contener un enllaz al to perfil de Mastodon. Esti enllaz <strong>ha</strong> tener l''atributu <code>rel="me"</code>. El testu del enllaz nun importa. Equí tienes un exemplu:'
     verification: Verificación
   webauthn_credentials:
     create:
       error: Hebo un problema al amestar la llave de seguranza. Volvi tentalo.
+    invalid_credential: La llave de seguranza nun ye válida
+    not_enabled: Entá nun activesti la función WebAuthn
     not_supported: Esti restolador nun ye compatible coles llaves de seguranza
     otp_required: Pa usar les llaves de seguranza, activa primero l'autenticación en dos pasos.
