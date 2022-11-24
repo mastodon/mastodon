@@ -613,6 +613,116 @@ sco:
       skip_to_actions: Jouk tae actions
       status: Status
       statuses: Clyped on content
+      statuses_description_html: Offendin content wull be citit in communication wi the clyped on accoont
+      target_origin: Origin o clyped on accoont
+      title: Clypes
+      unassign: Unassign
+      unresolved: No resolvt
+      updated_at: Updatit
+      view_profile: Luik at profile
+    roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} uiser"
+        other: "%{count} uisers"
+      categories:
+        administration: Administration
+        devops: DevOps
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: Wi <strong>uiser roles</strong>, ye kin customize whit functions an areas o Mastodon yer uisers kin access.
+      edit: Edit '%{name}' role
+      everyone: Defaut permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affectin <strong>aw uisers</strong>, even thaim athoot a assignt role. Aw ither roles inherit permissions fae it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
+      privileges:
+        administrator: Administrator
+        administrator_description: Uisers wi this permission wull bypass every permission
+        delete_user_data: Delete Uiser Data
+        delete_user_data_description: Alloos uisers fir tae delete ither uisers' data athoot delay
+        invite_users: Invite Uisers
+        invite_users_description: Alloos uisers fir tae invite new fowk tae the server
+        manage_announcements: Manage Annooncements
+        manage_announcements_description: Alloos uisers fir tae manage annooncements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Alloos uisers fir tae luik ower appeals aginst moderation actions
+        manage_blocks: Manage Dingies
+        manage_blocks_description: Alloos uisers fir tae dingie email providers an IP addresses
+        manage_custom_emojis: Manage Custom Emoji
+        manage_custom_emojis_description: Alloos uisers fir tae manage custom emoji on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Alloos uisers fir tae dingie or alloo federation wi ither domains, an control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Alloos uisers fir tae broose an turn aff invite links
+        manage_reports: Manage Clypes
+        manage_reports_description: Alloos uisers fir tae luik ower clypes an perform moderation actions aginst them
+        manage_roles: Manage Roles
+        manage_roles_description: Alloos uisers fir tae manage an assign roles ablow their ain's
+        manage_rules: Manage Rules
+        manage_rules_description: Alloos uisers fir tae chynge server rules
+        manage_settings: Manage Settins
+        manage_settings_description: Alloos uisers fir tae chynge site settins
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Alloos uisers fir tae luik ower trendin content an update hashtag settins
+        manage_user_access: Manage Uiser Access
+        manage_user_access_description: Alloos uisers fir tae turn aff ither uisers' twa-factor authentication, chynge their email address, an reset their passwird
+    statuses:
+      deleted: Deletit
+      favourites: Favourites
+      history: Version history
+      in_reply_to: Replyin tae
+      language: Leid
+      media:
+        title: Media
+      metadata: Metadata
+      no_status_selected: Nae posts wis chynged as naen wis selectit
+      open: Open post
+      original_status: Original post
+      reblogs: Reblogs
+      status_changed: Post chynged
+      title: Accoont posts
+      trending: Trendin
+      visibility: Visibility
+      with_media: Wi media
+    strikes:
+      actions:
+        delete_statuses: "%{name} deletit %{target}'s posts"
+        disable: "%{name} froze %{target}'s accoont"
+        mark_statuses_as_sensitive: "%{name} mairked %{target}'s posts as sensitive"
+        none: "%{name} sent a warnin tae %{target}"
+        sensitive: "%{name} mairked %{target}'s accoont as sensitive"
+        silence: "%{name} limitit %{target}'s accoont"
+        suspend: "%{name} suspendit %{target}'s accoont"
+      appeal_approved: Appealt
+      appeal_pending: Appeal pendin
+    system_checks:
+      database_schema_check:
+        message_html: There pendin database migrations. Please rin them fir tae mak siccar the application behaves as expectit
+      elasticsearch_running_check:
+        message_html: Cuidnae connect tae Elasticseirch. Please check that it is rinnin, or turn aff ful-text seirch
+      elasticsearch_version_check:
+        message_html: 'Incompatible Elasticseirch version: %{value}'
+        version_comparison: Elasticseirch %{running_version} is rinnin whilst %{required_version} is requirt
+      rules_check:
+        action: Manage server rules
+        message_html: Ye huvnae definit onie server rules.
+      sidekiq_process_check:
+        message_html: Nae Sidekiq process rinnin fir the %{value} queue(s). Please luik ower yer Sidekiq configuration
+    tags:
+      review: Luik ower status
+      updated_msg: Hashtag settins updatit successfully
+    title: Administration
+    trends:
+      allow: Alloo
+      approved: Approvt
+      disallow: Disalloo
+      links:
+        allow: Alloo link
+        allow_provider: Alloo publisher
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
