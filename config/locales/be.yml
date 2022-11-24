@@ -494,8 +494,10 @@ be:
       private_comment: Прыватны каментарый
       public_comment: Публічны каментарый
       purge: Ачысціць
+      purge_description_html: Калі вам здаецца, што гэты дамен больш не будзе працаваць, вы можаце выдаліць усе даныя ўліковых запісаў і звязаныя з даменам даныя з вашага сховішча. Гэта можа заняць нейкі час.
       title: Федэрацыя
       total_blocked_by_us: Заблакіравана намі
+      total_reported: Скаргі на іх
     invites:
       deactivate_all: Дэактываваць усё
       filter:
@@ -527,6 +529,8 @@ be:
       status: Стан
       title: Рэтранслятары
     report_notes:
+      created_msg: Скарга паспяхова створана!
+      destroyed_msg: Скарга паспяхова выдалена!
       today_at: Сёння а %{time}
     reports:
       actions:
@@ -552,6 +556,11 @@ be:
       view_profile: Паглядзець профіль
     roles:
       add_new: Дадаць ролю
+      assigned_users:
+        one: "%{count} карыстальнік"
+        few: "%{count} карыстальнікі"
+        many: "%{count} карыстальнікаў"
+        other: "%{count} карыстальніка"
       categories:
         administration: Адміністрацыя
         devops: DevOps
@@ -559,11 +568,42 @@ be:
         moderation: Мадэрацыя
         special: Спецыяльны
       delete: Выдаліць
+      everyone: Дазволы па змаўчанні
+      permissions_count:
+        one: "%{count} дазвол"
+        few: "%{count} дазволы"
+        many: "%{count} дазволаў"
+        other: "%{count} дазвола"
       privileges:
         administrator: Адміністратар
+        delete_user_data: Выдаленне даных карыстальнікаў
+        invite_users: Запрашэнне карыстальнікаў
+        manage_announcements: Кіраванне аб'явамі
+        manage_announcements_description: Дазваляе кіраваць аб'явамі на серверы
         manage_appeals: Кіраванне апеляцыямі
         manage_appeals_description: Дазваляе карыстальнікам разглядаць апеляцыі на дзеянні мадэратара
+        manage_blocks: Кіраванне блакіроўкамі
+        manage_blocks_description: Дазваляе блакаваць пэўныя паштовыя правайдэры і IP адрасы
         manage_custom_emojis: Кіраванне адвольнымі эмодзі
+        manage_invites: Кіраванне запрашэннямі
+        manage_invites_description: Дазваляе праглядаць і дэактывоўваць запрашальныя спасылкі
+        manage_reports: Кіраванне скаргамі
+        manage_reports_description: Дазваляе разглядаць скаргі і прымаць захады мадэрацыі
+        manage_roles: Кіраванне ролямі
+        manage_rules: Кіраванне правіламі
+        manage_rules_description: Дазваляе змяняць правілы сервера
+        manage_settings: Кіраванне наладамі
+        manage_settings_description: Дазваляе змяняць налады сервера
+        manage_user_access: Кіраванне наладамі доступу карыстальнікаў
+        manage_user_access_description: Дазваляе адключаць двухфактарную аўтэнтыфікацыю іншым карыстальнікам, змяняць іх паштовы адрас і скідваць пароль
+        manage_users: Кіраванне карыстальнікамі
+        manage_users_description: Дазваляе праглядаць звесткі іншых карыстальнікаў і іх мадэрацыю
+        manage_webhooks: Кіраванне webhook'амі
+        view_audit_log: Кіраванне журналам аўдыту
+        view_dashboard: Прагляд панэлі кіравання
+        view_dashboard_description: Дазваляе праглядаць панэль кіравання і розныя метрыкі
+        view_devops: DevOps
+        view_devops_description: Дае доступ да панэляў кіравання Sidekiq і pgHero
       title: Ролі
     rules:
       add_new: Дадаць правіла
@@ -672,8 +712,9 @@ be:
     follow_request: 'Вы адправілі запыт на падпіску:'
     following: 'Поспех! Цяпер вы падпісаны на:'
     post_follow:
-      close: Або Вы можаце проста закрыць гэта акно.
+      close: Або, вы можаце проста закрыць гэтае акно.
       return: Паказаць профіль карыстальніка
+      web: Перайсці ў вэб-версію
   challenge:
     confirm: Працягнуць
     hint_html: "<strong>Парада:</strong> Мы не будзем запытваць ваш пароль зноўку на працягу наступнай гадзіны."
@@ -841,7 +882,7 @@ be:
     webauthn_authentication: Ключы бяспекі
   statuses:
     pin_errors:
-      ownership: Немагчыма замацаваць не свой допіс
+      ownership: Немагчыма замацаваць чужы допіс
     visibilities:
       public: Публічны
   statuses_cleanup:
@@ -868,10 +909,19 @@ be:
         spam: Спам
       explanation:
         suspend: Вы больш не можаце выкарыстоўваць свой уліковы запіс, а профіль і іншыя даныя сталі недаступнымі. Вы ўсё яшчэ можаце ўвайсці, каб запытаць архіў сваіх даных да моманту іх выдалення праз 30 дзён, але мы захаваем вашы базавыя даныя, каб не даць вам абысці выключэнне.
+      statuses: 'Прычынныя допісы:'
       subject:
+        delete_statuses: Вашыя допісы на %{acct} былі выдалены
+        mark_statuses_as_sensitive: Вашыя допісы на %{acct} былі пазначаныя як далікатныя
+        sensitive: З гэтага моманту вашыя допісы на %{acct} будуць пазначаныя як далікатныя
         suspend: Ваш уліковы запіс %{acct} быў выключаны
       title:
+        delete_statuses: Выдаленыя допісы
+        mark_statuses_as_sensitive: Допісы, пазначыная як далікатныя
         none: Папярэджанне
         suspend: Уліковы запіс выключаны
+    welcome:
+      final_action: Пачаць пісаць
+      final_step: 'Пачынайце пісаць! Нават, калі ў вас няма падпісчыкаў, іншыя людзі змогуць пабачыць вашыя допісы, напрыклад, у лакальнай стужцы, або праз хэштэгі. Калі хочаце, вы можаце прадставіцца праз хэштэг #introductions.'
   webauthn_credentials:
     delete: Выдаліць
