@@ -112,10 +112,13 @@ et:
       public: Avalik
       push_subscription_expires: PuSH tellimus aegub
       redownload: Värskenda profiili
+      redownloaded_msg: '%{username} kasutajakonto algallikast värskendatud'
       reject: Hülga
       rejected_msg: '%{username} liitumisavaldus tagasi lükatud'
       remove_avatar: Kustuta profiilipilt
       remove_header: Kustuta päis
+      removed_avatar_msg: '%{username} tunnuspilt eemaldatud'
+      removed_header_msg: '%{username} päisepilt eemaldatud'
       resend_confirmation:
         already_confirmed: See kasutaja on juba kinnitatud
         send: Saada kinnituskiri uuesti
@@ -152,6 +155,7 @@ et:
       undo_sensitized: Eemalda tundliku sisu märge
       undo_silenced: Võta vaigistus tagasi
       undo_suspension: Võta peatamine tagasi
+      unsilenced_msg: Konto %{username} piirangud emaldatud
       unsubscribe: Tühista tellimus
       unsuspended_msg: Kasutaja %{username} konto taastatud
       username: Kasutajanimi
@@ -528,6 +532,7 @@ et:
         manage_reports_description: Lubab kasutajail läbi vaadata ja viia läbi modereerimisotsuseid
         manage_roles: Rollide haldamine
         manage_rules: Reeglite haldamine
+        manage_taxonomies_description: Luba kasutajatel populaarset sisu üle vaadata ning uuendada siltide sätteid
         manage_user_access_description: Lubab kasutajail eemaldada teiste kahe-etapise autentimise nõude, muuta nende e-postiaadresse ja lähtestada salasõnu
         manage_users: Kasutajate haldamine
         manage_users_description: Lubab kasutajail näha teiste kasutajate detailandmeid ja teha modereerimisotsuseid
@@ -595,7 +600,9 @@ et:
     trends:
       allow: Luba
       approved: Kinnitatud
+      pending_review: Ootab ülevaatust
       tags:
+        description_html: Need sildid ilmuvad praegu paljudes postitutes mida su server näeb. See võib aidata su kasutajatel leida seda millest kõige rohkem parajasti räägitakse. Ühtegi silti ei näidata avalikult, enne nende heaks kiitmist.
         title: Trendikad sildid
         usable: Kasutatav
       title: Trendid
@@ -629,6 +636,7 @@ et:
       subject: 'Uus teavitus %{instance}-ile (#%{id})'
     new_trends:
       new_trending_tags:
+        no_approved_tags: Hetkel ei ole ühtegi heaks kiidetud populaarset silti.
         title: Trendikad sildid
   aliases:
     add_new: Loo teine nimi
