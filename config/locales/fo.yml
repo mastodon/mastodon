@@ -252,10 +252,35 @@ fo:
         destroy_status_html: "%{name} slettaði upplegg hjá %{target}"
         destroy_unavailable_domain_html: "%{name} tók upp aftir veiting til navnaøkið %{target}"
         destroy_user_role_html: "%{name} slettaði leiklutin hjá %{target}"
+        disable_2fa_user_html: "%{name} slepti kravið um váttan í tveimum stigum fyri brúkaran %{target}"
+        disable_custom_emoji_html: "%{name} gjørdi kensluteknið %{target} óvirkið"
+        disable_sign_in_token_auth_user_html: "%{name} gjørdi váttan við teldupostteknum óvirkna fyri %{target}"
+        disable_user_html: "%{name} gjørdi innritan hjá brúkaranum %{target} óvirkna"
+        enable_custom_emoji_html: "%{name} gjørdi kensluteknið %{target} virkið"
+        enable_sign_in_token_auth_user_html: "%{name} gjørdi váttan við teldupostteknum virkna fyri %{target}"
+        enable_user_html: "%{name} gjørdi innritan virkna fyri brúkaran %{target}"
+        memorialize_account_html: "%{name} broytti kontuna hjá %{target} til eina minnissíðu"
+        promote_user_html: "%{name} flutti brúkaran %{target} fram"
         reject_appeal_html: "%{name} avvísti umsjónaráheitan frá %{target}"
+        reject_user_html: "%{name} avvísti skráseting hjá %{target}"
+        remove_avatar_user_html: "%{name} strikaði eftirgjørda skapningin hjá %{target}"
+        reopen_report_html: "%{name} lat uppaftur meldingina %{target}"
+        resend_user_html: "%{name} endursendi váttanarteldubrævið fyri %{target}"
+        reset_password_user_html: "%{name} setti loyniorðið hjá brúkaranum %{target} av nýggjum"
+        resolve_report_html: "%{name} avgreiddi meldingina %{target}"
         sensitive_account_html: "%{name} hevur merkt media hjá %{target} sum viðkvæmt"
         silence_account_html: "%{name} hevur avmarkað rættindini á kontuni %{target}"
+        suspend_account_html: "%{name} gjørdi kontuna hjá %{target} óvirkna"
+        unassigned_report_html: "%{name} tók aftur tillutanina av meldingini %{target}"
         unblock_email_account_html: "%{name} hevur læst teldubrævabústaðin hjá %{target} upp"
+        unsensitive_account_html: "%{name} strikaði viðkvæmis-merkingina av miðlafíluni %{target}"
+        unsilence_account_html: "%{name} strikaði avmarkingina av kontuni hjá %{target}"
+        unsuspend_account_html: "%{name} gjørdi kontuna hjá %{target} virkna aftur"
+        update_announcement_html: "%{name} dagførdi kunngerðina %{target}"
+        update_custom_emoji_html: "%{name} dagførdi kensluteknið %{target}"
+        update_domain_block_html: "%{name} dagførdi navnaøkisblokeringina hjá %{target}"
+        update_ip_block_html: "%{name} broytti IP-reglurnar %{target}"
+        update_status_html: "%{name} dagførdi postin hjá %{target}"
         update_user_role_html: "%{name} broyttir %{target} leiklutir"
       deleted_account: strikað konta
       empty: Eingir loggar funnir.
@@ -273,9 +298,18 @@ fo:
         title: Nýggj kunngerð
       publish: Legg út
       published_msg: Kunngerð útgivin!
+      scheduled_for: Sett á skrá %{time}
+      scheduled_msg: Útgáva av kunngerð tíðarásett!
+      title: Kunngerðir
+      unpublish: Tak útgávu aftur
+      unpublished_msg: Kunngerð tikin aftur!
+      updated_msg: Kunngerð dagførd!
     custom_emojis:
+      assign_category: Tilluta bólk
       by_domain: Økisnavn
+      copied_msg: Havi gjørt lokalt avrit av kenslutekninum
       copy: Avrita
+      copy_failed_msg: Tað bar ikki til at gera lokalt avrit av hasum kenslutekninum
       create_new_category: Stovna nýggja flokking
       delete: Strika
       disable: Ógilda
