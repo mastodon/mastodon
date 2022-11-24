@@ -717,7 +717,23 @@ sco:
       registrations:
         preamble: Control wha kin mak a accoont on yer server.
         title: Registrations
+      registrations_mode:
+        modes:
+          approved: Approval needit fir sign up
+          none: Naebody kin sign up
+          open: Oniebody kin sign up
+      title: Server Settins
+    site_uploads:
+      delete: Delete uploadit file
+      destroyed_msg: Site upload successfully deletit!
     statuses:
+      account: Author
+      application: Application
+      back_to_account: Back tae accoont page
+      back_to_report: Back tae clype page
+      batch:
+        remove_from_report: Remove fae clype
+        report: Clype
       deleted: Deletit
       favourites: Favourites
       history: Version history
@@ -783,6 +799,8 @@ sco:
         usage_comparison: Shared %{today} times the day, compart tae %{yesterday} yisterday
       only_allowed: Ainly allooed
       pending_review: Pendin review
+      preview_card_providers:
+        allowed: Links fae this publisher kin trend
     webhooks:
       events: Events
       new: New webhook
