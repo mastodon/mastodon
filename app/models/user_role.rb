@@ -36,7 +36,7 @@ class UserRole < ApplicationRecord
     manage_roles: (1 << 17),
     manage_user_access: (1 << 18),
     delete_user_data: (1 << 19),
-    sensitive_user_data: (1 << 20),    
+    sensitive_user_data: (1 << 20),
   }.freeze
 
   module Flags
