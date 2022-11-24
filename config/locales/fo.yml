@@ -424,6 +424,9 @@ fo:
         resolve: Loys navnaøki
         title: Blokera nýtt teldupostanavnaøki
       no_email_domain_block_selected: Ongar teldupostanavnaøkisblokeringar vóru broyttar, tí ongar vóru valdar
+      resolved_dns_records_hint_html: Navnaøkið verður loyst til hesi MX navnaøki, sum í síðsta enda hava ábyrgdina av at móttaka teldupost. At blokera eitt MX navnaøki fer at blokera tilmeldingar frá einum og hvørjum teldupoststaði, sum brúkar sama MX navnaøki, sjálvt um sjónliga navnaøkið er eitt annað. <strong>Ansa eftir ikki at blokera stórar veitarar av telduposti</strong>
+      resolved_through_html: Loyst gjøgnum %{domain}
+      title: Blokeraði teldupostanavnaøki
     export_domain_allows:
       new:
         title: Innflyt navnaøkjaloyvi
@@ -439,24 +442,61 @@ fo:
         title: Innflyt navnaøkjablokeringar
       no_file: Eingin fíla vald
     follow_recommendations:
+      description_html: "<strong>Viðmæli at fylgja hjálpa nýggjum brúkarum til skjótt at finna áhugavert innihald</strong>. Tá ein brúkari ikki hevur havt samband við aðrar brúkarar til at gera persónlig tilmæli, so verða hesar kontur viðmæltar í staðin. Konturnar verða roknaðar av nýggjum dagliga frá einari blanding av kontum við flestu hugbindingum og flestu lokalu fylgjarum fyri eitt givið mál."
+      language: Fyri mál
       status: Status
+      suppress: Avmarka tilmæli at fylgja
       suppressed: Steðgað
+      title: Tilmæli at fylgja
+      unsuppress: Endurskapa tilmæli at fylgja
     instances:
       availability:
+        description_html:
+          one: Um veiting til navnaøkið ikki riggar í <strong>%{count} dag</strong>, so verða ongar royndir at veita gjørdar, uttan so, at ein veiting <em>frá</em> navnaøkinum er móttikin.
+          other: Um veiting til navnaøkið ikki riggar <strong>%{count} ymiskar dagar</strong>, so verða ongar royndir at veita gjørdar, uttan so, at ein veiting <em>frá</em> navnaøkinum er móttikin.
+        failure_threshold_reached: Mesta tal av brekum nátt %{date}.
+        failures_recorded:
+          one: Miseydnaðar royndir í %{count} dag.
+          other: Miseydnaðar royndir í %{count} ymiskar dagar.
+        no_failures_recorded: Eingi brek skrásett.
         title: Tøki
         warning: Seinasta royndin at fáa samband við ambætaran eydnaðist ikki
+      back_to_all: Øll
+      back_to_limited: Avmarkaði
+      back_to_warning: Ávaring
       by_domain: Økisnavn
+      confirm_purge: Er tað tilætlað, at dátur frá hesum navnaøkinum skulu strikast med alla?
       content_policies:
         comment: Innanhýsis viðmerking
+        description_html: Tú kanst áseta innihaldspolitikkir, sum verða áløgd øllum kontum frá hesum navnaøkinum og øllum tess undirnavnaøkjum.
         policies:
+          reject_media: Vraka miðil
+          reject_reports: Vraka meldingar
           silence: Mark
+          suspend: Banna
         policy: Reglur
+        reason: Almenn grundgeving
         title: Reglur fyri innihaldi
       dashboard:
+        instance_accounts_dimension: Kontur við flestum fylgjarum
+        instance_accounts_measure: goymdar kontur
+        instance_followers_measure: okkara fylgjarar har
+        instance_follows_measure: teirra fylgjarar her
         instance_languages_dimension: Mest nýtt mál
+        instance_media_attachments_measure: goymd miðlaviðfesti
+        instance_reports_measure: meldingar um tey
+        instance_statuses_measure: goymdir postar
       delivery:
+        all: Øll
+        clear: Reinsa veitingarvillur
+        failing: Miseydnast
+        restart: Byrja veiting av nýggjum
+        stop: Støðga veiting
         unavailable: Ikki tøkt
       delivery_available: Levering er møgulig
+      delivery_error_days: Dagar við veitingarvillum
+      delivery_error_hint: Er veiting ikki møgulig í %{count} dagar, so verða tey sjálvvirkandi merkt sum ikki møgulig at veita.
+      destroyed_msg: Dátur frá %{domain} eru nú settar í bíðirøð til beinan vegin at blíva strikaðar.
       moderation:
         all: Allir
         limited: Avmarkaðir
