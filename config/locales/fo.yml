@@ -336,30 +336,94 @@ fo:
       unlist: Tak av listanum
       unlisted: Ikki listað
       update_failed_msg: Fekk ikki dagført hatta kensluteknið
+      updated_msg: Kenslutekn dagført!
+      upload: Legg upp
     dashboard:
       active_users: virknir brúkarar
+      interactions: sín ámillum ávirkanir
+      media_storage: Miðlagoymsla
       new_users: nýggir brúkarar
+      opened_reports: meldingar latnar upp
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> kæra bíðar"
+        other: "<strong>%{count}</strong> kærur bíða"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> melding bíðar"
+        other: "<strong>%{count}</strong> meldingar bíða"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> frámerki bíðar"
+        other: "<strong>%{count}</strong> frámerki bíða"
+      pending_users_html:
+        one: "<strong>%{count}</strong> brúkari bíðar"
+        other: "<strong>%{count}</strong> brúkarar bíða"
+      resolved_reports: meldingar avgreiddar
+      software: Ritbúnaður
+      sources: Tilmeldingarkeldur
+      space: Goymsla brúkt
+      title: Yvirlitsskíggi
+      top_languages: Mest virknu mál
+      top_servers: Mest virknu ambætarar
+      website: Vevstað
+    disputes:
+      appeals:
+        empty: Ongar kærur funnar.
+        title: Kærur
     domain_allows:
+      add_new: Loyv sameining við navnaøki
+      created_msg: Sameining er nú loyvd fyri navnaøkið
+      destroyed_msg: Loyvi hjá navnaøki at sameinast er noktað
       export: Flyt út
       import: Flyt inn
+      undo: Nokta sameining við navnaøki
     domain_blocks:
+      add_new: Legg nýggja navnaøkisblokering afturat
+      created_msg: Navnaøkisblokering verður nú viðgjørd
+      destroyed_msg: Navnaøkisblokering er nú gjørd óvirkin
       domain: Økisnavn
+      edit: Rætta navnaøkisblokering
+      existing_domain_block: Tú hevur longu ásett stangari avmarkingar á %{name}.
+      existing_domain_block_html: Tú hevur longu ásett strangari avmarkingar á %{name}, tú mást <a href="%{unblock_url}">strika blokeringina</a> fyrst.
       export: Flyt út
       import: Flyt inn
       new:
+        create: Stovna blokering
         hint: Navnaøkjablokeringin forðar ikki stovnan av kontum í dátugrunninum, men fer afturlítandi og sjálvvirkandi at gera ávísar umsjónarmannagongdir á hesar kontur virknar.
         severity:
+          desc_html: "<strong>Avvmarka</strong> ger soleiðis, at postar frá kontum í hesum navnaøki verða ósjónligur fyri øll, sum ikki fylgja kontunum beinleiðis.\n<strong>Banna</strong> strikar alt innihald, allar miðlar og allar vangadátur fyri kontur hjá hesum navnaøkinum frá tínum ambætara. Brúka \n<strong>Einki</strong> um tú einans vil avvísa miðlafílum."
+          noop: Ongar
           silence: Mark
+          suspend: Banna
+        title: Nýggj navnaøkisblokering
       no_domain_block_selected: Ongar navnaøkjablokeringar vóru broyttar, tí ongar vóru valdar
       not_permitted: Tú hevur ikki rættindi at gera hetta
+      obfuscate: Grugga navnaøki
+      obfuscate_hint: Grugga navnaøkið lutvíst í listanum, um kunngerð av listum við navnaøkisavmarkingum er gjørd virkin
       private_comment: Privat viðmerking
       private_comment_hint: Viðmerking um hesa navnaøkjaavmarking til innanhýsis nýtslu hjá umsjónarfólkunum.
       public_comment: Sjónlig viðmerking
+      public_comment_hint: Viðmerk hesa navnaøkisavmarkingina fyri almenninginum, um kunngerð av listum við navnaøkisavmarkingum er gjørd virkin.
+      reject_media: Avvís miðlafílur
+      reject_media_hint: Burturbeinir miðlafílur, sum eru goymdar lokalt, og noktar at taka niður fílur frameftir. Óviðkomandi fyri banningar
+      reject_reports: Avvís meldingar
+      reject_reports_hint: Ikki leggja lag í meldingar, sum koma frá hesum navnaøkinum. Óviðkomandi fyri banningar
+      undo: Strika navnaøkisblokering
+      view: Vís navnaøkisblokering
     email_domain_blocks:
       add_new: Stovna
+      attempts_over_week:
+        one: "%{count} roynd seinastu vikuna"
+        other: "%{count} tilmeldingarroyndir seinastu vikuna"
+      created_msg: Teldupostanavnaøkið blokerað
       delete: Strika
+      dns:
+        types:
+          mx: MX postur
+      domain: Navnaøki
       new:
         create: Stovna nýtt økisnavn
+        resolve: Loys navnaøki
+        title: Blokera nýtt teldupostanavnaøki
+      no_email_domain_block_selected: Ongar teldupostanavnaøkisblokeringar vóru broyttar, tí ongar vóru valdar
     export_domain_allows:
       new:
         title: Innflyt navnaøkjaloyvi
