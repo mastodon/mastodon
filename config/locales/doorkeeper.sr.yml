@@ -112,6 +112,10 @@ sr:
         destroy:
           notice: Апликација опозвана.
     grouped_scopes:
+      access:
+        read: Приступ само за читање
+        read/write: Приступ за читање и писање
+        write: Приступ само за писање
       title:
         accounts: Налози
         admin/accounts: Администрација налога
@@ -122,8 +126,12 @@ sr:
         bookmarks: Обележивачи
         conversations: Разговори
         crypto: End-to-end енкрипција
+        favourites: Омиљени
         filters: Филтери
+        follow: Везе
+        follows: Праћени
         lists: Листе
+        media: Мултимедијални прилози
         mutes: Утишани
         notifications: Обавештења
         push: Прослеђена обавештења
@@ -138,8 +146,19 @@ sr:
       application:
         title: OAuth ауторизација потребна
     scopes:
+      "admin:read": читање свих података на серверу
+      "admin:read:accounts": читање осетљивих података за све налоге
+      "admin:read:reports": читање осетљивих података свих извештаја и пријављених налога
+      "admin:write": мењање свих података на серверу
+      "admin:write:accounts": вршење модераторских активности над налозима
+      "admin:write:reports": вршење модераторских активности над извештајима
+      crypto: коришћење end-to-end енкрипције
       follow: прати, блокира, одблокира и отпрати налоге
+      push: примање прослеђених обавештења
       read: чита податке Вашег налога
+      "read:accounts": погледај информације о налозима
+      "read:blocks": погледај своје блокиране
+      "read:bookmarks": погледај своје обележиваче
       "read:favourites": погледај своје омиљене
       "read:filters": погледај своје филтере
       "read:follows": погледај кога пратиш
