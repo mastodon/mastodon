@@ -483,6 +483,7 @@ be:
         unavailable: Недаступна
       empty: Даменаў не знойдзена.
       moderation:
+        all: Усе
         limited: Абмежаваныя
         title: Мадэрацыя
       private_comment: Прыватны каментарый
@@ -493,6 +494,7 @@ be:
     invites:
       deactivate_all: Дэактываваць усё
       filter:
+        all: Усе
         title: Фільтр
       title: Запрашэнні
     ip_blocks:
@@ -528,6 +530,8 @@ be:
       assign_to_self: Прызначыць мне
       assigned: Прызначаны мадэратар
       category: Катэгорыя
+      comment:
+        none: Пуста
       delete_and_resolve: Выдаліць допісы
       no_one_assigned: Ніводны
       notes:
@@ -538,7 +542,9 @@ be:
         title: Нататкі
       resolved: Вырашана
       status: Стан
+      title: Скаргі
       updated_at: Абноўлена
+      view_profile: Паглядзець профіль
     roles:
       add_new: Дадаць ролю
       categories:
@@ -560,8 +566,11 @@ be:
       edit: Рэдагаваць правіла
       title: Правілы сервера
     settings:
+      about:
+        title: Пра нас
       appearance:
         preamble: Наладзьце вэб-інтэрфейс Mastodon.
+        title: Выгляд
       discovery:
         trends: Актуальныя
       domain_blocks:
@@ -579,6 +588,7 @@ be:
         title: Медыя
       metadata: Метададзеныя
       open: Адкрыць допіс
+      visibility: Бачнасць
     strikes:
       actions:
         suspend: "Уліковы запіс %{target} выключаны %{name}"
@@ -591,6 +601,11 @@ be:
         allow: Дазволіць спасылка
         allow_provider: Дазволіць выдаўца
       statuses:
+        allow: Дазволіць допіс
+        allow_account: Дазволіць аўтара
+        description_html: Гэта допісы, пра якія ведае ваш сервер, што на даны момант часта абагульваюцца і дадаюцца ў абранае. Гэта можа дапамагчы вашым новым і пастаянным карыстальнікам знайсці больш людзей, на якіх можна падпісацца. Ніякія допісы не будуць паказвацца публічна, пакуль вы не зацвердзіце аўтара, а аўтар не дазволіць прапанаваць свой уліковы запіс іншым. Вы таксама можаце дазволіць або адхіліць асобныя допісы.
+        disallow: Забараніць допіс
+        disallow_account: Забараніць аўтара
         title: Актуальныя допісы
       tags:
         dashboard:
