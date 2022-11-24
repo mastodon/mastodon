@@ -159,6 +159,7 @@ et:
       unsubscribe: Tühista tellimus
       unsuspended_msg: Kasutaja %{username} konto taastatud
       username: Kasutajanimi
+      view_domain: Vaata domeeni kokkuvõtet
       warn: Hoiata
       web: Veeb
       whitelisted: Lubatud
@@ -223,6 +224,8 @@ et:
         update_status: Uuendas staatust
         update_user_role: Uuenda rolli
       actions:
+        approve_appeal_html: "%{name} kiitis heaks modereerimise otsuse vaidlustuse %{target} poolt"
+        approve_user_html: "%{name} kiitis heaks registreerimise %{target} poolt"
         create_canonical_email_block_html: "%{name} keelas e-postiaadressi räsiga %{target}"
         create_domain_block_html: "%{name} keelas domeeni %{target}"
         create_email_domain_block_html: "%{name} keelas e-posti domeeni %{target}"
@@ -522,20 +525,43 @@ et:
         devops: DevOps
         moderation: Modereerimine
       delete: Kustuta
+      permissions_count:
+        one: "%{count} õigus"
+        other: "%{count} õigused"
       privileges:
         administrator: Administraator
+        delete_user_data: Kustuta kasutaja andmed
+        delete_user_data_description: Lubab kasutajatel kustutada teiste kasutajate andmeid viiteta
+        invite_users: Kutsu kasutajaid
+        invite_users_description: Lubab kasutajatel serverisse uusi inimesi kutsuda
+        manage_announcements: Halda teadaandeid
+        manage_announcements_description: Lubab kasutajatel hallata serveri teadaandeid
         manage_appeals: Vaidlustuste haldamine
         manage_appeals_description: Lubab kasutajail läbi vaadata modereerimisotsuste vaidlustusi
         manage_blocks: Keeldude haldamine
         manage_blocks_description: Lubab kasutajatel keelata e-postiteenuse pakkujaid ja IP-aadresse
+        manage_custom_emojis: Halda isetehtud emotikone
+        manage_custom_emojis_description: Lubab kasutajatel hallata serveris isetehtud emotikone
+        manage_federation: Halda föderatsiooni
         manage_federation_description: Lubab kasutajail keelata või lubada föderatsioone teiste domeenidega ja hallata ühenduvust
+        manage_invites: Halda kutseid
+        manage_invites_description: Lubab kasutajatel kutseid lehitseda ja sulgeda
+        manage_reports: Halda raporteid
         manage_reports_description: Lubab kasutajail läbi vaadata ja viia läbi modereerimisotsuseid
         manage_roles: Rollide haldamine
+        manage_roles_description: Lubab kasutajatel hallata ja määrata endast madalamaid rolle
         manage_rules: Reeglite haldamine
+        manage_rules_description: Lubab kasutajatel muuta serveri reegleid
+        manage_settings: Halda sätteid
+        manage_settings_description: Lubab kasutajatel muute lehekülje sätteid
+        manage_taxonomies: Halda taksonoomiaid
         manage_taxonomies_description: Luba kasutajatel populaarset sisu üle vaadata ning uuendada siltide sätteid
+        manage_user_access: Halda kasutaja ligipääsu
         manage_user_access_description: Lubab kasutajail eemaldada teiste kahe-etapise autentimise nõude, muuta nende e-postiaadresse ja lähtestada salasõnu
         manage_users: Kasutajate haldamine
         manage_users_description: Lubab kasutajail näha teiste kasutajate detailandmeid ja teha modereerimisotsuseid
+        manage_webhooks: Halda webhook'e
+        manage_webhooks_description: Lubab kasutajatel administratiivseteks sündmusteks webhook'e seadistada
         view_audit_log_description: Lubab kasutajail näha serveri administratiivsete otsuste ajalugu
         view_devops: DevOps
       title: Rollid
@@ -549,7 +575,13 @@ et:
         title: Teave
       appearance:
         title: Välimus
+      branding:
+        title: Märgistus
+      content_retention:
+        preamble: Juhi kuidas kasutajate loodud sisu Mastodon'is talletatakse.
+        title: Sisu talletamine
       discovery:
+        follow_recommendations: Jälgi soovitusi
         profile_directory: Kasutajate kataloog
         title: Avastus
         trends: Trendid
@@ -567,6 +599,7 @@ et:
       destroyed_msg: Üleslaetud fail edukalt kustutatud!
     statuses:
       account: Autor
+      application: Rakendus
       back_to_account: Tagasi konto lehele
       deleted: Kustutatud
       favourites: Lemmikud
@@ -637,6 +670,7 @@ et:
     new_trends:
       new_trending_tags:
         no_approved_tags: Hetkel ei ole ühtegi heaks kiidetud populaarset silti.
+        requirements: 'Need on siltide kandidaadid mille hulgast ükskõik milline võib järjekorras mööda jõuda #%{rank} kohal olevast heaks kiidetud sildist. See on hetkel #%{lowest_tag_name} mille seis on %{lowest_tag_score}.'
         title: Trendikad sildid
   aliases:
     add_new: Loo teine nimi
