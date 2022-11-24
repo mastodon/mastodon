@@ -177,35 +177,54 @@ namespace :mastodon do
             q.modify :strip
           end
         when 'Amazon S3'
-          env['S3_ENABLED']  = 'true'
-          env['S3_PROTOCOL'] = 'https'
+          loop do 
+            
+            env['S3_ENABLED']  = 'true'
+            env['S3_PROTOCOL'] = 'https'
 
-          env['S3_BUCKET'] = prompt.ask('S3 bucket name:') do |q|
-            q.required true
-            q.default "files.#{env['LOCAL_DOMAIN']}"
-            q.modify :strip
-          end
+            env['S3_BUCKET'] = prompt.ask('S3 bucket name:') do |q|
+              q.required true
+              q.default "files.#{env['LOCAL_DOMAIN']}"
+              q.modify :strip
+            end
 
-          env['S3_REGION'] = prompt.ask('S3 region:') do |q|
-            q.required true
-            q.default 'us-east-1'
-            q.modify :strip
-          end
+            env['S3_REGION'] = prompt.ask('S3 region:') do |q|
+              q.required true
+              q.default 'us-east-1'
+              q.modify :strip
+            end
 
-          env['S3_HOSTNAME'] = prompt.ask('S3 hostname:') do |q|
-            q.required true
-            q.default 's3-us-east-1.amazonaws.com'
-            q.modify :strip
-          end
+            env['S3_HOSTNAME'] = prompt.ask('S3 hostname:') do |q|
+              q.required true
+              q.default "s3-#{env['S3_REGION']}.amazonaws.com"
+              q.modify :strip
+            end
 
-          env['AWS_ACCESS_KEY_ID'] = prompt.ask('S3 access key:') do |q|
-            q.required true
-            q.modify :strip
-          end
+            env['AWS_ACCESS_KEY_ID'] = prompt.ask('S3 access key:') do |q|
+              q.required true
+              q.modify :strip
+            end
 
-          env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('S3 secret key:') do |q|
-            q.required true
-            q.modify :strip
+            env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('S3 secret key:') do |q|
+              q.required true
+              q.modify :strip
+            end
+          
+            begin
+              Aws.config.update({region: env['S3_REGION'], credentials: Aws::Credentials.new(env['AWS_ACCESS_KEY_ID'], env['AWS_SECRET_ACCESS_KEY'])})
+              bucket = Aws::S3::Resource.new.bucket(env['S3_BUCKET'])
+              write_obj = bucket.object("test.txt")
+              write_obj.put(body: "Just testing...")
+              read_obj = bucket.object("test.txt")
+              raise "Could not read back S3 object." if read_obj.get.body.read != "Just testing..."
+              prompt.ok 'S3 connection works! 🎆'
+              break
+            rescue StandardError => e
+              prompt.error 'S3 connection could not be established with this configuration, try again.'
+              prompt.error e.message
+              break unless prompt.yes?('Try again?')
+            end
+            
           end
         when 'Wasabi'
           env['S3_ENABLED']  = 'true'
