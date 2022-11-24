@@ -37,6 +37,7 @@ sr:
         application: Апликација
         callback_url: Адреса за повратни позив
         delete: Обриши
+        empty: Немате апликација.
         name: Име
         new: Нова апликација
         scopes: Опсези важења
@@ -67,6 +68,7 @@ sr:
       confirmations:
         revoke: Да ли сте сигурни?
       index:
+        authorized_at: Ауторизовано дана %{date}
         title: Ваше ауторизоване апликације
     errors:
       messages:
@@ -100,6 +102,15 @@ sr:
           notice: Апликација опозвана.
     grouped_scopes:
       title:
+        accounts: Налози
+        admin/accounts: Администрација налога
+        admin/all: Све функције администрације
+        admin/reports: Администрација пријава
+        all: Све
+        blocks: Блокирани
+        bookmarks: Обележивачи
+        conversations: Разговори
+        filters: Филтери
         lists: Листе
         mutes: Утишани
         notifications: Обавештења
