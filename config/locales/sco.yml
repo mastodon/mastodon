@@ -1092,6 +1092,22 @@ sco:
     archive_takeout:
       date: Date
       download: Doonload yer archive
+      hint_html: Ye kin get a archive o yer <strong>posts an uploadit media</strong>. The exportit data wull be in the ActivityPub format, readable bi onie compliant saftware. Ye kin get a archive ilka 7 days.
+      in_progress: Compilin yer archive...
+      request: Get yer archive
+      size: Size
+    blocks: Ye dingie
+    bookmarks: Buikmairks
+    csv: CSV
+    domain_blocks: Domain dingies
+    lists: Lists
+    mutes: Ye wheesht
+    storage: Media storage
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: Ye'v awriddy featurt the maximum amoont o hashtags
+    hint_html: "<strong>Whit's featurt hashtags?</strong> They get pit prominently on yer public profile an alloo fowk fir tae broose yer public posts specifically unner thae hashtags. They'r a braw tuil fir keepin track o creative warks or lang-term projects."
   filters:
     contexts:
       account: Profiles
@@ -1171,3 +1187,46 @@ sco:
       overwrite_long: Replace current records wi the new anes
     preface: Ye kin import data thit ye'v exportit fae anither server, sic as a list o the fowk thit ye'r follaein or thaim thit ye'v dingied.
     success: Yer data wis successfully uploadit an wull get processed in guid time
+    types:
+      blocking: Dingied list
+      bookmarks: Buikmairks
+      domain_blocking: Domain dingied list
+      following: Follaein list
+      muting: Wheesht list
+    upload: Upload
+  invites:
+    delete: Deactivate
+    expired: Expirt
+    expires_in:
+      '1800': 30 minties
+      '21600': 6 oors
+      '3600': 1 oor
+      '43200': 12 oors
+      '604800': 1 week
+      '86400': 1 day
+    expires_in_prompt: Niver
+    generate: Generate invite link
+    invited_by: 'Ye got invitit bi:'
+    max_uses:
+      one: 1 uise
+      other: "%{count} uises"
+    max_uses_prompt: Nae limit
+    prompt: Generate an share links wi ithers fir tae gie access tae this server
+    table:
+      expires_at: Expires
+      uses: Uises
+    title: Invite fowk
+  lists:
+    errors:
+      limit: Ye'v hit the maximum amoont o lists
+  login_activities:
+    authentication_methods:
+      otp: twa-factor authentication app
+      password: passwird
+      sign_in_token: email security code
+      webauthn: security keys
+    description_html: If ye see activity on yer accoont thit ye dinnae recognize, consider chyngin yer passwird an turnin on twa-factor authentication.
+    empty: Nae authentication history available
+    failed_sign_in_html: Failt sign-in attempt wi %{method} fae %{ip} (%{browser})
+    successful_sign_in_html: Successfu sign-in wi %{method} fae %{ip} (%{browser})
+    title: Authentication history
