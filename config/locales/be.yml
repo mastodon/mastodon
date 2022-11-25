@@ -696,6 +696,7 @@ be:
     created: Праграма паспяхова створана
     destroyed: Праграма паспяхова выдалена
   auth:
+    apply_for_account: Пакінуць заяўку
     change_password: Пароль
     delete_account: Выдаліць уліковы запіс
     delete_account_html: Калі вы жадаеце выдаліць ваш уліковы запіс, можаце <a href="%{path}">працягнуць тут</a>. Ад вас будзе запатрабавана пацвярджэнне.
@@ -711,6 +712,7 @@ be:
     log_in_with: Увайсці праз
     login: Увайсці
     logout: Выйсці
+    migrate_account: Пераехаць на іншы ўліковы запіс
     or_log_in_with: Або ўвайсці з дапамогай
     privacy_policy_agreement_html: Я азнаёміўся і пагаджаюся з <a href="%{privacy_policy_path}" target="_blank">палітыкай канфідэнцыйнасці</a>
     providers:
@@ -718,13 +720,18 @@ be:
       saml: SAML
     register: Зарэгістравацца
     registration_closed: "%{instance} больш не прымае новых удзельнікаў"
+    resend_confirmation: Адправіць інструкцыю пацвярджэння зноў
     reset_password: Скінуць пароль
     rules:
+      preamble: Правілы вызначаныя мадэратарамі дамена %{domain}.
       title: Некалькі базавых правілаў.
     security: Бяспека
     set_new_password: Прызначыць новы пароль
+    sign_up:
+      preamble: Маючы ўліковы запіс на гэтым серверы Mastodon, вы будзеце мець магчымасць падпісацца на кожнага чалавека ў сетцы, незалежна ад таго, на якім серверы размешчаны ягоны ўліковы запіс.
     status:
       account_status: Стан уліковага запісу
+      confirming: Чакаецца пацвярджэнне з электроннай пошты.
     too_fast: Форма адпраўлена занадта хутка, паспрабуйце яшчэ раз.
     use_security_key: Выкарыстаеце ключ бяспекі
   authorize_follow:
@@ -790,7 +797,9 @@ be:
     archive_takeout:
       date: Дата
       size: Памер
+    bookmarks: Закладкі
     csv: CSV
+    lists: Спісы
   featured_tags:
     add_new: Дадаць новы
   filters:
@@ -821,6 +830,8 @@ be:
       merge: Аб'яднаць
       merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
+    types:
+      bookmarks: Закладкі
     upload: Запампаваць
   invites:
     expires_in:
@@ -831,6 +842,8 @@ be:
       '604800': 1 тыдзень
       '86400': 1 дзень
     expires_in_prompt: Ніколі
+    generate: Стварыць запрашальную спасылку
+    max_uses_prompt: Неабмежавана
     title: Запрасіць людзей
   login_activities:
     authentication_methods:
@@ -843,20 +856,51 @@ be:
     failed_sign_in_html: Няўдалая спроба ўваходу праз %{method} з %{ip} (%{browser})
     successful_sign_in_html: Паспяховы ўваход праз %{method} з %{ip} (%{browser})
     title: Гісторыя ўваходаў
+  migrations:
+    errors:
+      not_found: не знойдзена
+    followers_count: Падпісчыкі на момант перамяшчэння
+    past_migrations: Колішнія перамяшчэнні
+    proceed_with_move: Перамясціць падпісчыкаў
   moderation:
     title: Мадэрацыя
   notification_mailer:
+    follow:
+      body: "%{name} цяпер падпісаны на вас!"
+      subject: "%{name} цяпер падпісаны на вас"
+      title: Новы падпісчык
     follow_request:
       action: Кіраванне запытамі на падпіску
       body: "%{name} хоча падпісацца на вас"
       title: Новы запыт на падпіску
     mention:
       action: Адказаць
+    reblog:
+      subject: "%{name} пашырыў ваш допіс"
+    status:
+      subject: "Новы допіс ад %{name}"
+  notifications:
+    other_settings: Іншыя налады апавяшчэнняў
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: млрд
+          million: млн
+          thousand: тыс.
+          trillion: трлн
+  otp_authentication:
+    enable: Уключыць
   pagination:
     next: Далей
   relationships:
+    remove_selected_domains: Выдаліць усіх падпісчыкаў з выбраных даменаў
+    remove_selected_followers: Выдаліць выбраных карыстальнікаў
+    remove_selected_follows: Адпісацца ад выбраных карыстальнікаў
     status: Стан уліковага запісу
   sessions:
+    activity: Апошняя актыўнасць
     browser: Браўзер
     browsers:
       alipay: Alipay
@@ -892,26 +936,55 @@ be:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
+    revoke: Адклікаць
+    revoke_success: Сеанс паспяхова адкліканы
     title: Сесіі
+    view_authentication_history: Праглядзець гісторыю ўваходаў у мой уліковы запіс
   settings:
     account: Уліковы запіс
     account_settings: Налады ўліковага запісу
     appearance: Выгляд
     authorized_apps: Аўтарызаваныя праграмы
+    back: Назад да Mastodon
     delete: Выдаленне ўліковага запісу
     development: Распрацоўка
     edit_profile: Рэдагаваць профіль
     export: Экспарт даных
     import: Імпарт
     import_and_export: Імпарт і экспарт
+    migrate: Перамяшчэнне ўліковага запісу
     notifications: Апавяшчэнні
     preferences: Параметры
     profile: Профіль
+    relationships: Падпіскі і падпісчыкі
+    statuses_cleanup: Аўтаматычнае выдаленне допісаў
     two_factor_authentication: Двухфактарная аўтэнтыфікацыя
     webauthn_authentication: Ключы бяспекі
   statuses:
+    attached:
+      audio:
+        one: "%{count} аўдыяфайл"
+        few: "%{count} аўдыяфайлы"
+        many: "%{count} аўдыяфайлаў"
+        other: "%{count} аўдыяфайла"
+      image:
+        one: "%{count} выява"
+        few: "%{count} выявы"
+        many: "%{count} выяваў"
+        other: "%{count} выявы"
+      video:
+        one: "%{count} відэафайл"
+        few: "%{count} відэафайлы"
+        many: "%{count} відэафайлаў"
+        other: "%{count} відэафайла"
+    edited_at_html: Адрэдагавана %{date}
+    over_character_limit: перавышаная колькасць сімвалаў у %{max}
     pin_errors:
+      direct: Допісы, бачныя толькі згаданым карыстальнікам, не могуць быць замацаваныя
       ownership: Немагчыма замацаваць чужы допіс
+    show_more: Паказаць больш
+    sign_in_to_participate: Зарэгіструйцеся каб удзельнічаць у абмеркаванні
+    title: '%{name}: "%{quote}"'
     visibilities:
       public: Публічны
   statuses_cleanup:
@@ -926,6 +999,10 @@ be:
       '7889238': 3 месяцы
   stream_entries:
     pinned: Замацаваны допіс
+  themes:
+    contrast: Mastodon (высокі кантраст)
+    default: Mastodon (цёмная)
+    mastodon-light: Mastodon (светлая)
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
@@ -933,6 +1010,11 @@ be:
   two_factor_authentication:
     add: Дадаць
     edit: Рэдагаваць
+    generate_recovery_codes: Стварыць коды аднаўлення
+    lost_recovery_codes: Коды аднаўлення дазволяць вам аднавіць доступ да вашага ўліковага запісу ў выпадку страты тэлефона. Калі вы згубілі вашыя коды, вы можаце стварыць новыя тут. Старыя коды аднаўлення будуць ануляваныя.
+    recovery_codes: Абнавіць коды аднаўлення
+    recovery_codes_regenerated: Новыя коды аднаўлення паспяхова створаныя
+    recovery_instructions_html: Калі раптам вы страціце доступ да вашага тэлефона, вы можаце скарыстацца адным з кодаў аднаўлення ніжэй каб аднавіць доступ да вашага ўліковага запісу. <strong>Захоўвайце іх у бяспечным месцы</strong>. Напрыклад, вы можаце раздрукаваць іх і захоўваць разам з іншымі важнымі дакументамі.
     webauthn: Ключы бяспекі
   user_mailer:
     warning:
@@ -955,7 +1037,10 @@ be:
         none: Папярэджанне
         suspend: Уліковы запіс выключаны
     welcome:
+      explanation: Вось некаторыя парады каб пачаць
       final_action: Пачаць пісаць
       final_step: 'Пачынайце пісаць! Нават, калі ў вас няма падпісчыкаў, іншыя людзі змогуць пабачыць вашыя допісы, напрыклад, у лакальнай стужцы, або праз хэштэгі. Калі хочаце, вы можаце прадставіцца праз хэштэг #introductions.'
+      subject: Вітаем у Mastodon
+      title: Рады вітаць вас, %{name}!
   webauthn_credentials:
     delete: Выдаліць
