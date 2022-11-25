@@ -1324,3 +1324,93 @@ sco:
           trillion: T
   otp_authentication:
     code_hint: Pit in the code generatit bi yer authenticator app fir tae confirm
+    description_html: If ye turn on <strong>twa-factor authentication</strong> uisin a authenticator app, loggin in wull require ye fir tae be in possession o yer phone, thit wull generate tokens fir ye tae pit in.
+    enable: Turn on
+    instructions_html: "<strong>Scan this QR code intae Google Authenticator or a similar TOTP app on yer phone</strong>. Fae noo on, that app will generate tokens thit ye wull hae tae pit in whan ye'r loggin in."
+    manual_instructions: 'If ye cannae scan in the QR code an need tae pit it in bi haun, here the plain-text secret:'
+    setup: Set up
+    wrong_code: The enterit code wisnae valid! Is yer server time an device time richt?
+  pagination:
+    newer: Newer
+    next: Neist
+    older: Aulder
+    prev: Prev
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ye'v votit in this poll awriddy
+      duplicate_options: hae duplicate items
+      duration_too_long: is ower faur intae the future
+      duration_too_short: is ower suin
+      expired: The poll haes endit awriddy
+      invalid_choice: The vote option ye picked disnae exist
+      over_character_limit: cannae be langer nor %{max} chairacters each
+      too_few_options: shuid hae mait nor ae item
+      too_many_options: cannae contain mair than %{max} items
+  preferences:
+    other: Ither
+    posting_defaults: Postin defauts
+    public_timelines: Public timelines
+  privacy_policy:
+    title: Privacy Policy
+  reactions:
+    errors:
+      limit_reached: Limit o different reactions reached
+      unrecognized_emoji: isnae a recognized emoji
+  relationships:
+    activity: Accoont activity
+    dormant: Dormant
+    follow_selected_followers: Follae selectit follaers
+    followers: Follaers
+    following: Follaein
+    invited: Invitit
+    last_active: Last active
+    most_recent: Maist recent
+    moved: Flittit
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Tak doon aw follaers fae the selectit domains
+    remove_selected_followers: Remove selectit follaers
+    remove_selected_follows: Unfollae selectit uisers
+    status: Accoont status
+  remote_follow:
+    missing_resource: Cuidnae fin the requirt redirect URL fir yer accoont
+  reports:
+    errors:
+      invalid_rules: disnae reference valid rules
+  rss:
+    content_warning: 'Content warnin:'
+    descriptions:
+      account: Public posts fae @%{acct}
+  settings:
+    development: Development
+    edit_profile: Edit profile
+    export: Data export
+    featured_tags: Featured hashtags
+    import: Import
+    import_and_export: Import an export
+    migrate: Accoont flittin
+    notifications: Notes
+    preferences: Preferences
+    profile: Profile
+    relationships: Follaes and follaers
+    statuses_cleanup: Automatit post deletion
+    strikes: Moderation strikes
+    two_factor_authentication: Twa-factor Auth
+    webauthn_authentication: Security keys
+  statuses:
+    attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
+      description: 'Attached: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Heezed fae %{acct_link}
+    content_warning: 'Content warnin: %{warning}'
+    default_language: Same as interface leid
