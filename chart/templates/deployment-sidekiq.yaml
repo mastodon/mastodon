@@ -10,10 +10,12 @@ metadata:
     app.kubernetes.io/component: sidekiq-{{ .name }}
     app.kubernetes.io/part-of: rails
 spec:
-  replicas: {{ .replicas }}
   {{- if (has "scheduler" .queues) }}
+  replicas: {{ min .replicas 1 }}
   strategy:
     type: Recreate
+  {{- else }}
+  replicas: {{ .replicas }}
   {{- end }}
   selector:
     matchLabels:
