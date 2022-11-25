@@ -36,10 +36,10 @@ describe UserSettingsDecorator do
     end
 
     it 'updates the user settings value for alt text reminder' do
-      values = { 'setting_alt_text_reminder' => '1' }
+      values = { 'setting_alt_text_reminder' => '0' }
 
       settings.update(values)
-      expect(user.settings['alt_text_reminder']).to eq true
+      expect(user.settings['alt_text_reminder']).to eq false
     end
 
     it 'updates the user settings value for unfollow modal' do

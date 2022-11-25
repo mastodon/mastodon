@@ -82,6 +82,7 @@ const initialState = ImmutableMap({
   default_privacy: 'public',
   default_sensitive: false,
   default_language: 'en',
+  alt_text_reminder: true,
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
