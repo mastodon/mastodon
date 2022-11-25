@@ -47,7 +47,7 @@ data:
   S3_REGION: {{ . }}
   {{- end }}
   {{- with .Values.mastodon.s3.alias_host }}
-  S3_ALIAS_HOST: {{ .Values.mastodon.s3.alias_host}}
+  S3_ALIAS_HOST: {{ . }}
   {{- end }}
   {{- end }}
   {{- with .Values.mastodon.smtp.auth_method }}
