@@ -485,6 +485,7 @@ be:
         unavailable: Недаступна
       delivery_available: Дастаўка даступна
       delivery_error_days: Дзён памылак дастаўкі
+      delivery_error_hint: Калі дастаўка немагчымая на працягу %{count} дзён, яна будзе аўтаматычна пазначана як недастаўленая.
       destroyed_msg: Даныя з %{domain} цяпер стаяць у чарзе на неадкладнае выдаленне.
       empty: Даменаў не знойдзена.
       moderation:
@@ -498,6 +499,7 @@ be:
       title: Федэрацыя
       total_blocked_by_us: Заблакіравана намі
       total_reported: Скаргі на іх
+      total_storage: Медыя дадаткі
     invites:
       deactivate_all: Дэактываваць усё
       filter:
@@ -861,6 +863,9 @@ be:
     failed_sign_in_html: Няўдалая спроба ўваходу праз %{method} з %{ip} (%{browser})
     successful_sign_in_html: Паспяховы ўваход праз %{method} з %{ip} (%{browser})
     title: Гісторыя ўваходаў
+  media_attachments:
+    validations:
+      too_many: Няможна дадаць больш 4 файлаў
   migrations:
     errors:
       not_found: не знойдзена
