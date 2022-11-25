@@ -67,7 +67,7 @@ module Mastodon
       aggressive = options[:aggressive]
 
       processed, aggregate = parallelize_with_progress(
-        Account.where(last_webfingered_at: ..time_ago)
+        Account.where(last_webfingered_at: Time.zone.at(0)..time_ago)
                .left_outer_joins(:user)
                .where(user: { id: nil })
         ) do |account|
