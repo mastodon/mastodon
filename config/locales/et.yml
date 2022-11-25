@@ -1,3 +1,4 @@
+---
 et:
   about:
     about_mastodon_html: 'Tuleviku sotsiaalvõrgustik: Reklaamivaba, korporatiivse järelvalveta, eetiline kujundus ning detsentraliseeritus! Oma enda andmeid Mastodonis!'
@@ -47,7 +48,7 @@ et:
         changed_msg: Roll on muudetud!
         label: Muuda rolli
         no_role: Roll puudub
-        title: '%{username} rolli muutmine'
+        title: "%{username} rolli muutmine"
       confirm: Kinnita
       confirmed: Kinnitatud
       confirming: Kinnitamine
@@ -86,7 +87,7 @@ et:
       media_attachments: Lisatud meedia
       memorialize: Igaveseks lahkunud
       memorialized: Igaveselt lahkunuks märgitud
-      memorialized_msg: '%{username} on märgitud igavaselt lahkunuks'
+      memorialized_msg: "%{username} on märgitud igavaselt lahkunuks"
       moderation:
         active: Aktiivne
         all: Kõik
@@ -112,13 +113,13 @@ et:
       public: Avalik
       push_subscription_expires: PuSH tellimus aegub
       redownload: Värskenda profiili
-      redownloaded_msg: '%{username} kasutajakonto algallikast värskendatud'
+      redownloaded_msg: "%{username} kasutajakonto algallikast värskendatud"
       reject: Hülga
-      rejected_msg: '%{username} liitumisavaldus tagasi lükatud'
+      rejected_msg: "%{username} liitumisavaldus tagasi lükatud"
       remove_avatar: Kustuta profiilipilt
       remove_header: Kustuta päis
-      removed_avatar_msg: '%{username} tunnuspilt eemaldatud'
-      removed_header_msg: '%{username} päisepilt eemaldatud'
+      removed_avatar_msg: "%{username} tunnuspilt eemaldatud"
+      removed_header_msg: "%{username} päisepilt eemaldatud"
       resend_confirmation:
         already_confirmed: See kasutaja on juba kinnitatud
         send: Saada kinnituskiri uuesti
@@ -453,7 +454,7 @@ et:
     relays:
       add_new: Lisa uus relee
       delete: Kustuta
-      description_html: <strong>Föderatsiooni relee</strong> on vahepealne server, mis vahetab suures koguses tuututusi serverite vahel, mis on selle tellijad ning mis sellele saadavad. <strong>See aitab väikestel ja keskmistel serveritel avastada sisu fediversumist</strong>, mis tavaliselt nõuab teisel serveril olevate inimeste jälgimist.
+      description_html: "<strong>Föderatsiooni relee</strong> on vahepealne server, mis vahetab suures koguses tuututusi serverite vahel, mis on selle tellijad ning mis sellele saadavad. <strong>See aitab väikestel ja keskmistel serveritel avastada sisu fediversumist</strong>, mis tavaliselt nõuab teisel serveril olevate inimeste jälgimist."
       disable: Keela
       disabled: Keelatud
       enable: Luba
@@ -666,7 +667,7 @@ et:
     new_report:
       body: "%{reporter} teavitas kasutajast %{target}"
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
-      subject: 'Uus teavitus %{instance}-ile (#%{id})'
+      subject: Uus teavitus %{instance}-ile (#%{id})
     new_trends:
       new_trending_tags:
         no_approved_tags: Hetkel ei ole ühtegi heaks kiidetud populaarset silti.
@@ -998,7 +999,7 @@ et:
       sign_up:
         subject: "%{name} liitus"
     favourite:
-      body: '%{name} lisas Teie staatuse lemmikutesse:'
+      body: "%{name} lisas Teie staatuse lemmikutesse:"
       subject: "%{name} märkis su staatuse lemmikuks"
       title: Uus lemmik
     follow:
@@ -1012,11 +1013,11 @@ et:
       title: Uus jälgimistaotlus
     mention:
       action: Vasta
-      body: '%{name} mainis Teid:'
-      subject: '%{name} mainis Teid'
+      body: "%{name} mainis Teid:"
+      subject: "%{name} mainis Teid"
       title: Uus mainimine
     reblog:
-      body: '%{name} jagas postitust:'
+      body: "%{name} jagas postitust:"
       subject: "%{name} jagas postitust"
       title: Uus jagamine
   notifications:
@@ -1156,7 +1157,7 @@ et:
       video:
         one: "%{count} video"
         other: "%{count} videot"
-    boosted_from_html: '%{acct_link} jagamine'
+    boosted_from_html: "%{acct_link} jagamine"
     content_warning: 'Sisu hoiatus: %{warning}'
     disallowed_hashtags:
       one: 'sisaldab ebasobivat silti: %{tags}'

@@ -1,3 +1,4 @@
+---
 be:
   about:
     about_mastodon_html: 'Сацыяльная сетка будучыні: без рэкламы, без карпаратыўнага назірання, этычны дызайн і дэцэнтралізацыя! Валодайце сваімі дадзенымі з Mastodon'
@@ -8,9 +9,9 @@ be:
   accounts:
     follow: Падпісацца
     followers:
-      one: Падпісчык
       few: Падпісчыка
       many: Падпісчыкаў
+      one: Падпісчык
       other: Падпісчыкі
     following: Падпісаны
     instance_actor_flash: Гэты ўліковы запіс - лічбавы аватар, неабходны для рэпрэзентацыі самога сервера, а не якой-небудзь асобы. Ён выкарыстоўваецца для федэралізацыі і не можа быць замарожаны.
@@ -20,9 +21,9 @@ be:
     pin_errors:
       following: Вы павінны быць падпісаны на чалавека, якога вы жадаеце ўхваліць
     posts:
-      one: Допіс
       few: Допісы
       many: Допісаў
+      one: Допіс
       other: Допісы
     posts_tab_heading: Допісы
   admin:
@@ -59,7 +60,7 @@ be:
       delete: Выдаліць даныя
       deleted: Выдалены
       demote: Панізіць у правах
-      destroyed_msg: "Даныя %{username} цяпер у чарзе на прымусовае выдаленне"
+      destroyed_msg: Даныя %{username} цяпер у чарзе на прымусовае выдаленне
       disable: Замарозіць
       disable_sign_in_token_auth: Выключыць аўтэнтыфікацыю па e-mail токену
       disable_two_factor_authentication: Адключыць 2FA
@@ -220,12 +221,12 @@ be:
         unsuspend_account: Аднавіць уліковы запіс
         update_announcement: Абнавіць аб'яву
         update_custom_emoji: Абнавіць адвольныя эмодзі
-        update_domain_block: Актуалізаваць блакіроўку дамена 
+        update_domain_block: Актуалізаваць блакіроўку дамена
         update_ip_block: Абнавіць IP правіла
         update_status: Абнавіць допіс
         update_user_role: Абнавіць ролю
       actions:
-        approve_appeal_html: "Карыстальнік %{name} ухваліў запыт на мадэрацыю %{target}"
+        approve_appeal_html: Карыстальнік %{name} ухваліў запыт на мадэрацыю %{target}
         approve_user_html: "%{name} пацвердзіў рэгістрацыю ад %{target}"
         assigned_to_self_report_html: "%{name} прызначыў справаздачу %{target} на сябе\n"
         change_email_user_html: "%{name} змяніў паштовы адрас карыстальніка %{target}"
@@ -271,12 +272,12 @@ be:
         resolve_report_html: "%{name} вырашыў скаргу %{target}"
         sensitive_account_html: "%{name} адзначыў медыя %{target} як далікатнае"
         silence_account_html: "%{name} абмежаваў уліковы запіс %{target}"
-        suspend_account_html: "Уліковы запіс %{target} выключаны %{name}"
+        suspend_account_html: Уліковы запіс %{target} выключаны %{name}
         unassigned_report_html: "%{name} знял(а) прызначэнне скаргі %{target}"
         unblock_email_account_html: "%{name} разблакіраваў эл. пошту %{target}"
         unsensitive_account_html: "%{name} зняў адзнаку далікатнае з медыя %{target}"
         unsilence_account_html: "%{name} зняў ліміт з уліковага запісу %{target}"
-        unsuspend_account_html: "Уліковы запіс %{target} адноўлены %{name}"
+        unsuspend_account_html: Уліковы запіс %{target} адноўлены %{name}
         update_announcement_html: "%{name} абнавіў аб'яву %{target}"
         update_custom_emoji_html: "%{name} абнавіў эмодзі %{target}"
         update_domain_block_html: "%{name} абнавіў блакіроўку дамена для %{target}"
@@ -346,9 +347,9 @@ be:
       new_users: новыя карыстальнікі
       opened_reports: скарг прынята
       pending_appeals_html:
-        one: "<strong>%{count}</strong> апеляцыя ў чарзе"
         few: "<strong>%{count}</strong> апеляцыі ў чарзе"
         many: "<strong>%{count}</strong> апеляцый у чарзе"
+        one: "<strong>%{count}</strong> апеляцыя ў чарзе"
         other: "<strong>%{count}</strong> апеляцыі ў чарзе"
       resolved_reports: скарг разгледжана
       software: Праграмнае забеспячэнне
@@ -444,9 +445,9 @@ be:
       availability:
         failure_threshold_reached: Парог памылак дасягнуты %{date}.
         failures_recorded:
-          one: Памылковых спроб за %{count} дзень.
           few: Памылковых спроб за %{count} розныя дні.
           many: Памылковых спроб за %{count} розных дзён.
+          one: Памылковых спроб за %{count} дзень.
           other: Памылковых спроб за %{count} розныя дні.
         no_failures_recorded: Памылак не зарэгістравана.
         title: Дасяжнасць
@@ -558,9 +559,9 @@ be:
     roles:
       add_new: Дадаць ролю
       assigned_users:
-        one: "%{count} карыстальнік"
         few: "%{count} карыстальнікі"
         many: "%{count} карыстальнікаў"
+        one: "%{count} карыстальнік"
         other: "%{count} карыстальніка"
       categories:
         administration: Адміністрацыя
@@ -572,9 +573,9 @@ be:
       edit: Рэдагаваць ролю "%{name}"
       everyone: Дазволы па змаўчанні
       permissions_count:
-        one: "%{count} дазвол"
         few: "%{count} дазволы"
         many: "%{count} дазволаў"
+        one: "%{count} дазвол"
         other: "%{count} дазвола"
       privileges:
         administrator: Адміністратар
@@ -641,7 +642,7 @@ be:
       visibility: Бачнасць
     strikes:
       actions:
-        suspend: "Уліковы запіс %{target} выключаны %{name}"
+        suspend: Уліковы запіс %{target} выключаны %{name}
     tags:
       updated_msg: Налады хэштэгаў паспяхова змененыя
     title: Адміністрацыя
@@ -789,9 +790,9 @@ be:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422':
+    '422': 
     '429': Too many requests
-    '500':
+    '500': 
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
@@ -878,7 +879,7 @@ be:
     reblog:
       subject: "%{name} пашырыў ваш допіс"
     status:
-      subject: "Новы допіс ад %{name}"
+      subject: Новы допіс ад %{name}
   notifications:
     other_settings: Іншыя налады апавяшчэнняў
   number:
@@ -963,19 +964,19 @@ be:
   statuses:
     attached:
       audio:
-        one: "%{count} аўдыяфайл"
         few: "%{count} аўдыяфайлы"
         many: "%{count} аўдыяфайлаў"
+        one: "%{count} аўдыяфайл"
         other: "%{count} аўдыяфайла"
       image:
-        one: "%{count} выява"
         few: "%{count} выявы"
         many: "%{count} выяваў"
+        one: "%{count} выява"
         other: "%{count} выявы"
       video:
-        one: "%{count} відэафайл"
         few: "%{count} відэафайлы"
         many: "%{count} відэафайлаў"
+        one: "%{count} відэафайл"
         other: "%{count} відэафайла"
     edited_at_html: Адрэдагавана %{date}
     over_character_limit: перавышаная колькасць сімвалаў у %{max}
