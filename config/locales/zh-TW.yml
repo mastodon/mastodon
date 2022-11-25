@@ -366,6 +366,8 @@ zh-TW:
       add_new: 將網域加入聯邦宇宙白名單
       created_msg: 網域已成功加入聯邦宇宙白名單
       destroyed_msg: 網域已成功從聯邦宇宙白名單移除
+      export: 匯出
+      import: 匯入
       undo: 從聯邦宇宙白名單移除
     domain_blocks:
       add_new: 新增欲封鎖域名
@@ -375,6 +377,8 @@ zh-TW:
       edit: 更改封鎖的站台
       existing_domain_block: 您已對 %{name} 施加了更嚴格的限制。
       existing_domain_block_html: 您已經對 %{name} 施加了更嚴格的限制，您需要先把他<a href="%{unblock_url}">取消封鎖</a>。
+      export: 匯出
+      import: 匯入
       new:
         create: 新增封鎖
         hint: 站點封鎖動作並不會阻止帳號紀錄被新增至資料庫，但會自動回溯性地對那些帳號套用特定管理設定。
@@ -384,6 +388,8 @@ zh-TW:
           silence: 靜音
           suspend: 停權
         title: 新增封鎖站點
+      no_domain_block_selected: 因未選取項目，而未更改網域黑名單
+      not_permitted: 您無權執行此操作
       obfuscate: 混淆網域名稱
       obfuscate_hint: 若啟用網域廣告列表限制，於列表部份混淆網域名稱
       private_comment: 私人留言
@@ -414,6 +420,20 @@ zh-TW:
       resolved_dns_records_hint_html: 網域名稱解析為以下 MX 網域，這些網域最終負責接收電子郵件。封鎖 MX 網域將會封鎖任何來自使用相同 MX 網域的電子郵件註冊，即便可見的域名是不同的也一樣。<strong>請注意，不要封鎖主要的電子郵件服務提供商。</strong>
       resolved_through_html: 透過 %{domain} 解析
       title: 電子郵件黑名單
+    export_domain_allows:
+      new:
+        title: 匯入網域白名單
+      no_file: 尚未選擇檔案
+    export_domain_blocks:
+      import:
+        description_html: 您將匯入網域黑名單列表。若您非自行編纂此列表，請審慎檢查。
+        existing_relationships_warning: 既存之跟隨關係
+        private_comment_description_html: 為了幫助您追蹤匯入黑名單之來源，匯入黑名單建立時將隨附以下私密備註：<q>%{comment}</q>
+        private_comment_template: 於 %{date} 由 %{source} 匯入
+        title: 匯入網域黑名單
+      new:
+        title: 匯入網域黑名單
+      no_file: 尚未選擇檔案
     follow_recommendations:
       description_html: |-
         <strong>跟隨建議幫助新使用者們快速找到有趣的內容</strong>. 當使用者沒有與其他帳號有足夠多的互動以建立個人化跟隨建議時，這些帳號將會被推荐。這些帳號將基於某選定語言之高互動和高本地跟隨者數量帳號而
@@ -898,7 +918,7 @@ zh-TW:
     warning: 警告，不要把它分享給任何人!
     your_token: 您的 access token
   auth:
-    apply_for_account: 登記排隊名單
+    apply_for_account: 申請帳號
     change_password: 密碼
     delete_account: 刪除帳號
     delete_account_html: 如果您欲刪除您的帳號，請<a href="%{path}">點擊這裡繼續</a>。您需要再三確認您的操作。
@@ -1136,6 +1156,7 @@ zh-TW:
     invalid_markup: 含有無效的 HTML 語法：%{error}
   imports:
     errors:
+      invalid_csv_file: 無效的 CSV 檔案。錯誤訊息：%{error}
       over_rows_processing_limit: 含有超過 %{count} 行
     modes:
       merge: 合併
@@ -1349,6 +1370,7 @@ zh-TW:
     browser: 瀏覽器
     browsers:
       alipay: 支付寶
+      blackberry: 黑莓機（BlackBerry）
       chrome: Chrome 瀏覽器
       edge: Microsoft Edge 瀏覽器
       electron: Electron 瀏覽器
@@ -1371,6 +1393,7 @@ zh-TW:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: 黑莓機（BlackBerry）
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS

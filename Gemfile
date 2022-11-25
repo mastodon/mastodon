@@ -55,7 +55,7 @@ gem 'redis-namespace', '~> 1.9'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.1'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.6.0'
+gem 'httplog', '~> 1.6.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
@@ -122,6 +122,7 @@ group :test do
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.18'
   gem 'rspec_junit_formatter', '~> 0.6'
+  gem 'rack-test', '~> 2.0'
 end
 
 group :development do
@@ -152,7 +153,5 @@ end
 
 gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
-
 gem 'xorcist', '~> 1.1'
-
 gem 'cocoon', '~> 1.2'

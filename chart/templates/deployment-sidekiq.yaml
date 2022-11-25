@@ -1,96 +1,97 @@
+{{- $context := . }}
+{{- range .Values.mastodon.sidekiq.workers }}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "mastodon.fullname" . }}-sidekiq
+  name: {{ include "mastodon.fullname" $context }}-sidekiq-{{ .name }}
   labels:
-    {{- include "mastodon.labels" . | nindent 4 }}
+    {{- include "mastodon.labels" $context | nindent 4 }}
+    app.kubernetes.io/component: sidekiq-{{ .name }}
+    app.kubernetes.io/part-of: rails
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .replicas }}
+  {{- if (has "scheduler" .queues) }}
+  strategy:
+    type: Recreate
   {{- end }}
   selector:
     matchLabels:
-      {{- include "mastodon.selectorLabels" . | nindent 6 }}
-      app.kubernetes.io/component: sidekiq
+      {{- include "mastodon.selectorLabels" $context | nindent 6 }}
+      app.kubernetes.io/component: sidekiq-{{ .name }}
       app.kubernetes.io/part-of: rails
   template:
     metadata:
       annotations:
-        {{- with .Values.podAnnotations }}
+        {{- with $context.Values.podAnnotations }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
         # roll the pods to pick up any db migrations or other changes
-        {{- include "mastodon.rollingPodAnnotations" . | nindent 8 }}
+        {{- include "mastodon.rollingPodAnnotations" $context | nindent 8 }}
       labels:
-        {{- include "mastodon.selectorLabels" . | nindent 8 }}
-        app.kubernetes.io/component: sidekiq
+        {{- include "mastodon.selectorLabels" $context | nindent 8 }}
+        app.kubernetes.io/component: sidekiq-{{ .name }}
         app.kubernetes.io/part-of: rails
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with $context.Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
-      {{- with .Values.podSecurityContext }}
+      serviceAccountName: {{ include "mastodon.serviceAccountName" $context }}
+      {{- with (default $context.Values.podSecurityContext $context.Values.mastodon.sidekiq.podSecurityContext) }}
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if (not .Values.mastodon.s3.enabled) }}
-      # ensure we run on the same node as the other rails components; only
-      # required when using PVCs that are ReadWriteOnce
-      {{- if or (eq "ReadWriteOnce" .Values.mastodon.persistence.assets.accessMode) (eq "ReadWriteOnce" .Values.mastodon.persistence.system.accessMode) }}
+      {{- with (default (default $context.Values.affinity $context.Values.mastodon.sidekiq.affinity) .affinity) }}
       affinity:
-        podAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/part-of
-                    operator: In
-                    values:
-                      - rails
-              topologyKey: kubernetes.io/hostname
+        {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if (not $context.Values.mastodon.s3.enabled) }}
       volumes:
         - name: assets
           persistentVolumeClaim:
-            claimName: {{ template "mastodon.fullname" . }}-assets
+            claimName: {{ template "mastodon.fullname" $context }}-assets
         - name: system
           persistentVolumeClaim:
-            claimName: {{ template "mastodon.fullname" . }}-system
+            claimName: {{ template "mastodon.fullname" $context }}-system
       {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ $context.Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+            {{- toYaml $context.Values.mastodon.sidekiq.securityContext | nindent 12 }}
+          image: "{{ $context.Values.image.repository }}:{{ $context.Values.image.tag | default $context.Chart.AppVersion }}"
+          imagePullPolicy: {{ $context.Values.image.pullPolicy }}
           command:
             - bundle
             - exec
             - sidekiq
             - -c
-            - {{ .Values.mastodon.sidekiq.concurrency | quote }}
+            - {{ .concurrency | quote }}
+            {{- range .queues }}
+            - -q
+            - {{ . | quote }}
+            {{- end }}
           envFrom:
             - configMapRef:
-                name: {{ include "mastodon.fullname" . }}-env
+                name: {{ include "mastodon.fullname" $context }}-env
             - secretRef:
-                name: {{ template "mastodon.secretName" . }}
+                name: {{ template "mastodon.secretName" $context }}
           env:
             - name: "DB_PASS"
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "mastodon.postgresql.secretName" . }}
+                  name: {{ template "mastodon.postgresql.secretName" $context }}
                   key: password
             - name: "REDIS_PASSWORD"
               valueFrom:
                 secretKeyRef:
-                  name: {{ template "mastodon.redis.secretName" . }}
+                  name: {{ template "mastodon.redis.secretName" $context }}
                   key: redis-password
-            {{- if (and .Values.mastodon.s3.enabled .Values.mastodon.s3.existingSecret) }}
+            {{- if (and $context.Values.mastodon.s3.enabled $context.Values.mastodon.s3.existingSecret) }}
             - name: "AWS_SECRET_ACCESS_KEY"
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mastodon.s3.existingSecret }}
+                  name: {{ $context.Values.mastodon.s3.existingSecret }}
                   key: AWS_SECRET_ACCESS_KEY
             - name: "AWS_ACCESS_KEY_ID"
               valueFrom:
@@ -98,20 +99,20 @@ spec:
                   name: {{ .Values.mastodon.s3.existingSecret }}
                   key: AWS_ACCESS_KEY_ID
             {{- end }}
-            {{- if .Values.mastodon.smtp.existingSecret }}
+            {{- if $context.Values.mastodon.smtp.existingSecret }}
             - name: "SMTP_LOGIN"
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mastodon.smtp.existingSecret }}
+                  name: {{ $context.Values.mastodon.smtp.existingSecret }}
                   key: login
                   optional: true
             - name: "SMTP_PASSWORD"
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mastodon.smtp.existingSecret }}
+                  name: {{ $context.Values.mastodon.smtp.existingSecret }}
                   key: password
             {{- end }}
-          {{- if (not .Values.mastodon.s3.enabled) }}
+          {{- if (not $context.Values.mastodon.s3.enabled) }}
           volumeMounts:
             - name: assets
               mountPath: /opt/mastodon/public/assets
@@ -119,12 +120,13 @@ spec:
               mountPath: /opt/mastodon/public/system
           {{- end }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
+            {{- toYaml (default (default $context.Values.resources $context.Values.mastodon.sidekiq.resources) .resources) | nindent 12 }}
+      {{- with $context.Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with $context.Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+{{- end }}

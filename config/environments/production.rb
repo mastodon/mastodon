@@ -116,18 +116,18 @@ Rails.application.configure do
   end
 
   config.action_mailer.smtp_settings = {
-    :port                 => ENV['SMTP_PORT'],
-    :address              => ENV['SMTP_SERVER'],
-    :user_name            => ENV['SMTP_LOGIN'].presence,
-    :password             => ENV['SMTP_PASSWORD'].presence,
-    :domain               => ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
-    :authentication       => ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
-    :ca_file              => ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
-    :openssl_verify_mode  => ENV['SMTP_OPENSSL_VERIFY_MODE'],
-    :enable_starttls      => enable_starttls,
-    :enable_starttls_auto => enable_starttls_auto,
-    :tls                  => ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
-    :ssl                  => ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
+    port: ENV['SMTP_PORT'],
+    address: ENV['SMTP_SERVER'],
+    user_name: ENV['SMTP_LOGIN'].presence,
+    password: ENV['SMTP_PASSWORD'].presence,
+    domain: ENV['SMTP_DOMAIN'] || ENV['LOCAL_DOMAIN'],
+    authentication: ENV['SMTP_AUTH_METHOD'] == 'none' ? nil : ENV['SMTP_AUTH_METHOD'] || :plain,
+    ca_file: ENV['SMTP_CA_FILE'].presence || '/etc/ssl/certs/ca-certificates.crt',
+    openssl_verify_mode: ENV['SMTP_OPENSSL_VERIFY_MODE'],
+    enable_starttls: enable_starttls,
+    enable_starttls_auto: enable_starttls_auto,
+    tls: ENV['SMTP_TLS'].presence && ENV['SMTP_TLS'] == 'true',
+    ssl: ENV['SMTP_SSL'].presence && ENV['SMTP_SSL'] == 'true',
   }
 
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym

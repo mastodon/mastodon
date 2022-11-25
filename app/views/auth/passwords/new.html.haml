@@ -5,7 +5,7 @@
   = render 'shared/error_messages', object: resource
 
   .fields-group
-    = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label' => t('simple_form.labels.defaults.email') }, hint: false
+    = f.input :email, autofocus: true, wrapper: :with_label, label: t('simple_form.labels.defaults.email'), input_html: { 'aria-label': t('simple_form.labels.defaults.email') }, hint: false
 
   .actions
     = f.button :button, t('auth.reset_password'), type: :submit

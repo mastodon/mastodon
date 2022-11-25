@@ -373,6 +373,8 @@ is:
       add_new: Setja lén á lista yfir leyft
       created_msg: Það tókst að setja lénið á lista yfir leyft
       destroyed_msg: Lénið hefur verið fjarlægt af lista yfir leyft
+      export: Flytja út
+      import: Flytja inn
       undo: Fjarlægja af lista yfir leyft
     domain_blocks:
       add_new: Bæta við nýrri útilokun á léni
@@ -382,15 +384,19 @@ is:
       edit: Breyta útilokun léns
       existing_domain_block: Þú hefur þegar gert kröfu um strangari takmörk fyrir %{name}.
       existing_domain_block_html: Þú ert þegar búin/n að setja strangari takmörk á %{name}, þú þarft fyrst að <a href="%{unblock_url}">aflétta útilokun</a> á því.
+      export: Flytja út
+      import: Flytja inn
       new:
         create: Búa til útilokun
         hint: Útilokun lénsins mun ekki koma í veg fyrir gerð aðgangsfærslna í gagnagrunninum, en mun afturvirkt og sjálfvirkt beita sérstökum umsjónaraðferðum á þessa aðganga.
         severity:
-          desc_html: "<strong>Hylja</strong> mun gera færslur á notandaaðgangnum ósýnilegar öllum þeim sem ekki eru að fylgjast með þeim. <strong>Setja í bið</strong> mun fjarlægja allt efni á notandaaðgangnum, myndgögn og gögn á notandasniði. Notaðu <strong>Ekkert</strong> ef þú ætlar bara að hafna margmiðlunarskrám."
+          desc_html: "<strong>Takmörk</strong> mun gera færslur frá aðgöngum á þessu léni ósýnilegar fyrir þeim sem ekki eru að fylgjast með viðkomandi. <strong>Setja í bið</strong> mun fjarlægja allt efni, myndgögn og gögn af notandasniði frá aðgöngum á þessu léni af netþjóninum þínum. Notaðu <strong>Ekkert</strong> ef þú vilt bara hafna gagnaskrám."
           noop: Ekkert
-          silence: Hylja
+          silence: Takmörk
           suspend: Setja í bið
         title: Ný útilokun á léni
+      no_domain_block_selected: Engum útilokunum léna var breytt þar sem ekkert var valið
+      not_permitted: Þú hefur ekki réttindi til að framkvæma þessa aðgerð
       obfuscate: Gera heiti léns ólæsilegt
       obfuscate_hint: Gera heiti léns ólæsilegt að hluta í listanum ef auglýsing yfir takmarkanir léna er virk
       private_comment: Einkaathugasemd
@@ -422,6 +428,20 @@ is:
       resolved_dns_records_hint_html: Heiti lénsins vísar til eftirfarandi MX-léna, sem bera endanlega ábyrgð á að tölvupóstur skili sér. Útilokun á MX-léni mun koma í veg fyrir nýskráningar með hverju því tölvupóstfangi sem notar sama MX-lén, jafnvel þótt sýnilega lénsheitið sé frábrugðið. <strong>Farðu varlega svo þú útilokir ekki algengar tölvupóstþjónustur.</strong>
       resolved_through_html: Leyst í gegnum %{domain}
       title: Útilokuð tölvupóstlén
+    export_domain_allows:
+      new:
+        title: Flytja inn leyfileg lén
+      no_file: Engin skrá valin
+    export_domain_blocks:
+      import:
+        description_html: Þú ert við það að flytja inn lista af lénum til lokunar. Vinsamlegeast farið vandlega yfir þennan lista, sérstaklega ef þú ert ekki höfundur hans.
+        existing_relationships_warning: Fyrirliggjandi fylgjendavensl
+        private_comment_description_html: 'Tið að aðstoða þig við að rekja hvaðan lokkanir koma, innfluttar lokanir verða búnar til með eftirfarndi athugasemd: <q>%{comment}</q>'
+        private_comment_template: Flutt inn frá %{source} þann %{date}
+        title: Flytja inn útilokanir léna
+      new:
+        title: Flytja inn útilokanir léna
+      no_file: Engin skrá valin
     follow_recommendations:
       description_html: "<strong>Að fylgja meðmælum hjálpar nýjum notendum að finna áhugavert efni á einfaldan máta</strong>. Þegar notandi hefur ekki átt í nægilegum samskiptum við aðra til að vera farinn að móta sér skoðanir á hverju hann vill fylgjast með, er mælt með að fylgjast með þessum aðgöngum. Þeir eru endurreiknaðir daglega út frá blöndu þeirra aðganga sem eru með hvað mestri þáttöku í umræðum og mesta fylgjendafjölda út frá hverju tungumáli."
       language: Fyrir tungumálið
@@ -914,7 +934,7 @@ is:
     warning: Farðu mjög varlega með þessi gögn. Þú skalt aldrei deila þeim með neinum!
     your_token: Aðgangsteiknið þitt
   auth:
-    apply_for_account: Fara á biðlista
+    apply_for_account: Biðja um notandaaðgang
     change_password: Lykilorð
     delete_account: Eyða notandaaðgangi
     delete_account_html: Ef þú vilt eyða notandaaðgangnum þínum, þá geturðu <a href="%{path}">farið í það hér</a>. Þú verður beðin/n um staðfestingu.
@@ -1159,6 +1179,7 @@ is:
     invalid_markup: 'inniheldur ógildar HTML-merkingar: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ógild CSV-skrá. Villa: %{error}'
       over_rows_processing_limit: inniheldur meira en %{count} raðir
     modes:
       merge: Sameina

@@ -115,6 +115,10 @@ class Form::AccountBatch
     authorize(account, :suspend?)
     log_action(:suspend, account)
     account.suspend!(origin: :local)
+    account.strikes.create!(
+      account: current_account,
+      action: :suspend
+    )
     Admin::SuspensionWorker.perform_async(account.id)
   end
 
