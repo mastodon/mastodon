@@ -500,10 +500,13 @@ be:
       total_blocked_by_us: Заблакіравана намі
       total_reported: Скаргі на іх
       total_storage: Медыя дадаткі
+      totals_time_period_hint_html: Паказаныя агульныя значэнні ніжэй утрымліваюць дадзеныя за ўвесь час.
     invites:
       deactivate_all: Дэактываваць усё
       filter:
         all: Усе
+        available: Даступна
+        expired: Пратэрмінавана
         title: Фільтр
       title: Запрашэнні
     ip_blocks:
@@ -519,6 +522,7 @@ be:
         '94670856': 3 гады
       new:
         title: Стварыць новае IP правіла
+      no_ip_block_selected: Ніякія правілы IP не былі змененыя, таму што ні адно з іх не было выбрана
       title: IP правілы
     relays:
       add_new: Дадаць новы рэтранслятар
@@ -544,7 +548,11 @@ be:
       category: Катэгорыя
       comment:
         none: Пуста
+      created_at: Створана
       delete_and_resolve: Выдаліць допісы
+      forwarded: Пераслана
+      forwarded_to: Пераслана на %{domain}
+      mark_as_resolved: Пазначыць як вырашаную
       no_one_assigned: Ніводны
       notes:
         create: Дадаць нататку
@@ -591,6 +599,7 @@ be:
         manage_blocks_description: Дазваляе блакаваць пэўныя паштовыя правайдэры і IP адрасы
         manage_custom_emojis: Кіраванне адвольнымі эмодзі
         manage_custom_emojis_description: Дазваляе кіраваць адвольнымі эмодзі на серверы
+        manage_federation: Кіраваць федэрацыяй
         manage_invites: Кіраванне запрашэннямі
         manage_invites_description: Дазваляе праглядаць і дэактывоўваць запрашальныя спасылкі
         manage_reports: Кіраванне скаргамі
@@ -642,10 +651,26 @@ be:
       open: Адкрыць допіс
       trending: Папулярныя
       visibility: Бачнасць
+      with_media: З медыя
     strikes:
       actions:
+        delete_statuses: "%{name} выдаліў запісы %{target}"
+        disable: "%{name} замарозіў уліковы запіс %{target}"
+        mark_statuses_as_sensitive: "%{name} пазначыў запісы %{target} як уразлівыя"
+        none: "%{name} даслаў папярэджанне %{target}"
+        sensitive: "%{name} пазначыў уліковы запіс %{target} як уразлівы"
+        silence: "%{name} абмежаваў уліковы запіс %{target}"
         suspend: "Уліковы запіс %{target} выключаны %{name}"
+      appeal_approved: Абскарджана
+      appeal_pending: Скарга разглядаецца
+    system_checks:
+      rules_check:
+        action: Кіраваць правіламі сервера
+        message_html: Вы не вызначылі ніякіх правілаў сервера.
+      sidekiq_process_check:
+        message_html: Не працуе працэс Sidekiq для %{value} чаргі. Калі ласка праверце вашу канфігурацыю Sidekiq
     tags:
+      review: Стан праверкі
       updated_msg: Налады хэштэгаў паспяхова змененыя
     title: Адміністрацыя
     trends:
@@ -655,6 +680,7 @@ be:
       links:
         allow: Дазволіць спасылка
         allow_provider: Дазволіць выдаўца
+        disallow: Забараніць спасылку
       statuses:
         allow: Дазволіць допіс
         allow_account: Дазволіць аўтара
@@ -998,6 +1024,7 @@ be:
     visibilities:
       public: Публічны
   statuses_cleanup:
+    keep_media: Захоўваць допісы з медыя дадаткамі
     min_age:
       '1209600': 2 тыдні
       '15778476': 6 месяцаў
