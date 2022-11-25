@@ -4,6 +4,7 @@ class REST::PreferencesSerializer < ActiveModel::Serializer
   attribute :posting_default_privacy, key: 'posting:default:visibility'
   attribute :posting_default_sensitive, key: 'posting:default:sensitive'
   attribute :posting_default_language, key: 'posting:default:language'
+  attribute :posting_alt_text_reminder, key: 'posting:default:alt_text_reminder'
 
   attribute :reading_default_sensitive_media, key: 'reading:expand:media'
   attribute :reading_default_sensitive_text, key: 'reading:expand:spoilers'
@@ -18,6 +19,10 @@ class REST::PreferencesSerializer < ActiveModel::Serializer
 
   def posting_default_language
     object.user.preferred_posting_language
+  end
+
+  def posting_alt_text_reminder
+    object.user.setting_alt_text_reminder
   end
 
   def reading_default_sensitive_media
