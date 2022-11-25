@@ -104,11 +104,14 @@ mastodon:
       # -- Sidekiq queues for Mastodon that are handled by this worker. See https://docs.joinmastodon.org/admin/scaling/#concurrency
       # See https://github.com/mperham/sidekiq/wiki/Advanced-Options#queues for how to weight queues as argument
       queues:
-        - default
-        - push
-        - mailers
-        - pull
-        - scheduler # Make sure the scheduler queue only exists once and with a worker that has 1 replica.
+        - default  # All tasks that affect local users
+        - push  # Delivery of payloads to other servers
+        - mailers  # Delivery of e-mails
+        - pull  # Lower priority tasks such as handling imports, backups, resolving threads, deleting users, forwarding replies
+        - ingress  # Incoming remote activities. Lower priority than the default queue so local users still see their posts when the server is under load
+        # There must be only one worker consuming from the `scheduler` queue!
+        # Make sure the scheduler queue only exists once and with a worker that has 1 replica.
+        - scheduler  # Doing cron jobs like refreshing trending hashtags and cleaning up logs
     #- name: push-pull
     #  concurrency: 50
     #  resources: {}
