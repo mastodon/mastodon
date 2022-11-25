@@ -1,4 +1,3 @@
----
 fo:
   about:
     about_mastodon_html: 'Framtíðar sosiali miðilin: ongar lýsingar, eingin stórfyritøku-yvirvøka, etiskt snið og desentralisering! Eig tínar dátur við Mastodon!'
@@ -56,7 +55,7 @@ fo:
       delete: Strika dátur
       deleted: Strikað
       demote: Lækka í tign
-      destroyed_msg: Dáturnar hjá %{username} eru nú settar í bíðirøð at blíva strikaðar sum skjótast
+      destroyed_msg: "Dáturnar hjá %{username} eru nú settar í bíðirøð at blíva strikaðar sum skjótast"
       disable: Fryst
       disable_sign_in_token_auth: Ger váttan við teldupostateknum óvirkna
       disable_two_factor_authentication: Ger 2FA óvirkið
@@ -436,7 +435,7 @@ fo:
       import:
         description_html: Tú er í holt við at innflyta ein lista av navnaøkjablokeringum. Vinarliga eftirkanna listan gjølla, serliga um tú ikki hevur gjørt listan sjálv/ur.
         existing_relationships_warning: Verandi fylgjarasambond
-        private_comment_description_html: Fyri at hjálpa tær at fylgja við í, hvaðani innfluttir blokkar koma, verða innfluttu blokkarnir stovnaðir við hesi privatu viðmerkingini:<q>%{comment}</q>
+        private_comment_description_html: 'Fyri at hjálpa tær at fylgja við í, hvaðani innfluttir blokkar koma, verða innfluttu blokkarnir stovnaðir við hesi privatu viðmerkingini:<q>%{comment}</q>'
         private_comment_template: Innflutt frá %{source} tann %{date}
         title: Innflyt navnaøkjablokeringar
       new:
@@ -498,9 +497,24 @@ fo:
       delivery_error_days: Dagar við veitingarvillum
       delivery_error_hint: Er veiting ikki møgulig í %{count} dagar, so verða tey sjálvvirkandi merkt sum ikki møgulig at veita.
       destroyed_msg: Dátur frá %{domain} eru nú settar í bíðirøð til beinan vegin at blíva strikaðar.
+      empty: Eingi navnaøki funnin.
+      known_accounts:
+        one: "%{count} kend konta"
+        other: "%{count} kendar kontur"
       moderation:
         all: Allir
         limited: Avmarkaðir
+        title: Kjakleiðsla
+      private_comment: Privat viðmerking
+      public_comment: Sjónlig viðmerking
+      purge: Reinsa
+      purge_description_html: Heldur tú, at hetta navnaøkið varandi hevur mist sambandið við netið, so kanst tú strika allar kontupostar og tilknýttar dátur frá hesum navnaøkinum frá tíni goymslu. Tað kann taka eina løtu.
+      title: Sameining
+      total_blocked_by_us: Blokerað av okkum
+      total_followed_by_them: Fylgt av teimum
+      total_followed_by_us: Fylgt av okkum
+      total_reported: Meldingar um tey
+      total_storage: Viðheftir miðlar
     invites:
       filter:
         all: Alt
@@ -603,9 +617,9 @@ fo:
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
