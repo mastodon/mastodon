@@ -873,7 +873,30 @@ fo:
     hint_html: "<strong>Góð ráð:</strong> vit spyrja teg ikki aftur um loyniorðið næsta tíman."
     invalid_password: Skeivt loyniorð
     prompt: Vátta loyniorð fyri at halda fram
+  crypto:
+    errors:
+      invalid_key: er ikki ein gildur Ed25519 ella Curve25519 lykil
+      invalid_signature: er ikki ein gildug Ed25519 undirskrift
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}t"
+      about_x_months: "%{count} mðr"
+      about_x_years: "%{count} ár"
+      almost_x_years: "%{count} ár"
+      half_a_minute: Júst nú
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Júst nú
+      over_x_years: "%{count} ár"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count} mðr"
+      x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: Upplýsingin, sum tú las inn, var ikki røtt
     proceed: Strika kontu
   disputes:
     strikes:
