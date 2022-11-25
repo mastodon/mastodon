@@ -1051,16 +1051,47 @@ sco:
       approve_appeal: Approve appeal
       associated_report: Associatit clype
       created_at: Datit
+      description_html: Thir's actions taen aginst yer accoont an warnins thit hae been sent tae ye bi the staff o %{instance}.
+      recipient: Addressed tae
+      reject_appeal: Rejeck appeal
+      status: 'Post #%{id}'
+      status_removed: Post awriddy taen aff the system
+      title: "%{action} fae %{date}"
+      title_actions:
+        delete_statuses: Post removal
+        disable: Freezin a accoont
+        mark_statuses_as_sensitive: Mairkin o posts as sensitive
+        none: Warnin
+        sensitive: Mairkin o accoont as sensitive
+        silence: Limitation o accoont
+        suspend: Suspension o accoont
+      your_appeal_approved: Yer appeal haes been approved
+      your_appeal_pending: Ye hae submittit a appeal
+      your_appeal_rejected: Yer appeal haes been rejectit
+  domain_validator:
+    invalid_domain: isnae a valid domain nemm
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '400': The request thit ye submittit wisnae valid or it wis illformt.
+    '403': Ye dinnae hae permission fir tae luik at this page.
+    '404': The page thit ye'r luikin fir isnae here.
+    '406': This page isnae available in the requestit format.
+    '410': The page thit ye wur luikin fir disnae exist here oniemair.
     '422':
-    '429': Too many requests
+      content: Security verification failt. Ur ye dingiein cookies?
+      title: Security verification failt
+    '429': Ower monie requests
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: We're sorry, but somethin went wrang on oor en.
+      title: This page isnae correct
+    '503': The page cuidnae be served doon tae a temporary server failure.
+    noscript_html: Fir tae uise the Mastodon wab application, please turn on JavaScript. Alternatively, try ane o the <a href="%{apps_path}">native apps</a> fir Mastodon fir yer platform.
+  existing_username_validator:
+    not_found: cuidnae fin a local uiser wi that uisernemm
+    not_found_multiple: cuidnae fin %{usernames}
+  exports:
+    archive_takeout:
+      date: Date
+      download: Doonload yer archive
   filters:
     contexts:
       account: Profiles
