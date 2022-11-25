@@ -209,8 +209,8 @@ module SignatureVerification
       end
 
       expires_time = Time.at(signature_params['expires'].to_i).utc if signature_params['expires'].present?
-    rescue ArgumentError
-      return false
+    rescue ArgumentError => e
+      raise SignatureVerificationError, "Invalid Date header: #{e.message}"
     end
 
     expires_time ||= created_time + 5.minutes unless created_time.nil?
