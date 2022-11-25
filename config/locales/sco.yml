@@ -1278,3 +1278,49 @@ sco:
     admin:
       report:
         subject: "%{name} submittit a clype"
+      sign_up:
+        subject: "%{name} signt up"
+    favourite:
+      body: 'Yer post wis favouritit bi %{name}:'
+      subject: "%{name} favouritit yer post"
+      title: New favourite
+    follow:
+      body: "%{name} is noo follaein ye!"
+      subject: "%{name} is noo follaein ye"
+      title: New follaer
+    follow_request:
+      action: Manage follae requests
+      body: "%{name} haes requestit tae follae ye"
+      subject: 'Pendin follaer: %{name}'
+      title: New follae request
+    mention:
+      action: Reply
+      body: 'Ye wur menshied bi %{name} in:'
+      subject: Ye got mentioned bi %{name}
+      title: New menshie
+    poll:
+      subject: A poll bi %{name} haes endit
+    reblog:
+      body: 'Yer post wis heezed bi %{name}:'
+      subject: "%{name} heezed yer post"
+      title: New heeze
+    status:
+      subject: "%{name} juist postit"
+    update:
+      subject: "%{name} editit a post"
+  notifications:
+    email_events: Events fir email notes
+    email_events_hint: 'Pick events thit ye''r wantin tae get notes fir:'
+    other_settings: Ither notes settins
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  otp_authentication:
+    code_hint: Pit in the code generatit bi yer authenticator app fir tae confirm
