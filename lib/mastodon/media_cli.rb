@@ -70,11 +70,11 @@ module Mastodon
         Account.where(last_webfingered_at: Time.zone.at(0)..time_ago)
                .left_outer_joins(:user)
                .where(user: { id: nil })
-        ) do |account|
+      ) do |account|
         next if account.local?
-        next if (!account.avatar.present? && !account.header.present?)
+        next if account.avatar.blank? && account.header.blank?
         next if !aggressive && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
-        
+
         size = (account.avatar_file_size || 0) + (account.header_file_size || 0)
 
         unless options[:dry_run]
@@ -82,7 +82,7 @@ module Mastodon
           account.header.destroy
           account.save
         end
-        
+
         size
       end
 
@@ -98,8 +98,7 @@ module Mastodon
     DESC
     def fetch_profile_media
       dry_run    = options[:dry_run] ? '(DRY RUN)' : ''
-      aggressive = options[:aggressive]
-
+      
       processed, aggregate = parallelize_with_progress(
         Account
           .left_outer_joins(:user)
@@ -112,13 +111,13 @@ module Mastodon
           unless account.avatar.present? || account.avatar_remote_url.blank?
             account.download_avatar!
             if account.avatar_file_size?
-              size = size + account.avatar_file_size
+              size += account.avatar_file_size
             end
           end
           unless account.header.present? || account.header_remote_url.blank?
             account.download_header!
             if account.header_file_size?
-              size = size + account.header_file_size
+              size += account.header_file_size
             end
           end
           account.save
