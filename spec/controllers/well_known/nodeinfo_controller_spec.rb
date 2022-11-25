@@ -27,8 +27,8 @@ describe WellKnown::NodeInfoController, type: :controller do
 
       json = body_as_json
 
-      expect({ "foo" => 0 }).not_to match_json_schema("node_info_2.0_schema")
-      expect(json).to match_json_schema("node_info_2.0_schema")
+      expect({ "foo" => 0 }).not_to match_json_schema("nodeinfo_2.0")
+      expect(json).to match_json_schema("nodeinfo_2.0")
       expect(json[:version]).to eq '2.0'
       expect(json[:usage]).to be_a Hash
       expect(json[:software]).to be_a Hash
