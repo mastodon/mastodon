@@ -1026,6 +1026,31 @@ sco:
     confirm_password: Pit in yer current passwird fir tae verify yer identity
     confirm_username: Pit in yer uisernemm fir tae confirm the procedure
     proceed: Delete accoont
+    success_msg: Yer accoont wis successfully deletit
+    warning:
+      before: 'Afore proceedin, please read thir notes careful:'
+      caches: Content thit haes been cached bi ither servers eull mibbie persist
+      data_removal: Yer posts an ither data wull get permanently removed
+      email_change_html: Ye kin <a href="%{path}">chynge yer email address</a> athoot deletin yer accoont
+      email_contact_html: Gin it stull disnae arrive, ye kin email <a href="mailto:%{email}">%{email}</a> fir help
+      email_reconfirmation_html: Gin ye urnae gettin the confirmation email, ye kin <a href="%{path}">request it again</a>
+      irreversible: Ye wullnae be able tae restore or reactivate yer accoont
+      more_details_html: Fir mair details, see the <a href="%{terms_path}">privacy policy</a>.
+      username_available: Yer uisernemm wull become available again
+      username_unavailable: Yer uisername wull remain no available
+  disputes:
+    strikes:
+      action_taken: Action taen
+      appeal: Appeal
+      appeal_approved: This strike haes been successfully appealt an is nae langer valid
+      appeal_rejected: The appeal haes been rejectit
+      appeal_submitted_at: Appeal submittit
+      appealed_msg: Yer appeal haes been submittit. If it is approved, ye'll be notified.
+      appeals:
+        submit: Submit appeal
+      approve_appeal: Approve appeal
+      associated_report: Associatit clype
+      created_at: Datit
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -1036,3 +1061,82 @@ sco:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    contexts:
+      account: Profiles
+      home: Hame an lists
+      notifications: Notes
+      public: Public timelines
+      thread: Conversations
+    edit:
+      add_keyword: Add keywird
+      keywords: Keywirds
+      statuses: Individual posts
+      statuses_hint_html: This filter applies tae select individual posts regairdless o whither or no they match the keywirds ablow. <a href="%{path}">Review or remove posts fae the filter</a>.
+      title: Edit filter
+    errors:
+      deprecated_api_multiple_keywords: Thir parameters cannae be chynged fae this application acause they apply tae mair nor ane filter keywird. Uise a mair recent application or the wab interface.
+      invalid_context: Nae or invalid context supplied
+    index:
+      contexts: Filters in %{contexts}
+      delete: Delete
+      empty: Ye'v nae filters.
+      expires_in: Expires in %{distance}
+      expires_on: Expires on %{date}
+      keywords:
+        one: "%{count} keywird"
+        other: "%{count} keywirds"
+      statuses:
+        one: "%{count} post"
+        other: "%{count} posts"
+      statuses_long:
+        one: "%{count} individual post hid"
+        other: "%{count} individual posts hid"
+      title: Filters
+    new:
+      save: Save new filter
+      title: Add new filter
+    statuses:
+      back_to_filter: Back tae filter
+      batch:
+        remove: Remove fae filter
+      index:
+        hint: This filter applies tae select individual posts regairdless o ither criteria. Ye kin add mair posts tae this filter fae the wab interface.
+        title: Filtert posts
+  footer:
+    trending_now: Trendin the noo
+  generic:
+    all: Aw
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selectit."
+      other: Aw <strong>%{count}</strong> items on this page ur selectit.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matchin yer seirch is selectit."
+      other: Aw <strong>%{count}</strong> items matchin yer seirch is selectit.
+    changes_saved_msg: Chynges successfully saved!
+    copy: Copy
+    delete: Delete
+    deselect: Deselect aw
+    none: Naen
+    order_by: Order bi
+    save_changes: Save chynges
+    select_all_matching_items:
+      one: Pick %{count} item matchin yer seirch.
+      other: Pick aw %{count} items matchin yer seirch.
+    today: the day
+    validation_errors:
+      one: Somethin isnae quite richt yit! Please luik ower the error ablow
+      other: Somethin isnae quite richt yit! Please review %{count} errors ablow
+  html_validator:
+    invalid_markup: 'contains invalid HTML mairkup: %{error}'
+  imports:
+    errors:
+      invalid_csv_file: 'Invalid CSV file. Error: %{error}'
+      over_rows_processing_limit: contains mair nor %{count} rows
+    modes:
+      merge: Merge
+      merge_long: Keep existin records an add new anes
+      overwrite: Owerwrite
+      overwrite_long: Replace current records wi the new anes
+    preface: Ye kin import data thit ye'v exportit fae anither server, sic as a list o the fowk thit ye'r follaein or thaim thit ye'v dingied.
+    success: Yer data wis successfully uploadit an wull get processed in guid time
