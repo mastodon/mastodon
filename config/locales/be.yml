@@ -564,6 +564,7 @@ be:
       resolved: Вырашана
       status: Стан
       title: Скаргі
+      unassign: Скінуць
       updated_at: Абноўлена
       view_profile: Паглядзець профіль
     roles:
@@ -640,10 +641,17 @@ be:
         users: Лакальным карыстальнікам, якія ўвайшлі
       registrations:
         title: Рэгістрацыя
+      registrations_mode:
+        modes:
+          none: Нікому не магчыма зарэгістравацца
+          open: Любому магчыма зарэгістравацца
       title: Налады сервера
+    site_uploads:
+      delete: Выдаліць запампаваны файл
     statuses:
       account: Аўтар
       application: Праграма
+      back_to_account: Назад да старонкі ўліковага запісу
       deleted: Выдалены
       favourites: Упадабаныя
       language: Мова
@@ -651,6 +659,9 @@ be:
         title: Медыя
       metadata: Метададзеныя
       open: Адкрыць допіс
+      original_status: Зыходны допіс
+      status_changed: Допіс зменены
+      title: Допісы уліковага запісу
       trending: Папулярныя
       visibility: Бачнасць
       with_media: З медыя
@@ -683,6 +694,7 @@ be:
         allow: Дазволіць спасылка
         allow_provider: Дазволіць выдаўца
         disallow: Забараніць спасылку
+      rejected: Адхілена
       statuses:
         allow: Дазволіць допіс
         allow_account: Дазволіць аўтара
@@ -701,18 +713,33 @@ be:
           tag_servers_dimension: Папулярныя серверы
           tag_servers_measure: розныя серверы
           tag_uses_measure: усяго выкарыстанняў
+        listable: Можа быць прапанавана
         not_listable: Не будзе прапанавана
         not_usable: Немагчыма выкарыстаць
+        usable: Магчыма выкарыстаць
       title: Актуальныя
     warning_presets:
       add_new: Дадаць новы
       delete: Выдаліць
     webhooks:
+      add_new: Дадаць канцавую кропку
       delete: Выдаліць
+      disable: Адключыць
+      disabled: Адключана
+      edit: Рэдагаваць канцавую кропку
+      empty: У вас яшчэ няма сканфігураваных канчатковых кропак webhook'у.
+      enable: Уключыць
+      enabled: Уключана
+      events: Падзеі
+      new: Новая Webhook'а
       status: Стан
+      title: Webhook'і
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: выдаліць іх допісы
+        mark_statuses_as_sensitive: пазначыць іх допісы як далікатныя
         suspend: каб выключыць уліковы запіс
     new_report:
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
@@ -820,6 +847,7 @@ be:
     strikes:
       appeals:
         submit: Падаць апеляцыю
+      status: 'Допіс #%{id}'
       title_actions:
         none: Папярэджванне
         suspend: Выключэнне ўліковага запісу
@@ -858,10 +886,14 @@ be:
     new:
       save: Захаваць новы фільтр
       title: Дадаць новы фільтр
+    statuses:
+      index:
+        title: Адфільтраваныя допісы
   generic:
     all: Усе
     copy: Скапіяваць
     delete: Выдаліць
+    deselect: Зняць вылучэнне з усіх
     order_by: Парадак
     save_changes: Захаваць змены
     today: сёння
@@ -871,9 +903,13 @@ be:
       merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
     types:
+      blocking: Спіс заблакіраваных
       bookmarks: Закладкі
+      domain_blocking: Спіс заблакіраваных даменаў
     upload: Запампаваць
   invites:
+    delete: Дэактываваць
+    expired: Пратэрмінавана
     expires_in:
       '1800': 30 хвілін
       '21600': 6 гадзін
@@ -922,6 +958,9 @@ be:
       title: Новы запыт на падпіску
     mention:
       action: Адказаць
+      body: 'Вас згадаў %{name} у:'
+      subject: Вас згадаў %{name}
+      title: Новае згадванне
     reblog:
       subject: "%{name} пашырыў ваш допіс"
     status:
@@ -941,7 +980,15 @@ be:
     enable: Уключыць
   pagination:
     next: Далей
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Вы ўжо прагаласавалі ў апытанні
+      expired: Апытанне ўжо скончана
   relationships:
+    followers: Падпісчыкі
+    following: Падпіскі
+    relationship: Стасункi
     remove_selected_domains: Выдаліць усіх падпісчыкаў з выбраных даменаў
     remove_selected_followers: Выдаліць выбраных карыстальнікаў
     remove_selected_follows: Адпісацца ад выбраных карыстальнікаў
@@ -1028,15 +1075,21 @@ be:
     over_character_limit: перавышаная колькасць сімвалаў у %{max}
     pin_errors:
       direct: Допісы, бачныя толькі згаданым карыстальнікам, не могуць быць замацаваныя
+      limit: Вы ўжо замацавалі максімальную колькасць допісаў
       ownership: Немагчыма замацаваць чужы допіс
+    poll:
+      vote: Прагаласаваць
     show_more: Паказаць больш
     sign_in_to_participate: Зарэгіструйцеся каб удзельнічаць у абмеркаванні
     title: '%{name}: "%{quote}"'
     visibilities:
       public: Публічны
+      public_long: Усе могуць бачыць
   statuses_cleanup:
+    enabled: Аўтаматычна выдаляць старыя допісы
     ignore_favs: Ігнараваць упадабаныя
     keep_media: Захоўваць допісы з медыя дадаткамі
+    keep_polls: Працягнуць апытанне
     keep_self_fav: Пакінуць абраныя вамі допісы
     keep_self_fav_hint: Не выдаляе вашыя допісы, якія вы адзначылі як абраныя
     min_age:
