@@ -515,13 +515,18 @@ fo:
       total_followed_by_us: Fylgt av okkum
       total_reported: Meldingar um tey
       total_storage: Viðheftir miðlar
+      totals_time_period_hint_html: Við í samanteljingunum niðanfyri eru dátur frá byrjan av.
     invites:
+      deactivate_all: Ger allar óvirknar
       filter:
         all: Alt
+        available: Tøk
         expired: Útgingið
         title: Filtur
+      title: Innbjóðingar
     ip_blocks:
       add_new: Stovna reglu
+      created_msg: Nýggj IP regla løgd afturat
       delete: Strika
       expires_in:
         '1209600': 2 vikur
@@ -532,12 +537,42 @@ fo:
         '94670856': 3 ár
       new:
         title: Stovna nýggja IP reglu
+      no_ip_block_selected: Ongar IP reglur vóru broyttar, tí ongar vóru valdar
+      title: IP reglur
+    relationships:
+      title: "Sambond hjá %{acct}"
     relays:
+      add_new: Legg nýtt reiðlag afturat
       delete: Strika
+      description_html: Eitt <strong>sameint reiðlag</strong> er ein millumambætari sum flytir stórar nøgdir av almennum postum millum ambætarar, sum eru atknýttir og geva út á ambætaranum. <strong>Tað kann gera tað møguligt hjá smáum og miðalstórum ambætarum at varnast tilfar frá sameinda alheiminum</strong>, sum annars hevði kravt, at lokalir brúkarar fylgdu einstøku brúkarunum á fjarum ambætarum.
+      disable: Ger óvirkið
+      disabled: Óvirkið
       enable: Set í gildi
+      enable_hint: Tá tað er virkið, so teknar ambætarnir hjá tær seg fyri allar almennum postum frá hesum reiðlagi, og sendir almennar postar frá tínum ambætara til reiðlagið.
+      enabled: Virkið
+      inbox_url: URL hjá reiðlagi
+      pending: Bíðar eftir góðkenning frá reiðlagi
+      save_and_enable: Goym og ger virkið
+      setup: Set upp samband við reiðlag
+      signatures_not_enabled: Reiðlag virka ikki sum tey skulu, tá trygdarstøða ella avmarkað sameiningarstøða eru virknar
+      status: Støða
+      title: Reiðløg
     report_notes:
+      created_msg: Viðmerking til melding stovnað!
+      destroyed_msg: Viðmerking til melding strikað!
       today_at: Í dag kl. %{time}
     reports:
+      account:
+        notes:
+          one: "%{count} viðmerking"
+          other: "%{count} viðmerkingar"
+      action_log: Skoðanarloggur
+      action_taken_by: Atgerð tikin av
+      actions:
+        delete_description_html: Meldaðu postarnir verða strikaðir og ein atsókn verður skrásett, soleiðis at tú veist, um onnur stig skulu takast, um sama konta ger fleiri brot í framtíðini.
+        mark_as_sensitive_description_html: Miðlarnir í meldaðu postunum verða merkir sum viðkvæmir, og ein atsókn verður skrásett, soleiðis at tú veist, um onnur stig skulu takast, um sama konta ger fleiri brot í framtíðini.
+        other_description_html: Sí fleiri valmøguleikar at stýra atferðini hjá kontuni og at tillagað samskiftið við meldaðu kontuni.
+        resolve_description_html: Eingin atgerð verður tikin móti meldaðu kontuni, eingin atsókn verður skrásett og meldingin verður lukkað.
       assigned: Tilnevnt umsjónarfólk
       created_at: Meldað
       delete_and_resolve: Strika postar
