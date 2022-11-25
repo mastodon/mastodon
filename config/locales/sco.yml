@@ -1230,3 +1230,51 @@ sco:
     failed_sign_in_html: Failt sign-in attempt wi %{method} fae %{ip} (%{browser})
     successful_sign_in_html: Successfu sign-in wi %{method} fae %{ip} (%{browser})
     title: Authentication history
+  media_attachments:
+    validations:
+      images_and_video: Cannae attach a video tae a post thit awriddy contains images
+      not_ready: Cannae attach files thit huvnae finisht processin. Try again in a wee minute!
+      too_many: Cannae attach mair nor 4 files
+  migrations:
+    acct: Flitit tae
+    cancel: Cancel redirect
+    cancel_explanation: Cancellin the redirect wull re-activate yer current accoont, but wullnae bring back follaers thit hae been flitit tae that accoont.
+    cancelled_msg: Successfully cancelt the redirect.
+    errors:
+      already_moved: is the same accoont thit ye'v awriddy flittit tae
+      missing_also_known_as: isnae a alias o this accoont
+      move_to_self: cannae be current accoont
+      not_found: cuidnae be fun
+      on_cooldown: Ye'r on cooldoon
+    followers_count: Follaers at time o flit
+    incoming_migrations: Flittin fae a different accoont
+    incoming_migrations_html: Tae flit fae anither accoont tae this ane, first ye need tae <a href="%{path}">mak a accoont alias</a>.
+    moved_msg: Yer accoont is noo redirectin tae %{acct} an yer follaers ur gettin flittit ower.
+    not_redirecting: Yer accoont isnae redirectin tae onie ither accoont the noo.
+    on_cooldown: Ye'v flittit yer accoont o late. This function wull become available again in %{count} days.
+    past_migrations: Past flittins
+    proceed_with_move: Flit follaers
+    redirected_msg: Yer accoont is noo redirectin tae %{acct}.
+    redirecting_to: Yer accoont is redirectin tae %{acct}.
+    set_redirect: Set redirect
+    warning:
+      backreference_required: The new accoont haes tae be configurt furst fir tae back-reference this ane
+      before: 'Afore proceedin, please read thir notes carefully:'
+      cooldown: Efter flittin there a waitin period durin which ye will cannae flit again
+      disabled_account: Yer current accoont wullnae be fully uisable efterwart. Hou an iver, ye wull hae access tae data export as weil as re-activation.
+      followers: This action wull flit aw follaers fae the current accoont tae the new accoont
+      only_redirect_html: Alternatively, ye kin <a href="%{path}">ainly pit up a redirect on yer profile</a>.
+      other_data: Nae ither data wull get flittit automatically
+      redirect: Yer current accoont's profile wull get updatit wi a redirect note an be excludit fae seirches
+  moderation:
+    title: Moderation
+  move_handler:
+    carry_blocks_over_text: This uiser flittit fae %{acct}, thit ye'v dingied.
+    carry_mutes_over_text: This uiser flittit fae %{acct}, thit ye'v wheesht.
+    copy_account_note_text: 'This uiser flittit fae %{acct}, here yer previous notes aboot them:'
+  navigation:
+    toggle_menu: Toggle menu
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} submittit a clype"
