@@ -573,7 +573,19 @@ fo:
         mark_as_sensitive_description_html: Miðlarnir í meldaðu postunum verða merkir sum viðkvæmir, og ein atsókn verður skrásett, soleiðis at tú veist, um onnur stig skulu takast, um sama konta ger fleiri brot í framtíðini.
         other_description_html: Sí fleiri valmøguleikar at stýra atferðini hjá kontuni og at tillagað samskiftið við meldaðu kontuni.
         resolve_description_html: Eingin atgerð verður tikin móti meldaðu kontuni, eingin atsókn verður skrásett og meldingin verður lukkað.
+        silence_description_html: Vangin verður einans sjónligur hjá teimum, sum longu fylgja honum ella leita eftir honum við hond, og tað minkar nógv um, hvussu langt hann røkkur. Kann altíð angrast.
+        suspend_description_html: Vangin og alt tilfar hjá vanganum verður óatkomandi inntil hann at enda verður strikaður. Tað verður ómøguligt at samvirka við hesa kontuna. Vendast kann aftur innan 30 dagar.
+      actions_description_html: Ger av hvør atgerð skal takast fyri at avgreiða hesa meldingina. Revsitiltøk móti meldaðu kontuni føra við sær, at ein teldupostfráboðan verður send teimum, undantikið tá <strong>Ruskpostur</strong> verður valdur.
+      add_to_report: Legg meira afturat meldingini
+      are_you_sure: Er tú vís/ur?
+      assign_to_self: Tilluta mær
       assigned: Tilnevnt umsjónarfólk
+      by_target_domain: Navnaøki hjá meldaðu kontuni
+      category: Bólkur
+      category_description_html: Orsøkin, at hendan kontan og/ella tilfarið var melda verður fráboðað í samskifti við meldaðu kontuni
+      comment:
+        none: Eingin
+      comment_description_html: 'Fyri at veita fleiri upplýsingar skrivaði %{name}:'
       created_at: Meldað
       delete_and_resolve: Strika postar
       forwarded: Víðarisent
@@ -583,24 +595,79 @@ fo:
       mark_as_unresolved: Marka sum óloyst
       no_one_assigned: Eingin
       notes:
+        create: Legg viðmerking afturat
         create_and_resolve: Marka sum loyst og ger viðmerking
         create_and_unresolve: Lat upp aftur við viðmerking
         delete: Strika
+        placeholder: Greið frá, hvørjar atgerðir hava verið gjørdar ella aðrar viðkomandi dagføringar...
         title: Viðmerkingar
+      notes_description_html: Vís ella skriva viðmerkingar til aðrar kjakleiðarar ella teg sjálva/n í framtíðini
+      quick_actions_description_html: 'Tak eina skjóta avgerð ella skrulla niðureftir fyri at síggja meldaða innihaldið:'
+      remote_user_placeholder: fjarbrúkarin frá %{instance}
+      reopen: Lat melding uppaftur
+      report: 'Melding #%{id}'
+      reported_account: Meldað konta
+      reported_by: Meldað av
       resolved: Loyst
+      resolved_msg: Melding avgreidd!
+      skip_to_actions: Leyp til atgerðir
+      status: Støða
+      statuses: Meldað innihald
+      statuses_description_html: Tilfarið, sum brotið viðvíkur, fer at vera siterað í samskifti við meldaðu kontuni
+      target_origin: Uppruni hjá meldaðu kontuni
+      title: Meldingar
+      unassign: Strika tillutan
       unresolved: Óloyst
       updated_at: Dagført
       view_profile: Vís vangamynd
     roles:
+      add_new: Legg leiklut afturat
+      assigned_users:
+        one: "%{count} brúkari"
+        other: "%{count} brúkarar"
       categories:
+        administration: Umsiting
         devops: DevOps
+        invites: Innbjóðingar
         moderation: Umsjón
         special: Serstakt
       delete: Strika
+      description_html: Við <strong>brúkaraleiklutum</strong> kanst tú stýra, hvørjar funktiónir og hvørji Mastodon-øki tínir brúkarar kunnu fáa atgongd til.
+      edit: Broyt '%{name}' leiklutin
+      everyone: Sjálvsett loyvi
+      everyone_full_description_html: Hetta er <strong>støðisleikluturin</strong>, sum ávirkar <strong>allar brúkarar</strong>, sjálvt teir, sum ikki hava ein ásettan leiklut. Allir aðrir leiklutir arva loyvi frá honum.
+      permissions_count:
+        one: "%{count} loyvi"
+        other: "%{count} rættindi"
       privileges:
         administrator: Umsitari
+        administrator_description: Brúkarar við hesum rættindum skáka sær undan øllum loyvisavmarkingum
         delete_user_data: Sletta brúkaraupplýsingar
+        delete_user_data_description: Loyvir brúkarum at strika dátur hjá øðrum brúkarum uttan seinkingar
+        invite_users: Bjóða brúkarum
+        invite_users_description: Loyvir brúkarum at bjóða nýggjum fólki til ambætaran
+        manage_announcements: Stýra kunngerðum
+        manage_announcements_description: Loyvir brúkarum at stýra kunngerðum á ambætaranum
         manage_appeals: Umsit kærur
+        manage_appeals_description: Loyvir brúkarum at eftirkanna kærur um kjakleiðsluatgerðir
+        manage_blocks: Stýra blokeringum
+        manage_blocks_description: Loyvir brúkarum at blokera teldupostveitarum og IP adressum
+        manage_custom_emojis: Stýra sergjørd kenslutekn
+        manage_custom_emojis_description: Loyvir brúkarum at stýra sergjørdum kensluteknum á ambætaranum
+        manage_federation: Stýra sameindum
+        manage_federation_description: Loyvir brúkarum at blokera ella loyva sameining við onnur navnaøki og at stýra, hvat kann veitast
+        manage_invites: Stýra innbjóðingum
+        manage_invites_description: Loyvir brúkarum at kaga ígjøgnum og at gera innbjóðingarleinki óvirkin
+        manage_reports: Stýra meldigum
+        manage_reports_description: Loyvir brúkarum at eftirkanna meldingar og at gjøgnumføra kjakleiðsluatgerðir
+        manage_roles: Stýra leiklutir
+        manage_roles_description: Loyvir brúkarum at stýra og áseta leiklutir undir teirra leikluti
+        manage_rules: Stýra reglum
+        manage_rules_description: Loyvir brúkarum at broyta ambætarareglur
+        manage_settings: Stýra stillingum
+        manage_settings_description: Loyvir brúkarum at broyta heimasíðustillingar
+        manage_taxonomies: Stýra flokkingum
+        manage_taxonomies_description: Loyvir brúkarum at eftirkanna vælumtókt tilfar og at dagføra stillingar viðvíkjandi frámerkjum
         manage_user_access_description: Loyvir brúkarum at gera 'váttan í tveimum stigum' (2FA) hjá øðrum brúkarum óvirkna, at broyta teirra teldupost og at nullstilla teirra loyniorð
     rules:
       add_new: Ger nýggja reglu
@@ -648,7 +715,7 @@ fo:
     invalid_domain: er ikki eitt loyvt økisnavn
   errors:
     '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
+    '403': Tú hevur ikki loyvi at síggja hesa síðuna.
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
