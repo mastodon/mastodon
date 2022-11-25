@@ -97,7 +97,7 @@ module SignatureVerification
 
     actor = stoplight_wrap_request { actor_refresh_key!(actor) }
 
-    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
+    raise SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
 
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
