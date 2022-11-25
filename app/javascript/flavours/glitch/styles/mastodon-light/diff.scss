@@ -712,6 +712,26 @@ html {
 
 // Glitch-soc-specific changes
 
+.pillbar-button {
+  background: $ui-secondary-color;
+
+  &:not([disabled]) {
+    &:hover,
+    &:focus {
+      background: darken($ui-secondary-color, 10%);
+    }
+
+    &.active {
+      background-color: darken($ui-highlight-color, 2%);
+
+      &:hover,
+      &:focus {
+        background: lighten($ui-highlight-color, 10%);
+      }
+    }
+  }
+}
+
 .glitch.local-settings {
   background: $ui-base-color;
   border: 1px solid lighten($ui-base-color, 8%);
