@@ -1,4 +1,3 @@
----
 sco:
   about:
     about_mastodon_html: 'The social network o wir future: Nae adverts, nae corporate surveillance; ethical design, an decentralization! Ain yer ain data wi Mastodon!'
@@ -826,7 +825,42 @@ sco:
           tag_servers_dimension: Tap servers
           tag_servers_measure: different servers
           tag_uses_measure: total uises
+        description_html: Thir's hashtags thit ur appearin the noo in a load o posts thit yer server sees. It kin help yer uisers fin oot whit fowk ur talkin aboot maist the noo. Nae hashtags ur displayit publicly tae ye approve them.
+        listable: Kin be suggestit
+        no_tag_selected: Nae tags wis chynged as naen wis selectit
+        not_listable: Wullnae be suggestit
+        not_trendable: Wullnae appear unner trends
+        not_usable: Cannae be uised
+        peaked_on_and_decaying: Peaked on %{date}, noo fawin aff
+        title: Trendin hashtags
+        trendable: Kin appear unner trends
+        trending_rank: 'Trendin #%{rank}'
+        usable: Kin be uised
+        usage_comparison: Uised %{today} times the day, compart tae %{yesterday} yisterday
+        used_by_over_week:
+          one: Uised bi ae person ower the last week
+          other: Uised bi %{count} fowk ower the last week
+      title: Trends
+      trending: Trendin
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit_preset: Edit warnin preset
+      empty: Ye huvnae definit onie warnin presets yit.
+      title: Manage warnin presets
     webhooks:
+      add_new: Add enpynt
+      delete: Delete
+      description_html: A <strong>wabhook</strong> lets Mastodon push <strong>rael-time notifications</strong> aboot srlectit events tae yer ain application, sae thit yer application kin <strong>automatically trigger reactions</strong>.
+      disable: Turn aff
+      disabled: Turnt aff
+      edit: Edit enpynt
+      empty: Ye'v nae wabhook enpynts configurt yit.
+      enable: Turn on
+      enabled: Active
+      enabled_events:
+        one: 1 enabilt event
+        other: "%{count} enabilt events"
       events: Events
       new: New webhook
       rotate_secret: Rotate secret
@@ -853,7 +887,7 @@ sco:
     new_report:
       body: "%{reporter} haes clyped on %{target}"
       body_remote: Somebody fae %{domain} haes clyped on %{target}
-      subject: New coype fir %{instance} (#%{id})
+      subject: 'New coype fir %{instance} (#%{id})'
     new_trends:
       body: 'The follaein items need luiked ower afore they kin get displayit publicly:'
       new_trending_links:
@@ -862,13 +896,25 @@ sco:
         title: Trendin posts
       new_trending_tags:
         no_approved_tags: There nae approved trendin hashtags the noo.
+        requirements: 'Onie o thir candidates cuid surpass the #%{rank} approved trendin hashtag, thit''s #%{lowest_tag_name} the noo, wi a score o %{lowest_tag_score}.'
+        title: Trendin hashtags
+      subject: New trends up fir luikin ower on %{instance}
+  aliases:
+    add_new: Mak alias
+    created_msg: Successfully makkit a new alias. Ye kin noo initiate the flit fae the auld accoont.
+    deleted_msg: Successfully removit the alias. Movin fae that accoont ower tae this ane wull nae langer be possible.
+    empty: Ye hae nae aliases.
+    hint_html: If ye'r wantin fir tae flit fae anither accoont tae this ane, ye kin mak a alias here, this is requirt afore ye kin gae forret flittin follaers fae the auld accoont tae this ane. This action bi an o itsel is <strong>hermless an reversible</strong>. <strong>The accoont migration is initiatie fae the auld accoont</strong>.
+    remove: Unlink alias
+  appearance:
+    advanced_web_interface: Advanced wab interface
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
