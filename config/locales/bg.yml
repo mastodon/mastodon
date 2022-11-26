@@ -1,7 +1,6 @@
----
 bg:
   about:
-    about_mastodon_html: Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.
+    about_mastodon_html: 'Mastodon е <em>безплатен</em> сървър с <em>отворен код</em> за социални мрежи. Като <em>децентрализирана</em> алтернатива на комерсиалните платформи, той позволява избягването на риска от монополизация на твоята комуникация от единични компании. Изберете си сървър, на който се доверявате, и ще можете да контактувате с всички останали. Всеки може да пусне Mastodon и лесно да вземе участие в <em>социалната мрежа</em>.'
     contact_missing: Не е зададено
     contact_unavailable: Не е приложимо
     hosted_on: Mastodon е хостван на %{domain}
@@ -56,7 +55,7 @@ bg:
       delete: Изтриване на данни
       deleted: Изтрито
       demote: Понижаване
-      destroyed_msg: Данните на %{username} вече са на опашка за незабавно изтриване
+      destroyed_msg: "Данните на %{username} вече са на опашка за незабавно изтриване"
       disable: Замразяване
       disable_sign_in_token_auth: Изключване на удостоверяването с маркер по имейл
       disable_two_factor_authentication: Изключване на 2FA
@@ -267,6 +266,9 @@ bg:
       new:
         create: Добавяне на домейн
       title: Блокирани домейни на имейл
+    export_domain_blocks:
+      import:
+        existing_relationships_warning: Съществуващи последвания
     follow_recommendations:
       language: За език
       status: Състояние
@@ -316,7 +318,7 @@ bg:
         '86400': 1 ден
         '94670856': 3 години
     relationships:
-      title: Отношения на %{acct}
+      title: "Отношения на %{acct}"
     relays:
       delete: Изтриване
       disable: Изключване
@@ -375,6 +377,7 @@ bg:
       appearance:
         title: Външен вид
       discovery:
+        public_timelines: Публични инфопотоци
         title: Откриване
         trends: Актуални
       registrations:
@@ -548,6 +551,7 @@ bg:
     contexts:
       account: Профили
       notifications: Известия
+      public: Публични инфопотоци
       thread: Разговори
     edit:
       add_keyword: Добавяне на ключова дума
@@ -663,8 +667,8 @@ bg:
       subject: 'Чакащ последовател: %{name}'
     mention:
       action: Отговор
-      body: "%{name} те спомена в:"
-      subject: "%{name} те спомена"
+      body: '%{name} те спомена в:'
+      subject: '%{name} те спомена'
       title: Ново споменаване
     poll:
       subject: Анкетата от %{name} приключи
@@ -709,8 +713,8 @@ bg:
       too_many_options: не може да съдържа повече от %{max} елемента
   preferences:
     other: Друго
-    posting_defaults: Публикуване по подразбиране
-    public_timelines: Публични часови оси
+    posting_defaults: По подразбиране за публикации
+    public_timelines: Публични инфопотоци
   privacy_policy:
     title: Политика за поверителност
   reactions:
@@ -718,14 +722,16 @@ bg:
       limit_reached: Ограничението на различни реакции е достигнат
   relationships:
     activity: Дейност на акаунта
-    dormant: Спящо
+    dormant: Неактивен
+    follow_selected_followers: Последване на избраните последователи
     followers: Последователи
+    following: Последвани
     invited: С покана
     last_active: Последна дейност
     most_recent: Най-наскоро
-    moved: Преместено
+    moved: Преместен
     mutual: Взаимни
-    primary: Основно
+    primary: Основен
     relationship: Отношение
     remove_selected_domains: Премахване на всички последователи от избраните домейни
     remove_selected_followers: Премахване на избраните последователи
@@ -834,14 +840,15 @@ bg:
     show_older: Показване на по-стари
     show_thread: Показване на нишката
     sign_in_to_participate: Влезте, за да участвате в разговора
-    title: "%{name}: „%{quote}“"
+    title: '%{name}: „%{quote}“'
     visibilities:
       direct: Директно
       private: Покажи само на последователите си
-      private_long: Показване само на последователи
+      private_long: Видими само за последователи
       public: Публично
-      public_long: Всеки може да вижда
+      public_long: Всеки ги вижда
       unlisted: Публично, но не показвай в публичния канал
+      unlisted_long: Всеки ги вижда, но са скрити от публичните инфопотоци
   statuses_cleanup:
     enabled: Автоматично изтриване на стари публикации
     enabled_hint: Автоматично изтрива публикациите ви щом достигнат указания възрастов праг, освен ако не съвпадне с някое от изключенията долу
@@ -908,6 +915,7 @@ bg:
       edit_profile_action: Настройване на профила
       explanation: Ето няколко стъпки за начало
       final_action: Начало на публикуване
+      final_step: 'Публикувайте! Дори без последователи, вашите публични публикации ще бъдат видени от други, например в местния инфопоток или под хаштагове. Не забравяйте да се представите с хаштаг #introductions.'
       subject: Добре дошли в Mastodon
       title: Добре дошли на борда, %{name}!
   users:
