@@ -1,0 +1,19 @@
+@media screen and (min-width: 1000px) {
+  .layout-multiple-columns {
+
+    & .column,
+    & .drawer {
+      flex: 1 1 auto;
+      max-width: 600px;
+    }
+
+    & .drawer {
+      min-width: 300px;
+      max-width: 350px;
+    }
+
+    & .column {
+      min-width: 350px;
+    }
+  }
+}
