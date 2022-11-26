@@ -14,6 +14,7 @@ class UserSettingsDecorator
 
   private
 
+  # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def process_update
     user.settings['notification_emails'] = merged_notification_emails if change?('notification_emails')
     user.settings['interactions']        = merged_interactions if change?('interactions')
@@ -41,6 +42,7 @@ class UserSettingsDecorator
     user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
     user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 
   def merged_notification_emails
     user.settings['notification_emails'].merge coerced_settings('notification_emails').to_h
