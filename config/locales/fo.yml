@@ -787,8 +787,42 @@ fo:
         allow: Loyv leinki
         allow_provider: Loyv útgevara
         description_html: Hesi leinkini verða í løtuni deild nógv av kontum, sum ambætarin sær postar hjá. At síggja leinkini kann hjálpa brúkarum at finna útav, hvat hendir í verðini. Eingi leinki verða víst alment, áðrenn tú góðkennir útgevaran. Tú kanst eisini loyva ella vraka einstøk leinki.
+        disallow: Loyv ikki leinki
+        disallow_provider: Loyv ikki útgevara
+        no_link_selected: Eingi leinki vóru broytt, tí eingi vóru vald
+        publishers:
+          no_publisher_selected: Eingir útgevar vóru broyttir, tí eingir vóru valdir
+        shared_by_over_week:
+          one: Deilt av einum persóni seinastu vikuna
+          other: Deilt av %{count} persónum seinastu vikuna
+        title: Vælumtókt leinki
+        usage_comparison: Deilt %{today} ferð í dag, samanborið við %{yesterday} ferð í gjár
+      only_allowed: Einans loyvd
+      pending_review: Bíðar eftir eftirkannan
+      preview_card_providers:
+        allowed: Leinki frá hesum útgevaranum kann gerast vísast sum vælumtókt
+        description_html: Hesi eru navnaøkini haðani leinki ofta eru deild á tínum ambætara. Leinki verða ikki víst sum vælumtókt fyri almenninginum uttan so at navnaøkið hjá leinkinum er góðkent. Tín góðkenning (ella vraking) fevnir eisini um undirnavnaøki.
+        rejected: Leinki frá hesum útgevaranum kunnu ikki vísast sum vælumtókt
+        title: Útgevar
+      rejected: Vrakað
+      statuses:
+        allow: Loyv posti
+        allow_account: Loyv høvundi
+        description_html: Hetta eru postar, sum tín ambætari veit um og sum í løtuni vera deildir og dámaðir ofta. At vísa teir kann hjálpa nýggjum og afturvendandi brúkarum at finna fleiri fólk, sum tey vilja fylgja. Eingir postar verða vístir almenninginum, áðrenn tú góðkennir høvundin, og høvundurin loyvir teirra kontu at vera skotin upp fyri øðrum. Tú kanst eisini góðkenna ella vraka einstakar postar.
+        disallow: Vraka post
+        disallow_account: Vraka høvund
+        no_status_selected: Eingir vælumtóktir postar vóru broyttir, tí eingir vóru valdir
+        not_discoverable: Høvundurin hevur ikki valt at blíva funnin
+        shared_by:
+          one: Deildir ella dámaðir eina ferð
+          other: Deildir ella dámaðir %{friendly_count} ferð
+        title: Vælumtóktir postar
       tags:
+        current_score: Verandi stigatal %{score}
         dashboard:
+          tag_accounts_measure: ymisk brúk
+          tag_languages_dimension: Mest nýttu mál
+          tag_servers_dimension: Mest nýttu ambætarar
           tag_servers_measure: aðrir ambætarar
           tag_uses_measure: samanlagt brúkstal
         description_html: Hesi eru frámerkini, sum í løtuni eru á eini rúgvu av postum, sum ambætarin hjá tær sær. Hetta kann hjálpa tínum brúkarum at finna útav, hvat fólk tosa mest um í løtuni. Eingi frámerki verða løgd alment út, fyrr enn tú hevur góðkent tey.
@@ -802,7 +836,7 @@ fo:
         trendable: Kann síggjast undir ráki
         trending_rank: 'Rák #%{rank}'
         usable: Kann verða brúkt
-        usage_comparison: Brúkt %{today} ferðir í dag, samanborið við %{yesterday} ferðir í gjár
+        usage_comparison: Brúkt %{today} ferð í dag, samanborið við %{yesterday} ferð í gjár
         used_by_over_week:
           one: Brúkt av einum brúkara seinastu vikuna
           other: Brúkt av %{count} brúkarum seinastu vikuna
@@ -852,16 +886,71 @@ fo:
       subject: Nýggj konta klár til ummælis á %{instance} (%{username})
     new_report:
       body: "%{reporter} hevur meldað %{target}"
+      body_remote: Onkur frá %{domain} hevur meldað %{target}
+      subject: 'Nýggj melding fyri %{instance} (#%{id})'
+    new_trends:
+      body: 'Niðanfyristandandi lutir mugu eftirhyggjast áðrenn teir kunnu verða vístir alment:'
+      new_trending_links:
+        title: Vælumtókt leinki
+      new_trending_statuses:
+        title: Vælumtóktir postar
+      new_trending_tags:
+        no_approved_tags: Í løtuni eru eingi góðkend vælumtókt frámerki.
+        requirements: 'Einhvør av hesum kandidatum kunnu fara framum #%{rank} góðkenda vælumtókta frámerki, sum í løtuni er #%{lowest_tag_name} við stigatali %{lowest_tag_score}.'
+        title: Vælumtókt frámerki
+      subject: Nýggj rák til gjøgnumgongd á %{instance}
+  aliases:
+    add_new: Stovna tøkuheiti
+    created_msg: Nýtt tøkuheiti stovnað. Tú kanst nú byrja flytingina frá gomlu kontuni.
+    deleted_msg: Tøkuheitið strikað. At flyta frá hasi kontuni til hesa er ikki longur gjørligt.
+    empty: Tú hevur eingi tøkuheiti.
+    hint_html: Ynskir tú at flyta frá eini aðrari kontu til hesa, so kanst tú stovna eitt tøkuheiti her. Tað er kravt, áðrenn tú kanst fara í gongd við at flyta fylgjarar frá gomlu kontuni til hesa. Hendan atgerðin er í sær sjálvum <strong>meinaleys og kann angrast</strong>. <strong>Flytingin av kontuni verður sett í gongd frá gomlu kontuni</strong>.
+    remove: Strika tilknýti til tøkuheiti
+  appearance:
+    advanced_web_interface: Framkomið vevmarkamót
+    advanced_web_interface_hint: 'Ynskir tú at brúka alla skermbreiddina, so loyvir framkomna vevmarkamóti tær at uppseta fleiri ymiskar teigar, soleiðis at tú kanst síggja so nógvar upplýsingar, sum tú ynskir, samstundis: Heima, fráboðanir, sameind tíðarlinja og óavmarkað tal av listum og frámerkjum.'
+    animations_and_accessibility: Teknimyndagerð og atkomuligheit
+    confirmation_dialogs: Váttanarskermmyndir
+    discovery: Uppdaging
+    localization:
+      body: Mastodon er umsett av sjálvbodnum.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Øll kunnu geva íkast.
+    sensitive_content: Viðkvæmt innihald
+    toot_layout: Uppseting av postum
   application_mailer:
+    notification_preferences: Broyt teldupostastillingar
     salutation: "%{name}"
+    settings: 'Broyt teldupostastillingar: %{link}'
+    view: 'Vís:'
+    view_profile: Vís vanga
+    view_status: Vís post
+  applications:
+    created: Umsókn stovnað
+    destroyed: Umsókn strikað
+    regenerate_token: Ger atgongdstekn av nýggjum
+    token_regenerated: Atgongdsteknið gjørt av nýggjum
+    warning: Ver varin við hesum dátum. Deil tað aldrin við nakran!
+    your_token: Títt atgongdstekn
   auth:
+    apply_for_account: Bið um eina kontu
     change_password: Loyniorð
     delete_account: Strika kontu
+    delete_account_html: Ynskir tú at strika kontuna, so kanst tú <a href="%{path}">halda fram her</a>. Tú verður spurd/ur um váttan.
+    description:
+      prefix_invited_by_user: "@%{name} bjóðar tær at verða við í hesum Mastodon-ambætaranum!"
+      prefix_sign_up: Tilmelda teg á Mastodon í dag!
+      suffix: Við eini kontu, so er møguligt hjá tær at fylgja fólki, at posta dagføringar og at senda og móttaka boð til og frá brúkarum á øllum Mastodon ambætarum, umframt annað!
+    didnt_get_confirmation: Móttók tú ikki váttanarboðini?
+    dont_have_your_security_key: Hevur tú ikki trygdarlyklin hjá tær?
     forgot_password: Hevur tú gloymt loyniorðið?
+    invalid_reset_password_token: Teknið til nullstilling av loyniorði er ógyldugt ella útgingið. Vinarliga bið um eitt nýtt.
     link_to_otp: Skriva eina tvey-stigs kodu frá telefonini ella eina kodu til endurgerð
+    link_to_webauth: Brúka títt trygdarlyklatól
     log_in_with: Innrita við
     login: Innrita
     logout: Rita út
+    migrate_account: Flyt til eina aðra kontu
     or_log_in_with: Ella innrita við
     register: Tilmelda
     registration_closed: "%{instance} tekur ikki ímóti nýggjum limum"
@@ -934,6 +1023,7 @@ fo:
     strikes:
       created_at: Dagfest
       title_actions:
+        mark_statuses_as_sensitive: Merk postar sum viðkvæmar
         none: Ávaring
   domain_validator:
     invalid_domain: er ikki eitt loyvt økisnavn
