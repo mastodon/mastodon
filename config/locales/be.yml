@@ -172,7 +172,7 @@ be:
         change_email_user: Змяніць E-mail карыстальніка
         change_role_user: Змяніць ролю карыстальніка
         confirm_user: Пацвердзіць карыстальніка
-        create_account_warning: Стварыць папярэджванне
+        create_account_warning: Стварыць папярэджанне
         create_announcement: Стварыць аб'яву
         create_canonical_email_block: Стварыць блакіроўку электроннай пошты
         create_custom_emoji: Стварыць адвольны эмодзі
@@ -560,7 +560,9 @@ be:
         create_and_resolve: Вырашыць з нататкай
         create_and_unresolve: Паўторна адкрыць з нататкай
         delete: Выдаліць
+        placeholder: Апішыце, якія дзеянні былі зроблены, або любыя іншыя звязаныя абнаўленні...
         title: Нататкі
+      remote_user_placeholder: аддалены карыстальнік з %{instance}
       resolved: Вырашана
       skip_to_actions: Прапусціць дзеянні
       status: Стан
@@ -746,10 +748,12 @@ be:
     new_appeal:
       actions:
         delete_statuses: выдаліць іх допісы
+        disable: замарозіць уліковы запіс
         mark_statuses_as_sensitive: пазначыць іх допісы як далікатныя
-        sensitive: пазначыць іх уліковыя запісы як далікатныя
-        silence: абмежаваць іх уліковыя запісы
-        suspend: каб выключыць уліковы запіс
+        none: папярэджанне
+        sensitive: пазначыць уліковы запіс як далікатны
+        silence: абмежаваць уліковы запіс
+        suspend: выключыць уліковы запіс
     new_report:
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
   aliases:
@@ -810,6 +814,9 @@ be:
       title: Некалькі базавых правілаў.
     security: Бяспека
     set_new_password: Прызначыць новы пароль
+    setup:
+      email_below_hint_html: Калі прыведзены ніжэй адрас эл. пошты няправільны, вы можаце змяніць яго тут і атрымаць новае пацвярджэнне па эл. пошце.
+      title: Наладкі
     sign_up:
       preamble: Маючы ўліковы запіс на гэтым серверы Mastodon, вы будзеце мець магчымасць падпісацца на кожнага чалавека ў сетцы, незалежна ад таго, на якім серверы размешчаны ягоны ўліковы запіс.
     status:
@@ -863,12 +870,13 @@ be:
     strikes:
       appeals:
         submit: Падаць апеляцыю
+      created_at: Датаваны
       status: 'Допіс #%{id}'
       status_removed: Допіс ужо выдалены з сістэмы
       title_actions:
         delete_statuses: Выдаленне допісу
         mark_statuses_as_sensitive: Пазначыць допісы як далікатныя
-        none: Папярэджванне
+        none: Папярэджанне
         suspend: Выключэнне ўліковага запісу
   errors:
     '400': The request you submitted was invalid or malformed.
@@ -877,6 +885,8 @@ be:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422':
+      content: Памылка праверкі бяспекі. Вы заблакіравалі cookies?
+      title: Памылка праверкі бяспекі
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
@@ -887,6 +897,7 @@ be:
     bookmarks: Закладкі
     csv: CSV
     lists: Спісы
+    storage: Медыясховішча
   featured_tags:
     add_new: Дадаць новы
   filters:
@@ -939,6 +950,8 @@ be:
     expires_in_prompt: Ніколі
     generate: Стварыць запрашальную спасылку
     max_uses_prompt: Неабмежавана
+    table:
+      uses: Выкарыстанні
     title: Запрасіць людзей
   login_activities:
     authentication_methods:
@@ -964,9 +977,14 @@ be:
     proceed_with_move: Перамясціць падпісчыкаў
   moderation:
     title: Мадэрацыя
+  navigation:
+    toggle_menu: Уключыць меню
   notification_mailer:
+    admin:
+      sign_up:
+        subject: "%{name} зарэгістраваўся"
     favourite:
-      body: 'Ваш допіс быў даданы ў абранае %{name}:'
+      body: '%{name} упадабаў ваш пост:'
       subject: "%{name} дадаў/дадала ваш допіс у абранае"
       title: Новая адзнака "Абранае"
     follow:
@@ -983,12 +1001,16 @@ be:
       subject: Вас згадаў %{name}
       title: Новае згадванне
     reblog:
+      body: '%{name} пашырыў ваш пост:'
       subject: "%{name} пашырыў ваш допіс"
+      title: Новае пашырэнне
     status:
       subject: "Новы допіс ад %{name}"
     update:
       subject: "%{name} адрэдагаваў допіс"
   notifications:
+    email_events: Падзеі для апавяшчэнняў эл. пошты
+    email_events_hint: 'Выберыце падзеі, аб якіх вы хочаце атрымліваць апавяшчэнні:'
     other_settings: Іншыя налады апавяшчэнняў
   number:
     human:
@@ -1001,14 +1023,18 @@ be:
           trillion: трлн
   otp_authentication:
     enable: Уключыць
+    setup: Наладзіць
   pagination:
+    newer: Навейшае
     next: Далей
+    older: Старэйшае
     truncate: "&hellip;"
   polls:
     errors:
       already_voted: Вы ўжо прагаласавалі ў апытанні
       expired: Апытанне ўжо скончана
   preferences:
+    other: Іншае
     posting_defaults: Публікаваць па змаўчанні
   relationships:
     followers: Падпісчыкі
@@ -1097,6 +1123,7 @@ be:
         few: "%{count} відэафайлы"
         many: "%{count} відэафайлаў"
         other: "%{count} відэафайла"
+    default_language: Такая, што і мова інтэрфэйсу
     edited_at_html: Адрэдагавана %{date}
     errors:
       in_reply_not_found: Здаецца, допіс, на які вы спрабуеце адказаць, не існуе.
@@ -1106,9 +1133,12 @@ be:
       direct: Допісы, бачныя толькі згаданым карыстальнікам, не могуць быць замацаваныя
       limit: Вы ўжо замацавалі максімальную колькасць допісаў
       ownership: Немагчыма замацаваць чужы допіс
+      reblog: Немагчыма замацаваць пашырэнне
     poll:
       vote: Прагаласаваць
     show_more: Паказаць больш
+    show_newer: Паказаць навейшыя
+    show_older: Паказаць старэйшыя
     sign_in_to_participate: Зарэгіструйцеся каб удзельнічаць у абмеркаванні
     title: '%{name}: "%{quote}"'
     visibilities:
@@ -1117,7 +1147,10 @@ be:
   statuses_cleanup:
     enabled: Аўтаматычна выдаляць старыя допісы
     enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў
+    exceptions: Выключэнні
     ignore_favs: Ігнараваць упадабаныя
+    ignore_reblogs: Ігнараваць пашырэнні
+    interaction_exceptions: Выключэнні, заснаваныя на ўзаемадзеянні
     keep_media: Захоўваць допісы з медыя дадаткамі
     keep_polls: Працягнуць апытанне
     keep_self_fav: Пакінуць абраныя вамі допісы
@@ -1135,6 +1168,8 @@ be:
     min_favs_hint: Не выдаляе вашыя допісы, якія набралі прынамсі вызначаную колькасць адзнак "Абранае". Пакіньце гэтае поле пустым, каб допісы выдаляліся незалежна ад іх колькасці
   stream_entries:
     pinned: Замацаваны допіс
+    reblogged: пашыраны
+    sensitive_content: Далікатны змест
   themes:
     contrast: Mastodon (высокі кантраст)
     default: Mastodon (цёмная)
@@ -1145,15 +1180,26 @@ be:
       time: "%H:%M"
   two_factor_authentication:
     add: Дадаць
+    disable: Адключыць 2FA
+    disabled_success: Двухфактарная аўтэнтыфікацыя адключана
     edit: Рэдагаваць
+    enabled: Двухфактарная аўтэнтыфікацыя ўключана
+    enabled_success: Двухфактарная аўтэнтыфікацыя ўключана
     generate_recovery_codes: Стварыць коды аднаўлення
     lost_recovery_codes: Коды аднаўлення дазволяць вам аднавіць доступ да вашага ўліковага запісу ў выпадку страты тэлефона. Калі вы згубілі вашыя коды, вы можаце стварыць новыя тут. Старыя коды аднаўлення будуць ануляваныя.
+    methods: Двухфактарныя метады
     recovery_codes: Абнавіць коды аднаўлення
     recovery_codes_regenerated: Новыя коды аднаўлення паспяхова створаныя
     recovery_instructions_html: Калі раптам вы страціце доступ да вашага тэлефона, вы можаце скарыстацца адным з кодаў аднаўлення ніжэй каб аднавіць доступ да вашага ўліковага запісу. <strong>Захоўвайце іх у бяспечным месцы</strong>. Напрыклад, вы можаце раздрукаваць іх і захоўваць разам з іншымі важнымі дакументамі.
     webauthn: Ключы бяспекі
   user_mailer:
+    appeal_approved:
+      action: Перайсці ў свой уліковы запіс
+      title: Абскарджанне ўхвалена
+    appeal_rejected:
+      title: Абскарджанне адхілена
     suspicious_sign_in:
+      change_password: змяніць свой пароль
       subject: У вас уліковы запіс зайшлі з новага IP-адрасу
       title: Новы ўваход
     warning:
@@ -1178,6 +1224,7 @@ be:
         none: Папярэджанне
         suspend: Уліковы запіс выключаны
     welcome:
+      edit_profile_action: Наладзіць профіль
       explanation: Вось некаторыя парады каб пачаць
       final_action: Пачаць пісаць
       final_step: 'Пачынайце пісаць! Нават, калі ў вас няма падпісчыкаў, іншыя людзі змогуць пабачыць вашыя допісы, напрыклад, у лакальнай стужцы, або праз хэштэгі. Калі хочаце, вы можаце прадставіцца праз хэштэг #introductions.'
