@@ -1383,7 +1383,61 @@ sco:
     content_warning: 'Content warnin:'
     descriptions:
       account: Public posts fae @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Ye'v went by the limit o %{limit} scheduled posts thit ye'r allooed fir the day
+    over_total_limit: Ye'v went by the limit o %{limit} scheduled posts
+    too_soon: The schedult date haes tae be in the future
+  sessions:
+    activity: Last activity
+    browser: Brooser
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Unkent brooser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
+    current_session: Current session
+    description: "%{browser} on %{platform}"
+    explanation: Thir's the wab broosers logged in tae yer Mastodon accoont the noo.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      other: unkent platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revoke
+    revoke_success: Session successfully revokt
+    title: Sessions
+    view_authentication_history: Luik at authentication history o yer accoont
   settings:
+    account: Accoont
+    account_settings: Accoont settins
+    aliases: Accoont aliases
+    appearance: Appearance
+    authorized_apps: Authorized apps
+    back: Back tae Mastodon
+    delete: Accoont deletion
     development: Development
     edit_profile: Edit profile
     export: Data export
@@ -1414,3 +1468,13 @@ sco:
     boosted_from_html: Heezed fae %{acct_link}
     content_warning: 'Content warnin: %{warning}'
     default_language: Same as interface leid
+  statuses_cleanup:
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 months
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 months
+      '604800': 1 week
+      '63113904': 2 year
+      '7889238': 3 months
