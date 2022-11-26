@@ -3040,6 +3040,55 @@ $ui-header-height: 55px;
   border-color: $ui-highlight-color;
 }
 
+.logo-link-custom {
+  color: $primary-text-color;
+  display: block;
+  font-size: 28px;
+  font-weight: bolder;
+  font-family: Ubuntu, serif;
+  padding: 15px;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &--transparent {
+    background: transparent;
+    color: $ui-secondary-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      color: $primary-text-color;
+    }
+
+    &.active {
+      color: $highlight-text-color;
+    }
+  }
+
+  &--logo {
+    background: transparent;
+    padding: 10px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+    }
+  }
+}
+
 .column-link {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
