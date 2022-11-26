@@ -158,8 +158,8 @@ export function submitCompose(routerHistory, checkAltText = true) {
       return;
     }
 
-    // If the user has alt text reminders enabled and any media attached to
-    // the compose form, check for alt text.
+    // If the user has image description reminders enabled and any media attached to
+    // the compose form, check for image description.
     if (checkAltText && getState().getIn(['compose', 'alt_text_reminder']) && media.size > 0) {
       // If there are any attachments that are missing descriptions, display the warning modal.
       if (media.some((attach) => attach.get('description') === null || attach.get('description') === '')) {
