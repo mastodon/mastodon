@@ -25,6 +25,7 @@ import {
   InteractionModal,
   SubscribedLanguagesModal,
   ClosedRegistrationsModal,
+  AltTextWarningModal,
 } from 'mastodon/features/ui/util/async-components';
 import { Helmet } from 'react-helmet';
 
@@ -48,6 +49,7 @@ const MODAL_COMPONENTS = {
   'SUBSCRIBED_LANGUAGES': SubscribedLanguagesModal,
   'INTERACTION': InteractionModal,
   'CLOSED_REGISTRATIONS': ClosedRegistrationsModal,
+  'ALT_TEXT_WARNING': AltTextWarningModal,
 };
 
 export default class ModalRoot extends React.PureComponent {

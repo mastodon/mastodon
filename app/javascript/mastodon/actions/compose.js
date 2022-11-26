@@ -158,13 +158,13 @@ export function submitCompose(routerHistory) {
       return;
     }
 
-    // If the user has alt text reminders enabled and any media attached to the composition form,
-    // check for alt text.
+    // If the user has alt text reminders enabled and any media attached to
+    // the compose form, check for alt text.
     if (getState().getIn(['compose', 'alt_text_reminder']) && media.size > 0) {
       // If there are any attachments that are missing descriptions, display the warning modal.
-      if (media.some((attachment) => attachment.get('description') === null)) {
-        // TODO: Use dispatch here?
-        console.log('missing descriptions, we should render the modal now');
+      if (media.some((attach) => attach.get('description') === null || attach.get('description') === '')) {
+        dispatch(openModal('ALT_TEXT_WARNING'));
+        return;
       }
     }
 

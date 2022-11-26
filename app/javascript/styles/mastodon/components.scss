@@ -5176,7 +5176,8 @@ a.status-card.compact:hover {
 .actions-modal,
 .mute-modal,
 .block-modal,
-.compare-history-modal {
+.compare-history-modal,
+.alt-text-warning-modal {
   background: lighten($ui-secondary-color, 8%);
   color: $inverted-text-color;
   border-radius: 8px;
@@ -5213,6 +5214,7 @@ a.status-card.compact:hover {
 .boost-modal__action-bar,
 .confirmation-modal__action-bar,
 .mute-modal__action-bar,
+.alt-text-warning-modal__action-bar,
 .block-modal__action-bar {
   display: flex;
   justify-content: space-between;
@@ -5650,6 +5652,7 @@ a.status-card.compact:hover {
 
 .confirmation-modal__container,
 .mute-modal__container,
+.alt-text-warning-modal__container,
 .block-modal__container,
 .report-modal__target {
   padding: 30px;
