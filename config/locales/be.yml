@@ -1008,6 +1008,8 @@ be:
       body: 'Вас згадаў %{name} у:'
       subject: Вас згадаў %{name}
       title: Новае згадванне
+    poll:
+      subject: Апытанне ад %{name} скончылася
     reblog:
       body: '%{name} пашырыў ваш пост:'
       subject: "%{name} пашырыў ваш допіс"
@@ -1040,6 +1042,7 @@ be:
   polls:
     errors:
       already_voted: Вы ўжо прагаласавалі ў апытанні
+      duplicate_options: змяшчае аднолькавыя варыянты
       expired: Апытанне ўжо скончана
   preferences:
     other: Іншае
@@ -1146,6 +1149,16 @@ be:
       ownership: Немагчыма замацаваць чужы допіс
       reblog: Немагчыма замацаваць пашырэнне
     poll:
+      total_people:
+        one: "%{count} чалавек"
+        few: "%{count} чалавекі"
+        many: "%{count} чалавек"
+        other: "%{count} чалавека"
+      total_votes:
+        one: "%{count} голас"
+        few: "%{count} галасы"
+        many: "%{count} галасоў"
+        other: "%{count} голасу"
       vote: Прагаласаваць
     show_more: Паказаць больш
     show_newer: Паказаць навейшыя
