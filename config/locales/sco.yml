@@ -1603,7 +1603,57 @@ sco:
         disable: Ye kin nae langer uise yer accoont, but yer profile an ither data is stull intack. Ye kin request a backup o yer data, chynge accoont settins or delete yer accoont.
         mark_statuses_as_sensitive: Some o yer posts hae been mairkt as sensitive bi the moderators o %{instance}. This means thit fowk wull need tae tap the media in the posts afore a preview is displayy. Ye kin mairk media as sensitive yersel whan postin in the future.
         sensitive: Fae noo on, aw yer uploadit media files will get mairkt as sensitive an hid ahin a click-throu warnin.
+        silence: Ye kin stull uise yer accoont but ainly fowk thit's awriddy follaein ye wull see yer posts on this server, an ye'll mibbie get excludit fae various discovery features. Hou an iver, ithers kin still follae ye bi haun.
+        suspend: Ye kin nae langer uise yer accoont, an yer profile an ither data urnae accessible onie mair. Ye kin stull login fir tae request a backup o yer data tae the data is fully taen doon in aboot 30 days, but we wull retain some basic data fir tae prevent ye fae evadin the suspension.
+      reason: 'Raison:'
+      statuses: 'Posts citit:'
+      subject:
+        delete_statuses: Yer posts on %{acct} hae been removed
+        disable: Yer accoont %{acct} haes been froze
+        mark_statuses_as_sensitive: Yer posts on %{acct} hae been mairkt as sensitive
+        none: Warnin fir %{acct}
+        sensitive: Yer posts on %{acct} wull be mairkt as sensitive fae noo on
+        silence: Yer accoont %{acct} haes been limitit
+        suspend: Yer accoont %{acct} haes been suspendit
+      title:
+        delete_statuses: Posts taen doon
+        disable: Accoont froze
+        mark_statuses_as_sensitive: Posts mairkt sensitive
+        none: Warnin
+        sensitive: Accoont mairkt as sensitive
+        silence: Accoont limitit
+        suspend: Accoont suspendit
+    welcome:
+      edit_profile_action: Setup profile
+      edit_profile_step: Ye kin customize yer profile bi uploadin a profile picture, chyngin yer display nemm an mair. Ye kin opt-in fir tae luik ower new follaers afore they’re allooed tae follae ye.
+      explanation: Here some tips fir tae get ye stertit
+      final_action: Stert postin
+      final_step: 'Stert postin! Even athout follaers, yer public posts kin stull be seen bi ithers, fir example on the local timeline or in hashtags. Ye mibbie want tae introduce yersel on the #introductions hashtag.'
+      full_handle: Yer ful haunnle
+      full_handle_hint: This is whit ye wad tell yer pals sae thit they kin message or follae ye fae anither server.
+      subject: Welcome tae Mastodon, 'mon in
+      title: Welcome aboord, %{name}!
+  users:
+    follow_limit_reached: Ye cannae follae mair than %{limit} fowk
+    invalid_otp_token: Invalid twa-factor code
+    otp_lost_help_html: If ye lost access tae baith, ye kin get in touch wi %{email}
+    seamless_external_login: Ye'r logged in via a external service, sae passwird an email settins urnae available.
+    signed_in_as: 'Signt in as:'
+  verification:
+    explanation_html: 'Ye kin <strong>verify yersel as the ainer o the links in yer profile metadata</strong>. Fir that, the linkt wabsteid haes tae contain a link back tae yer Mastodon profile. The link back <strong>haes tae</strong> hae a <code>rel="me"</code> attribute. The text content o the link disnae maitter. Here a example:'
+    verification: Verification
   webauthn_credentials:
+    add: Add new security key
+    create:
+      error: There wis a problem addin yer security key. Please try again.
+      success: Yer security key wis successfully addit.
+    delete: Delete
+    delete_confirmation: Ye sure thit ye want tae delete this security key?
+    description_html: Gin ye turn on <strong>security key authentication</strong>, loggin in wull require ye tae uise ane o yer security keys.
+    destroy:
+      error: There wis a problem wi deletin yer security key. Please try again.
+      success: Yer security key wis successfully deletit.
+    invalid_credential: Invalid security key
     nickname_hint: Pit in the nickname o yer new security key
     not_enabled: Ye huvnae turnt on WebAuthn yit
     not_supported: This brooser disnae support security keys
