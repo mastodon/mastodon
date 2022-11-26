@@ -156,7 +156,7 @@ be:
       undo_sensitized: Прыбраць прымусовую пазнаку далікатнасці
       undo_silenced: Адмяніць ліміт
       undo_suspension: Разблакаваць карыстальніка
-      unsilenced_msg: Блакіроўка акаунта карыстальніка  %{username} знятая
+      unsilenced_msg: З уліковага запісу %{username} зняты абмежаванні
       unsubscribe: Адпісацца
       unsuspended_msg: Уліковы запіс %{username} адноўлены
       username: Імя карыстальніка
@@ -260,7 +260,7 @@ be:
         enable_custom_emoji_html: "%{name} уключыў эмодзі %{target}"
         enable_sign_in_token_auth_user_html: "%{name} уключыў(ла) такенную e-mail праверку для %{target}"
         enable_user_html: "%{name} уключыў уваход для карыстальніка %{target}"
-        memorialize_account_html: "%{name} перакючыў(ла) %{target} аккаўнт у старонку мемарыялізацыі"
+        memorialize_account_html: "Карыстальнік %{name} пераключыў уліковы запіс %{target} у старонку памяці"
         promote_user_html: "%{name} павысіў карыстальніка %{target}"
         reject_appeal_html: "%{name} адхіліў запыт на абскарджанне %{target}"
         reject_user_html: "%{name} адхіліў рэгістрацыю з %{target}"
@@ -562,6 +562,7 @@ be:
         delete: Выдаліць
         title: Нататкі
       resolved: Вырашана
+      skip_to_actions: Прапусціць дзеянні
       status: Стан
       title: Скаргі
       unassign: Скінуць
@@ -611,6 +612,7 @@ be:
         manage_rules_description: Дазваляе змяняць правілы сервера
         manage_settings: Кіраванне наладамі
         manage_settings_description: Дазваляе змяняць налады сервера
+        manage_taxonomies: Кіраванне катэгорыямі
         manage_user_access: Кіраванне наладамі доступу карыстальнікаў
         manage_user_access_description: Дазваляе адключаць двухфактарную аўтэнтыфікацыю іншым карыстальнікам, змяняць іх паштовы адрас і скідваць пароль
         manage_users: Кіраванне карыстальнікамі
@@ -625,10 +627,13 @@ be:
     rules:
       add_new: Дадаць правіла
       delete: Выдаліць
+      description_html: Большасць сцвярджаюць, што прачыталі ўмовы абслугоўвання і згаджаюцца з імі, але звычайна людзі не чытаюць іх да канца, пакуль не ўзнікне праблема. <strong>Таму зрабіце правілы вашага сервера простымі з першага погляду, прадставіўшы іх у выглядзе маркіраванага спісу.</strong> Старайцеся рабіць правілы кароткімі і простымі, але не разбіваць іх на шмат асобных пунктаў.
       edit: Рэдагаваць правіла
+      empty: Правілы сервера яшчэ не вызначаны.
       title: Правілы сервера
     settings:
       about:
+        manage_rules: Кіраваць правіламі сервера
         title: Пра нас
       appearance:
         preamble: Наладзьце вэб-інтэрфейс Mastodon.
@@ -654,6 +659,7 @@ be:
       back_to_account: Назад да старонкі ўліковага запісу
       deleted: Выдалены
       favourites: Упадабаныя
+      history: Гісторыя версій
       language: Мова
       media:
         title: Медыя
@@ -709,6 +715,7 @@ be:
         title: Актуальныя допісы
       tags:
         dashboard:
+          tag_accounts_measure: унікальнае выкарыстанне
           tag_languages_dimension: Папулярныя мовы
           tag_servers_dimension: Папулярныя серверы
           tag_servers_measure: розныя серверы
@@ -740,9 +747,18 @@ be:
       actions:
         delete_statuses: выдаліць іх допісы
         mark_statuses_as_sensitive: пазначыць іх допісы як далікатныя
+        sensitive: пазначыць іх уліковыя запісы як далікатныя
+        silence: абмежаваць іх уліковыя запісы
         suspend: каб выключыць уліковы запіс
     new_report:
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
+  aliases:
+    add_new: Стварыць псеўданім
+    created_msg: Створаны новы псеўданім. Цяпер вы можаце пачаць пераход са старога ўліковага запісу.
+    deleted_msg: Псеўданім выдалены. Пераход з таго ўліковага запісу на гэты больш немагчымы.
+    empty: У вас няма псеўданімаў.
+    hint_html: Калі вы хочаце перайсці з іншага ўліковага запісу ў гэты, то тут вы можаце стварыць псеўданім, каб перамясціць падпісчыкаў са старога ўліковага запісу ў гэты. Гэта дзеянне з'яўляецца <strong>бясшкодным і зварачальным</strong>. <strong>Перанос уліковага запісу пачынаецца са старога ўліковага запісу</strong>.
+    remove: Адмацаваць псеўданім
   appearance:
     advanced_web_interface: Пашыраны вэб-інтэрфейс
     advanced_web_interface_hint: 'Калі вы хочаце выкарыстоўваць усю шырыню экрана, пашыраны вэб-інтэрфейс дазваляе вам наладзіць мноства розных слупкоў, каб бачыць столькі інфармацыі, колькі вам трэба: галоўная, апавяшчэнні, глабальная стужка, любая колькасць спісаў і хэштэгаў.'
@@ -848,7 +864,10 @@ be:
       appeals:
         submit: Падаць апеляцыю
       status: 'Допіс #%{id}'
+      status_removed: Допіс ужо выдалены з сістэмы
       title_actions:
+        delete_statuses: Выдаленне допісу
+        mark_statuses_as_sensitive: Пазначыць допісы як далікатныя
         none: Папярэджванне
         suspend: Выключэнне ўліковага запісу
   errors:
@@ -937,8 +956,10 @@ be:
       too_many: Няможна дадаць больш 4 файлаў
   migrations:
     errors:
+      missing_also_known_as: гэта не псеўданім уліковага запісу
       not_found: не знойдзена
     followers_count: Падпісчыкі на момант перамяшчэння
+    incoming_migrations_html: Каб перайсці з іншага ўліковага запісу ў гэты, спачатку трэба <a href="%{path}">стварыць псеўданім уліковага запісу</a>.
     past_migrations: Колішнія перамяшчэнні
     proceed_with_move: Перамясціць падпісчыкаў
   moderation:
@@ -965,6 +986,8 @@ be:
       subject: "%{name} пашырыў ваш допіс"
     status:
       subject: "Новы допіс ад %{name}"
+    update:
+      subject: "%{name} адрэдагаваў допіс"
   notifications:
     other_settings: Іншыя налады апавяшчэнняў
   number:
@@ -985,6 +1008,8 @@ be:
     errors:
       already_voted: Вы ўжо прагаласавалі ў апытанні
       expired: Апытанне ўжо скончана
+  preferences:
+    posting_defaults: Публікаваць па змаўчанні
   relationships:
     followers: Падпісчыкі
     following: Падпіскі
@@ -1037,6 +1062,7 @@ be:
   settings:
     account: Уліковы запіс
     account_settings: Налады ўліковага запісу
+    aliases: Псеўданімы ўліковага запісу
     appearance: Выгляд
     authorized_apps: Аўтарызаваныя праграмы
     back: Назад да Mastodon
@@ -1072,6 +1098,9 @@ be:
         many: "%{count} відэафайлаў"
         other: "%{count} відэафайла"
     edited_at_html: Адрэдагавана %{date}
+    errors:
+      in_reply_not_found: Здаецца, допіс, на які вы спрабуеце адказаць, не існуе.
+    open_in_web: Адчыніць у вэб-версіі
     over_character_limit: перавышаная колькасць сімвалаў у %{max}
     pin_errors:
       direct: Допісы, бачныя толькі згаданым карыстальнікам, не могуць быць замацаваныя
@@ -1087,6 +1116,7 @@ be:
       public_long: Усе могуць бачыць
   statuses_cleanup:
     enabled: Аўтаматычна выдаляць старыя допісы
+    enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў
     ignore_favs: Ігнараваць упадабаныя
     keep_media: Захоўваць допісы з медыя дадаткамі
     keep_polls: Працягнуць апытанне
