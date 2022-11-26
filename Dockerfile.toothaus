@@ -1,0 +1,27 @@
+ARG UPSTREAM_TAG=latest
+FROM docker.io/tootsuite/mastodon:${UPSTREAM_TAG}
+
+USER root
+
+RUN set -e; \
+    export DEBIAN_FRONTEND=noninteractive; \
+    apt-get update; \
+    mkdir -p /var/cache/apt/archives/partial; \
+    apt-get -y --no-install-recommends install \
+        rclone; \
+    rm -rf /var/cache; \
+    rm -rf /var/lib/apt/lists/*
+
+USER mastodon
+
+COPY --chown=mastodon:mastodon app /opt/mastodon/app
+COPY --chown=mastodon:mastodon config /opt/mastodon/config
+COPY --chown=mastodon:mastodon public /opt/mastodon/public
+
+# Precompile assets
+RUN set -e; \
+    OTP_SECRET=precompile_placeholder \
+    SECRET_KEY_BASE=precompile_placeholder \
+    rails assets:precompile; \
+    yarn cache clean; \
+    find . -iname '*toothaus*' -print
