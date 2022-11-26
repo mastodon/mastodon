@@ -11,12 +11,13 @@ metadata:
     app.kubernetes.io/part-of: rails
 spec:
   {{- if (has "scheduler" .queues) }}
-  replicas: {{ min .replicas 1 }}
+    {{- if (gt (int .replicas) 1) }}
+      {{ fail "The scheduler queue should never have more than 1 replicas" }}
+    {{- end }}
   strategy:
     type: Recreate
-  {{- else }}
-  replicas: {{ .replicas }}
   {{- end }}
+  replicas: {{ .replicas }}
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" $context | nindent 6 }}
