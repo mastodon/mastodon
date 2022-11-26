@@ -18,10 +18,10 @@
           = link_to t("admin.system_checks.#{message.key}.action"), message.action
 
 .dashboard
-  .dashboard__item
+  .dashboard__item{:title => "New Users (measured from the database)"}
     = react_admin_component :counter, measure: 'new_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.new_users'), href: admin_accounts_path(origin: 'local')
 
-  .dashboard__item
+  .dashboard__item{:title => "Active Users (measured from redis; includes rejected/deleted users)"}
     = react_admin_component :counter, measure: 'active_users', start_at: @time_period.first, end_at: @time_period.last, label: t('admin.dashboard.active_users'), href: admin_accounts_path(origin: 'local')
 
   .dashboard__item
@@ -49,13 +49,13 @@
     = link_to admin_disputes_appeals_path(status: 'pending'), class: 'dashboard__quick-access' do
       %span= t('admin.dashboard.pending_appeals_html', count: @pending_appeals_count)
       = fa_icon 'chevron-right fw'
-  .dashboard__item
+  .dashboard__item{:title => "Number of users, by sign-up source"}
     = react_admin_component :dimension, dimension: 'sources', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.sources')
 
-  .dashboard__item
+  .dashboard__item{:title => "Number of users, by selected locale"}
     = react_admin_component :dimension, dimension: 'languages', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.top_languages')
 
-  .dashboard__item
+  .dashboard__item{:title => "Statuses per server"}
     = react_admin_component :dimension, dimension: 'servers', start_at: @time_period.first, end_at: @time_period.last, limit: 8, label: t('admin.dashboard.top_servers')
 
   .dashboard__item.dashboard__item--span-double-column
