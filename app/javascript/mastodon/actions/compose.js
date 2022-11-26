@@ -163,7 +163,11 @@ export function submitCompose(routerHistory, checkAltText = true) {
     if (checkAltText && getState().getIn(['compose', 'alt_text_reminder']) && media.size > 0) {
       // If there are any attachments that are missing descriptions, display the warning modal.
       if (media.some((attach) => attach.get('description') === null || attach.get('description') === '')) {
-        dispatch(openModal( 'ALT_TEXT_WARNING', { onSubmitCompose: () => { dispatch(submitCompose(routerHistory, false)) }}));
+        dispatch(openModal( 'ALT_TEXT_WARNING', {
+          onSubmitCompose: () => {
+            dispatch(submitCompose(routerHistory, false));
+          },
+        }));
         return;
       }
     }
