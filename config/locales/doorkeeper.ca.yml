@@ -33,7 +33,7 @@ ca:
       help:
         native_redirect_uri: Usa %{native_redirect_uri} per a proves locals
         redirect_uri: Usa una línia per URI
-        scopes: Separa els àmbits amb espais. Deixa-ho en blanc per usar els àmbits per defecte.
+        scopes: Separa els àmbits amb espais. Deixa-ho en blanc per a usar els àmbits per defecte.
       index:
         application: Aplicació
         callback_url: URL de retorn
@@ -73,7 +73,7 @@ ca:
       index:
         authorized_at: Autoritzada el %{date}
         description_html: Aquestes són les aplicacions que poden accedir al teu compte usant l'API. Si hi ha aplicacions que no reconeixes o hi ha una aplicació que no funciona bé, pots revocar-ne l'accés.
-        last_used_at: Usada per últim cop el %{date}
+        last_used_at: Usada per última vegada el %{date}
         never_used: No s'ha usat mai
         scopes: Permisos
         superapp: Interna
@@ -148,8 +148,8 @@ ca:
         title: Autorització OAuth requerida
     scopes:
       admin:read: llegir totes les dades en el servidor
-      admin:read:accounts: llegir l'informació sensible de tots els comptes
-      admin:read:reports: llegir l'informació sensible de tots els informes i comptes reportats
+      admin:read:accounts: llegir informació confidencial de tots els comptes
+      admin:read:reports: llegir informació confidencial de tots els informes i comptes reportats
       admin:write: modificar totes les dades en el servidor
       admin:write:accounts: fer l'acció de moderació en els comptes
       admin:write:reports: fer l'acció de moderació en els informes

@@ -3,39 +3,39 @@ ko:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 애플리케이션 이름
-        redirect_uri: 리디렉션 URI
+        name: 어플리케이션 이름
+        redirect_uri: 리다이렉트 URI
         scopes: 범위
-        website: 애플리케이션 웹사이트
+        website: 어플리케이션 웹사이트
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               fragment_present: fragment를 포함할 수 없습니다
-              invalid_uri: 올바른 URI여야 합니다.
-              relative_uri: 절대경로 URI여야 합니다
-              secured_uri: HTTPS/SSL URI여야 합니다.
+              invalid_uri: 올바른 URI 이어야 합니다.
+              relative_uri: 절대경로 URI 이어야 합니다
+              secured_uri: " HTTPS/SSL URI 이어야 합니다."
   doorkeeper:
     applications:
       buttons:
         authorize: 승인
         cancel: 취소
         destroy: 제거
-        edit: 수정
+        edit: 편집
         submit: 제출
       confirmations:
-        destroy: 확실합니까?
+        destroy: 정말로 실행하시겠습니까?
       edit:
-        title: 애플리케이션 수정
+        title: 어플리케이션 수정
       form:
-        error: 이런! 에러를 확인하세요
+        error: 이런! 오류를 확인하세요
       help:
-        native_redirect_uri: "%{native_redirect_uri}를 이용해 로컬 테스트를 할 수 있습니다"
-        redirect_uri: 한 줄에 하나의 URI를 작성하세요
+        native_redirect_uri: "%{native_redirect_uri} 을/를 이용해 로컬 테스트를 할 수 있습니다"
+        redirect_uri: 한 줄에 하나의 URI 를 작성하세요
         scopes: 스페이스로 범위를 구분하세요. 빈 칸으로 놔두면 기본 범위를 사용합니다.
       index:
-        application: 애플리케이션
+        application: 어플리케이션
         callback_url: 콜백 URL
         delete: 삭제
         empty: 어플리케이션이 없습니다.
@@ -124,7 +124,7 @@ ko:
         admin/reports: 신고 관리
         all: 전체
         blocks: 차단
-        bookmarks: 책갈피
+        bookmarks: 북마크
         conversations: 대화
         crypto: 종단간 암호화
         favourites: 좋아요
@@ -159,7 +159,7 @@ ko:
       read: 계정의 모든 데이터를 읽기
       read:accounts: 계정의 정보를 보기
       read:blocks: 차단을 보기
-      read:bookmarks: 내 책갈피 보기
+      read:bookmarks: 내 북마크 보기
       read:favourites: 관심글을 보기
       read:filters: 필터를 보기
       read:follows: 팔로우를 보기
@@ -172,7 +172,7 @@ ko:
       write: 계정 정보 수정
       write:accounts: 프로필 수정
       write:blocks: 계정이나 도메인 차단
-      write:bookmarks: 글을 책갈피에 넣기
+      write:bookmarks: 게시물을 북마크에 넣기
       write:conversations: 뮤트와 대화 삭제
       write:favourites: 관심글 지정
       write:filters: 필터 만들기
