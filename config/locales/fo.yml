@@ -748,6 +748,10 @@ fo:
       reblogs: Endurbloggar
       status_changed: Postur broyttur
       title: Postar hjá kontu
+      trending: Vælumtókt
+    strikes:
+      appeal_approved: Kært
+      appeal_pending: Kæra bíðar eftir avgerð
     title: Umsiting
     trends:
       allow: Loyv
@@ -900,6 +904,7 @@ fo:
     proceed: Strika kontu
   disputes:
     strikes:
+      created_at: Dagfest
       title_actions:
         none: Ávaring
   domain_validator:
@@ -911,17 +916,21 @@ fo:
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
     '422':
-    '429': Too many requests
+    '429': Ov nógvir fyrispurningar
     '500':
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
       date: Dagfesting
       size: Stødd
+    csv: CSV
     lists: Listar
   filters:
+    edit:
+      keywords: Lyklaorð
     index:
       delete: Strika
+      title: Filtur
   footer:
     trending_now: Rák beint nú
   generic:
@@ -930,9 +939,12 @@ fo:
     delete: Strika
     none: Einki
     save_changes: Goym broytingar
+    today: í dag
   imports:
     errors:
       invalid_csv_file: 'Ógildug CSV-fíla. Error: %{error}'
+    modes:
+      overwrite: Skriva omaná
   invites:
     expired: Útgingið
     expires_in:
