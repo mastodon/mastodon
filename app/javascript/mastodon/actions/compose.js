@@ -148,7 +148,7 @@ export function directCompose(account, routerHistory) {
   };
 };
 
-export function submitCompose(routerHistory) {
+export function submitCompose(routerHistory, checkAltText = true) {
   return function (dispatch, getState) {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
@@ -160,10 +160,10 @@ export function submitCompose(routerHistory) {
 
     // If the user has alt text reminders enabled and any media attached to
     // the compose form, check for alt text.
-    if (getState().getIn(['compose', 'alt_text_reminder']) && media.size > 0) {
+    if (checkAltText && getState().getIn(['compose', 'alt_text_reminder']) && media.size > 0) {
       // If there are any attachments that are missing descriptions, display the warning modal.
       if (media.some((attach) => attach.get('description') === null || attach.get('description') === '')) {
-        dispatch(openModal('ALT_TEXT_WARNING'));
+        dispatch(openModal( 'ALT_TEXT_WARNING', { onSubmitCompose: () => { dispatch(submitCompose(routerHistory, false)) }}));
         return;
       }
     }

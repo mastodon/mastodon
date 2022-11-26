@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { injectIntl, FormattedMessage } from 'react-intl';
 import Button from '../../../components/button';
 import { closeModal } from '../../../actions/modal';
-import { submitCompose } from '../../../actions/compose';
 
 const makeMapStateToProps = () => {
   const mapStateToProps = state => ({
@@ -16,11 +15,6 @@ const makeMapStateToProps = () => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onConfirm() {
-      // TODO: Set the alt_text_reminder to false here so it doesn't loop with the modal.
-      dispatch(submitCompose(this.context.router.history));
-    },
-
     onClose() {
       dispatch(closeModal());
     },
@@ -35,7 +29,7 @@ class AltTextWarningModal extends React.PureComponent {
 
   static propTypes = {
     onClose: PropTypes.func.isRequired,
-    onConfirm: PropTypes.func.isRequired,
+    onSubmitCompose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
   };
 
@@ -44,8 +38,8 @@ class AltTextWarningModal extends React.PureComponent {
   }
 
   handleClick = () => {
+    this.props.onSubmitCompose();
     this.props.onClose();
-    this.props.onConfirm();
   }
 
   handleCancel = () => {
