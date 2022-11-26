@@ -951,7 +951,12 @@ fo:
     login: Innrita
     logout: Rita út
     migrate_account: Flyt til eina aðra kontu
+    migrate_account_html: Ynskir tú at víðaribeina hesa kontuna til eina aðra, so kanst tú <a href="%{path}">seta tað upp her</a>.
     or_log_in_with: Ella innrita við
+    privacy_policy_agreement_html: Eg havi lisið og taki undir við <a href="%{privacy_policy_path}" target="_blank">privatlívspolitikkinum</a>
+    providers:
+      cas: CAS
+      saml: SAML
     register: Tilmelda
     registration_closed: "%{instance} tekur ikki ímóti nýggjum limum"
     resend_confirmation: Send góðkenningarvegleiðing umaftur
@@ -1018,11 +1023,43 @@ fo:
       x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: Upplýsingin, sum tú las inn, var ikki røtt
+    confirm_password: Skriva títt núverandi loyniorð fyri at vátta tín samleika
+    confirm_username: Skriva títt brúkranavn fyri at vátta mannagongdina
     proceed: Strika kontu
+    success_msg: Konta tín var strikað
+    warning:
+      before: 'Áðrenn tú heldur fram, vinarliga les hesar notur nágreiniliga:'
+      caches: Innihald, sum er lagt í goymslu á øðrum ambætarum, kann vera varandi har
+      data_removal: Postar tínir og aðrar dátur verða burturbeind varandi
+      email_change_html: Tú kann <a href="%{path}">broyta tín teldupost</a> uttan at strika tína kontu
+      email_contact_html: Um tað framvegis ikki kemur vegin fram, so kanst tú senda teldubræv til <a href="mailto:%{email}">%{email}</a> og biðja um hjálp
+      email_reconfirmation_html: Móttekur tú ikki váttanarteldupostin, so kanst tú <a href="%{path}">biðja um hann aftur</a>
+      irreversible: Tað verður ikki møguligt hjá tær at endurskapa ella gera kontu tína virkna aftur
+      more_details_html: Fyri fleiri smálutir, sí <a href="%{terms_path}">privatlívpolitikkin</a>.
+      username_available: Brúkaranavnið hjá tær verður tøkt aftur
+      username_unavailable: Brúkaranavnið hjá tær verður framhaldandi ikki tøkt
   disputes:
     strikes:
+      action_taken: Tiknar atgerðir
+      appeal: Kæra
+      appeal_approved: Kæran móti atsóknini eydnaðist og atsóknin er tí ikki longur í gildi
+      appeal_rejected: Kæran er vrakað
+      appeal_submitted_at: Kæra send inn
+      appealed_msg: Kæran hjá tær er send inn. Verður hon góðkend, so fær tú boð.
+      appeals:
+        submit: Send kæru
+      approve_appeal: Góðkenn kæru
+      associated_report: Atknýtt melding
       created_at: Dagfest
+      description_html: Hetta er atgerðirnar, sum eru tiknar móti kontu tíni og ávaringar, sum eru sendar tær av starvsfólkunum hjá %{instance}.
+      recipient: Adresserað
+      reject_appeal: Vraka kæru
+      status: 'Postur #%{id}'
+      status_removed: Postur longu strikaður í skipanini
+      title: "%{action} frá %{date}"
       title_actions:
+        delete_statuses: Striking av posti
+        disable: Frysting av kontu
         mark_statuses_as_sensitive: Merk postar sum viðkvæmar
         none: Ávaring
   domain_validator:
@@ -1049,21 +1086,59 @@ fo:
     index:
       delete: Strika
       title: Filtur
+    statuses:
+      back_to_filter: Aftur til filtur
+      batch:
+        remove: Strika úr filtri
+      index:
+        hint: Hetta filtrið er galdandi fyri útvaldar stakar postar óansæð aðrar treytir. Tú kanst leggja fleiri postar afturat hesum filtrinum frá vevmarkamótinum.
+        title: Filtreraðir postar
   footer:
     trending_now: Rák beint nú
   generic:
     all: Alt
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> lutur á hesi síðuni er valdur."
+      other: All <strong>%{count}</strong> lutir á hesi síðuni eru valdir.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> lutur, sum samsvarar við tína leiting, er valdur."
+      other: Allir <strong>%{count}</strong> lutir, sum samsvara við tína leiting, eru valdir.
+    changes_saved_msg: Broytingar goymdar!
     copy: Avrita
     delete: Strika
+    deselect: Frável alt
     none: Einki
+    order_by: Sortera eftir
     save_changes: Goym broytingar
+    select_all_matching_items:
+      one: Vel %{count} lut sum samsvarar við tína leiting.
+      other: Vel allar %{count} lutir, sum samsvara við tína leiting.
     today: í dag
+    validation_errors:
+      one: Okkurt er ikki heilt rætt enn! Vinarliga eftirhygg feilin niðanfyri
+      other: Okkurt er ikki heilt rætt enn! Vinarliga eftirhygg teir %{count} feilirnar niðanfyri
+  html_validator:
+    invalid_markup: 'inniheldur ógyldugt HTML markup: %{error}'
   imports:
     errors:
       invalid_csv_file: 'Ógildug CSV-fíla. Error: %{error}'
+      over_rows_processing_limit: hevur fleiri enn %{count} rekkjur
     modes:
+      merge: Flætta
+      merge_long: Varðveit verandi teigarøð og legg nýggjar afturat
       overwrite: Skriva omaná
+      overwrite_long: Legg nýggj teigarøð inn fyri tey verandi
+    preface: Tú kanst innlesa dátur, sum tú hevur útlisið frá einum øðrum ambætara, so sum listar av fólki, sum tú fylgir ella blokerar.
+    success: Dátur tínar vóru lagdar upp og verða viðgjørdar, tá tíð er
+    types:
+      blocking: Blokeringslisti
+      bookmarks: Bókamerki
+      domain_blocking: Navnaøkisblokeringslisti
+      following: Fylgjaralisti
+      muting: Doyvingarlisti
+    upload: Legg upp
   invites:
+    delete: Ger óvirkið
     expired: Útgingið
     expires_in:
       '1800': 30 minuttir
@@ -1073,17 +1148,88 @@ fo:
       '604800': 1 vika
       '86400': 1 dag
     expires_in_prompt: Ongantíð
+    generate: Ger innbjóðingarleinki
+    invited_by: 'Tú var bjóðað/ur av:'
+    max_uses:
+      one: 1 brúk
+      other: "%{count} brúk"
+    max_uses_prompt: Eingin avmarking
+    prompt: Ger og deil leinki við onnur fyri at geva atgongd til hendan ambætaran
     table:
       expires_at: Rennir út
+      uses: Brúk
+    title: Bjóða fólki
+  lists:
+    errors:
+      limit: Tú hevur rokkið mesta talið av listum
   login_activities:
     authentication_methods:
       otp: app til váttan í tveimum stigum
       password: loyniorð
+      sign_in_token: teldupostatrygdarkoda
+      webauthn: trygdarlyklar
     description_html: Sært tú virksemi, sum tú ikki kennir aftur, so eigur tú at umhugsa at broyta loyniorðið ella at gera váttan í tveimum stigum virkna.
+    empty: Eingin samgildissøga tøk
+    failed_sign_in_html: Miseydnað innritanarroynd við %{method} frá %{ip} (%{browser})
+    successful_sign_in_html: Eydnað innritan við %{method} frá %{ip} (%{browser})
+    title: Samgildissøga
+  media_attachments:
+    validations:
+      images_and_video: Kann ikki viðfesta sjónfílu til ein post, sum longu inniheldur myndir
+      not_ready: Kann ikki viðfesta fílur, sum ikki eru liðugt viðgjørdar. Roynd aftur um eina løtu!
+      too_many: Kann ikki viðfest fleiri enn 4 fílur
+  migrations:
+    acct: Flutt til
+    cancel: Strika víðaribeining
+    cancel_explanation: At strika víðaribeining ger núverandi kontu tína virkna aftur, men gevur tær ikki fylgjarar, ið eru fluttir til hina kontuna, aftur.
+    cancelled_msg: Strikaði víðaribeiningina.
+    errors:
+      already_moved: er tann sama kontan, sum tú longu er flutt/ur til
+      missing_also_known_as: er ikki eitt tøkuheiti fyri hesa kontuna
+      move_to_self: kann ikki vera núverandi kontan
+      not_found: bar ikki til at finna
   moderation:
     title: Umsjón
+  number:
+    human:
+      decimal_units:
+        units:
+          billion: mia
+          million: mió
+          quadrillion: kvd
+          thousand: tús
+          trillion: tri
   otp_authentication:
+    code_hint: Innles koduna, sum var gjørd av samgildisappini, fyri at vátta
     description_html: Ger tú <strong>váttan í tveimum stigum</strong> virkna við eini váttanar-app, so er neyðugt at hava telefonina tøka, tá tú skal rita inn, tí appin ger tekin til tín at lesa inn.
+    enable: Set í gildi
+    instructions_html: "<strong>Skanna hesa QR koduna inn í Google Authenticator ella eina líknandi TOTP-app á telefonini hjá tær</strong>. Frá nú av, so fer tann appin at gera tekn, sum tú mást skriva, tá tú ritar inn."
+    manual_instructions: 'Ber ikki til hjá tær at skanna QR koduna og tað er neyðugt hjá tær at lesa hana inn við hond, so er loynidómurin í klárteksti her:'
+    setup: Set upp
+    wrong_code: Innlisna kodan var ógildug! Samsvara tíðirnar á ambætaranum og á tínum tóli?
+  pagination:
+    newer: Nýggjari
+    next: Næsta
+    older: Eldri
+    prev: Fyrra
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Tú hevur longu atkvøtt í hesi atkvøðugreiðsluni
+      duplicate_options: inniheldur dupult-lutir
+      duration_too_long: er ov langt inni í framtíðini
+      duration_too_short: er ov tíðliga
+      expired: Atkvøðugreiðslan er longu endað
+      invalid_choice: Valmøguleikin finst ikki
+      over_character_limit: kann ikki vera longri enn %{max} tekn hvør
+      too_few_options: má hava meiri enn ein valmøguleika
+      too_many_options: kann ikki innihalda fleiri enn %{max} valmøguleikar
+  preferences:
+    other: Annað
+    posting_defaults: Postingarstillingar
+    public_timelines: Almennar tíðarlinjur
+  privacy_policy:
+    title: Privatlívspolitikkur
   settings:
     two_factor_authentication: Váttan í tveimum stigum
   two_factor_authentication:
