@@ -786,6 +786,8 @@ be:
   applications:
     created: Праграма паспяхова створана
     destroyed: Праграма паспяхова выдалена
+    regenerate_token: Стварыць новы токен доступу
+    your_token: Ваш токен доступу
   auth:
     apply_for_account: Пакінуць заяўку
     change_password: Пароль
@@ -886,14 +888,15 @@ be:
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
+    '404': Няма старонкі, якую вы шукаеце.
     '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '410': Старонка, якую вы шукаеце, больш не існуе.
     '422':
       content: Памылка праверкі бяспекі. Вы заблакіравалі cookies?
       title: Памылка праверкі бяспекі
-    '429': Too many requests
+    '429': Зашмат запытаў
     '500':
+      title: Старонка няспраўная
     '503': The page could not be served due to a temporary server failure.
   exports:
     archive_takeout:
@@ -1049,6 +1052,8 @@ be:
     remove_selected_followers: Выдаліць выбраных карыстальнікаў
     remove_selected_follows: Адпісацца ад выбраных карыстальнікаў
     status: Стан уліковага запісу
+  rss:
+    content_warning: 'Папярэджанне аб змесціве:'
   sessions:
     activity: Апошняя актыўнасць
     browser: Браўзер
@@ -1128,6 +1133,7 @@ be:
         few: "%{count} відэафайлы"
         many: "%{count} відэафайлаў"
         other: "%{count} відэафайла"
+    content_warning: 'Папярэджанне аб змесціве: %{warning}'
     default_language: Такая, што і мова інтэрфэйсу
     edited_at_html: Адрэдагавана %{date}
     errors:
@@ -1192,6 +1198,7 @@ be:
     generate_recovery_codes: Стварыць коды аднаўлення
     lost_recovery_codes: Коды аднаўлення дазволяць вам аднавіць доступ да вашага ўліковага запісу ў выпадку страты тэлефона. Калі вы згубілі вашыя коды, вы можаце стварыць новыя тут. Старыя коды аднаўлення будуць ануляваныя.
     methods: Двухфактарныя метады
+    otp: Праграма аўтэнтыфікацыі
     recovery_codes: Абнавіць коды аднаўлення
     recovery_codes_regenerated: Новыя коды аднаўлення паспяхова створаныя
     recovery_instructions_html: Калі раптам вы страціце доступ да вашага тэлефона, вы можаце скарыстацца адным з кодаў аднаўлення ніжэй каб аднавіць доступ да вашага ўліковага запісу. <strong>Захоўвайце іх у бяспечным месцы</strong>. Напрыклад, вы можаце раздрукаваць іх і захоўваць разам з іншымі важнымі дакументамі.
@@ -1202,8 +1209,12 @@ be:
       title: Абскарджанне ўхвалена
     appeal_rejected:
       title: Абскарджанне адхілена
+    backup_ready:
+      subject: Ваш архіў гатовы да спампавання
     suspicious_sign_in:
       change_password: змяніць свой пароль
+      explanation: Мы заўважылі ўваход у ваш уліковы запіс з новага IP-адрасу.
+      further_actions_html: Калі гэта былі не вы, раім вам неадкладна %{action}, а таксама ўключыць двухфактарную аўтэнтыфікацыю, каб захаваць бяспеку вашага ўліковага запісу.
       subject: У вас уліковы запіс зайшлі з новага IP-адрасу
       title: Новы ўваход
     warning:
@@ -1235,4 +1246,9 @@ be:
       subject: Вітаем у Mastodon
       title: Рады вітаць вас, %{name}!
   webauthn_credentials:
+    add: Дадаць новы ключ бяспекі
     delete: Выдаліць
+    delete_confirmation: Сапраўды выдаліць гэты ключ бяспекі?
+    destroy:
+      success: Ваш ключ бяспекі быў паспяхова выдалены.
+    invalid_credential: Няправільны ключ бяспекі
