@@ -5249,6 +5249,19 @@ a.status-card.compact:hover {
   max-width: 700px;
 }
 
+.alt-text-warning-modal {
+  &__title {
+    font-size: 21px;
+    line-height: 26px;
+    font-weight: 700;
+    margin-bottom: 15px;
+
+    @media screen and (max-height: 800px) {
+      font-size: 18px;
+    }
+  }
+}
+
 .report-dialog-modal {
   max-width: 90vw;
   width: 480px;

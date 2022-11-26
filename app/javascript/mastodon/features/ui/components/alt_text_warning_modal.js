@@ -54,10 +54,16 @@ class AltTextWarningModal extends React.PureComponent {
     return (
       <div className='modal-root__modal alt-text-warning-modal'>
         <div className='alt-text-warning-modal__container'>
+          <h4 className='alt-text-warning-modal__title'>
+            <FormattedMessage
+              id='compose_form.alt_text_warning.header'
+              defaultMessage='Your attachments are missing a description!'
+            />
+          </h4>
           <p>
             <FormattedMessage
               id='compose_form.alt_text_warning.message'
-              defaultMessage='Alt text warning lorem ipsum dolor sit amet'
+              defaultMessage="Descriptions are for users with visual or audio impairments that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon."
             />
           </p>
         </div>
