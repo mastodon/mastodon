@@ -102,7 +102,7 @@ fo:
       no_role_assigned: Eingin leiklutur tillutaður
       not_subscribed: Ikki haldari
       pending: Bíðar eftir viðgerð
-      perform_full_suspension: Avbrót
+      perform_full_suspension: Ógilda
       previous_strikes: Eldri meldingar
       previous_strikes_description_html:
         one: Hendan kontan hevur <strong>eina</strong> melding.
@@ -144,10 +144,10 @@ fo:
       statuses: Uppsløg
       strikes: Eldri fráboðanir
       subscribe: Tekna hald
-      suspend: Fyribils ikki í gyldi
-      suspended: Ikki í gyldi
-      suspension_irreversible: Dáturnar á hesu kontu er endaliga sletttaðar. Tú kann endurstovna kontuna, men dáturnar fáast ikki aftur.
-      suspension_reversible_hint_html: Kontan er gjørd óvirkin og dáturnar verða endaliga strikaðar tann %{date}. Inntil tá kann kontan endurskapast uttan fylgjur. Ynskir tú at strika allar dátur hjá kontuni beinan vegin, so kanst tú gera tað niðanfyri.
+      suspend: Fyribils ikki í gildi
+      suspended: Ikki í gildi
+      suspension_irreversible: Dáturnar á hesu kontu er endaliga sletttaðar. Tú kann seta hana í gildi, men dáturnar fáast ikki aftur.
+      suspension_reversible_hint_html: Kontan er sett úr gildi og dáturnar verða endaliga strikaðar tann %{date}. Inntil tá kann kontan endurskapast uttan fylgjur. Ynskir tú at strika allar dátur hjá kontuni beinan vegin, so kanst tú gera tað niðanfyri.
       title: Kontur
       unblock_email: Strika blokering av telduposti
       unblocked_email_msg: Blokeringin av teldupostinum hjá %{username} varð strikað
@@ -157,7 +157,7 @@ fo:
       undo_suspension: Angra ógildi
       unsilenced_msg: Avmarkingin av kontuni hjá %{username} var strikað
       unsubscribe: Strika hald
-      unsuspended_msg: Kontan hjá %{username} varð gjørd virkin aftur
+      unsuspended_msg: Kontan hjá %{username} varð sett aftur í gildi
       username: Brúkaranavn
       view_domain: Vís samandrátt fyri navnaøki
       warn: Ávara
@@ -270,12 +270,12 @@ fo:
         resolve_report_html: "%{name} avgreiddi meldingina %{target}"
         sensitive_account_html: "%{name} hevur merkt media hjá %{target} sum viðkvæmt"
         silence_account_html: "%{name} hevur avmarkað rættindini á kontuni %{target}"
-        suspend_account_html: "%{name} gjørdi kontuna hjá %{target} óvirkna"
+        suspend_account_html: "%{name} ógildaði kontuna hjá %{target}"
         unassigned_report_html: "%{name} tók aftur tillutanina av meldingini %{target}"
         unblock_email_account_html: "%{name} hevur læst teldubrævabústaðin hjá %{target} upp"
         unsensitive_account_html: "%{name} strikaði viðkvæmis-merkingina av miðlafíluni %{target}"
         unsilence_account_html: "%{name} strikaði avmarkingina av kontuni hjá %{target}"
-        unsuspend_account_html: "%{name} gjørdi kontuna hjá %{target} virkna aftur"
+        unsuspend_account_html: "%{name} setti kontuna hjá %{target} í gildi aftur"
         update_announcement_html: "%{name} dagførdi kunngerðina %{target}"
         update_custom_emoji_html: "%{name} dagførdi kensluteknið %{target}"
         update_domain_block_html: "%{name} dagførdi navnaøkisblokeringina hjá %{target}"
@@ -389,10 +389,10 @@ fo:
         create: Stovna blokering
         hint: Navnaøkjablokeringin forðar ikki stovnan av kontum í dátugrunninum, men fer afturlítandi og sjálvvirkandi at gera ávísar umsjónarmannagongdir á hesar kontur virknar.
         severity:
-          desc_html: "<strong>Avvmarka</strong> ger soleiðis, at postar frá kontum í hesum navnaøki verða ósjónligur fyri øll, sum ikki fylgja kontunum beinleiðis.\n<strong>Banna</strong> strikar alt innihald, allar miðlar og allar vangadátur fyri kontur hjá hesum navnaøkinum frá tínum ambætara. Brúka \n<strong>Einki</strong> um tú einans vil avvísa miðlafílum."
+          desc_html: "<strong>Avvmarka</strong> ger soleiðis, at postar frá kontum í hesum navnaøki verða ósjónligur fyri øll, sum ikki fylgja kontunum beinleiðis.\n<strong>Ógilda</strong> strikar alt innihald, allar miðlar og allar vangadátur fyri kontur hjá hesum navnaøkinum frá tínum ambætara. Brúka \n<strong>Einki</strong> um tú einans vil avvísa miðlafílum."
           noop: Ongar
           silence: Mark
-          suspend: Banna
+          suspend: Ógilda
         title: Nýggj navnaøkisblokering
       no_domain_block_selected: Ongar navnaøkjablokeringar vóru broyttar, tí ongar vóru valdar
       not_permitted: Tú hevur ikki rættindi at gera hetta
@@ -473,7 +473,7 @@ fo:
           reject_media: Vraka miðil
           reject_reports: Vraka meldingar
           silence: Mark
-          suspend: Banna
+          suspend: Ógilda
         policy: Reglur
         reason: Almenn grundgeving
         title: Reglur fyri innihaldi
@@ -749,9 +749,35 @@ fo:
       status_changed: Postur broyttur
       title: Postar hjá kontu
       trending: Vælumtókt
+      visibility: Sýni
+      with_media: Við miðli
     strikes:
+      actions:
+        delete_statuses: "%{name} strikaði postarnar hjá %{target}"
+        disable: "%{name} frysti kontuna hjá %{target}"
+        mark_statuses_as_sensitive: "%{name} merkti kontuna hjá %{target} sum viðkvæma"
+        none: "%{name} sendi eina ávaring til %{target}"
+        sensitive: "%{name} merkti kontuna hjá %{target} sum viðkvæma"
+        silence: "%{name} avmarkaði kontuna hjá %{target}"
+        suspend: "%{name} setti kontuna hjá %{target} úr gildi"
       appeal_approved: Kært
       appeal_pending: Kæra bíðar eftir avgerð
+    system_checks:
+      database_schema_check:
+        message_html: Dátugrunnaflytingar bíða. Vinarliga koyr flytingarnar fyri at tryggja at skipanin skikkar sær sum hon skal
+      elasticsearch_running_check:
+        message_html: Fekk ikki samband við Elasticsearch. Vinarliga kanna eftir, at tað koyrir, ella ger fulltekstaleiting óvirkna
+      elasticsearch_version_check:
+        message_html: 'Elasticsearch útgávan er ikki sambær: %{value}'
+        version_comparison: Elasticsearch %{running_version} koyrir, men %{required_version} er kravd
+      rules_check:
+        action: Stýr ambætarareglum
+        message_html: Tú hevur ikki ásett nakrar ambætarareglur.
+      sidekiq_process_check:
+        message_html: Eingin Sidekiq gongd koyrir fyri %{value} bíðirøðina(r). Vinarliga eftirkanna Sidekiq uppsetingina
+    tags:
+      review: Eftirkanna støðu
+      updated_msg: Frámerkjastillingar dagførdar
     title: Umsiting
     trends:
       allow: Loyv
@@ -759,6 +785,8 @@ fo:
       disallow: Tak loyvi aftur
       links:
         allow: Loyv leinki
+        allow_provider: Loyv útgevara
+        description_html: Hesi leinkini verða í løtuni deild nógv av kontum, sum ambætarin sær postar hjá. At síggja leinkini kann hjálpa brúkarum at finna útav, hvat hendir í verðini. Eingi leinki verða víst alment, áðrenn tú góðkennir útgevaran. Tú kanst eisini loyva ella vraka einstøk leinki.
       tags:
         dashboard:
           tag_servers_measure: aðrir ambætarar
