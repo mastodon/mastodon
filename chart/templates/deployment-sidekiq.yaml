@@ -99,7 +99,7 @@ spec:
             - name: "AWS_ACCESS_KEY_ID"
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mastodon.s3.existingSecret }}
+                  name: {{ $context.Values.mastodon.s3.existingSecret }}
                   key: AWS_ACCESS_KEY_ID
             {{- end }}
             {{- if $context.Values.mastodon.smtp.existingSecret }}
