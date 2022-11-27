@@ -54,6 +54,7 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   languages: { id: 'account.languages', defaultMessage: 'Change subscribed languages' },
   openOriginalPage: { id: 'account.open_original_page', defaultMessage: 'Open original page' },
+  copyAddress: { id: 'account.copy_address', defaultMessage: 'Copy address to clipboard' },
 });
 
 const titleFromAccount = account => {
@@ -160,6 +161,10 @@ class Header extends ImmutablePureComponent {
     });
   }
 
+  handleCopyAddress = (address) => {
+    return () => navigator.clipboard.writeText(address);
+  }
+
   render () {
     const { account, hidden, intl, domain } = this.props;
     const { signedIn } = this.context.identity;
@@ -177,6 +182,7 @@ class Header extends ImmutablePureComponent {
     let bellBtn     = '';
     let lockedIcon  = '';
     let menu        = [];
+    let copyAddressButton = () => '';
 
     if (me !== account.get('id') && account.getIn(['relationship', 'followed_by'])) {
       info.push(<span key='followed_by' className='relationship-tag'><FormattedMessage id='account.follows_you' defaultMessage='Follows you' /></span>);
@@ -214,6 +220,10 @@ class Header extends ImmutablePureComponent {
 
     if (account.get('locked')) {
       lockedIcon = <Icon id='lock' title={intl.formatMessage(messages.account_locked)} />;
+    }
+
+    if ('clipboard' in navigator) {
+      copyAddressButton = (address) => <IconButton icon='clone' size={14} title={intl.formatMessage(messages.copyAddress)} onClick={this.handleCopyAddress(address)} />;
     }
 
     if (signedIn && account.get('id') !== me) {
@@ -342,7 +352,7 @@ class Header extends ImmutablePureComponent {
           <div className='account__header__tabs__name'>
             <h1>
               <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
-              <small>@{acct} {lockedIcon}</small>
+              <small>@{acct} {lockedIcon} {copyAddressButton('@'+acct)}</small>
             </h1>
           </div>
 
