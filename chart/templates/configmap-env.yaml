@@ -25,6 +25,9 @@ data:
   {{- with .Values.mastodon.web_domain }}
   WEB_DOMAIN: {{ . }}
   {{- end }}
+  {{- with .Values.mastodon.alternate_domains}}
+  ALTERNATE_DOMAINS: {{ join "," . }}
+  {{- end }}
   {{- with .Values.mastodon.singleUserMode }}
   SINGLE_USER_MODE: "true"
   {{- end }}
