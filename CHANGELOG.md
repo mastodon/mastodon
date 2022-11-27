@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Fix wrong color on mentions hidden behind content warning in web UI ([Gargron](https://github.com/mastodon/mastodon/pull/20724))
 - Fix filters from other users being used in the streaming service ([ClearlyClaire](https://github.com/mastodon/mastodon/pull/20719))
 - Fix `unsafe-eval` being used when `wasm-unsafe-eval` is enough in Content Security Policy ([Gargron](https://github.com/mastodon/mastodon/pull/20729), [prplecake](https://github.com/mastodon/mastodon/pull/20606))
+- Fix use `.ruby-version` as Bundler's chosen Ruby version ([HamptonMakes])
 
 ## [4.0.1] - 2022-11-14
 ### Fixed
