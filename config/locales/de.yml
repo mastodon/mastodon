@@ -950,7 +950,7 @@ de:
     log_in_with: Anmelden mit
     login: Anmelden
     logout: Abmelden
-    migrate_account: Auf ein anderes Konto umziehen
+    migrate_account: Zu einem anderen Konto umziehen
     migrate_account_html: Wenn du dieses Konto auf ein anderes umleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
     privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
@@ -975,10 +975,10 @@ de:
       title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
-      confirming: Warte auf die Bestätigung der E-Mail.
+      confirming: Warte auf die Bestätigung deiner E-Mail-Adresse.
       functional: Dein Konto ist voll funktionsfähig.
       pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
-      redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
+      redirecting_to: Dein Konto ist inaktiv, weil es zu %{acct} umgezogen ist.
       view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell gesendet, versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
@@ -1426,7 +1426,7 @@ de:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: Schließen
+    revoke: Widerrufen
     revoke_success: Sitzung erfolgreich geschlossen
     title: Sitzungen
     view_authentication_history: Authentifizierungsverlauf deines Kontos anzeigen
@@ -1505,25 +1505,25 @@ de:
       unlisted_long: Für alle sichtbar, aber in öffentlichen Timelines nicht aufgelistet
   statuses_cleanup:
     enabled: Automatisch alte Beiträge löschen
-    enabled_hint: Löscht automatisch deine Beiträge, sobald sie einen bestimmten Altersgrenzwert erreicht haben, es sei denn, sie entsprechen einer der folgenden Ausnahmen
+    enabled_hint: Löscht automatisch deine Beiträge, sobald sie ein von dir definiertes Alter erreicht haben, es sei denn, sie entsprechen einer der nachfolgenden Ausnahmen
     exceptions: Ausnahmen
     explanation: Damit Mastodon nicht durch das Löschen von Beiträgen ausgebremst wird, wartet der Server damit, bis wenig los ist. Aus diesem Grund werden deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht.
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Geteilte Beiträge ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
-    interaction_exceptions_explanation: Beachte, dass es keine Garantie für das Löschen von Beiträgen gibt, wenn sie nach einem Übertritt des Favoriten- oder Boost-Schwellenwert wieder unter diesen fallen.
+    interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten worden sind – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
     keep_direct: Direktnachrichten behalten
-    keep_direct_hint: Löscht keine deiner Direktnachrichten
-    keep_media: Beiträge mit Medienanhängen behalten
-    keep_media_hint: Löscht keinen deiner Beiträge mit Medienanhängen
+    keep_direct_hint: Löscht keine deiner privaten Nachrichten
+    keep_media: Beiträge mit angehängten Medien-Dateien behalten
+    keep_media_hint: Löscht keinen deiner Beiträge mit angehängten Medien-Dateien
     keep_pinned: Angeheftete Beiträge behalten
-    keep_pinned_hint: Löscht keinen deiner angehefteten Beiträge
+    keep_pinned_hint: Löscht keinen deiner angehefteten Beiträge im Profil
     keep_polls: Umfragen behalten
     keep_polls_hint: Löscht keine deiner Umfragen
     keep_self_bookmark: Als Lesezeichen markierte Beiträge behalten
-    keep_self_bookmark_hint: Löscht deine eigenen Beiträge nicht, wenn du sie als Lesezeichen markiert hast
-    keep_self_fav: Behalte die von dir favorisierten Beiträge
-    keep_self_fav_hint: Löscht deine eigenen Beiträge nicht, wenn du sie favorisiert hast
+    keep_self_bookmark_hint: Löscht keinen deiner Beiträge, die du als Lesezeichen gesetzt hast
+    keep_self_fav: Behalte favorisierte Beiträge
+    keep_self_fav_hint: Löscht keinen deiner Beiträge, die du favorisiert hast
     min_age:
       '1209600': 2 Wochen
       '15778476': 6 Monate
@@ -1535,9 +1535,9 @@ de:
       '7889238': 3 Monate
     min_age_label: Altersgrenze
     min_favs: Behalte Beiträge, die häufiger favorisiert wurden als …
-    min_favs_hint: Löscht keine deiner Beiträge, die mindestens diese Anzahl an Favoriten erhalten haben. Lass das Feld leer, um Beiträge unabhängig von ihrer Anzahl an Favoriten zu löschen
+    min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an Favoriten – zu löschen
     min_reblogs: Behalte Beiträge, die öfter geteilt wurden als
-    min_reblogs_hint: Löscht keine deiner Beiträge, die mindestens so oft geteilt wurden. Lass das Feld leer, um Beiträge unabhängig von der Anzahl der geteilten Beiträge zu löschen
+    min_reblogs_hint: Löscht keine Beiträge, die mindestens so oft geteilt worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an geteilten Beiträgen – zu löschen
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
