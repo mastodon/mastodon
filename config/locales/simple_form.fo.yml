@@ -1,9 +1,10 @@
----
 fo:
   simple_form:
     hints:
       account_alias:
         acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta frá
+      account_migration:
+        acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta til
       account_warning_preset:
         title: Valfrítt. Ikki sjónligt fyri móttakaran
       defaults:
@@ -29,6 +30,7 @@ fo:
         all_day: Tiltak allan dagin
         ends_at: Hending liðug
         starts_at: Tiltak byrjar
+        text: Kunngerð
       defaults:
         confirm_new_password: Endurtak nýggja loyniorðið
         confirm_password: Endurtak loyniorðið
@@ -36,9 +38,12 @@ fo:
         display_name: Navn, sum skal vísast
         email: Teldubrævabústaður
         expires_in: Endar aftan á
+        header: Høvd
         irreversible: Strika heldur enn at fjala
         note: Ævilýsing
+        password: Loyniorð
         setting_display_media_hide_all: Fjal alt
+        setting_display_media_show_all: Vís alt
         username: Brúkaranavn
         username_or_email: Brúkaranavn ella teldupostur
         whole_word: Heil orð
@@ -66,10 +71,10 @@ fo:
       user_role:
         name: Navn
         permissions_as_keys: Loyvi
-    'no': Nei
+    'no': 'Nei'
     not_recommended: Ikki viðmælt
     recommended: Viðmælt
     required:
       mark: "*"
       text: kravt
-    'yes': Ja
+    'yes': 'Ja'
