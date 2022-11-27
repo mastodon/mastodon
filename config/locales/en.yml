@@ -1642,7 +1642,7 @@ en:
     seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
     signed_in_as: 'Signed in as:'
   verification:
-    explanation_html: 'You can <strong>verify yourself as the owner of the links</strong> in your profile metadata. First, add the HTTPS URL for your Mastodon profile page, as an <a> or <link> tag, to any one of your site's static HTML pages. The link must contain a <code>rel="me"</code> attribute. Then add the HTTPS URL for your website to the profile metadata section on this page. If verification succeeds, the link to your website will turn green. Example:'
+    explanation_html: 'You can <strong>verify yourself as the owner of the links</strong> in your profile metadata. First, add the HTTPS URL for your Mastodon profile page, as an <a> or <link> tag, to a static HTML page served by your site. The link must contain a <code>rel="me"</code> attribute. Then add the HTTPS URL for your website to the profile metadata section on this page. If verification succeeds, the link to your website will turn green. Example:'
     verification: Verification
   webauthn_credentials:
     add: Add new security key
