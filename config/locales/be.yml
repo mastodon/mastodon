@@ -425,7 +425,7 @@ be:
     export_domain_blocks:
       import:
         description_html: Вы збіраецеся імпартаваць спіс даменных блокаў. Калі ласка, праглядзіце гэты спіс вельмі ўважліва, асабліва калі вы асабіста не з'яўляецеся аўтарам гэтага спісу.
-        existing_relationships_warning: Існуюць наступныя сувязі
+        existing_relationships_warning: Наяўныя зносіны
         private_comment_description_html: 'Каб дапамагчы вам адсочваць, адкуль паходзяць імпартаваныя блокі, імпартаваныя блокі будуць створаны з наступным прыватным каментарыем: <q>%{comment}</q>'
         private_comment_template: Імпартавана з %{source} %{date}
         title: Імпарт блакіровак дамену
@@ -527,7 +527,7 @@ be:
       no_ip_block_selected: Ніякія правілы IP не былі змененыя, таму што ні адно з іх не было выбрана
       title: IP правілы
     relationships:
-      title: "Адносіны %{acct}"
+      title: "Зносіны %{acct}"
     relays:
       add_new: Дадаць новы рэтранслятар
       delete: Выдаліць
@@ -1124,9 +1124,14 @@ be:
     followers: Падпісчыкі
     following: Падпісаны
     invited: Запрошаны
-    relationship: Стасункi
+    last_active: Апошняя актыўнасць
+    most_recent: Даўнасць
+    moved: Перанесены
+    mutual: Узаемныя
+    primary: Асноўны
+    relationship: Зносіны
     remove_selected_domains: Выдаліць усіх падпісчыкаў з выбраных даменаў
-    remove_selected_followers: Выдаліць выбраных карыстальнікаў
+    remove_selected_followers: Выдаліць выбраных падпісчыкаў
     remove_selected_follows: Адпісацца ад выбраных карыстальнікаў
     status: Стан уліковага запісу
   rss:
