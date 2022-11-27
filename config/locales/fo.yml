@@ -1564,25 +1564,98 @@ fo:
     enabled: Váttan í tveimum stigum gjørd virkin
     enabled_success: Váttan í tveimum stigum gjørd virkin
     generate_recovery_codes: Ger kodur til endurgerð
+    lost_recovery_codes: Kodur til endurgerð loyva tær at fáa atgongd aftur til kontu tína, um tú missir telefonina burtur. Hevur tú mist endurgerðskodurnar, so kanst tú gera tær her. Gomlu kodurnar vera gjørdar óvirknar.
     methods: Mannagongdir fyri váttan í tveimum stigum
+    otp: Authenticator app
+    recovery_codes: Tak trygdaravrit av kodum til endurgerð
+    recovery_codes_regenerated: Kodur til endurgerð gjørdar av nýggjum
+    recovery_instructions_html: Missir tú atgongd til telefonina, so kanst tú brúka eina av kodunum til endurgerð niðanfyri at fáa atgongd aftur til kontu tína. <strong>Goym kodurnar til endurgerð trygt</strong>. Til dømis kanst tú prenta tær og goyma tær saman við øðrum týdningarmiklum skjølum.
+    webauthn: Trygdarlyklar
   user_mailer:
+    appeal_approved:
+      action: Far til kontu tína
+      explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er góðkend. Konta tín er aftur tignarlig.
+      subject: Kæra tín frá %{date} er góðkend
+      title: Kæra góðkend
+    appeal_rejected:
+      explanation: Kæran um atsóknina móti kontu tínari %{strike_date}, sum tú sendi inn %{appeal_date}, er vrakað.
+      subject: Kæra tín frá %{date} er vrakað
+      title: Kæra vrakað
+    backup_ready:
+      explanation: Tú bað um eitt fult trygdaravrit av tíni Mastodon kontu. Tað er nú klárt at taka niður!
+      subject: Savnið hjá tær er tøkt at taka niður
+      title: Tak savn niður
     suspicious_sign_in:
+      change_password: broyt loyniorðið hjá tær
+      details: 'Her eru smálutirnir í innritanini:'
+      explanation: Vit hava lagt merki til, at innritað er á tína kontu frá einari nýggjari IP adressu.
       further_actions_html: Var hetta ikki tú, so mæla vit til, at tú %{action} beinan vegin og at tú ger váttan í tveimum stigum virkna fyri at konta tín kann vera trygg.
+      subject: Atgongd er fingin til kontu tína frá eini nýggjari IP adressu
+      title: Ein nýggj innritan
     warning:
+      appeal: Innsend eina kæru
+      appeal_description: Trýrt tú, at hetta er ein feilur, so kanst tú senda eina kæru til starvsfólkini á %{instance}.
+      categories:
+        spam: Ruskpostur
+        violation: Tilfarið er í stríð við fylgjandi leiðreglur
       explanation:
+        delete_statuses: Summir av postum tínum eru staðfestir at vera í stríði við eina ella fleiri av leiðreglunum og eru tí strikaðir av umsjónarfólkunum á %{instance}.
+        disable: Tú kanst ikki longur brúka tína kontu, men vangi tín og aðrar dátur eru óskalað. Tú kanst biðja um trygdaravrit av tínum dátum, broyta kontustillingar ella strika tína kontu.
+        mark_statuses_as_sensitive: Summir av postum tínum eru merktir sum viðkvæmir av umsjónarfólkunum á %{instance}. Hetta merkir, at fólk mugu trýsta á miðilin í postinum, áðrenn ein undanvísing verður víst. Tú kanst sjálv/ur merkja miðlar viðkvæmar, tá tú postar í framtíðini.
+        sensitive: Frá nú av, so verða allar miðlafílur, sum tú leggur upp, merktar sum viðkvæmar og fjaldar aftan fyri eina ávarðing.
+        silence: Tú kanst framvegis brúka kontu tína, men einans fólk, sum longu fylgja tær, fara at síggja tínar postar á hesum ambætaranum, og tú kanst vera hildin uttanfyri ymiskar leitihentleikar. Tó so, onnur kunnu framvegis fylgja tær beinleiðis.
         suspend: Tú kanst ikki longur brúka kontu tína og vangin og aðrar dátur eru ikki longur atkomulig. Tú kanst enn rita inn fyri at biðja um eitt trygdaravrit av tínum dátum, inntil dáturnar eru heilt burturbeindar um umleið 30 dagar, men vit varðveita nakrar grundleggjandi dátur fyri at forða tær í at støkka undan ógildingini.
       reason: 'Grund:'
+      statuses: 'Siteraðir postar:'
       subject:
+        delete_statuses: Postar tíni á %{acct} eru strikaðir
+        disable: Konta tín %{acct} er fryst
+        mark_statuses_as_sensitive: Postar tíni á %{acct} eru merktir sum viðkvæmir
+        none: Ávaring fyri %{acct}
+        sensitive: Tínir postar á %{acct} verða merktir viðkvæmir framyvir
+        silence: Konta tín %{acct} er avmarkað
         suspend: Konta tín %{acct} er ógildað
       title:
+        delete_statuses: Strikaðir postar
+        disable: Konta fryst
+        mark_statuses_as_sensitive: Postar merktir sum viðkvæmir
         none: Ávaring
         sensitive: Konto frámerkt sum viðvkæmur
         silence: Kontoin er avmarkað
         suspend: Konta ógildað
+    welcome:
+      edit_profile_action: Set upp vanga
+      edit_profile_step: Tú kanst tillaga vanga tín við at leggja eina vangamynd inn, broyta vísta navnið hjá tær og meira. Tú kanst velja at eftirkanna nýggjar fylgjarar, áðrenn teir sleppa at fylgja tær.
+      explanation: Her eru nøkur ráð so tú kann koma gott ígongd
+      final_action: Byrja at posta
+      final_step: 'Byrja at posta! Sjálvt uttan fylgjarar, so kunnu tínir almennu postar vera sæddir av øðrum, til dømis á lokalu tíðarlinjuni ella í frámerkjum. Kanska vilt tú greiða frá um teg sjálva/n við frámerkinum #introductions.'
+      full_handle: Fulla brúkaranavn títt
+      full_handle_hint: Hetta er tað, sum tú fortelur vinum tínum, soleiðis at tey kunnu senda tær boð ella fylgja tær frá einum øðrum ambætara.
+      subject: Vælkomin til Mastodon
+      title: Vælkomin umborð, %{name}!
   users:
+    follow_limit_reached: Tú kanst ikki fylgja fleiri enn %{limit} fólk
     invalid_otp_token: Ógyldug tvey-stigs koda
     otp_lost_help_html: Hevur tú mist atgongd til bæði, so kanst tú koma í samband við %{email}
+    seamless_external_login: Tú er ritað/ur inn umvegis eina uttanhýsis tænastu, so loyniorð og teldupoststillingar eru ikki tøkar.
+    signed_in_as: 'Ritað/ur inn sum:'
+  verification:
+    explanation_html: 'Tú kanst <strong>vátta teg sjálva/n sum eigara av leinkjunum í metadátunum á vanganum hjá tær</strong>. Til tess má leinkjaða vevstaðið innihalda eitt leinki aftur til Mastodon vangan hjá tær. Leinkið <strong>má</strong> hava eina <code>rel="me"</code> viðseting. Tekstinnihaldið í leikinum er óviðkomandi. Her er eitt dømi:'
+    verification: Váttan
   webauthn_credentials:
+    add: Legg nýggjan trygdarlykil afturat
+    create:
+      error: Ein trupulleiki var í sambandi við at trygdarlykilin bleiv lagdur afturat. Vinarliga royn aftur.
+      success: Trygdarlykilin hjá tær varð lagdur afturat.
     delete: Strika
+    delete_confirmation: Er tú vís/ur í, at tú vil strika hendan trygdarlykilin?
+    description_html: Um tú ger <strong>váttan við trygdarlykli</strong> virkna, so fer innritan at krevja, at tú brúkar ein av trygdarlyklunum hjá tær.
+    destroy:
+      error: Ein trupulleiki var við at strika trygdarlykilin hjá tær. Vinarliga royn aftur.
+      success: Trygdarlykilin hjá tær varð strikaður.
+    invalid_credential: Ógyldugur trygdarlykil
+    nickname_hint: Skriva eyknevni á tínum nýggja trygdarlykli
+    not_enabled: Tú hevur ikki gjørt WebAuthn virkið enn
+    not_supported: Hesin kagin stuðlar ikki uppundir trygdarlyklar
     otp_required: Fyri at brúka trygdarlyklar er neyðugt at gera váttan í tveimum stigum virkna fyrst.
     registered_on: Skrásett %{date}
