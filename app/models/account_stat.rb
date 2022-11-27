@@ -3,14 +3,15 @@
 #
 # Table name: account_stats
 #
-#  id              :bigint(8)        not null, primary key
-#  account_id      :bigint(8)        not null
-#  statuses_count  :bigint(8)        default(0), not null
-#  following_count :bigint(8)        default(0), not null
-#  followers_count :bigint(8)        default(0), not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  last_status_at  :datetime
+#  id                  :bigint(8)        not null, primary key
+#  account_id          :bigint(8)        not null
+#  statuses_count      :bigint(8)        default(0), not null
+#  following_count     :bigint(8)        default(0), not null
+#  followers_count     :bigint(8)        default(0), not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  last_status_at      :datetime
+#  tag_following_count :bigint(8)        default(0), not null
 #
 
 class AccountStat < ApplicationRecord
@@ -23,6 +24,10 @@ class AccountStat < ApplicationRecord
 
   def following_count
     [attributes['following_count'], 0].max
+  end
+
+  def tag_following_count
+    [attributes['tag_following_count'], 0].max
   end
 
   def followers_count

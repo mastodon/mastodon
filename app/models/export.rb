@@ -37,6 +37,14 @@ class Export
     end
   end
 
+  def to_following_tags_csv
+    CSV.generate(headers: ['Account address', 'Show boosts', 'Notify on new posts', 'Languages'], write_headers: true) do |csv|
+      account.following_tags.reorder(display_name: :desc).each do |tag|
+        csv << [tag.display_name]
+      end
+    end
+  end
+
   def to_lists_csv
     CSV.generate do |csv|
       account.owned_lists.select(:title, :id).each do |list|
@@ -69,6 +77,10 @@ class Export
 
   def total_follows
     account.following_count
+  end
+
+  def total_tag_follows
+    account.tag_following_count
   end
 
   def total_lists

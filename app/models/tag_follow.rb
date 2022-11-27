@@ -21,4 +21,15 @@ class TagFollow < ApplicationRecord
   accepts_nested_attributes_for :tag
 
   rate_limit by: :account, family: :follows
+
+  after_create :increment_cache_counters
+  after_destroy :decrement_cache_counters
+
+  def increment_cache_counters
+    account&.increment_count!(:tag_following_count)
+  end
+
+  def decrement_cache_counters
+    account&.decrement_count!(:tag_following_count)
+  end
 end

@@ -147,6 +147,7 @@ Rails.application.routes.draw do
 
     namespace :exports, constraints: { format: :csv } do
       resources :follows, only: :index, controller: :following_accounts
+      resources :tag_follows, only: :index, controller: :following_tags
       resources :blocks, only: :index, controller: :blocked_accounts
       resources :mutes, only: :index, controller: :muted_accounts
       resources :lists, only: :index, controller: :lists
@@ -165,7 +166,6 @@ Rails.application.routes.draw do
     resources :webauthn_credentials, only: [:index, :new, :create, :destroy],
               path: 'security_keys',
               controller: 'two_factor_authentication/webauthn_credentials' do
-
       collection do
         get :options
       end

@@ -3,7 +3,7 @@
 module AccountCounters
   extend ActiveSupport::Concern
 
-  ALLOWED_COUNTER_KEYS = %i(statuses_count following_count followers_count).freeze
+  ALLOWED_COUNTER_KEYS = %i(statuses_count following_count tag_following_count followers_count).freeze
 
   included do
     has_one :account_stat, inverse_of: :account
@@ -14,6 +14,8 @@ module AccountCounters
            :statuses_count=,
            :following_count,
            :following_count=,
+           :tag_following_count,
+           :tag_following_count=,
            :followers_count,
            :followers_count=,
            :last_status_at,
