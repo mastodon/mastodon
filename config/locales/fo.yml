@@ -1062,30 +1062,87 @@ fo:
         disable: Frysting av kontu
         mark_statuses_as_sensitive: Merk postar sum viðkvæmar
         none: Ávaring
+        sensitive: Merking av kontu sum viðkvom
+        silence: Avmarking av kontu
+        suspend: Seta kontu úr gildi
+      your_appeal_approved: Kæra tín er góðkend
+      your_appeal_pending: Tú hevur kært
+      your_appeal_rejected: Kæra tín er vrakað
   domain_validator:
     invalid_domain: er ikki eitt loyvt økisnavn
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Umbønin, sum tú sendi inn, var ógildug ella hevði skeivt skap.
     '403': Tú hevur ikki loyvi at síggja hesa síðuna.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '404': Síðan, sum tú leitar eftir, er ikki her.
+    '406': Síðan er ikki tøk í umbidnu útgávuni.
+    '410': Síðan, sum tú leitaði eftir, finst ikki her longur.
     '422':
+      content: Trygdarsannanin miseydnaðist. Blokerar tú farspor?
+      title: Trygdarsannanin miseydnaðist
     '429': Ov nógvir fyrispurningar
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: Vit eru kedd av tí, men okkurt gekk galið hjá okkum.
+      title: Hendan síðan er ikki røtt
+    '503': Ikki var til at veita hesa síðuna vegna ein bráðfeingis feil á ambætaranum.
+    noscript_html: Fyri at brúka vevskipanina hjá Mastodon, vinarliga ger JavaScript virkið. Um ikki, royn so eina <a href="%{apps_path}">uppruna-app</a> til Mastodon á tínum tøkniliga palli.
+  existing_username_validator:
+    not_found: eydnaðist ikki at finna ein lokalan brúkara við hasum brúkaranavninum
+    not_found_multiple: fann ikki %{usernames}
   exports:
     archive_takeout:
       date: Dagfesting
+      download: Takk títt savn niður
+      hint_html: Tú kanst umbiðja eitt savn við <strong>tínum postum og miðlafílum, sum tú hevur lagt upp</strong>. Útfluttu dáturnar eru í ActivityPub útsjónd og lesiligar av einum og hvørjum sambærum ritbúnaði. Tú kanst biðja um eitt savn sjeynda hvønn dag.
+      in_progress: Geri eina skrá við savni tínum...
+      request: Umbið títt savn
       size: Stødd
+    blocks: Tú blokerar
+    bookmarks: Bókamerki
     csv: CSV
+    domain_blocks: Navnaøkisblokeringar
     lists: Listar
+    mutes: Tú doyvir
+    storage: Miðlagoymsla
+  featured_tags:
+    add_new: Legg afturat
+    errors:
+      limit: Tú hevur longu varpað loyvda talið av frámerkjum
+    hint_html: "<strong>Hvat eru varpaði frámerki?</strong> Tey verða víst sjónliga á almenna vanga tínum og loyva fólki at kaga gjøgnum tínar almennu postar, sum hava tey frámerkini. Tey eru serliga vælegnaði at fylgja við skapandi arbeiði ella langtíðarverkætlanum."
   filters:
+    contexts:
+      account: Vangar
+      home: Heima og listar
+      notifications: Fráboðanir
+      public: Almennar tíðarlinjur
+      thread: Samrøður
     edit:
+      add_keyword: Legg lyklaorð afturat
       keywords: Lyklaorð
+      statuses: Stakir postar
+      statuses_hint_html: Filtrið verður brúkt til at velja stakar postar óansæð um postarnir sampakka við lyklaorðini niðanfyri. <a href="%{path}">Eftirhygg ella tak postar úr filtrinum</a>.
+      title: Rætta filtur
+    errors:
+      deprecated_api_multiple_keywords: Bundnatølini kunnu ikki broytast frá hesi nýtsluskipanini, tí tey viðvíkja meira enn einum filtur-lyklaorði. Brúka eina nýggjari nýtsluskipan ella vevmarkamótið.
+      invalid_context: Eingin ella ógildugur kontekstur veittur
     index:
+      contexts: Filtur í %{contexts}
       delete: Strika
+      empty: Tú hevur eingi filtur.
+      expires_in: Gongur út um %{distance}
+      expires_on: Gongur út %{date}
+      keywords:
+        one: "%{count} lyklaorð"
+        other: "%{count} lyklaorð"
+      statuses:
+        one: "%{count} postur"
+        other: "%{count} postar"
+      statuses_long:
+        one: "%{count} stakur postur fjaldur"
+        other: "%{count} stakir postar fjaldir"
       title: Filtur
+    new:
+      save: Goym nýtt filtur
+      title: Legg nýtt filtur afturat
     statuses:
       back_to_filter: Aftur til filtur
       batch:
@@ -1188,6 +1245,9 @@ fo:
       missing_also_known_as: er ikki eitt tøkuheiti fyri hesa kontuna
       move_to_self: kann ikki vera núverandi kontan
       not_found: bar ikki til at finna
+      on_cooldown: Tú verður køld/ur niður
+    followers_count: Fylgjarar tá flytingin fór fram
+    incoming_migrations: Flyti frá eini aðrari kontu
   moderation:
     title: Umsjón
   number:
@@ -1241,11 +1301,16 @@ fo:
     suspicious_sign_in:
       further_actions_html: Var hetta ikki tú, so mæla vit til, at tú %{action} beinan vegin og at tú ger váttan í tveimum stigum virkna fyri at konta tín kann vera trygg.
     warning:
+      explanation:
+        suspend: Tú kanst ikki longur brúka kontu tína og vangin og aðrar dátur eru ikki longur atkomulig. Tú kanst enn rita inn fyri at biðja um eitt trygdaravrit av tínum dátum, inntil dáturnar eru heilt burturbeindar um umleið 30 dagar, men vit varðveita nakrar grundleggjandi dátur fyri at forða tær í at støkka undan ógildingini.
       reason: 'Grund:'
+      subject:
+        suspend: Konta tín %{acct} er ógildað
       title:
         none: Ávaring
         sensitive: Konto frámerkt sum viðvkæmur
         silence: Kontoin er avmarkað
+        suspend: Konta ógildað
   users:
     invalid_otp_token: Ógyldug tvey-stigs koda
   webauthn_credentials:
