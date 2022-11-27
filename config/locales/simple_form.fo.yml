@@ -189,17 +189,64 @@ fo:
         setting_advanced_layout: Ger framkomið vevmarkamót virkið
         setting_aggregate_reblogs: Bólka stimbranir í tíðarlinjum
         setting_always_send_emails: Send altíð fráboðanir við telduposti
+        setting_auto_play_gif: Spæl teknimyndagjørdar GIFar sjálvvirkandi
+        setting_boost_modal: Vís váttanarmynd, áðrenn tú stimbrar postar
+        setting_crop_images: Sker myndir til lutfallið 16x9 í postum, sum ikki eru víðkaðir
+        setting_default_language: Mál, sum verður brúkt til postar
+        setting_default_privacy: Hvussu privatir eru postar?
+        setting_default_sensitive: Merk altíð miðlafílur sum viðkvæmar
+        setting_delete_modal: Vís váttanarmynd, áðrenn postar verða strikaðir
+        setting_disable_swiping: Ger sveipurørslur óvirknar
+        setting_display_media: Vístir miðlar
+        setting_display_media_default: Sjálvvirði
         setting_display_media_hide_all: Fjal alt
         setting_display_media_show_all: Vís alt
+        setting_expand_spoilers: Víðka altíð postar, sum eru merktir við innihaldsávaringum
+        setting_hide_network: Fjal sosiala grafin hjá tær
+        setting_noindex: Frábið tær indeksering á leitimaskinum
+        setting_reduce_motion: Minka um rørslu í teknimyndum
+        setting_show_application: Avdúka serskipan, sum verður brúkt til at senda postar
+        setting_system_font_ui: Brúka vanliga skriftaslagið hjá skipanini
+        setting_theme: Uppsetingareyðkenni
+        setting_trends: Vís dagsins rák
+        setting_unfollow_modal: Vís váttanarmynd, áðrenn tú gevst at fylgja onkrum
+        setting_use_blurhash: Vís litríkar gradientar fyri fjaldar miðlar
+        setting_use_pending_items: Spakulig støða
+        severity: Álvarssemi
+        sign_in_token_attempt: Trygdarkoda
+        title: Heiti
+        type: Slag av innflutningi
         username: Brúkaranavn
         username_or_email: Brúkaranavn ella teldupostur
         whole_word: Heil orð
+      email_domain_block:
+        with_dns_records: Tak MX teigarøð og IP-adressur hjá navnaøkjum við
       featured_tag:
         name: Tvíkrossur
       filters:
         actions:
           hide: Fjal fullkomiliga
+          warn: Fjal við eini ávaring
       form_admin_settings:
+        backups_retention_period: Hvussu leingi verða brúkarasøvn goymd
+        bootstrap_timeline_accounts: Mæl altíð nýggjum brúkarum at fylgja hesar kontur
+        closed_registrations_message: Serskild boð, tá tað ikki er møguligt at tilmelda seg
+        content_cache_retention_period: Tíðarskeið, har innihaldgoymslan verður varðveitt
+        custom_css: Serskilt CSS
+        mascot: Serskildur maskottur (arvur)
+        media_cache_retention_period: Tíðarskeið, har miðlagoymslur verða varðveittar
+        profile_directory: Ger vangaskrá virkna
+        registrations_mode: Hvør kann tilmelda seg
+        require_invite_text: Krev eina orsøk at luttaka
+        show_domain_blocks: Vís navnaøkisblokeringar
+        show_domain_blocks_rationale: Vís hví navnaøki vóru blokeraði
+        site_contact_email: Samband umvegis teldupost
+        site_contact_username: Brúkaranavn hjá umsitara
+        site_extended_description: Víðkað lýsing
+        site_short_description: Ambætaralýsing
+        site_terms: Privatlívspolitikkur
+        site_title: Ambætaranavn
+        theme: Sjálvvalt uppsetingareyðkenni
         thumbnail: Ambætarasmámynd
         timeline_preview: Loyv teimum, sum ikki eru ritaði inn, atgongd til almennar tíðarlinjur
         trendable_by_default: Loyv vælumtóktum tilfari uttan at viðgera tað fyrst
@@ -215,29 +262,47 @@ fo:
       ip_block:
         comment: Viðmerking
         ip: IP
+        severities:
+          no_access: Blokera atgongd
+          sign_up_block: Blokera tilmeldingar
+          sign_up_requires_approval: Avmarka tilmeldingar
         severity: Regla
       notification_emails:
+        appeal: Onkur kærir eina umsjónaravgerð
+        digest: Send ein teldupost við samandrátti
         favourite: Onkur dámdi títt uppslag
+        follow: Onkur fylgdi tær
         follow_request: Onkur biður um at fylgja tær
         mention: Onkur nevndi teg
+        pending_account: Nýggj konta krevur viðgerð
+        reblog: Onkur stimbraði postin hjá tær
+        report: Nýggj melding er send inn
         trending_tag: Broytt rák skal kannast
       rule:
         text: Regla
       tag:
         listable: Loyva hesum tvíkrossið, at verða vístur í leitingum og uppskotum
         name: Tvíkrossur
+        trendable: Loyv hesum frámerki at síggjast undir rákum
         usable: Loyva uppsløgum at brúka hendan tvíkross
       user:
         role: Leiklutur
       user_role:
+        color: Litur á tignarmerki
+        highlighted: Vís leiklut sum tignarmerki á brúkaravangum
         name: Navn
         permissions_as_keys: Loyvi
+        position: Raðfesting
       webhook:
         events: Virknar hendingar
+        url: Endapunkts-URLur
     'no': 'Nei'
     not_recommended: Ikki viðmælt
     recommended: Viðmælt
     required:
       mark: "*"
       text: kravt
+    title:
+      sessions:
+        webauthn: Brúka ein av tínum trygdarlyklum at rita inn
     'yes': 'Ja'
