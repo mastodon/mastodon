@@ -504,7 +504,7 @@ fo:
       moderation:
         all: Allir
         limited: Avmarkaðir
-        title: Kjakleiðsla
+        title: Umsjón
       private_comment: Privat viðmerking
       public_comment: Sjónlig viðmerking
       purge: Reinsa
@@ -601,7 +601,7 @@ fo:
         delete: Strika
         placeholder: Greið frá, hvørjar atgerðir hava verið gjørdar ella aðrar viðkomandi dagføringar...
         title: Viðmerkingar
-      notes_description_html: Vís ella skriva viðmerkingar til aðrar kjakleiðarar ella teg sjálva/n í framtíðini
+      notes_description_html: Vís ella skriva viðmerkingar til onnur umsjónarfólk ella teg sjálva/n í framtíðini
       quick_actions_description_html: 'Tak eina skjóta avgerð ella skrulla niðureftir fyri at síggja meldaða innihaldið:'
       remote_user_placeholder: fjarbrúkarin frá %{instance}
       reopen: Lat melding uppaftur
@@ -649,7 +649,7 @@ fo:
         manage_announcements: Stýra kunngerðum
         manage_announcements_description: Loyvir brúkarum at stýra kunngerðum á ambætaranum
         manage_appeals: Umsit kærur
-        manage_appeals_description: Loyvir brúkarum at eftirkanna kærur um kjakleiðsluatgerðir
+        manage_appeals_description: Loyvir brúkarum at eftirkanna kærur um umsjónaratgerðir
         manage_blocks: Stýra blokeringum
         manage_blocks_description: Loyvir brúkarum at blokera teldupostveitarum og IP adressum
         manage_custom_emojis: Stýra sergjørd kenslutekn
@@ -659,7 +659,7 @@ fo:
         manage_invites: Stýra innbjóðingum
         manage_invites_description: Loyvir brúkarum at kaga ígjøgnum og at gera innbjóðingarleinki óvirkin
         manage_reports: Stýra meldigum
-        manage_reports_description: Loyvir brúkarum at eftirkanna meldingar og at gjøgnumføra kjakleiðsluatgerðir
+        manage_reports_description: Loyvir brúkarum at eftirkanna meldingar og at gjøgnumføra umsjónaratgerðir
         manage_roles: Stýra leiklutir
         manage_roles_description: Loyvir brúkarum at stýra og áseta leiklutir undir teirra leikluti
         manage_rules: Stýra reglum
@@ -671,7 +671,7 @@ fo:
         manage_user_access: Stýr brúkaraatgongd
         manage_user_access_description: Loyvir brúkarum at gera 'váttan í tveimum stigum' (2FA) hjá øðrum brúkarum óvirkna, at broyta teirra teldupost og at nullstilla teirra loyniorð
         manage_users: Stýr brúkarum
-        manage_users_description: Loyvir brúkarum at vísa smálutir um aðrar brúkarar og at gjøgnumføra kjakleiðsluatgerðir móti teimum
+        manage_users_description: Loyvir brúkarum at vísa smálutir um aðrar brúkarar og at gjøgnumføra umsjónaratgerðir móti teimum
         manage_webhooks: Stýr webhooks
         manage_webhooks_description: Loyvir brúkarum at seta upp webhooks fyri umsitingarligar hendingar
         view_audit_log: Vís skoðanarlogg
@@ -691,7 +691,7 @@ fo:
     settings:
       about:
         manage_rules: Stýr ambætarareglum
-        preamble: Gev útdýpandi upplýsingar um, hvussu ambætarin er rikin, kjakleiddur og fíggjaður.
+        preamble: Gev útdýpandi upplýsingar um, hvussu ambætarin er rikin, umsýndur og fíggjaður.
         rules_hint: Eitt øki er burturav fyri reglur, sum brúkararnir hjá tær skulu fylgja.
         title: Um
       appearance:
@@ -878,9 +878,9 @@ fo:
         sensitive: at merkja teirra kontu sum viðkvom
         silence: at avmarka teirra kontu
         suspend: at ógilda teirra kontu
-      body: "%{target} kærir eina kjakleiðsluavgerð hjá %{action_taken_by} frá %{date}, sum var %{type}. Tey skrivaðu:"
-      next_steps: Tú kanst góðtaka kæruna og soleiðis ógilda kjakleiðsluavgerðina, ella ikki látast at síggja hana.
-      subject: "%{username} kærir eina kjakleiðsluavgerð á %{instance}"
+      body: "%{target} kærir eina umsjónaravgerð hjá %{action_taken_by} frá %{date}, sum var %{type}. Tey skrivaðu:"
+      next_steps: Tú kanst góðtaka kæruna og soleiðis ógilda umsjónaravgerðina, ella ikki látast at síggja hana.
+      subject: "%{username} kærir eina umsjónaravgerð á %{instance}"
     new_pending_account:
       body: Smálutirnir hjá tí nýggju kontuni eru niðanfyri. Tú kanst góðkenna ella vraka hesa umsóknina.
       subject: Nýggj konta klár til ummælis á %{instance} (%{username})
@@ -962,7 +962,7 @@ fo:
     resend_confirmation: Send góðkenningarvegleiðing umaftur
     reset_password: Endurstilla loyniorð
     rules:
-      preamble: Hesi eru ásett og uppihildin av kjakleiðarunum á %{domain}.
+      preamble: Hesi eru ásett og uppihildin av umsjónarfólkunum á %{domain}.
       title: Nakrar grundreglur.
     security: Trygd
     set_new_password: Áset nýtt loyniorð
@@ -1248,11 +1248,74 @@ fo:
       on_cooldown: Tú verður køld/ur niður
     followers_count: Fylgjarar tá flytingin fór fram
     incoming_migrations: Flyti frá eini aðrari kontu
+    incoming_migrations_html: Fyri at flyta frá eini aðrari kontu til hesa, so er fyrst neyðugt at <a href="%{path}">stovna eitt tøkuheiti til kontuna</a>.
+    moved_msg: Konta tín verður nú víðaribeind til %{acct} og fylgjarar tínir verða fluttir yvir.
+    not_redirecting: Konta tín verður ikki víðaribeind til nakra aðra kontu í løtuni.
+    on_cooldown: Tú hevur nýliga flutt tína kontu. Hesin valmøguleikin verður tøkur aftur um %{count} dagar.
+    past_migrations: Eldri flytingar
+    proceed_with_move: Flyt fylgjarar
+    redirected_msg: Konta tín verður nú víðaribeind til %{acct}.
+    redirecting_to: Konta tín er víðaribeind til %{acct}.
+    set_redirect: Set víðaribeining
+    warning:
+      backreference_required: Fyrst má nýggja kontan vera sett til at vísa aftur til hesa
+      before: 'Áðrenn tú fer víðari, vinarliga les hetta gjølla:'
+      cooldown: Aftaná at tú hevur flutt, so er eitt tíðarskeið, har tú ikki sleppur at flyta aftur
+      disabled_account: Tín verandi konta verður ikki fult nýtilig aftaná. Tó so, tú hevur atgongd til at útlesa dátur og tú kanst gera kontuna virkna aftur.
+      followers: Hetta fer at flyta alla fylgjarar frá verandi kontuni til ta nýggju
+      only_redirect_html: Ein annar møguleiki er, at tú <a href="%{path}">setir eina víðaribeining upp á vanga tínum</a>.
+      other_data: Ongar aðrar dátur verða fluttar sjálvvirkandi
+      redirect: Vangin á tíni núverandi kontu verður dagførd við eini viðmerking um víðaribeining og tú verður ikki at finna í leitingum
   moderation:
     title: Umsjón
+  move_handler:
+    carry_blocks_over_text: Hesin brúkarin flutti frá %{acct}, sum tú hevði blokerað.
+    carry_mutes_over_text: Hesin brúkarin flutti frá %{acct}, sum tú hevði doyvt.
+    copy_account_note_text: 'Hesin brúkarin flutti frá %{acct}. Her eru tínar viðmerkingar um viðkomandi:'
+  navigation:
+    toggle_menu: Lat valmynd upp ella aftur
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} sendi eina melding"
+      sign_up:
+        subject: "%{name} meldaði seg til"
+    favourite:
+      body: '%{name} dámdi postin hjá tær:'
+      subject: "%{name} merkti postin hjá tær sum yndispost"
+      title: Nýggjur yndispostur
+    follow:
+      body: "%{name} fylgir tær nú!"
+      subject: "%{name} fylgir tær nú"
+      title: Nýggjur fylgjari
+    follow_request:
+      action: Stýr umbønum um at fylgja
+      body: "%{name} hevur biðið um at fylgja tær"
+      subject: 'Fylgjari, sum bíðar: %{name}'
+      title: Nýggj fylgjaraumbøn
+    mention:
+      action: Svar
+      body: 'Tú var umrødd/ur av %{name} í:'
+      subject: Tú var umrødd/ur av %{name}
+      title: Nýggj umrøða
+    poll:
+      subject: Ein spurnarkanning hjá %{name} er endað
+    reblog:
+      body: 'Postur tín var stimbraður av %{name}:'
+      subject: "%{name} stimbraði tín post"
+      title: Nýggj stimbran
+    status:
+      subject: "%{name} hevur júst postað"
+    update:
+      subject: "%{name} rættaði ein post"
+  notifications:
+    email_events: Hendingar fyri teldupostfráboðanir
+    email_events_hint: 'Vel hendingar, sum tú vil hava fráboðanir um:'
+    other_settings: Aðrar fráboðanarstillingar
   number:
     human:
       decimal_units:
+        format: "%n%u"
         units:
           billion: mia
           million: mió
@@ -1290,12 +1353,217 @@ fo:
     public_timelines: Almennar tíðarlinjur
   privacy_policy:
     title: Privatlívspolitikkur
+  reactions:
+    errors:
+      limit_reached: Mark fyri ymisk aftursvar rokkið
+      unrecognized_emoji: er ikki eitt kenslutekn, sum kennist aftur
+  relationships:
+    activity: Kontuvirksemi
+    dormant: Í dvala
+    follow_selected_followers: Fylg valdu fylgjarum
+    followers: Fylgjarar
+    following: Fylgi
+    invited: Bjóðað
+    last_active: Seinast virkin
+    most_recent: Feskasta
+    moved: Flutti
+    mutual: Sínamillum
+    primary: Fyrst/ur
+    relationship: Samband
+    remove_selected_domains: Strika allar fylgjarar frá valdu navnaøkjunum
+    remove_selected_followers: Strika valdu fylgjarar
+    remove_selected_follows: Gevst at fylgja valdu brúkarar
+    status: Kontustøða
+  remote_follow:
+    missing_resource: Fann ikki kravda víðaribeinings-URL'in fyri tína kontu
+  reports:
+    errors:
+      invalid_rules: vísir ikki til gyldugar reglur
+  rss:
+    content_warning: 'Innihaldsávaring:'
+    descriptions:
+      account: Almennir postar frá @%{acct}
+      tag: 'Almennir postar við frámerkinum #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Tú er komin at markinum, sum er %{limit} skrálagdir postar, í dag
+    over_total_limit: Tú er komin at markinum, sum er %{limit} skrálagdir postar
+    too_soon: Ætlanardagfestingin má vera í framtíðini
+  sessions:
+    activity: Seinasta virksemi
+    browser: Kagi
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Ókendur kagi
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
+    current_session: Verandi seta
+    description: "%{browser} á %{platform}"
+    explanation: Hetta eru vevkagarnir, sum í løtuni eru ritaðir inn á tína Mastodon kontu.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      other: ókendur pallur
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Tak aftur
+    revoke_success: Setan tikin aftur
+    title: Setur
+    view_authentication_history: Sí samgildissøgu fyri tína kontu
   settings:
+    account: Konta
+    account_settings: Kontustillingar
+    aliases: Tøkuheiti hjá kontuni
+    appearance: Útsjónd
+    authorized_apps: Góðkendar appir
+    back: Aftur til Mastodon
+    delete: Striking av kontu
+    development: Menning
+    edit_profile: Rætta vanga
+    export: Útflyt dátur
+    featured_tags: Varpaði frámerki
+    import: Innflyt
+    import_and_export: Innflyt og útflyt
+    migrate: Flyting av kontu
+    notifications: Fráboðanir
+    preferences: Sertokki
+    profile: Vangi
+    relationships: Fylging og fylgjarar
+    statuses_cleanup: Sjálvvirkandi striking av postum
+    strikes: Umsjónaratsóknir
     two_factor_authentication: Váttan í tveimum stigum
+    webauthn_authentication: Trygdarlyklar
+  statuses:
+    attached:
+      audio:
+        one: "%{count} ljóð"
+        other: "%{count} ljóð"
+      description: 'Viðfest: %{attached}'
+      image:
+        one: "%{count} mynd"
+        other: "%{count} myndir"
+      video:
+        one: "%{count} sjónfíla"
+        other: "%{count} sjónfílur"
+    boosted_from_html: Stimbrað frá %{acct_link}
+    content_warning: 'Innihaldsávaring: %{warning}'
+    default_language: Sama sum markamótsmál
+    disallowed_hashtags:
+      one: 'innihelt eitt vrakað frámerki: %{tags}'
+      other: 'innihelt vrakaðu frámerkini: %{tags}'
+    edited_at_html: Rættað %{date}
+    errors:
+      in_reply_not_found: Posturin, sum tú roynir at svara, sýnist ikki at finnast.
+    open_in_web: Lat upp á vevinum
+    over_character_limit: mesta tal av teknum, %{max}, rokkið
+    pin_errors:
+      direct: Postar, sum einans eru sjónligir hjá nevndum brúkarum, kunnu ikki festast
+      limit: Tú hevur longu fest loyvda talið av postum
+      ownership: Postar hjá øðrum kunnu ikki festast
+      reblog: Ein stimbran kann ikki festast
+    poll:
+      total_people:
+        one: "%{count} fólk"
+        other: "%{count} fólk"
+      total_votes:
+        one: "%{count} atkvøða"
+        other: "%{count} atkvøður"
+      vote: Atkvøð
+    show_more: Vís meira
+    show_newer: Vís nýggjari
+    show_older: Vís eldri
+    show_thread: Vís tráð
+    sign_in_to_participate: Rita inn fyri at luttaka í samrøðuni
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      direct: Beinleiðis
+      private: Einans fylgjarar
+      private_long: Vís einans fyri fylgjarum
+      public: Alment
+      public_long: Øll kunnu síggja
+      unlisted: Ólistað
+      unlisted_long: Øll kunnu síggja, men ikki listað á almennum tíðarlinjum
+  statuses_cleanup:
+    enabled: Strika gamlar postar sjálvvirkandi
+    enabled_hint: Strikar postar tínar sjálvvirkandi, tá teir verða eldri enn eitt vist, uttan so at teir samsvara við eitt av undantøkunum niðanfyri
+    exceptions: Undantøk
+    explanation: Av tí at striking av postum er dýrt virksemi, so verður tað gjørt spakuliga yvir tíð, tá ambætarin annars ikki er upptikin. Tí kunnu postarnir hjá tær verða strikaðir eina løtu aftaná, at tíðarfreistin er rokkin.
+    ignore_favs: Sí burtur frá yndispostum
+    ignore_reblogs: Sí burtur frá stimbranum
+    interaction_exceptions: Undantøk grundað á samvirkni
+    interaction_exceptions_explanation: Legg til merkis, at eingin trygd er fyri at postar verða strikaðir, um teir fara undir mørkini fyri yndispostar ella stimbranir eftir at teir einaferð eru farnir uppum.
+    keep_direct: Varðveit beinleiðis boð
+    keep_direct_hint: Strikar ikki beinleiðis boð hjá tær
+    keep_media: Varðveit postar, sum hava viðheftar miðlafílur
+    keep_media_hint: Strikar ikki postar hjá tær, sum hava miðlafílur viðheftar
+    keep_pinned: Varðveit festar postar
+    keep_pinned_hint: Strikar ikki tínar festu postar
+    keep_polls: Varðveit atkvøðugreiðslur
+    keep_polls_hint: Strikar ikki tínar atkvøðugreiðslur
+    keep_self_bookmark: Varðveit postar, sum tú hevur bókamerkt
+    keep_self_bookmark_hint: Strikar ikki tínar egnu postar, um tú hevur bókamerkt teir
+    keep_self_fav: Varðveit postar, sum tú hevur yndismerkt
+    keep_self_fav_hint: Strikar ikki tínar egnu postar, um tú hevur yndismerkt teir
+    min_age:
+      '1209600': 2 vikur
+      '15778476': 6 mánaðir
+      '2629746': 1 mánaði
+      '31556952': 1 ár
+      '5259492': 2 mánaðir
+      '604800': 1 vika
+      '63113904': 2 ár
+      '7889238': 3 mánaðir
+    min_age_label: Tíðarfreist
+    min_favs: Varðveit postar yndismerktar í minsta lagi
+    min_favs_hint: Strikar ikki postar hjá tær, sum hava móttikið í minsta lagi hetta talið av yndismerkjum. Lat vera blankt, um postar skulu strikast óansæð, hvussu ofta teir eru yndismerktir
+    min_reblogs: Varðveit postar, sum eru stimbraðir í minsta lagi
+    min_reblogs_hint: Strikar ikki postar hjá tær, sum eru stimbraðir í minsta lagi so ofta. Lat vera blankt, um postar skulu strikast óansæð, hvussu ofta teir eru stimbraðir
+  stream_entries:
+    pinned: Festir postar
+    reblogged: stimbraður
+    sensitive_content: Viðkvæmt innihald
+  strikes:
+    errors:
+      too_late: Tað er ov seint at kæra hesa atsókn
+  tags:
+    does_not_match_previous_name: samsvarar ikki við undanfarna navnið
+  themes:
+    contrast: Mastodon (høgur kontrastur)
+    default: Mastodon (myrkt)
+    mastodon-light: Mastodon (ljóst)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
+    add: Legg afturat
+    disable: Ger 2FA óvirkið
     disabled_success: Váttan í tveimum stigum gjørd óvirkin
+    edit: Rætta
     enabled: Váttan í tveimum stigum gjørd virkin
     enabled_success: Váttan í tveimum stigum gjørd virkin
+    generate_recovery_codes: Ger kodur til endurgerð
     methods: Mannagongdir fyri váttan í tveimum stigum
   user_mailer:
     suspicious_sign_in:
@@ -1313,6 +1581,7 @@ fo:
         suspend: Konta ógildað
   users:
     invalid_otp_token: Ógyldug tvey-stigs koda
+    otp_lost_help_html: Hevur tú mist atgongd til bæði, so kanst tú koma í samband við %{email}
   webauthn_credentials:
     delete: Strika
     otp_required: Fyri at brúka trygdarlyklar er neyðugt at gera váttan í tveimum stigum virkna fyrst.
