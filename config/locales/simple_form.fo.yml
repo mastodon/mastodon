@@ -6,8 +6,42 @@ fo:
       account_migration:
         acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta til
       account_warning_preset:
+        text: Tú kanst brúka sama syntaks sum við postum, sosum URL'ar, frámerki og brúkaranøvn
         title: Valfrítt. Ikki sjónligt fyri móttakaran
+      admin_account_action:
+        include_statuses: Brúkarin sær, hvørjir postar hava ført við sær umsjónaratgerðina ella ávaringina
+        send_email_notification: Brúkarin fer at móttaka eina frágreiðing um, hvat hendi við teirra kontu
+        text_html: Valfrítt. Tú kanst brúka sama syntaks sum í postum. Tú kann <a href="%{path}">leggja fastar ávaringarstillingar</a> fyri at spara tíð
+        type_html: Vel, hvat tú vil gera við <strong>%{acct}</strong>
+        types:
+          disable: Forða brúkaranum at brúka teirra kontu, men lat vera við at strika ella fjala teirra innihald.
+          none: Brúka hetta at senda eina ávaring til brúkaran, uttan at íverkseta nakra aðra atgerð.
+          sensitive: Flagga øll framtíðar miðlaviðfesti hjá brúkaranum sum viðkvom.
+          silence: Forða brúkaranum at posta alment, fjal teirra postar og fráboðanir frá fólki, sum ikki fylgja teimum.
+          suspend: Forða alt samskifti frá og til hesa kontuna og strika innihaldið hjá henni. Kann angrast innan 30 dagar.
+        warning_preset_id: Valfrítt. Tú kanst enn leggja serskildan tekst afturat undanstillingini
+      announcement:
+        all_day: Tá hetta er valt, verða einans dagfestingarnar í tíðarbilinum vístar
+        ends_at: Valfrítt. Kunngerðin verður sjálvvirkandi fjald, tá hendan tíðin er komin
+        scheduled_at: Lat vera blankt fyri at útgeva kunngerðina beinan vegin
+        starts_at: Valfrítt. Um so er, at kunngerðin hjá tær er avmarkað til eitt ávíst tíðarbil
+        text: Tú kanst brúka sama syntaks sum í postum. Gev gætur, hvussu nógv kunngerðin fyllir á skerminum hjá brúkaranum
+      appeal:
+        text: Tú kanst bara kæra eina atsókn eina ferð
       defaults:
+        autofollow: Fólk, sum tilmelda seg gjøgnum innbjóðingina, fylgja tær sjálvvirkandi
+        avatar: PNG, GIF ella JPG. Ikki størri enn %{size}. Verður minkað til %{dimensions}px
+        bot: Tekin til onnur, at kontan í høvuðsheitum ger sjálvvirkandi atgerðir og møguliga ikki verður yvirvakað
+        context: Ein ella fleiri kontekstir, har sum filtrið skal brúkast
+        current_password: Av trygdarávum vinarliga les inn loyniorðið hjá verandi kontu
+        current_username: Fyri at vátta, vinarliga les inn brúkaranavnið á verandi kontu
+        digest: Einans sent eftir eitt langt tíðarskeið við óvirkni og einans um tú hevur móttikið persónlig boð meðan tú var burtur
+        discoverable: Loyv kontu tíni at verða funnin av fremmandum gjøgnum viðmæli, rák og aðrar hentleikar
+        email: Tú fær sendandi ein váttanarteldupost
+        fields: Tú kanst hava upp til 4 lutir vístar sum eina talvu á vanga tínum
+        header: PNG, GIF ella JPG. Ikki størri enn %{size}. Verður minkað til %{dimensions}px
+        inbox_url: Avrita URL'in frá forsíðuni hjá reiðlagnum, sum tú vilt brúka
+        irreversible: Filtreraðir postar blíva burtur med alla, eisini sjálvt um filtrið seinni verður strikað
         password: Skriva minst 8 tekin
       featured_tag:
         name: 'Her eru nakrir tvíkrossar, ið tú hevur brúkt í seinastuni:'
