@@ -21,6 +21,18 @@ zh-HK:
             username:
               invalid: 只能使用字母、數字和下劃線
               reserved: 已被保留
+        admin/webhook:
+          attributes:
+            url:
+              invalid: 不是一個有效的網址
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: 不是一個有效的網址
+        import:
+          attributes:
+            data:
+              malformed: 是畸形
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ zh-HK:
             email:
               blocked: 使用不被允許的電子郵件供應商
               unreachable: 似乎不存在
+            role_id:
+              elevated: 不可高於你目前的身份
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: 包括對基本身份不安全的權限
+              elevated: 不能包括你當前身份不具備的權限
+              own_role: 無法以你目前的身份更改
+            position:
+              elevated: 不可高於你目前的身份
+              own_role: 無法以你目前的身份更改

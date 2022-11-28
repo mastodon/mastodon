@@ -373,6 +373,8 @@ eu:
       add_new: Sartu domeinua zerrenda zurian
       created_msg: Domeinua ongi sartu da zerrenda zurian
       destroyed_msg: Domeinua zerrenda zuritik kendu da
+      export: Esportatu
+      import: Inportatu
       undo: Kendu zerrenda zuritik
     domain_blocks:
       add_new: Gehitu domeinuaren blokeo berria
@@ -382,11 +384,14 @@ eu:
       edit: Editatu domeinu-blokeoa
       existing_domain_block: Aurretik muga zorrotzagoak ezarriak dituzu %{name} domeinuan.
       existing_domain_block_html: '%{name} domeinuan muga zorrotzagoak ezarri dituzu jada, aurretik <a href="%{unblock_url}">desblokeatu</a> beharko duzu.'
+      export: Esportatu
+      import: Inportatu
       new:
         create: Sortu blokeoa
         hint: Domeinuaren blokeoak ez du eragotziko kontuen sarrerak sortzea datu-basean, baina automatikoki ezarriko zaizkie moderazio metodo bereziak iraganeko mezuetan ere.
         severity:
           noop: Bat ere ez
+          silence: Isilarazi
           suspend: Kanporatu
         title: Domeinuaren blokeo berria
       obfuscate: Lausotu domeinu-izena
@@ -420,6 +425,10 @@ eu:
       resolved_dns_records_hint_html: Domeinu-izena ondorengo MX domeinuetara ebazten da, zeinek eposta onartzeko ardura duten. MX domeinu bat blokeatzeak MX domeinu hori erabiltzen duen edozein helbide elektronikotatik izena-ematea blokeatzen du, baita ikusgai dagoen domeinu-izena beste bat bada ere. <strong>Kontuz ibili eposta hornitzaile nagusiak blokeatu gabe.</strong>
       resolved_through_html: "%{domain} domeinuaren bidez ebatzia"
       title: E-mail zerrenda beltza
+    export_domain_allows:
+      no_file: Ez da fitxategirik hautatu
+    export_domain_blocks:
+      no_file: Ez da fitxategirik hautatu
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
       language: Hizkuntza

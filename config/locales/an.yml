@@ -1,12 +1,1662 @@
 ---
 an:
+  about:
+    about_mastodon_html: 'Lo ret social d''o futuro: Sin anuncios, sin vichilancia corporativa, disenyo etico, y descentralización! Sé duenyo d''a tuya información con Mastodon!'
+    contact_missing: No especificau
+    contact_unavailable: No disponible
+    hosted_on: Mastodon alochau en %{domain}
+    title: Sobre
+  accounts:
+    follow: Seguir
+    followers:
+      one: Seguidor
+      other: Seguidores
+    following: Seguindo
+    instance_actor_flash: Esta cuenta ye un actor virtual utilizau pa representar a lo servidor en ell mesmo y no a garra usuario individual. S'utiliza pa propositos d'a federación y no s'ha de suspender.
+    last_active: zaguera connexión
+    link_verified_on: La propiedat d'este vinclo estió verificada lo %{date}
+    nothing_here: No i hai cosa aquí!
+    pin_errors:
+      following: Has d'estar seguindo a la persona a la quala quiers aprebar
+    posts:
+      one: Publicación
+      other: Publicacions
+    posts_tab_heading: Publicacions
+  admin:
+    account_actions:
+      action: Realizar acción
+      title: Amoderar %{acct}
+    account_moderation_notes:
+      create: Creyar
+      created_msg: Nota de moderación creyada con exito!
+      destroyed_msg: Nota de moderación destruyida con exito!
+    accounts:
+      add_email_domain_block: Meter en lista negra lo dominio d'o correu
+      approve: Aprebar
+      approved_msg: La solicitut de rechistro de %{username} ha estau aprebada correctament
+      are_you_sure: Yes seguro?
+      avatar: Avatar
+      by_domain: Dominio
+      change_email:
+        changed_msg: Email cambiau con exito!
+        current_email: Correu electronico actual
+        label: Cambiar lo correu electronico
+        new_email: Nuevo correu electronico
+        submit: Cambiar lo correu electronico
+        title: Cambiar lo correu electronico de %{username}
+      change_role:
+        changed_msg: Rol cambiau con exito!
+        label: Cambiar rol
+        no_role: Sin rol
+        title: Cambiar rol pa %{username}
+      confirm: Confirmar
+      confirmed: Confirmau
+      confirming: Confirmando
+      custom: Personalizau
+      delete: Eliminar datos
+      deleted: Borrau
+      demote: Degradar
+      destroyed_msg: Los datos de %{username} son ya en coda pa estar eliminaus de camín
+      disable: Deshabilitar
+      disable_sign_in_token_auth: Deshabilitar l'autenticación per token de correu electronico
+      disable_two_factor_authentication: Desactivar autenticación de dos factors
+      disabled: Deshabilitada
+      display_name: Nombre
+      domain: Dominio
+      edit: Editar
+      email: Adreza de correu-e
+      email_status: Status de correu-e
+      enable: Habilitar
+      enable_sign_in_token_auth: Habilitar l'autenticación per token de correu electronico
+      enabled: Habilitada
+      enabled_msg: S'ha descongelado correctament la cuenta de %{username}
+      followers: Seguidores
+      follows: Sigue
+      header: Capitero
+      inbox_url: URL d'a servilla de dentrada
+      invite_request_text: Razons pa unir-se
+      invited_by: Convidau per
+      ip: IP
+      joined: Uniu
+      location:
+        all: Totz
+        local: Local
+        remote: Remoto
+        title: Localización
+      login_status: Estau d'o login
+      media_attachments: Multimedia
+      memorialize: Convertir en memorial
+      memorialized: Cuenta commemorativa
+      memorialized_msg: "%{username} se convirtió con exito en una cuenta commemorativa"
+      moderation:
+        active: Activo
+        all: Totz
+        pending: Pendient
+        silenced: Limitau
+        suspended: Suspendius
+        title: Moderación
+      moderation_notes: Notas de moderación
+      most_recent_activity: Actividat mas recient
+      most_recent_ip: IP mas recient
+      no_account_selected: Garra cuenta se cambió como garra estió triada
+      no_limits_imposed: Sin limites imposaus
+      no_role_assigned: Garra rol asignau
+      not_subscribed: No se ye suscrito
+      pending: Revisión pendient
+      perform_full_suspension: Suspender
+      previous_strikes: Amonestacions anteriors
+      previous_strikes_description_html:
+        one: Esta cuenta tiene <strong>una</strong> amonestación.
+        other: Esta cuenta tiene <strong>%{count}</strong> amonestacions.
+      promote: Promocionar
+      protocol: Protocolo
+      public: Publico
+      push_subscription_expires: Expiración d'a conduta PuSH
+      redownload: Refrescar avatar
+      redownloaded_msg: S'actualizó correctament lo perfil de %{username} dende l'orichen
+      reject: Refusar
+      rejected_msg: La solicitut de rechistro de %{username} ha estau refusada con exito
+      remove_avatar: Eliminar lo avatar
+      remove_header: Eliminar capitero
+      removed_avatar_msg: S'ha eliminau exitosament la imachen d'o avatar de %{username}
+      removed_header_msg: S'ha eliminau con exito la imachen de capitero de %{username}
+      resend_confirmation:
+        already_confirmed: Este usuario ya ye confirmau
+        send: Reninviar lo correu electronico de confirmación
+        success: Correu electronico de confirmación ninviau con exito!
+      reset: Reiniciar
+      reset_password: Reiniciar clau
+      resubscribe: Re-suscribir
+      role: Rol
+      search: Buscar
+      search_same_email_domain: Atros usuarios con o mesmo dominio de correu
+      search_same_ip: Atros usuarios con a mesma IP
+      security_measures:
+        only_password: Nomás clau
+        password_and_2fa: Clau y 2FA
+      sensitive: Sensible
+      sensitized: Marcau como sensible
+      shared_inbox_url: URL de servilla compartida
+      show:
+        created_reports: Reportes feitos per esta cuenta
+        targeted_reports: Reportes feitos sobre esta cuenta
+      silence: Silenciar
+      silenced: Silenciau
+      statuses: Estaus
+      strikes: Amonestacions previas
+      subscribe: Suscribir
+      suspend: Suspender
+      suspended: Suspendiu
+      suspension_irreversible: Los datos d'esta cuenta han estau irreversiblement eliminaus. Puetz desfer la suspensión d'a cuenta pa fer-la utilizable, pero no recuperará los datos que tenebas anteriorment.
+      suspension_reversible_hint_html: La cuenta ha estau suspendida y los datos s'eliminarán completament lo %{date}. Dica alavez, la cuenta puede estar restaurada sin garra efecto perchudicial. Si deseya eliminar totz los datos d'a cuenta immediatament, puede fer-lo contino.
+      title: Cuentas
+      unblock_email: Desblocar adreza de correu
+      unblocked_email_msg: S'ha desblocau correctament l'adreza de correu de %{username}
+      unconfirmed_email: Correu electronico sin confirmar
+      undo_sensitized: Desmarcar como sensible
+      undo_silenced: Des-silenciar
+      undo_suspension: Des-suspender
+      unsilenced_msg: Se sacó con exito lo limite d'a cuenta %{username}
+      unsubscribe: Desuscribir
+      unsuspended_msg: Se sacó con exito la suspensión d'a cuenta de %{username}
+      username: Nombre d'usuario
+      view_domain: Veyer resumen d'o dominio
+      warn: Adevertir
+      web: Web
+      whitelisted: Anyadiu a la lista blanca
+    action_logs:
+      action_types:
+        approve_appeal: Aprebar Apelación
+        approve_user: Aprebar Usuario
+        assigned_to_self_report: Asignar Reporte
+        change_email_user: Cambiar Correu Electronico de l'Usuario
+        change_role_user: Cambiar Rol d'Usuario
+        confirm_user: Confirmar Usuario
+        create_account_warning: Creyar Alvertencia
+        create_announcement: Creyar Anuncio
+        create_canonical_email_block: Creyar Bloqueyo de Correu Electronico
+        create_custom_emoji: Creyar Emoji Personalizau
+        create_domain_allow: Creyar Permiso de Dominio
+        create_domain_block: Creyar Bloqueyo de Dominio
+        create_email_domain_block: Creyar Bloqueyo de Dominio de Correu Electronico
+        create_ip_block: Creyar regla IP
+        create_unavailable_domain: Creyar Dominio No Disponible
+        create_user_role: Creyar Rol
+        demote_user: Degradar Usuario
+        destroy_announcement: Eliminar Anuncio
+        destroy_canonical_email_block: Eliminar Bloqueyo de Correu Electronico
+        destroy_custom_emoji: Eliminar Emoji Personalizau
+        destroy_domain_allow: Eliminar Permiso de Dominio
+        destroy_domain_block: Eliminar Bloqueyo de Dominio
+        destroy_email_domain_block: Eliminar Bloqueyo de Dominio de Correu Electronico
+        destroy_instance: Purgar Dominio
+        destroy_ip_block: Eliminar regla IP
+        destroy_status: Eliminar Estau
+        destroy_unavailable_domain: Eliminar Dominio No Disponible
+        destroy_user_role: Destruyir Rol
+        disable_2fa_user: Deshabilitar 2FA
+        disable_custom_emoji: Deshabilitar Emoji Personalizau
+        disable_sign_in_token_auth_user: Deshabilitar l'Autenticación per Token de Correu Electronico pa l'Usuario
+        disable_user: Deshabilitar Usuario
+        enable_custom_emoji: Habilitar Emoji Personalizau
+        enable_sign_in_token_auth_user: Habilitar l'Autenticación per Token de Correu Electronico pa l'Usuario
+        enable_user: Habilitar Usuario
+        memorialize_account: Transformar en Cuenta Commemorativa
+        promote_user: Promover Usuario
+        reject_appeal: Refusar Apelación
+        reject_user: Refusar Usuario
+        remove_avatar_user: Eliminar Avatar
+        reopen_report: Reubrir Reporte
+        resend_user: Reninviar Correu de Confirmación
+        reset_password_user: Restablir Clau
+        resolve_report: Resolver Reporte
+        sensitive_account: Marcar multimedia en a tuya cuenta como sensible
+        silence_account: Silenciar Cuenta
+        suspend_account: Suspender Cuenta
+        unassigned_report: Desasignar Reporte
+        unblock_email_account: Desblocar adreza de correu
+        unsensitive_account: Desmarcar multimedia en a tuya cuenta como sensible
+        unsilence_account: Deixar de Silenciar Cuenta
+        unsuspend_account: Deixar de Suspender Cuenta
+        update_announcement: Actualizar Anuncio
+        update_custom_emoji: Actualizar Emoji Personalizau
+        update_domain_block: Actualizar lo Bloqueyo de Dominio
+        update_ip_block: Actualizar regla IP
+        update_status: Actualizar Estau
+        update_user_role: Actualizar Rol
+      actions:
+        approve_appeal_html: "%{name} aprebó la solicitut de moderación de %{target}"
+        approve_user_html: "%{name} aprebó lo rechistro de %{target}"
+        assigned_to_self_report_html: "%{name} asignó l'informe %{target} a ell mesmo"
+        change_email_user_html: "%{name} cambió l'adreza de correu electronico de l'usuario %{target}"
+        change_role_user_html: "%{name} cambió lo rol de %{target}"
+        confirm_user_html: "%{name} confirmó l'adreza de correu electronico de l'usuario %{target}"
+        create_account_warning_html: "%{name} ninvió una alvertencia a %{target}"
+        create_announcement_html: "%{name} ha creyau un nuevo anuncio %{target}"
+        create_canonical_email_block_html: "%{name} blocó lo correu electronico con o hash %{target}"
+        create_custom_emoji_html: "%{name} puyó un nuevo emoji %{target}"
+        create_domain_allow_html: "%{name} permitió la federación con o dominio %{target}"
+        create_domain_block_html: "%{name} blocó lo dominio %{target}"
+        create_email_domain_block_html: "%{name} blocó lo dominio de correu electronico %{target}"
+        create_ip_block_html: "%{name} creyó una regla pa la IP %{target}"
+        create_unavailable_domain_html: "%{name} aturó las entregas a lo dominio %{target}"
+        create_user_role_html: "%{name} creyó lo rol %{target}"
+        demote_user_html: "%{name} degradó a l'usuario %{target}"
+        destroy_announcement_html: "%{name} eliminó l'anuncio %{target}"
+        destroy_canonical_email_block_html: "%{name} desblocó lo correu electronico con o hash %{target}"
+        destroy_custom_emoji_html: "%{name} eliminó lo emoji %{target}"
+        destroy_domain_allow_html: "%{name} blocó la federación con o dominio %{target}"
+        destroy_domain_block_html: "%{name} desblocó lo dominio %{target}"
+        destroy_email_domain_block_html: "%{name} desblocó lo dominio de correu electronico %{target}"
+        destroy_instance_html: "%{name} purgó lo dominio %{target}"
+        destroy_ip_block_html: "%{name} eliminó una regla pa la IP %{target}"
+        destroy_status_html: "%{name} eliminó lo estau per %{target}"
+        destroy_unavailable_domain_html: "%{name} reprenió las entregas a lo dominio %{target}"
+        destroy_user_role_html: "%{name} eliminó lo rol %{target}"
+        disable_2fa_user_html: "%{name} desactivó lo requisito de dos factors pa l'usuario %{target}"
+        disable_custom_emoji_html: "%{name} desactivó lo emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} ha deshabilitau l'autenticación per token de correu electronico pa %{target}"
+        disable_user_html: "%{name} deshabilitó l'inicio de sesión pa l'usuario %{target}"
+        enable_custom_emoji_html: "%{name} activó lo emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ha habilitau l'autenticación per token de correu electronico pa %{target}"
+        enable_user_html: "%{name} habilitó l'inicio de sesión pa l'usuario %{target}"
+        memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una pachina in memoriam"
+        promote_user_html: "%{name} promoción a l'usuario %{target}"
+        reject_appeal_html: "%{name} refusó la solicitut de moderación de %{target}"
+        reject_user_html: "%{name} refusó lo rechistro de %{target}"
+        remove_avatar_user_html: "%{name} eliminó lo avatar de %{target}"
+        reopen_report_html: "%{name} reubrió l'informe %{target}"
+        resend_user_html: "%{name} ha reninviau lo correu de confirmación pa %{target}"
+        reset_password_user_html: "%{name} reinició la clau de l'usuario %{target}"
+        resolve_report_html: "%{name} resolvió l'informe %{target}"
+        sensitive_account_html: "%{name} marcó los fichers multimedia de %{target} como sensibles"
+        silence_account_html: "%{name} silenció la cuenta de %{target}"
+        suspend_account_html: "%{name} suspendió la cuenta de %{target}"
+        unassigned_report_html: "%{name} des-asignó l'informe %{target}"
+        unblock_email_account_html: "%{name} ha desblocau l'adreza de correu de %{target}"
+        unsensitive_account_html: "%{name} desmarcó los fichers multimedia de %{target} como sensibles"
+        unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
+        unsuspend_account_html: "%{name} reactivó la cuenta de %{target}"
+        update_announcement_html: "%{name} actualizó l'anuncio %{target}"
+        update_custom_emoji_html: "%{name} actualizó lo emoji %{target}"
+        update_domain_block_html: "%{name} actualizó lo bloqueyo de dominio pa %{target}"
+        update_ip_block_html: "%{name} cambió la regla pa la IP %{target}"
+        update_status_html: "%{name} actualizó lo estau de %{target}"
+        update_user_role_html: "%{name} cambió lo rol %{target}"
+      deleted_account: cuenta eliminada
+      empty: No se troboron rechistros.
+      filter_by_action: Filtrar per acción
+      filter_by_user: Filtrar per usuario
+      title: Log de auditoría
+    announcements:
+      destroyed_msg: Anuncio eliminau con exito!
+      edit:
+        title: Editar anuncio
+      empty: No se troboron anuncios.
+      live: En vivo
+      new:
+        create: Creyar anuncio
+        title: Nuevo anuncio
+      publish: Publicar
+      published_msg: Anuncio publicau con exito!
+      scheduled_for: Programado atura %{time}
+      scheduled_msg: Anuncio programado pa la suya publicación!
+      title: Anuncios
+      unpublish: Retirar publicación
+      unpublished_msg: Anuncio despublicado con exito!
+      updated_msg: Anuncio actualizau con exito!
+    custom_emojis:
+      assign_category: Asignar categoría
+      by_domain: Dominio
+      copied_msg: Copia local d'o emoji creyada con exito
+      copy: Copiar
+      copy_failed_msg: No se podió realizar una copia local d'ixe emoji
+      create_new_category: Creyar una nueva categoría
+      created_msg: Emoji creyau con exito!
+      delete: Borrar
+      destroyed_msg: Emojo destruyiu con exito!
+      disable: Deshabilitar
+      disabled: Desactivau
+      disabled_msg: Se deshabilitó con exito ixe emoji
+      emoji: Emoji
+      enable: Habilitar
+      enabled: Activau
+      enabled_msg: S'habilitó con exito ixe emoji
+      image_hint: PNG u GIF dica %{size}
+      list: Lista
+      listed: Listaus
+      new:
+        title: Anyadir nuevo emoji personalizau
+      no_emoji_selected: No se cambió garra emoji ya que no se trió garra
+      not_permitted: No tiens permiso pa realizar esta acción
+      overwrite: Sobrescribir
+      shortcode: Codigo d'alcorce
+      shortcode_hint: A lo menos 2 caracters, solo caracters alfanumericos y guións baixos
+      title: Emojis personalizaus
+      uncategorized: Sin clasificar
+      unlist: No listau
+      unlisted: Sin listar
+      update_failed_msg: No se podió actualizar ixe emoji
+      updated_msg: Emoji actualizau con exito!
+      upload: Puyar
+    dashboard:
+      active_users: usuarios activos
+      interactions: interaccions
+      media_storage: Almagazenamiento multimedia
+      new_users: nuevos usuarios
+      opened_reports: informes ubiertos
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> apelación pendient"
+        other: "<strong>%{count}</strong> apelacions pendients"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> informe pendient"
+        other: "<strong>%{count}</strong> informes pendients"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> etiqueta pendient"
+        other: "<strong>%{count}</strong> etiquetas pendients"
+      pending_users_html:
+        one: "<strong>%{count}</strong> usuario pendient"
+        other: "<strong>%{count}</strong> usuarios pendients"
+      resolved_reports: informes resueltos
+      software: Software
+      sources: Fuents de rechistro
+      space: Uso d'almagazenamiento
+      title: Tablero
+      top_languages: Idiomas mas activos
+      top_servers: Servidors mas activos
+      website: Puesto web
+    disputes:
+      appeals:
+        empty: No se troboron apelacions.
+        title: Apelacions
+    domain_allows:
+      add_new: Anyadir dominio a la lista blanca
+      created_msg: Dominio anyadiu a la lista blanca con exito
+      destroyed_msg: Dominio sacau d'a lista blanca con exito
+      export: Exportar
+      import: Importar
+      undo: Sacar d'a lista blanca
+    domain_blocks:
+      add_new: Anyadir nuevo
+      created_msg: Lo bloqueyo d'o dominio ye estando procesau
+      destroyed_msg: Lo bloqueyo d'o dominio se desfació
+      domain: Dominio
+      edit: Editar bloqueyo de dominio
+      existing_domain_block: Ya imposés limites mas estrictos a %{name}.
+      existing_domain_block_html: Ya ha imposau limites mas estrictos a %{name}, cal <a href="%{unblock_url}">desblocar-lo primero</a>.
+      export: Exportar
+      import: Importar
+      new:
+        create: Creyar bloqueyo
+        hint: Lo bloqueyo de dominio no aprevendrá la creyación de dentradas de cuenta en a base de datos, pero aplicará retroactiva y automaticament metodos de moderación especifica en ditas cuentas.
+        severity:
+          desc_html: "<strong>Limitar</strong> ferá que las publicacions d'as cuentas d'ixe dominio sían invisibles pa qualsequiera que no las sía seguindo. <strong>Suspender</strong> eliminará tot lo conteniu, fichers multimedia, y datos d'o perfil. Usa <strong>Garra</strong> si nomás quiers refusar fichers multimedia."
+          noop: Garra
+          silence: Limitar
+          suspend: Suspender
+        title: Nuevo bloqueyo de dominio
+      no_domain_block_selected: No se cambió garra bloqueyo de dominio ya que garra estió triau
+      not_permitted: No tiens permiso pa realizar esta acción
+      obfuscate: Amagar nombre de dominio
+      obfuscate_hint: Amagada parcialment lo nombre de dominio en a lista si amostrar la lista de limitacions de dominio ye habilitau
+      private_comment: Comentario privau
+      private_comment_hint: Comentario sobre esta limitación de dominio pa l'uso interno per parte d'os moderadors.
+      public_comment: Comentario publico
+      public_comment_hint: Comentario sobre esta limitación de dominio pa lo publico en cheneral, si la publicidat d'a lista de limitacions de dominio ye habilitada.
+      reject_media: Refusar fichers multimedia
+      reject_media_hint: Remueve localment fichers multimedia almagazenaus pa descargar qualsequiera en o futuro. Irrelevant pa suspensions
+      reject_reports: Refusar informes
+      reject_reports_hint: Ignore totz los reportes d'este dominio. Irrelevant pa suspensions
+      undo: Desfer
+      view: Veyer dominio blocau
+    email_domain_blocks:
+      add_new: Anyadir nuevo
+      attempts_over_week:
+        one: "%{count} intento entre la zaguera semana"
+        other: "%{count} intentos de rechistro entre la zaguera semana"
+      created_msg: Dominio de correu anyadiu a la lista negra con exito
+      delete: Borrar
+      dns:
+        types:
+          mx: Rechistro MX
+      domain: Dominio
+      new:
+        create: Anyadir dominio
+        resolve: Resolver dominio
+        title: Nueva dentrada en a lista negra de correu
+      no_email_domain_block_selected: No s'ha cambiau bloqueyos de dominio ya que garra ha estau triau
+      resolved_dns_records_hint_html: Lo nombre de dominio resuelte los siguients dominios MX, los quals son responsables en zaguera instancia d'acceptar lo correu electronico. Blocar un dominio MX blocará los rechistros de qualsequier adreza de correu electronico que utilice lo mesmo dominio MX, mesmo si lo nombre de dominio visible ye diferent. <strong>Tienga cudiau de no blocar los prencipals furnidors de correu electronico.</strong>
+      resolved_through_html: Resuelto a traviés de %{domain}
+      title: Lista negra de correu
+    export_domain_allows:
+      new:
+        title: Importar dominios permitius
+      no_file: Garra fichero triau
+    export_domain_blocks:
+      import:
+        description_html: Yes a punto d'importar una lista de bloqueyos de dominio. Per favor, revisa esta lista con muito cudiau, especialment si no has creyau esta lista tu mesmo.
+        existing_relationships_warning: Relacions de seguimiento existents
+        private_comment_description_html: 'Pa aduyar-le a rastriar d''án proceden los bloqueyos importaus, los bloqueyos importaus se creyarán con o siguient comentario privau: <q>%{comment}</q>'
+        private_comment_template: Importau dende %{source} lo %{date}
+        title: Importar bloqueyos de dominio
+      new:
+        title: Importar bloqueyos de dominio
+      no_file: Garra fichero triau
+    follow_recommendations:
+      description_html: "<strong>Las recomendacions de cuentas aduyan a los nuevos usuarios a trobar rapidament conteniu interesant</strong>. Quan un usuario no ha interactuado con atros pro como pa suscitar recomendacions personalizadas de cuentas a las qualas seguir, en o suyo puesto se le recomiendan estas cuentas. Se recalculan diariament a partir d'una mescla de cuentas con o mayor numero d'interaccions recients y con o mayor numero de seguidores locals con un idioma determinau."
+      language: Pa l'idioma
+      status: Estau
+      suppress: Suprimir recomendación de cuentas
+      suppressed: Suprimida
+      title: Recomendacions de cuentas
+      unsuppress: Restaurar recomendacions de cuentas
+    instances:
+      availability:
+        description_html:
+          one: Si lo ninvio a lo dominio falla <strong>%{count} día</strong> sin exito, no se ferán mas intentos d'entrega de no estar que se reciba un ninvio <em>dende</em> lo dominio.
+          other: Si lo ninvio a lo dominio falla <strong>%{count} días diferents</strong> sin exito, no se ferán mas intentos d'entrega de no estar que se reciba un ninvio <em>dende</em> lo dominio.
+        failure_threshold_reached: Limite de fallo aconseguiu lo %{date}.
+        failures_recorded:
+          one: Intento fallido en %{count} día.
+          other: Intentos fallidos en %{count} días diferents.
+        no_failures_recorded: No i hai fallos en o rechistro.
+        title: Disponibilidat
+        warning: Lo zaguer intento de connexión a este servidor no ha teniu exito
+      back_to_all: Totz
+      back_to_limited: Limitaus
+      back_to_warning: Alvertencia
+      by_domain: Dominio
+      confirm_purge: Seguro que quiers eliminar permanentment los datos d'este dominio?
+      content_policies:
+        comment: Nota interna
+        description_html: Puetz definir politicas de conteniu que s'aplicarán a totas las cuentas d'este dominio y a qualsequiera d'os suyos subdominios.
+        policies:
+          reject_media: Refusar multimedia
+          reject_reports: Refusar informes
+          silence: Limite
+          suspend: Suspender
+        policy: Politica
+        reason: Razón publica
+        title: Politicas de conteniu
+      dashboard:
+        instance_accounts_dimension: Cuentas mas seguidas
+        instance_accounts_measure: cuentas almagazenadas
+        instance_followers_measure: nuestros seguidores allí
+        instance_follows_measure: los suyos seguidores aquí
+        instance_languages_dimension: Idiomas prencipals
+        instance_media_attachments_measure: fichers adjuntos alzaus
+        instance_reports_measure: informes sobre ells
+        instance_statuses_measure: mensaches almagazenaus
+      delivery:
+        all: Totz
+        clear: Limpiar errors d'entrega
+        failing: Fallando
+        restart: Reiniciar entrega
+        stop: Aturar entrega
+        unavailable: No disponible
+      delivery_available: Entrega disponible
+      delivery_error_days: Días d'error d'entrega
+      delivery_error_hint: Si la entrega no ye posible a lo largo de %{count} días, se marcará automaticament como no entregable.
+      destroyed_msg: Los datos de %{domain} son agora en coda pa la suya imminent eliminación.
+      empty: No se troboron dominios.
+      known_accounts:
+        one: "%{count} cuenta conoixida"
+        other: "%{count} cuentas conoixidas"
+      moderation:
+        all: Totz
+        limited: Limitau
+        title: Moderación
+      private_comment: Comentario privau
+      public_comment: Comentario publico
+      purge: Purgar
+      purge_description_html: Si creyes que este dominio ye desconnectau, puetz borrar totz los rechistros de cuentas y los datos asociaus d'este dominio d'o tuyo almagazenamiento. Esto puede levar un tiempo.
+      title: Instancias conoixidas
+      total_blocked_by_us: Blocau per nusatros
+      total_followed_by_them: Seguius per ells
+      total_followed_by_us: Seguiu per nusatros
+      total_reported: Informes sobre ellas
+      total_storage: Fichers multimedia
+      totals_time_period_hint_html: Los totals amostraus contino incluyen datos pa tot lo tiempo.
+    invites:
+      deactivate_all: Desactivar totz
+      filter:
+        all: Totas
+        available: Disponibles
+        expired: Expiradas
+        title: Filtrar
+      title: Invitacions
+    ip_blocks:
+      add_new: Creyar regla
+      created_msg: Nueva regla IP anyadida con exito
+      delete: Eliminar
+      expires_in:
+        '1209600': 2 semanas
+        '15778476': 6 meses
+        '2629746': 1 mes
+        '31556952': 1 anyo
+        '86400': 1 día
+        '94670856': 3 anyos
+      new:
+        title: Creyar nueva regla IP
+      no_ip_block_selected: No s'ha cambiau reglas IP ya que no s'ha triau garra
+      title: Reglas IP
+    relationships:
+      title: Relacions de %{acct}
+    relays:
+      add_new: Anyadir un nuevo relés
+      delete: Borrar
+      description_html: Un <strong>relé de federación</strong> ye un servidor intermedio que intercambia grans volumens de publicacions publicas entre servidors que se suscriben y publican en ell. <strong>Puede aduyar a servidors chicotz y medianos a descubrir conteniu d'o fediverso</strong>, que d'unatra traza requeriría que los usuarios locals seguisen manualment a personas de servidors remotos.
+      disable: Deshabilitar
+      disabled: Deshabilitau
+      enable: Hablitar
+      enable_hint: Una vegada connectau, lo tuyo servidor se suscribirá a totz las publicacions publicas d'este relé, y prencipiará a ninviar las publicacions publicas d'este servidor enta ell.
+      enabled: Habilitau
+      inbox_url: URL d'o relés
+      pending: Asperando l'aprebación d'o relés
+      save_and_enable: Alzar y connectar
+      setup: Preparar una connexión de relés
+      signatures_not_enabled: Los relés no funcionarán correctament mientres lo modo seguro u lo modo de lista blanca sían habilitaus
+      status: Estau
+      title: Releses
+    report_notes:
+      created_msg: Lo rechistro d'a denuncia s'ha creyau correctament!
+      destroyed_msg: Lo rechistro d'a denuncia s'ha borrau correctament!
+      today_at: Hue a las %{time}
+    reports:
+      account:
+        notes:
+          one: "%{count} nota"
+          other: "%{count} notas"
+      action_log: Rechistro de auditoría
+      action_taken_by: Acción presa per
+      actions:
+        delete_description_html: Los mensaches denunciaus serán eliminaus y se rechistrará una amonestación pa aduyar-te a escalar en futuras infraccions per la mesma cuenta.
+        mark_as_sensitive_description_html: Los fichers multimedia en os mensaches informaus se marcarán como sensibles y s'aplicará una amonestación pa aduyar-te a escalar las futuras infraccions d'a mesma cuenta.
+        other_description_html: Veyer mas opcions pa controlar lo comportamiento d'a cuenta y personalizar la comunicación d'a cuenta denunciada.
+        resolve_description_html: No se prendrán medidas contra la cuenta denunciada, no se rechistrará l'amonestación, y se zarrará l'informe.
+        silence_description_html: Lo perfil será visible solo pa aquells que ya lo sigan u lo busquen manualment, limitando seriosament lo suyo aconsiga. Siempre puede estar revertiu.
+        suspend_description_html: Lo perfil y totz los suyos contenius serán inaccesibles dica que sían finalment eliminaus. La interacción con a cuenta será imposible. Reversible entre un plazo de 30 días.
+      actions_description_html: Decide qué medidas prener pa resolver esta denuncia. Si prenes una acción punitiva contra la cuenta denunciada, se le ninviará a dita cuenta una notificación per correu electronico, fueras de quan se tríe la categoría <strong>Spam</strong>.
+      add_to_report: Anyadir mas a lo reporte
+      are_you_sure: Yes seguro?
+      assign_to_self: Asignar-me-la
+      assigned: Moderador asignau
+      by_target_domain: Dominio d'a cuenta denunciada
+      category: Categoría
+      category_description_html: La razón per la quala se reportó esta cuenta u conteniu será citada en as comunicacions con a cuenta denunciada
+      comment:
+        none: Garra
+      comment_description_html: 'Pa proporcionar mas información, %{name} escribió:'
+      created_at: Denunciau
+      delete_and_resolve: Eliminar publicacions
+      forwarded: Reninviau
+      forwarded_to: Reninviau a %{domain}
+      mark_as_resolved: Marcar como resuelto
+      mark_as_sensitive: Marcar como sensible
+      mark_as_unresolved: Marcar como no resuelto
+      no_one_assigned: Dengún
+      notes:
+        create: Anyadir una nota
+        create_and_resolve: Resolver con una nota
+        create_and_unresolve: Reubrir con una nota
+        delete: Eliminar
+        placeholder: Especificar qué accions s'han preso u qualsequier atra novedat respective a esta denuncia...
+        title: Notas
+      notes_description_html: Veyer y deixar notas a atros moderadors y a lo tuyo yo futuro
+      quick_actions_description_html: 'Prene una acción rapida u desplaza-te enta baixo pa veyer lo conteniu denunciau:'
+      remote_user_placeholder: l'usuario remoto de %{instance}
+      reopen: Reubrir denuncia
+      report: 'Denunciar #%{id}'
+      reported_account: Cuenta denunciada
+      reported_by: Denunciau per
+      resolved: Resuelto
+      resolved_msg: La denuncia s'ha resuelto correctament!
+      skip_to_actions: Ir dreitament a las accions
+      status: Estau
+      statuses: Conteniu denunciau
+      statuses_description_html: Lo conteniu ofensivo se citará en a comunicación con a cuenta denunciada
+      target_origin: Orichen d'a cuenta denunciada
+      title: Reportes
+      unassign: Desasignar
+      unresolved: No resuelto
+      updated_at: Actualizau
+      view_profile: Veyer perfil
+    roles:
+      add_new: Anyadir rol
+      assigned_users:
+        one: "%{count} usuario"
+        other: "%{count} usuarios"
+      categories:
+        administration: Administración
+        devops: DevOps
+        invites: Invitacions
+        moderation: Moderación
+        special: Especial
+      delete: Eliminar
+      description_html: Con <strong>rols d'usuario</strong>, puede personalizar las funcions y arias de Mastodon a las qualas pueden acceder los suyos usuarios.
+      edit: Editar rol '%{name}'
+      everyone: Permisos per defecto
+      everyone_full_description_html: Este ye lo <strong>rol base</strong> que afecta a <strong>totz los usuarios</strong>, mesmo aquells sin un rol asignau. Totz los atros rols heredan permisos d'ell.
+      permissions_count:
+        one: "%{count} permiso"
+        other: "%{count} permisos"
+      privileges:
+        administrator: Administrador
+        administrator_description: Los usuarios con este permiso blincarán totz los permisos
+        delete_user_data: Borrar Datos d'Usuario
+        delete_user_data_description: Permite a los usuarios eliminar los datos d'atros usuarios sin demora
+        invite_users: Convidar usuarios
+        invite_users_description: Permite a los usuarios convidar a nuevas personas a lo servidor
+        manage_announcements: Administrar Anuncios
+        manage_announcements_description: Permite a los usuarios chestionar anuncios en o servidor
+        manage_appeals: Administrar Apelacions
+        manage_appeals_description: Permite a los usuarios revisar apelacions contra accions de moderación
+        manage_blocks: Administrar Bloqueyos
+        manage_blocks_description: Permite a los usuarios blocar los furnidors de e-mail y las adrezas IP
+        manage_custom_emojis: Administrar Emojis Personalizaus
+        manage_custom_emojis_description: Permite a los usuarios chestionar emojis personalizaus en o servidor
+        manage_federation: Administrar Federación
+        manage_federation_description: Permite a los usuarios blocar u permitir la federación con atros dominios, y controlar la entregabilidad
+        manage_invites: Administrar Invitacions
+        manage_invites_description: Permite a los usuarios navegar y desactivar los vinclos d'invitación
+        manage_reports: Administrar Informes
+        manage_reports_description: Permite a los usuarios revisar informes y realizar accions de moderación basadas en ells
+        manage_roles: Administrar Rols
+        manage_roles_description: Permite a los usuarios administrar y asignar rols per debaixo d'os suyos
+        manage_rules: Chestionar Reglas
+        manage_rules_description: Permite a los usuarios cambiar las reglas d'o servidor
+        manage_settings: Administrar Achustes
+        manage_settings_description: Permite a los usuarios cambiar la configuración d'o puesto
+        manage_taxonomies: Administrar Taxonomías
+        manage_taxonomies_description: Permite a los usuarios revisar lo conteniu en tendencia y actualizar la configuración d'as etiquetas
+        manage_user_access: Administrar Acceso d'Usuarios
+        manage_user_access_description: Permite a los usuarios desactivar l'autenticación de dos factors d'atros usuarios, cambiar la suya adreza de correu electronico y restablir la suya clau
+        manage_users: Administrar Usuarios
+        manage_users_description: Permite a los usuarios veyer los detalles d'atros usuarios y realizar accions de moderación contra ells
+        manage_webhooks: Administrar Webhooks
+        manage_webhooks_description: Permite a los usuarios configurar webhooks pa eventos administrativos
+        view_audit_log: Veyer Rechistro de Auditoría
+        view_audit_log_description: Permite a los usuarios veyer un historial d'accions administrativas en o servidor
+        view_dashboard: Veyer Panel de Control
+        view_dashboard_description: Permite a los usuarios acceder ta lo panel de control y quantas metricas
+        view_devops: DevOps
+        view_devops_description: Permite a los usuarios acceder ta los panels de control Sidekiq y pgHero
+      title: Rols
+    rules:
+      add_new: Anyadir norma
+      delete: Eliminar
+      description_html: Encara que la mayoría afirma haber leyiu y estar d'acuerdo con os termins de servicio, la chent normalment no los leye dica dimpués de que surta bell problema. <strong>Fe que sía mas facil veyer las normas d'o tuyo servidor d'un vistazo estipulándolas en una lista de puntos.</strong> Intenta que cada norma sía curta y sencilla, pero sin estar divididas en muitos puntos.
+      edit: Editar norma
+      empty: Encara no s'han definiu las normas d'o servidor.
+      title: Normas d'o servidor
+    settings:
+      about:
+        manage_rules: Administrar reglas d'o servidor
+        preamble: Proporciona información detallada sobre cómo lo servidor ye operau, moderau y financiau.
+        rules_hint: I hai una aria dedicada pa las reglas a las qualas s'aspera que los tuyos usuarios se adhieran.
+        title: Sobre
+      appearance:
+        preamble: Personalizar la interficie web de Mastodon.
+        title: Apariencia
+      branding:
+        preamble: La marca d'o tuyo servidor lo diferencia d'atros servidors d'o ret. Esta información puede amostrar-se a traviés d'una variedat d'entornos, como en a interficie web de Mastodon, en aplicacions nativas, en previsualizacions de vinclos en atros puestos web y en aplicacions de mensachería, etc. Per esta razón, ye millor mantener esta información clara, breu y concisa.
+        title: Marca
+      content_retention:
+        preamble: Controlar cómo lo conteniu chenerau per l'usuario s'almagazena en Mastodon.
+        title: Retención de conteniu
+      discovery:
+        follow_recommendations: Recomendacions de cuentas
+        preamble: Exposar conteniu interesant a la superficie ye fundamental pa incorporar nuevos usuarios que pueden no conoixer a dengún Mastodon. Controla cómo funcionan quantas opcions d'escubrimiento en o tuyo servidor.
+        profile_directory: Directorio de perfils
+        public_timelines: Linias de tiempo publicas
+        title: Escubrimiento
+        trends: Tendencias
+      domain_blocks:
+        all: A totz
+        disabled: A dengún
+        users: Pa los usuarios locals que han iniciau sesión
+      registrations:
+        preamble: Controla quí puede creyar una cuenta en o tuyo servidor.
+        title: Rechistros
+      registrations_mode:
+        modes:
+          approved: Se requiere aprebación pa rechistrar-se
+          none: Dengún puede rechistrar-se
+          open: Qualsequiera puede rechistrar-se
+      title: Achustes d'o Servidor
+    site_uploads:
+      delete: Eliminar fichero puyau
+      destroyed_msg: Carga d'o puesto eliminada con exito!
+    statuses:
+      account: Autor
+      application: Aplicación
+      back_to_account: Tornar ta la cuenta
+      back_to_report: Tornar ta la pachina d'o reporte
+      batch:
+        remove_from_report: Eliminar d'o reporte
+        report: Reporte
+      deleted: Eliminau
+      favourites: Favoritos
+      history: Historial de versions
+      in_reply_to: En respuesta a
+      language: Idioma
+      media:
+        title: Multimedia
+      metadata: Metadatos
+      no_status_selected: No se cambió garra estau a lo no triar garra
+      open: Ubrir publicación
+      original_status: Publicación orichinal
+      reblogs: Impulsos
+      status_changed: Publicación cambiada
+      title: Estau d'as cuentas
+      trending: En tendencia
+      visibility: Visibilidat
+      with_media: Con multimedia
+    strikes:
+      actions:
+        delete_statuses: "%{name} eliminó las publicacions de %{target}"
+        disable: "%{name} concheló la cuenta de %{target}"
+        mark_statuses_as_sensitive: "%{name} ha marcau las publicacions de %{target} como sensibles"
+        none: "%{name} ninvió una alvertencia a %{target}"
+        sensitive: "%{name} marcó la cuenta de %{target} como sensible"
+        silence: "%{name} limitó la cuenta de %{target}"
+        suspend: "%{name} suspendió la cuenta de %{target}"
+      appeal_approved: Apelado
+      appeal_pending: Apelación pendient
+    system_checks:
+      database_schema_check:
+        message_html: I hai migracions pendients d'a base de datos. Per favor, executa-las pa asegurar-te que l'aplicación funciona como debería
+      elasticsearch_running_check:
+        message_html: No se podió connectar a Elasticsearch. Per favor, compreba que ye executando-se, u desactiva la busqueda de texto completo
+      elasticsearch_version_check:
+        message_html: 'Versión incompatible de Elasticsearch: %{value}'
+        version_comparison: Elasticsearch %{running_version} se ye executando pero s'ameneste Elasticsearch %{required_version}
+      rules_check:
+        action: Administrar reglas d'o servidor
+        message_html: No ha definiu garra regla d'o servidor.
+      sidekiq_process_check:
+        message_html: No i hai garra proceso Sidekiq en execución pa la coda (u codas) de %{value}. Per favor, revise la suya configuración de Sidekiq
+    tags:
+      review: Estau de revisión
+      updated_msg: Hashtags actualizaus exitosament
+    title: Administración
+    trends:
+      allow: Permitir
+      approved: Aprebadas
+      disallow: No permitir
+      links:
+        allow: Permitir vinclo
+        allow_provider: Permitir meyo
+        description_html: Estes son vinclos que actualment son estando compartius muito per las cuentas dende las qualas lo tuyo servidor veye los mensaches. Pueden aduyar a los tuyos usuarios a averiguar qué ye pasando en o mundo. Garra vinclo s'amuestren publicament dica que autorice a lo dominio. Tamién puede permitir u refusar vinclos individuals.
+        disallow: Refusar vinclo
+        disallow_provider: Refusar meyo
+        no_link_selected: No se cambió garra vinclo ya que no se trió garra
+        publishers:
+          no_publisher_selected: No se cambió garra editor ya que no se trió garra
+        shared_by_over_week:
+          one: Compartiu per una persona entre la zaguera semana
+          other: Compartiu per %{count} personas entre la zaguera semana
+        title: Vinclos en tendencia
+        usage_comparison: Compartiu %{today} vegadas hue, comparau con %{yesterday} ahiere
+      only_allowed: Nomás las permitidas
+      pending_review: Revisión pendient
+      preview_card_providers:
+        allowed: Los vinclos d'este meyo pueden estar tendencia
+        description_html: Estes son dominios dende los quals los vinclos a ormino se comparten en o suyo servidor. Los vinclos no serán tendencia publicament de no estar que s'aprebe lo dominio d'o vinclo. La suya aprebación (u refuso) s'extiende a los subdominios.
+        rejected: Los vinclos d'este meyo no pueden estar tendencia
+        title: Medios
+      rejected: Refusadas
+      statuses:
+        allow: Permitir publicación
+        allow_account: Permitir autor
+        description_html: Estes son publicacions que lo suyo servidor conoixe que son estando compartidas y marcadas como favoritas muito en este momento. Pueden aduyar a los tuyos usuarios nuevos y retornantes a trobar mas chent a la quala seguir. No i hai mensaches que s'amuestren publicament dica que aprebes l'autor y l'autor permita que la suya cuenta sía sucherida a atros. Tamién puetz permitir u refusar mensaches individuals.
+        disallow: No permitir publicación
+        disallow_account: No permitir autor
+        no_status_selected: No se cambió garra publicación en tendencia ya que no se trió garra
+        not_discoverable: L'autor no ha optado per estar detectable
+        shared_by:
+          one: Compartiu u marcau como favorito una vegada
+          other: Compatido u marcau como favorito %{friendly_count} vegadas
+        title: Publicacions destacadas
+      tags:
+        current_score: Puntuación actual %{score}
+        dashboard:
+          tag_accounts_measure: usos solos
+          tag_languages_dimension: Idiomas prencipals
+          tag_servers_dimension: Servidors prencipals
+          tag_servers_measure: diferents servidors
+          tag_uses_measure: usos totals
+        description_html: Estes son etiquetas que son amaneixendo en muitos posts que lo tuyo servidor veye. Pueden aduyar a los tuyos usuarios a averiguar de qué fabla mas chent en estes momentos. No i hai hashtags que s'amuestren publicament dica que los aprebes.
+        listable: Pueden estar recomendadas
+        no_tag_selected: No se cambió garra etiqueta ya que no se trió garra
+        not_listable: No serán recomendadas
+        not_trendable: No amaneixerán en tendencias
+        not_usable: No pueden estar usadas
+        peaked_on_and_decaying: Aconsiguió lo pico en %{date}, agora decreixendo
+        title: Etiquetas en tendencia
+        trendable: Pueden amaneixer en tendencias
+        trending_rank: 'Tendencia #%{rank}'
+        usable: Pueden usar-se
+        usage_comparison: Usada %{today} vegadas hue, comparau con %{yesterday} ahiere
+        used_by_over_week:
+          one: Usada per una persona entre la zaguera semana
+          other: Usada per %{count} personas entre la zaguera semana
+      title: Tendencias
+      trending: En tendencia
+    warning_presets:
+      add_new: Anyadir nuevo
+      delete: Borrar
+      edit_preset: Editar aviso predeterminau
+      empty: Encara no has definiu garra preajuste d'alvertencia.
+      title: Editar configuración predeterminada d'avisos
+    webhooks:
+      add_new: Anyadir endpoint
+      delete: Eliminar
+      description_html: Un <strong>webhook</strong> permite a Mastodon ninviar <strong>notificacions en tiempo real</strong> sobre los eventos triaus a la tuya propia aplicación, pa que la tuya aplicación pueda <strong>lanzar reaccions automaticament</strong>.
+      disable: Deshabilitar
+      disabled: Deshabilitau
+      edit: Editar endpoint
+      empty: Encara no tiens garra endpoint de webhook configurau.
+      enable: Habilitar
+      enabled: Activo
+      enabled_events:
+        one: 1 evento habilitau
+        other: "%{count} eventos habilitaus"
+      events: Eventos
+      new: Nuevo webhook
+      rotate_secret: Rotar secreto
+      secret: Sinyando secreto
+      status: Estau
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: pa eliminar los suyos mensaches
+        disable: pa conchelar la suya cuenta
+        mark_statuses_as_sensitive: pa marcar los suyos mensaches como sensibles
+        none: una alvertencia
+        sensitive: pa marcar la suya cuenta como sensible
+        silence: pa limitar la suya cuenta
+        suspend: suspender la suya cuenta
+      body: "%{target} ye apelando a una solicitut de moderación de %{action_taken_by} lo %{date}, d'o tipo %{type}. Ells escribioron:"
+      next_steps: Puetz aprebar l'apelación pa desfer la decisión de moderación, u ignorar-la.
+      subject: "%{username} ye apelando a una decisión de moderación en %{instance}"
+    new_pending_account:
+      body: Los detalles d'a nueva cuenta son abajos. Puetz aprebar u refusar esta aplicación.
+      subject: Nueva cuenta pa revisión en %{instance} (%{username})
+    new_report:
+      body: "%{reporter} ha denunciau a %{target}"
+      body_remote: Belún de %{domain} a denunciau a %{target}
+      subject: Nuevo reporte pa la %{instance} (#%{id})
+    new_trends:
+      body: 'Los siguients elementos amenesten una revisión antes que se puedan amostrar publicament:'
+      new_trending_links:
+        title: Vinclos en tendencia
+      new_trending_statuses:
+        title: Publicacions en tendencia
+      new_trending_tags:
+        no_approved_tags: Actualment no i hai garra etiqueta en tendencia aprebada.
+        requirements: 'Qualsequiera d''estes candidatos podría superar lo hashtag en tendencia aprebau per #%{rank}, que actualment ye #%{lowest_tag_name} con una puntuación de %{lowest_tag_score}.'
+        title: Etiquetas en tendencia
+      subject: Nuevas tendencias asperando estar revisadas en %{instance}
+  aliases:
+    add_new: Creyar alias
+    created_msg: Lo nuevo alias s'ha creyau correctament. Agora puetz empecipiar lo treslado dende la cuenta antiga.
+    deleted_msg: Elimina l'alias correctament. Lo treslado d'ixa cuenta a esta ya no será posible.
+    empty: No tiens garra alias.
+    hint_html: Si quiers migrar d'unatra cuenta a esta, aquí puetz creyar un alias, que ye necesario antes de que puedas empecipiar a mover seguidors d'a cuenta anterior ta esta. Esta acción per ella mesma ye <strong>inofensiva y reversible</strong>. <strong>La migración d'a cuenta s'inicia dende la cuenta antiga</strong>.
+    remove: Desvincular alias
+  appearance:
+    advanced_web_interface: Interficie web abanzada
+    advanced_web_interface_hint: 'Si deseya utilizar tot l''amplo de pantalla, la interficie web abanzada le permite configurar quantas columnas diferents pa veyer tanta información a lo mesmo tiempo como quiera: Inicio, notificacions, linia de tiempo federada, qualsequier numero de listas y etiquetas.'
+    animations_and_accessibility: Animacions y accesibilidat
+    confirmation_dialogs: Dialogos de confirmación
+    discovery: Descubrir
+    localization:
+      body: Mastodon ye traduciu con la aduya de voluntarios.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Totz pueden contribuyir.
+    sensitive_content: Conteniu sensible
+    toot_layout: Disenyo d'as publicacions
+  application_mailer:
+    notification_preferences: Cambiar preferencias de correu electronico
+    salutation: "%{name}:"
+    settings: 'Cambiar preferencias de correu: %{link}'
+    view: 'Vista:'
+    view_profile: Veyer perfil
+    view_status: Veyer estau
+  applications:
+    created: Aplicación creyada exitosament
+    destroyed: Apicación eliminada exitosament
+    regenerate_token: Regenerar token d'acceso
+    token_regenerated: Token d'acceso regenerado exitosament
+    warning: Tiene muito cudiau con estes datos. No los compartas con dengún!
+    your_token: Lo tuyo token d'acceso
+  auth:
+    apply_for_account: Solicitar una cuenta
+    change_password: Clau
+    delete_account: Borrar cuenta
+    delete_account_html: Si deseya eliminar la suya cuenta, puede <a href="%{path}">proceder aquí</a>. Será pediu d'una confirmación.
+    description:
+      prefix_invited_by_user: "@%{name} te convida a unir-te a este servidor de Mastodon!"
+      prefix_sign_up: Une-te a Mastodon hue!
+      suffix: Con una cuenta podrás seguir a chent, publicar novedatz y intercambiar mensaches con usuarios de qualsequier servidor de Mastodon y mas!
+    didnt_get_confirmation: No recibió lo correu de confirmación?
+    dont_have_your_security_key: No tiens la tuya clau de seguranza?
+    forgot_password: Ixuplidés la tuya clau?
+    invalid_reset_password_token: Lo token de reinicio de clau ye invalido u expiró. Per favor pide un nuevo.
+    link_to_otp: Escribe un codigo de dos factors dende lo tuyo telefono u un codigo de recuperación
+    link_to_webauth: Utilice lo suyo dispositivo de clau de seguranza
+    log_in_with: Iniciar sesión con
+    login: Iniciar sesión
+    logout: Zarrar sesión
+    migrate_account: Mudar-se a unatra cuenta
+    migrate_account_html: Si deseyas reendrezar esta cuenta a unatra distinta, puetz <a href="%{path}">configurar-lo aquí</a>.
+    or_log_in_with: U inicia sesión con
+    privacy_policy_agreement_html: He leyiu y accepto la <a href="%{privacy_policy_path}" target="_blank">politica de privacidat</a>
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Rechistrar-se
+    registration_closed: "%{instance} no ye acceptando nuevos miembros"
+    resend_confirmation: Tornar a ninviar lo correu de confirmación
+    reset_password: Restablir clau
+    rules:
+      preamble: Estas son establidas y aplicadas per los moderadors de %{domain}.
+      title: Qualques reglas basicas.
+    security: Cambiar clau
+    set_new_password: Establir nueva clau
+    setup:
+      email_below_hint_html: Si l'adreza de correu electronico que amaneixe contino ye incorrecta, se puede cambiar-la aquí y recibir un nuevo correu electronico de confirmación.
+      email_settings_hint_html: Lo correu electronico de confirmación estió ninviau a %{email}. Si ixa adreza de correu electronico no sía correcta, se puede cambiar-la en a configuración d'a cuenta.
+      title: Configuración
+    sign_up:
+      preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a qualsequier atra persona en o ret, independientment d'o servidor en o qual se trobe.
+      title: Creyar cuenta de Mastodon en %{domain}.
+    status:
+      account_status: Estau d'a cuenta
+      confirming: Asperando confirmación de correu electronico.
+      functional: La tuya cuenta ye completament operativa.
+      pending: La suya solicitut ye pendient de revisión per los nuestros administradors. Ixo puede tardar bell tiempo. Vusté recibirá un correu electronico si lo solicitut sía aprebada.
+      redirecting_to: La tuya cuenta se troba inactiva perque ye estando reendrezada a %{acct}.
+      view_strikes: Veyer amonestacions pasadas contra la tuya cuenta
+    too_fast: Formulario ninviau masiau rapido, lo intente de nuevo.
+    use_security_key: Usar la clau de seguranza
+  authorize_follow:
+    already_following: Ya yes seguindo a esta cuenta
+    already_requested: Ya has ninviau una solicitut de seguimiento a ixa cuenta
+    error: Desafortunadament, ha ocurriu una error buscando la cuenta remota
+    follow: Seguir
+    follow_request: 'Tiens una solicitut de seguimiento de:'
+    following: 'Exito! Agora yes seguindo a:'
+    post_follow:
+      close: U, puetz simplament zarrar esta finestra.
+      return: Tornar ta lo perfil de l'usuario
+      web: Ir ta lo puesto web
+    title: Seguir a %{acct}
+  challenge:
+    confirm: Continar
+    hint_html: "<strong>Tip:</strong> No tornaremos a preguntar-te per la clau entre la siguient hora."
+    invalid_password: Clau incorrecta
+    prompt: Confirmar clau pa seguir
+  crypto:
+    errors:
+      invalid_key: no ye una clau Ed25519 u Curve25519 valida
+      invalid_signature: no ye una sinyatura Ed25519 valida
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count} h"
+      about_x_months: "%{count}m"
+      about_x_years: "%{count}a"
+      almost_x_years: "%{count}a"
+      half_a_minute: Chusto agora
+      less_than_x_minutes: "%{count} m"
+      less_than_x_seconds: Chusto agora
+      over_x_years: "%{count}a"
+      x_days: "%{count} d"
+      x_minutes: "%{count} m"
+      x_months: "%{count}m"
+      x_seconds: "%{count} s"
+  deletes:
+    challenge_not_passed: Los datos escritos son incorrectos
+    confirm_password: Ingresa la tuya clau actual pa contrimostrar la tuya identidat
+    confirm_username: Escribe lo tuyo nombre d'usuario pa confirmar
+    proceed: Eliminar cuenta
+    success_msg: La tuya cuenta s'eliminó con exito
+    warning:
+      before: 'Antes de continar, per favor leye con atención las siguients notas:'
+      caches: Lo conteniu que ha estau almagazenau en caché per atros servidors puede persistir
+      data_removal: Las tuyas publicacions y la resta de datos s'eliminarán definitivament
+      email_change_html: Puetz <a href="%{path}"> cambiar la tuya adreza de correu electronico</a> sin eliminar la tuya cuenta
+      email_contact_html: Si encara no t'ha plegau, puetz escribir a <a href="mailto:%{email}">%{email}</a> pa pedir aduya
+      email_reconfirmation_html: Si no t'ha plegau lo correu de confirmación, puetz <a href="%{path}"> tornar a demandar-lo</a>
+      irreversible: No podrás restaurar ni reactivar la tuya cuenta
+      more_details_html: Pa mas detalles, veyer <a href="%{terms_path}"> la politica de privacidat</a>.
+      username_available: Lo tuyo nombre d'usuario tornará a estar disponible
+      username_unavailable: Lo tuyo nombre d'usuario no será disponible
+  disputes:
+    strikes:
+      action_taken: Acción realizada
+      appeal: Apelar
+      appeal_approved: Esta amonestación estió apelada exitosament y ya no ye valida
+      appeal_rejected: Se refusó l'apelación
+      appeal_submitted_at: Apelación ninviada
+      appealed_msg: La tuya apelación estió ninviada. Si s'apreba, se te notificará.
+      appeals:
+        submit: Ninviar apelación
+      approve_appeal: Aprebar apelación
+      associated_report: Informe asociau
+      created_at: Con calendata
+      description_html: Estas son las accions emprendidas contra la tuya cuenta y las alvertencias que t'han estau ninviadas per lo personal de %{instance}.
+      recipient: Endrezada a
+      reject_appeal: Refusar apelación
+      status: 'Publicación #%{id}'
+      status_removed: Publicación ya eliminada d'o sistema
+      title: "%{action} d'o %{date}"
+      title_actions:
+        delete_statuses: Eliminación de publicación
+        disable: Conchelación d'a cuenta
+        mark_statuses_as_sensitive: Marcando los mensaches como sensibles
+        none: Alvertencia
+        sensitive: Marcando la cuenta como sensible
+        silence: Limitación de cuenta
+        suspend: Suspensión de cuenta
+      your_appeal_approved: S'aprebó la tuya apelación
+      your_appeal_pending: Has ninviau una apelación
+      your_appeal_rejected: La tuya apelación ha estau refusada
+  domain_validator:
+    invalid_domain: no ye un nombre de dominio valido
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '422': 
-    '429': Too many requests
-    '500': 
-    '503': The page could not be served due to a temporary server failure.
+    '400': La solicitut que has ninviau no ye valida u yera malformada.
+    '403': No tiens permiso pa acceder ta esta pachina.
+    '404': La pachina que yeras buscando no existe.
+    '406': Esta pachina no ye disponible en o formato solicitau.
+    '410': La pachina que yeras buscando no existe mas.
+    '422':
+      content: Verificación de seguranza fallida. Yes blocando qualques cookies?
+      title: Verificación de seguranza fallida
+    '429': Asfixiado
+    '500':
+      content: Lo sentimos, bella cosa ha funcionau malament per la nuestra parte.
+      title: Esta pachina no ye correcta
+    '503': La pachina no s'ha puesto cargar a causa d'un fallo temporal d'o servidor.
+    noscript_html: Pa usar l'aplicación web de Mastodon, per favor activa Javascript. Alternativament, preba bella d'as <a href="%{apps_path}">aplicacions nativas</a> pa Mastodon pa la tuya plataforma.
+  existing_username_validator:
+    not_found: no podió trobar un usuario local con ixe nombre d'usuario
+    not_found_multiple: no podió trobar %{usernames}
+  exports:
+    archive_takeout:
+      date: Calendata
+      download: Descargar lo tuyo fichero
+      hint_html: Puetz solicitar un fichero d'os tuyos <strong>publicacions y fichers multimedia puyaus</strong>. Los datos exportaus serán en formato ActivityPub, leyibles per qualsequier software compatible. Puetz demandar un archivo cada 7 días.
+      in_progress: Recopilando lo tuyo fichero...
+      request: Solicitar lo tuyo fichero
+      size: Grandaria
+    blocks: Personas que has blocau
+    bookmarks: Marcadors
+    csv: CSV
+    domain_blocks: Bloqueyos de dominios
+    lists: Listas
+    mutes: Tiens en silencio
+    storage: Almagazenamiento
+  featured_tags:
+    add_new: Anyadir nuevo
+    errors:
+      limit: Ya has aconseguiu la cantidat maxima de hashtags
+    hint_html: "<strong>Qué son las etiquetas destacadas?</strong> S'amuestran de forma prominent en o tuyo perfil publico y permiten a los usuarios navegar per las tuyas publicacions publicas especificament baixo ixas etiquetas. Son una gran ferramienta pa fer un seguimiento de treballos creativos u prochectos a largo plazo."
+  filters:
+    contexts:
+      account: Perfils
+      home: Inicio y listas
+      notifications: Notificacions
+      public: Linias de tiempo publicas
+      thread: Conversacions
+    edit:
+      add_keyword: Anyadir parola clau
+      keywords: Parolas clau
+      statuses: Publicacions individuals
+      statuses_hint_html: Este filtro s'aplica a la selección de publicacions individuals independientment de si coinciden con as parolas clau contino. <a href="%{path}">Revise u elimine publicacions d'o filtro</a>.
+      title: Editar filtro
+    errors:
+      deprecated_api_multiple_keywords: Estes parametros no se pueden cambiar dende esta aplicación perque s'aplican a mas d'una parola clau de filtro. Utilice una aplicación mas recient u la interficie web.
+      invalid_context: Se suminstró un contexto invalido u vuedo
+    index:
+      contexts: Filtros en %{contexts}
+      delete: Borrar
+      empty: No tiens filtros.
+      expires_in: Caduca en %{distance}
+      expires_on: Expira lo %{date}
+      keywords:
+        one: "%{count} parola clau"
+        other: "%{count} parolas clau"
+      statuses:
+        one: "%{count} publicación"
+        other: "%{count} publicacions"
+      statuses_long:
+        one: "%{count} publicación individual amagada"
+        other: "%{count} publicacions individuals amagadas"
+      title: Filtros
+    new:
+      save: Alzar nuevo filtro
+      title: Anyadir nuevo filtro
+    statuses:
+      back_to_filter: Tornar a filtrar
+      batch:
+        remove: Eliminar d'o filtro
+      index:
+        hint: Este filtro s'aplica a la selección de publicacions individuals independientment d'atros criterios. Puede anyadir mas publicacions a este filtro dende la interficie web.
+        title: Publicacions filtradas
+  footer:
+    trending_now: Tendencia agora
+  generic:
+    all: Totz
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> elemento en esta pachina ye triau."
+      other: Totz los <strong>%{count}</strong> elementos en esta pachina son triaus.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> elemento que coincide con a suya busqueda ye triau."
+      other: Totz los <strong>%{count}</strong> elementos que coinciden con a suya busqueda son triaus.
+    changes_saved_msg: Cambios alzaus con exito!
+    copy: Copiar
+    delete: Eliminar
+    deselect: Deseleccionar tot
+    none: Cosa
+    order_by: Ordenar per
+    save_changes: Alzar cambios
+    select_all_matching_items:
+      one: Triar %{count} elemento que coincide con a tuya busqueda.
+      other: Triar totz los %{count} elementos que coinciden con a tuya busqueda.
+    today: hue
+    validation_errors:
+      one: Bella cosa no ye bien! Per favor, revisa la error
+      other: Bella cosa no ye bien! Per favor, revise %{count} errors mas abaixo
+  html_validator:
+    invalid_markup: 'contiene codigo HTML no valido: %{error}'
+  imports:
+    errors:
+      invalid_csv_file: 'Fichero CSV no valido. Error: %{error}'
+      over_rows_processing_limit: contiene mas de %{count} ringleras
+    modes:
+      merge: Unir
+      merge_long: Mantener rechistros existents y anyadir nuevos
+      overwrite: Sobrescribir
+      overwrite_long: Reemplazar rechistros actuals con os nuevos
+    preface: Puetz importar bells datos, como totas las personas que yes seguindo u blocando en a tuya cuenta en esta instancia, dende fichers exportaus d'unatra instancia.
+    success: Los suyos datos s'han cargau correctament y serán procesaus en brevedad
+    types:
+      blocking: Lista de blocaus
+      bookmarks: Marcadors
+      domain_blocking: Lista de dominios blocaus
+      following: Lista de seguius
+      muting: Lista de silenciaus
+    upload: Cargar
+  invites:
+    delete: Desactivar
+    expired: Expiradas
+    expires_in:
+      '1800': 30 menutos
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '604800': 1 semana
+      '86400': 1 día
+    expires_in_prompt: Nunca
+    generate: Chenerar
+    invited_by: 'Estiés convidau per:'
+    max_uses:
+      one: 1 uso
+      other: "%{count} usos"
+    max_uses_prompt: Sin limite
+    prompt: Chenerar y compartir vinclos con atros pa conceder acceso a este nodo
+    table:
+      expires_at: Expira
+      uses: Usos
+    title: Convidar a chent
+  lists:
+    errors:
+      limit: Has aconseguiu la cantidat maxima de listas
+  login_activities:
+    authentication_methods:
+      otp: aplicación d'autenticación en dos pasos
+      password: clau
+      sign_in_token: codigo de seguranza per correu electronico
+      webauthn: claus de seguranza
+    description_html: Si veye una actividat que no reconoixe, considere cambiar la suya clau y habilitar l'autenticación de dos factors.
+    empty: No i hai historial d'autenticación disponible
+    failed_sign_in_html: Intento d'inicio de sesión fallido con %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Inicio de sesión exitoso con %{method} dende %{ip} (%{browser})
+    title: Historial d'autenticación
+  media_attachments:
+    validations:
+      images_and_video: No se puede adchuntar un video a un estau que ya contienga imachens
+      not_ready: No se pueden adchuntar fichers que no s'han rematau de procesar. Intenta-lo de nuevo en un momento!
+      too_many: No se pueden adchuntar mas de 4 fichers
+  migrations:
+    acct: Moviu ta
+    cancel: Cancelar redireccionamiento
+    cancel_explanation: En cancelar lo redireccionamiento se reactivará la tuya cuenta actual, pero no recuperarás los seguidores que haigan estau tresladaus a l'atra cuenta.
+    cancelled_msg: Lo redireccionamiento s'ha cancelau correctament.
+    errors:
+      already_moved: ye la mesma cuenta a la quala ya has migrado
+      missing_also_known_as: no ye fendo referencia a esta cuenta
+      move_to_self: no puede estar la cuenta actual
+      not_found: no se podió trobar
+      on_cooldown: Yes en tiempo de reutilización
+    followers_count: Seguidores a lo momento de migrar
+    incoming_migrations: Migrar d'una cuenta diferent
+    incoming_migrations_html: Pa migrar d'unatra cuenta a esta, primero amenestes <a href="%{path}">creyar un alias d'a cuenta</a>.
+    moved_msg: La tuya cuenta agora se ye reendrezando a %{acct} y las tuyas seguidores se son migrando.
+    not_redirecting: La tuya cuenta no se ye reendrezando a garra atra cuenta actualment.
+    on_cooldown: Has migrado la tuya cuenta recientment. Esta función será disponible de nuevo en %{count} días.
+    past_migrations: Migracions pasadas
+    proceed_with_move: Migrar seguidores
+    redirected_msg: La tuya cuenta agora reendreza a %{acct}.
+    redirecting_to: La tuya cuenta se ye reendrezando a %{acct}.
+    set_redirect: Establir redirección
+    warning:
+      backreference_required: La nueva cuenta ha d'estar configurada primero pa fer referencia a esta
+      before: 'Antes de continar, per favor leye con atención las siguients notas:'
+      cooldown: Dimpués de migrar i hai un periodo d'aspera entre lo qual no podrás tornar a migrar
+      disabled_account: La tuya cuenta actual no será completament utilizable dimpués. Manimenos, tendrás acceso a la exportación de datos asinas como a la reactivación.
+      followers: Esta acción migrará a totz los seguidores d'a cuenta actual a la nueva cuenta
+      only_redirect_html: Alternativament, nomás puetz <a href="%{path}">meter una redirección en o tuyo perfil</a>.
+      other_data: No se moverán atros datos automaticament
+      redirect: Lo perfil d'a tuya cuenta actual s'actualizará con un aviso de redirección y será excluyiu d'as busquedas
+  moderation:
+    title: Moderación
+  move_handler:
+    carry_blocks_over_text: Este usuario se mudó dende %{acct}, que hebas blocau.
+    carry_mutes_over_text: Este usuario se mudó dende %{acct}, que hebas silenciau.
+    copy_account_note_text: 'Este usuario se mudó dende %{acct}, aquí yeran los tuyos notas anteriors sobre ell:'
+  navigation:
+    toggle_menu: Alternar menú
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} ninvió un informe"
+      sign_up:
+        subject: "%{name} se rechistró"
+    favourite:
+      body: 'Lo tuyo estau estió marcau como favorito per %{name}:'
+      subject: "%{name} marcó como favorito lo tuyo estau"
+      title: Nuevo favorito
+    follow:
+      body: "%{name} te ye seguindo!"
+      subject: "%{name} te ye seguindo"
+      title: Nuevo seguidor
+    follow_request:
+      action: Administrar solicitutz pa seguir
+      body: "%{name} ha solicitau seguir-te"
+      subject: 'Seguidor pendient: %{name}'
+      title: Nueva solicitut pa seguir
+    mention:
+      action: Responder
+      body: 'Estiés mencionau per %{name} en:'
+      subject: Estiés mencionau per %{name}
+      title: Nueva mención
+    poll:
+      subject: Una enqüesta de %{name} ha rematau
+    reblog:
+      body: "%{name} ha retutau la tuya publicación:"
+      subject: "%{name} ha retutau la tuya publicación"
+      title: Nueva difusión
+    status:
+      subject: "%{name} acaba de publicar"
+    update:
+      subject: "%{name} editó una publicación"
+  notifications:
+    email_events: Eventos pa notificacions per correu electronico
+    email_events_hint: 'Tría los eventos pa los quals deseyas recibir notificacions:'
+    other_settings: Atros achustes de notificacions
+  number:
+    human:
+      decimal_units:
+        format: "%n %u"
+        units:
+          billion: MM
+          million: M
+          quadrillion: MB
+          thousand: m
+          trillion: B
+  otp_authentication:
+    code_hint: Escribe lo codigo chenerau per la tuya aplicación d'autentificación pa confirmar
+    description_html: Si habilitas <strong>autenticación de dos factors</strong> a traviés d'una aplicación d'autenticación, l'ingreso requerirá que sías en posesión d'o tuyo telefono, que chenerará codigos pa que ingreses.
+    enable: Activar
+    instructions_html: "<strong>Escaneya este codigo QR dende Google Authenticator u una aplicación TOPT semellant en o tuyo telefono</strong>. A partir d'agora, esta aplicación chenerará codigos que habrás d'ingresar quan quieras iniciar sesión."
+    manual_instructions: 'Si no puetz escaniar lo codigo QR y amenestes escrebir-lo manualment, este ye lo secreto en texto plano:'
+    setup: Configurar
+    wrong_code: Lo codigo ingresau ye invalido! Ye correcta la hora d'o dispositivo y lo servidor?
+  pagination:
+    newer: Mas nuevo
+    next: Proximo
+    older: Mas antigo
+    prev: Anterior
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ya has votau en esta enqüesta
+      duplicate_options: contiene elementos duplicaus
+      duration_too_long: ye masiau luen en o futuro
+      duration_too_short: ye masiau luego
+      expired: La enqüesta ya ha rematau
+      invalid_choice: La opción de voto triada no existe
+      over_character_limit: no puede exceder %{max} caracters cadagún
+      too_few_options: ha de tener mas d'un elemento
+      too_many_options: no puede contener mas de %{max} elementos
+  preferences:
+    other: Atros
+    posting_defaults: Configuración per defecto de publicacions
+    public_timelines: Linias de tiempo publicas
+  privacy_policy:
+    title: Politica de Privacidat
+  reactions:
+    errors:
+      limit_reached: Limite de reaccions diferents aconseguiu
+      unrecognized_emoji: no ye un emoji conoixiu
+  relationships:
+    activity: Actividat d'a cuenta
+    dormant: Inactivo
+    follow_selected_followers: Seguir a los seguidores triaus
+    followers: Seguidores
+    following: Seguindo
+    invited: Convidau
+    last_active: Zaguera actividat
+    most_recent: Mas recient
+    moved: Moviu
+    mutual: Mutuo
+    primary: Prencipal
+    relationship: Relación
+    remove_selected_domains: Eliminar totz los seguidores d'os dominios triaus
+    remove_selected_followers: Eliminar los seguidores triaus
+    remove_selected_follows: Deixar de seguir a los usuarios triaus
+    status: Estau d'a cuenta
+  remote_follow:
+    missing_resource: No se podió trobar la URL de redirección requerida pa la tuya cuenta
+  reports:
+    errors:
+      invalid_rules: no fa referencia a reglas validas
+  rss:
+    content_warning: 'Alvertencia de conteniu:'
+    descriptions:
+      account: Publicacions publicas de @%{acct}
+      tag: 'Publicacions publicas etiquetadas con #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Ha superau lo limite de %{limit} publicacions programadas pa ixe día
+    over_total_limit: Ha superau lo limite de %{limit} publicacions programadas
+    too_soon: La calendata programada ha d'estar en o futuro
+  sessions:
+    activity: Zaguera actividat
+    browser: Navegador
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Desconoixiu
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Navegador de Nokia S40 Ovi
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: Navegador QQ
+      safari: Safari
+      uc_browser: Navegador UC
+      weibo: Weibo
+    current_session: Sesión actual
+    description: "%{browser} en %{platform}"
+    explanation: Estes son los navegadors web connectaus actualment en a tuya cuenta de Mastodon.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: plataforma desconoixida
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revocar
+    revoke_success: Sesión revocada exitosament
+    title: Sesions
+    view_authentication_history: Veyer historial d'autenticación d'a tuya cuenta
+  settings:
+    account: Cuenta
+    account_settings: Achustes d'a cuenta
+    aliases: Alias d'a cuenta
+    appearance: Apariencia
+    authorized_apps: Aplicacions autorizadas
+    back: Tornar ta l'inicio
+    delete: Borrar cuenta
+    development: Desembolique
+    edit_profile: Editar perfil
+    export: Exportar información
+    featured_tags: Hashtags destacaus
+    import: Importar
+    import_and_export: Importar y exportar
+    migrate: Migración de cuenta
+    notifications: Notificacions
+    preferences: Preferencias
+    profile: Perfil
+    relationships: Seguindo y seguidores
+    statuses_cleanup: Eliminación automatica de publicacions
+    strikes: Amonestacions de moderación
+    two_factor_authentication: Autenticación de dos factors
+    webauthn_authentication: Claus de seguranza
+  statuses:
+    attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audios"
+      description: 'Adchunto: %{attached}'
+      image:
+        one: "%{count} imachen"
+        other: "%{count} imachens"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Empentau dende %{acct_link}
+    content_warning: 'Alerta de conteniu: %{warning}'
+    default_language: Igual que l'idioma d'a interficie
+    disallowed_hashtags:
+      one: 'conteneba un hashtag no permitiu: %{tags}'
+      other: 'conteneba los hashtags no permitius: %{tags}'
+    edited_at_html: Editau %{date}
+    errors:
+      in_reply_not_found: Lo estau a lo qual intentas responder no existe.
+    open_in_web: Ubrir en web
+    over_character_limit: Limite de caracters de %{max} superau
+    pin_errors:
+      direct: Las publicacions que son visibles solo pa los usuarios mencionaus no pueden fixar-se
+      limit: Ya has fixau lo numero maximo de publicacions
+      ownership: La publicación d'unatra persona no puede fixar-se
+      reblog: Un boost no puede fixar-se
+    poll:
+      total_people:
+        one: "%{count} persona"
+        other: "%{count} chent"
+      total_votes:
+        one: "%{count} voto"
+        other: "%{count} votos"
+      vote: Vota
+    show_more: Amostrar mas
+    show_newer: Amostrar mas recients
+    show_older: Amostrar mas antigos
+    show_thread: Amostrar discusión
+    sign_in_to_participate: Rechistra-te pa participar en a conversación
+    title: "%{name}: «%{quote}»"
+    visibilities:
+      direct: Directa
+      private: Nomás amostrar a seguidores
+      private_long: Nomás amostrar a las tuyas seguidores
+      public: Publico
+      public_long: Totz pueden veyer
+      unlisted: Publico, pero no amostrar en a historia federada
+      unlisted_long: Totz pueden veyer, pero no ye listau en as linias de tiempo publicas
+  statuses_cleanup:
+    enabled: Borrar automaticament publicacions antigas
+    enabled_hint: Elimina automaticament las tuyas publicacions una vegada que aconsigan un branquil de tiempo especificau, de no estar que coincidan con bella d'as excepcions detalladas debaixo
+    exceptions: Excepcions
+    explanation: A causa que la eliminación de mensaches ye una operación costosa, esto se fa lentament, a lo largo d'un tiempo, quan lo servidor no ye ocupau. Per este motivo, puede que las tuyas publicacions sían borradas bella cosa dimpués que aconsigan lo branquil de tiempo especificau.
+    ignore_favs: Ignorar favoritos
+    ignore_reblogs: Ignorar reblogueos
+    interaction_exceptions: Excepcions basadas en interaccions
+    interaction_exceptions_explanation: Tiene en cuenta que no i hai guarencia que s'eliminen las publicacions que son per debaixo d'os branquils de favoritos u de reblogueos si los han superau en bell momento.
+    keep_direct: Mantener mensaches directos
+    keep_direct_hint: No elimina garra d'os tuyos mensaches directos
+    keep_media: Mantener publicacions con multimedia adchunto
+    keep_media_hint: No borra garra d'as tuyas publicacions con multimedia adchunto
+    keep_pinned: Mantener publicacions fixadas
+    keep_pinned_hint: No borra garra d'as tuyas publicacions fixadas
+    keep_polls: Mantener enqüestas
+    keep_polls_hint: No borra garra d'as tuyas enqüestas
+    keep_self_bookmark: Mantener publicacions a las qualas has anyadiu un marcador
+    keep_self_bookmark_hint: No borra las tuyas propias publicacions si les has anyadiu un marcador
+    keep_self_fav: Mantener publicacions que marqués como favoritas
+    keep_self_fav_hint: No borra publicacions tuyas que haigas marcau como favoritas
+    min_age:
+      '1209600': 2 semanas
+      '15778476': 6 meses
+      '2629746': 1 mes
+      '31556952': 1 anyo
+      '5259492': 2 meses
+      '604800': 1 semana
+      '63113904': 2 anyos
+      '7889238': 3 meses
+    min_age_label: Branquil de tiempo
+    min_favs: Mantener mensaches con un numero de favoritos mayor que
+    min_favs_hint: No borra garra d'as publicacions que haigan recibiu mas d'esta cantidat de favoritos. Deixa en blanco pa eliminar publicacions sin importar lo numero de favoritos
+    min_reblogs: Mantener publicacions reblogueadas mas de
+    min_reblogs_hint: No borra garra d'as publicacions que haigan estau reblogueadas mas d'este numero de vegadas. Deixa en blanco pa eliminar publicacions sin importar lo numero de reblogueos
+  stream_entries:
+    pinned: Publicación fixada
+    reblogged: retutau
+    sensitive_content: Conteniu sensible
+  strikes:
+    errors:
+      too_late: Ye masiau tarde pa apelar esta amonestación
+  tags:
+    does_not_match_previous_name: no coincide con o nombre anterior
+  themes:
+    contrast: Mastodon (Alto contraste)
+    default: Mastodon (Fosco)
+    mastodon-light: Mastodon (claro)
+  time:
+    formats:
+      default: "%d de %b de %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  two_factor_authentication:
+    add: Anyadir
+    disable: Deshabilitar
+    disabled_success: Autenticación de dople factor desactivada correctament
+    edit: Editar
+    enabled: L'autenticación de dos factors ye activada
+    enabled_success: Verificación de dos factors activada exitosament
+    generate_recovery_codes: Chenerar codigos de recuperación
+    lost_recovery_codes: Los codigos de recuperación te permiten obtener acceso a la tuya cuenta si pierdes lo tuyo telefono. Si has perdiu los tuyos codigos de recuperación, puetz regenerarlos aquí. Los tuyos viellos codigos de recuperación se ferán invalidos.
+    methods: Metodos d'autenticación de dople factor
+    otp: Aplicación d'autenticación
+    recovery_codes: Fer copias de seguranza d'os tuyos codigos de recuperación
+    recovery_codes_regenerated: Codigos de recuperación regenerados con exito
+    recovery_instructions_html: Si pierdes acceso a lo tuyo telefono, puetz usar un d'os siguients codigos de recuperación pa obtener acceso a la tuya cuenta. <strong>Mantenlos a fueras de</strong>. Per eixemplo, puetz imprentar-los y alzar-los con atros documentos importants.
+    webauthn: Claus de seguranza
+  user_mailer:
+    appeal_approved:
+      action: Ir ta la tuya cuenta
+      explanation: L'apelación de l'amonestación contra la tuya cuenta d'o %{strike_date} que ninviés lo %{appeal_date} estió aprebada. La tuya cuenta se troba de nuevo en buen estau.
+      subject: La tuya apelación d'o %{date} ha estau aprebada
+      title: Apelación aprebada
+    appeal_rejected:
+      explanation: L'apelación de l'amonestación contra la tuya cuenta d'o %{strike_date} que ninviés lo %{appeal_date} estió refusada.
+      subject: La tuya apelación d'o %{date} ha estau refusada
+      title: Apelación refusada
+    backup_ready:
+      explanation: Has solicitau una copia completa d'a tuya cuenta de Mastodon. Ya ye preparada pa descargar!
+      subject: Lo tuyo fichero ye preparau pa descargar
+      title: Descargar fichero
+    suspicious_sign_in:
+      change_password: cambies la tuya clau
+      details: 'Aquí son los detalles de l''inicio de sesión:'
+      explanation: Hemos detectau un inicio de sesión en a tuya cuenta dende una nueva adreza IP.
+      further_actions_html: Si no estiés tu, te recomendamos que %{action} immediatament y habilites l'autenticación de dos factors pa mantener la tuya cuenta segura.
+      subject: La tuya cuenta ha estau accedida dende una nueva adreza IP
+      title: Un nuevo inicio de sesión
+    warning:
+      appeal: Ninviar una apelación
+      appeal_description: Si creyes que esto ye una error, puetz ninviar una apelación a l'equipo de %{instance}.
+      categories:
+        spam: Spam
+        violation: Lo conteniu viola las siguients directrices d'a comunidat
+      explanation:
+        delete_statuses: S'ha determinau que beluns d'os tuyos mensaches violan una u mas directrices d'a comunidat y han estau per tanto eliminaus per los moderadors de %{instance}.
+        disable: Ya no puetz usar la tuya cuenta, pero lo tuyo perfil y la resta de datos remaneixen intactos. Puetz solicitar una copia de seguranza d'os tuyos datos, cambiar la configuración d'a tuya cuenta u eliminar-la.
+        mark_statuses_as_sensitive: Beluns d'os tuyos mensaches han estau marcaus como sensibles per los moderadors de %{instance}. Esto significa que la chent habrá de pretar los fichers multimedia en as publicacions antes que s'amuestre una vista previa. Puetz marcar los fichers multimedia como sensibles tu mesmo quan publiques en o futuro.
+        sensitive: A partir d'agora totz los fichers multimedia que puyes serán marcaus como sensibles y amagaus dimpués d'una alvertencia que caldrá clicar.
+        silence: Encara puetz usar la tuya cuenta, pero nomás las personas que te son seguindo veyerán las tuyas publicacions en este servidor, y puetz estar excluyiu de quantas funcionalidatz d'escubrimiento. Manimenos, atras cuentas podrán empecipiar a seguir-te manualment.
+        suspend: Ya no puetz utilizar la tuya cuenta, y lo tuyo perfil y la resta de datos ya no son accesibles. Encara puetz iniciar sesión pa solicitar una copia de seguranza d'os tuyos datos, dica que estes sían eliminaus per completo en uns 30 días, encara que conservaremos qualques datos basicos pa impedir que enguileyes la suspensión.
+      reason: 'Razón:'
+      statuses: 'Publicacions citadas:'
+      subject:
+        delete_statuses: Las tuyas publicacions en %{acct} han estau eliminadas
+        disable: La suya cuenta %{acct} ha estau conchelada
+        mark_statuses_as_sensitive: Las tuyas publicacions en %{acct} han estau marcadas como sensibles
+        none: Alvertencia pa %{acct}
+        sensitive: Las tuyas publicacions en %{acct} se marcarán como sensibles a partir d'agora
+        silence: La suya cuenta %{acct} ha estau limitada
+        suspend: La suya cuenta %{acct} ha estau suspendida
+      title:
+        delete_statuses: Publicacions eliminadas
+        disable: Cuenta conchelada
+        mark_statuses_as_sensitive: Publicacions marcadas como sensibles
+        none: Alvertencia
+        sensitive: Cuenta marcada como sensible
+        silence: Cuenta limitada
+        suspend: Cuenta suspendida
+    welcome:
+      edit_profile_action: Configurar lo perfil
+      edit_profile_step: Puetz personalizar lo tuyo perfil puyando una foto de perfil, cambiando lo tuyo nombre d'usuario y muito mas. Puetz optar per revisar a los nuevos seguidores antes que puedan seguir-te.
+      explanation: Aquí i hai qualques consellos pa empecipiar
+      final_action: Empecipiar a publicar
+      final_step: 'Empecipia a publicar! Mesmo sin seguidores, las tuyas publicacions publicas pueden estar vistas per atros, per eixemplo en a linia de tiempo local u en etiquetas. Tal vegada quieras presentar-te con a etiqueta de #presentacions.'
+      full_handle: Lo suyo sobrenombre completo
+      full_handle_hint: Esto ye lo que le dirías a los tuyos amigos pa que ells puedan ninviar-te mensaches u seguir-te dende unatra instancia.
+      subject: Bienveniu a Mastodon
+      title: Te damos la bienvenida a bordo, %{name}!
+  users:
+    follow_limit_reached: No puetz seguir a mas de %{limit} personas
+    invalid_otp_token: Codigo de dos factors incorrecto
+    otp_lost_help_html: Si perdiés a l'acceso a totz dos, puetz meter-te en contancto con %{email}
+    seamless_external_login: Has iniciau sesión dende un servicio externo, asinas que los achustes de clau y correu no son disponibles.
+    signed_in_as: 'Sesión iniciada como:'
+  verification:
+    explanation_html: 'Puetz <strong> verificar-te a tu mesmo como lo duenyo d''os links en os metadatos d''o tuyo perfil </strong>. Pa ixo, lo puesto vinculau ha de contener un vinclo a lo tuyo perfil de Mastodon. Lo vinclo en o tuyo puesto <strong> debe </strong> tener un atributo <code> rel="me"</code>. Lo texto d''o vinclo no importa. Aquí un eixemplo:'
+    verification: Verificación
+  webauthn_credentials:
+    add: Adhibir nueva clau de seguranza
+    create:
+      error: I habió un problema en anyadir la suya clau de seguranza. Per favor, intenta-lo de nuevo.
+      success: La suya clau de seguranza s'ha anyadiu correctament.
+    delete: Eliminar
+    delete_confirmation: Yes seguro que quiers eliminar esta clau de seguranza?
+    description_html: Si habilita la <strong>autenticación de clau de seguranza</strong>, iniciar sesión requerirá que utilice una d'as suyas claus de seguranza.
+    destroy:
+      error: I habió un problema en anyadir la suya clau de seguranza. Per favor, intenta-lo de nuevo.
+      success: La suya clau de seguranza s'ha eliminau correctament.
+    invalid_credential: Clau de seguranza no valida
+    nickname_hint: Escriba la embotada d'a suya nueva clau de seguranza
+    not_enabled: Encara no has activau WebAuthn
+    not_supported: Este navegador no suporta claus de seguranza
+    otp_required: Pa usar claus de seguranza, per favor habilite primero l'autenticación de dople factor.
+    registered_on: Rechistrau lo %{date}
