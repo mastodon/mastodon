@@ -15,14 +15,14 @@ const initialState = ImmutableMap({
 export default function followed_tags(state = initialState, action) {
   switch(action.type) {
   case FOLLOWED_HASHTAGS_FETCH_REQUEST:
-    return state.setIn(['followed_tags', 'isLoading'], true);
+    return state.setIn(['isLoading'], true);
   case FOLLOWED_HASHTAGS_FETCH_SUCCESS:
     return state.withMutations(map => {
-      map.setIn(['followed_tags', 'items'], fromJS(action.followed_tags));
-      map.setIn(['followed_tags', 'isLoading'], false);
+      map.setIn(['items'], fromJS(action.followed_tags));
+      map.setIn(['isLoading'], false);
     });
   case FOLLOWED_HASHTAGS_FETCH_FAIL:
-    return state.setIn(['followed_tags', 'isLoading'], false);
+    return state.setIn(['isLoading'], false);
   default:
     return state;
   }
