@@ -14,7 +14,7 @@ import { fetchFollowedHashtags } from 'mastodon/actions/tags';
 import { List } from 'immutable';
 
 const messages = defineMessages({
-  heading: { id: 'followed_hashtags', defaultMessage: 'Followed Hashtags' },
+  heading: { id: 'followed_hashtags', defaultMessage: 'Followed hashtags' },
 });
 
 const mapStateToProps = (state, props) => ({
@@ -38,7 +38,7 @@ class FollowedTags extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, tagIds, multiColumn } = this.props;
+    const { intl, tagIds } = this.props;
 
     if (!tagIds) {
       return (
@@ -51,18 +51,16 @@ class FollowedTags extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.followed_tags' defaultMessage='You have not followed any hashtags yet. When you do, they will show up here.' />;
 
     return (
-      <Column bindToDocument={!multiColumn}>
+      <Column>
         <ColumnHeader
           icon='hashtag'
           title={intl.formatMessage(messages.heading)}
           showBackButton
-          multiColumn={multiColumn}
         />
 
         <ScrollableList
           scrollKey='followed_tags'
           emptyMessage={emptyMessage}
-          bindToDocument={!multiColumn}
         >
           {tagIds.map(id =>
             <Hashtag key={id} id={id} />,
