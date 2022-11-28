@@ -133,7 +133,7 @@ class MediaAttachment < ApplicationRecord
     small: {
       convert_options: {
         output: {
-          'loglevel' => 'fatal',
+          loglevel: 'fatal',
           vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
         }.freeze,
       }.freeze,
@@ -207,6 +207,10 @@ class MediaAttachment < ApplicationRecord
   scope :local,      -> { where(remote_url: '') }
   scope :remote,     -> { where.not(remote_url: '') }
   scope :cached,     -> { remote.where.not(file_file_name: nil) }
+  scope :orphaned, ->(ago) { unattached.where(created_at: ...ago) }
+  scope :past_retention, lambda { |ago|
+    remote.cached.where(created_at: ...ago, updated_at: ...ago)
+  }
 
   default_scope { order(id: :asc) }
 
@@ -266,6 +270,12 @@ class MediaAttachment < ApplicationRecord
 
   def delay_processing_for_attachment?(attachment_name)
     delay_processing? && attachment_name == :file
+  end
+
+  def destroy_file_and_thumbnail!
+    file.destroy
+    thumbnail.destroy
+    save
   end
 
   after_commit :enqueue_processing, on: :create
