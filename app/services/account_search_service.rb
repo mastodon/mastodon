@@ -72,20 +72,17 @@ class AccountSearchService < BaseService
   end
 
   def from_elasticsearch
-    must_clauses   = [{ multi_match: { query: terms_for_query, fields: likely_acct? ? %w(acct.edge_ngram acct) : %w(acct.edge_ngram acct display_name.edge_ngram display_name), type: 'most_fields', operator: 'and' } }]
-    should_clauses = []
+    return [] if account && options[:following] && following_ids.empty?
 
-    if account
-      return [] if options[:following] && following_ids.empty?
-
-      if options[:following]
-        must_clauses << { terms: { id: following_ids } }
-      elsif following_ids.any?
-        should_clauses << { terms: { id: following_ids, boost: 100 } }
-      end
-    end
-
-    query     = { bool: { must: must_clauses, should: should_clauses } }
+    query = SearchQueryTransformer
+            .new
+            .apply(SearchQueryParser.new.parse(@query))
+            .accounts_query(
+              likely_acct?,
+              !account.nil?,
+              options[:following],
+              following_ids
+            )
     functions = [reputation_score_function, followers_score_function, time_distance_function]
 
     records = AccountsIndex.query(function_score: { query: query, functions: functions, boost_mode: 'multiply', score_mode: 'avg' })

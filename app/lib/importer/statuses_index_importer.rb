@@ -24,7 +24,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
           # is called before rendering the data and we need to filter based
           # on the results of the filter, so this filtering happens here instead
           bulk.map! do |entry|
-            new_entry = if entry[:index] && entry.dig(:index, :data, 'searchable_by').blank?
+            new_entry = if entry[:index] && entry.dig(:index, :data, 'searchable_by').blank? && entry.dig(:index, :data, 'public_indexable').blank?
                           { delete: entry[:index].except(:data) }
                         else
                           entry
@@ -62,6 +62,7 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
       local_favourites_scope,
       local_votes_scope,
       local_bookmarks_scope,
+      public_indexable_scope,
     ]
   end
 
@@ -83,5 +84,9 @@ class Importer::StatusesIndexImporter < Importer::BaseImporter
 
   def local_statuses_scope
     Status.local.select('"statuses"."id", COALESCE("statuses"."reblog_of_id", "statuses"."id") AS status_id')
+  end
+
+  def public_indexable_scope
+    Status.public_indexable.select('"statuses"."id", "statuses"."id" AS status_id')
   end
 end

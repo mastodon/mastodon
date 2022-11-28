@@ -90,6 +90,9 @@ class ActivityPub::ProcessAccountService < BaseService
     set_fetchable_attributes! unless @options[:only_key] || @account.suspended?
 
     @account.save_with_optional_media!
+
+    # TODO: can be removed when https://github.com/mastodon/mastodon/pull/24046 is fixed
+    AccountsIndex.import! @account if Chewy.enabled?
   end
 
   def set_immediate_protocol_attributes!

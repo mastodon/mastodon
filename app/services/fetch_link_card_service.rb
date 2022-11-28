@@ -34,6 +34,14 @@ class FetchLinkCardService < BaseService
     nil
   end
 
+  ##
+  # Borrow most of this machinery to detect whether the status has at least one link.
+  def link?(status)
+    @status       = status
+    @original_url = parse_urls
+    !@original_url.nil?
+  end
+
   private
 
   def process_url

@@ -97,6 +97,7 @@ class Status < ApplicationRecord
   scope :without_replies, -> { where('statuses.reply = FALSE OR statuses.in_reply_to_account_id = statuses.account_id') }
   scope :without_reblogs, -> { where(statuses: { reblog_of_id: nil }) }
   scope :with_public_visibility, -> { where(visibility: :public) }
+  scope :public_indexable, -> { joins(:account).where(visibility: :public, account: { discoverable: true, silenced_at: nil }) }
   scope :tagged_with, ->(tag_ids) { joins(:statuses_tags).where(statuses_tags: { tag_id: tag_ids }) }
   scope :excluding_silenced_accounts, -> { left_outer_joins(:account).where(accounts: { silenced_at: nil }) }
   scope :including_silenced_accounts, -> { left_outer_joins(:account).where.not(accounts: { silenced_at: nil }) }
@@ -166,6 +167,33 @@ class Status < ApplicationRecord
       preloadable_poll ? preloadable_poll.options.join("\n\n") : nil,
       ordered_media_attachments.map(&:description).join("\n\n"),
     ].compact.join("\n\n")
+  end
+
+  def searchable_emojis
+    emojis.reject(&:disabled).pluck(:shortcode)
+  end
+
+  def searchable_tags
+    Extractor.extract_hashtags(FormattingHelper.extract_status_plain_text(self))
+  end
+
+  def searchable_is
+    keywords = []
+    keywords << :bot if account.bot?
+    keywords << :group if account.group?
+    keywords << :local if local?
+    keywords << :reply if reply?
+    keywords << :sensitive if sensitive?
+    keywords
+  end
+
+  def searchable_has
+    keywords = []
+    keywords << :warning if spoiler_text?
+    keywords << :link if FetchLinkCardService.new.link?(self)
+    keywords << :media if media_attachments.present?
+    keywords << :poll if preloadable_poll.present?
+    keywords
   end
 
   def to_log_human_identifier

@@ -545,6 +545,39 @@ class Account < ApplicationRecord
     save!
   end
 
+  def searchable_text
+    return nil unless discoverable
+
+    [
+      PlainTextFormatter.new(note, local?).to_s,
+      fields.map do |field|
+        [
+          field.name,
+          PlainTextFormatter.new(field.value, local?).to_s,
+        ].join(' ')
+      end,
+    ].join("\n\n")
+  end
+
+  def searchable_emojis
+    return [] unless discoverable
+
+    emojis.reject(&:disabled).pluck(:shortcode)
+  end
+
+  def searchable_tags
+    return [] unless discoverable
+
+    Extractor.extract_hashtags(PlainTextFormatter.new(note, local?).to_s)
+  end
+
+  def searchable_is
+    keywords = []
+    keywords << :bot if bot?
+    keywords << :group if group?
+    keywords
+  end
+
   private
 
   def prepare_contents

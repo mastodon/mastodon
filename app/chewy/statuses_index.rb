@@ -18,6 +18,7 @@ class StatusesIndex < Chewy::Index
         language: 'possessive_english',
       },
     },
+
     analyzer: {
       content: {
         tokenizer: 'uax_url_email',
@@ -28,6 +29,17 @@ class StatusesIndex < Chewy::Index
           cjk_width
           english_stop
           english_stemmer
+        ),
+      },
+    },
+
+    normalizer: {
+      tag: {
+        type: 'custom',
+        filter: %w(
+          lowercase
+          asciifolding
+          cjk_width
         ),
       },
     },
@@ -65,11 +77,20 @@ class StatusesIndex < Chewy::Index
   root date_detection: false do
     field :id, type: 'long'
     field :account_id, type: 'long'
+    field :created_at, type: 'date'
+    field :domain, type: 'keyword', value: ->(status) { status.account.domain }
+    field :lang, type: 'keyword', value: ->(status) { status.language }
+    field :is, type: 'keyword', value: ->(status) { status.searchable_is }
+    field :has, type: 'keyword', value: ->(status) { status.searchable_has }
+    field :emojis, type: 'keyword', value: ->(status) { status.searchable_emojis }
+    field :tags, type: 'keyword', normalizer: 'tag', value: ->(status) { status.searchable_tags }
 
     field :text, type: 'text', value: ->(status) { status.searchable_text } do
       field :stemmed, type: 'text', analyzer: 'content'
     end
 
     field :searchable_by, type: 'long', value: ->(status, crutches) { status.searchable_by(crutches) }
+    # TODO: this and its corresponding scope may use a different flag if we opt for https://github.com/mastodon/mastodon/pull/23808
+    field :public_indexable, type: 'boolean', value: ->(status) { status.public_visibility? && status.account.discoverable && !status.account.silenced? }
   end
 end

@@ -54,6 +54,9 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       broadcast_updates!
     end
 
+    # TODO: can be removed when https://github.com/mastodon/mastodon/pull/24046 is fixed
+    StatusesIndex.import! @status if Chewy.enabled?
+
     forward_activity! if significant_changes? && @status_parser.edited_at > last_edit_date
   end
 

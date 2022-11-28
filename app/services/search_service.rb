@@ -15,9 +15,39 @@ class SearchService < BaseService
       if url_query?
         results.merge!(url_resource_results) unless url_resource.nil? || @offset.positive? || (@options[:type].present? && url_resource_symbol != @options[:type].to_sym)
       elsif @query.present?
-        results[:accounts] = perform_accounts_search! if account_searchable?
-        results[:statuses] = perform_statuses_search! if full_text_searchable?
-        results[:hashtags] = perform_hashtags_search! if hashtag_searchable?
+        # Account and status searches use different sets of prefix operators.
+        # Throw a syntax error only if the syntax is invalid in all search contexts.
+        search_succeeded = false
+        syntax_error = nil
+
+        if account_searchable?
+          begin
+            results[:accounts] = perform_accounts_search!
+            search_succeeded = true
+          rescue Mastodon::SyntaxError => e
+            syntax_error = e
+          end
+        end
+
+        if status_searchable?
+          begin
+            results[:statuses] = perform_statuses_search!
+            search_succeeded = true
+          rescue Mastodon::SyntaxError => e
+            syntax_error = e
+          end
+        end
+
+        if hashtag_searchable?
+          begin
+            results[:hashtags] = perform_hashtags_search!
+            search_succeeded = true
+          rescue Mastodon::SyntaxError => e
+            syntax_error = e
+          end
+        end
+
+        raise syntax_error unless syntax_error.nil? || search_succeeded
       end
     end
   end
@@ -35,8 +65,8 @@ class SearchService < BaseService
   end
 
   def perform_statuses_search!
-    definition = parsed_query.apply(StatusesIndex.filter(term: { searchable_by: @account.id }))
-
+    definition = StatusesIndex.filter(term: { searchable_by: @account.id }).filter.or(term: { public_indexable: true })
+    definition = parsed_query.statuses_apply(definition, following_ids)
     definition = definition.filter(term: { account_id: @options[:account_id] }) if @options[:account_id].present?
 
     if @options[:min_id].present? || @options[:max_id].present?
@@ -85,14 +115,14 @@ class SearchService < BaseService
     url_resource.class.name.downcase.pluralize.to_sym
   end
 
-  def full_text_searchable?
+  def status_searchable?
     return false unless Chewy.enabled?
 
-    statuses_search? && !@account.nil? && !((@query.start_with?('#') || @query.include?('@')) && !@query.include?(' '))
+    statuses_search? && !@account.nil?
   end
 
   def account_searchable?
-    account_search? && !(@query.start_with?('#') || (@query.include?('@') && @query.include?(' ')))
+    account_search?
   end
 
   def hashtag_searchable?
@@ -123,5 +153,9 @@ class SearchService < BaseService
 
   def parsed_query
     SearchQueryTransformer.new.apply(SearchQueryParser.new.parse(@query))
+  end
+
+  def following_ids
+    @following_ids ||= @account.active_relationships.pluck(:target_account_id) + [@account.id]
   end
 end
