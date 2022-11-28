@@ -44,7 +44,7 @@ export const fetchHashtagFail = error => ({
 export const fetchFollowedHashtags = () => (dispatch, getState) => {
   dispatch(fetchFollowedHashtagsRequest());
 
-  api(getState).get(`/api/v1/followed_tags`)
+  api(getState).get('/api/v1/followed_tags')
     .then(({ data }) => dispatch(fetchFollowedHashtagsSuccess(data)))
     .catch(err => dispatch(fetchFollowedHashtagsFail(err)));
 };

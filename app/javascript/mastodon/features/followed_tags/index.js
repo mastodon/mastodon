@@ -64,16 +64,17 @@ class FollowedTags extends ImmutablePureComponent {
           scrollKey='followed_tags'
           emptyMessage={emptyMessage}
         >
-          {hashtags.map(hashtag =>
-            <Hashtag key={hashtag.get('name')}
+          {hashtags.map((hashtag) => (
+            <Hashtag
+              key={hashtag.get('name')}
               name={hashtag.get('name')}
               to={`/tags/${hashtag.get('name')}`}
               withGraph={false}
               // Taken from ImmutableHashtag. Should maybe refactor ImmutableHashtag to accept more options?
               people={hashtag.getIn(['history', 0, 'accounts']) * 1 + hashtag.getIn(['history', 1, 'accounts']) * 1}
               history={hashtag.get('history').reverse().map((day) => day.get('uses')).toArray()}
-            />,
-          )}
+            />
+          ))}
         </ScrollableList>
 
         <Helmet>

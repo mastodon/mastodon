@@ -1,7 +1,7 @@
 import {
   FOLLOWED_HASHTAGS_FETCH_REQUEST,
   FOLLOWED_HASHTAGS_FETCH_SUCCESS,
-  FOLLOWED_HASHTAGS_FETCH_FAIL
+  FOLLOWED_HASHTAGS_FETCH_FAIL,
 } from 'mastodon/actions/tags';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
