@@ -373,6 +373,8 @@ ar:
       add_new: إضافة النطاق إلى القائمة البيضاء
       created_msg: تمت إضافة النطاق إلى القائمة البيضاء بنجاح
       destroyed_msg: تمت إزالة النطاق مِن القائمة البيضاء
+      export: تصدير
+      import: استيراد
       undo: إزالة من القائمة البيضاء
     domain_blocks:
       add_new: إضافة حجب جديد لنطاق
@@ -380,14 +382,21 @@ ar:
       destroyed_msg: تم إلغاء الحجب المفروض على النطاق
       domain: النطاق
       edit: تحرير النطاق المحظور
+      existing_domain_block: لقم قمت بالفعل بفرض حدود صارمة على %{name}.
       existing_domain_block_html: لقد فرضت بالفعل سابقاً حدوداً أكثر صرامة على %{name}، تحتاج إلى <a href="%{unblock_url}">إلغاء حظره</a> أولاً.
+      export: تصدير
+      import: استيراد
       new:
         create: إنشاء حظر
         hint: لن تمنع كتلة المجال إنشاء إدخالات حساب في قاعدة البيانات ، ولكنها ستطبق طرق الإشراف المحددة بأثر رجعي وتلقائي على هذه الحسابات.
         severity:
+          desc_html: "<strong>الكتم</strong> سوف يتسبب بإخفاء جميع المنشورات للحسابات للذين لا يتابعون هذه الحسابات بالفعل. <strong>التعليق</strong> سوف يتسبب بحذف المحتوى، الوسائط، ومعلومات الحسابات الخاصة بهذا النطاق من الخادم الخاص بك. استخدم <strong>بدون</strong> في حال أردت فقط رفض الوسائط فقط."
           noop: لا شيء
+          silence: كتم
           suspend: تعليق
         title: حجب نطاق جديد
+      no_domain_block_selected: لم يطرأ أي تغيير على أي نطاق بما أنه لم يتم اختيار أي نطاق
+      not_permitted: غير مسموح لك بتنفيذ هذا الإجراء
       obfuscate: تشويش اسم النطاق
       obfuscate_hint: تشويش اسم النطاق جزئيا في القائمة إذا كان الإعلان عن قائمة قيود النطاق مفعلاً
       private_comment: تعليق خاص
@@ -410,8 +419,26 @@ ar:
       domain: النطاق
       new:
         create: إضافة نطاق
+        resolve: العثور على عنوان النطاق
         title: إضافة نطاق بريد جديد إلى اللائحة السوداء
+      no_email_domain_block_selected: لم يطرأ أي تغيير على أي نطاق بريد بما أنه لم يتم اختيار أي نطاق
+      resolved_dns_records_hint_html: عنوان النطاق يعود لخوادم البريد (MX) التالية وهو ما يسمح للنطاق باستقبال البريد. حظر خوادم البريد هذه سوف يتسبب في منع أي تسجيل خلال أي نطاق يستخدم هذه الخوادم حتى لو كان اسم النطاق مختلف عن اسماء خوادم البريد.<strong>احذر من حظر مزودي البريد العالميين.</strong>
+      resolved_through_html: الحصول على العنوان من خلال %{domain}
       title: القائمة السوداء للبريد الإلكتروني
+    export_domain_allows:
+      new:
+        title: استيراد قامة النطاقات المسموحة
+      no_file: لم يتم تحديد أيّ ملف
+    export_domain_blocks:
+      import:
+        description_html: أنت على وشك استيراد قائمة نطاقات محظورة. يرجى مراجعة هذه القائمة بعناية شديدة، خاصة إذا لم تقم بكتابة هذه القائمة بنفسك.
+        existing_relationships_warning: تم العثور على متابعات مستركة
+        private_comment_description_html: 'لمساعدتك على تتبع سبب حظر النطاقات المستوردة، سيتم إنشاء الحظر مع التعليق الخاص التالي: <q>%{comment}</q>'
+        private_comment_template: تم الاستيراد من %{source} بتاريخ %{date}
+        title: استيراد قامة النطاقات المحظورة
+      new:
+        title: استيراد قامة النطاقات المحظورة
+      no_file: لم يتم تحديد أيّ ملف
     follow_recommendations:
       description_html: "<strong>تساعد اقتراحات المتابعة المستخدمين في العثور بسرعة على محتوى مثير للاهتمام</strong>. عندما لا يتفاعل المستخدم مع الآخرين بشكل كافي لتشكيل اقتراحات متابعة مخصصة له، تظهر هذه الاقتراحات بدلاً من ذلك. يُعاد حسابهم بشكل يومي من مزيج حسابات لديها أكثر التفاعلات وأكثر عدد من المتابعين المحليين للغة معينة."
       language: للغة
@@ -422,7 +449,10 @@ ar:
       unsuppress: إستعادة إقتراحات المتابعة
     instances:
       availability:
+        failure_threshold_reached: تم الوصول إلى أقصى حد للفشل بتاريخ %{date}.
+        no_failures_recorded: لم يتم العثور على أي فشل.
         title: التوفر
+        warning: فشلت المحاولة الأخيرة للاتصال بهذا النطاق
       back_to_all: الكل
       back_to_limited: محدود
       back_to_warning: تحذير
@@ -442,18 +472,23 @@ ar:
       dashboard:
         instance_accounts_dimension: الحسابات الأكثر متابعة
         instance_accounts_measure: حسابات مخزنة
+        instance_followers_measure: متابعينا هناك
         instance_follows_measure: متابِعوهم هنا
         instance_languages_dimension: اللغات الأكثر استخدامًا
         instance_media_attachments_measure: مرفقات الوسائط المخزَّنة
+        instance_reports_measure: تبليغات بخصوصهم
+        instance_statuses_measure: المنشورات المخزنة
       delivery:
         all: الكل
         clear: مسح أخطاء التسليم
+        failing: فشلت
         restart: إعادة تشغيل التوصيل
         stop: إيقاف التوصيل
         unavailable: غير متوفر
       delivery_available: التسليم متوفر
       delivery_error_days: أيام أخطاء التوصيل
       delivery_error_hint: إذا كان التوصيل غير ممكناً لـ%{count} يوم، فستوضع عليها علامة {غير قابلة للتسليم} تلقائياً.
+      destroyed_msg: تم جدولة حذف بيانات النطاق %{domain}.
       empty: لم يتم العثور على نطاقات.
       known_accounts:
         few: "%{count} حسابات معروفة"
@@ -469,12 +504,14 @@ ar:
       private_comment: تعليق خاص
       public_comment: تعليق للعلن
       purge: تطهير
+      purge_description_html: في حال رأيت أن هذا النطاق لن يعود، يمكنك حذف جميع الحسابات والبيانات المرتبطة به من التخزين الخاص بك. هذا قد يحتاج إلى بعض الوقت للانتهاء.
       title: الفديرالية
       total_blocked_by_us: المحجوبة مِن طرفنا
       total_followed_by_them: يُتابِعونها
       total_followed_by_us: التي نُتابِعها
       total_reported: تقارير عنهم
       total_storage: الوسائط المُرفَقة
+      totals_time_period_hint_html: المجموع المعروض في الأسفل يشمل بيانات منذ البداية.
     invites:
       deactivate_all: تعطيلها كافة
       filter:
@@ -507,7 +544,7 @@ ar:
       disable: تعطيل
       disabled: مُعطَّل
       enable: تشغيل
-      enable_hint: عندما تقوم بتنشيط هذه الميزة، سوف يشترك خادومكم في جميع المنشورات القادمة مِن هذا المُرحِّل و سيشرع كذلك بإرسال كافة المنشورات العمومية إليه.
+      enable_hint: عندما تقوم بتنشيط هذه الميزة، سوف يشترك هذا الخادم في جميع المنشورات القادمة مِن هذا المُرحِّل و سيشرع كذلك بإرسال كافة المنشورات العمومية إليه.
       enabled: مُشغَّل
       inbox_url: رابط المُرحّل
       pending: في انتظار تسريح المُرحِّل
@@ -532,13 +569,20 @@ ar:
       action_log: سجل المراجعة
       action_taken_by: تم اتخاذ الإجراء مِن طرف
       actions:
+        delete_description_html: سيتم حذف المناشير المبلّغ عنها وسيتم تسجيل إنذار لمساعدتك في التعامل المستقبلي مع أي مخالفة جديدة من نفس الحساب.
+        mark_as_sensitive_description_html: سيتم تحديد الوسائط في المناشير المبلّغ عنها على أنها محتوى حساس وسيتم تسجيل إنذار لمساعدتك في التعامل المستقبلي مع أي مخالفة جديدة من نفس الحساب.
+        other_description_html: عرض المزيد من الخيارات للتحكم في االحسابات وتخصيص التواصل مع الحسابات المُبلّغ عنها.
         resolve_description_html: ولن يُتخذ أي إجراء ضد الحساب المبلّغ عنه، ولن تسلَّط عليه أية عقوبة، وسوف يُغلق التقرير.
+        silence_description_html: الحساب سيكون ظاهر فقط لمن يتابعه بالفعل أو قام بالبحث عنه بشكل مباشر مما يتسبب في تخفيض إمكانية رؤيته بشكل شبه كامل. يمكنك دائما التراجع عن هذا القرار.
+        suspend_description_html: سيتم قفل الحساب ومنع الوصول إلى محتوياته إلى أن يتم حذفه. سيكون من غير الممكن التفاعل مع الحساب. يمكن التراجع عن هذا خلال 30 يوم.
+      actions_description_html: تحديد الإجراءات التي يتعين اتخاذها لحل هذا التبليغ. إذا اتخذت إجراء عقابيا ضد الحساب المبلغ عنه، فسيتم إرسال إشعار بالبريد الإلكتروني إليهم، إلا عندما يتم تحديد فئة <strong>البريد المزعج.</strong>
       add_to_report: أضف المزيد إلى التقرير
       are_you_sure: هل أنت متأكد ؟
       assign_to_self: عين لي
       assigned: تعين رئيس
       by_target_domain: نطاق الحساب المبلّغ عنه
       category: الفئة
+      category_description_html: سيشار إلى سبب الإبلاغ عن هذا الحساب و/أو المحتوى في الاتصال بالحساب المبلغ عنه
       comment:
         none: لا شيء
       comment_description_html: 'لتوفير المزيد من المعلومات، كتب %{name}:'
@@ -557,6 +601,8 @@ ar:
         delete: حذف
         placeholder: قم بوصف الإجراءات التي تم اتخاذها أو أي تحديثات أخرى ذات علاقة...
         title: الملاحظات
+      notes_description_html: عرض الملاحظات وتركها للمشرفين الآخرين ولنفسك في المستقبل
+      quick_actions_description_html: 'قم بإجراء سريع أو التمرير للأسفل لرؤية المحتوى المبلغ عنه:'
       remote_user_placeholder: المستخدم البعيد من %{instance}
       reopen: إعادة فتح الشكوى
       report: 'الشكوى #%{id}'
@@ -567,6 +613,7 @@ ar:
       skip_to_actions: تخطي إلى الإجراءات
       status: الحالة
       statuses: المحتوى المبلغ عنه
+      statuses_description_html: سيشار إلى المحتوى المخالف في الاتصال بالحساب المبلغ عنه
       target_origin: مصدر الحساب المبلغ عنه
       title: الشكاوى
       unassign: إلغاء تعيين
@@ -584,28 +631,48 @@ ar:
         zero: "%{count} لا مستخدم"
       categories:
         administration: الإدارة
+        devops: DevOps
         invites: الدعوات
         moderation: الإشراف
         special: مميز
       delete: حذف
+      description_html: مع <strong>أدوار المستخدم</strong>، يمكنك تخصيص أي الوظائف ومجالات ماستدون التي يمكن للمستخدمين الوصول إليها.
+      edit: تعديل رتبة '%{name}' '
       everyone: الصلاحيات الافتراضية
+      everyone_full_description_html: هذا هو <strong>الدور الأساسي</strong> الذي يحمله <strong>جميع المستخدمين</strong>، حتى أولئك الذين ليس لديهم دور معين. جميع الأدوار الأخرى ترث الأذونات منه.
       privileges:
         administrator: مدير
+        administrator_description: المستخدمين الذين لديهم هذا التصريح سيتجاوزون جميع التصاريح
+        delete_user_data: احذف بيانات المستخدم
+        delete_user_data_description: يسمح للمستخدمين بحذف بيانات المستخدمين الآخرين دون تأخير
         invite_users: دعوة مستخدمين
+        invite_users_description: يسمح للمستخدمين بدعوة أشخاص جدد إلى الخادم
         manage_announcements: ادارة الاعلانات
+        manage_announcements_description: يسمح للمستخدمين بإدارة الإعلانات على الخادم
         manage_appeals: إدارة الاستئنافات
+        manage_appeals_description: يسمح للمستخدمين بمراجعة الطعن ضد إجراءات الإشراف
+        manage_blocks: إدارة الحظر
+        manage_blocks_description: يسمح للمستخدمين بحظر مزودي خدمات البريد الإلكتروني وعناوين IP
         manage_custom_emojis: إدارة الرموز التعبيريّة المخصصة
         manage_custom_emojis_description: السماح للمستخدمين بإدارة الرموز التعبيريّة المخصصة على الخادم
         manage_federation: إدارة الفديرالية
+        manage_federation_description: يسمح للمستخدمين بحظر أو السماح للاتحاد مع النطاقات الأخرى، والتحكم في إمكانية التسليم
         manage_invites: إدارة الدعوات
+        manage_invites_description: السماح للمستخدمين بالتصفح و تعطيل روابط الدعوة
         manage_reports: إدارة التقارير
+        manage_reports_description: يسمح للمستخدمين بمراجعة التباليغ وتنفيذ إجراءات الإشراف ضدهم
         manage_roles: إدارة الأدوار
+        manage_roles_description: يسمح للمستخدمين بإدارة وتعيين الأدوار الأقل رتبه منهم
         manage_rules: إدارة القواعد
+        manage_rules_description: يسمح للمستخدمين بتغيير قوانين الخادم
         manage_settings: إدارة الإعدادات
+        manage_settings_description: يسمح للمستخدمين بتغيير إعدادات الموقع
         manage_taxonomies: إدارة التصنيفات
         manage_taxonomies_description: السماح للمستخدمين بمراجعة المحتوى المتداول وتحديث إعدادات الوسم
         manage_user_access: إدارة وصول المستخدم
+        manage_user_access_description: يسمح للمستخدمين بتعطيل المصادقة الثنائية المستخدمين الآخرين، تغيير عنوان البريد الإلكتروني الخاص بهم، وإعادة تعيين كلمة المرور الخاصة بهم
         manage_users: إدارة المستخدمين
+        manage_users_description: يسمح للمستخدمين بعرض تفاصيل المستخدمين الآخرين وتنفيذ إجراءات الإشراف ضدهم
         view_dashboard: عرض لوحة التحكم
         view_devops_description: السماح للمستخدمين بالوصول إلى لوحة Sidekiq و pgHero
       title: الأدوار
@@ -742,12 +809,18 @@ ar:
       empty: لم تحدد أي إعدادات تحذير مسبقة بعد.
       title: إدارة نماذج التحذير
     webhooks:
+      add_new: إضافة نقطة نهاية
       delete: حذف
       disable: تعطيل
       disabled: معطَّل
       edit: تعديل نقطة النهاية
       enable: تشغيل
       enabled: نشِط
+      new: رابط ويب جديد
+      rotate_secret: تغيير الرمز
+      secret: رمز تسجيل الدخول
+      status: الحالة
+      webhook: رابط ويب
   admin_mailer:
     new_appeal:
       actions:
@@ -758,6 +831,9 @@ ar:
         sensitive: لجعل حسابهم كحساس
         silence: للحد من حسابهم
         suspend: لتعليق حسابهم
+      body: 'قام %{target} بالطعن في قرار %{action_taken_by} بتاريخ %{date} وهو كان %{type}. نص الطعن:'
+      next_steps: يمكنك الموافقة على الطعن وبالتالي التراجع عن قرار المشرف، أو يمكنك تجاهل الطعن.
+      subject: قام %{username} بالطعن بقرار المشرفين بخصوص %{instance}
     new_pending_account:
       body: تفاصيل الحساب الجديد أدناه. يمكنك الموافقة على هذا الطلب أو رفضه.
       subject: حساب جديد في انتظار مراجعة على %{instance} (%{username})
@@ -766,11 +842,13 @@ ar:
       body_remote: أبلغ شخص ما من %{domain} عن %{target}
       subject: تقرير جديد ل%{instance} (#%{id})
     new_trends:
+      body: 'تحتاج العناصر التالية إلى مراجعة قبل أن يمكن عرضها علناً:'
       new_trending_links:
         title: الروابط المتداولة
       new_trending_statuses:
         title: المنشورات الشائعة
       new_trending_tags:
+        no_approved_tags: لا توجد حاليًا هاشات شائعة موافق عليها.
         title: الوسوم المتداولة
   aliases:
     add_new: أنشئ كُنية
@@ -781,7 +859,7 @@ ar:
     remove: إلغاء ربط الكنية
   appearance:
     advanced_web_interface: واجهة الويب المتقدمة
-    advanced_web_interface_hint: 'إذا كنت ترغب في استخدام عرض شاشتك بأكمله، فواجهة الويب المتقدمة تسمح لك بضبط العديد من الأعمدة المختلفة لرؤية أكبر قدر من المعلومات التي ترغب فيها في آن واحد: الخيط الرئيسي والإخطارات والخيط الزمني الفدرالي وأي عدد من القوائم والوسوم.'
+    advanced_web_interface_hint: 'إذا كنت ترغب في استخدام عرض شاشتك بأكمله، فواجهة الويب المتقدمة تسمح لك بضبط العديد من الأعمدة المختلفة لرؤية أكبر قدر من المعلومات التي ترغب فيها في آن واحد: الخيط الرئيسي والإشعارات والخيط الزمني الفدرالي وأي عدد من القوائم والوسوم.'
     animations_and_accessibility: الإتاحة والحركة
     confirmation_dialogs: نوافذ التأكيد
     discovery: الاستكشاف
@@ -792,7 +870,7 @@ ar:
     sensitive_content: المحتوى الحساس
     toot_layout: شكل المنشور
   application_mailer:
-    notification_preferences: تعديل خيارات البريد الإلكتروني
+    notification_preferences: تعديل تفضيلات البريد الإلكتروني
     salutation: "%{name}،"
     settings: 'تغيير تفضيلات البريد الإلكتروني: %{link}'
     view: 'اعرض:'
@@ -806,6 +884,7 @@ ar:
     warning: كن حذرا مع هذه البيانات. لا تقم أبدا بمشاركتها مع الآخَرين!
     your_token: رمز نفاذك
   auth:
+    apply_for_account: اطلُب حسابًا
     change_password: الكلمة السرية
     delete_account: حذف الحساب
     delete_account_html: إن كنت ترغب في حذف حسابك يُمكنك <a href="%{path}">المواصلة هنا</a>. سوف يُطلَبُ منك التأكيد قبل الحذف.
@@ -825,6 +904,7 @@ ar:
     migrate_account: الانتقال إلى حساب آخر
     migrate_account_html: إن كنت ترغب في تحويل هذا الحساب نحو حساب آخَر، يُمكِنُك <a href="%{path}">إعداده هنا</a>.
     or_log_in_with: أو قم بتسجيل الدخول بواسطة
+    privacy_policy_agreement_html: لقد قرأتُ وأوافق على سياسة الخصوصية <a href="%{privacy_policy_path}" target="_blank"></a>
     providers:
       cas: CAS
       saml: SAML
@@ -975,7 +1055,7 @@ ar:
     contexts:
       account: الملفات التعريفية
       home: الخيط الزمني الرئيسي
-      notifications: الإخطارات
+      notifications: الإشعارات
       public: الخيوط الزمنية العامة
       thread: المحادثات
     edit:
@@ -1023,7 +1103,7 @@ ar:
       merge_long: الإبقاء علي التسجيلات الحالية وإضافة الجديدة
       overwrite: إعادة الكتابة
       overwrite_long: استبدال التسجيلات الحالية بالجديدة
-    preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادوم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
+    preface: بإمكانك استيراد بيانات قد قُمتَ بتصديرها مِن مثيل خادم آخَر، كقوائم المستخدِمين الذين كنتَ تتابِعهم أو قُمتَ بحظرهم.
     success: تم تحميل بياناتك بنجاح وسيتم معالجتها في الوقت المناسب
     types:
       blocking: قائمة المحظورين
@@ -1053,7 +1133,7 @@ ar:
       two: "%{count} استخدامات"
       zero: "%{count} استخدامات"
     max_uses_prompt: بلا حدود
-    prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادوم هذا
+    prompt: توليد و مشاركة روابط للسماح للآخَرين بالنفاذ إلى مثيل الخادم هذا
     table:
       expires_at: تنتهي مدة صلاحيتها في
       uses: عدد الاستخدامات
@@ -1227,6 +1307,7 @@ ar:
     browser: المتصفح
     browsers:
       alipay: أليباي
+      blackberry: بلاك بيري
       chrome: كروم
       edge: مايكروسوفت إيدج
       electron: إلكترون
@@ -1240,6 +1321,7 @@ ar:
       phantom_js: فانتوم جي آس
       qq: متصفح كيوكيو
       safari: سفاري
+      uc_browser: متصفح UC Browser
       weibo: وايبو
     current_session: الجلسة الحالية
     description: "%{browser} على %{platform}"
@@ -1248,6 +1330,7 @@ ar:
     platforms:
       adobe_air: أدوبي إيير
       android: أندرويد
+      chrome_os: نظام كروم أواس
       firefox_os: نظام فايرفكس أواس
       ios: نظام آي أواس
       linux: لينكس
@@ -1396,6 +1479,9 @@ ar:
     pinned: منشور مثبّت
     reblogged: شارَكَه
     sensitive_content: محتوى حساس
+  strikes:
+    errors:
+      too_late: فات الأوان للطعن في هذه العقوبة
   tags:
     does_not_match_previous_name: لا يطابق الإسم السابق
   themes:

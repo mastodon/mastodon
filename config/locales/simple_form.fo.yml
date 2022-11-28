@@ -2,33 +2,73 @@
 fo:
   simple_form:
     hints:
+      account_alias:
+        acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta frá
       account_warning_preset:
         title: Valfrítt. Ikki sjónligt fyri móttakaran
       defaults:
         password: Skriva minst 8 tekin
       featured_tag:
         name: 'Her eru nakrir tvíkrossar, ið tú hevur brúkt í seinastuni:'
+      form_admin_settings:
+        custom_css: Tú kanst seta títt egna snið upp í net-útgávuni av Mastodon.
     labels:
+      account:
+        fields:
+          value: Innihald
+      account_warning_preset:
+        title: Heiti
+      admin_account_action:
+        types:
+          disable: Fryst
+          none: Send eina ávaring
+          sensitive: Viðkvæmt
+          silence: Mark
+          suspend: Fyribils ikki í gildi
+      announcement:
+        all_day: Tiltak allan dagin
+        ends_at: Hending liðug
+        starts_at: Tiltak byrjar
       defaults:
+        confirm_new_password: Endurtak nýggja loyniorðið
+        confirm_password: Endurtak loyniorðið
         data: Dáta
+        display_name: Navn, sum skal vísast
+        email: Teldubrævabústaður
+        expires_in: Endar aftan á
+        irreversible: Strika heldur enn at fjala
         note: Ævilýsing
+        setting_display_media_hide_all: Fjal alt
         username: Brúkaranavn
         username_or_email: Brúkaranavn ella teldupostur
+        whole_word: Heil orð
       featured_tag:
         name: Tvíkrossur
+      filters:
+        actions:
+          hide: Fjal fullkomiliga
       ip_block:
+        comment: Viðmerking
         ip: IP
+        severity: Regla
       notification_emails:
         favourite: Onkur dámdi títt uppslag
         follow_request: Onkur biður um at fylgja tær
         mention: Onkur nevndi teg
+      rule:
+        text: Regla
       tag:
         listable: Loyva hesum tvíkrossið, at verða vístur í leitingum og uppskotum
         name: Tvíkrossur
         usable: Loyva uppsløgum at brúka hendan tvíkross
+      user:
+        role: Leiklutur
       user_role:
         name: Navn
+        permissions_as_keys: Loyvi
     'no': Nei
+    not_recommended: Ikki viðmælt
+    recommended: Viðmælt
     required:
       mark: "*"
       text: kravt

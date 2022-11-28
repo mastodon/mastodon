@@ -136,3 +136,15 @@ Return true if a mastodon secret object should be created
     {{- true -}}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Find highest number of needed database connections to set DB_POOL variable
+*/}}
+{{- define "mastodon.maxDbPool" -}}
+{{/* Default MAX_THREADS for Puma is 5 */}}
+{{- $poolSize := 5 }}
+{{- range .Values.mastodon.sidekiq.workers }}
+{{- $poolSize = max $poolSize .concurrency }}
+{{- end }}
+{{- $poolSize | quote }}
+{{- end }}

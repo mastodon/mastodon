@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  replicas: {{ .Values.mastodon.web.replicas }}
   selector:
     matchLabels:
       {{- include "mastodon.selectorLabels" . | nindent 6 }}
@@ -16,7 +14,7 @@ spec:
   template:
     metadata:
       annotations:
-        {{- with .Values.podAnnotations }}
+        {{- with (default .Values.podAnnotations .Values.mastodon.web.podAnnotations) }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
         # roll the pods to pick up any db migrations or other changes
@@ -31,7 +29,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "mastodon.serviceAccountName" . }}
-      {{- with .Values.podSecurityContext }}
+      {{- with (default .Values.podSecurityContext .Values.mastodon.web.podSecurityContext) }}
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -45,8 +43,8 @@ spec:
             claimName: {{ template "mastodon.fullname" . }}-system
       {{- end }}
       containers:
-        - name: {{ .Chart.Name }}
-          {{- with .Values.securityContext }}
+        - name: {{ .Chart.Name }}-web
+          {{- with (default .Values.securityContext .Values.mastodon.web.securityContext) }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -112,7 +110,7 @@ spec:
               port: http
             failureThreshold: 30
             periodSeconds: 5
-          {{- with .Values.resources }}
+          {{- with (default .Values.resources .Values.mastodon.web.resources) }}
           resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -120,7 +118,7 @@ spec:
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with (default .Values.affinity .Values.mastodon.web.affinity) }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}

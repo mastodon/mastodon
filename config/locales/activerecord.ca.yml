@@ -6,8 +6,8 @@ ca:
         expires_at: Data límit
         options: Opcions
       user:
-        agreement: Acord sobre serveis
-        email: Adreça de correu electrònic
+        agreement: Acord de servei
+        email: Adreça de correu-e
         locale: Idioma
         password: Contrasenya
       user/account:
@@ -40,10 +40,10 @@ ca:
         user:
           attributes:
             email:
-              blocked: utilitza un proveïdor de correu electrònic no autoritzat
+              blocked: utilitza un proveïdor de correu-e no autoritzat
               unreachable: sembla que no existeix
             role_id:
-              elevated: no pot ser superior que el teu rol actual
+              elevated: no pot ser superior al teu rol actual
         user_role:
           attributes:
             permissions_as_keys:
@@ -52,4 +52,4 @@ ca:
               own_role: no es pot canviar amb el teu rol actual
             position:
               elevated: no pot ser superior al teu rol actual
-              own_role: no pot ser canviat amb el teu rol actual
+              own_role: no es pot canviar amb el teu rol actual

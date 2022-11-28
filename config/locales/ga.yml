@@ -64,6 +64,9 @@ ga:
         all: Uile
         local: Áitiúil
         remote: Cian
+      memorialize: Déan cuntas chuimhneacháin de
+      memorialized: Cuntas chuimhneacháin
+      previous_strikes: Cionta roimhe seo
       promote: Ardaigh
       protocol: Prótacal
       public: Poiblí
@@ -123,6 +126,8 @@ ga:
       delete: Scrios
     follow_recommendations:
       status: Stádas
+      title: Moltaí leanúna
+      unsuppress: Aischuir moladh leanúna
     instances:
       back_to_all: Uile
       back_to_warning: Rabhadh
@@ -135,6 +140,7 @@ ga:
         all: Uile
       purge: Glan
       title: Cónascadh
+      total_followed_by_us: Á leanúint againn
     invites:
       filter:
         all: Uile
@@ -217,6 +223,11 @@ ga:
     delete_account: Scrios cuntas
     logout: Logáil Amach
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
+  authorize_follow:
+    follow: Lean
+    post_follow:
+      return: Taispeáin próifíl an úsáideora
+    title: Lean %{acct}
   deletes:
     proceed: Scrios cuntas
   disputes:
@@ -250,9 +261,19 @@ ga:
     admin:
       report:
         subject: Chuir %{name} tuairisc isteach
+    follow:
+      body: Tá %{name} do do leanúint anois!
+      subject: Tá %{name} do do leanúint anois
+      title: Leantóirí nua
     reblog:
       subject: Mhol %{name} do phostáil
       title: Moladh nua
+  relationships:
+    follow_selected_followers: Lean leantóirí roghnaithe
+    followers: Leantóirí
+    following: Ag leanúint
+    remove_selected_followers: Bain leantóirí roghnaithe
+    remove_selected_follows: Dí-lean úsáideoirí roghnaithe
   rss:
     content_warning: 'Rabhadh ábhair:'
   settings:
@@ -268,6 +289,9 @@ ga:
     show_more: Taispeáin níos mó
     show_newer: Taispeáin níos nuaí
     show_thread: Taispeáin snáithe
+    visibilities:
+      private: Leantóirí amháin
+      private_long: Taispeáin do leantóirí amháin
   statuses_cleanup:
     ignore_favs: Tabhair neamhaird ar toghanna
   user_mailer:

@@ -2,11 +2,11 @@
 ca:
   devise:
     confirmations:
-      confirmed: La teva adreça de correu electrònic s'ha confirmat correctament.
-      send_instructions: "En pocs minuts, rebràs un correu electrònic amb instruccions sobre com confirmar l'adreça de correu. \nSi us plau, verifica la teva carpeta de correu brossa si no l'has rebut."
+      confirmed: La teva adreça de correu-e s'ha confirmat correctament.
+      send_instructions: "En pocs minuts rebràs un correu-e amb instruccions sobre com confirmar l'adreça de correu. \nSi us plau, verifica la carpeta de la brossa si no l'has rebut."
       send_paranoid_instructions: |-
-        Si l'adreça de correu electrònic ja existeix a la nostra base de dades, rebràs un correu electrònic amb instruccions sobre com confirmar-la.
-        Si us plau, verifica la teva carpeta de correu brossa si no has rebut el correu.
+        Si l'adreça de correu-e ja existeix a la nostra base de dades rebràs un correu amb instruccions sobre com confirmar-la.
+        Si us plau, verifica la carpeta de la brossa si no l'has rebut.
     failure:
       already_authenticated: Ja estàs registrat.
       inactive: El teu compte encara no s'ha activat.
@@ -15,7 +15,7 @@ ca:
       locked: El compte s'ha bloquejat.
       not_found_in_database: "%{authentication_keys} o la contrasenya no són vàlids."
       pending: El teu compte encara està en revisió.
-      timeout: La sessió ha expirat. Torna a iniciar la sessió per continuar.
+      timeout: La sessió ha expirat. Torna a iniciar la sessió per a continuar.
       unauthenticated: Cal iniciar sessió o registrar-se abans de continuar.
       unconfirmed: Has de confirmar l'adreça de correu electrònic abans de continuar.
     mailer:
@@ -53,7 +53,7 @@ ca:
         subject: 'Mastodon: autenticació de doble factor desactivada'
         title: AF2 desactivat
       two_factor_enabled:
-        explanation: L'autenticació de doble factor s'ha habilitat per al teu compte. Per iniciar la sessió, es requerirà un token generat per l'aplicació TOTP que hagis emparellat.
+        explanation: L'autenticació de doble factor s'ha habilitat per al teu compte. Per a iniciar la sessió, es requerirà un token generat per l'aplicació TOTP que hagis emparellat.
         subject: 'Mastodon: autenticació de doble factor activada'
         title: AF2 activat
       two_factor_recovery_codes_changed:
@@ -76,7 +76,7 @@ ca:
         subject: 'Mastodon: s''ha desactivat l''autenticació amb claus de seguretat'
         title: Claus de seguretat desactivades
       webauthn_enabled:
-        explanation: S'ha activat l'autenticació amb claus de seguretat. Ja pots usar la teva clau de seguretat per iniciar sessió.
+        explanation: S'ha activat l'autenticació amb claus de seguretat. Ja pots usar la teva clau de seguretat per a iniciar sessió.
         subject: 'Mastodon: autenticació amb clau de seguretat activada'
         title: Claus de seguretat activades
     omniauth_callbacks:
@@ -92,7 +92,7 @@ ca:
       destroyed: Adéu! el compte s'ha cancel·lat amb èxit. Desitgem veure't de nou ben aviat.
       signed_up: Benvingut! T'has registrat amb èxit.
       signed_up_but_inactive: T´has registrat amb èxit. No obstant, no podem iniciar la teva sessió perquè el teu compte encara no s'ha activat.
-      signed_up_but_locked: T´has registrat amb èxit. No obstant, no podem iniciar la teva sessió perquè el teu compte està bloquejat.
+      signed_up_but_locked: T'has registrat amb èxit. Això no obstant, no podem iniciar la sessió perquè el teu compte està blocat.
       signed_up_but_pending: S'ha enviat un missatge amb un enllaç de confirmació a la teva adreça de correu electrònic. Després que hagis fet clic a l'enllaç, revisarem la sol·licitud. Se't notificarà si s'aprova.
       signed_up_but_unconfirmed: S'ha enviat per correu electrònic un missatge amb un enllaç de confirmació. Fes clic a l'enllaç per a activar el compte. Si us plau verifica la teva carpeta de correu brossa si no reps aquest correu.
       update_needs_confirmation: Has actualitzat el teu compte amb èxit, però necessitem verificar la teva nova adreça de correu. Si us plau comprova el correu i segueixi l'enllaç per confirmar la nova adreça de correu. Si us plau verifica la teva carpeta de correu brossa si no reps aquest correu.
@@ -107,7 +107,7 @@ ca:
       unlocked: El compte s'ha desbloquejat correctament. Inicia sessió per a continuar.
   errors:
     messages:
-      already_confirmed: ja està confirmat. Intenta d'iniciar sessió
+      already_confirmed: ja està confirmat. Intenta iniciar sessió
       confirmation_period_expired: cal fer la confirmació dins de %{period}, si us plau sol·licita-ho de nou
       expired: ha expirat, si us plau demana'n una altra
       not_found: no s'ha trobat

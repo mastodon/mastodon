@@ -373,6 +373,8 @@ it:
       add_new: Dominio nella whitelist
       created_msg: Il dominio è stato inserito nella whitelist
       destroyed_msg: Il dominio è stato eliminato dalla whitelist
+      export: Esportare
+      import: Importare
       undo: Elimina dalla whitelist
     domain_blocks:
       add_new: Aggiungi nuovo
@@ -382,13 +384,19 @@ it:
       edit: Modifica blocco di dominio
       existing_domain_block: Hai già imposto limiti più severi a %{name}.
       existing_domain_block_html: Hai già impostato limitazioni più stringenti su %{name}, dovresti <a href="%{unblock_url}">sbloccarlo</a> prima.
+      export: Esportare
+      import: Importare
       new:
         create: Crea blocco
         hint: Il blocco dominio non previene la creazione di utenti nel database, ma applicherà automaticamente e retroattivamente metodi di moderazione specifici su quegli account.
         severity:
+          desc_html: "<strong>Limita</strong> renderà invisibili i post degli account di questo dominio a chiunque non li stia seguendo. <strong>Sospendi</strong> rimuoverà tutti i contenuti, gli elementi multimediali e i dati del profilo per gli account di questo dominio dal tuo server. Utilizza <strong>Nessuno</strong> se desideri solo rifiutare i file multimediali."
           noop: Nessuno
+          silence: Limita
           suspend: Sospendi
         title: Nuovo blocco dominio
+      no_domain_block_selected: Nessun blocco di dominio è stato modificato perché non ne è stato selezionato nessuno
+      not_permitted: Non hai il permesso di eseguire questa azione
       obfuscate: Nascondi nome di dominio
       obfuscate_hint: Nascondere parzialmente il nome di dominio, se è abilitata la visualizzazione pubblica dell'elenco delle limitazioni di dominio
       private_comment: Commento privato
@@ -420,6 +428,20 @@ it:
       resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
+    export_domain_allows:
+      new:
+        title: Importare i permessi di dominio
+      no_file: Nessun file selezionato
+    export_domain_blocks:
+      import:
+        description_html: Stai per importare un elenco di blocchi di domini. Si prega di rivedere questo elenco con molta attenzione, soprattutto se non si è creato personalmente questo elenco.
+        existing_relationships_warning: Relazioni di connessioni esistenti
+        private_comment_description_html: 'Per aiutarti a tenere traccia della provenienza dei blocchi importati, i blocchi importati verranno creati con il seguente commento privato: <q>%{comment}</q>'
+        private_comment_template: Importato da %{source} il %{date}
+        title: Importare i blocchi di dominio
+      new:
+        title: Importare i blocchi di dominio
+      no_file: Nessun file selezionato
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
       language: Per lingua
@@ -914,6 +936,7 @@ it:
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
     your_token: Il tuo token di accesso
   auth:
+    apply_for_account: Richiedi un account
     change_password: Password
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
@@ -1158,6 +1181,7 @@ it:
     invalid_markup: 'contiene markup HTML non valido: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       over_rows_processing_limit: contiene più di %{count} righe
     modes:
       merge: Fondi
@@ -1565,7 +1589,7 @@ it:
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
     suspicious_sign_in:
-      change_password: cambia la tua password
+      change_password: cambiare la tua password
       details: 'Questi sono i dettagli del tentativo di accesso:'
       explanation: Abbiamo rilevato un accesso al tuo account da un nuovo indirizzo IP.
       further_actions_html: Se non eri tu, ti consigliamo di %{action} subito e di abilitare l'autenticazione a due fattori per mantenere il tuo account al sicuro.
@@ -1606,7 +1630,7 @@ it:
       edit_profile_action: Configura profilo
       edit_profile_step: Puoi personalizzare il tuo profilo caricando un'immagine del profilo, cambiare il tuo nome e altro ancora. Puoi scegliere di esaminare i nuovi seguaci prima che loro siano autorizzati a seguirti.
       explanation: Ecco alcuni suggerimenti per iniziare
-      final_action: Inizia a postare
+      final_action: Inizia a pubblicare
       final_step: 'Inizia a pubblicare! Anche senza seguaci, i tuoi post pubblici possono essere visti da altri, ad esempio sulla timeline locale o negli hashtag. Potresti presentarti con l''hashtag #presentazione.'
       full_handle: Il tuo nome utente completo
       full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
