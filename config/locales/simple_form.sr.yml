@@ -1,4 +1,3 @@
----
 sr:
   simple_form:
     hints:
@@ -105,10 +104,27 @@ sr:
         username: Корисничко име
         username_or_email: Корисничко име или Е-пошта
         whole_word: Цела реч
+      form_admin_settings:
+        site_contact_email: Е-адреса за контакт
+        site_contact_username: Корисничко име за контакт
+        site_extended_description: Проширени опис
+        site_short_description: Опис сервера
+        site_terms: Политика приватности
+        site_title: Име сервера
+        theme: Подразумевана тема
+        thumbnail: Сличица сервера
       interactions:
         must_be_follower: Блокирај обавештења од корисника који ме не прате
         must_be_following: Блокирај обавештења од људи које не пратим
         must_be_following_dm: Блокирај директне поруке од људи које не пратим
+      invite:
+        comment: Коментар
+      invite_request:
+        text: Зашто желиш да се придружиш?
+      ip_block:
+        comment: Коментар
+        severities:
+          no_access: Блокирај приступ
       notification_emails:
         digest: Шаљи е-пошту са сажетком
         favourite: Шаљи е-пошту када неко стави да му је Ваш статус омиљен
@@ -116,7 +132,7 @@ sr:
         follow_request: Шаљи е-пошту када неко затражи да Вас запрати
         mention: Шаљи е-пошту када Вас неко помене
         reblog: Шаљи е-пошту када неко подржи Ваш статус
-    'no': Не
+    'no': 'Не'
     required:
       text: обавезно
-    'yes': Да
+    'yes': 'Да'
