@@ -210,6 +210,8 @@ class MediaAttachment < ApplicationRecord
 
   default_scope { order(id: :asc) }
 
+  attr_writer :skip_download
+
   def local?
     remote_url.blank?
   end
@@ -268,6 +270,7 @@ class MediaAttachment < ApplicationRecord
     delay_processing? && attachment_name == :file
   end
 
+  after_commit :download_media, unless: :local?
   after_commit :enqueue_processing, on: :create
   after_commit :reset_parent_cache, on: :update
 
@@ -396,6 +399,18 @@ class MediaAttachment < ApplicationRecord
   # result while disregarding the path
   def ffmpeg_data(path = nil)
     @ffmpeg_data ||= VideoMetadataExtractor.new(path)
+  end
+
+  def download_media
+    return if @skip_download
+
+    download_file! if remote_url_previously_changed?
+    download_thumbnail! if thumbnail_remote_url_previously_changed?
+    save
+  rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+    RedownloadMediaWorker.perform_in(rand(30..600).seconds, id)
+  rescue Seahorse::Client::NetworkingError => e
+    Rails.logger.warn "Error storing media attachment: #{e}"
   end
 
   def enqueue_processing

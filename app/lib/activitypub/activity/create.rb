@@ -266,20 +266,11 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
           thumbnail_remote_url: media_attachment_parser.thumbnail_remote_url,
           description: media_attachment_parser.description,
           focus: media_attachment_parser.focus,
-          blurhash: media_attachment_parser.blurhash
+          blurhash: media_attachment_parser.blurhash,
+          skip_download: unsupported_media_type?(media_attachment_parser.file_content_type) || skip_download?
         )
 
         media_attachments << media_attachment
-
-        next if unsupported_media_type?(media_attachment_parser.file_content_type) || skip_download?
-
-        media_attachment.download_file!
-        media_attachment.download_thumbnail!
-        media_attachment.save
-      rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
-        RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
-      rescue Seahorse::Client::NetworkingError => e
-        Rails.logger.warn "Error storing media attachment: #{e}"
       end
     end
 

@@ -86,19 +86,10 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
         media_attachment.focus                = media_attachment_parser.focus
         media_attachment.thumbnail_remote_url = media_attachment_parser.thumbnail_remote_url
         media_attachment.blurhash             = media_attachment_parser.blurhash
+        media_attachment.skip_download        = unsupported_media_type?(media_attachment_parser.file_content_type) || skip_download?
         media_attachment.save!
 
         next_media_attachments << media_attachment
-
-        next if unsupported_media_type?(media_attachment_parser.file_content_type) || skip_download?
-
-        begin
-          media_attachment.download_file! if media_attachment.remote_url_previously_changed?
-          media_attachment.download_thumbnail! if media_attachment.thumbnail_remote_url_previously_changed?
-          media_attachment.save
-        rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
-          RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
-        end
       rescue Addressable::URI::InvalidURIError => e
         Rails.logger.debug "Invalid URL in attachment: #{e}"
       end
