@@ -4,6 +4,10 @@ export const HASHTAG_FETCH_REQUEST = 'HASHTAG_FETCH_REQUEST';
 export const HASHTAG_FETCH_SUCCESS = 'HASHTAG_FETCH_SUCCESS';
 export const HASHTAG_FETCH_FAIL    = 'HASHTAG_FETCH_FAIL';
 
+export const FOLLOWED_HASHTAGS_FETCH_REQUEST = 'FOLLOWED_HASHTAGS_FETCH_REQUEST';
+export const FOLLOWED_HASHTAGS_FETCH_SUCCESS = 'FOLLOWED_HASHTAGS_FETCH_SUCCESS';
+export const FOLLOWED_HASHTAGS_FETCH_FAIL    = 'FOLLOWED_HASHTAGS_FETCH_FAIL';
+
 export const HASHTAG_FOLLOW_REQUEST = 'HASHTAG_FOLLOW_REQUEST';
 export const HASHTAG_FOLLOW_SUCCESS = 'HASHTAG_FOLLOW_SUCCESS';
 export const HASHTAG_FOLLOW_FAIL    = 'HASHTAG_FOLLOW_FAIL';
@@ -36,6 +40,35 @@ export const fetchHashtagFail = error => ({
   type: HASHTAG_FETCH_FAIL,
   error,
 });
+
+export const fetchFollowedHashtags = () => (dispatch, getState) => {
+  dispatch(fetchFollowedHashtagsRequest());
+
+  api(getState).get(`/api/v1/followed_tags`)
+    .then(({ data }) => dispatch(fetchFollowedHashtagsSuccess(data)))
+    .catch(err => dispatch(fetchFollowedHashtagsSuccess(err)));
+};
+
+export function fetchFollowedHashtagsRequest() {
+  return {
+    type: FOLLOWED_HASHTAGS_FETCH_REQUEST,
+  };
+};
+
+export function fetchFollowedHashtagsSuccess(hashtags, next) {
+  return {
+    type: FOLLOWED_HASHTAGS_FETCH_SUCCESS,
+    hashtags,
+    next,
+  };
+};
+
+export function fetchFollowedHashtagsFail(error) {
+  return {
+    type: FOLLOWED_HASHTAGS_FETCH_FAIL,
+    error,
+  };
+};
 
 export const followHashtag = name => (dispatch, getState) => {
   dispatch(followHashtagRequest(name));
