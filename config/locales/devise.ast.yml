@@ -1,4 +1,3 @@
----
 ast:
   devise:
     confirmations:
@@ -7,7 +6,6 @@ ast:
       send_paranoid_instructions: Si la direición de corréu electrónicu esiste na nuesa base de datos, nunos minutos vas recibir un mensaxe coles instrucciones pa saber cómo confirmala. Revisa la carpeta Puxarra si nun recibiesti esti mensaxe.
     failure:
       already_authenticated: Xá aniciesti la sesión.
-      inactive: La cuenta entá nun s'activó.
       last_attempt: Quédate un intentu más enantes de bloquiar la cuenta.
       locked: La cuenta ta bloquiada.
       pending: La cuenta sigue en revisión.
@@ -74,8 +72,8 @@ ast:
       updated: La contraseña camudó correutamente. Xá aniciesti la sesión.
       updated_not_active: La contraseña camudó correutamente.
     registrations:
-      destroyed: "¡Ta llueu! La cuenta anulóse correutamente. Esperamos volver vete pronto."
-      signed_up: "¡Afáyate! Rexistréstite correutamente."
+      destroyed: '¡Ta llueu! La cuenta anulóse correutamente. Esperamos volver vete pronto.'
+      signed_up: '¡Afáyate! Rexistréstite correutamente.'
       signed_up_but_inactive: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta entá nun s'activó.
       signed_up_but_locked: Rexistréstite correutamente. Por embargu, nun se pudo aniciar la sesión porque la cuenta ta bloquiada.
       signed_up_but_pending: Unvióse un mensaxe a la direición de corréu electrónicu que contién un enllaz de confirmación. Darréu de calcar nel enllaz, vamos revisar la solicitú ya si s'aprueba, avisámoste.
@@ -93,7 +91,6 @@ ast:
   errors:
     messages:
       already_confirmed: xá se confirmó, prueba a aniciar la sesión
-      not_found: nun s'alcontró
       not_saved:
         one: '1 error torgó que «%{resource}» se guardare:'
         other: "%{count} errores torgaron que «%{resource}» se guardaren:"
