@@ -1,4 +1,3 @@
----
 ro:
   activerecord:
     attributes:
@@ -60,6 +59,8 @@ ro:
       error:
         title: A apărut o eroare
       new:
+        prompt_html: "%{client_name} dorește să îți acceseze contul. Este o aplicație terță. <strong>Dacă nu aveți încredere în ea, atunci nu ar trebui să o autorizați.</strong>"
+        review_permissions: Revizuiește permisiunile
         title: Autorizare necesară
       show:
         title: Copiați acest cod de autorizare și lipiți-l în aplicație.
@@ -69,6 +70,12 @@ ro:
       confirmations:
         revoke: Ești sigur?
       index:
+        authorized_at: Autorizat pe %{date}
+        description_html: Acestea sunt aplicațiile care vă pot accesa contul folosind API. Dacă există aplicații pe care nu le recunoașteți, sau o aplicație se comportă necorespunzător, puteți revoca accesul.
+        last_used_at: Utilizat ultima dată pe %{date}
+        never_used: Nu a fost folosit niciodată
+        scopes: Permisiuni
+        superapp: Intern
         title: Aplicațiile dvs autorizate
     errors:
       messages:
@@ -104,6 +111,31 @@ ro:
       authorized_applications:
         destroy:
           notice: Aplicație revocată.
+    grouped_scopes:
+      access:
+        read: Acces numai în citire
+        read/write: Acces de citire și scriere
+        write: Acces doar pentru scriere
+      title:
+        accounts: Conturi
+        admin/accounts: Administrarea conturilor
+        admin/all: Toate funcțiile administrative
+        admin/reports: Administrarea rapoartelor
+        bookmarks: Marcaje
+        conversations: Conversații
+        crypto: Criptare în ambele părți
+        favourites: Favorite
+        filters: Filtre
+        follow: Relații
+        follows: Urmăriri
+        lists: Liste
+        media: Atașamente media
+        mutes: Pus pe silențios
+        notifications: Notificări
+        push: Notificări push
+        reports: Rapoarte
+        search: Caută
+        statuses: Postări
     layouts:
       admin:
         nav:
@@ -112,37 +144,39 @@ ro:
       application:
         title: Este necesară autorizarea OAuth
     scopes:
-      admin:read: citește toate datele de pe server
-      admin:read:accounts: citește informații sensibile ale tuturor conturilor
-      admin:read:reports: citește informații sensibile din toate rapoartele și conturile raportate
-      admin:write: modifică toate datele de pe server
-      admin:write:accounts: efectuează acțiuni de moderare pe conturi
-      admin:write:reports: efectuează acțiuni de moderare pe rapoarte
+      "admin:read": citește toate datele de pe server
+      "admin:read:accounts": citește informații sensibile ale tuturor conturilor
+      "admin:read:reports": citește informații sensibile din toate rapoartele și conturile raportate
+      "admin:write": modifică toate datele de pe server
+      "admin:write:accounts": efectuează acțiuni de moderare pe conturi
+      "admin:write:reports": efectuează acțiuni de moderare pe rapoarte
+      crypto: utilizează criptare la ambele capete
       follow: modifică relațiile contului
       push: primește notificările tale push
       read: citește toate datele contului tău
-      read:accounts: vede informațiile privind conturile
-      read:blocks: vede blocurile tale
-      read:bookmarks: vede marcajele tale
-      read:favourites: vede favoritele tale
-      read:filters: vede filtrele tale
-      read:follows: vede urmăririle tale
-      read:lists: vede listele tale
-      read:mutes: vede ignorările tale
-      read:notifications: vede notificările tale
-      read:reports: vede raportările tale
-      read:search: caută în numele tău
-      read:statuses: vede toate stările
+      "read:accounts": vede informațiile privind conturile
+      "read:blocks": vede blocurile tale
+      "read:bookmarks": vede marcajele tale
+      "read:favourites": vede favoritele tale
+      "read:filters": vede filtrele tale
+      "read:follows": vede urmăririle tale
+      "read:lists": vede listele tale
+      "read:mutes": vede ignorările tale
+      "read:notifications": vede notificările tale
+      "read:reports": vede raportările tale
+      "read:search": caută în numele tău
+      "read:statuses": vede toate stările
       write: modifică toate datele contului tău
-      write:accounts: modifică profilul tău
-      write:blocks: blochează conturile și domeniile
-      write:bookmarks: marchează stările
-      write:favourites: favorizează stările
-      write:filters: creează filtre
-      write:follows: urmărește persoane
-      write:lists: creează liste
-      write:media: încarcă fișiere media
-      write:mutes: ignoră persoane și conversații
-      write:notifications: curăță notificările
-      write:reports: raportează alte persoane
-      write:statuses: publică stări
+      "write:accounts": modifică profilul tău
+      "write:blocks": blochează conturile și domeniile
+      "write:bookmarks": marchează stările
+      "write:conversations": dezactivează și șterge conversațiile
+      "write:favourites": favorizează stările
+      "write:filters": creează filtre
+      "write:follows": urmărește persoane
+      "write:lists": creează liste
+      "write:media": încarcă fișiere media
+      "write:mutes": ignoră persoane și conversații
+      "write:notifications": curăță notificările
+      "write:reports": raportează alte persoane
+      "write:statuses": publică stări
