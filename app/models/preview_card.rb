@@ -132,6 +132,11 @@ class PreviewCard < ApplicationRecord
     end
   end
 
+  def destroy_image!
+    image.destroy
+    save
+  end
+
   private
 
   def extract_dimensions

@@ -1,30 +1,18 @@
 # frozen_string_literal: true
 
-class Vacuum::PreviewCardsVacuum
-  TTL = 1.day.freeze
+module Vacuum
+  class PreviewCardsVacuum < Vacuum::RetentionPeriod
+    TTL = 1.day.freeze
 
-  def initialize(retention_period)
-    @retention_period = retention_period
-  end
-
-  def perform
-    vacuum_cached_images! if retention_period?
-  end
-
-  private
-
-  def vacuum_cached_images!
-    preview_cards_past_retention_period.find_each do |preview_card|
-      preview_card.image.destroy
-      preview_card.save
+    def perform
+      vacuum_cached_images! if @retention_period.present?
     end
-  end
 
-  def preview_cards_past_retention_period
-    PreviewCard.cached.where(PreviewCard.arel_table[:updated_at].lt(@retention_period.ago))
-  end
+    private
 
-  def retention_period?
-    @retention_period.present?
+    def vacuum_cached_images!
+      PreviewCard.cached.where(updated_at: ...@retention_period.ago)
+                 .find_each(&:destroy_image!)
+    end
   end
 end
