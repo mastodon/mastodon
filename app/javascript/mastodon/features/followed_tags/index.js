@@ -16,7 +16,7 @@ const messages = defineMessages({
   heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
 });
 
-const mapStateToProps = (state, props) => ({
+const mapStateToProps = state => ({
   hashtags: state.getIn(['followed_tags', 'items']),
   isLoading: state.getIn(['followed_tags', 'isLoading'], true),
 });
