@@ -46,7 +46,7 @@ export const fetchFollowedHashtags = () => (dispatch, getState) => {
 
   api(getState).get(`/api/v1/followed_tags`)
     .then(({ data }) => dispatch(fetchFollowedHashtagsSuccess(data)))
-    .catch(err => dispatch(fetchFollowedHashtagsSuccess(err)));
+    .catch(err => dispatch(fetchFollowedHashtagsFail(err)));
 };
 
 export function fetchFollowedHashtagsRequest() {
