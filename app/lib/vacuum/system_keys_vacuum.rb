@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-class Vacuum::SystemKeysVacuum
-  def perform
-    vacuum_expired_system_keys!
-  end
+module Vacuum
+  class SystemKeysVacuum
+    def perform
+      vacuum_expired_system_keys!
+    end
 
-  private
+    private
 
-  def vacuum_expired_system_keys!
-    SystemKey.expired.delete_all
+    def vacuum_expired_system_keys!
+      SystemKey.expired.in_batches(&:delete_all)
+    end
   end
 end
