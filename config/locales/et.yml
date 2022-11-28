@@ -739,8 +739,8 @@ et:
       email_settings_hint_html: Kinnituskiri saadeti e-posti aadressile %{email}. Kui see aadress pole õige, saate Te muuta seda oma konto sätetest.
       title: Seadistamine
     sign_up:
-      preamble: Kontoga selles Mastodoni serveris on võimalik jälgida ükskõik keda võrgustikus, olenemata nende konto asukohast.
-      title: Konto andmed serveris %{domain}.
+      preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erivevates Mastodoni serverites.
+      title: Loo konto serverisse  %{domain}.
     status:
       account_status: Konto olek
       confirming: Ootan e-posti kinnitust.
@@ -1275,11 +1275,12 @@ et:
         silence: Konto limiteeritud
         suspend: Konto kustutatud
     welcome:
-      edit_profile_action: Sea üles profiil
+      edit_profile_action: Seadista oma profiil
+      edit_profile_step: "Esmalt seadistage oma profiil. Kindlasti lisage pilt ning lühikirjeldus. Vaadake üle oma konto seaded. Saate ise otsustada kui nähtav on teie konto teiste jaoks, mis keeltes postitusi oma ajavoos näha soovite ning kui privaatne peaks olema teie konto seadistus.\n\nKui mõni asi arusaamatuks jääb, siis võte vaadata juhendvideot: https://youtu.be/J4ItbTOAw7Q. "
       explanation: Siin on mõned nõuanded, mis aitavad sul alustada
       final_action: Alusa postitamist
-      final_step: 'Alusta postitamist! Isegi ilma jälgijateta näevad teised Teie avalikke postitusi, näiteks kohalikul ajajoonel ning siltide kaudu. Te võite ennast tutvustada kasutades silti #tutvustus.'
-      full_handle: Teie kasutajanimi Mastodon võrgustikus (oma koduserveris võite jätta @est.social ära)
+      final_step: 'Nüüd tehke oma esimene postitus. Hea tava on uues kohas ennast tutvustada ning kindlasti kasutage selles postituses ka teemaviidet  #tutvustus. Isegi kui teil ei ole veel jälgijaid, siis teie postitusi nähevad kohalikul ajajoonel ka kõik teised serveri kasutajad.'
+      full_handle: Teie kasutajanimi Mastodon võrgustikus
       full_handle_hint: Kui jagad oma kasutajat väljaspool serverit siis kindlasti kasuta pikka nime, sest eri serverites võib olla sama kasutajanimega liikmeid.
       subject: Tere tulemast Mastodoni
       title: Tere tulemast, %{name}!
