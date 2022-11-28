@@ -29,7 +29,7 @@
 #
 
 class Status < ApplicationRecord
-  before_destroy :unlink_from_conversations
+  before_destroy :unlink_from_conversations!
 
   include Discard::Model
   include Paginable
@@ -447,6 +447,17 @@ class Status < ApplicationRecord
     update_attribute(:deleted_at, discard_time)
   end
 
+  def unlink_from_conversations!
+    return unless direct_visibility?
+
+    inbox_owners = mentioned_accounts.local
+    inbox_owners += [account] if account.local?
+
+    inbox_owners.each do |inbox_owner|
+      AccountConversation.remove_status(inbox_owner, self)
+    end
+  end
+
   private
 
   def update_status_stat!(attrs)
@@ -523,16 +534,5 @@ class Status < ApplicationRecord
     account&.decrement_count!(:statuses_count)
     reblog&.decrement_count!(:reblogs_count) if reblog?
     thread&.decrement_count!(:replies_count) if in_reply_to_id.present? && distributable?
-  end
-
-  def unlink_from_conversations
-    return unless direct_visibility?
-
-    inbox_owners = mentioned_accounts.local
-    inbox_owners += [account] if account.local?
-
-    inbox_owners.each do |inbox_owner|
-      AccountConversation.remove_status(inbox_owner, self)
-    end
   end
 end
