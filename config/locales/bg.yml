@@ -12,6 +12,7 @@ bg:
       one: Последовател
       other: Последователи
     following: Следва
+    instance_actor_flash: Този профил е виртуално действащо лице, представляващо сървъра, а не индивидуален потребител. Използва се за федериране и не бива да бъде преустановен.
     last_active: последна дейност
     link_verified_on: Собствеността върху тази връзка е проверена на %{date}
     nothing_here: Тук няма нищо!
@@ -24,12 +25,15 @@ bg:
   admin:
     account_actions:
       action: Изпълняване на действие
+      title: Извършване на модериращо действие за %{acct}
     account_moderation_notes:
       create: Оставяне на бележка
       created_msg: Бележката за модерация е създадена успешно!
+      destroyed_msg: Бележката за модерация е успешно унищожена!
     accounts:
       add_email_domain_block: Блокиране на имейл домейн
       approve: Одобряване
+      approved_msg: Успешно одобрена заявка за регистрация на %{username}
       are_you_sure: Сигурни ли сте?
       avatar: Аватар
       by_domain: Домейн
@@ -54,6 +58,7 @@ bg:
       demote: Понижаване
       destroyed_msg: Данните на %{username} вече са на опашка за незабавно изтриване
       disable: Замразяване
+      disable_sign_in_token_auth: Изключване на удостоверяването с маркер по имейл
       disable_two_factor_authentication: Изключване на 2FA
       disabled: Замразено
       display_name: Показвано име
@@ -62,6 +67,7 @@ bg:
       email: Имейл
       email_status: Състояние на имейл
       enable: Размразяване
+      enable_sign_in_token_auth: Включване на удостоверяването с маркер по имейл
       enabled: Включено
       enabled_msg: Успешно размразяване на акаунта на %{username}
       followers: Последователи
@@ -79,6 +85,9 @@ bg:
         title: Местоположение
       login_status: Състояние на вход
       media_attachments: Прикачена мултимедия
+      memorialize: Възпоминание
+      memorialized: Възпоминателен
+      memorialized_msg: Успещно превръщане на %{username} във възпоминателен профил
       moderation:
         active: Активно
         all: Всичко
@@ -95,17 +104,26 @@ bg:
       not_subscribed: Без абонамент
       pending: Изчаква преглед
       perform_full_suspension: Спиране
+      previous_strikes: Предишни провинения
+      previous_strikes_description_html:
+        one: "Този профил има \n <strong>едно</strong> провинение."
+        other: Този профил има <strong>%{count}</strong> провинения.
       promote: Повишаване
       protocol: Протокол
       public: Публично
       push_subscription_expires: PuSH абонаментът изтича
       redownload: Опресняване на профил
+      redownloaded_msg: Успешно обновяване на профила на %{username} от източника
       reject: Отхвърляне
       rejected_msg: Успешно отхвърлена заявка за регистрация на %{username}
       remove_avatar: Премахване на аватар
       remove_header: Премахване на заглавна част
+      removed_avatar_msg: Успешно премахване на изображението на аватара на %{username}
+      removed_header_msg: Успешно премахване на заглавното изображение на %{username}
       resend_confirmation:
         already_confirmed: Този потребител вече е потвърден
+        send: Повторно изпращане на имейла за потвърждение
+        success: Успешно изпращане на имейла за потвърждение!
       reset: Нулиране
       reset_password: Нулиране на паролата
       resubscribe: Абониране пак
@@ -116,6 +134,7 @@ bg:
       security_measures:
         only_password: Само парола
         password_and_2fa: Парола и двуфакторно удостоверяване
+      sensitive: Чувствителен
       sensitized: Отбелязано като деликатно съдържание
       shared_inbox_url: URL адрес на споделена входяща кутия
       show:
@@ -124,30 +143,44 @@ bg:
       silence: Ограничение
       silenced: Ограничено
       statuses: Публикации
+      strikes: Предишни провинения
       subscribe: Абониране
       suspend: Спиране
       suspended: Спряно
+      suspension_irreversible: Данните на този профил са безвъзвратно изтрити. Можете да възстановите достъпа на този профил, за да може да бъде отново използван, но данните отпреди няма да бъдат възстановени.
+      suspension_reversible_hint_html: Този профил е преустановен и данните от него ще бъдат напълно премахнати на %{date}. До тази дата профилът може да бъде възстановен без щети. Ако желаете, по-долу можете да премахнете всички данни от профила незабавно.
       title: Акаунти
       unblock_email: Отблокиране на адреса на имейла
+      unblocked_email_msg: Успешно разблокиране на имейл адреса на %{username}
       unconfirmed_email: Непотвърден имейл
+      undo_sensitized: Нeчувствителен
       undo_silenced: Отмяна на ограничението
+      undo_suspension: Връщане на достъпа
+      unsilenced_msg: Успешно премахване на ограниченията върху профила на %{username}
       unsubscribe: Отписване
+      unsuspended_msg: Успешно връщане на достъпа до профила на %{username}
       username: Потребителско име
+      view_domain: Виж резюмето на домейна
       warn: Предупреждение
       web: Уеб
       whitelisted: Позволено за федерацията
     action_logs:
       action_types:
+        approve_appeal: Одобри иска
+        approve_user: Одобряване на потребител
+        assigned_to_self_report: Назначи отчет
         change_email_user: Промяна на имейл за потребител
         change_role_user: Промяна на роля за потребител
         confirm_user: Потвърждаване на потребител
         create_account_warning: Създаване на предупреждение
         create_announcement: Създаване на оповестяване
+        create_canonical_email_block: Създаване на имейл блокировка
         create_custom_emoji: Създаване на персонализирано емоджи
         create_ip_block: Създаване на IP правило
         create_user_role: Създаване на роля
         demote_user: Понижаване на потребител
         destroy_announcement: Изтриване на оповестяване
+        destroy_canonical_email_block: Изтриване на имейл блокировка
         destroy_custom_emoji: Изтриване на персонализирано емоджи
         destroy_ip_block: Изтриване на правило за IP
         destroy_status: Изтриване на статус
@@ -158,10 +191,15 @@ bg:
         disable_user: Деактивиране на потребител
         enable_custom_emoji: Активиране на персонализирано емоджи
         enable_user: Активиране на потребител
+        memorialize_account: Запомни потребителя
         promote_user: Повишаване на потребител
         remove_avatar_user: Премахване на аватар
         reopen_report: Повторно отваряне на доклад
+        resend_user: Повторно изпращане на имейла за потвърждение
         reset_password_user: Нулиране на парола
+        silence_account: Ограничи Акаунта
+        suspend_account: Прекрати акаунта
+        unblock_email_account: Разблокирай Email адреса
         update_ip_block: Обновяване на правило за IP
         update_status: Обновяване на публикация
         update_user_role: Обновяване на роля
@@ -336,6 +374,9 @@ bg:
         manage_rules: Управление на правилата на сървъра
       appearance:
         title: Външен вид
+      discovery:
+        title: Откриване
+        trends: Актуални
       registrations:
         title: Регистрации
       title: Настройки на сървъра
@@ -380,11 +421,17 @@ bg:
       actions:
         none: предупреждение
   appearance:
+    advanced_web_interface: Разширен уеб интерфейс
+    advanced_web_interface_hint: 'Ако желаете да се възползвате от пълната ширина на своя екран, разширеният уеб интерфейс ще ви позволи да настроите най-различни колони, за да виждате едновременно множество информация: Начало, известия, федериран инфопоток, множество списъци и хаштагове.'
+    animations_and_accessibility: Анимация и достъпност
+    confirmation_dialogs: Диалогов прозорец за потвърждение
+    discovery: Откриване
     localization:
       body: Mastodon е преведено от доброволци.
       guide_link: https://ru.crowdin.com/project/mastodon
-      guide_link_text: Всеки може да допринася.
+      guide_link_text: Всеки може да участва.
     sensitive_content: Деликатно съдържание
+    toot_layout: Оформление на публикацията
   application_mailer:
     notification_preferences: Промяна на предпочитанията за имейл
     salutation: "%{name},"
@@ -397,6 +444,7 @@ bg:
   auth:
     change_password: Парола
     delete_account: Изтриване на акаунта
+    delete_account_html: Ако желаете да изтриете акаунта си, можете <a href="%{path}">да сторите това тук</a>. Ще ви бъде поискано потвърждение.
     description:
       prefix_invited_by_user: "@%{name} ви покани да се присъедините към този сървър на Mastodon!"
     didnt_get_confirmation: Не получих инструкции за потвърждение
@@ -407,6 +455,7 @@ bg:
     login: Влизане
     logout: Излизане
     migrate_account: Преместване в различен акаунт
+    migrate_account_html: Ако желаете да пренасочите този акаунт към друг, можете да <a href="%{path}">настроите това тук</a>.
     or_log_in_with: Или влизане с помощта на
     register: Регистрация
     registration_closed: "%{instance} не приема нови членуващи"
@@ -492,6 +541,9 @@ bg:
     lists: Списъци
     mutes: Заглушихте
     storage: Съхранение на мултимедия
+  featured_tags:
+    add_new: Добавяне на нов
+    hint_html: "<strong>Какво представляват актуалните хаштагове?</strong> Те се показват ясно на вашия публичен профил и позволяват на хората да преглеждат публичните ви публикации с тези хаштагове. Те са чудесен инструмент, с който може да се следи творческа работа или дългосрочни проекти."
   filters:
     contexts:
       account: Профили
@@ -588,6 +640,7 @@ bg:
       not_found: не може да се намери
     followers_count: Последователи по време на преместването
     incoming_migrations: Преместване от различен акаунт
+    incoming_migrations_html: За да се преместите от друг акаунт към този, първо трябва да<a href="%{path}">създадете псевдоним за акаунта</a>.
     past_migrations: Минали миграции
     proceed_with_move: Още последователи
     redirected_msg: Вашият акаунт сега се пренасочва към %{acct}.
@@ -619,6 +672,7 @@ bg:
       body: 'Твоята публикация беше споделена от %{name}:'
       subject: "%{name} сподели публикацията ти"
   notifications:
+    email_events: Събития за известия по имейл
     email_events_hint: 'Изберете събития, за които искате да получавате известия:'
     other_settings: Настройки за други известия
   number:
@@ -734,6 +788,7 @@ bg:
     development: Развой
     edit_profile: Редактирай профила си
     export: Експортиране на данни
+    featured_tags: Актуални хаштагове
     import: Импортиране
     import_and_export: Внос и износ
     migrate: Миграция на акаунта
@@ -860,6 +915,7 @@ bg:
     invalid_otp_token: Невалиден код
     signed_in_as: 'Влезли като:'
   verification:
+    explanation_html: 'Можете да <strong>удостоверите самоличността си като собственик на линковете в метаданните на своя профил</strong>. За целта сайтът, към който води линк от метаданните, трябва да съдържа линк обратно към вашия профил в Mastodon. Линкът от сайта <strong>трябва</strong> да съдържа атрибут <code>rel="me"</code>. Текстовото съдържание на линка няма значение. Ето пример:'
     verification: Проверка
   webauthn_credentials:
     add: Добавяне на нов ключ за сигурност

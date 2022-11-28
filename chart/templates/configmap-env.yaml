@@ -13,7 +13,7 @@ data:
   DB_PORT: {{ .Values.postgresql.postgresqlPort | default "5432" | quote }}
   {{- end }}
   DB_NAME: {{ .Values.postgresql.auth.database }}
-  DB_POOL: {{ .Values.mastodon.sidekiq.concurrency | quote }}
+  DB_POOL: {{ include "mastodon.maxDbPool" . }}
   DB_USER: {{ .Values.postgresql.auth.username }}
   DEFAULT_LOCALE: {{ .Values.mastodon.locale }}
   {{- if .Values.elasticsearch.enabled }}
@@ -22,11 +22,14 @@ data:
   ES_PORT: "9200"
   {{- end }}
   LOCAL_DOMAIN: {{ .Values.mastodon.local_domain }}
-  {{- if .Values.mastodon.web_domain }}
-  WEB_DOMAIN: {{ .Values.mastodon.web_domain }}
+  {{- with .Values.mastodon.web_domain }}
+  WEB_DOMAIN: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.singleUserMode }}
+  {{- with .Values.mastodon.singleUserMode }}
   SINGLE_USER_MODE: "true"
+  {{- end }}
+  {{- with .Values.mastodon.authorizedFetch }}
+  AUTHORIZED_FETCH: {{ . | quote }}
   {{- end }}
   # https://devcenter.heroku.com/articles/tuning-glibc-memory-behavior
   MALLOC_ARENA_MAX: "2"
@@ -40,58 +43,58 @@ data:
   S3_ENDPOINT: {{ .Values.mastodon.s3.endpoint }}
   S3_HOSTNAME: {{ .Values.mastodon.s3.hostname }}
   S3_PROTOCOL: "https"
-  {{- if .Values.mastodon.s3.region }}
-  S3_REGION: {{ .Values.mastodon.s3.region }}
+  {{- with .Values.mastodon.s3.region }}
+  S3_REGION: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.s3.alias_host }}
+  {{- with .Values.mastodon.s3.alias_host }}
   S3_ALIAS_HOST: {{ .Values.mastodon.s3.alias_host}}
   {{- end }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.auth_method }}
-  SMTP_AUTH_METHOD: {{ .Values.mastodon.smtp.auth_method }}
+  {{- with .Values.mastodon.smtp.auth_method }}
+  SMTP_AUTH_METHOD: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.ca_file }}
-  SMTP_CA_FILE: {{ .Values.mastodon.smtp.ca_file }}
+  {{- with .Values.mastodon.smtp.ca_file }}
+  SMTP_CA_FILE: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.delivery_method }}
-  SMTP_DELIVERY_METHOD: {{ .Values.mastodon.smtp.delivery_method }}
+  {{- with .Values.mastodon.smtp.delivery_method }}
+  SMTP_DELIVERY_METHOD: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.domain }}
-  SMTP_DOMAIN: {{ .Values.mastodon.smtp.domain }}
+  {{- with .Values.mastodon.smtp.domain }}
+  SMTP_DOMAIN: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.enable_starttls }}
-  SMTP_ENABLE_STARTTLS: {{ .Values.mastodon.smtp.enable_starttls | quote }}
+  {{- with .Values.mastodon.smtp.enable_starttls }}
+  SMTP_ENABLE_STARTTLS: {{ . | quote }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.enable_starttls_auto }}
-  SMTP_ENABLE_STARTTLS_AUTO: {{ .Values.mastodon.smtp.enable_starttls_auto | quote }}
+  {{- with .Values.mastodon.smtp.enable_starttls_auto }}
+  SMTP_ENABLE_STARTTLS_AUTO: {{ . | quote }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.from_address }}
-  SMTP_FROM_ADDRESS: {{ .Values.mastodon.smtp.from_address }}
+  {{- with .Values.mastodon.smtp.from_address }}
+  SMTP_FROM_ADDRESS: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.login }}
-  SMTP_LOGIN: {{ .Values.mastodon.smtp.login }}
+  {{- with .Values.mastodon.smtp.login }}
+  SMTP_LOGIN: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.openssl_verify_mode }}
-  SMTP_OPENSSL_VERIFY_MODE: {{ .Values.mastodon.smtp.openssl_verify_mode }}
+  {{- with .Values.mastodon.smtp.openssl_verify_mode }}
+  SMTP_OPENSSL_VERIFY_MODE: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.password }}
-  SMTP_PASSWORD: {{ .Values.mastodon.smtp.password }}
+  {{- with .Values.mastodon.smtp.password }}
+  SMTP_PASSWORD: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.port }}
-  SMTP_PORT: {{ .Values.mastodon.smtp.port | quote }}
+  {{- with .Values.mastodon.smtp.port }}
+  SMTP_PORT: {{ . | quote }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.reply_to }}
-  SMTP_REPLY_TO: {{ .Values.mastodon.smtp.reply_to }}
+  {{- with .Values.mastodon.smtp.reply_to }}
+  SMTP_REPLY_TO: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.server }}
-  SMTP_SERVER: {{ .Values.mastodon.smtp.server }}
+  {{- with .Values.mastodon.smtp.server }}
+  SMTP_SERVER: {{ . }}
   {{- end }}
-  {{- if .Values.mastodon.smtp.tls }}
-  SMTP_TLS: {{ .Values.mastodon.smtp.tls | quote }}
+  {{- with .Values.mastodon.smtp.tls }}
+  SMTP_TLS: {{ . | quote }}
   {{- end }}
   STREAMING_CLUSTER_NUM: {{ .Values.mastodon.streaming.workers | quote }}
-  {{- if .Values.mastodon.streaming.base_url }}
-  STREAMING_API_BASE_URL: {{ .Values.mastodon.streaming.base_url | quote }}
+  {{- with .Values.mastodon.streaming.base_url }}
+  STREAMING_API_BASE_URL: {{ . | quote }}
   {{- end }}
   {{- if .Values.externalAuth.oidc.enabled }}
   OIDC_ENABLED: {{ .Values.externalAuth.oidc.enabled | quote }}
@@ -104,53 +107,53 @@ data:
   OIDC_CLIENT_SECRET: {{ .Values.externalAuth.oidc.client_secret }}
   OIDC_REDIRECT_URI: {{ .Values.externalAuth.oidc.redirect_uri }}
   OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED: {{ .Values.externalAuth.oidc.assume_email_is_verified | quote }}
-  {{- if .Values.externalAuth.oidc.client_auth_method }}
-  OIDC_CLIENT_AUTH_METHOD: {{ .Values.externalAuth.oidc.client_auth_method }}
+  {{- with .Values.externalAuth.oidc.client_auth_method }}
+  OIDC_CLIENT_AUTH_METHOD: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.response_type }}
-  OIDC_RESPONSE_TYPE: {{ .Values.externalAuth.oidc.response_type }}
+  {{- with .Values.externalAuth.oidc.response_type }}
+  OIDC_RESPONSE_TYPE: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.response_mode }}
-  OIDC_RESPONSE_MODE: {{ .Values.externalAuth.oidc.response_mode }}
+  {{- with .Values.externalAuth.oidc.response_mode }}
+  OIDC_RESPONSE_MODE: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.display }}
-  OIDC_DISPLAY: {{ .Values.externalAuth.oidc.display }}
+  {{- with .Values.externalAuth.oidc.display }}
+  OIDC_DISPLAY: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.prompt }}
-  OIDC_PROMPT: {{ .Values.externalAuth.oidc.prompt }}
+  {{- with .Values.externalAuth.oidc.prompt }}
+  OIDC_PROMPT: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.send_nonce }}
-  OIDC_SEND_NONCE: {{ .Values.externalAuth.oidc.send_nonce }}
+  {{- with .Values.externalAuth.oidc.send_nonce }}
+  OIDC_SEND_NONCE: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.send_scope_to_token_endpoint }}
-  OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT: {{ .Values.externalAuth.oidc.send_scope_to_token_endpoint | quote }}
+  {{- with .Values.externalAuth.oidc.send_scope_to_token_endpoint }}
+  OIDC_SEND_SCOPE_TO_TOKEN_ENDPOINT: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.idp_logout_redirect_uri }}
-  OIDC_IDP_LOGOUT_REDIRECT_URI: {{ .Values.externalAuth.oidc.idp_logout_redirect_uri }}
+  {{- with .Values.externalAuth.oidc.idp_logout_redirect_uri }}
+  OIDC_IDP_LOGOUT_REDIRECT_URI: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.http_scheme }}
-  OIDC_HTTP_SCHEME: {{ .Values.externalAuth.oidc.http_scheme }}
+  {{- with .Values.externalAuth.oidc.http_scheme }}
+  OIDC_HTTP_SCHEME: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.host }}
-  OIDC_HOST: {{ .Values.externalAuth.oidc.host }}
+  {{- with .Values.externalAuth.oidc.host }}
+  OIDC_HOST: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.port }}
-  OIDC_PORT: {{ .Values.externalAuth.oidc.port }}
+  {{- with .Values.externalAuth.oidc.port }}
+  OIDC_PORT: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.jwks_uri }}
-  OIDC_JWKS_URI: {{ .Values.externalAuth.oidc.jwks_uri }}
+  {{- with .Values.externalAuth.oidc.jwks_uri }}
+  OIDC_JWKS_URI: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.auth_endpoint }}
-  OIDC_AUTH_ENDPOINT: {{ .Values.externalAuth.oidc.auth_endpoint }}
+  {{- with .Values.externalAuth.oidc.auth_endpoint }}
+  OIDC_AUTH_ENDPOINT: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.token_endpoint }}
-  OIDC_TOKEN_ENDPOINT: {{ .Values.externalAuth.oidc.token_endpoint }}
+  {{- with .Values.externalAuth.oidc.token_endpoint }}
+  OIDC_TOKEN_ENDPOINT: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.user_info_endpoint }}
-  OIDC_USER_INFO_ENDPOINT: {{ .Values.externalAuth.oidc.user_info_endpoint }}
+  {{- with .Values.externalAuth.oidc.user_info_endpoint }}
+  OIDC_USER_INFO_ENDPOINT: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.oidc.end_session_endpoint }}
-  OIDC_END_SESSION_ENDPOINT: {{ .Values.externalAuth.oidc.end_session_endpoint }}
+  {{- with .Values.externalAuth.oidc.end_session_endpoint }}
+  OIDC_END_SESSION_ENDPOINT: {{ . }}
   {{- end }}
   {{- end }}
   {{- if .Values.externalAuth.saml.enabled }}
@@ -159,54 +162,54 @@ data:
   SAML_ISSUER: {{ .Values.externalAuth.saml.issuer }}
   SAML_IDP_SSO_TARGET_URL: {{ .Values.externalAuth.saml.idp_sso_target_url }}
   SAML_IDP_CERT: {{ .Values.externalAuth.saml.idp_cert | quote }}
-  {{- if .Values.externalAuth.saml.idp_cert_fingerprint }}
-  SAML_IDP_CERT_FINGERPRINT: {{ .Values.externalAuth.saml.idp_cert_fingerprint | quote }}
+  {{- with .Values.externalAuth.saml.idp_cert_fingerprint }}
+  SAML_IDP_CERT_FINGERPRINT: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.name_identifier_format }}
-  SAML_NAME_IDENTIFIER_FORMAT: {{ .Values.externalAuth.saml.name_identifier_format }}
+  {{- with .Values.externalAuth.saml.name_identifier_format }}
+  SAML_NAME_IDENTIFIER_FORMAT: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.cert }}
-  SAML_CERT: {{ .Values.externalAuth.saml.cert | quote }}
+  {{- with .Values.externalAuth.saml.cert }}
+  SAML_CERT: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.private_key }}
-  SAML_PRIVATE_KEY: {{ .Values.externalAuth.saml.private_key | quote }}
+  {{- with .Values.externalAuth.saml.private_key }}
+  SAML_PRIVATE_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.want_assertion_signed }}
-  SAML_SECURITY_WANT_ASSERTION_SIGNED: {{ .Values.externalAuth.saml.want_assertion_signed | quote }}
+  {{- with .Values.externalAuth.saml.want_assertion_signed }}
+  SAML_SECURITY_WANT_ASSERTION_SIGNED: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.want_assertion_encrypted }}
-  SAML_SECURITY_WANT_ASSERTION_ENCRYPTED: {{ .Values.externalAuth.saml.want_assertion_encrypted | quote }}
+  {{- with .Values.externalAuth.saml.want_assertion_encrypted }}
+  SAML_SECURITY_WANT_ASSERTION_ENCRYPTED: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.assume_email_is_verified }}
-  SAML_SECURITY_ASSUME_EMAIL_IS_VERIFIED: {{ .Values.externalAuth.saml.assume_email_is_verified | quote }}
+  {{- with .Values.externalAuth.saml.assume_email_is_verified }}
+  SAML_SECURITY_ASSUME_EMAIL_IS_VERIFIED: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.uid_attribute }}
-  SAML_UID_ATTRIBUTE: {{ .Values.externalAuth.saml.uid_attribute }}
+  {{- with .Values.externalAuth.saml.uid_attribute }}
+  SAML_UID_ATTRIBUTE: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.attributes_statements.uid }}
-  SAML_ATTRIBUTES_STATEMENTS_UID: {{ .Values.externalAuth.saml.attributes_statements.uid | quote }}
+  {{- with .Values.externalAuth.saml.attributes_statements.uid }}
+  SAML_ATTRIBUTES_STATEMENTS_UID: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.attributes_statements.email }}
-  SAML_ATTRIBUTES_STATEMENTS_EMAIL: {{ .Values.externalAuth.saml.attributes_statements.email | quote }}
+  {{- with .Values.externalAuth.saml.attributes_statements.email }}
+  SAML_ATTRIBUTES_STATEMENTS_EMAIL: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.attributes_statements.full_name }}
-  SAML_ATTRIBUTES_STATEMENTS_FULL_NAME: {{ .Values.externalAuth.saml.attributes_statements.full_name | quote }}
+  {{- with .Values.externalAuth.saml.attributes_statements.full_name }}
+  SAML_ATTRIBUTES_STATEMENTS_FULL_NAME: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.attributes_statements.first_name }}
-  SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME: {{ .Values.externalAuth.saml.attributes_statements.first_name | quote }}
+  {{- with .Values.externalAuth.saml.attributes_statements.first_name }}
+  SAML_ATTRIBUTES_STATEMENTS_FIRST_NAME: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.attributes_statements.last_name }}
-  SAML_ATTRIBUTES_STATEMENTS_LAST_NAME: {{ .Values.externalAuth.saml.attributes_statements.last_name | quote }}
+  {{- with .Values.externalAuth.saml.attributes_statements.last_name }}
+  SAML_ATTRIBUTES_STATEMENTS_LAST_NAME: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.attributes_statements.verified }}
-  SAML_ATTRIBUTES_STATEMENTS_VERIFIED: {{ .Values.externalAuth.saml.attributes_statements.verified | quote }}
+  {{- with .Values.externalAuth.saml.attributes_statements.verified }}
+  SAML_ATTRIBUTES_STATEMENTS_VERIFIED: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.saml.attributes_statements.verified_email }}
-  SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL: {{ .Values.externalAuth.saml.attributes_statements.verified_email | quote }}
+  {{- with .Values.externalAuth.saml.attributes_statements.verified_email }}
+  SAML_ATTRIBUTES_STATEMENTS_VERIFIED_EMAIL: {{ . | quote }}
   {{- end }}
   {{- end }}
-  {{- if .Values.externalAuth.oauth_global.oauth_redirect_at_sign_in }}
-  OAUTH_REDIRECT_AT_SIGN_IN: {{ .Values.externalAuth.oauth_global.oauth_redirect_at_sign_in | quote }}
+  {{- with .Values.externalAuth.oauth_global.omniauth_only }}
+  OMNIAUTH_ONLY: {{ . | quote }}
   {{- end }}
   {{- if .Values.externalAuth.cas.enabled }}
   CAS_ENABLED: {{ .Values.externalAuth.cas.enabled | quote }}
@@ -214,68 +217,68 @@ data:
   CAS_HOST: {{ .Values.externalAuth.cas.host }}
   CAS_PORT: {{ .Values.externalAuth.cas.port }}
   CAS_SSL: {{ .Values.externalAuth.cas.ssl | quote }}
-  {{- if .Values.externalAuth.cas.validate_url }}
-  CAS_VALIDATE_URL: {{ .Values.externalAuth.cas.validate_url }}
+  {{- with .Values.externalAuth.cas.validate_url }}
+  CAS_VALIDATE_URL: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.callback_url }}
-  CAS_CALLBACK_URL: {{ .Values.externalAuth.cas.callback_url }}
+  {{- with .Values.externalAuth.cas.callback_url }}
+  CAS_CALLBACK_URL: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.logout_url }}
-  CAS_LOGOUT_URL: {{ .Values.externalAuth.cas.logout_url }}
+  {{- with .Values.externalAuth.cas.logout_url }}
+  CAS_LOGOUT_URL: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.login_url }}
-  CAS_LOGIN_URL: {{ .Values.externalAuth.cas.login_url }}
+  {{- with .Values.externalAuth.cas.login_url }}
+  CAS_LOGIN_URL: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.uid_field }}
-  CAS_UID_FIELD: {{ .Values.externalAuth.cas.uid_field | quote }}
+  {{- with .Values.externalAuth.cas.uid_field }}
+  CAS_UID_FIELD: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.ca_path }}
-  CAS_CA_PATH: {{ .Values.externalAuth.cas.ca_path }}
+  {{- with .Values.externalAuth.cas.ca_path }}
+  CAS_CA_PATH: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.disable_ssl_verification }}
-  CAS_DISABLE_SSL_VERIFICATION: {{ .Values.externalAuth.cas.disable_ssl_verification | quote }}
+  {{- with .Values.externalAuth.cas.disable_ssl_verification }}
+  CAS_DISABLE_SSL_VERIFICATION: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.assume_email_is_verified }}
-  CAS_SECURITY_ASSUME_EMAIL_IS_VERIFIED: {{ .Values.externalAuth.cas.assume_email_is_verified | quote }}
+  {{- with .Values.externalAuth.cas.assume_email_is_verified }}
+  CAS_SECURITY_ASSUME_EMAIL_IS_VERIFIED: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.uid }}
-  CAS_UID_KEY: {{ .Values.externalAuth.cas.keys.uid | quote }}
+  {{- with .Values.externalAuth.cas.keys.uid }}
+  CAS_UID_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.name }}
-  CAS_NAME_KEY: {{ .Values.externalAuth.cas.keys.name | quote }}
+  {{- with .Values.externalAuth.cas.keys.name }}
+  CAS_NAME_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.email }}
-  CAS_EMAIL_KEY: {{ .Values.externalAuth.cas.keys.email | quote }}
+  {{- with .Values.externalAuth.cas.keys.email }}
+  CAS_EMAIL_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.nickname }}
-  CAS_NICKNAME_KEY: {{ .Values.externalAuth.cas.keys.nickname | quote }}
+  {{- with .Values.externalAuth.cas.keys.nickname }}
+  CAS_NICKNAME_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.first_name }}
-  CAS_FIRST_NAME_KEY: {{ .Values.externalAuth.cas.keys.first_name | quote }}
+  {{- with .Values.externalAuth.cas.keys.first_name }}
+  CAS_FIRST_NAME_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.last_name }}
-  CAS_LAST_NAME_KEY: {{ .Values.externalAuth.cas.keys.last_name | quote }}
+  {{- with .Values.externalAuth.cas.keys.last_name }}
+  CAS_LAST_NAME_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.location }}
-  CAS_LOCATION_KEY: {{ .Values.externalAuth.cas.keys.location | quote }}
+  {{- with .Values.externalAuth.cas.keys.location }}
+  CAS_LOCATION_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.image }}
-  CAS_IMAGE_KEY: {{ .Values.externalAuth.cas.keys.image | quote }}
+  {{- with .Values.externalAuth.cas.keys.image }}
+  CAS_IMAGE_KEY: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.cas.keys.phone }}
-  CAS_PHONE_KEY: {{ .Values.externalAuth.cas.keys.phone | quote }}
+  {{- with .Values.externalAuth.cas.keys.phone }}
+  CAS_PHONE_KEY: {{ . | quote }}
   {{- end }}
   {{- end }}
-  {{- if .Values.externalAuth.pam.enabled }}
-  PAM_ENABLED: {{ .Values.externalAuth.pam.enabled | quote }}
-  {{- if .Values.externalAuth.pam.email_domain }}
-  PAM_EMAIL_DOMAIN: {{ .Values.externalAuth.pam.email_domain }}
+  {{- with .Values.externalAuth.pam.enabled }}
+  PAM_ENABLED: {{ . | quote }}
+  {{- with .Values.externalAuth.pam.email_domain }}
+  PAM_EMAIL_DOMAIN: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.pam.default_service }}
-  PAM_DEFAULT_SERVICE: {{ .Values.externalAuth.pam.default_service }}
+  {{- with .Values.externalAuth.pam.default_service }}
+  PAM_DEFAULT_SERVICE: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.pam.controlled_service }}
-  PAM_CONTROLLED_SERVICE: {{ .Values.externalAuth.pam.controlled_service }}
+  {{- with .Values.externalAuth.pam.controlled_service }}
+  PAM_CONTROLLED_SERVICE: {{ . }}
   {{- end }}
   {{- end }}
   {{- if .Values.externalAuth.ldap.enabled }}
@@ -283,32 +286,32 @@ data:
   LDAP_HOST: {{ .Values.externalAuth.ldap.host }}
   LDAP_PORT: {{ .Values.externalAuth.ldap.port }}
   LDAP_METHOD: {{ .Values.externalAuth.ldap.method }}
-  {{- if .Values.externalAuth.ldap.base }}
-  LDAP_BASE: {{ .Values.externalAuth.ldap.base }}
+  {{- with .Values.externalAuth.ldap.base }}
+  LDAP_BASE: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.bind_on }}
-  LDAP_BIND_ON: {{ .Values.externalAuth.ldap.bind_on }}
+  {{- with .Values.externalAuth.ldap.bind_on }}
+  LDAP_BIND_ON: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.password }}
-  LDAP_PASSWORD: {{ .Values.externalAuth.ldap.password }}
+  {{- with .Values.externalAuth.ldap.password }}
+  LDAP_PASSWORD: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.uid }}
-  LDAP_UID: {{ .Values.externalAuth.ldap.uid }}
+  {{- with .Values.externalAuth.ldap.uid }}
+  LDAP_UID: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.mail }}
-  LDAP_MAIL: {{ .Values.externalAuth.ldap.mail }}
+  {{- with .Values.externalAuth.ldap.mail }}
+  LDAP_MAIL: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.search_filter }}
-  LDAP_SEARCH_FILTER: {{ .Values.externalAuth.ldap.search_filter }}
+  {{- with .Values.externalAuth.ldap.search_filter }}
+  LDAP_SEARCH_FILTER: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.uid_conversion.enabled }}
-  LDAP_UID_CONVERSION_ENABLED: {{ .Values.externalAuth.ldap.uid_conversion.enabled | quote }}
+  {{- with .Values.externalAuth.ldap.uid_conversion.enabled }}
+  LDAP_UID_CONVERSION_ENABLED: {{ . | quote }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.uid_conversion.search }}
-  LDAP_UID_CONVERSION_SEARCH: {{ .Values.externalAuth.ldap.uid_conversion.search }}
+  {{- with .Values.externalAuth.ldap.uid_conversion.search }}
+  LDAP_UID_CONVERSION_SEARCH: {{ . }}
   {{- end }}
-  {{- if .Values.externalAuth.ldap.uid_conversion.replace }}
-  LDAP_UID_CONVERSION_REPLACE: {{ .Values.externalAuth.ldap.uid_conversion.replace }}
+  {{- with .Values.externalAuth.ldap.uid_conversion.replace }}
+  LDAP_UID_CONVERSION_REPLACE: {{ . }}
   {{- end }}
   {{- end }}
   {{- with .Values.mastodon.metrics.statsd.address }}

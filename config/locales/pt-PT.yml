@@ -373,6 +373,8 @@ pt-PT:
       add_new: Colocar domínio na lista branca
       created_msg: Domínio foi adicionado à lista branca com sucesso
       destroyed_msg: Domínio foi removido da lista branca
+      export: Exportar
+      import: Importar
       undo: Remover da lista branca
     domain_blocks:
       add_new: Adicionar novo
@@ -382,13 +384,19 @@ pt-PT:
       edit: Editar bloqueio de domínio
       existing_domain_block: Já impôs limites mais rigorosos a %{name}.
       existing_domain_block_html: Você já impôs limites mais restritivos a %{name}, é necessário primeiro <a href="%{unblock_url}">desbloqueá-lo</a>.
+      export: Exportar
+      import: Importar
       new:
         create: Criar bloqueio
         hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
         severity:
+          desc_html: "<strong>Limitar</strong> tornará as mensagens das contas neste domínio invisíveis a qualquer pessoa que não as esteja a seguir. <strong>Suspender</strong> removerá do seu servidor todo o conteúdo, media, e dados de perfil das contas deste domínio. Utilize <strong>Nenhum</strong> se apenas quiser rejeitar ficheiros media."
           noop: Nenhum
+          silence: Limitar
           suspend: Suspender
         title: Novo bloqueio de domínio
+      no_domain_block_selected: Nenhum bloqueio de domínio foi alterado pois nenhum foi selecionado
+      not_permitted: Não está autorizado a executar esta ação
       obfuscate: Ofuscar nome de domínio
       obfuscate_hint: Ofuscar parcialmente o nome de domínio na lista, se estiverem habilitadas as limitações na publicação da lista de domínios
       private_comment: Comentário privado
@@ -420,6 +428,20 @@ pt-PT:
       resolved_dns_records_hint_html: O nome de domínio resolve para os seguintes domínios MX, que são, em última análise, responsáveis por aceitar o e-mail. Bloquear um domínio MX irá bloquear as inscrições de qualquer endereço de e-mail que use o mesmo domínio MX, mesmo quando o nome de domínio visível é diferente. <strong>Cuidado para não bloquear os principais provedores de e-mail.</strong>
       resolved_through_html: Resolvido através de %{domain}
       title: Domínios de e-mail bloqueados
+    export_domain_allows:
+      new:
+        title: Importar permissões de domínio
+      no_file: Nenhum ficheiro selecionado
+    export_domain_blocks:
+      import:
+        description_html: Está prestes a importar uma lista de bloqueios de domínio. Por favor, reveja esta lista com muito cuidado, especialmente se não tiver sido o autor desta lista.
+        existing_relationships_warning: Relações de seguimento existentes
+        private_comment_description_html: 'Para o ajudar a rastrear a origem dos bloqueios importados, estes serão criados com o seguinte comentário privado: <q>%{comment}</q>'
+        private_comment_template: Importado de %{source} em %{date}
+        title: Importar bloqueios de domínio
+      new:
+        title: Importar bloqueios de domínio
+      no_file: Nenhum ficheiro selecionado
     follow_recommendations:
       description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
       language: Para o idioma
@@ -912,6 +934,7 @@ pt-PT:
     warning: Cuidado com estes dados. Não partilhar com ninguém!
     your_token: O teu token de acesso
   auth:
+    apply_for_account: Solicitar uma conta
     change_password: Palavra-passe
     delete_account: Eliminar conta
     delete_account_html: Se deseja eliminar a sua conta, pode <a href="%{path}">continuar aqui</a>. Uma confirmação será solicitada.
@@ -1156,6 +1179,7 @@ pt-PT:
     invalid_markup: 'contém marcação HTML inválida: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Arquivo CSV inválido. Erro: %{error}'
       over_rows_processing_limit: contém mais de %{count} linhas
     modes:
       merge: Juntar

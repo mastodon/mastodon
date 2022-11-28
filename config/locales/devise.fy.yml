@@ -22,5 +22,13 @@ fy:
         action_with_app: Befêstigje en nei %{app} tebekgean
         explanation: Do hast in account op %{host} oanmakke en mei ien klik kinsto dizze aktivearje. Wannear’tsto dit account net oanmakke hast, meisto dit e-mailberjocht negearje.
         explanation_when_pending: Do fregest mei dit e-mailadres in útnûging oan foar %{host}. Neidatsto dyn e-mailadres befêstige hast, beoardielje wy dyn oanfraach. Do kinst oant dan noch net oanmelde. Wannear’t dyn oanfraach ôfwêzen wurdt, wurde dyn gegevens fuortsmiten en hoechsto dêrnei fierder neat mear te dwaan. Wannear’tsto dit net wiest, kinsto dit e-mailberjocht negearje.
+        extra_html: |-
+          128 / 5.000
+          Kontrolearje ek <a href="%{terms_path}">de regels fan de server</a> en <a href="%{policy_path}">ús tsjinstbetingsten</a>.
+        subject: 'Mastodon: Befêstiging ynstruksjes foar %{instance}'
+        title: E-mailadres neigean
+      email_changed:
+        explanation: 'It e-mailadres foar jo akkount wurdt feroare yn:'
+        extra: As jo ​​jo mailadres net wizige hawwe, is it wierskynlik dat immen tagong hat ta jo akkount. Wizigje asjebleaft jo wachtwurd daliks of nim kontakt op mei de server-admin as jo útsletten binne fan jo akkount.
     passwords:
       updated_not_active: Jo wachtwurd is mei sukses feroare.
