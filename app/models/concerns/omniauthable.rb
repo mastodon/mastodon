@@ -31,6 +31,27 @@ module Omniauthable
       user   = signed_in_resource || identity.user
       user ||= create_for_oauth(auth)
 
+      # get the roles claim from the extra info for this client id, if it is provided
+      # mastodon only supports a single role, so check in order of priority.
+      oidc_config = Devise.omniauth_configs[auth.provider.to_sym]
+      oidc_client_id = oidc_config.options[:client_options][:identifier]
+
+      roles = auth.dig 'extra', 'raw_info', 'resource_access', oidc_client_id, 'roles'
+      role_id = nil
+
+      if roles&.include? 'owner'
+        role_id = UserRole.find_by(name: 'Owner')&.id
+      elsif roles&.include? 'admin'
+        role_id = UserRole.find_by(name: 'Admin')&.id
+      elsif roles&.include? 'moderator'
+        role_id = UserRole.find_by(name: 'Moderator')&.id
+      end
+
+      if !signed_in_resource && user.role_id != role_id
+        user.role_id = role_id
+        user.save!
+      end
+
       if identity.user.nil?
         identity.user = user
         identity.save!
