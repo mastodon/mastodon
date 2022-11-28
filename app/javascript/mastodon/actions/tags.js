@@ -55,11 +55,10 @@ export function fetchFollowedHashtagsRequest() {
   };
 };
 
-export function fetchFollowedHashtagsSuccess(hashtags, next) {
+export function fetchFollowedHashtagsSuccess(followed_tags) {
   return {
     type: FOLLOWED_HASHTAGS_FETCH_SUCCESS,
-    hashtags,
-    next,
+    followed_tags,
   };
 };
 

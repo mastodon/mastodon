@@ -11,15 +11,14 @@ import Column from 'mastodon/features/ui/components/column';
 import { Helmet } from 'react-helmet';
 import Hashtag from 'mastodon/components/hashtag';
 import { fetchFollowedHashtags } from 'mastodon/actions/tags';
-import { List } from 'immutable';
 
 const messages = defineMessages({
-  heading: { id: 'followed_hashtags', defaultMessage: 'Followed hashtags' },
+  heading: { id: 'followed_tags', defaultMessage: 'Followed hashtags' },
 });
 
 const mapStateToProps = (state, props) => ({
-  // TODO?
-  tagIds: List(),
+  hashtags: state.getIn(['followed_tags', 'items']),
+  isLoading: state.getIn(['followed_tags', 'isLoading'], true),
 });
 
 export default @connect(mapStateToProps)
@@ -29,8 +28,9 @@ class FollowedTags extends ImmutablePureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    tagIds: ImmutablePropTypes.list,
     intl: PropTypes.object.isRequired,
+    hashtags: ImmutablePropTypes.list,
+    isLoading: PropTypes.bool,
   };
 
   componentWillMount () {
@@ -38,9 +38,9 @@ class FollowedTags extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, tagIds } = this.props;
+    const { intl, hashtags, isLoading } = this.props;
 
-    if (!tagIds) {
+    if (isLoading) {
       return (
         <Column>
           <LoadingIndicator />
@@ -62,8 +62,8 @@ class FollowedTags extends ImmutablePureComponent {
           scrollKey='followed_tags'
           emptyMessage={emptyMessage}
         >
-          {tagIds.map(id =>
-            <Hashtag key={id} id={id} />,
+          {hashtags.map(hashtag =>
+            <Hashtag key={hashtag.get('name')} hashtag={hashtag} withGraph={false} />,
           )}
         </ScrollableList>
 
