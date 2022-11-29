@@ -20,7 +20,7 @@ import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrde
 import compareId from '../compare_id';
 
 // Turn on slow mode when scrolled down and have at least this many "items"
-const TIMELINE_SCROLLED_DOWN_SLOW_MODE_ITEMS = 50;
+const TIMELINE_SCROLLED_DOWN_SLOW_MODE_ITEMS = 120;
 
 // Cap pendingItems at 30, check once we're at >= 50
 const TIMELINE_PENDING_ITEMS_CHECK = 50;
