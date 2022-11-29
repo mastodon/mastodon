@@ -226,6 +226,8 @@ et:
       actions:
         approve_appeal_html: "%{name} kiitis heaks modereerimise otsuse vaidlustuse %{target} poolt"
         approve_user_html: "%{name} kiitis heaks registreerimise %{target} poolt"
+        change_email_user_html: "%{name} muutis %{target} e-postiaadressi"
+        confirm_user_html: "%{name} on %{target} e-postiaadressi kinnitanud"
         create_canonical_email_block_html: "%{name} keelas e-postiaadressi räsiga %{target}"
         create_domain_block_html: "%{name} keelas domeeni %{target}"
         create_email_domain_block_html: "%{name} keelas e-posti domeeni %{target}"
@@ -242,6 +244,7 @@ et:
         enable_sign_in_token_auth_user_html: "%{name} lubas kasutajal %{target} e-posti võtmega autentida"
         memorialize_account_html: "%{name} märkis %{target} igaveselt lahkunuks"
         promote_user_html: "%{name} ülendas kasutajat %{target}"
+        resend_user_html: "%{name} saatis %{target} e-postiaadressi kinnituskirja"
         reset_password_user_html: "%{name} lähtestas %{target} salasõna"
         sensitive_account_html: "%{name} märkis %{target} meedia kui tundlik sisu"
         suspend_account_html: "%{name} kustutas %{target} konto"
@@ -950,6 +953,7 @@ et:
     authentication_methods:
       otp: kahe-etapise autentimise rakendus
       password: salasõna
+      sign_in_token: e-posti turvakood
     description_html: Kui paistab tundmatauid tegevusi, tuleks vahetada salasõna ja aktiveerida kahe-etapine autentimine.
   media_attachments:
     validations:
