@@ -234,6 +234,7 @@ et:
         create_ip_block_html: "%{name} lõi IP-aadressile %{target} reegli"
         demote_user_html: "%{name} alandas kasutajat %{target}"
         destroy_canonical_email_block_html: "%{name} lubas e-postiaaadressi räsiga %{target}"
+        destroy_custom_emoji_html: "%{name} kustutas emotikoni %{target}"
         destroy_domain_block_html: "%{name} lubas domeeni %{target}"
         destroy_email_domain_block_html: "%{name} lubas e-posti domeeni %{target}"
         destroy_ip_block_html: "%{name} kustutas IP-aadressi %{target} reegli"
@@ -311,6 +312,7 @@ et:
     dashboard:
       active_users: aktiivsed kasutajad
       interactions: interaktsioonid
+      media_storage: Meedia hoidla
       new_users: uued kasutajad
       pending_appeals_html:
         one: "<strong>%{count}</strong> ootel vaidlustus"
@@ -319,6 +321,7 @@ et:
         one: "<strong>%{count}</strong> ootel silt"
         other: "<strong>%{count}</strong> ootel silti"
       software: Tarkvara
+      sources: Liitumise allikad
       space: Kettakasutus
       title: Töölaud
       website: Veebileht
@@ -408,9 +411,12 @@ et:
       by_domain: Domeen
       content_policies:
         policies:
+          reject_media: Meedia hülgamine
           suspend: Kustuta
       dashboard:
         instance_languages_dimension: Top keeled
+        instance_media_attachments_measure: talletatud meedialisandid
+        instance_statuses_measure: salvestatud postitused
       delivery:
         all: Kõik
         unavailable: Pole saadaval
@@ -493,6 +499,7 @@ et:
       comment:
         none: Pole
       created_at: Teavitatud
+      delete_and_resolve: Kustutatud postitused
       forwarded: Edastatud
       mark_as_resolved: Märgi lahendatuks
       mark_as_sensitive: Märgi kui tundlik sisu
@@ -613,11 +620,14 @@ et:
       metadata: Metaandmed
       no_status_selected: Mitte ühtegi staatust muudeti sest midagi polnud valitud
       open: Ava postitus
+      original_status: Algne postitus
+      status_changed: Muudetud postitus
       title: Konto staatused
       visibility: Nähtavus
       with_media: Meediaga
     strikes:
       actions:
+        delete_statuses: "%{name} kustutas %{target} postitused"
         mark_statuses_as_sensitive: "%{name} märkis %{target} postitused tundlikena"
         sensitive: "%{name} märkis %{target} konto kui tundlik sisu"
         suspend: "%{name} kustutas %{target} konto"
@@ -637,6 +647,10 @@ et:
       allow: Luba
       approved: Kinnitatud
       pending_review: Ootab ülevaatust
+      statuses:
+        allow: Luba postitada
+        disallow: Ära luba postitada
+        title: Trendikad postitused
       tags:
         description_html: Need sildid ilmuvad praegu paljudes postitutes mida su server näeb. See võib aidata su kasutajatel leida seda millest kõige rohkem parajasti räägitakse. Ühtegi silti ei näidata avalikult, enne nende heaks kiitmist.
         title: Trendikad sildid
@@ -654,15 +668,20 @@ et:
       enable: Luba
       enabled: Aktiivne
       events: Sündmused
+      secret: Salavõti allkirjastamiseks
       status: Staatus
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: kustutada postitused
+        disable: kustutada konto
         mark_statuses_as_sensitive: et märkida postitused kui tundlik sisu
         none: hoiatus
         sensitive: et märkida konto kui tundlik sisu
+        silence: piirata konto
         suspend: et konto kustutada
       body: "%{target} vaidlustab %{action_taken_by} modereerimisotsuse kuupäevaga %{date}: %{type}. Põhjendus:"
+      next_steps: Võid modereeringu tagasi pööramiseks vaidlustuse rahuldada, või ka mitte.
     new_pending_account:
       body: Uue konto üksikasjad on allpool. Te saate vastu võtta või tagasi lükata seda taotlust.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
@@ -671,6 +690,8 @@ et:
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
       subject: 'Uus teavitus %{instance}-ile (#%{id})'
     new_trends:
+      new_trending_statuses:
+        title: Trendikad postitused
       new_trending_tags:
         no_approved_tags: Hetkel ei ole ühtegi heaks kiidetud populaarset silti.
         requirements: 'Need on siltide kandidaadid mille hulgast ükskõik milline võib järjekorras mööda jõuda #%{rank} kohal olevast heaks kiidetud sildist. See on hetkel #%{lowest_tag_name} mille seis on %{lowest_tag_score}.'
@@ -821,8 +842,10 @@ et:
       description_html: See on käesoleva konto hoiatuste ja tegevuste ajalugu, mis on %{instance} haldajate poolt ette võetud.
       reject_appeal: Lükka vaidlustus tagasi
       status: 'Postitus #%{id}'
+      status_removed: Postitus on süsteemist juba eemaldatud
       title: "%{action} kuupäevaga %{date}"
       title_actions:
+        delete_statuses: Postituste eemaldamine
         mark_statuses_as_sensitive: Postituste tundlikena märkimine
         none: Hoiatus
         sensitive: Konto tundlikuna märkimine
@@ -878,15 +901,25 @@ et:
       thread: Vestlused
     edit:
       keywords: Märksõnad
+      statuses: Üksikud postitused
       title: Muuda filtrit
     errors:
       invalid_context: Puudulik või vale kontekst
     index:
       delete: Kustuta
       empty: Teil pole filtreid.
+      statuses:
+        one: "%{count} postitus"
+        other: "%{count} postitust"
+      statuses_long:
+        one: "%{count} postitus peidetud"
+        other: "%{count} postitust peidetud"
       title: Filtrid
     new:
       title: Lisa uus filter
+    statuses:
+      index:
+        title: Filtreeritud postitused
   footer:
     trending_now: Praegu trendikad
   generic:
@@ -1023,6 +1056,10 @@ et:
       body: '%{name} jagas postitust:'
       subject: "%{name} jagas postitust"
       title: Uus jagamine
+    status:
+      subject: "%{name} postitas äsja"
+    update:
+      subject: "%{name} muutis postitust"
   notifications:
     email_events: E-posti teadete sündmused
     email_events_hint: 'Valige sündmused, millest soovite teavitusi:'
@@ -1197,6 +1234,8 @@ et:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
     exceptions: Erandid
+    keep_media: Meedialisanditega postituste säilitamine
+    keep_media_hint: Meedialisanditega postitusi ei kustutata
     keep_pinned: Säilita kinnitatud postitused
     keep_pinned_hint: Ei kustuta ühtegi kinnitatud postitust
     min_age:
@@ -1243,6 +1282,8 @@ et:
     recovery_instructions_html: Kui telefon peaks kaotsi minema, on võimalik kontole sisenemisel kasutada ühte järgnevatest taastekoodidest. <strong>Hoia taastekoode turvaliselt</strong>. Näiteks võib neid prindituna hoida koos teiste tähtsate dokumentidega.
     webauthn: Turvavõtmed
   user_mailer:
+    appeal_approved:
+      action: Oma kontole
     backup_ready:
       explanation: Te taotlesite varukoopia oma Mastodoni kontost. See on nüüd valmis allalaadimiseks!
       subject: Teie arhiiv on allalaadimiseks valmis
@@ -1264,6 +1305,7 @@ et:
         sensitive: Praegusest alates saab kogu Su üleslaetav meedia tundliku sisu märke ja selle eelvaadet ei kuvata enne hoiatust.
         suspend: Konto kasutamine pole enam võimalik ja profiil ja muud andmed pole enam kättesaadavad. Sisenemine on võimalik andmetest varukoopia saamiseks kuni nende lõpliku kustutamiseni 30 päeva pärast, ent säiltame mõned põhiandmed kustutamisest mööda hiilimise vältimiseks.
       reason: 'Põhjus:'
+      statuses: 'Tsiteeritud postitused:'
       subject:
         disable: Teie konto %{acct} on lukustatud
         mark_statuses_as_sensitive: Konto %{acct} postitused on märgitud kui tundlik sisu
@@ -1272,6 +1314,7 @@ et:
         silence: Teie kontole %{acct} on kehtestatud limiidid
         suspend: Teie konto %{acct} on kustutatud
       title:
+        delete_statuses: Postitused eemaldatud
         disable: Konto lukustatud
         mark_statuses_as_sensitive: Postitused märgitud kui tundlik sisu
         none: Hoiatus
