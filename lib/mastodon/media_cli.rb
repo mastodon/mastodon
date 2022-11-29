@@ -22,7 +22,7 @@ module Mastodon
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
       Removes locally cached copies of media attachments (and optionally profile
-      headers and avatars) from other servers. By default, only media attachements
+      headers and avatars) from other servers. By default, only media attachments
       are removed.
       The --days option specifies how old media attachments have to be before
       they are removed. In case of avatars and headers, it specifies how old

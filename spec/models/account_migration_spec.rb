@@ -25,7 +25,7 @@ RSpec.describe AccountMigration, type: :model do
       end
     end
 
-    context 'with unresolveable account' do
+    context 'with unresolvable account' do
       let(:target_acct) { 'target@remote' }
 
       before do

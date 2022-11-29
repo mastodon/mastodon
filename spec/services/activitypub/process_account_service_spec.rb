@@ -183,7 +183,7 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
           '@context': ['https://www.w3.org/ns/activitystreams'],
           id: "https://foo.test/users/#{i}/featured",
           type: 'OrderedCollection',
-          totelItems: 1,
+          totalItems: 1,
           orderedItems: [status_json],
         }.with_indifferent_access
         webfinger = {
