@@ -42,10 +42,10 @@ th:
         submit: เปลี่ยนอีเมล
         title: เปลี่ยนอีเมลสำหรับ %{username}
       change_role:
-        changed_msg: เปลี่ยนบทบาทสำเร็จ!
-        label: เปลี่ยนบทบาท
-        no_role: ไม่มีบทบาท
-        title: เปลี่ยนบทบาทสำหรับ %{username}
+        changed_msg: เปลี่ยนหน้าที่สำเร็จ!
+        label: เปลี่ยนหน้าที่
+        no_role: ไม่มีหน้าที่
+        title: เปลี่ยนหน้าที่สำหรับ %{username}
       confirm: ยืนยัน
       confirmed: ยืนยันแล้ว
       confirming: กำลังยืนยัน
@@ -53,7 +53,7 @@ th:
       delete: ลบข้อมูล
       deleted: ลบแล้ว
       demote: ลดขั้น
-      destroyed_msg: "ตอนนี้จัดคิวเพื่อลบข้อมูลของ %{username} ในเร็ว ๆ นี้แล้ว"
+      destroyed_msg: "ข้อมูลของ %{username} อยู่ในคิวที่จะถูกลบเร็วๆนี้"
       disable: อายัด
       disable_sign_in_token_auth: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมล
       disable_two_factor_authentication: ปิดใช้งาน 2FA
@@ -97,7 +97,7 @@ th:
       most_recent_ip: IP ล่าสุด
       no_account_selected: ไม่มีการเปลี่ยนแปลงบัญชีเนื่องจากไม่มีการเลือก
       no_limits_imposed: ไม่มีการกำหนดขีดจำกัด
-      no_role_assigned: ไม่มีการกำหนดบทบาท
+      no_role_assigned: ไม่มีการกำหนดหน้าที่
       not_subscribed: ไม่ได้บอกรับ
       pending: การตรวจทานที่รอดำเนินการ
       perform_full_suspension: ระงับ
@@ -123,7 +123,7 @@ th:
       reset: รีเซ็ต
       reset_password: ตั้งรหัสผ่านใหม่
       resubscribe: บอกรับใหม่
-      role: บทบาท
+      role: หน้าที่
       search: ค้นหา
       search_same_email_domain: ผู้ใช้อื่น ๆ ที่มีโดเมนอีเมลเดียวกัน
       search_same_ip: ผู้ใช้อื่น ๆ ที่มี IP เดียวกัน
@@ -134,8 +134,8 @@ th:
       sensitized: ทำเครื่องหมายว่าละเอียดอ่อนแล้ว
       shared_inbox_url: URL กล่องขาเข้าที่แบ่งปัน
       show:
-        created_reports: รายงานที่สร้าง
-        targeted_reports: รายงานโดยผู้อื่น
+        created_reports: รีพอร์ทที่สร้าง
+        targeted_reports: รีพอร์ทโดยผู้อื่น
       silence: จำกัด
       silenced: จำกัดอยู่
       statuses: โพสต์
@@ -164,9 +164,9 @@ th:
       action_types:
         approve_appeal: อนุมัติการอุทธรณ์
         approve_user: อนุมัติผู้ใช้
-        assigned_to_self_report: มอบหมายรายงาน
+        assigned_to_self_report: มอบหมายรีพอร์ท
         change_email_user: เปลี่ยนอีเมลสำหรับผู้ใช้
-        change_role_user: เปลี่ยนบทบาทของผู้ใช้
+        change_role_user: เปลี่ยนหน้าที่ผู้ใช้งาน
         confirm_user: ยืนยันผู้ใช้
         create_account_warning: สร้างคำเตือน
         create_announcement: สร้างประกาศ
@@ -177,7 +177,7 @@ th:
         create_email_domain_block: สร้างการปิดกั้นโดเมนอีเมล
         create_ip_block: สร้างกฎ IP
         create_unavailable_domain: สร้างโดเมนที่ไม่พร้อมใช้งาน
-        create_user_role: สร้างบทบาท
+        create_user_role: สร้างหน้าที่
         demote_user: ลดขั้นผู้ใช้
         destroy_announcement: ลบประกาศ
         destroy_canonical_email_block: ลบการปิดกั้นอีเมล
@@ -189,7 +189,7 @@ th:
         destroy_ip_block: ลบกฎ IP
         destroy_status: ลบโพสต์
         destroy_unavailable_domain: ลบโดเมนที่ไม่พร้อมใช้งาน
-        destroy_user_role: ทำลายบทบาท
+        destroy_user_role: ยกเลิกหน้าที่
         disable_2fa_user: ปิดใช้งาน 2FA
         disable_custom_emoji: ปิดใช้งานอีโมจิที่กำหนดเอง
         disable_sign_in_token_auth_user: ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับผู้ใช้
@@ -202,10 +202,10 @@ th:
         reject_appeal: ปฏิเสธการอุทธรณ์
         reject_user: ปฏิเสธผู้ใช้
         remove_avatar_user: เอาภาพประจำตัวออก
-        reopen_report: เปิดรายงานใหม่
+        reopen_report: เปิดรีพอร์ทใหม่
         resend_user: ส่งจดหมายยืนยันใหม่
         reset_password_user: ตั้งรหัสผ่านใหม่
-        resolve_report: แก้ปัญหารายงาน
+        resolve_report: แก้ปัญหารีพอร์ท
         sensitive_account: บังคับให้บัญชีละเอียดอ่อน
         silence_account: จำกัดบัญชี
         suspend_account: ระงับบัญชี
@@ -219,13 +219,13 @@ th:
         update_domain_block: อัปเดตการปิดกั้นโดเมน
         update_ip_block: อัปเดตกฎ IP
         update_status: อัปเดตโพสต์
-        update_user_role: อัปเดตบทบาท
+        update_user_role: อัปเดตหน้าที่
       actions:
         approve_appeal_html: "%{name} ได้อนุมัติการอุทธรณ์การตัดสินใจในการควบคุมจาก %{target}"
         approve_user_html: "%{name} ได้อนุมัติการลงทะเบียนจาก %{target}"
-        assigned_to_self_report_html: "%{name} ได้มอบหมายรายงาน %{target} ให้กับตนเอง"
+        assigned_to_self_report_html: "%{name} ได้มอบหมายรีพอร์ท %{target} ให้กับตนเอง"
         change_email_user_html: "%{name} ได้เปลี่ยนที่อยู่อีเมลของผู้ใช้ %{target}"
-        change_role_user_html: "%{name} ได้เปลี่ยนบทบาทของ %{target}"
+        change_role_user_html: "%{name} ได้เปลี่ยนหน้าที่ของ %{target}"
         confirm_user_html: "%{name} ได้ยืนยันที่อยู่อีเมลของผู้ใช้ %{target}"
         create_account_warning_html: "%{name} ได้ส่งคำเตือนไปยัง %{target}"
         create_announcement_html: "%{name} ได้สร้างประกาศใหม่ %{target}"
@@ -236,7 +236,7 @@ th:
         create_email_domain_block_html: "%{name} ได้ปิดกั้นโดเมนอีเมล %{target}"
         create_ip_block_html: "%{name} ได้สร้างกฎสำหรับ IP %{target}"
         create_unavailable_domain_html: "%{name} ได้หยุดการจัดส่งไปยังโดเมน %{target}"
-        create_user_role_html: "%{name} ได้สร้างบทบาท %{target}"
+        create_user_role_html: "%{name} ได้สร้างหน้าที่ของ %{target}"
         demote_user_html: "%{name} ได้ลดขั้นผู้ใช้ %{target}"
         destroy_announcement_html: "%{name} ได้ลบประกาศ %{target}"
         destroy_canonical_email_block_html: "%{name} ได้เลิกปิดกั้นอีเมลที่มีแฮช %{target}"
@@ -248,7 +248,7 @@ th:
         destroy_ip_block_html: "%{name} ได้ลบกฎสำหรับ IP %{target}"
         destroy_status_html: "%{name} ได้เอาโพสต์โดย %{target} ออก"
         destroy_unavailable_domain_html: "%{name} ได้ทำการจัดส่งไปยังโดเมน %{target} ต่อ"
-        destroy_user_role_html: "%{name} ได้ลบบทบาท %{target}"
+        destroy_user_role_html: "%{name} ได้ลบหน้าที่ของ %{target}"
         disable_2fa_user_html: "%{name} ได้ปิดใช้งานความต้องการสองปัจจัยสำหรับผู้ใช้ %{target}"
         disable_custom_emoji_html: "%{name} ได้ปิดใช้งานอีโมจิ %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ได้ปิดใช้งานการรับรองความถูกต้องด้วยโทเคนอีเมลสำหรับ %{target}"
@@ -278,7 +278,7 @@ th:
         update_domain_block_html: "%{name} ได้อัปเดตการปิดกั้นโดเมนสำหรับ %{target}"
         update_ip_block_html: "%{name} ได้เปลี่ยนกฎสำหรับ IP %{target}"
         update_status_html: "%{name} ได้อัปเดตโพสต์โดย %{target}"
-        update_user_role_html: "%{name} ได้เปลี่ยนบทบาท %{target}"
+        update_user_role_html: "%{name} ได้เปลี่ยนหน้าที่ของ %{target}"
       deleted_account: บัญชีที่ลบแล้ว
       empty: ไม่พบรายการบันทึก
       filter_by_action: กรองตามการกระทำ
@@ -340,7 +340,7 @@ th:
       interactions: การโต้ตอบ
       media_storage: ที่เก็บข้อมูลสื่อ
       new_users: ผู้ใช้ใหม่
-      opened_reports: รายงานที่เปิด
+      opened_reports: รีพอร์ทที่มี
       pending_appeals_html:
         other: "<strong>%{count}</strong> การอุทธรณ์ที่รอดำเนินการ"
       pending_reports_html:
@@ -349,7 +349,7 @@ th:
         other: "<strong>%{count}</strong> แฮชแท็กที่รอดำเนินการ"
       pending_users_html:
         other: "<strong>%{count}</strong> ผู้ใช้ที่รอดำเนินการ"
-      resolved_reports: รายงานที่แก้ปัญหาแล้ว
+      resolved_reports: รีพอร์ทที่จัดการแล้ว
       software: ซอฟต์แวร์
       sources: แหล่งที่มาการลงทะเบียน
       space: การใช้พื้นที่
@@ -397,8 +397,8 @@ th:
       public_comment_hint: ความคิดเห็นเกี่ยวกับการจำกัดโดเมนนี้สำหรับสาธารณชนทั่วไป หากมีการเปิดใช้งานการประกาศรายการการจำกัดโดเมน
       reject_media: ปฏิเสธไฟล์สื่อ
       reject_media_hint: เอาไฟล์สื่อที่จัดเก็บไว้ในเซิร์ฟเวอร์ออกและปฏิเสธที่จะดาวน์โหลดไฟล์ใด ๆ ในอนาคต ไม่เกี่ยวข้องกับการระงับ
-      reject_reports: ปฏิเสธรายงาน
-      reject_reports_hint: เพิกเฉยต่อรายงานทั้งหมดที่มาจากโดเมนนี้ ไม่เกี่ยวข้องกับการระงับ
+      reject_reports: รีพอร์ทที่ถูกปฏิเสธ
+      reject_reports_hint: เพิกเฉยต่อรีพอร์ททั้งหมดที่มาจากโดเมนนี้ ไม่เกี่ยวข้องกับการระงับ
       undo: เลิกทำการปิดกั้นโดเมน
       view: ดูการปิดกั้นโดเมน
     email_domain_blocks:
@@ -461,7 +461,7 @@ th:
         description_html: คุณสามารถกำหนดนโยบายเนื้อหาที่จะนำไปใช้กับบัญชีทั้งหมดจากโดเมนนี้และโดเมนย่อยใดก็ตามของโดเมน
         policies:
           reject_media: ปฏิเสธสื่อ
-          reject_reports: ปฏิเสธรายงาน
+          reject_reports: ปฏิเสธรีพอร์ท
           silence: จำกัด
           suspend: ระงับ
         policy: นโยบาย
@@ -474,7 +474,7 @@ th:
         instance_follows_measure: ผู้ติดตามของเขาที่นี่
         instance_languages_dimension: ภาษายอดนิยม
         instance_media_attachments_measure: ไฟล์แนบสื่อที่จัดเก็บไว้
-        instance_reports_measure: รายงานเกี่ยวกับเขา
+        instance_reports_measure: รีพอร์ทเกี่ยวกับเขา
         instance_statuses_measure: โพสต์ที่จัดเก็บไว้
       delivery:
         all: ทั้งหมด
@@ -502,7 +502,7 @@ th:
       total_blocked_by_us: ปิดกั้นโดยเรา
       total_followed_by_them: ติดตามโดยเขา
       total_followed_by_us: ติดตามโดยเรา
-      total_reported: รายงานเกี่ยวกับเขา
+      total_reported: รีพอร์ทเกี่ยวกับเขา
       total_storage: ไฟล์แนบสื่อ
       totals_time_period_hint_html: ยอดรวมที่แสดงด้านล่างรวมข้อมูลสำหรับเวลาทั้งหมด
     invites:
@@ -547,8 +547,8 @@ th:
       status: สถานะ
       title: รีเลย์
     report_notes:
-      created_msg: สร้างหมายเหตุรายงานสำเร็จ!
-      destroyed_msg: ลบหมายเหตุรายงานสำเร็จ!
+      created_msg: หมายเหตุรีพอร์ทถูกสร้างแล้ว!
+      destroyed_msg: หมายเหตุรีพอร์ทถูกลบแล้ว!
       today_at: วันนี้เวลา %{time}
     reports:
       account:
@@ -574,7 +574,7 @@ th:
       comment:
         none: ไม่มี
       comment_description_html: 'เพื่อให้ข้อมูลเพิ่มเติม %{name} ได้เขียน:'
-      created_at: รายงานเมื่อ
+      created_at: รีพอร์ทแล้ว
       delete_and_resolve: ลบโพสต์
       forwarded: ส่งต่อแล้ว
       forwarded_to: ส่งต่อไปยัง %{domain} แล้ว
@@ -609,7 +609,7 @@ th:
       updated_at: อัปเดตเมื่อ
       view_profile: ดูโปรไฟล์
     roles:
-      add_new: เพิ่มบทบาท
+      add_new: เพิ่มหน้าที่
       assigned_users:
         other: "%{count} ผู้ใช้"
       categories:
@@ -619,21 +619,21 @@ th:
         moderation: การควบคุม
         special: พิเศษ
       delete: ลบ
-      description_html: ด้วย <strong>บทบาทผู้ใช้</strong> คุณสามารถปรับแต่งว่าฟังก์ชันและพื้นที่ใดของ Mastodon ที่ผู้ใช้ของคุณสามารถเข้าถึง
-      edit: แก้ไขบทบาท '%{name}'
+      description_html: ใน<strong>หน้าที่ของผู้ใช้</strong> คุณสามารถปรับแต่งว่าฟังก์ชันและพื้นที่ใดของ Mastodon ที่ผู้ใช้ของคุณสามารถเข้าถึงได้
+      edit: แก้ไขหน้าที่ของ '%{name}'
       everyone: สิทธิอนุญาตเริ่มต้น
-      everyone_full_description_html: นี่คือ<strong>ข้อบังคับพื้นฐาน</strong>ที่บังคับใช้กับ<strong>ผู้ใช้ทุกคน</strong> แม้ว่าจะไม่มีข้อบังคับที่ได้รับก็ตาม ข้อบังคับอื่นๆทั้งหมดได้รับการ inherit permissions จากข้อบังคับนั้น
+      everyone_full_description_html: นี่คือ<strong>หน้าที่พื้นฐาน</strong>ที่บังคับใช้กับ<strong>ผู้ใช้ทุกคน</strong> แม้ว่าจะไม่มีการกำหนดหน้าที่ก็ตาม หน้าที่อื่นๆทั้งหมดได้รับการ inherit permissions จากหน้าที่นั้น
       permissions_count:
         other: "%{count} สิทธิอนุญาต"
       privileges:
         administrator: ผู้ดูแล
-        administrator_description: ผู้ใช้ที่มีสิทธิอนุญาตนี้จะข้ามทุกสิทธิอนุญาต
+        administrator_description: ผู้ใช้ที่มีสิทธิอนุญาตนี้ จะอยู่เหนือสิทธิอนุญาตทั้งหมด
         delete_user_data: ลบข้อมูลผู้ใช้
-        delete_user_data_description: อนุญาตให้ผู้ใช้ลบข้อมูลของผู้ใช้อื่น ๆ โดยทันที
+        delete_user_data_description: อนุญาตให้ผู้ใช้ลบข้อมูลของผู้ใช้อื่นๆโดยทันที
         invite_users: เชิญผู้ใช้
         invite_users_description: อนุญาตให้ผู้ใช้เชิญผู้คนใหม่ไปยังเซิร์ฟเวอร์
         manage_announcements: จัดการประกาศ
-        manage_announcements_description: อนุญาตให้ผู้ใช้จัดการประกาศในเซิร์ฟเวอร์
+        manage_announcements_description: อนุญาตให้ผู้ใช้จัดการประกาศภายในเซิร์ฟเวอร์
         manage_appeals: จัดการการอุทธรณ์
         manage_appeals_description: อนุญาตให้ผู้ใช้ตรวจทานการอุทธรณ์ต่อการกระทำการควบคุม
         manage_blocks: จัดการการปิดกั้น
@@ -644,10 +644,10 @@ th:
         manage_federation_description: อนุญาตให้ผู้ใช้ปิดกั้นหรืออนุญาตการติดต่อกับภายนอกกับโดเมนอื่น ๆ และควบคุมความสามารถในการจัดส่ง
         manage_invites: จัดการคำเชิญ
         manage_invites_description: อนุญาตให้ผู้ใช้เรียกดูและปิดใช้งานลิงก์เชิญ
-        manage_reports: จัดการรายงาน
-        manage_reports_description: อนุญาตให้ผู้ใช้ตรวจทานรายงานและทำการกระทำการควบคุมกับรายงาน
-        manage_roles: จัดการบทบาท
-        manage_roles_description: อนุญาตให้ผู้ใช้จัดการและกำหนดข้อบังคับด้านล่าง
+        manage_reports: จัดการรีพอร์ท
+        manage_reports_description: อนุญาตให้ผู้ใช้ตรวจทานรีพอร์ทและดำเนินการจัดการกับพวกเขา
+        manage_roles: จัดการหน้าที่
+        manage_roles_description: อนุญาตให้ผู้ใช้จัดการและกำหนดหน้าที่ตามด้านล่าง
         manage_rules: จัดการกฎ
         manage_rules_description: อนุญาตให้ผู้ใช้เปลี่ยนกฎของเซิร์ฟเวอร์
         manage_settings: จัดการการตั้งค่า
@@ -666,7 +666,7 @@ th:
         view_dashboard_description: อนุญาตให้ผู้ใช้เข้าถึงแดชบอร์ดและเมตริกต่าง ๆ
         view_devops: DevOps
         view_devops_description: อนุญาตให้ผู้ใช้เข้าถึงแดชบอร์ด Sidekiq และ pgHero
-      title: บทบาท
+      title: หน้าที่
     rules:
       add_new: เพิ่มกฎ
       delete: ลบ
@@ -859,7 +859,7 @@ th:
       body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
       subject: บัญชีใหม่สำหรับตรวจทานใน %{instance} (%{username})
     new_report:
-      body: "%{reporter} ได้รายงาน %{target}"
+      body: "%{reporter} ได้รีพอร์ท %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
       subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
     new_trends:
