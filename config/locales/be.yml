@@ -833,6 +833,7 @@ be:
         not_listable: Не будзе прапанавана
         not_trendable: Не з'явіцца ў трэндах
         not_usable: Немагчыма выкарыстаць
+        peaked_on_and_decaying: На піку %{date}, зараз спадае
         title: Актуальныя хэштэгі
         trendable: Можа з'явіцца сярод трэндаў
         usable: Магчыма выкарыстаць
@@ -841,6 +842,9 @@ be:
     warning_presets:
       add_new: Дадаць новы
       delete: Выдаліць
+      edit_preset: Рэдагаваць шаблон папярэджання
+      empty: Вы яшчэ не вызначылі ніякіх шаблонаў папярэджанняў.
+      title: Кіраванне шаблонамі папярэджанняў
     webhooks:
       add_new: Дадаць канцавую кропку
       delete: Выдаліць
@@ -872,6 +876,16 @@ be:
         suspend: выключыць уліковы запіс
     new_report:
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
+    new_trends:
+      body: 'Гэтыя элементы трэба праверыць, перш чым публікаваць:'
+      new_trending_links:
+        title: Папулярныя спасылкі
+      new_trending_statuses:
+        title: Папулярныя допісы
+      new_trending_tags:
+        no_approved_tags: Зараз няма зацверджаных папулярных хэштэгаў.
+        title: Папулярныя хэштэгі
+      subject: Новае ў папулярным для разгляду %{instance}
   aliases:
     add_new: Стварыць псеўданім
     created_msg: Створаны новы псеўданім. Цяпер вы можаце пачаць пераход са старога ўліковага запісу.
@@ -956,6 +970,7 @@ be:
   authorize_follow:
     already_following: Вы ўжо падпісаныя на гэты ўліковы запіс
     already_requested: Вы ўжо адправілі запыт на гэты ўліковы запіс
+    error: На жаль, падчас пошуку аддаленага ўліковага запісу здарылася памылка
     follow: Падпісацца
     follow_request: 'Вы адправілі запыт на падпіску:'
     following: 'Поспех! Цяпер вы падпісаны на:'
@@ -1002,8 +1017,12 @@ be:
   disputes:
     strikes:
       appeal: Зварот
+      appeal_rejected: Апеляцыя была адхілена
+      appeal_submitted_at: Апеляцыя пададзена
+      appealed_msg: Ваша апеляцыя пададзена. У выпадку, калі яе зацвердзяць, вам паведамяць.
       appeals:
         submit: Падаць апеляцыю
+      approve_appeal: Зацвердзіць апеляцыю
       created_at: Датаваны
       status: 'Допіс #%{id}'
       status_removed: Допіс ужо выдалены з сістэмы
