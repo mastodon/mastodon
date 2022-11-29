@@ -1,9 +1,9 @@
 be:
   about:
-    about_mastodon_html: 'Сацыяльная сетка будучыні: без рэкламы, без карпаратыўнага назірання, этычны дызайн і дэцэнтралізацыя! Валодайце сваімі дадзенымі з Mastodon'
+    about_mastodon_html: 'Сацыяльная сетка будучыні: без рэкламы, без карпаратыўнага назірання, этычны дызайн і дэцэнтралізацыя! Валодайце сваімі данымі з Mastodon!'
     contact_missing: Не зададзены
     contact_unavailable: Недаступна
-    hosted_on: Mastodon знаходзіцца на %{domain}
+    hosted_on: Mastodon месціцца на %{domain}
     title: Пра нас
   accounts:
     follow: Падпісацца
@@ -18,7 +18,7 @@ be:
     link_verified_on: Права ўласнасці на гэтую спасылку праверана %{date}
     nothing_here: Тут нічога няма!
     pin_errors:
-      following: Вы павінны быць падпісаны на чалавека, якога вы жадаеце ўхваліць
+      following: Вы павінны быць падпісаны на чалавека, якога жадаеце рэкамендаваць
     posts:
       one: Допіс
       few: Допісы
@@ -803,6 +803,8 @@ be:
         disallow: Забараніць спасылку
         disallow_provider: Дазволіць выдаўца
         no_link_selected: Ніводная спасылка не была зменена, бо ніводная не была выбрана
+        publishers:
+          no_publisher_selected: Выдаўцы не былі зменены, таму што ніводзін не быў абраны
         title: Актуальныя спасылкі
       only_allowed: Толькі дазволенае
       pending_review: Чакае праверкі
@@ -1023,6 +1025,7 @@ be:
       appeals:
         submit: Падаць апеляцыю
       approve_appeal: Зацвердзіць апеляцыю
+      associated_report: Звязаная скарга
       created_at: Датаваны
       status: 'Допіс #%{id}'
       status_removed: Допіс ужо выдалены з сістэмы
@@ -1034,7 +1037,7 @@ be:
         suspend: Выключэнне ўліковага запісу
   errors:
     '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
+    '403': У вас няма дазволу на прагляд гэтай старонкі.
     '404': Няма старонкі, якую вы шукаеце.
     '406': This page is not available in the requested format.
     '410': Старонка, якую вы шукаеце, больш не існуе.
