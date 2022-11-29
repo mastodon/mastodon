@@ -189,7 +189,15 @@ RSpec.describe ImportService, type: :service do
         expect(account.following_tags.count).to eq 2
 
         followed_tags = account.following_tags.map(&:name)
-        expect(followed_tags).to eql(['mastodon', 'ruby'])
+        expect(followed_tags).to eq(['mastodon', 'ruby'])
+      end
+
+      it 'increases following tag counter by each follow or 2' do
+        expect(account.tag_following_count).to eq 0
+
+        subject.call(import)
+
+        expect(account.tag_following_count).to eq 2
       end
     end
 
@@ -205,21 +213,29 @@ RSpec.describe ImportService, type: :service do
         expect(Tag.find_by(name: 'ruby')).to be_truthy
 
         followed_tags = account.following_tags.map(&:name)
-        expect(followed_tags).to eql(['mastodon', 'ruby'])
+        expect(followed_tags).to eq(['mastodon', 'ruby'])
+      end
+
+      it 'increases following tag counter by each follow or 1' do
+        expect(account.tag_following_count).to eq 1
+
+        subject.call(import)
+
+        expect(account.tag_following_count).to eq 2
       end
 
       it 'does not recreate existing tags' do
         subject.call(import)
 
         same_tag = Tag.find_by(name: 'mastodon')
-        expect(same_tag.id).to eql(mastodon_tag.id)
+        expect(same_tag.id).to eq(mastodon_tag.id)
       end
 
       it 'does not recreate existing follows' do
         subject.call(import)
 
         existing_follow = TagFollow.find_by(account: account, tag: mastodon_tag)
-        expect(existing_follow.id).to eql(mastodon_follow.id)
+        expect(existing_follow.id).to eq(mastodon_follow.id)
       end
     end
 
@@ -235,21 +251,29 @@ RSpec.describe ImportService, type: :service do
         expect(Tag.find_by(name: 'ruby')).to be_truthy
 
         followed_tags = account.following_tags.map(&:name)
-        expect(followed_tags).to eql(['mastodon', 'ruby'])
+        expect(followed_tags).to eq(['mastodon', 'ruby'])
+      end
+
+      it 'increases following tag counter by each follow or 1' do
+        expect(account.tag_following_count).to eq 1
+
+        subject.call(import)
+
+        expect(account.tag_following_count).to eq 2
       end
 
       it 'does not recreate existing tags' do
         subject.call(import)
 
         same_tag = Tag.find_by(name: 'mastodon')
-        expect(same_tag.id).to eql(mastodon_tag.id)
+        expect(same_tag.id).to eq(mastodon_tag.id)
       end
 
       it 'recreates existing follows' do
         subject.call(import)
 
         existing_follow = TagFollow.find_by(account: account, tag: mastodon_tag)
-        expect(existing_follow.id).not_to eql(mastodon_follow.id)
+        expect(existing_follow.id).not_to eq(mastodon_follow.id)
       end
     end
   end
