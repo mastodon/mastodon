@@ -1,4 +1,3 @@
----
 et:
   simple_form:
     hints:
@@ -65,6 +64,7 @@ et:
       form_admin_settings:
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
+        site_contact_email: Kui peaks tekkima vajadus ühendust võtta täiendavate küsimuste osas.
         trends: Populaarsuse suunad näitavad millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
       form_challenge:
         current_password: Turvalisse alasse sisenemine
@@ -146,6 +146,7 @@ et:
         phrase: Võtmesõna või fraas
         setting_advanced_layout: Aktiveeri kohandatud veebiliides
         setting_aggregate_reblogs: Grupeeri jagamised ajajoontel
+        setting_always_send_emails: Saada e-postiga teavitused alati
         setting_auto_play_gif: Mängi GIF-e automaatselt
         setting_boost_modal: Näita enne jagamist kinnitusdialoogi
         setting_crop_images: Kärbi suurendamata tuututuste pildid resolutsiooni 16x9
@@ -212,6 +213,7 @@ et:
           sign_up_requires_approval: Piira liitumisi
         severity: Reegel
       notification_emails:
+        appeal: Moderaatori otsus on vaidlustatud
         digest: Saada ülevaatlike e-kirju
         favourite: Saada e-kiri, kui keegi lisab teie staatuse lemmikuks
         follow: Saada e-kiri, kui keegi alustab Teie jälgimist
@@ -220,6 +222,7 @@ et:
         pending_account: Saada e-kiri, kui uus konto vajab ülevaatlust
         reblog: Keegi jagas postitust
         report: Esitatud on uus raport
+        trending_tag: Uus trend vajab ülevaatust
       rule:
         text: Reegel
       tag:
@@ -235,10 +238,10 @@ et:
       webhook:
         events: Lubatud sündmused
         url: Lõpp-punkti URL
-    'no': Ei
+    'no': 'Ei'
     not_recommended: Pole soovitatav
     recommended: Soovituslik
     required:
       mark: "*"
       text: kohustuslik
-    'yes': Jah
+    'yes': 'Jah'
