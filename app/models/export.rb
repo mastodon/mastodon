@@ -38,9 +38,9 @@ class Export
   end
 
   def to_following_tags_csv
-    CSV.generate(headers: ['Account address', 'Show boosts', 'Notify on new posts', 'Languages'], write_headers: true) do |csv|
-      account.following_tags.reorder(display_name: :desc).each do |tag|
-        csv << [tag.display_name]
+    CSV.generate(headers: ['Tag'], write_headers: true) do |csv|
+      account.following_tags.reorder(name: :asc).each do |tag|
+        csv << [tag.name]
       end
     end
   end

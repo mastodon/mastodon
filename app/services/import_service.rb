@@ -12,6 +12,8 @@ class ImportService < BaseService
     case @import.type
     when 'following'
       import_follows!
+    when 'tag_follows'
+      import_tag_follows!
     when 'blocking'
       import_blocks!
     when 'muting'
@@ -28,6 +30,33 @@ class ImportService < BaseService
   def import_follows!
     parse_import_data!(['Account address'])
     import_relationships!('follow', 'unfollow', @account.following, ROWS_PROCESSING_LIMIT, reblogs: { header: 'Show boosts', default: true }, notify: { header: 'Notify on new posts', default: false }, languages: { header: 'Languages', default: nil })
+  end
+
+  def import_tag_follows!
+    parse_import_data!(['Tag'])
+    names = @data.take(ROWS_PROCESSING_LIMIT).map { |row| Tag.normalize(row['Tag'].strip) }.drop(1)
+
+    found_tags = Tag.matching_name(names)
+    found_names = found_tags.map(&:name)
+    missing_names = names - found_names
+
+    follow_tags = []
+
+    ApplicationRecord.transaction do
+      Tag.find_or_create_by_names(missing_names) do |tag|
+        follow_tags << tag
+      end
+
+      if @import.overwrite?
+        @account.tag_relationships.destroy_all
+
+        follow_tags.concat(found_tags)
+      end
+
+      follow_tags.each do |tag|
+        TagFollow.create(account: @account, tag: tag)
+      end
+    end
   end
 
   def import_blocks!

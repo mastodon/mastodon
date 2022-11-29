@@ -5,6 +5,7 @@ require 'csv'
 class ImportValidator < ActiveModel::Validator
   KNOWN_HEADERS = [
     'Account address',
+    'Tag',
     '#domain',
     '#uri',
   ].freeze
