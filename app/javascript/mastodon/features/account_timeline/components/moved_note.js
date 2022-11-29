@@ -23,7 +23,7 @@ export default class MovedNote extends ImmutablePureComponent {
         </div>
 
         <div className='moved-account-banner__action'>
-          <Link to={`/@${to.get('acct')}`} className='detailed-status__display-name'>
+          <Link rel='me' href={to.get('url')} to={`/@${to.get('acct')}`} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'><AvatarOverlay account={to} friend={from} /></div>
             <DisplayName account={to} />
           </Link>
