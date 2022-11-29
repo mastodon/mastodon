@@ -19,6 +19,13 @@ import {
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import compareId from '../compare_id';
 
+// Turn on slow mode when scrolled down and have at least this many "items"
+const TIMELINE_SCROLLED_DOWN_SLOW_MODE_ITEMS = 50;
+
+// Cap pendingItems at 30, check once we're at >= 50
+const TIMELINE_PENDING_ITEMS_CHECK = 50;
+const TIMELINE_PENDING_ITEMS_TRIM = 30;
+
 const initialState = ImmutableMap();
 
 const initialTimeline = ImmutableMap({
@@ -99,12 +106,18 @@ const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, is
 const updateTimeline = (state, timeline, status, usePendingItems) => {
   const top = state.getIn([timeline, 'top']);
 
-  if (usePendingItems || !state.getIn([timeline, 'pendingItems']).isEmpty()) {
+  // If we have scrolled down and items are piling up, turn on slow mode to start accumulating pendingItems.
+  // This should also remove the glitchy "scroll to stay in place" shakiness
+  const numItems = (state.getIn([timeline, 'items']) || { size: 0 }).size;
+  const scrolledDownSlowMode = !top && numItems > TIMELINE_SCROLLED_DOWN_SLOW_MODE_ITEMS;
+
+  if (scrolledDownSlowMode || usePendingItems || !state.getIn([timeline, 'pendingItems']).isEmpty()) {
     if (state.getIn([timeline, 'pendingItems'], ImmutableList()).includes(status.get('id')) || state.getIn([timeline, 'items'], ImmutableList()).includes(status.get('id'))) {
       return state;
     }
 
-    return state.update(timeline, initialTimeline, map => map.update('pendingItems', list => list.unshift(status.get('id'))).update('unread', unread => unread + 1));
+    return state.update(timeline, initialTimeline, map => map.update('pendingItems',
+      list => (list.size >= TIMELINE_PENDING_ITEMS_CHECK ? list.take(TIMELINE_PENDING_ITEMS_TRIM).push(null) : list).unshift(status.get('id'))).update('unread', unread => unread + 1));
   }
 
   const ids        = state.getIn([timeline, 'items'], ImmutableList());
