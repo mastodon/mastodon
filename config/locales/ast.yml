@@ -78,6 +78,8 @@ ast:
       empty: Nun s'atopó nengún rexistru.
     announcements:
       destroyed_msg: '¡L''anunciu desanicióse correutamente!'
+      edit:
+        title: Edición d'un anunciu
       empty: Nun s'atopó nengún anunciu.
       live: En direuto
       new:
@@ -94,7 +96,13 @@ ast:
       by_domain: Dominiu
       copy: Copiar
       copy_failed_msg: Nun se pudo facer una copia llocal d'esi fustaxe
+      created_msg: '¡El fustaxe creóse correutamente!'
+      delete: Desaniciar
+      disable: Desactivar
+      disabled: Desactivóse
       emoji: Fustaxe
+      enable: Activar
+      enabled: Activóse
       list: Llistar
       no_emoji_selected: Nun camudó nengún fustaxe darréu que nun se seleicionó nengún
       not_permitted: Nun tienes permisu pa facer esta aición
@@ -213,10 +221,15 @@ ast:
       unresolved: Ensin resolver
       view_profile: Ver el perfil
     roles:
+      add_new: Amestar un rol
+      assigned_users:
+        one: "%{count} perfil"
+        other: "%{count} perfiles"
       categories:
         administration: Alministración
         devops: DevOps
         invites: Invitaciones
+      edit: Edición del rol «%{name}»
       everyone: Permisos predeterminaos
       permissions_count:
         one: "%{count} permisu"
@@ -224,15 +237,22 @@ ast:
       privileges:
         manage_announcements: Xestionar los anuncios
         manage_appeals: Xestionar les apellaciones
+        manage_custom_emojis: Xestionar los fustaxes personalizaos
+        manage_federation: Xestionar la federación
+        manage_invites: Xestionar les invitaciones
         manage_reports: Xestionar los informes
         manage_roles: Xestionar los roles
         manage_rules: Xestionar les regles
         manage_settings: Xestionar la configuración
         manage_taxonomies: Xestionar les taxonomíes
+        manage_users: Xestionar los perfiles
+        manage_webhooks: Xestionar los webhooks
+        view_dashboard: Ver el panel
         view_devops: DevOps
       title: Roles
     rules:
       add_new: Amestar la regla
+      title: Regles del sirvidor
     settings:
       about:
         manage_rules: Xestionar les regles del sirvidor
@@ -477,6 +497,7 @@ ast:
   footer:
     trending_now: En tendencia
   generic:
+    all: Too
     all_items_on_page_selected_html:
       one: "Seleicionóse <strong>%{count}</strong> elementu d'esta páxina."
       other: Seleicionáronse <strong>%{count}</strong> elementos d'esta páxina.
