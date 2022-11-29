@@ -20,6 +20,9 @@ services:
       - internal_network
     cap_drop:
       - ALL
+    cap_add:
+      - setgid
+      - setuid
     healthcheck:
       test: ['CMD', 'redis-cli', 'ping']
     volumes:
