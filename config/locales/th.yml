@@ -426,7 +426,7 @@ th:
     export_domain_blocks:
       import:
         description_html: คุณกำลังจะนำเข้ารายการการปิดกั้นโดเมน โปรดตรวจทานรายการนี้อย่างระมัดระวังมาก โดยเฉพาะอย่างยิ่งหากคุณไม่ได้สร้างรายการนี้ด้วยตัวคุณเอง
-        existing_relationships_warning: ความสัมพันธ์ผู้ติดตามที่มีอยู่เดิม
+        existing_relationships_warning: ความสัมพันธ์การติดตามที่มีอยู่
         private_comment_description_html: 'เพื่อที่จะช่วยคุณติดตามที่มาการนำเข้าของblock blockที่ถูกนำเข้าจะถูกสร้างพร้อมกับความคิดเห็นส่วนตัวต่อไปนี้: <q>%{comment}</q>'
         private_comment_template: นำเข้าจาก %{source} เมื่อ %{date}
         title: นำเข้าการปิดกั้นโดเมน
@@ -666,7 +666,7 @@ th:
         view_dashboard_description: อนุญาตให้ผู้ใช้เข้าถึงแดชบอร์ดและเมตริกต่าง ๆ
         view_devops: DevOps
         view_devops_description: อนุญาตให้ผู้ใช้เข้าถึงแดชบอร์ด Sidekiq และ pgHero
-      title: หน้าที่
+      title: บทบาท
     rules:
       add_new: เพิ่มกฎ
       delete: ลบ
@@ -715,7 +715,7 @@ th:
       back_to_report: กลับไปที่หน้ารายงาน
       batch:
         remove_from_report: เอาออกจากรายงาน
-        report: รีพอร์ท
+        report: รายงาน
       deleted: ลบแล้ว
       favourites: รายการโปรด
       history: ประวัติรุ่น
@@ -859,7 +859,7 @@ th:
       body: รายละเอียดของบัญชีใหม่อยู่ด้านล่าง คุณสามารถอนุมัติหรือปฏิเสธใบสมัครนี้
       subject: บัญชีใหม่สำหรับตรวจทานใน %{instance} (%{username})
     new_report:
-      body: "%{reporter} ได้รีพอร์ท %{target}"
+      body: "%{reporter} ได้รายงาน %{target}"
       body_remote: ใครสักคนจาก %{domain} ได้รายงาน %{target}
       subject: 'รายงานใหม่สำหรับ %{instance} (#%{id})'
     new_trends:
@@ -907,7 +907,7 @@ th:
     warning: ระวังเป็นอย่างสูงกับข้อมูลนี้ อย่าแบ่งปันข้อมูลกับใครก็ตาม!
     your_token: โทเคนการเข้าถึงของคุณ
   auth:
-    apply_for_account: Request an account
+    apply_for_account: ขอบัญชี
     change_password: รหัสผ่าน
     delete_account: ลบบัญชี
     delete_account_html: หากคุณต้องการลบบัญชีของคุณ คุณสามารถ <a href="%{path}">ดำเนินการต่อที่นี่</a> คุณจะได้รับการถามเพื่อการยืนยัน
@@ -1145,7 +1145,7 @@ th:
     invalid_markup: 'มีมาร์กอัป HTML ที่ไม่ถูกต้อง: %{error}'
   imports:
     errors:
-      invalid_csv_file: 'ไฟล์ CSV ไม่ถูกต้อง. Error: %{error}'
+      invalid_csv_file: 'ไฟล์ CSV ไม่ถูกต้อง ข้อผิดพลาด: %{error}'
       over_rows_processing_limit: มีมากกว่า %{count} แถว
     modes:
       merge: ผสาน
