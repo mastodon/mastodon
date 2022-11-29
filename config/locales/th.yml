@@ -1,9 +1,9 @@
 th:
   about:
     about_mastodon_html: 'เครือข่ายสังคมแห่งอนาคต: ไม่มีโฆษณา ไม่มีการสอดแนมโดยองค์กร การออกแบบตามหลักจริยธรรม และการกระจายศูนย์! เป็นเจ้าของข้อมูลของคุณด้วย Mastodon!'
-    contact_missing: ไม่ได้ตั้ง
+    contact_missing: ไม่ได้ตั้งค่า
     contact_unavailable: ไม่มี
-    hosted_on: Mastodon ที่โฮสต์ที่ %{domain}
+    hosted_on: Mastodon โฮสต์บน %{domain}
     title: เกี่ยวกับ
   accounts:
     follow: ติดตาม
@@ -570,6 +570,7 @@ th:
       assigned: ผู้ควบคุมที่ได้รับมอบหมาย
       by_target_domain: โดเมนของบัญชีที่ได้รับการรายงาน
       category: หมวดหมู่
+      category_description_html: เหตุผลที่บัญชีหรือเนื้อหานี้ถูกรีพอร์ต จะถูกอ้างอิงในบัญชีที่ถูกรีพอร์ต
       comment:
         none: ไม่มี
       comment_description_html: 'เพื่อให้ข้อมูลเพิ่มเติม %{name} ได้เขียน:'
@@ -600,6 +601,7 @@ th:
       skip_to_actions: ข้ามไปยังการกระทำ
       status: สถานะ
       statuses: เนื้อหาที่รายงาน
+      statuses_description_html: เนื้อหาที่ละเมิด จะถูกอ้างอิงในบัญชีที่ถูกรีพอร์ต
       target_origin: จุดเริ่มต้นของบัญชีที่ได้รับการรายงาน
       title: รายงาน
       unassign: เลิกมอบหมาย
@@ -620,6 +622,7 @@ th:
       description_html: ด้วย <strong>บทบาทผู้ใช้</strong> คุณสามารถปรับแต่งว่าฟังก์ชันและพื้นที่ใดของ Mastodon ที่ผู้ใช้ของคุณสามารถเข้าถึง
       edit: แก้ไขบทบาท '%{name}'
       everyone: สิทธิอนุญาตเริ่มต้น
+      everyone_full_description_html: นี่คือ<strong>ข้อบังคับพื้นฐาน</strong>ที่บังคับใช้กับ<strong>ผู้ใช้ทุกคน</strong> แม้ว่าจะไม่มีข้อบังคับที่ได้รับก็ตาม ข้อบังคับอื่นๆทั้งหมดได้รับการ inherit permissions จากข้อบังคับนั้น
       permissions_count:
         other: "%{count} สิทธิอนุญาต"
       privileges:
@@ -644,6 +647,7 @@ th:
         manage_reports: จัดการรายงาน
         manage_reports_description: อนุญาตให้ผู้ใช้ตรวจทานรายงานและทำการกระทำการควบคุมกับรายงาน
         manage_roles: จัดการบทบาท
+        manage_roles_description: อนุญาตให้ผู้ใช้จัดการและกำหนดข้อบังคับด้านล่าง
         manage_rules: จัดการกฎ
         manage_rules_description: อนุญาตให้ผู้ใช้เปลี่ยนกฎของเซิร์ฟเวอร์
         manage_settings: จัดการการตั้งค่า
@@ -680,6 +684,7 @@ th:
       branding:
         title: ตราสินค้า
       content_retention:
+        preamble: ควบคุมการสร้างเนื้อหาโดยผู้ใช้ว่าจะถูกจัดเก็บไว้อย่างไรใน Mastodon
         title: การเก็บรักษาเนื้อหา
       discovery:
         follow_recommendations: คำแนะนำการติดตาม
@@ -821,6 +826,7 @@ th:
     webhooks:
       add_new: เพิ่มปลายทาง
       delete: ลบ
+      description_html: <strong>Webhook</strong> ทำให้ Mastodon สามารถส่ง <strong>ระบบแจ้งเตือนแบบเรียลไทม์</strong> เกี่ยวกับอีเวนท์ที่ถูกเลือกไปยังแอปพลิเคชัน แอปพลิเคชันของคุณสามารถ<strong>ตอบสนองได้อัตโนมัติ</strong>.
       disable: ปิดใช้งาน
       disabled: ปิดใช้งานอยู่
       edit: แก้ไขปลายทาง
