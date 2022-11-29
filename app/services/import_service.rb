@@ -12,7 +12,7 @@ class ImportService < BaseService
     case @import.type
     when 'following'
       import_follows!
-    when 'tag_follows'
+    when 'following_tags'
       import_tag_follows!
     when 'blocking'
       import_blocks!

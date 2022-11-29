@@ -176,6 +176,84 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
+  context 'import list of followed tags' do
+    subject { ImportService.new }
+
+    let(:csv) { attachment_fixture('tag-imports.txt') }
+
+    describe 'when no tags are followed' do
+      let(:import) { Import.create(account: account, type: 'following_tags', data: csv) }
+      it 'creates and follows the tags' do
+        subject.call(import)
+
+        expect(account.following_tags.count).to eq 2
+
+        followed_tags = account.following_tags.map(&:name)
+        expect(followed_tags).to eql(['mastodon', 'ruby'])
+      end
+    end
+
+    describe 'when some tags are already followed and overwrite is not set' do
+      let(:import) { Import.create(account: account, type: 'following_tags', data: csv) }
+      let!(:mastodon_tag) { Fabricate(:tag, name: 'mastodon') }
+      let!(:mastodon_follow) { TagFollow.create(account: account, tag: mastodon_tag) }
+
+      it 'follows the tags and creates missing tags' do
+        subject.call(import)
+
+        expect(account.following_tags.count).to eq 2
+        expect(Tag.find_by(name: 'ruby')).to be_truthy
+
+        followed_tags = account.following_tags.map(&:name)
+        expect(followed_tags).to eql(['mastodon', 'ruby'])
+      end
+
+      it 'does not recreate existing tags' do
+        subject.call(import)
+
+        same_tag = Tag.find_by(name: 'mastodon')
+        expect(same_tag.id).to eql(mastodon_tag.id)
+      end
+
+      it 'does not recreate existing follows' do
+        subject.call(import)
+
+        existing_follow = TagFollow.find_by(account: account, tag: mastodon_tag)
+        expect(existing_follow.id).to eql(mastodon_follow.id)
+      end
+    end
+
+    describe 'when some tags are already followed and overwrite is set' do
+      let(:import) { Import.create(account: account, type: 'following_tags', data: csv, overwrite: true) }
+      let!(:mastodon_tag) { Fabricate(:tag, name: 'mastodon') }
+      let!(:mastodon_follow) { TagFollow.create(account: account, tag: mastodon_tag) }
+
+      it 'follows the tags and creates missing tags' do
+        subject.call(import)
+
+        expect(account.following_tags.count).to eq 2
+        expect(Tag.find_by(name: 'ruby')).to be_truthy
+
+        followed_tags = account.following_tags.map(&:name)
+        expect(followed_tags).to eql(['mastodon', 'ruby'])
+      end
+
+      it 'does not recreate existing tags' do
+        subject.call(import)
+
+        same_tag = Tag.find_by(name: 'mastodon')
+        expect(same_tag.id).to eql(mastodon_tag.id)
+      end
+
+      it 'recreates existing follows' do
+        subject.call(import)
+
+        existing_follow = TagFollow.find_by(account: account, tag: mastodon_tag)
+        expect(existing_follow.id).not_to eql(mastodon_follow.id)
+      end
+    end
+  end
+
   # Based on the bug report 20571 where UTF-8 encoded domains were rejecting import of their users
   #
   # https://github.com/mastodon/mastodon/issues/20571

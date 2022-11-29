@@ -88,7 +88,7 @@ module AccountInteractions
     has_many :followers, -> { order('follows.id desc') }, through: :passive_relationships, source: :account
 
     has_many :tag_relationships, class_name: 'TagFollow', foreign_key: 'account_id', dependent: :destroy
-    has_many :following_tags, -> { order('tag.id desc') }, through: :tag_relationships, source: :tag
+    has_many :following_tags, -> { order('tags.name asc') }, through: :tag_relationships, source: :tag
 
     # Account notes
     has_many :account_notes, dependent: :destroy

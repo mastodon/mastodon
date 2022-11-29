@@ -40,7 +40,7 @@ describe Export do
     end
 
     it 'returns a csv of the following tags' do
-      tag_names = (1..2).map { |_| Fabricate(:tag_follow, account: account).tag.name }
+      tag_names = 2.times.map { |_| Fabricate(:tag_follow, account: account).tag.name }
 
       export = Export.new(account).to_following_tags_csv
       results = export.strip.split("\n")

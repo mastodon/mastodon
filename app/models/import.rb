@@ -24,7 +24,7 @@ class Import < ApplicationRecord
 
   belongs_to :account
 
-  enum type: [:tag_follows, :following, :blocking, :muting, :domain_blocking, :bookmarks]
+  enum type: [:following_tags, :following, :blocking, :muting, :domain_blocking, :bookmarks]
 
   validates :type, presence: true
   validates_with ImportValidator, on: :create
