@@ -17,7 +17,7 @@
     = f.input :media_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
     = f.input :content_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
     = f.input :backups_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
-    = f.input :store_5k_photos, as: :boolean, wrapper: :with_label
+    = f.input :store_5k_images, as: :boolean, wrapper: :with_label
 
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit

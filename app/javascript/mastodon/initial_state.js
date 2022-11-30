@@ -80,7 +80,7 @@
  * @property {boolean=} use_pending_items
  * @property {string} version
  * @property {boolean} translation_enabled
- * @property {boolean} store_5k_photos
+ * @property {boolean} store_5k_images
  */
 
 /**
@@ -133,6 +133,6 @@ export const usePendingItems = getMeta('use_pending_items');
 export const version = getMeta('version');
 export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
-export const store_5k_photos = getMeta('store_5k_photos');
+export const store_5k_images = getMeta('store_5k_images');
 
 export default initialState;

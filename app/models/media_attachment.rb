@@ -67,7 +67,7 @@ class MediaAttachment < ApplicationRecord
     y_comp: 4,
   }.freeze
 
-  # Setting.store_5k_photos
+  # Setting.store_5k_images
   IMAGE_STYLES_HIGH = {
     original: {
       pixels: 14_745_600, # 5120x2880px 5K
@@ -317,9 +317,9 @@ class MediaAttachment < ApplicationRecord
       if attachment.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_CONVERTED_STYLES
       elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type) || (IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type) && attachment.instance.file_file_size > NONJPEG_KEEP_LIMIT)
-        Setting.store_5k_photos ? IMAGE_CONVERTED_STYLES_HIGH : IMAGE_CONVERTED_STYLES_LOW
+        Setting.store_5k_images ? IMAGE_CONVERTED_STYLES_HIGH : IMAGE_CONVERTED_STYLES_LOW
       elsif IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type)
-        Setting.store_5k_photos ? IMAGE_STYLES_HIGH : IMAGE_STYLES_LOW
+        Setting.store_5k_images ? IMAGE_STYLES_HIGH : IMAGE_STYLES_LOW
       elsif VIDEO_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_STYLES
       else

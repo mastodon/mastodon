@@ -31,7 +31,7 @@ class Form::AdminSettings
     media_cache_retention_period
     content_cache_retention_period
     backups_retention_period
-    store_5k_photos
+    store_5k_images
   ).freeze
 
   INTEGER_KEYS = %i(
@@ -50,7 +50,7 @@ class Form::AdminSettings
     trendable_by_default
     noindex
     require_invite_text
-    store_5k_photos
+    store_5k_images
   ).freeze
 
   UPLOAD_KEYS = %i(
