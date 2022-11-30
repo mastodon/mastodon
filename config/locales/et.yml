@@ -451,6 +451,9 @@ et:
       unsuppress: Taasta jälgimissoovitused
     instances:
       availability:
+        description_html:
+          one: Kui domeenile edastamine nurjub <strong>%{count} päeval</strong>, siis ei tehta enam edastamiskatseid, välja arvatud juhul, kui domeenilt <em>võetakse vastu</em> saadetis.
+          other: Kui domeenile edastamine nurjub <strong>%{count} erineval päeval</strong>, siis ei tehta enam edastamiskatseid, välja arvatud juhul, kui domeenilt <em>võetakse vastu</em> saadetis.
         failure_threshold_reached: Nurjumispiir saavutatud %{date}.
         failures_recorded:
           one: Nurjunud katse %{count} päeval.
@@ -568,7 +571,9 @@ et:
       actions:
         delete_description_html: Raporteeritud postitused kustutatakse ja juhtum talletatakse hoiatusena tulevaste eksimuste ärahoidmiseks.
         mark_as_sensitive_description_html: Raporteeritud meedia märgitakse kui tundlik sisu ja juhtum talletatakse hoiatusena tulevaste eksimuste ärahoidmiseks.
+        other_description_html: On rohkem valikuid konto käitumise juhtimiseks ja suhtluse kohandamiseks raporteeritud kontoga.
         resolve_description_html: Raporteeritud konto suhtes ei võeta midagi ette, juhtumit ei registreerita ja raport suletakse.
+        silence_description_html: Profiil on nähtav ainult neile, kes seda juba jälgivad või otsivad seda käsitsi, piirates sellega tõsiselt selle leitavust. Saab alati tagasi võtta.
         suspend_description_html: Konto ja kogu sisu muutub lõpliku kustutamiseni kättesaamatuks. Kontoga suhtlemine pole võimalik. Tagasivõetav 30 päeva jooksul.
       actions_description_html: Otsustus, mida raporti lahendamiseks ette võtta. Karistava tegevuse korral saadetakse e-postiga teade, välja arvatud kategooria <strong>rämpspost</strong> puhul.
       add_to_report: Lisa raportile juurde
@@ -577,6 +582,7 @@ et:
       assigned: Määratud moderaator
       by_target_domain: Teavitatud konto domeen
       category: Kategooria
+      category_description_html: Põhjus, miks sellest kontost ja/või sisust teatati, kaasatakse raporteeritud kontoga suhtlemisel
       comment:
         none: Pole
       comment_description_html: 'Täiendava infona kirjutas %{name}:'
@@ -626,6 +632,7 @@ et:
         moderation: Modereerimine
         special: Eriline
       delete: Kustuta
+      description_html: <strong>Kasutajarollide</strong> abil saab kohandada, millistele Mastodoni funktsioonidele ja piirkondadele kasutajad ligi pääsevad.
       edit: Muuda '%{name}' rolli
       everyone: Vaikimisi load
       everyone_full_description_html: See on <strong>baasroll</strong> mõjudes <strong>kõigile kasutajatele</strong>, ka määramata rolliga. Kõik teised rollid pärivad selle rolli õigused.
@@ -677,6 +684,7 @@ et:
     rules:
       add_new: Lisa reegel
       delete: Kustuta
+      description_html: Kuigi enamik väidab, et on teenusetingimused läbi lugenud ja nõustub nendega, loevad inimesed tavaliselt need läbi alles pärast probleemi tekkimist. <strong>Hõlbustage oma serveri reeglite ühe pilguga nägemist, esitades need lihtsa täpploendina.</strong> Püüdke hoida üksikud reeglid lühikesed ja lihtsad, kuid ärge jagage neid ka paljudeks eraldi üksusteks.
       edit: Reegli muutmine
       empty: Serveri reegleid pole veel defineeritud.
       title: Serveri reeglid
@@ -690,12 +698,14 @@ et:
         preamble: Kohanda Mastodoni veebiliidest.
         title: Välimus
       branding:
+        preamble: Serveri bränding eristab seda teistest serveritest võrgus. Seda teavet võidakse kuvada erinevates keskkondades, näiteks Mastodoni veebiliideses, rakendustes, viitade eelvaadetes teistel veebisaitidel, sõnumsiderakendustes jne. Sel põhjusel on kõige parem hoida see teave selge, lühike ja ülevaatlik.
         title: Märgistus
       content_retention:
         preamble: Juhi kuidas kasutajate loodud sisu Mastodon'is talletatakse.
         title: Sisu talletamine
       discovery:
         follow_recommendations: Jälgi soovitusi
+        preamble: Huvitava sisu esiletoomine on oluline uute kasutajate kaasamisel, kes ei pruugi Mastodonist kedagi tunda. Kontrollige, kuidas erinevad avastamisfunktsioonid teie serveris töötavad.
         profile_directory: Kasutajate kataloog
         public_timelines: Avalikud ajajooned
         title: Avastus
@@ -763,6 +773,8 @@ et:
       rules_check:
         action: Halda serveri reegleid
         message_html: Serverireegleid pole defineeritud.
+      sidekiq_process_check:
+        message_html: Ühtegi Sidekiq protsessi pole %{value} järjekorra jaoks. Sidekiq seadistus vajab üle vaatamist
     tags:
       review: Staatuse ülevaade
       updated_msg: Sildi sätted edukalt uuendatud
@@ -774,6 +786,7 @@ et:
       links:
         allow: Luba viit
         allow_provider: Luba autor
+        description_html: Need on lingid, mida jagavad praegu palju kontod, mille postitusi teie server näeb. See võib aidata kasutajatel teada saada, mis maailmas toimub. Ühtegi linki ei kuvata avalikult enne, kui avaldaja on heaks kiidetud. Samuti saab üksikuid linke lubada või tagasi lükata.
         disallow: Keela viit
         disallow_provider: Keela autor
         no_link_selected: Viitasid ei muudetud, kuna ühtegi polnud valitud
@@ -788,12 +801,14 @@ et:
       pending_review: Ootab ülevaatust
       preview_card_providers:
         allowed: Viited kasutajalt ilmuvad trendides
+        description_html: Need on domeenid, mille linke serveris sageli jagatakse. Lingid ei muutu trendides avalikuks, kuni lingi domeen pole heaks kiidetud. Heakskiit (või tagasilükkamine) laieneb alamdomeenidele.
         rejected: Kasutaja viited ei ilmu trendides
         title: Kasutajad
       rejected: Tagasi lükatud
       statuses:
         allow: Luba postitada
         allow_account: Luba autor
+        description_html: Need on postitused, millest server teab ja mida praegu jagatakse ja mis on hetkel paljude lemmikud. See võib aidata uutel ja naasvatel kasutajatel leida rohkem inimesi, keda jälgida. Ühtegi postitust ei kuvata avalikult enne, kui autor on heaks kiidetud ja autor lubab oma kontot teistele soovitada. Samuti saab üksikuid postitusi lubada või tagasi lükata.
         disallow: Ära luba postitada
         disallow_account: Keela autor
         no_status_selected: Trendikaid postitusi ei muudetud, kuna ükski polnud valitud
@@ -836,6 +851,7 @@ et:
     webhooks:
       add_new: Lisa lõpp-punkt
       delete: Kustuta
+      description_html: <strong>Veebihaak</strong> võimaldab Mastodonil edastada <strong>reaalajas märguandeid</strong> valitud sündmuste kohta teie enda rakendusele, et teie rakendus saaks <strong>automaatselt reaktsioone käivitada</strong>.
       disable: Keela
       disabled: Keelatud
       edit: Muuda lõpp-punkti
@@ -1103,8 +1119,10 @@ et:
       add_keyword: Võtmesõna lisamine
       keywords: Märksõnad
       statuses: Üksikud postitused
+      statuses_hint_html: See filter rakendub üksikute postituste valimisel olenemata sellest, kas need vastavad allolevatele märksõnadele. <a href="%{path}">Filtri postituste ülevaatamine või kustutamine</a>.
       title: Muuda filtrit
     errors:
+      deprecated_api_multiple_keywords: Neid parameetreid ei saa selles rakenduses muuta, kuna need kehtivad rohkem kui ühele filtri märksõnale. Kasutage uuemat rakendust või veebiliidest.
       invalid_context: Puudulik või vale kontekst
     index:
       contexts: Filtrid %{contexts}
@@ -1130,6 +1148,7 @@ et:
       batch:
         remove: Eemalda filtrist
       index:
+        hint: See filter kehtib üksikute postituste valimisel, sõltumata muudest kriteeriumidest. Sellesse filtrisse saab veebiliidese kaudu rohkem postitusi lisada.
         title: Filtreeritud postitused
   footer:
     trending_now: Praegu trendikad
@@ -1307,6 +1326,8 @@ et:
     code_hint: Kinnituseks autentimisrakenduse loodud kood
     description_html: Kui aktiveerda <strong>kahe-etapine autentimine</strong> autentimisrakenduse abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
     enable: Luba
+    instructions_html: "<strong>See QR-kood on võimalik skannida telefoni Google Authenticatori või sarnasesse ühekordsete aeguvate salasõnade (TOTP) rakendusse</strong>. Nüüdsest genereerib see rakendus koode, mille peab sisenemisel sisestama."
+    manual_instructions: 'Kui pole võimalik QR-koodi skaneerida, on salavõti võimalik sisestada tavatekstina:'
     setup: Seadista
     wrong_code: Sisestatud kood on vale! Kas serveri aeg ja seadme aeg on õiged?
   pagination:
@@ -1486,6 +1507,7 @@ et:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
     exceptions: Erandid
+    explanation: Kuna postituste kustutamine on kulukas toiming, tehakse seda aja jooksul aeglaselt, kui server pole muidu hõivatud. Sel põhjusel võidakse postitused kustutada alles mõne aja möödudes pärast vanusepiirini jõudmist.
     ignore_favs: Eira lemmikuid
     ignore_reblogs: Eira jagamisi
     interaction_exceptions: Interaktsioonidel põhinevad erandid
@@ -1513,6 +1535,7 @@ et:
       '7889238': 3 kuud
     min_age_label: Ajalimiit
     min_favs: Säilita postitused, meeldimistega vähemalt
+    min_favs_hint: Ei kustuta ühtegi postitust, mis on saanud vähemalt nii palju lemmikuid. Postituste kustutamiseks, olenemata nende lemmikute arvust, jätke tühjaks
     min_reblogs: Säilita postitused jagatud vähemalt
     min_reblogs_hint: Ei kustuta postitusi, kui need on jagatud vähemalt nii mitu korda. Tühjaks jättes kustuvad postitused olenemata jagamistest
   stream_entries:
