@@ -14,6 +14,8 @@ et:
         text_html: Valikuline. Te saate kasutada tuututuse süntaksi. Te saate <a href="%{path}">lisada hoiatuste eelseadistusi</a> aega säästmiseks
         type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
         types:
+          disable: Keela kasutajal konto kasutamine, sisu kustutamata või varjamata.
+          none: Hoiatuse saatmine kasutajale, ilma täiendavate tegevuste käivitamiseta.
           sensitive: Kogu kasutaja meediasisu märgitakse kui tundlik sisu.
           suspend: Takistamaks suhtlust selle kontoga ja kustutamaks kogu sisu. Tagasivõetav 30 päeva jooksul.
         warning_preset_id: Valikuline. Te saate ikka lisada mis tahes teksti eelseadistuse lõppu
@@ -23,6 +25,8 @@ et:
         scheduled_at: Jäta tühjaks, et avaldada teadaande koheselt
         starts_at: Valikuline. Juhul, kui teie teadaanne on limiteeritud kindlale ajavahemikule
         text: Te saate kasutada tuututuse süntaksi. Palun pidage silmas seda, kui palju ruumi teadaanne võtab kasutaja ekraanil
+      appeal:
+        text: Otsust on võimalik vaidlustada vaid 1 kord
       defaults:
         autofollow: Inimesed, kes loovad konto selle kutse läbi, automaatselt jälgivad Teid
         avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
@@ -62,13 +66,26 @@ et:
         with_dns_records: Püütakse lahendada selle domeeni DNS-kirjed ja ühtlasi blokeerida ka selle tulemused
       featured_tag:
         name: 'Siin on mõned nendest siltidest mida sa oled kõige hiljutisemalt kasutanud:'
+      filters:
+        action: Tegevuse valik, kui postitus vastab filtrile
+        actions:
+          hide: Filtreeritud sisu täielik peitmine, nagu seda polekski üldse olemas
+          warn: Varja filtreeritud sisu hoiatusega, nimetades filtri pealkirja
       form_admin_settings:
+        backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevadeks.
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
+        custom_css: Kohandatud stiile on võimalik kasutada Mastodoni veebiliideses.
+        mascot: Asendab kohandatud veebiliidese illustratsiooni.
         media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid nende päevade möödudes ning laetakse vajadusel uuesti alla.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
         require_invite_text: Kui liitumisi on tarvis kinnitada, oleks "Miks Te soovite liituda?" vastus vajalik
         site_contact_email: Kui peaks tekkima vajadus ühendust võtta täiendavate küsimuste osas.
+        site_contact_username: Kuidas Mastodoni kaudu ühendust võtta.
+        site_title: Kuidas inimesed saavad serverile viidata, lisaks domeeninimele.
+        theme: Teema, mida näevad sisenemata ning uued kasutajad.
+        thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
+        timeline_preview: Sisenemata külastajatel on võimalik sirvida viimaseid avalikke postitusi serveril.
         trends: Populaarsuse suunad näitavad millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
       form_challenge:
         current_password: Turvalisse alasse sisenemine
@@ -91,6 +108,15 @@ et:
         name: Te saate ainult muuta tähtede tõstetust, näiteks selleks, et muuta seda rohkem loetavaks
       user:
         chosen_languages: Kui valitud, ainult valitud keeltes tuututused näidatakse avalikes ajajoontes
+        role: See roll kontrollib, millised õigused kasutajal on
+      user_role:
+        color: Rolli tähistamise värvus üle kasutajaliidese, RGB 16nd-formaadis
+        highlighted: Teeb rolli avalikult nähtavaks
+        name: Rolli avalik nimi, kui roll on märgitud avalikuks kuvamiseks märgina
+        permissions_as_keys: Selle rolliga kasutajatel on ligipääs...
+      webhook:
+        events: Saadetavate sündmuste valik
+        url: Kuhu sündmused saadetakse
     labels:
       account:
         fields:
@@ -121,6 +147,8 @@ et:
         scheduled_at: Ajasta avalikustamine
         starts_at: Sündmuse algus
         text: Teadaanne
+      appeal:
+        text: Kirjeldus, miks see otsus tuleks tagasi pöörata
       defaults:
         autofollow: Kutsu oma kontot jälgima
         avatar: Profiilipilt
@@ -190,11 +218,16 @@ et:
           hide: Peida täielikult
           warn: Peida hoiatusega
       form_admin_settings:
+        backups_retention_period: Kasutajate arhiivi talletusperiood
+        bootstrap_timeline_accounts: Alati soovita neid kontosid uutele kasutajatele
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
+        content_cache_retention_period: Meediapuhvri talletusperiood
         custom_css: Kohandatud CSS
+        mascot: Kohandatud maskott (kunagine)
         media_cache_retention_period: Meediapuhvri talletusperiood
         profile_directory: Luba kasutajate kataloog
         registrations_mode: Kes saab liituda
+        require_invite_text: Nõua liitumiseks põhjendust
         show_domain_blocks: Näita domeenikeelde
         show_domain_blocks_rationale: Näite domeenikeeldude põhjuseid
         site_contact_email: Kontaktisiku e-post
@@ -205,6 +238,8 @@ et:
         site_title: Serveri nimi
         theme: Vaikmisi teema
         thumbnail: Serveri pisipilt
+        timeline_preview: Luba autentimata ligipääs avalikele ajajoontele
+        trendable_by_default: Luba trendid eelneva ülevaatuseta
         trends: Luba trendid
       interactions:
         must_be_follower: Keela teavitused mittejälgijatelt
@@ -243,6 +278,8 @@ et:
       user:
         role: Roll
       user_role:
+        color: Märgi värv
+        highlighted: Kuva roll kasutajaprofiilidel märgina
         name: Nimi
         permissions_as_keys: Load
         position: Positsioon
@@ -255,4 +292,7 @@ et:
     required:
       mark: "*"
       text: kohustuslik
+    title:
+      sessions:
+        webauthn: Kasuta sisenemiseks ühte turvavõtmeist
     'yes': 'Jah'
