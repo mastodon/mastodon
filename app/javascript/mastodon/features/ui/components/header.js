@@ -6,6 +6,7 @@ import { registrationsOpen, me } from 'mastodon/initial_state';
 import Avatar from 'mastodon/components/avatar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Icon from 'mastodon/components/icon';
 
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
@@ -35,7 +36,7 @@ class Header extends React.PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <Link to='/publish' className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='Publish' /></Link>}
+          {location.pathname !== '/publish' && <Link to='/publish' className='button bottom_right'><Icon id='send' fixedWidth /></Link>}
           <Account />
         </>
       );
