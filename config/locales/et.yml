@@ -472,13 +472,28 @@ et:
           silence: Vaigista
           suspend: Kustuta
       dashboard:
+        instance_accounts_measure: talletatud kontod
+        instance_followers_measure: meie jälgiad seal
+        instance_follows_measure: nende jälgijad siin
         instance_languages_dimension: Top keeled
         instance_media_attachments_measure: talletatud meedialisandid
+        instance_reports_measure: raportid nende kohta
         instance_statuses_measure: salvestatud postitused
       delivery:
         all: Kõik
+        clear: Kustuta edastustõrked
+        failing: Nurjuv
+        restart: Taaskäivita edastus
+        stop: Peata edastus
         unavailable: Pole saadaval
       delivery_available: Üleandmine on saadaval
+      delivery_error_days: Edastustõrgete päevad
+      delivery_error_hint: Kui edastus pole võimalik %{count} päeva, märgitakse automaatselt edastamatuks.
+      destroyed_msg: Domeeni %{domain} andmed on märgitud lõplikuks kustutamiseks.
+      empty: Domeene ei leidu.
+      known_accounts:
+        one: "%{count} teada konto"
+        other: "%{count} teada kontot"
       moderation:
         all: Kõik
         limited: Piiratud
@@ -486,12 +501,14 @@ et:
       private_comment: Privaatne kommentaar
       public_comment: Avalik kommentaar
       purge: Kustuta
+      purge_description_html: Kui on arvata, et domeen on lõplikult kadunud, on võimalik kustutada kõik siin talletatud kontode kirjed ja seotud andmed. See võib aega võtta.
       title: Föderatsioon
       total_blocked_by_us: Meie poolt blokeeritud
       total_followed_by_them: Nende poolt jälgitud
       total_followed_by_us: Meie poolt jälgitud
       total_reported: Nende kohta teateid
       total_storage: Lisatud meedia
+      totals_time_period_hint_html: Allpool kuvatud summad sisaldavad andmed kogu aja kohta.
     invites:
       deactivate_all: Peata kõik
       filter:
@@ -536,6 +553,7 @@ et:
     report_notes:
       created_msg: Teade edukalt koostatud!
       destroyed_msg: Teade edukalt kustutatud!
+      today_at: Täna kell %{time}
     reports:
       account:
         notes:
@@ -549,6 +567,7 @@ et:
         resolve_description_html: Raporteeritud konto suhtes ei võeta midagi ette, juhtumit ei registreerita ja raport suletakse.
         suspend_description_html: Konto ja kogu sisu muutub lõpliku kustutamiseni kättesaamatuks. Kontoga suhtlemine pole võimalik. Tagasivõetav 30 päeva jooksul.
       actions_description_html: Otsustus, mida raporti lahendamiseks ette võtta. Karistava tegevuse korral saadetakse e-postiga teade, välja arvatud kategooria <strong>rämpspost</strong> puhul.
+      add_to_report: Lisa raportile juurde
       are_you_sure: Olete kindel?
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
@@ -556,9 +575,11 @@ et:
       category: Kategooria
       comment:
         none: Pole
+      comment_description_html: 'Täiendava infona kirjutas %{name}:'
       created_at: Teavitatud
       delete_and_resolve: Kustutatud postitused
       forwarded: Edastatud
+      forwarded_to: Edastatud domeenile %{domain}
       mark_as_resolved: Märgi lahendatuks
       mark_as_sensitive: Märgi kui tundlik sisu
       mark_as_unresolved: Märgi lahendamata
@@ -570,7 +591,9 @@ et:
         delete: Kustuta
         placeholder: Kirjelda, mis on ette võetud või muid seotud uuendusi...
         title: Märkmed
+      notes_description_html: Märkmete vaatamine ja jätmine teistele moderaatoritele ja tulevikuks endale
       quick_actions_description_html: 'Võimalus teha kiire otsus või näha raporteeritud sisu allpool:'
+      remote_user_placeholder: kaugkasutaja domeenist %{instance}
       reopen: Taasava teavitus
       report: 'Teavitus #%{id}'
       reported_account: Teavitatud kontost
@@ -579,6 +602,8 @@ et:
       resolved_msg: Teavituse lahendamine õnnestus!
       skip_to_actions: Otsuste juurde
       status: Staatus
+      statuses: Raporteeritud sisu
+      target_origin: Raporteeritud konto päritolu
       title: Teavitused
       unassign: Eemalda määramine
       unresolved: Lahendamata
@@ -590,8 +615,11 @@ et:
         one: "%{count} kasutaja"
         other: "%{count} kasutajat"
       categories:
+        administration: Haldamine
         devops: DevOps
+        invites: Kutsed
         moderation: Modereerimine
+        special: Eriline
       delete: Kustuta
       permissions_count:
         one: "%{count} õigus"
@@ -679,6 +707,7 @@ et:
       no_status_selected: Mitte ühtegi staatust muudeti sest midagi polnud valitud
       open: Ava postitus
       original_status: Algne postitus
+      reblogs: Jagamised
       status_changed: Muudetud postitus
       title: Konto staatused
       visibility: Nähtavus
@@ -704,27 +733,73 @@ et:
     trends:
       allow: Luba
       approved: Kinnitatud
+      links:
+        publishers:
+          no_publisher_selected: Avaldajaid ei muudetud, kuna ühtegi polnud valitud
+        shared_by_over_week:
+          one: Jagatud ühe kasutaja pool viimase nädala jooksul
+          other: Jagatud %{count} kasutaja poolt viimase nädala jooksul
+        title: Trendikad viited
+        usage_comparison: Jagatud %{today} korda täna, eile %{yesterday} korda
+      only_allowed: Ainult lubatud
       pending_review: Ootab ülevaatust
+      preview_card_providers:
+        allowed: Viited kasutajalt ilmuvad trendides
+        rejected: Kasutaja viited ei ilmu trendides
+        title: Kasutajad
+      rejected: Tagasi lükatud
       statuses:
         allow: Luba postitada
+        allow_account: Luba autor
         disallow: Ära luba postitada
+        disallow_account: Keela autor
+        no_status_selected: Trendikaid postitusi ei muudetud, kuna ükski polnud valitud
+        not_discoverable: Autor pole lubanud enda avastamist
+        shared_by:
+          one: Jagatud või meeldinud üks kord
+          other: Jagatud ja meeldinud %{friendly_count} korda
         title: Trendikad postitused
       tags:
+        current_score: Skoor praegu %{score}
+        dashboard:
+          tag_accounts_measure: unikaalset kasutajat
+          tag_languages_dimension: Populaarseimad keeled
+          tag_servers_dimension: Populaarseimad serverid
+          tag_servers_measure: erinevat serverit
+          tag_uses_measure: kasutajaid kokku
         description_html: Need sildid ilmuvad praegu paljudes postitutes mida su server näeb. See võib aidata su kasutajatel leida seda millest kõige rohkem parajasti räägitakse. Ühtegi silti ei näidata avalikult, enne nende heaks kiitmist.
+        listable: Võib olla soovitatud
+        no_tag_selected: Silte ei muudetud, kuna ühtegi polnud valitud
+        not_listable: Ei soovitata
+        not_trendable: Ei ilmu trendides
+        not_usable: Ei saa kasutada
+        peaked_on_and_decaying: Populaarseim %{date}, nüüd langemas
         title: Trendikad sildid
+        trendable: Võib ilmuda trendides
+        trending_rank: 'Trendides #%{rank}'
         usable: Kasutatav
+        usage_comparison: Kasutatud %{today} korda täna, eile %{yesterday} korda
+        used_by_over_week:
+          one: Kasutatud ühe kasutaja pool viimase nädala jooksul
+          other: Kasutatud %{count} kasutaja poolt viimase nädala jooksul
       title: Trendid
+      trending: Trendid
     warning_presets:
       add_new: Lisa uus
       delete: Kustuta
       edit_preset: Hoiatuse eelseadistuse muutmine
       title: Halda hoiatuste eelseadistusi
     webhooks:
+      add_new: Lisa lõpp-punkt
       delete: Kustuta
       disable: Keela
       disabled: Keelatud
+      edit: Muuda lõpp-punkti
       enable: Luba
       enabled: Aktiivne
+      enabled_events:
+        one: 1 lubatud sündmus
+        other: "%{count} lubatud sündmust"
       events: Sündmused
       secret: Salavõti allkirjastamiseks
       status: Staatus
@@ -740,6 +815,7 @@ et:
         suspend: et konto kustutada
       body: "%{target} vaidlustab %{action_taken_by} modereerimisotsuse kuupäevaga %{date}: %{type}. Põhjendus:"
       next_steps: Võid modereeringu tagasi pööramiseks vaidlustuse rahuldada, või ka mitte.
+      subject: "%{username} on vaidlustanud %{instance} modereerimisotsuse"
     new_pending_account:
       body: Uue konto üksikasjad on allpool. Te saate vastu võtta või tagasi lükata seda taotlust.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
@@ -748,12 +824,16 @@ et:
       body_remote: Keegi domeenist %{domain} teavitas kasutajast %{target}
       subject: 'Uus teavitus %{instance}-ile (#%{id})'
     new_trends:
+      body: 'Järgmised üksused vajavad enne avalikustamist ülevaatust:'
+      new_trending_links:
+        title: Trendikad viited
       new_trending_statuses:
         title: Trendikad postitused
       new_trending_tags:
         no_approved_tags: Hetkel ei ole ühtegi heaks kiidetud populaarset silti.
         requirements: 'Need on siltide kandidaadid mille hulgast ükskõik milline võib järjekorras mööda jõuda #%{rank} kohal olevast heaks kiidetud sildist. See on hetkel #%{lowest_tag_name} mille seis on %{lowest_tag_score}.'
         title: Trendikad sildid
+      subject: Uued %{instance} trendid ülevaatuseks
   aliases:
     add_new: Loo teine nimi
     created_msg: Teine nimi on edukalt loodud. Te saate nüüd alustada kolimist vanalt kontolt.
@@ -787,6 +867,7 @@ et:
     warning: Olge nende andmetega ettevaatlikud. Ärge jagage neid kellegagi!
     your_token: Teie access token
   auth:
+    apply_for_account: Konto taotluse esitamine
     change_password: Salasõna
     delete_account: Kustuta konto
     delete_account_html: Kui Te soovite oma kontot kustutada, võite <a href="%{path}">jätkata siit</a>. Teilt küsitakse kinnitust.
@@ -795,6 +876,7 @@ et:
       prefix_sign_up: Loo Mastodoni konto juba täna!
       suffix: Kasutajakontoga saate jälgida inimesi, postitada uudiseid ning teha kirjavahetust üks kõik millisest Mastodoni serverist kasutajatega ja muud!
     didnt_get_confirmation: Ei saanud kinnituse juhendeid?
+    dont_have_your_security_key: Pole turvavõtit?
     forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
     link_to_otp: Kahe-etapine kood telefonist või taastekood
@@ -1110,6 +1192,8 @@ et:
       body: '%{name} mainis Teid:'
       subject: '%{name} mainis Teid'
       title: Uus mainimine
+    poll:
+      subject: '%{name} küsitlus lõppes'
     reblog:
       body: '%{name} jagas postitust:'
       subject: "%{name} jagas postitust"
@@ -1154,6 +1238,8 @@ et:
     other: Muu
     posting_defaults: Postitamise vaikesätted
     public_timelines: Avalikud ajajooned
+  privacy_policy:
+    title: Privaatsuspoliitika
   reactions:
     errors:
       limit_reached: Jõutud on erinevate reaktsioonide limiidini
@@ -1161,6 +1247,7 @@ et:
   relationships:
     activity: Konto tegevus
     dormant: Seisev
+    follow_selected_followers: Valitud jälgijate jälgimine
     followers: Jälgijad
     following: Jälgib
     invited: Kutsutud
@@ -1177,7 +1264,9 @@ et:
   remote_follow:
     missing_resource: Ei suutnud leida vajalikku suunamise URLi Teie konto jaoks
   rss:
+    content_warning: 'Sisuhoiatus:'
     descriptions:
+      account: '@%{acct} avalikud postitused'
       tag: 'Avalikud postitused sildiga #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit} selle päeva kohta
@@ -1224,6 +1313,7 @@ et:
     revoke: Tühista
     revoke_success: Seanssi tühistamine õnnestus
     title: Seanssid
+    view_authentication_history: Konto autentimisajaloo vaatamine
   settings:
     account: Konto
     account_settings: Kontosätted
@@ -1246,8 +1336,12 @@ et:
     statuses_cleanup: Automaatne kustutamine
     strikes: Modereerimisjuhtumid
     two_factor_authentication: Kahe-etapine autentimine
+    webauthn_authentication: Turvavõtmed
   statuses:
     attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audiot"
       description: 'Manused: %{attached}'
       image:
         one: "%{count} pilt"
@@ -1257,9 +1351,11 @@ et:
         other: "%{count} videot"
     boosted_from_html: '%{acct_link} jagamine'
     content_warning: 'Sisu hoiatus: %{warning}'
+    default_language: Kasutajaliidese keelega sama
     disallowed_hashtags:
       one: 'sisaldab ebasobivat silti: %{tags}'
       other: 'sisaldab ebasobivaid silte: %{tags}'
+    edited_at_html: Muudetud %{date}
     errors:
       in_reply_not_found: Staatus, millele üritate vastata, ei näi enam eksisteerivat.
     open_in_web: Ava veebis
@@ -1278,8 +1374,11 @@ et:
         other: "%{count} häält"
       vote: Hääleta
     show_more: Näita rohkem
+    show_newer: Uuemate kuvamine
+    show_older: Vanemate kuvamine
     show_thread: Kuva lõim
     sign_in_to_participate: Logi sisse, et liituda vestlusega
+    title: '%{name}: "%{quote}"'
     visibilities:
       direct: Otsene
       private: Ainult jälgijatele
@@ -1292,6 +1391,9 @@ et:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
     exceptions: Erandid
+    ignore_favs: Eira lemmikuid
+    ignore_reblogs: Eira jagamisi
+    interaction_exceptions_explanation: Postitused ei pruugi kustuda, kui meeldimiste või jagamiste arv langeb alla määratu, kui need on kord olnud sellest üle.
     keep_media: Meedialisanditega postituste säilitamine
     keep_media_hint: Meedialisanditega postitusi ei kustutata
     keep_pinned: Säilita kinnitatud postitused
@@ -1306,6 +1408,8 @@ et:
       '63113904': 2 aastat
       '7889238': 3 kuud
     min_age_label: Ajalimiit
+    min_reblogs: Säilita postitused jagatud vähemalt
+    min_reblogs_hint: Ei kustuta postitusi, kui need on jagatud vähemalt nii mitu korda. Tühjaks jättes kustuvad postitused olenemata jagamistest
   stream_entries:
     pinned: Kinnitatud postitus
     reblogged: jagatud
@@ -1342,6 +1446,13 @@ et:
   user_mailer:
     appeal_approved:
       action: Oma kontole
+      explanation: '%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on rahuldatud. Konto on ennistatud.'
+      subject: '%{date} esitatud vaidlustus on rahuldatud'
+      title: Vaidlustus rahuldatud
+    appeal_rejected:
+      explanation: '%{appeal_date} esitatud vaidlustus %{strike_date} otsuse kohta on tagasi lükatud.'
+      subject: '%{date} esitatud vaidlustus on tagasi lükatud'
+      title: Vaidlustus tagasi lükatud
     backup_ready:
       explanation: Te taotlesite varukoopia oma Mastodoni kontost. See on nüüd valmis allalaadimiseks!
       subject: Teie arhiiv on allalaadimiseks valmis
@@ -1358,7 +1469,9 @@ et:
       appeal_description: Kui see võib olla eksitus, on võimalik %{instance} haldajatele esitada vaidlustus.
       categories:
         spam: Rämpspost
+        violation: Sisu eirab järgmisi kogukonnajuhiseid
       explanation:
+        delete_statuses: Mõned postitused eiravad ühte või mitmeid kogukonnajuhiseid ja on seetõttu %{instance} moderaatorite poolt eemaldatud.
         mark_statuses_as_sensitive: Mõned postitused märgiti %{instance} moderaatorite poolt kui tundlik sisu. See tähendab, et meedia eelvaadet vaikimisi ei kuvata. Edaspidi postitades on soovitatav seesugune meedia märkida kui tundlik sisu.
         sensitive: Praegusest alates saab kogu Su üleslaetav meedia tundliku sisu märke ja selle eelvaadet ei kuvata enne hoiatust.
         suspend: Konto kasutamine pole enam võimalik ja profiil ja muud andmed pole enam kättesaadavad. Sisenemine on võimalik andmetest varukoopia saamiseks kuni nende lõpliku kustutamiseni 30 päeva pärast, ent säiltame mõned põhiandmed kustutamisest mööda hiilimise vältimiseks.
