@@ -184,11 +184,16 @@ et:
         with_dns_records: Kaasa domeeni MX-kirjed ning IP-aadressid
       featured_tag:
         name: Silt
+      filters:
+        actions:
+          hide: Peida täielikult
+          warn: Peida hoiatusega
       form_admin_settings:
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
         custom_css: Kohandatud CSS
         media_cache_retention_period: Meediapuhvri talletusperiood
         profile_directory: Luba kasutajate kataloog
+        registrations_mode: Kes saab liituda
         show_domain_blocks: Näita domeenikeelde
         show_domain_blocks_rationale: Näite domeenikeeldude põhjuseid
         site_contact_email: Kontaktisiku e-post
