@@ -432,7 +432,7 @@ class StatusContent extends React.PureComponent {
           />
           {media}
           {extraMedia}
-          {!hidden && translateButton}
+          {translateButton}
         </div>
       );
     } else {
@@ -453,7 +453,7 @@ class StatusContent extends React.PureComponent {
           />
           {media}
           {extraMedia}
-          {!hidden && translateButton}
+          {translateButton}
         </div>
       );
     }
