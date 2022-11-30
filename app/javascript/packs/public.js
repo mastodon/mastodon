@@ -67,12 +67,12 @@ function main() {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
-      timeFormat: false
+      timeFormat: false,
     });
 
     const timeFormat = new Intl.DateTimeFormat(locale, {
       timeStyle: 'short',
-      hour12: false
+      hour12: false,
     });
 
     [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
