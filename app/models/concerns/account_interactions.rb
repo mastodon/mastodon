@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+# rubocop:disable Metrics/ModuleLength
 module AccountInteractions
   extend ActiveSupport::Concern
 
+  # rubocop:disable Metrics/BlockLength
   class_methods do
     def following_map(target_account_ids, account_id)
       Follow.where(target_account_id: target_account_ids, account_id: account_id).each_with_object({}) do |follow, mapping|
@@ -76,6 +78,7 @@ module AccountInteractions
       query.pluck(field).index_with(true)
     end
   end
+  # rubocop:enable Metrics/BlockLength
 
   included do
     # Follow relations
@@ -109,6 +112,7 @@ module AccountInteractions
     has_many :announcement_mutes, dependent: :destroy
   end
 
+  # rubocop:disable Metrics/ParameterLists
   def follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
     rel = active_relationships.create_with(show_reblogs: reblogs.nil? ? true : reblogs, notify: notify.nil? ? false : notify, languages: languages, uri: uri, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
                               .find_or_create_by!(target_account: other_account)
@@ -123,7 +127,9 @@ module AccountInteractions
 
     rel
   end
+  # rubocop:enable Metrics/ParameterLists
 
+  # rubocop:disable Metrics/ParameterLists
   def request_follow!(other_account, reblogs: nil, notify: nil, languages: nil, uri: nil, rate_limit: false, bypass_limit: false)
     rel = follow_requests.create_with(show_reblogs: reblogs.nil? ? true : reblogs, notify: notify.nil? ? false : notify, uri: uri, languages: languages, rate_limit: rate_limit, bypass_follow_limit: bypass_limit)
                          .find_or_create_by!(target_account: other_account)
@@ -138,6 +144,7 @@ module AccountInteractions
 
     rel
   end
+  # rubocop:enable Metrics/ParameterLists
 
   def block!(other_account, uri: nil)
     remove_potential_friendship(other_account)
@@ -301,3 +308,4 @@ module AccountInteractions
     PotentialFriendshipTracker.remove(id, other_account.id)
   end
 end
+# rubocop:enable Metrics/ModuleLength
