@@ -1,4 +1,3 @@
----
 de:
   devise:
     confirmations:
@@ -8,10 +7,10 @@ de:
     failure:
       already_authenticated: Du bist bereits angemeldet.
       inactive: Dein Konto wurde noch nicht aktiviert.
-      invalid: "%{authentication_keys} oder Passwort ungültig."
+      invalid: '%{authentication_keys} oder Passwort ungültig.'
       last_attempt: Du hast noch einen Versuch, bevor dein Konto gesperrt wird.
       locked: Dein Konto ist gesperrt.
-      not_found_in_database: "%{authentication_keys} oder Passwort ungültig."
+      not_found_in_database: '%{authentication_keys} oder Passwort ungültig.'
       pending: Dein Konto wird immer noch überprüft.
       timeout: Deine Sitzung ist abgelaufen. Bitte melde dich erneut an, um fortzufahren.
       unauthenticated: Du musst dich anmelden oder registrieren, bevor du fortfahren kannst.
@@ -55,9 +54,9 @@ de:
         subject: 'Mastodon: Zwei‐Faktor‐Authentifizierung aktiviert'
         title: 2FA aktiviert
       two_factor_recovery_codes_changed:
-        explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue generiert.
-        subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu generiert'
-        title: 2FA Wiederherstellungscodes geändert
+        explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue erstellt.
+        subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu erstellt'
+        title: 2FA-Wiederherstellungscodes geändert
       unlock_instructions:
         subject: 'Mastodon: Konto entsperren'
       webauthn_credential:
