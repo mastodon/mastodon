@@ -472,6 +472,7 @@ et:
           silence: Vaigista
           suspend: Kustuta
         reason: Avalik põhjendus
+        title: Sisureeglid
       dashboard:
         instance_accounts_measure: talletatud kontod
         instance_followers_measure: meie jälgiad seal
@@ -622,6 +623,8 @@ et:
         moderation: Modereerimine
         special: Eriline
       delete: Kustuta
+      edit: Muuda '%{name}' rolli
+      everyone: Vaikimisi load
       permissions_count:
         one: "%{count} õigus"
         other: "%{count} õigused"
@@ -667,9 +670,11 @@ et:
       add_new: Lisa reegel
       delete: Kustuta
       edit: Reegli muutmine
+      empty: Serveri reegleid pole veel defineeritud.
       title: Serveri reeglid
     settings:
       about:
+        manage_rules: Halda serveri reegleid
         title: Teave
       appearance:
         title: Välimus
@@ -681,6 +686,7 @@ et:
       discovery:
         follow_recommendations: Jälgi soovitusi
         profile_directory: Kasutajate kataloog
+        public_timelines: Avalikud ajajooned
         title: Avastus
         trends: Trendid
       domain_blocks:
@@ -702,7 +708,9 @@ et:
       account: Autor
       application: Rakendus
       back_to_account: Tagasi konto lehele
+      back_to_report: Tagasi raporti lehele
       batch:
+        remove_from_report: Eemalda raportist
         report: Raport
       deleted: Kustutatud
       favourites: Lemmikud
@@ -735,6 +743,8 @@ et:
       elasticsearch_version_check:
         message_html: 'Elasticsearch versioon ei sobi: %{value}'
         version_comparison: Elasticsearch %{running_version} töötab, aga nõutud on %{required_version}
+      rules_check:
+        action: Halda serveri reegleid
     tags:
       review: Staatuse ülevaade
       updated_msg: Sildi sätted edukalt uuendatud
@@ -745,7 +755,9 @@ et:
       disallow: Keela
       links:
         allow: Luba viit
+        allow_provider: Luba autor
         disallow: Keela viit
+        disallow_provider: Keela autor
         publishers:
           no_publisher_selected: Avaldajaid ei muudetud, kuna ühtegi polnud valitud
         shared_by_over_week:
@@ -925,6 +937,7 @@ et:
       redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
       view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
+    use_security_key: Kasuta turvavõtit
   authorize_follow:
     already_following: Te juba jälgite seda kontot
     already_requested: Te juba saatsite jälgimistaotluse sellele kontole
@@ -991,6 +1004,7 @@ et:
       appeals:
         submit: Esita vaidlustus
       approve_appeal: Rahulda vaidlustus
+      associated_report: Seotud raport
       created_at: Kuupäev
       description_html: See on käesoleva konto hoiatuste ja tegevuste ajalugu, mis on %{instance} haldajate poolt ette võetud.
       recipient: Adressaat
@@ -1000,6 +1014,7 @@ et:
       title: "%{action} kuupäevaga %{date}"
       title_actions:
         delete_statuses: Postituste eemaldamine
+        disable: Konto külmutamine
         mark_statuses_as_sensitive: Postituste tundlikena märkimine
         none: Hoiatus
         sensitive: Konto tundlikuna märkimine
@@ -1063,6 +1078,10 @@ et:
     index:
       delete: Kustuta
       empty: Teil pole filtreid.
+      expires_on: Aegub %{date}
+      keywords:
+        one: "%{count} võtmesõna"
+        other: "%{count} võtmesõna"
       statuses:
         one: "%{count} postitus"
         other: "%{count} postitust"
@@ -1071,9 +1090,12 @@ et:
         other: "%{count} postitust peidetud"
       title: Filtrid
     new:
+      save: Salvesta uus filter
       title: Lisa uus filter
     statuses:
       back_to_filter: Tagasi filtri juurde
+      batch:
+        remove: Eemalda filtrist
       index:
         title: Filtreeritud postitused
   footer:
@@ -1412,6 +1434,7 @@ et:
     ignore_favs: Eira lemmikuid
     ignore_reblogs: Eira jagamisi
     interaction_exceptions_explanation: Postitused ei pruugi kustuda, kui meeldimiste või jagamiste arv langeb alla määratu, kui need on kord olnud sellest üle.
+    keep_direct: Säilita otsesõnumid
     keep_media: Meedialisanditega postituste säilitamine
     keep_media_hint: Meedialisanditega postitusi ei kustutata
     keep_pinned: Säilita kinnitatud postitused
