@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.6.0', '< 3.1.0'
+ruby '>= 2.7.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.4'
 gem 'rexml', '~> 3.2'
@@ -26,7 +26,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.13.0', require: false
+gem 'bootsnap', '~> 1.14.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.2'
@@ -55,7 +55,7 @@ gem 'redis-namespace', '~> 1.9'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.1'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.6.0'
+gem 'httplog', '~> 1.6.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
@@ -113,7 +113,7 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.37'
+  gem 'capybara', '~> 3.38'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 2.23'
   gem 'microformats', '~> 4.4'
@@ -136,7 +136,7 @@ group :development do
   gem 'memory_profiler'
   gem 'rubocop', '~> 1.30', require: false
   gem 'rubocop-rails', '~> 2.15', require: false
-  gem 'brakeman', '~> 5.3', require: false
+  gem 'brakeman', '~> 5.4', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   gem 'capistrano', '~> 3.17'

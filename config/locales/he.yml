@@ -49,30 +49,30 @@ he:
         submit: שלחי בקשה לשינוי דוא"ל
         title: שינוי כתובת דוא"ל עבור המשתמש.ת %{username}
       change_role:
-        changed_msg: תפקיד שונה בהצלחה !
-        label: שנה תפקיד
+        changed_msg: התפקיד שונה בהצלחה!
+        label: שינוי תפקיד
         no_role: ללא תפקיד
-        title: שינוי תפקיד  עבור המשתמש.ת %{username}
+        title: שינוי תפקיד עבור %{username}
       confirm: אישור
       confirmed: אושר
-      confirming: המאשר
+      confirming: בתהליך אישור
       custom: התאמה אישית
-      delete: מחיקת חשבון
+      delete: מחיקת נתונים
       deleted: מחוקים
       demote: הורדה בדרגה
       destroyed_msg: הנתונים של %{username} נכנסו לתור המחיקה וצפויים להימחק באופן מיידי
-      disable: לחסום
-      disable_sign_in_token_auth: השעיית הזדהות באמצעות אסימון בדוא"ל של משתמש
-      disable_two_factor_authentication: ביטול הזדהות דו-שלבית
-      disabled: נחסם
-      display_name: שם לתצוגה
+      disable: הקפאה
+      disable_sign_in_token_auth: ביטול הזדהות באמצעות אסימון דוא״ל
+      disable_two_factor_authentication: ביטול הזדהות דו־שלבית
+      disabled: מוקפא
+      display_name: שם תצוגה
       domain: תחום
       edit: עריכה
-      email: דוא"ל
-      email_status: סטטוס דוא"ל
-      enable: לאפשר
-      enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא"ל של משתמש
-      enabled: מאופשר
+      email: דוא״ל
+      email_status: מצב דוא״ל
+      enable: להפשיר
+      enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא״ל
+      enabled: מופעל
       enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
       followers: עוקבים
       follows: נעקבים
@@ -990,7 +990,7 @@ he:
     migrate_account: מעבר לחשבון אחר
     migrate_account_html: אם ברצונך להכווין את החשבון לעבר חשבון אחר, ניתן <a href="%{path}">להגדיר זאת כאן</a>.
     or_log_in_with: או התחבר באמצעות
-    privacy_policy_agreement_html: קארתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
+    privacy_policy_agreement_html: קראתי והסכמתי ל<a href="%{privacy_policy_path}" target="_blank">מדיניות הפרטיות</a>
     providers:
       cas: CAS
       saml: SAML
@@ -1009,7 +1009,7 @@ he:
       title: הגדרות
     sign_up:
       preamble: כיוון שמסטודון מבוזרת, תוכל/י להשתמש בחשבון שלך משרתי מסטודון או רשתות תואמות אחרות אם אין לך חשבון על שרת זה.
-      title: הבא נקים לך את השרת בכתובת %{domain}.
+      title: הבה ניצור לך חשבון בשרת %{domain}.
     status:
       account_status: מצב חשבון
       confirming: ממתין שדוא"ל האישור יושלם.
@@ -1197,6 +1197,11 @@ he:
     trending_now: נושאים חמים
   generic:
     all: הכל
+    all_matching_items_selected_html:
+      many: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
+      one: נבחר פריט <strong>%{count}</strong> שתאם לחיפוש בעמוד זה.
+      other: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
+      two: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
     changes_saved_msg: השינויים נשמרו בהצלחה!
     copy: להעתיק
     delete: למחוק
