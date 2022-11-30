@@ -42,7 +42,7 @@ export const Avatar: React.FC<Props> = ({
       onMouseLeave={handleMouseLeave}
       style={style}
     >
-      {src && <img src={src} alt={account?.get('acct')} />}
+      {src && <img src={src} alt='' />}
     </div>
   );
 };
