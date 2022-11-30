@@ -408,8 +408,12 @@ GEM
     multi_json (1.15.0)
     multipart-post (2.1.1)
     net-ldap (0.17.1)
+    net-protocol (0.1.3)
+      timeout
     net-scp (4.0.0.rc1)
       net-ssh (>= 2.6.5, < 8.0.0)
+    net-smtp (0.3.3)
+      net-protocol
     net-ssh (7.0.1)
     nio4r (2.5.8)
     nokogiri (1.13.9)
@@ -663,6 +667,7 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
     tilt (2.0.11)
+    timeout (0.3.0)
     tpm-key_attestation (0.11.0)
       bindata (~> 2.4)
       openssl (> 2.0, < 3.1)
@@ -793,6 +798,7 @@ DEPENDENCIES
   microformats (~> 4.4)
   mime-types (~> 3.4.1)
   net-ldap (~> 0.17)
+  net-smtp (~> 0.3.3)
   nokogiri (~> 1.13)
   nsa (~> 0.2)
   oj (~> 3.13)
@@ -855,3 +861,4 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+  
