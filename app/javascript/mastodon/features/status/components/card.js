@@ -6,7 +6,7 @@ import { FormattedMessage } from 'react-intl';
 import punycode from 'punycode';
 import classnames from 'classnames';
 import Icon from 'mastodon/components/icon';
-import { useBlurhash } from 'mastodon/initial_state';
+import { displayLargePreviews, useBlurhash } from 'mastodon/initial_state';
 import Blurhash from 'mastodon/components/blurhash';
 import { debounce } from 'lodash';
 
@@ -194,7 +194,7 @@ export default class Card extends React.PureComponent {
     const provider    = card.get('provider_name').length === 0 ? decodeIDNA(getHostname(card.get('url'))) : card.get('provider_name');
     const horizontal  = (!compact && card.get('width') > card.get('height') && (card.get('width') + 100 >= width)) || card.get('type') !== 'link' || embedded;
     const interactive = card.get('type') !== 'link';
-    const className   = classnames('status-card', { horizontal, compact, interactive });
+    const className   = classnames('status-card', { horizontal, compact, interactive, large: displayLargePreviews });
     const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener noreferrer' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
     const ratio       = card.get('width') / card.get('height');
     const height      = (compact && !embedded) ? (width / (16 / 9)) : (width / ratio);

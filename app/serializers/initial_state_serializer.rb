@@ -49,12 +49,14 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:use_pending_items] = object.current_account.user.setting_use_pending_items
       store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
+      store[:display_large_previews]       = object.current_account.user.setting_display_large_previews
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
       store[:reduce_motion] = Setting.reduce_motion
       store[:use_blurhash]  = Setting.use_blurhash
       store[:crop_images]   = Setting.crop_images
+      store[:display_large_previews]   = Setting.display_large_previews
     end
 
     store[:disabled_account_id] = object.disabled_account.id.to_s if object.disabled_account

@@ -55,6 +55,7 @@
  * @property {boolean=} delete_modal
  * @property {boolean=} disable_swiping
  * @property {string=} disabled_account_id
+ * @property {boolean} display_large_previews
  * @property {boolean} display_media
  * @property {string} domain
  * @property {boolean=} expand_spoilers
@@ -107,6 +108,7 @@ export const cropImages = getMeta('crop_images');
 export const deleteModal = getMeta('delete_modal');
 export const disableSwiping = getMeta('disable_swiping');
 export const disabledAccountId = getMeta('disabled_account_id');
+export const displayLargePreviews = getMeta('display_large_previews');
 export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
 export const expandSpoilers = getMeta('expand_spoilers');

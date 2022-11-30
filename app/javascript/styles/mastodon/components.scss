@@ -3439,6 +3439,44 @@ a.status-card {
   }
 }
 
+.status-card.large {
+  background-color: #191b22;
+  border-radius: 10px;
+
+  flex-direction: column;
+
+  .status-card__image {
+    flex: unset;
+
+    .status-card__image-image {
+      border-radius: 0;
+    }
+  }
+
+  .status-card__content {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .status-card__host, .status-card__description {
+    color: $lighter-text-color;
+  }
+
+  .status-card__title {
+    order: 2;
+    margin-bottom: 0;
+  }
+
+  .status-card__host {
+    order: 1;
+  }
+
+  .status-card__description {
+    order: 3;
+  }
+}
+
 a.status-card.compact:hover {
   background-color: lighten($ui-base-color, 4%);
 }
