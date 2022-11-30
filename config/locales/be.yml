@@ -1027,14 +1027,21 @@ be:
       approve_appeal: Зацвердзіць апеляцыю
       associated_report: Звязаная скарга
       created_at: Датаваны
+      reject_appeal: Адхіліць абскарджанне
       status: 'Допіс #%{id}'
       status_removed: Допіс ужо выдалены з сістэмы
+      title: "%{action} ад %{date}"
       title_actions:
         delete_statuses: Выдаленне допісу
         mark_statuses_as_sensitive: Пазначыць допісы як далікатныя
         none: Папярэджанне
         silence: Абмежаванне ўліковага запісу
         suspend: Выключэнне ўліковага запісу
+      your_appeal_approved: Ваша абскарджанне было ўхвалена
+      your_appeal_pending: Вы адправілі абскарджанне
+      your_appeal_rejected: Ваша абскарджанне было адхілена
+  domain_validator:
+    invalid_domain: не з'яўляецца сапраўдным даменным імем
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': У вас няма дазволу на прагляд гэтай старонкі.
@@ -1052,6 +1059,7 @@ be:
     archive_takeout:
       date: Дата
       size: Памер
+    blocks: Спіс блакіроўкі
     bookmarks: Закладкі
     csv: CSV
     lists: Спісы
