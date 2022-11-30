@@ -471,9 +471,11 @@ et:
           reject_reports: Lükka raportid tagasi
           silence: Vaigista
           suspend: Kustuta
+        policy: Reegel
         reason: Avalik põhjendus
         title: Sisureeglid
       dashboard:
+        instance_accounts_dimension: Enim jälgitud kontod
         instance_accounts_measure: talletatud kontod
         instance_followers_measure: meie jälgiad seal
         instance_follows_measure: nende jälgijad siin
@@ -625,11 +627,13 @@ et:
       delete: Kustuta
       edit: Muuda '%{name}' rolli
       everyone: Vaikimisi load
+      everyone_full_description_html: See on <strong>baasroll</strong> mõjudes <strong>kõigile kasutajatele</strong>, ka määramata rolliga. Kõik teised rollid pärivad selle rolli õigused.
       permissions_count:
         one: "%{count} õigus"
         other: "%{count} õigused"
       privileges:
         administrator: Administraator
+        administrator_description: Selle loaga kasutajad võivad mööda pääseda kõigist lubadest
         delete_user_data: Kustuta kasutaja andmed
         delete_user_data_description: Lubab kasutajatel kustutada teiste kasutajate andmeid viiteta
         invite_users: Kutsu kasutajaid
@@ -662,9 +666,12 @@ et:
         manage_users_description: Lubab kasutajail näha teiste kasutajate detailandmeid ja teha modereerimisotsuseid
         manage_webhooks: Halda webhook'e
         manage_webhooks_description: Lubab kasutajatel administratiivseteks sündmusteks webhook'e seadistada
+        view_audit_log: Auditilogi vaatamine
         view_audit_log_description: Lubab kasutajail näha serveri administratiivsete otsuste ajalugu
         view_dashboard: Vaata töölauda
+        view_dashboard_description: Lubab kasutajail pääseda ligi töölauale ja erinevale meetrikale
         view_devops: DevOps
+        view_devops_description: Lubab kasutajail ligipääsu Sidekiq ja pgHero töölaudadele
       title: Rollid
     rules:
       add_new: Lisa reegel
@@ -677,6 +684,7 @@ et:
         manage_rules: Halda serveri reegleid
         title: Teave
       appearance:
+        preamble: Kohanda Mastodoni veebiliidest.
         title: Välimus
       branding:
         title: Märgistus
@@ -694,6 +702,7 @@ et:
         disabled: Mitte kellelegi
         users: Sisseloginud kohalikele kasutajatele
       registrations:
+        preamble: Kes saab serveril konto luua.
         title: Registreerimised
       registrations_mode:
         modes:
@@ -732,8 +741,11 @@ et:
     strikes:
       actions:
         delete_statuses: "%{name} kustutas %{target} postitused"
+        disable: "%{name} külmutas %{target} konto"
         mark_statuses_as_sensitive: "%{name} märkis %{target} postitused tundlikena"
+        none: "%{name} saatis hoiatuse kasutajale %{target}"
         sensitive: "%{name} märkis %{target} konto kui tundlik sisu"
+        silence: "%{name} piiras %{target} konto"
         suspend: "%{name} kustutas %{target} konto"
       appeal_approved: Vaidlustatud
       appeal_pending: Vaidlustus on ootel
@@ -745,6 +757,7 @@ et:
         version_comparison: Elasticsearch %{running_version} töötab, aga nõutud on %{required_version}
       rules_check:
         action: Halda serveri reegleid
+        message_html: Serverireegleid pole defineeritud.
     tags:
       review: Staatuse ülevaade
       updated_msg: Sildi sätted edukalt uuendatud
@@ -758,6 +771,7 @@ et:
         allow_provider: Luba autor
         disallow: Keela viit
         disallow_provider: Keela autor
+        no_link_selected: Viitasid ei muudetud, kuna ühtegi polnud valitud
         publishers:
           no_publisher_selected: Avaldajaid ei muudetud, kuna ühtegi polnud valitud
         shared_by_over_week:
@@ -812,6 +826,7 @@ et:
       add_new: Lisa uus
       delete: Kustuta
       edit_preset: Hoiatuse eelseadistuse muutmine
+      empty: Hoiatuste eelseadeid pole defineeritud.
       title: Halda hoiatuste eelseadistusi
     webhooks:
       add_new: Lisa lõpp-punkt
@@ -819,14 +834,19 @@ et:
       disable: Keela
       disabled: Keelatud
       edit: Muuda lõpp-punkti
+      empty: Ühtegi veebikonksu lõpp-punkti pole veel seadistatud.
       enable: Luba
       enabled: Aktiivne
       enabled_events:
         one: 1 lubatud sündmus
         other: "%{count} lubatud sündmust"
       events: Sündmused
+      new: Uus veebikonks
+      rotate_secret: Salavõtme rotatsioon
       secret: Salavõti allkirjastamiseks
       status: Staatus
+      title: Veebikonksud
+      webhook: Veebikonks
   admin_mailer:
     new_appeal:
       actions:
@@ -873,6 +893,7 @@ et:
     discovery: Avastus
     localization:
       body: Mastodon on tõlgitud vabatahtlike poolt.
+      guide_link: https://crowdin.com/project/mastodon/et
       guide_link_text: Igaüks võib panustada.
     sensitive_content: Tundlik sisu
     toot_layout: Tuututuse kujundus
@@ -904,6 +925,7 @@ et:
     forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
     link_to_otp: Kahe-etapine kood telefonist või taastekood
+    link_to_webauth: Turvavõtmete seadme kasutamine
     log_in_with: Sisene kasutades
     login: Logi sisse
     logout: Logi välja
@@ -933,6 +955,7 @@ et:
     status:
       account_status: Konto olek
       confirming: Ootan e-posti kinnitust.
+      functional: Konto on täies mahus kasutatav.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
       redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
       view_strikes: Vaata enda eelnevaid juhtumeid
@@ -999,6 +1022,7 @@ et:
       action_taken: Tulemus
       appeal: Vaidlustus
       appeal_approved: Selle juhtumi vaidlustus on rahuldatud ja pole enam kehtiv
+      appeal_rejected: Vaidlustus on tagasi lükatud
       appeal_submitted_at: Vaidlustus esitatud
       appealed_msg: Vaidlustus esitatud. Selle rahuldamisel saabub teadaanne.
       appeals:
@@ -1018,9 +1042,11 @@ et:
         mark_statuses_as_sensitive: Postituste tundlikena märkimine
         none: Hoiatus
         sensitive: Konto tundlikuna märkimine
+        silence: Konto piirang
         suspend: Konto kustutamine
       your_appeal_approved: Teie vaidlustus on rahuldatud
       your_appeal_pending: Vaidlustus on esitatud
+      your_appeal_rejected: Vaidlustus on tagasi lükatud
   domain_validator:
     invalid_domain: ei ole sobiv domeeni nimi
   errors:
@@ -1076,8 +1102,10 @@ et:
     errors:
       invalid_context: Puudulik või vale kontekst
     index:
+      contexts: Filtrid %{contexts}
       delete: Kustuta
       empty: Teil pole filtreid.
+      expires_in: Aegub %{distance}
       expires_on: Aegub %{date}
       keywords:
         one: "%{count} võtmesõna"
@@ -1102,6 +1130,9 @@ et:
     trending_now: Praegu trendikad
   generic:
     all: Kõik
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> üksus sel lehel valitud."
+      other: Kõik <strong>%{count}</strong> üksust sel lehel on valitud.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> otsinguvaste valitud."
       other: Kõik <strong>%{count}</strong> otsinguvastet valitud.
@@ -1122,6 +1153,9 @@ et:
   html_validator:
     invalid_markup: 'sisaldab valet HTMLi süntaksi: %{error}'
   imports:
+    errors:
+      invalid_csv_file: 'Vigane CSV-fail. Tõrge: %{error}'
+      over_rows_processing_limit: sisaldab rohkem, kui %{count} rida
     modes:
       merge: Lõimi
       merge_long: Hoia olemasolevad andmed ja lisa uusi
@@ -1168,6 +1202,10 @@ et:
       sign_in_token: e-posti turvakood
       webauthn: turvavõtmed
     description_html: Kui paistab tundmatauid tegevusi, tuleks vahetada salasõna ja aktiveerida kahe-etapine autentimine.
+    empty: Autentimisajalugu pole saadaval
+    failed_sign_in_html: Nurjunud sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
+    successful_sign_in_html: Edukas sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
+    title: Autentimise ajalugu
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video staatusele, millel on juba pildid
@@ -1208,6 +1246,9 @@ et:
     title: Moderatsioon
   move_handler:
     carry_blocks_over_text: See kasutaja kolis kontolt %{acct}, mis oli keelatud.
+    carry_mutes_over_text: Kasutaja kolis ümber kontolt %{acct}, mis oli vaigistatud.
+  navigation:
+    toggle_menu: Menüü lülimine
   notification_mailer:
     admin:
       report:
@@ -1253,9 +1294,11 @@ et:
         units:
           billion: mld
           million: mln
-          thousand: T
-          trillion: Tr
+          quadrillion: kdn
+          thousand: tuh
+          trillion: trn
   otp_authentication:
+    code_hint: Kinnituseks autentimisrakenduse loodud kood
     description_html: Kui aktiveerda <strong>kahe-etapine autentimine</strong> autentimisrakenduse abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
     enable: Luba
     setup: Seadista
@@ -1305,6 +1348,9 @@ et:
     status: Konto olek
   remote_follow:
     missing_resource: Ei suutnud leida vajalikku suunamise URLi Teie konto jaoks
+  reports:
+    errors:
+      invalid_rules: ei viita kehtivatele reeglitele
   rss:
     content_warning: 'Sisuhoiatus:'
     descriptions:
@@ -1435,13 +1481,20 @@ et:
     exceptions: Erandid
     ignore_favs: Eira lemmikuid
     ignore_reblogs: Eira jagamisi
+    interaction_exceptions: Interaktsioonidel põhinevad erandid
     interaction_exceptions_explanation: Postitused ei pruugi kustuda, kui meeldimiste või jagamiste arv langeb alla määratu, kui need on kord olnud sellest üle.
     keep_direct: Säilita otsesõnumid
+    keep_direct_hint: Ei kustuta otsesõnumeid
     keep_media: Meedialisanditega postituste säilitamine
     keep_media_hint: Meedialisanditega postitusi ei kustutata
     keep_pinned: Säilita kinnitatud postitused
     keep_pinned_hint: Ei kustuta ühtegi kinnitatud postitust
     keep_polls: Küsitluste säilitamine
+    keep_polls_hint: Ei kustuta ühtegi küsitlust
+    keep_self_bookmark: Säilita postitused järjehoidjates
+    keep_self_bookmark_hint: Ei kustuta oma postitusi, kui need on järjehoidjates
+    keep_self_fav: Säilita meeldinud postitused
+    keep_self_fav_hint: Ei kustuta oma postitusi, kui need on märgitud meeldivaks
     min_age:
       '1209600': 2 nädalat
       '15778476': 6 kuud
@@ -1452,6 +1505,7 @@ et:
       '63113904': 2 aastat
       '7889238': 3 kuud
     min_age_label: Ajalimiit
+    min_favs: Säilita postitused, meeldimistega vähemalt
     min_reblogs: Säilita postitused jagatud vähemalt
     min_reblogs_hint: Ei kustuta postitusi, kui need on jagatud vähemalt nii mitu korda. Tühjaks jättes kustuvad postitused olenemata jagamistest
   stream_entries:
@@ -1559,5 +1613,19 @@ et:
     explanation_html: 'Te saate <strong>kinnitada ennast oma profiili veebiviidete omanikena</strong>. Et seda teha, peab Teie viidatud veebilehel olema link tagasi Teie Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Tekstisisu lingil ei loe. Siin on üks näide:'
     verification: Kinnitamine
   webauthn_credentials:
+    add: Uue turvavõtme lisamine
+    create:
+      error: Turvavõtme lisamisel tekkis tõrge. Proovi palun uuesti.
+      success: Turvavõti edukalt lisatud.
     delete: Kustuta
+    delete_confirmation: Kindel, et kustutada see turvavõti?
+    description_html: Lubades <strong>turvavõtmega autentimise</strong> on sisenemisel tarvis ühte turvavõtmetest.
+    destroy:
+      error: Turvavõtme kustutamisel tekkis tõrge. Palun proovi uuesti.
+      success: Turvavõtmed edukalt kustutatud.
+    invalid_credential: Vigane turvavõti
+    nickname_hint: Uue turvavõtme hüüdnimi
+    not_enabled: Veebiautentimine pole sisse lülitatud
+    not_supported: See veebilehitseja ei toeta turvavõtmeid
     otp_required: Turvavõtmete kasutamiseks tuleb eelnevalt sisse lülitada kahe-etapine autentimine.
+    registered_on: Registreeritud %{date}
