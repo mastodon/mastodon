@@ -607,6 +607,7 @@ et:
       skip_to_actions: Otsuste juurde
       status: Staatus
       statuses: Raporteeritud sisu
+      statuses_description_html: Sobimatu sisu kaasatakse suhtlusse raporteeritud kontoga
       target_origin: Raporteeritud konto päritolu
       title: Teavitused
       unassign: Eemalda määramine
@@ -682,6 +683,8 @@ et:
     settings:
       about:
         manage_rules: Halda serveri reegleid
+        preamble: Täpsem kirjeldus, kuidas serverit käitatakse, modereeritakse ja rahastatakse.
+        rules_hint: Reeglitele, millega kasutajad peavad nõustuma, on vastav piirkond.
         title: Teave
       appearance:
         preamble: Kohanda Mastodoni veebiliidest.
@@ -1249,6 +1252,7 @@ et:
   move_handler:
     carry_blocks_over_text: See kasutaja kolis kontolt %{acct}, mis oli keelatud.
     carry_mutes_over_text: Kasutaja kolis ümber kontolt %{acct}, mis oli vaigistatud.
+    copy_account_note_text: 'Kasutaja kolis kontolt %{acct}, kus olid eelnevad märkmed tema kohta:'
   navigation:
     toggle_menu: Menüü lülimine
   notification_mailer:
@@ -1304,6 +1308,7 @@ et:
     description_html: Kui aktiveerda <strong>kahe-etapine autentimine</strong> autentimisrakenduse abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
     enable: Luba
     setup: Seadista
+    wrong_code: Sisestatud kood on vale! Kas serveri aeg ja seadme aeg on õiged?
   pagination:
     newer: Uuemad
     next: Järgmine
