@@ -1472,12 +1472,15 @@ et:
         violation: Sisu eirab järgmisi kogukonnajuhiseid
       explanation:
         delete_statuses: Mõned postitused eiravad ühte või mitmeid kogukonnajuhiseid ja on seetõttu %{instance} moderaatorite poolt eemaldatud.
+        disable: Konto kasutamine pole enam võimalik, kuid profiil ja muud andmed säilivad. Andmetest on võimalik saada varukoopiat, muuta konto seadeid või konto kustutada.
         mark_statuses_as_sensitive: Mõned postitused märgiti %{instance} moderaatorite poolt kui tundlik sisu. See tähendab, et meedia eelvaadet vaikimisi ei kuvata. Edaspidi postitades on soovitatav seesugune meedia märkida kui tundlik sisu.
         sensitive: Praegusest alates saab kogu Su üleslaetav meedia tundliku sisu märke ja selle eelvaadet ei kuvata enne hoiatust.
+        silence: Konto kasutamine on võimalik, ent sel serveril näevad postitusi ainult need, kes on juba jälgijad ning erinevatest avastusvõimalustest võidakse välja jätta. Käsitsi jälgima asumine on siiski võimalik.
         suspend: Konto kasutamine pole enam võimalik ja profiil ja muud andmed pole enam kättesaadavad. Sisenemine on võimalik andmetest varukoopia saamiseks kuni nende lõpliku kustutamiseni 30 päeva pärast, ent säiltame mõned põhiandmed kustutamisest mööda hiilimise vältimiseks.
       reason: 'Põhjus:'
       statuses: 'Tsiteeritud postitused:'
       subject:
+        delete_statuses: Postitused kontol %{acct} on eemaldatud
         disable: Teie konto %{acct} on lukustatud
         mark_statuses_as_sensitive: Konto %{acct} postitused on märgitud kui tundlik sisu
         none: Hoiatus kasutajale %{acct}
