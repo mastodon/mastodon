@@ -471,6 +471,7 @@ et:
           reject_reports: Lükka raportid tagasi
           silence: Vaigista
           suspend: Kustuta
+        reason: Avalik põhjendus
       dashboard:
         instance_accounts_measure: talletatud kontod
         instance_followers_measure: meie jälgiad seal
@@ -659,6 +660,7 @@ et:
         manage_webhooks: Halda webhook'e
         manage_webhooks_description: Lubab kasutajatel administratiivseteks sündmusteks webhook'e seadistada
         view_audit_log_description: Lubab kasutajail näha serveri administratiivsete otsuste ajalugu
+        view_dashboard: Vaata töölauda
         view_devops: DevOps
       title: Rollid
     rules:
@@ -685,11 +687,14 @@ et:
         all: Kõigile
         disabled: Mitte kellelegi
         users: Sisseloginud kohalikele kasutajatele
+      registrations:
+        title: Registreerimised
       registrations_mode:
         modes:
           approved: Kinnitus vajalik konto loomisel
           none: Keegi ei saa kontoid luua
           open: Kõik võivad kontoid luua
+      title: Serveri seadistused
     site_uploads:
       delete: Kustuta üleslaetud fail
       destroyed_msg: Üleslaetud fail edukalt kustutatud!
@@ -697,8 +702,11 @@ et:
       account: Autor
       application: Rakendus
       back_to_account: Tagasi konto lehele
+      batch:
+        report: Raport
       deleted: Kustutatud
       favourites: Lemmikud
+      history: Versiooniajalugu
       in_reply_to: Vastusena
       language: Keel
       media:
@@ -710,6 +718,7 @@ et:
       reblogs: Jagamised
       status_changed: Muudetud postitus
       title: Konto staatused
+      trending: Populaarne
       visibility: Nähtavus
       with_media: Meediaga
     strikes:
@@ -733,7 +742,10 @@ et:
     trends:
       allow: Luba
       approved: Kinnitatud
+      disallow: Keela
       links:
+        allow: Luba viit
+        disallow: Keela viit
         publishers:
           no_publisher_selected: Avaldajaid ei muudetud, kuna ühtegi polnud valitud
         shared_by_over_week:
@@ -880,6 +892,7 @@ et:
     forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
     link_to_otp: Kahe-etapine kood telefonist või taastekood
+    log_in_with: Sisene kasutades
     login: Logi sisse
     logout: Logi välja
     migrate_account: Koli teisele kasutajale
@@ -980,6 +993,7 @@ et:
       approve_appeal: Rahulda vaidlustus
       created_at: Kuupäev
       description_html: See on käesoleva konto hoiatuste ja tegevuste ajalugu, mis on %{instance} haldajate poolt ette võetud.
+      recipient: Adressaat
       reject_appeal: Lükka vaidlustus tagasi
       status: 'Postitus #%{id}'
       status_removed: Postitus on süsteemist juba eemaldatud
@@ -1040,6 +1054,7 @@ et:
       public: Avalikud ajajooned
       thread: Vestlused
     edit:
+      add_keyword: Võtmesõna lisamine
       keywords: Märksõnad
       statuses: Üksikud postitused
       title: Muuda filtrit
@@ -1058,6 +1073,7 @@ et:
     new:
       title: Lisa uus filter
     statuses:
+      back_to_filter: Tagasi filtri juurde
       index:
         title: Filtreeritud postitused
   footer:
@@ -1070,6 +1086,7 @@ et:
     changes_saved_msg: Muudatuste salvestamine õnnestus!
     copy: Kopeeri
     delete: Kustuta
+    deselect: Ära vali midagi
     none: Puudub
     order_by: Järjesta
     save_changes: Salvesta muudatused
@@ -1127,6 +1144,7 @@ et:
       otp: kahe-etapise autentimise rakendus
       password: salasõna
       sign_in_token: e-posti turvakood
+      webauthn: turvavõtmed
     description_html: Kui paistab tundmatauid tegevusi, tuleks vahetada salasõna ja aktiveerida kahe-etapine autentimine.
   media_attachments:
     validations:
@@ -1398,6 +1416,7 @@ et:
     keep_media_hint: Meedialisanditega postitusi ei kustutata
     keep_pinned: Säilita kinnitatud postitused
     keep_pinned_hint: Ei kustuta ühtegi kinnitatud postitust
+    keep_polls: Küsitluste säilitamine
     min_age:
       '1209600': 2 nädalat
       '15778476': 6 kuud
