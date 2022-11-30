@@ -180,6 +180,7 @@ module ApplicationHelper
     output << 'bigger-publish' if current_account&.user&.setting_bigger_publish
     output << 'wider-column' if (current_account&.user&.setting_advanced_layout && current_account&.user&.setting_wider_column)
     output << WEBUI_STYLES[current_account&.user&.setting_webui_styles]
+    output << 'reverse-nav' if current_account&.user&.setting_reverse_nav
     output << 'rtl' if locale_direction == 'rtl'
     output.reject(&:blank?).join(' ')
   end

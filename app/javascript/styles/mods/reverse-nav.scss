@@ -1,0 +1,10 @@
+.reverse-nav {
+  .columns-area__panels {
+    flex-direction: row-reverse;
+
+    .navigation-panel {
+      border-right: 1px solid lighten($ui-base-color, 8%);
+      border-left: 0;
+    }
+  }
+}

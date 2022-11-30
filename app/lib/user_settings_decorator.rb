@@ -42,6 +42,7 @@ class UserSettingsDecorator
     user.settings['wider_column']        = wider_column_preference if change?('setting_wider_column')
     user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
     user.settings['webui_styles']        = webui_styles_preference if change?('setting_webui_styles')
+    user.settings['reverse_nav']         = reverse_nav_preference if change?('setting_reverse_nav')
   end
 
   def merged_notification_emails
@@ -150,6 +151,10 @@ class UserSettingsDecorator
 
   def webui_styles_preference
     settings['setting_webui_styles']
+  end
+
+  def reverse_nav_preference
+    boolean_cast_setting 'setting_reverse_nav'
   end
 
   def boolean_cast_setting(key)
