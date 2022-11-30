@@ -75,15 +75,15 @@ class MediaAttachment < ApplicationRecord
     }.freeze,
 
     small: {
-      pixels: 921_600,  # 1280x720px HD
+      pixels: 921_600, # 1280x720px HD
       file_geometry_parser: FastGeometryParser,
       blurhash: BLURHASH_OPTIONS,
     }.freeze,
-  }.freeze 
+  }.freeze
 
   IMAGE_STYLES_LOW = {
     original: {
-      pixels: 2_073_600,  # 1920x1080px
+      pixels: 2_073_600, # 1920x1080px
       file_geometry_parser: FastGeometryParser,
     }.freeze,
 
@@ -92,7 +92,7 @@ class MediaAttachment < ApplicationRecord
       file_geometry_parser: FastGeometryParser,
       blurhash: BLURHASH_OPTIONS,
     }.freeze,
-  }.freeze 
+  }.freeze
 
   IMAGE_CONVERTED_STYLES_LOW = {
     original: {
@@ -160,7 +160,7 @@ class MediaAttachment < ApplicationRecord
       convert_options: {
         output: {
           'loglevel' => 'fatal',
-          vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
+          'vf' => 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
         }.freeze,
       }.freeze,
       format: 'png',
