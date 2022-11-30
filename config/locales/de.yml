@@ -896,7 +896,7 @@ de:
         title: Angesagte Beiträge
       new_trending_tags:
         no_approved_tags: Derzeit gibt es keine genehmigten trendenen Hashtags.
-        requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten trendenen Hashtag übertreffen, der derzeit "%{lowest_tag_name}" mit einer Punktzahl von %{lowest_tag_score} ist.'
+        requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten angesagten Hashtag übertreffen, der derzeit #%{lowest_tag_name} mit einer Punktzahl von %{lowest_tag_score} ist.'
         title: Angesagte Hashtags
       subject: Neue Trends zur Überprüfung auf %{instance}
   aliases:
@@ -929,7 +929,7 @@ de:
     created: Anwendung erfolgreich erstellt
     destroyed: Anwendung erfolgreich gelöscht
     regenerate_token: Zugangs-Token neu erstellen
-    token_regenerated: Zugangs-Token neu erstellt
+    token_regenerated: Zugriffstoken erfolgreich neu erstellt
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
@@ -1558,7 +1558,7 @@ de:
       time: "%H:%M"
   two_factor_authentication:
     add: Hinzufügen
-    disable: Deaktivieren
+    disable: Zwei-Faktor-Authentisierung (2FA) deaktivieren
     disabled_success: Zwei-Faktor-Authentisierung (2FA) erfolgreich deaktiviert
     edit: Bearbeiten
     enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
@@ -1568,7 +1568,7 @@ de:
     methods: Methoden der Zwei-Faktor-Authentisierung (2FA)
     otp: Authentifizierungs-App
     recovery_codes: Wiederherstellungscodes sichern
-    recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu generiert
+    recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu erstellt
     recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscode benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
   user_mailer:
@@ -1589,7 +1589,7 @@ de:
       change_password: dein Passwort zu ändern
       details: 'Hier sind die Details des Versuchs:'
       explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
-      further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentifizierung (2FA) für dein Konto zu aktivieren, um es abzusichern.
+      further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung (2FA) für dein Konto zu aktivieren, um es abzusichern.
       subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
       title: Eine neue Anmeldung
     warning:
