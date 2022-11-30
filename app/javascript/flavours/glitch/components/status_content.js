@@ -404,12 +404,11 @@ class StatusContent extends React.PureComponent {
               onMouseLeave={this.handleMouseLeave}
               lang={lang}
             />
+            {!hidden && translateButton}
             {media}
           </div>
 
           {extraMedia}
-
-          {!hidden && translateButton}
         </div>
       );
     } else if (parseClick) {
@@ -430,9 +429,9 @@ class StatusContent extends React.PureComponent {
             onMouseLeave={this.handleMouseLeave}
             lang={lang}
           />
+          {translateButton}
           {media}
           {extraMedia}
-          {translateButton}
         </div>
       );
     } else {
@@ -451,9 +450,9 @@ class StatusContent extends React.PureComponent {
             onMouseLeave={this.handleMouseLeave}
             lang={lang}
           />
+          {translateButton}
           {media}
           {extraMedia}
-          {translateButton}
         </div>
       );
     }
