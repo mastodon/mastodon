@@ -63,6 +63,18 @@ function main() {
       minute: 'numeric',
     });
 
+    const dateFormat = new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      timeFormat: false
+    });
+
+    const timeFormat = new Intl.DateTimeFormat(locale, {
+      timeStyle: 'short',
+      hour12: false
+    });
+
     [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
       content.innerHTML = emojify(content.innerHTML);
     });
@@ -73,6 +85,36 @@ function main() {
 
       content.title = formattedDate;
       content.textContent = formattedDate;
+    });
+
+    const isToday = date => {
+      const today = new Date();
+
+      return date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear();
+    };
+
+    [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
+      const datetime = new Date(content.getAttribute('datetime'));
+
+      let title;
+      let textContent;
+
+      if (isToday(datetime)) {
+        const formattedTime = timeFormat.format(datetime);
+
+        title = content.title.replace('%{time}', formattedTime);
+        textContent = content.textContent.replace('%{time}', formattedTime);
+      } else {
+        const formattedDate = dateFormat.format(datetime);
+
+        title = formattedDate;
+        textContent = formattedDate;
+      }
+
+      content.title = title;
+      content.textContent = textContent;
     });
 
     [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
