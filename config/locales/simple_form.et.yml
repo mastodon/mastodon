@@ -17,6 +17,7 @@ et:
           disable: Keela kasutajal konto kasutamine, sisu kustutamata või varjamata.
           none: Hoiatuse saatmine kasutajale, ilma täiendavate tegevuste käivitamiseta.
           sensitive: Kogu kasutaja meediasisu märgitakse kui tundlik sisu.
+          silence: Takistab kasutajal avaliku nähtavusega postitamist, peidab tema postitused ja märguanded inimeste eest, kes ei jälgi.
           suspend: Takistamaks suhtlust selle kontoga ja kustutamaks kogu sisu. Tagasivõetav 30 päeva jooksul.
         warning_preset_id: Valikuline. Te saate ikka lisada mis tahes teksti eelseadistuse lõppu
       announcement:
@@ -75,6 +76,7 @@ et:
         backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevadeks.
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
+        content_cache_retention_period: Teiste serverite postitused kustutatakse pärast määratud päevade arvu, kui see on seatud positiivsele väärtusele. See võib olla pöördumatu.
         custom_css: Kohandatud stiile on võimalik kasutada Mastodoni veebiliideses.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
         media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid nende päevade möödudes ning laetakse vajadusel uuesti alla.
@@ -82,10 +84,14 @@ et:
         require_invite_text: Kui liitumisi on tarvis kinnitada, oleks "Miks Te soovite liituda?" vastus vajalik
         site_contact_email: Kui peaks tekkima vajadus ühendust võtta täiendavate küsimuste osas.
         site_contact_username: Kuidas Mastodoni kaudu ühendust võtta.
+        site_extended_description: Igasugune lisateave, mis võib külastajatele ja kasutajatele kasulik olla. Saab liigendada Markdown süntaksiga.
+        site_short_description: Lühikirjeldus serveri unikaalseks identifitseerimiseks. Kes haldab, kellele mõeldud?
+        site_terms: Kasuta oma privaatsuspoliitikat või tühjaks jättes vaikimisi-teksti. Saab liigendada Markdown süntaksi abil.
         site_title: Kuidas inimesed saavad serverile viidata, lisaks domeeninimele.
         theme: Teema, mida näevad sisenemata ning uued kasutajad.
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
         timeline_preview: Sisenemata külastajatel on võimalik sirvida viimaseid avalikke postitusi serveril.
+        trendable_by_default: Populaarse sisu ülevaatuse vahele jätmine. Pärast seda on siiski võimalik üksikuid üksusi trendidest eemaldada.
         trends: Populaarsuse suunad näitavad millised postitused, sildid ja uudislood koguvad sinu serveris tähelepanu.
       form_challenge:
         current_password: Turvalisse alasse sisenemine
@@ -117,6 +123,7 @@ et:
         highlighted: Teeb rolli avalikult nähtavaks
         name: Rolli avalik nimi, kui roll on märgitud avalikuks kuvamiseks märgina
         permissions_as_keys: Selle rolliga kasutajatel on ligipääs...
+        position: Kõrgem roll otsustab teatud olukordades konfliktide lahendamise. Teatud toiminguid saab teha ainult madalama prioriteediga rollidega
       webhook:
         events: Saadetavate sündmuste valik
         url: Kuhu sündmused saadetakse
