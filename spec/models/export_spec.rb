@@ -45,10 +45,7 @@ describe Export do
       export = Export.new(account).to_following_tags_csv
       results = export.strip.split("\n")
 
-      expect(results.size).to eq 3
-      expect(results.first).to eq 'Tag'
-      expect(results.second).to eq tag_names.first
-      expect(results.third).to eq tag_names.second
+      expect(results).to match_array(['Tag', tag_names.first, tag_names.second])
     end
   end
 

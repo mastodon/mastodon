@@ -25,6 +25,8 @@ class TagFollow < ApplicationRecord
   after_create :increment_cache_counters
   after_destroy :decrement_cache_counters
 
+  private
+
   def increment_cache_counters
     account&.increment_count!(:tag_following_count)
   end

@@ -39,7 +39,7 @@ class Export
 
   def to_following_tags_csv
     CSV.generate(headers: ['Tag'], write_headers: true) do |csv|
-      account.following_tags.reorder(name: :asc).each do |tag|
+      account.following_tags.each do |tag|
         csv << [tag.name]
       end
     end

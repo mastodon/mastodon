@@ -40,21 +40,21 @@ class ImportService < BaseService
     found_names = found_tags.map(&:name)
     missing_names = names - found_names
 
-    follow_tags = []
+    Tag.transaction do
+      follow_tags = Tag.find_or_create_by_names(missing_names)
 
-    ApplicationRecord.transaction do
-      Tag.find_or_create_by_names(missing_names) do |tag|
-        follow_tags << tag
-      end
+      TagFollow.transaction do
+        AccountStat.transaction do
+          if @import.overwrite?
+            @account.tag_follows.destroy_all
 
-      if @import.overwrite?
-        @account.tag_relationships.destroy_all
+            follow_tags.concat(found_tags)
+          end
 
-        follow_tags.concat(found_tags)
-      end
-
-      follow_tags.each do |tag|
-        TagFollow.create(account: @account, tag: tag)
+          follow_tags.each do |tag|
+            TagFollow.create(account: @account, tag: tag)
+          end
+        end
       end
     end
   end
