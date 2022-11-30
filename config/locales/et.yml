@@ -234,31 +234,54 @@ et:
         create_announcement_html: "%{name} lõi uue teate %{target}"
         create_canonical_email_block_html: "%{name} keelas e-postiaadressi räsiga %{target}"
         create_custom_emoji_html: "%{name} laadis üles uue emotikoni %{target}"
+        create_domain_allow_html: "%{name} lubas föderatsiooni domeeniga %{target}"
         create_domain_block_html: "%{name} keelas domeeni %{target}"
         create_email_domain_block_html: "%{name} keelas e-posti domeeni %{target}"
         create_ip_block_html: "%{name} lõi IP-aadressile %{target} reegli"
+        create_unavailable_domain_html: "%{name} lõpetas edastamise domeeni %{target}"
+        create_user_role_html: "%{name} lõi rolli %{target}"
         demote_user_html: "%{name} alandas kasutajat %{target}"
+        destroy_announcement_html: "%{name} kustutas teadaande %{target}"
         destroy_canonical_email_block_html: "%{name} lubas e-postiaaadressi räsiga %{target}"
         destroy_custom_emoji_html: "%{name} kustutas emotikoni %{target}"
+        destroy_domain_allow_html: "%{name} keelas föderatsiooni domeeniga %{target}"
         destroy_domain_block_html: "%{name} lubas domeeni %{target}"
         destroy_email_domain_block_html: "%{name} lubas e-posti domeeni %{target}"
+        destroy_instance_html: "%{name} kustutas domeeni %{target}"
         destroy_ip_block_html: "%{name} kustutas IP-aadressi %{target} reegli"
+        destroy_status_html: "%{name} kustutas %{target} postituse"
+        destroy_unavailable_domain_html: "%{name} taastas edastamise domeeni %{target}"
+        destroy_user_role_html: "%{name} kustutas %{target} rolli"
         disable_2fa_user_html: "%{name} eemaldas kasutaja %{target} kahe etapise nõude"
         disable_custom_emoji_html: "%{name} keelas emotikooni %{target}"
         disable_sign_in_token_auth_user_html: "%{name} keelas kasutajal %{target} e-posti võtmega autentida"
+        disable_user_html: "%{name} keelas %{target} sisenemise"
         enable_custom_emoji_html: "%{name} lubas emotikooni %{target}"
         enable_sign_in_token_auth_user_html: "%{name} lubas kasutajal %{target} e-posti võtmega autentida"
+        enable_user_html: "%{name} lubas %{target} sisenemise"
         memorialize_account_html: "%{name} märkis %{target} igaveselt lahkunuks"
         promote_user_html: "%{name} ülendas kasutajat %{target}"
+        reject_appeal_html: "%{name} lükkas %{target} modereerimisotsuse kaebuse tagasi"
+        reject_user_html: "%{name} lükkas %{target} liitumissoovi tagasi"
+        remove_avatar_user_html: "%{name} eemaldas %{target} avatari"
+        reopen_report_html: "%{name} taasavas raporti %{target}"
         resend_user_html: "%{name} saatis %{target} e-postiaadressi kinnituskirja"
         reset_password_user_html: "%{name} lähtestas %{target} salasõna"
+        resolve_report_html: "%{name} lahendas raporti %{target}"
         sensitive_account_html: "%{name} märkis %{target} meedia kui tundlik sisu"
+        silence_account_html: "%{name} piiras %{target} konto"
         suspend_account_html: "%{name} kustutas %{target} konto"
+        unassigned_report_html: "%{name} tühistas raporti %{target} määrangu"
         unblock_email_account_html: "%{name} lubas %{target} e-postiaadressi"
         unsensitive_account_html: "%{name} eemaldas %{target} meedia tundliku sisu märke"
+        unsilence_account_html: "%{name} eemaldas %{target} konto piirangu"
         unsuspend_account_html: "%{name} taastas %{target} konto"
+        update_announcement_html: "%{name} uuendas teadaannet %{target}"
+        update_custom_emoji_html: "%{name} uuendas emotikoni %{target}"
         update_domain_block_html: "%{name} uuendas domeeni %{target} keeldu"
         update_ip_block_html: "%{name} muutis IP-aadressi %{target} reeglit"
+        update_status_html: "%{name} muutis %{target} postitust"
+        update_user_role_html: "%{name} muutis %{target} rolli"
       deleted_account: kustutatud konto
       empty: Logisi ei leitud.
       filter_by_action: Filtreeri tegevuse järgi
@@ -303,6 +326,7 @@ et:
       listed: Nimekirjastatud
       new:
         title: Lisa uus emotikon
+      no_emoji_selected: Emotikone ei muudetud, kuna ühtegi polnud valitud
       not_permitted: Teil puudub õigus selle tegevuse jaoks
       overwrite: Kirjuta üle
       shortcode: Lühikood
@@ -319,16 +343,26 @@ et:
       interactions: interaktsioonid
       media_storage: Meedia hoidla
       new_users: uued kasutajad
+      opened_reports: avatud raportit
       pending_appeals_html:
         one: "<strong>%{count}</strong> ootel vaidlustus"
         other: "<strong>%{count}</strong> ootel vaidlustust"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> ootel raport"
+        other: "<strong>%{count}</strong> ootel raportit"
       pending_tags_html:
         one: "<strong>%{count}</strong> ootel silt"
         other: "<strong>%{count}</strong> ootel silti"
+      pending_users_html:
+        one: "<strong>%{count}</strong> ootel kasutaja"
+        other: "<strong>%{count}</strong> ootel kasutajat"
+      resolved_reports: lahendatud raportit
       software: Tarkvara
       sources: Liitumise allikad
       space: Kettakasutus
       title: Töölaud
+      top_languages: Kasutatumad keeled
+      top_servers: Aktiivseimad serverid
       website: Veebileht
     disputes:
       appeals:
@@ -394,6 +428,8 @@ et:
       resolved_through_html: Lahendatud %{domain} kaudu
       title: E-posti keelunimekiri
     export_domain_allows:
+      new:
+        title: Lubatud domeenide import
       no_file: Faili pole valitud
     export_domain_blocks:
       import:
@@ -406,17 +442,34 @@ et:
         title: Domeenikeeldude import
       no_file: Faili pole valitud
     follow_recommendations:
+      description_html: "<strong>Jälgimissoovitused aitavad uutel kasutajatel kiirelt leida huvipakkuvat sisu</strong>. Kui kasutaja pole teistega piisavalt läbi käinud, et kujuneks personaalsed soovitused, soovitatakse neid kontosid. Need arvutatakse ümber igapäevaselt populaarseimate postituste ja enim jälgitavate kontode seast antud keeles."
       language: Keel
       status: Staatus
+      suppress: Eemalda jälgimissoovitus
+      suppressed: Eemaldatud
+      title: Jälgimissoovitused
+      unsuppress: Taasta jälgimissoovitused
     instances:
       availability:
+        failure_threshold_reached: Nurjumispiir saavutatud %{date}.
+        failures_recorded:
+          one: Nurjunud katse %{count} päeval.
+          other: Nurjunud katsed %{count} päeval.
+        no_failures_recorded: Nurjumisi pole.
         title: Saadavus
+        warning: Viimane ühenduskatse selle serveriga ebaõnnestus
       back_to_all: Kõik
+      back_to_limited: Piiratud
       back_to_warning: Hoiatus
       by_domain: Domeen
+      confirm_purge: Kindel, et selle domeeni andmed kustutada jäädavalt?
       content_policies:
+        comment: Sisemine märge
+        description_html: On võimalik kirjeldada sisureeglid kõigile kontodele sellelt domeenilt ja alamdomeenidelt.
         policies:
           reject_media: Meedia hülgamine
+          reject_reports: Lükka raportid tagasi
+          silence: Vaigista
           suspend: Kustuta
       dashboard:
         instance_languages_dimension: Top keeled
