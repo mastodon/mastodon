@@ -40,6 +40,7 @@ class MediaAttachment < ApplicationRecord
 
   IMAGE_LIMIT = 10.megabytes
   VIDEO_LIMIT = 40.megabytes
+  NONJPEG_KEEP_LIMIT = 2.megabytes
 
   MAX_VIDEO_MATRIX_LIMIT = 2_304_000 # 1920x1200px
   MAX_VIDEO_FRAME_RATE   = 60
@@ -66,9 +67,23 @@ class MediaAttachment < ApplicationRecord
     y_comp: 4,
   }.freeze
 
-  IMAGE_STYLES = {
+  # Setting.store_5k_photos
+  IMAGE_STYLES_HIGH = {
     original: {
-      pixels: 2_073_600, # 1920x1080px
+      pixels: 14_745_600, # 5120x2880px 5K
+      file_geometry_parser: FastGeometryParser,
+    }.freeze,
+
+    small: {
+      pixels: 921_600,  # 1280x720px HD
+      file_geometry_parser: FastGeometryParser,
+      blurhash: BLURHASH_OPTIONS,
+    }.freeze,
+  }.freeze 
+
+  IMAGE_STYLES_LOW = {
+    original: {
+      pixels: 2_073_600,  # 1920x1080px
       file_geometry_parser: FastGeometryParser,
     }.freeze,
 
@@ -77,17 +92,28 @@ class MediaAttachment < ApplicationRecord
       file_geometry_parser: FastGeometryParser,
       blurhash: BLURHASH_OPTIONS,
     }.freeze,
-  }.freeze
+  }.freeze 
 
-  IMAGE_CONVERTED_STYLES = {
+  IMAGE_CONVERTED_STYLES_LOW = {
     original: {
       format: 'jpeg',
       content_type: 'image/jpeg',
-    }.merge(IMAGE_STYLES[:original]).freeze,
+    }.merge(IMAGE_STYLES_LOW[:original]).freeze,
 
     small: {
       format: 'jpeg',
-    }.merge(IMAGE_STYLES[:small]).freeze,
+    }.merge(IMAGE_STYLES_LOW[:small]).freeze,
+  }.freeze
+
+  IMAGE_CONVERTED_STYLES_HIGH = {
+    original: {
+      format: 'jpeg',
+      content_type: 'image/jpeg',
+    }.merge(IMAGE_STYLES_HIGH[:original]).freeze,
+
+    small: {
+      format: 'jpeg',
+    }.merge(IMAGE_STYLES_HIGH[:small]).freeze,
   }.freeze
 
   VIDEO_FORMAT = {
@@ -165,7 +191,7 @@ class MediaAttachment < ApplicationRecord
   }.freeze
 
   THUMBNAIL_STYLES = {
-    original: IMAGE_STYLES[:small].freeze,
+    original: IMAGE_STYLES_LOW[:small].freeze,
   }.freeze
 
   GLOBAL_CONVERT_OPTIONS = {
@@ -290,10 +316,10 @@ class MediaAttachment < ApplicationRecord
     def file_styles(attachment)
       if attachment.instance.file_content_type == 'image/gif' || VIDEO_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_CONVERTED_STYLES
-      elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type)
-        IMAGE_CONVERTED_STYLES
+      elsif IMAGE_CONVERTIBLE_MIME_TYPES.include?(attachment.instance.file_content_type) || (IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type) && attachment.instance.file_file_size > NONJPEG_KEEP_LIMIT)
+        Setting.store_5k_photos ? IMAGE_CONVERTED_STYLES_HIGH : IMAGE_CONVERTED_STYLES_LOW
       elsif IMAGE_MIME_TYPES.include?(attachment.instance.file_content_type)
-        IMAGE_STYLES
+        Setting.store_5k_photos ? IMAGE_STYLES_HIGH : IMAGE_STYLES_LOW
       elsif VIDEO_MIME_TYPES.include?(attachment.instance.file_content_type)
         VIDEO_STYLES
       else

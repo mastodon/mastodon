@@ -1,6 +1,6 @@
 import EXIF from 'exif-js';
 
-const MAX_IMAGE_PIXELS = 2073600; // 1920x1080px
+const MAX_IMAGE_PIXELS = 14745600; // 5K resolution 5120x2880
 
 const _browser_quirks = {};
 
@@ -177,7 +177,7 @@ export default inputFile => new Promise((resolve) => {
   }
 
   loadImage(inputFile).then(img => {
-    if (img.width * img.height < MAX_IMAGE_PIXELS) {
+    if (img.width * img.height <= MAX_IMAGE_PIXELS) {
       resolve(inputFile);
       return;
     }
