@@ -206,15 +206,13 @@
   }
 }
 
-.status__content__edited-label {
-  display: block;
-  cursor: default;
+.translate-button {
+  margin-top: 16px;
   font-size: 15px;
   line-height: 20px;
-  padding: 0;
-  padding-top: 8px;
+  display: flex;
+  justify-content: space-between;
   color: $dark-text-color;
-  font-weight: 500;
 }
 
 .status__content__spoiler-link {

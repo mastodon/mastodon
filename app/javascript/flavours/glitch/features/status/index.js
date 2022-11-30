@@ -33,7 +33,9 @@ import {
   deleteStatus,
   editStatus,
   hideStatus,
-  revealStatus
+  revealStatus,
+  translateStatus,
+  undoStatusTranslation,
 } from 'flavours/glitch/actions/statuses';
 import { initMuteModal } from 'flavours/glitch/actions/mutes';
 import { initBlockModal } from 'flavours/glitch/actions/blocks';
@@ -437,6 +439,16 @@ class Status extends ImmutablePureComponent {
     this.setState({ isExpanded: !isExpanded, threadExpanded: !isExpanded });
   }
 
+  handleTranslate = status => {
+    const { dispatch } = this.props;
+
+    if (status.get('translation')) {
+      dispatch(undoStatusTranslation(status.get('id')));
+    } else {
+      dispatch(translateStatus(status.get('id')));
+    }
+  }
+
   handleBlockClick = (status) => {
     const { dispatch } = this.props;
     const account = status.get('account');
@@ -666,6 +678,7 @@ class Status extends ImmutablePureComponent {
                   onOpenMedia={this.handleOpenMedia}
                   expanded={isExpanded}
                   onToggleHidden={this.handleToggleHidden}
+                  onTranslate={this.handleTranslate}
                   domain={domain}
                   showMedia={this.state.showMedia}
                   onToggleMediaVisibility={this.handleToggleMediaVisibility}

@@ -83,6 +83,7 @@ class Status extends ImmutablePureComponent {
     onEmbed: PropTypes.func,
     onHeightChange: PropTypes.func,
     onToggleHidden: PropTypes.func,
+    onTranslate: PropTypes.func,
     onInteractionModal: PropTypes.func,
     muted: PropTypes.bool,
     hidden: PropTypes.bool,
@@ -472,6 +473,10 @@ class Status extends ImmutablePureComponent {
     this.node = c;
   }
 
+  handleTranslate = () => {
+    this.props.onTranslate(this.props.status);
+  }
+
   renderLoadingMediaGallery () {
     return <div className='media-gallery' style={{ height: '110px' }} />;
   }
@@ -788,6 +793,7 @@ class Status extends ImmutablePureComponent {
             mediaIcons={contentMediaIcons}
             expanded={isExpanded}
             onExpandedToggle={this.handleExpandedToggle}
+            onTranslate={this.handleTranslate}
             parseClick={parseClick}
             disabled={!router}
             tagLinks={settings.get('tag_misleading_links')}
