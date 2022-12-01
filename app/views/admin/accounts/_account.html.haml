@@ -25,7 +25,7 @@
             = relevant_account_timestamp(account)
             %small= t('accounts.last_active')
           %td.accounts-table__extra
-            - if current.role.permissions_as_keys.include?('sensitive_user_data') || current.role.permissions_as_keys.include?('administrator')
+            - if @current_user.can?(:sensitive_user_data)
               - if account.local?
                 - if account.user_email
                   = link_to account.user_email.split('@').last, admin_accounts_path(email: "%@#{account.user_email.split('@').last}"), title: account.user_email
