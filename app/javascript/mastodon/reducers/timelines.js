@@ -189,8 +189,10 @@ const reconnectTimeline = (state, usePendingItems) => {
     return state;
   }
 
+  const havePendingItems = !state.get('pendingItems')?.isEmpty?.();
+
   return state.withMutations(mMap => {
-    mMap.update(usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items);
+    mMap.update(usePendingItems || havePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items);
     mMap.set('online', true);
   });
 };
