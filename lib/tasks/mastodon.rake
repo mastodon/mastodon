@@ -277,7 +277,7 @@ namespace :mastodon do
             q.modify :strip
           end
 
-          env['AWS_ACCESS_KEY_ID'] = prompt.ask('Storj Gateway access key:') do |q|
+          env['AWS_ACCESS_KEY_ID'] = prompt.ask('Storj Gateway access key (uplink share --register --readonly=false --not-after=none sj://bucket):') do |q|
             q.required true
             q.modify :strip
           end
@@ -287,7 +287,7 @@ namespace :mastodon do
             q.modify :strip
           end
           
-          linksharing_access_key = prompt.ask('Storj Linksharing access key (uplink share --public --register --readonly=true --disallow-lists --not-after=none sj://bucket):') do |q|
+          linksharing_access_key = prompt.ask('Storj Linksharing access key (uplink share --register --public --readonly=true --disallow-lists --not-after=none sj://bucket):') do |q|
             q.required true
             q.modify :strip
           end
