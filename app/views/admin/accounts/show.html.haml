@@ -101,7 +101,7 @@
             %td
               = table_link_to 'vcard', t('admin.accounts.change_role.label'), admin_user_role_path(@account.user) if can?(:change_role, @account.user)
 
-          - if current.role.permissions_as_keys.include?('sensitive_user_data') || current.role.permissions_as_keys.include?('administrator')
+          - if @current_user.can?(:sensitive_user_data)
             %tr
               %th{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= t('admin.accounts.email')
               %td{ rowspan: can?(:create, :email_domain_block) ? 3 : 2 }= @account.user_email
