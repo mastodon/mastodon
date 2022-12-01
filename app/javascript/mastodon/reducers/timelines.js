@@ -225,7 +225,7 @@ export default function timelines(state = initialState, action) {
     return state.update(
       action.timeline,
       initialTimeline,
-      map => map.set('online', false).update(action.usePendingItems ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items),
+      map => map.set('online', false).update(action.usePendingItems  || !map.get('pendingItems')?.isEmpty?.() ? 'pendingItems' : 'items', items => items.first() ? items.unshift(null) : items),
     );
   case TIMELINE_MARK_AS_PARTIAL:
     return state.update(
