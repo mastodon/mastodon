@@ -9,6 +9,10 @@ executors:
     parameters:
       ruby-version:
         type: string
+        default: '3.0'
+      postgres-version:
+        type: string
+        default: '14.5'
     docker:
       - image: cimg/ruby:<< parameters.ruby-version >>
         environment:
@@ -19,7 +23,7 @@ executors:
           DB_USER: root
           DISABLE_SIMPLECOV: true
           RAILS_ENV: test
-      - image: cimg/postgres:14.5
+      - image: cimg/postgres:<< parameters.postgres-version >>
         environment:
           POSTGRES_USER: root
           POSTGRES_HOST_AUTH_METHOD: trust
@@ -37,6 +41,7 @@ commands:
     parameters:
       ruby-version:
         type: string
+        default: '3.0'
     steps:
       - run:
           command: |
@@ -62,8 +67,7 @@ jobs:
     steps:
       - checkout
       - install-system-dependencies
-      - install-ruby-dependencies:
-          ruby-version: '3.0'
+      - install-ruby-dependencies
       - node/install-packages:
           cache-version: v1
           pkg-manager: yarn
@@ -82,9 +86,12 @@ jobs:
     parameters:
       ruby-version:
         type: string
+      postgres-version:
+        type: string
     executor:
       name: default
       ruby-version: << parameters.ruby-version >>
+      postgres-version: << parameters.postgres-version >>
     environment:
       ALLOW_NOPAM: true
       PAM_ENABLED: true
@@ -111,14 +118,16 @@ jobs:
       - ruby/rspec-test
 
   test-migrations:
+    parameters:
+      postgres-version:
+        type: string
     executor:
       name: default
-      ruby-version: '3.0'
+      postgres-version: << parameters.postgres-version >>
     steps:
       - checkout
       - install-system-dependencies
-      - install-ruby-dependencies:
-          ruby-version: '3.0'
+      - install-ruby-dependencies
       - wait-db
       - run:
           command: ./bin/rails db:create
@@ -149,14 +158,16 @@ jobs:
           name: Check migration result
 
   test-two-step-migrations:
+    parameters:
+      postgres-version:
+        type: string
     executor:
       name: default
-      ruby-version: '3.0'
+      postgres-version: << parameters.postgres-version >>
     steps:
       - checkout
       - install-system-dependencies
-      - install-ruby-dependencies:
-          ruby-version: '3.0'
+      - install-ruby-dependencies
       - wait-db
       - run:
           command: ./bin/rails db:create
@@ -206,15 +217,30 @@ workflows:
               ruby-version:
                 - '2.7'
                 - '3.0'
-          name: test-ruby<< matrix.ruby-version >>
+              postgres-version:
+                - '14.5'
+                - '15.0'
+          name: test-ruby<< matrix.ruby-version >>-pg<< matrix.postgres-version >>
           requires:
             - build
       - test-migrations:
           requires:
             - build
+          matrix:
+            parameters:
+              postgres-version:
+                - '14.5'
+                - '15.0'
+          name: test-migrations-pg<< matrix.postgres-version >>
       - test-two-step-migrations:
           requires:
             - build
+          matrix:
+            parameters:
+              postgres-version:
+                - '14.5'
+                - '15.0'
+          name: test-two-step-migrations-pg<< matrix.postgres-version >>
       - node/run:
           cache-version: v1
           name: test-webui
