@@ -11,7 +11,7 @@ et:
       one: Jälgija
       other: Jälgijaid
     following: Jälgib
-    instance_actor_flash: See on virtuaalne konto esindamaks serverit ennast ja mitte ühtegi kasutajad. Seda kasutatakse föderatsiooni eesmärgil ja seda ei tohi kustutada.
+    instance_actor_flash: See on serveri enda virtuaalne konto. See ei esinda ühtegi kindlat kasutajat, vaid seda kasutatakse födereerumisel. Seda kontot ei tohi kustutada.
     last_active: viimati aktiivne
     link_verified_on: Selle lingi autorsust kontrolliti %{date}
     nothing_here: Siin pole midagi!
@@ -27,8 +27,8 @@ et:
       title: Rakenda moderaatori tegevus kasutajale %{acct}
     account_moderation_notes:
       create: Jäta teade
-      created_msg: Moderatsiooniteade edukalt koostatud!
-      destroyed_msg: Moderatsiooniteade edukalt kustutatud!
+      created_msg: Modereerimisteade edukalt koostatud!
+      destroyed_msg: Modereerimisteade edukalt kustutatud!
     accounts:
       add_email_domain_block: Keela e-posti domeen
       approve: Võta vastu
@@ -93,8 +93,8 @@ et:
         pending: Ootel
         silenced: Vaigistatud
         suspended: Kustutatud
-        title: Moderatsioon
-      moderation_notes: Moderatsiooniteated
+        title: Modereerimine
+      moderation_notes: Modereerimisteated
       most_recent_activity: Kõige hiljutisem aktiivsus
       most_recent_ip: Kõige hiljutisem IP
       no_account_selected: Mitte ühtegi kontot muudeti sest midagi polnud valitud
@@ -504,12 +504,12 @@ et:
       moderation:
         all: Kõik
         limited: Piiratud
-        title: Moderatsioon
+        title: Modereerimine
       private_comment: Privaatne kommentaar
       public_comment: Avalik kommentaar
       purge: Kustuta
       purge_description_html: Kui on arvata, et domeen on lõplikult kadunud, on võimalik kustutada kõik siin talletatud kontode kirjed ja seotud andmed. See võib aega võtta.
-      title: Föderatsioon
+      title: Födereerumine
       total_blocked_by_us: Meie poolt blokeeritud
       total_followed_by_them: Nende poolt jälgitud
       total_followed_by_us: Meie poolt jälgitud
@@ -544,7 +544,7 @@ et:
     relays:
       add_new: Lisa uus relee
       delete: Kustuta
-      description_html: <strong>Föderatsiooni relee</strong> on vahepealne server, mis vahetab suures koguses tuututusi serverite vahel, mis on selle tellijad ning mis sellele saadavad. <strong>See aitab väikestel ja keskmistel serveritel avastada sisu fediversumist</strong>, mis tavaliselt nõuab teisel serveril olevate inimeste jälgimist.
+      description_html: <strong>Födereerumisrelee</strong> on vahendav server, mis kannab üle suures koguses avalikke postitusi nende serverite vahel, mis on sellega liitunud ja edastavad sellele oma postitusi. <strong>See aitab väikestel ja keskmistel serveritel avastada födiversumi sellist sisu</strong>, mis muidu eeldaks kohalikelt kasutajatelt nende serverite kasutajate jälgitavaks märkimist.
       disable: Keela
       disabled: Keelatud
       enable: Luba
@@ -654,7 +654,7 @@ et:
         manage_blocks_description: Lubab kasutajatel keelata e-postiteenuse pakkujaid ja IP-aadresse
         manage_custom_emojis: Halda isetehtud emotikone
         manage_custom_emojis_description: Lubab kasutajatel hallata serveris isetehtud emotikone
-        manage_federation: Halda föderatsiooni
+        manage_federation: Halda födereerumist
         manage_federation_description: Lubab kasutajail keelata või lubada föderatsioone teiste domeenidega ja hallata ühenduvust
         manage_invites: Halda kutseid
         manage_invites_description: Lubab kasutajatel kutseid lehitseda ja sulgeda
@@ -913,9 +913,9 @@ et:
     confirmation_dialogs: Kinnitusdialoogid
     discovery: Avastus
     localization:
-      body: Mastodon on tõlgitud vabatahtlike poolt.
+      body: Mastodoni tõlgivad vabatahtlikud.
       guide_link: https://crowdin.com/project/mastodon/et
-      guide_link_text: Igaüks võib panustada.
+      guide_link_text: Panustada võib igaüks!
     sensitive_content: Tundlik sisu
     toot_layout: Tuututuse kujundus
   application_mailer:
@@ -950,7 +950,7 @@ et:
     log_in_with: Sisene kasutades
     login: Logi sisse
     logout: Logi välja
-    migrate_account: Koli teisele kasutajale
+    migrate_account: Teisele kontole kolimine
     migrate_account_html: Kui Te soovite seda kontot ümber viia teisele, <a href="%{path}">saate teha seda siit</a>.
     or_log_in_with: Või logi sisse koos
     privacy_policy_agreement_html: Olen lugenud ja nõustun <a href="%{privacy_policy_path}" target="_blank">privaatsuspoliitikaga</a>
@@ -1267,7 +1267,7 @@ et:
       other_data: Muid andmeid ei liigutata automaatselt
       redirect: Teie praegune konto eemaldatakse otsingutulemustest ning profiilile lisatakse ümbersuunamise märguanne
   moderation:
-    title: Moderatsioon
+    title: Modereerimine
   move_handler:
     carry_blocks_over_text: See kasutaja kolis kontolt %{acct}, mis oli keelatud.
     carry_mutes_over_text: Kasutaja kolis ümber kontolt %{acct}, mis oli vaigistatud.
@@ -1411,7 +1411,7 @@ et:
       weibo: Weibo
     current_session: Praegune seanss
     description: "%{browser} platvormil %{platform}"
-    explanation: Need on praegused veebilehitsejad, mis on sisse logitud Teie Mastodoni kontosse.
+    explanation: Need on veebilehitsejad on praegu sinu Mastodoni kontole sisse loginud.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1428,7 +1428,7 @@ et:
       windows_phone: Windows Phone
     revoke: Tühista
     revoke_success: Seanssi tühistamine õnnestus
-    title: Seanssid
+    title: Seansid
     view_authentication_history: Konto autentimisajaloo vaatamine
   settings:
     account: Konto
@@ -1498,11 +1498,11 @@ et:
     visibilities:
       direct: Otsene
       private: Ainult jälgijatele
-      private_long: Näita ainult jälgijatele
+      private_long: Näevad ainult jälgijad
       public: Avalik
-      public_long: Kõik saavad näha
+      public_long: Postitused on kõigile näha
       unlisted: Kirjendamata
-      unlisted_long: Kõik saavad näha, aga ei ole saadaval avalikes ajajoontes
+      unlisted_long: Kõigile näha, kuid ei näidata avalikel ajajoontel
   statuses_cleanup:
     enabled: Vanade postituste automaatne kustutamine
     enabled_hint: Kustutab automaatselt postitused, mis ületavad määratud ajalimiiti, välja arvatud allpool toodud erandite puhul
