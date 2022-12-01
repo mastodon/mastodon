@@ -548,7 +548,7 @@ et:
       disable: Keela
       disabled: Keelatud
       enable: Luba
-      enable_hint: Kui lubatud, siis Teie server tellib kõik avalikud tuututused sellelt releelt ning hakkab ka enda avalikke tuututusi sellele saatma.
+      enable_hint: Kui lubatud, siis server tellib kõik avalikud postitused sellelt releelt ning hakkab ka enda avalikke postitusi sellele saatma.
       enabled: Lubatud
       inbox_url: Relee URL
       pending: Ootab relee nõusolekut
@@ -917,7 +917,7 @@ et:
       guide_link: https://crowdin.com/project/mastodon/et
       guide_link_text: Panustada võib igaüks!
     sensitive_content: Tundlik sisu
-    toot_layout: Tuututuse kujundus
+    toot_layout: Postituse väljanägemine
   application_mailer:
     notification_preferences: Muuda e-kirjade eelistusi
     salutation: "%{name}!"
@@ -1092,7 +1092,7 @@ et:
     archive_takeout:
       date: Kuupäev
       download: Lae alla oma arhiiv
-      hint_html: Te saate taotleda arhiivi oma <strong>tuututustest ja üleslaetud meediast</strong>. Eksporditud andmed on ActivityPub-i formaadis, loetav vastava tarkvara poolt. Te saate taotleda arhiivi iga 7 päeva tagant.
+      hint_html: <strong>Postitustest ja üleslaetud meediast</strong> on võimalik saada koopia. Eksporditud andmed on ActivityPub-formaadis, loetav vastava tarkvara poolt. Koopia saamine on võimalik iga 7 päeva järel.
       in_progress: Loome Teie arhiivi...
       request: Taotle oma arhiivi
       size: Suurus
@@ -1385,9 +1385,9 @@ et:
       account: '@%{acct} avalikud postitused'
       tag: 'Avalikud postitused sildiga #%{hashtag}'
   scheduled_statuses:
-    over_daily_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit} selle päeva kohta
+    over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
     over_total_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit}
-    too_soon: Ajastatud tuututuse kuupäev peab olema tukevikus
+    too_soon: Ajastatud kuupäev peab olema tukevikus
   sessions:
     activity: Viimane aktiivsus
     browser: Veebilehitseja
