@@ -6,12 +6,12 @@ et:
       account_migration:
         acct: Sisesta selle konto kasutajanimi@domeen, millele soovite kolida
       account_warning_preset:
-        text: Te saate kasutada tuututuse süntaksi, näiteks URLe, silte ja mainimisi
+        text: Te saate kasutada postituse süntaksi, näiteks URLe, silte ja mainimisi
         title: Valikuline. Ei ole nähtav saajale
       admin_account_action:
-        include_statuses: Kasutaja näeb, millised tuututused on põhjustanud selle moderaatori tegevuse või hoiatuse
+        include_statuses: Kasutaja näeb, millised postitused on põhjustanud moderaatori otsuse või hoiatuse
         send_email_notification: Konto omanik saab selgituse selle kohta, mis juhtus nende kontoga
-        text_html: Valikuline. Te saate kasutada tuututuse süntaksi. Te saate <a href="%{path}">lisada hoiatuste eelseadistusi</a> aega säästmiseks
+        text_html: Valikuline. On võimalik kasutada postituse süntaksi. On võimalik <a href="%{path}">lisada hoiatuste eelseadistusi</a> säästmaks aega
         type_html: Vali, mida teha kasutajaga <strong>%{acct}</strong>
         types:
           disable: Keela kasutajal konto kasutamine, sisu kustutamata või varjamata.
@@ -25,7 +25,7 @@ et:
         ends_at: Valikuline. Teadaanne eemaldatakse automaatselt sellel ajal
         scheduled_at: Jäta tühjaks, et avaldada teadaande koheselt
         starts_at: Valikuline. Juhul, kui teie teadaanne on limiteeritud kindlale ajavahemikule
-        text: Te saate kasutada tuututuse süntaksi. Palun pidage silmas seda, kui palju ruumi teadaanne võtab kasutaja ekraanil
+        text: Te saate kasutada postituse süntaksi. Tuleks silmas pidada, kui palju ruumi teadaanne võtab kasutaja ekraanil
       appeal:
         text: Otsust on võimalik vaidlustada vaid 1 kord
       defaults:
@@ -41,11 +41,11 @@ et:
         fields: Te saate oma profiilil tabelina kuvada kuni 4 asja
         header: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         inbox_url: Kopeerige soovitud relee avalehe URL
-        irreversible: Filtreeritud tuututused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
+        irreversible: Filtreeritud postitused kaovad taastamatult, isegi kui filter on hiljem eemaldatud
         locale: Kasutajaliidese, e-kirjade ja push-teadete keel
         locked: Nõuab käsitsi jälgijate kinnitamist
         password: Vajalik on vähemalt 8 märki
-        phrase: Kattub olenemata tuututuse teksti suurtähtedest või sisuhoiatusest
+        phrase: Kattub olenemata postituse teksti suurtähtedest või sisuhoiatusest
         scopes: Milliseid API-sid see rakendus tohib kasutada. Kui Te valite kõrgeima taseme, ei pea Te valima individuaalseid.
         setting_aggregate_reblogs: Ära kuva uusi postituste jagamisi, mis on hiljuti jagatud (kehtib vaid uutele jagamistele)
         setting_always_send_emails: Mastodoni aktiivsel kasutamisel sulle tavaliselt meilile teavitusi ei saadeta
@@ -55,7 +55,7 @@ et:
         setting_display_media_show_all: Alati näita tundlikuks märgistatud meedia
         setting_hide_network: Keda Te jälgite ja kes jägib Teid ei kuvata Teie profiilil
         setting_noindex: Mõjutab Teie avalikku profiili ja staatuse lehekülgi
-        setting_show_application: Rakendus, mida kasutate tuututamiseks, kuvatakse tuututuste üksikasjade vaates
+        setting_show_application: Rakendus, mida kasutate postitamiseks, kuvatakse postituste detailvaates
         setting_use_blurhash: Värvid põhinevad peidetud visuaalidel, kuid hägustavad igasuguseid detaile
         setting_use_pending_items: Peida ajajoone uuendused kliki taga selle asemel, et automaatselt kerida voogu
         username: Teie kasutajanimi on %{domain}-il unikaalne
@@ -140,7 +140,7 @@ et:
         text: Eelseadistatud tekst
         title: Pealkiri
       admin_account_action:
-        include_statuses: Kaasa teavitatud tuututused selles e-kirjas
+        include_statuses: Kaasa teavitatud postitused selles e-kirjas
         send_email_notification: Teavita kasutajat e-posti teel
         text: Hoiatus
         type: Tegevus
@@ -191,21 +191,21 @@ et:
         setting_always_send_emails: Edasta kõik teavitused meilile
         setting_auto_play_gif: Mängi GIF-e automaatselt
         setting_boost_modal: Näita enne jagamist kinnitusdialoogi
-        setting_crop_images: Kärbi suurendamata tuututuste pildid resolutsiooni 16x9
+        setting_crop_images: Kuva suurendamata postituste pildid kui 16x9
         setting_default_language: Postituse keel
         setting_default_privacy: Postituse privaatsus
         setting_default_sensitive: Alati märgista meedia tundlikuks
-        setting_delete_modal: Näita kinnitusdialoogi enne tuututuse kustutamist
+        setting_delete_modal: Näita kinnitusdialoogi enne postituse kustutamist
         setting_disable_swiping: Keela pühkimisliigutused
         setting_display_media: Meedia kuvarežiim
         setting_display_media_default: Vaikimisi
         setting_display_media_hide_all: Peida kõik
         setting_display_media_show_all: Kuva kõik
-        setting_expand_spoilers: Alati laienda sisuhoiatustega tuututused
+        setting_expand_spoilers: Alati laienda sisuhoiatustega postitused
         setting_hide_network: Peida oma võrk
         setting_noindex: Keeldu otsingumootorite indekseerimistest
         setting_reduce_motion: Vähenda liikumist animatsioonides
-        setting_show_application: Avalikusta tuututuste saatmisel kasutatud rakendused
+        setting_show_application: Avalikusta postituste tegemisel kasutatud rakendus
         setting_system_font_ui: Kasuta süsteemi vaikefonti
         setting_theme: Saidi teema
         setting_trends: Näita tänaseid trende
@@ -284,7 +284,7 @@ et:
         listable: Luba sellel sildil ilmuda profiilide kataloogis
         name: Silt
         trendable: Luba sellel sildil trendida
-        usable: Luba tuututustel seda silti kasutada
+        usable: Luba postitustel seda silti kasutada
       user:
         role: Roll
       user_role:
