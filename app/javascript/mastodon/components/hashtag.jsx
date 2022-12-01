@@ -86,7 +86,7 @@ const Hashtag = ({ name, to, people, uses, history, className, description, with
     {withGraph && (
       <div className='trends__item__sparkline'>
         <SilentErrorBoundary>
-          <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)}>
+          <Sparklines width={50} height={28} data={history ? history : Array.from(Array(7)).map(() => 0)} min={0} max={history ? Math.max(...history) + 10 : 10}>
             <SparklinesCurve style={{ fill: 'none' }} />
           </Sparklines>
         </SilentErrorBoundary>
