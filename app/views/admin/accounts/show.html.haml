@@ -157,7 +157,7 @@
 
           - recent_ips = @account.user.ips.order(used_at: :desc).to_a
 
-          - if current.role.permissions_as_keys.include?('sensitive_user_data') || current.role.permissions_as_keys.include?('administrator')
+          - if @current_user.can?(:sensitive_user_data)
             - recent_ips.each_with_index do |recent_ip, i|
               %tr
                 - if i.zero?
