@@ -87,6 +87,10 @@ class REST::InstanceSerializer < ActiveModel::Serializer
     }
   end
 
+  def max_toot_chars
+    1500
+  end
+
   private
 
   def registrations_enabled?
@@ -103,10 +107,6 @@ class REST::InstanceSerializer < ActiveModel::Serializer
 
   def markdown
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, no_images: true)
-  end
-
-  def max_toot_chars
-    1500
   end
 
 end
