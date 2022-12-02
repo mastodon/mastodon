@@ -181,62 +181,62 @@ it:
         create_ip_block: Crea regola IP
         create_unavailable_domain: Crea Dominio Non Disponibile
         create_user_role: Crea Ruolo
-        demote_user: Degrada l'utente
-        destroy_announcement: Cancella annuncio
-        destroy_canonical_email_block: Elimina Blocco E-mail
-        destroy_custom_emoji: Cancella emoji personalizzata
-        destroy_domain_allow: Cancella permesso di dominio
-        destroy_domain_block: Cancella blocco di dominio
-        destroy_email_domain_block: Cancella blocco dominio e-mail
-        destroy_instance: Ripulisci dominio
+        demote_user: Retrocedi Utente
+        destroy_announcement: Elimina Annuncio
+        destroy_canonical_email_block: Elimina Blocco Email
+        destroy_custom_emoji: Elimina Emoji Personalizzata
+        destroy_domain_allow: Elimina Dominio Consentito
+        destroy_domain_block: Elimina Blocco del Dominio
+        destroy_email_domain_block: Elimina Blocco del Dominio Email
+        destroy_instance: Elimina Dominio
         destroy_ip_block: Elimina regola IP
-        destroy_status: Cancella stato
-        destroy_unavailable_domain: Elimina dominio non disponibile
+        destroy_status: Elimina Toot
+        destroy_unavailable_domain: Elimina Dominio Non Disponibile
         destroy_user_role: Distruggi Ruolo
-        disable_2fa_user: Disabilita l'autenticazione a due fattori
-        disable_custom_emoji: Disabilita emoji personalizzata
-        disable_sign_in_token_auth_user: Disabilita autenticazione con codice via email per l'utente
-        disable_user: Disabilita utente
-        enable_custom_emoji: Abilita emoji personalizzata
-        enable_sign_in_token_auth_user: Abilita autenticazione con codice via email per l'utente
-        enable_user: Abilita utente
-        memorialize_account: Trasforma in account commemorativo
-        promote_user: Promuovi utente
-        reject_appeal: Respingi Ricorso
+        disable_2fa_user: Disabilita A2F
+        disable_custom_emoji: Disabilita Emoji Personalizzata
+        disable_sign_in_token_auth_user: Disabilita l'Autenticazione con Token via Email per l'Utente
+        disable_user: Disabilita l'Utente
+        enable_custom_emoji: Abilita Emoji Personalizzata
+        enable_sign_in_token_auth_user: Abilita l'Autenticazione con Token via Email per l'Utente
+        enable_user: Abilita l'Utente
+        memorialize_account: Commemora Profilo
+        promote_user: Promuovi Utente
+        reject_appeal: Rifiuta Ricorso
         reject_user: Rifiuta Utente
-        remove_avatar_user: Elimina avatar
-        reopen_report: Riapri report
-        resend_user: Invia di nuovo l'email di conferma
-        reset_password_user: Reimposta password
-        resolve_report: Risolvi report
-        sensitive_account: Contrassegna il media nel tuo profilo come sensibile
-        silence_account: Silenzia account
-        suspend_account: Sospendi account
-        unassigned_report: Disassegna report
-        unblock_email_account: Sblocca indirizzo email
-        unsensitive_account: Deseleziona il media nel tuo profilo come sensibile
-        unsilence_account: De-silenzia account
-        unsuspend_account: Annulla la sospensione dell'account
-        update_announcement: Aggiorna annuncio
-        update_custom_emoji: Aggiorna emoji personalizzata
-        update_domain_block: Aggiorna blocco di dominio
+        remove_avatar_user: Rimuovi Avatar
+        reopen_report: Riapri Segnalazione
+        resend_user: Reinvia Email di Conferma
+        reset_password_user: Ripristina la Password
+        resolve_report: Risolvi Segnalazione
+        sensitive_account: Forza Profilo come Sensibile
+        silence_account: Limita Profilo
+        suspend_account: Sospendi Profilo
+        unassigned_report: Annulla Assegnazione Rapporto
+        unblock_email_account: Sblocca l'indirizzo email
+        unsensitive_account: Annulla Forza Profilo come Sensibile
+        unsilence_account: Annulla Limitazione Profilo
+        unsuspend_account: Annulla la Sospensione del Profilo
+        update_announcement: Aggiorna Annuncio
+        update_custom_emoji: Aggiorna Emoji Personalizzata
+        update_domain_block: Aggiorna Blocco del Dominio
         update_ip_block: Aggiorna regola IP
-        update_status: Aggiorna stato
+        update_status: Aggiorna Toot
         update_user_role: Aggiorna Ruolo
       actions:
-        approve_appeal_html: "%{name} ha approvato il ricorso contro la decisione di moderazione da %{target}"
-        approve_user_html: "%{name} ha approvato la registrazione da %{target}"
-        assigned_to_self_report_html: "%{name} ha assegnato il rapporto %{target} a se stesso"
-        change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
+        approve_appeal_html: "%{name} ha approvato il ricorso sulla decisione di moderazione da %{target}"
+        approve_user_html: "%{name} ha approvato l'iscrizione da %{target}"
+        assigned_to_self_report_html: "%{name} ha assegnato a se stesso la segnalazione %{target}"
+        change_email_user_html: "%{name} ha modificato l'indirizzo email dell'utente %{target}"
         change_role_user_html: "%{name} ha cambiato il ruolo di %{target}"
-        confirm_user_html: "%{name} ha confermato l'indirizzo e-mail dell'utente %{target}"
+        confirm_user_html: "%{name} ha confermato l'indirizzo email dell'utente %{target}"
         create_account_warning_html: "%{name} ha inviato un avviso a %{target}"
         create_announcement_html: "%{name} ha creato un nuovo annuncio %{target}"
-        create_canonical_email_block_html: "%{name} ha bloccato l'e-mail con l'hash %{target}"
+        create_canonical_email_block_html: "%{name} ha bloccato l'email con l'hash %{target}"
         create_custom_emoji_html: "%{name} ha caricato una nuova emoji %{target}"
-        create_domain_allow_html: "%{name} ha consentito alla federazione col dominio %{target}"
-        create_domain_block_html: "%{name} ha bloccato dominio %{target}"
-        create_email_domain_block_html: "%{name} ha bloccato dominio e-mail %{target}"
+        create_domain_allow_html: "%{name} ha consentito la federazione con il dominio %{target}"
+        create_domain_block_html: "%{name} ha bloccato il dominio %{target}"
+        create_email_domain_block_html: "%{name} ha bloccato il dominio email %{target}"
         create_ip_block_html: "%{name} ha creato una regola per l'IP %{target}"
         create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
@@ -244,31 +244,31 @@ it:
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'email con l'hash %{target}"
         destroy_custom_emoji_html: "%{name} ha eliminato l'emoji %{target}"
-        destroy_domain_allow_html: "%{name} ha negato la federazione al dominio %{target}"
-        destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
-        destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
-        destroy_instance_html: "%{name} ha ripulito il dominio %{target}"
+        destroy_domain_allow_html: "%{name} non ha consentito la federazione con il dominio %{target}"
+        destroy_domain_block_html: "%{name} ha sbloccato il dominio %{target}"
+        destroy_email_domain_block_html: "%{name} ha sbloccato il dominio email %{target}"
+        destroy_instance_html: "%{name} ha eliminato il dominio %{target}"
         destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
-        destroy_status_html: "%{name} ha eliminato lo status di %{target}"
+        destroy_status_html: "%{name} ha rimosso il toot di %{target}"
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
         destroy_user_role_html: "%{name} ha eliminato il ruolo %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha disabilitato l'autenticazione con codice via email per %{target}"
-        disable_user_html: "%{name} ha disabilitato il login per l'utente %{target}"
-        enable_custom_emoji_html: "%{name} ha abilitato emoji %{target}"
+        disable_user_html: "%{name} ha disabilitato l'accesso per l'utente %{target}"
+        enable_custom_emoji_html: "%{name} ha abilitato l'emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ha abilitato l'autenticazione con codice via email per %{target}"
-        enable_user_html: "%{name} ha abilitato il login per l'utente %{target}"
-        memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
+        enable_user_html: "%{name} ha abilitato l'accesso per l'utente %{target}"
+        memorialize_account_html: "%{name} ha trasformato il profilo di %{target} in una pagina commemorativa"
         promote_user_html: "%{name} ha promosso l'utente %{target}"
-        reject_appeal_html: "%{name} ha respinto il ricorso contro la decisione di moderazione da %{target}"
-        reject_user_html: "%{name} ha rifiutato la registrazione da %{target}"
-        remove_avatar_user_html: "%{name} ha rimosso l'immagine profilo di %{target}"
-        reopen_report_html: "%{name} ha riaperto il rapporto %{target}"
-        resend_user_html: "%{name} inviata nuovamente l'email di conferma per %{target}"
-        reset_password_user_html: "%{name} ha reimpostato la password dell'utente %{target}"
-        resolve_report_html: "%{name} ha risolto il rapporto %{target}"
-        sensitive_account_html: "%{name} ha segnato il media di %{target} come sensibile"
+        reject_appeal_html: "%{name} ha rifiutato il ricorso alla decisione di moderazione da %{target}"
+        reject_user_html: "%{name} ha rifiutato l'iscrizione da %{target}"
+        remove_avatar_user_html: "%{name} ha rimosso l'avatar di %{target}"
+        reopen_report_html: "%{name} ha riaperto la segnalazione %{target}"
+        resend_user_html: "%{name} ha reinviato l'email di conferma per %{target}"
+        reset_password_user_html: "%{name} ha ripristinato la password dell'utente %{target}"
+        resolve_report_html: "%{name} ha risolto la segnalazione %{target}"
+        sensitive_account_html: "%{name} ha contrassegnato il media di %{target} come sensibile"
         silence_account_html: "%{name} ha silenziato l'account di %{target}"
         suspend_account_html: "%{name} ha sospeso l'account di %{target}"
         unassigned_report_html: "%{name} ha disassegnato il rapporto %{target}"
