@@ -35,7 +35,7 @@ RSpec.describe AdvancedTextFormatter do
       end
 
       context 'given a block code' do
-        let(:text) { "test\n\n```\nint main(void) {\n  return 0;\n}\n```\n" }
+        let(:text) { "test\n\n```\nint main(void) {\n  return 0; // https://joinmastodon.org/foo\n}\n```\n" }
 
         it 'formats code using <pre> and <code>' do
           is_expected.to include '<pre><code>int main'
@@ -44,13 +44,17 @@ RSpec.describe AdvancedTextFormatter do
         it 'does not strip leading spaces' do
           is_expected.to include '>  return 0'
         end
+
+        it 'does not format links' do
+          is_expected.to include 'return 0; // https://joinmastodon.org/foo'
+        end
       end
 
-      context 'given some quote' do
-        let(:text) { "> foo\n\nbar" }
+      context 'given a link in inline code using backticks' do
+        let(:text) { 'test `https://foo.bar/bar` bar' }
 
-        it 'formats code using <code>' do
-          is_expected.to include '<blockquote><p>foo</p></blockquote>'
+        it 'does not rewrite the link' do
+          is_expected.to include 'test <code>https://foo.bar/bar</code> bar'
         end
       end
 
