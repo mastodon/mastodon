@@ -2219,13 +2219,22 @@ $ui-header-height: 55px;
   align-items: center;
 
   &__logo {
-    display: inline-flex;
-    padding: 15px;
-
-    .logo {
-      height: $ui-header-height - 30px;
-      width: auto;
-    }
+    color: $primary-text-color;
+    display: block;
+    font-size: 26px;
+    font-weight: bolder;
+    font-family: Ubuntu, serif;
+    padding: 12px;
+    text-decoration: none;
+    overflow: hidden;
+    white-space: nowrap;
+    //display: inline-flex;
+    //padding: 15px;
+    //
+    //.logo {
+    //  height: $ui-header-height - 30px;
+    //  width: auto;
+    //}
   }
 
   &__links {
@@ -3038,6 +3047,55 @@ $ui-header-height: 55px;
 .react-toggle--checked .react-toggle-thumb {
   left: 27px;
   border-color: $ui-highlight-color;
+}
+
+.logo-link-custom-header {
+  color: $primary-text-color;
+  display: block;
+  font-size: 26px;
+  font-weight: bolder;
+  font-family: Ubuntu, serif;
+  padding: 12px;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: lighten($ui-base-color, 4%);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+
+  &--transparent {
+    background: transparent;
+    color: $ui-secondary-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+      color: $primary-text-color;
+    }
+
+    &.active {
+      color: $highlight-text-color;
+    }
+  }
+
+  &--logo {
+    background: transparent;
+    padding: 10px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background: transparent;
+    }
+  }
 }
 
 .logo-link-custom {

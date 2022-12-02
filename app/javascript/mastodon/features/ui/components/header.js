@@ -50,7 +50,7 @@ class Header extends React.PureComponent {
 
     return (
       <div className='ui__header'>
-        <Link to='/' className='ui__header__logo'><Logo /></Link>
+        <Link to='/' className='ui__header__logo'>ist - ur . org</Link>
 
         <div className='ui__header__links'>
           {content}
