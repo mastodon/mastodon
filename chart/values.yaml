@@ -109,6 +109,7 @@ mastodon:
         - mailers
         - pull
         - scheduler # Make sure the scheduler queue only exists once and with a worker that has 1 replica.
+        - ingress
     #- name: push-pull
     #  concurrency: 50
     #  resources: {}
