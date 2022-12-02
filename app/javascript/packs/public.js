@@ -94,27 +94,23 @@ function main() {
         date.getMonth() === today.getMonth() &&
         date.getFullYear() === today.getFullYear();
     };
+    const todayFormat = new IntlMessageFormat(messages['relative_format.today'], locale);
 
     [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
       const datetime = new Date(content.getAttribute('datetime'));
 
-      let title;
-      let textContent;
+      let formattedContent;
 
       if (isToday(datetime)) {
         const formattedTime = timeFormat.format(datetime);
 
-        title = content.title.replace('%{time}', formattedTime);
-        textContent = content.textContent.replace('%{time}', formattedTime);
+        formattedContent = todayFormat.format({time: formattedTime});
       } else {
-        const formattedDate = dateFormat.format(datetime);
-
-        title = formattedDate;
-        textContent = formattedDate;
+        formattedContent = dateFormat.format(datetime);
       }
 
-      content.title = title;
-      content.textContent = textContent;
+      content.title = formattedContent;
+      content.textContent = formattedContent;
     });
 
     [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
