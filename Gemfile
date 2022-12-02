@@ -105,7 +105,7 @@ group :development, :test do
   gem 'i18n-tasks', '~> 1.0', require: false
   gem 'pry-byebug', '~> 3.10'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 5.1'
+  gem 'rspec-rails', '~> 6.0'
 end
 
 group :production, :test do
