@@ -1,3 +1,4 @@
+---
 ca:
   activerecord:
     attributes:
@@ -146,39 +147,39 @@ ca:
       application:
         title: Cal una autorització OAuth
     scopes:
-      "admin:read": llegeix totes les dades en el servidor
-      "admin:read:accounts": llegir informació confidencial de tots els comptes
-      "admin:read:reports": llegir informació confidencial de tots els informes i comptes reportats
-      "admin:write": modificar totes les dades en el servidor
-      "admin:write:accounts": fer l'acció de moderació en els comptes
-      "admin:write:reports": fer l'acció de moderació en els informes
+      admin:read: llegeix totes les dades en el servidor
+      admin:read:accounts: llegir informació confidencial de tots els comptes
+      admin:read:reports: llegir informació confidencial de tots els informes i comptes reportats
+      admin:write: modificar totes les dades en el servidor
+      admin:write:accounts: fer l'acció de moderació en els comptes
+      admin:write:reports: fer l'acció de moderació en els informes
       crypto: usa xifrat d'extrem a extrem
       follow: modificar relacions dels comptes
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
-      "read:accounts": mira informació dels comptes
-      "read:blocks": mira els teus bloqueigs
-      "read:bookmarks": mira els teus marcadors
-      "read:favourites": mira els teus preferits
-      "read:filters": mira els teus filtres
-      "read:follows": mira els teus seguiments
-      "read:lists": mira les teves llistes
-      "read:mutes": mira els teus silenciats
-      "read:notifications": mira les teves notificacions
-      "read:reports": mira els teus informes
-      "read:search": cerca en nom teu
-      "read:statuses": mira tots les publicacions
+      read:accounts: mira informació dels comptes
+      read:blocks: mira els teus bloqueigs
+      read:bookmarks: mira els teus marcadors
+      read:favourites: mira els teus preferits
+      read:filters: mira els teus filtres
+      read:follows: mira els teus seguiments
+      read:lists: mira les teves llistes
+      read:mutes: mira els teus silenciats
+      read:notifications: mira les teves notificacions
+      read:reports: mira els teus informes
+      read:search: cerca en nom teu
+      read:statuses: mira tots les publicacions
       write: modifica totes les dades del teu compte
-      "write:accounts": modifica el teu perfil
-      "write:blocks": bloca comptes i dominis
-      "write:bookmarks": marca publicacions
-      "write:conversations": silencia i esborra converses
-      "write:favourites": afavoreix publicacions
-      "write:filters": crea filtres
-      "write:follows": segueix gent
-      "write:lists": crea llistes
-      "write:media": puja fitxers multimèdia
-      "write:mutes": silencia usuaris i converses
-      "write:notifications": esborra les teves notificacions
-      "write:reports": informa sobre altres persones
-      "write:statuses": fes publicacions
+      write:accounts: modifica el teu perfil
+      write:blocks: bloca comptes i dominis
+      write:bookmarks: marca publicacions
+      write:conversations: silencia i esborra converses
+      write:favourites: afavoreix publicacions
+      write:filters: crea filtres
+      write:follows: segueix gent
+      write:lists: crea llistes
+      write:media: puja fitxers multimèdia
+      write:mutes: silencia usuaris i converses
+      write:notifications: esborra les teves notificacions
+      write:reports: informa sobre altres persones
+      write:statuses: fes publicacions
