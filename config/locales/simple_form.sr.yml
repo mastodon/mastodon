@@ -42,6 +42,11 @@ sr:
         whole_word: Када је кључна реч или фраза искључиво алфанумеричка, биће примењена само ако се подудара са целом речи
       imports:
         data: CSV фајл извезен са друге Мастодонт инстанце
+      ip_block:
+        severities:
+          no_access: Блокирај приступ свим ресурсима
+          sign_up_block: Нове пријаве неће бити могуће
+          sign_up_requires_approval: Нове пријаве ће захтевати твоје одобрење
       sessions:
         otp: 'Унесите двофакторски код са Вашег телефона или користите један од кодова за опоравак:'
       user:
@@ -113,6 +118,8 @@ sr:
         username_or_email: Корисничко име или Е-пошта
         whole_word: Цела реч
       form_admin_settings:
+        require_invite_text: Затражи разлог за приступање
+        show_domain_blocks: Пприкажи блокове домена
         show_domain_blocks_rationale: Покажи зашто су домени блокирани
         site_contact_email: Е-адреса за контакт
         site_contact_username: Корисничко име за контакт
@@ -122,6 +129,9 @@ sr:
         site_title: Име сервера
         theme: Подразумевана тема
         thumbnail: Сличица сервера
+        timeline_preview: Дозволи неауторизован приступ јавним временским осама
+        trendable_by_default: Дозволи трендове без претходног прегледа
+        trends: Омогући трендове
       interactions:
         must_be_follower: Блокирај обавештења од корисника који ме не прате
         must_be_following: Блокирај обавештења од људи које не пратим
@@ -135,6 +145,8 @@ sr:
         ip: IP
         severities:
           no_access: Блокирај приступ
+          sign_up_block: Блокирај пријаве
+          sign_up_requires_approval: Ограничи пријаве
         severity: Правило
       notification_emails:
         appeal: Неко се жали на одлуку модератора
@@ -143,12 +155,17 @@ sr:
         follow: Шаљи е-пошту када Вас неко запрати
         follow_request: Шаљи е-пошту када неко затражи да Вас запрати
         mention: Шаљи е-пошту када Вас неко помене
+        pending_account: Нови налог треба прегледати
         reblog: Шаљи е-пошту када неко подржи Ваш статус
         report: Поднета је нова пријава
+        trending_tag: Нови тренд треба прегледати
       rule:
         text: Правило
       tag:
+        listable: Дозволи да се ова хеш ознака појављује у претрагама и предлозима
         name: Хеш ознака
+        trendable: Дозволи да се ова хеш ознака појави у оквиру трендова
+        usable: Дозволи објавама да користе ову хеш ознаку
       user:
         role: Улога
       user_role:
@@ -157,10 +174,16 @@ sr:
         name: Име
         permissions_as_keys: Овлашћења
         position: Приоритет
+      webhook:
+        events: Омогућени догађаји
+        url: URL крајње тачке
     'no': 'Не'
     not_recommended: Није препоручено
     recommended: Препоручено
     required:
       mark: "*"
       text: обавезно
+    title:
+      sessions:
+        webauthn: Користи један од својих безбедносних кључева за пријављивање
     'yes': 'Да'
