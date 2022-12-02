@@ -72,7 +72,7 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 
 - **PostgreSQL** 9.5+
 - **Redis** 4+
-- **Ruby** 2.6+
+- **Ruby** 2.7+
 - **Node.js** 14+
 
 The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
