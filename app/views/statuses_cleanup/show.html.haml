@@ -34,6 +34,10 @@
     .fields-row__column.fields-row__column-6.fields-group
       = f.input :keep_media, wrapper: :with_label, label: t('statuses_cleanup.keep_media'), hint: t('statuses_cleanup.keep_media_hint')
 
+  .fields-row
+    .fields-row__column.fields-row__column-6.fields-group
+      = f.input :keep_local, wrapper: :with_label, label: t('statuses_cleanup.keep_local'), hint: t('statuses_cleanup.keep_local_hint')
+
   %h4= t('statuses_cleanup.interaction_exceptions')
 
   .fields-row
