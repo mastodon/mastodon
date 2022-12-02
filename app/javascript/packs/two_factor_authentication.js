@@ -28,7 +28,12 @@ function callback(url, body) {
     },
     credentials: 'same-origin',
   }).then(function(response) {
-    window.location.replace(response.data.redirect_path);
+    if (response.data.redirect_path !== undefined) {
+      window.location.replace(response.data.redirect_path);
+    } else if (response.data.html_data !== undefined) {
+      const webAuthnCredentialRegistrationPage = document.getElementById('new-webauthn-credential');
+      webAuthnCredentialRegistrationPage.outerHTML = response.data.html_data;
+    }
   }).catch(function(error) {
     if (error.response.status === 422) {
       const errorMessage = document.getElementById('security-key-error-message');
@@ -50,7 +55,7 @@ ready(() => {
   }
 
 
-  const webAuthnCredentialRegistrationForm = document.getElementById('new_webauthn_credential');
+  const webAuthnCredentialRegistrationForm = document.getElementById('new_webauthn_credential_form');
   if (webAuthnCredentialRegistrationForm) {
     webAuthnCredentialRegistrationForm.addEventListener('submit', (event) => {
       event.preventDefault();
