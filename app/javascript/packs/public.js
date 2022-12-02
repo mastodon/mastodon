@@ -94,7 +94,7 @@ function main() {
         date.getMonth() === today.getMonth() &&
         date.getFullYear() === today.getFullYear();
     };
-    const todayFormat = new IntlMessageFormat(messages['relative_format.today'], locale);
+    const todayFormat = new IntlMessageFormat(messages['relative_format.today'] || 'Today at {time}', locale);
 
     [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
       const datetime = new Date(content.getAttribute('datetime'));
