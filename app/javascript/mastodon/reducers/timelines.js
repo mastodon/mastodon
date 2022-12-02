@@ -116,6 +116,7 @@ const updateTimeline = (state, timeline, status, usePendingItems) => {
       return state;
     }
 
+    // allow to grow a bit, then trim to TIMELINE_PENDING_ITEMS_TRIM, with a gap marker (null)
     return state.update(timeline, initialTimeline, map => map.update('pendingItems',
       list => (list.size >= TIMELINE_PENDING_ITEMS_CHECK ? list.take(TIMELINE_PENDING_ITEMS_TRIM).push(null) : list).unshift(status.get('id'))).update('unread', unread => unread + 1));
   }
