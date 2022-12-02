@@ -498,7 +498,7 @@ class Status extends ImmutablePureComponent {
 
             <StatusContent status={status} onClick={this.handleClick} expanded={!status.get('hidden')} showThread={showThread} onExpandedToggle={this.handleExpandedToggle} collapsable onCollapsedToggle={this.handleCollapsedToggle} />
 
-            {media}
+            {status.get('activity_pub_type') === 'Article' ? null : media}
 
             <StatusActionBar scrollKey={scrollKey} status={status} account={account} {...other} />
           </div>

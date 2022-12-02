@@ -264,7 +264,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
           <StatusContent status={status} expanded={status.get('activity_pub_type') === 'Article' || !status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
-          {media}
+          {status.get('activity_pub_type') === 'Article' ? null : media}
 
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener noreferrer'>
