@@ -43,13 +43,13 @@ class AccountFilter
     when 'status'
       status_scope(value)
     when 'by_domain'
-      Account.where(domain: value.to_s)
+      Account.where(domain: value.to_s.strip)
     when 'username'
-      Account.matches_username(value.to_s)
+      Account.matches_username(value.to_s.strip)
     when 'display_name'
-      Account.matches_display_name(value.to_s)
+      Account.matches_display_name(value.to_s.strip)
     when 'email'
-      accounts_with_users.merge(User.matches_email(value.to_s))
+      accounts_with_users.merge(User.matches_email(value.to_s.strip))
     when 'ip'
       valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value).group('users.id, accounts.id')) : Account.none
     when 'invited_by'
