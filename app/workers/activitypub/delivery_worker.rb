@@ -20,6 +20,16 @@ class ActivityPub::DeliveryWorker
     delay + jitter
   end
 
+  sidekiq_retries_exhausted do |msg, _exception|
+    options = msg['args'][3]
+    if options.is_a?(Hash) && options['destroy_on_failure']
+      class_name = options['destroy_on_failure']['class']
+      id         = options['destroy_on_failure']['id']
+      object = class_name.constantize.find(id)
+      object.destroy
+    end
+  end
+
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 
   def perform(json, source_account_id, inbox_url, options = {})
