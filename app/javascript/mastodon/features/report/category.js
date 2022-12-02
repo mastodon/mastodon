@@ -41,7 +41,7 @@ class Category extends React.PureComponent {
 
     switch(category) {
     case 'dislike':
-      onNextStep('thanks');
+      onNextStep('statuses');
       break;
     case 'violation':
       onNextStep('rules');
