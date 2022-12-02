@@ -16,12 +16,12 @@ br:
     last_active: oberiantiz ziwezhañ
     nothing_here: N'eus netra amañ !
     posts:
-      few: Kannadoù
-      many: Kannadoù
-      one: Kannad
-      other: Kannadoù
-      two: Kannadoù
-    posts_tab_heading: Kannadoù
+      few: Toudoù
+      many: Toudoù
+      one: Toud
+      other: Toud
+      two: Toudoù
+    posts_tab_heading: Toudoù
   admin:
     account_moderation_notes:
       create: Leuskel un notenn
@@ -47,7 +47,7 @@ br:
       disable: Skornañ
       disabled: Skornet
       domain: Domani
-      edit: Aozañ
+      edit: Kemmañ
       email: Postel
       enable: Gweredekaat
       enabled: Gweredekaet
@@ -80,7 +80,7 @@ br:
       search: Klask
       silence: Bevenniñ
       silenced: Bevennet
-      statuses: Kannadoù
+      statuses: Toudoù
       suspend: Astalañ
       suspended: Astalet
       title: Kontoù
@@ -93,8 +93,8 @@ br:
         destroy_status: Dilemel ar c'hannad
         update_status: Hizivaat ar c'hannad
       actions:
-        destroy_status_html: Dilamet eo bet kannad %{target} gant %{name}
-        update_status_html: Hizivaet eo bet kannad %{target} gant %{name}
+        destroy_status_html: Dilamet eo bet toud %{target} gant %{name}
+        update_status_html: Hizivaet eo bet toud %{target} gant %{name}
       title: Renabl aodit
     announcements:
       live: War-eeun
@@ -157,7 +157,7 @@ br:
           suspend: Astalañ
         policy: Reolennoù
       dashboard:
-        instance_statuses_measure: kannadoù stoket
+        instance_statuses_measure: toudoù stoket
       delivery:
         all: Pep tra
         failing: O faziañ
@@ -246,15 +246,15 @@ br:
       media:
         title: Media
       open: Digeriñ ar c'hannad
-      original_status: Kannad orin
+      original_status: Toud orin
       reblogs: Skignadennoù
-      status_changed: Kannad kemmet
-      title: Kannadoù ar gont
+      status_changed: Toud kemmet
+      title: Toudoù ar gont
       visibility: Gwelusted
       with_media: Gant mediaoù
     strikes:
       actions:
-        delete_statuses: Dilamet eo bet kannadoù %{target} gant %{name}
+        delete_statuses: Dilamet eo bet toudoù %{target} gant %{name}
     trends:
       allow: Aotren
       links:
@@ -371,7 +371,7 @@ br:
       title: Siloù
     statuses:
       index:
-        title: Kannadoù silet
+        title: Toudoù silet
   generic:
     all: Pep tra
     copy: Eilañ
@@ -408,7 +408,7 @@ br:
     mention:
       action: Respont
     reblog:
-      subject: Skignet ho kannad gant %{name}
+      subject: 'Gant %{name} eo bet skignet ho toud '
       title: Skignadenn nevez
     status:
       subject: Embannet ez eus bet traoù gant %{name}
@@ -478,7 +478,7 @@ br:
     account: Kont
     account_settings: Arventennoù ar gont
     development: Diorren
-    edit_profile: Aozañ ar profil
+    edit_profile: Kemmañ ar profil
     import: Enporzhiañ
     import_and_export: Enporzhiañ hag ezporzhiañ
     preferences: Gwellvezioù
@@ -498,6 +498,7 @@ br:
       direct: War-eeun
       public: Publik
   statuses_cleanup:
+    keep_direct: Mirout ar c'hannadoù eeun
     min_age:
       '1209600': 2 sizhunvezh
       '15778476': 6 months
@@ -508,7 +509,7 @@ br:
       '63113904': 2 vloavezh
       '7889238': 3 months
   stream_entries:
-    pinned: Kannad spilhennet
+    pinned: Toud spilhennet
     reblogged: en·he deus skignet
   themes:
     default: Mastodoñ (Teñval)
@@ -521,13 +522,13 @@ br:
   two_factor_authentication:
     add: Ouzhpennañ
     disable: Diweredekaat
-    edit: Aozañ
+    edit: Kemmañ
   user_mailer:
     warning:
       categories:
         spam: Spam
       reason: 'Abeg :'
-      statuses: 'Kannadoù meneget :'
+      statuses: 'Toudoù meneget :'
       title:
         none: Diwall
     welcome:

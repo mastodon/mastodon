@@ -1,12 +1,1662 @@
 ---
 sco:
+  about:
+    about_mastodon_html: 'The social network o wir future: Nae adverts, nae corporate surveillance; ethical design, an decentralization! Ain yer ain data wi Mastodon!'
+    contact_missing: No set
+    contact_unavailable: N/A
+    hosted_on: Mastodon hostit on %{domain}
+    title: Aboot
+  accounts:
+    follow: Follae
+    followers:
+      one: Follaer
+      other: Follaers
+    following: Follaein
+    instance_actor_flash: This accoont is a virtual actor uised tae represent the server itsel an no onie individual uiser. It is uised fir federation purposes an shuidnae be suspendit.
+    last_active: last active
+    link_verified_on: Ainership o this link wis checkt on %{date}
+    nothing_here: There naethin here!
+    pin_errors:
+      following: Ye hae tae awriddy be follaein the person thit ye'r wantin tae endorse
+    posts:
+      one: Post
+      other: Posts
+    posts_tab_heading: Posts
+  admin:
+    account_actions:
+      action: Perform action
+      title: Perform moderation action on %{acct}
+    account_moderation_notes:
+      create: Lea note
+      created_msg: Moderation note successfully makkit!
+      destroyed_msg: Moderation note successfully destroyed!
+    accounts:
+      add_email_domain_block: Dingie email domain
+      approve: Approve
+      approved_msg: Successfully approvit %{username}'s sign-up application
+      are_you_sure: Ye sure?
+      avatar: Avatar
+      by_domain: Domain
+      change_email:
+        changed_msg: Email successfully chynged!
+        current_email: Current email
+        label: Chynge email
+        new_email: New email
+        submit: Chynge email
+        title: Chynge email fir %{username}
+      change_role:
+        changed_msg: Role successfully chynged!
+        label: Chynge role
+        no_role: Nae role
+        title: Chynge role fir %{username}
+      confirm: Mak siccar
+      confirmed: Makkit siccar
+      confirming: Makkin siccar
+      custom: Custom
+      delete: Delete data
+      deleted: Deletit
+      demote: Demote
+      destroyed_msg: "%{username}'s data is noo queued fir tae be deletit the noo"
+      disable: Freeze
+      disable_sign_in_token_auth: Turn aff email token authentication
+      disable_two_factor_authentication: Turn aff 2FA
+      disabled: Froze
+      display_name: Display nemm
+      domain: Domain
+      edit: Edit
+      email: Email
+      email_status: Email status
+      enable: Unfreeze
+      enable_sign_in_token_auth: Turn on email token authentication
+      enabled: Turnt on
+      enabled_msg: Successfully unfroze %{username}'s accoont
+      followers: Follaers
+      follows: Follaes
+      header: Heider
+      inbox_url: Inbox URL
+      invite_request_text: Raisons fir jynin
+      invited_by: Invitit bi
+      ip: IP
+      joined: Jynt
+      location:
+        all: Aw
+        local: Local
+        remote: Remote
+        title: Location
+      login_status: Login status
+      media_attachments: Media attachments
+      memorialize: Turn intae memorial
+      memorialized: Memorialized
+      memorialized_msg: Successfully turnt %{username} intae a memorial accoont
+      moderation:
+        active: Active
+        all: Aw
+        pending: Pendin
+        silenced: Limitit
+        suspended: Suspendit
+        title: Moderation
+      moderation_notes: Moderation notes
+      most_recent_activity: Maist recent activity
+      most_recent_ip: Maist recent IP
+      no_account_selected: Nae accoonts wis chynged as naen wis selectit
+      no_limits_imposed: Nae limits imposed
+      no_role_assigned: Nae role assignt
+      not_subscribed: No subscribed
+      pending: Pendin review
+      perform_full_suspension: Suspend
+      previous_strikes: Previous strikes
+      previous_strikes_description_html:
+        one: This accoont haes <strong>ae</strong> strike.
+        other: This accoont haes <strong>%{count}</strong> strikes.
+      promote: Promote
+      protocol: Protocol
+      public: Public
+      push_subscription_expires: PuSH subscription expires
+      redownload: Refresh profile
+      redownloaded_msg: Successfully refreshed %{username}'s profile fae origin
+      reject: Rejeck
+      rejected_msg: Successfully rejectit %{username}'s sign-up application
+      remove_avatar: Remove avatar
+      remove_header: Tak aff heider
+      removed_avatar_msg: Successfully taen aff %{username}'s avatar image
+      removed_header_msg: Successfully taen aff %{username}'s heider image
+      resend_confirmation:
+        already_confirmed: This uiser is awriddy confirmt
+        send: Resen confirmation email
+        success: Confirmation email successfully sent!
+      reset: Reset
+      reset_password: Reset passwird
+      resubscribe: Resubscribe
+      role: Role
+      search: Seirch
+      search_same_email_domain: Ither uisers wi the same email domain
+      search_same_ip: Ither uisers wi the same IP
+      security_measures:
+        only_password: Ainly passwird
+        password_and_2fa: Passwird an 2FA
+      sensitive: Force-sensitive
+      sensitized: Mairked as sensitive
+      shared_inbox_url: Shared inbox URL
+      show:
+        created_reports: Made clypes
+        targeted_reports: Clyped on bi ithers
+      silence: Limit
+      silenced: Limitit
+      statuses: Posts
+      strikes: Previous strikes
+      subscribe: Subscribe
+      suspend: Suspend
+      suspended: Suspendit
+      suspension_irreversible: The data o this accoont haes been irreversibly deletit. Ye kin unsuspend the accoont fir tae mak it uisable but it wullnae recover onie data it haed afore.
+      suspension_reversible_hint_html: The accoont haes been suspendit, an the data wull be fully removed on %{date}. Tae then, the accoont kin be restored athoot onie ill effecks. Gin ye'r wantin tae remove aw the accoont's data the noo, ye kin dae it ablow.
+      title: Accoonts
+      unblock_email: Undingie email address
+      unblocked_email_msg: Successfully undingied %{username}'s email address
+      unconfirmed_email: Email no confirmt
+      undo_sensitized: Undae force-sensitive
+      undo_silenced: Undae limit
+      undo_suspension: Undae suspension
+      unsilenced_msg: Successfully unduin the limitin o %{username}'s accoont
+      unsubscribe: Unsubscribe
+      unsuspended_msg: Successfully unsuspendit %{username}'s accoont
+      username: Uisernemm
+      view_domain: Deek at summary fir domain
+      warn: Warn
+      web: Wab
+      whitelisted: Allooed fir federation
+    action_logs:
+      action_types:
+        approve_appeal: Approve Appeal
+        approve_user: Approve Uiser
+        assigned_to_self_report: Assign Clype
+        change_email_user: Chynge Email fir Uiser
+        change_role_user: Chynge Role o Uiser
+        confirm_user: Confirm Uiser
+        create_account_warning: Mak Warnin
+        create_announcement: Mak Annooncement
+        create_canonical_email_block: Mak a Email Dingie
+        create_custom_emoji: Mak Custom Emoji
+        create_domain_allow: Mak Domain Alloo
+        create_domain_block: Mak Domain Dingie
+        create_email_domain_block: Mak Email Domain Dingie
+        create_ip_block: Mak IP rule
+        create_unavailable_domain: Mak Unavailable Domain
+        create_user_role: Mak Role
+        demote_user: Demote Uiser
+        destroy_announcement: Delete Annooncement
+        destroy_canonical_email_block: Delete Email Dingie
+        destroy_custom_emoji: Delete Custom Emoji
+        destroy_domain_allow: Delete Domain Alloo
+        destroy_domain_block: Delete Domain Dingie
+        destroy_email_domain_block: Delete Email Domain Dingie
+        destroy_instance: Purge Domain
+        destroy_ip_block: Delete IP rule
+        destroy_status: Delete Post
+        destroy_unavailable_domain: Delete Unavailable Domain
+        destroy_user_role: Destroy Role
+        disable_2fa_user: Disable 2FA
+        disable_custom_emoji: Disable Custom Emoji
+        disable_sign_in_token_auth_user: Disable Email Token Authentication fir Uiser
+        disable_user: Turn aff Uiser
+        enable_custom_emoji: Turn on Custom Emoji
+        enable_sign_in_token_auth_user: Turn on Email Token Authentication fir Uiser
+        enable_user: Turn on Uiser
+        memorialize_account: Memorialize Accoont
+        promote_user: Promote Uiser
+        reject_appeal: Rejeck Appeal
+        reject_user: Rejeck Uiser
+        remove_avatar_user: Tak doon Avatar
+        reopen_report: Reopen Clype
+        resend_user: Resen Confirmation Email
+        reset_password_user: Reset Passwird
+        resolve_report: Sort Clype
+        sensitive_account: Force-Sensitive Accoont
+        silence_account: Limit Accoont
+        suspend_account: Suspend Accoont
+        unassigned_report: Unassign Clype
+        unblock_email_account: Undingie email address
+        unsensitive_account: Undae Force-Sensitive Accoont
+        unsilence_account: Undae Limit Accoont
+        unsuspend_account: Unsuspend Accoont
+        update_announcement: Update Annooncement
+        update_custom_emoji: Update Custom Emoji
+        update_domain_block: Update Domain Dingie
+        update_ip_block: Update IP rule
+        update_status: Update Post
+        update_user_role: Update Role
+      actions:
+        approve_appeal_html: "%{name} approved moderation decision appeal fae %{target}"
+        approve_user_html: "%{name} approved sign-up fae %{target}"
+        assigned_to_self_report_html: "%{name} assigned clype %{target} tae theirsels"
+        change_email_user_html: "%{name} chynged the email address o uiser %{target}"
+        change_role_user_html: "%{name} chynged the role o %{target}"
+        confirm_user_html: "%{name} confirmt email address o uiser %{target}"
+        create_account_warning_html: "%{name} sent a warnin tae %{target}"
+        create_announcement_html: "%{name} creatit new annooncement %{target}"
+        create_canonical_email_block_html: "%{name} dingied email wi the hash %{target}"
+        create_custom_emoji_html: "%{name} uploadit new emoji %{target}"
+        create_domain_allow_html: "%{name} allooed federation wi domain %{target}"
+        create_domain_block_html: "%{name} dingied domain %{target}"
+        create_email_domain_block_html: "%{name} dingied email domain %{target}"
+        create_ip_block_html: "%{name} creatit rule fir IP %{target}"
+        create_unavailable_domain_html: "%{name} stapt delivery tae domain %{target}"
+        create_user_role_html: "%{name} creatit %{target} role"
+        demote_user_html: "%{name} demotit uiser %{target}"
+        destroy_announcement_html: "%{name} deletit annooncement %{target}"
+        destroy_canonical_email_block_html: "%{name} undingied email wi the hash %{target}"
+        destroy_custom_emoji_html: "%{name} deletit emoji %{target}"
+        destroy_domain_allow_html: "%{name} disallooed federation wi domain %{target}"
+        destroy_domain_block_html: "%{name} undingied domain %{target}"
+        destroy_email_domain_block_html: "%{name} undingied email domain %{target}"
+        destroy_instance_html: "%{name} purged domain %{target}"
+        destroy_ip_block_html: "%{name} deletit rule fir IP %{target}"
+        destroy_status_html: "%{name} taen doon post bi %{target}"
+        destroy_unavailable_domain_html: "%{name} restertit delivery tae domain %{target}"
+        destroy_user_role_html: "%{name} deletit %{target} role"
+        disable_2fa_user_html: "%{name} turnt aff twa factor requirement fir uiser %{target}"
+        disable_custom_emoji_html: "%{name} turnt aff emoji %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} turnt aff email token authentication fir %{target}"
+        disable_user_html: "%{name} turnt aff login fir uiser %{target}"
+        enable_custom_emoji_html: "%{name} turnt on emoji %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} turnt on email token authentication fir %{target}"
+        enable_user_html: "%{name} turnt on login fir uiser %{target}"
+        memorialize_account_html: "%{name} pit %{target}'s accoont ower intae a memorial page"
+        promote_user_html: "%{name} promotit uiser %{target}"
+        reject_appeal_html: "%{name} rejectit moderation decision appeal fae %{target}"
+        reject_user_html: "%{name} rejectit sign-up fae %{target}"
+        remove_avatar_user_html: "%{name} taen doon %{target}'s avatar"
+        reopen_report_html: "%{name} reopent clype %{target}"
+        resend_user_html: "%{name} resent confirmation email fir %{target}"
+        reset_password_user_html: "%{name} reset passwird fir uiser %{target}"
+        resolve_report_html: "%{name} resolved clype %{target}"
+        sensitive_account_html: "%{name} mairked %{target}'s media as sensitive"
+        silence_account_html: "%{name} limitit %{target}'s accoont"
+        suspend_account_html: "%{name} suspendit %{target}'s accoont"
+        unassigned_report_html: "%{name} unassigned clype %{target}"
+        unblock_email_account_html: "%{name} undingied %{target}'s email address"
+        unsensitive_account_html: "%{name} unmairked %{target}'s media as sensitive"
+        unsilence_account_html: "%{name} undid limit o %{target}'s accoont"
+        unsuspend_account_html: "%{name} unsuspendit %{target}'s accoont"
+        update_announcement_html: "%{name} updatit annooncement %{target}"
+        update_custom_emoji_html: "%{name} updatit emoji %{target}"
+        update_domain_block_html: "%{name} updatit domain dingie fir %{target}"
+        update_ip_block_html: "%{name} chynged rule fir IP %{target}"
+        update_status_html: "%{name} updatit post bi %{target}"
+        update_user_role_html: "%{name} chynged %{target} role"
+      deleted_account: deletit accoont
+      empty: Nae logs fun.
+      filter_by_action: Filter bi action
+      filter_by_user: Filter bi uiser
+      title: Audit log
+    announcements:
+      destroyed_msg: Annooncement successfully deletit!
+      edit:
+        title: Edit annooncement
+      empty: Nae annooncements fun.
+      live: Live
+      new:
+        create: Mak annooncement
+        title: New annooncement
+      publish: Publish
+      published_msg: Annooncement successfully published!
+      scheduled_for: Schedult fir %{time}
+      scheduled_msg: Annooncement schedult fir publication!
+      title: Annooncements
+      unpublish: Unpublish
+      unpublished_msg: Annooncement successfully unpublished!
+      updated_msg: Annooncement successfully updatit!
+    custom_emojis:
+      assign_category: Assign caitegory
+      by_domain: Domain
+      copied_msg: Successfully creatit local copy o the emoji
+      copy: Copy
+      copy_failed_msg: Cuidnae mak a local copy o that emoji
+      create_new_category: Mak new category
+      created_msg: Emoji successfully creatit!
+      delete: Delete
+      destroyed_msg: Emoji successfully destroyit!
+      disable: Turn aff
+      disabled: Turnt aff
+      disabled_msg: Successfully turnt aff that emoji
+      emoji: Emoji
+      enable: Turn on
+      enabled: Turnt on
+      enabled_msg: Successfully turnt on that emoji
+      image_hint: PNG or GIF up tae %{size}
+      list: List
+      listed: Listit
+      new:
+        title: Add new custom emoji
+      no_emoji_selected: Nae emojis wis chynged as naen wis selectit
+      not_permitted: Ye'r no permittit fir tae dae this action
+      overwrite: Owerwrite
+      shortcode: Shortcode
+      shortcode_hint: At least 2 chairacters, ainly alphanumeric chairacters an unnerscores
+      title: Custom emoji
+      uncategorized: No categorized
+      unlist: Unlist
+      unlisted: Unlistit
+      update_failed_msg: Cuidnae update that emoji
+      updated_msg: Emoji successfully updatit!
+      upload: Upload
+    dashboard:
+      active_users: active uisers
+      interactions: interactions
+      media_storage: Media storage
+      new_users: new uisers
+      opened_reports: clypes opent
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> pendin appeal"
+        other: "<strong>%{count}</strong> pendin appeals"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> pendin clype"
+        other: "<strong>%{count}</strong> pendin clypes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> pendin hashtag"
+        other: "<strong>%{count}</strong> pendin hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> pendin uiser"
+        other: "<strong>%{count}</strong> pendin uisers"
+      resolved_reports: clypes resolvit
+      software: Saftware
+      sources: Sign-up soorces
+      space: Space uisage
+      title: Dashboord
+      top_languages: Tap active leids
+      top_servers: Tap active servers
+      website: Wabsteid
+    disputes:
+      appeals:
+        empty: Nae appeals fun.
+        title: Appeals
+    domain_allows:
+      add_new: Alloo federation wi domain
+      created_msg: Domain haes been successfully allooed fir federation
+      destroyed_msg: Domain haes been disallooed fae federation
+      export: Export
+      import: Import
+      undo: Disalloo federation wi domain
+    domain_blocks:
+      add_new: Add new domain dingie
+      created_msg: Domain dingie is noo gettin processed
+      destroyed_msg: Domain dingie haes been unduin
+      domain: Domain
+      edit: Edit domain dingie
+      existing_domain_block: Ye'v awriddy pitten stricter limits on %{name}.
+      existing_domain_block_html: Ye'v awriddy pitten stricter limits on %{name}, ye need tae <a href="%{unblock_url}">undingie it</a> furst.
+      export: Export
+      import: Import
+      new:
+        create: Mak dingie
+        hint: The domain dingie wullnae stap the makkin o accoont entries in the database, but wull retroactively an automatically apply specific moderation methods on thae accoonts.
+        severity:
+          desc_html: "<strong>Limit</strong> wull mak posts fae accoonts at this domain invisible tae oniebody thit isnae follaein them. <strong>Suspend</strong> wull tak doon aw content, media, an profile data fir this domain's accoonts fae yer server. Uise <strong>Naen</strong> if ye juist want tae reject media files."
+          noop: Naen
+          silence: Limit
+          suspend: Suspend
+        title: New domain dingie
+      no_domain_block_selected: Nae domain dingies wis chynged as naen wis selectit
+      not_permitted: Ye urnae permittit tae dae this action
+      obfuscate: Obfuscate domain nemm
+      obfuscate_hint: Pairtly obfuscate the domain nemm in the list if advertisin the list o domain limitations is turnt on
+      private_comment: Private comment
+      private_comment_hint: Comment aboot this domain limitation fir internal uise bi the moderators.
+      public_comment: Public comment
+      public_comment_hint: Comment aboot this domain limitation fir the general public, if advertisin the list of domain limitations is turnt on.
+      reject_media: Rejeck media files
+      reject_media_hint: Taks doon locally stored media files an refuses tae doonload onie in the future. Irrelevant fir suspensions
+      reject_reports: Rejeck clypes
+      reject_reports_hint: Ignore aw clypes comin fae this domain. Irrelevant fir suspensions
+      undo: Undae domain dingie
+      view: Luik at domain dingie
+    email_domain_blocks:
+      add_new: Add new
+      attempts_over_week:
+        one: "%{count} attempt ower the last week"
+        other: "%{count} sign-up attempts ower the last week"
+      created_msg: Successfully dingied email domain
+      delete: Delete
+      dns:
+        types:
+          mx: MX record
+      domain: Domain
+      new:
+        create: Add domain
+        resolve: Resolve domain
+        title: Dingie new email domain
+      no_email_domain_block_selected: Nae email domain dingies got chynged as naen wis selectit
+      resolved_dns_records_hint_html: The domain nemm resolves tae the follaein MX domains, thit ur ultimately responsible fir acceptin email. Dingiein a MX domain wull dingie sign-ups fae onie email address thit uises the same MX domain, even if the visible domain name is different. <strong>Caw canny no tae dingie major email providers.</strong>
+      resolved_through_html: Resolvit throu %{domain}
+      title: Dingied email domains
+    export_domain_allows:
+      new:
+        title: Import domain alloos
+      no_file: Nae file selectit
+    export_domain_blocks:
+      import:
+        description_html: Ye'r aboot tae import a list o domain dingies. Please luik ower this list affa carefu like, especially if ye didnae write this list yersel.
+        existing_relationships_warning: Existin follae relationships
+        private_comment_description_html: 'Tae help ye track whaur importit dingies come fae, importit dingies wull be makkit wi the follaein private comment: <q>%{comment}</q>'
+        private_comment_template: Importit fae %{source} on %{date}
+        title: Import domain dingies
+      new:
+        title: Import domain dingies
+      no_file: Nae file selectit
+    follow_recommendations:
+      description_html: "<strong>Follae recommendations gie new uisers a haun tae quickly fin interestin content</strong>. Whan a uiser haesnae interactit wi ithers eneuch fir ta get personalized follae recommendations, thir accounts get recommendit insteid. They get re-calculatit on a daily basis fae a mix o accoonts wi the heichest recent engagements an heichest local folloaer coonts fir a gien leid."
+      language: Fir leid
+      status: Status
+      suppress: Turn aff follae recommendation
+      suppressed: Turnt aff
+      title: Follae recommendations
+      unsuppress: Turn on follae recommendation
+    instances:
+      availability:
+        description_html:
+          one: If deliverin tae the domain fails <strong>%{count} day</strong> athoot succeedin, nae mair delivery attempts wull be made unless a delivery <em>fae</em> the domain is received.
+          other: If deliverin tae the domain fails on <strong>%{count} different days</strong> athoot succeedin, nae mair delivery attempts wull be made unless a delivery <em>fae</em> the domain is received.
+        failure_threshold_reached: Failure threshaud reached on %{date}.
+        failures_recorded:
+          one: Failed attempt on %{count} day.
+          other: Failed attempts on %{count} different days.
+        no_failures_recorded: Nae failures on record.
+        title: Availability
+        warning: The last attempt tae connect tae this server haesnae been successful
+      back_to_all: Aw
+      back_to_limited: Limitit
+      back_to_warning: Warnin
+      by_domain: Domain
+      confirm_purge: Ye sure ye'r wantin tae delete data fae this domain fir ever?
+      content_policies:
+        comment: Internal note
+        description_html: Ye kin define content policies thit'll be applied tae aw accoonts fae this domain an onie o its subdomains.
+        policies:
+          reject_media: Reject media
+          reject_reports: Reject clypes
+          silence: Limit
+          suspend: Suspend
+        policy: Policy
+        reason: Public raison
+        title: Content policies
+      dashboard:
+        instance_accounts_dimension: Maist follaed accoonts
+        instance_accounts_measure: stowed accoonts
+        instance_followers_measure: oor follaers there
+        instance_follows_measure: their follaers here
+        instance_languages_dimension: Tap leids
+        instance_media_attachments_measure: stowed media attachments
+        instance_reports_measure: clypes aboot them
+        instance_statuses_measure: stowed posts
+      delivery:
+        all: Aw
+        clear: Claer delivery errors
+        failing: Failin
+        restart: Restert delivery
+        stop: Stap delivery
+        unavailable: No available
+      delivery_available: Delivery is available
+      delivery_error_days: Delivery error days
+      delivery_error_hint: If delivery isnae possible fir %{count} days, it wull be automatically mairked as no deliverable.
+      destroyed_msg: Data fae %{domain} is noo queued fir imminent deletion.
+      empty: Nae domains fun.
+      known_accounts:
+        one: "%{count} kent accoont"
+        other: "%{count} kent accoonts"
+      moderation:
+        all: Aw
+        limited: Limitit
+        title: Moderation
+      private_comment: Private comment
+      public_comment: Public comment
+      purge: Purge
+      purge_description_html: Gin ye believe this domain is affline fae no on, ye kin delete aw accoont records an associatit data fae this domain fae yer storage. This'll mibbie tak a while.
+      title: Federation
+      total_blocked_by_us: Dingied bi us
+      total_followed_by_them: Follaed bi them
+      total_followed_by_us: Follaed bi us
+      total_reported: Clypes aboot them
+      total_storage: Media attachments
+      totals_time_period_hint_html: The totals shawn ablow include data fir aw time.
+    invites:
+      deactivate_all: Deactivate aw
+      filter:
+        all: Aw
+        available: Available
+        expired: Expirit
+        title: Filter
+      title: Invites
+    ip_blocks:
+      add_new: Mak rule
+      created_msg: Successfully addit new IP rule
+      delete: Delete
+      expires_in:
+        '1209600': 2 weeks
+        '15778476': 6 month
+        '2629746': 1 month
+        '31556952': 1 year
+        '86400': 1 day
+        '94670856': 3 year
+      new:
+        title: Mak new IP rule
+      no_ip_block_selected: Nae IP rules wis chynged as naen wis selectit
+      title: IP rules
+    relationships:
+      title: "%{acct}'s relationships"
+    relays:
+      add_new: Add new relay
+      delete: Delete
+      description_html: A <strong>federation relay</strong> is a intermediary server thit exchanges large volumes o public posts atween servers thit subscribe an publish tae it. <strong>It kin help oot wee an medium servers fin content fae the fediverse</strong>, thit wad itherwise require local uisers follaein ither fowk on remote servers.
+      disable: Turn aff
+      disabled: Turnt aff
+      enable: Turn in
+      enable_hint: Ance turnt on, yer server wull subscribe tae aw public posts fae this relay, an will stert sennin this server's public posts tae it.
+      enabled: Turnt on
+      inbox_url: Relay URL
+      pending: Waitin fir relay's approval
+      save_and_enable: Save an turn on
+      setup: Setup a relay connexion
+      signatures_not_enabled: Relays wullnae wirk richt whilst secure mode or limitit federation mode is turnt on
+      status: Status
+      title: Relays
+    report_notes:
+      created_msg: Clype note successfully creatit!
+      destroyed_msg: Clype note successfully deletit!
+      today_at: The day at %{time}
+    reports:
+      account:
+        notes:
+          one: "%{count} note"
+          other: "%{count} notes"
+      action_log: Audit log
+      action_taken_by: Action taen bi
+      actions:
+        delete_description_html: The clyped on posts wull be deletit an a strike wull be recordit fir tae help ye escalate on future infractions bi the same accoont.
+        mark_as_sensitive_description_html: The media in the clyped on posts will be mairked as sensitive an a strike wull be recordit fir tae help ye escalate on future infractions bi the same accoont.
+        other_description_html: See mair options fir controllin the accoont's behaviour an customize communication tae the clyped on accoont.
+        resolve_description_html: Nae action wull be taen aginst the clyped on accoont, nae strike recordit, an the clype wull be shut.
+        silence_description_html: The profile wull be visible ainly tae thaim thit awriddy follae it or luik it up bi haun, severely limitin its reach. This kin aye be revertit.
+        suspend_description_html: The profile an aw its contents wull become inaccessible tae it is eventually deletit. Interactin wi the accoont wullnae be possible. Reversible athin 30 days.
+      actions_description_html: Decide whit action fir tae tak fir tae resolve this clype. If ye tak a punitive action agin the accoont thit wis clyped on, a email note wull be sent tae them, except whan the <strong>Mince</strong> caitegory is selectit.
+      add_to_report: Add mair tae yer clype
+      are_you_sure: Ye sure?
+      assign_to_self: Assign tae me
+      assigned: Assignt moderator
+      by_target_domain: Domain o clyped on accoont
+      category: Caitegory
+      category_description_html: The raison thit this accoont an/or content wis clyped on wull be cited in communication wi the clyped on accoont
+      comment:
+        none: Naen
+      comment_description_html: 'Fir tae gie mair information, %{name} wrate:'
+      created_at: Clyped on
+      delete_and_resolve: Delete posts
+      forwarded: Forretit
+      forwarded_to: Forertit tae %{domain}
+      mark_as_resolved: Mairk as resolvt
+      mark_as_sensitive: Mairk as sensitive
+      mark_as_unresolved: Mairk as no resolvt
+      no_one_assigned: Naebody
+      notes:
+        create: Add note
+        create_and_resolve: Resolve wi note
+        create_and_unresolve: Reopen wi note
+        delete: Delete
+        placeholder: Describe whit actions hae been taen, or onie ither relatit updates...
+        title: Notes
+      notes_description_html: View an lea notes tae ither moderators an yer future sel
+      quick_actions_description_html: 'Tak a quick action or scrow doon fir tae see clyped on content:'
+      remote_user_placeholder: the remote uiser fae %{instance}
+      reopen: Reopen clype
+      report: 'Clype #%{id}'
+      reported_account: Clyped on accoont
+      reported_by: Clyped on bi
+      resolved: Resolvt
+      resolved_msg: Clype successfully resolvt!
+      skip_to_actions: Jouk tae actions
+      status: Status
+      statuses: Clyped on content
+      statuses_description_html: Offendin content wull be citit in communication wi the clyped on accoont
+      target_origin: Origin o clyped on accoont
+      title: Clypes
+      unassign: Unassign
+      unresolved: No resolvt
+      updated_at: Updatit
+      view_profile: Luik at profile
+    roles:
+      add_new: Add role
+      assigned_users:
+        one: "%{count} uiser"
+        other: "%{count} uisers"
+      categories:
+        administration: Administration
+        devops: DevOps
+        invites: Invites
+        moderation: Moderation
+        special: Special
+      delete: Delete
+      description_html: Wi <strong>uiser roles</strong>, ye kin customize whit functions an areas o Mastodon yer uisers kin access.
+      edit: Edit '%{name}' role
+      everyone: Defaut permissions
+      everyone_full_description_html: This is the <strong>base role</strong> affectin <strong>aw uisers</strong>, even thaim athoot a assignt role. Aw ither roles inherit permissions fae it.
+      permissions_count:
+        one: "%{count} permission"
+        other: "%{count} permissions"
+      privileges:
+        administrator: Administrator
+        administrator_description: Uisers wi this permission wull bypass every permission
+        delete_user_data: Delete Uiser Data
+        delete_user_data_description: Alloos uisers fir tae delete ither uisers' data athoot delay
+        invite_users: Invite Uisers
+        invite_users_description: Alloos uisers fir tae invite new fowk tae the server
+        manage_announcements: Manage Annooncements
+        manage_announcements_description: Alloos uisers fir tae manage annooncements on the server
+        manage_appeals: Manage Appeals
+        manage_appeals_description: Alloos uisers fir tae luik ower appeals aginst moderation actions
+        manage_blocks: Manage Dingies
+        manage_blocks_description: Alloos uisers fir tae dingie email providers an IP addresses
+        manage_custom_emojis: Manage Custom Emoji
+        manage_custom_emojis_description: Alloos uisers fir tae manage custom emoji on the server
+        manage_federation: Manage Federation
+        manage_federation_description: Alloos uisers fir tae dingie or alloo federation wi ither domains, an control deliverability
+        manage_invites: Manage Invites
+        manage_invites_description: Alloos uisers fir tae broose an turn aff invite links
+        manage_reports: Manage Clypes
+        manage_reports_description: Alloos uisers fir tae luik ower clypes an perform moderation actions aginst them
+        manage_roles: Manage Roles
+        manage_roles_description: Alloos uisers fir tae manage an assign roles ablow their ain's
+        manage_rules: Manage Rules
+        manage_rules_description: Alloos uisers fir tae chynge server rules
+        manage_settings: Manage Settins
+        manage_settings_description: Alloos uisers fir tae chynge site settins
+        manage_taxonomies: Manage Taxonomies
+        manage_taxonomies_description: Alloos uisers fir tae luik ower trendin content an update hashtag settins
+        manage_user_access: Manage Uiser Access
+        manage_user_access_description: Alloos uisers fir tae turn aff ither uisers' twa-factor authentication, chynge their email address, an reset their passwird
+        manage_users: Manage Uisers
+        manage_users_description: Alloos uisers fir tae luik at ither uisers' details an cairry oot moderation actions agin them
+        manage_webhooks: Manage Webhooks
+        manage_webhooks_description: Alloos uisers fir tae set up webhooks fir administrative events
+        view_audit_log: Luik at Audit Log
+        view_audit_log_description: Alloos uisers fir tae see a history o administrative actions on the server
+        view_dashboard: View Dashboord
+        view_dashboard_description: Alloos uisers fir tae access the dashboord an a hantle o metrics
+        view_devops: DevOps
+        view_devops_description: Alloos uisers fir tae access Sidekiq an pgHero dashboords
+      title: Roles
+    rules:
+      add_new: Add rule
+      delete: Delete
+      description_html: Whilst maist fowk haud thit they'v read and agree wi the terms o service, uisually fowk dinnae read throu them tae efter a problem comes up. <strong>Mak it easier fir tae see yer server's rules at a glisk bi pittin them up in a flat bullet pynt list.</strong> Try fir tae keep individual rules short an simple, but try no tae sinner them intae a wheen o separate items tae.
+      edit: Edit rule
+      empty: Nae server rules hae been definit yit.
+      title: Server rules
+    settings:
+      about:
+        manage_rules: Manage server rules
+        preamble: Gie in-depth information aboot hou the server is operatit, moderatit, an fundit.
+        rules_hint: There a dedicatit area fir the rules thit yer uisers ur expectit tae haud tae.
+        title: Aboot
+      appearance:
+        preamble: Customize Mastodon's wab interface.
+        title: Appearance
+      branding:
+        preamble: Yer server's ain brandin haes it staun oot fae ither servers in the netwirk. This information wull mibbie get displayit athort a variety o environments, sic as Mastodon's wab interface, native applications, in link previews on ither wabsteids an athin messaging apps, an mair asides. Fir this raison, it is best fir tae keep this information claer, short an concise.
+        title: Brandin
+      content_retention:
+        preamble: Control hou uiser-generatit content is stored in Mastodon.
+        title: Content retention
+      discovery:
+        follow_recommendations: Follae recommendations
+        preamble: Bringin forret interestin content helps ye tae bring in new uisers thit mibbie wullnae ken oniebody on Mastodon yit. Control hou various discovery features wirk on yer server.
+        profile_directory: Profile directory
+        public_timelines: Public timelines
+        title: Discovery
+        trends: Trends
+      domain_blocks:
+        all: Tae awbody
+        disabled: Tae naebody
+        users: Tae logged-in local uisers
+      registrations:
+        preamble: Control wha kin mak a accoont on yer server.
+        title: Registrations
+      registrations_mode:
+        modes:
+          approved: Approval needit fir sign up
+          none: Naebody kin sign up
+          open: Oniebody kin sign up
+      title: Server Settins
+    site_uploads:
+      delete: Delete uploadit file
+      destroyed_msg: Site upload successfully deletit!
+    statuses:
+      account: Author
+      application: Application
+      back_to_account: Back tae accoont page
+      back_to_report: Back tae clype page
+      batch:
+        remove_from_report: Remove fae clype
+        report: Clype
+      deleted: Deletit
+      favourites: Favourites
+      history: Version history
+      in_reply_to: Replyin tae
+      language: Leid
+      media:
+        title: Media
+      metadata: Metadata
+      no_status_selected: Nae posts wis chynged as naen wis selectit
+      open: Open post
+      original_status: Original post
+      reblogs: Reblogs
+      status_changed: Post chynged
+      title: Accoont posts
+      trending: Trendin
+      visibility: Visibility
+      with_media: Wi media
+    strikes:
+      actions:
+        delete_statuses: "%{name} deletit %{target}'s posts"
+        disable: "%{name} froze %{target}'s accoont"
+        mark_statuses_as_sensitive: "%{name} mairked %{target}'s posts as sensitive"
+        none: "%{name} sent a warnin tae %{target}"
+        sensitive: "%{name} mairked %{target}'s accoont as sensitive"
+        silence: "%{name} limitit %{target}'s accoont"
+        suspend: "%{name} suspendit %{target}'s accoont"
+      appeal_approved: Appealt
+      appeal_pending: Appeal pendin
+    system_checks:
+      database_schema_check:
+        message_html: There pendin database migrations. Please rin them fir tae mak siccar the application behaves as expectit
+      elasticsearch_running_check:
+        message_html: Cuidnae connect tae Elasticseirch. Please check that it is rinnin, or turn aff ful-text seirch
+      elasticsearch_version_check:
+        message_html: 'Incompatible Elasticseirch version: %{value}'
+        version_comparison: Elasticseirch %{running_version} is rinnin whilst %{required_version} is requirt
+      rules_check:
+        action: Manage server rules
+        message_html: Ye huvnae definit onie server rules.
+      sidekiq_process_check:
+        message_html: Nae Sidekiq process rinnin fir the %{value} queue(s). Please luik ower yer Sidekiq configuration
+    tags:
+      review: Luik ower status
+      updated_msg: Hashtag settins updatit successfully
+    title: Administration
+    trends:
+      allow: Alloo
+      approved: Approvt
+      disallow: Disalloo
+      links:
+        allow: Alloo link
+        allow_provider: Alloo publisher
+        description_html: Thir's links thit ur bein shared aboot a lot the noo bi accoonts thit yer server sees posts fae. It kin help yer uisers fin oot whit's gaun on in the warld. Nae links ur displayed in public tae ye approve the publisher. Ye kin alloo or rejeck individual links tae.
+        disallow: Disalloo link
+        disallow_provider: Disalloo publisher
+        no_link_selected: Nae links wis chynged as naen wis selectit
+        publishers:
+          no_publisher_selected: Nae publishers wis chynged as naen wis selectit
+        shared_by_over_week:
+          one: Shared bi ae person ower the last week
+          other: Shared bi %{count} fowk ower the last week
+        title: Trendin links
+        usage_comparison: Shared %{today} times the day, compart tae %{yesterday} yisterday
+      only_allowed: Ainly allooed
+      pending_review: Pendin review
+      preview_card_providers:
+        allowed: Links fae this publisher kin trend
+        description_html: Thir's the domains thit links aften get shared fae on yer server. Links wullnae trend publicly unless the domain o the link is approved. Yer approval (or rejection) extends tae subdomains.
+        rejected: Links fae this publisher wullnae trend
+        title: Publishers
+      rejected: Rejectit
+      statuses:
+        allow: Alloo post
+        allow_account: Alloo author
+        description_html: Thir's posts thit yer server kens aboot thit's bein shared an favourited a lot the noo. It kin help yer new an returnin uisers fir tae fin mair fowk tae follae. Nae posts get displayed publicly tae ye approve the author, an the author alloos their accoont tae be suggestit tae ithers. Ye kin alloo or rejeck individual posts tae.
+        disallow: Disalloo post
+        disallow_account: Disalloo author
+        no_status_selected: Nae trendin posts wis chynged as naen wis selectit
+        not_discoverable: Author haesnae optit-in tae bein discoverable
+        shared_by:
+          one: Shared or favouritit ae time
+          other: Shared an favouritit %{friendly_count} times
+        title: Trendin posts
+      tags:
+        current_score: Current score %{score}
+        dashboard:
+          tag_accounts_measure: unique uises
+          tag_languages_dimension: Tap leids
+          tag_servers_dimension: Tap servers
+          tag_servers_measure: different servers
+          tag_uses_measure: total uises
+        description_html: Thir's hashtags thit ur appearin the noo in a load o posts thit yer server sees. It kin help yer uisers fin oot whit fowk ur talkin aboot maist the noo. Nae hashtags ur displayit publicly tae ye approve them.
+        listable: Kin be suggestit
+        no_tag_selected: Nae tags wis chynged as naen wis selectit
+        not_listable: Wullnae be suggestit
+        not_trendable: Wullnae appear unner trends
+        not_usable: Cannae be uised
+        peaked_on_and_decaying: Peaked on %{date}, noo fawin aff
+        title: Trendin hashtags
+        trendable: Kin appear unner trends
+        trending_rank: 'Trendin #%{rank}'
+        usable: Kin be uised
+        usage_comparison: Uised %{today} times the day, compart tae %{yesterday} yisterday
+        used_by_over_week:
+          one: Uised bi ae person ower the last week
+          other: Uised bi %{count} fowk ower the last week
+      title: Trends
+      trending: Trendin
+    warning_presets:
+      add_new: Add new
+      delete: Delete
+      edit_preset: Edit warnin preset
+      empty: Ye huvnae definit onie warnin presets yit.
+      title: Manage warnin presets
+    webhooks:
+      add_new: Add enpynt
+      delete: Delete
+      description_html: A <strong>wabhook</strong> lets Mastodon push <strong>rael-time notifications</strong> aboot srlectit events tae yer ain application, sae thit yer application kin <strong>automatically trigger reactions</strong>.
+      disable: Turn aff
+      disabled: Turnt aff
+      edit: Edit enpynt
+      empty: Ye'v nae wabhook enpynts configurt yit.
+      enable: Turn on
+      enabled: Active
+      enabled_events:
+        one: 1 enabilt event
+        other: "%{count} enabilt events"
+      events: Events
+      new: New webhook
+      rotate_secret: Rotate secret
+      secret: Signin secret
+      status: Status
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: tae delete their posts
+        disable: tae freeze their accoont
+        mark_statuses_as_sensitive: tae mairk their posts as sensitive
+        none: a warnin
+        sensitive: tae mairk their accoont as sensitive
+        silence: tae limit their accoont
+        suspend: tae suspend their accoont
+      body: "%{target} is appealin a moderation decision bi %{action_taken_by} fae %{date}, thit wis %{type}. They wrate:"
+      next_steps: Ye kin approve the appeal fir tae undae the moderation decision, or dingie it.
+      subject: "%{username} is appealin a moderation decision on %{instance}"
+    new_pending_account:
+      body: The details o the new accoont' ablow. Ye kin approve or rejeck this application.
+      subject: New accoont up fir review on %{instance} (%{username})
+    new_report:
+      body: "%{reporter} haes clyped on %{target}"
+      body_remote: Somebody fae %{domain} haes clyped on %{target}
+      subject: New coype fir %{instance} (#%{id})
+    new_trends:
+      body: 'The follaein items need luiked ower afore they kin get displayit publicly:'
+      new_trending_links:
+        title: Trendin links
+      new_trending_statuses:
+        title: Trendin posts
+      new_trending_tags:
+        no_approved_tags: There nae approved trendin hashtags the noo.
+        requirements: 'Onie o thir candidates cuid surpass the #%{rank} approved trendin hashtag, thit''s #%{lowest_tag_name} the noo, wi a score o %{lowest_tag_score}.'
+        title: Trendin hashtags
+      subject: New trends up fir luikin ower on %{instance}
+  aliases:
+    add_new: Mak alias
+    created_msg: Successfully makkit a new alias. Ye kin noo initiate the flit fae the auld accoont.
+    deleted_msg: Successfully removit the alias. Movin fae that accoont ower tae this ane wull nae langer be possible.
+    empty: Ye hae nae aliases.
+    hint_html: If ye'r wantin fir tae flit fae anither accoont tae this ane, ye kin mak a alias here, this is requirt afore ye kin gae forret flittin follaers fae the auld accoont tae this ane. This action bi an o itsel is <strong>hermless an reversible</strong>. <strong>The accoont migration is initiatie fae the auld accoont</strong>.
+    remove: Unlink alias
+  appearance:
+    advanced_web_interface: Advanced wab interface
+    advanced_web_interface_hint: 'Gin ye''r wantin fir tae mak uise o the ful width o yer screen, the advanced wab interface lets ye configure a wheen o different columns sae''s ye kin see as muckle information at the same time as ye want: Hame, notes, federatit timeline, onie nummer o lists an hashtags.'
+    animations_and_accessibility: Animations an accessibility
+    confirmation_dialogs: Confirmation dialogs
+    discovery: Discovery
+    localization:
+      body: Mastodon is translatit bi volunteers.
+      guide_link: https://crowdin.com/project/mastodon
+      guide_link_text: Awbody kin contribute.
+    sensitive_content: Sensitive content
+    toot_layout: Post leyoot
+  application_mailer:
+    notification_preferences: Chynge email preferences
+    salutation: "%{name},"
+    settings: 'Chynge email preferences: %{link}'
+    view: 'View:'
+    view_profile: View profile
+    view_status: View post
+  applications:
+    created: Application successfully creatit
+    destroyed: Application successfully deletit
+    regenerate_token: Regenerate access token
+    token_regenerated: Access token successfully regeneratit
+    warning: Be gey carefu wi this data. Never share it wi oniebody!
+    your_token: Yer access token
+  auth:
+    apply_for_account: Request a accoont
+    change_password: Passwird
+    delete_account: Delete accoont
+    delete_account_html: If ye'r wantin tae delete yer accoont, ye kin <a href="%{path}">dae it here</a>. Ye'll get asked fir confirmation.
+    description:
+      prefix_invited_by_user: "@%{name} invites ye tae jyne this server o Mastodon!"
+      prefix_sign_up: Sign up on Mastodon the day!
+      suffix: Wi a accoont, ye'll be able tae follae fowk, post updates an exchynge messages wi uisers fae onie Mastodon server an mair!
+    didnt_get_confirmation: Didnae gey yer confirmation instructions?
+    dont_have_your_security_key: Dinnae hae yer security key?
+    forgot_password: Forgot yer passwird?
+    invalid_reset_password_token: Passwird reset token isnae valid or expirit. Please request a new ane.
+    link_to_otp: Pit in a twa-factor code fae yer phone or a recovery code
+    link_to_webauth: Uise yer security key device
+    log_in_with: Log in wi
+    login: Log in
+    logout: Logoot
+    migrate_account: Uise a different accoont
+    migrate_account_html: Gin ye'r wantin fir tae redireck this accoont tae a different ane, ye kin <a href="%{path}">configure it here</a>.
+    or_log_in_with: Or log in wi
+    privacy_policy_agreement_html: A'v read an A agree tae the <a href="%{privacy_policy_path}" target="_blank">privacy policy</a>
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Sign up
+    registration_closed: "%{instance} isnae acceptin onie new memmers"
+    resend_confirmation: Resen confirmation instructions
+    reset_password: Reset yer passwird
+    rules:
+      preamble: Thir's set an enforced bi the %{domain} moderators.
+      title: Some grun rules.
+    security: Security
+    set_new_password: Set new passwird
+    setup:
+      email_below_hint_html: If the email address ablow isnae correct, ye kin chynge it here an get a new confirmation email.
+      email_settings_hint_html: The confirmation email wis sent tae %{email}. If that email address isnae correct, ye kin chynge it in accoont settins.
+      title: Setup
+    sign_up:
+      preamble: Wi a accoont on this Mastodon server, ye'll be able tae follae onie ither person on the netwirk, regairdless o whaur their accoont is hostit.
+      title: Let's get ye set up on %{domain}.
+    status:
+      account_status: Accoont status
+      confirming: Waitin fir email confirmation fir tae be completit.
+      functional: Yer accoont is fully operational.
+      pending: Yer application is pendin review bi oor staff. This'll mibbie tak some time. Ye'll get a email if yer application is approved.
+      redirecting_to: Yer accoont isnae active acause it is redirectin tae %{acct} the noo.
+      view_strikes: Luik at past strikes aginst yer accoont
+    too_fast: Form submittit ower fast, try again.
+    use_security_key: Uise security key
+  authorize_follow:
+    already_following: Ye'r awriddy follaein this accoont
+    already_requested: Ye'v awriddy sent a follae request tae that accoont
+    error: Unfortunately, there wis a error luikin up the remote accoont
+    follow: Follae
+    follow_request: 'Ye hae sent a follae request tae:'
+    following: 'Success! Ye''r noo follaein:'
+    post_follow:
+      close: Or, ye kin juist shut this windae.
+      return: Shaw the uiser's profile
+      web: Gang tae the wab
+    title: Follae %{acct}
+  challenge:
+    confirm: Continue
+    hint_html: "<strong>wee tip:</strong> We wullnae ask ye fir yer passwird again fir the neist oor."
+    invalid_password: Passwird isnae valid
+    prompt: Confirm yer passwird fir tae continue
+  crypto:
+    errors:
+      invalid_key: isnae a valid Ed25519 or Curve25519 key
+      invalid_signature: isnae a valid Ed25519 signature
+  date:
+    formats:
+      default: "%b %d, %Y"
+      with_month_name: "%B %d, %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}o"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: The noo
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: The noo
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
+  deletes:
+    challenge_not_passed: The information ye pit in wisnae correct
+    confirm_password: Pit in yer current passwird fir tae verify yer identity
+    confirm_username: Pit in yer uisernemm fir tae confirm the procedure
+    proceed: Delete accoont
+    success_msg: Yer accoont wis successfully deletit
+    warning:
+      before: 'Afore proceedin, please read thir notes careful:'
+      caches: Content thit haes been cached bi ither servers eull mibbie persist
+      data_removal: Yer posts an ither data wull get permanently removed
+      email_change_html: Ye kin <a href="%{path}">chynge yer email address</a> athoot deletin yer accoont
+      email_contact_html: Gin it stull disnae arrive, ye kin email <a href="mailto:%{email}">%{email}</a> fir help
+      email_reconfirmation_html: Gin ye urnae gettin the confirmation email, ye kin <a href="%{path}">request it again</a>
+      irreversible: Ye wullnae be able tae restore or reactivate yer accoont
+      more_details_html: Fir mair details, see the <a href="%{terms_path}">privacy policy</a>.
+      username_available: Yer uisernemm wull become available again
+      username_unavailable: Yer uisername wull remain no available
+  disputes:
+    strikes:
+      action_taken: Action taen
+      appeal: Appeal
+      appeal_approved: This strike haes been successfully appealt an is nae langer valid
+      appeal_rejected: The appeal haes been rejectit
+      appeal_submitted_at: Appeal submittit
+      appealed_msg: Yer appeal haes been submittit. If it is approved, ye'll be notified.
+      appeals:
+        submit: Submit appeal
+      approve_appeal: Approve appeal
+      associated_report: Associatit clype
+      created_at: Datit
+      description_html: Thir's actions taen aginst yer accoont an warnins thit hae been sent tae ye bi the staff o %{instance}.
+      recipient: Addressed tae
+      reject_appeal: Rejeck appeal
+      status: 'Post #%{id}'
+      status_removed: Post awriddy taen aff the system
+      title: "%{action} fae %{date}"
+      title_actions:
+        delete_statuses: Post removal
+        disable: Freezin a accoont
+        mark_statuses_as_sensitive: Mairkin o posts as sensitive
+        none: Warnin
+        sensitive: Mairkin o accoont as sensitive
+        silence: Limitation o accoont
+        suspend: Suspension o accoont
+      your_appeal_approved: Yer appeal haes been approved
+      your_appeal_pending: Ye hae submittit a appeal
+      your_appeal_rejected: Yer appeal haes been rejectit
+  domain_validator:
+    invalid_domain: isnae a valid domain nemm
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
-    '422': 
-    '429': Too many requests
-    '500': 
-    '503': The page could not be served due to a temporary server failure.
+    '400': The request thit ye submittit wisnae valid or it wis illformt.
+    '403': Ye dinnae hae permission fir tae luik at this page.
+    '404': The page thit ye'r luikin fir isnae here.
+    '406': This page isnae available in the requestit format.
+    '410': The page thit ye wur luikin fir disnae exist here oniemair.
+    '422':
+      content: Security verification failt. Ur ye dingiein cookies?
+      title: Security verification failt
+    '429': Ower monie requests
+    '500':
+      content: We're sorry, but somethin went wrang on oor en.
+      title: This page isnae correct
+    '503': The page cuidnae be served doon tae a temporary server failure.
+    noscript_html: Fir tae uise the Mastodon wab application, please turn on JavaScript. Alternatively, try ane o the <a href="%{apps_path}">native apps</a> fir Mastodon fir yer platform.
+  existing_username_validator:
+    not_found: cuidnae fin a local uiser wi that uisernemm
+    not_found_multiple: cuidnae fin %{usernames}
+  exports:
+    archive_takeout:
+      date: Date
+      download: Doonload yer archive
+      hint_html: Ye kin get a archive o yer <strong>posts an uploadit media</strong>. The exportit data wull be in the ActivityPub format, readable bi onie compliant saftware. Ye kin get a archive ilka 7 days.
+      in_progress: Compilin yer archive...
+      request: Get yer archive
+      size: Size
+    blocks: Ye dingie
+    bookmarks: Buikmairks
+    csv: CSV
+    domain_blocks: Domain dingies
+    lists: Lists
+    mutes: Ye wheesht
+    storage: Media storage
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: Ye'v awriddy featurt the maximum amoont o hashtags
+    hint_html: "<strong>Whit's featurt hashtags?</strong> They get pit prominently on yer public profile an alloo fowk fir tae broose yer public posts specifically unner thae hashtags. They'r a braw tuil fir keepin track o creative warks or lang-term projects."
+  filters:
+    contexts:
+      account: Profiles
+      home: Hame an lists
+      notifications: Notes
+      public: Public timelines
+      thread: Conversations
+    edit:
+      add_keyword: Add keywird
+      keywords: Keywirds
+      statuses: Individual posts
+      statuses_hint_html: This filter applies tae select individual posts regairdless o whither or no they match the keywirds ablow. <a href="%{path}">Review or remove posts fae the filter</a>.
+      title: Edit filter
+    errors:
+      deprecated_api_multiple_keywords: Thir parameters cannae be chynged fae this application acause they apply tae mair nor ane filter keywird. Uise a mair recent application or the wab interface.
+      invalid_context: Nae or invalid context supplied
+    index:
+      contexts: Filters in %{contexts}
+      delete: Delete
+      empty: Ye'v nae filters.
+      expires_in: Expires in %{distance}
+      expires_on: Expires on %{date}
+      keywords:
+        one: "%{count} keywird"
+        other: "%{count} keywirds"
+      statuses:
+        one: "%{count} post"
+        other: "%{count} posts"
+      statuses_long:
+        one: "%{count} individual post hid"
+        other: "%{count} individual posts hid"
+      title: Filters
+    new:
+      save: Save new filter
+      title: Add new filter
+    statuses:
+      back_to_filter: Back tae filter
+      batch:
+        remove: Remove fae filter
+      index:
+        hint: This filter applies tae select individual posts regairdless o ither criteria. Ye kin add mair posts tae this filter fae the wab interface.
+        title: Filtert posts
+  footer:
+    trending_now: Trendin the noo
+  generic:
+    all: Aw
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item on this page is selectit."
+      other: Aw <strong>%{count}</strong> items on this page ur selectit.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item matchin yer seirch is selectit."
+      other: Aw <strong>%{count}</strong> items matchin yer seirch is selectit.
+    changes_saved_msg: Chynges successfully saved!
+    copy: Copy
+    delete: Delete
+    deselect: Deselect aw
+    none: Naen
+    order_by: Order bi
+    save_changes: Save chynges
+    select_all_matching_items:
+      one: Pick %{count} item matchin yer seirch.
+      other: Pick aw %{count} items matchin yer seirch.
+    today: the day
+    validation_errors:
+      one: Somethin isnae quite richt yit! Please luik ower the error ablow
+      other: Somethin isnae quite richt yit! Please review %{count} errors ablow
+  html_validator:
+    invalid_markup: 'contains invalid HTML mairkup: %{error}'
+  imports:
+    errors:
+      invalid_csv_file: 'Invalid CSV file. Error: %{error}'
+      over_rows_processing_limit: contains mair nor %{count} rows
+    modes:
+      merge: Merge
+      merge_long: Keep existin records an add new anes
+      overwrite: Owerwrite
+      overwrite_long: Replace current records wi the new anes
+    preface: Ye kin import data thit ye'v exportit fae anither server, sic as a list o the fowk thit ye'r follaein or thaim thit ye'v dingied.
+    success: Yer data wis successfully uploadit an wull get processed in guid time
+    types:
+      blocking: Dingied list
+      bookmarks: Buikmairks
+      domain_blocking: Domain dingied list
+      following: Follaein list
+      muting: Wheesht list
+    upload: Upload
+  invites:
+    delete: Deactivate
+    expired: Expirt
+    expires_in:
+      '1800': 30 minties
+      '21600': 6 oors
+      '3600': 1 oor
+      '43200': 12 oors
+      '604800': 1 week
+      '86400': 1 day
+    expires_in_prompt: Niver
+    generate: Generate invite link
+    invited_by: 'Ye got invitit bi:'
+    max_uses:
+      one: 1 uise
+      other: "%{count} uises"
+    max_uses_prompt: Nae limit
+    prompt: Generate an share links wi ithers fir tae gie access tae this server
+    table:
+      expires_at: Expires
+      uses: Uises
+    title: Invite fowk
+  lists:
+    errors:
+      limit: Ye'v hit the maximum amoont o lists
+  login_activities:
+    authentication_methods:
+      otp: twa-factor authentication app
+      password: passwird
+      sign_in_token: email security code
+      webauthn: security keys
+    description_html: If ye see activity on yer accoont thit ye dinnae recognize, consider chyngin yer passwird an turnin on twa-factor authentication.
+    empty: Nae authentication history available
+    failed_sign_in_html: Failt sign-in attempt wi %{method} fae %{ip} (%{browser})
+    successful_sign_in_html: Successfu sign-in wi %{method} fae %{ip} (%{browser})
+    title: Authentication history
+  media_attachments:
+    validations:
+      images_and_video: Cannae attach a video tae a post thit awriddy contains images
+      not_ready: Cannae attach files thit huvnae finisht processin. Try again in a wee minute!
+      too_many: Cannae attach mair nor 4 files
+  migrations:
+    acct: Flitit tae
+    cancel: Cancel redirect
+    cancel_explanation: Cancellin the redirect wull re-activate yer current accoont, but wullnae bring back follaers thit hae been flitit tae that accoont.
+    cancelled_msg: Successfully cancelt the redirect.
+    errors:
+      already_moved: is the same accoont thit ye'v awriddy flittit tae
+      missing_also_known_as: isnae a alias o this accoont
+      move_to_self: cannae be current accoont
+      not_found: cuidnae be fun
+      on_cooldown: Ye'r on cooldoon
+    followers_count: Follaers at time o flit
+    incoming_migrations: Flittin fae a different accoont
+    incoming_migrations_html: Tae flit fae anither accoont tae this ane, first ye need tae <a href="%{path}">mak a accoont alias</a>.
+    moved_msg: Yer accoont is noo redirectin tae %{acct} an yer follaers ur gettin flittit ower.
+    not_redirecting: Yer accoont isnae redirectin tae onie ither accoont the noo.
+    on_cooldown: Ye'v flittit yer accoont o late. This function wull become available again in %{count} days.
+    past_migrations: Past flittins
+    proceed_with_move: Flit follaers
+    redirected_msg: Yer accoont is noo redirectin tae %{acct}.
+    redirecting_to: Yer accoont is redirectin tae %{acct}.
+    set_redirect: Set redirect
+    warning:
+      backreference_required: The new accoont haes tae be configurt furst fir tae back-reference this ane
+      before: 'Afore proceedin, please read thir notes carefully:'
+      cooldown: Efter flittin there a waitin period durin which ye will cannae flit again
+      disabled_account: Yer current accoont wullnae be fully uisable efterwart. Hou an iver, ye wull hae access tae data export as weil as re-activation.
+      followers: This action wull flit aw follaers fae the current accoont tae the new accoont
+      only_redirect_html: Alternatively, ye kin <a href="%{path}">ainly pit up a redirect on yer profile</a>.
+      other_data: Nae ither data wull get flittit automatically
+      redirect: Yer current accoont's profile wull get updatit wi a redirect note an be excludit fae seirches
+  moderation:
+    title: Moderation
+  move_handler:
+    carry_blocks_over_text: This uiser flittit fae %{acct}, thit ye'v dingied.
+    carry_mutes_over_text: This uiser flittit fae %{acct}, thit ye'v wheesht.
+    copy_account_note_text: 'This uiser flittit fae %{acct}, here yer previous notes aboot them:'
+  navigation:
+    toggle_menu: Toggle menu
+  notification_mailer:
+    admin:
+      report:
+        subject: "%{name} submittit a clype"
+      sign_up:
+        subject: "%{name} signt up"
+    favourite:
+      body: 'Yer post wis favouritit bi %{name}:'
+      subject: "%{name} favouritit yer post"
+      title: New favourite
+    follow:
+      body: "%{name} is noo follaein ye!"
+      subject: "%{name} is noo follaein ye"
+      title: New follaer
+    follow_request:
+      action: Manage follae requests
+      body: "%{name} haes requestit tae follae ye"
+      subject: 'Pendin follaer: %{name}'
+      title: New follae request
+    mention:
+      action: Reply
+      body: 'Ye wur menshied bi %{name} in:'
+      subject: Ye got mentioned bi %{name}
+      title: New menshie
+    poll:
+      subject: A poll bi %{name} haes endit
+    reblog:
+      body: 'Yer post wis heezed bi %{name}:'
+      subject: "%{name} heezed yer post"
+      title: New heeze
+    status:
+      subject: "%{name} juist postit"
+    update:
+      subject: "%{name} editit a post"
+  notifications:
+    email_events: Events fir email notes
+    email_events_hint: 'Pick events thit ye''r wantin tae get notes fir:'
+    other_settings: Ither notes settins
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+  otp_authentication:
+    code_hint: Pit in the code generatit bi yer authenticator app fir tae confirm
+    description_html: If ye turn on <strong>twa-factor authentication</strong> uisin a authenticator app, loggin in wull require ye fir tae be in possession o yer phone, thit wull generate tokens fir ye tae pit in.
+    enable: Turn on
+    instructions_html: "<strong>Scan this QR code intae Google Authenticator or a similar TOTP app on yer phone</strong>. Fae noo on, that app will generate tokens thit ye wull hae tae pit in whan ye'r loggin in."
+    manual_instructions: 'If ye cannae scan in the QR code an need tae pit it in bi haun, here the plain-text secret:'
+    setup: Set up
+    wrong_code: The enterit code wisnae valid! Is yer server time an device time richt?
+  pagination:
+    newer: Newer
+    next: Neist
+    older: Aulder
+    prev: Prev
+    truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Ye'v votit in this poll awriddy
+      duplicate_options: hae duplicate items
+      duration_too_long: is ower faur intae the future
+      duration_too_short: is ower suin
+      expired: The poll haes endit awriddy
+      invalid_choice: The vote option ye picked disnae exist
+      over_character_limit: cannae be langer nor %{max} chairacters each
+      too_few_options: shuid hae mait nor ae item
+      too_many_options: cannae contain mair than %{max} items
+  preferences:
+    other: Ither
+    posting_defaults: Postin defauts
+    public_timelines: Public timelines
+  privacy_policy:
+    title: Privacy Policy
+  reactions:
+    errors:
+      limit_reached: Limit o different reactions reached
+      unrecognized_emoji: isnae a recognized emoji
+  relationships:
+    activity: Accoont activity
+    dormant: Dormant
+    follow_selected_followers: Follae selectit follaers
+    followers: Follaers
+    following: Follaein
+    invited: Invitit
+    last_active: Last active
+    most_recent: Maist recent
+    moved: Flittit
+    mutual: Mutual
+    primary: Primary
+    relationship: Relationship
+    remove_selected_domains: Tak doon aw follaers fae the selectit domains
+    remove_selected_followers: Remove selectit follaers
+    remove_selected_follows: Unfollae selectit uisers
+    status: Accoont status
+  remote_follow:
+    missing_resource: Cuidnae fin the requirt redirect URL fir yer accoont
+  reports:
+    errors:
+      invalid_rules: disnae reference valid rules
+  rss:
+    content_warning: 'Content warnin:'
+    descriptions:
+      account: Public posts fae @%{acct}
+      tag: 'Public posts tagged #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Ye'v went by the limit o %{limit} scheduled posts thit ye'r allooed fir the day
+    over_total_limit: Ye'v went by the limit o %{limit} scheduled posts
+    too_soon: The schedult date haes tae be in the future
+  sessions:
+    activity: Last activity
+    browser: Brooser
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Unkent brooser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
+    current_session: Current session
+    description: "%{browser} on %{platform}"
+    explanation: Thir's the wab broosers logged in tae yer Mastodon accoont the noo.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      other: unkent platform
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revoke
+    revoke_success: Session successfully revokt
+    title: Sessions
+    view_authentication_history: Luik at authentication history o yer accoont
+  settings:
+    account: Accoont
+    account_settings: Accoont settins
+    aliases: Accoont aliases
+    appearance: Appearance
+    authorized_apps: Authorized apps
+    back: Back tae Mastodon
+    delete: Accoont deletion
+    development: Development
+    edit_profile: Edit profile
+    export: Data export
+    featured_tags: Featured hashtags
+    import: Import
+    import_and_export: Import an export
+    migrate: Accoont flittin
+    notifications: Notes
+    preferences: Preferences
+    profile: Profile
+    relationships: Follaes and follaers
+    statuses_cleanup: Automatit post deletion
+    strikes: Moderation strikes
+    two_factor_authentication: Twa-factor Auth
+    webauthn_authentication: Security keys
+  statuses:
+    attached:
+      audio:
+        one: "%{count} audio"
+        other: "%{count} audio"
+      description: 'Attached: %{attached}'
+      image:
+        one: "%{count} image"
+        other: "%{count} images"
+      video:
+        one: "%{count} video"
+        other: "%{count} videos"
+    boosted_from_html: Heezed fae %{acct_link}
+    content_warning: 'Content warnin: %{warning}'
+    default_language: Same as interface leid
+    disallowed_hashtags:
+      one: 'containt a disallooed hashtag: %{tags}'
+      other: 'containt the disallooed hashtags: %{tags}'
+    edited_at_html: Editit %{date}
+    errors:
+      in_reply_not_found: The post thit ye'r trying tae reply tae disnae appear tae exist.
+    open_in_web: Open in wab
+    over_character_limit: chairacter limit o %{max} exceedit
+    pin_errors:
+      direct: Posts thit's ainly visible tae menshied uisers cannae be preent
+      limit: Ye awriddy preent the maximum nummer o posts
+      ownership: Somebody else's post cannae be preent
+      reblog: A heeze cannae be preent
+    poll:
+      total_people:
+        one: "%{count} person"
+        other: "%{count} fowk"
+      total_votes:
+        one: "%{count} vote"
+        other: "%{count} votes"
+      vote: Vote
+    show_more: Shaw mair
+    show_newer: Shaw newer
+    show_older: Shaw aulder
+    show_thread: Shaw threid
+    sign_in_to_participate: Sign in fir tae tak pairt in the conversation
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      direct: Direck
+      private: Follaers-ainly
+      private_long: Ainly shaw tae follaers
+      public: Public
+      public_long: Awbody kin see
+      unlisted: No listit
+      unlisted_long: Awbody kin see, but no listit on public timelines
+  statuses_cleanup:
+    enabled: Automatically delete auld posts
+    enabled_hint: Automatically deletes yer posts ance they reach a specified age threshold, unless they match ane o the exceptions ablow
+    exceptions: Exceptions
+    explanation: Acause deletin posts is an expensive operation, this is duin slow ower time whan the server isnae itherwise busy. Fir this raison, yer posts wull mibbie be deletit a wee while efter they reach the age threshaud.
+    ignore_favs: Ignore favourites
+    ignore_reblogs: Ignore heezes
+    interaction_exceptions: Exceptions based on interactions
+    interaction_exceptions_explanation: Note thit there nae guarantee fir posts tae get deletit if they gae ablow the favourite or heeze threshaud efter haein ance went ower them.
+    keep_direct: Keep direck messages
+    keep_direct_hint: Disnae delete onie o yer direck messages
+    keep_media: Keep posts wi media attachments
+    keep_media_hint: Disnae delete onie o yer posts thit hae media attachments
+    keep_pinned: Keep preent posts
+    keep_pinned_hint: Disnae delete onie o yer preent posts
+    keep_polls: Keep polls
+    keep_polls_hint: Disnae delete onie o yer polls
+    keep_self_bookmark: Keep posts thit ye buikmairkt
+    keep_self_bookmark_hint: Disnae delete yer ain posts if ye'v buikmairkt them
+    keep_self_fav: Keep posts thit ye favouritit
+    keep_self_fav_hint: Disnae delete yer ain posts if ye'v favouritit them
+    min_age:
+      '1209600': 2 weeks
+      '15778476': 6 month
+      '2629746': 1 month
+      '31556952': 1 year
+      '5259492': 2 month
+      '604800': 1 week
+      '63113904': 2 year
+      '7889238': 3 month
+    min_age_label: Age threshaud
+    min_favs: Keep posts favouritit at least
+    min_favs_hint: Disnae delete onie o yer posts thit's got at least this amoont o favourites. Lea blank fir tae delete posts regairdless o their nummer o favourites
+    min_reblogs: Keep posts heezed at least
+    min_reblogs_hint: Disnae delete onie o yer posts thit's been heezed at least this nummer o times. Lea blank fir tae delete posts regairdless o their number o heezes
+  stream_entries:
+    pinned: Preent post
+    reblogged: heezed
+    sensitive_content: Sensitive content
+  strikes:
+    errors:
+      too_late: It is ower late fir tae appeal this strike
+  tags:
+    does_not_match_previous_name: disnae match the previous nemm
+  themes:
+    contrast: Mastodon (Heich contrast)
+    default: Mastodon (Daurk)
+    mastodon-light: Mastodon (Licht)
+  time:
+    formats:
+      default: "%b %d, %Y, %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  two_factor_authentication:
+    add: Add
+    disable: Turn aff 2FA
+    disabled_success: Twa-factor authentication successfully turnt aff
+    edit: Edit
+    enabled: Twa-factor authentication is turnt on
+    enabled_success: Twa-factor authentication successfully turnt on
+    generate_recovery_codes: Generate recovery codes
+    lost_recovery_codes: Recovery codes alloo ye tae regain access tae yer accoont if ye loss yer phone. If ye'v lost yer recovery codes, ye kin regenerate them here. Yer auld recovery codes will get invalidatit.
+    methods: Twa-factor methods
+    otp: Authenticator app
+    recovery_codes: Backup recovery codes
+    recovery_codes_regenerated: Recovery codes successfully regeneratit
+    recovery_instructions_html: Gin ye e'er loss access tae yer phone, ye kin uise ane o the recovery codes ablow fir tae regain access tae yer accoont. <strong>Keep the recovery codes safe</strong>. Fir example, ye cuid print them an store them wi yer ither important documents.
+    webauthn: Security keys
+  user_mailer:
+    appeal_approved:
+      action: Gang tae yer accoont
+      explanation: The appeal o the strike agin yer accoont on %{strike_date} thit ye submittit on %{appeal_date} haes been approved. Yer accoont is ance again in guid staunnin.
+      subject: Yer appeal fae %{date} haes been approved
+      title: Appeal approved
+    appeal_rejected:
+      explanation: The appeal o the strike agin yer accoont on %{strike_date} thit ye submittit on %{appeal_date} haes been rejectit.
+      subject: Yer appeal fae %{date} haes been rejectit
+      title: Appeal rejectit
+    backup_ready:
+      explanation: Ye wantit a ful backup o yer Mastodon accoont. It's riddy fir tae doonload noo!
+      subject: Yer archive is riddy fir doonload
+      title: Archive takoot
+    suspicious_sign_in:
+      change_password: chynge yer passwird
+      details: 'Here details o the sign-in:'
+      explanation: We've detectit a sign-in tae yer accoont fae a new IP address.
+      further_actions_html: If this wisnae you, we recommend thit ye %{action} immediately an turn on twa-factor authentication fir tae keep yer accoont secure.
+      subject: Yer accoont haes been accessed fae a new IP address
+      title: A new sign-in
+    warning:
+      appeal: Submit a appeal
+      appeal_description: Gin ye believe this is a error, ye kin submit a appeal tae the staff o %{instance}.
+      categories:
+        spam: Mince
+        violation: Content violates the follaein community guidelines
+      explanation:
+        delete_statuses: Some o yer posts hae been fun tae violate ane or mair community guidelines an hae been subsequently taen doon bi the moderators o %{instance}.
+        disable: Ye kin nae langer uise yer accoont, but yer profile an ither data is stull intack. Ye kin request a backup o yer data, chynge accoont settins or delete yer accoont.
+        mark_statuses_as_sensitive: Some o yer posts hae been mairkt as sensitive bi the moderators o %{instance}. This means thit fowk wull need tae tap the media in the posts afore a preview is displayy. Ye kin mairk media as sensitive yersel whan postin in the future.
+        sensitive: Fae noo on, aw yer uploadit media files will get mairkt as sensitive an hid ahin a click-throu warnin.
+        silence: Ye kin stull uise yer accoont but ainly fowk thit's awriddy follaein ye wull see yer posts on this server, an ye'll mibbie get excludit fae various discovery features. Hou an iver, ithers kin still follae ye bi haun.
+        suspend: Ye kin nae langer uise yer accoont, an yer profile an ither data urnae accessible onie mair. Ye kin stull login fir tae request a backup o yer data tae the data is fully taen doon in aboot 30 days, but we wull retain some basic data fir tae prevent ye fae evadin the suspension.
+      reason: 'Raison:'
+      statuses: 'Posts citit:'
+      subject:
+        delete_statuses: Yer posts on %{acct} hae been removed
+        disable: Yer accoont %{acct} haes been froze
+        mark_statuses_as_sensitive: Yer posts on %{acct} hae been mairkt as sensitive
+        none: Warnin fir %{acct}
+        sensitive: Yer posts on %{acct} wull be mairkt as sensitive fae noo on
+        silence: Yer accoont %{acct} haes been limitit
+        suspend: Yer accoont %{acct} haes been suspendit
+      title:
+        delete_statuses: Posts taen doon
+        disable: Accoont froze
+        mark_statuses_as_sensitive: Posts mairkt sensitive
+        none: Warnin
+        sensitive: Accoont mairkt as sensitive
+        silence: Accoont limitit
+        suspend: Accoont suspendit
+    welcome:
+      edit_profile_action: Setup profile
+      edit_profile_step: Ye kin customize yer profile bi uploadin a profile picture, chyngin yer display nemm an mair. Ye kin opt-in fir tae luik ower new follaers afore they’re allooed tae follae ye.
+      explanation: Here some tips fir tae get ye stertit
+      final_action: Stert postin
+      final_step: 'Stert postin! Even athout follaers, yer public posts kin stull be seen bi ithers, fir example on the local timeline or in hashtags. Ye mibbie want tae introduce yersel on the #introductions hashtag.'
+      full_handle: Yer ful haunnle
+      full_handle_hint: This is whit ye wad tell yer pals sae thit they kin message or follae ye fae anither server.
+      subject: Welcome tae Mastodon, 'mon in
+      title: Welcome aboord, %{name}!
+  users:
+    follow_limit_reached: Ye cannae follae mair than %{limit} fowk
+    invalid_otp_token: Invalid twa-factor code
+    otp_lost_help_html: If ye lost access tae baith, ye kin get in touch wi %{email}
+    seamless_external_login: Ye'r logged in via a external service, sae passwird an email settins urnae available.
+    signed_in_as: 'Signt in as:'
+  verification:
+    explanation_html: 'Ye kin <strong>verify yersel as the ainer o the links in yer profile metadata</strong>. Fir that, the linkt wabsteid haes tae contain a link back tae yer Mastodon profile. The link back <strong>haes tae</strong> hae a <code>rel="me"</code> attribute. The text content o the link disnae maitter. Here a example:'
+    verification: Verification
+  webauthn_credentials:
+    add: Add new security key
+    create:
+      error: There wis a problem addin yer security key. Please try again.
+      success: Yer security key wis successfully addit.
+    delete: Delete
+    delete_confirmation: Ye sure thit ye want tae delete this security key?
+    description_html: Gin ye turn on <strong>security key authentication</strong>, loggin in wull require ye tae uise ane o yer security keys.
+    destroy:
+      error: There wis a problem wi deletin yer security key. Please try again.
+      success: Yer security key wis successfully deletit.
+    invalid_credential: Invalid security key
+    nickname_hint: Pit in the nickname o yer new security key
+    not_enabled: Ye huvnae turnt on WebAuthn yit
+    not_supported: This brooser disnae support security keys
+    otp_required: Fir tae uise security keys please turn on twa-factor authentication furst.
+    registered_on: Registert on %{date}

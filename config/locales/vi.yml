@@ -366,6 +366,8 @@ vi:
       add_new: Cho phép liên hợp với máy chủ
       created_msg: Máy chủ đã được kích hoạt liên hợp thành công
       destroyed_msg: Máy chủ đã bị ngưng liên hợp
+      export: Xuất
+      import: Nhập
       undo: Xóa khỏi danh sách trắng
     domain_blocks:
       add_new: Chặn máy chủ
@@ -375,13 +377,19 @@ vi:
       edit: Chỉnh sửa máy chủ bị chặn
       existing_domain_block: Bạn đã hạn chế %{name} trước đó.
       existing_domain_block_html: Bạn đã áp đặt các giới hạn chặt chẽ hơn cho %{name}, trước tiên bạn cần <a href="%{unblock_url}">bỏ chặn nó</a>.
+      export: Xuất
+      import: Nhập
       new:
         create: Tạo chặn
         hint: Chặn máy chủ sẽ không ngăn việc hiển thị tút của máy chủ đó trong cơ sở dữ liệu, nhưng sẽ khiến tự động áp dụng các phương pháp kiểm duyệt cụ thể trên các tài khoản đó.
         severity:
+          desc_html: "<strong>Ẩn</strong> sẽ làm cho tút của tài khoản trở nên vô hình đối với bất kỳ ai không theo dõi họ. <strong>Vô hiệu hóa</strong> sẽ xóa tất cả nội dung, phương tiện và dữ liệu khác của tài khoản. Dùng <strong>Cảnh cáo</strong> nếu bạn chỉ muốn cấm tải lên ảnh và video."
           noop: Không hoạt động
+          silence: Ẩn
           suspend: Vô hiệu hóa
         title: Máy chủ bị chặn mới
+      no_domain_block_selected: Không có chặn tên miền nào thay đổi vì không có mục nào được chọn
+      not_permitted: Bạn không có quyền thực hiện việc này
       obfuscate: Làm mờ tên máy chủ
       obfuscate_hint: Làm mờ tên máy chủ trong danh sách nếu giới hạn máy chủ đã bật
       private_comment: Bình luận riêng
@@ -412,6 +420,20 @@ vi:
       resolved_dns_records_hint_html: Tên miền phân giải thành các tên miền MX sau, các tên miền này chịu trách nhiệm cuối cùng trong việc chấp nhận email. Chặn tên miền MX sẽ chặn đăng ký từ bất kỳ địa chỉ email nào sử dụng cùng một tên miền MX, ngay cả khi tên miền hiển thị là khác. <strong>Cẩn thận đừng chặn những dịch vụ email lớn.</strong>
       resolved_through_html: Đã xử lý thông qua %{domain}
       title: Tên miền email đã chặn
+    export_domain_allows:
+      new:
+        title: Nhập tên miền cho phép
+      no_file: Không có tập tin nào được chọn
+    export_domain_blocks:
+      import:
+        description_html: Bạn sắp nhập danh sách các tên miền chặn. Vui lòng xem lại danh sách này thật cẩn thận, đặc biệt nếu bạn không phải là tác giả của danh sách này.
+        existing_relationships_warning: Các mối quan hệ theo dõi hiện tại
+        private_comment_description_html: 'Để giúp bạn theo dõi nguồn gốc của các chặn tên miền đã nhập, các tên miền chặn đã nhập sẽ được tạo bằng nhận xét riêng tư sau: <q>%{comment}</q>'
+        private_comment_template: Nhập từ %{source} vào %{date}
+        title: Nhập máy chủ chặn
+      new:
+        title: Nhập máy chủ chặn
+      no_file: Không có tập tin nào được chọn
     follow_recommendations:
       description_html: "<strong>Gợi ý theo dõi là cách giúp những người mới nhanh chóng tìm thấy những nội dung thú vị</strong>. Khi một người chưa đủ tương tác với những người khác để hình thành các đề xuất theo dõi được cá nhân hóa, thì những người này sẽ được đề xuất. Nó bao gồm những người có số lượt tương tác gần đây cao nhất và số lượng người theo dõi cao nhất cho một ngôn ngữ nhất định trong máy chủ."
       language: Theo ngôn ngữ
@@ -894,6 +916,7 @@ vi:
     warning: Hãy rất cẩn thận với dữ liệu này. Không bao giờ chia sẻ nó với bất cứ ai!
     your_token: Mã truy cập của bạn
   auth:
+    apply_for_account: Xin đăng ký
     change_password: Mật khẩu
     delete_account: Xóa tài khoản
     delete_account_html: Nếu bạn muốn xóa tài khoản của mình, hãy <a href="%{path}">yêu cầu tại đây</a>. Bạn sẽ được yêu cầu xác nhận.
@@ -1131,6 +1154,7 @@ vi:
     invalid_markup: 'chứa đánh dấu HTML không hợp lệ: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Tập tin CSV không hợp lệ. Lỗi: %{error}'
       over_rows_processing_limit: chứa nhiều hơn %{count} hàng
     modes:
       merge: Hợp nhất

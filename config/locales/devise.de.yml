@@ -55,9 +55,9 @@ de:
         subject: 'Mastodon: Zwei‐Faktor‐Authentifizierung aktiviert'
         title: 2FA aktiviert
       two_factor_recovery_codes_changed:
-        explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue generiert.
-        subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu generiert'
-        title: 2FA Wiederherstellungscodes geändert
+        explanation: Die vorherigen Wiederherstellungscodes wurden ungültig gemacht und es wurden neue erstellt.
+        subject: 'Mastodon: Zwei-Faktor-Wiederherstellungscodes neu erstellt'
+        title: 2FA-Wiederherstellungscodes geändert
       unlock_instructions:
         subject: 'Mastodon: Konto entsperren'
       webauthn_credential:
@@ -84,17 +84,17 @@ de:
       no_token: Du kannst diese Seite nur über den Link aus der E-Mail zum Passwort-Zurücksetzen aufrufen. Wenn du einen solchen Link aufgerufen hast, stelle bitte sicher, dass du die vollständige Adresse aufrufst.
       send_instructions: Du erhältst in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Passwort zurücksetzen kannst.
       send_paranoid_instructions: Falls deine E-Mail-Adresse in unserer Datenbank hinterlegt ist, erhältst du in wenigen Minuten eine E-Mail. Darin wird erklärt, wie du dein Passwort zurücksetzen kannst.
-      updated: Dein Passwort wurde geändert. Du bist jetzt angemeldet.
-      updated_not_active: Dein Passwort wurde geändert.
+      updated: Ihr Passwort wurde erfolgreich geändert. Du bist jetzt angemeldet.
+      updated_not_active: Dein Passwort wurde erfolgreich geändert.
     registrations:
       destroyed: Dein Konto wurde gelöscht.
       signed_up: Willkommen! Du hast dich erfolgreich registriert.
-      signed_up_but_inactive: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto inaktiv ist.
-      signed_up_but_locked: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto gesperrt ist.
+      signed_up_but_inactive: Du hast dich erfolgreich registriert. Allerdings ist dein Konto noch nicht aktiviert und du kannst dich daher noch nicht anmelden.
+      signed_up_but_locked: Du hast dich erfolgreich registriert. Allerdings ist dein Konto gesperrt und du kannst dich daher nicht anmelden.
       signed_up_but_pending: Eine Nachricht mit einem Bestätigungslink wurde an dich per E-Mail geschickt. Nachdem du diesen Link angeklickt hast, werden wir deine Anfrage überprüfen. Du wirst benachrichtigt werden, falls die Anfrage angenommen wurde.
       signed_up_but_unconfirmed: Du hast dich erfolgreich registriert. Wir konnten dich noch nicht anmelden, da dein Konto noch nicht bestätigt ist. Du erhältst in Kürze eine E-Mail. Darin wird erklärt, wie du dein Konto freischalten kannst.
       update_needs_confirmation: Deine Daten wurden aktualisiert, aber du musst deine neue E-Mail-Adresse bestätigen. Du erhältst in wenigen Minuten eine E-Mail. Darin ist erklärt, wie du die Änderung deiner E-Mail-Adresse abschließen kannst.
-      updated: Deine Daten wurden aktualisiert.
+      updated: Ihr Konto wurde erfolgreich aktualisiert.
     sessions:
       already_signed_out: Erfolgreich abgemeldet.
       signed_in: Erfolgreich angemeldet.
