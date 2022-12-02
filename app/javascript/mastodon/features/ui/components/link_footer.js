@@ -64,14 +64,14 @@ class LinkFooter extends React.PureComponent {
           <FormattedMessage
             id='getting_started.hometown_open_source_notice'
             defaultMessage='Hometown is open source software. You can contribute or report issues on Github at {hometown}.'
-            values={{ hometown: <span><a href='https://github.com/hometown-fork/hometown' rel='noopener' target='_blank'>hometown-fork/hometown</a></span> }}
+            values={{ hometown: <span><a href='https://github.com/hometown-fork/hometown' rel='noopener' target='_blank'>hometown-fork/hometown</a> (v{version})</span> }}
           />
         </p>
         <p>
           <FormattedMessage
             id='getting_started.open_source_notice'
             defaultMessage='Mastodon is also open source software, available at {github}.'
-            values={{ github: <span><a href={source_url} rel='noopener noreferrer' target='_blank'>{repository}</a> (v{version})</span> }}
+            values={{ github: <span><a href={source_url} rel='noopener noreferrer' target='_blank'>{repository}</a></span> }}
           />
         </p>
       </div>
