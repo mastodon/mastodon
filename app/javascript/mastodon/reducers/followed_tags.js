@@ -12,7 +12,7 @@ const initialState = ImmutableMap({
   followed_tags: ImmutableMap({
     items: ImmutableList(),
     isLoading: false,
-    next: null
+    next: null,
   }),
 });
 
