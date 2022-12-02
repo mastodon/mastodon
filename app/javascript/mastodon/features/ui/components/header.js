@@ -36,7 +36,7 @@ class Header extends React.PureComponent {
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <Link to='/publish' className='button bottom_right'><Icon id='send' fixedWidth /></Link>}
+          {location.pathname !== '/publish' && <Link to='/publish' className='button bottom_right'><Icon id='pencil' fixedWidth /></Link>}
           <Account />
         </>
       );
