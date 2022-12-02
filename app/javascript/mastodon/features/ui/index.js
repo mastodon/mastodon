@@ -568,7 +568,6 @@ class UI extends React.PureComponent {
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
-          <Header />
 
           <SwitchingColumnsArea location={location} mobile={layout === 'mobile' || layout === 'single-column'}>
             {children}

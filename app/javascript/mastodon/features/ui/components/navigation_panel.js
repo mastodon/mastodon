@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Logo from 'mastodon/components/logo';
-import { timelinePreview, showTrends } from 'mastodon/initial_state';
+import { timelinePreview, showTrends, me } from 'mastodon/initial_state';
 import ColumnLink from './column_link';
 import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
@@ -11,6 +11,16 @@ import ListPanel from './list_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
 import NavigationPortal from 'mastodon/components/navigation_portal';
+import Avatar from 'mastodon/components/avatar';
+import { connect } from 'react-redux';
+
+const Account = connect(state => ({
+  account: state.getIn(['accounts', me]),
+}))(({ account }) => (
+  <Link to={`/@${account.get('acct')}`} title={account.get('acct')}>
+    <Avatar account={account} size={35} />
+  </Link>
+));
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -49,6 +59,8 @@ class NavigationPanel extends React.Component {
 
         {signedIn && (
           <React.Fragment>
+            {window.location.pathname !== '/publish' && <Link to='/publish' className='button'>✏️</Link>}
+            <Account />
             <ColumnLink transparent to='/home' icon='home' text={intl.formatMessage(messages.home)} />
             <ColumnLink transparent to='/notifications' icon={<NotificationsCounterIcon className='column-link__icon' />} text={intl.formatMessage(messages.notifications)} />
             <FollowRequestsColumnLink />
