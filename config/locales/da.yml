@@ -373,6 +373,8 @@ da:
       add_new: Tillade federering med domæne
       created_msg: Domæne er blevet tilladt for federering
       destroyed_msg: Domæne er blevet forbudt for federering
+      export: Eksportér
+      import: Importér
       undo: Forbyd federering med domæne
     domain_blocks:
       add_new: Tilføj ny domæneblokering
@@ -382,6 +384,8 @@ da:
       edit: Redigér domæneblokering
       existing_domain_block: "%{name} er allerede pålagt strengere restriktioner."
       existing_domain_block_html: Der har allerede pålagt %{name} strengere begrænsninger, så dette kræver først en <a href="%{unblock_url}">afblokering</a>.
+      export: Eksportér
+      import: Importér
       new:
         create: Opret blokering
         hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk føje særlige moderationsmetoder til disse konti.
@@ -1410,6 +1414,7 @@ da:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
