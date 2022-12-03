@@ -2278,7 +2278,7 @@ $ui-header-height: 55px;
 }
 
 .column {
-  width: 350px;
+  min-width: 350px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -2331,7 +2331,7 @@ $ui-header-height: 55px;
 
   .column,
   .drawer {
-    flex: 0 0 auto;
+    flex: 0 0 100%;
     padding: 10px;
     padding-left: 5px;
     padding-right: 5px;
