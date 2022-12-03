@@ -7,6 +7,7 @@ class ActivityPub::ProcessAccountService < BaseService
   include Lockable
 
   SUBDOMAINS_RATELIMIT = 10
+  DISCOVERIES_PER_REQUEST = 400
 
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
@@ -20,6 +21,9 @@ class ActivityPub::ProcessAccountService < BaseService
     @domain      = TagManager.instance.normalize_domain(domain)
     @collections = {}
 
+    # The key does not need to be unguessable, it just needs to be somewhat unique
+    @options[:request_id] ||= "#{Time.now.utc.to_i}-#{username}@#{domain}"
+
     with_lock("process_account:#{@uri}") do
       @account            = Account.remote.find_by(uri: @uri) if @options[:only_key]
       @account          ||= Account.find_remote(@username, @domain)
@@ -30,6 +34,10 @@ class ActivityPub::ProcessAccountService < BaseService
       if @account.nil?
         with_redis do |redis|
           return nil if redis.pfcount("unique_subdomains_for:#{PublicSuffix.domain(@domain, ignore_private: true)}") >= SUBDOMAINS_RATELIMIT
+
+          discoveries = redis.incr("discovery_per_request:#{@options[:request_id]}")
+          redis.expire("discovery_per_request:#{@options[:request_id]}", 5.minutes.seconds)
+          return nil if discoveries > DISCOVERIES_PER_REQUEST
         end
 
         create_account
@@ -158,7 +166,7 @@ class ActivityPub::ProcessAccountService < BaseService
   end
 
   def check_featured_collection!
-    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id)
+    ActivityPub::SynchronizeFeaturedCollectionWorker.perform_async(@account.id, { 'request_id' => @options[:request_id] })
   end
 
   def check_links!
@@ -258,7 +266,7 @@ class ActivityPub::ProcessAccountService < BaseService
 
   def moved_account
     account   = ActivityPub::TagManager.instance.uri_to_resource(@json['movedTo'], Account)
-    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], id: true, break_on_redirect: true)
+    account ||= ActivityPub::FetchRemoteAccountService.new.call(@json['movedTo'], id: true, break_on_redirect: true, request_id: @options[:request_id])
     account
   end
 
