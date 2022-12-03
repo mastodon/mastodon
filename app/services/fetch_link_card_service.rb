@@ -22,6 +22,7 @@ class FetchLinkCardService < BaseService
     return if @original_url.nil? || @status.preview_cards.any?
 
     @url = @original_url.to_s
+    @hash_fragment = @url.split(/(?=#)/, 2)[1]
 
     with_lock("fetch:#{@original_url}") do
       @card = PreviewCard.find_by(url: @url)
@@ -148,7 +149,10 @@ class FetchLinkCardService < BaseService
 
     link_details_extractor = LinkDetailsExtractor.new(@url, @html, @html_charset)
 
-    @card = PreviewCard.find_or_initialize_by(url: link_details_extractor.canonical_url) if link_details_extractor.canonical_url != @card.url
+    canonical_url = link_details_extractor.canonical_url
+    canonical_url = @card.url if @hash_fragment && @card.url.starts_with?(canonical_url.chomp('/'))
+
+    @card = PreviewCard.find_or_initialize_by(url: canonical_url) if canonical_url != @card.url
     @card.assign_attributes(link_details_extractor.to_preview_card_attributes)
     @card.save_with_optional_image! unless @card.title.blank? && @card.html.blank?
   end

@@ -79,6 +79,15 @@ RSpec.describe FetchLinkCardService, type: :service do
     end
 
     context do
+      let(:status) { Fabricate(:status, text: 'test http://example.com/test/#url') }
+
+      it 'works with a URL including a fragment' do
+        expect(a_request(:get, 'http://example.com/test/#url')).to have_been_made.at_least_once
+        expect(status.preview_cards.first.url).to eq("http://example.com/test/#url")
+      end
+    end
+
+    context do
       let(:status) { Fabricate(:status, text: 'testhttp://example.com/sjis') }
 
       it 'does not fetch URLs with not isolated from their surroundings' do
