@@ -58,7 +58,7 @@ eo:
       demote: Degradi
       destroyed_msg: Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ
       disable: Malebligi
-      disable_sign_in_token_auth: Malŝalti retpoŝtan ĵetonan aŭtentigon
+      disable_sign_in_token_auth: Malŝalti aŭtentigon de retpoŝta ĵetono
       disable_two_factor_authentication: Malŝalti 2FA-n
       disabled: Malebligita
       display_name: Montrata nomo
@@ -196,8 +196,8 @@ eo:
         destroy_user_role: Detrui Rolon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malebligi proprajn emoĝiojn
-        disable_sign_in_token_auth_user: Malaktivigi Retpoŝtan Ĵetonon por Uzanto
-        disable_user: Malaktivigi la uzanton
+        disable_sign_in_token_auth_user: Malaktivigi aŭtentigon de retpoŝta ĵetono por uzanto
+        disable_user: Neebligi la uzanton
         enable_custom_emoji: Ebligi Propran Emoĝion
         enable_sign_in_token_auth_user: Ebligi retpoŝtan ĵetonan aŭtentigon por la uzanto
         enable_user: Ebligi uzanton
@@ -267,7 +267,7 @@ eo:
         remove_avatar_user_html: "%{name} forigis profilbildon de %{target}"
         reopen_report_html: "%{name} remalfermis signalon %{target}"
         resend_user_html: "%{name} resendis konfirman retmesaĝon por %{target}"
-        reset_password_user_html: "%{name} restarigis pasvorton de usanto %{target}"
+        reset_password_user_html: "%{name} restarigis la pasvorton de la uzanto %{target}"
         resolve_report_html: "%{name} solvis raporton %{target}"
         sensitive_account_html: "%{name} markis audovidaĵojn de %{target} kiel sentemaj"
         silence_account_html: "%{name} limigis la konton de %{target}"
@@ -847,7 +847,7 @@ eo:
       add_new: Aldoni novan
       delete: Forigi
       edit_preset: Redakti avertan antaŭagordon
-      empty: Vi ne definis ajn avertantauopciojn ĝis nun.
+      empty: Vi ankoraŭ ne difinis iun ajn antaŭagordon de averto.
       title: Administri avertajn antaŭagordojn
     webhooks:
       add_new: Aldoni finpunkton
@@ -961,7 +961,7 @@ eo:
     register: Krei konton
     registration_closed: "%{instance} ne estas akcepti nova uzantojn"
     resend_confirmation: Resendi la instrukciojn por konfirmi
-    reset_password: Ŝanĝi pasvorton
+    reset_password: Restarigi pasvorton
     rules:
       preamble: Ĉi tioj fiksitas kaj devigitas de kontrolantoj de %{domain}.
       title: Bazaj reguloj.
@@ -1593,7 +1593,7 @@ eo:
       details: 'Detaloj pri ensaluto:'
       explanation: Ni detektas ensaluton al via konto de nova IP-adreso.
       further_actions_html: Se ne estas vi, ni rekomendas ke vi %{action} tuj por sekurigi vian konton.
-      subject: Via konto aliritas de nova IP-adreso
+      subject: Via konto estas alirita de nova IP-adreso
       title: Nova ensaluto
     warning:
       appeal: Sendi apelacion

@@ -45,13 +45,13 @@ de:
         submit: E-Mail-Adresse ändern
         title: E-Mail-Adresse für %{username} ändern
       change_role:
-        changed_msg: Benutzer*innen-Rechte erfolgreich aktualisiert!
+        changed_msg: Rolle erfolgreich geändert!
         label: Rolle ändern
-        no_role: Keine Benutzer*innen-Rechte
-        title: Benutzer*innen-Rechte für %{username} bearbeiten
+        no_role: Keine Rolle
+        title: Rolle für %{username} ändern
       confirm: Bestätigen
       confirmed: Bestätigt
-      confirming: Verifiziert
+      confirming: Bestätigung
       custom: Angepasst
       delete: Daten löschen
       deleted: Gelöscht
@@ -147,8 +147,8 @@ de:
       subscribe: Abonnieren
       suspend: Sperren
       suspended: Gesperrt
-      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto aufheben, um es wieder brauchbar zu machen, aber es wird keine Daten wiederherstellen, die es davor hatte.
-      suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du dies nachfolgend tun.
+      suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht. Du kannst das Konto entsperren, um es wieder nutzbar zu machen, aber es wird keine Daten wiederherstellen, die es davor hatte.
+      suspension_reversible_hint_html: Das Konto wurde gesperrt und die Daten werden am %{date} vollständig gelöscht. Bis dahin kann das Konto ohne irgendwelche negativen Auswirkungen wiederhergestellt werden. Wenn du alle Daten des Kontos sofort entfernen möchtest, kannst du das nachfolgend tun.
       title: Konten
       unblock_email: E-Mail-Adresse entsperren
       unblocked_email_msg: E-Mail-Adresse von %{username} erfolgreich entsperrt
@@ -406,7 +406,7 @@ de:
       reject_media: Mediendateien ablehnen
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
-      reject_reports_hint: Ignoriere alle Meldungen von dieser Domain. Irrelevant für Sperrungen
+      reject_reports_hint: Alle Meldungen von dieser Domain ignorieren. Irrelevant für Sperrungen.
       undo: Domainsperre rückgängig machen
       view: Domainsperre ansehen
     email_domain_blocks:
@@ -624,8 +624,8 @@ de:
     roles:
       add_new: Rolle hinzufügen
       assigned_users:
-        one: "%{count} Account"
-        other: "%{count} Accounts"
+        one: "%{count} Konto"
+        other: "%{count} Konten"
       categories:
         administration: Administration
         devops: DevOps
@@ -728,7 +728,7 @@ de:
       delete: Hochgeladene Datei löschen
       destroyed_msg: Upload erfolgreich gelöscht!
     statuses:
-      account: Autor
+      account: Autor*in
       application: Anwendung
       back_to_account: Zurück zum Konto
       back_to_report: Zurück zur Seite mit den Meldungen
@@ -813,7 +813,7 @@ de:
         disallow: Beitrag verbieten
         disallow_account: Autor*in verweigern
         no_status_selected: Keine angesagten Beiträge wurden geändert, da keine ausgewählt wurden
-        not_discoverable: Der Autor hat sich nicht dafür entschieden, entdeckt zu werden
+        not_discoverable: Autor*in hat sich dafür entschieden, nicht entdeckt zu werden
         shared_by:
           one: Einmal geteilt oder favorisiert
           other: "%{friendly_count}-mal geteilt oder favorisiert"
@@ -897,7 +897,7 @@ de:
         title: Angesagte Beiträge
       new_trending_tags:
         no_approved_tags: Derzeit gibt es keine genehmigten trendenen Hashtags.
-        requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten trendenen Hashtag übertreffen, der derzeit "%{lowest_tag_name}" mit einer Punktzahl von %{lowest_tag_score} ist.'
+        requirements: 'Jeder dieser Kandidaten könnte den #%{rank} genehmigten angesagten Hashtag übertreffen, der derzeit #%{lowest_tag_name} mit einer Punktzahl von %{lowest_tag_score} ist.'
         title: Angesagte Hashtags
       subject: Neue Trends zur Überprüfung auf %{instance}
   aliases:
@@ -930,14 +930,14 @@ de:
     created: Anwendung erfolgreich erstellt
     destroyed: Anwendung erfolgreich gelöscht
     regenerate_token: Zugangs-Token neu erstellen
-    token_regenerated: Zugangs-Token neu erstellt
+    token_regenerated: Zugriffstoken erfolgreich neu erstellt
     warning: Sei mit diesen Daten sehr vorsichtig. Teile sie mit niemandem!
     your_token: Dein Zugangs-Token
   auth:
     apply_for_account: Konto beantragen
     change_password: Passwort
     delete_account: Konto löschen
-    delete_account_html: Falls du dein Konto löschen willst, kannst du <a href="%{path}">hier damit fortfahren</a>. Du wirst um Bestätigung gebeten werden.
+    delete_account_html: Falls du dein Konto endgültig löschen möchtest, kannst du das <a href="%{path}">hier vornehmen</a>. Du musst dies zusätzlich bestätigen.
     description:
       prefix_invited_by_user: "@%{name} lädt dich ein, diesem Server von Mastodon beizutreten!"
       prefix_sign_up: Registriere dich noch heute bei Mastodon!
@@ -947,11 +947,11 @@ de:
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
     link_to_otp: Gib einen Zwei-Faktor-Code von deinem Handy oder einen Wiederherstellungscode ein
-    link_to_webauth: Verwende deinen Sicherheitsschlüssel
+    link_to_webauth: Verwende dein Sicherheitsschlüsselgerät
     log_in_with: Anmelden mit
     login: Anmelden
     logout: Abmelden
-    migrate_account: Auf ein anderes Konto umziehen
+    migrate_account: Zu einem anderen Konto umziehen
     migrate_account_html: Wenn du dieses Konto auf ein anderes umleiten möchtest, kannst du es <a href="%{path}">hier konfigurieren</a>.
     or_log_in_with: Oder anmelden mit
     privacy_policy_agreement_html: Ich habe die <a href="%{privacy_policy_path}" target="_blank">Datenschutzerklärung</a> gelesen und stimme ihr zu
@@ -976,10 +976,10 @@ de:
       title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
-      confirming: Warte auf die Bestätigung der E-Mail.
+      confirming: Warte auf die Bestätigung deiner E-Mail-Adresse.
       functional: Dein Konto ist voll funktionsfähig.
       pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
-      redirecting_to: Dein Konto ist inaktiv, da es derzeit zu %{acct} umgeleitet wird.
+      redirecting_to: Dein Konto ist inaktiv, weil es zu %{acct} umgezogen ist.
       view_strikes: Vorherige Verstöße deines Kontos ansehen
     too_fast: Formular zu schnell gesendet, versuche es erneut.
     use_security_key: Sicherheitsschlüssel verwenden
@@ -992,7 +992,7 @@ de:
     following: 'Erfolg! Du folgst nun:'
     post_follow:
       close: Oder du schließt einfach dieses Fenster.
-      return: Das Benutzerprofil anzeigen
+      return: Benutzerprofil anzeigen
       web: In der Benutzeroberfläche öffnen
     title: "%{acct} folgen"
   challenge:
@@ -1031,14 +1031,14 @@ de:
     warning:
       before: 'Bevor du fortfährst, lies bitte diese Punkte sorgfältig durch:'
       caches: Inhalte, die von anderen Servern zwischengespeichert wurden, können weiterhin bestehen
-      data_removal: Deine Beiträge und andere Daten werden dauerhaft entfernt
+      data_removal: Deine Beiträge und alle anderen Daten werden für immer entfernt
       email_change_html: Du kannst <a href="%{path}">deine E-Mail-Adresse ändern</a>, ohne dein Konto zu löschen
       email_contact_html: Wenn die Bestätigungs-E-Mail immer noch nicht ankam, kannst du eine E-Mail an <a href="mailto:%{email}">%{email}</a> senden, um weitere Hilfe zu erhalten
       email_reconfirmation_html: Wenn du die Bestätigungs-E-Mail nicht erhalten hast, kannst du sie <a href="%{path}">erneut anfordern</a>
-      irreversible: Du kannst dein Konto nicht reaktivieren
+      irreversible: Du kannst dein Konto nicht mehr wiederherstellen oder reaktivieren
       more_details_html: Weitere Details findest du in der <a href="%{terms_path}">Datenschutzerklärung</a>.
       username_available: Dein Profilname wird wieder verfügbar sein
-      username_unavailable: Dein Profilname wird weiterhin nicht mehr verfügbar sein
+      username_unavailable: Dein Profilname wird auch nach dem Löschen für andere nicht zugänglich sein
   disputes:
     strikes:
       action_taken: Maßnahme ergriffen
@@ -1094,7 +1094,7 @@ de:
       date: Datum
       download: Dein Archiv herunterladen
       hint_html: Du kannst ein Archiv deiner <strong>Beiträge, Listen, hochgeladenen Medien usw.</strong> anfordern. Die exportierten Daten werden im ActivityPub-Format gespeichert und können mit geeigneter Software ausgewertet und angezeigt werden. Du kannst alle 7 Tage ein Archiv erstellen lassen.
-      in_progress: Persönliches Archiv wird erstellt …
+      in_progress: Persönliches Archiv wird erstellt …
       request: Dein Archiv anfordern
       size: Größe
     blocks: Blockierte Accounts
@@ -1147,7 +1147,7 @@ de:
     statuses:
       back_to_filter: Zurück zum Filter
       batch:
-        remove: Vom Filter entfernen
+        remove: Filter entfernen
       index:
         hint: Dieser Filter wird verwendet, um einzelne Beiträge unabhängig von anderen Kriterien auszuwählen. Du kannst mehr Beiträge zu diesem Filter über das Webinterface hinzufügen.
         title: Gefilterte Beiträge
@@ -1427,7 +1427,7 @@ de:
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
-    revoke: Schließen
+    revoke: Widerrufen
     revoke_success: Sitzung erfolgreich geschlossen
     title: Sitzungen
     view_authentication_history: Authentifizierungsverlauf deines Kontos anzeigen
@@ -1506,25 +1506,25 @@ de:
       unlisted_long: Für alle sichtbar, aber in öffentlichen Timelines nicht aufgelistet
   statuses_cleanup:
     enabled: Automatisch alte Beiträge löschen
-    enabled_hint: Löscht automatisch deine Beiträge, sobald sie einen bestimmten Altersgrenzwert erreicht haben, es sei denn, sie entsprechen einer der folgenden Ausnahmen
+    enabled_hint: Löscht automatisch deine Beiträge, sobald sie ein von dir definiertes Alter erreicht haben, es sei denn, sie entsprechen einer der nachfolgenden Ausnahmen
     exceptions: Ausnahmen
     explanation: Damit Mastodon nicht durch das Löschen von Beiträgen ausgebremst wird, wartet der Server damit, bis wenig los ist. Aus diesem Grund werden deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht.
     ignore_favs: Favoriten ignorieren
     ignore_reblogs: Geteilte Beiträge ignorieren
     interaction_exceptions: Ausnahmen basierend auf Interaktionen
-    interaction_exceptions_explanation: Beachte, dass es keine Garantie für das Löschen von Beiträgen gibt, wenn sie nach einem Übertritt des Favoriten- oder Boost-Schwellenwert wieder unter diesen fallen.
+    interaction_exceptions_explanation: Beachte, dass Beiträge nicht gelöscht werden, sobald deine Grenzwerte für Favoriten oder geteilte Beiträge einmal überschritten worden sind – auch dann nicht, wenn diese Schwellenwerte mittlerweile nicht mehr erreicht werden.
     keep_direct: Direktnachrichten behalten
-    keep_direct_hint: Löscht keine deiner Direktnachrichten
-    keep_media: Beiträge mit Medienanhängen behalten
-    keep_media_hint: Löscht keinen deiner Beiträge mit Medienanhängen
+    keep_direct_hint: Löscht keine deiner privaten Nachrichten
+    keep_media: Beiträge mit angehängten Medien-Dateien behalten
+    keep_media_hint: Löscht keinen deiner Beiträge mit angehängten Medien-Dateien
     keep_pinned: Angeheftete Beiträge behalten
-    keep_pinned_hint: Löscht keinen deiner angehefteten Beiträge
+    keep_pinned_hint: Löscht keinen deiner angehefteten Beiträge im Profil
     keep_polls: Umfragen behalten
     keep_polls_hint: Löscht keine deiner Umfragen
     keep_self_bookmark: Als Lesezeichen markierte Beiträge behalten
-    keep_self_bookmark_hint: Löscht deine eigenen Beiträge nicht, wenn du sie als Lesezeichen markiert hast
-    keep_self_fav: Behalte die von dir favorisierten Beiträge
-    keep_self_fav_hint: Löscht deine eigenen Beiträge nicht, wenn du sie favorisiert hast
+    keep_self_bookmark_hint: Löscht keinen deiner Beiträge, die du als Lesezeichen gesetzt hast
+    keep_self_fav: Behalte favorisierte Beiträge
+    keep_self_fav_hint: Löscht keinen deiner Beiträge, die du favorisiert hast
     min_age:
       '1209600': 2 Wochen
       '15778476': 6 Monate
@@ -1535,10 +1535,10 @@ de:
       '63113904': 2 Jahre
       '7889238': 3 Monate
     min_age_label: Altersgrenze
-    min_favs: Behalte Beiträge, die häufiger favorisiert wurden als ...
-    min_favs_hint: Löscht keine deiner Beiträge, die mindestens diese Anzahl an Favoriten erhalten haben. Lass das Feld leer, um Beiträge unabhängig von ihrer Anzahl an Favoriten zu löschen
-    min_reblogs: Behalte Beiträge, die häufiger geteilt wurden als ...
-    min_reblogs_hint: Löscht keine deiner Beiträge, die mindestens so oft geteilt wurden. Lass das Feld leer, um Beiträge unabhängig von der Anzahl der geteilten Beiträge zu löschen
+    min_favs: Behalte Beiträge, die häufiger favorisiert wurden als …
+    min_favs_hint: Löscht keine Beiträge, die mindestens so oft favorisiert worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an Favoriten – zu löschen
+    min_reblogs: Behalte Beiträge, die öfter geteilt wurden als
+    min_reblogs_hint: Löscht keine Beiträge, die mindestens so oft geteilt worden sind. Lass das Feld leer, um alle Beiträge – unabhängig der Anzahl an geteilten Beiträgen – zu löschen
   stream_entries:
     pinned: Angehefteter Beitrag
     reblogged: teilte
@@ -1559,7 +1559,7 @@ de:
       time: "%H:%M"
   two_factor_authentication:
     add: Hinzufügen
-    disable: Deaktivieren
+    disable: Zwei-Faktor-Authentisierung (2FA) deaktivieren
     disabled_success: Zwei-Faktor-Authentisierung (2FA) erfolgreich deaktiviert
     edit: Bearbeiten
     enabled: Zwei-Faktor-Authentisierung (2FA) ist aktiviert
@@ -1569,7 +1569,7 @@ de:
     methods: Methoden der Zwei-Faktor-Authentisierung (2FA)
     otp: Authentifizierungs-App
     recovery_codes: Wiederherstellungscodes sichern
-    recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu generiert
+    recovery_codes_regenerated: Wiederherstellungscodes erfolgreich neu erstellt
     recovery_instructions_html: Wenn du den Zugang zu deinem Telefon verlieren solltest, kannst du einen untenstehenden Wiederherstellungscode benutzen, um wieder auf dein Konto zugreifen zu können. <strong>Bewahre die Wiederherstellungscodes gut auf.</strong> Du könntest sie beispielsweise ausdrucken und bei deinen restlichen wichtigen Dokumenten aufbewahren.
     webauthn: Sicherheitsschlüssel
   user_mailer:
@@ -1590,7 +1590,7 @@ de:
       change_password: dein Passwort zu ändern
       details: 'Hier sind die Details des Versuchs:'
       explanation: Wir haben eine Anmeldung zu deinem Konto von einer neuen IP-Adresse festgestellt.
-      further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentifizierung (2FA) für dein Konto zu aktivieren, um es abzusichern.
+      further_actions_html: Wenn du das nicht warst, empfehlen wir dir schnellstmöglich, %{action} und die Zwei-Faktor-Authentisierung (2FA) für dein Konto zu aktivieren, um es abzusichern.
       subject: Es wurde auf dein Konto von einer neuen IP-Adresse zugegriffen
       title: Eine neue Anmeldung
     warning:
@@ -1605,7 +1605,7 @@ de:
         mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
-        suspend: Du kannst dein Konto nicht mehr verwenden, und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um ein Backup deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
+        suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.
       reason: 'Grund:'
       statuses: 'Zitierte Beiträge:'
       subject:

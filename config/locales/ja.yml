@@ -223,7 +223,7 @@ ja:
         update_user_role: ロールを更新
       actions:
         approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
-        approve_user_html: "%{target}から登録された%{name}さんを承認しました"
+        approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
         assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
         change_email_user_html: "%{name}さんが%{target}さんのメールアドレスを変更しました"
         change_role_user_html: "%{name}さんが%{target}さんのロールを変更しました"
@@ -260,7 +260,7 @@ ja:
         memorialize_account_html: "%{name}さんが%{target}さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name}さんが%{target}さんを昇格しました"
         reject_appeal_html: "%{name}さんが%{target}からの抗議を却下しました"
-        reject_user_html: "%{target}から登録された%{name}さんを拒否しました"
+        reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
         resend_user_html: "%{name} が %{target} の確認メールを再送信しました"
@@ -423,6 +423,8 @@ ja:
       no_file: ファイルが選択されていません
     export_domain_blocks:
       import:
+        existing_relationships_warning: 既存のフォロー関係
+        private_comment_template: "%{source} から %{date} にインポートしました"
         title: ドメインブロックをインポート
       new:
         title: ドメインブロックをインポート
