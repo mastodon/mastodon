@@ -676,17 +676,35 @@ ms:
       favourites: Gemaran
       history: Sejarah versi
       language: Bahasa
+      media:
+        title: Media
+      metadata: Metadata
+      no_status_selected: Tiada hantaran diubah kerana tiada yang dipilih
       open: Buka hantaran
+      original_status: Hantaran asal
+      reblogs: Ulang siar
+      status_changed: Hantaran diubah
     strikes:
       actions:
         delete_statuses: "%{name} memadam hantaran %{target}"
+        disable: "%{name} membekukan akaun %{target}"
+        mark_statuses_as_sensitive: "%{name} menandakan hantaran %{target} sebagai sensitif"
+        none: "%{name} menghantar amaran kepada %{target}"
+        sensitive: "%{name} menandakan akaun %{target} sebagai sensitif"
+        silence: "%{name} telah mengehadkan akaun %{target}"
+        suspend: "%{name} telah menggantungkan akaun %{target}"
       appeal_approved: Dirayu
+      appeal_pending: Rayuan yang belum selesai
     tags:
       review: Semak status
     title: Pentadbiran
     trends:
       allow: Izin
       approved: Diluluskan
+      links:
+        allow: Membenarkan pautan
+        allow_provider: Membenarkan penerbit
+        title: Pautan yang sedang sohor kini
       preview_card_providers:
         rejected: Pautan daripada penerbit ini tidak akan menjadi sohor kini
         title: Penerbit
@@ -767,15 +785,26 @@ ms:
       appeal_approved: Rayuan pelanggaran ini telah berjaya dan tidak lagi sah
       appeal_rejected: Rayuan ini telah ditolak
       appeal_submitted_at: Rayuan dihantar
+      appealed_msg: Rayuan anda sudah dikemukakan. Jika diluluskan, anda akan diberitahu.
       appeals:
         submit: Hantar rayuan
       approve_appeal: Luluskan rayuan
       associated_report: Laporan berkaitan
+      created_at: Tarikh
+      description_html: Ini ialah tindakan yang diambil terhadap akaun anda dan amaran telah dihantarkan kepada anda oleh staf %{instance}.
+      recipient: Ditujukan kepada
       reject_appeal: Tolak rayuan
       status: 'Hantaran #%{id}'
+      status_removed: Hantaran sudah dikeluarkan daripada sistem
+      title: "%{action} dari %{date}"
       title_actions:
         delete_statuses: Pemadaman hantaran
+        disable: Pembekuan akaun
+        mark_statuses_as_sensitive: Menandakan hantaran sebagai sensitif
         none: Amaran
+        sensitive: Menandakan akaun sebagai sensitif
+        silence: Keterbatasan akaun
+        suspend: Penggantungan akaun
       your_appeal_approved: Rayuan anda telah diluluskan
       your_appeal_pending: Anda telah menghantar rayuan
       your_appeal_rejected: Rayuan anda telah ditolak
