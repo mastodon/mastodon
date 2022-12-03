@@ -29,15 +29,20 @@ module Mastodon
       If --aggressive is specified, all non-local accounts will be pruned
       irrespective of follow status.
       If --kick_out is specified, the corresponding accounts are removed
-      from the local database (catastophic if used with --aggressive).
+      from the local database. Cannot be used along with --aggressive.
     DESC
     def purge_stale_accounts
+      if options[:aggressive] && options[:kick_out]
+        say('The options --aggressive and --kick_out cannot be used together', :red)
+        exit(1)
+      end
+
       time_ago    = options[:days].days.ago
       dry_run     = options[:dry_run] ? '(DRY RUN)' : ''
       aggressive  = options[:aggressive]
       action      = options[:kick_out] ? 'deleted' : 'removed avatars and header images from'
 
-      removed_accounts = Concurrent::Set[]
+      purged_accounts = Concurrent::Set[]
       processed, aggregate = parallelize_with_progress(
         Account.where({last_webfingered_at: Time.zone.at(0)..time_ago,
           updated_at: Time.zone.at(0)..time_ago}
@@ -48,7 +53,7 @@ module Mastodon
         next if !aggressive && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
 
         size = (account.avatar_file_size || 0) + (account.header_file_size || 0)
-        removed_accounts << account.url
+        purged_accounts << account.url
 
         unless options[:dry_run]
           unless options[:kick_out]
@@ -56,21 +61,20 @@ module Mastodon
             account.header.destroy
             account.save
           else
-            account.avatar.destroy
-            # account.destroy
+            account.destroy
           end
         end
 
         size
       end
 
-      if !removed_accounts.empty?()
-        say("List of removed accounts:")
-        removed_accounts.each do |url|
+      if !purged_accounts.empty?()
+        say("List of purged accounts:")
+        purged_accounts.each do |url|
           say("#{url}")
         end
       end
-      say("Processed #{processed} accounts and #{action} #{removed_accounts.size()} accounts totaling #{number_to_human_size(aggregate)} #{dry_run}", :green, true)
+      say("Processed #{processed} accounts and #{action} #{purged_accounts.size()} accounts totaling #{number_to_human_size(aggregate)} #{dry_run}", :green, true)
     end
     
     option :days, type: :numeric, default: 7, aliases: [:d]
