@@ -165,6 +165,15 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     handler = Handler.new(proc)
     Ox.sax_parse(handler, @object['content'])
     handler.srcs.each do |src|
+      # Handle images where the src is formatted as "/foo/bar.png"
+      # we assume that the `url` field is populated which lets us infer
+      # the protocol and domain of the _original_ article, as though
+      # we were looking at it via a web browser
+      if src[0] == '/' && !@object['url'].nil?
+        site = Addressable::URI.parse(@object['url']).site
+        src = site + src
+      end
+
       if skip_download?
         @object['content'].gsub!(src, '')
         next

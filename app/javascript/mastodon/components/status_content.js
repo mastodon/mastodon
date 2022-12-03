@@ -225,7 +225,7 @@ export default class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} translate`} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} ${status.get('activity_pub_type') === 'Article' ? 'article-type' : ''} translate`} dangerouslySetInnerHTML={content} />
 
           {!hidden && !!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
           {renderViewThread && showThreadButton}
