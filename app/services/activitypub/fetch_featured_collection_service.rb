@@ -38,9 +38,9 @@ class ActivityPub::FetchFeaturedCollectionService < BaseService
   def process_items(items)
     status_ids = items.filter_map do |item|
       uri = value_or_id(item)
-      next if ActivityPub::TagManager.instance.local_uri?(uri)
+      next if ActivityPub::TagManager.instance.local_uri?(uri) || invalid_origin?(uri)
 
-      status = ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: local_follower)
+      status = ActivityPub::FetchRemoteStatusService.new.call(uri, on_behalf_of: local_follower, expected_actor_uri: @account.uri)
       next unless status&.account_id == @account.id
 
       status.id
