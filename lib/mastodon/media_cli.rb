@@ -12,7 +12,67 @@ module Mastodon
     def self.exit_on_failure?
       true
     end
+    
+    option :days, type: :numeric, default: 60, aliases: [:d]
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :dry_run, type: :boolean, default: false
+    option :aggressive, type: :boolean, default: false, aliases: [:a]
+    option :kick_out, type: :boolean, default: false, aliases: [:k]
+    desc 'purge-stale-accounts', 'Remove profile media files (headers, avatars)'
+    long_desc <<-DESC
+      Removes locally cached copies of profile headers and avatars.
+      By default, only accounts that are not followed by or following
+      anyone locally are pruned.
+      The --days option specifies how old the last webfinger request
+      and update to the user has to be before they are removed. It
+      defaults to 60 days.
+      If --aggressive is specified, all non-local accounts will be pruned
+      irrespective of follow status.
+      If --kick_out is specified, the corresponding accounts are removed
+      from the local database (catastophic if used with --aggressive).
+    DESC
+    def purge_stale_accounts
+      time_ago    = options[:days].days.ago
+      dry_run     = options[:dry_run] ? '(DRY RUN)' : ''
+      aggressive  = options[:aggressive]
+      action      = options[:kick_out] ? 'deleted' : 'removed avatars and header images from'
 
+      removed_accounts = Concurrent::Set[]
+      processed, aggregate = parallelize_with_progress(
+        Account.where({last_webfingered_at: Time.zone.at(0)..time_ago,
+          updated_at: Time.zone.at(0)..time_ago}
+        ).left_outer_joins(:user).where(user: { id: nil })
+      ) do |account|
+        next if account.local?
+        next if account.avatar.blank? && account.header.blank?
+        next if !aggressive && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
+
+        size = (account.avatar_file_size || 0) + (account.header_file_size || 0)
+        removed_accounts << account.url
+
+        unless options[:dry_run]
+          unless options[:kick_out]
+            account.avatar.destroy
+            account.header.destroy
+            account.save
+          else
+            account.avatar.destroy
+            # account.destroy
+          end
+        end
+
+        size
+      end
+
+      if !removed_accounts.empty?()
+        say("List of removed accounts:")
+        removed_accounts.each do |url|
+          say("#{url}")
+        end
+      end
+      say("Processed #{processed} accounts and #{action} #{removed_accounts.size()} accounts totaling #{number_to_human_size(aggregate)} #{dry_run}", :green, true)
+    end
+    
     option :days, type: :numeric, default: 7, aliases: [:d]
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, default: false, aliases: [:v]
