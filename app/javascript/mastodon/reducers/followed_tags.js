@@ -17,25 +17,25 @@ const initialState = ImmutableMap({
 export default function followed_tags(state = initialState, action) {
   switch(action.type) {
   case FOLLOWED_HASHTAGS_FETCH_REQUEST:
-    return state.setIn(['isLoading'], true);
+    return state.set('isLoading', true);
   case FOLLOWED_HASHTAGS_FETCH_SUCCESS:
     return state.withMutations(map => {
-      map.setIn(['items'], fromJS(action.followed_tags));
-      map.setIn(['isLoading'], false);
-      map.setIn(['next'], action.next);
+      map.set('items', fromJS(action.followed_tags));
+      map.set('isLoading', false);
+      map.set('next', action.next);
     });
   case FOLLOWED_HASHTAGS_FETCH_FAIL:
-    return state.setIn(['isLoading'], false);
+    return state.set('isLoading', false);
   case FOLLOWED_HASHTAGS_EXPAND_REQUEST:
-    return state.setIn(['isLoading'], true);
+    return state.set('isLoading', true);
   case FOLLOWED_HASHTAGS_EXPAND_SUCCESS:
     return state.withMutations(map => {
-      map.updateIn(['items'], set => set.concat(fromJS(action.followed_tags)));
-      map.setIn(['isLoading'], false);
-      map.setIn(['next'], action.next);
+      map.update('items', set => set.concat(fromJS(action.followed_tags)));
+      map.set('isLoading', false);
+      map.set('next', action.next);
     });
   case FOLLOWED_HASHTAGS_EXPAND_FAIL:
-    return state.setIn(['isLoading'], false);
+    return state.set('isLoading', false);
   default:
     return state;
   }
