@@ -57,7 +57,7 @@ el:
       disabled: Απενεργοποιημένο
       display_name: Όνομα εμφάνισης
       domain: Τομέας
-      edit: Αλλαγή
+      edit: Επεξεργασία
       email: Email
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
@@ -163,6 +163,7 @@ el:
         create_domain_block: Δημιουργία Αποκλεισμένου Τομέα
         create_email_domain_block: Δημουργία Αποκλεισμένου Τομέα email
         create_ip_block: Δημιουργία κανόνα IP
+        create_user_role: Δημιουργία ρόλου
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
@@ -197,6 +198,7 @@ el:
         update_announcement: Ενημέρωση Ανακοίνωσης
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
         update_status: Ενημέρωση Κατάστασης
+        update_user_role: Ενημέρωση ρόλου
       actions:
         approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
         destroy_email_domain_block_html: "Ο/Η %{name} ξεμπλόκαρε το email domain %{target}"
@@ -290,7 +292,7 @@ el:
       created_msg: Ο αποκλεισμός τομέα είναι υπό επεξεργασία
       destroyed_msg: Ο αποκλεισμός τομέα άρθηκε
       domain: Τομέας
-      edit: Διαχείρηση αποκλεισμένου τομέα
+      edit: Επεξεργασία αποκλεισμένου τομέα
       existing_domain_block: Έχετε ήδη επιβάλει αυστηρότερα όρια στο %{name}.
       existing_domain_block_html: Έχεις ήδη επιβάλλει αυστηρότερους περιορισμούς στο %{name}, πρώτα θα πρέπει να τους <a href="%{unblock_url}">αναιρέσεις</a>.
       export: Εξαγωγή
@@ -458,6 +460,7 @@ el:
         devops: Devops
         invites: Προσκλήσεις
       delete: Διαγραφή
+      edit: Επεξεργασία ρόλου '%{name}'
       privileges:
         administrator: Διαχειριστής
         manage_settings: Διαχείριση ρυθμίσεων
@@ -964,14 +967,27 @@ el:
     browser: Φυλλομετρητής (Browser)
     browsers:
       blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
       generic: Άγνωστος φυλλομετρητής
+      ie: Internet Explorer
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
     current_session: Τρέχουσα σύνδεση
     description: "%{browser} σε %{platform}"
     explanation: Αυτοί είναι οι φυλλομετρητές (browsers) που είναι συνδεδεμένοι στον λογαριασμό σου στο Mastodon αυτή τη στιγμή.
     platforms:
+      android: Android
       blackberry: BlackBerry
       chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: άγνωστη πλατφόρμα
     revoke: Ανακάλεσε
@@ -1048,12 +1064,12 @@ el:
   statuses_cleanup:
     min_age:
       '1209600': 2 εβδομάδες
-      '15778476': 6 months
-      '2629746': 1 month
+      '15778476': 6 μήνες
+      '2629746': 1 μήνας
       '31556952': 1 year
       '5259492': 2 μήνες
       '604800': 1 εβδομάδα
-      '63113904': 2 years
+      '63113904': 2 χρόνια
       '7889238': 3 μήνες
   stream_entries:
     pinned: Καρφιτσωμένο τουτ
