@@ -1131,11 +1131,19 @@ be:
     order_by: Парадак
     save_changes: Захаваць змены
     today: сёння
+  html_validator:
+    invalid_markup: 'змяшчае несапраўдную разметку HTML: %{error}'
   imports:
+    errors:
+      invalid_csv_file: 'Несапраўдны файл CSV. Памылка: %{error}'
+      over_rows_processing_limit: колькасць радкоў большая за %{count}
     modes:
       merge: Аб'яднаць
       merge_long: Захаваць існуючыя запісы і дадаць новыя
       overwrite: Перазапісаць
+      overwrite_long: Замяніць бягучыя запісы на новыя
+    preface: Вы можаце імпартаваць даныя, экспартаваныя вамі з іншага сервера, напрыклад, спіс людзей, на якіх вы падпісаны або якіх блакуеце.
+    success: Вашы даныя паспяхова запампаваныя і будуць неўзабаве апрацаваны
     types:
       blocking: Спіс заблакіраваных
       bookmarks: Закладкі
