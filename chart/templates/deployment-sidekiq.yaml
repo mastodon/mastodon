@@ -6,7 +6,7 @@ metadata:
     {{- include "mastodon.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.mastodon.sidekiq.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
@@ -119,7 +119,7 @@ spec:
               mountPath: /opt/mastodon/public/system
           {{- end }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.mastodon.sidekiq.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
