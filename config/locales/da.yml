@@ -373,6 +373,8 @@ da:
       add_new: Tillade federering med domæne
       created_msg: Domæne er blevet tilladt for federering
       destroyed_msg: Domæne er blevet forbudt for federering
+      export: Eksportér
+      import: Importér
       undo: Forbyd federering med domæne
     domain_blocks:
       add_new: Tilføj ny domæneblokering
@@ -382,13 +384,19 @@ da:
       edit: Redigér domæneblokering
       existing_domain_block: "%{name} er allerede pålagt strengere restriktioner."
       existing_domain_block_html: Der har allerede pålagt %{name} strengere begrænsninger, så dette kræver først en <a href="%{unblock_url}">afblokering</a>.
+      export: Eksportér
+      import: Importér
       new:
         create: Opret blokering
         hint: Domæneblokeringen vil ikke forhindre oprettelse af kontoposter i databasen, men vil retroaktivt og automatisk føje særlige moderationsmetoder til disse konti.
         severity:
+          desc_html: "<strong>Begræns</strong> gør indlæg fra konti på dette domæne usynlige for alle ikke-følger. <strong>Suspendér</strong> fjerner alt indhold, medier og profildata for dette domænes konti fra serveren. Brug <strong>Ingen</strong>, hvis man blot vil afvise mediefiler."
           noop: Ingen
+          silence: Begræns
           suspend: Suspendere
         title: Ny domæneblokering
+      no_domain_block_selected: Ingen domæneblokeringer ændret (ingen var valgt)
+      not_permitted: Ingen tilladelse til at udføre denne handling
       obfuscate: Slør domænenavn
       obfuscate_hint: Slør delvist domænenavnet på listen, hvis annoncering af listen over domænebegrænsninger er aktiveret
       private_comment: Privat kommentar
@@ -420,6 +428,17 @@ da:
       resolved_dns_records_hint_html: Domænenavnet opløses til flg. MX-domæner, som i sidste ende er ansvarlige for e-mailmodtagelse. Blokering af et MX-domæne blokerer også tilmeldinger fra enhver e-mailadresse på det pågældende MX-domæne, selv hvis det synlige domænenavn er et andet. <strong>Pas på ikke ikke at blokere større e-mailudbydere.</strong>
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
+    export_domain_allows:
+      no_file: Ingen fil valgt
+    export_domain_blocks:
+      import:
+        description_html: En liste over domæneblokeringer er ved at blive importeret. Gennemgå listen meget nøje, især hvis man ikke selv har oprettet den.
+        existing_relationships_warning: Eksisterende følge-relationer
+        private_comment_description_html: 'For at man lettere kan holde styr på, hvorfra importerede blokeringer kommer, oprettes disse med flg. private kommentar: <q>%{comment}</q>'
+        private_comment_template: Importeret fra %{source} d. %{date}
+        title: Import af domæneblokeringer
+      new:
+        title: Import af domæneblokeringer
     follow_recommendations:
       description_html: "<strong>Følg-anbefalinger hjælpe nye brugere til hurtigt at finde interessant indhold</strong>. Når en bruger ikke har interageret nok med andre til at generere personlige følg-anbefalinger, anbefales disse konti i stedet. De revurderes dagligt baseret på en blanding af konti med de flest nylige engagementer og fleste lokale følger-antal for et givet sprog."
       language: For sprog
@@ -912,6 +931,7 @@ da:
     warning: Vær meget påpasselig med disse data. Del dem aldrig med nogen!
     your_token: Dit adgangstoken
   auth:
+    apply_for_account: Anmod om en konto
     change_password: Adgangskode
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
@@ -1156,6 +1176,7 @@ da:
     invalid_markup: 'indeholder ugyldig HTML-markup: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ugyldig CSV-fil. Fejl: %{error}'
       over_rows_processing_limit: indeholder mere end %{count} rækker
     modes:
       merge: Sammenflet
@@ -1393,6 +1414,7 @@ da:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
@@ -1616,7 +1638,7 @@ da:
     seamless_external_login: Du er logget ind via en ekstern tjeneste, så adgangskode- og e-mailindstillinger er utilgængelige.
     signed_in_as: 'Logget ind som:'
   verification:
-    explanation_html: 'Du kan <strong>bekræfte dig selv som ejer af linkene i din profilmetadata</strong>. For at gøre det, skal det linkede websted indeholde et link pegende tilbage til din Mastodon-profil. Returlinket <strong>skal</strong> have en <code>rel="mig"</code>-attribut. Linkets tekstindhold betyder ikke noget. Her er et eksempel:'
+    explanation_html: 'Du kan <strong>bekræfte dig selv som ejer af linkene i din profilmetadata</strong>. For at gøre det, skal det linkede websted indeholde et link pegende tilbage til din Mastodon-profil. Returlinket <strong>skal</strong> have en <code>rel="me"</code>-attribut. Linkets tekstindhold betyder ikke noget. Her er et eksempel:'
     verification: Bekræftelse
   webauthn_credentials:
     add: Tilføj ny sikkerhedsnøgle

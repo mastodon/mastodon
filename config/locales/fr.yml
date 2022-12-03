@@ -133,7 +133,7 @@ fr:
       search_same_ip: Autres utilisateur·rice·s avec la même IP
       security_measures:
         only_password: Mot de passe uniquement
-        password_and_2fa: Mot de passe et 2FA
+        password_and_2fa: Mot de passe et A2F
       sensitive: Sensible
       sensitized: marqué comme sensible
       shared_inbox_url: URL de la boite de réception partagée
@@ -373,6 +373,8 @@ fr:
       add_new: Mettre le domaine sur liste sur blanche
       created_msg: Ce domaine a été ajouté à la liste blanche avec succès
       destroyed_msg: Le domaine a été supprimé de la liste blanche
+      export: Exporter
+      import: Importer
       undo: Supprimer de la liste blanche
     domain_blocks:
       add_new: Bloquer un nouveau domaine
@@ -382,13 +384,19 @@ fr:
       edit: Modifier le blocage de domaine
       existing_domain_block: Vous avez déjà imposé des limites plus strictes à %{name}.
       existing_domain_block_html: Vous avez déjà imposé des limites plus strictes à %{name}, vous devez d’abord le/la <a href="%{unblock_url}">débloquer</a>.
+      export: Exporter
+      import: Importer
       new:
         create: Créer le blocage
         hint: Le blocage de domaine n’empêchera pas la création de comptes dans la base de données, mais il appliquera automatiquement et rétrospectivement des méthodes de modération spécifiques sur ces comptes.
         severity:
+          desc_html: "<strong>Limiter</strong> rendra les messages des comptes de ce domaine invisibles à ceux qui ne les suivent pas. <strong>Suspendre</strong> supprimera tout le contenu, les médias, et données de profile pour les comptes de ce domaine de votre serveur. Utilisez <strong>Aucun</strong> si vous voulez simplement rejeter les fichiers multimédia."
           noop: Aucune
+          silence: Limiter
           suspend: Suspendre
         title: Nouveau blocage de domaine
+      no_domain_block_selected: Aucun blocage de domaine n'a été modifié car aucun n'a été sélectionné
+      not_permitted: Vous n’êtes pas autorisé à effectuer cette action
       obfuscate: Obfusquer le nom de domaine
       obfuscate_hint: Obfusquer partiellement le nom de domaine dans la liste si la publication de la liste des limitations de domaine est activée
       private_comment: Commentaire privé
@@ -420,6 +428,20 @@ fr:
       resolved_dns_records_hint_html: Le nom de domaine est relié aux domaines MX suivants, qui ont la responsabilité ultime d'accepter les courriels. Bloquer un domaine MX empêchera les inscriptions à partir de toute adresse courriel utilisant le même domaine MX, même si le nom de domaine affiché est différent. <strong> Veillez à ne pas bloquer les fournisseurs de messagerie d'envergure.</strong>
       resolved_through_html: Résolu par %{domain}
       title: Blocage de domaines de courriel
+    export_domain_allows:
+      new:
+        title: Autoriser l'importation de domaine
+      no_file: Aucun fichier sélectionné
+    export_domain_blocks:
+      import:
+        description_html: Vous êtes sur le point d'importer une liste de blocs de domaine. Veuillez examiner cette liste très attentivement, spécialement si vous n'êtes pas l'auteur de cette liste.
+        existing_relationships_warning: Relations de suivi existantes
+        private_comment_description_html: 'Pour vous aider à suivre d''où viennent les blocs importés, des blocs importés seront créés avec le commentaire privé suivant : <q>%{comment}</q>'
+        private_comment_template: Importé depuis %{source} le %{date}
+        title: Importer des blocs de domaine
+      new:
+        title: Importer des blocs de domaine
+      no_file: Aucun fichier sélectionné
     follow_recommendations:
       description_html: "<strong>Les recommandations d'abonnement aident les nouvelles personnes à trouver rapidement du contenu intéressant</strong>. Si un·e utilisateur·rice n'a pas assez interagi avec les autres pour avoir des recommandations personnalisées, ces comptes sont alors recommandés. La sélection est mise à jour quotidiennement depuis un mélange de comptes ayant le plus d'interactions récentes et le plus grand nombre d'abonné·e·s locaux pour une langue donnée."
       language: Pour la langue
@@ -912,6 +934,7 @@ fr:
     warning: Soyez prudent·e avec ces données. Ne les partagez pas !
     your_token: Votre jeton d’accès
   auth:
+    apply_for_account: Demander un compte
     change_password: Mot de passe
     delete_account: Supprimer le compte
     delete_account_html: Si vous désirez supprimer votre compte, vous pouvez <a href="%{path}">cliquer ici</a>. Il vous sera demandé de confirmer cette action.
@@ -1156,6 +1179,7 @@ fr:
     invalid_markup: 'contient un balisage HTML invalide: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Fichier CSV non valide. Erreur : %{error}'
       over_rows_processing_limit: contient plus de %{count} lignes
     modes:
       merge: Fusionner
@@ -1168,8 +1192,8 @@ fr:
       blocking: Liste de comptes bloqués
       bookmarks: Marque-pages
       domain_blocking: Liste des serveurs bloqués
-      following: Liste d’utilisateur·rice·s suivi·e·s
-      muting: Liste d’utilisateur·rice·s que vous masquez
+      following: Liste de comptes suivis
+      muting: Liste de comptes que vous masquez
     upload: Importer
   invites:
     delete: Désactiver
@@ -1428,7 +1452,7 @@ fr:
     relationships: Abonnements et abonné·e·s
     statuses_cleanup: Suppression automatique de messages
     strikes: Sanctions de modération
-    two_factor_authentication: Identification à deux facteurs
+    two_factor_authentication: Authentification à deux facteurs
     webauthn_authentication: Clés de sécurité
   statuses:
     attached:
@@ -1535,7 +1559,7 @@ fr:
       time: "%H:%M"
   two_factor_authentication:
     add: Ajouter
-    disable: Désactiver
+    disable: Désactiver l’A2F
     disabled_success: L'authentification à deux facteurs a été désactivée avec succès
     edit: Modifier
     enabled: L’authentification à deux facteurs est activée

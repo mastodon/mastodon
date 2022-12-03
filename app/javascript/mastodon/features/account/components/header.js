@@ -149,6 +149,17 @@ class Header extends ImmutablePureComponent {
     }
   }
 
+  handleShare = () => {
+    const { account } = this.props;
+
+    navigator.share({
+      text: `${titleFromAccount(account)}\n${account.get('note_plain')}`,
+      url: account.get('url'),
+    }).catch((e) => {
+      if (e.name !== 'AbortError') console.error(e);
+    });
+  }
+
   render () {
     const { account, hidden, intl, domain } = this.props;
     const { signedIn } = this.context.identity;

@@ -2,34 +2,308 @@
 fo:
   simple_form:
     hints:
+      account_alias:
+        acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta frá
+      account_migration:
+        acct: Upplýs brúkaranavn@navnaøki á kontuni, sum tú vilt flyta til
       account_warning_preset:
+        text: Tú kanst brúka sama syntaks sum við postum, sosum URL'ar, frámerki og brúkaranøvn
         title: Valfrítt. Ikki sjónligt fyri móttakaran
+      admin_account_action:
+        include_statuses: Brúkarin sær, hvørjir postar hava ført við sær umsjónaratgerðina ella ávaringina
+        send_email_notification: Brúkarin fer at móttaka eina frágreiðing um, hvat hendi við teirra kontu
+        text_html: Valfrítt. Tú kanst brúka sama syntaks sum í postum. Tú kann <a href="%{path}">leggja fastar ávaringarstillingar</a> fyri at spara tíð
+        type_html: Vel, hvat tú vil gera við <strong>%{acct}</strong>
+        types:
+          disable: Forða brúkaranum at brúka teirra kontu, men lat vera við at strika ella fjala teirra innihald.
+          none: Brúka hetta at senda eina ávaring til brúkaran, uttan at íverkseta nakra aðra atgerð.
+          sensitive: Flagga øll framtíðar miðlaviðfesti hjá brúkaranum sum viðkvom.
+          silence: Forða brúkaranum at posta alment, fjal teirra postar og fráboðanir frá fólki, sum ikki fylgja teimum.
+          suspend: Forða alt samskifti frá og til hesa kontuna og strika innihaldið hjá henni. Kann angrast innan 30 dagar.
+        warning_preset_id: Valfrítt. Tú kanst enn leggja serskildan tekst afturat undanstillingini
+      announcement:
+        all_day: Tá hetta er valt, verða einans dagfestingarnar í tíðarbilinum vístar
+        ends_at: Valfrítt. Kunngerðin verður sjálvvirkandi fjald, tá hendan tíðin er komin
+        scheduled_at: Lat vera blankt fyri at útgeva kunngerðina beinan vegin
+        starts_at: Valfrítt. Um so er, at kunngerðin hjá tær er avmarkað til eitt ávíst tíðarbil
+        text: Tú kanst brúka sama syntaks sum í postum. Gev gætur, hvussu nógv kunngerðin fyllir á skerminum hjá brúkaranum
+      appeal:
+        text: Tú kanst bara kæra eina atsókn eina ferð
       defaults:
+        autofollow: Fólk, sum tilmelda seg gjøgnum innbjóðingina, fylgja tær sjálvvirkandi
+        avatar: PNG, GIF ella JPG. Ikki størri enn %{size}. Verður minkað til %{dimensions}px
+        bot: Tekin til onnur, at kontan í høvuðsheitum ger sjálvvirkandi atgerðir og møguliga ikki verður yvirvakað
+        context: Ein ella fleiri kontekstir, har sum filtrið skal brúkast
+        current_password: Av trygdarávum vinarliga les inn loyniorðið hjá verandi kontu
+        current_username: Fyri at vátta, vinarliga les inn brúkaranavnið á verandi kontu
+        digest: Einans sent eftir eitt langt tíðarskeið við óvirkni og einans um tú hevur móttikið persónlig boð meðan tú var burtur
+        discoverable: Loyv kontu tíni at verða funnin av fremmandum gjøgnum viðmæli, rák og aðrar hentleikar
+        email: Tú fær sendandi ein váttanarteldupost
+        fields: Tú kanst hava upp til 4 lutir vístar sum eina talvu á vanga tínum
+        header: PNG, GIF ella JPG. Ikki størri enn %{size}. Verður minkað til %{dimensions}px
+        inbox_url: Avrita URL'in frá forsíðuni hjá reiðlagnum, sum tú vilt brúka
+        irreversible: Filtreraðir postar blíva burtur med alla, eisini sjálvt um filtrið seinni verður strikað
+        locale: Málið, sum verður brúkt í brúkaramarkamótinum, teldupostum og skumpiboðum
+        locked: Stýr hvør kann fylgja tær við at góðtaka ella vraka umbønir um at fylgja
         password: Skriva minst 8 tekin
+        phrase: Fer at samsvara óanæsð um tað er skrivað við lítlum ella stórum ella um postar hava innihaldsávaringar
+        scopes: Hvørji API nýtsluskipanin fær atgongd til. Velur tú eitt vav á hægsta stigi, so er ikki neyðugt at velja tey einstøku.
+        setting_aggregate_reblogs: Vís ikki nýggjar stimbranir fyri postar, sum nýliga eru stimbraðir (ávirkar einans stimbranir, ið eru móttiknar fyri kortum)
+        setting_always_send_emails: Vanliga vera teldupostfráboðanir ikki sendar, tá tú virkin brúkar Mastodon
+        setting_default_sensitive: Viðkvæmar miðlafílur eru fjaldar og kunnu avdúkast við einum klikki
+        setting_display_media_default: Fjal miðlafílur, sum eru merktar sum viðkvæmar
+        setting_display_media_hide_all: Fjal altíð miðlafílur
+        setting_display_media_show_all: Vís altíð miðlafílur
+        setting_hide_network: Tey, ið tú fylgir og tey, ið fylgja tær, verða ikki víst á tínum vanga
+        setting_noindex: Ávirkar almenna vangan og síður við postum hjá tær
+        setting_show_application: Nýtsluskipanin, sum tú brúkar at posta við, verður víst í nágreinligu vísingini av postum tínum
+        setting_use_blurhash: Gradientar eru grundaðir á litirnar av fjaldu myndunum, men grugga allar smálutir
+        setting_use_pending_items: Fjal tíðarlinjudagføringar aftan fyri eitt klikk heldur enn at skrulla tilføringina sjálvvirkandi
+        username: Brúkaranavnið hjá tær verður eindømi á %{domain}
+        whole_word: Tá lyklaorðið ella frasan einans hevur bókstavir og tøl, so verður hon einans nýtt, um tú samsvarar við alt orðið
+      domain_allow:
+        domain: Økisnavnið kann heinta dátur frá hesum ambætaranum og inngangandi dátur frá honum verða viðgjørdar og goymdar
+      email_domain_block:
+        domain: Hetta kann vera navnaøkið, sum sæst í teldupostinum ella í MX teigaraðnum, sum hann brúkar. Tey verða eftirkannaði í sambandi við tilmelding.
+        with_dns_records: Ein roynd at finna DNS teigarøðirnar hjá givna navnaøkinum verður gjørd, og úrslitini verða eisini blokeraði
       featured_tag:
         name: 'Her eru nakrir tvíkrossar, ið tú hevur brúkt í seinastuni:'
+      filters:
+        action: Vel, hvat skal henda, tá eitt uppslag svarar til filtrið
+        actions:
+          hide: Fjal filtreraða innihaldið fullkomiliga, ber seg at sum at tað ikki fanst
+          warn: Fjal filtreraða innihaldið aftan fyri eina ávaring, sum nevnir heitið á filtrinum
+      form_admin_settings:
+        backups_retention_period: Varðveit gjørd brúkarasøvn í ásetta talið av døgum.
+        bootstrap_timeline_accounts: Hesar kontur verða festar ovast á listanum yvir brúkarar, sum tey nýggju verða mælt til at fylgja.
+        closed_registrations_message: Víst tá stongt er fyri tilmeldingum
+        content_cache_retention_period: Postar frá øðrum ambætarum verða strikaðir eftir ásetta talið av døgum, tá hetta er sett til eitt positivt virði. Hetta kann møguliga ikki broytast.
+        custom_css: Tú kanst seta títt egna snið upp í net-útgávuni av Mastodon.
+        mascot: Skúgvar til viks myndprýðingina í framkomna vev-markamótinum.
+        media_cache_retention_period: Miðlafílur, sum eru tiknar niður, verða strikaðar eftir ásetta talið av døgum, tá hetta er sett til eitt positivt virði, og takast niður umaftur eftir ynski.
+        profile_directory: Vangaskráin listar allar brúkarar, sum hava valt at kunna uppdagast.
+        require_invite_text: Tá tilmeldingar krevja serskilda góðkenning, set so "Hví vil tú vera við?" tekstateigin til at vera kravdan heldur enn valfrían
+        site_contact_email: Hvussu fólk kunnu røkka teg við løgfrøðisligum og brúks-fyrispurningum.
+        site_contact_username: Hvussu fólk kunnu fáa fatur á tær á Mastodon.
+        site_extended_description: Fleiri upplýsingar, sum kunnu vera brúkiligir fyri vitjandi og tínar brúkarar. Kann brúka Markdown syntaks.
+        site_short_description: Ein stutt lýsing at eyðmerkja ambætaran hjá tær. Hvør rekur hann og hvønn er hann til?
+        site_terms: Brúka tín egna privatlívspolitikk ella lat vera blankt fyri at brúka tann sjálvsetta. Kann skrivast við Markdown syntaksi.
+        site_title: Hvussu fólk kunnu vísa til ambætaran hjá tær útyvir at brúka navnaøkið.
+        theme: Uppsetingareyðkenni, sum vitjandi, ið ikki eru ritaði inn, og nýggir brúkarar síggja.
+        thumbnail: Ein mynd í lutfallinum 2:1, sum verður víst saman við ambætaraupplýsingunum hjá tær.
+        timeline_preview: Vitjandi, sum eru ritaði út, fara at kunna blaða ígjøgnum nýggjastu almennu postarnar, sum eru tøkir á ambætaranum.
+        trendable_by_default: Loyp uppum serskilda eftirkannan av tilfari, sum er vælumtókt. Einstakir lutir kunnu framvegis strikast frá listum við vælumtóktum tilfari seinni.
+        trends: Listar við vælumtóktum tilfari vísa, hvørjir postar, frámerki og tíðindasøgur hava framburð á tínum ambætara.
+      form_challenge:
+        current_password: Tú ert á veg til eitt trygt øki
+      imports:
+        data: CSV fíla flutt út frá einum øðrum Mastodon ambætara
+      invite_request:
+        text: Hetta fer at hjálpa okkum at viðgera umsókn tína
+      ip_block:
+        comment: Valfrítt. Minst til, hví tú legði hesa regluna afturat.
+        expires_in: IP adressur eru avmarkað tilfeingi, tær eru summar tíðir deildar og ofta skifta tær hendur. Av hesi orsøk verður ikki viðmælt at hava óavmarkaðar IP-blokkar.
+        ip: Skriva eina IPv4 ella IPv6 adressu. Tú kanst blokera heilar røðir við at brúka CIDR syntaks. Ver varin, at tú ikki læsir teg sjálva/n úti!
+        severities:
+          no_access: Blokera atgongd til alt tilfeingi
+          sign_up_block: Nýggjar tilmeldingar verða ikki møguligar
+          sign_up_requires_approval: Nýggjar tilmeldingar fara at krevja tína góðkenning
+        severity: Vel, hvat skal henda við umbønum frá hesari IP adressuni
+      rule:
+        text: Lýs eina reglu ella eitt krav fyri brúkarar á hesum ambætaranum. Ger tað stutt og einfalt
+      sessions:
+        otp: 'Skriva tvey-faktor koduna frá telefon-appini ella brúka eina av tínum endurgerðskodum:'
+        webauthn: Er tað ein geymi, minst so til at seta hann í og, um neyðugt, pikka hann.
+      tag:
+        name: Tú kanst einans broyta millum stórar og smáar stavir, til dømis fyri at gera tað meira lesiligt
+      user:
+        chosen_languages: Tá hetta er valt, verða einans postar í valdum málum vístir á almennum tíðarlinjum
+        role: Leikluturin stýrir, hvørji loyvir brúkarin hevur
+      user_role:
+        color: Litur, sum leikluturin hevur í øllum brúkaramarkamótinum, sum RGB og upplýst sum sekstandatal
+        highlighted: Hetta ger, at leikluturin er alment sjónligur
+        name: Almenna navnið á leiklutinum, um leikluturin er settur at verða vístur sum eitt tignarmerki
+        permissions_as_keys: Brúkarar við hesum leiklutinum fara at fáa atgongd til...
+        position: Hægri leiklutur er avgerandi fyri loysn av ósemjum í ávísum støðum. Ávísar atgerðir kunnu einans verða gjørdar móti leiklutum, sum hava eina lægri raðfesting
+      webhook:
+        events: Vel hendingar at senda
+        url: Hvar hendingar verða sendar til
     labels:
+      account:
+        fields:
+          name: Spjaldur
+          value: Innihald
+      account_alias:
+        acct: Brúkaranavn á gomlu kontuni
+      account_migration:
+        acct: Brúkaranavn á nýggju kontuni
+      account_warning_preset:
+        text: Undansettur tekstur
+        title: Heiti
+      admin_account_action:
+        include_statuses: Tak meldaða postin við í teldupostin
+        send_email_notification: Boða brúkaranum frá í telduposti
+        text: Tillagað ávaring
+        type: Atgerð
+        types:
+          disable: Fryst
+          none: Send eina ávaring
+          sensitive: Viðkvæmt
+          silence: Mark
+          suspend: Fyribils ikki í gildi
+        warning_preset_id: Brúka eina ávaringar-undanstilling
+      announcement:
+        all_day: Tiltak allan dagin
+        ends_at: Hending liðug
+        scheduled_at: Vel nær útgevast skal
+        starts_at: Tiltak byrjar
+        text: Kunngerð
+      appeal:
+        text: Greið frá, hví hendan avgerðin átti at verið kolldømd
       defaults:
+        autofollow: Bjóða at fylgja tíni kontu
+        avatar: Eftirgjørdur skapningur
+        bot: Hetta er ein bot-konta
+        chosen_languages: Filtrera mál
+        confirm_new_password: Endurtak nýggja loyniorðið
+        confirm_password: Endurtak loyniorðið
+        context: Filtrera kontekstir
+        current_password: Núverandi loyniorð
         data: Dáta
+        discoverable: Skjót kontuna upp fyri øðrum
+        display_name: Navn, sum skal vísast
+        email: Teldubrævabústaður
+        expires_in: Endar aftan á
+        fields: Metadátur hjá vanganum
+        header: Høvd
+        honeypot: "%{label} (ikki fylla út)"
+        inbox_url: URL'ur hjá innbakkanum hjá reiðlagnum
+        irreversible: Strika heldur enn at fjala
+        locale: Markamótsmál
+        locked: Krev umbønir um at fylgja
+        max_uses: Ikki brúka oftari enn
+        new_password: Nýtt loyniorð
         note: Ævilýsing
+        otp_attempt: Tvey-faktor koda
+        password: Loyniorð
+        phrase: Lyklaorð ella frasa
+        setting_advanced_layout: Ger framkomið vevmarkamót virkið
+        setting_aggregate_reblogs: Bólka stimbranir í tíðarlinjum
+        setting_always_send_emails: Send altíð fráboðanir við telduposti
+        setting_auto_play_gif: Spæl teknimyndagjørdar GIFar sjálvvirkandi
+        setting_boost_modal: Vís váttanarmynd, áðrenn tú stimbrar postar
+        setting_crop_images: Sker myndir til lutfallið 16x9 í postum, sum ikki eru víðkaðir
+        setting_default_language: Mál, sum verður brúkt til postar
+        setting_default_privacy: Hvussu privatir eru postar?
+        setting_default_sensitive: Merk altíð miðlafílur sum viðkvæmar
+        setting_delete_modal: Vís váttanarmynd, áðrenn postar verða strikaðir
+        setting_disable_swiping: Ger sveipurørslur óvirknar
+        setting_display_media: Vístir miðlar
+        setting_display_media_default: Sjálvvirði
+        setting_display_media_hide_all: Fjal alt
+        setting_display_media_show_all: Vís alt
+        setting_expand_spoilers: Víðka altíð postar, sum eru merktir við innihaldsávaringum
+        setting_hide_network: Fjal sosiala grafin hjá tær
+        setting_noindex: Frábið tær indeksering á leitimaskinum
+        setting_reduce_motion: Minka um rørslu í teknimyndum
+        setting_show_application: Avdúka serskipan, sum verður brúkt til at senda postar
+        setting_system_font_ui: Brúka vanliga skriftaslagið hjá skipanini
+        setting_theme: Uppsetingareyðkenni
+        setting_trends: Vís dagsins rák
+        setting_unfollow_modal: Vís váttanarmynd, áðrenn tú gevst at fylgja onkrum
+        setting_use_blurhash: Vís litríkar gradientar fyri fjaldar miðlar
+        setting_use_pending_items: Spakulig støða
+        severity: Álvarssemi
+        sign_in_token_attempt: Trygdarkoda
+        title: Heiti
+        type: Slag av innflutningi
         username: Brúkaranavn
         username_or_email: Brúkaranavn ella teldupostur
+        whole_word: Heil orð
+      email_domain_block:
+        with_dns_records: Tak MX teigarøð og IP-adressur hjá navnaøkjum við
       featured_tag:
         name: Tvíkrossur
+      filters:
+        actions:
+          hide: Fjal fullkomiliga
+          warn: Fjal við eini ávaring
+      form_admin_settings:
+        backups_retention_period: Hvussu leingi verða brúkarasøvn goymd
+        bootstrap_timeline_accounts: Mæl altíð nýggjum brúkarum at fylgja hesar kontur
+        closed_registrations_message: Serskild boð, tá tað ikki er møguligt at tilmelda seg
+        content_cache_retention_period: Tíðarskeið, har innihaldgoymslan verður varðveitt
+        custom_css: Serskilt CSS
+        mascot: Serskildur maskottur (arvur)
+        media_cache_retention_period: Tíðarskeið, har miðlagoymslur verða varðveittar
+        profile_directory: Ger vangaskrá virkna
+        registrations_mode: Hvør kann tilmelda seg
+        require_invite_text: Krev eina orsøk at luttaka
+        show_domain_blocks: Vís navnaøkisblokeringar
+        show_domain_blocks_rationale: Vís hví navnaøki vóru blokeraði
+        site_contact_email: Samband umvegis teldupost
+        site_contact_username: Brúkaranavn hjá umsitara
+        site_extended_description: Víðkað lýsing
+        site_short_description: Ambætaralýsing
+        site_terms: Privatlívspolitikkur
+        site_title: Ambætaranavn
+        theme: Sjálvvalt uppsetingareyðkenni
+        thumbnail: Ambætarasmámynd
+        timeline_preview: Loyv teimum, sum ikki eru ritaði inn, atgongd til almennar tíðarlinjur
+        trendable_by_default: Loyv vælumtóktum tilfari uttan at viðgera tað fyrst
+        trends: Loyv ráki
+      interactions:
+        must_be_follower: Blokera fráboðanum frá teimum, sum ikki fylgja tær
+        must_be_following: Blokera fráboðanum frá teimum, tú ikki fylgir
+        must_be_following_dm: Blokera beinleiðis boð frá fólki, sum tú ikki fylgir
+      invite:
+        comment: Viðmerk
+      invite_request:
+        text: Hví vil tú vera við?
       ip_block:
+        comment: Viðmerking
         ip: IP
+        severities:
+          no_access: Blokera atgongd
+          sign_up_block: Blokera tilmeldingar
+          sign_up_requires_approval: Avmarka tilmeldingar
+        severity: Regla
       notification_emails:
+        appeal: Onkur kærir eina umsjónaravgerð
+        digest: Send ein teldupost við samandrátti
         favourite: Onkur dámdi títt uppslag
+        follow: Onkur fylgdi tær
         follow_request: Onkur biður um at fylgja tær
         mention: Onkur nevndi teg
+        pending_account: Nýggj konta krevur viðgerð
+        reblog: Onkur stimbraði postin hjá tær
+        report: Nýggj melding er send inn
+        trending_tag: Broytt rák skal kannast
+      rule:
+        text: Regla
       tag:
         listable: Loyva hesum tvíkrossið, at verða vístur í leitingum og uppskotum
         name: Tvíkrossur
+        trendable: Loyv hesum frámerki at síggjast undir rákum
         usable: Loyva uppsløgum at brúka hendan tvíkross
+      user:
+        role: Leiklutur
       user_role:
+        color: Litur á tignarmerki
+        highlighted: Vís leiklut sum tignarmerki á brúkaravangum
         name: Navn
+        permissions_as_keys: Loyvi
+        position: Raðfesting
+      webhook:
+        events: Virknar hendingar
+        url: Endapunkts-URLur
     'no': Nei
+    not_recommended: Ikki viðmælt
+    recommended: Viðmælt
     required:
       mark: "*"
       text: kravt
+    title:
+      sessions:
+        webauthn: Brúka ein av tínum trygdarlyklum at rita inn
     'yes': Ja

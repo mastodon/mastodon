@@ -386,9 +386,13 @@ sq:
         create: Krijoni bllokim
         hint: Bllokimi i përkatësisë nuk do të pengojë krijim zërash llogarie te baza e të dhënave, por do të aplikojë në mënyrë retroaktive dhe të vetvetishme metoda specifike moderimi mbi këto llogari.
         severity:
+          desc_html: "<strong>Kufizoje</strong> do t’i bëjë postimet prej llogarish në këtë përkatësi të padukshme për këtë që nuk i ndjek. <strong>Pezulloje</strong> do të heqë nga shërbyesi juaj krejt lëndën, media dhe të dhëna profili për llogaritë e kësaj përkatësie. Përdorni <strong>Asnjë</strong>, nëse doni thjesht të hidhni tej kartela media."
           noop: Asnjë
+          silence: Kufizoje
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      no_domain_block_selected: S’u ndryshuan bllokime përkatësish, ngaqë s’u përzgjodh ndonjë i tillë
+      not_permitted: S’keni leje të kryeni këtë veprim
       obfuscate: Errësoje emrin e përkatësisë
       obfuscate_hint: Errësoje pjesërisht emrin e përkatësisë te lista, nëse është aktivizuar publikimi i listës së kufizimeve të përkatësive
       private_comment: Koment privat
@@ -420,6 +424,18 @@ sq:
       resolved_dns_records_hint_html: Emri i përkatësisë jep u përket përkatësive vijuese MX, që janë përgjegjëset për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Jini i kujdesshëm të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
       title: Listë bllokimesh email-esh
+    export_domain_allows:
+      no_file: S’u përzgjodh kartelë
+    export_domain_blocks:
+      import:
+        description_html: Ju ndan një hap nga importimi i një liste bllokimesh përkatësish. Ju lutemi, shqyrtojeni këtë listë me shumë kujdes, sidomos nëse këtë listë s’e keni krijuar ju.
+        existing_relationships_warning: Marrëdhënie ekzistuese ndjekjeje
+        private_comment_description_html: 'Për t’ju ndihmuar të ndiqni se nga vijnë bllokimet e importuara, këto do të krijohen me komentin vijues privat: <q>%{comment}</q>'
+        private_comment_template: Importuar nga %{source} më %{date}
+        title: Importoni bllokime përkatësish
+      new:
+        title: Importoni bllokime përkatësish
+      no_file: S’u përzgjodh kartelë
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
       language: Për gjuhën
@@ -907,6 +923,7 @@ sq:
     warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
+    apply_for_account: Kërkoni një llogari
     change_password: Fjalëkalim
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
@@ -1151,6 +1168,7 @@ sq:
     invalid_markup: 'përmban elementë HTML të pavlefshëm: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
     modes:
       merge: Përzieji

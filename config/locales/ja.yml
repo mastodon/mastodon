@@ -223,7 +223,7 @@ ja:
         update_user_role: ロールを更新
       actions:
         approve_appeal_html: "%{name}さんが%{target}さんからの抗議を承認しました"
-        approve_user_html: "%{target}から登録された%{name}さんを承認しました"
+        approve_user_html: "%{name}さんが%{target}さんからの登録を承認しました"
         assigned_to_self_report_html: "%{name}さんが通報 %{target}を自身の担当に割り当てました"
         change_email_user_html: "%{name}さんが%{target}さんのメールアドレスを変更しました"
         change_role_user_html: "%{name}さんが%{target}さんのロールを変更しました"
@@ -260,7 +260,7 @@ ja:
         memorialize_account_html: "%{name}さんが%{target}さんを追悼アカウントページに登録しました"
         promote_user_html: "%{name}さんが%{target}さんを昇格しました"
         reject_appeal_html: "%{name}さんが%{target}からの抗議を却下しました"
-        reject_user_html: "%{target}から登録された%{name}さんを拒否しました"
+        reject_user_html: "%{name}さんが%{target}さんからの登録を拒否しました"
         remove_avatar_user_html: "%{name}さんが%{target}さんのアイコンを削除しました"
         reopen_report_html: "%{name}さんが通報 %{target}を未解決に戻しました"
         resend_user_html: "%{name} が %{target} の確認メールを再送信しました"
@@ -366,6 +366,8 @@ ja:
       add_new: 連合を許可
       created_msg: 連合を許可しました
       destroyed_msg: 連合許可を外しました
+      export: エクスポート
+      import: インポート
       undo: 連合許可を外す
     domain_blocks:
       add_new: ドメインブロックを追加
@@ -375,13 +377,18 @@ ja:
       edit: ドメインブロックを編集
       existing_domain_block: あなたは既に%{name}さんに厳しい制限を課しています。
       existing_domain_block_html: 既に%{name}に対して、より厳しい制限を課しています。先に<a href="%{unblock_url}">その制限を解除</a>する必要があります。
+      export: エクスポート
+      import: インポート
       new:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
           noop: なし
+          silence: 制限
           suspend: 停止
         title: 新規ドメインブロック
+      no_domain_block_selected: 何も選択されていないためドメインブロックを変更しませんでした
+      not_permitted: この操作を実行する権限がありません。
       obfuscate: ドメイン名を伏せ字にする
       obfuscate_hint: ドメインブロックのリストを公開している場合、ドメイン名の一部を伏せ字にします
       private_comment: コメント (非公開)
@@ -412,6 +419,16 @@ ja:
       resolved_dns_records_hint_html: ドメイン名はDNSでMXドメインに名前解決され、最終的にメールを受け付ける役割を担います。目に見えるドメイン名が異なっていても、同じMXドメインを使用するメールアドレスからのアカウント登録がブロックされます。<strong>主要なメールプロバイダーをブロックしないように注意して下さい。</strong>
       resolved_through_html: "%{domain}を通して解決しました"
       title: メールドメインブロック
+    export_domain_allows:
+      no_file: ファイルが選択されていません
+    export_domain_blocks:
+      import:
+        existing_relationships_warning: 既存のフォロー関係
+        private_comment_template: "%{source} から %{date} にインポートしました"
+        title: ドメインブロックをインポート
+      new:
+        title: ドメインブロックをインポート
+      no_file: ファイルが選択されていません
     follow_recommendations:
       description_html: "<strong>おすすめフォローは、新規ユーザーが興味のあるコンテンツをすばやく見つけるのに役立ちます。</strong>ユーザーが他のユーザーとの交流を十分にしていない場合、パーソナライズされたおすすめフォローを生成する代わりに、これらのアカウントが表示されます。最近のエンゲージメントが最も高いアカウントと、特定の言語のローカルフォロワー数が最も多いアカウントを組み合わせて､毎日再計算されます。"
       language: 言語
@@ -894,6 +911,7 @@ ja:
     warning: このデータは気をつけて取り扱ってください。他の人と共有しないでください！
     your_token: アクセストークン
   auth:
+    apply_for_account: アカウントのリクエスト
     change_password: パスワード
     delete_account: アカウントの削除
     delete_account_html: アカウントを削除したい場合、<a href="%{path}">こちら</a>から手続きが行えます。削除する前に、確認画面があります。
@@ -1131,6 +1149,7 @@ ja:
     invalid_markup: '無効なHTMLマークアップが含まれています: %{error}'
   imports:
     errors:
+      invalid_csv_file: '無効なCSVファイルです。エラー: %{error}'
       over_rows_processing_limit: "%{count}行以上"
     modes:
       merge: 統合

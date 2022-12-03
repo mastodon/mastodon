@@ -11,7 +11,7 @@ fi:
     followers:
       one: Seuraaja
       other: Seuraajat
-    following: Seuratut
+    following: Seuraaja
     instance_actor_flash: Tämä on virtuaalitili, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään yhdistämistarkoituksiin, eikä sitä tule keskeyttää.
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
@@ -373,6 +373,8 @@ fi:
       add_new: Salli liitto verkkotunnuksella
       created_msg: Verkkotunnus on onnistuneesti sallittu federaatiolle
       destroyed_msg: Verkkotunnus on estetty federaatiossa
+      export: Vie
+      import: Tuo
       undo: Estä liitto verkkotunnukselle
     domain_blocks:
       add_new: Lisää uusi
@@ -382,13 +384,19 @@ fi:
       edit: Muokkaa verkkotunnuksen estoa
       existing_domain_block: Olet jo asettanut tiukemmat rajoitukset %{name}.
       existing_domain_block_html: Olet jo asettanut %{name} tiukemmat rajat ja sinun täytyy <a href="%{unblock_url}">poistaa se</a> ensin.
+      export: Vie
+      import: Tuo
       new:
         create: Luo esto
         hint: Verkkotunnuksen esto ei estä tilien luomista ja lisäämistä tietokantaan, mutta se soveltaa näihin tileihin automaattisesti määrättyjä moderointitoimia tilin luomisen jälkeen.
         severity:
+          desc_html: "<strong>Rajoita</strong> -valinta piilottaa tämän verkkoalueen tilien julkaisut heiltä, jotka eivät seuraa kyseisiä tilejä. <strong>Lopeta</strong> poistaa kaiken sisällön, median ja profiilien tiedot tämän verkkotunnuksen tileiltä palvelimellasi. Käytä valintaa <strong>Ei mitään</strong>, jos haluat vain estää mediatiedostojen julkaisemisen."
           noop: Ei mitään
+          silence: Rajoita
           suspend: Jäähy
         title: Uusi verkkotunnuksen esto
+      no_domain_block_selected: Verkkoalue-estoihin ei tehty muutoksia, koska valintoja ei tehty
+      not_permitted: Nykyiset käyttöoikeutesi eivät kata tätä toimintoa
       obfuscate: Peitä verkkotunnuksen nimi
       obfuscate_hint: Peitä verkkotunnus osittain luettelossa, jos verkkotunnuksen rajoitusten luettelo on käytössä
       private_comment: Yksityinen kommentti
@@ -420,6 +428,20 @@ fi:
       resolved_dns_records_hint_html: Verkkotunnuksen nimi määräytyy seuraaviin MX-verkkotunnuksiin, jotka ovat viime kädessä vastuussa sähköpostin vastaanottamisesta. MX-verkkotunnuksen estäminen estää kirjautumisen mistä tahansa sähköpostiosoitteesta, joka käyttää samaa MX-verkkotunnusta, vaikka näkyvä verkkotunnuksen nimi olisikin erilainen. <strong>Varo estämästä suuria sähköpostin palveluntarjoajia.</strong>
       resolved_through_html: Ratkaistu %{domain} kautta
       title: Sähköpostiestolista
+    export_domain_allows:
+      new:
+        title: Tuo sallitut verkkoalueet
+      no_file: Yhtäkään tiedostoa ei ole valittu
+    export_domain_blocks:
+      import:
+        description_html: Olet tuomassa järjestelmään luetteloa verkkoalue-estoista. Tarkista luettelo huolella – etenkin, ellet ole itse tehnyt listausta.
+        existing_relationships_warning: Olemassa olevat seuraussuhteet
+        private_comment_description_html: 'Tuodun estolistan alkuperän selvillä pitämiseksi, lisätään tietojen yhteyteen seuraava yksityinen kommentti: <q>%{comment}</q>'
+        private_comment_template: Tuotu lähteestä %{source}, pvm %{date}
+        title: Tuo luettelo verkkoalue-estoista
+      new:
+        title: Tuo luettelo verkkoalue-estoista
+      no_file: Yhtäkään tiedostoa ei ole valittu
     follow_recommendations:
       description_html: "<strong>Suositusten noudattaminen auttaa uusia käyttäjiä löytämään nopeasti mielenkiintoista sisältöä.</strong>. Jos käyttäjä ei ole ollut vuorovaikutuksessa tarpeeksi muiden kanssa luodakseen henkilökohtaisia seuraajia, näitä muita tilejä suositellaan sen sijaan. Ne lasketaan uudelleen päivittäin yhdistelmästä tilejä, joilla on korkein viimeaikainen käyttö ja korkein paikallinen seuraajien määrä tietyllä kielellä."
       language: Kielelle
@@ -582,7 +604,7 @@ fi:
         title: Merkinnät
       notes_description_html: Tarkastele ja jätä merkintöjä muille valvojille ja itsellesi tulevaisuuteen
       quick_actions_description_html: 'Suorita nopea toiminto tai vieritä alas nähdäksesi raportoitu sisältö:'
-      remote_user_placeholder: etäkäyttäjä paikasta %{instance}
+      remote_user_placeholder: etäkäyttäjä instanssista %{instance}
       reopen: Avaa raportti uudestaan
       report: Raportti nro %{id}
       reported_account: Raportoitu tili
@@ -859,10 +881,10 @@ fi:
         suspend: keskeyttää heidän tilinsä
       body: "%{target} on valittanut valvojan päätöksestä %{action_taken_by} aika %{date}, joka oli %{type}. He kirjoittivat:"
       next_steps: Voit hyväksyä vetoomuksen ja kumota päätöksen tai jättää sen huomiotta.
-      subject: "%{username} valittaa valvojan päätöksestä, joka koskee %{instance}"
+      subject: "%{username} valittaa valvojan päätöksestä, joka koskee instanssia %{instance}"
     new_pending_account:
       body: Uuden tilin tiedot ovat alla. Voit hyväksyä tai hylätä tämän hakemuksen.
-      subject: Uusi tili tarkastettavana %{instance} (%{username})
+      subject: Uusi tili tarkastettavana instanssissa %{instance} (%{username})
     new_report:
       body: "%{reporter} on raportoinut kohteen %{target}"
       body_remote: Joku osoitteesta %{domain} on raportoinut kohteen %{target}
@@ -877,7 +899,7 @@ fi:
         no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä hashtageja.
         requirements: 'Mikä tahansa näistä ehdokkaista voisi ylittää #%{rank} hyväksytyn trendikkään hashtagin, joka on tällä hetkellä #%{lowest_tag_name} arvosanalla %{lowest_tag_score}.'
         title: Suositut hashtagit
-      subject: Uusia trendejä tarkistettavaksi %{instance}
+      subject: Uusia trendejä tarkistettavaksi instanssissa %{instance}
   aliases:
     add_new: Luo alias
     created_msg: Uusi alias luotiin onnistuneesti. Voit nyt aloittaa siirron vanhasta tilistä.
@@ -912,6 +934,7 @@ fi:
     warning: Säilytä tietoa hyvin. Älä milloinkaan jaa sitä muille!
     your_token: Pääsytunnus
   auth:
+    apply_for_account: Pyydä tiliä
     change_password: Salasana
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
@@ -1029,7 +1052,7 @@ fi:
       approve_appeal: Hyväksy valitus
       associated_report: Liittyvä raportti
       created_at: Päivätty
-      description_html: Nämä ovat tiliäsi koskevia toimia ja varoituksia, jotka %{instance} henkilökunta on lähettänyt sinulle.
+      description_html: Nämä ovat tiliäsi koskevia toimia ja varoituksia, jotka instanssin %{instance} henkilökunta on lähettänyt sinulle.
       recipient: Osoitettu
       reject_appeal: Hylkää valitus
       status: 'Viesti #%{id}'
@@ -1156,6 +1179,7 @@ fi:
     invalid_markup: 'sisältää virheellisen HTML-merkinnän: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Epäkelpo CSV-tiedosto. Virhe: %{error}'
       over_rows_processing_limit: sisältää yli %{count} riviä
     modes:
       merge: Yhdistä
@@ -1335,16 +1359,16 @@ fi:
       limit_reached: Erilaisten reaktioiden raja saavutettu
       unrecognized_emoji: ei ole tunnistettu emoji
   relationships:
-    activity: Tilin tapahtumat
-    dormant: Ei aktiivinen
+    activity: Tilin aktiivisuus
+    dormant: Horroksessa
     follow_selected_followers: Seuraa valittuja seuraajia
     followers: Seuraajat
     following: Seuratut
-    invited: Kutsuttu
+    invited: Kutsutut
     last_active: Viimeksi aktiivinen
     most_recent: Viimeisin
-    moved: Muuttaneet
-    mutual: Molemminpuoleinen
+    moved: Muuttanut
+    mutual: Molemmat
     primary: Ensisijainen
     relationship: Suhde
     remove_selected_domains: Poista kaikki seuraajat valituista verkkotunnuksista
@@ -1425,7 +1449,7 @@ fi:
     notifications: Ilmoitukset
     preferences: Ominaisuudet
     profile: Profiili
-    relationships: Seuratut ja seuraajat
+    relationships: Seurattavat ja seuraajat
     statuses_cleanup: Automaattinen viestin poisto
     strikes: Valvojan varoitukset
     two_factor_authentication: Kaksivaiheinen todentaminen
@@ -1571,14 +1595,14 @@ fi:
       title: Uusi kirjautuminen
     warning:
       appeal: Lähetä valitus
-      appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta henkilökunnalta %{instance}.
+      appeal_description: Jos uskot, että tämä on virhe, voit hakea muutosta instanssin %{instance} henkilökunnalta.
       categories:
         spam: Roskaposti
         violation: Sisältö rikkoo seuraavia yhteisön sääntöjä
       explanation:
-        delete_statuses: Joitakin viesteistäsi on havaittu rikkovan yhtä tai useampaa yhteisön sääntöä ja %{instance} valvojat ovat poistaneet ne.
+        delete_statuses: Joitakin viesteistäsi on havaittu rikkovan yhtä tai useampaa yhteisön sääntöä ja instanssin %{instance} valvojat ovat poistaneet ne.
         disable: Et voi enää käyttää tiliäsi, mutta profiilisi ja muut tiedot pysyvät muuttumattomina. Voit pyytää varmuuskopiota tiedoistasi, vaihtaa tilin asetuksia tai poistaa tilisi.
-        mark_statuses_as_sensitive: Valvojat %{instance} ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että ihmisten täytyy napauttaa viestiä ennen kuin esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi kun julkaiset tulevaisuudessa.
+        mark_statuses_as_sensitive: Instanssin %{instance} valvojat ovat merkinneet osan julkaisuistasi arkaluonteisiksi. Tämä tarkoittaa sitä, että ihmisten täytyy napauttaa viestiä ennen kuin esikatselu näytetään. Voit merkitä median itse arkaluonteiseksi kun julkaiset tulevaisuudessa.
         sensitive: Tästä lähtien kaikki ladatut mediatiedostot merkitään arkaluonteisiksi ja piilotetaan napsautusvaroituksen taakse.
         silence: Voit edelleen käyttää tiliäsi, mutta vain sinua jo seuraavat ihmiset näkevät viestisi tällä palvelimella ja sinut voidaan sulkea pois erilaisista hakuominaisuuksista. Toiset voivat kuitenkin edelleen seurata sinua manuaalisesti.
         suspend: Et voi enää käyttää tiliäsi ja profiilisi ja muut tiedot eivät ole enää käytettävissä. Voit silti kirjautua sisään pyytääksesi varmuuskopiota tiedoistasi, kunnes tiedot on poistettu kokonaan noin 30 päivän kuluttua. Säilytämme joitakin perustietoja, jotka estävät sinua kiertämästä keskeyttämistä.
@@ -1605,7 +1629,7 @@ fi:
       edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat ennen kuin he saavat seurata sinua.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
-      final_step: 'Aloita julkaiseminen! Jopa ilman seuraajia, muut voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla tai hashtageilla. Haluat ehkä esitellä itsesi #introductions hashtag.'
+      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja hashtagien avulla. Kannattaa myös esittäytyä! Käytä hashtagia #esittely.'
       full_handle: Koko käyttäjätunnuksesi
       full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
       subject: Tervetuloa Mastodoniin
@@ -1617,7 +1641,7 @@ fi:
     seamless_external_login: Olet kirjautunut ulkoisen palvelun kautta, joten salasana- ja sähköpostiasetukset eivät ole käytettävissä.
     signed_in_as: 'Kirjautunut henkilönä:'
   verification:
-    explanation_html: 'Voit <strong>vahvistaa itsesi profiilisi metatietojen linkkien omistajaksi.</strong>. Tätä varten linkitetyn verkkosivuston on sisällettävä linkki takaisin Mastodon -profiiliisi. Palauttavalla linkillä <strong>täytyy</strong> olla <code>rel="minä"</code> tuntomerkki. Linkin tekstisisällöllä ei ole väliä. Tässä on esimerkki:'
+    explanation_html: 'Voit <strong>vahvistaa itsesi profiilisi metatietojen linkkien omistajaksi.</strong>. Tätä varten linkitetyn verkkosivuston on sisällettävä linkki takaisin Mastodon -profiiliisi. Palauttavalla linkillä <strong>täytyy</strong> olla <code>rel="me"</code> tuntomerkki. Linkin tekstisisällöllä ei ole väliä. Tässä on esimerkki:'
     verification: Vahvistus
   webauthn_credentials:
     add: Lisää uusi suojausavain

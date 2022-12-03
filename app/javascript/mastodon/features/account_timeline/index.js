@@ -26,7 +26,13 @@ const emptyList = ImmutableList();
 const mapStateToProps = (state, { params: { acct, id, tagged }, withReplies = false }) => {
   const accountId = id || state.getIn(['accounts_map', normalizeForLookup(acct)]);
 
-  if (!accountId) {
+  if (accountId === null) {
+    return {
+      isLoading: false,
+      isAccount: false,
+      statusIds: emptyList,
+    };
+  } else if (!accountId) {
     return {
       isLoading: true,
       statusIds: emptyList,
