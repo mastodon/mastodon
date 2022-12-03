@@ -109,4 +109,30 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       end
     end
   end
+
+  context 'discovering many subdomains in a short timeframe' do
+    before do
+      stub_const 'ActivityPub::ProcessAccountService::SUBDOMAINS_RATELIMIT', 5
+    end
+
+    let(:subject) do
+      8.times do |i|
+        domain = "test#{i}.testdomain.com"
+        json = {
+          id: "https://#{domain}/users/1",
+          type: 'Actor',
+          inbox: "https://#{domain}/inbox",
+        }.with_indifferent_access
+        described_class.new.call('alice', domain, json)
+      end
+    end
+
+    it 'creates at least some accounts' do
+      expect { subject }.to change { Account.remote.count }.by_at_least(2)
+    end
+
+    it 'creates no more account than the limit allows' do
+      expect { subject }.to change { Account.remote.count }.by_at_most(5)
+    end
+  end
 end
