@@ -6,7 +6,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import ColumnHeader from 'mastodon/components/column_header';
-import LoadingIndicator from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
 import Column from 'mastodon/features/ui/components/column';
 import { Helmet } from 'react-helmet';
@@ -34,11 +33,10 @@ class FollowedTags extends ImmutablePureComponent {
     hashtags: ImmutablePropTypes.list,
     isLoading: PropTypes.bool,
     hasMore: PropTypes.bool,
+    multiColumn: PropTypes.bool,
   };
 
-  constructor(props) {
-    super(props);
-
+  componentDidMount() {
     this.props.dispatch(fetchFollowedHashtags());
   };
 
@@ -47,15 +45,7 @@ class FollowedTags extends ImmutablePureComponent {
   }, 300, { leading: true });
 
   render () {
-    const { intl, hashtags, isLoading, hasMore } = this.props;
-
-    if (isLoading) {
-      return (
-        <Column>
-          <LoadingIndicator />
-        </Column>
-      );
-    }
+    const { intl, hashtags, isLoading, hasMore, multiColumn } = this.props;
 
     const emptyMessage = <FormattedMessage id='empty_column.followed_tags' defaultMessage='You have not followed any hashtags yet. When you do, they will show up here.' />;
 
