@@ -531,6 +531,10 @@ ms:
           other: "%{count} catatan"
       action_log: Log audit
       action_taken_by: Tindakan diambil oleh
+      actions:
+        delete_description_html: Hantaran yang dilaporkan akan dihapuskan dan pelanggaran itu akan direkodkan bagi membantu anda menguruskan pelanggaran pada akaun yang sama di masa akan datang.
+        mark_as_sensitive_description_html: Media di dalam hantaran yang dilaporkan akan ditandakan sebagai sensitif dan pelanggaran itu akan direkodkan bagi membantu anda menguruskan pelanggaran pada akaun yang sama di masa akan datang.
+        resolve_description_html: Tiada tindakan akan diambil terhadap akaun yang dilaporkan, tiada pelanggaran direkodkan dan laporan akan ditutup.
       add_to_report: Tambahkan lebih banyak pada laporan
       are_you_sure: Adakah anda pasti?
       assign_to_self: Menugaskan kepada saya
@@ -740,6 +744,7 @@ ms:
     security: Keselamatan
     status:
       account_status: Status akaun
+      view_strikes: Lihat pelanggaran yang lepas terhadap akaun anda
     use_security_key: Gunakan kunci keselamatan
   authorize_follow:
     follow: Ikut
@@ -759,6 +764,7 @@ ms:
     strikes:
       action_taken: Tindakan diambil
       appeal: Rayu
+      appeal_approved: Rayuan pelanggaran ini telah berjaya dan tidak lagi sah
       appeal_rejected: Rayuan ini telah ditolak
       appeal_submitted_at: Rayuan dihantar
       appeals:
@@ -772,6 +778,7 @@ ms:
         none: Amaran
       your_appeal_approved: Rayuan anda telah diluluskan
       your_appeal_pending: Anda telah menghantar rayuan
+      your_appeal_rejected: Rayuan anda telah ditolak
   errors:
     '400': Permintaan yang anda serahkan tidak sah atau salah bentuk.
     '403': Anda tidak mempunyai kebenaran untuk melihat halaman ini.
@@ -892,6 +899,7 @@ ms:
     profile: Profil
     relationships: Ikutan dan pengikut
     statuses_cleanup: Pemadaman hantaran automatik
+    strikes: Pelanggaran penyederhanaan
     two_factor_authentication: Pengesahan Dua Faktor
     webauthn_authentication: Kunci keselamatan
   statuses:
@@ -929,6 +937,9 @@ ms:
   stream_entries:
     pinned: Hantaran disemat
     sensitive_content: Kandungan sensitif
+  strikes:
+    errors:
+      too_late: Rayuan pelanggaran ini sudah terlalu lambat
   two_factor_authentication:
     add: Tambah
     disable: Nyahdayakan 2FA
@@ -938,8 +949,10 @@ ms:
   user_mailer:
     appeal_approved:
       action: Pergi ke akaun anda
+      explanation: Rayuan pelanggaran yang dikemukakan pada %{appeal_date} terhadap akaun anda pada %{strike_date} telah diluluskan. Akaun anda kini dalam kedudukan yang baik.
       title: Rayuan diluluskan
     appeal_rejected:
+      explanation: Rayuan pelanggaran yang dikemukakan pada %{appeal_date} terhadap akaun anda pada %{strike_date} telah ditolak.
       title: Rayuan ditolak
     suspicious_sign_in:
       title: Daftar masuk baru
