@@ -6,6 +6,8 @@ class ActivityPub::ProcessAccountService < BaseService
   include Redisable
   include Lockable
 
+  SUBDOMAINS_RATELIMIT = 10
+
   # Should be called with confirmed valid JSON
   # and WebFinger-resolved username and domain
   def call(username, domain, json, options = {})
@@ -15,7 +17,7 @@ class ActivityPub::ProcessAccountService < BaseService
     @json        = json
     @uri         = @json['id']
     @username    = username
-    @domain      = domain
+    @domain      = TagManager.instance.normalize_domain(domain)
     @collections = {}
 
     with_lock("process_account:#{@uri}") do
@@ -25,7 +27,14 @@ class ActivityPub::ProcessAccountService < BaseService
       @old_protocol       = @account&.protocol
       @suspension_changed = false
 
-      create_account if @account.nil?
+      if @account.nil?
+        with_redis do |redis|
+          return nil if redis.pfcount("unique_subdomains_for:#{PublicSuffix.domain(@domain, ignore_private: true)}") >= SUBDOMAINS_RATELIMIT
+        end
+
+        create_account
+      end
+
       update_account
       process_tags
 
