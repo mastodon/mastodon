@@ -9,11 +9,9 @@ import {
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 
 const initialState = ImmutableMap({
-  followed_tags: ImmutableMap({
-    items: ImmutableList(),
-    isLoading: false,
-    next: null,
-  }),
+  items: ImmutableList(),
+  isLoading: false,
+  next: null,
 });
 
 export default function followed_tags(state = initialState, action) {

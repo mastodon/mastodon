@@ -60,18 +60,21 @@ class FollowedTags extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.followed_tags' defaultMessage='You have not followed any hashtags yet. When you do, they will show up here.' />;
 
     return (
-      <Column>
+      <Column bindToDocument={!multiColumn}>
         <ColumnHeader
           icon='hashtag'
           title={intl.formatMessage(messages.heading)}
           showBackButton
+          multiColumn={multiColumn}
         />
 
         <ScrollableList
           scrollKey='followed_tags'
           emptyMessage={emptyMessage}
           hasMore={hasMore}
+          isLoading={isLoading}
           onLoadMore={this.handleLoadMore}
+          bindToDocument={!multiColumn}
         >
           {hashtags.map((hashtag) => (
             <Hashtag
