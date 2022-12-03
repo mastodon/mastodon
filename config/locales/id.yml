@@ -36,14 +36,14 @@ id:
       avatar: Avatar
       by_domain: Domian
       change_email:
-        changed_msg: כתובת דוא"ל שונתה בהצלחה !
+        changed_msg: Email berhasil diubah!
         current_email: Email saat ini
         label: Ganti email
         new_email: Email baru
         submit: Ganti email
         title: Ganti email untuk %{username}
       change_role:
-        changed_msg: תפקיד שונה בהצלחה !
+        changed_msg: Peran berhasil diubah!
         label: Ubah peran
         no_role: Tidak ada peran
         title: Ganti peran untuk %{username}
@@ -366,6 +366,8 @@ id:
       add_new: Daftar putihkan domain
       created_msg: Domain berhasil masuk daftar putih
       destroyed_msg: Domain dihapus dari daftar putih
+      export: Ekspor
+      import: Impor
       undo: Hapus dari daftar putih
     domain_blocks:
       add_new: Tambah
@@ -375,6 +377,8 @@ id:
       edit: Edit blok domain
       existing_domain_block: Anda sudah menerapkan batasan ketat terhadap %{name}.
       existing_domain_block_html: Anda telah menerapkan batasan yang lebih ketat pada %{name}, Anda harus <a href="%{unblock_url}">membuka blokirnya</a> lebih dulu.
+      export: Ekspor
+      import: Impor
       new:
         create: Buat pemblokiran
         hint: Pemblokiran domain tidak akan menghentikan pembuatan akun dalam database, tapi kami akan memberikan moderasi otomatis pada akun-akun tersebut.
@@ -384,6 +388,8 @@ id:
           silence: Batas
           suspend: Suspen
         title: Pemblokiran domain baru
+      no_domain_block_selected: Tidak ada blok domain yang diubah karena tidak ada yang dipilih
+      not_permitted: Anda tidak diperbolehkan untuk melakukan aksi ini
       obfuscate: Nama domain kabur
       obfuscate_hint: Mengaburkan nama domain sebagian di daftar jika pengiklanan batasan daftar domain diaktifkan
       private_comment: Komentar pribadi
@@ -414,6 +420,20 @@ id:
       resolved_dns_records_hint_html: Pembaruan nama domain mengikuti domain MX, yang bertanggung jawab menerima email. Memblokir domain MX akan memblokir pendaftaran dari alamat email apapun yang menggunakan domain MX sama, meskipun nama domainnya beda. <strong>Hati-hati untuk tidak memblokir layanan email besar.</strong>
       resolved_through_html: Diperbarui melalui %{domain}
       title: Domain email terblokir
+    export_domain_allows:
+      new:
+        title: Impor izin domain
+      no_file: Tidak ada file dipilih
+    export_domain_blocks:
+      import:
+        description_html: Anda akan mengimpor daftar blok domain. Harap tinjau daftar ini dengan sangat hati-hati, terutama jika Anda sendiri tidak menulis daftar ini.
+        existing_relationships_warning: Hubungan tindak lanjut yang ada
+        private_comment_description_html: 'Untuk membantu Anda melacak asal blok yang diimpor, blok yang diimpor akan dibuat dengan komentar pribadi berikut: <q>%{comment}</q>'
+        private_comment_template: Diimpor dari %{source} pada %{date}
+        title: Impor blok domain
+      new:
+        title: Impor blok domain
+      no_file: Tidak ada file dipilih
     follow_recommendations:
       description_html: <strong>"Rekomendasi untuk diikuti" membantu pengguna baru untuk secara cepat menemukan konten yang menarik</strong>. Ketika pengguna belum cukup berinteraksi dengan lainnya sehingga belum memunculkan rekomendasi, akun-akun ini akan direkomendasikan. Mereka dihitung ulang secara harian dari campuran akun-akun dengan keterlibatan tertinggi baru-baru ini dan jumlah pengikut lokal tertinggi untuk bahasa tertentu.
       language: Untuk bahasa
@@ -595,6 +615,7 @@ id:
         other: "%{count} pengguna"
       categories:
         administration: Administrasi
+        devops: DevOps
         invites: Undangan
         moderation: Moderasi
         special: Khusus
@@ -644,6 +665,7 @@ id:
         view_audit_log_description: Memungkinkan pengguna untuk melihat riwayat tindakan administratif di server
         view_dashboard: Lihat Dasbor
         view_dashboard_description: Memungkinkan pengguna untuk mengakses dasbor dan berbagai metrik
+        view_devops: DevOps
         view_devops_description: Memungkinkan pengguna untuk mengakses dasbor Sidekiq dan pgHero
       title: Peran
     rules:
@@ -1132,6 +1154,7 @@ id:
     invalid_markup: 'berisi markup HTML yang tidak valid: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Berkas CVS tidak sah. Kesalahan: %{error}'
       over_rows_processing_limit: berisi lebih dari %{count} baris
     modes:
       merge: Gabung
@@ -1345,6 +1368,7 @@ id:
     browser: Peramban
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1358,6 +1382,7 @@ id:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Sesi sekarang
     description: "%{browser} di %{platform}"
@@ -1366,6 +1391,8 @@ id:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

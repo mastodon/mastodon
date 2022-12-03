@@ -1,1 +1,115 @@
+---
 sco:
+  devise:
+    confirmations:
+      confirmed: Yer email address haes been successfully confirmt.
+      send_instructions: Ye'll get a email tellin ye hou tae confirm yer email address in a wee minute. Please tak a luik in yer mince folder if ye didnae get this email.
+      send_paranoid_instructions: Gin yer email address exists in wir database, ye'll get a email tellin ye hou tae mak siccar yer email address in a wee minute. Please check yer mince folder if ye didnae get this email.
+    failure:
+      already_authenticated: Ye'r signed in awriddy.
+      inactive: Yer accoont isnae activatit yit.
+      invalid: No a valid %{authentication_keys} or passwird.
+      last_attempt: Ye'v juist the ae mair attempt afore yer accoont is snibbed.
+      locked: Yer accoont is snibbed.
+      not_found_in_database: No a valid %{authentication_keys} or passwird.
+      pending: Yer accoont is stull gettin luiked at the noo.
+      timeout: Yer session is expirit. Please sign in again fit tae gae forret.
+      unauthenticated: Ye'r needin tae sign in or sign up afore gaein forret.
+      unconfirmed: Ye hae tae confirm yer email address afore gaun forret.
+    mailer:
+      confirmation_instructions:
+        action: Verify yer email address
+        action_with_app: Mak siccar an return tae %{app}
+        explanation: Ye'v makkit a accoont on %{host} wi this email address. Ye'r ae click awa fae activatin it. If this wisnae yersel, please dinnae bother aboot this email.
+        explanation_when_pending: Ye applied fir a invite tae %{host} wi this email address. Ance ye mak siccar yer email address, we wull luik ower yer application. Ye kin log in tae chynge yer details or fir tae delete yer accoont, but ye cannae uise maist o the functions tae yer accoont is appruived. Gin yer application isnae taen on yer data wull get deletit, sae nae mair action wull be needit fae ye. Gin this wisnae yersel, please dinnae bother aboot this email.
+        extra_html: Please tak a deek at <a href="%{terms_path}">the rules o the server tae</a> an <a href="%{policy_path}">oor terms o service</a>.
+        subject: 'Mastodon: Confirmation instructions fir %{instance}'
+        title: Verify yer email address
+      email_changed:
+        explanation: 'The email address fir yer accoont is gettin chynged tae:'
+        extra: Gin ye didnae chynge yer email, it's mibbie the case thit somebody haes got access tae yer accoont. Please chynge yer passwird richt noo or get in touch wi the server admin if ye'r snibbed oot yer accoont.
+        subject: 'Mastodon: Email chynged'
+        title: New email address
+      password_change:
+        explanation: The passwird fir yer accoont haes been chynged.
+        extra: Gin ye didnae chynge yer passwird, it's mibbie the case thit somebody haes got access tae yer accoont. Please chynge yer passwird richt noo or get in touch wi the server admin if ye'r snibbed oot yer accoont.
+        subject: 'Mastodon: Passwird chynged'
+        title: Passwird chynged
+      reconfirmation_instructions:
+        explanation: Mak siccar the new address fir tae chynge yer email.
+        extra: Gin this chynge wisnae stertit bi yersel, please dingie this email. The email address fir the Mastodon accoont wullnae chynge tae ye chap the link abuin.
+        subject: 'Mastodon: Mak siccar email fir %{instance}'
+        title: Mak siccar email address
+      reset_password_instructions:
+        action: Chynge passwird
+        explanation: Ye speirt fir a new passwird fir yer accoont.
+        extra: Gin ye didnae speir fir this, please dingie this email. Yer passwird wullnae chynge tae ye chap the link abuin an mak a new ane.
+        subject: 'Mastodon: Reset passwird instructions'
+        title: Passwird reset
+      two_factor_disabled:
+        explanation: Twa factor authentication fir yer accoont haes been turnt aff. Login is noo possible uisin ainly a email address an passwird.
+        subject: 'Mastodon: Twa-factor authentication turnt aff'
+        title: 2FA turnt aff
+      two_factor_enabled:
+        explanation: Twa-factor authentication haes been turnt on fir yer accoont. A token gien bi the pairt TOTP app wull be needit fir login.
+        subject: 'Mastodon: Twa-factor authentication turnt on'
+        title: 2FA turnt on
+      two_factor_recovery_codes_changed:
+        explanation: The last recovery codes hae been pit in the bucket an new anes makkit.
+        subject: 'Mastodon: Twa-factor recovery codes re-jigged'
+        title: 2FA recovery codes chynged
+      unlock_instructions:
+        subject: 'Mastodon: Unsnib instructions'
+      webauthn_credential:
+        added:
+          explanation: The follaein security key haes been addit tae yer accoont
+          subject: 'Mastodon: New security key'
+          title: A new security key haes been addit
+        deleted:
+          explanation: The follaein security key haes been deletit fae yer accoont
+          subject: 'Mastodon: Security key deletit'
+          title: Ane o yer security keys haes been deletit
+      webauthn_disabled:
+        explanation: Authentication wi security keys haes been turnt aff on yer accoont. Login is noo possible uisin ainly the token generatit bi the pairt TOTP app.
+        subject: 'Mastodon: Authentication wi security keys turnt aff'
+        title: Security keys turnt aff
+      webauthn_enabled:
+        explanation: Security key authentication haes been turnt on fir yer accoont. Yer security key kin noo be uised fir login.
+        subject: 'Mastodon: Security key authentication turnt on'
+        title: Security keys turnt on
+    omniauth_callbacks:
+      failure: Cuidnae authenticate ye fae %{kind} acause “%{reason}”.
+      success: Successfully authenticatit fae %{kind} accoont.
+    passwords:
+      no_token: Ye cannae access this page athoot comin in fae a passwird reset email. Gin ye dae come fae a passwird reset email, please mak siccar ye uised the hail URL sent ye.
+      send_instructions: Gin yer email address exists in wir database, ye'll get a passwird recovery link in yer email in a wee minute. Please check yer mince folder if ye didnae get this email.
+      send_paranoid_instructions: Gin yer email address exists in wir database, ye'll get a passwird recovery link in yer email in a wee minute. Please check yer mince folder if ye didnae get this email.
+      updated: Yer passwird haes been chynged successfully. Ye'r noo signed in.
+      updated_not_active: Yer passwird haes been chynged successfully.
+    registrations:
+      destroyed: Cheerio! Yer accoont haes been successfully shut doon. We howp fir tae see ye again suin.
+      signed_up: Hullo! Ye'v signed up successfully.
+      signed_up_but_inactive: Ye'v signed up successfully. Hou an iver, we cuidnae sign ye in acause yer accoont isnae activatit yit.
+      signed_up_but_locked: Ye'v signed up successfully. Hou an iver, we cuidnae sign ye in acause yer accoont is snibbed.
+      signed_up_but_pending: A email wi a confirmation link haes been sent tae yer email address. Efter ye chap on the link, we'll luik ower yer application. Ye'll be sent a note gin it's approved.
+      signed_up_but_unconfirmed: A message wi a confirmation link haes been sent tae yer email address. Please follae the link fir tae activate yer accoont. Please check yer mince folder if ye didnae get this email.
+      update_needs_confirmation: Ye updatit yer accoont successfully, but we need tae verify yer new email address. Please tak a deek at yer email an follae the confirm link fir tae confirm yer new email address. Please tak a deek at yer mince folder if ye didnae get this email.
+      updated: Yer accoont haes been updatit successfully.
+    sessions:
+      already_signed_out: Signed oot successfully.
+      signed_in: Signed in successfully.
+      signed_out: Signed oot successfully.
+    unlocks:
+      send_instructions: Ye'll get a email wi instructions fir hou tae unsnib yer accoont in a wee minute. Please tak a deek at yer mince folder if ye didnae get this email.
+      send_paranoid_instructions: Gin yer accoont exists, ye'll get a email wi instructions fir hou tae unsnib it in a wee minute. Please tak a deek at yer mince folder if ye didnae get this email.
+      unlocked: Yer accoont haes been unsnibbed successfully. Please sign in fir tae gae forret.
+  errors:
+    messages:
+      already_confirmed: wis awriddy confirmt, please try signing in
+      confirmation_period_expired: needs tae be confirmt athin %{period}, please request a new ane
+      expired: haes expirt, please request a new ane
+      not_found: no fun
+      not_locked: wisnae snibbed
+      not_saved:
+        one: '1 error prohibitit this %{resource} fae bein saved:'
+        other: "%{count} errors prohibitit this %{resource} fae bein saved:"

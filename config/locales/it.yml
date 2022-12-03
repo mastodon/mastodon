@@ -1,7 +1,7 @@
 ---
 it:
   about:
-    about_mastodon_html: 'Il social network del futuro: niente pubblicità, niente controllo da parte di qualche azienda privata, design etico e decentralizzazione! Con Mastodon il proprietario dei tuoi dati sei tu!'
+    about_mastodon_html: 'Il social network del futuro: Nessuna pubblicità, zero sorveglianza azienale, design etico e decentralizzazione! Sii il proprietario dei tuoi dati, con Mastodon!'
     contact_missing: Non impostato
     contact_unavailable: N/D
     hosted_on: Mastodon ospitato su %{domain}
@@ -11,13 +11,13 @@ it:
     followers:
       one: Seguace
       other: Seguaci
-    following: Segui
-    instance_actor_flash: Questo account è un attore virtuale usato per rappresentare il server stesso e non un singolo utente. Viene utilizzato per scopi federativi e non dovrebbe essere sospeso.
+    following: Seguiti
+    instance_actor_flash: Questo profilo è un attore virtuale, utilizzato per rappresentare il server stesso e non un singolo utente. È utilizzato per scopi federativi e non dovrebbe esser sospeso.
     last_active: ultima attività
     link_verified_on: La proprietà di questo link è stata controllata il %{date}
     nothing_here: Qui non c'è nulla!
     pin_errors:
-      following: Devi gia seguire la persona che vuoi promuovere
+      following: Devi già seguire la persona che desideri promuovere
     posts:
       one: Toot
       other: Toot
@@ -25,219 +25,219 @@ it:
   admin:
     account_actions:
       action: Esegui azione
-      title: Esegui azione di moderazione su %{acct}
+      title: Esegui l'azione di moderazione su %{acct}
     account_moderation_notes:
-      create: Lascia nota
-      created_msg: Nota di moderazione creata con successo!
-      destroyed_msg: Nota di moderazione distrutta con successo!
+      create: Lascia una nota
+      created_msg: Nota di moderazione creata correttamente!
+      destroyed_msg: Nota di moderazione distrutta correttamente!
     accounts:
-      add_email_domain_block: Inserisci il dominio email nella blacklist
+      add_email_domain_block: Blocca il dominio dell'email
       approve: Approva
-      approved_msg: Richiesta di registrazione di %{username} approvata
+      approved_msg: Richiesta d'iscrizione di %{username} approvata correttamente
       are_you_sure: Sei sicuro?
-      avatar: Immagine di profilo
+      avatar: Avatar
       by_domain: Dominio
       change_email:
-        changed_msg: Email modificata!
-        current_email: Email attuale
-        label: Cambia email
+        changed_msg: Email modificata correttamente!
+        current_email: Email corrente
+        label: Cambia l'email
         new_email: Nuova email
-        submit: Cambia email
-        title: Cambia email per %{username}
+        submit: Cambia l'email
+        title: Cambia l'email per %{username}
       change_role:
         changed_msg: Ruolo modificato correttamente!
-        label: Cambia ruolo
+        label: Cambia il ruolo
         no_role: Nessun ruolo
-        title: Cambia ruolo per %{username}
+        title: Cambia il ruolo per %{username}
       confirm: Conferma
       confirmed: Confermato
       confirming: Confermando
       custom: Personalizzato
-      delete: Elimina dati
-      deleted: Cancellato
-      demote: Declassa
-      destroyed_msg: I dati di %{username} sono ora in coda per essere eliminati tra poco
-      disable: Disabilita
-      disable_sign_in_token_auth: Disabilita autenticazione con token email
-      disable_two_factor_authentication: Disabilita l'autenticazione a due fattori
-      disabled: Disabilitato
-      display_name: Nome visualizzato
+      delete: Elimina i dati
+      deleted: Eliminato
+      demote: Retrocedi
+      destroyed_msg: I dati di %{username} sono ora accodati per l'imminente eliminazione
+      disable: Congela
+      disable_sign_in_token_auth: Disabilita l'autenticazione con token via email
+      disable_two_factor_authentication: Disabilita A2F
+      disabled: Congelato
+      display_name: Nome mostrato
       domain: Dominio
       edit: Modifica
       email: Email
-      email_status: Stato email
-      enable: Abilita
-      enable_sign_in_token_auth: Abilita autenticazione con token email
+      email_status: Stato dell'email
+      enable: Scongela
+      enable_sign_in_token_auth: Abilita l'autenticazione con token via email
       enabled: Abilitato
-      enabled_msg: L'account di %{username} è stato scongelato
-      followers: Follower
-      follows: Segue
+      enabled_msg: Il profilo di %{username} è stato scongelato correttamente
+      followers: Seguaci
+      follows: Seguiti
       header: Intestazione
-      inbox_url: URL inbox
-      invite_request_text: Motivi per l'iscrizione
+      inbox_url: URL casella
+      invite_request_text: Motivi d'iscrizione
       invited_by: Invitato da
       ip: IP
-      joined: Iscritto da
+      joined: Iscritto il
       location:
         all: Tutto
         local: Locale
         remote: Remoto
-        title: Luogo
-      login_status: Stato login
-      media_attachments: Media allegati
+        title: Posizione
+      login_status: Stato d'accesso
+      media_attachments: Allegati multimediali
       memorialize: Trasforma in memoriam
-      memorialized: Memorializzato
-      memorialized_msg: Hai trasformato %{username} in un account commemorativo
+      memorialized: Commemorato
+      memorialized_msg: "%{username} trasformato correttamente in un profilo commemorativo"
       moderation:
         active: Attivo
         all: Tutto
-        pending: In attesa
+        pending: In sospeso
         silenced: Limitato
-        suspended: Sospesi
+        suspended: Sospeso
         title: Moderazione
       moderation_notes: Note di moderazione
-      most_recent_activity: Attività più recenti
+      most_recent_activity: Attività più recente
       most_recent_ip: IP più recente
-      no_account_selected: Nessun account è stato modificato visto che non ne è stato selezionato nessuno
+      no_account_selected: Nessun profilo è stato modificato, poiché non ne è stato selezionato nessuno
       no_limits_imposed: Nessun limite imposto
       no_role_assigned: Nessun ruolo assegnato
-      not_subscribed: Non sottoscritto
-      pending: Revisioni in attesa
+      not_subscribed: Non iscritto
+      pending: Revisione in sospeso
       perform_full_suspension: Sospendi
-      previous_strikes: Sanzioni precedenti
+      previous_strikes: Provvedimenti precedenti
       previous_strikes_description_html:
-        one: Questo account ha <strong>una</strong> sanzione.
-        other: Questo account ha <strong>%{count}</strong> violazioni.
+        one: Questo profilo ha <strong>un</strong> provvedimento.
+        other: Questo profilo ha <strong>%{count}</strong> provvedimenti.
       promote: Promuovi
       protocol: Protocollo
       public: Pubblico
-      push_subscription_expires: Sottoscrizione PuSH scaduta
-      redownload: Aggiorna avatar
-      redownloaded_msg: Il profilo di %{username} è stato aggiornato dall'origine
+      push_subscription_expires: L'iscrizione PuSH scade il
+      redownload: Aggiorna profilo
+      redownloaded_msg: Il profilo di %{username} è stato aggiornato correttamente dall'origine
       reject: Rifiuta
-      rejected_msg: Richiesta di registrazione di %{username} rifiutata
-      remove_avatar: Rimuovi avatar
-      remove_header: Rimuovi intestazione
-      removed_avatar_msg: Immagine dell'avatar di %{username} eliminata
-      removed_header_msg: Immagine di intestazione di %{username} eliminata
+      rejected_msg: Richiesta d'iscrizione di %{username} rifiutata correttamente
+      remove_avatar: Rimuovi l'avatar
+      remove_header: Rimuovi l'intestazione
+      removed_avatar_msg: Immagine dell'avatar di %{username} rimossa correttamente
+      removed_header_msg: Immagine d'intestazione di %{username} rimossa correttamente
       resend_confirmation:
         already_confirmed: Questo utente è già confermato
-        send: Reinvia email di conferma
-        success: Email di conferma inviata con successo!
-      reset: Reimposta
-      reset_password: Reimposta password
-      resubscribe: Riscriversi
+        send: Reinvia l'email di conferma
+        success: Email di conferma inviata correttamente!
+      reset: Ripristina
+      reset_password: Ripristina la password
+      resubscribe: Reiscriviti
       role: Ruolo
       search: Cerca
-      search_same_email_domain: Altri utenti con lo stesso dominio e-mail
+      search_same_email_domain: Altri utenti con lo stesso dominio email
       search_same_ip: Altri utenti con lo stesso IP
       security_measures:
         only_password: Solo password
-        password_and_2fa: Password e autenticazione a due fattori
+        password_and_2fa: Password e A2F
       sensitive: Sensibile
-      sensitized: contrassegnato come sensibile
-      shared_inbox_url: URL Inbox Condiviso
+      sensitized: Contrassegnato come sensibile
+      shared_inbox_url: URL casella condiviso
       show:
-        created_reports: Rapporti creati da questo account
-        targeted_reports: Rapporti che riguardano questo account
-      silence: Silenzia
-      silenced: Silenziato
-      statuses: Stati
-      strikes: Sanzioni precedenti
-      subscribe: Sottoscrivi
+        created_reports: Rapporti creati
+        targeted_reports: Segnalato da altri
+      silence: Limita
+      silenced: Limitato
+      statuses: Toot
+      strikes: Provvedimenti precedenti
+      subscribe: Iscriviti
       suspend: Sospendi
       suspended: Sospeso
-      suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile. È possibile annullare la sospensione dell'account per renderlo utilizzabile, ma non recupererà alcuno dei dati precedenti.
-      suspension_reversible_hint_html: L'account è stato sospeso e i dati saranno completamente eliminati il %{date}. Fino ad allora, l'account può essere ripristinato senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
-      title: Account
+      suspension_irreversible: I dati di questo profilo sono stati eliminati irreversibilmente. Puoi annullare la sospensione del profilo per renderlo utilizzabile, ma non recuperà alcun dato precedente.
+      suspension_reversible_hint_html: Il profilo è stato sospeso e i dati saranno rimossi completamente il %{date}. Fino ad allora, il profilo è ripristinabile senza alcun effetto negativo. Se desideri rimuovere immediatamente tutti i dati del profilo, puoi farlo di seguito.
+      title: Profili
       unblock_email: Sblocca indirizzo email
-      unblocked_email_msg: Indirizzo email di %{username} sbloccato
+      unblocked_email_msg: Indirizzo email di %{username} sbloccato correttamente
       unconfirmed_email: Email non confermata
       undo_sensitized: Annulla sensibile
-      undo_silenced: Rimuovi silenzia
-      undo_suspension: Rimuovi sospensione
-      unsilenced_msg: Sono stati tolti i limiti dell'account di %{username}
-      unsubscribe: Annulla l'iscrizione
-      unsuspended_msg: È stata eliminata la sospensione dell'account di %{username}
+      undo_silenced: Annulla limitazione
+      undo_suspension: Annulla sospensione
+      unsilenced_msg: Limitazione del profilo di %{username} annullata correttamente
+      unsubscribe: Disiscriviti
+      unsuspended_msg: Sospensione del profilo di %{username} annullata correttamente
       username: Nome utente
-      view_domain: Visualizza riepilogo per dominio
-      warn: Avverti
+      view_domain: Visualizza il riepilogo per il dominio
+      warn: Avvisa
       web: Web
-      whitelisted: Nella whitelist
+      whitelisted: Consentito per la federazione
     action_logs:
       action_types:
         approve_appeal: Approva Ricorso
         approve_user: Approva Utente
-        assigned_to_self_report: Assegna report
-        change_email_user: Cambia l'e-mail per l'utente
-        change_role_user: Cambia il Ruolo dell'Utente
-        confirm_user: Conferma utente
-        create_account_warning: Crea avviso
-        create_announcement: Crea un annuncio
-        create_canonical_email_block: Crea Blocco E-mail
-        create_custom_emoji: Crea emoji personalizzata
-        create_domain_allow: Crea permesso di dominio
-        create_domain_block: Crea blocco di dominio
-        create_email_domain_block: Crea blocco dominio e-mail
+        assigned_to_self_report: Assegna Segnalazione
+        change_email_user: Cambia l'Email per l'Utente
+        change_role_user: Cambia il Ruolo per l'Utente
+        confirm_user: Conferma l'Utente
+        create_account_warning: Crea Avviso
+        create_announcement: Crea Annuncio
+        create_canonical_email_block: Crea Blocco Email
+        create_custom_emoji: Crea Emoji Personalizzata
+        create_domain_allow: Crea Dominio Consentito
+        create_domain_block: Crea Blocco del Dominio
+        create_email_domain_block: Crea Blocco del Dominio Email
         create_ip_block: Crea regola IP
-        create_unavailable_domain: Crea dominio non disponibile
+        create_unavailable_domain: Crea Dominio Non Disponibile
         create_user_role: Crea Ruolo
-        demote_user: Degrada l'utente
-        destroy_announcement: Cancella annuncio
-        destroy_canonical_email_block: Elimina Blocco E-mail
-        destroy_custom_emoji: Cancella emoji personalizzata
-        destroy_domain_allow: Cancella permesso di dominio
-        destroy_domain_block: Cancella blocco di dominio
-        destroy_email_domain_block: Cancella blocco dominio e-mail
-        destroy_instance: Ripulisci dominio
+        demote_user: Retrocedi Utente
+        destroy_announcement: Elimina Annuncio
+        destroy_canonical_email_block: Elimina Blocco Email
+        destroy_custom_emoji: Elimina Emoji Personalizzata
+        destroy_domain_allow: Elimina Dominio Consentito
+        destroy_domain_block: Elimina Blocco del Dominio
+        destroy_email_domain_block: Elimina Blocco del Dominio Email
+        destroy_instance: Elimina Dominio
         destroy_ip_block: Elimina regola IP
-        destroy_status: Cancella stato
-        destroy_unavailable_domain: Elimina dominio non disponibile
+        destroy_status: Elimina Toot
+        destroy_unavailable_domain: Elimina Dominio Non Disponibile
         destroy_user_role: Distruggi Ruolo
-        disable_2fa_user: Disabilita l'autenticazione a due fattori
-        disable_custom_emoji: Disabilita emoji personalizzata
-        disable_sign_in_token_auth_user: Disabilita autenticazione con codice via email per l'utente
-        disable_user: Disabilita utente
-        enable_custom_emoji: Abilita emoji personalizzata
-        enable_sign_in_token_auth_user: Abilita autenticazione con codice via email per l'utente
-        enable_user: Abilita utente
-        memorialize_account: Trasforma in account commemorativo
-        promote_user: Promuovi utente
-        reject_appeal: Respingi Ricorso
+        disable_2fa_user: Disabilita A2F
+        disable_custom_emoji: Disabilita Emoji Personalizzata
+        disable_sign_in_token_auth_user: Disabilita l'Autenticazione con Token via Email per l'Utente
+        disable_user: Disabilita l'Utente
+        enable_custom_emoji: Abilita Emoji Personalizzata
+        enable_sign_in_token_auth_user: Abilita l'Autenticazione con Token via Email per l'Utente
+        enable_user: Abilita l'Utente
+        memorialize_account: Commemora Profilo
+        promote_user: Promuovi Utente
+        reject_appeal: Rifiuta Ricorso
         reject_user: Rifiuta Utente
-        remove_avatar_user: Elimina avatar
-        reopen_report: Riapri report
-        resend_user: Invia di nuovo l'email di conferma
-        reset_password_user: Reimposta password
-        resolve_report: Risolvi report
-        sensitive_account: Contrassegna il media nel tuo profilo come sensibile
-        silence_account: Silenzia account
-        suspend_account: Sospendi account
-        unassigned_report: Disassegna report
-        unblock_email_account: Sblocca indirizzo email
-        unsensitive_account: Deseleziona il media nel tuo profilo come sensibile
-        unsilence_account: De-silenzia account
-        unsuspend_account: Annulla la sospensione dell'account
-        update_announcement: Aggiorna annuncio
-        update_custom_emoji: Aggiorna emoji personalizzata
-        update_domain_block: Aggiorna blocco di dominio
+        remove_avatar_user: Rimuovi Avatar
+        reopen_report: Riapri Segnalazione
+        resend_user: Reinvia Email di Conferma
+        reset_password_user: Ripristina la Password
+        resolve_report: Risolvi Segnalazione
+        sensitive_account: Forza Profilo come Sensibile
+        silence_account: Limita Profilo
+        suspend_account: Sospendi Profilo
+        unassigned_report: Annulla Assegnazione Rapporto
+        unblock_email_account: Sblocca l'indirizzo email
+        unsensitive_account: Annulla Forza Profilo come Sensibile
+        unsilence_account: Annulla Limitazione Profilo
+        unsuspend_account: Annulla la Sospensione del Profilo
+        update_announcement: Aggiorna Annuncio
+        update_custom_emoji: Aggiorna Emoji Personalizzata
+        update_domain_block: Aggiorna Blocco del Dominio
         update_ip_block: Aggiorna regola IP
-        update_status: Aggiorna stato
+        update_status: Aggiorna Toot
         update_user_role: Aggiorna Ruolo
       actions:
-        approve_appeal_html: "%{name} ha approvato il ricorso contro la decisione di moderazione da %{target}"
-        approve_user_html: "%{name} ha approvato la registrazione da %{target}"
-        assigned_to_self_report_html: "%{name} ha assegnato il rapporto %{target} a se stesso"
-        change_email_user_html: "%{name} ha cambiato l'indirizzo e-mail dell'utente %{target}"
+        approve_appeal_html: "%{name} ha approvato il ricorso sulla decisione di moderazione da %{target}"
+        approve_user_html: "%{name} ha approvato l'iscrizione da %{target}"
+        assigned_to_self_report_html: "%{name} ha assegnato a se stesso la segnalazione %{target}"
+        change_email_user_html: "%{name} ha modificato l'indirizzo email dell'utente %{target}"
         change_role_user_html: "%{name} ha cambiato il ruolo di %{target}"
-        confirm_user_html: "%{name} ha confermato l'indirizzo e-mail dell'utente %{target}"
+        confirm_user_html: "%{name} ha confermato l'indirizzo email dell'utente %{target}"
         create_account_warning_html: "%{name} ha inviato un avviso a %{target}"
         create_announcement_html: "%{name} ha creato un nuovo annuncio %{target}"
-        create_canonical_email_block_html: "%{name} ha bloccato l'e-mail con l'hash %{target}"
+        create_canonical_email_block_html: "%{name} ha bloccato l'email con l'hash %{target}"
         create_custom_emoji_html: "%{name} ha caricato una nuova emoji %{target}"
-        create_domain_allow_html: "%{name} ha consentito alla federazione col dominio %{target}"
-        create_domain_block_html: "%{name} ha bloccato dominio %{target}"
-        create_email_domain_block_html: "%{name} ha bloccato dominio e-mail %{target}"
+        create_domain_allow_html: "%{name} ha consentito la federazione con il dominio %{target}"
+        create_domain_block_html: "%{name} ha bloccato il dominio %{target}"
+        create_email_domain_block_html: "%{name} ha bloccato il dominio email %{target}"
         create_ip_block_html: "%{name} ha creato una regola per l'IP %{target}"
         create_unavailable_domain_html: "%{name} ha interrotto la consegna al dominio %{target}"
         create_user_role_html: "%{name} ha creato il ruolo %{target}"
@@ -245,31 +245,31 @@ it:
         destroy_announcement_html: "%{name} ha eliminato l'annuncio %{target}"
         destroy_canonical_email_block_html: "%{name} ha sbloccato l'email con l'hash %{target}"
         destroy_custom_emoji_html: "%{name} ha eliminato l'emoji %{target}"
-        destroy_domain_allow_html: "%{name} ha negato la federazione al dominio %{target}"
-        destroy_domain_block_html: "%{name} ha sbloccato dominio %{target}"
-        destroy_email_domain_block_html: "%{name} ha sbloccato il dominio e-mail %{target}"
-        destroy_instance_html: "%{name} ha ripulito il dominio %{target}"
+        destroy_domain_allow_html: "%{name} non ha consentito la federazione con il dominio %{target}"
+        destroy_domain_block_html: "%{name} ha sbloccato il dominio %{target}"
+        destroy_email_domain_block_html: "%{name} ha sbloccato il dominio email %{target}"
+        destroy_instance_html: "%{name} ha eliminato il dominio %{target}"
         destroy_ip_block_html: "%{name} ha eliminato la regola per l'IP %{target}"
-        destroy_status_html: "%{name} ha eliminato lo status di %{target}"
+        destroy_status_html: "%{name} ha rimosso il toot di %{target}"
         destroy_unavailable_domain_html: "%{name} ha ripreso la consegna al dominio %{target}"
         destroy_user_role_html: "%{name} ha eliminato il ruolo %{target}"
         disable_2fa_user_html: "%{name} ha disabilitato l'autenticazione a due fattori per l'utente %{target}"
         disable_custom_emoji_html: "%{name} ha disabilitato emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha disabilitato l'autenticazione con codice via email per %{target}"
-        disable_user_html: "%{name} ha disabilitato il login per l'utente %{target}"
-        enable_custom_emoji_html: "%{name} ha abilitato emoji %{target}"
+        disable_user_html: "%{name} ha disabilitato l'accesso per l'utente %{target}"
+        enable_custom_emoji_html: "%{name} ha abilitato l'emoji %{target}"
         enable_sign_in_token_auth_user_html: "%{name} ha abilitato l'autenticazione con codice via email per %{target}"
-        enable_user_html: "%{name} ha abilitato il login per l'utente %{target}"
-        memorialize_account_html: "%{name} ha trasformato l'account di %{target} in una pagina in memoriam"
+        enable_user_html: "%{name} ha abilitato l'accesso per l'utente %{target}"
+        memorialize_account_html: "%{name} ha trasformato il profilo di %{target} in una pagina commemorativa"
         promote_user_html: "%{name} ha promosso l'utente %{target}"
-        reject_appeal_html: "%{name} ha respinto il ricorso contro la decisione di moderazione da %{target}"
-        reject_user_html: "%{name} ha rifiutato la registrazione da %{target}"
-        remove_avatar_user_html: "%{name} ha rimosso l'immagine profilo di %{target}"
-        reopen_report_html: "%{name} ha riaperto il rapporto %{target}"
-        resend_user_html: "%{name} inviata nuovamente l'email di conferma per %{target}"
-        reset_password_user_html: "%{name} ha reimpostato la password dell'utente %{target}"
-        resolve_report_html: "%{name} ha risolto il rapporto %{target}"
-        sensitive_account_html: "%{name} ha segnato il media di %{target} come sensibile"
+        reject_appeal_html: "%{name} ha rifiutato il ricorso alla decisione di moderazione da %{target}"
+        reject_user_html: "%{name} ha rifiutato l'iscrizione da %{target}"
+        remove_avatar_user_html: "%{name} ha rimosso l'avatar di %{target}"
+        reopen_report_html: "%{name} ha riaperto la segnalazione %{target}"
+        resend_user_html: "%{name} ha reinviato l'email di conferma per %{target}"
+        reset_password_user_html: "%{name} ha ripristinato la password dell'utente %{target}"
+        resolve_report_html: "%{name} ha risolto la segnalazione %{target}"
+        sensitive_account_html: "%{name} ha contrassegnato il media di %{target} come sensibile"
         silence_account_html: "%{name} ha silenziato l'account di %{target}"
         suspend_account_html: "%{name} ha sospeso l'account di %{target}"
         unassigned_report_html: "%{name} ha disassegnato il rapporto %{target}"
@@ -373,6 +373,8 @@ it:
       add_new: Dominio nella whitelist
       created_msg: Il dominio è stato inserito nella whitelist
       destroyed_msg: Il dominio è stato eliminato dalla whitelist
+      export: Esportare
+      import: Importare
       undo: Elimina dalla whitelist
     domain_blocks:
       add_new: Aggiungi nuovo
@@ -382,13 +384,19 @@ it:
       edit: Modifica blocco di dominio
       existing_domain_block: Hai già imposto limiti più severi a %{name}.
       existing_domain_block_html: Hai già impostato limitazioni più stringenti su %{name}, dovresti <a href="%{unblock_url}">sbloccarlo</a> prima.
+      export: Esportare
+      import: Importare
       new:
         create: Crea blocco
         hint: Il blocco dominio non previene la creazione di utenti nel database, ma applicherà automaticamente e retroattivamente metodi di moderazione specifici su quegli account.
         severity:
+          desc_html: "<strong>Limita</strong> renderà invisibili i post degli account di questo dominio a chiunque non li stia seguendo. <strong>Sospendi</strong> rimuoverà tutti i contenuti, gli elementi multimediali e i dati del profilo per gli account di questo dominio dal tuo server. Utilizza <strong>Nessuno</strong> se desideri solo rifiutare i file multimediali."
           noop: Nessuno
+          silence: Limita
           suspend: Sospendi
         title: Nuovo blocco dominio
+      no_domain_block_selected: Nessun blocco di dominio è stato modificato perché non ne è stato selezionato nessuno
+      not_permitted: Non hai il permesso di eseguire questa azione
       obfuscate: Nascondi nome di dominio
       obfuscate_hint: Nascondere parzialmente il nome di dominio, se è abilitata la visualizzazione pubblica dell'elenco delle limitazioni di dominio
       private_comment: Commento privato
@@ -420,6 +428,20 @@ it:
       resolved_dns_records_hint_html: Il nome di dominio si risolve ai seguenti domini MX, che sono in ultima analisi responsabili per l'accettazione di e-mail. Il blocco di un dominio MX bloccherà le iscrizioni da qualsiasi indirizzo e-mail che utilizza lo stesso dominio MX, anche se il nome di dominio visibile è diverso. <strong>Fai attenzione a non bloccare i principali provider di posta elettronica.</strong>
       resolved_through_html: Risolto attraverso %{domain}
       title: Lista nera email
+    export_domain_allows:
+      new:
+        title: Importare i permessi di dominio
+      no_file: Nessun file selezionato
+    export_domain_blocks:
+      import:
+        description_html: Stai per importare un elenco di blocchi di domini. Si prega di rivedere questo elenco con molta attenzione, soprattutto se non si è creato personalmente questo elenco.
+        existing_relationships_warning: Relazioni di connessioni esistenti
+        private_comment_description_html: 'Per aiutarti a tenere traccia della provenienza dei blocchi importati, i blocchi importati verranno creati con il seguente commento privato: <q>%{comment}</q>'
+        private_comment_template: Importato da %{source} il %{date}
+        title: Importare i blocchi di dominio
+      new:
+        title: Importare i blocchi di dominio
+      no_file: Nessun file selezionato
     follow_recommendations:
       description_html: "<strong>I consigli su chi seguire aiutano i nuovi utenti a trovare rapidamente dei contenuti interessanti</strong>. Quando un utente non ha interagito abbastanza con altri per avere dei consigli personalizzati, vengono consigliati questi account. Sono ricalcolati ogni giorno da un misto di account con le più alte interazioni recenti e con il maggior numero di seguaci locali per una data lingua."
       language: Per lingua
@@ -914,6 +936,7 @@ it:
     warning: Fa' molta attenzione con questi dati. Non fornirli mai a nessun altro!
     your_token: Il tuo token di accesso
   auth:
+    apply_for_account: Richiedi un account
     change_password: Password
     delete_account: Elimina account
     delete_account_html: Se desideri cancellare il tuo account, puoi <a href="%{path}">farlo qui</a>. Ti sarà chiesta conferma.
@@ -1158,6 +1181,7 @@ it:
     invalid_markup: 'contiene markup HTML non valido: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'File CSV non valido. Errore: %{error}'
       over_rows_processing_limit: contiene più di %{count} righe
     modes:
       merge: Fondi
@@ -1565,7 +1589,7 @@ it:
       subject: Il tuo archivio è pronto per essere scaricato
       title: Esportazione archivio
     suspicious_sign_in:
-      change_password: cambia la tua password
+      change_password: cambiare la tua password
       details: 'Questi sono i dettagli del tentativo di accesso:'
       explanation: Abbiamo rilevato un accesso al tuo account da un nuovo indirizzo IP.
       further_actions_html: Se non eri tu, ti consigliamo di %{action} subito e di abilitare l'autenticazione a due fattori per mantenere il tuo account al sicuro.
@@ -1606,7 +1630,7 @@ it:
       edit_profile_action: Configura profilo
       edit_profile_step: Puoi personalizzare il tuo profilo caricando un'immagine del profilo, cambiare il tuo nome e altro ancora. Puoi scegliere di esaminare i nuovi seguaci prima che loro siano autorizzati a seguirti.
       explanation: Ecco alcuni suggerimenti per iniziare
-      final_action: Inizia a postare
+      final_action: Inizia a pubblicare
       final_step: 'Inizia a pubblicare! Anche senza seguaci, i tuoi post pubblici possono essere visti da altri, ad esempio sulla timeline locale o negli hashtag. Potresti presentarti con l''hashtag #presentazione.'
       full_handle: Il tuo nome utente completo
       full_handle_hint: Questo è ciò che diresti ai tuoi amici in modo che possano seguirti o contattarti da un altro server.
