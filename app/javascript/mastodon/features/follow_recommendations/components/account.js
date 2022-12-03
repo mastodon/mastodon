@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { makeGetAccount } from 'mastodon/selectors';
 import Avatar from 'mastodon/components/avatar';
 import DisplayName from 'mastodon/components/display_name';
-import { Link } from 'react-router-dom';
+import Permalink from 'mastodon/components/permalink';
 import IconButton from 'mastodon/components/icon_button';
 import { injectIntl, defineMessages } from 'react-intl';
 import { followAccount, unfollowAccount } from 'mastodon/actions/accounts';
@@ -66,13 +66,13 @@ class Account extends ImmutablePureComponent {
     return (
       <div className='account follow-recommendations-account'>
         <div className='account__wrapper'>
-          <Link className='account__display-name account__display-name--with-note' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+          <Permalink className='account__display-name account__display-name--with-note' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
             <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
 
             <DisplayName account={account} />
 
             <div className='account__note'>{getFirstSentence(account.get('note_plain'))}</div>
-          </Link>
+          </Permalink>
 
           <div className='account__relationship'>
             {button}

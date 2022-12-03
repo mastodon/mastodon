@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Link } from 'react-router-dom';
+import Permalink from '../../../components/permalink';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
 import IconButton from '../../../components/icon_button';
@@ -30,10 +30,10 @@ class AccountAuthorize extends ImmutablePureComponent {
     return (
       <div className='account-authorize__wrapper'>
         <div className='account-authorize'>
-          <Link to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
+          <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} className='detailed-status__display-name'>
             <div className='account-authorize__avatar'><Avatar account={account} size={48} /></div>
             <DisplayName account={account} />
-          </Link>
+          </Permalink>
 
           <div className='account__header__content translate' dangerouslySetInnerHTML={content} />
         </div>

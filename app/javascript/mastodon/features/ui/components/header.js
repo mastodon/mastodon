@@ -4,6 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { registrationsOpen, me } from 'mastodon/initial_state';
 import Avatar from 'mastodon/components/avatar';
+import Permalink from 'mastodon/components/permalink';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Icon from 'mastodon/components/icon';
@@ -11,9 +12,9 @@ import Icon from 'mastodon/components/icon';
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
 }))(({ account }) => (
-  <Link to={`/@${account.get('acct')}`} title={account.get('acct')}>
+  <Permalink href={account.get('url')} to={`/@${account.get('acct')}`} title={account.get('acct')}>
     <Avatar account={account} size={35} />
-  </Link>
+  </Permalink>
 ));
 
 export default @withRouter
