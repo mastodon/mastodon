@@ -1,4 +1,3 @@
----
 sr:
   simple_form:
     hints:
@@ -48,10 +47,20 @@ sr:
           no_access: Блокирај приступ свим ресурсима
           sign_up_block: Нове пријаве неће бити могуће
           sign_up_requires_approval: Нове пријаве ће захтевати твоје одобрење
+        severity: Изабери шта ће се десити са захтевима са ове IP адресе
+      rule:
+        text: Опиши правило или захтев за кориснике на овом серверу. Потруди се да опис буде кратак и једноставан
       sessions:
         otp: 'Унесите двофакторски код са Вашег телефона или користите један од кодова за опоравак:'
       user:
         chosen_languages: Када означите, трубе у изабраним језицима ће се приказати на јавној временској линији
+        role: Улога контролише које дозволе корисник има
+      user_role:
+        highlighted: Ово чини улогу јавно видљивом
+        permissions_as_keys: Корисници са овом улогом ће имати приступ...
+      webhook:
+        events: Изаберите догађаје за слање
+        url: Где ће се догађаји слати
     labels:
       account:
         fields:
@@ -59,6 +68,7 @@ sr:
           value: Садржај
       account_warning_preset:
         text: Текст пресета
+        title: Наслов
       admin_account_action:
         send_email_notification: Обавести корисника преко е-поште
         text: Прилагођено упозорење
@@ -66,9 +76,15 @@ sr:
         types:
           disable: Онемогући
           none: Не ради ништа
+          sensitive: Осетљиво
           silence: Утишај
           suspend: Обуставите и неповратно избришите податке о налогу
         warning_preset_id: Користи упозоравајући пресет
+      announcement:
+        all_day: Целодневни догађај
+        ends_at: Крај догађаја
+        starts_at: Почетак догађаја
+        text: Најава
       defaults:
         autofollow: Позовите да прати ваш налог
         avatar: Аватар
@@ -114,11 +130,19 @@ sr:
         setting_theme: Тема сајта
         setting_unfollow_modal: Прикажи дијалог за потврду пре него што отпратите некога
         severity: Оштрина
+        title: Наслов
         type: Тип увоза
         username: Корисничко име
         username_or_email: Корисничко име или Е-пошта
         whole_word: Цела реч
+      featured_tag:
+        name: Хеш ознака
+      filters:
+        actions:
+          hide: Сакриј у потпуности
+          warn: Сакриј уз упозорење
       form_admin_settings:
+        registrations_mode: Ко може да се пријави
         require_invite_text: Затражи разлог за приступање
         show_domain_blocks: Пприкажи блокове домена
         show_domain_blocks_rationale: Покажи зашто су домени блокирани
@@ -178,7 +202,7 @@ sr:
       webhook:
         events: Омогућени догађаји
         url: URL крајње тачке
-    'no': Не
+    'no': 'Не'
     not_recommended: Није препоручено
     recommended: Препоручено
     required:
@@ -187,4 +211,4 @@ sr:
     title:
       sessions:
         webauthn: Користи један од својих безбедносних кључева за пријављивање
-    'yes': Да
+    'yes': 'Да'
