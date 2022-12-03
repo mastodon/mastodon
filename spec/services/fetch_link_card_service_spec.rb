@@ -11,6 +11,7 @@ RSpec.describe FetchLinkCardService, type: :service do
     stub_request(:get, 'http://example.com/日本語').to_return(request_fixture('sjis.txt'))
     stub_request(:get, 'https://github.com/qbi/WannaCry').to_return(status: 404)
     stub_request(:get, 'http://example.com/test-').to_return(request_fixture('idn.txt'))
+    stub_request(:get, 'http://example.com/test/#fragment').to_return(request_fixture('idn.txt'))
     stub_request(:get, 'http://example.com/windows-1251').to_return(request_fixture('windows-1251.txt'))
 
     subject.call(status)
@@ -79,11 +80,11 @@ RSpec.describe FetchLinkCardService, type: :service do
     end
 
     context do
-      let(:status) { Fabricate(:status, text: 'test http://example.com/test/#url') }
+      let(:status) { Fabricate(:status, text: 'test http://example.com/test/#fragment') }
 
       it 'works with a URL including a fragment' do
-        expect(a_request(:get, 'http://example.com/test/#url')).to have_been_made.at_least_once
-        expect(status.preview_cards.first.url).to eq("http://example.com/test/#url")
+        expect(a_request(:get, 'http://example.com/test/#fragment')).to have_been_made.at_least_once
+        expect(status.preview_cards.first.url).to eq("http://example.com/test/#fragment")
       end
     end
 
