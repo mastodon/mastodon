@@ -75,7 +75,7 @@ SCRIPT
 $start = <<SCRIPT
 
 echo 'To start server'
-echo '  $ vagrant ssh -c "cd /vagrant && foreman start"'
+echo '  $ vagrant ssh -c "foreman start -d /vagrant"'
 
 SCRIPT
 
