@@ -1148,6 +1148,7 @@ be:
       blocking: Спіс заблакіраваных
       bookmarks: Закладкі
       domain_blocking: Спіс заблакіраваных даменаў
+      following: Падпіскі
     upload: Запампаваць
   invites:
     delete: Дэактываваць
@@ -1161,10 +1162,14 @@ be:
       '86400': 1 дзень
     expires_in_prompt: Ніколі
     generate: Стварыць запрашальную спасылку
+    invited_by: 'Вас запрасіў(-ла):'
     max_uses_prompt: Неабмежавана
     table:
       uses: Выкарыстанні
     title: Запрасіць людзей
+  lists:
+    errors:
+      limit: Вы дасягнулі макс. колькасці спісаў
   login_activities:
     authentication_methods:
       otp: праграма двухфактарнай аўтэнтыфікацыі
@@ -1178,6 +1183,7 @@ be:
     title: Гісторыя ўваходаў
   media_attachments:
     validations:
+      images_and_video: Немагчыма прымацаваць відэа да допісу, які ўжо змяшчае выявы
       too_many: Няможна дадаць больш 4 файлаў
   migrations:
     errors:
