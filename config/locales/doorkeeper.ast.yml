@@ -4,16 +4,8 @@ ast:
     attributes:
       doorkeeper/application:
         name: Nome de l'aplicación
-        redirect_uri: URI de redireición
         scopes: Ámbitos
         website: Sitiu web de l'aplicación
-    errors:
-      models:
-        doorkeeper/application:
-          attributes:
-            redirect_uri:
-              invalid_uri: ha ser una URI válida.
-              relative_uri: ha ser una URI absoluta.
   doorkeeper:
     applications:
       buttons:
@@ -22,12 +14,9 @@ ast:
         destroy: Destruyir
         edit: Editar
         submit: Unviar
-      confirmations:
-        destroy: "¿De xuru?"
       form:
         error: "¡Meca! Revisa los errores posibles del formulariu"
       help:
-        native_redirect_uri: Usa %{native_redirect_uri} pa pruebes llocales
         redirect_uri: Usa una llinia per URI
       index:
         empty: Nun tienes nenguna aplicación.
@@ -51,26 +40,21 @@ ast:
       new:
         prompt_html: "%{client_name}, que ye una aplicación de terceros, quier tener accesu a la cuenta. <strong>Si nun t'enfotes nella, nun habríes autorizala.</strong>"
       show:
-        title: Copia esti códigu d'autorización y apiégalu na aplicación.
+        title: Copia esti códigu d'autorización ya apiégalu na aplicación.
     authorized_applications:
       buttons:
         revoke: Revocar
-      confirmations:
-        revoke: "¿De xuru?"
       index:
         description_html: Estes son les aplicaciones que puen acceder a la cuenta cola API. Si equí hai aplicaciones que nun conoces o hai dalguna aplicación que nun funciona correutamente, pues revocar el so accesu.
         never_used: Enxamás s'usó
         scopes: Permisos
-        title: Les aplicaciones qu'autoricesti
     errors:
       messages:
         access_denied: El propietariu del recursu o'l sirvidor d'autorización negó la solicitú.
         invalid_token:
-          expired: Caducó'l pase d'accesu
           revoked: Revocóse'l pase d'accesu
           unknown: El pase d'accesu nun ye válidu
         server_error: El sirvidor d'autorización atopó una condición inesperada qu'evitó que cumpliera la solicitú.
-        temporarily_unavailable: Anguaño'l sirvidor d'autorizaciones nun ye a remanar la solicitú pola mor d'una sobrecarga temporal o caltenimientu del sirvidor.
         unauthorized_client: El veceru nun ta autorizáu pa facer esta solicitú con esti métodu.
         unsupported_response_type: El sirvidor d'autorización nun ye compatible con esti tipu de respuesta.
     grouped_scopes:
@@ -94,7 +78,6 @@ ast:
     scopes:
       admin:read: llee tolos datos del sirvidor
       admin:read:accounts: llee la información sensible de toles cuentes
-      admin:read:reports: llee la información sensible de tolos informes y cuentes informaes
       admin:write: modifica tolos datos del sirvidor
       crypto: usa'l cifráu de puntu a puntu
       follow: modifica les rellaciones de les cuentes
@@ -103,25 +86,22 @@ ast:
       read:accounts: mira la información de les cuentes
       read:blocks: mira les cuentes bloquiaes
       read:bookmarks: mira los marcadores
-      read:favourites: ver los tos favoritos
       read:filters: mira les peñeres
       read:follows: mira quién sigues
       read:lists: mira les llistes
-      read:mutes: ver quién silencies
       read:notifications: mira los avisos
       read:reports: mira los informes
       read:search: busca nel to nome
       read:statuses: mira tolos artículos
       write: modifica los datos de les cuentes
       write:accounts: modifica los perfiles
-      write:blocks: bloquia cuentes y dominios
-      write:bookmarks: amestar estaos a Marcadores
+      write:blocks: bloquia cuentes ya dominios
       write:favourites: artículos favoritos
       write:filters: crea peñeres
       write:follows: sigue a perfiles
       write:lists: crea llistes
       write:media: xube ficheros multimedia
-      write:mutes: desactiva los avisos de perfiles y de conversaciones
+      write:mutes: desactiva los avisos de perfiles ya de conversaciones
       write:notifications: borra los avisos
       write:reports: informa d'otres perfiles
       write:statuses: espubliza artículos

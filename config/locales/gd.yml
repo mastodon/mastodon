@@ -444,9 +444,13 @@ gd:
       resolved_through_html: Chaidh fuasgladh slighe %{domain}
       title: Àrainnean puist-d ’gam bacadh
     export_domain_allows:
+      new:
+        title: Ion-phortaich àrainnean ceadaichte
       no_file: Cha deach faidhle a thaghadh
     export_domain_blocks:
       import:
+        existing_relationships_warning: Dàimhean leantainn làithreach
+        private_comment_template: Chaidh ion-phortadh o %{source} %{date}
         title: Ion-phortaich bacaidhean àrainne
       new:
         title: Ion-phortaich bacaidhean àrainne
