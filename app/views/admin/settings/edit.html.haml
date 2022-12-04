@@ -91,6 +91,9 @@
     .fields-group
       = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
 
+    .fields-group
+      = f.input :norss, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_norss.title'), hint: t('admin.settings.default_norss.desc_html')
+
   %hr.spacer/
 
   .fields-group
