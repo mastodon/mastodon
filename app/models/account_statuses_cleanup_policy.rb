@@ -14,6 +14,7 @@
 #  keep_media         :boolean          default(FALSE), not null
 #  keep_self_fav      :boolean          default(TRUE), not null
 #  keep_self_bookmark :boolean          default(TRUE), not null
+#  keep_local         :boolean          default(TRUE), not null
 #  min_favs           :integer
 #  min_reblogs        :integer
 #  created_at         :datetime         not null
@@ -66,6 +67,7 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     scope.merge!(without_poll_scope) if keep_polls?
     scope.merge!(without_media_scope) if keep_media?
     scope.merge!(without_self_fav_scope) if keep_self_fav?
+    scope.merge!(without_local_scope) if keep_local?
     scope.merge!(without_self_bookmark_scope) if keep_self_bookmark?
 
     scope.reorder(id: :asc).limit(limit)
@@ -146,6 +148,10 @@ class AccountStatusesCleanupPolicy < ApplicationRecord
     end
 
     Status.where(Status.arel_table[:id].lteq(max_id))
+  end
+
+  def without_local_scope
+    Status.where(local_only: false)
   end
 
   def without_self_fav_scope

@@ -535,7 +535,7 @@ class Status extends ImmutablePureComponent {
               onCollapsedToggle={this.handleCollapsedToggle}
             />
 
-            {media}
+            {status.get('activity_pub_type') === 'Article' ? null : media}
 
             <StatusActionBar scrollKey={scrollKey} status={status} account={account} onFilter={matchedFilters ? this.handleFilterClick : null} {...other} />
           </div>

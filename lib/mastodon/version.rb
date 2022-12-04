@@ -5,7 +5,7 @@ module Mastodon
     module_function
 
     def major
-      2
+      4
     end
 
     def minor
@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def suffix
-      '+4.0.0'
+      '+hometown-1.1.0'
     end
 
     def to_a

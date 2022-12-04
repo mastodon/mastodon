@@ -279,7 +279,7 @@ class DetailedStatus extends ImmutablePureComponent {
             onTranslate={this.handleTranslate}
           />
 
-          {media}
+          {status.get('activity_pub_type') === 'Article' ? null : media}
 
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={`/@${status.getIn(['account', 'acct'])}\/${status.get('id')}`} target='_blank' rel='noopener noreferrer'>

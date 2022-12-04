@@ -86,9 +86,6 @@ class Sanitize
           'rel' => 'nofollow noopener noreferrer',
           'target' => '_blank',
         },
-        'span' => {
-          'class' => 'article-type',
-        },
       },
 
       protocols: {

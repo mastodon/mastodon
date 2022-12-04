@@ -276,7 +276,7 @@ class StatusContent extends React.PureComponent {
 
           {mentionsPlaceholder}
 
-          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} translate`} lang={lang} dangerouslySetInnerHTML={content} />
+          <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} ${status.get('activity_pub_type') === 'Article' ? 'article-type' : ''} translate`} lang={lang} dangerouslySetInnerHTML={content} />
           {!hidden && poll}
           {!hidden && translateButton}
         </div>

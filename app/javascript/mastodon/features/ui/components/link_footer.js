@@ -94,7 +94,6 @@ class LinkFooter extends React.PureComponent {
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
           {' · '}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
-          {' · '}
         </p>
       </div>
     );

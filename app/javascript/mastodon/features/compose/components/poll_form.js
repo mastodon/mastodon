@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import Toggle from 'react-toggle';
 import IconButton from 'mastodon/components/icon_button';
 import Icon from 'mastodon/components/icon';
 import AutosuggestInput from 'mastodon/components/autosuggest_input';
@@ -155,6 +156,12 @@ class PollForm extends ImmutablePureComponent {
         <ul>
           {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} onToggleMultiple={this.handleToggleMultiple} autoFocus={i === autoFocusIndex} {...other} />)}
         </ul>
+        <div className='is-multiple-toggle'>
+          <Toggle className='is-multiple-checkbox' checked={isMultiple} onChange={this.handleToggleMultiple}/>
+          <span className='is-multiple-toggle__label'>
+            <FormattedMessage id='poll.is_multiple' defaultMessage='Multiple choice' />
+          </span>
+        </div>
 
         <div className='poll__footer'>
           <button type='button' disabled={options.size >= 4} className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
