@@ -16,7 +16,7 @@ module Mastodon
     option :days, type: :numeric, default: 60, aliases: [:d]
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :dry_run, type: :boolean, default: false
-    option :aggressive, type: :boolean, default: false, aliases: [:a]
+    option :follow_include, type: :boolean, default: false, aliases: [:f]
     option :kick_out, type: :boolean, default: false, aliases: [:k]
     desc 'purge-stale-accounts', 'Remove profile media files (headers, avatars)'
     long_desc <<-DESC
@@ -26,21 +26,21 @@ module Mastodon
       The --days option specifies how old the last webfinger request
       and update to the user has to be before they are removed. It
       defaults to 60 days.
-      If --aggressive is specified, all non-local accounts will be pruned
+      If --follow_include is specified, all non-local accounts will be pruned
       irrespective of follow status.
       If --kick_out is specified, the corresponding accounts are removed
-      from the local database. Cannot be used along with --aggressive.
+      from the local database. Cannot be used along with --follow_include.
     DESC
     def purge_stale_accounts
-      if options[:aggressive] && options[:kick_out]
-        say('The options --aggressive and --kick_out cannot be used together', :red)
+      if options[:follow_include] && options[:kick_out]
+        say('The options --follow_include and --kick_out cannot be used together', :red)
         exit(1)
       end
 
-      time_ago    = options[:days].days.ago
-      dry_run     = options[:dry_run] ? '(DRY RUN)' : ''
-      aggressive  = options[:aggressive]
-      action      = options[:kick_out] ? 'deleted' : 'removed avatars and header images from'
+      time_ago        = options[:days].days.ago
+      dry_run         = options[:dry_run] ? '(DRY RUN)' : ''
+      follow_include  = options[:follow_include]
+      action          = options[:kick_out] ? 'deleted' : 'removed avatars and header images from'
 
       purged_accounts = Concurrent::Set[]
       processed, aggregate = parallelize_with_progress(
@@ -50,7 +50,7 @@ module Mastodon
       ) do |account|
         next if account.local?
         next if account.avatar.blank? && account.header.blank?
-        next if !aggressive && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
+        next if !follow_include && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
 
         size = (account.avatar_file_size || 0) + (account.header_file_size || 0)
         purged_accounts << account.url
@@ -92,7 +92,7 @@ module Mastodon
       time_ago = options[:days].days.ago
       dry_run  = options[:dry_run] ? '(DRY RUN)' : ''
 
-      processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where('created_at < ?', time_ago)) do |media_attachment|
+      processed, \regate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where('created_at < ?', time_ago)) do |media_attachment|
         next if media_attachment.file.blank?
 
         size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
