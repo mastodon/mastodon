@@ -599,6 +599,7 @@ export default function compose(state = initialState, action) {
     return state.withMutations(map => {
       map.set('id', action.status.get('id'));
       map.set('text', action.text);
+      map.set('content_type', action.content_type || 'text/plain');
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('privacy', action.status.get('visibility'));
       map.set('media_attachments', action.status.get('media_attachments'));

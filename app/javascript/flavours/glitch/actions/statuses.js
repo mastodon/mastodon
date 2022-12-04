@@ -106,7 +106,7 @@ export const editStatus = (id, routerHistory) => (dispatch, getState) => {
   api(getState).get(`/api/v1/statuses/${id}/source`).then(response => {
     dispatch(fetchStatusSourceSuccess());
     ensureComposeIsVisible(getState, routerHistory);
-    dispatch(setComposeToStatus(status, response.data.text, response.data.spoiler_text));
+    dispatch(setComposeToStatus(status, response.data.text, response.data.spoiler_text, response.data.content_type));
   }).catch(error => {
     dispatch(fetchStatusSourceFail(error));
   });
