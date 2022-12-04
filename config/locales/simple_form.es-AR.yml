@@ -67,7 +67,33 @@ es-AR:
         domain: Este puede ser el nombre de dominio que aparece en la dirección de correo electrónico o el registro MX que se use. Se revisarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también bloqueados
       featured_tag:
-        name: 'Puede que quieras usar una de estas:'
+        name: 'Acá tenés algunas de las etiquetas que más usaste recientemente:'
+      filters:
+        action: Elegir qué acción realizar cuando un mensaje coincide con el filtro
+        actions:
+          hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
+          warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
+      form_admin_settings:
+        backups_retention_period: Conservar los archivos historiales generados por el usuario durante el número de días especificado.
+        bootstrap_timeline_accounts: Estas cuentas serán fijadas a la parte superior de las recomendaciones de cuentas a seguir para nuevos usuarios.
+        closed_registrations_message: Mostrado cuando los registros están cerrados
+        content_cache_retention_period: Los mensajes de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        custom_css: Podés aplicar estilos personalizados a la versión web de Mastodon.
+        mascot: Reemplaza la ilustración en la interface web avanzada.
+        media_cache_retention_period: Los archivos de medios descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se volverán a descargar a pedido.
+        profile_directory: El directorio de perfiles lista a todos los usuarios que han optado a que su cuenta pueda ser descubierta.
+        require_invite_text: Cuando registros aprobación manual, hacé que la solicitud de invitación "¿Por qué querés unirte?" sea obligatoria, en vez de opcional
+        site_contact_email: Cómo la gente puede estar en contacto con vos para consultas legales o de ayuda.
+        site_contact_username: Cómo la gente puede estar en contacto con vos en Mastodon.
+        site_extended_description: Cualquier información adicional que pueda ser útil para los visitantes y tus usuarios. Se puede estructurar con sintaxis Markdown.
+        site_short_description: Una breve descripción para ayudar a identificar individualmente a tu servidor. ¿Quién lo administra, a quién va dirigido?
+        site_terms: Usá tu propia política de privacidad o dejala en blanco para usar la predeterminada. Puede estructurarse con sintaxis Markdown.
+        site_title: Cómo la gente puede referirse a tu servidor además de su nombre de dominio.
+        theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
+        thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
+        timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
+        trendable_by_default: Omití la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
+        trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
       form_challenge:
         current_password: Estás ingresando en un área segura
       imports:
@@ -80,6 +106,7 @@ es-AR:
         ip: Ingresá una dirección IPv4 ó IPv6. Podés bloquear rangos completos usando la sintaxis CIDR. ¡Tené cuidado de no bloquearte vos mismo!
         severities:
           no_access: Bloquear acceso a todos los recursos
+          sign_up_block: Los nuevos registros se deshabilitarán
           sign_up_requires_approval: Los nuevos registros requerirán tu aprobación
         severity: Elegí lo que pasará con las solicitudes desde esta dirección IP
       rule:
@@ -91,6 +118,16 @@ es-AR:
         name: Sólo podés cambiar la capitalización de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando estén marcados, sólo se mostrarán los mensajes en los idiomas seleccionados en las líneas temporales públicas
+        role: El rol controla qué permisos tiene el usuario
+      user_role:
+        color: Color que se utilizará para el rol a lo largo de la interface de usuario, como RGB en formato hexadecimal
+        highlighted: Esto hace que el rol sea públicamente visible
+        name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
+        permissions_as_keys: Los usuarios con este rol tendrán acceso a…
+        position: Un rol más alto decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con prioridad inferior
+      webhook:
+        events: Seleccionar eventos para enviar
+        url: Adónde serán enviados los eventos
     labels:
       account:
         fields:
@@ -178,6 +215,7 @@ es-AR:
         setting_use_pending_items: Modo lento
         severity: Severidad
         sign_in_token_attempt: Código de seguridad
+        title: Título
         type: Tipo de importación
         username: Nombre de usuario
         username_or_email: Nombre de usuario o correo electrónico
@@ -186,6 +224,34 @@ es-AR:
         with_dns_records: Incluir los registros MX y las direcciones IP del dominio
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Ocultar completamente
+          warn: Ocultar con una advertencia
+      form_admin_settings:
+        backups_retention_period: Período de retención del archivo historial del usuario
+        bootstrap_timeline_accounts: Siempre recomendar estas cuentas a usuarios nuevos
+        closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
+        content_cache_retention_period: Período de retención de la caché de contenido
+        custom_css: CSS personalizado
+        mascot: Mascota personalizada (legado)
+        media_cache_retention_period: Período de retención de la caché de medios
+        profile_directory: Habilitar directorio de perfiles
+        registrations_mode: Quién puede registrarse
+        require_invite_text: Requerir un motivo para unirse
+        show_domain_blocks: Mostrar dominios bloqueados
+        show_domain_blocks_rationale: Mostrar por qué se bloquearon los dominios
+        site_contact_email: Dirección de correo electrónico de contacto
+        site_contact_username: Nombre de usuario de contacto
+        site_extended_description: Descripción extendida
+        site_short_description: Descripción del servidor
+        site_terms: Política de privacidad
+        site_title: Nombre del servidor
+        theme: Tema predeterminado
+        thumbnail: Miniatura del servidor
+        timeline_preview: Permitir el acceso no autenticado a las líneas temporales públicas
+        trendable_by_default: Permitir tendencias sin revisión previa
+        trends: Habilitar tendencias
       interactions:
         must_be_follower: Bloquear notificaciones de cuentas que no te siguen
         must_be_following: Bloquear notificaciones de cuentas que no seguís
@@ -199,6 +265,7 @@ es-AR:
         ip: Dirección IP
         severities:
           no_access: Bloquear acceso
+          sign_up_block: Bloquear registros
           sign_up_requires_approval: Limitar registros
         severity: Regla
       notification_emails:
@@ -219,7 +286,19 @@ es-AR:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a los mensajes usar esta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de Insignia
+        highlighted: Mostrar rol como insignia en perfiles de usuario
+        name: Nombre
+        permissions_as_keys: Permisos
+        position: Prioridad
+      webhook:
+        events: Eventos habilitados
+        url: Dirección web del punto final
     'no': 'No'
+    not_recommended: No recomendado
     recommended: Opción recomendada
     required:
       mark: "*"

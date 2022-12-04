@@ -1,54 +1,230 @@
 ---
 ga:
   about:
-    api: API
-    privacy_policy: Polasaí príobháideachais
-    unavailable_content_description:
-      domain: Freastalaí
-      reason: Fáth
+    about_mastodon_html: 'Líonra sóisialta a sheasfaidh an aimsir: Gan fógraíocht, gan faire chorparáideach, le leagan amach eiticiúil agus dílárú. Bíodh do chuid sonraí agatsa féin le Mastodon!'
+    contact_missing: Gan socrú
+    contact_unavailable: N/B
+    hosted_on: Mastodon arna óstáil ar %{domain}
+    title: Maidir le
   accounts:
+    follow: Lean
+    following: Ag leanúint
+    nothing_here: Níl rud ar bith anseo!
+    posts:
+      few: Postálacha
+      many: Postálacha
+      one: Postáil
+      other: Postálacha
+      two: Postálacha
     posts_tab_heading: Postálacha
-    roles:
-      bot: Róbat
-      group: Grúpa
-      moderator: Modhnóir
-    unfollow: Ná lean
   admin:
+    account_actions:
+      action: Déan gníomh
+      title: Dean gníomh modhnóireachta ar %{acct}
+    account_moderation_notes:
+      create: Fág nóta
     accounts:
+      approve: Faomh
       are_you_sure: An bhfuil tú cinnte?
+      avatar: Abhatár
+      by_domain: Fearann
+      change_email:
+        current_email: Ríomhphost reatha
+        label: Athraigh ríomhphost
+        new_email: Ríomhphost nua
+        submit: Athraigh ríomhphost
+        title: Athraigh ríomhphost do %{username}
+      change_role:
+        changed_msg: Athraíodh ról go rathúil!
+        label: Athraigh ról
+        no_role: Gan ról
+        title: Athraigh ról do %{username}
       confirm: Deimhnigh
       confirmed: Deimhnithe
       confirming: Ag deimhniú
+      custom: Saincheaptha
+      delete: Scrios sonraí
+      deleted: Scriosta
+      demote: Ísligh
+      disable: Reoigh
+      disable_two_factor_authentication: Díchumasaigh 2FA
+      disabled: Reoite
+      display_name: Ainm taispeána
+      domain: Fearann
+      edit: Cuir in eagar
       email: Ríomhphost
       email_status: Stádas ríomhphoist
+      enable: Dí-reoigh
+      enabled: Ar chumas
       followers: Leantóirí
+      follows: Ag leanúint
+      header: Ceanntásc
       ip: IP
       location:
         all: Uile
+        local: Áitiúil
+        remote: Cian
+      promote: Ardaigh
+      protocol: Prótacal
       public: Poiblí
+      redownload: Athnuaigh próifíl
       reject: Diúltaigh
-      roles:
-        admin: Riarthóir
-        moderator: Modhnóir
-        staff: Foireann
-        user: Úsáideoir
+      remove_avatar: Bain abhatár
+      remove_header: Bain ceanntásc
+      resend_confirmation:
+        success: Seoladh go rathúil ríomhphost deimhnithe!
+      reset: Athshocraigh
+      reset_password: Athshocraigh pasfhocal
+      resubscribe: Athchláraigh
+      role: Ról
       search: Cuardaigh
       statuses: Postálacha
+      subscribe: Cláraigh
       title: Cuntais
+      web: Gréasán
+    action_logs:
+      action_types:
+        assigned_to_self_report: Sann Tuairisc
+        create_account_warning: Cruthaigh Rabhadh
+        destroy_announcement: Scrios Fógra
+        destroy_ip_block: Scrios riail IP
+        destroy_status: Scrios Postáil
+        remove_avatar_user: Bain Abhatár
+        reopen_report: Athoscail tuairisc
+        reset_password_user: Athshocraigh Pasfhocal
+        resolve_report: Réitigh tuairisc
+        unassigned_report: Díshann Tuairisc
+        update_announcement: Nuashonraigh Fógra
+        update_status: Nuashonraigh Postáil
+        update_user_role: Nuashonraigh Ról
+      actions:
+        create_account_warning_html: Sheol %{name} rabhadh chuig %{target}
+      deleted_account: cuntas scriosta
     announcements:
       live: Beo
       publish: Foilsigh
     custom_emojis:
+      created_msg: Cruthaíodh emoji go rathúil!
       delete: Scrios
+      destroyed_msg: Scriosadh emoji go rathúil!
+      disable: Díchumasaigh
+      disabled: Díchumasaithe
       emoji: Emoji
+      enable: Cumasaigh
       list: Liosta
+      upload: Uaslódáil
+    dashboard:
+      software: Bogearraí
+      title: Deais
+      website: Suíomh Gréasáin
+    domain_blocks:
+      domain: Fearann
+      new:
+        severity:
+          silence: Ciúnaigh
     email_domain_blocks:
       delete: Scrios
+    follow_recommendations:
+      status: Stádas
     instances:
+      back_to_all: Uile
+      back_to_warning: Rabhadh
       content_policies:
         policy: Polasaí
       delivery:
         all: Uile
+        unavailable: Níl ar fáil
+      moderation:
+        all: Uile
+      purge: Glan
+      title: Cónascadh
+    invites:
+      filter:
+        all: Uile
+        available: Ar fáil
+    ip_blocks:
+      delete: Scrios
+      expires_in:
+        '1209600': Coicís
+        '15778476': 6 mhí
+        '2629746': Mí amháin
+        '31556952': Bliain amháin
+        '86400': Lá amháin
+        '94670856': 3 bhliain
+    relays:
+      delete: Scrios
+      disable: Díchumasaigh
+      disabled: Díchumasaithe
+      enable: Cumasaigh
+      enabled: Ar chumas
+      save_and_enable: Sábháil agus cumasaigh
+      status: Stádas
+    reports:
+      category: Catagóir
+      delete_and_resolve: Scrios postálacha
+      no_one_assigned: Duine ar bith
+      notes:
+        delete: Scrios
+        title: Nótaí
+      status: Stádas
+      title: Tuairiscí
+    roles:
+      delete: Scrios
+      privileges:
+        delete_user_data: Scrios Sonraí Úsáideora
+    rules:
+      delete: Scrios
+    site_uploads:
+      delete: Scrios comhad uaslódáilte
+    statuses:
+      account: Údar
+      deleted: Scriosta
+      language: Teanga
+      media:
+        title: Meáin
+      metadata: Meiteashonraí
+      open: Oscail postáil
+      original_status: Bunphostáil
+      reblogs: Athbhlaganna
+      status_changed: Athraíodh postáil
+      trending: Ag treochtáil
+      with_media: Le meáin
+    strikes:
+      actions:
+        delete_statuses: Scrios %{name} postálacha de chuid %{target}
+    tags:
+      review: Stádas athbhreithnithe
+    trends:
+      allow: Ceadaigh
+      disallow: Dícheadaigh
+      preview_card_providers:
+        title: Foilsitheoirí
+      statuses:
+        allow: Ceadaigh postáil
+        allow_account: Ceadaigh údar
+    warning_presets:
+      delete: Scrios
+    webhooks:
+      delete: Scrios
+  admin_mailer:
+    new_appeal:
+      actions:
+        delete_statuses: a gcuid postálacha a scrios
+        none: rabhadh
+  auth:
+    delete_account: Scrios cuntas
+    too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
+  deletes:
+    proceed: Scrios cuntas
+  disputes:
+    strikes:
+      appeal_submitted_at: Achomharc curtha isteach
+      appealed_msg: Cuireadh isteach d'achomharc. Má ceadófar é, cuirfear ar an eolas tú.
+      appeals:
+        submit: Cuir achomharc isteach
+      title_actions:
+        none: Rabhadh
+      your_appeal_pending: Chuir tú achomharc isteach
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -59,3 +235,33 @@ ga:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  filters:
+    contexts:
+      thread: Comhráite
+    index:
+      delete: Scrios
+  generic:
+    delete: Scrios
+  notification_mailer:
+    admin:
+      report:
+        subject: Chuir %{name} tuairisc isteach
+  rss:
+    content_warning: 'Rabhadh ábhair:'
+  statuses:
+    content_warning: 'Rabhadh ábhair: %{warning}'
+    show_more: Taispeáin níos mó
+    show_newer: Taispeáin níos nuaí
+    show_thread: Taispeáin snáithe
+  user_mailer:
+    warning:
+      appeal: Cuir achomharc isteach
+      categories:
+        spam: Turscar
+      reason: 'Fáth:'
+      subject:
+        none: Rabhadh do %{acct}
+      title:
+        none: Rabhadh
+  webauthn_credentials:
+    delete: Scrios

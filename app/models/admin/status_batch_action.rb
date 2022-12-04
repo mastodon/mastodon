@@ -40,11 +40,11 @@ class Admin::StatusBatchAction
   end
 
   def handle_delete!
-    statuses.each { |status| authorize(status, :destroy?) }
+    statuses.each { |status| authorize([:admin, status], :destroy?) }
 
     ApplicationRecord.transaction do
       statuses.each do |status|
-        status.discard
+        status.discard_with_reblogs
         log_action(:destroy, status)
       end
 
@@ -75,7 +75,7 @@ class Admin::StatusBatchAction
     statuses.includes(:media_attachments, :preview_cards).find_each do |status|
       next unless status.with_media? || status.with_preview_card?
 
-      authorize(status, :update?)
+      authorize([:admin, status], :update?)
 
       if target_account.local?
         UpdateStatusService.new.call(status, representative_account.id, sensitive: true)

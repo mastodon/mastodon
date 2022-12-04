@@ -9,6 +9,7 @@ import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
+  placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
 class SearchPopout extends React.PureComponent {
@@ -49,6 +50,7 @@ class Search extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
+    identity: PropTypes.object.isRequired,
   };
 
   static propTypes = {
@@ -116,6 +118,7 @@ class Search extends React.PureComponent {
   render () {
     const { intl, value, submitted } = this.props;
     const { expanded } = this.state;
+    const { signedIn } = this.context.identity;
     const hasValue = value.length > 0 || submitted;
 
     return (
@@ -126,7 +129,7 @@ class Search extends React.PureComponent {
             ref={this.setRef}
             className='search__input'
             type='text'
-            placeholder={intl.formatMessage(messages.placeholder)}
+            placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
             value={value}
             onChange={this.handleChange}
             onKeyUp={this.handleKeyUp}

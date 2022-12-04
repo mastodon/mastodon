@@ -5,11 +5,15 @@ module Admin
     before_action :set_account
 
     def new
+      authorize @account, :show?
+
       @account_action  = Admin::AccountAction.new(type: params[:type], report_id: params[:report_id], send_email_notification: true, include_statuses: true)
       @warning_presets = AccountWarningPreset.all
     end
 
     def create
+      authorize @account, :show?
+
       account_action                 = Admin::AccountAction.new(resource_params)
       account_action.target_account  = @account
       account_action.current_account = current_account

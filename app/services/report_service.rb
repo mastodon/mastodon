@@ -8,7 +8,7 @@ class ReportService < BaseService
     @target_account = target_account
     @status_ids     = options.delete(:status_ids).presence || []
     @comment        = options.delete(:comment).presence || ''
-    @category       = options.delete(:category).presence || 'other'
+    @category       = options[:rule_ids].present? ? 'violation' : (options.delete(:category).presence || 'other')
     @rule_ids       = options.delete(:rule_ids).presence
     @options        = options
 
@@ -38,9 +38,9 @@ class ReportService < BaseService
   def notify_staff!
     return if @report.unresolved_siblings?
 
-    User.staff.includes(:account).each do |u|
-      next unless u.allows_report_emails?
-      AdminMailer.new_report(u.account, @report).deliver_later
+    User.those_who_can(:manage_reports).includes(:account).each do |u|
+      LocalNotificationWorker.perform_async(u.account_id, @report.id, 'Report', 'admin.report')
+      AdminMailer.new_report(u.account, @report).deliver_later if u.allows_report_emails?
     end
   end
 

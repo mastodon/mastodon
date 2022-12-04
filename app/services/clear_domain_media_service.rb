@@ -10,24 +10,18 @@ class ClearDomainMediaService < BaseService
 
   private
 
-  def invalidate_association_caches!
+  def invalidate_association_caches!(status_ids)
     # Normally, associated models of a status are immutable (except for accounts)
     # so they are aggressively cached. After updating the media attachments to no
     # longer point to a local file, we need to clear the cache to make those
     # changes appear in the API and UI
-    @affected_status_ids.each { |id| Rails.cache.delete_matched("statuses/#{id}-*") }
+    Rails.cache.delete_multi(status_ids.map { |id| "statuses/#{id}" })
   end
 
   def clear_media!
-    @affected_status_ids = []
-
-    begin
-      clear_account_images!
-      clear_account_attachments!
-      clear_emojos!
-    ensure
-      invalidate_association_caches!
-    end
+    clear_account_images!
+    clear_account_attachments!
+    clear_emojos!
   end
 
   def clear_account_images!
@@ -39,12 +33,18 @@ class ClearDomainMediaService < BaseService
   end
 
   def clear_account_attachments!
-    media_from_blocked_domain.reorder(nil).find_each do |attachment|
-      @affected_status_ids << attachment.status_id if attachment.status_id.present?
+    media_from_blocked_domain.reorder(nil).find_in_batches do |attachments|
+      affected_status_ids = []
 
-      attachment.file.destroy if attachment.file&.exists?
-      attachment.type = :unknown
-      attachment.save
+      attachments.each do |attachment|
+        affected_status_ids << attachment.status_id if attachment.status_id.present?
+
+        attachment.file.destroy if attachment.file&.exists?
+        attachment.type = :unknown
+        attachment.save
+      end
+
+      invalidate_association_caches!(affected_status_ids) unless affected_status_ids.empty?
     end
   end
 

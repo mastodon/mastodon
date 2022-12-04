@@ -18,7 +18,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.unconfirmed_email.presence || @resource.email,
            subject: I18n.t(@resource.pending_reconfirmation? ? 'devise.mailer.reconfirmation_instructions.subject' : 'devise.mailer.confirmation_instructions.subject', instance: @instance, title: Setting.site_title),
            template_name: @resource.pending_reconfirmation? ? 'reconfirmation_instructions' : 'confirmation_instructions'
@@ -32,7 +32,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.reset_password_instructions.subject', title: Setting.site_title)
     end
   end
@@ -43,7 +43,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.password_change.subject', title: Setting.site_title)
     end
   end
@@ -54,7 +54,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.email_changed.subject', title: Setting.site_title)
     end
   end
@@ -65,7 +65,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_enabled.subject')
     end
   end
@@ -76,7 +76,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_disabled.subject')
     end
   end
@@ -87,7 +87,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.two_factor_recovery_codes_changed.subject')
     end
   end
@@ -98,7 +98,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_enabled.subject')
     end
   end
@@ -109,7 +109,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_disabled.subject')
     end
   end
@@ -121,7 +121,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_credential.added.subject')
     end
   end
@@ -133,7 +133,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('devise.mailer.webauthn_credential.deleted.subject')
     end
   end
@@ -144,7 +144,8 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
+      mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject')
       mail to: @resource.email, subject: I18n.t('user_mailer.welcome.subject', title: Setting.site_title)
     end
   end
@@ -156,7 +157,7 @@ class UserMailer < Devise::Mailer
 
     return unless @resource.active_for_authentication?
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('user_mailer.backup_ready.subject', title: Setting.site_title)
     end
   end
@@ -167,7 +168,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
     @statuses = @warning.statuses.includes(:account, :preloadable_poll, :media_attachments, active_mentions: [:account])
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t("user_mailer.warning.subject.#{@warning.action}", acct: "@#{user.account.local_username_and_domain}")
     end
   end
@@ -177,7 +178,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
     @appeal   = appeal
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('user_mailer.appeal_approved.subject', date: l(@appeal.created_at))
     end
   end
@@ -187,7 +188,7 @@ class UserMailer < Devise::Mailer
     @instance = Rails.configuration.x.local_domain
     @appeal   = appeal
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('user_mailer.appeal_rejected.subject', date: l(@appeal.created_at))
     end
   end
@@ -200,8 +201,14 @@ class UserMailer < Devise::Mailer
     @detection  = Browser.new(user_agent)
     @timestamp  = timestamp.to_time.utc
 
-    I18n.with_locale(@resource.locale || I18n.default_locale) do
+    I18n.with_locale(locale) do
       mail to: @resource.email, subject: I18n.t('user_mailer.suspicious_sign_in.subject')
     end
+  end
+
+  private
+
+  def locale
+    @resource.locale.presence || I18n.default_locale
   end
 end

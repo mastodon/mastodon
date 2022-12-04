@@ -3,12 +3,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Avatar from './avatar';
 import DisplayName from './display_name';
-import Permalink from './permalink';
 import IconButton from './icon_button';
 import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { me } from '../initial_state';
 import RelativeTimestamp from './relative_timestamp';
+import Skeleton from 'mastodon/components/skeleton';
+import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
   follow: { id: 'account.follow', defaultMessage: 'Follow' },
@@ -26,7 +27,8 @@ export default @injectIntl
 class Account extends ImmutablePureComponent {
 
   static propTypes = {
-    account: ImmutablePropTypes.map.isRequired,
+    size: PropTypes.number,
+    account: ImmutablePropTypes.map,
     onFollow: PropTypes.func.isRequired,
     onBlock: PropTypes.func.isRequired,
     onMute: PropTypes.func.isRequired,
@@ -37,6 +39,10 @@ class Account extends ImmutablePureComponent {
     actionTitle: PropTypes.string,
     defaultAction: PropTypes.string,
     onActionClick: PropTypes.func,
+  };
+
+  static defaultProps = {
+    size: 46,
   };
 
   handleFollow = () => {
@@ -64,10 +70,19 @@ class Account extends ImmutablePureComponent {
   }
 
   render () {
-    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction } = this.props;
+    const { account, intl, hidden, onActionClick, actionIcon, actionTitle, defaultAction, size } = this.props;
 
     if (!account) {
-      return <div />;
+      return (
+        <div className='account'>
+          <div className='account__wrapper'>
+            <div className='account__display-name'>
+              <div className='account__avatar-wrapper'><Skeleton width={36} height={36} /></div>
+              <DisplayName />
+            </div>
+          </div>
+        </div>
+      );
     }
 
     if (hidden) {
@@ -125,11 +140,11 @@ class Account extends ImmutablePureComponent {
     return (
       <div className='account'>
         <div className='account__wrapper'>
-          <Permalink key={account.get('id')} className='account__display-name' title={account.get('acct')} href={account.get('url')} to={`/@${account.get('acct')}`}>
-            <div className='account__avatar-wrapper'><Avatar account={account} size={36} /></div>
+          <Link key={account.get('id')} className='account__display-name' title={account.get('acct')} to={`/@${account.get('acct')}`}>
+            <div className='account__avatar-wrapper'><Avatar account={account} size={size} /></div>
             {mute_expires_at}
             <DisplayName account={account} />
-          </Permalink>
+          </Link>
 
           <div className='account__relationship'>
             {buttons}

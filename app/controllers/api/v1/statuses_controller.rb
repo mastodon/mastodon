@@ -18,14 +18,29 @@ class Api::V1::StatusesController < Api::BaseController
   # than this anyway
   CONTEXT_LIMIT = 4_096
 
+  # This remains expensive and we don't want to show everything to logged-out users
+  ANCESTORS_LIMIT         = 40
+  DESCENDANTS_LIMIT       = 60
+  DESCENDANTS_DEPTH_LIMIT = 20
+
   def show
     @status = cache_collection([@status], Status).first
     render json: @status, serializer: REST::StatusSerializer
   end
 
   def context
-    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(CONTEXT_LIMIT, current_account)
-    descendants_results = @status.descendants(CONTEXT_LIMIT, current_account)
+    ancestors_limit         = CONTEXT_LIMIT
+    descendants_limit       = CONTEXT_LIMIT
+    descendants_depth_limit = nil
+
+    if current_account.nil?
+      ancestors_limit         = ANCESTORS_LIMIT
+      descendants_limit       = DESCENDANTS_LIMIT
+      descendants_depth_limit = DESCENDANTS_DEPTH_LIMIT
+    end
+
+    ancestors_results   = @status.in_reply_to_id.nil? ? [] : @status.ancestors(ancestors_limit, current_account)
+    descendants_results = @status.descendants(descendants_limit, current_account, descendants_depth_limit)
     loaded_ancestors    = cache_collection(ancestors_results, Status)
     loaded_descendants  = cache_collection(descendants_results, Status)
 
@@ -66,6 +81,7 @@ class Api::V1::StatusesController < Api::BaseController
       text: status_params[:status],
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
+      language: status_params[:language],
       spoiler_text: status_params[:spoiler_text],
       poll: status_params[:poll]
     )
@@ -77,7 +93,8 @@ class Api::V1::StatusesController < Api::BaseController
     @status = Status.where(account: current_account).find(params[:id])
     authorize @status, :destroy?
 
-    @status.discard
+    @status.discard_with_reblogs
+    StatusPin.find_by(status: @status)&.destroy
     @status.account.statuses_count = @status.account.statuses_count - 1
     json = render_to_body json: @status, serializer: REST::StatusSerializer, source_requested: true
 

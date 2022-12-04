@@ -5,15 +5,15 @@ module Mastodon
     module_function
 
     def major
-      3
+      4
     end
 
     def minor
-      5
+      0
     end
 
     def patch
-      5
+      2
     end
 
     def flags
@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def suffix
-      '+hometown-1.0.8'
+      '+hometown-1.1.0'
     end
 
     def to_a

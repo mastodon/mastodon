@@ -11,6 +11,7 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
     email
     ip
     invited_by
+    role_ids
   ).freeze
 
   PAGINATION_PARAMS = (%i(limit) + FILTER_PARAMS).freeze
@@ -18,11 +19,21 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
   private
 
   def filtered_accounts
-    AccountFilter.new(filter_params).results
+    AccountFilter.new(translated_filter_params).results
+  end
+
+  def translated_filter_params
+    translated_params = filter_params.slice(*AccountFilter::KEYS)
+
+    if params[:permissions] == 'staff'
+      translated_params[:role_ids] = UserRole.that_can(:manage_reports).map(&:id)
+    end
+
+    translated_params
   end
 
   def filter_params
-    params.permit(*FILTER_PARAMS)
+    params.permit(*FILTER_PARAMS, role_ids: [])
   end
 
   def pagination_params(core_params)

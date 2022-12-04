@@ -7,7 +7,7 @@ import Button from 'mastodon/components/button';
 import Option from './components/option';
 
 const mapStateToProps = state => ({
-  rules: state.get('rules'),
+  rules: state.getIn(['server', 'server', 'rules']),
 });
 
 export default @connect(mapStateToProps)

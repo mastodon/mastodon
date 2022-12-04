@@ -1,94 +1,27 @@
 ---
 fa:
   about:
-    about_hashtag_html: این‌ها نوشته‌های عمومی هستند که برچسب (هشتگ) <strong>#%{hashtag}</strong> را دارند. اگر شما روی هر کارسازی حساب داشته باشید می‌توانید به این نوشته‌ها واکنش نشان دهید.
     about_mastodon_html: 'شبکهٔ اجتماعی آینده: بدون تبلیغات، بدون شنود از طرف شرکت‌ها، طراحی اخلاق‌مدار، و معماری غیرمتمرکز! با ماستودون صاحب داده‌های خودتان باشید!'
-    about_this: درباره
-    active_count_after: فعّال
-    active_footnote: کاربران فعّال ماهانه
-    administered_by: 'به مدیریت:'
-    api: رابط برنامه‌نویسی کاربردی
-    apps: اپ‌های موبایل
-    apps_platforms: ماستودون را در iOS، اندروید، و سایر سیستم‌ها داشته باشید
-    browse_directory: شاخهٔ نمایه‌ای را مرور کرده و بر حسب علاقه، بپالایید
-    browse_local_posts: جریانی زنده از فرسته‌های عمومی این کارساز را ببینید
-    browse_public_posts: جریانی زنده از فرسته‌های عمومی روی ماستودون را ببینید
-    contact: تماس
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
-    continue_to_web: در کارهٔ وب ادامه دهید
-    discover_users: یافتن کاربران
-    documentation: مستندات
-    federation_hint_html: با حسابی روی %{instance} می‌توانید افراد روی هر کارساز ماستودون و بیش از آن را پی بگیرید.
-    get_apps: یک اپ موبایل را بیازمایید
     hosted_on: ماستودون، میزبانی‌شده روی %{domain}
-    instance_actor_flash: |
-      این حساب، بازیگری مجازی به نمایندگی خود کارساز بوده و کاربری واقعی نیست.
-      این حساب برای مقاصد خودگردانی به کار می‌رفته و نباید مسدود شود؛ مگر این که بخواهید کل نمونه را مسدود کنید که در آن صورت نیز باید از انسداد دامنه استفاده کنید.
-    learn_more: بیشتر بدانید
-    logged_in_as_html: شما هم‌اکنون به عنوان %{username} وارد شده‌اید.
-    logout_before_registering: شما هم‌اکنون وارد شده‌اید.
-    privacy_policy: سیاست رازداری
-    rules: قوانین کارساز
-    rules_html: 'در زیر خلاصه‌ای از قوانینی که در صورت علاقه به داشتن حسابی روی این کارساز ماستودون، باید رعایت کنید آمده است:'
-    see_whats_happening: ببینید چه خبر است
-    server_stats: 'آمار کارساز:'
-    source_code: کدهای منبع
-    status_count_after:
-      one: چیز نوشته‌اند
-      other: چیز نوشته‌اند
-    status_count_before: که در کنار هم
-    tagline: با دوستان خود در ارتباط باشید و دوستان تازه پیدا کنید
-    terms: شرایط خدمت
-    unavailable_content: محتوای ناموجود
-    unavailable_content_description:
-      domain: کارساز
-      reason: دلیل
-      rejecting_media: 'پرونده‌های رسانه از این کارسازها پردازش یا ذخیره نخواهند شد و هیچ بندانگشتی‌ای نمایش نخواهد یافت. نیازمند کلیک دستی برای رسیدن به پروندهٔ اصلی:'
-      rejecting_media_title: رسانه‌های پالوده
-      silenced: 'فرسته‌ها از این کارسازها در خط‌زمانی‌های عمومی و گفت‌وگوها پنهان خواهند بود و هیچ آگاهی‌ای از برهم‌کنش‌های کاربرانشان ایجاد نخواهد شد،‌مگر این که دنبالشان کنید:'
-      silenced_title: کارسازهای خموش
-      suspended: 'هیچ داده‌ای از این کارسازها پردازش، ذخیره یا مبادله نخواهد شد، که هرگونه برهم‌کنش یا ارتباط با کاربران این کارسازها را غیرممکن خواهد کرد:'
-      suspended_title: کارسازهای معلّق
-    unavailable_content_html: ماستودون عموماً می‌گذارد محتوا را از از هر کارساز دیگری در دنیای شبکه‌های اجتماعی غیرمتمرکز دیده و با آنان برهم‌کنش داشته باشید. این‌ها استثناهایی هستند که روی این کارساز خاص وضع شده‌اند.
-    user_count_after:
-      one: کاربر
-      other: کاربر
-    user_count_before: میزبان
-    what_is_mastodon: ماستودون چیست؟
+    title: درباره
   accounts:
-    choices_html: 'انتخاب‌های %{name}:'
-    endorsements_hint: شما می‌توانید از محیط وب ماستودون، کسانی را که پی می‌گیرید به دیگران هم پیشنهاد دهید تا این‌جا نشان داده شوند.
-    featured_tags_hint: می‌توانید برچسب‌های خاصی را مشخّص کنید تا این‌جا دیده شوند.
     follow: پیگیری
     followers:
       one: پیگیر
       other: پیگیر
     following: پی می‌گیرد
     instance_actor_flash: این حساب یک عامل مجازی است که به نمایندگی از خود کارساز استفاده می‌شود و نه هیچ یکی از کاربران. این حساب به منظور اتصال به فدراسیون استفاده می‌شود و نباید معلق شود.
-    joined: پیوسته از %{date}
     last_active: آخرین فعالیت
     link_verified_on: مالکیت این پیوند در %{date} بررسی شد
-    media: عکس و ویدیو
-    moved_html: "%{name} حساب خود را به %{new_profile_link} منتقل کرده است:"
-    network_hidden: این اطلاعات در دسترس نیست
     nothing_here: این‌جا چیزی نیست!
-    people_followed_by: کسانی که %{name} پی می‌گیرد
-    people_who_follow: کسانی که %{name} را پی می‌گیرند
     pin_errors:
       following: باید کاربری که می‌خواهید پیشنهاد دهید را دنبال کرده باشید
     posts:
       one: فرسته
       other: فرسته‌ها
     posts_tab_heading: فرسته‌ها
-    posts_with_replies: فرسته‌ها و پاسخ‌ها
-    roles:
-      admin: مدیر
-      bot: ربات
-      group: گروه
-      moderator: ناظر
-    unavailable: نمایهٔ ناموجود
-    unfollow: پایان پیگیری
   admin:
     account_actions:
       action: انجامِ کنش
@@ -105,12 +38,17 @@ fa:
       avatar: تصویر نمایه
       by_domain: دامین
       change_email:
-        changed_msg: نشانی ایمیل این حساب با موفقیت تغییر کرد!
-        current_email: ایمیل کنونی
-        label: تغییر نشانی ایمیل
-        new_email: ایمیل تازه
-        submit: تغییر ایمیل
-        title: تغییر ایمیل برای %{username}
+        changed_msg: رایانامه با موفقیت تغییر کرد!
+        current_email: رایانامهٔ کنونی
+        label: تغییر رایانامه
+        new_email: رایانامهٔ جدید
+        submit: تغییر رایانامه
+        title: تغییر رایانامه برای %{username}
+      change_role:
+        changed_msg: نقش با موفقیت تغییر کرد!
+        label: تغییر نقش
+        no_role: بدون نقش
+        title: تغییر نقش برای %{username}
       confirm: تأیید
       confirmed: تأیید شد
       confirming: تأیید
@@ -126,8 +64,8 @@ fa:
       display_name: نام نمایشی
       domain: دامنه
       edit: ویرایش
-      email: ایمیل
-      email_status: وضعیت ایمیل
+      email: رایانامه
+      email_status: وضعیت رایانامه
       enable: به کار انداختن
       enable_sign_in_token_auth: به کار انداختن تأیید هویت ژتون رایانامه‌ای
       enabled: به کار افتاده
@@ -154,6 +92,7 @@ fa:
         active: فعّال
         all: همه
         pending: منتظر
+        silenced: محدود
         suspended: تعلیق شده
         title: مدیریت
       moderation_notes: یادداشت‌های مدیریتی
@@ -161,6 +100,7 @@ fa:
       most_recent_ip: آخرین IP
       no_account_selected: هیچ حسابی تغییر نکرد زیرا حسابی انتخاب نشده بود
       no_limits_imposed: بدون محدودیت
+      no_role_assigned: هیچ نقشی اعطا نشده
       not_subscribed: مشترک نیست
       pending: در انتظار بررسی
       perform_full_suspension: تعلیق
@@ -179,17 +119,12 @@ fa:
       removed_header_msg: تصویر سرایند %{username} با موفّقیت برداشته شد
       resend_confirmation:
         already_confirmed: این کاربر قبلا تایید شده است
-        send: ایمیل تایید را دوباره بفرستید
-        success: ایمیل تایید با موفقیت ارسال شد!
+        send: ارسال دوبارهٔ رایانامهٔ تأیید
+        success: رایانامه تأیید با موفقیت ارسال شد!
       reset: بازنشانی
       reset_password: بازنشانی رمز
       resubscribe: اشتراک دوباره
-      role: اجازه‌ها
-      roles:
-        admin: مدیر
-        moderator: ناظر
-        staff: کارمند
-        user: کاربر
+      role: نقش
       search: جستجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
@@ -212,9 +147,9 @@ fa:
       suspension_irreversible: داده‌های این حساب به صورت بی‌بازگشت حذف شد. می‌توانید برای قابل استفاده کردنش، آن را نامعلّق کنید، ولی این کار هیچ داده‌ای را که از پیش داده، برنخواهد گرداند.
       suspension_reversible_hint_html: حساب معلّق شد و داده‌ها به صورت کامل در %{date} برداشته خواهند شد. تا آن زمان، حساب می‌تواند بی هیچ عوارضی بازگردانده شود. اگر می‌خواهید فوراً همهٔ داده‌های حساب را بردارید، می‌توانید در پایین این کار را بکنید.
       title: حساب‌ها
-      unblock_email: رفع مسدودیت نشانی ایمیل
-      unblocked_email_msg: مسدودیت نشانی ایمیل %{username} با موفقیت رفع شد
-      unconfirmed_email: ایمیل تأییدنشده
+      unblock_email: رفع مسدودیت نشانی رایانامه
+      unblocked_email_msg: مسدودیت نشانی رایانامهٔ %{username} با موفقیت رفع شد
+      unconfirmed_email: رایانامهٔ تأیید نشده
       undo_sensitized: بازگردانی حساس
       undo_silenced: واگردانی بی‌صداکردن
       undo_suspension: واگردانی تعلیق
@@ -270,7 +205,7 @@ fa:
         silence_account: خموشی حساب
         suspend_account: تعلیق حساب
         unassigned_report: رفع واگذاری گزارش
-        unblock_email_account: رفع مسدودیت ایمیل
+        unblock_email_account: رفع مسدودیت رایانامه
         unsensitive_account: برداشتن علامت رسانه در حسابتان به عنوان حساس
         unsilence_account: رفع خموشی حساب
         unsuspend_account: رفع تعلیق حساب
@@ -294,7 +229,6 @@ fa:
         create_unavailable_domain_html: "%{name} تحویل محتوا به دامنه %{target} را متوقف کرد"
         demote_user_html: "%{name} کاربر %{target} را تنزل داد"
         destroy_announcement_html: "%{name} اعلامیهٔ %{target} را حذف کرد"
-        destroy_custom_emoji_html: "%{name} اموجی %{target} را نابود کرد"
         destroy_domain_allow_html: "%{name} دامنهٔ %{target} را از فهرست مجاز برداشت"
         destroy_domain_block_html: "%{name} انسداد دامنهٔ %{target} را رفع کرد"
         destroy_email_domain_block_html: "%{name} انسداد دامنهٔ رایانامهٔ %{target} را برداشت"
@@ -321,7 +255,7 @@ fa:
         silence_account_html: "%{name} حساب %{target} را محدود کرد"
         suspend_account_html: "%{name} حساب %{target} را تعلیق کرد"
         unassigned_report_html: "%{name} گزارش %{target} را از حالت محول شده خارج کرد"
-        unblock_email_account_html: "%{name} نشانی ایمیل %{target} را رفع مسدودیت کرد"
+        unblock_email_account_html: "%{name} نشانی رایانامهٔ %{target} را رفع مسدودیت کرد"
         unsensitive_account_html: "%{name} علامت حساس رسانهٔ %{target} را برداشت"
         unsilence_account_html: "%{name} محدودیت حساب %{target} را برداشت"
         unsuspend_account_html: "%{name} حساب %{target} را از تعلیق خارج کرد"
@@ -329,7 +263,6 @@ fa:
         update_custom_emoji_html: "%{name} شکلک %{target} را به‌روز کرد"
         update_domain_block_html: "%{name} مسدودسازی دامنه را برای %{target} به‌روزرسانی کرد"
         update_status_html: "%{name} نوشتهٔ %{target} را به‌روز کرد"
-      deleted_status: "(نوشتهٔ پاک‌شده)"
       empty: هیچ گزارشی پیدا نشد.
       filter_by_action: پالایش بر اساس کنش
       filter_by_user: پالایش بر اساس کاربر
@@ -449,7 +382,7 @@ fa:
       view: دیدن مسدودسازی دامنه
     email_domain_blocks:
       add_new: افزودن تازه
-      created_msg: مسدودسازی دامین ایمیل با موفقیت ساخته شد
+      created_msg: دامنهٔ رایانامه با موفقیت مسدود شد
       delete: پاک‌کردن
       dns:
         types:
@@ -457,8 +390,8 @@ fa:
       domain: دامین
       new:
         create: ساختن مسدودسازی
-        title: مسدودسازی دامین ایمیل تازه
-      title: مسدودسازی دامین‌های ایمیل
+        title: مسدودسازی دامنهٔ رایانامهٔ جدید
+      title: دامنه‌های رایانامهٔ مسدود شده
     follow_recommendations:
       description_html: "<strong>پیشنهادات پیگیری به کاربران جدید کک می‌کند تا سریع‌تر محتوای جالب را پیدا کنند</strong>. زمانی که کاربری هنوز به اندازه کافی با دیگران تعامل نداشته است تا پیشنهادات پیگیری شخصی‌سازی‌شده دریافت کند، این حساب‌ها را به جای آن فهرست مشاهده خواهد کرد. این حساب‌ها به صورت روزانه و در ترکیب با بیشتری تعاملات و بالاترین دنبال‌کنندگان محلی برای یک زبان مشخص بازمحاسبه می‌شوند."
       language: برای زبان
@@ -577,9 +510,11 @@ fa:
       comment:
         none: هیچ
       created_at: گزارش‌شده
+      delete_and_resolve: حذف فرسته‌ها
       forwarded: هدایت شده
       forwarded_to: هدایت شده به %{domain}
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
+      mark_as_sensitive: علامت به حساس
       mark_as_unresolved: علامت‌گذاری به عنوان حل‌نشده
       no_one_assigned: هیچ‌کس
       notes:
@@ -589,12 +524,14 @@ fa:
         delete: حذف
         placeholder: کارهایی را که در این باره انجام شده، یا هر به‌روزرسانی دیگری را بنویسید...
         title: یادداشت‌ها
+      remote_user_placeholder: کاربر دوردست از %{instance}
       reopen: دوباره به جریان بیندازید
       report: 'گزارش #%{id}'
       reported_account: حساب گزارش‌شده
       reported_by: گزارش از طرف
       resolved: حل‌شده
       resolved_msg: گزارش با موفقیت حل شد!
+      skip_to_actions: پرش به کنش‌ها
       status: نوشته
       statuses: محتوای گزارش شده
       target_origin: خاستگاه حساب گزارش‌شده
@@ -603,6 +540,28 @@ fa:
       unresolved: حل‌نشده
       updated_at: به‌روز شد
       view_profile: دیدن نمایه
+    roles:
+      add_new: افزودن نقش
+      categories:
+        administration: مدیریت
+        invites: دعوت‌ها
+        moderation: نظارت
+        special: ویژه
+      delete: حذف
+      edit: ویراش نقش %{name}
+      everyone: اجازه‌های پیش‌گزیده
+      privileges:
+        administrator: مدیر
+        delete_user_data: حذف داده‌های کاربر
+        invite_users: دعوت کاربران
+        manage_announcements: مدیریت اعلامیه‌ها
+        manage_blocks: مدیریت مسدودی‌ها
+        manage_custom_emojis: مدیریت ایموجی‌های سفارشی
+        manage_invites: مدیریت دعوت‌ها
+        manage_reports: مدیریت گزارش‌ها
+        manage_roles: مدیریت نقش‌ها
+        manage_rules: مدیریت قوانین
+        manage_settings: مدیریت تنظیمات
     rules:
       add_new: افزودن قانون
       delete: حذف
@@ -611,110 +570,55 @@ fa:
       empty: هنوز هیچ قانونی برای کارساز تعریف نشده.
       title: قوانین کارساز
     settings:
-      activity_api_enabled:
-        desc_html: تعداد فرسته‌های محلی، کاربران فعال، و کاربران تازه در هر هفته
-        title: انتشار آمار تجمیعی دربارهٔ فعالیت کاربران
-      bootstrap_timeline_accounts:
-        desc_html: نام‌های کاربری را با ویرگول از هم جدا کنید. این حساب‌ها تضمین می‌شوند که در پیشنهادهای پی‌گیری نشان داده شوند
-        title: پیگیری‌های پیش‌فرض برای کاربران تازه
-      contact_information:
-        email: ایمیل کاری
-        username: نام کاربری
-      custom_css:
-        desc_html: ظاهر ماستودون را با CSS-ای که در همهٔ صفحه‌ها جاسازی می‌شود تغییر دهید
-        title: سبک CSS سفارشی
-      default_noindex:
-        desc_html: روی همهٔ کاربرانی که این تنظیم را خودشان تغییر نداده‌اند تأثیر می‌گذارد
-        title: درخواست پیش‌فرض از طرف کاربران برای ظاهر نشدن در نتایج موتورهای جستجوگر
+      discovery:
+        follow_recommendations: پیروی از پیشنهادها
+        profile_directory: شاخهٔ نمایه
+        public_timelines: خط زمانی‌های عمومی
+        title: کشف
+        trends: پرطرفدارها
       domain_blocks:
         all: برای همه
         disabled: برای هیچ‌کدام
-        title: نمایش دامنه‌های مسدود شده
         users: برای کاربران محلی واردشده
-      domain_blocks_rationale:
-        title: دیدن دلیل
-      hero:
-        desc_html: در صفحهٔ آغازین نمایش می‌یابد. دست‌کم ۶۰۰×۱۰۰ پیکسل توصیه می‌شود. اگر تعیین نشود، با تصویر بندانگشتی سرور جایگزین خواهد شد
-        title: تصویر سربرگ
-      mascot:
-        desc_html: در صفحه‌های گوناگونی نمایش می‌یابد. دست‌کم ۲۹۳×۲۰۵ پیکسل. اگر تعیین نشود، با تصویر پیش‌فرض جایگزین خواهد شد
-        title: تصویر نماد
-      peers_api_enabled:
-        desc_html: دامین‌هایی که این سرور به آن‌ها برخورده است
-        title: انتشار سیاههٔ کارسازهای کشف شده در API
-      preview_sensitive_media:
-        desc_html: پیوند به سایت‌های دیگر پیش‌نمایشی خواهد داشت که یک تصویر کوچک را نشان می‌دهد، حتی اگر نوشته به عنوان حساس علامت‌گذاری شده باشد
-        title: نمایش تصاویر حساسیت‌برانگیز در پیش‌نمایش‌های OpenGraph
-      profile_directory:
-        desc_html: اجازه به کاربران برای قابل کشف بودن
-        title: به کار انداختن شاخهٔ نمایه
       registrations:
-        closed_message:
-          desc_html: وقتی امکان ثبت نام روی سرور فعال نباشد در صفحهٔ اصلی نمایش می‌یابد<br>می‌توانید HTML بنویسید
-          title: پیغام برای فعال‌نبودن ثبت نام
-        deletion:
-          desc_html: هر کسی بتواند حساب خود را پاک کند
-          title: فعال‌سازی پاک‌کردن حساب
-        min_invite_role:
-          disabled: هیچ کس
-          title: اجازهٔ دعوت به
-        require_invite_text:
-          desc_html: زمانی که نام‌نویسی نیازمند تایید دستی است، متن «چرا می‌خواهید عضو شود؟» بخش درخواست دعوت را به جای اختیاری، اجباری کنید
-          title: نیازمند پر کردن متن درخواست دعوت توسط کاربران جدید
+        title: ثبت‌نام‌ها
       registrations_mode:
         modes:
           approved: ثبت نام نیازمند تأیید مدیران است
           none: کسی نمی‌تواند ثبت نام کند
           open: همه می‌توانند ثبت نام کنند
-        title: شرایط ثبت نام
-      show_known_fediverse_at_about_page:
-        desc_html: اگر از کار انداخته شود، خط‌زمانی همگانی را محدود می‌کند؛ تا فقط محتوای محلّی را نمایش دهد.
-        title: نمایش سرورهای دیگر در پیش‌نمایش این سرور
-      show_staff_badge:
-        desc_html: نمایش علامت همکار روی صفحهٔ کاربر
-        title: نمایش علامت همکار
-      site_description:
-        desc_html: معرفی کوتاهی دربارهٔ رابط برنامه‌نویسی کاربردی. دربارهٔ این که چه چیزی دربارهٔ این سرور ماستدون ویژه است یا هر چیز مهم دیگری بنویسید. می‌توانید HTML بنویسید، به‌ویژه <code>&lt;a&gt;</code> و <code>&lt;em&gt;</code>.
-        title: دربارهٔ این سرور
-      site_description_extended:
-        desc_html: جای خوبی برای نوشتن سیاست‌های کاربری، قانون‌ها، راهنماها، و هر چیزی که ویژهٔ این سرور است. تگ‌های HTML هم مجاز است
-        title: اطلاعات تکمیلی سفارشی
-      site_short_description:
-        desc_html: روی نوار کناری و همچنین به عنوان فرادادهٔ صفحه‌ها نمایش می‌یابد. در یک بند توضیح دهید که ماستدون چیست و چرا این سرور با بقیه فرق دارد.
-        title: توضیح کوتاه دربارهٔ سرور
-      site_terms:
-        desc_html: می‌توانید سیاست رازداری، شرایط استفاده، یا سایر مسائل قانونی را به دلخواه خود بنویسید. تگ‌های HTML هم مجاز است
-        title: شرایط استفادهٔ سفارشی
-      site_title: نام سرور
-      thumbnail:
-        desc_html: برای دیدن با OpenGraph و رابط برنامه‌نویسی. وضوح پیشنهادی ۱۲۰۰×۶۳۰ پیکسل
-        title: تصویر کوچک سرور
-      timeline_preview:
-        desc_html: نوشته‌های عمومی این سرور را در صفحهٔ آغازین نشان دهید
-        title: پیش‌نمایش نوشته‌ها
-      title: تنظیمات سایت
-      trendable_by_default:
-        desc_html: روی برچسب‌هایی که پیش از این ممنوع نشده‌اند تأثیر می‌گذارد
-        title: بگذارید که برچسب‌های پرطرفدار بدون بازبینی قبلی نمایش داده شوند
-      trends:
-        desc_html: برچسب‌های عمومی که پیش‌تر بازبینی شده‌اند و هم‌اینک پرطرفدارند
-        title: پرطرفدارها
+      title: تنظیمات کارساز
     site_uploads:
       delete: پرونده بارگذاری شده را پاک کنید
       destroyed_msg: بارگذاری پایگاه با موفقیت حذف شد!
     statuses:
+      account: نگارنده
+      application: برنامه
       back_to_account: بازگشت به صفحهٔ حساب
       back_to_report: بازگشت به صفحهٔ گزارش
       batch:
         remove_from_report: برداشتن از گزارش
         report: گزارش
       deleted: پاک‌شده
+      favourites: برگزیده‌ها
+      history: تاریخچهٔ نگارش
+      in_reply_to: در پاسخ به
+      language: زبان
       media:
         title: رسانه
+      metadata: فراداده
       no_status_selected: هیچ فرسته‌ای تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
+      open: گشودن فرسته
+      original_status: فرستهٔ اصلی
+      reblogs: تقویت‌ها
+      status_changed: فرسته تغییر کرد
       title: نوشته‌های حساب
+      trending: پرطرفدار
+      visibility: نمایانی
       with_media: دارای عکس یا ویدیو
     strikes:
+      actions:
+        delete_statuses: "%{name} فرستهٔ %{target} را حذف کرد"
       appeal_approved: درخواست تجدیدنظر کرد
       appeal_pending: درخواست تجدیدنظر در انتظار
     system_checks:
@@ -766,6 +670,8 @@ fa:
       edit_preset: ویرایش هشدار پیش‌فرض
       empty: هنز هیچ پیش‌تنظیم هشداری را تعریف نکرده‌اید.
       title: مدیریت هشدارهای پیش‌فرض
+    webhooks:
+      new: قلاب وب جدید
   admin_mailer:
     new_appeal:
       actions:
@@ -780,7 +686,6 @@ fa:
       subject: گزارش تازه‌ای برای %{instance} (#%{id})
     new_trends:
       new_trending_links:
-        no_approved_links: در حال حاضر هیچ پیوند پرطرفداری پذیرفته نشده است.
         title: پیوندهای داغ
       new_trending_statuses:
         title: فرسته‌های داغ
@@ -813,16 +718,12 @@ fa:
   applications:
     created: برنامه با موفقیت ساخته شد
     destroyed: برنامه با موفقیت پاک شد
-    invalid_url: نشانی واردشده معتبر نیست
     regenerate_token: دوباره‌سازی کد دسترسی
     token_regenerated: کد دسترسی با موفقیت ساخته شد
     warning: خیلی مواظب این اطلاعات باشید و آن را به هیچ کس ندهید!
     your_token: کد دسترسی شما
   auth:
-    apply_for_account: درخواست دعوت‌نامه
     change_password: رمز
-    checkbox_agreement_html: با <a href="%{rules_path}" target="_blank">قانون‌های این کارساز</a> و <a href="%{terms_path}" target="_blank">شرایط خدماتش</a> موافقم
-    checkbox_agreement_without_rules_html: من با <a href="%{terms_path}" target="_blank">شرایط استفاده</a> موافقم
     delete_account: پاک‌کردن حساب
     delete_account_html: اگر می‌خواهید حساب خود را پاک کنید، از <a href="%{path}">این‌جا</a> پیش بروید. از شما درخواست تأیید خواهد شد.
     description:
@@ -860,7 +761,6 @@ fa:
       pending: درخواست شما منتظر تأیید مسئولان سایت است و این فرایند ممکن است کمی طول بکشد. اگر درخواست شما پذیرفته شود به شما ایمیلی فرستاده خواهد شد.
       redirecting_to: حساب شما غیرفعال است زیرا هم‌اکنون به %{acct} منتقل شده است.
     too_fast: فرم با سرعت بسیار زیادی فرستاده شد، دوباره تلاش کنید.
-    trouble_logging_in: برای ورود مشکلی دارید؟
     use_security_key: استفاده از کلید امنیتی
   authorize_follow:
     already_following: شما همین الان هم این حساب را پی‌می‌گیرید
@@ -918,10 +818,6 @@ fa:
       more_details_html: برای اطلاعات بیشتر <a href="%{terms_path}">سیاست رازداری</a> را ببینید.
       username_available: نام کاربری شما دوباره در دسترس خواهد بود
       username_unavailable: نام کاربری شما برای دیگران غیرقابل دسترس خواهد ماند
-  directories:
-    directory: شاخهٔ نمایه
-    explanation: کاربران را بر اساس علاقه‌مندی‌هایشان بیابید
-    explore_mastodon: گشت و گذار در %{title}
   disputes:
     strikes:
       appeal: درخواست تجدیدنظر
@@ -950,7 +846,7 @@ fa:
       content: شرمنده، یک چیزی از سمت ما اشتباه شده.
       title: این صفحه درست نیست
     '503': این صفحه به خاطر یک مشکل موقت در کارساز در دسترس نیست.
-    noscript_html: برای استفاده از نسخهٔ تحت وب ماستودون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک اپ ماستدون</a> را به‌کار ببرید.
+    noscript_html: برای استفاده از نسخهٔ تحت وب ماستودون، لطفاً جاوااسکریپت را فعال کنید. یا به جایش می‌توانید <a href="%{apps_path}">یک کارهٔ ماستودون</a> را به کار ببرید.
   existing_username_validator:
     not_found: کاربری با این نام کاربری در این کارساز پیدا نشد
     not_found_multiple: "%{usernames} پیدا نشد"
@@ -985,7 +881,6 @@ fa:
       title: ویرایش پالایه
     errors:
       invalid_context: زمینه‌ای موجود نیست یا نامعتبر است
-      invalid_irreversible: پالایش برگشت‌ناپذیر تنها در زمینهٔ خانه یا آگاهی‌ها کار می‌کنند
     index:
       delete: پاک‌کردن
       empty: هیچ پالایه‌ای ندارید.
@@ -993,9 +888,6 @@ fa:
     new:
       title: افزودن پالایهٔ جدید
   footer:
-    developers: برنامه‌نویسان
-    more: بیشتر…
-    resources: منابع
     trending_now: پرطرفدار
   generic:
     all: همه
@@ -1028,7 +920,6 @@ fa:
       following: سیاههٔ پی‌گیری
       muting: سیاههٔ خموشی
     upload: بارگذاری
-  in_memoriam_html: به یادبود.
   invites:
     delete: غیرفعال‌سازی
     expired: منقضی‌شده
@@ -1111,14 +1002,6 @@ fa:
     admin:
       sign_up:
         subject: "%{name} ثبت نام کرد"
-    digest:
-      action: دیدن تمامی آگاهی‌ها
-      body: خلاصه‌ای از پیغام‌هایی که از زمان آخرین بازدید شما در %{since} فرستاده شد
-      mention: "%{name} این‌جا از شما نام برد:"
-      new_followers_summary:
-        one: در ضمن، وقتی که نبودید یک پیگیر تازه پیدا کردید! ای ول!
-        other: در ضمن، وقتی که نبودید %{count} پیگیر تازه پیدا کردید! چه عالی!
-      title: در مدتی که نبودید...
     favourite:
       body: "%{name} این نوشتهٔ شما را پسندید:"
       subject: "%{name} نوشتهٔ شما را پسندید"
@@ -1210,22 +1093,7 @@ fa:
     remove_selected_follows: به پیگیری از کاربران انتخاب‌شده پایان بده
     status: وضعیت حساب
   remote_follow:
-    acct: نشانی حساب username@domain خود را این‌جا بنویسید
     missing_resource: نشانی اینترنتی برای رسیدن به حساب شما پیدا نشد
-    no_account_html: هنوز عضو نیستید؟ <a href='%{sign_up_path}' target='_blank'>این‌جا می‌توانید حساب باز کنید</a>
-    proceed: درخواست پیگیری
-    prompt: 'شما قرار است این حساب را پیگیری کنید:'
-    reason_html: "<strong>چرا این گام ضروریست؟</strong> ممکن است <code>%{instance}</code> کارسازی نباشد که شما رویش حساب دارید؛ پس لازم است پیش از هرچیز، به کارساز خودتان هدایتتان کنیم."
-  remote_interaction:
-    favourite:
-      proceed: به سمت پسندیدن
-      prompt: 'شما می‌خواهید این فرسته را بپسندید:'
-    reblog:
-      proceed: به سمت تقویت
-      prompt: 'شما می‌خواهید این فرسته را تقویت کنید:'
-    reply:
-      proceed: به سمت پاسخ‌دادن
-      prompt: 'شما می‌خواهید به این فرسته پاسخ دهید:'
   scheduled_statuses:
     over_daily_limit: شما از حد مجاز %{limit} فرسته زمان‌بندی‌شده در آن روز فراتر رفته‌اید
     over_total_limit: شما از حد مجاز %{limit} فرسته زمان‌بندی‌شده فراتر رفته‌اید
@@ -1235,7 +1103,6 @@ fa:
     browser: مرورگر
     browsers:
       alipay: علی‌پی
-      blackberry: بلک‌بری
       chrome: کروم
       edge: مایکروسافت اج
       electron: الکترون
@@ -1249,7 +1116,6 @@ fa:
       phantom_js: فنتوم‌جی‌اس
       qq: مرورگر کیوکیو
       safari: سافاری
-      uc_browser: مرورگر یوسی
       weibo: وبیو
     current_session: نشست فعلی
     description: "%{browser} روی %{platform}"
@@ -1258,8 +1124,6 @@ fa:
     platforms:
       adobe_air: ایر ادوبی
       android: اندروید
-      blackberry: بلک‌بری
-      chrome_os: سیستم‌عامل کروم
       firefox_os: سیستم‌عامل فایرفاکس
       ios: آی‌اواس
       linux: لینوکس
@@ -1383,89 +1247,6 @@ fa:
     sensitive_content: محتوای حساس
   tags:
     does_not_match_previous_name: با نام پیشین مطابق نیست
-  terms:
-    body_html: |
-      <h2>سیاست رازداری</h2>
-      <h3 id="collect">What information do we collect?</h3>
-
-      <ul>
-      <li><em>Basic account information</em>: If you register on this server, you may be asked to enter a username, an e-mail address and a password. You may also enter additional profile information such as a display name and biography, and upload a profile picture and header image. The username, display name, biography, profile picture and header image are always listed publicly.</li>
-      <li><em>Posts, following and other public information</em>: The list of people you follow is listed publicly, the same is true for your followers. When you submit a message, the date and time is stored as well as the application you submitted the message from. Messages may contain media attachments, such as pictures and videos. Public and unlisted posts are available publicly. When you feature a post on your profile, that is also publicly available information. Your posts are delivered to your followers, in some cases it means they are delivered to different servers and copies are stored there. When you delete posts, this is likewise delivered to your followers. The action of reblogging or favouriting another post is always public.</li>
-      <li><em>Direct and followers-only posts</em>: All posts are stored and processed on the server. Followers-only posts are delivered to your followers and users who are mentioned in them, and direct posts are delivered only to users mentioned in them. In some cases it means they are delivered to different servers and copies are stored there. We make a good faith effort to limit the access to those posts only to authorized persons, but other servers may fail to do so. Therefore it's important to review servers your followers belong to. You may toggle an option to approve and reject new followers manually in the settings. <em>Please keep in mind that the operators of the server and any receiving server may view such messages</em>, and that recipients may screenshot, copy or otherwise re-share them. <em>Do not share any dangerous information over Mastodon.</em></li>
-      <li><em>IPs and other metadata</em>: When you log in, we record the IP address you log in from, as well as the name of your browser application. All the logged in sessions are available for your review and revocation in the settings. The latest IP address used is stored for up to 12 months. We also may retain server logs which include the IP address of every request to our server.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="use">What do we use your information for?</h3>
-
-      <p>Any of the information we collect from you may be used in the following ways:</p>
-
-      <ul>
-      <li>To provide the core functionality of Mastodon. You can only interact with other people's content and post your own content when you are logged in. For example, you may follow other people to view their combined posts in your own personalized home timeline.</li>
-      <li>To aid moderation of the community, for example comparing your IP address with other known ones to determine ban evasion or other violations.</li>
-      <li>The email address you provide may be used to send you information, notifications about other people interacting with your content or sending you messages, and to respond to inquiries, and/or other requests or questions.</li>
-      </ul>
-
-      <hr class="spacer" />
-
-      <h3 id="protect">How do we protect your information?</h3>
-
-      <p>We implement a variety of security measures to maintain the safety of your personal information when you enter, submit, or access your personal information. Among other things, your browser session, as well as the traffic between your applications and the API, are secured with SSL, and your password is hashed using a strong one-way algorithm. You may enable two-factor authentication to further secure access to your account.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="data-retention">What is our data retention policy?</h3>
-
-      <p>We will make a good faith effort to:</p>
-
-      <ul>
-      <li>Retain server logs containing the IP address of all requests to this server, in so far as such logs are kept, no more than 90 days.</li>
-      <li>Retain the IP addresses associated with registered users no more than 12 months.</li>
-      </ul>
-
-      <p>You can request and download an archive of your content, including your posts, media attachments, profile picture, and header image.</p>
-
-      <p>You may irreversibly delete your account at any time.</p>
-
-      <hr class="spacer"/>
-
-      <h3 id="cookies">Do we use cookies?</h3>
-
-      <p>Yes. Cookies are small files that a site or its service provider transfers to your computer's hard drive through your Web browser (if you allow). These cookies enable the site to recognize your browser and, if you have a registered account, associate it with your registered account.</p>
-
-      <p>We use cookies to understand and save your preferences for future visits.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="disclose">Do we disclose any information to outside parties?</h3>
-
-      <p>We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our site, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety.</p>
-
-      <p>Your public content may be downloaded by other servers in the network. Your public and followers-only posts are delivered to the servers where your followers reside, and direct messages are delivered to the servers of the recipients, in so far as those followers or recipients reside on a different server than this.</p>
-
-      <p>When you authorize an application to use your account, depending on the scope of permissions you approve, it may access your public profile information, your following list, your followers, your lists, all your posts, and your favourites. Applications can never access your e-mail address or password.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="children">Site usage by children</h3>
-
-      <p>If this server is in the EU or the EEA: Our site, products and services are all directed to people who are at least 16 years old. If you are under the age of 16, per the requirements of the GDPR (<a href="https://en.wikipedia.org/wiki/General_Data_Protection_Regulation">General Data Protection Regulation</a>) do not use this site.</p>
-
-      <p>If this server is in the USA: Our site, products and services are all directed to people who are at least 13 years old. If you are under the age of 13, per the requirements of COPPA (<a href="https://en.wikipedia.org/wiki/Children%27s_Online_Privacy_Protection_Act">Children's Online Privacy Protection Act</a>) do not use this site.</p>
-
-      <p>Law requirements can be different if this server is in another jurisdiction.</p>
-
-      <hr class="spacer" />
-
-      <h3 id="changes">Changes to our Privacy Policy</h3>
-
-      <p>If we decide to change our privacy policy, we will post those changes on this page.</p>
-
-      <p>This document is CC-BY-SA. It was last updated March 7, 2018.</p>
-
-      <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
-    title: شرایط استفاده و سیاست رازداری %{instance}
   themes:
     contrast: ماستودون (سایه‌روشن بالا)
     default: ماستودون (تیره)
@@ -1523,20 +1304,11 @@ fa:
         suspend: حساب معلق شده است
     welcome:
       edit_profile_action: تنظیم نمایه
-      edit_profile_step: 'شما می‌توانید نمایهٔ خود را به دلخواه خود تغییر دهید: می‌توانید تصویر نمایه، تصویر پس‌زمینه، نام، و چیزهای دیگری را تعیین کنید. اگر بخواهید، می‌توانید حساب خود را خصوصی کنید تا فقط کسانی که شما اجازه می‌دهید بتوانند پیگیر حساب شما شوند.'
       explanation: نکته‌هایی که برای آغاز کار به شما کمک می‌کنند
       final_action: چیزی منتشر کنید
-      final_step: 'چیزی بنویسید! حتی اگر الان کسی پیگیر شما نباشد، دیگران نوشته‌های عمومی شما را می‌بینند، مثلاً در فهرست نوشته‌های محلی و در برچسب (هشتگ)ها. شاید بخواهید با برچسب #معرفی خودتان را معرفی کنید.'
       full_handle: نام کاربری کامل شما
       full_handle_hint: این چیزی است که باید به دوستانتان بگویید تا بتوانند از کارسازی دیگر به شما پیام داده یا پی‌گیرتان شوند.
-      review_preferences_action: تغییر ترجیحات
-      review_preferences_step: با رفتن به صفحهٔ ترجیحات می‌توانید چیزهای گوناگونی را تنظیم کنید. مثلاً این که چه ایمیل‌های آگاه‌سازی‌ای به شما فرستاده شود، یا حریم خصوصی پیش‌فرض نوشته‌هایتان چه باشد. اگر بیماری سفر (حالت تهوع بر اثر دیدن اجسام متحرک) ندارید، می‌توانید پخش خودکار ویدیوها را فعال کنید.
       subject: به ماستودون خوش آمدید
-      tip_federated_timeline: "«فهرست نوشته‌های همه‌جا» نمایی کلی از شبکهٔ ماستودون است. ولی فقط شامل افرادیست که همسایگانتان پیگیرشان هستند؛ پس کامل نیست."
-      tip_following: به طور پیش‌گزیده مدیر(ان) کارسازتان را پی می‌گیرید. برای یافتن افراد جالب دیگر، فهرست «نوشته‌های محلی» و «نوشته‌های همه‌جا» را ببینید.
-      tip_local_timeline: فهرست نوشته‌های محلی نمایی کلی از کاربران روی %{instance} را ارائه می‌دهد. این‌ها همسایه‌های شما هستند!
-      tip_mobile_webapp: اگر مرورگر همراهتان پیشنهاد افزودن ماستودون به صفحهٔ اصلیتان را می‌دهد، می‌توانید آگاهی‌های ارسالی را دریافت کنید. این کار از بسیاری جهت‌ها،‌مانند یک کارهٔ بومی عمل می‌کند!
-      tips: نکته‌ها
       title: خوش آمدید، کاربر %{name}!
   users:
     follow_limit_reached: شما نمی‌توانید بیش از %{limit} نفر را پی بگیرید

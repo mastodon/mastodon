@@ -3,10 +3,10 @@
 class ActivityPub::Dereferencer
   include JsonLdHelper
 
-  def initialize(uri, permitted_origin: nil, signature_account: nil)
+  def initialize(uri, permitted_origin: nil, signature_actor: nil)
     @uri               = uri
     @permitted_origin  = permitted_origin
-    @signature_account = signature_account
+    @signature_actor = signature_actor
   end
 
   def object
@@ -46,7 +46,7 @@ class ActivityPub::Dereferencer
 
     req.add_headers('Accept' => 'application/activity+json, application/ld+json')
     req.add_headers(headers) if headers
-    req.on_behalf_of(@signature_account) if @signature_account
+    req.on_behalf_of(@signature_actor) if @signature_actor
 
     req.perform do |res|
       if res.code == 200

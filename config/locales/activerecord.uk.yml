@@ -7,7 +7,7 @@ uk:
         options: Варіанти вибору
       user:
         agreement: Угода про надання послуг
-        email: E-mail адреса
+        email: Адреса е-пошти
         locale: Локаль
         password: Пароль
       user/account:
@@ -19,14 +19,37 @@ uk:
         account:
           attributes:
             username:
-              invalid: тільки літери, цифри та підкреслення
+              invalid: має містити лише літери, цифри та підкреслення
               reserved: зарезервовано
+        admin/webhook:
+          attributes:
+            url:
+              invalid: не є дійсною URL-адресою
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: не є дійсною URL-адресою
+        import:
+          attributes:
+            data:
+              malformed: неправильний
         status:
           attributes:
             reblog:
-              taken: статусу вже існує
+              taken: цього допису вже існує
         user:
           attributes:
             email:
               blocked: використовує не дозволенного постачальника електронної пошти
               unreachable: не існує
+            role_id:
+              elevated: не може бути вищою за поточну роль
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: включити небезпечні для базової ролі дозволи
+              elevated: не можна включити права, якими не володіє ваша поточна роль
+              own_role: не можна змінити у вашій поточній ролі
+            position:
+              elevated: не може бути вищою за поточну роль
+              own_role: не можна змінити у вашій поточній ролі

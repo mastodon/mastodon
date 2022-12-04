@@ -45,7 +45,6 @@ describe AccountSearchService, type: :service do
 
         results = subject.call('e@example.com', nil, limit: 2)
 
-        expect(results.size).to eq 2
         expect(results).to eq([exact, remote]).or eq([exact, remote_too])
       end
     end
