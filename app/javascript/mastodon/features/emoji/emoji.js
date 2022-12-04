@@ -73,8 +73,6 @@ const emojifyTextNode = (node, customEmojis) => {
     }
     node.textContent = str.slice(0, i);
     str = str.slice(rend);
-    node = document.createTextNode(str);
-    parentElement.append(node);
   }
 
   fragment.append(document.createTextNode(str));
