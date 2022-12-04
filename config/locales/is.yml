@@ -12,7 +12,7 @@ is:
       one: fylgjandi
       other: fylgjendur
     following: Fylgist með
-    instance_actor_flash: Þessi notandaaðgangur er sýndarnotandi sem stendur fyrir sjálfan netþjóninn en ekki neinn einstakling. Hann er notaður við skýjasambandsmiðlun og ætti ekki að setja hann í bið eða banna.
+    instance_actor_flash: Þessi notandaaðgangur er sýndarnotandi sem stendur fyrir sjálfan netþjóninn en ekki neinn einstakling. Hann er notaður við skýjasambandsmiðlun og ætti ekki að setja hann í frysti eða banna.
     last_active: síðasta virkni
     link_verified_on: Eignarhald á þessum tengli var athugað þann %{date}
     nothing_here: Það er ekkert hér!
@@ -93,7 +93,7 @@ is:
         all: Allt
         pending: Í bið
         silenced: Takmarkað
-        suspended: Í bið
+        suspended: Í frysti
         title: Umsjón
       moderation_notes: Minnispunktar umsjónarmanna
       most_recent_activity: Allra nýjasta virkni
@@ -103,7 +103,7 @@ is:
       no_role_assigned: Engu hlutverki úthlutað
       not_subscribed: Ekki í áskrift
       pending: Bíður eftir yfirlestri
-      perform_full_suspension: Setja í bið
+      perform_full_suspension: Frysta
       previous_strikes: Fyrri refsingar
       previous_strikes_description_html:
         one: Þessi notandaaðgangur er með <strong>eina</strong> refsingu.
@@ -145,10 +145,10 @@ is:
       statuses: Færslur
       strikes: Fyrri refsingar
       subscribe: Gerast áskrifandi
-      suspend: Setja í bið
-      suspended: Í bið
-      suspension_irreversible: Gögnunum á þessum notandaaðgangi hefur verið eytt óafturkræft. Þú getur tekið aðganginn úr bið svo hægt sé að nota hann, en það mun ekki endurheimta neitt af þeim gögnum sem á honum voru áður.
-      suspension_reversible_hint_html: Notandaaðgangurin hefur verið settur í biðstöðu og gögnunum á honum verður eytt að fullu þann %{date}. Þangað til væri hægt að endurheimta aðganginn úr bið án nokkurra breytinga. Ef þú vilt eyða öllum gögnum af honum strax, geturðu gert það hér fyrir neðan.
+      suspend: Frysta
+      suspended: Í frysti
+      suspension_irreversible: Gögnunum á þessum notandaaðgangi hefur verið eytt óafturkræft. Þú getur tekið aðganginn úr frysti svo hægt sé að nota hann, en það mun ekki endurheimta neitt af þeim gögnum sem á honum voru áður.
+      suspension_reversible_hint_html: Notandaaðgangurinn hefur verið settur í frysti og gögnunum á honum verður eytt að fullu þann %{date}. Þangað til væri hægt að endurheimta aðganginn úr frysti án nokkurra breytinga. Ef þú vilt eyða öllum gögnum af honum strax, geturðu gert það hér fyrir neðan.
       title: Notandaaðgangar
       unblock_email: Aflétta útilokun tölvupóstfangs
       unblocked_email_msg: Tókst að afbanna tölvupóstfang notandans %{username}
@@ -158,7 +158,7 @@ is:
       undo_suspension: Taka úr bið
       unsilenced_msg: Tókst að fjarlægja takmarkanir af notandaaðgangnum fyrir %{username}
       unsubscribe: Taka úr áskrift
-      unsuspended_msg: Tókst að taka notandaaðganginn fyrir %{username} úr bið
+      unsuspended_msg: Tókst að taka notandaaðganginn fyrir %{username} úr frysti
       username: Notandanafn
       view_domain: Skoða yfirlit fyrir lén
       warn: Aðvara
@@ -212,12 +212,12 @@ is:
         resolve_report: Leysa kæru
         sensitive_account: Merkja myndefni á aðgangnum þínum sem viðkvæmt
         silence_account: Hylja notandaaðgang
-        suspend_account: Setja notandaaðgang í bið
+        suspend_account: Frysta notandaaðgang
         unassigned_report: Aftengja úthlutun kæru
         unblock_email_account: Leyfa tölvupóstfang
         unsensitive_account: Afmerkja myndefni á aðgangnum þínum sem viðkvæmt
         unsilence_account: Hætta að hylja notandaaðgang
-        unsuspend_account: Taka notandaaðgang úr bið
+        unsuspend_account: Taka notandaaðgang úr frysti
         update_announcement: Uppfæra tilkynningu
         update_custom_emoji: Uppfæra sérsniðið tjáningartákn
         update_domain_block: Uppfæra útilokun léns
@@ -271,12 +271,12 @@ is:
         resolve_report_html: "%{name} leysti kæru %{target}"
         sensitive_account_html: "%{name} merkti myndefni frá %{target} sem viðkvæmt"
         silence_account_html: "%{name} þaggaði niður í aðgangnum %{target}"
-        suspend_account_html: "%{name} setti notandaaðganginn %{target} í bið"
+        suspend_account_html: "%{name} setti notandaaðganginn %{target} í frysti"
         unassigned_report_html: "%{name} fjarlægði úthlutun af kæru %{target}"
         unblock_email_account_html: "%{name} opnaði á tölvupóstfangið %{target}"
         unsensitive_account_html: "%{name} tók merkinguna viðkvæmt af myndefni frá %{target}"
         unsilence_account_html: "%{name} hætti að hylja notandaaðganginn %{target}"
-        unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr bið"
+        unsuspend_account_html: "%{name} tók notandaaðganginn %{target} úr frysti"
         update_announcement_html: "%{name} uppfærði tilkynningu %{target}"
         update_custom_emoji_html: "%{name} uppfærði tjáningartáknið %{target}"
         update_domain_block_html: "%{name} uppfærði útilokun lénsins %{target}"
@@ -390,10 +390,10 @@ is:
         create: Búa til útilokun
         hint: Útilokun lénsins mun ekki koma í veg fyrir gerð aðgangsfærslna í gagnagrunninum, en mun afturvirkt og sjálfvirkt beita sérstökum umsjónaraðferðum á þessa aðganga.
         severity:
-          desc_html: "<strong>Takmörk</strong> mun gera færslur frá aðgöngum á þessu léni ósýnilegar fyrir þeim sem ekki eru að fylgjast með viðkomandi. <strong>Setja í bið</strong> mun fjarlægja allt efni, myndgögn og gögn af notandasniði frá aðgöngum á þessu léni af netþjóninum þínum. Notaðu <strong>Ekkert</strong> ef þú vilt bara hafna gagnaskrám."
+          desc_html: "<strong>Takmörk</strong> mun gera færslur frá aðgöngum á þessu léni ósýnilegar fyrir þeim sem ekki eru að fylgjast með viðkomandi. <strong>Frysta</strong> mun fjarlægja allt efni, myndgögn og gögn af notandasniði frá aðgöngum á þessu léni af netþjóninum þínum. Notaðu <strong>Ekkert</strong> ef þú vilt bara hafna gagnaskrám."
           noop: Ekkert
           silence: Takmörk
-          suspend: Setja í bið
+          suspend: Frysta
         title: Ný útilokun á léni
       no_domain_block_selected: Engum útilokunum léna var breytt þar sem ekkert var valið
       not_permitted: Þú hefur ekki réttindi til að framkvæma þessa aðgerð
@@ -474,7 +474,7 @@ is:
           reject_media: Hafna myndefni
           reject_reports: Hafna kærum
           silence: Takmörk
-          suspend: Setja í bið
+          suspend: Frysta
         policy: Stefna
         reason: Opinber ástæða
         title: Stefnur varðandi efni
@@ -760,7 +760,7 @@ is:
         none: "%{name} sendi aðvörun til %{target}"
         sensitive: "%{name} merkti efni frá %{target} sem viðkvæmt"
         silence: "%{name} takmarkaði aðganginn %{target}"
-        suspend: "%{name} setti notandaaðganginn %{target} í bið"
+        suspend: "%{name} setti notandaaðganginn %{target} í frysti"
       appeal_approved: Áfrýjað
       appeal_pending: Áfrýjun í bið
     system_checks:
@@ -878,7 +878,7 @@ is:
         none: aðvörun
         sensitive: að merkja efni á aðgangnum sem viðkvæmt
         silence: að takmarka aðgang viðkomandi
-        suspend: að setja aðgang viðkomandi í bið
+        suspend: að setja aðgang viðkomandi í frysti
       body: "%{target} er að áfrýja ákvörðun umsjónarmanns tekinni af %{action_taken_by} frá %{date}, sem var %{type}. Viðkomandi skrifaði:"
       next_steps: Þú getur samþykkt áfrýjunina til að afturkalla ákvörðun umsjónarmanns, eða hunsað hana.
       subject: "%{username} er að áfrýja ákvörðun umsjónarmanns tekinni á %{instance}"
@@ -1065,7 +1065,7 @@ is:
         none: Aðvörun
         sensitive: Merking notanda sem viðkvæms
         silence: Takmörkun aðgangs
-        suspend: Setja aðgang í bið
+        suspend: Setja aðgang í frysti
       your_appeal_approved: Áfrýjun þín hefur verið samþykkt
       your_appeal_pending: Þú hefur sent inn áfrýjun
       your_appeal_rejected: Áfrýjun þinni hefur verið hafnað
@@ -1615,7 +1615,7 @@ is:
         none: Aðvörun fyrir %{acct}
         sensitive: Færslur þínar á %{acct} verða héðan í frá merktar sem viðkvæmar
         silence: Notandaaðgangurinn þinn %{acct} hefur verið takmarkaður
-        suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í bið
+        suspend: Notandaaðgangurinn þinn %{acct} hefur verið settur í frysti
       title:
         delete_statuses: Færslur fjarlægðar
         disable: Notandaaðgangur frystur
@@ -1623,7 +1623,7 @@ is:
         none: Aðvörun
         sensitive: Notandaaðgangur merktur sem viðkvæmur
         silence: Notandaaðgangur takmarkaður
-        suspend: Notandaaðgangur í bið
+        suspend: Notandaaðgangur í frysti
     welcome:
       edit_profile_action: Setja upp notandasnið
       edit_profile_step: Þú getur sérsniðið notandasniðið þitt með því að setja inn auðkennismynd þína, breyta birtingarnafninu þínu og ýmislegt fleira. Þú getur valið að yfirfara nýja fylgjendur áður en þú leyfir þeim að fylgjast með þér.
