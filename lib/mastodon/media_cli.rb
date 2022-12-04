@@ -92,7 +92,7 @@ module Mastodon
       time_ago = options[:days].days.ago
       dry_run  = options[:dry_run] ? '(DRY RUN)' : ''
 
-      processed, \regate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where('created_at < ?', time_ago)) do |media_attachment|
+      processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where('created_at < ?', time_ago)) do |media_attachment|
         next if media_attachment.file.blank?
 
         size = (media_attachment.file_file_size || 0) + (media_attachment.thumbnail_file_size || 0)
