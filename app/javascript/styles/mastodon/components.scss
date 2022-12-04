@@ -2278,7 +2278,8 @@ $ui-header-height: 55px;
 }
 
 .column {
-  min-width: 350px;
+  min-width: 300px;
+  max-width: 550px;
   position: relative;
   box-sizing: border-box;
   display: flex;
@@ -2300,7 +2301,8 @@ $ui-header-height: 55px;
 }
 
 .drawer {
-  width: 300px;
+  min-width: 300px;
+  max-width: 400px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
