@@ -40,9 +40,9 @@ class FeedManager
   def filter?(timeline_type, status, receiver)
     case timeline_type
     when :home
-      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]))
+      filter_from_home?(status, receiver.id, build_crutches(receiver.id, [status]), :home)
     when :list
-      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]))
+      filter_from_list?(status, receiver) || filter_from_home?(status, receiver.account_id, build_crutches(receiver.account_id, [status]), :list)
     when :mentions
       filter_from_mentions?(status, receiver.id)
     when :tags
@@ -346,6 +346,7 @@ class FeedManager
       (context == :home ? Mute.where(account_id: receiver_id, target_account_id: account_ids).any? : Mute.where(account_id: receiver_id, target_account_id: account_ids, hide_notifications: true).any?)
   end
 
+<<<<<<< HEAD
   # Check if status should not be added to the home feed
   # @param [Status] status
   # @param [Integer] receiver_id
@@ -354,6 +355,13 @@ class FeedManager
   def filter_from_home?(status, receiver_id, crutches)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
+    # hometown: exclusive list rules
+    unless timeline_type == :list
+      # find all exclusive lists
+      @list = List.where(account: Account.find(receiver_id), is_exclusive: true)
+      # is there a list the receiver owns with this account on it? if so, return true
+      return true if ListAccount.where(list: @list, account_id: status.account_id).exists?
+    end
     return true  if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
 
     check_for_blocks = crutches[:active_mentions][status.id] || []

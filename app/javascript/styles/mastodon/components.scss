@@ -3040,6 +3040,15 @@ $ui-header-height: 55px;
   border-color: $ui-highlight-color;
 }
 
+label[for="is-exclusive-checkbox"] {
+  margin-left: 20px;
+}
+
+.is-exclusive-checkbox {
+  transform: scale(0.7);
+  transform-origin: bottom;
+}
+
 .column-link {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
