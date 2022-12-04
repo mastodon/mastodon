@@ -18,20 +18,20 @@ module Mastodon
     option :dry_run, type: :boolean, default: false
     option :follow_include, type: :boolean, default: false, aliases: [:f]
     option :kick_out, type: :boolean, default: false, aliases: [:k]
-    desc 'purge-stale-accounts', 'Remove profile media files (headers, avatars)'
+    desc 'remove-profile-media', 'Remove profile media files (headers, avatars)'
     long_desc <<-DESC
       Removes locally cached copies of profile headers and avatars.
       By default, only accounts that are not followed by or following
       anyone locally are pruned.
       The --days option specifies how old the last webfinger request
-      and update to the user has to be before they are removed. It
+      and update to the user has to be before they are pruned. It
       defaults to 60 days.
       If --follow_include is specified, all non-local accounts will be pruned
       irrespective of follow status.
       If --kick_out is specified, the corresponding accounts are removed
       from the local database. Cannot be used along with --follow_include.
     DESC
-    def purge_stale_accounts
+    def remove_profile_media
       if options[:follow_include] && options[:kick_out]
         say('The options --follow_include and --kick_out cannot be used together', :red)
         exit(1)
@@ -57,9 +57,9 @@ module Mastodon
 
         unless options[:dry_run]
           unless options[:kick_out]
-            account.avatar.destroy
-            account.header.destroy
-            account.save
+            account.avatar.destroy if account.avatar.exists?
+            account.header.destroy if account.header.exists?
+            account.save!
           else
             account.destroy
           end
