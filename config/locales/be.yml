@@ -811,6 +811,7 @@ be:
       pending_review: Чакае праверкі
       preview_card_providers:
         allowed: Спасылкі ад гэтага выдаўца не будуць у трэндзе
+        description_html: Спасылкі з гэтых даменаў часта абагульняюцца на вашым серверы. Спасылкі не трапяць у публічныя трэнды, калі дамен спасылкі не ўхвалены. Вашае ўхваленне (ці адхіленне) распаўсюдзіцца на субдамены.
         rejected: Спасылкі ад гэтага выдаўца не будуць у трэнде
         title: Выдаўцы
       rejected: Адхілена
@@ -872,6 +873,8 @@ be:
         other: "%{count} актыўнай падзеі"
       events: Падзеі
       new: Новая Webhook'а
+      rotate_secret: Павярнуць сакрэт
+      secret: Падпісанне сакрэту
       status: Стан
       title: Webhook'і
       webhook: Webhook
@@ -1095,10 +1098,12 @@ be:
     contexts:
       account: Профілі
       notifications: Апавяшчэнні
+      public: Публічныя стужкі
       thread: Размовы
     edit:
       add_keyword: Дадаць ключавое слова
       keywords: Ключавыя словы
+      statuses: Асобныя допісы
       title: Рэдагаваць фільтр
     index:
       delete: Выдаліць
@@ -1194,15 +1199,28 @@ be:
   media_attachments:
     validations:
       images_and_video: Немагчыма прымацаваць відэа да допісу, які ўжо змяшчае выявы
-      too_many: Няможна дадаць больш 4 файлаў
+      not_ready: Няможна дадаць файлы, апрацоўка якіх яшчэ не скончылася. Паспрабуйце яшчэ раз праз хвілінку!
+      too_many: Няможна дадаць больш за 4 файлы
   migrations:
+    acct: Перамешчана ў
+    cancel: Скасаваць перанакіраванне
+    cancelled_msg: Перанакіраванне паспяхова скасавана.
     errors:
+      already_moved: ёсць тым жа ўліковым запісам, на які вы ўжо пераехалі
       missing_also_known_as: гэта не псеўданім уліковага запісу
+      move_to_self: не можа быць бягучым уліковым запісам
       not_found: не знойдзена
     followers_count: Падпісчыкі на момант перамяшчэння
+    incoming_migrations: Пераязджаем з іншага ўліковага запісу
     incoming_migrations_html: Каб перайсці з іншага ўліковага запісу ў гэты, спачатку трэба <a href="%{path}">стварыць псеўданім уліковага запісу</a>.
+    not_redirecting: Ваш уліковы запіс зараз не перанакіроўвае на іншыя ўліковыя запісы.
     past_migrations: Колішнія перамяшчэнні
     proceed_with_move: Перамясціць падпісчыкаў
+    redirected_msg: Ваш уліковы запіс цяпер перанакіроўвае на %{acct}.
+    redirecting_to: Ваш уліковы запіс перанакіроўвае на %{acct}.
+    set_redirect: Выставіць перанакіраванне
+    warning:
+      before: 'Перш чым працягнуць, калі ласка, уважліва прачытайце гэтыя заўвагі:'
   moderation:
     title: Мадэрацыя
   navigation:
@@ -1249,6 +1267,7 @@ be:
         units:
           billion: млрд
           million: млн
+          quadrillion: Q
           thousand: тыс.
           trillion: трлн
   otp_authentication:
@@ -1399,6 +1418,7 @@ be:
       private: Для падпісчыкаў
       public: Публічны
       public_long: Усе могуць бачыць
+      unlisted: Не ў спісе
   statuses_cleanup:
     enabled: Аўтаматычна выдаляць старыя допісы
     enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў
@@ -1431,6 +1451,7 @@ be:
   time:
     formats:
       default: "%d.%m.%Y %H:%M"
+      month: "%b %Y"
       time: "%H:%M"
   two_factor_authentication:
     add: Дадаць
@@ -1450,6 +1471,7 @@ be:
   user_mailer:
     appeal_approved:
       action: Перайсці ў свой уліковы запіс
+      subject: Вашая скарга ад %{date} была ўхваленая
       title: Абскарджанне ўхвалена
     appeal_rejected:
       title: Абскарджанне адхілена
@@ -1494,6 +1516,8 @@ be:
       title: Рады вітаць вас, %{name}!
   users:
     signed_in_as: 'Увайшлі як:'
+  verification:
+    verification: Верыфікацыя
   webauthn_credentials:
     add: Дадаць новы ключ бяспекі
     delete: Выдаліць
@@ -1501,3 +1525,4 @@ be:
     destroy:
       success: Ваш ключ бяспекі быў паспяхова выдалены.
     invalid_credential: Няправільны ключ бяспекі
+    registered_on: Зарэгістраваны %{date}
