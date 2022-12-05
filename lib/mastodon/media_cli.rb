@@ -34,7 +34,6 @@ module Mastodon
       time_ago        = options[:days].days.ago
       dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
       follow_include  = options[:follow_include]
-      avatar_skip     = options[:avatar_skip]
 
       purged_accounts = Concurrent::Set[]
       processed, aggregate = parallelize_with_progress(
@@ -50,9 +49,9 @@ module Mastodon
         size = (account.header_file_size || 0)
         size += (account.avatar_file_size || 0) unless options[:avatar_skip]
         unless options[:dry_run]
-          account.header.destroy if account.header.exists?
-          account.avatar.destroy if (!avatar_skip && account.avatar.exists?)
-          account.save! if account.changed?
+          account.header.destroy
+          account.avatar.destroy unless options[:avatar_skip]
+          account.save!
         end
 
         size
