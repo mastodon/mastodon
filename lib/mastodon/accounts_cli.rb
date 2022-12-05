@@ -343,7 +343,51 @@ module Mastodon
         skip_domains.each { |domain| say("    #{domain}") }
       end
     end
+    
+    option :days, type: :numeric, default: 90, aliases: [:d]
+    option :follow_include, type: :boolean, default: false, aliases: [:f]
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :dry_run, type: :boolean, default: false
+    desc 'cull-inactive', 'Remove remote accounts that appear inactive'
+    long_desc <<-DESC
+      Remove remote accounts in the database that appear inactive. All 
+      related content, including media attachments, is removed. By 
+      default, only accounts that are not followed by or following
+      anyone locally are pruned.
+      The --days option specifies how old the last webfinger request
+      and update to the account has to be before they are removed. It
+      defaults to 90 days.
+      If --follow_include is specified, all non-local accounts will be
+      removed, irrespective of follow status.
+    DESC
+    def cull_inactive
+      time_ago        = options[:days].days.ago
+      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
+      follow_include  = options[:follow_include]
 
+      removed_accounts = Concurrent::Set[]
+      processed, culled = parallelize_with_progress(
+        Account.where({last_webfingered_at: Time.zone.at(0)..time_ago,
+          updated_at: Time.zone.at(0)..time_ago}
+        ).left_outer_joins(:user).where(user: { id: nil })
+      ) do |account|
+        next if account.local?
+        next if !follow_include && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
+        removed_accounts << account.url
+        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
+        1
+      end
+
+      unless removed_accounts.empty?
+        say("List of removed accounts:")
+        removed_accounts.each do |url|
+          say("#{url}")
+        end
+      end
+      
+      say("Visited #{processed} accounts, removed #{culled}#{dry_run}", :green)
+    end
+    
     option :all, type: :boolean
     option :domain
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
