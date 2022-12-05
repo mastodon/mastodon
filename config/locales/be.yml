@@ -685,7 +685,7 @@ be:
         manage_user_access_description: Дазваляе адключаць двухфактарную аўтэнтыфікацыю іншым карыстальнікам, змяняць іх паштовы адрас і скідваць пароль
         manage_users: Кіраванне карыстальнікамі
         manage_users_description: Дазваляе праглядаць звесткі іншых карыстальнікаў і іх мадэрацыю
-        manage_webhooks: Кіраванне webhook'амі
+        manage_webhooks: Кіраванне вэбхукамі
         manage_webhooks_description: Дазваляе карыстальнікам наладжваць вэб-хукі для адміністрацыйных аперацый
         view_audit_log: Кіраванне журналам аўдыту
         view_audit_log_description: Дазваляе карыстальнікам бачыць гісторыю адміністрацыйных аперацый на серверы
@@ -860,10 +860,11 @@ be:
     webhooks:
       add_new: Дадаць канцавую кропку
       delete: Выдаліць
+      description_html: <strong>Вэбхук</strong> дазваляе Mastodon адпраўляць <strong>апавяшчэнні ў рэальным часе</strong> аб выбраных падзеях у вашай уласнай праграме, каб яна магла <strong>аўтаматычна рэагаваць на іх</strong>.
       disable: Адключыць
       disabled: Адключана
       edit: Рэдагаваць канцавую кропку
-      empty: У вас яшчэ няма сканфігураваных канчатковых кропак webhook'у.
+      empty: У вас яшчэ няма сканфігураваных канчатковых кропак вэбхука.
       enable: Уключыць
       enabled: Уключана
       enabled_events:
@@ -872,12 +873,12 @@ be:
         many: "%{count} актыўных падзей"
         other: "%{count} актыўнай падзеі"
       events: Падзеі
-      new: Новая Webhook'а
+      new: Новая вэбхука
       rotate_secret: Павярнуць сакрэт
       secret: Падпісанне сакрэту
       status: Стан
-      title: Webhook'і
-      webhook: Webhook
+      title: Вэбхукі
+      webhook: Вэбхук
   admin_mailer:
     new_appeal:
       actions:
@@ -888,6 +889,9 @@ be:
         sensitive: пазначыць уліковы запіс як далікатны
         silence: абмежаваць уліковы запіс
         suspend: выключыць уліковы запіс
+    new_pending_account:
+      body: Падрабязнасці новага ўліковага запісу прыведзены ніжэй. Вы можаце зацвердзіць або адхіліць гэтую заяўку.
+      subject: Новы ўліковы запіс для разгляду ў %{instance} (%{username})
     new_report:
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
     new_trends:
@@ -1097,6 +1101,7 @@ be:
   filters:
     contexts:
       account: Профілі
+      home: Стужка і спісы
       notifications: Апавяшчэнні
       public: Публічныя стужкі
       thread: Размовы
@@ -1163,6 +1168,7 @@ be:
       bookmarks: Закладкі
       domain_blocking: Спіс заблакіраваных даменаў
       following: Падпіскі
+      muting: Спіс ігнаравання
     upload: Запампаваць
   invites:
     delete: Дэактываваць
@@ -1244,6 +1250,7 @@ be:
     follow_request:
       action: Кіраванне запытамі на падпіску
       body: "%{name} хоча падпісацца на вас"
+      subject: 'Падпісчык у чарзе: %{name}'
       title: Новы запыт на падпіску
     mention:
       action: Адказаць
