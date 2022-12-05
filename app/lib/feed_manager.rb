@@ -346,7 +346,6 @@ class FeedManager
       (context == :home ? Mute.where(account_id: receiver_id, target_account_id: account_ids).any? : Mute.where(account_id: receiver_id, target_account_id: account_ids, hide_notifications: true).any?)
   end
 
-<<<<<<< HEAD
   # Check if status should not be added to the home feed
   # @param [Status] status
   # @param [Integer] receiver_id
