@@ -19,6 +19,7 @@ module Mastodon
     option :limited_federation_mode, type: :boolean
     option :by_uri, type: :boolean
     option :include_subdomains, type: :boolean
+    option :purge_domain_blocks, type: :boolean
     desc 'purge [DOMAIN...]', 'Remove accounts from a DOMAIN without a trace'
     long_desc <<-LONG_DESC
       Remove all accounts from a given DOMAIN without leaving behind any
@@ -37,6 +38,8 @@ module Mastodon
 
       When the --include-subdomains option is given, not only DOMAIN is deleted, but all
       subdomains as well. Note that this may be considerably slower.
+
+      When the --purge-domain-blocks option is given, also purge matching domain blocks.
     LONG_DESC
     def purge(*domains)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
@@ -72,10 +75,12 @@ module Mastodon
         DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
       end
 
-      DomainBlock.where(domain: domains).destroy_all unless options[:dry_run]
-      DomainBlock.where(DomainBlock.arel_table[:domain].matches_any(subdomain_patterns)).destroy_all unless subdomain_patterns.empty?
-
       say("Removed #{processed} accounts#{dry_run}", :green)
+
+      if options[:purge_domain_blocks]
+        DomainBlock.where(domain: domains).destroy_all unless options[:dry_run]
+        DomainBlock.where(DomainBlock.arel_table[:domain].matches_any(subdomain_patterns)).destroy_all unless subdomain_patterns.empty?
+      end
 
       custom_emojis = begin
         if options[:by_uri]
