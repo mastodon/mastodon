@@ -18,6 +18,7 @@ module Mastodon
     option :dry_run, type: :boolean
     option :limited_federation_mode, type: :boolean
     option :by_uri, type: :boolean
+    option :include_subdomains, type: :boolean
     desc 'purge [DOMAIN...]', 'Remove accounts from a DOMAIN without a trace'
     long_desc <<-LONG_DESC
       Remove all accounts from a given DOMAIN without leaving behind any
@@ -33,18 +34,31 @@ module Mastodon
       that has the handle `foo@bar.com` but whose profile is at the URL
       `https://mastodon-bar.com/users/foo`, would be purged by either
       `tootctl domains purge bar.com` or `tootctl domains purge --by-uri mastodon-bar.com`.
+
+      When the --include-subdomains option is given, not only DOMAIN is deleted, but all
+      subdomains as well. Note that this may be considerably slower.
     LONG_DESC
     def purge(*domains)
       dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
+
+      domains = domains.map { |domain| TagManager.instance.normalize_domain(domain) }
 
       scope = begin
         if options[:limited_federation_mode]
           Account.remote.where.not(domain: DomainAllow.pluck(:domain))
         elsif !domains.empty?
           if options[:by_uri]
-            domains.map { |domain| Account.remote.where(Account.arel_table[:uri].matches("https://#{domain}/%", false, true)) }.reduce(:or)
+            domains = domains.map { |domain| Account.sanitize_sql_like(domain) }
+            domains += domains.map { |domain| "%.#{domain}" } if options[:include_subdomains]
+            Account.remote.where(Account.arel_table[:uri].matches_any(domain.map{ |domain| "https://#{domain}/%" }, false, true))
           else
-            Account.remote.where(domain: domains)
+            scope = Account.remote.where(domain: domains)
+            if options[:include_subdomains]
+              domains = domains.map { |domain| Account.sanitize_sql_like(domain) }
+              scope.or(Account.remote.where(Account.arel_table[:domain].matches_any(domains.map { |domain| "%.#{domain}" })))
+            else
+              scope
+            end
           end
         else
           say('No domain(s) given', :red)
@@ -57,6 +71,7 @@ module Mastodon
       end
 
       DomainBlock.where(domain: domains).destroy_all unless options[:dry_run]
+      DomainBlock.where(DomainBlock.arel_table[:domain].matches_any(domains.map { |domain| "%.#{DomainBlock.sanitize_sql(domain)}" })).destroy_all if options[:include_subdomains]
 
       say("Removed #{processed} accounts#{dry_run}", :green)
 
