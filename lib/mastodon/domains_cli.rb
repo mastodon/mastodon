@@ -93,7 +93,9 @@ module Mastodon
       say("Removed #{processed} accounts#{dry_run}", :green)
 
       if options[:purge_domain_blocks]
+        domain_block_count = domain_block_scope.count
         domain_block_scope.in_batches.destroy_all unless options[:dry_run]
+        say("Removed #{domain_block_count} domain blocks#{dry_run}", :green)
       end
 
       custom_emojis_count = emoji_scope.count
