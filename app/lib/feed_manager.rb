@@ -357,9 +357,9 @@ class FeedManager
     # hometown: exclusive list rules
     unless timeline_type == :list
       # find all exclusive lists
-      @list = List.where(account: Account.find(receiver_id), is_exclusive: true)
+      @lists = List.where(account_id: receiver_id, is_exclusive: true)
       # is there a list the receiver owns with this account on it? if so, return true
-      return true if ListAccount.where(list: @list, account_id: status.account_id).exists?
+      return true if ListAccount.where(list: @lists, account_id: status.account_id).exists?
     end
     return true  if crutches[:languages][status.account_id].present? && status.language.present? && !crutches[:languages][status.account_id].include?(status.language)
 
