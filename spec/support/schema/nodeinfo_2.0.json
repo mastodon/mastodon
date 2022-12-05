@@ -16,18 +16,13 @@
   "properties": {
     "version": {
       "description": "The schema version, must be 2.0.",
-      "enum": [
-        "2.0"
-      ]
+      "enum": ["2.0"]
     },
     "software": {
       "description": "Metadata about server software in use.",
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "name",
-        "version"
-      ],
+      "required": ["name", "version"],
       "properties": {
         "name": {
           "description": "The canonical name of this server software.",
@@ -63,10 +58,7 @@
       "description": "The third party sites this server can connect to via their application API.",
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "inbound",
-        "outbound"
-      ],
+      "required": ["inbound", "outbound"],
       "properties": {
         "inbound": {
           "description": "The third party sites this server can retrieve messages from for combined display with regular traffic.",
@@ -132,9 +124,7 @@
       "description": "Usage statistics for this server.",
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "users"
-      ],
+      "required": ["users"],
       "properties": {
         "users": {
           "description": "statistics about the users of this server.",
