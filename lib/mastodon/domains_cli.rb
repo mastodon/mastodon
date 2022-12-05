@@ -43,26 +43,28 @@ module Mastodon
 
       domains = domains.map { |domain| TagManager.instance.normalize_domain(domain) }
 
+      # Handle wildcard subdomains
+      subdomain_patterns = domains.filter_map { |domain| "%.#{Account.sanitize_sql_like(domain[2..])}" if domain.start_with?('*.') }
+      domains = domains.filter { |domain| !domain.start_with?('*.') }
+
+      subdomain_patterns += domains.map { |domain| "%.#{Account.sanitize_sql_like(domain)}" } if options[:include_subdomains]
+
+      uri_patterns = (domains.map { |domain| Account.sanitize_sql_like(domain) } + subdomain_patterns).map { |pattern| "https://#{pattern}/%" }
+
       scope = begin
         if options[:limited_federation_mode]
           Account.remote.where.not(domain: DomainAllow.pluck(:domain))
-        elsif !domains.empty?
-          if options[:by_uri]
-            domains = domains.map { |domain| Account.sanitize_sql_like(domain) }
-            domains += domains.map { |domain| "%.#{domain}" } if options[:include_subdomains]
-            Account.remote.where(Account.arel_table[:uri].matches_any(domain.map{ |domain| "https://#{domain}/%" }, false, true))
-          else
-            scope = Account.remote.where(domain: domains)
-            if options[:include_subdomains]
-              domains = domains.map { |domain| Account.sanitize_sql_like(domain) }
-              scope.or(Account.remote.where(Account.arel_table[:domain].matches_any(domains.map { |domain| "%.#{domain}" })))
-            else
-              scope
-            end
-          end
-        else
+        elsif domains.empty? && subdomain_patterns.empty?
           say('No domain(s) given', :red)
           exit(1)
+        else
+          if options[:by_uri]
+            Account.remote.where(Account.arel_table[:uri].matches_any(uri_patterns, false, true))
+          else
+            scope = Account.remote.where(domain: domains)
+            scope = scope.or(Account.remote.where(Account.arel_table[:domain].matches_any(subdomain_patterns))) unless subdomain_patterns.empty?
+            scope
+          end
         end
       end
 
@@ -71,7 +73,7 @@ module Mastodon
       end
 
       DomainBlock.where(domain: domains).destroy_all unless options[:dry_run]
-      DomainBlock.where(DomainBlock.arel_table[:domain].matches_any(domains.map { |domain| "%.#{DomainBlock.sanitize_sql(domain)}" })).destroy_all if options[:include_subdomains]
+      DomainBlock.where(DomainBlock.arel_table[:domain].matches_any(subdomain_patterns)).destroy_all unless subdomain_patterns.empty?
 
       say("Removed #{processed} accounts#{dry_run}", :green)
 
