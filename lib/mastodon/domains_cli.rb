@@ -77,13 +77,21 @@ module Mastodon
 
       say("Removed #{processed} accounts#{dry_run}", :green)
 
-      custom_emojis = CustomEmoji.where(domain: domains)
+      custom_emojis = begin
+        if options[:by_uri]
+          CustomEmoji.remote.where(CustomEmoji.arel_table[:uri].matches_any(uri_patterns, false, true))
+        else
+          scope = CustomEmoji.where(domain: domains)
+          scope = scope.or(CustomEmoji.remote.where(CustomEmoji.arel_table[:uri].matches_any(subdomain_patterns))) unless subdomain_patterns.empty?
+          scope
+        end
+      end
       custom_emojis_count = custom_emojis.count
       custom_emojis.destroy_all unless options[:dry_run]
 
       Instance.refresh unless options[:dry_run]
 
-      say("Removed #{custom_emojis_count} custom emojis", :green)
+      say("Removed #{custom_emojis_count} custom emojis#{dry_run}", :green)
     end
 
     option :concurrency, type: :numeric, default: 50, aliases: [:c]
