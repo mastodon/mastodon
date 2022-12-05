@@ -14,10 +14,10 @@ module Mastodon
     end
     
     option :days, type: :numeric, default: 60, aliases: [:d]
+    option :avatar_skip, type: :boolean, default: false, aliases: [:a]
+    option :follow_include, type: :boolean, default: false, aliases: [:f]    
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :dry_run, type: :boolean, default: false
-    option :follow_include, type: :boolean, default: false, aliases: [:f]
-    option :kick_out, type: :boolean, default: false, aliases: [:k]
     desc 'remove-profile-media', 'Remove profile media files (headers, avatars)'
     long_desc <<-DESC
       Removes locally cached copies of profile headers and avatars.
@@ -26,21 +26,15 @@ module Mastodon
       The --days option specifies how old the last webfinger request
       and update to the user has to be before they are pruned. It
       defaults to 60 days.
+      If --avatar_skip is specified, avatars are not removed.
       If --follow_include is specified, all non-local accounts will be pruned
       irrespective of follow status.
-      If --kick_out is specified, the corresponding accounts are removed
-      from the local database. Cannot be used along with --follow_include.
     DESC
     def remove_profile_media
-      if options[:follow_include] && options[:kick_out]
-        say('The options --follow_include and --kick_out cannot be used together', :red)
-        exit(1)
-      end
-
       time_ago        = options[:days].days.ago
-      dry_run         = options[:dry_run] ? '(DRY RUN)' : ''
+      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
       follow_include  = options[:follow_include]
-      action          = options[:kick_out] ? 'deleted' : 'removed avatars and header images from'
+      avatar_skip     = options[:avatar_skip]
 
       purged_accounts = Concurrent::Set[]
       processed, aggregate = parallelize_with_progress(
@@ -52,29 +46,25 @@ module Mastodon
         next if account.avatar.blank? && account.header.blank?
         next if !follow_include && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
 
-        size = (account.avatar_file_size || 0) + (account.header_file_size || 0)
         purged_accounts << account.url
-
+        size = (account.header_file_size || 0)
+        size += (account.avatar_file_size || 0) unless options[:avatar_skip]
         unless options[:dry_run]
-          unless options[:kick_out]
-            account.avatar.destroy if account.avatar.exists?
-            account.header.destroy if account.header.exists?
-            account.save!
-          else
-            account.destroy
-          end
+          account.header.destroy if account.header.exists?
+          account.avatar.destroy if (!avatar_skip && account.avatar.exists?)
+          account.save! if account.changed?
         end
 
         size
       end
 
-      if !purged_accounts.empty?()
+      unless purged_accounts.empty?
         say("List of purged accounts:")
         purged_accounts.each do |url|
           say("#{url}")
         end
       end
-      say("Processed #{processed} accounts and #{action} #{purged_accounts.size()} accounts totaling #{number_to_human_size(aggregate)} #{dry_run}", :green, true)
+      say("Visited #{processed} accounts, and removed profile media from #{purged_accounts.size()} accounts totaling #{number_to_human_size(aggregate)}#{dry_run}", :green)
     end
     
     option :days, type: :numeric, default: 7, aliases: [:d]
