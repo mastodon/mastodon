@@ -53,7 +53,7 @@ class ListForm extends React.PureComponent {
   }
 
   render () {
-    const { value, disabled, intl, isExclusive, hello } = this.props;
+    const { value, disabled, intl, isExclusive } = this.props;
 
     const title = intl.formatMessage(messages.title);
 
