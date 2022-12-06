@@ -363,21 +363,20 @@ module Mastodon
 
       removed_accounts = Concurrent::Set[]
       processed, culled = parallelize_with_progress(
-        Account.where({last_webfingered_at: Time.zone.at(0)..time_ago,
-          updated_at: Time.zone.at(0)..time_ago}
-        ).left_outer_joins(:user).where(user: { id: nil })
+        Account.where({ last_webfingered_at: Time.zone.at(0)..time_ago,
+          updated_at: Time.zone.at(0)..time_ago }).left_outer_joins(:user).where(user: { id: nil })
       ) do |account|
         next if account.local?
-        next if Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
+        next if Follow.where(account: account).or(Follow.where(target_account: account)).count.positive?
         removed_accounts << account.url
         DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
         1
       end
 
       if options[:verbose] && !removed_accounts.empty?
-        say("List of removed accounts:")
+        say('List of removed accounts:')
         removed_accounts.each do |url|
-          say("#{url}")
+          say(url.to_s)
         end
       end
 
