@@ -62,14 +62,18 @@ spec:
             - name: streaming
               containerPort: {{ .Values.mastodon.streaming.port }}
               protocol: TCP
+          {{- if .Values.mastodon.streaming.livenessProbe }}
           livenessProbe:
-            httpGet:
-              path: /api/v1/streaming/health
-              port: streaming
+            {{- toYaml .Values.mastodon.streaming.livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.mastodon.streaming.readinessProbe }}
           readinessProbe:
-            httpGet:
-              path: /api/v1/streaming/health
-              port: streaming
+            {{- toYaml .Values.mastodon.streaming.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.mastodon.streaming.startupProbe }}
+          startupProbe:
+            {{- toYaml .Values.mastodon.streaming.startupProbe | nindent 12 }}
+          {{- end }}
           {{- with (default .Values.resources .Values.mastodon.streaming.resources) }}
           resources:
             {{- toYaml . | nindent 12 }}

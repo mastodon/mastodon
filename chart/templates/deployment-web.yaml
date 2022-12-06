@@ -97,19 +97,18 @@ spec:
             - name: http
               containerPort: {{ .Values.mastodon.web.port }}
               protocol: TCP
+          {{- if .Values.mastodon.web.livenessProbe }}
           livenessProbe:
-            tcpSocket:
-              port: http
+            {{- toYaml .Values.mastodon.web.livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.mastodon.web.readinessProbe }}
           readinessProbe:
-            httpGet:
-              path: /health
-              port: http
+            {{- toYaml .Values.mastodon.web.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.mastodon.web.startupProbe }}
           startupProbe:
-            httpGet:
-              path: /health
-              port: http
-            failureThreshold: 30
-            periodSeconds: 5
+            {{- toYaml .Values.mastodon.web.startupProbe | nindent 12 }}
+          {{- end }}
           {{- with (default .Values.resources .Values.mastodon.web.resources) }}
           resources:
             {{- toYaml . | nindent 12 }}

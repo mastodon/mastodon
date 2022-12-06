@@ -168,6 +168,15 @@ mastodon:
     # requests:
     #   cpu: 250m
     #   memory: 128Mi
+    # -- (Streaming Deployment) liveness and readiness probes
+    livenessProbe:
+      httpGet:
+        path: /api/v1/streaming/health
+        port: streaming
+    readinessProbe:
+      httpGet:
+        path: /api/v1/streaming/health
+        port: streaming
   web:
     port: 3000
     # -- Number of Web Pods running
@@ -186,6 +195,20 @@ mastodon:
     # requests:
     #   cpu: 250m
     #   memory: 768Mi
+    # -- (Web Deployment) liveness and readiness probes
+    livenessProbe:
+      tcpSocket:
+        port: http
+    readinessProbe:
+      httpGet:
+        path: /health
+        port: http
+    startupProbe:
+      httpGet:
+        path: /health
+        port: http
+      failureThreshold: 30
+      periodSeconds: 5
 
   metrics:
     statsd:
