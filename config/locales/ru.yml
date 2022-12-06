@@ -355,7 +355,7 @@ ru:
         few: "<strong>%{count}</strong> ожидают аппеляции"
         many: "<strong>%{count}</strong> ожидают апелляции"
         one: "<strong>%{count}</strong> ожидает апелляции"
-        other: "<strong>%{count}</strong> ожидают апелляций"
+        other: 'Ожидают апелляции: <strong>%{count}</strong>'
       pending_reports_html:
         few: "<strong>%{count}</strong> ожидающих отчета"
         many: "<strong>%{count}</strong> ожидающих отчетов"
@@ -1191,6 +1191,11 @@ ru:
     none: Ничего
     order_by: Сортировка
     save_changes: Сохранить изменения
+    select_all_matching_items:
+      few: Выберите %{count} предмета, совпадающих вашему поисковому запросу.
+      many: Выберите %{count} предметов, совпадающих вашему поисковому запросу.
+      one: Выберите %{count} предмет, совпадающий вашему поисковому запросу.
+      other: Выберите все %{count} предмет(-ов), совпадающий(-их) вашему поисковому запросу.
     today: сегодня
     validation_errors:
       few: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
