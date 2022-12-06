@@ -9,6 +9,7 @@
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/mastodon/mastodon.svg)][code_climate]
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
 [![Docker Pulls](https://img.shields.io/docker/pulls/tootsuite/mastodon.svg)][docker]
+[![contribute.design](https://contribute.design/api/shield/mastodon/mastodon)](https://contribute.design/mastodon/mastodon)
 
 [releases]: https://github.com/mastodon/mastodon/releases
 [circleci]: https://circleci.com/gh/mastodon/mastodon
