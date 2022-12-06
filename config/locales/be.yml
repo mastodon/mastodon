@@ -894,6 +894,7 @@ be:
       subject: Новы ўліковы запіс для разгляду ў %{instance} (%{username})
     new_report:
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
+      subject: 'Новая скарга на %{instance} (#%{id})'
     new_trends:
       body: 'Гэтыя элементы трэба праверыць, перш чым публікаваць:'
       new_trending_links:
@@ -1086,6 +1087,8 @@ be:
     '500':
       title: Старонка няспраўная
     '503': The page could not be served due to a temporary server failure.
+  existing_username_validator:
+    not_found_multiple: не атрымалася знайсці %{usernames}
   exports:
     archive_takeout:
       date: Дата
@@ -1296,11 +1299,18 @@ be:
     errors:
       already_voted: Вы ўжо прагаласавалі ў апытанні
       duplicate_options: змяшчае аднолькавыя варыянты
+      duration_too_long: гэта занадта далёка ў будучыні
+      duration_too_short: гэта занадта хутка
       expired: Апытанне ўжо скончана
+      invalid_choice: Абраны варыянт апытання не існуе
+      over_character_limit: не можа быць даўжэй за %{max} сімвалаў кожны
   preferences:
     other: Іншае
     posting_defaults: Публікаваць па змаўчанні
     public_timelines: Публічныя стужкі
+  reactions:
+    errors:
+      unrecognized_emoji: невядомае эмодзі
   relationships:
     activity: Актыўнасць ул. запісу
     dormant: Занядбаны
@@ -1512,6 +1522,7 @@ be:
       statuses: 'Прычынныя допісы:'
       subject:
         delete_statuses: Вашыя допісы на %{acct} былі выдалены
+        disable: Ваш уліковы запіс %{acct} быў замарожаны
         mark_statuses_as_sensitive: Вашыя допісы на %{acct} былі пазначаныя як далікатныя
         none: Папярэджанне для %{acct}
         sensitive: З гэтага моманту вашыя допісы на %{acct} будуць пазначаныя як далікатныя
