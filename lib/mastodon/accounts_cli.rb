@@ -343,7 +343,7 @@ module Mastodon
         skip_domains.each { |domain| say("    #{domain}") }
       end
     end
-    
+
     option :all, type: :boolean
     option :domain
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
