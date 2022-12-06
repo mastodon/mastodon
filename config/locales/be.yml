@@ -774,7 +774,7 @@ be:
         silence: "%{name} абмежаваў уліковы запіс %{target}"
         suspend: "Уліковы запіс %{target} выключаны %{name}"
       appeal_approved: Абскарджана
-      appeal_pending: Скарга разглядаецца
+      appeal_pending: Апеляцыя разглядаецца
     system_checks:
       database_schema_check:
         message_html: Ёсць незавершаныя міграцыі базы дадзеных. Калі ласка, запусціце іх, каб пераканацца, што дадатак паводзіць сябе належным чынам
@@ -1045,7 +1045,7 @@ be:
   disputes:
     strikes:
       action_taken: Выкананае дзеянне
-      appeal: Зварот
+      appeal: Апеляцыя
       appeal_approved: Гэтае папярэджанне паспяхова абскарджана і больш не дзейнічае
       appeal_rejected: Апеляцыя была адхілена
       appeal_submitted_at: Апеляцыя пададзена
@@ -1312,6 +1312,7 @@ be:
     title: Палітыка канфідэнцыйнасці
   reactions:
     errors:
+      limit_reached: Дасягнуты ліміт розных рэакцый
       unrecognized_emoji: невядомае эмодзі
   relationships:
     activity: Актыўнасць ул. запісу
@@ -1338,6 +1339,7 @@ be:
   scheduled_statuses:
     over_daily_limit: Вы перавысілі ліміт ў %{limit} запланаваных на сёння допісаў
     over_total_limit: Вы перавысілі ліміт ў %{limit} запланаваных допісаў
+    too_soon: Запланаваная дата мусіць быць у будучыні
   sessions:
     activity: Апошняя актыўнасць
     browser: Браўзер
@@ -1448,9 +1450,11 @@ be:
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Для падпісчыкаў
+      private_long: Паказваць толькі падпісчыкам
       public: Публічны
       public_long: Усе могуць бачыць
       unlisted: Не ў спісе
+      unlisted_long: Кожны можа ўбачыць гэты допіс, але ён не паказваецца ў публічных стужках
   statuses_cleanup:
     enabled: Аўтаматычна выдаляць старыя допісы
     enabled_hint: Аўтаматычна выдаляць вашыя допісы, калі яны дасягаюць вызначанага тэрміну, акрамя наступных выпадкаў
@@ -1509,11 +1513,13 @@ be:
       subject: Вашая скарга ад %{date} была ўхваленая
       title: Абскарджанне ўхвалена
     appeal_rejected:
+      subject: Вашая скарга ад %{date} была адхіленая
       title: Абскарджанне адхілена
     backup_ready:
       subject: Ваш архіў гатовы да спампавання
     suspicious_sign_in:
       change_password: змяніць свой пароль
+      details: 'Вось падрабязнасці ўваходу:'
       explanation: Мы заўважылі ўваход у ваш уліковы запіс з новага IP-адрасу.
       further_actions_html: Калі гэта былі не вы, раім вам неадкладна %{action}, а таксама ўключыць двухфактарную аўтэнтыфікацыю, каб захаваць бяспеку вашага ўліковага запісу.
       subject: У вас уліковы запіс зайшлі з новага IP-адрасу
