@@ -338,10 +338,13 @@ el:
     export_domain_blocks:
       no_file: Δεν επιλέχθηκε αρχείο
     follow_recommendations:
+      language: Για τη γλώσσα
       status: Κατάσταση
     instances:
       by_domain: Τομέας
       confirm_purge: Είστε βέβαιοι ότι θέλετε να διαγράψετε μόνιμα τα δεδομένα από αυτόν τον τομέα;
+      dashboard:
+        instance_languages_dimension: Κορυφαίες γλώσσες
       delivery:
         failing: Αποτυγχάνει
       delivery_available: Διαθέσιμη παράδοση
@@ -376,9 +379,9 @@ el:
         '1209600': 2 εβδομάδες
         '15778476': 6 μήνες
         '2629746': 1 μήνας
-        '31556952': 1 έτος
+        '31556952': 1 χρόνος
         '86400': 1 ημέρα
-        '94670856': 3 έτη
+        '94670856': 3 χρόνια
       new:
         title: Δημιουργία νέου κανόνα IP
       title: Κανόνες IP
@@ -546,6 +549,11 @@ el:
     title: Διαχείριση
     trends:
       only_allowed: Μόνο επιτρεπόμενα
+      tags:
+        dashboard:
+          tag_languages_dimension: Κορυφαίες γλώσσες
+          tag_servers_dimension: Κορυφαίοι διακομιστές
+          tag_servers_measure: διαφορετικοί διακομιστές
       trending: Δημοφιλή
     warning_presets:
       add_new: Πρόσθεση νέου
@@ -1077,7 +1085,7 @@ el:
       '1209600': 2 εβδομάδες
       '15778476': 6 μήνες
       '2629746': 1 μήνας
-      '31556952': 1 year
+      '31556952': 1 χρόνος
       '5259492': 2 μήνες
       '604800': 1 εβδομάδα
       '63113904': 2 χρόνια
