@@ -893,6 +893,7 @@ be:
       body: Падрабязнасці новага ўліковага запісу прыведзены ніжэй. Вы можаце зацвердзіць або адхіліць гэтую заяўку.
       subject: Новы ўліковы запіс для разгляду ў %{instance} (%{username})
     new_report:
+      body: "%{reporter} паскардзіўся на %{target}"
       body_remote: Нехта з %{domain} паскардзіўся на %{target}
       subject: 'Новая скарга на %{instance} (#%{id})'
     new_trends:
@@ -1057,7 +1058,7 @@ be:
       created_at: Датаваны
       description_html: Гэта дзеянні, выкананыя супраць вашага ўліковага запісу, і папярэджанні, якія адпраўлены вам супрацоўнікамі %{instance}.
       recipient: Адрасавана
-      reject_appeal: Адхіліць абскарджанне
+      reject_appeal: Адхіліць апеляцыю
       status: 'Допіс #%{id}'
       status_removed: Допіс ужо выдалены з сістэмы
       title: "%{action} ад %{date}"
@@ -1070,7 +1071,7 @@ be:
         silence: Абмежаванне ўліковага запісу
         suspend: Выключэнне ўліковага запісу
       your_appeal_approved: Ваша абскарджанне было ўхвалена
-      your_appeal_pending: Вы адправілі абскарджанне
+      your_appeal_pending: Вы адправілі апеляцыю
       your_appeal_rejected: Ваша абскарджанне было адхілена
   domain_validator:
     invalid_domain: не з'яўляецца сапраўдным даменным імем
@@ -1481,6 +1482,9 @@ be:
     pinned: Замацаваны допіс
     reblogged: пашыраны
     sensitive_content: Далікатны змест
+  strikes:
+    errors:
+      too_late: Запозна абскарджваць гэтае папярэджанне
   tags:
     does_not_match_previous_name: не супадае з папярэднім імям
   themes:
@@ -1510,10 +1514,10 @@ be:
   user_mailer:
     appeal_approved:
       action: Перайсці ў свой уліковы запіс
-      subject: Вашая скарга ад %{date} была ўхваленая
+      subject: Вашая апеляцыя ад %{date} была ўхваленая
       title: Абскарджанне ўхвалена
     appeal_rejected:
-      subject: Вашая скарга ад %{date} была адхіленая
+      subject: Вашая апеляцыя ад %{date} была адхіленая
       title: Абскарджанне адхілена
     backup_ready:
       subject: Ваш архіў гатовы да спампавання
@@ -1526,7 +1530,7 @@ be:
       title: Новы ўваход
     warning:
       appeal: Падаць апеляцыю
-      appeal_description: Калі вы лічыце гэта памылкай, вы можаце падаць скаргу супрацоўнікам %{instance}.
+      appeal_description: "Калі вы лічыце гэта памылкай, вы можаце падаць апеляцыю \nсупрацоўнікам %{instance}."
       categories:
         spam: Спам
         violation: Кантэнт парушае наступныя правілы супольнасці
