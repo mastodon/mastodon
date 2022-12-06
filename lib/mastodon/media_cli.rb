@@ -12,60 +12,7 @@ module Mastodon
     def self.exit_on_failure?
       true
     end
-    
-    option :days, type: :numeric, default: 60, aliases: [:d]
-    option :avatar_skip, type: :boolean, default: false, aliases: [:a]
-    option :follow_include, type: :boolean, default: false, aliases: [:f]    
-    option :concurrency, type: :numeric, default: 5, aliases: [:c]
-    option :dry_run, type: :boolean, default: false
-    desc 'remove-profile-media', 'Remove profile media files (headers, avatars)'
-    long_desc <<-DESC
-      Removes locally cached copies of profile headers and avatars.
-      By default, only accounts that are not followed by or following
-      anyone locally are pruned.
-      The --days option specifies how old the last webfinger request
-      and update to the user has to be before they are pruned. It
-      defaults to 60 days.
-      If --avatar_skip is specified, avatars are not removed.
-      If --follow_include is specified, all non-local accounts will be pruned
-      irrespective of follow status.
-    DESC
-    def remove_profile_media
-      time_ago        = options[:days].days.ago
-      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
-      follow_include  = options[:follow_include]
 
-      purged_accounts = Concurrent::Set[]
-      processed, aggregate = parallelize_with_progress(
-        Account.where({last_webfingered_at: Time.zone.at(0)..time_ago,
-          updated_at: Time.zone.at(0)..time_ago}
-        ).left_outer_joins(:user).where(user: { id: nil })
-      ) do |account|
-        next if account.local?
-        next if account.avatar.blank? && account.header.blank?
-        next if !follow_include && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
-
-        purged_accounts << account.url
-        size = (account.header_file_size || 0)
-        size += (account.avatar_file_size || 0) unless options[:avatar_skip]
-        unless options[:dry_run]
-          account.header.destroy
-          account.avatar.destroy unless options[:avatar_skip]
-          account.save!
-        end
-
-        size
-      end
-
-      unless purged_accounts.empty?
-        say("List of purged accounts:")
-        purged_accounts.each do |url|
-          say("#{url}")
-        end
-      end
-      say("Visited #{processed} accounts, and removed profile media from #{purged_accounts.size()} accounts totaling #{number_to_human_size(aggregate)}#{dry_run}", :green)
-    end
-    
     option :days, type: :numeric, default: 7, aliases: [:d]
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
     option :verbose, type: :boolean, default: false, aliases: [:v]
@@ -235,6 +182,59 @@ module Mastodon
       progress.finish
 
       say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
+    end
+
+    option :days, type: :numeric, default: 60, aliases: [:d]
+    option :skip_avatars, type: :boolean, default: false
+    option :include_follows, type: :boolean, default: false
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, default: false, aliases: [:v]
+    option :dry_run, type: :boolean, default: false
+    desc 'remove-profile-media', 'Remove profile media files (headers, avatars)'
+    long_desc <<-DESC
+      Removes locally cached copies of profile headers and avatars. By default,
+      only accounts that are not followed by or following anyone locally are
+      pruned.
+      The --days option specifies how old the last webfinger request and update
+      to the user has to be before they are pruned. It defaults to 60 days.
+      If --skip_avatars is specified, avatars are not removed.
+      If --include_follows is specified, all non-local accounts will be pruned
+      irrespective of follow status.
+    DESC
+    def remove_profile_media
+      time_ago        = options[:days].days.ago
+      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
+      include_follows = options[:include_follows]
+
+      purged_accounts = Concurrent::Set[]
+      processed, aggregate = parallelize_with_progress(
+        Account.where({last_webfingered_at: Time.zone.at(0)..time_ago,
+          updated_at: Time.zone.at(0)..time_ago}
+        ).left_outer_joins(:user).where(user: { id: nil })
+      ) do |account|
+        next if account.local?
+        next if account.avatar.blank? && account.header.blank?
+        next if !include_follows && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
+
+        purged_accounts << account.url
+        size = (account.header_file_size || 0)
+        size += (account.avatar_file_size || 0) unless options[:skip_avatars]
+        unless options[:dry_run]
+          account.header.destroy
+          account.avatar.destroy unless options[:skip_avatars]
+          account.save!
+        end
+
+        size
+      end
+
+      if options[:verbose] && !purged_accounts.empty?
+        say("List of purged accounts:")
+        purged_accounts.each do |url|
+          say("#{url}")
+        end
+      end
+      say("Visited #{processed} accounts, and removed profile media from #{purged_accounts.size()} accounts totaling #{number_to_human_size(aggregate)}#{dry_run}", :green)
     end
 
     option :account, type: :string
