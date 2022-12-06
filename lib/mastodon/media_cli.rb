@@ -208,13 +208,12 @@ module Mastodon
 
       purged_accounts = Concurrent::Set[]
       processed, aggregate = parallelize_with_progress(
-        Account.where({last_webfingered_at: Time.zone.at(0)..time_ago,
-          updated_at: Time.zone.at(0)..time_ago}
-        ).left_outer_joins(:user).where(user: { id: nil })
+        Account.where({ last_webfingered_at: Time.zone.at(0)..time_ago,
+          updated_at: Time.zone.at(0)..time_ago }).left_outer_joins(:user).where(user: { id: nil })
       ) do |account|
         next if account.local?
         next if account.avatar.blank? && account.header.blank?
-        next if !include_follows && Follow.where(account: account).or(Follow.where(target_account: account)).count > 0
+        next if !include_follows && Follow.where(account: account).or(Follow.where(target_account: account)).count.positive?
 
         purged_accounts << account.url
         size = (account.header_file_size || 0)
@@ -229,12 +228,12 @@ module Mastodon
       end
 
       if options[:verbose] && !purged_accounts.empty?
-        say("List of purged accounts:")
+        say('List of purged accounts:')
         purged_accounts.each do |url|
-          say("#{url}")
+          say(url.to_s)
         end
       end
-      say("Visited #{processed} accounts, and removed profile media from #{purged_accounts.size()} accounts totaling #{number_to_human_size(aggregate)}#{dry_run}", :green)
+      say("Visited #{processed} accounts, and removed profile media from #{purged_accounts.size} accounts totaling #{number_to_human_size(aggregate)}#{dry_run}", :green)
     end
 
     option :account, type: :string
