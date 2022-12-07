@@ -17,6 +17,8 @@
 	path_regexp ^/(assets|avatars|emoji|headers|packs|shortcuts|sounds|system)
 }
 
+root * /opt/mastodon/public
+
 encode zstd gzip
 
 handle_errors {
