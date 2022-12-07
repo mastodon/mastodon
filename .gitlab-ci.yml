@@ -3,6 +3,9 @@ workflow:
     # Don't run for upstream branch
     - if: $CI_COMMIT_BRANCH	!= "main"
 
+variables:
+  NEW_TAG: ${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}
+
 services:
   - docker:20-dind
 
@@ -11,7 +14,6 @@ docker-build:
   stage: build
   variables:
     DOCKER_DRIVER: overlay2
-    NAME_SUFFIX_SHA: ${CI_COMMIT_REF_SLUG}-${CI_COMMIT_SHORT_SHA}
     UPSTREAM_IMAGE: docker.io/tootsuite/mastodon
     GIT_DEPTH: "200"
   before_script:
@@ -22,7 +24,7 @@ docker-build:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
   script:
     - export LATEST_TAG=$(git describe --tags --abbrev=0)
-    - export IMAGE_NAME_SHA=${CI_REGISTRY_IMAGE}:${LATEST_TAG}-${NAME_SUFFIX_SHA}
+    - export IMAGE_NAME_SHA=${CI_REGISTRY_IMAGE}:${NEW_TAG}
 
     - 'echo "Building based on latest tag: $LATEST_TAG"'
     - 'echo "Image name: $IMAGE_NAME_SHA"'
@@ -30,7 +32,7 @@ docker-build:
     - docker pull "${CI_REGISTRY_IMAGE}:${LATEST_TAG}" || true
     - docker buildx build
       --build-arg UPSTREAM_TAG=${LATEST_TAG}
-      --cache-from ${CI_REGISTRY_IMAGE}:${LATEST_TAG}
+      --cache-from ${CI_REGISTRY_IMAGE}:${NEW_TAG}
       --tag $IMAGE_NAME_SHA
       --push
       -f Dockerfile.toothaus .
@@ -41,7 +43,14 @@ docker-build:
 
     # Head commit of the branch, tag with latest per version tag
     - if [ "$CI_COMMIT_BRANCH" = "$CI_DEFAULT_BRANCH" ] && [ $DISTANCE_FROM_HEAD -eq 0 ]; then
-        echo 'Is default branch and head commit, tagging with :${LATEST_TAG}-latest';
-        docker tag $IMAGE_NAME_SHA ${CI_REGISTRY_IMAGE}:${LATEST_TAG}-latest;
-        docker push ${CI_REGISTRY_IMAGE}:${LATEST_TAG}-latest;
+        echo 'Is default branch and head commit, tagging with :${LATEST_TAG}';
+        docker tag $IMAGE_NAME_SHA ${CI_REGISTRY_IMAGE}:${LATEST_TAG};
+        docker push ${CI_REGISTRY_IMAGE}:${LATEST_TAG};
       fi
+
+update-infra:
+  needs: [docker-build]
+  stage: deploy
+  trigger: janw/infra
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
