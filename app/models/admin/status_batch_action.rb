@@ -89,14 +89,14 @@ class Admin::StatusBatchAction
         report.resolve!(current_account)
         log_action(:resolve, report)
       end
-
-      @warning = target_account.strikes.create!(
-        action: :mark_statuses_as_sensitive,
-        account: current_account,
-        report: report,
-        status_ids: status_ids
-      )
     end
+
+    @warning = target_account.strikes.create!(
+      action: :mark_statuses_as_sensitive,
+      account: current_account,
+      report: report,
+      status_ids: status_ids
+    )
 
     UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
   end
