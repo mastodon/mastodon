@@ -45,5 +45,16 @@ reverse_proxy / :3000 {
 	health_uri /health
 	health_interval 10s
 	health_timeout 2s
+
+	transport http {
+		keepalive 5s
+		keepalive_idle_conns 10
+    }
 }
-reverse_proxy /api/v1/streaming :4000
+
+reverse_proxy /api/v1/streaming :4000 {
+	transport http {
+		keepalive 5s
+		keepalive_idle_conns 10
+    }
+}
