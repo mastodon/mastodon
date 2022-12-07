@@ -7,10 +7,11 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
   class Error < StandardError; end
 
+  REDIRECT_LIMIT = 5
   SUPPORTED_TYPES = %w(Application Group Organization Person Service).freeze
 
   # Does a WebFinger roundtrip on each call, unless `only_key` is true
-  def call(uri, id: true, prefetched_body: nil, break_on_redirect: false, only_key: false, suppress_errors: true, request_id: nil)
+  def call(uri, id: true, prefetched_body: nil, redirect_depth: 0, only_key: false, suppress_errors: true, request_id: nil)
     return if domain_not_allowed?(uri)
     return ActivityPub::TagManager.instance.uri_to_actor(uri) if ActivityPub::TagManager.instance.local_uri?(uri)
 
@@ -27,7 +28,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
     raise Error, "Error fetching actor JSON at #{uri}" if @json.nil?
     raise Error, "Unsupported JSON-LD context for document #{uri}" unless supported_context?
     raise Error, "Unexpected object type for actor #{uri} (expected any of: #{SUPPORTED_TYPES})" unless expected_type?
-    raise Error, "Actor #{uri} has moved to #{@json['movedTo']}" if break_on_redirect && @json['movedTo'].present?
+    raise Error, "Actor #{uri} has moved to #{@json['movedTo']} (redirect depth exceeded)" if redirect_depth >= REDIRECT_LIMIT && @json['movedTo'].present?
     raise Error, "Actor #{uri} has no 'preferredUsername', which is a requirement for Mastodon compatibility" if @json['preferredUsername'].blank?
 
     @uri      = @json['id']
@@ -36,7 +37,7 @@ class ActivityPub::FetchRemoteActorService < BaseService
 
     check_webfinger! unless only_key
 
-    ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key, request_id: request_id)
+    ActivityPub::ProcessAccountService.new.call(@username, @domain, @json, only_key: only_key, verified_webfinger: !only_key, request_id: request_id, redirect_depth: redirect_depth)
   rescue Error => e
     Rails.logger.debug { "Fetching actor #{uri} failed: #{e.message}" }
     raise unless suppress_errors
