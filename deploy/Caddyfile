@@ -1,6 +1,6 @@
 :8080
 
-reverse_proxy / :3000 {
+reverse_proxy / http://localhost:3000 {
 	health_uri /health
 	health_interval 10s
 	health_timeout 2s
