@@ -4,8 +4,41 @@
 
 :8080
 
+@local {
+	file
+	not path /
+}
+
+@local_media {
+	path_regexp /system/(.*)
+}
+
+@cache_control {
+	path_regexp ^/(assets|avatars|emoji|headers|packs|shortcuts|sounds|system)
+}
+
+encode zstd gzip
+
+handle_errors {
+	rewrite 500.html
+	file_server
+}
+
+header {
+	Strict-Transport-Security "max-age=63072000; includeSubDomains"
+}
+header /sw.js Cache-Control "public, max-age=604800, must-revalidate"
+header @cache_control Cache-Control "public, max-age=2419200, must-revalidate"
+
+handle @local {
+	file_server
+}
+
+redir @local_media https://assets.toot.pizza/{http.regexp.1} permanent
+
 reverse_proxy / :3000 {
-	trusted_proxies private_ranges
+	header_up X-Forwarded-Port 443
+    header_up X-Forwarded-Proto https
 
 	health_uri /health
 	health_interval 10s
