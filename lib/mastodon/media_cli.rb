@@ -209,7 +209,7 @@ module Mastodon
       purged_accounts = Concurrent::Set[]
       processed, aggregate = parallelize_with_progress(
         Account.where({ last_webfingered_at: Time.zone.at(0)..time_ago,
-          updated_at: Time.zone.at(0)..time_ago }).left_outer_joins(:user).where(user: { id: nil })
+          updated_at: Time.zone.at(0)..time_ago }).left_outer_joins(:user).where(users: { id: nil })
       ) do |account|
         next if account.local?
         next if account.avatar.blank? && account.header.blank?
