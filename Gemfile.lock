@@ -754,6 +754,8 @@ DEPENDENCIES
   climate_control (~> 0.2)
   cocoon (~> 1.2)
   color_diff (~> 0.1)
+  concurrent-ruby
+  connection_pool
   devise (~> 4.8)
   devise-two-factor (~> 4.0)
   devise_pam_authenticatable2 (~> 9.2)
@@ -858,4 +860,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.1.4
+   2.3.26
