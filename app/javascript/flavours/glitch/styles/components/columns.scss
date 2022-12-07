@@ -65,6 +65,7 @@ $ui-header-height: 55px;
   z-index: 2;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 
   &__logo {
     display: inline-flex;
@@ -81,9 +82,14 @@ $ui-header-height: 55px;
     align-items: center;
     gap: 10px;
     padding: 0 10px;
+    overflow: hidden;
 
     .button {
       flex: 0 0 auto;
+    }
+
+    .button-tertiary {
+      flex-shrink: 1;
     }
   }
 }
