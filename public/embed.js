@@ -7,10 +7,10 @@
    * @param {() => void} loaded
    */
   var ready = function(loaded) {
-    if (['interactive', 'complete'].indexOf(document.readyState) !== -1) {
-      loaded();
-    } else {
-      document.addEventListener('DOMContentLoaded', loaded);
+    document.onreadystatechange = function () {
+      if (document.readyState === "complete") {
+        loaded()
+      }
     }
   };
 
