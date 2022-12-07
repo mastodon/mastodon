@@ -73,7 +73,7 @@ class Admin::StatusBatchAction
     # Can't use a transaction here because UpdateStatusService queues
     # Sidekiq jobs
     statuses.includes(:media_attachments, :preview_cards).find_each do |status|
-      next unless status.with_media? || status.with_preview_card?
+      next if status.discarded? || !(status.with_media? || status.with_preview_card?)
 
       authorize([:admin, status], :update?)
 
