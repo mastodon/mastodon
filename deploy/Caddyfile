@@ -1,0 +1,8 @@
+:8080
+
+reverse_proxy :3000 {
+	health_uri /health
+	health_interval 10s
+	health_timeout 2s
+}
+reverse_proxy /api/v1/streaming :4000
