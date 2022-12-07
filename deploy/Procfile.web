@@ -1,3 +1,3 @@
-streaming-api: NODE_EXTRA_CA_CERTS=db-cert.crt BIND=0.0.0.0 PORT=4000 node ./streaming
+streaming-api: NODE_EXTRA_CA_CERTS=db-cert.crt PORT=4000 node ./streaming
 web: bundle exec rails s -p 3000
 caddy: caddy run --config Caddyfile

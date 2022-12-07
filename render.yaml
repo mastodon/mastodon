@@ -4,6 +4,8 @@ services:
     region: ohio
     env: docker
     plan: standard
+    domains:
+      - toot.pizza
     repo: https://github.com/irubnich/toot-pizza.git
     branch: render
     dockerfilePath: ./deploy/Dockerfile.web
