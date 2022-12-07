@@ -14,7 +14,6 @@ module DomainMaterializable
 
     Instance.refresh
     count_unique_subdomains!
-
   end
 
   def count_unique_subdomains!
