@@ -2,7 +2,7 @@
     debug
 }
 
-:8080
+https://*:8080
 
 reverse_proxy / http://localhost:3000 {
 	health_uri /health
