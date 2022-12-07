@@ -1452,6 +1452,11 @@ be:
     boosted_from_html: Пашырыў уліковы запіс %{acct_link}
     content_warning: 'Папярэджанне аб змесціве: %{warning}'
     default_language: Такая, што і мова інтэрфэйсу
+    disallowed_hashtags:
+      one: 'змяшчае недазволены хэштэг: %{tags}'
+      few: 'змяшчае недазволеныя хэштэгі: %{tags}'
+      many: 'змяшчае недазволеныя хэштэгі: %{tags}'
+      other: 'утрымлівае недазволеныя хэштэгі: %{tags}'
     edited_at_html: Адрэдагавана %{date}
     errors:
       in_reply_not_found: Здаецца, допіс, на які вы спрабуеце адказаць, не існуе.
