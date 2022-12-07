@@ -2217,6 +2217,7 @@ $ui-header-height: 55px;
   z-index: 2;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 
   &__logo {
     display: inline-flex;
@@ -2233,9 +2234,14 @@ $ui-header-height: 55px;
     align-items: center;
     gap: 10px;
     padding: 0 10px;
+    overflow: hidden;
 
     .button {
       flex: 0 0 auto;
+    }
+
+    .button-tertiary {
+      flex-shrink: 1;
     }
   }
 }
@@ -3139,12 +3145,16 @@ $ui-header-height: 55px;
     margin-top: 10px;
 
     h4 {
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      padding: 10px;
       font-size: 12px;
       text-transform: uppercase;
-      color: $darker-text-color;
-      padding: 10px;
       font-weight: 500;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+      a {
+        color: $darker-text-color;
+        text-decoration: none;
+      }
     }
 
     @media screen and (max-height: 810px) {
@@ -7134,10 +7144,12 @@ noscript {
 
       .verified {
         border: 1px solid rgba($valid-value-color, 0.5);
+        margin-top: -1px;
 
         &:first-child {
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
+          margin-top: 0;
         }
 
         &:last-child {
@@ -7969,7 +7981,8 @@ noscript {
   width: 600px;
   background: $ui-base-color;
   border-radius: 8px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
   display: block;
   padding: 20px;

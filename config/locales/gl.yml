@@ -373,6 +373,8 @@ gl:
       add_new: Engadir dominio á listaxe branca
       created_msg: Engadeu o dominio a lista branca
       destroyed_msg: Quitou o dominio da lista branca
+      export: Exportar
+      import: Importar
       undo: Eliminar da listaxe branca
     domain_blocks:
       add_new: Engadir novo bloqueo de dominio
@@ -382,13 +384,19 @@ gl:
       edit: Editar bloqueo de dominio
       existing_domain_block: Xa tes establecidas restricións maiores para %{name}.
       existing_domain_block_html: Xa impuxeches límites máis estrictos a %{name}, precisas <a href="%{unblock_url}">desbloquealo</a> primeiro.
+      export: Exportar
+      import: Importar
       new:
         create: Crear bloqueo
         hint: O bloqueo do dominio non previrá a creación de entradas de contas na base de datos, pero aplicará de xeito retroactivo e automático regras específicas de moderación sobre esas contas.
         severity:
+          desc_html: Ao <strong>Limitar</strong> farás que as publicacións de contas deste dominio sexan invisibles para calquera que non as siga. Ao <strong>Suspender</strong> eliminarás do teu servidor todo o contido, multimedia, e datos de perfil para as contas deste dominio. Utiliza <strong>Nada</strong> se simplemente queres rexeitar ficheiros multimedia.
           noop: Ningún
+          silence: Limitar
           suspend: Suspender
         title: Novo bloqueo de dominio
+      no_domain_block_selected: Non se cambiou ningún bloqueo de dominio porque non se seleccionou ningún
+      not_permitted: Non podes realizar esta acción
       obfuscate: Ofuscar o nome de dominio
       obfuscate_hint: Ofuscar parcialmente o nome do dominio na lista se está activada a publicación da lista de limitacións de dominio
       private_comment: Comentario privado
@@ -420,6 +428,20 @@ gl:
       resolved_dns_records_hint_html: O nome de dominio resolve os seguintes rexistros MX, que son os últimos responsables da aceptación de emails. Bloqueando un dominio MX rexeitarás calquera enderezo de email que use este dominio MX, incluso se o nome de dominio visible é outro. <strong>Ten coidado de non bloquear os principais provedores.</strong>
       resolved_through_html: Resolto a través de %{domain}
       title: Listaxe negra de email
+    export_domain_allows:
+      new:
+        title: Importar dominios permitidos
+      no_file: Ningún ficheiro seleccionado
+    export_domain_blocks:
+      import:
+        description_html: Vas importar unha lista de dominios a bloquear. Comproba a lista con atención, especialmente se non creaches ti mesma a lista.
+        existing_relationships_warning: Relacións de seguimento existentes
+        private_comment_description_html: 'Para axudarche a lembrar de onde veñen os bloqueos importados, imos crealos engadindo o seguinte comentario privado: <q>%{comment}</q>'
+        private_comment_template: Importada desde %{source} o %{date}
+        title: Importar bloqueos de dominio
+      new:
+        title: Importar bloqueos de dominio
+      no_file: Ningún ficheiro seleccionado
     follow_recommendations:
       description_html: "<strong>As recomendacións de seguimento son útiles para que as novas usuarias atopen contidos interesantes</strong>. Cando unha usuaria aínda non interactuou con outras para obter recomendacións de seguimento, estas contas serán recomendadas. Variarán a diario xa que se escollen en base ao maior número de interaccións e ao contador local de seguimentos para un idioma dado."
       language: Para o idioma
@@ -523,7 +545,7 @@ gl:
     relays:
       add_new: Engadir un novo repetidor
       delete: Eliminar
-      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de publicacións públicas entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que de outro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
+      description_html: Un <strong>repetidor da federación</strong> é un servidor intermedio que intercambia grandes volumes de publicacións públicas entre servidores que se suscriban e publiquen nel. <strong>Pode axudar a servidores pequenos e medios a descubrir contido no fediverso</strong>, o que doutro xeito precisaría que as usuarias locais seguisen a outra xente en servidores remotos.
       disable: Desactivar
       disabled: Desactivado
       enable: Activar
@@ -671,13 +693,13 @@ gl:
       about:
         manage_rules: Xestionar regras do servidor
         preamble: Proporciona información detallada acerca do xeito en que se xestiona, modera e financia o servidor.
-        rules_hint: Hai un espazo dedicado para as normas que é de agardar que as túas usuarias cumpran.
+        rules_hint: Hai un espazo dedicado para as normas que é de agardar as usuarias acaten.
         title: Acerca de
       appearance:
         preamble: Personalizar a interface web de Mastodon.
         title: Aparencia
       branding:
-        preamble: A personalización do teu servidor diferénciao doutros servidores da rede. A información podería mostrarse en diversos entornos, como a interface web de Mastodon, aplicacións nativas, vista previa das ligazóns noutras webs e apps de mensaxería, e similares. Debido a esto é recomendable que a información sexa clara, curta e concisa.
+        preamble: A personalización do teu servidor diferénciao doutros servidores da rede. A información podería mostrarse en diversos entornos, como a interface web de Mastodon, aplicacións nativas, vista previa das ligazóns noutras webs e apps de mensaxería, e similares. Debido a isto é recomendable que a información sexa clara, curta e concisa.
         title: Personalización
       content_retention:
         preamble: Controla como se gardan en Mastodon os contidos creados polas usuarias.
@@ -706,7 +728,7 @@ gl:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!
     statuses:
-      account: Conta
+      account: Autoría
       application: Aplicación
       back_to_account: Volver a páxina da conta
       back_to_report: Volver a denuncias
@@ -912,6 +934,7 @@ gl:
     warning: Ten moito tino con estos datos. Non os compartas nunca con ninguén!
     your_token: O seu testemuño de acceso
   auth:
+    apply_for_account: Solicita unha conta
     change_password: Contrasinal
     delete_account: Eliminar conta
     delete_account_html: Se queres eliminar a túa conta, podes <a href="%{path}">facelo aquí</a>. Deberás confirmar a acción.
@@ -1126,7 +1149,7 @@ gl:
       batch:
         remove: Eliminar do filtro
       index:
-        hint: Este filtro aplícase para seleccionar publicacións individuais independentemente de outros criterios. Podes engadir máis publicacións a este filtro desde a interface web.
+        hint: Este filtro aplícase para seleccionar publicacións individuais independentemente doutros criterios. Podes engadir máis publicacións a este filtro desde a interface web.
         title: Publicacións filtradas
   footer:
     trending_now: Tendencia agora
@@ -1156,13 +1179,14 @@ gl:
     invalid_markup: 'contén cancelos HTML non válidas: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ficheiro CSV non válido. Erro: %{error}'
       over_rows_processing_limit: contén máis de %{count} filas
     modes:
       merge: Fusionar
       merge_long: Manter os rexistros actuais e engadir novos
       overwrite: Sobreescribir
       overwrite_long: Sustituír rexistros actuais cos novos
-    preface: Pode importar os datos que exportou de outro servidor, tales como a lista de usuarias que está a seguir ou bloquear.
+    preface: Podes importar os datos que exportaches doutro servidor, tales como a lista de usuarias que estás a seguir ou bloquear.
     success: Os teus datos foron correctamente subidos e serán procesados ao momento
     types:
       blocking: Lista de bloqueo
@@ -1349,7 +1373,7 @@ gl:
     relationship: Relación
     remove_selected_domains: Eliminar todas as seguidoras dos dominios escollidos
     remove_selected_followers: Eliminar as seguidoras escollidas
-    remove_selected_follows: Deixar de seguir as usuarias escollidas
+    remove_selected_follows: Deixar de seguir as usuarias elexidas
     status: Estado da conta
   remote_follow:
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
@@ -1488,7 +1512,7 @@ gl:
     ignore_favs: Ignorar favoritas
     ignore_reblogs: Ignorar promocións
     interaction_exceptions: Excepcións baseadas en interaccións
-    interaction_exceptions_explanation: Ten en conta de que non hai garantía de que se eliminen as túas publicacións se non superan o límite de promocións e favoritos aínda que algunha vez o tivesen superado.
+    interaction_exceptions_explanation: Ten en conta de que non hai garantía de que se eliminen as túas publicacións se non superan o límite de promocións e favorecementos aínda que algunha vez o tivesen superado.
     keep_direct: Manter mensaxes directas
     keep_direct_hint: Non borrar ningunha das túas mensaxes directas
     keep_media: Manter publicacións que conteñen multimedia

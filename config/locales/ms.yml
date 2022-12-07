@@ -337,6 +337,8 @@ ms:
       add_new: Benarkan persekutuan dengan domain
       created_msg: Domain telah berjaya dibenarkan untuk persekutuan
       destroyed_msg: Domain telah dibuang kebenaran daripada persekutuan
+      export: Eksport
+      import: Import
       undo: Buang kebenaran persekutuan dengan domain
     domain_blocks:
       add_new: Tambah penyekatan domain baharu
@@ -345,6 +347,8 @@ ms:
       domain: Domain
       edit: Sunting penyekatan domain
       existing_domain_block_html: Anda telah mengenakan pengehadan yang lebih tegas ke atas %{name}, anda perlu <a href="%{unblock_url}">menyahsekatinya</a> dahulu.
+      export: Eksport
+      import: Import
       new:
         create: Cipta sekatan
         hint: Sekatan domain tidak akan menghindarkan penciptaan entri akaun dalam pangkalan data, tetapi akan dikenakan kaedah penyederhanaan khusus tertentu pada akaun-akaun tersebut secara retroaktif dan automatik.
@@ -376,6 +380,8 @@ ms:
         create: Tambah domain
         title: Sekat domain e-mel baharu
       title: Domain e-mel disekat
+    export_domain_allows:
+      no_file: Tiada fail dipilih
     follow_recommendations:
       description_html: "<strong>Saranan ikutan membantu pengguna baharu mencari kandungan menarik dengan cepat</strong>. Apabila pengguna belum cukup berinteraksi dengan akaun lain untuk membentuk saranan ikutan tersendiri, akaun-akaun inilah yang akan disarankan. Ia dinilai semula setiap hari dari gabungan keterlibatan tertinggi terkini dan juga jumlah pengikut tempatan tertinggi mengikut bahasa masing-masing."
       language: Untuk bahasa
@@ -468,6 +474,7 @@ ms:
       account:
         notes:
           other: "%{count} catatan"
+      action_log: Log audit
       action_taken_by: Tindakan diambil oleh
       are_you_sure: Adakah anda pasti?
       assign_to_self: Menugaskan kepada saya
@@ -477,16 +484,20 @@ ms:
       comment:
         none: Tiada
       created_at: Dilaporkan
+      delete_and_resolve: Padam hantaran
       forwarded: Dipanjangkan
       forwarded_to: Dipanjangkan ke %{domain}
       mark_as_resolved: Tanda sebagai sudah selesai
+      mark_as_sensitive: Tandakan sebagai sensitif
       mark_as_unresolved: Tanda sebagai belum selesai
+      no_one_assigned: Tiada sesiapa
       notes:
         create: Tambah catatan
         create_and_resolve: Selesaikan dengan catatan
         create_and_unresolve: Buka semula dengan catatan
         delete: Padam
         placeholder: Terangkan tindakan apa yang telah diambil, atau sebarang kemas kini lain yang berkaitan...
+        title: Catatan
       reopen: Buka semula laporan
       report: 'Laporan #%{id}'
       reported_account: Akaun yang dilaporkan
@@ -500,14 +511,19 @@ ms:
       updated_at: Dikemaskini
       view_profile: Lihat profil
     roles:
+      add_new: Tambah peranan
+      assigned_users:
+        other: "%{count} pengguna"
       categories:
         administration: Pentadbiran
         invites: Undangan
         special: Khas
+      delete: Padam
       everyone: Kebenaran lalai
       permissions_count:
         other: "%{count} kebenaran"
       privileges:
+        administrator: Pentadbir
         delete_user_data: Padamkan Data Pengguna
         manage_reports: Uruskan Laporan
         manage_roles: Uruskan Peranan
@@ -527,6 +543,8 @@ ms:
     settings:
       about:
         manage_rules: Uruskan peraturan pelayan
+      discovery:
+        profile_directory: Direktori profil
       registrations:
         title: Pendaftaran
       registrations_mode:
@@ -548,17 +566,36 @@ ms:
       appeal_approved: Dirayu
     tags:
       review: Semak status
+    title: Pentadbiran
     trends:
       allow: Izin
       approved: Diluluskan
       preview_card_providers:
         title: Penerbit
+      rejected: Ditolak
       statuses:
         allow: Izinkan hantaran
         allow_account: Izinkan penulis
         title: Hantaran hangat
+      tags:
+        dashboard:
+          tag_servers_measure: pelayan lain
+    webhooks:
+      delete: Padam
+      enable: Dayakan
+      enabled: Aktif
+  admin_mailer:
+    new_appeal:
+      actions:
+        silence: untuk mengehadkan akaun mereka
   appearance:
+    localization:
+      guide_link_text: Sesiapa sahaja boleh memberi sumbangan.
     sensitive_content: Kandungan sensitif
+  application_mailer:
+    view: 'Lihat:'
+    view_profile: Lihat profil
+    view_status: Lihat hantaran
   auth:
     change_password: Kata laluan
     delete_account: Padam akaun
@@ -569,6 +606,7 @@ ms:
     login: Daftar masuk
     logout: Daftar keluar
     migrate_account: Pindah kepada akaun lain
+    or_log_in_with: Atau daftar masuk dengan
     register: Daftar
     registration_closed: "%{instance} tidak menerima ahli-ahli baru"
     security: Keselamatan
@@ -643,6 +681,7 @@ ms:
       save: Simpan penapis baru
       title: Tambah penapis baru
     statuses:
+      back_to_filter: Balik kepada penapis
       index:
         title: Hantaran ditapis
   generic:

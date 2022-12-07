@@ -7,12 +7,12 @@ eo:
       account_migration:
         acct: Specifu la uzantnomon@domajnon de la konto al kiu vi volas translokiĝi
       account_warning_preset:
-        text: Vi povas uzi skribmanierojn de mesaĝoj, kiel URL-ojn, kradvortojn kaj menciojn
+        text: Vi povas uzi skribmanierojn de afiŝoj, kiel URL-ojn, kradvortojn kaj menciojn
         title: Laŭvola. Ne videbla por la ricevanto
       admin_account_action:
         include_statuses: La uzanto vidos, kiujn afiŝojn kaŭzis la agon de moderigo aŭ de averto
         send_email_notification: La uzanto ricevos klarigon pri tio, kio okazis al ties konto
-        text_html: Malnepra. Vi povas uzi skribmanierojn de mesaĝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
+        text_html: Malnepra. Vi povas uzi sintaksojn de afiŝoj. Vi povas <a href="%{path}">aldoni avertajn antaŭagordojn</a> por ŝpari tempon
         type_html: Elektu kion fari kun <strong>%{acct}</strong>
         types:
           disable: Malhelpi la uzanton uzi sian konton, sed ne forigi aŭ kaŝi ties enhavojn.
@@ -38,12 +38,12 @@ eo:
         current_username: Por konfirmi, bonvolu enigi la uzantnomon de la nuna konto
         digest: Sendita nur post longa tempo de neaktiveco, kaj nur se vi ricevis personan mesaĝon en via foresto
         discoverable: Permesi vian konton esti malkovrita de fremduloj per rekomendoj, tendencoj kaj aliaj funkcioj
-        email: Vi ricevos retpoŝtaĵon de konfirmo
+        email: Vi ricevos konfirman retpoŝton
         fields: Vi povas havi ĝis 4 tabelajn elementojn en via profilo
         header: Formato PNG, GIF aŭ JPG. Ĝis %{size}. Estos malgrandigita al %{dimensions}px
         inbox_url: Kopiu la URL de la ĉefpaĝo de la ripetilo, kiun vi volas uzi
         irreversible: La filtritaj mesaĝoj malaperos por eterne, eĉ se la filtrilo poste estas forigita
-        locale: La lingvo de la fasado, de retpoŝtaĵoj, kaj de sciigoj
+        locale: La lingvo de la fasado, retpoŝtaĵoj, kaj sciigoj
         locked: Vi devos aprobi ĉiun peton de sekvado mane
         password: Uzu almenaŭ 8 signojn
         phrase: Estos provita senzorge pri la uskleco de teksto aŭ averto pri enhavo de mesaĝo
@@ -55,8 +55,8 @@ eo:
         setting_display_media_hide_all: Ĉiam kaŝi la aŭdovidaĵojn
         setting_display_media_show_all: Ĉiam montri la aŭdovidaĵojn
         setting_hide_network: Tiuj kiujn vi sekvas, kaj tiuj kiuj sekvas vin estos kaŝitaj en via profilo
-        setting_noindex: Influas vian publikan profilon kaj mesaĝajn paĝojn
-        setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj mesaĝoj
+        setting_noindex: Influas vian publikan profilon kaj afiŝajn paĝojn
+        setting_show_application: La aplikaĵo, kiun vi uzas por afiŝi, estos montrita en la detala vido de viaj afiŝoj
         setting_use_blurhash: Transirojn estas bazita sur la koloroj de la kaŝitaj aŭdovidaĵoj sed ne montri iun ajn detalon
         setting_use_pending_items: Kaŝi tempoliniajn ĝisdatigojn malantaŭ klako anstataŭ aŭtomate rulumi la fluon
         username: Via uzantnomo estos unika en %{domain}
@@ -78,7 +78,7 @@ eo:
         bootstrap_timeline_accounts: Ĉi tiuj kontoj pinglitas al la supro de sekvorekomendoj de novaj uzantoj.
         closed_registrations_message: Montrita kiam registroj fermitas
         content_cache_retention_period: Mesaĝoj de aliaj serviloj forigitas post la kvanto de tagoj kiam fiksitas al pozitiva nombro.
-        custom_css: Vi povas meti kutimajn stilojn en la retversio de Mastodon.
+        custom_css: Vi povas meti propajn stilojn en la retversio de Mastodon.
         mascot: Anstatauigi la ilustraĵon en la altnivela retinterfaco.
         media_cache_retention_period: Elŝutitaj audovidaĵojn forigotas post la kvanto de tagoj kiam fiksitas al pozitiva nombro.
         profile_directory: La profilujo listigas ĉiujn uzantojn kiu volonte malkovrebli.
@@ -108,7 +108,7 @@ eo:
           no_access: Bloki aliron al ĉiuj rimedoj
           sign_up_block: Novaj registroj ne estos ebla
           sign_up_requires_approval: Novaj registriĝoj bezonos vian aprobon
-        severity: Elektu, kio okazos pri petoj de ĉi tiu IP
+        severity: Elektu, kio okazos pri petoj de ĉi tiu IP-adreso
       rule:
         text: Priskribu regulon aŭ neceson por uzantoj en ĉi tiu servilo. Provu fari ĝin mallonga kaj simpla
       sessions:
@@ -117,7 +117,7 @@ eo:
       tag:
         name: Vi povas ŝanĝi nur la majuskladon de la literoj, ekzemple, por igi ĝin pli legebla
       user:
-        chosen_languages: Kiam estas elekto, nur mesaĝoj en elektitaj lingvoj aperos en publikaj templinioj
+        chosen_languages: Kun tio markita nur mesaĝoj en elektitaj lingvoj aperos en publikaj tempolinioj
         role: La rolregiloj kies permesojn la uzanto havas
       user_role:
         color: Koloro uzita por la rolo sur la UI, kun RGB-formato
@@ -141,7 +141,7 @@ eo:
         text: Antaŭagordita teksto
         title: Titolo
       admin_account_action:
-        include_statuses: Inkluzivi raportitajn afiŝojn en la retpoŝtmesaĝo
+        include_statuses: Inkluzivi raportitajn afiŝojn en la retpoŝto
         send_email_notification: Sciigi la uzanton retpoŝte
         text: Propra averto
         type: Ago
@@ -194,7 +194,7 @@ eo:
         setting_boost_modal: Montri konfirman fenestron antaŭ ol diskonigi mesaĝon
         setting_crop_images: Stuci bildojn en negrandigitaj mesaĝoj al 16x9
         setting_default_language: Publikada lingvo
-        setting_default_privacy: Mesaĝa videbleco
+        setting_default_privacy: Privateco de afiŝado
         setting_default_sensitive: Ĉiam marki aŭdovidaĵojn tiklaj
         setting_delete_modal: Montri konfirman fenestron antaŭ ol forigi mesaĝon
         setting_disable_swiping: Malebligi svingajn movojn
@@ -231,27 +231,27 @@ eo:
       form_admin_settings:
         backups_retention_period: Uzantoarkivretendauro
         bootstrap_timeline_accounts: Ĉiam rekomendi ĉi tiujn kontojn al novaj uzantoj
-        closed_registrations_message: Kutimita mesaĝo kiam registroj ne estas disponeblaj
+        closed_registrations_message: Kutima mesaĝo kiam registroj ne estas disponeblaj
         content_cache_retention_period: Enhavkaŝaĵretendauro
-        custom_css: Kutimita CSS
-        mascot: Kutimita maskoto
+        custom_css: Propa CSS
+        mascot: Propa maskoto
         media_cache_retention_period: Audovidaĵkaŝaĵretendauro
         profile_directory: Ebligi la profilujon
         registrations_mode: Kiu povas krei konton
-        require_invite_text: Bezoni kialo por aliĝi
+        require_invite_text: Bezoni kialon por aliĝi
         show_domain_blocks: Montri domajnblokojn
-        show_domain_blocks_rationale: Montri kial domajnoj blokitas
+        show_domain_blocks_rationale: Montri kial domajnoj estis blokitaj
         site_contact_email: Kontaktoretadreso
         site_contact_username: Kontaktouzantonomo
         site_extended_description: Longa priskribo
-        site_short_description: Servilpriskribo
+        site_short_description: Priskribo de servilo
         site_terms: Privateca politiko
         site_title: Nomo de la servilo
         theme: Implicita etoso
         thumbnail: Bildeto de servilo
         timeline_preview: Permesi la neaŭtentigitan aliron al la publikaj templinioj
         trendable_by_default: Permesi tendencojn sen deviga kontrolo
-        trends: Ebligi tendencojn
+        trends: Ŝalti furorojn
       interactions:
         must_be_follower: Bloki sciigojn de nesekvantoj
         must_be_following: Bloki sciigojn de homoj, kiujn vi ne sekvas
@@ -277,8 +277,8 @@ eo:
         mention: Sendi retmesaĝon kiam iu mencias vin
         pending_account: Sendi retmesaĝon kiam nova konto bezonas kontrolon
         reblog: Sendi retmesaĝon kiam iu diskonigas vian mesaĝon
-        report: Nova raporto senditas
-        trending_tag: Nova tendenco bezonas kontrolon
+        report: Nova raporto estas proponita
+        trending_tag: Nova furoro bezonas kontrolon
       rule:
         text: Regulo
       tag:
@@ -289,13 +289,13 @@ eo:
       user:
         role: Rolo
       user_role:
-        color: Insignokoloro
-        highlighted: Montri rolo kiel insigno sur uzantoprofiloj
+        color: Koloro de ŝildo
+        highlighted: Montri rolon kiel insignon sur uzantoprofiloj
         name: Nomo
         permissions_as_keys: Permesoj
         position: Prioritato
       webhook:
-        events: Ebligi eventojn
+        events: Ŝaltitaj eventoj
         url: Finpunkto-URL
     'no': Ne
     not_recommended: Nerekomendita
