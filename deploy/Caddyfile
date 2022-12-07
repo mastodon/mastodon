@@ -1,3 +1,7 @@
+{
+    auto_https disable_redirects
+}
+
 :8080
 
 reverse_proxy :3000 {
