@@ -10,3 +10,5 @@ services:
     dockerContext: ./deploy
     numInstances: 1
     healthCheckPath: /health
+    envVars:
+      - fromGroup: toot-pizza
