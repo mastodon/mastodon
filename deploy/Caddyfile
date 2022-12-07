@@ -1,8 +1,9 @@
 {
     debug
+    auto_https off
 }
 
-https://*:8080
+:8080
 
 reverse_proxy / :3000 {
 	health_uri /health
