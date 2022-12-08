@@ -1,3 +1,1 @@
-FROM tootsuite/mastodon:v4.0.2
-
-CMD ["bundle", "exec", "rails", "s", "-p", "3000"]
+FROM linuxserver/mastodon:v4.0.2
