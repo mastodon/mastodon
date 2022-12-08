@@ -344,6 +344,45 @@ module Mastodon
       end
     end
 
+    option :days, type: :numeric, default: 90, aliases: [:d]
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :verbose, type: :boolean, aliases: [:v]
+    option :dry_run, type: :boolean
+    desc 'cull-inactive', 'Remove remote accounts that appear inactive'
+    long_desc <<-DESC
+      Remove remote accounts in the database that appear inactive. All
+      related content, including media attachments, is removed. Only accounts
+      that are not followed by or following anyone locally are removed.
+      The --days option specifies how old the last webfinger request
+      and update to the account has to be before they are removed. It
+      defaults to 90 days.
+    DESC
+    def cull_inactive
+      time_ago        = options[:days].days.ago
+      dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
+
+      removed_accounts = Concurrent::Set[]
+      processed, culled = parallelize_with_progress(
+        Account.where({ last_webfingered_at: Time.zone.at(0)..time_ago,
+          updated_at: Time.zone.at(0)..time_ago }).left_outer_joins(:user).where(users: { id: nil })
+      ) do |account|
+        next if account.local?
+        next if Follow.where(account: account).or(Follow.where(target_account: account)).count.positive?
+        removed_accounts << account.url
+        DeleteAccountService.new.call(account, reserve_username: false, skip_side_effects: true) unless options[:dry_run]
+        1
+      end
+
+      if options[:verbose] && !removed_accounts.empty?
+        say('List of removed accounts:')
+        removed_accounts.each do |url|
+          say(url.to_s)
+        end
+      end
+
+      say("Visited #{processed} accounts, removed #{culled}#{dry_run}", :green)
+    end
+
     option :all, type: :boolean
     option :domain
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
