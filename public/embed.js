@@ -7,11 +7,11 @@
    * @param {() => void} loaded
    */
   var ready = function (loaded) {
-    document.onreadystatechange = function () {
+    document.addEventListener('readystatechange', function () {
       if (document.readyState === 'complete') {
         loaded();
       }
-    };
+    });
   };
 
   ready(function () {
