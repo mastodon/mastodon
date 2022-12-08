@@ -7,11 +7,16 @@
    * @param {() => void} loaded
    */
   var ready = function (loaded) {
-    document.addEventListener('readystatechange', function () {
-      if (document.readyState === 'complete') {
-        loaded();
-      }
-    });
+    if (document.readyState == 'complete') {
+      loaded();
+    }
+    else {
+      document.addEventListener('readystatechange', function () {
+        if (document.readyState === 'complete') {
+          loaded();
+        }
+      });
+    }
   };
 
   ready(function () {
