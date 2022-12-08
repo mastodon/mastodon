@@ -1,3 +1,2 @@
-streaming-api: NODE_EXTRA_CA_CERTS=db-cert.crt PORT=4000 node ./streaming
 web: bundle exec rails s -p 3000
 sidekiq: bundle exec sidekiq

@@ -16,3 +16,16 @@ services:
       - fromGroup: toot-pizza
       - key: PORT
         value: 3000
+  - type: web
+    name: toot-pizza-streaming
+    region: ohio
+    env: docker
+    plan: starter
+    repo: https://github.com/irubnich/toot-pizza.git
+    branch: render
+    dockerfilePath: ./deploy/Dockerfile.streaming
+    dockerContext: ./deploy
+    numInstances: 1
+    healthCheckPath: /api/v1/streaming/health
+    envVars:
+      - fromGroup: toot-pizza

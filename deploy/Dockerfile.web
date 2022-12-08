@@ -13,7 +13,6 @@ RUN wget "https://github.com/DarthSim/overmind/releases/download/v2.3.0/overmind
     chmod +x overmind
 
 ADD Procfile.web ./Procfile
-ADD db-cert.crt ./
 
 ENTRYPOINT []
 CMD ["./overmind", "start"]
