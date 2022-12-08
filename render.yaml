@@ -23,6 +23,7 @@ services:
     plan: starter
     repo: https://github.com/irubnich/toot-pizza.git
     branch: render
+    pullRequestPreviewsEnabled: true
     dockerfilePath: ./deploy/Dockerfile.workers
     dockerContext: ./deploy
     numInstances: 1
