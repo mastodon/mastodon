@@ -71,6 +71,7 @@ module Mastodon
       :af,
       :ar,
       :ast,
+      :be,
       :bg,
       :bn,
       :br,
