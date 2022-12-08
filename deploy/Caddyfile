@@ -39,8 +39,7 @@ handle @local {
 redir @local_media https://assets.toot.pizza/{http.regexp.1} permanent
 
 reverse_proxy / :3000 {
-	header_up X-Forwarded-Port 443
-    header_up X-Forwarded-Proto https
+	trusted_proxies private_ranges
 
 	health_uri /health
 	health_interval 10s
@@ -53,6 +52,8 @@ reverse_proxy / :3000 {
 }
 
 reverse_proxy /api/v1/streaming :4000 {
+	trusted_proxies private_ranges
+
 	transport http {
 		keepalive 5s
 		keepalive_idle_conns 10
