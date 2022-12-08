@@ -2,6 +2,7 @@
 
 class UnfollowFollowWorker
   include Sidekiq::Worker
+  include JitteredRetryIn
 
   sidekiq_options queue: 'pull'
 
