@@ -31,3 +31,9 @@ services:
       - fromGroup: toot-pizza
       - key: PORT
         value: 4000
+  - type: redis
+    name: toot-pizza-redis
+    ipAllowList: []
+    plan: starter
+    maxmemoryPolicy: noeviction
+    region: ohio
