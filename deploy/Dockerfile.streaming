@@ -1,7 +1,0 @@
-FROM tootsuite/mastodon:v4.0.2
-
-ENV NODE_EXTRA_CA_CERTS=db-cert.crt PORT=4000
-
-COPY db-cert.crt .
-
-CMD ["node", "./streaming"]

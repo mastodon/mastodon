@@ -1,0 +1,2 @@
+streaming-api: NODE_EXTRA_CA_CERTS=db-cert.crt PORT=4000 node ./streaming
+sidekiq: bundle exec sidekiq
