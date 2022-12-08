@@ -8,6 +8,7 @@ services:
       - toot.pizza
     repo: https://github.com/irubnich/toot-pizza.git
     branch: render
+    pullRequestPreviewsEnabled: true
     dockerfilePath: ./deploy/Dockerfile.web
     dockerContext: ./deploy
     numInstances: 1
