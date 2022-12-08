@@ -8,10 +8,10 @@
    */
   var ready = function (loaded) {
     document.onreadystatechange = function () {
-      if (document.readyState === "complete") {
-        loaded()
+      if (document.readyState === 'complete') {
+        loaded();
       }
-    }
+    };
   };
 
   ready(function () {
