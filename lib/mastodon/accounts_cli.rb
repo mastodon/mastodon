@@ -541,7 +541,7 @@ module Mastodon
       old_key = account.private_key
       new_key = OpenSSL::PKey::RSA.new(2048)
       account.update(private_key: new_key.to_pem, public_key: new_key.public_key.to_pem)
-      ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, sign_with: old_key)
+      ActivityPub::UpdateDistributionWorker.perform_in(delay, account.id, { 'sign_with' => old_key })
     end
   end
 end

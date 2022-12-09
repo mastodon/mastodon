@@ -70,14 +70,14 @@ he:
       edit: עריכה
       email: דוא״ל
       email_status: מצב דוא״ל
-      enable: להפשיר
+      enable: ביטול הקפאה
       enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא״ל
       enabled: מופעל
       enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
       followers: עוקבים
       follows: נעקבים
       header: כותרת
-      inbox_url: כתובת תיבה נכנסת
+      inbox_url: כתובת תיבת דואר נכנס
       invite_request_text: סיבות להצטרפות
       invited_by: הוזמן על ידי
       ip: כתובת IP
@@ -338,7 +338,7 @@ he:
       overwrite: לדרוס
       shortcode: קוד קצר
       shortcode_hint: לפחות 2 תוים, אלפאנומריים או קו תחתי
-      title: יצגנים מותאמים אישית
+      title: אמוג'י שהעלינו
       uncategorized: לא מסווגים
       unlist: בטל רישום
       unlisted: לא רשומים
@@ -1197,6 +1197,11 @@ he:
     trending_now: נושאים חמים
   generic:
     all: הכל
+    all_items_on_page_selected_html:
+      many: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+      one: פריט <strong>%{count}</strong> נבחר בעמוד זה.
+      other: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+      two: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
     all_matching_items_selected_html:
       many: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
       one: נבחר פריט <strong>%{count}</strong> שתאם לחיפוש בעמוד זה.
@@ -1209,6 +1214,11 @@ he:
     none: כלום
     order_by: מיין לפי
     save_changes: שמור שינויים
+    select_all_matching_items:
+      many: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
+      one: בחר.י פריט %{count} שתאם לחיפוש שלך.
+      other: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
+      two: בחר. י %{count} פריטים שתאמו לחיפוש שלך.
     today: היום
     validation_errors:
       many: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן

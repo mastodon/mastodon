@@ -10,7 +10,7 @@ da:
     follow: Følg
     followers:
       one: Følger
-      other: Følgere
+      other: tilhængere
     following: Følger
     instance_actor_flash: Denne konto er en virtuel aktør repræsenterende selve serveren og ikke en individuel bruger. Den anvendes til fællesformål og bør ikke suspenderes.
     last_active: senest aktiv
@@ -429,6 +429,8 @@ da:
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
     export_domain_allows:
+      new:
+        title: Importeret domæne tillader
       no_file: Ingen fil valgt
     export_domain_blocks:
       import:
@@ -439,6 +441,7 @@ da:
         title: Import af domæneblokeringer
       new:
         title: Import af domæneblokeringer
+      no_file: Ingen fill udvalgt
     follow_recommendations:
       description_html: "<strong>Følg-anbefalinger hjælpe nye brugere til hurtigt at finde interessant indhold</strong>. Når en bruger ikke har interageret nok med andre til at generere personlige følg-anbefalinger, anbefales disse konti i stedet. De revurderes dagligt baseret på en blanding af konti med de flest nylige engagementer og fleste lokale følger-antal for et givet sprog."
       language: For sprog
@@ -1265,7 +1268,7 @@ da:
       other_data: Ingen øvrige data flyttes automatisk
       redirect: Din nuværende kontoprofil opdateres med en omdirigeringsnotits og ekskluderes fra søgninger
   moderation:
-    title: Moderatering
+    title: Moderation
   move_handler:
     carry_blocks_over_text: Denne bruger er flyttet fra %{acct}, som du har haft blokeret.
     carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.
