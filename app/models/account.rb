@@ -304,11 +304,9 @@ class Account < ApplicationRecord
 
   def fields_attributes=(attributes)
     fields     = []
-    old_fields = self[:fields] || []
-    old_fields = [] if old_fields.is_a?(Hash)
-
-    if attributes.is_a?(Hash)
-      attributes.each_value do |attr|
+    old_fields = self[:fields]
+    if attributes.is_a?(Array)
+      attributes.each do |attr|
         next if attr[:name].blank?
 
         previous = old_fields.find { |item| item['value'] == attr[:value] }
@@ -320,7 +318,7 @@ class Account < ApplicationRecord
         fields << attr
       end
     end
-
+        
     self[:fields] = fields
   end
 
