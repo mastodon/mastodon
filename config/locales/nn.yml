@@ -1,10 +1,9 @@
----
 nn:
   about:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    hosted_on: "%{domain} er vert for Mastodon"
+    hosted_on: '%{domain} er vert for Mastodon'
     title: Om
   accounts:
     follow: Fylg
@@ -280,9 +279,9 @@ nn:
         update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
         update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
         update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
-        update_ip_block_html: "%{name} endret regel for IP %{target}"
+        update_ip_block_html: "%{name} endra regel for IP %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
-        update_user_role_html: "%{name} endret %{target} -rolle"
+        update_user_role_html: "%{name} endra rolla %{target}"
       deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
@@ -376,7 +375,7 @@ nn:
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
       edit: Rediger domeneblokkering
-      existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
+      existing_domain_block: Du har allerie innført strengare avgrensingar for %{name}.
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       export: Eksporter
       import: Importer
@@ -392,7 +391,7 @@ nn:
       no_domain_block_selected: Ingen domeneblokkeringar vart endra sidan ingen var valde
       not_permitted: Du har ikkje løyve til å utføra denne handlinga
       obfuscate: Obfuskere domenenavn
-      obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
+      obfuscate_hint: Skjul delar av domenenamnet i lista dersom kunngjering av lista over domenebegrensningar er påskrudd
       private_comment: Privat kommentar
       private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
       public_comment: Offentleg kommentar
@@ -406,8 +405,8 @@ nn:
     email_domain_blocks:
       add_new: Lag ny
       attempts_over_week:
-        one: "%{count} forsøk i løpet av den siste uken"
-        other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
+        one: "%{count} forsøk den siste veka"
+        other: "%{count} registreringsforsøk den siste veka"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Slett
       dns:
@@ -418,6 +417,7 @@ nn:
         create: Legg til domene
         resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
+      no_email_domain_block_selected: Blokkering av e-post-domener vart ikkje endra sidan ingen var valde
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
     export_domain_allows:
@@ -730,7 +730,7 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -1278,7 +1278,7 @@ nn:
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Berre fylgjarar
