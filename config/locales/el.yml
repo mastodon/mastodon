@@ -1,3 +1,4 @@
+---
 el:
   about:
     about_mastodon_html: 'Το κοινωνικό δίκτυο του μέλλοντος: Χωρίς διαφημίσεις, χωρίς εταιρίες να σε κατασκοπεύουν, ηθικά σχεδιασμένο και αποκεντρωμένο! Με το Mastodon τα δεδομένα σου είναι πραγματικά δικά σου!'
@@ -51,7 +52,7 @@ el:
       delete: Διαγραφή δεδομένων
       deleted: Διαγραμμένοι
       demote: Υποβίβαση
-      destroyed_msg: "Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή"
+      destroyed_msg: Τα δεδομένα του/της %{username} εκκρεμούν για άμεση διαγραφή
       disable: Απενεργοποίηση
       disable_two_factor_authentication: Απενεργοποίηση 2FA
       disabled: Απενεργοποιημένο
@@ -202,21 +203,21 @@ el:
         update_user_role: Ενημέρωση ρόλου
       actions:
         approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
-        destroy_email_domain_block_html: "Ο/Η %{name} ξεμπλόκαρε το email domain %{target}"
-        destroy_instance_html: "Ο/Η %{name} εκκαθάρισε τον τομέα %{target}"
-        destroy_ip_block_html: "Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}"
-        destroy_status_html: "Ο/Η %{name} αφαίρεσε την ανάρτηση του/της %{target}"
-        destroy_unavailable_domain_html: "Ο/Η %{name} ξανάρχισε να τροφοδοτεί το domain %{target}"
-        destroy_user_role_html: "Ο/Η %{name} διέγραψε τον ρόλο του %{target}"
-        disable_2fa_user_html: "Ο/Η %{name} απενεργοποίησε το two factor requirement για τον χρήστη %{target}"
-        disable_custom_emoji_html: "Ο/Η %{name} απενεργοποίησε το emoji %{target}"
-        disable_sign_in_token_auth_user_html: "Ο/Η %{name} απενεργοποίησε την πιστοποίηση e-mail token του %{target}"
-        disable_user_html: "Ο/Η %{name} απενεργοποίησε τη σύνδεση για τον χρήστη %{target}"
-        enable_custom_emoji_html: "Ο/Η %{name} ενεργοποίησε το emoji %{target}"
-        enable_sign_in_token_auth_user_html: "Ο/Η %{name} ενεργοποίησε την πιστοποίηση e-mail token του %{target}"
-        enable_user_html: "Ο/Η %{name} ενεργοποίησε τη σύνδεση για τον χρήστη %{target}"
-        memorialize_account_html: "O/H %{name} μετέτρεψε τον λογαριασμό του %{target} σε σελίδα μνήμης"
-        promote_user_html: "Ο/Η %{name} προβίβασε το χρήστη %{target}"
+        destroy_email_domain_block_html: Ο/Η %{name} ξεμπλόκαρε το email domain %{target}
+        destroy_instance_html: Ο/Η %{name} εκκαθάρισε τον τομέα %{target}
+        destroy_ip_block_html: Ο/Η %{name} διέγραψε τον κανόνα για την IP %{target}
+        destroy_status_html: Ο/Η %{name} αφαίρεσε την ανάρτηση του/της %{target}
+        destroy_unavailable_domain_html: Ο/Η %{name} ξανάρχισε να τροφοδοτεί το domain %{target}
+        destroy_user_role_html: Ο/Η %{name} διέγραψε τον ρόλο του %{target}
+        disable_2fa_user_html: Ο/Η %{name} απενεργοποίησε το two factor requirement για τον χρήστη %{target}
+        disable_custom_emoji_html: Ο/Η %{name} απενεργοποίησε το emoji %{target}
+        disable_sign_in_token_auth_user_html: Ο/Η %{name} απενεργοποίησε την πιστοποίηση e-mail token του %{target}
+        disable_user_html: Ο/Η %{name} απενεργοποίησε τη σύνδεση για τον χρήστη %{target}
+        enable_custom_emoji_html: Ο/Η %{name} ενεργοποίησε το emoji %{target}
+        enable_sign_in_token_auth_user_html: Ο/Η %{name} ενεργοποίησε την πιστοποίηση e-mail token του %{target}
+        enable_user_html: Ο/Η %{name} ενεργοποίησε τη σύνδεση για τον χρήστη %{target}
+        memorialize_account_html: O/H %{name} μετέτρεψε τον λογαριασμό του %{target} σε σελίδα μνήμης
+        promote_user_html: Ο/Η %{name} προβίβασε το χρήστη %{target}
         reject_user_html: "%{name} απορρίφθηκε εγγραφή από %{target}"
         unblock_email_account_html: "%{name} ξεμπλόκαρε τη διεύθυνση ηλεκτρονικού ταχυδρομείου του %{target}"
       deleted_account: διαγραμμένος λογαριασμός
@@ -386,7 +387,7 @@ el:
         title: Δημιουργία νέου κανόνα IP
       title: Κανόνες IP
     relationships:
-      title: "Σχέσεις %{acct}"
+      title: Σχέσεις %{acct}
     relays:
       add_new: Πρόσθεσε νέο ανταποκριτή (relay)
       delete: Διαγραφή
@@ -575,9 +576,9 @@ el:
       body: Τα στοιχεία του νέου λογαριασμού είναι παρακάτω. Μπορείς να εγκρίνεις ή να απορρίψεις αυτή την αίτηση.
       subject: Νέος λογαριασμός προς έγκριση στο %{instance} (%{username})
     new_report:
-      body: "Ο/Η %{reporter} κατήγγειλε τον/την %{target}"
+      body: Ο/Η %{reporter} κατήγγειλε τον/την %{target}
       body_remote: Κάποιος/α από τον τομέα %{domain} κατήγγειλε τον/την %{target}
-      subject: 'Νέα καταγγελία για %{instance} (#%{id})'
+      subject: Νέα καταγγελία για %{instance} (#%{id})
   aliases:
     add_new: Δημιουργία ψευδώνυμου
     created_msg: Δημιουργήθηκε νέο ψευδώνυμο. Τώρα μπορείς να ξεκινήσεις τη μεταφορά από τον παλιό λογαριασμό.
@@ -617,7 +618,7 @@ el:
     delete_account: Διαγραφή λογαριασμού
     delete_account_html: Αν θέλεις να διαγράψεις το λογαριασμό σου, μπορείς <a href="%{path}">να συνεχίσεις εδώ</a>. Θα σου ζητηθεί επιβεβαίωση.
     description:
-      prefix_invited_by_user: "Ο/Η @%{name} σε προσκαλεί να συνδεθείς με αυτό τον διακομιστή του Mastodon!"
+      prefix_invited_by_user: Ο/Η @%{name} σε προσκαλεί να συνδεθείς με αυτό τον διακομιστή του Mastodon!
       prefix_sign_up: Άνοιξε λογαριασμό στο Mastodon σήμερα!
       suffix: Ανοίγοντας λογαριασμό θα μπορείς να ακολουθείς άλλους, να ανεβάζεις ενημερώσεις και να ανταλλάζεις μηνύματα με χρήστες σε οποιοδήποτε διακομιστή Mastodon, καθώς και άλλα!
     didnt_get_confirmation: Δεν έλαβες τις οδηγίες επιβεβαίωσης;
@@ -636,7 +637,7 @@ el:
       cas: Υπηρεσία Κεντρικής Πιστοποίησης (CAS)
       saml: Πρωτόκολλο SAML
     register: Εγγραφή
-    registration_closed: "Το %{instance} δεν δέχεται νέα μέλη"
+    registration_closed: Το %{instance} δεν δέχεται νέα μέλη
     resend_confirmation: Στείλε ξανά τις οδηγίες επιβεβαίωσης
     reset_password: Επαναφορά συνθηματικού
     rules:
@@ -885,11 +886,11 @@ el:
         subject: "%{name} έχει εγγραφεί"
     favourite:
       body: 'Η κατάστασή σου αγαπήθηκε από τον/την %{name}:'
-      subject: "Ο/Η %{name} αγάπησε την κατάστασή σου"
+      subject: Ο/Η %{name} αγάπησε την κατάστασή σου
       title: Νέο αγαπημένο
     follow:
-      body: "Ο/Η %{name} πλέον σε ακολουθεί!"
-      subject: "Ο/Η %{name} πλέον σε ακολουθεί"
+      body: Ο/Η %{name} πλέον σε ακολουθεί!
+      subject: Ο/Η %{name} πλέον σε ακολουθεί
       title: Νέος/α ακόλουθος
     follow_request:
       action: Διαχειρίσου τα αιτήματα παρακολούθησης
@@ -903,10 +904,10 @@ el:
       title: Νέα αναφορά
     reblog:
       body: 'Η κατάστασή σου προωθήθηκε από τον/την %{name}:'
-      subject: "Ο/Η %{name} προώθησε την κατάστασή σου"
+      subject: Ο/Η %{name} προώθησε την κατάστασή σου
       title: Νέα προώθηση
     status:
-      subject: "Ο/Η %{name} μόλις έγραψε κάτι"
+      subject: Ο/Η %{name} μόλις έγραψε κάτι
     update:
       subject: "%{name} επεξεργάστηκε μια δημοσίευση"
   notifications:
@@ -1049,7 +1050,7 @@ el:
     default_language: Ίδια με γλώσσα διεπαφής
     disallowed_hashtags:
       one: 'περιέχει μη επιτρεπτή ετικέτα: %{tags}'
-      other: 'περιέχει μη επιτρεπτές ετικέτες %{tags}'
+      other: περιέχει μη επιτρεπτές ετικέτες %{tags}
     edited_at_html: Επεξεργάστηκε στις %{date}
     errors:
       in_reply_not_found: Η κατάσταση στην οποία προσπαθείτε να απαντήσετε δεν υπάρχει.
