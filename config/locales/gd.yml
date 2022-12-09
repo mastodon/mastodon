@@ -387,6 +387,8 @@ gd:
       add_new: Ceadaich co-nasgadh le àrainn
       created_msg: Chaidh an àrainn a cheadachadh a chùm co-nasgaidh
       destroyed_msg: Chan eil co-nasgadh leis an àrainn seo ceadaichte tuilleadh
+      export: Às-phortadh
+      import: Ion-phortadh
       undo: Na ceadaich co-nasgadh leis an àrainn
     domain_blocks:
       add_new: Cuir bacadh àrainne ùr ris
@@ -396,13 +398,18 @@ gd:
       edit: Deasaich bacadh na h-àrainne
       existing_domain_block: Chuir thu cuingeachaidhean nas teinne air %{name} mu thràth.
       existing_domain_block_html: Chuir thu cuingeachadh nas teinne air %{name} mu thràth, feumaidh tu a <a href="%{unblock_url}">dì-bhacadh</a> an toiseach.
+      export: Às-phortadh
+      import: Ion-phortadh
       new:
         create: Cruthaich bacadh
         hint: Cha chuir bacadh na h-àrainne crìoch air cruthachadh chunntasan san stòr-dàta ach cuiridh e dòighean maorsainneachd sònraichte an sàs gu fèin-obrachail air a h-uile dàta a tha aig na cunntasan ud.
         severity:
           noop: Chan eil gin
+          silence: Cuingich
           suspend: Cuir à rèim
         title: Bacadh àrainne ùr
+      no_domain_block_selected: Cha deach bacadh àrainn sam bith atharrachadh o nach deach gin dhiubh a thaghadh
+      not_permitted: Chan fhaod thu seo a dhèanamh
       obfuscate: Doilleirich ainm na h-àrainne
       obfuscate_hint: Doilleirich pàirt de dh’ainm na h-àrainne air an liosta ma tha foillseachadh liosta nan cuingeachaidhean àrainne an comas
       private_comment: Beachd prìobhaideach
@@ -436,6 +443,18 @@ gd:
       resolved_dns_records_hint_html: Thèid ainm na h-àrainne fhuasgladh nan àrainnean MX a leanas agus an urra riutha-san gun gabh iad ri post-d. Ma bhacas tu àrainn MX, bacaidh seo an clàradh o sheòladh puist-d sam bith a chleachdas an aon àrainn MX fiù ’s ma bhios ainm àrainne eadar-dhealaichte ’ga sealltainn. <strong>Thoir an aire nach bac thu solaraichean puist-d mòra.</strong>
       resolved_through_html: Chaidh fuasgladh slighe %{domain}
       title: Àrainnean puist-d ’gam bacadh
+    export_domain_allows:
+      new:
+        title: Ion-phortaich àrainnean ceadaichte
+      no_file: Cha deach faidhle a thaghadh
+    export_domain_blocks:
+      import:
+        existing_relationships_warning: Dàimhean leantainn làithreach
+        private_comment_template: Chaidh ion-phortadh o %{source} %{date}
+        title: Ion-phortaich bacaidhean àrainne
+      new:
+        title: Ion-phortaich bacaidhean àrainne
+      no_file: Cha deach faidhle a thaghadh
     follow_recommendations:
       description_html: "<strong>Cuidichidh molaidhean leantainn an luchd-cleachdaidh ùr ach an lorg iad susbaint inntinneach gu luath</strong>. Mur an do ghabh cleachdaiche conaltradh gu leòr le càch airson molaidhean leantainn gnàthaichte fhaighinn, mholamaid na cunntasan seo ’nan àite. Thèid an àireamhachadh às ùr gach latha, stèidhichte air na cunntasan air an robh an conaltradh as trice ’s an luchd-leantainn ionadail as motha sa chànan."
       language: Dhan chànan
@@ -649,7 +668,7 @@ gd:
       privileges:
         administrator: Rianaire
         administrator_description: Chan eil cuingeachadh sam bith air na cleachdaichean aig bheil an cead seo
-        delete_user_data: Sguab às dàta a’ chleachdaiche
+        delete_user_data: Sguabadh às dàta cleachdaiche
         delete_user_data_description: Leigidh seo le cleachdaichean dàta chleachdaichean eile a sguabadh às gun dàil
         invite_users: Thoir cuireadh do chleachdaichean
         invite_users_description: Leigidh seo le cleachdaichean cuireadh dhan fhrithealaiche a chur gu daoine eile
@@ -948,6 +967,7 @@ gd:
     warning: Bi glè chùramach leis an dàta seo. Na co-roinn le duine sam bith e!
     your_token: An tòcan inntrigidh agad
   auth:
+    apply_for_account: Iarr cunntas
     change_password: Facal-faire
     delete_account: Sguab às an cunntas
     delete_account_html: Nam bu mhiann leat an cunntas agad a sguabadh às, <a href="%{path}">nì thu an-seo e</a>. Thèid dearbhadh iarraidh ort.
@@ -1206,6 +1226,7 @@ gd:
     invalid_markup: 'tha HTML markup mì-dhligheach ann: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Faidhle CSV mì-dhligheach. Mearachd: %{error}'
       over_rows_processing_limit: tha còrr is %{count} ràgh(an) ann
     modes:
       merge: Co-aonaich

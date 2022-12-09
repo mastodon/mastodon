@@ -1,0 +1,222 @@
+---
+be:
+  simple_form:
+    hints:
+      account_alias:
+        acct: Прызначце карыстальнік@дамен уліковага запісу з якога вы хочаце пераехаць
+      account_migration:
+        acct: Прызначце карыстальнік@дамен уліковага запісу на які вы хочаце пераехаць
+      account_warning_preset:
+        text: Вы можаце выкарыстоўваць сінтаксіс паведамленняў, такі як URL, хэштэгі ці згадкі
+        title: Неабавязкова. Не паказваецца атрымальніку
+      admin_account_action:
+        include_statuses: Карыстальнік пабачыць, якія допісы ёсць прычынай мадэрацыі ці папярэджання
+        send_email_notification: Карыстальнік атрымае тлумачэнне аб тым, што здарылася з яго ўліковым запісам
+        type_html: Выберы што рабіць з <strong>%{acct}</strong>
+        types:
+          disable: Перадухіліць выкарыстанне акаунтаў, але не выдаляць і не хаваць іх змесціва.
+          none: Выкарыстоўвай гэта для папярэджвання карыстальнікаў але без іншых наступстваў.
+          sensitive: Прымусова адмячаць усе медыя карыстальніка як дэлікатныя.
+      announcement:
+        ends_at: Неабавязкова. Аб'ява будзе аўтаматычна знята ў пэўны час
+        scheduled_at: Пакіньце пустым, каб апублікаваць аб'яву імаверна
+        starts_at: Неабавязкова. На выпадак, калі ваша аб'ява прывязана да пэўнага перыяду часу
+      appeal:
+        text: Вы можаце абскардзіць рашэнне толькі адзін раз
+      defaults:
+        discoverable: Дазволіць незнаёмым людзям знаходзіць ваш уліковы запіс праз рэкамендацыі, трэнды і іншыя функцыі
+        email: Пацвярджэнне будзе выслана па электроннай пошце
+        locale: Мова карыстальніцкага інтэрфейсу, электронных паведамленняў і апавяшчэнняў
+        locked: Уручную кантралюйце, хто можа быць вашым падпісантам, ухваляючы запросы на падпіску
+        password: Не менш за 8 сімвалаў
+        setting_display_media_default: Хаваць медыя пазначаныя як далікатныя
+        setting_display_media_hide_all: Заўсёды хаваць медыя
+        setting_display_media_show_all: Заўсёды паказваць медыя
+        setting_hide_network: Вашы падпіскі і вашы падпісчыкі будуць нябачны ў вашым профілі
+        setting_noindex: Уплывае на бачнасць старонкі вашага профілю і вашых допісаў
+      form_admin_settings:
+        backups_retention_period: Захоўваць створаныя архівы карыстальніка адзначаную колькасць дзён.
+        bootstrap_timeline_accounts: Гэтыя ўліковыя запісы будуць замацаваны ў топе рэкамендацый для новых карыстальнікаў.
+        custom_css: Вы можаце прымяняць карыстальніцкія стылі ў вэб-версіі Mastodon.
+        mascot: Замяняе ілюстрацыю ў пашыраным вэб-інтэрфейсе.
+        site_contact_username: Як людзі могуць звязацца з вамі на Mastodon.
+        trends: Трэнды паказваюць, якія допісы, хэштэгі і навіны набываюць папулярнасць на вашым серверы.
+      form_challenge:
+        current_password: Вы ўваходзіце ў бяспечную зону
+      imports:
+        data: Файл CSV экспартаваны з іншага сервера Mastodon
+      invite_request:
+        text: Гэта дапаможа нам разгледзець вашу заяву
+      ip_block:
+        comment: Неабавязкова. Напамін, чаму вы дадалі гэта правіла.
+        expires_in: IP адрасы з'яўляюцца абмежаваным рэсурсам, часам яны падзяляюцца паміж карыстальнікамі і мяняюць уладальніка. Па гэтай прычыне, безтэрміновае блакаванне IP не рэкамендуецца.
+        severities:
+          no_access: Заблакіраваць доступ да ўсіх рэсурсаў
+          sign_up_block: Новыя рэгістрацыі будуць немагчымы
+          sign_up_requires_approval: Новыя рэгістрацыі запатрабуюць вашага ўзгаднення
+        severity: Абярыце, што будзе адбывацца з запытамі з гэтага IP
+      sessions:
+        otp: 'Увядзіце код двухфактарнай аўтэнтыфікацыі з вашага тэлефона або адзін з кодаў аднаўлення:'
+      webhook:
+        events: Выберыце падзеі для адпраўкі
+        url: Куды падзеі будуць адпраўляцца
+    labels:
+      account:
+        fields:
+          name: Пазнака
+          value: Змесціва
+      account_warning_preset:
+        text: Тэкст шаблону
+        title: Загаловак
+      admin_account_action:
+        include_statuses: Дадаць допісы, на якія вы скардзіцеся, у электронны ліст
+        send_email_notification: Паведаміць карыстальніку па электроннай пошце
+        text: Карыстальніцкае папярэджанне
+        type: Дзеянне
+        types:
+          disable: Замарозіць
+          none: Даслаць папярэджанне
+          sensitive: Далікатны
+          silence: Абмежаваць
+          suspend: Прыпыніць
+      announcement:
+        all_day: Падзея на ўвесь дзень
+        ends_at: Канец падзеі
+        scheduled_at: Запланаваць публікацыю
+        starts_at: Пачатак падзеі
+        text: Аб'ява
+      appeal:
+        text: Растлумачце, чаму гэтае рашэнне павінна быць адменена
+      defaults:
+        autofollow: Прапануйце падпісацца на ваш акаўнт
+        avatar: Аватар
+        bot: Гэта бот
+        chosen_languages: Фільтр моў
+        confirm_new_password: Пацвердзіць новы пароль
+        confirm_password: Пацвердзіць пароль
+        context: Фільтр кантэкстаў
+        current_password: Бягучы пароль
+        data: Даныя
+        discoverable: Рэкамендаваць уліковы запіс іншым карыстальнікам
+        display_name: Адлюстраванае імя
+        email: Адрас электроннай пошты
+        expires_in: Заканчваецца пасля
+        fields: Метададзеныя профілю
+        header: Загаловак
+        honeypot: "%{label} (не запаўняць)"
+        irreversible: Выдаляць, а не хаваць
+        locale: Мова інтэрфейсу
+        locked: Зрабіць уліковы запіс закрытым
+        max_uses: Максімальная колькасць выкарыстанняў
+        new_password: Новы пароль
+        note: Пра сябе
+        otp_attempt: Двухфактарны код
+        password: Пароль
+        phrase: Ключавое слова ці фраза
+        setting_advanced_layout: Уключыць пашыраны вэб-інтэрфейс
+        setting_aggregate_reblogs: Групаваць прасоўванні ў стужках
+        setting_auto_play_gif: Аўтапрайграванне анімаваных GIF
+        setting_boost_modal: Паказваць акно пацвярджэння перад пашырэннем
+        setting_crop_images: У неразгорнутых допісах абразаць відарысы да 16:9
+        setting_default_language: Мова допісаў
+        setting_default_privacy: Прыватнасць допісаў
+        setting_default_sensitive: Заўсёды пазначаць кантэнт як далікатны
+        setting_delete_modal: Паказваць акно пацвярджэння перад выдаленнем допісу
+        setting_disable_swiping: Адключыць прагортванні
+        setting_display_media: Адлюстраванне медыя
+        setting_display_media_default: Перадвызначана
+        setting_display_media_hide_all: Схаваць усё
+        setting_display_media_show_all: Паказаць усё
+        setting_expand_spoilers: Заўжды разгортваць допісы з папярэджаннем аб змесціве
+        setting_hide_network: Схаваць вашы сувязі
+        setting_reduce_motion: Памяншэнне руху ў анімацыях
+        setting_system_font_ui: Выкарыстоўваць прадвызначаны сістэмны шрыфт
+        setting_theme: Тэма сайта
+        setting_trends: Паказваць трэнды дня
+        setting_unfollow_modal: Паказваць акно пацвярджэння перад адпіскай
+        setting_use_pending_items: Павольны рэжым
+        severity: Узровень
+        sign_in_token_attempt: Код бяспекі
+        title: Загаловак
+        type: Тып імпарту
+        username: Імя карыстальніка
+        username_or_email: Імя карыст. або адрас эл. пошты
+        whole_word: Слова цалкам
+      email_domain_block:
+        with_dns_records: Уключыць MX запісы і IP-адрасы дамену
+      featured_tag:
+        name: Хэштэг
+      filters:
+        actions:
+          hide: Схаваць цалкам
+      form_admin_settings:
+        custom_css: CSS карыстальніка
+        media_cache_retention_period: Працягласць захавання кэшу для медыя
+        profile_directory: Уключыць каталог профіляў
+        registrations_mode: Хто можа зарэгістравацца
+        require_invite_text: Каб далучыцца, патрэбна прычына
+        show_domain_blocks: Паказаць заблакіраваныя дамены
+        show_domain_blocks_rationale: Паказваць прычыну блакавання даменаў
+        site_contact_email: Электронная пошта для сувязі
+        site_extended_description: Падрабязнае апісанне
+        site_short_description: Апісанне сервера
+        site_terms: Палітыка канфідэнцыйнасці
+        site_title: Назва сервера
+        theme: Тэма па змаўчанні
+        thumbnail: Мініяцюра сервера
+        trendable_by_default: Дазваляць трэнды без папярэдняй праверкі
+        trends: Уключыць трэнды
+      interactions:
+        must_be_follower: Заблакіраваць апавяшчэнні ад непадпісаных людзей
+        must_be_following: Заблакіраваць апавяшчэнні ад людзей на якіх вы не падпісаны
+        must_be_following_dm: Заблакіраваць асабістыя паведамленні ад людзей на якіх вы не падпісаны
+      invite:
+        comment: Каментар
+      invite_request:
+        text: Чаму вы жадаеце далучыцца?
+      ip_block:
+        comment: Каментар
+        ip: IP
+        severities:
+          no_access: Заблакіраваць доступ
+          sign_up_block: Заблакіраваць рэгістрацыі
+          sign_up_requires_approval: Абмежаваць рэгістрацыі
+        severity: Правіла
+      notification_emails:
+        appeal: Нехта падае апеляцыю на рашэнне мадэратара
+        favourite: Нехта ўпадабаў ваш допіс
+        follow: Нехта падпісаўся на вас
+        follow_request: Нехта даслаў вам запыт на падпіску
+        mention: Нехта згадаў вас
+        pending_account: Новы акаўнт патрабуе разгляду
+        reblog: Нехта пашырыў ваш допіс
+        report: Новая скарга даслана
+        trending_tag: Новы трэнд патрабуе разгляду
+      rule:
+        text: Правіла
+      tag:
+        listable: Дазволіць паказ хэштэгу ў пошуку і ў каталозе профіляў
+        name: Хэштэг
+        trendable: Дазволіць паказ гэтага хэштэга ў трэндах
+        usable: Дазволіць выкарыстанне хэштэгу ў допісах
+      user:
+        role: Роля
+      user_role:
+        color: Колер значка
+        highlighted: Паказваць ролю як значок у профілях
+        name: Назва
+        permissions_as_keys: Дазволы
+        position: Прыярытэт
+      webhook:
+        events: Актыўныя падзеі
+        url: URL-адрас канцавога пункту
+    'no': Не
+    not_recommended: Не рэкамендавана
+    recommended: Рэкамендуем
+    required:
+      mark: "*"
+      text: абавязкова
+    title:
+      sessions:
+        webauthn: Выкарыстайце адзін са сваіх ключоў бяспекі для ўваходу
+    'yes': Так

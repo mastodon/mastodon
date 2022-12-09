@@ -5,7 +5,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include Redisable
   include Lockable
 
-  def call(status, json)
+  def call(status, json, request_id: nil)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
 
     @json                      = json
@@ -15,6 +15,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @account                   = status.account
     @media_attachments_changed = false
     @poll_changed              = false
+    @request_id                = request_id
 
     # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
@@ -92,7 +93,13 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
 
         next if unsupported_media_type?(media_attachment_parser.file_content_type) || skip_download?
 
-        RedownloadMediaWorker.perform_async(media_attachment.id) if media_attachment.remote_url_previously_changed? || media_attachment.thumbnail_remote_url_previously_changed?
+        begin
+          media_attachment.download_file! if media_attachment.remote_url_previously_changed?
+          media_attachment.download_thumbnail! if media_attachment.thumbnail_remote_url_previously_changed?
+          media_attachment.save
+        rescue Mastodon::UnexpectedResponseError, HTTP::TimeoutError, HTTP::ConnectionError, OpenSSL::SSL::SSLError
+          RedownloadMediaWorker.perform_in(rand(30..600).seconds, media_attachment.id)
+        end
       rescue Addressable::URI::InvalidURIError => e
         Rails.logger.debug "Invalid URL in attachment: #{e}"
       end
@@ -185,7 +192,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       next if href.blank?
 
       account   = ActivityPub::TagManager.instance.uri_to_resource(href, Account)
-      account ||= ActivityPub::FetchRemoteAccountService.new.call(href)
+      account ||= ActivityPub::FetchRemoteAccountService.new.call(href, request_id: @request_id)
 
       next if account.nil?
 

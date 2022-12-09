@@ -3,10 +3,10 @@ cy:
   devise:
     confirmations:
       confirmed: Mae eich cyfeiriad e-bost wedi'i gadarnhau'n llwyddiannus.
-      send_instructions: Byddwch yn derbyn e-bost a chyfarwyddiadau am sut i gadarnhau eich cyfeiriad e-bost mewn rhai munudau. Os na dderbynioch chi'r e-bost hwn, edrychwch yn eich ffolder sbam os gwelwch yn dda.
-      send_paranoid_instructions: Os yw eich cyfeiriad e-bost yn bodoli yn ein bas data, byddwch yn derbyn e-bost a chyfarwyddiadau am sut i gadarnhau eich cyfeiriad ebost mewn rhai munudau. Os na dderbynioch chi'r e-bost hwn, edrychwch yn eich ffolder sbam os gwelwch yn dda.
+      send_instructions: Byddwch yn derbyn e-bost a chyfarwyddiadau am sut i gadarnhau eich cyfeiriad e-bost mewn rhai munudau. Os nad ydych wedi derbyn yr e-bost hwn, edrychwch yn eich ffolder sbam, os gwelwch yn dda.
+      send_paranoid_instructions: Os yw eich cyfeiriad e-bost yn bodoli yn ein cronfa ddata, byddwch yn derbyn e-bost gyda chyfarwyddiadau ar sut i gadarnhau eich cyfeiriad e-bost mewn ychydig funudau. Gwiriwch eich ffolder sbam os na dderbynioch yr e-bost hwn.
     failure:
-      already_authenticated: Yr ydych wedi mewngofnodi yn barod.
+      already_authenticated: Rydych chi eisoes wedi mewngofnodi.
       inactive: Nid yw eich cyfrif yn weithredol eto.
       invalid: "%{authentication_keys} neu gyfrinair annilys."
       last_attempt: Mae gennych un cyfle arall cyn i'ch cyfrif gael ei gloi.
@@ -20,25 +20,25 @@ cy:
       confirmation_instructions:
         action: Gwiriwch eich cyfeiriad e-bost
         action_with_app: Cadarnhau a dychwelyd i %{app}
-        explanation: Yr ydych wedi creu cyfrif ar %{host} gyda'r cyfrif e-bost hwn. Dim ond un clic sydd angen i'w wneud yn weithredol. Os nad chi oedd hyn, anwybyddwch yr e-bost hwn os gwelwch yn dda.
-        explanation_when_pending: Rydych wedi gwneud cais am wahoddiad i %{host} gyda'r ebost hyn. Unwaith rydych wedi cadarnhau eich ebost, byddem yn adolygu eich cais. Ni fyddwch yn gallu mewngofnodi tan yr amser hono. Os caiff eich cais ei wrthod, felly nid oes angen unrhyw gweithred pellach o chi. Os nad oeddech wedi gwneud y cais hyn, anwybyddu'r ebost hon, os gwelwch yn dda.
-        extra_html: Gwnewch yn siŵr i edrych ar <a href="%{terms_path}">reolau'r achos</a> a <a href="%{policy_path}">ein telerau gwasanaeth</a>.
-        subject: 'Mastodon: Canllawiau cadarnhau i %{instance}'
+        explanation: Rydych chi wedi creu cyfrif ar %{host} gyda'r cyfeiriad e-bost hwn. Rydych chi un clic i ffwrdd o'i hagor. Os nad chi oedd hwn, anwybyddwch yr e-bost hwn.
+        explanation_when_pending: Gwnaethoch gais am wahoddiad i %{host} gyda'r cyfeiriad e-bost hwn. Unwaith y byddwch yn cadarnhau eich cyfeiriad e-bost, byddwn yn adolygu eich cais. Gallwch fewngofnodi i newid eich manylion neu ddileu eich cyfrif, ond ni allwch gael mynediad i'r rhan fwyaf o'r swyddogaethau nes bod eich cyfrif wedi'i gymeradwyo. Os caiff eich cais ei wrthod, bydd eich data yn cael ei ddileu, felly ni fydd angen unrhyw gamau pellach gennych. Os nad chi oedd hwn, anwybyddwch yr e-bost hwn.
+        extra_html: Edrychwch hefyd ar <a href="%{terms_path}">reolau'r gweinydd</a> <a href="%{policy_path}">a'n telerau gwasanaeth</a> .
+        subject: 'Mastodon: Cyfarwyddiadau cadarnhau ar gyfer %{instance}'
         title: Gwirio cyfeiriad e-bost
       email_changed:
         explanation: 'Mae''r cyfeiriad e-bost ar gyfer eich cyfrif yn cael ei newid i:'
-        extra: Os na wnaethoch chi newid eich e-bost, mae'n debygol fod rhywun wedi cael mynediad i'ch cyfrif. Newidwch eich cyfrinair yn syth os gwelwch yn dda neu cysylltwch a gweinydd yr achos os ydych wedi'ch cloi allan o'ch cyfrif.
-        subject: 'Mastodon: Newidwyd e-bost'
+        extra: Os nad ydych wedi newid eich e-bost, mae'n debygol fod rhywun wedi mewngofnodi i'ch cyfrif. Newidiwch eich cyfrinair cyn gynted â phosib neu gysylltwch â'r gweinyddwyr os ydych wedi cael eich cloi allan o'ch cyfrif.
+        subject: 'Mastodon: E-bost wedi''i newid'
         title: Cyfeiriad e-bost newydd
       password_change:
         explanation: Newidwyd cyfrinair eich cyfrif.
-        extra: Os na wnaethoch chi newid eich e-bost, mae'n debygol fod rhywun wedi cael mynediad i'ch cyfrif. Newidwch eich cyfrinair yn syth os gwelwch yn dda neu cysylltwch a gweinydd yr achos os ydych wedi'ch cloi allan o'ch cyfrif.
-        subject: 'Mastodon: Newidwyd Cyfrinair'
+        extra: Os nad ydych wedi newid eich cyfrinair, mae'n debygol fod rhywun wedi mewngofnodi i'ch cyfrif. Newidiwch eich cyfrinair cyn gynted â phosib neu gysylltwch â'r gweinyddwyr os ydych wedi cael eich cloi allan o'ch cyfrif.
+        subject: 'Mastodon: Cyfrinair wedi''i newid'
         title: Newidwyd cyfrinair
       reconfirmation_instructions:
-        explanation: Cadarnhewch y cyferiad newydd i newid eich e-bost.
-        extra: Os nad chi wnaeth y newid hwn, anwybyddwch yr e-bost hwn os gwelwch yn dda. Ni fydd y cyfeiriad e-bost ar gyfer y cyfrif Mastodon yn newid nes eich bod yn mynd at y ddolen uchod.
-        subject: 'Mastodon: Cadarnhewch e-bost i %{instance}'
+        explanation: Cadarnhewch y cyfeiriad newydd i newid eich e-bost.
+        extra: Os na chychwynnwyd y newid hwn gennych chi, anwybyddwch yr e-bost hwn. Ni fydd cyfeiriad e-bost y cyfrif Mastodon yn newid nes i chi gael mynediad i'r ddolen uchod.
+        subject: 'Mastodon: Cadarnhau e-bost ar gyfer %{instance}'
         title: Gwirio cyfeiriad e-bost
       reset_password_instructions:
         action: Newid cyfrinair
@@ -47,7 +47,7 @@ cy:
         subject: 'Mastodon: Ailosod cyfarwyddiadau cyfrinair'
         title: Ailosod cyfrinair
       two_factor_disabled:
-        explanation: Mae dilysu dau ffactor ar gyfer eich cyfrif wedi'i anablu. Mae mewngofnodi bellach yn bosibl gan ddefnyddio cyfeiriad e-bost a chyfrinair yn unig.
+        explanation: Mae dilysiad dau ffactor ar gyfer eich cyfrif wedi'i analluogi. Mae modd mewngofnodi nawr gan ddefnyddio cyfeiriad e-bost a chyfrinair yn unig.
         subject: 'Mastodon: mae dilysu dau ffactor wedi''i alluogi'
         title: Dilysu dau ffactor yn anabl
       two_factor_enabled:
@@ -70,7 +70,7 @@ cy:
           subject: 'Mastodon: Allwedd ddiogelwch wedi''i dileu'
           title: Mae un o'ch allweddi diogelwch wedi'i ddileu
       webauthn_disabled:
-        explanation: Mae dilysu gydag allweddi diogelwch wedi'i analluogi ar gyfer eich cyfrif. Mae mewngofnodi bellach yn bosibl gan ddefnyddio'r tocyn a gynhyrchir gan yr app TOTP pâr yn unig.
+        explanation: Mae dilysu gydag allweddi diogelwch wedi'i analluogi ar gyfer eich cyfrif. Mae mewngofnodi bellach yn bosibl gan ddefnyddio'r tocyn a gynhyrchir gan yr ap TOTP pâr yn unig.
         subject: 'Mastodon: Dilysiad gydag allweddi diogelwch wedi''i analluogi'
         title: Allweddi diogelwch wedi'u hanalluogi
       webauthn_enabled:
@@ -82,17 +82,17 @@ cy:
       success: Dilyswyd yn llwyddiannus o gyfrif %{kind}.
     passwords:
       no_token: Nid oes modd cael mynediad i'r dudalen hon heb ddod drwy e-bost ailosod cyfrinair. Os ydych yn dod o e-bost ailosod cyfrinair, gwnewch yn siŵr y defnyddioch chi'r URL a ddarparwyd yn ei gyfanrwydd.
-      send_instructions: Os yw eich cyfeiriad e-bost yn bresennol yn ein bas data, mi fyddwch yn derbyn dolen yn eich blwch e-bost ymhen cwpl o funudau. Os nad ydych yn derbyn yr e-bost hwn, edrychwch yn eich ffolder spam os gwelwch yn dda.
-      send_paranoid_instructions: Os yw eich cyfeiriad e-bost yn bresennol yn ein bas data, mi fyddwch yn derbyn dolen yn eich blwch e-bost ymhen cwpl o funudau. Os nad ydych yn derbyn yr e-bost hwn, edrychwch yn eich ffolder spam os gwelwch yn dda.
-      updated: Mae eich cyfrinair wedi ei newid yn llwyddiannus. Yr ydych wedi mewngofnodi.
+      send_instructions: Os yw eich cyfeiriad e-bost yn bodoli yn ein cronfa ddata, byddwch yn derbyn dolen adfer cyfrinair yn eich cyfeiriad e-bost mewn ychydig funudau. Gwiriwch eich ffolder sbam os na dderbynioch yr e-bost hwn.
+      send_paranoid_instructions: Os yw eich cyfeiriad e-bost yn bodoli yn ein cronfa ddata, byddwch yn derbyn dolen adfer cyfrinair yn eich cyfeiriad e-bost mewn ychydig funudau. Gwiriwch eich ffolder sbam os na dderbynioch yr e-bost hwn.
+      updated: Mae eich cyfrinair wedi'i newid yn llwyddiannus. Rydych chi bellach wedi mewngofnodi.
       updated_not_active: Mae eich cyfrinair wedi ei newid yn llwyddiannus.
     registrations:
-      destroyed: Hwyl fawr! Mae eich cyfrif wedi ei ganslo'n llwyddiannus. Gobeithiwn eich gweld chi eto'n fuan.
+      destroyed: Hwyl fawr! Mae eich cyfrif wedi ei ddiddymu'n llwyddiannus. Gobeithiwn eich gweld chi eto'n fuan.
       signed_up: Croeso! Rydych wedi cofrestru'n llwyddiannus.
-      signed_up_but_inactive: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos nid yw eich cyfrif wedi ei actifadu eto.
-      signed_up_but_locked: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos fod eich cyfrif wedi ei gloi.
-      signed_up_but_pending: Mae neges a'ch cysylltiad cadarnhau wedi cael ei hanfon i'ch ebost. Ar ôl i chi ei glicio, byddem yn adolygu eich cais. Byddwch yn derbyn hysbysiad os caiff ei gymeradwyo.
-      signed_up_but_unconfirmed: Mae neges gyda dolen cadarnhau wedi ei anfon i'ch cyfeiriad e-bost. Dilynwch y ddolen er mwyn actifadu eich cyfrif. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
+      signed_up_but_inactive: Yr ydych wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allwn eich mewngofnodi achos nid yw eich cyfrif wedi ei hagor eto.
+      signed_up_but_locked: Rydych chi wedi cofrestru'n llwyddiannus. Fodd bynnag, ni allem eich mewngofnodi oherwydd bod eich cyfrif wedi'i gloi.
+      signed_up_but_pending: Mae neges gyda dolen cadarnhau wedi'i hanfon i'ch cyfeiriad e-bost. Ar ôl i chi glicio ar y ddolen, byddwn yn adolygu eich cais. Byddwch yn cael gwybod os caiff ei gymeradwyo.
+      signed_up_but_unconfirmed: Mae neges gyda dolen cadarnhau wedi ei anfon i'ch cyfeiriad e-bost. Dilynwch y ddolen er mwyn agor eich cyfrif. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn, os gwelwch yn dda.
       update_needs_confirmation: Rydych wedi diweddaru eich cyfrif yn llwyddiannus, ond mae angen i ni wirio'ch cyfeiriad e-bost newydd. Edrychwch ar eich e-byst a dilynwch y ddolen gadarnhau er mwyn cadarnhau eich cyfeiriad e-bost newydd. Edrychwch ar eich ffolder sbam os na dderbynioch chi yr e-bost hwn.
       updated: Mae eich cyfrif wedi ei ddiweddaru yn llwyddiannus.
     sessions:
@@ -101,19 +101,19 @@ cy:
       signed_out: Allgofnodwyd yn llwyddiannus.
     unlocks:
       send_instructions: Mi fyddwch yn derbyn e-bost a chyfarwyddiadau ynghylch sut i ddatgloi eich cyfrif ymhen cwpl o funudau. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
-      send_paranoid_instructions: Os yw eich cyfrif yn bodoli, mi fyddwch yn derbyn e-bost a cyfarwyddiadau o sut i ddatgloi eich cyfrif ymhen cwpl o funudau. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn os gwelwch yn dda.
+      send_paranoid_instructions: Os yw eich cyfrif yn bodoli, mi fyddwch yn derbyn e-bost a cyfarwyddiadau o sut i ddatgloi eich cyfrif ymhen cwpl o funudau. Edrychwch yn eich ffolder sbam os na dderbynioch chi'r e-bost hwn, os gwelwch yn dda.
       unlocked: Mae eich cyfrif wedi ei ddatgloi'n llwyddiannus. Mewngofnodwch i barhau.
   errors:
     messages:
-      already_confirmed: wedi ei gadarnhau yn barod, ymgeisiwch fewngofnodi
-      confirmation_period_expired: angen ei gadarnhau o fewn %{period}, gwnewch gais am un newydd os gwelwch yn dda
-      expired: wedi dod i ben, gwnewch gais am un newydd os gwelwch yn dda
+      already_confirmed: wedi'i gadarnhau eisoes, ceisiwch fewngofnodi
+      confirmation_period_expired: angen ei gadarnhau o fewn %{period}, gwnewch gais am un newydd, os gwelwch yn dda
+      expired: wedi dod i ben, gwnewch gais am un newydd, os gwelwch yn dda
       not_found: heb ei ganfod
       not_locked: heb ei gloi
       not_saved:
-        few: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        many: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        one: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd 1 gwall:'
-        other: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        two: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
-        zero: 'Gwaharddwyd yr %{resource} rhag cael ei arbed oherwydd %{count} gwall:'
+        few: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:'
+        many: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:'
+        one: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd 1 gwall:'
+        other: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:'
+        two: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} gwall:'
+        zero: 'Gwaharddwyd yr %{resource} rhag cael ei gadw oherwydd %{count} o wallau:'
