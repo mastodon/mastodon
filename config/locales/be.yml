@@ -108,6 +108,11 @@ be:
       pending: Чакае праверкі
       perform_full_suspension: Выключыць
       previous_strikes: Ранейшыя скаргі
+      previous_strikes_description_html:
+        one: Гэты ўліковы запіс мае <strong>адну</strong> скаргу.
+        few: Гэты ўліковы запіс мае <strong>%{count}</strong> скаргі.
+        many: Гэты ўліковы запіс мае <strong>%{count}</strong> скарг.
+        other: Гэты ўліковы запіс мае <strong>%{count}</strong> скаргаў.
       promote: Павысіць
       protocol: Пратакол
       public: Публічны
@@ -1586,6 +1591,7 @@ be:
     backup_ready:
       explanation: Вы запатрабавалі поўнае рэзервовае капіраванне вашага ўліковага запісу Mastodon. Цяпер яго можна спампаваць!
       subject: Ваш архіў гатовы да спампавання
+      title: Ваш архіў можна спампаваць
     suspicious_sign_in:
       change_password: змяніць свой пароль
       details: 'Вось падрабязнасці ўваходу:'
