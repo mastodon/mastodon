@@ -418,6 +418,7 @@ nn:
         resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
       no_email_domain_block_selected: Blokkering av e-post-domener vart ikkje endra sidan ingen var valde
+      resolved_dns_records_hint_html: Domenenamnet gjer oppslag til desse MX-domenene som til sist er ansvarlige for å motta e-post. Blokkering av eit MX-domene vil blokkere registreringar frå alle e-postadresser som bruker same MX-domene, sjølv om det synlige domenenavnet skulle vera noko anna. <strong>Pass på så du ikkje blokkerer dei store e-postleverandørane.</strong>
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
     export_domain_allows:
@@ -444,24 +445,27 @@ nn:
       unsuppress: Tilbakestill følgjeforslag
     instances:
       availability:
-        failure_threshold_reached: Feilterskelen ble nådd %{date}.
+        description_html:
+          one: Om leveransar til domenet feilar <strong>%{count} dag</strong>, vil det ikkje bli gjort fleire forsøk før det eventuelt kjem ein leveranse <em>frå</em> domenet.
+          other: Om leveransar til domenet feilar <strong>%{count} ulike dagar</strong>, vil det ikkje bli gjort fleire forsøk før det eventuelt kjem ein leveranse <em>frå</em> domenet.
+        failure_threshold_reached: Feilterskel nådd %{date}.
         failures_recorded:
-          one: Mislykkede forsøk på %{count} dag.
-          other: Mislykkede forsøk på %{count} ulike dager.
+          one: Mislukka forsøk på %{count} dag.
+          other: Mislukka forsøk på %{count} ulike dagar.
         no_failures_recorded: Ingen feil registrert.
         title: Tilgjenge
-        warning: Det siste forsøket på å koble til denne serveren lyktes ikke
-      back_to_all: All
-      back_to_limited: Begrenset
-      back_to_warning: Advarsel
+        warning: Det siste oppkoplingsforsøket på denne tenaren var mislukka
+      back_to_all: Alle
+      back_to_limited: Avgrensa
+      back_to_warning: Åtvaring
       by_domain: Domene
-      confirm_purge: Er du sikker på at du vil slette data permanent fra dette domenet?
+      confirm_purge: Er du sikker på at du vil slette data frå dette domenet for godt?
       content_policies:
-        comment: Internt notat
-        description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
+        comment: Intern merknad
+        description_html: Du kan definera innhaldsreglar som vil bli brukt på alle kontoar frå dette domenet og alle underdomener.
         policies:
           reject_media: Avvis media
-          reject_reports: Avvis rapporter
+          reject_reports: Avvis rapportar
           silence: Begrens
           suspend: Suspender
         reason: Offentlig årsak
