@@ -7,7 +7,7 @@ describe ActivityPub::ActorSerializer do
     JSON.parse(ActiveModelSerializers::SerializableResource.new(account, serializer: described_class, adapter: ActivityPub::Adapter).to_json)
   end
 
-  subject(:compacted) { JSON::LD::API.compact(json.deep_dup, nil) }
+  subject(:compacted) { JSON::LD::API.compact(json, nil) }
 
   let(:account) { Fabricate(:account, fields: [{ name: 'foo', value: 'bar' }]) }
 
