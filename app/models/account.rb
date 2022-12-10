@@ -303,23 +303,34 @@ class Account < ApplicationRecord
   end
 
   def fields_attributes=(attributes)
-    fields     = []
-    old_fields = self[:fields]
-    if attributes.is_a?(Array)
+    fields = []
+    old_fields = self[:fields] || []
+    old_fields = [] if old_fields.is_a?(Hash)
+
+    if attributes.is_a?(Hash)
+      attributes.each_value do |attr|
+        next if attr[:name].blank?
+        fields << persist_verified_at(attr, old_fields)
+      end
+      self[:fields] = fields
+    elsif attributes.is_a?(Array)
       attributes.each do |attr|
         next if attr[:name].blank?
-
-        previous = old_fields.find { |item| item['value'] == attr[:value] }
-
-        if previous && previous['verified_at'].present?
-          attr[:verified_at] = previous['verified_at']
-        end
-
-        fields << attr
+        fields << persist_verified_at(attr, old_fields)
       end
     end
-        
+
     self[:fields] = fields
+  end
+
+  def persist_verified_at(attr, old_fields)
+    previous = old_fields.find { |item| item['value'] == attr[:value] }
+
+    if previous['verified_at']&.present?
+      attr[:verified_at] = previous['verified_at']
+    end
+
+    attr
   end
 
   DEFAULT_FIELDS_SIZE = 4
