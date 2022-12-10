@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.6.0', '< 3.1.0'
+ruby '>= 2.7.0', '< 3.1.0'
 
-gem 'pkg-config', '~> 1.4'
+gem 'pkg-config', '~> 1.5'
 gem 'rexml', '~> 3.2'
 
 gem 'puma', '~> 5.6'
@@ -18,7 +18,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.8'
 
-gem 'aws-sdk-s3', '~> 1.114', require: false
+gem 'aws-sdk-s3', '~> 1.117', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1'
@@ -26,7 +26,7 @@ gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
-gem 'bootsnap', '~> 1.13.0', require: false
+gem 'bootsnap', '~> 1.15.0', require: false
 gem 'browser'
 gem 'charlock_holmes', '~> 0.7.7'
 gem 'chewy', '~> 7.2'
@@ -55,7 +55,7 @@ gem 'redis-namespace', '~> 1.9'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.1'
 gem 'http_accept_language', '~> 2.1'
-gem 'httplog', '~> 1.6.0'
+gem 'httplog', '~> 1.6.2'
 gem 'idn-ruby', require: 'idn'
 gem 'kaminari', '~> 1.2'
 gem 'link_header', '~> 0.0'
@@ -66,6 +66,7 @@ gem 'oj', '~> 3.13'
 gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'posix-spawn'
+gem 'public_suffix', '~> 5.0'
 gem 'pundit', '~> 2.2'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
@@ -86,7 +87,7 @@ gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'simple-navigation', '~> 4.4'
 gem 'simple_form', '~> 5.1'
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
-gem 'stoplight', '~> 3.0.0'
+gem 'stoplight', '~> 3.0.1'
 gem 'strong_migrations', '~> 0.7'
 gem 'tty-prompt', '~> 0.23', require: false
 gem 'twitter-text', '~> 3.1.0'
@@ -113,9 +114,9 @@ group :production, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.37'
+  gem 'capybara', '~> 3.38'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 2.23'
+  gem 'faker', '~> 3.0'
   gem 'microformats', '~> 4.4'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec-sidekiq', '~> 3.1'
@@ -136,7 +137,7 @@ group :development do
   gem 'memory_profiler'
   gem 'rubocop', '~> 1.30', require: false
   gem 'rubocop-rails', '~> 2.15', require: false
-  gem 'brakeman', '~> 5.3', require: false
+  gem 'brakeman', '~> 5.4', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
   gem 'capistrano', '~> 3.17'

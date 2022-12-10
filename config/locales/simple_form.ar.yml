@@ -97,7 +97,7 @@ ar:
       form_challenge:
         current_password: إنك بصدد الدخول إلى منطقة آمنة
       imports:
-        data: ملف CSV تم تصديره مِن خادوم ماستدون آخر
+        data: ملف CSV تم تصديره مِن خادم ماستدون آخر
       invite_request:
         text: هذا سوف يساعدنا في مراجعة تطبيقك
       ip_block:
@@ -226,20 +226,27 @@ ar:
           hide: إخفاء بالكامل
           warn: إخفاء بتحذير
       form_admin_settings:
+        backups_retention_period: فترة الاحتفاظ بأرشيف المستخدم
         custom_css: سي أس أس CSS مخصص
+        media_cache_retention_period: مدة الاحتفاظ بالتخزين المؤقت للوسائط
         profile_directory: تفعيل دليل الصفحات التعريفية
         registrations_mode: من يمكنه التسجيل
         require_invite_text: يتطلب سببا للانضمام
+        show_domain_blocks_rationale: أظهِر لماذا تم حظر النطاقات
+        site_contact_email: للاتصال بالبريد الإلكتروني
+        site_contact_username: اسم مستخدم جهة الاتصال
         site_extended_description: الوصف الموسع
         site_short_description: وصف الخادم
         site_terms: سياسة الخصوصية
         site_title: اسم الخادم
         theme: الحُلَّة الإفتراضية
         thumbnail: الصورة المصغرة للخادم
+        timeline_preview: السماح بالوصول غير الموثق إلى الخيوط الزمنية العامة
+        trendable_by_default: السماح للوسوم بالظهور على المتداوَلة دون مراجعة مسبقة
         trends: تمكين المتداوَلة
       interactions:
-        must_be_follower: حظر الإخطارات القادمة من حسابات لا تتبعك
-        must_be_following: حظر الإخطارات القادمة من الحسابات التي لا تتابعها
+        must_be_follower: حظر الإشعارات القادمة من حسابات لا تتبعك
+        must_be_following: حظر الإشعارات القادمة من الحسابات التي لا تتابعها
         must_be_following_dm: حظر الرسائل المباشرة القادمة من طرف أشخاص لا تتبعهم
       invite:
         comment: التعليق
@@ -276,6 +283,8 @@ ar:
         name: التسمية
         permissions_as_keys: الصلاحيات
         position: الأولوية
+      webhook:
+        url: الرابط التشعبّي URL لنقطة النهاية
     'no': لا
     not_recommended: غير مستحسن
     recommended: موصى بها

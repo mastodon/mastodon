@@ -37,6 +37,7 @@ REDIS_CACHE_PARAMS = {
   namespace: cache_namespace,
   pool_size: Sidekiq.server? ? Sidekiq.options[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
   pool_timeout: 5,
+  connect_timeout: 5,
 }.freeze
 
 REDIS_SIDEKIQ_PARAMS = {

@@ -7,8 +7,8 @@ sr:
         options: Избори
       user:
         agreement: Уговор о услузи
-        email: Имејл адреса
-        locale: Регионална подешавања
+        email: Е-адреса
+        locale: Локално
         password: Лозинка
       user/account:
         username: Корисничко име
@@ -21,12 +21,35 @@ sr:
             username:
               invalid: мора да садржи само слова, бројеве и доње црте
               reserved: је резервисано
+        admin/webhook:
+          attributes:
+            url:
+              invalid: није важећа УРЛ адреса
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: није важећа УРЛ адреса
+        import:
+          attributes:
+            data:
+              malformed: није добро формиран
         status:
           attributes:
             reblog:
-              taken: објава већ постоји
+              taken: објаве већ постоји
         user:
           attributes:
             email:
-              blocked: користи недозвољени имејл сервис
+              blocked: користи недозвољени провајдер е-поште
               unreachable: изгледа да не постоји
+            role_id:
+              elevated: не може бити више са вашом тренутном улогом
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: укључује дозволе које нису безбедне за основну улогу
+              elevated: не може да укључи дозволе које ваша тренутна улога не поседује
+              own_role: не може да се промени са вашом тренутном улогом
+            position:
+              elevated: не може бити више са вашом тренутном улогом
+              own_role: не може да се промени са вашом тренутном улогом
