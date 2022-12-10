@@ -21,7 +21,7 @@ export default class ColumnSettings extends React.PureComponent {
     onRequestNotificationPermission: PropTypes.func,
     alertsEnabled: PropTypes.bool,
     browserSupport: PropTypes.bool,
-    browserPermission: PropTypes.bool,
+    browserPermission: PropTypes.string,
   };
 
   onPushChange = (path, checked) => {

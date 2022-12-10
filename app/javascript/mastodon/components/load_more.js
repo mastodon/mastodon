@@ -18,7 +18,7 @@ export default class LoadMore extends React.PureComponent {
     const { disabled, visible } = this.props;
 
     return (
-      <button className='load-more' disabled={disabled || !visible} style={{ visibility: visible ? 'visible' : 'hidden' }} onClick={this.props.onClick}>
+      <button type='button' className='load-more' disabled={disabled || !visible} style={{ visibility: visible ? 'visible' : 'hidden' }} onClick={this.props.onClick}>
         <FormattedMessage id='status.load_more' defaultMessage='Load more' />
       </button>
     );

@@ -1,6 +1,6 @@
 # Security Policy
 
-If you believe you've identified a security vulnerability in Mastodon (a bug that allows something to happen that shouldn't be possible), you should submit the report through our [Bug Bounty Program][bug-bounty]. Alternatively, you can reach us at <hello@joinmastodon.org>.
+If you believe you've identified a security vulnerability in Mastodon (a bug that allows something to happen that shouldn't be possible), you can reach us at <security@joinmastodon.org>.
 
 You should *not* report such issues on GitHub or in other public spaces to give us time to publish a fix for the issue without exposing Mastodon's users to increased risk.
 
@@ -10,11 +10,8 @@ A "vulnerability in Mastodon" is a vulnerability in the code distributed through
 
 ## Supported Versions
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 3.5.x   | Yes                |
-| 3.4.x   | Yes                |
-| 3.3.x   | No                 |
-| < 3.3   | No                 |
-
-[bug-bounty]: https://app.intigriti.com/programs/mastodon/mastodonio/detail
+| Version | Supported |
+| ------- | ----------|
+| 4.0.x   | Yes       |
+| 3.5.x   | Yes       |
+| < 3.5   | No        |

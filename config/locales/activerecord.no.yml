@@ -6,21 +6,50 @@
         expires_at: Tidsfrist
         options: Valg
       user:
-        email: E-mail address
-        locale: Område
+        agreement: Tjenesteavtale
+        email: E-postadresse
+        locale: Landstandard
         password: Passord
       user/account:
         username: Brukernavn
       user/invite_request:
-        text: Grunn
+        text: Årsak
     errors:
       models:
         account:
           attributes:
             username:
-              invalid: bare bokstaver, tall og understreker
+              invalid: må inneholde kun bokstaver, tall og understrekingstegn
               reserved: er reservert
+        admin/webhook:
+          attributes:
+            url:
+              invalid: er ikke en gyldig nettadresse
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: er ikke en gyldig nettadresse
+        import:
+          attributes:
+            data:
+              malformed: er feilformet
         status:
           attributes:
             reblog:
-              taken: av status eksisterer allerede
+              taken: av innlegg finnes fra før
+        user:
+          attributes:
+            email:
+              blocked: bruker en forbudt e-postleverandør
+              unreachable: ser ikke ut til å finnes
+            role_id:
+              elevated: kan ikke være høyere enn din nåværende rolle
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inkluder tillatelser som ikke er trygge for grunn-rollen
+              elevated: kan ikke inneholde rettigheter som din nåværende rolle ikke innehar
+              own_role: kan ikke endres med din nåværende rolle
+            position:
+              elevated: kan ikke være høyere enn din nåværende rolle
+              own_role: kan ikke endres med din nåværende rolle

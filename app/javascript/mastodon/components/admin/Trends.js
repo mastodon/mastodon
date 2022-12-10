@@ -50,7 +50,7 @@ export default class Trends extends React.PureComponent {
             <Hashtag
               key={hashtag.name}
               name={hashtag.name}
-              href={`/admin/tags/${hashtag.id}`}
+              to={`/admin/tags/${hashtag.id}`}
               people={hashtag.history[0].accounts * 1 + hashtag.history[1].accounts * 1}
               uses={hashtag.history[0].uses * 1 + hashtag.history[1].uses * 1}
               history={hashtag.history.reverse().map(day => day.uses)}

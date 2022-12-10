@@ -14,6 +14,10 @@ class Auth::SessionsController < Devise::SessionsController
   before_action :set_instance_presenter, only: [:new]
   before_action :set_body_classes
 
+  content_security_policy only: :new do |p|
+    p.form_action(false)
+  end
+
   def check_suspicious!
     user = find_user
     @login_is_suspicious = suspicious_sign_in?(user) unless user.nil?

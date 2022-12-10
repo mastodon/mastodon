@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Logo from 'mastodon/components/logo';
 import { timelinePreview, showTrends } from 'mastodon/initial_state';
 import ColumnLink from './column_link';
+import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
@@ -41,7 +42,7 @@ class NavigationPanel extends React.Component {
 
   render () {
     const { intl } = this.props;
-    const { signedIn } = this.context.identity;
+    const { signedIn, disabledAccountId } = this.context.identity;
 
     return (
       <div className='navigation-panel'>
@@ -74,7 +75,7 @@ class NavigationPanel extends React.Component {
         {!signedIn && (
           <div className='navigation-panel__sign-in-banner'>
             <hr />
-            <SignInBanner />
+            { disabledAccountId ? <DisabledAccountBanner /> : <SignInBanner /> }
           </div>
         )}
 
