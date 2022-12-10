@@ -6,6 +6,7 @@ import { registrationsOpen, me } from 'mastodon/initial_state';
 import Avatar from 'mastodon/components/avatar';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { openModal } from 'mastodon/actions/modal';
 
 const Account = connect(state => ({
   account: state.getIn(['accounts', me]),
@@ -15,7 +16,14 @@ const Account = connect(state => ({
   </Link>
 ));
 
-export default @withRouter
+const mapDispatchToProps = (dispatch) => ({
+  openClosedRegistrationsModal() {
+    dispatch(openModal('CLOSED_REGISTRATIONS'));
+  },
+});
+
+export default @connect(null, mapDispatchToProps)
+@withRouter
 class Header extends React.PureComponent {
 
   static contextTypes = {
@@ -23,27 +31,44 @@ class Header extends React.PureComponent {
   };
 
   static propTypes = {
+    openClosedRegistrationsModal: PropTypes.func,
     location: PropTypes.object,
   };
 
   render () {
     const { signedIn } = this.context.identity;
-    const { location } = this.props;
+    const { location, openClosedRegistrationsModal } = this.props;
 
     let content;
 
     if (signedIn) {
       content = (
         <>
-          {location.pathname !== '/publish' && <Link to='/publish' className='button'><FormattedMessage id='compose_form.publish' defaultMessage='Publish' /></Link>}
+          {location.pathname !== '/publish' && <Link to='/publish' className='button'><FormattedMessage id='compose_form.publish_form' defaultMessage='Publish' /></Link>}
           <Account />
         </>
       );
     } else {
+      let signupButton;
+
+      if (registrationsOpen) {
+        signupButton = (
+          <a href='/auth/sign_up' className='button button-tertiary'>
+            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+          </a>
+        );
+      } else {
+        signupButton = (
+          <button className='button button-tertiary' onClick={openClosedRegistrationsModal}>
+            <FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' />
+          </button>
+        );
+      }
+
       content = (
         <>
           <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
-          <a href={registrationsOpen ? '/auth/sign_up' : 'https://joinmastodon.org/servers'} className='button button-tertiary'><FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' /></a>
+          {signupButton}
         </>
       );
     }
