@@ -355,7 +355,7 @@ ru:
         few: "<strong>%{count}</strong> ожидают аппеляции"
         many: "<strong>%{count}</strong> ожидают апелляции"
         one: "<strong>%{count}</strong> ожидает апелляции"
-        other: "<strong>%{count}</strong> ожидают апелляций"
+        other: 'Ожидают апелляции: <strong>%{count}</strong>'
       pending_reports_html:
         few: "<strong>%{count}</strong> ожидающих отчета"
         many: "<strong>%{count}</strong> ожидающих отчетов"
@@ -834,6 +834,7 @@ ru:
         allow_account: Разрешить автора
         disallow: Запретить пост
         disallow_account: Запретить автора
+        not_discoverable: Автор решил не раскрывать себя
         shared_by:
           few: Поделились или добавили в избранное %{friendly_count} раза
           many: Поделились или добавили в избранное %{friendly_count} раз
@@ -849,6 +850,7 @@ ru:
           tag_servers_measure: разные сервера
           tag_uses_measure: всего использований
         listable: Может предлагаться
+        no_tag_selected: Теги небыли изменены, поскольку ни один из них не выбран
         not_listable: Не будет предлагаться
         not_trendable: Не будет появляться в списке «актуального»
         not_usable: Не может использоваться
@@ -1191,6 +1193,11 @@ ru:
     none: Ничего
     order_by: Сортировка
     save_changes: Сохранить изменения
+    select_all_matching_items:
+      few: Выберите %{count} предмета, совпадающих вашему поисковому запросу.
+      many: Выберите %{count} предметов, совпадающих вашему поисковому запросу.
+      one: Выберите %{count} предмет, совпадающий вашему поисковому запросу.
+      other: Выберите все %{count} предмет(-ов), совпадающий(-их) вашему поисковому запросу.
     today: сегодня
     validation_errors:
       few: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
@@ -1611,6 +1618,7 @@ ru:
   user_mailer:
     appeal_approved:
       action: Перейти к своему профилю
+      explanation: Апелляция на разблокировку против вашей учетной записи %{strike_date}, которую вы подали на %{appeal_date}, была одобрена. Ваша учетная запись снова на хорошем счету.
       subject: Ваше обжалование от %{date} была одобрено
       title: Обжалование одобрено
     appeal_rejected:

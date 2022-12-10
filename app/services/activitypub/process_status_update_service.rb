@@ -5,7 +5,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
   include Redisable
   include Lockable
 
-  def call(status, json)
+  def call(status, json, request_id: nil)
     raise ArgumentError, 'Status has unsaved changes' if status.changed?
 
     @json                      = json
@@ -15,6 +15,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
     @account                   = status.account
     @media_attachments_changed = false
     @poll_changed              = false
+    @request_id                = request_id
 
     # Only native types can be updated at the moment
     return @status if !expected_type? || already_updated_more_recently?
@@ -191,7 +192,7 @@ class ActivityPub::ProcessStatusUpdateService < BaseService
       next if href.blank?
 
       account   = ActivityPub::TagManager.instance.uri_to_resource(href, Account)
-      account ||= ActivityPub::FetchRemoteAccountService.new.call(href)
+      account ||= ActivityPub::FetchRemoteAccountService.new.call(href, request_id: @request_id)
 
       next if account.nil?
 
