@@ -83,7 +83,7 @@ zh-CN:
         title: 位置
       login_status: 登录状态
       media_attachments: 媒体文件
-      memorialize: 设置为追悼帐户
+      memorialize: 设置为追悼账户
       memorialized: 被悼念
       memorialized_msg: 成功将 %{username} 转换为悼念账号
       moderation:
@@ -257,7 +257,7 @@ zh-CN:
         enable_custom_emoji_html: "%{name} 启用了自定义表情 %{target}"
         enable_sign_in_token_auth_user_html: "%{name} 已为 %{target} 启用电子邮件令牌认证"
         enable_user_html: "%{name} 将用户 %{target} 设置为允许登录"
-        memorialize_account_html: "%{name} 将 %{target} 设置为追悼帐户"
+        memorialize_account_html: "%{name} 将 %{target} 设置为追悼账户"
         promote_user_html: "%{name} 对用户 %{target} 进行了升任操作"
         reject_appeal_html: "%{name} 驳回了 %{target} 对审核结果的申诉"
         reject_user_html: "%{name} 拒绝了用户 %{target} 的注册"
@@ -722,7 +722,7 @@ zh-CN:
         remove_from_report: 从报告中移除
         report: 举报
       deleted: 已删除
-      favourites: 收藏
+      favourites: 喜欢
       history: 版本历史记录
       in_reply_to: 回复给
       language: 语言
@@ -916,7 +916,7 @@ zh-CN:
     warning: 一定小心，千万不要把它分享给任何人！
     your_token: 你的访问令牌
   auth:
-    apply_for_account: 申请账户
+    apply_for_account: 申请账号
     change_password: 密码
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
@@ -933,7 +933,7 @@ zh-CN:
     log_in_with: 通过外部服务登录
     login: 登录
     logout: 登出
-    migrate_account: 迁移到另一个帐户
+    migrate_account: 迁移到另一个账户
     migrate_account_html: 如果你希望引导他人关注另一个账号，请<a href="%{path}">点击这里进行设置</a>。
     or_log_in_with: 或通过外部服务登录
     privacy_policy_agreement_html: 我已阅读并同意 <a href="%{privacy_policy_path}" target="_blank">隐私政策</a>
@@ -957,7 +957,7 @@ zh-CN:
       preamble: 使用此 Mastodon 服务器上的帐号，您将能够关注网络上的任何其他人，无论他们的帐号托管在哪里的主机。
       title: 让我们在 %{domain} 上开始。
     status:
-      account_status: 帐户状态
+      account_status: 账户状态
       confirming: 等待电子邮件确认完成。
       functional: 你的账号可以正常使用了。
       pending: 工作人员正在审核你的申请。这需要花点时间。在申请被批准后，你将收到一封电子邮件。
@@ -1008,8 +1008,8 @@ zh-CN:
     challenge_not_passed: 你输入的信息不正确
     confirm_password: 输入你当前的密码来验证身份
     confirm_username: 输入你的用户名以继续
-    proceed: 删除帐户
-    success_msg: 你的帐户已经成功删除
+    proceed: 删除账户
+    success_msg: 你的账户已成功删除
     warning:
       before: 在删除前，请仔细阅读下列说明：
       caches: 已被其他服务器缓存的内容可能还会保留
@@ -1034,7 +1034,7 @@ zh-CN:
       approve_appeal: 批准申诉
       associated_report: 相关举报
       created_at: 日期
-      description_html: 这些是针对您的帐户采取的行动和警告，已经由 %{instance} 的工作人员发送给您。
+      description_html: 这些是针对您的账户采取的行动和警告，已经由 %{instance} 的工作人员发送给您。
       recipient: 发送至
       reject_appeal: 驳回申诉
       status: '嘟文 #%{id}'
@@ -1075,7 +1075,7 @@ zh-CN:
     archive_takeout:
       date: 日期
       download: 下载你的存档
-      hint_html: 你可以请求一份帐户数据存档，其中包含你的<strong>嘟文和已上传的媒体文件</strong>。导出的数据为 ActivityPub 格式，因而可以被兼容的软件读取。每次允许请求存档的间隔至少为 7 天。
+      hint_html: 你可以请求一份账户数据存档，其中包含你的<strong>嘟文和已上传的媒体文件</strong>。导出的数据为 ActivityPub 格式，因而可以被兼容的软件读取。每次允许请求存档的间隔至少为 7 天。
       in_progress: 正在准备你的存档……
       request: 请求你的存档
       size: 大小
@@ -1211,14 +1211,14 @@ zh-CN:
       not_ready: 不能附加还在处理中的文件。请稍后再试！
       too_many: 最多只能添加 4 张图片
   migrations:
-    acct: 新帐户的 用户名@域名
+    acct: 新账户的 用户名@域名
     cancel: 取消跳转
     cancel_explanation: 取消跳转将会重新激活你当前的账号，但是已经迁移到新账号的关注者不会回来。
     cancelled_msg: 成功取消跳转
     errors:
       already_moved: 和你已经迁移过的账号相同
       missing_also_known_as: 没有引用此账号
-      move_to_self: 不能是当前帐户
+      move_to_self: 不能是当前账户
       not_found: 找不到
       on_cooldown: 你正处于冷却状态
     followers_count: 迁移时的关注者
@@ -1348,9 +1348,9 @@ zh-CN:
     remove_selected_domains: 从选定的域名中删除所有关注者
     remove_selected_followers: 移除选中的关注者
     remove_selected_follows: 取消关注所选用户
-    status: 帐户状态
+    status: 账户状态
   remote_follow:
-    missing_resource: 无法确定你的帐户的跳转 URL
+    missing_resource: 无法确定你的账户的跳转 URL
   reports:
     errors:
       invalid_rules: 没有引用有效的规则
@@ -1386,7 +1386,7 @@ zh-CN:
       weibo: 新浪微博
     current_session: 当前会话
     description: "%{platform} 上的 %{browser}"
-    explanation: 你的 Mastodon 帐户目前已在这些浏览器上登录。
+    explanation: 你的 Mastodon 账户目前已在这些浏览器上登录。
     ip: IP 地址
     platforms:
       adobe_air: Adobe Air
@@ -1407,19 +1407,19 @@ zh-CN:
     view_authentication_history: 查看账户的认证历史
   settings:
     account: 账号
-    account_settings: 帐户设置
+    account_settings: 账户设置
     aliases: 账号别名
     appearance: 外观
     authorized_apps: 已授权的应用
     back: 返回 Mastodon
-    delete: 删除帐户
+    delete: 删除账户
     development: 开发
     edit_profile: 更改个人资料
     export: 导出
     featured_tags: 精选的话题标签
     import: 导入
     import_and_export: 导入和导出
-    migrate: 帐户迁移
+    migrate: 账户迁移
     notifications: 通知
     preferences: 首选项
     profile: 个人资料
@@ -1533,12 +1533,12 @@ zh-CN:
     enabled: 双重认证已启用
     enabled_success: 双重认证启用成功
     generate_recovery_codes: 生成恢复代码
-    lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
+    lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对账户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
     methods: 双重认证
     otp: 身份验证应用
     recovery_codes: 备份恢复代码
     recovery_codes_regenerated: 恢复代码重新生成成功
-    recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
+    recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对账户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
     webauthn: 安全密钥
   user_mailer:
     appeal_approved:
@@ -1551,7 +1551,7 @@ zh-CN:
       subject: 你于 %{date} 提出的申诉已被驳回
       title: 申诉已驳回
     backup_ready:
-      explanation: 你请求了一份 Mastodon 帐户的完整备份。现在你可以下载了！
+      explanation: 你请求了一份 Mastodon 账户的完整备份。现在你可以下载了！
       subject: 你的存档已经准备完毕
       title: 存档导出
     suspicious_sign_in:
@@ -1569,11 +1569,11 @@ zh-CN:
         violation: 内容违反了以下社区准则
       explanation:
         delete_statuses: 你的一些嘟文被发现违反了一条或多条社区准则，并已被 %{instance} 的监察员删除。
-        disable: 你不能再使用你的帐户，但你的个人资料和其他数据保持不变。你可以请求数据备份，更改账户设置或删除账户。
+        disable: 你不能再使用你的账户，但你的个人资料和其他数据保持不变。你可以请求数据备份，更改账户设置或删除账户。
         mark_statuses_as_sensitive: 你的一些嘟文已经被 %{instance} 检察员标记为敏感内容。这意味着别人需要在嘟文中点击媒体，才能显示媒体预览。你可以在今后发嘟时自行将媒体标记为敏感内容。
         sensitive: 即刻起，你上传的所有媒体文件都将被标记为敏感内容并隐藏，在点击警告后才能查看。
         silence: 你可以继续使用你的账号，但只有已关注你的人才能在看到你在此服务器上的嘟文，并且你会被排除在各类公共列表之外。其他用户仍可以手动关注你。
-        suspend: 你不能再使用你的帐户，并且你的个人资料和其他数据都将无法访问。在大约30天内，你仍可以登录并请求数据备份，之后相关数据将被完全删除。我们会保留一些基础数据以避免封禁失效。
+        suspend: 你不能再使用你的账户，并且你的个人资料和其他数据都将无法访问。在大约30天内，你仍可以登录并请求数据备份，之后相关数据将被完全删除。我们会保留一些基础数据以避免封禁失效。
       reason: 理由：
       statuses: 被引用的嘟文：
       subject:
@@ -1607,7 +1607,7 @@ zh-CN:
     invalid_otp_token: 输入的双重认证代码无效
     otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
     seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
-    signed_in_as: 当前登录的帐户：
+    signed_in_as: 当前登录的账户：
   verification:
     explanation_html: 你可以 <strong>验证自己是个人资料元数据中的某个链接的所有者</strong>。 为此，被链接网站必须包含一个到你的 Mastodon 主页的链接。链接中 <strong>必须</strong> 包括 <code>rel="me"</code> 属性。链接的文本内容可以随意填写。例如：
     verification: 验证

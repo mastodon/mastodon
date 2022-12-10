@@ -373,6 +373,8 @@ nl:
       add_new: Federatie met domein goedkeuren
       created_msg: Federatie met domein is succesvol goedgekeurd
       destroyed_msg: Federatie met domein is afgekeurd
+      export: Exporteren
+      import: Importeren
       undo: Federatie met domein afkeuren
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
@@ -382,14 +384,19 @@ nl:
       edit: Domeinblokkade bewerken
       existing_domain_block: Je hebt al strengere limieten opgelegd aan %{name}.
       existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
+      export: Exporteren
+      import: Importeren
       new:
         create: Blokkade aanmaken
         hint: Een domeinblokkade voorkomt niet dat accountgegevens van dit domein aan de database worden toegevoegd, maar dat er met terugwerkende kracht en automatisch bepaalde moderatiemethoden op deze accounts worden toegepast.
         severity:
-          desc_html: "<strong>Negeren</strong> zorgt ervoor dat berichten van accounts van dit domein voor iedereen onzichtbaar zijn, behalve als een account wordt gevolgd. <strong>Opschorten</strong> zorgt ervoor dat alle berichten, media en profielgegevens van accounts van dit domein worden verwijderd. Gebruik <strong>Geen</strong> wanneer je alleen mediabestanden wilt weigeren."
+          desc_html: "<strong>Beperken</strong> zorgt ervoor dat berichten van accounts van dit domein voor iedereen onzichtbaar zijn, behalve als een account wordt gevolgd. <strong>Opschorten</strong> zorgt ervoor dat alle berichten, media en profielgegevens van accounts van dit domein worden verwijderd. Gebruik <strong>Geen</strong> wanneer je alleen mediabestanden wilt weigeren."
           noop: Geen
+          silence: Beperken
           suspend: Opschorten
         title: Nieuwe domeinblokkade
+      no_domain_block_selected: Er zijn geen domeinblokkades gewijzigd, omdat er niets werd geselecteerd
+      not_permitted: Je bent niet bevoegd om deze actie uit te voeren
       obfuscate: Domeinnaam verdoezelen
       obfuscate_hint: De domeinnaam gedeeltelijk verdoezelen wanneer de lijst met domeinblokkades wordt getoond
       private_comment: Privé-opmerking
@@ -421,12 +428,26 @@ nl:
       resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
       resolved_through_html: Geblokkeerd via %{domain}
       title: Geblokkeerde e-maildomeinen
+    export_domain_allows:
+      new:
+        title: Toegestane domeinen importeren
+      no_file: Geen bestand geselecteerd
+    export_domain_blocks:
+      import:
+        description_html: Je staat op het punt een lijst met domeinblokkades te importeren. Controleer deze lijst zeer zorgvuldig, vooral als je deze lijst niet zelf hebt gemaakt.
+        existing_relationships_warning: Bestaande volgrelaties
+        private_comment_description_html: 'Om je te helpen bijhouden waar de geïmporteerde blokkades vandaan komen, worden de geïmporteerde blokkades met de volgende privé-opmerking aangemaakt: <q>%{comment}</q>'
+        private_comment_template: Geïmporteerd van %{source} op %{date}
+        title: Domeinblokkades importeren
+      new:
+        title: Domeinblokkades importeren
+      no_file: Geen bestand geselecteerd
     follow_recommendations:
       description_html: "<strong>Deze aanbevolen accounts helpen nieuwe gebruikers snel interessante inhoud</strong>te vinden. Wanneer een gebruiker niet met andere gebruikers genoeg interactie heeft gehad om gepersonaliseerde aanbevelingen te krijgen, worden in plaats daarvan deze accounts aanbevolen. Deze accounts worden dagelijks opnieuw berekend met behulp van accounts met het hoogste aantal recente interacties en het hoogste aantal lokale volgers in een bepaalde taal."
       language: Voor taal
       status: Status
       suppress: Aanbevolen account niet meer aanbevelen
-      suppressed: Account niet meer aanbevolen
+      suppressed: Niet meer aanbevolen
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
@@ -685,7 +706,7 @@ nl:
         title: Bewaartermijn berichten
       discovery:
         follow_recommendations: Aanbevolen accounts
-        preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van gebruikers op jouw server werken.
+        preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
         title: Ontdekken
@@ -913,6 +934,7 @@ nl:
     warning: Wees voorzichtig met deze gegevens. Deel het nooit met iemand anders!
     your_token: Jouw toegangscode
   auth:
+    apply_for_account: Account aanvragen
     change_password: Wachtwoord
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
@@ -1157,6 +1179,7 @@ nl:
     invalid_markup: 'bevat ongeldige HTML-opmaak: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
       over_rows_processing_limit: bevat meer dan %{count} rijen
     modes:
       merge: Samenvoegen

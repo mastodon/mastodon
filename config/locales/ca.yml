@@ -24,7 +24,7 @@ ca:
     posts_tab_heading: Publicacions
   admin:
     account_actions:
-      action: Realitzar acció
+      action: Realitza l'acció
       title: Fer l'acció de moderació a %{acct}
     account_moderation_notes:
       create: Crea nota
@@ -191,7 +191,7 @@ ca:
         destroy_email_domain_block: Esborra el bloqueig de domini de l'adreça de correu
         destroy_instance: Purga Domini
         destroy_ip_block: Eliminar regla IP
-        destroy_status: Esborra el tut
+        destroy_status: Elimina la publicació
         destroy_unavailable_domain: Esborra domini no disponible
         destroy_user_role: Destrueix Rol
         disable_2fa_user: Desactiva 2FA
@@ -297,7 +297,7 @@ ca:
       new:
         create: Crea un anunci
         title: Nou anunci
-      publish: Publica-ho
+      publish: Publica
       published_msg: L’anunci s’ha publicat amb èxit!
       scheduled_for: Programat per a %{time}
       scheduled_msg: Anunci programat per a ser publicat!
@@ -313,7 +313,7 @@ ca:
       copy_failed_msg: No s'ha pogut fer una còpia local d'aquest emoji
       create_new_category: Crea una categoria nova
       created_msg: Emoji creat amb èxit!
-      delete: Suprimeix
+      delete: Elimina
       destroyed_msg: Emojo s'ha destruït amb èxit!
       disable: Inhabilita
       disabled: Desactivat
@@ -398,7 +398,7 @@ ca:
       no_domain_block_selected: No s'ha canviat cap bloqueig de domini perquè no se n'ha seleccionat cap
       not_permitted: No tens permís per a realitzar aquesta acció
       obfuscate: Oculta el nom del domini
-      obfuscate_hint: Oculta parcialment el nom del domini si està activat mostrar la llista de dominis limitats
+      obfuscate_hint: Oculta parcialment el nom del domini si està activat "mostra la llista de dominis limitats"
       private_comment: Comentari privat
       private_comment_hint: Comentari sobre aquesta limitació del domini per a ús intern dels moderadors.
       public_comment: Comentari públic
@@ -415,7 +415,7 @@ ca:
         one: "%{count} intent en la darrera setmana"
         other: "%{count} intents de registre en la darrera setmana"
       created_msg: S'ha creat el bloc de domini de correu electrònic
-      delete: Suprimeix
+      delete: Elimina
       dns:
         types:
           mx: Registre MX
@@ -434,9 +434,9 @@ ca:
       no_file: No s'ha seleccionat cap fitxer
     export_domain_blocks:
       import:
-        description_html: Estàs a punt d'importar una llista de bloqueig de dominis. Si us plau, revisa aquesta llista amb molta cura, especialment si no l'has creada tu mateix.
+        description_html: Estàs a punt d'importar una llista de dominis blocats. Si us plau, revisa aquesta llista amb molta cura, especialment si no l'has creada tu mateix.
         existing_relationships_warning: Relacions de seguiment existents
-        private_comment_description_html: 'Per ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
+        private_comment_description_html: 'Per a ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
         private_comment_template: Importar des de %{source} el %{date}
         title: Importa dominis bloquejats
       new:
@@ -528,7 +528,7 @@ ca:
     ip_blocks:
       add_new: Crear regla
       created_msg: S’ha afegit amb èxit la nova regla IP
-      delete: Suprimeix
+      delete: Elimina
       expires_in:
         '1209600': 2 setmanes
         '15778476': 6 mesos
@@ -544,7 +544,7 @@ ca:
       title: relacions del %{acct}
     relays:
       add_new: Afegiu un nou relay
-      delete: Esborra
+      delete: Elimina
       description_html: Un <strong>relay de federació</strong> és un servidor intermediari que intercanvia grans volums de publicacions públiques entre servidors que se subscriuen i publiquen en ell. <strong>Pot ajudar a servidors petits i mitjans a descobrir contingut del fedivers</strong>, no fent necessari que els usuaris locals manualment segueixin altres persones de servidors remots.
       disable: Inhabilita
       disabled: Desactivat
@@ -570,7 +570,7 @@ ca:
       action_log: Registre d'auditoria
       action_taken_by: Mesures adoptades per
       actions:
-        delete_description_html: Les publicacions reportades seran eliminades i un cop serà gravat per ajudar-te a escalar en futures infraccions des d'el mateix compte.
+        delete_description_html: Les publicacions reportades seran eliminades i un cop serà gravat per a ajudar-te a escalar en futures infraccions des del mateix compte.
         mark_as_sensitive_description_html: Els mèdia de les publicacions reportades seran marcats com a sensibles i una acció serà gravada per ajudar a escalar en futures infraccions del mateix compte.
         other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte reportat.
         resolve_description_html: No serà presa cap acció contra el compte reportat, cap cop serà gravat i l'informe es tancarà.
@@ -588,7 +588,7 @@ ca:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
       created_at: Reportat
-      delete_and_resolve: Esborra les publicacions
+      delete_and_resolve: Elimina les publicacions
       forwarded: Reenviat
       forwarded_to: Reenviat a %{domain}
       mark_as_resolved: Marca com a resolt
@@ -599,7 +599,7 @@ ca:
         create: Afegir una nota
         create_and_resolve: Resol amb una nota
         create_and_unresolve: Reobre amb una nota
-        delete: Esborra
+        delete: Elimina
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
         title: Notes
       notes_description_html: Veu i deixa notes als altres moderadors i a tu mateix
@@ -632,7 +632,7 @@ ca:
         invites: Invitacions
         moderation: Moderació
         special: Especial
-      delete: Esborra
+      delete: Elimina
       description_html: Amb <strong>rols d'usuari</strong>, pots personalitzar quines funcions i àrees de Mastodon els teus usuaris poden accedir.
       edit: Editar el rol %{name}
       everyone: Permisos per defecte
@@ -684,7 +684,7 @@ ca:
       title: Rols
     rules:
       add_new: Afegir norma
-      delete: Suprimeix
+      delete: Elimina
       description_html: Tot i que molts diuen que han llegit les normes i estan d'acord amb els termes del servei, normalment no les llegeixen fins que surgeix un problema. <strong>Fes que sigui més fàcil veure les normes del teu servidor d'una ullada proporcionant-les en una llista de punts.</strong> Intenta mantenir les normes individuals curtes i senzilles però sense dividir-les en massa parts separades.
       edit: Edita la norma
       empty: Encara no s'han definit les normes del servidor.
@@ -699,7 +699,7 @@ ca:
         preamble: Personalitza l'interfície web de Mastodon.
         title: Aparença
       branding:
-        preamble: La marca del teu servidor el diferència dels demés servidors de la xarxa. Aquesta informació es pot mostrar en diversos entorns com ara en l'interfície web, en les aplicacions natives, en les previsualitzacions dels enllaços en altres webs, dins les aplicacions de missatgeria i d'altres. Per aquesta raó, és millor mantenir aquesta informació clara, breu i precisa.
+        preamble: La marca del teu servidor el diferencia dels altres servidors de la xarxa. Aquesta informació es pot mostrar en diversos entorns com ara en la interfície web, en les aplicacions natives, en les previsualitzacions dels enllaços en altres webs, dins les aplicacions de missatgeria i d'altres. Per aquesta raó, val més mantenir aquesta informació clara, breu i precisa.
         title: Marca
       content_retention:
         preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
@@ -744,10 +744,10 @@ ca:
         title: Contingut multimèdia
       metadata: Metadada
       no_status_selected: No s’han canviat els estatus perquè cap no ha estat seleccionat
-      open: Obrir tut
-      original_status: Tut original
+      open: Obre la publicació
+      original_status: Publicació original
       reblogs: Impulsos
-      status_changed: El tut ha canviat
+      status_changed: Publicació canviada
       title: Estats del compte
       trending: Tendència
       visibility: Visibilitat
@@ -787,7 +787,7 @@ ca:
       links:
         allow: Permet enllaç
         allow_provider: Permet mitjà
-        description_html: Aquests son enllaços que ara mateix s'estan compartint molt per els comptes que el teu servidor en veu les publicacions. Poden ajudar als teus usuaris a trobar què està passant en el món. Cap dels enllaços es mostra publicament fins que no aprovis el mitjà. També pots aceptar o rebutjar enllaços individuals.
+        description_html: Aquests són enllaços que ara mateix estan compartint molt els comptes dels quals el teu servidor veu les publicacions. Poden ajudar els teus usuaris a trobar què està passant en el món. Cap dels enllaços es mostra públicament fins que no aprovis el mitjà. També pots acceptar o rebutjar enllaços individuals.
         disallow: No permetre l'enllaç
         disallow_provider: No permetre el mitjà
         no_link_selected: No s'ha canviat cap enllaç perquè cap ha estat seleccionat
@@ -807,7 +807,7 @@ ca:
         title: Mitjans
       rejected: Rebutjat
       statuses:
-        allow: Permet tut
+        allow: Permet publicació
         allow_account: Permet autor
         description_html: Aquests són tuts que el teu servidor veu i que ara mateix s'estan compartint i afavorint molt. Poden ajudar als teus nous usuaris i als que retornen a trobar més gent a qui seguir. Cap tut es mostra públicament fins que no aprovis l'autor i l'autor permeti que el seu compte sigui suggerit a altres. També pots acceptar o rebutjar tuts individualment.
         disallow: Rebutja tut
@@ -826,7 +826,7 @@ ca:
           tag_servers_dimension: Els millors servidors
           tag_servers_measure: diferents servidors
           tag_uses_measure: total usos
-        description_html: Aquestes son etiquetes que ara mateix estan apareixen en moltes publicacions que el teu servidor veu. Poden ajudar als teus usuaris a trobar de què està parlant majoritariament la gent en aquest moment. Cap etiqueta es mostra publicament fins que no l'aprovis.
+        description_html: Aquestes són les etiquetes que ara mateix estan apareixent en moltes publicacions que el teu servidor veu. Poden ajudar els teus usuaris a trobar de què està parlant majoritàriament la gent en aquest moment. Cap etiqueta es mostra públicament fins que no l'aprovis.
         listable: Es pot suggerir
         no_tag_selected: No s'ha canviat cap etiqueta perquè cap ha estat seleccionada
         not_listable: No es pot suggerir
@@ -845,7 +845,7 @@ ca:
       trending: Tendència
     warning_presets:
       add_new: Afegir-ne un de nou
-      delete: Esborra
+      delete: Elimina
       edit_preset: Edita l'avís predeterminat
       empty: Encara no has definit cap preavís.
       title: Gestiona les configuracions predefinides dels avisos
@@ -909,7 +909,7 @@ ca:
     remove: Desvincula l'àlies
   appearance:
     advanced_web_interface: Interfície web avançada
-    advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, l''interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol quantitat de llistes i etiquetes.'
+    advanced_web_interface_hint: 'Si vols fer ús de tota l''amplada de la teva pantalla, la interfície web avançada et permet configurar diverses columnes per a veure molta més informació al mateix temps: Inici, notificacions, línia de temps federada i qualsevol quantitat de llistes i etiquetes.'
     animations_and_accessibility: Animacions i accessibilitat
     confirmation_dialogs: Diàlegs de confirmació
     discovery: Descobriment
@@ -918,7 +918,7 @@ ca:
       guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Tothom hi pot contribuir.
     sensitive_content: Contingut sensible
-    toot_layout: Disseny del tut
+    toot_layout: Disseny de les publicacions
   application_mailer:
     notification_preferences: Canvia les preferències de correu
     salutation: "%{name},"
@@ -936,7 +936,7 @@ ca:
   auth:
     apply_for_account: Sol·licitar un compte
     change_password: Contrasenya
-    delete_account: Suprimeix el compte
+    delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     description:
       prefix_invited_by_user: "@%{name} t'ha invitat a unir-te a aquest servidor de Mastodon!"
@@ -949,7 +949,7 @@ ca:
     link_to_otp: Introdueix el teu codi de doble factor des d’el teu mòbil o un codi de recuperació
     link_to_webauth: Usa el teu dispositiu de clau de seguretat
     log_in_with: Inicia sessió amb
-    login: Iniciar sessió
+    login: Inicia la sessió
     logout: Surt
     migrate_account: Mou a un compte diferent
     migrate_account_html: Si vols redirigir aquest compte a un altre diferent, el pots <a href="%{path}">configurar aquí</a>.
@@ -1023,10 +1023,10 @@ ca:
       x_months: "%{count} mesos"
       x_seconds: "%{count} s"
   deletes:
-    challenge_not_passed: L'informació que has entrat no és correcte
+    challenge_not_passed: La informació que has introduït no és correcta
     confirm_password: Introdueix la contrasenya actual per a verificar la identitat
     confirm_username: Escriu el teu nom d'usuari per a confirmar el procediment
-    proceed: Suprimeix el compte
+    proceed: Elimina el compte
     success_msg: El compte s'ha eliminat correctament
     warning:
       before: 'Abans de procedir si us plau llegeix amb cura aquestes notes:'
@@ -1055,11 +1055,11 @@ ca:
       description_html: Aquestes son accions preses contra el teu compte i avisos que se t'han enviat per l'equip de %{instance}.
       recipient: Dirigida a
       reject_appeal: Rebutja l'apel·lació
-      status: 'Tut #%{id}'
+      status: 'Publicació #%{id}'
       status_removed: Tut ja esborrat del sistema
       title: "%{action} del %{date}"
       title_actions:
-        delete_statuses: Eliminació del tut
+        delete_statuses: Eliminació de publicació
         disable: Congelació del compte
         mark_statuses_as_sensitive: Marcatge de les publicacions com a sensibles
         none: Avís
@@ -1085,7 +1085,7 @@ ca:
       content: Ho sentim, però alguna cosa ha fallat a la nostra banda.
       title: Aquesta pàgina no es correcta
     '503': La pàgina no podria ser servida a causa d'un error temporal del servidor.
-    noscript_html: Per a utilitzar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la teva plataforma.
+    noscript_html: Per a usar Mastodon, activa el JavaScript. També pots provar una de les <a href="%{apps_path}"> aplicacions natives</a> de Mastodon per a la teva plataforma.
   existing_username_validator:
     not_found: no s'ha pogut trobar cap usuari local amb aquest nom d'usuari
     not_found_multiple: no s'ha pogut trobar %{usernames}
@@ -1127,7 +1127,7 @@ ca:
       invalid_context: Cap o el context proporcionat no és vàlid
     index:
       contexts: Filtres en %{contexts}
-      delete: Esborra
+      delete: Elimina
       empty: No hi tens cap filtre.
       expires_in: Expira en %{distance}
       expires_on: Expira el %{date}
@@ -1136,7 +1136,7 @@ ca:
         other: "%{count} paraules clau"
       statuses:
         one: "%{count} publicació"
-        other: "%{count} tuts"
+        other: "%{count} publicacions"
       statuses_long:
         one: "%{count} publicació individual ocultada"
         other: "%{count} publicacions individuals ocultades"
@@ -1163,7 +1163,7 @@ ca:
       other: Tots <strong>%{count}</strong> articles coincidents amb la teva cerca estan seleccionats.
     changes_saved_msg: Els canvis s'han desat correctament!
     copy: Copiar
-    delete: Esborra
+    delete: Elimina
     deselect: Desfer selecció
     none: Cap
     order_by: Ordena per
@@ -1350,7 +1350,7 @@ ca:
       too_many_options: no pot contenir més de %{max} opcions
   preferences:
     other: Altre
-    posting_defaults: Valors predeterminats del tut
+    posting_defaults: Valors per defecte de publicació
     public_timelines: Línies de temps públiques
   privacy_policy:
     title: Política de Privacitat
@@ -1376,14 +1376,14 @@ ca:
     remove_selected_follows: Deixa de seguir als usuaris seleccionats
     status: Estat del compte
   remote_follow:
-    missing_resource: No s'ha pogut trobar la URL de redirecció necessària per al compte
+    missing_resource: No s'ha pogut trobar l'URL de redirecció necessària per al compte
   reports:
     errors:
       invalid_rules: no fa referència a normes vàlides
   rss:
     content_warning: 'Avís de contingut:'
     descriptions:
-      account: Tuts des de @%{acct}
+      account: Publicacions des de @%{acct}
       tag: 'Publicacions etiquetades #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Has superat el límit de %{limit} publicacions programades per a avui
@@ -1478,7 +1478,7 @@ ca:
     open_in_web: Obre en la web
     over_character_limit: Límit de caràcters de %{max} superat
     pin_errors:
-      direct: Les publicacions que només son visibles per els usuaris mencionats no poden ser fixades
+      direct: Les publicacions que només són visibles per als usuaris mencionats no poden ser fixades
       limit: Ja has fixat el màxim nombre de publicacions
       ownership: No es pot fixar el tut d'algú altre
       reblog: No es pot fixar un impuls
@@ -1538,9 +1538,9 @@ ca:
     min_favs: Mantenir les publicacions afavorides més de
     min_favs_hint: No suprimeix cap de les teves publicacions que hagin rebut més d'aquesta quantitat de favorits. Deixa-ho en blanc per suprimir publicacions independentment del nombre de favorits que tinguin
     min_reblogs: Mantenir les publicacions impulsades més de
-    min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest número de vegades. Deixa-ho en blanc per suprimir les publicacions independentment del nombre d'impulsos que tinguin
+    min_reblogs_hint: No suprimeix cap de les teves publicacions que s'hagin impulsat més que aquest nombre de vegades. Deixa-ho en blanc per a suprimir les publicacions independentment del nombre d'impulsos que tinguin.
   stream_entries:
-    pinned: Tut fixat
+    pinned: Publicació fixada
     reblogged: ha impulsat
     sensitive_content: Contingut sensible
   strikes:
@@ -1570,7 +1570,7 @@ ca:
     otp: Aplicació autenticadora
     recovery_codes: Codis de recuperació de còpia de seguretat
     recovery_codes_regenerated: Codis de recuperació regenerats amb èxit
-    recovery_instructions_html: Si mai perds l'accés al teu telèfon pots utilitzar un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
+    recovery_instructions_html: Si mai perds l'accés al teu telèfon, pots fer servir un dels codis de recuperació a continuació per a recuperar l'accés al teu compte. <strong>Cal mantenir els codis de recuperació en lloc segur</strong>. Per exemple, imprimint-los i guardar-los amb altres documents importants.
     webauthn: Claus de seguretat
   user_mailer:
     appeal_approved:
@@ -1584,8 +1584,8 @@ ca:
       title: Apel·lació rebutjada
     backup_ready:
       explanation: Has sol·licitat una copia completa del teu compte Mastodon. Ara ja està a punt per a descàrrega!
-      subject: El teu arxiu està preparat per a descàrrega
-      title: Recollida del arxiu
+      subject: L'arxiu està preparat per a descàrrega
+      title: Recollida de l'arxiu
     suspicious_sign_in:
       change_password: canvia la teva contrasenya
       details: 'Aquí estan els detalls del inici de sessió:'
@@ -1600,12 +1600,12 @@ ca:
         spam: Contingut brossa
         violation: El contingut viola les següents guies de la comunitat
       explanation:
-        delete_statuses: Algunes de les teves publicacions s'han trobat que violen una o més directrius de la comunitat i per tant han estat eliminades per els moderadors de %{instance}.
-        disable: Ja no pots utilitzar el teu compte però el teu perfil i altres dades segueixen intactes. Pots demanar una copia de les teves dades, canviar els ajustaments del teu compte o esborrar-lo.
-        mark_statuses_as_sensitive: Algunes de les teves publicacions han estat marcades com a sensibles per els moderadors de %{instance}. Això significa que la gent necessitarà tocar els mèdia en les publicacions per a que la previsualització sigui mostrada. Tu mateix pots marcar els teus mèdia com a sensibles quan publiquis en el futur.
-        sensitive: A partir d'ara, tots els mèdia pujats seran marcats com a sensibles i ocultats darrera un avís.
+        delete_statuses: S'ha trobat que algunes de les teves publicacions violen una o més directrius de la comunitat i, per tant, han estat eliminades pels moderadors de %{instance}.
+        disable: Ja no pots utilitzar el teu compte, però el teu perfil i altres dades encara són intactes. Pots demanar una còpia de les teves dades, canviar els ajustaments del teu compte o esborrar-lo.
+        mark_statuses_as_sensitive: Algunes de les teves publicacions han estat marcades com a sensibles pels moderadors de %{instance}. Això significa que la gent necessitarà tocar els mèdia en les publicacions perquè la previsualització es mostri. Tu mateix pots marcar els teus mèdia com a sensibles quan publiquis en el futur.
+        sensitive: A partir d'ara, tots els mèdia pujats seran marcats com a sensibles i ocultats darrere d'un avís.
         silence: Encara pots fer servir el teu compte però només la gent que ja t'està seguint veuran les teves publicacions en aquest servidor i tu podries ser exclòs de les diverses opcions de descobriment. De totes maneres altres podrien encara seguir-te manualment.
-        suspend: Ja no pots utilitzar el teu compte i el teu perfil i altres dades ja no son accessibles. Encara pots iniciar sessió per a demanar una copia de les teves dades fins que siguin totalment eliminades als 30 dies però es mantindran les dades bàsiques per evitar que esquivis la suspensió.
+        suspend: Ja no pots usar el teu compte i el teu perfil i altres dades ja no són accessibles. Encara pots iniciar sessió per a demanar una còpia de les teves dades fins que siguin totalment eliminades al cap de 30 dies, però es mantindran les dades bàsiques per a evitar que esquivis la suspensió.
       reason: 'Motiu:'
       statuses: 'Publicacions citades:'
       subject:
