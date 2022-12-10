@@ -18,26 +18,26 @@ sv:
       unconfirmed: Du måste bekräfta din e-postadress innan du fortsätter.
     mailer:
       confirmation_instructions:
-        action: Verifiera e-post adressen
+        action: Verifiera e-postadress
         action_with_app: Bekräfta och återgå till %{app}
-        explanation: Du har skapat ett konto på %{host} med den här e-post adressen. Du är ett klick från att aktivera det. Om det inte var du, ignorera det här e-post meddelandet.
-        explanation_when_pending: Du ansökte om en inbjudan till %{host} med denna e-post adress. När du har bekräftat din e-post adress kommer vi att granska din ansökan. Du kan logga in för att ändra dina uppgifter eller ta bort ditt konto, men du kan inte komma åt de flesta funktionerna förrän ditt konto har godkänts. Om din ansökan avvisas kommer dina uppgifter att tas bort, så ingen ytterligare åtgärd kommer att krävas av dig. Om detta inte var du, vänligen ignorera detta mail.
+        explanation: Du har skapat ett konto på %{host} med den här e-postadressen. Du är ett klick bort från att aktivera det. Om det inte var du ignorerar det här e-postmeddelandet.
+        explanation_when_pending: Du ansökte om en inbjudan till %{host} med denna e-postadress. När du har bekräftat din e-postadress kommer vi att granska din ansökan. Du kan logga in för att ändra dina uppgifter eller ta bort ditt konto, men du kan inte komma åt de flesta funktionerna förrän ditt konto har godkänts. Om din ansökan avvisas kommer dina uppgifter att tas bort, så ingen ytterligare åtgärd kommer att krävas av dig. Om detta inte var du, vänligen ignorera detta mail.
         extra_html: Vänligen observera <a href="%{terms_path}"> systemets regler</a> och <a href="%{policy_path}">våra användarvillkor</a>.
         subject: 'Mastodon: Bekräftelse instruktioner för %{instance}'
-        title: Verifiera e-post adress
+        title: Verifiera e-postadress
       email_changed:
-        explanation: 'E-post adressen för ditt konto ändras till:'
-        extra: Om du inte ändrade din e-post är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta dataserver administratören om du är utelåst från ditt konto.
+        explanation: 'E-postadressen för ditt konto ändras till:'
+        extra: Om du inte ändrade din e-post är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta serveradministratören om du är utelåst från ditt konto.
         subject: 'Mastodon: e-post ändrad'
         title: Ny e-post adress
       password_change:
         explanation: Lösenordet för ditt konto har ändrats.
-        extra: Om du inte ändrade ditt lösenord är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta server administratören om du är utelåst från ditt konto.
+        extra: Om du inte ändrade ditt lösenord är det troligt att någon har fått tillgång till ditt konto. Vänligen ändra ditt lösenord omedelbart eller kontakta serveradministratören om du är utelåst från ditt konto.
         subject: 'Mastodon: Lösenordet har ändrats'
         title: Lösenordet har ändrats
       reconfirmation_instructions:
         explanation: Bekräfta den nya adressen för att ändra din e-post adress.
-        extra: Om den här ändringen inte initierades av dig kan du ignorerar det här e-postmeddelandet. E-postadressen för Mastodon-kontot ändras inte förrän du kommer åt länken ovan.
+        extra: Om den här ändringen inte initierades av dig kan du ignorera det här e-postmeddelandet. E-postadressen för Mastodon-kontot ändras inte förrän du klickar på länken ovan.
         subject: 'Mastodon: Bekräfta e-post för %{instance}'
         title: Verifiera e-postadress
       reset_password_instructions:

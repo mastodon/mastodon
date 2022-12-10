@@ -5,6 +5,7 @@ fa:
     contact_missing: تنظیم نشده
     contact_unavailable: موجود نیست
     hosted_on: ماستودون، میزبانی‌شده روی %{domain}
+    title: درباره
   accounts:
     follow: پیگیری
     followers:
@@ -37,11 +38,17 @@ fa:
       avatar: تصویر نمایه
       by_domain: دامین
       change_email:
+        changed_msg: رایانامه با موفقیت تغییر کرد!
         current_email: رایانامهٔ کنونی
         label: تغییر رایانامه
         new_email: رایانامهٔ جدید
         submit: تغییر رایانامه
         title: تغییر رایانامه برای %{username}
+      change_role:
+        changed_msg: نقش با موفقیت تغییر کرد!
+        label: تغییر نقش
+        no_role: بدون نقش
+        title: تغییر نقش برای %{username}
       confirm: تأیید
       confirmed: تأیید شد
       confirming: تأیید
@@ -85,6 +92,7 @@ fa:
         active: فعّال
         all: همه
         pending: منتظر
+        silenced: محدود
         suspended: تعلیق شده
         title: مدیریت
       moderation_notes: یادداشت‌های مدیریتی
@@ -92,6 +100,7 @@ fa:
       most_recent_ip: آخرین IP
       no_account_selected: هیچ حسابی تغییر نکرد زیرا حسابی انتخاب نشده بود
       no_limits_imposed: بدون محدودیت
+      no_role_assigned: هیچ نقشی اعطا نشده
       not_subscribed: مشترک نیست
       pending: در انتظار بررسی
       perform_full_suspension: تعلیق
@@ -115,6 +124,7 @@ fa:
       reset: بازنشانی
       reset_password: بازنشانی رمز
       resubscribe: اشتراک دوباره
+      role: نقش
       search: جستجو
       search_same_email_domain: دیگر کاربران با دامنهٔ رایانامهٔ یکسان
       search_same_ip: دیگر کاربران با IP یکسان
@@ -166,8 +176,10 @@ fa:
         create_email_domain_block: ایجاد انسداد دامنهٔ رایانامه
         create_ip_block: ایجاد قاعدهٔ آی‌پی
         create_unavailable_domain: ایجاد دامنهٔ ناموجود
+        create_user_role: ایجاد نقش
         demote_user: تنزل کاربر
         destroy_announcement: حذف اعلامیه
+        destroy_canonical_email_block: پاک کردن انسداد ایمیل
         destroy_custom_emoji: حذف اموجی سفارشی
         destroy_domain_allow: حذف اجازهٔ دامنه
         destroy_domain_block: حذف انسداد دامنه
@@ -341,6 +353,8 @@ fa:
       add_new: مجاز کردن دامنه
       created_msg: دامنه با موفقیت مجاز شد
       destroyed_msg: دامنه از فهرست مجاز برداشته شد
+      export: برون‌ریزی
+      import: درون‌ریزی
       undo: برداشتن از فهرست مجاز
     domain_blocks:
       add_new: افزودن مسدودسازی دامین تازه
@@ -349,13 +363,13 @@ fa:
       domain: دامنه
       edit: ویرایش مسدودسازی دامنه
       existing_domain_block_html: شما پیش‌تر محدودیت‌های سخت‌تری روی %{name} اعمال کرده‌اید، و باید نخست <a href="%{unblock_url}">مسدودسازی را لغو کنید</a>.
+      export: برون‌ریزی
+      import: درون‌ریزی
       new:
         create: مسدودسازی
         hint: مسدودسازی دامنه جلوی ایجاد ورودی‌های حساب در پایگاه داده را نمی‌گیرد، بلکه به طور خودکار روش‌های مدیریتی را روی فعالیت‌های فعلی و گذشتهٔ آن حساب‌ها اعمال می‌کند.
         severity:
-          desc_html: "<strong>خموشاندن</strong> نوشته‌های حساب را برای هر فرد غیرپیگیر، نامرئی می‌کند.<strong>تعلیق</strong> همهٔ محتوا، رسانه‌ها، و داده‌های نمایهٔ حساب را پاک می‌کند. اگر فقط می‌خواهید جلوی رسانه‌ها را بگیرید <strong>هیچ</strong> را برگزینید."
           noop: هیچ
-          silence: خموشاندن
           suspend: تعلیق
         title: مسدودسازی دامین تازه
       obfuscate: مبهم‌سازی نام دامنهٔ
@@ -500,9 +514,11 @@ fa:
       comment:
         none: هیچ
       created_at: گزارش‌شده
+      delete_and_resolve: حذف فرسته‌ها
       forwarded: هدایت شده
       forwarded_to: هدایت شده به %{domain}
       mark_as_resolved: علامت‌گذاری به عنوان حل‌شده
+      mark_as_sensitive: علامت به حساس
       mark_as_unresolved: علامت‌گذاری به عنوان حل‌نشده
       no_one_assigned: هیچ‌کس
       notes:
@@ -512,12 +528,14 @@ fa:
         delete: حذف
         placeholder: کارهایی را که در این باره انجام شده، یا هر به‌روزرسانی دیگری را بنویسید...
         title: یادداشت‌ها
+      remote_user_placeholder: کاربر دوردست از %{instance}
       reopen: دوباره به جریان بیندازید
       report: 'گزارش #%{id}'
       reported_account: حساب گزارش‌شده
       reported_by: گزارش از طرف
       resolved: حل‌شده
       resolved_msg: گزارش با موفقیت حل شد!
+      skip_to_actions: پرش به کنش‌ها
       status: نوشته
       statuses: محتوای گزارش شده
       target_origin: خاستگاه حساب گزارش‌شده
@@ -526,6 +544,28 @@ fa:
       unresolved: حل‌نشده
       updated_at: به‌روز شد
       view_profile: دیدن نمایه
+    roles:
+      add_new: افزودن نقش
+      categories:
+        administration: مدیریت
+        invites: دعوت‌ها
+        moderation: نظارت
+        special: ویژه
+      delete: حذف
+      edit: ویراش نقش %{name}
+      everyone: اجازه‌های پیش‌گزیده
+      privileges:
+        administrator: مدیر
+        delete_user_data: حذف داده‌های کاربر
+        invite_users: دعوت کاربران
+        manage_announcements: مدیریت اعلامیه‌ها
+        manage_blocks: مدیریت مسدودی‌ها
+        manage_custom_emojis: مدیریت ایموجی‌های سفارشی
+        manage_invites: مدیریت دعوت‌ها
+        manage_reports: مدیریت گزارش‌ها
+        manage_roles: مدیریت نقش‌ها
+        manage_rules: مدیریت قوانین
+        manage_settings: مدیریت تنظیمات
     rules:
       add_new: افزودن قانون
       delete: حذف
@@ -534,31 +574,55 @@ fa:
       empty: هنوز هیچ قانونی برای کارساز تعریف نشده.
       title: قوانین کارساز
     settings:
+      discovery:
+        follow_recommendations: پیروی از پیشنهادها
+        profile_directory: شاخهٔ نمایه
+        public_timelines: خط زمانی‌های عمومی
+        title: کشف
+        trends: پرطرفدارها
       domain_blocks:
         all: برای همه
         disabled: برای هیچ‌کدام
         users: برای کاربران محلی واردشده
+      registrations:
+        title: ثبت‌نام‌ها
       registrations_mode:
         modes:
           approved: ثبت نام نیازمند تأیید مدیران است
           none: کسی نمی‌تواند ثبت نام کند
           open: همه می‌توانند ثبت نام کنند
+      title: تنظیمات کارساز
     site_uploads:
       delete: پرونده بارگذاری شده را پاک کنید
       destroyed_msg: بارگذاری پایگاه با موفقیت حذف شد!
     statuses:
+      account: نگارنده
+      application: برنامه
       back_to_account: بازگشت به صفحهٔ حساب
       back_to_report: بازگشت به صفحهٔ گزارش
       batch:
         remove_from_report: برداشتن از گزارش
         report: گزارش
       deleted: پاک‌شده
+      favourites: برگزیده‌ها
+      history: تاریخچهٔ نگارش
+      in_reply_to: در پاسخ به
+      language: زبان
       media:
         title: رسانه
+      metadata: فراداده
       no_status_selected: هیچ فرسته‌ای تغییری نکرد زیرا هیچ‌کدام از آن‌ها انتخاب نشده بودند
+      open: گشودن فرسته
+      original_status: فرستهٔ اصلی
+      reblogs: تقویت‌ها
+      status_changed: فرسته تغییر کرد
       title: نوشته‌های حساب
+      trending: پرطرفدار
+      visibility: نمایانی
       with_media: دارای عکس یا ویدیو
     strikes:
+      actions:
+        delete_statuses: "%{name} فرستهٔ %{target} را حذف کرد"
       appeal_approved: درخواست تجدیدنظر کرد
       appeal_pending: درخواست تجدیدنظر در انتظار
     system_checks:
@@ -610,6 +674,8 @@ fa:
       edit_preset: ویرایش هشدار پیش‌فرض
       empty: هنز هیچ پیش‌تنظیم هشداری را تعریف نکرده‌اید.
       title: مدیریت هشدارهای پیش‌فرض
+    webhooks:
+      new: قلاب وب جدید
   admin_mailer:
     new_appeal:
       actions:
@@ -1041,7 +1107,6 @@ fa:
     browser: مرورگر
     browsers:
       alipay: علی‌پی
-      blackberry: بلک‌بری
       chrome: کروم
       edge: مایکروسافت اج
       electron: الکترون
@@ -1055,7 +1120,6 @@ fa:
       phantom_js: فنتوم‌جی‌اس
       qq: مرورگر کیوکیو
       safari: سافاری
-      uc_browser: مرورگر یوسی
       weibo: وبیو
     current_session: نشست فعلی
     description: "%{browser} روی %{platform}"
@@ -1064,8 +1128,6 @@ fa:
     platforms:
       adobe_air: ایر ادوبی
       android: اندروید
-      blackberry: بلک‌بری
-      chrome_os: سیستم‌عامل کروم
       firefox_os: سیستم‌عامل فایرفاکس
       ios: آی‌اواس
       linux: لینوکس
@@ -1125,7 +1187,7 @@ fa:
       direct: فرسته‌هایی که فقط برای کاربران اشاره شده نمایانند نمی‌توانند سنجاق شوند
       limit: از این بیشتر نمی‌شود نوشته‌های ثابت داشت
       ownership: نوشته‌های دیگران را نمی‌توان ثابت کرد
-      reblog: تقویت را نمی‌توان سنجاق کرد
+      reblog: تقویت نمی‌تواند سنجاق شود
     poll:
       total_people:
         one: "%{count} نفر"

@@ -8,7 +8,7 @@ nn:
       user:
         agreement: Serviceavtale
         email: Epostadresse
-        locale: Område
+        locale: Lokale
         password: Passord
       user/account:
         username: Brukarnamn
@@ -19,7 +19,7 @@ nn:
         account:
           attributes:
             username:
-              invalid: må innehalde kun bokstavar, tal og understrekar
+              invalid: kan berre innehalda bokstavar, tal og understrekar
               reserved: er reservert
         admin/webhook:
           attributes:
@@ -29,6 +29,10 @@ nn:
           attributes:
             website:
               invalid: er ikkje ein gyldig URL
+        import:
+          attributes:
+            data:
+              malformed: er feilutforma
         status:
           attributes:
             reblog:
@@ -36,6 +40,7 @@ nn:
         user:
           attributes:
             email:
+              blocked: bruker ein forboden epostleverandør
               unreachable: ser ikkje ut til å eksistere
             role_id:
               elevated: kan ikkje vere høgare enn di noverande rolle

@@ -2,4 +2,4 @@
 
 <%= raw t('notification_mailer.follow.body', name: @account.pretty_acct) %>
 
-<%= raw t('application_mailer.view')%> <%= web_url("accounts/#{@account.id}") %>
+<%= raw t('application_mailer.view')%> <%= web_url("@#{@account.pretty_acct}") %>

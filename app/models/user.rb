@@ -237,7 +237,11 @@ class User < ApplicationRecord
   end
 
   def functional?
-    confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial? && account.moved_to_account_id.nil?
+    functional_or_moved? && account.moved_to_account_id.nil?
+  end
+
+  def functional_or_moved?
+    confirmed? && approved? && !disabled? && !account.suspended? && !account.memorial?
   end
 
   def unconfirmed?
@@ -512,7 +516,7 @@ class User < ApplicationRecord
   end
 
   def invite_text_required?
-    Setting.require_invite_text && !invited? && !external? && !bypass_invite_request_check?
+    Setting.require_invite_text && !open_registrations? && !invited? && !external? && !bypass_invite_request_check?
   end
 
   def trigger_webhooks

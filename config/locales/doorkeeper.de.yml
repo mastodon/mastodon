@@ -72,12 +72,12 @@ de:
         revoke: Bist du sicher?
       index:
         authorized_at: Autorisiert am %{date}
-        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle auf dein Konto zugreifen können. Wenn es Anwendungen gibt, die du hier nicht erkennst, oder wenn eine Anwendung sich falsch bzw. verdächtig verhält, kannst du den Zugriff widerrufen.
+        description_html: Dies sind Anwendungen, die über die Programmierschnittstelle (API) dieser Mastodon-Instanz auf dein Konto zugreifen können. Sollten hier Apps aufgeführt sein, die du nicht erkennst oder die sich verdächtig verhalten, solltest du den Zugriff schnellstmöglich widerrufen.
         last_used_at: Zuletzt verwendet am %{date}
         never_used: Nie verwendet
         scopes: Berechtigungen
         superapp: Intern
-        title: Deine autorisierten Anwendungen
+        title: Deine genehmigten Apps
     errors:
       messages:
         access_denied: Die Anfrage wurde durch Benutzer_in oder Autorisierungs-Server verweigert.
@@ -125,12 +125,12 @@ de:
         all: Alles
         blocks: Blocks
         bookmarks: Lesezeichen
-        conversations: Konversationen
+        conversations: Unterhaltungen
         crypto: Ende-zu-Ende-Verschlüsselung
         favourites: Favoriten
         filters: Filter
         follow: Beziehungen
-        follows: Folgt
+        follows: Folge ich
         lists: Listen
         media: Medienanhänge
         mutes: Stummschaltungen
@@ -179,7 +179,7 @@ de:
       write:follows: Leuten folgen
       write:lists: Listen erstellen
       write:media: Mediendateien hochladen
-      write:mutes: Leute und Konversationen stummschalten
+      write:mutes: Profile und Unterhaltungen stummschalten
       write:notifications: deine Benachrichtigungen leeren
       write:reports: andere Leute melden
       write:statuses: Beiträge veröffentlichen

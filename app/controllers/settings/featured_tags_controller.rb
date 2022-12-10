@@ -23,7 +23,7 @@ class Settings::FeaturedTagsController < Settings::BaseController
   end
 
   def destroy
-    RemoveFeaturedTagWorker.perform_async(current_account.id, @featured_tag.id)
+    RemoveFeaturedTagService.new.call(current_account, @featured_tag)
     redirect_to settings_featured_tags_path
   end
 

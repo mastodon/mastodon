@@ -21,6 +21,18 @@ ckb:
             username:
               invalid: تەنها پیت، ژمارە و ژێرەوە
               reserved: تەرخان کراوە
+        admin/webhook:
+          attributes:
+            url:
+              invalid: بەستەرەکە دروست نیە
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: بەستەرەکە دروست نیە
+        import:
+          attributes:
+            data:
+              malformed: ناتەواوە
         status:
           attributes:
             reblog:
@@ -30,3 +42,9 @@ ckb:
             email:
               blocked: دابینکەرێکی ئیمەیڵی ڕێگەپێنەدراو بەکاردەهێنێت
               unreachable: پێناچێت بوونی هەبێت
+            role_id:
+              elevated: ناتوانرێت بەرزتربێت لە ڕۆلەکەی خۆت
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: ئەو مۆڵەتانەش لەخۆبگرێت کە سەلامەت نین بۆ ڕۆلی سەرەکی

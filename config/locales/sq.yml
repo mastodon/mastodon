@@ -207,6 +207,7 @@ sq:
         reject_user: Hidhe Poshtë Përdoruesin
         remove_avatar_user: Hiqe Avatarin
         reopen_report: Rihape Raportimin
+        resend_user: Ridërgo Email Ripohimi
         reset_password_user: Ricaktoni Fjalëkalimin
         resolve_report: Zgjidhe Raportimin
         sensitive_account: I vini shenjë si rezervat medias në llogarinë tuaj
@@ -265,6 +266,7 @@ sq:
         reject_user_html: "%{name} hodhi poshtë regjistrimin nga %{target}"
         remove_avatar_user_html: "%{name} hoqi avatarin e %{target}"
         reopen_report_html: "%{name} rihapi raportimin %{target}"
+        resend_user_html: "%{name} ridërgoi email ripohimi për %{target}"
         reset_password_user_html: "%{name} ricaktoi fjalëkalimi për përdoruesin %{target}"
         resolve_report_html: "%{name} zgjidhi raportimin %{target}"
         sensitive_account_html: "%{name} i vuri shenjë si rezervat medias në %{target}"
@@ -281,6 +283,7 @@ sq:
         update_ip_block_html: "%{name} ndryshoi rregull për IP-në %{target}"
         update_status_html: "%{name} përditësoi gjendjen me %{target}"
         update_user_role_html: "%{name} ndryshoi rolin për %{target}"
+      deleted_account: fshiu llogarinë
       empty: S’u gjetën regjistra.
       filter_by_action: Filtroji sipas veprimit
       filter_by_user: Filtroji sipas përdoruesit
@@ -383,11 +386,13 @@ sq:
         create: Krijoni bllokim
         hint: Bllokimi i përkatësisë nuk do të pengojë krijim zërash llogarie te baza e të dhënave, por do të aplikojë në mënyrë retroaktive dhe të vetvetishme metoda specifike moderimi mbi këto llogari.
         severity:
-          desc_html: "<strong>Heshtja</strong> do t’i bëjë postimet e llogarisë të padukshme për këdo që nuk i ndjek ato. <strong>Pezullimi</strong> do të heqë krejt lëndën e llogarisë, media, dhe të dhëna profili. Përdorni <strong>Asnjë</strong>, nëse thjesht doni të mos pranohen kartela media."
+          desc_html: "<strong>Kufizoje</strong> do t’i bëjë postimet prej llogarish në këtë përkatësi të padukshme për këtë që nuk i ndjek. <strong>Pezulloje</strong> do të heqë nga shërbyesi juaj krejt lëndën, media dhe të dhëna profili për llogaritë e kësaj përkatësie. Përdorni <strong>Asnjë</strong>, nëse doni thjesht të hidhni tej kartela media."
           noop: Asnjë
-          silence: Heshtoji
+          silence: Kufizoje
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      no_domain_block_selected: S’u ndryshuan bllokime përkatësish, ngaqë s’u përzgjodh ndonjë i tillë
+      not_permitted: S’keni leje të kryeni këtë veprim
       obfuscate: Errësoje emrin e përkatësisë
       obfuscate_hint: Errësoje pjesërisht emrin e përkatësisë te lista, nëse është aktivizuar publikimi i listës së kufizimeve të përkatësive
       private_comment: Koment privat
@@ -419,6 +424,18 @@ sq:
       resolved_dns_records_hint_html: Emri i përkatësisë jep u përket përkatësive vijuese MX, që janë përgjegjëset për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Jini i kujdesshëm të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
       title: Listë bllokimesh email-esh
+    export_domain_allows:
+      no_file: S’u përzgjodh kartelë
+    export_domain_blocks:
+      import:
+        description_html: Ju ndan një hap nga importimi i një liste bllokimesh përkatësish. Ju lutemi, shqyrtojeni këtë listë me shumë kujdes, sidomos nëse këtë listë s’e keni krijuar ju.
+        existing_relationships_warning: Marrëdhënie ekzistuese ndjekjeje
+        private_comment_description_html: 'Për t’ju ndihmuar të ndiqni se nga vijnë bllokimet e importuara, këto do të krijohen me komentin vijues privat: <q>%{comment}</q>'
+        private_comment_template: Importuar nga %{source} më %{date}
+        title: Importoni bllokime përkatësish
+      new:
+        title: Importoni bllokime përkatësish
+      no_file: S’u përzgjodh kartelë
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
       language: Për gjuhën
@@ -664,29 +681,67 @@ sq:
       empty: S’janë përcaktuar ende rregulla shërbyesi.
       title: Rregulla shërbyesi
     settings:
+      about:
+        manage_rules: Administroni rregulla shërbyesi
+        preamble: Jepni informacion të hollësishëm rreth se si mbahet në punë, si moderohet dhe si financohet shërbyesi.
+        rules_hint: Ka një zonë enkas për rregulla me të cilat pritet që përdoruesit tuaj të pajtohen.
+        title: Mbi
+      appearance:
+        preamble: Përshtatni ndërfaqen web të Mastodon-it.
+        title: Dukje
+      branding:
+        preamble: Elementët e markës të shërbyesit tuaj e dallojnë atë nga shërbyes të tjerë në rrjet. Këto hollësi mund të shfaqen në një larmi mjedisesh, bie fjala, në ndërfaqen web të Mastodon-it, aplikacione për platforma të ndryshme, në paraparje lidhjesh në sajte të tjerë dhe brenda aplikacionesh për shkëmbim mesazhesh, e me radhë. Për këtë arsyes, më e mira është që këto hollësi të jenë të qarta, të shkurtra dhe të kursyera.
+        title: Elementë marke
+      content_retention:
+        preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
+        title: Mbajtje lënde
+      discovery:
+        follow_recommendations: Rekomandime ndjekjeje
+        preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
+        profile_directory: Drejtori profilesh
+        public_timelines: Rrjedha kohore publike
+        title: Zbulim
+        trends: Në modë
       domain_blocks:
         all: Për këdo
         disabled: Për askënd
         users: Për përdorues vendorë që kanë bërë hyrjen
+      registrations:
+        preamble: Kontrolloni cilët mund të krijojnë llogari në shërbyesin tuaj.
+        title: Regjistrime
       registrations_mode:
         modes:
           approved: Për regjistrim, lypset miratimi
           none: S’mund të regjistrohet ndokush
           open: Mund të regjistrohet gjithkush
+      title: Rregullime Shërbyesi
     site_uploads:
       delete: Fshi kartelën e ngarkuar
       destroyed_msg: Ngarkimi në sajt u fshi me sukses!
     statuses:
+      account: Autor
+      application: Aplikacion
       back_to_account: Mbrapsht te faqja e llogarisë
       back_to_report: Mbrapsht te faqja e raportimit
       batch:
         remove_from_report: Hiqe prej raportimit
         report: Raportojeni
       deleted: E fshirë
+      favourites: Të parapëlqyer
+      history: Historik versioni
+      in_reply_to: Përgjigje për
+      language: Gjuhë
       media:
         title: Media
+      metadata: Tejtëdhëna
       no_status_selected: S’u ndryshua ndonjë gjendje, ngaqë s’u përzgjodh ndonjë e tillë
+      open: Hape postimin
+      original_status: Postim origjinal
+      reblogs: Riblogime
+      status_changed: Postimi ndryshoi
       title: Gjendje llogarish
+      trending: Në modë
+      visibility: Dukshmëri
       with_media: Me media
     strikes:
       actions:
@@ -868,7 +923,7 @@ sq:
     warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
-    apply_for_account: Bëhuni pjesë e radhës
+    apply_for_account: Kërkoni një llogari
     change_password: Fjalëkalim
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
@@ -1113,6 +1168,7 @@ sq:
     invalid_markup: 'përmban elementë HTML të pavlefshëm: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
     modes:
       merge: Përzieji
@@ -1206,6 +1262,8 @@ sq:
     carry_blocks_over_text: Ky përdorues lëvizi prej %{acct}, të cilin e keni bllokuar.
     carry_mutes_over_text: Ky përdorues lëvizi prej %{acct}, që e keni heshtuar.
     copy_account_note_text: 'Ky përdorues ka ikur prej %{acct}, ja ku janë shënimet tuaja të mëparshme mbi të:'
+  navigation:
+    toggle_menu: Shfaq/Fshih menunë
   notification_mailer:
     admin:
       report:
@@ -1325,7 +1383,7 @@ sq:
     browser: Shfletues
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1339,7 +1397,7 @@ sq:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: Shfletues UC
       weibo: Weibo
     current_session: Sesioni i tanishëm
     description: "%{browser} në %{platform}"
@@ -1348,7 +1406,7 @@ sq:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS

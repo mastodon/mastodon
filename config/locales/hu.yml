@@ -207,6 +207,7 @@ hu:
         reject_user: Felhasználó Elutasítása
         remove_avatar_user: Profilkép eltávolítása
         reopen_report: Jelentés újranyitása
+        resend_user: Megerősítő e-mail újraküldése
         reset_password_user: Jelszó visszaállítása
         resolve_report: Jelentés megoldása
         sensitive_account: A fiókodban minden média kényesnek jelölése
@@ -265,6 +266,7 @@ hu:
         reject_user_html: "%{name} elutasította %{target} regisztrációját"
         remove_avatar_user_html: "%{name} törölte %{target} profilképét"
         reopen_report_html: "%{name} újranyitotta a %{target} bejelentést"
+        resend_user_html: "%{name} újraküldte %{target} megerősítő e-mailjét"
         reset_password_user_html: "%{name} visszaállította %{target} felhasználó jelszavát"
         resolve_report_html: "%{name} megoldotta a %{target} bejelentést"
         sensitive_account_html: "%{name} kényesnek jelölte %{target} médiatartalmát"
@@ -281,6 +283,7 @@ hu:
         update_ip_block_html: "%{name} módosította a(z) %{target} IP-címre vonatkozó szabályt"
         update_status_html: "%{name} frissítette %{target} felhasználó bejegyzését"
         update_user_role_html: "%{name} módosította a(z) %{target} szerepkört"
+      deleted_account: törölt fiók
       empty: Nem található napló.
       filter_by_action: Szűrés művelet alapján
       filter_by_user: Szűrés felhasználó alapján
@@ -370,6 +373,8 @@ hu:
       add_new: Domain engedélyezése
       created_msg: A domain rákerült az engedélyező-listára
       destroyed_msg: A domain lekerült az engedélyező-listáról
+      export: Exportálás
+      import: Importálás
       undo: Eltávolítás az engedélyező-listáról
     domain_blocks:
       add_new: Új tiltott domain hozzáadása
@@ -379,15 +384,19 @@ hu:
       edit: Domain tiltás szerkesztése
       existing_domain_block: 'Már szigorúbb korlátozások vonatkoznak a következőre: %{name}.'
       existing_domain_block_html: A %{name} domainen már szorosabb korlátokat állítottál be, először <a href="%{unblock_url}">oldd fel a tiltást</a>.
+      export: Exportálás
+      import: Importálás
       new:
         create: Tiltás létrehozása
         hint: A domain tiltása nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
-          desc_html: A <strong>Némítás</strong> elrejti az adott felhasználó bejegyzéseit mindenki elől, aki nem követi őt. A <strong>Felfüggesztés</strong> eltávolítja az adott felhasználó által létrehozott minden tartalmat, ide értve a médiafájlokat és a fiókadatokat is. Válaszd az <strong>Egyik sem</strong> opciót, ha csupán a médiafájlokat szeretnéd elutasítani.
+          desc_html: A <strong>Korlátozás</strong> elrejti a domain fiókjaitól származó bejegyzéseket azok elől, akik nem követik őket. A <strong>Felfüggesztés</strong> eltávolítja a domain fiókjaitól származó összes tartalmat, médiafájlt és profiladatot. Használd a <strong>Nincs </strong> lehetőséget, ha csak a médiafájlokat akarod elutasítani.
           noop: Egyik sem
-          silence: Némítás
+          silence: Korlátozás
           suspend: Felfüggesztés
         title: Új domain tiltása
+      no_domain_block_selected: Nem változott meg egy domain tiltás sem, mert semmi sem volt kiválasztva
+      not_permitted: Nem vagy jogosult a művelet végrehajtására
       obfuscate: Domain név álcázása
       obfuscate_hint: Részlegesen álcázza a domain nevet a listában, ha a domain korlátozások listájának közzététele engedélyezett
       private_comment: Privát megjegyzés
@@ -419,6 +428,20 @@ hu:
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
       title: Tiltott e-mail domainek
+    export_domain_allows:
+      new:
+        title: Domain engedélyezések importálása
+      no_file: Nincs fájl kiválasztva
+    export_domain_blocks:
+      import:
+        description_html: Domain tiltások listájának importálására készülsz. Nézd át alaposan, különösen ha nem te állítottad össze ezt a listát.
+        existing_relationships_warning: Létező követési kapcsolatok
+        private_comment_description_html: 'Az importált tiltások forrásának könnyebb követése érdekében, az importált tiltások a következő privát megjegyzéssel lesznek létrehozva: <q>%{comment}</q>'
+        private_comment_template: 'Innen importálva: %{source}, ekkor: %{date}'
+        title: Domain tiltások importálása
+      new:
+        title: Domain tiltások importálása
+      no_file: Nincs fájl kiválasztva
     follow_recommendations:
       description_html: "<strong>A követési ajánlatok segítik az új felhasználókat az érdekes tartalmak gyors megtalálásában</strong>. Ha egy felhasználó még nem érintkezett eleget másokkal ahhoz, hogy személyre szabott ajánlatokat kapjon, ezeket a fiókokat ajánljuk helyette. Ezeket naponta újraszámítjuk a nemrég legtöbb embert foglalkoztató, illetve legtöbb helyi követővel rendelkező fiókok alapján."
       language: Ezen a nyelven
@@ -605,7 +628,7 @@ hu:
         other: "%{count} felhasználó"
       categories:
         administration: Adminisztráció
-        devops: Devops
+        devops: DevOps
         invites: Meghívások
         moderation: Moderáció
         special: Speciális
@@ -656,7 +679,7 @@ hu:
         view_audit_log_description: Lehetővé teszi, hogy a felhasználó megtekintse a kiszolgáló adminisztratív eseményeinek történetét
         view_dashboard: Irányítópult megtekintése
         view_dashboard_description: Lehetővé teszi, hogy a felhasználó elérje az irányítópultot és vele számos metrikát
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Lehetővé teszi, hogy a felhasználó elérje a Sidekiq és pgHero irányítópultjait
       title: Szerepek
     rules:
@@ -670,13 +693,16 @@ hu:
       about:
         manage_rules: Kiszolgáló szabályainak kezelése
         preamble: Adj meg részletes információkat arról, hogy a kiszolgáló hogyan működik, miként moderálják és finanszírozzák.
+        rules_hint: Van egy helyünk a szabályoknak, melyeket a felhasználóidnak be kellene tartani.
         title: Névjegy
       appearance:
         preamble: A Mastodon webes felületének testreszabása.
         title: Megjelenés
       branding:
         preamble: A kiszolgáló márkajelzése különbözteti meg a hálózat többi kiszolgálójától. Ez az információ számos környezetben megjelenhet, például a Mastodon webes felületén, natív alkalmazásokban, más weboldalakon és üzenetküldő alkalmazásokban megjelenő hivatkozások előnézetben stb. Ezért a legjobb, ha ez az információ világos, rövid és tömör.
+        title: Branding
       content_retention:
+        preamble: Felhasználók által generált tartalom Mastodonon való tárolásának szabályozása.
         title: Tartalom megtartása
       discovery:
         follow_recommendations: Ajánlottak követése
@@ -908,7 +934,7 @@ hu:
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!
     your_token: Hozzáférési kulcsod
   auth:
-    apply_for_account: Felkerülés a várólistára
+    apply_for_account: Fiók kérése
     change_password: Jelszó
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
@@ -1153,6 +1179,7 @@ hu:
     invalid_markup: 'hibás HTML leíró: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
       over_rows_processing_limit: több mint %{count} sort tartalmaz
     modes:
       merge: Összefésülés
@@ -1246,6 +1273,8 @@ hu:
     carry_blocks_over_text: Ez a fiók elköltözött innen %{acct}, melyet letiltottatok.
     carry_mutes_over_text: Ez a fiók elköltözött innen %{acct}, melyet lenémítottatok.
     copy_account_note_text: 'Ez a fiók elköltözött innen %{acct}, itt vannak a bejegyzéseitek róla:'
+  navigation:
+    toggle_menu: Menü be/ki
   notification_mailer:
     admin:
       report:
@@ -1365,7 +1394,7 @@ hu:
     browser: Böngésző
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1379,7 +1408,7 @@ hu:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Jelenlegi munkamenet
     description: "%{browser} az alábbi platformon: %{platform}"
@@ -1388,7 +1417,7 @@ hu:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS

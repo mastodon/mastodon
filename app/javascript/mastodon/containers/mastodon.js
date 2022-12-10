@@ -28,6 +28,7 @@ store.dispatch(fetchCustomEmojis());
 const createIdentityContext = state => ({
   signedIn: !!state.meta.me,
   accountId: state.meta.me,
+  disabledAccountId: state.meta.disabled_account_id,
   accessToken: state.meta.access_token,
   permissions: state.role ? state.role.permissions : 0,
 });
@@ -42,6 +43,7 @@ export default class Mastodon extends React.PureComponent {
     identity: PropTypes.shape({
       signedIn: PropTypes.bool.isRequired,
       accountId: PropTypes.string,
+      disabledAccountId: PropTypes.string,
       accessToken: PropTypes.string,
     }).isRequired,
   };
