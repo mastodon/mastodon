@@ -64,6 +64,7 @@ class Account < ApplicationRecord
   USERNAME_RE   = /[a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?/i
   MENTION_RE    = /(?<=^|[^\/[:word:]])@((#{USERNAME_RE})(?:@[[:word:]\.\-]+[[:word:]]+)?)/i
   URL_PREFIX_RE = /\Ahttp(s?):\/\/[^\/]+/
+  USERNAME_ONLY_RE = /\A#{USERNAME_RE}\z/i
 
   include Attachmentable
   include AccountAssociations
@@ -84,7 +85,7 @@ class Account < ApplicationRecord
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
   # Remote user validations
-  validates :username, format: { with: /\A#{USERNAME_RE}\z/i }, if: -> { !local? && will_save_change_to_username? }
+  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { !local? && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
@@ -255,7 +256,7 @@ class Account < ApplicationRecord
     update!(memorial: true)
   end
 
-  def trendable
+  def trendable?
     boolean_with_default('trendable', Setting.trendable_by_default)
   end
 

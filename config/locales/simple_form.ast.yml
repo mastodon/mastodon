@@ -2,32 +2,52 @@
 ast:
   simple_form:
     hints:
+      admin_account_action:
+        text_html: Opcional. Pues usar la sintaxis de los artículos ya amestar <a href="%{path}">amestar preconfiguraes</a> p'aforrar tiempu
+      announcement:
+        all_day: Al marcar la opción, namás apaecen les dates del intervalu de tiempu
+        ends_at: Opcional. L'anunciu dexa de tar espublizáu na data qu'indiques
+        starts_at: Opcional. En casu de que l'anunciu tea arreyáu a un intervalu de tiempu específicu
+        text: Pues usar la sintaxis de los artículos. Ten en cuenta l'espaciu que l'anunciu va ocupar na pantalla del usuariu/a
       defaults:
-        autofollow: La xente que se rexistre pente la invitación va siguite automáticamente
-        bot: Avisa a otres persones de qu'esta cuenta fai principalmente aiciones automatizaes y de que ye posible que nun tean supervisaes
-        digest: Namái s'unvia dempués d'un periodu llargu d'inactividá y namái si recibiesti cualesquier mensaxe personal na to ausencia
-        discoverable: Permite que persones desconocíes descubran la to cuenta pente recomendaciones, tendencies y otres funciones
-        email: Vamos unviate un corréu de confirmación
+        autofollow: Les persones que se rexistren pente la invitación van siguite automáticamente
+        avatar: Ficheros PNG, GIF o JPG de %{size} como muncho. La semeya va redimensionase a %{dimensions} px
+        bot: Avisa a otres persones de qu'esta cuenta fai principalmente aiciones automatizaes ya de que ye posible que nun tean supervisaes
+        digest: Namás s'unvia dempués d'un periodu llongu d'inactividá ya namás si recibiesti dalgún mensaxe personal demientres la to ausencia
+        discoverable: Permite que persones desconocíes descubran la to cuenta pente recomendaciones, tendencies ya otres funciones
         fields: Pues tener hasta 4 elementos qu'apaecen nuna tabla dientro del to perfil
-        irreversible: Los barritos peñeraos van desapaecer de mou irreversible, magar que se desanicie la peñera dempués
+        header: Ficheros PNG, GIF o JPG de %{size} como muncho. La semeya va redimensionase a %{dimensions} px
+        irreversible: Los artículos peñeraos desapaecen de forma irreversible, magar que la peñera se quite dempués
+        locale: La llingua de la interfaz, los mensaxes per corréu electrónicu ya los avisos push
         locked: Controla manualmente quién pue siguite pente l'aprobación de les solicitúes de siguimientu
-        password: Usa 8 caráuteres polo menos
-        setting_hide_network: Les persones que sigas y les que te sigan nun van apaecer nel to perfil
+        setting_display_media_default: Anubrilu cuando se marque como sensible
+        setting_display_media_hide_all: Anubrilu siempres
+        setting_display_media_show_all: Amosalu siempres
+        setting_hide_network: Les persones que sigas ya les que te sigan nun van apaecer nel to perfil
         setting_show_application: L'aplicación qu'uses pa espublizar apaez na vista detallada de los tos artículos
-        username: El nome d'usuariu va ser únicu en %{domain}
+        username: 'El nome d''usuariu va ser únicu en: %{domain}'
       featured_tag:
         name: 'Equí tán dalgunes de les etiquetes qu''usesti apocayá:'
+      form_admin_settings:
+        backups_retention_period: Caltién los archivos xeneraos polos perfiles demientres el númberu de díes especificáu.
+        closed_registrations_message: Apaez cuando'l rexistru ta desactiváu
+        content_cache_retention_period: Los artículos d'otros sirvidores desaníciense dempués del numberu de díes especificáu al configurar un valor positivu. Ye posible qu'esta opción seya irreversible.
+        custom_css: Pues aplicar estilos personalizaos a la versión web de Mastodon.
+        mascot: Anula la ilustración na interfaz web avanzada.
+        media_cache_retention_period: Los ficheros multimedia baxaos desaníciense dempués del númberu de díes especificáu al configurar un valor positivu, ya vuelven baxase baxo demanda.
+        require_invite_text: Cuando los rexistros riquen una aprobación manual, el campu «¿Por qué quies xunite?» vuélvese obligatoriu
+        site_extended_description: Cualesquier tipu d'información adicional que pueda ser útil pa visitantes ya pa perfiles rexistraos. El testu pue estructurase cola sintaxis de Mastodon.
+        site_short_description: Un descripción curtia qu'ayuda a identificar de forma única al sirvidor. ¿Quién lu lleva?, ¿pa quién ye?
+        theme: L'estilu que los visitantes ya los perfiles nuevos usen.
       form_challenge:
-        current_password: Tas entrando nuna área segura
+        current_password: Tas entrando a una área segura
       imports:
-        data: El ficheru CSV esportáu dende otra instancia de Mastodon
+        data: El ficheru CSV que s'esportó d'otru sirvidor de Mastodon
       invite_request:
-        text: Esto va ayudanos a revisar la to aplicación
+        text: Esto va ayudanos a revisar la to solicitú
       ip_block:
-        comment: Opcional. Acuérdate por qué amestesti esta regla.
-        expires_in: Les direiciones IP son un recursu finitu, suelen compartise y cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos indefiníos de direiciones IP.
-      sessions:
-        otp: 'Introduz el códigu de dos pasos xeneráu pola aplicación autenticadora o usa unu de los códigos de recuperación:'
+        comment: Opcional. Un recordatoriu de por qué amestesti esta regla.
+        expires_in: Les direiciones IP son un recursu finitu, suelen compartise ya cambiar de manes. Por esti motivu, nun s'aconseyen los bloqueos indefiníos de direiciones IP.
     labels:
       account:
         fields:
@@ -36,10 +56,16 @@ ast:
       account_warning_preset:
         title: Títulu
       admin_account_action:
+        include_statuses: Incluyir nel mensaxe los artículos de los que s'informó
+        send_email_notification: Avisar al perfil per corréu electrónicu
         type: Aición
         types:
-          none: Nun facer nada
+          suspend: Suspender
       announcement:
+        all_day: Eventu de tol día
+        ends_at: Fin del eventu
+        scheduled_at: Anunciu programáu
+        starts_at: Comienzu del eventu
         text: Anunciu
       defaults:
         avatar: Avatar
@@ -61,53 +87,73 @@ ast:
         max_uses: Númberu máximu d'usos
         new_password: Contraseña nueva
         note: Biografía
-        otp_attempt: Códigu de la verificación en dos pasos
+        otp_attempt: Códigu de l'autenticación en dos pasos
         password: Contraseña
         phrase: Pallabra clave o fras
         setting_advanced_layout: Activar la interfaz web avanzada
-        setting_auto_play_gif: Reproducir GIFs automáticamente
+        setting_aggregate_reblogs: Agrupar los artículos compartíos nes llinies de tiempu
+        setting_auto_play_gif: Reproducir automáticamente los GIFs
         setting_boost_modal: Amosar el diálogu de confirmación enantes de compartir un artículu
-        setting_default_language: Llingua de los espublizamientos
-        setting_default_privacy: Privacidá de los espublizamientos
-        setting_delete_modal: Amosar el diálogu de confirmación enantes de desaniciar un barritu
-        setting_noindex: Nun apaecer nos índices de los motores de gueta
+        setting_default_language: Llingua de los artículos
+        setting_default_privacy: Privacidá de los artículos
+        setting_delete_modal: Amosar el diálogu de confirmación enantes de desaniciar un artículu
+        setting_display_media: Conteníu multimedia
+        setting_reduce_motion: Amenorgar el movimientu de les animaciones
         setting_show_application: Dicir les aplicaciones que s'usen pa unviar artículos
         setting_system_font_ui: Usar la fonte predeterminada del sistema
         setting_theme: Estilu del sitiu
         setting_trends: Amosar les tendencies de güei
         setting_unfollow_modal: Amosar el diálogu de confirmación enantes de dexar de siguir a daquién
         setting_use_pending_items: Mou lentu
-        severity: Severidá
+        severity: Gravedá
         sign_in_token_attempt: Códigu de seguranza
+        title: Títulu
         type: Tipu de la importación
         username: Nome d'usuariu
         username_or_email: Nome d'usuariu o direición de corréu electrónicu
         whole_word: La pallabra entera
       featured_tag:
         name: Etiqueta
+      form_admin_settings:
+        backups_retention_period: Periodu de retención de los archivos de los perfiles
+        closed_registrations_message: Mensaxe personalizáu cuando'l rexistru nun ta disponible
+        content_cache_retention_period: Periodu de retención de la caché de conteníu
+        media_cache_retention_period: Periodu de retención de la caché multimedia
+        registrations_mode: Quién pue rexistrase
+        require_invite_text: Riquir un motivu pa rexistrase
+        show_domain_blocks_rationale: Amosar por qué se bloquiaron los dominios
+        site_extended_description: Descripción estendida
+        site_short_description: Descripción del sirvidor
+        site_terms: Política de privacidá
+        site_title: Nome del sirvidor
+        theme: Estilu predetermináu
+        thumbnail: Miniatura del sirvidor
       interactions:
-        must_be_follower: Bloquiar los avisos de persones que nun son siguidores
-        must_be_following: Bloquiar los avisos de persones que nun sigues
-        must_be_following_dm: Bloquiar los mensaxes direutos de persones que nun sigues
+        must_be_follower: Bloquiar los avisos de los perfiles que nun te siguen
+        must_be_following: Bloquiar los avisos de los perfiles que nun sigues
+        must_be_following_dm: Bloquiar los mensaxes direutos de los perfiles que nun sigues
       invite_request:
         text: "¿Por qué quies xunite?"
       ip_block:
         ip: IP
       notification_emails:
-        favourite: Daquién marcó como favoritu un estáu de to
+        favourite: Daquién marcó como favoritu'l to artículu
         follow: Daquién te sigue
         follow_request: Daquién solicitó siguite
         mention: Daquién te mentó
+        pending_account: Una cuenta nueva precisa una revisión
         reblog: Daquién compartió'l to artículu
+        report: Unvióse un informe nuevu
+        trending_tag: Una tendencia rique una revisión
       tag:
         name: Etiqueta
+      user:
+        role: Rol
       user_role:
         name: Nome
         permissions_as_keys: Permisos
         position: Prioridá
     'no': Non
-    recommended: Aconséyase
     required:
       mark: "*"
-      text: ríquese
     'yes': Sí

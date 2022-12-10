@@ -108,9 +108,7 @@ sr-Latn:
         create: Napravi blokadu
         hint: Blokiranje domena neće sprečiti pravljenje naloga u bazi, ali će retroaktivno i automatski primeniti određene moderatorske metode nad tim nalozima.
         severity:
-          desc_html: "<strong>Ućutkavanje</strong> će sve statuse ovog naloga učiniti nevidiljivim za sve, osim za one koji nalog već prate. <strong>Suspenzija</strong> će ukloniti sav sadržaj naloga, svu multimediju, i profilne podatke. Koristite <strong>Ništa</strong> ako samo želite da odbacite multimedijalne fajlove."
           noop: Ništa
-          silence: Ućutkavanje
           suspend: Suspenzija
         title: Novo blokiranje domena
       reject_media: Odbaci multimediju
@@ -296,7 +294,6 @@ sr-Latn:
     activity: Poslednja aktivnost
     browser: Veb čitač
     browsers:
-      blackberry: Blekberi
       chrome: Hrom
       generic: Nepoznati veb čitač
     current_session: Trenutna sesija
@@ -305,8 +302,6 @@ sr-Latn:
     platforms:
       adobe_air: Adobe Air-a
       android: Androida
-      blackberry: Blekberija
-      chrome_os: Hrom OS-a
       firefox_os: Fajerfoks OS-a
       linux: Linuksa
       mac: Mac-a
