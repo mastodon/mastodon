@@ -134,8 +134,8 @@ nn:
       security_measures:
         only_password: Kun passord
         password_and_2fa: Passord og 2FA
-      sensitive: Tving sensitiv
-      sensitized: Avmerka som følsom
+      sensitive: Tving ømtolig
+      sensitized: Merka som ømtolig
       shared_inbox_url: Delt Innboks URL
       show:
         created_reports: Rapportar frå denne kontoen
@@ -153,12 +153,12 @@ nn:
       unblock_email: Avblokker e-postadresse
       unblocked_email_msg: Avblokkerte %{username} si e-postadresse
       unconfirmed_email: E-post utan stadfesting
-      undo_sensitized: Gjør om tving sensitiv
+      undo_sensitized: Angr tving ømtolig
       undo_silenced: Angr målbinding
       undo_suspension: Angr utvising
       unsilenced_msg: Opphevde vellykket begrensningen av %{username} sin konto
       unsubscribe: Avmeld
-      unsuspended_msg: Opphevde vellykket suspenderingen av %{username} sin konto
+      unsuspended_msg: Oppheving av utvisinga av %{username} sin konto var vellykka
       username: Brukarnamn
       view_domain: Vis sammendrag for domenet
       warn: Åtvar
@@ -210,12 +210,12 @@ nn:
         resend_user: Send stadfestings-epost på ny
         reset_password_user: Tilbakestill passord
         resolve_report: Løs rapport
-        sensitive_account: Tvangsfølsom konto
+        sensitive_account: Tving ømtolig konto
         silence_account: Demp konto
         suspend_account: Suspender kontoen
         unassigned_report: Fjern tilordna rapport
         unblock_email_account: Avblokker e-postadresse
-        unsensitive_account: Angre tvangsfølsom konto
+        unsensitive_account: Angr tving ømtolig konto
         unsilence_account: Angre avgrensing av konto
         unsuspend_account: Opphev suspensjonen av kontoen
         update_announcement: Oppdater kunngjøringen
@@ -269,8 +269,20 @@ nn:
         resend_user_html: "%{name} sendte bekreftelsesepost for %{target} på nytt"
         reset_password_user_html: "%{name} tilbakestilte passordet for brukaren %{target}"
         resolve_report_html: "%{name} løyste ein rapport %{target}"
-        sensitive_account_html: "%{name} markerte %{target} sitt media som sensitivt"
-        silence_account_html: "%{name} begrenset %{target} sin konto"
+        sensitive_account_html: "%{name} markerte %{target} sitt media som ømtolig"
+        silence_account_html: "%{name} begrensa %{target} sin konto"
+        suspend_account_html: "%{name} utviste %{target} sin konto"
+        unassigned_report_html: "%{name} løyste ein rapport %{target}"
+        unblock_email_account_html: "%{name} avblokkerte %{target} si e-postadresse"
+        unsensitive_account_html: "%{name} avmarkerte %{target} sitt media som ømtolig"
+        unsilence_account_html: "%{name} fjerna grensa på kontoen til %{target}"
+        unsuspend_account_html: "%{name} oppheva utvisinga av %{target} sin konto"
+        update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
+        update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
+        update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
+        update_ip_block_html: "%{name} endret regel for IP %{target}"
+        update_status_html: "%{name} oppdaterte innlegg av %{target}"
+        update_user_role_html: "%{name} endret %{target} -rolle"
       deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
@@ -329,22 +341,34 @@ nn:
       upload: Last opp
     dashboard:
       active_users: aktive brukarar
-      interactions: interaksjoner
-      media_storage: Medialagring
-      new_users: nye brukere
-      opened_reports: rapporter åpnet
-      resolved_reports: rapporter løst
+      interactions: interaksjonar
+      media_storage: Medielagring
+      new_users: nye brukarar
+      opened_reports: rapportar opna
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> ventande ankar"
+        other: "<strong>%{count}</strong> ventande klagar"
+      pending_users_html:
+        one: "<strong>%{count}</strong> ventande brukarar"
+        other: "<strong>%{count}</strong> ventande brukarar"
+      resolved_reports: rapportar løyst
       software: Programvare
-      sources: Kilder for registreringer
+      sources: Kjelder for registreringar
       space: Lagrinsplass nytta
       title: Dashbord
       top_languages: Mest aktive språk
-      top_servers: Mest aktive servere
+      top_servers: Mest aktive serverar
       website: Nettside
+    disputes:
+      appeals:
+        empty: Ingen ankar funne.
+        title: Ankar
     domain_allows:
       add_new: Kvitlist domene
       created_msg: Domene er vorte kvitlista
       destroyed_msg: Domene er fjerna frå kvitlista
+      export: Eksporter
+      import: Importer
       undo: Fjern frå kvitliste
     domain_blocks:
       add_new: Lag ny
@@ -352,18 +376,23 @@ nn:
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
       edit: Rediger domeneblokkering
+      existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
+      export: Eksporter
+      import: Importer
       new:
         create: Lag blokkering
         hint: Domeneblokkeringen vil ikke hindre opprettelse av kontooppføringer i databasen, men vil retroaktivt og automatisk benytte spesifikke moderasjonsmetoder på de kontoene.
         severity:
-          desc_html: "<strong>Målbind</strong> gjør kontoens poster usynlige for alle som ikke følger den. <strong>Utvis</strong> fjerner alt innhold, media og profildata fra kontoen. Bruk <strong>Ingen</strong> hvis du bare vil fjerne mediafiler."
+          desc_html: "<strong>Målbind</strong> gjer kontoen sine postear usynlege for alle som ikkje følger den. <strong>Utvis</strong> fjernar alt innhald, media og profildata frå kontoen. Bruk <strong>Ingen</strong> viss du berre vil fjerne mediafiler."
           noop: Ingen
-          silence: Togn
+          silence: Målbind
           suspend: Utvis
         title: Ny domeneblokkering
+      no_domain_block_selected: Ingen domeneblokkeringar vart endra sidan ingen var valde
+      not_permitted: Du har ikkje løyve til å utføra denne handlinga
       obfuscate: Obfuskere domenenavn
-      obfuscate_hint: Delvis skjule domenenavnet i listen hvis det er aktivert for å annonsere listen over domenebegrensninger
+      obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
       private_comment: Privat kommentar
       private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
       public_comment: Offentleg kommentar
@@ -376,27 +405,75 @@ nn:
       view: Vis domeneblokkering
     email_domain_blocks:
       add_new: Lag ny
+      attempts_over_week:
+        one: "%{count} forsøk i løpet av den siste uken"
+        other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Slett
+      dns:
+        types:
+          mx: MX post
       domain: Domene
       new:
         create: Legg til domene
+        resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
+    export_domain_allows:
+      new:
+        title: Importer domenetillatingar
+      no_file: Inga fil vald
+    export_domain_blocks:
+      import:
+        description_html: Du skal til å importera ei liste over domeneblokkeringar. Gjer vel og sjå nøye gjennom lista, særleg om du ikkje har laga ho sjølv.
+        existing_relationships_warning: Noverande fylgjeforhold
+        private_comment_description_html: 'For å hjelpa deg med å halda oversikt over kvar importerte blokkeringar kjem frå, vil dei bli oppretta med fylgjande private kommentar: <q>%{comment}</q>'
+        private_comment_template: Importert frå %{source} den %{date}
+        title: Importer domeneblokkeringar
+      new:
+        title: Importer domeneblokkeringar
+      no_file: Inga fil vald
     follow_recommendations:
-      description_html: "<strong>Følg anbefalinger hjelper nye brukere med å finne interessant innhold</strong>. Når en bruker ikke har kommunisert med andre nok til å danne personlig tilpassede følger anbefalinger, anbefales disse kontoene i stedet. De beregnes daglig på nytt fra en blanding av kontoer der de høyeste engasjementene er og med høyest lokal tilhenger for et gitt språk."
+      description_html: "<strong>Følgjeforslag hjelper nye brukarar å raskt finna interessant innhald</strong>. Om ein brukar ikkje har interagera nok med andre til å danne personlege følgjeforslag, vert disse kontiane føreslått i staden. Dei vert gjenkalkulert på dagleg basis ut frå ei blanding av dei konti med flest nylege engasjement og flest lokale følgjarar for eit gitt språk."
       language: For språk
       status: Status
-      suppress: Undertrykk anbefalte følger
-      suppressed: Dempet
-      title: Følg anbefalinger
-      unsuppress: Gjenopprett følg-anbefaling
+      suppress: Demp følgjeforslag
+      suppressed: Dempa
+      title: Følgjeforslag
+      unsuppress: Tilbakestill følgjeforslag
     instances:
+      availability:
+        failure_threshold_reached: Feilterskelen ble nådd %{date}.
+        failures_recorded:
+          one: Mislykkede forsøk på %{count} dag.
+          other: Mislykkede forsøk på %{count} ulike dager.
+        no_failures_recorded: Ingen feil registrert.
+        title: Tilgjenge
+        warning: Det siste forsøket på å koble til denne serveren lyktes ikke
       back_to_all: All
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
+      confirm_purge: Er du sikker på at du vil slette data permanent fra dette domenet?
+      content_policies:
+        comment: Internt notat
+        description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
+        policies:
+          reject_media: Avvis media
+          reject_reports: Avvis rapporter
+          silence: Begrens
+          suspend: Suspender
+        reason: Offentlig årsak
+        title: Retningslinjer for innhold
+      dashboard:
+        instance_accounts_measure: lagrede kontoer
+        instance_followers_measure: våre følgere der
+        instance_follows_measure: deres følgere her
+        instance_languages_dimension: Mest brukte språk
+        instance_media_attachments_measure: lagrede mediavedlegg
+        instance_reports_measure: rapporter om dem
+        instance_statuses_measure: lagrede innlegg
       delivery:
         all: All
         clear: Feil ved fjerning
@@ -404,6 +481,8 @@ nn:
         stop: Stopp levering
         unavailable: Ikke tilgjengelig
       delivery_available: Levering er tilgjengelig
+      delivery_error_hint: Dersom levering ikke er mulig i løpet av %{count} dager, blir det automatisk merket som ikke mulig å levere.
+      empty: Ingen domener funnet.
       moderation:
         all: Alle
         limited: Avgrensa
@@ -465,17 +544,25 @@ nn:
         notes:
           one: "%{count} notis"
           other: "%{count} notiser"
+      action_log: Tilsynslogg
       action_taken_by: Handling gjort av
+      actions:
+        delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
+        mark_as_sensitive_description_html: Mediene i dei rapporterte innlegga vil verte markerte som ømtolege, og ein merknad vil verte lagra for å hjelpe deg å eskalera ved framtidige regelbrot frå same konto.
+        resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
+        silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilsett moderator
       by_target_domain: Domenet av rapportert bruker
+      category: Kategori
       comment:
         none: Ingen
       created_at: Rapportert
       forwarded: Videresendt
       forwarded_to: Videresendt til %{domain}
       mark_as_resolved: Merk som løyst
+      mark_as_sensitive: Marker som ømtolig
       mark_as_unresolved: Merk som uløyst
       notes:
         create: Sett inn merknad
@@ -490,19 +577,62 @@ nn:
       resolved: Oppløyst
       resolved_msg: Rapporten er løyst!
       status: Status
+      statuses: Rapportert innhold
       target_origin: Opprinnelse for innrapportert konto
       title: Rapportar
       unassign: Avset
       unresolved: Uløyst
       updated_at: Oppdatert
+      view_profile: Vis profil
+    roles:
+      add_new: Legg til rolle
+      assigned_users:
+        one: "%{count} brukar"
+        other: "%{count} brukarar"
+      categories:
+        administration: Administrasjon
+        devops: DevOps
+        invites: Innbydingar
+      delete: Slett
+      description_html: Med <strong>brukarrollar</strong> kan du kontrollera kva funksjonar og område av Mastodon brukarane dine har tilgong til.
+      edit: Endr rollen '%{name}'
+      everyone: Standard-tillatelser
+      everyone_full_description_html: Dette er <strong>grunnrollen</strong> som påverkar <strong>alle brukarar</strong>, jamvel dei utan ei tilsett rolle. Alle andre rollar arvar tillatingar frå denne.
+      permissions_count:
+        one: "%{count} tillatelse"
+        other: "%{count} tillatelser"
+      privileges:
+        administrator: Administrator
+        administrator_description: Brukere med denne tillatelsen omgår enhver tillatelse
+        delete_user_data: Slett brukerdata
+        delete_user_data_description: Lar brukere slette andre brukeres data uten forsinkelse
+        invite_users: Innby brukarar
+        invite_users_description: Tillet at brukarar innbyr nye folk til tenaren
+        manage_invites: Handsam innbydingar
+        manage_invites_description: Tillet at brukarar blar gjennom og deaktiverer innbydingslenkjer
+        manage_roles: Handsam roller
+        manage_roles_description: Tillet at brukarar handsamar og tilset rollar under deira eiga
+        view_dashboard: Vis dashbord
+        view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
+        view_devops: DevOps
+        view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
+      title: Rollar
     rules:
-      add_new: Legg til et filter
+      add_new: Legg til regel
       delete: Slett
       description_html: Mens de fleste hevder å ha lest og samtykket i tjenestevilkårene, leser de vanligvis ikke gjennom før etter et problem oppstår. <strong>Gjør det enklere å se serverens regler på et øyeblikk ved å gi dem i en flat kulepunktsliste.</strong> Prøv å holde individuelle regler korte og enkelt, men prøv å ikke dele dem opp i mange separate elementer heller.
       edit: Rediger regel
       empty: Ingen serverregler har blitt definert ennå.
       title: Server regler
     settings:
+      about:
+        title: Om
+      appearance:
+        title: Utsjånad
+      discovery:
+        follow_recommendations: Følgjeforslag
+        preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.
+        trends: Trender
       domain_blocks:
         all: Til alle
         disabled: Til ingen
@@ -512,33 +642,88 @@ nn:
           approved: Godkjenning kreves for påmelding
           none: Ingen kan melda seg inn
           open: Kven som helst kan melda seg inn
+      title: Serverinnstillinger
     site_uploads:
       delete: Slett opplasta fil
       destroyed_msg: Vellukka sletting av sideopplasting!
     statuses:
+      account: Forfatter
+      application: Applikasjon
       back_to_account: Tilbake til kontosida
+      batch:
+        remove_from_report: Fjern fra rapport
       deleted: Sletta
+      history: Versjonshistorikk
+      language: Språk
       media:
         title: Media
+      metadata: Metadata
       no_status_selected: Ingen statusar vart endra sidan ingen vart valde
+      original_status: Opprinnelig innlegg
+      status_changed: Innlegg endret
       title: Kontostatusar
+      visibility: Synlighet
       with_media: Med media
+    strikes:
+      actions:
+        delete_statuses: "%{name} slettet %{target}s innlegg"
+        disable: "%{name} frøs %{target}s konto"
+        mark_statuses_as_sensitive: "%{name} markerte %{target} sine innlegg som ømtålige"
+        none: "%{name} sendte en advarsel til %{target}"
+        sensitive: "%{name} markerte %{target} sin konto som ømtolig"
+        silence: "%{name} begrenset %{target}s konto"
+        suspend: "%{name} utviste %{target} sin konto"
+      appeal_approved: Klage tatt til følge
+      appeal_pending: Klage behandles
     system_checks:
       database_schema_check:
         message_html: Det venter på databaseoverføringer. Vennligst kjør disse for å sikre at applikasjonen oppfører seg som forventet
+      elasticsearch_running_check:
+        message_html: Kunne ikke koble til Elasticsearch. Kontroller at den kjører, eller deaktiver fulltekstsøk
+      elasticsearch_version_check:
+        message_html: 'Inkompatibel Elasticsearch-versjon: %{value}'
+        version_comparison: Elasticsearch %{running_version} kjører mens %{required_version} er påkrevd
       rules_check:
         action: Behandle serverregler
         message_html: Du har ikke definert noen serverregler.
+      sidekiq_process_check:
+        message_html: Ingen Sidekiq-prosess kjører for %{value} køen(e). Vennligst se gjennom Sidekiq-konfigurasjonen din
     tags:
       review: Sjå gjennom status
       updated_msg: Emneknagginnstillingane er oppdaterte
     title: Leiing
+    trends:
+      allow: Tillat
+      approved: Godkjent
+      disallow: Ikke tillat
+      links:
+        allow: Tillat lenke
+        disallow: Ikke tillat lenke
+        no_link_selected: Ingen lenker ble endret da ingen var valgt
+        shared_by_over_week:
+          one: Delt av %{count} person i løpet av den siste uken
+          other: Delt av %{count} personer i løpet av den siste uken
+        usage_comparison: Delt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+      pending_review: Avventer gjennomgang
+      rejected: Avvist
+      statuses:
+        allow: Tillat innlegg
+        allow_account: Tillat forfatter
+        disallow: Ikke tillat innlegg
     warning_presets:
       add_new: Legg til ny
       delete: Slett
       edit_preset: Endr åtvaringsoppsett
       title: Handsam åtvaringsoppsett
+    webhooks:
+      add_new: Legg til endepunkt
+      status: Status
   admin_mailer:
+    new_appeal:
+      actions:
+        mark_statuses_as_sensitive: å merke innleggene sine som følsomme
+        sensitive: å merke kontoen sin som følsom
+        silence: for å begrense deres konto
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -555,14 +740,14 @@ nn:
     remove: Fjern aliaslenking
   appearance:
     advanced_web_interface: Avansert nettgrensesnitt
-    advanced_web_interface_hint: 'Hvis du ønsker å bruke hele skjermbredden din, lar det avanserte nettgrensesnittet deg sette opp mange forskjellige kolonner for å se så mye informasjon på én gang som du vil: Hjem, varslinger, fellestidslinjen, og ethvert antall lister og emneknagger.'
-    animations_and_accessibility: Animasjoner og tilgjengelighet
+    advanced_web_interface_hint: 'Om du vil bruke heile skjermbreidda di, let det avanserte nettgrensesnittet deg setje opp mange ulike kolonnar for å sjå så mykje informasjon du vil på ein gong: Heim, varsel, samla tidslinje, og kva som helst antall lister og emneknaggar.'
+    animations_and_accessibility: Animasjonar og tilgjengelegheit
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdaging
     localization:
       body: Mastodon er oversatt av frivillige.
       guide_link_text: Alle kan bidra.
-    sensitive_content: Sensitivt innhold
+    sensitive_content: Ømtolig innhald
     toot_layout: Tutoppsett
   application_mailer:
     notification_preferences: Endr e-post-innstillingane
@@ -579,6 +764,7 @@ nn:
     warning: Ver varsam med dette datumet. Aldri del det med nokon!
     your_token: Tilgangsnykelen din
   auth:
+    apply_for_account: Søk om ein konto
     change_password: Passord
     delete_account: Slett konto
     delete_account_html: Om du vil sletta kontoen din, kan du <a href="%{path}">gå hit</a>. Du vert spurd etter stadfesting.
@@ -592,11 +778,13 @@ nn:
     invalid_reset_password_token: Tilgangsnykelen er ugyldig eller utgått. Ver venleg å beda om ein ny ein.
     link_to_otp: Skriv inn en 2-trinnskode fra din 2-trinnspåloggingsenhet eller en gjenopprettingskode
     link_to_webauth: Bruk sikkerhetsnøkkel-enheten din
+    log_in_with: Logg inn med
     login: Innlogging
     logout: Logg ut
     migrate_account: Flytt til ein annan konto
     migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
     or_log_in_with: Eller logg inn med
+    privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     providers:
       cas: CAS
       saml: SAML
@@ -604,17 +792,26 @@ nn:
     registration_closed: "%{instance} tek ikkje imot nye medlemmar"
     resend_confirmation: Send stadfestingsinstruksjonar på nytt
     reset_password: Attstill passord
+    rules:
+      preamble: Disse angis og håndheves av %{domain}-moderatorene.
+      title: Noen grunnregler.
     security: Tryggleik
     set_new_password: Lag nytt passord
     setup:
       email_below_hint_html: Om e-posten nedfor ikkje er rett, kan du endra han her og få ein ny stadfestings-e-post.
       email_settings_hint_html: Stadfestings-e-posten vart send til %{email}. Om den e-postadressa ikkje er rett, kan du byta adresse i kontoinnstillingane.
       title: Oppsett
+    sign_up:
+      preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
+      title: La oss få deg satt i gang på %{domain}.
     status:
       account_status: Kontostatus
       confirming: Ventar på stadfesting av e-post.
+      functional: Kontoen din er fullt operativt.
       pending: Søknaden din ventar på gjennomgang frå personalet vårt. Dette kan taka litt tid. Du får ein e-post om søknaden din vert godkjend.
       redirecting_to: Kontoen din er inaktiv fordi den for øyeblikket omdirigerer til %{acct}.
+      view_strikes: Vis tidligere advarsler mot kontoen din
+    too_fast: Skjemaet ble sendt inn for raskt, prøv på nytt.
     use_security_key: Bruk sikkerhetsnøkkel
   authorize_follow:
     already_following: Du fylgjer allereie denne kontoen
@@ -637,6 +834,10 @@ nn:
     errors:
       invalid_key: er ikkje ein gild Ed25519 eller Curve25519 nykel
       invalid_signature: er ikkje ein gild Ed25519-signatur
+  date:
+    formats:
+      default: "%d. %b, %Y"
+      with_month_name: "%d. %B, %Y"
   datetime:
     distance_in_words:
       about_x_hours: "%{count}t"
@@ -668,6 +869,36 @@ nn:
       more_details_html: For fleire detaljar, sjå <a href="%{terms_path}">personvernsvilkåra</a>.
       username_available: Brukarnamnet ditt vert tilgjengeleg igjen
       username_unavailable: Brukarnamnet ditt kjem til å halda seg utilgjengeleg
+  disputes:
+    strikes:
+      action_taken: Handling utført
+      appeal: Klage
+      appeal_approved: Denne advarselens klage ble tatt til følge og er ikke lenger gyldig
+      appeal_rejected: Klagen ble avvist
+      appeal_submitted_at: Klage levert
+      appealed_msg: Din klage har blitt levert. Du får beskjed om den blir godkjent.
+      appeals:
+        submit: Lever klage
+      approve_appeal: Godkjenn klage
+      associated_report: Tilhørende rapport
+      created_at: Datert
+      description_html: Dette er tiltakene mot din konto og advarsler som har blitt sent til deg av %{instance}-personalet.
+      recipient: Adressert til
+      reject_appeal: Avvis klage
+      status: 'Innlegg #%{id}'
+      status_removed: Innlegg allerede fjernet fra systemet
+      title: "%{action} fra %{date}"
+      title_actions:
+        delete_statuses: Fjerning av innlegg
+        disable: Frysing av konto
+        mark_statuses_as_sensitive: Markering av innlegg som ømtolige
+        none: Advarsel
+        sensitive: Markering av konto som ømtolig
+        silence: Begrensning av konto
+        suspend: Suspensjon av konto
+      your_appeal_approved: Din klage har blitt godkjent
+      your_appeal_pending: Du har levert en klage
+      your_appeal_rejected: Din klage har blitt avvist
   domain_validator:
     invalid_domain: er ikkje eit gangbart domenenamn
   errors:
@@ -679,7 +910,7 @@ nn:
     '422':
       content: Sikkerhetsverifisering feilet. Blokkerer du informasjonskapsler?
       title: Sikkerhetsverifisering feilet
-    '429': Overfyllt
+    '429': For mange forespørsler
     '500':
       content: Orsak. Vi har gjort noko feil.
       title: Denne sida er ikkje rett
@@ -716,6 +947,8 @@ nn:
       public: Offentlege tidsliner
       thread: Samtalar
     edit:
+      add_keyword: Legg til stikkord
+      statuses: Individuelle innlegg
       title: Endr filter
     errors:
       invalid_context: Ingen eller ugild kontekst gjeve
@@ -741,6 +974,9 @@ nn:
   html_validator:
     invalid_markup: 'rommar ugild HTML-kode: %{error}'
   imports:
+    errors:
+      invalid_csv_file: 'Ugyldig CSV-fil. Feil: %{error}'
+      over_rows_processing_limit: inneholder flere enn %{count} rader
     modes:
       merge: Set saman
       merge_long: Hald på eksisterande data og legg til nye
@@ -766,12 +1002,12 @@ nn:
       '86400': 1 dag
     expires_in_prompt: Aldri
     generate: Lag innbydingslenkje
-    invited_by: 'Du vart invitert av:'
+    invited_by: 'Du vart innboden av:'
     max_uses:
       one: 1 bruk
       other: "%{count} bruk"
     max_uses_prompt: Inga grense
-    prompt: Generer og del lenker med andre for å gi tilgang til denne instansen
+    prompt: Generer og del lenkjer med andre for å gje tilgong til denne tenaren
     table:
       expires_at: Vert ugyldig
       uses: Bruk
@@ -781,11 +1017,18 @@ nn:
       limit: Du har nådd grensa for kor mange lister du kan ha
   login_activities:
     authentication_methods:
+      otp: to-faktor autentiseringsapp
       password: passord
+      webauthn: sikkerhetsnøkler
+    description_html: Hvis du ser aktivitet som du ikke gjenkjenner, bør du vurdere å endre passordet ditt og aktivere to-trinnsinnlogging.
+    empty: Ingen innloggingshistorikk er tilgjengelig
+    failed_sign_in_html: Mislykket innloggingsforsøk med %{method} fra %{ip} (%{browser})
+    successful_sign_in_html: Vellykket innlogging med %{method} fra %{ip} (%{browser})
     title: Autentiseringshistorikk
   media_attachments:
     validations:
       images_and_video: Kan ikkje leggja ved video til status som allereie inneheld bilete
+      not_ready: Kan ikke legge til filer som ikke er ferdigbehandlet. Prøv igjen om et øyeblikk!
       too_many: Kan ikkje leggja til meir enn 4 filer
   migrations:
     acct: Flytta til
@@ -825,6 +1068,11 @@ nn:
     carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} leverte en rapport"
+      sign_up:
+        subject: "%{name} registrerte seg"
     favourite:
       body: 'Statusen din vart merkt som favoritt av %{name}:'
       subject: "%{name} merkte statusen din som favoritt"
@@ -849,6 +1097,8 @@ nn:
       title: Ny framheving
     status:
       subject: "%{name} postet nettopp"
+    update:
+      subject: "%{name} redigerte et innlegg"
   notifications:
     email_events: E-postvarslinger for hendelser
     email_events_hint: 'Velg hendelser som du vil motta varslinger for:'
@@ -892,6 +1142,8 @@ nn:
     other: Anna
     posting_defaults: Innleggsstandarder
     public_timelines: Offentlege tidsliner
+  privacy_policy:
+    title: Retningslinjer for personvern
   reactions:
     errors:
       limit_reached: Grensen for forskjellige reaksjoner nådd
@@ -902,7 +1154,7 @@ nn:
     follow_selected_followers: Følg valgte tilhengere
     followers: Følgere
     following: Følginger
-    invited: Invitert
+    invited: Innboden
     last_active: Sist aktiv
     most_recent: Sist
     moved: Flytta
@@ -915,6 +1167,13 @@ nn:
     status: Kontostatus
   remote_follow:
     missing_resource: Kunne ikke finne URLen for din konto
+  reports:
+    errors:
+      invalid_rules: refererer ikke til gyldige regler
+  rss:
+    descriptions:
+      account: Offentlige innlegg fra @%{acct}
+      tag: 'Offentlige innlegg merket med #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Du har overskredet grensen på %{limit} planlagte tuter for den dagen
     over_total_limit: Du har overskredet grensen på %{limit} planlagte tuter
@@ -938,7 +1197,7 @@ nn:
       phantom_js: PhantomJS
       qq: QQ-lesar
       safari: Safari
-      uc_browser: UC-lesar
+      uc_browser: QQ-lesar
       weibo: Weibo
     current_session: Noverande økt
     description: "%{browser} på %{platform}"
@@ -948,7 +1207,7 @@ nn:
       adobe_air: Adobe Air
       android: Android
       blackberry: BlackBerry
-      chrome_os: Chrome OS
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: IOS
       linux: Linux
@@ -980,6 +1239,8 @@ nn:
     preferences: Innstillingar
     profile: Profil
     relationships: Fylgjar og fylgjarar
+    statuses_cleanup: Automatisert sletting av innlegg
+    strikes: Modereringsadvarsler
     two_factor_authentication: Tostegsautorisering
     webauthn_authentication: Sikkerhetsnøkler
   statuses:
@@ -993,9 +1254,11 @@ nn:
         other: "%{count} bilete"
     boosted_from_html: Framheva av %{acct_link}
     content_warning: 'Innhaldsåtvaring: %{warning}'
+    default_language: Samme språk som brukergrensesnittet
     disallowed_hashtags:
       one: 'inneheldt ein emneknagg som ikkje var tillaten: %{tags}'
       other: 'inneheldt emneknaggen som ikkje var tillaten: %{tags}'
+    edited_at_html: Redigert %{date}
     errors:
       in_reply_not_found: Det ser ut til at tutet du freistar å svara ikkje finst.
     open_in_web: Opn på nett
@@ -1025,6 +1288,18 @@ nn:
       unlisted: Ikkje oppført
       unlisted_long: Alle kan sjå, men ikkje oppført på offentlege tidsliner
   statuses_cleanup:
+    enabled: Slett gamle innlegg automatisk
+    enabled_hint: Sletter innleggene dine automatisk når de oppnår en angitt alder, med mindre de samsvarer med ett av unntakene nedenfor
+    exceptions: Unntak
+    explanation: Siden sletting av innlegg er en krevende operasjon, blir dette gjort sakte over tid når tjeneren ellers ikke er opptatt. Av denne grunn kan det hende at innleggene dine slettes først en stund etter at de har nådd aldersgrensen.
+    ignore_favs: Ignorer favoritter
+    ignore_reblogs: Ignorer fremhevinger
+    interaction_exceptions: Unntak basert på interaksjoner
+    interaction_exceptions_explanation: Merk at det ikke er noen garanti for at innlegg blir slettet hvis de går under favoritt- eller fremhevelsesgrensen etter å ha gått over dem en gang.
+    keep_direct: Behold direktemeldinger
+    keep_direct_hint: Sletter ingen av direktemeldingene dine
+    keep_media: Behold innlegg med mediavedlegg
+    keep_media_hint: Sletter ikke dine egne innlegg som har mediavedlegg
     keep_pinned: Behald festa innlegg
     keep_pinned_hint: Sletter ingen av dine festa innlegg
     keep_polls: Behald røystingar
@@ -1043,11 +1318,14 @@ nn:
       '63113904': 2 år
       '7889238': 3 månader
     min_age_label: Aldersterskel
+    min_favs: Behold innlegg som er favorittmarkert av minst
     min_favs_hint: Sletter ingen av dine innlegg som har mottatt minst dette antalet favorittmerkingar. Lat vere blank for å slette innlegg uavhengig av antal favorittmerkingar
+    min_reblogs: Behold innlegg fremhevet av minst
+    min_reblogs_hint: Sletter ikke noen av dine innlegg som har blitt fremhevet minst dette antall ganger. La stå tom for å slette innlegg uavhengig av antall fremhevinger
   stream_entries:
     pinned: Festa tut
     reblogged: framheva
-    sensitive_content: Følsomt innhold
+    sensitive_content: Ømtolig innhald
   strikes:
     errors:
       too_late: Det er for seint å klage på denne prikken
@@ -1061,6 +1339,7 @@ nn:
     formats:
       default: "%d.%b %Y, %H:%M"
       month: "%b %Y"
+      time: "%H:%M"
   two_factor_authentication:
     add: Legg til
     disable: Slå av
@@ -1080,12 +1359,16 @@ nn:
     appeal_approved:
       action: Gå til din konto
       explanation: Apellen på prikken mot din kontor på %{strike_date} som du la inn på %{appeal_date} har blitt godkjend. Din konto er nok ein gong i god stand.
+      subject: Din klage fra %{date} er godkjent
       title: Anke godkjend
     appeal_rejected:
+      explanation: Klagen på advarselen mot din konto den %{strike_date} som du sendte inn den %{appeal_date} har blitt avvist.
+      subject: Din klage fra %{date} er avvist
       title: Anke avvist
     backup_ready:
       explanation: Du ba om en fullstendig sikkerhetskopi av Mastodon-kontoen din. Den er nå klar for nedlasting!
       subject: Arkivet ditt er klart til å lastes ned
+      title: Nedlasting av arkiv
     suspicious_sign_in:
       change_password: endre passord
       details: 'Her er påloggingsdetaljane:'
@@ -1102,25 +1385,34 @@ nn:
       explanation:
         delete_statuses: Nokre av innlegga dine er bryt éin eller fleire retningslinjer, og har så blitt fjerna av moderatorene på %{instance}.
         disable: Du kan ikkje lenger bruke kontoen, men profilen din og andre data er intakt. Du kan be om ein sikkerhetskopi av dine data, endre kontoinnstillingar eller slette din konto.
-        sensitive: Frå no av vil alle dine opplasta mediefiler bli markert som sensitive og skjult bak ei klikk-åtvaring.
+        mark_statuses_as_sensitive: Nokre av innlegga dine har vorte markerte som ømtolige av moderatorane ved %{instance}. Dette tyder at folk må trykkje på mediane i innlegga for å førehandsvise dei. Du kan markera media som ømtolig sjølv når du legg ut nye innlegg.
+        sensitive: Frå no av vil alle dine opplasta mediefiler bli markert som ømtolig og skjult bak ei klikk-åtvaring.
         silence: Medan kontoen din er avgrensa, vil berre folk som allereie fylgjer deg sjå dine tutar på denne tenaren, og du kan bli ekskludert fra diverse offentlige oppføringer. Andre kan framleis fylgje deg manuelt.
         suspend: Du kan ikkje lenger bruke kontoen din, og profilen og andre data er ikkje lenger tilgjengelege. Du kan framleis logge inn for å be om ein sikkerheitskopi av data før dei blir fullstendig sletta om omtrent 30 dagar, men vi beheld nokre grunnleggjande data for å forhindre deg å omgå suspenderinga.
       reason: 'Årsak:'
       statuses: 'Innlegg sitert:'
       subject:
+        delete_statuses: Dine innlegg på %{acct} har blitt fjernet
         disable: Kontoen din, %{acct}, har blitt fryst
+        mark_statuses_as_sensitive: Dine innlegg frå %{acct} har vorte markerte som ømtolige
         none: Åtvaring for %{acct}
+        sensitive: Dine innlegg frå %{acct} vil verte markerte som ømtolige frå no av
         silence: Kontoen din, %{acct}, er vorten avgrensa
-        suspend: Kontoen din, %{acct}, er vorten utvist
+        suspend: Kontoen din, %{acct}, har vorte utvist
       title:
+        delete_statuses: Innlegg fjernet
         disable: Konto frosen
+        mark_statuses_as_sensitive: Innlegg markerte som ømtolige
         none: Åtvaring
+        sensitive: Konto markert som ømtolig
         silence: Konto avgrensa
         suspend: Konto utvist
     welcome:
       edit_profile_action: Lag til profil
+      edit_profile_step: Du kan tilpasse profilen din ved å laste opp et profilbilde, endre visningsnavnet ditt og mer. Du kan velge at nye følgere må godkjennes av deg før de får lov til å følge deg.
       explanation: Her er nokre tips for å koma i gang
       final_action: Kom i gang med å leggja ut
+      final_step: 'Skriv innlegg! Selv uten følgere kan dine offentlige innlegg bli sett av andre, for eksempel på den lokale tidslinjen og i emneknagger. Du kan introdusere deg selv ved å bruke emneknaggen #introduksjon.'
       full_handle: Det fulle brukarnamnet ditt
       full_handle_hint: Dette er det du fortel venene dine for at dei skal kunna senda deg meldingar eller fylgja deg frå ein annan tenar.
       subject: Velkomen til Mastodon
@@ -1137,9 +1429,11 @@ nn:
   webauthn_credentials:
     add: Legg til ny sikkerhetsnøkkel
     create:
+      error: Det oppstod et problem med å legge til sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket lagt til.
     delete: Slett
     delete_confirmation: Er du sikker på at du vil slette denne sikkerhetsnøkkelen?
+    description_html: Dersom du aktiverer <strong>sikkerhetsnøkkelautentisering</strong>, vil innlogging kreve at du bruker en av sikkerhetsnøklene dine.
     destroy:
       error: Det oppsto et problem med å slette sikkerhetsnøkkelen. Prøv igjen.
       success: Sikkerhetsnøkkelen din ble vellykket slettet.

@@ -149,6 +149,17 @@ class Header extends ImmutablePureComponent {
     }
   }
 
+  handleShare = () => {
+    const { account } = this.props;
+
+    navigator.share({
+      text: `${titleFromAccount(account)}\n${account.get('note_plain')}`,
+      url: account.get('url'),
+    }).catch((e) => {
+      if (e.name !== 'AbortError') console.error(e);
+    });
+  }
+
   render () {
     const { account, hidden, intl, domain } = this.props;
     const { signedIn } = this.context.identity;
@@ -313,8 +324,6 @@ class Header extends ImmutablePureComponent {
             <a className='avatar' href={account.get('avatar')} rel='noopener noreferrer' target='_blank' onClick={this.handleAvatarClick}>
               <Avatar account={suspended || hidden ? undefined : account} size={90} />
             </a>
-
-            <div className='spacer' />
 
             {!suspended && (
               <div className='account__header__tabs__buttons'>

@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import AvatarOverlay from '../../../components/avatar_overlay';
 import DisplayName from '../../../components/display_name';
-import Permalink from 'mastodon/components/permalink';
+import { Link } from 'react-router-dom';
 
 export default class MovedNote extends ImmutablePureComponent {
 
@@ -23,12 +23,12 @@ export default class MovedNote extends ImmutablePureComponent {
         </div>
 
         <div className='moved-account-banner__action'>
-          <Permalink href={to.get('url')} to={`/@${to.get('acct')}`} className='detailed-status__display-name'>
+          <Link to={`/@${to.get('acct')}`} className='detailed-status__display-name'>
             <div className='detailed-status__display-avatar'><AvatarOverlay account={to} friend={from} /></div>
             <DisplayName account={to} />
-          </Permalink>
+          </Link>
 
-          <Permalink href={to.get('url')} to={`/@${to.get('acct')}`} className='button'><FormattedMessage id='account.go_to_profile' defaultMessage='Go to profile' /></Permalink>
+          <Link to={`/@${to.get('acct')}`} className='button'><FormattedMessage id='account.go_to_profile' defaultMessage='Go to profile' /></Link>
         </div>
       </div>
     );

@@ -964,7 +964,7 @@
 }
 
 .status__content.status__content--collapsed {
-  max-height: 20px * 15; // 15 lines is roughly above 500 characters
+  max-height: 22px * 15; // 15 lines is roughly above 500 characters
 }
 
 .status__content__read-more-button {
@@ -1869,9 +1869,6 @@ a.account__display-name {
 
   a {
     color: inherit;
-  }
-
-  .permalink {
     text-decoration: none;
   }
 
@@ -2220,6 +2217,7 @@ $ui-header-height: 55px;
   z-index: 2;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 
   &__logo {
     display: inline-flex;
@@ -2236,9 +2234,14 @@ $ui-header-height: 55px;
     align-items: center;
     gap: 10px;
     padding: 0 10px;
+    overflow: hidden;
 
     .button {
       flex: 0 0 auto;
+    }
+
+    .button-tertiary {
+      flex-shrink: 1;
     }
   }
 }
@@ -3142,12 +3145,16 @@ $ui-header-height: 55px;
     margin-top: 10px;
 
     h4 {
+      border-bottom: 1px solid lighten($ui-base-color, 8%);
+      padding: 10px;
       font-size: 12px;
       text-transform: uppercase;
-      color: $darker-text-color;
-      padding: 10px;
       font-weight: 500;
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
+
+      a {
+        color: $darker-text-color;
+        text-decoration: none;
+      }
     }
 
     @media screen and (max-height: 810px) {
@@ -7026,8 +7033,11 @@ noscript {
   &__tabs {
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     margin-top: -55px;
     padding-top: 10px;
+    gap: 8px;
+    overflow: hidden;
 
     &__buttons {
       display: flex;
@@ -7035,6 +7045,15 @@ noscript {
       gap: 8px;
       padding-top: 55px;
       overflow: hidden;
+
+      .button {
+        flex-shrink: 1;
+        white-space: nowrap;
+
+        @media screen and (max-width: $no-gap-breakpoint) {
+          min-width: 0;
+        }
+      }
 
       .icon-button {
         border: 1px solid lighten($ui-base-color, 12%);
@@ -7125,10 +7144,12 @@ noscript {
 
       .verified {
         border: 1px solid rgba($valid-value-color, 0.5);
+        margin-top: -1px;
 
         &:first-child {
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
+          margin-top: 0;
         }
 
         &:last-child {
@@ -7960,7 +7981,8 @@ noscript {
   width: 600px;
   background: $ui-base-color;
   border-radius: 8px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
   display: block;
   padding: 20px;
@@ -8557,28 +8579,45 @@ noscript {
 
   &__domain-blocks {
     margin-top: 30px;
-    width: 100%;
-    border-collapse: collapse;
-    break-inside: auto;
+    background: darken($ui-base-color, 4%);
+    border: 1px solid lighten($ui-base-color, 4%);
+    border-radius: 4px;
 
-    th {
-      text-align: left;
-      font-weight: 500;
+    &__domain {
+      border-bottom: 1px solid lighten($ui-base-color, 4%);
+      padding: 10px;
+      font-size: 15px;
       color: $darker-text-color;
-    }
 
-    thead tr,
-    tbody tr {
-      border-bottom: 1px solid lighten($ui-base-color, 8%);
-    }
+      &:nth-child(2n) {
+        background: darken($ui-base-color, 2%);
+      }
 
-    tbody tr:last-child {
-      border-bottom: 0;
-    }
+      &:last-child {
+        border-bottom: 0;
+      }
 
-    th,
-    td {
-      padding: 8px;
+      &__header {
+        display: flex;
+        gap: 10px;
+        justify-content: space-between;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      h6 {
+        color: $secondary-text-color;
+        font-size: inherit;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
 }
