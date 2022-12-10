@@ -4,6 +4,8 @@ fy:
     attributes:
       doorkeeper/application:
         name: Namme fan applikaasje
+        redirect_uri: Redirect-URI
+        scopes: Tastimmingen
         website: Webstee fan applikaasje
     errors:
       models:
@@ -15,9 +17,169 @@ fy:
               relative_uri: moat in absolute URI wêze.
               secured_uri: moat in HTTPS/SSL URI wêze.
   doorkeeper:
+    applications:
+      buttons:
+        authorize: Autorisearje
+        cancel: Annulearje
+        destroy: Ferneatigje
+        edit: Bewurkje
+        submit: Yntsjinje
+      confirmations:
+        destroy: Bisto wis?
+      edit:
+        title: Tapassing bewurkje
+      form:
+        error: Oeps! Kontrolearje it formulier op flaters
+      help:
+        native_redirect_uri: Brûk %{native_redirect_uri} foar lokale tests
+        redirect_uri: Brûk ien rigel per URI
+        scopes: Tastimmingen mei spaasjes fan inoar skiede. Lit leech om de standerttastimmingen te brûken.
+      index:
+        application: Tapassing
+        callback_url: Callback-URL
+        delete: Fuortsmite
+        empty: Do hast gjin tapassingen konfigurearre.
+        name: Namme
+        new: Nije tapassing
+        scopes: Tastimmingen
+        show: Toane
+        title: Dyn tapassingen
+      new:
+        title: Nije tapassing
+      show:
+        actions: Aksjes
+        application_id: Client-kaai
+        callback_urls: Callback-URL’s
+        scopes: Tastimmingen
+        secret: Client-geheim
+        title: 'Tapassing: %{name}'
+    authorizations:
+      buttons:
+        authorize: Autorisearje
+        deny: Wegerje
+      error:
+        title: Der is in flater bard
+      new:
+        prompt_html: "%{client_name} hat tastimming nedich om tagong te krijen ta dyn account. It giet om in tapassing fan in tredde partij.<strong>Asto dit net fertroust, moatsto gjin tastimming jaan.</strong>"
+        review_permissions: Tastimmingen beoardiele
+        title: Autorisaasje fereaske
+      show:
+        title: Kopiearje dizze autorisaasjekoade en plak it yn de tapassing.
+    authorized_applications:
+      buttons:
+        revoke: Ynlûke
+      confirmations:
+        revoke: Bisto wis?
+      index:
+        authorized_at: Autorisearre op %{date}
+        description_html: Dit binne tapassingen dy’t tagong hawwe ta dyn account fia de API. As der tapassingen tusken steane dy’tsto net werkenst of in tapassing harren misdraacht, kinsto de tagongsrjochten fan de tapassing ynlûke.
+        last_used_at: Lêst brûkt op %{date}
+        never_used: Nea brûkt
+        scopes: Tastimmingen
+        superapp: Yntern
+        title: Dyn autorisearre tapassingen
+    errors:
+      messages:
+        access_denied: De boarne-eigener of autorisaasjeserver hat it fersyk wegere.
+        credential_flow_not_configured: De wachtwurdgegevens-flow fan de boarne-eigener is mislearre, omdat Doorkeeper.configure.resource_owner_from_credentials net ynsteld is.
+        invalid_client: Clientferifikaasje is mislearre troch in ûnbekende client, ûntbrekkende client-autentikaasje of in net stipe autentikaasjemetoade.
+        invalid_grant: De opjûne autorisaasje is ûnjildich, ferrûn, ynlutsen, komt net oerien mei de redirect-URI dy’t opjûn is of útjûn waard oan in oere client.
+        invalid_redirect_uri: De opjûne redirect-URI is ûnjildich.
+        invalid_request:
+          missing_param: 'Untbrekkende fereaske parameter: %{value}.'
+          request_not_authorized: It fersyk moat autorisearre wurde. De fereaske parameter foar it autorisaasjefersyk ûntbrekt of is ûnjildich.
+          unknown: It fersyk mist in fereaske parameter, befettet in net-stipe parameterwearde of is op in oare manier net krekt.
+        invalid_resource_owner: De opjûne boarne-eigenersgegevens binne ûnjildich of de boarne-eigener kin net fûn wurde
+        invalid_scope: De opfrege tastimming is ûnjildich, ûnbekend of net krekt.
+        invalid_token:
+          expired: Tagongskoade ferrûn
+          revoked: Tagongskoade ynlutsen
+          unknown: Tagongskoade ûnjildich
+        resource_owner_authenticator_not_configured: It opsykjen fan de boarne-eigener is mislearre, omdat Doorkeeper.configure.resource_owner_authenticator net ynsteld is.
+        server_error: De autorisaasjeserver is in ûnferwachte situaasje tsjinkaam dy’t it fersyk behindere.
+        temporarily_unavailable: De autorisaasjeserver is op dit stuit net yn steat it fersyk te behanneljen as gefolch fan in tydlike oerbelêsting of ûnderhâld oan de server.
+        unauthorized_client: De client is net autorisearre om dit fersyk op dizze manier út te fieren.
+        unsupported_grant_type: It type autorisaasje wurdt net troch de autorisaasjeserver stipe.
+        unsupported_response_type: De autorisaasjeserver stipet dit antwurdtype net.
+    flash:
+      applications:
+        create:
+          notice: Tapassing oanmakke.
+        destroy:
+          notice: Tapassing fuortsmiten.
+        update:
+          notice: Tapassing bewurke.
+      authorized_applications:
+        destroy:
+          notice: Tapassing ynlutsen.
     grouped_scopes:
+      access:
+        read: Allinnich-lêze-tagong
+        read/write: Lês- en skriuwtagong
+        write: Allinnich skriuwtagong
       title:
+        accounts: Accounts
+        admin/accounts: Accountbehear
+        admin/all: Alle behearfunksjes
+        admin/reports: Rapportaazjebehear
+        all: Alles
+        blocks: Blokkearje
+        bookmarks: Blêdwizers
         conversations: Petearen
+        crypto: End-to-end-fersifering
+        favourites: Favoriten
+        filters: Filters
+        follow: Relaasjes
+        follows: Folgjend
+        lists: Listen
+        media: Mediabylagen
+        mutes: Negearre
+        notifications: Meldingen
+        push: Pushmeldingen
+        reports: Rapportaazjes
+        search: Sykje
+        statuses: Berjochten
+    layouts:
+      admin:
+        nav:
+          applications: Tapassingen
+          oauth2_provider: OAuth2-provider
+      application:
+        title: OAuth-autorisaasje fereaske
     scopes:
+      admin:read: alle gegevens op de server lêze
+      admin:read:accounts: gefoelige ynformaasje fan alle accounts lêze
+      admin:read:reports: gefoelige ynformaasje fan alle rapportaazjes en rapportearre accounts lêze
+      admin:write: wizigje alle gegevens op de server
+      admin:write:accounts: moderaasjemaatregelen tsjin accounts nimme
+      admin:write:reports: moderaasjemaatregelen nimme yn rapportaazjes
+      crypto: end-to-end-encryptie brûke
+      follow: relaasjes tusken accounts bewurkje
+      push: dyn pushmeldingen ûntfange
+      read: alle gegevens fan dyn account lêze
+      read:accounts: accountynformaasje besjen
+      read:blocks: dyn blokkearre brûkers besjen
+      read:bookmarks: dyn blêdwizers besjen
+      read:favourites: dyn favoriten besjen
+      read:filters: dyn filters besjen
+      read:follows: de accounts dy’tsto folgest besjen
+      read:lists: dyn listen besjen
+      read:mutes: dyn negearre brûkers besjen
+      read:notifications: dyn meldingen besjen
+      read:reports: dyn rapportearre berjochten besjen
+      read:search: út dyn namme sykje
+      read:statuses: alle berjochten besjen
+      write: alle gegevens fan dyn account bewurkje
+      write:accounts: dyn profyl bewurkje
+      write:blocks: accounts en domeinen blokkearje
+      write:bookmarks: berjochten oan blêdwizers tafoegje
       write:conversations: petearen negearre en fuortsmite
+      write:favourites: berjochten as favoryt markearje
+      write:filters: filters oanmeitsje
+      write:follows: minsken folgje
+      write:lists: listen oanmeitsje
+      write:media: mediabestannen oplade
       write:mutes: minsken en petearen negearre
+      write:notifications: meldingen fuortsmite
+      write:reports: oare minsken rapportearje
+      write:statuses: berjochten pleatse

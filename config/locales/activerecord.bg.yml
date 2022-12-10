@@ -7,7 +7,7 @@ bg:
         options: Избори
       user:
         agreement: Споразумение за обслужване
-        email: Имейл адрес
+        email: Адрес на имейла
         locale: Локално
         password: Парола
       user/account:
@@ -19,10 +19,37 @@ bg:
         account:
           attributes:
             username:
-              invalid: само букви, цифри и долни черти
+              invalid: трябва да има само букви, цифри и долни черти
               reserved: е запазено
+        admin/webhook:
+          attributes:
+            url:
+              invalid: е невалиден URL адрес
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: е невалиден URL адрес
+        import:
+          attributes:
+            data:
+              malformed: е деформиран
+        status:
+          attributes:
+            reblog:
+              taken: от публикациите вече съществуват
         user:
           attributes:
             email:
               blocked: използва се непозволен имейл доставчик
               unreachable: изглежда, че не съществува
+            role_id:
+              elevated: не може да е по-висока от текущата ви роля
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: включва разрешения, които не са безопасни за базова роля
+              elevated: не може да включва разрешения, които настоящата ви роля не притежава
+              own_role: не може да се промени с текущата ви роля
+            position:
+              elevated: не може да е по-висока от текущата ви роля
+              own_role: не може да се промени с текущата ви роля

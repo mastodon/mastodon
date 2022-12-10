@@ -199,7 +199,8 @@ class Request
         rescue IPAddr::InvalidAddressError
           Resolv::DNS.open do |dns|
             dns.timeouts = 5
-            addresses = dns.getaddresses(host).take(2)
+            addresses = dns.getaddresses(host)
+            addresses = addresses.filter { |addr| addr.is_a?(Resolv::IPv6) }.take(2) + addresses.filter { |addr| !addr.is_a?(Resolv::IPv6) }.take(2)
           end
         end
 
@@ -280,7 +281,7 @@ class Request
 
   class ProxySocket < Socket
     class << self
-      def check_private_address(_address)
+      def check_private_address(_address, _host)
         # Accept connections to private addresses as HTTP proxies will usually
         # be on local addresses
         nil

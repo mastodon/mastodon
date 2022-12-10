@@ -172,6 +172,29 @@ RSpec.describe ImportService, type: :service do
     end
   end
 
+  # Based on the bug report 20571 where UTF-8 encoded domains were rejecting import of their users
+  #
+  # https://github.com/mastodon/mastodon/issues/20571
+  context 'utf-8 encoded domains' do
+    subject { ImportService.new }
+
+    let!(:nare)     { Fabricate(:account, username: 'nare', domain: 'թութ.հայ', locked: false, protocol: :activitypub, inbox_url: 'https://թութ.հայ/inbox') }
+
+    # Make sure to not actually go to the remote server
+    before do
+      stub_request(:post, "https://թութ.հայ/inbox").to_return(status: 200)
+    end
+
+    let(:csv) { attachment_fixture('utf8-followers.txt') }
+    let(:import) { Import.create(account: account, type: 'following', data: csv) }
+
+    it 'follows the listed account' do
+    expect(account.follow_requests.count).to eq 0
+      subject.call(import)
+      expect(account.follow_requests.count).to eq 1
+    end
+  end
+
   context 'import bookmarks' do
     subject { ImportService.new }
 

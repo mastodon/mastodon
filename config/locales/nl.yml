@@ -12,7 +12,7 @@ nl:
       one: Volger
       other: Volgers
     following: Volgend
-    instance_actor_flash: Dit account is een 'virtual actor' waarmee de server zichzelf vertegenwoordigd en is dus geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden opgeschort.
+    instance_actor_flash: Dit account is een 'virtual actor' waarmee de server zichzelf vertegenwoordigt en is dus geen individuele gebruiker. Het wordt voor federatiedoeleinden gebruikt en moet niet worden opgeschort.
     last_active: laatst actief
     link_verified_on: Eigendom van deze link is gecontroleerd op %{date}
     nothing_here: Hier is niets!
@@ -35,7 +35,7 @@ nl:
       approve: Goedkeuren
       approved_msg: Het goedkeuren van het account van %{username} is geslaagd
       are_you_sure: Weet je het zeker?
-      avatar: Avatar
+      avatar: Profielfoto
       by_domain: Domein
       change_email:
         changed_msg: E-mailadres succesvol veranderd!
@@ -116,9 +116,9 @@ nl:
       redownloaded_msg: Het herstellen van het oorspronkelijke profiel van %{username} is geslaagd
       reject: Afwijzen
       rejected_msg: Het afwijzen van het registratieverzoek van %{username} is geslaagd
-      remove_avatar: Avatar verwijderen
+      remove_avatar: Profielfoto verwijderen
       remove_header: Omslagfoto verwijderen
-      removed_avatar_msg: Het verwijderen van de avatar van %{username} is geslaagd
+      removed_avatar_msg: Het verwijderen van de profielfoto van %{username} is geslaagd
       removed_header_msg: Het verwijderen van de omslagfoto van %{username} is geslaagd
       resend_confirmation:
         already_confirmed: Deze gebruiker is al bevestigd
@@ -205,7 +205,7 @@ nl:
         promote_user: Gebruiker promoveren
         reject_appeal: Bezwaar afwijzen
         reject_user: Gebruiker afwijzen
-        remove_avatar_user: Avatar verwijderen
+        remove_avatar_user: Profielfoto verwijderen
         reopen_report: Rapportage heropenen
         resend_user: Bevestigingsmail opnieuw verzenden
         reset_password_user: Wachtwoord opnieuw instellen
@@ -264,7 +264,7 @@ nl:
         promote_user_html: Gebruiker %{target} is door %{name} gepromoveerd
         reject_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} afgewezen"
         reject_user_html: "%{name} heeft de registratie van %{target} afgewezen"
-        remove_avatar_user_html: "%{name} verwijderde de avatar van %{target}"
+        remove_avatar_user_html: "%{name} verwijderde de profielfoto van %{target}"
         reopen_report_html: "%{name} heeft rapportage %{target} heropend"
         resend_user_html: "%{name} heeft de bevestigingsmail voor %{target} opnieuw verzonden"
         reset_password_user_html: Wachtwoord van gebruiker %{target} is door %{name} opnieuw ingesteld
@@ -373,6 +373,8 @@ nl:
       add_new: Federatie met domein goedkeuren
       created_msg: Federatie met domein is succesvol goedgekeurd
       destroyed_msg: Federatie met domein is afgekeurd
+      export: Exporteren
+      import: Importeren
       undo: Federatie met domein afkeuren
     domain_blocks:
       add_new: Nieuwe domeinblokkade toevoegen
@@ -382,15 +384,19 @@ nl:
       edit: Domeinblokkade bewerken
       existing_domain_block: Je hebt al strengere limieten opgelegd aan %{name}.
       existing_domain_block_html: Jij hebt al strengere beperkingen opgelegd aan %{name}, je moet het domein eerst <a href="%{unblock_url}">deblokkeren</a>.
+      export: Exporteren
+      import: Importeren
       new:
         create: Blokkade aanmaken
         hint: Een domeinblokkade voorkomt niet dat accountgegevens van dit domein aan de database worden toegevoegd, maar dat er met terugwerkende kracht en automatisch bepaalde moderatiemethoden op deze accounts worden toegepast.
         severity:
-          desc_html: "<strong>Negeren</strong> zorgt ervoor dat berichten van accounts van dit domein voor iedereen onzichtbaar zijn, behalve als een account wordt gevolgd. <strong>Opschorten</strong> zorgt ervoor dat alle berichten, media en profielgegevens van accounts van dit domein worden verwijderd. Gebruik <strong>Geen</strong> wanneer je alleen mediabestanden wilt weigeren."
+          desc_html: "<strong>Beperken</strong> zorgt ervoor dat berichten van accounts van dit domein voor iedereen onzichtbaar zijn, behalve als een account wordt gevolgd. <strong>Opschorten</strong> zorgt ervoor dat alle berichten, media en profielgegevens van accounts van dit domein worden verwijderd. Gebruik <strong>Geen</strong> wanneer je alleen mediabestanden wilt weigeren."
           noop: Geen
-          silence: Negeren
+          silence: Beperken
           suspend: Opschorten
         title: Nieuwe domeinblokkade
+      no_domain_block_selected: Er zijn geen domeinblokkades gewijzigd, omdat er niets werd geselecteerd
+      not_permitted: Je bent niet bevoegd om deze actie uit te voeren
       obfuscate: Domeinnaam verdoezelen
       obfuscate_hint: De domeinnaam gedeeltelijk verdoezelen wanneer de lijst met domeinblokkades wordt getoond
       private_comment: Privé-opmerking
@@ -422,12 +428,26 @@ nl:
       resolved_dns_records_hint_html: De domeinnaam slaat op de volgende MX-domeinen die uiteindelijk verantwoordelijk zijn voor het accepteren van e-mail. Het blokkeren van een MX-domein blokkeert aanmeldingen van elk e-mailadres dat hetzelfde MX-domein gebruikt, zelfs als de zichtbare domeinnaam anders is. <strong>Pas op dat u geen grote e-mailproviders blokkeert.</strong>
       resolved_through_html: Geblokkeerd via %{domain}
       title: Geblokkeerde e-maildomeinen
+    export_domain_allows:
+      new:
+        title: Toegestane domeinen importeren
+      no_file: Geen bestand geselecteerd
+    export_domain_blocks:
+      import:
+        description_html: Je staat op het punt een lijst met domeinblokkades te importeren. Controleer deze lijst zeer zorgvuldig, vooral als je deze lijst niet zelf hebt gemaakt.
+        existing_relationships_warning: Bestaande volgrelaties
+        private_comment_description_html: 'Om je te helpen bijhouden waar de geïmporteerde blokkades vandaan komen, worden de geïmporteerde blokkades met de volgende privé-opmerking aangemaakt: <q>%{comment}</q>'
+        private_comment_template: Geïmporteerd van %{source} op %{date}
+        title: Domeinblokkades importeren
+      new:
+        title: Domeinblokkades importeren
+      no_file: Geen bestand geselecteerd
     follow_recommendations:
       description_html: "<strong>Deze aanbevolen accounts helpen nieuwe gebruikers snel interessante inhoud</strong>te vinden. Wanneer een gebruiker niet met andere gebruikers genoeg interactie heeft gehad om gepersonaliseerde aanbevelingen te krijgen, worden in plaats daarvan deze accounts aanbevolen. Deze accounts worden dagelijks opnieuw berekend met behulp van accounts met het hoogste aantal recente interacties en het hoogste aantal lokale volgers in een bepaalde taal."
       language: Voor taal
       status: Status
       suppress: Aanbevolen account niet meer aanbevelen
-      suppressed: Account niet meer aanbevolen
+      suppressed: Niet meer aanbevolen
       title: Aanbevolen accounts
       unsuppress: Account weer aanbevelen
     instances:
@@ -608,7 +628,7 @@ nl:
         other: "%{count} gebruikers"
       categories:
         administration: Beheer
-        devops: Devops
+        devops: DevOps
         invites: Uitnodigingen
         moderation: Moderatie
         special: Speciaal
@@ -659,7 +679,7 @@ nl:
         view_audit_log_description: Staat gebruikers toe om een geschiedenis van beheeracties op de server te bekijken
         view_dashboard: Dashboard bekijken
         view_dashboard_description: Geeft gebruikers toegang tot het dashboard en verschillende statistieken
-        view_devops: Devops
+        view_devops: DevOps
         view_devops_description: Geeft gebruikers toegang tot de dashboards van Sidekiq en pgHero
       title: Rollen
     rules:
@@ -686,6 +706,7 @@ nl:
         title: Bewaartermijn berichten
       discovery:
         follow_recommendations: Aanbevolen accounts
+        preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
         title: Ontdekken
@@ -788,6 +809,7 @@ nl:
       statuses:
         allow: Bericht goedkeuren
         allow_account: Account goedkeuren
+        description_html: Dit zijn berichten die op jouw server bekend zijn en die momenteel veel worden gedeeld en als favoriet worden gemarkeerd. Hiermee kunnen nieuwe en terugkerende gebruikers meer mensen vinden om te volgen. Er worden geen berichten in het openbaar weergegeven totdat het account door jou is goedgekeurd en de gebruiker toestaat dat diens account aan anderen wordt aanbevolen. Je kunt ook individuele berichten goed- of afkeuren.
         disallow: Bericht afkeuren
         disallow_account: Account afkeuren
         no_status_selected: Er werden geen trending berichten gewijzigd, omdat er geen enkele werd geselecteerd
@@ -804,6 +826,7 @@ nl:
           tag_servers_dimension: Populaire servers
           tag_servers_measure: verschillende servers
           tag_uses_measure: totaal aantal keer gebruikt
+        description_html: Deze hashtags verschijnen momenteel in veel berichten die op jouw server zichtbaar zijn. Hiermee kunnen jouw gebruikers zien waar mensen op dit moment het meest over praten. Er worden geen hashtags in het openbaar weergegeven totdat je ze goedkeurt.
         listable: Kan worden aanbevolen
         no_tag_selected: Er werden geen hashtags gewijzigd, omdat er geen enkele werd geselecteerd
         not_listable: Wordt niet aanbevolen
@@ -829,6 +852,7 @@ nl:
     webhooks:
       add_new: Eindpunt toevoegen
       delete: Verwijderen
+      description_html: Met een <strong>webhook</strong> kan Mastodon <strong>meldingen in real-time</strong> over gekozen gebeurtenissen naar jouw eigen toepassing sturen, zodat je applicatie <strong>automatisch reacties kan genereren</strong>.
       disable: Uitschakelen
       disabled: Uitgeschakeld
       edit: Eindpunt bewerken
@@ -873,6 +897,7 @@ nl:
         title: Trending berichten
       new_trending_tags:
         no_approved_tags: Op dit moment zijn er geen goedgekeurde hashtags.
+        requirements: 'Elk van deze kandidaten kan de #%{rank} goedgekeurde trending hashtag overtreffen, die momenteel #%{lowest_tag_name} is met een score van %{lowest_tag_score}.'
         title: Trending hashtags
       subject: Nieuwe trends te beoordelen op %{instance}
   aliases:
@@ -909,7 +934,7 @@ nl:
     warning: Wees voorzichtig met deze gegevens. Deel het nooit met iemand anders!
     your_token: Jouw toegangscode
   auth:
-    apply_for_account: Zet jezelf op de wachtlijst
+    apply_for_account: Account aanvragen
     change_password: Wachtwoord
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
@@ -1154,6 +1179,7 @@ nl:
     invalid_markup: 'bevat ongeldige HTML-opmaak: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Ongeldig CSV-bestand. Fout: %{error}'
       over_rows_processing_limit: bevat meer dan %{count} rijen
     modes:
       merge: Samenvoegen
@@ -1368,7 +1394,7 @@ nl:
     browser: Webbrowser
     browsers:
       alipay: Alipay
-      blackberry: Blackberry
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1382,7 +1408,7 @@ nl:
       phantom_js: PhantomJS
       qq: QQ Browser
       safari: Safari
-      uc_browser: UCBrowser
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Huidige sessie
     description: "%{browser} op %{platform}"
@@ -1391,8 +1417,8 @@ nl:
     platforms:
       adobe_air: Adobe Air
       android: Android
-      blackberry: Blackberry
-      chrome_os: Chrome OS
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
@@ -1544,7 +1570,7 @@ nl:
     otp: Authenticatie-app
     recovery_codes: Herstelcodes back-uppen
     recovery_codes_regenerated: Opnieuw genereren herstelcodes geslaagd
-    recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaard</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
+    recovery_instructions_html: Wanneer je ooit de toegang verliest tot jouw telefoon, kan je met behulp van een van de herstelcodes hieronder opnieuw toegang krijgen tot jouw account. <strong>Zorg ervoor dat je de herstelcodes op een veilige plek bewaart</strong>. Je kunt ze bijvoorbeeld printen en ze samen met andere belangrijke documenten bewaren.
     webauthn: Beveiligingssleutels
   user_mailer:
     appeal_approved:
@@ -1600,7 +1626,7 @@ nl:
         suspend: Account opgeschort
     welcome:
       edit_profile_action: Profiel instellen
-      edit_profile_step: Je kunt jouw profiel aanpassen door een profielafbeelding (avatar) te uploaden, jouw weergavenaam aan te passen en meer. Je kunt het handmatig goedkeuren van volgers instellen.
+      edit_profile_step: Je kunt jouw profiel aanpassen door een profielfoto te uploaden, jouw weergavenaam aan te passen en meer. Je kunt het handmatig goedkeuren van volgers instellen.
       explanation: Hier zijn enkele tips om je op weg te helpen
       final_action: Begin berichten te plaatsen
       final_step: 'Begin berichten te plaatsen! Zelfs zonder volgers kunnen jouw openbare berichten door anderen bekeken worden, bijvoorbeeld op de lokale tijdlijn en onder hashtags. Je kunt jezelf voorstellen met het gebruik van de hashtag #introductions.'

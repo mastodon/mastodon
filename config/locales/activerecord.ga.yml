@@ -3,8 +3,10 @@ ga:
   activerecord:
     attributes:
       poll:
+        expires_at: Sprioc-am
         options: Roghanna
       user:
+        agreement: Comhaontú seirbhísí
         email: Seoladh ríomhphoist
         locale: Láthair
         password: Pasfhocal
@@ -12,3 +14,13 @@ ga:
         username: Ainm úsáideora
       user/invite_request:
         text: Fáth
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              reserved: in áirithe
+        import:
+          attributes:
+            data:
+              malformed: míchumtha

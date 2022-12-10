@@ -1064,8 +1064,15 @@ code {
 
     &:last-child {
       border-bottom: 0;
-      padding-bottom: 0;
     }
+  }
+}
+
+// Only remove padding when listing applications, to prevent styling issues on
+// the Authorization page.
+.applications-list {
+  .permissions-list__item:last-child {
+    padding-bottom: 0;
   }
 }
 
