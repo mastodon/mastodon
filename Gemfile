@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.7.0', '< 3.1.0'
+ruby '>= 2.7.0', '< 3.2.0'
 
 gem 'pkg-config', '~> 1.5'
 gem 'rexml', '~> 3.2'
@@ -72,7 +72,7 @@ gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
-gem 'rails-settings-cached', '~> 0.6'
+gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/zunda/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redcarpet', '~> 3.5'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
