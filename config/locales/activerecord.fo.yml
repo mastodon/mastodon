@@ -1,0 +1,55 @@
+---
+fo:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Freist
+        options: Val
+      user:
+        agreement: Tænastuavtala
+        email: Teldupostur
+        locale: Staðbundið
+        password: Loyniorð
+      user/account:
+        username: Brúkaranavn
+      user/invite_request:
+        text: Orsøk
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: kann bara innihalda bókstavir, tøl og botnstriku
+              reserved: er umbiðið
+        admin/webhook:
+          attributes:
+            url:
+              invalid: er ikki eitt rætt leinki
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: er ikki eitt rætt leinki
+        import:
+          attributes:
+            data:
+              malformed: er avskeplað
+        status:
+          attributes:
+            reblog:
+              taken: frá posti sum longu finst
+        user:
+          attributes:
+            email:
+              blocked: brúkar ein ikki loyvdan teldopostveitara
+              unreachable: tykist ikki at vera til
+            role_id:
+              elevated: kann ikki vera hægri enn verandi støða
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: inniheldur loyvi, ið ikki eru trygg, á grundstøði
+              elevated: rúmar ikki loyvum ið tín verandi støða loyvir
+              own_role: kann ikki verða broytt við verandi rættindum
+            position:
+              elevated: loyvi kunnu ikki setast hægri, við verandi rættindum
+              own_role: kann ikki verða broytt við tínum verandi rættindum
