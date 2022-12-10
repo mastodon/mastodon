@@ -21,6 +21,18 @@ ro:
             username:
               invalid: doar litere, numere și sublinieri
               reserved: este rezervat
+        admin/webhook:
+          attributes:
+            url:
+              invalid: nu este un URL valid
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: nu este un URL valid
+        import:
+          attributes:
+            data:
+              malformed: este malformat
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ ro:
             email:
               blocked: utilizează un furnizor de e-mail neautorizat
               unreachable: pare să nu existe
+            role_id:
+              elevated: nu poate fi mai mare decât rolul curent
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: include permisiuni care nu sunt sigure pentru rolul de bază
+              elevated: nu poate include permisiuni pe care rolul dvs. nu le deține
+              own_role: nu poate fi schimbat cu rolul curent
+            position:
+              elevated: nu poate fi mai mare decât rolul curent
+              own_role: nu poate fi schimbat cu rolul curent

@@ -861,8 +861,8 @@ vi:
         sensitive: đánh dấu tài khoản của họ là nhạy cảm
         silence: hạn chế tài khoản của họ
         suspend: vô hiệu hóa tài khoản của họ
-      body: "%{target} đã khiếu nại quyết định kiểm duyệt bởi %{action_taken_by} vào %{date}, vì %{type}. Họ cho biết:"
-      next_steps: Bạn có thể chấp nhận kháng cáo để hủy bỏ kiểm duyệt, hoặc bỏ qua.
+      body: "%{target} đã khiếu nại vì bị %{action_taken_by} %{type} vào %{date}. Họ cho biết:"
+      next_steps: Bạn có thể chấp nhận kháng cáo để hủy kiểm duyệt hoặc bỏ qua.
       subject: "%{username} đang khiếu nại quyết định kiểm duyệt trên %{instance}"
     new_pending_account:
       body: Thông tin chi tiết của tài khoản mới ở phía dưới. Bạn có thể phê duyệt hoặc từ chối người này.

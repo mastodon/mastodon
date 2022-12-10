@@ -5,7 +5,7 @@ be:
       doorkeeper/application:
         name: Назва праграмы
         redirect_uri: URI перанакіравання
-        scopes: Сферы ўжывання.
+        scopes: Дазволы
         website: Вэб-сайт праграмы
     errors:
       models:
@@ -31,7 +31,7 @@ be:
       form:
         error: Вой! Праверце вашу форму на магчымыя памылкі
       help:
-        native_redirect_uri: Карыстайце %{native_redirect_uri} для лакальных тэстаў
+        native_redirect_uri: Для лакальных тэстаў выкарыстоўвайце %{native_redirect_uri}
         redirect_uri: Выкарыстоўвайце адзін радок для кожнай спасылкі
         scopes: Падзяліце вобласці абмежаванняў прабеламі. Пакіньце поле пустым, каб выкарыстоўваць дыяпазоны па змаўчанні.
       index:
@@ -41,7 +41,7 @@ be:
         empty: У вас няма праграм.
         name: Назва
         new: Новая праграма
-        scopes: Межы агляду
+        scopes: Дазволы
         show: Паказаць
         title: Вашы праграмы
       new:
@@ -129,7 +129,7 @@ be:
         crypto: Скразное шыфраванне
         favourites: Упадабаныя
         filters: Фільтры
-        follow: Узаемасувязі
+        follow: Зносіны
         follows: Падпіскі
         lists: Спісы
         media: Мультымедыйныя ўкладанні
@@ -147,39 +147,39 @@ be:
       application:
         title: Неабходна OAuth аўтарызацыя
     scopes:
-      admin:read: чытаць усе дадзеныя на гэтым серверы
+      admin:read: чытаць усе даныя на серверы
       admin:read:accounts: бачыць канфідэнцыйную інфармацыю ўсіх акаўнтаў
       admin:read:reports: чытаць далікатную інфармацыю са скарг і ўліковых запісаў, на якія пададзена скарга
-      admin:write: змяняць усе дадзеныя на гэтым серверы
+      admin:write: змяняць усе даныя на серверы
       admin:write:accounts: мадэраваць уліковыя запісы
       admin:write:reports: мадэраваць скаргі
       crypto: выкарыстоўваць скразное шыфраванне
       follow: змяняць зносіны ўліковага запісу
       push: атрымліваць push-апавяшчэнні
-      read: чытаць усе дадзеныя свайго ўліковага запісу
+      read: чытаць усе даныя вашага ўліковага запісу
       read:accounts: бачыць інфармацыю аб уліковых запісах
-      read:blocks: бачыць свае блакіроўкі
-      read:bookmarks: бачыць свае закладкі
-      read:favourites: бачыць свае выбранае
-      read:filters: бачыць свае фільтры
-      read:follows: бачыць свае падпіскі
-      read:lists: бачыць свае спіскі
-      read:mutes: праглядзець спіс ігнараваных
-      read:notifications: глядзець вашы абвяшчэннi
-      read:reports: паглядзець вашыя скаргі
+      read:blocks: бачыць вашы блакіроўкі
+      read:bookmarks: бачыць вашы закладкі
+      read:favourites: бачыць ваш спіс упадабанага
+      read:filters: бачыць вашы фільтры
+      read:follows: бачыць вашы падпіскі
+      read:lists: бачыць вашы спісы
+      read:mutes: бачыць ваш спіс ігнараваных
+      read:notifications: бачыць вашы апавяшчэнні
+      read:reports: бачыць вашы скаргі
       read:search: шукаць ад вашага імя
       read:statuses: бачыць усе допісы
-      write: абнавіць усе дадзеныя свайго ўліковага запісу
-      write:accounts: змяніць ваш профіль
+      write: змяняць усе даныя вашага ўліковага запісу
+      write:accounts: змяняць ваш профіль
       write:blocks: блакіраваць уліковыя запісы і дамены
-      write:bookmarks: захаваныя допісы
-      write:conversations: ігнараваць і выдаліць размовы
-      write:favourites: упадабаныя допісы
+      write:bookmarks: дадаваць допісы ў закладкі
+      write:conversations: ігнараваць і выдаляць размовы
+      write:favourites: дадаваць допісы ва ўпадабанае
       write:filters: ствараць фільтры
-      write:follows: падпісвайцеся на людзей
-      write:lists: стварыць спiсы
-      write:media: запампаваць медыя-файлы
-      write:mutes: заглушыць людзей ды размовы
-      write:notifications: ачысціць вашы абвяшчэнні
-      write:reports: паскардзіцца на іншых людзей
-      write:statuses: апублікаваць запісы
+      write:follows: падпісвацца на людзей
+      write:lists: ствараць спiсы
+      write:media: запампоўваць медыяфайлы
+      write:mutes: ігнараваць людзей і размовы
+      write:notifications: выдаляць апавяшчэнні
+      write:reports: скардзіцца на іншых людзей
+      write:statuses: публікаваць допісы
