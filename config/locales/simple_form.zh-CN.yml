@@ -10,7 +10,7 @@ zh-CN:
         text: 你可以使用嘟文格式，例如加入 URL、话题标签和“@”
         title: 可选。对接收者不可见
       admin_account_action:
-        include_statuses: 用户将会看到哪些嘟文导致了审核行为或警告
+        include_statuses: 用户将会看到哪些嘟文导致了管理操作或警告
         send_email_notification: 用户将收到关于其账号异动的解释
         text_html: 可选。你可以使用嘟文格式。你可以<a href="%{path}">预置警告</a>以节省时间
         type_html: 用<strong>%{acct}</strong>选择做什么
@@ -32,7 +32,7 @@ zh-CN:
       defaults:
         autofollow: 通过邀请链接注册的用户将会自动关注你
         avatar: 文件大小限制 %{size}，只支持 PNG、GIF 或 JPG 格式。图片分辨率将会压缩至 %{dimensions}px
-        bot: 来自这个帐户的绝大多数操作都是自动进行的，并且可能无人监控
+        bot: 来自这个账户的绝大多数操作都是自动进行的，并且可能无人监控
         context: 过滤器的应用环境
         current_password: 为了安全起见，请输入当前账号的密码
         current_username: 请输入当前账号的用户名以确认
@@ -161,9 +161,9 @@ zh-CN:
       appeal:
         text: 说明此结果应当被推翻的理由
       defaults:
-        autofollow: 让被邀请人关注你的帐户
+        autofollow: 让被邀请人关注你的账户
         avatar: 头像
-        bot: 这是一个机器人帐户
+        bot: 这是一个机器人账户
         chosen_languages: 语言过滤
         confirm_new_password: 确认新密码
         confirm_password: 确认密码
@@ -180,7 +180,7 @@ zh-CN:
         inbox_url: 中继站收件箱的 URL
         irreversible: 丢弃而非隐藏
         locale: 界面语言
-        locked: 保护你的帐户（锁嘟）
+        locked: 保护你的账户（锁嘟）
         max_uses: 最大使用次数
         new_password: 新密码
         note: 简介

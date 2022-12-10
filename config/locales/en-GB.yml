@@ -29,6 +29,40 @@ en-GB:
     account_moderation_notes:
       create: Leave note
       created_msg: Moderation note successfully created!
+      destroyed_msg: Moderation note successfully destroyed!
+    accounts:
+      add_email_domain_block: Block e-mail domain
+      approve: Approve
+      approved_msg: Successfully approved %{username}'s sign-up application
+      are_you_sure: Are you sure?
+      avatar: Avatar
+      by_domain: Domain
+      change_email:
+        changed_msg: Email successfully changed!
+        current_email: Current email
+        label: Change email
+        new_email: New email
+        submit: Change email
+        title: Change email for %{username}
+      change_role:
+        changed_msg: Role successfully changed!
+        label: Change role
+        no_role: No role
+        title: Change role for %{username}
+      confirm: Confirm
+      confirmed: Confirmed
+      confirming: Confirming
+      custom: Custom
+      delete: Delete data
+      deleted: Deleted
+      demote: Demote
+      destroyed_msg: "%{username}'s data is now queued to be deleted imminently"
+      disable: Freeze
+      disable_sign_in_token_auth: Disable e-mail token authentication
+      disable_two_factor_authentication: Disable 2FA
+      disabled: Frozen
+      display_name: Display name
+      domain: Domain
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
