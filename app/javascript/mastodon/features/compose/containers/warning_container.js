@@ -30,9 +30,29 @@ const buildHashtagRE = () => {
 
 const APPROX_HASHTAG_RE = buildHashtagRE();
 
+const buildProtectedTagRE = () => {
+  const PROTECTED_TAGS = ['FediBlock'];
+  try {
+    const HASHTAG_SEPARATORS = '_\\u00b7\\u200c';
+    const WORD = '\\p{L}\\p{M}\\p{N}\\p{Pc}';
+    return new RegExp(
+      '(?:^|[^\\/\\)\\w])#(' +
+      PROTECTED_TAGS.join('|') +
+      ')(?:$|' + 
+      '[^' + WORD + HASHTAG_SEPARATORS + ']' +
+      ')', 'iu'
+    );
+  } catch (error) {
+    return new RegExp(`?:^|[^\/\)\w])#(${PROTECTED_TAGS.join('|')})(?:$|[^\w·])`, 'i');
+  }
+};
+
+const PROTECTED_HASHTAG_RE = buildProtectedTagRE();
+
 const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
   hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
+  protectedHashtagWarning: state.getIn(['compose', 'privacy']) === 'public' && PROTECTED_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
   directMessageWarning: state.getIn(['compose', 'privacy']) === 'direct',
 });
 
@@ -43,6 +63,10 @@ const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning
 
   if (hashtagWarning) {
     return <Warning message={<FormattedMessage id='compose_form.hashtag_warning' defaultMessage="This post won't be listed under any hashtag as it is unlisted. Only public posts can be searched by hashtag." />} />;
+  }
+
+  if (protectedHashtagWarning) {
+    return <Warning message={<FormattedMessage id='compose_form.protected_tag_warning' defaultMessage="One of these hashtags is conventionally reserved for a specific purpose. Make sure that you understand this purpose before posting publicly." />} />;
   }
 
   if (directMessageWarning) {
