@@ -1,4 +1,3 @@
-
 # syntax=docker/dockerfile:1.4
 # This needs to be bullseye-slim because the Ruby image is built on bullseye-slim
 ARG NODE_VERSION="16.17.1-bullseye-slim"
@@ -57,6 +56,7 @@ RUN apt-get update && \
     useradd -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon && \
     apt-get -y --no-install-recommends install whois \
         wget \
+        procps \
         libssl1.1 \
         libpq5 \
         imagemagick \

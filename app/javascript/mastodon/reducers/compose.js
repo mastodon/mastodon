@@ -337,6 +337,10 @@ export default function compose(state = initialState, action) {
       if (action.status.get('spoiler_text').length > 0) {
         map.set('spoiler', true);
         map.set('spoiler_text', action.status.get('spoiler_text'));
+
+        if (map.get('media_attachments').size >= 1) {
+          map.set('sensitive', true);
+        }
       } else {
         map.set('spoiler', false);
         map.set('spoiler_text', '');

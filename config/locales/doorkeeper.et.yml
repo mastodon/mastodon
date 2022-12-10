@@ -22,12 +22,12 @@ et:
         authorize: Autoriseeri
         cancel: Katkesta
         destroy: Hävita
-        edit: Redigeeri
+        edit: Muuda
         submit: Saada
       confirmations:
         destroy: Olete kindel?
       edit:
-        title: Redigeeri rakendust
+        title: Avalduse muutmine
       form:
         error: Oih! Kontrollige oma vormi võimalikest vigadest
       help:
@@ -60,6 +60,8 @@ et:
       error:
         title: Ilmnes viga
       new:
+        prompt_html: "%{client_name} soovib luba kontole juurdepääsuks. See on kolmanda osapoole rakendus. <strong>Kui pole usaldusväärne, siis ei tohiks seda lubada.</strong>"
+        review_permissions: Lubade ülevaade
         title: Autoriseerimine vajalik
       show:
         title: Kopeeri see autoriseerimisvõti ja kleebi see rakendusse.
@@ -69,6 +71,12 @@ et:
       confirmations:
         revoke: Olete kindel?
       index:
+        authorized_at: Autoriseeritud %{date}
+        description_html: Need on rakendused, millel on API kaudu juurdepääs kontole. Kui on rakendusi, mis on tundmatud või rakendus käitub halvasti, saab selle juurdepääsu tühistada.
+        last_used_at: Viimati kasutatud %{date}
+        never_used: Pole kasutatud
+        scopes: Õigused
+        superapp: Sisemine
         title: Autoriseeritud rakendused
     errors:
       messages:
@@ -77,6 +85,10 @@ et:
         invalid_client: Kliendi autentimine ebaõnnestus, kuna tundmatu klient, puudulik autentimine või mitte toetatud autentimismeetod.
         invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
         invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
+        invalid_request:
+          missing_param: 'Puudub nõutud parameeter: %{value}.'
+          request_not_authorized: Päring vajab autoriseerimist. Autoriseerimispäringuks vajalik parameeter puudub või on vigane.
+          unknown: Taotluses puudub nõutav parameeter, see sisaldab toetamata parameetri väärtust või on muul viisil valesti vormindatud.
         invalid_resource_owner: Antud ressursi omaniku andmed on valed või ressursi omanikku ei leitud
         invalid_scope: Soovitud ulatus on vale, tundmatu või vigane.
         invalid_token:
@@ -100,6 +112,33 @@ et:
       authorized_applications:
         destroy:
           notice: Rakendus tagasi lükatud.
+    grouped_scopes:
+      access:
+        read: Vaid lugemisõigus
+        read/write: Lugemis- ja kirjutusõigus
+        write: Vaid kirjutusõigus
+      title:
+        accounts: Kontod
+        admin/accounts: Kontode haldus
+        admin/all: Kõik haldusfunktsioonid
+        admin/reports: Raportite haldus
+        all: Kõik
+        blocks: Keelud
+        bookmarks: Järjehoidjad
+        conversations: Vestlused
+        crypto: Otspunktkrüpteerimine
+        favourites: Lemmikud
+        filters: Filtrid
+        follow: Seosed
+        follows: Jälgimised
+        lists: Nimistud
+        media: Lisatud meedia
+        mutes: Vaigistused
+        notifications: Teavitused
+        push: Tõuketeated
+        reports: Teavitused
+        search: Otsing
+        statuses: Postitused
     layouts:
       admin:
         nav:
@@ -114,6 +153,7 @@ et:
       admin:write: muuta kõiki andmeid serveril
       admin:write:accounts: teostada moderaatori tegevusi kontodel
       admin:write:reports: teostada moderaatori tegevusi teavitustel
+      crypto: kasuta otspunktkrüpeerimist
       follow: muuta kontode suhteid
       push: saada Teie teateid
       read: lugeda kogu Teie konto andmeid
@@ -129,10 +169,11 @@ et:
       read:reports: näha Teie teavitusi
       read:search: otsida Teie nimel
       read:statuses: näha kõiki staatuseid
-      write: redigeerida kogu Teie konto andmeid
-      write:accounts: redigeerida Teie profiili
+      write: muuta kogu konto andmeid
+      write:accounts: muuta profiili
       write:blocks: blokeerida kontosid ja domeene
       write:bookmarks: lisada staatusele järjehoidjaid
+      write:conversations: vaigista ja kustuta vestlused
       write:favourites: lisada staatuseid lemmikuks
       write:filters: luua filtreid
       write:follows: jälgida inimesi
