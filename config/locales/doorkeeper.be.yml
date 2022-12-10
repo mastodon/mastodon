@@ -1,0 +1,185 @@
+---
+be:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Назва праграмы
+        redirect_uri: URI перанакіравання
+        scopes: Дазволы
+        website: Вэб-сайт праграмы
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: не можа ўтрымліваць фрагмент
+              invalid_uri: павінен быць сапраўдным URI
+              relative_uri: павінен быць абсалютным URI.
+              secured_uri: павінен быць HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Аўтарызавацца
+        cancel: Скасаваць
+        destroy: Знішчыць
+        edit: Рэдагаваць
+        submit: Адправіць
+      confirmations:
+        destroy: Вы ўпэўнены?
+      edit:
+        title: Рэдагаваць праграму
+      form:
+        error: Вой! Праверце вашу форму на магчымыя памылкі
+      help:
+        native_redirect_uri: Для лакальных тэстаў выкарыстоўвайце %{native_redirect_uri}
+        redirect_uri: Выкарыстоўвайце адзін радок для кожнай спасылкі
+        scopes: Падзяліце вобласці абмежаванняў прабеламі. Пакіньце поле пустым, каб выкарыстоўваць дыяпазоны па змаўчанні.
+      index:
+        application: Праграма
+        callback_url: URL зваротнага выкліку
+        delete: Выдаліць
+        empty: У вас няма праграм.
+        name: Назва
+        new: Новая праграма
+        scopes: Дазволы
+        show: Паказаць
+        title: Вашы праграмы
+      new:
+        title: Новая праграма
+      show:
+        actions: Дзеянні
+        application_id: Ключ кліента
+        callback_urls: URL зваротных выклікаў
+        scopes: Дазволы
+        secret: Кліенцкая таямніца
+        title: 'Праграма: %{name}'
+    authorizations:
+      buttons:
+        authorize: Аўтарызавацца
+        deny: Адмовіць
+      error:
+        title: Узнікла памылка
+      new:
+        prompt_html: "%{client_name} хацеў бы атрымаць дазвол для доступу да вашага акаунта. Гэта вонкавае прыкладанне. <strong> Не давайце дазволу на гэта, калі вы не давяраеце гэтаму прыкладанню. </strong>"
+        review_permissions: Прагледзець дазволы
+        title: Патрабуецца аўтарызацыя
+      show:
+        title: Скапіруйце гэты код аўтарызацыі і ўстаўце яго ў праграму.
+    authorized_applications:
+      buttons:
+        revoke: Адклікаць
+      confirmations:
+        revoke: Вы ўпэўнены?
+      index:
+        authorized_at: Аўтарызавана %{date}
+        description_html: Гэта прыкладанні якія могуць мець доступ да вашага акаунта з дапамогай API. Калі вы бачыце тут прыкладанні, якія вы не пазнаеце, або прыкладанне блага сябе паводзіць вы можаце прыбраць ягонны доступ.
+        last_used_at: Апошні раз скарыстана %{date}
+        never_used: Не выкарыстоўвалася
+        scopes: Дазволы
+        superapp: Унутраны
+        title: Вашы аўтарызаваныя праграмы
+    errors:
+      messages:
+        access_denied: Уласнік рэсурсу або сервер аўтарызацыі адхіліў ваш запыт.
+        credential_flow_not_configured: Resource Owner Password Credentials flow не прайшоў з-за таго, што ўласцівасць Doorkeeper.configure.resource_owner_from_credentials была не вызначана.
+        invalid_client: Збой аўтэнтыфікацыі кліента з-за невядомага кліента, адсутнасці аўтэнтыфікацыі кліента або метаду аўтэнтыфікацыі, які не падтрымліваецца.
+        invalid_grant: Прадастаўлены дазвол на аўтарызацыю несапраўдны, пратэрмінованы, быў адкліканы, не адпавядае URI перанакіравання, які выкарыстоўваецца ў запыце аўтарызацыі або быў выдадзены іншаму кліенту.
+        invalid_redirect_uri: Прадстаўлены URI перанакіравання не сапраўдны.
+        invalid_request:
+          missing_param: 'Адсутнічае абавязковы параметр: %{value}.'
+          request_not_authorized: Запыт павінен быць аўтарызаваны. Абавязковы параметр для запыту аўтарызацыі адсутнічае або несапраўдны.
+          unknown: У запыце адсутнічае абавязковы параметр, уключае значэнне параметра, якое не падтрымліваецца, альбо ён сфарміраваны іншым няправільным чынам.
+        invalid_resource_owner: Прадастаўленыя ўліковыя дадзеныя ўладальніка рэсурсу несапраўдныя або немагчыма знайсці ўладальніка рэсурсу
+        invalid_scope: Запытаная обласць абмежаванняў несапраўдная, невядомая альбо няправільная.
+        invalid_token:
+          expired: Тэрмін дзеяння токена доступу скончыўся
+          revoked: Токен доступу быў адкліканы
+          unknown: Токен доступу з'яўляецца несапраўдным
+        resource_owner_authenticator_not_configured: Пошук уладальніка рэсурсу не прайшоў з-за таго, што ўласцівасць Doorkeeper.configure.resource_owner_authenticator была не вызначына.
+        server_error: Сервер аўтарызацыі сутыкнуўся з непрадбачанай умоваю, якая не дазваляе выканаць запыт.
+        temporarily_unavailable: Сервер аўтарызацыі зараз не можа апрацаваць запыт з-за часовага перагрузу або прафілактычных работ на серверы.
+        unauthorized_client: Кліент не аўтарызаваны, каб выканаць такі запыт выкарыстоўваючы гэты метад.
+        unsupported_grant_type: Тып аўтарызацыі не падтрымліваецца серверам аўтарызацыі.
+        unsupported_response_type: Сервер аўтарызацыі не падтрымлівае такі тып адказу.
+    flash:
+      applications:
+        create:
+          notice: Праграма створана.
+        destroy:
+          notice: Праграма выдалена.
+        update:
+          notice: Праграма абноўлена.
+      authorized_applications:
+        destroy:
+          notice: Праграма адклікана.
+    grouped_scopes:
+      access:
+        read: Доступ толькі для чытання
+        read/write: Доступ для чытання і запісу
+        write: Доступ толькі для запісу
+      title:
+        accounts: Уліковыя запісы
+        admin/accounts: Кіраванне ўліковымі запісамі
+        admin/all: Усе адміністратыўныя функцыі
+        admin/reports: Кіраванне справаздачамі
+        all: Усе
+        blocks: Блакіроўкі
+        bookmarks: Закладкі
+        conversations: Размовы
+        crypto: Скразное шыфраванне
+        favourites: Упадабаныя
+        filters: Фільтры
+        follow: Зносіны
+        follows: Падпіскі
+        lists: Спісы
+        media: Мультымедыйныя ўкладанні
+        mutes: Ігнараваныя
+        notifications: Апавяшчэнні
+        push: Push-апавяшчэнні
+        reports: Скаргі
+        search: Пошук
+        statuses: Допісы
+    layouts:
+      admin:
+        nav:
+          applications: Праграмы
+          oauth2_provider: OAuth2 правайдар
+      application:
+        title: Неабходна OAuth аўтарызацыя
+    scopes:
+      admin:read: чытаць усе даныя на серверы
+      admin:read:accounts: бачыць канфідэнцыйную інфармацыю ўсіх акаўнтаў
+      admin:read:reports: чытаць далікатную інфармацыю са скарг і ўліковых запісаў, на якія пададзена скарга
+      admin:write: змяняць усе даныя на серверы
+      admin:write:accounts: мадэраваць уліковыя запісы
+      admin:write:reports: мадэраваць скаргі
+      crypto: выкарыстоўваць скразное шыфраванне
+      follow: змяняць зносіны ўліковага запісу
+      push: атрымліваць push-апавяшчэнні
+      read: чытаць усе даныя вашага ўліковага запісу
+      read:accounts: бачыць інфармацыю аб уліковых запісах
+      read:blocks: бачыць вашы блакіроўкі
+      read:bookmarks: бачыць вашы закладкі
+      read:favourites: бачыць ваш спіс упадабанага
+      read:filters: бачыць вашы фільтры
+      read:follows: бачыць вашы падпіскі
+      read:lists: бачыць вашы спісы
+      read:mutes: бачыць ваш спіс ігнараваных
+      read:notifications: бачыць вашы апавяшчэнні
+      read:reports: бачыць вашы скаргі
+      read:search: шукаць ад вашага імя
+      read:statuses: бачыць усе допісы
+      write: змяняць усе даныя вашага ўліковага запісу
+      write:accounts: змяняць ваш профіль
+      write:blocks: блакіраваць уліковыя запісы і дамены
+      write:bookmarks: дадаваць допісы ў закладкі
+      write:conversations: ігнараваць і выдаляць размовы
+      write:favourites: дадаваць допісы ва ўпадабанае
+      write:filters: ствараць фільтры
+      write:follows: падпісвацца на людзей
+      write:lists: ствараць спiсы
+      write:media: запампоўваць медыяфайлы
+      write:mutes: ігнараваць людзей і размовы
+      write:notifications: выдаляць апавяшчэнні
+      write:reports: скардзіцца на іншых людзей
+      write:statuses: публікаваць допісы

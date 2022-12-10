@@ -373,6 +373,8 @@ hu:
       add_new: Domain engedélyezése
       created_msg: A domain rákerült az engedélyező-listára
       destroyed_msg: A domain lekerült az engedélyező-listáról
+      export: Exportálás
+      import: Importálás
       undo: Eltávolítás az engedélyező-listáról
     domain_blocks:
       add_new: Új tiltott domain hozzáadása
@@ -382,13 +384,19 @@ hu:
       edit: Domain tiltás szerkesztése
       existing_domain_block: 'Már szigorúbb korlátozások vonatkoznak a következőre: %{name}.'
       existing_domain_block_html: A %{name} domainen már szorosabb korlátokat állítottál be, először <a href="%{unblock_url}">oldd fel a tiltást</a>.
+      export: Exportálás
+      import: Importálás
       new:
         create: Tiltás létrehozása
         hint: A domain tiltása nem gátolja meg az új fiókok hozzáadását az abatbázishoz, de visszamenőlegesen és automatikusan aktivál bizonyos moderációs szabályokat ezen fiókok esetében.
         severity:
+          desc_html: A <strong>Korlátozás</strong> elrejti a domain fiókjaitól származó bejegyzéseket azok elől, akik nem követik őket. A <strong>Felfüggesztés</strong> eltávolítja a domain fiókjaitól származó összes tartalmat, médiafájlt és profiladatot. Használd a <strong>Nincs </strong> lehetőséget, ha csak a médiafájlokat akarod elutasítani.
           noop: Egyik sem
+          silence: Korlátozás
           suspend: Felfüggesztés
         title: Új domain tiltása
+      no_domain_block_selected: Nem változott meg egy domain tiltás sem, mert semmi sem volt kiválasztva
+      not_permitted: Nem vagy jogosult a művelet végrehajtására
       obfuscate: Domain név álcázása
       obfuscate_hint: Részlegesen álcázza a domain nevet a listában, ha a domain korlátozások listájának közzététele engedélyezett
       private_comment: Privát megjegyzés
@@ -420,6 +428,20 @@ hu:
       resolved_dns_records_hint_html: A domain név a következő MX domain-ekre oldódik fel, melyek valójában fogadják az e-mailt. Az MX domain letiltása minden olyan feliratkozást tiltani fog, melyben az e-mailcím ugyanazt az MX domaint használja, még akkor is, ha a látható domain név más. <strong>Légy óvatos, hogy ne tilts le nagy e-mail szolgáltatókat.</strong>
       resolved_through_html: Feloldva %{domain}-n keresztül
       title: Tiltott e-mail domainek
+    export_domain_allows:
+      new:
+        title: Domain engedélyezések importálása
+      no_file: Nincs fájl kiválasztva
+    export_domain_blocks:
+      import:
+        description_html: Domain tiltások listájának importálására készülsz. Nézd át alaposan, különösen ha nem te állítottad össze ezt a listát.
+        existing_relationships_warning: Létező követési kapcsolatok
+        private_comment_description_html: 'Az importált tiltások forrásának könnyebb követése érdekében, az importált tiltások a következő privát megjegyzéssel lesznek létrehozva: <q>%{comment}</q>'
+        private_comment_template: 'Innen importálva: %{source}, ekkor: %{date}'
+        title: Domain tiltások importálása
+      new:
+        title: Domain tiltások importálása
+      no_file: Nincs fájl kiválasztva
     follow_recommendations:
       description_html: "<strong>A követési ajánlatok segítik az új felhasználókat az érdekes tartalmak gyors megtalálásában</strong>. Ha egy felhasználó még nem érintkezett eleget másokkal ahhoz, hogy személyre szabott ajánlatokat kapjon, ezeket a fiókokat ajánljuk helyette. Ezeket naponta újraszámítjuk a nemrég legtöbb embert foglalkoztató, illetve legtöbb helyi követővel rendelkező fiókok alapján."
       language: Ezen a nyelven
@@ -912,6 +934,7 @@ hu:
     warning: Ez érzékeny adat. Soha ne oszd meg másokkal!
     your_token: Hozzáférési kulcsod
   auth:
+    apply_for_account: Fiók kérése
     change_password: Jelszó
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
@@ -1156,6 +1179,7 @@ hu:
     invalid_markup: 'hibás HTML leíró: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Érvénytelen CSV-fájl. Hiba: %{error}'
       over_rows_processing_limit: több mint %{count} sort tartalmaz
     modes:
       merge: Összefésülés

@@ -75,7 +75,7 @@ cs:
       enabled: Povoleno
       enabled_msg: Účet %{username} byl úspěšně rozmrazen
       followers: Sledující
-      follows: Sleduje
+      follows: Sledované
       header: Záhlaví
       inbox_url: URL příchozí schránky
       invite_request_text: Důvody založení
@@ -387,6 +387,8 @@ cs:
       add_new: Povolit federaci s doménou
       created_msg: S doménou byla úspěšně povolena federace
       destroyed_msg: S doménou byla zakázána federace
+      export: Export
+      import: Import
       undo: Zakázat federaci s doménou
     domain_blocks:
       add_new: Přidat novou blokaci domény
@@ -396,13 +398,19 @@ cs:
       edit: Upravit blokaci domény
       existing_domain_block: Pro %{name} už jste nastavili přísnější omezení.
       existing_domain_block_html: Pro %{name} už jste nastavili přísnější omezení, nejprve ji <a href="%{unblock_url}">odblokujte</a>.
+      export: Export
+      import: Import
       new:
         create: Vytvořit blokaci
         hint: Blokace domény nezakáže vytváření záznamů účtů v databázi, ale bude na tyto účty zpětně a automaticky aplikovat specifické metody moderování.
         severity:
+          desc_html: "<strong>Omezit</strong> zneviditelní příspěvky účtů z této domény všem, kdo je nesledují. <strong>Pozastavit</strong> odstraní z vašeho serveru všechna data obsahu, médií a profilu účtů z této domény. Pokud chcete pouze odmítnout mediální soubory, použijte <strong>Nic</strong>."
           noop: Žádné
+          silence: Omezit
           suspend: Pozastavit
         title: Nová blokace domény
+      no_domain_block_selected: Nebyly změněny žádné blokované domény, protože nebyla žádná vybrána
+      not_permitted: K provedení této akce nemáte oprávnění
       obfuscate: Obfuskovat doménu
       obfuscate_hint: Částečně zkreslit název domény v seznamu, pokud je povoleno zveřejnění seznamu omezených domén
       private_comment: Soukromý komentář
@@ -436,6 +444,20 @@ cs:
       resolved_dns_records_hint_html: Doménové jméno vede na následující MX domény, které mají nakonec na starost přijímání e-mailů. Blokování MX domény zablokuje registrace z jakékoliv e-mailové adresy, která používá stejnou MX doménu, i když je viditelné doménové jméno jiné. <strong>Dejte si pozor, abyste nezablokovali velké e-mailové poskytovatele.</strong>
       resolved_through_html: Přeložena přes %{domain}
       title: Blokované e-mailové domény
+    export_domain_allows:
+      new:
+        title: Importovat povolené domény
+      no_file: Nebyl vybrán žádný soubor
+    export_domain_blocks:
+      import:
+        description_html: Chystáte se importovat seznam blokovaných domén. Zkontrolujte prosím tento seznam velmi opatrně, zejména pokud jste tento seznam nenapsali vy sami.
+        existing_relationships_warning: Existující vztahy sledování
+        private_comment_description_html: 'Abychom vám pomohli sledovat, odkud pochází importované bloky, budou tyto importované bloky vytvořeny s následující soukromou poznámkou: <q>%{comment}</q>'
+        private_comment_template: Importováno z %{source} dne %{date}
+        title: Importovat blokované domény
+      new:
+        title: Importovat blokované domény
+      no_file: Nebyl vybrán žádný soubor
     follow_recommendations:
       description_html: "<strong>Doporučená sledování pomáhají novým uživatelům rychle najít zajímavý obsah</strong>. Pokud uživatel neinteragoval s ostatními natolik, aby mu byla vytvořena doporučená sledování na míru, jsou použity tyto účty. Jsou přepočítávány na denní bázi ze směsi účtů s největším nedávným zapojením a nejvyšším počtem místních sledovatelů pro daný jazyk."
       language: Pro jazyk
@@ -948,6 +970,7 @@ cs:
     warning: Zacházejte s těmito daty opatrně. Nikdy je s nikým nesdílejte!
     your_token: Váš přístupový token
   auth:
+    apply_for_account: Požádat o účet
     change_password: Heslo
     delete_account: Odstranit účet
     delete_account_html: Chcete-li odstranit svůj účet, <a href="%{path}">pokračujte zde</a>. Budete požádáni o potvrzení.
@@ -1206,6 +1229,7 @@ cs:
     invalid_markup: 'obsahuje neplatný HTML kód: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Neplatný soubor CSV. Chyba: %{error}'
       over_rows_processing_limit: obsahuje více než %{count} řádků
     modes:
       merge: Sloučit

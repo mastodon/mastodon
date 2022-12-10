@@ -56,6 +56,7 @@ RUN apt-get update && \
     useradd -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon && \
     apt-get -y --no-install-recommends install whois \
         wget \
+        procps \
         libssl1.1 \
         libpq5 \
         imagemagick \
