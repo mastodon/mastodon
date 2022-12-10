@@ -4,7 +4,7 @@ ca:
     attributes:
       doorkeeper/application:
         name: Nom de l'aplicació
-        redirect_uri: URI per a redirecció
+        redirect_uri: Redirigeix la URI
         scopes: Àmbits
         website: Lloc web de l'aplicació
     errors:
@@ -25,19 +25,19 @@ ca:
         edit: Edita
         submit: Envia
       confirmations:
-        destroy: N'estàs segur?
+        destroy: Segur?
       edit:
         title: Edita l'aplicació
       form:
         error: Ep! Comprova el formulari per a possibles errors
       help:
-        native_redirect_uri: Usa %{native_redirect_uri} per a proves locals
+        native_redirect_uri: Fes servir %{native_redirect_uri} per a proves locals
         redirect_uri: Usa una línia per URI
-        scopes: Separa els àmbits amb espais. Deixa-ho en blanc per usar els àmbits per defecte.
+        scopes: Separa els àmbits amb espais. En blanc per als àmbits per defecte.
       index:
         application: Aplicació
         callback_url: URL de retorn
-        delete: Suprimeix
+        delete: Elimina
         empty: No tens cap aplicació.
         name: Nom
         new: Nova aplicació
@@ -48,7 +48,7 @@ ca:
         title: Nova aplicació
       show:
         actions: Accions
-        application_id: Id de l'aplicació
+        application_id: Clau de client
         callback_urls: URL de retorn
         scopes: Àmbits
         secret: Clau secreta de client
@@ -56,7 +56,7 @@ ca:
     authorizations:
       buttons:
         authorize: Autoritza
-        deny: Desautoritza
+        deny: Denega
       error:
         title: S'ha produït un error
       new:
@@ -69,11 +69,11 @@ ca:
       buttons:
         revoke: Revoca
       confirmations:
-        revoke: N'estàs segur?
+        revoke: Segur?
       index:
         authorized_at: Autoritzada el %{date}
         description_html: Aquestes són les aplicacions que poden accedir al teu compte usant l'API. Si hi ha aplicacions que no reconeixes o hi ha una aplicació que no funciona bé, pots revocar-ne l'accés.
-        last_used_at: Usada per últim cop el %{date}
+        last_used_at: Usada per última vegada el %{date}
         never_used: No s'ha usat mai
         scopes: Permisos
         superapp: Interna
@@ -127,7 +127,7 @@ ca:
         bookmarks: Marcadors
         conversations: Converses
         crypto: Xifrat d'extrem a extrem
-        favourites: Favorits
+        favourites: Preferits
         filters: Filtres
         follow: Relacions
         follows: Seguits
@@ -145,11 +145,11 @@ ca:
           applications: Aplicacions
           oauth2_provider: Proveïdor OAuth2
       application:
-        title: Autorització OAuth requerida
+        title: Cal una autorització OAuth
     scopes:
-      admin:read: llegir totes les dades en el servidor
-      admin:read:accounts: llegir l'informació sensible de tots els comptes
-      admin:read:reports: llegir l'informació sensible de tots els informes i comptes reportats
+      admin:read: llegeix totes les dades en el servidor
+      admin:read:accounts: llegir informació confidencial de tots els comptes
+      admin:read:reports: llegir informació confidencial de tots els informes i comptes reportats
       admin:write: modificar totes les dades en el servidor
       admin:write:accounts: fer l'acció de moderació en els comptes
       admin:write:reports: fer l'acció de moderació en els informes
@@ -157,29 +157,29 @@ ca:
       follow: modificar relacions dels comptes
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
-      read:accounts: veure informació dels comptes
-      read:blocks: veure els teus bloqueigs
-      read:bookmarks: veure els teus marcadors
-      read:favourites: veure els teus favorits
-      read:filters: veure els teus filtres
-      read:follows: veure els teus seguiments
-      read:lists: veure les teves llistes
-      read:mutes: veure els teus silenciats
-      read:notifications: veure les teves notificacions
-      read:reports: veure els teus informes
+      read:accounts: mira informació dels comptes
+      read:blocks: mira els teus bloqueigs
+      read:bookmarks: mira els teus marcadors
+      read:favourites: mira els teus preferits
+      read:filters: mira els teus filtres
+      read:follows: mira els teus seguiments
+      read:lists: mira les teves llistes
+      read:mutes: mira els teus silenciats
+      read:notifications: mira les teves notificacions
+      read:reports: mira els teus informes
       read:search: cerca en nom teu
-      read:statuses: veure tots les publicacions
-      write: modificar totes les dades del teu compte
+      read:statuses: mira tots les publicacions
+      write: modifica totes les dades del teu compte
       write:accounts: modifica el teu perfil
-      write:blocks: bloqueja comptes i dominis
-      write:bookmarks: marcar publicacions
+      write:blocks: bloca comptes i dominis
+      write:bookmarks: marca publicacions
       write:conversations: silencia i esborra converses
-      write:favourites: marcar publicacions
-      write:filters: crear filtres
-      write:follows: seguir usuaris
-      write:lists: crear llistes
-      write:media: pujar fitxers multimèdia
+      write:favourites: afavoreix publicacions
+      write:filters: crea filtres
+      write:follows: segueix gent
+      write:lists: crea llistes
+      write:media: puja fitxers multimèdia
       write:mutes: silencia usuaris i converses
       write:notifications: esborra les teves notificacions
-      write:reports: informe d’altres persones
-      write:statuses: publicar publicacions
+      write:reports: informa sobre altres persones
+      write:statuses: fes publicacions

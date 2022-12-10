@@ -65,8 +65,13 @@ class DeliveryFailureTracker
       domains - UnavailableDomain.all.pluck(:domain)
     end
 
-    def warning_domains_map
-      warning_domains.index_with { |domain| redis.scard(exhausted_deliveries_key_by(domain)) }
+    def warning_domains_map(domains = nil)
+      if domains.nil?
+        warning_domains.index_with { |domain| redis.scard(exhausted_deliveries_key_by(domain)) }
+      else
+        domains -= UnavailableDomain.where(domain: domains).pluck(:domain)
+        domains.index_with { |domain| redis.scard(exhausted_deliveries_key_by(domain)) }.filter { |_, days| days.positive? }
+      end
     end
 
     private

@@ -3,19 +3,19 @@ it:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nome applicazione
+        name: Nome dell'applicazione
         redirect_uri: URI di reindirizzamento
-        scopes: Scopi
-        website: Sito web applicazione
+        scopes: Ambiti
+        website: Sito web dell'applicazione
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
               fragment_present: non può contenere un frammento.
-              invalid_uri: deve essere un URI valido.
-              relative_uri: deve essere un URI assoluto.
-              secured_uri: deve essere un URI HTTPS/SSL.
+              invalid_uri: dev'essere un URI valido.
+              relative_uri: dev'essere un URI assoluto.
+              secured_uri: dev'essere un URI HTTPS/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -25,33 +25,33 @@ it:
         edit: Modifica
         submit: Invia
       confirmations:
-        destroy: Sei sicuro/a?
+        destroy: Sei sicuro?
       edit:
-        title: Modifica applicazione
+        title: Modifica la richiesta
       form:
-        error: Ooops! Controlla nel modulo la presenza di errori
+        error: Oops! Controlla il tuo modulo per la presenza di errori
       help:
-        native_redirect_uri: Usa %{native_redirect_uri} per test locali
+        native_redirect_uri: Usa %{native_redirect_uri} per i test locali
         redirect_uri: Usa una riga per URI
-        scopes: Dividi gli scopes con spazi. Lascia vuoto per utilizzare gli scopes di default.
+        scopes: Separa gli ambiti con gli spazi. Lascia vuoto per usare quelli predefiniti.
       index:
         application: Applicazione
-        callback_url: URL di callback
+        callback_url: URL di richiamata
         delete: Elimina
         empty: Non hai applicazioni.
         name: Nome
         new: Nuova applicazione
-        scopes: Visibilità
+        scopes: Ambiti
         show: Mostra
         title: Le tue applicazioni
       new:
         title: Nuova applicazione
       show:
         actions: Azioni
-        application_id: Id applicazione
-        callback_urls: Callback urls
-        scopes: Scopi
-        secret: Secret
+        application_id: Chiave del client
+        callback_urls: URL di richiamata
+        scopes: Ambiti
+        secret: Codice segreto del client
         title: 'Applicazione: %{name}'
     authorizations:
       buttons:
@@ -60,58 +60,58 @@ it:
       error:
         title: Si è verificato un errore
       new:
-        prompt_html: "%{client_name} vorrebbe l'autorizzazione ad accedere al tuo profilo. È un'applicazione di terze parti. <strong>Se non ti fidi, non dovresti autorizzarlo.</strong>"
-        review_permissions: Esamina le autorizzazioni
-        title: Autorizzazione richiesta
+        prompt_html: "%{client_name} vorrebbe l'autorizzazione ad accedere al tuo profilo. È un'applicazione di terze parti. <strong>Se non ti fidi, non dovresti autorizzarla.</strong>"
+        review_permissions: Revisiona le autorizzazioni
+        title: Autorizzazione necessaria
       show:
-        title: Copia questo codice di autorizzazione e incollalo nell'applicazione.
+        title: Copia questo codice d'autorizzazione e incollalo all'applicazione.
     authorized_applications:
       buttons:
-        revoke: Disabilita
+        revoke: Revoca
       confirmations:
-        revoke: Sei sicuro/a?
+        revoke: Sei sicuro?
       index:
         authorized_at: Autorizzato il %{date}
-        description_html: Queste sono le applicazioni che possono accedere al tuo profilo usando l'API. Se qui ci sono delle applicazioni che non riconosci, o un'applicazione si sta comportando erroneamente, puoi revocarne l'accesso.
-        last_used_at: Ultimo uso il %{date}
-        never_used: Mai usato
+        description_html: Queste sono le applicazioni che possono accedere al tuo profilo utilizzando l'API. Se qui ci sono delle applicazioni che non riconosci o se un'applicazione si sta comportando in modo errato, puoi revocarne l'accesso.
+        last_used_at: Ultimo utilizzo il %{date}
+        never_used: Mai usata
         scopes: Autorizzazioni
-        superapp: Interno
-        title: Applicazioni autorizzate
+        superapp: Interna
+        title: Le tue applicazioni autorizzate
     errors:
       messages:
-        access_denied: Il proprietario del servizio o il server di autorizzazione hanno rifiutato la richiesta.
-        credential_flow_not_configured: Il processo Resource Owner Password Credentials è fallito perché Doorkeeper.configure.resource_owner_from_credentials non è stato configurato.
-        invalid_client: Accesso al servizio fallito perché il servizio è sconosciuto, l'accesso al servizio non è stato incluso, o il metodo di accesso non è supportato.
-        invalid_grant: Il permesso d'autorizzazione è non valido, scaduto, disabilitato, non coincide con l'URI di reindirizzamento fornito nella richiesta di autorizzazione, o è stato rilasciato da un altro client.
-        invalid_redirect_uri: L'URI di reindirizzamento fornito non è valido.
+        access_denied: Il proprietario della risorsa o il server d'autorizzazione ha negato la richiesta.
+        credential_flow_not_configured: Il processo delle Credenziali Password del Proprietario della Risorsa è fallito a causa della mancata configurazione di Doorkeeper.configure.resource_owner_from_credentials.
+        invalid_client: Autenticazione del client fallita a causa di un client sconosciuto, di nessun'autenticazione del client inclusa o di un metodo d'autenticazione non supportato.
+        invalid_grant: L'autorizzazione fornita non è valida, è scaduta, è stata revocata, non corrisponde all'URI di reindirizzamento utilizzato nella richiesta d'autorizzazione o è stata emessa a un altro client.
+        invalid_redirect_uri: L'uri di reindirizzamento incluso non è valido.
         invalid_request:
-          missing_param: 'Manca il parametro obbligatorio: %{value}.'
-          request_not_authorized: La richiesta deve essere autorizzata. Il parametro richiesto per autorizzare la richiesta è mancante o non valido.
-          unknown: La richiesta manca di un parametro necessario, include un parametro non supportato, o è in qualche altro modo mal strutturata.
-        invalid_resource_owner: Le credenziali di accesso fornite per il proprietario non sono corrette, o il proprietario del servizio non è stato trovato
-        invalid_scope: Lo scope richiesto è invalido, sconosciuto, o malformulato.
+          missing_param: 'Parametro necessario mancante: %{value}.'
+          request_not_authorized: La richiesta dev'essere autorizzata. Il parametro necessario per autorizzare la richiesta è mancante o non valido.
+          unknown: La richiesta manca di un parametro necessario, include un valore del parametro non supportato o è altrimenti mal strutturata.
+        invalid_resource_owner: Le credenziali del proprietario della risorsa fornite non sono valide, o il proprietario della risorsa non è stato trovato
+        invalid_scope: L'ambito necessario non è valido, è sconosciuto o mal strutturato.
         invalid_token:
-          expired: Il token di accesso è scaduto
-          revoked: Il token di accesso è stato disabilitato
-          unknown: Il token di accesso non è valido
-        resource_owner_authenticator_not_configured: Impossibile trovare il proprietario del servizio perché Doorkeeper.configure.resource_owner_authenticator non è stato configurato.
-        server_error: Il server di autorizzazione ha riscontrato un errore imprevisto che non ha permesso di completare la tua richiesta.
-        temporarily_unavailable: Al momento il server di autorizzazione non può completare la tua richiesta a causa di un temporaneo sovraccarico o di manutenzione del server.
-        unauthorized_client: Il client non è autorizzato a eseguire questa operazione con questo metodo.
-        unsupported_grant_type: Questa modalità di trasmissione di autenticazione non è supportata da questo server.
-        unsupported_response_type: Il server di autorizzazione non supporta questo tipo di risposta.
+          expired: Il token d'accesso è scaduto
+          revoked: Il token d'accesso è stato revocato
+          unknown: Il token d'accesso non è valido
+        resource_owner_authenticator_not_configured: Impossibile trovare il Proprietario della Risorsa a causa della mancata configurazione di Doorkeeper.configure.resource_owner_authenticator.
+        server_error: Il server d'autorizzazione ha riscontrato una condizione imprevista, che gli ha impedito di soddisfare la tua richiesta.
+        temporarily_unavailable: Il server d'autorizzazione non è correntemente capace di gestire la richiesta a causa di un sovraccarico temporaneo o di una manutenzione del server.
+        unauthorized_client: Il client non è autorizzato a eseguire questa richiesta utilizzando questo metodo.
+        unsupported_grant_type: Il tipo di autorizzazione concessa non è supportato dal server d'autorizzazione.
+        unsupported_response_type: Il server d'autorizzazione non supporta questo tipo di risposta.
     flash:
       applications:
         create:
           notice: Applicazione creata.
         destroy:
-          notice: Applicazione cancellata.
+          notice: Applicazione eliminata.
         update:
           notice: Applicazione aggiornata.
       authorized_applications:
         destroy:
-          notice: Applicazione disabilitata.
+          notice: Applicazione revocata.
     grouped_scopes:
       access:
         read: Accesso di sola lettura
@@ -130,56 +130,56 @@ it:
         favourites: Preferiti
         filters: Filtri
         follow: Relazioni
-        follows: Segue
+        follows: Seguiti
         lists: Elenchi
         media: Allegati multimediali
         mutes: Silenziati
         notifications: Notifiche
         push: Notifiche push
-        reports: Rapporti
+        reports: Segnalazioni
         search: Cerca
         statuses: Post
     layouts:
       admin:
         nav:
           applications: Applicazioni
-          oauth2_provider: Provider OAuth2
+          oauth2_provider: Fornitore OAuth2
       application:
-        title: Autorizzazione OAuth richiesta
+        title: Autorizzazione OAuth necessaria
     scopes:
-      admin:read: leggere tutti i dati dal server
-      admin:read:accounts: leggere dati sensibili di tutti gli account
-      admin:read:reports: leggere dati sensibili di tutte le segnalazioni e gli account segnalati
+      admin:read: leggere tutti i dati sul server
+      admin:read:accounts: leggere le informazioni sensibili su tutti i profili
+      admin:read:reports: leggere le informazioni sensibili di tutte le segnalazioni e tutti i profili segnalati
       admin:write: modificare tutti i dati sul server
-      admin:write:accounts: eseguire azioni di moderazione sugli account
+      admin:write:accounts: eseguire azioni di moderazione sui profili
       admin:write:reports: eseguire azioni di moderazione sulle segnalazioni
-      crypto: usa la crittografia end-to-end
-      follow: modificare relazioni tra account
+      crypto: utilizzare la crittografia end-to-end
+      follow: modifica le relazioni tra profili
       push: ricevere le tue notifiche push
-      read: leggere tutte le informazioni del tuo account
-      read:accounts: vedere informazioni sull'account
-      read:blocks: vedere i tuoi blocchi
-      read:bookmarks: vedi i tuoi preferiti
-      read:favourites: vedere i tuoi preferiti
-      read:filters: vedere i tuoi filtri
-      read:follows: vedere i tuoi seguiti
-      read:lists: vedere le tue liste
-      read:mutes: vedere i tuoi silenziati
-      read:notifications: vedere le tue notifiche
-      read:reports: vedere i tuoi rapporti
-      read:search: fare ricerche per te
-      read:statuses: vedere tutti i post
-      write: modificare tutti i dati del tuo account
+      read: leggere tutti i dati del tuo profilo
+      read:accounts: visualizzare le informazioni sui profili
+      read:blocks: visualizzare i tuoi blocchi
+      read:bookmarks: visualizzare i tuoi segnalibri
+      read:favourites: visualizzare i tuoi preferiti
+      read:filters: visualizzare i tuoi filtri
+      read:follows: visualizzare i tuoi seguiti
+      read:lists: visualizzare i tuoi elenchi
+      read:mutes: visualizzare i tuoi silenziamenti
+      read:notifications: visualizzare le tue notifiche
+      read:reports: visualizzare le tue segnalazioni
+      read:search: fare ricerche per conto tuo
+      read:statuses: visualizzare tutti i post
+      write: modificare tutti i dati del tuo profilo
       write:accounts: modificare il tuo profilo
-      write:blocks: bloccare account e domini
-      write:bookmarks: aggiungere post ai preferiti
-      write:conversations: silenzia ed elimina le conversazioni
-      write:favourites: apprezzare post
+      write:blocks: bloccare profili e domini
+      write:bookmarks: aggiungere post tra i segnalibri
+      write:conversations: silenziare ed eliminare conversazioni
+      write:favourites: salvare post tra i preferiti
       write:filters: creare filtri
       write:follows: seguire persone
-      write:lists: creare liste
-      write:media: caricare media
+      write:lists: creare elenchi
+      write:media: caricare file multimediali
       write:mutes: silenziare persone e conversazioni
       write:notifications: cancellare le tue notifiche
-      write:reports: fare rapporto su altre persone
+      write:reports: segnalare altre persone
       write:statuses: pubblicare post
