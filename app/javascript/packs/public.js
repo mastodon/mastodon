@@ -104,7 +104,7 @@ function main() {
       if (isToday(datetime)) {
         const formattedTime = timeFormat.format(datetime);
 
-        formattedContent = todayFormat.format({time: formattedTime});
+        formattedContent = todayFormat.format({ time: formattedTime });
       } else {
         formattedContent = dateFormat.format(datetime);
       }
