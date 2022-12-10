@@ -466,33 +466,42 @@ nn:
         policies:
           reject_media: Avvis media
           reject_reports: Avvis rapportar
-          silence: Begrens
+          silence: Avgrens
           suspend: Suspender
-        reason: Offentlig årsak
-        title: Retningslinjer for innhold
+        policy: Vilkår
+        reason: Offentleg årsak
+        title: Retningsliner for innhald
       dashboard:
-        instance_accounts_measure: lagrede kontoer
-        instance_followers_measure: våre følgere der
-        instance_follows_measure: deres følgere her
+        instance_accounts_dimension: Mest fylgde kontoar
+        instance_accounts_measure: lagra kontoar
+        instance_followers_measure: våre fylgjarar der
+        instance_follows_measure: deira fylgjarar her
         instance_languages_dimension: Mest brukte språk
-        instance_media_attachments_measure: lagrede mediavedlegg
-        instance_reports_measure: rapporter om dem
-        instance_statuses_measure: lagrede innlegg
+        instance_media_attachments_measure: lagra mediavedlegg
+        instance_reports_measure: rapportar om dei
+        instance_statuses_measure: lagra innlegg
       delivery:
-        all: All
-        clear: Feil ved fjerning
-        restart: Starte levering
+        all: Alle
+        clear: Tøm liste over leveringsfeil
+        failing: Feilar
+        restart: Gjenstart levering
         stop: Stopp levering
-        unavailable: Ikke tilgjengelig
+        unavailable: Utilgjengeleg
       delivery_available: Levering er tilgjengelig
-      delivery_error_hint: Dersom levering ikke er mulig i løpet av %{count} dager, blir det automatisk merket som ikke mulig å levere.
-      empty: Ingen domener funnet.
+      delivery_error_days: Leveringsfeildagar
+      delivery_error_hint: Om levering ikkje er mogleg i %{count} dagar, vil ho automatisk bli markert som ikkje leverbar.
+      destroyed_msg: Data frå %{domain} er no lagt i kø for å bli sletta.
+      empty: Ingen domener funne.
+      known_accounts:
+        one: "%{count} kjend konto"
+        other: "%{count} kjende kontoar"
       moderation:
         all: Alle
         limited: Avgrensa
         title: Moderasjon
       private_comment: Privat kommentar
       public_comment: Offentleg kommentar
+      purge: Reinse
       title: Samling
       total_blocked_by_us: Blokkert av oss
       total_followed_by_them: Fylgd av dei
