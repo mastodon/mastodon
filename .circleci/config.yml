@@ -46,7 +46,7 @@ commands:
           name: Set bundler settings
       - ruby/install-deps:
           bundler-version: '2.3.26'
-          key: ruby<< parameters.ruby-version >>-gems-v1
+          key: ruby<< parameters.ruby-version >>-gems-v2
   wait-db:
     steps:
       - run:
