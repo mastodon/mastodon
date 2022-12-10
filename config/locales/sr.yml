@@ -3,7 +3,9 @@ sr:
   about:
     about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
     contact_missing: Није постављено
+    contact_unavailable: Није доступно
     hosted_on: Мастодонт хостован на %{domain}
+    title: О
   accounts:
     follow: Запрати
     followers:
@@ -17,10 +19,10 @@ sr:
     pin_errors:
       following: Морате пратити ову особу ако хоћете да потврдите
     posts:
-      few: Трубе
-      one: Труба
-      other: Трубе
-    posts_tab_heading: Трубе
+      few: Објаве
+      one: Објава
+      other: Објава
+    posts_tab_heading: Објаве
   admin:
     account_actions:
       action: Извршите радњу
@@ -42,6 +44,8 @@ sr:
       confirm: Потврди
       confirmed: Потврђено
       confirming: Потврдување
+      custom: Произвољно
+      delete: Обриши податке
       deleted: Избрисано
       demote: Ражалуј
       disable: Искључи
@@ -231,6 +235,11 @@ sr:
       unassign: Уклони доделу
       unresolved: Нерешене
       updated_at: Ажурирана
+    settings:
+      appearance:
+        title: Изглед
+      discovery:
+        public_timelines: Јавне временске линије
     statuses:
       back_to_account: Назад на страну налога
       media:
@@ -339,7 +348,7 @@ sr:
     contexts:
       home: Временска линија почетне
       notifications: Обавештења
-      public: Јавна временска линија
+      public: Јавне временске линије
       thread: Разговори
     edit:
       title: Измени филтер
@@ -432,6 +441,7 @@ sr:
     prev: Претходни
   preferences:
     other: Остало
+    public_timelines: Јавне временске линије
   remote_follow:
     missing_resource: Не могу да нађем захтевану адресу преусмеравања за Ваш налог
   scheduled_statuses:
@@ -475,6 +485,7 @@ sr:
     revoke_success: Сесија успешно опозвана
     title: Сесије
   settings:
+    appearance: Изглед
     authorized_apps: Ауторизоване апликације
     back: Назад на Мастодон
     delete: Брисање налога
@@ -482,6 +493,7 @@ sr:
     edit_profile: Измена налога
     export: Извоз података
     import: Увоз
+    import_and_export: Увоз и извоз
     migrate: Пребацивање налога
     notifications: Обавештења
     preferences: Подешавања
@@ -509,7 +521,7 @@ sr:
     over_character_limit: ограничење од %{max} карактера прекорачено
     pin_errors:
       limit: Већ имате прикачен највећи број труба
-      ownership: Туђе трубе не могу да се прикаче
+      ownership: Туђа објава се не може закачити
       reblog: Подршка не може да се прикачи
     show_more: Прикажи још
     sign_in_to_participate: Пријавите се да учествујете у разговору
@@ -521,7 +533,7 @@ sr:
       unlisted: Неизлистано
       unlisted_long: Свако може да види, али није излистано на јавним временским линијама
   stream_entries:
-    pinned: Прикачена труба
+    pinned: Закачена објава
     reblogged: подржано
     sensitive_content: Осетљив садржај
   themes:

@@ -161,7 +161,7 @@ es:
       unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
-      warn: Adevertir
+      warn: Advertir
       web: Web
       whitelisted: Añadido a la lista blanca
     action_logs:
@@ -373,22 +373,30 @@ es:
       add_new: Añadir dominio a la lista blanca
       created_msg: Dominio añadido a la lista blanca con éxito
       destroyed_msg: Dominio quitado de la lista blanca con éxito
+      export: Exportar
+      import: Importar
       undo: Quitar de la lista blanca
     domain_blocks:
       add_new: Añadir nuevo
-      created_msg: El bloque de dominio está siendo procesado
-      destroyed_msg: El bloque de dominio se deshizo
+      created_msg: El bloqueo del dominio está siendo procesado
+      destroyed_msg: El bloqueo del dominio se deshizo
       domain: Dominio
-      edit: Editar nuevo dominio bloqueado
+      edit: Editar bloqueo de dominio
       existing_domain_block: Ya impusiste límites más estrictos a %{name}.
       existing_domain_block_html: Ya ha impuesto límites más estrictos a %{name}, necesita <a href="%{unblock_url}">desbloquearlo primero</a>.
+      export: Exportar
+      import: Importar
       new:
-        create: Crear bloque
-        hint: El bloque de dominio no prevendrá la creación de entradas de cuenta en la base de datos, pero aplicará retroactiva y automáticamente métodos de moderación específica en dichas cuentas.
+        create: Crear bloqueo
+        hint: El bloqueo de dominio no prevendrá la creación de entradas de cuenta en la base de datos, pero aplicará retroactiva y automáticamente métodos de moderación específica en dichas cuentas.
         severity:
+          desc_html: "<strong>Limitar</strong> hará que las publicaciones de las cuentas de ese dominio sean invisibles para cualquiera que no las esté siguiendo. <strong>Suspender</strong> eliminará todo el contenido, archivos multimedia, y datos del perfil. Usa <strong>Ninguno</strong> si solo quieres rechazar archivos multimedia."
           noop: Ninguno
+          silence: Limitar
           suspend: Suspender
-        title: Nuevo bloque de dominio
+        title: Nuevo bloqueo de dominio
+      no_domain_block_selected: No se cambió ningún bloqueo de dominio ya que ninguno fue seleccionado
+      not_permitted: No tienes permiso para realizar esta acción
       obfuscate: Ocultar nombre de dominio
       obfuscate_hint: Oculta parcialmente el nombre de dominio en la lista si mostrar la lista de limitaciones de dominio está habilitado
       private_comment: Comentario privado
@@ -420,6 +428,20 @@ es:
       resolved_dns_records_hint_html: El nombre de dominio resuelve los siguientes dominios MX, los cuales son responsables en última instancia de aceptar el correo electrónico. Bloquear un dominio MX bloqueará los registros de cualquier dirección de correo electrónico que utilice el mismo dominio MX, incluso si el nombre de dominio visible es diferente. <strong>Tenga cuidado de no bloquear los principales proveedores de correo electrónico.</strong>
       resolved_through_html: Resuelto a través de %{domain}
       title: Lista negra de correo
+    export_domain_allows:
+      new:
+        title: Importar dominios permitidos
+      no_file: Ningún archivo seleccionado
+    export_domain_blocks:
+      import:
+        description_html: Estás a punto de importar una lista de bloqueos de dominio. Por favor, revisa esta lista con mucho cuidado, especialmente si no has creado esta lista tú mismo.
+        existing_relationships_warning: Relaciones de seguimiento existentes
+        private_comment_description_html: 'Para ayudarle a rastrear de dónde proceden los bloqueos importados, los bloqueos importados se crearán con el siguiente comentario privado: <q>%{comment}</q>'
+        private_comment_template: Importado desde %{source} el %{date}
+        title: Importar bloqueos de dominio
+      new:
+        title: Importar bloqueos de dominio
+      no_file: Ningún archivo seleccionado
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
       language: Para el idioma
@@ -912,6 +934,7 @@ es:
     warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
     your_token: Tu token de acceso
   auth:
+    apply_for_account: Solicitar una cuenta
     change_password: Contraseña
     delete_account: Borrar cuenta
     delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
@@ -1156,6 +1179,7 @@ es:
     invalid_markup: 'contiene código HTML no válido: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Archivo CSV no válido. Error: %{error}'
       over_rows_processing_limit: contiene más de %{count} filas
     modes:
       merge: Unir
@@ -1579,7 +1603,7 @@ es:
         delete_statuses: Se ha determinado que algunos de tus mensajes violan una o más directrices de la comunidad y han sido por tanto eliminados por los moderadores de %{instance}.
         disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
         mark_statuses_as_sensitive: Algunos de tus mensajes han sido marcados como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que pulsar los archivos multimedia en las publicaciones antes de que se muestre una vista previa. Puedes marcar los archivos multimedia como sensibles tú mismo cuando publiques en el futuro.
-        sensitive: A partir de ahora todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
+        sensitive: A partir de ahora, todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
         silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
         suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.
       reason: 'Razón:'
