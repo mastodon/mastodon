@@ -312,7 +312,6 @@ class Account < ApplicationRecord
         next if attr[:name].blank?
         fields << persist_verified_at(attr, old_fields)
       end
-      self[:fields] = fields
     elsif attributes.is_a?(Array)
       attributes.each do |attr|
         next if attr[:name].blank?
