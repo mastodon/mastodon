@@ -44,7 +44,7 @@ class Admin::StatusBatchAction
 
     ApplicationRecord.transaction do
       statuses.each do |status|
-        status.discard
+        status.discard_with_reblogs
         log_action(:destroy, status)
       end
 

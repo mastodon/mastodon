@@ -60,7 +60,7 @@ gl:
       error:
         title: Algo fallou
       new:
-        prompt_html: "%{client_name} solicita permiso para acceder á túa conta. É unha aplicación de terceiros. <strong>Se non confías nela, non deberías autorizala.</strong>"
+        prompt_html: "%{client_name} gostaría acceder á túa conta. É unha aplicación de terceiros. <strong>Se non confías nela, non deberías autorizala.</strong>"
         review_permissions: Revisar permisos
         title: Autorización necesaria
       show:
@@ -72,7 +72,7 @@ gl:
         revoke: Estás segura?
       index:
         authorized_at: Autorizada o %{date}
-        description_html: Estas aplicacións poden acceder á túa conta usando a API. Se ves publicacións que non recoñeces, ou hai comportamentos non consentidos dalgunha delas, podes revogar o acceso.
+        description_html: Estas aplicacións poden acceder á túa conta usando a API. Se ves aplicacións que non recoñeces, ou hai comportamentos non consentidos dalgunha delas, podes revogar o acceso.
         last_used_at: Último acceso o %{date}
         never_used: Nunca utilizado
         scopes: Permisos
@@ -160,7 +160,7 @@ gl:
       read:accounts: ver información das contas
       read:blocks: ver a quen bloqueas
       read:bookmarks: ver os marcadores
-      read:favourites: ver os favoritos
+      read:favourites: ver as favoritas
       read:filters: ver os filtros
       read:follows: ver a quen segues
       read:lists: ver as tuas listaxes
@@ -174,7 +174,7 @@ gl:
       write:blocks: bloquear contas e dominios
       write:bookmarks: marcar publicacións
       write:conversations: acalar e eliminar conversas
-      write:favourites: publicacións favoritas
+      write:favourites: marcar como favorita
       write:filters: crear filtros
       write:follows: seguir usuarias
       write:lists: crear listaxes

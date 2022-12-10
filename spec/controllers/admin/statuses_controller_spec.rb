@@ -41,7 +41,7 @@ describe Admin::StatusesController do
 
   describe 'POST #batch' do
     before do
-      post :batch, params: { :account_id => account.id, action => '', :admin_status_batch_action => { status_ids: status_ids } }
+      post :batch, params: { account_id: account.id, action => '', admin_status_batch_action: { status_ids: status_ids } }
     end
 
     let(:status_ids) { [media_attached_status.id] }

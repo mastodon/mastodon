@@ -1,1 +1,55 @@
+---
 ms:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Tarikh akhir
+        options: Pilihan
+      user:
+        agreement: Perjanjian perkhidmatan
+        email: Alamat e-mel
+        locale: Tempatan
+        password: Kata laluan
+      user/account:
+        username: Nama pengguna
+      user/invite_request:
+        text: Sebab
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: hanya mengandungi aksara, nombor dan garis bawah sahaja
+              reserved: dikhaskan
+        admin/webhook:
+          attributes:
+            url:
+              invalid: bukanlah URL yang sah
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: bukanlah URL yang sah
+        import:
+          attributes:
+            data:
+              malformed: tersalah bentuk
+        status:
+          attributes:
+            reblog:
+              taken: hantaran sudah wujud
+        user:
+          attributes:
+            email:
+              blocked: menggunakan pembekal e-mel yang tidak dibenarkan
+              unreachable: nampaknya tidak wujud
+            role_id:
+              elevated: tidak boleh lebih tinggi daripada peranan semasa anda
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: termasuklah keizinan yang tidak selamat untuk peranan asas
+              elevated: tidak boleh memasukkan kebenaran yang tidak dimiliki oleh peranan semasa anda
+              own_role: tidak boleh diubah dengan peranan semasa anda
+            position:
+              elevated: tidak boleh lebih tinggi daripada peranan semasa anda
+              own_role: tidak boleh diubah dengan peranan semasa anda

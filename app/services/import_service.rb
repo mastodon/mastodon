@@ -112,6 +112,11 @@ class ImportService < BaseService
       next if status.nil? && ActivityPub::TagManager.instance.local_uri?(uri)
 
       status || ActivityPub::FetchRemoteStatusService.new.call(uri)
+    rescue HTTP::Error, OpenSSL::SSL::SSLError, Mastodon::UnexpectedResponseError
+      nil
+    rescue StandardError => e
+      Rails.logger.warn "Unexpected error when importing bookmark: #{e}"
+      nil
     end
 
     account_ids         = statuses.map(&:account_id)
@@ -131,7 +136,7 @@ class ImportService < BaseService
   end
 
   def import_data
-    Paperclip.io_adapters.for(@import.data).read
+    Paperclip.io_adapters.for(@import.data).read.force_encoding(Encoding::UTF_8)
   end
 
   def relations_map_for_account(account, account_ids)
