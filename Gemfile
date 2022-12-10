@@ -19,14 +19,13 @@ gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails', '~> 6.1.7'
 gem 'rails-i18n', '~> 6.0'
 gem 'bootsnap', '~> 1.15.0', require: false
-gem 'psych', '< 4' # On rails 7 upgrade remove and use ActiveRecord.use_yaml_unsafe_load = true
 
 # Database
 gem 'pg', '~> 1.4'
 gem 'discard', '~> 1.2'
 gem 'makara', '~> 0.5'
 gem 'pghero', '~> 2.8'
-gem 'rails-settings-cached', '~> 0.6' # Settings in the database
+gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/zunda/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'scenic', '~> 1.6' # Versioned database views for Rails
 gem 'strong_migrations', '~> 0.7'
 

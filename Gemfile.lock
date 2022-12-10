@@ -7,6 +7,14 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
+GIT
+  remote: https://github.com/zunda/rails-settings-cached.git
+  revision: 86328ef0bd04ce21cc0504ff5e334591e8c2ccab
+  branch: v0.6.6-aliases-true
+  specs:
+    rails-settings-cached (0.6.6)
+      rails (>= 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -481,7 +489,6 @@ GEM
       pry (>= 0.13, < 0.15)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    psych (3.3.4)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -531,8 +538,6 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    rails-settings-cached (0.6.6)
-      rails (>= 4.2.0)
     railties (6.1.7)
       actionpack (= 6.1.7)
       activesupport (= 6.1.7)
@@ -823,7 +828,6 @@ DEPENDENCIES
   pry-byebug (~> 3.10)
   pry-rails (~> 0.3)
   public_suffix (~> 5.0)
-  psych (< 4)
   puma (~> 5.6)
   pundit (~> 2.2)
   rack (~> 2.2.4)
@@ -833,7 +837,7 @@ DEPENDENCIES
   rails (~> 6.1.7)
   rails-controller-testing (~> 1.0)
   rails-i18n (~> 6.0)
-  rails-settings-cached (~> 0.6)
+  rails-settings-cached (~> 0.6)!
   rdf-normalize (~> 0.5)
   redcarpet (~> 3.5)
   redis (~> 4.5)
@@ -869,3 +873,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.1.0p0
+
+BUNDLED WITH
+   2.3.19
