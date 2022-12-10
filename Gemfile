@@ -78,7 +78,7 @@ gem 'rexml', '~> 3.2'
 gem 'aws-sdk-s3', '~> 1.117.2', require: false
 gem 'fog-core', '<= 2.1.0'
 gem 'fog-openstack', '~> 0.3', require: false
-gem 'kt-paperclip', '~> 7.1'
+gem 'kt-paperclip', '~> 7.1', github: 'kreeti/kt-paperclip', ref: '11abf222dc31bff71160a1d138b445214f434b2b'
 gem 'blurhash', '~> 0.1'
 gem 'fastimage'
 gem 'color_diff', '~> 0.1'
