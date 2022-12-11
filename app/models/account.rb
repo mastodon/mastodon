@@ -325,7 +325,7 @@ class Account < ApplicationRecord
   def persist_verified_at(attr, old_fields)
     previous = old_fields.find { |item| item['value'] == attr[:value] }
 
-    if previous['verified_at']&.present?
+    if previous && previous['verified_at'].present?
       attr[:verified_at] = previous['verified_at']
     end
 
