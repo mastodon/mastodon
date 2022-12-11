@@ -981,7 +981,7 @@ et:
       confirming: Ootan e-posti kinnitust.
       functional: Konto on täies mahus kasutatav.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
-      redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
+      redirecting_to: See konto pole aktiivne, sest on suunatud aadressile %{acct}.
       view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
     use_security_key: Kasuta turvavõtit
@@ -1031,7 +1031,7 @@ et:
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
     warning:
-      before: 'Enne jätkamist palun lugege neid märkmeid hoolikalt:'
+      before: 'Veendu, et saad aru, mida toob plaanitav muudatus kaasa:'
       caches: Sisu, mis on salvestatud teiste serverite poolt, võib jääda alles
       data_removal: Teie postitused ning muud andmed kustutatakse jäädavalt
       email_change_html: Te saate <a href="%{path}">muuta oma e-postiaadressi</a> kontot kustutamata
@@ -1241,7 +1241,7 @@ et:
   migrations:
     acct: uue konto kasutajanimi@domeen
     cancel: Tühista ümbersuunamine
-    cancel_explanation: Ümbersuunamise tühistamine taasaktiveerib Teie praeguse konto, kuid ei too tagasi jälgijaid, mis on sellele kontole üle viidud.
+    cancel_explanation: Ümbersuunamise tühistamine aktiveerib siinse konto, kuid teisele kontole üle viidud jälgijaid tagasi ei too.
     cancelled_msg: Ümbersuunamise tühistamine õnnestus.
     errors:
       already_moved: on sama konto, kuhu Te olete juba kolinud
@@ -1253,12 +1253,12 @@ et:
     incoming_migrations: Teise konto siia kolimine
     incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto nime</a>.
     moved_msg: Teie konto on nüüd ümber suunamas kontole %{acct} ning Teie jälgijaid kolitakse üle.
-    not_redirecting: Teie kontot ei suunata hetkel ümber.
-    on_cooldown: Te olete hiljuti kolinud oma kontot. See funktsioon on jälle kättesaadav %{count} päeva pärast.
+    not_redirecting: See konto pole praegu kuskile ümber suunatud.
+    on_cooldown: Oled oma kontot hijuti kolinud. Uuesti saad seda teha %{count} päeva pärast.
     past_migrations: Eelmiseid kolimisi
     proceed_with_move: Koli üle jälgijad
-    redirected_msg: Teie kontot suunatakse nüüd ümber kontole %{acct}.
-    redirecting_to: Teie konto suunatakse ümber kontole %{acct}.
+    redirected_msg: Konto on suunatud ümber aadressile %{acct}.
+    redirecting_to: Konto on suunatud ümber aadressile %{acct}.
     set_redirect: Määra ümbersuunamine
     warning:
       backreference_required: Uus konto peab olema esmalt seadistatud tagasi viitama praegusele kontole
@@ -1266,9 +1266,9 @@ et:
       cooldown: Pärast kolimist on ooteperiood, mille kestel ei saa Te uuesti kolida
       disabled_account: Teie praegune konto ei ole täiesti kasutatav peale seda. Sellest hoolimata on Teil ligipääs andmete ekspordile ja taasaktiveerimisele.
       followers: See tegevus kolib kõik jälgijad üle praeguselt kontolt uuele kontole
-      only_redirect_html: Alternatiivselt saate Te <a href="%{path}">seadistada ainult ümbersuunamise Teie profiilil</a>.
-      other_data: Muid andmeid ei liigutata automaatselt
-      redirect: Teie praegune konto eemaldatakse otsingutulemustest ning profiilile lisatakse ümbersuunamise märguanne
+      only_redirect_html: Teine võimalus on <a href="%{path}">märkida konto ümbersuunatuks</a>.
+      other_data: Muid kontoandmeid, sh postitusi automaatselt üle ei kanta
+      redirect: Konto eemaldatakse avalikust kataloogist ja märgitakse profiilis ümbersuunatuks
   moderation:
     title: Modereerimine
   move_handler:
