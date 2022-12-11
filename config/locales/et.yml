@@ -903,12 +903,12 @@ et:
         title: Trendikad sildid
       subject: Uued %{instance} trendid ülevaatuseks
   aliases:
-    add_new: Loo teine nimi
-    created_msg: Teine nimi on edukalt loodud. Te saate nüüd alustada kolimist vanalt kontolt.
+    add_new: Pane kolimiseks valmis
+    created_msg: Konto on valmis vastu võtma jälgijaid. Logi sisse oma vanale kontole ja käivita kolimine sealt.
     deleted_msg: Edukalt kustutasime teise nime. Kolimine sellelt kontolt praegusele on nüüdsest võimatu.
     empty: Teil puuduvad teised nimed.
     hint_html: Kui Te soovite kolida teiselt kontolt praegusele kontole, saate Te siin luua teise nime, mis on kohustuslik, enne kui saate kolida jälgijaid vanalt kontolt praegusele. See tegevus on iseenesest <strong>kahjutu ja taastatav</strong>. <strong>Konto ületoomine alustatakse vanalt kontolt</strong>.
-    remove: Eemalda teine nimi
+    remove: Loobu suunamise vastuvõtmisest
   appearance:
     advanced_web_interface: Kohandatud veebiliides
     advanced_web_interface_hint: 'Kui soovite kasutada terve ekraani laiust, lubab kohandatud veebiliides seadistada mitut erinevat veergu, et näha nii palju informatsiooni samal ajal, kui võimalik: Kodu, teavitused, föderatsiooni ajajoon ning mis iganes arv nimekirju ja silte.'
@@ -1239,7 +1239,7 @@ et:
       not_ready: Ei saa lisada faile, mida hetkel töödeldakse. Proovige uuesti mõne hetke pärast!
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
-    acct: uue konto kasutajanimi@domeen
+    acct: Kolitud aadressile
     cancel: Tühista ümbersuunamine
     cancel_explanation: Ümbersuunamise tühistamine aktiveerib siinse konto, kuid teisele kontole üle viidud jälgijaid tagasi ei too.
     cancelled_msg: Ümbersuunamise tühistamine õnnestus.
@@ -1251,21 +1251,21 @@ et:
       on_cooldown: Te olete hetkel ootel
     followers_count: Jälgijaid kolimise hetkel
     incoming_migrations: Teise konto siia kolimine
-    incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto nime</a>.
+    incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto aadressi</a>.
     moved_msg: Teie konto on nüüd ümber suunamas kontole %{acct} ning Teie jälgijaid kolitakse üle.
     not_redirecting: See konto pole praegu kuskile ümber suunatud.
     on_cooldown: Oled oma kontot hijuti kolinud. Uuesti saad seda teha %{count} päeva pärast.
-    past_migrations: Eelmiseid kolimisi
-    proceed_with_move: Koli üle jälgijad
+    past_migrations: Kolimisajalugu
+    proceed_with_move: Käivita kolimine
     redirected_msg: Konto on suunatud ümber aadressile %{acct}.
     redirecting_to: Konto on suunatud ümber aadressile %{acct}.
-    set_redirect: Määra ümbersuunamine
+    set_redirect: Suuna ümber
     warning:
-      backreference_required: Uus konto peab olema esmalt seadistatud tagasi viitama praegusele kontole
+      backreference_required: Uus konto peab olema eelnevalt seadistatud võtma vastu siinse konto jälgijaid
       before: 'Enne jätkamist palun lugege neid märkmeid hoolikalt:'
-      cooldown: Pärast kolimist on ooteperiood, mille kestel ei saa Te uuesti kolida
-      disabled_account: Teie praegune konto ei ole täiesti kasutatav peale seda. Sellest hoolimata on Teil ligipääs andmete ekspordile ja taasaktiveerimisele.
-      followers: See tegevus kolib kõik jälgijad üle praeguselt kontolt uuele kontole
+      cooldown: Kolimisele järgneb ooteaeg, mille vältel kontot mõnda aega ümber kolida ei saa
+      disabled_account: Pärast kolimist konto kasutamine piiratakse. Säilib andmete eksportimise ja konto aktiveerimise võimalus.
+      followers: See käsklus kolib kõik siinse konto jälgijad üle sinu uue konto jälgijateks
       only_redirect_html: Teine võimalus on <a href="%{path}">märkida konto ümbersuunatuks</a>.
       other_data: Muid kontoandmeid, sh postitusi automaatselt üle ei kanta
       redirect: Konto eemaldatakse avalikust kataloogist ja märgitakse profiilis ümbersuunatuks
@@ -1436,7 +1436,7 @@ et:
   settings:
     account: Konto
     account_settings: Kontosätted
-    aliases: Konto teised nimed
+    aliases: Siia ümbersuunatud kontod
     appearance: Välimus
     authorized_apps: Lubatud rakendused
     back: Tagasi Mastodoni
