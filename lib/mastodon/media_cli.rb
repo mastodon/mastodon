@@ -56,7 +56,7 @@ module Mastodon
 
       Please mind that some storage providers charge for the necessary API requests to list objects.
     LONG_DESC
-    # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
+    # rubocop:disable Metrics/PerceivedComplexity
     def remove_orphans
       progress        = create_progress_bar(nil)
       reclaimed_bytes = 0
@@ -184,6 +184,7 @@ module Mastodon
 
       say("Removed #{removed} orphans (approx. #{number_to_human_size(reclaimed_bytes)})#{dry_run}", :green, true)
     end
+    # rubocop:enable Metrics/PerceivedComplexity
 
     option :days, type: :numeric, default: 60, aliases: [:d]
     option :skip_avatars, type: :boolean, default: false
