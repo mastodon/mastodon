@@ -11,7 +11,7 @@ services:
         # Use -bullseye variants on local arm64/Apple Silicon.
         VARIANT: '3.0-bullseye'
         # Optional Node.js version to install
-        NODE_VERSION: '14'
+        NODE_VERSION: '16'
     volumes:
       - ..:/workspaces/mastodon:cached
     environment:
