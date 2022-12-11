@@ -56,6 +56,8 @@ module Mastodon
 
       Please mind that some storage providers charge for the necessary API requests to list objects.
     LONG_DESC
+
+    # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
     def remove_orphans
       progress        = create_progress_bar(nil)
       reclaimed_bytes = 0
@@ -321,7 +323,7 @@ module Mastodon
     def lookup(url)
       path = Addressable::URI.parse(url).path
 
-      path_segments = path.split('/')[2..-1]
+      path_segments = path.split('/')[2..]
       path_segments.delete('cache')
 
       unless [7, 10].include?(path_segments.size)
