@@ -693,6 +693,9 @@ ar:
         title: العلامة
       content_retention:
         title: الاحتفاظ بالمحتوى
+      default_noindex:
+        desc_html: يؤثر على جميع المستخدمين الذين لم يغيروا هذا الإعداد بأنفسهم
+        title: عدم السماح مبدئيا لمحركات البحث بفهرسة الملفات التعريفية للمستخدمين
       discovery:
         follow_recommendations: اتبع التوصيات
         profile_directory: دليل الصفحات التعريفية
@@ -1067,6 +1070,8 @@ ar:
     index:
       delete: إزالة
       empty: ليست لديك أية عوامل تصفية.
+      expires_in: تنتهي مدة صلاحيتها في غضون %{distance}
+      expires_on: تنتهي مدة صلاحيتها في %{date}
       title: عوامل التصفية
     new:
       save: حفظ عامل التصفية الجديد
