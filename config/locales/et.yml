@@ -907,7 +907,7 @@ et:
     created_msg: Konto on valmis vastu võtma jälgijaid. Logi sisse oma vanale kontole ja käivita kolimine sealt.
     deleted_msg: Edukalt kustutasime teise nime. Kolimine sellelt kontolt praegusele on nüüdsest võimatu.
     empty: Teil puuduvad teised nimed.
-    hint_html: Kui Te soovite kolida teiselt kontolt praegusele kontole, saate Te siin luua teise nime, mis on kohustuslik, enne kui saate kolida jälgijaid vanalt kontolt praegusele. See tegevus on iseenesest <strong>kahjutu ja taastatav</strong>. <strong>Konto ületoomine alustatakse vanalt kontolt</strong>.
+    hint_html: Kui soovid mõne teise konto siia üle kolida, pead esmalt siin määrama kolitava konto aadressi. Seejärel on siinne konto valmis võtma vastu jälgijaid vanalt kontolt. Kolitava konto aadressi määramine on iseenesest <strong>kahjutu ja tagasipööratav</strong>. <strong>Jälgijate tegelik kolimine käivitatakse vanalt kontolt.</strong>.
     remove: Loobu suunamise vastuvõtmisest
   appearance:
     advanced_web_interface: Kohandatud veebiliides
@@ -956,7 +956,7 @@ et:
     migrate_account: Teisele kontole ära kolimine
     migrate_account_html: Kui soovid selle konto siit ära kolida, <a href="%{path}">saad seda teha siin</a>.
     or_log_in_with: Või logi sisse koos
-    privacy_policy_agreement_html: Olen lugenud ja nõustun <a href="%{privacy_policy_path}" target="_blank">privaatsuspoliitikaga</a>
+    privacy_policy_agreement_html: Olen tutvunud <a href="%{privacy_policy_path}" target="_blank">isikuandmete kaitse põhimõtetega</a> ja nõustun nendega
     providers:
       cas: CAS
       saml: SAML
@@ -1032,13 +1032,13 @@ et:
     success_msg: Konto kustutamine õnnestus
     warning:
       before: 'Veendu, et saad aru, mida toob plaanitav muudatus kaasa:'
-      caches: Sisu, mis on salvestatud teiste serverite poolt, võib jääda alles
-      data_removal: Teie postitused ning muud andmed kustutatakse jäädavalt
+      caches: Teiste serverite poolt talletatud sisu võib jääda kättesaadavaks
+      data_removal: Sinu postitused ning kontoandmed kustutatakse jäädavalt
       email_change_html: Te saate <a href="%{path}">muuta oma e-postiaadressi</a> kontot kustutamata
       email_contact_html: Kui see ikkagi ei saabu, saatke abi saamiseks kiri aadressile <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Kui Te ei saanud kinnituskirja, saate selle <a href="%{path}">uuesti küsida</a>
-      irreversible: Te ei saa taastada ega taasaktiveerida oma kontot
-      more_details_html: Rohkemate detailide jaoks palun lugege <a href="%{terms_path}">privaatsuspoliitikat</a>.
+      irreversible: Kustutatud kontot ei saa taastada ega uuesti aktiveerida
+      more_details_html: Konto kustutamise kohta loe täpsemalt <a href="%{terms_path}">isikuandmete kaitse põhimõtetest</a>.
       username_available: Teie kasutajanimi muutub uuesti kasutatavaks
       username_unavailable: Teie kasutajanimi jääb mitte kasutatavaks
   disputes:
@@ -1254,14 +1254,14 @@ et:
     incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto aadressi</a>.
     moved_msg: Teie konto on nüüd ümber suunamas kontole %{acct} ning Teie jälgijaid kolitakse üle.
     not_redirecting: See konto pole praegu kuskile ümber suunatud.
-    on_cooldown: Oled oma kontot hijuti kolinud. Uuesti saad seda teha %{count} päeva pärast.
+    on_cooldown: Oled oma kontot hiljuti kolinud. Uuesti saad seda teha %{count} päeva pärast.
     past_migrations: Kolimisajalugu
     proceed_with_move: Käivita kolimine
     redirected_msg: Konto on suunatud ümber aadressile %{acct}.
     redirecting_to: Konto on suunatud ümber aadressile %{acct}.
     set_redirect: Suuna ümber
     warning:
-      backreference_required: Uus konto peab olema eelnevalt seadistatud võtma vastu siinse konto jälgijaid
+      backreference_required: Uus konto peab olema esmalt seadistatud võtma vastu siinse konto jälgijaid
       before: 'Enne jätkamist palun lugege neid märkmeid hoolikalt:'
       cooldown: Kolimisele järgneb ooteaeg, mille vältel kontot mõnda aega ümber kolida ei saa
       disabled_account: Pärast kolimist konto kasutamine piiratakse. Säilib andmete eksportimise ja konto aktiveerimise võimalus.
