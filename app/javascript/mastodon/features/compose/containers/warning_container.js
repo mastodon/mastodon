@@ -38,9 +38,9 @@ const buildProtectedTagRE = () => {
     return new RegExp(
       '(?:^|[^\\/\\)\\w])#(' +
       PROTECTED_TAGS.join('|') +
-      ')(?:$|' + 
+      ')(?:$|' +
       '[^' + WORD + HASHTAG_SEPARATORS + ']' +
-      ')', 'iu'
+      ')', 'iu',
     );
   } catch (error) {
     return new RegExp(`?:^|[^\/\)\w])#(${PROTECTED_TAGS.join('|')})(?:$|[^\w·])`, 'i');
@@ -56,7 +56,7 @@ const mapStateToProps = state => ({
   directMessageWarning: state.getIn(['compose', 'privacy']) === 'direct',
 });
 
-const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning }) => {
+const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning, protectedHashtagWarning }) => {
   if (needsLockWarning) {
     return <Warning message={<FormattedMessage id='compose_form.lock_disclaimer' defaultMessage='Your account is not {locked}. Anyone can follow you to view your follower-only posts.' values={{ locked: <a href='/settings/profile'><FormattedMessage id='compose_form.lock_disclaimer.lock' defaultMessage='locked' /></a> }} />} />;
   }
@@ -66,7 +66,7 @@ const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning
   }
 
   if (protectedHashtagWarning) {
-    return <Warning message={<FormattedMessage id='compose_form.protected_tag_warning' defaultMessage="One of these hashtags is conventionally reserved for a specific purpose. Make sure that you understand this purpose before posting publicly." />} />;
+    return <Warning message={<FormattedMessage id='compose_form.protected_tag_warning' defaultMessage='One of these hashtags is conventionally reserved for a specific purpose. Make sure that you understand this purpose before posting publicly.' />} />;
   }
 
   if (directMessageWarning) {
@@ -85,6 +85,7 @@ const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning
 WarningWrapper.propTypes = {
   needsLockWarning: PropTypes.bool,
   hashtagWarning: PropTypes.bool,
+  protectedHashtagWarning: PropTypes.bool,
   directMessageWarning: PropTypes.bool,
 };
 
