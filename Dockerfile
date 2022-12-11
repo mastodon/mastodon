@@ -36,7 +36,7 @@ RUN apt update && \
     bundle config set --local without 'development test' && \
     bundle config set silence_root_warning true && \
     bundle install -j"$(nproc)" && \
-    yarn install --pure-lockfile
+    yarn install --pure-lockfile --network-timeout 600000
 
 FROM node:${NODE_VERSION}
 
