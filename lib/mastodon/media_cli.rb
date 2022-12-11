@@ -56,7 +56,6 @@ module Mastodon
 
       Please mind that some storage providers charge for the necessary API requests to list objects.
     LONG_DESC
-
     # rubocop:disable Metrics/PerceivedComplexity,Metrics/CyclomaticComplexity
     def remove_orphans
       progress        = create_progress_bar(nil)
