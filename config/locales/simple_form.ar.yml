@@ -1,4 +1,3 @@
----
 ar:
   simple_form:
     hints:
@@ -232,6 +231,7 @@ ar:
         profile_directory: تفعيل دليل الصفحات التعريفية
         registrations_mode: من يمكنه التسجيل
         require_invite_text: يتطلب سببا للانضمام
+        show_domain_blocks: إظهار النطاقات المحظورة
         show_domain_blocks_rationale: أظهِر لماذا تم حظر النطاقات
         site_contact_email: للاتصال بالبريد الإلكتروني
         site_contact_username: اسم مستخدم جهة الاتصال
@@ -269,6 +269,8 @@ ar:
         mention: ابعث بريداً إلكترونيًا عندما يُشير إليك أو يذكُرك أحدهم
         pending_account: ابعث رسالة إلكترونية إن كان هناك حساب جديد بحاجة إلى مراجعة
         reblog: ابعث بريداً إلكترونيًا عندما يقوم أحدهم بترقية منشورك
+        report: هناك إبلاغ جديد تم إرساله
+        trending_tag: المتداولة الجديدة تتطلّب مراجعة
       rule:
         text: قانون
       tag:
@@ -280,12 +282,13 @@ ar:
         role: الدور
       user_role:
         color: لون الشارة
+        highlighted: عرض الدور كشارة على الملفات الشخصية للمستخدمين
         name: التسمية
         permissions_as_keys: الصلاحيات
         position: الأولوية
       webhook:
         url: الرابط التشعبّي URL لنقطة النهاية
-    'no': لا
+    'no': 'لا'
     not_recommended: غير مستحسن
     recommended: موصى بها
     required:
@@ -294,4 +297,4 @@ ar:
     title:
       sessions:
         webauthn: استخدم أحد مفاتيح الأمان الخاصة بك لتسجيل الدخول
-    'yes': نعم
+    'yes': 'نعم'
