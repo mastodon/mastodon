@@ -502,12 +502,14 @@ nn:
       private_comment: Privat kommentar
       public_comment: Offentleg kommentar
       purge: Reinse
+      purge_description_html: Dersom du trur dette domenet har blitt kopla ned for godt, kan du sletta all kontoinformasjon og tilhøyrande data som gjeld domenet frå lageret ditt. Dette kan ta litt tid.
       title: Samling
       total_blocked_by_us: Blokkert av oss
       total_followed_by_them: Fylgd av dei
       total_followed_by_us: Fylgd av oss
       total_reported: Rapportar om dei
       total_storage: Medievedlegg
+      totals_time_period_hint_html: Totalsum vist nedanfor gjeld data for alle tidsperiodar.
     invites:
       deactivate_all: Slå av alle
       filter:
@@ -529,7 +531,7 @@ nn:
         '94670856': 3 år
       new:
         title: Opprett ny IP-regel
-      no_ip_block_selected: Ingen IP-regler ble endret da ingen ble valgt
+      no_ip_block_selected: Ingen IP-reglar vart endra sidan ingen var valde
       title: IP-regler
     relationships:
       title: "%{acct} sitt forhold"
@@ -552,6 +554,7 @@ nn:
     report_notes:
       created_msg: Rapportmerknad laga!
       destroyed_msg: Rapportmerknad sletta!
+      today_at: I dag %{time}
     reports:
       account:
         notes:
@@ -625,20 +628,30 @@ nn:
         manage_invites_description: Tillet at brukarar blar gjennom og deaktiverer innbydingslenkjer
         manage_roles: Handsam roller
         manage_roles_description: Tillet at brukarar handsamar og tilset rollar under deira eiga
-        view_dashboard: Vis dashbord
-        view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
+        manage_user_access: Administrer brukartilgang
+        manage_user_access_description: Let brukarar deaktivera 2-trinnsautentisering, endra e-postadressa og tilbakestille passordet til andre brukarar
+        manage_users: Handtere brukarar
+        manage_users_description: Let brukarar sjå detaljar om andre brukarar og utføre moderasjonshandlingar mot dei
+        manage_webhooks: Handtere webhooks
+        manage_webhooks_description: Let brukarar setje opp webhooks for administrative hendingar
+        view_audit_log: Sjå revisjonslogg
+        view_audit_log_description: Let brukarar sjå historikk over administrative handlingar på tenaren
+        view_dashboard: Vis kontrollpanel
+        view_dashboard_description: Gjev brukarar tilgang til kontrollpanel og ulike måledata
         view_devops: DevOps
-        view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
+        view_devops_description: Gjev brukarar tilgang til kontrollpanel for Sidekiq og pgHero
       title: Rollar
     rules:
       add_new: Legg til regel
       delete: Slett
-      description_html: Mens de fleste hevder å ha lest og samtykket i tjenestevilkårene, leser de vanligvis ikke gjennom før etter et problem oppstår. <strong>Gjør det enklere å se serverens regler på et øyeblikk ved å gi dem i en flat kulepunktsliste.</strong> Prøv å holde individuelle regler korte og enkelt, men prøv å ikke dele dem opp i mange separate elementer heller.
-      edit: Rediger regel
-      empty: Ingen serverregler har blitt definert ennå.
-      title: Server regler
+      description_html: Medan dei fleste hevdar å ha lest og samtykt til tenestevilkåra, vil dei vanlegvis ikkje lese gjennom før etter at eit problem oppstår. <strong>Gjer det lettare å halde seg informert om reglane for tenaren ved å presentera dei i ei enkel punktliste.</strong> Prøv å halde individuelle reglar korte og enkle, men unngå også å dela dei opp i for mange element.
+      edit: Endre regel
+      empty: Ingen tenarreglar har blitt definert enno.
+      title: Tenarreglar
     settings:
       about:
+        manage_rules: Handter tenarreglar
+        preamble: Gje grundig informasjon om korleis tenaren blir drifta, moderert og finansiert.
         title: Om
       appearance:
         title: Utsjånad
