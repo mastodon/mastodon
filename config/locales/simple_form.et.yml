@@ -1,11 +1,10 @@
----
 et:
   simple_form:
     hints:
       account_alias:
         acct: Sisesta selle konto kasutajanimi@domeen, millelt soovite kolida
       account_migration:
-        acct: Sisesta selle konto kasutajanimi@domeen, millele soovite kolida
+        acct: Sisesta kasutajanimi@domeen, kuhu soovid konto kolida
       account_warning_preset:
         text: Te saate kasutada postituse süntaksi, näiteks URLe, silte ja mainimisi
         title: Valikuline. Ei ole nähtav saajale
@@ -34,7 +33,7 @@ et:
         avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         bot: Teavita teisi, et see konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
-        current_password: Turvalisuse huvides palume sisestage praeguse konto salasõna
+        current_password: Sisesta turvalisuse huvides oma siinse konto salasõna
         current_username: Kinnitamiseks palun sisestage oma konto kasutajanimi
         digest: Saadetakse ainult pärast pikka perioodi tegevusetust ja ainult siis, kui Teile on saadetud privaatseid sõnumeid
         discoverable: Konto on leitav võhivõõraste jaoks soovituste ja trendide sirvimise teel vm sarnaste vahenditega
@@ -136,7 +135,7 @@ et:
       account_alias:
         acct: Vana konto täisnimi
       account_migration:
-        acct: Uue konto täisnimi
+        acct: Uue konto aadress
       account_warning_preset:
         text: Eelseadistatud tekst
         title: Pealkiri
@@ -297,7 +296,7 @@ et:
       webhook:
         events: Lubatud sündmused
         url: Lõpp-punkti URL
-    'no': Ei
+    'no': 'Ei'
     not_recommended: Pole soovitatav
     recommended: Soovituslik
     required:
@@ -306,4 +305,4 @@ et:
     title:
       sessions:
         webauthn: Kasuta sisenemiseks ühte turvavõtmeist
-    'yes': Jah
+    'yes': 'Jah'
