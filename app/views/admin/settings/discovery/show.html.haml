@@ -26,6 +26,9 @@
   .fields-group
     = f.input :timeline_preview, as: :boolean, wrapper: :with_label
 
+  .fields-group
+    = f.input :noindex, as: :boolean, wrapper: :with_label, label: t('admin.settings.default_noindex.title'), hint: t('admin.settings.default_noindex.desc_html')
+
   %h4= t('admin.settings.discovery.follow_recommendations')
 
   .fields-group
