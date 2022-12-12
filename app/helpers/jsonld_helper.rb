@@ -203,7 +203,7 @@ module JsonLdHelper
   end
 
   def response_error_unsalvageable?(response)
-    response.code == 501 || ((400...500).cover?(response.code) && ![401, 408, 429].include?(response.code))
+    response.code == 501 || ((400...500).cover?(response.code) && ![408, 429].include?(response.code))
   end
 
   def build_request(uri, on_behalf_of = nil)
