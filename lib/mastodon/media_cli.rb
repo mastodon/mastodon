@@ -36,13 +36,14 @@ module Mastodon
       follow status. By default, only accounts that are not followed by or
       following anyone locally are pruned.
     DESC
+    # rubocop:disable Metrics/PerceivedComplexity
     def remove
       if options[:prune_profiles] && options[:remove_headers]
-        say("--prune_profiles and --remove_headers should not be specified simultaneously", :red, true)
+        say('--prune_profiles and --remove_headers should not be specified simultaneously', :red, true)
         exit(1)
       end
       if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
-        say("--include_follows can only be used with --prune_profiles or --remove_headers", :red, true)
+        say('--include_follows can only be used with --prune_profiles or --remove_headers', :red, true)
         exit(1)
       end
       time_ago        = options[:days].days.ago
@@ -77,7 +78,7 @@ module Mastodon
         say("Visited #{processed} accounts, and removed profile media from #{purged_accounts.size} accounts (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
       end
 
-      if !(options[:prune_profiles] || options[:remove_headers])
+      unless options[:prune_profiles] || options[:remove_headers]
         processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
           next if media_attachment.file.blank?
 
@@ -91,11 +92,11 @@ module Mastodon
 
           size
         end
-        
+
         say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
       end
     end
-    
+
     option :start_after
     option :prefix
     option :fix_permissions, type: :boolean, default: false
@@ -107,7 +108,6 @@ module Mastodon
 
       Please mind that some storage providers charge for the necessary API requests to list objects.
     LONG_DESC
-    # rubocop:disable Metrics/PerceivedComplexity
     def remove_orphans
       progress        = create_progress_bar(nil)
       reclaimed_bytes = 0
