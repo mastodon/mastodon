@@ -1,4 +1,3 @@
----
 ku:
   simple_form:
     hints:
@@ -25,7 +24,7 @@ ku:
         all_day: Dema were nîşankirin, tenê dîrokên navbera demê dê werin nîşan kirin
         ends_at: Bi dilê xwe ye. Daxuyanî di vê demê de bi xweberî ji weşanê de rabe
         scheduled_at: Vala bihêle ku yekcar daxûyanî were weşandin
-        starts_at: Bi dilê xwe ye. Heke daxûyanî ya te di demeke diyar ve girêdayî be
+        starts_at: Vebijêrkî ye. Ku daxûyanî ya te di demeke diyar ve girêdayî be
         text: Tu dikarî hevoksaziya şandiyê bi kar bînî. Ji kerema xwe bila haya te ji cihê ku ev daxuyanî li ser dîmenderê bikarhêner bigire hebe
       appeal:
         text: Tu dikarî tenê carekê îtîraza binpêkirinê bikî
@@ -47,9 +46,7 @@ ku:
         locked: Bi pejirandina daxwazên şopandinê, kî dikare te bişopîne bi destan kontrol bike
         password: Herî kêm 8 tîpan bi kar bîne
         phrase: Ji rewşa nivîsê tîpên girdek/hûrdek an jî ji hişyariya naveroka ya şandiyê wek serbixwe wê were hevbeş kirin
-        scopes: |-
-          Sepana ku dê kîjan maf bide bigihije APIyan.
-          Ger te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî.
+        scopes: "Sepana ku dê kîjan maf bide bigihije APIyan.\nGer te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî."
         setting_aggregate_reblogs: Bilindkirinên ku nû hatine weşan ji şandiyên di dema dawî de nîşan nede (tenê li ser bilindkirinên nû wergirtî bandor dike)
         setting_always_send_emails: Dema ku tu Mastodon bi rengek çalak bi kar tînî, bi gelemperî agahdariya e-nameyê nayê şandin
         setting_default_sensitive: Medyaya hestiyar berdestî ve tê veşartin û bi tikandin dikare were eşkere kirin
@@ -84,7 +81,7 @@ ku:
         mascot: Îlustrasyona navrûyê webê yê pêşketî bêbandor dike.
         media_cache_retention_period: Pelên medyayê yên daxistî wê piştî çend rojên diyarkirî dema ku li ser nirxek erênî were danîn werin jêbirin, û li gorî daxwazê ​​ji nû ve werin daxistin.
         profile_directory: Pelrêça profîlê hemû bikarhênerên keşfbûnê hilbijartine lîste dike.
-        require_invite_text: Heke ji bo qeydkirinê pejirandina bi destan hewce bike, Nivîsa "Hûn çima dixwazin tevlê bibin?" li şûna vebijarkî bike mecbûrî
+        require_invite_text: Gava ku tomarkirin pêdiviya pejirandina destan dike, Têketina nivîsê "Tu çima dixwazî beşdar bibî?" Bike sereke ji devla vebijêrkî
         site_contact_email: Mirov dikarin ji bo pirsên qanûnî yan jî yên piştgiriyê çawa xwe digihînin te.
         site_contact_username: Mirov dikarin li ser Mastodonê xwe çawa xwe bigihînin te.
         site_extended_description: Her zanyariyek daxwazî dibe ku bibe alîkar bo mêvan û bikarhêneran re. Û dikarin bi hevoksaziya Markdown re werin sazkirin.
@@ -115,7 +112,7 @@ ku:
         text: Ji bo bikarhênerên li ser vê rajekarê rêzikek an jî pêdivîyê pênase bike. Hewl bide ku rêzikê kin û xwerû bigire
       sessions:
         otp: 'Koda du-gavî a telefona xwe têkevê an jî yek ji wan kodên xilaskirinê têkevê:'
-        webauthn: Heke kilîta USB-yê be, jê ewle be ku wê têxinê û heke pêdivî be, pê li wê bike.
+        webauthn: Ku kilîta USB be, jê ewle be ku wê têxî û ku pêdivî be, pê li wê bike.
       tag:
         name: Tîpan, mînak ji bo ku bêhtir paknivîs bibe, tenê rewşa tîpên girdek/hûrdek dikarî biguherînî
       user:
@@ -299,7 +296,7 @@ ku:
       webhook:
         events: Bûyerên çalakkirî
         url: Girêdana xala dawîbûnê
-    'no': Na
+    'no': 'Na'
     not_recommended: Nayê pêşniyarkirin
     recommended: Pêşniyarkirî
     required:
@@ -308,4 +305,4 @@ ku:
     title:
       sessions:
         webauthn: Yek ji kilîtên ewlehiyê yên xwe bi kar bîne bo têketinê
-    'yes': Erê
+    'yes': 'Erê'
