@@ -39,7 +39,7 @@ module Mastodon
     # rubocop:disable Metrics/PerceivedComplexity
     def remove
       if options[:prune_profiles] && options[:remove_headers]
-        say('--prune_profiles and --remove_headers should not be specified simultaneously', :red, true)
+        say('--prune-profiles and --remove-headers should not be specified simultaneously', :red, true)
         exit(1)
       end
       if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
