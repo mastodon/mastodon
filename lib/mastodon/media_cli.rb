@@ -18,7 +18,6 @@ module Mastodon
     option :remove_headers, type: :boolean, default: false
     option :include_follows, type: :boolean, default: false
     option :concurrency, type: :numeric, default: 5, aliases: [:c]
-    option :verbose, type: :boolean, default: false, aliases: [:v]
     option :dry_run, type: :boolean, default: false
     desc 'remove', 'Remove remote media files, headers or avatars'
     long_desc <<-DESC
@@ -50,13 +49,11 @@ module Mastodon
       dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
 
       if options[:prune_profiles] || options[:remove_headers]
-        purged_accounts = Concurrent::Set[]
         processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
           next if !options[:include_follows] && Follow.where(account: account).or(Follow.where(target_account: account)).exists?
           next if account.avatar.blank? && account.header.blank?
           next if options[:remove_headers] && account.header.blank?
 
-          purged_accounts << account.url
           size = (account.header_file_size || 0)
           size += (account.avatar_file_size || 0) if options[:prune_profiles]
 
@@ -69,13 +66,7 @@ module Mastodon
           size
         end
 
-        if options[:verbose] && !purged_accounts.empty?
-          say('List of purged accounts:')
-          purged_accounts.each do |url|
-            say(url.to_s)
-          end
-        end
-        say("Visited #{processed} accounts, and removed profile media from #{purged_accounts.size} accounts (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
+        say("Visited #{processed} accounts and removed profile media totaling #{number_to_human_size(aggregate)}#{dry_run}", :green, true)
       end
 
       unless options[:prune_profiles] || options[:remove_headers]
