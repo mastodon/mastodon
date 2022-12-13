@@ -371,8 +371,8 @@ module Mastodon
 
       unless removed_accounts.empty?
         say('List of removed accounts:')
-        removed_accounts.each do |url|
-          say(url.to_s)
+        removed_accounts.each do |acct|
+          say(acct.to_s)
         end
       end
 
