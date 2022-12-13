@@ -38,12 +38,17 @@ REDIS_CACHE_PARAMS = {
   pool_size: Sidekiq.server? ? Sidekiq.options[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
   pool_timeout: 5,
   connect_timeout: 5,
+  reconnect_attempts: 1,  # Defaults to 0
 }.freeze
 
 REDIS_SIDEKIQ_PARAMS = {
   driver: :hiredis,
   url: ENV['SIDEKIQ_REDIS_URL'],
   namespace: sidekiq_namespace,
+  pool_size: Sidekiq.server? ? Sidekiq.options[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
+  pool_timeout: 5,
+  connect_timeout: 5,
+  reconnect_attempts: 1,  # Defaults to 0
 }.freeze
 
 if Rails.env.test?
