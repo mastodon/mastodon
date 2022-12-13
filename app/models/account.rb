@@ -533,6 +533,7 @@ class Account < ApplicationRecord
   end
 
   before_validation :prepare_contents, if: :local?
+  before_create :prepare_reach_filter, if: :local?
   before_create :generate_keys
   before_destroy :clean_feed_manager
 
@@ -550,6 +551,12 @@ class Account < ApplicationRecord
   end
 
   private
+
+  def prepare_reach_filter
+    return if instance_actor?
+
+    build_reach_filter if %w(true all actors).include?(ENV.fetch('AUTHORIZED_FETCH') { Setting.authorized_fetch && 'true' }) || Rails.configuration.x.mastodon.limited_federation_mode
+  end
 
   def prepare_contents
     display_name&.strip!
