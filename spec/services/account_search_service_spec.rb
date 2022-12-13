@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe AccountSearchService, type: :service do
+  
   around :each do |example|
     old_setting = Chewy.settings[:enabled]
     Chewy.settings[:enabled] = false
