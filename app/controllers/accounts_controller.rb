@@ -6,6 +6,7 @@ class AccountsController < ApplicationController
 
   include AccountControllerConcern
   include SignatureAuthentication
+  include Redisable
 
   vary_by -> { authorized_fetch_actors? ? 'Accept, Accept-Language, Cookie, Signature' : 'Accept, Accept-Language, Cookie' }
 
@@ -31,13 +32,35 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: !(authorized_fetch_actors? && signed_request_account.present?)
+        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
+
+        record_reach!
+
         render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
 
   private
+
+  def record_reach!
+    unless authorized_fetch_mode?
+      AccountReachFilter.where(account_id: @account.id).delete_all
+      return
+    end
+
+    # It's not ideal, but we have no way to tell the remote account about it…
+    return if signed_request_account.preferred_inbox_url.blank?
+
+    account_reach_filter_id = AccountReachFilter.where(account_id: @account.id).pick(:id)
+    return if account_reach_filter_id.nil?
+
+    with_redis do |redis|
+      redis.sadd("account_reach:#{account_reach_filter_id}:to_add", Addressable::URI.parse(signed_request_account.preferred_inbox_url).normalized_host)
+    end
+
+    UpdateAccountReachWorker.perform_async(account_reach_filter_id)
+  end
 
   def authorized_fetch_actors?
     %w(true all actors).include?(ENV.fetch('AUTHORIZED_FETCH', 'false')) || Rails.configuration.x.whitelist_mode

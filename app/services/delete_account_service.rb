@@ -275,7 +275,15 @@ class DeleteAccountService < BaseService
   end
 
   def low_priority_delivery_inboxes
-    Account.inboxes - delivery_inboxes
+    inboxes = Account.inboxes - delivery_inboxes
+    if @account.reach_filter.present?
+      inboxes.filter! do |url|
+        @account.reach_filter.include?(Addressable::URI.parse(url).normalized_host)
+      rescue
+        true
+      end
+    end
+    inboxes
   end
 
   def reported_status_ids

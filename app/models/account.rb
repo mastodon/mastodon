@@ -537,6 +537,7 @@ class Account < ApplicationRecord
 
   before_create :generate_keys
   before_validation :prepare_contents, if: :local?
+  before_validation :prepare_reach_filter, if: :local?
   before_validation :prepare_username, on: :create
   before_destroy :clean_feed_manager
 
@@ -548,6 +549,12 @@ class Account < ApplicationRecord
   end
 
   private
+
+  def prepare_reach_filter
+    return if instance_actor?
+
+    build_reach_filter if %w(true all actors).include?(ENV.fetch('AUTHORIZED_FETCH', 'false')) || Rails.configuration.x.whitelist_mode
+  end
 
   def prepare_contents
     display_name&.strip!
