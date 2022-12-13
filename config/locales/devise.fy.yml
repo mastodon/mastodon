@@ -81,11 +81,34 @@ fy:
       success: Mei sukses mei jo %{kind}-account oanmeld.
     passwords:
       no_token: Jo kinne dizze side net benaderje sûnder dat jo in e-mailberjocht om jo wachtwurd opnij yn te stellen ûntfongen hawwe.
-      send_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo wachtwurd opnij ynstelle moatte. Sjoch tusken jo spam wannear neat ûntfongen waard.
-      send_paranoid_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo wachtwurd opnij ynstelle moatte. Sjoch tusken jo spam wannear neat ûntfongen waard.
+      send_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo wachtwurd opnij ynstelle moatte. Sjoch tusken jo net-winske wannear neat ûntfongen waard.
+      send_paranoid_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo wachtwurd opnij ynstelle moatte. Sjoch tusken jo net-winske wannear neat ûntfongen waard.
       updated: Jo wachtwurd is wizige. Jo binne no oanmeld.
       updated_not_active: Jo wachtwurd is mei sukses feroare.
     registrations:
       destroyed: Jo account is mei sukses fuortsmiten. Miskien oant sjen.
       signed_up: Jo binne registrearre.
       signed_up_but_inactive: Jo binne registrearre. Jo koene allinnich net automatysk oanmeld wurde, omdat jo account noch net aktivearre is.
+      signed_up_but_locked: Jo binne registrearre. Jo koene allinnich net automatysk oanmeld wurde, omdat jo account útsteld is.
+      signed_up_but_pending: Der is in berjocht mei in befêstigingskeppeling nei jo e-mailadres ferstjoerd. Neidat jo op dizze keppeling klikt hawwe nimme wy jo oanfraach yn behanneling. Jo wurde op de hichte steld wannear’t dizze goedkard wurdt.
+      signed_up_but_unconfirmed: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo account aktivearje kinne. Sjoch tusken jo net-winske wannear’t neat ûntfongen waard.
+      update_needs_confirmation: Jo hawwe jo e-mailadres mei sukses wizige, mar wy moatte jo nije e-mailadres noch befêstigje. Kontrolearje jo Postfek YN en klik op de keppeling yn it e-mailberjocht om jo e-mailadres te befêstigjen. Sjoch tusken jo net-winske wannear’t neat ûntfongen waard.
+      updated: Jo accountgegevens binne bewarre.
+    sessions:
+      already_signed_out: Mei sukses ôfmeld.
+      signed_in: Mei sukses oanmeld.
+      signed_out: Mei sukses ôfmeld.
+    unlocks:
+      send_instructions: Jo ûntfange fia in e-mailberjocht ynstruksjes hoe’t jo jo account ûntskoattelje kinne. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      send_paranoid_instructions: As jo account bestiet, ûntfange jo fia in e-mailberjocht ynstruksjes hoe’t jo jo account ûntskoattelje kinne. Sjoch yn de map net-winske wannear’t neat ûntfongen waard.
+      unlocked: Jo account is net mear beskoattele. Jo kinne no wer oanmelde.
+  errors:
+    messages:
+      already_confirmed: is al befêstige
+      confirmation_period_expired: moat befêstige wurde binnen %{period}, probearje it nochris
+      expired: is ferrûn, freegje in nije oan
+      not_found: net fûn
+      not_locked: is net beskoattele
+      not_saved:
+        one: '1 flater ferhindere it bewarjen fan dizze %{resource}:'
+        other: "%{count} flaters ferhinderje it bewarjen fan dizze %{resource}:"
