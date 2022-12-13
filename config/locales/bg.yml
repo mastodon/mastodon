@@ -203,17 +203,46 @@ bg:
         update_status: Обновяване на публикация
         update_user_role: Обновяване на роля
       actions:
+        memorialize_account_html: "%{name} превърна акаунта на %{target} във възпоменателна страница"
         remove_avatar_user_html: "%{name} премахна аватар на %{target}"
+        reopen_report_html: "%{name} отвори пак доклада на %{target}"
+        reset_password_user_html: "%{name} нулира паролата на потребител %{target}"
+        sensitive_account_html: "%{name} означи мултимедия на %{target} като деликатна"
         silence_account_html: "%{name} сложи ограничения на акаунта на %{target}"
+        unblock_email_account_html: "%{name} разблокира адреса на имейла на %{target}"
+        unsensitive_account_html: "%{name} размаркира мултимедия на %{target} като деликатна"
+        unsilence_account_html: "%{name} отмени ограничения на акаунта на %{target}"
+        update_announcement_html: "%{name} обнови оповестяването на %{target}"
+        update_custom_emoji_html: "%{name} обнови емоджито на %{target}"
+        update_ip_block_html: "%{name} промени правило за IP на %{target}"
+        update_status_html: "%{name} обнови публикация от %{target}"
+        update_user_role_html: "%{name} промени ролята на %{target}"
       deleted_account: изтрит акаунт
+      empty: Няма намерени дневници.
       filter_by_action: Филтриране по действие
       filter_by_user: Филтриране по потребител
+      title: Одитен дневник
     announcements:
+      destroyed_msg: Успешно изтрито оповестяване!
+      edit:
+        title: Редактиране на оповестянето
+      empty: Няма намерени оповестявания.
       live: На живо
+      new:
+        create: Създаване на оповестяване
+        title: Ново оповестяване
       publish: Публикуване
+      published_msg: Успешно публикувано оповестяване!
+      title: Оповестявания
+      unpublish: Без публикуване
+      unpublished_msg: Успешно скрито оповестяване!
+      updated_msg: Успешно осъвременено оповестяване!
     custom_emojis:
+      assign_category: Категоризиране
       by_domain: Домейн
+      copied_msg: Успешно създадено локално копие на емоджито
       copy: Копиране
+      copy_failed_msg: Не можа да се направи локално копие на това емоджи
       create_new_category: Създаване на нова категория
       created_msg: Успешно сътворено емоджи!
       delete: Изтриване
@@ -230,6 +259,7 @@ bg:
       listed: В списъка
       new:
         title: Добавяне на ново потребителско емоджи
+      no_emoji_selected: Нито едно емоджи не е променено, тъй като нито едно не е избрано
       not_permitted: Нямате право да извършвате това действие
       overwrite: Презаписване
       shortcode: Кратък код
@@ -260,9 +290,11 @@ bg:
       domain: Домейн
       private_comment: Личен коментар
       private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
+      reject_reports: Отхвърляне на докладите
       undo: Отмяна на блокиране на домейн
       view: Преглед на блокиране на домейн
     email_domain_blocks:
+      add_new: Добавяне на ново
       delete: Изтриване
       dns:
         types:
