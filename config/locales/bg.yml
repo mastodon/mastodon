@@ -291,10 +291,12 @@ bg:
       private_comment: Личен коментар
       private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
       reject_reports: Отхвърляне на докладите
+      reject_reports_hint: Пренебрегване на всички доклади, идващи от този домейн. Неуместни за прекратяване
       undo: Отмяна на блокиране на домейн
       view: Преглед на блокиране на домейн
     email_domain_blocks:
       add_new: Добавяне на ново
+      created_msg: Успешно блокиран домейн на е-поща
       delete: Изтриване
       dns:
         types:
@@ -303,24 +305,36 @@ bg:
       new:
         create: Добавяне на домейн
       title: Блокирани домейни на имейл
+    export_domain_allows:
+      no_file: Няма избран файл
     export_domain_blocks:
       import:
         existing_relationships_warning: Съществуващи последвания
+      no_file: Няма избран файл
     follow_recommendations:
       language: За език
       status: Състояние
     instances:
+      availability:
+        title: Наличност
       back_to_all: Всичко
       back_to_limited: Ограничено
       back_to_warning: Предупреждение
       by_domain: Домейн
       content_policies:
+        comment: Вътрешна бележка
         policies:
           silence: Ограничение
         policy: Политика
+        reason: Обществена причина
+        title: Политика на съдържанието
       dashboard:
+        instance_accounts_dimension: Най-следвани акаунти
+        instance_followers_measure: наши последователи там
+        instance_follows_measure: техни последователи тук
         instance_languages_dimension: Водещи езици
       delivery:
+        all: Всичко
         clear: Изчистване на грешките за доставка
         restart: Рестартиране на доставката
         stop: Спиране на доставката
@@ -396,6 +410,8 @@ bg:
         invites: Покани
         moderation: Mодериране
       delete: Изтриване
+      edit: Промяна на ролята на „%{name}“
+      everyone: Разрешения по подразбиране
       privileges:
         administrator: Администратор
         manage_invites: Управление на поканите
