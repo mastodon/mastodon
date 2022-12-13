@@ -1,6 +1,13 @@
 require 'rails_helper'
 
 describe AccountSearchService, type: :service do
+  around :each do |example|
+    old_setting = Chewy.settings[:enabled]
+    Chewy.settings[:enabled] = false
+    example.run
+    Chewy.settings[:enabled] = old_setting
+  end
+
   describe '#call' do
     context 'with a query to ignore' do
       it 'returns empty array for missing query' do
