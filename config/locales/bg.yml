@@ -419,11 +419,31 @@ bg:
       delete: Изтриване
       edit: Промяна на ролята на „%{name}“
       everyone: Разрешения по подразбиране
+      permissions_count:
+        one: "%{count} разрешение"
+        other: "%{count} разрешения"
       privileges:
         administrator: Администратор
+        manage_federation: Управление на Федерацията
+        manage_federation_description: Позволява на потребители да блокират или позволяват федерация с други домейни, а и управление на доставаемостта
         manage_invites: Управление на поканите
+        manage_invites_description: Позволява на потребители да разглеждат и деактивират връзки за покана
         manage_reports: Управление на докладите
+        manage_reports_description: Позволява на потребители да преглеждат доклади и да извършват модериращи действия срещу тях
         manage_roles: Управление на ролите
+        manage_roles_description: Позволява на потребителите да управляват и разпределят роли под техните
+        manage_rules: Управление на правилата
+        manage_rules_description: Позволява на потребителите да променят правилата на сървъра
+        manage_settings: Управление на настройките
+        manage_settings_description: Позволява на потребителите да променят настройки на сайта
+        manage_user_access: Управление на потребителския достъп
+        manage_users: Управление на потребителите
+        manage_webhooks: Управление на уебкуките
+        manage_webhooks_description: Позволява на потребителите да настройват уебкуки за административни събития
+        view_audit_log: Преглед на одитния дневник
+        view_audit_log_description: Позволява на потребителите да виждат историята на административни действия в сървъра
+        view_devops: Развитие и операции
+        view_devops_description: Позволява на потребителите да имат достъп до таблото за управл. на Sidekiq и pgHero
       title: Роли
     rules:
       add_new: Добавяне на правило
@@ -434,12 +454,17 @@ bg:
     settings:
       about:
         manage_rules: Управление на правилата на сървъра
+        title: Относно
       appearance:
         title: Външен вид
+      branding:
+        title: Брандиране
       discovery:
         public_timelines: Публични инфопотоци
         title: Откриване
         trends: Актуални
+      domain_blocks:
+        all: До всеки
       registrations:
         title: Регистрации
       title: Настройки на сървъра
