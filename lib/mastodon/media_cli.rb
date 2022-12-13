@@ -43,7 +43,7 @@ module Mastodon
         exit(1)
       end
       if options[:include_follows] && !(options[:prune_profiles] || options[:remove_headers])
-        say('--include_follows can only be used with --prune_profiles or --remove_headers', :red, true)
+        say('--include-follows can only be used with --prune-profiles or --remove-headers', :red, true)
         exit(1)
       end
       time_ago        = options[:days].days.ago
