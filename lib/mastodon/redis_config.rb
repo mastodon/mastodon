@@ -38,7 +38,7 @@ REDIS_CACHE_PARAMS = {
   pool_size: Sidekiq.server? ? Sidekiq.options[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
   pool_timeout: 5,
   connect_timeout: 5,
-  read_timeout: 1
+  read_timeout: 1,
   write_timeout: 1,
   reconnect_attempts: 1,  # Defaults to 0
   reconnect_delay: 0.1,
@@ -51,7 +51,7 @@ REDIS_SIDEKIQ_PARAMS = {
   pool_size: Sidekiq.server? ? Sidekiq.options[:concurrency] : Integer(ENV['MAX_THREADS'] || 5),
   pool_timeout: 5,
   connect_timeout: 5,
-  read_timeout: 1
+  read_timeout: 1,
   write_timeout: 1,
   reconnect_attempts: 1,  # Defaults to 0
   reconnect_delay: 0.1,
