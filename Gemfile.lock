@@ -132,6 +132,8 @@ GEM
     bindata (2.5.1)
     binding_of_caller (2.0.0)
       debug_inspector (>= 1.2.0)
+    bloom_fit (1.2.0)
+      msgpack (~> 1.0)
     blurhash (0.1.8)
     bootsnap (1.25.0)
       msgpack (~> 1.5)
@@ -940,6 +942,7 @@ DEPENDENCIES
   base58 (~> 0.2.3)
   better_errors (~> 2.9)
   binding_of_caller
+  bloom_fit (~> 1.2)
   blurhash (~> 0.1)
   bootsnap
   brakeman (~> 8.0)

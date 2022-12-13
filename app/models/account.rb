@@ -111,6 +111,7 @@ class Account < ApplicationRecord
   include DomainNormalizable
   include Paginable
   include Reviewable
+  include AuthorizedFetchHelper
 
   enum :protocol, { ostatus: 0, activitypub: 1 }
   enum :suspension_origin, { local: 0, remote: 1 }, prefix: true
@@ -534,6 +535,7 @@ class Account < ApplicationRecord
   end
 
   before_validation :prepare_contents, if: :local?
+  before_create :prepare_reach_filter, if: :local?
   before_create :generate_keys
   before_destroy :clean_feed_manager
 
@@ -551,6 +553,12 @@ class Account < ApplicationRecord
   end
 
   private
+
+  def prepare_reach_filter
+    return if instance_actor?
+
+    build_reach_filter if actors_require_signature?
+  end
 
   def prepare_contents
     display_name&.strip!
