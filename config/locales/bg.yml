@@ -392,6 +392,8 @@ bg:
       mark_as_sensitive: Означаване като деликатно
       notes:
         create: Добавяне на бележка
+        create_and_resolve: Разрешаване с бележка
+        create_and_unresolve: Отваряне пак с бележка
         delete: Изтриване
         title: Бележки
       reopen: Отваряне пак на доклад
@@ -405,10 +407,15 @@ bg:
       view_profile: Преглед на профила
     roles:
       add_new: Добавяне на роля
+      assigned_users:
+        one: "%{count} потребител"
+        other: "%{count} потребители"
       categories:
         administration: Администрация
+        devops: Развитие и операции
         invites: Покани
         moderation: Mодериране
+        special: Специални
       delete: Изтриване
       edit: Промяна на ролята на „%{name}“
       everyone: Разрешения по подразбиране
