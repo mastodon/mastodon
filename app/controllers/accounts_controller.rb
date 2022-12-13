@@ -7,9 +7,9 @@ class AccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureAuthentication
 
-  vary_by -> { public_fetch_mode? ? 'Accept, Accept-Language, Cookie' : 'Accept, Accept-Language, Cookie, Signature' }
+  vary_by -> { authorized_fetch_actors? ? 'Accept, Accept-Language, Cookie, Signature' : 'Accept, Accept-Language, Cookie' }
 
-  before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_mode? }
+  before_action :require_account_signature!, if: -> { request.format == :json && authorized_fetch_actors? }
 
   skip_around_action :set_locale, if: -> { [:json, :rss].include?(request.format&.to_sym) }
   skip_before_action :require_functional!, unless: :whitelist_mode?
@@ -31,13 +31,17 @@ class AccountsController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: !(authorized_fetch_mode? && signed_request_account.present?)
+        expires_in 3.minutes, public: !(authorized_fetch_actors? && signed_request_account.present?)
         render_with_cache json: @account, content_type: 'application/activity+json', serializer: ActivityPub::ActorSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
 
   private
+
+  def authorized_fetch_actors?
+    %w(true all actors).include?(ENV.fetch('AUTHORIZED_FETCH', 'false')) || Rails.configuration.x.whitelist_mode
+  end
 
   def filtered_statuses
     default_statuses.tap do |statuses|
