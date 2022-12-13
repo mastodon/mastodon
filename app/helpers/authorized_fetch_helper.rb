@@ -2,7 +2,7 @@
 
 module AuthorizedFetchHelper
   def authorized_fetch_mode?
-    ENV.fetch('AUTHORIZED_FETCH') { Setting.authorized_fetch && 'true' } == 'true' || Rails.configuration.x.mastodon.limited_federation_mode
+    %(true all).include?(ENV.fetch('AUTHORIZED_FETCH') { Setting.authorized_fetch && 'true' }) || Rails.configuration.x.mastodon.limited_federation_mode
   end
 
   def authorized_fetch_overridden?
