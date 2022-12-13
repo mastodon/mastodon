@@ -5,6 +5,10 @@ module AuthorizedFetchHelper
     ENV.fetch('AUTHORIZED_FETCH') { Setting.authorized_fetch && 'true' } == 'true' || Rails.configuration.x.mastodon.limited_federation_mode
   end
 
+  def actors_require_signature?
+    Mastodon::Feature.bloom_filters_enabled? || authorized_fetch_mode?
+  end
+
   def authorized_fetch_overridden?
     ENV.key?('AUTHORIZED_FETCH') || Rails.configuration.x.mastodon.limited_federation_mode
   end
