@@ -29,10 +29,10 @@ module Mastodon
       they are removed. In case of avatars and headers, it specifies how old
       the last webfinger request and update to the user has to be before they
       are pruned. It defaults to 7 days.
-      If --prune_profiles is specified, only avatars and headers are removed.
-      If --remove_headers is specified, only headers are removed.
-      If --include_follows is specified along with --prune_profiles or
-      --remove_headers, all non-local profiles will be pruned irrespective of
+      If --prune-profiles is specified, only avatars and headers are removed.
+      If --remove-headers is specified, only headers are removed.
+      If --include-follows is specified along with --prune-profiles or
+      --remove-headers, all non-local profiles will be pruned irrespective of
       follow status. By default, only accounts that are not followed by or
       following anyone locally are pruned.
     DESC
