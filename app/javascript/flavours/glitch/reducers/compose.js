@@ -421,8 +421,10 @@ export default function compose(state = initialState, action) {
       map.set('preselectDate', new Date());
       map.set('idempotencyKey', uuid());
 
-      if (action.status.get('language')) {
+      if (action.status.get('language') && !action.status.has('translation')) {
         map.set('language', action.status.get('language'));
+      } else {
+        map.set('language', state.get('default_language'));
       }
 
       if (action.status.get('spoiler_text').length > 0) {
