@@ -47,11 +47,7 @@ default: &default
     - .jpeg
     - .jpg
 
-development:
-  <<: *default
-
-  compile: true
-
+development_and_test: &development_and_test
   # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
@@ -71,8 +67,14 @@ development:
     watch_options:
       ignored: '**/node_modules/**'
 
-test:
+development:
   <<: *default
+  <<: *development_and_test
+
+  compile: true
+
+test:
+  <<: *development_and_test
 
   # CircleCI precompiles packs prior to running the tests.
   # Also avoids race conditions in parallel_tests.
@@ -83,6 +85,7 @@ test:
 
 production:
   <<: *default
+  <<: *development_and_test
 
   # Production depends on precompilation of packs prior to booting for performance.
   compile: false
