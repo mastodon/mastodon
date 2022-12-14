@@ -85,8 +85,9 @@ class Account < ApplicationRecord
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
-  # Remote user validations, also applies to internal actors
+  # Remote user validations
   validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
+  validates :inbox_url, presence: true, if: -> { !local? && (new_record? || will_save_change_to_inbox_url?) }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
