@@ -2,10 +2,10 @@ fy:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Namme fan applikaasje
+        name: Tapassingsnamme
         redirect_uri: Redirect-URI
         scopes: Tastimmingen
-        website: Webstee fan applikaasje
+        website: Tapassingswebsite
     errors:
       models:
         doorkeeper/application:
@@ -14,7 +14,7 @@ fy:
               fragment_present: mei gjin fragmint befetsje.
               invalid_uri: moat in jildige URI wêze.
               relative_uri: moat in absolute URI wêze.
-              secured_uri: moat in HTTPS/SSL URI wêze.
+              secured_uri: moat in HTTPS/SSL-URI wêze.
   doorkeeper:
     applications:
       buttons:
@@ -28,7 +28,7 @@ fy:
       edit:
         title: Tapassing bewurkje
       form:
-        error: Oeps! Kontrolearje it formulier op flaters
+        error: Oepsy! Kontrolearje it formulier op flaters
       help:
         native_redirect_uri: Brûk %{native_redirect_uri} foar lokale tests
         redirect_uri: Brûk ien rigel per URI
@@ -113,7 +113,7 @@ fy:
           notice: Tapassing ynlutsen.
     grouped_scopes:
       access:
-        read: Allinnich-lêze-tagong
+        read: Allinnich-lêzetagong
         read/write: Lês- en skriuwtagong
         write: Allinnich skriuwtagong
       title:
@@ -125,7 +125,7 @@ fy:
         blocks: Blokkearje
         bookmarks: Blêdwizers
         conversations: Petearen
-        crypto: End-to-end-fersifering
+        crypto: Ein-ta-ein-fersifering
         favourites: Favoriten
         filters: Filters
         follow: Relaasjes
@@ -152,7 +152,7 @@ fy:
       "admin:write": wizigje alle gegevens op de server
       "admin:write:accounts": moderaasjemaatregelen tsjin accounts nimme
       "admin:write:reports": moderaasjemaatregelen nimme yn rapportaazjes
-      crypto: end-to-end-encryptie brûke
+      crypto: ein-ta-ein-fersifering brûke
       follow: relaasjes tusken accounts bewurkje
       push: jo pushmeldingen ûntfange
       read: alle gegevens fan jo account lêze
@@ -178,7 +178,7 @@ fy:
       "write:follows": minsken folgje
       "write:lists": listen oanmeitsje
       "write:media": mediabestannen oplade
-      "write:mutes": minsken en petearen negearre
+      "write:mutes": minsken en petearen dôvje
       "write:notifications": meldingen fuortsmite
       "write:reports": oare minsken rapportearje
       "write:statuses": berjochten pleatse
