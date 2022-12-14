@@ -8,8 +8,11 @@ services:
       - internal_network
     healthcheck:
       test: ['CMD', 'pg_isready', '-U', 'postgres']
+    cap_drop:
+      - ALL
+    read_only: true
     volumes:
-      - ./postgres14:/var/lib/postgresql/data
+      - ./postgres14:/var/lib/postgresql/data:nodev,noexec,nosuid
     environment:
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
 
@@ -18,15 +21,17 @@ services:
     image: redis:7-alpine
     networks:
       - internal_network
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
     cap_drop:
       - ALL
     cap_add:
       - setgid
       - setuid
-    healthcheck:
-      test: ['CMD', 'redis-cli', 'ping']
+    read_only: true
     volumes:
-      - ./redis:/data
+      - ./redis:/data:nodev,noexec,nosuid
+
 
   # es:
   #   restart: always
@@ -48,7 +53,7 @@ services:
   #   healthcheck:
   #      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
   #   volumes:
-  #      - ./elasticsearch:/usr/share/elasticsearch/data
+  #      - ./elasticsearch:/usr/share/elasticsearch/data:nodev,noexec,nosuid
   #   ulimits:
   #     memlock:
   #       soft: -1
@@ -61,6 +66,7 @@ services:
 
   web:
     build: .
+    user: '991:991'
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
@@ -80,21 +86,13 @@ services:
     cap_drop:
       - ALL
     read_only: true
-    volumes:
-      - ./public/system:/mastodon/public/system
-      - type: tmpfs
-        target: /opt/mastodon/tmp/pids
-        tmpfs:
-          size: 64M
-      - type: tmpfs
-        target: /opt/mastodon/tmp/sockets
-        tmpfs:
-          size: 64M
-      - type: tmpfs
-        target: /tmp
+    tmpfs:
+      - /opt/mastodon/tmp:uid=991,nodev,noexec,nosuid
+      - /tmp:uid=991,nodev,noexec,nosuid
 
   streaming:
     build: .
+    user: '991:991'
     image: tootsuite/mastodon
     restart: always
     env_file: .env.production
@@ -113,10 +111,15 @@ services:
     cap_drop:
       - ALL
     read_only: true
+    tmpfs:
+      - /opt/mastodon/tmp:uid=991,nodev,noexec,nosuid
+      - /tmp:uid=991,nodev,noexec,nosuid
+
 
   sidekiq:
     build: .
     image: tootsuite/mastodon
+    user: '991:991'
     restart: always
     env_file: .env.production
     command: bundle exec sidekiq
@@ -127,14 +130,14 @@ services:
       - external_network
       - internal_network
     volumes:
-      - ./public/system:/mastodon/public/system
-      - type: tmpfs # Only the ingress and pull queues require a writeable /tmp/
-        target: /tmp
+      - ./public/system:/mastodon/public/system:nodev,noexec,nosuid
     healthcheck:
       test: ['CMD-SHELL', "ps aux | grep '[s]idekiq\ 6' || false"]
     cap_drop:
       - ALL
     read_only: true
+    tmpfs:
+      - /tmp:uid=991,nodev,noexec,nosuid
 
   ## Uncomment to enable federation with tor instances along with adding the following ENV variables
   ## http_proxy=http://privoxy:8118
