@@ -8,6 +8,7 @@ bundle install --path vendor/bundle --with='development test'
 # Fetch Javascript dependencies
 yarn install
 
+# Make Gemfile.lock pristine again
 git checkout -- Gemfile.lock
 
 # [re]create, migrate, and seed the test database
