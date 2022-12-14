@@ -745,12 +745,12 @@ RSpec.describe Account do
   context 'when is remote' do
     it 'does not generate keys' do
       key = OpenSSL::PKey::RSA.new(1024).public_key
-      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', username: 'remote_user_with_public', public_key: key.to_pem)
+      account = described_class.create!(domain: 'remote', uri: 'https://remote/actor', inbox_url: 'https://remote/actor/inbox', username: 'remote_user_with_public', public_key: key.to_pem)
       expect(account.keypair.keypair.params).to eq key.params
     end
 
     it 'normalizes domain' do
-      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', username: 'remote_user_with_idn_domain')
+      account = described_class.create!(domain: 'にゃん', uri: 'https://xn--r9j5b5b/actor', inbox_url: 'https://xn--r9j5b5b/actor/inbox', username: 'remote_user_with_idn_domain')
       expect(account.domain).to eq 'xn--r9j5b5b'
     end
   end
