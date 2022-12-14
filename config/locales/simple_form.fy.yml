@@ -1,6 +1,16 @@
----
 fy:
   simple_form:
+    hints:
+      account_alias:
+        acct: Fermeld de brûkersnamme@domein fan de account fan wêr’t jo ferhúzje wolle
+      account_migration:
+        acct: Fermeld de brûkersnamme@domein fan de account wêr’t jo nei ta ferhúzje wolle
+      account_warning_preset:
+        text: Jo kinne spesifike tekst foar berjochten brûke, lykas URL’s, hashtags en fermeldingen
+        title: Opsjoneel. Net sichtber foar de ûntfanger
+      admin_account_action:
+        include_statuses: De brûker sjocht hokker berjochten ferantwurdlik binne foar de moderaasjemaatregel of warskôging
+        send_email_notification: De brûker ûntfangt in útlis oer wat der mei harren account bard is
     labels:
       notification_emails:
         mention: Ien hat jo fermeld
