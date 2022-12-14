@@ -53,7 +53,7 @@ class ActivityPub::DeliveryWorker
         build_request(http_client).perform do |response|
           raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
 
-          @performed = true
+          @performed = response_successful?(response)
         end
       end
     end
