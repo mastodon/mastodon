@@ -1,4 +1,3 @@
----
 gl:
   activerecord:
     attributes:
@@ -60,7 +59,7 @@ gl:
       error:
         title: Algo fallou
       new:
-        prompt_html: "%{client_name} gostaría acceder á túa conta. É unha aplicación de terceiros. <strong>Se non confías nela, non deberías autorizala.</strong>"
+        prompt_html: "%{client_name} solicita permiso para acceder á túa conta. É unha aplicación de terceiros. <strong>Se non confías nela, non deberías autorizala.</strong>"
         review_permissions: Revisar permisos
         title: Autorización necesaria
       show:
@@ -74,7 +73,7 @@ gl:
         authorized_at: Autorizada o %{date}
         description_html: Estas aplicacións poden acceder á túa conta usando a API. Se ves aplicacións que non recoñeces, ou hai comportamentos non consentidos dalgunha delas, podes revogar o acceso.
         last_used_at: Último acceso o %{date}
-        never_used: Nunca utilizado
+        never_used: Nunca usada
         scopes: Permisos
         superapp: Interno
         title: As túas aplicacións autorizadas
@@ -120,20 +119,20 @@ gl:
       title:
         accounts: Contas
         admin/accounts: Administración das contas
-        admin/all: Tódas funcións administrativas
+        admin/all: Tódalas funcións administrativas
         admin/reports: Administración das denuncias
         all: Todo
         blocks: Bloqueos
         bookmarks: Marcadores
         conversations: Conversas
-        crypto: Cifrado E2E
+        crypto: Cifrado extremo-a-extremo
         favourites: Favoritas
         filters: Filtros
         follow: Relacións
         follows: Seguimentos
         lists: Listas
         media: Anexos multimedia
-        mutes: Silenciamentos
+        mutes: Acaladas
         notifications: Notificacións
         push: Notificacións Push
         reports: Denuncias
@@ -147,39 +146,39 @@ gl:
       application:
         title: Precisa autorización OAuth
     scopes:
-      admin:read: ler todos os datos no servidor
-      admin:read:accounts: ler información sensible de todas as contas
-      admin:read:reports: ler información sensible de todos os informes e contas denunciadas
-      admin:write: modificar todos os datos no servidor
-      admin:write:accounts: executar accións de moderación nas contas
-      admin:write:reports: executar accións de moderación nas denuncias
+      "admin:read": ler todos os datos no servidor
+      "admin:read:accounts": ler información sensible de todas as contas
+      "admin:read:reports": ler información sensible de todos os informes e contas denunciadas
+      "admin:write": modificar todos os datos no servidor
+      "admin:write:accounts": executar accións de moderación nas contas
+      "admin:write:reports": executar accións de moderación nas denuncias
       crypto: usar cifrado extremo-a-extremo
       follow: modificar as relacións da conta
       push: recibir notificacións push
       read: ler todos os datos da tua conta
-      read:accounts: ver información das contas
-      read:blocks: ver a quen bloqueas
-      read:bookmarks: ver os marcadores
-      read:favourites: ver as favoritas
-      read:filters: ver os filtros
-      read:follows: ver a quen segues
-      read:lists: ver as tuas listaxes
-      read:mutes: ver a quen tes acalado
-      read:notifications: ver as notificacións
-      read:reports: ver as túas denuncias
-      read:search: buscar no teu nome
-      read:statuses: ver todas as publicacións
+      "read:accounts": ver información das contas
+      "read:blocks": ver a quen bloqueas
+      "read:bookmarks": ver os marcadores
+      "read:favourites": ver as favoritas
+      "read:filters": ver os filtros
+      "read:follows": ver a quen segues
+      "read:lists": ver as tuas listaxes
+      "read:mutes": ver a quen tes acalado
+      "read:notifications": ver as notificacións
+      "read:reports": ver as túas denuncias
+      "read:search": buscar no teu nome
+      "read:statuses": ver todas as publicacións
       write: modificar todos os datos da tua conta
-      write:accounts: modificar o teu perfil
-      write:blocks: bloquear contas e dominios
-      write:bookmarks: marcar publicacións
-      write:conversations: acalar e eliminar conversas
-      write:favourites: marcar como favorita
-      write:filters: crear filtros
-      write:follows: seguir usuarias
-      write:lists: crear listaxes
-      write:media: subir ficheiros multimedia
-      write:mutes: acalar usuarias e conversas
-      write:notifications: eliminar as notificacións
-      write:reports: denunciar usuarias
-      write:statuses: publicar
+      "write:accounts": modificar o teu perfil
+      "write:blocks": bloquear contas e dominios
+      "write:bookmarks": marcar publicacións
+      "write:conversations": acalar e eliminar conversas
+      "write:favourites": marcar como favorita
+      "write:filters": crear filtros
+      "write:follows": seguir usuarias
+      "write:lists": crear listaxes
+      "write:media": subir ficheiros multimedia
+      "write:mutes": acalar usuarias e conversas
+      "write:notifications": eliminar as notificacións
+      "write:reports": denunciar usuarias
+      "write:statuses": publicar
