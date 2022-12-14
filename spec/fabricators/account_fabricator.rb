@@ -12,6 +12,7 @@ Fabricator(:account) do
   silenced_at           { |attrs| attrs[:silenced] ? Time.now.utc : nil }
   requested_deletion_at { |attrs| attrs[:requested_deletion] ? Time.now.utc : nil }
   user                  { |attrs| attrs[:domain].nil? ? Fabricate.build(:user, account: nil) : nil }
+  inbox_url             { |attrs| attrs[:domain].nil? ? '' : "https://#{attrs[:domain]}/users/#{attrs[:username]}/inbox" }
   uri                   { |attrs| attrs[:domain].nil? ? nil : "https://#{attrs[:domain]}/users/#{attrs[:username]}" }
   discoverable          true
   indexable             true
