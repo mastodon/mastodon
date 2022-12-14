@@ -36,7 +36,7 @@ class AccountReachFilter < ApplicationRecord
   private
 
   def filter
-    return @instantiated_filter if defined?(@instantiated_filter)
+    return @filter if defined?(@filter)
 
     # NOTE: the filter's parameters cannot be changed
     @filter = BloomFilter.new(size: 10_000, error_rate: 0.1)
