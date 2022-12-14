@@ -122,6 +122,7 @@ class Account < ApplicationRecord
 
   # Remote user validations
   validates :uri, presence: true, exclusion: { in: [''] }, uniqueness: true, unless: :local?, on: :create
+  validates :inbox_url, presence: true, if: -> { !local? && (new_record? || will_save_change_to_inbox_url?) }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: USERNAME_LENGTH_LIMIT }, if: -> { local? && will_save_change_to_username? && !actor_type_application? }
