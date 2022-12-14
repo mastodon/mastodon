@@ -13,7 +13,9 @@ module AccountFinderConcern
     end
 
     def representative
-      Account.find(-99).tap(&:ensure_keys!)
+      actor = Account.find(-99).tap(&:ensure_keys!)
+      actor.update!(username: 'internal.actor') if actor.username.include?(':')
+      actor
     rescue ActiveRecord::RecordNotFound
       Account.create!(id: -99, actor_type: 'Application', locked: true, username: 'internal.actor')
     end
