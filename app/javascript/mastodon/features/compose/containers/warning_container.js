@@ -34,6 +34,7 @@ const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
   hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
   directMessageWarning: state.getIn(['compose', 'privacy']) === 'direct',
+  crossbellWarning: state.getIn(['compose', 'crossbell']),
 });
 
 const WarningWrapper = ({ needsLockWarning, hashtagWarning, directMessageWarning, crossbellWarning }) => {
