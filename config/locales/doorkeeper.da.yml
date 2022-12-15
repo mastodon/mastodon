@@ -148,9 +148,19 @@ da:
     scopes:
       "admin:read": læs alle data på serveren
       "admin:read:accounts": læs sensitiv information fra alle konti
+      "admin:read:canonical_email_blocks": læs følsomme oplysninger fra alle blokerede kanoniske emails
+      "admin:read:domain_allows": læs følsomme informationer fra alle tilladte domæner
+      "admin:read:domain_blocks": læs følsomme informationer fra alle blokerede domæner
+      "admin:read:email_domain_blocks": læs følsomme informationer fra alle email-domæneblokke
+      "admin:read:ip_blocks": læs følsomme informationer fra alle blokerede IP'er
       "admin:read:reports": læs sensitiv information fra alle anmeldelser og anmeldte konti
       "admin:write": redigér alle data på serveren
       "admin:write:accounts": udfør modereringshandlinger på konti
+      "admin:write:canonical_email_blocks": moderering af blokerede kanoniske emails
+      "admin:write:domain_allows": moderering af tilladte domæner
+      "admin:write:domain_blocks": moderering af blokerede domæner
+      "admin:write:email_domain_blocks": moderering af blokerede email domæner
+      "admin:write:ip_blocks": moderering af blokerede IP'er
       "admin:write:reports": udfør modereringshandlinger på anmeldelser
       crypto: benyt ende-til-ende kryptering
       follow: ændre kontorelationer
