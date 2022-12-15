@@ -115,6 +115,8 @@ et:
       redownloaded_msg: '%{username} kasutajakonto algallikast värskendatud'
       reject: Hülga
       rejected_msg: '%{username} liitumisavaldus tagasi lükatud'
+      remote_suspension_irreversible: Selle konto andmed on pöördumatult kustutatud.
+      remote_suspension_reversible_hint_html: Konto on lukustatud ja andmed kustutatakse jäädavalt %{date}. Seni võib teine server konto probleemideta taastada. Kui soovid andmied kohe jäädavalt eemaldada, võid seda teha allpool.
       remove_avatar: Kustuta profiilipilt
       remove_header: Kustuta päis
       removed_avatar_msg: '%{username} tunnuspilt eemaldatud'
@@ -554,12 +556,12 @@ et:
       pending: Ootab relee nõusolekut
       save_and_enable: Salvesta ja luba
       setup: Sea üles releeühendus
+      signatures_not_enabled: Releed ei pruugi turvarežiimis või piiratud födereerimise korral korralikult töötada
       status: Staatus
       title: Releed
     report_notes:
       created_msg: Teade edukalt koostatud!
       destroyed_msg: Teade edukalt kustutatud!
-      today_at: Täna kell %{time}
     reports:
       account:
         notes:
