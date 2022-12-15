@@ -276,7 +276,7 @@ class ComposeForm extends ImmutablePureComponent {
             <PrivacyDropdownContainer disabled={this.props.isEditing} />
             <SpoilerButtonContainer />
             <LanguageDropdown />
-            <CrossbellButtonContainer disabled={this.props.privacy !== 'public'} />
+            <CrossbellButtonContainer />
           </div>
 
           <div className='character-counter__wrapper'>

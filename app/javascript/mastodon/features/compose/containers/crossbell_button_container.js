@@ -1,18 +1,10 @@
 import { connect } from 'react-redux';
-import TextIconButton from '../components/text_icon_button';
+import CrossbellButton from '../components/crossbell_button';
 import { changeComposeCrossbell } from '../../../actions/compose';
-import { injectIntl, defineMessages } from 'react-intl';
 
-const messages = defineMessages({
-  marked: { id: 'compose_form.crossbell.marked', defaultMessage: 'Also post to Crossbell' },
-  unmarked: { id: 'compose_form.crossbell.unmarked', defaultMessage: 'Don\'t post to Crossbell' },
-});
-
-const mapStateToProps = (state, { intl }) => ({
-  label: 'CB',
-  title: intl.formatMessage(state.getIn(['compose', 'crossbell']) ? messages.marked : messages.unmarked),
+const mapStateToProps = state => ({
+  unavailable: state.getIn(['compose', 'privacy']) !== 'public',
   active: state.getIn(['compose', 'crossbell']),
-  // ariaControls: 'crossbell-input',
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -23,4 +15,4 @@ const mapDispatchToProps = dispatch => ({
 
 });
 
-export default injectIntl(connect(mapStateToProps, mapDispatchToProps)(TextIconButton));
+export default connect(mapStateToProps, mapDispatchToProps)(CrossbellButton);
