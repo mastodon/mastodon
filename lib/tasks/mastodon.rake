@@ -194,7 +194,7 @@ namespace :mastodon do
 
           env['S3_HOSTNAME'] = prompt.ask('S3 hostname:') do |q|
             q.required true
-            q.default 's3-us-east-1.amazonaws.com'
+            q.default 's3.us-east-1.amazonaws.com'
             q.modify :strip
           end
 
