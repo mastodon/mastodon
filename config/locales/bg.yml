@@ -1,3 +1,4 @@
+---
 bg:
   about:
     about_mastodon_html: 'Социалната мрежа на бъдещето: Без реклами, без корпоративно наблюдение, с нравствено оформление и децентрализиране! Притежавайте данните си с Mastodon!'
@@ -55,7 +56,7 @@ bg:
       delete: Изтриване на данни
       deleted: Изтрито
       demote: Понижаване
-      destroyed_msg: "Данните на %{username} вече са на опашка за незабавно изтриване"
+      destroyed_msg: Данните на %{username} вече са на опашка за незабавно изтриване
       disable: Замразяване
       disable_sign_in_token_auth: Изключване на удостоверяването с маркер по имейл
       disable_two_factor_authentication: Изключване на 2факт. удостов.
@@ -369,7 +370,7 @@ bg:
         '86400': 1 ден
         '94670856': 3 години
     relationships:
-      title: "Отношения на %{acct}"
+      title: Отношения на %{acct}
     relays:
       delete: Изтриване
       disable: Изключване
@@ -784,8 +785,8 @@ bg:
       subject: 'Чакащ последовател: %{name}'
     mention:
       action: Отговор
-      body: '%{name} те спомена в:'
-      subject: '%{name} те спомена'
+      body: "%{name} те спомена в:"
+      subject: "%{name} те спомена"
       title: Ново споменаване
     poll:
       subject: Анкетата от %{name} приключи
@@ -963,7 +964,7 @@ bg:
     show_older: Показване на по-стари
     show_thread: Показване на нишката
     sign_in_to_participate: Влезте, за да участвате в разговора
-    title: '%{name}: „%{quote}“'
+    title: "%{name}: „%{quote}“"
     visibilities:
       direct: Директно
       private: Покажи само на последователите си
