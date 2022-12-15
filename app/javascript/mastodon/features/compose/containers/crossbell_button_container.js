@@ -12,7 +12,7 @@ const mapStateToProps = (state, { intl }) => ({
   label: 'CB',
   title: intl.formatMessage(state.getIn(['compose', 'crossbell']) ? messages.marked : messages.unmarked),
   active: state.getIn(['compose', 'crossbell']),
-  ariaControls: 'cw-crossbell-input',
+  // ariaControls: 'crossbell-input',
 });
 
 const mapDispatchToProps = dispatch => ({
