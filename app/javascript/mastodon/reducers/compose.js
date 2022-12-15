@@ -45,7 +45,7 @@ import {
   INIT_MEDIA_EDIT_MODAL,
   COMPOSE_CHANGE_MEDIA_DESCRIPTION,
   COMPOSE_CHANGE_MEDIA_FOCUS,
-  COMPOSE_SET_STATUS,
+  COMPOSE_SET_STATUS, COMPOSE_CROSSBELL_CHANGE,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -313,6 +313,11 @@ export default function compose(state = initialState, action) {
     return state
       .set('privacy', action.value)
       .set('idempotencyKey', uuid());
+  case COMPOSE_CROSSBELL_CHANGE:
+    return state.withMutations(map => {
+      map.set('crossbell', !state.get('crossbell'));
+      map.set('idempotencyKey', uuid());
+    });
   case COMPOSE_CHANGE:
     return state
       .set('text', action.text)
