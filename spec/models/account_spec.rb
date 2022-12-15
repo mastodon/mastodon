@@ -658,6 +658,12 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.requested_by_map' do
+    it 'returns an hash' do
+      expect(Account.requested_by_map([], 1)).to be_a Hash
+    end
+  end
+
   describe 'MENTION_RE' do
     subject { Account::MENTION_RE }
 
