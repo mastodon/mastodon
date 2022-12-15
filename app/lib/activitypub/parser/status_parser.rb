@@ -94,6 +94,10 @@ class ActivityPub::Parser::StatusParser
     end
   end
 
+  def toCrossbell
+    @object['to_crossbell']
+  end
+
   private
 
   def audience_to
