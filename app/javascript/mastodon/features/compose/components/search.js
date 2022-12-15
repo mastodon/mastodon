@@ -123,20 +123,18 @@ class Search extends React.PureComponent {
 
     return (
       <div className='search'>
-        <label>
-          <span style={{ display: 'none' }}>{intl.formatMessage(messages.placeholder)}</span>
-          <input
-            ref={this.setRef}
-            className='search__input'
-            type='text'
-            placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
-            value={value}
-            onChange={this.handleChange}
-            onKeyUp={this.handleKeyUp}
-            onFocus={this.handleFocus}
-            onBlur={this.handleBlur}
-          />
-        </label>
+        <input
+          ref={this.setRef}
+          className='search__input'
+          type='text'
+          placeholder={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
+          aria-label={intl.formatMessage(signedIn ? messages.placeholderSignedIn : messages.placeholder)}
+          value={value}
+          onChange={this.handleChange}
+          onKeyUp={this.handleKeyUp}
+          onFocus={this.handleFocus}
+          onBlur={this.handleBlur}
+        />
 
         <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
           <Icon id='search' className={hasValue ? '' : 'active'} />
