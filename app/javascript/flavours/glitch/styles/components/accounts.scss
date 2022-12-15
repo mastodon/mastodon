@@ -523,7 +523,6 @@
       display: block;
       flex: 0 0 auto;
       width: 94px;
-      margin-left: -2px;
 
       .account__avatar {
         background: darken($ui-base-color, 8%);
@@ -540,6 +539,7 @@
     margin-top: -55px;
     gap: 8px;
     overflow: hidden;
+    margin-left: -2px; // aligns the pfp with content below
 
     &__buttons {
       display: flex;
