@@ -107,6 +107,10 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.10'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop', require: false
 end
 
 group :production, :test do
@@ -117,13 +121,14 @@ group :test do
   gem 'capybara', '~> 3.38'
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 3.0'
+  gem 'json-schema', '~> 3.0'
   gem 'microformats', '~> 4.4'
+  gem 'rack-test', '~> 2.0'  
   gem 'rails-controller-testing', '~> 1.0'
+  gem 'rspec_junit_formatter', '~> 0.6'
   gem 'rspec-sidekiq', '~> 3.1'
   gem 'simplecov', '~> 0.21', require: false
   gem 'webmock', '~> 3.18'
-  gem 'rspec_junit_formatter', '~> 0.6'
-  gem 'rack-test', '~> 2.0'
 end
 
 group :development do
@@ -135,8 +140,6 @@ group :development do
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.30', require: false
-  gem 'rubocop-rails', '~> 2.15', require: false
   gem 'brakeman', '~> 5.4', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 

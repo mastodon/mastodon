@@ -341,9 +341,15 @@ class Account < ApplicationRecord
 
   def save_with_optional_media!
     save!
-  rescue ActiveRecord::RecordInvalid
-    self.avatar = nil
-    self.header = nil
+  rescue ActiveRecord::RecordInvalid => e
+    errors = e.record.errors.errors
+    errors.each do |err|
+      if err.attribute == :avatar
+        self.avatar = nil
+      elsif err.attribute == :header
+        self.header = nil
+      end
+    end
 
     save!
   end

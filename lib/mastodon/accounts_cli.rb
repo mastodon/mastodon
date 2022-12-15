@@ -200,21 +200,44 @@ module Mastodon
       end
     end
 
-    desc 'delete USERNAME', 'Delete a user'
+    option :email
+    option :dry_run, type: :boolean
+    desc 'delete [USERNAME]', 'Delete a user'
     long_desc <<-LONG_DESC
       Remove a user account with a given USERNAME.
-    LONG_DESC
-    def delete(username)
-      account = Account.find_local(username)
 
-      if account.nil?
-        say('No user with such username', :red)
+      With the --email option, the user is selected based on email
+      rather than username.
+    LONG_DESC
+    def delete(username = nil)
+      if username.present? && options[:email].present?
+        say('Use username or --email, not both', :red)
+        exit(1)
+      elsif username.blank? && options[:email].blank?
+        say('No username provided', :red)
         exit(1)
       end
 
-      say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
-      DeleteAccountService.new.call(account, reserve_email: false)
-      say('OK', :green)
+      dry_run = options[:dry_run] ? ' (DRY RUN)' : ''
+      account = nil
+
+      if username.present?
+        account = Account.find_local(username)
+        if account.nil?
+          say('No user with such username', :red)
+          exit(1)
+        end
+      else
+        account = Account.left_joins(:user).find_by(user: { email: options[:email] })
+        if account.nil?
+          say('No user with such email', :red)
+          exit(1)
+        end
+      end
+
+      say("Deleting user with #{account.statuses_count} statuses, this might take a while...#{dry_run}")
+      DeleteAccountService.new.call(account, reserve_email: false) unless options[:dry_run]
+      say("OK#{dry_run}", :green)
     end
 
     option :force, type: :boolean, aliases: [:f], description: 'Override public key check'

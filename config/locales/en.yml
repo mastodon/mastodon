@@ -116,6 +116,8 @@ en:
       redownloaded_msg: Successfully refreshed %{username}'s profile from origin
       reject: Reject
       rejected_msg: Successfully rejected %{username}'s sign-up application
+      remote_suspension_irreversible: The data of this account has been irreversibly deleted.
+      remote_suspension_reversible_hint_html: The account has been suspended on their server, and the data will be fully removed on %{date}. Until then, the remote server can restore this account without any ill effects. If you wish to remove all of the account's data immediately, you can do so below.
       remove_avatar: Remove avatar
       remove_header: Remove header
       removed_avatar_msg: Successfully removed %{username}'s avatar image
@@ -555,13 +557,12 @@ en:
       pending: Waiting for relay's approval
       save_and_enable: Save and enable
       setup: Setup a relay connection
-      signatures_not_enabled: Relays will not work correctly while secure mode or limited federation mode is enabled
+      signatures_not_enabled: Relays may not work correctly while secure mode or limited federation mode is enabled
       status: Status
       title: Relays
     report_notes:
       created_msg: Report note successfully created!
       destroyed_msg: Report note successfully deleted!
-      today_at: Today at %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ en:
       content_retention:
         preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
@@ -971,6 +975,9 @@ en:
       email_below_hint_html: If the below e-mail address is incorrect, you can change it here and receive a new confirmation e-mail.
       email_settings_hint_html: The confirmation e-mail was sent to %{email}. If that e-mail address is not correct, you can change it in account settings.
       title: Setup
+    sign_in:
+      preamble_html: Sign in with your <strong>%{domain}</strong> credentials. If your account is hosted on a different server, you will not be able to log in here.
+      title: Sign in to %{domain}
     sign_up:
       preamble: With an account on this Mastodon server, you'll be able to follow any other person on the network, regardless of where their account is hosted.
       title: Let's get you set up on %{domain}.

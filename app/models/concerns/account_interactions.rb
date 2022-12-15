@@ -44,6 +44,10 @@ module AccountInteractions
       end
     end
 
+    def requested_by_map(target_account_ids, account_id)
+      follow_mapping(FollowRequest.where(account_id: target_account_ids, target_account_id: account_id), :account_id)
+    end
+
     def endorsed_map(target_account_ids, account_id)
       follow_mapping(AccountPin.where(account_id: account_id, target_account_id: target_account_ids), :target_account_id)
     end
