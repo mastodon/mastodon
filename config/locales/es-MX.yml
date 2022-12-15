@@ -206,7 +206,7 @@ es-MX:
         reject_user: Rechazar Usuario
         remove_avatar_user: Eliminar Avatar
         reopen_report: Reabrir Reporte
-        resend_user: Reenviar correo de confirmación
+        resend_user: Reenviar Correo de Confirmación
         reset_password_user: Restablecer Contraseña
         resolve_report: Resolver Reporte
         sensitive_account: Marcar multimedia en tu cuenta como sensible
@@ -220,7 +220,7 @@ es-MX:
         update_announcement: Actualizar Anuncio
         update_custom_emoji: Actualizar Emoji Personalizado
         update_domain_block: Actualizar el Bloqueo de Dominio
-        update_ip_block: Crear regla IP
+        update_ip_block: Actualizar regla IP
         update_status: Actualizar Estado
         update_user_role: Actualizar Rol
       actions:
@@ -228,11 +228,11 @@ es-MX:
         approve_user_html: "%{name} aprobó el registro de %{target}"
         assigned_to_self_report_html: "%{name} asignó el informe %{target} a sí mismo"
         change_email_user_html: "%{name} cambió la dirección de correo electrónico del usuario %{target}"
-        change_role_user_html: "%{name} cambió lo rol de %{target}"
+        change_role_user_html: "%{name} cambió el rol de %{target}"
         confirm_user_html: "%{name} confirmó la dirección de correo electrónico del usuario %{target}"
         create_account_warning_html: "%{name} envió una advertencia a %{target}"
         create_announcement_html: "%{name} ha creado un nuevo anuncio %{target}"
-        create_canonical_email_block_html: "%{name} bloqueó el dominio de correo electrónico %{target}"
+        create_canonical_email_block_html: "%{name} bloqueó el correo electrónico con el hash %{target}"
         create_custom_emoji_html: "%{name} subió un nuevo emoji %{target}"
         create_domain_allow_html: "%{name} permitió la federación con el dominio %{target}"
         create_domain_block_html: "%{name} bloqueó el dominio %{target}"
@@ -242,8 +242,8 @@ es-MX:
         create_user_role_html: "%{name} creó el rol %{target}"
         demote_user_html: "%{name} degradó al usuario %{target}"
         destroy_announcement_html: "%{name} eliminó el anuncio %{target}"
-        destroy_canonical_email_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
-        destroy_custom_emoji_html: "%{name} eliminó emoji %{target}"
+        destroy_canonical_email_block_html: "%{name} desbloqueó el correo electrónico con el hash %{target}"
+        destroy_custom_emoji_html: "%{name} eliminó el emoji %{target}"
         destroy_domain_allow_html: "%{name} bloqueó la federación con el dominio %{target}"
         destroy_domain_block_html: "%{name} desbloqueó el dominio %{target}"
         destroy_email_domain_block_html: "%{name} desbloqueó el dominio de correo electrónico %{target}"
@@ -251,13 +251,13 @@ es-MX:
         destroy_ip_block_html: "%{name} eliminó una regla para la IP %{target}"
         destroy_status_html: "%{name} eliminó el estado por %{target}"
         destroy_unavailable_domain_html: "%{name} reanudó las entregas al dominio %{target}"
-        destroy_user_role_html: "%{name} eliminó lo rol %{target}"
+        destroy_user_role_html: "%{name} eliminó el rol %{target}"
         disable_2fa_user_html: "%{name} desactivó el requisito de dos factores para el usuario %{target}"
         disable_custom_emoji_html: "%{name} desactivó el emoji %{target}"
         disable_sign_in_token_auth_user_html: "%{name} ha deshabilitado la autenticación por token de correo electrónico para %{target}"
         disable_user_html: "%{name} deshabilitó el inicio de sesión para el usuario %{target}"
         enable_custom_emoji_html: "%{name} activó el emoji %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} ha habilitado la autenticación de token de correo electrónico para %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ha habilitado la autenticación por token de correo electrónico para %{target}"
         enable_user_html: "%{name} habilitó el inicio de sesión para el usuario %{target}"
         memorialize_account_html: "%{name} convirtió la cuenta de %{target} en una página in memoriam"
         promote_user_html: "%{name} promoción al usuario %{target}"
@@ -272,7 +272,7 @@ es-MX:
         silence_account_html: "%{name} silenció la cuenta de %{target}"
         suspend_account_html: "%{name} suspendió la cuenta de %{target}"
         unassigned_report_html: "%{name} des-asignó el informe %{target}"
-        unblock_email_account_html: "%{name} ha desbloqueado la dirección de correo electrónico de %{target}"
+        unblock_email_account_html: "%{name} ha desbloqueado la dirección de correo de %{target}"
         unsensitive_account_html: "%{name} desmarcó la multimedia de %{target} como sensible"
         unsilence_account_html: "%{name} desilenció la cuenta de %{target}"
         unsuspend_account_html: "%{name} reactivó la cuenta de %{target}"
@@ -282,7 +282,7 @@ es-MX:
         update_ip_block_html: "%{name} cambió la regla para la IP %{target}"
         update_status_html: "%{name} actualizó el estado de %{target}"
         update_user_role_html: "%{name} cambió el rol %{target}"
-      deleted_account: borrar cuenta
+      deleted_account: cuenta eliminada
       empty: No se encontraron registros.
       filter_by_action: Filtrar por acción
       filter_by_user: Filtrar por usuario
@@ -326,7 +326,7 @@ es-MX:
       listed: Listados
       new:
         title: Añadir nuevo emoji personalizado
-      no_emoji_selected: Ningún emojis fue cambiado ya que ninguno fue seleccionado
+      no_emoji_selected: No se cambió ningún emoji ya que no se seleccionó ninguno
       not_permitted: No tienes permiso para realizar esta acción
       overwrite: Sobrescribir
       shortcode: Código de atajo
@@ -348,11 +348,11 @@ es-MX:
         one: "<strong>%{count}</strong> apelación pendiente"
         other: "<strong>%{count}</strong> apelaciones pendientes"
       pending_reports_html:
-        one: "<strong>%{count}</strong> pendiente de informe"
+        one: "<strong>%{count}</strong> informe pendiente"
         other: "<strong>%{count}</strong> informes pendientes"
       pending_tags_html:
-        one: "<strong>%{count}</strong> hashtag pendiente"
-        other: "<strong>%{count}</strong> pendientes de hashtags"
+        one: "<strong>%{count}</strong> etiqueta pendiente"
+        other: "<strong>%{count}</strong> etiquetas pendientes"
       pending_users_html:
         one: "<strong>%{count}</strong> usuario pendiente"
         other: "<strong>%{count}</strong> usuarios pendientes"
@@ -554,6 +554,7 @@ es-MX:
       pending: Esperando la aprobación del relés
       save_and_enable: Guardar y conectar
       setup: Preparar una conexión de relés
+      signatures_not_enabled: Los relés no funcionarán correctamente mientras el modo seguro o el modo de lista blanca estén habilitados
       status: Estado
       title: Releses
     report_notes:
@@ -1529,11 +1530,11 @@ es-MX:
       '1209600': 2 semanas
       '15778476': 6 meses
       '2629746': 1 mes
-      '31556952': 1 anõ
+      '31556952': 1 año
       '5259492': 2 meses
       '604800': 1 semana
-      '63113904': 2 Años
-      '7889238': "3 meses\n"
+      '63113904': 2 años
+      '7889238': 3 meses
     min_age_label: Umbral de tiempo
     min_favs: Mantener mensajes con un número de favoritos mayor que
     min_favs_hint: No borra ninguna de las publicaciones que hayan recibido más de esta cantidad de favoritos. Deja en blanco para eliminar publicaciones sin importar el número de favoritos
@@ -1617,9 +1618,9 @@ es-MX:
         silence: Su cuenta %{acct} ha sido limitada
         suspend: Su cuenta %{acct} ha sido suspendida
       title:
-        delete_statuses: Mensajes eliminadas
+        delete_statuses: Publicaciones eliminadas
         disable: Cuenta congelada
-        mark_statuses_as_sensitive: Mensajes marcados como sensibles
+        mark_statuses_as_sensitive: Publicaciones marcadas como sensibles
         none: Advertencia
         sensitive: Cuenta marcada como sensible
         silence: Cuenta limitada
