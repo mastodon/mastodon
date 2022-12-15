@@ -161,8 +161,7 @@ class Search extends React.PureComponent {
           <Icon id='search' className={hasValue ? '' : 'active'} />
           <Icon id='times-circle' className={hasValue ? 'active' : ''} />
         </div>
-
-        <Overlay show={expanded && !hasValue} placement='bottom' target={this}>
+        <Overlay show={expanded && !hasValue} placement='bottom' target={this} container={this}>
           <SearchPopout />
         </Overlay>
       </div>
