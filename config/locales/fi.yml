@@ -115,6 +115,8 @@ fi:
       redownloaded_msg: Käyttäjän %{username} profiilin päivittäminen alkuperästä onnistui
       reject: Hylkää
       rejected_msg: Käyttäjän %{username} rekisteröitymishakemus hylättiin
+      remote_suspension_irreversible: Tilin tiedot on poistettu pysyvästi.
+      remote_suspension_reversible_hint_html: Tili on jäädytetty heidän palvelimellaan ja sen tiedot poistetaan pysyvästi %{date}. Ennen sitä tili etäpalvelimen ylläpito voi palauttaa tilin ilman haittavaikutuksia. Jos haluat poistaa kaikki tilin tiedot välittömästi, voit tehdä sen alta.
       remove_avatar: Poista profiilikuva
       remove_header: Poista otsakekuva
       removed_avatar_msg: Käyttäjän %{username} avatar-kuva poistettu onnistuneesti
@@ -542,20 +544,21 @@ fi:
     relationships:
       title: "%{acct}n suhteet"
     relays:
-      add_new: Lisää uusi rele
+      add_new: Lisää uusi välittäjä
       delete: Poista
-      description_html: <strong>federation relay</strong> on välittäjä palvelin, joka vaihtaa suuria määriä julkisia viestejä palvelimien välillä, jotka tilaavat ja julkaisevat sitä. <strong>Tämä auttaa pieniä ja keskisuuria palvelimia löytämään monipuolista sisältöä</strong>, joka muuten vaatisi käyttäjiä seuraamaan manuaalisesti muita ihmisiä eri palvelimilla.
+      description_html: <strong>federaatiovälittäjä</strong> on välityspalvelin, joka siirtää siihen liittyneiden palvelimien välillä suuria julksia viestimääriä. <strong>Tämä voi auttaa pieniä ja keskikokoisia palvelimia löytämään fediversen sisältöä</strong>, joka muutoin vaatisi paikallisia käyttäjiä seuraamaan etäpalvelimien käyttäjiä manuaalisesti.
       disable: Poista käytöstä
-      disabled: Poistettu käytöstä
+      disabled: Ei käytössä
       enable: Ota käyttöön
-      enable_hint: Kun käytössä, palvelimesi tilaa kaikki julkiset viestit tästä releestä ja alkaa lähettää tämän palvelimen julkisia viestejä siihen.
+      enable_hint: Kun tämä on otettu käyttöön, palvelimesi liittyy välittäjään ja vastaanottaa jatkossa kaikki sen jakelemat julkiset julkaisut sekä välittää omat julkiset julkaisunsa sille.
       enabled: Käytössä
-      inbox_url: Synkronoi URL
-      pending: Odotetaan releen hyväksyntää
+      inbox_url: Välittäjän URL
+      pending: Odotetaan välittäjän hyväksyntää
       save_and_enable: Tallenna ja ota käyttöön
-      setup: Määritä releyhteys
+      setup: Määritä yhteys välittäjään
+      signatures_not_enabled: Releet eivät toimi oikein, kun turvallinen tila tai rajoitettu federaatio on käytössä
       status: Tila
-      title: Releet
+      title: Välittäjät
     report_notes:
       created_msg: Muistiinpano onnistuneesti lisätty raporttiin!
       destroyed_msg: Muistiinpano onnistuneesti poistettu raportista!
@@ -971,6 +974,9 @@ fi:
       email_below_hint_html: Jos alla oleva sähköpostiosoite on virheellinen, voit muuttaa sitä täällä ja tilata uuden vahvistussähköpostiviestin.
       email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit muuttaa sitä tiliasetuksissa.
       title: Asetukset
+    sign_in:
+      preamble_html: Kirjaudu <strong>%{domain}</strong>-tunnuksillasi. Jos tilisi sijaitsee eri palvelimella, et voi kirjautua täällä.
+      title: Kirjaudu palveluun %{domain}
     sign_up:
       preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
       title: Otetaan sinulle käyttöön %{domain}.
