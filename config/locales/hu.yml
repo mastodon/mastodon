@@ -115,6 +115,8 @@ hu:
       redownloaded_msg: '%{username} profilját sikeresen frissítettük az eredetiből'
       reject: Elutasítás
       rejected_msg: A %{username} fiók regisztrációs kérelmét sikeresen elutasítottuk
+      remote_suspension_irreversible: Ennek a fióknak az adatait visszafordíthatatlanul törölték.
+      remote_suspension_reversible_hint_html: A fiókot felfüggesztették a kiszolgálójukon, az adatokat teljesen %{date}-n fogják törölni. Eddig az időpontig a távoli kiszolgáló vissza tudja állítani a fiókot mellékhatások nélkül. Ha szeretnéd a fiók minden adatát azonnal törölni, alább megteheted.
       remove_avatar: Profilkép eltávolítása
       remove_header: Fejléc törlése
       removed_avatar_msg: A %{username} fiók avatárját sikeresen töröltük
@@ -554,6 +556,7 @@ hu:
       pending: Várakozás a relé jóváhagyására
       save_and_enable: Mentés és engedélyezés
       setup: Relé kapcsolat felállítása
+      signatures_not_enabled: A relék nem fognak jól működni, amíg a biztonságos mód vagy az engedélyező listás mód aktív
       status: Állapot
       title: Relék
     report_notes:
@@ -971,6 +974,9 @@ hu:
       email_below_hint_html: Ha az alábbi e-mail cím nem megfelelő, itt megváltoztathatod és kaphatsz egy új igazoló e-mailt.
       email_settings_hint_html: A visszaigazoló e-mailt elküldtük ide %{email}. Ha az e-mail cím nem megfelelő, megváltoztathatod a fiókod beállításainál.
       title: Beállítás
+    sign_in:
+      preamble_html: Jelentkezz be a <strong>%{domain}</strong> fiókoddal. Ha másik kiszolgálón található a fiókod, akkor itt nem fogsz tudni belépni.
+      title: Jelentkezz be a %{domain}-ra
     sign_up:
       preamble: Egy fiókkal ezen a Mastodon kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
       title: Állítsuk be a fiókod a %{domain} kiszolgálón.
