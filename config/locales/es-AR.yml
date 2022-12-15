@@ -556,12 +556,12 @@ es-AR:
       pending: Esperando aprobación del relé
       save_and_enable: Guardar y habilitar
       setup: Configurar una conexión de relé
+      signatures_not_enabled: Puede que los relés no funcionen correctamente mientras el modo seguro o el de federación limitada estén habilitados
       status: Estado
       title: Relés
     report_notes:
       created_msg: '¡La nota de denuncia fue creada exitosamente!'
       destroyed_msg: '¡La nota de denuncia fue eliminada exitosamente!'
-      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
@@ -974,6 +974,9 @@ es-AR:
       email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, podés cambiarla acá y recibir un nuevo correo electrónico de confirmación.
       email_settings_hint_html: Se envió el correo electrónico de confirmación a %{email}. Si esa dirección de correo electrónico no es correcta, podés cambiarla en la configuración de la cuenta.
       title: Configuración
+    sign_in:
+      preamble_html: Iniciá sesión con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no vas a poder iniciar sesión acá.
+      title: Iniciar sesión en %{domain}
     sign_up:
       preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra cuenta en la red, independientemente de en qué servidor esté alojada su cuenta.
       title: Dejá que te preparemos en %{domain}.
