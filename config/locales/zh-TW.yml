@@ -543,6 +543,7 @@ zh-TW:
       pending: 等待中繼站審核
       save_and_enable: 儲存並啟用
       setup: 設定中繼連結
+      signatures_not_enabled: 若啟用安全模式或受限的聯邦宇宙模式，中繼將不會正常運作
       status: 狀態
       title: 中繼
     report_notes:
@@ -887,7 +888,7 @@ zh-TW:
     created_msg: 成功建立別名。您可以自舊帳號開始轉移。
     deleted_msg: 成功移除別名。您將無法再由舊帳號轉移到目前的帳號。
     empty: 您目前沒有任何別名。
-    hint_html: 如果想由其他帳號轉移至此帳號，您可以在此處新增別名，稍後系統將容許您將跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
+    hint_html: 如果想由其他帳號轉移到此帳號，您可以在此處新增別名，稍後系統將容許您把跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
     advanced_web_interface: 進階網頁介面
@@ -1476,7 +1477,7 @@ zh-TW:
     enabled: 自動刪除舊嘟文
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外
     exceptions: 例外
-    explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
+    explanation: 因為刪除嘟文是昂貴的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
     ignore_favs: 忽略最愛
     ignore_reblogs: 忽略轉嘟
     interaction_exceptions: 基於互動的例外規則
@@ -1484,7 +1485,7 @@ zh-TW:
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含媒體內容的嘟文
-    keep_media_hint: 不會刪除您包含媒體內容之嘟文
+    keep_media_hint: 不會刪除您包含媒體內容的嘟文
     keep_pinned: 保留釘選嘟文
     keep_pinned_hint: 不會刪除您的釘選嘟文
     keep_polls: 保留投票
@@ -1499,7 +1500,7 @@ zh-TW:
       '2629746': 1 個月
       '31556952': 1 年
       '5259492': 2 個月
-      '604800': 1 週
+      '604800': 一週
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 保存期限
