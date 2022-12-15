@@ -221,5 +221,5 @@ workflows:
           pkg-manager: yarn
           requires:
             - build
-          version: lts
+          version: '16.18'
           yarn-run: test:jest
