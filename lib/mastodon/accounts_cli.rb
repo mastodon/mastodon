@@ -553,6 +553,38 @@ module Mastodon
       end
     end
 
+    option :force, type: :boolean
+    desc 'replay-migration USERNAME', 'Replay the last migration of the specified account'
+    long_desc <<~LONG_DESC
+      Replay the last migration of an account, in case some remote server
+      may not have properly processed the associated `Move` activity.
+
+      With --force, replay the last migration of the selected account even if
+      it is not currently redirecting to the specified account.
+    LONG_DESC
+    def replay_migration(username)
+      account = Account.find_local(username)
+      if account.nil?
+        say('No such account', :red)
+        exit(1)
+      end
+
+      migration = account.migrations.last
+      if migration.nil?
+        say('The specified account has not migrated to another account', :red)
+        exit(1)
+      end
+
+      unless options[:force] || migration.target_acount_id == account.moved_to_account_id
+        say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
+        exit(1)
+      end
+
+      MoveService.new.call(migration)
+
+      say("OK, replayed #{account.acct}'s migration to #{migration.target_account.acct}", :green)
+    end
+
     private
 
     def rotate_keys_for_account(account, delay = 0)
