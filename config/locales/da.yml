@@ -115,6 +115,8 @@ da:
       redownloaded_msg: '%{username}s profil opfrisket fra oprindelsesserver'
       reject: Afvis
       rejected_msg: '%{username}s tilmeldingsansøgning afvist'
+      remote_suspension_irreversible: Data, der vedrører denne konto, er blevet slettet. De kan ikke genskabes.
+      remote_suspension_reversible_hint_html: Kontoen er blevet suspenderet på deres server, og dataene vil blive fjernet fuldt ud den %{date}. Indtil da kan den eksterne server gendanne denne konto uden nogen skadelige virkninger. Hvis du ønsker at fjerne alle kontoens data straks, kan du gøre det nedenfor.
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
       removed_avatar_msg: '%{username}s profilbillede fjernet'
@@ -554,7 +556,6 @@ da:
       pending: Afventer videreformidlers godkendelse
       save_and_enable: Gem og aktivér
       setup: Opsæt en videreformidlerforbindelse
-      signatures_not_enabled: Videreformidlere fungerer ikke korrekt, mens sikker tilstand eller begrænset federeringstilstand er aktiveret
       status: Status
       title: Videreformidlere
     report_notes:
