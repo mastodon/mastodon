@@ -1,4 +1,3 @@
----
 lv:
   activerecord:
     attributes:
@@ -147,39 +146,39 @@ lv:
       application:
         title: OAuth nepieciešama autorizācija
     scopes:
-      admin:read: lasīt visus datus uz servera
-      admin:read:accounts: lasīt sensitīvu informāciju no visiem kontiem
-      admin:read:reports: lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
-      admin:write: modificēt visus datus uz servera
-      admin:write:accounts: veikt moderācijas darbības kontos
-      admin:write:reports: veikt moderācijas darbības pārskatos
+      "admin:read": lasīt visus datus uz servera
+      "admin:read:accounts": lasīt sensitīvu informāciju no visiem kontiem
+      "admin:read:reports": lasīt sensitīvu informāciju no visiem pārskatiem un kontiem, par kuriem ziņots
+      "admin:write": modificēt visus datus uz servera
+      "admin:write:accounts": veikt moderācijas darbības kontos
+      "admin:write:reports": veikt moderācijas darbības pārskatos
       crypto: lieto pilnīgu šifrēšanu
       follow: mainīt konta attiecības
       push: saņemt savus push paziņojumus
       read: lasīt visus sava konta datus
-      read:accounts: apskatīt kontu informāciju
-      read:blocks: apskatīt savus blokus
-      read:bookmarks: apskatīt savas grāmatzīmes
-      read:favourites: apskatīt savu izlasi
-      read:filters: apskatīt savus filtrus
-      read:follows: apskatīt savus sekotājus
-      read:lists: apskatīt savus sarakstus
-      read:mutes: apskatīt savus apklusinātos
-      read:notifications: apskatīt savus paziņojumus
-      read:reports: apskatīt savus pārskatus
-      read:search: meklēt savā vārdā
-      read:statuses: skatīt visus ierakstus
+      "read:accounts": apskatīt kontu informāciju
+      "read:blocks": apskatīt savus blokus
+      "read:bookmarks": apskatīt savas grāmatzīmes
+      "read:favourites": apskatīt savu izlasi
+      "read:filters": apskatīt savus filtrus
+      "read:follows": apskatīt savus sekotājus
+      "read:lists": apskatīt savus sarakstus
+      "read:mutes": apskatīt savus apklusinātos
+      "read:notifications": apskatīt savus paziņojumus
+      "read:reports": apskatīt savus pārskatus
+      "read:search": meklēt savā vārdā
+      "read:statuses": skatīt visus ierakstus
       write: labot visus sava konta datus
-      write:accounts: labot manu profilu
-      write:blocks: bloķēt kontus un domēnus
-      write:bookmarks: pievienotās grāmatzīmes
-      write:conversations: apklusināt un dzēst sarunas
-      write:favourites: iecienītākās ziņas
-      write:filters: izveidot filtrus
-      write:follows: seko cilvēkiem
-      write:lists: izveido sarakstus
-      write:media: pievieno mediju datnes
-      write:mutes: apklusini cilvēkus un sarunas
-      write:notifications: notīri savus paziņojumus
-      write:reports: ziņo par citiem cilvēkiem
-      write:statuses: publicē ziņas
+      "write:accounts": labot manu profilu
+      "write:blocks": bloķēt kontus un domēnus
+      "write:bookmarks": pievienotās grāmatzīmes
+      "write:conversations": apklusināt un dzēst sarunas
+      "write:favourites": iecienītākās ziņas
+      "write:filters": izveidot filtrus
+      "write:follows": seko cilvēkiem
+      "write:lists": izveido sarakstus
+      "write:media": pievieno mediju datnes
+      "write:mutes": apklusini cilvēkus un sarunas
+      "write:notifications": notīri savus paziņojumus
+      "write:reports": ziņo par citiem cilvēkiem
+      "write:statuses": publicē ziņas
