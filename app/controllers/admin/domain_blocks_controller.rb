@@ -43,12 +43,8 @@ module Admin
     def update
       authorize :domain_block, :update?
 
-      @domain_block.update(update_params)
-
-      severity_changed = @domain_block.severity_changed?
-
-      if @domain_block.save
-        DomainBlockWorker.perform_async(@domain_block.id, severity_changed)
+      if @domain_block.update(update_params)
+        DomainBlockWorker.perform_async(@domain_block.id, @domain_block.severity_previously_changed?)
         log_action :update, @domain_block
         redirect_to admin_instances_path(limited: '1'), notice: I18n.t('admin.domain_blocks.created_msg')
       else
