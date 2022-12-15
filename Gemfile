@@ -107,6 +107,10 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.10'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop', require: false
 end
 
 group :production, :test do
@@ -136,8 +140,6 @@ group :development do
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.30', require: false
-  gem 'rubocop-rails', '~> 2.15', require: false
   gem 'brakeman', '~> 5.4', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 
