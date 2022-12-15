@@ -1665,6 +1665,15 @@ a.sparkline {
   box-sizing: border-box;
   min-height: 100%;
 
+  a {
+    color: $highlight-text-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   p {
     margin-bottom: 20px;
     unicode-bidi: plaintext;
