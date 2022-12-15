@@ -279,9 +279,9 @@ nn:
         update_announcement_html: "%{name} oppdaterte kunngjeringa %{target}"
         update_custom_emoji_html: "%{name} oppdaterte emojien %{target}"
         update_domain_block_html: "%{name} oppdaterte domeneblokkeringa for %{target}"
-        update_ip_block_html: "%{name} endra regel for IP %{target}"
+        update_ip_block_html: "%{name} endret regel for IP %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
-        update_user_role_html: "%{name} endra rolla %{target}"
+        update_user_role_html: "%{name} endret %{target} -rolle"
       deleted_account: sletta konto
       empty: Ingen loggar funne.
       filter_by_action: Sorter etter handling
@@ -375,7 +375,7 @@ nn:
       destroyed_msg: Domeneblokkering har nå blitt angret
       domain: Domene
       edit: Rediger domeneblokkering
-      existing_domain_block: Du har allerie innført strengare avgrensingar for %{name}.
+      existing_domain_block: Du har allerede pålagt strengere begrensninger på %{name}.
       existing_domain_block_html: Du har allerede pålagt strengere begrensninger på %{name}, du kan være nødt til <a href="%{unblock_url}">oppheve blokkeringen av den</a> først.
       export: Eksporter
       import: Importer
@@ -391,7 +391,7 @@ nn:
       no_domain_block_selected: Ingen domeneblokkeringar vart endra sidan ingen var valde
       not_permitted: Du har ikkje løyve til å utføra denne handlinga
       obfuscate: Obfuskere domenenavn
-      obfuscate_hint: Skjul delar av domenenamnet i lista dersom kunngjering av lista over domenebegrensningar er påskrudd
+      obfuscate_hint: Skjul deler av domenenavnet i listen hvis annonsering av listen over domenebegrensninger er slått på
       private_comment: Privat kommentar
       private_comment_hint: Kommenter angående denne domenebegrensningen for internt bruk av moderatorene.
       public_comment: Offentleg kommentar
@@ -405,8 +405,8 @@ nn:
     email_domain_blocks:
       add_new: Lag ny
       attempts_over_week:
-        one: "%{count} forsøk den siste veka"
-        other: "%{count} registreringsforsøk den siste veka"
+        one: "%{count} forsøk i løpet av den siste uken"
+        other: "%{count} forsøk på å opprette konto i løpet av den siste uken"
       created_msg: E-postdomenet ble lagt til i blokkeringslisten uten problemer
       delete: Slett
       dns:
@@ -448,50 +448,50 @@ nn:
         description_html:
           one: Om leveransar til domenet feilar <strong>%{count} dag</strong>, vil det ikkje bli gjort fleire forsøk før det eventuelt kjem ein leveranse <em>frå</em> domenet.
           other: Om leveransar til domenet feilar <strong>%{count} ulike dagar</strong>, vil det ikkje bli gjort fleire forsøk før det eventuelt kjem ein leveranse <em>frå</em> domenet.
-        failure_threshold_reached: Feilterskel nådd %{date}.
+        failure_threshold_reached: Feilterskelen ble nådd %{date}.
         failures_recorded:
-          one: Mislukka forsøk på %{count} dag.
-          other: Mislukka forsøk på %{count} ulike dagar.
+          one: Mislykkede forsøk på %{count} dag.
+          other: Mislykkede forsøk på %{count} ulike dager.
         no_failures_recorded: Ingen feil registrert.
         title: Tilgjenge
-        warning: Det siste oppkoplingsforsøket på denne tenaren var mislukka
+        warning: Det siste forsøket på å koble til denne serveren lyktes ikke
       back_to_all: Alle
-      back_to_limited: Avgrensa
-      back_to_warning: Åtvaring
+      back_to_limited: Begrenset
+      back_to_warning: Advarsel
       by_domain: Domene
-      confirm_purge: Er du sikker på at du vil slette data frå dette domenet for godt?
+      confirm_purge: Er du sikker på at du vil slette data permanent fra dette domenet?
       content_policies:
-        comment: Intern merknad
-        description_html: Du kan definera innhaldsreglar som vil bli brukt på alle kontoar frå dette domenet og alle underdomener.
+        comment: Internt notat
+        description_html: Du kan definere innholdsregler som vil bli brukt på alle kontoer fra dette domenet og hvilket som helst av underdomenene.
         policies:
           reject_media: Avvis media
-          reject_reports: Avvis rapportar
-          silence: Avgrens
+          reject_reports: Avvis rapporter
+          silence: Begrens
           suspend: Suspender
         policy: Vilkår
-        reason: Offentleg årsak
-        title: Retningsliner for innhald
+        reason: Offentlig årsak
+        title: Retningslinjer for innhold
       dashboard:
         instance_accounts_dimension: Mest fylgde kontoar
-        instance_accounts_measure: lagra kontoar
-        instance_followers_measure: våre fylgjarar der
-        instance_follows_measure: deira fylgjarar her
+        instance_accounts_measure: lagrede kontoer
+        instance_followers_measure: våre følgere der
+        instance_follows_measure: deres følgere her
         instance_languages_dimension: Mest brukte språk
-        instance_media_attachments_measure: lagra mediavedlegg
-        instance_reports_measure: rapportar om dei
-        instance_statuses_measure: lagra innlegg
+        instance_media_attachments_measure: lagrede mediavedlegg
+        instance_reports_measure: rapporter om dem
+        instance_statuses_measure: lagrede innlegg
       delivery:
         all: Alle
-        clear: Tøm liste over leveringsfeil
+        clear: Feil ved fjerning
         failing: Feilar
-        restart: Gjenstart levering
+        restart: Starte levering
         stop: Stopp levering
-        unavailable: Utilgjengeleg
+        unavailable: Ikke tilgjengelig
       delivery_available: Levering er tilgjengelig
       delivery_error_days: Leveringsfeildagar
-      delivery_error_hint: Om levering ikkje er mogleg i %{count} dagar, vil ho automatisk bli markert som ikkje leverbar.
+      delivery_error_hint: Dersom levering ikke er mulig i løpet av %{count} dager, blir det automatisk merket som ikke mulig å levere.
       destroyed_msg: Data frå %{domain} er no lagt i kø for å bli sletta.
-      empty: Ingen domener funne.
+      empty: Ingen domener funnet.
       known_accounts:
         one: "%{count} kjend konto"
         other: "%{count} kjende kontoar"
@@ -531,7 +531,7 @@ nn:
         '94670856': 3 år
       new:
         title: Opprett ny IP-regel
-      no_ip_block_selected: Ingen IP-reglar vart endra sidan ingen var valde
+      no_ip_block_selected: Ingen IP-regler ble endret da ingen ble valgt
       title: IP-regler
     relationships:
       title: "%{acct} sitt forhold"
@@ -548,6 +548,7 @@ nn:
       pending: Avventer overgangens godkjenning
       save_and_enable: Lagr og slå på
       setup: Sett opp en overgangsforbindelse
+      signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
       status: Status
       title: Vidaresendingar
     report_notes:
@@ -634,18 +635,18 @@ nn:
         manage_webhooks_description: Let brukarar setje opp webhooks for administrative hendingar
         view_audit_log: Sjå revisjonslogg
         view_audit_log_description: Let brukarar sjå historikk over administrative handlingar på tenaren
-        view_dashboard: Vis kontrollpanel
-        view_dashboard_description: Gjev brukarar tilgang til kontrollpanel og ulike måledata
+        view_dashboard: Vis dashbord
+        view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
         view_devops: DevOps
-        view_devops_description: Gjev brukarar tilgang til kontrollpanel for Sidekiq og pgHero
+        view_devops_description: Gir brukere tilgang til Sidekiq og pgHero-dashbord
       title: Rollar
     rules:
       add_new: Legg til regel
       delete: Slett
-      description_html: Medan dei fleste hevdar å ha lest og samtykt til tenestevilkåra, vil dei vanlegvis ikkje lese gjennom før etter at eit problem oppstår. <strong>Gjer det lettare å halde seg informert om reglane for tenaren ved å presentera dei i ei enkel punktliste.</strong> Prøv å halde individuelle reglar korte og enkle, men unngå også å dela dei opp i for mange element.
-      edit: Endre regel
-      empty: Ingen tenarreglar har blitt definert enno.
-      title: Tenarreglar
+      description_html: Mens de fleste hevder å ha lest og samtykket i tjenestevilkårene, leser de vanligvis ikke gjennom før etter et problem oppstår. <strong>Gjør det enklere å se serverens regler på et øyeblikk ved å gi dem i en flat kulepunktsliste.</strong> Prøv å holde individuelle regler korte og enkelt, men prøv å ikke dele dem opp i mange separate elementer heller.
+      edit: Rediger regel
+      empty: Ingen serverregler har blitt definert ennå.
+      title: Server regler
     settings:
       about:
         manage_rules: Handter tenarreglar
