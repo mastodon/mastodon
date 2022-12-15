@@ -153,9 +153,15 @@ export function submitCompose(routerHistory) {
     const status   = getState().getIn(['compose', 'text'], '');
     const media    = getState().getIn(['compose', 'media_attachments']);
     const statusId = getState().getIn(['compose', 'id'], null);
+    const privacy  = getState().getIn(['compose', 'privacy']);
+    let   isToCrossbell = getState().getIn(['compose', 'crossbell'], false);
 
     if ((!status || !status.length) && media.size === 0) {
       return;
+    }
+
+    if (privacy !== 'public' && isToCrossbell) {
+      isToCrossbell = false;
     }
 
     dispatch(submitComposeRequest());
@@ -169,9 +175,10 @@ export function submitCompose(routerHistory) {
         media_ids: media.map(item => item.get('id')),
         sensitive: getState().getIn(['compose', 'sensitive']),
         spoiler_text: getState().getIn(['compose', 'spoiler']) ? getState().getIn(['compose', 'spoiler_text'], '') : '',
-        visibility: getState().getIn(['compose', 'privacy']),
+        visibility: privacy,
         poll: getState().getIn(['compose', 'poll'], null),
         language: getState().getIn(['compose', 'language']),
+        to_crossbell: isToCrossbell,
       },
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),

@@ -16,6 +16,7 @@ import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
 import WarningContainer from '../containers/warning_container';
 import LanguageDropdown from '../containers/language_dropdown_container';
+import CrossbellButtonContainer from '../containers/crossbell_button_container';
 import { isMobile } from '../../../is_mobile';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
@@ -274,6 +275,7 @@ class ComposeForm extends ImmutablePureComponent {
             <PrivacyDropdownContainer disabled={this.props.isEditing} />
             <SpoilerButtonContainer />
             <LanguageDropdown />
+            <CrossbellButtonContainer disabled={this.props.privacy !== 'public'} />
           </div>
 
           <div className='character-counter__wrapper'>
