@@ -13,7 +13,7 @@ services:
         # Optional Node.js version to install
         NODE_VERSION: '16'
     volumes:
-      - ..:/workspaces/mastodon:cached
+      - ..:/mastodon:cached
     environment:
       RAILS_ENV: development
       NODE_ENV: development
