@@ -756,3 +756,37 @@
     }
   }
 }
+
+.moved-account-banner,
+.follow-request-banner {
+  padding: 20px;
+  background: lighten($ui-base-color, 4%);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &__message {
+    color: $darker-text-color;
+    padding: 8px 0;
+    padding-top: 0;
+    padding-bottom: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  &__action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .detailed-status__display-name {
+    margin-bottom: 0;
+  }
+}
+
+.follow-request-banner .button {
+  width: 100%;
+}
