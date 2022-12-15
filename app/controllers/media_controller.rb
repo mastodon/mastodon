@@ -13,8 +13,8 @@ class MediaController < ApplicationController
   before_action :allow_iframing, only: :player
   before_action :set_pack, only: :player
 
-  content_security_policy only: :player do |p|
-    p.frame_ancestors(false)
+  content_security_policy only: :player do |policy|
+    policy.frame_ancestors(false)
   end
 
   def show

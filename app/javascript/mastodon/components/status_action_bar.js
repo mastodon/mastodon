@@ -246,12 +246,13 @@ class StatusActionBar extends ImmutablePureComponent {
 
     menu.push({ text: intl.formatMessage(messages.open), action: this.handleOpen });
 
-    if (publicStatus) {
-      if (isRemote) {
-        menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: status.get('url') });
-      }
+    if (publicStatus && isRemote) {
+      menu.push({ text: intl.formatMessage(messages.openOriginalPage), href: status.get('url') });
+    }
 
-      menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
+    menu.push({ text: intl.formatMessage(messages.copy), action: this.handleCopy });
+
+    if (publicStatus) {
       menu.push({ text: intl.formatMessage(messages.embed), action: this.handleEmbed });
     }
 
