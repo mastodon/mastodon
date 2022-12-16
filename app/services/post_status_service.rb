@@ -202,7 +202,7 @@ class PostStatusService < BaseService
   end
 
   def to_crossbell
-    @options.to_crossbell
+    @options[:to_crossbell]
   end
 
   def post_to_crossbell
