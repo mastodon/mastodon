@@ -13,6 +13,7 @@ import Button from 'flavours/glitch/components/button';
 import { NavLink } from 'react-router-dom';
 import DropdownMenuContainer from 'flavours/glitch/containers/dropdown_menu_container';
 import AccountNoteContainer from '../containers/account_note_container';
+import FollowRequestNoteContainer from '../containers/follow_request_note_container';
 import { PERMISSION_MANAGE_USERS } from 'flavours/glitch/permissions';
 import { Helmet } from 'react-helmet';
 
@@ -314,6 +315,8 @@ class Header extends ImmutablePureComponent {
 
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+        {!(suspended || hidden || account.get('moved')) && account.getIn(['relationship', 'requested_by']) && <FollowRequestNoteContainer account={account} />}
+
         <div className='account__header__image'>
           <div className='account__header__info'>
             {info}

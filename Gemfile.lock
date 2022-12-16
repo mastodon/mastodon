@@ -346,6 +346,8 @@ GEM
     json-ld-preloaded (3.2.2)
       json-ld (~> 3.2)
       rdf (~> 3.2)
+    json-schema (3.0.0)
+      addressable (>= 2.8)
     jsonapi-renderer (0.2.2)
     jwt (2.4.1)
     kaminari (1.2.2)
@@ -587,21 +589,27 @@ GEM
     rspec-support (3.11.1)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
-    rubocop (1.30.1)
+    rubocop (1.39.0)
+      json (~> 2.3)
       parallel (~> 1.10)
-      parser (>= 3.1.0.0)
+      parser (>= 3.1.2.1)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.18.0, < 2.0)
+      rubocop-ast (>= 1.23.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.18.0)
+    rubocop-ast (1.23.0)
       parser (>= 3.1.1.0)
-    rubocop-rails (2.15.0)
+    rubocop-performance (1.15.1)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
+    rubocop-rails (2.17.2)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
-      rubocop (>= 1.7.0, < 2.0)
+      rubocop (>= 1.33.0, < 2.0)
+    rubocop-rspec (2.15.0)
+      rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
     ruby-saml (1.13.0)
       nokogiri (>= 1.10.5)
@@ -794,6 +802,7 @@ DEPENDENCIES
   idn-ruby
   json-ld
   json-ld-preloaded (~> 3.2)
+  json-schema (~> 3.0)
   kaminari (~> 1.2)
   kt-paperclip (~> 7.1)
   letter_opener (~> 1.8)
@@ -843,8 +852,10 @@ DEPENDENCIES
   rspec-rails (~> 5.1)
   rspec-sidekiq (~> 3.1)
   rspec_junit_formatter (~> 0.6)
-  rubocop (~> 1.30)
-  rubocop-rails (~> 2.15)
+  rubocop
+  rubocop-performance
+  rubocop-rails
+  rubocop-rspec
   ruby-progressbar (~> 1.11)
   sanitize (~> 6.0)
   scenic (~> 1.6)
@@ -869,3 +880,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.0.4p208
+
+BUNDLED WITH
+   2.2.33

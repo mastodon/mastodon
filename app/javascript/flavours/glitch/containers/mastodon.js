@@ -27,8 +27,9 @@ store.dispatch(hydrateAction);
 // check for deprecated local settings
 store.dispatch(checkDeprecatedLocalSettings());
 
-// load custom emojis
-store.dispatch(fetchCustomEmojis());
+if (initialState.meta.me) {
+  store.dispatch(fetchCustomEmojis());
+}
 
 const createIdentityContext = state => ({
   signedIn: !!state.meta.me,

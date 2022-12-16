@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-  ruby: circleci/ruby@1.4.1
-  node: circleci/node@5.0.1
+  ruby: circleci/ruby@2.0.0
+  node: circleci/node@5.0.3
 
 executors:
   default:
@@ -19,11 +19,11 @@ executors:
           DB_USER: root
           DISABLE_SIMPLECOV: true
           RAILS_ENV: test
-      - image: cimg/postgres:14.0
+      - image: cimg/postgres:14.5
         environment:
           POSTGRES_USER: root
           POSTGRES_HOST_AUTH_METHOD: trust
-      - image: cimg/redis:6.2
+      - image: cimg/redis:7.0
 
 commands:
   install-system-dependencies:
@@ -45,7 +45,7 @@ commands:
             bundle config without 'development production'
           name: Set bundler settings
       - ruby/install-deps:
-          bundler-version: '2.3.8'
+          bundler-version: '2.3.26'
           key: ruby<< parameters.ruby-version >>-gems-v1
   wait-db:
     steps:
@@ -221,5 +221,5 @@ workflows:
           pkg-manager: yarn
           requires:
             - build
-          version: lts
+          version: '16.18'
           yarn-run: test:jest

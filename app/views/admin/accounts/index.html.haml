@@ -10,7 +10,7 @@
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.moderation.title')
       .input.select.optional
-        = select_tag :status, options_for_select([[t('admin.accounts.moderation.active'), 'active'], [t('admin.accounts.moderation.silenced'), 'silenced'], [t('admin.accounts.moderation.suspended'), 'suspended'], [safe_join([t('admin.accounts.moderation.pending'), "(#{number_with_delimiter(User.pending.count)})"], ' '), 'pending']], params[:status]), prompt: I18n.t('generic.all')
+        = select_tag :status, options_for_select([[t('admin.accounts.moderation.active'), 'active'], [t('admin.accounts.moderation.silenced'), 'silenced'], [t('admin.accounts.moderation.disabled'), 'disabled'], [t('admin.accounts.moderation.suspended'), 'suspended'], [safe_join([t('admin.accounts.moderation.pending'), "(#{number_with_delimiter(User.pending.count)})"], ' '), 'pending']], params[:status]), prompt: I18n.t('generic.all')
     .filter-subset.filter-subset--with-select
       %strong= t('admin.accounts.role')
       .input.select.optional

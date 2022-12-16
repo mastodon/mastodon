@@ -227,8 +227,7 @@
     height: calc(100% - 10px) !important;
   }
 
-  .getting-started__wrapper,
-  .search {
+  .getting-started__wrapper {
     margin-bottom: 10px;
   }
 
@@ -281,7 +280,7 @@
     }
   }
 
-  .ui__header {
+  .layout-single-column .ui__header {
     display: flex;
     background: $ui-base-color;
     border-bottom: 1px solid lighten($ui-base-color, 8%);
