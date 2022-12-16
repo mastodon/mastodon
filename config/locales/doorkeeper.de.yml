@@ -148,12 +148,19 @@ de:
     scopes:
       "admin:read": alle Daten auf dem Server lesen
       "admin:read:accounts": sensible Daten aller Konten lesen
-      "admin:read:canonical_email_blocks": sensible Informationen aller kanonischen E-Mail-Blöcke lesen
-      "admin:read:domain_allows": vertrauliche Informationen aller Domänen lesen
+      "admin:read:canonical_email_blocks": sensible Informationen aller kanonischen E-Mail-Blockaden lesen
+      "admin:read:domain_allows": sensible Informationen aller Domain-Zulassungen lesen
       "admin:read:domain_blocks": sensible Informationen aller Domain-Blockaden lesen
+      "admin:read:email_domain_blocks": sensible Informationen aller E-Mail-Domain-Blockaden lesen
+      "admin:read:ip_blocks": sensible Informationen aller IP-Blockaden lesen
       "admin:read:reports": sensible Daten aller Meldungen und gemeldeten Konten lesen
       "admin:write": alle Daten auf dem Server ändern
       "admin:write:accounts": Moderationsaktionen auf Konten ausführen
+      "admin:write:canonical_email_blocks": Moderationsaktionen auf kanonischen E-Mail-Blockaden ausführen
+      "admin:write:domain_allows": Moderationsaktionen auf Domain-Zulassungen ausführen
+      "admin:write:domain_blocks": Moderationsaktionen auf Domain-Blockaden ausführen
+      "admin:write:email_domain_blocks": Moderationsaktionen auf E-Mail-Domain-Blockaden ausführen
+      "admin:write:ip_blocks": Moderationsaktionen auf IP-Blockaden ausführen
       "admin:write:reports": Moderationsaktionen auf Meldungen ausführen
       crypto: Ende-zu-Ende-Verschlüsselung verwenden
       follow: Kontenbeziehungen verändern
