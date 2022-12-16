@@ -202,7 +202,7 @@ class PostStatusService < BaseService
   end
 
   def to_crossbell
-    puts "[Crossbell] new toot arrived (To crossbell: #{ @options[:to_crossbell] }, webhook uri: #{ ENV['CROSSBELL_WEBHOOK'] })"
+    puts "[Crossbell] new toot arrived (To crossbell: #{ @options[:to_crossbell] })"
     @options[:to_crossbell] && ENV['CROSSBELL_WEBHOOK']
   end
 
