@@ -1,4 +1,3 @@
----
 fy:
   simple_form:
     hints:
@@ -12,6 +11,20 @@ fy:
       admin_account_action:
         include_statuses: De brûker sjocht hokker berjochten ferantwurdlik binne foar de moderaasjemaatregel of warskôging
         send_email_notification: De brûker ûntfangt in útlis oer wat der mei harren account bard is
+        text_html: Opsjoneel. Jo kinne spesifike tekst foar berjochten brûke. Om tiid te besparjen kinne jo <a href="%{path}">presets foar warskôgingen tafoegje</a>
+        type_html: Kies wat der mei <strong>%{acct}</strong> barre moat
+        types:
+          disable: Foarkom dat de brûker harren account brûkt, mar wiskje of ferstopje de ynhâld net.
+          none: Brûk dit om in warskôging nei de brûker te stjoeren, sûnder dat noch in oare maatregel nommen wurdt.
+          sensitive: Forsearje dat alle mediabylagen fan dizze brûker as gefoelich markearre wurde.
+          silence: Foarkom dat de brûker iepenbiere berjochten ferstjoere kin, ferstopje harren berjochten en meldingen foar minsken dy’t dyjinge net folgje.
+          suspend: Alle ynteraksjes fan en mei dizze account opkeare, en de accountgegevens fuortsmite. Dit kin binnen 30 dagen weromdraaid wurde.
+        warning_preset_id: Opsjoneel. Jo kinne noch hieltyd hânmjittich tekst tafoegje oan it ein fan de foarynstelling
+      announcement:
+        all_day: Wannear dit oanfinkt is, wurde allinnich de datums binnen it tiidrek toand
+        ends_at: Opsjoneel. De publikaasje fan de meidieling wurdt op dit tiidstip automatysk beëinige
+        scheduled_at: Lit leech om de meidieling daliks te publisearjen
+        starts_at: Opsjoneel. Yn it gefal dat jo meidieling oan in bepaald tiidrek bûn is
       defaults:
         password: Brûk op syn minst 8 tekens
         setting_display_media_hide_all: Media altyd ferstopje
@@ -96,10 +109,10 @@ fy:
         position: Prioriteit
       webhook:
         url: Einpunt-URL
-    'no': Nee
+    'no': 'Nee'
     not_recommended: Net oanrekommandearre
     recommended: Oanrekommandearre
     required:
       mark: "*"
       text: fereaske
-    'yes': Ja
+    'yes': 'Ja'
