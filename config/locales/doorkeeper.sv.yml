@@ -1,3 +1,4 @@
+---
 sv:
   activerecord:
     attributes:
@@ -146,49 +147,49 @@ sv:
       application:
         title: OAuth-godkännande krävs
     scopes:
-      "admin:read": läsa all data på servern
-      "admin:read:accounts": läsa känslig information om alla konton
-      "admin:read:canonical_email_blocks": läsa känslig information om alla kanoniska e-postblockeringar
-      "admin:read:domain_allows": läsa känslig information om alla tillåtna domäner
-      "admin:read:domain_blocks": läsa känslig information om alla domänblockeringar
-      "admin:read:email_domain_blocks": läsa känslig information om alla blockerade e-postdomäner
-      "admin:read:ip_blocks": läsa känslig information om alla IP-adressblockeringar
-      "admin:read:reports": läsa känslig information om alla rapporter och rapporterade konton
-      "admin:write": ändra all data på servern
-      "admin:write:accounts": utföra modereringsåtgärder på konton
-      "admin:write:canonical_email_blocks": utföra modereringsåtgärder på kanoniska e-postblockeringar
-      "admin:write:domain_allows": utföra modereringsåtgärder på tillåtna domäner
-      "admin:write:domain_blocks": utföra modereringsåtgärder på domänblockeringar
-      "admin:write:email_domain_blocks": utföra modereringsåtgärder på e-postdomänblockeringar
-      "admin:write:ip_blocks": utföra modereringsåtgärder på IP-adressblockeringar
-      "admin:write:reports": utföra modereringsåtgärder på rapporter
+      admin:read: läsa all data på servern
+      admin:read:accounts: läsa känslig information om alla konton
+      admin:read:canonical_email_blocks: läsa känslig information om alla kanoniska e-postblockeringar
+      admin:read:domain_allows: läsa känslig information om alla tillåtna domäner
+      admin:read:domain_blocks: läsa känslig information om alla domänblockeringar
+      admin:read:email_domain_blocks: läsa känslig information om alla blockerade e-postdomäner
+      admin:read:ip_blocks: läsa känslig information om alla IP-adressblockeringar
+      admin:read:reports: läsa känslig information om alla rapporter och rapporterade konton
+      admin:write: ändra all data på servern
+      admin:write:accounts: utföra modereringsåtgärder på konton
+      admin:write:canonical_email_blocks: utföra modereringsåtgärder på kanoniska e-postblockeringar
+      admin:write:domain_allows: utföra modereringsåtgärder på tillåtna domäner
+      admin:write:domain_blocks: utföra modereringsåtgärder på domänblockeringar
+      admin:write:email_domain_blocks: utföra modereringsåtgärder på e-postdomänblockeringar
+      admin:write:ip_blocks: utföra modereringsåtgärder på IP-adressblockeringar
+      admin:write:reports: utföra modereringsåtgärder på rapporter
       crypto: använd obruten kryptering
       follow: modifiera kontorelationer
       push: ta emot dina push-notiser
       read: läsa dina kontodata
-      "read:accounts": se kontoinformation
-      "read:blocks": se dina blockeringar
-      "read:bookmarks": se dina bokmärken
-      "read:favourites": se dina favoriter
-      "read:filters": se dina filter
-      "read:follows": se vem du följer
-      "read:lists": se dina listor
-      "read:mutes": se dina tystningar
-      "read:notifications": se dina notiser
-      "read:reports": se dina rapporter
-      "read:search": sök å dina vägnar
-      "read:statuses": se alla inlägg
+      read:accounts: se kontoinformation
+      read:blocks: se dina blockeringar
+      read:bookmarks: se dina bokmärken
+      read:favourites: se dina favoriter
+      read:filters: se dina filter
+      read:follows: se vem du följer
+      read:lists: se dina listor
+      read:mutes: se dina tystningar
+      read:notifications: se dina notiser
+      read:reports: se dina rapporter
+      read:search: sök å dina vägnar
+      read:statuses: se alla inlägg
       write: ändra all din kontodata
-      "write:accounts": ändra din profil
-      "write:blocks": blockera konton och domäner
-      "write:bookmarks": bokmärka inlägg
-      "write:conversations": tysta och radera konversationer
-      "write:favourites": favoritmarkera inlägg
-      "write:filters": skapa filter
-      "write:follows": följa folk
-      "write:lists": skapa listor
-      "write:media": ladda upp mediefiler
-      "write:mutes": tysta folk och konversationer
-      "write:notifications": rensa dina notiser
-      "write:reports": rapportera andra personer
-      "write:statuses": publicera inlägg
+      write:accounts: ändra din profil
+      write:blocks: blockera konton och domäner
+      write:bookmarks: bokmärka inlägg
+      write:conversations: tysta och radera konversationer
+      write:favourites: favoritmarkera inlägg
+      write:filters: skapa filter
+      write:follows: följa folk
+      write:lists: skapa listor
+      write:media: ladda upp mediefiler
+      write:mutes: tysta folk och konversationer
+      write:notifications: rensa dina notiser
+      write:reports: rapportera andra personer
+      write:statuses: publicera inlägg

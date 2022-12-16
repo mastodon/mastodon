@@ -1,3 +1,4 @@
+---
 fo:
   activerecord:
     attributes:
@@ -146,49 +147,49 @@ fo:
       application:
         title: OAuth váttan kravd
     scopes:
-      "admin:read": les allar dátur á ambætaranum
-      "admin:read:accounts": les viðkvæmar upplýsingar úr øllum kontum
-      "admin:read:canonical_email_blocks": les viðkvæmar upplýsingar frá øllum fyrimyndarligum teldupostblokeringum
-      "admin:read:domain_allows": les viðkvæmar upplýsingar frá øllum loyvdum navnaøkjum
-      "admin:read:domain_blocks": les viðkvæmar upplýsingar frá øllum navnaøkjablokeringum
-      "admin:read:email_domain_blocks": les viðkvæmar upplýsingar frá øllum telduposta-navnaøkjablokeringum
-      "admin:read:ip_blocks": les viðkvæmar upplýsingar frá øllum IP blokeringum
-      "admin:read:reports": les viðkvæmar upplýsingar um allar meldingar og meldaðar kontur
-      "admin:write": broyta allar dátur á ambætaranum
-      "admin:write:accounts": útinna kjakleiðsluatgerðir á kontum
-      "admin:write:canonical_email_blocks": før umsjón við øllum fyrimyndarligum teldupostablokeringum
-      "admin:write:domain_allows": før umsjón á loyvdum navnaøkjum
-      "admin:write:domain_blocks": før umsjón á navnaøkjablokeringum
-      "admin:write:email_domain_blocks": før umsjón á telduposta-navnaøkjablokeringum
-      "admin:write:ip_blocks": før umsjón á IP blokeringum
-      "admin:write:reports": útinna kjakleiðsluatgerðir á meldingum
+      admin:read: les allar dátur á ambætaranum
+      admin:read:accounts: les viðkvæmar upplýsingar úr øllum kontum
+      admin:read:canonical_email_blocks: les viðkvæmar upplýsingar frá øllum fyrimyndarligum teldupostblokeringum
+      admin:read:domain_allows: les viðkvæmar upplýsingar frá øllum loyvdum navnaøkjum
+      admin:read:domain_blocks: les viðkvæmar upplýsingar frá øllum navnaøkjablokeringum
+      admin:read:email_domain_blocks: les viðkvæmar upplýsingar frá øllum telduposta-navnaøkjablokeringum
+      admin:read:ip_blocks: les viðkvæmar upplýsingar frá øllum IP blokeringum
+      admin:read:reports: les viðkvæmar upplýsingar um allar meldingar og meldaðar kontur
+      admin:write: broyta allar dátur á ambætaranum
+      admin:write:accounts: útinna kjakleiðsluatgerðir á kontum
+      admin:write:canonical_email_blocks: før umsjón við øllum fyrimyndarligum teldupostablokeringum
+      admin:write:domain_allows: før umsjón á loyvdum navnaøkjum
+      admin:write:domain_blocks: før umsjón á navnaøkjablokeringum
+      admin:write:email_domain_blocks: før umsjón á telduposta-navnaøkjablokeringum
+      admin:write:ip_blocks: før umsjón á IP blokeringum
+      admin:write:reports: útinna kjakleiðsluatgerðir á meldingum
       crypto: brúka enda-til-enda bronglan
       follow: broyta viðurskifti millum kontur
       push: móttaka tínar skumpifráboðanir
       read: lesa allar dátur í tíni kontu
-      "read:accounts": vís kontuupplýsingar
-      "read:blocks": síggja tínar blokeringar
-      "read:bookmarks": síggja tíni bókamerki
-      "read:favourites": síggja tínar yndispostar
-      "read:filters": síggja tíni filtur
-      "read:follows": síggja hvørji tú fylgir
-      "read:lists": síggja tínar listar
-      "read:mutes": síggja tínar doyvingar
-      "read:notifications": síggja tínar fráboðanir
-      "read:reports": síggja tínar meldingar
-      "read:search": leita vegna teg
-      "read:statuses": síggja allar postar
+      read:accounts: vís kontuupplýsingar
+      read:blocks: síggja tínar blokeringar
+      read:bookmarks: síggja tíni bókamerki
+      read:favourites: síggja tínar yndispostar
+      read:filters: síggja tíni filtur
+      read:follows: síggja hvørji tú fylgir
+      read:lists: síggja tínar listar
+      read:mutes: síggja tínar doyvingar
+      read:notifications: síggja tínar fráboðanir
+      read:reports: síggja tínar meldingar
+      read:search: leita vegna teg
+      read:statuses: síggja allar postar
       write: broyta allar dátur í tínari kontu
-      "write:accounts": broyt vangamyndina
-      "write:blocks": blokera kontur og domenir
-      "write:bookmarks": bókamerkja postar
-      "write:conversations": doyva og strika samrøður
-      "write:favourites": yndismerkja postar
-      "write:filters": gera filtur
-      "write:follows": fylgja fólki
-      "write:lists": gera listar
-      "write:media": leggja miðlafílur upp
-      "write:mutes": doyva fólk og samrøður
-      "write:notifications": nullstilla tínar fráboðanir
-      "write:reports": melda onnur fólk
-      "write:statuses": útgeva postar
+      write:accounts: broyt vangamyndina
+      write:blocks: blokera kontur og domenir
+      write:bookmarks: bókamerkja postar
+      write:conversations: doyva og strika samrøður
+      write:favourites: yndismerkja postar
+      write:filters: gera filtur
+      write:follows: fylgja fólki
+      write:lists: gera listar
+      write:media: leggja miðlafílur upp
+      write:mutes: doyva fólk og samrøður
+      write:notifications: nullstilla tínar fráboðanir
+      write:reports: melda onnur fólk
+      write:statuses: útgeva postar

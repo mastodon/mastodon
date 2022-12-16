@@ -1,3 +1,4 @@
+---
 it:
   activerecord:
     attributes:
@@ -146,49 +147,49 @@ it:
       application:
         title: Autorizzazione OAuth necessaria
     scopes:
-      "admin:read": leggere tutti i dati sul server
-      "admin:read:accounts": leggere le informazioni sensibili su tutti i profili
-      "admin:read:canonical_email_blocks": leggere le informazioni sensibili di tutti i blocchi canonici di posta elettronica
-      "admin:read:domain_allows": leggere le informazioni sensibili di tutti i domini consentiti
-      "admin:read:domain_blocks": leggere le informazioni sensibili di tutti i blocchi di dominio
-      "admin:read:email_domain_blocks": leggi le informazioni sensibili di tutti i blocchi di dominio email
-      "admin:read:ip_blocks": leggere le informazioni sensibili di tutti i blocchi IP
-      "admin:read:reports": leggere le informazioni sensibili di tutte le segnalazioni e tutti i profili segnalati
-      "admin:write": modificare tutti i dati sul server
-      "admin:write:accounts": eseguire azioni di moderazione sui profili
-      "admin:write:canonical_email_blocks": eseguire azioni di moderazione sui blocchi canonici di posta elettronica
-      "admin:write:domain_allows": consente di eseguire azioni di moderazione sul dominio
-      "admin:write:domain_blocks": eseguire azioni di moderazione sui blocchi di dominio
-      "admin:write:email_domain_blocks": eseguire azioni di moderazione sui blocchi di dominio email
-      "admin:write:ip_blocks": eseguire azioni di moderazione sui blocchi IP
-      "admin:write:reports": eseguire azioni di moderazione sulle segnalazioni
+      admin:read: leggere tutti i dati sul server
+      admin:read:accounts: leggere le informazioni sensibili su tutti i profili
+      admin:read:canonical_email_blocks: leggere le informazioni sensibili di tutti i blocchi canonici di posta elettronica
+      admin:read:domain_allows: leggere le informazioni sensibili di tutti i domini consentiti
+      admin:read:domain_blocks: leggere le informazioni sensibili di tutti i blocchi di dominio
+      admin:read:email_domain_blocks: leggi le informazioni sensibili di tutti i blocchi di dominio email
+      admin:read:ip_blocks: leggere le informazioni sensibili di tutti i blocchi IP
+      admin:read:reports: leggere le informazioni sensibili di tutte le segnalazioni e tutti i profili segnalati
+      admin:write: modificare tutti i dati sul server
+      admin:write:accounts: eseguire azioni di moderazione sui profili
+      admin:write:canonical_email_blocks: eseguire azioni di moderazione sui blocchi canonici di posta elettronica
+      admin:write:domain_allows: consente di eseguire azioni di moderazione sul dominio
+      admin:write:domain_blocks: eseguire azioni di moderazione sui blocchi di dominio
+      admin:write:email_domain_blocks: eseguire azioni di moderazione sui blocchi di dominio email
+      admin:write:ip_blocks: eseguire azioni di moderazione sui blocchi IP
+      admin:write:reports: eseguire azioni di moderazione sulle segnalazioni
       crypto: utilizzare la crittografia end-to-end
       follow: modifica le relazioni tra profili
       push: ricevere le tue notifiche push
       read: leggere tutti i dati del tuo profilo
-      "read:accounts": visualizzare le informazioni sui profili
-      "read:blocks": visualizzare i tuoi blocchi
-      "read:bookmarks": visualizzare i tuoi segnalibri
-      "read:favourites": visualizzare i tuoi preferiti
-      "read:filters": visualizzare i tuoi filtri
-      "read:follows": visualizzare i tuoi seguiti
-      "read:lists": visualizzare i tuoi elenchi
-      "read:mutes": visualizzare i tuoi silenziamenti
-      "read:notifications": visualizzare le tue notifiche
-      "read:reports": visualizzare le tue segnalazioni
-      "read:search": fare ricerche per conto tuo
-      "read:statuses": visualizzare tutti i post
+      read:accounts: visualizzare le informazioni sui profili
+      read:blocks: visualizzare i tuoi blocchi
+      read:bookmarks: visualizzare i tuoi segnalibri
+      read:favourites: visualizzare i tuoi preferiti
+      read:filters: visualizzare i tuoi filtri
+      read:follows: visualizzare i tuoi seguiti
+      read:lists: visualizzare i tuoi elenchi
+      read:mutes: visualizzare i tuoi silenziamenti
+      read:notifications: visualizzare le tue notifiche
+      read:reports: visualizzare le tue segnalazioni
+      read:search: fare ricerche per conto tuo
+      read:statuses: visualizzare tutti i post
       write: modificare tutti i dati del tuo profilo
-      "write:accounts": modificare il tuo profilo
-      "write:blocks": bloccare profili e domini
-      "write:bookmarks": aggiungere post tra i segnalibri
-      "write:conversations": silenziare ed eliminare conversazioni
-      "write:favourites": salvare post tra i preferiti
-      "write:filters": creare filtri
-      "write:follows": seguire persone
-      "write:lists": creare elenchi
-      "write:media": caricare file multimediali
-      "write:mutes": silenziare persone e conversazioni
-      "write:notifications": cancellare le tue notifiche
-      "write:reports": segnalare altre persone
-      "write:statuses": pubblicare post
+      write:accounts: modificare il tuo profilo
+      write:blocks: bloccare profili e domini
+      write:bookmarks: aggiungere post tra i segnalibri
+      write:conversations: silenziare ed eliminare conversazioni
+      write:favourites: salvare post tra i preferiti
+      write:filters: creare filtri
+      write:follows: seguire persone
+      write:lists: creare elenchi
+      write:media: caricare file multimediali
+      write:mutes: silenziare persone e conversazioni
+      write:notifications: cancellare le tue notifiche
+      write:reports: segnalare altre persone
+      write:statuses: pubblicare post
