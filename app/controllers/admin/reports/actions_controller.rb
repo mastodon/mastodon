@@ -34,9 +34,11 @@ class Admin::Reports::ActionsController < Admin::BaseController
       )
 
       account_action.save!
+    else
+      return redirect_to admin_report_path(@report), alert: I18n.t('admin.reports.unknown_action_msg', action: action_from_button)
     end
 
-    redirect_to admin_reports_path
+    redirect_to admin_reports_path, notice: I18n.t('admin.reports.processed_msg', id: @report.id)
   end
 
   private
