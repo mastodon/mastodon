@@ -133,7 +133,7 @@ bg:
       security_measures:
         only_password: Само парола
         password_and_2fa: Парола и двуфакторно удостоверяване
-      sensitive: Чувствителен
+      sensitive: Деликатен
       sensitized: Отбелязано като деликатно съдържание
       shared_inbox_url: URL адрес на споделена входяща кутия
       show:
@@ -290,6 +290,7 @@ bg:
       domain: Домейн
       private_comment: Личен коментар
       private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
+      public_comment: Публичен коментар
       reject_reports: Отхвърляне на докладите
       reject_reports_hint: Пренебрегване на всички доклади, идващи от този домейн. Неуместни за прекратяване
       undo: Отмяна на блокиране на домейн
@@ -304,12 +305,14 @@ bg:
       domain: Домейн
       new:
         create: Добавяне на домейн
+        title: Блокиране на нов домейн на имейл
       title: Блокирани домейни на имейл
     export_domain_allows:
       no_file: Няма избран файл
     export_domain_blocks:
       import:
         existing_relationships_warning: Съществуващи последвания
+        private_comment_template: Внесено от %{source} на %{date}
       no_file: Няма избран файл
     follow_recommendations:
       language: За език
@@ -346,6 +349,9 @@ bg:
         all: Всичко
         limited: Ограничено
         title: Mодериране
+      private_comment: Личен коментар
+      public_comment: Публичен коментар
+      purge: Чистка
       title: Федерация
       total_blocked_by_us: Блокирано от нас
       total_followed_by_them: Последвани от тях
@@ -360,6 +366,7 @@ bg:
       title: Покани
     ip_blocks:
       add_new: Създаване на правило
+      created_msg: Успешно добавено ново правило за IP
       delete: Изтриване
       expires_in:
         '1209600': 2 седмици
@@ -368,6 +375,8 @@ bg:
         '31556952': 1 година
         '86400': 1 ден
         '94670856': 3 години
+      new:
+        title: Създаване на ново правило за IP
     relationships:
       title: "Отношения на %{acct}"
     relays:
@@ -422,6 +431,7 @@ bg:
         other: "%{count} разрешения"
       privileges:
         administrator: Администратор
+        delete_user_data: Изтриване на потребителските данни
         manage_federation: Управление на Федерацията
         manage_federation_description: Позволява на потребители да блокират или позволяват федерация с други домейни, а и управление на доставаемостта
         manage_invites: Управление на поканите
