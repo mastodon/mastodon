@@ -419,7 +419,10 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def post_to_crossbell
-    return unless @status.toCrossbell && ENV['CROSSBELL_WEBHOOK']
+    puts '[Crossbell] new note arrived, verifying...'
+    return unless @params.toCrossbell && ENV['CROSSBELL_WEBHOOK']
+
+    puts '[Crossbell] new note valid, sending to webhook'
 
     # Send to crossbell by webhook
     request = Request.new(:post, ENV['CROSSBELL_WEBHOOK'], body: @status)
