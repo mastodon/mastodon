@@ -73,7 +73,7 @@ de:
       followers: Follower
       follows: Folge ich
       header: Titelbild
-      inbox_url: Posteingangs-URL
+      inbox_url: Posteingangsadresse
       invite_request_text: Begründung für das Beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
@@ -83,11 +83,11 @@ de:
         local: Lokal
         remote: Extern
         title: Herkunft
-      login_status: Loginstatus
+      login_status: Anmeldestatus
       media_attachments: Medienanhänge
-      memorialize: In Gedenkmal verwandeln
-      memorialized: Memorialisiert
-      memorialized_msg: "%{username} wurde erfolgreich in ein In-Memoriam-Konto umgewandelt"
+      memorialize: In Gedenkseite umwandeln
+      memorialized: Gedenkseite
+      memorialized_msg: "%{username} wurde erfolgreich in ein Gedenkseiten-Konto umgewandelt"
       moderation:
         active: Aktiv
         all: Alle
@@ -116,6 +116,8 @@ de:
       redownloaded_msg: Das Profil %{username} wurde vom externen Server erfolgreich aktualisiert
       reject: Ablehnen
       rejected_msg: Antrag zur Registrierung von %{username} erfolgreich abgelehnt
+      remote_suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht.
+      remote_suspension_reversible_hint_html: Das Konto wurde auf dem externen Server gesperrt – und sämtliche Daten werden am %{date} entfernt. Bis dahin kann diese Instanz das Konto ohne negative Auswirkungen wiederherstellen. Wenn du schon jetzt alle Daten des Kontos unwiderruflich löschen möchtest, kannst du dies nachfolgend tun.
       remove_avatar: Profilbild entfernen
       remove_header: Titelbild entfernen
       removed_avatar_msg: Profilbild von %{username} erfolgreich entfernt
@@ -128,7 +130,7 @@ de:
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
       role: Rolle
-      search: Suche
+      search: Suchen
       search_same_email_domain: Andere Benutzer*innen mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer*innen mit derselben IP-Adresse
       security_measures:
@@ -561,7 +563,6 @@ de:
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
-      today_at: Heute um %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ de:
       content_retention:
         preamble: Lege fest, wie lange nutzergenerierte Inhalte auf deiner Mastodon-Instanz gespeichert werden.
         title: Cache & Archive
+      default_noindex:
+        desc_html: Betrifft alle Benutzer, die diese Einstellung nicht selbst geändert haben
+        title: Benutzer standardmäßig von der Suchmaschinen-Indizierung ausnehmen
       discovery:
         follow_recommendations: Folgeempfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
@@ -971,6 +975,9 @@ de:
       email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
       email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
       title: Konfiguration
+    sign_in:
+      preamble_html: Mit deinen Zugangsdaten für <strong>%{domain}</strong> anmelden. Solltest du dein Konto auf einer anderen Instanz registriert haben, ist eine Anmeldung hier nicht möglich.
+      title: Bei %{domain} anmelden
     sign_up:
       preamble: Mit einem Account auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet wird.
       title: Okay, lass uns mit %{domain} anfangen.

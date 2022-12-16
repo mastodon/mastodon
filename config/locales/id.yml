@@ -550,7 +550,6 @@ id:
     report_notes:
       created_msg: Catatan laporan berhasil dibuat!
       destroyed_msg: Catatan laporan berhasil dihapus!
-      today_at: Hari ini pada %{time}
     reports:
       account:
         notes:
@@ -690,6 +689,9 @@ id:
       content_retention:
         preamble: Atur bagaimana konten yang dibuat oleh pengguna disimpan di Mastodon.
         title: Retensi konten
+      default_noindex:
+        desc_html: Memengaruhi semua pengguna yang belum mengubah pengaturan ini sendiri
+        title: Keluarkan pengguna dari pengindeksan mesin telusur secara bawaan
       discovery:
         follow_recommendations: Ikuti rekomendasi
         preamble: Menampilkan konten menarik penting dalam memandu pengguna baru yang mungkin tidak tahu siapa pun di Mastodon. Atur bagaimana berbagai fitur penemuan bekerja di server Anda.

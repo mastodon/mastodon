@@ -116,6 +116,8 @@ sv:
       redownloaded_msg: Uppdaterade %{username}s profil från server
       reject: Förkasta
       rejected_msg: Avvisade %{username}s registreringsansökan
+      remote_suspension_irreversible: Detta konto har raderats och uppgifterna kan inte återkallas.
+      remote_suspension_reversible_hint_html: Kontot har stängts av på dess server och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas på sin server utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       remove_avatar: Ta bort avatar
       remove_header: Ta bort rubrik
       removed_avatar_msg: Tog bort %{username}s profilbild
@@ -561,7 +563,6 @@ sv:
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
-      today_at: Idag kl. %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ sv:
       content_retention:
         preamble: Kontrollera hur användargenererat innehåll lagras i Mastodon.
         title: Bibehållande av innehåll
+      default_noindex:
+        desc_html: Påverkar alla användare som inte själva ändrat denna inställning
+        title: Undantag användare från sökmotorindexering som standard
       discovery:
         follow_recommendations: Följrekommendationer
         preamble: Att visa intressant innehåll är avgörande i onboarding av nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din server.
@@ -971,6 +975,9 @@ sv:
       email_below_hint_html: Om nedanstående e-postadress är felaktig kan du ändra den här, och få ett nytt bekräftelsemeddelande.
       email_settings_hint_html: E-postmeddelande för verifiering skickades till %{email}. Om e-postadressen inte stämmer kan du ändra den i kontoinställningarna.
       title: Ställ in
+    sign_in:
+      preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
+      title: Logga in på %{domain}
     sign_up:
       preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer på nätverket, oavsett vilken server deras konto tillhör.
       title: Låt oss få igång dig på %{domain}.

@@ -122,6 +122,8 @@ cs:
       redownloaded_msg: Profil účtu %{username} byl úspěšně obnoven ze zdroje
       reject: Zamítnout
       rejected_msg: Žádost o registraci uživatele %{username} úspěšně zamítnuta
+      remote_suspension_irreversible: Data tohoto účtu byla nevratně smazána.
+      remote_suspension_reversible_hint_html: Účet byl pozastaven na svém serveru a data budou plně odstraněna dne %{date}. Do té doby může vzdálený server obnovit tento účet bez jakýchkoliv špatných efektů. Pokud chcete okamžitě odstranit všechna data účtu, můžete tak učinit níže.
       remove_avatar: Odstranit avatar
       remove_header: Odstranit záhlaví
       removed_avatar_msg: Úspěšně odstraněn avatar uživatele %{username}
@@ -583,7 +585,6 @@ cs:
     report_notes:
       created_msg: Poznámka o hlášení úspěšně vytvořena!
       destroyed_msg: Poznámka o hlášení úspěšně smazána!
-      today_at: Dnes v %{time}
     reports:
       account:
         notes:
@@ -732,6 +733,9 @@ cs:
       content_retention:
         preamble: Určuje, jak je obsah generovaný uživatelem uložen v Mastodonu.
         title: Uchovávání obsahu
+      default_noindex:
+        desc_html: Ovlivňuje všechny uživatele, kteří toto nastavení sami nezměnili
+        title: Odhlásit uživatele ze standardního indexování vyhledávačů
       discovery:
         follow_recommendations: Doporučená sledování
         preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
@@ -1007,6 +1011,8 @@ cs:
       email_below_hint_html: Pokud je níže uvedená e-mailová adresa nesprávná, můžete ji změnit zde a nechat si poslat nový potvrzovací e-mail.
       email_settings_hint_html: Potvrzovací e-mail byl odeslán na %{email}. Pokud je tato adresa nesprávná, můžete ji změnit v nastavení účtu.
       title: Nastavení
+    sign_in:
+      title: Přihlásit se k %{domain}
     sign_up:
       preamble: S účtem na tomto serveru Mastodon budete moci sledovat jakoukoliv jinou osobu v síti bez ohledu na to, kde je jejich účet hostován.
       title: Pojďme vás nastavit na %{domain}.

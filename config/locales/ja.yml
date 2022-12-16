@@ -383,6 +383,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
+          desc_html: "<strong></strong>はこのドメインでのアカウントの投稿をフォローしていない人から隠します。<strong>停止</strong>はこのドメインでのアカウントのコンテンツ、メディア、プロフィールデータをサーバーから削除します。メディアファイルのみを拒否したい場合は<strong>なし</strong>を選択します。"
           noop: なし
           silence: 制限
           suspend: 停止
@@ -420,10 +421,14 @@ ja:
       resolved_through_html: "%{domain}を通して解決しました"
       title: メールドメインブロック
     export_domain_allows:
+      new:
+        title: ドメイン許可をインポート
       no_file: ファイルが選択されていません
     export_domain_blocks:
       import:
+        description_html: ドメインブロックのリストをインポートしようとしています。このリストを自分で作成していない場合は、慎重に確認してください。
         existing_relationships_warning: 既存のフォロー関係
+        private_comment_description_html: インポートされたブロックがどこから来たのかを追跡するため、インポートされたブロックは次のプライベートコメントを追加して作成されます:<q>%{comment}</q>
         private_comment_template: "%{source} から %{date} にインポートしました"
         title: ドメインブロックをインポート
       new:
@@ -545,7 +550,6 @@ ja:
     report_notes:
       created_msg: 通報メモを書き込みました！
       destroyed_msg: 通報メモを削除しました！
-      today_at: 今日 %{time}
     reports:
       account:
         notes:
@@ -685,6 +689,9 @@ ja:
       content_retention:
         preamble: ユーザーが生成したコンテンツがどのように Mastodon に保存されるかを管理します。
         title: コンテンツの保持
+      default_noindex:
+        desc_html: この設定を自分で変更していない全ユーザーに影響します
+        title: デフォルトで検索エンジンによるインデックスを拒否する
       discovery:
         follow_recommendations: おすすめフォロー
         preamble: Mastodon を知らないユーザーを取り込むには、興味深いコンテンツを浮上させることが重要です。サーバー上で様々なディスカバリー機能がどのように機能するかを制御します。

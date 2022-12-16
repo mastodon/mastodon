@@ -45,8 +45,8 @@ zh-CN:
       change_role:
         changed_msg: 已成功更改角色！
         label: 更改角色
-        no_role: 未设置角色
-        title: 为 %{username} 更改角色
+        no_role: 没有角色
+        title: 更改 %{username} 的角色
       confirm: 确认
       confirmed: 已确认
       confirming: 等待确认
@@ -550,7 +550,6 @@ zh-CN:
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
-      today_at: 今天 %{time}
     reports:
       account:
         notes:
@@ -690,6 +689,9 @@ zh-CN:
       content_retention:
         preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
+      default_noindex:
+        desc_html: 影响所有尚未更改此设置的用户
+        title: 默认不让用户被搜索引擎索引
       discovery:
         follow_recommendations: 关注推荐
         preamble: 露出有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。

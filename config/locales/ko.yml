@@ -113,6 +113,8 @@ ko:
       redownloaded_msg: 성공적으로 %{username}의 프로필을 원본으로부터 업데이트 하였습니다
       reject: 거부
       rejected_msg: 성공적으로 %{username}의 가입 신청서를 반려하였습니다
+      remote_suspension_irreversible: 이 계정의 데이터는 되돌릴 수 없도록 삭제되었습니다.
+      remote_suspension_reversible_hint_html: 이 계정은 계정이 속한 서버에서 정지되었습니다, 그리고 %{date}에 데이터가 완전히 삭제될 것입니다. 그 때까지는 해당 서버에서 계정을 그대로 복구할 수 있습니다. 만약 지금 당장 이 계정의 모든 데이터를 삭제하고 싶다면, 아래에서 실행할 수 있습니다.
       remove_avatar: 아바타 지우기
       remove_header: 헤더 삭제
       removed_avatar_msg: 성공적으로 %{username}의 아바타 이미지를 삭제하였습니다
@@ -552,7 +554,6 @@ ko:
     report_notes:
       created_msg: 신고 기록이 성공적으로 작성되었습니다!
       destroyed_msg: 신고 기록이 성공적으로 삭제되었습니다!
-      today_at: 오늘 %{time}
     reports:
       account:
         notes:
@@ -692,6 +693,9 @@ ko:
       content_retention:
         preamble: 마스토돈에 저장된 사용자 콘텐츠를 어떻게 다룰지 제어합니다.
         title: 콘텐츠 보존기한
+      default_noindex:
+        desc_html: 이 설정을 개인적으로 바꾸지 않은 모든 사용자들에게 적용 됩니다
+        title: 사용자들이 기본적으로 검색엔진에 인덱싱되지 않도록 합니다
       discovery:
         follow_recommendations: 팔로우 추천
         preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.

@@ -116,6 +116,8 @@ sq:
       redownloaded_msg: Profili i %{username} u rifreskua me sukses prej origjinës
       reject: Hidhe tej
       rejected_msg: Aplikimi për regjistrim i %{username} u hodh poshtë me sukses
+      remote_suspension_irreversible: Të dhënat e kësaj llogarie janë fshirë në mënyrë të pakthyeshme.
+      remote_suspension_reversible_hint_html: Llogaria është pezulluar në shërbyesit e tyre dhe të dhënat do të hiqen plotësisht më %{date}. Deri atëherë, shërbyesi i largët mund të rikthejë këtë llogari pa u cënuar. Nëse dëshironi të hiqen menjëherë të dhënat e llogarisë, mund ta bëni më poshtë.
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
       removed_avatar_msg: U hoq me sukses figura e avatarit të %{username}
@@ -373,6 +375,8 @@ sq:
       add_new: Shtoje përkatësinë në listë lejimesh
       created_msg: Përkatësia u shtua me sukses në listë lejimesh
       destroyed_msg: Përkatësia u hoq nga listë lejimesh
+      export: Eksportim
+      import: Importim
       undo: Hiqe nga listë lejimesh
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
@@ -382,6 +386,8 @@ sq:
       edit: Përpunoni bllokim përkatësie
       existing_domain_block: Keni vendosur tashmë kufizime më të rrepta mbi %{name}.
       existing_domain_block_html: Keni vendosur tashmë kufizime më të rrepta mbi %{name}, lypset ta <a href="%{unblock_url}">zhbllokoni</a> së pari.
+      export: Eksportim
+      import: Importim
       new:
         create: Krijoni bllokim
         hint: Bllokimi i përkatësisë nuk do të pengojë krijim zërash llogarie te baza e të dhënave, por do të aplikojë në mënyrë retroaktive dhe të vetvetishme metoda specifike moderimi mbi këto llogari.
@@ -554,7 +560,6 @@ sq:
     report_notes:
       created_msg: Shënimi i raportimit u krijua me sukses!
       destroyed_msg: Shënimi i raportimit u fshi me sukses!
-      today_at: Sot më %{time}
     reports:
       account:
         notes:
@@ -695,6 +700,9 @@ sq:
       content_retention:
         preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
         title: Mbajtje lënde
+      default_noindex:
+        desc_html: Prek krejt përdoruesit që s’e kanë ndryshuar vetë këtë rregullim
+        title: Lëri, si parazgjedhje, përdoruesit jashtë indeksimi nga motorë kërkimesh
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
         preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
@@ -960,6 +968,9 @@ sq:
       email_below_hint_html: Nëse adresa email më poshtë s’është e saktë, mund ta ndryshoni këtu dhe të merrni një email të ri ripohimi.
       email_settings_hint_html: Email-i i ripohimit u dërgua te %{email}. Nëse ajo adresë email s’është e saktë, mund ta ndryshoni që nga rregullimet e llogarisë.
       title: Ujdisje
+    sign_in:
+      preamble_html: Hyni me kredencialet tuaja për te <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një tjetër shërbyes, s’do të jeni në gjendje të bëni hyrjen këtu.
+      title: Bëni hyrjen te %{domain}
     sign_up:
       preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
       title: Le të ujdisim llogarinë tuaj në %{domain}.

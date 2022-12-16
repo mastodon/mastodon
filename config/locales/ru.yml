@@ -577,7 +577,6 @@ ru:
     report_notes:
       created_msg: Примечание жалобы создано!
       destroyed_msg: Примечание жалобы удалено!
-      today_at: Сегодня в %{time}
     reports:
       account:
         notes:
@@ -726,6 +725,9 @@ ru:
       content_retention:
         preamble: Управление сохранением пользовательского контента в Mastodon.
         title: Хранение контента
+      default_noindex:
+        desc_html: Влияет на всех пользователей, которые не изменили эту настройку сами
+        title: Исключить пользователей из индексации поисковиками по умолчанию
       discovery:
         follow_recommendations: Рекомендации подписок
         profile_directory: Каталог профилей
