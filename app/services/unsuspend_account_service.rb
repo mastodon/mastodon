@@ -2,10 +2,12 @@
 
 class UnsuspendAccountService < BaseService
   include Payloadable
+
+  # Restores a recently-unsuspended account
+  # @param [Account] account Account to restore
   def call(account)
     @account = account
 
-    unsuspend!
     refresh_remote_account!
 
     return if @account.nil? || @account.suspended?
@@ -17,10 +19,6 @@ class UnsuspendAccountService < BaseService
   end
 
   private
-
-  def unsuspend!
-    @account.unsuspend! if @account.suspended?
-  end
 
   def refresh_remote_account!
     return if @account.local?
