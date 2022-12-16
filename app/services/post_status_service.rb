@@ -21,6 +21,7 @@ class PostStatusService < BaseService
   # @option [Doorkeeper::Application] :application
   # @option [String] :idempotency Optional idempotency key
   # @option [Boolean] :with_rate_limit
+  # @option [Boolean] :to_crossbell
   # @return [Status]
   def call(account, options = {})
     @account     = account
@@ -42,6 +43,10 @@ class PostStatusService < BaseService
     end
 
     redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
+
+    if to_crossbell
+      post_to_crossbell
+    end
 
     @status
   end
@@ -193,6 +198,28 @@ class PostStatusService < BaseService
       options_hash[:scheduled_at]    = nil
       options_hash[:idempotency]     = nil
       options_hash[:with_rate_limit] = false
+    end
+  end
+
+  def to_crossbell
+    @options.to_crossbell
+  end
+
+  def post_to_crossbell
+    puts '[Crossbell] new note arrived, verifying...'
+    return unless ENV['CROSSBELL_WEBHOOK']
+
+    puts '[Crossbell] new note valid, sending to webhook'
+
+    # Send to crossbell by webhook
+    request = Request.new(:post, ENV['CROSSBELL_WEBHOOK'], body: @status)
+
+    request.add_headers(
+      'Content-Type' => 'application/json',
+      )
+
+    request.perform do |response|
+      # raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
     end
   end
 end
