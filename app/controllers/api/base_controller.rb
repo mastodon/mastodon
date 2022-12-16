@@ -126,18 +126,27 @@ class Api::BaseController < ApplicationController
     render json: { error: 'Your login is currently disabled' }, status: 403 if current_user&.account&.suspended?
   end
 
-  def require_user!
-    if !current_user
-      render json: { error: 'This method requires an authenticated user' }, status: 422
-    elsif !current_user.confirmed?
-      render json: { error: 'Your login is missing a confirmed e-mail address' }, status: 403
-    elsif !current_user.approved?
-      render json: { error: 'Your login is currently pending approval' }, status: 403
-    elsif !current_user.functional?
-      render json: { error: 'Your login is currently disabled' }, status: 403
-    else
-      update_user_sign_in
+  module UserValidator
+    class << self
+      def validate(user)
+        return [:unprocessable_entity, 'This method requires an authenticated user'] unless user
+
+        return [:forbidden, 'Your login is missing a confirmed e-mail address'] unless user.confirmed?
+
+        return [:forbidden, 'Your login is currently pending approval'] unless user.approved?
+
+        return [:forbidden, 'Your login is currently disabled'] unless user.functional?
+
+        []
+      end
     end
+  end
+
+  def require_user!
+    error_code, message = UserValidator.validate(current_user)
+    return render json: { error: message }, status: error_code if error_code
+
+    update_user_sign_in
   end
 
   def render_empty
