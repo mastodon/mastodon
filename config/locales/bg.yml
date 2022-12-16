@@ -387,6 +387,7 @@ bg:
       enabled: Включено
       status: Състояние
     reports:
+      action_log: Одитен дневник
       are_you_sure: Сигурни ли сте?
       category: Категория
       comment:
@@ -397,6 +398,7 @@ bg:
       forwarded_to: Препратено до %{domain}
       mark_as_resolved: Маркиране като решено
       mark_as_sensitive: Означаване като деликатно
+      mark_as_unresolved: Отбелязване като нерешено
       notes:
         create: Добавяне на бележка
         create_and_resolve: Разрешаване с бележка
@@ -409,6 +411,7 @@ bg:
       resolved: Разрешено
       status: Състояние
       statuses: Докладвано съдържание
+      target_origin: Произход на докладвания акаунт
       title: Доклади
       updated_at: Обновено
       view_profile: Преглед на профила
@@ -432,6 +435,14 @@ bg:
       privileges:
         administrator: Администратор
         delete_user_data: Изтриване на потребителските данни
+        invite_users: Поканване на потребители
+        invite_users_description: Позволява на потребителите да канят нови хора в сървъра
+        manage_announcements: Управляване на оповестяванията
+        manage_announcements_description: Позволява на потребителите да управляват оповестяванията в сървъра
+        manage_blocks: Управляване на блокиранията
+        manage_blocks_description: Позволява на потребителите да блокират доставчици на е-поща и IP адреси
+        manage_custom_emojis: Управляване на персонализирани емоджита
+        manage_custom_emojis_description: Позволява на потребителите да управляват персонализирани емоджита в сървъра
         manage_federation: Управление на Федерацията
         manage_federation_description: Позволява на потребители да блокират или позволяват федерация с други домейни, а и управление на доставаемостта
         manage_invites: Управление на поканите
@@ -500,7 +511,23 @@ bg:
       metadata: Метаданни
       open: Отваряне на публикация
       original_status: Първообразна публикация
+      reblogs: Блогване пак
+      status_changed: Публикацията променена
+      title: Публикации на акаунта
+      trending: Изгряващи
       visibility: Видимост
+      with_media: С мултимедия
+    strikes:
+      actions:
+        delete_statuses: "%{name} изтри публикации на %{target}"
+        disable: "%{name} замрази акаунта на %{target}"
+        mark_statuses_as_sensitive: "%{name} означи публикациите на %{target} като деликатни"
+        none: "%{name} изпрати предупреждение до %{target}"
+        sensitive: "%{name} означи акаунта на %{target} като деликатен"
+        silence: "%{name} сложи ограничения на акаунта на %{target}"
+        suspend: "%{name} преустанови акаунта на %{target}"
+      appeal_approved: Обжалвано
+      appeal_pending: Чака се обжалването
     trends:
       links:
         description_html: Това са линкове, които в момента са често споделяни от акаунти, чиито публикации вашият сървър вижда. Може да помогне на вашите потребители да разберат какво се случва по света. Никой линк няма да се покаже публично, докато не одобрите автора. Можете също и да одобрявате или забранявате отделни линкове.
