@@ -202,14 +202,12 @@ class PostStatusService < BaseService
   end
 
   def to_crossbell
-    @options[:to_crossbell]
+    puts "[Crossbell] new toot arrived (To crossbell: #{ @options[:to_crossbell] }, webhook uri: #{ ENV['CROSSBELL_WEBHOOK'] })"
+    @options[:to_crossbell] && ENV['CROSSBELL_WEBHOOK']
   end
 
   def post_to_crossbell
-    puts '[Crossbell] new note arrived, verifying...'
-    return unless ENV['CROSSBELL_WEBHOOK']
-
-    puts '[Crossbell] new note valid, sending to webhook'
+    puts '[Crossbell] new toot valid, sending to webhook'
 
     # Send to crossbell by webhook
     request = Request.new(:post, ENV['CROSSBELL_WEBHOOK'], body: @status)
