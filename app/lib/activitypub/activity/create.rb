@@ -89,8 +89,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     fetch_replies(@status)
     distribute
     forward_for_reply
-
-    post_to_crossbell
   end
 
   def distribute
@@ -124,7 +122,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
         reply: @status_parser.reply,
         sensitive: @account.sensitized? || @status_parser.sensitive || false,
         visibility: @status_parser.visibility,
-        toCrossbell: @status_parser.toCrossbell,
         thread: replied_to_status,
         conversation: conversation_from_uri(@object['conversation']),
         media_attachment_ids: process_attachments.take(4).map(&:id),
@@ -416,24 +413,6 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     return unless @status.distributable? && @json['signature'].present? && reply_to_local?
 
     ActivityPub::RawDistributionWorker.perform_async(Oj.dump(@json), replied_to_status.account_id, [@account.preferred_inbox_url])
-  end
-
-  def post_to_crossbell
-    puts '[Crossbell] new note arrived, verifying...'
-    return unless @params.toCrossbell && ENV['CROSSBELL_WEBHOOK']
-
-    puts '[Crossbell] new note valid, sending to webhook'
-
-    # Send to crossbell by webhook
-    request = Request.new(:post, ENV['CROSSBELL_WEBHOOK'], body: @status)
-
-    request.add_headers(
-      'Content-Type' => 'application/json',
-    )
-
-    request.perform do |response|
-      # raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
-    end
   end
 
   def increment_voters_count!
