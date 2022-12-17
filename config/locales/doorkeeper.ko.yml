@@ -2,10 +2,10 @@ ko:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: 어플리케이션 이름
+        name: 애플리케이션 이름
         redirect_uri: 리다이렉트 URI
         scopes: 범위
-        website: 어플리케이션 웹사이트
+        website: 애플리케이션 웹사이트
     errors:
       models:
         doorkeeper/application:
@@ -26,18 +26,18 @@ ko:
       confirmations:
         destroy: 정말로 실행하시겠습니까?
       edit:
-        title: 어플리케이션 수정
+        title: 애플리케이션 수정
       form:
         error: 이런! 오류를 확인하세요
       help:
         native_redirect_uri: '%{native_redirect_uri} 을/를 이용해 로컬 테스트를 할 수 있습니다'
-        redirect_uri: 한 줄에 하나의 URI 를 작성하세요
+        redirect_uri: 한 줄에 하나의 URI를 작성하세요
         scopes: 스페이스로 범위를 구분하세요. 빈 칸으로 놔두면 기본 범위를 사용합니다.
       index:
-        application: 어플리케이션
+        application: 애플리케이션
         callback_url: 콜백 URL
         delete: 삭제
-        empty: 어플리케이션이 없습니다.
+        empty: 애플리케이션이 없습니다.
         name: 이름
         new: 새 애플리케이션
         scopes: 범위
@@ -57,7 +57,7 @@ ko:
         authorize: 승인
         deny: 거부
       error:
-        title: 에러가 발생하였습니다
+        title: 오류가 발생하였습니다
       new:
         prompt_html: "%{client_name}이 당신의 계정에 대한 접근 권한을 요청합니다. 이것은 제3자의 응용프로그램입니다. <strong>이것을 신뢰하지 않는다면, 권한을 승인하지 말아야 합니다.</strong>"
         review_permissions: 권한 검토
