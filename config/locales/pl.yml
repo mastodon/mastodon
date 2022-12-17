@@ -122,6 +122,8 @@ pl:
       redownloaded_msg: Pomyślnie odświeżono profil %{username} z miejsca pochodzenia
       reject: Odrzuć
       rejected_msg: Pomyślnie odrzucono wniosek o rejestrację %{username}
+      remote_suspension_irreversible: Dane tego konta zostały nieodwracalnie usunięte.
+      remote_suspension_reversible_hint_html: Konto zostało zawieszone na serwerze, a dane zostaną w pełni usunięte dnia %{date}. Do tego czasu zdalny serwer może przywrócić to konto bez żadnych konsekwencji. Jeśli chcesz natychmiast usunąć wszystkie dane konta, możesz to zrobić poniżej.
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
       removed_avatar_msg: Pomyślnie usunięto awatar %{username}
@@ -583,7 +585,6 @@ pl:
     report_notes:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
-      today_at: Dziś o %{time}
     reports:
       account:
         notes:
@@ -732,6 +733,9 @@ pl:
       content_retention:
         preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
         title: Retencja treści
+      default_noindex:
+        desc_html: Wpłynie to na wszystkich użytkowników, którzy sami tego nie zmienili w swoich ustawieniach
+        title: Domyślnie żądaj nieindeksowania użytkowników przez wyszukiwarki
       discovery:
         follow_recommendations: Polecane konta
         preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.

@@ -418,6 +418,8 @@ nn:
         create: Legg til domene
         resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
+      no_email_domain_block_selected: Blokkering av e-post-domener vart ikkje endra sidan ingen var valde
+      resolved_dns_records_hint_html: Domenenamnet gjer oppslag til desse MX-domenene som til sist er ansvarlige for å motta e-post. Blokkering av eit MX-domene vil blokkere registreringar frå alle e-postadresser som bruker same MX-domene, sjølv om det synlige domenenavnet skulle vera noko anna. <strong>Pass på så du ikkje blokkerer dei store e-postleverandørane.</strong>
       resolved_through_html: Løyst gjennom %{domain}
       title: Blokkerte e-postadresser
     export_domain_allows:
@@ -444,6 +446,9 @@ nn:
       unsuppress: Tilbakestill følgjeforslag
     instances:
       availability:
+        description_html:
+          one: Om leveransar til domenet feilar <strong>%{count} dag</strong>, vil det ikkje bli gjort fleire forsøk før det eventuelt kjem ein leveranse <em>frå</em> domenet.
+          other: Om leveransar til domenet feilar <strong>%{count} ulike dagar</strong>, vil det ikkje bli gjort fleire forsøk før det eventuelt kjem ein leveranse <em>frå</em> domenet.
         failure_threshold_reached: Feilterskelen ble nådd %{date}.
         failures_recorded:
           one: Mislykkede forsøk på %{count} dag.
@@ -451,7 +456,7 @@ nn:
         no_failures_recorded: Ingen feil registrert.
         title: Tilgjenge
         warning: Det siste forsøket på å koble til denne serveren lyktes ikke
-      back_to_all: All
+      back_to_all: Alle
       back_to_limited: Begrenset
       back_to_warning: Advarsel
       by_domain: Domene
@@ -464,9 +469,11 @@ nn:
           reject_reports: Avvis rapporter
           silence: Begrens
           suspend: Suspender
+        policy: Vilkår
         reason: Offentlig årsak
         title: Retningslinjer for innhold
       dashboard:
+        instance_accounts_dimension: Mest fylgde kontoar
         instance_accounts_measure: lagrede kontoer
         instance_followers_measure: våre følgere der
         instance_follows_measure: deres følgere her
@@ -475,26 +482,35 @@ nn:
         instance_reports_measure: rapporter om dem
         instance_statuses_measure: lagrede innlegg
       delivery:
-        all: All
+        all: Alle
         clear: Feil ved fjerning
+        failing: Feilar
         restart: Starte levering
         stop: Stopp levering
         unavailable: Ikke tilgjengelig
       delivery_available: Levering er tilgjengelig
+      delivery_error_days: Leveringsfeildagar
       delivery_error_hint: Dersom levering ikke er mulig i løpet av %{count} dager, blir det automatisk merket som ikke mulig å levere.
+      destroyed_msg: Data frå %{domain} er no lagt i kø for å bli sletta.
       empty: Ingen domener funnet.
+      known_accounts:
+        one: "%{count} kjend konto"
+        other: "%{count} kjende kontoar"
       moderation:
         all: Alle
         limited: Avgrensa
         title: Moderasjon
       private_comment: Privat kommentar
       public_comment: Offentleg kommentar
+      purge: Reinse
+      purge_description_html: Dersom du trur dette domenet har blitt kopla ned for godt, kan du sletta all kontoinformasjon og tilhøyrande data som gjeld domenet frå lageret ditt. Dette kan ta litt tid.
       title: Samling
       total_blocked_by_us: Blokkert av oss
       total_followed_by_them: Fylgd av dei
       total_followed_by_us: Fylgd av oss
       total_reported: Rapportar om dei
       total_storage: Medievedlegg
+      totals_time_period_hint_html: Totalsum vist nedanfor gjeld data for alle tidsperiodar.
     invites:
       deactivate_all: Slå av alle
       filter:
@@ -612,6 +628,14 @@ nn:
         manage_invites_description: Tillet at brukarar blar gjennom og deaktiverer innbydingslenkjer
         manage_roles: Handsam roller
         manage_roles_description: Tillet at brukarar handsamar og tilset rollar under deira eiga
+        manage_user_access: Administrer brukartilgang
+        manage_user_access_description: Let brukarar deaktivera 2-trinnsautentisering, endra e-postadressa og tilbakestille passordet til andre brukarar
+        manage_users: Handtere brukarar
+        manage_users_description: Let brukarar sjå detaljar om andre brukarar og utføre moderasjonshandlingar mot dei
+        manage_webhooks: Handtere webhooks
+        manage_webhooks_description: Let brukarar setje opp webhooks for administrative hendingar
+        view_audit_log: Sjå revisjonslogg
+        view_audit_log_description: Let brukarar sjå historikk over administrative handlingar på tenaren
         view_dashboard: Vis dashbord
         view_dashboard_description: Gir brukere tilgang til dashbordet og ulike metrikker
         view_devops: DevOps
@@ -626,9 +650,15 @@ nn:
       title: Server regler
     settings:
       about:
+        manage_rules: Handter tenarreglar
+        preamble: Gje grundig informasjon om korleis tenaren blir drifta, moderert og finansiert.
+        rules_hint: Det er eit eige område for reglar som brukarar må retta seg etter.
         title: Om
       appearance:
         title: Utsjånad
+      default_noindex:
+        desc_html: Påverkar alle brukarar som ikkje har justert denne innstillinga sjølve
+        title: Ikkje la brukarar indekserast av søkjemotorar som standard
       discovery:
         follow_recommendations: Følgjeforslag
         preamble: Å framheva interessant innhald er vitalt i mottakinga av nye brukarar som ikkje nødvendigvis kjenner nokon på Mastodon. Kontroller korleis oppdagingsfunksjonane på tenaren din fungerar.

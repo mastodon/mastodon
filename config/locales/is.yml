@@ -561,7 +561,6 @@ is:
     report_notes:
       created_msg: Tókst að útbúa minnispunkt skýrslu!
       destroyed_msg: Tókst að eyða minnispunkti skýrslu!
-      today_at: Í dag kl. %{time}
     reports:
       account:
         notes:
@@ -704,6 +703,9 @@ is:
       content_retention:
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
+      default_noindex:
+        desc_html: Hefur áhrif á alla þá notendur sem ekki hafa breytt þessum stillingum sjálfir
+        title: Sjálfgefið láta notendur afþakka atriðaskráningu í leitarvélum
       discovery:
         follow_recommendations: Meðmæli um að fylgjast með
         preamble: Að láta áhugavert efni koma skýrt fram er sérstaklega mikilvægt til að nálgast nýja notendur sem ekki þekkja neinn sem er á Mastodon. Stýrðu því hvernig hinir ýmsu eiginleikar við uppgötvun efnis virka á netþjóninum þínum.

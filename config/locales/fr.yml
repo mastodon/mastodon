@@ -116,6 +116,8 @@ fr:
       redownloaded_msg: Le profil de %{username} a été actualisé avec succès depuis l’origine
       reject: Rejeter
       rejected_msg: La demande d’inscription de %{username} a été rejetée avec succès
+      remote_suspension_irreversible: Les données de ce compte ont été supprimées définitivement.
+      remote_suspension_reversible_hint_html: Ce compte a été suspendu par son serveur d'accueil, et les données rattachées seront supprimées le %{date}. Jusqu'à cette date, il peut être restauré sans aucune perte par le serveur distant. Si vous souhaitez supprimer immédiatement toutes les données de ce compte, vous pouvez le faire ci-dessous.
       remove_avatar: Supprimer l’avatar
       remove_header: Supprimer l’entête
       removed_avatar_msg: L’avatar de %{username} a été supprimé avec succès
@@ -561,7 +563,6 @@ fr:
     report_notes:
       created_msg: Note de signalement créée avec succès !
       destroyed_msg: Note de signalement effacée avec succès !
-      today_at: Aujourd'hui à %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ fr:
       content_retention:
         preamble: Contrôle comment le contenu créé par les utilisateurs est enregistré et stocké dans Mastodon.
         title: Rétention du contenu
+      default_noindex:
+        desc_html: Affecte tous les utilisateurs qui n'ont pas modifié ce paramètre eux-mêmes
+        title: Ne pas indexer par défaut les utilisateurs dans les moteurs de recherche
       discovery:
         follow_recommendations: Suivre les recommandations
         preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.

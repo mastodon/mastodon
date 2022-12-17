@@ -556,7 +556,6 @@ ar:
     report_notes:
       created_msg: تم إنشاء ملاحظة الشكوى بنجاح!
       destroyed_msg: تم حذف ملاحظة الشكوى بنجاح!
-      today_at: اليوم على %{time}
     reports:
       account:
         notes:
@@ -694,6 +693,9 @@ ar:
         title: العلامة
       content_retention:
         title: الاحتفاظ بالمحتوى
+      default_noindex:
+        desc_html: يؤثر على جميع المستخدمين الذين لم يغيروا هذا الإعداد بأنفسهم
+        title: عدم السماح مبدئيا لمحركات البحث بفهرسة الملفات التعريفية للمستخدمين
       discovery:
         follow_recommendations: اتبع التوصيات
         profile_directory: دليل الصفحات التعريفية
@@ -1061,12 +1063,15 @@ ar:
     edit:
       add_keyword: إضافة كلمة مفتاحية
       keywords: الكلمات المفتاحية
+      statuses: المنشورات الفردية
       title: تعديل عامل التصفية
     errors:
       invalid_context: لم تقم بتحديد أي مجال أو أنّ المجال غير صالح
     index:
       delete: إزالة
       empty: ليست لديك أية عوامل تصفية.
+      expires_in: تنتهي مدة صلاحيتها في غضون %{distance}
+      expires_on: تنتهي مدة صلاحيتها في %{date}
       title: عوامل التصفية
     new:
       save: حفظ عامل التصفية الجديد

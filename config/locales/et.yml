@@ -116,6 +116,8 @@ et:
       redownloaded_msg: "%{username} kasutajakonto algallikast värskendatud"
       reject: Hülga
       rejected_msg: "%{username} liitumisavaldus tagasi lükatud"
+      remote_suspension_irreversible: Selle konto andmed on pöördumatult kustutatud.
+      remote_suspension_reversible_hint_html: Konto on lukustatud ja andmed kustutatakse jäädavalt %{date}. Seni võib teine server konto probleemideta taastada. Kui soovid andmied kohe jäädavalt eemaldada, võid seda teha allpool.
       remove_avatar: Kustuta profiilipilt
       remove_header: Kustuta päis
       removed_avatar_msg: "%{username} tunnuspilt eemaldatud"
@@ -561,7 +563,6 @@ et:
     report_notes:
       created_msg: Teade edukalt koostatud!
       destroyed_msg: Teade edukalt kustutatud!
-      today_at: Täna kell %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ et:
       content_retention:
         preamble: Juhi kuidas kasutajate loodud sisu Mastodon'is talletatakse.
         title: Sisu talletamine
+      default_noindex:
+        desc_html: Mõjub kasutajatele, kes pole seda sätet ise muutnud
+        title: Otsimootorite indeksitesse kasutajaid vaikimisi ei lisata
       discovery:
         follow_recommendations: Jälgi soovitusi
         preamble: Huvitava sisu esiletoomine on oluline uute kasutajate kaasamisel, kes ei pruugi Mastodonist kedagi tunda. Kontrollige, kuidas erinevad avastamisfunktsioonid teie serveris töötavad.
@@ -901,12 +905,12 @@ et:
         title: Trendikad sildid
       subject: Uued %{instance} trendid ülevaatuseks
   aliases:
-    add_new: Loo teine nimi
-    created_msg: Teine nimi on edukalt loodud. Te saate nüüd alustada kolimist vanalt kontolt.
+    add_new: Pane kolimiseks valmis
+    created_msg: Konto on valmis vastu võtma jälgijaid. Logi sisse oma vanale kontole ja käivita kolimine sealt.
     deleted_msg: Edukalt kustutasime teise nime. Kolimine sellelt kontolt praegusele on nüüdsest võimatu.
     empty: Teil puuduvad teised nimed.
-    hint_html: Kui Te soovite kolida teiselt kontolt praegusele kontole, saate Te siin luua teise nime, mis on kohustuslik, enne kui saate kolida jälgijaid vanalt kontolt praegusele. See tegevus on iseenesest <strong>kahjutu ja taastatav</strong>. <strong>Konto ületoomine alustatakse vanalt kontolt</strong>.
-    remove: Eemalda teine nimi
+    hint_html: Kui soovid konto siia üle kolida, pead esmalt siin määrama kolitava konto aadressi. Seejärel on konto valmis võtma vastu jälgijaid vanalt kontolt. Kolitava konto aadressi määramine on iseenesest <strong>kahjutu ja tagasipööratav</strong>. <strong>Jälgijate tegelik kolimine käivitatakse vanalt kontolt</strong>.
+    remove: Loobu suunamise vastuvõtmisest
   appearance:
     advanced_web_interface: Kohandatud veebiliides
     advanced_web_interface_hint: 'Kui soovite kasutada terve ekraani laiust, lubab kohandatud veebiliides seadistada mitut erinevat veergu, et näha nii palju informatsiooni samal ajal, kui võimalik: Kodu, teavitused, föderatsiooni ajajoon ning mis iganes arv nimekirju ja silte.'
@@ -937,7 +941,7 @@ et:
     apply_for_account: Konto taotluse esitamine
     change_password: Salasõna
     delete_account: Konto kustutamine
-    delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead selle eraldi kinnitama.
+    delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead kustutamise eraldi kinnitama.
     description:
       prefix_invited_by_user: "@%{name} kutsub Teid liituma selle Mastodoni serveriga!"
       prefix_sign_up: Loo Mastodoni konto juba täna!
@@ -952,9 +956,9 @@ et:
     login: Logi sisse
     logout: Logi välja
     migrate_account: Teisele kontole ära kolimine
-    migrate_account_html: Kui soovid selle konto siit ära kolida, <a href="%{path}">saad seda teha siit</a>.
+    migrate_account_html: Kui soovid selle konto siit ära kolida, <a href="%{path}">saad seda teha siin</a>.
     or_log_in_with: Või logi sisse koos
-    privacy_policy_agreement_html: Olen lugenud ja nõustun <a href="%{privacy_policy_path}" target="_blank">privaatsuspoliitikaga</a>
+    privacy_policy_agreement_html: Olen tutvunud <a href="%{privacy_policy_path}" target="_blank">isikuandmete kaitse põhimõtetega</a> ja nõustun nendega
     providers:
       cas: CAS
       saml: SAML
@@ -979,7 +983,7 @@ et:
       confirming: Ootan e-posti kinnitust.
       functional: Konto on täies mahus kasutatav.
       pending: Teie taotlus ootab ülevaadet meie personali poolt. See võib võtta mõnda aega. Kui Teie taotlus on vastu võetud, saadetakse Teile e-kiri.
-      redirecting_to: Teie konto ei ole aktiivne, kuna hetkel suunatakse ümber kasutajale %{acct}.
+      redirecting_to: See konto pole aktiivne, sest on suunatud aadressile %{acct}.
       view_strikes: Vaata enda eelnevaid juhtumeid
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
     use_security_key: Kasuta turvavõtit
@@ -1029,14 +1033,14 @@ et:
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
     warning:
-      before: 'Enne jätkamist palun lugege neid märkmeid hoolikalt:'
-      caches: Sisu, mis on salvestatud teiste serverite poolt, võib jääda alles
-      data_removal: Teie postitused ning muud andmed kustutatakse jäädavalt
+      before: 'Veendu, et saad aru, mida toob plaanitav muudatus kaasa:'
+      caches: Teiste serverite poolt talletatud sisu võib jääda kättesaadavaks
+      data_removal: Sinu postitused ning kontoandmed kustutatakse jäädavalt
       email_change_html: Te saate <a href="%{path}">muuta oma e-postiaadressi</a> kontot kustutamata
       email_contact_html: Kui see ikkagi ei saabu, saatke abi saamiseks kiri aadressile <a href="mailto:%{email}">%{email}</a>
       email_reconfirmation_html: Kui Te ei saanud kinnituskirja, saate selle <a href="%{path}">uuesti küsida</a>
-      irreversible: Te ei saa taastada ega taasaktiveerida oma kontot
-      more_details_html: Rohkemate detailide jaoks palun lugege <a href="%{terms_path}">privaatsuspoliitikat</a>.
+      irreversible: Kustutatud kontot ei saa taastada ega uuesti aktiveerida
+      more_details_html: Konto kustutamise kohta loe täpsemalt <a href="%{terms_path}">isikuandmete kaitse põhimõtetest</a>.
       username_available: Teie kasutajanimi muutub uuesti kasutatavaks
       username_unavailable: Teie kasutajanimi jääb mitte kasutatavaks
   disputes:
@@ -1237,9 +1241,9 @@ et:
       not_ready: Ei saa lisada faile, mida hetkel töödeldakse. Proovige uuesti mõne hetke pärast!
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
-    acct: uue konto kasutajanimi@domeen
+    acct: Kolitud aadressile
     cancel: Tühista ümbersuunamine
-    cancel_explanation: Ümbersuunamise tühistamine taasaktiveerib Teie praeguse konto, kuid ei too tagasi jälgijaid, mis on sellele kontole üle viidud.
+    cancel_explanation: Ümbersuunamise tühistamine aktiveerib siinse konto, kuid teisele kontole üle viidud jälgijaid tagasi ei too.
     cancelled_msg: Ümbersuunamise tühistamine õnnestus.
     errors:
       already_moved: on sama konto, kuhu Te olete juba kolinud
@@ -1248,25 +1252,25 @@ et:
       not_found: ei leitud
       on_cooldown: Te olete hetkel ootel
     followers_count: Jälgijaid kolimise hetkel
-    incoming_migrations: Teiselt kontolt siia kolimine
-    incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto nime</a>.
+    incoming_migrations: Teise konto siia kolimine
+    incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto aadressi</a>.
     moved_msg: Teie konto on nüüd ümber suunamas kontole %{acct} ning Teie jälgijaid kolitakse üle.
-    not_redirecting: Teie kontot ei suunata hetkel ümber.
-    on_cooldown: Te olete hiljuti kolinud oma kontot. See funktsioon on jälle kättesaadav %{count} päeva pärast.
-    past_migrations: Eelmiseid kolimisi
-    proceed_with_move: Koli üle jälgijad
-    redirected_msg: Teie kontot suunatakse nüüd ümber kontole %{acct}.
-    redirecting_to: Teie konto suunatakse ümber kontole %{acct}.
-    set_redirect: Määra ümbersuunamine
+    not_redirecting: See konto pole praegu kuskile ümber suunatud.
+    on_cooldown: Oled oma kontot hiljuti kolinud. Uuesti saad seda teha %{count} päeva pärast.
+    past_migrations: Kolimisajalugu
+    proceed_with_move: Käivita kolimine
+    redirected_msg: Konto on suunatud ümber aadressile %{acct}.
+    redirecting_to: Konto on suunatud ümber aadressile %{acct}.
+    set_redirect: Suuna ümber
     warning:
-      backreference_required: Uus konto peab olema esmalt seadistatud tagasi viitama praegusele kontole
-      before: 'Enne jätkamist palun lugege neid märkmeid hoolikalt:'
-      cooldown: Pärast kolimist on ooteperiood, mille kestel ei saa Te uuesti kolida
-      disabled_account: Teie praegune konto ei ole täiesti kasutatav peale seda. Sellest hoolimata on Teil ligipääs andmete ekspordile ja taasaktiveerimisele.
-      followers: See tegevus kolib kõik jälgijad üle praeguselt kontolt uuele kontole
-      only_redirect_html: Alternatiivselt saate Te <a href="%{path}">seadistada ainult ümbersuunamise Teie profiilil</a>.
-      other_data: Muid andmeid ei liigutata automaatselt
-      redirect: Teie praegune konto eemaldatakse otsingutulemustest ning profiilile lisatakse ümbersuunamise märguanne
+      backreference_required: Uus konto peab olema esmalt seadistatud võtma vastu siinse konto jälgijaid
+      before: 'Veendu, et saad aru, mida toob plaanitav muudatus kaasa:'
+      cooldown: Kolimisele järgneb ooteaeg, mille vältel kontot mõnda aega ümber kolida ei saa
+      disabled_account: Pärast kolimist konto kasutamine piiratakse. Säilib andmete eksportimise ja konto aktiveerimise võimalus.
+      followers: See käsklus kolib kõik siinse konto jälgijad üle sinu uue konto jälgijateks
+      only_redirect_html: Teine võimalus on <a href="%{path}">märkida konto ümbersuunatuks</a>.
+      other_data: Muid kontoandmeid, sh postitusi automaatselt üle ei kanta
+      redirect: Konto eemaldatakse avalikust kataloogist ja märgitakse profiilis ümbersuunatuks
   moderation:
     title: Modereerimine
   move_handler:
@@ -1434,7 +1438,7 @@ et:
   settings:
     account: Konto
     account_settings: Kontosätted
-    aliases: Konto teised nimed
+    aliases: Siia kolitavad kontod
     appearance: Välimus
     authorized_apps: Lubatud rakendused
     back: Tagasi Mastodoni
@@ -1445,7 +1449,7 @@ et:
     featured_tags: Esile toodud sildid
     import: Impordi
     import_and_export: Import / eksport
-    migrate: Konto migreerumine
+    migrate: Konto kolimine
     notifications: Teated
     preferences: Eelistused
     profile: Profiil

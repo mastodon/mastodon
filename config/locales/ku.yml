@@ -116,6 +116,8 @@ ku:
       redownloaded_msg: Bi serkeftî profîla %{username} ji kokê va hat nûve kirin
       reject: Nepejirîne
       rejected_msg: Tomarkirina %{username} bi awayekî serkeftî nehate pejirandin
+      remote_suspension_irreversible: Daneyên vê ajimêrê bi awayekî bê veger hatine jêbirin.
+      remote_suspension_reversible_hint_html: Ajimêr hate rawestandin li ser rajekarê wan, û daneyên di %{date} de wê hemû werin rakirin. Heya vê demê, ajimêr bêyî bandorên nebaş dikare dîsa vegere. Ku tu dixwazî hemû daneyan ajimêrê niha rakî, tu dikarî li jêrê bikî.
       remove_avatar: Avatarê rake
       remove_header: Sernavê rake
       removed_avatar_msg: Wêneyê %{username} bi awayekî serkeftî hate rakirin
@@ -148,7 +150,7 @@ ku:
       suspend: Hatiye rawestandin
       suspended: Hatiye rawestandin
       suspension_irreversible: Daneyên vê ajimêrê bêveger hatine jêbirin. Tu dikarî ajimêra xwe ji rawestandinê vegerinî da ku ew bi kar bînî lê ew ê tu daneya ku berê hebû venegere.
-      suspension_reversible_hint_html: Ajimêr hat qerisandin, û daneyên di %{date} de hemû were rakirin. Hetta vê demê, ajimêr bê bandorên nebaş dikare dîsa vegere. Heke tu dixwazî hemû daneyan ajimêrê niha rakî, tu dikarî li jêrê bikî.
+      suspension_reversible_hint_html: Ajimêr hate rawestandin, û daneyên di %{date} de wê hemû werin rakirin. Heya vê demê, ajimêr bêyî bandorên nebaş dikare dîsa vegere. Ku tu dixwazî hemû daneyan ajimêrê niha rakî, tu dikarî li jêrê bikî.
       title: Ajimêr
       unblock_email: Astengiyê li ser navnîşana e-nameyê rake
       unblocked_email_msg: Bi serkeftî astengiya li ser navnîşana e-nameyê %{username} hate rakirin
@@ -563,7 +565,6 @@ ku:
     report_notes:
       created_msg: Nîşeyê ragihandinê bi awayekî serkeftî pêk hat!
       destroyed_msg: Nîşeyê ragihandinê bi awayekî serkeftî hate jêbirin!
-      today_at: Îro di %{time} de
     reports:
       account:
         notes:
@@ -706,6 +707,9 @@ ku:
       content_retention:
         preamble: Kontrol bike ka naveroka ku ji aliyê bikarhêner ve hatiye çêkirin di Mastodon de çawa tê tomarkirin.
         title: Parastina naverokê
+      default_noindex:
+        desc_html: Bandorê li ser hemû bikarhênerên ku bi xwe ev sazkarî neguhertine
+        title: Pêlrêçkirna bikarhêneran ji motorê lêgerînê dûr bixe
       discovery:
         follow_recommendations: Pêşniyarên şopandinê
         preamble: Rûbirûbûna naveroka balkêş ji bo bikarhênerên nû yên ku li ser Mastodon kesek nas nakin pir bi bandor e. Kontrol bike ka çend taybetmendiyên vekolînê li ser rajekarê te çawa dixebite.
@@ -973,6 +977,9 @@ ku:
       email_below_hint_html: Heke navnîşana e-nameya jêrîn ne rast be, tu dikarî wê li vir biguherîne û e-nameyeke pejirandinê ya nû bistîne.
       email_settings_hint_html: E-nameya pejirandinê ji %{email} re hate şandin. Heke ew navnîşana e-nameyê ne rast be, tu dikarî wê di sazkariyên ajimêr de biguherîne.
       title: Damezirandin
+    sign_in:
+      preamble_html: Têketinê bike bi riya <strong>%{domain}</strong> xwe. Ku ajimêrê te li ser rajekareke cuda hatiye pêşkêşkirin, tu yê nikaribû têketinê bikî vir.
+      title: Têkeve %{domain}
     sign_up:
       preamble: Bi ajimêrekê li ser vê rajekarê Mastodon re, tu yê karîbî her keseke din li ser torê bişopînî, her ku ajimêrê wan li ku derê tê pêşkêşkirin.
       title: Ka em te bi rê bixin li ser %{domain}.
@@ -1027,7 +1034,7 @@ ku:
   deletes:
     challenge_not_passed: Zanyariyên ku te nivîsandî ne rast in
     confirm_password: Borînpeyva xwe ya heyî binivîsine da ku nasnameya xwe piştrast bikî
-    confirm_username: Navê bikarhêneriyê xwe binivîse da ku prosedurê piştrast bike
+    confirm_username: Navê bikarhêneriyê xwe binivîse da ku pêvajoyê piştrast bikî
     proceed: Ajimêr jê bibe
     success_msg: Ajimêra te bi serkeftî hate jêbirin
     warning:
@@ -1327,10 +1334,10 @@ ku:
           trillion: Trîlyon
   otp_authentication:
     code_hint: Ji bo pejirandinê têkeve koda te ya ku ji alîyê sepana piştraskirinê va hatiye çê kirin
-    description_html: Heke tu<strong>bi piştrastkirina du-faktorî re</strong> sepana piştrastkirinê çalak bikî, ji bo têketinê hewceye telefona te li ba te be, ji bona têketinê te ra nîşaneyan çê bike.
+    description_html: Ku tu<strong>bi piştrastkirina du-gavî re</strong> sepana piştrastkirinê çalak bikî, ji bo têketinê pêdivî heye ku telefona te li ba te be, ji bona têketinê te ra nîşaneyan çê bike.
     enable: Çalak bike
     instructions_html: "<strong>Vê kodê QR kontrol bike bi riya Google Authenticator an jî sepanekeTOTP li ser têlefona xwe </strong>. Ji niha û pê ve, ew sepan dê nîşanên ku divê tu binivîsîne dema têketinê de biafirîne."
-    manual_instructions: 'Heke tu nikarî bî koda QR venêrî û pêwîst be bi dest bikevî, ev nivîsê hêsan ê veşartî:'
+    manual_instructions: 'Ku tu nikarî bî koda QR venêrî û pêwîst be bi dest bikevî, ev nivîsê hêsan ê veşartî:'
     setup: Saz bike
     wrong_code: Koda têketinê betal e! Dema rajekarê û dema amûrê raste?
   pagination:
@@ -1514,7 +1521,7 @@ ku:
     ignore_favs: Ecibandinan paşguh bike
     ignore_reblogs: Bilindkirinan piştguh bike
     interaction_exceptions: Awarteyên li ser bingehên têkiliyan
-    interaction_exceptions_explanation: Bizanibe ku heke şandiyeke ku ji binî ve têkeve jêrî bijare an bilindkirin ê piştî ku carek din di ser wan re derbas bibe, garantiyek tune ku werin jêbirin.
+    interaction_exceptions_explanation: Bizanibe ku şandiyeke ku ji binî ve têkeve jêrî bijarte yan bilindkirinê piştî ku carek din di ser wan re derbas bibe, garantiyek tune ku werin jêbirin.
     keep_direct: Peyamên rasterast veşêre
     keep_direct_hint: Tu peyamên te yekcar jê naçe
     keep_media: Peyamên bi pêvekên medyayê ve ne biveşêre
@@ -1567,7 +1574,7 @@ ku:
     enabled: Rastandina du-gavî bi serfirazî hate çalak kirin
     enabled_success: Rastandina du-gavî bi serfirazî hate çalak kirin
     generate_recovery_codes: Kodên xilaskirinê çêbike
-    lost_recovery_codes: Ku telefon winda bibe kodên xilaskirinê derfet dide ku tu bigihijî ajimêra xwe. Heke te kodên xwe yê xilaskirinê winda kiribe tu dikarî ji vê derê dîsa ava bikî. Kodên te yê xilaskirinê ên kevin wê nederbasdar bibe.
+    lost_recovery_codes: Ku telefon winda bibe kodên xilaskirinê derfet dide ku tu bigihijî ajimêra xwe. Ku te kodên xwe yê xilaskirinê winda kiribe tu dikarî ji vê derê dîsa ava bikî. Kodên te yê xilaskirinê ên kevin wê nederbasdar bibe.
     methods: Rêbazên du-gavî
     otp: Sepana Authenticator
     recovery_codes: Kilîtên rizgarbûna hilanînê
@@ -1652,7 +1659,7 @@ ku:
       success: Tevlîkirina kilîteke ewlehiyê nû bi awayekî serkeftî qediya.
     delete: Jê bibe
     delete_confirmation: Ma tu bi rastî dixwazî ku ev kilîta ewlehiyê jê bibe?
-    description_html: Heker tu <strong> piştrastkirina kilîta ewlehiyê </strong> çalak bikî, Ji bo têketinê ger tu kilîtekî ewlehiyê bikarbînî.
+    description_html: Ku tu <strong> piştrastkirina kilîta ewlehiyê </strong> çalak bikî, Ji bo têketinê divê tu kilîtekî ewlehiyê bi kar bînî.
     destroy:
       error: Dema kilîda ewlehiyê hate jêbirin pirsgirêkek peyda bû. Ji kerema xwe re careke din biceribîne.
       success: Kilîda ewlehiyê bi awayekî serkeftî hatê jêbirin.

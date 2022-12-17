@@ -4,10 +4,10 @@ sr:
     about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
     contact_missing: Није постављено
     contact_unavailable: Није доступно
-    hosted_on: Мастодонт хостован на %{domain}
+    hosted_on: Мастодон хостован на %{domain}
     title: О
   accounts:
-    follow: Запрати
+    follow: Прати
     followers:
       few: Пратиоци
       one: Пратиоц
@@ -32,15 +32,23 @@ sr:
       created_msg: Модераторска белешка успешно направљена!
       destroyed_msg: Модераторска белешка успешно обрисана!
     accounts:
+      add_email_domain_block: Блокирај домен е-поште
+      approve: Одобри
       are_you_sure: Да ли сте сигурни?
       avatar: Аватар
       by_domain: Домен
       change_email:
+        changed_msg: Е-пошта налога успешно промењена!
         current_email: Тренутна е-пошта
         label: Промените е-пошту
         new_email: Нова e-пошта
         submit: Промените e-пошту
         title: Промените e-пошту за %{username}
+      change_role:
+        changed_msg: Улога успешно промењена!
+        label: Промени улогу
+        no_role: Нема улогу
+        title: Промени улогу за %{username}
       confirm: Потврди
       confirmed: Потврђено
       confirming: Потврдување
@@ -62,7 +70,9 @@ sr:
       follows: Праћени
       header: Заглавље
       inbox_url: Адреса сандучета
+      invite_request_text: Разлози за придруживање
       invited_by: Позван од стране
+      ip: IP
       joined: Придружио се
       location:
         all: Све
@@ -75,19 +85,24 @@ sr:
       moderation:
         active: Активан
         all: Сви
+        pending: На чекању
+        silenced: Ограничено
         suspended: Суспендовани
         title: Модерација
       moderation_notes: Модераторске белешке
       most_recent_activity: Најскорија активност
       most_recent_ip: Најскорија IP адреса
       no_limits_imposed: Нема ограничења
+      no_role_assigned: Ниједна улога није додељена
       not_subscribed: Није претплаћен
+      pending: Чека на преглед
       perform_full_suspension: Искључи
       promote: Унапреди
       protocol: Протокол
       public: Јавно
       push_subscription_expires: PuSH претплата истиче
       redownload: Освежи налог
+      reject: Одбаци
       remove_avatar: Уклони аватар
       remove_header: Одстрани заглавље
       resend_confirmation:
@@ -97,7 +112,11 @@ sr:
       reset: Ресетуј
       reset_password: Ресетуј лозинку
       resubscribe: Поново се претплати
+      role: Улога
       search: Претрага
+      security_measures:
+        only_password: Само лозинка
+      sensitized: Означено као осетљиво
       shared_inbox_url: Адреса дељеног сандучета
       show:
         created_reports: Направљени извештаји
@@ -106,8 +125,10 @@ sr:
       silenced: Ућуткан
       statuses: Статуси
       subscribe: Претплати се
+      suspend: Суспендуј
       suspended: Суспендовани
       title: Налози
+      unblock_email: Одблокирај адресу е-поште
       unconfirmed_email: Непотврђена е-пошта
       undo_silenced: Укини ћутање
       undo_suspension: Укини суспензију
@@ -116,6 +137,18 @@ sr:
       warn: Упозори
       web: Веб
     action_logs:
+      action_types:
+        approve_user: Одобри корисника
+        confirm_user: Потврди корисника
+        create_account_warning: Креирај упозорење
+        create_announcement: Креирај најаву
+        create_canonical_email_block: Креирај блок е-поште
+        create_user_role: Креирај улогу
+        destroy_announcement: Избриши најаву
+        destroy_canonical_email_block: Избриши блок е-поште
+        disable_user: Онемогући корисника
+        enable_user: Омогући корисника
+        reject_user: Одбаци корисника
       title: Записник
     custom_emojis:
       by_domain: Домен
@@ -238,6 +271,9 @@ sr:
     settings:
       appearance:
         title: Изглед
+      default_noindex:
+        desc_html: Утиче на све кориснике који нису сами променили ову поставку
+        title: Подразумевано искључи кориснике из индексирања претраживача
       discovery:
         public_timelines: Јавне временске линије
     statuses:

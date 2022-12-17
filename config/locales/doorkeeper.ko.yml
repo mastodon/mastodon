@@ -149,6 +149,11 @@ ko:
     scopes:
       admin:read: 서버의 모든 데이터 읽기
       admin:read:accounts: 모든 계정의 민감한 정보 읽기
+      admin:read:canonical_email_blocks: 정규화된 이메일 차단 전부에 대한 민감한 정보를 읽습니다
+      admin:read:domain_allows: 도메인 허용에 대한 민감한 정보를 읽습니다
+      admin:read:domain_blocks: 도메인 차단에 대한 민감한 정보를 읽습니다
+      admin:read:email_domain_blocks: 이메일 도메인 차단에 대한 민감한 정보를 읽습니다
+      admin:read:ip_blocks: IP 차단에 대한 민감한 정보를 읽습니다
       admin:read:reports: 신고와 신고 된 계정의 민감한 정보 읽기
       admin:write: 서버의 모든 데이터 수정
       admin:write:accounts: 계정에 모더레이션 조치 취하기

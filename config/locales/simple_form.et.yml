@@ -3,9 +3,9 @@ et:
   simple_form:
     hints:
       account_alias:
-        acct: Sisesta selle konto kasutajanimi@domeen, millelt soovite kolida
+        acct: Sisesta konto kasutajanimi@domeen, mille soovid siia ümber kolida
       account_migration:
-        acct: Sisesta selle konto kasutajanimi@domeen, millele soovite kolida
+        acct: Sisesta kasutajanimi@domeen, kuhu soovid konto siit kolida
       account_warning_preset:
         text: Te saate kasutada postituse süntaksi, näiteks URLe, silte ja mainimisi
         title: Valikuline. Ei ole nähtav saajale
@@ -34,7 +34,7 @@ et:
         avatar: PNG, GIF või JPG. Kõige rohkem %{size}. Vähendatakse %{dimensions} pikslini
         bot: Teavita teisi, et see konto teeb enamjaolt automatiseeritud tegevusi ja ei pruugi olla järelvalve all
         context: Üks või mitu konteksti, mille vastu see filter peaks rakenduma
-        current_password: Turvalisuse huvides palume sisestage praeguse konto salasõna
+        current_password: Sisesta turvalisuse huvides oma siinse konto salasõna
         current_username: Kinnitamiseks palun sisestage oma konto kasutajanimi
         digest: Saadetakse ainult pärast pikka perioodi tegevusetust ja ainult siis, kui Teile on saadetud privaatseid sõnumeid
         discoverable: Konto on leitav võhivõõraste jaoks soovituste ja trendide sirvimise teel vm sarnaste vahenditega
@@ -87,7 +87,7 @@ et:
         site_contact_username: Kuidas Mastodoni kaudu ühendust võtta.
         site_extended_description: Igasugune lisateave, mis võib külastajatele ja kasutajatele kasulik olla. Saab liigendada Markdown süntaksiga.
         site_short_description: Lühikirjeldus serveri unikaalseks identifitseerimiseks. Kes haldab, kellele mõeldud?
-        site_terms: Kasuta oma privaatsuspoliitikat või tühjaks jättes vaikimisi-teksti. Saab liigendada Markdown süntaksi abil.
+        site_terms: Lisa siia serveri isikuandmete kaitse põhimõtted või jäta tühjaks, et kasutada geneerilisi. Tekstis on lubatud Markdowni süntaks.
         site_title: Kuidas inimesed saavad serverile viidata, lisaks domeeninimele.
         theme: Teema, mida näevad sisenemata ning uued kasutajad.
         thumbnail: Umbes 2:1 mõõdus pilt serveri informatsiooni kõrval.
@@ -134,9 +134,9 @@ et:
           name: Nimetus
           value: Sisu
       account_alias:
-        acct: Vana konto täisnimi
+        acct: Vana konto aadress
       account_migration:
-        acct: Uue konto täisnimi
+        acct: Uue konto aadress
       account_warning_preset:
         text: Eelseadistatud tekst
         title: Pealkiri

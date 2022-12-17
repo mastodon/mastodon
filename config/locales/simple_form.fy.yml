@@ -1,6 +1,105 @@
 ---
 fy:
   simple_form:
+    hints:
+      account_alias:
+        acct: Fermeld de brûkersnamme@domein fan de account fan wêr’t jo ferhúzje wolle
+      account_migration:
+        acct: Fermeld de brûkersnamme@domein fan de account wêr’t jo nei ta ferhúzje wolle
+      account_warning_preset:
+        text: Jo kinne spesifike tekst foar berjochten brûke, lykas URL’s, hashtags en fermeldingen
+        title: Opsjoneel. Net sichtber foar de ûntfanger
+      admin_account_action:
+        include_statuses: De brûker sjocht hokker berjochten ferantwurdlik binne foar de moderaasjemaatregel of warskôging
+        send_email_notification: De brûker ûntfangt in útlis oer wat der mei harren account bard is
+      defaults:
+        password: Brûk op syn minst 8 tekens
+        setting_display_media_hide_all: Media altyd ferstopje
+        setting_display_media_show_all: Media altyd toane
     labels:
+      account:
+        fields:
+          name: Label
+          value: Ynhâld
+      account_alias:
+        acct: Mastodonadres fan it âlde account
+      account_migration:
+        acct: Mastodonadres fan it nije account
+      account_warning_preset:
+        text: Tekst fan preset
+        title: Titel
+      admin_account_action:
+        include_statuses: Rapportearre berjochten oan it e-mailberjocht tafoegje
+        send_email_notification: Meld dit per e-mailberjocht oan de brûker
+      announcement:
+        all_day: De hiele dei troch
+        ends_at: Einiget
+        scheduled_at: Meidieling ynplanne
+        starts_at: Begjint
+        text: Oankundiging
+      defaults:
+        avatar: Profylfoto
+        bot: Dit is in bot-account
+        chosen_languages: Talen filterje
+        confirm_new_password: Nij wachtwurd befêstigje
+        confirm_password: Wachtwurd befêstigje
+        context: Filterlokaasjes
+        current_password: Aktueel wachtwurd
+        data: Gegevens
+        discoverable: Dizze account oanrekommandearje litte en yn de brûkersgids toane
+        display_name: Werjeftenamme
+        email: E-mailadres
+        expires_in: Ferrint nei
+        fields: Profylmetadata
+        header: Omslachfoto
+        honeypot: "%{label} (net ynfolje)"
+        inbox_url: Relais-ynboks-URL
+        new_password: Nije wachtwurd
+        note: Bio
+        otp_attempt: Twa-stapstagangskoade
+        password: Wachtwurd
+        setting_display_media_default: Standert
+        setting_display_media_hide_all: Alles ferstopje
+        setting_display_media_show_all: Alles toane
+      form_admin_settings:
+        site_contact_email: E-mailadres kontaktpersoan
+        site_contact_username: Brûkersnamme kontaktpersoan
+        site_terms: Privacybelied
+        site_title: Servernamme
+        theme: Standerttema
+        thumbnail: Serverthumbnail
+        trends: Trends ynskeakelje
+      invite:
+        comment: Opmerking
+      invite_request:
+        text: Wêrom wolle jo jo hjir registrearje?
+      ip_block:
+        comment: Opmerking
+        ip: IP-adres
+        severities:
+          no_access: Tagong blokkearje
+          sign_up_block: Registraasjes blokkearje
+          sign_up_requires_approval: Registraasjes beheine
+        severity: Regel
       notification_emails:
         mention: Ien hat jo fermeld
+      rule:
+        text: Regel
+      tag:
+        name: Hashtag
+      user:
+        role: Rol
+      user_role:
+        color: Badgekleur
+        name: Namme
+        permissions_as_keys: Tastimmingen
+        position: Prioriteit
+      webhook:
+        url: Einpunt-URL
+    'no': Nee
+    not_recommended: Net oanrekommandearre
+    recommended: Oanrekommandearre
+    required:
+      mark: "*"
+      text: fereaske
+    'yes': Ja

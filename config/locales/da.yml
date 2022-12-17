@@ -10,7 +10,7 @@ da:
     follow: Følg
     followers:
       one: Følger
-      other: Følgere
+      other: tilhængere
     following: Følger
     instance_actor_flash: Denne konto er en virtuel aktør repræsenterende selve serveren og ikke en individuel bruger. Den anvendes til fællesformål og bør ikke suspenderes.
     last_active: senest aktiv
@@ -116,6 +116,8 @@ da:
       redownloaded_msg: "%{username}s profil opfrisket fra oprindelsesserver"
       reject: Afvis
       rejected_msg: "%{username}s tilmeldingsansøgning afvist"
+      remote_suspension_irreversible: Denne kontos data er slettet permanent.
+      remote_suspension_reversible_hint_html: Kontoen er suspenderet på den pågældende server, og kontodata fjernes fuldstændig pr. %{date}. Indtil da vil fjernserveren kunne foretage en komplet reetablering af kontoen. Ønskes alle kontodata fjernet straks, kan dette gøres nedenfor.
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
       removed_avatar_msg: "%{username}s profilbillede fjernet"
@@ -429,6 +431,8 @@ da:
       resolved_through_html: Opløst via %{domain}
       title: Blokerede e-maildomæner
     export_domain_allows:
+      new:
+        title: Importeret domæne tillader
       no_file: Ingen fil valgt
     export_domain_blocks:
       import:
@@ -439,6 +443,7 @@ da:
         title: Import af domæneblokeringer
       new:
         title: Import af domæneblokeringer
+      no_file: Ingen fill udvalgt
     follow_recommendations:
       description_html: "<strong>Følg-anbefalinger hjælpe nye brugere til hurtigt at finde interessant indhold</strong>. Når en bruger ikke har interageret nok med andre til at generere personlige følg-anbefalinger, anbefales disse konti i stedet. De revurderes dagligt baseret på en blanding af konti med de flest nylige engagementer og fleste lokale følger-antal for et givet sprog."
       language: For sprog
@@ -552,13 +557,12 @@ da:
       pending: Afventer videreformidlers godkendelse
       save_and_enable: Gem og aktivér
       setup: Opsæt en videreformidlerforbindelse
-      signatures_not_enabled: Videreformidlere fungerer ikke korrekt, mens sikker tilstand eller begrænset federeringstilstand er aktiveret
+      signatures_not_enabled: I sikker tilstand eller begrænset federeringstilstand fungerer videreformidlere muligvis ikke korrekt
       status: Status
       title: Videreformidlere
     report_notes:
       created_msg: Anmeldelsesnotat er oprettet!
       destroyed_msg: Anmeldelsesnotat er slettet!
-      today_at: I dag %{time}
     reports:
       account:
         notes:
@@ -701,6 +705,9 @@ da:
       content_retention:
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
+      default_noindex:
+        desc_html: Påvirker alle brugere, som ikke selv har ændret denne indstilling
+        title: Fravælg som standard søgemaskineindeksering for brugere
       discovery:
         follow_recommendations: Følg-anbefalinger
         preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
@@ -968,6 +975,9 @@ da:
       email_below_hint_html: Er nedenstående e-mailadresse forkert, kan du rette den hér og modtage en ny bekræftelses-e-mail.
       email_settings_hint_html: Bekræftelsese-mailen er sendt til %{email}. Er denne e-mailadresse forkert, kan du rette den via kontoindstillingerne.
       title: Opsætning
+    sign_in:
+      preamble_html: Log ind med dine <strong>%{domain}</strong>-legitimationsoplysninger. Hostes kontoen på en anden server, vil der ikke kunne logges ind her.
+      title: Log ind på %{domain}
     sign_up:
       preamble: Med en konto på denne Mastodon-server vil man kunne følge enhver anden person på netværket, uanset hvor vedkommendes konto hostes.
       title: Lad os få dig sat op på %{domain}.
@@ -1265,7 +1275,7 @@ da:
       other_data: Ingen øvrige data flyttes automatisk
       redirect: Din nuværende kontoprofil opdateres med en omdirigeringsnotits og ekskluderes fra søgninger
   moderation:
-    title: Moderatering
+    title: Moderation
   move_handler:
     carry_blocks_over_text: Denne bruger er flyttet fra %{acct}, som du har haft blokeret.
     carry_mutes_over_text: Denne bruger er flyttet fra %{acct}, som du har haft tavsgjort.

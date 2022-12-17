@@ -58,7 +58,7 @@ el:
       disabled: Απενεργοποιημένο
       display_name: Όνομα εμφάνισης
       domain: Τομέας
-      edit: Αλλαγή
+      edit: Επεξεργασία
       email: Email
       email_status: Κατάσταση email
       enable: Ενεργοποίηση
@@ -106,6 +106,8 @@ el:
       redownloaded_msg: Επιτυχής ανανέωη προφίλ του/της %{username} από την πηγή
       reject: Απόρριψη
       rejected_msg: Επιτυχής απόρριψη αίτησης εγγραφής του/της %{username}
+      remote_suspension_irreversible: Τα δεδομένα αυτού του λογαριασμού έχουν διαγραφεί αμετάκλητα.
+      remote_suspension_reversible_hint_html: Ο λογαριασμός έχει ανασταλλεί στον server του και τα δεδομένα του θα διαγραφούν πλήρως στις %{date}. Μέχρι τότε, ο απομακρυσμένος server μπορεί να επαναφέρει τον λογαριασμό χωρίς επιπτώσεις. Αν θέλεις να διαγράψεις αμέσως όλα τα δεδομένα του λογαριασμού, μπορείς να το κάνεις παρακάτω.
       remove_avatar: Απομακρυσμένο αβατάρ
       remove_header: Αφαίρεση επικεφαλίδας
       removed_avatar_msg: Επιτυχής αφαίρεση εικόνας προφίλ του/της%{username}
@@ -156,6 +158,7 @@ el:
         approve_user: Έγκριση Χρήστη
         assigned_to_self_report: Ανάθεση Αναφοράς
         change_email_user: Αλλαγή email για χρήστη
+        change_role_user: Αλλαγή του ρόλου του χρήστη
         confirm_user: Επιβεβαίωση Χρήστη
         create_account_warning: Δημιουργία Προειδοποίησης
         create_announcement: Δημιουργία Ανακοίνωσης
@@ -164,6 +167,7 @@ el:
         create_domain_block: Δημιουργία Αποκλεισμένου Τομέα
         create_email_domain_block: Δημουργία Αποκλεισμένου Τομέα email
         create_ip_block: Δημιουργία κανόνα IP
+        create_user_role: Δημιουργία ρόλου
         demote_user: Υποβιβασμός Χρήστη
         destroy_announcement: Διαγραφή Ανακοίνωσης
         destroy_custom_emoji: Διαγραφή Προσαρμοσμένου Emoji
@@ -198,6 +202,7 @@ el:
         update_announcement: Ενημέρωση Ανακοίνωσης
         update_custom_emoji: Ενημέρωση Προσαρμοσμένου Emoji
         update_status: Ενημέρωση Κατάστασης
+        update_user_role: Ενημέρωση ρόλου
       actions:
         approve_user_html: "%{name} εγκρίθηκε εγγραφή από %{target}"
         destroy_email_domain_block_html: Ο/Η %{name} ξεμπλόκαρε το email domain %{target}
@@ -273,6 +278,8 @@ el:
       updated_msg: Επιτυχής ενημέρωση του emoji!
       upload: Ανέβασμα
     dashboard:
+      active_users: ενεργοί χρήστες
+      new_users: νέοι χρήστες
       software: Λογισμικό
       space: Κατανάλωση χώρου
       title: Ταμπλό
@@ -291,7 +298,7 @@ el:
       created_msg: Ο αποκλεισμός τομέα είναι υπό επεξεργασία
       destroyed_msg: Ο αποκλεισμός τομέα άρθηκε
       domain: Τομέας
-      edit: Διαχείρηση αποκλεισμένου τομέα
+      edit: Επεξεργασία αποκλεισμένου τομέα
       existing_domain_block: Έχετε ήδη επιβάλει αυστηρότερα όρια στο %{name}.
       existing_domain_block_html: Έχεις ήδη επιβάλλει αυστηρότερους περιορισμούς στο %{name}, πρώτα θα πρέπει να τους <a href="%{unblock_url}">αναιρέσεις</a>.
       export: Εξαγωγή
@@ -334,10 +341,13 @@ el:
     export_domain_blocks:
       no_file: Δεν επιλέχθηκε αρχείο
     follow_recommendations:
+      language: Για τη γλώσσα
       status: Κατάσταση
     instances:
       by_domain: Τομέας
       confirm_purge: Είστε βέβαιοι ότι θέλετε να διαγράψετε μόνιμα τα δεδομένα από αυτόν τον τομέα;
+      dashboard:
+        instance_languages_dimension: Κορυφαίες γλώσσες
       delivery:
         failing: Αποτυγχάνει
       delivery_available: Διαθέσιμη παράδοση
@@ -372,9 +382,9 @@ el:
         '1209600': 2 εβδομάδες
         '15778476': 6 μήνες
         '2629746': 1 μήνας
-        '31556952': 1 έτος
+        '31556952': 1 χρόνος
         '86400': 1 ημέρα
-        '94670856': 3 έτη
+        '94670856': 3 χρόνια
       new:
         title: Δημιουργία νέου κανόνα IP
       title: Κανόνες IP
@@ -399,7 +409,6 @@ el:
     report_notes:
       created_msg: Επιτυχής δημιουργία σημείωσης καταγγελίας!
       destroyed_msg: Επιτυχής διαγραφή σημείωσης καταγγελίας!
-      today_at: Σήμερα στις %{time}
     reports:
       account:
         notes:
@@ -459,8 +468,20 @@ el:
         devops: Devops
         invites: Προσκλήσεις
       delete: Διαγραφή
+      edit: Επεξεργασία ρόλου '%{name}'
+      everyone: Προεπιλεγμένα δικαιώματα
+      permissions_count:
+        one: "%{count} δικαίωμα"
+        other: "%{count} δικαιώματα"
       privileges:
+        administrator: Διαχειριστής
+        invite_users: Πρόσκληση χρηστών
+        manage_announcements: Διαχείριση ανακοινώσεων
+        manage_roles: Διαχείριση ρόλων
+        manage_settings: Διαχείριση ρυθμίσεων
+        manage_users: Διαχείριση χρηστών
         view_devops: DevOps
+      title: Ρόλοι
     rules:
       add_new: Προσθήκη κανόνα
       delete: Διαγραφή
@@ -476,6 +497,9 @@ el:
         title: Εμφάνιση
       content_retention:
         title: Διατήρηση περιεχομένου
+      default_noindex:
+        desc_html: Επηρεάζει όσους χρήστες δεν έχουν αλλάξει αυτή τη ρύθμιση οι ίδιοι
+        title: Εξαίρεση χρηστών από τις μηχανές αναζήτησης
       discovery:
         profile_directory: Κατάλογος προφίλ
         public_timelines: Δημόσιες ροές
@@ -530,6 +554,11 @@ el:
     title: Διαχείριση
     trends:
       only_allowed: Μόνο επιτρεπόμενα
+      tags:
+        dashboard:
+          tag_languages_dimension: Κορυφαίες γλώσσες
+          tag_servers_dimension: Κορυφαίοι διακομιστές
+          tag_servers_measure: διαφορετικοί διακομιστές
       trending: Δημοφιλή
     warning_presets:
       add_new: Πρόσθεση νέου
@@ -623,6 +652,8 @@ el:
       email_below_hint_html: Αν η παρακάτω διεύθυνση email είναι λανθασμένη, μπορείτε να την ενημερώσετε και να λάβετε νέο email επιβεβαίωσης.
       email_settings_hint_html: Το email επιβεβαίωσης στάλθηκε στο %{email}. Αν η διεύθυνση αυτή δεν είναι σωστή, μπορείτε να την ενημερώσετε στις ρυθμίσεις λογαριασμού.
       title: Ρυθμίσεις
+    sign_in:
+      title: Συνδεθείτε στο %{domain}
     sign_up:
       title: Ας ξεκινήσουμε τις ρυθμίσεις στο %{domain}.
     status:
@@ -962,14 +993,27 @@ el:
     browser: Φυλλομετρητής (Browser)
     browsers:
       blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      firefox: Firefox
       generic: Άγνωστος φυλλομετρητής
+      ie: Internet Explorer
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
       uc_browser: UC Browser
     current_session: Τρέχουσα σύνδεση
     description: "%{browser} σε %{platform}"
     explanation: Αυτοί είναι οι φυλλομετρητές (browsers) που είναι συνδεδεμένοι στον λογαριασμό σου στο Mastodon αυτή τη στιγμή.
     platforms:
+      android: Android
       blackberry: BlackBerry
       chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
       mac: Mac
       other: άγνωστη πλατφόρμα
     revoke: Ανακάλεσε
@@ -1045,14 +1089,14 @@ el:
       unlisted_long: Βλέπει οποιοσδήποτε, αλλά δεν καταχωρείται στις δημόσιες ροές
   statuses_cleanup:
     min_age:
-      '1209600': 2 weeks
-      '15778476': 6 months
-      '2629746': 1 month
-      '31556952': 1 year
-      '5259492': 2 months
+      '1209600': 2 εβδομάδες
+      '15778476': 6 μήνες
+      '2629746': 1 μήνας
+      '31556952': 1 χρόνος
+      '5259492': 2 μήνες
       '604800': 1 εβδομάδα
-      '63113904': 2 years
-      '7889238': 3 months
+      '63113904': 2 χρόνια
+      '7889238': 3 μήνες
   stream_entries:
     pinned: Καρφιτσωμένο τουτ
     reblogged: προωθημένο
@@ -1083,6 +1127,8 @@ el:
       explanation: Είχες ζητήσει εφεδρικό αντίγραφο του λογαριασμού σου στο Mastodon. Είναι έτοιμο για κατέβασμα!
       subject: Το εφεδρικό αντίγραφό σου είναι έτοιμο για κατέβασμα
       title: Λήψη εφεδρικού αρχείου
+    suspicious_sign_in:
+      change_password: αλλάξτε τον κωδικό πρόσβασής σας
     warning:
       categories:
         spam: Ανεπιθύμητο

@@ -73,7 +73,7 @@ de:
       followers: Follower
       follows: Folge ich
       header: Titelbild
-      inbox_url: Posteingangs-URL
+      inbox_url: Posteingangsadresse
       invite_request_text: Begründung für das Beitreten
       invited_by: Eingeladen von
       ip: IP-Adresse
@@ -83,11 +83,11 @@ de:
         local: Lokal
         remote: Extern
         title: Herkunft
-      login_status: Loginstatus
+      login_status: Anmeldestatus
       media_attachments: Medienanhänge
-      memorialize: In Gedenkmal verwandeln
-      memorialized: Memorialisiert
-      memorialized_msg: "%{username} wurde erfolgreich in ein In-Memoriam-Konto umgewandelt"
+      memorialize: In Gedenkseite umwandeln
+      memorialized: Gedenkseite
+      memorialized_msg: "%{username} wurde erfolgreich in ein Gedenkseiten-Konto umgewandelt"
       moderation:
         active: Aktiv
         all: Alle
@@ -116,6 +116,8 @@ de:
       redownloaded_msg: Das Profil %{username} wurde vom externen Server erfolgreich aktualisiert
       reject: Ablehnen
       rejected_msg: Antrag zur Registrierung von %{username} erfolgreich abgelehnt
+      remote_suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht.
+      remote_suspension_reversible_hint_html: Das Konto wurde auf dem externen Server gesperrt – und sämtliche Daten werden am %{date} entfernt. Bis dahin kann diese Instanz das Konto ohne negative Auswirkungen wiederherstellen. Wenn du schon jetzt alle Daten des Kontos unwiderruflich löschen möchtest, kannst du dies nachfolgend tun.
       remove_avatar: Profilbild entfernen
       remove_header: Titelbild entfernen
       removed_avatar_msg: Profilbild von %{username} erfolgreich entfernt
@@ -128,7 +130,7 @@ de:
       reset_password: Passwort zurücksetzen
       resubscribe: Wieder abonnieren
       role: Rolle
-      search: Suche
+      search: Suchen
       search_same_email_domain: Andere Benutzer*innen mit der gleichen E-Mail-Domain
       search_same_ip: Andere Benutzer*innen mit derselben IP-Adresse
       security_measures:
@@ -177,17 +179,17 @@ de:
         create_canonical_email_block: E-Mail-Sperre erstellen
         create_custom_emoji: Eigene Emojis erstellen
         create_domain_allow: Domain erlauben
-        create_domain_block: Domain blockieren
-        create_email_domain_block: E-Mail-Domainsperre erstellen
+        create_domain_block: Domain sperren
+        create_email_domain_block: E-Mail-Domain-Sperre erstellen
         create_ip_block: IP-Regel erstellen
         create_unavailable_domain: Nicht verfügbare Domain erstellen
         create_user_role: Rolle erstellen
         demote_user: Benutzer*in herabstufen
         destroy_announcement: Ankündigung löschen
-        destroy_canonical_email_block: E-Mail-Blockade löschen
+        destroy_canonical_email_block: E-Mail-Sperre entfernen
         destroy_custom_emoji: Eigenes Emojis löschen
         destroy_domain_allow: Erlaube das Löschen von Domains
-        destroy_domain_block: Domainsperre löschen
+        destroy_domain_block: Domain-Sperre entfernen
         destroy_email_domain_block: E-Mail-Domain-Sperre löschen
         destroy_instance: Domain-Daten entfernen
         destroy_ip_block: IP-Regel löschen
@@ -220,7 +222,7 @@ de:
         unsuspend_account: Konto nicht mehr sperren
         update_announcement: Ankündigung aktualisieren
         update_custom_emoji: Eigenes Emoji aktualisieren
-        update_domain_block: Domainsperre aktualisieren
+        update_domain_block: Domain-Sperre aktualisieren
         update_ip_block: IP-Regel aktualisieren
         update_status: Beitrag aktualisieren
         update_user_role: Rolle aktualisieren
@@ -236,9 +238,9 @@ de:
         create_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} gesperrt"
         create_custom_emoji_html: "%{name} hat neues Emoji hochgeladen: %{target}"
         create_domain_allow_html: "%{name} hat die Domain %{target} gewhitelistet"
-        create_domain_block_html: "%{name} hat die Domain %{target} blockiert"
+        create_domain_block_html: "%{name} hat die Domain %{target} gesperrt"
         create_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} gesperrt"
-        create_ip_block_html: "%{name} hat eine Regel für IP %{target} erstellt"
+        create_ip_block_html: "%{name} hat eine IP-Regel für %{target} erstellt"
         create_unavailable_domain_html: "%{name} hat die Lieferung an die Domain %{target} eingestellt"
         create_user_role_html: "%{name} hat die Rolle %{target} erstellt"
         demote_user_html: "%{name} hat %{target} heruntergestuft"
@@ -246,10 +248,10 @@ de:
         destroy_canonical_email_block_html: "%{name} hat die E-Mail mit dem Hash %{target} entsperrt"
         destroy_custom_emoji_html: "%{name} hat das Emoji gelöscht: %{target}"
         destroy_domain_allow_html: "%{name} hat die Domain %{target} von der Whitelist entfernt"
-        destroy_domain_block_html: "%{name} hat die Domain %{target} entblockt"
+        destroy_domain_block_html: "%{name} hat die Domain %{target} entsperrt"
         destroy_email_domain_block_html: "%{name} hat die E-Mail-Domain %{target} entsperrt"
         destroy_instance_html: "%{name} hat die Daten der Domain %{target} entfernt"
-        destroy_ip_block_html: "%{name} hat eine Regel für IP %{target} gelöscht"
+        destroy_ip_block_html: "%{name} hat eine IP-Regel für %{target} entfernt"
         destroy_status_html: "%{name} hat einen Beitrag von %{target} entfernt"
         destroy_unavailable_domain_html: "%{name} setzte die Lieferung an die Domain %{target} fort"
         destroy_user_role_html: "%{name} hat die Rolle %{target} gelöscht"
@@ -279,7 +281,7 @@ de:
         unsuspend_account_html: "%{name} hat die Kontosperre von %{target} aufgehoben"
         update_announcement_html: "%{name} aktualisierte Ankündigung %{target}"
         update_custom_emoji_html: "%{name} hat das Emoji geändert: %{target}"
-        update_domain_block_html: "%{name} hat den Domain-Block für %{target} aktualisiert"
+        update_domain_block_html: "%{name} hat die Domain-Sperre für %{target} aktualisiert"
         update_ip_block_html: "%{name} hat die Regel für IP %{target} geändert"
         update_status_html: "%{name} hat einen Beitrag von %{target} aktualisiert"
         update_user_role_html: "%{name} hat die Rolle %{target} geändert"
@@ -377,55 +379,55 @@ de:
       import: Importieren
       undo: Von der Whitelist entfernen
     domain_blocks:
-      add_new: Neue Domainblockade hinzufügen
-      created_msg: Die Domain ist jetzt blockiert bzw. eingeschränkt
-      destroyed_msg: Die Domainsperre wurde rückgängig gemacht
+      add_new: Neue Domain-Sperre hinzufügen
+      created_msg: Die Domain ist jetzt gesperrt bzw. eingeschränkt
+      destroyed_msg: Die Domain-Sperre wurde aufgehoben
       domain: Domain
-      edit: Domainsperre bearbeiten
+      edit: Domain-Sperre bearbeiten
       existing_domain_block: Du hast %{name} bereits stärker eingeschränkt.
       existing_domain_block_html: Du hast bereits strengere Beschränkungen für die Domain %{name} verhängt. Du musst diese erst <a href="%{unblock_url}">aufheben</a>.
       export: Exportieren
       import: Importieren
       new:
-        create: Blockade einrichten
+        create: Sperre einrichten
         hint: Die Domainsperre wird nicht verhindern, dass Konteneinträge in der Datenbank erstellt werden, sondern rückwirkend und automatisch alle Moderationsmethoden auf diese Konten anwenden.
         severity:
           desc_html: "<strong>Stummschaltung</strong> wird die Beiträge von Konten unter dieser Domain für alle unsichtbar machen, die den Konten nicht folgen. Eine <strong>Sperre</strong> wird alle Inhalte, Medien und Profildaten für Konten dieser Domain von deinem Server entfernen. Verwende <strong>keine,</strong> um nur Mediendateien abzulehnen."
           noop: Kein
           silence: Stummschaltung
           suspend: Sperren
-        title: Neue Domainsperre
-      no_domain_block_selected: Keine Domains blockiert, weil keine ausgewählt wurde
-      not_permitted: Du bist nicht berechtigt, diese Aktion durchzuführen
-      obfuscate: Domainname verschleiern
-      obfuscate_hint: Den Domainnamen in der Liste teilweise verschleiern, wenn die Liste der Domänenbeschränkungen aktiviert ist
-      private_comment: Privater Kommentar
+        title: Neue Domain-Sperre
+      no_domain_block_selected: Keine Domains gesperrt, weil keine ausgewählt wurde(n)
+      not_permitted: Dir ist es nicht erlaubt, diese Handlung durchzuführen
+      obfuscate: Domain-Name verschleiern
+      obfuscate_hint: Den Domain-Namen öffentlich nur teilweise bekannt geben, sofern die Liste der Domain-Beschränkungen aktiviert ist
+      private_comment: Private bzw. nicht-öffentliche Notiz
       private_comment_hint: Kommentar zu dieser Domain-Beschränkung für die interne Nutzung durch die Moderator*innen.
-      public_comment: Öffentlicher Kommentar
-      public_comment_hint: Kommentar zu dieser Domain-Beschränkung für die allgemeine Öffentlichkeit, wenn das Veröffentlichen der Blockliste aktiviert ist.
+      public_comment: Öffentliche Notiz
+      public_comment_hint: Öffentlicher Hinweis zu dieser Domain-Beschränkung, sofern das Veröffentlichen von Sperrlisten grundsätzlich aktiviert ist.
       reject_media: Mediendateien ablehnen
       reject_media_hint: Entfernt lokal gespeicherte Mediendateien und verhindert deren künftiges Herunterladen. Für Sperren irrelevant
       reject_reports: Meldungen ablehnen
       reject_reports_hint: Alle Meldungen von dieser Domain ignorieren. Irrelevant für Sperrungen.
-      undo: Domainsperre rückgängig machen
-      view: Domainsperre ansehen
+      undo: Domain-Sperre aufheben
+      view: Domain-Sperre ansehen
     email_domain_blocks:
       add_new: Neue hinzufügen
       attempts_over_week:
-        one: "%{count} Registrierungsversuch in der letzten Woche"
-        other: "%{count} Registrierungsversuche in der letzten Woche"
+        one: "%{count} Registrierungsversuch in der vergangenen Woche"
+        other: "%{count} Registrierungsversuche in der vergangenen Woche"
       created_msg: E-Mail-Domain erfolgreich gesperrt
-      delete: Löschen
+      delete: Entfernen
       dns:
         types:
-          mx: MX-Record
+          mx: MX-RR-Eintrag
       domain: Domain
       new:
         create: E-Mail-Domain hinzufügen
         resolve: Domain auflösen
         title: Neue E-Mail-Domain sperren
-      no_email_domain_block_selected: Keine E-Mail-Domainsperren wurden geändert, da keine ausgewählt wurden
-      resolved_dns_records_hint_html: Der Domain-Name wird an die folgenden MX-Domains aufgelöst, die letztendlich für die Annahme von E-Mails verantwortlich sind. Das Blockieren einer MX-Domain blockiert Anmeldungen von jeder E-Mail-Adresse, welche dieselbe MX-Domain verwendet, auch wenn der sichtbare Domainname anders ist. <strong>Achte darauf, große E-Mail-Anbieter nicht zu blockieren.</strong>
+      no_email_domain_block_selected: Keine E-Mail-Domain-Sperren wurden geändert, da keine ausgewählt wurden
+      resolved_dns_records_hint_html: Der Domain-Name wird an die folgenden MX-Domains aufgelöst, die letztendlich für die Annahme von E-Mails zuständig sind. Das Sperren einer MX-Domain sperrt Anmeldungen aller E-Mail-Adressen, die dieselbe MX-Domain verwenden, auch wenn die sichtbare Domain anders lautet. <strong>Achte daher darauf, große E-Mail-Anbieter versehentlich nicht auszusperren.</strong>
       resolved_through_html: Durch %{domain} aufgelöst
       title: Gesperrte E-Mail-Domains
     export_domain_allows:
@@ -434,13 +436,13 @@ de:
       no_file: Keine Datei ausgewählt
     export_domain_blocks:
       import:
-        description_html: Du bist dabei, eine Liste von Domainsperren zu importieren. Bitte überprüfe diese Liste sehr sorgfältig, insbesondere wenn du sie nicht selbst erstellt hast.
+        description_html: Du bist dabei, eine Liste von Domain-Sperren zu importieren. Bitte überprüfe diese Liste sehr sorgfältig, insbesondere dann, wenn du sie nicht selbst erstellt hast.
         existing_relationships_warning: Bestehende Folgebeziehungen
-        private_comment_description_html: 'Damit du nachvollziehen kannst, woher die importierten Sperren stammen, werden diese mit dem folgenden privaten Kommentar erstellt: <q>%{comment}</q>'
+        private_comment_description_html: 'Damit du später nachvollziehen kannst, woher die importierten Sperren stammen, kannst du diesem Eintrag eine private Notiz hinzufügen: <q>%{comment}</q>'
         private_comment_template: Importiert von %{source} am %{date}
-        title: Domainsperren importieren
+        title: Domain-Sperren importieren
       new:
-        title: Domainsperren importieren
+        title: Domain-Sperren importieren
       no_file: Keine Datei ausgewählt
     follow_recommendations:
       description_html: "<strong>Folgeempfehlungen helfen neuen Nutzer*innen, interessante Inhalte schnell zu finden</strong>. Wenn ein*e Nutzer*in noch nicht genug mit anderen interagiert hat, um personalisierte Folgeempfehlungen zu erhalten, werden stattdessen diese Profile verwendet. Sie werden täglich, basierend auf einer Mischung aus am meisten interagierenden Konten und jenen mit den meisten Followern für eine bestimmte Sprache, neu berechnet."
@@ -453,8 +455,8 @@ de:
     instances:
       availability:
         description_html:
-          one: Wenn die Auslieferung an die Domain seit <strong>%{count} Tag</strong> ohne Erfolg ist, werden keine weiteren Versandversuche unternommen, es sei denn, es ist eine Lieferung <em>von</em> der Domain.
-          other: Wenn die Auslieferung an die Domain seit <strong>%{count} Tagen</strong> ohne Erfolg ist, werden keine weiteren Versandversuche unternommen, es sei denn, es ist eine Lieferung <em>von</em> der Domain.
+          one: Wenn die Zustellung an die Domain seit <strong>%{count} Tag</strong> erfolglos bleibt, werden keine weiteren Zustellungsversuche unternommen, es sei denn, eine Zustellung <em>von</em> dieser Domain wird empfangen.
+          other: Wenn die Zustellung an die Domain seit <strong>%{count} Tagen</strong> erfolglos bleibt, werden keine weiteren Zustellungsversuche unternommen, es sei denn, eine Zustellung <em>von</em> dieser Domain wird empfangen.
         failure_threshold_reached: Fehlschlag-Schwelle am %{date} erreicht.
         failures_recorded:
           one: Fehlgeschlagener Versuch am %{count}. Tag.
@@ -511,7 +513,7 @@ de:
       purge: Löschen
       purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, kannst du alle Account-Datensätze und zugehörigen Daten aus dieser Domain löschen. Das kann eine Weile dauern.
       title: Externe Instanzen
-      total_blocked_by_us: Von uns blockiert
+      total_blocked_by_us: Von uns gesperrt
       total_followed_by_them: Gefolgt von denen
       total_followed_by_us: Gefolgt von uns
       total_reported: Beschwerden über sie
@@ -528,7 +530,7 @@ de:
     ip_blocks:
       add_new: Regel erstellen
       created_msg: Neue IP-Regel erfolgreich hinzugefügt
-      delete: Löschen
+      delete: Entfernen
       expires_in:
         '1209600': 2 Wochen
         '15778476': 6 Monate
@@ -538,7 +540,7 @@ de:
         '94670856': 3 Jahre
       new:
         title: Neue IP-Regel erstellen
-      no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurden
+      no_ip_block_selected: Keine IP-Regeln wurden geändert, weil keine ausgewählt wurde(n)
       title: IP-Regeln
     relationships:
       title: Beziehungen von %{acct}
@@ -561,7 +563,6 @@ de:
     report_notes:
       created_msg: Meldungs-Kommentar erfolgreich erstellt!
       destroyed_msg: Meldungs-Kommentar erfolgreich gelöscht!
-      today_at: Heute um %{time}
     reports:
       account:
         notes:
@@ -652,11 +653,11 @@ de:
         manage_appeals: Einsprüche verwalten
         manage_appeals_description: Erlaubt es Benutzer*innen, Entscheidungen der Moderator*innen zu widersprechen
         manage_blocks: Sperrungen verwalten
-        manage_blocks_description: Erlaubt Benutzer*innen, E-Mail-Provider und IP-Adressen zu blockieren
+        manage_blocks_description: Erlaubt Benutzer*innen das Sperren von E-Mail-Providern und IP-Adressen
         manage_custom_emojis: Eigene Emojis verwalten
         manage_custom_emojis_description: Erlaubt es Benutzer*innen, eigene Emojis auf dem Server zu verwalten
         manage_federation: Föderation verwalten
-        manage_federation_description: Erlaubt es Benutzer*innen, den Zusammenschluss mit anderen Domains zu blockieren oder zuzulassen und die Zustellbarkeit zu kontrollieren
+        manage_federation_description: Erlaubt es Benutzer*innen, Domains anderer Mastodon-Instanzen zu sperren oder zuzulassen – und die Zustellbarkeit zu steuern.
         manage_invites: Einladungen verwalten
         manage_invites_description: Erlaubt es Benutzer*innen, Einladungslinks zu durchsuchen und zu deaktivieren
         manage_reports: Meldungen verwalten
@@ -704,6 +705,9 @@ de:
       content_retention:
         preamble: Lege fest, wie lange nutzergenerierte Inhalte auf deiner Mastodon-Instanz gespeichert werden.
         title: Cache & Archive
+      default_noindex:
+        desc_html: Betrifft alle Benutzer, die diese Einstellung nicht selbst geändert haben
+        title: Benutzer standardmäßig von der Suchmaschinen-Indizierung ausnehmen
       discovery:
         follow_recommendations: Folgeempfehlungen
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
@@ -911,7 +915,7 @@ de:
     advanced_web_interface: Erweitertes Webinterface
     advanced_web_interface_hint: Wenn du mehr aus deiner Bildschirmbreite herausholen möchtest, kannst du mit dem erweiterten Webinterface weitere Spalten hinzufügen und dadurch mehr Informationen auf einmal sehen, z. B. deine Startseite, die Mitteilungen, die föderierte Timeline sowie beliebig viele deiner Listen und Hashtags.
     animations_and_accessibility: Animationen und Barrierefreiheit
-    confirmation_dialogs: Bestätigungsfenster
+    confirmation_dialogs: Bestätigungsdialoge
     discovery: Entdecken
     localization:
       body: Mastodon wird von Freiwilligen übersetzt.
@@ -942,7 +946,7 @@ de:
       prefix_invited_by_user: "@%{name} lädt dich ein, diesem Server von Mastodon beizutreten!"
       prefix_sign_up: Registriere dich noch heute bei Mastodon!
       suffix: Mit einem Konto kannst du Profilen folgen, neue Beiträge veröffentlichen, Nachrichten mit Personen von jedem Mastodon-Server austauschen und vieles mehr!
-    didnt_get_confirmation: Keine Bestätigungs-Mail erhalten?
+    didnt_get_confirmation: Keine Bestätigungsanweisungen erhalten?
     dont_have_your_security_key: Hast du keinen Sicherheitsschlüssel?
     forgot_password: Passwort vergessen?
     invalid_reset_password_token: Das Token zum Zurücksetzen des Passworts ist ungültig oder abgelaufen. Bitte fordere ein neues an.
@@ -960,7 +964,7 @@ de:
       saml: SAML
     register: Registrieren
     registration_closed: "%{instance} akzeptiert keine neuen Mitglieder"
-    resend_confirmation: Bestätigungs-Mail erneut versenden
+    resend_confirmation: Bestätigungsanweisungen erneut senden
     reset_password: Passwort zurücksetzen
     rules:
       preamble: Diese werden von den %{domain}-Moderator*innen festgelegt und erzwungen.
@@ -971,12 +975,15 @@ de:
       email_below_hint_html: Wenn die unten stehende E-Mail-Adresse falsch ist, kannst du sie hier ändern und eine neue Bestätigungs-E-Mail erhalten.
       email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
       title: Konfiguration
+    sign_in:
+      preamble_html: Mit deinen Zugangsdaten für <strong>%{domain}</strong> anmelden. Solltest du dein Konto auf einer anderen Instanz registriert haben, ist eine Anmeldung hier nicht möglich.
+      title: Bei %{domain} anmelden
     sign_up:
       preamble: Mit einem Account auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet wird.
       title: Okay, lass uns mit %{domain} anfangen.
     status:
       account_status: Kontostatus
-      confirming: Warte auf die Bestätigung deiner E-Mail-Adresse.
+      confirming: Auf die Bestätigung deiner E-Mail-Adresse wird gewartet.
       functional: Dein Konto ist voll funktionsfähig.
       pending: Die Prüfung deiner Bewerbung steht noch aus. Dies kann einige Zeit in Anspruch nehmen. Sobald deine Bewerbung genehmigt wurde, erhältst du eine E-Mail.
       redirecting_to: Dein Konto ist inaktiv, weil es zu %{acct} umgezogen ist.
@@ -1078,7 +1085,7 @@ de:
     '406': Diese Seite ist im gewünschten Format nicht verfügbar.
     '410': Die Seite, nach der du gesucht hast, existiert hier nicht mehr.
     '422':
-      content: Sicherheitsüberprüfung fehlgeschlagen. Blockierst du Cookies?
+      content: Sicherheitsüberprüfung fehlgeschlagen. Sperrst du Cookies aus?
       title: Sicherheitsüberprüfung fehlgeschlagen
     '429': Du wurdest gedrosselt
     '500':
@@ -1097,10 +1104,10 @@ de:
       in_progress: Persönliches Archiv wird erstellt …
       request: Dein Archiv anfordern
       size: Größe
-    blocks: Blockierte Accounts
+    blocks: Gesperrte Accounts
     bookmarks: Lesezeichen
     csv: CSV
-    domain_blocks: Blockierte Domains
+    domain_blocks: Gesperrte Domains
     lists: Listen
     mutes: Stummgeschaltete Accounts
     storage: Medienspeicher
@@ -1186,12 +1193,12 @@ de:
       merge_long: Behalte existierende Datensätze und füge neue hinzu
       overwrite: Überschreiben
       overwrite_long: Ersetze aktuelle Datensätze mit neuen
-    preface: Daten, die du aus einem anderen Server exportiert hast, kannst du hier importieren. Beispielsweise die Liste derjenigen, denen du folgst oder die du blockiert hast.
+    preface: Daten, die du von einem anderen Server exportiert hast, kannst du hierher importieren. Das betrifft beispielsweise die Listen von Profilen, denen du folgst oder die du gesperrt hast.
     success: Deine Daten wurden erfolgreich hochgeladen und werden in Kürze verarbeitet
     types:
-      blocking: Blockierliste
+      blocking: Sperrliste
       bookmarks: Lesezeichen
-      domain_blocking: Domainsperrliste
+      domain_blocking: Domain-Sperrliste
       following: Folgeliste
       muting: Stummschaltungsliste
     upload: Liste importieren
@@ -1270,7 +1277,7 @@ de:
   moderation:
     title: Moderation
   move_handler:
-    carry_blocks_over_text: Dieses Konto ist von %{acct}, das du blockiert hast, umgezogen.
+    carry_blocks_over_text: Dieses Konto ist von %{acct}, das du gesperrt hast, umgezogen.
     carry_mutes_over_text: Dieses Konto ist von %{acct}, das du stummgeschaltet hast, umgezogen.
     copy_account_note_text: 'Dieses Konto ist von %{acct} umgezogen. Hier deine damals verfassten Notizen zum Profil:'
   navigation:
@@ -1506,7 +1513,7 @@ de:
       unlisted_long: Für alle sichtbar, aber in öffentlichen Timelines nicht aufgelistet
   statuses_cleanup:
     enabled: Automatisch alte Beiträge löschen
-    enabled_hint: Löscht automatisch deine Beiträge, sobald sie ein von dir definiertes Alter erreicht haben, es sei denn, sie entsprechen einer der nachfolgenden Ausnahmen
+    enabled_hint: Löscht automatisch deine Beiträge, sobald sie die angegebene Altersgrenze erreicht haben, es sei denn, sie entsprechen einer der unten angegebenen Ausnahmen
     exceptions: Ausnahmen
     explanation: Damit Mastodon nicht durch das Löschen von Beiträgen ausgebremst wird, wartet der Server damit, bis wenig los ist. Aus diesem Grund werden deine Beiträge ggf. erst einige Zeit nach Erreichen der Altersgrenze gelöscht.
     ignore_favs: Favoriten ignorieren

@@ -1,7 +1,7 @@
 ---
 eo:
   about:
-    about_mastodon_html: 'La socia reto de la estonteco: sen reklamo, sen firmaa superrigardo, etika fasonado kaj malcentrigo! Regu viajn datumojn per Mastodon!'
+    about_mastodon_html: 'La socia retejo de la estonteco: sen reklamo, sen kompania observado, etika desegno, kaj malcentrigo! Regu viajn datumojn per Mastodon!'
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
     hosted_on: "%{domain} estas nodo de Mastodon"
@@ -57,17 +57,17 @@ eo:
       deleted: Forigita
       demote: Degradi
       destroyed_msg: Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ
-      disable: Malebligi
+      disable: Frostigi
       disable_sign_in_token_auth: Malŝalti aŭtentigon de retpoŝta ĵetono
       disable_two_factor_authentication: Malŝalti 2FA-n
-      disabled: Malebligita
+      disabled: Frostigita
       display_name: Montrata nomo
       domain: Domajno
       edit: Redakti
       email: Retpoŝto
       email_status: Stato de retpoŝto
-      enable: Ebligi
-      enable_sign_in_token_auth: Ŝalti retpoŝtan ĵetonan aŭtentigon
+      enable: Malfrostigi
+      enable_sign_in_token_auth: Ŝalti aŭtentigon de retpoŝta ĵetono por uzanto
       enabled: Ebligita
       enabled_msg: Sukcese malfrostigis konton de %{username}
       followers: Sekvantoj
@@ -139,7 +139,7 @@ eo:
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Faritaj raportoj
-        targeted_reports: Raporitaj de aliaj
+        targeted_reports: Raporitaj de la aliaj
       silence: Limigi
       silenced: Silentigita
       statuses: Afiŝoj
@@ -196,10 +196,10 @@ eo:
         destroy_user_role: Detrui Rolon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malebligi proprajn emoĝiojn
-        disable_sign_in_token_auth_user: Malaktivigi aŭtentigon de retpoŝta ĵetono por uzanto
+        disable_sign_in_token_auth_user: Malŝalti aŭtentigon de retpoŝta ĵetono por la uzanto
         disable_user: Neebligi la uzanton
         enable_custom_emoji: Ebligi Propran Emoĝion
-        enable_sign_in_token_auth_user: Ebligi retpoŝtan ĵetonan aŭtentigon por la uzanto
+        enable_sign_in_token_auth_user: Ŝalti aŭtentigon de retpoŝta ĵetono por la uzanto
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
@@ -254,11 +254,11 @@ eo:
         destroy_unavailable_domain_html: "%{name} daurigis sendon al domajno %{target}"
         destroy_user_role_html: "%{name} forigis rolon de %{target}"
         disable_2fa_user_html: "%{name} malebligis dufaktoran aŭtentigon por uzanto %{target}"
-        disable_custom_emoji_html: "%{name} malebligis emoĝion %{target}"
-        disable_sign_in_token_auth_user_html: "%{name} malebligis retpoŝtoĵetonautentigon por %{target}"
+        disable_custom_emoji_html: "%{name} malebligis la emoĝion %{target}"
+        disable_sign_in_token_auth_user_html: "%{name} malŝaltis la aŭtentigon de retpoŝta ĵetono por %{target}"
         disable_user_html: "%{name} malebligis ensaluton por uzanto %{target}"
-        enable_custom_emoji_html: "%{name} ebligis emoĝion %{target}"
-        enable_sign_in_token_auth_user_html: "%{name} ebligis retpoŝtoĵetonautentigon por %{target}"
+        enable_custom_emoji_html: "%{name} ebligis la emoĝion %{target}"
+        enable_sign_in_token_auth_user_html: "%{name} ŝaltis la aŭtentigon de retpoŝta ĵetono por %{target}"
         enable_user_html: "%{name} ebligis ensaluton por uzanto %{target}"
         memorialize_account_html: "%{name} ŝanĝis la konton de %{target} al memora paĝo"
         promote_user_html: "%{name} plirangigis uzanton %{target}"
@@ -284,10 +284,10 @@ eo:
         update_status_html: "%{name} ĝisdatigis mesaĝon de %{target}"
         update_user_role_html: "%{name} ŝanĝis rolon %{target}"
       deleted_account: forigita konto
-      empty: Neniu protokolo trovita.
+      empty: Neniu ĵurnalo trovita.
       filter_by_action: Filtri per ago
       filter_by_user: Filtri per uzanto
-      title: Kontrola protokolo
+      title: Ĵurnalo de revizo
     announcements:
       destroyed_msg: Anonco sukcese forigita!
       edit:
@@ -361,7 +361,7 @@ eo:
       software: Programo
       sources: Fontoj de konto-kreado
       space: Memorspaca uzado
-      title: Kontrolpanelo
+      title: Panelo
       top_languages: Plej aktivaj lingvoj
       top_servers: Plej aktivaj serviloj
       website: Retejo
@@ -561,13 +561,12 @@ eo:
     report_notes:
       created_msg: Signala noto sukcese kreita!
       destroyed_msg: Signala noto sukcese forigita!
-      today_at: Hodiaŭ je %{time}
     reports:
       account:
         notes:
           one: "%{count} noto"
           other: "%{count} notoj"
-      action_log: Kontrola protokolo
+      action_log: Ĵurnalo de revizo
       action_taken_by: Ago farita de
       actions:
         delete_description_html: Raportitaj mesaĝoj forigotas kaj admono rekorditas.
@@ -630,7 +629,7 @@ eo:
         administration: Administrado
         devops: Programado kaj Operaciado
         invites: Invitoj
-        moderation: Kontrolado
+        moderation: Moderigado
         special: Specialaj
       delete: Forigi
       description_html: Per <strong>uzantoroloj</strong>, vi povas personecigi funkciojn kaj areon de Mastodon.
@@ -677,7 +676,7 @@ eo:
         manage_webhooks_description: Permesi uzantojn komenci rethokojn por administraj eventoj
         view_audit_log: Vidi protokolon
         view_audit_log_description: Permesi uzantojn vidi historion de administraj agoj ĉe la servilo
-        view_dashboard: Vidi kontrolpanelon
+        view_dashboard: Vidi panelon
         view_dashboard_description: Permesi uzantojn aliri la kontrolpanelon kaj diversajn mezurarojn
         view_devops: Programado kaj Operaciado
         view_devops_description: Permesi uzantojn aliri Sidekiq kaj pgHero-kontrolpanelojn
@@ -704,6 +703,9 @@ eo:
       content_retention:
         preamble: Regi kiel uzantogenerita enhavo konservitis en Mastodon.
         title: Enhavkonservo
+      default_noindex:
+        desc_html: Efektiviĝas por ĉiuj uzantoj, kiuj mem ne agordis ĉi tion
+        title: Defaŭltigi, ke uzantoj ne estu aŭtomate aldonitaj al la serĉilo-indekso sen sia konsento
       discovery:
         follow_recommendations: Sekvorekomendoj
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
@@ -815,8 +817,8 @@ eo:
         no_status_selected: Neniuj popularaj mesaĝoj ŝanĝitas ĉar nenio elektitas
         not_discoverable: Autoro ne volonte estas malkovrebla
         shared_by:
-          one: Diskonigita kaj stelumita unufoje
-          other: Diskonigita kaj stelumita %{friendly_count}-foje
+          one: Kundividita kaj stelumita unufoje
+          other: Kundividita kaj stelumita %{friendly_count}-foje
         title: Tendencantaj afiŝoj
       tags:
         current_score: Nuna puento %{score}
@@ -940,7 +942,7 @@ eo:
     delete_account_html: Se vi deziras forigi vian konton, vi povas <a href="%{path}">fari tion ĉi tie</a>. Vi bezonos konfirmi vian peton.
     description:
       prefix_invited_by_user: "@%{name} invitigi vin aligiĝi ĉi tiu servilo de Mastodon!"
-      prefix_sign_up: Registriĝu ĉe Mastodon hodiaŭ!
+      prefix_sign_up: Registriĝu en Mastodon hodiaŭ!
       suffix: Per konto, vi povos sekvi aliajn homojn, afiŝi kaj interŝanĝi mesaĝojn kun uzantoj de ajna Mastodona servilo kaj multe pli!
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
@@ -949,7 +951,7 @@ eo:
     link_to_otp: Enigu 2-faktorkodo de via telefono au regajnkodo
     link_to_webauth: Uzi vian sekurecan ŝlosilon
     log_in_with: Ensaluti per
-    login: Ensaluti
+    login: Saluti
     logout: Adiaŭi
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
@@ -1214,7 +1216,7 @@ eo:
       one: 1 uzo
       other: "%{count} uzoj"
     max_uses_prompt: Neniu limo
-    prompt: Krei kaj diskonigi ligilojn al aliaj por doni aliron al ĉi tiu servilo
+    prompt: Generi kaj kundividi ligilojn kun la aliaj por doni aliron al ĉi tiu servilo
     table:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
@@ -1304,7 +1306,7 @@ eo:
     poll:
       subject: Enketo de %{name} finitas
     reblog:
-      body: "%{name} diskonigis vian mesaĝon:"
+      body: 'Via mesaĝo estis diskonigita de %{name}:'
       subject: "%{name} diskonigis vian mesaĝon"
       title: Nova diskonigo
     status:
@@ -1327,8 +1329,8 @@ eo:
           trillion: Dn
   otp_authentication:
     code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
-    description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong> per autentilprogramaro, ensaluto bezonas vi havi vian telefonon.
-    enable: Ebligi
+    description_html: Se vi ŝaltas <strong>dufaktoran aŭtentigon</strong> per aŭtentiga programo, saluti postulos ke vi havas vian telefonon, kiu generos ĵetonon por enigi.
+    enable: Ŝalti
     instructions_html: "<strong>Skanu ĉi tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo en via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos enmeti."
     manual_instructions: 'Se vi ne povas skani la QR-kodon kaj bezonas enmeti ĝin mane, jen la tut-teksta sekreto:'
     setup: Agordi
@@ -1540,7 +1542,7 @@ eo:
     min_favs: Konservi mesaĝojn stelumitajn almenaŭ
     min_favs_hint: Ne forigas mesaĝojn de vi kiuj ricevis almenaŭ tiom da stelumoj. Lasu malplena por forigi mesaĝojn sendepende de la nombro de stelumoj
     min_reblogs: Konservi diskonitajn mesaĝojn almenau
-    min_reblogs_hint: Ne forigi ajn viajn mesaĝojn kiu diskonitas almenau ĉifoje
+    min_reblogs_hint: Oni ne forigas viajn afiŝojn kiuj estas diskonigitaj almenaŭ ĉi tiun nombron da fojoj. Lasu malplena por forigi afiŝojn sendepende de iliaj nombroj da diskonigoj
   stream_entries:
     pinned: Alpinglita
     reblogged: diskonigita

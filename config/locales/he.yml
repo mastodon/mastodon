@@ -70,14 +70,14 @@ he:
       edit: עריכה
       email: דוא״ל
       email_status: מצב דוא״ל
-      enable: להפשיר
+      enable: ביטול הקפאה
       enable_sign_in_token_auth: הפעלת אסימון הזדהות בדוא״ל
       enabled: מופעל
       enabled_msg: ביטול השעית החשבון של %{username} בוצע בהצלחה
       followers: עוקבים
       follows: נעקבים
       header: כותרת
-      inbox_url: כתובת תיבה נכנסת
+      inbox_url: כתובת תיבת דואר נכנס
       invite_request_text: סיבות להצטרפות
       invited_by: הוזמן על ידי
       ip: כתובת IP
@@ -122,6 +122,8 @@ he:
       redownloaded_msg: הפרופיל של %{username} רוענן בהצלחה מהמקור
       reject: דחויים
       rejected_msg: בקשת ההרשמה של %{username} נדחתה בהצלחה
+      remote_suspension_irreversible: נתוני חשבון זה נמחקו באופן בלתי הפיך.
+      remote_suspension_reversible_hint_html: חשבון זה הושעה בשרת שלו ונתוניו יוסרו במלואם בתאריך %{date}. עד אז השרת המרוחק יכול לשחזר את החשבון ללא תופעות לוואי שליליות. אם ברצונך להסיר את כל נתוני החשבון באופן מיידי, ניתן לעשות זאת להלן.
       remove_avatar: הסרת תמונת פרופיל
       remove_header: הסרת כותרת
       removed_avatar_msg: תמונת הפרופיל של %{username} הוסרה בהצלחה
@@ -338,7 +340,7 @@ he:
       overwrite: לדרוס
       shortcode: קוד קצר
       shortcode_hint: לפחות 2 תוים, אלפאנומריים או קו תחתי
-      title: יצגנים מותאמים אישית
+      title: אמוג'י שהעלינו
       uncategorized: לא מסווגים
       unlist: בטל רישום
       unlisted: לא רשומים
@@ -583,7 +585,6 @@ he:
     report_notes:
       created_msg: הערה על דו"ח נוצרה בהצלחה!
       destroyed_msg: הערה על דו"ח נמחקה בהצלחה!
-      today_at: היום, ב%{time}
     reports:
       account:
         notes:
@@ -732,6 +733,9 @@ he:
       content_retention:
         preamble: שליטה על דרך אחסון תוכן המשתמשים במסטודון.
         title: תקופת השמירה של תכנים
+      default_noindex:
+        desc_html: משפיע על כל המשתמשים/ות שלא שינו את ההגדרה הזו בעצמם
+        title: הסתרת משתמשיםות ממנוע החיפוש כברירת המחדל
       discovery:
         follow_recommendations: המלצות מעקב
         preamble: הצפה של תוכן מעניין בקבלת פני משתמשות חדשות שאולי אינן מכירות עדיין א.נשים במסטודון. ניתן לשלוט איך אפשרויות גילוי שונות עובדות על השרת שלך.
@@ -1007,6 +1011,9 @@ he:
       email_below_hint_html: אם כתובת הדוא"ל להלן לא נכונה, ניתן לשנותה כאן ולקבל דוא"ל אישור חדש.
       email_settings_hint_html: דוא"ל האישור נשלח ל-%{email}. אם כתובת הדוא"ל הזו לא נכונה, ניתן לשנותה בהגדרות החשבון.
       title: הגדרות
+    sign_in:
+      preamble_html: הכנס.י עם שם וסיסמא מאתר <strong>%{domain}</strong>. אם חשבונך מתארח בשרת אחר, לא ניתן להתחבר איתו פה.
+      title: התחבר אל %{domain}
     sign_up:
       preamble: כיוון שמסטודון מבוזרת, תוכל/י להשתמש בחשבון שלך משרתי מסטודון או רשתות תואמות אחרות אם אין לך חשבון על שרת זה.
       title: הבה ניצור לך חשבון בשרת %{domain}.
@@ -1197,6 +1204,11 @@ he:
     trending_now: נושאים חמים
   generic:
     all: הכל
+    all_items_on_page_selected_html:
+      many: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+      one: פריט <strong>%{count}</strong> נבחר בעמוד זה.
+      other: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
+      two: "<strong>%{count}</strong> פריטים נבחרו בעמוד זה."
     all_matching_items_selected_html:
       many: נבחרו <strong>%{count}</strong> פריטים שתאמו לחיפוש בעמוד זה.
       one: נבחר פריט <strong>%{count}</strong> שתאם לחיפוש בעמוד זה.
@@ -1209,6 +1221,11 @@ he:
     none: כלום
     order_by: מיין לפי
     save_changes: שמור שינויים
+    select_all_matching_items:
+      many: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
+      one: בחר.י פריט %{count} שתאם לחיפוש שלך.
+      other: בחר.י %{count} פריטים שתאמו לחיפוש שלך.
+      two: בחר. י %{count} פריטים שתאמו לחיפוש שלך.
     today: היום
     validation_errors:
       many: משהו עדיין לא בסדר! נא לעיין ב-%{count} השגיאות להלן

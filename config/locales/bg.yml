@@ -1,10 +1,10 @@
 ---
 bg:
   about:
-    about_mastodon_html: 'Социалната мрежа на бъдещето: Без реклами, без корпоративно наблюдение, с етичен дизайн и децентрализация! Притежавайте своите данни с Mastodon!'
+    about_mastodon_html: 'Социалната мрежа на бъдещето: Без реклами, без корпоративно наблюдение, с нравствено оформление и децентрализиране! Притежавайте данните си с Mastodon!'
     contact_missing: Не е зададено
     contact_unavailable: Не е приложимо
-    hosted_on: Mastodon е хостван на %{domain}
+    hosted_on: Mastodon е разположен на хост %{domain}
     title: Относно
   accounts:
     follow: Последвай
@@ -31,9 +31,9 @@ bg:
       created_msg: Бележката за модерация е създадена успешно!
       destroyed_msg: Бележката за модерация е успешно унищожена!
     accounts:
-      add_email_domain_block: Блокиране на имейл домейн
+      add_email_domain_block: Блокиране на домейн на имейл
       approve: Одобряване
-      approved_msg: Успешно одобрена заявка за регистрация на %{username}
+      approved_msg: Успешно одобрена заявка за регистриране на %{username}
       are_you_sure: Сигурни ли сте?
       avatar: Аватар
       by_domain: Домейн
@@ -59,7 +59,7 @@ bg:
       destroyed_msg: Данните на %{username} вече са на опашка за незабавно изтриване
       disable: Замразяване
       disable_sign_in_token_auth: Изключване на удостоверяването с маркер по имейл
-      disable_two_factor_authentication: Изключване на 2FA
+      disable_two_factor_authentication: Изключване на 2факт. удостов.
       disabled: Замразено
       display_name: Показвано име
       domain: Домейн
@@ -81,7 +81,7 @@ bg:
       location:
         all: Всичко
         local: Локално
-        remote: Дистанционно
+        remote: Отдалечено
         title: Местоположение
       login_status: Състояние на вход
       media_attachments: Прикачена мултимедия
@@ -91,11 +91,11 @@ bg:
       moderation:
         active: Активно
         all: Всичко
-        pending: Чакащо
+        pending: Чака
         silenced: Ограничено
         suspended: Спряно
-        title: Модерация
-      moderation_notes: Модераторни бележки
+        title: Модериране
+      moderation_notes: Бележки за модериране
       most_recent_activity: Последна дейност
       most_recent_ip: Последен IP
       no_account_selected: Нито един акаунт не е променен, тъй като нито един не е избран
@@ -106,23 +106,23 @@ bg:
       perform_full_suspension: Спиране
       previous_strikes: Предишни провинения
       previous_strikes_description_html:
-        one: "Този профил има \n <strong>едно</strong> провинение."
-        other: Този профил има <strong>%{count}</strong> провинения.
+        one: Този акаунт има <strong>едно</strong> провинение.
+        other: Този акунт има <strong>%{count}</strong> провинения.
       promote: Повишаване
       protocol: Протокол
       public: Публично
       push_subscription_expires: PuSH абонаментът изтича
       redownload: Опресняване на профил
-      redownloaded_msg: Успешно обновяване на профила на %{username} от източника
+      redownloaded_msg: Успешно опреснен профил на %{username} от източника
       reject: Отхвърляне
       rejected_msg: Успешно отхвърлена заявка за регистрация на %{username}
       remove_avatar: Премахване на аватар
-      remove_header: Премахване на заглавна част
-      removed_avatar_msg: Успешно премахване на изображението на аватара на %{username}
-      removed_header_msg: Успешно премахване на заглавното изображение на %{username}
+      remove_header: Премахване на заглавката
+      removed_avatar_msg: Успешно премахнат образ на аватара на %{username}
+      removed_header_msg: Успешно премахнат образ на заглавката на %{username}
       resend_confirmation:
         already_confirmed: Този потребител вече е потвърден
-        send: Повторно изпращане на имейла за потвърждение
+        send: Изпращане пак на е-писмо за потвърждаване
         success: Успешно изпращане на имейла за потвърждение!
       reset: Нулиране
       reset_password: Нулиране на паролата
@@ -147,7 +147,7 @@ bg:
       subscribe: Абониране
       suspend: Спиране
       suspended: Спряно
-      suspension_irreversible: Данните на този профил са безвъзвратно изтрити. Можете да възстановите достъпа на този профил, за да може да бъде отново използван, но данните отпреди няма да бъдат възстановени.
+      suspension_irreversible: Данните на този акаунт са безвъзвратно изтрити. Може да възстановите достъпа до акаунта, за да може да се използва пак, но предишните данни няма да се възстановят.
       suspension_reversible_hint_html: Този профил е преустановен и данните от него ще бъдат напълно премахнати на %{date}. До тази дата профилът може да бъде възстановен без щети. Ако желаете, по-долу можете да премахнете всички данни от профила незабавно.
       title: Акаунти
       unblock_email: Отблокиране на адреса на имейла
@@ -155,12 +155,12 @@ bg:
       unconfirmed_email: Непотвърден имейл
       undo_sensitized: Нeчувствителен
       undo_silenced: Отмяна на ограничението
-      undo_suspension: Връщане на достъпа
-      unsilenced_msg: Успешно премахване на ограниченията върху профила на %{username}
-      unsubscribe: Отписване
-      unsuspended_msg: Успешно връщане на достъпа до профила на %{username}
+      undo_suspension: Отмяна на спирането
+      unsilenced_msg: Успешна отмяна на ограниченията върху профила на %{username}
+      unsubscribe: Без абонамент
+      unsuspended_msg: Успешно връщане на достъпа до акаунта на %{username}
       username: Потребителско име
-      view_domain: Виж резюмето на домейна
+      view_domain: Преглед на обобщение за домейна
       warn: Предупреждение
       web: Уеб
       whitelisted: Позволено за федерацията
@@ -176,19 +176,19 @@ bg:
         create_announcement: Създаване на оповестяване
         create_canonical_email_block: Създаване на имейл блокировка
         create_custom_emoji: Създаване на персонализирано емоджи
-        create_ip_block: Създаване на IP правило
+        create_ip_block: Създаване на правило за IP
         create_user_role: Създаване на роля
         demote_user: Понижаване на потребител
         destroy_announcement: Изтриване на оповестяване
         destroy_canonical_email_block: Изтриване на имейл блокировка
         destroy_custom_emoji: Изтриване на персонализирано емоджи
         destroy_ip_block: Изтриване на правило за IP
-        destroy_status: Изтриване на статус
+        destroy_status: Изтриване на публикация
         destroy_unavailable_domain: Изтриване на неналичен домейн
         destroy_user_role: Унищожаване на роля
-        disable_2fa_user: Деактивиране на 2FA
+        disable_2fa_user: Изкл. на 2факт.удостов.
         disable_custom_emoji: Деактивиране на персонализирано емоджи
-        disable_user: Деактивиране на потребител
+        disable_user: Изключване на потребител
         enable_custom_emoji: Активиране на персонализирано емоджи
         enable_user: Активиране на потребител
         memorialize_account: Запомни потребителя
@@ -203,13 +203,47 @@ bg:
         update_ip_block: Обновяване на правило за IP
         update_status: Обновяване на публикация
         update_user_role: Обновяване на роля
+      actions:
+        memorialize_account_html: "%{name} превърна акаунта на %{target} във възпоменателна страница"
+        remove_avatar_user_html: "%{name} премахна аватар на %{target}"
+        reopen_report_html: "%{name} отвори пак доклада на %{target}"
+        reset_password_user_html: "%{name} нулира паролата на потребител %{target}"
+        sensitive_account_html: "%{name} означи мултимедия на %{target} като деликатна"
+        silence_account_html: "%{name} сложи ограничения на акаунта на %{target}"
+        unblock_email_account_html: "%{name} разблокира адреса на имейла на %{target}"
+        unsensitive_account_html: "%{name} размаркира мултимедия на %{target} като деликатна"
+        unsilence_account_html: "%{name} отмени ограничения на акаунта на %{target}"
+        update_announcement_html: "%{name} обнови оповестяването на %{target}"
+        update_custom_emoji_html: "%{name} обнови емоджито на %{target}"
+        update_ip_block_html: "%{name} промени правило за IP на %{target}"
+        update_status_html: "%{name} обнови публикация от %{target}"
+        update_user_role_html: "%{name} промени ролята на %{target}"
       deleted_account: изтрит акаунт
+      empty: Няма намерени дневници.
+      filter_by_action: Филтриране по действие
+      filter_by_user: Филтриране по потребител
+      title: Одитен дневник
     announcements:
+      destroyed_msg: Успешно изтрито оповестяване!
+      edit:
+        title: Редактиране на оповестянето
+      empty: Няма намерени оповестявания.
       live: На живо
+      new:
+        create: Създаване на оповестяване
+        title: Ново оповестяване
       publish: Публикуване
+      published_msg: Успешно публикувано оповестяване!
+      title: Оповестявания
+      unpublish: Без публикуване
+      unpublished_msg: Успешно скрито оповестяване!
+      updated_msg: Успешно осъвременено оповестяване!
     custom_emojis:
+      assign_category: Категоризиране
       by_domain: Домейн
+      copied_msg: Успешно създадено локално копие на емоджито
       copy: Копиране
+      copy_failed_msg: Не можа да се направи локално копие на това емоджи
       create_new_category: Създаване на нова категория
       created_msg: Успешно сътворено емоджи!
       delete: Изтриване
@@ -226,6 +260,7 @@ bg:
       listed: В списъка
       new:
         title: Добавяне на ново потребителско емоджи
+      no_emoji_selected: Нито едно емоджи не е променено, тъй като нито едно не е избрано
       not_permitted: Нямате право да извършвате това действие
       overwrite: Презаписване
       shortcode: Кратък код
@@ -256,9 +291,13 @@ bg:
       domain: Домейн
       private_comment: Личен коментар
       private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
+      reject_reports: Отхвърляне на докладите
+      reject_reports_hint: Пренебрегване на всички доклади, идващи от този домейн. Неуместни за прекратяване
       undo: Отмяна на блокиране на домейн
       view: Преглед на блокиране на домейн
     email_domain_blocks:
+      add_new: Добавяне на ново
+      created_msg: Успешно блокиран домейн на е-поща
       delete: Изтриване
       dns:
         types:
@@ -267,24 +306,36 @@ bg:
       new:
         create: Добавяне на домейн
       title: Блокирани домейни на имейл
+    export_domain_allows:
+      no_file: Няма избран файл
     export_domain_blocks:
       import:
         existing_relationships_warning: Съществуващи последвания
+      no_file: Няма избран файл
     follow_recommendations:
       language: За език
       status: Състояние
     instances:
+      availability:
+        title: Наличност
       back_to_all: Всичко
       back_to_limited: Ограничено
       back_to_warning: Предупреждение
       by_domain: Домейн
       content_policies:
+        comment: Вътрешна бележка
         policies:
           silence: Ограничение
         policy: Политика
+        reason: Обществена причина
+        title: Политика на съдържанието
       dashboard:
+        instance_accounts_dimension: Най-следвани акаунти
+        instance_followers_measure: наши последователи там
+        instance_follows_measure: техни последователи тук
         instance_languages_dimension: Водещи езици
       delivery:
+        all: Всичко
         clear: Изчистване на грешките за доставка
         restart: Рестартиране на доставката
         stop: Спиране на доставката
@@ -327,8 +378,6 @@ bg:
       enable: Включване
       enabled: Включено
       status: Състояние
-    report_notes:
-      today_at: Днес от %{time}
     reports:
       are_you_sure: Сигурни ли сте?
       category: Категория
@@ -342,6 +391,8 @@ bg:
       mark_as_sensitive: Означаване като деликатно
       notes:
         create: Добавяне на бележка
+        create_and_resolve: Разрешаване с бележка
+        create_and_unresolve: Отваряне пак с бележка
         delete: Изтриване
         title: Бележки
       reopen: Отваряне пак на доклад
@@ -355,16 +406,43 @@ bg:
       view_profile: Преглед на профила
     roles:
       add_new: Добавяне на роля
+      assigned_users:
+        one: "%{count} потребител"
+        other: "%{count} потребители"
       categories:
         administration: Администрация
+        devops: Развитие и операции
         invites: Покани
         moderation: Mодериране
+        special: Специални
       delete: Изтриване
+      edit: Промяна на ролята на „%{name}“
+      everyone: Разрешения по подразбиране
+      permissions_count:
+        one: "%{count} разрешение"
+        other: "%{count} разрешения"
       privileges:
         administrator: Администратор
+        manage_federation: Управление на Федерацията
+        manage_federation_description: Позволява на потребители да блокират или позволяват федерация с други домейни, а и управление на доставаемостта
         manage_invites: Управление на поканите
+        manage_invites_description: Позволява на потребители да разглеждат и деактивират връзки за покана
         manage_reports: Управление на докладите
+        manage_reports_description: Позволява на потребители да преглеждат доклади и да извършват модериращи действия срещу тях
         manage_roles: Управление на ролите
+        manage_roles_description: Позволява на потребителите да управляват и разпределят роли под техните
+        manage_rules: Управление на правилата
+        manage_rules_description: Позволява на потребителите да променят правилата на сървъра
+        manage_settings: Управление на настройките
+        manage_settings_description: Позволява на потребителите да променят настройки на сайта
+        manage_user_access: Управление на потребителския достъп
+        manage_users: Управление на потребителите
+        manage_webhooks: Управление на уебкуките
+        manage_webhooks_description: Позволява на потребителите да настройват уебкуки за административни събития
+        view_audit_log: Преглед на одитния дневник
+        view_audit_log_description: Позволява на потребителите да виждат историята на административни действия в сървъра
+        view_devops: Развитие и операции
+        view_devops_description: Позволява на потребителите да имат достъп до таблото за управл. на Sidekiq и pgHero
       title: Роли
     rules:
       add_new: Добавяне на правило
@@ -375,15 +453,27 @@ bg:
     settings:
       about:
         manage_rules: Управление на правилата на сървъра
+        title: Относно
       appearance:
+        preamble: Настройване на мрежовия интерфейс на Mastodon.
         title: Външен вид
+      branding:
+        title: Брандиране
       discovery:
+        profile_directory: Директория на профила
         public_timelines: Публични инфопотоци
         title: Откриване
         trends: Актуални
+      domain_blocks:
+        all: До всеки
+        disabled: До никого
+        users: До влезнали локални потребители
       registrations:
+        preamble: Управлява кой може да създава акаунт на сървъра ви.
         title: Регистрации
       title: Настройки на сървъра
+    site_uploads:
+      delete: Изтриване на качения файл
     statuses:
       account: Автор
       application: Приложение
@@ -433,10 +523,16 @@ bg:
       events: Събития
       status: Състояние
       title: Уебкуки
+      webhook: Уебкука
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: за изтриване на публикациите им
+        mark_statuses_as_sensitive: за означаване на публикациите им като деликатни
         none: предупреждение
+        sensitive: за означаване на акаунтите като деликатни
+        silence: за слагане на органичение на акаунтите им
+        suspend: за спиране на акаунтите им
   appearance:
     advanced_web_interface: Разширен уеб интерфейс
     advanced_web_interface_hint: 'Ако желаете да се възползвате от пълната ширина на своя екран, разширеният уеб интерфейс ще ви позволи да настроите най-различни колони, за да виждате едновременно множество информация: Начало, известия, федериран инфопоток, множество списъци и хаштагове.'
@@ -469,15 +565,19 @@ bg:
     forgot_password: Забравих си паролата
     link_to_otp: Въведете двуфакторния код от телефона си или кода за възстановяване
     link_to_webauth: Използвайте ключа си за сигурност на устройството
+    log_in_with: Влизане с
     login: Влизане
     logout: Излизане
     migrate_account: Преместване в различен акаунт
     migrate_account_html: Ако желаете да пренасочите този акаунт към друг, можете да <a href="%{path}">настроите това тук</a>.
     or_log_in_with: Или влизане с помощта на
+    privacy_policy_agreement_html: Прочетох и има съгласието ми за <a href="%{privacy_policy_path}" target="_blank">политиката за поверителност</a>
     register: Регистрация
     registration_closed: "%{instance} не приема нови членуващи"
     resend_confirmation: Изпрати отново инструкции за потвърждение
     reset_password: Подновяване на паролата
+    rules:
+      title: Някои основни правила.
     security: Сигурност
     set_new_password: Задаване на нова парола
     setup:
@@ -875,7 +975,7 @@ bg:
       unlisted_long: Всеки ги вижда, но са скрити от публичните инфопотоци
   statuses_cleanup:
     enabled: Автоматично изтриване на стари публикации
-    enabled_hint: Автоматично изтрива публикациите ви щом достигнат указания възрастов праг, освен ако не съвпадне с някое от изключенията долу
+    enabled_hint: Автоматично изтрива публикациите ви, щом достигнат указания възрастов праг, освен ако не съвпаднат с някое от изключенията долу
     exceptions: Изключения
     explanation: Тъй като изтриването на публикации е скъпа операция, това се прави бавно във времето, когато сървърът иначе не е зает. Поради тази причина публикациите ви може да се изтрият известно време след като достигнат възрастовия праг.
     ignore_favs: Игнориране на харесвания
@@ -950,6 +1050,9 @@ bg:
         disable: Акаунтът е замразен
         mark_statuses_as_sensitive: Публикацията отбелязана като деликатна
         none: Предупреждение
+        sensitive: Акаунтът е означен като деликатен
+        silence: Акаунтът има ограничение
+        suspend: Акаунтът е спрян
     welcome:
       edit_profile_action: Настройване на профила
       explanation: Ето няколко стъпки за начало
@@ -976,6 +1079,8 @@ bg:
       error: Възникна проблем, изтривайки ключа си за сигурност. Опитайте пак.
       success: Вашият ключ за сигурност беше изтрит успешно.
     invalid_credential: Невалиден ключ за сигурност
+    nickname_hint: Въведете прякор на новия си ключ за сигурност
+    not_enabled: Още не сте включили WebAuthn
     not_supported: Този браузър не поддържа ключове за сигурност
     otp_required: Първо включете двуфакторното удостоверяване, за да използвате ключовете за сигурност.
     registered_on: Регистрирано на %{date}

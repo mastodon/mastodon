@@ -49,7 +49,7 @@ zh-HK:
         title: 更改 %{username} 身份
       confirm: 確定
       confirmed: 已確定
-      confirming: 確定
+      confirming: 確定中
       custom: 自訂
       delete: 刪除資料
       deleted: 已刪除
@@ -113,6 +113,8 @@ zh-HK:
       redownloaded_msg: 成功重新載入 %{username} 的個人資料頁面
       reject: 拒絕
       rejected_msg: 成功拒絕了 %{username} 的新帳號申請
+      remote_suspension_irreversible: 帳戶已永久刪除
+      remote_suspension_reversible_hint_html: 此帳戶已被停權及所有數據將會於 %{date} 被刪除。在此之前，你仍可以完全回復帳號。如果你想即時刪除此帳戶的資料，可以在下面進行操作。
       remove_avatar: 刪除頭像
       remove_header: 移除頁面頂端
       removed_avatar_msg: 成功刪除 %{username} 的頭像
@@ -550,7 +552,6 @@ zh-HK:
     report_notes:
       created_msg: 舉報備註已建立！
       destroyed_msg: 舉報備註已刪除！
-      today_at: 今天 %{time}
     reports:
       account:
         notes:
@@ -690,6 +691,9 @@ zh-HK:
       content_retention:
         preamble: 控制使用者生成的內容如何儲存在 Mastodon。
         title: 內容留存
+      default_noindex:
+        desc_html: 影響所有未自行設定的用戶
+        title: 預設用戶不在搜尋引擎索引之內
       discovery:
         follow_recommendations: 追蹤建議
         preamble: 呈現有趣的內容有助於吸引不認識 Mastodon 的使用者新手上路。控制各種探索功能在你的伺服器上的運作方式。

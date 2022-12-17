@@ -561,7 +561,6 @@ gl:
     report_notes:
       created_msg: A nota da denuncia creouse de xeito correcto!
       destroyed_msg: A nota da denuncia borrouse de xeito correcto!
-      today_at: Hoxe ás %{time}
     reports:
       account:
         notes:
@@ -578,7 +577,7 @@ gl:
         suspend_description_html: O perfil e tódolos seus contidos será inaccesbles e finalmente eliminados. A interacción coa conta non será posible. Reversible durante 30 días.
       actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
       add_to_report: Engadir máis á denuncia
-      are_you_sure: Estás seguro?
+      are_you_sure: Tes certeza?
       assign_to_self: Asignarme
       assigned: Moderador asignado
       by_target_domain: Dominio da conta denunciada
@@ -704,6 +703,9 @@ gl:
       content_retention:
         preamble: Controla como se gardan en Mastodon os contidos creados polas usuarias.
         title: Retención do contido
+      default_noindex:
+        desc_html: Aféctalle a tódalas usuarias que non cambiaron este axuste elas mesmas
+        title: Por omisión exclúe as usuarias do indexado por servidores de busca
       discovery:
         follow_recommendations: Recomendacións de seguimento
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
