@@ -302,6 +302,7 @@ bg:
         title: Ново блокиране на домейн
       not_permitted: Нямате право да извършвате това действие
       obfuscate: Скриване на името на домейна
+      obfuscate_hint: Частично скриване на името на домейна в списъка, ако е включена опцията за рекламиране на списъка с ограничения на домейни
       private_comment: Личен коментар
       private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
       public_comment: Публичен коментар
@@ -327,10 +328,16 @@ bg:
       import:
         existing_relationships_warning: Съществуващи последвания
         private_comment_template: Внесено от %{source} на %{date}
+        title: Импортиране на блокиранията на домейни
+      new:
+        title: Импортиране на блокиранията на домейни
       no_file: Няма избран файл
     follow_recommendations:
+      description_html: "<strong>Препоръките за следване помагат на новите потребители бързо да намерят ново съдържание</strong>. Когато един потребител не е създавал достатъчно връзки, за да формира свои собствени препоръки за следване, тези акаунти ще бъдат препоръчани. Акаунтите ще бъдат генерирани всеки ден на базата на най-голяма скорошна ангажираност и най-голям брой местни последователи за даден език."
       language: За език
       status: Състояние
+      title: Препоръки за следване
+      unsuppress: Възстановяване на препоръките за следване
     instances:
       availability:
         title: Наличност
@@ -341,15 +348,22 @@ bg:
       content_policies:
         comment: Вътрешна бележка
         policies:
+          reject_media: Отхвърляне на мултимедия
+          reject_reports: Отхвърляне на докладите
           silence: Ограничение
+          suspend: Преустановяване
         policy: Политика
         reason: Обществена причина
         title: Политика на съдържанието
       dashboard:
         instance_accounts_dimension: Най-следвани акаунти
+        instance_accounts_measure: запазени акаунти
         instance_followers_measure: наши последователи там
         instance_follows_measure: техни последователи тук
         instance_languages_dimension: Водещи езици
+        instance_media_attachments_measure: запазена прикачена мултимедия
+        instance_reports_measure: доклади за тях
+        instance_statuses_measure: запазени публикации
       delivery:
         all: Всичко
         clear: Изчистване на грешките за доставка
@@ -370,6 +384,7 @@ bg:
       total_blocked_by_us: Блокирано от нас
       total_followed_by_them: Последвани от тях
       total_followed_by_us: Последвано от нас
+      total_storage: Прикачена мултимедия
     invites:
       deactivate_all: Деактивиране на всички
       filter:
@@ -391,6 +406,7 @@ bg:
         '94670856': 3 години
       new:
         title: Създаване на ново правило за IP
+      title: IP правила
     relationships:
       title: "Отношения на %{acct}"
     relays:
@@ -402,6 +418,7 @@ bg:
       status: Състояние
     reports:
       action_log: Одитен дневник
+      action_taken_by: Действие, предприето от
       are_you_sure: Сигурни ли сте?
       category: Категория
       comment:
@@ -611,6 +628,13 @@ bg:
         sensitive: за означаване на акаунтите като деликатни
         silence: за слагане на органичение на акаунтите им
         suspend: за спиране на акаунтите им
+    new_trends:
+      new_trending_tags:
+        title: Нашумели хаштагове
+      subject: Нови нашумели, готови за преглед в %{instance}
+  aliases:
+    add_new: Създайте псевдоним
+    empty: Нямате псевдоними.
   appearance:
     advanced_web_interface: Разширен уеб интерфейс
     advanced_web_interface_hint: 'Ако желаете да се възползвате от пълната ширина на своя екран, разширеният уеб интерфейс ще ви позволи да настроите най-различни колони, за да виждате едновременно множество информация: Начало, известия, федериран инфопоток, множество списъци и хаштагове.'
@@ -632,6 +656,7 @@ bg:
     view_status: Преглед на публикацията
   applications:
     warning: Бъдете внимателни с тези данни. Никога не ги споделяйте с никого!
+    your_token: Вашият код за достъп
   auth:
     change_password: Парола
     delete_account: Изтриване на акаунта
@@ -739,6 +764,7 @@ bg:
       size: Размер
     blocks: Вашите блокирания
     bookmarks: Отметки
+    csv: CSV
     lists: Списъци
     mutes: Заглушавания
     storage: Съхранение на мултимедия
@@ -923,6 +949,7 @@ bg:
   reactions:
     errors:
       limit_reached: Ограничението на различни реакции е достигнат
+      unrecognized_emoji: не е разпознато емоджи
   relationships:
     activity: Дейност на акаунта
     dormant: Неактивен
@@ -946,7 +973,10 @@ bg:
     content_warning: 'Предупреждение за съдържанието:'
     descriptions:
       account: Публични публикации от @%{acct}
+      tag: 'Публични публикации с таг #%{hashtag}'
   scheduled_statuses:
+    over_daily_limit: Завишили сте ограничението от %{limit} планирани публикации за днес
+    over_total_limit: Завишили сте ограничението от %{limit} планирани публикации
     too_soon: Заплануваната дата трябва да е в бъдеще
   sessions:
     activity: Последна активност
