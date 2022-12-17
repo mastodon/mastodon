@@ -287,8 +287,21 @@ bg:
       appeals:
         empty: Няма намерени обжалвания.
         title: Жалби
+    domain_allows:
+      export: Експортиране
+      import: Импортиране
     domain_blocks:
       domain: Домейн
+      export: Експортиране
+      import: Импортиране
+      new:
+        severity:
+          noop: Без
+          silence: Ограничаване
+          suspend: Преустановяване
+        title: Ново блокиране на домейн
+      not_permitted: Нямате право да извършвате това действие
+      obfuscate: Скриване на името на домейна
       private_comment: Личен коментар
       private_comment_hint: Коментирането за това ограничение на домейна за вътрешна употреба от модераторите.
       public_comment: Публичен коментар
