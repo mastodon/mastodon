@@ -70,7 +70,6 @@ module.exports = {
     'jsx-quotes': ['error', 'prefer-single'],
     'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
-    'no-cond-assign': 'error',
     'no-console': [
       'warn',
       {
@@ -81,9 +80,6 @@ module.exports = {
       },
     ],
     'no-empty': 'off',
-    'no-fallthrough': 'error',
-    'no-irregular-whitespace': 'error',
-    'no-mixed-spaces-and-tabs': 'warn',
     'no-nested-ternary': 'warn',
     'no-prototype-builtins': 'off',
     'no-restricted-properties': [
@@ -93,8 +89,6 @@ module.exports = {
     ],
     'no-self-assign': 'off',
     'no-trailing-spaces': 'warn',
-    'no-undef': 'error',
-    'no-unreachable': 'error',
     'no-unused-expressions': 'error',
     'no-unused-vars': [
       'error',
@@ -114,7 +108,6 @@ module.exports = {
     ],
     quotes: ['error', 'single'],
     semi: 'error',
-    strict: 'off',
     'valid-typeof': 'error',
 
     'react/jsx-boolean-value': 'error',
