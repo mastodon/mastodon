@@ -116,6 +116,7 @@ bg:
       reject: Отхвърляне
       rejected_msg: Успешно отхвърлена заявка за регистрация на %{username}
       remote_suspension_irreversible: Данните за този акаунт са изтрити безвъзвратно.
+      remote_suspension_reversible_hint_html: Акаунтът е бил преустановен на своя сървър и данните ще бъдат напълно премахнати на %{date}. Дотогава отдалеченият сървър може да възстанови този акаунт без щети. Ако желаете да премахнете всички данни за акаунта незабавно, можете да го сторите по-долу.
       remove_avatar: Премахване на аватар
       remove_header: Премахване на заглавката
       removed_avatar_msg: Успешно премахнат образ на аватара на %{username}
@@ -176,34 +177,83 @@ bg:
         create_announcement: Създаване на оповестяване
         create_canonical_email_block: Създаване на имейл блокировка
         create_custom_emoji: Създаване на персонализирано емоджи
+        create_domain_allow: Създаване на позволение за домейна
+        create_domain_block: Създаване на блокиране за домейна
+        create_email_domain_block: Създаване за блокиране на имейл домейна
         create_ip_block: Създаване на правило за IP
+        create_unavailable_domain: Създаване на недостъпен домейн
         create_user_role: Създаване на роля
         demote_user: Понижаване на потребител
         destroy_announcement: Изтриване на оповестяване
         destroy_canonical_email_block: Изтриване на имейл блокировка
         destroy_custom_emoji: Изтриване на персонализирано емоджи
+        destroy_domain_allow: Изтриване на позволението за домейн
+        destroy_domain_block: Изтриване на блокирането за домейна
+        destroy_email_domain_block: Изтриване на блокирането за имейл домейна
+        destroy_instance: Прочистване на домейна
         destroy_ip_block: Изтриване на правило за IP
         destroy_status: Изтриване на публикация
         destroy_unavailable_domain: Изтриване на неналичен домейн
         destroy_user_role: Унищожаване на роля
         disable_2fa_user: Изкл. на 2факт.удостов.
         disable_custom_emoji: Деактивиране на персонализирано емоджи
+        disable_sign_in_token_auth_user: Изключване на удостоверяването с код по имейл за потребителя
         disable_user: Изключване на потребител
         enable_custom_emoji: Активиране на персонализирано емоджи
+        enable_sign_in_token_auth_user: Включване на удостоверяването с код по имейл за потребителя
         enable_user: Активиране на потребител
         memorialize_account: Възпоменаване на акаунта
         promote_user: Повишаване на потребител
+        reject_appeal: Отхвърляне на молбата
+        reject_user: Отхвърляне на потребителя
         remove_avatar_user: Премахване на аватар
         reopen_report: Повторно отваряне на доклад
         resend_user: Повторно изпращане на имейла за потвърждение
         reset_password_user: Нулиране на парола
+        resolve_report: Отстраняване на доклада
+        sensitive_account: Деликатен акаунт
         silence_account: Ограничаване на акаунта
         suspend_account: Преустановяване на акаунта
+        unassigned_report: Освобождаване на доклада
         unblock_email_account: Разблокирай Email адреса
+        unsensitive_account: Не е деликатен акаунт
+        unsilence_account: Отмяна на ограничението за акаунта
+        unsuspend_account: Връщане на акаунта
+        update_announcement: Актуализиране на обявлението
+        update_custom_emoji: Обновяване на емоджитата по избор
+        update_domain_block: Обновяване на блокирането за домейна
         update_ip_block: Обновяване на правило за IP
         update_status: Обновяване на публикация
         update_user_role: Обновяване на роля
       actions:
+        approve_appeal_html: "%{name} одобри молбата за решение за модериране от %{target}"
+        approve_user_html: "%{name} одобри записването от %{target}"
+        assigned_to_self_report_html: "%{name} възложи доклада %{target} на себе си"
+        change_email_user_html: "%{name} промени имейл адреса на потребителя %{target}"
+        change_role_user_html: "%{name} промени ролята на %{target}"
+        confirm_user_html: "%{name} потвърди имейл адреса на потребителя %{target}"
+        create_account_warning_html: "%{name} изпрати предупреждение до %{target}"
+        create_announcement_html: "%{name} създаде ново обявление %{target}"
+        create_canonical_email_block_html: "%{name} блокира имейл с хеш %{target}"
+        create_custom_emoji_html: "%{name} качи ново емоджи %{target}"
+        create_domain_allow_html: "%{name} позволи федерирането с домейн %{target}"
+        create_domain_block_html: "%{name} блокира домейн %{target}"
+        create_email_domain_block_html: "%{name} блокира имейл домейн %{target}"
+        create_ip_block_html: "%{name} създаде правило за IP %{target}"
+        create_unavailable_domain_html: "%{name} спря доставянето до домейн %{target}"
+        create_user_role_html: "%{name} създаде %{target} роля"
+        demote_user_html: "%{name} понижи потребителя %{target}"
+        destroy_announcement_html: "%{name} изтри обявлението %{target}"
+        destroy_canonical_email_block_html: "%{name} разблокира имейла с хеш %{target}"
+        destroy_custom_emoji_html: "%{name} изтри емоджито %{target}"
+        destroy_domain_allow_html: "%{name} отмени федерирането с домейн %{target}"
+        destroy_domain_block_html: "%{name} отмени блокирането на домейн %{target}"
+        destroy_email_domain_block_html: "%{name} отмени блокирането на имейл домейн %{target}"
+        destroy_instance_html: "%{name} прочисти домейн %{target}"
+        destroy_ip_block_html: "%{name} изтри правилото за IP %{target}"
+        destroy_status_html: "%{name} премахна публикацията от %{target}"
+        destroy_unavailable_domain_html: "%{name} възстанови доставянето до домейн %{target}"
+        destroy_user_role_html: "%{name} изтри %{target} роля"
         memorialize_account_html: "%{name} превърна акаунта на %{target} във възпоменателна страница"
         remove_avatar_user_html: "%{name} премахна аватар на %{target}"
         reopen_report_html: "%{name} отвори пак доклада на %{target}"
@@ -336,10 +386,20 @@ bg:
       description_html: "<strong>Препоръките за следване помагат на новите потребители бързо да намерят ново съдържание</strong>. Когато един потребител не е създавал достатъчно връзки, за да формира свои собствени препоръки за следване, тези акаунти ще бъдат препоръчани. Акаунтите ще бъдат генерирани всеки ден на базата на най-голяма скорошна ангажираност и най-голям брой местни последователи за даден език."
       language: За език
       status: Състояние
+      suppress: Забрана на препоръките за следване
+      suppressed: Забранени
       title: Препоръки за следване
       unsuppress: Възстановяване на препоръките за следване
     instances:
       availability:
+        description_html:
+          one: Ако доставянето до домейна не е успешно за <strong>%{count} ден</strong>, няма да има последващи опити, докато не се получи доставка <em>от</em> домейна.
+          other: Ако доставянето до домейна не е успешно за <strong>%{count} дни</strong>, няма да има последващи опити, докато не се получи доставка <em>от</em> домейна.
+        failure_threshold_reached: Прага за общ брой грешки е достигнат на %{date}.
+        failures_recorded:
+          one: Неуспешен опит в %{count} ден.
+          other: Неуспешни опити в %{count} различни дни.
+        no_failures_recorded: Няма записани неуспешни опити.
         title: Наличност
       back_to_all: Всичко
       back_to_limited: Ограничено
