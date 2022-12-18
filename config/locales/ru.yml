@@ -1,4 +1,3 @@
----
 ru:
   about:
     about_mastodon_html: 'Социальная сеть будущего: никакой рекламы, слежки корпорациями, этичный дизайн и децентрализация! С Mastodon ваши данные под вашим контролем.'
@@ -9,9 +8,9 @@ ru:
   accounts:
     follow: Подписаться
     followers:
+      one: подписчик
       few: подписчика
       many: подписчиков
-      one: подписчик
       other: подписчиков
     following: подписки
     instance_actor_flash: Эта учетная запись - виртуальный пользователь, используемый для представления самого сервера, а не отдельного пользователя. Она используется для организационных целей и не может быть заморожена.
@@ -21,9 +20,9 @@ ru:
     pin_errors:
       following: Чтобы порекомендовать кого-то, надо сначала на них подписаться
     posts:
+      one: Пост
       few: поста
       many: статусов
-      one: Пост
       other: статусов
     posts_tab_heading: Посты
   admin:
@@ -60,7 +59,7 @@ ru:
       delete: Удалить данные
       deleted: Удалён
       demote: Разжаловать
-      destroyed_msg: Данные %{username} поставлены в очередь на удаление
+      destroyed_msg: "Данные %{username} поставлены в очередь на удаление"
       disable: Заморозка
       disable_sign_in_token_auth: Отключить аутентификацию по e-mail кодам
       disable_two_factor_authentication: Отключить 2FA
@@ -91,7 +90,7 @@ ru:
       media_attachments: Медиафайлы
       memorialize: Сделать мемориалом
       memorialized: Превращён в памятник
-      memorialized_msg: "%{username} успешно превращён в памятник"
+      memorialized_msg: '%{username} успешно превращён в памятник'
       moderation:
         active: Действующие
         all: Все
@@ -110,9 +109,9 @@ ru:
       perform_full_suspension: Блокировка
       previous_strikes: Предыдущие замечания
       previous_strikes_description_html:
+        one: У этой учётной записи <strong>одно</strong> замечание.
         few: У этой учётной записи <strong>%{count}</strong> замечания.
         many: У этой учётной записи <strong>%{count}</strong> замечаний.
-        one: У этой учётной записи <strong>одно</strong> замечание.
         other: У этой учетной записи <strong>%{count}</strong> замечание.
       promote: Повысить
       protocol: Протокол
@@ -122,6 +121,8 @@ ru:
       redownloaded_msg: Профиль %{username} успешно обновлен из оригинала
       reject: Отклонить
       rejected_msg: Успешно отклонено приложение для регистрации %{username}
+      remote_suspension_irreversible: Данные этого аккаунта были необратимо удалены.
+      remote_suspension_reversible_hint_html: Учётная запись была заблокирована, и данные будут полностью удалены %{date}. До этого момента её можно восстановить без каких-либо неприятных последствий. Если вы хотите немедленно удалить все данные учётной записи, вы можете сделать это ниже.
       remove_avatar: Удалить аватар
       remove_header: Убрать шапку
       removed_avatar_msg: Аватар %{username} успешно удален
@@ -352,24 +353,24 @@ ru:
       new_users: новые пользователи
       opened_reports: жалоб открыто
       pending_appeals_html:
+        one: "<strong>%{count}</strong> ожидает апелляции"
         few: "<strong>%{count}</strong> ожидают аппеляции"
         many: "<strong>%{count}</strong> ожидают апелляции"
-        one: "<strong>%{count}</strong> ожидает апелляции"
-        other: 'Ожидают апелляции: <strong>%{count}</strong>'
+        other: "Ожидают апелляции: <strong>%{count}</strong>"
       pending_reports_html:
+        one: "<strong>%{count}</strong> ожидающий отчет"
         few: "<strong>%{count}</strong> ожидающих отчета"
         many: "<strong>%{count}</strong> ожидающих отчетов"
-        one: "<strong>%{count}</strong> ожидающий отчет"
         other: "<strong>%{count}</strong> ожидающих отчетов"
       pending_tags_html:
+        one: "<strong>%{count}</strong> ожидающий хэштег"
         few: "<strong>%{count}</strong> ожидающих хэштега"
         many: "<strong>%{count}</strong> ожидающих хэштегов"
-        one: "<strong>%{count}</strong> ожидающий хэштег"
         other: "<strong>%{count}</strong> ожидающих хэштегов"
       pending_users_html:
+        one: "<strong>%{count}</strong> ожидающий пользователь"
         few: "<strong>%{count}</strong> ожидающих пользователя"
         many: "<strong>%{count}</strong> ожидающих пользователей"
-        one: "<strong>%{count}</strong> ожидающий пользователь"
         other: "<strong>%{count}</strong> ожидающих пользователей"
       resolved_reports: жалоб решено
       software: Программное обеспечение
@@ -426,9 +427,9 @@ ru:
     email_domain_blocks:
       add_new: Добавить новую
       attempts_over_week:
+        one: "%{count} попытка за последнюю неделю"
         few: "%{count} попытки за последнюю неделю"
         many: "%{count} попыток за последнюю неделю"
-        one: "%{count} попытка за последнюю неделю"
         other: "%{count} попыток регистрации за последнюю неделю"
       created_msg: E-mail домен внесён в список блокировки
       delete: Удалить
@@ -468,10 +469,11 @@ ru:
       unsuppress: Восстановить рекомендацию
     instances:
       availability:
+        failure_threshold_reached: Порог отказа достиг %{date}.
         failures_recorded:
+          one: Попытки неудачны %{count} день.
           few: Попытки неудачны уже %{count} дня.
           many: Попытки неудачны уже %{count} дней.
-          one: Попытки неудачны %{count} день.
           other: Попытки неудачны уже %{count} дней.
         no_failures_recorded: Сбоев в записи нет.
         title: Доступность
@@ -514,9 +516,9 @@ ru:
       destroyed_msg: Данные для домена %{domain} поставлены в очередь на удаление.
       empty: Домены не найдены.
       known_accounts:
+        one: "%{count} известная учётная запись"
         few: "%{count} известные учётные записи"
         many: "%{count} известных учётных записей"
-        one: "%{count} известная учётная запись"
         other: "%{count} известная учётная запись"
       moderation:
         all: Все
@@ -557,11 +559,11 @@ ru:
       no_ip_block_selected: Не было изменено ни одного IP правила, так как не было выбрано ни одного
       title: IP правила
     relationships:
-      title: Связи %{acct}
+      title: "Связи %{acct}"
     relays:
       add_new: Добавить ретранслятор
       delete: Удалить
-      description_html: "<strong>Федеративный ретранслятор</strong> – это промежуточный сервер, который передаёт большие объёмы публичных постов между серверами, которые подписываются и публикуют туда. <strong>Это может помочь небольшим и средним серверам находить записи со всей федерации</strong>, ведь в противном случае пользователям нужно будет вручную подписываться на людей с удалённых узлов."
+      description_html: <strong>Федеративный ретранслятор</strong> – это промежуточный сервер, который передаёт большие объёмы публичных постов между серверами, которые подписываются и публикуют туда. <strong>Это может помочь небольшим и средним серверам находить записи со всей федерации</strong>, ведь в противном случае пользователям нужно будет вручную подписываться на людей с удалённых узлов.
       disable: Отключить
       disabled: Отключено
       enable: Включить
@@ -580,9 +582,9 @@ ru:
     reports:
       account:
         notes:
+          one: "%{count} заметка"
           few: "%{count} заметки"
           many: "%{count} заметок"
-          one: "%{count} заметка"
           other: "%{count} заметок"
       action_log: Журнал аудита
       action_taken_by: 'Действие предпринято:'
@@ -623,7 +625,7 @@ ru:
       quick_actions_description_html: 'Выберите действие или прокрутите вниз, чтобы увидеть контент с жалобой:'
       remote_user_placeholder: удаленный пользователь из %{instance}
       reopen: Переоткрыть жалобу
-      report: Жалоба №%{id}
+      report: 'Жалоба №%{id}'
       reported_account: Учётная запись нарушителя
       reported_by: Отправитель жалобы
       resolved: Решённые
@@ -641,9 +643,9 @@ ru:
     roles:
       add_new: Добавить роль
       assigned_users:
+        one: "%{count} пользователь"
         few: "%{count} пользователя"
         many: "%{count} пользователей"
-        one: "%{count} пользователь"
         other: "%{count} пользователей"
       categories:
         administration: Администрация
@@ -657,9 +659,9 @@ ru:
       everyone: Разрешения по умолчанию
       everyone_full_description_html: Это <strong>базовая роль</strong>, касающаяся <strong>всех пользователей</strong>, даже тех, кто не имеет назначенной роли. Все другие роли наследуют разрешения от нее.
       permissions_count:
+        one: "%{count} разрешение"
         few: "%{count} разрешения"
         many: "%{count} разрешений"
-        one: "%{count} разрешение"
         other: "%{count} разрешений"
       privileges:
         administrator: Администратор
@@ -730,6 +732,7 @@ ru:
         title: Исключить пользователей из индексации поисковиками по умолчанию
       discovery:
         follow_recommendations: Рекомендации подписок
+        preamble: Наблюдение интересного контента играет важную роль при открытии новых пользователей, которые могут не знать ни одного Mastodon. Контролируйте как работают различные функции обнаружения на вашем сервере.
         profile_directory: Каталог профилей
         public_timelines: Публичные ленты
         title: Обзор
@@ -817,9 +820,9 @@ ru:
         publishers:
           no_publisher_selected: Ничего не изменилось, так как ни один издатель не был выбран
         shared_by_over_week:
+          one: Поделился один человек за последнюю неделю
           few: Поделилось %{count} человека за последнюю неделю
           many: Поделилось %{count} человек за последнюю неделю
-          one: Поделился один человек за последнюю неделю
           other: Поделился %{count} человек за последнюю неделю
         title: Актуальные ссылки
         usage_comparison: Поделились %{today} раз сегодня, по сравнению с %{yesterday} вчера
@@ -836,11 +839,12 @@ ru:
         allow_account: Разрешить автора
         disallow: Запретить пост
         disallow_account: Запретить автора
+        no_status_selected: Тенденции не были изменены, так как ни одна запись не была выбрана
         not_discoverable: Автор решил не раскрывать себя
         shared_by:
+          one: Поделились или добавили в избранное один раз
           few: Поделились или добавили в избранное %{friendly_count} раза
           many: Поделились или добавили в избранное %{friendly_count} раз
-          one: Поделились или добавили в избранное один раз
           other: Поделились или добавили в избранное %{friendly_count} раз
         title: Популярные посты
       tags:
@@ -851,6 +855,7 @@ ru:
           tag_servers_dimension: Самые популярные серверы
           tag_servers_measure: разные сервера
           tag_uses_measure: всего использований
+        description_html: Это хэштеги, которые сейчас появляются в большом количестве сообщений, которые видит ваш сервер. Это может помочь вашим пользователям узнать о том, что говорят больше всего на данный момент. Хэштеги не отображаются публично до тех пор, пока вы их не подтвердите.
         listable: Может предлагаться
         no_tag_selected: Теги небыли изменены, поскольку ни один из них не выбран
         not_listable: Не будет предлагаться
@@ -863,9 +868,9 @@ ru:
         usable: Может использоваться
         usage_comparison: Использовано %{today} сегодня, для сравнения вчера %{yesterday}
         used_by_over_week:
+          one: За последнюю неделю использовал один человек
           few: За последнюю неделю использовало %{count} человека
           many: За последнюю неделю использовало %{count} человек
-          one: За последнюю неделю использовал один человек
           other: За последнюю неделю использовал %{count} человек
       title: Популярное
       trending: Популярное
@@ -878,7 +883,7 @@ ru:
     webhooks:
       add_new: Добавить конечную точку
       delete: Удалить
-      description_html: "<strong>Вебхуки</strong> позволяют Mastodon отправлять вашим приложениям <strong>уведомления в реальном времени</strong> о выбранных происходящих событиях, а они могут <strong>обрабатывать их в автоматическом режиме</strong>."
+      description_html: <strong>Вебхуки</strong> позволяют Mastodon отправлять вашим приложениям <strong>уведомления в реальном времени</strong> о выбранных происходящих событиях, а они могут <strong>обрабатывать их в автоматическом режиме</strong>.
       disable: Отключить
       disabled: Отключено
       edit: Редактировать вебхук
@@ -886,9 +891,9 @@ ru:
       enable: Включить
       enabled: Активен
       enabled_events:
+        one: '%{count} событие включено'
         few: "%{count} события включено"
         many: "%{count} событий включено"
-        one: "%{count} событие включено"
         other: "%{count} событий включено"
       events: События
       new: Новый вебхук
@@ -998,6 +1003,8 @@ ru:
       email_below_hint_html: Если ниже указан неправильный адрес, вы можете исправить его здесь и получить новое письмо подтверждения.
       email_settings_hint_html: Письмо с подтверждением было отправлено на %{email}. Если адрес указан неправильно, его можно поменять в настройках учётной записи.
       title: Установка
+    sign_in:
+      title: Войти в %{domain}
     sign_up:
       preamble: С учётной записью на этом сервере Mastodon вы сможете следить за любым другим пользователем в сети, независимо от того, где размещён их аккаунт.
       title: Зарегистрируйтесь в %{domain}.
@@ -1159,20 +1166,20 @@ ru:
       expires_in: Истекает через %{distance}
       expires_on: Истекает %{date}
       keywords:
+        one: "%{count} ключевое слово"
         few: "%{count} ключевых слова"
         many: "%{count} ключевых слов"
-        one: "%{count} ключевое слово"
         other: "%{count} ключевых слов"
       statuses:
+        one: "%{count} пост"
         few: "%{count} поста"
         many: "%{count} постов"
-        one: "%{count} пост"
-        other: 'Постов: %{count}'
+        other: "Постов: %{count}"
       statuses_long:
-        few: Скрыто %{count} отдельных поста
-        many: Скрыто %{count} отдельных постов
-        one: Скрыт %{count} отдельный пост
-        other: 'Скрыто отдельных постов: %{count}'
+        one: "Скрыт %{count} отдельный пост"
+        few: "Скрыто %{count} отдельных поста"
+        many: "Скрыто %{count} отдельных постов"
+        other: "Скрыто отдельных постов: %{count}"
       title: Фильтры
     new:
       save: Сохранить новый фильтр
@@ -1196,15 +1203,15 @@ ru:
     order_by: Сортировка
     save_changes: Сохранить изменения
     select_all_matching_items:
+      one: Выберите %{count} предмет, совпадающий вашему поисковому запросу.
       few: Выберите %{count} предмета, совпадающих вашему поисковому запросу.
       many: Выберите %{count} предметов, совпадающих вашему поисковому запросу.
-      one: Выберите %{count} предмет, совпадающий вашему поисковому запросу.
       other: Выберите все %{count} предмет(-ов), совпадающий(-их) вашему поисковому запросу.
     today: сегодня
     validation_errors:
+      one: Что-то здесь не так! Пожалуйста, прочитайте об ошибке ниже
       few: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
       many: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
-      one: Что-то здесь не так! Пожалуйста, прочитайте об ошибке ниже
       other: Что-то здесь не так! Пожалуйста, прочитайте о %{count} ошибках ниже
   html_validator:
     invalid_markup: 'невалидная разметка HTML: %{error}'
@@ -1240,9 +1247,9 @@ ru:
     generate: Сгенерировать
     invited_by: 'Вас пригласил(а):'
     max_uses:
+      one: '%{count} раз'
       few: "%{count} раза"
       many: "%{count} раз"
-      one: "%{count} раз"
       other: "%{count} раза"
     max_uses_prompt: Без ограничения
     prompt: Создавайте и делитесь ссылками с другими, чтобы предоставить им доступом к этому узлу.
@@ -1315,7 +1322,7 @@ ru:
       sign_up:
         subject: "%{name} зарегистрирован"
     favourite:
-      body: "%{name} добавил(а) ваш пост в избранное:"
+      body: '%{name} добавил(а) ваш пост в избранное:'
       subject: "%{name} добавил(а) ваш пост в избранное"
       title: Понравившийся статус
     follow:
@@ -1325,12 +1332,12 @@ ru:
     follow_request:
       action: Управление запросами на подписку
       body: "%{name} отправил(а) вам запрос на подписку"
-      subject: "%{name} хочет подписаться на вас"
+      subject: '%{name} хочет подписаться на вас'
       title: Новый запрос на подписку
     mention:
       action: Ответить
       body: 'Вас упомянул(а) %{name} в:'
-      subject: "%{name} упомянул(а) вас"
+      subject: '%{name} упомянул(а) вас'
       title: Новое упоминание
     poll:
       subject: Опрос %{name} завершился
@@ -1490,28 +1497,28 @@ ru:
   statuses:
     attached:
       audio:
+        one: "%{count} аудиозапись"
         few: "%{count} аудиозаписи"
         many: "%{count} аудиозаписей"
-        one: "%{count} аудиозапись"
         other: "%{count} аудиозаписи"
       description: 'Вложение: %{attached}'
       image:
+        one: "%{count} изображение"
         few: "%{count} изображения"
         many: "%{count} изображений"
-        one: "%{count} изображение"
         other: "%{count} изображений"
       video:
+        one: "%{count} видео"
         few: "%{count} видео"
         many: "%{count} видео"
-        one: "%{count} видео"
         other: "%{count} видео"
     boosted_from_html: Продвижение польз. %{acct_link}
     content_warning: 'Спойлер: %{warning}'
     default_language: Тот же, что язык интерфейса
     disallowed_hashtags:
+      one: 'содержался запрещённый хэштег: %{tags}'
       few: 'содержались запрещённые хэштеги: %{tags}'
       many: 'содержались запрещённые хэштеги: %{tags}'
-      one: 'содержался запрещённый хэштег: %{tags}'
       other: 'содержались запрещённые хэштеги: %{tags}'
     edited_at_html: Редактировано %{date}
     errors:
@@ -1525,14 +1532,14 @@ ru:
       reblog: Нельзя закрепить продвинутый пост
     poll:
       total_people:
+        one: "%{count} человек"
         few: "%{count} человека"
         many: "%{count} человек"
-        one: "%{count} человек"
         other: "%{count} человек"
       total_votes:
+        one: "%{count} голос"
         few: "%{count} голоса"
         many: "%{count} голосов"
-        one: "%{count} голос"
         other: "%{count} голосов"
       vote: Голосовать
     show_more: Развернуть
@@ -1624,6 +1631,7 @@ ru:
       subject: Ваше обжалование от %{date} была одобрено
       title: Обжалование одобрено
     appeal_rejected:
+      explanation: Апелляция на разблокировку против вашей учетной записи %{strike_date}, которую вы подали на %{appeal_date}, была одобрена. Ваша учетная запись восстановлена.
       subject: Ваше обжалование от %{date} отклонено
       title: Обжалование отклонено
     backup_ready:
@@ -1656,7 +1664,7 @@ ru:
         delete_statuses: Опубликованные вами с учётной записи %{acct} посты были удалены
         disable: Ваша учётная запись %{acct} заморожена
         mark_statuses_as_sensitive: Ваши сообщения в %{acct} были отмечены как деликатные
-        none: "%{acct} вынесено предупреждение"
+        none: '%{acct} вынесено предупреждение'
         sensitive: Ваши сообщения в %{acct} будут отмечены с этого момента как деликатные
         silence: На учётную запись %{acct} наложены ограничения
         suspend: Ваша учётная запись %{acct} была заблокирована
