@@ -55,7 +55,14 @@ module Omniauthable
 
       user = User.new(user_params_from_auth(email, auth))
 
-      user.account.avatar_remote_url = auth.info.image if /\A#{URI::DEFAULT_PARSER.make_regexp(%w(http https))}\z/.match?(auth.info.image)
+      begin
+        if /\A#{URI::DEFAULT_PARSER.make_regexp(%w(http https))}\z/.match?(auth.info.image)
+          user.account.avatar_remote_url = auth.info.image
+        end
+      rescue Mastodon::UnexpectedResponseError
+        user.account.avatar_remote_url = nil
+      end
+
       user.skip_confirmation! if email_is_verified
       user.save!
       user
