@@ -17,6 +17,7 @@ class Webhook < ApplicationRecord
   EVENTS = %w(
     account.created
     report.created
+    status.created
   ).freeze
 
   scope :enabled, -> { where(enabled: true) }

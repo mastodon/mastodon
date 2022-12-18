@@ -318,6 +318,7 @@ class Status < ApplicationRecord
   before_validation :set_local
 
   after_create :set_poll_id
+  after_create :send_webhook
 
   class << self
     def selectable_visibilities
@@ -470,6 +471,10 @@ class Status < ApplicationRecord
 
   def set_poll_id
     update_column(:poll_id, poll.id) if association(:poll).loaded? && poll.present?
+  end
+
+  def send_webhook
+    TriggerWebhookWorker.perform_async('status.created', 'Status', self.id)
   end
 
   def set_visibility
