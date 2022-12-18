@@ -440,16 +440,18 @@ GEM
     omniauth-saml (1.10.3)
       omniauth (~> 1.3, >= 1.3.2)
       ruby-saml (~> 1.9)
-    openid_connect (1.3.0)
+    openid_connect (2.2.0)
       activemodel
       attr_required (>= 1.0.0)
-      json-jwt (>= 1.5.0)
-      rack-oauth2 (>= 1.6.1)
-      swd (>= 1.0.0)
+      faraday (>= 2.0)
+      faraday-follow_redirects
+      json-jwt (>= 1.16)
+      rack-oauth2 (>= 2.2)
+      swd (>= 2.0)
       tzinfo
       validate_email
       validate_url
-      webfinger (>= 1.0.1)
+      webfinger (>= 2.0)
     openssl (3.0.0)
     openssl-signature_algorithm (1.2.1)
       openssl (> 2.0, < 3.1)
