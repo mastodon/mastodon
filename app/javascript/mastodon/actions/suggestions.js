@@ -21,14 +21,14 @@ export function fetchSuggestions(withRelationships = false) {
       }
     }).catch(error => dispatch(fetchSuggestionsFail(error)));
   };
-};
+}
 
 export function fetchSuggestionsRequest() {
   return {
     type: SUGGESTIONS_FETCH_REQUEST,
     skipLoading: true,
   };
-};
+}
 
 export function fetchSuggestionsSuccess(suggestions) {
   return {
@@ -36,7 +36,7 @@ export function fetchSuggestionsSuccess(suggestions) {
     suggestions,
     skipLoading: true,
   };
-};
+}
 
 export function fetchSuggestionsFail(error) {
   return {
@@ -45,7 +45,7 @@ export function fetchSuggestionsFail(error) {
     skipLoading: true,
     skipAlert: true,
   };
-};
+}
 
 export const dismissSuggestion = accountId => (dispatch, getState) => {
   dispatch({

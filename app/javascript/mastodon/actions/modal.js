@@ -7,7 +7,7 @@ export function openModal(type, props) {
     modalType: type,
     modalProps: props,
   };
-};
+}
 
 export function closeModal(type, options = { ignoreFocus: false }) {
   return {
@@ -15,4 +15,4 @@ export function closeModal(type, options = { ignoreFocus: false }) {
     modalType: type,
     ignoreFocus: options.ignoreFocus,
   };
-};
+}
