@@ -79,7 +79,7 @@ class Item extends React.PureComponent {
       e.preventDefault();
       this.setState({ showAltText: this.state.showAltText ? false : true });
     }
-    
+
     e.stopPropagation();
   }
 
@@ -142,17 +142,17 @@ class Item extends React.PureComponent {
     let thumbnail = '';
 
     const altText = attachment.get('description');
-    
+
     const altTextModal = (mediaType) => (
-      <div className="alt-text-modal">
-        <p className="alt-text">
+      <div className='alt-text-modal'>
+        <p className='alt-text'>
           <b>
-            {"Alt text: "}
+            {'Alt text: '}
           </b>
           {altText}
         </p>
         <button
-          className="exit-alt-text-button"
+          className='exit-alt-text-button'
           onClick={this.handleAltText}
         >
           Return to {mediaType}
@@ -225,7 +225,7 @@ class Item extends React.PureComponent {
 
       thumbnail = (
         <>
-          {altText && altTextButton("gif")}
+          {altText && altTextButton('gif')}
           <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
             <video
               className='media-gallery__item-gifv-thumbnail'
@@ -258,7 +258,7 @@ class Item extends React.PureComponent {
           })}
         />
         {visible && !this.state.showAltText && thumbnail}
-        {this.state.showAltText && altTextModal(attachment.get('type') === 'gifv' ? "gif" : "image")}
+        {this.state.showAltText && altTextModal(attachment.get('type') === 'gifv' ? 'gif' : 'image')}
       </div>
     );
   }
