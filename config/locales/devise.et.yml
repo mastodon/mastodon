@@ -5,7 +5,7 @@ et:
       send_instructions: Te saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
       send_paranoid_instructions: Kui teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
     failure:
-      already_authenticated: Te olete juba sisse loginud.
+      already_authenticated: Oled juba sisse loginud.
       inactive: Teie konto pole veel aktiveeritud.
       invalid: Valed %{authentication_keys} või salasõna.
       last_attempt: Teil on veel üks katse kuni teie konto on lukustatud.
@@ -19,19 +19,19 @@ et:
       confirmation_instructions:
         action: Kinnitage e-postiaadress
         action_with_app: Kinnita ja naase %{app}
-        explanation: Te olete loonud %{host} konto selle e-postiaadressiga. Te olete ühe kliki kaugusel selle aktiveerimisest. Kui see polnud teie, palun eirake seda kirja.
+        explanation: Oled loonud %{host} konto selle e-postiaadressiga. Oled ühe kliki kaugusel selle aktiveerimisest. Kui see polnud sina, palun eira seda kirja.
         explanation_when_pending: "Esitasite taotluse liituda selle e-postiaadressiga %{host} kasutajaks. Palume kinnitada e-posti aadress. Pärast seda vaatame me teie taotluse üle. Võite logida sisse, et oma andmeid muuta või konto kustutada, aga te ei saa enamustele tegevustele ligi enne, kui teie konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saate selle kohta eraldi e-kirja.\nKui teie taotlus lükatakse aga tagasi, kustutatakse ka teie andmed ja mingit teiepoolset järeltegevust pole vaja. \nKui see polnud teie, siis palume seda kirja eirata."
         extra_html: Palun tutvuge <a href="%{terms_path}">meie serveri reeglitega</a> ning <a href="%{policy_path}">meie kasutustingimustega</a>.
         subject: 'Mastodon: %{instance} kinnitamisjuhised'
         title: Kinnita e-postiaadress
       email_changed:
         explanation: 'Teie konto e-postiaadress muudetakse:'
-        extra: Kui te ei muutnud oma e-posti, on tõenäoline, et kellelgi on ligipääs teie kontole. Palun muutke oma salasõna koheselt või võtke ühendust oma serveri administraatoriga, kui olete oma kontost välja lukustatud.
+        extra: Kui sa ei muutnud oma e-posti, on tõenäoline, et kellelgi on ligipääs su kontole. Palun muuda koheselt oma salasõna. Kui oled aga oma kontost välja lukustatud, võta ühendust oma serveri administraatoriga.
         subject: 'Mastodon: e-post muudetud'
         title: Uus e-postiaadress
       password_change:
         explanation: Konto salasõna on vahetatud.
-        extra: Kui Te ei muutnud oma salasõna, on tõenäoline, et keegi on teie kontole ligi pääsenud. Palun muutke viivitamata oma salasõna või võtke ühendust serveri haldajaga, kui oma kontole ligi ei pääse.
+        extra: Kui sa ei muutnud oma salasõna, on tõenäoline, et keegi on su kontole ligi pääsenud. Palun muuda viivitamata oma salasõna. Kui sa oma kontole ligi ei pääse, võta ühendust serveri haldajaga.
         subject: 'Mastodon: salasõna muudetud'
         title: Salasõna muudetud
       reconfirmation_instructions:
@@ -80,10 +80,10 @@ et:
       failure: Ei saanud teid tuvastada %{kind} kaudu, kuna "%{reason}".
       success: Tuvastamine %{kind} konto järgi õnnestus.
     passwords:
-      no_token: Te ei saa sellele leheküljele ligi ilma tulemata salasõna lähtestamis e-kirjast. Kui te tulete salasõna lähtestamise e-kirjast, palun olge kindel, et kasutasite tervet teile antud URLi.
+      no_token: Sellele leheküljele ei pääse tulemata salasõna lähtestamise e-kirjast. Kui tuled salasõna lähtestamise e-kirjast, palun veendu, et kasutasid tervet saadetud URLi.
       send_instructions: Kui teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma salasõna taastada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
       send_paranoid_instructions: Kui teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma salasõna taastada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
-      updated: Teie salasõna muutmine õnnestus. Te olete nüüd sisse loginud.
+      updated: Salasõna muutmine õnnestus. Oled nüüd sisse logitud.
       updated_not_active: Teie salasõna muutmine õnnestus.
     registrations:
       destroyed: Nägemist! Teie konto sulgemine õnnestus. Me loodame teid varsti taas näha.
