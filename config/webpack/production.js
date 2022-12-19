@@ -29,7 +29,7 @@ module.exports = merge(sharedConfig, {
   },
 
   plugins: [
-    new CompressionPlugin({
+    ...(process.env.IS_DOCKER ? [new CompressionPlugin({
       filename: '[path][base].gz[query]',
       cache: true,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
@@ -40,6 +40,7 @@ module.exports = merge(sharedConfig, {
       cache: true,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
     }),
+    ] : []),
     new BundleAnalyzerPlugin({ // generates report.html
       analyzerMode: 'static',
       openAnalyzer: false,
