@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'net/ldap'
 require 'devise/strategies/base'
 

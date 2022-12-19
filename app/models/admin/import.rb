@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # A non-activerecord helper class for csv upload
 class Admin::Import
   include ActiveModel::Model

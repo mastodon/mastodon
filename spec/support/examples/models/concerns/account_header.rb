@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 shared_examples 'AccountHeader' do |fabricator|
   describe 'base64-encoded files' do
     let(:base64_attachment) { "data:image/jpeg;base64,#{Base64.encode64(attachment_fixture('attachment.jpg').read)}" }

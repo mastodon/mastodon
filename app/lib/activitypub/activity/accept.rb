@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity::Accept < ActivityPub::Activity
   def perform
     return accept_follow_for_relay if relay_follow?

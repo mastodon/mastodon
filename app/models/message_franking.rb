@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MessageFranking
   attr_reader :hmac, :source_account_id, :target_account_id,
               :timestamp, :original_franking

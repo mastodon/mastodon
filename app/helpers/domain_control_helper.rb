@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module DomainControlHelper
   def domain_not_allowed?(uri_or_domain)
     return if uri_or_domain.blank?

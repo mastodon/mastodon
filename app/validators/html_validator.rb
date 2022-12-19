@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class HtmlValidator < ActiveModel::EachValidator
   ERROR_RE = /Opening and ending tag mismatch|Unexpected end tag/
 

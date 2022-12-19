@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class HashtagNormalizer
   def normalize(str)
     remove_invalid_characters(ascii_folding(lowercase(cjk_width(str))))

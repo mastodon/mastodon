@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This concern is inspired by "sudo mode" on GitHub. It
 # is a way to re-authenticate a user before allowing them
 # to see or perform an action.

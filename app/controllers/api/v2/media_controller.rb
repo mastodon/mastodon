@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V2::MediaController < Api::V1::MediaController
   def create
     @media_attachment = current_account.media_attachments.create!({ delay_processing: true }.merge(media_attachment_params))

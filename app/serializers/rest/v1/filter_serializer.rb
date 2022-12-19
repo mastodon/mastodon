@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::V1::FilterSerializer < ActiveModel::Serializer
   attributes :id, :phrase, :context, :whole_word, :expires_at,
              :irreversible

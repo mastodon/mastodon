@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::ScheduledStatusSerializer < ActiveModel::Serializer
   attributes :id, :scheduled_at, :params
 

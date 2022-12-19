@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class InlineRenderer
   def initialize(object, current_account, template)
     @object          = object

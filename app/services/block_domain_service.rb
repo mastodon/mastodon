@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class BlockDomainService < BaseService
   attr_reader :domain_block
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ApproveAppealService < BaseService
   def call(appeal, current_account)
     @appeal          = appeal

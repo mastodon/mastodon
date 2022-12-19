@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity::Like < ActivityPub::Activity
   def perform
     original_status = status_from_uri(object_uri)

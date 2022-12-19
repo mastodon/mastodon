@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class VoteService < BaseService
   include Authorization
   include Payloadable

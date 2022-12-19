@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FetchRemoteStatusService < BaseService
   def call(url, prefetched_body = nil)
     if prefetched_body.nil?

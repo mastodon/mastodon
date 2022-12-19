@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 REPOSITORY_NAME = 'mastodon/mastodon'
 
 namespace :repo do

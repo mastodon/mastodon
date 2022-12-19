@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TranslationService::LibreTranslate < TranslationService
   def initialize(base_url, api_key)
     super()

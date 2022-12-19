@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Measure
   MEASURES = {
     active_users: Admin::Metrics::Measure::ActiveUsersMeasure,

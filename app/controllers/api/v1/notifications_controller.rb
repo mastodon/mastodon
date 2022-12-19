@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::NotificationsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:notifications' }, except: [:clear, :dismiss]
   before_action -> { doorkeeper_authorize! :write, :'write:notifications' }, only: [:clear, :dismiss]

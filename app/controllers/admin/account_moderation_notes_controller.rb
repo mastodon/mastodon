@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class AccountModerationNotesController < BaseController
     before_action :set_account_moderation_note, only: [:destroy]

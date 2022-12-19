@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Mastodon::SidekiqMiddleware
   BACKTRACE_LIMIT = 3
 

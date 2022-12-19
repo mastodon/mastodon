@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class ReportsController < BaseController
     before_action :set_report, except: [:index]

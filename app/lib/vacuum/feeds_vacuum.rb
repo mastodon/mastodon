@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Vacuum::FeedsVacuum
   def perform
     vacuum_inactive_home_feeds!

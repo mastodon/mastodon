@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Settings
   module TwoFactorAuthentication
     class WebauthnCredentialsController < BaseController

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FetchLinkCardService < BaseService
   include Redisable
   include Lockable

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class RulesController < BaseController
     before_action :set_rule, except: [:index, :create]

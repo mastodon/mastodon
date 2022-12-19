@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AppSignUpService < BaseService
   def call(app, remote_ip, params)
     @app       = app

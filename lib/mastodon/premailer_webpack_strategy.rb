@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module PremailerWebpackStrategy
   def load(url)
     asset_host = ENV['CDN_HOST'] || ENV['WEB_DOMAIN'] || ENV['LOCAL_DOMAIN']

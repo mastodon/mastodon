@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module WellKnown
   class WebfingerController < ActionController::Base
     include RoutingHelper

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ActiveRecord
   module Batches
     def pluck_each(*column_names)

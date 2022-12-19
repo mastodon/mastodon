@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |n|

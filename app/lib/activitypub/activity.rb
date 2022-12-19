@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity
   include JsonLdHelper
   include Redisable

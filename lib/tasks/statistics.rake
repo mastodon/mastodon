@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 task stats: 'mastodon:stats'
 
 namespace :mastodon do

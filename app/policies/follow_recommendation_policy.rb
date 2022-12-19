@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FollowRecommendationPolicy < ApplicationPolicy
   def show?
     role.can?(:manage_taxonomies)

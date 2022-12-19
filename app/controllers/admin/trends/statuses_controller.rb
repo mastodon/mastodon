@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Trends::StatusesController < Admin::BaseController
   def index
     authorize [:admin, :status], :review?

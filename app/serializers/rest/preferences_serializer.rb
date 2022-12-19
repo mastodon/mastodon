@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::PreferencesSerializer < ActiveModel::Serializer
   attribute :posting_default_privacy, key: 'posting:default:visibility'
   attribute :posting_default_sensitive, key: 'posting:default:sensitive'

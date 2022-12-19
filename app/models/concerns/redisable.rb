@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Redisable
   def redis
     Thread.current[:redis] ||= RedisConfiguration.pool.checkout

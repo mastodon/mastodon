@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class HomeFeed < Feed
   def initialize(account)
     @account = account

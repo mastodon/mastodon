@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class EmailDomainBlocksController < BaseController
     before_action :set_email_domain_block, only: [:show, :destroy]

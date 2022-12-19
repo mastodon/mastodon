@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class EmojisController < ApplicationController
   before_action :set_emoji
   before_action :set_cache_headers

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Apps::CredentialsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read }
 

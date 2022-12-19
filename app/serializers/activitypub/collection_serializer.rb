@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::CollectionSerializer < ActivityPub::Serializer
   class StringSerializer < ActiveModel::Serializer
     # Despite the name, it does not return a hash, but the same can be said of

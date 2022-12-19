@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::AccountsController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:accounts' }, except: [:create, :follow, :unfollow, :remove_from_followers, :block, :unblock, :mute, :unmute]
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, only: [:follow, :unfollow, :remove_from_followers]

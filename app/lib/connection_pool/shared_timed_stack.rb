@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ConnectionPool::SharedTimedStack
   def initialize(max = 0, &block)
     @create_block = block

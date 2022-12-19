@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Statuses::MutesController < Api::BaseController
   include Authorization
 

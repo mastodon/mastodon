@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::StatusPolicy < ApplicationPolicy
   def initialize(current_account, record, preloaded_relations = {})
     super(current_account, record)

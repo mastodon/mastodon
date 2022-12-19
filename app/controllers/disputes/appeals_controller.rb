@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Disputes::AppealsController < Disputes::BaseController
   before_action :set_strike
 

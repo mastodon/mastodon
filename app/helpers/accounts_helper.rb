@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module AccountsHelper
   def display_name(account, **options)
     str = account.display_name.presence || account.username

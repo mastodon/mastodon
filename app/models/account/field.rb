@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Account::Field < ActiveModelSerializers::Model
   MAX_CHARACTERS_LOCAL  = 255
   MAX_CHARACTERS_COMPAT = 2_047

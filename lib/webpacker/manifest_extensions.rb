@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Webpacker::ManifestExtensions
   def lookup(name, pack_type = {})
     asset = super

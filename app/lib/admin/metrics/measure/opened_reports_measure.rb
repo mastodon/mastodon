@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Measure::OpenedReportsMeasure < Admin::Metrics::Measure::BaseMeasure
   def key
     'opened_reports'

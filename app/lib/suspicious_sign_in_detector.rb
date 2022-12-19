@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SuspiciousSignInDetector
   IPV6_TOLERANCE_MASK = 64
   IPV4_TOLERANCE_MASK = 16

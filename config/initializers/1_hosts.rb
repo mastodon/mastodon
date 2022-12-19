@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 port     = ENV.fetch('PORT') { 3000 }
 host     = ENV.fetch('LOCAL_DOMAIN') { "localhost:#{port}" }

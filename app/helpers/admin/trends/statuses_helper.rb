@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin::Trends::StatusesHelper
   def one_line_preview(status)
     text = begin

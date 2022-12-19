@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FastIpMap
   MAX_IPV4_PREFIX = 32
   MAX_IPV6_PREFIX = 128

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FetchReplyWorker
   include Sidekiq::Worker
   include ExponentialBackoff

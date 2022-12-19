@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::DirectoriesController < Api::BaseController
   before_action :require_enabled!
   before_action :set_accounts

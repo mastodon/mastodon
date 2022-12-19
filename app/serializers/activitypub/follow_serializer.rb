@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::FollowSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor
   attribute :virtual_object, key: :object

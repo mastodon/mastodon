@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class WarningPresetsController < BaseController
     before_action :set_warning_preset, except: [:index, :create]

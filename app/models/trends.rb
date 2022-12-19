@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Trends
   def self.table_name_prefix
     'trends_'

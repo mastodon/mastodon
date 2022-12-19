@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RemoveHubURLFromAccounts < ActiveRecord::Migration[5.2]
   def change
     safety_assured do

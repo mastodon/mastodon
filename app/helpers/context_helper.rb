@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ContextHelper
   NAMED_CONTEXT_MAP = {
     activitystreams: 'https://www.w3.org/ns/activitystreams',

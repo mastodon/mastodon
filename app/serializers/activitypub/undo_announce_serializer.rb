@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::UndoAnnounceSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor, :to
 

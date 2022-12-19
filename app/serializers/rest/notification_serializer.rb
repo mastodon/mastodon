@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::NotificationSerializer < ActiveModel::Serializer
   attributes :id, :type, :created_at
 

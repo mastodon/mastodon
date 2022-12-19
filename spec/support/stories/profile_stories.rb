@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ProfileStories
   attr_reader :bob, :alice, :alice_bio
 

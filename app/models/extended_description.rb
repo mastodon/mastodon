@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ExtendedDescription < ActiveModelSerializers::Model
   attributes :updated_at, :text
 

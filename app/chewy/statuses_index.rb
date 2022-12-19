@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class StatusesIndex < Chewy::Index
   include FormattingHelper
 

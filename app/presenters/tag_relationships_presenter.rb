@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TagRelationshipsPresenter
   attr_reader :following_map
 

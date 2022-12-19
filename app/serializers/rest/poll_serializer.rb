@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::PollSerializer < ActiveModel::Serializer
   attributes :id, :expires_at, :expired,
              :multiple, :votes_count, :voters_count

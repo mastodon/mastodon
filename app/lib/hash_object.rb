@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class HashObject
   def initialize(hash)
     hash.each do |k, v|

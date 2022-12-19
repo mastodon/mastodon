@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::AccountSerializer < ActiveModel::Serializer
   include RoutingHelper
   include FormattingHelper

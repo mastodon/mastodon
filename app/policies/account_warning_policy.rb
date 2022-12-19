@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountWarningPolicy < ApplicationPolicy
   def show?
     target? || role.can?(:manage_appeals)

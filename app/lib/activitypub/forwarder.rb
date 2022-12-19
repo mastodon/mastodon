@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Forwarder
   def initialize(account, original_json, status)
     @json    = original_json

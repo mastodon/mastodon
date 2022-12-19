@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Dimension::TagServersDimension < Admin::Metrics::Dimension::BaseDimension
   def self.with_params?
     true

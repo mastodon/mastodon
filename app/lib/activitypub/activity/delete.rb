@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity::Delete < ActivityPub::Activity
   def perform
     if @account.uri == object_uri

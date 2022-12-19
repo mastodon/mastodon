@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'thor'
 require_relative 'mastodon/media_cli'
 require_relative 'mastodon/emoji_cli'

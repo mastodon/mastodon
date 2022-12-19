@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RSS::MediaContent < RSS::Element
   def initialize(url, type, size)
     super()

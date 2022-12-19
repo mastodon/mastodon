@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Webpacker::HelperExtensions
   def javascript_pack_tag(name, **options)
     src, integrity = current_webpacker_instance.manifest.lookup!(name, type: :javascript, with_integrity: true)

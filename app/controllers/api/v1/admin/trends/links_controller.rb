@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Admin::Trends::LinksController < Api::V1::Trends::LinksController
   before_action -> { authorize_if_got_token! :'admin:read' }
 

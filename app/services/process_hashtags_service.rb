@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ProcessHashtagsService < BaseService
   def call(status, raw_tags = [])
     @status        = status

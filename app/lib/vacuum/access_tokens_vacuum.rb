@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Vacuum::AccessTokensVacuum
   def perform
     vacuum_revoked_access_tokens!

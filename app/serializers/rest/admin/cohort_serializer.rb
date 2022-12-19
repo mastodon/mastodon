@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::Admin::CohortSerializer < ActiveModel::Serializer
   attributes :period, :frequency
 

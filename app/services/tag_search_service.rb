@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TagSearchService < BaseService
   def call(query, options = {})
     @query   = query.strip.gsub(/\A#/, '')

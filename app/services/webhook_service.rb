@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class WebhookService < BaseService
   def call(event, object)
     @event  = Webhooks::EventPresenter.new(event, object)

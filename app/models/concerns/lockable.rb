@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Lockable
   # @param [String] lock_name
   # @param [ActiveSupport::Duration] autorelease Automatically release the lock after this time

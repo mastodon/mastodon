@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class ActionLogsController < BaseController
     before_action :set_action_logs

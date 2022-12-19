@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Accounts::IdentityProofsController < Api::BaseController
   before_action :require_user!
   before_action :set_account

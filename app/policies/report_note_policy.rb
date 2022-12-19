@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ReportNotePolicy < ApplicationPolicy
   def create?
     role.can?(:manage_reports)

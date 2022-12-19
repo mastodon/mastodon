@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class InstancesController < BaseController
     before_action :set_instances, only: :index

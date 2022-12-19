@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Vacuum::BackupsVacuum
   def initialize(retention_period)
     @retention_period = retention_period

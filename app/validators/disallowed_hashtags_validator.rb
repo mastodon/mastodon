@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class DisallowedHashtagsValidator < ActiveModel::Validator
   def validate(status)
     return unless status.local? && !status.reblog?

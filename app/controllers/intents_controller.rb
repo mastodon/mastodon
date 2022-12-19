@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class IntentsController < ApplicationController
   before_action :check_uri
 

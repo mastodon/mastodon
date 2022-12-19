@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::VoteSerializer < ActivityPub::Serializer
   class NoteSerializer < ActivityPub::Serializer
     attributes :id, :type, :name, :attributed_to,

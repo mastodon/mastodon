@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountsController < ApplicationController
   PAGE_SIZE     = 20
   PAGE_SIZE_MAX = 200

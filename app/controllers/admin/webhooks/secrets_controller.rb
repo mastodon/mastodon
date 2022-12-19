@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class Webhooks::SecretsController < BaseController
     before_action :set_webhook

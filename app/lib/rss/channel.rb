@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RSS::Channel < RSS::Element
   def initialize
     super()

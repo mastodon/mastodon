@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::MarkersController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:statuses' }, only: [:index]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, except: [:index]

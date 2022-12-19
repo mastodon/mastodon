@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class OStatus::TagManager
   include Singleton
   include RoutingHelper

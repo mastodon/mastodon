@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PrivacyPolicy < ActiveModelSerializers::Model
   DEFAULT_PRIVACY_POLICY = <<~TXT
     This privacy policy describes how %{domain} ("%{domain}", "we", "us") collects, protects and uses the personally identifiable information you may provide through the %{domain} website or its API. The policy also describes the choices available to you regarding our use of your personal information and how you can access and update this information. This policy does not apply to the practices of companies that %{domain} does not own or control, or to individuals that %{domain} does not employ or manage.

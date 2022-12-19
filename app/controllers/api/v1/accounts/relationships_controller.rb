@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Accounts::RelationshipsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:follows' }
   before_action :require_user!

@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 Paperclip::DataUriAdapter.register
 Paperclip::ResponseWithLimitAdapter.register
@@ -67,7 +67,7 @@ if ENV['S3_ENABLED'] == 'true'
       retry_limit: 0,
     }
   )
-  
+
   if ENV['S3_PERMISSION'] == ''
     Paperclip::Attachment.default_options.merge!(
       s3_permissions: ->(*) { nil }
@@ -125,7 +125,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
     },
-    
+
     fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
 
     fog_directory: ENV['SWIFT_CONTAINER'],

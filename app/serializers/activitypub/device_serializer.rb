@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::DeviceSerializer < ActivityPub::Serializer
   context_extensions :olm
 

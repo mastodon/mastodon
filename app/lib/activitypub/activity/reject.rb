@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity::Reject < ActivityPub::Activity
   def perform
     return reject_follow_for_relay if relay_follow?

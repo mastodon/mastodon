@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 def render_static_page(action, dest:, **opts)
   html = ApplicationController.render(action, opts)
   File.write(dest, html)

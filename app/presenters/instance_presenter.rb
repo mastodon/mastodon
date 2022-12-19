@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class InstancePresenter < ActiveModelSerializers::Model
   attributes :domain, :title, :version, :source_url,
              :description, :languages, :rules, :contact

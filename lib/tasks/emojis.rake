@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 def gen_border(codepoint, color)
   input = Rails.root.join('public', 'emoji', "#{codepoint}.svg")
   dest = Rails.root.join('public', 'emoji', "#{codepoint}_border.svg")

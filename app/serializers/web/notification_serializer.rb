@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Web::NotificationSerializer < ActiveModel::Serializer
   include RoutingHelper
   include ActionView::Helpers::TextHelper

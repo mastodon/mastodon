@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Statuses::HistoriesController < Api::BaseController
   include Authorization
 

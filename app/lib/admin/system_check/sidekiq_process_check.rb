@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::SystemCheck::SidekiqProcessCheck < Admin::SystemCheck::BaseCheck
   SIDEKIQ_QUEUES = %w(
     default

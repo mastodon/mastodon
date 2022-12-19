@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class AccountsController < BaseController
     before_action :set_account, except: [:index, :batch]

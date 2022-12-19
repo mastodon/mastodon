@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Disputes::BaseController < ApplicationController
   include Authorization
 

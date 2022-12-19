@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::Admin::DomainAllowSerializer < ActiveModel::Serializer
   attributes :id, :domain, :created_at
 

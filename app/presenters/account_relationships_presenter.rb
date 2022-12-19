@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountRelationshipsPresenter
   attr_reader :following, :followed_by, :blocking, :blocked_by,
               :muting, :requested, :requested_by, :domain_blocking,

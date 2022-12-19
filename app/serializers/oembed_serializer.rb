@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class OEmbedSerializer < ActiveModel::Serializer
   include RoutingHelper
   include ActionView::Helpers::TagHelper

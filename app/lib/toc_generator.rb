@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TOCGenerator
   TARGET_ELEMENTS = %w(h1 h2 h3 h4 h5 h6).freeze
   LISTED_ELEMENTS = %w(h2 h3).freeze

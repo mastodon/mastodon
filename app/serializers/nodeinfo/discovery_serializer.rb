@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class NodeInfo::DiscoverySerializer < ActiveModel::Serializer
   include RoutingHelper
 

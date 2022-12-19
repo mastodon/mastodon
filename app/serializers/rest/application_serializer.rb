@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::ApplicationSerializer < ActiveModel::Serializer
   attributes :id, :name, :website, :redirect_uri,
              :client_id, :client_secret, :vapid_key

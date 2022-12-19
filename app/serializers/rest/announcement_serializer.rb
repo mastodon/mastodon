@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::AnnouncementSerializer < ActiveModel::Serializer
   include FormattingHelper
 

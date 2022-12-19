@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::DeleteSerializer < ActivityPub::Serializer
   class TombstoneSerializer < ActivityPub::Serializer
     context_extensions :atom_uri

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class StatusRelationshipsPresenter
   attr_reader :reblogs_map, :favourites_map, :mutes_map, :pins_map,
               :bookmarks_map, :filters_map

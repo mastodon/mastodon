@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Webfinger
   class Error < StandardError; end
   class GoneError < Error; end

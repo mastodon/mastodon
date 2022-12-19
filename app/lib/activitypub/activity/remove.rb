@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity::Remove < ActivityPub::Activity
   def perform
     return if @json['target'].blank?

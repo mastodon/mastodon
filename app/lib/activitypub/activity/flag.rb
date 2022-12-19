@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity::Flag < ActivityPub::Activity
   def perform
     return if skip_reports?

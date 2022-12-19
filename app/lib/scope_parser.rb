@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ScopeParser < Parslet::Parser
   rule(:term)      { match('[a-z]').repeat(1).as(:term) }
   rule(:colon)     { str(':') }

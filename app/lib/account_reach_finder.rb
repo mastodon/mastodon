@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountReachFinder
   def initialize(account)
     @account = account

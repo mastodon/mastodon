@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::Admin::WebhookEventSerializer < ActiveModel::Serializer
   def self.serializer_for(model, options)
     case model.class.name

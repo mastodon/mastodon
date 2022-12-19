@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Trends::Query
   include Redisable
   include Enumerable

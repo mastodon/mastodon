@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Lists::AccountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:lists' }, only: [:show]
   before_action -> { doorkeeper_authorize! :write, :'write:lists' }, except: [:show]

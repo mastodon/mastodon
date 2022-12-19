@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 require 'doorkeeper/grape/authorization_decorator'
 

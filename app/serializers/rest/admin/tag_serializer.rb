@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::Admin::TagSerializer < REST::TagSerializer
   attributes :id, :trendable, :usable, :requires_review
 

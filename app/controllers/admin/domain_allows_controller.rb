@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::DomainAllowsController < Admin::BaseController
   before_action :set_domain_allow, only: [:destroy]
 

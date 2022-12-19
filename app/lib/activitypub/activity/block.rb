@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity::Block < ActivityPub::Activity
   def perform
     target_account = account_from_uri(object_uri)

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FollowerAccountsController < ApplicationController
   include AccountControllerConcern
   include SignatureVerification

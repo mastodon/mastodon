@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module StatusesHelper
   EMBEDDED_CONTROLLER = 'statuses'
   EMBEDDED_ACTION = 'embed'

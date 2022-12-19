@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Mastodon::Snowflake
   DEFAULT_REGEX = /timestamp_id\('(?<seq_prefix>\w+)'/
 

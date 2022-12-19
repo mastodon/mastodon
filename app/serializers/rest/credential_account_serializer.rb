@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::CredentialAccountSerializer < REST::AccountSerializer
   attributes :source
 

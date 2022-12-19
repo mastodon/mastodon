@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::OutboxSerializer < ActivityPub::CollectionSerializer
   def self.serializer_for(model, options)
     if model.class.name == 'ActivityPub::ActivityPresenter'

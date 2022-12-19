@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::Web::SettingsController < Api::Web::BaseController
   before_action :require_user!
   before_action :set_setting

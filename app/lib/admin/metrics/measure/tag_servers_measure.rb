@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Measure::TagServersMeasure < Admin::Metrics::Measure::BaseMeasure
   def self.with_params?
     true

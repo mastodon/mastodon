@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module EmailHelper
   def self.included(base)
     base.extend(self)

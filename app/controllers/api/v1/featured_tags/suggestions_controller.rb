@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::FeaturedTags::SuggestionsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:accounts' }, only: :index
   before_action :require_user!

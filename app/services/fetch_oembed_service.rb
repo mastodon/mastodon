@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FetchOEmbedService
   ENDPOINT_CACHE_EXPIRES_IN = 24.hours.freeze
   URL_REGEX                 = /(=(http[s]?(%3A|:)(\/\/|%2F%2F)))([^&]*)/i.freeze

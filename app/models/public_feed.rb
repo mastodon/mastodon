@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PublicFeed
   # @param [Account] account
   # @param [Hash] options

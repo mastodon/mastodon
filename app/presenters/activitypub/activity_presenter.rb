@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::ActivityPresenter < ActiveModelSerializers::Model
   attributes :id, :type, :actor, :published, :to, :cc, :virtual_object
 

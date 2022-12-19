@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class StatusFinder
   attr_reader :url
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Oauth::AuthorizedApplicationsController < Doorkeeper::AuthorizedApplicationsController
   skip_before_action :authenticate_resource_owner!
 

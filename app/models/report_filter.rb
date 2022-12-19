@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ReportFilter
   KEYS = %i(
     resolved

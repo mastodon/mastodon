@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin::AnnouncementsHelper
   def time_range(announcement)
     if announcement.all_day?

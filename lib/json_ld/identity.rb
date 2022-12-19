@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 # This file generated automatically from http://w3id.org/identity/v1
 require 'json/ld'
 class JSON::LD::Context

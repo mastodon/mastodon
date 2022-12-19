@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ActivityPub::CaseTransform
   class << self
     def camel_lower_cache

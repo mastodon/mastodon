@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::MoveDistributionWorker
   include Sidekiq::Worker
   include Payloadable

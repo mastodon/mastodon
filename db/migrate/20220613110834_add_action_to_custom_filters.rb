@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require Rails.root.join('lib', 'mastodon', 'migration_helpers')
 
 class AddActionToCustomFilters < ActiveRecord::Migration[6.1]

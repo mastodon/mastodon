@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module SettingsHelper
   def filterable_languages
     LanguagesHelper::SUPPORTED_LOCALES.keys

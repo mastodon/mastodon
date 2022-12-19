@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::UpdateDistributionWorker < ActivityPub::RawDistributionWorker
   sidekiq_options queue: 'push', lock: :until_executed
 

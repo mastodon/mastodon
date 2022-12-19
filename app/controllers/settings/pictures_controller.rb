@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Settings
   class PicturesController < BaseController
     before_action :set_account

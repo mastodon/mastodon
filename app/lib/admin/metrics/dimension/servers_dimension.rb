@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Dimension::ServersDimension < Admin::Metrics::Dimension::BaseDimension
   def key
     'servers'

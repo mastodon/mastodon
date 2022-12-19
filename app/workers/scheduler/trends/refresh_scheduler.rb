@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Scheduler::Trends::RefreshScheduler
   include Sidekiq::Worker
 

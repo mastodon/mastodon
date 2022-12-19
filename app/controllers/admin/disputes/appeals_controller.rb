@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Disputes::AppealsController < Admin::BaseController
   before_action :set_appeal, except: :index
 

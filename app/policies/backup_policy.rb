@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class BackupPolicy < ApplicationPolicy
   MIN_AGE = 1.week
 

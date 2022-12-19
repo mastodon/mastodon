@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Trends::TagsController < Api::BaseController
   before_action :set_tags
 

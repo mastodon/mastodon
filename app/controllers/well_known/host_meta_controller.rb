@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module WellKnown
   class HostMetaController < ActionController::Base
     include RoutingHelper

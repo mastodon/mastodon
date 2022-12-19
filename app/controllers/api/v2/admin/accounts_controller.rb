@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
   FILTER_PARAMS = %i(
     origin

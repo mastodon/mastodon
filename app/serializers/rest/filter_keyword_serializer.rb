@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::FilterKeywordSerializer < ActiveModel::Serializer
   attributes :id, :keyword, :whole_word
 

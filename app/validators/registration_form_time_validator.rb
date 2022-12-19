@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RegistrationFormTimeValidator < ActiveModel::Validator
   REGISTRATION_FORM_MIN_TIME = 3.seconds.freeze
 

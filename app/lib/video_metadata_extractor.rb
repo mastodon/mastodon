@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class VideoMetadataExtractor
   attr_reader :duration, :bitrate, :video_codec, :audio_codec,
               :colorspace, :width, :height, :frame_rate, :r_frame_rate

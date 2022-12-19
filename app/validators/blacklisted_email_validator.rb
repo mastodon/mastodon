@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class BlacklistedEmailValidator < ActiveModel::Validator
   def validate(user)
     return if user.valid_invitation? || user.email.blank?

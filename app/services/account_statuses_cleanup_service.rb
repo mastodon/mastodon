@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountStatusesCleanupService < BaseService
   # @param [AccountStatusesCleanupPolicy] account_policy
   # @param [Integer] budget

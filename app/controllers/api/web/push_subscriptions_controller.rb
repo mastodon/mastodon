@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::Web::PushSubscriptionsController < Api::Web::BaseController
   before_action :require_user!
   before_action :set_push_subscription, only: :update

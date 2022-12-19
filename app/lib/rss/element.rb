@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RSS::Element
   def self.with(*args, &block)
     new(*args).tap(&block).to_element

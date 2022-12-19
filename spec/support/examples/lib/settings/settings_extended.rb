@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 shared_examples 'Settings-extended' do
   describe 'settings' do
     def fabricate

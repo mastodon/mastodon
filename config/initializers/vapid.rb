@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+
 
 Rails.application.configure do
   # You can generate the keys using the following command (first is the private key, second is the public one)

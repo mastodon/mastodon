@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountSearchService < BaseService
   attr_reader :query, :limit, :offset, :options, :account
 

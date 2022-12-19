@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::StatusFilter
   KEYS = %i(
     media

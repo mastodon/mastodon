@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TranslationService
   class Error < StandardError; end
   class NotConfiguredError < Error; end

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AfterBlockService < BaseService
   def call(account, target_account)
     @account        = account

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UpdateStatusService < BaseService
   include Redisable
   include LanguagesHelper

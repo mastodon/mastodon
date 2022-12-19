@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Settings::Migration::RedirectsController < Settings::BaseController
   skip_before_action :require_functional!
 

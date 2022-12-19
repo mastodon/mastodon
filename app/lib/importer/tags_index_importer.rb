@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Importer::TagsIndexImporter < Importer::BaseImporter
   def import!
     index.adapter.default_scope.find_in_batches(batch_size: @batch_size) do |tmp|

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Trends::Links::PreviewCardProvidersController < Admin::BaseController
   def index
     authorize :preview_card_provider, :review?

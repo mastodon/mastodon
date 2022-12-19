@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UnreservedUsernameValidator < ActiveModel::Validator
   def validate(account)
     @username = account.username

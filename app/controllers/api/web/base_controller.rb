@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::Web::BaseController < Api::BaseController
   protect_from_forgery with: :exception
 

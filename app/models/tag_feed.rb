@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TagFeed < PublicFeed
   LIMIT_PER_MODE = 4
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::TagsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, except: :show
   before_action :require_user!, except: :show

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::Keys::QueryResultSerializer < ActiveModel::Serializer
   attributes :account_id
 

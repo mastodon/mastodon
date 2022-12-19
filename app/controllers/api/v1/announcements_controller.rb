@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::AnnouncementsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }, only: :dismiss
   before_action :require_user!

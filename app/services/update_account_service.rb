@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UpdateAccountService < BaseService
   def call(account, params, raise_error: false)
     was_locked    = account.locked

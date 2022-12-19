@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ContentRetentionPolicy
   def self.current
     new

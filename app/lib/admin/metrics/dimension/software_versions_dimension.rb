@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Dimension::SoftwareVersionsDimension < Admin::Metrics::Dimension::BaseDimension
   include Redisable
 

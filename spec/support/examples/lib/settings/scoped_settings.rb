@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 shared_examples 'ScopedSettings' do
   describe '[]' do
     it 'inherits default settings' do

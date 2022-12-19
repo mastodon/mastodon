@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::OutboxesController < ActivityPub::BaseController
   LIMIT = 20
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Admin::DimensionsController < Api::BaseController
   include Authorization
 

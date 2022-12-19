@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FamiliarFollowersPresenter
   class Result < ActiveModelSerializers::Model
     attributes :id, :accounts

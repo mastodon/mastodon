@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Reports::ActionsController < Admin::BaseController
   before_action :set_report
 

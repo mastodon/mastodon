@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ScopeTransformer < Parslet::Transform
   class Scope
     DEFAULT_TERM   = 'all'

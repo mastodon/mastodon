@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module BrandingHelper
   def logo_as_symbol(version = :icon)
     case version

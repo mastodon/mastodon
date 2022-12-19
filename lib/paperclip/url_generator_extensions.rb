@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Paperclip
   module UrlGeneratorExtensions
     def for_as_default(style_name)

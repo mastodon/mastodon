@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Settings::ImportsController < Settings::BaseController
   before_action :set_account
 

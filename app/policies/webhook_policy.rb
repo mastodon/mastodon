@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class WebhookPolicy < ApplicationPolicy
   def index?
     role.can?(:manage_webhooks)

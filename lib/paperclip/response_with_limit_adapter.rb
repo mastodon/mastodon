@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Paperclip
   class ResponseWithLimitAdapter < AbstractAdapter
     def self.register

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 dev_null = Logger.new('/dev/null')
 
 Rails.logger                 = dev_null

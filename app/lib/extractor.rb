@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Extractor
   MAX_DOMAIN_LENGTH = 253
 

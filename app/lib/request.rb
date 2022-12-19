@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'ipaddr'
 require 'socket'
 require 'resolv'

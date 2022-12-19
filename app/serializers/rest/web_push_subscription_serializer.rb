@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::WebPushSubscriptionSerializer < ActiveModel::Serializer
   attributes :id, :endpoint, :alerts, :server_key
 

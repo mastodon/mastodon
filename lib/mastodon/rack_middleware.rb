@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Mastodon::RackMiddleware
   def initialize(app)
     @app = app

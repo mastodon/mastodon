@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Activity::Move < ActivityPub::Activity
   PROCESSING_COOLDOWN = 7.days.seconds
 

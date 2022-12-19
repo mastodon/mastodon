@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Dimension::BaseDimension
   CACHE_TTL = 5.minutes.freeze
 

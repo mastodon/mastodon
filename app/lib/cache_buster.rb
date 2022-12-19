@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CacheBuster
   def initialize(options = {})
     @secret_header = options[:secret_header] || 'Secret-Header'

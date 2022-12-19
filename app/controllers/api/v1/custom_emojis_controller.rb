@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::CustomEmojisController < Api::BaseController
   skip_before_action :set_cache_headers
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Form::CustomEmojiBatch
   include ActiveModel::Model
   include Authorization

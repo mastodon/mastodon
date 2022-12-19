@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class SiteUploadsController < BaseController
     before_action :set_site_upload

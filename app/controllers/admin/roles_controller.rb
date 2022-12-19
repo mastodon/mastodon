@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class RolesController < BaseController
     before_action :set_role, except: [:index, :new, :create]

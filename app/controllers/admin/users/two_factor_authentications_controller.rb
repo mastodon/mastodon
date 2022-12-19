@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class Users::TwoFactorAuthenticationsController < BaseController
     before_action :set_target_user

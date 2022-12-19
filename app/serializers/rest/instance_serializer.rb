@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::InstanceSerializer < ActiveModel::Serializer
   class ContactSerializer < ActiveModel::Serializer
     attributes :email

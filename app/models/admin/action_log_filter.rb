@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::ActionLogFilter
   KEYS = %i(
     action_type

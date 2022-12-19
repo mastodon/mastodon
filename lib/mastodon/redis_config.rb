@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 def setup_redis_env_url(prefix = nil, defaults = true)
   prefix = prefix.to_s.upcase + '_' unless prefix.nil?
   prefix = '' if prefix.nil?

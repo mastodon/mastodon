@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Serializer < ActiveModel::Serializer
   with_options instance_writer: false, instance_reader: true do |serializer|
     serializer.class_attribute :_named_contexts

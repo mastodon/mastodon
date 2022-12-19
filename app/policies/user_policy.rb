@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UserPolicy < ApplicationPolicy
   def reset_password?
     role.can?(:manage_user_access) && role.overrides?(record.role)

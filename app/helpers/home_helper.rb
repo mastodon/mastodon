@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module HomeHelper
   def default_props
     {

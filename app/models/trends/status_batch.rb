@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Trends::StatusBatch
   include ActiveModel::Model
   include Authorization

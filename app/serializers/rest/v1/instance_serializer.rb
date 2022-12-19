@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::V1::InstanceSerializer < ActiveModel::Serializer
   include RoutingHelper
 

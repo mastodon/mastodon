@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::ConversationSerializer < ActiveModel::Serializer
   attributes :id, :unread
 

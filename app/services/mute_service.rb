@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MuteService < BaseService
   def call(account, target_account, notifications: nil, duration: 0)
     return if account.id == target_account.id

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::ConversationsController < Api::BaseController
   LIMIT = 20
 

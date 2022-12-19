@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Paperclip
   module AttachmentExtensions
     def meta

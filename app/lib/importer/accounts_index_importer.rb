@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Importer::AccountsIndexImporter < Importer::BaseImporter
   def import!
     scope.includes(:account_stat).find_in_batches(batch_size: @batch_size) do |tmp|

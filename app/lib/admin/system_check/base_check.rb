@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::SystemCheck::BaseCheck
   attr_reader :current_user
 

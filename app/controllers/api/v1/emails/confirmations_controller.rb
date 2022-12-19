@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Emails::ConfirmationsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :write, :'write:accounts' }
   before_action :require_user_owned_by_application!

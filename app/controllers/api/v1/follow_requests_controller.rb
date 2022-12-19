@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::FollowRequestsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow, :read, :'read:follows' }, only: :index
   before_action -> { doorkeeper_authorize! :follow, :write, :'write:follows' }, except: :index

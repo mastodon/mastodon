@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Vacuum::SystemKeysVacuum
   def perform
     vacuum_expired_system_keys!

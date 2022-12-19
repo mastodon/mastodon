@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Keys::ClaimService < BaseService
   HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
 

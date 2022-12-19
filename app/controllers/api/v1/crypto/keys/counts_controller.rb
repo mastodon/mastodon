@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Crypto::Keys::CountsController < Api::BaseController
   before_action -> { doorkeeper_authorize! :crypto }
   before_action :require_user!

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::ActivitySerializer < ActivityPub::Serializer
   def self.serializer_for(model, options)
     case model.class.name

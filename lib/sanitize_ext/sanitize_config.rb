@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Sanitize
   module Config
     HTTP_PROTOCOLS = %w(

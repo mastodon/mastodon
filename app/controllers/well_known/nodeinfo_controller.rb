@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module WellKnown
   class NodeInfoController < ActionController::Base
     include CacheConcern

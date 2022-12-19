@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class HtmlAwareFormatter
   attr_reader :text, :local, :options
 

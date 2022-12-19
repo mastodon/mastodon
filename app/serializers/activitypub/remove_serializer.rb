@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::RemoveSerializer < ActivityPub::Serializer
   class UriSerializer < ActiveModel::Serializer
     include RoutingHelper

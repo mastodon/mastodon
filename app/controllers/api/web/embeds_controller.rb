@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::Web::EmbedsController < Api::Web::BaseController
   before_action :require_user!
 

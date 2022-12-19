@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 describe 'statuses/show.html.haml', without_verify_partial_doubles: true do

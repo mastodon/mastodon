@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Payloadable
   # @param [ActiveModelSerializers::Model] record
   # @param [ActiveModelSerializers::Serializer] serializer

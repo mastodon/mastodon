@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module ApplicationHelper
   DANGEROUS_SCOPES = %w(
     read

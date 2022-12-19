@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Settings::ExportsController < Settings::BaseController
   include Authorization
   include Redisable

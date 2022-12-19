@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::FollowersSynchronizationsController < ActivityPub::BaseController
   include SignatureVerification
   include AccountOwnedConcern

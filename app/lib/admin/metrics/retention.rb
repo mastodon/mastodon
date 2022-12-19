@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Retention
   CACHE_TTL = 5.minutes.freeze
 

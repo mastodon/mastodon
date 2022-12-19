@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Importer::StatusesIndexImporter < Importer::BaseImporter
   def import!
     # The idea is that instead of iterating over all statuses in the database

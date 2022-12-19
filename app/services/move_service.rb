@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MoveService < BaseService
   def call(migration)
     @migration      = migration

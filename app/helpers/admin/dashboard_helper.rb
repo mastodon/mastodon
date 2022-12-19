@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin::DashboardHelper
   def relevant_account_ip(account, ip_query)
     ips = account.user.present? ? account.user.ips.to_a : []

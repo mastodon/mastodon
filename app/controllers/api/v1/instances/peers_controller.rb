@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Instances::PeersController < Api::BaseController
   before_action :require_enabled_api!
 

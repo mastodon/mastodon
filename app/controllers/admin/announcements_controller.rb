@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::AnnouncementsController < Admin::BaseController
   before_action :set_announcements, only: :index
   before_action :set_announcement, except: [:index, :new, :create]

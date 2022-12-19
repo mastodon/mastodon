@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FollowLimitValidator < ActiveModel::Validator
   LIMIT = ENV.fetch('MAX_FOLLOWS_THRESHOLD', 7_500).to_i
   RATIO = ENV.fetch('MAX_FOLLOWS_RATIO', 1.1).to_f

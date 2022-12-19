@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::FilterStatusSerializer < ActiveModel::Serializer
   attributes :id, :status_id
 

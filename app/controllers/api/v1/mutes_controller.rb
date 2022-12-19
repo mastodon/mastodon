@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::MutesController < Api::BaseController
   before_action -> { doorkeeper_authorize! :follow, :read, :'read:mutes' }
   before_action :require_user!

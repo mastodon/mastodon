@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TextFormatter
   include ActionView::Helpers::TextHelper
   include ERB::Util

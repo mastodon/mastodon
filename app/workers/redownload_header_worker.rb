@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RedownloadHeaderWorker
   include Sidekiq::Worker
   include ExponentialBackoff

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Polls::VotesController < Api::BaseController
   include Authorization
 

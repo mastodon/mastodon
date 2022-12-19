@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PotentialFriendshipTracker
   EXPIRE_AFTER = 90.days.seconds
   MAX_ITEMS    = 80

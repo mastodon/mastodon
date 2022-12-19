@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 if Rails.env.development?
   task :set_annotation_options do
     Annotate.set_defaults(

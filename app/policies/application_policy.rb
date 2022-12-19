@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ApplicationPolicy
   attr_reader :current_account, :record
 

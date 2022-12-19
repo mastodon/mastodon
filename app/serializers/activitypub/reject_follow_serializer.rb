@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::RejectFollowSerializer < ActivityPub::Serializer
   attributes :id, :type, :actor
 

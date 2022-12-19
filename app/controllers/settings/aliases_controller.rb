@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Settings::AliasesController < Settings::BaseController
   skip_before_action :require_functional!
 

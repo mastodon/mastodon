@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin::ActionLogsHelper
   def log_target(log)
     case log.target_type

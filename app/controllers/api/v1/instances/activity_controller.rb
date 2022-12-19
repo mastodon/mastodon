@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Instances::ActivityController < Api::BaseController
   before_action :require_enabled_api!
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class RemoteAccountRefreshWorker
   include Sidekiq::Worker
   include ExponentialBackoff

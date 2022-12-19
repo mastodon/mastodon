@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Measure::ActiveUsersMeasure < Admin::Metrics::Measure::BaseMeasure
   def key
     'active_users'

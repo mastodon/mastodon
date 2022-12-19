@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CustomEmojiPolicy < ApplicationPolicy
   def index?
     role.can?(:manage_custom_emojis)

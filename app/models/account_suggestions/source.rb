@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class AccountSuggestions::Source
   def key
     raise NotImplementedError

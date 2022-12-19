@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class CreateCustomFilterStatuses < ActiveRecord::Migration[6.1]
   def change
     create_table :custom_filter_statuses do |t|

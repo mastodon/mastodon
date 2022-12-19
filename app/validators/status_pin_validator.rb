@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class StatusPinValidator < ActiveModel::Validator
   def validate(pin)
     pin.errors.add(:base, I18n.t('statuses.pin_errors.reblog')) if pin.status.reblog?

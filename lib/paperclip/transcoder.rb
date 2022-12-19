@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Paperclip
   # This transcoder is only to be used for the MediaAttachment model
   # to check when uploaded videos are actually gifv's

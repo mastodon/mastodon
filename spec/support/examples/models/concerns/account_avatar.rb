@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 shared_examples 'AccountAvatar' do |fabricator|
   describe 'static avatars' do
     describe 'when GIF' do

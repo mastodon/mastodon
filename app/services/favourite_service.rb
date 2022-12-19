@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FavouriteService < BaseService
   include Authorization
   include Payloadable

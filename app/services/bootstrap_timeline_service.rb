@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class BootstrapTimelineService < BaseService
   def call(source_account)
     @source_account = source_account

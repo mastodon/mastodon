@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::Admin::DomainAllowsController < Api::BaseController
   include Authorization
   include AccountableConcern

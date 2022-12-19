@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # See also: USERNAME_RE in the Account class
 
 class UniqueUsernameValidator < ActiveModel::Validator

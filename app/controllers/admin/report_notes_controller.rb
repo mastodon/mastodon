@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class ReportNotesController < BaseController
     before_action :set_report_note, only: [:destroy]

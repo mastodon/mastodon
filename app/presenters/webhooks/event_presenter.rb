@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Webhooks::EventPresenter < ActiveModelSerializers::Model
   attributes :type, :created_at, :object
 

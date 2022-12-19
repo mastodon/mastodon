@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TranslateStatusService < BaseService
   CACHE_TTL = 1.day.freeze
 

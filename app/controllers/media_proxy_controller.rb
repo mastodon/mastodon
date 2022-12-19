@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class MediaProxyController < ApplicationController
   include RoutingHelper
   include Authorization

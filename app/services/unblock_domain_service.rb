@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class UnblockDomainService < BaseService
   attr_accessor :domain_block
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::ActorSerializer < ActivityPub::Serializer
   include RoutingHelper
   include FormattingHelper

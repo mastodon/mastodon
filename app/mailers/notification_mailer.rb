@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class NotificationMailer < ApplicationMailer
   helper :accounts
   helper :statuses

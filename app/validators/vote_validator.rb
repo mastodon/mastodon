@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class VoteValidator < ActiveModel::Validator
   def validate(vote)
     vote.errors.add(:base, I18n.t('polls.errors.expired')) if vote.poll.expired?

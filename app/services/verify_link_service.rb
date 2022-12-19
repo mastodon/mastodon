@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class VerifyLinkService < BaseService
   def call(field)
     @link_back = ActivityPub::TagManager.instance.url_for(field.account)

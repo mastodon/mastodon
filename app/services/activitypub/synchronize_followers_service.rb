@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::SynchronizeFollowersService < BaseService
   include JsonLdHelper
   include Payloadable

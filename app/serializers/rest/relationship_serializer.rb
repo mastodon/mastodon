@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::RelationshipSerializer < ActiveModel::Serializer
   attributes :id, :following, :showing_reblogs, :notifying, :languages, :followed_by,
              :blocking, :blocked_by, :muting, :muting_notifications,

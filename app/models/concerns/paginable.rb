@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Paginable
   extend ActiveSupport::Concern
 

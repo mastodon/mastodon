@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FollowService < BaseService
   include Redisable
   include Payloadable

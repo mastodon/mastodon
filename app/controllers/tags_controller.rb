@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TagsController < ApplicationController
   include SignatureVerification
   include WebAppControllerConcern

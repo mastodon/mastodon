@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   skip_before_action :verify_authenticity_token
 

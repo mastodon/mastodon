@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class REST::ReactionSerializer < ActiveModel::Serializer
   include RoutingHelper
 

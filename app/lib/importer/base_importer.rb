@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Importer::BaseImporter
   # @param [Integer] batch_size
   # @param [Concurrent::ThreadPoolExecutor] executor

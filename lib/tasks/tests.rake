@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 namespace :tests do
   namespace :migrations do
     desc 'Check that database state is consistent with a successful migration from populated data'

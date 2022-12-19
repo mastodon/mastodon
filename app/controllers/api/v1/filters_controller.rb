@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::FiltersController < Api::BaseController
   before_action -> { doorkeeper_authorize! :read, :'read:filters' }, only: [:index, :show]
   before_action -> { doorkeeper_authorize! :write, :'write:filters' }, except: [:index, :show]

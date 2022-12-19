@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class WebhooksController < BaseController
     before_action :set_webhook, except: [:index, :new, :create]

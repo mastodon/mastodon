@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class TagsIndex < Chewy::Index
   settings index: { refresh_interval: '30s' }, analysis: {
     analyzer: {

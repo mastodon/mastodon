@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Api::V1::FollowedTagsController < Api::BaseController
   TAGS_LIMIT = 100
 

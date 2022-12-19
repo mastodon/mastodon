@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin
   class DomainBlocksController < BaseController
     before_action :set_domain_block, only: [:show, :destroy, :edit, :update]

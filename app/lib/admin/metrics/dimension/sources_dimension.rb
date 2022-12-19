@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Admin::Metrics::Dimension::SourcesDimension < Admin::Metrics::Dimension::BaseDimension
   def key
     'sources'

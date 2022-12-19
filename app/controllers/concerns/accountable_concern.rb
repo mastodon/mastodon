@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module AccountableConcern
   extend ActiveSupport::Concern
 

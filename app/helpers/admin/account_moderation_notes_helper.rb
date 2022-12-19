@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module Admin::AccountModerationNotesHelper
   def admin_account_link_to(account, path: nil)
     return if account.nil?

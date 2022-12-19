@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Trends::Tags < Trends::Base
   PREFIX = 'trending_tags'
 

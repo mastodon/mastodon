@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 module StatusThreadingConcern
   extend ActiveSupport::Concern
 

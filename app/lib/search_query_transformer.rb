@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class SearchQueryTransformer < Parslet::Transform
   class Query
     attr_reader :should_clauses, :must_not_clauses, :must_clauses, :filter_clauses

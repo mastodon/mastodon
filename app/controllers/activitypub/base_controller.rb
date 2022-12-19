@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::BaseController < Api::BaseController
   skip_before_action :require_authenticated_user!
   skip_before_action :require_not_suspended!

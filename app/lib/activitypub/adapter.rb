@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ActivityPub::Adapter < ActiveModelSerializers::Adapter::Base
   include ContextHelper
 

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Scheduler::AccountsStatusesCleanupScheduler
   include Sidekiq::Worker
   include Redisable

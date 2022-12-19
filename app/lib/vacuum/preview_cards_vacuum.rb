@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Vacuum::PreviewCardsVacuum
   TTL = 1.day.freeze
 
