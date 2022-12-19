@@ -34,6 +34,7 @@ class Item extends React.PureComponent {
 
   state = {
     loaded: false,
+    showAltText: false,
   };
 
   handleMouseEnter = (e) => {
@@ -70,6 +71,15 @@ class Item extends React.PureComponent {
       onClick(index);
     }
 
+    e.stopPropagation();
+  }
+
+  handleAltText = (e) => {
+    if (e.button === 0 && !(e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      this.setState({ showAltText: this.state.showAltText ? false : true });
+    }
+    
     e.stopPropagation();
   }
 
@@ -131,6 +141,34 @@ class Item extends React.PureComponent {
 
     let thumbnail = '';
 
+    const altText = attachment.get('description');
+    
+    const altTextModal = (mediaType) => (
+      <div className="alt-text-modal">
+        <p className="alt-text">
+          <b>
+            {"Alt text: "}
+          </b>
+          {altText}
+        </p>
+        <button
+          className="exit-alt-text-button"
+          onClick={this.handleAltText}
+        >
+          Return to {mediaType}
+        </button>
+      </div>
+    );
+
+    const altTextButton = (classes) => (
+      <button
+        className={`view-alt-text-button ${classes}`}
+        onClick={this.handleAltText}
+      >
+        ALT
+      </button>
+    );
+
     if (attachment.get('type') === 'unknown') {
       return (
         <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
@@ -161,46 +199,52 @@ class Item extends React.PureComponent {
       const y      = ((focusY / -2) + .5) * 100;
 
       thumbnail = (
-        <a
-          className='media-gallery__item-thumbnail'
-          href={attachment.get('remote_url') || originalUrl}
-          onClick={this.handleClick}
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          <img
-            src={previewUrl}
-            srcSet={srcSet}
-            sizes={sizes}
-            alt={attachment.get('description')}
-            title={attachment.get('description')}
-            style={{ objectPosition: `${x}% ${y}%` }}
-            onLoad={this.handleImageLoad}
-          />
-        </a>
+        <>
+          {altText && altTextButton()}
+          <a
+            className='media-gallery__item-thumbnail'
+            href={attachment.get('remote_url') || originalUrl}
+            onClick={this.handleClick}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <img
+              src={previewUrl}
+              srcSet={srcSet}
+              sizes={sizes}
+              alt={altText}
+              title={altText}
+              style={{ objectPosition: `${x}% ${y}%` }}
+              onLoad={this.handleImageLoad}
+            />
+          </a>
+        </>
       );
     } else if (attachment.get('type') === 'gifv') {
       const autoPlay = this.getAutoPlay();
 
       thumbnail = (
-        <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
-          <video
-            className='media-gallery__item-gifv-thumbnail'
-            aria-label={attachment.get('description')}
-            title={attachment.get('description')}
-            role='application'
-            src={attachment.get('url')}
-            onClick={this.handleClick}
-            onMouseEnter={this.handleMouseEnter}
-            onMouseLeave={this.handleMouseLeave}
-            autoPlay={autoPlay}
-            playsInline
-            loop
-            muted
-          />
+        <>
+          {altText && altTextButton("gif")}
+          <div className={classNames('media-gallery__gifv', { autoplay: autoPlay })}>
+            <video
+              className='media-gallery__item-gifv-thumbnail'
+              aria-label={attachment.get('description')}
+              title={attachment.get('description')}
+              role='application'
+              src={attachment.get('url')}
+              onClick={this.handleClick}
+              onMouseEnter={this.handleMouseEnter}
+              onMouseLeave={this.handleMouseLeave}
+              autoPlay={autoPlay}
+              playsInline
+              loop
+              muted
+            />
 
-          <span className='media-gallery__gifv__label'>GIF</span>
-        </div>
+            <span className='media-gallery__gifv__label'>GIF</span>
+          </div>
+        </>
       );
     }
 
@@ -213,7 +257,8 @@ class Item extends React.PureComponent {
             'media-gallery__preview--hidden': visible && this.state.loaded,
           })}
         />
-        {visible && thumbnail}
+        {visible && !this.state.showAltText && thumbnail}
+        {this.state.showAltText && altTextModal(attachment.get('type') === 'gifv' ? "gif" : "image")}
       </div>
     );
   }
