@@ -13,7 +13,7 @@
     "test": "${npm_execpath} run test:lint:js && ${npm_execpath} run test:jest",
     "test:lint": "${npm_execpath} run test:lint:js && ${npm_execpath} run test:lint:sass",
     "test:lint:js": "eslint --ext=js . --cache",
-    "test:lint:sass": "stylelint '**/*.scss'",
+    "test:lint:sass": "stylelint \"**/*.{css,scss}\"",
     "test:jest": "cross-env NODE_ENV=test jest",
     "format": "prettier --write \"**/*.{json,yml}\"",
     "format-check": "prettier --check \"**/*.{json,yml}\""
