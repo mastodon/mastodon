@@ -843,32 +843,46 @@ bg:
       title_actions:
         none: Предупреждение
         sensitive: Означаване на акаунта като деликатен
+      your_appeal_rejected: Вашето обжалване е отхвърлено
+  domain_validator:
+    invalid_domain: не е валидно име на домейн
   errors:
-    '400': The request you submitted was invalid or malformed.
+    '400': Подадохте невалидна или деформирана заявка.
     '403': Нямате позволение да разгледате тази страница.
     '404': Търсената от вас страница не е тук.
-    '406': This page is not available in the requested format.
-    '410': The page you were looking for doesn't exist here anymore.
+    '406': Страницата не е налична в искания формат.
+    '410': Страницата, която търсехте, вече не съществува тук.
     '422':
+      content: Провали се проверката за сигурността. Блокирате ли бисквитките?
       title: Неуспешна проверка за сигурност
     '429': Премного заявки
     '500':
+      content: Съжаляваме, но нещо се обърка в нашия край.
       title: Страницата не е правилна
-    '503': The page could not be served due to a temporary server failure.
+    '503': Страницата не може да се обслужва заради временен провал на сървъра.
+    noscript_html: Включете JavaScript, за да използвате уеб приложението Mastodon. Като алтернатива опитайте някое от <a href="%{apps_path}">естествените приложения</a> за Mastodon за платформата ви.
+  existing_username_validator:
+    not_found: не можа да се намери местен потребител с това потребителско име
+    not_found_multiple: не можа да намери %{usernames}
   exports:
     archive_takeout:
       date: Дата
       download: Изтегляне на архива ви
       hint_html: Можете да поръчате архив с вашите <strong>публикации и качена мултимедия</strong>. Експортираните данни ще бъдат във формат ActivityPub, който е четим от всеки съвместим софтуер. Можете да поръчате такъв архив на всеки 7 дни.
+      in_progress: Съставяне на архива ви...
+      request: Искане на архива ви
       size: Размер
     blocks: Вашите блокирания
     bookmarks: Отметки
     csv: CSV
+    domain_blocks: Блокирания на домейна
     lists: Списъци
     mutes: Заглушавания
     storage: Съхранение на мултимедия
   featured_tags:
     add_new: Добавяне на нов
+    errors:
+      limit: Вече достигнахте максималния брой хаштагове
     hint_html: "<strong>Какво представляват актуалните хаштагове?</strong> Те се показват ясно на вашия публичен профил и позволяват на хората да преглеждат публичните ви публикации с тези хаштагове. Те са чудесен инструмент, с който може да се следи творческа работа или дългосрочни проекти."
   filters:
     contexts:
@@ -885,6 +899,7 @@ bg:
     index:
       delete: Изтриване
       empty: Нямате филтри.
+      expires_on: Изтича на %{date}
       keywords:
         one: "%{count} ключова дума"
         other: "%{count} ключови думи"
@@ -911,6 +926,11 @@ bg:
     order_by: Подреждане по
     save_changes: Запази промените
     today: днес
+    validation_errors:
+      one: Нещо още не е напълно наред! Прегледайте грешката долу
+      other: Нещо още не е напълно наред! Прегледайте %{count} грешки долу
+  html_validator:
+    invalid_markup: 'съдържа невалидно HTML маркиране: %{error}'
   imports:
     modes:
       merge: Сливане
@@ -964,6 +984,8 @@ bg:
       images_and_video: Не мога да прикача видеоклип към публикация, която вече съдържа изображения
       too_many: Не мога да прикача повече от 4 файла
   migrations:
+    acct: Преместено в
+    cancel: Отмяна на пренасочването
     cancelled_msg: Успешно отменено пренасочване.
     errors:
       move_to_self: не може да е текущия акаунт
@@ -979,6 +1001,11 @@ bg:
   moderation:
     title: Mодериране
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} подаде доклад"
+      sign_up:
+        subject: "%{name} се регистрира"
     favourite:
       body: 'Публикацията ти беше харесана от %{name}:'
       subject: "%{name} хареса твоята публикация"
@@ -1001,6 +1028,10 @@ bg:
     reblog:
       body: 'Твоята публикация беше споделена от %{name}:'
       subject: "%{name} сподели публикацията ти"
+    status:
+      subject: "%{name} току-що публикува"
+    update:
+      subject: "%{name} промени публикация"
   notifications:
     email_events: Събития за известия по имейл
     email_events_hint: 'Изберете събития, за които искате да получавате известия:'
@@ -1117,6 +1148,7 @@ bg:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Анулирaне
+    revoke_success: Успешно анулирана сесия
     title: Сесии
     view_authentication_history: Преглед на историята на удостоверяване на акаунта ви
   settings:
