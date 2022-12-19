@@ -33,7 +33,7 @@ et:
       add_email_domain_block: Keela e-posti domeen
       approve: Võta vastu
       approved_msg: Kasutaja %{username} liitumisavaldus rahuldatud
-      are_you_sure: Olete kindel?
+      are_you_sure: Oled kindel?
       avatar: Profiilipilt
       by_domain: Domeen
       change_email:
@@ -578,7 +578,7 @@ et:
         suspend_description_html: Konto ja kogu sisu muutub lõpliku kustutamiseni kättesaamatuks. Kontoga suhtlemine pole võimalik. Tagasivõetav 30 päeva jooksul.
       actions_description_html: Otsustus, mida raporti lahendamiseks ette võtta. Karistava tegevuse korral saadetakse e-postiga teade, välja arvatud kategooria <strong>rämpspost</strong> puhul.
       add_to_report: Lisa raportile juurde
-      are_you_sure: Olete kindel?
+      are_you_sure: Oled kindel?
       assign_to_self: Määra mulle
       assigned: Määratud moderaator
       by_target_domain: Teavitatud konto domeen
@@ -934,7 +934,7 @@ et:
     destroyed: Rakenduse kustutamine õnnestus
     regenerate_token: Loo uus access token
     token_regenerated: Access tokeni loomine õnnestus
-    warning: Olge nende andmetega ettevaatlikud. Ärge jagage neid kellegagi!
+    warning: Ole nende andmetega ettevaatlikud. Ära jaga neid kellegagi!
     your_token: Su juurdepääsutunnus
   auth:
     apply_for_account: Konto taotluse esitamine
@@ -994,7 +994,7 @@ et:
     already_requested: Te juba saatsite jälgimistaotluse sellele kontole
     error: Kahjuks ilmus viga kasutaja kaugserverist otsimisel
     follow: Jälgi
-    follow_request: 'Te olete saatnud jälgimistaotluse kasutajale:'
+    follow_request: 'Oled saatnud jälgimistaotluse kasutajale:'
     following: 'Õnnestus! Te nüüd jälgite kasutajat:'
     post_follow:
       close: Või Te saate lihtsalt sulgeda seda akent.
@@ -1113,7 +1113,7 @@ et:
   featured_tags:
     add_new: Lisa uus
     errors:
-      limit: Olete jõudnud maksimum lubatud siltide arvuni
+      limit: Oled jõudnud siltide lubatud maksimumarvuni
     hint_html: "<strong>Mis on esiletõstetud sildid?</strong> Neid silte näidatakse su avalikul profiilil esiletõstetult ning need aitavad teistel leida postitusi, millel on selline silt. See on hea viis, kuidas hoida järge loovtöödel või pikaajalistel projektidel."
   filters:
     contexts:
@@ -1225,7 +1225,7 @@ et:
     title: Kutsu inimesi
   lists:
     errors:
-      limit: Olete jõudnud maksimum lubatud nimekirjade arvuni
+      limit: Oled jõudnud loetelude lubatud maksimumarvuni
   login_activities:
     authentication_methods:
       otp: kahe-etapise autentimise rakendus
@@ -1248,11 +1248,11 @@ et:
     cancel_explanation: Ümbersuunamise tühistamine aktiveerib siinse konto, kuid teisele kontole üle viidud jälgijaid tagasi ei too.
     cancelled_msg: Ümbersuunamise tühistamine õnnestus.
     errors:
-      already_moved: on sama konto, kuhu Te olete juba kolinud
+      already_moved: on sama konto, kuhu oled juba kolinud
       missing_also_known_as: ei viita tagasi sellele kontole
       move_to_self: ei saa olla praegune konto
       not_found: ei leitud
-      on_cooldown: Te olete hetkel ootel
+      on_cooldown: Oled hetkel ootel
     followers_count: Jälgijaid kolimise hetkel
     incoming_migrations: Teise konto siia kolimine
     incoming_migrations_html: Kui soovid kolida teise konto siia, pead esmalt määrama <a href="%{path}">kolitava konto aadressi</a>.
@@ -1345,7 +1345,7 @@ et:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Olete siin juba hääletanud
+      already_voted: Oled siin hääletusel juba hääletanud
       duplicate_options: sisaldab samu asju mitu korda
       duration_too_long: kestab liiga kaua
       duration_too_short: on liiga vara
@@ -1393,7 +1393,7 @@ et:
       tag: 'Avalikud postitused sildiga #%{hashtag}'
   scheduled_statuses:
     over_daily_limit: Lubatud ajastatud postituste arv %{limit} päevas on tänaseks ületatud
-    over_total_limit: Te olete jõudnud maksimum lubatud ajastatud tuututuste arvuni %{limit}
+    over_total_limit: Oled jõudnud ajastatud postituste lubatud maksimumarvuni %{limit}
     too_soon: Ajastatud kuupäev peab olema tukevikus
   sessions:
     activity: Viimane aktiivsus
@@ -1485,7 +1485,7 @@ et:
     over_character_limit: tähtmärkide limiit %{max} ületatud
     pin_errors:
       direct: Ei saa kinnitada postitusi, mis on nähtavad vaid mainitud kasutajatele
-      limit: Maksimaalne arv postitusi on juba kinnitatud
+      limit: Kinnitatud on juba maksimaalne arv postitusi
       ownership: Kellegi teise postitust ei saa kinnitada
       reblog: Jagamist ei saa kinnitada
     poll:
@@ -1644,7 +1644,7 @@ et:
     follow_limit_reached: Te ei saa jälgida rohkem kui %{limit} inimest
     invalid_otp_token: Vale kahe-etapine võti
     otp_lost_help_html: Kui Te kaotasite ligipääsu mõlemale, saate võtta ühendust %{email}-iga
-    seamless_external_login: Läbi välise teenuse sisse logides pole salasõna ja e-posti sätted saadaval.
+    seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
     explanation_html: 'Te saate <strong>kinnitada ennast oma profiili veebiviidete omanikena</strong>. Et seda teha, peab Teie viidatud veebilehel olema link tagasi Teie Mastodoni profiilile. Tagasi saatval lingil <strong>peab</strong> olema <code>rel="me"</code> atribuut. Tekstisisu lingil ei loe. Siin on üks näide:'
