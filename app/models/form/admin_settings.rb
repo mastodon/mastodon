@@ -87,11 +87,16 @@ class Form::AdminSettings
     define_method("#{key}=") do |file|
       value = public_send(key)
       value.file = file
+    rescue Mastodon::DimensionsValidationError => e
+      errors.add(key.to_sym, e.message)
     end
   end
 
   def save
-    return false unless valid?
+    # NOTE: Annoyingly, files are processed and can error out before
+    # validations are called, and `valid?` clears errors…
+    # So for now, return early if errors aren't empty.
+    return false unless errors.empty? && valid?
 
     KEYS.each do |key|
       next unless instance_variable_defined?("@#{key}")
