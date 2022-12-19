@@ -84,6 +84,7 @@ COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
 ENV RAILS_ENV="production" \
     NODE_ENV="production" \
     RAILS_SERVE_STATIC_FILES="true" \
+    RUBYOPT="--enable=frozen-string-literal" \
     BIND="0.0.0.0"
 
 # Set the run user
