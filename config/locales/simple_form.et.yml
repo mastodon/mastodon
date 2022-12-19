@@ -21,7 +21,7 @@ et:
           suspend: Takistamaks suhtlust selle kontoga ja kustutamaks kogu sisu. Tagasivõetav 30 päeva jooksul.
         warning_preset_id: Valikuline. Te saate ikka lisada mis tahes teksti eelseadistuse lõppu
       announcement:
-        all_day: Kui valitud, ainult kuupäevad antud ajavahemikus on kuvatud
+        all_day: Kui valitud, kuvatakse vaid selle ajavahemiku kuupäevi
         ends_at: Valikuline. Teadaanne eemaldatakse automaatselt sellel ajal
         scheduled_at: Jäta tühjaks, et avaldada teadaande koheselt
         starts_at: Valikuline. Juhul, kui teadaanne on limiteeritud kindlale ajavahemikule
@@ -73,13 +73,13 @@ et:
           hide: Filtreeritud sisu täielik peitmine, nagu seda polekski üldse olemas
           warn: Varja filtreeritud sisu hoiatusega, nimetades filtri pealkirja
       form_admin_settings:
-        backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevadeks.
+        backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevi.
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
         content_cache_retention_period: Teiste serverite postitused kustutatakse pärast määratud päevade arvu, kui see on seatud positiivsele väärtusele. See võib olla pöördumatu.
         custom_css: Kohandatud stiile on võimalik kasutada Mastodoni veebiliideses.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
-        media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid nende päevade möödudes ning laetakse vajadusel uuesti alla.
+        media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid määratud päevade möödudes. Vajadusel laaditakse need uuesti alla.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
         require_invite_text: Kui liitumisi on tarvis kinnitada, oleks "Miks Te soovite liituda?" vastus vajalik
         site_contact_email: Kui peaks tekkima vajadus ühendust võtta täiendavate küsimuste osas.
