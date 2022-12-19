@@ -162,6 +162,7 @@ class Item extends React.PureComponent {
 
     const altTextButton = (classes) => (
       <button
+        aria-hidden={true}
         className={`view-alt-text-button ${classes}`}
         onClick={this.handleAltText}
       >
