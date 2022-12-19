@@ -66,6 +66,7 @@ class Form::AdminSettings
   validates :show_domain_blocks_rationale, inclusion: { in: %w(disabled users all) }, if: -> { defined?(@show_domain_blocks_rationale) }
   validates :media_cache_retention_period, :content_cache_retention_period, :backups_retention_period, numericality: { only_integer: true }, allow_blank: true, if: -> { defined?(@media_cache_retention_period) || defined?(@content_cache_retention_period) || defined?(@backups_retention_period) }
   validates :site_short_description, length: { maximum: 200 }, if: -> { defined?(@site_short_description) }
+  validate :validate_site_uploads
 
   KEYS.each do |key|
     define_method(key) do
@@ -119,6 +120,18 @@ class Form::AdminSettings
       value.blank? ? value : Integer(value)
     else
       value
+    end
+  end
+
+  def validate_site_uploads
+    UPLOAD_KEYS.each do |key|
+      next unless instance_variable_defined?("@#{key}")
+      upload = instance_variable_get("@#{key}")
+      next if upload.valid?
+
+      upload.errors.each do |error|
+        errors.import(error, attribute: key)
+      end
     end
   end
 end
