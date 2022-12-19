@@ -75,7 +75,7 @@ RUN apt-get update && \
         tini && \
     ln -s /opt/mastodon /mastodon
 
-# Note: no, cleaning here since Debian does this automatically
+# Note: no cleaning here since Debian does this automatically
 # See the file /etc/apt/apt.conf.d/docker-clean within the Docker image's filesystem
 
 COPY --chown=mastodon:mastodon . /opt/mastodon
