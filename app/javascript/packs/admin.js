@@ -192,7 +192,7 @@ ready(() => {
   }
 
   document.querySelector('a#add-instance-button')?.addEventListener('click', (e) => {
-    const domain = document.getElementById('by_domain')?.value;
+    const domain = document.querySelector('input[type="text"]#by_domain')?.value;
 
     if (domain) {
       const url = new URL(event.target.href);
