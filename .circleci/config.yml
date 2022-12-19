@@ -19,6 +19,7 @@ executors:
           DB_USER: root
           DISABLE_SIMPLECOV: true
           RAILS_ENV: test
+          RUBYOPT: --enable=frozen-string-literal
       - image: cimg/postgres:14.5
         environment:
           POSTGRES_USER: root
