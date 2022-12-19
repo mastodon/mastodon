@@ -52,6 +52,9 @@ gem 'hiredis', '~> 0.6'
 gem 'redis-namespace', '~> 1.9'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.1'
+# Fixes an issue loading the `httpclient` sub-dependency due to globally enabling frozen
+# strings. Remove once https://github.com/nahi/httpclient/pull/398 is merged and released.
+gem 'httpclient', github: 'kickbooster/httpclient', ref: '432877ee03f7c4c678d958183cfc97cc12d64ea4'
 gem 'http_accept_language', '~> 2.1'
 gem 'httplog', '~> 1.6.2'
 gem 'idn-ruby', require: 'idn'
@@ -121,7 +124,7 @@ group :test do
   gem 'faker', '~> 3.0'
   gem 'json-schema', '~> 3.0'
   gem 'microformats', '~> 4.4'
-  gem 'rack-test', '~> 2.0'  
+  gem 'rack-test', '~> 2.0'
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec_junit_formatter', '~> 0.6'
   gem 'rspec-sidekiq', '~> 3.1'
