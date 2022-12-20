@@ -60,31 +60,31 @@ class LinkFooter extends React.PureComponent {
           <Link key='about' to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
           {canInvite && (
             <>
-              {' · '}
+              <span aria-hidden>{' · '}</span>
               <a key='invites' href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
             </>
           )}
           {canProfileDirectory && (
             <>
-              {' · '}
+              <span aria-hidden>{' · '}</span>
               <Link key='directory' to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
             </>
           )}
-          {' · '}
+          <span aria-hidden>{' · '}</span>
           <Link key='privacy-policy' to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
         </p>
 
         <p>
           <strong>Mastodon</strong>:
-          {' '}
+          <span aria-hidden>{' · '}</span>
           <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
-          {' · '}
+          <span aria-hidden>{' · '}</span>
           <a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
-          {' · '}
+          <span aria-hidden>{' · '}</span>
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
-          {' · '}
+          <span aria-hidden>{' · '}</span>
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
-          {' · '}
+          <span aria-hidden>{' · '}</span>
           v{version}
         </p>
       </div>
