@@ -9,15 +9,33 @@ export default class CharacterCounter extends React.PureComponent {
     max: PropTypes.number.isRequired,
   };
 
-  checkRemainingText (diff) {
+  checkRemainingText(diff) {
     if (diff < 0) {
-      return <span className='character-counter character-counter--over'>{diff}</span>;
+      return (
+        <>
+          <span aria-hidden className='character-counter character-counter--over'>
+            {diff}
+          </span>
+          <span className='sr-only'>
+            {`You have exceeded the character limit by ${diff * -1}`}
+          </span>
+        </>
+      );
     }
 
-    return <span className='character-counter'>{diff}</span>;
+    return (
+      <>
+        <span aria-hidden className='character-counter'>
+          {diff}
+        </span>
+        <span className='sr-only'>
+          {`${diff} character${diff === 1 ? '' : 's'} remaining`}
+        </span>
+      </>
+    );
   }
 
-  render () {
+  render() {
     const diff = this.props.max - length(this.props.text);
     return this.checkRemainingText(diff);
   }
