@@ -40,13 +40,13 @@ class PostStatusService < BaseService
       process_status!
       postprocess_status!
       bump_potential_friendship!
+
+      if to_crossbell
+        post_to_crossbell
+      end
     end
 
     redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
-
-    if to_crossbell
-      post_to_crossbell
-    end
 
     @status
   end
@@ -210,15 +210,11 @@ class PostStatusService < BaseService
     puts '[Crossbell] new toot valid, sending to webhook'
 
     # Send to crossbell by webhook
-    request = Request.new(:post, ENV['CROSSBELL_WEBHOOK'], body: Oj.dump({
-      "account" => @account,
-      "status" => @status,
-      "media" => @media,
-    }.as_json))
+    request = Request.new(:post, ENV['CROSSBELL_WEBHOOK'], body: Oj.dump(ActiveModelSerializers::SerializableResource.new(@status, serializer: REST::StatusSerializer).as_json))
 
     request.add_headers(
       'Content-Type' => 'application/json',
-      )
+    )
 
     request.perform do |response|
       # raise Mastodon::UnexpectedResponseError, response unless response_successful?(response) || response_error_unsalvageable?(response)
