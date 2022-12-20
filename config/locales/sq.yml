@@ -116,6 +116,8 @@ sq:
       redownloaded_msg: Profili i %{username} u rifreskua me sukses prej origjinës
       reject: Hidhe tej
       rejected_msg: Aplikimi për regjistrim i %{username} u hodh poshtë me sukses
+      remote_suspension_irreversible: Të dhënat e kësaj llogarie janë fshirë në mënyrë të pakthyeshme.
+      remote_suspension_reversible_hint_html: Llogaria është pezulluar në shërbyesit e tyre dhe të dhënat do të hiqen plotësisht më %{date}. Deri atëherë, shërbyesi i largët mund të rikthejë këtë llogari pa u cënuar. Nëse dëshironi të hiqen menjëherë të dhënat e llogarisë, mund ta bëni më poshtë.
       remove_avatar: Hiqe avatarin
       remove_header: Hiqe kryen
       removed_avatar_msg: U hoq me sukses figura e avatarit të %{username}
@@ -373,6 +375,8 @@ sq:
       add_new: Shtoje përkatësinë në listë lejimesh
       created_msg: Përkatësia u shtua me sukses në listë lejimesh
       destroyed_msg: Përkatësia u hoq nga listë lejimesh
+      export: Eksportim
+      import: Importim
       undo: Hiqe nga listë lejimesh
     domain_blocks:
       add_new: Shtoni bllokim të ri përkatësie
@@ -382,13 +386,19 @@ sq:
       edit: Përpunoni bllokim përkatësie
       existing_domain_block: Keni vendosur tashmë kufizime më të rrepta mbi %{name}.
       existing_domain_block_html: Keni vendosur tashmë kufizime më të rrepta mbi %{name}, lypset ta <a href="%{unblock_url}">zhbllokoni</a> së pari.
+      export: Eksportim
+      import: Importim
       new:
         create: Krijoni bllokim
         hint: Bllokimi i përkatësisë nuk do të pengojë krijim zërash llogarie te baza e të dhënave, por do të aplikojë në mënyrë retroaktive dhe të vetvetishme metoda specifike moderimi mbi këto llogari.
         severity:
+          desc_html: "<strong>Kufizoje</strong> do t’i bëjë postimet prej llogarish në këtë përkatësi të padukshme për këtë që nuk i ndjek. <strong>Pezulloje</strong> do të heqë nga shërbyesi juaj krejt lëndën, media dhe të dhëna profili për llogaritë e kësaj përkatësie. Përdorni <strong>Asnjë</strong>, nëse doni thjesht të hidhni tej kartela media."
           noop: Asnjë
+          silence: Kufizoje
           suspend: Pezulloje
         title: Bllokim i ri përkatësie
+      no_domain_block_selected: S’u ndryshuan bllokime përkatësish, ngaqë s’u përzgjodh ndonjë i tillë
+      not_permitted: S’keni leje të kryeni këtë veprim
       obfuscate: Errësoje emrin e përkatësisë
       obfuscate_hint: Errësoje pjesërisht emrin e përkatësisë te lista, nëse është aktivizuar publikimi i listës së kufizimeve të përkatësive
       private_comment: Koment privat
@@ -420,6 +430,20 @@ sq:
       resolved_dns_records_hint_html: Emri i përkatësisë jep u përket përkatësive vijuese MX, që janë përgjegjëset për pranim email-esh. Bllokimi i një përkatësie MX do të bllokojë regjistrime nga çfarëdo adrese email që përdor të njëjtën përkatësi MX, edhe nëse emri i dukshëm i përkatësisë është i ndryshëm. <strong>Jini i kujdesshëm të mos bllokoni shërbime të njohur email-esh.</strong>
       resolved_through_html: Zgjidhur përmes %{domain}
       title: Listë bllokimesh email-esh
+    export_domain_allows:
+      new:
+        title: Impotoni lejime përkatësish
+      no_file: S’u përzgjodh kartelë
+    export_domain_blocks:
+      import:
+        description_html: Ju ndan një hap nga importimi i një liste bllokimesh përkatësish. Ju lutemi, shqyrtojeni këtë listë me shumë kujdes, sidomos nëse këtë listë s’e keni krijuar ju.
+        existing_relationships_warning: Marrëdhënie ekzistuese ndjekjeje
+        private_comment_description_html: 'Për t’ju ndihmuar të ndiqni se nga vijnë bllokimet e importuara, këto do të krijohen me komentin vijues privat: <q>%{comment}</q>'
+        private_comment_template: Importuar nga %{source} më %{date}
+        title: Importoni bllokime përkatësish
+      new:
+        title: Importoni bllokime përkatësish
+      no_file: S’u përzgjodh kartelë
     follow_recommendations:
       description_html: "<strong>Rekomandimet për ndjekje ndihmojnë përdoruesit e rinj të gjejnë shpejt lëndë me interes</strong>. Kur një përdorues nuk ka ndërvepruar mjaftueshëm me të tjerët, që të formohen rekomandime të personalizuara ndjekjeje, rekomandohen këto llogari. Ato përzgjidhen çdo ditë, prej një përzierje llogarish me shkallën më të lartë të angazhimit dhe numrin më të lartë të ndjekësve vendorë për një gjuhë të dhënë."
       language: Për gjuhën
@@ -538,7 +562,6 @@ sq:
     report_notes:
       created_msg: Shënimi i raportimit u krijua me sukses!
       destroyed_msg: Shënimi i raportimit u fshi me sukses!
-      today_at: Sot më %{time}
     reports:
       account:
         notes:
@@ -679,6 +702,9 @@ sq:
       content_retention:
         preamble: Kontrolloni se si depozitohen në Mastodon lënda e prodhuar nga përdoruesit.
         title: Mbajtje lënde
+      default_noindex:
+        desc_html: Prek krejt përdoruesit që s’e kanë ndryshuar vetë këtë rregullim
+        title: Lëri, si parazgjedhje, përdoruesit jashtë indeksimi nga motorë kërkimesh
       discovery:
         follow_recommendations: Rekomandime ndjekjeje
         preamble: Shpërfaqja e lëndës interesante është me rëndësi kyçe për mirëseardhjen e përdoruesve të rinj që mund të mos njohin njeri në Mastodon. Kontrolloni se si funksionojnë në shërbyesin tuaj veçori të ndryshme zbulimi.
@@ -907,6 +933,7 @@ sq:
     warning: Bëni shumë kujdes me ato të dhëna. Mos ia jepni kurrë njeriu!
     your_token: Token-i juaj për hyrje
   auth:
+    apply_for_account: Kërkoni një llogari
     change_password: Fjalëkalim
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
@@ -943,6 +970,9 @@ sq:
       email_below_hint_html: Nëse adresa email më poshtë s’është e saktë, mund ta ndryshoni këtu dhe të merrni një email të ri ripohimi.
       email_settings_hint_html: Email-i i ripohimit u dërgua te %{email}. Nëse ajo adresë email s’është e saktë, mund ta ndryshoni që nga rregullimet e llogarisë.
       title: Ujdisje
+    sign_in:
+      preamble_html: Hyni me kredencialet tuaja për te <strong>%{domain}</strong>. Nëse llogaria juaj strehohet në një tjetër shërbyes, s’do të jeni në gjendje të bëni hyrjen këtu.
+      title: Bëni hyrjen te %{domain}
     sign_up:
       preamble: Me një llogari në këtë shërbyes Mastodon, do të jeni në gjendje të ndiqni cilindo person tjetër në rrjet, pavarësisht se ku strehohet llogaria e tyre.
       title: Le të ujdisim llogarinë tuaj në %{domain}.
@@ -1151,6 +1181,7 @@ sq:
     invalid_markup: 'përmban elementë HTML të pavlefshëm: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Kartelë CSV e pavlefshme. Gabim: %{error}'
       over_rows_processing_limit: përmban më shumë se %{count} rreshta
     modes:
       merge: Përzieji

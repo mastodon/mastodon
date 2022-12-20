@@ -70,6 +70,53 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
     end
   end
 
+  describe 'PUT #update' do
+    let!(:remote_account) { Fabricate(:account, domain: 'example.com') }
+    let(:domain_block)    { Fabricate(:domain_block, domain: 'example.com', severity: original_severity) }
+
+    before do
+      BlockDomainService.new.call(domain_block)
+    end
+
+    let(:subject) do
+      post :update, params: { id: domain_block.id, domain_block: { domain: 'example.com', severity: new_severity } }
+    end
+
+    context 'downgrading a domain suspension to silence' do
+      let(:original_severity) { 'suspend' }
+      let(:new_severity)      { 'silence' }
+
+      it 'changes the block severity' do
+        expect { subject }.to change { domain_block.reload.severity }.from('suspend').to('silence')
+      end
+
+      it 'undoes individual suspensions' do
+        expect { subject }.to change { remote_account.reload.suspended? }.from(true).to(false)
+      end
+
+      it 'performs individual silences' do
+        expect { subject }.to change { remote_account.reload.silenced? }.from(false).to(true)
+      end
+    end
+
+    context 'upgrading a domain silence to suspend' do
+      let(:original_severity) { 'silence' }
+      let(:new_severity)      { 'suspend' }
+
+      it 'changes the block severity' do
+        expect { subject }.to change { domain_block.reload.severity }.from('silence').to('suspend')
+      end
+
+      it 'undoes individual silences' do
+        expect { subject }.to change { remote_account.reload.silenced? }.from(true).to(false)
+      end
+
+      it 'performs individual suspends' do
+        expect { subject }.to change { remote_account.reload.suspended? }.from(false).to(true)
+      end
+    end
+  end
+
   describe 'DELETE #destroy' do
     it 'unblocks the domain' do
       service = double(call: true)

@@ -195,9 +195,13 @@
   - if @account.suspended?
     %hr.spacer/
 
-    %p.muted-hint= @deletion_request.present? ? t('admin.accounts.suspension_reversible_hint_html', date: content_tag(:strong, l(@deletion_request.due_at.to_date))) : t('admin.accounts.suspension_irreversible')
+    - if @account.suspension_origin_remote?
+      %p.muted-hint= @deletion_request.present? ? t('admin.accounts.remote_suspension_reversible_hint_html', date: content_tag(:strong, l(@deletion_request.due_at.to_date))) : t('admin.accounts.remote_suspension_irreversible')
+    - else
+      %p.muted-hint= @deletion_request.present? ? t('admin.accounts.suspension_reversible_hint_html', date: content_tag(:strong, l(@deletion_request.due_at.to_date))) : t('admin.accounts.suspension_irreversible')
 
     = link_to t('admin.accounts.undo_suspension'), unsuspend_admin_account_path(@account.id), method: :post, class: 'button' if can?(:unsuspend, @account)
+    = link_to t('admin.accounts.redownload'), redownload_admin_account_path(@account.id), method: :post, class: 'button' if can?(:redownload, @account) && @account.suspension_origin_remote?
 
     - if @deletion_request.present?
       = link_to t('admin.accounts.delete'), admin_account_path(@account.id), method: :delete, class: 'button button--destructive', data: { confirm: t('admin.accounts.are_you_sure') } if can?(:destroy, @account)

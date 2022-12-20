@@ -122,6 +122,8 @@ pl:
       redownloaded_msg: Pomyślnie odświeżono profil %{username} z miejsca pochodzenia
       reject: Odrzuć
       rejected_msg: Pomyślnie odrzucono wniosek o rejestrację %{username}
+      remote_suspension_irreversible: Dane tego konta zostały nieodwracalnie usunięte.
+      remote_suspension_reversible_hint_html: Konto zostało zawieszone na serwerze, a dane zostaną w pełni usunięte dnia %{date}. Do tego czasu zdalny serwer może przywrócić to konto bez żadnych konsekwencji. Jeśli chcesz natychmiast usunąć wszystkie dane konta, możesz to zrobić poniżej.
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
       removed_avatar_msg: Pomyślnie usunięto awatar %{username}
@@ -387,6 +389,8 @@ pl:
       add_new: Zatwierdź domenę
       created_msg: Domena dodana do białej listy
       destroyed_msg: Domena usunięta z białej listy
+      export: Eksportuj
+      import: Importuj
       undo: Usuń z białej listy
     domain_blocks:
       add_new: Dodaj nową
@@ -396,13 +400,19 @@ pl:
       edit: Edytuj blokadę domeny
       existing_domain_block: Już nałożyłeś surowsze limity na %{name}.
       existing_domain_block_html: Już narzuciłeś bardziej rygorystyczne limity na %{name}, musisz najpierw <a href="%{unblock_url}">je odblokować</a>.
+      export: Eksportuj
+      import: Importuj
       new:
         create: Utwórz blokadę
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
+          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkowników z tej domeny widoczne tylko dla osób, które go obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
           noop: Nic nie rób
+          silence: Limit
           suspend: Zawieś
         title: Nowa blokada domen
+      no_domain_block_selected: Nie zmieniono żadnych bloków domen, gdyż żadna nie została wybrana
+      not_permitted: Nie możesz wykonać tej czynności
       obfuscate: Ukryj nazwę domeny
       obfuscate_hint: Częściowo ukryj nazwę domeny na liście, gdy reklamowanie listy limitów domen jest włączone
       private_comment: Prywatny komentarz
@@ -436,6 +446,20 @@ pl:
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
       title: Blokowanie domen e-mail
+    export_domain_allows:
+      new:
+        title: Zaimportuj zezwolenia domen
+      no_file: Nie wybrano pliku
+    export_domain_blocks:
+      import:
+        description_html: Zamierzasz zaimportować listę zablokowanych domen. Przejrzyj uważnie tę listę, zwłaszcza jeśli sam jej nie utworzyłeś.
+        existing_relationships_warning: Istniejące połączenia obserwujących
+        private_comment_description_html: 'Żebyś wiedział(a) skąd pochodzą zaimportowane bloki, zostaną one utworzone z następującym prywatnym komentarzem: <q>%{comment}</q>'
+        private_comment_template: Zaimportowano z %{source} dnia %{date}
+        title: Importuj zablokowane domeny
+      new:
+        title: Importuj zablokowane domeny
+      no_file: Nie wybrano pliku
     follow_recommendations:
       description_html: "<strong>Polecane obserwacje pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
       language: Dla języka
@@ -561,7 +585,6 @@ pl:
     report_notes:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
-      today_at: Dziś o %{time}
     reports:
       account:
         notes:
@@ -710,6 +733,9 @@ pl:
       content_retention:
         preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
         title: Retencja treści
+      default_noindex:
+        desc_html: Wpłynie to na wszystkich użytkowników, którzy sami tego nie zmienili w swoich ustawieniach
+        title: Domyślnie żądaj nieindeksowania użytkowników przez wyszukiwarki
       discovery:
         follow_recommendations: Polecane konta
         preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
@@ -948,6 +974,7 @@ pl:
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
     your_token: Twój token dostępu
   auth:
+    apply_for_account: Poproś o założenie konta
     change_password: Hasło
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -984,6 +1011,8 @@ pl:
       email_below_hint_html: Jeżeli poniższy adres e-mail jest nieprawidłowy, możesz zmienić go tutaj i otrzymać nowy e-mail potwierdzający.
       email_settings_hint_html: E-mail potwierdzający został wysłany na %{email}. Jeżeli adres e-mail nie jest prawidłowy, możesz zmienić go w ustawieniach konta.
       title: Konfiguracja
+    sign_in:
+      title: Zaloguj się do %{domain}
     sign_up:
       preamble: Z kontem na tym serwerze Mastodon będziesz mógł obserwować każdą inną osobę w sieci, niezależnie od miejsca przechowywania ich konta.
       title: Skonfigurujmy Twoje konto na %{domain}.
@@ -1206,6 +1235,7 @@ pl:
     invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
       over_rows_processing_limit: zawiera więcej niż %{count} wierszy
     modes:
       merge: Połącz
@@ -1478,7 +1508,7 @@ pl:
     preferences: Preferencje
     profile: Profil
     relationships: Obserwowani i obserwujący
-    statuses_cleanup: Automatyczne usuwanie posta
+    statuses_cleanup: Automatyczne usuwanie wpisów
     strikes: Ostrzeżenia moderacyjne
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     webauthn_authentication: Klucze bezpieczeństwa

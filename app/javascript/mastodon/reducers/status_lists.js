@@ -25,7 +25,7 @@ import {
   TRENDS_STATUSES_EXPAND_SUCCESS,
   TRENDS_STATUSES_EXPAND_FAIL,
 } from '../actions/trends';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { Map as ImmutableMap, OrderedSet as ImmutableOrderedSet } from 'immutable';
 import {
   FAVOURITE_SUCCESS,
   UNFAVOURITE_SUCCESS,
@@ -43,22 +43,22 @@ const initialState = ImmutableMap({
   favourites: ImmutableMap({
     next: null,
     loaded: false,
-    items: ImmutableList(),
+    items: ImmutableOrderedSet(),
   }),
   bookmarks: ImmutableMap({
     next: null,
     loaded: false,
-    items: ImmutableList(),
+    items: ImmutableOrderedSet(),
   }),
   pins: ImmutableMap({
     next: null,
     loaded: false,
-    items: ImmutableList(),
+    items: ImmutableOrderedSet(),
   }),
   trending: ImmutableMap({
     next: null,
     loaded: false,
-    items: ImmutableList(),
+    items: ImmutableOrderedSet(),
   }),
 });
 
@@ -67,7 +67,7 @@ const normalizeList = (state, listType, statuses, next) => {
     map.set('next', next);
     map.set('loaded', true);
     map.set('isLoading', false);
-    map.set('items', ImmutableList(statuses.map(item => item.id)));
+    map.set('items', ImmutableOrderedSet(statuses.map(item => item.id)));
   }));
 };
 
@@ -75,20 +75,22 @@ const appendToList = (state, listType, statuses, next) => {
   return state.update(listType, listMap => listMap.withMutations(map => {
     map.set('next', next);
     map.set('isLoading', false);
-    map.set('items', map.get('items').concat(statuses.map(item => item.id)));
+    map.set('items', map.get('items').union(statuses.map(item => item.id)));
   }));
 };
 
 const prependOneToList = (state, listType, status) => {
-  return state.update(listType, listMap => listMap.withMutations(map => {
-    map.set('items', map.get('items').unshift(status.get('id')));
-  }));
+  return state.updateIn([listType, 'items'], (list) => {
+    if (list.includes(status.get('id'))) {
+      return list;
+    } else {
+      return ImmutableOrderedSet([status.get('id')]).union(list);
+    }
+  });
 };
 
 const removeOneFromList = (state, listType, status) => {
-  return state.update(listType, listMap => listMap.withMutations(map => {
-    map.set('items', map.get('items').filter(item => item !== status.get('id')));
-  }));
+  return state.updateIn([listType, 'items'], (list) => list.delete(status.get('id')));
 };
 
 export default function statusLists(state = initialState, action) {
@@ -139,8 +141,8 @@ export default function statusLists(state = initialState, action) {
     return removeOneFromList(state, 'pins', action.status);
   case ACCOUNT_BLOCK_SUCCESS:
   case ACCOUNT_MUTE_SUCCESS:
-    return state.updateIn(['trending', 'items'], ImmutableList(), list => list.filterNot(statusId => action.statuses.getIn([statusId, 'account']) === action.relationship.id));
+    return state.updateIn(['trending', 'items'], ImmutableOrderedSet(), list => list.filterNot(statusId => action.statuses.getIn([statusId, 'account']) === action.relationship.id));
   default:
     return state;
   }
-};
+}

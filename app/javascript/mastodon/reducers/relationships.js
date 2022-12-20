@@ -1,4 +1,7 @@
 import {
+  NOTIFICATIONS_UPDATE,
+} from '../actions/notifications';
+import {
   ACCOUNT_FOLLOW_SUCCESS,
   ACCOUNT_FOLLOW_REQUEST,
   ACCOUNT_FOLLOW_FAIL,
@@ -12,6 +15,8 @@ import {
   ACCOUNT_PIN_SUCCESS,
   ACCOUNT_UNPIN_SUCCESS,
   RELATIONSHIPS_FETCH_SUCCESS,
+  FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
+  FOLLOW_REQUEST_REJECT_SUCCESS,
 } from '../actions/accounts';
 import {
   DOMAIN_BLOCK_SUCCESS,
@@ -44,6 +49,12 @@ const initialState = ImmutableMap();
 
 export default function relationships(state = initialState, action) {
   switch(action.type) {
+  case FOLLOW_REQUEST_AUTHORIZE_SUCCESS:
+    return state.setIn([action.id, 'followed_by'], true).setIn([action.id, 'requested_by'], false);
+  case FOLLOW_REQUEST_REJECT_SUCCESS:
+    return state.setIn([action.id, 'followed_by'], false).setIn([action.id, 'requested_by'], false);
+  case NOTIFICATIONS_UPDATE:
+    return action.notification.type === 'follow_request' ? state.setIn([action.notification.account.id, 'requested_by'], true) : state;
   case ACCOUNT_FOLLOW_REQUEST:
     return state.getIn([action.id, 'following']) ? state : state.setIn([action.id, action.locked ? 'requested' : 'following'], true);
   case ACCOUNT_FOLLOW_FAIL:
@@ -71,4 +82,4 @@ export default function relationships(state = initialState, action) {
   default:
     return state;
   }
-};
+}
