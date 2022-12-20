@@ -608,12 +608,14 @@ bg:
         other: "%{count} разрешения"
       privileges:
         administrator: Администратор
+        administrator_description: Потребители с това разрешение ще заобиколят всички разрешения
         delete_user_data: Изтриване на потребителските данни
         invite_users: Поканване на потребители
         invite_users_description: Позволява на потребителите да канят нови хора в сървъра
         manage_announcements: Управляване на оповестяванията
         manage_announcements_description: Позволява на потребителите да управляват оповестяванията в сървъра
         manage_appeals: Управление на обжалванията
+        manage_appeals_description: Позволява на потребителите да разглеждат обжалвания срещу модераторски действия
         manage_blocks: Управляване на блокиранията
         manage_blocks_description: Позволява на потребителите да блокират доставчици на е-поща и IP адреси
         manage_custom_emojis: Управляване на персонализирани емоджита
@@ -654,6 +656,8 @@ bg:
         title: Външен вид
       branding:
         title: Брандиране
+      default_noindex:
+        desc_html: Влияе на всички потребители, които не са променили тази настройка за себе си
       discovery:
         profile_directory: Директория на профила
         public_timelines: Публични инфопотоци
@@ -773,6 +777,9 @@ bg:
         sensitive: за означаване на акаунтите като деликатни
         silence: за слагане на органичение на акаунтите им
         suspend: за спиране на акаунтите им
+    new_report:
+      body: "%{reporter} докладва %{target}"
+      body_remote: Някого от %{domain} докладва %{target}
     new_trends:
       new_trending_links:
         title: Налагащи се връзки
@@ -1328,11 +1335,26 @@ bg:
   user_mailer:
     appeal_approved:
       action: Към акаунта ви
+    appeal_rejected:
+      subject: Вашето обжалване от %{date} е било отхвърлено
+      title: Отхвърлено обжалване
     backup_ready:
+      explanation: Изискахте пълно резервно копиране на акаунта си в Mastodon. Вече е готово за изтегляне!
       subject: Вашият архив е готов за изтегляне
+    suspicious_sign_in:
+      change_password: промяна на паролата ви
+      details: 'Ето подробности при вход:'
+      explanation: Засякохме влизане в акаунта ви от нов IP адрес.
+      subject: Вашият акаунт е използвал достъп от нов IP адрес
+      title: Нов вход
     warning:
+      appeal: Подаване на обжалване
+      appeal_description: Ако вярвате, че това е грешка, то може да подадете обжалване до щаба на %{instance}.
       categories:
         spam: Спам
+        violation: Съдържанието нарушава следните ръководни линии
+      explanation:
+        delete_statuses: Някои от публикациите ви са нарушили една или повече от ръководните линии на общността и впоследствие бяха премахнати от модераторите на %{instance}.
       reason: 'Причина:'
       statuses: 'Цитирани публ.:'
       subject:
@@ -1357,6 +1379,8 @@ bg:
   users:
     follow_limit_reached: Не може да последвате повече от %{limit} души
     invalid_otp_token: Невалиден код
+    otp_lost_help_html: Ако загубите достъп до двете, то може да се свържете с %{email}
+    seamless_external_login: Влезли сте чрез външна услуга, така че настройките за парола и имейл не са налични.
     signed_in_as: 'Влезли като:'
   verification:
     explanation_html: 'Можете да <strong>удостоверите самоличността си като собственик на линковете в метаданните на своя профил</strong>. За целта сайтът, към който води линк от метаданните, трябва да съдържа линк обратно към вашия профил в Mastodon. Линкът от сайта <strong>трябва</strong> да съдържа атрибут <code>rel="me"</code>. Текстовото съдържание на линка няма значение. Ето пример:'
