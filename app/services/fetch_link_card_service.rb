@@ -136,8 +136,13 @@ class FetchLinkCardService < BaseService
       @card.html             = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
       @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     when 'rich'
-      # Most providers rely on <script> tags, which is a no-no
-      return false
+      sanitized_rich_html    = Sanitize.fragment(embed[:html], Sanitize::Config::MASTODON_OEMBED)
+      return false if sanitized_rich_html != embed[:html]
+
+      @card.width            = embed[:width].presence  || 0
+      @card.height           = embed[:height].presence || 0
+      @card.html             = sanitized_rich_html
+      @card.image_remote_url = (url + embed[:thumbnail_url]).to_s if embed[:thumbnail_url].present?
     end
 
     @card.save_with_optional_image!
