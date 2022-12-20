@@ -1,7 +1,6 @@
----
 sr:
   about:
-    about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
+    about_mastodon_html: 'Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.'
     contact_missing: Није постављено
     contact_unavailable: Није доступно
     hosted_on: Мастодон хостован на %{domain}
@@ -9,8 +8,8 @@ sr:
   accounts:
     follow: Прати
     followers:
-      few: Пратиоци
       one: Пратиоц
+      few: Пратиоци
       other: Пратиоци
     following: Пратим
     last_active: последњи пут активни
@@ -19,8 +18,8 @@ sr:
     pin_errors:
       following: Морате пратити ову особу ако хоћете да потврдите
     posts:
-      few: Објаве
       one: Објава
+      few: Објаве
       other: Објава
     posts_tab_heading: Објаве
   admin:
@@ -139,6 +138,8 @@ sr:
     action_logs:
       action_types:
         approve_user: Одобри корисника
+        change_email_user: Промени e-адресу корисника
+        change_role_user: Промени улогу корисника
         confirm_user: Потврди корисника
         create_account_warning: Креирај упозорење
         create_announcement: Креирај најаву
@@ -146,22 +147,45 @@ sr:
         create_user_role: Креирај улогу
         destroy_announcement: Избриши најаву
         destroy_canonical_email_block: Избриши блок е-поште
+        destroy_status: Избриши пост
         disable_user: Онемогући корисника
         enable_user: Омогући корисника
         reject_user: Одбаци корисника
+        silence_account: Ограничи налог
+        suspend_account: Обустави налог
+        update_status: Уреди објаву
+        update_user_role: Уреди улогу
+      deleted_account: обрисан налог
+      filter_by_action: Филтрирај по активности
+      filter_by_user: Филтрирај по кориснику
       title: Записник
+    announcements:
+      edit:
+        title: Уреди најаву
+      empty: Ниједна најава није пронађена.
+      live: Уживо
+      new:
+        create: Креирај најаву
+        title: Нова најава
+      publish: Објави
+      published_msg: Најава успешно објављена!
+      title: Најаве
     custom_emojis:
+      assign_category: Додели категорију
       by_domain: Домен
       copied_msg: Успешно направљена локална копија емоџија
       copy: Копирај
       copy_failed_msg: Не могу да направим локалну копију тог емотиџија
+      create_new_category: Kreiraj novu kategoriju
       created_msg: Емоџи успешно направљен!
       delete: Обриши
       destroyed_msg: Емоџи успешно обрисан!
       disable: Онемогући
+      disabled: Онемогућено
       disabled_msg: Емоџи успешно онемогућен
       emoji: Емоџи
       enable: Омогући
+      enabled: Омогућено
       enabled_msg: Емоџи успешно омогућен
       listed: Излистан
       new:
@@ -178,11 +202,16 @@ sr:
       software: Софтвер
       space: Коришћење простора
       title: Командна табла
+    domain_allows:
+      export: Извоз
+      import: Увоз
     domain_blocks:
       add_new: Додај нови блок домена
       created_msg: Блокирање домена се обрађује
       destroyed_msg: Блокирање домена је опозвано
       domain: Домен
+      export: Извоз
+      import: Увоз
       new:
         create: Направи блокаду
         hint: Блокирање домена неће спречити прављење налога у бази, али ће ретроактивно и аутоматски применити одређене модераторске методе над тим налозима.
@@ -190,6 +219,8 @@ sr:
           noop: Ништа
           suspend: Суспензија
         title: Ново блокирање домена
+      private_comment: Приватни коментар
+      public_comment: Јавни коментар
       reject_media: Одбаци мултимедију
       reject_media_hint: Уклања локално ускладиштене мултимедијске фајлове и одбија да их скида убудуће. Небитно је за суспензију
       reject_reports: Одбаци извештај
@@ -204,12 +235,29 @@ sr:
         create: Додај домен
         title: Нова ставка е-поштe у црној листи
       title: Црна листа E-поште
+    follow_recommendations:
+      status: Статус
     instances:
+      back_to_all: Све
+      back_to_limited: Ограничено
+      back_to_warning: Упозорење
+      by_domain: Домен
+      content_policies:
+        policies:
+          silence: Ограничи
+          suspend: Суспендуј
+        policy: Политика
+        reason: Јавни разлог
+      delivery:
+        all: Све
+        unavailable: Недоступно
       delivery_available: Достава је доступна
       moderation:
         all: Све
         limited: Ограничено
         title: Модерација
+      private_comment: Приватни коментар
+      public_comment: Јавни коментар
       title: Федерација
       total_blocked_by_us: Блокирано од стране нас
       total_followed_by_them: Праћени од стране њих
@@ -223,10 +271,21 @@ sr:
         expired: Истекли
         title: Филтер
       title: Позивнице
+    ip_blocks:
+      expires_in:
+        '1209600': 2 недеље
+        '15778476': 6 месеци
+        '2629746': 1 месец
+        '31556952': 1 година
+        '86400': 1 дан
+        '94670856': 3 године
+      new:
+        title: Креирај ново IP правило
+      no_ip_block_selected: Ниједно IP правило није промењено јер ниједно није изабрано
     relays:
       add_new: Додај нови релеј
       delete: Обриши
-      description_html: "<strong>Федерални релеј</strong> је посреднички сервер који размењује велике количине јавних труба између сервера на који је претплаћен и на који објављује.<strong>Може помоћи малим и средњим серверима да открију садржај из федиверса</strong>, који иначе захтева од локалних корисника да ручно пратити остале људе на удаљеним серверима."
+      description_html: <strong>Федерални релеј</strong> је посреднички сервер који размењује велике количине јавних труба између сервера на који је претплаћен и на који објављује.<strong>Може помоћи малим и средњим серверима да открију садржај из федиверса</strong>, који иначе захтева од локалних корисника да ручно пратити остале људе на удаљеним серверима.
       disable: Искључи
       disabled: Искључен
       enable: Укључи
@@ -268,6 +327,17 @@ sr:
       unassign: Уклони доделу
       unresolved: Нерешене
       updated_at: Ажурирана
+      view_profile: Погледај профил
+    roles:
+      add_new: Додај улогу
+      categories:
+        administration: Администрација
+        moderation: Модерација
+      delete: Избриши
+      privileges:
+        administrator: Администратор
+        delete_user_data: Избриши податке корисника
+        invite_users: Позови кориснике
     settings:
       appearance:
         title: Изглед
@@ -293,7 +363,7 @@ sr:
     new_report:
       body: "%{reporter} је пријавио %{target}"
       body_remote: Нека са домена %{domain} је пријавио %{target}
-      subject: Нова пријава за %{instance} (#%{id})
+      subject: 'Нова пријава за %{instance} (#%{id})'
   application_mailer:
     notification_preferences: Промени преференце Е-поште
     settings: 'Промени подешавања е-поште: %{link}'
@@ -400,8 +470,8 @@ sr:
     copy: Копирај
     save_changes: Сними измене
     validation_errors:
-      few: Нешто није баш како треба! Прегледајте %{count} грешке испод
       one: Нешто није баш како треба! Прегледајте грешке испод
+      few: Нешто није баш како треба! Прегледајте %{count} грешке испод
       other: Нешто није баш како треба! Прегледајте %{count} грешака испод
   imports:
     preface: Можете увести податке које сте извезли са друге инстанце, као што су листе људи које сте пратили или блокирали.
@@ -425,8 +495,8 @@ sr:
     generate: Генериши
     invited_by: 'Позвао Вас је:'
     max_uses:
-      few: "%{count} коришћења"
       one: 1 коришћење
+      few: "%{count} коришћења"
       other: "%{count} коришћења"
     max_uses_prompt: Без ограничења
     prompt: Генериши и подели линкове са другима да им одобрите приступ овој инстанци
@@ -447,7 +517,7 @@ sr:
     title: Модерација
   notification_mailer:
     favourite:
-      body: "%{name} је поставио као омиљен Ваш статус:"
+      body: '%{name} је поставио као омиљен Ваш статус:'
       subject: "%{name} је поставио као омиљен Ваш статус"
       title: Нови омиљени
     follow:
@@ -461,11 +531,11 @@ sr:
       title: Нови захтев за праћење
     mention:
       action: Одговори
-      body: "%{name} Вас је поменуо у:"
-      subject: "%{name} Вас је поменуо"
+      body: '%{name} Вас је поменуо у:'
+      subject: '%{name} Вас је поменуо'
       title: Ново спомињање
     reblog:
-      body: "%{name} Вам је подржао/ла статус:"
+      body: '%{name} Вам је подржао/ла статус:'
       subject: "%{name} је подржао/ла Ваш статус"
       title: Нова подршка
   notifications:
@@ -540,18 +610,18 @@ sr:
     attached:
       description: 'У прилогу: %{attached}'
       image:
-        few: "%{count} слика"
         one: "%{count} слику"
+        few: "%{count} слика"
         other: "%{count} слика"
       video:
-        few: "%{count} видео записа"
         one: "%{count} видео запис"
+        few: "%{count} видео записа"
         other: "%{count} видео записа"
     boosted_from_html: Подржано од %{acct_link}
     content_warning: 'Упозорење на садржај: %{warning}'
     disallowed_hashtags:
-      few: 'садржи забрањене хештегове: %{tags}'
       one: 'садржи забрањени хештег: %{tags}'
+      few: 'садржи забрањене хештегове: %{tags}'
       other: 'садржи забрањене хештегове: %{tags}'
     open_in_web: Отвори у вебу
     over_character_limit: ограничење од %{max} карактера прекорачено
