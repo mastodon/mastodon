@@ -28,7 +28,7 @@ class FetchOEmbedService
     page    = Nokogiri::HTML(html)
 
     if @format.nil? || @format == :json
-      @endpoint_url ||= page.at_xpath('//link[@type="application/json+oembed"]')&.attribute('href')&.value
+      @endpoint_url ||= page.at_xpath('//link[@type="application/json+oembed"]|//link[@type="text/json+oembed"]')&.attribute('href')&.value
       @format       ||= :json if @endpoint_url
     end
 
@@ -100,7 +100,7 @@ class FetchOEmbedService
   end
 
   def validate(oembed)
-    oembed if oembed[:version] == '1.0' && oembed[:type].present?
+    oembed if oembed[:version].to_s == '1.0' && oembed[:type].present?
   end
 
   def html
