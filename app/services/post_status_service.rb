@@ -210,7 +210,10 @@ class PostStatusService < BaseService
     puts '[Crossbell] new toot valid, sending to webhook'
 
     # Send to crossbell by webhook
-    request = Request.new(:post, ENV['CROSSBELL_WEBHOOK'], body: Oj.dump(ActiveModelSerializers::SerializableResource.new(@status, serializer: REST::StatusSerializer).as_json))
+    request = Request.new(:post, ENV['CROSSBELL_WEBHOOK'], body: Oj.dump({
+      "account" => @account,
+      "toot" => ActiveModelSerializers::SerializableResource.new(@status, serializer: REST::StatusSerializer, scope: nil, scope_name: :current_user),
+    }.as_json))
 
     request.add_headers(
       'Content-Type' => 'application/json',
