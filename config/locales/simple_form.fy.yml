@@ -101,6 +101,13 @@ fy:
       admin_account_action:
         include_statuses: Rapportearre berjochten oan it e-mailberjocht tafoegje
         send_email_notification: Meld dit per e-mailberjocht oan de brûker
+        type: Aksje
+        types:
+          disable: Befrieze
+          none: Warskôging stjoere
+          sensitive: Gefoelich
+          silence: Beheine
+          suspend: Utstelle en definityf accountgegevens fuortsmite
       announcement:
         all_day: De hiele dei troch
         ends_at: Einiget
@@ -214,18 +221,24 @@ fy:
         pending_account: Wannear in nij account beoardiele wurde moat
         reblog: Wannear ien jo berjocht boost hat
         report: Nije rapportaazje yntsjinne is
+        trending_tag: Nije trend beoardieling fereasket
       rule:
         text: Regel
       tag:
+        listable: Tastean dat dizze hashtag yn sykopdrachten en oanrekommandaasjes te sjen is
         name: Hashtag
+        trendable: Goedkarre dat dizze hashtag ûnder trends te sjen is
+        usable: Tastean dat dizze hashtag yn berjochten brûkt wurde mei
       user:
         role: Rol
       user_role:
         color: Badgekleur
+        highlighted: Rol as badge op profylsiden toane
         name: Namme
         permissions_as_keys: Tastimmingen
         position: Prioriteit
       webhook:
+        events: Ynskeakele eveneminten
         url: Einpunt-URL
     'no': 'Nee'
     not_recommended: Net oanrekommandearre
@@ -233,4 +246,7 @@ fy:
     required:
       mark: "*"
       text: fereaske
+    title:
+      sessions:
+        webauthn: Brûk ien fan jo befeiligingskaaien om oan te melden
     'yes': 'Ja'
