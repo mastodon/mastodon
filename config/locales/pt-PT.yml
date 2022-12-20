@@ -116,6 +116,8 @@ pt-PT:
       redownloaded_msg: Atualizado com sucesso o perfil de %{username} da origem
       reject: Rejeitar
       rejected_msg: Inscrição de %{username} rejeitada com sucesso
+      remote_suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente.
+      remote_suspension_reversible_hint_html: A conta foi suspensa no servidor de origem e os seus dados serão totalmente eliminados em %{date}. Até lá, o servidor de origem poderá recuperar esta conta sem quaisquer efeitos negativos. Se desejar eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
       remove_avatar: Remover a imagem de perfil
       remove_header: Remover o cabeçalho
       removed_avatar_msg: Imagem de perfil de %{username} removida com sucesso
@@ -973,6 +975,9 @@ pt-PT:
       email_below_hint_html: Se o endereço de e-mail abaixo estiver incorreto, pode alterá-lo aqui e receber um novo e-mail de confirmação.
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, pode alterá-lo nas definições da conta.
       title: Configuração
+    sign_in:
+      preamble_html: Iniciar sessão com as suas credenciais de <strong>%{domain}</strong>. Se a sua conta estiver hospedada noutro servidor, não poderá inciar sessão aqui.
+      title: Iniciar sessão em %{domain}
     sign_up:
       preamble: Com uma conta neste servidor Mastodon, poderá seguir qualquer outra pessoa na rede, independentemente do servidor onde a conta esteja hospedada.
       title: Vamos lá inscrevê-lo em %{domain}.

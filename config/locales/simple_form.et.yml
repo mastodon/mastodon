@@ -22,10 +22,10 @@ et:
           suspend: Takistamaks suhtlust selle kontoga ja kustutamaks kogu sisu. Tagasivõetav 30 päeva jooksul.
         warning_preset_id: Valikuline. Te saate ikka lisada mis tahes teksti eelseadistuse lõppu
       announcement:
-        all_day: Kui valitud, ainult kuupäevad antud ajavahemikus on kuvatud
+        all_day: Kui valitud, kuvatakse vaid selle ajavahemiku kuupäevi
         ends_at: Valikuline. Teadaanne eemaldatakse automaatselt sellel ajal
         scheduled_at: Jäta tühjaks, et avaldada teadaande koheselt
-        starts_at: Valikuline. Juhul, kui teie teadaanne on limiteeritud kindlale ajavahemikule
+        starts_at: Valikuline. Juhul, kui teadaanne on limiteeritud kindlale ajavahemikule
         text: Te saate kasutada postituse süntaksi. Tuleks silmas pidada, kui palju ruumi teadaanne võtab kasutaja ekraanil
       appeal:
         text: Otsust on võimalik vaidlustada vaid 1 kord
@@ -54,12 +54,12 @@ et:
         setting_display_media_default: Peida tundlikuks märgitud meedia
         setting_display_media_hide_all: Alati peida kõik meedia
         setting_display_media_show_all: Alati näita tundlikuks märgistatud meedia
-        setting_hide_network: Keda Te jälgite ja kes jägib Teid ei kuvata Teie profiilil
-        setting_noindex: Mõjutab Teie avalikku profiili ja staatuse lehekülgi
-        setting_show_application: Rakendus, mida kasutate postitamiseks, kuvatakse postituste detailvaates
+        setting_hide_network: Profiilil ei kuvata Keda sa jälgid ja kes jälgib sind
+        setting_noindex: Mõjutab su avalikku profiili ja postituste lehekülgi
+        setting_show_application: Postitamiseks kasutatud rakenduse infot kuvatakse postituse üksikasjavaates
         setting_use_blurhash: Värvid põhinevad peidetud visuaalidel, kuid hägustavad igasuguseid detaile
-        setting_use_pending_items: Peida ajajoone uuendused kliki taga selle asemel, et automaatselt kerida voogu
-        username: Teie kasutajanimi on %{domain}-il unikaalne
+        setting_use_pending_items: Voo automaatse kerimise asemel peida ajajoone uuendused kliki taha
+        username: Su kasutajanimi on %{domain}-il unikaalne
         whole_word: Kui võtmesõna või fraas on ainult tähtnumbriline, rakendub see ainult siis, kui see kattub terve sõnaga
       domain_allow:
         domain: See domeen saab tõmmata andmeid sellelt serverilt ning sissetulevad andmed sellelt domeenilt töödeldakse ning salvestatakse
@@ -74,13 +74,13 @@ et:
           hide: Filtreeritud sisu täielik peitmine, nagu seda polekski üldse olemas
           warn: Varja filtreeritud sisu hoiatusega, nimetades filtri pealkirja
       form_admin_settings:
-        backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevadeks.
+        backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevi.
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
         content_cache_retention_period: Teiste serverite postitused kustutatakse pärast määratud päevade arvu, kui see on seatud positiivsele väärtusele. See võib olla pöördumatu.
         custom_css: Kohandatud stiile on võimalik kasutada Mastodoni veebiliideses.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
-        media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid nende päevade möödudes ning laetakse vajadusel uuesti alla.
+        media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid määratud päevade möödudes. Vajadusel laaditakse need uuesti alla.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
         require_invite_text: Kui liitumisi on tarvis kinnitada, oleks "Miks Te soovite liituda?" vastus vajalik
         site_contact_email: Kui peaks tekkima vajadus ühendust võtta täiendavate küsimuste osas.
@@ -99,7 +99,7 @@ et:
       imports:
         data: CSV fail eksporditi teisest Mastodoni serverist
       invite_request:
-        text: See aitab meil üle vaadata Teie taotlust
+        text: See aitab meil su taotlust üle vaadata
       ip_block:
         comment: Valikuline. Talletamaks reegli lisamise põhjust.
         expires_in: IP-aadressid on lõplik ressurss ja on tihtipeale ühiskasutuses või vahetub kasutaja. Sel põhjusel pole kestvad IP-piirangud soovituslikud.
@@ -190,9 +190,9 @@ et:
         setting_advanced_layout: Aktiveeri kohandatud veebiliides
         setting_aggregate_reblogs: Grupeeri jagamised ajajoontel
         setting_always_send_emails: Edasta kõik teavitused meilile
-        setting_auto_play_gif: Mängi GIF-e automaatselt
+        setting_auto_play_gif: Esita GIF-e automaatselt
         setting_boost_modal: Näita enne jagamist kinnitusdialoogi
-        setting_crop_images: Kuva suurendamata postituste pildid kui 16x9
+        setting_crop_images: Kärbi suurendamata postituste pildid mõõtu 16x9
         setting_default_language: Postituse keel
         setting_default_privacy: Postituse nähtavus
         setting_default_sensitive: Alati märgista meedia tundlikuks
@@ -205,7 +205,7 @@ et:
         setting_expand_spoilers: Alati laienda sisuhoiatustega postitused
         setting_hide_network: Peida oma võrk
         setting_noindex: Keeldu otsingumootorite indekseerimistest
-        setting_reduce_motion: Vähenda liikumist animatsioonides
+        setting_reduce_motion: Vähenda animatsioonides liikumist
         setting_show_application: Avalikusta postituste tegemisel kasutatud rakendus
         setting_system_font_ui: Kasuta süsteemi vaikefonti
         setting_theme: Saidi teema
@@ -271,7 +271,7 @@ et:
       notification_emails:
         appeal: Moderaatori otsus on vaidlustatud
         digest: Saada ülevaatlike e-kirju
-        favourite: Saada e-kiri, kui keegi lisab teie staatuse lemmikuks
+        favourite: Saada e-kiri, kui keegi lisab su postituse lemmikuks
         follow: Saada e-kiri, kui keegi alustab Teie jälgimist
         follow_request: Saada e-kiri, kui keegi soovib Teid jälgida
         mention: Saada e-kiri, kui keegi mainib Teid

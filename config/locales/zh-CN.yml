@@ -113,6 +113,8 @@ zh-CN:
       redownloaded_msg: 成功从来源处刷新 %{username} 的用户资料
       reject: 拒绝
       rejected_msg: 已拒绝 %{username} 的注册申请
+      remote_suspension_irreversible: 此账户的数据已被不可逆转地删除。
+      remote_suspension_reversible_hint_html: 账号已在他们的服务器上封禁，数据将在 %{date} 完全删除。 在此之前，远程服务器仍可恢复此账号，并且没有任何不良影响。 如果你想立即移除该账号的所有数据，可以在下面进行。
       remove_avatar: 删除头像
       remove_header: 删除横幅图片
       removed_avatar_msg: 成功删除 %{username} 的头像
@@ -955,6 +957,9 @@ zh-CN:
       email_below_hint_html: 如果下面的电子邮箱地址是错误的，你可以在这里修改并重新发送新的确认邮件。
       email_settings_hint_html: 确认邮件已经发送到%{email}。如果该邮箱地址不对，你可以在账号设置里面修改。
       title: 初始设置
+    sign_in:
+      preamble_html: 使用您在 <strong>%{domain}</strong> 的账户和密码登录。如果您的账户托管在其他的服务器上，您将无法在此登录。
+      title: 登录到 %{domain}
     sign_up:
       preamble: 使用此 Mastodon 服务器上的帐号，您将能够关注网络上的任何其他人，无论他们的帐号托管在哪里的主机。
       title: 让我们在 %{domain} 上开始。
