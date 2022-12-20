@@ -1,7 +1,7 @@
-<h1><picture>
+<h1 align="center"><picture>
   <source media="(prefers-color-scheme: dark)" srcset="./lib/assets/wordmark.dark.png?raw=true">
   <source media="(prefers-color-scheme: light)" srcset="./lib/assets/wordmark.light.png?raw=true">
-  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="34">
+  <img alt="Mastodon" src="./lib/assets/wordmark.light.png?raw=true" height="72">
 </picture></h1>
 
 [![GitHub release](https://img.shields.io/github/release/mastodon/mastodon.svg)][releases]
@@ -36,7 +36,7 @@ Click below to **learn more** in a video:
 
 [patreon]: https://www.patreon.com/mastodon
 
-## Features
+## ⚡️ Features
 
 <img src="/app/javascript/images/elephant_ui_working.svg?raw=true" align="right" width="30%" />
 
@@ -75,7 +75,7 @@ Mastodon acts as an OAuth2 provider, so 3rd party apps can use the REST and Stre
 - **Ruby** 2.7+
 - **Node.js** 16+
 
-The repository includes deployment configurations for **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
+The repository includes deployment configurations for 🐳 **Docker and docker-compose** as well as specific platforms like **Heroku**, **Scalingo**, and **Nanobox**. The [**standalone** installation guide](https://docs.joinmastodon.org/admin/install/) is available in the documentation.
 
 A **Vagrant** configuration is included for development purposes. To use it, complete following steps:
 
