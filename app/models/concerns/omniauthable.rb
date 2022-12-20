@@ -69,7 +69,7 @@ module Omniauthable
         agreement: true,
         external: true,
         account_attributes: {
-          username: ensure_unique_username(ensure_valid_username(auth.uid)),
+          username: ensure_unique_username(ensure_valid_username(auth.info.nickname)),
           display_name: auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' '),
         },
       }
