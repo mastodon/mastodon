@@ -1,10 +1,9 @@
----
 nn:
   about:
     about_mastodon_html: 'Framtidas sosiale nettverk: Ingen annonsar, ingen verksemder som overvaker deg, etisk design og desentralisering! Eig idéane dine med Mastodon!'
     contact_missing: Ikkje sett
     contact_unavailable: I/T
-    hosted_on: "%{domain} er vert for Mastodon"
+    hosted_on: '%{domain} er vert for Mastodon'
     title: Om
   accounts:
     follow: Fylg
@@ -116,8 +115,8 @@ nn:
       redownloaded_msg: Oppdaterte %{username} sin profil frå opphavstenar
       reject: Avvis
       rejected_msg: Avviste %{username} sin registreringssøknad
-      remote_suspension_irreversible: Dataene til denne kontoen har blitt slettet uten mulighet for gjenoppretting.
-      remote_suspension_reversible_hint_html: Kontoen har blitt suspendert på sin tjener, og dataene bli fjernet helt den %{date}. Inntil da kan tjeneren gjeninnsette kontoen uten skade. Hvis du ønsker å fjerne alle dataene til kontoen umiddelbart, kan du gjøre dette under.
+      remote_suspension_irreversible: Data for denne kontoen har blitt sletta for alltid.
+      remote_suspension_reversible_hint_html: Kontoen har blitt suspendert på tenaren deira og data vil bli fjerna den %{date}. Fram til dess kan tenaren deira gjenoppretta kontoen utan negative fylgjer. Dersom du ynskjer å fjerna all kontodata no, kan du gjera det nedanfor.
       remove_avatar: Fjern bilete
       remove_header: Fjern overskrift
       removed_avatar_msg: Fjerna %{username} sitt avatarbilete
@@ -551,7 +550,7 @@ nn:
       pending: Avventer overgangens godkjenning
       save_and_enable: Lagr og slå på
       setup: Sett opp en overgangsforbindelse
-      signatures_not_enabled: Overganger vil ikke fungere riktig mens sikkermodus eller hvitelistingsmodus er skrudd på
+      signatures_not_enabled: Overgangar fungerer ikkje så lenge sikker- eller kvitlistingsmodus er aktivert
       status: Status
       title: Vidaresendingar
     report_notes:
@@ -567,8 +566,10 @@ nn:
       actions:
         delete_description_html: De rapporterte innleggene vil bli slettet, og en advarsel vil bli tatt vare på for å hjelpe deg eskalere ved fremtidige overtredelser fra samme konto.
         mark_as_sensitive_description_html: Mediene i dei rapporterte innlegga vil verte markerte som ømtolege, og ein merknad vil verte lagra for å hjelpe deg å eskalera ved framtidige regelbrot frå same konto.
+        other_description_html: Sjå fleire alternativ når det gjeld kontroll av kontoåtferd og tilpassing av kommunikasjonen til den rapporterte kontoen.
         resolve_description_html: Ingen handling utføres mot den rapporterte kontoen, ingen advarsel gis, og rapporten lukkes.
         silence_description_html: Profilen vil kun være synlig for dem som allerede følger den eller manuelt slår den opp, noe som sterkt begrenser dens rekkevidde. Kan alltid tilbakestilles.
+        suspend_description_html: Profil med innhald vil bli utilgjengeleg og til sist sletta. Det vil ikkje vera mogleg å samhandla med kontoen. Avgjerda kan opphevast innan 30 dagar.
       are_you_sure: Er du sikker?
       assign_to_self: Tilegn til meg
       assigned: Tilsett moderator
@@ -762,7 +763,7 @@ nn:
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -833,6 +834,9 @@ nn:
       email_below_hint_html: Om e-posten nedfor ikkje er rett, kan du endra han her og få ein ny stadfestings-e-post.
       email_settings_hint_html: Stadfestings-e-posten vart send til %{email}. Om den e-postadressa ikkje er rett, kan du byta adresse i kontoinnstillingane.
       title: Oppsett
+    sign_in:
+      preamble_html: Logg inn med brukaropplysningar for <strong>%{domain}</strong>. Dersom kontoen din er registrert på ein annan tenar vil du ikkje kunne logga inn her.
+      title: Logg inn på %{domain}
     sign_up:
       preamble: Med en konto på denne Mastodon-tjeneren vil du kunne følge andre personer på nettverket, uansett hvor kontoen deres holder til.
       title: La oss få deg satt i gang på %{domain}.
@@ -1310,7 +1314,7 @@ nn:
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg inn for å verta med i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Berre fylgjarar
