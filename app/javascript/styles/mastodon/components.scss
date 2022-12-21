@@ -74,6 +74,11 @@
     background-color: $ui-highlight-color;
   }
 
+  &:focus {
+    outline: 5px auto $ui-highlight-color;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
+
   &--destructive {
     &:active,
     &:focus,
@@ -237,6 +242,8 @@
 
   &:focus {
     background-color: rgba($action-button-color, 0.3);
+    outline: 5px auto $ui-highlight-color;
+    outline: 5px auto -webkit-focus-ring-color;
   }
 
   &.disabled {
@@ -294,8 +301,14 @@
     border-radius: 4px;
     padding: 2px;
 
-    &:hover {
+    &:hover,
+    &:focus {
       background: rgba($base-overlay-background, 0.9);
+    }
+
+    &:focus {
+      outline: 5px auto $ui-highlight-color;
+      outline: 5px auto -webkit-focus-ring-color;
     }
   }
 
@@ -340,6 +353,8 @@
 
   &:focus {
     background-color: rgba($lighter-text-color, 0.3);
+    outline: 5px auto $ui-highlight-color;
+    outline: 5px auto -webkit-focus-ring-color;
   }
 
   &.disabled {
@@ -2935,8 +2950,14 @@ $ui-header-height: 55px;
   padding: 0 5px 0 0;
   z-index: 3;
 
-  &:hover {
+  &:hover,
+  &:focus {
     text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 5px auto $ui-highlight-color;
+    outline: 5px auto -webkit-focus-ring-color;
   }
 
   &:last-child {
@@ -3083,10 +3104,6 @@ $ui-header-height: 55px;
   &:focus,
   &:active {
     background: lighten($ui-base-color, 11%);
-  }
-
-  &:focus {
-    outline: 0;
   }
 
   &--transparent {
@@ -3687,6 +3704,11 @@ a.status-card.compact:hover {
   cursor: pointer;
   font-size: 16px;
   padding: 0 15px;
+
+  &:focus {
+    outline: 5px auto $ui-highlight-color;
+    outline: 5px auto -webkit-focus-ring-color;
+  }
 
   &:hover {
     color: lighten($darker-text-color, 7%);

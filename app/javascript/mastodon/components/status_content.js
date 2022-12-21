@@ -261,7 +261,7 @@ class StatusContent extends React.PureComponent {
       }
 
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+        <div className={classNames} ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <p style={{ marginBottom: hidden && status.get('mentions').isEmpty() ? '0px' : null }}>
             <span dangerouslySetInnerHTML={spoilerContent} className='translate' lang={lang} />
             {' '}
@@ -279,7 +279,7 @@ class StatusContent extends React.PureComponent {
     } else if (this.props.onClick) {
       return (
         <>
-          <div className={classNames} ref={this.setRef} tabIndex='0' onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+          <div className={classNames} ref={this.setRef} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp} key='status-content' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
             <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
 
             {poll}
@@ -291,7 +291,7 @@ class StatusContent extends React.PureComponent {
       );
     } else {
       return (
-        <div className={classNames} ref={this.setRef} tabIndex='0' onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
+        <div className={classNames} ref={this.setRef} onMouseEnter={this.handleMouseEnter} onMouseLeave={this.handleMouseLeave}>
           <div className='status__content__text status__content__text--visible translate' lang={lang} dangerouslySetInnerHTML={content} />
 
           {poll}
