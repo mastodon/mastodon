@@ -2270,6 +2270,24 @@ $ui-header-height: 55px;
   }
 }
 
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1em;
+  background-color: $ui-base-color;
+  color: $secondary-text-color;
+  font-size: 16px;
+  opacity: 0;
+  text-decoration: none;
+
+  &:focus {
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
 .tabs-bar__wrapper {
   background: darken($ui-base-color, 8%);
   position: sticky;

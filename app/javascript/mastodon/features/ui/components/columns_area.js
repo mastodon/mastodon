@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import BundleContainer from '../containers/bundle_container';
@@ -39,9 +40,18 @@ const componentMap = {
   'DIRECTORY': Directory,
 };
 
-export default class ColumnsArea extends ImmutablePureComponent {
+const messages = defineMessages({
+  skipToCompose: { id: 'skip_link.compose', defaultMessage: 'Skip to compose a post' },
+  skipToSignIn: { id: 'skip_link.sign_in', defaultMessage: 'Skip to sign in or create an account' },
+  skipToMain: { id: 'skip_link.main', defaultMessage: 'Skip to main content' },
+  skipToNav: { id: 'skip_link.nav', defaultMessage: 'Skip to navigation' },
+});
+
+export default @injectIntl
+class ColumnsArea extends ImmutablePureComponent {
 
   static contextTypes = {
+    identity: PropTypes.object.isRequired,
     router: PropTypes.object.isRequired,
   };
 
@@ -134,20 +144,42 @@ export default class ColumnsArea extends ImmutablePureComponent {
   }
 
   render () {
+    const { intl } = this.props;
     const { columns, children, singleColumn, isModalOpen } = this.props;
     const { renderComposePanel } = this.state;
+    const { signedIn } = this.context.identity;
 
     if (singleColumn) {
       return (
         <div className='columns-area__panels'>
           <div className='columns-area__panels__pane columns-area__panels__pane--compositional'>
             <div className='columns-area__panels__pane__inner'>
+              {signedIn && (
+                <a href='#compose-a-post' class='skip-link'>
+                  {intl.formatMessage(messages.skipToCompose)}
+                </a>
+              )}
+              {!signedIn && (
+                <a href='#sign-in' class='skip-link'>
+                  {intl.formatMessage(messages.skipToSignIn)}
+                </a>
+              )}
+              <a href='#tabs-bar__portal' class='skip-link'>
+                {intl.formatMessage(messages.skipToMain)}
+              </a>
+              {signedIn && (
+                <a href='#navigation-panel-links' class='skip-link'>
+                  {intl.formatMessage(messages.skipToNav)}
+                </a>
+              )}
               {renderComposePanel && <ComposePanel />}
             </div>
           </div>
 
           <div className='columns-area__panels__main'>
-            <div className='tabs-bar__wrapper'><div id='tabs-bar__portal' /></div>
+            <div className='tabs-bar__wrapper'>
+              <div id='tabs-bar__portal' />
+            </div>
             <div className='columns-area columns-area--mobile'>{children}</div>
           </div>
 

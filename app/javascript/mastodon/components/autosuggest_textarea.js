@@ -202,6 +202,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
             <span style={{ display: 'none' }}>{placeholder}</span>
 
             <Textarea
+              id='compose-a-post'
               ref={this.setTextarea}
               className='autosuggest-textarea__textarea'
               disabled={disabled}
