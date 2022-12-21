@@ -8,7 +8,7 @@ import { searchEnabled } from '../../../initial_state';
 import Icon from 'mastodon/components/icon';
 
 const messages = defineMessages({
-  placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
+  placeholder: { id: 'search.placeholder', defaultMessage: 'Clear search' },
   placeholderSignedIn: { id: 'search.search_or_paste', defaultMessage: 'Search or paste URL' },
 });
 
@@ -85,6 +85,14 @@ class Search extends React.PureComponent {
     }
   }
 
+  handleClearKeyboard = (e) => {
+
+    if (e.key === 'Enter' || e.key === ' ' && (this.props.value.length > 0 || this.props.submitted)) {
+      e.preventDefault();
+      this.props.onClear();
+    }
+  }
+
   handleKeyUp = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -136,11 +144,11 @@ class Search extends React.PureComponent {
           onBlur={this.handleBlur}
         />
 
-        <div role='button' tabIndex='0' className='search__icon' onClick={this.handleClear}>
-          <Icon id='search' className={hasValue ? '' : 'active'} />
-          <Icon id='times-circle' className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
+        <div className='search__icon' >
+          {!hasValue && <Icon id='search' className='active' />}
+          {hasValue && <Icon role='button' tabIndex={0} id='times-circle' className='active' aria-label={intl.formatMessage(messages.placeholder)} onClick={this.handleClear} onKeyDown={this.handleClearKeyboard} />}
         </div>
-        <Overlay show={expanded && !hasValue} placement='bottom' target={this} container={this}>
+        <Overlay aria-hidden show={expanded && !hasValue} placement='bottom' target={this} container={this}>
           <SearchPopout />
         </Overlay>
       </div>

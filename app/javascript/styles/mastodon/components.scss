@@ -4727,24 +4727,14 @@ a.status-card.compact:hover {
 }
 
 .search__icon {
-  &::-moz-focus-inner {
-    border: 0;
-  }
-
-  &::-moz-focus-inner,
-  &:focus {
-    outline: 0 !important;
-  }
-
   .fa {
     position: absolute;
     top: 16px;
     right: 10px;
     z-index: 2;
     display: inline-block;
-    opacity: 0;
     transition: all 100ms linear;
-    transition-property: transform, opacity;
+    transition-property: transform;
     font-size: 18px;
     width: 18px;
     height: 18px;
@@ -4754,7 +4744,6 @@ a.status-card.compact:hover {
 
     &.active {
       pointer-events: auto;
-      opacity: 0.3;
     }
   }
 
@@ -4770,7 +4759,7 @@ a.status-card.compact:hover {
   .fa-times-circle {
     top: 17px;
     transform: rotate(0deg);
-    color: $action-button-color;
+    color: $secondary-text-color;
     cursor: pointer;
 
     &.active {
@@ -4778,7 +4767,7 @@ a.status-card.compact:hover {
     }
 
     &:hover {
-      color: lighten($action-button-color, 7%);
+      color: $ui-highlight-color;
     }
   }
 }
