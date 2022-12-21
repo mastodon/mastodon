@@ -11,6 +11,8 @@
   - unless I18n.locale == :en
     .flash-message.translation-prompt
       #{t 'appearance.localization.body'} #{content_tag(:a, t('appearance.localization.guide_link_text'), href: t('appearance.localization.guide_link'), target: "_blank", rel: "noopener")}
+      = link_to t('appearance.localization.glitch_guide_link'), target: '_blank', rel: 'noopener noreferrer' do
+        = t('appearance.localization.glitch_guide_link_text')
 
   %h4= t 'appearance.advanced_web_interface'
 
