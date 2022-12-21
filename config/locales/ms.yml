@@ -525,7 +525,6 @@ ms:
     report_notes:
       created_msg: Catatan laporan telah berjaya dicipta!
       destroyed_msg: Catatan laporan telah berjaya dipadam!
-      today_at: Hari ini pada %{time}
     reports:
       account:
         notes:
@@ -685,6 +684,8 @@ ms:
       original_status: Hantaran asal
       reblogs: Ulang siar
       status_changed: Hantaran diubah
+      title: Hantaran akaun
+      trending: Sohor kini
     strikes:
       actions:
         delete_statuses: "%{name} memadam hantaran %{target}"
@@ -731,6 +732,10 @@ ms:
         trendable: Boleh muncul di bawah sohor kini
         trending_rank: 'Sohor kini #%{rank}'
         usable: Boleh digunakan
+      title: Sohor kini
+      trending: Sohor kini
+    warning_presets:
+      delete: Padam
     webhooks:
       delete: Padam
       enable: Dayakan
@@ -744,6 +749,7 @@ ms:
       guide_link_text: Sesiapa sahaja boleh memberi sumbangan.
     sensitive_content: Kandungan sensitif
   application_mailer:
+    notification_preferences: Tukar keutamaan e-mel
     view: 'Lihat:'
     view_profile: Lihat profil
     view_status: Lihat hantaran
@@ -777,6 +783,9 @@ ms:
     confirm: Teruskan
     invalid_password: Kata laluan tidak sah
     prompt: Sahkan kata laluan untuk teruskan
+  datetime:
+    distance_in_words:
+      half_a_minute: Sebentar tadi
   deletes:
     proceed: Padam akaun
   disputes:

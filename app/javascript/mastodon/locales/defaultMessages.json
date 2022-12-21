@@ -1044,6 +1044,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{name} has requested to follow you",
+        "id": "account.requested_follow"
+      },
+      {
+        "defaultMessage": "Authorize",
+        "id": "follow_request.authorize"
+      },
+      {
+        "defaultMessage": "Reject",
+        "id": "follow_request.reject"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account/components/follow_request_note.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unfollow",
         "id": "account.unfollow"
       },
@@ -3934,7 +3951,7 @@
         "id": "confirmations.discard_edit_media.confirm"
       },
       {
-        "defaultMessage": "Describe for people who are deaf or hard of hearing",
+        "defaultMessage": "Describe for people who are hard of hearing",
         "id": "upload_form.audio_description"
       },
       {

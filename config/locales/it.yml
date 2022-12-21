@@ -116,6 +116,8 @@ it:
       redownloaded_msg: Il profilo di %{username} è stato aggiornato correttamente dall'origine
       reject: Rifiuta
       rejected_msg: Richiesta d'iscrizione di %{username} rifiutata correttamente
+      remote_suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile.
+      remote_suspension_reversible_hint_html: L'account è stato sospeso sul loro server e i dati saranno completamente eliminati il %{date}. Fino ad allora, il server remoto può ripristinare questo account senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
       remove_avatar: Rimuovi l'avatar
       remove_header: Rimuovi l'intestazione
       removed_avatar_msg: Immagine dell'avatar di %{username} rimossa correttamente
@@ -561,7 +563,6 @@ it:
     report_notes:
       created_msg: Nota rapporto creata!
       destroyed_msg: Nota rapporto cancellata!
-      today_at: Oggi alle %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ it:
       content_retention:
         preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
         title: Conservazione dei contenuti
+      default_noindex:
+        desc_html: Interessa tutti gli utenti che non hanno modificato personalmente questa impostazione
+        title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       discovery:
         follow_recommendations: Segui le raccomandazioni
         preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
@@ -973,6 +977,9 @@ it:
       email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
       email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
       title: Configurazione
+    sign_in:
+      preamble_html: Accedi con le tue credenziali <strong>%{domain}</strong>. Se il tuo account si trova su un server diverso, non potrai accedere qui.
+      title: Accedi a %{domain}
     sign_up:
       preamble: Con un account su questo server Mastodon, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
       title: Lascia che ti configuriamo su %{domain}.

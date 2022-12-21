@@ -116,6 +116,8 @@ tr:
       redownloaded_msg: "%{username} kullanıcısının profili kökenden başarıyla yenilendi"
       reject: Reddet
       rejected_msg: "%{username} adlı kullanıcının kayıt başvurusu başarıyla reddedildi"
+      remote_suspension_irreversible: Bu hesaba ait veriler geri dönüşümsüz bir şekilde silindi.
+      remote_suspension_reversible_hint_html: Hesap sunucusunda askıya alındı ve veriler %{date} tarihinde tamamen kaldırılacak. O zamana kadar, uzak sunucu herhangi bir olumsuz etki olmadan hesabı geri yüklenebilir. Hesabın tüm verilerini hemen kaldırmak isterseniz, bunu aşağıdan yapabilirsiniz.
       remove_avatar: Profil resmini kaldır
       remove_header: Üstbilgiyi kaldır
       removed_avatar_msg: "%{username} hesabının avatar resmi başarıyla kaldırıldı"
@@ -395,6 +397,8 @@ tr:
           silence: Sınırla
           suspend: Uzaklaştır
         title: Yeni domain bloğu
+      no_domain_block_selected: Seçim yapılmadığından hiç bir alan adı engeli değiştirilmedi
+      not_permitted: Bu işlemi gerçekleştirme izniniz yok
       obfuscate: Alan adını gizle
       obfuscate_hint: Alan adı kısıtlamaları listelerinin duyurulması etkinleştirilmişse alan adını listede kısmen gizle
       private_comment: Özel yorum
@@ -427,9 +431,14 @@ tr:
       resolved_through_html: "%{domain} aracılığıyla çözümlendi"
       title: E-posta kara listesi
     export_domain_allows:
+      new:
+        title: Alan adı engellerini içe aktar
       no_file: Dosya seçilmedi
     export_domain_blocks:
       import:
+        description_html: Bir alan adı engeli listesini içe aktarmak üzeresiniz. Bu listeyi iyice gözden geçirin, özellikle listeyi siz hazırlamadıysanız.
+        existing_relationships_warning: Mevcut takip ilişkileri
+        private_comment_description_html: 'İçe aktarılan engellerin nereden geldiğini izlemenize olanak sağlamak için, içe aktarılan engeller şu özel yorum ile oluşturulacak: <q>%{comment}</q>'
         private_comment_template: "%{source} kaynağından %{date} tarihinde içe aktarıldı"
         title: Domain bloklarını içe aktar
       new:
@@ -554,7 +563,6 @@ tr:
     report_notes:
       created_msg: Şikayet notu başarıyla oluşturuldu!
       destroyed_msg: Şikayet notu başarıyla silindi!
-      today_at: 'Bugün şu saatte: %{time}'
     reports:
       account:
         notes:
@@ -697,6 +705,9 @@ tr:
       content_retention:
         preamble: Kullanıcıların ürettiği içeriğin Mastodon'da nasıl saklanacağını denetleyin.
         title: İçerik saklama
+      default_noindex:
+        desc_html: Bu ayarı kendileri değiştirmeyen tüm kullanıcıları etkiler
+        title: Varsayılan olarak kullanıcıları arama motoru indekslemesinin dışında tut
       discovery:
         follow_recommendations: Takip önerileri
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
@@ -964,6 +975,9 @@ tr:
       email_below_hint_html: Eğer aşağıdaki e-posta adresi yanlışsa, onu burada değiştirebilir ve yeni bir doğrulama e-postası alabilirsiniz.
       email_settings_hint_html: Onaylama e-postası %{email} adresine gönderildi. Eğer bu e-posta adresi doğru değilse, hesap ayarlarından değiştirebilirsiniz.
       title: Kurulum
+    sign_in:
+      preamble_html: "<strong>%{domain}</strong> kimlik bilgilerinizi kullanarak giriş yapın. Eğer hesabınız başka bir sunucuda barındırılıyorsa, burada giriş yapamazsınız."
+      title: "%{domain} giriş yapın"
     sign_up:
       preamble: Bu Mastodon sunucusu üzerinden bir hesap ile ağdaki herhangi bir kişiyi, hesabı hangi sunucuda saklanırsa saklansın, takip edebilirsiniz.
       title: "%{domain} için kurulumunuzu yapalım."

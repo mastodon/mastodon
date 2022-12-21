@@ -73,10 +73,15 @@ class UnsuspendAccountService < BaseService
         styles.each do |style|
           case Paperclip::Attachment.default_options[:storage]
           when :s3
+            # Prevent useless S3 calls if ACLs are disabled
+            next if ENV['S3_PERMISSION'] == ''
+
             begin
               attachment.s3_object(style).acl.put(acl: Paperclip::Attachment.default_options[:s3_permissions])
             rescue Aws::S3::Errors::NoSuchKey
               Rails.logger.warn "Tried to change acl on non-existent key #{attachment.s3_object(style).key}"
+            rescue Aws::S3::Errors::NotImplemented => e
+              Rails.logger.error "Error trying to change ACL on #{attachment.s3_object(style).key}: #{e.message}"
             end
           when :fog
             # Not supported

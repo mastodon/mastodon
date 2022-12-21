@@ -561,7 +561,6 @@ eo:
     report_notes:
       created_msg: Signala noto sukcese kreita!
       destroyed_msg: Signala noto sukcese forigita!
-      today_at: Hodiaŭ je %{time}
     reports:
       account:
         notes:
@@ -704,6 +703,9 @@ eo:
       content_retention:
         preamble: Regi kiel uzantogenerita enhavo konservitis en Mastodon.
         title: Enhavkonservo
+      default_noindex:
+        desc_html: Efektiviĝas por ĉiuj uzantoj, kiuj mem ne agordis ĉi tion
+        title: Defaŭltigi, ke uzantoj ne estu aŭtomate aldonitaj al la serĉilo-indekso sen sia konsento
       discovery:
         follow_recommendations: Sekvorekomendoj
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
@@ -1327,7 +1329,7 @@ eo:
           trillion: Dn
   otp_authentication:
     code_hint: Enmetu la kodon kreitan de via aŭtentiga aplikaĵo por konfirmi
-    description_html: Se vi ebligas <strong>dufaktoran aŭtentigon</strong> per autentilprogramaro, ensaluto bezonas vi havi vian telefonon.
+    description_html: Se vi ŝaltas <strong>dufaktoran aŭtentigon</strong> per aŭtentiga programo, saluti postulos ke vi havas vian telefonon, kiu generos ĵetonon por enigi.
     enable: Ŝalti
     instructions_html: "<strong>Skanu ĉi tiun QR-kodon per Google Authenticator aŭ per simila aplikaĵo en via poŝtelefono</strong>. De tiam, la aplikaĵo kreos nombrojn, kiujn vi devos enmeti."
     manual_instructions: 'Se vi ne povas skani la QR-kodon kaj bezonas enmeti ĝin mane, jen la tut-teksta sekreto:'

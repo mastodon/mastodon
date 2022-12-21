@@ -17,4 +17,4 @@ export default function accountsMap(state = initialState, action) {
   default:
     return state;
   }
-};
+}

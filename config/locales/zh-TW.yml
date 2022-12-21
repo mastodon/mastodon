@@ -75,7 +75,7 @@ zh-TW:
       invite_request_text: 加入原因
       invited_by: 邀請者
       ip: IP 位址
-      joined: 已加入
+      joined: 加入時間
       location:
         all: 全部
         local: 本站
@@ -113,6 +113,8 @@ zh-TW:
       redownloaded_msg: 成功重新載入%{username} 的個人檔案頁面
       reject: 拒絕
       rejected_msg: 成功拒絕了%{username} 的新帳號申請
+      remote_suspension_irreversible: 此帳號之資料已被不可逆地刪除。
+      remote_suspension_reversible_hint_html: 這個帳號已於此伺服器被停權，所有資料將會於 %{date} 被刪除。在此之前，遠端伺服器可以完全回復此的帳號。如果您想即時刪除這個帳號的資料，您可以在下面進行操作。
       remove_avatar: 取消大頭貼
       remove_header: 移除開頭
       removed_avatar_msg: 成功刪除了 %{username} 的大頭貼
@@ -552,7 +554,6 @@ zh-TW:
     report_notes:
       created_msg: 檢舉記錄建立成功!
       destroyed_msg: 檢舉記錄刪除成功!
-      today_at: 今日為 %{time}
     reports:
       account:
         notes:
@@ -692,6 +693,9 @@ zh-TW:
       content_retention:
         preamble: 控制使用者產生內容如何儲存於 Mastodon 上。
         title: 內容保留期間
+      default_noindex:
+        desc_html: 影響所有沒有變更此設定的使用者
+        title: 預設將使用者排除於搜尋引擎索引
       discovery:
         follow_recommendations: 跟隨建議
         preamble: 呈現有趣的內容有助於 Mastodon 上一人不識的新手上路。控制各種不同的分類在您伺服器上如何被探索到。
@@ -889,7 +893,7 @@ zh-TW:
     created_msg: 成功建立別名。您可以自舊帳號開始轉移。
     deleted_msg: 成功移除別名。您將無法再由舊帳號轉移到目前的帳號。
     empty: 您目前沒有任何別名。
-    hint_html: 如果想由其他帳號轉移到此帳號，您可以在此處新增別名，稍後系統將容許您把跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
+    hint_html: 如果想由其他帳號轉移至此帳號，您可以在此處新增別名，稍後系統將容許您將跟隨者由舊帳號轉移至此。此項作業是<strong>無害且可復原的</strong>。 <strong>帳號的遷移程序需要在舊帳號啟動</strong>。
     remove: 取消連結別名
   appearance:
     advanced_web_interface: 進階網頁介面
@@ -955,6 +959,9 @@ zh-TW:
       email_below_hint_html: 如果此電子郵件地址不正確，您可於此修改並接收郵件進行認證。
       email_settings_hint_html: 請確認 e-mail 是否傳送到 %{email} 。如果不對的話，可以從帳號設定修改。
       title: 設定
+    sign_in:
+      preamble_html: 請登入您於 <strong>%{domain}</strong> 之帳號密碼。若您的帳號託管於其他伺服器，您將無法於此登入。
+      title: 登入 %{domain}
     sign_up:
       preamble: 於此 Mastodon 伺服器擁有帳號的話，您將能跟隨聯邦宇宙網路中任何一份子，無論他們的帳號託管於何處。
       title: 讓我們一起設定 %{domain} 吧！
@@ -1478,7 +1485,7 @@ zh-TW:
     enabled: 自動刪除舊嘟文
     enabled_hint: 一旦達到指定的保存期限，就會自動刪除您的嘟文，除非該嘟文符合下列例外
     exceptions: 例外
-    explanation: 因為刪除嘟文是昂貴的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
+    explanation: 因為刪除嘟文是耗費資源的操作，當伺服器不那麼忙碌時才會慢慢完成。因此，您的嘟文會在到達保存期限後一段時間才會被刪除。
     ignore_favs: 忽略最愛
     ignore_reblogs: 忽略轉嘟
     interaction_exceptions: 基於互動的例外規則
@@ -1486,7 +1493,7 @@ zh-TW:
     keep_direct: 保留私訊
     keep_direct_hint: 不會刪除任何您的私訊
     keep_media: 保留包含媒體內容的嘟文
-    keep_media_hint: 不會刪除您包含媒體內容的嘟文
+    keep_media_hint: 不會刪除您包含媒體內容之嘟文
     keep_pinned: 保留釘選嘟文
     keep_pinned_hint: 不會刪除您的釘選嘟文
     keep_polls: 保留投票
@@ -1501,7 +1508,7 @@ zh-TW:
       '2629746': 1 個月
       '31556952': 1 年
       '5259492': 2 個月
-      '604800': 一週
+      '604800': 1 週
       '63113904': 2 年
       '7889238': 3 個月
     min_age_label: 保存期限
