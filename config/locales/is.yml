@@ -116,6 +116,8 @@ is:
       redownloaded_msg: Tókst að endurlesa notandasnið %{username} úr upphaflegu sniði
       reject: Hafna
       rejected_msg: Tókst að hafna skráningu fyrir %{username}
+      remote_suspension_irreversible: Gögnum þessa notandaaðgangs hefur verið eytt óafturkvæmt.
+      remote_suspension_reversible_hint_html: Notandaaðgangurinn hefur verið settur í frysti á hinum netþjóninum og gögnunum á honum verður eytt að fullu þann %{date}. Þangað til gæti hinn netþjóninn endurheimt aðganginn úr frysti án nokkurra breytinga. Ef þú vilt eyða öllum gögnum af honum strax, geturðu gert það hér fyrir neðan.
       remove_avatar: Fjarlægja auðkennismynd
       remove_header: Fjarlægja haus
       removed_avatar_msg: Tókst að fjarlægja auðkennismynd notandans %{username}
@@ -561,7 +563,6 @@ is:
     report_notes:
       created_msg: Tókst að útbúa minnispunkt skýrslu!
       destroyed_msg: Tókst að eyða minnispunkti skýrslu!
-      today_at: Í dag kl. %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ is:
       content_retention:
         preamble: Stýrðu hvernig efni frá notendum sé geymt í Mastodon.
         title: Geymsla efnis
+      default_noindex:
+        desc_html: Hefur áhrif á alla þá notendur sem ekki hafa breytt þessum stillingum sjálfir
+        title: Sjálfgefið láta notendur afþakka atriðaskráningu í leitarvélum
       discovery:
         follow_recommendations: Meðmæli um að fylgjast með
         preamble: Að láta áhugavert efni koma skýrt fram er sérstaklega mikilvægt til að nálgast nýja notendur sem ekki þekkja neinn sem er á Mastodon. Stýrðu því hvernig hinir ýmsu eiginleikar við uppgötvun efnis virka á netþjóninum þínum.
@@ -971,6 +975,9 @@ is:
       email_below_hint_html: Ef tölvupóstfangið hér fyrir neðan er rangt, skaltu breyta því hér og fá nýjan staðfestingarpóst.
       email_settings_hint_html: Staðfestingarpósturinn var sendur til %{email}. Ef það tölvupóstfang er ekki rétt geturðu breytt því í stillingum notandaaðgangsins.
       title: Uppsetning
+    sign_in:
+      preamble_html: Skráðu þig inn með auðkennum þínum fyrir <strong>%{domain}</strong>. Ef aðgangurinn þinn er hýstur á öðrum netþjóni, muntu ekki geta skráð þig inn hér.
+      title: Skrá inn á %{domain}
     sign_up:
       preamble: Með notandaaðgangi á þessum Mastodon-þjóni geturðu fylgst með hverjum sem er á netkerfinu, sama hvar notandaaðgangurinn þeirra er hýstur.
       title: Förum núna að setja þig upp á %{domain}.

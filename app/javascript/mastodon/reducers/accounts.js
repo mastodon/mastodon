@@ -35,4 +35,4 @@ export default function accounts(state = initialState, action) {
   default:
     return state;
   }
-};
+}

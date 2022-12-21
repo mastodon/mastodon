@@ -1,6 +1,157 @@
 ---
 fy:
   simple_form:
+    hints:
+      account_alias:
+        acct: Fermeld de brûkersnamme@domein fan de account fan wêr’t jo ferhúzje wolle
+      account_migration:
+        acct: Fermeld de brûkersnamme@domein fan de account wêr’t jo nei ta ferhúzje wolle
+      account_warning_preset:
+        text: Jo kinne spesifike tekst foar berjochten brûke, lykas URL’s, hashtags en fermeldingen
+        title: Opsjoneel. Net sichtber foar de ûntfanger
+      admin_account_action:
+        include_statuses: De brûker sjocht hokker berjochten ferantwurdlik binne foar de moderaasjemaatregel of warskôging
+        send_email_notification: De brûker ûntfangt in útlis oer wat der mei harren account bard is
+        text_html: Opsjoneel. Jo kinne spesifike tekst foar berjochten brûke. Om tiid te besparjen kinne jo <a href="%{path}">presets foar warskôgingen tafoegje</a>
+        type_html: Kies wat der mei <strong>%{acct}</strong> barre moat
+        types:
+          disable: Foarkom dat de brûker harren account brûkt, mar wiskje of ferstopje de ynhâld net.
+          none: Brûk dit om in warskôging nei de brûker te stjoeren, sûnder dat noch in oare maatregel nommen wurdt.
+          sensitive: Forsearje dat alle mediabylagen fan dizze brûker as gefoelich markearre wurde.
+          silence: Foarkom dat de brûker iepenbiere berjochten ferstjoere kin, ferstopje harren berjochten en meldingen foar minsken dy’t dyjinge net folgje.
+          suspend: Alle ynteraksjes fan en mei dizze account opkeare, en de accountgegevens fuortsmite. Dit kin binnen 30 dagen weromdraaid wurde.
+        warning_preset_id: Opsjoneel. Jo kinne noch hieltyd hânmjittich tekst tafoegje oan it ein fan de foarynstelling
+      announcement:
+        all_day: Wannear dit oanfinkt is, wurde allinnich de datums binnen it tiidrek toand
+        ends_at: Opsjoneel. De publikaasje fan de meidieling wurdt op dit tiidstip automatysk beëinige
+        scheduled_at: Lit leech om de meidieling daliks te publisearjen
+        starts_at: Opsjoneel. Yn it gefal dat jo meidieling oan in bepaald tiidrek bûn is
+        text: Jo kinne spesifike tekst foar berjochten brûke. Let op de romte dy’t de meidieling op it skerm fan de brûker yn nimt
+      appeal:
+        text: Jo kinne mar ien kear beswier yntsjinje tsjin in fêststelde oertrêding
+      defaults:
+        autofollow: Minsken dy’t harren fia de útnûging registrearre hawwe, folgje jo automatysk
+        avatar: PNG, GIF of JPG. Maksimaal %{size}. Wurdt weromskeald nei %{dimensions}px
+        bot: Sinjaal nei oare brûkers ta dat dizze account yn haadsaak automatisearre berjochten stjoert en mooglik net kontrolearre wurdt
+        context: Ien of meardere lokaasjes wêr’t it filter aktyf wêze moat
+        current_password: Fier foar feilichheidsredenen it wachtwurd fan jo aktuele account yn
+        current_username: Fier ta befêstiging de brûkersnamme fan jo aktuele account yn
+        digest: Wurdt allinnich nei in lange perioade fan ynaktiviteit ferstjoerd en allinnich wannear’t jo wylst jo ôfwêzigens persoanlike berjochten ûntfongen hawwe
+        discoverable: Tastean dat jo account te finen is foar ûnbekenden, fia oanrekommandaasjes, trends en op oare manieren
+        email: Jo krije in befêstigings-e-mailberjocht
+        fields: Jo kinne maksimaal 4 items as in tabel op jo profyl werjaan
+        header: PNG, GIF of JPG. Maksimaal %{size}. Wurdt weromskeald nei %{dimensions}px
+        inbox_url: Kopiearje de URL fan de foarside fan de relayserver dy’t jo brûke wolle
+        irreversible: Filtere berjochten ferdwine definityf, sels as it filter letter fuortsmiten wurdt
+        locale: De taal fan de brûkersomjouwing, e-mailberjochten en pushmeldingen
+        locked: Troch it goedkarren fan folgers hânmjittich bepale wa’t jo folgje mei
+        password: Brûk op syn minst 8 tekens
+        phrase: Komt oerien nettsjinsteande haad-/lytse letters of in ynhâldswarskôging
+        scopes: Ta hokker API’s hat de tapassing tagong. Wannear’t jo in tastimming fan it boppeste nivo kieze, hoege jo gjin yndividuele tastimmingen mear te kiezen.
+        setting_aggregate_reblogs: Gjin nije boosts toane foar berjochten dy’t resintlik noch boost binne (hat allinnich effekt op nij ûntfongen boosts)
+        setting_always_send_emails: Normaliter wurde der gjin e-mailmeldingen ferstjoerd wannear’t jo aktyf Mastodon brûke
+        setting_default_sensitive: Gefoelige media wurdt standert ferstoppe en kin mei ien klik toand wurde
+        setting_display_media_default: As gefoelich markearre media ferstopje
+        setting_display_media_hide_all: Media altyd ferstopje
+        setting_display_media_show_all: Media altyd toane
+        setting_hide_network: Wa’t jo folgje en wa’t jo folget wurdt net op jo profyl toand
+        setting_noindex: Hat ynfloed op jo iepenbiere profyl en siden mei berjochten
+        setting_show_application: De tapassing dy’t jo brûke om berjochten te pleatsen, wurdt yn de detaillearre werjefte fan it berjocht toand
+        setting_use_blurhash: Dizige kleuroergongen binne basearre op de kleuren fan de ferstoppe media, wêrmei elk detail ferdwynt
+        setting_use_pending_items: De tiidline wurdt bywurke troch op it oantal nije items te klikken, yn stee fan dat dizze automatysk bywurke wurdt
+        username: Jo brûkersnamme is unyk op %{domain}
+        whole_word: Wannear it trefwurd of part fan de sin alfanumeryk is, wurdt it allinnich filtere wannear’t it hiele wurd oerienkomt
+      domain_allow:
+        domain: Dit domein is yn steat om gegevens fan dizze server op te heljen, en ynkommende gegevens wurde ferwurke en bewarre
+      email_domain_block:
+        domain: Dit kin de domeinnamme wêze dy’t werjûn wurdt yn it e-mailadres of yn it MX-record dat it brûkt. Se wurde kontrolearre wylst de registraasje.
+        with_dns_records: Der wurdt in besykjen dien om de oanbelangjende DNS-records op te sykjen, wêrnei de resultaten ek blokkearre wurde
+      featured_tag:
+        name: 'Hjir binne inkelde fan de hashtags dy’t jo koartlyn brûkt hawwe:'
     labels:
+      account:
+        fields:
+          name: Label
+          value: Ynhâld
+      account_alias:
+        acct: Mastodonadres fan it âlde account
+      account_migration:
+        acct: Mastodonadres fan it nije account
+      account_warning_preset:
+        text: Tekst fan preset
+        title: Titel
+      admin_account_action:
+        include_statuses: Rapportearre berjochten oan it e-mailberjocht tafoegje
+        send_email_notification: Meld dit per e-mailberjocht oan de brûker
+      announcement:
+        all_day: De hiele dei troch
+        ends_at: Einiget
+        scheduled_at: Meidieling ynplanne
+        starts_at: Begjint
+        text: Oankundiging
+      defaults:
+        avatar: Profylfoto
+        bot: Dit is in bot-account
+        chosen_languages: Talen filterje
+        confirm_new_password: Nij wachtwurd befêstigje
+        confirm_password: Wachtwurd befêstigje
+        context: Filterlokaasjes
+        current_password: Aktueel wachtwurd
+        data: Gegevens
+        discoverable: Dizze account oanrekommandearje litte en yn de brûkersgids toane
+        display_name: Werjeftenamme
+        email: E-mailadres
+        expires_in: Ferrint nei
+        fields: Profylmetadata
+        header: Omslachfoto
+        honeypot: "%{label} (net ynfolje)"
+        inbox_url: Relais-ynboks-URL
+        new_password: Nije wachtwurd
+        note: Bio
+        otp_attempt: Twa-stapstagangskoade
+        password: Wachtwurd
+        setting_display_media_default: Standert
+        setting_display_media_hide_all: Alles ferstopje
+        setting_display_media_show_all: Alles toane
+      form_admin_settings:
+        site_contact_email: E-mailadres kontaktpersoan
+        site_contact_username: Brûkersnamme kontaktpersoan
+        site_terms: Privacybelied
+        site_title: Servernamme
+        theme: Standerttema
+        thumbnail: Serverthumbnail
+        trends: Trends ynskeakelje
+      invite:
+        comment: Opmerking
+      invite_request:
+        text: Wêrom wolle jo jo hjir registrearje?
+      ip_block:
+        comment: Opmerking
+        ip: IP-adres
+        severities:
+          no_access: Tagong blokkearje
+          sign_up_block: Registraasjes blokkearje
+          sign_up_requires_approval: Registraasjes beheine
+        severity: Regel
       notification_emails:
         mention: Ien hat jo fermeld
+      rule:
+        text: Regel
+      tag:
+        name: Hashtag
+      user:
+        role: Rol
+      user_role:
+        color: Badgekleur
+        name: Namme
+        permissions_as_keys: Tastimmingen
+        position: Prioriteit
+      webhook:
+        url: Einpunt-URL
+    'no': Nee
+    not_recommended: Net oanrekommandearre
+    recommended: Oanrekommandearre
+    required:
+      mark: "*"
+      text: fereaske
+    'yes': Ja

@@ -128,6 +128,8 @@ cy:
       redownloaded_msg: Adnewyddwyd proffil %{username} o'r gweinydd gwreiddiol
       reject: Gwrthod
       rejected_msg: Wedi gwrthod cais cofrestru %{username}
+      remote_suspension_irreversible: Mae data'r cyfrif hwn wedi'i ddileu'n ddiwrthdro.
+      remote_suspension_reversible_hint_html: Mae'r cyfrif wedi'i atal dros dro ar eu gweinydd, a bydd y data'n cael ei ddileu yn llawn ar %{date}. Tan hynny, gall y gweinydd pell adfer y cyfrif hwn heb unrhyw effeithiau gwael. Os dymunwch gael gwared ar holl ddata'r cyfrif ar unwaith, gallwch wneud hynny isod.
       remove_avatar: Dileu afatar
       remove_header: Dileu pennyn
       removed_avatar_msg: Llwyddwyd i ddileu delwedd afatar %{username}
@@ -605,7 +607,6 @@ cy:
     report_notes:
       created_msg: Llwyddwyd i greu nodyn adroddiad!
       destroyed_msg: Llwyddwyd i ddileu nodyn adroddiad!
-      today_at: Heddiw am %{time}
     reports:
       account:
         notes:
@@ -760,6 +761,9 @@ cy:
       content_retention:
         preamble: Rheoli sut mae cynnwys sy'n cael ei gynhyrchu gan ddefnyddwyr yn cael ei storio yn Mastodon.
         title: Cadw cynnwys
+      default_noindex:
+        desc_html: Yn effeithio pob defnyddwr sydd heb newid y gosodiad ei hun
+        title: Eithrio defnyddwyr o fynegai peiriannau chwilio, fel rhagosodiad
       discovery:
         follow_recommendations: Dilyn yr argymhellion
         preamble: Mae amlygu cynnwys diddorol yn allweddol ar gyfer derbyn defnyddwyr newydd nad ydynt efallai'n gyfarwydd ag unrhyw un Mastodon. Rheolwch sut mae nodweddion darganfod amrywiol yn gweithio ar eich gweinydd.
@@ -1043,6 +1047,9 @@ cy:
       email_below_hint_html: Os yw'r cyfeiriad e-bost isod yn anghywir, gallwch ei newid yma a derbyn e-bost cadarnhau newydd.
       email_settings_hint_html: Anfonwyd yr e-bost cadarnhau at %{email}. Os nad yw'r cyfeiriad e-bost hwnnw'n gywir, gallwch ei newid yng ngosodiadau'r cyfrif.
       title: Gosodiad
+    sign_in:
+      preamble_html: Mewngofnodwch gyda'ch manylion <strong>%{domain}</strong>. Os yw eich cyfrif yn cael ei gynnal ar weinydd gwahanol, ni fydd modd i chi fewngofnodi yma.
+      title: Mewngofnodi i %{domain}
     sign_up:
       preamble: Gyda chyfrif ar y gweinydd Mastodon hwn, byddwch yn gallu dilyn unrhyw berson arall ar y rhwydwaith, lle bynnag mae eu cyfrif yn cael ei gynnal.
       title: Gadewch i ni eich gosod ar %{domain}.
