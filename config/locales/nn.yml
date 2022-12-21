@@ -116,6 +116,8 @@ nn:
       redownloaded_msg: Oppdaterte %{username} sin profil frå opphavstenar
       reject: Avvis
       rejected_msg: Avviste %{username} sin registreringssøknad
+      remote_suspension_irreversible: Dataene til denne kontoen har blitt slettet uten mulighet for gjenoppretting.
+      remote_suspension_reversible_hint_html: Kontoen har blitt suspendert på sin tjener, og dataene bli fjernet helt den %{date}. Inntil da kan tjeneren gjeninnsette kontoen uten skade. Hvis du ønsker å fjerne alle dataene til kontoen umiddelbart, kan du gjøre dette under.
       remove_avatar: Fjern bilete
       remove_header: Fjern overskrift
       removed_avatar_msg: Fjerna %{username} sitt avatarbilete
@@ -775,7 +777,7 @@ nn:
     confirmation_dialogs: Bekreftelsesdialoger
     discovery: Oppdaging
     localization:
-      body: Mastodon er oversatt av frivillige.
+      body: Mastodon er omsett av friviljuge.
       guide_link_text: Alle kan bidra.
     sensitive_content: Ømtolig innhald
     toot_layout: Tutoppsett
@@ -812,7 +814,7 @@ nn:
     login: Innlogging
     logout: Logg ut
     migrate_account: Flytt til ein annan konto
-    migrate_account_html: Hvis du ønsker å henvise denne kontoen til en annen, kan du <a href="%{path}">konfigurere det her</a>.
+    migrate_account_html: Om du vil visa denne kontoen til ein anna, kan du <a href="%{path}">skipe det her</a>.
     or_log_in_with: Eller logg inn med
     privacy_policy_agreement_html: Jeg har lest og godtar <a href="%{privacy_policy_path}" target="_blank">retningslinjer for personvern</a>
     providers:

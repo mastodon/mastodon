@@ -22,4 +22,4 @@ export default function loadingBarMiddleware(config = {}) {
 
     return next(action);
   };
-};
+}

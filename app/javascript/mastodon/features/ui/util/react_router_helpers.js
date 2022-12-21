@@ -46,7 +46,7 @@ export class WrappedRoute extends React.Component {
     return {
       hasError: true,
     };
-  };
+  }
 
   state = {
     hasError: false,

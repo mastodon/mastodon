@@ -397,6 +397,8 @@ tr:
           silence: Sınırla
           suspend: Uzaklaştır
         title: Yeni domain bloğu
+      no_domain_block_selected: Seçim yapılmadığından hiç bir alan adı engeli değiştirilmedi
+      not_permitted: Bu işlemi gerçekleştirme izniniz yok
       obfuscate: Alan adını gizle
       obfuscate_hint: Alan adı kısıtlamaları listelerinin duyurulması etkinleştirilmişse alan adını listede kısmen gizle
       private_comment: Özel yorum
@@ -429,9 +431,14 @@ tr:
       resolved_through_html: "%{domain} aracılığıyla çözümlendi"
       title: E-posta kara listesi
     export_domain_allows:
+      new:
+        title: Alan adı engellerini içe aktar
       no_file: Dosya seçilmedi
     export_domain_blocks:
       import:
+        description_html: Bir alan adı engeli listesini içe aktarmak üzeresiniz. Bu listeyi iyice gözden geçirin, özellikle listeyi siz hazırlamadıysanız.
+        existing_relationships_warning: Mevcut takip ilişkileri
+        private_comment_description_html: 'İçe aktarılan engellerin nereden geldiğini izlemenize olanak sağlamak için, içe aktarılan engeller şu özel yorum ile oluşturulacak: <q>%{comment}</q>'
         private_comment_template: "%{source} kaynağından %{date} tarihinde içe aktarıldı"
         title: Domain bloklarını içe aktar
       new:

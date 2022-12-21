@@ -30,7 +30,7 @@ ko:
       destroyed_msg: 중재 기록이 성공적으로 삭제되었습니다!
     accounts:
       add_email_domain_block: 이 이메일 도메인을 차단하기
-      approve: 승인
+      approve: 허가
       approved_msg: 성공적으로 %{username}의 가입 신청서를 승인했습니다
       are_you_sure: 정말로 실행하시겠습니까?
       avatar: 아바타
@@ -47,7 +47,7 @@ ko:
         label: 역할 변경
         no_role: 역할 없음
         title: "%{username}의 역할 변경"
-      confirm: 확인
+      confirm: 확정
       confirmed: 확인됨
       confirming: 확인 중
       custom: 사용자 지정
@@ -418,7 +418,7 @@ ko:
       domain: 도메인
       new:
         create: 차단 규칙 생성
-        resolve: 도메인 해결
+        resolve: 도메인 검사
         title: 새 이메일 도메인 차단
       no_email_domain_block_selected: 아무 것도 선택 되지 않아 어떤 이메일 도메인 차단도 변경되지 않았습니다
       resolved_dns_records_hint_html: 도메인 네임은 다음의 MX 도메인으로 연결되어 있으며, 이메일을 받는데 필수적입니다. MX 도메인을 차단하면 같은 MX 도메인을 사용하는 어떤 이메일이라도 가입할 수 없게 되며, 보여지는 도메인이 다르더라도 적용됩니다. <strong>주요 이메일 제공자를 차단하지 않도록 조심하세요.</strong>
@@ -959,6 +959,9 @@ ko:
       email_below_hint_html: 아래의 이메일 계정이 올바르지 않을 경우, 여기서 변경하고 새 확인 메일을 받을 수 있습니다.
       email_settings_hint_html: 확인 메일이 %{email}로 보내졌습니다. 이메일 주소가 올바르지 않은 경우, 계정 설정에서 변경하세요.
       title: 설정
+    sign_in:
+      preamble_html: "<strong>%{domain}</strong>의 계정 정보를 이용해 로그인 하세요. 만약 내 계정이 다른 서버에 존재한다면, 여기서는 로그인 할 수 없습니다."
+      title: "%{domain}에 로그인"
     sign_up:
       preamble: 이 마스토돈 서버의 계정을 통해, 네트워크에 속한 다른 사람들을, 그들이 어떤 서버에 있든 팔로우 할 수 있습니다.
       title: "%{domain}에 가입하기 위한 정보들을 입력하세요."
@@ -1402,7 +1405,7 @@ ko:
       firefox_os: 파이어폭스OS
       ios: iOS
       linux: 리눅스
-      mac: 맥OS
+      mac: macOS
       other: 알 수 없는 플랫폼
       windows: 윈도우
       windows_mobile: 윈도우 모바일

@@ -22,4 +22,4 @@ export default function tags(state = initialState, action) {
   default:
     return state;
   }
-};
+}

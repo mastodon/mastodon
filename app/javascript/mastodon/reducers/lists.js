@@ -34,4 +34,4 @@ export default function lists(state = initialState, action) {
   default:
     return state;
   }
-};
+}
