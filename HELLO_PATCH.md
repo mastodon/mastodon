@@ -10,3 +10,9 @@ Ideally there should be two different environment vars, and the user id by defau
 For now the username is hard coded to `nickname`. This should be changed to `preferred_username` when that claim
 becomes available.
 
+## HELLO_PATCH(2) use OIDC for Sign-Up
+
+Instead of showing the Sign-Up form start the OpenID Connect authorization request.
+
+The request starts at `/auth/auth/openid_connect` and it must be a POST request. The `data-method="post"` attribute on
+the `<a>` tag enforces that.

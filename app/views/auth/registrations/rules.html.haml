@@ -15,6 +15,7 @@
 
   .stacked-actions
     -# - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : new_user_registration_path(accept: @accept_token)
+    -# HELLO_PATCH(2) use OIDC for Sign-Up
     - accept_path = @invite_code.present? ? public_invite_url(invite_code: @invite_code, accept: @accept_token) : user_openid_connect_omniauth_authorize_path(accept: @accept_token)
     = link_to t('auth.rules.accept'), accept_path, class: 'button', 'data-method': 'post'
     = link_to t('auth.rules.back'), root_path, class: 'button button-tertiary'
