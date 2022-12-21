@@ -17,11 +17,12 @@ Development setup links:
 ### VirtualBox
 
 * download platform specific version from https://www.virtualbox.org/wiki/Downloads
+* use latest version: 7.0.4
 
 #### MacOS
 
 ```shell
-brew cask install virtualbox
+brew install --cask virtualbox
 ```
 
 Questions:
