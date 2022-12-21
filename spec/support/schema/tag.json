@@ -1,0 +1,32 @@
+{
+  "id": "tag.json#",
+  "type": "object",
+  "required": [
+    "name",
+    "url",
+    "history"
+  ],
+  "properties": {
+    "name": {
+      "description": "The value of the hashtag after the # sign.",
+      "type": "string"
+    },
+    "url": {
+      "description": "A link to the hashtag on the instance. Parse string as URL.",
+      "type": "string"
+    },
+    "history": {
+      "description": "Usage statistics for given days (typically the past week).",
+      "example": [{"day":"1671062400", "accounts":"11", "uses":"16"}],
+      "type": "array",
+      "items": {
+        "$ref": "trend_history.json#"
+      },
+      "uniqueItems": true
+    },
+    "following": {
+      "description": "Whether the current token’s authorized user is following this tag.",
+      "type": "boolean"
+    }
+  }
+}

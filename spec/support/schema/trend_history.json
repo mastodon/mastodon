@@ -1,0 +1,26 @@
+{
+  "id": "trend_history.json#",
+  "type": "object",
+  "required": [
+    "day",
+    "accounts",
+    "uses"
+  ],
+  "properties": {
+    "day": {
+      "description": "UNIX timestamp on midnight of the given day. Number cast as string.",
+      "type": "string",
+      "pattern": "\\d+"
+    },
+    "accounts": {
+      "description": "The total of accounts using the tag within that day. Number cast as string.",
+      "type": "string",
+      "pattern": "\\d+"
+    },
+    "uses": {
+      "description": "The counted usage of the tag within that day. Number cast as string.",
+      "type": "string",
+      "pattern": "\\d+"
+    }
+  }
+}
