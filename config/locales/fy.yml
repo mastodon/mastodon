@@ -1,7 +1,6 @@
----
 fy:
   about:
-    about_mastodon_html: Mastodon is in sosjaal netwurk dat gebrûkt makket fan iepen webprotokollen en frije software. It is krekt lykas e-mail desintralisearre!
+    about_mastodon_html: 'Mastodon is in sosjaal netwurk dat gebrûkt makket fan iepen webprotokollen en frije software. It is krekt lykas e-mail desintralisearre!'
     contact_missing: Net ynsteld
     contact_unavailable: Net fan tapassing
     hosted_on: Mastodon op %{domain}
@@ -56,7 +55,7 @@ fy:
       delete: Gegevens fuortsmite
       deleted: Fuortsmiten
       demote: Degradearje
-      destroyed_msg: It fuortsmiten fan de gegevens fan %{username} stiet no yn de wachtrige
+      destroyed_msg: "It fuortsmiten fan de gegevens fan %{username} stiet no yn de wachtrige"
       disable: Befrieze
       disable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakelje
       disable_two_factor_authentication: 2FA útskeakelje
@@ -105,13 +104,51 @@ fy:
       pending: Moat noch beoardiele wurde
       perform_full_suspension: Utstelle
       previous_strikes: Eardere skeiningen
+      previous_strikes_description_html:
+        one: Dizze account hat <strong>ien</strong> oertrêding makke.
+        other: Dizze account hat <strong>%{count}</strong> oertrêdingen makke.
       promote: Promovearje
       protocol: Protokol
       public: Iepenbier
+      push_subscription_expires: PuSH-abonnemint ferrint op
+      redownload: Profyl fernije
+      redownloaded_msg: It werstellen fan it oarspronklike profyl fan %{username} is slagge
       reject: Wegerje
+      rejected_msg: It ôfwizen fan it registraasjefersyk fan %{username} is slagge
+      remote_suspension_irreversible: De gegevens fan dizze account binne definityf fuortsmiten.
+      remote_suspension_reversible_hint_html: Dizze account is útsteld op harren server en de gegevens wurde op %{date} folslein fuortsmiten. Oant dy tiid kin de eksterne server dizze account werstelle sûnder neidielige gefolgen. Wannear’t jo alle gegevens fan dizze account daliks fuortsmite wolle, kinne jo dit hjirûnder dwaan.
+      remove_avatar: Profylfoto fuortsmite
+      remove_header: Omslachfoto fuortsmite
+      removed_avatar_msg: It fuortsmiten fan de profylfoto fan %{username} is slagge
+      removed_header_msg: It fuortsmiten fan de omslachfoto fan %{username} is slagge
+      resend_confirmation:
+        already_confirmed: Dizze brûker is al befêstige
+        send: Befêstigings-e-mailberjocht opnij ferstjoere
+        success: Befêstigings-e-mailberjocht mei sukses ferstjoerd!
+      reset: Opnij ynstelle
+      reset_password: Wachtwurd opnij ynstelle
+      resubscribe: Opnij abonnearje
+      role: Rol
+      search: Sykje
+      search_same_email_domain: Oare brûkers mei itselde e-maildomein
+      search_same_ip: Oare brûkers mei itselde IP-adres
       security_measures:
         only_password: Allinnich wachtwurd
         password_and_2fa: Wachtwurd en 2FA
+      sensitive: Gefoelich forsearje
+      sensitized: As gefoelich markearre
+      shared_inbox_url: Dielde Postfek-YN-URL
+      show:
+        created_reports: Oanmakke rapportaazjes
+        targeted_reports: Troch oaren rapportearre
+      silence: Beheine
+      silenced: Beheind
+      statuses: Berjochten
+      strikes: Eardere skeiningen
+      subscribe: Abonnearje
+      suspend: Utstelle
+      suspended: Utsteld
+      suspension_irreversible: De gegevens fan dizze account binne definityf fuortsmiten. Jo kinne it útstellen fan dizze account ûngedien meitsje, sadat it wer te brûken is, mar de fuortsmiten gegevens wurde hjirmei net wersteld.
       title: Accounts
       unblock_email: E-mailadres deblokkearje
       warn: Warskôgje
@@ -131,10 +168,13 @@ fy:
       image_hint: PNG of GIF net grutter as %{size}
       list: Yn list
       listed: Werjaan
+      overwrite: Oerskriuwe
       upload: Oplade
     dashboard:
       active_users: warbere brûkers
       interactions: ynteraksjes
+      new_users: nije brûkers
+      software: Software
       title: Dashboerd
       top_languages: Meast aktive talen
       top_servers: Meast aktive tsjinners
@@ -143,15 +183,41 @@ fy:
       appeals:
         empty: Gjin beswieren fûn.
         title: Beswieren
+    domain_allows:
+      export: Eksportearje
+      import: Ymportearje
+    domain_blocks:
+      domain: Domein
+      export: Eksportearje
+      import: Ymportearje
+      new:
+        create: Blokkade oanmeitsje
+        severity:
+          noop: Gjin
+          silence: Beheine
+          suspend: Utstelle
+        title: Nije domeinblokkade
     email_domain_blocks:
+      add_new: Nije tafoegje
       delete: Fuortsmite
+      dns:
+        types:
+          mx: MX-record
       domain: Domein
       new:
         create: Domain tafoegje
         resolve: Domein opsykje
+        title: Nije e-maildomein blokkearje
+    export_domain_allows:
+      no_file: Gjin bestân selektearre
+    export_domain_blocks:
+      no_file: Gjin bestân selektearre
     follow_recommendations:
+      language: Foar taal
       status: Steat
     instances:
+      availability:
+        title: Beskikberheid
       back_to_all: Alle
       back_to_limited: Beheind
       back_to_warning: Warskôging
@@ -165,65 +231,344 @@ fy:
         policy: Belied
       dashboard:
         instance_accounts_measure: bewarre accounts
+      delivery:
+        all: Alles
+        failing: Problemen
+        unavailable: Net beskikber
+      title: Federaasje
+      total_blocked_by_us: Troch ús blokkearre
+    invites:
+      filter:
+        all: Alles
+        available: Beskikber
+        expired: Ferrûn
+        title: Filter
+      title: Utnûgingen
     ip_blocks:
+      add_new: Rigel meitsje
       delete: Fuortsmite
+      expires_in:
+        '1209600': 2 wiken
+        '15778476': 6 moannen
+        '2629746': 1 moanne
+        '31556952': 1 jier
+        '86400': 1 dei
+        '94670856': 3 jier
+      title: IP-rigels
     relays:
       delete: Fuortsmite
+      disable: Utskeakelje
+      disabled: Utskeakele
+      enable: Ynskeakelje
+      enabled: Ynskeakele
+      inbox_url: Relay-URL
+      status: Steat
+      title: Relayservers
     reports:
+      action_log: Auditlogboek
       delete_and_resolve: Berjocht fuortsmite
       notes:
         delete: Fuortsmite
+      resolved: Oplost
+      status: Steat
+      title: Rapportaazjes
+      updated_at: Bywurke
     roles:
+      assigned_users:
+        one: "%{count} brûker"
+        other: "%{count} brûkers"
+      categories:
+        administration: Behear
+        devops: DevOps
+        invites: Utnûgingen
+        moderation: Moderaasje
+        special: Spesjaal
       delete: Fuortsmite
+      privileges:
+        administrator: Behearder
+        view_devops: DevOps
+      title: Rollen
     rules:
+      add_new: Rigel tafoegje
       delete: Fuortsmite
+      edit: Rigel bewurkje
+      title: Serverrigels
+    settings:
+      about:
+        title: Oer
+      appearance:
+        title: Werjefte
+      branding:
+        title: Branding
+      discovery:
+        trends: Trends
     statuses:
+      account: Auteur
+      application: Tapassing
       deleted: Fuortsmiten
+      trending: Trending
+      visibility: Sichtberheid
+      with_media: Mei media
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+    title: Behear
+    trends:
+      allow: Tastean
+      approved: Goedkarre
+      disallow: Ofkarre
+      preview_card_providers:
+        title: Utjouwers
+      rejected: Wegere
+      title: Trends
+      trending: Trending
     warning_presets:
+      add_new: Nije tafoegje
       delete: Fuortsmite
     webhooks:
       delete: Fuortsmite
+      disable: Utskeakelje
+      disabled: Utskeakele
+      enable: Ynskeakelje
+      enabled: Aktyf
+      events: Eveneminten
+      new: Nije webhook
+      status: Steat
+      title: Webhooks
+      webhook: Webhook
+  admin_mailer:
+    new_appeal:
+      actions:
+        none: in warskôging
+  appearance:
+    discovery: Untdekke
+    localization:
+      body: Mastodon wurdt troch frijwilligers oerset.
+      guide_link: https://crowdin.com/project/mastodon/fy
+      guide_link_text: Elkenien kin bydrage.
+    sensitive_content: Gefoelige ynhâld
+  application_mailer:
+    salutation: "%{name},"
+    view: 'Besjoch:'
+    view_profile: Profyl besjen
   auth:
+    change_password: Wachtwurd
     delete_account: Account fuortsmite
+    log_in_with: Oanmelde mei
+    login: Oanmelde
+    logout: Ofmelde
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Registrearje
+    reset_password: Wachtwurd opnij ynstelle
+    rules:
+      title: Inkelde basisrigels.
+    security: Befeiliging
+    set_new_password: Nij wachtwurd ynstelle
+  authorize_follow:
+    post_follow:
+      web: Gean nei de webapp
+    title: '%{acct} folgje'
+  challenge:
+    confirm: Trochgean
+    invalid_password: Unjildich wachtwurd
+  date:
+    formats:
+      default: "%d %b %Y"
+      with_month_name: "%d %B %Y"
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}o"
+      about_x_months: "%{count}mo"
+      about_x_years: "%{count}j"
+      almost_x_years: "%{count}j"
+      half_a_minute: Sakrekt
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Sakrekt
+      over_x_years: "%{count}j"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}mo"
+      x_seconds: "%{count}s"
   deletes:
     proceed: Account fuortsmite
+  disputes:
+    strikes:
+      appeal: Beswier
+      created_at: Datum en tiid
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
     '404': The page you are looking for isn't here.
     '406': This page is not available in the requested format.
     '410': The page you were looking for doesn't exist here anymore.
-    '422': 
+    '422':
     '429': Too many requests
-    '500': 
+    '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Datum
+      size: Grutte
+    blocks: Jo blokkearje
+    bookmarks: Blêdwizers
+    csv: CSV
+    domain_blocks: Domeinblokkaden
+    lists: Listen
+    mutes: Jo negearje
+  featured_tags:
+    add_new: Nije tafoegje
   filters:
     contexts:
+      account: Profilen
+      notifications: Meldingen
       thread: Petearen
+    edit:
+      keywords: Kaaiwurden
+      title: Filter bewurkje
     index:
       delete: Fuortsmite
+      title: Filters
   generic:
     delete: Fuortsmite
+  imports:
+    modes:
+      merge: Gearfoegje
+      overwrite: Oerskriuwe
+    types:
+      blocking: Blokkearlist
+      bookmarks: Blêdwizers
+      following: Folchlist
+      muting: Negearlist
+    upload: Oplade
   invites:
     delete: Deaktivearje
+    expired: Ferrûn
+    expires_in:
+      '1800': 30 minuten
+      '21600': 6 oeren
+      '3600': 1 oere
+      '43200': 12 oeren
+      '604800': 1 wike
+      '86400': 1 dei
+    expires_in_prompt: Nea
+    max_uses:
+      one: 1 kear
+      other: "%{count} kear"
+    max_uses_prompt: Gjin limyt
+    table:
+      expires_at: Ferrint op
+  login_activities:
+    authentication_methods:
+      password: wachtwurd
+  migrations:
+    acct: Ferhuze nei
   notification_mailer:
     mention:
       action: Beäntwurdzje
       body: 'Jo binne fermeld troch %{name} yn:'
       subject: Jo binne fermeld troch %{name}
       title: Nije fermelding
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: mld.
+          million: mln.
+          quadrillion: qdn.
+          thousand: K
+          trillion: bln.
+  otp_authentication:
+    enable: Ynskeakelje
+    setup: Ynstelle
+  pagination:
+    newer: Nijer
+    next: Folgjende
+    older: Alder
+    prev: Foarige
+    truncate: "&hellip;"
   relationships:
+    dormant: Slommerjend
+    followers: Folgers
+    following: Folgjend
+    invited: Utnûge
     last_active: Letst warber
+    most_recent: Meast resint
+    moved: Ferhuze
+    primary: Primêr
+    relationship: Relaasje
+    status: Accountsteat
   rss:
     content_warning: 'Ynhâldswarskôging:'
+  sessions:
+    activity: Lêst warber
+    browser: Browser
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Unbekende browser
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UC Browser
+      weibo: Weibo
+    current_session: Aktuele sesje
+    description: "%{browser} op %{platform}"
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
   settings:
     delete: Account fuortsmite
   statuses:
     content_warning: 'Ynhâldswarskôging: %{warning}'
     pin_errors:
       direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
+    poll:
+      vote: Stimme
+    show_more: Mear toane
+    visibilities:
+      direct: Direkt
+      private: Allinnich folgers
+      public: Iepenbier
+      unlisted: Minder iepenbier
+  statuses_cleanup:
+    exceptions: Utsûnderingen
+    min_age:
+      '1209600': 2 wiken
+      '15778476': 6 moannen
+      '2629746': 1 moanne
+      '31556952': 1 jier
+      '5259492': 2 moannen
+      '604800': 1 wike
+      '63113904': 2 years
+      '7889238': 3 months
+  themes:
+    default: Mastodon (donker)
+    mastodon-light: Mastodon (ljocht)
+  time:
+    formats:
+      default: "%d %B %Y om %H:%M"
+      month: "%b %Y"
+      time: "%H:%M"
+  two_factor_authentication:
+    add: Tafoegje
+    disable: 2FA útskeakelje
+    edit: Bewurkje
   webauthn_credentials:
     delete: Fuortsmite
