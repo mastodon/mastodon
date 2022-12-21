@@ -8,20 +8,17 @@ en:
       captcha_enabled:
         desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.<br>Users that have been invited through a limited-use invite will not need to solve a CAPTCHA
         title: Require new users to solve a CAPTCHA to confirm their account
-      enable_keybase:
-        desc_html: Allow your users to prove their identity via keybase
-        title: Enable keybase integration
       flavour_and_skin:
         title: Flavour and skin
+      hide_followers_count:
+        desc_html: Do not show followers count on user profiles
+        title: Hide followers count
       other:
         preamble: Various glitch-soc settings not fitting in other categories.
         title: Other
       outgoing_spoilers:
         desc_html: When federating toots, add this content warning to toots that do not have one. It is useful if your server is specialized in content other servers might want to have under a Content Warning. Media will also be marked as sensitive.
         title: Content warning for outgoing toots
-      hide_followers_count:
-        desc_html: Do not show followers count on user profiles
-        title: Hide followers count
       show_reblogs_in_public_timelines:
         desc_html: Show public boosts of public toots in local and public timelines.
         title: Show boosts in public timelines

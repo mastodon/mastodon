@@ -4,12 +4,16 @@
 base_locale: en
 data:
   read:
-    - config/locales/%{locale}.yml
-    - config/locales/**/*.%{locale}.yml
+    - config/locales-glitch/%{locale}.yml
+    - config/locales-glitch/*.%{locale}.yml
 
   write:
-    - ['{devise, simple_form, doorkeeper}.*', 'config/locales/\1.%{locale}.yml']
+    - ['{devise, simple_form, doorkeeper}.*', 'config/locales-glitch/\1.%{locale}.yml']
+    - config/locales-glitch/%{locale}.yml
+
+  external:
     - config/locales/%{locale}.yml
+    - config/locales/**/*.%{locale}.yml
 
   yaml:
     write:
@@ -50,7 +54,7 @@ ignore_unused:
   - 'activerecord.errors.*'
   - '{devise,pagination,doorkeeper}.*'
   - '{date,datetime,time,number}.*'
-  - 'simple_form.{yes,no,recommended,not_recommended}'
+  - 'simple_form.{yes,no,recommended,not_recommended,glitch_only}'
   - 'simple_form.{placeholders,hints,labels}.*'
   - 'simple_form.{error_notification,required}.:'
   - 'errors.messages.*'
