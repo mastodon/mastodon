@@ -1,12 +1,15 @@
 ---
 ja:
   simple_form:
+    glitch_only: glitch-soc
     hints:
       defaults:
+        fields: You can have up to %{count} items displayed as a table on your profile
         setting_default_content_type_html: トゥートを作成するとき特に指定がない限り生のHTMLで書かれているとします
         setting_default_content_type_markdown: トゥートを作成するとき特に指定がない限りリッチテキスト形式のマークダウンで書かれているとします
         setting_default_content_type_plain: トゥートを作成するとき特に指定がない限りプレーンテキストで書かれているとします（Mastodon既定の動作）
         setting_default_language: あなたのトゥートの言語を自動検出しますが必ずしも正確ではありません
+        setting_hide_followers_count: Hide your followers count from everybody, including you. Some applications may display a negative followers count.
         setting_skin: 選択したMastodonフレーバーに変更します
     labels:
       defaults:
@@ -18,3 +21,7 @@ ja:
         setting_hide_followers_count: フォロワー数を隠す
         setting_skin: スキン
         setting_system_emoji_font: 絵文字にシステム既定のフォントを使用する（Glitch Edition フレーバーのみに適用されます）
+      notification_emails:
+        trending_link: New trending link requires review
+        trending_status: New trending post requires review
+        trending_tag: New trending tag requires review

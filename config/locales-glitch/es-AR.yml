@@ -1,0 +1,38 @@
+---
+es-AR:
+  admin:
+    custom_emojis:
+      batch_copy_error: 'An error occurred when copying some of the selected emoji: %{message}'
+      batch_error: 'An error occurred: %{message}'
+    settings:
+      captcha_enabled:
+        desc_html: This relies on external scripts from hCaptcha, which may be a security and privacy concern. In addition, <strong>this can make the registration process significantly less accessible to some (especially disabled) people</strong>. For these reasons, please consider alternative measures such as approval-based or invite-based registration.<br>Users that have been invited through a limited-use invite will not need to solve a CAPTCHA
+        title: Require new users to solve a CAPTCHA to confirm their account
+      flavour_and_skin:
+        title: Flavour and skin
+      hide_followers_count:
+        desc_html: No mostrar el conteo de seguidorxs en perfiles de usuarix
+        title: Ocultar conteo de seguidorxs
+      other:
+        preamble: Various glitch-soc settings not fitting in other categories.
+        title: Other
+      outgoing_spoilers:
+        desc_html: Cuando los toots federen, agrega esta etiqueta de contenido a los toots que no tengan. Es útil si tu servidor se especializa en contenido que otros servidores desearían tener con una advertencia de contenido. Los medios también se marcarán como sensibles.
+        title: Advertencia de contenido para los toots salientes
+      show_reblogs_in_public_timelines:
+        desc_html: Mostrar retoots públicos en las línea de tiempo local y pública.
+        title: Mostrar retoots en líneas de tiempo públicas
+      show_replies_in_public_timelines:
+        desc_html: Además de auto-respuestas públicas (hilos), mostrar respuestas públicas en las línea de tiempo local y pública.
+        title: Mostrar respuestas en líneas de tiempo públicas
+      trending_status_cw:
+        desc_html: When trending posts are enabled, allow posts with Content Warnings to be eligible. Changes to this setting are not retroactive.
+        title: Allow posts with Content Warnings to trend
+  auth:
+    captcha_confirmation:
+      hint_html: Just one more step! To confirm your account, this server requires you to solve a CAPTCHA. You can <a href="/about/more">contact the server administrator</a> if you have questions or need assistance with confirming your account.
+      title: User verification
+  generic:
+    use_this: Usar
+  settings:
+    flavours: Ediciones
