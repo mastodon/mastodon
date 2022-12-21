@@ -149,15 +149,108 @@ fy:
       suspend: Utstelle
       suspended: Utsteld
       suspension_irreversible: De gegevens fan dizze account binne definityf fuortsmiten. Jo kinne it útstellen fan dizze account ûngedien meitsje, sadat it wer te brûken is, mar de fuortsmiten gegevens wurde hjirmei net wersteld.
+      suspension_reversible_hint_html: Dizze account is útsteld en de gegevens wurde op %{date} folslein fuortsmiten. Oant dy tiid kin de account wersteld wurde sûnder neidielige gefolgen. Wannear’t jo alle gegevens fan dizze account daliks fuortsmite wolle, kinne jo dit hjirûnder dwaan.
       title: Accounts
       unblock_email: E-mailadres deblokkearje
+      unblocked_email_msg: It e-mailadres fan %{username} is deblokkearre
+      unconfirmed_email: Unbefêstige e-mailadres
+      undo_sensitized: Net mear as gefoelich forsearje
+      undo_silenced: Net langer beheine
+      undo_suspension: Net langer útstelle
+      unsilenced_msg: It opheffen fan de beheiningen fan %{username} is slagge
+      unsubscribe: Opsizze
+      unsuspended_msg: It net langer útstellen fan %{username} is slagge
+      username: Brûkersnamme
+      view_domain: Gearfetting foar domein besjen
       warn: Warskôgje
       web: Web-app
+      whitelisted: Goedkard foar federaasje
     action_logs:
       action_types:
+        approve_appeal: Beswier goedkarre
+        approve_user: Brûker goedkarre
+        assigned_to_self_report: Rapportaazje tawize
+        change_email_user: E-mailadres fan brûker wizigje
+        change_role_user: Brûkersrol wizigje
+        confirm_user: Brûker befêstigje
+        create_account_warning: Warskôging oanmeitsje
+        create_announcement: Meidieling oanmeitsje
+        create_canonical_email_block: E-mailblokkade oanmeitsje
+        create_custom_emoji: Lokale emoji oanmeitsje
+        create_domain_allow: Domeingoedkarring oanmeitsje
+        create_domain_block: Domeinblokkade oanmeitsje
+        create_email_domain_block: E-maildomeinblokkade oanmeitsje
+        create_ip_block: IP-rigel oanmeitsje
+        create_unavailable_domain: Net beskikber domein oanmeitsje
+        create_user_role: Rol oanmeitsje
+        demote_user: Brûker degradearje
         destroy_announcement: Meidieling fuortsmite
+        destroy_canonical_email_block: E-mailblokkade fuortsmite
+        destroy_custom_emoji: Lokale emoji fuortsmite
+        destroy_domain_allow: Domeingoedkarring fuortsmite
+        destroy_domain_block: Domeinblokkade fuortsmite
+        destroy_email_domain_block: E-maildomeinblokkade fuortsmite
+        destroy_instance: Domein folslein fuortsmite
+        destroy_ip_block: IP-rigel fuortsmite
+        destroy_status: Toot fuortsmite
+        destroy_unavailable_domain: Net beskikber domein fuortsmite
+        destroy_user_role: Rol permanint fuortsmite
+        disable_2fa_user: Twa-stapsferifikaasje útskeakelje
+        disable_custom_emoji: Lokale emoji útskeakelje
+        disable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mailberjocht foar de brûker útskeakelje
+        disable_user: Brûker útskeakelje
+        enable_custom_emoji: Lokale emoji ynskeakelje
+        enable_sign_in_token_auth_user: Ferifikaasje mei in tagongskoade fia e-mailberjocht foar de brûker ynskeakelje
+        enable_user: Brûker ynskeakelje
+        memorialize_account: De account yn in Yn memoriam wizigje
+        promote_user: Brûker promovearje
+        reject_appeal: Beswier ôfwize
+        reject_user: Brûker ôfwize
+        remove_avatar_user: Profylfoto fuortsmite
+        reopen_report: Rapport opnij iepenje
+        resend_user: Befêstigings-e-mailberjocht opnij ferstjoere
+        reset_password_user: Wachtwurd opnij ynstelle
+        resolve_report: Rapport oplosse
+        sensitive_account: De media yn jo account as gefoelich markearje
+        silence_account: Account beheine
+        suspend_account: Account útstelle
+        unassigned_report: Rapportaazje net langer tawize
+        unblock_email_account: E-mailadres deblokkearje
+        unsensitive_account: De media yn jo account net langer as gefoelich markearje
+        unsilence_account: Account net langer beheine
+        unsuspend_account: Account net langer útstelle
+        update_announcement: Meidieling bywurkje
+        update_custom_emoji: Lokale emoji bywurkje
+        update_domain_block: Domeinblokkade bywurkje
+        update_ip_block: IP-rigel bywurkje
+        update_status: Berjocht bywurkje
+        update_user_role: Rol bywurkje
+      actions:
+        disable_user_html: "Oanmelden foar %{target} is troch %{name} útskeakele"
+        enable_custom_emoji_html: "Emoji %{target} is troch %{name} ynskeakele"
+        enable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakele foar %{target}"
+        enable_user_html: "Oanmelden foar %{target} is troch %{name} ynskeakele"
+        memorialize_account_html: "De account %{target} is troch %{name} yn in Yn memoriam wizige"
+        promote_user_html: "Brûker %{target} is troch %{name} promovearre"
+        reject_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} ôfwêzen"
+        reject_user_html: "%{name} hat de registraasje fan %{target} ôfwêzen"
+        remove_avatar_user_html: "%{name} hat de profylfoto fan %{target} fuortsmiten"
+        reopen_report_html: "%{name} hat rapportaazje %{target} opnij iepene"
+        resend_user_html: "%{name} hat it befêstigings-e-mailberjocht foar %{target} opnij ferstjoerd"
       deleted_account: fuortsmiten account
+      title: Auditlogboek
+    announcements:
+      live: Live
+      new:
+        create: Meidieling oanmeitsje
+        title: Nije meidieling
+      publish: Publisearje
+      published_msg: Publisearjen fan meidieling slagge!
+      scheduled_for: Ynpland foar %{time}
+      title: Oankundigingen
+      unpublish: Depublisearje
     custom_emojis:
+      by_domain: Domein
       copy: Kopiearje
       delete: Fuortsmite
       disable: Utskeakelje
@@ -572,5 +665,30 @@ fy:
     edit: Bewurkje
     otp: Autentikaasje-app
     webauthn: Befeiligingskaaien
+  user_mailer:
+    appeal_approved:
+      action: Gean nei jo account
+    appeal_rejected:
+      title: Beswier ôfwêzen
+    suspicious_sign_in:
+      title: In nije registraasje
+    warning:
+      appeal: Beswier yntsjinje
+      categories:
+        spam: Spam
+      reason: 'Reden:'
+      statuses: 'Rapportearre berjochten:'
+    welcome:
+      subject: Wolkom op Mastodon
+      title: Wolkom oan board %{name}!
+  users:
+    signed_in_as: 'Oanmeld as:'
+  verification:
+    verification: Ferifikaasje
   webauthn_credentials:
+    add: Nije befeiligingskaai tafoegje
     delete: Fuortsmite
+    invalid_credential: Unjildige befeiligingskaai
+    not_supported: Dizze browser stipet gjin befeiligingskaaien
+    otp_required: Om befeiligingskaaien brûke te kinnen, moatte jo earst twa-stapsferifikaasje ynskeakelje.
+    registered_on: Registrearre op %{date}
