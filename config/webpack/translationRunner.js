@@ -1,11 +1,12 @@
 const fs = require('fs');
 const path = require('path');
-const { default: manageTranslations } = require('react-intl-translations-manager');
+const { default: manageTranslations, readMessageFiles } = require('react-intl-translations-manager');
 
 const RFC5646_REGEXP = /^[a-z]{2,3}(?:-(?:x|[A-Za-z]{2,4}))*$/;
 
 const rootDirectory = path.resolve(__dirname, '..', '..');
-const translationsDirectory = path.resolve(rootDirectory, 'app', 'javascript', 'mastodon', 'locales');
+const externalDefaultMessages = path.resolve(rootDirectory, 'app', 'javascript', 'mastodon', 'locales', 'defaultMessages.json');
+const translationsDirectory = path.resolve(rootDirectory, 'app', 'javascript', 'flavours', 'glitch', 'locales');
 const messagesDirectory = path.resolve(rootDirectory, 'build', 'messages');
 const availableLanguages = fs.readdirSync(translationsDirectory).reduce((languages, filename) => {
   const basename = path.basename(filename, '.json');
@@ -86,6 +87,25 @@ validateLanguages(languages, [
   !argv.force && testAvailability,
 ].filter(Boolean));
 
+// Override `provideExtractedMessages` to ignore translation strings provided upstream already
+const provideExtractedMessages = () => {
+  const extractedMessages = readMessageFiles(messagesDirectory);
+  const originalExtractedMessages = JSON.parse(fs.readFileSync(externalDefaultMessages, 'utf8'));
+  const originalKeys = new Set();
+
+  originalExtractedMessages.forEach(file => {
+    file.descriptors.forEach(descriptor => {
+      originalKeys.add(descriptor.id)
+    });
+  });
+
+  extractedMessages.forEach(file => {
+    file.descriptors = file.descriptors.filter((descriptor) => !originalKeys.has(descriptor.id));
+  });
+
+  return extractedMessages.filter((file) => file.descriptors.length > 0);
+};
+
 // manage translations
 manageTranslations({
   messagesDirectory,
@@ -95,5 +115,8 @@ manageTranslations({
   languages,
   jsonOptions: {
     trailingNewline: true,
+  },
+  overrideCoreMethods: {
+    provideExtractedMessages,
   },
 });

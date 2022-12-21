@@ -1,0 +1,1068 @@
+[
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "We're sorry, but something went wrong with the Mastodon app.",
+        "id": "web_app_crash.title"
+      },
+      {
+        "defaultMessage": "You could try any of the following:",
+        "id": "web_app_crash.content"
+      },
+      {
+        "defaultMessage": "Disable browser add-ons or built-in translation tools",
+        "id": "web_app_crash.disable_addons"
+      },
+      {
+        "defaultMessage": "Report a bug in the {issuetracker}",
+        "id": "web_app_crash.report_issue"
+      },
+      {
+        "defaultMessage": "issue tracker",
+        "id": "web_app_crash.issue_tracker"
+      },
+      {
+        "defaultMessage": "Debug information",
+        "id": "web_app_crash.debug_info"
+      },
+      {
+        "defaultMessage": "{reload} the current page",
+        "id": "web_app_crash.reload_page"
+      },
+      {
+        "defaultMessage": "Reload",
+        "id": "web_app_crash.reload"
+      },
+      {
+        "defaultMessage": "Change your {settings}",
+        "id": "web_app_crash.change_your_settings"
+      },
+      {
+        "defaultMessage": "settings",
+        "id": "web_app_crash.settings"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/components/error_boundary.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Sensitive",
+        "id": "media_gallery.sensitive"
+      },
+      {
+        "defaultMessage": "Click to view",
+        "id": "status.sensitive_toggle"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/components/media_gallery.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Select\nall",
+        "id": "notification_purge.btn_all"
+      },
+      {
+        "defaultMessage": "Select\nnone",
+        "id": "notification_purge.btn_none"
+      },
+      {
+        "defaultMessage": "Invert\nselection",
+        "id": "notification_purge.btn_invert"
+      },
+      {
+        "defaultMessage": "Clear\nselected",
+        "id": "notification_purge.btn_apply"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/components/notification_purge_buttons.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Collapse",
+        "id": "status.collapse"
+      },
+      {
+        "defaultMessage": "Uncollapse",
+        "id": "status.uncollapse"
+      },
+      {
+        "defaultMessage": "This toot is a reply",
+        "id": "status.in_reply_to"
+      },
+      {
+        "defaultMessage": "Features an attached preview card",
+        "id": "status.has_preview_card"
+      },
+      {
+        "defaultMessage": "Features attached pictures",
+        "id": "status.has_pictures"
+      },
+      {
+        "defaultMessage": "This toot is a poll",
+        "id": "status.is_poll"
+      },
+      {
+        "defaultMessage": "Features attached videos",
+        "id": "status.has_video"
+      },
+      {
+        "defaultMessage": "Features attached audio files",
+        "id": "status.has_audio"
+      },
+      {
+        "defaultMessage": "Only visible from your instance",
+        "id": "status.local_only"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/components/status_icons.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Are you sure you want to permanently clear all selected notifications?",
+        "id": "notifications.marked_clear_confirmation"
+      },
+      {
+        "defaultMessage": "Clear selected notifications",
+        "id": "notifications.marked_clear"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/containers/notification_purge_buttons_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Show",
+        "id": "confirmations.unfilter.confirm"
+      },
+      {
+        "defaultMessage": "Author",
+        "id": "confirmations.unfilter.author"
+      },
+      {
+        "defaultMessage": "Matching {count, plural, one {filter} other {filters}}",
+        "id": "confirmations.unfilter.filters"
+      },
+      {
+        "defaultMessage": "Edit filter",
+        "id": "confirmations.unfilter.edit_filter"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/containers/status_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Glitch-soc is free open source software forked from Mastodon.",
+        "id": "about.fork_disclaimer"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/about/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "No comment provided",
+        "id": "account_note.glitch_placeholder"
+      },
+      {
+        "defaultMessage": "Cancel",
+        "id": "account_note.cancel"
+      },
+      {
+        "defaultMessage": "Save",
+        "id": "account_note.save"
+      },
+      {
+        "defaultMessage": "Edit",
+        "id": "account_note.edit"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/account/components/account_note.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This user has been suspended by a moderator.",
+        "id": "account.suspended_disclaimer_full"
+      },
+      {
+        "defaultMessage": "Information below may reflect the user's profile incompletely.",
+        "id": "account.disclaimer_full"
+      },
+      {
+        "defaultMessage": "View full profile",
+        "id": "account.view_full_profile"
+      },
+      {
+        "defaultMessage": "Follows",
+        "id": "account.follows"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/account/components/action_bar.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Add note for @{name}",
+        "id": "account.add_account_note"
+      },
+      {
+        "defaultMessage": "Joined {date}",
+        "id": "account.joined"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/account/components/header.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Profile",
+        "id": "column_header.profile"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/account/components/profile_column_header.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Filter out by regular expressions",
+        "id": "home.column_settings.filter_regex"
+      },
+      {
+        "defaultMessage": "Column settings",
+        "id": "home.settings"
+      },
+      {
+        "defaultMessage": "Advanced",
+        "id": "home.column_settings.advanced"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/community_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.",
+        "id": "confirmations.missing_media_description.message"
+      },
+      {
+        "defaultMessage": "Send anyway",
+        "id": "confirmations.missing_media_description.confirm"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/compose/components/compose_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "App settings",
+        "id": "navigation_bar.app_settings"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/compose/components/header.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Advanced options",
+        "id": "advanced_options.icon_title"
+      },
+      {
+        "defaultMessage": "Attach...",
+        "id": "compose.attach"
+      },
+      {
+        "defaultMessage": "Content type",
+        "id": "content-type.change"
+      },
+      {
+        "defaultMessage": "Draw something",
+        "id": "compose.attach.doodle"
+      },
+      {
+        "defaultMessage": "HTML",
+        "id": "compose.content-type.html"
+      },
+      {
+        "defaultMessage": "Do not post to other instances",
+        "id": "advanced_options.local-only.long"
+      },
+      {
+        "defaultMessage": "Local-only",
+        "id": "advanced_options.local-only.short"
+      },
+      {
+        "defaultMessage": "Markdown",
+        "id": "compose.content-type.markdown"
+      },
+      {
+        "defaultMessage": "Plain text",
+        "id": "compose.content-type.plain"
+      },
+      {
+        "defaultMessage": "Hide text behind warning",
+        "id": "compose_form.spoiler"
+      },
+      {
+        "defaultMessage": "Automatically opens a reply on posting",
+        "id": "advanced_options.threaded_mode.long"
+      },
+      {
+        "defaultMessage": "Threaded mode",
+        "id": "advanced_options.threaded_mode.short"
+      },
+      {
+        "defaultMessage": "Upload a file",
+        "id": "compose.attach.upload"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/compose/components/options.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Allow one choice",
+        "id": "compose_form.poll.single_choice"
+      },
+      {
+        "defaultMessage": "Allow multiple choices",
+        "id": "compose_form.poll.multiple_choices"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/compose/components/poll_form.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This post is local-only",
+        "id": "advanced_options.local-only.tooltip"
+      },
+      {
+        "defaultMessage": "Threaded mode enabled",
+        "id": "advanced_options.threaded_mode.tooltip"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/compose/components/textarea_icons.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "At least one media attachment is lacking a description. Consider describing all media attachments for the visually impaired before sending your toot.",
+        "id": "confirmations.missing_media_description.message"
+      },
+      {
+        "defaultMessage": "Send anyway",
+        "id": "confirmations.missing_media_description.confirm"
+      },
+      {
+        "defaultMessage": "Edit media",
+        "id": "confirmations.missing_media_description.edit"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/compose/containers/compose_form_container.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Filter out by regular expressions",
+        "id": "home.column_settings.filter_regex"
+      },
+      {
+        "defaultMessage": "Column settings",
+        "id": "home.settings"
+      },
+      {
+        "defaultMessage": "Group by conversation",
+        "id": "direct.group_by_conversations"
+      },
+      {
+        "defaultMessage": "Advanced",
+        "id": "home.column_settings.advanced"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/direct_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Favourited by",
+        "id": "column.favourited_by"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/favourites/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Misc",
+        "id": "column.heading"
+      },
+      {
+        "defaultMessage": "Miscellaneous options",
+        "id": "column.subheading"
+      },
+      {
+        "defaultMessage": "Extended information",
+        "id": "navigation_bar.info"
+      },
+      {
+        "defaultMessage": "Show me around",
+        "id": "getting_started.onboarding"
+      },
+      {
+        "defaultMessage": "Keyboard shortcuts",
+        "id": "navigation_bar.keyboard_shortcuts"
+      },
+      {
+        "defaultMessage": "Featured users",
+        "id": "navigation_bar.featured_users"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/getting_started_misc/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Navigation",
+        "id": "column_subheading.navigation"
+      },
+      {
+        "defaultMessage": "App settings",
+        "id": "navigation_bar.app_settings"
+      },
+      {
+        "defaultMessage": "Keyboard shortcuts",
+        "id": "navigation_bar.keyboard_shortcuts"
+      },
+      {
+        "defaultMessage": "Lists",
+        "id": "column_subheading.lists"
+      },
+      {
+        "defaultMessage": "Misc",
+        "id": "navigation_bar.misc"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/getting_started/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Filter out by regular expressions",
+        "id": "home.column_settings.filter_regex"
+      },
+      {
+        "defaultMessage": "Column settings",
+        "id": "home.settings"
+      },
+      {
+        "defaultMessage": "Show DMs",
+        "id": "home.column_settings.show_direct"
+      },
+      {
+        "defaultMessage": "Advanced",
+        "id": "home.column_settings.advanced"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/home_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "to bookmark",
+        "id": "keyboard_shortcuts.bookmark"
+      },
+      {
+        "defaultMessage": "to collapse/uncollapse toots",
+        "id": "keyboard_shortcuts.toggle_collapse"
+      },
+      {
+        "defaultMessage": "to send toot using secondary privacy setting",
+        "id": "keyboard_shortcuts.secondary_toot"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/keyboard_shortcuts/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "General",
+        "id": "settings.general"
+      },
+      {
+        "defaultMessage": "Compose box",
+        "id": "settings.compose_box_opts"
+      },
+      {
+        "defaultMessage": "Content Warnings",
+        "id": "settings.content_warnings"
+      },
+      {
+        "defaultMessage": "Filters",
+        "id": "settings.filters"
+      },
+      {
+        "defaultMessage": "Collapsed toots",
+        "id": "settings.collapsed_statuses"
+      },
+      {
+        "defaultMessage": "Media",
+        "id": "settings.media"
+      },
+      {
+        "defaultMessage": "Preferences",
+        "id": "settings.preferences"
+      },
+      {
+        "defaultMessage": "Close",
+        "id": "settings.close"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/local_settings/navigation/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Auto",
+        "id": "layout.auto"
+      },
+      {
+        "defaultMessage": "Automatically chose layout based on “Enable advanced web interface” setting and screen size.",
+        "id": "layout.hint.auto"
+      },
+      {
+        "defaultMessage": "Desktop",
+        "id": "layout.desktop"
+      },
+      {
+        "defaultMessage": "Use multiple-column layout regardless of the “Enable advanced web interface” setting or screen size.",
+        "id": "layout.hint.desktop"
+      },
+      {
+        "defaultMessage": "Mobile",
+        "id": "layout.single"
+      },
+      {
+        "defaultMessage": "Use single-column layout regardless of the “Enable advanced web interface” setting or screen size.",
+        "id": "layout.hint.single"
+      },
+      {
+        "defaultMessage": "None",
+        "id": "settings.side_arm.none"
+      },
+      {
+        "defaultMessage": "Keep its set privacy",
+        "id": "settings.side_arm_reply_mode.keep"
+      },
+      {
+        "defaultMessage": "Copy privacy setting of the toot being replied to",
+        "id": "settings.side_arm_reply_mode.copy"
+      },
+      {
+        "defaultMessage": "Restrict privacy setting to that of the toot being replied to",
+        "id": "settings.side_arm_reply_mode.restrict"
+      },
+      {
+        "defaultMessage": "Regular expression",
+        "id": "settings.content_warnings.regexp"
+      },
+      {
+        "defaultMessage": "Do not rewrite mentions",
+        "id": "settings.rewrite_mentions_no"
+      },
+      {
+        "defaultMessage": "Rewrite with username and domain (when the account is remote)",
+        "id": "settings.rewrite_mentions_acct"
+      },
+      {
+        "defaultMessage": "Rewrite with username",
+        "id": "settings.rewrite_mentions_username"
+      },
+      {
+        "defaultMessage": "Left",
+        "id": "settings.pop_in_left"
+      },
+      {
+        "defaultMessage": "Right",
+        "id": "settings.pop_in_right"
+      },
+      {
+        "defaultMessage": "General",
+        "id": "settings.general"
+      },
+      {
+        "defaultMessage": "Display an estimate of the reply count",
+        "id": "settings.show_reply_counter"
+      },
+      {
+        "defaultMessage": "High color privacy icons",
+        "id": "settings.hicolor_privacy_icons"
+      },
+      {
+        "defaultMessage": "Display privacy icons in bright and easily distinguishable colors",
+        "id": "settings.hicolor_privacy_icons.hint"
+      },
+      {
+        "defaultMessage": "Show confirmation dialog before boosting toots lacking media descriptions",
+        "id": "settings.confirm_boost_missing_media_description"
+      },
+      {
+        "defaultMessage": "Tag misleading links",
+        "id": "settings.tag_misleading_links"
+      },
+      {
+        "defaultMessage": "Add a visual indication with the link target host to every link not mentioning it explicitly",
+        "id": "settings.tag_misleading_links.hint"
+      },
+      {
+        "defaultMessage": "Rewrite mentions in displayed statuses",
+        "id": "settings.rewrite_mentions"
+      },
+      {
+        "defaultMessage": "Notifications options",
+        "id": "settings.notifications_opts"
+      },
+      {
+        "defaultMessage": "Unread notifications badge",
+        "id": "settings.notifications.tab_badge"
+      },
+      {
+        "defaultMessage": "Display a badge for unread notifications in the column icons when the notifications column isn't open",
+        "id": "settings.notifications.tab_badge.hint"
+      },
+      {
+        "defaultMessage": "Unread notifications favicon badge",
+        "id": "settings.notifications.favicon_badge"
+      },
+      {
+        "defaultMessage": "Add a badge for unread notifications to the favicon",
+        "id": "settings.notifications.favicon_badge.hint"
+      },
+      {
+        "defaultMessage": "Toot icons",
+        "id": "settings.status_icons"
+      },
+      {
+        "defaultMessage": "Language indicator",
+        "id": "settings.status_icons_language"
+      },
+      {
+        "defaultMessage": "Reply indicator",
+        "id": "settings.status_icons_reply"
+      },
+      {
+        "defaultMessage": "Local-only indicator",
+        "id": "settings.status_icons_local_only"
+      },
+      {
+        "defaultMessage": "Media and poll indicators",
+        "id": "settings.status_icons_media"
+      },
+      {
+        "defaultMessage": "Toot privacy indicator",
+        "id": "settings.status_icons_visibility"
+      },
+      {
+        "defaultMessage": "Layout options",
+        "id": "settings.layout_opts"
+      },
+      {
+        "defaultMessage": "Layout:",
+        "id": "settings.layout"
+      },
+      {
+        "defaultMessage": "Wide view (Desktop mode only)",
+        "id": "settings.wide_view"
+      },
+      {
+        "defaultMessage": "Stretches columns to better fill the available space.",
+        "id": "settings.wide_view_hint"
+      },
+      {
+        "defaultMessage": "Compose box",
+        "id": "settings.compose_box_opts"
+      },
+      {
+        "defaultMessage": "Always enable the Content Warning field",
+        "id": "settings.always_show_spoilers_field"
+      },
+      {
+        "defaultMessage": "Prepend “re: ” to content warnings when replying",
+        "id": "settings.prepend_cw_re"
+      },
+      {
+        "defaultMessage": "Pre-select usernames on reply",
+        "id": "settings.preselect_on_reply"
+      },
+      {
+        "defaultMessage": "When replying to a conversation with multiple participants, pre-select usernames past the first",
+        "id": "settings.preselect_on_reply_hint"
+      },
+      {
+        "defaultMessage": "Show confirmation dialog before sending toots lacking media descriptions",
+        "id": "settings.confirm_missing_media_description"
+      },
+      {
+        "defaultMessage": "Show confirmation dialog before overwriting the message being composed",
+        "id": "settings.confirm_before_clearing_draft"
+      },
+      {
+        "defaultMessage": "Show content-type choice when authoring toots",
+        "id": "settings.show_content_type_choice"
+      },
+      {
+        "defaultMessage": "Secondary toot button:",
+        "id": "settings.side_arm"
+      },
+      {
+        "defaultMessage": "When replying to a toot, the secondary toot button should:",
+        "id": "settings.side_arm_reply_mode"
+      },
+      {
+        "defaultMessage": "Content warnings",
+        "id": "settings.content_warnings"
+      },
+      {
+        "defaultMessage": "Show/hide content of all copies at once",
+        "id": "settings.content_warnings_shared_state"
+      },
+      {
+        "defaultMessage": "Reproduce upstream Mastodon behavior by having the Content Warning button affect all copies of a post at once. This will prevent automatic collapsing of any copy of a toot with unfolded CW",
+        "id": "settings.content_warnings_shared_state_hint"
+      },
+      {
+        "defaultMessage": "Display media attachments outside content warnings",
+        "id": "settings.content_warnings_media_outside"
+      },
+      {
+        "defaultMessage": "Reproduce upstream Mastodon behavior by having the Content Warning toggle not affect media attachments",
+        "id": "settings.content_warnings_media_outside_hint"
+      },
+      {
+        "defaultMessage": "Auto-unfolding options",
+        "id": "settings.content_warnings_unfold_opts"
+      },
+      {
+        "defaultMessage": "Automatically unfold content-warnings",
+        "id": "settings.enable_content_warnings_auto_unfold"
+      },
+      {
+        "defaultMessage": "This setting is now controlled from Mastodon's {settings_page_link}",
+        "id": "settings.deprecated_setting"
+      },
+      {
+        "defaultMessage": "user preferences",
+        "id": "settings.shared_settings_link"
+      },
+      {
+        "defaultMessage": "Content warnings to not automatically unfold:",
+        "id": "settings.content_warnings_filter"
+      },
+      {
+        "defaultMessage": "Collapsed toots",
+        "id": "settings.collapsed_statuses"
+      },
+      {
+        "defaultMessage": "Enable collapsed toots",
+        "id": "settings.enable_collapsed"
+      },
+      {
+        "defaultMessage": "Collapsed posts have parts of their contents hidden to take up less screen space. This is distinct from the Content Warning feature",
+        "id": "settings.enable_collapsed_hint"
+      },
+      {
+        "defaultMessage": "Show action buttons in collapsed toots",
+        "id": "settings.show_action_bar"
+      },
+      {
+        "defaultMessage": "Automatic collapsing",
+        "id": "settings.auto_collapse"
+      },
+      {
+        "defaultMessage": "Everything",
+        "id": "settings.auto_collapse_all"
+      },
+      {
+        "defaultMessage": "Notifications",
+        "id": "settings.auto_collapse_notifications"
+      },
+      {
+        "defaultMessage": "Lengthy toots",
+        "id": "settings.auto_collapse_lengthy"
+      },
+      {
+        "defaultMessage": "Boosts",
+        "id": "settings.auto_collapse_reblogs"
+      },
+      {
+        "defaultMessage": "Replies",
+        "id": "settings.auto_collapse_replies"
+      },
+      {
+        "defaultMessage": "Toots with media",
+        "id": "settings.auto_collapse_media"
+      },
+      {
+        "defaultMessage": "Image backgrounds",
+        "id": "settings.image_backgrounds"
+      },
+      {
+        "defaultMessage": "Give collapsed toots an image background",
+        "id": "settings.image_backgrounds_users"
+      },
+      {
+        "defaultMessage": "Preview collapsed toot media",
+        "id": "settings.image_backgrounds_media"
+      },
+      {
+        "defaultMessage": "If the post has any media attachment, use the first one as a background",
+        "id": "settings.image_backgrounds_media_hint"
+      },
+      {
+        "defaultMessage": "Media",
+        "id": "settings.media"
+      },
+      {
+        "defaultMessage": "Letterbox media",
+        "id": "settings.media_letterbox"
+      },
+      {
+        "defaultMessage": "Scale down and letterbox media to fill the image containers instead of stretching and cropping them",
+        "id": "settings.media_letterbox_hint"
+      },
+      {
+        "defaultMessage": "Full-width media previews",
+        "id": "settings.media_fullwidth"
+      },
+      {
+        "defaultMessage": "Inline preview cards for external links",
+        "id": "settings.inline_preview_cards"
+      },
+      {
+        "defaultMessage": "Reveal sensitive media behind a CW by default",
+        "id": "settings.media_reveal_behind_cw"
+      },
+      {
+        "defaultMessage": "Enable pop-in player",
+        "id": "settings.pop_in_player"
+      },
+      {
+        "defaultMessage": "Pop-in player position:",
+        "id": "settings.pop_in_position"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/local_settings/page/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Mark for deletion",
+        "id": "notification.markForDeletion"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/notifications/components/overlay.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Enter notification cleaning mode",
+        "id": "notification_purge.start"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/notifications/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Featured accounts",
+        "id": "endorsed_accounts_editor.endorsed_accounts"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/pinned_accounts_editor/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Filter out by regular expressions",
+        "id": "home.column_settings.filter_regex"
+      },
+      {
+        "defaultMessage": "Show local-only toots",
+        "id": "community.column_settings.allow_local_only"
+      },
+      {
+        "defaultMessage": "Advanced",
+        "id": "home.column_settings.advanced"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/public_timeline/components/column_settings.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Boosted by",
+        "id": "column.reblogged_by"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/reblogs/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This toot contains some media without description",
+        "id": "boost_modal.missing_description"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/ui/components/boost_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Do not ask for confirmation again",
+        "id": "confirmation_modal.do_not_ask_again"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/ui/components/confirmation_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Use Mastodon preferences",
+        "id": "confirmations.deprecated_settings.confirm"
+      },
+      {
+        "defaultMessage": "Automatically unfold content-warnings",
+        "id": "settings.enable_content_warnings_auto_unfold"
+      },
+      {
+        "defaultMessage": "Allow swiping to change columns (Mobile only)",
+        "id": "settings.swipe_to_change_columns"
+      },
+      {
+        "defaultMessage": "Some of the glitch-soc device-specific {app_settings} you are using have been replaced by Mastodon {preferences} and will be overriden:",
+        "id": "confirmations.deprecated_settings.message"
+      },
+      {
+        "defaultMessage": "App settings",
+        "id": "navigation_bar.app_settings"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/ui/components/deprecated_settings_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "You can press {combo} to skip this next time",
+        "id": "favourite_modal.combo"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/ui/components/favourite_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "App settings",
+        "id": "navigation_bar.app_settings"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/ui/components/navigation_panel.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Welcome to {domain}!",
+        "id": "onboarding.page_one.welcome"
+      },
+      {
+        "defaultMessage": "{domain} is an \"instance\" of Mastodon. Mastodon is a network of independent servers joining up to make one larger social network. We call these servers instances.",
+        "id": "onboarding.page_one.federation"
+      },
+      {
+        "defaultMessage": "You are on {domain}, so your full handle is {handle}",
+        "id": "onboarding.page_one.handle"
+      },
+      {
+        "defaultMessage": "Write posts from the compose column. You can upload images, change privacy settings, and add content warnings with the icons below.",
+        "id": "onboarding.page_two.compose"
+      },
+      {
+        "defaultMessage": "Use the search bar to find people and look at hashtags, such as {illustration} and {introductions}. To look for a person who is not on this instance, use their full handle.",
+        "id": "onboarding.page_three.search"
+      },
+      {
+        "defaultMessage": "Edit your profile to change your avatar, bio, and display name. There, you will also find other preferences.",
+        "id": "onboarding.page_three.profile"
+      },
+      {
+        "defaultMessage": "The home timeline shows posts from people you follow.",
+        "id": "onboarding.page_four.home"
+      },
+      {
+        "defaultMessage": "The notifications column shows when someone interacts with you.",
+        "id": "onboarding.page_four.notifications"
+      },
+      {
+        "defaultMessage": "The local timeline shows public posts from everyone on {domain}. The federated timeline shows public posts from everyone who people on {domain} follow. These are the Public Timelines, a great way to discover new people.",
+        "id": "onboarding.page_five.public_timelines"
+      },
+      {
+        "defaultMessage": "Your instance's admin is {admin}.",
+        "id": "onboarding.page_six.admin"
+      },
+      {
+        "defaultMessage": "Please read {domain}'s {guidelines}!",
+        "id": "onboarding.page_six.read_guidelines"
+      },
+      {
+        "defaultMessage": "community guidelines",
+        "id": "onboarding.page_six.guidelines"
+      },
+      {
+        "defaultMessage": "Almost done...",
+        "id": "onboarding.page_six.almost_done"
+      },
+      {
+        "defaultMessage": "{domain} runs on Glitchsoc. Glitchsoc is a friendly {fork} of {Mastodon}. Glitchsoc is fully compatible with all Mastodon apps and instances. Glitchsoc is free open-source software. You can report bugs, request features, or contribute to the code on {github}.",
+        "id": "onboarding.page_six.github"
+      },
+      {
+        "defaultMessage": "There are {apps} available for iOS, Android and other platforms.",
+        "id": "onboarding.page_six.apps_available"
+      },
+      {
+        "defaultMessage": "mobile apps",
+        "id": "onboarding.page_six.various_app"
+      },
+      {
+        "defaultMessage": "Bon Appetoot!",
+        "id": "onboarding.page_six.appetoot"
+      },
+      {
+        "defaultMessage": "Next",
+        "id": "onboarding.next"
+      },
+      {
+        "defaultMessage": "Done",
+        "id": "onboarding.done"
+      },
+      {
+        "defaultMessage": "Skip",
+        "id": "onboarding.skip"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/ui/components/onboarding_modal.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "This account is marked as moved to {moved_to_link}, and may thus not accept new follows.",
+        "id": "moved_to_warning"
+      }
+    ],
+    "path": "app/javascript/flavours/glitch/features/ui/index.json"
+  }
+]
