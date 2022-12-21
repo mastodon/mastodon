@@ -126,6 +126,7 @@ fy:
         position: In hegere rol beslist yn bepaalde situaasjes oer it oplossen fan konflikten. Bepaalde aksjes kinne allinnich útfierd wurde op rollen mei in legere prioriteit
       webhook:
         events: Selektearje de te ferstjoeren eveneminten
+        url: Wêr’t eveneminten nei ta stjoerd wurde
     labels:
       account:
         fields:
@@ -141,6 +142,7 @@ fy:
       admin_account_action:
         include_statuses: Rapportearre berjochten oan it e-mailberjocht tafoegje
         send_email_notification: Meld dit per e-mailberjocht oan de brûker
+        text: Oanpaste warskôging
         type: Aksje
         types:
           disable: Befrieze
@@ -148,13 +150,17 @@ fy:
           sensitive: Gefoelich
           silence: Beheine
           suspend: Utstelle en definityf accountgegevens fuortsmite
+        warning_preset_id: Brûk in foarynstelling fan in warskôging
       announcement:
         all_day: De hiele dei troch
         ends_at: Einiget
         scheduled_at: Meidieling ynplanne
         starts_at: Begjint
         text: Oankundiging
+      appeal:
+        text: Lis út wêrom dizze beslissing neffens jo weromdraaid wurde moat
       defaults:
+        autofollow: Utnûgje om jo account te folgjen
         avatar: Profylfoto
         bot: Dit is in bot-account
         chosen_languages: Talen filterje
@@ -171,10 +177,20 @@ fy:
         header: Omslachfoto
         honeypot: "%{label} (net ynfolje)"
         inbox_url: Relais-ynboks-URL
+        irreversible: Fuortsmite yn stee fan ferstopje
+        locale: Taal fan de brûkersomjouwing
+        locked: Folchfersyk fereaskje
+        max_uses: Maksimaal tal kear te brûken
         new_password: Nije wachtwurd
         note: Bio
         otp_attempt: Twa-stapstagangskoade
         password: Wachtwurd
+        phrase: Trefwurd of sindiel
+        setting_advanced_layout: Avansearre webomjouwing ynskeakelje
+        setting_aggregate_reblogs: Boosts yn tiidlinen groepearje
+        setting_always_send_emails: Altyd e-mailmeldingen ferstjoere
+        setting_auto_play_gif: Spylje animearre GIF’s automatysk ôf
+        setting_boost_modal: Freegje foar it boosten fan in berjocht in befêstiging
         setting_crop_images: Ofbyldingen bysnije oant 16x9 yn berjochten op tiidlinen
         setting_default_language: Taal fan jo berjochten
         setting_default_privacy: Sichtberheid fan nije berjochten
