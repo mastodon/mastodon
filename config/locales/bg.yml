@@ -909,11 +909,16 @@ bg:
   disputes:
     strikes:
       appeal: Обжалване
+      appeal_rejected: Обжалването е отхвърлено
       appeal_submitted_at: Подадено обжалване
+      appealed_msg: Вашето обжалване е отхвърлено. Ако е одобрено, то ще бъдете известени.
       approve_appeal: Одобряване на обжалването
+      associated_report: Свързан доклад
       created_at: Остаряло
+      recipient: Адресирано до
       reject_appeal: Отхвърляне на обжалването
       status: 'Публикация #%{id}'
+      status_removed: Публикацията вече е премахната от системата
       title: "%{action} от %{date}"
       title_actions:
         disable: Замразяване на акаунта
@@ -978,6 +983,8 @@ bg:
       statuses: Отделни публикации
       statuses_hint_html: Филтърът се прилага за избрани отделни публикации независимо дали съвпада с ключовите думи по-долу. <a href="%{path}">Прегледайте или премахнете публикации от филтъра</a>.
       title: Редактиране на филтър
+    errors:
+      deprecated_api_multiple_keywords: Тези параметри не може да се променят от това приложение, защото се прилагат към повече от една ключова дума за филтър. Употребяйвате по-нови версии на приложението или уебинтерфейса.
     index:
       contexts: Филтри в %{contexts}
       delete: Изтриване
@@ -1018,6 +1025,9 @@ bg:
   html_validator:
     invalid_markup: 'съдържа невалидно HTML маркиране: %{error}'
   imports:
+    errors:
+      invalid_csv_file: 'Невалиден файл CSV. Грешка: %{error}'
+      over_rows_processing_limit: съдържа повече от %{count} реда
     modes:
       merge: Сливане
       merge_long: Пази текущите записи и добавя нови
