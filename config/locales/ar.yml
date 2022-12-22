@@ -120,6 +120,8 @@ ar:
       redownloaded_msg: تم تحديث ملف %{username} التعريفي من الأصل
       reject: ارفض
       rejected_msg: تم رفض تطبيق تسجيل %{username} بنجاح
+      remote_suspension_irreversible: تم حذف بيانات هذا الحساب بشكل لا رجعة فيه.
+      remote_suspension_reversible_hint_html: تم تعليق الحساب على الخادم الخاص بهم، وسيتم إزالة البيانات بالكامل على %{date}. حتى ذلك الحين، يمكن للخادم آخر استعادة هذا الحساب دون أي تأثيرات سيئة. إذا كنت ترغب في إزالة جميع بيانات الحساب على الفور، يمكنك فعل ذلك أدناه.
       remove_avatar: حذف الصورة الرمزية
       remove_header: حذف الرأسية
       removed_avatar_msg: تمت إزالة صورة %{username} الرمزية بنجاح
@@ -671,7 +673,13 @@ ar:
         manage_user_access_description: يسمح للمستخدمين بتعطيل المصادقة الثنائية المستخدمين الآخرين، تغيير عنوان البريد الإلكتروني الخاص بهم، وإعادة تعيين كلمة المرور الخاصة بهم
         manage_users: إدارة المستخدمين
         manage_users_description: يسمح للمستخدمين بعرض تفاصيل المستخدمين الآخرين وتنفيذ إجراءات الإشراف ضدهم
+        manage_webhooks: إدارة الـWebhooks
+        manage_webhooks_description: يسمح للمستخدمين بإعداد Webhooks للأحداث الإدارية
+        view_audit_log: عرض سجل العمليات
+        view_audit_log_description: يسمح للمستخدمين برؤية سجل الإجراءات الإدارية على الخادم
         view_dashboard: عرض لوحة التحكم
+        view_dashboard_description: يسمح للمستخدمين بالوصول إلى لوحة التحكم وعدة مقاييس
+        view_devops: DevOps
         view_devops_description: السماح للمستخدمين بالوصول إلى لوحة Sidekiq و pgHero
       title: الأدوار
     rules:
@@ -684,19 +692,24 @@ ar:
     settings:
       about:
         manage_rules: إدارة قواعد الخادم
+        preamble: قدم معلومات متعمقة عن كيفية إدارة عمل الخادم، والإشراف، والتمويل.
+        rules_hint: هناك منطقة مخصصة للقواعد التي يتوقع من المستخدمين التقيد بها.
         title: عن
       appearance:
         preamble: تخصيص واجهة الويب لماستدون.
         title: المظهر
       branding:
+        preamble: العلامة التجارية للخادم الخاص بك تميزه عن الخوادم الأخرى في الشبكة. يمكن عرض هذه المعلومات عبر مجموعة متنوعة من البيئات، مثل واجهة الويب لماستدون, التطبيقات الأصلية، في معاينات الرابط على مواقع الويب الأخرى وداخل تطبيقات الرسائل، وما إلى ذلك. ولهذا السبب، من الأفضل إبقاء هذه المعلومات واضحة وقصيرة وموجزة.
         title: العلامة
       content_retention:
+        preamble: التحكم في كيفية تخزين المحتوى الذي ينشئه المستخدم في ماستدون.
         title: الاحتفاظ بالمحتوى
       default_noindex:
         desc_html: يؤثر على جميع المستخدمين الذين لم يغيروا هذا الإعداد بأنفسهم
         title: عدم السماح مبدئيا لمحركات البحث بفهرسة الملفات التعريفية للمستخدمين
       discovery:
         follow_recommendations: اتبع التوصيات
+        preamble: تصفح المحتوى المثير للاهتمام أمر مهم في إستقبال المستخدمين الجدد الذين قد لا يعرفون أي شخص ماستدون. التحكم في كيفية عمل ميزات الاكتشاف المختلفة على الخادم الخاص بك.
         profile_directory: دليل الصفحات التعريفية
         public_timelines: الخيوط الزمنية العامة
         title: الاستكشاف
@@ -746,12 +759,21 @@ ar:
       actions:
         delete_statuses: "حَذَفَ %{name} رسائل %{target}"
         disable: "جَمّدَ %{name} حساب %{target}"
+        mark_statuses_as_sensitive: "وَضَعَ %{name} علامة على منشورات %{target} على أنها حساسة"
+        none: "قام %{name} بإرسال تحذير إلى %{target}"
+        sensitive: "قام %{name} بوضع علامة حساس على حساب %{target}"
+        silence: "قام %{name} بكتم حساب %{target}"
         suspend: "قام %{name} بتعليق حساب %{target}"
       appeal_approved: طُعِن فيه
       appeal_pending: طعن قيد المراجعة
     system_checks:
       database_schema_check:
         message_html: هناك عمليات هجرة معلقة لقواعد البيانات. يرجى تشغيلها لضمان تصرف التطبيق كما هو متوقع
+      elasticsearch_running_check:
+        message_html: تعذر الاتصال بـElasticsearch. الرجاء التحقق من أنه قيد التشغيل، أو تعطيل البحث عن النص الكامل
+      elasticsearch_version_check:
+        message_html: 'إصدار Elasticsearch غير المتوافق: %{value}'
+        version_comparison: يعمل Elasticsearch بإصدار %{running_version} بينما %{required_version} مطلوب
       rules_check:
         action: إدارة قواعد الخادم
         message_html: لم تقم بتحديد أي قواعد خادم.
@@ -768,13 +790,20 @@ ar:
       links:
         allow: السماح بالرابط
         allow_provider: السماح للناشر
+        description_html: هذه هي الروابط التي يتم حاليا مشاركتها بشكل كبير عن طريق الحسابات التي يرى الخادم الخاص بك المشاركات منها. يمكن أن يساعد مستخدميك في معرفة ما يحدث في العالم. لا تعرض روابط علنا حتى توافق على الناشر. يمكنك أيضًا السماح أو رفض بالروابط فردياً.
         disallow: رفض الرابط
         disallow_provider: عدم السماح للناشر
+        no_link_selected: لم يطرأ أي تغيير على أي رابط بما أنه لم يتم اختيار أي واحد
+        publishers:
+          no_publisher_selected: لم يطرأ أي تغيير على أي ناشر بما أنه لم يتم اختيار أي واحد
         title: الروابط المتداولة
         usage_comparison: تمت مشاركته %{today} مرات اليوم، مقارنة بـ %{yesterday} بالأمس
       only_allowed: من سُمِحَ لهم فقط
       pending_review: في انتظار المراجعة
       preview_card_providers:
+        allowed: الروابط من هذا الناشر يمكن أن تتداول
+        description_html: هذه هي النطاقات التي غالبا ما يتم مشاركة الروابط منها على الخادم الخاص بك. لن تتجه الروابط علنا ما لم تتم الموافقة على نطاق الرابط. الموافقة (أو الرفض) الخاص بك يمتد إلى النطاقات الفرعية.
+        rejected: الروابط من هذا الناشر لن تتداول
         title: الناشرون
       rejected: مرفوض
       statuses:
