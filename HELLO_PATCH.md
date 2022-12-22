@@ -16,3 +16,15 @@ Instead of showing the Sign-Up form start the OpenID Connect authorization reque
 
 The request starts at `/auth/auth/openid_connect` and it must be a POST request. The `data-method="post"` attribute on
 the `<a>` tag enforces that.
+
+## HELLO_PATCH(3) enable auto-loading in development
+
+By default auto-loading is disabled. For code changes to be reloaded you have to drop into rails console and run
+`reload!`.
+
+Everything under `app/*` is now set for auto-load.
+
+In rails console you can check the auto-reload status with:
+```ruby
+Rails.application.config.autoload_paths
+```

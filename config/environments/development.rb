@@ -1,4 +1,7 @@
 Rails.application.configure do
+  # HELLO_PATCH(3) enable auto-loading in development
+  config.autoload_paths += Dir[Rails.root.join('app', '*')]
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
