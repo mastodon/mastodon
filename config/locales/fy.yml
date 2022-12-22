@@ -226,6 +226,37 @@ fy:
         update_status: Berjocht bywurkje
         update_user_role: Rol bywurkje
       actions:
+        approve_appeal_html: "%{name} hat it beswier tsjin de moderaasjemaatregel fan %{target} goedkard"
+        approve_user_html: "%{name} hat de registraasje fan %{target} goedkard"
+        assigned_to_self_report_html: "%{name} hat rapportaazje %{target} oan harrensels tawiisd"
+        change_email_user_html: "%{name} hat it e-mailadres fan brûker %{target} wizige"
+        change_role_user_html: "%{name} hat de rol fan %{target} wizige"
+        confirm_user_html: "E-mailadres fan brûker %{target} is troch %{name} befêstige"
+        create_account_warning_html: "%{name} hat in warskôging nei %{target} ferstjoerd"
+        create_announcement_html: "%{name} hat de nije meidieling %{target} oanmakke"
+        create_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} blokkearre"
+        create_custom_emoji_html: "Nije emoji %{target} is troch %{name} opladen"
+        create_domain_allow_html: "%{name} hat de federaasje mei it domein %{target} goedkard"
+        create_domain_block_html: "Domein %{target} is troch %{name} blokkearre"
+        create_email_domain_block_html: "%{name} hat it e-maildomein %{target} blokkearre"
+        create_ip_block_html: "%{name} hat de rigel foar IP %{target} oanmakke"
+        create_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} beëinige"
+        create_user_role_html: "%{name} hat de rol %{target} oanmakke"
+        demote_user_html: "Brûker %{target} is troch %{name} degradearre"
+        destroy_announcement_html: "%{name} hat de meidieling %{target} fuortsmiten"
+        destroy_canonical_email_block_html: "%{name} hat it e-mailberjocht mei de hash %{target} deblokkearre"
+        destroy_custom_emoji_html: "Emoji %{target} is troch %{name} fuortsmiten"
+        destroy_domain_allow_html: "%{name} hat de federaasje mei it domein %{target} ôfkard"
+        destroy_domain_block_html: "Domein %{target} is troch %{name} deblokkearre"
+        destroy_email_domain_block_html: "Domein %{target} is troch %{name} deblokkearre"
+        destroy_instance_html: "%{name} hat it domein %{target} folslein fuortsmiten"
+        destroy_ip_block_html: "%{name} hat de rigel foar IP %{target} fuortsmiten"
+        destroy_status_html: "Berjocht fan %{target} is troch %{name} fuortsmiten"
+        destroy_unavailable_domain_html: "%{name} hat de besoarging foar domein %{target} opnij starte"
+        destroy_user_role_html: "%{name} hat de rol %{target} fuortsmiten"
+        disable_2fa_user_html: "De fereaske twa-stapsferifikaasje foar %{target} is troch %{name} útskeakele"
+        disable_custom_emoji_html: "Emoji %{target} is troch %{name} útskeakele"
+        disable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakele foar %{target}"
         disable_user_html: "Oanmelden foar %{target} is troch %{name} útskeakele"
         enable_custom_emoji_html: "Emoji %{target} is troch %{name} ynskeakele"
         enable_sign_in_token_auth_user_html: "%{name} hat ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakele foar %{target}"
@@ -237,9 +268,32 @@ fy:
         remove_avatar_user_html: "%{name} hat de profylfoto fan %{target} fuortsmiten"
         reopen_report_html: "%{name} hat rapportaazje %{target} opnij iepene"
         resend_user_html: "%{name} hat it befêstigings-e-mailberjocht foar %{target} opnij ferstjoerd"
+        reset_password_user_html: "Wachtwurd fan brûker %{target} is troch %{name} opnij ynsteld"
+        resolve_report_html: "%{name} hat rapportaazje %{target} oplost"
+        sensitive_account_html: "%{name} markearre de media fan %{target} as gefoelich"
+        silence_account_html: "Account %{target} is troch %{name} beheind"
+        suspend_account_html: "Account %{target} is troch %{name} útsteld"
+        unassigned_report_html: "%{name} hat it tawizen fan rapportaazje %{target} ûngedien makke"
+        unblock_email_account_html: "%{name} deblokkearre it e-mailadres fan %{target}"
+        unsensitive_account_html: "%{name} markearre de media fan %{target} as net gefoelich"
+        unsilence_account_html: "Beheining fan account %{target} is troch %{name} opheven"
+        unsuspend_account_html: "Utstellen fan account %{target} is troch %{name} opheven"
+        update_announcement_html: "%{name} hat de meidieling %{target} bywurke"
+        update_custom_emoji_html: "Emoji %{target} is troch %{name} bywurke"
+        update_domain_block_html: "%{name} hat de domeinblokkade bywurke foar %{target}"
+        update_ip_block_html: "%{name} hat de rigel foar IP %{target} wizige"
+        update_status_html: "%{name} hat de berjochten %{target} bywurke"
+        update_user_role_html: "%{name} hat de rol %{target} wizige"
       deleted_account: fuortsmiten account
+      empty: Gjin lochboeken fûn.
+      filter_by_action: Op aksje filterje
+      filter_by_user: Op brûker filterje
       title: Auditlogboek
     announcements:
+      destroyed_msg: Fuortsmiten fan meidieling slagge!
+      edit:
+        title: Meidieling bewurkje
+      empty: Gjin meidielingen fûn.
       live: Live
       new:
         create: Meidieling oanmeitsje
@@ -247,11 +301,18 @@ fy:
       publish: Publisearje
       published_msg: Publisearjen fan meidieling slagge!
       scheduled_for: Ynpland foar %{time}
+      scheduled_msg: Meidieling stiet ynpland foar publikaasje!
       title: Oankundigingen
       unpublish: Depublisearje
+      unpublished_msg: Ungedien meitsjen fan publisearre meidieling is slagge!
+      updated_msg: Bywurkjen fan meidieling slagge!
     custom_emojis:
+      assign_category: Kategory tawize
       by_domain: Domein
+      copied_msg: Lokale kopy fan emoji meitsje slagge
       copy: Kopiearje
+      copy_failed_msg: Kin gjin lokale kopy fan dizze emoji meitsje
+      create_new_category: Nije kategory tafoegje
       delete: Fuortsmite
       disable: Utskeakelje
       disabled: Utskeakele
@@ -290,6 +351,7 @@ fy:
           silence: Beheine
           suspend: Utstelle
         title: Nije domeinblokkade
+      private_comment: Priveeopmerking
     email_domain_blocks:
       add_new: Nije tafoegje
       delete: Fuortsmite
