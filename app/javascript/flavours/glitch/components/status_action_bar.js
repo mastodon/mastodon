@@ -328,9 +328,11 @@ class StatusActionBar extends ImmutablePureComponent {
           />
         </div>
 
-        <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
-          <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { hour12: false, year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
-        </a>
+        <div className='status__action-bar-timestamp'>
+          <a href={status.get('url')} className='status__relative-time' target='_blank' rel='noopener'>
+            <RelativeTimestamp timestamp={status.get('created_at')} />{status.get('edited_at') && <abbr title={intl.formatMessage(messages.edited, { date: intl.formatDate(status.get('edited_at'), { hour12: false, year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' }) })}> *</abbr>}
+          </a>
+        </div>
       </div>
     );
   }
