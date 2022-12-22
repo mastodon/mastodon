@@ -1,12 +1,15 @@
 ---
 ko:
   simple_form:
+    glitch_only: 글리치
     hints:
       defaults:
+        fields: 최대 %{count}개의 항목을 프로필에 표 형태로 표시할 수 있습니다
         setting_default_content_type_html: 게시물을 작성할 때, 형식을 지정하지 않았다면, 생 HTML이라고 가정합니다
         setting_default_content_type_markdown: 게시물을 작성할 때, 형식을 지정하지 않았다면, 마크다운이라고 가정합니다
         setting_default_content_type_plain: 게시물을 작성할 때, 형식을 지정하지 않았다면, 일반적인 텍스트라고 가정합니다. (마스토돈의 기본 동작)
         setting_default_language: 작성하는 게시물의 언어는 자동으로 설정될 수 있습니다, 하지만 언제나 정확하지는 않습니다
+        setting_hide_followers_count: 나를 포함해서 모든 사람들에게서 내 팔로워 수를 숨깁니다. 몇몇 앱에서는 팔로워 수가 음수로 표시될 수 있습니다.
         setting_skin: 선택한 마스토돈 풍미의 스킨을 바꿉니다
     labels:
       defaults:
