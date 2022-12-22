@@ -24,6 +24,11 @@ module Omniauthable
       auth.uid = (auth.uid[0][:uid] || auth.uid[0][:user]) if auth.uid.is_a? Hashie::Array
       identity = Identity.find_for_oauth(auth)
 
+      # HELLO_PATCH(4) explicitly create user if not found
+      if identity&.user.nil?
+        return nil
+      end
+
       # If a signed_in_resource is provided it always overrides the existing user
       # to prevent the identity being locked with accidentally created accounts.
       # Note that this may leave zombie accounts (with no associated identity) which
@@ -58,6 +63,14 @@ module Omniauthable
       user.account.avatar_remote_url = auth.info.image if /\A#{URI::DEFAULT_PARSER.make_regexp(%w(http https))}\z/.match?(auth.info.image)
       user.skip_confirmation! if email_is_verified
       user.save!
+
+      # HELLO_PATCH(4) explicitly create identity mapping
+      identity = Identity.new
+      identity.uid = auth.uid
+      identity.provider = auth.provider
+      identity.user = user
+      identity.save!
+
       user
     end
 
@@ -70,7 +83,7 @@ module Omniauthable
         external: true,
         account_attributes: {
           # HELLO_PATCH(1): use nickname instead of uid for username
-          username: ensure_unique_username(ensure_valid_username(auth.info.nickname)),
+          username: ensure_unique_username(ensure_valid_username(auth.extra.raw_info.nickname)),
           display_name: auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' '),
         },
       }

@@ -10,12 +10,19 @@ Ideally there should be two different environment vars, and the user id by defau
 For now the username is hard coded to `nickname`. This should be changed to `preferred_username` when that claim
 becomes available.
 
+How is `nickname` retrieved:
+
+* `auth.extra.raw_info.nickname` has the raw parsed Id Token
+* `auth.info.nickname` currently is `nil`, seems to map `preferred_username`, TBD when that claim becomes available
+
+
 ## HELLO_PATCH(2) use OIDC for Sign-Up
 
 Instead of showing the Sign-Up form start the OpenID Connect authorization request.
 
 The request starts at `/auth/auth/openid_connect` and it must be a POST request. The `data-method="post"` attribute on
 the `<a>` tag enforces that.
+
 
 ## HELLO_PATCH(3) enable auto-loading in development
 
@@ -28,3 +35,9 @@ In rails console you can check the auto-reload status with:
 ```ruby
 Rails.application.config.autoload_paths
 ```
+
+
+## HELLO_PATCH(4) Explicitly create user if not found
+
+Looking up an user is mixed in with creating the User and associated Identity. Make the user creation explicit, so we
+can take a different action on user creation versus user sign-in.

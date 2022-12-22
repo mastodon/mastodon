@@ -7,6 +7,11 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     define_method provider do
       @user = User.find_for_oauth(request.env['omniauth.auth'], current_user)
 
+      # HELLO_PATCH(3) explicitly create user if not found
+      if @user.nil?
+        @user = User.create_for_oauth(request.env['omniauth.auth'])
+      end
+
       if @user.persisted?
         LoginActivity.create(
           user: @user,
