@@ -41,6 +41,9 @@ Rails.application.routes.draw do
     mount PgHero::Engine, at: 'pghero', as: :pghero
   end
 
+  # HELLO_PATCH(5) redirect to Hellō Mastodon verifier after registration
+  get 'hello/verified', to: 'hello/verified#index'
+
   use_doorkeeper do
     controllers authorizations: 'oauth/authorizations',
                 authorized_applications: 'oauth/authorized_applications',

@@ -10,6 +10,8 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # HELLO_PATCH(3) explicitly create user if not found
       if @user.nil?
         @user = User.create_for_oauth(request.env['omniauth.auth'])
+        # HELLO_PATCH(5) redirect to Hellō Mastodon verifier after registration
+        store_location_for(@user, hello_verified_path)
       end
 
       if @user.persisted?
@@ -37,6 +39,11 @@ class Auth::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def after_sign_in_path_for(resource)
+    # HELLO_PATCH(5) honor stored redirects
+    stored = stored_location_for(resource)
+
+    return stored if stored
+
     if resource.email_present?
       root_path
     else
