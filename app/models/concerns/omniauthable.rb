@@ -82,8 +82,8 @@ module Omniauthable
         agreement: true,
         external: true,
         account_attributes: {
-          # HELLO_PATCH(1): use nickname instead of uid for username
-          username: ensure_unique_username(ensure_valid_username(auth.extra.raw_info.nickname)),
+          # HELLO_PATCH(1): use preferred_username instead of uid for username
+          username: ensure_unique_username(ensure_valid_username(auth.extra.raw_info.preferred_username)),
           display_name: auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' '),
         },
       }
