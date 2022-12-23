@@ -17,7 +17,7 @@ class Mastodon::RackMiddleware
 
   # If the request is expecting HTML but the response is JSON,
   # pretty-print the json so it can be more easily read
-  def format_json env, headers, response
+  def format_json(env, headers, response)
     if headers['Content-Type']&.include?('application/json') && env['HTTP_ACCEPT']&.include?('text/html')
       [JSON.pretty_generate(JSON.parse(response.body))]
     else
