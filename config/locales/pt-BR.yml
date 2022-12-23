@@ -115,6 +115,7 @@ pt-BR:
       redownloaded_msg: O perfil de %{username} foi atualizado a partir da origem
       reject: Rejeitar
       rejected_msg: O pedido de registro de %{username} foi rejeitado
+      remote_suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível.
       remove_avatar: Remover imagem de perfil
       remove_header: Remover capa
       removed_avatar_msg: A imagem de perfil de %{username} foi removida
@@ -699,6 +700,8 @@ pt-BR:
       content_retention:
         preamble: Controlar como o conteúdo gerado pelo usuário é armazenado no Mastodon.
         title: Retenção de conteúdo
+      default_noindex:
+        desc_html: Afeta qualquer usuário que não tenha alterado esta configuração manualmente
       discovery:
         follow_recommendations: Seguir recomendações
         preamble: Navegar por um conteúdo interessante é fundamental para integrar novos usuários que podem não conhecer ninguém no Mastodon. Controle como várias características de descoberta funcionam no seu servidor.
