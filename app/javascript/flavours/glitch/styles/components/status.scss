@@ -444,7 +444,6 @@
 
 .status__relative-time {
   display: inline-block;
-  flex-grow: 1;
   color: $dark-text-color;
   font-size: 14px;
   text-align: right;
@@ -590,11 +589,8 @@
   width: 23.15px;
 }
 
-.status__action-bar-timestamp {
+.status__action-bar-spacer {
   flex-grow: 1;
-  text-align: end;
-  display: flex;
-  overflow: hidden;
 }
 
 .detailed-status__action-bar-dropdown {
