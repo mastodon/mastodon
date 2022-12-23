@@ -46,3 +46,11 @@ can take a different action on user creation versus user sign-in.
 ## HELLO_PATCH(5) redirect to Hellō Mastodon verifier after registration
 
 Redirect only on user creation.
+
+
+## HELLO_PATCH(6) use Hello specific Sign In Banner
+
+No link to `/auth/sign_in` with username and password form and OIDC button, directly render button that initiates 
+"Sign in with Hello".
+
+Username and password form still accessible at `/auth/sign_in`.

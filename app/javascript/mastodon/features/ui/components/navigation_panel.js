@@ -9,7 +9,8 @@ import DisabledAccountBanner from './disabled_account_banner';
 import FollowRequestsColumnLink from './follow_requests_column_link';
 import ListPanel from './list_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
-import SignInBanner from './sign_in_banner';
+// import SignInBanner from './sign_in_banner';
+import SignInBanner from './sign_in_banner_hello'; // HELLO_PATCH(6) use Hello specific Sign In Banner
 import NavigationPortal from 'mastodon/components/navigation_portal';
 
 const messages = defineMessages({
