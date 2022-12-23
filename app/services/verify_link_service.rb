@@ -19,8 +19,12 @@ class VerifyLinkService < BaseService
 
   def perform_request!
     @body = Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
-      res.code != 200 ? nil : res.body_with_limit
+      res.code == 200 ? res.truncated_body : nil
     end
+  end
+
+  def possibly_truncated_link?(test_url)
+    @body.end_with?(test_url)
   end
 
   def link_back_present?
@@ -28,7 +32,7 @@ class VerifyLinkService < BaseService
 
     links = Nokogiri::HTML(@body).xpath('//a[contains(concat(" ", normalize-space(@rel), " "), " me ")]|//link[contains(concat(" ", normalize-space(@rel), " "), " me ")]')
 
-    if links.any? { |link| link['href']&.downcase == @link_back.downcase }
+    if links.any? { |link| link['href']&.downcase == @link_back.downcase && !possibly_truncated_link?(link['href']) }
       true
     elsif links.empty?
       false
@@ -38,7 +42,7 @@ class VerifyLinkService < BaseService
   end
 
   def link_redirects_back?(test_url)
-    return false if test_url.blank?
+    return false if test_url.blank? || possibly_truncated_link?(test_url)
 
     redirect_to_url = Request.new(:head, test_url, follow: false).perform do |res|
       res.headers['Location']
