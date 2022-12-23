@@ -152,7 +152,7 @@ bg:
       suspension_reversible_hint_html: Акаунтът е спрян и данните от него ще бъдат напълно премахнати на %{date}. До тогава акаунтът може да се възстанови без лоши ефекти. Ако желаете, по-долу може да премахнете всички данни от акаунта незабавно.
       title: Акаунти
       unblock_email: Отблокиране на адреса на имейла
-      unblocked_email_msg: Успешно разблокиране на имейл адреса на %{username}
+      unblocked_email_msg: Успешно отблокиран адрес на имейла на %{username}
       unconfirmed_email: Непотвърден имейл
       undo_sensitized: Нeчувствителен
       undo_silenced: Отмяна на ограничението
@@ -167,7 +167,7 @@ bg:
       whitelisted: Позволено за федерацията
     action_logs:
       action_types:
-        approve_appeal: Одобри иска
+        approve_appeal: Одобряване на обжалването
         approve_user: Одобряване на потребител
         assigned_to_self_report: Назначете доклад
         change_email_user: Промяна на имейл за потребител
@@ -190,7 +190,7 @@ bg:
         destroy_domain_allow: Изтриване на позволението за домейн
         destroy_domain_block: Изтриване на блокирането за домейна
         destroy_email_domain_block: Изтриване на блокирането за домейн на имейла
-        destroy_instance: Прочистване на домейна
+        destroy_instance: Чистка на домейна
         destroy_ip_block: Изтриване на правило за IP
         destroy_status: Изтриване на публикация
         destroy_unavailable_domain: Изтриване на недостъпен домейн
@@ -199,39 +199,39 @@ bg:
         disable_custom_emoji: Деактивиране на персонализирано емоджи
         disable_sign_in_token_auth_user: Изключване на удостоверяването с код по имейл за потребителя
         disable_user: Изключване на потребител
-        enable_custom_emoji: Активиране на персонализирано емоджи
+        enable_custom_emoji: Включване на персонализирано емоджи
         enable_sign_in_token_auth_user: Включване на удостоверяването с код по имейл за потребителя
         enable_user: Активиране на потребител
         memorialize_account: Възпоменаване на акаунта
         promote_user: Повишаване на потребител
-        reject_appeal: Отхвърляне на молбата
+        reject_appeal: Отхвърляне на обжалването
         reject_user: Отхвърляне на потребителя
-        remove_avatar_user: Премахване на аватар
+        remove_avatar_user: Премахване на аватара
         reopen_report: Повторно отваряне на доклад
         resend_user: Повторно изпращане на имейла за потвърждение
-        reset_password_user: Нулиране на парола
+        reset_password_user: Задаване на нова парола
         resolve_report: Отстраняване на доклада
         sensitive_account: Деликатен акаунт
         silence_account: Ограничаване на акаунта
         suspend_account: Преустановяване на акаунта
         unassigned_report: Оттегляне на доклада
         unblock_email_account: Отблокиране на адреса на имейла
-        unsensitive_account: Не е деликатен акаунт
+        unsensitive_account: Отмяна на акаунта като деликатен
         unsilence_account: Отмяна на ограничението за акаунта
         unsuspend_account: Връщане на акаунта
-        update_announcement: Осъвременяване на обявлението
+        update_announcement: Обновяване на оповестяването
         update_custom_emoji: Обновяване на персонализираното емоджи
         update_domain_block: Обновяване на блокирането за домейна
         update_ip_block: Обновяване на правило за IP
         update_status: Обновяване на публикация
-        update_user_role: Обновяване на роля
+        update_user_role: Обновяване на ролята
       actions:
         approve_appeal_html: "%{name} одобри обжалването на решение за модериране от %{target}"
-        approve_user_html: "%{name} одобри записването от %{target}"
+        approve_user_html: "%{name} одобри регистрирането от %{target}"
         assigned_to_self_report_html: "%{name} назначете доклада %{target} на себе си"
         change_email_user_html: "%{name} промени адреса на имейла на потребителя %{target}"
         change_role_user_html: "%{name} промени ролята на %{target}"
-        confirm_user_html: "%{name} потвърди имейл адреса на потребителя %{target}"
+        confirm_user_html: "%{name} потвърди адреса на имейла на потребителя %{target}"
         create_account_warning_html: "%{name} изпрати предупреждение до %{target}"
         create_announcement_html: "%{name} създаде ново оповестяване %{target}"
         create_canonical_email_block_html: "%{name} блокира имейл с хеш %{target}"
@@ -241,7 +241,7 @@ bg:
         create_email_domain_block_html: "%{name} блокира домейн на имейл %{target}"
         create_ip_block_html: "%{name} създаде правило за IP %{target}"
         create_unavailable_domain_html: "%{name} спря доставянето до домейн %{target}"
-        create_user_role_html: "%{name} създаде %{target} роля"
+        create_user_role_html: "%{name} създаде роля %{target}"
         demote_user_html: "%{name} понижи потребителя %{target}"
         destroy_announcement_html: "%{name} изтри оповестяване %{target}"
         destroy_canonical_email_block_html: "%{name} отблокира имейла с хеш %{target}"
@@ -253,7 +253,7 @@ bg:
         destroy_ip_block_html: "%{name} изтри правило за IP %{target}"
         destroy_status_html: "%{name} премахна публикация от %{target}"
         destroy_unavailable_domain_html: "%{name} възстанови доставянето до домейн %{target}"
-        destroy_user_role_html: "%{name} изтри %{target} роля"
+        destroy_user_role_html: "%{name} изтри роля %{target}"
         disable_2fa_user_html: "%{name} изключи двуфакторното изискване за потребител %{target}"
         disable_custom_emoji_html: "%{name} изключи емоджито %{target}"
         disable_sign_in_token_auth_user_html: "%{name} деактивира удостоверението с код по имейл за %{target}"
@@ -267,16 +267,16 @@ bg:
         reject_user_html: "%{name} отхвърли регистрирането от %{target}"
         remove_avatar_user_html: "%{name} премахна аватара на %{target}"
         reopen_report_html: "%{name} отвори пак доклада на %{target}"
-        resend_user_html: "%{name} изпрати отново имейл за потвърждение за %{target}"
+        resend_user_html: "%{name} изпрати пак е-писмо за потвърждение за %{target}"
         reset_password_user_html: "%{name} нулира паролата на потребител %{target}"
         resolve_report_html: "%{name} разреши случая с доклада от %{target}"
         sensitive_account_html: "%{name} означи мултимедия на %{target} като деликатна"
         silence_account_html: "%{name} сложи ограничения на акаунта на %{target}"
         suspend_account_html: "%{name} преустанови акаунта на %{target}"
-        unassigned_report_html: "%{name} оттегляне на доклада на %{target}"
+        unassigned_report_html: "%{name} оттегли доклада на %{target}"
         unblock_email_account_html: "%{name} разблокира адреса на имейла на %{target}"
         unsensitive_account_html: "%{name} размаркира мултимедия на %{target} като деликатна"
-        unsilence_account_html: "%{name} отмени ограничения на акаунта на %{target}"
+        unsilence_account_html: "%{name} отмени ограниченията на акаунта на %{target}"
         unsuspend_account_html: "%{name} върна обратно акаунта на %{target}"
         update_announcement_html: "%{name} обнови оповестяването на %{target}"
         update_custom_emoji_html: "%{name} обнови емоджито на %{target}"
@@ -300,8 +300,8 @@ bg:
         title: Ново оповестяване
       publish: Публикуване
       published_msg: Успешно публикувано оповестяване!
-      scheduled_for: Планирано за %{time}
-      scheduled_msg: Обявлението е планирано за публикуване!
+      scheduled_for: Насрочено за %{time}
+      scheduled_msg: Насрочено оповестяване за публикуване!
       title: Оповестявания
       unpublish: Без публикуване
       unpublished_msg: Успешно скрито оповестяване!
@@ -335,8 +335,8 @@ bg:
       shortcode_hint: Поне 2 символа, само азбучно-цифрови символи и долни черти
       title: Потребителски емоджита
       uncategorized: Некатегоризирано
-      unlist: Скриване от списъка
-      unlisted: Скрито от списъка
+      unlist: Премахване от списъка
+      unlisted: Извънсписъчно
       update_failed_msg: Не може да се обнови това емоджи
       updated_msg: Успешно осъвременено емоджи!
       upload: Качване
