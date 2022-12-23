@@ -415,6 +415,7 @@ fy:
       attempts_over_week:
         one: "%{count} registraasjebesykjen yn de ôfrûne wike"
         other: "%{count} registraasjebesykjen yn de ôfrûne wike"
+      created_msg: E-maildomein blokkearjen slagge
       delete: Fuortsmite
       dns:
         types:
@@ -424,13 +425,32 @@ fy:
         create: Domain tafoegje
         resolve: Domein opsykje
         title: Nije e-maildomein blokkearje
+      no_email_domain_block_selected: Der binne gjin e-maildomeinblokkaden wizige, omdat der gjin ien selektearre waard
+      resolved_dns_records_hint_html: De domeinnamme slacht op de folgjende MX-domeinen dy’t úteinlik ferantwurdlik binne foar it akseptearjen fan e-mail. It blokkearjen fan in MX-domein blokkearret oanmeldingen fan elk e-mailadres dat itselde MX-domein brûkt, sels as de sichtbere domeinnamme oars is. <strong>Pas op dat jo gjin grutte e-mailproviders blokkearje.</strong>
+      resolved_through_html: Blokkearre fia %{domain}
+      title: Blokkearre e-maildomeinen
     export_domain_allows:
+      new:
+        title: Tastiene domeinen ymportearje
       no_file: Gjin bestân selektearre
     export_domain_blocks:
+      import:
+        description_html: Jo steane op it punt in list mei domeinblokkaden te ymportearjen. Kontrolearje dizze list bot soarchfâldich, foaral as jo dizze list net sels makke hawwe.
+        existing_relationships_warning: Besteande folchrelaasjes
+        private_comment_description_html: 'Om jo te helpen byhâlden wêr’t de ymportearre blokkaden wei komme, wurde de ymportearre blokkaden mei de folgjende priveeopmerking oanmakke: <q>%{comment}</q>'
+        private_comment_template: Ymportearre fan %{source} op %{date}
+        title: Domeinblokkaden ymportearje
+      new:
+        title: Domeinblokkaden ymportearje
       no_file: Gjin bestân selektearre
     follow_recommendations:
+      description_html: "<strong>Dizze oanrekommandearre accounts helpe nije brûkers fluch ynteressante ynhâld</strong>te finen. Wannear’t in brûker net mei oare brûkers genôch ynteraksje hân hat om personalisearre oanrekommandaasjes te krijen, wurde yn stee dêrfan dizze accounts oanrekommandearre. Dizze accounts wurde deistich opnij berekkene mei help fan accounts mei it heechste tal resinte ynteraksjes en it heechste tal lokale folgers yn in bepaalde taal."
       language: Foar taal
       status: Steat
+      suppress: Oanrekommandearre account net mear oanrekommandearje
+      suppressed: Net mear oanrekommandearre
+      title: Oanrekommandearre accounts
+      unsuppress: Account wer oanrekommandearje
     instances:
       availability:
         title: Beskikberheid
@@ -442,15 +462,38 @@ fy:
       content_policies:
         comment: Ynterne reden
         policies:
+          reject_media: Mediabestannen wegerje
+          reject_reports: Rapportaazjes wegerje
           silence: Beheind
           suspend: Utsteld
         policy: Belied
+        reason: Publike reden
+        title: Belied
       dashboard:
+        instance_accounts_dimension: Meast troch ús folge accounts
         instance_accounts_measure: bewarre accounts
+        instance_followers_measure: ús folgers dêr
+        instance_follows_measure: troch harren hjir folge
+        instance_languages_dimension: Meast aktive talen
+        instance_media_attachments_measure: bewarre mediabestannen
+        instance_reports_measure: rapportaazjes oer harren
+        instance_statuses_measure: bewarre berjochten
       delivery:
         all: Alles
+        clear: Ofleverflater fuorthelje
         failing: Problemen
+        restart: Oflevering opnij starte
+        stop: Oflevering beëinigje
         unavailable: Net beskikber
+      delivery_available: Ofleverjen is mooglik
+      delivery_error_days: Dagen mei ôfleverflaters
+      moderation:
+        all: Alle
+        limited: Beheind
+        title: Moderaasje
+      private_comment: Priveeopmerking
+      public_comment: Iepenbiere opmerking
+      purge: Folslein fuortsmite
       title: Federaasje
       total_blocked_by_us: Troch ús blokkearre
       total_followed_by_them: Troch harren folge
@@ -518,14 +561,47 @@ fy:
         suspend_description_html: It profyl en alle accountgegevens wurde earst net tagonklik makke, oant dizze úteinlik definityf fuortsmiten wurde. It is net mear mooglik om ynteraksje te hawwen mei de account. Dit kin binnen 30 dagen weromdraaid wurde.
       actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
       add_to_report: Mear oan de rapportaazje tafoegje
+      are_you_sure: Binne jo wis?
+      assign_to_self: Oan my tawize
+      assigned: Tawizen moderator
+      by_target_domain: Domein fan rapportearre account
+      category: Kategory
+      category_description_html: De reden wêrom dizze account en/of ynhâld rapportearre waard, wurdt oan it rapportearre account meidield
+      comment:
+        none: Gjin
+      comment_description_html: 'Om mear ynformaasje te jaan, skreau %{name}:'
+      created_at: Rapportearre op
       delete_and_resolve: Berjocht fuortsmite
+      forwarded: Trochstjoerd
+      forwarded_to: Trochstjoerd nei %{domain}
+      mark_as_resolved: As oplost markearje
+      mark_as_sensitive: As gefoelich markearje
+      mark_as_unresolved: As net oplost markearje
+      no_one_assigned: Net ien
       notes:
+        create: Opmerking tafoegje
+        create_and_resolve: Oplosse mei opmerking
+        create_and_unresolve: Opnij iepeje mei opmerking
         delete: Fuortsmite
+        placeholder: Beskriuw hokker maatregels nommen binne of oare relatearre opmerkingen…
+        title: Opmerkingen
+      notes_description_html: Besjoch en lit opmerkingen efter foar oare moderatoaren en foar jo takomstige sels
+      reopen: Rapport opnij iepenje
+      report: 'Rapportaazje #%{id}'
+      reported_account: Rapportearre account
+      reported_by: Rapportearre troch
       resolved: Oplost
+      resolved_msg: Rapportaazje oplosse slagge!
+      skip_to_actions: Gean daliks nei de maatregels
       status: Steat
+      statuses: Rapportearre ynhâld
       title: Rapportaazjes
+      unassign: Net langer tawize
+      unresolved: Net oplost
       updated_at: Bywurke
+      view_profile: Profyl besjen
     roles:
+      add_new: Rol tafoegje
       assigned_users:
         one: "%{count} brûker"
         other: "%{count} brûkers"
@@ -536,8 +612,10 @@ fy:
         moderation: Moderaasje
         special: Spesjaal
       delete: Fuortsmite
+      edit: Rol ‘%{name}’ bewurkje
       privileges:
         administrator: Behearder
+        manage_webhooks: Webhooks beheare
         view_devops: DevOps
       title: Rollen
     rules:
@@ -553,11 +631,33 @@ fy:
       branding:
         title: Branding
       discovery:
+        title: Untdekke
         trends: Trends
+      domain_blocks:
+        all: Oan elkenien
+        disabled: Oan net ien
+        users: Oan oanmelde lokale brûkers
+      registrations:
+        title: Registraasjes
     statuses:
       account: Auteur
       application: Tapassing
+      batch:
+        report: Rapportaazje
       deleted: Fuortsmiten
+      favourites: Favoriten
+      history: Ferzjeskiednis
+      in_reply_to: Reaksje op
+      language: Taal
+      media:
+        title: Media
+      metadata: Metagegevens
+      no_status_selected: Der binne gjin berjochten wizige, omdat der gjin ien selektearre waard
+      open: Berjocht toane
+      original_status: Oarspronklik berjocht
+      reblogs: Boosts
+      status_changed: Berjocht wizige
+      title: Accountberjochten
       trending: Trending
       visibility: Sichtberheid
       with_media: Mei media
@@ -618,7 +718,12 @@ fy:
       title: Inkelde basisrigels.
     security: Befeiliging
     set_new_password: Nij wachtwurd ynstelle
+    setup:
+      title: Ynstelle
+    status:
+      account_status: Accountsteat
   authorize_follow:
+    follow: Folgje
     post_follow:
       web: Gean nei de webapp
     title: '%{acct} folgje'
@@ -649,6 +754,8 @@ fy:
     strikes:
       appeal: Beswier
       created_at: Datum en tiid
+      title_actions:
+        none: Warskôging
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -683,7 +790,14 @@ fy:
       delete: Fuortsmite
       title: Filters
   generic:
+    all: Alle
+    copy: Kopiearje
     delete: Fuortsmite
+    deselect: Alles deselektearje
+    none: Gjin
+    order_by: Sortearje op
+    save_changes: Wizigingen bewarje
+    today: hjoed
   imports:
     modes:
       merge: Gearfoegje
@@ -711,17 +825,25 @@ fy:
     max_uses_prompt: Gjin limyt
     table:
       expires_at: Ferrint op
+    title: Minsken útnûgje
   login_activities:
     authentication_methods:
       password: wachtwurd
+      webauthn: befeiligingskaaien
   migrations:
     acct: Ferhuze nei
+  moderation:
+    title: Moderaasje
   notification_mailer:
+    follow:
+      title: Nije folger
     mention:
       action: Beäntwurdzje
       body: 'Jo binne fermeld troch %{name} yn:'
       subject: Jo binne fermeld troch %{name}
       title: Nije fermelding
+    reblog:
+      title: Nije boost
   number:
     human:
       decimal_units:
@@ -741,6 +863,8 @@ fy:
     older: Alder
     prev: Foarige
     truncate: "&hellip;"
+  preferences:
+    other: Oars
   relationships:
     dormant: Slommerjend
     followers: Folgers
@@ -785,8 +909,30 @@ fy:
       chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
+      linux: Linux
+      mac: macOS
+      other: ûnbekend platfoarm
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Ynlûke
+    title: Sesjes
   settings:
+    account: Account
+    account_settings: Accountynstellingen
+    aliases: Accountaliassen
+    appearance: Werjefte
+    authorized_apps: Autorisearre apps
+    back: Tebek nei Mastodon
     delete: Account fuortsmite
+    development: Untwikkelers
+    edit_profile: Profyl bewurkje
+    export: Eksportearje
+    featured_tags: Utljochte hashtags
+    import: Ymportearje
+    import_and_export: Ymportearje en eksportearje
+    migrate: Accountmigraasje
+    notifications: Meldingen
   statuses:
     content_warning: 'Ynhâldswarskôging: %{warning}'
     pin_errors:
@@ -794,6 +940,10 @@ fy:
     poll:
       vote: Stimme
     show_more: Mear toane
+    show_newer: Nijere toane
+    show_older: Aldere toane
+    show_thread: Petear toane
+    title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
       private: Allinnich folgers
@@ -808,8 +958,11 @@ fy:
       '31556952': 1 jier
       '5259492': 2 moannen
       '604800': 1 wike
-      '63113904': 2 years
-      '7889238': 3 months
+      '63113904': 2 jier
+      '7889238': 3 moannen
+  stream_entries:
+    reblogged: boostte
+    sensitive_content: Gefoelige ynhâld
   themes:
     default: Mastodon (donker)
     mastodon-light: Mastodon (ljocht)
@@ -837,6 +990,10 @@ fy:
         spam: Spam
       reason: 'Reden:'
       statuses: 'Rapportearre berjochten:'
+      subject:
+        none: Warskôging foar %{acct}
+      title:
+        none: Warskôging
     welcome:
       subject: Wolkom op Mastodon
       title: Wolkom oan board %{name}!
