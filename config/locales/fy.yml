@@ -313,22 +313,55 @@ fy:
       copy: Kopiearje
       copy_failed_msg: Kin gjin lokale kopy fan dizze emoji meitsje
       create_new_category: Nije kategory tafoegje
+      created_msg: Emoji oanmeitsjen slagge!
       delete: Fuortsmite
+      destroyed_msg: Emoji fuortsmiten slagge!
       disable: Utskeakelje
       disabled: Utskeakele
+      disabled_msg: Emoji útskeakeljen slagge
       emoji: Emoji
       enable: Ynskeakelje
       enabled: Ynskeakele
+      enabled_msg: Emoji ynskeakeljen slagge
       image_hint: PNG of GIF net grutter as %{size}
       list: Yn list
       listed: Werjaan
+      new:
+        title: Lokale emoji tafoegje
+      no_emoji_selected: Der binne gjin emoji wizige, omdat der gjin ien selektearre waard
+      not_permitted: Jo hawwe gjin rjochten om dizze aksje út te fieren
       overwrite: Oerskriuwe
+      shortcode: Ferkoarte koade
+      shortcode_hint: Op syn minst 2 tekens, allinnich alfanumeryk en underscores
+      title: Lokale emoji
+      uncategorized: Net kategorisearre
+      unlist: Net yn list
+      unlisted: Net werjaan
+      update_failed_msg: Dizze emoji koe net bywurke wurde
+      updated_msg: Emoji fernije is slagge!
       upload: Oplade
     dashboard:
       active_users: warbere brûkers
       interactions: ynteraksjes
+      media_storage: Mediaûnthâld
       new_users: nije brûkers
+      opened_reports: iepene rapportaazjes
+      pending_appeals_html:
+        one: "<strong>%{count}</strong> te beoardielen beswier"
+        other: "<strong>%{count}</strong> te beoardielen beswieren"
+      pending_reports_html:
+        one: "<strong>%{count}</strong> iepensteande rapportaazje"
+        other: "<strong>%{count}</strong> iepensteande rapportaazjes"
+      pending_tags_html:
+        one: "<strong>%{count}</strong> te beoardielen hashtag"
+        other: "<strong>%{count}</strong> te beoardielen hashtags"
+      pending_users_html:
+        one: "<strong>%{count}</strong> te beoardielen nije brûker"
+        other: "<strong>%{count}</strong> te beoardielen nije brûkers"
+      resolved_reports: oploste rapportaazjes
       software: Software
+      sources: Registraasjelokaasje
+      space: Romtegebrûk
       title: Dashboerd
       top_languages: Meast aktive talen
       top_servers: Meast aktive tsjinners
@@ -338,22 +371,50 @@ fy:
         empty: Gjin beswieren fûn.
         title: Beswieren
     domain_allows:
+      add_new: Federaasje mei domein tastean
+      created_msg: Federaasjetastimming mei domein is slagge
+      destroyed_msg: Federaasje mei domein is net tastien
       export: Eksportearje
       import: Ymportearje
+      undo: Federaasje mei domein net tastean
     domain_blocks:
+      add_new: Nije domeinblokkade tafoegje
+      created_msg: Domeinblokkade wurdt no ferwurke
+      destroyed_msg: Domeinblokkade is ûngedien makke
       domain: Domein
+      edit: Domeinblokkade bewurkje
+      existing_domain_block: Jo hawwe al strangere limiten oplein oan %{name}.
+      existing_domain_block_html: Jo hawwe al strangere beheiningen oplein oan %{name}, jo moatte it domein earst <a href="%{unblock_url}">deblokkearje</a>.
       export: Eksportearje
       import: Ymportearje
       new:
         create: Blokkade oanmeitsje
+        hint: In domeinblokkade foarkomt net dat accountgegevens fan dit domein oan de database tafoege wurde, mar dat der mei weromwurkjende krêft en automatysk bepaalde moderaasjemetoaden op dizze accounts tapast wurde.
         severity:
+          desc_html: "<strong>Beheinen</strong> soarget derfoar dat berjochten fan accounts fan dit domein foar elkenien ûnsichtber binne, behalve as in account folge wurdt. <strong>Utstelle</strong> soarget derfoar dat alle berjochten, media en profylgegevens fan accounts fan dit domein fuortsmiten wurde. Brûk <strong>Gjin</strong> wannear’t jo allinnich mediabestannen wegerje wolle."
           noop: Gjin
           silence: Beheine
           suspend: Utstelle
         title: Nije domeinblokkade
+      no_domain_block_selected: Der binne gjin domeinblokkades wizige, omdat der gjin ien selektearre waard
+      not_permitted: Jo hawwe gjin rjochten om dizze aksje út te fieren
+      obfuscate: Domeinnamme dizich meitsje
+      obfuscate_hint: De domeinnamme foar in part dizich meitsje, wannear’t de list mei domeinblokkaden toand wurdt
       private_comment: Priveeopmerking
+      private_comment_hint: Opmerking oer dizze domeinbeheining foar yntern gebrûk troch de moderatoaren.
+      public_comment: Iepenbiere opmerking
+      public_comment_hint: Opmerking oer dizze domeinbeheining foar it grutte publyk, foar wannear de iepenbiere list mei domeinbeheiningen ynskeakele is.
+      reject_media: Mediabestannen wegerje
+      reject_media_hint: Smyt lokaal bewarre mediabestannen fuort en wegeret dizze yn de takomst te downloaden. Net relevant foar útstelde domeinen
+      reject_reports: Rapportaazjes wegerje
+      reject_reports_hint: Alle rapportaazjes dy’t fan dit domein ôf komme negearje. Net relevant foar útstelde domeinen
+      undo: Domeinblokkade ûngedien meitsje
+      view: Domeinblokkade besjen
     email_domain_blocks:
       add_new: Nije tafoegje
+      attempts_over_week:
+        one: "%{count} registraasjebesykjen yn de ôfrûne wike"
+        other: "%{count} registraasjebesykjen yn de ôfrûne wike"
       delete: Fuortsmite
       dns:
         types:
@@ -392,7 +453,13 @@ fy:
         unavailable: Net beskikber
       title: Federaasje
       total_blocked_by_us: Troch ús blokkearre
+      total_followed_by_them: Troch harren folge
+      total_followed_by_us: Troch ús folge
+      total_reported: Rapportaazjes oer harren
+      total_storage: Mediabylagen
+      totals_time_period_hint_html: De hjirûnder toande totalen befetsje gegevens sûnt it begjin.
     invites:
+      deactivate_all: Alles deaktivearje
       filter:
         all: Alles
         available: Beskikber
@@ -401,6 +468,7 @@ fy:
       title: Utnûgingen
     ip_blocks:
       add_new: Rigel meitsje
+      created_msg: It tafoegjen fan in nije IP-rigel is slagge
       delete: Fuortsmite
       expires_in:
         '1209600': 2 wiken
@@ -409,18 +477,47 @@ fy:
         '31556952': 1 jier
         '86400': 1 dei
         '94670856': 3 jier
+      new:
+        title: Nije IP-rigel oanmeitsje
+      no_ip_block_selected: Der binne gjin IP-rigels wizige, omdat der gjin ien selektearre waard
       title: IP-rigels
+    relationships:
+      title: "Relaasjes fan %{acct}"
     relays:
+      add_new: Nije relayserver tafoegje
       delete: Fuortsmite
+      description_html: In <strong>federaasjerelay</strong> is in tuskenlizzende server dy’t grutte hoemannichte iepenbiere berjochten útwikselet tusken servers dy’t harren hjirop abonnearre hawwe. <strong>It kin lytse en middelgrutte servers helpe om ynhâld fan de fediverse te ûntdekken</strong>, wêrfoar oars lokale brûkers hânmjittich minsken fan eksterne servers folgje moatte.
       disable: Utskeakelje
       disabled: Utskeakele
       enable: Ynskeakelje
+      enable_hint: Ien kear ynskeakele giet jo server harren op alle iepenbiere berjochten fan dizze relayserver abonnearje en stjoert it de iepenbiere berjochten fan jo server nei de relayserver.
       enabled: Ynskeakele
       inbox_url: Relay-URL
+      pending: Wachtet op tastimming fan de relayserver
+      save_and_enable: Bewarje en ynskeakelje
+      setup: In ferbining mei in relayserver meitsje
+      signatures_not_enabled: Federaasjerelays wurkje mooglik net goed wannear’t de feilige modus of de beheinde federaasjemodus ynskeakele is
       status: Steat
       title: Relayservers
+    report_notes:
+      created_msg: Oanmeitsjen fan rapportaazje slagge!
+      destroyed_msg: Fuortsmiten fan opmerking by rapportaazje slagge!
     reports:
+      account:
+        notes:
+          one: "%{count} opmerking"
+          other: "%{count} opmerkingen"
       action_log: Auditlogboek
+      action_taken_by: Maatregel nommen troch
+      actions:
+        delete_description_html: De rapportearre berjochten wurde fuortsmiten en der wurdt in oertrêding registrearre om takomstige oertrêdingen fan itselde account flugger ôfhannelje te kinnen.
+        mark_as_sensitive_description_html: De media yn de rapportearre berjochten wurde markearre as gefoelich en der wurdt in oertrêding registrearre om takomstige oertrêdingen fan itselde account flugger ôfhannelje te kinnen.
+        other_description_html: Besjoch mear opsjes foar it kontrolearjen fan it gedrach fan en de kommunikaasje mei it rapportearre account.
+        resolve_description_html: Der wurdt tsjin it rapportearre account gjin maatregel nommen, gjin oertrêding registrearre en de rapportaazje wurdt markearre as oplost.
+        silence_description_html: It profyl sil allinnich sichtber wêze foar dyjinge dy’t it al folgje of it hânmjittich opsykje, wêrtroch it berik earnstich beheind wurdt. Kin altyd weromdraaid wurde.
+        suspend_description_html: It profyl en alle accountgegevens wurde earst net tagonklik makke, oant dizze úteinlik definityf fuortsmiten wurde. It is net mear mooglik om ynteraksje te hawwen mei de account. Dit kin binnen 30 dagen weromdraaid wurde.
+      actions_description_html: Beslis hokker maatregel nommen wurde moat om dizze rapportaazje op te lossen. Wannear’t jo in (straf)maatregel tsjin it rapportearre account nimme, kriget de account in e-mailmelding, behalve wannear’t de <strong>spam</strong>-kategory keazen is.
+      add_to_report: Mear oan de rapportaazje tafoegje
       delete_and_resolve: Berjocht fuortsmite
       notes:
         delete: Fuortsmite
