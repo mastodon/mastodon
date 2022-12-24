@@ -24,7 +24,7 @@ export class MastodonStack extends Stack {
   constructor(scope: Construct, id: string, props: MastodonProps) {
     super(scope, id, props);
 
-    const repository = Repository.fromRepositoryName(this, 'vc', 'hello-mastodon')
+    const repository = Repository.fromRepositoryName(this, 'repo', 'hello-mastodon')
 
     const logGroup = new LogGroup(this, 'webLog', {
       logGroupName: 'web',
@@ -87,7 +87,7 @@ export class MastodonStack extends Stack {
       hostedZone: zone,
     })
 
-    const loadBalancedFargateService = new ApplicationLoadBalancedFargateService(this, 'adminFargate', {
+    const loadBalancedFargateService = new ApplicationLoadBalancedFargateService(this, 'webFargate', {
       circuitBreaker: { rollback: true },
       cluster : cluster,
       cpu: 512,
@@ -153,7 +153,7 @@ export class MastodonStack extends Stack {
     const plausible = new origins.HttpOrigin('plausible.io',{
       protocolPolicy: cf.OriginProtocolPolicy.HTTPS_ONLY
     })
-    
+
     const params:cf.DistributionProps = {
       // defaultRootObject: 'index.html', // TODO
       domainNames: [props.domain],
