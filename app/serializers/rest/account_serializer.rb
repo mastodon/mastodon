@@ -15,7 +15,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   attribute :suspended, if: :suspended?
   attribute :silenced, key: :limited, if: :silenced?
   attribute :noindex, if: :local?
-  attribute :two_factor_enabled, if: two_factor_enabled?
+  attribute :two_factor_enabled, if: :two_factor_enabled?
 
   class FieldSerializer < ActiveModel::Serializer
     include FormattingHelper
