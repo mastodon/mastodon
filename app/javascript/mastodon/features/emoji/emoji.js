@@ -135,7 +135,7 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
       const title = shortCode ? `:${shortCode}:` : '';
       replacement = document.createElement('img');
       replacement.setAttribute('draggable', false);
-      replacement.setAttribute('class', isLocalCustomEmoji ? 'emojione local-custom-emoji' : 'emojione');
+      replacement.setAttribute('class', 'emojione');
       replacement.setAttribute('alt', match);
       replacement.setAttribute('title', title);
       replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
