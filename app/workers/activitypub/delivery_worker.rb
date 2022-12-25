@@ -10,7 +10,7 @@ class ActivityPub::DeliveryWorker
 
   sidekiq_options queue: 'push', retry: 16, dead: false
 
-  HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
+  HEADERS = { 'Content-Type' => 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' }.freeze
 
   def perform(json, source_account_id, inbox_url, options = {})
     return unless DeliveryFailureTracker.available?(inbox_url)

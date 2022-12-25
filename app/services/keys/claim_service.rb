@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Keys::ClaimService < BaseService
-  HEADERS = { 'Content-Type' => 'application/activity+json' }.freeze
+  HEADERS = { 'Content-Type' => 'application/ld+json; profile="https://www.w3.org/ns/activitystreams"' }.freeze
 
   class Result < ActiveModelSerializers::Model
     attributes :account, :device_id, :key_id,
