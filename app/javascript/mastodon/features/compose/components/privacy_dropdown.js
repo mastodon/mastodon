@@ -16,6 +16,8 @@ const messages = defineMessages({
   unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of discovery features' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
   private_long: { id: 'privacy.private.long', defaultMessage: 'Visible for followers only' },
+  nyan_short: { id: 'privacy.nyan.short', defaultMessage: 'Replace content to にゃーん' },
+  nyan_long: { id: 'privacy.nyan.long', defaultMessage: 'Replace content to にゃーん' },
   direct_short: { id: 'privacy.direct.short', defaultMessage: 'Mentioned people only' },
   direct_long: { id: 'privacy.direct.long', defaultMessage: 'Visible for mentioned users only' },
   change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
@@ -238,6 +240,7 @@ class PrivacyDropdown extends React.PureComponent {
       { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
       { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
+      { icon: 'lock', value: 'nyan', text: formatMessage(messages.nyan_short), meta: formatMessage(messages.nyan_long) },
     ];
 
     if (!this.props.noDirect) {
