@@ -69,7 +69,7 @@ const dateFormatOptions = {
   month: 'short',
   day: 'numeric',
   year: 'numeric',
-  hour12: false,
+  hourCycle: 'h23',
   hour: '2-digit',
   minute: '2-digit',
 };
@@ -361,7 +361,7 @@ class Header extends ImmutablePureComponent {
                 <div className='account__header__fields'>
                   <dl>
                     <dt><FormattedMessage id='account.joined_short' defaultMessage='Joined' /></dt>
-                    <dd>{intl.formatDate(account.get('created_at'), { year: 'numeric', month: 'short', day: '2-digit' })}</dd>
+                    <dd>{new Date(account.get('created_at')).toLocaleString(undefined, { year: 'numeric', month: 'short', day: '2-digit' })}</dd>
                   </dl>
 
                   {fields.map((pair, i) => (
@@ -369,7 +369,7 @@ class Header extends ImmutablePureComponent {
                       <dt dangerouslySetInnerHTML={{ __html: pair.get('name_emojified') }} title={pair.get('name')} className='translate' />
 
                       <dd className='translate' title={pair.get('value_plain')}>
-                        {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: intl.formatDate(pair.get('verified_at'), dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
+                        {pair.get('verified_at') && <span title={intl.formatMessage(messages.linkVerifiedOn, { date: new Date(pair.get('verified_at')).toLocaleString(undefined, dateFormatOptions) })}><Icon id='check' className='verified__mark' /></span>} <span dangerouslySetInnerHTML={{ __html: pair.get('value_emojified') }} />
                       </dd>
                     </dl>
                   ))}

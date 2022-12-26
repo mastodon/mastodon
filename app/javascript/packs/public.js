@@ -72,7 +72,7 @@ function main() {
 
     const timeFormat = new Intl.DateTimeFormat(locale, {
       timeStyle: 'short',
-      hour12: false,
+      hourCycle: 'h23',
     });
 
     [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
