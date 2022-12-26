@@ -29,7 +29,7 @@ module.exports = merge(sharedConfig, {
   },
 
   plugins: [
-    ...(process.env.IS_DOCKER ? [new CompressionPlugin({
+    ...(process.env.ENABLE_ASSET_BUILD_TIME_COMPRESSION !== 'false' ? [new CompressionPlugin({
       filename: '[path][base].gz[query]',
       cache: true,
       test: /\.(js|css|html|json|ico|svg|eot|otf|ttf|map)$/,
