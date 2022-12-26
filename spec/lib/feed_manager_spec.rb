@@ -454,7 +454,7 @@ RSpec.describe FeedManager do
       # The reblogging status should show up under normal conditions.
       expect(redis.zrange("feed:home:#{receiver.id}", 0, -1)).to eq [reblogs.first.id.to_s]
 
-      reblogs[0...-1].each do |reblog|
+      reblogs[0...].each do |reblog|
         FeedManager.instance.unpush_from_home(receiver, reblog)
       end
 

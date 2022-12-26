@@ -50,7 +50,7 @@ namespace :repo do
         file.each_line do |line|
           if line.start_with?('-')
             new_line = line.gsub(/#([[:digit:]]+)*/) do |pull_request_reference|
-              pull_request_number = pull_request_reference[1..-1]
+              pull_request_number = pull_request_reference[1..]
               response = nil
 
               loop do
