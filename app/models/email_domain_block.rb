@@ -11,11 +11,6 @@
 #
 
 class EmailDomainBlock < ApplicationRecord
-  self.ignored_columns = %w(
-    ips
-    last_refresh_at
-  )
-
   include DomainNormalizable
   include Paginable
 
