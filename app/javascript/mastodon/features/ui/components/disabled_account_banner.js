@@ -89,4 +89,4 @@ class DisabledAccountBanner extends React.PureComponent {
     );
   }
 
-};
+}

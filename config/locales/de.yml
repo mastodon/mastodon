@@ -117,7 +117,7 @@ de:
       reject: Ablehnen
       rejected_msg: Antrag zur Registrierung von %{username} erfolgreich abgelehnt
       remote_suspension_irreversible: Die Daten dieses Kontos wurden unwiderruflich gelöscht.
-      remote_suspension_reversible_hint_html: Das Konto wurde auf dem externen Server gesperrt – und sämtliche Daten werden am %{date} entfernt. Bis dahin kann diese Instanz das Konto ohne negative Auswirkungen wiederherstellen. Wenn du schon jetzt alle Daten des Kontos unwiderruflich löschen möchtest, kannst du dies nachfolgend tun.
+      remote_suspension_reversible_hint_html: Das Konto wurde auf dem Server gesperrt und sämtliche Daten werden am %{date} entfernt. Bis dahin kann der Server dieses Konto ohne negative Auswirkungen wiederherstellen. Wenn du schon jetzt alle Daten des Kontos unwiderruflich löschen möchtest, kannst du dies nachfolgend tun.
       remove_avatar: Profilbild entfernen
       remove_header: Titelbild entfernen
       removed_avatar_msg: Profilbild von %{username} erfolgreich entfernt
@@ -309,7 +309,7 @@ de:
       updated_msg: Ankündigung erfolgreich geändert!
     custom_emojis:
       assign_category: Kategorie zuweisen
-      by_domain: Domain der externen Instanz
+      by_domain: Domain
       copied_msg: Eine lokale Kopie des Emojis wurde erstellt
       copy: Kopieren
       copy_failed_msg: Es konnte keine lokale Kopie des Emojis erstellt werden
@@ -512,7 +512,7 @@ de:
       public_comment: Öffentlicher Kommentar
       purge: Löschen
       purge_description_html: Wenn du glaubst, dass diese Domain endgültig offline ist, kannst du alle Account-Datensätze und zugehörigen Daten aus dieser Domain löschen. Das kann eine Weile dauern.
-      title: Externe Instanzen
+      title: Föderation
       total_blocked_by_us: Von uns gesperrt
       total_followed_by_them: Gefolgt von denen
       total_followed_by_us: Gefolgt von uns
@@ -657,7 +657,7 @@ de:
         manage_custom_emojis: Eigene Emojis verwalten
         manage_custom_emojis_description: Erlaubt es Benutzer*innen, eigene Emojis auf dem Server zu verwalten
         manage_federation: Föderation verwalten
-        manage_federation_description: Erlaubt es Benutzer*innen, Domains anderer Mastodon-Instanzen zu sperren oder zuzulassen – und die Zustellbarkeit zu steuern.
+        manage_federation_description: Erlaubt Nutzer*innen, Domains anderer Mastodon-Server zu sperren oder zuzulassen – und die Zustellbarkeit zu steuern
         manage_invites: Einladungen verwalten
         manage_invites_description: Erlaubt es Benutzer*innen, Einladungslinks zu durchsuchen und zu deaktivieren
         manage_reports: Meldungen verwalten
@@ -667,7 +667,7 @@ de:
         manage_rules: Serverregeln verwalten
         manage_rules_description: Erlaubt es Benutzer*innen, Serverregeln zu ändern
         manage_settings: Einstellungen verwalten
-        manage_settings_description: Erlaubt es Benutzer*innen, Einstellungen dieser Instanz zu ändern
+        manage_settings_description: Erlaubt Nutzer*innen, Einstellungen dieses Servers zu ändern
         manage_taxonomies: Taxonomien verwalten
         manage_taxonomies_description: Ermöglicht Benutzer*innen, die Trends zu überprüfen und die Hashtag-Einstellungen zu aktualisieren
         manage_user_access: Benutzer*in-Zugriff verwalten
@@ -718,7 +718,7 @@ de:
       domain_blocks:
         all: Allen
         disabled: Niemandem
-        users: Benutzer*innen deiner Instanz
+        users: Für angemeldete lokale Benutzer*innen
       registrations:
         preamble: Lege fest, wer auf Deinem Server ein Konto erstellen darf.
         title: Registrierungen
@@ -976,7 +976,7 @@ de:
       email_settings_hint_html: Die Bestätigungs-E-Mail wurde an %{email} gesendet. Wenn diese E-Mail-Adresse nicht korrekt ist, kannst du sie in den Einstellungen ändern.
       title: Konfiguration
     sign_in:
-      preamble_html: Mit deinen Zugangsdaten für <strong>%{domain}</strong> anmelden. Solltest du dein Konto auf einer anderen Instanz registriert haben, ist eine Anmeldung hier nicht möglich.
+      preamble_html: Melde dich mit deinen Zugangsdaten für <strong>%{domain}</strong> an. Solltest du dein Konto auf einem anderen Server registriert haben, ist eine Anmeldung hier nicht möglich.
       title: Bei %{domain} anmelden
     sign_up:
       preamble: Mit einem Account auf diesem Mastodon-Server kannst du jeder anderen Person im Netzwerk folgen, unabhängig davon, wo ihr Account gehostet wird.
@@ -1609,7 +1609,7 @@ de:
       explanation:
         delete_statuses: Einige deiner Beiträge wurden als Verstoß gegen eine oder mehrere Gemeinschaftsrichtlinien erkannt und von den Moderator*innen von %{instance} entfernt.
         disable: Du kannst dein Konto nicht mehr verwenden, aber dein Profil und andere Daten bleiben unversehrt. Du kannst eine Sicherung deiner Daten anfordern, die Kontoeinstellungen ändern oder dein Konto löschen.
-        mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen der Instanz %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
+        mark_statuses_as_sensitive: Ein oder mehrere deiner Beiträge wurden von den Moderator*innen von %{instance} mit einer Inhaltswarnung versehen. Das bedeutet, dass Besucher*innen diese Medien in den Beiträgen zunächst antippen müssen, um die Vorschau anzuzeigen. Beim Verfassen der nächsten Beiträge kannst du auch selbst eine Inhaltswarnung für hochgeladene Medien festlegen.
         sensitive: Von nun an werden alle deine hochgeladenen Mediendateien mit einer Inhaltswarnung versehen und hinter einer Warnung versteckt.
         silence: Solange dein Konto limitiert ist, können nur die Leute, die dir bereits folgen, deine Beiträge auf dem Server sehen, und es könnte sein, dass du von verschiedenen öffentlichen Listungen ausgeschlossen wirst. Andererseits können andere dir manuell folgen.
         suspend: Du kannst dein Konto nicht mehr verwenden und dein Profil und andere Daten sind nicht mehr verfügbar. Du kannst dich immer noch anmelden, um eine Sicherung deiner Daten anzufordern, bis die Daten innerhalb von 30 Tagen vollständig gelöscht wurden. Allerdings werden wir einige Daten speichern, um zu verhindern, dass du die Sperrung umgehst.

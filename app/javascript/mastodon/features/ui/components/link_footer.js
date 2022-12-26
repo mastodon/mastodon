@@ -91,4 +91,4 @@ class LinkFooter extends React.PureComponent {
     );
   }
 
-};
+}
