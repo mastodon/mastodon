@@ -28,7 +28,7 @@ class ActivityPub::Parser::MediaAttachmentParser
 
   def description
     str = @json['summary'].presence || @json['name'].presence
-    str = str.strip[0...MediaAttachment::MAX_DESCRIPTION_LENGTH] if str.present?
+    str = str.strip[...MediaAttachment::MAX_DESCRIPTION_LENGTH] if str.present?
     str
   end
 

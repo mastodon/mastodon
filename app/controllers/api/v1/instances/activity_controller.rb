@@ -18,7 +18,7 @@ class Api::V1::Instances::ActivityController < Api::BaseController
     logins_tracker        = ActivityTracker.new('activity:logins', :unique)
     registrations_tracker = ActivityTracker.new('activity:accounts:local', :basic)
 
-    (0...12).map do |i|
+    (...12).map do |i|
       start_of_week = i.weeks.ago
       end_of_week   = start_of_week + 6.days
 

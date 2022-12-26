@@ -180,7 +180,7 @@ module Paperclip
       frequencies.map.with_index { |f, i| [f / total_frequencies, hex_values[i]] }
                  .sort_by { |r| -r[0] }
                  .reject { |r| r[1].size == 8 && r[1].end_with?('00') }
-                 .map { |r| ColorDiff::Color::RGB.new(*r[1][0..5].scan(/../).map { |c| c.to_i(16) }) }
+                 .map { |r| ColorDiff::Color::RGB.new(*r[1][..5].scan(/../).map { |c| c.to_i(16) }) }
                  .slice(0, quantity)
     end
 
