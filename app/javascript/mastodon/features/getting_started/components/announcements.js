@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import IconButton from 'mastodon/components/icon_button';
 import Icon from 'mastodon/components/icon';
-import { defineMessages, injectIntl, FormattedMessage, FormattedDate } from 'react-intl';
+import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { autoPlayGif, reduceMotion, disableSwiping } from 'mastodon/initial_state';
 import elephantUIPlane from 'mastodon/../images/elephant_ui_plane.svg';
 import { mascot } from 'mastodon/initial_state';
@@ -332,11 +332,29 @@ class Announcement extends ImmutablePureComponent {
     const skipEndDate = hasTimeRange && startsAt.getDate() === endsAt.getDate() && startsAt.getMonth() === endsAt.getMonth() && startsAt.getFullYear() === endsAt.getFullYear();
     const skipTime = announcement.get('all_day');
 
+    const formattedStartsAt = date.toLocaleString(undefined, {
+      hourCycle: 'h23',
+      year: (skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: skipTime ? undefined : '2-digit',
+      minute: skipTime ? undefined : '2-digit',
+    });
+    
+    const formattedEndsAt = date.toLocaleString(undefined, {
+      hourCycle: 'h23',
+      year: (skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric',
+      month: skipEndDate ? undefined : 'short',
+      day: skipEndDate ? undefined : '2-digit',
+      hour: skipTime ? undefined : '2-digit',
+      minute: skipTime ? undefined : '2-digit',
+    });
+
     return (
       <div className='announcements__item'>
         <strong className='announcements__item__range'>
           <FormattedMessage id='announcement.announcement' defaultMessage='Announcement' />
-          {hasTimeRange && <span> · <FormattedDate value={startsAt} hour12={false} year={(skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month='short' day='2-digit' hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /> - <FormattedDate value={endsAt} hour12={false} year={(skipYear || endsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric'} month={skipEndDate ? undefined : 'short'} day={skipEndDate ? undefined : '2-digit'} hour={skipTime ? undefined : '2-digit'} minute={skipTime ? undefined : '2-digit'} /></span>}
+          {hasTimeRange && <span> · {formattedStartsAt} - {formattedEndsAt}</span>}
         </strong>
 
         <Content announcement={announcement} />

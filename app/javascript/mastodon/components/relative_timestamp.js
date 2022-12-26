@@ -22,7 +22,7 @@ const messages = defineMessages({
 });
 
 const dateFormatOptions = {
-  hour12: false,
+  hourCycle: 'h23',
   year: 'numeric',
   month: 'short',
   day: '2-digit',
@@ -190,7 +190,7 @@ class RelativeTimestamp extends React.Component {
     const relativeTime = futureDate ? timeRemainingString(intl, date, this.state.now, timeGiven) : timeAgoString(intl, date, this.state.now, year, timeGiven, short);
 
     return (
-      <time dateTime={timestamp} title={intl.formatDate(date, dateFormatOptions)}>
+      <time dateTime={timestamp} title={date.toLocaleString(undefined, dateFormatOptions)}>
         {relativeTime}
       </time>
     );
