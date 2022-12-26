@@ -26,7 +26,7 @@ module Admin::ActionLogsHelper
     when 'IpBlock', 'Instance', 'CustomEmoji'
       log.human_identifier
     when 'CanonicalEmailBlock'
-      content_tag(:samp, (log.human_identifier.presence || '')[...7], title: log.human_identifier)
+      content_tag(:samp, (log.human_identifier.presence || '')[0...7], title: log.human_identifier)
     when 'Appeal'
       if log.route_param.present?
         link_to log.human_identifier, disputes_strike_path(log.route_param.presence)

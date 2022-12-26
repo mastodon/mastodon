@@ -25,7 +25,9 @@ class PreviewCardProvider < ApplicationRecord
 
   validates :domain, presence: true, uniqueness: true, domain: true
 
+  # rubocop:disable Layout/LineLength
   has_attached_file :icon, styles: { static: { format: 'png', convert_options: '-coalesce +profile "!icc,*" +set modify-date +set create-date' } }, validate_media_type: false
+  # rubocop:enable Layout/LineLength
   validates_attachment :icon, content_type: { content_type: ICON_MIME_TYPES }, size: { less_than: LIMIT }
   remotable_attachment :icon, LIMIT
 

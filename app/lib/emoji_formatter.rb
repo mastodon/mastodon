@@ -52,7 +52,7 @@ class EmojiFormatter
         end
       end
 
-      result << Nokogiri::XML::Text.new(text[last_index..], tree.document)
+      result << Nokogiri::XML::Text.new(text[last_index..-1], tree.document)
       node.replace(result)
     end
 
