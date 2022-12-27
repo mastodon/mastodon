@@ -138,10 +138,10 @@ export const connectCommunityStream = ({ onlyMedia } = {}) =>
  * @param {Object} options
  * @param {boolean} [options.onlyMedia]
  * @param {boolean} [options.onlyRemote]
+ * @param {boolean} [options.onlyLocal]
  * @return {function(): void}
  */
-export const connectPublicStream = ({ onlyMedia, onlyRemote } = {}) =>
-  connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote }) });
+export const connectPublicStream = ({ onlyMedia, onlyRemote, onlyLocal } = {}) => connectTimelineStream(`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}${onlyLocal ? ':local' : ''}`, `public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}${onlyLocal ? ':local' : ''}`, {}, { fillGaps: () => fillPublicTimelineGaps({ onlyMedia, onlyRemote, onlyLocal }) });
 
 /**
  * @param {string} columnId
