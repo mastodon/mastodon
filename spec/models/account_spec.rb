@@ -160,7 +160,7 @@ RSpec.describe Account, type: :model do
         expect(account.avatar_remote_url).to eq 'https://remote.test/invalid_avatar'
         expect(account.header_remote_url).to eq expectation.header_remote_url
         expect(account.avatar_file_name).to  eq nil
-        expect(account.header_file_name).to  eq nil
+        expect(account.header_file_name).to  eq expectation.header_file_name
       end
     end
   end
@@ -255,7 +255,7 @@ RSpec.describe Account, type: :model do
         Fabricate(:status, reblog: original_status, account: author)
       end
 
-      it 'is is true when this account has favourited it' do
+      it 'is true when this account has favourited it' do
         Fabricate(:favourite, status: original_reblog, account: subject)
 
         expect(subject.favourited?(original_status)).to eq true
@@ -267,7 +267,7 @@ RSpec.describe Account, type: :model do
     end
 
     context 'when the status is an original status' do
-      it 'is is true when this account has favourited it' do
+      it 'is true when this account has favourited it' do
         Fabricate(:favourite, status: original_status, account: subject)
 
         expect(subject.favourited?(original_status)).to eq true
@@ -658,6 +658,12 @@ RSpec.describe Account, type: :model do
     end
   end
 
+  describe '.requested_by_map' do
+    it 'returns an hash' do
+      expect(Account.requested_by_map([], 1)).to be_a Hash
+    end
+  end
+
   describe 'MENTION_RE' do
     subject { Account::MENTION_RE }
 
@@ -755,7 +761,7 @@ RSpec.describe Account, type: :model do
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is invalid if the username is longer then 30 characters' do
+      it 'is invalid if the username is longer than 30 characters' do
         account = Fabricate.build(:account, username: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).to model_have_error_on_field(:username)
@@ -801,7 +807,7 @@ RSpec.describe Account, type: :model do
         expect(account).to model_have_error_on_field(:username)
       end
 
-      it 'is valid even if the username is longer then 30 characters' do
+      it 'is valid even if the username is longer than 30 characters' do
         account = Fabricate.build(:account, domain: 'domain', username: Faker::Lorem.characters(number: 31))
         account.valid?
         expect(account).not_to model_have_error_on_field(:username)

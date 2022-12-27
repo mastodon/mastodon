@@ -43,13 +43,13 @@ class AccountFilter
     when 'status'
       status_scope(value)
     when 'by_domain'
-      Account.where(domain: value.to_s)
+      Account.where(domain: value.to_s.strip)
     when 'username'
-      Account.matches_username(value.to_s)
+      Account.matches_username(value.to_s.strip)
     when 'display_name'
-      Account.matches_display_name(value.to_s)
+      Account.matches_display_name(value.to_s.strip)
     when 'email'
-      accounts_with_users.merge(User.matches_email(value.to_s))
+      accounts_with_users.merge(User.matches_email(value.to_s.strip))
     when 'ip'
       valid_ip?(value) ? accounts_with_users.merge(User.matches_ip(value).group('users.id, accounts.id')) : Account.none
     when 'invited_by'
@@ -57,7 +57,7 @@ class AccountFilter
     when 'order'
       order_scope(value)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 
@@ -68,7 +68,7 @@ class AccountFilter
     when 'remote'
       Account.remote
     else
-      raise "Unknown origin: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown origin: #{value}"
     end
   end
 
@@ -81,11 +81,13 @@ class AccountFilter
     when 'suspended'
       Account.suspended
     when 'disabled'
-      accounts_with_users.merge(User.disabled)
+      accounts_with_users.merge(User.disabled).without_suspended
     when 'silenced'
       Account.silenced
+    when 'sensitized'
+      Account.sensitized
     else
-      raise "Unknown status: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown status: #{value}"
     end
   end
 
@@ -96,7 +98,7 @@ class AccountFilter
     when 'recent'
       Account.recent
     else
-      raise "Unknown order: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown order: #{value}"
     end
   end
 

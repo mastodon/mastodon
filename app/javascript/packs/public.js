@@ -63,6 +63,18 @@ function main() {
       minute: 'numeric',
     });
 
+    const dateFormat = new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      timeFormat: false,
+    });
+
+    const timeFormat = new Intl.DateTimeFormat(locale, {
+      timeStyle: 'short',
+      hour12: false,
+    });
+
     [].forEach.call(document.querySelectorAll('.emojify'), (content) => {
       content.innerHTML = emojify(content.innerHTML);
     });
@@ -73,6 +85,32 @@ function main() {
 
       content.title = formattedDate;
       content.textContent = formattedDate;
+    });
+
+    const isToday = date => {
+      const today = new Date();
+
+      return date.getDate() === today.getDate() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() === today.getFullYear();
+    };
+    const todayFormat = new IntlMessageFormat(messages['relative_format.today'] || 'Today at {time}', locale);
+
+    [].forEach.call(document.querySelectorAll('time.relative-formatted'), (content) => {
+      const datetime = new Date(content.getAttribute('datetime'));
+
+      let formattedContent;
+
+      if (isToday(datetime)) {
+        const formattedTime = timeFormat.format(datetime);
+
+        formattedContent = todayFormat.format({ time: formattedTime });
+      } else {
+        formattedContent = dateFormat.format(datetime);
+      }
+
+      content.title = formattedContent;
+      content.textContent = formattedContent;
     });
 
     [].forEach.call(document.querySelectorAll('time.time-ago'), (content) => {
@@ -247,8 +285,31 @@ function main() {
     input.readonly = oldReadOnly;
   });
 
+  const toggleSidebar = () => {
+    const sidebar = document.querySelector('.sidebar ul');
+    const toggleButton = document.querySelector('.sidebar__toggle__icon');
+
+    if (sidebar.classList.contains('visible')) {
+      document.body.style.overflow = null;
+      toggleButton.setAttribute('aria-expanded', false);
+    } else {
+      document.body.style.overflow = 'hidden';
+      toggleButton.setAttribute('aria-expanded', true);
+    }
+
+    toggleButton.classList.toggle('active');
+    sidebar.classList.toggle('visible');
+  };
+
   delegate(document, '.sidebar__toggle__icon', 'click', () => {
-    document.querySelector('.sidebar ul').classList.toggle('visible');
+    toggleSidebar();
+  });
+
+  delegate(document, '.sidebar__toggle__icon', 'keydown', e => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      toggleSidebar();
+    }
   });
 
   // Empty the honeypot fields in JS in case something like an extension

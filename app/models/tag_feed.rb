@@ -12,7 +12,6 @@ class TagFeed < PublicFeed
   # @option [Boolean] :local
   # @option [Boolean] :remote
   # @option [Boolean] :only_media
-  # @option [String]  :locale
   def initialize(tag, account, options = {})
     @tag = tag
     super(account, options)
@@ -33,7 +32,6 @@ class TagFeed < PublicFeed
     scope.merge!(remote_only_scope) if remote_only?
     scope.merge!(account_filters_scope) if account?
     scope.merge!(media_only_scope) if media_only?
-    scope.merge!(language_scope)
 
     scope.cache_ids.to_a_paginated_by_id(limit, max_id: max_id, since_id: since_id, min_id: min_id)
   end

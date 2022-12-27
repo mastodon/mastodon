@@ -40,7 +40,7 @@ class SiteUpload < ApplicationRecord
     mascot: {}.freeze,
   }.freeze
 
-  has_attached_file :file, styles: ->(file) { STYLES[file.instance.var.to_sym] }, convert_options: { all: '-coalesce -strip' }, processors: [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
+  has_attached_file :file, styles: ->(file) { STYLES[file.instance.var.to_sym] }, convert_options: { all: '-coalesce +profile "!icc,*" +set modify-date +set create-date' }, processors: [:lazy_thumbnail, :blurhash_transcoder, :type_corrector]
 
   validates_attachment_content_type :file, content_type: /\Aimage\/.*\z/
   validates :file, presence: true

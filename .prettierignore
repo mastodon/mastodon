@@ -44,9 +44,6 @@
 /redis
 /elasticsearch
 
-# ignore Helm dependency charts
-/chart/charts/*.tgz
-
 # Ignore Apple files
 .DS_Store
 
@@ -66,9 +63,6 @@ yarn-debug.log
 
 # Ignore Docker option files
 docker-compose.override.yml
-
-# Ignore Helm files
-/chart
 
 # Ignore emoji map file
 /app/javascript/mastodon/features/emoji/emoji_map.json

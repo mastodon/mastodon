@@ -39,11 +39,9 @@ class Api::V1::Admin::EmailDomainBlocksController < Api::BaseController
 
   def destroy
     authorize @email_domain_block, :destroy?
-
     @email_domain_block.destroy!
     log_action :destroy, @email_domain_block
-
-    render json: @email_domain_block, serializer: REST::Admin::EmailDomainBlockSerializer
+    render_empty
   end
 
   private

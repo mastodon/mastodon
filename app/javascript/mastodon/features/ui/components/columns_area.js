@@ -97,7 +97,7 @@ export default class ColumnsArea extends ImmutablePureComponent {
       if (this.mediaQuery.removeEventListener) {
         this.mediaQuery.removeEventListener('change', this.handleLayoutChange);
       } else {
-        this.mediaQuery.removeListener(this.handleLayouteChange);
+        this.mediaQuery.removeListener(this.handleLayoutChange);
       }
     }
   }

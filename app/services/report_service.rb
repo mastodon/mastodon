@@ -8,7 +8,7 @@ class ReportService < BaseService
     @target_account = target_account
     @status_ids     = options.delete(:status_ids).presence || []
     @comment        = options.delete(:comment).presence || ''
-    @category       = options.delete(:category).presence || 'other'
+    @category       = options[:rule_ids].present? ? 'violation' : (options.delete(:category).presence || 'other')
     @rule_ids       = options.delete(:rule_ids).presence
     @options        = options
 

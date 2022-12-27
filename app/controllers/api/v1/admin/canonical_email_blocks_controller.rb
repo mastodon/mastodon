@@ -35,20 +35,16 @@ class Api::V1::Admin::CanonicalEmailBlocksController < Api::BaseController
 
   def create
     authorize :canonical_email_block, :create?
-
     @canonical_email_block = CanonicalEmailBlock.create!(resource_params)
     log_action :create, @canonical_email_block
-
     render json: @canonical_email_block, serializer: REST::Admin::CanonicalEmailBlockSerializer
   end
 
   def destroy
     authorize @canonical_email_block, :destroy?
-
     @canonical_email_block.destroy!
     log_action :destroy, @canonical_email_block
-
-    render json: @canonical_email_block, serializer: REST::Admin::CanonicalEmailBlockSerializer
+    render_empty
   end
 
   private

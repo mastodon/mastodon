@@ -38,7 +38,7 @@ class ColumnSettings extends React.PureComponent {
     } else {
       return tags;
     }
-  };
+  }
 
   onSelect = mode => value => {
     const oldValue = this.tags(mode);
@@ -98,7 +98,7 @@ class ColumnSettings extends React.PureComponent {
     default:
       return '';
     }
-  };
+  }
 
   render () {
     const { settings, onChange } = this.props;

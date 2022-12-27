@@ -16,7 +16,6 @@ export default class IconButton extends React.PureComponent {
     onKeyPress: PropTypes.func,
     size: PropTypes.number,
     active: PropTypes.bool,
-    pressed: PropTypes.bool,
     expanded: PropTypes.bool,
     style: PropTypes.object,
     activeStyle: PropTypes.object,
@@ -97,6 +96,7 @@ export default class IconButton extends React.PureComponent {
       inverted,
       overlay,
       pressed,
+      tabIndex,
       title,
       counter,
       obfuscateCount,
@@ -138,8 +138,8 @@ export default class IconButton extends React.PureComponent {
 
     return (
       <button
+        type='button'
         aria-label={title}
-        aria-pressed={pressed}
         aria-expanded={expanded}
         title={title}
         className={classes}

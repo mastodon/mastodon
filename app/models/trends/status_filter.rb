@@ -40,7 +40,7 @@ class Trends::StatusFilter
     when 'locale'
       StatusTrend.where(language: value)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 

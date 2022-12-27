@@ -33,7 +33,7 @@ class Api::V2::Admin::AccountsController < Api::V1::Admin::AccountsController
   end
 
   def filter_params
-    params.permit(*FILTER_PARAMS)
+    params.permit(*FILTER_PARAMS, role_ids: [])
   end
 
   def pagination_params(core_params)

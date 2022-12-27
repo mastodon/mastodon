@@ -5,7 +5,6 @@ import { submitCompose } from '../../../actions/compose';
 
 const mapStateToProps = (state, { id }) => ({
   media: state.getIn(['compose', 'media_attachments']).find(item => item.get('id') === id),
-  isEditingStatus: state.getIn(['compose', 'id']) !== null,
 });
 
 const mapDispatchToProps = dispatch => ({

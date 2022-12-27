@@ -4,6 +4,8 @@ class ResolveURLService < BaseService
   include JsonLdHelper
   include Authorization
 
+  USERNAME_STATUS_RE = %r{/@(?<username>#{Account::USERNAME_RE})/(?<status_id>[0-9]+)\Z}
+
   def call(url, on_behalf_of: nil)
     @url          = url
     @on_behalf_of = on_behalf_of
@@ -43,7 +45,7 @@ class ResolveURLService < BaseService
 
     # We don't have an index on `url`, so try guessing the `uri` from `url`
     parsed_url = Addressable::URI.parse(@url)
-    parsed_url.path.match(%r{/@(?<username>#{Account::USERNAME_RE})/(?<status_id>[0-9]+)\Z}) do |matched|
+    parsed_url.path.match(USERNAME_STATUS_RE) do |matched|
       parsed_url.path = "/users/#{matched[:username]}/statuses/#{matched[:status_id]}"
       scope = scope.or(Status.where(uri: parsed_url.to_s, url: @url))
     end

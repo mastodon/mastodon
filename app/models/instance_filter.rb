@@ -36,7 +36,7 @@ class InstanceFilter
     when 'availability'
       availability_scope(value)
     else
-      raise "Unknown filter: #{key}"
+      raise Mastodon::InvalidParameterError, "Unknown filter: #{key}"
     end
   end
 
@@ -47,7 +47,7 @@ class InstanceFilter
     when 'unavailable'
       Instance.joins(:unavailable_domain)
     else
-      raise "Unknown availability: #{value}"
+      raise Mastodon::InvalidParameterError, "Unknown availability: #{value}"
     end
   end
 end

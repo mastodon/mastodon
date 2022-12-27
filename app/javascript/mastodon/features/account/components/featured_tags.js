@@ -39,7 +39,6 @@ class FeaturedTags extends ImmutablePureComponent {
           <Hashtag
             key={featuredTag.get('name')}
             name={featuredTag.get('name')}
-            href={featuredTag.get('url')}
             to={`/@${account.get('acct')}/tagged/${featuredTag.get('name')}`}
             uses={featuredTag.get('statuses_count') * 1}
             withGraph={false}

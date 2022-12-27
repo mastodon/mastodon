@@ -76,7 +76,25 @@ RSpec.describe VerifyLinkService, type: :service do
     context 'when a link does not contain a link back' do
       let(:html) { '' }
 
-      it 'marks the field as verified' do
+      it 'does not mark the field as verified' do
+        expect(field.verified?).to be false
+      end
+    end
+
+    context 'when link has no `href` attribute' do
+      let(:html) do
+        <<-HTML
+          <!doctype html>
+          <head>
+            <link type="text/html" rel="me" />
+          </head>
+          <body>
+            <a rel="me" target="_blank">Follow me on Mastodon</a>
+          </body>
+        HTML
+      end
+
+      it 'does not mark the field as verified' do
         expect(field.verified?).to be false
       end
     end

@@ -22,7 +22,6 @@ require 'mail'
 Bundler.require(*Rails.groups)
 
 require_relative '../lib/exceptions'
-require_relative '../lib/enumerable'
 require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
@@ -72,6 +71,7 @@ module Mastodon
       :af,
       :ar,
       :ast,
+      :be,
       :bg,
       :bn,
       :br,
@@ -93,6 +93,7 @@ module Mastodon
       :fa,
       :fi,
       :fr,
+      :fy,
       :ga,
       :gd,
       :gl,
@@ -163,6 +164,7 @@ module Mastodon
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.deliver_later_queue_name = 'mailers'
 
     config.middleware.use Rack::Attack
     config.middleware.use Mastodon::RackMiddleware

@@ -3,8 +3,10 @@ fy:
   activerecord:
     attributes:
       poll:
+        expires_at: Deadline
         options: Karren
       user:
+        agreement: Tsjinstbetingsten
         email: E-mailadres
         locale: Taal
         password: Wachtwurd
@@ -18,7 +20,36 @@ fy:
           attributes:
             username:
               invalid: mei allinnich letters, nûmers en ûnderstreekjes befetsje
+              reserved: reservearre
+        admin/webhook:
+          attributes:
+            url:
+              invalid: is in ûnjildige URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: is in ûnjildige URL
+        import:
+          attributes:
+            data:
+              malformed: hat de ferkearde opmaak
+        status:
+          attributes:
+            reblog:
+              taken: fan berjocht bestiet al
         user:
           attributes:
             email:
+              blocked: brûkt in net tastiene e-mailprovider
               unreachable: liket net te bestean
+            role_id:
+              elevated: kin net heger wêze as dyn aktuele rol
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: rjochten tafoegje dy’t net feilich binne foar de basisrol
+              elevated: kin gjin rjochten tafoegje dy’t dyn aktuele rol net besit
+              own_role: kin net mei dyn aktuele rol wizige wurde
+            position:
+              elevated: kin net heger wêze as dyn aktuele rol
+              own_role: kin net mei dyn aktuele rol wizige wurde

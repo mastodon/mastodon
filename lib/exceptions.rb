@@ -11,6 +11,7 @@ module Mastodon
   class RaceConditionError < Error; end
   class RateLimitExceededError < Error; end
   class SyntaxError < Error; end
+  class InvalidParameterError < Error; end
 
   class UnexpectedResponseError < Error
     attr_reader :response

@@ -36,7 +36,6 @@ class Api::V1::Timelines::TagController < Api::BaseController
     TagFeed.new(
       @tag,
       current_account,
-      locale: content_locale,
       any: params[:any],
       all: params[:all],
       none: params[:none],

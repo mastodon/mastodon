@@ -7,10 +7,10 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { fetchLists } from 'mastodon/actions/lists';
-import ColumnBackButtonSlim from 'mastodon/components/column_back_button_slim';
 import LoadingIndicator from 'mastodon/components/loading_indicator';
 import ScrollableList from 'mastodon/components/scrollable_list';
-import Column from 'mastodon/features/ui/components/column';
+import Column from 'mastodon/components/column';
+import ColumnHeader from 'mastodon/components/column_header';
 import ColumnLink from 'mastodon/features/ui/components/column_link';
 import ColumnSubheading from 'mastodon/features/ui/components/column_subheading';
 import NewListForm from './components/new_list_form';
@@ -62,8 +62,8 @@ class Lists extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.lists' defaultMessage="You don't have any lists yet. When you create one, it will show up here." />;
 
     return (
-      <Column bindToDocument={!multiColumn} icon='list-ul' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column bindToDocument={!multiColumn} label={intl.formatMessage(messages.heading)}>
+        <ColumnHeader title={intl.formatMessage(messages.heading)} icon='list-ul' multiColumn={multiColumn} showBackButton />
 
         <NewListForm />
 

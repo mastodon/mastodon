@@ -4,11 +4,8 @@
   .report-notes__item__header
     %span.username
       = link_to report_note.account.username, admin_account_path(report_note.account_id)
-    %time{ datetime: report_note.created_at.iso8601, title: l(report_note.created_at) }
-      - if report_note.created_at.today?
-        = t('admin.report_notes.today_at', time: l(report_note.created_at, format: :time))
-      - else
-        = l report_note.created_at.to_date
+    %time.relative-formatted{ datetime: report_note.created_at }
+      = t('admin.report_notes.created_at')
 
   .report-notes__item__content
     = simple_format(h(report_note.content))

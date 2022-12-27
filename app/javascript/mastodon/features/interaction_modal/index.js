@@ -150,7 +150,7 @@ class InteractionModal extends React.PureComponent {
 
           <div className='interaction-modal__choices__choice'>
             <h3><FormattedMessage id='interaction_modal.on_another_server' defaultMessage='On a different server' /></h3>
-            <p><FormattedMessage id='interaction_modal.other_server_instructions' defaultMessage='Simply copy and paste this URL into the search bar of your favourite app or the web interface where you are signed in.' /></p>
+            <p><FormattedMessage id='interaction_modal.other_server_instructions' defaultMessage='Copy and paste this URL into the search field of your favourite Mastodon app or the web interface of your Mastodon server.' /></p>
             <Copypaste value={url} />
           </div>
         </div>

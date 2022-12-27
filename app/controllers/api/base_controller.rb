@@ -16,6 +16,26 @@ class Api::BaseController < ApplicationController
 
   protect_from_forgery with: :null_session
 
+  content_security_policy do |p|
+    # Set every directive that does not have a fallback
+    p.default_src :none
+    p.frame_ancestors :none
+    p.form_action :none
+
+    # Disable every directive with a fallback to cut on response size
+    p.base_uri false
+    p.font_src false
+    p.img_src false
+    p.style_src false
+    p.media_src false
+    p.frame_src false
+    p.manifest_src false
+    p.connect_src false
+    p.script_src false
+    p.child_src false
+    p.worker_src false
+  end
+
   rescue_from ActiveRecord::RecordInvalid, Mastodon::ValidationError do |e|
     render json: { error: e.to_s }, status: 422
   end
@@ -57,7 +77,7 @@ class Api::BaseController < ApplicationController
     render json: { error: I18n.t('errors.429') }, status: 429
   end
 
-  rescue_from ActionController::ParameterMissing do |e|
+  rescue_from ActionController::ParameterMissing, Mastodon::InvalidParameterError do |e|
     render json: { error: e.to_s }, status: 400
   end
 
@@ -129,11 +149,11 @@ class Api::BaseController < ApplicationController
   end
 
   def set_cache_headers
-    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+    response.headers['Cache-Control'] = 'private, no-store'
   end
 
   def disallow_unauthenticated_api_access?
-    authorized_fetch_mode?
+    ENV['DISALLOW_UNAUTHENTICATED_API_ACCESS'] == 'true' || Rails.configuration.x.whitelist_mode
   end
 
   private

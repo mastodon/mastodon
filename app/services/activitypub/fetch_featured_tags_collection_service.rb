@@ -51,21 +51,17 @@ class ActivityPub::FetchFeaturedTagsCollectionService < BaseService
   end
 
   def process_items(items)
-    names     = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.map { |name| HashtagNormalizer.new.normalize(name) }
-    to_remove = []
-    to_add    = names
+    names            = items.filter_map { |item| item['type'] == 'Hashtag' && item['name']&.delete_prefix('#') }.take(FeaturedTag::LIMIT)
+    tags             = names.index_by { |name| HashtagNormalizer.new.normalize(name) }
+    normalized_names = tags.keys
 
-    FeaturedTag.where(account: @account).map(&:name).each do |name|
-      if names.include?(name)
-        to_add.delete(name)
-      else
-        to_remove << name
-      end
+    FeaturedTag.includes(:tag).references(:tag).where(account: @account).where.not(tag: { name: normalized_names }).delete_all
+
+    FeaturedTag.includes(:tag).references(:tag).where(account: @account, tag: { name: normalized_names }).each do |featured_tag|
+      featured_tag.update(name: tags.delete(featured_tag.tag.name))
     end
 
-    FeaturedTag.includes(:tag).where(account: @account, tags: { name: to_remove }).delete_all unless to_remove.empty?
-
-    to_add.each do |name|
+    tags.each_value do |name|
       FeaturedTag.create!(account: @account, name: name)
     end
   end

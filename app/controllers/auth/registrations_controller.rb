@@ -56,8 +56,8 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up) do |u|
-      u.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
+    devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+      user_params.permit({ account_attributes: [:username, :display_name], invite_request_attributes: [:text] }, :email, :password, :password_confirmation, :invite_code, :agreement, :website, :confirm_password)
     end
   end
 
@@ -148,11 +148,12 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
 
     @accept_token = session[:accept_token] = SecureRandom.hex
+    @invite_code  = invite_code
 
     set_locale { render :rules }
   end
 
   def set_cache_headers
-    response.headers['Cache-Control'] = 'no-cache, no-store, max-age=0, must-revalidate'
+    response.headers['Cache-Control'] = 'private, no-store'
   end
 end

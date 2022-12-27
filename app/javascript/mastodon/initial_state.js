@@ -54,6 +54,7 @@
  * @property {boolean} crop_images
  * @property {boolean=} delete_modal
  * @property {boolean=} disable_swiping
+ * @property {string=} disabled_account_id
  * @property {boolean} display_media
  * @property {string} domain
  * @property {boolean=} expand_spoilers
@@ -61,6 +62,7 @@
  * @property {string} locale
  * @property {string | null} mascot
  * @property {string=} me
+ * @property {string=} moved_to_account_id
  * @property {string=} owner
  * @property {boolean} profile_directory
  * @property {boolean} registrations_open
@@ -104,6 +106,7 @@ export const boostModal = getMeta('boost_modal');
 export const cropImages = getMeta('crop_images');
 export const deleteModal = getMeta('delete_modal');
 export const disableSwiping = getMeta('disable_swiping');
+export const disabledAccountId = getMeta('disabled_account_id');
 export const displayMedia = getMeta('display_media');
 export const domain = getMeta('domain');
 export const expandSpoilers = getMeta('expand_spoilers');
@@ -111,6 +114,7 @@ export const forceSingleColumn = !getMeta('advanced_layout');
 export const limitedFederationMode = getMeta('limited_federation_mode');
 export const mascot = getMeta('mascot');
 export const me = getMeta('me');
+export const movedToAccountId = getMeta('moved_to_account_id');
 export const owner = getMeta('owner');
 export const profile_directory = getMeta('profile_directory');
 export const reduceMotion = getMeta('reduce_motion');

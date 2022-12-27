@@ -185,6 +185,12 @@ ready(() => {
   const registrationMode = document.getElementById('form_admin_settings_registrations_mode');
   if (registrationMode) onChangeRegistrationMode(registrationMode);
 
+  const checkAllElement = document.querySelector('#batch_checkbox_all');
+  if (checkAllElement) {
+    checkAllElement.checked = [].every.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
+    checkAllElement.indeterminate = !checkAllElement.checked && [].some.call(document.querySelectorAll(batchCheckboxClassName), (content) => content.checked);
+  }
+
   document.querySelector('a#add-instance-button')?.addEventListener('click', (e) => {
     const domain = document.getElementById('by_domain')?.value;
 
