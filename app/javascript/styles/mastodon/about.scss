@@ -52,5 +52,9 @@ $fluid-breakpoint: $maximum-width + 20px;
     &:last-child {
       border-bottom: 0;
     }
+    
+    .rules-list__text {
+      word-break: break-word;
+    }
   }
 }
