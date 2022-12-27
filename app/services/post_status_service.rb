@@ -55,6 +55,8 @@ class PostStatusService < BaseService
     @sensitive    = (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?
     @text         = @options.delete(:spoiler_text) if @text.blank? && @options[:spoiler_text].present?
     @visibility   = @options[:visibility] || @account.user&.setting_default_privacy
+    @created_at   = @options[:created_at]&.to_datetime
+    @created_at   = Time.now.utc if created_in_the_future?
     @visibility   = :unlisted if @visibility&.to_sym == :public && @account.silenced?
     @scheduled_at = @options[:scheduled_at]&.to_datetime
     @scheduled_at = nil if scheduled_in_the_past?
@@ -147,6 +149,10 @@ class PostStatusService < BaseService
 
   def idempotency_duplicate?
     @idempotency_duplicate = redis.get(idempotency_key)
+  end
+  
+  def created_in_the_future?
+    @created_at.present? && @created_at >= Time.now.utc
   end
 
   def scheduled_in_the_past?
