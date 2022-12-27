@@ -22,12 +22,14 @@ const mapStateToProps = (state, { columnId }) => {
   const index = columns.findIndex(c => c.get('uuid') === uuid);
   const onlyMedia = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']);
   const onlyRemote = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyRemote']) : state.getIn(['settings', 'public', 'other', 'onlyRemote']);
+  const onlyLocal = (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyLocal']) : state.getIn(['settings', 'public', 'other', 'onlyLocal']);
   const timelineState = state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`]);
 
   return {
     hasUnread: !!timelineState && timelineState.get('unread') > 0,
     onlyMedia,
     onlyRemote,
+    onlyLocal,
   };
 };
 
@@ -42,6 +44,7 @@ class PublicTimeline extends React.PureComponent {
 
   static defaultProps = {
     onlyMedia: false,
+    onlyLocal: false,
   };
 
   static propTypes = {
@@ -52,15 +55,16 @@ class PublicTimeline extends React.PureComponent {
     hasUnread: PropTypes.bool,
     onlyMedia: PropTypes.bool,
     onlyRemote: PropTypes.bool,
+    onlyLocal: PropTypes.bool,
   };
 
   handlePin = () => {
-    const { columnId, dispatch, onlyMedia, onlyRemote } = this.props;
+    const { columnId, dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
 
     if (columnId) {
       dispatch(removeColumn(columnId));
     } else {
-      dispatch(addColumn(onlyRemote ? 'REMOTE' : 'PUBLIC', { other: { onlyMedia, onlyRemote } }));
+      dispatch(addColumn(onlyRemote ? 'REMOTE' : 'PUBLIC', { other: { onlyMedia, onlyRemote, onlyLocal } }));
     }
   }
 
@@ -74,30 +78,30 @@ class PublicTimeline extends React.PureComponent {
   }
 
   componentDidMount () {
-    const { dispatch, onlyMedia, onlyRemote } = this.props;
+    const { dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
     const { signedIn } = this.context.identity;
 
-    dispatch(expandPublicTimeline({ onlyMedia, onlyRemote }));
+    dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, onlyLocal }));
 
     if (signedIn) {
-      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote }));
+      this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, onlyLocal }));
     }
   }
 
   componentDidUpdate (prevProps) {
     const { signedIn } = this.context.identity;
 
-    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote) {
-      const { dispatch, onlyMedia, onlyRemote } = this.props;
+    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.onlyRemote !== this.props.onlyRemote, prevProps.onlyLocal !== this.props.onlyLocal) {
+      const { dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
 
       if (this.disconnect) {
         this.disconnect();
       }
 
-      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote }));
+      dispatch(expandPublicTimeline({ onlyMedia, onlyRemote, onlyLocal }));
 
       if (signedIn) {
-        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote }));
+        this.disconnect = dispatch(connectPublicStream({ onlyMedia, onlyRemote, onlyLocal }));
       }
     }
   }
@@ -114,13 +118,13 @@ class PublicTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    const { dispatch, onlyMedia, onlyRemote } = this.props;
+    const { dispatch, onlyMedia, onlyRemote, onlyLocal } = this.props;
 
-    dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote }));
+    dispatch(expandPublicTimeline({ maxId, onlyMedia, onlyRemote, onlyLocal }));
   }
 
   render () {
-    const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote } = this.props;
+    const { intl, columnId, hasUnread, multiColumn, onlyMedia, onlyRemote, onlyLocal } = this.props;
     const pinned = !!columnId;
 
     return (
@@ -143,7 +147,7 @@ class PublicTimeline extends React.PureComponent {
         </DismissableBanner>
 
         <StatusListContainer
-          timelineId={`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}`}
+          timelineId={`public${onlyRemote ? ':remote' : ''}${onlyMedia ? ':media' : ''}${onlyLocal ? ':local' : ''}`}
           onLoadMore={this.handleLoadMore}
           trackScroll={!pinned}
           scrollKey={`public_timeline-${columnId}`}
