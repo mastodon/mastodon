@@ -95,7 +95,7 @@ jobs:
       - checkout
       - install-system-dependencies
       - run:
-          command: sudo apt-get install -y ffmpeg imagemagick libmagickcore-dev libmagickwand-dev libjpeg-dev libpng-dev libtiff-dev libwebp-dev libpam-dev
+          command: sudo apt-get install -y ffmpeg imagemagick libpam-dev
           name: Install additional system dependencies
       - run:
           command: bundle config with 'pam_authentication'
