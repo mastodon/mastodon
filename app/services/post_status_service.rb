@@ -169,7 +169,7 @@ class PostStatusService < BaseService
   def status_attributes
     {
       text: @text,
-      created_at: @options[:created_at],
+      created_at: @created_at,
       media_attachments: @media || [],
       ordered_media_attachment_ids: (@options[:media_ids] || []).map(&:to_i) & @media.map(&:id),
       thread: @in_reply_to,
