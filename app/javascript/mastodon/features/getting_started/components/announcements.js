@@ -332,7 +332,7 @@ class Announcement extends ImmutablePureComponent {
     const skipEndDate = hasTimeRange && startsAt.getDate() === endsAt.getDate() && startsAt.getMonth() === endsAt.getMonth() && startsAt.getFullYear() === endsAt.getFullYear();
     const skipTime = announcement.get('all_day');
 
-    const formattedStartsAt = date.toLocaleString(undefined, {
+    const formattedStartsAt = startsAt?.toLocaleString(undefined, {
       hourCycle: 'h23',
       year: (skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric',
       month: 'short',
@@ -341,7 +341,7 @@ class Announcement extends ImmutablePureComponent {
       minute: skipTime ? undefined : '2-digit',
     });
     
-    const formattedEndsAt = date.toLocaleString(undefined, {
+    const formattedEndsAt = endsAt?.toLocaleString(undefined, {
       hourCycle: 'h23',
       year: (skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric',
       month: skipEndDate ? undefined : 'short',
