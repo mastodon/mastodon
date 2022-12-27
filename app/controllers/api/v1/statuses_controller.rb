@@ -61,6 +61,7 @@ class Api::V1::StatusesController < Api::BaseController
       visibility: status_params[:visibility],
       language: status_params[:language],
       scheduled_at: status_params[:scheduled_at],
+      created_at: status_params[:created_at],
       application: doorkeeper_token.application,
       poll: status_params[:poll],
       idempotency: request.headers['Idempotency-Key'],
@@ -127,6 +128,7 @@ class Api::V1::StatusesController < Api::BaseController
       :visibility,
       :language,
       :scheduled_at,
+      :created_at,
       media_ids: [],
       poll: [
         :multiple,

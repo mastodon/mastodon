@@ -96,8 +96,10 @@ class PostStatusService < BaseService
     process_mentions_service.call(@status)
     Trends.tags.register(@status)
     LinkCrawlWorker.perform_async(@status.id)
-    DistributionWorker.perform_async(@status.id)
-    ActivityPub::DistributionWorker.perform_async(@status.id)
+    if not @options[:created_at]
+      DistributionWorker.perform_async(@status.id)
+      ActivityPub::DistributionWorker.perform_async(@status.id)
+    end
     PollExpirationNotifyWorker.perform_at(@status.poll.expires_at, @status.poll.id) if @status.poll
   end
 
@@ -161,6 +163,7 @@ class PostStatusService < BaseService
   def status_attributes
     {
       text: @text,
+      created_at: @options[:created_at],
       media_attachments: @media || [],
       ordered_media_attachment_ids: (@options[:media_ids] || []).map(&:to_i) & @media.map(&:id),
       thread: @in_reply_to,
