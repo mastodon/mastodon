@@ -704,17 +704,25 @@ en:
       content_retention:
         preamble: Control how user-generated content is stored in Mastodon.
         title: Content retention
+      default_noindex:
+        desc_html: Affects all users who have not changed this setting themselves
+        title: Opt users out of search engine indexing by default
       discovery:
         follow_recommendations: Follow recommendations
         preamble: Surfacing interesting content is instrumental in onboarding new users who may not know anyone Mastodon. Control how various discovery features work on your server.
         profile_directory: Profile directory
         public_timelines: Public timelines
+        publish_discovered_servers: Publish discovered servers
         title: Discovery
         trends: Trends
       domain_blocks:
         all: To everyone
         disabled: To no one
         users: To logged-in local users
+      hometown:
+        title: Hometown
+        preamble: These site-wide settings are provided to you by Hometown. As the server admin, you should think carefully about what you want each setting to be, since this will have an impact in shaping your community.
+        privacy: Privacy
       registrations:
         preamble: Control who can create an account on your server.
         title: Registrations

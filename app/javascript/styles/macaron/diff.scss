@@ -450,6 +450,19 @@ body.admin {
 .admin-wrapper .content h4 {
   border-bottom: 1px solid #eeeeee;
 }
+.admin-wrapper {
+  .content {
+    &__heading {
+      &__tabs {
+        a {
+          &.selected {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
 
 .admin-wrapper .sidebar ul a.selected {
   background: $purple;
