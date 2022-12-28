@@ -28,6 +28,7 @@ class Form::AdminSettings
     show_domain_blocks_rationale
     noindex
     norss
+    default_federation
     require_invite_text
     media_cache_retention_period
     content_cache_retention_period
@@ -50,6 +51,7 @@ class Form::AdminSettings
     trendable_by_default
     noindex
     norss
+    default_federation
     require_invite_text
   ).freeze
 

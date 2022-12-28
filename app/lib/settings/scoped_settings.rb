@@ -6,6 +6,7 @@ module Settings
       theme
       noindex
       norss
+      default_federation
     ).freeze
 
     def initialize(object)

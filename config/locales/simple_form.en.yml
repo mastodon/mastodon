@@ -80,6 +80,7 @@ en:
         closed_registrations_message: Displayed when sign-ups are closed
         content_cache_retention_period: Posts from other servers will be deleted after the specified number of days when set to a positive value. This may be irreversible.
         custom_css: You can apply custom styles on the web version of Mastodon.
+        default_federation: Affects all users who have not changed this setting themselves. Unchecking this means new users will post local-only by default unless they change it in their preferences.
         mascot: Overrides the illustration in the advanced web interface.
         media_cache_retention_period: Downloaded media files will be deleted after the specified number of days when set to a positive value, and re-downloaded on demand.
         norss: Affects all users who have not changed this setting themselves.
@@ -240,6 +241,7 @@ en:
         closed_registrations_message: Custom message when sign-ups are not available
         content_cache_retention_period: Content cache retention period
         custom_css: Custom CSS
+        default_federation: Set the default posting privacy for new users to federated
         mascot: Custom mascot (legacy)
         media_cache_retention_period: Media cache retention period
         norss: Opt users out of having an RSS feed of their public posts by default

@@ -18,5 +18,8 @@
   .fields-group
     = f.input :norss, as: :boolean, wrapper: :with_label
 
+  .fields-group
+    = f.input :default_federation, as: :boolean, wrapper: :with_label
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
