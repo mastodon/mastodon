@@ -63,6 +63,13 @@ describe UserSettingsDecorator do
       expect(user.settings['auto_play_gif']).to eq false
     end
 
+    it 'updates the user settings value for username expansion' do
+      values = { 'setting_expand_usernames' => '0'}
+
+      settings.update(values)
+      expect(user.settings['expand_usernames'].to eq false)
+    end
+
     it 'updates the user settings value for system font in UI' do
       values = { 'setting_system_font_ui' => '0' }
 

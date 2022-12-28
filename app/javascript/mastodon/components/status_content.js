@@ -6,7 +6,12 @@ import Permalink from './permalink';
 import classnames from 'classnames';
 import PollContainer from 'mastodon/containers/poll_container';
 import Icon from 'mastodon/components/icon';
-import { autoPlayGif, languages as preloadedLanguages, translationEnabled } from 'mastodon/initial_state';
+import {
+  autoPlayGif,
+  languages as preloadedLanguages,
+  translationEnabled,
+  expandUsernames,
+} from 'mastodon/initial_state';
 
 const MAX_HEIGHT = 706; // 22px * 32 (+ 2px padding at the top)
 
@@ -96,6 +101,14 @@ class StatusContent extends React.PureComponent {
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
         link.setAttribute('title', mention.get('acct'));
+        // Hometown: make remote usernames
+        if (expandUsernames) {
+          if (mention.get('acct') === mention.get('username')) {
+            link.innerHTML = `@<span class="hometown-mention-local">${mention.get('username')}</span>`;
+          } else {
+            link.innerHTML = `@<span class="hometown-mention-remote">${mention.get('acct')}</span>`;
+          }
+        }
       } else if (link.textContent[0] === '#' || (link.previousSibling && link.previousSibling.textContent && link.previousSibling.textContent[link.previousSibling.textContent.length - 1] === '#')) {
         link.addEventListener('click', this.onHashtagClick.bind(this, link.text), false);
       } else {
@@ -254,7 +267,9 @@ class StatusContent extends React.PureComponent {
 
       const mentionLinks = status.get('mentions').map(item => (
         <Permalink to={`/@${item.get('acct')}`} href={item.get('url')} key={item.get('id')} className='status-link mention'>
-          @<span>{item.get('username')}</span>
+          @<span className={item.get('acct') === item.get('username') ? 'fc_mention_local' : 'fc_mention_remote'}>
+            {expandUsernames ? item.get('acct') : item.get('username')}
+          </span>
         </Permalink>
       )).reduce((aggregate, item) => [...aggregate, item, ' '], []);
 
@@ -277,7 +292,7 @@ class StatusContent extends React.PureComponent {
           <div tabIndex={!hidden ? 0 : null} className={`status__content__text ${!hidden ? 'status__content__text--visible' : ''} ${status.get('activity_pub_type') === 'Article' ? 'article-type' : ''} translate`} lang={lang} dangerouslySetInnerHTML={content} />
           {!hidden && poll}
           {!hidden && translateButton}
-        </div>
+        </div>,
       ];
 
       if (status.get('activity_pub_type') === 'Article' && !this.props.expanded) {

@@ -25,6 +25,7 @@ class UserSettingsDecorator
     user.settings['boost_modal']         = boost_modal_preference if change?('setting_boost_modal')
     user.settings['delete_modal']        = delete_modal_preference if change?('setting_delete_modal')
     user.settings['auto_play_gif']       = auto_play_gif_preference if change?('setting_auto_play_gif')
+    user.settings['expand_usernames']    = expand_usernames_preference if change?('setting_expand_usernames')
     user.settings['display_media']       = display_media_preference if change?('setting_display_media')
     user.settings['expand_spoilers']     = expand_spoilers_preference if change?('setting_expand_spoilers')
     user.settings['reduce_motion']       = reduce_motion_preference if change?('setting_reduce_motion')
@@ -81,6 +82,10 @@ class UserSettingsDecorator
 
   def auto_play_gif_preference
     boolean_cast_setting 'setting_auto_play_gif'
+  end
+
+  def expand_usernames_preference
+    boolean_cast_setting 'setting_expand_usernames'
   end
 
   def display_media_preference

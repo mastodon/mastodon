@@ -70,6 +70,8 @@ Metrics/AbcSize:
   Max: 115
   Exclude:
     - 'lib/mastodon/*_cli.rb'
+  AllowedMethods:
+    - process_update
 
 Metrics/BlockLength:
   Max: 55
@@ -92,6 +94,8 @@ Metrics/CyclomaticComplexity:
   Max: 25
   Exclude:
     - 'lib/mastodon/*_cli.rb'
+  AllowedMethods:
+    - process_update
 
 Layout/LineLength:
   AllowURI: true
@@ -113,6 +117,8 @@ Metrics/ParameterLists:
 
 Metrics/PerceivedComplexity:
   Max: 25
+  AllowedMethods:
+    - process_update
 
 Naming/MemoizedInstanceVariableName:
   Enabled: false
