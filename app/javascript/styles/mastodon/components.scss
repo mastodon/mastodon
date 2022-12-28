@@ -925,6 +925,16 @@
     }
   }
 
+  p {
+    margin-bottom: 1em;
+    white-space: pre-wrap;
+    unicode-bidi: plaintext;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
   a {
     color: $secondary-text-color;
     text-decoration: underline;
