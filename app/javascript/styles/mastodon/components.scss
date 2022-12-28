@@ -4268,7 +4268,7 @@ a.status-card.compact:hover {
 }
 
 @keyframes heartbeat {
-  from {
+  0% {
     transform: scale(1);
     animation-timing-function: ease-out;
   }
@@ -7343,7 +7343,7 @@ noscript {
 
       path:first-child {
         fill: rgba($highlight-text-color, 0.25) !important;
-        fill-opacity: 100% !important;
+        fill-opacity: 1 !important;
       }
 
       path:last-child {
