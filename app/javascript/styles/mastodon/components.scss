@@ -838,6 +838,7 @@
     height: 20px;
     margin: -3px 0 0;
   }
+
   .status__content__text {
     img {
       max-height: 300px;
@@ -938,9 +939,9 @@
     }
 
     &.mention {
-        span {
-          text-decoration: underline;
-        }
+      span {
+        text-decoration: underline;
+      }
     }
 
     .fa {
@@ -2266,7 +2267,6 @@ a.account__display-name {
           overflow-x: hidden;
           padding-right: 10px;
         }
-
       }
     }
 
@@ -2802,7 +2802,6 @@ $ui-header-height: 55px;
     @media screen and (max-width: 1550px) {
       overflow-y: visible;
     }
-
   }
 
   .autosuggest-textarea__textarea {
@@ -2881,7 +2880,8 @@ $ui-header-height: 55px;
   min-height: 47px;
   display: none;
 
-  > img, svg {
+  > img,
+  svg {
     display: block;
     object-fit: contain;
     object-position: bottom left;
@@ -3639,7 +3639,7 @@ a.status-card.compact:hover {
   }
 
   &__label {
-    margin-top: 0px;
+    margin-top: 0;
 
     strong {
       display: block;
@@ -7896,7 +7896,7 @@ div.status__content--with-spoiler {
   p {
     span.show_more_button {
       display: block;
-      margin: 0.25rem 0 0 0;
+      margin: 0.25rem 0 0;
     }
   }
 }
