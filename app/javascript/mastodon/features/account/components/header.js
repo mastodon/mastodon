@@ -149,6 +149,8 @@ class Header extends ImmutablePureComponent {
     }
   }
 
+  handleDisplayNameClick = () => window.open(this.props.account.get('url'));
+
   render () {
     const { account, hidden, intl, domain } = this.props;
     const { signedIn } = this.context.identity;
@@ -330,7 +332,7 @@ class Header extends ImmutablePureComponent {
 
           <div className='account__header__tabs__name'>
             <h1>
-              <span dangerouslySetInnerHTML={displayNameHtml} /> {badge}
+              <a href={account.get('url')} target='_blank' rel='noopener noreferrer'><span dangerouslySetInnerHTML={displayNameHtml} /></a>{isRemote ? <span> <IconButton icon='external-link' size={14} onClick={this.handleDisplayNameClick} /></span> : null} {badge}
               <small>@{acct} {lockedIcon}</small>
             </h1>
           </div>

@@ -7177,11 +7177,18 @@ noscript {
       h1 {
         font-size: 17px;
         line-height: 22px;
-        color: $primary-text-color;
         font-weight: 700;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+
+        a {
+          color: $primary-text-color;
+        }
+
+        button {
+          color: $primary-text-color;
+        }
 
         small {
           display: block;

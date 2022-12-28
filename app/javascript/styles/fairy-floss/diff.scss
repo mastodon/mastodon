@@ -84,27 +84,29 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: $purplescrollbar;
-    border: 0 #f8f8f2;
-    border-radius: 50px;
+  background: $purplescrollbar;
+  border: 0 #f8f8f2;
+  border-radius: 50px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: $purplescrollbar;
-    border: 0;
+  background: $purplescrollbar;
+  border: 0;
 }
 
 ::-webkit-scrollbar-track:hover {
-    background: darken($purple2, 6%);
+  background: darken($purple2, 6%);
 }
 
-.loading-bar
-  {
-    background-color: $mint;
-  }
+.loading-bar {
+  background-color: $mint;
+}
 
 // text
-.status__display-name, .column-header, .column-link, .navigation-bar strong {
+.status__display-name,
+.column-header,
+.column-link,
+.navigation-bar strong {
   color: $purple4;
 }
 
@@ -313,8 +315,8 @@ a.mention, .notification__message .fa {
 
 // profile in deck view
 
-.account__header__bar {
-  background: $purple5;
+.account__header__bar .avatar .account__avatar {
+  border-color: $purple1;
 }
 
 .account__header__image {
