@@ -5,7 +5,7 @@ class RedownloadMediaWorker
   include ExponentialBackoff
   include JsonLdHelper
 
-  sidekiq_options queue: 'pull', retry: 3
+  sidekiq_options queue: 'highcpu', retry: 3
 
   def perform(id)
     media_attachment = MediaAttachment.find(id)
