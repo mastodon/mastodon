@@ -168,6 +168,20 @@ body.admin {
   background: $purple5;
 }
 
+.column-header__back-button,
+.column-header__button,
+.column-header__button.active,
+.column-header__button.active {
+  background: $purple5;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $ui-highlight-color;
+    background: lighten($purple5, 4%);
+  }
+}
+
 .notification__filter-bar button.active::after,
 .notification__filter-bar a.active::after,
 .account__section-headline button.active::after,
@@ -191,10 +205,6 @@ body.admin {
 .column-link__badge,
 .column-subheading {
   background: $purple2;
-}
-
-.column-link {
-  background: $purple3;
 }
 
 // link previews
@@ -475,10 +485,6 @@ a.mention,
   color: $purple4;
 }
 
-.admin-wrapper .sidebar-wrapper {
-  background: $purple2;
-}
-
 .admin-wrapper .sidebar ul .simple-navigation-active-leaf a {
   background: $purpleborder;
 
@@ -615,4 +621,11 @@ a.mention,
 
 .tabs-bar__wrapper {
   background: $purple1;
+}
+
+.navigation-panel,
+.compose-panel {
+  hr {
+    border-top: 1px solid $purple3;
+  }
 }
