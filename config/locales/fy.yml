@@ -709,6 +709,9 @@ fy:
         title: Brûkers standert net troch sykmasinen yndeksearje litte
       discovery:
         follow_recommendations: Oanrekommandearre accounts
+        preamble: It toanen fan ynteressante ynhâld is fan essinsjeel belang foar it oan board heljen fan nije brûkers dy’t mooglik net ien fan Mastodon kinne. Bepaal hoe’t ferskate funksjes foar it ûntdekken fan ynhâld en brûkers op jo server wurkje.
+        profile_directory: Profylmap
+        public_timelines: Iepenbiere tiidlinen
         title: Untdekke
         trends: Trends
       domain_blocks:
@@ -716,11 +719,24 @@ fy:
         disabled: Oan net ien
         users: Oan oanmelde lokale brûkers
       registrations:
+        preamble: Tafersjoch hâlde op wa’t in account op dizze server registrearje kin.
         title: Registraasjes
+      registrations_mode:
+        modes:
+          approved: Goedkarring fereaske om te registrearje te kinnen
+          none: Net ien kin harren registrearje
+          open: Elkenien kin harren registrearje
+      title: Serverynstellingen
+    site_uploads:
+      delete: Opladen bestân fuortsmite
+      destroyed_msg: Fuortsmiten website-oplaad slagge!
     statuses:
       account: Auteur
       application: Tapassing
+      back_to_account: Tebek nei accountside
+      back_to_report: Tebek nei de rapportaazje
       batch:
+        remove_from_report: Ut rapportaazje fuortsmite
         report: Rapportaazje
       deleted: Fuortsmiten
       favourites: Favoriten
@@ -739,15 +755,41 @@ fy:
       trending: Trending
       visibility: Sichtberheid
       with_media: Mei media
+    strikes:
+      actions:
+        delete_statuses: "%{name} hat de berjochten fan %{target} fuortsmiten"
+        disable: "Account %{target} is troch %{name} beferzen"
+        mark_statuses_as_sensitive: "%{name} markearre de berjochten fan %{target} as gefoelich"
+        none: "%{name} hat in warskôging nei %{target} ferstjoerd"
+        sensitive: "%{name} markearre de account fan %{target} as gefoelich"
+        silence: "Account %{target} is troch %{name} beheind"
+        suspend: "Account %{target} is troch %{name} útsteld"
+      appeal_approved: Beswier yntsjinne
+      appeal_pending: Beswier yn behanneling
     system_checks:
       database_schema_check:
         message_html: Der binne database migraasjes yn ôfwachting. Jo moatte dizze útfiere om der foar te soargjen dat de applikaasje wurkjen bliuwt sa as it heard
+      elasticsearch_running_check:
+        message_html: Koe gjin ferbining meitsje mei Elasticsearch. Kontrolearje dat Elasticsearch útfierd wurdt of skeakelje full-text-sykjen út
+      elasticsearch_version_check:
+        message_html: 'Ynkompatibele Elasticsearch-ferzje: %{value}'
+        version_comparison: Jo brûke Elasticsearch %{running_version}, mar %{required_version} is fereaske
+      rules_check:
+        action: Serverregels beheare
+        message_html: Jo hawwe foar dizze server gjin regels opsteld.
+      sidekiq_process_check:
+        message_html: Der draait gjin Sidekiq-proses foar de wachtrige(n) %{value}. Kontrolearje jo Sidekiq-konfiguraasje
+    tags:
+      review: Steat beoardiele
+      updated_msg: Hashtagynstellingen mei sukses bywurke
     title: Behear
     trends:
       allow: Tastean
       approved: Goedkarre
       disallow: Ofkarre
       links:
+        allow: Keppeling goedkarre
+        allow_provider: Auteur goedkarre
         description_html: Dit binne keppelingen dy’t op dit stuit in protte dield wurde troch accounts wêr’t jo server berjochten fan ûntfangt. Hjirtroch kinne jo brûkers sjen wat der yn de wrâld oan de hân is. Der wurde gjin keppelingen werjûn oant jo de website goedkard hawwe. Jo kinne ek yndividuele keppelingen goed- of ôfkarre.
         disallow: Keppeling ôfkarre
         disallow_provider: Website ôfkarre
@@ -785,6 +827,28 @@ fy:
     new_appeal:
       actions:
         none: in warskôging
+    new_pending_account:
+      subject: Der moat in nij account op %{instance} beoardiele wurde (%{username})
+    new_report:
+      body: "%{reporter} hat %{target} rapportearre"
+      body_remote: Ien fan %{domain} hat %{target} rapportearre
+      subject: 'Nije rapportaazje op %{instance} (#%{id})'
+    new_trends:
+      body: 'De folgjende items moatte beoardiele wurde eardat se iepenbier toand wurde kinne:'
+      new_trending_links:
+        title: Trending keppelingen
+      new_trending_statuses:
+        title: Trending berjochten
+      new_trending_tags:
+        no_approved_tags: Op dit stuit binne der gjin goedkarre hashtags.
+        requirements: 'Elk fan dizze kandidaten kin de #%{rank} goedkarre trending hashtag oertreffe, dy’t op dit stuit #%{lowest_tag_name} is mei in skoare fan %{lowest_tag_score}.'
+        title: Trending hashtags
+      subject: Nije trends te beoardielen op %{instance}
+  aliases:
+    add_new: Alias oanmeitsje
+    created_msg: Mei sukses in nije alias oanmakke. Jo kinne no mei de ferhuzing fan it âlde account ôf begjinne.
+    deleted_msg: De alias is mei sukses fuortsmiten. Ferhúzjen fan dy account ôf nei dizze account is net mear mooglik.
+    empty: Jo hawwe gjin aliassen.
   appearance:
     discovery: Untdekke
     localization:
@@ -927,9 +991,22 @@ fy:
     acct: Ferhuze nei
   moderation:
     title: Moderaasje
+  navigation:
+    toggle_menu: Menu toane/ferstopje
   notification_mailer:
+    admin:
+      report:
+        subject: "%{name} hat in rapportaazje yntsjinne"
+    favourite:
+      title: Nije favoryt
     follow:
+      body: "%{name} folget jo no!"
+      subject: "%{name} folget jo no"
       title: Nije folger
+    follow_request:
+      action: Folchfersiken beheare
+      body: "%{name} wol jo graach folgje"
+      title: Nij folchfersyk
     mention:
       action: Beäntwurdzje
       body: 'Jo binne fermeld troch %{name} yn:'
@@ -1026,11 +1103,38 @@ fy:
     import_and_export: Ymportearje en eksportearje
     migrate: Accountmigraasje
     notifications: Meldingen
+    preferences: Foarkarren
+    profile: Profyl
+    relationships: Folgers en folgjenden
+    two_factor_authentication: Twa-stapsferifikaasje
+    webauthn_authentication: Befeiligingskaaien
   statuses:
+    attached:
+      audio:
+        one: "%{count} lûdsbestân"
+        other: "%{count} lûdsbestannen"
+      description: 'Bylagen: %{attached}'
+      image:
+        one: "%{count} opmerking"
+        other: "%{count} opmerkingen"
+      video:
+        one: "%{count} fideo"
+        other: "%{count} fideo’s"
+    boosted_from_html: Boost fan %{acct_link}
     content_warning: 'Ynhâldswarskôging: %{warning}'
+    default_language: Itselde as de taal fan de brûkersomjouwing
+    edited_at_html: Bewurke op %{date}
+    open_in_web: Yn de webapp iepenje
+    over_character_limit: Oer de limyt fan %{max} tekens
     pin_errors:
       direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
     poll:
+      total_people:
+        one: "%{count} persoan"
+        other: "%{count} persoanen"
+      total_votes:
+        one: "%{count} stim"
+        other: "%{count} stimmen"
       vote: Stimme
     show_more: Mear toane
     show_newer: Nijere toane
@@ -1044,6 +1148,11 @@ fy:
       unlisted: Minder iepenbier
   statuses_cleanup:
     exceptions: Utsûnderingen
+    ignore_favs: Favoriten negearje
+    ignore_reblogs: Boosts negearje
+    interaction_exceptions: Utsûnderingen op basis fan ynteraksjes
+    keep_direct: Direkte berjochten behâlde
+    keep_polls: Enkêten bewarje
     min_age:
       '1209600': 2 wiken
       '15778476': 6 moannen
@@ -1054,6 +1163,7 @@ fy:
       '63113904': 2 jier
       '7889238': 3 moannen
   stream_entries:
+    pinned: Fêstsette berjocht
     reblogged: boostte
     sensitive_content: Gefoelige ynhâld
   themes:
@@ -1068,6 +1178,7 @@ fy:
     add: Tafoegje
     disable: 2FA útskeakelje
     edit: Bewurkje
+    methods: Metoaden foar twa-stapsferifikaasje
     otp: Autentikaasje-app
     webauthn: Befeiligingskaaien
   user_mailer:
@@ -1076,6 +1187,7 @@ fy:
     appeal_rejected:
       title: Beswier ôfwêzen
     suspicious_sign_in:
+      change_password: wizigje jo wachtwurd
       title: In nije registraasje
     warning:
       appeal: Beswier yntsjinje
@@ -1086,11 +1198,21 @@ fy:
       subject:
         none: Warskôging foar %{acct}
       title:
+        delete_statuses: Berjochten fuortsmiten
+        disable: Account beferzen
+        mark_statuses_as_sensitive: Berjochten as gefoelich markearre
         none: Warskôging
+        sensitive: Account as gefoelich markearre
+        silence: Account beheind
+        suspend: Account beskoattele
     welcome:
+      edit_profile_action: Profyl ynstelle
+      final_action: Begjin mei berjochten te pleatsen
+      full_handle: Jo folsleine Mastodon-adres
       subject: Wolkom op Mastodon
       title: Wolkom oan board %{name}!
   users:
+    invalid_otp_token: Unjildige twa-stapstagongskoade
     signed_in_as: 'Oanmeld as:'
   verification:
     verification: Ferifikaasje
