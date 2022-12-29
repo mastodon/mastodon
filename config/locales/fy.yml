@@ -646,22 +646,69 @@ fy:
         delete_user_data: Brûkersgegevens fuortsmite
         delete_user_data_description: Stiet brûkers ta om de gegevens fan oare brûkers sûnder fertraging fuort te smiten
         invite_users: Brûkers útnûgje
+        invite_users_description: Stiet brûkers ta om nije minsken foar de server út te nûgjen
+        manage_announcements: Meidielingen beheare
+        manage_announcements_description: Stiet brûkers ta om meidielingen op de server te behearen
+        manage_appeals: Beswieren beheare
+        manage_appeals_description: Stiet brûkers ta om beswieren tsjin moderaasjemaatregelen te beoardielen
+        manage_blocks: Blokkaden beheare
+        manage_blocks_description: Stiet brûkers ta om e-mailproviders en IP-adressen te blokkearjen
+        manage_custom_emojis: Lokale emoji’s beheare
+        manage_custom_emojis_description: Stiet brûkers ta om lokale emoji’s op de server te behearen
+        manage_federation: Federaasje beheare
+        manage_federation_description: Stiet brûkers ta om federaasje mei oare domeinen te blokkearjen of ta te stean en om de besoarging te bepalen
+        manage_invites: Utnûgingen beheare
+        manage_invites_description: Stiet brûkers ta om útnûgingskeppelingen te besjen en te de-aktivearjen
+        manage_reports: Rapportaazjes beheare
+        manage_reports_description: Stiet brûkers ta om rapportaazjes te beoardielen en om oan de hân hjirfan moderaasjemaatregelen te nimmen
+        manage_roles: Rollen beheare
+        manage_roles_description: Stiet brûkers ta om rollen te behearen en ta te wizen dy’t minder rjochten hawwe as harren eigen rol(len)
+        manage_rules: Serverregels wizigje
+        manage_rules_description: Stiet brûkers ta om serverregels te wizigjen
+        manage_settings: Serverynstellingen wizigje
+        manage_settings_description: Stiet brûkers ta de ynstellingen fan de website te wizigjen
+        manage_taxonomies: Trends en hashtags beheare
+        manage_taxonomies_description: Stiet brûkers ta om trending ynhâld te besjen en om hashtagynstellingen by te wurkjen
+        manage_user_access: Brûkerstagong beheare
+        manage_user_access_description: Stiet brûkers ta om twa-stapsferifikaasje fan oare brûkers út te skeakeljen, om harren e-mailadres te wizigjen en om harren wachtwurd opnij yn te stellen
+        manage_users: Brûkers beheare
+        manage_users_description: Stiet brûkers ta om brûkersdetails fan oaren te besjen en moderaasjemaatregelen tsjin harren te nimmen
         manage_webhooks: Webhooks beheare
+        manage_webhooks_description: Stiet brûkers ta om webhooks foar beheartaken yn te stellen
+        view_audit_log: Auditlochboek besjen
+        view_audit_log_description: Stiet brûkers ta om in skiednis fan behearaksjes op de server te besjen
+        view_dashboard: Dashboard besjen
+        view_dashboard_description: Jout brûkers tagong ta it dashboard en ferskate statistiken
         view_devops: DevOps
+        view_devops_description: Jout brûkers tagong ta de dashboarden fan Sidekiq en pgHero
       title: Rollen
     rules:
       add_new: Rigel tafoegje
       delete: Fuortsmite
+      description_html: Hoewol de measte minsken sizze dat se de brûksbetingsten lêzen hawwe en der mei akkoard gean, lêze minsken dizze meastentiids net oant dat der in probleem bard. <strong>Meitsje it ienfâldiger om de regels fan dizze server yn ien eachwink te sjen, troch se punt foar punt yn in list te setten.</strong> Probearje de ferskate regels koart en simpel te hâlden, mar probearje se ek net yn ferskate items ûnder te ferdielen.
       edit: Rigel bewurkje
+      empty: Foar dizze server binne noch gjin regels opsteld.
       title: Serverrigels
     settings:
       about:
+        manage_rules: Serverregels beheare
+        preamble: Jou wiidweidige ynformaasje oer hoe’t de server beheard, modereare en finansiere wurdt.
+        rules_hint: Der is in spesjaal gebied foar regels wêr’t jo brûkers harren oan hâlde moatte.
         title: Oer
       appearance:
+        preamble: Mastodon’s webomjouwing oanpasse.
         title: Werjefte
       branding:
+        preamble: De branding fan jo server lit sjen hoe’t it fan oare servers yn it netwurk ferskilt. Dizze ynformaasje wurdt op ferskate plakken toand, lykas yn de webomjouwing fan Mastodon, yn mobile apps, yn foarfertoaningen op oare websites en berjochte-apps, ensfh. Dêrom is it wichtich om de ynformaasje helder, koart en bûnich te hâlden.
         title: Branding
+      content_retention:
+        preamble: Tafersjoch hâlde op hoe’t berjochten en media fan brûkers op Mastodon bewarre wurde.
+        title: Bewartermyn berjochten
+      default_noindex:
+        desc_html: Hat ynfloed op alle brûkers dy’t dizze ynstelling net sels wizige hawwe
+        title: Brûkers standert net troch sykmasinen yndeksearje litte
       discovery:
+        follow_recommendations: Oanrekommandearre accounts
         title: Untdekke
         trends: Trends
       domain_blocks:
@@ -700,7 +747,22 @@ fy:
       allow: Tastean
       approved: Goedkarre
       disallow: Ofkarre
+      links:
+        description_html: Dit binne keppelingen dy’t op dit stuit in protte dield wurde troch accounts wêr’t jo server berjochten fan ûntfangt. Hjirtroch kinne jo brûkers sjen wat der yn de wrâld oan de hân is. Der wurde gjin keppelingen werjûn oant jo de website goedkard hawwe. Jo kinne ek yndividuele keppelingen goed- of ôfkarre.
+        disallow: Keppeling ôfkarre
+        disallow_provider: Website ôfkarre
+        no_link_selected: Der binne gjin keppelingen wizige, omdat der gjin ien selektearre waard
+        publishers:
+          no_publisher_selected: Der binne gjin websites wizige, omdat der gjin ien selektearre waard
+        shared_by_over_week:
+          one: Dizze wike troch ien persoan dield
+          other: Dizze wike troch %{count} persoanen dield
+        title: Trending keppelingen
+        usage_comparison: Hjoed %{today} kear dield, fergelike mei %{yesterday} kear juster
+      only_allowed: Allinnich goedkarre
+      pending_review: Moat noch beoardiele wurde
       preview_card_providers:
+        allowed: Keppelingen fan dizze website kinne trending wurde
         title: Utjouwers
       rejected: Wegere
       title: Trends
