@@ -63,7 +63,7 @@ class AltTextWarningModal extends React.PureComponent {
           <p>
             <FormattedMessage
               id='compose_form.alt_text_warning.message'
-              defaultMessage="Descriptions are for users with visual or audio impairments that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon."
+              defaultMessage="Descriptions are for users who are deaf, hard of hearing, blind, or have low vision that prevent them from seeing or hearing an image, video, or audio file. It's recommended that you provide a description for all attached media files so everyone can enjoy using Mastodon."
             />
           </p>
         </div>
