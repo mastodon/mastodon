@@ -141,4 +141,11 @@ Rails.application.configure do
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
+
+  # uncomment to allow a docker container running on the local host and serving the mastodon instance to be accessed from http://localhost:3000
+  # config.hosts = [
+  #   IPAddr.new("0.0.0.0/0"), # All IPv4 addresses.
+  #   IPAddr.new("::/0"),      # All IPv6 addresses.
+  #   "localhost",             # The localhost reserved domain.
+  # ]
 end
