@@ -453,7 +453,16 @@ fy:
       unsuppress: Account wer oanrekommandearje
     instances:
       availability:
+        description_html:
+          one: As de besoarging oan it domein nei <strong>%{count} dag</strong> mislearjen bliuwt, dan sille der gjin fierdere besykjen ta besoarging dien wurde oant in besoarging <em>fan</em> it domein ûntfongen is.
+          other: As de besoarging oan it domein nei <strong>%{count} dagen</strong> mislearjen bliuwt, dan sille der gjin fierdere besykjen ta besoarging dien wurde oant in besoarging <em>fan</em> it domein ûntfongen is.
+        failure_threshold_reached: Flaterdrompelwearde berikt op %{date}.
+        failures_recorded:
+          one: Mislearre besykjen op %{count} dag.
+          other: Mislearre besykjen op %{count} ferskate dagen.
+        no_failures_recorded: Gjin steuringen bekend.
         title: Beskikberheid
+        warning: It lêste besykjen om mei dizze server te ferbinen wie sûnder sukses
       back_to_all: Alle
       back_to_limited: Beheind
       back_to_warning: Warskôging
@@ -461,6 +470,7 @@ fy:
       confirm_purge: Wolle jo werklik alle gegevens fan dit domein foar ivich fuortsmite?
       content_policies:
         comment: Ynterne reden
+        description_html: Jo kinne it belied bepale dat op de accounts fan dit domein en alle subdomeinen fan tapassing is.
         policies:
           reject_media: Mediabestannen wegerje
           reject_reports: Rapportaazjes wegerje
@@ -487,6 +497,12 @@ fy:
         unavailable: Net beskikber
       delivery_available: Ofleverjen is mooglik
       delivery_error_days: Dagen mei ôfleverflaters
+      delivery_error_hint: Wannear’t de besoarging foar %{count} dagen net mooglik is, wurdt de besoarging automatysk as net beskikber markearre.
+      destroyed_msg: Gegevens fan %{domain} stean no yn de wachtrige foar oansteande ferwidering.
+      empty: Gjin domeinen fûn.
+      known_accounts:
+        one: "%{count} bekende account"
+        other: "%{count} bekende accounts"
       moderation:
         all: Alle
         limited: Beheind
