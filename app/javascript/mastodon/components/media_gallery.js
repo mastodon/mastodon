@@ -171,7 +171,7 @@ class Item extends React.PureComponent {
           target='_blank'
           rel='noopener noreferrer'
         >
-          { !attachment.get('description') && <IconButton className='media-gallery__item-no-alt' title={this.props.noDescriptionTitle} icon='exclamation-triangle' overlay /> }
+          { !attachment.get('description') && <IconButton className='media-gallery__item-no-description media__no-description-icon' title={this.props.noDescriptionTitle} icon='exclamation-triangle' overlay /> }
           <img
             src={previewUrl}
             srcSet={srcSet}
