@@ -510,6 +510,7 @@ fy:
       private_comment: Priveeopmerking
       public_comment: Iepenbiere opmerking
       purge: Folslein fuortsmite
+      purge_description_html: As jo tinke dat dit domein definityf offline is, kinne jo alle accounts en byhearrende gegevens fan dit domein fuortsmite. Dit kin efkes duorje.
       title: Federaasje
       total_blocked_by_us: Troch ús blokkearre
       total_followed_by_them: Troch harren folge
@@ -602,6 +603,8 @@ fy:
         placeholder: Beskriuw hokker maatregels nommen binne of oare relatearre opmerkingen…
         title: Opmerkingen
       notes_description_html: Besjoch en lit opmerkingen efter foar oare moderatoaren en foar jo takomstige sels
+      quick_actions_description_html: 'Nim in flugge maatregel of skow nei ûnder om de rapportearre ynhâld te besjen:'
+      remote_user_placeholder: de eksterne brûker fan %{instance}
       reopen: Rapport opnij iepenje
       report: 'Rapportaazje #%{id}'
       reported_account: Rapportearre account
@@ -611,6 +614,8 @@ fy:
       skip_to_actions: Gean daliks nei de maatregels
       status: Steat
       statuses: Rapportearre ynhâld
+      statuses_description_html: De problematyske ynhâld wurdt oan it rapportearre account meidield
+      target_origin: Orizjineel fan rapportearre account
       title: Rapportaazjes
       unassign: Net langer tawize
       unresolved: Net oplost
@@ -628,9 +633,19 @@ fy:
         moderation: Moderaasje
         special: Spesjaal
       delete: Fuortsmite
+      description_html: Mei <strong>brûkersrollen</strong> kinne jo de funksjes en ûnderdielen fan Mastodon, wêr’t jo brûkers tagong ta hawwe, oanpasse.
       edit: Rol ‘%{name}’ bewurkje
+      everyone: Standertrjochten
+      everyone_full_description_html: Dit is de <strong>basisrol</strong> dy’t fan tapassing is op <strong>alle brûkers</strong>, sels foar dyjinge sûnder tawizen rol. Alle oare rollen hawwe de rjochten fan dizze rol as minimum.
+      permissions_count:
+        one: "%{count} rjocht"
+        other: "%{count} rjochten"
       privileges:
         administrator: Behearder
+        administrator_description: Dizze brûkers hawwe folsleine rjochten en kinne dus oeral by
+        delete_user_data: Brûkersgegevens fuortsmite
+        delete_user_data_description: Stiet brûkers ta om de gegevens fan oare brûkers sûnder fertraging fuort te smiten
+        invite_users: Brûkers útnûgje
         manage_webhooks: Webhooks beheare
         view_devops: DevOps
       title: Rollen
