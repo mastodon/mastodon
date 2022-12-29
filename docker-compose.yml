@@ -8,7 +8,7 @@ volumes:
 services:
   db:
     restart: always
-    image: postgres:14-alpine
+    image: postgres:15-alpine
     shm_size: 256mb
     networks:
       internal_network:
@@ -24,7 +24,7 @@ services:
   redis:
     image: redis:7-alpine
     deploy:
-      replicas: 2
+      replicas: 1
       restart_policy:
         condition: on-failure
     networks:
@@ -123,7 +123,7 @@ services:
     env_file: stack.env
     command: bundle exec sidekiq
     deploy:
-      replicas: 2
+      replicas: 1
       restart_policy:
         condition: on-failure
     depends_on:
@@ -158,40 +158,40 @@ services:
 #         aliases:
 #           - privoxy
 
-  nginx:
-    image: nginx
-    restart: always
-    networks:
-      - external_network
-    healthcheck:
-      # Replace example.com with testing domain
-      test: ["CMD-SHELL", "curl -Isf --resolve example.com:80:127.0.0.1 http://example.com || exit 1"]
-    ports:
-      - '80:80'
-      - '443:443'
-    depends_on:
-      - web
-      - streaming
-    volumes:
-      - ./nginx:/etc/nginx/
-      - ./letsencrypt:/etc/letsencrypt
+#  nginx:
+#    image: nginx
+#    restart: always
+#    networks:
+#      - external_network
+#    healthcheck:
+#      # Replace example.com with testing domain
+#      test: ["CMD-SHELL", "curl -Isf --resolve example.com:80:127.0.0.1 http://example.com || exit 1"]
+#    ports:
+#      - '80:80'
+#      - '443:443'
+#    depends_on:
+#      - web
+#      - streaming
+#    volumes:
+#      - ./nginx:/etc/nginx/
+#      - ./letsencrypt:/etc/letsencrypt
 
-  certbot:
-    image: certbot/certbot
-    tty: true
-    command: certonly
-    restart: on-failure
-    profiles: ["certbot"]
-    networks:
-      external_network:
-        aliases:
-          - certbot
-    ports:
-      - '127.0.0.0:5000:80'
-    depends_on:
-      - nginx
-    volumes:
-      - ./letsencrypt:/etc/letsencrypt
+#  certbot:
+#    image: certbot/certbot
+#    tty: true
+#    command: certonly
+#    restart: on-failure
+#    profiles: ["certbot"]
+#    networks:
+#      external_network:
+#        aliases:
+#          - certbot
+#    ports:
+#      - '127.0.0.0:5000:80'
+#    depends_on:
+#      - nginx
+#    volumes:
+#      - ./letsencrypt:/etc/letsencrypt
 
 networks:
   external_network:
