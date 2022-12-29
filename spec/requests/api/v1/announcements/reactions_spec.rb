@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Announcements::ReactionsController, type: :request do
+RSpec.describe Api::V1::Announcements::ReactionsController do
   path '/api/v1/announcements/{announcement_id}/reactions/{id}' do
     # You'll want to customize the parameter types...
     parameter name: 'announcement_id', in: :path, type: :string, description: 'announcement_id'

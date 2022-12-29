@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::MutesController, type: :request do
+RSpec.describe Api::V1::MutesController do
   path '/api/v1/mutes' do
     get('list mutes') do
       tags 'Api', 'V1', 'Mutes'

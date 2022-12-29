@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Lists::AccountsController, type: :request do
+RSpec.describe Api::V1::Lists::AccountsController do
   path '/api/v1/lists/{list_id}/accounts' do
     # You'll want to customize the parameter types...
     parameter name: 'list_id', in: :path, type: :string, description: 'list_id'

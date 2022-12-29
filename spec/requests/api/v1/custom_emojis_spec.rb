@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::CustomEmojisController, type: :request do
+RSpec.describe Api::V1::CustomEmojisController do
   path '/api/v1/custom_emojis' do
     get('list custom_emojis') do
       tags 'Api', 'V1', 'CustomEmojis'

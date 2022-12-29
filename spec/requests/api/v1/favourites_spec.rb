@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::FavouritesController, type: :request do
+RSpec.describe Api::V1::FavouritesController do
   path '/api/v1/favourites' do
     get('list favourites') do
       tags 'Api', 'V1', 'Favourites'

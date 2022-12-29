@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Apps::CredentialsController, type: :request do
+RSpec.describe Api::V1::Apps::CredentialsController do
   path '/api/v1/apps/verify_credentials' do
     get('show credential') do
       tags 'Api', 'V1', 'Apps', 'Credentials'

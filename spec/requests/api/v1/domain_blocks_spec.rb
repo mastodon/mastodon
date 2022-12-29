@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::DomainBlocksController, type: :request do
+RSpec.describe Api::V1::DomainBlocksController do
   path '/api/v1/domain_blocks' do
     get('show domain_block') do
       tags 'Api', 'V1', 'DomainBlocks'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::Web::SettingsController, type: :request do
+RSpec.describe Api::Web::SettingsController do
   path '/api/web/settings' do
     patch('update setting') do
       tags 'Api', 'Web', 'Settings'

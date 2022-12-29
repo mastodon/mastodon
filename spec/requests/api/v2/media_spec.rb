@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V2::MediaController, type: :request do
+RSpec.describe Api::V2::MediaController do
   path '/api/v2/media' do
     post('create medium') do
       tags 'Api', 'V2', 'Media'

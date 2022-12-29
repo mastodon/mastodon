@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::Web::EmbedsController, type: :request do
+RSpec.describe Api::Web::EmbedsController do
   path '/api/web/embed' do
     post('create embed') do
       tags 'Api', 'Web', 'Embeds'

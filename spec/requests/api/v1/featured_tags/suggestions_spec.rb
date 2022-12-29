@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::FeaturedTags::SuggestionsController, type: :request do
+RSpec.describe Api::V1::FeaturedTags::SuggestionsController do
   path '/api/v1/featured_tags/suggestions' do
     get('list suggestions') do
       tags 'Api', 'V1', 'FeaturedTags', 'Suggestions'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::CanonicalEmailBlocksController, type: :request do
+RSpec.describe Api::V1::Admin::CanonicalEmailBlocksController do
   path '/api/v1/admin/canonical_email_blocks/test' do
     post('test canonical_email_block') do
       tags 'Api', 'V1', 'Admin', 'CanonicalEmailBlocks'

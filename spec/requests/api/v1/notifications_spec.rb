@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::NotificationsController, type: :request do
+RSpec.describe Api::V1::NotificationsController do
   path '/api/v1/notifications/clear' do
     post('clear notification') do
       tags 'Api', 'V1', 'Notifications'

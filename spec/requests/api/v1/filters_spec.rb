@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::FiltersController, type: :request do
+RSpec.describe Api::V1::FiltersController do
   path '/api/v1/filters' do
     get('list filters') do
       tags 'Api', 'V1', 'Filters'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V2::SearchController, type: :request do
+RSpec.describe Api::V2::SearchController do
   path '/api/v2/search' do
     get('list searches') do
       tags 'Api', 'V2', 'Search'

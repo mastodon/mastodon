@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Push::SubscriptionsController, type: :request do
+RSpec.describe Api::V1::Push::SubscriptionsController do
   path '/api/v1/push/subscription' do
     get('show subscription') do
       tags 'Api', 'V1', 'Push', 'Subscriptions'

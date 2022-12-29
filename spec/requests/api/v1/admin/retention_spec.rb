@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::RetentionController, type: :request do
+RSpec.describe Api::V1::Admin::RetentionController do
   path '/api/v1/admin/retention' do
     post('create retention') do
       tags 'Api', 'V1', 'Admin', 'Retention'

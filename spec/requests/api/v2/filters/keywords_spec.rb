@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V2::Filters::KeywordsController, type: :request do
+RSpec.describe Api::V2::Filters::KeywordsController do
   path '/api/v2/filters/{filter_id}/keywords' do
     # You'll want to customize the parameter types...
     parameter name: 'filter_id', in: :path, type: :string, description: 'filter_id'

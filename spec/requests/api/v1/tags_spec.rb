@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::TagsController, type: :request do
+RSpec.describe Api::V1::TagsController do
   path '/api/v1/tags/{id}/follow' do
     # You'll want to customize the parameter types...
     parameter name: 'id', in: :path, type: :string, description: 'id'

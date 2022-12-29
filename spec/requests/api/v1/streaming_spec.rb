@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::StreamingController, type: :request do
+RSpec.describe Api::V1::StreamingController do
   path '/api/v1/streaming' do
     get('list streamings') do
       tags 'Api', 'V1', 'Streaming'

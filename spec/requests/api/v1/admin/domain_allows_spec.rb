@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::DomainAllowsController, type: :request do
+RSpec.describe Api::V1::Admin::DomainAllowsController do
   path '/api/v1/admin/domain_allows' do
     get('list domain_allows') do
       tags 'Api', 'V1', 'Admin', 'DomainAllows'

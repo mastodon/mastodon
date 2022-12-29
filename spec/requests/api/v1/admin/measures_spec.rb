@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::MeasuresController, type: :request do
+RSpec.describe Api::V1::Admin::MeasuresController do
   path '/api/v1/admin/measures' do
     post('create measure') do
       tags 'Api', 'V1', 'Admin', 'Measures'

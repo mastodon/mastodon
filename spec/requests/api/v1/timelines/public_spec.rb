@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Timelines::PublicController, type: :request do
+RSpec.describe Api::V1::Timelines::PublicController do
   path '/api/v1/timelines/public' do
     get('show public') do
       tags 'Api', 'V1', 'Timelines', 'Public'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Timelines::HomeController, type: :request do
+RSpec.describe Api::V1::Timelines::HomeController do
   path '/api/v1/timelines/home' do
     get('show home') do
       tags 'Api', 'V1', 'Timelines', 'Home'

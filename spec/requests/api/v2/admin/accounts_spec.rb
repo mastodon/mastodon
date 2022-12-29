@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V2::Admin::AccountsController, type: :request do
+RSpec.describe Api::V2::Admin::AccountsController do
   path '/api/v2/admin/accounts' do
     get('list accounts') do
       tags 'Api', 'V2', 'Admin', 'Accounts'

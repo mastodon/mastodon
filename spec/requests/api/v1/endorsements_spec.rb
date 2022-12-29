@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::EndorsementsController, type: :request do
+RSpec.describe Api::V1::EndorsementsController do
   path '/api/v1/endorsements' do
     get('list endorsements') do
       tags 'Api', 'V1', 'Endorsements'

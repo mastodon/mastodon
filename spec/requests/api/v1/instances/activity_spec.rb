@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Instances::ActivityController, type: :request do
+RSpec.describe Api::V1::Instances::ActivityController do
   path '/api/v1/instance/activity' do
     get('show activity') do
       tags 'Api', 'V1', 'Instances', 'Activity'

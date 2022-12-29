@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Instances::PrivacyPoliciesController, type: :request do
+RSpec.describe Api::V1::Instances::PrivacyPoliciesController do
   path '/api/v1/instance/privacy_policy' do
     get('show privacy_policy') do
       tags 'Api', 'V1', 'Instances', 'PrivacyPolicies'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Emails::ConfirmationsController, type: :request do
+RSpec.describe Api::V1::Emails::ConfirmationsController do
   path '/api/v1/emails/confirmations' do
     post('create confirmation') do
       tags 'Api', 'V1', 'Emails', 'Confirmations'

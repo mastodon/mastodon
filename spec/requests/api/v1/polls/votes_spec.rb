@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Polls::VotesController, type: :request do
+RSpec.describe Api::V1::Polls::VotesController do
   path '/api/v1/polls/{poll_id}/votes' do
     # You'll want to customize the parameter types...
     parameter name: 'poll_id', in: :path, type: :string, description: 'poll_id'

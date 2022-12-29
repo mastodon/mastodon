@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::MarkersController, type: :request do
+RSpec.describe Api::V1::MarkersController do
   path '/api/v1/markers' do
     get('list markers') do
       tags 'Api', 'V1', 'Markers'

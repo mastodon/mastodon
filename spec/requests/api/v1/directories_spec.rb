@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::DirectoriesController, type: :request do
+RSpec.describe Api::V1::DirectoriesController do
   path '/api/v1/directory' do
     get('show directory') do
       tags 'Api', 'V1', 'Directories'

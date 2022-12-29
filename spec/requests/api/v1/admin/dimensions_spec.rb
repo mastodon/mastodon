@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::DimensionsController, type: :request do
+RSpec.describe Api::V1::Admin::DimensionsController do
   path '/api/v1/admin/dimensions' do
     post('create dimension') do
       tags 'Api', 'V1', 'Admin', 'Dimensions'

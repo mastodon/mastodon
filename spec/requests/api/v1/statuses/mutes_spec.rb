@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Statuses::MutesController, type: :request do
+RSpec.describe Api::V1::Statuses::MutesController do
   path '/api/v1/statuses/{status_id}/mute' do
     # You'll want to customize the parameter types...
     parameter name: 'status_id', in: :path, type: :string, description: 'status_id'

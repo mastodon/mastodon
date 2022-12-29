@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::ScheduledStatusesController, type: :request do
+RSpec.describe Api::V1::ScheduledStatusesController do
   path '/api/v1/scheduled_statuses' do
     get('list scheduled_statuses') do
       tags 'Api', 'V1', 'ScheduledStatuses'

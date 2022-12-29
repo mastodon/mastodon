@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::IpBlocksController, type: :request do
+RSpec.describe Api::V1::Admin::IpBlocksController do
   path '/api/v1/admin/ip_blocks' do
     get('list ip_blocks') do
       tags 'Api', 'V1', 'Admin', 'IpBlocks'
