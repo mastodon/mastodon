@@ -1099,6 +1099,9 @@ fy:
     archive_takeout:
       date: Datum
       download: Jo argyf downloade
+      hint_html: Jo kinne in argyf opfreegje fan jo <strong>berjochten en oplade media</strong>. De eksportearre gegevens binne yn it ActivityPub-formaat, dat troch hjirfoar geskikte software te lêzen is. Jo kinne elke 7 dagen in kopy fan jo argyf oanfreegje.
+      in_progress: Jo argyf wurdt gearstald…
+      request: Jo argyf opfreegje
       size: Grutte
     blocks: Jo blokkearje
     bookmarks: Blêdwizers
@@ -1106,32 +1109,91 @@ fy:
     domain_blocks: Domeinblokkaden
     lists: Listen
     mutes: Jo negearje
+    storage: Mediaûnthâld
   featured_tags:
     add_new: Nije tafoegje
+    errors:
+      limit: Jo hawwe al it maksimaal tal hashtags útljochte
+    hint_html: "<strong>Wat binne útljochte hashtags?</strong> Dizze wurde prominint op jo iepenbiere profyl toand en stelt minsken yn steat om jo iepenbiere berjochten per hashtag te besjen. It is in goed helpmiddel om kreative wurksumheden of langetermynprojekten by te hâlden."
   filters:
     contexts:
       account: Profilen
+      home: Starttiidline en listen
       notifications: Meldingen
+      public: Iepenbiere tiidlinen
       thread: Petearen
     edit:
+      add_keyword: Foegje kaaiwurd ta
       keywords: Kaaiwurden
+      statuses: Yndividuele berjochten
+      statuses_hint_html: Dit filter is fan tapassing om yndividuele berjochten te selektearjen, oft se no met de ûndersteande trefwurden oerienkomme of net. <a href="%{path}">Berjochten fan it filter besjen of fuortsmite</a>.
       title: Filter bewurkje
+    errors:
+      deprecated_api_multiple_keywords: Dizze ynstellingen kinne net fia dizze applikaasje wizige wurde, omdat der mear as ien trefwurd brûkt wurdt. Brûk in mear resinte applikaasje of de webomjouwing.
+      invalid_context: Gjin of ûnjildige kontekst jûn
     index:
+      contexts: Filters yn %{contexts}
       delete: Fuortsmite
+      empty: Jo hawwe gjin filters oanmakke.
+      expires_in: Ferrint nei %{distance}
+      expires_on: Ferrint op %{date}
+      keywords:
+        one: "%{count} trefwurd"
+        other: "%{count} trefwurden"
+      statuses:
+        one: "%{count} berjocht"
+        other: "%{count} berjochten"
+      statuses_long:
+        one: "%{count} yndividueel berjocht ferstoppe"
+        other: "%{count} yndividuele berjochten ferstoppe"
       title: Filters
+    new:
+      save: Nije filter bewarje
+      title: Nije filter tafoegje
+    statuses:
+      back_to_filter: Tebek nei it filter
+      batch:
+        remove: Ut it filter fuortsmite
+      index:
+        hint: Dit filter is fan tapassing om yndividuele berjochten te selektearjen, ûnôfhinklik fan oare kritearia. Jo kinne yn de webomjouwing mear berjochten oan dit filter tafoegje.
+        title: Filtere berjochten
+  footer:
+    trending_now: Trends
   generic:
     all: Alle
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> item op dizze side is selektearre."
+      other: Alle <strong>%{count}</strong> items op dizze side binne selektearre.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> item dat mei jo sykopdracht oerienkomt is selektearre."
+      other: Alle <strong>%{count}</strong> items dy’t mei jo sykopdracht oerienkomme binne selektearre.
+    changes_saved_msg: Wizigingen mei sukses bewarre!
     copy: Kopiearje
     delete: Fuortsmite
     deselect: Alles deselektearje
     none: Gjin
     order_by: Sortearje op
     save_changes: Wizigingen bewarje
+    select_all_matching_items:
+      one: '%{count} item dat mei jo sykopdracht oerienkomt selektearje.'
+      other: Alle %{count} items dy’t mei jo sykopdracht oerienkomme selektearje.
     today: hjoed
+    validation_errors:
+      one: Der is wat net hielendal goed! Besjoch ûndersteande flater
+      other: Der is wat net hielendal goed! Besjoch ûndersteande %{count} flaters
+  html_validator:
+    invalid_markup: 'befettet ûnjildige HTML-opmaak: %{error}'
   imports:
+    errors:
+      invalid_csv_file: 'Unjildich CSV-bestân. Flater: %{error}'
+      over_rows_processing_limit: befettet mear as %{count} rigen
     modes:
       merge: Gearfoegje
+      merge_long: Besteande gegevens behâlde en nije tafoegje
       overwrite: Oerskriuwe
+      overwrite_long: Aktuele gegevens mei de nije gegevens ferfange
+    preface: Jo kinne bepaalde gegevens, lykas de minsken dy’t jo folgje of blokkearre hawwe, nei jo account op dizze server ymportearje. Jo moatte dizze gegevens wol earst op de oarspronklike server eksportearje.
+    success: Jo gegevens binne mei sukses opladen en wurde ynkoarten ferwurke
     types:
       blocking: Blokkearlist
       bookmarks: Blêdwizers
@@ -1445,14 +1507,30 @@ fy:
       private: Allinnich folgers
       private_long: Allinnich oan jo folgers toane
       public: Iepenbier
+      public_long: Elkenien kin it sjen
       unlisted: Minder iepenbier
+      unlisted_long: Elkenien kin it sjen, mar net op iepenbiere tiidlinen
   statuses_cleanup:
+    enabled: Automatysk âlde berjochten fuortsmite
+    enabled_hint: Smyt jo berjochten automatysk fuort sa gau as se in bepaalde leeftiidsgrins berikke, útsein se oerienkomme mei ien fan de ûndersteande útsûnderingen
     exceptions: Utsûnderingen
+    explanation: Trochdat it fuortsmiten fan berjochten de server swier belêst, bart dit stadich op mominten dat de server net dwaande is. Om dizze reden kinne jo berjochten in amerijke neidat se de leeftiidsgrins berikt hawwe fuortsmiten wurde.
     ignore_favs: Favoriten negearje
     ignore_reblogs: Boosts negearje
     interaction_exceptions: Utsûnderingen op basis fan ynteraksjes
+    interaction_exceptions_explanation: Merk op dat der gjin garânsje is dat berjochten fuortsmiten wurde, wannear’t ien kear it tal favoriten of boosts boppe de ynstelde grinswearde west binne.
     keep_direct: Direkte berjochten behâlde
+    keep_direct_hint: Smyt gjin inkeld direkt berjocht fan jo fuort
+    keep_media: Berjochten mei mediabylagen behâlde
+    keep_media_hint: Smyt gjin inkeld berjocht mei mediabylagen fuort
+    keep_pinned: Fêstmakke berjochten behâlde
+    keep_pinned_hint: Smyt gjin inkeld fêstset berjocht fan jo fuort
     keep_polls: Enkêten bewarje
+    keep_polls_hint: Gjin inkelde enkête fan jo wurdt fuortsmiten
+    keep_self_bookmark: Blêdwizers behâlde
+    keep_self_bookmark_hint: Eigen berjochten dy’t jo oan jo blêdwizers tafoege hawwe wurde net fuortsmiten
+    keep_self_fav: Favoriten behâlde
+    keep_self_fav_hint: Eigen berjochten dy’t jo as favoryt markearre hawwe wurde net fuortsmiten
     min_age:
       '1209600': 2 wiken
       '15778476': 6 moannen
@@ -1462,11 +1540,22 @@ fy:
       '604800': 1 wike
       '63113904': 2 jier
       '7889238': 3 moannen
+    min_age_label: Fuort te smiten nei
+    min_favs: Berjochten dy’t op syn minst safolle kear as favoryt markearre binne behâlde
+    min_favs_hint: Smyt gjin berjochten dy’t op syn minst safolle kear as favoryt markearre binne fuort. Lit leech om berjochten likefolle it tal favoriten fuort te smiten
+    min_reblogs: Berjochten dy’t op syn minst safolle kear boost binne behâlde
+    min_reblogs_hint: Smyt gjin berjochten dy’t op syn minst safolle kear boost binne fuort. Lit leech om berjochten likefolle it tal boosts fuort te smiten
   stream_entries:
     pinned: Fêstsette berjocht
     reblogged: boostte
     sensitive_content: Gefoelige ynhâld
+  strikes:
+    errors:
+      too_late: De perioade dat jo beswier meitsje kinne tsjin dizze skeining is ferrûn
+  tags:
+    does_not_match_previous_name: komt net oerien mei de foarige namme
   themes:
+    contrast: Mastodon (heech kontrast)
     default: Mastodon (donker)
     mastodon-light: Mastodon (ljocht)
   time:
@@ -1477,26 +1566,56 @@ fy:
   two_factor_authentication:
     add: Tafoegje
     disable: 2FA útskeakelje
+    disabled_success: Utskeakeljen twa-stapsferifikaasje is slagge
     edit: Bewurkje
+    enabled: Twa-stapsferifikaasje is ynskeakele
+    enabled_success: Ynskeakeljen twa-stapsferifikaasje is slagge
+    generate_recovery_codes: Werstelkoaden generearje
+    lost_recovery_codes: Mei werstelkoaden kinne jo tagong ta jo account krije wannear’t jo jo telefoan kwytrekke binne. Wannear’t jo jo werstelkoaden kwytrekke binne, kinne jo se hjir opnij generearje. Jo âlde werstelkoaden binne dêrnei ûnjildich.
     methods: Metoaden foar twa-stapsferifikaasje
     otp: Autentikaasje-app
+    recovery_codes: Reservekopy meitsje fan werstelkoaden
+    recovery_codes_regenerated: Opnij generearjen werstelkoaden slagge
+    recovery_instructions_html: Wannear’t jo ea de tagong ta jo telefoan ferlieze, kinne jo mei help fan ien fan de werstelkoaden hjirûnder opnij tagong krije ta jo account. <strong>Soargje derfoar dat jo de werstelkoaden op in feilich plak bewarje</strong>. Jo kinne se bygelyks ôfdrukke en se tegearre mei oare wichtige dokuminten bewarje.
     webauthn: Befeiligingskaaien
   user_mailer:
     appeal_approved:
       action: Gean nei jo account
+      explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is goedkard. De earder fêststelde skeining is hjirby net langer jildich.
+      subject: Jo beswier fan %{date} is goedkard
+      title: Beswier goedkard
     appeal_rejected:
+      explanation: It beswier tsjin in troch in moderator fêststelde skeining fan jo op %{strike_date}, yntsjinne op %{appeal_date}, is ôfwêzen. De fêststelde skeining bliuwt wurdt dêrom net wizige.
+      subject: Jo beswier fan %{date} is ôfwêzen
       title: Beswier ôfwêzen
+    backup_ready:
+      explanation: Jo hawwe in folsleine reservekopy fan jo Mastodon-account opfrege. It stiet no klear om download te wurden!
+      subject: Jo argyf stiet klear om download te wurden
+      title: Argyf ophelje
     suspicious_sign_in:
       change_password: wizigje jo wachtwurd
+      details: 'Hjir binne de details fan oanmeldbesykjen:'
+      explanation: Wy hawwe fêststeld dat ien fan in nij IP-adres ôf op jo account oanmeld is.
+      further_actions_html: Wannear’t jo dit net wiene, advisearje wy om daliks %{action} en om twa-stapsferifikaasje yn te skeakeljen, om sa jo account feilich te hâlden.
+      subject: Jo account is fan in nij IP-adres ôf benadere
       title: In nije registraasje
     warning:
       appeal: Beswier yntsjinje
       categories:
         spam: Spam
+      explanation:
+        silence: Jo kinne noch hieltyd jo account brûke, mar allinnich minsken dy’t jo al folgje kinne jo berjochten sjen, en jo kinne minder goed fûn wurde. Oaren kinne jo echter noch wol hieltyd hânmjittich folgje.
+        suspend: Jo kinne net langer jo account brûke en jo profyl en oare gegevens binne net langer tagonklik. Jo kinne noch hieltyd oanmelde om in reservekopy fan jo gegevens op te freegjen, oant dizze nei 30 dagen folslein fuortsmiten wurde. Wy sille wol inkelde basisgegevens behâlde om foar te kommen dat jo ûnder jo útstel probearje út te kommen.
       reason: 'Reden:'
       statuses: 'Rapportearre berjochten:'
       subject:
+        delete_statuses: Dizze berjochten fan %{acct} binne fuortsmiten
+        disable: Jo account %{acct} is beferzen
+        mark_statuses_as_sensitive: Dizze berjochten fan %{acct} binne as gefoelich markearre
         none: Warskôging foar %{acct}
+        sensitive: Berjochten fan %{acct} sille fan no ôf altyd as gefoelich markearre wurde
+        silence: Jo account %{acct} is no beheind
+        suspend: Jo account %{acct} is útsteld
       title:
         delete_statuses: Berjochten fuortsmiten
         disable: Account beferzen
@@ -1507,19 +1626,37 @@ fy:
         suspend: Account beskoattele
     welcome:
       edit_profile_action: Profyl ynstelle
+      edit_profile_step: Jo kinne jo profyl oanpasse troch in profylfoto op te laden, jo werjeftenamme oan te passen en mear. Jo kinne it hânmjittich goedkarren fan folgers ynstelle.
+      explanation: Hjir binne inkelde tips om jo op wei te helpen
       final_action: Begjin mei berjochten te pleatsen
+      final_step: 'Begjin berjochten te pleatsen! Sels sûnder folgers kinne jo iepenbiere berjochten troch oaren besjoen wurde, bygelyks op de lokale tiidline en ûnder hashtags. Jo kinne josels foarstelle mei it gebrûk fan de hashtag #introductions.'
       full_handle: Jo folsleine Mastodon-adres
+      full_handle_hint: Dit jouwe jo oan jo freonen, sadat se jo berjochten stjoere kinne of (fan in oare Mastodon-server ôf) folgje kinne.
       subject: Wolkom op Mastodon
       title: Wolkom oan board %{name}!
   users:
+    follow_limit_reached: Jo kinne net mear as %{limit} accounts folgje
     invalid_otp_token: Unjildige twa-stapstagongskoade
+    otp_lost_help_html: As jo tagong ta beide kwytrekke binne, nim dan kontakt op fia %{email}
+    seamless_external_login: Jo binne oanmeld fia in eksterne tsjinst, dêrom binne wachtwurden en e-mailynstellingen net beskikber.
     signed_in_as: 'Oanmeld as:'
   verification:
+    explanation_html: 'Jo kinne <strong>josels ferifiearje as de eigener fan de keppelingen yn de metadata fan jo profyl</strong>. Hjirfoar moat op de keppele website in keppeling werom nei jo Mastodon-profyl stean. Dizze keppeling <strong>moat</strong> it <code>rel="me"</code>-attribút befetsje. De omskriuwing fan de keppeling makket net út. Hjir is in foarbyld:'
     verification: Ferifikaasje
   webauthn_credentials:
     add: Nije befeiligingskaai tafoegje
+    create:
+      error: Der is in probleem bard mei it tafoegjen fan jo befeiligingskaai. Probearje it nochris.
+      success: It tafoegjen fan jo befeiligingskaai is slagge.
     delete: Fuortsmite
+    delete_confirmation: Binne jo wis dat jo dizze befeiligingskaai fuortsmite wolle?
+    description_html: Wannear’t jo <strong>ferifikaasje mei befeiligingskaaien</strong> ynskeakelje, moatte jo wylst it oanmelden ien fan jo befeiligingskaaien brûke.
+    destroy:
+      error: Der wie in probleem by it fuortsmiten fan jo befeiligingskaai. Probearje it nochris.
+      success: Jo befeilingskaai is mei sukses fuortsmiten.
     invalid_credential: Unjildige befeiligingskaai
+    nickname_hint: Fier de bynamme yn fan jo nije befeiligingskaai
+    not_enabled: Jo hawwe WebAuthn noch net ynskeakele
     not_supported: Dizze browser stipet gjin befeiligingskaaien
     otp_required: Om befeiligingskaaien brûke te kinnen, moatte jo earst twa-stapsferifikaasje ynskeakelje.
     registered_on: Registrearre op %{date}
