@@ -365,6 +365,7 @@ class FeedManager
     end
 
     return true if check_for_blocks.any? { |target_account_id| crutches[:blocking][target_account_id] || crutches[:muting][target_account_id] }
+    return true if crutches[:blocked_by].include?(status.account_id)
 
     if status.reply? && !status.in_reply_to_account_id.nil?                                                                      # Filter out if it's a reply
       should_filter   = !crutches[:following][status.in_reply_to_account_id]                                                     # and I'm not following the person it's a reply to
