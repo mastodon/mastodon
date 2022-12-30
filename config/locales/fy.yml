@@ -805,29 +805,88 @@ fy:
       pending_review: Moat noch beoardiele wurde
       preview_card_providers:
         allowed: Keppelingen fan dizze website kinne trending wurde
+        description_html: Dit binne domeinen wêrfan keppelingen faaks op jo server dield wurde. Keppelingen sille net yn it iepenbier trending wurde, eardat it domein fan de keppeling goedkard wurdt. Jo goedkarring (of ôfwizing) jildt ek foar subdomeinen.
+        rejected: Keppelingen fan dizze nijswebsite kinne net trending wurde
         title: Utjouwers
       rejected: Wegere
+      statuses:
+        allow: Berjocht goedkarre
+        allow_account: Account goedkarre
+        description_html: Dit binne berjochten dy’t op jo server bekend binne en dy’t op dit stuit in protte dield wurde en as favoryt markearre wurde. Hjirmei kinne nije en weromkearende brûkers mear minsken fine om te folgjen. Der wurde gjin berjochten yn it iepenbier werjûn oant de account troch jo goedkard is en de brûker tastiet dat harren account oan oaren oanrekommandearre wurdt. Jo kinne ek yndividuele berjochten goed- of ôfkarre.
+        disallow: Berjocht ôfkarre
+        disallow_account: Account ôfkarre
+        no_status_selected: Der binne gjin trending berjochten wizige, omdat der gjin ien selektearre waard
+        not_discoverable: Brûker hat gjin tastimming jûn om ûntdekt te wurden
+        shared_by:
+          one: Ien kear dield of as favoryt markearre
+          other: '%{friendly_count} kear dield of as favoryt markearre'
+        title: Trending berjochten
+      tags:
+        current_score: Aktuele skoare is %{score}
+        dashboard:
+          tag_accounts_measure: tal unike kearen brûkt
+          tag_languages_dimension: Populêre talen
+          tag_servers_dimension: Populêre servers
+          tag_servers_measure: ferskate servers
+          tag_uses_measure: totaal tal kear brûkt
+        description_html: Dizze hashtags ferskine op dit stuit yn in protte berjochten dy’t op jo server sichtber binne. Hjirmei kinne jo brûkers sjen dêr’t minsken op dit momint it meast oer prate. Der wurde gjin hashtags yn it iepenbier werjûn oant jo se goedkarre.
+        listable: Kin oanrekommandearre wurde
+        no_tag_selected: Der binne gjin hashtags wizige, omdat der gjin ien selektearre waard
+        not_listable: Wurdt net oanrekommandearre
+        not_trendable: Sil net ûnder trends ferskine
+        not_usable: Kin net brûkt wurde
+        peaked_on_and_decaying: Yn de trends op %{date}, nimt no wer ôf
+        title: Trending hashtags
+        trendable: Kin net ûnder trends ferskine
+        trending_rank: 'Trending #%{rank}'
+        usable: Kin brûkt wurde
+        usage_comparison: Hjoed %{today} kear brûkt, fergelike mei %{yesterday} kear juster
+        used_by_over_week:
+          one: Dizze wike troch ien persoan brûkt
+          other: Dizze wike troch %{count} persoanen brûkt
       title: Trends
       trending: Trending
     warning_presets:
       add_new: Nije tafoegje
       delete: Fuortsmite
+      edit_preset: Foarynstelling foar warskôging bewurkje
+      empty: Jo hawwe noch gjin foarynstellingen foar warskôgingen tafoege.
+      title: Foarynstellingen foar warskôgingen beheare
     webhooks:
+      add_new: Einpunt tafoegje
       delete: Fuortsmite
+      description_html: Mei in <strong>webhook</strong> kin Mastodon <strong>meldingen real-time</strong> oer keazen barrens nei jo eigen tapassing stjoere, sadat jo applikaasje <strong>automatysk reaksjes generearje kin</strong>.
       disable: Utskeakelje
       disabled: Utskeakele
+      edit: Einpunt bewurkje
+      empty: Jo hawwe noch gjin webhook-einpunten konfigurearre.
       enable: Ynskeakelje
       enabled: Aktyf
+      enabled_events:
+        one: 1 ynskeakele evenemint
+        other: "%{count} ynskeakele eveneminten"
       events: Eveneminten
       new: Nije webhook
+      rotate_secret: Geheime kaai opnij generearje
+      secret: Geheime kaai ûndertekenje
       status: Steat
       title: Webhooks
       webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: it fuortsmiten fan harren berjochten
+        disable: it beferzen fan harren account
+        mark_statuses_as_sensitive: it markearjen fan harren berjochten as gefoelich
         none: in warskôging
+        sensitive: it gefoelich forsearjen fan harren account
+        silence: it beheinen fan harren account
+        suspend: it útstellen fan harren account
+      body: "%{target} makket beswier tsjin in moderaasjemaatregel troch %{action_taken_by} op %{date}, oangeande %{type}. De brûker skriuwt:"
+      next_steps: Jo kinne it beswier goedkarre om dêrmei de moderaasjemaatregel ûngedien te meitsjen, of jo kinne it ferwerpe.
+      subject: "%{username} makket beswier tsjin in moderaasjemaatregel op %{instance}"
     new_pending_account:
+      body: Sjoch hjirûnder de details fan it nije account. Jo kinne de oanfraach goedkarre of ôfwize.
       subject: Der moat in nij account op %{instance} beoardiele wurde (%{username})
     new_report:
       body: "%{reporter} hat %{target} rapportearre"
@@ -881,7 +940,11 @@ fy:
       account_status: Accountsteat
   authorize_follow:
     follow: Folgje
+    follow_request: 'Jo hawwe in folchfersyk yntsjinne by:'
+    following: 'Slagge! Jo folgje no:'
     post_follow:
+      close: Of jo kinne dit finster gewoan slute.
+      return: Profyl fan dizze brûker toane
       web: Gean nei de webapp
     title: '%{acct} folgje'
   challenge:
