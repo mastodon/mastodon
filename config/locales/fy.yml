@@ -949,7 +949,13 @@ fy:
     title: '%{acct} folgje'
   challenge:
     confirm: Trochgean
+    hint_html: "<strong>Tip:</strong> Wy freegje jo it kommende oere net mear nei jo wachtwurd."
     invalid_password: Unjildich wachtwurd
+    prompt: Befêstigje wachtwurd om troch te gean
+  crypto:
+    errors:
+      invalid_key: is gjin jildige Ed25519- of Curve25519-kaai
+      invalid_signature: is gjin jildige Ed25519-hantekening
   date:
     formats:
       default: "%d %b %Y"
@@ -969,18 +975,59 @@ fy:
       x_months: "%{count}mo"
       x_seconds: "%{count}s"
   deletes:
+    challenge_not_passed: De ynformaasje dy’t jo ynfierd hawwe is ûnjildich
+    confirm_password: Fier jo aktuele wachtwurd yn om jo identiteit te befêstigjen
+    confirm_username: Fier jo brûkersnamme yn om de proseduere te befêstigjen
     proceed: Account fuortsmite
+    success_msg: Jo account is mei sukses fuortsmiten
+    warning:
+      before: 'Lês dizze tekst soarchfâldich eardat jo troch gean:'
+      caches: Berjochten en media dy’t op oare servers bewarre binne kinne dêr efterbliuwe
+      data_removal: Jo berjochten en oare gegevens wurde permanint fuortmiten
+      email_change_html: Jo kinne <a href="%{path}">jo e-mailadres wizigje</a> sûnder dat jo jo account fuort hoege te smiten
+      email_contact_html: Wannear’t it noch hieltyd net oankomt, kinne jo foar help in e-mailberjocht stjoere nei <a href="mailto:%{email}">%{email}</a>
+      email_reconfirmation_html: Wannear’t jo it befêstigings-e-mailberjocht net ûntfongen hawwe, kinne jo dizze <a href="%{path}">opnij oanfreegje</a>
+      irreversible: Jo sille net yn steat wêze om jo account te werstellen of te de-aktivearjen
+      more_details_html: Sjoch it <a href="%{terms_path}">privacybelied</a> foar mear ynformaasje.
+      username_available: Jo brûkersnamme sil wer beskikber komme
+      username_unavailable: Jo brûkersnamme sil net beskikber bliuwe
   disputes:
     strikes:
+      action_taken: Nommen maatregel
       appeal: Beswier
+      appeal_approved: It yntsjinne beswier is goedkard en de earder fêststelde oertrêding is net langer jildich
+      appeal_rejected: It yntsjinne beswier is ôfwêzen
+      appeal_submitted_at: Beswier yntsjinne
+      appealed_msg: Jo beswier is yntsjinne. Wannear’t dizze goedkard wurdt, krije jo hjir berjocht fan.
+      appeals:
+        submit: Beswier yntsjinje
+      approve_appeal: Beswier goedkarre
+      associated_report: Byhearrende rapportaazje
       created_at: Datum en tiid
+      description_html: Dit binne maatregels dy’t tsjin jo account nommen binne en warskôgingen dy’t troch meiwurkers fan %{instance} nei jo stjoerd binne.
+      recipient: Adressearre oan
+      reject_appeal: Beswier ôfwêzen
+      status: 'Berjocht #%{id}'
+      status_removed: Berjocht is al fan de server fuortsmiten
+      title: "%{action} fan %{date}"
       title_actions:
+        delete_statuses: Fuortsmiten fan berjocht
+        disable: Beferzen fan account
+        mark_statuses_as_sensitive: Berjochten as gefoelich markearje
         none: Warskôging
+        sensitive: Folsleine account as gefoelich markearje
+        silence: Beheining account
+        suspend: Utstellen account
+      your_appeal_approved: Jo beswier is goedkard
+      your_appeal_pending: Jo hawwe in beswier yntsjinne
+      your_appeal_rejected: Jo beswier is ôfwêzen
+  domain_validator:
+    invalid_domain: is in ûnjildige domeinnamme
   errors:
-    '400': The request you submitted was invalid or malformed.
-    '403': You don't have permission to view this page.
-    '404': The page you are looking for isn't here.
-    '406': This page is not available in the requested format.
+    '400': De oanfraach dy’t jo yntsjinne hawwe wie ûnjildich of fout.
+    '403': Jo hawwe gjin tastimming om dizze side te besjen.
+    '404': De side wêrnei’t jo sochten bestiet net.
+    '406': Dizze side is net beskikber yn it opfrege formaat.
     '410': The page you were looking for doesn't exist here anymore.
     '422':
     '429': Too many requests
@@ -1025,6 +1072,7 @@ fy:
     types:
       blocking: Blokkearlist
       bookmarks: Blêdwizers
+      domain_blocking: Domeinblokkearlist
       following: Folchlist
       muting: Negearlist
     upload: Oplade
@@ -1039,28 +1087,84 @@ fy:
       '604800': 1 wike
       '86400': 1 dei
     expires_in_prompt: Nea
+    generate: Utnûgingskeppeling generearje
+    invited_by: 'Jo binne útnûge troch:'
     max_uses:
       one: 1 kear
       other: "%{count} kear"
     max_uses_prompt: Gjin limyt
+    prompt: Generearje en diel spesjale keppelingen om minsken tagong ta dizze Mastodon-server te jaan
     table:
       expires_at: Ferrint op
+      uses: Brûkt
     title: Minsken útnûgje
+  lists:
+    errors:
+      limit: Jo hawwe it maksimaal tal listen berikt
   login_activities:
     authentication_methods:
+      otp: twa-stapsferifikaasje-app
       password: wachtwurd
+      sign_in_token: befeiligingskoade fia e-mailberjocht
       webauthn: befeiligingskaaien
+    description_html: Wannear’t jo aktiviteit sjogge dy’t jo net werkenne, tink dan nei om jo wachtwurd te wizigjen en twa-stapsferifikaasje yn te skeakeljen.
+    empty: Gjin oanmeldskiednis beskikber
+    failed_sign_in_html: Mislearre oanmeldbesykjen mei %{method} fan %{ip} (%{browser})
+    successful_sign_in_html: Mei sukses oanmeld mei %{method} fan %{ip} (%{browser})
+    title: Oanmeldskiednis
+  media_attachments:
+    validations:
+      images_and_video: In fideo kin net oan in berjocht mei ôfbyldingen keppele wurde
+      not_ready: Kin gjin bestannen tafoegje dy’t noch net ferwurke binne. Probearje it letter opnij!
+      too_many: Der kinne net mear as 4 ôfbyldingen tafoege wurde
   migrations:
     acct: Ferhuze nei
+    cancel: Trochferwizing annulearje
+    cancel_explanation: It annulearjen fan de trochferwizing sil jo aktuele account opnij aktivearje, mar bringt gjin folgers werom dy’t nei de oare account ferhuze binne.
+    cancelled_msg: De trochferwizing is mei sukses annulearre.
+    errors:
+      already_moved: is itselde account wêrnei’t jo al nei ta ferhuze binne
+      missing_also_known_as: is gjin alias fan dizze account
+      move_to_self: kin net it aktuele account wêze
+      not_found: koe net fûn wurde
+      on_cooldown: Jo lêste migraasje is noch te koart lyn
+    followers_count: Folgers op it momint fan ferhuzing
+    incoming_migrations: Ferhúzje fan in oar account ôf
+    incoming_migrations_html: Om fan in oar account ôf nei dizze account te ferhúzjen, moatte jo earst <a href="%{path}">in accountalias oanmeitsje</a>.
+    moved_msg: Jo account wurdt no nei %{acct} trochferwiisd en jo folgers wurde ferhuze.
+    not_redirecting: Jo account wurdt op dit stuit net nei in oar account trochferwizen.
+    on_cooldown: Jo hawwe resint jo account ferhuze. Dizze mooglikheid is oer %{count} dagen wer beskikber.
+    past_migrations: Foarige migraasjes
+    proceed_with_move: Folgers ferhúzje
+    redirected_msg: Jo account wurdt no trochferwizen nei %{acct}.
+    redirecting_to: Jo account wurdt no nei %{acct} trochferwizen.
+    set_redirect: Trochferwizing ynstelle
+    warning:
+      backreference_required: De nije account moat earst ynsteld wurde om nei dizze account weromferwize te kinnen
+      before: 'Lês dizze tekst soarchfâldich eardat jo troch gean:'
+      cooldown: Nei de ferhuzing kinne jo tydlik net opnij ferhúzje
+      disabled_account: Jo aktuele account is hjirnei net mear folslein brûkber. Jo hawwe echter wol tagong ta it eksportearjen fan jo gegevens en ta it opnij aktivearjen fan jo account.
+      followers: Dizze aksje ferhuzet alle folgers fan de aktuele account ôf nei de nije account
+      only_redirect_html: Jo kinne as alternatyf ek <a href="%{path}">allinnich de trochferwizing op jo profyl sette</a>.
+      other_data: Oare gegevens wurde net automatysk ferhuze
+      redirect: Jo aktuele accountprofyl wurdt bywurke mei in trochferwizingsmelding en wurdt útsluten fan sykresultaten
   moderation:
     title: Moderaasje
+  move_handler:
+    carry_blocks_over_text: Dizze brûker is fan %{acct} ôf ferhuze. Jo hawwe dizze account blokkearre.
+    carry_mutes_over_text: Dizze brûker is fan %{acct} ôf ferhuze. Jo hawwe dizze account negearre.
+    copy_account_note_text: 'Dizze brûker is fan %{acct} ôf ferhuze. Jo hawwe de folgjende opmerkingen oer dizze account makke:'
   navigation:
     toggle_menu: Menu toane/ferstopje
   notification_mailer:
     admin:
       report:
         subject: "%{name} hat in rapportaazje yntsjinne"
+      sign_up:
+        subject: "%{name} hat harren registrearre"
     favourite:
+      body: 'Jo berjocht waard troch %{name} al favoryt markearre:'
+      subject: "%{name} hat jo berjocht as favoryt markearre"
       title: Nije favoryt
     follow:
       body: "%{name} folget jo no!"
@@ -1069,6 +1173,7 @@ fy:
     follow_request:
       action: Folchfersiken beheare
       body: "%{name} wol jo graach folgje"
+      subject: 'Folgjen yn ôfwachting: %{name}'
       title: Nij folchfersyk
     mention:
       action: Beäntwurdzje
@@ -1203,10 +1308,12 @@ fy:
     show_newer: Nijere toane
     show_older: Aldere toane
     show_thread: Petear toane
+    sign_in_to_participate: Meld jo oan om oan dit petear mei te dwaan
     title: '%{name}: "%{quote}"'
     visibilities:
       direct: Direkt
       private: Allinnich folgers
+      private_long: Allinnich oan jo folgers toane
       public: Iepenbier
       unlisted: Minder iepenbier
   statuses_cleanup:
