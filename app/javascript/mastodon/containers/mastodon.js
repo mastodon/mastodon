@@ -86,7 +86,7 @@ export default class Mastodon extends React.PureComponent {
               </ScrollContext>
             </BrowserRouter>
 
-            <Helmet defaultTitle={title} titleTemplate={`%s - ${title}`} />
+            <Helmet defaultTitle={title} titleTemplate={`${title} - %s`} />
           </ErrorBoundary>
         </ReduxProvider>
       </IntlProvider>

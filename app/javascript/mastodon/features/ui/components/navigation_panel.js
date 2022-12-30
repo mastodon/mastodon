@@ -92,7 +92,7 @@ class NavigationPanel extends React.Component {
 
         <div className='navigation-panel__legal'>
           <hr />
-          <ColumnLink transparent to='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
+          <ColumnLink transparent href='/about' icon='ellipsis-h' text={intl.formatMessage(messages.about)} />
         </div>
 
         <NavigationPortal />

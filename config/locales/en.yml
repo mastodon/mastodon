@@ -1,11 +1,62 @@
 ---
 en:
   about:
+    about_hashtag_html: These are public posts tagged with <strong>#%{hashtag}</strong>. You can interact with them if you have an account anywhere in the fediverse.
     about_mastodon_html: 'Hometown is adapted from Mastodon, a decentralized social network with no ads, no corporate surveillance, and ethical design.'
+    about_this: About
+    active_count_after: active
+    active_footnote: Monthly Active Users (MAU)
+    administered_by: 'Administered by:'
+    api: API
+    apps: Mobile apps
+    apps_platforms: Use %{title} from iOS, Android and other platforms
+    browse_directory: Browse a profile directory and filter by interests
+    browse_local_posts: Browse a live stream of public posts from this server
+    browse_public_posts: Browse a live stream of public posts on %{title}
+    contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
+    continue_to_web: Continue to web app
+    discover_users: Discover users
+    documentation: Documentation
+    federation_hint_html: With an account on %{instance} you'll be able to follow people on any Hometown or Mastodon server and beyond.
+    get_apps: Try a mobile app
     hosted_on: Hometown hosted on %{domain}
+    instance_actor_flash: |
+      This account is a virtual actor used to represent the server itself and not any individual user.
+      It is used for federation purposes and should not be blocked unless you want to block the whole instance, in which case you should use a domain block.
+    learn_more: Learn more
+    logged_in_as_html: You are currently logged in as %{username}.
+    logout_before_registering: You are already logged in.
+    privacy_policy: Privacy policy
+    rules: Server rules
+    rules_html: 'Below is a summary of rules you need to follow if you want to have an account on this server of Mastodon:'
+    see_whats_happening: See what's happening
+    server_stats: 'Server stats:'
+    source_code: Source code
+    status_count_after:
+      one: post
+      other: posts
+    status_count_before: Who published
+    tagline: Follow friends and discover new ones
+    terms: Terms of service
     title: About
+    unavailable_content: Moderated servers
+    unavailable_content_description:
+      domain: Server
+      reason: Reason
+      rejecting_media: 'Media files from these servers will not be processed or stored, and no thumbnails will be displayed, requiring manual click-through to the original file:'
+      rejecting_media_title: Filtered media
+      silenced: 'Posts from these servers will be hidden in public timelines and conversations, and no notifications will be generated from their users interactions, unless you are following them:'
+      silenced_title: Limited servers
+      suspended: 'No data from these servers will be processed, stored or exchanged, making any interaction or communication with users from these servers impossible:'
+      suspended_title: Suspended servers
+    unavailable_content_html: Hometown generally allows you to view content from and interact with users from any other server in the fediverse. These are the exceptions that have been made on this particular server.
+    user_count_after:
+      one: user
+      other: users
+    user_count_before: Home to
+    what_is_mastodon: What is Hometown/Mastodon?
   accounts:
     follow: Follow
     followers:

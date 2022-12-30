@@ -57,7 +57,7 @@ class LinkFooter extends React.PureComponent {
         <p>
           <strong>{domain}</strong>:
           {' '}
-          <Link key='about' to='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></Link>
+          <a key='about' href='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
           {canInvite && (
             <>
               {' · '}
