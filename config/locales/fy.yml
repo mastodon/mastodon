@@ -1082,14 +1082,23 @@ fy:
     '403': Jo hawwe gjin tastimming om dizze side te besjen.
     '404': De side wêrnei’t jo sochten bestiet net.
     '406': Dizze side is net beskikber yn it opfrege formaat.
-    '410': The page you were looking for doesn't exist here anymore.
+    '410': De side dy’t jo sochten bestiet net mear.
     '422':
-    '429': Too many requests
+      content: Feilichheidsferifikaasje mislearre. Blokkearje jo tafallich cookies?
+      title: Feilichheidsferifikaasje mislearre
+    '429': Te folle ferbiningsoanfragen
     '500':
-    '503': The page could not be served due to a temporary server failure.
+      content: It spyt ús, der is oan ús kant wat fout gien.
+      title: Dizze side is skansearre
+    '503': De side koe troch in tydlike serversteuring net laden wurde.
+    noscript_html: Skeakelje JavaScript yn om de webapp fan Mastodon brûke te kinnen. As alternatyf kinne jo in <a href="%{apps_path}">Mastodon-app</a> sykje foar jo platfoarm.
+  existing_username_validator:
+    not_found: koe gjin lokale brûker mei dy brûkersnamme fine
+    not_found_multiple: koe %{usernames} net fine
   exports:
     archive_takeout:
       date: Datum
+      download: Jo argyf downloade
       size: Grutte
     blocks: Jo blokkearje
     bookmarks: Blêdwizers
@@ -1234,8 +1243,20 @@ fy:
       body: 'Jo binne fermeld troch %{name} yn:'
       subject: Jo binne fermeld troch %{name}
       title: Nije fermelding
+    poll:
+      subject: In enkête fan %{name} is beëinige
     reblog:
+      body: 'Jo berjocht waard troch %{name} al boost:'
+      subject: "%{name} hat jo berjocht boost"
       title: Nije boost
+    status:
+      subject: "%{name} hat sakrekt in berjocht pleatst"
+    update:
+      subject: "%{name} hat in berjocht bewurke"
+  notifications:
+    email_events: E-mailmeldingen foar eveneminten
+    email_events_hint: 'Selektearje eveneminten wêrfoar’t jo meldingen ûntfange wolle:'
+    other_settings: Oare meldingsynstellingen
   number:
     human:
       decimal_units:
@@ -1247,29 +1268,71 @@ fy:
           thousand: K
           trillion: bln.
   otp_authentication:
+    code_hint: Fier de koade yn dy’t troch de autentikaasje-app generearre waard
+    description_html: Nei it ynstellen fan <strong>twa-stapsferifikaasje</strong> mei in autentikaasje-app, kinne jo allinnich oanmelde as jo jo mobile telefoan by jo hawwe. Hjirmei generearje jo nammentlik de yn te fieren tagongskoade.
     enable: Ynskeakelje
+    instructions_html: "<strong>Scan dizze QR-koade yn Google Authenticator of in gelikense app op jo mobile telefoan</strong>. Fan no ôf generearret dizze app tagongskoaden dy’t jo by it oanmelden ynfiere moatte."
+    manual_instructions: 'Yn it gefal jo de QR-koade net scanne kinne en it hânmjittich ynfiere moatte, fine jo hjirûnder de geheime koade yn platte tekst:'
     setup: Ynstelle
+    wrong_code: De ynfierde koade is ûnjildich! Kloppet de systeemtiid fan de server en dy fan jo apparaat?
   pagination:
     newer: Nijer
     next: Folgjende
     older: Alder
     prev: Foarige
     truncate: "&hellip;"
+  polls:
+    errors:
+      already_voted: Jo hawwe al op dizze enkête stimd
+      duplicate_options: befettet dûbele items
+      duration_too_long: leit te fier yn de takomst
+      duration_too_short: duorret te koart
+      expired: De enkête is al beëinige
+      invalid_choice: De keazen enkêteopsje bestiet net
+      over_character_limit: kin net langer wêze as %{max} tekens
+      too_few_options: moat mear as ien item befetsje
+      too_many_options: kin net mear as %{max} items befetsje
   preferences:
     other: Oars
+    posting_defaults: Standertynstellingen foar berjochten
+    public_timelines: Iepenbiere tiidlinen
+  privacy_policy:
+    title: Privacybelied
+  reactions:
+    errors:
+      limit_reached: Limyt fan ferskate emoji-reaksjes berikt
+      unrecognized_emoji: is gjin besteande emoji-reaksje
   relationships:
+    activity: Accountaktiviteit
     dormant: Slommerjend
+    follow_selected_followers: Selektearre folgers folgje
     followers: Folgers
     following: Folgjend
     invited: Utnûge
     last_active: Letst warber
     most_recent: Meast resint
     moved: Ferhuze
+    mutual: Fan wjerskanten
     primary: Primêr
     relationship: Relaasje
+    remove_selected_domains: Alle folgers fan de selektearre domeinen fuortsmite
+    remove_selected_followers: Selektearre folgers fuortsmite
+    remove_selected_follows: Selektearre brûkers net mear folgje
     status: Accountsteat
+  remote_follow:
+    missing_resource: Koe fereaske trochferwizings-URL foar jo account net fine
+  reports:
+    errors:
+      invalid_rules: ferwiist net nei jildige regels
   rss:
     content_warning: 'Ynhâldswarskôging:'
+    descriptions:
+      account: Iepenbiere berjochten fan @%{acct}
+      tag: 'Iepenbiere berjochten mei hashtag #%{hashtag}'
+  scheduled_statuses:
+    over_daily_limit: Jo binne oer de limyt fan %{limit} yn te plannen berjochten foar hjoed
+    over_total_limit: Jo binne oer de limyt fan %{limit} yn te plannen berjochten
+    too_soon: De datum foar it ynplande berjocht moat yn de takomst lizze
   sessions:
     activity: Lêst warber
     browser: Browser
@@ -1293,6 +1356,7 @@ fy:
       weibo: Weibo
     current_session: Aktuele sesje
     description: "%{browser} op %{platform}"
+    explanation: Dit binne de webbrowsers dy’t op dit stuit mei jo Mastodon-account oanmeld binne.
     ip: IP
     platforms:
       adobe_air: Adobe Air
@@ -1308,7 +1372,9 @@ fy:
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
     revoke: Ynlûke
+    revoke_success: Sesje mei sukses ynlutsen
     title: Sesjes
+    view_authentication_history: Oanmeldskiednis fan jo account besjen
   settings:
     account: Account
     account_settings: Accountynstellingen
@@ -1328,6 +1394,8 @@ fy:
     preferences: Foarkarren
     profile: Profyl
     relationships: Folgers en folgjenden
+    statuses_cleanup: Automatysk berjochten fuortsmite
+    strikes: Fêststelde skeiningen
     two_factor_authentication: Twa-stapsferifikaasje
     webauthn_authentication: Befeiligingskaaien
   statuses:
@@ -1345,11 +1413,19 @@ fy:
     boosted_from_html: Boost fan %{acct_link}
     content_warning: 'Ynhâldswarskôging: %{warning}'
     default_language: Itselde as de taal fan de brûkersomjouwing
+    disallowed_hashtags:
+      one: 'befette in net tastiene hashtag: %{tags}'
+      other: 'befette net tastiene hashtags: %{tags}'
     edited_at_html: Bewurke op %{date}
+    errors:
+      in_reply_not_found: It berjocht wêrop jo probearje te reagearjen liket net te bestean.
     open_in_web: Yn de webapp iepenje
     over_character_limit: Oer de limyt fan %{max} tekens
     pin_errors:
       direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
+      limit: Jo hawwe it maksimaal tal berjochten al fêstmakke
+      ownership: In berjocht fan in oar kin net fêstmakke wurde
+      reblog: In boost kin net fêstset wurde
     poll:
       total_people:
         one: "%{count} persoan"
