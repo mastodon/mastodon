@@ -908,37 +908,91 @@ fy:
     created_msg: Mei sukses in nije alias oanmakke. Jo kinne no mei de ferhuzing fan it âlde account ôf begjinne.
     deleted_msg: De alias is mei sukses fuortsmiten. Ferhúzjen fan dy account ôf nei dizze account is net mear mooglik.
     empty: Jo hawwe gjin aliassen.
+    hint_html: Wannear’t jo fan in oare account ôf nei dizze account ferhúzje wolle, kinne jo hjir in alias oanmeitsje. Dit is nedich eardat jo troch gean kinne mei it ferhúzjen fan folgers fan de âlde nei dizze nije account. Dizze aksje is op eins <strong>net gefaarlik en omkearber</strong>. <strong>De accountmigraasje wurdt start fan de âlde account ôf</strong>.
+    remove: Alias ûntkeppelje
   appearance:
+    advanced_web_interface: Avansearre webomjouwing
+    advanced_web_interface_hint: 'Wannear’t jo fan de hiele skermbreedte gebrûk meitsje wolle, stelt de avansearre webomjouwing jo yn steat om meardere ferskate kolommen te konfigurearjen. Hjirmei kinne jo safolle mooglik ynformaasje op itselde momint besjen, lykas: Start, meldingen, de globale tiidline, meardere listen en hashtags.'
+    animations_and_accessibility: Animaasjes en tagonklikheid
+    confirmation_dialogs: Befêstigingen
     discovery: Untdekke
     localization:
       body: Mastodon wurdt troch frijwilligers oerset.
       guide_link: https://crowdin.com/project/mastodon/fy
       guide_link_text: Elkenien kin bydrage.
     sensitive_content: Gefoelige ynhâld
+    toot_layout: Lay-out fan berjochten
   application_mailer:
+    notification_preferences: E-mailfoarkarren wizigje
     salutation: "%{name},"
+    settings: 'E-mailfoarkarren wizigje: %{link}'
     view: 'Besjoch:'
     view_profile: Profyl besjen
+    view_status: Berjocht besjen
+  applications:
+    created: Oanmeitsjen tapassing slagge
+    destroyed: Fuortsmiten tapassing slagge
+    regenerate_token: Tagongskoade opnij oanmeitsje
+    token_regenerated: Opnij oanmeitsjen tagongskoade slagge
+    warning: Wês foarsichtich mei dizze gegevens. Diel it nea mei in oar!
+    your_token: Jo tagongskoade
   auth:
+    apply_for_account: Account oanfreegje
     change_password: Wachtwurd
     delete_account: Account fuortsmite
+    delete_account_html: Wannear’t jo jo account graach fuortsmite wolle, kinne jo dat <a href="%{path}">hjir dwaan</a>. Wy freegje jo dêr om in befêstiging.
+    description:
+      prefix_invited_by_user: "@%{name} nûget jo hjirby út om in account oan te meitsjen op dizze Mastodon-server!"
+      prefix_sign_up: Registrearje jo hjoed noch op Mastodon!
+      suffix: Mei in account binne jo yn steat om minsken te folgjen, berjochten te pleatsen en út te wikseljen mei minsken dy’t op oare Mastodon-servers binne en mear!
+    didnt_get_confirmation: Gjin befêstigingsynstruksjes ûntfongen?
+    dont_have_your_security_key: Hawwe jo jo befeiligingskaai net by de hân?
+    forgot_password: Wachtwurd ferjitten?
+    invalid_reset_password_token: De koade om jo wachtwurd opnij yn te stellen is ferrûn. Freegje in nije oan.
+    link_to_otp: Fier in twa-stapsferifikaasjekoade fan jo telefoan of in werstelkoade yn
+    link_to_webauth: Jo apparaat mei de autentikaasje-app brûke
     log_in_with: Oanmelde mei
     login: Oanmelde
     logout: Ofmelde
+    migrate_account: Nei in oar account ferhúzje
+    migrate_account_html: Wannear’t jo dizze account nei in oare account trochferwize wolle, kinne jo <a href="%{path}">dit hjir ynstelle</a>.
+    or_log_in_with: Of oanmelde mei
+    privacy_policy_agreement_html: Ik haw it <a href="%{privacy_policy_path}" target="_blank">privacybelied</a> lêzen en gean dêrmei akkoard
     providers:
       cas: CAS
       saml: SAML
     register: Registrearje
+    registration_closed: "%{instance} lit gjin nije brûkers ta"
+    resend_confirmation: Ferstjoer de befêstigingsynstruksjes nochris
     reset_password: Wachtwurd opnij ynstelle
     rules:
+      preamble: Dizze binne fêststeld en wurde yn stân hâlden troch de moderatoaren fan %{domain}.
       title: Inkelde basisrigels.
     security: Befeiliging
     set_new_password: Nij wachtwurd ynstelle
     setup:
+      email_below_hint_html: Wannear ûndersteand e-mailadres net kloppet, kinne jo dat hjir wizigje. Jo ûntfange dan hjirnei in befêstigings-e-mailberjocht.
+      email_settings_hint_html: It befêstigings-e-mailberjocht is ferstjoerd nei %{email}. Wannear’t dat e-mailadres net kloppet, kinne jo dat wizigje yn jo accountynstellingen.
       title: Ynstelle
+    sign_in:
+      preamble_html: Meld jo oan mei de oanmeldgegevens fan <strong>%{domain}</strong>. As jo account op in oare server stiet, kinne jo hjir net oanmelde.
+      title: Oanmelde op %{domain}
+    sign_up:
+      preamble: Jo kinne mei in Mastodon-account elkenien yn it netwurk folgen, wêr’t dizze persoan ek in account hat.
+      title: Litte wy jo account op %{domain} ynstelle.
     status:
       account_status: Accountsteat
+      confirming: Oan it wachtsjen oant it e-mailadres befêstige is.
+      functional: Jo account kin folslein brûkt wurde.
+      pending: Jo oanfraach moat noch beoardiele wurde troch ien fan ús meiwurkers. Dit kin miskien efkes duorje. Jo ûntfangt in e-mailberjocht wannear’t jo oanfraach goedkard is.
+      redirecting_to: Jo account is ynaktyf, omdat it op dit stuit trochferwezen wurdt nei %{acct}.
+      view_strikes: Besjoch de earder troch moderatoaren fêststelde skeiningen dy’t jo makke hawwe
+    too_fast: Formulier is te fluch yntsjinne. Probearje it nochris.
+    use_security_key: Befeiligingskaai brûke
   authorize_follow:
+    already_following: Jo folgje dizze account al
+    already_requested: Jo hawwe al in folchfersyk nei dat account ferstjoerd
+    error: Spitiger, der is in flater bard by it opsykjen fan de eksterne account
     follow: Folgje
     follow_request: 'Jo hawwe in folchfersyk yntsjinne by:'
     following: 'Slagge! Jo folgje no:'
