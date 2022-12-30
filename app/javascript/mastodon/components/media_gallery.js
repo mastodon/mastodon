@@ -25,7 +25,7 @@ class Item extends React.PureComponent {
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
     autoplay: PropTypes.bool,
-    noDescriptionTitle: PropTypes.object,
+    noDescriptionTitle: PropTypes.string,
   };
 
   static defaultProps = {
