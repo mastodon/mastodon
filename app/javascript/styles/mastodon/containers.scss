@@ -249,8 +249,34 @@
 }
 
 .public-layout {
-  @media screen and (max-width: $no-gap-breakpoint-static) {
-    padding-top: 48px;
+  .originalheader {
+    padding: 50px 30px 30px;
+
+    .logo--icon {
+      width: 140px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+
+      a {
+        line-height: 1em;
+      }
+    }
+
+    #register {
+      margin-top: 10px;
+    }
+
+    .btn {
+      text-transform: uppercase;
+    }
+
+    .closed {
+      margin-top: 10px;
+      border-radius: 4px;
+      max-width: 400px;
+    }
   }
 
   .container {
@@ -413,6 +439,7 @@
     overflow: hidden;
     margin-bottom: 10px;
     box-shadow: 0 0 15px rgba($base-shadow-color, 0.2);
+    height: auto;
 
     &.inactive {
       opacity: 0.5;
@@ -429,38 +456,6 @@
 
     .logo-button {
       padding: 3px 15px;
-    }
-
-    &__image {
-      border-radius: 4px 4px 0 0;
-      overflow: hidden;
-      height: 300px;
-      position: relative;
-      background: darken($ui-base-color, 12%);
-
-      &::after {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        box-shadow: inset 0 -1px 1px 1px rgba($base-shadow-color, 0.15);
-        top: 0;
-        left: 0;
-      }
-
-      img {
-        object-fit: cover;
-        display: block;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        border-radius: 4px 4px 0 0;
-      }
-
-      @media screen and (max-width: 600px) {
-        height: 200px;
-      }
     }
 
     &--no-bar {

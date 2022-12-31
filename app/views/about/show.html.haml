@@ -9,15 +9,25 @@
   .column-0
     .public-account-header.public-account-header--no-bar
       .public-account-header__image
-        - if @instance_presenter.thumbnail.present?
-          = image_tag @instance_presenter.thumbnail&.file&.url, alt: @instance_presenter.title, class: 'parallax'
-        - else
-          %div{:class => ("originalheader")}
-            = logo_as_symbol
-            %h1
-              = link_to root_url, class: 'brand' do
-                = site_title
-
+        %div{:class => ("originalheader")}
+          %h1
+            = link_to root_url, class: 'brand' do
+              = site_title
+          .box-widget
+            %p <a href="/auth/sign_in" id="login" class="btn button button-primary">Sign in</a>
+            - if !closed_registrations?
+              %p <a href="/auth/sign_up" id="register" class="btn button button-primary">Create account</a>
+            - if closed_registrations? && @instance_presenter.closed_registrations_message.present?
+              .closed
+                .rich-formatting
+                  %h3= 'Registrations closed.'
+                  %p= @instance_presenter.closed_registrations_message.html_safe
+            - if closed_registrations? && !@instance_presenter.closed_registrations_message.present?
+              %hr
+                .closed
+                  .rich-formatting
+                    %h3= 'Registrations closed.'
+                    %p= 'This server is closed to registrations.'
   .column-1
     .landing-page__call-to-action{ dir: 'ltr' }
       .row
