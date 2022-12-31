@@ -122,6 +122,8 @@ sl:
       redownloaded_msg: Uspešno osvežen profil %{username} iz izvirnika
       reject: Zavrni
       rejected_msg: Uspešno zavrnjena vloga prijave uporabnika %{username}
+      remote_suspension_irreversible: Podatki tega računa so bili nepovratno izbrisani.
+      remote_suspension_reversible_hint_html: Račun je bil suspendiran na njihovem strežniku, podatki pa bodo v celoti odstranjeni %{date}. Do takrat lahko oddaljeni strežnik obnovi ta račun obnoviti brez negativnih posledic. Če želite takoj odstraniti vse podatke računa, lahko to storite spodaj.
       remove_avatar: Odstrani podobo
       remove_header: Odstrani glavo
       removed_avatar_msg: Uspešno odstranjena slika avatarja uporabnika %{username}
@@ -583,7 +585,6 @@ sl:
     report_notes:
       created_msg: Opomba o prijavi je uspešno ustvarjena!
       destroyed_msg: Opomba o prijavi je uspešno izbrisana!
-      today_at: Danes ob %{time}
     reports:
       account:
         notes:
@@ -732,6 +733,9 @@ sl:
       content_retention:
         preamble: Nazdor nad hrambo vsebine uporabnikov v Mastodonu.
         title: Hramba vsebin
+      default_noindex:
+        desc_html: Vpliva na vse uporabnike, ki niso sami spremenili te nastavitve
+        title: Privzeto izvzemi uporabnike iz indeksiranja iskalnika
       discovery:
         follow_recommendations: Sledi priporočilom
         preamble: Izpostavljanje zanimivih vsebin je ključno za pridobivanje novih uporabnikov, ki morda ne poznajo nikogar na Mastodonu. Nadzirajte, kako različne funkcionalnosti razkritja delujejo na vašem strežniku.
@@ -1007,6 +1011,9 @@ sl:
       email_below_hint_html: Če spodnji e-poštni naslov ni pravilen, ga lahko spremenite tukaj in prejmete novo potrditveno e-pošto.
       email_settings_hint_html: Potrditvena e-pošta je bila poslana na %{email}. Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
       title: Nastavitev
+    sign_in:
+      preamble_html: Prijavite se s svojimi poverilnicami <strong>%{domain}</strong>. Če vaš račun gostuje na drugem strežniku, se tukaj ne boste mogli prijaviti.
+      title: Vpiši se v %{domain}
     sign_up:
       preamble: Z računom na strežniku Mastodon boste lahko sledili vsem drugim v tem omrežju, ne glede na to, kje gostuje njihov račun.
       title: Naj vas namestimo na %{domain}.

@@ -22,4 +22,4 @@ export default function markers(state = initialState, action) {
   default:
     return state;
   }
-};
+}

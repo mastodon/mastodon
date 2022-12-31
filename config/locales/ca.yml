@@ -116,6 +116,8 @@ ca:
       redownloaded_msg: El perfil de %{username} s’ha refrescat des de l’origen amb èxit
       reject: Rebutja
       rejected_msg: L’aplicació de registre de %{username} s’ha rebutjat amb èxit
+      remote_suspension_irreversible: Les dades d'aquest compte s'han esborrat irreversiblement.
+      remote_suspension_reversible_hint_html: El compte ha estat suspès en el seu servidor i les dades seran totalment suprimides el %{date}. Fins llavors, el servidor remot pot restaurar aquest compte sense efectes negatius. Si vols suprimir immediatament totes les dades del compte, ho pots fer a continuació.
       remove_avatar: Eliminar avatar
       remove_header: Treu la capçalera
       removed_avatar_msg: S’ha suprimit amb èxit l’imatge d’acabar de %{username}
@@ -561,7 +563,6 @@ ca:
     report_notes:
       created_msg: La nota del informe s'ha creat correctament!
       destroyed_msg: La nota del informe s'ha esborrat correctament!
-      today_at: Avui a les %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ ca:
       content_retention:
         preamble: Controla com es desa a Mastodon el contingut generat per l'usuari.
         title: Retenció de contingut
+      default_noindex:
+        desc_html: Afecta tothom qui no ha canviat per si mateix aquest paràmetre
+        title: Exclou per defecte els usuaris de la indexació dels motors de cerca
       discovery:
         follow_recommendations: Seguir les recomanacions
         preamble: L'aparició de contingut interessant és fonamental per atraure els nous usuaris que podrien no saber res de Mastodon. Controla com funcionen diverses opcions de descobriment en el teu servidor.
@@ -971,6 +975,9 @@ ca:
       email_below_hint_html: Si l’adreça de correu electrònic següent és incorrecta, podeu canviar-la aquí i rebre un nou correu electrònic de confirmació.
       email_settings_hint_html: El correu electrònic de confirmació es va enviar a %{email}. Si aquesta adreça de correu electrònic no és correcta, la podeu canviar a la configuració del compte.
       title: Configuració
+    sign_in:
+      preamble_html: Inicia sessió amb les teves credencials <strong>%{domain}</strong>. Si el teu compte es troba a un servidor diferent, no podràs iniciar una sessió aquí.
+      title: Inicia sessió a %{domain}
     sign_up:
       preamble: Amb un compte en aquest servidor Mastodon, podràs seguir qualsevol altre persona de la xarxa, independentment d'on tingui el seu compte.
       title: Anem a configurar-te a %{domain}.

@@ -8,10 +8,10 @@ export function setHeight (key, id, height) {
     id,
     height,
   };
-};
+}
 
 export function clearHeight () {
   return {
     type: HEIGHT_CACHE_CLEAR,
   };
-};
+}

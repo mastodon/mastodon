@@ -31,7 +31,7 @@ class Api::V1::NotificationsController < Api::BaseController
   private
 
   def load_notifications
-    notifications = browserable_account_notifications.includes(from_account: :account_stat).to_a_paginated_by_id(
+    notifications = browserable_account_notifications.includes(from_account: [:account_stat, :user]).to_a_paginated_by_id(
       limit_param(DEFAULT_NOTIFICATIONS_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )

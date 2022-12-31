@@ -10,7 +10,7 @@ gem 'puma', '~> 5.6'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
-gem 'rack', '~> 2.2.4'
+gem 'rack', '~> 2.2.5'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.4'
@@ -19,7 +19,7 @@ gem 'pghero', '~> 2.8'
 gem 'dotenv-rails', '~> 2.8'
 
 gem 'aws-sdk-s3', '~> 1.117', require: false
-gem 'fog-core', '<= 2.1.0'
+gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1'
 gem 'blurhash', '~> 0.1'
@@ -51,7 +51,7 @@ gem 'ed25519', '~> 1.3'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'hiredis', '~> 0.6'
-gem 'redis-namespace', '~> 1.9'
+gem 'redis-namespace', '~> 1.10'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.1'
 gem 'http_accept_language', '~> 2.1'
@@ -67,7 +67,7 @@ gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'posix-spawn'
 gem 'public_suffix', '~> 5.0'
-gem 'pundit', '~> 2.2'
+gem 'pundit', '~> 2.3'
 gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
@@ -79,7 +79,7 @@ gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
 gem 'ruby-progressbar', '~> 1.11'
 gem 'sanitize', '~> 6.0'
-gem 'scenic', '~> 1.6'
+gem 'scenic', '~> 1.7'
 gem 'sidekiq', github: 'akane-blue/sidekiq', ref: '893d9c865aeb57211b494723b9e73f3b07606eed'
 gem 'sidekiq-scheduler', '~> 4.0'
 gem 'sidekiq-unique-jobs', '~> 7.1'
@@ -107,6 +107,10 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.10'
   gem 'pry-rails', '~> 0.3'
   gem 'rspec-rails', '~> 5.1'
+  gem 'rubocop-performance', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop', require: false
 end
 
 group :production, :test do
@@ -116,14 +120,14 @@ end
 group :test do
   gem 'capybara', '~> 3.38'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 3.0'
+  gem 'faker', '~> 3.1'
   gem 'json-schema', '~> 3.0'
   gem 'microformats', '~> 4.4'
   gem 'rack-test', '~> 2.0'  
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec_junit_formatter', '~> 0.6'
   gem 'rspec-sidekiq', '~> 3.1'
-  gem 'simplecov', '~> 0.21', require: false
+  gem 'simplecov', '~> 0.22', require: false
   gem 'webmock', '~> 3.18'
 end
 
@@ -136,8 +140,6 @@ group :development do
   gem 'letter_opener', '~> 1.8'
   gem 'letter_opener_web', '~> 2.0'
   gem 'memory_profiler'
-  gem 'rubocop', '~> 1.30', require: false
-  gem 'rubocop-rails', '~> 2.15', require: false
   gem 'brakeman', '~> 5.4', require: false
   gem 'bundler-audit', '~> 0.9', require: false
 

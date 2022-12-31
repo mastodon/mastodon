@@ -4,10 +4,10 @@ sr:
     about_mastodon_html: Мастодон је друштвена мрежа базирана на отвореним протоколима и слободном софтверу отвореног кода. Децентрализована је као што је децентрализована е-пошта.
     contact_missing: Није постављено
     contact_unavailable: Није доступно
-    hosted_on: Мастодонт хостован на %{domain}
+    hosted_on: Мастодон хостован на %{domain}
     title: О
   accounts:
-    follow: Запрати
+    follow: Прати
     followers:
       few: Пратиоци
       one: Пратиоц
@@ -32,15 +32,23 @@ sr:
       created_msg: Модераторска белешка успешно направљена!
       destroyed_msg: Модераторска белешка успешно обрисана!
     accounts:
+      add_email_domain_block: Блокирај домен е-поште
+      approve: Одобри
       are_you_sure: Да ли сте сигурни?
       avatar: Аватар
       by_domain: Домен
       change_email:
+        changed_msg: Е-пошта налога успешно промењена!
         current_email: Тренутна е-пошта
         label: Промените е-пошту
         new_email: Нова e-пошта
         submit: Промените e-пошту
         title: Промените e-пошту за %{username}
+      change_role:
+        changed_msg: Улога успешно промењена!
+        label: Промени улогу
+        no_role: Нема улогу
+        title: Промени улогу за %{username}
       confirm: Потврди
       confirmed: Потврђено
       confirming: Потврдување
@@ -62,7 +70,9 @@ sr:
       follows: Праћени
       header: Заглавље
       inbox_url: Адреса сандучета
+      invite_request_text: Разлози за придруживање
       invited_by: Позван од стране
+      ip: IP
       joined: Придружио се
       location:
         all: Све
@@ -75,19 +85,24 @@ sr:
       moderation:
         active: Активан
         all: Сви
+        pending: На чекању
+        silenced: Ограничено
         suspended: Суспендовани
         title: Модерација
       moderation_notes: Модераторске белешке
       most_recent_activity: Најскорија активност
       most_recent_ip: Најскорија IP адреса
       no_limits_imposed: Нема ограничења
+      no_role_assigned: Ниједна улога није додељена
       not_subscribed: Није претплаћен
+      pending: Чека на преглед
       perform_full_suspension: Искључи
       promote: Унапреди
       protocol: Протокол
       public: Јавно
       push_subscription_expires: PuSH претплата истиче
       redownload: Освежи налог
+      reject: Одбаци
       remove_avatar: Уклони аватар
       remove_header: Одстрани заглавље
       resend_confirmation:
@@ -97,7 +112,11 @@ sr:
       reset: Ресетуј
       reset_password: Ресетуј лозинку
       resubscribe: Поново се претплати
+      role: Улога
       search: Претрага
+      security_measures:
+        only_password: Само лозинка
+      sensitized: Означено као осетљиво
       shared_inbox_url: Адреса дељеног сандучета
       show:
         created_reports: Направљени извештаји
@@ -106,8 +125,10 @@ sr:
       silenced: Ућуткан
       statuses: Статуси
       subscribe: Претплати се
+      suspend: Суспендуј
       suspended: Суспендовани
       title: Налози
+      unblock_email: Одблокирај адресу е-поште
       unconfirmed_email: Непотврђена е-пошта
       undo_silenced: Укини ћутање
       undo_suspension: Укини суспензију
@@ -116,19 +137,56 @@ sr:
       warn: Упозори
       web: Веб
     action_logs:
+      action_types:
+        approve_user: Одобри корисника
+        change_email_user: Промени e-адресу корисника
+        change_role_user: Промени улогу корисника
+        confirm_user: Потврди корисника
+        create_account_warning: Креирај упозорење
+        create_announcement: Креирај најаву
+        create_canonical_email_block: Креирај блок е-поште
+        create_user_role: Креирај улогу
+        destroy_announcement: Избриши најаву
+        destroy_canonical_email_block: Избриши блок е-поште
+        destroy_status: Избриши пост
+        disable_user: Онемогући корисника
+        enable_user: Омогући корисника
+        reject_user: Одбаци корисника
+        silence_account: Ограничи налог
+        suspend_account: Обустави налог
+        update_status: Уреди објаву
+        update_user_role: Уреди улогу
+      deleted_account: обрисан налог
+      filter_by_action: Филтрирај по активности
+      filter_by_user: Филтрирај по кориснику
       title: Записник
+    announcements:
+      edit:
+        title: Уреди најаву
+      empty: Ниједна најава није пронађена.
+      live: Уживо
+      new:
+        create: Креирај најаву
+        title: Нова најава
+      publish: Објави
+      published_msg: Најава успешно објављена!
+      title: Најаве
     custom_emojis:
+      assign_category: Додели категорију
       by_domain: Домен
       copied_msg: Успешно направљена локална копија емоџија
       copy: Копирај
       copy_failed_msg: Не могу да направим локалну копију тог емотиџија
+      create_new_category: Kreiraj novu kategoriju
       created_msg: Емоџи успешно направљен!
       delete: Обриши
       destroyed_msg: Емоџи успешно обрисан!
       disable: Онемогући
+      disabled: Онемогућено
       disabled_msg: Емоџи успешно онемогућен
       emoji: Емоџи
       enable: Омогући
+      enabled: Омогућено
       enabled_msg: Емоџи успешно омогућен
       listed: Излистан
       new:
@@ -145,11 +203,16 @@ sr:
       software: Софтвер
       space: Коришћење простора
       title: Командна табла
+    domain_allows:
+      export: Извоз
+      import: Увоз
     domain_blocks:
       add_new: Додај нови блок домена
       created_msg: Блокирање домена се обрађује
       destroyed_msg: Блокирање домена је опозвано
       domain: Домен
+      export: Извоз
+      import: Увоз
       new:
         create: Направи блокаду
         hint: Блокирање домена неће спречити прављење налога у бази, али ће ретроактивно и аутоматски применити одређене модераторске методе над тим налозима.
@@ -157,6 +220,8 @@ sr:
           noop: Ништа
           suspend: Суспензија
         title: Ново блокирање домена
+      private_comment: Приватни коментар
+      public_comment: Јавни коментар
       reject_media: Одбаци мултимедију
       reject_media_hint: Уклања локално ускладиштене мултимедијске фајлове и одбија да их скида убудуће. Небитно је за суспензију
       reject_reports: Одбаци извештај
@@ -171,12 +236,29 @@ sr:
         create: Додај домен
         title: Нова ставка е-поштe у црној листи
       title: Црна листа E-поште
+    follow_recommendations:
+      status: Статус
     instances:
+      back_to_all: Све
+      back_to_limited: Ограничено
+      back_to_warning: Упозорење
+      by_domain: Домен
+      content_policies:
+        policies:
+          silence: Ограничи
+          suspend: Суспендуј
+        policy: Политика
+        reason: Јавни разлог
+      delivery:
+        all: Све
+        unavailable: Недоступно
       delivery_available: Достава је доступна
       moderation:
         all: Све
         limited: Ограничено
         title: Модерација
+      private_comment: Приватни коментар
+      public_comment: Јавни коментар
       title: Федерација
       total_blocked_by_us: Блокирано од стране нас
       total_followed_by_them: Праћени од стране њих
@@ -190,6 +272,17 @@ sr:
         expired: Истекли
         title: Филтер
       title: Позивнице
+    ip_blocks:
+      expires_in:
+        '1209600': 2 недеље
+        '15778476': 6 месеци
+        '2629746': 1 месец
+        '31556952': 1 година
+        '86400': 1 дан
+        '94670856': 3 године
+      new:
+        title: Креирај ново IP правило
+      no_ip_block_selected: Ниједно IP правило није промењено јер ниједно није изабрано
     relays:
       add_new: Додај нови релеј
       delete: Обриши
@@ -235,9 +328,35 @@ sr:
       unassign: Уклони доделу
       unresolved: Нерешене
       updated_at: Ажурирана
+      view_profile: Погледај профил
+    roles:
+      add_new: Додај улогу
+      categories:
+        administration: Администрација
+        moderation: Модерација
+      delete: Избриши
+      privileges:
+        administrator: Администратор
+        delete_user_data: Избриши податке корисника
+        invite_users: Позови кориснике
+        manage_announcements: Управљај обавештењима
+        manage_roles: Управљај улогама
+        manage_rules: Управљај правилима
+        manage_rules_description: Дозволи корисницима да мењају правила сервера
+        manage_settings: Управљај поставкама
+        manage_settings_description: Дозволи корисницима да мењају поставке сајта
+    rules:
+      add_new: Додај правило
+      delete: Избриши
+      edit: Уреди правило
+      empty: Ниједно правило сервера још није дефинисано.
+      title: Правила сервера
     settings:
       appearance:
         title: Изглед
+      default_noindex:
+        desc_html: Утиче на све кориснике који нису сами променили ову поставку
+        title: Подразумевано искључи кориснике из индексирања претраживача
       discovery:
         public_timelines: Јавне временске линије
     statuses:

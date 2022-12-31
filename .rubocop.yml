@@ -1,12 +1,18 @@
 require:
   - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
 
 AllCops:
   TargetRubyVersion: 2.7
-  NewCops: disable
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  ExtraDetails: true
+  UseCache: true
+  CacheRootDirectory: tmp
+  NewCops: enable
   Exclude:
-    - 'spec/**/*'
-    - 'db/**/*'
+    - db/schema.rb
     - 'app/views/**/*'
     - 'config/**/*'
     - 'bin/*'
@@ -67,15 +73,57 @@ Lint/UselessAccessModifier:
     - class_methods
 
 Metrics/AbcSize:
-  Max: 115
+  Max: 34 # RuboCop default 17
   Exclude:
-    - 'lib/mastodon/*_cli.rb'
+    - 'lib/**/*cli*.rb'
+    - db/*migrate/**/*
+    - lib/paperclip/color_extractor.rb
+    - app/workers/scheduler/follow_recommendations_scheduler.rb
+    - app/services/activitypub/fetch*_service.rb
+    - lib/paperclip/**/*
+  CountRepeatedAttributes: false
+  AllowedMethods:
+    - update_media_attachments!
+    - account_link_to
+    - attempt_oembed
+    - build_crutches
+    - calculate_scores
+    - cc
+    - dump_actor!
+    - filter_from_home?
+    - hydrate
+    - import_bookmarks!
+    - import_relationships!
+    - initialize
+    - link_to_mention
+    - log_target
+    - matches_time_window?
+    - parse_metadata
+    - perform_statuses_search!
+    - privatize_media_attachments!
+    - process_update
+    - publish_media_attachments!
+    - remotable_attachment
+    - render_initial_state
+    - render_with_cache
+    - searchable_by
+    - self.cached_filters_for
+    - set_fetchable_attributes!
+    - signed_request_actor
+    - statuses_to_delete
+    - update_poll!
 
 Metrics/BlockLength:
   Max: 55
   Exclude:
-    - 'lib/tasks/**/*'
     - 'lib/mastodon/*_cli.rb'
+  CountComments: false
+  CountAsOne: [array, heredoc]
+  AllowedMethods:
+    - task
+    - namespace
+    - class_methods
+    - included
 
 Metrics/BlockNesting:
   Max: 3
@@ -85,34 +133,144 @@ Metrics/BlockNesting:
 Metrics/ClassLength:
   CountComments: false
   Max: 500
+  CountAsOne: [array, heredoc]
   Exclude:
     - 'lib/mastodon/*_cli.rb'
 
 Metrics/CyclomaticComplexity:
-  Max: 25
+  Max: 12
   Exclude:
-    - 'lib/mastodon/*_cli.rb'
+    - lib/mastodon/*cli*.rb
+    - db/*migrate/**/*
+  AllowedMethods:
+    - attempt_oembed
+    - blocked?
+    - build_crutches
+    - calculate_scores
+    - cc
+    - discover_endpoint!
+    - filter_from_home?
+    - hydrate
+    - klass
+    - link_to_mention
+    - log_target
+    - matches_time_window?
+    - patch_for_forwarding!
+    - preprocess_attributes!
+    - process_update
+    - remotable_attachment
+    - scan_text!
+    - self.cached_filters_for
+    - set_fetchable_attributes!
+    - setup_redis_env_url
+    - update_media_attachments!
 
 Layout/LineLength:
+  Max: 140 # RuboCop default 120
+  AllowHeredoc: true
   AllowURI: true
-  Enabled: false
+  IgnoreCopDirectives: true
+  AllowedPatterns:
+    # Allow comments to be long lines
+    - !ruby/regexp / \# .*$/
+    - !ruby/regexp /^\# .*$/
+  Exclude:
+    - lib/**/*cli*.rb
+    - db/*migrate/**/*
+    - db/seeds/**/*
 
 Metrics/MethodLength:
   CountComments: false
-  Max: 65
+  CountAsOne: [array, heredoc]
+  Max: 25 # RuboCop default 10
   Exclude:
     - 'lib/mastodon/*_cli.rb'
+  AllowedMethods:
+    - account_link_to
+    - attempt_oembed
+    - body_with_limit
+    - build_crutches
+    - cached_filters_for
+    - calculate_scores
+    - check_webfinger!
+    - clean_feeds!
+    - collection_items
+    - collection_presenter
+    - copy_account_notes!
+    - deduplicate_accounts!
+    - deduplicate_conversations!
+    - deduplicate_local_accounts!
+    - deduplicate_statuses!
+    - deduplicate_tags!
+    - deduplicate_users!
+    - discover_endpoint!
+    - extract_extra_uris_with_indices
+    - extract_hashtags_with_indices
+    - extract_mentions_or_lists_with_indices
+    - filter_from_home?
+    - from_elasticsearch
+    - handle_explicit_update!
+    - handle_mark_as_sensitive!
+    - hsl_to_rgb
+    - import_bookmarks!
+    - import_domain_blocks!
+    - import_relationships!
+    - ldap_options
+    - matches_time_window?
+    - outbox_presenter
+    - pam_get_user
+    - parallelize_with_progress
+    - parse_and_transform
+    - patch_for_forwarding!
+    - populate_home
+    - post_process_style
+    - preload_cache_collection_target_statuses
+    - privatize_media_attachments!
+    - provides_callback_for
+    - publish_media_attachments!
+    - relevant_account_timestamp
+    - remotable_attachment
+    - rgb_to_hsl
+    - rss_status_content_format
+    - set_fetchable_attributes!
+    - setup_redis_env_url
+    - signed_request_actor
+    - to_preview_card_attributes
+    - upgrade_storage_filesystem
+    - upgrade_storage_s3
+    - user_settings_params
+    - hydrate
+    - cc
+    - self_destruct
 
 Metrics/ModuleLength:
   CountComments: false
   Max: 200
+  CountAsOne: [array, heredoc]
 
 Metrics/ParameterLists:
-  Max: 5
-  CountKeywordArgs: true
+  Max: 5 # RuboCop default 5
+  CountKeywordArgs: true # RuboCop default true
+  MaxOptionalParameters: 3 # RuboCop default 3
+  Exclude:
+    - app/models/concerns/account_interactions.rb
+    - app/services/activitypub/fetch_remote_account_service.rb
+    - app/services/activitypub/fetch_remote_actor_service.rb
 
 Metrics/PerceivedComplexity:
-  Max: 25
+  Max: 16 # RuboCop default 8
+  AllowedMethods:
+    - attempt_oembed
+    - build_crutches
+    - calculate_scores
+    - deduplicate_users!
+    - discover_endpoint!
+    - filter_from_home?
+    - hydrate
+    - patch_for_forwarding!
+    - process_update
+    - remove_orphans
+    - update_media_attachments!
 
 Naming/MemoizedInstanceVariableName:
   Enabled: false
@@ -267,9 +425,6 @@ Style/PercentLiteralDelimiters:
 Style/PerlBackrefs:
   AutoCorrect: false
 
-Style/RedundantAssignment:
-  Enabled: false
-
 Style/RedundantFetchBlock:
   Enabled: true
 
@@ -292,7 +447,7 @@ Style/RegexpLiteral:
   Enabled: false
 
 Style/RescueStandardError:
-  Enabled: false
+  Enabled: true
 
 Style/SignalException:
   Enabled: false
@@ -310,4 +465,15 @@ Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: 'comma'
 
 Style/UnpackFirst:
+  Enabled: false
+
+RSpec/ScatteredSetup:
+  Enabled: false
+RSpec/ImplicitExpect:
+  Enabled: false
+RSpec/NamedSubject:
+  Enabled: false
+RSpec/DescribeClass:
+  Enabled: false
+RSpec/LetSetup:
   Enabled: false

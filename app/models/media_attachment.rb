@@ -210,6 +210,8 @@ class MediaAttachment < ApplicationRecord
 
   default_scope { order(id: :asc) }
 
+  attr_accessor :skip_download
+
   def local?
     remote_url.blank?
   end

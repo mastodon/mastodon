@@ -104,6 +104,7 @@ export default class MediaItem extends ImmutablePureComponent {
           <video
             className='media-gallery__item-gifv-thumbnail'
             aria-label={attachment.get('description')}
+            title={attachment.get('description')}
             role='application'
             src={attachment.get('url')}
             onMouseEnter={this.handleMouseEnter}

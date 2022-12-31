@@ -81,7 +81,7 @@ class AccountFilter
     when 'suspended'
       Account.suspended
     when 'disabled'
-      accounts_with_users.merge(User.disabled)
+      accounts_with_users.merge(User.disabled).without_suspended
     when 'silenced'
       Account.silenced
     when 'sensitized'

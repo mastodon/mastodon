@@ -1,6 +1,10 @@
 module.exports = {
   root: true,
 
+  extends: [
+    'eslint:recommended',
+  ],
+
   env: {
     browser: true,
     node: true,
@@ -64,8 +68,8 @@ module.exports = {
     eqeqeq: 'error',
     indent: ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],
+    'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
-    'no-cond-assign': 'error',
     'no-console': [
       'warn',
       {
@@ -75,18 +79,16 @@ module.exports = {
         ],
       },
     ],
-    'no-fallthrough': 'error',
-    'no-irregular-whitespace': 'error',
-    'no-mixed-spaces-and-tabs': 'warn',
+    'no-empty': 'off',
     'no-nested-ternary': 'warn',
+    'no-prototype-builtins': 'off',
     'no-restricted-properties': [
       'error',
       { property: 'substring', message: 'Use .slice instead of .substring.' },
       { property: 'substr', message: 'Use .slice instead of .substr.' },
     ],
+    'no-self-assign': 'off',
     'no-trailing-spaces': 'warn',
-    'no-undef': 'error',
-    'no-unreachable': 'error',
     'no-unused-expressions': 'error',
     'no-unused-vars': [
       'error',
@@ -96,6 +98,7 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
+    'no-useless-escape': 'off',
     'object-curly-spacing': ['error', 'always'],
     'padded-blocks': [
       'error',
@@ -105,7 +108,6 @@ module.exports = {
     ],
     quotes: ['error', 'single'],
     semi: 'error',
-    strict: 'off',
     'valid-typeof': 'error',
 
     'react/jsx-boolean-value': 'error',
