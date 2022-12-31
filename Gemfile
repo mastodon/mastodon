@@ -72,7 +72,7 @@ gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
-gem 'rails-settings-cached', '~> 0.6'
+gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/zunda/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
 gem 'redcarpet', '~> 3.5'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
@@ -159,4 +159,6 @@ gem 'concurrent-ruby', require: false
 gem 'connection_pool', require: false
 gem 'xorcist', '~> 1.1'
 gem 'cocoon', '~> 1.2'
-gem 'psych', '<4'
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
