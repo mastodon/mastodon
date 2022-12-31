@@ -629,3 +629,16 @@ a.mention,
     border-top: 1px solid $purple3;
   }
 }
+
+#navigation-panel__publish {
+  i {
+    color: $primary-text-color;
+  }
+}
+
+#navigation-panel__publish.active {
+  i {
+    background-color: lighten($ui-highlight-color, 10%);
+    color: $lighter-text-color;
+  }
+}

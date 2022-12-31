@@ -2295,7 +2295,8 @@ a.account__display-name {
   }
 }
 
-$ui-header-height: 55px;
+/* stylelint-disable-next-line */
+$ui-header-height: 0px;
 
 .ui__header {
   display: none;
@@ -2622,30 +2623,6 @@ $ui-header-height: 55px;
   .scrollable,
   .error-column {
     border-radius: 0 !important;
-  }
-}
-
-@media screen and (max-width: $no-gap-breakpoint - 285px - 1px) {
-  $sidebar-width: 55px;
-
-  .columns-area__panels__main {
-    width: calc(100% - $sidebar-width);
-  }
-
-  .columns-area__panels__pane--navigational {
-    min-width: $sidebar-width;
-
-    .columns-area__panels__pane__inner {
-      width: $sidebar-width;
-    }
-
-    .column-link span {
-      display: none;
-    }
-
-    .list-panel {
-      display: none;
-    }
   }
 }
 
@@ -8776,4 +8753,186 @@ div.status__content--with-spoiler {
       }
     }
   }
+}
+
+#navigation-panel__publish {
+  padding: 10px;
+
+  i {
+    background-color: darken($ui-highlight-color, 2%);
+    padding: 8px 6px;
+    border-radius: 4px;
+    color: $primary-text-color;
+    font-size: 16px;
+    margin-right: 8px;
+  }
+}
+
+#navigation-panel__publish.active {
+  i {
+    background-color: lighten($ui-highlight-color, 20%);
+    color: lighten($ui-highlight-color, 30%);
+  }
+}
+
+.navigation-panel--profile {
+  padding: 10px;
+}
+
+.column-link--button {
+  border: 0;
+  border-bottom: 1px solid lighten($ui-base-color, 8%);
+  box-sizing: border-box;
+  height: 48px;
+  text-align: left;
+}
+
+@media screen and (min-width: $no-gap-breakpoint) {
+  $sidebar-width: 100%;
+
+  .columns-area__panels__pane--compositional {
+    .columns-area__panels__pane__inner {
+      position: fixed;
+    }
+  }
+
+  .columns-area__panels__pane__inner {
+    position: relative;
+  }
+
+  .navigation-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+  }
+
+  .navigation-panel--profile {
+    display: none;
+  }
+
+  #navigation-panel__publish {
+    display: none;
+  }
+
+  .column-link--button {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $no-gap-breakpoint - 1px) {
+  $sidebar-width: 285px;
+
+  .tabs-bar__wrapper {
+    z-index: 1;
+    width: calc(100% - $sidebar-width);
+  }
+
+  .columns-area__panels__main {
+    width: 100%;
+  }
+
+  .columns-area--mobile {
+    width: calc(100% - $sidebar-width);
+    margin: 0;
+  }
+
+  .columns-area--mobile.navigation-panel--retracted {
+    width: 100%;
+    margin: 0 auto auto 0;
+  }
+
+  .columns-area--mobile.navigation-panel--extended {
+    width: calc(100% - $sidebar-width);
+    margin: 0;
+    color: red !important;
+  }
+
+  .columns-area__panels__pane__inner {
+    width: 0;
+    height: 0;
+    min-width: 0;
+  }
+
+  .navigation-panel {
+    width: $sidebar-width;
+    z-index: 1000;
+    position: fixed;
+    right: 0;
+    height: auto !important;
+    box-sizing: border-box;
+  }
+
+  .column-link__icon {
+    margin-right: 13px;
+  }
+
+  .account__avatar-inline {
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: $no-gap-breakpoint - 285px - 1px) {
+  $sidebar-width: 55px;
+
+  .tabs-bar__wrapper {
+    z-index: 1;
+    width: calc(100% - $sidebar-width);
+  }
+
+  .columns-area__panels__main {
+    width: 100%;
+  }
+
+  .columns-area--mobile {
+    width: calc(100% - $sidebar-width);
+    margin: 0;
+  }
+
+  .columns-area--mobile.navigation-panel--extended {
+    width: calc(100% - $sidebar-width);
+    margin: 0;
+  }
+
+  .columns-area--mobile.navigation-panel--retracted {
+    width: 100%;
+    margin: 0 auto auto 0;
+  }
+
+  .columns-area__panels__pane__inner {
+    width: 0;
+    height: 0;
+    min-width: 0;
+  }
+
+  .navigation-panel {
+    width: $sidebar-width;
+    z-index: 1000;
+    position: fixed;
+    right: 0;
+    height: auto !important;
+    box-sizing: border-box;
+  }
+
+  .columns-area__panels__pane--navigational {
+    min-width: $sidebar-width;
+
+    .columns-area__panels__pane__inner {
+      width: $sidebar-width;
+    }
+
+    .column-link span {
+      display: none;
+    }
+
+    .list-panel {
+      display: none;
+    }
+  }
+}
+
+#navigation-retractable {
+  position: relative;
+  overflow-y: auto;
+  bottom: 0;
+  height: 100vh;
 }

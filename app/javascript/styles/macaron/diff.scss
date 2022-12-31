@@ -1169,6 +1169,52 @@ button.icon-button.disabled i.fa-retweet {
   }
 }
 
+<<<<<<< HEAD
+#navigation-panel__publish {
+  i {
+    color: $ui-base-lighter-color;
+  }
+}
+
+#navigation-panel__publish.active {
+  i {
+    background-color: darken($ui-highlight-color, 20%);
+    color: darken($ui-highlight-color, 30%);
+  }
+}
+
+// Tablet layout
+@media screen and (max-width: $no-gap-breakpoint - 1px) {
+  .tabs-bar__wrapper {
+    z-index: 2;
+  }
+
+  .columns-area--mobile {
+    z-index: 0;
+  }
+
+  .column-header {
+    box-sizing: border-box;
+    height: 48px;
+  }
+}
+
+// Mobile layout
+@media screen and (max-width: $no-gap-breakpoint - 285px - 1px) {
+  .tabs-bar__wrapper {
+    z-index: 2;
+  }
+
+  .columns-area--mobile {
+    z-index: 0;
+  }
+
+  .column-header {
+    box-sizing: border-box;
+    height: 48px;
+  }
+}
+
 .rules-list {
   background-color: $cream;
 }
