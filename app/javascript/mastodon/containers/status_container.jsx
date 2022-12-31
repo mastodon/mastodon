@@ -20,6 +20,7 @@ import {
 import {
   muteStatus,
   unmuteStatus,
+  clearStatusNotifications,
   deleteStatus,
   hideStatus,
   revealStatus,
@@ -220,6 +221,10 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
     } else {
       dispatch(muteStatus(status.get('id')));
     }
+  },
+
+  onClearNotifications (status) {
+    dispatch(clearStatusNotifications(status.get('id')))
   },
 
   onToggleHidden (status) {

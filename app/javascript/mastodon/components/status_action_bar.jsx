@@ -32,6 +32,7 @@ const messages = defineMessages({
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
   muteConversation: { id: 'status.mute_conversation', defaultMessage: 'Mute conversation' },
+  clearNotifications: { id: 'status.clear_notifications', defaultMessage: 'Clear Notifications' },
   unmuteConversation: { id: 'status.unmute_conversation', defaultMessage: 'Unmute conversation' },
   pin: { id: 'status.pin', defaultMessage: 'Pin on profile' },
   unpin: { id: 'status.unpin', defaultMessage: 'Unpin from profile' },
@@ -78,6 +79,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onReport: PropTypes.func,
     onEmbed: PropTypes.func,
     onMuteConversation: PropTypes.func,
+    onClearNotifications: PropTypes.func,
     onPin: PropTypes.func,
     onBookmark: PropTypes.func,
     onFilter: PropTypes.func,
@@ -216,6 +218,10 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onMuteConversation(this.props.status);
   };
 
+  handleClearNotificationsClick = () => {
+    this.props.onClearNotifications(this.props.status);
+  }
+
   handleFilterClick = () => {
     this.props.onAddFilter(this.props.status);
   };
@@ -267,6 +273,7 @@ class StatusActionBar extends ImmutablePureComponent {
 
     if (writtenByMe || withDismiss) {
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
+      menu.push({ text: intl.formatMessage(messages.clearNotifications), action: this.handleClearNotificationsClick });
       menu.push(null);
     }
 

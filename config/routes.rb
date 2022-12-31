@@ -451,6 +451,7 @@ Rails.application.routes.draw do
 
           resource :mute, only: :create
           post :unmute, to: 'mutes#destroy'
+          post :clear_notifications, to: 'mutes#clear_notifications'
 
           resource :pin, only: :create
           post :unpin, to: 'pins#destroy'
