@@ -14,6 +14,7 @@ sk:
       one: Sledujúci
       other: Sledovatelia
     following: Nasledujem
+    instance_actor_flash: Toto konto je virtuálny aktér, ktorý predstavuje samotný server, a nie konkrétneho používateľa. Používa sa na účely federácie a nemal by byť pozastavený.
     last_active: naposledy aktívny
     link_verified_on: Vlastníctvo tohto odkazu bolo skontrolované %{date}
     nothing_here: Nič tu nie je!
@@ -36,10 +37,12 @@ sk:
     accounts:
       add_email_domain_block: Pridaj e-mailovú doménu na zoznam zakázaných
       approve: Schváľ
+      approved_msg: Úspešne schválená prihláška %{username}
       are_you_sure: Si si istý/á?
       avatar: Maskot
       by_domain: Doména
       change_email:
+        changed_msg: E-mail úspešne zmenený!
         current_email: Súčasný email
         label: Zmeň email
         new_email: Nový email
@@ -57,15 +60,20 @@ sk:
       delete: Vymaž dáta
       deleted: Vymazané
       demote: Degraduj
+      destroyed_msg: "%{username} je teraz zaradený do fronty na okamžité vymazanie"
       disable: Zablokuj
+      disable_sign_in_token_auth: Zakázanie overovania e-mailovým tokenom
       disable_two_factor_authentication: Vypni dvoj-faktorové overovanie
       disabled: Blokovaný
       display_name: Ukáž meno
       domain: Doména
       edit: Uprav
+      email: Email
       email_status: Stav emailu
       enable: Povoľ
+      enable_sign_in_token_auth: Povolenie overovania e-mailovým tokenom
       enabled: Povolený
+      enabled_msg: Úspešne rozmrazené konto %{username}
       followers: Sledujúci
       follows: Sledovania
       header: Záhlavie
@@ -82,6 +90,8 @@ sk:
       login_status: Stav prihlásenia
       media_attachments: Prílohy
       memorialize: Zmeň na "Navždy budeme spomínať"
+      memorialized: Spomienka na
+      memorialized_msg: Úspešne zmenené %{username} na spomienkové konto
       moderation:
         active: Aktívny/a
         all: Všetko
@@ -98,14 +108,19 @@ sk:
       not_subscribed: Neodoberá
       pending: Vyžaduje posúdenie
       perform_full_suspension: Vylúč
+      previous_strikes: Predchádzajúce údery
       promote: Vyzdvihni
       protocol: Protokol
       public: Verejná časová os
       push_subscription_expires: PuSH odoberanie expiruje
       redownload: Obnov profil
+      redownloaded_msg: Úspešne obnovený profil %{username} z pôvodného
       reject: Zamietni
+      rejected_msg: Úspešne zamietnutá prihláška %{username}
       remove_avatar: Vymaž avatar
       remove_header: Vymaž záhlavie
+      removed_avatar_msg: Úspešne odstránený obrázok avatara %{username}
+      removed_header_msg: Úspešne odstránený obrázok hlavičky %{username}
       resend_confirmation:
         already_confirmed: Tento užívateľ je už potvrdený
         send: Odošli potvrdzovací email znovu
@@ -120,6 +135,7 @@ sk:
       security_measures:
         only_password: Iba heslo
         password_and_2fa: Heslo a dvoj-faktorové overovanie
+      sensitive: Citlivé na silu
       sensitized: Označený ako chúlostivý
       shared_inbox_url: URL zdieľanej schránky
       show:
@@ -128,18 +144,25 @@ sk:
       silence: Stíš
       silenced: Stíšený/é
       statuses: Príspevkov
+      strikes: Predchádzajúce údery
       subscribe: Odoberaj
       suspend: Vylúč
       suspended: Vylúčený/á
+      suspension_irreversible: Údaje tohto účtu boli nenávratne vymazané. Účet môžete zrušiť, aby sa dal používať, ale neobnovia sa žiadne údaje, ktoré predtým mal.
+      suspension_reversible_hint_html: Účet bol pozastavený a údaje budú úplne odstránené dňa %{date}. Dovtedy je možné účet obnoviť bez akýchkoľvek nepriaznivých účinkov. Ak chcete okamžite odstrániť všetky údaje účtu, môžete tak urobiť nižšie.
       title: Účty
       unblock_email: Odblokuj emailovú adresu
+      unblocked_email_msg: Úspešné odblokovanie e-mailovej adresy %{username}
       unconfirmed_email: Nepotvrdený email
+      undo_sensitized: Zrušenie citlivosti na silu
       undo_silenced: Zruš stíšenie
       undo_suspension: Zruš blokovanie
+      unsilenced_msg: Úspešne zrušené obmedzenie účtu %{username}
       unsubscribe: Prestaň odoberať
       username: Prezývka
       view_domain: Ukáž súhrn pre doménu
       warn: Varuj
+      web: Web
       whitelisted: Na bielej listine
     action_logs:
       action_types:
@@ -154,6 +177,7 @@ sk:
         create_domain_block: Vytvor zákaz domény
         create_email_domain_block: Vytvor zákaz emailovej domény
         create_ip_block: Vytvor IP pravidlo
+        create_user_role: Vytvoriť rolu
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
         destroy_custom_emoji: Vymaž vlastné emotikony
@@ -184,7 +208,9 @@ sk:
         unsuspend_account: Odblokuj účet
         update_announcement: Aktualizuj oboznámenie
         update_domain_block: Aktualizuj zákaz domény
+        update_ip_block: Aktualizovať IP pravidlo
         update_status: Aktualizuj stav
+        update_user_role: Aktualizovať rolu
       actions:
         assigned_to_self_report_html: "%{name} pridelil/a hlásenie užívateľa %{target} sebe"
         change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
@@ -376,7 +402,6 @@ sk:
     report_notes:
       created_msg: Poznámka o nahlásení úspešne vytvorená!
       destroyed_msg: Poznámka o nahlásení úspešne vymazaná!
-      today_at: Dnes o %{time}
     reports:
       action_taken_by: Zákrok vykonal/a
       are_you_sure: Si si istý/á?

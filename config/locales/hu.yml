@@ -116,6 +116,8 @@ hu:
       redownloaded_msg: "%{username} profilját sikeresen frissítettük az eredetiből"
       reject: Elutasítás
       rejected_msg: A %{username} fiók regisztrációs kérelmét sikeresen elutasítottuk
+      remote_suspension_irreversible: A fiók adatait véglegesen törölték.
+      remote_suspension_reversible_hint_html: 'A fiókot felfüggesztették a kiszolgálóján, az adatai ekkor lesznek teljesen eltávolítva: %{date}. Eddig az időpontig a távoli kiszolgáló probléma nélkül helyre tudja állítani a fiókot. Ha azonnal törölni szeretnéd a fiók adatait, alább megteheted.'
       remove_avatar: Profilkép eltávolítása
       remove_header: Fejléc törlése
       removed_avatar_msg: A %{username} fiók avatárját sikeresen töröltük
@@ -555,13 +557,12 @@ hu:
       pending: Várakozás a relé jóváhagyására
       save_and_enable: Mentés és engedélyezés
       setup: Relé kapcsolat felállítása
-      signatures_not_enabled: A relék nem fognak jól működni, amíg a biztonságos mód vagy az engedélyező listás mód aktív
+      signatures_not_enabled: A relék nem fognak megfelelően működni, amíg a biztonságos mód vagy a korlátozott föderációs mód engedélyezett
       status: Állapot
       title: Relék
     report_notes:
       created_msg: Bejelentési feljegyzés létrehozva!
       destroyed_msg: Bejelentési feljegyzés törölve!
-      today_at: Ma %{time}-kor
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ hu:
       content_retention:
         preamble: Felhasználók által generált tartalom Mastodonon való tárolásának szabályozása.
         title: Tartalom megtartása
+      default_noindex:
+        desc_html: Azokat a felhasználókat érinti, akik nem módosították ezt a beállítást
+        title: Alapértelmezetten ne indexeljék a keresők a felhasználókat
       discovery:
         follow_recommendations: Ajánlottak követése
         preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
@@ -971,6 +975,9 @@ hu:
       email_below_hint_html: Ha az alábbi e-mail cím nem megfelelő, itt megváltoztathatod és kaphatsz egy új igazoló e-mailt.
       email_settings_hint_html: A visszaigazoló e-mailt elküldtük ide %{email}. Ha az e-mail cím nem megfelelő, megváltoztathatod a fiókod beállításainál.
       title: Beállítás
+    sign_in:
+      preamble_html: Jelentkezz be a <strong>%{domain}</strong> fiókoddal. Ha másik kiszolgálón található a fiókod, akkor itt nem fogsz tudni belépni.
+      title: Jelentkezz be a %{domain}-ra
     sign_up:
       preamble: Egy fiókkal ezen a Mastodon kiszolgálón követhetsz bárkit a hálózaton, függetlenül attól, hogy az illető fiókja melyik kiszolgálón található.
       title: Állítsuk be a fiókod a %{domain} kiszolgálón.

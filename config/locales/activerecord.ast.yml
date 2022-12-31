@@ -18,7 +18,7 @@ ast:
         account:
           attributes:
             username:
-              invalid: ha contener namás lletres, númberos y guiones baxos
+              invalid: ha contener namás lletres, númberos ya guiones baxos
               reserved: ta acutáu
         admin/webhook:
           attributes:
@@ -38,7 +38,6 @@ ast:
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: incluyir los permisos que nun son seguros pal rol base
               elevated: nun se puen incluyir los permisos que'l to rol nun poseye
               own_role: nun se pue camudar col to rol actual
             position:

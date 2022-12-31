@@ -444,9 +444,13 @@ gd:
       resolved_through_html: Chaidh fuasgladh slighe %{domain}
       title: Àrainnean puist-d ’gam bacadh
     export_domain_allows:
+      new:
+        title: Ion-phortaich àrainnean ceadaichte
       no_file: Cha deach faidhle a thaghadh
     export_domain_blocks:
       import:
+        existing_relationships_warning: Dàimhean leantainn làithreach
+        private_comment_template: Chaidh ion-phortadh o %{source} %{date}
         title: Ion-phortaich bacaidhean àrainne
       new:
         title: Ion-phortaich bacaidhean àrainne
@@ -576,7 +580,6 @@ gd:
     report_notes:
       created_msg: Chaidh nòta a chruthachadh dhan ghearan!
       destroyed_msg: Chaidh nòta a’ ghearain a sguabadh às!
-      today_at: An-diugh aig %{time}
     reports:
       account:
         notes:
@@ -952,7 +955,7 @@ gd:
     notification_preferences: Atharraich roghainnean a’ phuist-d
     salutation: "%{name},"
     settings: 'Atharraich roghainnean a’ phuist-d: %{link}'
-    view: 'Seall:'
+    view: 'Faic:'
     view_profile: Seall a’ phròifil
     view_status: Seall am post
   applications:

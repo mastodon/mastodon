@@ -113,6 +113,8 @@ vi:
       redownloaded_msg: Đã tiếp nhận tài khoản %{username} thành công
       reject: Từ chối
       rejected_msg: Đã từ chối đăng ký tài khoản %{username}
+      remote_suspension_irreversible: Dữ liệu của người này đã bị xóa vĩnh viễn.
+      remote_suspension_reversible_hint_html: Mọi dữ liệu của người này sẽ bị xóa hoàn toàn vào %{date}. Trước thời hạn này, các máy chủ khác vẫn có thể lưu trữ mà không ảnh hưởng. Nếu bạn muốn xóa dữ liệu của người này ngay lập tức, hãy tiếp tục.
       remove_avatar: Xóa ảnh đại diện
       remove_header: Xóa ảnh bìa
       removed_avatar_msg: Đã xóa bỏ ảnh đại diện của %{username}
@@ -550,7 +552,6 @@ vi:
     report_notes:
       created_msg: Đã thêm lưu ý kiểm duyệt!
       destroyed_msg: Đã xóa lưu ý kiểm duyệt!
-      today_at: Hôm nay lúc %{time}
     reports:
       account:
         notes:
@@ -690,6 +691,9 @@ vi:
       content_retention:
         preamble: Kiểm soát cách lưu trữ nội dung cá nhân trong Mastodon.
         title: Lưu giữ nội dung
+      default_noindex:
+        desc_html: Ảnh hưởng đến tất cả người không tự thay đổi cài đặt này
+        title: Mặc định người dùng không xuất hiện trong công cụ tìm kiếm
       discovery:
         follow_recommendations: Gợi ý theo dõi
         preamble: Hiển thị nội dung thú vị là công cụ để thu hút người dùng mới, những người có thể không quen bất kỳ ai trong Mastodon. Kiểm soát cách các tính năng khám phá hoạt động trên máy chủ của bạn.
@@ -861,8 +865,8 @@ vi:
         sensitive: đánh dấu tài khoản của họ là nhạy cảm
         silence: hạn chế tài khoản của họ
         suspend: vô hiệu hóa tài khoản của họ
-      body: "%{target} đã khiếu nại quyết định kiểm duyệt bởi %{action_taken_by} vào %{date}, vì %{type}. Họ cho biết:"
-      next_steps: Bạn có thể chấp nhận kháng cáo để hủy bỏ kiểm duyệt, hoặc bỏ qua.
+      body: "%{target} đã khiếu nại vì bị %{action_taken_by} %{type} vào %{date}. Họ cho biết:"
+      next_steps: Bạn có thể chấp nhận kháng cáo để hủy kiểm duyệt hoặc bỏ qua.
       subject: "%{username} đang khiếu nại quyết định kiểm duyệt trên %{instance}"
     new_pending_account:
       body: Thông tin chi tiết của tài khoản mới ở phía dưới. Bạn có thể phê duyệt hoặc từ chối người này.
@@ -953,6 +957,9 @@ vi:
       email_below_hint_html: Nếu địa chỉ email dưới đây không chính xác, bạn có thể thay đổi địa chỉ tại đây và nhận email xác nhận mới.
       email_settings_hint_html: Email xác minh đã được gửi tới %{email}. Nếu địa chỉ email đó không chính xác, bạn có thể thay đổi nó trong cài đặt tài khoản.
       title: Thiết lập
+    sign_in:
+      preamble_html: Đăng nhập bằng tài khoản <strong>%{domain}</strong>. Nếu tài khoản của bạn được lưu trữ trên một máy chủ khác, bạn sẽ không thể đăng nhập tại đây.
+      title: Đăng nhập %{domain}
     sign_up:
       preamble: Với tài khoản trên máy chủ Mastodon này, bạn sẽ có thể theo dõi bất kỳ người nào trên các máy chủ khác, bất kể tài khoản của họ ở đâu.
       title: Cho phép bạn đăng ký trên %{domain}.

@@ -1,17 +1,81 @@
 ---
 fy:
+  about:
+    about_mastodon_html: Mastodon is in sosjaal netwurk dat gebrûkt makket fan iepen webprotokollen en frije software. It is krekt lykas e-mail desintralisearre!
+    contact_missing: Net ynsteld
+    contact_unavailable: Net fan tapassing
+    hosted_on: Mastodon op %{domain}
+    title: Oer
   accounts:
-    last_active: letst warber
+    follow: Folgje
+    followers:
+      one: Folger
+      other: Folgers
+    following: Folgjend
+    instance_actor_flash: Dit account is in ‘virtual actor’ wêrmei’t de server himself fertsjinwurdiget en is dus gjin yndividuele brûker. It wurdt foar federaasjedoeleinen brûkt en moat net útsteld wurde.
+    last_active: lêst warber
+    link_verified_on: Eigendom fan dizze keppeling is kontrolearre op %{date}
+    nothing_here: Hjir is neat!
+    pin_errors:
+      following: Jo moatte dizze account wol al folgje, eardat jo it oanrekommandearje kinne
+    posts:
+      one: Toot
+      other: Berjochten
+    posts_tab_heading: Berjochten
   admin:
+    account_actions:
+      action: Aksje útfiere
+      title: Moderaasjemaatregelen tsjin %{acct} nimme
+    account_moderation_notes:
+      create: Lit in opmerking efter
+      created_msg: Oanmeitsjen fan opmerking foar moderatoaren slagge!
+      destroyed_msg: Fuortsmiten fan opmerking foar moderatoaren slagge!
     accounts:
+      add_email_domain_block: E-maildomein blokkearje
+      approve: Goedkarre
+      approved_msg: It goedkarren fan de account fan %{username} is slagge
+      are_you_sure: Binne jo wis?
+      avatar: Profylfoto
+      by_domain: Domein
+      change_email:
+        changed_msg: E-mailadres mei sukses wizige!
+        current_email: Aktuele e-mailadres
+        label: E-mailadres wizigje
+        new_email: Nij e-mailadres
+        submit: E-mailadres wizigje
+        title: E-mailadres foar %{username} wizigje
+      change_role:
+        changed_msg: Rol mei sukses wizige!
+        label: Rol wizigje
+        no_role: Gjin rol
+        title: Rol fan %{username} wizigje
+      confirm: Befêstigje
+      confirmed: Befêstige
+      confirming: Befêstiging
+      custom: Oanpast
       delete: Gegevens fuortsmite
       deleted: Fuortsmiten
+      demote: Degradearje
+      destroyed_msg: It fuortsmiten fan de gegevens fan %{username} stiet no yn de wachtrige
+      disable: Befrieze
+      disable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht útskeakelje
+      disable_two_factor_authentication: 2FA útskeakelje
+      disabled: Beferzen
+      display_name: Werjeftenamme
       domain: Domein
       edit: Bewurkje
+      email: E-mailadres
+      email_status: E-mailsteat
+      enable: Untteie
+      enable_sign_in_token_auth: Ferifikaasje mei in tagongskoade fia e-mailberjocht ynskeakelje
+      enabled: Ynskeakele
+      enabled_msg: It ûntteie fan de account fan %{username} is slagge
       followers: Folgers
       follows: Folgjend
       header: Omslachfoto
       inbox_url: Ynboks-URL
+      invite_request_text: Redenen om te registrearjen
+      invited_by: Utnûge troch
       ip: IP
       joined: Registrearre
       location:
@@ -21,6 +85,9 @@ fy:
         title: Lokaasje
       login_status: Oanmeldsteat
       media_attachments: Mediabylagen
+      memorialize: Nei in Yn memoriam wizigje
+      memorialized: Yn memoriam
+      memorialized_msg: It nei in Yn memoriam wizigje fan de account fan %{username} is slagge
       moderation:
         active: Aktyf
         all: Alle
@@ -28,7 +95,16 @@ fy:
         silenced: Beheind
         suspended: Utsteld
         title: Moderaasje
+      moderation_notes: Opmerkingen foar moderatoaren
+      most_recent_activity: Lêst warber
+      most_recent_ip: Lêst brûkt IP-adres
+      no_account_selected: Der binne gjin accounts wizige, omdat der gjin ien selektearre waard
+      no_limits_imposed: Gjin limiten ynsteld
+      no_role_assigned: Gjin rol tawezen
+      not_subscribed: Net abonnearre
+      pending: Moat noch beoardiele wurde
       perform_full_suspension: Utstelle
+      previous_strikes: Eardere skeiningen
       promote: Promovearje
       protocol: Protokol
       public: Iepenbier
@@ -148,6 +224,6 @@ fy:
   statuses:
     content_warning: 'Ynhâldswarskôging: %{warning}'
     pin_errors:
-      direct: Berjochten dy allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
+      direct: Berjochten dy’t allinnich sichtber binne foar fermelde brûkers kinne net fêstset wurde
   webauthn_credentials:
     delete: Fuortsmite

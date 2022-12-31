@@ -3,19 +3,19 @@ fr-QC:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Nom
-        redirect_uri: L’URL de redirection
-        scopes: Étendues
+        name: Nom de l'application
+        redirect_uri: URI de redirection
+        scopes: Permissions
         website: Site web de l’application
     errors:
       models:
         doorkeeper/application:
           attributes:
             redirect_uri:
-              fragment_present: ne peut contenir un fragment.
-              invalid_uri: doit être une URL valide.
-              relative_uri: doit être une URL absolue.
-              secured_uri: doit être une URL HTTP/SSL.
+              fragment_present: ne peut pas contenir de fragment.
+              invalid_uri: doit être un URI valide.
+              relative_uri: doit être un URI absolue.
+              secured_uri: doit être un URI HTTP/SSL.
   doorkeeper:
     applications:
       buttons:
@@ -25,15 +25,15 @@ fr-QC:
         edit: Modifier
         submit: Envoyer
       confirmations:
-        destroy: Voulez-vous vraiment faire ça ?
+        destroy: Êtes-vous sûr·e?
       edit:
         title: Modifier l’application
       form:
-        error: Oups ! Vérifier votre formulaire pour des erreurs possibles
+        error: Oups! Vérifiez votre formulaire pour des erreurs possibles
       help:
         native_redirect_uri: Utiliser %{native_redirect_uri} pour les tests locaux
-        redirect_uri: Utiliser une ligne par URL
-        scopes: Séparer les permissions avec des espaces. Laisser vide pour utiliser les portées par défaut.
+        redirect_uri: Utiliser une ligne par URI
+        scopes: Séparez les portées par des espaces. Laissez vide pour utiliser les portées par défaut.
       index:
         application: Application
         callback_url: URL de retour d’appel
@@ -48,11 +48,11 @@ fr-QC:
         title: Nouvelle application
       show:
         actions: Actions
-        application_id: ID de l’application
+        application_id: Clé du client
         callback_urls: URL du retour d’appel
         scopes: Permissions
-        secret: Secret
-        title: 'Application : %{name}'
+        secret: Secret du client
+        title: 'Application: %{name}'
     authorizations:
       buttons:
         authorize: Autoriser
@@ -60,7 +60,7 @@ fr-QC:
       error:
         title: Une erreur est survenue
       new:
-        prompt_html: "%{client_name} souhaite accéder à votre compte. Il s'agit d'une application tierce. <strong>Vous ne devriez pas l'y autoriser si vous ne lui faites pas confiance.</strong>"
+        prompt_html: "%{client_name} souhaite accéder à votre compte. Il s'agit d'une application tierce. <strong>Si vous ne lui faites pas confiance, vous ne devriez pas l'y autoriser.</strong>"
         review_permissions: Examiner les autorisations
         title: Autorisation requise
       show:
@@ -69,7 +69,7 @@ fr-QC:
       buttons:
         revoke: Révoquer
       confirmations:
-        revoke: Voulez-vous vraiment faire ça ?
+        revoke: Êtes-vous sûr·e?
       index:
         authorized_at: Autorisée le %{date}
         description_html: Ces applications peuvent accéder à votre compte via l'API. Si vous voyez ici des applications que vous ne reconnaissez pas ou qui ne fonctionnent pas normalement, vous pouvez en révoquer les accès.
@@ -80,11 +80,11 @@ fr-QC:
         title: Vos applications autorisées
     errors:
       messages:
-        access_denied: Le propriétaire de la ressource ou le serveur d’autorisation a refusé la requête.
-        credential_flow_not_configured: Le flux des identifiants du mot de passe du propriétaire de la ressource a échoué car Doorkeeper.configure.resource_owner_from_credentials n’est pas configuré.
+        access_denied: Le/la propriétaire de la ressource ou le serveur d’autorisation a refusé la requête.
+        credential_flow_not_configured: Le flux des identifiants du mot de passe du/de la propriétaire de la ressource a échoué car Doorkeeper.configure.resource_owner_from_credentials n’est pas configuré.
         invalid_client: L’authentification du client a échoué à cause d’un client inconnu, d’aucune authentification de client incluse ou d’une méthode d’authentification non prise en charge.
-        invalid_grant: L’autorisation accordée est invalide, expirée, annulée, ne concorde pas avec l’URL de redirection utilisée dans la requête d’autorisation, ou a été délivrée à un autre client.
-        invalid_redirect_uri: L’URL de redirection n’est pas valide.
+        invalid_grant: L’autorisation accordée est invalide, expirée, révoquée, ne concorde pas avec l’URI de redirection utilisée dans la requête d’autorisation, ou a été délivrée à un autre client.
+        invalid_redirect_uri: L’URI de redirection n’est pas valide.
         invalid_request:
           missing_param: 'Paramètre requis manquant: %{value}.'
           request_not_authorized: La requête doit être autorisée. Le paramètre requis pour l'autorisation de la requête est manquant ou non valide.

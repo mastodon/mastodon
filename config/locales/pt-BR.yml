@@ -433,6 +433,7 @@ pt-BR:
     export_domain_blocks:
       import:
         description_html: Você está prestes a importar uma lista de boqueio de domínio. Por favor, revise esta lista com muito cuidado, especialmente se você mesmo não criou esta lista.
+        existing_relationships_warning: Existem relações de seguimento
         private_comment_template: Importado de %{source} em %{date}
         title: Importar bloqueio de domínios
       new:
@@ -557,7 +558,6 @@ pt-BR:
     report_notes:
       created_msg: Nota de denúncia criada!
       destroyed_msg: Nota de denúncia excluída!
-      today_at: Hoje às %{time}
     reports:
       account:
         notes:

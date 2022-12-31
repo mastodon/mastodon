@@ -116,6 +116,8 @@ gl:
       redownloaded_msg: Actualizado o perfil de %{username} desde a orixe
       reject: Rexeitar
       rejected_msg: Rexeitada a solicitude de rexistro de %{username}
+      remote_suspension_irreversible: Elimináronse de xeito irreversible os datos desta conta.
+      remote_suspension_reversible_hint_html: Esta conta foi suspendida no seu servidor, e os datos serán totalmente eliminados o %{date}. Ata entón, o servidor remoto pode restablecer a conta sen perder datos. Se desexas eliminar agora mesmo todos os datos da conta, podes facelo aquí embaixo.
       remove_avatar: Eliminar imaxe de perfil
       remove_header: Eliminar cabeceira
       removed_avatar_msg: Eliminado a imaxe de avatar de %{username}
@@ -561,7 +563,6 @@ gl:
     report_notes:
       created_msg: A nota da denuncia creouse de xeito correcto!
       destroyed_msg: A nota da denuncia borrouse de xeito correcto!
-      today_at: Hoxe ás %{time}
     reports:
       account:
         notes:
@@ -578,7 +579,7 @@ gl:
         suspend_description_html: O perfil e tódolos seus contidos será inaccesbles e finalmente eliminados. A interacción coa conta non será posible. Reversible durante 30 días.
       actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
       add_to_report: Engadir máis á denuncia
-      are_you_sure: Estás seguro?
+      are_you_sure: Tes certeza?
       assign_to_self: Asignarme
       assigned: Moderador asignado
       by_target_domain: Dominio da conta denunciada
@@ -693,7 +694,7 @@ gl:
       about:
         manage_rules: Xestionar regras do servidor
         preamble: Proporciona información detallada acerca do xeito en que se xestiona, modera e financia o servidor.
-        rules_hint: Hai un espazo dedicado para as normas que é de agardar que as túas usuarias cumpran.
+        rules_hint: Hai un espazo dedicado para as normas que é de agardar as usuarias acaten.
         title: Acerca de
       appearance:
         preamble: Personalizar a interface web de Mastodon.
@@ -704,6 +705,9 @@ gl:
       content_retention:
         preamble: Controla como se gardan en Mastodon os contidos creados polas usuarias.
         title: Retención do contido
+      default_noindex:
+        desc_html: Aféctalle a tódalas usuarias que non cambiaron este axuste elas mesmas
+        title: Por omisión exclúe as usuarias do indexado por servidores de busca
       discovery:
         follow_recommendations: Recomendacións de seguimento
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
@@ -728,7 +732,7 @@ gl:
       delete: Eliminar o ficheiro subido
       destroyed_msg: Eliminado correctamente o subido!
     statuses:
-      account: Conta
+      account: Autoría
       application: Aplicación
       back_to_account: Volver a páxina da conta
       back_to_report: Volver a denuncias
@@ -971,6 +975,9 @@ gl:
       email_below_hint_html: Se o enderezo inferior non é correcto, podes cambialo aquí e recibir un correo de confirmación.
       email_settings_hint_html: Enviouse un correo de confirmación a %{email}. Se o enderezo non é correcto podes cambialo nos axustes da conta.
       title: Axustes
+    sign_in:
+      preamble_html: Accede coas túas credenciais en <strong>%{domain}</strong>. Se a túa conta está nun servidor diferente, non podes acceder desde aquí.
+      title: Accede a %{domain}
     sign_up:
       preamble: Cunha conta neste servidor Mastodon poderás seguir a calquera outra persoa na rede, independentemente de onde estivese hospedada esa conta.
       title: Imos crear a túa conta en %{domain}.
@@ -1373,7 +1380,7 @@ gl:
     relationship: Relación
     remove_selected_domains: Eliminar todas as seguidoras dos dominios escollidos
     remove_selected_followers: Eliminar as seguidoras escollidas
-    remove_selected_follows: Deixar de seguir as usuarias escollidas
+    remove_selected_follows: Deixar de seguir as usuarias elexidas
     status: Estado da conta
   remote_follow:
     missing_resource: Non se puido atopar o URL de redirecionamento requerido para a súa conta
@@ -1512,7 +1519,7 @@ gl:
     ignore_favs: Ignorar favoritas
     ignore_reblogs: Ignorar promocións
     interaction_exceptions: Excepcións baseadas en interaccións
-    interaction_exceptions_explanation: Ten en conta de que non hai garantía de que se eliminen as túas publicacións se non superan o límite de promocións e favoritos aínda que algunha vez o tivesen superado.
+    interaction_exceptions_explanation: Ten en conta de que non hai garantía de que se eliminen as túas publicacións se non superan o límite de promocións e favorecementos aínda que algunha vez o tivesen superado.
     keep_direct: Manter mensaxes directas
     keep_direct_hint: Non borrar ningunha das túas mensaxes directas
     keep_media: Manter publicacións que conteñen multimedia

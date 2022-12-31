@@ -34,6 +34,7 @@ class Admin::SystemCheck::ElasticsearchCheck < Admin::SystemCheck::BaseCheck
   end
 
   def compatible_version?
+    return false if running_version.nil?
     Gem::Version.new(running_version) >= Gem::Version.new(required_version)
   end
 end

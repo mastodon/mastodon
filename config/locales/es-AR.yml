@@ -116,6 +116,8 @@ es-AR:
       redownloaded_msg: Se refrescó exitosamente el perfil de %{username} desde el origen
       reject: Rechazar
       rejected_msg: Se rechazó exitosamente la solicitud de registro de %{username}
+      remote_suspension_irreversible: Los datos de esta cuenta fueron eliminados irreversiblemente.
+      remote_suspension_reversible_hint_html: La cuenta fue suspendida en su servidor y los datos se eliminarán completamente el %{date}. Hasta entonces, el servidor remoto puede restaurar esta cuenta sin ningún efecto perjudicial. Si querés eliminar todos los datos de la cuenta inmediatamente, podés hacerlo abajo.
       remove_avatar: Quitar avatar
       remove_header: Quitar cabecera
       removed_avatar_msg: Se quitó exitosamente el avatar de %{username}
@@ -555,13 +557,12 @@ es-AR:
       pending: Esperando aprobación del relé
       save_and_enable: Guardar y habilitar
       setup: Configurar una conexión de relé
-      signatures_not_enabled: Los relés no funcionarán correctamente mientras el modo seguro o el de federación limitada estén habilitados
+      signatures_not_enabled: Puede que los relés no funcionen correctamente mientras el modo seguro o el de federación limitada estén habilitados
       status: Estado
       title: Relés
     report_notes:
       created_msg: "¡La nota de denuncia fue creada exitosamente!"
       destroyed_msg: "¡La nota de denuncia fue eliminada exitosamente!"
-      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
@@ -592,7 +593,7 @@ es-AR:
       forwarded: Reenviado
       forwarded_to: Reenviado a %{domain}
       mark_as_resolved: Marcar como resuelta
-      mark_as_sensitive: Marcado como sensible
+      mark_as_sensitive: Marcar como sensible
       mark_as_unresolved: Marcar como no resuelta
       no_one_assigned: Nadie
       notes:
@@ -704,6 +705,9 @@ es-AR:
       content_retention:
         preamble: Controlá cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no cambiaron esta configuración por sí mismos
+        title: Quitar predeterminadamente a los usuarios de la indexación de los motores de búsqueda
       discovery:
         follow_recommendations: Recom. de cuentas a seguir
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
@@ -971,6 +975,9 @@ es-AR:
       email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, podés cambiarla acá y recibir un nuevo correo electrónico de confirmación.
       email_settings_hint_html: Se envió el correo electrónico de confirmación a %{email}. Si esa dirección de correo electrónico no es correcta, podés cambiarla en la configuración de la cuenta.
       title: Configuración
+    sign_in:
+      preamble_html: Iniciá sesión con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no vas a poder iniciar sesión acá.
+      title: Iniciar sesión en %{domain}
     sign_up:
       preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra cuenta en la red, independientemente de en qué servidor esté alojada su cuenta.
       title: Dejá que te preparemos en %{domain}.
@@ -1430,7 +1437,7 @@ es-AR:
     revoke: Revocar
     revoke_success: Sesión revocada exitosamente
     title: Sesiones
-    view_authentication_history: Ver historial de autenticación de tu cuenta
+    view_authentication_history: Ver historial de autenticación de tu cuenta.
   settings:
     account: Cuenta
     account_settings: Config. de la cuenta
@@ -1536,9 +1543,9 @@ es-AR:
       '7889238': 3 meses
     min_age_label: Umbral de edad
     min_favs: Conservar mensajes marcados como favoritos de por lo menos
-    min_favs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de favoritos. Dejá en blanco para eliminar mensajes independientemente de su número de favoritos
+    min_favs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de favoritos. Dejá en blanco para eliminar mensajes independientemente de su número de favoritos.
     min_reblogs: Conservar adhesiones de por lo menos
-    min_reblogs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de adhesiones. Dejá en blanco para eliminar mensajes independientemente de su número de adhesiones
+    min_reblogs_hint: No elimina ninguno de tus mensajes que haya recibido más de esta cantidad de adhesiones. Dejá en blanco para eliminar mensajes independientemente de su número de adhesiones.
   stream_entries:
     pinned: Mensaje fijado
     reblogged: adhirió a este mensaje

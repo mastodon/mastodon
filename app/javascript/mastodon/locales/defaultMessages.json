@@ -1044,6 +1044,23 @@
   {
     "descriptors": [
       {
+        "defaultMessage": "{name} has requested to follow you",
+        "id": "account.requested_follow"
+      },
+      {
+        "defaultMessage": "Authorize",
+        "id": "follow_request.authorize"
+      },
+      {
+        "defaultMessage": "Reject",
+        "id": "follow_request.reject"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/account/components/follow_request_note.json"
+  },
+  {
+    "descriptors": [
+      {
         "defaultMessage": "Unfollow",
         "id": "account.unfollow"
       },
@@ -2014,6 +2031,22 @@
       {
         "defaultMessage": "Search results",
         "id": "explore.search_results"
+      },
+      {
+        "defaultMessage": "Posts",
+        "id": "explore.trending_statuses"
+      },
+      {
+        "defaultMessage": "Hashtags",
+        "id": "explore.trending_tags"
+      },
+      {
+        "defaultMessage": "News",
+        "id": "explore.trending_links"
+      },
+      {
+        "defaultMessage": "For you",
+        "id": "explore.suggested_follows"
       }
     ],
     "path": "app/javascript/mastodon/features/explore/index.json"
@@ -3918,15 +3951,15 @@
         "id": "confirmations.discard_edit_media.confirm"
       },
       {
-        "defaultMessage": "Describe for people with hearing loss",
+        "defaultMessage": "Describe for people who are hard of hearing",
         "id": "upload_form.audio_description"
       },
       {
-        "defaultMessage": "Describe for people with hearing loss or visual impairment",
+        "defaultMessage": "Describe for people who are deaf, hard of hearing, blind or have low vision",
         "id": "upload_form.video_description"
       },
       {
-        "defaultMessage": "Describe for the visually impaired",
+        "defaultMessage": "Describe for people who are blind or have low vision",
         "id": "upload_form.description"
       },
       {
@@ -3976,12 +4009,12 @@
         "id": "compose_form.publish_form"
       },
       {
-        "defaultMessage": "Sign in",
-        "id": "sign_in_banner.sign_in"
-      },
-      {
         "defaultMessage": "Create account",
         "id": "sign_in_banner.create_account"
+      },
+      {
+        "defaultMessage": "Sign in",
+        "id": "sign_in_banner.sign_in"
       }
     ],
     "path": "app/javascript/mastodon/features/ui/components/header.json"

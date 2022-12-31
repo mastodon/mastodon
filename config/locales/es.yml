@@ -116,6 +116,8 @@ es:
       redownloaded_msg: Se actualizó correctamente el perfil de %{username} desde el origen
       reject: Rechazar
       rejected_msg: La solicitud de registro de %{username} ha sido rechazada con éxito
+      remote_suspension_irreversible: Los datos de esta cuenta han sido irreversiblemente eliminados.
+      remote_suspension_reversible_hint_html: La cuenta ha sido suspendida en su servidor, y los datos serán eliminados completamente el %{date}. Hasta entonces, el servidor remoto puede restaurar esta cuenta sin ningún efecto perjudicial. Si desea eliminar todos los datos de la cuenta inmediatamente, puede hacerlo a continuación.
       remove_avatar: Eliminar el avatar
       remove_header: Eliminar cabecera
       removed_avatar_msg: Se ha eliminado exitosamente la imagen del avatar de %{username}
@@ -161,7 +163,7 @@ es:
       unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
-      warn: Adevertir
+      warn: Advertir
       web: Web
       whitelisted: Añadido a la lista blanca
     action_logs:
@@ -561,7 +563,6 @@ es:
     report_notes:
       created_msg: "¡El registro de la denuncia se ha creado correctamente!"
       destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
-      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
@@ -704,6 +705,9 @@ es:
       content_retention:
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
+        title: Excluir por defecto a los usuarios de la indexación del motor de búsqueda
       discovery:
         follow_recommendations: Recomendaciones de cuentas
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
@@ -971,6 +975,9 @@ es:
       email_below_hint_html: Si la dirección de correo electrónico que aparece a continuación es incorrecta, se puede cambiarla aquí y recibir un nuevo correo electrónico de confirmación.
       email_settings_hint_html: El correo electrónico de confirmación fue enviado a %{email}. Si esa dirección de correo electrónico no sea correcta, se puede cambiarla en la configuración de la cuenta.
       title: Configuración
+    sign_in:
+      preamble_html: Inicia sesión con tus credenciales de <strong>%{domain}</strong>. Si tu cuenta está alojada en un servidor diferente, no podrás iniciar sesión aquí.
+      title: Iniciar sesión en %{domain}
     sign_up:
       preamble: Con una cuenta en este servidor de Mastodon, podrás seguir a cualquier otra persona en la red, independientemente del servidor en el que se encuentre.
       title: Crear cuenta de Mastodon en %{domain}.
@@ -1603,7 +1610,7 @@ es:
         delete_statuses: Se ha determinado que algunos de tus mensajes violan una o más directrices de la comunidad y han sido por tanto eliminados por los moderadores de %{instance}.
         disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
         mark_statuses_as_sensitive: Algunos de tus mensajes han sido marcados como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que pulsar los archivos multimedia en las publicaciones antes de que se muestre una vista previa. Puedes marcar los archivos multimedia como sensibles tú mismo cuando publiques en el futuro.
-        sensitive: A partir de ahora todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
+        sensitive: A partir de ahora, todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
         silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
         suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.
       reason: 'Razón:'

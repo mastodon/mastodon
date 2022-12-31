@@ -161,7 +161,7 @@ es-MX:
       unsuspended_msg: Se quitó con éxito la suspensión de la cuenta de %{username}
       username: Nombre de usuario
       view_domain: Ver resumen del dominio
-      warn: Adevertir
+      warn: Advertir
       web: Web
       whitelisted: Añadido a la lista blanca
     action_logs:
@@ -441,7 +441,7 @@ es-MX:
         title: Importar bloqueos de dominio
       new:
         title: Importar bloqueos de dominio
-      no_file: Ningún archivo seleccionado
+      no_file: No hay archivo seleccionado
     follow_recommendations:
       description_html: "<strong>Las recomendaciones de cuentas ayudan a los nuevos usuarios a encontrar rápidamente contenido interesante</strong>. Cuando un usuario no ha interactuado con otros lo suficiente como para suscitar recomendaciones personalizadas de cuentas a las que seguir, en su lugar se le recomiendan estas cuentas. Se recalculan diariamente a partir de una mezcla de cuentas con el mayor número de interacciones recientes y con el mayor número de seguidores locales con un idioma determinado."
       language: Para el idioma
@@ -561,7 +561,6 @@ es-MX:
     report_notes:
       created_msg: "¡El registro de la denuncia se ha creado correctamente!"
       destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
-      today_at: Hoy a las %{time}
     reports:
       account:
         notes:
@@ -704,6 +703,9 @@ es-MX:
       content_retention:
         preamble: Controlar cómo el contenido generado por el usuario se almacena en Mastodon.
         title: Retención de contenido
+      default_noindex:
+        desc_html: Afecta a todos los usuarios que no han cambiado esta configuración por sí mismos
+        title: Excluir por defecto a los usuarios de la indexación del motor de búsqueda
       discovery:
         follow_recommendations: Recomendaciones de cuentas
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
@@ -875,7 +877,7 @@ es-MX:
         delete_statuses: para eliminar sus mensajes
         disable: para congelar su cuenta
         mark_statuses_as_sensitive: para marcar sus mensajes como sensibles
-        none: una advertencia
+        none: una alvertencia
         sensitive: para marcar su cuenta como sensible
         silence: para limitar su cuenta
         suspend: suspender su cuenta
@@ -1603,7 +1605,7 @@ es-MX:
         delete_statuses: Se ha determinado que algunos de tus mensajes violan una o más directrices de la comunidad y han sido por tanto eliminados por los moderadores de %{instance}.
         disable: Ya no puedes usar tu cuenta, pero tu perfil y el resto de datos permanecen intactos. Puedes solicitar una copia de seguridad de tus datos, cambiar la configuración de tu cuenta o eliminarla.
         mark_statuses_as_sensitive: Algunos de tus mensajes han sido marcados como sensibles por los moderadores de %{instance}. Esto significa que la gente tendrá que pulsar los archivos multimedia en las publicaciones antes de que se muestre una vista previa. Puedes marcar los archivos multimedia como sensibles tú mismo cuando publiques en el futuro.
-        sensitive: A partir de ahora todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
+        sensitive: A partir de ahora, todos los archivos multimedia que subas serán marcados como sensibles y ocultos tras una advertencia que habrá que clicar.
         silence: Aún puedes usar tu cuenta, pero solo las personas que te están siguiendo verán tus publicaciones en este servidor, y puedes ser excluido de varias funcionalidades de descubrimiento. Sin embargo, otras cuentas podrán empezar a seguirte manualmente.
         suspend: Ya no puedes utilizar tu cuenta, y tu perfil y el resto de datos ya no son accesibles. Todavía puedes iniciar sesión para solicitar una copia de seguridad de tus datos, hasta que estos sean eliminados por completo en unos 30 días, aunque conservaremos algunos datos básicos para impedir que esquives la suspensión.
       reason: 'Razón:'

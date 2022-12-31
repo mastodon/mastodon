@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { ImmutableHashtag as Hashtag } from 'mastodon/components/hashtag';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 export default class Trends extends ImmutablePureComponent {
 
@@ -36,7 +37,11 @@ export default class Trends extends ImmutablePureComponent {
 
     return (
       <div className='getting-started__trends'>
-        <h4><FormattedMessage id='trends.trending_now' defaultMessage='Trending now' /></h4>
+        <h4>
+          <Link to={'/explore/tags'}>
+            <FormattedMessage id='trends.trending_now' defaultMessage='Trending now' />
+          </Link>
+        </h4>
 
         {trends.take(3).map(hashtag => <Hashtag key={hashtag.get('name')} hashtag={hashtag} />)}
       </div>

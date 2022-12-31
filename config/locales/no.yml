@@ -116,6 +116,8 @@
       redownloaded_msg: Oppdatert %{username} sin profil fra opprinnelse
       reject: Avslå
       rejected_msg: Vellykket avvist %{username} sin registreringsapplikasjon
+      remote_suspension_irreversible: Dataene til denne kontoen har blitt slettet uten mulighet for gjenoppretting.
+      remote_suspension_reversible_hint_html: Kontoen har blitt suspendert på sin tjener, og dataene bli fjernet helt den %{date}. Inntil da kan tjeneren gjeninnsette kontoen uten skade. Hvis du ønsker å fjerne alle dataene til kontoen umiddelbart, kan du gjøre dette under.
       remove_avatar: Fjern profilbilde
       remove_header: Fjern overskrift
       removed_avatar_msg: Fjernet %{username} sitt avatarbilde
@@ -604,6 +606,9 @@
     settings:
       about:
         title: Om
+      default_noindex:
+        desc_html: Påvirker alle brukerne som ikke selv har justert denne innstillingen
+        title: Ikke la brukere indekseres av søkemotorer som standard
       discovery:
         trends: Trender
       domain_blocks:

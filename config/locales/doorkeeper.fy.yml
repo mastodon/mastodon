@@ -3,10 +3,10 @@ fy:
   activerecord:
     attributes:
       doorkeeper/application:
-        name: Namme fan applikaasje
+        name: Tapassingsnamme
         redirect_uri: Redirect-URI
         scopes: Tastimmingen
-        website: Webstee fan applikaasje
+        website: Tapassingswebsite
     errors:
       models:
         doorkeeper/application:
@@ -15,7 +15,7 @@ fy:
               fragment_present: mei gjin fragmint befetsje.
               invalid_uri: moat in jildige URI wêze.
               relative_uri: moat in absolute URI wêze.
-              secured_uri: moat in HTTPS/SSL URI wêze.
+              secured_uri: moat in HTTPS/SSL-URI wêze.
   doorkeeper:
     applications:
       buttons:
@@ -179,7 +179,7 @@ fy:
       write:follows: minsken folgje
       write:lists: listen oanmeitsje
       write:media: mediabestannen oplade
-      write:mutes: minsken en petearen negearre
+      write:mutes: minsken en petearen dôvje
       write:notifications: meldingen fuortsmite
       write:reports: oare minsken rapportearje
       write:statuses: berjochten pleatse

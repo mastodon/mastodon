@@ -27,7 +27,7 @@ cy:
       many: Postiadau
       one: Postiad
       other: Postiadau
-      two: Postiadu
+      two: Postiadau
       zero: Postiadau
     posts_tab_heading: Postiadau
   admin:
@@ -69,7 +69,7 @@ cy:
       disable_sign_in_token_auth: Analluogi dilysu tocynnau e-bost
       disable_two_factor_authentication: Diffodd 2FA
       disabled: Wedi rhewi
-      display_name: Enw arddangos
+      display_name: Enw sgrin
       domain: Parth
       edit: Golygu
       email: E-bost
@@ -128,6 +128,8 @@ cy:
       redownloaded_msg: Adnewyddwyd proffil %{username} o'r gweinydd gwreiddiol
       reject: Gwrthod
       rejected_msg: Wedi gwrthod cais cofrestru %{username}
+      remote_suspension_irreversible: Mae data'r cyfrif hwn wedi'i ddileu'n ddiwrthdro.
+      remote_suspension_reversible_hint_html: Mae'r cyfrif wedi'i atal dros dro ar eu gweinydd, a bydd y data'n cael ei ddileu yn llawn ar %{date}. Tan hynny, gall y gweinydd pell adfer y cyfrif hwn heb unrhyw effeithiau gwael. Os dymunwch gael gwared ar holl ddata'r cyfrif ar unwaith, gallwch wneud hynny isod.
       remove_avatar: Dileu afatar
       remove_header: Dileu pennyn
       removed_avatar_msg: Llwyddwyd i ddileu delwedd afatar %{username}
@@ -203,7 +205,7 @@ cy:
         destroy_email_domain_block: Dileu gwaharddiad parth e-bost
         destroy_instance: Clirio Parth
         destroy_ip_block: Dileu rheol IP
-        destroy_status: Dileu Statws
+        destroy_status: Dileu Postiad
         destroy_unavailable_domain: Dileu Parth Ddim ar Gael
         destroy_user_role: Dinistrio Rôl
         disable_2fa_user: Diffodd 2FA
@@ -224,17 +226,17 @@ cy:
         resolve_report: Datrus Adroddiad
         sensitive_account: Cyfrif Grym-Sensitif
         silence_account: Cyfyngu Cyfrif
-        suspend_account: Gwahardd Cyfrif Dros Dro
+        suspend_account: Atal Cyfrif Dros Dro
         unassigned_report: Dadneilltuo Adroddiad
         unblock_email_account: Dadflocio cyfeiriad e-bost
         unsensitive_account: Dadwneud Cyfrif Grym-Sensitif
         unsilence_account: Dad-gyfyngu Cyfrif
-        unsuspend_account: Tynnu Gwahardd Cyfrif Dros Dro
+        unsuspend_account: Tynnu Ataliad Cyfrif Dros Dro
         update_announcement: Diweddaru Cyhoeddiad
         update_custom_emoji: Diweddaru Emoji Cyfaddas
         update_domain_block: Diweddaru'r Blocio Parth
         update_ip_block: Diweddaru rheol IP
-        update_status: Diweddaru Statws
+        update_status: Diweddaru Postiad
         update_user_role: Diweddaru Rôl
       actions:
         approve_appeal_html: Mae %{name} wedi cymeradwyo penderfyniad cymedroli gan %{target}
@@ -243,10 +245,10 @@ cy:
         change_email_user_html: Mae %{name} wedi newid cyfeiriad e-bost defnyddiwr %{target}
         change_role_user_html: Mae %{name} wedi newid rôl %{target}
         confirm_user_html: Mae %{name}  wedi cadarnhau cyfeiriad e-bost defnyddiwr %{target}
-        create_account_warning_html: Anfonodd %{name} rybudd at %{target}
+        create_account_warning_html: Mae %{name} wedi anfon rhybudd at %{target}
         create_announcement_html: Mae %{name} wedi creu cyhoeddiad newydd %{target}
         create_canonical_email_block_html: Mae %{name} wedi rhwystro e-bost gyda'r hash %{target}
-        create_custom_emoji_html: "%{name} wedi llwytho emoji newydd %{target}"
+        create_custom_emoji_html: Mae %{name} wedi llwytho emoji newydd %{target}
         create_domain_allow_html: Mae %{name} wedi caniatáu ffedereiddio â pharth %{target}
         create_domain_block_html: Mae %{name} wedi rhwystro parth %{target}
         create_email_domain_block_html: Mae %{name}  wedi rhwystro parth e-bost %{target}
@@ -605,7 +607,6 @@ cy:
     report_notes:
       created_msg: Llwyddwyd i greu nodyn adroddiad!
       destroyed_msg: Llwyddwyd i ddileu nodyn adroddiad!
-      today_at: Heddiw am %{time}
     reports:
       account:
         notes:
@@ -637,7 +638,7 @@ cy:
       comment_description_html: 'I ddarparu rhagor o wybodaeth, ysgrifennodd %{name}:'
       created_at: Adroddwyd
       delete_and_resolve: Dileu postiadau
-      forwarded: Wedi'i Anfon Ymlaen
+      forwarded: Wedi'i anfon ymlaen
       forwarded_to: Wedi'i anfon ymlaen i %{domain}
       mark_as_resolved: Nodi fel wedi'i ddatrys
       mark_as_sensitive: Marcio fel sensitif
@@ -682,7 +683,7 @@ cy:
         administration: Gweinyddiaeth
         devops: DevOps
         invites: Gwahoddiadau
-        moderation: Cymedroil
+        moderation: Cymedroli
         special: Arbennig
       delete: 'Dileu:'
       description_html: Gyda <strong>rolau defnyddwyr</strong>, gallwch chi gyfaddasu pa swyddogaethau a meysydd o Mastodon y gall eich defnyddwyr gael mynediad iddyn nhw.
@@ -724,7 +725,7 @@ cy:
         manage_settings: Rheoli Gosodiadau
         manage_settings_description: Yn caniatáu i ddefnyddwyr newid gosodiadau gwefan
         manage_taxonomies: Rheoli Tacsonomeg
-        manage_taxonomies_description: Yn caniatáu i ddefnyddwyr adolygu cynnwys sy'n tueddu a diweddaru gosodiadau hashnodau
+        manage_taxonomies_description: Yn caniatáu i ddefnyddwyr adolygu cynnwys sy'n trendio a diweddaru gosodiadau hashnodau
         manage_user_access: Rheoli Mynediad Defnyddwyr
         manage_user_access_description: Yn caniatáu i ddefnyddwyr analluogi dilysu dau ffactor defnyddwyr eraill, newid eu cyfeiriad e-bost, ac ailosod eu cyfrinair
         manage_users: Rheoli Defnyddwyr
@@ -760,13 +761,16 @@ cy:
       content_retention:
         preamble: Rheoli sut mae cynnwys sy'n cael ei gynhyrchu gan ddefnyddwyr yn cael ei storio yn Mastodon.
         title: Cadw cynnwys
+      default_noindex:
+        desc_html: Yn effeithio pob defnyddwr sydd heb newid y gosodiad ei hun
+        title: Eithrio defnyddwyr o fynegai peiriannau chwilio, fel rhagosodiad
       discovery:
         follow_recommendations: Dilyn yr argymhellion
         preamble: Mae amlygu cynnwys diddorol yn allweddol ar gyfer derbyn defnyddwyr newydd nad ydynt efallai'n gyfarwydd ag unrhyw un Mastodon. Rheolwch sut mae nodweddion darganfod amrywiol yn gweithio ar eich gweinydd.
         profile_directory: Cyfeiriadur proffiliau
-        public_timelines: Llinellau amser cyhoeddus
+        public_timelines: Ffrydiau cyhoeddus
         title: Darganfod
-        trends: Pynciau Llosg
+        trends: Trendiau
       domain_blocks:
         all: I bawb
         disabled: I neb
@@ -799,13 +803,13 @@ cy:
       media:
         title: Cyfryngau
       metadata: Metaddata
-      no_status_selected: Heb newid statws gan na ddewiswyd dim un
-      open: Agor post
-      original_status: Post gwreiddiol
+      no_status_selected: Heb newid postiad gan na ddewiswyd dim un
+      open: Agor postiad
+      original_status: Postiad gwreiddiol
       reblogs: Ailflogiadau
-      status_changed: Post wedi'i newid
+      status_changed: Postiad wedi'i newid
       title: Postiadau cyfrif
-      trending: Trendio
+      trending: Yn trendio
       visibility: Gwelededd
       with_media: Gyda chyfryngau
     strikes:
@@ -856,23 +860,23 @@ cy:
           other: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
           two: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
           zero: Wedi'i rannu gan %{count} o bobl dros yr wythnos ddiwethaf
-        title: Dolenni sy'n tueddu
+        title: Dolenni sy'n trendio
         usage_comparison: Wedi'i rannu %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
       only_allowed: Derbyniwyd yn unig
       pending_review: Yn aros am adolygiad
       preview_card_providers:
         allowed: Gall dolenni gan y cyhoeddwr hwn greu tuedd
-        description_html: Mae'r rhain yn barthau lle mae dolenni'n cael eu rhannu'n aml ar eich gweinydd. Ni fydd dolenni'n dueddu'n gyhoeddus oni bai bod parth y ddolen yn cael ei gymeradwyo. Mae eich cymeradwyaeth (neu eich gwrthodiad) yn ymestyn i is-barthau.
+        description_html: Mae'r rhain yn barthau lle mae dolenni'n cael eu rhannu'n aml ar eich gweinydd. Ni fydd dolenni'n trendio'n gyhoeddus oni bai bod parth y ddolen yn cael ei gymeradwyo. Mae eich cymeradwyaeth (neu eich gwrthodiad) yn ymestyn i is-barthau.
         rejected: Ni fydd dolenni gan y cyhoeddwr hwn yn creu tuedd
         title: Cyhoeddwyr
       rejected: Gwrthodwyd
       statuses:
-        allow: Caniatáu post
+        allow: Caniatáu postiad
         allow_account: Caniatáu awdur
         description_html: Mae'r rhain yn bostiadau y mae eich gweinydd yn gwybod amdanyn nhw sy'n cael eu rhannu a'u ffafrio llawer ar hyn o bryd. Gall helpu eich defnyddwyr newydd a'ch defnyddwyr sy'n dychwelyd i ddod o hyd i fwy o bobl i'w dilyn. Ni chaiff unrhyw bostiadau eu dangos yn gyhoeddus nes i chi gymeradwyo'r awdur, ac mae'r awdur yn caniatáu i'w cyfrif gael ei awgrymu i eraill. Gallwch hefyd ganiatáu neu wrthod postiadau unigol.
-        disallow: Gwrthod post
+        disallow: Gwrthod postiad
         disallow_account: Gwrthod awdur
-        no_status_selected: Heb newid unrhyw negeseuon tuedd gan na chafodd yr un ohonyn nhw eu dewis
+        no_status_selected: Heb newid unrhyw bostiadau'n trendio gan na chafodd yr un ohonyn nhw eu dewis
         not_discoverable: Nid yw'r awdur wedi dewis bod yn ddarganfyddadwy
         shared_by:
           few: Wedi'i rannu a'i ffefrynnu %{friendly_count} gwaith
@@ -894,12 +898,12 @@ cy:
         listable: Mae modd ei awgrymu
         no_tag_selected: Heb newid unrhyw dagiau gan na chafodd yr un ohonyn nhw eu dewis
         not_listable: Ni fydd yn cael ei awgrymu
-        not_trendable: Ni fydd yn ymddangos o dan bynciau llosg
+        not_trendable: Ni fydd yn ymddangos o dan trendiau
         not_usable: Nid oes modd ei ddefnyddio
         peaked_on_and_decaying: Ar ei anterth ar %{date}, bellach yn lleihau
-        title: Hashnodau tueddiadau
-        trendable: Gall ymddangos o dan bynciau llosg
-        trending_rank: 'Yn tueddu #%{rank}'
+        title: Hashnodau trendiau
+        trendable: Gall ymddangos o dan trendiau
+        trending_rank: 'Yn trendio #%{rank}'
         usable: Mae modd ei ddefnyddio
         usage_comparison: Wedi'i ddefnyddio %{today} gwaith heddiw, o'i gymharu â %{yesterday} ddoe
         used_by_over_week:
@@ -909,7 +913,7 @@ cy:
           other: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
           two: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
           zero: Wedi'i ddefnyddio gan %{count} o bobl dros yr wythnos ddiwethaf
-      title: Pynciau Llosg
+      title: Trendiau
       trending: Trendio
     warning_presets:
       add_new: Ychwanegu newydd
@@ -964,7 +968,7 @@ cy:
     new_trends:
       body: 'Mae angen adolygu''r eitemau canlynol cyn y mae modd eu dangos yn gyhoeddus:'
       new_trending_links:
-        title: Dolenni llosg
+        title: Dolenni sy'n trendio
       new_trending_statuses:
         title: Postiadau sy'n trendio
       new_trending_tags:
@@ -981,7 +985,7 @@ cy:
     remove: Dadgysylltu'r enw arall
   appearance:
     advanced_web_interface: Rhyngwyneb gwe uwch
-    advanced_web_interface_hint: 'Os ydych chi am ddefnyddio lled eich sgrin gyfan, mae''r rhyngwyneb gwe datblygedig yn caniatáu i chi ffurfweddu llawer o wahanol golofnau i weld faint bynnag o wybodaeth ar yr un pryd ag y dymunwch: Cartref, hysbysiadau, llinell amser ffederaleiddiwyd, faint bynnag o restrau a hashnodau.'
+    advanced_web_interface_hint: 'Os ydych chi am ddefnyddio lled eich sgrin gyfan, mae''r rhyngwyneb gwe datblygedig yn caniatáu i chi ffurfweddu llawer o wahanol golofnau i weld faint bynnag o wybodaeth ar yr un pryd ag y dymunwch: Cartref, hysbysiadau, ffrydiau ffederaleiddiwyd, faint bynnag o restrau a hashnodau.'
     animations_and_accessibility: Animeiddiadau a hygyrchedd
     confirmation_dialogs: Deialogau cadarnhau
     discovery: Darganfod
@@ -997,7 +1001,7 @@ cy:
     settings: 'Newid gosodiadau e-bost: %{link}'
     view: 'Gweld:'
     view_profile: Gweld proffil
-    view_status: Gweld statws
+    view_status: Gweld postiad
   applications:
     created: Cais wedi ei greu'n llwyddiannus
     destroyed: Cais wedi ei ddileu'n llwyddiannus
@@ -1043,6 +1047,9 @@ cy:
       email_below_hint_html: Os yw'r cyfeiriad e-bost isod yn anghywir, gallwch ei newid yma a derbyn e-bost cadarnhau newydd.
       email_settings_hint_html: Anfonwyd yr e-bost cadarnhau at %{email}. Os nad yw'r cyfeiriad e-bost hwnnw'n gywir, gallwch ei newid yng ngosodiadau'r cyfrif.
       title: Gosodiad
+    sign_in:
+      preamble_html: Mewngofnodwch gyda'ch manylion <strong>%{domain}</strong>. Os yw eich cyfrif yn cael ei gynnal ar weinydd gwahanol, ni fydd modd i chi fewngofnodi yma.
+      title: Mewngofnodi i %{domain}
     sign_up:
       preamble: Gyda chyfrif ar y gweinydd Mastodon hwn, byddwch yn gallu dilyn unrhyw berson arall ar y rhwydwaith, lle bynnag mae eu cyfrif yn cael ei gynnal.
       title: Gadewch i ni eich gosod ar %{domain}.
@@ -1082,7 +1089,7 @@ cy:
       with_month_name: "%b %d %Y"
   datetime:
     distance_in_words:
-      about_x_hours: "%{count}awr"
+      about_x_hours: "%{count}a"
       about_x_months: "%{count}mis"
       about_x_years: "%{count}b"
       almost_x_years: "%{count}b"
@@ -1131,7 +1138,7 @@ cy:
       status_removed: Postiad sydd eisoes wedi'i dynnu o'r system
       title: "%{action} gan %{date}"
       title_actions:
-        delete_statuses: Dileu post
+        delete_statuses: Dileu postiad
         disable: Rhewi cyfrif
         mark_statuses_as_sensitive: Marcio postiadau fel rhai sensitif
         none: Rhybudd
@@ -1186,7 +1193,7 @@ cy:
       account: Proffilau
       home: Cartref a rhestrau
       notifications: Hysbysiadau
-      public: Llinellau amser cyhoeddus
+      public: Ffrydiau cyhoeddus
       thread: Sgyrsiau
     edit:
       add_keyword: Ychwanegu allweddair
@@ -1236,7 +1243,7 @@ cy:
         hint: Mae'r hidlydd hwn yn berthnasol i ddethol postiadau unigol waeth beth fo'r meini prawf eraill. Gallwch ychwanegu mwy o bostiadau at yr hidlydd hwn o'r rhyngwyneb gwe.
         title: Postiadau wedi'u hidlo
   footer:
-    trending_now: Pynciau llosg
+    trending_now: Trendiau
   generic:
     all: Popeth
     all_items_on_page_selected_html:
@@ -1375,7 +1382,7 @@ cy:
     title: Cymedroil
   move_handler:
     carry_blocks_over_text: Symudodd y defnyddiwr hwn o %{acct}, yr oeddech wedi'i rwystro.
-    carry_mutes_over_text: Wnaeth y defnyddiwr symud o %{acct}, a oeddech chi wedi'i anwybyddu.
+    carry_mutes_over_text: Symudodd y defnyddiwr hwn o %{acct}, lle roeddech chi wedi'i dewi.
     copy_account_note_text: 'Symudodd y defnyddiwr hwn o %{acct}, dyma oedd eich nodiadau blaenorol amdanynt:'
   navigation:
     toggle_menu: Toglo'r ddewislen
@@ -1386,8 +1393,8 @@ cy:
       sign_up:
         subject: Mae %{name} wedi cofrestru
     favourite:
-      body: 'Cafodd eich statws ei hoffi gan %{name}:'
-      subject: Hoffodd %{name} eich statws
+      body: 'Cafodd eich postiad ei hoffi gan %{name}:'
+      subject: Hoffodd %{name} eich postiad
       title: Ffefryn newydd
     follow:
       body: Mae %{name} bellach yn eich dilyn!
@@ -1404,7 +1411,7 @@ cy:
       subject: Cawsoch eich crybwyll gan %{name}
       title: Crywbylliad newydd
     poll:
-      subject: Mae arolwg barn gan %{name} wedi dod i ben
+      subject: Mae arolwg gan %{name} wedi dod i ben
     reblog:
       body: 'Cafodd eich postiad ei hybu gan %{name}:'
       subject: Rhoddodd %{name} hwb i'ch postiad
@@ -1443,11 +1450,11 @@ cy:
     truncate: "&hellip;"
   polls:
     errors:
-      already_voted: Rydych chi barod wedi pleidleisio ar y pleidlais hon
+      already_voted: Rydych chi eisoes wedi pleidleisio ar yr arolwg hwn
       duplicate_options: yn cynnwys eitemau dyblyg
       duration_too_long: yn rhy bell yn y dyfodol
       duration_too_short: yn rhy fuan
-      expired: Mae'r arolwg barn eisoes wedi dod i ben
+      expired: Mae'r arolwg eisoes wedi dod i ben
       invalid_choice: Nid yw'r dewis pleidlais hyn yn bodoli
       over_character_limit: ni all fod yn hwy na %{max} nod yr un
       too_few_options: rhaid cael mwy nag un eitem
@@ -1616,7 +1623,7 @@ cy:
         one: "%{count} bleidlais"
         other: "%{count} pleidlais"
         two: "%{count} pleidlais"
-        zero: "%{count} o pleidleisiau"
+        zero: "%{count} o bleidleisiau"
       vote: Pleidlais
     show_more: Dangos mwy
     show_newer: Dangos y diweddaraf
@@ -1631,7 +1638,7 @@ cy:
       public: Cyhoeddus
       public_long: Gall pawb weld
       unlisted: Heb ei restru
-      unlisted_long: Gall pawb weld, ond heb eu rhestru ar linellau amser cyhoeddus
+      unlisted_long: Gall pawb weld, ond heb eu rhestru ar ffrydiau cyhoeddus
   statuses_cleanup:
     enabled: Dileu hen bostiadau'n awtomatig
     enabled_hint: Yn dileu eich postiadau yn awtomatig ar ôl iddyn nhw gyrraedd trothwy oed penodedig, oni bai eu bod yn cyfateb i un o'r eithriadau isod
@@ -1640,15 +1647,15 @@ cy:
     ignore_favs: Anwybyddu ffefrynnau
     ignore_reblogs: Anwybyddu hybiau
     interaction_exceptions: Eithriadau yn seiliedig ar ryngweithio
-    interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy ffefrynnau neu fwstio ar ôl mynd drostyn nhw unwaith.
+    interaction_exceptions_explanation: Sylwch nad oes unrhyw sicrwydd y bydd postiadau'n cael eu dileu os ydyn nhw'n mynd o dan y trothwy ffefrynnau neu hybu ar ôl mynd drostyn nhw unwaith.
     keep_direct: Cadw negeseuon uniongyrchol
     keep_direct_hint: Nid yw'n dileu unrhyw un o'ch negeseuon uniongyrchol
     keep_media: Cadw postiadau gydag atodiadau cyfryngau
     keep_media_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd ag atodiadau cyfryngau
     keep_pinned: Cadw postiadau wedi'u pinio
     keep_pinned_hint: Nid yw'n dileu unrhyw un o'ch postiadau wedi'u pinio
-    keep_polls: Cadw polau
-    keep_polls_hint: Nid yw'n dileu unrhyw un o'ch polau
+    keep_polls: Cadw arolygon
+    keep_polls_hint: Nid yw'n dileu unrhyw un o'ch arolygon
     keep_self_bookmark: Cadw y postiadau wedi'u cadw fel nodau tudalen
     keep_self_bookmark_hint: Nid yw'n dileu eich postiadau eich hun os ydych wedi rhoi nod tudalen arnyn nhw
     keep_self_fav: Cadw'r postiadau yr oeddech yn eu ffefrynnu
@@ -1663,7 +1670,7 @@ cy:
       '63113904': 2 flynedd
       '7889238': 3 mis
     min_age_label: Trothwy oedran
-    min_favs: Cadw postiadau ffafriwyd m o leiaf
+    min_favs: Cadw postiadau ffafriwyd am o leiaf
     min_favs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi derbyn o leiaf y swm hwn o ffefrynnau. Gadewch yn wag i ddileu postiadau waeth beth fo'u ffefrynnau
     min_reblogs: Cadw postiadau wedi eu hybu o leiaf
     min_reblogs_hint: Nid yw'n dileu unrhyw un o'ch postiadau sydd wedi cael eu hybu o leiaf y nifer hwn o weithiau. Gadewch yn wag i ddileu postiadau waeth beth fo'u nifer o hybiadau
@@ -1751,13 +1758,13 @@ cy:
         none: Rhybudd
         sensitive: Cyfrif wedi'i nodi'n sensitif
         silence: Cyfrif cyfyngedig
-        suspend: Cyfrif wedi'i rewi
+        suspend: Cyfrif wedi'i atal
     welcome:
       edit_profile_action: Sefydlu proffil
       edit_profile_step: Gallwch addasu'ch proffil trwy lwytho llun proffil, newid eich enw dangos a mwy. Gallwch ddewis i adolygu dilynwyr newydd cyn iddyn nhw gael caniatâd i'ch dilyn.
       explanation: Dyma ambell nodyn i'ch helpu i ddechrau
       final_action: Dechrau postio
-      final_step: 'Dechreuwch bostio! Hyd yn oed heb ddilynwyr, efallai y bydd eraill yn gweld eich postiadau cyhoeddus, er enghraifft ar y llinell amser leol neu mewn hashnodau. Efallai y byddwch am gyflwyno eich hun ar yr hashnod #cyflwyniadau neu/a #introductions.'
+      final_step: 'Dechreuwch bostio! Hyd yn oed heb ddilynwyr, efallai y bydd eraill yn gweld eich postiadau cyhoeddus, er enghraifft ar y ffrwd leol neu mewn hashnodau. Efallai y byddwch am gyflwyno eich hun ar yr hashnod #cyflwyniadau neu/a #introductions.'
       full_handle: Eich enw llawn
       full_handle_hint: Dyma beth fyddech chi'n ei ddweud wrth eich ffrindiau fel y gallant anfon neges neu eich dilyn o weinydd arall.
       subject: Croeso i Mastodon
