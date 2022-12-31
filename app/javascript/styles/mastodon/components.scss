@@ -1131,11 +1131,11 @@
 }
 
 .status__prepend + .status {
-  padding: 8px 16px 8px 16px;
+  padding: 8px 16px;
 }
 
 .status {
-  padding: 16px 16px 8px 16px;
+  padding: 16px 16px 8px;
   min-height: 54px;
   border-bottom: 1px solid lighten($ui-base-color, 8%);
   cursor: auto;
@@ -1287,7 +1287,7 @@
 }
 
 .status__prepend {
-  padding: 8px 16px 0 16px;
+  padding: 8px 16px 0;
   padding-bottom: 0;
   display: flex;
   gap: 10px;
@@ -1801,7 +1801,7 @@ a.account__display-name {
 }
 
 .notification__message {
-  padding: 8px 16px 16px 16px;
+  padding: 8px 16px 16px;
   padding-bottom: 0;
   cursor: default;
   color: $darker-text-color;
@@ -7772,7 +7772,7 @@ noscript {
 
 .notification-follow {
   .account {
-    padding: 4px 16px 8px 16px;
+    padding: 4px 16px 8px;
   }
 }
 
