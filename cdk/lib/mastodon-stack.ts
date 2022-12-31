@@ -1,4 +1,4 @@
-import { RemovalPolicy, Stack, StackProps, Duration } from 'aws-cdk-lib';
+import { RemovalPolicy, Stack, StackProps, Duration, CfnOutput } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { Repository } from 'aws-cdk-lib/aws-ecr'
 import { RetentionDays, LogGroup} from 'aws-cdk-lib/aws-logs';
@@ -8,78 +8,105 @@ import { HostedZone } from 'aws-cdk-lib/aws-route53'
 import { ApplicationLoadBalancedFargateService }  from 'aws-cdk-lib/aws-ecs-patterns'
 import { CertificateValidation, DnsValidatedCertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { Vpc } from 'aws-cdk-lib/aws-ec2'
+import { EcsApplication } from 'aws-cdk-lib/aws-codedeploy';
 
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 import * as cf from "aws-cdk-lib/aws-cloudfront";
 import * as route53 from "aws-cdk-lib/aws-route53";
 import * as route53Targets from "aws-cdk-lib/aws-route53-targets";
-
+import * as rds from 'aws-cdk-lib/aws-rds';
+import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as elasticache from 'aws-cdk-lib/aws-elasticache';
+import * as ses from 'aws-cdk-lib/aws-ses';
+import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as iam from 'aws-cdk-lib/aws-iam';
+import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
 
 export interface MastodonProps extends StackProps {
   PRODUCTION: boolean,
   domain: string,
+  FIRST_RUN: boolean,
 }
 
 export class MastodonStack extends Stack {
   constructor(scope: Construct, id: string, props: MastodonProps) {
     super(scope, id, props);
 
-    const repository = Repository.fromRepositoryName(this, 'repo', 'hello-mastodon')
+    const repository = Repository.fromRepositoryName(this, 'repo', 'tootsuite/mastodon')
 
-    const logGroup = new LogGroup(this, 'webLog', {
-      logGroupName: 'web',
-      retention: (props.PRODUCTION) ? RetentionDays.ONE_MONTH : RetentionDays.ONE_WEEK,
-      removalPolicy: RemovalPolicy.SNAPSHOT
-    })
-
-
-    const webTask = new FargateTaskDefinition( this, 'webTask', {
-      cpu: 256,           // TODO 
-      family: 'web',
-      memoryLimitMiB: 512 // TODO
-    })
-
-    webTask.addContainer('webContainer',{
-      image: ContainerImage.fromEcrRepository(repository,'latest'),
-      containerName: 'web',
-
-      // TODO replace with appropriate values
-      // environment: {
-      //   PORT: '7000',
-      //   HELLO_DOMAIN: props.domain,
-      //   NODE_ENV: props.PRODUCTION ? 'production' : 'staging',
-      // },
-      // healthCheck: {
-      //   command: [
-      //     'CMD-SHELL',
-      //     'wget -q -O - http://localhost:7000/api/v1/health_check/local'
-      //   ],
-      //   interval: Duration.seconds(5),
-      //   timeout: Duration.seconds(2),
-      //   retries: 4,
-      //   startPeriod: Duration.seconds(10)
-      // },
-      logging: LogDrivers.awsLogs({
-        streamPrefix: 'web',
-        mode: AwsLogDriverMode.NON_BLOCKING,
-        logGroup: logGroup
-      }),
-      portMappings: [{containerPort:7000}], // TODO for port
-    })
-
+    // VPC
     const vpc = new Vpc(this, "vpc", {
       maxAzs: 2,
       vpcName: 'mastodon'
     })
+
+    // ECS Cluster
     const cluster = new Cluster(this, 'mastodonCluster', { 
       vpc,
       clusterName: 'mastodon',
       containerInsights: true
     })
 
+    // Route 53
     const zone = HostedZone.fromLookup(this,'zone',{domainName: props.domain})
 
-    const albHost = 'alb.'+props.domain
+
+    // CW Log group
+    const logGroup = new LogGroup(this, 'webLog', {
+      logGroupName: 'web',
+      retention: (props.PRODUCTION) ? RetentionDays.ONE_MONTH : RetentionDays.ONE_WEEK,
+      removalPolicy: (props.PRODUCTION) ? RemovalPolicy.RETAIN : RemovalPolicy.DESTROY
+    })
+
+
+    // ECS Fargate Task
+    const mastodonTask = new FargateTaskDefinition( this, 'mastodonTask', {
+      cpu: 512,
+      family: 'mastodon',
+      memoryLimitMiB: 1024
+    })
+
+    mastodonTask.addContainer('webContainer',{
+      //image: ContainerImage.fromEcrRepository(repository,'latest'),
+      image: ContainerImage.fromRegistry('tootsuite/mastodon'),
+      containerName: 'web',
+      command: (props.FIRST_RUN) ? ['bash', '-c', 'bundle install && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails db:migrate && bundle exec rails s -p 3000'] : ['bash', '-c', 'bundle install && bundle exec rails db:migrate && bundle exec rails s -p 3000'],
+      logging: LogDrivers.awsLogs({
+        streamPrefix: 'web',
+        logGroup: logGroup
+      }),
+      portMappings: [{containerPort:3000}],
+
+    })
+
+    mastodonTask.addContainer('sidekiqContainer',{
+      //image: ContainerImage.fromEcrRepository(repository,'latest'),
+      image: ContainerImage.fromRegistry('tootsuite/mastodon'),
+      containerName: 'sidekiq',
+      command: ['bash', '-c', 'bundle exec sidekiq -c 15'],
+      essential: false,
+      logging: LogDrivers.awsLogs({
+        streamPrefix: 'sidekiq',
+        logGroup: logGroup
+      }),
+      portMappings: [{containerPort:3001}],
+    })
+
+    mastodonTask.addContainer('streamingContainer',{
+      //image: ContainerImage.fromEcrRepository(repository,'latest'),
+      image: ContainerImage.fromRegistry('tootsuite/mastodon'),
+      containerName: 'streaming',
+      command: ['bash', '-c', 'node ./streaming'],
+      essential: false,
+      logging: LogDrivers.awsLogs({
+        streamPrefix: 'streaming',
+        logGroup: logGroup
+      }),
+      portMappings: [{containerPort:3002}],
+    })
+
+    // ECS ALB
+    const albHost = 'alb.' + props.domain
 
     const albCertificate = new DnsValidatedCertificate(this,'certALB',{
       domainName: albHost,
@@ -98,12 +125,24 @@ export class MastodonStack extends Stack {
       loadBalancerName: 'mastodon',
       memoryLimitMiB: 1024,
       serviceName: 'mastodon',
-      taskDefinition: webTask,
+      taskDefinition: mastodonTask,
     });
     
     loadBalancedFargateService.targetGroup.configureHealthCheck({
-      path: '/api/v1/health_check/ALB', // TODO
+      path: '/health',
+      timeout: Duration.seconds(10),
+      unhealthyThresholdCount: 5,
+      healthyThresholdCount: 3,
+      interval: Duration.seconds(20)
     })
+
+    loadBalancedFargateService.loadBalancer.setAttribute('routing.http.preserve_host_header.enabled', 'true')
+    
+    const albSecurityGroup = new ec2.SecurityGroup(this, 'alb-security-group', { 
+      vpc: vpc,
+      allowAllOutbound: true,
+     });
+    loadBalancedFargateService.loadBalancer.addSecurityGroup(albSecurityGroup)
 
     const scalableTarget = loadBalancedFargateService.service.autoScaleTaskCount({
       minCapacity: 1,
@@ -122,9 +161,7 @@ export class MastodonStack extends Stack {
     // TODO - grant permissions for webTask.taskRole to access all storage
     //
 
-    // CloudFront setup
-
-    const alb = loadBalancedFargateService.loadBalancer
+    // CloudFront 
 
     const albOrigin = new origins.HttpOrigin(albHost) //LoadBalancerV2Origin(props.alb)
 
@@ -140,6 +177,7 @@ export class MastodonStack extends Stack {
         'CloudFront-Viewer-Country-Region',
         'CloudFront-Viewer-Address',
         'Accept-Language',
+        'Host'
       )
     });
 
@@ -147,6 +185,7 @@ export class MastodonStack extends Stack {
       domainName: props.domain,
       validation: CertificateValidation.fromDns(zone),
       hostedZone: zone,
+      region: 'us-east-1'
     })
 
     // proxy analytics
@@ -155,12 +194,11 @@ export class MastodonStack extends Stack {
     })
 
     const params:cf.DistributionProps = {
-      // defaultRootObject: 'index.html', // TODO
       domainNames: [props.domain],
       priceClass: cf.PriceClass.PRICE_CLASS_100,
       certificate: webCertificate,
       logFilePrefix: props.domain,
-      defaultBehavior: {  // TODO - guessing default origin should be an S3 bucket that we have static content in?
+      defaultBehavior: {
         origin: albOrigin,
         allowedMethods: cf.AllowedMethods.ALLOW_ALL,
         cachePolicy: cf.CachePolicy.CACHING_DISABLED,
@@ -191,5 +229,120 @@ export class MastodonStack extends Stack {
         new route53Targets.CloudFrontTarget(distribution)
       )
     })
-  }
+
+    // RDS Postgres Instance
+
+    const dbInstance = new rds.DatabaseInstance(this, 'db-instance', {
+      vpc,
+      vpcSubnets: {
+        subnetType: ec2.SubnetType.PRIVATE_WITH_NAT,
+      },
+      engine: rds.DatabaseInstanceEngine.postgres({
+        version: rds.PostgresEngineVersion.VER_13,
+      }),
+      instanceType: ec2.InstanceType.of(
+        ec2.InstanceClass.BURSTABLE3,
+        ec2.InstanceSize.MICRO,
+      ),
+      credentials: rds.Credentials.fromGeneratedSecret('postgres'),
+      multiAz: false,
+      allocatedStorage: 25,
+      allowMajorVersionUpgrade: false,
+      autoMinorVersionUpgrade: true,
+      backupRetention: Duration.days(0),
+      deleteAutomatedBackups: true,
+      removalPolicy: (props.PRODUCTION) ? RemovalPolicy.RETAIN : RemovalPolicy.DESTROY,
+      deletionProtection: false,
+      databaseName: 'MastodonDB',
+      publiclyAccessible: false,
+    });
+
+    new route53.CnameRecord(this, 'dbRecord', {
+      recordName: 'mastodondb',
+      zone: zone,
+      domainName: dbInstance.instanceEndpoint.hostname
+    })
+
+    dbInstance.connections.allowFrom(loadBalancedFargateService.service.connections, ec2.Port.tcp(5432));
+
+
+    // ElastiCache Redis instance
+
+    const redisSubnetGroup = new elasticache.CfnSubnetGroup(this, 'redis-subnet-group', {
+      cacheSubnetGroupName: 'redis-subnet-group',
+      description: 'The redis subnet group id',
+      subnetIds: vpc.privateSubnets.map(subnet => subnet.subnetId)
+    });
+  
+    const redisSecurityGroup = new ec2.SecurityGroup(this, 'redis-security-group', { vpc: vpc });
+  
+    const redisConnections = new ec2.Connections({
+        securityGroups: [redisSecurityGroup],
+        defaultPort: ec2.Port.tcp(6379)
+    });
+  
+    const redis = new elasticache.CfnCacheCluster(this, 'redis-cluster', {
+        cacheNodeType:'cache.t4g.micro',
+        engine: 'redis',
+        engineVersion: '7.0',
+        numCacheNodes: 1,
+        port: 6379,
+        cacheSubnetGroupName: redisSubnetGroup.cacheSubnetGroupName,
+        vpcSecurityGroupIds: [ redisSecurityGroup.securityGroupId ]
+    });
+    redis.addDependsOn(redisSubnetGroup);
+
+    redisConnections.connections.allowFrom(loadBalancedFargateService.service.connections, ec2.Port.tcp(6379));
+  
+    new route53.CnameRecord(this, 'redisRecord', {
+      recordName: 'mastodonredis',
+      zone: zone,
+      domainName: redis.attrRedisEndpointAddress
+    })
+
+    // SES
+    const identity = new ses.EmailIdentity(this, 'Identity', {
+      identity: ses.Identity.publicHostedZone(zone),
+      mailFromDomain: 'mail.' + props.domain,
+    });
+
+    // S3
+    const bucket = new s3.Bucket(this, 'mastodon_' + props.domain, {
+      encryption: s3.BucketEncryption.KMS,
+      bucketKeyEnabled: true,
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+    });
+
+    // IAM user for S3 bucket
+    const user = new iam.User(this, 'mastodon-s3-user');
+    const accessKey = new iam.AccessKey(this, 'AccessKey', { user });
+    const secret = new secretsmanager.Secret(this, 'Secret', {
+        secretStringValue: accessKey.secretAccessKey,
+    });
+
+    const bucketPolicy = new iam.PolicyStatement({
+      actions: ['s3:Get*', 's3:List*'],
+      resources: [bucket.arnForObjects('*')],
+      principals: [new iam.ArnPrincipal(user.userArn)]
+    });
+
+    bucket.addToResourcePolicy(bucketPolicy);
+
+    user.attachInlinePolicy(new iam.Policy(this, 'mastodon-s3-policy', {
+      statements: [new iam.PolicyStatement({
+        resources: [bucket.bucketArn],
+        actions: ['s3:*'],
+        effect: iam.Effect.ALLOW,
+      })],
+    }));
+
+    // Outputs
+    new CfnOutput(this, 'dbEndpoint', {
+      value: dbInstance.instanceEndpoint.hostname,
+    });
+
+    new CfnOutput(this, 'secretName', {
+      value: dbInstance.secret?.secretName!,
+    });
+  } 
 }

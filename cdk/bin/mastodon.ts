@@ -2,7 +2,12 @@
 import * as cdk from 'aws-cdk-lib';
 import { MastodonStack } from '../lib/mastodon-stack';
 
-const PRODUCTION = (process.env.NODE_ENV === 'production')
+const PRODUCTION = (process.env.NODE_ENV === 'production');
+
+// First run will DESTROY the database and recreate it. 
+// Used for (surprisingly) the first run of an environment
+// to set up the database.
+const FIRST_RUN = (process.env.FIRST_RUN === 'true');
 
 const env = {
     account: PRODUCTION ? '059427179902': '424684280317',
@@ -21,5 +26,6 @@ const app = new cdk.App();
 const mastodon =  new MastodonStack(app, 'MastodonStack', {
   env,
   PRODUCTION,
-  domain
+  domain,
+  FIRST_RUN
 });
