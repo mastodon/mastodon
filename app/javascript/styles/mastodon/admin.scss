@@ -254,10 +254,8 @@ $content-width: 840px;
 
       &__actions {
         display: inline-flex;
-
-        & > :not(:first-child) {
-          margin-left: 5px;
-        }
+        flex-flow: wrap;
+        gap: 5px;
       }
 
       h2 small {
