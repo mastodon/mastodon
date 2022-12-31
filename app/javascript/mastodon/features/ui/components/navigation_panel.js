@@ -12,6 +12,7 @@ import ListPanel from './list_panel';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SignInBanner from './sign_in_banner';
 import NavigationPortal from 'mastodon/components/navigation_portal';
+import { navRetracted } from 'mastodon/settings';
 
 const messages = defineMessages({
   home: { id: 'tabs_bar.home', defaultMessage: 'Home' },
@@ -58,13 +59,20 @@ class NavigationPanel extends React.Component {
   };
 
   state = {
-    retracted: false,
+    retracted: navRetracted.get('hometown'),
   };
+
+  componentDidMount() {
+    const mainContent = document.querySelector('.columns-area--mobile');
+    if (this.state.retracted) {
+      mainContent.classList.add('fullWidth');
+    }
+  }
 
   handleMenuToggle() {
     this.setState({
       retracted: !this.state.retracted,
-    });
+    }, () => navRetracted.set('hometown', this.state.retracted));
     const mainContent = document.querySelector('.columns-area--mobile');
     if (!this.state.retracted) {
       mainContent.classList.add('navigation-panel--retracted');

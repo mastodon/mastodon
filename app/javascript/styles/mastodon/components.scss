@@ -8837,6 +8837,11 @@ div.status__content--with-spoiler {
     margin: 0;
   }
 
+  .columns-area--mobile.fullWidth {
+    width: 100%;
+    margin: 0;
+  }
+
   .columns-area--mobile.navigation-panel--retracted {
     width: 100%;
     margin: 0 auto auto 0;
@@ -8886,6 +8891,11 @@ div.status__content--with-spoiler {
 
   .columns-area--mobile {
     width: calc(100% - $sidebar-width);
+    margin: 0;
+  }
+
+  .columns-area--mobile.fullWidth {
+    width: 100%;
     margin: 0;
   }
 
