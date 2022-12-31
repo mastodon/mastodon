@@ -1801,7 +1801,7 @@ a.account__display-name {
 }
 
 .notification__message {
-  padding: 16px;
+  padding: 8px 16px 16px 16px;
   padding-bottom: 0;
   cursor: default;
   color: $darker-text-color;
@@ -7767,6 +7767,12 @@ noscript {
     .emoji-button {
       padding: 0;
     }
+  }
+}
+
+.notification-follow {
+  .account {
+    padding: 4px 16px 8px 16px;
   }
 }
 
