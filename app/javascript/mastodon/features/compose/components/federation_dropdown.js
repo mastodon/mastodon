@@ -154,6 +154,7 @@ export default class FederationDropdown extends React.PureComponent {
     onModalClose: PropTypes.func,
     value: PropTypes.bool.isRequired,
     onChange: PropTypes.func.isRequired,
+    disabled: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -214,7 +215,7 @@ export default class FederationDropdown extends React.PureComponent {
   }
 
   render () {
-    const { value, intl } = this.props;
+    const { value, intl, disabled } = this.props;
     const { open, placement } = this.state;
 
     const valueOption = this.options.find(item => item.value === value);
@@ -232,6 +233,7 @@ export default class FederationDropdown extends React.PureComponent {
             inverted
             onClick={this.handleToggle}
             style={{ height: null, lineHeight: '27px' }}
+            disabled={disabled}
           />
         </div>
 

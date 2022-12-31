@@ -276,7 +276,7 @@ class ComposeForm extends ImmutablePureComponent {
             <PollButtonContainer />
             <PrivacyDropdownContainer disabled={this.props.isEditing} />
             <SpoilerButtonContainer />
-            <FederationDropdownContainer />
+            <FederationDropdownContainer disabled={this.props.isEditing} />
             <LanguageDropdown />
           </div>
 
