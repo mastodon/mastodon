@@ -1,14 +1,16 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe VerifyLinkService, type: :service do
   subject { described_class.new }
 
-  context 'given a local account' do
+  context 'with a local account' do
     let(:account) { Fabricate(:account, username: 'alice') }
     let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => 'http://example.com') }
 
     before do
-      stub_request(:head, 'https://redirect.me/abc').to_return(status: 301, headers: { 'Location' => ActivityPub::TagManager.instance.url_for(account) })
+      stub_request(:head, 'https://redirect.me/abc').to_return(status: 301,
+                                                               headers: { 'Location' => ActivityPub::TagManager.instance.url_for(account) })
       stub_request(:get, 'http://example.com').to_return(status: 200, body: html)
       subject.call(field)
     end
@@ -82,8 +84,8 @@ RSpec.describe VerifyLinkService, type: :service do
         "
       end
 
-      it 'marks the field as verified' do
-        expect(field.verified?).to be true
+      it 'marks the field as not verified' do
+        expect(field.verified?).to be false
       end
     end
 
@@ -127,9 +129,19 @@ RSpec.describe VerifyLinkService, type: :service do
     end
   end
 
-  context 'given a remote account' do
+  context 'with a remote account' do
     let(:account) { Fabricate(:account, username: 'alice', domain: 'example.com', url: 'https://profile.example.com/alice') }
-    let(:field)   { Account::Field.new(account, 'name' => 'Website', 'value' => '<a href="http://example.com" rel="me"><span class="invisible">http://</span><span class="">example.com</span><span class="invisible"></span></a>') }
+    let(:field)   do
+      Account::Field.new(
+        account,
+        'name' => 'Website',
+        'value' =>
+          '<a href="http://example.com" rel="me">' \
+          '<span class="invisible">http://</span>' \
+          '<span class="">example.com</span>' \
+          '<span class="invisible"></span></a>'
+      )
+    end
 
     before do
       stub_request(:get, 'http://example.com').to_return(status: 200, body: html)
