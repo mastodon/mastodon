@@ -307,7 +307,7 @@ export class MastodonStack extends Stack {
     });
 
     // S3
-    const bucket = new s3.Bucket(this, 'mastodon_' + props.domain, {
+    const bucket = new s3.Bucket(this, 'mastodon_' + props.domain, { // Kyle: I have found S3 is cranky with dots in the bucket name -- I replace dots with dashes
       encryption: s3.BucketEncryption.KMS,
       bucketKeyEnabled: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
@@ -337,7 +337,7 @@ export class MastodonStack extends Stack {
     }));
 
     // Outputs
-    new CfnOutput(this, 'dbEndpoint', {
+    new CfnOutput(this, 'dbEndpoint', {           // Kyle: I'm not familiar with how one would use CfnOutput
       value: dbInstance.instanceEndpoint.hostname,
     });
 
