@@ -8,7 +8,7 @@ class ActivityPub::Activity
   SUPPORTED_TYPES = %w(Note Question).freeze
   CONVERTED_TYPES = %w(Image Audio Video Article Page Event).freeze
 
-  ruby2_keywords def initialize(json, account, **options)
+  def initialize(json, account, **options)
     @json    = json
     @account = account
     @object  = @json['object']
