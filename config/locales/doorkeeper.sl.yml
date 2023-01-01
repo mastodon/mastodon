@@ -1,3 +1,4 @@
+---
 sl:
   activerecord:
     attributes:
@@ -146,49 +147,49 @@ sl:
       application:
         title: Potrebna je pooblastitev OAuth
     scopes:
-      "admin:read": preberi vse podatke na strežniku
-      "admin:read:accounts": preberi občutljive informacije vseh računov
-      "admin:read:canonical_email_blocks": preberi občutljive informacije vseh blokad kanoničnih e-računov
-      "admin:read:domain_allows": preberi občutljive informacije vseh dovolil domene
-      "admin:read:domain_blocks": preberi občutljive informacije vseh blokad domen
-      "admin:read:email_domain_blocks": preberi občutljive informacije vseh blokad domen e-računov
-      "admin:read:ip_blocks": preberi občutljive informacije vseh blokad IP
-      "admin:read:reports": preberi občutljive informacije vseh prijav in prijavljenih računov
-      "admin:write": spremeni vse podatke na strežniku
-      "admin:write:accounts": izvedi moderirana dejanja na računih
-      "admin:write:canonical_email_blocks": izvedi moderirana dejanja na blokadah kanoničnih e-računov
-      "admin:write:domain_allows": izvedi moderirana dejanja na dovolilih domen
-      "admin:write:domain_blocks": izvedi moderirana dejanja na blokadah domen
-      "admin:write:email_domain_blocks": izvedi moderirana dejanja na blokadah domen e-računov
-      "admin:write:ip_blocks": izvedi moderirana dejanja na blokadah IP
-      "admin:write:reports": izvedi moderirana dejanja na prijavah
+      admin:read: preberi vse podatke na strežniku
+      admin:read:accounts: preberi občutljive informacije vseh računov
+      admin:read:canonical_email_blocks: preberi občutljive informacije vseh blokad kanoničnih e-računov
+      admin:read:domain_allows: preberi občutljive informacije vseh dovolil domene
+      admin:read:domain_blocks: preberi občutljive informacije vseh blokad domen
+      admin:read:email_domain_blocks: preberi občutljive informacije vseh blokad domen e-računov
+      admin:read:ip_blocks: preberi občutljive informacije vseh blokad IP
+      admin:read:reports: preberi občutljive informacije vseh prijav in prijavljenih računov
+      admin:write: spremeni vse podatke na strežniku
+      admin:write:accounts: izvedi moderirana dejanja na računih
+      admin:write:canonical_email_blocks: izvedi moderirana dejanja na blokadah kanoničnih e-računov
+      admin:write:domain_allows: izvedi moderirana dejanja na dovolilih domen
+      admin:write:domain_blocks: izvedi moderirana dejanja na blokadah domen
+      admin:write:email_domain_blocks: izvedi moderirana dejanja na blokadah domen e-računov
+      admin:write:ip_blocks: izvedi moderirana dejanja na blokadah IP
+      admin:write:reports: izvedi moderirana dejanja na prijavah
       crypto: Uporabi šifriranje od konca do konca
       follow: spremeni razmerja med računi
       push: prejmi potisna obvestila
       read: preberi vse podatke svojega računa
-      "read:accounts": oglejte si podrobnosti računov
-      "read:blocks": oglejte si svoje blokirane
-      "read:bookmarks": oglejte si svoje zaznamke
-      "read:favourites": oglejte si svoje priljubljene
-      "read:filters": oglejte si svoje filtre
-      "read:follows": oglejte si svoje sledilce
-      "read:lists": oglejte si svoje sezname
-      "read:mutes": oglejte si svoje utišane
-      "read:notifications": oglejte si svoja obvestila
-      "read:reports": oglejte si svoje prijave
-      "read:search": iščite v svojem imenu
-      "read:statuses": oglejte si vse objave
+      read:accounts: oglejte si podrobnosti računov
+      read:blocks: oglejte si svoje blokirane
+      read:bookmarks: oglejte si svoje zaznamke
+      read:favourites: oglejte si svoje priljubljene
+      read:filters: oglejte si svoje filtre
+      read:follows: oglejte si svoje sledilce
+      read:lists: oglejte si svoje sezname
+      read:mutes: oglejte si svoje utišane
+      read:notifications: oglejte si svoja obvestila
+      read:reports: oglejte si svoje prijave
+      read:search: iščite v svojem imenu
+      read:statuses: oglejte si vse objave
       write: spremenite vse podatke svojega računa
-      "write:accounts": spremenite svoj profil
-      "write:blocks": blokirajte račune in domene
-      "write:bookmarks": objave zaznamkov
-      "write:conversations": utišaj in izbriši pogovore
-      "write:favourites": priljubljene objave
-      "write:filters": ustvari filtre
-      "write:follows": sledi osebam
-      "write:lists": ustvarite sezname
-      "write:media": pošlji medije
-      "write:mutes": utišaj osebe in pogovore
-      "write:notifications": počisti svoja obvestila
-      "write:reports": prijavi druge osebe
-      "write:statuses": objavi objave
+      write:accounts: spremenite svoj profil
+      write:blocks: blokirajte račune in domene
+      write:bookmarks: objave zaznamkov
+      write:conversations: utišaj in izbriši pogovore
+      write:favourites: priljubljene objave
+      write:filters: ustvari filtre
+      write:follows: sledi osebam
+      write:lists: ustvarite sezname
+      write:media: pošlji medije
+      write:mutes: utišaj osebe in pogovore
+      write:notifications: počisti svoja obvestila
+      write:reports: prijavi druge osebe
+      write:statuses: objavi objave
