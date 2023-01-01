@@ -62,6 +62,10 @@ RSpec.describe Tag, type: :model do
       expect(subject.match('hello #one·two·three').to_s).to eq ' #one·two·three'
     end
 
+    it 'matches ・unicode in ぼっち・ざ・ろっく correctly' do
+      expect(subject.match('testing #ぼっち・ざ・ろっく').to_s).to eq ' #ぼっち・ざ・ろっく'
+    end
+
     it 'matches ZWNJ' do
       expect(subject.match('just add #نرم‌افزار and').to_s).to eq ' #نرم‌افزار'
     end
