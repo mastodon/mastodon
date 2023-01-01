@@ -26,7 +26,6 @@ html {
 }
 
 // Change default background colors of columns
-.column > .scrollable,
 .getting-started,
 .column-inline-form,
 .error-column,
@@ -34,6 +33,13 @@ html {
   background: $white;
   border: 1px solid lighten($ui-base-color, 8%);
   border-top: 0;
+}
+
+.column > .scrollable {
+  background: $white;
+  border: 1px solid lighten($ui-base-color, 8%);
+  border-top: 0;
+  border-right: 0;
 }
 
 .column > .scrollable.about {
@@ -62,8 +68,7 @@ html {
 
 .column-back-button,
 .column-header {
-  background: $white;
-  border: 1px solid lighten($ui-base-color, 8%);
+  background: lighten($ui-base-color, 8%);
 
   @media screen and (max-width: $no-gap-breakpoint) {
     border-top: 0;
@@ -79,7 +84,7 @@ html {
 .column-header__button,
 .column-header__button.active,
 .account__header {
-  background: $white;
+  background: lighten($ui-base-color, 8%);
 }
 
 .column-header__button.active {
@@ -714,5 +719,11 @@ html {
   i {
     background-color: darken($ui-highlight-color, 20%);
     color: darken($ui-highlight-color, 30%);
+  }
+}
+
+@media screen and (max-width: $no-gap-breakpoint - 1px) {
+  .navigation-panel {
+    border-left: 0;
   }
 }
