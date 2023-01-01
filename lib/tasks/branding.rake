@@ -35,8 +35,8 @@ namespace :branding do
 
   desc 'Generate favicons and app icons from SVG source files'
   task generate_app_icons: :environment do
-    favicon_source  = Rails.root.join('app', 'javascript', 'images', 'logo.svg')
-    app_icon_source = Rails.root.join('app', 'javascript', 'images', 'app-icon.svg')
+    favicon_source  = Rails.root.join('app', 'javascript', 'images', 'hometown.svg')
+    app_icon_source = Rails.root.join('app', 'javascript', 'images', 'hometown-icon.svg')
     output_dest     = Rails.root.join('app', 'javascript', 'icons')
 
     rsvg_convert = Terrapin::CommandLine.new('rsvg-convert', '-w :size -h :size --keep-aspect-ratio :input -o :output')
