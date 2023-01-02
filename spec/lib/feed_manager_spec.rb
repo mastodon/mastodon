@@ -269,9 +269,12 @@ RSpec.describe FeedManager do
         # The first reblog will be accepted
         FeedManager.instance.push_to_home(account, reblogs.first)
 
-        # Fill the feed with intervening statuses
+        # Fill the feed with intervening statuses that are also reblogs
         FeedManager::REBLOG_FALLOFF.times do
-          FeedManager.instance.push_to_home(account, Fabricate(:status))
+          FeedManager.instance.push_to_home(
+            account,
+            Fabricate(:status, reblog: Fabricate(:status))
+          )
         end
 
         # The second reblog should also be accepted
