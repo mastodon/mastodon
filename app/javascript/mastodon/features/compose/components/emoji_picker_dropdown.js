@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { EmojiPicker as EmojiPickerAsync } from '../../ui/util/async-components';
-import Overlay from 'react-overlays/lib/Overlay';
+import Overlay from 'react-overlays/Overlay';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { supportsPassiveEvents } from 'detect-passive-events';
@@ -155,8 +155,6 @@ class EmojiPickerMenu extends React.PureComponent {
     onPick: PropTypes.func.isRequired,
     style: PropTypes.object,
     placement: PropTypes.string,
-    arrowOffsetLeft: PropTypes.string,
-    arrowOffsetTop: PropTypes.string,
     intl: PropTypes.object.isRequired,
     skinTone: PropTypes.number.isRequired,
     onSkinTone: PropTypes.func.isRequired,
@@ -394,16 +392,20 @@ class EmojiPickerDropdown extends React.PureComponent {
           />}
         </div>
 
-        <Overlay show={active} placement={placement} target={this.findTarget}>
-          <EmojiPickerMenu
-            custom_emojis={this.props.custom_emojis}
-            loading={loading}
-            onClose={this.onHideDropdown}
-            onPick={onPickEmoji}
-            onSkinTone={onSkinTone}
-            skinTone={skinTone}
-            frequentlyUsedEmojis={frequentlyUsedEmojis}
-          />
+        <Overlay show={active} placement={placement} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+          {({ props })=> (
+            <div {...props} style={{ ...props.style, width: 299 }}>
+              <EmojiPickerMenu
+                custom_emojis={this.props.custom_emojis}
+                loading={loading}
+                onClose={this.onHideDropdown}
+                onPick={onPickEmoji}
+                onSkinTone={onSkinTone}
+                skinTone={skinTone}
+                frequentlyUsedEmojis={frequentlyUsedEmojis}
+              />
+            </div>
+          )}
         </Overlay>
       </div>
     );
