@@ -168,7 +168,7 @@ $small-breakpoint: 960px;
       word-break: break-all;
 
       &.nowrap {
-        width: 25%;
+        width: 50%;
         position: relative;
 
         &::before {
@@ -181,7 +181,7 @@ $small-breakpoint: 960px;
           left: 8px;
           right: 8px;
           white-space: nowrap;
-          overflow: hidden;
+          overflow: scroll;
           text-overflow: ellipsis;
         }
       }
