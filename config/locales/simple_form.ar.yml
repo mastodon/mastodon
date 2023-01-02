@@ -125,6 +125,9 @@ ar:
         name: الاسم العام للوظيفه، إذا تم تعيين الوظيفه ليتم عرضه كشارة
         permissions_as_keys: سيكون للمستخدمين الذين لديهم هذه الوظيفة حق الصلاحيه إلى...
         position: وتقرر الوظيفة الأعلى تسوية النزاعات في حالات معينة، ولا يمكن القيام ببعض الإجراءات إلا على أساس الوظائف ذات الأولوية الأقل
+      webhook:
+        events: حدد الأحداث لإرسالها
+        url: إين سترسل الأحداث
     labels:
       account:
         fields:
@@ -227,7 +230,11 @@ ar:
           warn: إخفاء بتحذير
       form_admin_settings:
         backups_retention_period: فترة الاحتفاظ بأرشيف المستخدم
+        bootstrap_timeline_accounts: أوصي دائما بهذه الحسابات للمستخدمين الجدد
+        closed_registrations_message: رسالة مخصصة عندما يكون التسجيل غير متاح
+        content_cache_retention_period: مدة الاحتفاظ بالتخزين المؤقت للوسائط
         custom_css: سي أس أس CSS مخصص
+        mascot: جالب حظ مخصص (قديم)
         media_cache_retention_period: مدة الاحتفاظ بالتخزين المؤقت للوسائط
         profile_directory: تفعيل دليل الصفحات التعريفية
         registrations_mode: من يمكنه التسجيل
@@ -288,6 +295,7 @@ ar:
         permissions_as_keys: الصلاحيات
         position: الأولوية
       webhook:
+        events: الأحداث المفعلة
         url: الرابط التشعبّي URL لنقطة النهاية
     'no': لا
     not_recommended: غير مستحسن

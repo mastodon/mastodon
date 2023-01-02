@@ -15,7 +15,7 @@ ca:
         text_html: Opcional. En les publicacions, pots usar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
         types:
-          disable: Evita que l'usuari faci servir el seu compte, però no esborris ni amaguis el seu contingut.
+          disable: Evita que l'usuari faci servir el seu compte, però no n'esborris ni amaguis el contingut.
           none: Fes servir això per a enviar un avís a l'usuari sense desencadenar cap altra acció.
           sensitive: Obliga a marcar tots els fitxers multimèdia adjunts com a sensibles.
           silence: Evita que l'usuari pugui publicar amb visibilitat pública, amagar les seves publicacions i les notificacions d'usuaris que no el segueixin.
@@ -51,14 +51,14 @@ ca:
         setting_aggregate_reblogs: No mostris els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els nous impulsos rebuts)
         setting_always_send_emails: Normalment, no s'enviarà cap notificació per correu electrònic mentre facis servir Mastodon
         setting_default_sensitive: El contingut sensible està ocult per defecte i es pot mostrar fent-hi clic
-        setting_display_media_default: Ocultar el contingut gràfic marcat com a sensible
+        setting_display_media_default: Amaga el contingut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
         setting_display_media_show_all: Mostra sempre el contingut gràfic
         setting_hide_network: Qui segueixes i els que et segueixen no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
         setting_show_application: L'aplicació que fas servir per a publicar es mostrarà en la vista detallada de les publicacions
         setting_use_blurhash: Els degradats es basen en els colors de les imatges ocultes, però n'enfosqueixen els detalls
-        setting_use_pending_items: Amaga les actualitzacions de la línia de temps després de fer un clic en lloc de desplaçar automàticament les publicacions
+        setting_use_pending_items: Amaga les actualitzacions de la línia de temps després de fer un clic, en lloc de desplaçar-les automàticament
         username: El teu nom d'usuari serà únic a %{domain}
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
       domain_allow:
@@ -87,7 +87,7 @@ ca:
         site_contact_username: Com pot la gent trobar-te a Mastodon.
         site_extended_description: Qualsevol informació addicional que pot ser útil per als visitants i els teus usuaris. Es pot estructurar amb format Markdown.
         site_short_description: Una descripció curta per a ajudar a identificar de manera única el teu servidor. Qui el fa anar, per a qui és?
-        site_terms: Usa la teva pròpia política de privacitat o deixa-ho en blanc per a usar la per defecte. Pot ser estructurat amb format Markdown.
+        site_terms: Fes servir la teva pròpia política de privacitat o deixa-ho en blanc per a la per defecte. Es pot estructurar amb format Markdown.
         site_title: Com pot la gent referir-se al teu servidor a part del seu nom de domini.
         theme: El tema que els visitants i els nous usuaris veuen.
         thumbnail: Una imatge d'aproximadament 2:1 que es mostra al costat la informació del teu servidor.
@@ -271,7 +271,7 @@ ca:
       notification_emails:
         appeal: Algú ha apel·lat una decisió de moderació
         digest: Envia'm un resum per correu electrònic
-        favourite: Algú marca com a preferit el teu estat
+        favourite: Algú marca com a preferida la teva publicació
         follow: Algú et segueix
         follow_request: Algú sol·licita seguir-te
         mention: Algú et menciona
