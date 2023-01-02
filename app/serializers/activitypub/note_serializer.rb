@@ -108,9 +108,7 @@ class ActivityPub::NoteSerializer < ActivityPub::Serializer
     object.account.sensitized? || object.sensitive
   end
 
-  def local_only
-    object.local_only
-  end
+  delegate :local_only, to: :object
 
   def virtual_attachments
     object.ordered_media_attachments
