@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import IconButton from '../../../components/icon_button';
 import Overlay from 'react-overlays/Overlay';
-import Motion from '../../ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
@@ -273,15 +271,17 @@ class PrivacyDropdown extends React.PureComponent {
         </div>
 
         <Overlay show={open} placement={placement} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed' }}>
-          {({ props }) => (
+          {({ props, placement }) => (
             <div {...props} style={{ ...props.style, width: 350, maxWidth: '100vw' }}>
-              <PrivacyDropdownMenu
-                items={this.options}
-                value={value}
-                onClose={this.handleClose}
-                onChange={this.handleChange}
-                placement={placement}
-              />
+              <div className={`dropdown-animation ${placement}`}>
+                <PrivacyDropdownMenu
+                  items={this.options}
+                  value={value}
+                  onClose={this.handleClose}
+                  onChange={this.handleChange}
+                  placement={placement}
+                />
+              </div>
             </div>
           )}
         </Overlay>

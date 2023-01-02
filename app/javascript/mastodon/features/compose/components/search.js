@@ -2,8 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Overlay from 'react-overlays/Overlay';
-import Motion from '../../ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
 import { searchEnabled } from '../../../initial_state';
 import Icon from 'mastodon/components/icon';
 
@@ -134,9 +132,11 @@ class Search extends React.PureComponent {
           <Icon id='times-circle' className={hasValue ? 'active' : ''} aria-label={intl.formatMessage(messages.placeholder)} />
         </div>
         <Overlay show={expanded && !hasValue} placement='bottom' target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
-          {({ props }) => (
+          {({ props, placement }) => (
             <div {...props} style={{ ...props.style, width: 285, zIndex: 2 }}>
-              <SearchPopout />
+              <div className={`dropdown-animation ${placement}`}>
+                <SearchPopout />
+              </div>
             </div>
           )}
         </Overlay>

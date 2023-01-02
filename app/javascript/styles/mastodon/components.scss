@@ -363,8 +363,8 @@
   }
 }
 
-.dropdown-menu {
-  position: absolute;
+body > [data-popper-placement] {
+  z-index: 3;
 }
 
 .invisible {
@@ -1930,6 +1930,42 @@ a.account__display-name {
 .navigation-bar__profile-edit {
   color: inherit;
   text-decoration: none;
+}
+
+.dropdown-animation {
+  animation: dropdown 300ms cubic-bezier(.09,.71,.1,1);
+
+  @keyframes dropdown {
+    from {
+      opacity: 0;
+      transform: scaleX(0.85) scaleY(0.75);
+    }
+
+    to {
+      opacity: 1;
+      transform: scaleX(1) scaleY(1);
+    }
+  }
+
+  &.top {
+    transform-origin: bottom;
+  }
+
+  &.right {
+    transform-origin: left;
+  }
+
+  &.bottom {
+    transform-origin: top;
+  }
+
+  &.left {
+    transform-origin: right;
+  }
+
+  .reduce-motion & {
+    animation: none;
+  }
 }
 
 .dropdown {

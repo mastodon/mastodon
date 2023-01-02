@@ -393,17 +393,19 @@ class EmojiPickerDropdown extends React.PureComponent {
         </div>
 
         <Overlay show={active} placement={placement} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
-          {({ props })=> (
+          {({ props, placement })=> (
             <div {...props} style={{ ...props.style, width: 299 }}>
-              <EmojiPickerMenu
-                custom_emojis={this.props.custom_emojis}
-                loading={loading}
-                onClose={this.onHideDropdown}
-                onPick={onPickEmoji}
-                onSkinTone={onSkinTone}
-                skinTone={skinTone}
-                frequentlyUsedEmojis={frequentlyUsedEmojis}
-              />
+              <div className={`dropdown-animation ${placement}`}>
+                <EmojiPickerMenu
+                  custom_emojis={this.props.custom_emojis}
+                  loading={loading}
+                  onClose={this.onHideDropdown}
+                  onPick={onPickEmoji}
+                  onSkinTone={onSkinTone}
+                  skinTone={skinTone}
+                  frequentlyUsedEmojis={frequentlyUsedEmojis}
+                />
+              </div>
             </div>
           )}
         </Overlay>

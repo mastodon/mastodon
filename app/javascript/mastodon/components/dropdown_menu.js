@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './icon_button';
 import Overlay from 'react-overlays/Overlay';
-import Motion from '../features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import { CircularProgress } from 'mastodon/components/loading_indicator';
@@ -325,18 +323,20 @@ export default class Dropdown extends React.PureComponent {
         </span>
         <Overlay show={open} offset={[5, 5]} placement={dropdownPlacement} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, arrowProps, placement }) => (
-            <div {...props} className={`dropdown-menu ${placement}`}>
-              <div className={`dropdown-menu__arrow ${placement}`} {...arrowProps} />
-              <DropdownMenu
-                items={items}
-                loading={loading}
-                scrollable={scrollable}
-                onClose={this.handleClose}
-                openedViaKeyboard={openedViaKeyboard}
-                renderItem={renderItem}
-                renderHeader={renderHeader}
-                onItemClick={this.handleItemClick}
-              />
+            <div {...props}>
+              <div className={`dropdown-animation dropdown-menu ${placement}`}>
+                <div className={`dropdown-menu__arrow ${placement}`} {...arrowProps} />
+                <DropdownMenu
+                  items={items}
+                  loading={loading}
+                  scrollable={scrollable}
+                  onClose={this.handleClose}
+                  openedViaKeyboard={openedViaKeyboard}
+                  renderItem={renderItem}
+                  renderHeader={renderHeader}
+                  onItemClick={this.handleItemClick}
+                />
+              </div>
             </div>
           )}
         </Overlay>

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import TextIconButton from './text_icon_button';
 import Overlay from 'react-overlays/Overlay';
-import Motion from 'mastodon/features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
@@ -311,16 +309,18 @@ class LanguageDropdown extends React.PureComponent {
         </div>
 
         <Overlay show={open} placement={placement} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
-          {({ props }) => (
+          {({ props, placement }) => (
             <div {...props} style={{ ...props.style, width: 280 }}>
-              <LanguageDropdownMenu
-                value={value}
-                frequentlyUsedLanguages={frequentlyUsedLanguages}
-                onClose={this.handleClose}
-                onChange={this.handleChange}
-                placement={placement}
-                intl={intl}
-              />
+              <div className={`dropdown-animation ${placement}`}>
+                <LanguageDropdownMenu
+                  value={value}
+                  frequentlyUsedLanguages={frequentlyUsedLanguages}
+                  onClose={this.handleClose}
+                  onChange={this.handleChange}
+                  placement={placement}
+                  intl={intl}
+                />
+              </div>
             </div>
           )}
         </Overlay>
