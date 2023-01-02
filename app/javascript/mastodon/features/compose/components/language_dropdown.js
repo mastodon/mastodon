@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import TextIconButton from './text_icon_button';
-import Overlay from 'react-overlays/lib/Overlay';
+import Overlay from 'react-overlays/Overlay';
 import Motion from 'mastodon/features/ui/util/optional_motion';
 import spring from 'react-motion/lib/spring';
 import { supportsPassiveEvents } from 'detect-passive-events';
@@ -223,28 +223,21 @@ class LanguageDropdownMenu extends React.PureComponent {
 
   render () {
     const { style, placement, intl } = this.props;
-    const { mounted, searchValue } = this.state;
+    const { searchValue } = this.state;
     const isSearching = searchValue !== '';
     const results = this.search();
 
     return (
-      <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
-        {({ opacity, scaleX, scaleY }) => (
-          // It should not be transformed when mounting because the resulting
-          // size will be used to determine the coordinate of the menu by
-          // react-overlays
-          <div className={`language-dropdown__dropdown ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
-            <div className='emoji-mart-search'>
-              <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
-              <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}>{!isSearching ? loupeIcon : deleteIcon}</button>
-            </div>
+      <div className={`language-dropdown__dropdown ${placement}`} style={{ ...style }} ref={this.setRef}>
+        <div className='emoji-mart-search'>
+          <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
+          <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}>{!isSearching ? loupeIcon : deleteIcon}</button>
+        </div>
 
-            <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={this.setListRef}>
-              {results.map(this.renderItem)}
-            </div>
-          </div>
-        )}
-      </Motion>
+        <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={this.setListRef}>
+          {results.map(this.renderItem)}
+        </div>
+      </div>
     );
   }
 
@@ -293,13 +286,21 @@ class LanguageDropdown extends React.PureComponent {
     onChange(value);
   }
 
+  setTargetRef = c => {
+    this.target = c;
+  }
+
+  findTarget = () => {
+    return this.target;
+  }
+
   render () {
     const { value, intl, frequentlyUsedLanguages } = this.props;
     const { open, placement } = this.state;
 
     return (
       <div className={classNames('privacy-dropdown', { active: open })}>
-        <div className='privacy-dropdown__value'>
+        <div className='privacy-dropdown__value' ref={this.setTargetRef} >
           <TextIconButton
             className='privacy-dropdown__value-icon'
             label={value && value.toUpperCase()}
@@ -309,15 +310,19 @@ class LanguageDropdown extends React.PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={placement} target={this}>
-          <LanguageDropdownMenu
-            value={value}
-            frequentlyUsedLanguages={frequentlyUsedLanguages}
-            onClose={this.handleClose}
-            onChange={this.handleChange}
-            placement={placement}
-            intl={intl}
-          />
+        <Overlay show={open} placement={placement} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+          {({ props }) => (
+            <div {...props} style={{ ...props.style, width: 280 }}>
+              <LanguageDropdownMenu
+                value={value}
+                frequentlyUsedLanguages={frequentlyUsedLanguages}
+                onClose={this.handleClose}
+                onChange={this.handleChange}
+                placement={placement}
+                intl={intl}
+              />
+            </div>
+          )}
         </Overlay>
       </div>
     );
