@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 source 'https://rubygems.org'
-ruby '>= 2.7.0', '< 3.3.0'
+ruby '>= 2.7.0', '< 3.1.0'
 
 gem 'pkg-config', '~> 1.5'
 gem 'rexml', '~> 3.2'
@@ -21,8 +21,8 @@ gem 'dotenv-rails', '~> 2.8'
 gem 'aws-sdk-s3', '~> 1.117', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
-gem 'kt-paperclip', '~> 7.1', git: 'https://github.com/kreeti/kt-paperclip.git', branch: 'master'
-gem 'blurhash', '~> 0.1', git: 'https://github.com/zunda/blurhash.git', branch: 'use-so-under-lib'
+gem 'kt-paperclip', '~> 7.1'
+gem 'blurhash', '~> 0.1'
 
 gem 'active_model_serializers', '~> 0.10'
 gem 'addressable', '~> 2.8'
@@ -63,7 +63,7 @@ gem 'mime-types', '~> 3.4.1', require: 'mime/types/columnar'
 gem 'nokogiri', '~> 1.13'
 gem 'nsa', '~> 0.2'
 gem 'oj', '~> 3.13'
-gem 'ox', '~> 2.14', git: 'https://github.com/ohler55/ox.git', branch: 'develop'
+gem 'ox', '~> 2.14'
 gem 'parslet'
 gem 'posix-spawn'
 gem 'public_suffix', '~> 5.0'
@@ -72,7 +72,7 @@ gem 'premailer-rails'
 gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
-gem 'rails-settings-cached', '~> 0.6', git: 'https://github.com/zunda/rails-settings-cached.git', branch: 'v0.6.6-aliases-true'
+gem 'rails-settings-cached', '~> 0.6'
 gem 'redcarpet', '~> 3.5'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
@@ -122,7 +122,7 @@ group :test do
   gem 'climate_control', '~> 0.2'
   gem 'faker', '~> 3.1'
   gem 'json-schema', '~> 3.0'
-  gem 'microformats', '~> 4.4', git: 'https://github.com/tenderlove/microformats-ruby.git', branch: 'remove-ruby-limit'
+  gem 'microformats', '~> 4.4'
   gem 'rack-test', '~> 2.0'  
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec_junit_formatter', '~> 0.6'
