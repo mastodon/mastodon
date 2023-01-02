@@ -148,20 +148,20 @@ nl:
     scopes:
       "admin:read": alle gegevens op de server lezen
       "admin:read:accounts": gevoelige informatie van alle accounts lezen
-      "admin:read:canonical_email_blocks": lees gevoelige informatie van alle canonieke e-mailblokkades
-      "admin:read:domain_allows": lees gevoelige informatie van alle toegestane domeinen
-      "admin:read:domain_blocks": lees gevoelige informatie van alle domeinblokken
-      "admin:read:email_domain_blocks": lees gevoelige informatie van alle e-maildomeinblokkades
-      "admin:read:ip_blocks": lees gevoelige informatie van alle IP-blokkades
+      "admin:read:canonical_email_blocks": gevoelige informatie van alle canoniek geblokkeerde e-mailadressen lezen
+      "admin:read:domain_allows": gevoelige informatie van alle toegestane domeinen lezen
+      "admin:read:domain_blocks": gevoelige informatie van alle geblokkeerde domeinen lezen
+      "admin:read:email_domain_blocks": gevoelige informatie van alle geblokkeerde e-maildomeinen lezen
+      "admin:read:ip_blocks": gevoelige informatie van alle geblokkeerde IP-adressen lezen
       "admin:read:reports": gevoelige informatie van alle rapportages en gerapporteerde accounts lezen
       "admin:write": wijzig alle gegevens op de server
-      "admin:write:accounts": moderatiemaatregelen tegen accounts nemen
-      "admin:write:canonical_email_blocks": moderatieacties uitvoeren op canonieke e-mailblokkades
-      "admin:write:domain_allows": voer moderatieacties uit op toegestane domeinen
-      "admin:write:domain_blocks": voer moderatieacties uit op geblokkeerde domeinen
-      "admin:write:email_domain_blocks": voer moderatieacties uit op geblokkeerde e-maildomeinen
-      "admin:write:ip_blocks": voer moderatieacties uit op geblokkeerde IP-adressen
-      "admin:write:reports": moderatiemaatregelen nemen in rapportages
+      "admin:write:accounts": moderatieacties op accounts uitvoeren
+      "admin:write:canonical_email_blocks": moderatieacties op canoniek geblokkeerde e-mailadressen uitvoeren
+      "admin:write:domain_allows": moderatieacties op toegestane domeinen uitvoeren
+      "admin:write:domain_blocks": moderatieacties op geblokkeerde domeinen uitvoeren
+      "admin:write:email_domain_blocks": moderatieacties op geblokkeerde e-maildomeinen uitvoeren
+      "admin:write:ip_blocks": moderatieacties op geblokkeerde IP-adressen uitvoeren
+      "admin:write:reports": moderatieacties op rapportages uitvoeren
       crypto: end-to-end-encryptie gebruiken
       follow: relaties tussen accounts bewerken
       push: jouw pushmeldingen ontvangen
