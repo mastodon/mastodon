@@ -10,7 +10,7 @@ gem 'puma', '~> 5.6'
 gem 'rails', '~> 6.1.7'
 gem 'sprockets', '~> 3.7.2'
 gem 'thor', '~> 1.2'
-gem 'rack', '~> 2.2.4'
+gem 'rack', '~> 2.2.5'
 
 gem 'hamlit-rails', '~> 0.2'
 gem 'pg', '~> 1.4'
@@ -51,7 +51,7 @@ gem 'ed25519', '~> 1.3'
 gem 'fast_blank', '~> 1.0'
 gem 'fastimage'
 gem 'hiredis', '~> 0.6'
-gem 'redis-namespace', '~> 1.9'
+gem 'redis-namespace', '~> 1.10'
 gem 'htmlentities', '~> 4.3'
 gem 'http', '~> 5.1'
 gem 'http_accept_language', '~> 2.1'
@@ -120,14 +120,14 @@ end
 group :test do
   gem 'capybara', '~> 3.38'
   gem 'climate_control', '~> 0.2'
-  gem 'faker', '~> 3.0'
+  gem 'faker', '~> 3.1'
   gem 'json-schema', '~> 3.0'
   gem 'microformats', '~> 4.4'
   gem 'rack-test', '~> 2.0'  
   gem 'rails-controller-testing', '~> 1.0'
   gem 'rspec_junit_formatter', '~> 0.6'
   gem 'rspec-sidekiq', '~> 3.1'
-  gem 'simplecov', '~> 0.21', require: false
+  gem 'simplecov', '~> 0.22', require: false
   gem 'webmock', '~> 3.18'
 end
 
