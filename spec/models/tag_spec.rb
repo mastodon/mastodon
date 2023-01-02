@@ -111,7 +111,8 @@ RSpec.describe Tag do
     end
 
     it 'uses the LIKE operator' do
-      expect(described_class.matches_name('100%abc').to_sql).to eq %q[SELECT "tags".* FROM "tags" WHERE LOWER("tags"."name") LIKE LOWER('100abc%')]
+      result = %q[SELECT "tags".* FROM "tags" WHERE LOWER("tags"."name") LIKE LOWER('100abc%')]
+      expect(described_class.matches_name('100%abc').to_sql).to eq result
     end
   end
 
