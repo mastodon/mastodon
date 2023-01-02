@@ -299,6 +299,7 @@ class ReactionsBar extends ImmutablePureComponent {
 
 }
 
+@injectIntl
 class Announcement extends ImmutablePureComponent {
 
   static propTypes = {
@@ -322,7 +323,7 @@ class Announcement extends ImmutablePureComponent {
   }
 
   render () {
-    const { announcement } = this.props;
+    const { announcement, intl } = this.props;
     const { unread } = this.state;
     const startsAt = announcement.get('starts_at') && new Date(announcement.get('starts_at'));
     const endsAt = announcement.get('ends_at') && new Date(announcement.get('ends_at'));
@@ -332,7 +333,7 @@ class Announcement extends ImmutablePureComponent {
     const skipEndDate = hasTimeRange && startsAt.getDate() === endsAt.getDate() && startsAt.getMonth() === endsAt.getMonth() && startsAt.getFullYear() === endsAt.getFullYear();
     const skipTime = announcement.get('all_day');
 
-    const formattedStartsAt = startsAt?.toLocaleString(undefined, {
+    const formattedStartsAt = startsAt?.toLocaleString(intl.locale, {
       hourCycle: 'h23',
       year: (skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric',
       month: 'short',
@@ -340,8 +341,8 @@ class Announcement extends ImmutablePureComponent {
       hour: skipTime ? undefined : '2-digit',
       minute: skipTime ? undefined : '2-digit',
     });
-    
-    const formattedEndsAt = endsAt?.toLocaleString(undefined, {
+
+    const formattedEndsAt = endsAt?.toLocaleString(intl.locale, {
       hourCycle: 'h23',
       year: (skipYear || startsAt.getFullYear() === now.getFullYear()) ? undefined : 'numeric',
       month: skipEndDate ? undefined : 'short',

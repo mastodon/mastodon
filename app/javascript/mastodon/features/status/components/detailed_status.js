@@ -6,7 +6,7 @@ import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
 import MediaGallery from '../../../components/media_gallery';
 import { Link } from 'react-router-dom';
-import { injectIntl, defineMessages, FormattedDate } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl';
 import Card from './card';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Video from '../../video';
@@ -277,7 +277,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={`/@${status.getIn(['account', 'acct'])}\/${status.get('id')}`} target='_blank' rel='noopener noreferrer'>
-              {new Date(status.get('created_at')).toLocaleString(undefined, { hourCycle: 'h23', year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
+              {new Date(status.get('created_at')).toLocaleString(intl.locale, { hourCycle: 'h23', year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit' })}
             </a>{edited}{visibilityLink}{applicationLink}{reblogLink} · {favouriteLink}
           </div>
         </div>
