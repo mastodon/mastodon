@@ -23,9 +23,12 @@ class Api::V1::Statuses::MutesController < Api::BaseController
   end
 
   def clear_notifications
-    current_account.notifications.where(activity_type: 'Mention').joins(mention: :status).where(status: {in_reply_to_id: params[:status_id]}).destroy_all
-    current_account.notifications.where(activity_type: 'Status').joins(:status).where(status: {reblog_of_id: params[:status_id]}).destroy_all
-    current_account.notifications.where(activity_type: 'Favourite').joins(:favourite).where(favourite: {status_id: params[:status_id]}).destroy_all
+    current_account.notifications.where(activity_type: 'Mention').joins(mention: :status) \
+      .where(status:{in_reply_to_id: params[:status_id]}).destroy_all
+    current_account.notifications.where(activity_type: 'Status').joins(:status) \
+      .where(status:{reblog_of_id: params[:status_id]}).destroy_all
+    current_account.notifications.where(activity_type: 'Favourite').joins(:favourite) \
+      .where(favourite:{status_id: params[:status_id]}).destroy_all
     render_empty
   end
 

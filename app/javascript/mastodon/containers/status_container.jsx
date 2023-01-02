@@ -224,7 +224,7 @@ const mapDispatchToProps = (dispatch, { intl, contextType }) => ({
   },
 
   onClearNotifications (status) {
-    dispatch(clearStatusNotifications(status.get('id')))
+    dispatch(clearStatusNotifications(status.get('id')));
   },
 
   onToggleHidden (status) {
