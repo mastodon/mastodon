@@ -32,10 +32,6 @@ class PrivacyDropdownMenu extends React.PureComponent {
     onChange: PropTypes.func.isRequired,
   };
 
-  state = {
-    mounted: false,
-  };
-
   handleDocumentClick = e => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
@@ -99,7 +95,6 @@ class PrivacyDropdownMenu extends React.PureComponent {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
     if (this.focusedItem) this.focusedItem.focus({ preventScroll: true });
-    this.setState({ mounted: true });
   }
 
   componentWillUnmount () {

@@ -35,7 +35,6 @@ class LanguageDropdownMenu extends React.PureComponent {
   };
 
   state = {
-    mounted: false,
     searchValue: '',
   };
 
@@ -48,7 +47,6 @@ class LanguageDropdownMenu extends React.PureComponent {
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    this.setState({ mounted: true });
 
     // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
     // to wait for a frame before focusing

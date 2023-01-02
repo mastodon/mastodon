@@ -34,10 +34,6 @@ class DropdownMenu extends React.PureComponent {
     placement: 'bottom',
   };
 
-  state = {
-    mounted: false,
-  };
-
   handleDocumentClick = e => {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
@@ -52,8 +48,6 @@ class DropdownMenu extends React.PureComponent {
     if (this.focusedItem && this.props.openedViaKeyboard) {
       this.focusedItem.focus({ preventScroll: true });
     }
-
-    this.setState({ mounted: true });
   }
 
   componentWillUnmount () {
