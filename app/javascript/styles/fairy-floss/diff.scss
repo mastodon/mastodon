@@ -13,6 +13,11 @@
   }
 }
 
+.reply-indicator__content,
+.reply-indicator__display-name {
+  color: $white;
+}
+
 .rich-formatting a,
 .rich-formatting p a,
 .rich-formatting li a,
@@ -321,6 +326,10 @@ a.mention.hashtag {
 .reply-indicator__content a,
 .status__content a {
   color: $mint;
+}
+
+.reply-indicator {
+  background: $purplescrollbar;
 }
 
 a.mention,
