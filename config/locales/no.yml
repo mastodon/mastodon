@@ -1,7 +1,6 @@
----
-'no':
+"no":
   about:
-    about_mastodon_html: Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.
+    about_mastodon_html: 'Mastodon er et sosialt nettverk laget med <em>fri programvare</em>. Et <em>desentralisert</em> alternativ til kommersielle plattformer. Slik kan det unngå risikoene ved å ha et enkelt selskap som monopoliserer din kommunikasjon. Velg en tjener du stoler på &mdash; uansett hvilken du velger så kan du kommunisere med alle andre. Alle kan kjøre sin egen Mastodon og delta sømløst i det sosiale nettverket.'
     contact_missing: Ikke innstilt
     contact_unavailable: Ikke tilgjengelig
     hosted_on: Mastodon driftet på %{domain}
@@ -249,6 +248,7 @@
         destroy_custom_emoji_html: "%{name} slettet emoji %{target}"
         destroy_domain_block_html: "%{name} fjernet blokkeringen av domenet %{target}"
         destroy_email_domain_block_html: "%{name} fjernet blokkeringen av e-post-domenet %{target}"
+        destroy_instance_html: "%{name} blokkert domene %{target}"
         destroy_ip_block_html: "%{name} slettet regel for IP %{target}"
         destroy_status_html: "%{name} fjernet innlegget av %{target}"
         destroy_unavailable_domain_html: "%{name} gjenopptok levering til domenet %{target}"
@@ -264,16 +264,22 @@
         promote_user_html: "%{name} forfremmet bruker %{target}"
         reject_appeal_html: "%{name} avviste moderasjonsavgjørelsesklagen fra %{target}"
         reject_user_html: "%{name} avslo registrering fra %{target}"
+        remove_avatar_user_html: "%{name} fjernet %{target} sitt profilbilde"
         reopen_report_html: "%{name} gjenåpnet rapporten %{target}"
         resend_user_html: "%{name} sendte e-postbekreftelse på nytt for %{target}"
         reset_password_user_html: "%{name} tilbakestille passordet for brukeren %{target}"
+        resolve_report_html: "%{name} løst rapport %{target}"
         sensitive_account_html: "%{name} merket %{target}s innlegg som følsomt"
         silence_account_html: "%{name} begrenset %{target}s konto"
         suspend_account_html: "%{name} suspenderte %{target}s konto"
+        unassigned_report_html: "%{name} ikke tildelt rapport %{target}"
         unblock_email_account_html: "%{name} fjernet blokkering av %{target}s e-postadresse"
         unsensitive_account_html: "%{name} fjernet følsomt-merket på %{target}s innlegg"
         unsilence_account_html: "%{name} fjernet begrensningen av %{target}s konto"
+        unsuspend_account_html: "%{name} oppheve %{target} sin konto"
+        update_announcement_html: "%{name} oppdatert kunngjøring %{target}"
         update_custom_emoji_html: "%{name} oppdaterte emoji %{target}"
+        update_domain_block_html: "%{name} oppdaterte domeneblokk for %{target}"
         update_ip_block_html: "%{name} endret regel for IP %{target}"
         update_status_html: "%{name} oppdaterte innlegg av %{target}"
         update_user_role_html: "%{name} endret %{target} -rolle"
@@ -404,7 +410,9 @@
       domain: Domene
       new:
         create: Legg til domene
+        resolve: Løs domene
         title: Ny blokkeringsoppføring av e-postdomene
+      no_email_domain_block_selected: Ingen e-postdomeneblokker ble endret da ingen ble valgt
       title: Blokkering av e-postdomene
     export_domain_allows:
       new:
@@ -706,7 +714,7 @@
     new_report:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Noen fra %{domain} har rapportert %{target}
-      subject: Ny rapport for %{instance} (#%{id})
+      subject: 'Ny rapport for %{instance} (#%{id})'
   aliases:
     add_new: Lag et alias
     empty: Du har ingen aliaser.
@@ -1253,7 +1261,7 @@
     show_older: Vis eldre
     show_thread: Vis tråden
     sign_in_to_participate: Logg på for å delta i samtalen
-    title: "%{name}: «%{quote}»"
+    title: '%{name}: «%{quote}»'
     visibilities:
       direct: Direkte
       private: Privat
