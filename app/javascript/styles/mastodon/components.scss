@@ -2277,11 +2277,6 @@ a.account__display-name {
         width: 285px;
         pointer-events: auto;
         height: 100%;
-
-        @media screen and (max-width: 1550px) {
-          overflow-x: hidden;
-          padding-right: 10px;
-        }
       }
     }
 
@@ -2790,10 +2785,6 @@ $ui-header-height: 0px;
     background-color: $white;
     border-radius: 4px 4px 0 0;
     flex: 0 1 auto;
-
-    @media screen and (max-width: 1550px) {
-      overflow-y: visible;
-    }
   }
 
   .autosuggest-textarea__textarea {
