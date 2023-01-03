@@ -153,7 +153,7 @@ class ColumnHeader extends React.PureComponent {
       );
     } else {
       signInButton = (
-        <div class="ui__header__links">
+        <div class='ui__header__links'>
           <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
         </div>
       );
