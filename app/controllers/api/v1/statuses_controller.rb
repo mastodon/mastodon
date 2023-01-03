@@ -61,6 +61,13 @@ class Api::V1::StatusesController < Api::BaseController
       visibility = 'public'
     end
 
+    # フロントから受け取った公開範囲：ポートフォリオの呟きかどうかをチェックし、
+    # ポートフォリオの場合は公開範囲を置き換えた上でハッシュタグを追加する
+    if visibility == 'portfolio'
+      text = "#{text}\n #CreatodonFolio\n"
+      visibility = 'public'
+    end
+
     @status = PostStatusService.new.call(
       current_user.account,
       text: text,
