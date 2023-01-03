@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { Repository } from 'aws-cdk-lib/aws-ecr'
 import { RetentionDays, LogGroup} from 'aws-cdk-lib/aws-logs';
 import { FargateTaskDefinition, AwsLogDriverMode } from 'aws-cdk-lib/aws-ecs'
-import { Cluster, ContainerImage, LogDrivers} from 'aws-cdk-lib/aws-ecs' 
+import { Cluster, ContainerImage, LogDrivers, Secret} from 'aws-cdk-lib/aws-ecs' 
 import { HostedZone } from 'aws-cdk-lib/aws-route53'
 import { ApplicationLoadBalancedFargateService }  from 'aws-cdk-lib/aws-ecs-patterns'
 import { CertificateValidation, DnsValidatedCertificate } from 'aws-cdk-lib/aws-certificatemanager';
@@ -32,7 +32,7 @@ export class MastodonStack extends Stack {
   constructor(scope: Construct, id: string, props: MastodonProps) {
     super(scope, id, props);
 
-    const repository = Repository.fromRepositoryName(this, 'repo', 'tootsuite/mastodon')
+    const repository = Repository.fromRepositoryName(this, 'repo', 'hello-mastodon')
 
     // VPC
     const vpc = new Vpc(this, "vpc", {
@@ -58,112 +58,7 @@ export class MastodonStack extends Stack {
       removalPolicy: (props.PRODUCTION) ? RemovalPolicy.RETAIN : RemovalPolicy.DESTROY
     })
 
-
-    // ECS Fargate Task
-    const mastodonTask = new FargateTaskDefinition( this, 'mastodonTask', {
-      cpu: 512,
-      family: 'mastodon',
-      memoryLimitMiB: 1024
-    })
-
-    mastodonTask.addContainer('webContainer',{
-      //image: ContainerImage.fromEcrRepository(repository,'latest'),
-      image: ContainerImage.fromRegistry('tootsuite/mastodon'),
-      containerName: 'web',
-      command: (props.FIRST_RUN) ? ['bash', '-c', 'bundle install && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails db:migrate && bundle exec rails s -p 3000'] : ['bash', '-c', 'bundle install && bundle exec rails db:migrate && bundle exec rails s -p 3000'],
-      logging: LogDrivers.awsLogs({
-        streamPrefix: 'web',
-        logGroup: logGroup
-      }),
-      portMappings: [{containerPort:3000}],
-
-    })
-
-    mastodonTask.addContainer('sidekiqContainer',{
-      //image: ContainerImage.fromEcrRepository(repository,'latest'),
-      image: ContainerImage.fromRegistry('tootsuite/mastodon'),
-      containerName: 'sidekiq',
-      command: ['bash', '-c', 'bundle exec sidekiq -c 15'],
-      essential: false,
-      logging: LogDrivers.awsLogs({
-        streamPrefix: 'sidekiq',
-        logGroup: logGroup
-      }),
-      portMappings: [{containerPort:3001}],
-    })
-
-    mastodonTask.addContainer('streamingContainer',{
-      //image: ContainerImage.fromEcrRepository(repository,'latest'),
-      image: ContainerImage.fromRegistry('tootsuite/mastodon'),
-      containerName: 'streaming',
-      command: ['bash', '-c', 'node ./streaming'],
-      essential: false,
-      logging: LogDrivers.awsLogs({
-        streamPrefix: 'streaming',
-        logGroup: logGroup
-      }),
-      portMappings: [{containerPort:3002}],
-    })
-
-    // ECS ALB
-    const albHost = 'alb.' + props.domain
-
-    const albCertificate = new DnsValidatedCertificate(this,'certALB',{
-      domainName: albHost,
-      validation: CertificateValidation.fromDns(zone),
-      hostedZone: zone,
-    })
-
-    const loadBalancedFargateService = new ApplicationLoadBalancedFargateService(this, 'webFargate', {
-      circuitBreaker: { rollback: true },
-      cluster : cluster,
-      cpu: 512,
-      desiredCount: 1,
-      domainName: albHost,
-      domainZone: zone,
-      certificate: albCertificate,
-      loadBalancerName: 'mastodon',
-      memoryLimitMiB: 1024,
-      serviceName: 'mastodon',
-      taskDefinition: mastodonTask,
-    });
-    
-    loadBalancedFargateService.targetGroup.configureHealthCheck({
-      path: '/health',
-      timeout: Duration.seconds(10),
-      unhealthyThresholdCount: 5,
-      healthyThresholdCount: 3,
-      interval: Duration.seconds(20)
-    })
-
-    loadBalancedFargateService.loadBalancer.setAttribute('routing.http.preserve_host_header.enabled', 'true')
-    
-    const albSecurityGroup = new ec2.SecurityGroup(this, 'alb-security-group', { 
-      vpc: vpc,
-      allowAllOutbound: true,
-     });
-    loadBalancedFargateService.loadBalancer.addSecurityGroup(albSecurityGroup)
-
-    const scalableTarget = loadBalancedFargateService.service.autoScaleTaskCount({
-      minCapacity: 1,
-      maxCapacity: 20,
-    })
-    
-    scalableTarget.scaleOnCpuUtilization('CpuScaling', {
-      targetUtilizationPercent: 50,
-    })
-    
-    scalableTarget.scaleOnMemoryUtilization('MemoryScaling', {
-      targetUtilizationPercent: 50,
-    })    
-
-    //
-    // TODO - grant permissions for webTask.taskRole to access all storage
-    //
-
     // CloudFront 
-
-    const albOrigin = new origins.HttpOrigin(albHost) //LoadBalancerV2Origin(props.alb)
 
     const requestPolicyAPI = new cf.OriginRequestPolicy( this, 'API', {
       cookieBehavior: cf.OriginRequestCookieBehavior.all(),
@@ -192,6 +87,10 @@ export class MastodonStack extends Stack {
     const plausible = new origins.HttpOrigin('plausible.io',{
       protocolPolicy: cf.OriginProtocolPolicy.HTTPS_ONLY
     })
+
+    const albHost = 'alb.' + props.domain
+
+    const albOrigin = new origins.HttpOrigin(albHost) //LoadBalancerV2Origin(props.alb)
 
     const params:cf.DistributionProps = {
       domainNames: [props.domain],
@@ -263,8 +162,6 @@ export class MastodonStack extends Stack {
       domainName: dbInstance.instanceEndpoint.hostname
     })
 
-    dbInstance.connections.allowFrom(loadBalancedFargateService.service.connections, ec2.Port.tcp(5432));
-
 
     // ElastiCache Redis instance
 
@@ -291,8 +188,6 @@ export class MastodonStack extends Stack {
         vpcSecurityGroupIds: [ redisSecurityGroup.securityGroupId ]
     });
     redis.addDependsOn(redisSubnetGroup);
-
-    redisConnections.connections.allowFrom(loadBalancedFargateService.service.connections, ec2.Port.tcp(6379));
   
     new route53.CnameRecord(this, 'redisRecord', {
       recordName: 'mastodonredis',
@@ -316,7 +211,7 @@ export class MastodonStack extends Stack {
     // IAM user for S3 bucket
     const user = new iam.User(this, 'mastodon-s3-user');
     const accessKey = new iam.AccessKey(this, 'AccessKey', { user });
-    const secret = new secretsmanager.Secret(this, 'Secret', {
+    const iamSecret = new secretsmanager.Secret(this, 'Secret', {
         secretStringValue: accessKey.secretAccessKey,
     });
 
@@ -336,6 +231,127 @@ export class MastodonStack extends Stack {
       })],
     }));
 
+
+    // ECS Fargate Task
+    const mastodonTask = new FargateTaskDefinition( this, 'mastodonTask', {
+      cpu: 512,
+      family: 'mastodon',
+      memoryLimitMiB: 1024
+    })
+
+    // ECS ALB
+    const albCertificate = new DnsValidatedCertificate(this,'certALB',{
+      domainName: albHost,
+      validation: CertificateValidation.fromDns(zone),
+      hostedZone: zone,
+    })
+
+    // Mastodon tasks
+    const dbSecret = secretsmanager.Secret.fromSecretCompleteArn(this, "dbSecret", dbInstance.secret?.secretArn!);
+
+    mastodonTask.addContainer('webContainer',{
+      image: ContainerImage.fromEcrRepository(repository,'latest'),
+      //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
+      containerName: 'web',
+      command: (props.FIRST_RUN) ? ['bash', '-c', 'bundle install && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails db:migrate && bundle exec rails s -p 3000'] : ['bash', '-c', 'bundle install && bundle exec rails db:migrate && bundle exec rails s -p 3000'],
+      environment: {
+        IAM_USER: accessKey.accessKeyId
+      },
+      secrets: {
+        DB_PASSWORD: Secret.fromSecretsManager(dbSecret, 'password'), 
+        IAM_PASSWORD: Secret.fromSecretsManager(iamSecret), 
+      },
+      logging: LogDrivers.awsLogs({
+        streamPrefix: 'web',
+        logGroup: logGroup
+      }),
+      portMappings: [{containerPort:3000}],
+
+    })
+
+    mastodonTask.addContainer('sidekiqContainer',{
+      image: ContainerImage.fromEcrRepository(repository,'latest'),
+      //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
+      containerName: 'sidekiq',
+      command: ['bash', '-c', 'bundle exec sidekiq -c 15'],
+      environment: {
+        IAM_USER: accessKey.accessKeyId
+      },
+      secrets: {
+        DB_PASSWORD: Secret.fromSecretsManager(dbSecret, 'password'), 
+        IAM_PASSWORD: Secret.fromSecretsManager(iamSecret), 
+      },
+      essential: false,
+      logging: LogDrivers.awsLogs({
+        streamPrefix: 'sidekiq',
+        logGroup: logGroup
+      }),
+      portMappings: [{containerPort:3001}],
+    })
+
+    mastodonTask.addContainer('streamingContainer',{
+      image: ContainerImage.fromEcrRepository(repository,'latest'),
+      //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
+      containerName: 'streaming',
+      command: ['bash', '-c', 'node ./streaming'],
+      environment: {
+        IAM_USER: accessKey.accessKeyId
+      },
+      secrets: {
+        DB_PASSWORD: Secret.fromSecretsManager(dbSecret, 'password'), 
+        IAM_PASSWORD: Secret.fromSecretsManager(iamSecret), 
+      },
+      essential: false,
+      logging: LogDrivers.awsLogs({
+        streamPrefix: 'streaming',
+        logGroup: logGroup
+      }),
+      portMappings: [{containerPort:3002}],
+    })
+
+    const loadBalancedFargateService = new ApplicationLoadBalancedFargateService(this, 'webFargate', {
+      circuitBreaker: { rollback: true },
+      cluster : cluster,
+      cpu: 512,
+      desiredCount: 1,
+      domainName: albHost,
+      domainZone: zone,
+      certificate: albCertificate,
+      loadBalancerName: 'mastodon',
+      memoryLimitMiB: 1024,
+      serviceName: 'mastodon',
+      taskDefinition: mastodonTask,
+    });
+    
+    loadBalancedFargateService.targetGroup.configureHealthCheck({
+      path: '/health',
+      timeout: Duration.seconds(10),
+      unhealthyThresholdCount: 5,
+      healthyThresholdCount: 3,
+      interval: Duration.seconds(20)
+    })
+
+    loadBalancedFargateService.loadBalancer.setAttribute('routing.http.preserve_host_header.enabled', 'true')
+    
+    const albSecurityGroup = new ec2.SecurityGroup(this, 'alb-security-group', { 
+      vpc: vpc,
+      allowAllOutbound: true,
+     });
+    loadBalancedFargateService.loadBalancer.addSecurityGroup(albSecurityGroup)
+
+    const scalableTarget = loadBalancedFargateService.service.autoScaleTaskCount({
+      minCapacity: 1,
+      maxCapacity: 20,
+    })
+    
+    scalableTarget.scaleOnCpuUtilization('CpuScaling', {
+      targetUtilizationPercent: 50,
+    })
+    
+    scalableTarget.scaleOnMemoryUtilization('MemoryScaling', {
+      targetUtilizationPercent: 50,
+    })    
+
     // Outputs
     new CfnOutput(this, 'dbEndpoint', {
       value: dbInstance.instanceEndpoint.hostname,
@@ -344,5 +360,8 @@ export class MastodonStack extends Stack {
     new CfnOutput(this, 'secretName', {
       value: dbInstance.secret?.secretName!,
     });
+
+    redisConnections.connections.allowFrom(loadBalancedFargateService.service.connections, ec2.Port.tcp(6379));
+    dbInstance.connections.allowFrom(loadBalancedFargateService.service.connections, ec2.Port.tcp(5432));
   } 
 }
