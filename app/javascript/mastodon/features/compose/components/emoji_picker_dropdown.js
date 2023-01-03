@@ -154,7 +154,6 @@ class EmojiPickerMenu extends React.PureComponent {
     onClose: PropTypes.func.isRequired,
     onPick: PropTypes.func.isRequired,
     style: PropTypes.object,
-    placement: PropTypes.string,
     intl: PropTypes.object.isRequired,
     skinTone: PropTypes.number.isRequired,
     onSkinTone: PropTypes.func.isRequired,
@@ -322,7 +321,6 @@ class EmojiPickerDropdown extends React.PureComponent {
   state = {
     active: false,
     loading: false,
-    placement: null,
   };
 
   setRef = (c) => {
@@ -344,9 +342,6 @@ class EmojiPickerDropdown extends React.PureComponent {
         this.setState({ loading: false, active: false });
       });
     }
-
-    const { top } = target.getBoundingClientRect();
-    this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
   }
 
   onHideDropdown = () => {
@@ -380,7 +375,7 @@ class EmojiPickerDropdown extends React.PureComponent {
   render () {
     const { intl, onPickEmoji, onSkinTone, skinTone, frequentlyUsedEmojis, button } = this.props;
     const title = intl.formatMessage(messages.emoji);
-    const { active, loading, placement } = this.state;
+    const { active, loading } = this.state;
 
     return (
       <div className='emoji-picker-dropdown' onKeyDown={this.handleKeyDown}>
@@ -392,7 +387,7 @@ class EmojiPickerDropdown extends React.PureComponent {
           />}
         </div>
 
-        <Overlay show={active} placement={placement} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+        <Overlay show={active} placement={'bottom'} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, placement })=> (
             <div {...props} style={{ ...props.style, width: 299 }}>
               <div className={`dropdown-animation ${placement}`}>

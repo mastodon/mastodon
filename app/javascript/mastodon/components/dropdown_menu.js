@@ -22,7 +22,6 @@ class DropdownMenu extends React.PureComponent {
     scrollable: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     style: PropTypes.object,
-    placement: PropTypes.string,
     openedViaKeyboard: PropTypes.bool,
     renderItem: PropTypes.func,
     renderHeader: PropTypes.func,
@@ -31,7 +30,6 @@ class DropdownMenu extends React.PureComponent {
 
   static defaultProps = {
     style: {},
-    placement: 'bottom',
   };
 
   handleDocumentClick = e => {
@@ -175,7 +173,6 @@ export default class Dropdown extends React.PureComponent {
     isUserTouching: PropTypes.func,
     onOpen: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    dropdownPlacement: PropTypes.string,
     openDropdownId: PropTypes.number,
     openedViaKeyboard: PropTypes.bool,
     renderItem: PropTypes.func,
@@ -195,9 +192,7 @@ export default class Dropdown extends React.PureComponent {
     if (this.state.id === this.props.openDropdownId) {
       this.handleClose();
     } else {
-      const { top } = target.getBoundingClientRect();
-      const placement = top * 2 < innerHeight ? 'bottom' : 'top';
-      this.props.onOpen(this.state.id, this.handleItemClick, placement, type !== 'click');
+      this.props.onOpen(this.state.id, this.handleItemClick, type !== 'click');
     }
   }
 
@@ -281,7 +276,6 @@ export default class Dropdown extends React.PureComponent {
       disabled,
       loading,
       scrollable,
-      dropdownPlacement,
       openDropdownId,
       openedViaKeyboard,
       children,
@@ -315,7 +309,7 @@ export default class Dropdown extends React.PureComponent {
         <span ref={this.setTargetRef}>
           {button}
         </span>
-        <Overlay show={open} offset={[5, 5]} placement={dropdownPlacement} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+        <Overlay show={open} offset={[5, 5]} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, arrowProps, placement }) => (
             <div {...props}>
               <div className={`dropdown-animation dropdown-menu ${placement}`}>

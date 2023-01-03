@@ -27,7 +27,6 @@ class PrivacyDropdownMenu extends React.PureComponent {
     style: PropTypes.object,
     items: PropTypes.array.isRequired,
     value: PropTypes.string.isRequired,
-    placement: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
   };
@@ -111,10 +110,10 @@ class PrivacyDropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { style, items, placement, value } = this.props;
+    const { style, items, value } = this.props;
 
     return (
-      <div className={`privacy-dropdown__dropdown ${placement}`} style={{ ...style }} role='listbox' ref={this.setRef}>
+      <div style={{ ...style }} role='listbox' ref={this.setRef}>
         {items.map(item => (
           <div role='option' tabIndex='0' key={item.value} data-index={item.value} onKeyDown={this.handleKeyDown} onClick={this.handleClick} className={classNames('privacy-dropdown__option', { active: item.value === value })} aria-selected={item.value === value} ref={item.value === value ? this.setFocusRef : null}>
             <div className='privacy-dropdown__option__icon'>
@@ -150,10 +149,9 @@ class PrivacyDropdown extends React.PureComponent {
 
   state = {
     open: false,
-    placement: 'bottom',
   };
 
-  handleToggle = ({ target }) => {
+  handleToggle = () => {
     if (this.props.isUserTouching && this.props.isUserTouching()) {
       if (this.state.open) {
         this.props.onModalClose();
@@ -164,11 +162,9 @@ class PrivacyDropdown extends React.PureComponent {
         });
       }
     } else {
-      const { top } = target.getBoundingClientRect();
       if (this.state.open && this.activeElement) {
         this.activeElement.focus({ preventScroll: true });
       }
-      this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
       this.setState({ open: !this.state.open });
     }
   }
@@ -242,13 +238,13 @@ class PrivacyDropdown extends React.PureComponent {
 
   render () {
     const { value, container, disabled, intl } = this.props;
-    const { open, placement } = this.state;
+    const { open } = this.state;
 
     const valueOption = this.options.find(item => item.value === value);
 
     return (
-      <div className={classNames('privacy-dropdown', placement, { active: open })} onKeyDown={this.handleKeyDown}>
-        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === (placement === 'bottom' ? 0 : (this.options.length - 1)) })} ref={this.setTargetRef}>
+      <div className={classNames('privacy-dropdown', { active: open })} onKeyDown={this.handleKeyDown}>
+        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === 0 })} ref={this.setTargetRef}>
           <IconButton
             className='privacy-dropdown__value-icon'
             icon={valueOption.icon}
@@ -265,16 +261,15 @@ class PrivacyDropdown extends React.PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={placement} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed' }}>
+        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed' }}>
           {({ props, placement }) => (
             <div {...props} style={{ ...props.style, width: 350, maxWidth: '100vw' }}>
-              <div className={`dropdown-animation ${placement}`}>
+              <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
                 <PrivacyDropdownMenu
                   items={this.options}
                   value={value}
                   onClose={this.handleClose}
                   onChange={this.handleChange}
-                  placement={placement}
                 />
               </div>
             </div>

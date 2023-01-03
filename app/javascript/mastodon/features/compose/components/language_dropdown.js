@@ -20,10 +20,8 @@ const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 class LanguageDropdownMenu extends React.PureComponent {
 
   static propTypes = {
-    style: PropTypes.object,
     value: PropTypes.string.isRequired,
     frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
-    placement: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     languages: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
@@ -218,13 +216,13 @@ class LanguageDropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { style, placement, intl } = this.props;
+    const { intl } = this.props;
     const { searchValue } = this.state;
     const isSearching = searchValue !== '';
     const results = this.search();
 
     return (
-      <div className={`language-dropdown__dropdown ${placement}`} style={{ ...style }} ref={this.setRef}>
+      <div ref={this.setRef}>
         <div className='emoji-mart-search'>
           <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
           <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}>{!isSearching ? loupeIcon : deleteIcon}</button>
@@ -252,17 +250,13 @@ class LanguageDropdown extends React.PureComponent {
 
   state = {
     open: false,
-    placement: 'bottom',
   };
 
-  handleToggle = ({ target }) => {
-    const { top } = target.getBoundingClientRect();
-
+  handleToggle = () => {
     if (this.state.open && this.activeElement) {
       this.activeElement.focus({ preventScroll: true });
     }
 
-    this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
     this.setState({ open: !this.state.open });
   }
 
@@ -292,7 +286,7 @@ class LanguageDropdown extends React.PureComponent {
 
   render () {
     const { value, intl, frequentlyUsedLanguages } = this.props;
-    const { open, placement } = this.state;
+    const { open } = this.state;
 
     return (
       <div className={classNames('privacy-dropdown', { active: open })}>
@@ -306,16 +300,15 @@ class LanguageDropdown extends React.PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={placement} target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
           {({ props, placement }) => (
             <div {...props} style={{ ...props.style, width: 280 }}>
-              <div className={`dropdown-animation ${placement}`}>
+              <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >
                 <LanguageDropdownMenu
                   value={value}
                   frequentlyUsedLanguages={frequentlyUsedLanguages}
                   onClose={this.handleClose}
                   onChange={this.handleChange}
-                  placement={placement}
                   intl={intl}
                 />
               </div>
