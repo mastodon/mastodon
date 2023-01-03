@@ -14,7 +14,7 @@ const env = {
     region: 'us-west-2'
   }
 
-const domain = PRODUCTION ? 'verified.coop' : 'verified-stage.net'
+const domain = PRODUCTION ? 'verified.coop' : 'verified-staging.net'
 
 
 const app = new cdk.App();
