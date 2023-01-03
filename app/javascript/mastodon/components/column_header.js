@@ -105,7 +105,7 @@ class ColumnHeader extends React.PureComponent {
       'active': !collapsed,
     });
 
-    let extraContent, pinButton, moveButtons, backButton, collapseButton;
+    let extraContent, pinButton, moveButtons, backButton, collapseButton, signInButton;
 
     if (children) {
       extraContent = (
@@ -146,6 +146,19 @@ class ColumnHeader extends React.PureComponent {
       collapsedContent.push(moveButtons);
     }
 
+    if (this.context.identity.signedIn) {
+      signInButton = (
+        <>
+        </>
+      );
+    } else {
+      signInButton = (
+        <div class="ui__header__links">
+          <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
+        </div>
+      );
+    }
+
     if (this.context.identity.signedIn && (children || (multiColumn && this.props.onPin))) {
       collapseButton = (
         <button
@@ -180,6 +193,7 @@ class ColumnHeader extends React.PureComponent {
             {hasTitle && backButton}
             {extraButton}
             {collapseButton}
+            {signInButton}
           </div>
         </h1>
 
