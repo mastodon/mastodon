@@ -464,7 +464,7 @@ class FeedManager
     if status.reblog? && (aggregate_reblogs.nil? || aggregate_reblogs)
       # If the original status or a reblog of it is already in the feed, do
       # not re-insert it into the feed
-      return false unless redis.zscore(reblog_key, status.id).nil?
+      return false unless redis.zscore(reblog_key, status.reblog_of_id).nil?
 
       # The ordered set at `reblog_key` holds a LRU-cache of 
       # in the top `REBLOG_FALLOFF` statuses of the timeline
