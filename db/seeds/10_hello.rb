@@ -19,3 +19,6 @@ Doorkeeper::Application.create!(
   owner_type: 'User',
   owner_id: 1
 )
+
+Rule.create!(text: 'Real names only.')
+Rule.create!(text: 'Be kind.')
