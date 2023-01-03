@@ -12,7 +12,7 @@ class FeedManager
   # Number of busiest reblogged posts to keep track of in a feed.
   # Think of this as a LRU cache: A status that is recently reblogged is bumped
   # to the front of the cache, and it is trimmed from the back to this length.
-  REBLOG_FALLOFF = 10
+  REBLOG_FALLOFF = 40
 
   # When a reblog A is deduplicated, that is done so because another reblog B
   # has already been inserted into the timeline.
