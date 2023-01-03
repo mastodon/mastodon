@@ -35,7 +35,6 @@ const messages = defineMessages({
   report: { id: 'account.report', defaultMessage: 'Report @{name}' },
   share: { id: 'account.share', defaultMessage: 'Share @{name}\'s profile' },
   media: { id: 'account.media', defaultMessage: 'Media' },
-  portfolio: { id: 'account.portfolio', defaultMessage: 'Portfolio' },
   blockDomain: { id: 'account.block_domain', defaultMessage: 'Block domain {domain}' },
   unblockDomain: { id: 'account.unblock_domain', defaultMessage: 'Unblock domain {domain}' },
   hideReblogs: { id: 'account.hide_reblogs', defaultMessage: 'Hide boosts from @{name}' },
