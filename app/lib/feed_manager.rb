@@ -508,17 +508,12 @@ class FeedManager
         # is an "extra" reblog, by storing it in reblog_set_key.
         reblog_set_key = key(timeline_type, account_id, "reblogs:#{status.reblog_of_id}")
         redis.sadd(reblog_set_key, status.id)
-        puts "#{status.reblog_of_id} already exists in timeline, dropping reblog"
         return false
       end
 
       unless is_not_viral.value
-        puts "#{status.reblog_of_id} is viral, dropping reblog"
-        puts redis.zrange(viral_reblog_key, 0, -1)
         return false
       end
-
-      puts "#{status.reblog_of_id} is neither viral nor recent"
     else
       # A reblog may reach earlier than the original status because of the
       # delay of the worker delivering the original status, the late addition
