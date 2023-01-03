@@ -144,6 +144,7 @@ export default class Header extends ImmutablePureComponent {
             <NavLink exact to={`/@${account.get('acct')}`}><FormattedMessage id='account.posts' defaultMessage='Posts' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/with_replies`}><FormattedMessage id='account.posts_with_replies' defaultMessage='Posts and replies' /></NavLink>
             <NavLink exact to={`/@${account.get('acct')}/media`}><FormattedMessage id='account.media' defaultMessage='Media' /></NavLink>
+            <NavLink exact to={`/@${account.get('acct')}/tagged/CreatodonFolio`}><FormattedMessage id='account.portfolio' defaultMessage='Portfolio' /></NavLink>
           </div>
         )}
       </div>

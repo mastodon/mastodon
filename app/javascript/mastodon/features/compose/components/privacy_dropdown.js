@@ -12,6 +12,8 @@ import Icon from 'mastodon/components/icon';
 const messages = defineMessages({
   public_short: { id: 'privacy.public.short', defaultMessage: 'Public' },
   public_long: { id: 'privacy.public.long', defaultMessage: 'Visible for all' },
+  portfolio_short: { id: 'privacy.portfolio.short', defaultMessage: 'ポートフォリオとして公開されます' },
+  portfolio_long: { id: 'privacy.portfolio.long', defaultMessage: 'ポートフォリオとして公開されます' },
   unlisted_short: { id: 'privacy.unlisted.short', defaultMessage: 'Unlisted' },
   unlisted_long: { id: 'privacy.unlisted.long', defaultMessage: 'Visible for all, but opted-out of discovery features' },
   private_short: { id: 'privacy.private.short', defaultMessage: 'Followers only' },
@@ -238,6 +240,7 @@ class PrivacyDropdown extends React.PureComponent {
 
     this.options = [
       { icon: 'globe', value: 'public', text: formatMessage(messages.public_short), meta: formatMessage(messages.public_long) },
+      { icon: 'globe', value: 'portfolio', text: formatMessage(messages.portfolio_short), meta: formatMessage(messages.portfolio_long) },
       { icon: 'unlock', value: 'unlisted', text: formatMessage(messages.unlisted_short), meta: formatMessage(messages.unlisted_long) },
       { icon: 'lock', value: 'private', text: formatMessage(messages.private_short), meta: formatMessage(messages.private_long) },
       { icon: 'lock', value: 'nyan', text: formatMessage(messages.nyan_short), meta: formatMessage(messages.nyan_long) },

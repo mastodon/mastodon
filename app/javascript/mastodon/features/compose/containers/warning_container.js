@@ -34,10 +34,15 @@ const mapStateToProps = state => ({
   needsLockWarning: state.getIn(['compose', 'privacy']) === 'private' && !state.getIn(['accounts', me, 'locked']),
   hashtagWarning: state.getIn(['compose', 'privacy']) !== 'public' && APPROX_HASHTAG_RE.test(state.getIn(['compose', 'text'])),
   nyanWarning: state.getIn(['compose', 'privacy']) === 'nyan',
+  portfolioWarning: state.getIn(['compose', 'privacy']) === 'portfolio',
   directMessageWarning: state.getIn(['compose', 'privacy']) === 'direct',
 });
 
-const WarningWrapper = ({ needsLockWarning, hashtagWarning, nyanWarning, directMessageWarning }) => {
+const WarningWrapper = ({ needsLockWarning, hashtagWarning, nyanWarning, portfolioWarning, directMessageWarning }) => {
+  if (portfolioWarning) {
+    return <Warning message={<FormattedMessage id='compose_form.portfolio_warning' defaultMessage='公開範囲が「ポートフォリオ」になっています。ここで入力した内容はすべてアカウントの「ポートフォリオ」欄に表示されます' />} />;
+  }
+
   if (nyanWarning) {
     return <Warning message={<FormattedMessage id='compose_form.nyan_warning' defaultMessage='公開範囲が「にゃーん」になっています。ここで入力した内容はすべて「にゃーん」に置き換えられます' />} />;
   }
