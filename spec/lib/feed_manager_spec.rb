@@ -5,6 +5,7 @@ RSpec.describe FeedManager do
     unless example.metadata[:skip_stub]
       stub_const 'FeedManager::MAX_ITEMS', 10
       stub_const 'FeedManager::REBLOG_FALLOFF', 4
+      stub_const 'FeedManager::VIRAL_CACHE', 3
     end
   end
 
@@ -210,7 +211,9 @@ RSpec.describe FeedManager do
 
         # Fill the feed with intervening statuses
         FeedManager::REBLOG_FALLOFF.times do
-          FeedManager.instance.push_to_home(account, Fabricate(:status))
+          expect(FeedManager.instance.push_to_home(
+            account, Fabricate(:status)
+          )).to be true
         end
 
         expect(FeedManager.instance.push_to_home(account, reblog)).to be true
@@ -261,7 +264,7 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be false
       end
 
-      it 'saves a new reblog of a long-ago-reblogged status' do
+      it 'saves a new reblog of a long-ago-reblogged status, if there have been many other random reblogs in between' do
         account = Fabricate(:account)
         reblogged = Fabricate(:status)
         reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
@@ -269,16 +272,30 @@ RSpec.describe FeedManager do
         # The first reblog will be accepted
         FeedManager.instance.push_to_home(account, reblogs.first)
 
-        # Fill the feed with intervening statuses that are also reblogs
+        # Fill the feed with intervening statuses
         FeedManager::REBLOG_FALLOFF.times do
-          FeedManager.instance.push_to_home(
-            account,
-            Fabricate(:status, reblog: Fabricate(:status))
-          )
+          FeedManager.instance.push_to_home(account, Fabricate(:status, reblog: Fabricate(:status)))
         end
 
         # The second reblog should also be accepted
         expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be true
+      end
+
+      it 'does not push a long-ago-reblogged status, if it is the most recent reblog' do
+        account = Fabricate(:account)
+        reblogged = Fabricate(:status)
+        reblogs = 2.times.map { Fabricate(:status, reblog: reblogged) }
+
+        # The first reblog will be accepted
+        FeedManager.instance.push_to_home(account, reblogs.first)
+
+        # Fill the feed with non-reblog statuses
+        FeedManager::REBLOG_FALLOFF.times do
+          FeedManager.instance.push_to_home(account, Fabricate(:status))
+        end
+
+        # The second reblog should also be accepted
+        expect(FeedManager.instance.push_to_home(account, reblogs.last)).to be false
       end
     end
 

@@ -9,10 +9,22 @@ class FeedManager
   # Maximum number of items stored in a single feed
   MAX_ITEMS = 400
 
-  # Number of busiest reblogged posts to keep track of in a feed.
-  # Think of this as a LRU cache: A status that is recently reblogged is bumped
-  # to the front of the cache, and it is trimmed from the back to this length.
+  # The first REBLOG_FALLOFF items in the timeline will be checked for an
+  # existant reblog of the same status when a new reblog is inserted.
+  #
+  # A status is guaranteed not to reappear within REBLOG_FALLOFF posts on the
+  # timeline.
   REBLOG_FALLOFF = 40
+
+  # Number of busiest reblogged posts to keep track of in a feed.
+  # 
+  # In addition to looking at REBLOG_FALLOFF latest posts when inserting a new
+  # reblog, Mastodon keeps a buffer of VIRAL_CACHE "most viral" posts.
+  # Everytime a post is reblogged, it is bumped to the top of the "viral
+  # cache". The next time John Mastodon posts and is reblogged by everybody,
+  # their post is basically supposed to stick around in this buffer for as
+  # long as people keep reblogging it.
+  VIRAL_CACHE = 5
 
   # When a reblog A is deduplicated, that is done so because another reblog B
   # has already been inserted into the timeline.
@@ -289,13 +301,13 @@ class FeedManager
 
     redis.pipelined do
       ids.each do |feed_id|
-        timeline_key = key(type, feed_id)
+        redis.del(key(type, feed_id))
+        redis.del(key(type, feed_id, 'viral_reblogs'))
         reblog_key = key(type, feed_id, 'reblogs')
         # We collect a future for this: we don't block while getting
         # it, but we can iterate over it later.
         reblogged_id_sets[feed_id] = redis.zrange(reblog_key, 0, -1)
         redis.del(reblog_key)
-        redis.del(timeline_key)
       end
     end
 
@@ -304,7 +316,7 @@ class FeedManager
     redis.pipelined do
       reblogged_id_sets.each do |feed_id, future|
         future.value.each do |reblogged_id|
-          reblog_set_key = key(type, feed_id, "reblogs_v2:#{reblogged_id}")
+          reblog_set_key = key(type, feed_id, "reblogs:#{reblogged_id}")
           redis.del(reblog_set_key)
         end
       end
@@ -320,15 +332,28 @@ class FeedManager
   def trim(type, timeline_id)
     timeline_key = key(type, timeline_id)
     reblog_key   = key(type, timeline_id, 'reblogs')
+    viral_reblog_key   = key(type, timeline_id, 'viral_reblogs')
 
-    reblogged_ids_to_remove = nil
+    falloff_range = nil
 
     redis.pipelined do
       # Remove any items past the MAX_ITEMS'th entry in our feed
       redis.zremrangebyrank(timeline_key, 0, -(FeedManager::MAX_ITEMS + 1))
 
-      # Remove any items past REBLOG_FALLOFF
-      reblogged_ids_to_remove = redis.zrange(reblog_key, 0, -(FeedManager::REBLOG_FALLOFF + 1))
+      # Remove any items past VIRAL_CACHE
+      redis.zremrangebyrank(viral_reblog_key, 0, -(FeedManager::VIRAL_CACHE + 1))
+
+      # Get the score of the REBLOG_FALLOFF'th item in our feed, and stop
+      # tracking anything after it for deduplication purposes.
+      falloff_rank  = FeedManager::REBLOG_FALLOFF
+      falloff_range = redis.zrevrange(timeline_key, falloff_rank, falloff_rank, with_scores: true)
+    end
+
+    reblogged_ids_to_remove = nil
+
+    redis.pipelined do
+      falloff_score = falloff_range.value&.first&.last&.to_i
+      reblogged_ids_to_remove = redis.zrangebyscore(reblog_key, 0, falloff_score)
     end
 
     redis.pipelined do
@@ -339,10 +364,6 @@ class FeedManager
         # This means that if this reblog is deleted, we won't automatically insert
         # another reblog, but also that any new reblog can be inserted into the
         # feed.
-        redis.del(key(type, timeline_id, "reblogs_v2:#{reblogged_id}"))
-        # remove unused legacy format as well since those old keys do not have
-        # TTL and would leak otherwise. remove this line in a future version of
-        # mastodon
         redis.del(key(type, timeline_id, "reblogs:#{reblogged_id}"))
       end
     end
@@ -460,28 +481,44 @@ class FeedManager
   def add_to_feed(timeline_type, account_id, status, aggregate_reblogs: true)
     timeline_key = key(timeline_type, account_id)
     reblog_key   = key(timeline_type, account_id, 'reblogs')
+    viral_reblog_key   = key(timeline_type, account_id, 'viral_reblogs')
 
     if status.reblog? && (aggregate_reblogs.nil? || aggregate_reblogs)
-      # If the original status or a reblog of it is already in the feed, do
-      # not re-insert it into the feed
-      return false unless redis.zscore(reblog_key, status.reblog_of_id).nil?
+      rank = nil
+      timeline_does_not_have_recent_reblog = nil
+      is_not_viral = nil
 
-      # The ordered set at `reblog_key` holds a LRU-cache of 
-      # in the top `REBLOG_FALLOFF` statuses of the timeline
-      if redis.zadd(reblog_key, status.id, status.reblog_of_id)
-        # This is not something we've already seen reblogged, so we
-        # can just add it to the feed (and note that we're reblogging it).
-      else
+      redis.pipelined do
+        # If the original status is within REBLOG_FALLOFF statuses from the top,
+        # do not insert a reblog into the feed
+        rank = redis.zrevrank(timeline_key, status.reblog_of_id)
+        # The ordered set at `reblog_key` holds statuses which have a reblog
+        # in the top `REBLOG_FALLOFF` statuses of the timeline
+        timeline_does_not_have_recent_reblog = redis.zadd(reblog_key, status.id, status.reblog_of_id, nx: true)
+        # The ordered set at viral_reblog_key holds the VIRAL_CACHE most recently
+        # reblogged statuses.
+        is_not_viral = redis.zadd(viral_reblog_key, status.id, status.reblog_of_id)
+      end
+
+      return false if !rank.value.nil? && rank.value < FeedManager::REBLOG_FALLOFF
+
+      unless timeline_does_not_have_recent_reblog.value
         # Another reblog of the same status was already in the
-        # REBLOG_FALLOFF most recently reblogged statuses, so we note that
-        # this is an "extra" reblog, by storing it in reblog_set_key.
-        reblog_set_key = key(timeline_type, account_id, "reblogs_v2:#{status.reblog_of_id}")
-        redis.pipelined do
-          redis.zadd(reblog_set_key, status.id, status.id)
-          redis.zremrangebyrank(reblog_set_key, 0, -(FeedManager::MAX_BACKUP_REBLOGS + 1))
-        end
+        # REBLOG_FALLOFF most recent statuses, so we note that this
+        # is an "extra" reblog, by storing it in reblog_set_key.
+        reblog_set_key = key(timeline_type, account_id, "reblogs:#{status.reblog_of_id}")
+        redis.sadd(reblog_set_key, status.id)
+        puts "#{status.reblog_of_id} already exists in timeline, dropping reblog"
         return false
       end
+
+      unless is_not_viral.value
+        puts "#{status.reblog_of_id} is viral, dropping reblog"
+        puts redis.zrange(viral_reblog_key, 0, -1)
+        return false
+      end
+
+      puts "#{status.reblog_of_id} is neither viral nor recent"
     else
       # A reblog may reach earlier than the original status because of the
       # delay of the worker delivering the original status, the late addition
@@ -506,6 +543,7 @@ class FeedManager
   def remove_from_feed(timeline_type, account_id, status, aggregate_reblogs: true)
     timeline_key = key(timeline_type, account_id)
     reblog_key   = key(timeline_type, account_id, 'reblogs')
+    viral_reblog_key   = key(timeline_type, account_id, 'viral_reblogs')
 
     if status.reblog? && (aggregate_reblogs.nil? || aggregate_reblogs)
       # 1. If the reblogging status is not in the feed, stop.
@@ -513,24 +551,35 @@ class FeedManager
       return false if status_rank.nil?
 
       # 2. Remove reblog from set of this status's reblogs.
-      reblog_set_key = key(timeline_type, account_id, "reblogs_v2:#{status.reblog_of_id}")
+      reblog_set_key = key(timeline_type, account_id, "reblogs:#{status.reblog_of_id}")
 
-      redis.zrem(reblog_set_key, status.id)
-      redis.zrem(reblog_key, status.reblog_of_id)
-      # 3. Re-insert another reblog or original into the feed if one
-      # remains in the set. We could pick a random element, but this
-      # set should generally be small, and it seems ideal to show the
-      # oldest potential such reblog.
-      other_reblog = redis.zrange(reblog_set_key, 0, 0).first&.to_i
+      other_reblog = nil
 
-      redis.zadd(timeline_key, other_reblog, other_reblog) if other_reblog
-      redis.zadd(reblog_key, other_reblog, status.reblog_of_id) if other_reblog
+      redis.pipelined do
+        redis.srem(reblog_set_key, status.id)
+        redis.zrem(reblog_key, status.reblog_of_id)
+        redis.zrem(viral_reblog_key, status.reblog_of_id)
+        # 3. Re-insert another reblog or original into the feed if one
+        # remains in the set. We could pick a random element, but this
+        # set should generally be small, and it seems ideal to show the
+        # oldest potential such reblog.
+        other_reblog = redis.smembers(reblog_set_key)
+      end
+
+      other_reblog = other_reblog.value.map(&:to_i).min
+
+      if other_reblog
+        redis.pipelined do
+          redis.zadd(timeline_key, other_reblog, other_reblog)
+          redis.zadd(reblog_key, other_reblog, status.reblog_of_id)
+        end
+      end
 
       # 4. Remove the reblogging status from the feed (as normal)
       # (outside conditional)
     else
       # If the original is getting deleted, no use for reblog references
-      redis.del(key(timeline_type, account_id, "reblogs_v2:#{status.id}"))
+      redis.del(key(timeline_type, account_id, "reblogs:#{status.id}"))
       redis.zrem(reblog_key, status.id)
     end
 
