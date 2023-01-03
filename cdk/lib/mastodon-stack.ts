@@ -2,7 +2,7 @@ import { RemovalPolicy, Stack, StackProps, Duration, CfnOutput } from 'aws-cdk-l
 import { Construct } from 'constructs';
 import { Repository } from 'aws-cdk-lib/aws-ecr'
 import { RetentionDays, LogGroup} from 'aws-cdk-lib/aws-logs';
-import { FargateTaskDefinition, AwsLogDriverMode } from 'aws-cdk-lib/aws-ecs'
+import { FargateTaskDefinition, AwsLogDriverMode, ContainerDefinitionOptions } from 'aws-cdk-lib/aws-ecs'
 import { Cluster, ContainerImage, LogDrivers, Secret} from 'aws-cdk-lib/aws-ecs' 
 import { HostedZone } from 'aws-cdk-lib/aws-route53'
 import { ApplicationLoadBalancedFargateService }  from 'aws-cdk-lib/aws-ecs-patterns'
@@ -21,9 +21,21 @@ import * as ses from 'aws-cdk-lib/aws-ses';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
+
+
+
+
 export interface MastodonProps extends StackProps {
   PRODUCTION: boolean,
   domain: string,
+  secrets: {
+    SMTP_LOGIN: string,
+    SMTP_PASSWORD: string,
+    OTP_SECRET: string,
+    SECRET_KEY_BASE: string,
+    VAPID_PRIVATE_KEY: string,
+    VAPID_PUBLIC_KEY: string,
+  },
   FIRST_RUN: boolean,
 }
 
@@ -247,47 +259,51 @@ export class MastodonStack extends Stack {
     // Mastodon tasks
     const dbSecret = secretsmanager.Secret.fromSecretCompleteArn(this, "dbSecret", dbInstance.secret?.secretArn!);
 
+    const  environment = {
+      AWS_ACCESS_KEY_ID: accessKey.accessKeyId,
+      REDIS_HOST: redisRecord.domainName,
+      DB_HOST: dbRecord.domainName,
+      S3_BUCKET: bucket.bucketName,
+      // passed in secrets
+      SMTP_LOGIN:         props.secrets.SMTP_LOGIN,
+      SMTP_PASSWORD:      props.secrets.SMTP_PASSWORD,
+      OTP_SECRET:         props.secrets.OTP_SECRET,
+      SECRET_KEY_BASE:    props.secrets.SECRET_KEY_BASE,
+      VAPID_PRIVATE_KEY:  props.secrets.VAPID_PRIVATE_KEY,
+      VAPID_PUBLIC_KEY:   props.secrets.VAPID_PUBLIC_KEY,
+      // TBD - move to .env file
+      DB_USER:'postgres',
+      REDIS_PORT:'6379',
+      REDIS_PASSWORD:'',
+      S3_ENABLED:'true',
+      S3_PROTOCOL:'https',
+      S3_REGION:'us-west-2',
+      S3_HOSTNAME:'s3.us-west-2.amazonaws.com',
+      SMTP_SERVER:'email-smtp.us-west-2.amazonaws.com',
+      SMTP_PORT:'587',
+      SMTP_AUTH_METHOD:'plain',
+      SMTP_OPENSSL_VERIFY_MODE:'none',
+      SMTP_ENABLE_STARTTLS:'auto',
+      RAILS_LOG_TO_STDOUT:'enabled',
+    }
+
+    const secrets = {
+      DB_PASS: Secret.fromSecretsManager(dbSecret, 'password'), 
+      AWS_SECRET_ACCESS_KEY: Secret.fromSecretsManager(iamSecret), 
+    }
+
     mastodonTask.addContainer('webContainer',{
       image: ContainerImage.fromEcrRepository(repository,'latest'),
       //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
       containerName: 'web',
       command: (props.FIRST_RUN) ? ['bash', '-c', 'bundle install && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails db:migrate && bundle exec rails s -p 3000'] : ['bash', '-c', 'bundle install && bundle exec rails db:migrate && bundle exec rails s -p 3000'],
-      environment: {
-        AWS_ACCESS_KEY_ID: accessKey.accessKeyId,
-        SMTP_LOGIN: "example_username",
-        SMTP_PASSWORD: "example_password",
-        REDIS_HOST: redisRecord.domainName,
-        DB_HOST: dbRecord.domainName,
-        DB_USER:'postgres',
-        // THE FOLLOWING TO BE REMOVED
-        REDIS_PORT:'6379',
-        REDIS_PASSWORD:'',
-        S3_ENABLED:'true',
-        S3_PROTOCOL:'https',
-        S3_BUCKET: bucket.bucketName,
-        S3_REGION:'us-west-2',
-        S3_HOSTNAME:'s3.us-west-2.amazonaws.com',
-        SMTP_SERVER:'email-smtp.us-west-2.amazonaws.com',
-        SMTP_PORT:'587',
-        SMTP_AUTH_METHOD:'plain',
-        SMTP_OPENSSL_VERIFY_MODE:'none',
-        SMTP_ENABLE_STARTTLS:'auto',
-        RAILS_LOG_TO_STDOUT:'enabled',
-        OTP_SECRET:'80e6e6342c68fbb02da1b8096545c8e6bb59c92896e0e2ef444c7c5d98746fd9edcd495fd65b24cd35ef7b4743fc4943f49a5f292f898ea361fc77c9ef530ade',
-        SECRET_KEY_BASE:'5ee853f7074b42cccf2cf3f1d15b5e48edf6b6d850ea3b08e3f9f649108b1aba1db8aed3e2784c762f4c5ce2f999eb3fa04846b94863abd4e609d7df98d5e9bf',
-        VAPID_PRIVATE_KEY:'EiwoPYbdGgz3qZbOP63DYBxQBrUvLDT2o9xnVcL3KjA=',
-        VAPID_PUBLIC_KEY:'BJ8kH-yfERm3ZMx9jCKAZz93_JneOdaAukEstAhHD-qsBEyTQXeQyhlTjx73of3KXK_9NA5bgEowU3jrqtxzJJ0=',
-       },
-      secrets: {
-        DB_PASS: Secret.fromSecretsManager(dbSecret, 'password'), 
-        AWS_SECRET_ACCESS_KEY: Secret.fromSecretsManager(iamSecret), 
-      },
       logging: LogDrivers.awsLogs({
         streamPrefix: 'web',
         logGroup: logGroup
       }),
       portMappings: [{containerPort:3000}],
-
+      environment,
+      secrets
     })
 
     mastodonTask.addContainer('sidekiqContainer',{
@@ -295,42 +311,14 @@ export class MastodonStack extends Stack {
       //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
       containerName: 'sidekiq',
       command: ['bash', '-c', 'bundle exec sidekiq -c 15'],
-      environment: {
-        AWS_ACCESS_KEY_ID: accessKey.accessKeyId,
-        SMTP_LOGIN: "example_username",
-        SMTP_PASSWORD: "example_password",
-        REDIS_HOST: redisRecord.domainName,
-        DB_HOST: dbRecord.domainName,
-        DB_USER:'postgres',
-        // THE FOLLOWING TO BE REMOVED
-        REDIS_PORT:'6379',
-        REDIS_PASSWORD:'',
-        S3_ENABLED:'true',
-        S3_PROTOCOL:'https',
-        S3_BUCKET: bucket.bucketName,
-        S3_REGION:'us-west-2',
-        S3_HOSTNAME:'s3.us-west-2.amazonaws.com',
-        SMTP_SERVER:'email-smtp.us-west-2.amazonaws.com',
-        SMTP_PORT:'587',
-        SMTP_AUTH_METHOD:'plain',
-        SMTP_OPENSSL_VERIFY_MODE:'none',
-        SMTP_ENABLE_STARTTLS:'auto',
-        RAILS_LOG_TO_STDOUT:'enabled',
-        OTP_SECRET:'80e6e6342c68fbb02da1b8096545c8e6bb59c92896e0e2ef444c7c5d98746fd9edcd495fd65b24cd35ef7b4743fc4943f49a5f292f898ea361fc77c9ef530ade',
-        SECRET_KEY_BASE:'5ee853f7074b42cccf2cf3f1d15b5e48edf6b6d850ea3b08e3f9f649108b1aba1db8aed3e2784c762f4c5ce2f999eb3fa04846b94863abd4e609d7df98d5e9bf',
-        VAPID_PRIVATE_KEY:'EiwoPYbdGgz3qZbOP63DYBxQBrUvLDT2o9xnVcL3KjA=',
-        VAPID_PUBLIC_KEY:'BJ8kH-yfERm3ZMx9jCKAZz93_JneOdaAukEstAhHD-qsBEyTQXeQyhlTjx73of3KXK_9NA5bgEowU3jrqtxzJJ0=',
-       },
-      secrets: {
-        DB_PASS: Secret.fromSecretsManager(dbSecret, 'password'), 
-        AWS_SECRET_ACCESS_KEY: Secret.fromSecretsManager(iamSecret), 
-      },
       essential: false,
       logging: LogDrivers.awsLogs({
         streamPrefix: 'sidekiq',
         logGroup: logGroup
       }),
       portMappings: [{containerPort:3001}],
+      environment,
+      secrets
     })
 
     mastodonTask.addContainer('streamingContainer',{
@@ -338,42 +326,14 @@ export class MastodonStack extends Stack {
       //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
       containerName: 'streaming',
       command: ['bash', '-c', 'node ./streaming'],
-      environment: {
-        AWS_ACCESS_KEY_ID: accessKey.accessKeyId,
-        SMTP_LOGIN: "example_username",
-        SMTP_PASSWORD: "example_password",
-        REDIS_HOST: redisRecord.domainName,
-        DB_HOST: dbRecord.domainName,
-        DB_USER:'postgres',
-        // THE FOLLOWING TO BE REMOVED
-        REDIS_PORT:'6379',
-        REDIS_PASSWORD:'',
-        S3_ENABLED:'true',
-        S3_PROTOCOL:'https',
-        S3_BUCKET: bucket.bucketName,
-        S3_REGION:'us-west-2',
-        S3_HOSTNAME:'s3.us-west-2.amazonaws.com',
-        SMTP_SERVER:'email-smtp.us-west-2.amazonaws.com',
-        SMTP_PORT:'587',
-        SMTP_AUTH_METHOD:'plain',
-        SMTP_OPENSSL_VERIFY_MODE:'none',
-        SMTP_ENABLE_STARTTLS:'auto',
-        RAILS_LOG_TO_STDOUT:'enabled',
-        OTP_SECRET:'80e6e6342c68fbb02da1b8096545c8e6bb59c92896e0e2ef444c7c5d98746fd9edcd495fd65b24cd35ef7b4743fc4943f49a5f292f898ea361fc77c9ef530ade',
-        SECRET_KEY_BASE:'5ee853f7074b42cccf2cf3f1d15b5e48edf6b6d850ea3b08e3f9f649108b1aba1db8aed3e2784c762f4c5ce2f999eb3fa04846b94863abd4e609d7df98d5e9bf',
-        VAPID_PRIVATE_KEY:'EiwoPYbdGgz3qZbOP63DYBxQBrUvLDT2o9xnVcL3KjA=',
-        VAPID_PUBLIC_KEY:'BJ8kH-yfERm3ZMx9jCKAZz93_JneOdaAukEstAhHD-qsBEyTQXeQyhlTjx73of3KXK_9NA5bgEowU3jrqtxzJJ0=',
-       },
-      secrets: {
-        DB_PASS: Secret.fromSecretsManager(dbSecret, 'password'), 
-        AWS_SECRET_ACCESS_KEY: Secret.fromSecretsManager(iamSecret), 
-      },
       essential: false,
       logging: LogDrivers.awsLogs({
         streamPrefix: 'streaming',
         logGroup: logGroup
       }),
       portMappings: [{containerPort:3002}],
+      environment,
+      secrets
     })
 
     const loadBalancedFargateService = new ApplicationLoadBalancedFargateService(this, 'webFargate', {

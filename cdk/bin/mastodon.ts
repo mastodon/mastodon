@@ -16,6 +16,7 @@ const env = {
 
 const domain = PRODUCTION ? 'verified.coop' : 'verified-staging.net'
 
+const secrets = PRODUCTION ? require('../secrets').production : require('../secrets').staging
 
 const app = new cdk.App();
 
@@ -27,5 +28,6 @@ const mastodon =  new MastodonStack(app, 'MastodonStack', {
   env,
   PRODUCTION,
   domain,
+  secrets,
   FIRST_RUN
 });
