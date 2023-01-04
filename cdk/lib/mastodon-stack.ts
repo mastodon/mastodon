@@ -197,7 +197,7 @@ export class MastodonStack extends Stack {
         cacheSubnetGroupName: redisSubnetGroup.cacheSubnetGroupName,
         vpcSecurityGroupIds: [ redisSecurityGroup.securityGroupId ]
     });
-    redis.addDependsOn(redisSubnetGroup);
+    redis.addDependency(redisSubnetGroup);
   
     const redisRecord = new route53.CnameRecord(this, 'redisRecord', {
       recordName: 'mastodonredis',
