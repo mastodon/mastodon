@@ -6630,6 +6630,7 @@ paths:
   "/api/v1/endorsements":
     get:
       summary: list endorsements
+      description: Accounts that the user is currently featuring on their profile.
       tags:
       - Api
       - V1
@@ -6639,20 +6640,117 @@ paths:
       - bearerAuth: []
       - oauth:
         - read
+        - read:accounts
       parameters:
       - name: authorization
         in: header
         required: true
         schema:
           type: string
+      - name: limit
+        in: query
+        required: false
+        description: "Maximum number of results to return.  \nDefaults to 40 accounts.
+          \ \nReturns unlimited, when `0`.\n"
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
       responses:
         '200':
-          description: successful
+          description: |
+            **successful**
+
+            Because AccountPin IDs are generally not exposed via any API responses,
+            you will have to parse the HTTP `Link` header to load older or newer results.
+            See [Paginating through API responses](https://docs.joinmastodon.org/api/guidelines/#pagination)
+            for more information.
+
+            ```
+            Link: <https://mastodon.example/api/v1/endorsements?limit=2&max_id=832844>; rel="next", <https://mastodon.example/api/v1/endorsements?limit=2&since_id=952529>; rel="prev"
+            ```
           content:
             application/json:
               examples:
-                successful:
-                  value: []
+                successful_because_accountpin_ids_are_generally_not_exposed_vi:
+                  value:
+                  - id: '109633161799524016'
+                    username: felicitas_corwin180
+                    acct: felicitas_corwin180@else.where
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url:
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 1
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    emojis: []
+                    fields: []
+                  - id: '109633161799524015'
+                    username: merrill179
+                    acct: merrill179
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@merrill179
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 1
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Account"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
   "/api/v1/favourites":
     get:
       summary: list favourites
