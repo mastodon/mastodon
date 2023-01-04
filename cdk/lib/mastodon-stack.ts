@@ -205,14 +205,9 @@ export class MastodonStack extends Stack {
       domainName: redis.attrRedisEndpointAddress
     })
 
-    // SES
-    const identity = new ses.EmailIdentity(this, 'Identity', {
-      identity: ses.Identity.publicHostedZone(zone),
-      mailFromDomain: 'mail.' + props.domain,
-    });
-
     // S3
-    const bucket = new s3.Bucket(this, 'mastodon_' + props.domain, { // Kyle: I have found S3 is cranky with dots in the bucket name -- I replace dots with dashes
+    const bucketName = 'mastodon-'+props.domain.replace('.','-') // Kyle: I have found S3 is cranky with dots in the bucket name -- I replace dots with dashes
+    const bucket = new s3.Bucket(this, bucketName, { 
       encryption: s3.BucketEncryption.KMS,
       bucketKeyEnabled: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
@@ -344,13 +339,13 @@ export class MastodonStack extends Stack {
     const loadBalancedFargateService = new ApplicationLoadBalancedFargateService(this, 'webFargate', {
       circuitBreaker: { rollback: true },
       cluster : cluster,
-      cpu: 1024,
+      cpu: 512,
       desiredCount: 1,
       domainName: albHost,
       domainZone: zone,
       certificate: albCertificate,
       loadBalancerName: 'mastodon',
-      memoryLimitMiB: 3072,
+      memoryLimitMiB: 1024,
       serviceName: 'mastodon',
       taskDefinition: mastodonTask,
       enableExecuteCommand: true, // enables remote execution w/ ECS Exec - TODO - disable for prod? Q: do we need to add other permisions, or will CDK take care of it? 
