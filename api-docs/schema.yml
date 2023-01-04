@@ -6754,6 +6754,10 @@ paths:
   "/api/v1/favourites":
     get:
       summary: list favourites
+      description: |
+        **Statuses the user has favourited**
+
+        See also statuses/:id/{favourite,unfavourite}
       tags:
       - Api
       - V1
@@ -6763,10 +6767,36 @@ paths:
       - bearerAuth: []
       - oauth:
         - read
+        - read:favourites
       parameters:
       - name: authorization
         in: header
         required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: "Maximum number of results to return.  \nDefaults to 20 statuses.
+          \ \nMax 40 statuses.\n"
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: min_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
         schema:
           type: string
       responses:
@@ -6776,7 +6806,182 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '109633274382906864'
+                    created_at: '2023-01-04T22:23:28.200Z'
+                    in_reply_to_id: '109633274382906863'
+                    in_reply_to_account_id: '109633274382861759'
+                    sensitive: false
+                    spoiler_text: ''
+                    visibility: public
+                    language:
+                    uri: https://cb6e6126.ngrok.io/users/maddie_heathcote184/statuses/109633274382906864
+                    url: https://cb6e6126.ngrok.io/@maddie_heathcote184/109633274382906864
+                    replies_count: 1
+                    reblogs_count: 0
+                    favourites_count: 1
+                    edited_at:
+                    favourited: true
+                    reblogged: false
+                    muted: false
+                    bookmarked: false
+                    content: "<p>Lorem ipsum dolor sit amet</p>"
+                    filtered: []
+                    reblog:
+                    application:
+                    account:
+                      id: '109633274382861758'
+                      username: maddie_heathcote184
+                      acct: maddie_heathcote184
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2023-01-04T00:00:00.000Z'
+                      note: ''
+                      url: https://cb6e6126.ngrok.io/@maddie_heathcote184
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 0
+                      following_count: 0
+                      statuses_count: 2
+                      last_status_at: '2023-01-04'
+                      noindex: false
+                      emojis: []
+                      fields: []
+                    media_attachments: []
+                    mentions: []
+                    tags: []
+                    emojis: []
+                    card:
+                    poll:
+                  - id: '109633274382906863'
+                    created_at: '2023-01-04T22:23:28.188Z'
+                    in_reply_to_id: '109633274382906862'
+                    in_reply_to_account_id: '109633274382861758'
+                    sensitive: false
+                    spoiler_text: ''
+                    visibility: public
+                    language:
+                    uri: bbd0d8f50c242f346831df555fbf1433f58f752766129bd5f3afd2a493e9aed7
+                    url:
+                    replies_count: 1
+                    reblogs_count: 0
+                    favourites_count: 2
+                    edited_at:
+                    favourited: true
+                    reblogged: false
+                    muted: false
+                    bookmarked: false
+                    content: Lorem ipsum dolor sit amet
+                    filtered: []
+                    reblog:
+                    account:
+                      id: '109633274382861759'
+                      username: reggie185
+                      acct: reggie185@else.where
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2023-01-04T00:00:00.000Z'
+                      note: ''
+                      url:
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 0
+                      following_count: 0
+                      statuses_count: 2
+                      last_status_at: '2023-01-04'
+                      emojis: []
+                      fields: []
+                    media_attachments: []
+                    mentions: []
+                    tags: []
+                    emojis: []
+                    card:
+                    poll:
+                  - id: '109633274382906862'
+                    created_at: '2023-01-04T22:23:28.150Z'
+                    in_reply_to_id:
+                    in_reply_to_account_id:
+                    sensitive: false
+                    spoiler_text: ''
+                    visibility: public
+                    language:
+                    uri: https://cb6e6126.ngrok.io/users/maddie_heathcote184/statuses/109633274382906862
+                    url: https://cb6e6126.ngrok.io/@maddie_heathcote184/109633274382906862
+                    replies_count: 1
+                    reblogs_count: 0
+                    favourites_count: 2
+                    edited_at:
+                    favourited: true
+                    reblogged: false
+                    muted: false
+                    bookmarked: false
+                    content: "<p>Lorem ipsum dolor sit amet</p>"
+                    filtered: []
+                    reblog:
+                    application:
+                    account:
+                      id: '109633274382861758'
+                      username: maddie_heathcote184
+                      acct: maddie_heathcote184
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2023-01-04T00:00:00.000Z'
+                      note: ''
+                      url: https://cb6e6126.ngrok.io/@maddie_heathcote184
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 0
+                      following_count: 0
+                      statuses_count: 2
+                      last_status_at: '2023-01-04'
+                      noindex: false
+                      emojis: []
+                      fields: []
+                    media_attachments: []
+                    mentions: []
+                    tags: []
+                    emojis: []
+                    card:
+                    poll:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Status"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
   "/api/v1/featured_tags/suggestions":
     get:
       summary: list suggestions
