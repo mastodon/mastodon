@@ -5,12 +5,12 @@ module RswagHelper
       produces('application/json')
     end
 
-    def rswag_auth_scope(scopes = ['read'])
+    def rswag_auth_scope(scopes = ['read'], auth_required: true)
       security [
         { bearerAuth: [] },
-        { oauth: scopes }
+        { oauth: scopes },
       ]
-      parameter name: :authorization, in: :header, type: :string, required: true
+      parameter name: :authorization, in: :header, type: :string, required: auth_required
       rswag_json_endpoint
     end
 
@@ -58,13 +58,13 @@ module RswagHelper
       after do |example|
         example_key = key || example.metadata[:response][:description]
         example_spec = {
-          "application/json"=>{
+          'application/json' => {
             examples: {
               example_key.to_s.parameterize.underscore || :test_example => {
-                value: JSON.parse(response.body, symbolize_names: true)
-              }
-            }
-          }
+                value: JSON.parse(response.body, symbolize_names: true),
+              },
+            },
+          },
         }
         example.metadata[:response][:content] = (example.metadata[:response][:content] || {}).deep_merge(example_spec)
       end

@@ -6102,6 +6102,7 @@ paths:
   "/api/v1/directory":
     get:
       summary: show directory
+      description: List accounts visible in the directory.
       tags:
       - Api
       - V1
@@ -6114,20 +6115,46 @@ paths:
       parameters:
       - name: authorization
         in: header
-        required: true
+        required: false
         schema:
           type: string
+      - name: limit
+        in: query
+        required: false
+        description: How many accounts to load. Defaults to 40 accounts. Max 80 accounts.
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        required: false
+        description: Skip the first n results.
+        schema:
+          type: integer
+      - name: order
+        in: query
+        required: false
+        description: |
+          Use `active` to sort by most recently posted statuses (default)
+          or `new` to sort by most recently created profiles.
+        schema:
+          type: string
+      - name: local
+        in: query
+        required: false
+        description: If true, returns only local accounts.
+        schema:
+          type: boolean
       responses:
         '200':
-          description: successful
+          description: returns for authenticated
           content:
             application/json:
               examples:
-                successful:
+                returns_all_discoverable:
                   value:
-                  - id: '109631968628505655'
-                    username: abraham_walsh129
-                    acct: abraham_walsh129
+                  - id: '109632227532794338'
+                    username: clair_turcotte133
+                    acct: clair_turcotte133@else.where
                     display_name: ''
                     locked: false
                     bot: false
@@ -6135,7 +6162,49 @@ paths:
                     group: false
                     created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@abraham_walsh129
+                    url:
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    emojis: []
+                    fields: []
+                  - id: '109632227532794337'
+                    username: noel_muller132
+                    acct: noel_muller132@somewhere.else
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url:
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    emojis: []
+                    fields: []
+                  - id: '109632227532794335'
+                    username: brittny130
+                    acct: brittny130
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@brittny130
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -6147,6 +6216,148 @@ paths:
                     noindex: false
                     emojis: []
                     fields: []
+                  - id: '109632227532794334'
+                    username: annita_schinner129
+                    acct: annita_schinner129
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@annita_schinner129
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+                returns_second_page:
+                  value:
+                  - id: '109632227544912430'
+                    username: andrew_adams136
+                    acct: andrew_adams136
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@andrew_adams136
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+                  - id: '109632227544912429'
+                    username: tobias_robel135
+                    acct: tobias_robel135
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@tobias_robel135
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+                returns_local:
+                  value:
+                  - id: '109632227561354799'
+                    username: gina_mante142
+                    acct: gina_mante142
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@gina_mante142
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+                  - id: '109632227561354798'
+                    username: elisabeth_wyman141
+                    acct: elisabeth_wyman141
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@elisabeth_wyman141
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+                returns_for_authenticated:
+                  value:
+                  - id: '109632227582377359'
+                    username: tracy147
+                    acct: tracy147
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-04T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@tracy147
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Account"
   "/api/v1/domain_blocks":
     get:
       summary: show domain_block
