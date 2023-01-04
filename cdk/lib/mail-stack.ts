@@ -16,9 +16,10 @@ export class MailStack extends Stack {
     const zone = HostedZone.fromLookup(this,'zone',{domainName: props.domain})
 
     // SES
+    const mailFromDomain = 'mail.'+props.domain
     const identity = new ses.EmailIdentity(this, 'Identity', {
       identity: ses.Identity.publicHostedZone(zone),
-      mailFromDomain: 'mail.' + props.domain,
+      mailFromDomain,
     });
 
   } 
