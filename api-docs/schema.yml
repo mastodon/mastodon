@@ -5543,9 +5543,9 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109631359237591725'
-                    username: erick_davis120
-                    acct: erick_davis120
+                  - id: '109631968511696209'
+                    username: vincenzo_parisian120
+                    acct: vincenzo_parisian120
                     display_name: ''
                     locked: false
                     bot: false
@@ -5553,7 +5553,7 @@ paths:
                     group: false
                     created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@erick_davis120
+                    url: https://cb6e6126.ngrok.io/@vincenzo_parisian120
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -5565,9 +5565,9 @@ paths:
                     noindex: false
                     emojis: []
                     fields: []
-                  - id: '109631359237591724'
-                    username: yolanda_bechtelar119
-                    acct: yolanda_bechtelar119
+                  - id: '109631968511696208'
+                    username: ilda_miller119
+                    acct: ilda_miller119
                     display_name: ''
                     locked: false
                     bot: false
@@ -5575,7 +5575,7 @@ paths:
                     group: false
                     created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@yolanda_bechtelar119
+                    url: https://cb6e6126.ngrok.io/@ilda_miller119
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -5723,6 +5723,9 @@ paths:
         required: true
         schema:
           type: string
+      description: "**Mark a conversation as read**\n\nDirect conversations with other
+        participants.  \n*Currently, just threads containing a post with \"direct\"
+        visibility.*\n\n"
       responses:
         '200':
           description: successful
@@ -5731,7 +5734,110 @@ paths:
               examples:
                 successful:
                   value:
+                    id: '850'
+                    unread: false
+                    accounts:
+                    - id: '109632751668154930'
+                      username: romeo_kuvalis123
+                      acct: romeo_kuvalis123
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2023-01-04T00:00:00.000Z'
+                      note: ''
+                      url: https://cb6e6126.ngrok.io/@romeo_kuvalis123
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 0
+                      following_count: 0
+                      statuses_count: 0
+                      last_status_at:
+                      noindex: false
+                      emojis: []
+                      fields: []
+                    last_status:
+                      id: '109632751668129205'
+                      created_at: '2023-01-04T20:10:32.104Z'
+                      in_reply_to_id:
+                      in_reply_to_account_id:
+                      sensitive: false
+                      spoiler_text: ''
+                      visibility: direct
+                      language: en
+                      uri: https://cb6e6126.ngrok.io/users/romeo_kuvalis123/statuses/109632751668129205
+                      url: https://cb6e6126.ngrok.io/@romeo_kuvalis123/109632751668129205
+                      replies_count: 0
+                      reblogs_count: 0
+                      favourites_count: 0
+                      edited_at:
+                      favourited: false
+                      reblogged: false
+                      muted: false
+                      bookmarked: false
+                      content: <p>Hello <span class="h-card"><a href="https://cb6e6126.ngrok.io/@darren_larson124"
+                        class="u-url mention">@<span>darren_larson124</span></a></span></p>
+                      filtered: []
+                      reblog:
+                      application:
+                      account:
+                        id: '109632751668154930'
+                        username: romeo_kuvalis123
+                        acct: romeo_kuvalis123
+                        display_name: ''
+                        locked: false
+                        bot: false
+                        discoverable: true
+                        group: false
+                        created_at: '2023-01-04T00:00:00.000Z'
+                        note: ''
+                        url: https://cb6e6126.ngrok.io/@romeo_kuvalis123
+                        avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                        avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                        header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                        header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                        followers_count: 0
+                        following_count: 0
+                        statuses_count: 0
+                        last_status_at:
+                        noindex: false
+                        emojis: []
+                        fields: []
+                      media_attachments: []
+                      mentions:
+                      - id: '109632751668154931'
+                        username: darren_larson124
+                        url: https://cb6e6126.ngrok.io/@darren_larson124
+                        acct: darren_larson124
+                      tags: []
+                      emojis: []
+                      card:
+                      poll:
+              schema:
+                "$ref": "#/components/schemas/Conversation"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                not_found:
+                  value:
                     error: Record not found
+              schema:
+                "$ref": "#/components/schemas/Error"
   "/api/v1/conversations":
     get:
       summary: list conversations
@@ -5740,6 +5846,9 @@ paths:
       - V1
       - Conversations
       operationId: v1ConversationsListConversation
+      description: "**List all conversations for current user**\n\nDirect conversations
+        with other participants.  \n*Currently, just threads containing a post with
+        \"direct\" visibility.*\n\n"
       security:
       - bearerAuth: []
       - oauth:
@@ -5751,6 +5860,31 @@ paths:
         required: true
         schema:
           type: string
+      - name: limit
+        in: query
+        required: false
+        description: "Maximum number of results to return.  \nDefaults to 20 conversations.
+          \ \nMax 40 conversations.\n"
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: min_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
       responses:
         '200':
           description: successful
@@ -5758,7 +5892,103 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '856'
+                    unread: true
+                    accounts:
+                    - id: '109632751705334737'
+                      username: kaye_conroy129
+                      acct: kaye_conroy129
+                      display_name: ''
+                      locked: false
+                      bot: false
+                      discoverable: true
+                      group: false
+                      created_at: '2023-01-04T00:00:00.000Z'
+                      note: ''
+                      url: https://cb6e6126.ngrok.io/@kaye_conroy129
+                      avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                      header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                      followers_count: 0
+                      following_count: 0
+                      statuses_count: 0
+                      last_status_at:
+                      noindex: false
+                      emojis: []
+                      fields: []
+                    last_status:
+                      id: '109632751705345297'
+                      created_at: '2023-01-04T20:10:32.718Z'
+                      in_reply_to_id:
+                      in_reply_to_account_id:
+                      sensitive: false
+                      spoiler_text: ''
+                      visibility: direct
+                      language: en
+                      uri: https://cb6e6126.ngrok.io/users/kaye_conroy129/statuses/109632751705345297
+                      url: https://cb6e6126.ngrok.io/@kaye_conroy129/109632751705345297
+                      replies_count: 0
+                      reblogs_count: 0
+                      favourites_count: 0
+                      edited_at:
+                      favourited: false
+                      reblogged: false
+                      muted: false
+                      bookmarked: false
+                      content: <p>Hello <span class="h-card"><a href="https://cb6e6126.ngrok.io/@eldon_koss130"
+                        class="u-url mention">@<span>eldon_koss130</span></a></span></p>
+                      filtered: []
+                      reblog:
+                      application:
+                      account:
+                        id: '109632751705334737'
+                        username: kaye_conroy129
+                        acct: kaye_conroy129
+                        display_name: ''
+                        locked: false
+                        bot: false
+                        discoverable: true
+                        group: false
+                        created_at: '2023-01-04T00:00:00.000Z'
+                        note: ''
+                        url: https://cb6e6126.ngrok.io/@kaye_conroy129
+                        avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                        avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                        header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                        header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                        followers_count: 0
+                        following_count: 0
+                        statuses_count: 0
+                        last_status_at:
+                        noindex: false
+                        emojis: []
+                        fields: []
+                      media_attachments: []
+                      mentions:
+                      - id: '109632751705334738'
+                        username: eldon_koss130
+                        url: https://cb6e6126.ngrok.io/@eldon_koss130
+                        acct: eldon_koss130
+                      tags: []
+                      emojis: []
+                      card:
+                      poll:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Conversation"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
   "/api/v1/conversations/{id}":
     parameters:
     - name: id
@@ -5774,6 +6004,9 @@ paths:
       - V1
       - Conversations
       operationId: v1ConversationsDeleteConversation
+      description: "**Removes a conversation from your list of conversations**\n\nDirect
+        conversations with other participants.  \n*Currently, just threads containing
+        a post with \"direct\" visibility.*\n\n"
       security:
       - bearerAuth: []
       - oauth:
@@ -5788,6 +6021,44 @@ paths:
       responses:
         '200':
           description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value: {}
+              schema:
+                type: object
+                properties: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '404':
+          description: Not found
+          content:
+            application/json:
+              examples:
+                not_found:
+                  value:
+                    error: Record not found
+              schema:
+                "$ref": "#/components/schemas/Error"
   "/api/v1/custom_emojis":
     get:
       summary: list custom_emojis
@@ -5813,7 +6084,20 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - shortcode: test_emoji1
+                    url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/158/original/93c6340a27a582d0.png
+                    static_url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/158/static/93c6340a27a582d0.png
+                    visible_in_picker: true
+                    category: test_category1
+                  - shortcode: test_emoji2
+                    url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/159/original/e9ad0d2effa83f18.png
+                    static_url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/159/static/e9ad0d2effa83f18.png
+                    visible_in_picker: true
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/CustomEmoji"
   "/api/v1/directory":
     get:
       summary: show directory
@@ -5840,9 +6124,9 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109631359259324826'
-                    username: daren_cole128
-                    acct: daren_cole128
+                  - id: '109631968628505655'
+                    username: abraham_walsh129
+                    acct: abraham_walsh129
                     display_name: ''
                     locked: false
                     bot: false
@@ -5850,7 +6134,7 @@ paths:
                     group: false
                     created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@daren_cole128
+                    url: https://cb6e6126.ngrok.io/@abraham_walsh129
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
