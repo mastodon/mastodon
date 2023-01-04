@@ -6361,6 +6361,7 @@ paths:
   "/api/v1/domain_blocks":
     get:
       summary: show domain_block
+      description: View domains the user has blocked.
       tags:
       - Api
       - V1
@@ -6369,23 +6370,91 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
+        - follow
         - read
+        - read:blocks
       parameters:
       - name: authorization
         in: header
         required: true
         schema:
           type: string
+      - name: limit
+        in: query
+        required: false
+        description: "Maximum number of results to return.  \nDefaults to 100 domain
+          blocks.  \nMax 200 domain blocks.\n"
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: min_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
       responses:
         '200':
-          description: successful
+          description: |
+            **successful**
+
+            Sample call with limit=2.
+
+            ```json
+            ["nsfw.social","artalley.social"]
+            ```
+
+            Because AccountDomainBlock IDs are generally not exposed via any API responses,
+            you will have to parse the HTTP Link header to load older or newer results.
+
+            See [Paginating through API responses](https://docs.joinmastodon.org/api/guidelines/#pagination) for more information.
+
+            ```
+            Link: <https://mastodon.example/api/v1/domain_blocks?limit=2&max_id=16194>; rel="next", <https://mastodon.example/api/v1/domain_blocks?limit=2&since_id=16337>; rel="prev"
+            ```
           content:
             application/json:
               examples:
-                successful:
-                  value: []
+                successful_sample_call_with_limit_2_json_nsfw_social:
+                  value:
+                  - get-rid-of.net
+                  - nosee.org
+                  - blocked1.com
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
     delete:
       summary: delete domain_block
+      description: Remove a domain block, if it exists in the user's array of blocked
+        domains.
       tags:
       - Api
       - V1
@@ -6394,7 +6463,9 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - follow
+        - write
+        - write:blocks
       parameters:
       - name: authorization
         in: header
@@ -6403,14 +6474,54 @@ paths:
           type: string
       responses:
         '200':
-          description: successful
+          description: unblock not blocked
           content:
             application/json:
               examples:
-                successful:
+                successful_if_the_call_was_successful_an_empty_object_will_be:
                   value: {}
+                unblock_not_blocked:
+                  value: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domain:
+                  type: string
+              required:
+              - domain
+        required: true
     post:
       summary: create domain_block
+      description: |
+        Block a domain to:
+
+        - hide all public posts from it
+        - hide all notifications from it
+        - remove all followers from it
+        - prevent following new users from it (but does not remove existing follows)
       tags:
       - Api
       - V1
@@ -6419,7 +6530,9 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - follow
+        - write
+        - write:blocks
       parameters:
       - name: authorization
         in: header
@@ -6428,13 +6541,63 @@ paths:
           type: string
       responses:
         '200':
-          description: successful
+          description: |
+            **successful**
+
+            If the call was successful, an empty object will be returned.
+
+            Note that the call will be successful even if the domain is already blocked,
+            or if the domain does not exist, or if the domain is not a domain.
           content:
             application/json:
               examples:
-                successful:
+                successful_if_the_call_was_successful_an_empty_object_will_be:
+                  value: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '422':
+          description: Invalid domain provided
+          content:
+            application/json:
+              examples:
+                no_domain_provided:
                   value:
                     error: 'Validation failed: Domain can''t be blank'
+                invalid_domain_provided:
+                  value:
+                    error: 'Validation failed: Domain is invalid, Domain is not a
+                      valid domain name'
+              schema:
+                "$ref": "#/components/schemas/Error"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                domain:
+                  type: string
+              required:
+              - domain
+        required: true
   "/api/v1/emails/confirmations":
     post:
       summary: create confirmation

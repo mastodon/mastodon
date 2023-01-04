@@ -60,7 +60,7 @@ module RswagHelper
         example_spec = {
           'application/json' => {
             examples: {
-              example_key.to_s.parameterize.underscore || :test_example => {
+              example_key.to_s.truncate(70).parameterize.underscore || :test_example => {
                 value: JSON.parse(response.body, symbolize_names: true),
               },
             },
