@@ -21,7 +21,7 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'schema.yml' => {
-      openapi: v1_base_definition.fetch('openapi', '3.0.1'),
+      openapi: v1_base_definition.fetch('openapi', '3.0.3'),
       info: v1_base_definition.fetch('info', {
         title: 'API',
         version: '0.0.1'

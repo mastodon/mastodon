@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+##############################################
+## Generate OpenAPI schema with rswag specs ##
+##############################################
+
+# Genereate with examples
+export SWAGGER_DRY_RUN=0
+# ensure running in test env
+export RAILS_ENV=test
+# Run rswag swaggerize task
+bundle exec rake rswag:specs:swaggerize

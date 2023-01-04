@@ -1,4 +1,23 @@
 #!/usr/bin/env ruby
+
+#########################
+## Scafold RSwag specs ##
+#########################
+
+# Uses RSwag's default spec generator and patches the specs with custom defaults.
+#
+# The controllers routes and HTTP methods are automatically recognized and a spec for
+# each of them is generated.
+# However, these specs do not generate a real documentation yet.
+# Only the minimum of path, method, etc. are generated.
+# Response schemas, parmeters and more ought to be added manually.
+#
+# Ideally, the spec does not only document the controllers action, but also verifies
+# some of the controllers features, just like any classic request spec would.
+#
+# Runs for all controllers in app/controllers/api/ by default.
+# Optionally specific controller files can be given as arguments.
+
 require 'fileutils'
 require 'active_support/inflector'
 
