@@ -8,7 +8,10 @@ data:
     - config/locales-glitch/*.%{locale}.yml
 
   write:
-    - ['{devise, simple_form, doorkeeper}.*', 'config/locales-glitch/\1.%{locale}.yml']
+    - [
+        '{devise, simple_form, doorkeeper}.*',
+        'config/locales-glitch/\1.%{locale}.yml',
+      ]
     - config/locales-glitch/%{locale}.yml
 
   external:

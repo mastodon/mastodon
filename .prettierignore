@@ -70,3 +70,10 @@ docker-compose.override.yml
 # Ignore locale files
 /app/javascript/mastodon/locales
 /config/locales
+
+# Ignore glitch-soc locale files
+/app/javascript/flavours/glitch/locales
+/config/locales-glitch
+
+# Ignore glitch-soc emoji map file
+/app/javascript/flavours/glitch/features/emoji/emoji_map.json
