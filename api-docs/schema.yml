@@ -5468,13 +5468,15 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '3'
+                    id: '5'
                     name: testclient
                     website:
                     redirect_uri: urn:ietf:wg:oauth:2.0:oob
-                    client_id: Gi320CVzDNt1biSs1v6B4f3wVroDHJBSm2K8ymOe-SM
-                    client_secret: YHdTBFrEIS1sXDtlxW23YNBlav-YVX0K0xe0Ncoi8IY
-                    vapid_key: BKmjp0q1of1SDDZBDhunr-CpXn_RLKqqJfBYYZF8Ulf0o0EZP2KXPCAQHAcbdvmQPoOlaUTiqYElfWbH1ZUfcWs=
+                    client_id: 37-gMynJKEmgxTo3FI5W-JVBArjxrIMEuqaKzJ_S9MQ
+                    client_secret: eU0wh0ok08wDWocUaf-26N92E3i9Zo9vfGHYyXHC6Nw
+                    vapid_key: BHpQYY1IGC_yMKWHrffEzKpP3nfFEmURwxQbh7dch-xRHwDFl7aTcOpRBjwq0tCpP9h5AgqgcHLcCDG6YTCciUo=
+              schema:
+                "$ref": "#/components/schemas/Application"
       requestBody:
         content:
           application/json:

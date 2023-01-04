@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::BlocksController, type: :request do
+RSpec.describe Api::V1::BlocksController do
   path '/api/v1/blocks' do
     get('list blocks') do
       tags 'Api', 'V1', 'Blocks'
@@ -24,6 +24,7 @@ RSpec.describe Api::V1::BlocksController, type: :request do
         schema type: :array, items: { '$ref' => '#/components/schemas/Account' }
         let(:limit) { 2 }
         before { accounts.map { |account| user.account.block!(account) } }
+
         rswag_add_examples!
         run_test!
       end

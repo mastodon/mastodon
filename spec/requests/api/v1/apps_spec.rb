@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::AppsController, type: :request do
+RSpec.describe Api::V1::AppsController do
   path '/api/v1/apps' do
     post('create app') do
       tags 'Api', 'V1', 'Apps'
@@ -17,6 +17,7 @@ RSpec.describe Api::V1::AppsController, type: :request do
       let(:payload) { { client_name: 'testclient', redirect_uris: 'urn:ietf:wg:oauth:2.0:oob' } }
 
       response(200, 'successful') do
+        schema '$ref' => '#/components/schemas/Application'
         rswag_add_examples!
         run_test!
       end
