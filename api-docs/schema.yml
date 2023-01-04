@@ -7012,6 +7012,7 @@ paths:
   "/api/v1/featured_tags":
     get:
       summary: list featured_tags
+      description: List all hashtags featured on your profile.
       tags:
       - Api
       - V1
@@ -7021,6 +7022,7 @@ paths:
       - bearerAuth: []
       - oauth:
         - read
+        - read:accounts
       parameters:
       - name: authorization
         in: header
@@ -7034,7 +7036,41 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '199'
+                    name: qui1_featured
+                    url: https://cb6e6126.ngrok.io/@brande_streich193/tagged/qui1_featured
+                    statuses_count: '0'
+                    last_status_at:
+                  - id: '200'
+                    name: commodi2_featured
+                    url: https://cb6e6126.ngrok.io/@brande_streich193/tagged/commodi2_featured
+                    statuses_count: '0'
+                    last_status_at:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/FeaturedTag"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
     post:
       summary: create featured_tag
       tags:
@@ -7045,7 +7081,8 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - write
+        - write:accounts
       parameters:
       - name: authorization
         in: header
@@ -7055,6 +7092,49 @@ paths:
       responses:
         '200':
           description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    id: '205'
+                    name: at10
+                    url: https://cb6e6126.ngrok.io/@ismael196/tagged/at10
+                    statuses_count: '0'
+                    last_status_at:
+              schema:
+                "$ref": "#/components/schemas/FeaturedTag"
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
+                  value:
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+              - name
+        required: true
   "/api/v1/featured_tags/{id}":
     parameters:
     - name: id
@@ -7073,7 +7153,8 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - write
+        - write:accounts
       parameters:
       - name: authorization
         in: header
@@ -7087,8 +7168,30 @@ paths:
             application/json:
               examples:
                 successful:
+                  value: {}
+              schema:
+                type: object
+                properties: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              examples:
+                unauthorized:
                   value:
-                    error: Record not found
+                    error: The access token is invalid
+              schema:
+                "$ref": "#/components/schemas/Error"
+        '403':
+          description: Outside token scope
+          content:
+            application/json:
+              examples:
+                outside_token_scope:
+                  value:
+                    error: This action is outside the authorized scopes
+              schema:
+                "$ref": "#/components/schemas/Error"
   "/api/v1/filters":
     get:
       summary: list filters
