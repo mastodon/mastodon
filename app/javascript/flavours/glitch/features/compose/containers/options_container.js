@@ -46,7 +46,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onDoodleOpen() {
-    dispatch(openModal('DOODLE', { noEsc: true }));
+    dispatch(openModal('DOODLE', { noEsc: true, noClose: true }));
   },
 });
 

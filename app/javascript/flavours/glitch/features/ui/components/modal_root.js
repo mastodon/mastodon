@@ -116,13 +116,16 @@ export default class ModalRoot extends React.PureComponent {
     this._modal = c;
   }
 
+  // prevent closing of modal when clicking the overlay
+  noop = () => {}
+
   render () {
     const { type, props, ignoreFocus } = this.props;
     const { backgroundColor } = this.state;
     const visible = !!type;
 
     return (
-      <Base backgroundColor={backgroundColor} onClose={this.handleClose} noEsc={props ? props.noEsc : false} ignoreFocus={ignoreFocus}>
+      <Base backgroundColor={backgroundColor} onClose={props && props.noClose ? this.noop : this.handleClose} noEsc={props ? props.noEsc : false} ignoreFocus={ignoreFocus}>
         {visible && (
           <>
             <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
