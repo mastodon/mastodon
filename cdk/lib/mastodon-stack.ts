@@ -145,7 +145,7 @@ export class MastodonStack extends Stack {
     const dbInstance = new rds.DatabaseInstance(this, 'db-instance', {
       vpc,
       vpcSubnets: {
-        subnetType: ec2.SubnetType.PRIVATE_WITH_NAT,
+        subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS,
       },
       engine: rds.DatabaseInstanceEngine.postgres({
         version: rds.PostgresEngineVersion.VER_13,
