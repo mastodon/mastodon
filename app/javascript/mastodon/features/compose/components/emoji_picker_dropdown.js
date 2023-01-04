@@ -327,7 +327,7 @@ class EmojiPickerDropdown extends React.PureComponent {
     this.dropdown = c;
   }
 
-  onShowDropdown = ({ target }) => {
+  onShowDropdown = () => {
     this.setState({ active: true });
 
     if (!EmojiPicker) {

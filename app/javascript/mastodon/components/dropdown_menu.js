@@ -188,7 +188,7 @@ export default class Dropdown extends React.PureComponent {
     id: id++,
   };
 
-  handleClick = ({ target, type }) => {
+  handleClick = ({ type }) => {
     if (this.state.id === this.props.openDropdownId) {
       this.handleClose();
     } else {
