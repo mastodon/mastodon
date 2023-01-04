@@ -353,6 +353,7 @@ export class MastodonStack extends Stack {
       memoryLimitMiB: 1024,
       serviceName: 'mastodon',
       taskDefinition: mastodonTask,
+      enableExecuteCommand: true, // enables remote execution w/ ECS Exec - TODO - disable for prod? Q: do we need to add other permisions, or will CDK take care of it? 
     });
     
     loadBalancedFargateService.targetGroup.configureHealthCheck({
