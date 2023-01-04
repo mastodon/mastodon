@@ -712,13 +712,13 @@ components:
     Conversation:
       description: Represents a conversation with "direct message" visibility.
       properties:
+        id:
+          $ref: '#/components/schemas/StringId'
         accounts:
           description: Participants in the conversation.
           items:
             $ref: '#/components/schemas/Account'
           type: array
-        id:
-          $ref: '#/components/schemas/StringId'
         last_status:
           $ref: '#/components/schemas/Status'
           description: The last status in the conversation.
@@ -727,6 +727,11 @@ components:
           description: Is the conversation currently marked as unread?
           type: boolean
       type: object
+      required:
+        - id
+        - accounts
+        - last_status
+        - unread
     
     Credential:
       properties:
@@ -758,6 +763,11 @@ components:
           nullable: true
           type: boolean
       type: object
+      required:
+        - shortcode
+        - url
+        - static_url
+        - visible_in_picker
     
     DateTime:
       example: '2022-11-13T21:24:59.474Z'

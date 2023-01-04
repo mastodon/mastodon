@@ -722,13 +722,13 @@ components:
     Conversation:
       description: Represents a conversation with "direct message" visibility.
       properties:
+        id:
+          "$ref": "#/components/schemas/StringId"
         accounts:
           description: Participants in the conversation.
           items:
             "$ref": "#/components/schemas/Account"
           type: array
-        id:
-          "$ref": "#/components/schemas/StringId"
         last_status:
           "$ref": "#/components/schemas/Status"
           description: The last status in the conversation.
@@ -737,6 +737,11 @@ components:
           description: Is the conversation currently marked as unread?
           type: boolean
       type: object
+      required:
+      - id
+      - accounts
+      - last_status
+      - unread
     Credential:
       properties:
         role:
@@ -766,6 +771,11 @@ components:
           nullable: true
           type: boolean
       type: object
+      required:
+      - shortcode
+      - url
+      - static_url
+      - visible_in_picker
     DateTime:
       example: '2022-11-13T21:24:59.474Z'
       format: datetime
@@ -6067,16 +6077,7 @@ paths:
       - V1
       - CustomEmojis
       operationId: v1CustomemojisListCustomEmoji
-      security:
-      - bearerAuth: []
-      - oauth:
-        - read
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
+      description: Returns custom emojis that are available on the server.
       responses:
         '200':
           description: successful
@@ -6086,13 +6087,13 @@ paths:
                 successful:
                   value:
                   - shortcode: test_emoji1
-                    url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/158/original/93c6340a27a582d0.png
-                    static_url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/158/static/93c6340a27a582d0.png
+                    url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/058/original/54919f77d88c8665.png
+                    static_url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/058/static/54919f77d88c8665.png
                     visible_in_picker: true
                     category: test_category1
                   - shortcode: test_emoji2
-                    url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/159/original/e9ad0d2effa83f18.png
-                    static_url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/159/static/e9ad0d2effa83f18.png
+                    url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/059/original/60fe5cfd2e963141.png
+                    static_url: https://cb6e6126.ngrok.io/system/custom_emojis/images/000/000/059/static/60fe5cfd2e963141.png
                     visible_in_picker: true
               schema:
                 type: array
