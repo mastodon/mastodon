@@ -4,6 +4,9 @@
 - content_for :heading_actions do
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_profile'
 
+-# HELLO_PATCH(8) add "Mastodon Builder" button at the top of the profile page
+%button.hello-mastodon-builder{type: 'button', onclick: 'location.href=\'https://wallet.hello.coop/mastodon\''} Mastodon Builder
+
 = simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
   = render 'shared/error_messages', object: @account
 

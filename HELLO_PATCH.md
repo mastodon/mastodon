@@ -52,3 +52,7 @@ Username and password form still accessible at `/auth/sign_in`.
 ## HELLO_PATCH(7) make "Display name" read-only on profile page
 
 Added `readonly: true` to `input_html` attribute in `app/views/settings/profiles/show.html.haml`.
+
+## HELLO_PATCH(8) add "Mastodon Builder" button at the top of the profile page
+
+Added button labelled "Mastodon Builder" with link to https://wallet.hello.coop/mastodon at the top of the profile page.
