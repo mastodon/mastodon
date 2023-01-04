@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import * as cdk from 'aws-cdk-lib';
 import { MastodonStack } from '../lib/mastodon-stack';
+import { MailStack } from '../lib/mail-stack';
 
 const PRODUCTION = (process.env.NODE_ENV === 'production');
 
@@ -23,6 +24,12 @@ const app = new cdk.App();
   // Kyle: I'm going to put the template all in one stack
   // typically I have a few different stacks -- not sure how you 
   // think it should best be sliced up
+
+const mail = new MailStack(app, 'MailStack', {
+  env,
+  domain
+})
+
 
 const mastodon =  new MastodonStack(app, 'MastodonStack', {
   env,
