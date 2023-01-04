@@ -26,20 +26,6 @@ class FeedManager
   # long as people keep reblogging it.
   VIRAL_CACHE = 5
 
-  # When a reblog A is deduplicated, that is done so because another reblog B
-  # has already been inserted into the timeline.
-  #
-  # When that reblog B is removed from the timeline (through unfollowing a user
-  # for example), we try to find another reblog (such as A) to put in its
-  # place.
-  #
-  # For that we maintain a set of reblogs per original status. This constant
-  # controls the maximum set size.
-  #
-  # Note that those sets are only maintained for the REBLOG_FALLOFF busiest
-  # reblogs, therefore it's unclear to me whether this is all that useful?
-  MAX_BACKUP_REBLOGS = 5
-
   # Execute block for every active account
   # @yield [Account]
   # @return [void]
