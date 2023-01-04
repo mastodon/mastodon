@@ -48,3 +48,7 @@ No link to `/auth/sign_in` with username and password form and OIDC button, dire
 "Sign in with Hello".
 
 Username and password form still accessible at `/auth/sign_in`.
+
+## HELLO_PATCH(7) make "Display name" read-only on profile page
+
+Added `readonly: true` to `input_html` attribute in `app/views/settings/profiles/show.html.haml`.
