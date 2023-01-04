@@ -344,13 +344,13 @@ export class MastodonStack extends Stack {
     const loadBalancedFargateService = new ApplicationLoadBalancedFargateService(this, 'webFargate', {
       circuitBreaker: { rollback: true },
       cluster : cluster,
-      cpu: 512,
+      cpu: 1024,
       desiredCount: 1,
       domainName: albHost,
       domainZone: zone,
       certificate: albCertificate,
       loadBalancerName: 'mastodon',
-      memoryLimitMiB: 1024,
+      memoryLimitMiB: 3072,
       serviceName: 'mastodon',
       taskDefinition: mastodonTask,
       enableExecuteCommand: true, // enables remote execution w/ ECS Exec - TODO - disable for prod? Q: do we need to add other permisions, or will CDK take care of it? 
