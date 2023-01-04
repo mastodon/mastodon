@@ -39,6 +39,12 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reblog, bob)).to be false
       end
 
+      it 'returns true for post from who blocked me' do
+        status = Fabricate(:status, text: 'Hello, World', account: alice)
+        alice.block!(bob)
+        expect(FeedManager.instance.filter?(:home, status, bob)).to be true
+      end
+
       it 'returns true for reblog by followee of blocked account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
