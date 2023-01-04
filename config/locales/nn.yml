@@ -829,25 +829,29 @@ nn:
         not_trendable: Kunne ikke vises under trender
         not_usable: Kan ikke brukes
         peaked_on_and_decaying: Nådde toppen %{date}, nå på vei ned
+        title: Populære emneknagger
+        trendable: Kan vises under trender
+        trending_rank: 'Trender #%{rank}'
         usable: Kan brukes
+        usage_comparison: Brukt %{today} ganger i dag, sammenlignet med %{yesterday} i går
         used_by_over_week:
-          one: Brukt av en person i løpet av siste uke
-          other: Brukes av %{count} personer i løpet av den siste uken
-      title: Trend
+          one: Brukt av én person i løpet av den seneste uken
+          other: Brukt av %{count} personer i løpet av den seneste uken
+      title: Trender
       trending: Trender
     warning_presets:
       add_new: Legg til ny
       delete: Slett
       edit_preset: Endr åtvaringsoppsett
-      empty: Du har ikke definert noen forhåndsinnstillinger for varsler enda.
+      empty: Du har ikke definert noen forhåndsinnstillinger for advarsler enda.
       title: Handsam åtvaringsoppsett
     webhooks:
       add_new: Legg til endepunkt
       delete: Slett
-      description_html: En <strong>webhook</strong> gjør det mulig for Mastodon å dytte <strong>varsler i sanntid</strong> om utvalgte arrangementer til din egen applikasjon, Derfor kan søknaden din <strong>utløse reaksjoner</strong> automatisk.
+      description_html: En <strong>webhook</strong> gjør det mulig for Mastodon å sende <strong>varsler i sanntid</strong> om utvalgte hendelser til din egen applikasjon, sånn at applikasjonen din kan <strong>reagere automatisk</strong>.
       disable: Deaktiver
       disabled: Deaktivert
-      edit: Rediger sluttpunkt
+      edit: Rediger endepunkt
       empty: Du har ingen webhook-endepunkter konfigurert ennå.
       enable: Aktiver
       enabled: Aktiv
@@ -855,7 +859,12 @@ nn:
         one: 1 aktivert hendelse
         other: "%{count} aktiverte hendelser"
       events: Hendelser
+      new: Ny webhook
+      rotate_secret: Roter hemmelighet
+      secret: Hemmelighet for signering
       status: Status
+      title: Webhooker
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
@@ -865,7 +874,7 @@ nn:
         none: en advarsel
         sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
-        suspend: for å avslutte kontoen
+        suspend: for å suspendere kontoen deres
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
