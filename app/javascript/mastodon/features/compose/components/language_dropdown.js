@@ -34,6 +34,7 @@ class LanguageDropdownMenu extends React.PureComponent {
 
   state = {
     searchValue: '',
+    placement: 'bottom',
   };
 
   handleDocumentClick = e => {
@@ -284,12 +285,16 @@ class LanguageDropdown extends React.PureComponent {
     return this.target;
   }
 
+  handleOverlayEnter = (state) => {
+    this.setState({ placement: state.placement });
+  }
+
   render () {
     const { value, intl, frequentlyUsedLanguages } = this.props;
-    const { open } = this.state;
+    const { open, placement } = this.state;
 
     return (
-      <div className={classNames('privacy-dropdown', { active: open })}>
+      <div className={classNames('privacy-dropdown', placement, { active: open })}>
         <div className='privacy-dropdown__value' ref={this.setTargetRef} >
           <TextIconButton
             className='privacy-dropdown__value-icon'
@@ -300,7 +305,7 @@ class LanguageDropdown extends React.PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement }) => (
             <div {...props} style={{ ...props.style, width: 280 }}>
               <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >

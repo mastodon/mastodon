@@ -149,6 +149,7 @@ class PrivacyDropdown extends React.PureComponent {
 
   state = {
     open: false,
+    placement: 'bottom',
   };
 
   handleToggle = () => {
@@ -236,15 +237,19 @@ class PrivacyDropdown extends React.PureComponent {
     return this.target;
   }
 
+  handleOverlayEnter = (state) => {
+    this.setState({ placement: state.placement });
+  }
+
   render () {
     const { value, container, disabled, intl } = this.props;
-    const { open } = this.state;
+    const { open, placement } = this.state;
 
     const valueOption = this.options.find(item => item.value === value);
 
     return (
-      <div className={classNames('privacy-dropdown', { active: open })} onKeyDown={this.handleKeyDown}>
-        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === 0 })} ref={this.setTargetRef}>
+      <div className={classNames('privacy-dropdown', placement, { active: open })} onKeyDown={this.handleKeyDown}>
+        <div className={classNames('privacy-dropdown__value', { active: this.options.indexOf(valueOption) === (placement === 'bottom' ? 0 : (this.options.length - 1)) })} ref={this.setTargetRef}>
           <IconButton
             className='privacy-dropdown__value-icon'
             icon={valueOption.icon}
@@ -261,7 +266,7 @@ class PrivacyDropdown extends React.PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed' }}>
+        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement }) => (
             <div {...props} style={{ ...props.style, width: 350, maxWidth: '100vw' }}>
               <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
