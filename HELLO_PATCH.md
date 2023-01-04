@@ -56,3 +56,13 @@ Added `readonly: true` to `input_html` attribute in `app/views/settings/profiles
 ## HELLO_PATCH(8) add "Mastodon Builder" button at the top of the profile page
 
 Added button labelled "Mastodon Builder" with link to https://wallet.hello.coop/mastodon at the top of the profile page.
+
+## HELLO_PATCH(9) remove Security section on Account settings page (/auth/edit)
+
+This removes the email and password editing functionality.
+
+Should revisit for a more nuanced approach, should probably enable for admin account(s) and/or accounts that do have a
+password set.
+
+The method to revisit is `use_seamless_external_login?`. Currently this method returns `true` only for PAM and LDAP
+authentication, disconnected from the similar `omniauth_only?`
