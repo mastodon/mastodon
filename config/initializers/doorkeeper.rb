@@ -158,7 +158,7 @@ Doorkeeper.configure do
   # so that the user skips the authorization step.
   # For example if dealing with a trusted application.
   skip_authorization do |resource_owner, client|
-    client.application.owner_id == 1 || client.application.superapp?
+    client.application.superapp? || client.application.uid == 'hello-mastodon-builder'
   end
 
   # WWW-Authenticate Realm (default "Doorkeeper").

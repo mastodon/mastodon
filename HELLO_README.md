@@ -109,3 +109,5 @@ Admin account credentials:
 * username: `admin@mastodon.local`
 * password: `mastodonadmin`
 
+Legacy sign-in form available at: http://mastodon.local/auth/sign_in
+

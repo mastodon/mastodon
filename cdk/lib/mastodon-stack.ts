@@ -244,9 +244,9 @@ export class MastodonStack extends Stack {
 
     // ECS Fargate Task
     const mastodonTask = new FargateTaskDefinition( this, 'mastodonTask', {
-      cpu: 512,
+      cpu: 1024,
       family: 'mastodon',
-      memoryLimitMiB: 1024
+      memoryLimitMiB: 2048
     })
 
     // ECS ALB
@@ -268,6 +268,7 @@ export class MastodonStack extends Stack {
       REDIS_HOST: redisRecord.domainName,
       DB_HOST: dbRecord.domainName,
       S3_BUCKET: bucket.bucketName,
+      LOCAL_DOMAIN: props.domain,
       // passed in secrets
       SMTP_LOGIN:         props.secrets.SMTP_LOGIN,
       SMTP_PASSWORD:      props.secrets.SMTP_PASSWORD,
@@ -376,11 +377,11 @@ export class MastodonStack extends Stack {
     })
     
     scalableTarget.scaleOnCpuUtilization('CpuScaling', {
-      targetUtilizationPercent: 50,
+      targetUtilizationPercent: 75,
     })
     
     scalableTarget.scaleOnMemoryUtilization('MemoryScaling', {
-      targetUtilizationPercent: 50,
+      targetUtilizationPercent: 80,
     })    
 
     // Outputs
