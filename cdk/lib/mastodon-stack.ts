@@ -259,6 +259,10 @@ export class MastodonStack extends Stack {
     // Mastodon tasks
     const dbSecret = secretsmanager.Secret.fromSecretCompleteArn(this, "dbSecret", dbInstance.secret?.secretArn!);
 
+
+// TODO - switch to using
+//   environmentFiles: [ ecs.EnvironmentFile.fromAsset('./xxx.env') https://docs.aws.amazon.com/cdk/api/v2/docs/aws-cdk-lib.aws_ecs.EnvironmentFile.html
+
     const  environment = {
       AWS_ACCESS_KEY_ID: accessKey.accessKeyId,
       REDIS_HOST: redisRecord.domainName,
