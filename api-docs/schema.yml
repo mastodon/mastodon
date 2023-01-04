@@ -11,150 +11,273 @@ servers:
 security:
 - bearerAuth: []
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-    oauth:
-      type: oauth2
-      flows:
-        authorizationCode:
-          authorizationUrl: "/oauth/authorize"
-          tokenUrl: "/oauth/token"
-          scopes:
-            read: |
-              Grants access to read data.
-              Requesting read will also grant child scopes shown in the left column of the table below.
-            write: |
-              Grants access to write data.
-              Requesting write will also grant child scopes shown in the right column of the table below.
-            follow: "Grants access to manage relationships.  \nRequesting follow will
-              also grant the following child scopes, shown in bold in the table:\n\nread:blocks,
-              write:blocks\nread:follows, write:follows\nread:mutes, write:mutes\n"
-            push: |
-              Grants access to [Web Push API subscriptions](https://docs.joinmastodon.org/methods/notifications/push/).
-              Added in Mastodon 2.4.0.
-            admin:read: |
-              - admin:read:accounts
-              - admin:read:reports
-              Used for moderation API. Added in Mastodon 2.9.1.
-            admin:write: |
-              - admin:write:accounts
-              - admin:write:reports
-              Used for moderation API. Added in Mastodon 2.9.1.
-            read:accounts: Read accounts
-            write:accounts: Write accounts
-            read:blocks: Read blocks
-            write:blocks: Write blocks
-            read:bookmarks: Read bookmarks
-            write:bookmarks: Write bookmarks
-            write:conversations: Write conversations
-            read:favourites: Read favourites
-            write:favourites: Write favourites
-            read:filters: Read filters
-            write:filters: Write filters
-            read:follows: Read follows
-            write:follows: Write follows
-            read:lists: Read lists
-            write:lists: Write lists
-            write:media: Write media
-            read:mutes: Read mutes
-            write:mutes: Write mutes
-            read:notifications: Read notifications
-            write:notifications: Write notifications
-            write:reports: Write reports
-            read:search: Read search
-            read:statuses: Read statuses
-            write:statuses: Write statuses
-            admin:read:accounts: Admin read accounts
-            admin:write:accounts: Admin write accounts
-            admin:read:reports: Admin read reports
-            admin:write:reports: Admin write reports
   schemas:
-    Admin::Account:
-      type: object
-      description: Admin-level information about a given account.
+    Account:
+      description: 'Represents a user of Mastodon and their associated profile.
+
+        '
       properties:
+        acct:
+          description: "The Webfinger account URI. \nEqual to username for local users,
+            or username@domain for remote users.\n"
+          example: bob@example.com
+          type: string
+        avatar:
+          description: An image icon that is shown next to statuses and in the profile.
+          type: string
+        avatar_static:
+          description: "A static version of the `avatar`. \nEqual to `avatar` if its
+            value is a static image; different if `avatar` is an animated GIF.\n"
+          type: string
+        bot:
+          description: "A presentational flag.  \nIndicates that the account may perform
+            automated actions, may not be monitored, or identifies as a robot.\n"
+          type: boolean
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+        discoverable:
+          description: Whether the account has opted into discovery features such
+            as the profile directory.
+          type: boolean
+        display_name:
+          description: The display name to use for the profile.
+          type: string
+        emojis:
+          description: "Custom emoji entities to be used when rendering the profile.
+            \nIf none, an empty array will be returned.\n"
+          items:
+            "$ref": "#/components/schemas/CustomEmoji"
+          type: array
+        fields:
+          description: Additional metadata attached to a profile as name-value pairs.
+          items:
+            "$ref": "#/components/schemas/AccountField"
+          type: array
+        followers_count:
+          description: The reported followers of this profile.
+          type: integer
+        following_count:
+          description: The reported follows of this profile.
+          type: integer
+        group:
+          nullable: true
+          type: boolean
+        header:
+          description: An image banner that is shown above the profile and in profile
+            cards.
+          type: string
+        header_static:
+          description: "A static version of the `header`. \nEqual to `header` if its
+            value is a static image; different if `header` is an animated GIF.\n"
+          type: string
         id:
           "$ref": "#/components/schemas/StringId"
-        username:
+        last_status_at:
+          description: When the most recent status was posted.
+          example: '2022-11-13'
+          format: date
+          nullable: true
           type: string
+        locked:
+          description: Whether the account manually approves follow requests.
+          nullable: true
+          type: boolean
+        moved:
+          "$ref": "#/components/schemas/Account"
+          description: 'Indicates that the profile is currently inactive and that
+            its user has moved to a new account.
+
+            '
+        noindex:
+          type: boolean
+        note:
+          description: The profile's bio / description.
+          type: string
+        silenced:
+          type: boolean
+        source:
+          "$ref": "#/components/schemas/Source"
+        statuses_count:
+          description: How many statuses are attached to this account.
+          type: integer
+        suspended:
+          type: boolean
+        url:
+          description: The location of the user's profile page.
+          nullable: true
+          type: string
+        username:
           description: The username of the account, not including domain.
+          type: string
+      required:
+      - id
+      - username
+      - acct
+      - url
+      type: object
+    AccountField:
+      allOf:
+      - "$ref": "#/components/schemas/Field"
+      - properties:
+          verified_at:
+            type: string
+        type: object
+      required:
+      - name
+      - value
+    AccountUpdateCredentialsParams:
+      example:
+        avatar: ''
+        bot: false
+        discoverable: true
+        display_name: Jane Doe
+        fields_attributes:
+        - name: Location
+          value: Nowhere
+        - name: Occupation
+          value: Sourcerer
+        header: ''
+        locked: false
+        note: The bio
+        source:
+          language: en
+          privacy: public
+          sensitive: false
+      properties:
+        avatar:
+          description: Avatar image encoded using multipart/form-data
+          type: string
+        bot:
+          description: "A presentational flag.  \nIndicates that the account may perform
+            automated actions, may not be monitored, or identifies as a robot.\n"
+          type: boolean
+        discoverable:
+          description: Whether the account has opted into discovery features such
+            as the profile directory.
+          type: boolean
+        display_name:
+          description: The display name to use for the profile.
+          type: string
+        fields_attributes:
+          items:
+            "$ref": "#/components/schemas/Field"
+          type: array
+        header:
+          description: Avatar image encoded using multipart/form-data
+          type: string
+        locked:
+          description: Whether the account manually approves follow requests.
+          nullable: true
+          type: boolean
+        note:
+          description: The profile's bio / description.
+          type: string
+        source:
+          "$ref": "#/components/schemas/SourceParam"
+      type: object
+    Admin::Account:
+      description: Admin-level information about a given account.
+      properties:
+        account:
+          "$ref": "#/components/schemas/Account"
+          description: User-level information about the account.
+        approved:
+          description: Whether the account is currently approved.
+          type: boolean
+        confirmed:
+          description: Whether the account has confirmed their email address.
+          type: boolean
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+        created_by_application_id:
+          "$ref": "#/components/schemas/StringId"
+          description: The ID of the Application that created this account, if applicable.
+        disabled:
+          description: Whether the account is currently disabled.
+          type: boolean
         domain:
           description: The domain of the account, if it is remote.
           nullable: true
           type: string
-        created_at:
-          "$ref": "#/components/schemas/DateTime"
         email:
           description: The email address associated with the account.
           type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+        invite_request:
+          description: The reason given when requesting an invite (for instances that
+            require manual approval of registrations)
+          nullable: true
+          type: string
+        invited_by_account_id:
+          "$ref": "#/components/schemas/StringId"
+          description: The ID of the Account that invited this user, if applicable.
         ip:
           description: The IP address last used to login to this account.
-          type: string
           nullable: true
+          type: string
         ips:
           description: All known IP addresses associated with this account.
-          type: array
           items:
             type: string
+          type: array
         locale:
           description: "The locale of the account.  \nISO 639 Part 1 two-letter language
             code\n"
           pattern: "[a-z]{2}"
           type: string
-        invite_request:
-          description: The reason given when requesting an invite (for instances that
-            require manual approval of registrations)
-          type: string
-          nullable: true
         role:
-          description: The current role of the account.
           "$ref": "#/components/schemas/Role"
-        confirmed:
-          description: Whether the account has confirmed their email address.
-          type: boolean
-        approved:
-          description: Whether the account is currently approved.
-          type: boolean
-        disabled:
-          description: Whether the account is currently disabled.
-          type: boolean
+          description: The current role of the account.
         silenced:
           description: Whether the account is currently silenced.
           type: boolean
         suspended:
           description: Whether the account is currently suspended.
           type: boolean
-        account:
-          description: User-level information about the account.
-          "$ref": "#/components/schemas/Account"
-        created_by_application_id:
-          description: The ID of the Application that created this account, if applicable.
-          "$ref": "#/components/schemas/StringId"
-        invited_by_account_id:
-          description: The ID of the Account that invited this user, if applicable.
-          "$ref": "#/components/schemas/StringId"
+        username:
+          description: The username of the account, not including domain.
+          type: string
+      type: object
     Admin::CanonicalEmailBlock:
       description: Represents a canonical email block (hashed).
-      type: object
       properties:
-        id:
-          description: The ID of the email block in the database.
-          type: string
-          example: '2'
         canonical_email_hash:
           description: The SHA256 hash of the canonical email address.
-          type: string
           example: b344e55d11b3fc25d0d53194e0475838bf17e9be67ce3e6469956222d9a34f9c
+          type: string
+        id:
+          description: The ID of the email block in the database.
+          example: '2'
+          type: string
+      type: object
+    Admin::Cohort:
+      description: Represents a retention metric.
+      properties:
+        data:
+          description: Retention data for users who registered during the given period.
+          items:
+            "$ref": "#/components/schemas/Admin::CohortData"
+          type: array
+        frequency:
+          description: |
+            The size of the bucket for the returned data.
+            - `'day'` : Daily buckets
+            - `'month'` : Monthly buckets
+          enum:
+          - day
+          - month
+          type: string
+        period:
+          description: The timestamp for the start of the period, at midnight.
+      type: object
     Admin::CohortData:
       description: Retention data for users who registered during the given period.
-      type: object
       properties:
         date:
           description: The timestamp for the start of the bucket, at midnight.
-          type: string
           format: datetime
+          type: string
         rate:
           description: The percentage rate of users who registered in the specified
             `period` and were active for the given `date` bucket.
@@ -163,91 +286,86 @@ components:
           description: How many users registered in the specified `period` and were
             active for the given `date` bucket.
           type: integer
-    Admin::Cohort:
-      description: Represents a retention metric.
       type: object
-      properties:
-        period:
-          description: The timestamp for the start of the period, at midnight.
-        frequency:
-          description: |
-            The size of the bucket for the returned data.
-            - `'day'` : Daily buckets
-            - `'month'` : Monthly buckets
-          type: string
-          enum:
-          - day
-          - month
-        data:
-          description: Retention data for users who registered during the given period.
-          type: array
-          items:
-            "$ref": "#/components/schemas/Admin::CohortData"
-    Admin::Dimension::Data:
-      description: The data available for the requested dimension.
-      type: object
-      properties:
-        key:
-          description: The unique keystring for this data item.
-          type: string
-          example: postgresql
-        human_key:
-          description: A human-readable key for this data item.
-          type: string
-          example: PostgreSQL
-        value:
-          description: The value for this data item.
-          type: string
-          example: '14924935'
-        unit:
-          description: The units associated with this data item's value, if applicable.
-          type: string
-          example: bytes
-        human_value:
-          description: A human-readable formatted value for this data item.
-          type: string
-          example: 14.2 MB
     Admin::Dimension:
       description: Represents qualitative data about the server.
-      type: object
       properties:
-        key:
-          description: The unique keystring for the requested dimension.
-          type: string
-          example: space_usage
         data:
           description: The data available for the requested dimension.
-          type: array
           items:
             "$ref": "#/components/schemas/Admin::Dimension::Data"
+          type: array
+        key:
+          description: The unique keystring for the requested dimension.
+          example: space_usage
+          type: string
+      type: object
+    Admin::Dimension::Data:
+      description: The data available for the requested dimension.
+      properties:
+        human_key:
+          description: A human-readable key for this data item.
+          example: PostgreSQL
+          type: string
+        human_value:
+          description: A human-readable formatted value for this data item.
+          example: 14.2 MB
+          type: string
+        key:
+          description: The unique keystring for this data item.
+          example: postgresql
+          type: string
+        unit:
+          description: The units associated with this data item's value, if applicable.
+          example: bytes
+          type: string
+        value:
+          description: The value for this data item.
+          example: '14924935'
+          type: string
+      type: object
     Admin::DomainAllow:
       description: Represents a domain allowed to federate.
-      type: object
       properties:
-        id:
-          description: The ID of the DomainAllow in the database.
-          "$ref": "#/components/schemas/StringId"
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: When the domain was allowed to federate.
         domain:
           description: The domain that is allowed to federate.
-          type: string
           example: mastodon.social
-        created_at:
-          description: When the domain was allowed to federate.
-          "$ref": "#/components/schemas/DateTime"
+          type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+          description: The ID of the DomainAllow in the database.
+      type: object
     Admin::DomainBlock:
       description: Represents a domain limited from federating.
-      type: object
       properties:
-        id:
-          description: The ID of the DomainBlock in the database.
-          "$ref": "#/components/schemas/StringId"
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: When the domain was blocked from federating.
         domain:
           description: The domain that is not allowed to federate.
-          type: string
           example: example.com
-        created_at:
-          description: When the domain was blocked from federating.
-          "$ref": "#/components/schemas/DateTime"
+          type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+          description: The ID of the DomainBlock in the database.
+        obfuscate:
+          description: Whether to obfuscate public displays of this domain block
+          type: boolean
+        private_comment:
+          nullable: true
+          type: string
+        public_comment:
+          nullable: true
+          type: string
+        reject_media:
+          description: Whether to reject media attachments from this domain
+          type: boolean
+        reject_reports:
+          description: Whether to reject reports from this domain
+          type: boolean
         severity:
           description: |
             The policy to be applied by this domain block.
@@ -255,86 +373,81 @@ components:
             `silence` = Account statuses from this domain will be hidden by default
             `suspend` = All incoming data from this domain will be rejected
             `noop` = Do nothing. Allows for rejecting media or reports
-          type: string
           enum:
           - silence
           - suspend
           - noop
-        reject_media:
-          description: Whether to reject media attachments from this domain
-          type: boolean
-        reject_reports:
-          description: Whether to reject reports from this domain
-          type: boolean
-        private_comment:
           type: string
-          nullable: true
-        public_comment:
-          type: string
-          nullable: true
-        obfuscate:
-          description: Whether to obfuscate public displays of this domain block
-          type: boolean
+      type: object
     Admin::EmailDomainBlock:
       description: Represents an email domain that cannot be used to sign up.
-      type: object
       properties:
-        id:
-          description: The ID of the DomainBlock in the database.
-          "$ref": "#/components/schemas/StringId"
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: When the email domain was disallowed from signups.
         domain:
           description: The email domain that is not allowed to be used for signups.
-          type: string
           example: foo.com
-        created_at:
-          description: When the email domain was disallowed from signups.
-          "$ref": "#/components/schemas/DateTime"
+          type: string
         history:
           description: Usage statistics for given days (typically the past week).
-          type: array
           items:
-            type: object
             properties:
-              day:
-                description: UNIX timestamp on midnight of the given day.
-                type: string
-                pattern: "[0-9]+"
-                example: '1668556800'
               accounts:
                 description: The counted accounts signup attempts using that email
                   domain within that day.
-                type: string
-                pattern: "[0-9]+"
                 example: '0'
+                pattern: "[0-9]+"
+                type: string
+              day:
+                description: UNIX timestamp on midnight of the given day.
+                example: '1668556800'
+                pattern: "[0-9]+"
+                type: string
               uses:
                 description: The counted IP signup attempts of that email domain within
                   that day.
-                type: string
-                pattern: "[0-9]+"
                 example: '0'
+                pattern: "[0-9]+"
+                type: string
+            type: object
+          type: array
+        id:
+          "$ref": "#/components/schemas/StringId"
+          description: The ID of the DomainBlock in the database.
+      type: object
     Admin::Ip:
       description: Represents an IP address associated with a user.
-      type: object
       properties:
         ip:
           description: The IP address.
-          type: string
           example: 192.168.42.1
+          type: string
         used_at:
+          "$ref": "#/components/schemas/DateTime"
           description: The timestamp of when the IP address was last used for this
             account.
-          "$ref": "#/components/schemas/DateTime"
+      type: object
     Admin::IpBlock:
       description: Represents an IP address range that cannot be used to sign up.
-      type: object
       properties:
+        comment:
+          description: The recorded reason for this IP block.
+          type: string
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: When the IP block was created.
+        expires_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: When the IP block will expire.
+          nullable: true
         id:
-          description: The ID of the DomainBlock in the database.
           "$ref": "#/components/schemas/StringId"
+          description: The ID of the DomainBlock in the database.
         ip:
           description: The IP address range that is not allowed to federate.
-          type: string
           example: 8.8.8.8/32
+          type: string
         severity:
           description: |
             The associated policy with this IP block.
@@ -342,78 +455,77 @@ components:
             `sign_up_requires_approval` = Any signup from this IP range will create a pending account
             `sign_up_block` = Any signup from this IP range will be rejected
             `no_access` = Any activity from this IP range will be rejected entirely
-          type: string
           enum:
           - sign_up_requires_approval
           - sign_up_block
           - no_access
-        comment:
-          description: The recorded reason for this IP block.
           type: string
-        created_at:
-          description: When the IP block was created.
-          "$ref": "#/components/schemas/DateTime"
-        expires_at:
-          description: When the IP block will expire.
-          nullable: true
-          "$ref": "#/components/schemas/DateTime"
+      type: object
     Admin::Measure:
       description: Represents quantitative data about the server.
-      type: object
       properties:
-        key:
-          description: The unique keystring for this data item.
-          type: string
-          example: instance_media_attachments
-        unit:
-          description: The units associated with this data item’s value, if applicable.
-          type: string
-          example: bytes
-          nullable: true
-        total:
-          description: The value for this data item.
-          type: string
-          pattern: "[0-9]+"
-          example: '14924935'
+        data:
+          description: The data available for the requested measure, split into daily
+            buckets.
+          items:
+            properties:
+              date:
+                "$ref": "#/components/schemas/DateTime"
+                description: Midnight on the requested day in the time period.
+              value:
+                description: The numeric value for the requested measure.
+                example: '0'
+                pattern: "[0-9]+"
+                type: string
+            type: object
+          type: array
         human_value:
           description: A human-readable formatted value for this data item.
-          type: string
           nullable: true
+          type: string
+        key:
+          description: The unique keystring for this data item.
+          example: instance_media_attachments
+          type: string
         previous_total:
           description: "The numeric total associated with the requested measure, in
             the previous period. \nPrevious period is calculated by subtracting the
             start_at and end_at dates, \nthen offsetting both start and end dates
             backwards by the length of the time period.\n"
           nullable: true
-          type: string
           pattern: "[0-9]+"
-        data:
-          description: The data available for the requested measure, split into daily
-            buckets.
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                description: Midnight on the requested day in the time period.
-                "$ref": "#/components/schemas/DateTime"
-              value:
-                description: The numeric value for the requested measure.
-                type: string
-                pattern: "[0-9]+"
-                example: '0'
+          type: string
+        total:
+          description: The value for this data item.
+          example: '14924935'
+          pattern: "[0-9]+"
+          type: string
+        unit:
+          description: The units associated with this data item’s value, if applicable.
+          example: bytes
+          nullable: true
+          type: string
+      type: object
     Admin::Report:
       description: Admin-level information about a filed report.
-      type: object
       properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
+        account:
+          "$ref": "#/components/schemas/Admin::Account"
+          description: The account which filed the report.
         action_taken:
           description: Whether an action was taken to resolve this report.
           type: boolean
         action_taken_at:
-          description: When an action was taken, if this report is currently resolved.
           "$ref": "#/components/schemas/DateTime"
+          description: When an action was taken, if this report is currently resolved.
+          nullable: true
+        action_taken_by_account:
+          "$ref": "#/components/schemas/Admin::Account"
+          description: The account of the moderator who handled the report.
+          nullable: true
+        assigned_account:
+          "$ref": "#/components/schemas/Admin::Account"
+          description: The account of the moderator assigned to this report.
           nullable: true
         category:
           description: |
@@ -422,316 +534,329 @@ components:
             `spam` = Malicious, fake, or repetitive content
             `violation` = Violates one or more specific rules
             `other` = The default (catch-all) category
-          type: string
           enum:
           - spam
           - violation
           - other
+          type: string
         comment:
           description: An optional reason for reporting.
           type: string
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
         forwarded:
           description: Whether a report was forwarded to a remote instance.
           type: boolean
-        created_at:
-          "$ref": "#/components/schemas/DateTime"
-        updated_at:
-          "$ref": "#/components/schemas/DateTime"
-        account:
-          description: The account which filed the report.
-          "$ref": "#/components/schemas/Admin::Account"
-        target_account:
-          description: The account being reported.
-          "$ref": "#/components/schemas/Admin::Account"
-        assigned_account:
-          description: The account of the moderator assigned to this report.
-          "$ref": "#/components/schemas/Admin::Account"
-          nullable: true
-        action_taken_by_account:
-          description: The account of the moderator who handled the report.
-          "$ref": "#/components/schemas/Admin::Account"
-          nullable: true
-        statuses:
-          description: Statuses attached to the report, for context.
-          type: array
-          items:
-            "$ref": "#/components/schemas/Status"
+        id:
+          "$ref": "#/components/schemas/StringId"
         rules:
           description: Rules attached to the report, for context.
-          type: array
           items:
             "$ref": "#/components/schemas/Rule"
-    Account:
-      description: 'Represents a user of Mastodon and their associated profile.
-
-        '
+          type: array
+        statuses:
+          description: Statuses attached to the report, for context.
+          items:
+            "$ref": "#/components/schemas/Status"
+          type: array
+        target_account:
+          "$ref": "#/components/schemas/Admin::Account"
+          description: The account being reported.
+        updated_at:
+          "$ref": "#/components/schemas/DateTime"
       type: object
+    Announcement:
+      description: Represents an announcement set by an administrator.
+      properties:
+        all_day:
+          description: Whether the announcement should start and end on dates only
+            instead of datetimes. Will be false if there is no starts_at or ends_at
+            time.
+          type: boolean
+        content:
+          description: The text of the announcement.
+          type: string
+        emojis:
+          description: Custom emoji used in the announcement text.
+          items:
+            "$ref": "#/components/schemas/CustomEmoji"
+          type: array
+        ends_at:
+          description: When the announcement will end.
+          nullable: true
+          type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+          description: The announcement id.
+        mentions:
+          description: Accounts mentioned in the announcement text.
+          items:
+            "$ref": "#/components/schemas/Announcement::Account"
+          type: array
+        published:
+          description: Whether the announcement is currently active.
+          type: boolean
+        published_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: When the announcement was published.
+        reactions:
+          description: Emoji reactions attached to the announcement.
+          items:
+            "$ref": "#/components/schemas/Reaction"
+          type: array
+        read:
+          description: Whether the announcement has been read by the user.
+          nullable: true
+          type: boolean
+        starts_at:
+          description: When the announcement will start.
+          nullable: true
+          type: string
+        statuses:
+          description: Statuses linked in the announcement text.
+          items:
+            "$ref": "#/components/schemas/Announcement::Status"
+          type: array
+        tags:
+          description: Tags linked in the announcement text.
+          items:
+            "$ref": "#/components/schemas/Status::Tag"
+          type: array
+        updated_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: When the announcement was last updated.
+      type: object
+    Announcement::Account:
+      properties:
+        acct:
+          description: 'The webfinger acct: URI of the mentioned user. Equivalent
+            to username for local users, or `username@domain` for remote users.
+
+            '
+          type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+          description: The account ID of the mentioned user.
+        url:
+          description: The location of the mentioned user's profile.
+          type: string
+        username:
+          description: The username of the mentioned user.
+          type: string
+      type: object
+    Announcement::Status:
       properties:
         id:
           "$ref": "#/components/schemas/StringId"
-        username:
-          type: string
-          description: The username of the account, not including domain.
-        acct:
-          type: string
-          example: bob@example.com
-          description: "The Webfinger account URI. \nEqual to username for local users,
-            or username@domain for remote users.\n"
-        display_name:
-          description: The display name to use for the profile.
-          type: string
-        note:
-          type: string
-          description: The profile's bio / description.
-        fields:
-          description: Additional metadata attached to a profile as name-value pairs.
-          type: array
-          items:
-            "$ref": "#/components/schemas/AccountField"
         url:
+          description: The URL of an attached Status.
           type: string
-          description: The location of the user's profile page.
-          nullable: true
-        avatar:
-          type: string
-          description: An image icon that is shown next to statuses and in the profile.
-        avatar_static:
-          type: string
-          description: "A static version of the `avatar`. \nEqual to `avatar` if its
-            value is a static image; different if `avatar` is an animated GIF.\n"
-        header:
-          type: string
-          description: An image banner that is shown above the profile and in profile
-            cards.
-        header_static:
-          type: string
-          description: "A static version of the `header`. \nEqual to `header` if its
-            value is a static image; different if `header` is an animated GIF.\n"
-        followers_count:
-          type: integer
-          description: The reported followers of this profile.
-        following_count:
-          type: integer
-          description: The reported follows of this profile.
-        statuses_count:
-          type: integer
-          description: How many statuses are attached to this account.
-        source:
-          "$ref": "#/components/schemas/Source"
-        moved:
-          description: 'Indicates that the profile is currently inactive and that
-            its user has moved to a new account.
-
-            '
-          "$ref": "#/components/schemas/Account"
-        emojis:
-          description: "Custom emoji entities to be used when rendering the profile.
-            \nIf none, an empty array will be returned.\n"
-          type: array
-          items:
-            "$ref": "#/components/schemas/CustomEmoji"
-        created_at:
-          "$ref": "#/components/schemas/DateTime"
-        last_status_at:
-          type: string
-          format: date
-          example: '2022-11-13'
-          nullable: true
-          description: When the most recent status was posted.
-        bot:
-          type: boolean
-          description: "A presentational flag.  \nIndicates that the account may perform
-            automated actions, may not be monitored, or identifies as a robot.\n"
-        suspended:
-          type: boolean
-        silenced:
-          type: boolean
-        noindex:
-          type: boolean
-        discoverable:
-          type: boolean
-          description: Whether the account has opted into discovery features such
-            as the profile directory.
-        locked:
-          type: boolean
-          nullable: true
-          description: Whether the account manually approves follow requests.
-        group:
-          type: boolean
-          nullable: true
-      required:
-      - id
-      - username
-      - acct
-      - url
-    AccountUpdateCredentialsParams:
       type: object
-      properties:
-        display_name:
-          description: The display name to use for the profile.
-          type: string
-        note:
-          type: string
-          description: The profile's bio / description.
-        locked:
-          type: boolean
-          nullable: true
-          description: Whether the account manually approves follow requests.
-        discoverable:
-          type: boolean
-          description: Whether the account has opted into discovery features such
-            as the profile directory.
-        bot:
-          type: boolean
-          description: "A presentational flag.  \nIndicates that the account may perform
-            automated actions, may not be monitored, or identifies as a robot.\n"
-        avatar:
-          description: Avatar image encoded using multipart/form-data
-          type: string
-        header:
-          description: Avatar image encoded using multipart/form-data
-          type: string
-        fields_attributes:
-          type: array
-          items:
-            "$ref": "#/components/schemas/Field"
-        source:
-          "$ref": "#/components/schemas/SourceParam"
-      example:
-        display_name: Jane Doe
-        note: The bio
-        avatar: ''
-        header: ''
-        locked: false
-        discoverable: true
-        bot: false
-        fields_attributes:
-        - name: Location
-          value: Nowhere
-        - name: Occupation
-          value: Sourcerer
-        source:
-          privacy: public
-          sensitive: false
-          language: en
     Application:
       description: Represents an application that interfaces with the REST API to
         access accounts or post statuses.
-      type: object
       properties:
-        name:
-          type: string
-          description: The name of your application.
-        website:
-          type: string
-          description: The website associated with your application.
+        client_id:
+          description: Client ID key, to be used for obtaining OAuth tokens
           nullable: true
-        vapid_key:
           type: string
+        client_secret:
+          description: Client secret key, to be used for obtaining OAuth tokens
+          nullable: true
+          type: string
+        name:
+          description: The name of your application.
+          type: string
+        vapid_key:
           description: 'Used for Push Streaming API. Returned with POST /api/v1/apps.
             Equivalent to WebPushSubscription#server_key
 
             '
-        client_id:
           type: string
-          description: Client ID key, to be used for obtaining OAuth tokens
+        website:
+          description: The website associated with your application.
           nullable: true
-        client_secret:
           type: string
-          description: Client secret key, to be used for obtaining OAuth tokens
-          nullable: true
       required:
       - name
       - vapid_key
+      type: object
+    ApplicationRequestBody:
+      properties:
+        client_name:
+          description: A name for your application
+          type: string
+        redirect_uris:
+          description: |
+            Where the user should be redirected after authorization.
+
+            To display the authorization code to the user instead of redirecting to a web page,
+            use urn:ietf:wg:oauth:2.0:oob in this parameter.
+          type: string
+        scopes:
+          description: Space separated list of scopes. If none is provided, defaults
+            to read.
+          type: string
+        website:
+          description: A URL to the homepage of your app
+          type: string
+      required:
+      - client_name
+      - redirect_uris
+      type: object
+    Context:
+      description: Represents the tree around a given status. Used for reconstructing
+        threads of statuses.
+      properties:
+        ancestors:
+          description: Parents in the thread.
+          items:
+            "$ref": "#/components/schemas/Status"
+          type: array
+        descendants:
+          description: Children in the thread.
+          items:
+            "$ref": "#/components/schemas/Status"
+          type: array
+      type: object
+    Conversation:
+      description: Represents a conversation with "direct message" visibility.
+      properties:
+        accounts:
+          description: Participants in the conversation.
+          items:
+            "$ref": "#/components/schemas/Account"
+          type: array
+        id:
+          "$ref": "#/components/schemas/StringId"
+        last_status:
+          "$ref": "#/components/schemas/Status"
+          description: The last status in the conversation.
+          nullable: true
+        unread:
+          description: Is the conversation currently marked as unread?
+          type: boolean
+      type: object
+    Credential:
+      properties:
+        role:
+          "$ref": "#/components/schemas/Role"
+        source:
+          "$ref": "#/components/schemas/Source"
+      type: object
     CustomEmoji:
       description: Represents a custom emoji.
-      type: object
       properties:
-        shortcode:
-          type: string
-          description: The name of the custom emoji.
-        url:
-          type: string
-          description: A link to the custom emoji.
-        static_url:
-          type: string
-          nullable: true
-          description: A link to a static copy of the custom emoji.
-        visible_in_picker:
-          type: boolean
-          nullable: true
-          description: Whether this Emoji should be visible in the picker or unlisted.
         category:
-          type: string
-          nullable: true
           description: Used for sorting custom emoji in the picker.
+          nullable: true
+          type: string
+        shortcode:
+          description: The name of the custom emoji.
+          type: string
+        static_url:
+          description: A link to a static copy of the custom emoji.
+          nullable: true
+          type: string
+        url:
+          description: A link to the custom emoji.
+          type: string
+        visible_in_picker:
+          description: Whether this Emoji should be visible in the picker or unlisted.
+          nullable: true
+          type: boolean
+      type: object
+    DateTime:
+      example: '2022-11-13T21:24:59.474Z'
+      format: datetime
+      type: string
     DomainBlock:
       description: Represents a domain that is blocked by the instance.
-      type: object
       properties:
-        domain:
+        comment:
+          description: An optional reason for the domain block.
+          nullable: true
           type: string
+        digest:
+          description: The SHA256 hash digest of the domain string.
+          type: string
+        domain:
           description: The domain which is blocked. This may be obfuscated or partially
             censored.
-        digest:
           type: string
-          description: The SHA256 hash digest of the domain string.
         severity:
           description: |
             The level to which the domain is blocked.
 
             `silence` = Users from this domain will be hidden from timelines, threads, and notifications (unless you follow the user).
             `suspend` = Incoming messages from this domain will be rejected and dropped entirely.
-          type: string
           enum:
           - silence
           - suspend
-        comment:
           type: string
-          description: An optional reason for the domain block.
-          nullable: true
       required:
       - domain
       - digest
       - severity
-    Error:
       type: object
+    Error:
       properties:
         error:
-          type: string
           description: The error message.
-        error_description:
           type: string
+        error_description:
           description: A longer description of the error, mainly provided with the
             OAuth API.
           nullable: true
+          type: string
       required:
       - error
-    ExtendedDescription:
       type: object
+    ExtendedDescription:
       properties:
         content:
-          type: string
           description: The rendered HTML content of the extended description.
+          type: string
         updated_at:
           "$ref": "#/components/schemas/DateTime"
       required:
       - content
       - updated_at
-    FamiliarFollowers:
       type: object
+    FamiliarFollowers:
       description: Represents a subset of your follows who also follow some other
         user.
       properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
         accounts:
           description: Accounts you follow that also follow this account.
-          type: array
           items:
             "$ref": "#/components/schemas/Account"
-    Field:
+          type: array
+        id:
+          "$ref": "#/components/schemas/StringId"
       type: object
+    FeaturedTag:
+      description: Represents a hashtag that is featured on a profile.
+      properties:
+        id:
+          "$ref": "#/components/schemas/StringId"
+        last_status_at:
+          description: The timestamp of the last authored status containing this hashtag.
+          format: date
+          nullable: true
+          type: string
+        name:
+          description: The name of the hashtag being featured.
+          type: string
+        statuses_count:
+          description: The number of authored statuses containing this hashtag.
+          pattern: "[0-9]+"
+          type: string
+        url:
+          description: A link to all statuses by a user that contain this hashtag.
+          type: string
+      type: object
+    Field:
       properties:
         name:
           type: string
@@ -740,121 +865,747 @@ components:
       required:
       - name
       - value
-    AccountField:
-      allOf:
-      - "$ref": "#/components/schemas/Field"
-      - type: object
-        properties:
-          verified_at:
-            type: string
-      required:
-      - name
-      - value
-    SourceParam:
       type: object
+    Filter:
+      description: Represents a user-defined filter for determining which statuses
+        should not be shown to the user.
       properties:
-        privacy:
+        context:
           description: |
-            The default post privacy to be used for new statuses.
+            The contexts in which the filter should be applied.
 
-            public = Public post
-            unlisted = Unlisted post
-            private = Followers-only post
-            direct = Direct post
-          type: string
+            `home` = home timeline and lists
+            `notifications` = notifications timeline
+            `public` = public timelines
+            `thread` = expanded thread of a detailed status
+            `account` = when viewing a profile
           enum:
-          - private
+          - home
+          - notifications
           - public
-          - unlisted
-          - direct
-          nullable: true
-        sensitive:
-          description: Whether new statuses should be marked sensitive by default.
-          type: boolean
-          nullable: true
-        language:
-          description: The default posting language for new statuses.
+          - thread
+          - account
           type: string
-          pattern: "[a-z]{2}"
-          nullable: true
-    Source:
-      description: "Represents display or publishing preferences of user's own account.
-        \ \nReturned as an additional entity when verifying and updated credentials,
-        as an attribute of Account.\n"
-      allOf:
-      - "$ref": "#/components/schemas/SourceParam"
-      - type: object
-        properties:
-          note:
-            description: Profile bio.
-            type: string
-          fields:
-            description: Metadata about the account.
-            type: array
-            items:
-              "$ref": "#/components/schemas/AccountField"
-          follow_requests_count:
-            description: The number of pending follow requests.
-            type: integer
-            nullable: true
-    Credential:
-      type: object
-      properties:
-        role:
-          "$ref": "#/components/schemas/Role"
-        source:
-          "$ref": "#/components/schemas/Source"
-    Context:
-      description: Represents the tree around a given status. Used for reconstructing
-        threads of statuses.
-      type: object
-      properties:
-        ancestors:
-          type: array
-          description: Parents in the thread.
+        expires_at:
+          description: When the filter should no longer be applied.
+          type: string
+        filter_action:
+          description: |
+            The action to be taken when a status matches this filter.
+
+            `warn` = show a warning that identifies the matching filter by `title`, and allow the user to expand the filtered status. This is the default (and unknown values should be treated as equivalent to `warn`).
+            `hide` = do not show this status if it is received
+          enum:
+          - warn
+          - hide
+          type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+        keywords:
+          description: The keywords grouped under this filter.
           items:
-            "$ref": "#/components/schemas/Status"
-        descendants:
+            "$ref": "#/components/schemas/FilterKeyword"
           type: array
-          description: Children in the thread.
+        statuses:
+          description: The statuses grouped under this filter.
           items:
-            "$ref": "#/components/schemas/Status"
-    Conversation:
-      description: Represents a conversation with "direct message" visibility.
+            "$ref": "#/components/schemas/FilterStatus"
+          type: array
+        title:
+          description: A title given by the user to name the filter.
+          type: string
       type: object
+    FilterKeyword:
+      description: Represents a keyword that, if matched, should cause the filter
+        action to be taken.
       properties:
         id:
           "$ref": "#/components/schemas/StringId"
-        unread:
-          description: Is the conversation currently marked as unread?
+        keyword:
+          description: The phrase to be matched against.
+          type: string
+        whole_word:
+          description: |
+            Should the filter consider word boundaries?
+            See [implementation guidelines for filters](https://docs.joinmastodon.org/api/guidelines/#filters).
           type: boolean
-        accounts:
-          description: Participants in the conversation.
-          type: array
+      type: object
+    FilterStatus:
+      description: Represents a status ID that, if matched, should cause the filter
+        action to be taken.
+      properties:
+        id:
+          "$ref": "#/components/schemas/StringId"
+        status_id:
+          "$ref": "#/components/schemas/StringId"
+          description: The ID of the filtered Status in the database.
+      type: object
+    IdentityProof:
+      deprecated: true
+      description: Represents a proof from an external identity provider.
+      properties: {}
+      type: object
+    Instance:
+      description: Represents the software instance of Mastodon running on this domain.
+      properties:
+        configuration:
+          description: Configured values and limits for this website.
+          properties:
+            accounts:
+              description: Limits related to accounts.
+              properties:
+                max_featured_tags:
+                  description: The maximum number of featured tags allowed for each
+                    account.
+                  type: integer
+              type: object
+            media_attachments:
+              description: Hints for which attachments will be accepted.
+              properties:
+                image_matrix_limit:
+                  description: The maximum number of pixels (width times height) for
+                    image uploads.
+                  type: integer
+                image_size_limit:
+                  description: The maximum size of any uploaded image, in bytes.
+                  type: integer
+                supported_mime_types:
+                  description: Contains MIME types that can be uploaded.
+                  items:
+                    type: string
+                  type: array
+                video_frame_rate_limit:
+                  description: The maximum frame rate for any uploaded video.
+                  type: integer
+                video_matrix_limit:
+                  description: The maximum number of pixels (width times height) for
+                    video uploads.
+                  type: integer
+                video_size_limit:
+                  description: The maximum size of any uploaded video, in bytes.
+                  type: integer
+              type: object
+            polls:
+              properties:
+                max_characters_per_option:
+                  description: Each poll option is allowed to have this many characters.
+                  type: integer
+                max_expiration:
+                  description: The longest allowed poll duration, in seconds.
+                  type: integer
+                max_options:
+                  description: Each poll is allowed to have up to this many options.
+                  type: integer
+                min_expiration:
+                  description: The shortest allowed poll duration, in seconds.
+                  type: integer
+              type: object
+            statuses:
+              description: Limits related to authoring statuses.
+              properties:
+                characters_reserved_per_url:
+                  description: Each URL in a status will be assumed to be exactly
+                    this many characters.
+                  type: integer
+                max_characters:
+                  description: The maximum number of allowed characters per status.
+                  type: integer
+                max_media_attachments:
+                  description: The maximum number of media attachments that can be
+                    added to a status.
+                  type: integer
+              type: object
+            translation:
+              description: Hints related to translation.
+              properties:
+                enabled:
+                  description: Whether the Translations API is available on this instance.
+                  type: boolean
+              type: object
+            urls:
+              description: URLs of interest for clients apps.
+              properties:
+                streaming_api:
+                  description: The Websockets URL for connecting to the streaming
+                    API.
+                  type: string
+              type: object
+          type: object
+        contact:
+          description: Hints related to contacting a representative of the website.
+          properties:
+            account:
+              "$ref": "#/components/schemas/Account"
+              description: An account that can be contacted natively over the network
+                regarding inquiries or issues.
+            email:
+              type: string
+          type: object
+        description:
+          description: A short, plain-text description defined by the admin.
+          type: string
+        domain:
+          description: The domain name of the instance.
+          type: string
+        languages:
+          description: Primary languages of the website and its staff.
           items:
-            "$ref": "#/components/schemas/Account"
-        last_status:
+            description: "(ISO 639-1 two-letter code)"
+            pattern: "[a-z]{2}"
+            type: string
+          type: array
+        registrations:
+          description: Information about registering for this website.
+          properties:
+            approval_required:
+              description: Whether registrations require moderator approval.
+              type: boolean
+            enabled:
+              description: Whether registrations are enabled.
+              type: boolean
+            message:
+              description: A custom message to be shown when registrations are closed.
+              nullable: true
+              type: string
+          type: object
+        rules:
+          description: An itemized list of rules for this website.
+          items:
+            "$ref": "#/components/schemas/Rule"
+          type: array
+        source_url:
+          description: The URL for the source code of the software running on this
+            instance, in keeping with AGPL license requirements.
+          type: string
+        thumbnail:
+          description: An image used to represent this instance.
+          properties:
+            blurhash:
+              description: |
+                A hash computed by [the BlurHash algorithm](https://github.com/woltapp/blurhash),
+                for generating colorful preview thumbnails when media has not been downloaded yet.
+              nullable: true
+              type: string
+            url:
+              description: The URL for the thumbnail image.
+              type: string
+            versions:
+              nullable: true
+              properties:
+                "@1x":
+                  description: The URL for the thumbnail image at 1x resolution.
+                  type: string
+                "@2x":
+                  description: The URL for the thumbnail image at 2x resolution.
+                  type: string
+              type: object
+          required:
+          - url
+          type: object
+        title:
+          description: The title of the website.
+          type: string
+        usage:
+          description: Usage data for this instance.
+          properties:
+            users:
+              description: Usage data related to users on this instance.
+              properties:
+                active_month:
+                  description: The number of active users in the past 4 weeks.
+                  type: integer
+              type: object
+          type: object
+        version:
+          description: The version of Mastodon installed on the instance.
+          type: string
+      type: object
+    List:
+      description: Represents a list of some users that the authenticated user follows.
+      properties:
+        id:
+          "$ref": "#/components/schemas/StringId"
+        replies_policy:
+          description: |
+            `followed` = Show replies to any followed user
+            `list` = Show replies to members of the list
+            `none` = Show replies to no one
+          enum:
+          - followed
+          - list
+          - none
+          type: string
+        title:
+          description: The user-defined title of the list.
+          type: string
+      type: object
+    Marker:
+      description: Represents the last read position within a user's timelines.
+      properties:
+        last_read_id:
+          "$ref": "#/components/schemas/StringId"
+          description: The ID of the most recently viewed entity.
+        updated_at:
+          "$ref": "#/components/schemas/DateTime"
+        version:
+          description: An incrementing counter, used for locking to prevent write
+            conflicts.
+          type: integer
+      type: object
+    MediaAttachment:
+      description: Represents a file or media attachment that can be added to a status.
+      properties:
+        blurhash:
+          description: "A hash computed by [the BlurHash algorithm](https://github.com/woltapp/blurhash),
+            \nfor generating colorful preview thumbnails when media has not been downloaded
+            yet.\n"
+          type: string
+        description:
+          description: Alternate text that describes what is in the media attachment,
+            to be used for the visually impaired or when media attachments do not
+            load.
+          type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+        meta:
+          description: "Metadata returned by Paperclip.\n\nMay contain subtrees small
+            and original, as well as various other top-level properties.\n\nMore importantly,
+            there may be another topl-level focus Hash object on images as of 2.3.0,
+            \nwith coordinates can be used for smart thumbnail cropping - see Focal
+            points for cropped media thumbnails for more.\n"
+          type: string
+        preview_remote_url:
           nullable: true
-          description: The last status in the conversation.
+          type: string
+        preview_url:
+          description: The location of a scaled-down preview of the attachment.
+          nullable: true
+          type: string
+        remote_url:
+          description: The location of the full-size original attachment on the remote
+            website.
+          nullable: true
+          type: string
+        text_url:
+          deprecated: true
+          description: A shorter URL for the attachment.
+          nullable: true
+          type: string
+        type:
+          description: |
+            The type of the attachment.
+            `unknown` = unsupported or unrecognized file type
+            `image` = Static image
+            `gifv` = Looping, soundless animation
+            `video` = Video clip
+            `audio` = Audio track
+          enum:
+          - image
+          - gifv
+          - video
+          - unknown
+          - audio
+          type: string
+        url:
+          description: The location of the original full-size attachment.
+          nullable: true
+          type: string
+      required:
+      - id
+      - type
+      type: object
+    Mention:
+      properties:
+        acct:
+          type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+        url:
+          nullable: true
+          type: string
+        username:
+          type: string
+      type: object
+    Notification:
+      description: Represents a notification of an event relevant to the user.
+      properties:
+        account:
+          "$ref": "#/components/schemas/Account"
+          description: The account that performed the action that generated the notification.
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+        id:
+          "$ref": "#/components/schemas/StringId"
+        report:
+          "$ref": "#/components/schemas/Report"
+          description: |
+            Report that was the object of the notification.
+            Attached when type of the notification is `admin.report`.
+        status:
           "$ref": "#/components/schemas/Status"
+          description: "Status that was the object of the notification.\nAttached
+            when type of the notification is \n`favourite`, `reblog`, `status`, `mention`,
+            `poll`, or `update`.\n"
+        type:
+          description: |
+            The type of event that resulted in the notification.
+
+            `mention` = Someone mentioned you in their status
+            `status` = Someone you enabled notifications for has posted a status
+            `reblog` = Someone boosted one of your statuses
+            `follow` = Someone followed you
+            `follow_request` = Someone requested to follow you
+            `favourite` = Someone favourited one of your statuses
+            `poll` = A poll you have voted in or created has ended
+            `update` = A status you interacted with has been edited
+            `admin.sign_up` = Someone signed up (optionally sent to admins)
+            `admin.report` = A new report has been filed
+          enum:
+          - mention
+          - status
+          - reblog
+          - follow
+          - follow_request
+          - favourite
+          - poll
+          - update
+          - admin.sign_up
+          - admin.report
+          type: string
+      type: object
+    Poll:
+      description: Represents a poll attached to a status.
+      properties:
+        emojis:
+          items:
+            "$ref": "#/components/schemas/CustomEmoji"
+          type: array
+        expired:
+          description: Is the poll currently expired?
+          type: boolean
+        expires_at:
+          "$ref": "#/components/schemas/DateTime"
+        id:
+          "$ref": "#/components/schemas/StringId"
+        multiple:
+          description: Does the poll allow multiple-choice answers?
+          type: boolean
+        options:
+          description: Possible answers for the poll.
+          properties:
+            title:
+              description: The text value of the poll option.
+              type: string
+            votes_count:
+              description: The total number of received votes for this option.
+              nullable: true
+              type: integer
+          type: object
+        own_votes:
+          description: |
+            When called with a user token, which options has the authorized user chosen?
+
+            Contains an array of index values for options.
+          items:
+            "$ref": "#/components/schemas/PollVote"
+          type: array
+        voted:
+          description: When called with a user token, has the authorized user voted?
+          nullable: true
+          type: boolean
+        voters_count:
+          description: How many unique accounts have voted on a multiple-choice poll.
+          type: integer
+        votes_count:
+          description: How many votes have been received.
+          type: string
+      required:
+      - id
+      type: object
+    PollVote:
+      properties:
+        actor:
+          type: string
+        id:
+          "$ref": "#/components/schemas/StringId"
+        object:
+          properties:
+            attributed_to:
+              type: string
+            id:
+              type: string
+            in_reply_to:
+              type: string
+            name:
+              type: string
+            to:
+              type: string
+            type:
+              type: string
+          type: object
+        to:
+          type: string
+        type:
+          type: string
+      type: object
+    Preferences:
+      description: Represents a user's preferences.
+      properties:
+        posting:default:language:
+          description: "Default language for new posts. \nEquivalent to CredentialAccount#source[language]\n(ISO
+            639-1 language two-letter code)\n"
+          nullable: true
+          pattern: "[a-z]{2}"
+          type: string
+        posting:default:sensitive:
+          description: Default sensitivity flag for new posts. Equivalent to CredentialAccount#source[sensitive].
+          type: boolean
+        posting:default:visibility:
+          description: |
+            Default visibility for new posts. Equivalent to CredentialAccount#source[privacy].
+
+            `public` = Public post
+            `unlisted` = Unlisted post
+            `private` = Followers-only post
+            `direct` = Direct post
+          enum:
+          - public
+          - unlisted
+          - private
+          - direct
+          type: string
+        reading:expand:media:
+          description: |
+            Whether media attachments should be automatically displayed or blurred/hidden.
+
+            `default` = Hide media marked as sensitive
+            `show_all` = Always show all media by default, regardless of sensitivity
+            `hide_all` = Always hide all media by default, regardless of sensitivity
+          enum:
+          - default
+          - show_all
+          - hide_all
+          type: string
+        reading:expand:spoilers:
+          description: 'Whether CWs should be expanded by default.
+
+            '
+          type: boolean
+      type: object
+    PreviewCard:
+      description: 'Represents a rich preview card that is generated using OpenGraph
+        tags from a URL.
+
+        '
+      properties:
+        author_name:
+          description: The author of the original resource.
+          type: string
+        author_url:
+          description: A link to the author of the original resource.
+          type: string
+        blurhash:
+          description: |
+            A hash computed by [the BlurHash algorithm](https://github.com/woltapp/blurhash),
+            for generating colorful preview thumbnails when media has not been downloaded yet.
+          nullable: true
+          type: string
+        description:
+          description: Description of preview.
+          type: string
+        embed_url:
+          description: Used for photo embeds, instead of custom `html`.
+          type: string
+        height:
+          anyOf:
+          - pattern: "[0-9]+"
+            type: string
+          - type: integer
+          description: Height of preview, in pixels.
+        html:
+          description: HTML to be used for generating the preview card.
+          type: string
+        image:
+          description: Preview thumbnail.
+          nullable: true
+          type: string
+        provider_name:
+          description: The provider of the original resource.
+          type: string
+        provider_url:
+          description: A link to the provider of the original resource.
+          type: string
+        title:
+          description: Title of linked resource.
+          type: string
+        type:
+          description: |
+            The type of the preview card.
+            `link` = Link OEmbed
+            `photo` = Photo OEmbed
+            `video` = Video OEmbed
+            `rich` = iframe OEmbed. Not currently accepted, so won't show up in practice.
+          enum:
+          - link
+          - photo
+          - video
+          - rich
+          type: string
+        url:
+          description: Location of linked resource.
+          type: string
+        width:
+          anyOf:
+          - pattern: "[0-9]+"
+            type: string
+          - type: integer
+          description: Width of preview, in pixels.
+      type: object
+    PreviewCardLink:
+      allOf:
+      - "$ref": "#/components/schemas/PreviewCard"
+      - properties:
+          history:
+            items:
+              "$ref": "#/components/schemas/TrendHistory"
+            type: array
+        type: object
+    Reaction:
+      description: Represents an announcement set by an administrator.
+      properties:
+        count:
+          description: The total number of users who have added this reaction.
+          type: integer
+        me:
+          description: 'If there is a currently authorized user: Have you added this
+            reaction?'
+          type: boolean
+        name:
+          description: The emoji used for the reaction. Either a unicode emoji, or
+            a custom emoji's shortcode.
+          type: string
+        static_url:
+          description: 'If the reaction is a custom emoji: A link to a non-animated
+            version of the custom emoji.
+
+            '
+          type: string
+        url:
+          description: 'If the reaction is a custom emoji: A link to the custom emoji.
+
+            '
+          type: string
+      type: object
+    Relationship:
+      description: Represents the relationship between accounts, such as following
+        / blocking / muting / etc.
+      properties:
+        blocked_by:
+          description: Is this user blocking you?
+          type: boolean
+        blocking:
+          description: Are you blocking this user?
+          type: boolean
+        domain_blocking:
+          description: Are you blocking this user's domain?
+          type: boolean
+        endorsed:
+          description: Are you featuring this user on your profile?
+          type: boolean
+        followed_by:
+          description: Are you followed by this user?
+          type: boolean
+        following:
+          description: Are you following this user?
+          type: boolean
+        id:
+          "$ref": "#/components/schemas/StringId"
+          description: The account id.
+        languages:
+          deprecated: true
+          description: dead attribute defined in REST::RelationshipSerializer
+          nullable: true
+        muting:
+          description: Are you muting this user?
+          type: boolean
+        muting_notifications:
+          description: Are you muting notifications from this user?
+          type: boolean
+        note:
+          description: This user's profile bio
+          type: string
+        notifying:
+          description: Have you enabled notifications for this user?
+          type: boolean
+        requested:
+          description: Do you have a pending follow request for this user?
+          type: boolean
+        showing_reblogs:
+          description: Are you receiving this user's boosts in your home timeline?
+          type: boolean
+      type: object
+    Report:
+      description: Reports filed against users and/or statuses, to be taken action
+        on by moderators.
+      properties:
+        action_taken:
+          type: boolean
+        action_taken_at:
+          "$ref": "#/components/schemas/DateTime"
+          nullable: true
+        category:
+          description: |
+            The generic reason for the report.
+
+            `spam` = Unwanted or repetitive content
+            `violation` = A specific rule was violated
+            `other` = Some other reason
+          enum:
+          - other
+          - spam
+          - violation
+          type: string
+        comment:
+          type: string
+        created_at:
+          format: datetime
+          type: string
+        forwarded:
+          description: Whether the report was forwarded to a remote domain.
+          type: boolean
+        id:
+          "$ref": "#/components/schemas/StringId"
+        rule_ids:
+          items:
+            "$ref": "#/components/schemas/StringId"
+          nullable: true
+          type: array
+        status_ids:
+          items:
+            "$ref": "#/components/schemas/StringId"
+          type: array
+        target_account:
+          "$ref": "#/components/schemas/Account"
+      type: object
     Role:
       description: Represents a custom user role that grants permissions.
-      type: object
       properties:
+        color:
+          description: The hex code assigned to this role. If no hex code is assigned,
+            the string will be empty.
+          type: string
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: The date that the role was created.
+        highlighted:
+          description: Whether the role is publicly visible as a badge on user profiles.
+          type: boolean
         id:
           description: The ID of the Role in the database.
           type: integer
         name:
           description: The name of the role.
           type: string
-        color:
-          description: The hex code assigned to this role. If no hex code is assigned,
-            the string will be empty.
-          type: string
-        position:
-          description: An index for the role's position. The higher the position,
-            the more priority the role has over other
-          type: integer
         permissions:
           description: "A bitmask that represents the sum of all permissions granted
             to the role.\n\nTo determine the permissions available to a certain role,
@@ -888,140 +1639,305 @@ components:
             their e-mail address, and reset their password.\n- `0x80000` : **Delete
             User Data**. Allows users to delete other users' data without delay.\n"
           type: integer
-        highlighted:
-          description: Whether the role is publicly visible as a badge on user profiles.
-          type: boolean
-        created_at:
-          description: The date that the role was created.
-          "$ref": "#/components/schemas/DateTime"
+        position:
+          description: An index for the role's position. The higher the position,
+            the more priority the role has over other
+          type: integer
         updated_at:
-          description: The date that the role was updated.
           "$ref": "#/components/schemas/DateTime"
-    MediaAttachment:
+          description: The date that the role was updated.
       type: object
-      description: Represents a file or media attachment that can be added to a status.
+    Rule:
+      description: Represents a rule that server users should follow.
       properties:
         id:
           "$ref": "#/components/schemas/StringId"
-        type:
+        text:
+          description: The rule to be followed.
+          type: string
+      type: object
+    ScheduledStatus:
+      description: Represents a status that will be published at a future scheduled
+        date.
+      properties:
+        id:
+          "$ref": "#/components/schemas/StringId"
+        media_attachments:
+          description: Media that will be attached when the status is posted.
+          items:
+            "$ref": "#/components/schemas/MediaAttachment"
+          type: array
+        params:
+          description: The parameters to be used when the status is posted.
+          type: object
+        scheduled_at:
+          "$ref": "#/components/schemas/DateTime"
+      type: object
+    Search:
+      description: Represents the results of a search.
+      properties:
+        accounts:
+          description: Accounts which match the given query
+          items:
+            "$ref": "#/components/schemas/Account"
+          type: array
+        hashtags:
+          description: Hashtags which match the given query
+          items:
+            "$ref": "#/components/schemas/Tag"
+          type: array
+        statuses:
+          description: Statuses which match the given query
+          items:
+            "$ref": "#/components/schemas/Status"
+          type: array
+      type: object
+    Source:
+      allOf:
+      - "$ref": "#/components/schemas/SourceParam"
+      - properties:
+          fields:
+            description: Metadata about the account.
+            items:
+              "$ref": "#/components/schemas/AccountField"
+            type: array
+          follow_requests_count:
+            description: The number of pending follow requests.
+            nullable: true
+            type: integer
+          note:
+            description: Profile bio.
+            type: string
+        type: object
+      description: "Represents display or publishing preferences of user's own account.
+        \ \nReturned as an additional entity when verifying and updated credentials,
+        as an attribute of Account.\n"
+    SourceParam:
+      properties:
+        language:
+          description: The default posting language for new statuses.
+          nullable: true
+          pattern: "[a-z]{2}"
+          type: string
+        privacy:
           description: |
-            The type of the attachment.
-            `unknown` = unsupported or unrecognized file type
-            `image` = Static image
-            `gifv` = Looping, soundless animation
-            `video` = Video clip
-            `audio` = Audio track
-          type: string
+            The default post privacy to be used for new statuses.
+
+            public = Public post
+            unlisted = Unlisted post
+            private = Followers-only post
+            direct = Direct post
           enum:
-          - image
-          - gifv
-          - video
-          - unknown
-          - audio
+          - private
+          - public
+          - unlisted
+          - direct
+          nullable: true
+          type: string
+        sensitive:
+          description: Whether new statuses should be marked sensitive by default.
+          nullable: true
+          type: boolean
+      type: object
+    Status:
+      properties:
+        account:
+          "$ref": "#/components/schemas/Account"
+        application:
+          nullable: true
+          properties:
+            name:
+              type: string
+            website:
+              type: string
+          type: object
+        bookmarked:
+          type: boolean
+        card:
+          "$ref": "#/components/schemas/PreviewCard"
+          nullable: true
+        content:
+          type: string
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+        edited_at:
+          "$ref": "#/components/schemas/DateTime"
+          nullable: true
+        emojis:
+          items:
+            "$ref": "#/components/schemas/CustomEmoji"
+          type: array
+        favourited:
+          type: boolean
+        favourites_count:
+          type: integer
+        id:
+          "$ref": "#/components/schemas/StringId"
+        in_reply_to_account_id:
+          "$ref": "#/components/schemas/StringId"
+          nullable: true
+        in_reply_to_id:
+          "$ref": "#/components/schemas/StringId"
+          nullable: true
+        language:
+          nullable: true
+          type: string
+        media_attachments:
+          items:
+            "$ref": "#/components/schemas/MediaAttachment"
+          type: array
+        mentions:
+          items:
+            "$ref": "#/components/schemas/Mention"
+          type: array
+        muted:
+          type: boolean
+        pinned:
+          type: boolean
+        poll:
+          "$ref": "#/components/schemas/Poll"
+          nullable: true
+        reblog:
+          "$ref": "#/components/schemas/Status"
+          nullable: true
+        reblogged:
+          type: boolean
+        reblogs_count:
+          type: integer
+        replies_count:
+          type: integer
+        sensitive:
+          type: boolean
+        spoiler_text:
+          type: string
+        tags:
+          items:
+            "$ref": "#/components/schemas/Tag"
+          type: array
+        text:
+          type: string
+        uri:
+          example: 3140471290b4d12608d949fc6550017a0a0d236f6a93d4b36006c69a6a09e7ca
+          type: string
         url:
-          type: string
-          description: The location of the original full-size attachment.
           nullable: true
-        preview_url:
           type: string
-          description: The location of a scaled-down preview of the attachment.
-          nullable: true
-        remote_url:
-          description: The location of the full-size original attachment on the remote
-            website.
+        visibility:
+          enum:
+          - public
+          - unlisted
+          - private
+          - direct
+          - limited
           type: string
-          nullable: true
-        preview_remote_url:
-          type: string
-          nullable: true
-        text_url:
-          type: string
-          nullable: true
-          description: A shorter URL for the attachment.
-          deprecated: true
-        meta:
-          type: string
-          description: "Metadata returned by Paperclip.\n\nMay contain subtrees small
-            and original, as well as various other top-level properties.\n\nMore importantly,
-            there may be another topl-level focus Hash object on images as of 2.3.0,
-            \nwith coordinates can be used for smart thumbnail cropping - see Focal
-            points for cropped media thumbnails for more.\n"
-        description:
-          type: string
-          description: Alternate text that describes what is in the media attachment,
-            to be used for the visually impaired or when media attachments do not
-            load.
-        blurhash:
-          type: string
-          description: "A hash computed by [the BlurHash algorithm](https://github.com/woltapp/blurhash),
-            \nfor generating colorful preview thumbnails when media has not been downloaded
-            yet.\n"
       required:
       - id
-      - type
-    Mention:
+      - created_at
+      - media_attachments
       type: object
+    Status::Tag:
       properties:
         id:
-          "$ref": "#/components/schemas/StringId"
-        username:
+          pattern: "[0-9]+"
           type: string
         url:
           type: string
-          nullable: true
-        acct:
-          type: string
-    Notification:
       type: object
-      description: Represents a notification of an event relevant to the user.
+    StatusEdit:
+      description: Represents a revision of a status that has been edited.
+      properties:
+        account:
+          "$ref": "#/components/schemas/Account"
+          description: The account that published this revision.
+        content:
+          description: The content of the status at this revision.
+          type: string
+        created_at:
+          "$ref": "#/components/schemas/DateTime"
+          description: The timestamp of when the revision was published.
+        emojis:
+          description: Any custom emoji that are used in the current revision.
+          items:
+            "$ref": "#/components/schemas/CustomEmoji"
+          type: array
+        media_attachments:
+          description: |
+            The current state of the poll options at this revision.
+
+            Note that edits changing the poll options will be collapsed together into one edit, since this action resets the poll.
+          items:
+            "$ref": "#/components/schemas/MediaAttachment"
+          type: array
+        poll:
+          description: |
+            The current state of the poll options at this revision.
+
+            Note that edits changing the poll options will be collapsed together into one edit, since this action resets the poll.
+        sensitive:
+          description: Whether the status was marked sensitive at this revision.
+          type: boolean
+        spoiler_text:
+          description: The content of the subject or content warning at this revision.
+          type: string
+      type: object
+    StatusSource:
+      description: Represents a status's source as plain text.
       properties:
         id:
           "$ref": "#/components/schemas/StringId"
-        type:
+        spoiler_text:
+          description: The plain text used to compose the status's subject or content
+            warning.
           type: string
-          description: |
-            The type of event that resulted in the notification.
-
-            `mention` = Someone mentioned you in their status
-            `status` = Someone you enabled notifications for has posted a status
-            `reblog` = Someone boosted one of your statuses
-            `follow` = Someone followed you
-            `follow_request` = Someone requested to follow you
-            `favourite` = Someone favourited one of your statuses
-            `poll` = A poll you have voted in or created has ended
-            `update` = A status you interacted with has been edited
-            `admin.sign_up` = Someone signed up (optionally sent to admins)
-            `admin.report` = A new report has been filed
-          enum:
-          - mention
-          - status
-          - reblog
-          - follow
-          - follow_request
-          - favourite
-          - poll
-          - update
-          - admin.sign_up
-          - admin.report
-        created_at:
-          "$ref": "#/components/schemas/DateTime"
-        account:
-          description: The account that performed the action that generated the notification.
-          "$ref": "#/components/schemas/Account"
-        status:
-          description: "Status that was the object of the notification.\nAttached
-            when type of the notification is \n`favourite`, `reblog`, `status`, `mention`,
-            `poll`, or `update`.\n"
-          "$ref": "#/components/schemas/Status"
-        report:
-          description: |
-            Report that was the object of the notification.
-            Attached when type of the notification is `admin.report`.
-          "$ref": "#/components/schemas/Report"
-    Tag:
+        text:
+          description: The plain text used to compose the status.
+          type: string
       type: object
+    StringId:
+      example: '10999'
+      pattern: "[0-9]+"
+      type: string
+    Suggestion:
+      properties:
+        account:
+          "$ref": "#/components/schemas/Account"
+        source:
+          description: |
+            The reason this account is being suggested.
+
+            `staff` = This account was manually recommended by your administration team
+            `past_interactions` = You have interacted with this account previously
+            `global` = This account has many reblogs, favourites, and active local followers within the last 30 days
+          enum:
+          - staff
+          - past_interactions
+          - global
+          type: string
+      type: object
+    Tag:
       description: Represents a hashtag used within the content of a status.
       properties:
+        following:
+          description: Whether the current token's authorized user is following this
+            tag.
+          nullable: true
+          type: boolean
+        history:
+          description: Usage statistics for given days (typically the past week).
+          items:
+            properties:
+              accounts:
+                description: The total of accounts using the tag within that day.
+                type: string
+              day:
+                description: UNIX timestamp on midnight of the given day.
+                type: string
+              uses:
+                description: The counted usage of the tag within that day.
+                type: string
+            type: object
+          nullable: true
+          type: array
         name:
           description: 'The value of the hashtag after the # sign.
 
@@ -1030,1030 +1946,103 @@ components:
         url:
           description: A link to the hashtag on the instance.
           type: string
-        following:
-          type: boolean
-          description: Whether the current token's authorized user is following this
-            tag.
-          nullable: true
-        history:
-          description: Usage statistics for given days (typically the past week).
-          type: array
-          nullable: true
-          items:
-            type: object
-            properties:
-              day:
-                description: UNIX timestamp on midnight of the given day.
-                type: string
-              uses:
-                type: string
-                description: The counted usage of the tag within that day.
-              accounts:
-                description: The total of accounts using the tag within that day.
-                type: string
-    FeaturedTag:
       type: object
-      description: Represents a hashtag that is featured on a profile.
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        name:
-          type: string
-          description: The name of the hashtag being featured.
-        url:
-          type: string
-          description: A link to all statuses by a user that contain this hashtag.
-        statuses_count:
-          type: string
-          pattern: "[0-9]+"
-          description: The number of authored statuses containing this hashtag.
-        last_status_at:
-          type: string
-          format: date
-          nullable: true
-          description: The timestamp of the last authored status containing this hashtag.
-    Filter:
-      type: object
-      description: Represents a user-defined filter for determining which statuses
-        should not be shown to the user.
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        title:
-          type: string
-          description: A title given by the user to name the filter.
-        context:
-          description: |
-            The contexts in which the filter should be applied.
-
-            `home` = home timeline and lists
-            `notifications` = notifications timeline
-            `public` = public timelines
-            `thread` = expanded thread of a detailed status
-            `account` = when viewing a profile
-          type: string
-          enum:
-          - home
-          - notifications
-          - public
-          - thread
-          - account
-        expires_at:
-          type: string
-          description: When the filter should no longer be applied.
-        filter_action:
-          description: |
-            The action to be taken when a status matches this filter.
-
-            `warn` = show a warning that identifies the matching filter by `title`, and allow the user to expand the filtered status. This is the default (and unknown values should be treated as equivalent to `warn`).
-            `hide` = do not show this status if it is received
-          type: string
-          enum:
-          - warn
-          - hide
-        keywords:
-          description: The keywords grouped under this filter.
-          type: array
-          items:
-            "$ref": "#/components/schemas/FilterKeyword"
-        statuses:
-          description: The statuses grouped under this filter.
-          type: array
-          items:
-            "$ref": "#/components/schemas/FilterStatus"
-    FilterStatus:
-      type: object
-      description: Represents a status ID that, if matched, should cause the filter
-        action to be taken.
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        status_id:
-          "$ref": "#/components/schemas/StringId"
-          description: The ID of the filtered Status in the database.
-    FilterKeyword:
-      type: object
-      description: Represents a keyword that, if matched, should cause the filter
-        action to be taken.
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        keyword:
-          type: string
-          description: The phrase to be matched against.
-        whole_word:
-          type: boolean
-          description: |
-            Should the filter consider word boundaries?
-            See [implementation guidelines for filters](https://docs.joinmastodon.org/api/guidelines/#filters).
-    PollVote:
-      type: object
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        type:
-          type: string
-        actor:
-          type: string
-        to:
-          type: string
-        object:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-            name:
-              type: string
-            attributed_to:
-              type: string
-            in_reply_to:
-              type: string
-            to:
-              type: string
-    Poll:
-      type: object
-      description: Represents a poll attached to a status.
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        expires_at:
-          "$ref": "#/components/schemas/DateTime"
-        expired:
-          type: boolean
-          description: Is the poll currently expired?
-        multiple:
-          type: boolean
-          description: Does the poll allow multiple-choice answers?
-        votes_count:
-          type: string
-          description: How many votes have been received.
-        voters_count:
-          type: integer
-          description: How many unique accounts have voted on a multiple-choice poll.
-        voted:
-          type: boolean
-          nullable: true
-          description: When called with a user token, has the authorized user voted?
-        own_votes:
-          description: |
-            When called with a user token, which options has the authorized user chosen?
-
-            Contains an array of index values for options.
-          type: array
-          items:
-            "$ref": "#/components/schemas/PollVote"
-        emojis:
-          type: array
-          items:
-            "$ref": "#/components/schemas/CustomEmoji"
-        options:
-          type: object
-          description: Possible answers for the poll.
-          properties:
-            title:
-              type: string
-              description: The text value of the poll option.
-            votes_count:
-              description: The total number of received votes for this option.
-              type: integer
-              nullable: true
-      required:
-      - id
-    Preferences:
-      type: object
-      description: Represents a user's preferences.
-      properties:
-        posting:default:visibility:
-          description: |
-            Default visibility for new posts. Equivalent to CredentialAccount#source[privacy].
-
-            `public` = Public post
-            `unlisted` = Unlisted post
-            `private` = Followers-only post
-            `direct` = Direct post
-          type: string
-          enum:
-          - public
-          - unlisted
-          - private
-          - direct
-        posting:default:sensitive:
-          type: boolean
-          description: Default sensitivity flag for new posts. Equivalent to CredentialAccount#source[sensitive].
-        posting:default:language:
-          type: string
-          nullable: true
-          description: "Default language for new posts. \nEquivalent to CredentialAccount#source[language]\n(ISO
-            639-1 language two-letter code)\n"
-          pattern: "[a-z]{2}"
-        reading:expand:media:
-          type: string
-          description: |
-            Whether media attachments should be automatically displayed or blurred/hidden.
-
-            `default` = Hide media marked as sensitive
-            `show_all` = Always show all media by default, regardless of sensitivity
-            `hide_all` = Always hide all media by default, regardless of sensitivity
-          enum:
-          - default
-          - show_all
-          - hide_all
-        reading:expand:spoilers:
-          type: boolean
-          description: 'Whether CWs should be expanded by default.
-
-            '
-    PreviewCard:
-      type: object
-      description: 'Represents a rich preview card that is generated using OpenGraph
-        tags from a URL.
-
-        '
-      properties:
-        url:
-          type: string
-          description: Location of linked resource.
-        title:
-          type: string
-          description: Title of linked resource.
-        description:
-          type: string
-          description: Description of preview.
-        type:
-          description: |
-            The type of the preview card.
-            `link` = Link OEmbed
-            `photo` = Photo OEmbed
-            `video` = Video OEmbed
-            `rich` = iframe OEmbed. Not currently accepted, so won't show up in practice.
-          type: string
-          enum:
-          - link
-          - photo
-          - video
-          - rich
-        author_name:
-          description: The author of the original resource.
-          type: string
-        author_url:
-          type: string
-          description: A link to the author of the original resource.
-        provider_name:
-          type: string
-          description: The provider of the original resource.
-        provider_url:
-          type: string
-          description: A link to the provider of the original resource.
-        html:
-          type: string
-          description: HTML to be used for generating the preview card.
-        width:
-          description: Width of preview, in pixels.
-          anyOf:
-          - type: string
-            pattern: "[0-9]+"
-          - type: integer
-        height:
-          description: Height of preview, in pixels.
-          anyOf:
-          - type: string
-            pattern: "[0-9]+"
-          - type: integer
-        image:
-          type: string
-          nullable: true
-          description: Preview thumbnail.
-        embed_url:
-          type: string
-          description: Used for photo embeds, instead of custom `html`.
-        blurhash:
-          type: string
-          nullable: true
-          description: |
-            A hash computed by [the BlurHash algorithm](https://github.com/woltapp/blurhash),
-            for generating colorful preview thumbnails when media has not been downloaded yet.
-    TrendHistory:
-      type: object
-      properties:
-        day:
-          type: string
-          pattern: "[0-9]+"
-        accounts:
-          type: string
-          pattern: "[0-9]+"
-        uses:
-          type: string
-          pattern: "[0-9]+"
-    PreviewCardLink:
-      allOf:
-      - "$ref": "#/components/schemas/PreviewCard"
-      - type: object
-        properties:
-          history:
-            type: array
-            items:
-              "$ref": "#/components/schemas/TrendHistory"
-    IdentityProof:
-      type: object
-      description: Represents a proof from an external identity provider.
-      deprecated: true
-      properties: {}
-    Instance:
-      type: object
-      description: Represents the software instance of Mastodon running on this domain.
-      properties:
-        domain:
-          description: The domain name of the instance.
-          type: string
-        title:
-          description: The title of the website.
-          type: string
-        version:
-          description: The version of Mastodon installed on the instance.
-          type: string
-        source_url:
-          description: The URL for the source code of the software running on this
-            instance, in keeping with AGPL license requirements.
-          type: string
-        description:
-          description: A short, plain-text description defined by the admin.
-          type: string
-        usage:
-          description: Usage data for this instance.
-          type: object
-          properties:
-            users:
-              type: object
-              description: Usage data related to users on this instance.
-              properties:
-                active_month:
-                  type: integer
-                  description: The number of active users in the past 4 weeks.
-        thumbnail:
-          description: An image used to represent this instance.
-          type: object
-          properties:
-            url:
-              type: string
-              description: The URL for the thumbnail image.
-            blurhash:
-              description: |
-                A hash computed by [the BlurHash algorithm](https://github.com/woltapp/blurhash),
-                for generating colorful preview thumbnails when media has not been downloaded yet.
-              type: string
-              nullable: true
-            versions:
-              type: object
-              nullable: true
-              properties:
-                "@1x":
-                  type: string
-                  description: The URL for the thumbnail image at 1x resolution.
-                "@2x":
-                  type: string
-                  description: The URL for the thumbnail image at 2x resolution.
-          required:
-          - url
-        languages:
-          description: Primary languages of the website and its staff.
-          type: array
-          items:
-            type: string
-            pattern: "[a-z]{2}"
-            description: "(ISO 639-1 two-letter code)"
-        configuration:
-          description: Configured values and limits for this website.
-          type: object
-          properties:
-            polls:
-              type: object
-              properties:
-                max_options:
-                  type: integer
-                  description: Each poll is allowed to have up to this many options.
-                max_characters_per_option:
-                  type: integer
-                  description: Each poll option is allowed to have this many characters.
-                min_expiration:
-                  type: integer
-                  description: The shortest allowed poll duration, in seconds.
-                max_expiration:
-                  type: integer
-                  description: The longest allowed poll duration, in seconds.
-            translation:
-              type: object
-              description: Hints related to translation.
-              properties:
-                enabled:
-                  type: boolean
-                  description: Whether the Translations API is available on this instance.
-            media_attachments:
-              type: object
-              description: Hints for which attachments will be accepted.
-              properties:
-                supported_mime_types:
-                  type: array
-                  description: Contains MIME types that can be uploaded.
-                  items:
-                    type: string
-                image_size_limit:
-                  type: integer
-                  description: The maximum size of any uploaded image, in bytes.
-                image_matrix_limit:
-                  type: integer
-                  description: The maximum number of pixels (width times height) for
-                    image uploads.
-                video_size_limit:
-                  type: integer
-                  description: The maximum size of any uploaded video, in bytes.
-                video_frame_rate_limit:
-                  type: integer
-                  description: The maximum frame rate for any uploaded video.
-                video_matrix_limit:
-                  type: integer
-                  description: The maximum number of pixels (width times height) for
-                    video uploads.
-            accounts:
-              type: object
-              description: Limits related to accounts.
-              properties:
-                max_featured_tags:
-                  type: integer
-                  description: The maximum number of featured tags allowed for each
-                    account.
-            statuses:
-              type: object
-              description: Limits related to authoring statuses.
-              properties:
-                max_characters:
-                  type: integer
-                  description: The maximum number of allowed characters per status.
-                max_media_attachments:
-                  type: integer
-                  description: The maximum number of media attachments that can be
-                    added to a status.
-                characters_reserved_per_url:
-                  type: integer
-                  description: Each URL in a status will be assumed to be exactly
-                    this many characters.
-            urls:
-              type: object
-              description: URLs of interest for clients apps.
-              properties:
-                streaming_api:
-                  type: string
-                  description: The Websockets URL for connecting to the streaming
-                    API.
-        registrations:
-          description: Information about registering for this website.
-          type: object
-          properties:
-            enabled:
-              type: boolean
-              description: Whether registrations are enabled.
-            approval_required:
-              type: boolean
-              description: Whether registrations require moderator approval.
-            message:
-              type: string
-              nullable: true
-              description: A custom message to be shown when registrations are closed.
-        contact:
-          description: Hints related to contacting a representative of the website.
-          type: object
-          properties:
-            email:
-              type: string
-            account:
-              description: An account that can be contacted natively over the network
-                regarding inquiries or issues.
-              "$ref": "#/components/schemas/Account"
-        rules:
-          description: An itemized list of rules for this website.
-          type: array
-          items:
-            "$ref": "#/components/schemas/Rule"
-    Status:
-      type: object
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        in_reply_to_id:
-          "$ref": "#/components/schemas/StringId"
-          nullable: true
-        in_reply_to_account_id:
-          "$ref": "#/components/schemas/StringId"
-          nullable: true
-        created_at:
-          "$ref": "#/components/schemas/DateTime"
-        edited_at:
-          "$ref": "#/components/schemas/DateTime"
-          nullable: true
-        sensitive:
-          type: boolean
-        spoiler_text:
-          type: string
-        visibility:
-          type: string
-          enum:
-          - public
-          - unlisted
-          - private
-          - direct
-          - limited
-        language:
-          type: string
-          nullable: true
-        uri:
-          type: string
-          example: 3140471290b4d12608d949fc6550017a0a0d236f6a93d4b36006c69a6a09e7ca
-        url:
-          type: string
-          nullable: true
-        text:
-          type: string
-        content:
-          type: string
-        replies_count:
-          type: integer
-        reblogs_count:
-          type: integer
-        favourites_count:
-          type: integer
-        favourited:
-          type: boolean
-        reblogged:
-          type: boolean
-        muted:
-          type: boolean
-        bookmarked:
-          type: boolean
-        pinned:
-          type: boolean
-        reblog:
-          "$ref": "#/components/schemas/Status"
-          nullable: true
-        account:
-          "$ref": "#/components/schemas/Account"
-        media_attachments:
-          type: array
-          items:
-            "$ref": "#/components/schemas/MediaAttachment"
-        mentions:
-          type: array
-          items:
-            "$ref": "#/components/schemas/Mention"
-        tags:
-          type: array
-          items:
-            "$ref": "#/components/schemas/Tag"
-        emojis:
-          type: array
-          items:
-            "$ref": "#/components/schemas/CustomEmoji"
-        application:
-          type: object
-          nullable: true
-          properties:
-            name:
-              type: string
-            website:
-              type: string
-        poll:
-          nullable: true
-          "$ref": "#/components/schemas/Poll"
-        card:
-          nullable: true
-          "$ref": "#/components/schemas/PreviewCard"
-      required:
-      - id
-      - created_at
-      - media_attachments
-    Report:
-      type: object
-      description: Reports filed against users and/or statuses, to be taken action
-        on by moderators.
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        action_taken:
-          type: boolean
-        action_taken_at:
-          "$ref": "#/components/schemas/DateTime"
-          nullable: true
-        category:
-          description: |
-            The generic reason for the report.
-
-            `spam` = Unwanted or repetitive content
-            `violation` = A specific rule was violated
-            `other` = Some other reason
-          type: string
-          enum:
-          - other
-          - spam
-          - violation
-        comment:
-          type: string
-        forwarded:
-          type: boolean
-          description: Whether the report was forwarded to a remote domain.
-        created_at:
-          type: string
-          format: datetime
-        status_ids:
-          type: array
-          items:
-            "$ref": "#/components/schemas/StringId"
-        rule_ids:
-          type: array
-          nullable: true
-          items:
-            "$ref": "#/components/schemas/StringId"
-        target_account:
-          "$ref": "#/components/schemas/Account"
-    List:
-      description: Represents a list of some users that the authenticated user follows.
-      type: object
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        title:
-          description: The user-defined title of the list.
-          type: string
-        replies_policy:
-          description: |
-            `followed` = Show replies to any followed user
-            `list` = Show replies to members of the list
-            `none` = Show replies to no one
-          type: string
-          enum:
-          - followed
-          - list
-          - none
-    Marker:
-      type: object
-      description: Represents the last read position within a user's timelines.
-      properties:
-        last_read_id:
-          description: The ID of the most recently viewed entity.
-          "$ref": "#/components/schemas/StringId"
-        version:
-          description: An incrementing counter, used for locking to prevent write
-            conflicts.
-          type: integer
-        updated_at:
-          "$ref": "#/components/schemas/DateTime"
-    Relationship:
-      description: Represents the relationship between accounts, such as following
-        / blocking / muting / etc.
-      type: object
-      properties:
-        id:
-          description: The account id.
-          "$ref": "#/components/schemas/StringId"
-        following:
-          description: Are you following this user?
-          type: boolean
-        requested:
-          description: Do you have a pending follow request for this user?
-          type: boolean
-        endorsed:
-          description: Are you featuring this user on your profile?
-          type: boolean
-        muting:
-          description: Are you muting this user?
-          type: boolean
-        muting_notifications:
-          description: Are you muting notifications from this user?
-          type: boolean
-        showing_reblogs:
-          description: Are you receiving this user's boosts in your home timeline?
-          type: boolean
-        notifying:
-          description: Have you enabled notifications for this user?
-          type: boolean
-        languages:
-          description: dead attribute defined in REST::RelationshipSerializer
-          deprecated: true
-          nullable: true
-        followed_by:
-          description: Are you followed by this user?
-          type: boolean
-        blocking:
-          description: Are you blocking this user?
-          type: boolean
-        blocked_by:
-          description: Is this user blocking you?
-          type: boolean
-        domain_blocking:
-          description: Are you blocking this user's domain?
-          type: boolean
-        note:
-          description: This user's profile bio
-          type: string
-    Reaction:
-      description: Represents an announcement set by an administrator.
-      type: object
-      properties:
-        name:
-          description: The emoji used for the reaction. Either a unicode emoji, or
-            a custom emoji's shortcode.
-          type: string
-        count:
-          type: integer
-          description: The total number of users who have added this reaction.
-        me:
-          type: boolean
-          description: 'If there is a currently authorized user: Have you added this
-            reaction?'
-        url:
-          type: string
-          description: 'If the reaction is a custom emoji: A link to the custom emoji.
-
-            '
-        static_url:
-          description: 'If the reaction is a custom emoji: A link to a non-animated
-            version of the custom emoji.
-
-            '
-          type: string
-    Announcement:
-      description: Represents an announcement set by an administrator.
-      type: object
-      properties:
-        id:
-          description: The announcement id.
-          "$ref": "#/components/schemas/StringId"
-        content:
-          description: The text of the announcement.
-          type: string
-        starts_at:
-          description: When the announcement will start.
-          type: string
-          nullable: true
-        ends_at:
-          description: When the announcement will end.
-          type: string
-          nullable: true
-        published:
-          description: Whether the announcement is currently active.
-          type: boolean
-        all_day:
-          description: Whether the announcement should start and end on dates only
-            instead of datetimes. Will be false if there is no starts_at or ends_at
-            time.
-          type: boolean
-        published_at:
-          description: When the announcement was published.
-          "$ref": "#/components/schemas/DateTime"
-        updated_at:
-          description: When the announcement was last updated.
-          "$ref": "#/components/schemas/DateTime"
-        read:
-          description: Whether the announcement has been read by the user.
-          type: boolean
-          nullable: true
-        mentions:
-          description: Accounts mentioned in the announcement text.
-          type: array
-          items:
-            "$ref": "#/components/schemas/Announcement::Account"
-        tags:
-          description: Tags linked in the announcement text.
-          type: array
-          items:
-            "$ref": "#/components/schemas/Status::Tag"
-        statuses:
-          description: Statuses linked in the announcement text.
-          type: array
-          items:
-            "$ref": "#/components/schemas/Announcement::Status"
-        emojis:
-          description: Custom emoji used in the announcement text.
-          type: array
-          items:
-            "$ref": "#/components/schemas/CustomEmoji"
-        reactions:
-          description: Emoji reactions attached to the announcement.
-          type: array
-          items:
-            "$ref": "#/components/schemas/Reaction"
-    Announcement::Account:
-      type: object
-      properties:
-        id:
-          description: The account ID of the mentioned user.
-          "$ref": "#/components/schemas/StringId"
-        username:
-          type: string
-          description: The username of the mentioned user.
-        url:
-          type: string
-          description: The location of the mentioned user's profile.
-        acct:
-          description: 'The webfinger acct: URI of the mentioned user. Equivalent
-            to username for local users, or `username@domain` for remote users.
-
-            '
-          type: string
-    Announcement::Status:
-      type: object
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        url:
-          description: The URL of an attached Status.
-          type: string
-    Status::Tag:
-      type: object
-      properties:
-        id:
-          type: string
-          pattern: "[0-9]+"
-        url:
-          type: string
-    ApplicationRequestBody:
-      type: object
-      properties:
-        client_name:
-          type: string
-          description: A name for your application
-        redirect_uris:
-          type: string
-          description: |
-            Where the user should be redirected after authorization.
-
-            To display the authorization code to the user instead of redirecting to a web page,
-            use urn:ietf:wg:oauth:2.0:oob in this parameter.
-        scopes:
-          type: string
-          description: Space separated list of scopes. If none is provided, defaults
-            to read.
-        website:
-          type: string
-          description: A URL to the homepage of your app
-      required:
-      - client_name
-      - redirect_uris
-    Rule:
-      description: Represents a rule that server users should follow.
-      type: object
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        text:
-          description: The rule to be followed.
-          type: string
-    ScheduledStatus:
-      description: Represents a status that will be published at a future scheduled
-        date.
-      type: object
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        scheduled_at:
-          "$ref": "#/components/schemas/DateTime"
-        params:
-          type: object
-          description: The parameters to be used when the status is posted.
-        media_attachments:
-          description: Media that will be attached when the status is posted.
-          type: array
-          items:
-            "$ref": "#/components/schemas/MediaAttachment"
-    StatusEdit:
-      description: Represents a revision of a status that has been edited.
-      type: object
-      properties:
-        content:
-          description: The content of the status at this revision.
-          type: string
-        spoiler_text:
-          description: The content of the subject or content warning at this revision.
-          type: string
-        sensitive:
-          description: Whether the status was marked sensitive at this revision.
-          type: boolean
-        created_at:
-          description: The timestamp of when the revision was published.
-          "$ref": "#/components/schemas/DateTime"
-        account:
-          description: The account that published this revision.
-          "$ref": "#/components/schemas/Account"
-        poll:
-          description: |
-            The current state of the poll options at this revision.
-
-            Note that edits changing the poll options will be collapsed together into one edit, since this action resets the poll.
-        media_attachments:
-          description: |
-            The current state of the poll options at this revision.
-
-            Note that edits changing the poll options will be collapsed together into one edit, since this action resets the poll.
-          type: array
-          items:
-            "$ref": "#/components/schemas/MediaAttachment"
-        emojis:
-          description: Any custom emoji that are used in the current revision.
-          type: array
-          items:
-            "$ref": "#/components/schemas/CustomEmoji"
-    StatusSource:
-      type: object
-      description: Represents a status's source as plain text.
-      properties:
-        id:
-          "$ref": "#/components/schemas/StringId"
-        text:
-          type: string
-          description: The plain text used to compose the status.
-        spoiler_text:
-          type: string
-          description: The plain text used to compose the status's subject or content
-            warning.
-    Suggestion:
-      type: object
-      properties:
-        source:
-          description: |
-            The reason this account is being suggested.
-
-            `staff` = This account was manually recommended by your administration team
-            `past_interactions` = You have interacted with this account previously
-            `global` = This account has many reblogs, favourites, and active local followers within the last 30 days
-          type: string
-          enum:
-          - staff
-          - past_interactions
-          - global
-        account:
-          "$ref": "#/components/schemas/Account"
     Token:
       description: Represents an OAuth token used for authenticating with the API
         and performing actions.
-      type: object
       properties:
         access_token:
           description: An OAuth token to be used for authorization.
           type: string
-        token_type:
-          type: string
-          description: The OAuth token type. Mastodon uses `Bearer` tokens.
-        scope:
-          type: string
-          description: The OAuth scopes granted by this token, space-separated.
         created_at:
           "$ref": "#/components/schemas/DateTime"
-    Search:
-      description: Represents the results of a search.
+        scope:
+          description: The OAuth scopes granted by this token, space-separated.
+          type: string
+        token_type:
+          description: The OAuth token type. Mastodon uses `Bearer` tokens.
+          type: string
       type: object
+    TrendHistory:
       properties:
         accounts:
-          description: Accounts which match the given query
-          type: array
-          items:
-            "$ref": "#/components/schemas/Account"
-        statuses:
-          description: Statuses which match the given query
-          type: array
-          items:
-            "$ref": "#/components/schemas/Status"
-        hashtags:
-          description: Hashtags which match the given query
-          type: array
-          items:
-            "$ref": "#/components/schemas/Tag"
+          pattern: "[0-9]+"
+          type: string
+        day:
+          pattern: "[0-9]+"
+          type: string
+        uses:
+          pattern: "[0-9]+"
+          type: string
+      type: object
     boolOrStrBool:
       anyOf:
       - type: boolean
-      - type: string
-        enum:
+      - enum:
         - '1'
         - '0'
         - 'true'
         - 'false'
-    StringId:
-      type: string
-      pattern: "[0-9]+"
-      example: '10999'
-    DateTime:
-      type: string
-      format: datetime
-      example: '2022-11-13T21:24:59.474Z'
-  requestBodies:
-    v1AccountsUpdateCredentials:
-      required: false
-      content:
-        application/json:
-          schema:
-            "$ref": "#/components/schemas/AccountUpdateCredentialsParams"
-  callbacks: {}
-  parameters: {}
-  responses: {}
-  examples: {}
+        type: string
+  securitySchemes:
+    bearerAuth:
+      scheme: bearer
+      type: http
+    oauth:
+      flows:
+        authorizationCode:
+          authorizationUrl: "/oauth/authorize"
+          scopes:
+            admin:read: |
+              - admin:read:accounts
+              - admin:read:reports
+              Used for moderation API. Added in Mastodon 2.9.1.
+            admin:read:accounts: Admin read accounts
+            admin:read:reports: Admin read reports
+            admin:write: |
+              - admin:write:accounts
+              - admin:write:reports
+              Used for moderation API. Added in Mastodon 2.9.1.
+            admin:write:accounts: Admin write accounts
+            admin:write:reports: Admin write reports
+            follow: "Grants access to manage relationships.  \nRequesting follow will
+              also grant the following child scopes, shown in bold in the table:\n\nread:blocks,
+              write:blocks\nread:follows, write:follows\nread:mutes, write:mutes\n"
+            push: |
+              Grants access to [Web Push API subscriptions](https://docs.joinmastodon.org/methods/notifications/push/).
+              Added in Mastodon 2.4.0.
+            read: |
+              Grants access to read data.
+              Requesting read will also grant child scopes shown in the left column of the table below.
+            read:accounts: Read accounts
+            read:blocks: Read blocks
+            read:bookmarks: Read bookmarks
+            read:favourites: Read favourites
+            read:filters: Read filters
+            read:follows: Read follows
+            read:lists: Read lists
+            read:mutes: Read mutes
+            read:notifications: Read notifications
+            read:search: Read search
+            read:statuses: Read statuses
+            write: |
+              Grants access to write data.
+              Requesting write will also grant child scopes shown in the right column of the table below.
+            write:accounts: Write accounts
+            write:blocks: Write blocks
+            write:bookmarks: Write bookmarks
+            write:conversations: Write conversations
+            write:favourites: Write favourites
+            write:filters: Write filters
+            write:follows: Write follows
+            write:lists: Write lists
+            write:media: Write media
+            write:mutes: Write mutes
+            write:notifications: Write notifications
+            write:reports: Write reports
+            write:statuses: Write statuses
+          tokenUrl: "/oauth/token"
+      type: oauth2
   headers:
     X-RateLimit-Limit:
       description: Number of requests permitted per time period
@@ -2067,7 +2056,18 @@ components:
       description: Timestamp when your rate limit will reset
       schema:
         type: string
+  requestBodies:
+    v1AccountsUpdateCredentials:
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/AccountUpdateCredentialsParams"
+      required: false
   links: {}
+  parameters: {}
+  responses: {}
+  callbacks: {}
+  examples: {}
 paths:
   "/api/v1/accounts/verify_credentials":
     get:
@@ -2097,17 +2097,17 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029432571681'
-                    username: kirby_kertzmann0
-                    acct: kirby_kertzmann0
+                    id: '109631358821078876'
+                    username: lael0
+                    acct: lael0
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@kirby_kertzmann0
+                    url: https://cb6e6126.ngrok.io/@lael0
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -2165,17 +2165,17 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029437361816'
-                    username: fermin_rutherford1
-                    acct: fermin_rutherford1
+                    id: '109631358825124043'
+                    username: tyree_schuster1
+                    acct: tyree_schuster1
                     display_name: Changed
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@fermin_rutherford1
+                    url: https://cb6e6126.ngrok.io/@tyree_schuster1
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -2242,19 +2242,19 @@ paths:
               examples:
                 lists_familiar_follows:
                   value:
-                  - id: '109430029443120147'
+                  - id: '109631358831304188'
                     accounts:
-                    - id: '109430029443120146'
-                      username: merissa3
-                      acct: merissa3
+                    - id: '109631358831304187'
+                      username: malisa3
+                      acct: malisa3
                       display_name: ''
                       locked: false
                       bot: false
                       discoverable: true
                       group: false
-                      created_at: '2022-11-30T00:00:00.000Z'
+                      created_at: '2023-01-04T00:00:00.000Z'
                       note: ''
-                      url: https://cb6e6126.ngrok.io/@merissa3
+                      url: https://cb6e6126.ngrok.io/@malisa3
                       avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -2268,7 +2268,7 @@ paths:
                       fields: []
                 no_familiar_follows:
                   value:
-                  - id: '109430029449858875'
+                  - id: '109631358838144859'
                     accounts: []
               schema:
                 type: array
@@ -2306,9 +2306,9 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '2'
+                  - id: '7'
                     name: test_featured_tag
-                    url: https://cb6e6126.ngrok.io/@roberto_batz8/tagged/test_featured_tag
+                    url: https://cb6e6126.ngrok.io/@moses8/tagged/test_featured_tag
                     statuses_count: '0'
                     last_status_at:
               schema:
@@ -2368,17 +2368,17 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029460373216'
-                    username: jody_anderson12
-                    acct: jody_anderson12
+                  - id: '109631358847331892'
+                    username: fermin12
+                    acct: fermin12
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@jody_anderson12
+                    url: https://cb6e6126.ngrok.io/@fermin12
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -2390,17 +2390,17 @@ paths:
                     noindex: false
                     emojis: []
                     fields: []
-                  - id: '109430029460373214'
-                    username: maisha10
-                    acct: maisha10
+                  - id: '109631358847331890'
+                    username: floyd10
+                    acct: floyd10
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@maisha10
+                    url: https://cb6e6126.ngrok.io/@floyd10
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -2469,17 +2469,17 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029469496712'
-                    username: anissa_nikolaus17
-                    acct: anissa_nikolaus17
+                  - id: '109631358856084965'
+                    username: israel_mcclure17
+                    acct: israel_mcclure17
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@anissa_nikolaus17
+                    url: https://cb6e6126.ngrok.io/@israel_mcclure17
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -2491,17 +2491,17 @@ paths:
                     noindex: false
                     emojis: []
                     fields: []
-                  - id: '109430029469496711'
-                    username: wilson16
-                    acct: wilson16
+                  - id: '109631358856084964'
+                    username: violet_macgyver16
+                    acct: violet_macgyver16
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@wilson16
+                    url: https://cb6e6126.ngrok.io/@violet_macgyver16
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -2589,7 +2589,7 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '2'
+                  - id: '7'
                     title: TestList
                     replies_policy: list
               schema:
@@ -2632,7 +2632,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029482479106'
+                    id: '109631358872067150'
                     username: tester
                     acct: tester@nothere.com
                     display_name: ''
@@ -2640,7 +2640,7 @@ paths:
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
                     url:
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
@@ -2690,7 +2690,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029487130718'
+                    id: '109631358878401252'
                     following: false
                     showing_reblogs: false
                     notifying: false
@@ -2701,6 +2701,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: testing comment
@@ -2747,7 +2748,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029491870229'
+                    id: '109631358884070733'
                     following: true
                     showing_reblogs: true
                     notifying: false
@@ -2758,6 +2759,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: true
                     note: ''
@@ -2798,7 +2800,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029496120225'
+                    id: '109631358889763714'
                     following: true
                     showing_reblogs: true
                     notifying: false
@@ -2809,6 +2811,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -2847,7 +2850,7 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029500108917'
+                  - id: '109631358896896107'
                     following: true
                     showing_reblogs: true
                     notifying: false
@@ -2858,6 +2861,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -2918,7 +2922,7 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029506792591'
+                  - id: '109631358907162165'
                     username: account3
                     acct: account3
                     display_name: account no3
@@ -2926,7 +2930,7 @@ paths:
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
                     url: https://cb6e6126.ngrok.io/@account3
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
@@ -2979,20 +2983,20 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029512963165'
-                    created_at: '2022-11-30T00:55:37.454Z'
+                  - id: '109631358916830940'
+                    created_at: '2023-01-04T14:16:20.374Z'
                     in_reply_to_id:
                     in_reply_to_account_id:
                     sensitive: false
                     spoiler_text: ''
                     visibility: public
                     language: en
-                    uri: 3ba8f11a4654e5ea687eb7c987e25964267a3501e36630db5c9e1a7321d085bb
+                    uri: a51ef5e15740042455ae0ead4e8aad8d9110242a1114b4a42f0f6e585954ae4c
                     url:
                     replies_count: 0
                     reblogs_count: 0
                     favourites_count: 0
-                    edited_at: '2022-11-30T00:55:37.451Z'
+                    edited_at: '2023-01-04T14:16:20.370Z'
                     favourited: false
                     reblogged: false
                     muted: false
@@ -3001,7 +3005,7 @@ paths:
                     filtered: []
                     reblog:
                     account:
-                      id: '109430029512963968'
+                      id: '109631358916872496'
                       username: bob
                       acct: bob@example.com
                       display_name: ''
@@ -3009,7 +3013,7 @@ paths:
                       bot: false
                       discoverable: true
                       group: false
-                      created_at: '2022-11-30T00:00:00.000Z'
+                      created_at: '2023-01-04T00:00:00.000Z'
                       note: ''
                       url:
                       avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
@@ -3019,12 +3023,12 @@ paths:
                       followers_count: 0
                       following_count: 0
                       statuses_count: 2
-                      last_status_at: '2022-11-30'
+                      last_status_at: '2023-01-04'
                       emojis: []
                       fields: []
                     media_attachments: []
                     mentions:
-                    - id: '109430029512963969'
+                    - id: '109631358916872497'
                       username: jane
                       url:
                       acct: jane@example.com
@@ -3073,7 +3077,7 @@ paths:
               examples:
                 follow_not_following:
                   value:
-                    id: '109430029524761564'
+                    id: '109631358934583680'
                     following: true
                     showing_reblogs: true
                     notifying: false
@@ -3084,12 +3088,13 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
                 follow_already_following:
                   value:
-                    id: '109430029533099781'
+                    id: '109631358945073388'
                     following: true
                     showing_reblogs: true
                     notifying: false
@@ -3100,6 +3105,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -3154,7 +3160,7 @@ paths:
               examples:
                 unfollow_following:
                   value:
-                    id: '109430029536721349'
+                    id: '109631358951591415'
                     following: false
                     showing_reblogs: false
                     notifying: false
@@ -3165,12 +3171,13 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
                 unfollow_not_following:
                   value:
-                    id: '109430029540702200'
+                    id: '109631358958300180'
                     following: false
                     showing_reblogs: false
                     notifying: false
@@ -3181,6 +3188,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -3221,7 +3229,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029565478497'
+                    id: '109631358985900483'
                     following: false
                     showing_reblogs: false
                     notifying: false
@@ -3232,6 +3240,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -3272,7 +3281,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029569672150'
+                    id: '109631358993247224'
                     following: false
                     showing_reblogs: false
                     notifying: false
@@ -3283,6 +3292,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -3323,7 +3333,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029574859616'
+                    id: '109631358998663758'
                     following: false
                     showing_reblogs: false
                     notifying: false
@@ -3334,6 +3344,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -3374,7 +3385,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029578390233'
+                    id: '109631359001857426'
                     following: false
                     showing_reblogs: false
                     notifying: false
@@ -3385,6 +3396,7 @@ paths:
                     muting: true
                     muting_notifications: true
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -3425,7 +3437,7 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029583624797'
+                    id: '109631359004988845'
                     following: false
                     showing_reblogs: false
                     notifying: false
@@ -3436,6 +3448,7 @@ paths:
                     muting: false
                     muting_notifications: false
                     requested: false
+                    requested_by: false
                     domain_blocking: false
                     endorsed: false
                     note: ''
@@ -3475,17 +3488,17 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '109430029587880417'
-                    username: werner_fritsch54
-                    acct: werner_fritsch54
+                    id: '109631359007852872'
+                    username: hilton54
+                    acct: hilton54
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@werner_fritsch54
+                    url: https://cb6e6126.ngrok.io/@hilton54
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -5008,10 +5021,10 @@ paths:
               examples:
                 successful:
                   value:
-                  - url: http://roob.net/marylin
-                    title: Voluptas id sint voluptates.
-                    description: Voluptatem officia nemo. Explicabo doloribus eos.
-                      Qui quo ea.
+                  - url: http://kuvalis.co/ettie.romaguera
+                    title: In quod nostrum sunt.
+                    description: Nesciunt explicabo quis. Excepturi odio vel. Ab aut
+                      praesentium.
                     type: link
                     author_name: ''
                     author_url: ''
@@ -5020,35 +5033,35 @@ paths:
                     html: ''
                     width: 400
                     height: 267
-                    image: https://cb6e6126.ngrok.io/system/cache/preview_cards/images/000/000/013/original/d96664374ada233c.jpg
+                    image: https://cb6e6126.ngrok.io/system/cache/preview_cards/images/000/000/068/original/4758b6fa4fdfa4d9.jpg
                     embed_url: ''
                     blurhash: UDK-USu6.9t3-@K7obn#0:-;%1nOM|-.E2IU
                     history:
-                    - day: '1669766400'
+                    - day: '1672790400'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669680000'
+                    - day: '1672704000'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669593600'
+                    - day: '1672617600'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669507200'
+                    - day: '1672531200'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669420800'
+                    - day: '1672444800'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669334400'
+                    - day: '1672358400'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669248000'
+                    - day: '1672272000'
                       accounts: '0'
                       uses: '0'
-                  - url: http://towne.info/susanna
-                    title: Recusandae atque odio eum.
-                    description: Eos illo dolorem. Minus exercitationem sunt. Sequi
-                      blanditiis nihil.
+                  - url: http://stiedemann.biz/lloyd_skiles
+                    title: Soluta natus tenetur debitis.
+                    description: Sapiente illum magni. Incidunt perferendis voluptate.
+                      Autem rerum omnis.
                     type: link
                     author_name: ''
                     author_url: ''
@@ -5057,29 +5070,29 @@ paths:
                     html: ''
                     width: 400
                     height: 267
-                    image: https://cb6e6126.ngrok.io/system/cache/preview_cards/images/000/000/012/original/17bf90c12dadfab3.jpg
+                    image: https://cb6e6126.ngrok.io/system/cache/preview_cards/images/000/000/067/original/478fc81c1d3cf34d.jpg
                     embed_url: ''
                     blurhash: UDK-USu6.9t3-@K7obn#0:-;%1nOM|-.E2IU
                     history:
-                    - day: '1669766400'
+                    - day: '1672790400'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669680000'
+                    - day: '1672704000'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669593600'
+                    - day: '1672617600'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669507200'
+                    - day: '1672531200'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669420800'
+                    - day: '1672444800'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669334400'
+                    - day: '1672358400'
                       accounts: '0'
                       uses: '0'
-                    - day: '1669248000'
+                    - day: '1672272000'
                       accounts: '0'
                       uses: '0'
               schema:
@@ -5137,16 +5150,16 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029774322417'
-                    created_at: '2022-11-30T00:55:41.467Z'
+                  - id: '109631359203901772'
+                    created_at: '2023-01-04T14:16:24.757Z'
                     in_reply_to_id:
                     in_reply_to_account_id:
                     sensitive: false
                     spoiler_text: ''
                     visibility: public
                     language: en
-                    uri: https://cb6e6126.ngrok.io/users/dwayne_west106/statuses/109430029774322417
-                    url: https://cb6e6126.ngrok.io/@dwayne_west106/109430029774322417
+                    uri: https://cb6e6126.ngrok.io/users/candance106/statuses/109631359203901772
+                    url: https://cb6e6126.ngrok.io/@candance106/109631359203901772
                     replies_count: 0
                     reblogs_count: 0
                     favourites_count: 0
@@ -5160,17 +5173,17 @@ paths:
                     reblog:
                     application:
                     account:
-                      id: '109430029774340964'
-                      username: dwayne_west106
-                      acct: dwayne_west106
+                      id: '109631359203894429'
+                      username: candance106
+                      acct: candance106
                       display_name: ''
                       locked: false
                       bot: false
                       discoverable: true
                       group: false
-                      created_at: '2022-11-30T00:00:00.000Z'
+                      created_at: '2023-01-04T00:00:00.000Z'
                       note: ''
-                      url: https://cb6e6126.ngrok.io/@dwayne_west106
+                      url: https://cb6e6126.ngrok.io/@candance106
                       avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -5178,7 +5191,7 @@ paths:
                       followers_count: 0
                       following_count: 0
                       statuses_count: 1
-                      last_status_at: '2022-11-30'
+                      last_status_at: '2023-01-04'
                       noindex: false
                       emojis: []
                       fields: []
@@ -5402,13 +5415,13 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '4'
-                    content: "<p>Odio unde omnis. Ad molestiae ex.</p>"
+                  - id: '16'
+                    content: "<p>Perferendis et natus. Nam commodi sequi.</p>"
                     starts_at:
                     ends_at:
                     all_day: false
-                    published_at: '2022-11-30T00:55:41.921Z'
-                    updated_at: '2022-11-30T00:55:41.921Z'
+                    published_at: '2023-01-04T14:16:25.155Z'
+                    updated_at: '2023-01-04T14:16:25.156Z'
                     read: false
                     mentions: []
                     statuses: []
@@ -5468,13 +5481,13 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '5'
+                    id: '10'
                     name: testclient
                     website:
                     redirect_uri: urn:ietf:wg:oauth:2.0:oob
-                    client_id: 37-gMynJKEmgxTo3FI5W-JVBArjxrIMEuqaKzJ_S9MQ
-                    client_secret: eU0wh0ok08wDWocUaf-26N92E3i9Zo9vfGHYyXHC6Nw
-                    vapid_key: BHpQYY1IGC_yMKWHrffEzKpP3nfFEmURwxQbh7dch-xRHwDFl7aTcOpRBjwq0tCpP9h5AgqgcHLcCDG6YTCciUo=
+                    client_id: REO7ub81995MDpQDH5QjdNVGS25yEzeJLEF3IF3m-bU
+                    client_secret: 01cD3AZEOonYMqA764bdXmYZ8fmJS1ldhnwWVBtK6OU
+                    vapid_key: BLwRFKFjGXtiXBNyU-guY3I4L-a-K4pFOsHFb_DUfzLq9jiY5S27q7ypjaW_5RbyGzYN1h4kypcrmEbbvoGixdo=
               schema:
                 "$ref": "#/components/schemas/Application"
       requestBody:
@@ -5530,17 +5543,17 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029812653464'
-                    username: wendell_oberbrunner120
-                    acct: wendell_oberbrunner120
+                  - id: '109631359237591725'
+                    username: erick_davis120
+                    acct: erick_davis120
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@wendell_oberbrunner120
+                    url: https://cb6e6126.ngrok.io/@erick_davis120
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -5552,17 +5565,17 @@ paths:
                     noindex: false
                     emojis: []
                     fields: []
-                  - id: '109430029812653463'
-                    username: janine119
-                    acct: janine119
+                  - id: '109631359237591724'
+                    username: yolanda_bechtelar119
+                    acct: yolanda_bechtelar119
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@janine119
+                    url: https://cb6e6126.ngrok.io/@yolanda_bechtelar119
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -5629,16 +5642,16 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029818257682'
-                    created_at: '2022-11-30T00:55:42.140Z'
+                  - id: '109631359243001411'
+                    created_at: '2023-01-04T14:16:25.352Z'
                     in_reply_to_id:
                     in_reply_to_account_id:
                     sensitive: false
                     spoiler_text: ''
                     visibility: public
                     language:
-                    uri: https://cb6e6126.ngrok.io/users/denver_green122/statuses/109430029818257682
-                    url: https://cb6e6126.ngrok.io/@denver_green122/109430029818257682
+                    uri: https://cb6e6126.ngrok.io/users/stephania122/statuses/109631359243001411
+                    url: https://cb6e6126.ngrok.io/@stephania122/109631359243001411
                     replies_count: 0
                     reblogs_count: 0
                     favourites_count: 0
@@ -5652,17 +5665,17 @@ paths:
                     reblog:
                     application:
                     account:
-                      id: '109430029818254309'
-                      username: denver_green122
-                      acct: denver_green122
+                      id: '109631359243011003'
+                      username: stephania122
+                      acct: stephania122
                       display_name: ''
                       locked: false
                       bot: false
                       discoverable: true
                       group: false
-                      created_at: '2022-11-30T00:00:00.000Z'
+                      created_at: '2023-01-04T00:00:00.000Z'
                       note: ''
-                      url: https://cb6e6126.ngrok.io/@denver_green122
+                      url: https://cb6e6126.ngrok.io/@stephania122
                       avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -5670,7 +5683,7 @@ paths:
                       followers_count: 1
                       following_count: 0
                       statuses_count: 1
-                      last_status_at: '2022-11-30'
+                      last_status_at: '2023-01-04'
                       noindex: false
                       emojis: []
                       fields: []
@@ -5827,17 +5840,17 @@ paths:
               examples:
                 successful:
                   value:
-                  - id: '109430029838768903'
-                    username: manie_hartmann128
-                    acct: manie_hartmann128
+                  - id: '109631359259324826'
+                    username: daren_cole128
+                    acct: daren_cole128
                     display_name: ''
                     locked: false
                     bot: false
                     discoverable: true
                     group: false
-                    created_at: '2022-11-30T00:00:00.000Z'
+                    created_at: '2023-01-04T00:00:00.000Z'
                     note: ''
-                    url: https://cb6e6126.ngrok.io/@manie_hartmann128
+                    url: https://cb6e6126.ngrok.io/@daren_cole128
                     avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                     header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -6426,51 +6439,51 @@ paths:
               examples:
                 successful:
                   value:
-                  - week: '1669769743'
+                  - week: '1672841786'
                     statuses: '0'
                     logins: '1'
                     registrations: '0'
-                  - week: '1669164943'
+                  - week: '1672236986'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1668560143'
+                  - week: '1671632186'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1667955343'
+                  - week: '1671027386'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1667350543'
+                  - week: '1670422586'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1666745743'
+                  - week: '1669817786'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1666140943'
+                  - week: '1669212986'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1665536143'
+                  - week: '1668608186'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1664931343'
+                  - week: '1668003386'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1664326543'
+                  - week: '1667398586'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1663721743'
+                  - week: '1666793786'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
-                  - week: '1663116943'
+                  - week: '1666188986'
                     statuses: '0'
                     logins: '0'
                     registrations: '0'
@@ -7613,28 +7626,28 @@ paths:
               examples:
                 successful:
                   value:
-                    id: '2'
+                    id: '7'
                     action_taken: false
                     action_taken_at:
                     category: other
                     comment: reasons
                     forwarded: false
-                    created_at: '2022-11-30T00:55:44.681Z'
+                    created_at: '2023-01-04T14:16:28.265Z'
                     status_ids:
-                    - '109430029982710165'
+                    - '109631359432404064'
                     rule_ids:
                     target_account:
-                      id: '109430029982718011'
-                      username: pok185
-                      acct: pok185
+                      id: '109631359432405000'
+                      username: zonia185
+                      acct: zonia185
                       display_name: ''
                       locked: false
                       bot: false
                       discoverable: true
                       group: false
-                      created_at: '2022-11-30T00:00:00.000Z'
+                      created_at: '2023-01-04T00:00:00.000Z'
                       note: ''
-                      url: https://cb6e6126.ngrok.io/@pok185
+                      url: https://cb6e6126.ngrok.io/@zonia185
                       avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
                       header: https://cb6e6126.ngrok.io/headers/original/missing.png
@@ -7642,7 +7655,7 @@ paths:
                       followers_count: 0
                       following_count: 0
                       statuses_count: 1
-                      last_status_at: '2022-11-30'
+                      last_status_at: '2023-01-04'
                       noindex: false
                       emojis: []
                       fields: []
