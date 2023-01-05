@@ -950,6 +950,102 @@ components:
           "$ref": "#/components/schemas/StringId"
           description: The ID of the filtered Status in the database.
       type: object
+    V1FilterContextEnum:
+      description: |
+        * `home` home timeline and lists
+        * `notifications` notifications timeline
+        * `public` public timelines
+        * `thread` expanded thread of a detailed status
+        * `account` when viewing a profile
+      type: string
+      enum:
+      - home
+      - notifications
+      - public
+      - thread
+      - account
+    V1Filter:
+      description: |
+        Represents a user-defined filter for determining which statuses should not be shown to the user.
+        Contains a single keyword or phrase.
+
+        > Prior to Mastodon 3.6, matching filters was done client-size and filters could only contain one phrase to filter against.
+      type: object
+      deprecated: true
+      properties:
+        id:
+          "$ref": "#/components/schemas/StringId"
+        phrase:
+          description: The text to be filtered.
+          type: string
+        context:
+          description: The contexts in which the filter should be applied.
+          type: array
+          items:
+            "$ref": "#/components/schemas/V1FilterContextEnum"
+        expires_at:
+          type: string
+          format: datetime
+          description: When the filter should no longer be applied.
+          nullable: true
+        whole_word:
+          description: |
+            Should the filter consider word boundaries?
+
+            See [implementation guidelines for filters](https://docs.joinmastodon.org/api/guidelines/#filters).
+          type: boolean
+        irreversible:
+          description: |
+            Should matching entities in home and notifications be dropped by the server?
+
+            See [implementation guidelines for filters](https://docs.joinmastodon.org/api/guidelines/#filters).
+          type: boolean
+      required:
+      - id
+      - phrase
+      - context
+    V1FilterParams:
+      type: object
+      deprecated: true
+      description: "Version history:\n- 2.4.3 - added\n- 3.1.0 - added `account` context
+        to filter in profile views\n- 4.0.0 - deprecated. For compatibility purposes,
+        now returns a V1::Filter representing one FilterKeyword  \n  (with the `keyword`
+        being presented in the `phrase` attribute).  \n  This method will create a
+        Filter that contains only one FilterKeyword.  \n  The `title` of the Filter
+        and the `keyword` of the FilterKeyword will be set equal to the `phrase` provided.\n"
+      properties:
+        context:
+          description: |
+            Where the filter should be applied.
+
+            Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
+          type: array
+          minItems: 1
+          uniqueItems: true
+          items:
+            "$ref": "#/components/schemas/V1FilterContextEnum"
+        expires_in:
+          type: integer
+          description: |
+            Number of seconds from now that the filter should expire.
+
+            Otherwise, `null` for a filter that doesn't expire.
+        whole_word:
+          description: |
+            Should the filter consider word boundaries for this keyword?
+
+            Defaults to false.
+          type: boolean
+          default: falses
+        irreversible:
+          description: |
+            Should the server irreversibly drop matching entities from home and notifications?
+
+            Defaults to false.
+          type: boolean
+          default: false
+      required:
+      - context
     IdentityProof:
       deprecated: true
       description: Represents a proof from an external identity provider.
@@ -7195,6 +7291,15 @@ paths:
   "/api/v1/filters":
     get:
       summary: list filters
+      description: "**View your filters**\n\n> Prior to Mastodon 3.6, matching filters
+        was done client-side and filters could only contain one phrase to filter against.\n\nVersion
+        history:\n- 2.4.3 - added\n- 3.1.0 - added `account` context to filter in
+        profile views\n- 4.0.0 - deprecated. For compatibility purposes, now returns
+        a V1::Filter representing one FilterKeyword  \n  (with the `keyword` being
+        presented in the `phrase` attribute).  \n  This method will create a Filter
+        that contains only one FilterKeyword.  \n  The `title` of the Filter and the
+        `keyword` of the FilterKeyword will be set equal to the `phrase` provided.\n"
+      deprecated: true
       tags:
       - Api
       - V1
@@ -7204,31 +7309,7 @@ paths:
       - bearerAuth: []
       - oauth:
         - read
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value: []
-    post:
-      summary: create filter
-      tags:
-      - Api
-      - V1
-      - Filters
-      operationId: v1FiltersCreateFilter
-      security:
-      - bearerAuth: []
-      - oauth:
-        - read
+        - read:filters
       parameters:
       - name: authorization
         in: header
@@ -7243,8 +7324,95 @@ paths:
               examples:
                 successful:
                   value:
-                    error: 'Validation failed: Title can''t be blank, Context can''t
-                      be blank, Context None or invalid context supplied'
+                  - id: '277'
+                    phrase: test_keyword_1
+                    context:
+                    - home
+                    - notifications
+                    whole_word: true
+                    expires_at:
+                    irreversible: false
+                  - id: '278'
+                    phrase: test_keyword_2
+                    context:
+                    - home
+                    - notifications
+                    whole_word: true
+                    expires_at:
+                    irreversible: false
+                  - id: '279'
+                    phrase: test_keyword_3
+                    context:
+                    - home
+                    - notifications
+                    whole_word: true
+                    expires_at: '2023-01-05T00:18:05.482Z'
+                    irreversible: false
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/V1Filter"
+    post:
+      summary: create filter
+      description: "**Create a filter**\n\n> Prior to Mastodon 3.6, matching filters
+        was done client-side and filters could only contain one phrase to filter against.\n\nVersion
+        history:\n- 2.4.3 - added\n- 3.1.0 - added `account` context to filter in
+        profile views\n- 4.0.0 - deprecated. For compatibility purposes, now returns
+        a V1::Filter representing one FilterKeyword  \n  (with the `keyword` being
+        presented in the `phrase` attribute).  \n  This method will create a Filter
+        that contains only one FilterKeyword.  \n  The `title` of the Filter and the
+        `keyword` of the FilterKeyword will be set equal to the `phrase` provided.\n"
+      deprecated: true
+      tags:
+      - Api
+      - V1
+      - Filters
+      operationId: v1FiltersCreateFilter
+      security:
+      - bearerAuth: []
+      - oauth:
+        - write
+        - write:filters
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    id: '283'
+                    phrase: xyz-offence
+                    context:
+                    - public
+                    - home
+                    - thread
+                    whole_word: true
+                    expires_at:
+                    irreversible: false
+              schema:
+                "$ref": "#/components/schemas/V1Filter"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              allOf:
+              - "$ref": "#/components/schemas/V1FilterParams"
+              - type: object
+                properties:
+                  phrase:
+                    type: string
+                    description: The text to be filtered.
+              required:
+              - phrase
+              - context
+        required: true
   "/api/v1/filters/{id}":
     parameters:
     - name: id
@@ -7255,6 +7423,16 @@ paths:
         type: string
     get:
       summary: show filter
+      description: "**View a single filter**\n\n> Prior to Mastodon 3.6, matching
+        filters was done client-side and filters could only contain one phrase to
+        filter against.\n\nVersion history:\n- 2.4.3 - added\n- 3.1.0 - added `account`
+        context to filter in profile views\n- 4.0.0 - deprecated. For compatibility
+        purposes, now returns a V1::Filter representing one FilterKeyword  \n  (with
+        the `keyword` being presented in the `phrase` attribute).  \n  This method
+        will create a Filter that contains only one FilterKeyword.  \n  The `title`
+        of the Filter and the `keyword` of the FilterKeyword will be set equal to
+        the `phrase` provided.\n"
+      deprecated: true
       tags:
       - Api
       - V1
@@ -7264,6 +7442,7 @@ paths:
       - bearerAuth: []
       - oauth:
         - read
+        - read:filters
       parameters:
       - name: authorization
         in: header
@@ -7278,9 +7457,27 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '284'
+                    phrase: test_keyword_1
+                    context:
+                    - home
+                    - notifications
+                    whole_word: true
+                    expires_at:
+                    irreversible: false
+              schema:
+                "$ref": "#/components/schemas/V1Filter"
     patch:
       summary: update filter
+      description: "**Update a filter**\n\n> Prior to Mastodon 3.6, matching filters
+        was done client-side and filters could only contain one phrase to filter against.\n\nVersion
+        history:\n- 2.4.3 - added\n- 3.1.0 - added `account` context to filter in
+        profile views\n- 4.0.0 - deprecated. For compatibility purposes, now returns
+        a V1::Filter representing one FilterKeyword  \n  (with the `keyword` being
+        presented in the `phrase` attribute).  \n  This method will create a Filter
+        that contains only one FilterKeyword.  \n  The `title` of the Filter and the
+        `keyword` of the FilterKeyword will be set equal to the `phrase` provided.\n"
+      deprecated: true
       tags:
       - Api
       - V1
@@ -7289,7 +7486,8 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - write
+        - write:filters
       parameters:
       - name: authorization
         in: header
@@ -7304,9 +7502,35 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '289'
+                    phrase: test_keyword_3
+                    context:
+                    - public
+                    - home
+                    - thread
+                    whole_word: true
+                    expires_at: '2023-01-05T00:18:05.694Z'
+                    irreversible: false
+              schema:
+                "$ref": "#/components/schemas/V1Filter"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/V1FilterParams"
+        required: true
     put:
       summary: update filter
+      description: "**Replace filter parameters in-place**\n\n> Prior to Mastodon
+        3.6, matching filters was done client-side and filters could only contain
+        one phrase to filter against.\n\nVersion history:\n- 2.4.3 - added\n- 3.1.0
+        - added `account` context to filter in profile views\n- 4.0.0 - deprecated.
+        For compatibility purposes, now returns a V1::Filter representing one FilterKeyword
+        \ \n  (with the `keyword` being presented in the `phrase` attribute).  \n
+        \ This method will create a Filter that contains only one FilterKeyword.  \n
+        \ The `title` of the Filter and the `keyword` of the FilterKeyword will be
+        set equal to the `phrase` provided.\n"
+      deprecated: true
       tags:
       - Api
       - V1
@@ -7315,7 +7539,8 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - write
+        - write:filters
       parameters:
       - name: authorization
         in: header
@@ -7330,9 +7555,34 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '292'
+                    phrase: test_keyword_3
+                    context:
+                    - public
+                    - home
+                    - thread
+                    whole_word: true
+                    expires_at: '2023-01-05T00:18:05.773Z'
+                    irreversible: false
+              schema:
+                "$ref": "#/components/schemas/V1Filter"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/V1FilterParams"
+        required: true
     delete:
       summary: delete filter
+      description: "**Remove a filter**\n\n> Prior to Mastodon 3.6, matching filters
+        was done client-side and filters could only contain one phrase to filter against.\n\nVersion
+        history:\n- 2.4.3 - added\n- 3.1.0 - added `account` context to filter in
+        profile views\n- 4.0.0 - deprecated. For compatibility purposes, now returns
+        a V1::Filter representing one FilterKeyword  \n  (with the `keyword` being
+        presented in the `phrase` attribute).  \n  This method will create a Filter
+        that contains only one FilterKeyword.  \n  The `title` of the Filter and the
+        `keyword` of the FilterKeyword will be set equal to the `phrase` provided.\n"
+      deprecated: true
       tags:
       - Api
       - V1
@@ -7341,7 +7591,8 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - write
+        - write:filters
       parameters:
       - name: authorization
         in: header
@@ -7355,8 +7606,10 @@ paths:
             application/json:
               examples:
                 successful:
-                  value:
-                    error: Record not found
+                  value: {}
+              schema:
+                type: object
+                properties: {}
   "/api/v1/follow_requests/{id}/authorize":
     parameters:
     - name: id
