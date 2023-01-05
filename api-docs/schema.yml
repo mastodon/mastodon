@@ -8197,21 +8197,20 @@ paths:
   "/api/v1/instance":
     get:
       summary: show instance
+      description: |
+        Version history:
+        - 1.1.0 added
+        - 3.0.0 requires user token if instance is in whitelist mode
+        - 3.1.4 added invites_enabled to response
+        - 3.4.0 added rules
+        - 3.4.2 added configuration
+        - 4.0.0 deprecated. added configuration[accounts].
       tags:
       - Api
       - V1
       - Instances
       operationId: v1InstancesShowInstance
-      security:
-      - bearerAuth: []
-      - oauth:
-        - read
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
+      deprecated: true
       responses:
         '200':
           description: successful
@@ -8229,7 +8228,7 @@ paths:
                     urls:
                       streaming_api: ws://localhost:4000
                     stats:
-                      user_count: 1
+                      user_count: 0
                       status_count: 0
                       domain_count: 0
                     thumbnail: https://cb6e6126.ngrok.io/packs-test/media/images/preview-6399aebd96ccf025654e2977454f168f.png
@@ -8287,6 +8286,8 @@ paths:
                         max_expiration: 2629746
                     contact_account:
                     rules: []
+              schema:
+                "$ref": "#/components/schemas/V1Instance"
   "/api/v1/lists/{list_id}/accounts":
     parameters:
     - name: list_id

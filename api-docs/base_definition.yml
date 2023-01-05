@@ -1222,7 +1222,142 @@ components:
           description: The version of Mastodon installed on the instance.
           type: string
       type: object
-    
+
+    V1Instance:
+      type: object
+      deprecated: true
+      properties:
+        uri:
+          description: The domain name of the instance.
+          type: string
+        title:
+          description: The title of the website.
+          type: string
+        short_description:
+          description: A short, plain-text description defined by the admin.
+          type: string
+        description:
+          description: An HTML-permitted description of the Mastodon site.
+          type: string
+        email:
+          description: An email that may be contacted for any inquiries.
+          type: string
+        version:
+          description: The version of Mastodon installed on the instance.
+          type: string
+        urls:
+          description: URLs of interest for clients apps.
+          type: object
+          properties:
+            streaming_api:
+              type: string
+              description: The Websockets URL for connecting to the streaming API.
+        stats:
+          description: Statistics about how much information the instance contains.
+          type: object
+          properties:
+            user_count:
+              type: integer
+              description: Total users on this instance.
+            status_count:
+              type: integer
+              description: Total statuses on this instance.
+            domain_count:
+              type: integer
+              description: Total domains discovered by this instance.
+        thumbnail:
+          description: Banner image for the website.
+          type: string
+          nullable: true
+        languages:
+          description: Primary languages of the website and its staff.
+          type: array
+          items:
+            type: string
+            pattern: '[a-z]{2}'
+        registrations:
+          description: Whether registrations are enabled.
+          type: boolean
+        approval_required:
+          description: Whether registrations require moderator approval.
+          type: boolean
+        invites_enabled:
+          description: Whether invites are enabled.
+          type: boolean
+        configuration:
+          description: Configured values and limits for this website.
+          type: object
+          properties:
+            accounts:
+              description: Limits related to accounts.
+              type: object
+              properties:
+                max_featured_tags:
+                  description: The maximum number of featured tags allowed for each account.
+                  type: integer
+            statuses:
+              description: Limits related to authoring statuses.
+              type: object
+              properties:
+                max_characters:
+                  description: The maximum number of allowed characters per status.
+                  type: integer
+                max_media_attachments:
+                  description: The maximum number of media attachments that can be added to a status.
+                  type: integer
+                characters_reserved_per_url:
+                  description: Each URL in a status will be assumed to be exactly this many characters.
+                  type: integer
+            media_attachments:
+              description: Hints for which attachments will be accepted.
+              type: object
+              properties:
+                supported_mime_types:
+                  description: Contains MIME types that can be uploaded.
+                  type: array
+                  items:
+                    type: string
+                image_size_limit:
+                  description: The maximum size of any uploaded image, in bytes.
+                  type: integer
+                image_matrix_limit:
+                  description: The maximum number of pixels (width times height) for image uploads.
+                  type: integer
+                video_size_limit:
+                  description: The maximum size of any uploaded video, in bytes.
+                  type: integer
+                video_frame_rate_limit:
+                  description: The maximum frame rate for any uploaded video.
+                  type: integer
+                video_matrix_limit:
+                  description: The maximum number of pixels (width times height) for video uploads.
+                  type: integer
+            polls:
+              description: Limits related to polls.
+              type: object
+              properties:
+                max_options:
+                  description: Each poll is allowed to have up to this many options.
+                  type: integer
+                max_characters_per_option:
+                  description: Each poll option is allowed to have this many characters.
+                  type: integer
+                min_expiration:
+                  description: The shortest allowed poll duration, in seconds.
+                  type: integer
+                max_expiration:
+                  description: The longest allowed poll duration, in seconds.
+                  type: integer
+        contact_account:
+          description: A user that can be contacted, as an alternative to `email`.
+          nullable: true
+          $ref: '#/components/schemas/Account'
+        rules:
+          description: An itemized list of rules for this website.
+          type: array
+          items:
+            $ref: '#/components/schemas/Rule'
+        
     List:
       description: Represents a list of some users that the authenticated user follows.
       properties:
