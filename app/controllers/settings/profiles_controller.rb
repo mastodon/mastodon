@@ -4,6 +4,17 @@ class Settings::ProfilesController < Settings::BaseController
   before_action :set_account
 
   def show
+    @mastodon_builder_url = 'https://wallet.hello.coop/mastodon'
+    if ENV['HELLO_MASTODON_BUILDER_URL']
+      @mastodon_builder_url = ENV['HELLO_MASTODON_BUILDER_URL']
+    end
+
+    parsed_url = URI.parse(@mastodon_builder_url)
+    query = parsed_url.query ? CGI.parse(parsed_url.query) : {}
+    query['server'] = [ENV['LOCAL_DOMAIN']]
+    parsed_url.query = URI.encode_www_form(query)
+    @mastodon_builder_url = parsed_url.to_s
+
     @account.build_fields
   end
 
