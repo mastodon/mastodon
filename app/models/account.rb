@@ -513,24 +513,18 @@ class Account < ApplicationRecord
         <<-SQL.squish
           SELECT
             accounts.*,
-            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank
+            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank,
+            count(f.id) AS followed
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
           LEFT JOIN users ON accounts.id = users.account_id
           LEFT JOIN account_stats AS s ON accounts.id = s.account_id
-          LEFT JOIN (
-            SELECT target_account_id
-            FROM follows
-            WHERE account_id = :id
-            UNION ALL
-            SELECT :id
-          ) AS first_degree ON accounts.id = first_degree.target_account_id
           WHERE to_tsquery('simple', :tsquery) @@ #{TEXTSEARCH}
             AND accounts.suspended_at IS NULL
             AND accounts.moved_to_account_id IS NULL
             AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
-          GROUP BY accounts.id, s.id, first_degree.target_account_id
-          ORDER BY first_degree.target_account_id ASC, rank DESC
+          GROUP BY accounts.id, s.id
+          ORDER BY followed DESC, rank DESC
           LIMIT :limit OFFSET :offset
         SQL
       end
