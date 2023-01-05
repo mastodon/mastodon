@@ -4,7 +4,8 @@
 - content_for :header_tags do
   = render partial: 'shared/og'
 
-- unless omniauth_only?
+-# HELLO_PATCH(11): hide username and password login form
+- unless params['hello'] != 'false'
   = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .fields-group
       - if use_seamless_external_login?
@@ -19,7 +20,8 @@
 
 - if devise_mapping.omniauthable? and resource_class.omniauth_providers.any?
   .simple_form.alternative-login
-    %h4= omniauth_only? ? t('auth.log_in_with') : t('auth.or_log_in_with')
+    -# HELLO_PATCH(11): hide username and password login form
+    %h4= params['hello'] != 'false' ? t('auth.log_in_with') : t('auth.or_log_in_with')
 
     .actions
       - resource_class.omniauth_providers.each do |provider|

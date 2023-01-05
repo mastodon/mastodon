@@ -67,4 +67,10 @@ password set.
 The method to revisit is `use_seamless_external_login?`. Currently this method returns `true` only for PAM and LDAP
 authentication, disconnected from the similar `omniauth_only?`
 
-# HELLO_PATCH(10): append the :verified: emoji to the end of the display name
+## HELLO_PATCH(10): append the :verified: emoji to the end of the display name
+
+## HELLO_PATCH(11): hide username and password login form
+
+Overriding the `omniauth_only?` methods (or setting the `OMNIAUTH_ONLY` env var) also disables registration, and while
+the  registration flow uses OpenID Connect it does rely on showing the server rules which is part of the registration
+flow. So the patch is done performed only in the view.
