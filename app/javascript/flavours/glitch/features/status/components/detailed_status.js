@@ -41,7 +41,10 @@ class DetailedStatus extends ImmutablePureComponent {
     domain: PropTypes.string.isRequired,
     compact: PropTypes.bool,
     showMedia: PropTypes.bool,
-    usingPiP: PropTypes.bool,
+    pictureInPicture: ImmutablePropTypes.contains({
+      inUse: PropTypes.bool,
+      available: PropTypes.bool,
+    }),
     onToggleMediaVisibility: PropTypes.func,
     intl: PropTypes.object.isRequired,
   };
@@ -120,7 +123,7 @@ class DetailedStatus extends ImmutablePureComponent {
 
   render () {
     const status = (this.props.status && this.props.status.get('reblog')) ? this.props.status.get('reblog') : this.props.status;
-    const { expanded, onToggleHidden, settings, usingPiP, intl } = this.props;
+    const { expanded, onToggleHidden, settings, pictureInPicture, intl } = this.props;
     const outerStyle = { boxSizing: 'border-box' };
     const { compact } = this.props;
 
@@ -153,7 +156,7 @@ class DetailedStatus extends ImmutablePureComponent {
       outerStyle.height = `${this.state.height}px`;
     }
 
-    if (usingPiP) {
+    if (pictureInPicture.get('inUse')) {
       media.push(<PictureInPicturePlaceholder />);
       mediaIcons.push('video-camera');
     } else if (status.get('media_attachments').size > 0) {

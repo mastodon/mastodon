@@ -1,6 +1,6 @@
 import escapeTextContentForBrowser from 'escape-html';
 import { createSelector } from 'reselect';
-import { List as ImmutableList } from 'immutable';
+import { List as ImmutableList, Map as ImmutableMap, is } from 'immutable';
 import { toServerSideType } from 'flavours/glitch/utils/filters';
 import { me } from 'flavours/glitch/initial_state';
 
@@ -72,6 +72,16 @@ export const makeGetStatus = () => {
       });
     },
   );
+};
+
+export const makeGetPictureInPicture = () => {
+  return createSelector([
+    (state, { id }) => state.get('picture_in_picture').statusId === id,
+    (state) => state.getIn(['meta', 'layout']) !== 'mobile',
+  ], (inUse, available) => ImmutableMap({
+    inUse: inUse && available,
+    available,
+  }));
 };
 
 const getAlertsBase = state => state.get('alerts');
