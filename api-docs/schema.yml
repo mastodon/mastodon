@@ -7817,6 +7817,7 @@ paths:
   "/api/v1/followed_tags":
     get:
       summary: list followed_tags
+      description: View all followed tags
       tags:
       - Api
       - V1
@@ -7825,11 +7826,38 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
+        - follow
         - read
+        - read:follows
       parameters:
       - name: authorization
         in: header
         required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: "Maximum number of results to return.  \nDefaults to 100 tags.
+          \ \nMax 200 tags.\n"
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: min_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
         schema:
           type: string
       responses:
@@ -7839,7 +7867,61 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - name: recusandae29
+                    url: https://cb6e6126.ngrok.io/tags/recusandae29
+                    history:
+                    - day: '1672876800'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672790400'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672704000'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672617600'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672531200'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672444800'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672358400'
+                      accounts: '0'
+                      uses: '0'
+                    following: true
+                  - name: sunt28
+                    url: https://cb6e6126.ngrok.io/tags/sunt28
+                    history:
+                    - day: '1672876800'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672790400'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672704000'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672617600'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672531200'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672444800'
+                      accounts: '0'
+                      uses: '0'
+                    - day: '1672358400'
+                      accounts: '0'
+                      uses: '0'
+                    following: true
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Tag"
   "/api/v1/instance/activity":
     get:
       summary: show activity
