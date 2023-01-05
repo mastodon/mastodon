@@ -7628,7 +7628,9 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - follow
+        - write
+        - write:follows
       parameters:
       - name: authorization
         in: header
@@ -7643,7 +7645,23 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109633860184718228'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: true
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    requested_by: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/follow_requests/{id}/reject":
     parameters:
     - name: id
@@ -7662,7 +7680,9 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - follow
+        - write
+        - write:follows
       parameters:
       - name: authorization
         in: header
@@ -7677,10 +7697,32 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '109633860212832479'
+                    following: false
+                    showing_reblogs: false
+                    notifying: false
+                    languages:
+                    followed_by: false
+                    blocking: false
+                    blocked_by: false
+                    muting: false
+                    muting_notifications: false
+                    requested: false
+                    requested_by: false
+                    domain_blocking: false
+                    endorsed: false
+                    note: ''
+              schema:
+                "$ref": "#/components/schemas/Relationship"
   "/api/v1/follow_requests":
     get:
       summary: list follow_requests
+      description: |
+        View pending follow requests
+
+        Version history:
+        - 0.0.0 - added
+        - 3.3.0 - both min_id and max_id can be used at the same time now
       tags:
       - Api
       - V1
@@ -7689,11 +7731,32 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
+        - follow
         - read
+        - read:follows
       parameters:
       - name: authorization
         in: header
         required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        description: "Maximum number of results to return.  \nDefaults to 40 accounts.
+          \ \nMax 80 accounts.\n"
+        schema:
+          type: integer
+      - name: max_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
+        schema:
+          type: string
+      - name: since_id
+        in: query
+        required: false
+        description: "**Internal parameter**. Use HTTP Link header for pagination."
         schema:
           type: string
       responses:
@@ -7703,7 +7766,54 @@ paths:
             application/json:
               examples:
                 successful:
-                  value: []
+                  value:
+                  - id: '109633860233042683'
+                    username: cleopatra216
+                    acct: cleopatra216@somewhere.else
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-05T00:00:00.000Z'
+                    note: ''
+                    url:
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    emojis: []
+                    fields: []
+                  - id: '109633860233042682'
+                    username: diana_trantow215
+                    acct: diana_trantow215
+                    display_name: ''
+                    locked: false
+                    bot: false
+                    discoverable: true
+                    group: false
+                    created_at: '2023-01-05T00:00:00.000Z'
+                    note: ''
+                    url: https://cb6e6126.ngrok.io/@diana_trantow215
+                    avatar: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    avatar_static: https://cb6e6126.ngrok.io/avatars/original/missing.png
+                    header: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    header_static: https://cb6e6126.ngrok.io/headers/original/missing.png
+                    followers_count: 0
+                    following_count: 0
+                    statuses_count: 0
+                    last_status_at:
+                    noindex: false
+                    emojis: []
+                    fields: []
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Account"
   "/api/v1/followed_tags":
     get:
       summary: list followed_tags
