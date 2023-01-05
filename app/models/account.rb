@@ -524,7 +524,7 @@ class Account < ApplicationRecord
             AND accounts.moved_to_account_id IS NULL
             AND (accounts.domain IS NOT NULL OR (users.approved = TRUE AND users.confirmed_at IS NOT NULL))
           GROUP BY accounts.id, s.id, first_degree.target_account_id
-          ORDER BY first_degree.target_account_id, rank ASC
+          ORDER BY first_degree.target_account_id ASC, rank DESC
           LIMIT :limit OFFSET :offset
         SQL
       end
