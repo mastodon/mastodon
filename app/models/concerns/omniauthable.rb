@@ -84,7 +84,8 @@ module Omniauthable
         account_attributes: {
           # HELLO_PATCH(1): use preferred_username instead of uid for username
           username: ensure_unique_username(ensure_valid_username(auth.extra.raw_info.preferred_username)),
-          display_name: auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' '),
+          # HELLO_PATCH(10): append the :verified: emoji to the end of the display name
+          display_name: (auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' ')) + ' :verified:',
         },
       }
     end

@@ -66,3 +66,5 @@ password set.
 
 The method to revisit is `use_seamless_external_login?`. Currently this method returns `true` only for PAM and LDAP
 authentication, disconnected from the similar `omniauth_only?`
+
+# HELLO_PATCH(10): append the :verified: emoji to the end of the display name
