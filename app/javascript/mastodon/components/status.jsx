@@ -528,6 +528,7 @@ class Status extends ImmutablePureComponent {
 
             <StatusContent
               status={status}
+              onClick={this.handleClick}
               expanded={!status.get('hidden')}
               onExpandedToggle={this.handleExpandedToggle}
               onTranslate={this.handleTranslate}
