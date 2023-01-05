@@ -74,3 +74,7 @@ authentication, disconnected from the similar `omniauth_only?`
 Overriding the `omniauth_only?` methods (or setting the `OMNIAUTH_ONLY` env var) also disables registration, and while
 the  registration flow uses OpenID Connect it does rely on showing the server rules which is part of the registration
 flow. So the patch is done performed only in the view.
+
+## HELLO_PATCH(12): hide the "Two-factor Auth" menu entry
+
+Visiting `/settings/otp_authentication` still works.
