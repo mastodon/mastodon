@@ -230,7 +230,6 @@ class StatusContent extends React.PureComponent {
     const spoilerContent = { __html: status.get('spoilerHtml') };
     const lang = status.get('translation') ? intl.locale : status.get('language');
     const classNames = classnames('status__content', {
-      'status__content--with-action': this.props.onClick && this.context.router,
       'status__content--with-spoiler': status.get('spoiler_text').length > 0,
       'status__content--collapsed': renderReadMore,
     });
