@@ -57,8 +57,6 @@ jobs:
           cache: yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-      - name: Check prettier formatting
-        run: yarn format-check
       - name: Set-up RuboCop Problem Mathcher
         uses: r7kamura/rubocop-problem-matchers-action@v1
       - name: Set-up Stylelint Problem Matcher

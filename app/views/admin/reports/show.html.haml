@@ -141,7 +141,7 @@
           - else
             = link_to @report.account.domain, admin_instance_path(@report.account.domain)
         %time.relative-formatted{ datetime: @report.created_at.iso8601 }
-          = t('admin.report_notes.created_at')
+          = l @report.created_at.to_date
 
       .report-notes__item__content
         = simple_format(h(@report.comment))
