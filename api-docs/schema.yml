@@ -8389,31 +8389,7 @@ paths:
       - bearerAuth: []
       - oauth:
         - read
-      parameters:
-      - name: authorization
-        in: header
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              examples:
-                successful:
-                  value: []
-    post:
-      summary: create list
-      tags:
-      - Api
-      - V1
-      - Lists
-      operationId: v1ListsCreateList
-      security:
-      - bearerAuth: []
-      - oauth:
-        - read
+        - read:lists
       parameters:
       - name: authorization
         in: header
@@ -8428,7 +8404,64 @@ paths:
               examples:
                 successful:
                   value:
-                    error: 'Validation failed: Title can''t be blank'
+                  - id: '92'
+                    title: list1
+                    replies_policy: list
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/List"
+    post:
+      summary: create list
+      tags:
+      - Api
+      - V1
+      - Lists
+      operationId: v1ListsCreateList
+      security:
+      - bearerAuth: []
+      - oauth:
+        - write
+        - write:lists
+      parameters:
+      - name: authorization
+        in: header
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              examples:
+                successful:
+                  value:
+                    id: '93'
+                    title: test_title1
+                    replies_policy: none
+              schema:
+                "$ref": "#/components/schemas/List"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: The title of the list to be created.
+                replies_policy:
+                  description: One of followed, list, or none. Defaults to list.
+                  type: string
+                  enum:
+                  - followed
+                  - list
+                  - none
+                  default: list
+              required:
+              - title
+        required: true
   "/api/v1/lists/{id}":
     parameters:
     - name: id
@@ -8448,6 +8481,7 @@ paths:
       - bearerAuth: []
       - oauth:
         - read
+        - read:lists
       parameters:
       - name: authorization
         in: header
@@ -8462,7 +8496,11 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '94'
+                    title: list1
+                    replies_policy: list
+              schema:
+                "$ref": "#/components/schemas/List"
     patch:
       summary: update list
       tags:
@@ -8473,7 +8511,8 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - write
+        - write:lists
       parameters:
       - name: authorization
         in: header
@@ -8488,7 +8527,31 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '95'
+                    title: test_title1
+                    replies_policy: none
+              schema:
+                "$ref": "#/components/schemas/List"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: The title of the list to be created.
+                replies_policy:
+                  description: One of followed, list, or none. Defaults to list.
+                  type: string
+                  enum:
+                  - followed
+                  - list
+                  - none
+                  default: list
+              required:
+              - title
+        required: true
     put:
       summary: update list
       tags:
@@ -8499,7 +8562,8 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - write
+        - write:lists
       parameters:
       - name: authorization
         in: header
@@ -8514,7 +8578,31 @@ paths:
               examples:
                 successful:
                   value:
-                    error: Record not found
+                    id: '96'
+                    title: test_title1
+                    replies_policy: none
+              schema:
+                "$ref": "#/components/schemas/List"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: The title of the list to be created.
+                replies_policy:
+                  description: One of followed, list, or none. Defaults to list.
+                  type: string
+                  enum:
+                  - followed
+                  - list
+                  - none
+                  default: list
+              required:
+              - title
+        required: true
     delete:
       summary: delete list
       tags:
@@ -8525,7 +8613,8 @@ paths:
       security:
       - bearerAuth: []
       - oauth:
-        - read
+        - write
+        - write:lists
       parameters:
       - name: authorization
         in: header
@@ -8539,8 +8628,10 @@ paths:
             application/json:
               examples:
                 successful:
-                  value:
-                    error: Record not found
+                  value: {}
+              schema:
+                type: object
+                properties: {}
   "/api/v1/markers":
     get:
       summary: list markers
