@@ -818,20 +818,64 @@ nn:
         title: Populære innlegg
       tags:
         current_score: Gjeldande poengsum %{score}
+        dashboard:
+          tag_accounts_measure: unike bruksområder
+          tag_languages_dimension: Mest brukte språk
+          tag_servers_dimension: Mest brukte servere
+          tag_servers_measure: forskjellige servere
+          tag_uses_measure: samlet bruk
+        description_html: Dette er emneknagger som for øyeblikket vises i mange innlegg som serveren din ser. Det kan hjelpe dine brukere med å finne ut hva folk snakker mest om i øyeblikket. Ingen emneknagger vises offentlig før du godkjenner dem.
+        listable: Kan bli foreslått
+        not_listable: Vil ikke bli foreslått
+        not_trendable: Kunne ikke vises under trender
+        not_usable: Kan ikke brukes
+        peaked_on_and_decaying: Nådde toppen %{date}, nå på vei ned
+        title: Populære emneknagger
+        trendable: Kan vises under trender
+        trending_rank: 'Trender #%{rank}'
+        usable: Kan brukes
+        usage_comparison: Brukt %{today} ganger i dag, sammenlignet med %{yesterday} i går
+        used_by_over_week:
+          one: Brukt av én person i løpet av den seneste uken
+          other: Brukt av %{count} personer i løpet av den seneste uken
+      title: Trender
+      trending: Trender
     warning_presets:
       add_new: Legg til ny
       delete: Slett
       edit_preset: Endr åtvaringsoppsett
+      empty: Du har ikke definert noen forhåndsinnstillinger for advarsler enda.
       title: Handsam åtvaringsoppsett
     webhooks:
       add_new: Legg til endepunkt
+      delete: Slett
+      description_html: En <strong>webhook</strong> gjør det mulig for Mastodon å sende <strong>varsler i sanntid</strong> om utvalgte hendelser til din egen applikasjon, sånn at applikasjonen din kan <strong>reagere automatisk</strong>.
+      disable: Deaktiver
+      disabled: Deaktivert
+      edit: Rediger endepunkt
+      empty: Du har ingen webhook-endepunkter konfigurert ennå.
+      enable: Aktiver
+      enabled: Aktiv
+      enabled_events:
+        one: 1 aktivert hendelse
+        other: "%{count} aktiverte hendelser"
+      events: Hendelser
+      new: Ny webhook
+      rotate_secret: Roter hemmelighet
+      secret: Hemmelighet for signering
       status: Status
+      title: Webhooker
+      webhook: Webhook
   admin_mailer:
     new_appeal:
       actions:
+        delete_statuses: å slette sine innlegg
+        disable: for å fryse kontoen deres
         mark_statuses_as_sensitive: å merke innleggene sine som følsomme
+        none: en advarsel
         sensitive: å merke kontoen sin som følsom
         silence: for å begrense deres konto
+        suspend: for å suspendere kontoen deres
     new_pending_account:
       body: Detaljer om den nye kontoen er nedenfor. Du kan godkjenne eller avvise denne søknaden.
       subject: Ny konto opp til vurdering på %{instance} (%{username})
@@ -839,6 +883,14 @@ nn:
       body: "%{reporter} har rapportert %{target}"
       body_remote: Nokon frå %{domain} har meldt %{target}
       subject: Ny rapport for %{instance} (#%{id})
+    new_trends:
+      new_trending_links:
+        title: Populære lenker
+      new_trending_statuses:
+        title: Populære innlegg
+      new_trending_tags:
+        title: Populære emneknagger
+      subject: Ny trender for gjennomsyn av %{instance}
   aliases:
     add_new: Lag psevdonym
     created_msg: Laga eit nytt kallenamn. No kan du setja i gang med flyttinga frå den gamle kontoen.
@@ -854,6 +906,7 @@ nn:
     discovery: Oppdaging
     localization:
       body: Mastodon er omsett av friviljuge.
+      guide_link: https://crowdin.com/project/mastodon
       guide_link_text: Alle kan bidra.
     sensitive_content: Ømtolig innhald
     toot_layout: Tutoppsett
@@ -1059,25 +1112,57 @@ nn:
       thread: Samtalar
     edit:
       add_keyword: Legg til stikkord
+      keywords: Nøkkelord
       statuses: Individuelle innlegg
       title: Endr filter
     errors:
       invalid_context: Ingen eller ugild kontekst gjeve
     index:
+      contexts: Filtre i %{contexts}
       delete: Slett
       empty: Du har ingen filtre.
+      expires_in: Utløper om %{distance}
+      expires_on: Utløper den %{date}
+      keywords:
+        one: "%{count} nøkkelord"
+        other: "%{count} nøkkelorder"
+      statuses:
+        one: "%{count} innlegg"
+        other: "%{count} innlegger"
+      statuses_long:
+        one: "%{count} enkeltinnlegg skjult"
+        other: "%{count} individuelle innlegger skjult"
       title: Filter
     new:
+      save: Lagre nytt filter
       title: Legg til nytt filter
+    statuses:
+      back_to_filter: Tilbake til filter
+      batch:
+        remove: Fjern fra filter
+      index:
+        hint: Dette filteret gjelder for å velge individuelle innlegg uavhengig av andre kriterier. Du kan legge til flere innlegg til dette filteret fra webgrensesnittet.
+        title: Filtrerte innlegg
   footer:
     trending_now: Populært no
   generic:
     all: Alle
+    all_items_on_page_selected_html:
+      one: "<strong>%{count}</strong> element på denne siden er valgt."
+      other: Alle <strong>%{count}</strong> elementer på denne siden er valgt.
+    all_matching_items_selected_html:
+      one: "<strong>%{count}</strong> element som matcher søket ditt er valgt."
+      other: Alle <strong>%{count}</strong> elementer som matcher søket velges.
     changes_saved_msg: Alle endringane vart lagra!
     copy: Kopier
     delete: Slett
+    deselect: Fjern all merking
+    none: Ingen
     order_by: Sorter etter
     save_changes: Lagr endringar
+    select_all_matching_items:
+      one: Velg %{count} element som samsvarer med søket ditt.
+      other: Velg alle %{count} elementer som samsvarer med søket ditt.
     today: i dag
     validation_errors:
       one: Noe er ikke helt riktig ennå. Vennligst se etter en gang til
@@ -1092,6 +1177,7 @@ nn:
       merge: Set saman
       merge_long: Hald på eksisterande data og legg til nye
       overwrite: Skriv over
+      overwrite_long: Erstatt gjeldende med de nye
     preface: Du kan henta inn data som du har eksportert frå ein annan tenar, som t.d. ei liste over folka du fylgjer eller blokkerer.
     success: Dataa dine vart lasta opp og vert no handsama så fort som mogeleg
     types:
@@ -1130,6 +1216,7 @@ nn:
     authentication_methods:
       otp: to-faktor autentiseringsapp
       password: passord
+      sign_in_token: e-post sikkerhetskode
       webauthn: sikkerhetsnøkler
     description_html: Hvis du ser aktivitet som du ikke gjenkjenner, bør du vurdere å endre passordet ditt og aktivere to-trinnsinnlogging.
     empty: Ingen innloggingshistorikk er tilgjengelig
@@ -1178,6 +1265,8 @@ nn:
     carry_blocks_over_text: Denne brukaren flytta frå %{acct}, som du gøymde.
     carry_mutes_over_text: Denne brukeren flyttet fra %{acct}, som du hadde dempet.
     copy_account_note_text: 'Denne brukeren flyttet fra %{acct}, her var dine tidligere notater om dem:'
+  navigation:
+    toggle_menu: Vis/Skjul meny
   notification_mailer:
     admin:
       report:
@@ -1202,6 +1291,8 @@ nn:
       body: 'Du vart nemnd av %{name} i:'
       subject: Du vart nemnd av %{name}
       title: Ny nemning
+    poll:
+      subject: En avstemming av %{name} er avsluttet
     reblog:
       body: 'Statusen din vart framheva av %{name}:'
       subject: "%{name} framheva statusen din"
@@ -1282,6 +1373,7 @@ nn:
     errors:
       invalid_rules: refererer ikke til gyldige regler
   rss:
+    content_warning: 'Innholdsadvarsel:'
     descriptions:
       account: Offentlige innlegg fra @%{acct}
       tag: 'Offentlige innlegg merket med #%{hashtag}'
