@@ -22,10 +22,10 @@ class AccountSuggestions::SettingSource < AccountSuggestions::Source
 
   def scope(account)
     Account.searchable
+           .discoverable
            .followable_by(account)
            .not_excluded_by_account(account)
            .not_domain_blocked_by_account(account)
-           .where(locked: false)
            .where.not(id: account.id)
   end
 
