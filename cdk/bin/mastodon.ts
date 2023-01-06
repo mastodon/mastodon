@@ -2,6 +2,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { MastodonStack } from '../lib/mastodon-stack';
 import { MailStack } from '../lib/mail-stack';
+import { OIDCStack } from '../lib/oidc-stack';
 
 const PRODUCTION = (process.env.NODE_ENV === 'production');
 
@@ -19,6 +20,12 @@ const domain = PRODUCTION ? 'verified.coop' : 'verified-staging.net'
 
 const secrets = PRODUCTION ? require('../secrets').production : require('../secrets').staging
 
+// OIDC Stack
+const githubDomain = 'token.actions.githubusercontent.com';
+const repositoryConfig = [
+  { owner: 'hellocoop', repo: 'mastodon', filter: 'dev' },
+]
+
 const app = new cdk.App();
 
   // Kyle: I'm going to put the template all in one stack
@@ -30,6 +37,10 @@ const mail = new MailStack(app, 'MailStack', {
   domain
 })
 
+const oidc = new OIDCStack(app, 'OIDCStack', {
+  githubDomain,
+  repositoryConfig
+})
 
 const mastodon =  new MastodonStack(app, 'MastodonStack', {
   env,
