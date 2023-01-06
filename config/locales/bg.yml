@@ -115,7 +115,7 @@ bg:
       redownloaded_msg: Успешно опреснен профил на %{username} от източника
       reject: Отхвърляне
       rejected_msg: Успешно отхвърлена заявка за регистрация на приложението на %{username}
-      remote_suspension_irreversible: Данните за този акаунт са изтрити безвъзвратно.
+      remote_suspension_irreversible: Данните на този акаунт са необратимо изтрити.
       remote_suspension_reversible_hint_html: Акаунтът е бил преустановен на своя сървър и данните ще бъдат напълно премахнати на %{date}. Дотогава отдалеченият сървър може да възстанови този акаунт без щети. Ако желаете да премахнете всички данни за акаунта незабавно, можете да го сторите по-долу.
       remove_avatar: Премахване на аватар
       remove_header: Премахване на заглавката
@@ -207,8 +207,8 @@ bg:
         reject_appeal: Отхвърляне на обжалването
         reject_user: Отхвърляне на потребителя
         remove_avatar_user: Премахване на аватара
-        reopen_report: Повторно отваряне на доклад
-        resend_user: Повторно изпращане на имейла за потвърждение
+        reopen_report: Отваряне пак на доклад
+        resend_user: Изпращане пак на е-писмо за потвърждение
         reset_password_user: Задаване на нова парола
         resolve_report: Отстраняване на доклада
         sensitive_account: Деликатен акаунт
@@ -246,13 +246,13 @@ bg:
         destroy_announcement_html: "%{name} изтри оповестяване %{target}"
         destroy_canonical_email_block_html: "%{name} отблокира имейла с хеш %{target}"
         destroy_custom_emoji_html: "%{name} изтри емоджито %{target}"
-        destroy_domain_allow_html: "%{name} отмени федерирането с домейн %{target}"
+        destroy_domain_allow_html: "%{name} забрани федерирация с домейн %{target}"
         destroy_domain_block_html: "%{name} отблокира домейн %{target}"
         destroy_email_domain_block_html: "%{name} отблокира домейн на имейл %{target}"
         destroy_instance_html: "%{name} прочисти домейн %{target}"
         destroy_ip_block_html: "%{name} изтри правило за IP %{target}"
         destroy_status_html: "%{name} премахна публикация от %{target}"
-        destroy_unavailable_domain_html: "%{name} възстанови доставянето до домейн %{target}"
+        destroy_unavailable_domain_html: "%{name} възобнови доставката до домейн %{target}"
         destroy_user_role_html: "%{name} изтри роля %{target}"
         disable_2fa_user_html: "%{name} изключи двуфакторното изискване за потребител %{target}"
         disable_custom_emoji_html: "%{name} изключи емоджито %{target}"
@@ -279,11 +279,11 @@ bg:
         unsilence_account_html: "%{name} отмени ограниченията на акаунта на %{target}"
         unsuspend_account_html: "%{name} върна обратно акаунта на %{target}"
         update_announcement_html: "%{name} обнови оповестяването на %{target}"
-        update_custom_emoji_html: "%{name} обнови емоджито на %{target}"
+        update_custom_emoji_html: "%{name} обнови емоджито %{target}"
         update_domain_block_html: "%{name} обнови блокирането на домейна за %{target}"
         update_ip_block_html: "%{name} промени правило за IP на %{target}"
         update_status_html: "%{name} обнови публикация от %{target}"
-        update_user_role_html: "%{name} промени ролята на %{target}"
+        update_user_role_html: "%{name} промени ролята %{target}"
       deleted_account: изтрит акаунт
       empty: Няма намерени дневници.
       filter_by_action: Филтриране по действие
