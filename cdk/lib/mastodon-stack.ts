@@ -111,7 +111,7 @@ export class MastodonStack extends Stack {
       defaultBehavior: {
         origin: albOrigin,
         allowedMethods: cf.AllowedMethods.ALLOW_ALL,
-        cachePolicy: cf.CachePolicy.CACHING_DISABLED,
+        cachePolicy: (props.PRODUCTION) ? cf.CachePolicy.CACHING_OPTIMIZED : cf.CachePolicy.CACHING_DISABLED,
         originRequestPolicy: requestPolicyAPI,
         viewerProtocolPolicy: cf.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
       },
