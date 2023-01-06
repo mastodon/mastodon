@@ -37,6 +37,14 @@ class Export
     end
   end
 
+  def to_follower_accounts_csv
+    CSV.generate(headers: ['Account address'], write_headers: true) do |csv|
+      account.passive_relationships.includes(:account).reorder(id: :desc).each do |follower|
+        csv << [acct(follower.account)]
+      end
+    end
+  end
+
   def to_lists_csv
     CSV.generate do |csv|
       account.owned_lists.select(:title, :id).each do |list|

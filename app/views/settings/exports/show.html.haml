@@ -23,7 +23,7 @@
       %tr
         %th= t('admin.accounts.followers')
         %td= number_with_delimiter @export.total_followers
-        %td
+        %td= table_link_to 'download', t('exports.csv'), settings_exports_followers_path(format: :csv)
       %tr
         %th= t('exports.blocks')
         %td= number_with_delimiter @export.total_blocks
