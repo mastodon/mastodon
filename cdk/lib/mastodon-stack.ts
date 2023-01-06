@@ -291,7 +291,7 @@ export class MastodonStack extends Stack {
       S3_BUCKET: bucket.bucketName,
       LOCAL_DOMAIN: props.domain,
       ES_ENABLED: 'true',
-      ES_HOST: osDomain.domainEndpoint,
+      ES_HOST: osDomain.domainName,
       ES_PORT: '9200',
       // passed in secrets
       SMTP_LOGIN:         props.secrets.SMTP_LOGIN,
