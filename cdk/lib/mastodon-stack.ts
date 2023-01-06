@@ -234,6 +234,7 @@ export class MastodonStack extends Stack {
     // S3
     const bucketName = 'mastodon-'+props.domain.replace('.','-') // Kyle: I have found S3 is cranky with dots in the bucket name -- I replace dots with dashes
     const bucket = new s3.Bucket(this, bucketName, { 
+      bucketName: bucketName,
       encryption: s3.BucketEncryption.KMS,
       bucketKeyEnabled: true,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
