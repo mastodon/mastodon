@@ -1,19 +1,18 @@
----
 et:
   devise:
     confirmations:
-      confirmed: Teie e-postiaadress on edukalt kinnitatud.
+      confirmed: Sinu e-postiaadress on edukalt kinnitatud.
       send_instructions: Te saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
-      send_paranoid_instructions: Kui teie e-postiaadress eksisteerib meie andmebaasis, saate paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
+      send_paranoid_instructions: Kui sinu e-postiaadress on meie andmebaasis, saad paari minuti pärast e-kirja juhistega, kuidas oma e-posti aadressit kinnitada. Palun kontrolli oma rämpsposti kausta, kui selline e-kiri ei saabunud.
     failure:
       already_authenticated: Oled juba sisse loginud.
-      inactive: Teie konto pole veel aktiveeritud.
+      inactive: Sinu konto pole veel aktiveeritud.
       invalid: Valed %{authentication_keys} või salasõna.
-      last_attempt: Teil on veel üks katse kuni teie konto on lukustatud.
-      locked: Teie konto on lukustatud.
+      last_attempt: Sul on veel üks katse, enne kui konto lukustatakse.
+      locked: Konto on lukustatud.
       not_found_in_database: Valed %{authentication_keys} või salasõna.
-      pending: Teie konto on siiani läbivaatlusel.
-      timeout: Teie sessioon on aegunud. Jätkamiseks palun sisenege uuesti.
+      pending: Sinu konto on siiani läbivaatamisel.
+      timeout: Sinu sessioon on aegunud. Jätkamiseks palun sisene uuesti.
       unauthenticated: Te peate sisenema või looma konto enne jätkamist.
       unconfirmed: Te peate kinnitama oma e-postiaadressi enne jätkamist.
     mailer:
@@ -21,7 +20,7 @@ et:
         action: Kinnitage e-postiaadress
         action_with_app: Kinnita ja naase %{app}
         explanation: Oled loonud %{host} konto selle e-postiaadressiga. Oled ühe kliki kaugusel selle aktiveerimisest. Kui see polnud sina, palun eira seda kirja.
-        explanation_when_pending: "Selle e-postiaadressiga on esitatud taotlus saada %{host} kasutajaks. E-postiaadress vajab kinnitamist. Pärast seda vaatame me taotluse üle. Võib siseneda, et oma andmeid muuta või konto kustutada, aga enamustele tegevustele ei pääse ligi enne, kui konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saabub selle kohta eraldi e-kiri.\nKui taotlus lükatakse aga tagasi, kustutatakse ka andmed ja mingit järeltegevust pole vaja. \nKui see polnud Teie, siis palume seda kirja eirata."
+        explanation_when_pending: "Selle e-postiaadressiga on esitatud taotlus saada %{host} kasutajaks. E-postiaadress vajab kinnitamist. Pärast seda vaatame me taotluse üle. Võib siseneda, et oma andmeid muuta või konto kustutada, aga enamustele tegevustele ei pääse enne ligi, kui konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saabub selle kohta eraldi e-kiri.\nKui taotlus lükatakse aga tagasi, kustutatakse ka andmed ja mingit järeltegevust pole vaja. \nKui see polnud sina, siis palume seda kirja eirata."
         extra_html: Palun tutvu <a href="%{terms_path}">meie serveri reeglitega</a> ning <a href="%{policy_path}">meie kasutustingimustega</a>.
         subject: 'Mastodon: %{instance} kinnitamisjuhised'
         title: Kinnita e-postiaadress
