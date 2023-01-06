@@ -38,7 +38,15 @@ module Admin
                                        public_comment: row['#public_comment'],
                                        obfuscate: row.fetch('#obfuscate', false))
 
-        domain_block if domain_block.valid?
+        if domain_block.invalid?
+          flash.now[:alert] = I18n.t('admin.export_domain_blocks.invalid_domain_block', error: domain_block.errors.full_messages.join(', '))
+          next
+        end
+
+        domain_block
+      rescue ArgumentError => e
+        flash.now[:alert] = I18n.t('admin.export_domain_blocks.invalid_domain_block', error: e.message)
+        next
       end
 
       @warning_domains = Instance.where(domain: @domain_blocks.map(&:domain)).where('EXISTS (SELECT 1 FROM follows JOIN accounts ON follows.account_id = accounts.id OR follows.target_account_id = accounts.id WHERE accounts.domain = instances.domain)').pluck(:domain)
