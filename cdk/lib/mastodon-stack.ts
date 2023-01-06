@@ -56,6 +56,8 @@ export class MastodonStack extends Stack {
     const osDomain = new opensearch.Domain(this, 'Domain', {
       version: opensearch.EngineVersion.OPENSEARCH_1_3,
       vpc,
+      vpcSubnets: [{
+        subnetType: ec2.SubnetType.PRIVATE_WITH_EGRESS, availabilityZones: [Stack.of(this).availabilityZones[0]]}], // Provision to the first private subnet only
       capacity: {
         masterNodes: 0,
         dataNodes: 1,
@@ -63,9 +65,6 @@ export class MastodonStack extends Stack {
       },
       ebs: {
         volumeSize: 10,
-      },
-      zoneAwareness: {
-        availabilityZoneCount: 1,
       },
       logging: {
         slowSearchLogEnabled: true,
@@ -134,6 +133,7 @@ export class MastodonStack extends Stack {
       priceClass: cf.PriceClass.PRICE_CLASS_100,
       certificate: webCertificate,
       logFilePrefix: props.domain,
+      httpVersion: cf.HttpVersion.HTTP2_AND_3,
       defaultBehavior: {
         origin: albOrigin,
         allowedMethods: cf.AllowedMethods.ALLOW_ALL,
