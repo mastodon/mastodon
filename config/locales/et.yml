@@ -57,7 +57,7 @@ et:
       deleted: Kustutatud
       demote: Alanda
       destroyed_msg: "%{username} andmed on nüüd lõpliku kustutamise ootel"
-      disable: Keela
+      disable: Lukusta
       disable_sign_in_token_auth: Keela e-posti võtmetega autentimine
       disable_two_factor_authentication: Keela 2FA
       disabled: Keelatud
@@ -157,7 +157,7 @@ et:
       unconfirmed_email: Kinnitamata e-post
       undo_sensitized: Eemalda tundliku sisu märge
       undo_silenced: Võta vaigistus tagasi
-      undo_suspension: Võta peatamine tagasi
+      undo_suspension: Võta kustutamine tagasi
       unsilenced_msg: Konto %{username} piirangud emaldatud
       unsubscribe: Tühista tellimus
       unsuspended_msg: Kasutaja %{username} konto taastatud
@@ -759,7 +759,7 @@ et:
     strikes:
       actions:
         delete_statuses: "%{name} kustutas %{target} postitused"
-        disable: "%{name} külmutas %{target} konto"
+        disable: "%{name} lukustas %{target} konto"
         mark_statuses_as_sensitive: "%{name} märkis %{target} postitused tundlikena"
         none: "%{name} saatis hoiatuse kasutajale %{target}"
         sensitive: "%{name} märkis %{target} konto kui tundlik sisu"
@@ -877,7 +877,7 @@ et:
     new_appeal:
       actions:
         delete_statuses: kustutada postitused
-        disable: kustutada konto
+        disable: lukustada konto
         mark_statuses_as_sensitive: et märkida postitused kui tundlik sisu
         none: hoiatus
         sensitive: et märkida konto kui tundlik sisu
@@ -979,7 +979,7 @@ et:
       preamble_html: Logige sisse oma <strong>%{domain}</strong> volitustega. Kui konto asub teises serveris, ei saa te siin sisse logida.
       title: Logi sisse kohta %{domain}
     sign_up:
-      preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erivevates Mastodoni serverites.
+      preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erinevates Mastodoni serverites.
       title: Loo konto serverisse  %{domain}.
     status:
       account_status: Konto olek
@@ -1044,8 +1044,8 @@ et:
       email_reconfirmation_html: Kui Te ei saanud kinnituskirja, saate selle <a href="%{path}">uuesti küsida</a>
       irreversible: Kustutatud kontot ei saa taastada ega uuesti aktiveerida
       more_details_html: Konto kustutamise kohta loe täpsemalt <a href="%{terms_path}">isikuandmete kaitse põhimõtetest</a>.
-      username_available: Su kasutajanimi muutub uuesti kasutatavaks
-      username_unavailable: Su kasutajanimi jääb mittekasutatavaks
+      username_available: Kasutajanimi muutub uuesti kasutatavaks
+      username_unavailable: Kasutajanimi jääb mittekasutatavaks
   disputes:
     strikes:
       action_taken: Tulemus
@@ -1067,7 +1067,7 @@ et:
       title: "%{action} kuupäevaga %{date}"
       title_actions:
         delete_statuses: Postituste eemaldamine
-        disable: Konto külmutamine
+        disable: Konto lukustamine
         mark_statuses_as_sensitive: Postituste tundlikena märkimine
         none: Hoiatus
         sensitive: Konto tundlikuna märkimine
@@ -1180,8 +1180,8 @@ et:
       other: Vali kõik %{count} otsinguvastet.
     today: täna
     validation_errors:
-      one: Midagi pole ikka õigesti! Palun vaadake allolev veateade üle
-      other: Midagi pole ikka õigesti! Palun vaadake all olevad %{count} veateadet üle
+      one: Midagi pole ikka õigesti! Palun vaata allolev veateade üle
+      other: Midagi pole ikka õigesti! Palun vaata all olevad %{count} veateadet üle
   html_validator:
     invalid_markup: 'sisaldab valet HTMLi süntaksi: %{error}'
   imports:
@@ -1241,7 +1241,7 @@ et:
   media_attachments:
     validations:
       images_and_video: Ei saa lisada video postitusele, milles on juba pildid
-      not_ready: Ei saa lisada faile, mida hetkel töödeldakse. Proovige uuesti mõne hetke pärast!
+      not_ready: Ei saa lisada faile, mida hetkel töödeldakse. Proovi uuesti mõne hetke pärast!
       too_many: Ei saa lisada rohkem, kui 4 faili
   migrations:
     acct: Kolitud aadressile
@@ -1591,7 +1591,7 @@ et:
       title: Vaidlustus tagasi lükatud
     backup_ready:
       explanation: Te taotlesite varukoopia oma Mastodoni kontost. See on nüüd valmis allalaadimiseks!
-      subject: Teie arhiiv on allalaadimiseks valmis
+      subject: Arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
     suspicious_sign_in:
       change_password: muuta oma salasõna
@@ -1607,7 +1607,7 @@ et:
         spam: Rämpspost
         violation: Sisu eirab järgmisi kogukonnajuhiseid
       explanation:
-        delete_statuses: Mõned postitused eiravad ühte või mitmeid kogukonnajuhiseid ja on seetõttu %{instance} moderaatorite poolt eemaldatud.
+        delete_statuses: Mõned su positustest eiravad serveri reegleid või tavasid ning on seetõttu %{instance} moderaatorite poolt eemaldatud.
         disable: Konto kasutamine pole enam võimalik, kuid profiil ja muud andmed säilivad. Andmetest on võimalik saada varukoopiat, muuta konto seadeid või konto kustutada.
         mark_statuses_as_sensitive: Mõned postitused märgiti %{instance} moderaatorite poolt kui tundlik sisu. See tähendab, et meedia eelvaadet vaikimisi ei kuvata. Edaspidi postitades on soovitatav seesugune meedia märkida kui tundlik sisu.
         sensitive: Praegusest alates saab kogu Su üleslaetav meedia tundliku sisu märke ja selle eelvaadet ei kuvata enne hoiatust.
@@ -1636,11 +1636,11 @@ et:
       edit_profile_step: |-
         Esmalt seadista oma profiil. Saad lisada profiilipildi, muuta ekraaninime, lisada lühikirjelduse ja teha paljut muud. Vaata üle oma konto seaded. Saad ise otsustada, kui nähtav on konto teiste jaoks, mis keeltes postitusi oma ajavoos näha soovid ning kui privaatne peaks konto olema.
 
-        Kui mõni asi arusaamatuks jääb, siis saate vaadata juhendvideot: https://youtu. be/J4ItbTOAw7Q.
+        Kui mõni asi arusaamatuks jääb, siis võib vaadata juhendvideot: https://youtu.be/J4ItbTOAw7Q
       explanation: Siin on mõned nõuanded, mis aitavad alustada
       final_action: Alusta postitamist
       final_step: 'Nüüd tee oma esimene postitus. Hea tava on uues kohas ennast tutvustada ning kindlasti kasuta selles postituses ka teemaviidet #tutvustus. Isegi kui sul ei ole veel jälgijaid, siis su postitusi näevad kohalikul ajajoonel ka kõik teised serveri kasutajad.'
-      full_handle: Su kasutajanimi Mastodon võrgustikus
+      full_handle: Kasutajanimi Mastodon võrgustikus
       full_handle_hint: Kui jagad kasutajanime väljaspool serverit, siis kasuta kindlasti pikka nime. Erinevates serverites võib olla sama kasutajanimega liikmeid.
       subject: Tere tulemast Mastodoni
       title: Tere tulemast, %{name}!

@@ -116,6 +116,8 @@ pt-BR:
       redownloaded_msg: O perfil de %{username} foi atualizado a partir da origem
       reject: Rejeitar
       rejected_msg: O pedido de registro de %{username} foi rejeitado
+      remote_suspension_irreversible: Os dados desta conta foram excluídos de forma irreversível.
+      remote_suspension_reversible_hint_html: A conta foi suspensa em seu servidor, e todos os dados serão removidos em %{date}. Até lá, o servidor remoto pode restaurar essa conta sem nenhum efeito negativo. Se você quer remover todos os dados desta conta imediatamente, você pode fazer isso abaixo.
       remove_avatar: Remover imagem de perfil
       remove_header: Remover capa
       removed_avatar_msg: A imagem de perfil de %{username} foi removida
@@ -394,6 +396,7 @@ pt-BR:
           silence: Limitar
           suspend: Banir
         title: Novo bloqueio de domínio
+      no_domain_block_selected: Nenhum bloqueio de domínio foi alterado porque nenhum foi selecionado
       not_permitted: Você não possui permissão para realizar esta ação
       obfuscate: Ofuscar nome de domínio
       obfuscate_hint: Ofuscar parcialmente o domínio na lista se a exibição da lista de domínios limitados estiver habilitada
@@ -700,6 +703,8 @@ pt-BR:
       content_retention:
         preamble: Controlar como o conteúdo gerado pelo usuário é armazenado no Mastodon.
         title: Retenção de conteúdo
+      default_noindex:
+        desc_html: Afeta qualquer usuário que não tenha alterado esta configuração manualmente
       discovery:
         follow_recommendations: Seguir recomendações
         preamble: Navegar por um conteúdo interessante é fundamental para integrar novos usuários que podem não conhecer ninguém no Mastodon. Controle como várias características de descoberta funcionam no seu servidor.
@@ -787,6 +792,8 @@ pt-BR:
         disallow: Proibir link
         disallow_provider: Proibir autor
         no_link_selected: Nenhum link foi alterado como nenhum foi selecionado
+        publishers:
+          no_publisher_selected: Nenhum editor foi alterado porque nenhum foi selecionado
         shared_by_over_week:
           one: Compartilhado por uma pessoa na última semana
           other: Compartilhado por %{count} pessoas na última semana
@@ -964,6 +971,8 @@ pt-BR:
       email_below_hint_html: Se o endereço de e-mail abaixo não for seu, você pode alterá-lo aqui e receber um novo e-mail de confirmação.
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
       title: Configurações
+    sign_in:
+      title: Entrar em %{domain}
     sign_up:
       preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
       title: Então vamos lá criar uma conta em %{domain}.
@@ -1296,7 +1305,7 @@ pt-BR:
     reblog:
       body: "%{name} impulsionou a sua publicação:"
       subject: "%{name} impulsionou a sua publicação"
-      title: Novo boost
+      title: Novo impulso
     status:
       subject: "%{name} acabou de publicar"
     update:
@@ -1532,7 +1541,7 @@ pt-BR:
     min_reblogs: Manter publicações impulsionadas por ao menos
     min_reblogs_hint: Não exclui publicações que receberam pelo menos esta quantidade de impulsos. Deixe em branco para excluir publicações independentemente da quantidade de impulsos
   stream_entries:
-    pinned: Publicação fixada
+    pinned: Toot fixado
     reblogged: deu boost
     sensitive_content: Conteúdo sensível
   strikes:
