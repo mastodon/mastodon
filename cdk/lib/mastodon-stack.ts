@@ -221,7 +221,7 @@ export class MastodonStack extends Stack {
     });
 
     const bucketPolicy = new iam.PolicyStatement({
-      actions: ['s3:Get*', 's3:List*'],
+      actions: ['s3:*'],
       resources: [bucket.arnForObjects('*')],
       principals: [new iam.ArnPrincipal(user.userArn)]
     });
