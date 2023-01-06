@@ -21,6 +21,7 @@ import * as ses from 'aws-cdk-lib/aws-ses';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import * as secretsmanager from 'aws-cdk-lib/aws-secretsmanager';
+import * as opensearch from 'aws-cdk-lib/aws-opensearchservice';
 
 
 
@@ -50,6 +51,31 @@ export class MastodonStack extends Stack {
       maxAzs: 2,
       vpcName: 'mastodon'
     })
+
+    // Opensearch
+    const osDomain = new opensearch.Domain(this, 'Domain', {
+      version: opensearch.EngineVersion.OPENSEARCH_1_3,
+      vpc,
+      capacity: {
+        masterNodes: 0,
+        dataNodes: 1,
+        dataNodeInstanceType: "t3.small.search",
+      },
+      ebs: {
+        volumeSize: 10,
+      },
+      zoneAwareness: {
+        availabilityZoneCount: 1,
+      },
+      logging: {
+        slowSearchLogEnabled: true,
+        appLogEnabled: true,
+        slowIndexLogEnabled: true,
+      },
+      encryptionAtRest: {
+        enabled: true,
+      },
+    });
 
     // ECS Cluster
     const cluster = new Cluster(this, 'mastodonCluster', { 
@@ -264,6 +290,9 @@ export class MastodonStack extends Stack {
       DB_HOST: dbRecord.domainName,
       S3_BUCKET: bucket.bucketName,
       LOCAL_DOMAIN: props.domain,
+      ES_ENABLED: 'true',
+      ES_HOST: osDomain.domainEndpoint,
+      ES_PORT: '9200',
       // passed in secrets
       SMTP_LOGIN:         props.secrets.SMTP_LOGIN,
       SMTP_PASSWORD:      props.secrets.SMTP_PASSWORD,
