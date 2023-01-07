@@ -54,10 +54,12 @@ class Api::V1::StatusesController < Api::BaseController
     # フロントから受け取った投稿内容と公開範囲を変数で保持
     text = status_params[:status]
     visibility = status_params[:visibility]
+    spoiler_text = status_params[:spoiler_text]
 
     # フロントから受け取った公開範囲：にゃーんのつぶやきかどうかをチェックし、にゃーんの場合は置き換え
     if visibility == 'nyan'
       text = "にゃーん" 
+      spoiler_text = "にゃーん"
       visibility = 'public'
     end
 
@@ -74,7 +76,7 @@ class Api::V1::StatusesController < Api::BaseController
       thread: @thread,
       media_ids: status_params[:media_ids],
       sensitive: status_params[:sensitive],
-      spoiler_text: status_params[:spoiler_text],
+      spoiler_text: spoiler_text,
       visibility: visibility,
       language: status_params[:language],
       scheduled_at: status_params[:scheduled_at],
