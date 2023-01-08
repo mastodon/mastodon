@@ -118,7 +118,7 @@ class NotifyService < BaseService
 
   def conversation_muted?
     if @notification.target_status
-      @recipient.muting_conversation?(@notification.target_status.conversation)
+      @recipient.muting_conversation?(@notification.target_status.conversation) && !Follow.find_by(account: @recipient, target_account: @notification.from_account)&.notify?
     else
       false
     end
