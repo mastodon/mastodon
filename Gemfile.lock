@@ -7,6 +7,21 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
+GIT
+  remote: https://github.com/Gargron/blurhash.git
+  revision: 870a34e01ce7d09a7bd4d700435e1764ca823246
+  branch: master
+  specs:
+    blurhash (0.1.6)
+
+GIT
+  remote: https://github.com/zunda/rails-settings-cached.git
+  revision: 86328ef0bd04ce21cc0504ff5e334591e8c2ccab
+  branch: v0.6.6-aliases-true
+  specs:
+    rails-settings-cached (0.6.6)
+      rails (>= 4.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -120,8 +135,6 @@ GEM
     bindata (2.4.10)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
-    blurhash (0.1.6)
-      ffi (~> 1.14)
     bootsnap (1.15.0)
       msgpack (~> 1.2)
     brakeman (5.4.0)
@@ -402,7 +415,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
+    mini_portile2 (2.8.1)
     minitest (5.17.0)
     msgpack (1.6.0)
     multi_json (1.15.0)
@@ -421,7 +434,7 @@ GEM
       net-protocol
     net-ssh (7.0.1)
     nio4r (2.5.8)
-    nokogiri (1.13.10)
+    nokogiri (1.14.0.rc1)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     nsa (0.2.8)
@@ -492,7 +505,7 @@ GEM
     pundit (2.3.0)
       activesupport (>= 3.0.0)
     raabro (1.4.0)
-    racc (1.6.1)
+    racc (1.6.2)
     rack (2.2.5)
     rack-attack (6.6.1)
       rack (>= 1.0, < 3)
@@ -535,8 +548,6 @@ GEM
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
       railties (>= 6.0.0, < 7)
-    rails-settings-cached (0.6.6)
-      rails (>= 4.2.0)
     railties (6.1.7)
       actionpack (= 6.1.7)
       activesupport (= 6.1.7)
@@ -759,7 +770,7 @@ DEPENDENCIES
   aws-sdk-s3 (~> 1.117)
   better_errors (~> 2.9)
   binding_of_caller (~> 1.0)
-  blurhash (~> 0.1)
+  blurhash (~> 0.1)!
   bootsnap (~> 1.15.0)
   brakeman (~> 5.4)
   browser
@@ -817,7 +828,7 @@ DEPENDENCIES
   net-ldap (~> 0.17)
   net-pop
   net-smtp
-  nokogiri (~> 1.13)
+  nokogiri (~> 1.14.0.rc1)
   nsa (~> 0.2)
   oj (~> 3.13)
   omniauth (~> 1.9)
@@ -844,7 +855,7 @@ DEPENDENCIES
   rails (~> 6.1.7)
   rails-controller-testing (~> 1.0)
   rails-i18n (~> 6.0)
-  rails-settings-cached (~> 0.6)
+  rails-settings-cached (~> 0.6)!
   rdf-normalize (~> 0.5)
   redcarpet (~> 3.5)
   redis (~> 4.5)
@@ -882,3 +893,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.2.0p0
+
+BUNDLED WITH
+   2.4.2
