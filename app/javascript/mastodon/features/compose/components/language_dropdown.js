@@ -34,7 +34,6 @@ class LanguageDropdownMenu extends React.PureComponent {
 
   state = {
     searchValue: '',
-    placement: 'bottom',
   };
 
   handleDocumentClick = e => {
@@ -251,6 +250,7 @@ class LanguageDropdown extends React.PureComponent {
 
   state = {
     open: false,
+    placement: 'bottom',
   };
 
   handleToggle = () => {
