@@ -325,20 +325,20 @@ pt-PT:
       enabled_msg: Ativado com sucesso este emoji
       image_hint: PNG ou GIF até %{size}
       list: Lista
-      listed: Listado
+      listed: Inventariado
       new:
-        title: Adicionar novo emoji customizado
+        title: Adicionar novo emoji personalizado
       no_emoji_selected: Nenhum emojis foi alterado, pois nenhum foi selecionado
       not_permitted: Não está autorizado a executar esta ação
-      overwrite: Sobrescrever
+      overwrite: Escrever por cima
       shortcode: Código de atalho
       shortcode_hint: Pelo menos 2 caracteres, apenas caracteres alfanuméricos e underscores
-      title: Emojis customizados
-      uncategorized: Sem categoria
+      title: Emojis personalizados
+      uncategorized: Não categorizados
       unlist: Não listar
-      unlisted: Não listado
+      unlisted: Não inventariado
       update_failed_msg: Não foi possível atualizar esse emoji
-      updated_msg: Emoji atualizado com sucesso!
+      updated_msg: Emoji correctamente actualizado!
       upload: Enviar
     dashboard:
       active_users: utilizadores activos
@@ -365,50 +365,50 @@ pt-PT:
       title: Painel de controlo
       top_languages: Principais idiomas activos
       top_servers: Servidores mais activos
-      website: Website
+      website: Página na teia
     disputes:
       appeals:
         empty: Nenhum recurso encontrado.
         title: Recursos
     domain_allows:
-      add_new: Colocar domínio na lista branca
-      created_msg: Domínio foi adicionado à lista branca com sucesso
-      destroyed_msg: Domínio foi removido da lista branca
+      add_new: Permitir federação com o domínio
+      created_msg: Permissão correctamente atribuída para federação
+      destroyed_msg: Revogada a permissão de federação para o domínio
       export: Exportar
       import: Importar
-      undo: Remover da lista branca
+      undo: Revogar federação com o domínio
     domain_blocks:
-      add_new: Adicionar novo
+      add_new: Adicionar novo bloqueio de domínio
       created_msg: Bloqueio do domínio está a ser processado
-      destroyed_msg: Bloqueio de domínio está a ser removido
+      destroyed_msg: Retirado o bloqueio de domínio
       domain: Domínio
       edit: Editar bloqueio de domínio
-      existing_domain_block: Já impôs limites mais rigorosos a %{name}.
-      existing_domain_block_html: Você já impôs limites mais restritivos a %{name}, é necessário primeiro <a href="%{unblock_url}">desbloqueá-lo</a>.
+      existing_domain_block: Já tinha imposto limites mais rigorosos a %{name}.
+      existing_domain_block_html: Já tinha imposto limites mais restritivos a %{name}. Primeiro, precisa de o <a href="%{unblock_url}">desbloquear</a>.
       export: Exportar
       import: Importar
       new:
         create: Criar bloqueio
-        hint: O bloqueio de dominio não vai previnir a criação de entradas na base de dados, mas irá retroativamente e automaticamente aplicar métodos de moderação específica nessas contas.
+        hint: O bloqueio por domínio não vai prevenir a criação de contas na base de dados, mas irá retroactiva e automaticamente aplicar certos métodos de moderação nessas contas.
         severity:
           desc_html: "<strong>Limitar</strong> tornará as mensagens das contas neste domínio invisíveis a qualquer pessoa que não as esteja a seguir. <strong>Suspender</strong> removerá do seu servidor todo o conteúdo, media, e dados de perfil das contas deste domínio. Utilize <strong>Nenhum</strong> se apenas quiser rejeitar ficheiros media."
           noop: Nenhum
           silence: Limitar
           suspend: Suspender
         title: Novo bloqueio de domínio
-      no_domain_block_selected: Nenhum bloqueio de domínio foi alterado pois nenhum foi selecionado
+      no_domain_block_selected: Nenhum bloqueio de domínio foi alterado, pois nenhum foi seleccionado
       not_permitted: Não está autorizado a executar esta ação
       obfuscate: Ofuscar nome de domínio
-      obfuscate_hint: Ofuscar parcialmente o nome de domínio na lista, se estiverem habilitadas as limitações na publicação da lista de domínios
+      obfuscate_hint: Ofuscar parcialmente o nome de domínio na lista, caso estejam definidas limitações na publicação da lista de domínios
       private_comment: Comentário privado
       private_comment_hint: Comentário sobre essa limitação de domínio para uso interno pelos moderadores.
       public_comment: Comentário público
       public_comment_hint: Comentário sobre essa limitação de domínio para o público geral, se ativada a divulgação da lista de limitações de domínio.
       reject_media: Rejeitar ficheiros de media
-      reject_media_hint: Remove arquivos de media armazenados localmente e rejeita descarregar novos arquivos no futuro. Irrelevante para suspensões
-      reject_reports: Rejeitar denúncia
-      reject_reports_hint: Ignorar todos as denúncias provenientes deste domínio. Irrelevante para suspensões
-      undo: Anular
+      reject_media_hint: Remove ficheiros de media armazenados localmente, e rejeita a descarga de novos ficheiros no futuro. Sem pertinência para suspensões
+      reject_reports: Rejeitar denúncias
+      reject_reports_hint: Ignorar todas as denúncias provenientes deste domínio. Sem pertinência para suspensões
+      undo: Anular o bloqueio por domínio
       view: Ver domínios bloqueados
     email_domain_blocks:
       add_new: Adicionar novo
@@ -454,7 +454,7 @@ pt-PT:
     instances:
       availability:
         description_html:
-          one: Se a transmissão ao domínio falhar <strong>%{count} dia</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
+          one: Se a transmissão ao domínio falhar ao final de <strong>%{count} dia(s)</strong>, não será feita mais nenhuma tentativa de transmissão a menos que seja recebida uma transmissão <em>proveniente</em> desse domínio.
           other: Se a transmissão ao domínio falhar em <strong>%{count} dias diferentes</strong> sem sucesso, nenhuma tentativa de transmissão será feita a menos que uma transmissão <em>proveniente</em> do domínio seja recebida.
         failure_threshold_reached: Limite de falhas atingido em %{date}.
         failures_recorded:
@@ -467,7 +467,7 @@ pt-PT:
       back_to_limited: Limitadas
       back_to_warning: Aviso
       by_domain: Domínio
-      confirm_purge: Tem a certeza que deseja eliminar permanentemente os dados deste domínio?
+      confirm_purge: Tem a certeza de que deseja eliminar permanentemente os dados deste domínio?
       content_policies:
         comment: Nota interna
         description_html: Pode definir políticas de conteúdo que serão aplicadas a todas as contas deste domínio e a qualquer um dos seus subdomínios.
@@ -510,11 +510,11 @@ pt-PT:
       private_comment: Comentários privados
       public_comment: Comentários públicos
       purge: Purgar
-      purge_description_html: Se acredita que este domínio está definitivamente offline, pode excluir todos os registos de contas e dados associados a ele do seu armazenamento. Isso pode demorar algum tempo.
-      title: Instâncias conhecidas
-      total_blocked_by_us: Bloqueadas por nós
-      total_followed_by_them: Seguidas por eles
-      total_followed_by_us: Seguidas por nós
+      purge_description_html: Se crê que este domínio está definitivamente fora de linha, pode apagar todos os seus registos de contas e dados associados do seu armazenamento. Isso pode demorar algum tempo.
+      title: Federação
+      total_blocked_by_us: Bloqueado(s) por nós
+      total_followed_by_them: Seguido(s) por eles
+      total_followed_by_us: Seguido(s) por nós
       total_reported: Denúncias sobre eles
       total_storage: Anexos de media
       totals_time_period_hint_html: Os totais exibidos abaixo incluem dados referentes ao tempo total.
@@ -528,7 +528,7 @@ pt-PT:
       title: Convites
     ip_blocks:
       add_new: Criar regra
-      created_msg: Nova regra de IP adicionada com sucesso
+      created_msg: Nova regra de IP correctamente adicionada
       delete: Eliminar
       expires_in:
         '1209600': 2 semanas
@@ -550,13 +550,13 @@ pt-PT:
       disable: Desativar
       disabled: Desactivado
       enable: Activar
-      enable_hint: Uma vez ativado, a tua instância irá subscrever a todas as publicações deste repetidor e irá começar a enviar as suas publicações públicas para ele.
+      enable_hint: Uma vez ativado, a tua instância irá assinar todas as publicações deste repetidor e irá começar a enviar as suas publicações públicas para lá.
       enabled: Ativado
       inbox_url: URL do repetidor
       pending: À espera da aprovação do repetidor
       save_and_enable: Guardar e ativar
       setup: Configurar uma ligação ao repetidor
-      signatures_not_enabled: Relays não funcionarão corretamente enquanto o modo seguro ou o modo lista branca estiverem ativados
+      signatures_not_enabled: Os repetidores não funcionarão correctamente enquanto o modo seguro ou o modo de lista branca estiverem activados
       status: Estado
       title: Retransmissores
     report_notes:
@@ -570,11 +570,11 @@ pt-PT:
       action_log: Registo de auditoria
       action_taken_by: Ação tomada por
       actions:
-        delete_description_html: As publicações denunciadas serão eliminadas e uma punição será registada para ajudá-lo a escalar ações em futuras infrações pela mesma conta.
-        mark_as_sensitive_description_html: A media nas publicações denunciadas será marcada como sensível e uma punição será registada para ajudá-lo a escalar ações em futuras infrações pela mesma conta.
+        delete_description_html: As publicações denunciadas serão eliminadas, e será registada uma reprimenda para ajudá-lo a tomar medidas em futuras infrações pela mesma conta.
+        mark_as_sensitive_description_html: A media nas publicações denunciadas será marcada como problemática, e uma reprimenda será registada para ajudá-lo a tomar medidas em futuras infrações pela mesma conta.
         other_description_html: Ver mais opções para controlar o comportamento da conta e personalizar a comunicação para a conta denunciada.
-        resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, nenhuma punição será registada, e a denuncia será fechada.
-        silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando severamente o seu alcance. Pode sempre ser revertido.
+        resolve_description_html: Nenhuma ação será tomada contra a conta denunciada, não será registada nenhuma reprimenda, e a denúncia será fechada.
+        silence_description_html: O perfil será visível apenas para aqueles que já o seguem ou o procurem manualmente, limitando fortemente o seu alcance. Pode sempre ser revertido.
         suspend_description_html: O perfil e todo o seu conteúdo tornar-se-ão inacessíveis até serem eventualmente apagados. A interacção com a conta será impossível. Reversível no prazo de 30 dias.
       actions_description_html: Decida a ação a tomar para resolver esta denúncia. Se decidir por uma ação punitiva contra a conta denunciada, um e-mail de notificação será enviado, excetuando quando selecionada a categoria <strong>Spam</strong>.
       add_to_report: Adicionar mais à denúncia
