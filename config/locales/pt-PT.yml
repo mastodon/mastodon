@@ -1,10 +1,10 @@
 pt-PT:
   about:
-    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
-    contact_missing: Não configurado
+    about_mastodon_html: 'A rede social do futuro: sem publicidade, e sem vigilância empresarial; desenho ético, e descentralizado! Tome posse dos seus dados com o Mastodon!'
+    contact_missing: Por definir
     contact_unavailable: n.d.
     hosted_on: Mastodon em %{domain}
-    title: Sobre
+    title: Acerca de
   accounts:
     follow: Seguir
     followers:
@@ -13,10 +13,10 @@ pt-PT:
     following: A seguir
     instance_actor_flash: Esta conta é um actor virtual usado para representar a própria instância e não um utilizador individual. É usada para motivos de federação e não deve ser suspenso.
     last_active: última vez activo
-    link_verified_on: A posse deste link foi verificada em %{date}
+    link_verified_on: A posse desta hiperligação foi verificada em %{date}
     nothing_here: Não há nada aqui!
     pin_errors:
-      following: Tu tens de estar a seguir a pessoa que pretendes apoiar
+      following: Tem de estar a seguir a pessoa que pretende apoiar
     posts:
       one: Publicação
       other: Publicações
@@ -26,18 +26,18 @@ pt-PT:
       action: Executar acção
       title: Executar acção de moderação em %{acct}
     account_moderation_notes:
-      create: Criar nota
-      created_msg: Nota de moderação criada com sucesso!
-      destroyed_msg: Nota de moderação excluída com sucesso!
+      create: Deixar uma nota
+      created_msg: Nota de moderação correctamente criada!
+      destroyed_msg: Nota de moderação destruída!
     accounts:
-      add_email_domain_block: Adicionar o domínio de e-mail à lista negra
+      add_email_domain_block: Bloquear este domínio de correio electrónico
       approve: Aprovar
-      approved_msg: Inscrição de %{username} aprovada com sucesso
+      approved_msg: Inscrição de %{username} aprovada correctamente
       are_you_sure: Tens a certeza?
-      avatar: Imagem de Perfil
+      avatar: Imagem de perfil
       by_domain: Domínio
       change_email:
-        changed_msg: E-mail alterado com sucesso!
+        changed_msg: Endereço de correio electrónico alterado!
         current_email: E-mail atual
         label: Alterar e-mail
         new_email: Novo e-mail
@@ -58,17 +58,17 @@ pt-PT:
       destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Congelar
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
-      disable_two_factor_authentication: Desativar 2FA
+      disable_two_factor_authentication: Desactivar autenticação por dois factores (2FA)
       disabled: Congelada
       display_name: Nome a mostrar
       domain: Domínio
       edit: Editar
-      email: E-mail
+      email: Correio electrónico
       email_status: Estado do e-mail
       enable: Descongelar
       enable_sign_in_token_auth: Ativar token de autenticação por e-mail
       enabled: Ativado
-      enabled_msg: Descongelou com sucesso a conta %{username}
+      enabled_msg: Descongelou a conta %{username}
       followers: Seguidores
       follows: A seguir
       header: Cabeçalho
@@ -84,7 +84,7 @@ pt-PT:
         title: Local
       login_status: Estado de início de sessão
       media_attachments: Anexos de media
-      memorialize: Converter em memorial
+      memorialize: Converter num memorial
       memorialized: Em memória
       memorialized_msg: Conta %{username} transformada com sucesso em memorial
       moderation:
@@ -103,78 +103,78 @@ pt-PT:
       not_subscribed: Não inscrito
       pending: Pendente de revisão
       perform_full_suspension: Fazer suspensão completa
-      previous_strikes: Punições anteriores
+      previous_strikes: Reprimendas anteriores
       previous_strikes_description_html:
-        one: Esta conta tem <strong>1</strong> punição.
-        other: Esta conta tem <strong>%{count}</strong> punições.
+        one: Esta conta tem <strong>1</strong> reprimenda.
+        other: Esta conta tem <strong>%{count}</strong> reprimendas.
       promote: Promover
       protocol: Protocolo
       public: Público
       push_subscription_expires: A Inscrição PuSH expira
       redownload: Atualizar perfil
-      redownloaded_msg: Atualizado com sucesso o perfil de %{username} da origem
+      redownloaded_msg: Perfil de %{username} correctamente actualizado a partir da origem
       reject: Rejeitar
-      rejected_msg: Inscrição de %{username} rejeitada com sucesso
+      rejected_msg: Inscrição de %{username} correctamente rejeitada
       remote_suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente.
       remote_suspension_reversible_hint_html: A conta foi suspensa no servidor de origem e os seus dados serão totalmente eliminados em %{date}. Até lá, o servidor de origem poderá recuperar esta conta sem quaisquer efeitos negativos. Se desejar eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
       remove_avatar: Remover a imagem de perfil
       remove_header: Remover o cabeçalho
-      removed_avatar_msg: Imagem de perfil de %{username} removida com sucesso
-      removed_header_msg: Imagem de cabeçalho de %{username} removida com sucesso
+      removed_avatar_msg: Imagem de perfil de %{username} removida
+      removed_header_msg: Imagem de cabeçalho de %{username} removida
       resend_confirmation:
         already_confirmed: Este utilizador já está confirmado
         send: Reenviar um e-mail de confirmação
-        success: E-mail de confirmação enviado com sucesso!
-      reset: Restaurar
-      reset_password: Reset palavra-passe
+        success: E-mail de confirmação enviado!
+      reset: Reiniciar
+      reset_password: Criar nova palavra-passe
       resubscribe: Reinscrever
       role: Função
       search: Pesquisar
-      search_same_email_domain: Outros utilizadores com o mesmo domínio de e-mail
+      search_same_email_domain: Outros utilizadores com o mesmo domínio de correio electrónico
       search_same_ip: Outros utilizadores com o mesmo IP
       security_measures:
         only_password: Apenas palavra-passe
         password_and_2fa: Palavra-passe e 2FA
-      sensitive: Marcar como sensível
-      sensitized: marcada como sensível
+      sensitive: Marcar como problemático
+      sensitized: Marcada como problemática
       shared_inbox_url: URL da caixa de entrada compartilhada
       show:
         created_reports: Denúncias realizadas
         targeted_reports: Denunciada por outros
-      silence: Silêncio
-      silenced: Silenciada
-      statuses: Status
-      strikes: Punições anteriores
+      silence: Limitar
+      silenced: Limitado
+      statuses: Publicações
+      strikes: Reprimendas anteriores
       subscribe: Inscrever-se
       suspend: Suspender
       suspended: Suspensa
-      suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Pode cancelar a suspensão da conta para torná-la utilizável, mas ela não irá recuperar os dados que possuía anteriormente.
+      suspension_irreversible: Os dados desta conta foram eliminados irreversivelmente. Pode cancelar a suspensão da conta para torná-la utilizável, mas não irá recuperar os dados que possuía anteriormente.
       suspension_reversible_hint_html: A conta foi suspensa e os dados serão totalmente eliminados em %{date}. Até lá, a conta poderá ser recuperada sem quaisquer efeitos negativos. Se deseja eliminar todos os dados desta conta imediatamente, pode fazê-lo em baixo.
       title: Contas
       unblock_email: Desbloquear endereço de e-mail
-      unblocked_email_msg: Endereço de e-mail de %{username} desbloqueado com sucesso
-      unconfirmed_email: E-mail não confirmado
-      undo_sensitized: Desmarcar como sensível
+      unblocked_email_msg: Endereço de e-mail de %{username} desbloqueado
+      unconfirmed_email: Correio electrónico por confirmar
+      undo_sensitized: Desmarcar como problemático
       undo_silenced: Desfazer silenciar
       undo_suspension: Desfazer supensão
-      unsilenced_msg: Removeu com sucesso as limitações da conta %{username}
+      unsilenced_msg: Removeu as limitações da conta %{username}
       unsubscribe: Cancelar inscrição
-      unsuspended_msg: Removeu com sucesso a suspensão da conta %{username}
-      username: Utilizador
+      unsuspended_msg: Removeu a suspensão da conta %{username}
+      username: Nome de utilizador
       view_domain: Ver resumo do domínio
-      warn: Aviso
-      web: Web
-      whitelisted: Está na lista branca
+      warn: Advertir
+      web: Teia
+      whitelisted: Permitido para a federação
     action_logs:
       action_types:
-        approve_appeal: Aprovar Recurso
-        approve_user: Aprovar Utilizador
+        approve_appeal: Aprovar recurso
+        approve_user: Aprovar utilizador
         assigned_to_self_report: Atribuir Denúncia
-        change_email_user: Alterar E-mail do Utilizador
+        change_email_user: Alterar correio electrónico do utilizador
         change_role_user: Alterar Função do Utilizador
         confirm_user: Confirmar Utilizador
         create_account_warning: Criar Aviso
-        create_announcement: Criar Anúncio
+        create_announcement: Criar comunicado
         create_canonical_email_block: Criar Bloqueio de E-mail
         create_custom_emoji: Criar Emoji Personalizado
         create_domain_allow: Criar Permissão de Domínio
@@ -184,7 +184,7 @@ pt-PT:
         create_unavailable_domain: Criar Domínio Indisponível
         create_user_role: Criar Função
         demote_user: Despromover Utilizador
-        destroy_announcement: Eliminar Anúncio
+        destroy_announcement: Apagar comunicado
         destroy_canonical_email_block: Eliminar Bloqueio de E-mail
         destroy_custom_emoji: Eliminar Emoji Personalizado
         destroy_domain_allow: Eliminar Permissão de Domínio
@@ -202,7 +202,7 @@ pt-PT:
         enable_custom_emoji: Ativar Emoji Personalizado
         enable_sign_in_token_auth_user: Ativar token de autenticação por e-mail para Utilizador
         enable_user: Ativar Utilizador
-        memorialize_account: Memorizar Conta
+        memorialize_account: Tornar conta num memorial
         promote_user: Promover Utilizador
         reject_appeal: Rejeitar Recurso
         reject_user: Rejeitar Utilizador
@@ -211,15 +211,15 @@ pt-PT:
         resend_user: Reenviar E-mail de Confirmação
         reset_password_user: Repor Password
         resolve_report: Resolver Denúncia
-        sensitive_account: Marcar a media na sua conta como sensível
-        silence_account: Silenciar Conta
-        suspend_account: Suspender Conta
+        sensitive_account: Marcar a media na sua conta como problemática
+        silence_account: Limitar conta
+        suspend_account: Suspender conta
         unassigned_report: Desatribuir Denúncia
         unblock_email_account: Desbloquear endereço de e-mail
-        unsensitive_account: Desmarcar a media na sua conta como sensível
+        unsensitive_account: Desmarcar a conta como problemática
         unsilence_account: Deixar de Silenciar Conta
         unsuspend_account: Retirar Suspensão à Conta
-        update_announcement: Atualizar Anúncio
+        update_announcement: Atualizar comunicado
         update_custom_emoji: Atualizar Emoji Personalizado
         update_domain_block: Atualizar Bloqueio de Domínio
         update_ip_block: Atualizar regra de IP
@@ -284,28 +284,28 @@ pt-PT:
         update_ip_block_html: "%{name} alterou regra para IP %{target}"
         update_status_html: "%{name} atualizou o estado de %{target}"
         update_user_role_html: "%{name} alterou a função %{target}"
-      deleted_account: conta excluída
+      deleted_account: conta apagada
       empty: Não foram encontrados registos.
       filter_by_action: Filtrar por ação
       filter_by_user: Filtrar por utilizador
       title: Registo de auditoria
     announcements:
-      destroyed_msg: Anúncio eliminado com sucesso!
+      destroyed_msg: Comunicado correctamente eliminado!
       edit:
-        title: Editar anúncio
-      empty: Nenhum anúncio encontrado.
-      live: Em exibição
+        title: Editar comunicado
+      empty: Nenhum comunicado encontrado.
+      live: Em directo
       new:
-        create: Criar anúncio
-        title: Novo anúncio
+        create: Criar comunicado
+        title: Novo comunicado
       publish: Publicar
-      published_msg: Anúncio publicado com sucesso!
+      published_msg: Comunicado correctamente publicado!
       scheduled_for: Agendado para %{time}
-      scheduled_msg: Anúncio agendado para publicação!
-      title: Anúncios
+      scheduled_msg: Comunicado agendado para publicação!
+      title: Comunicados
       unpublish: Anular publicação
-      unpublished_msg: Anúncio retirado de exibição com sucesso!
-      updated_msg: Anúncio atualizado com sucesso!
+      unpublished_msg: Comunicado correctamente retirado de publicação!
+      updated_msg: Comunicado correctamente actualizado!
     custom_emojis:
       assign_category: Atribuir categoria
       by_domain: Domínio
