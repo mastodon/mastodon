@@ -1,7 +1,6 @@
----
 pt-PT:
   about:
-    about_mastodon_html: Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.
+    about_mastodon_html: 'Mastodon é uma rede social baseada em protocolos abertos da web e software livre e gratuito. É descentralizado como e-mail.'
     contact_missing: Não configurado
     contact_unavailable: n.d.
     hosted_on: Mastodon em %{domain}
@@ -56,7 +55,7 @@ pt-PT:
       delete: Eliminar dados
       deleted: Eliminada
       demote: Despromoveu
-      destroyed_msg: Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato
+      destroyed_msg: "Os dados de %{username} estão agora em fila de espera para serem eliminados de imediato"
       disable: Congelar
       disable_sign_in_token_auth: Desativar token de autenticação por e-mail
       disable_two_factor_authentication: Desativar 2FA
@@ -354,8 +353,8 @@ pt-PT:
         one: "<strong>%{count}</strong> denuncia pendente"
         other: "<strong>%{count}</strong> denuncias pendentes"
       pending_tags_html:
-        one: "<strong>%{count}</strong> hashtag pendente"
-        other: "<strong>%{count}</strong> hashtags pendentes"
+        one: "<strong>%{count}</strong> etiqueta pendente"
+        other: "<strong>%{count}</strong> etiquetas pendentes"
       pending_users_html:
         one: "<strong>%{count}</strong> utilizador pendente"
         other: "<strong>%{count}</strong> utilizadores pendentes"
@@ -543,7 +542,7 @@ pt-PT:
       no_ip_block_selected: Nenhuma regra de IP foi alterada pois nenhuma foi selecionada
       title: Regras de IP
     relationships:
-      title: Relações de %{acct}
+      title: "Relações de %{acct}"
     relays:
       add_new: Adicionar novo repetidor
       delete: Eliminar
@@ -669,7 +668,7 @@ pt-PT:
         manage_settings: Gerir Configurações
         manage_settings_description: Permite aos utilizadores alterar as configurações do site
         manage_taxonomies: Gerir Taxonomias
-        manage_taxonomies_description: Permite aos utilizadores rever o conteúdo em tendência e atualizar as configurações de hashtag
+        manage_taxonomies_description: 'Permite aos utilizadores avaliar o conteúdo em alta e atualizar as configurações de #etiquetas'
         manage_user_access: Gerir Acesso de Utilizador
         manage_user_access_description: Permite aos utilizadores desativar a autenticação em duas etapas de outros utilizadores, alterar o seu endereço de e-mail e redefinir a sua palavra-passe
         manage_users: Gerir Utilizadores
@@ -782,7 +781,7 @@ pt-PT:
         message_html: Nenhum processo Sidekiq em execução para a(s) fila(s) %{value}. Reveja a configuração do seu Sidekiq
     tags:
       review: Estado da revisão
-      updated_msg: Definições de hashtags actualizadas com sucesso
+      updated_msg: 'Definições de #etiquetas correctamente actualizadas'
     title: Administração
     trends:
       allow: Permitir
@@ -830,14 +829,14 @@ pt-PT:
           tag_servers_dimension: Servidores mais populares
           tag_servers_measure: servidores diferentes
           tag_uses_measure: utilizações totais
-        description_html: Estas são hashtags que aparecem atualmente com frequência em publicações visíveis pelo seu servidor. Isto pode ajudar os seus utilizadores a descobrir o que está ser mais falado no momento. Nenhuma hashtag é exibida publicamente até que a aprove.
+        description_html: 'Estas são as #etiquetas que aparecem atualmente com frequência em publicações visíveis pelo seu servidor. Isto pode ajudar os seus utilizadores a descobrir o que está ser mais falado no momento. Nenhuma #etiqueta será exibida publicamente até que a aprove.'
         listable: Pode ser sugerida
         no_tag_selected: Nenhuma etiqueta foi alterada, pois nenhuma foi selecionada
         not_listable: Não será sugerida
         not_trendable: Não aparecerá nas tendências
         not_usable: Não pode ser utilizada
         peaked_on_and_decaying: Máximo em %{date}, agora a decair
-        title: Hashtags em destaque
+        title: Etiquetas em alta
         trendable: Pode aparecer nas tendências
         trending_rank: 'Tendência #%{rank}'
         usable: Pode ser utilizada
@@ -892,7 +891,7 @@ pt-PT:
     new_report:
       body: "%{reporter} denunciou %{target}"
       body_remote: Alguém de %{domain} denunciou %{target}
-      subject: Nova denúncia para %{instance} (#%{id})
+      subject: 'Nova denúncia para %{instance} (#%{id})'
     new_trends:
       body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
       new_trending_links:
@@ -900,9 +899,9 @@ pt-PT:
       new_trending_statuses:
         title: Publicações em destaque
       new_trending_tags:
-        no_approved_tags: Não existem, atualmente, hashtags aprovadas em destaque.
-        requirements: 'Qualquer um destes candidatos pode ultrapassar a #%{rank} hashtag aprovada em destaque, que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
-        title: Hashtags em destaque
+        no_approved_tags: 'Neste momento, não existem #etiquetas aprovadas para destaque.'
+        requirements: 'Qualquer um destes candidatos pode ultrapassar a #%{rank} etiqueta aprovada em destaque, que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
+        title: Etiquetas em alta
       subject: Novas tendências para revisão em %{instance}
   aliases:
     add_new: Criar pseudónimo
@@ -913,7 +912,7 @@ pt-PT:
     remove: Desvincular pseudónimo
   appearance:
     advanced_web_interface: Interface web avançada
-    advanced_web_interface_hint: 'Se quiser utilizar toda a largura do seu ecrã, a interface web avançada permite-lhe configurar várias colunas diferentes para ver tanta informação ao mesmo tempo quanto quiser: Página inicial, notificações, cronologia federada, qualquer número de listas e hashtags.'
+    advanced_web_interface_hint: 'Se quiser utilizar toda a largura do seu ecrã, a interface web avançada permite-lhe configurar várias colunas diferentes para ver tanta informação ao mesmo tempo quanto quiser: Página inicial, notificações, cronologia federada, qualquer número de listas e etiquetas.'
     animations_and_accessibility: Animações e acessibilidade
     confirmation_dialogs: Caixas de confirmação
     discovery: Descobrir
@@ -1114,8 +1113,8 @@ pt-PT:
   featured_tags:
     add_new: Adicionar nova
     errors:
-      limit: Já atingiste o limite máximo de hashtags
-    hint_html: "<strong>O que são hashtags em destaque?</strong> Elas são exibidas de forma bem visível no seu perfil público e permitem que as pessoas consultem as suas publicações públicas especificamente sob essas hashtags. São uma ótima ferramenta para manter o controlo de trabalhos criativos ou projetos de longo prazo."
+      limit: Já atingiste o limite máximo de etiquetas
+    hint_html: "<strong>O que são etiquetas em destaque?</strong> Exibidas de forma bem visível no seu perfil público, permitem que as pessoas consultem as suas publicações públicas especificamente sob essas etiquetas. São uma óptima ferramenta para dar seguimento a trabalhos criativos ou projectos de longo prazo."
   filters:
     contexts:
       account: Perfis
@@ -1304,7 +1303,7 @@ pt-PT:
     mention:
       action: Responder
       body: 'Foste mencionado por %{name}:'
-      subject: "%{name} mencionou-te"
+      subject: '%{name} mencionou-te'
       title: Nova menção
     poll:
       subject: Uma votação realizada por %{name} terminou
@@ -1449,7 +1448,7 @@ pt-PT:
     development: Desenvolvimento
     edit_profile: Editar perfil
     export: Exportar dados
-    featured_tags: Hashtags destacadas
+    featured_tags: Etiquetas destacadas
     import: Importar
     import_and_export: Importar e exportar
     migrate: Migração de conta
@@ -1477,7 +1476,7 @@ pt-PT:
     content_warning: 'Aviso de conteúdo: %{warning}'
     default_language: Mesmo do idioma da interface
     disallowed_hashtags:
-      one: 'continha uma hashtag proibida: %{tags}'
+      one: 'continha uma #etiqueta proibida: %{tags}'
       other: 'continha as hashtags proibidas: %{tags}'
     edited_at_html: Editado em %{date}
     errors:
@@ -1636,7 +1635,7 @@ pt-PT:
       edit_profile_step: Pode personalizar o seu perfil carregando uma imagem de perfil, alterando o nome a exibir, entre outras opções. Pode optar por rever os novos seguidores antes de estes o poderem seguir.
       explanation: Aqui estão algumas dicas para começar
       final_action: Começar a publicar
-      final_step: 'Comece a publicar! Mesmo sem seguidores, as suas mensagens públicas podem ser vistas por outros, por exemplo, na cronologia local e em hashtags. Pode querer apresentar-se utilizando a hashtag #introduções ou #introductions.'
+      final_step: 'Comece a publicar! Mesmo sem seguidores, as suas mensagens públicas podem ser vistas por outros, como por exemplo na cronologia local e em etiquetas. Pense em apresentar-se usando a etiqueta #apresentações.'
       full_handle: O seu nome completo
       full_handle_hint: Isto é o que tem de facultar aos seus amigos para que eles lhe possam enviar mensagens ou seguir a partir de outra instância.
       subject: Bem-vindo ao Mastodon
