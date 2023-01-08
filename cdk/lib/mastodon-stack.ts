@@ -5,8 +5,9 @@ import { RetentionDays, LogGroup} from 'aws-cdk-lib/aws-logs';
 import { FargateTaskDefinition, AwsLogDriverMode, ContainerDefinitionOptions } from 'aws-cdk-lib/aws-ecs'
 import { Cluster, ContainerImage, LogDrivers, Secret} from 'aws-cdk-lib/aws-ecs' 
 import { HostedZone } from 'aws-cdk-lib/aws-route53'
-import { ApplicationLoadBalancedFargateService }  from 'aws-cdk-lib/aws-ecs-patterns'
+import { ApplicationMultipleTargetGroupsFargateService }  from 'aws-cdk-lib/aws-ecs-patterns'
 import { CertificateValidation, DnsValidatedCertificate } from 'aws-cdk-lib/aws-certificatemanager';
+import { ApplicationProtocol, SslPolicy } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import { Vpc } from 'aws-cdk-lib/aws-ec2'
 import { EcsApplication } from 'aws-cdk-lib/aws-codedeploy';
 
@@ -99,17 +100,7 @@ export class MastodonStack extends Stack {
     const requestPolicyAPI = new cf.OriginRequestPolicy( this, 'API', {
       cookieBehavior: cf.OriginRequestCookieBehavior.all(),
       queryStringBehavior: cf.OriginRequestCookieBehavior.all(),
-      headerBehavior: cf.OriginRequestHeaderBehavior.allowList(
-        'CloudFront-Viewer-Time-Zone',
-        'CloudFront-Viewer-Country',
-        'CloudFront-Viewer-Latitude',
-        'CloudFront-Viewer-Longitude',
-        'CloudFront-Viewer-City',
-        'CloudFront-Viewer-Country-Region',
-        'CloudFront-Viewer-Address',
-        'Accept-Language',
-        'Host'
-      )
+      headerBehavior: cf.OriginRequestHeaderBehavior.all()
     });
 
     const webCertificate = new DnsValidatedCertificate(this,'certWeb',{
@@ -235,8 +226,7 @@ export class MastodonStack extends Stack {
     const bucketName = 'mastodon-'+props.domain.replace('.','-') // Kyle: I have found S3 is cranky with dots in the bucket name -- I replace dots with dashes
     const bucket = new s3.Bucket(this, bucketName, { 
       bucketName: bucketName,
-      encryption: s3.BucketEncryption.KMS,
-      bucketKeyEnabled: true,
+      encryption: s3.BucketEncryption.S3_MANAGED,
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
     });
 
@@ -257,7 +247,10 @@ export class MastodonStack extends Stack {
 
     user.attachInlinePolicy(new iam.Policy(this, 'mastodon-s3-policy', {
       statements: [new iam.PolicyStatement({
-        resources: [bucket.bucketArn],
+        resources: [
+          bucket.bucketArn,
+          bucket.bucketArn + '/*'
+        ],
         actions: ['s3:*'],
         effect: iam.Effect.ALLOW,
       })],
@@ -294,6 +287,7 @@ export class MastodonStack extends Stack {
       ES_ENABLED: 'true',
       ES_HOST: osDomain.domainName,
       ES_PORT: '9200',
+      SMTP_FROM_ADDRESS: 'Mastodon <notifications@' + props.domain + '>',
       // passed in secrets
       SMTP_LOGIN:         props.secrets.SMTP_LOGIN,
       SMTP_PASSWORD:      props.secrets.SMTP_PASSWORD,
@@ -361,41 +355,66 @@ export class MastodonStack extends Stack {
         streamPrefix: 'streaming',
         logGroup: logGroup
       }),
-      portMappings: [{containerPort:3002}],
       environment,
       secrets
     })
 
-    const loadBalancedFargateService = new ApplicationLoadBalancedFargateService(this, 'webFargate', {
-      circuitBreaker: { rollback: true },
+    const loadBalancedFargateService = new ApplicationMultipleTargetGroupsFargateService(this, 'webFargate', {
       cluster : cluster,
       cpu: 512,
       desiredCount: 1,
-      domainName: albHost,
-      domainZone: zone,
-      certificate: albCertificate,
-      loadBalancerName: 'mastodon',
       memoryLimitMiB: 1024,
       serviceName: 'mastodon',
       taskDefinition: mastodonTask,
       enableExecuteCommand: true, // enables remote execution w/ ECS Exec - TODO - disable for prod? Q: do we need to add other permisions, or will CDK take care of it? 
+      loadBalancers: [
+        {
+          name: 'lb',
+          idleTimeout: Duration.seconds(400),
+          domainName: albHost,
+          domainZone: zone,
+          listeners: [
+            {
+              name: 'mastodon',
+              protocol: ApplicationProtocol.HTTPS,
+              certificate: albCertificate,
+              sslPolicy: SslPolicy.TLS12_EXT,
+            },
+          ],
+        },
+      ],
+      targetGroups: [
+        {
+          containerPort: 3000,
+          listener: 'mastodon',
+        },
+        {
+          containerPort: 4000,
+          pathPattern: '/api/v1/streaming',
+          priority: 10,
+          listener: 'mastodon',
+        },
+      ],    
     });
     
-    loadBalancedFargateService.targetGroup.configureHealthCheck({
-      path: '/health',
-      timeout: Duration.seconds(10),
-      unhealthyThresholdCount: 5,
-      healthyThresholdCount: 3,
-      interval: Duration.seconds(20)
+    loadBalancedFargateService.targetGroups.forEach(targetGroup =>{
+      targetGroup.configureHealthCheck({
+        path: '/health',
+        timeout: Duration.seconds(10),
+        unhealthyThresholdCount: 5,
+        healthyThresholdCount: 3,
+        interval: Duration.seconds(20)
+      })
     })
 
-    loadBalancedFargateService.loadBalancer.setAttribute('routing.http.preserve_host_header.enabled', 'true')
+    loadBalancedFargateService.loadBalancers[0].setAttribute('routing.http.preserve_host_header.enabled', 'true')
     
     const albSecurityGroup = new ec2.SecurityGroup(this, 'alb-security-group', { 
       vpc: vpc,
       allowAllOutbound: true,
      });
-    loadBalancedFargateService.loadBalancer.addSecurityGroup(albSecurityGroup)
+     
+    loadBalancedFargateService.loadBalancers[0].addSecurityGroup(albSecurityGroup)
 
     const scalableTarget = loadBalancedFargateService.service.autoScaleTaskCount({
       minCapacity: 1,
