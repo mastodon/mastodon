@@ -19,7 +19,7 @@ et:
       confirmation_instructions:
         action: Kinnita e-postiaadress
         action_with_app: Kinnita ja naase %{app}
-        explanation: Oled loonud %{host} konto selle e-postiaadressiga. Oled ühe kliki kaugusel selle aktiveerimisest. Kui see polnud sina, palun eira seda kirja.
+        explanation: Oled loonud %{host} konto selle e-postiaadressiga. Oled konto aktiveerimisest ühe kliki kaugusel. Kui see polnud sina, palun eira seda kirja.
         explanation_when_pending: "Selle e-postiaadressiga on esitatud taotlus saada %{host} kasutajaks. E-postiaadress vajab kinnitamist. Pärast seda vaatame me taotluse üle. Saad siseneda, et oma andmeid muuta või konto kustutada, aga enamustele tegevustele ei pääse enne ligi, kui konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saabub selle kohta eraldi e-kiri.\nKui taotlus lükatakse aga tagasi, kustutatakse ka andmed ja mingit järeltegevust pole vaja. \nKui see polnud sina, siis palume seda kirja eirata."
         extra_html: Palun tutvu <a href="%{terms_path}">meie serveri reeglitega</a> ning <a href="%{policy_path}">meie kasutustingimustega</a>.
         subject: 'Mastodon: %{instance} kinnitamisjuhised'
@@ -46,11 +46,11 @@ et:
         subject: 'Mastodon: salasõna lähtestamisjuhendid'
         title: Salasõna lähtestamine
       two_factor_disabled:
-        explanation: Kontol on kahe-etapine autentimine välja lülitatud. Sisenemine on võimalik ainult kasutades e-postiaadressi ja salasõna.
+        explanation: Kontol on kaheastmeline autentimine välja lülitatud. Sisenemine on võimalik ainult kasutades e-postiaadressi ja salasõna.
         subject: 'Mastodon: Kahe-etapine autentimine välja lülitatud'
         title: 2FA keelatud
       two_factor_enabled:
-        explanation: Kontol on sisse lülitatud kahe-etapine autentimine. Sisenemiseks on vajalik ühekordne aeguv võti TOTP-rakenduse poolt.
+        explanation: Kontol on sisse lülitatud kaheastmeline autentimine. Sisenemiseks on vajalik ühekordne aeguv võti TOTP-rakenduse poolt.
         subject: 'Mastodon: Kahe-etapine autentimine sisse lülitatud'
         title: 2FA lubatud
       two_factor_recovery_codes_changed:
@@ -73,7 +73,7 @@ et:
         subject: 'Mastodon: autentimine turvavõtmega on välja lülitatud'
         title: Turvavõtmed on välja lülitatud
       webauthn_enabled:
-        explanation: Turvavõtmega autentimine on nüüd sinu kontol sisse lülitatud. Nüüd saab kasutada sisse logimiseks sinu turvavõtit.
+        explanation: Turvavõtmega autentimine on nüüd kontol sisse lülitatud. Nüüd saab kasutada sisse logimiseks sinu turvavõtit.
         subject: 'Mastodon: turvavõtme autentimine sisse lülitatud'
         title: Turvavõtmed on sisse lülitatud
     omniauth_callbacks:
