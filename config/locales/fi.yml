@@ -1,4 +1,3 @@
----
 fi:
   about:
     about_mastodon_html: 'Tulevaisuuden sosiaalinen verkosto: Ei mainoksia, ei valvontaa, toteutettu avoimilla protokollilla ja hajautettu! Pidä tietosi ominasi Mastodonilla!'
@@ -56,7 +55,7 @@ fi:
       delete: Poista tiedot
       deleted: Poistettu
       demote: Alenna
-      destroyed_msg: Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi
+      destroyed_msg: "Käyttäjän %{username} tiedot ovat nyt jonossa poistettavaksi välittömästi"
       disable: Poista käytöstä
       disable_sign_in_token_auth: Poista sähköpostitunnuksen todennus käytöstä
       disable_two_factor_authentication: Poista 2FA käytöstä
@@ -158,9 +157,9 @@ fi:
       undo_sensitized: Kumoa pakotus arkaluontoiseksi tiliksi
       undo_silenced: Peru hiljennys
       undo_suspension: Peru jäähy
-      unsilenced_msg: "%{username} -tilin rajoituksen kumoaminen onnistui"
+      unsilenced_msg: '%{username} -tilin rajoituksen kumoaminen onnistui'
       unsubscribe: Lopeta tilaus
-      unsuspended_msg: "%{username} -tilin keskeytyksen kumoaminen onnistui"
+      unsuspended_msg: '%{username} -tilin keskeytyksen kumoaminen onnistui'
       username: Käyttäjätunnus
       view_domain: Näytä verkkotunnuksen yhteenveto
       warn: Varoita
@@ -355,7 +354,7 @@ fi:
         other: "<strong>%{count}</strong> odottavat raportit"
       pending_tags_html:
         one: "<strong>%{count}</strong> odottava hashtagi"
-        other: "<strong>%{count}</strong> odottavat hashtagit"
+        other: "<strong>%{count}</strong> odottavaa aihetunnistetta"
       pending_users_html:
         one: "<strong>%{count}</strong> odottava käyttäjä"
         other: "<strong>%{count}</strong> odottavat käyttäjät"
@@ -547,7 +546,7 @@ fi:
     relays:
       add_new: Lisää uusi välittäjä
       delete: Poista
-      description_html: "<strong>federaatiovälittäjä</strong> on välityspalvelin, joka siirtää siihen liittyneiden palvelimien välillä suuria julksia viestimääriä. <strong>Tämä voi auttaa pieniä ja keskikokoisia palvelimia löytämään fediversen sisältöä</strong>, joka muutoin vaatisi paikallisia käyttäjiä seuraamaan etäpalvelimien käyttäjiä manuaalisesti."
+      description_html: <strong>federaatiovälittäjä</strong> on välityspalvelin, joka siirtää siihen liittyneiden palvelimien välillä suuria julksia viestimääriä. <strong>Tämä voi auttaa pieniä ja keskikokoisia palvelimia löytämään fediversen sisältöä</strong>, joka muutoin vaatisi paikallisia käyttäjiä seuraamaan etäpalvelimien käyttäjiä manuaalisesti.
       disable: Poista käytöstä
       disabled: Ei käytössä
       enable: Ota käyttöön
@@ -607,7 +606,7 @@ fi:
       quick_actions_description_html: 'Suorita nopea toiminto tai vieritä alas nähdäksesi raportoitu sisältö:'
       remote_user_placeholder: etäkäyttäjä instanssista %{instance}
       reopen: Avaa raportti uudestaan
-      report: Raportti nro %{id}
+      report: 'Raportti nro %{id}'
       reported_account: Raportoitu tili
       reported_by: Raportoija
       resolved: Ratkaistut
@@ -669,7 +668,7 @@ fi:
         manage_settings: Hallita asetuksia
         manage_settings_description: Salli käyttäjien muuttaa sivuston asetuksia
         manage_taxonomies: Hallita luokittelua
-        manage_taxonomies_description: Sallii käyttäjien tarkistaa trendillisen sisällön ja päivittää hashtag-asetuksia
+        manage_taxonomies_description: Sallii käyttäjien tarkistaa nousussa olevan sisällön ja päivittää aihetunnisteiden asetuksia
         manage_user_access: Hallita käyttäjän oikeuksia
         manage_user_access_description: Sallii käyttäjien poistaa käytöstä muiden käyttäjien kaksivaiheisen todennuksen, muuttaa heidän sähköpostiosoitettaan ja nollata heidän salasanansa
         manage_users: Hallita käyttäjiä
@@ -782,7 +781,7 @@ fi:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
     tags:
       review: Tarkista tila
-      updated_msg: Hashtagin asetukset päivitetty onnistuneesti
+      updated_msg: Aihetunnisteen asetukset päivitetty onnistuneesti
     title: Ylläpito
     trends:
       allow: Salli
@@ -830,7 +829,7 @@ fi:
           tag_servers_dimension: Suosituimmat palvelimet
           tag_servers_measure: eri palvelimet
           tag_uses_measure: käyttökerrat
-        description_html: Nämä ovat hashtageja, jotka näkyvät tällä hetkellä monissa viesteissä, jotka palvelimesi näkee. Tämä voi auttaa käyttäjiäsi selvittämään, mistä ihmiset puhuvat eniten tällä hetkellä. Mitään hashtageja ei näytetä julkisesti ennen kuin hyväksyt ne.
+        description_html: Nämä ovat aihetunnisteita, jotka näkyvät tällä hetkellä monissa julkaisuissa, jotka palvelimesi näkee. Tämä voi auttaa käyttäjiäsi selvittämään, mistä ihmiset puhuvat eniten tällä hetkellä. Mitään aihetunnisteita ei näytetä julkisesti, ennen kuin hyväksyt ne.
         listable: Voidaan ehdottaa
         no_tag_selected: Yhtään tagia ei muutettu, koska yhtään ei valittu
         not_listable: Ei tulla ehdottamaan
@@ -900,9 +899,9 @@ fi:
       new_trending_statuses:
         title: Suositut viestit
       new_trending_tags:
-        no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä hashtageja.
-        requirements: 'Mikä tahansa näistä ehdokkaista voisi ylittää #%{rank} hyväksytyn trendikkään hashtagin, joka on tällä hetkellä #%{lowest_tag_name} arvosanalla %{lowest_tag_score}.'
-        title: Suositut hashtagit
+        no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä aihetunnisteita.
+        requirements: 'Mikä tahansa näistä ehdokkaista voisi ylittää #%{rank} hyväksytyn trendikkään aihetunnisteen, joka on tällä hetkellä #%{lowest_tag_name} arvosanalla %{lowest_tag_score}.'
+        title: Suositut aihetunnisteet
       subject: Uusia trendejä tarkistettavaksi instanssissa %{instance}
   aliases:
     add_new: Luo alias
@@ -967,7 +966,7 @@ fi:
     resend_confirmation: Lähetä vahvistusohjeet uudestaan
     reset_password: Palauta salasana
     rules:
-      preamble: "%{domain} valvojat määrittävät ja valvovat sääntöjä."
+      preamble: '%{domain} valvojat määrittävät ja valvovat sääntöjä.'
       title: Joitakin perussääntöjä.
     security: Tunnukset
     set_new_password: Aseta uusi salasana
@@ -1095,7 +1094,7 @@ fi:
     noscript_html: Käyttääksesi Mastodon-verkkopalvelua, ota JavaScript käyttöön. Vaihtoehtoisesti voit kokeilla myös jotakin juuri käyttämällesi alustalle kehitettyä Mastodon-<a href="%{apps_path}">sovellusta</a>.
   existing_username_validator:
     not_found: paikallista käyttäjää ei löydy kyseisellä käyttäjänimellä
-    not_found_multiple: "%{usernames} ei löytynyt"
+    not_found_multiple: '%{usernames} ei löytynyt'
   exports:
     archive_takeout:
       date: Päiväys
@@ -1114,8 +1113,8 @@ fi:
   featured_tags:
     add_new: Lisää uusi
     errors:
-      limit: Olet jo lisännyt enimmäismäärän hashtageja
-    hint_html: "<strong>Mitkä ovat näkyvillä olevat hashtagit?</strong> Ne ovat näkyvästi julkisessa profiilissasi ja niiden avulla ihmiset voivat selata julkisia viestejäsi nimenomaan näiden hashtagien alla. Ne ovat loistava luovan työn työkalu tai pitkäaikaisten projektien seurantaan."
+      limit: Olet jo lisännyt enimmäismäärän aihetunnisteita
+    hint_html: "<strong>Mitä ovat näkyvillä olevat hashtagit eli aihetunnisteet?</strong> Ne ovat näkyvissä julkisessa profiilissasi ja niiden avulla ihmiset voivat selata julkisia viestejäsi nimenomaan näiden aihetunnisteiden alla. Ne auttavat esimerkiksi luovan työn tai pitkäaikaisten projektien seurannassa."
   filters:
     contexts:
       account: Profiilit
@@ -1289,7 +1288,7 @@ fi:
       sign_up:
         subject: "%{name} kirjautunut"
     favourite:
-      body: "%{name} tykkäsi tilastasi:"
+      body: '%{name} tykkäsi tilastasi:'
       subject: "%{name} tykkäsi tilastasi"
       title: Uusi tykkäys
     follow:
@@ -1303,13 +1302,13 @@ fi:
       title: Uusi seuraamispyyntö
     mention:
       action: Vastaa
-      body: "%{name} mainitsi sinut:"
-      subject: "%{name} mainitsi sinut"
+      body: '%{name} mainitsi sinut:'
+      subject: '%{name} mainitsi sinut'
       title: Uusi maininta
     poll:
       subject: Äänestys käyttäjältä %{name} on päättynyt
     reblog:
-      body: "%{name} buustasi tilaasi:"
+      body: '%{name} buustasi tilaasi:'
       subject: "%{name} boostasi tilaasi"
       title: Uusi buustaus
     status:
@@ -1502,7 +1501,7 @@ fi:
     show_older: Näytä vanhempi
     show_thread: Näytä ketju
     sign_in_to_participate: Kirjaudu sisään osallistuaksesi keskusteluun
-    title: "%{name}: ”%{quote}”"
+    title: '%{name}: ”%{quote}”'
     visibilities:
       direct: Suoraan
       private: Vain seuraajille
@@ -1636,7 +1635,7 @@ fi:
       edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat ennen kuin he saavat seurata sinua.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja hashtageilla. Kannattaa myös esittäytyä! Käytä hashtagia #esittely.'
+      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja aihetunnisteilla. Kannattaa myös esittäytyä! Käytä aihetunnistetta #esittely.'
       full_handle: Koko käyttäjätunnuksesi
       full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
       subject: Tervetuloa Mastodoniin
