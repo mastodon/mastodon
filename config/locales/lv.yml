@@ -207,7 +207,7 @@ lv:
         enable_sign_in_token_auth_user: Iespējot e-pasta marķiera autentifikāciju lietotājam
         enable_user: Ieslēgt Lietotāju
         memorialize_account: Saglabāt Kontu Piemiņai
-        promote_user: Paaugstināt Lietotāju
+        promote_user: Izceltt Lietotāju
         reject_appeal: Noraidīt Apelāciju
         reject_user: Noraidīt lietotāju
         remove_avatar_user: Noņemt Avatāru
@@ -274,12 +274,12 @@ lv:
         resend_user_html: "%{name} atkārtoti nosūtīja apstiprinājuma e-pastu %{target}"
         reset_password_user_html: "%{name} atiestatīja paroli lietotājam %{target}"
         resolve_report_html: "%{name} atrisināja ziņojumu %{target}"
-        sensitive_account_html: "%{name} atzīmēja %{target} mediju kā sensitīvu"
+        sensitive_account_html: "%{name} atzīmēja %{target} multividi kā sensitīvu"
         silence_account_html: "%{name} ierobežoja %{target} kontu"
         suspend_account_html: "%{name} apturēja %{target} kontu"
         unassigned_report_html: "%{name} nepiešķīra ziņojumu %{target}"
         unblock_email_account_html: "%{name} atbloķēja %{target} e-pasta adresi"
-        unsensitive_account_html: "%{name} atmarķēja %{target} mediju kā sensitīvu"
+        unsensitive_account_html: "%{name} atmarķēja %{target} multividi kā sensitīvu"
         unsilence_account_html: "%{name} atcēla ierobežojumu %{target} kontam"
         unsuspend_account_html: "%{name} neapturēja %{target} kontu"
         update_announcement_html: "%{name} atjaunināja paziņojumu %{target}"
@@ -347,7 +347,7 @@ lv:
     dashboard:
       active_users: aktīvie lietotāji
       interactions: mijiedarbības
-      media_storage: Mediju krātuve
+      media_storage: Multividesu krātuve
       new_users: jauni lietotāji
       opened_reports: atvērtie ziņojumi
       pending_appeals_html:
@@ -412,8 +412,8 @@ lv:
       private_comment_hint: Atstāj komentāru par šo domēna ierobežojumu moderatoru iekšējai lietošanai.
       public_comment: Publisks komentārs
       public_comment_hint: Atstāj komentāru par šo domēna ierobežojumu plašai sabiedrībai, ja ir iespējota domēnu ierobežojumu saraksta reklamēšana.
-      reject_media: Noraidīt mediju failus
-      reject_media_hint: Noņem lokāli saglabātos mediju failus un atsaka tos lejupielādēt nākotnē. Nav nozīmes apturēšanai
+      reject_media: Noraidīt multivides failus
+      reject_media_hint: Noņem lokāli saglabātos multivides failus un atsaka tos lejupielādēt nākotnē. Nav nozīmes apturēšanai
       reject_reports: Noraidīt ziņojumus
       reject_reports_hint: Ignorēt visus ziņojumus, kas nāk no šī domēna. Nav nozīmes apturēšanai
       undo: Atsaukt domēna bloķēšanu
@@ -483,7 +483,7 @@ lv:
         comment: Iekšējā piezīme
         description_html: Tu vari definēt satura politikas, kas tiks piemērotas visiem kontiem no šī domēna un jebkura tā apakšdomēna.
         policies:
-          reject_media: Noraidīt medijus
+          reject_media: Noraidīt multividi
           reject_reports: Noraidīt ziņojumus
           silence: Ierobežot
           suspend: Apturēt
@@ -496,7 +496,7 @@ lv:
         instance_followers_measure: mūsu sekotāji tur
         instance_follows_measure: viņu sekotāji šeit
         instance_languages_dimension: Populārākās valodas
-        instance_media_attachments_measure: saglabātie mediju pielikumi
+        instance_media_attachments_measure: saglabātie multivides pielikumi
         instance_reports_measure: ziņojumi par viņiem
         instance_statuses_measure: saglabātās ziņas
       delivery:
@@ -528,7 +528,7 @@ lv:
       total_followed_by_them: Viņiem seko
       total_followed_by_us: Mums seko
       total_reported: Ziņojumi par viņiem
-      total_storage: Mediju pielikumi
+      total_storage: Multividesu pielikumi
       totals_time_period_hint_html: Tālāk redzamajās summās ir iekļauti dati par visu laiku.
     invites:
       deactivate_all: Deaktivēt visu
@@ -584,7 +584,7 @@ lv:
       action_taken_by: Veiktā darbība
       actions:
         delete_description_html: Raksti, par kurām ziņots, tiks dzēsti, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākos pārkāpumus saistībā ar to pašu kontu.
-        mark_as_sensitive_description_html: Mediju faili ziņojumos, par kuriem ziņots, tiks atzīmēti kā sensitīvi, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākus pārkāpumus saistībā ar to pašu kontu.
+        mark_as_sensitive_description_html: Multividesu faili ziņojumos, par kuriem ziņots, tiks atzīmēti kā sensitīvi, un tiks reģistrēts brīdinājums, lai palīdzētu tev izvērst turpmākus pārkāpumus saistībā ar to pašu kontu.
         other_description_html: Skatīt vairāk iespēju kontrolēt konta uzvedību un pielāgot saziņu ar paziņoto kontu.
         resolve_description_html: Pret norādīto kontu netiks veiktas nekādas darbības, netiks reģistrēts brīdinājums, un ziņojums tiks slēgts.
         silence_description_html: Profils būs redzams tikai tiem, kas jau tam seko vai manuāli apskata, tādējādi ievērojami ierobežojot tā sasniedzamību. Šo izvēli vienmēr var mainīt.
@@ -769,7 +769,7 @@ lv:
       title: Konta ziņas
       trending: Tendences
       visibility: Redzamība
-      with_media: Ar medijiem
+      with_media: Ar multividi
     strikes:
       actions:
         delete_statuses: "%{name} izdzēsa %{target} publikācijas"
@@ -1118,7 +1118,7 @@ lv:
     archive_takeout:
       date: Dati
       download: Lejupielādē savu arhīvu
-      hint_html: Tu vari pieprasīt savu <strong>ziņu un augšupielādēto mediju</strong> arhīvu. Eksportētie dati būs ActivityPub formātā, ko varēs nolasīt ar jebkuru saderīgu programmatūru. Tu vari pieprasīt arhīvu ik pēc 7 dienām.
+      hint_html: Tu vari pieprasīt savu <strong>ziņu un augšupielādēto multividi</strong> arhīvu. Eksportētie dati būs ActivityPub formātā, ko varēs nolasīt ar jebkuru saderīgu programmatūru. Tu vari pieprasīt arhīvu ik pēc 7 dienām.
       in_progress: Notiek tava arhīva apkopošana...
       request: Pieprasi savu arhīvu
       size: Izmērs
@@ -1128,7 +1128,7 @@ lv:
     domain_blocks: Bloķētie domēni
     lists: Saraksti
     mutes: Apklusinātie konti
-    storage: Mediju krātuve
+    storage: Multividesu krātuve
   featured_tags:
     add_new: Pievienot jaunu
     errors:
@@ -1335,9 +1335,9 @@ lv:
     poll:
       subject: "%{name} aptauja ir beigusies"
     reblog:
-      body: 'Tavu ziņu pastiprināja %{name}:'
-      subject: "%{name} pastiprināja tavu ziņu"
-      title: Jauns pastiprinājums
+      body: 'Tavu ziņu izcēla %{name}:'
+      subject: "%{name} izcēla tavu ziņu"
+      title: Jauns izcēlums
     status:
       subject: "%{name} tikko publicēja"
     update:
@@ -1502,7 +1502,7 @@ lv:
         one: "%{count} video"
         other: "%{count} video"
         zero: "%{count} video"
-    boosted_from_html: Pastiprināja %{acct_link}
+    boosted_from_html: Izcēla %{acct_link}
     content_warning: 'Satura brīdinājums: %{warning}'
     default_language: Tāda, kā saskarnes valoda
     disallowed_hashtags:
@@ -1518,7 +1518,7 @@ lv:
       direct: Ziņojumus, kas ir redzami tikai minētajiem lietotājiem, nevar piespraust
       limit: Tu jau esi piespraudis maksimālo ziņu skaitu
       ownership: Citas personas ziņu nevar piespraust
-      reblog: Pastiprinātu ierakstu nevar piespraust
+      reblog: Izceltu ierakstu nevar piespraust
     poll:
       total_people:
         one: "%{count} persona"
@@ -1549,13 +1549,13 @@ lv:
     exceptions: Izņēmumi
     explanation: Tā kā ziņu dzēšana ir dārga darbība, tā tiek veikta lēnām laika gaitā, kad serveris nav citādi aizņemts. Šī iemesla dēļ tavas ziņas var tikt izdzēstas kādu laiku pēc vecuma sliekšņa sasniegšanas.
     ignore_favs: Ignorēt izlasi
-    ignore_reblogs: Ignorēt pastiprinātos ierakstus
+    ignore_reblogs: Ignorēt izcēlumus
     interaction_exceptions: Izņēmumi, kuru pamatā ir mijiedarbība
-    interaction_exceptions_explanation: Ņem vērā, ka ieraksti var netikt dzēsti, ja tie noslīd zem par izlases vai pastiprinājuma sliekšņa pēc tam, kad to reiz pārsnieguši.
+    interaction_exceptions_explanation: Ņemiet vērā, ka nav garantijas, ka ziņas tiks dzēstas, ja tās pārsniegs izlases vai izcēluma slieksni.
     keep_direct: Saglabāt tiešos ziņojumus
     keep_direct_hint: Nedzēš nevienu tavu tiešo ziņojumu
-    keep_media: Saglabāt ziņas ar mediju pielikumiem
-    keep_media_hint: Neizdzēš nevienu no tavām ziņām, kurām ir mediju pielikumi
+    keep_media: Saglabāt ziņas ar multivides pielikumiem
+    keep_media_hint: Neizdzēš nevienu no tavām ziņām, kurām ir multivides pielikumi
     keep_pinned: Saglabāt piespraustās ziņas
     keep_pinned_hint: Nedzēš nevienu tavis piesprausto ziņu
     keep_polls: Saglabāt aptaujas
@@ -1576,11 +1576,11 @@ lv:
     min_age_label: Vecuma slieksnis
     min_favs: Saglabāt ziņas izlsasē vismaz
     min_favs_hint: Nedzēš nevienu tavu ziņu, kas ir saņēmusi vismaz tik daudz izlases. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izlases skaita
-    min_reblogs: Saglabāt ierakstus pastiprinātus vismaz
-    min_reblogs_hint: Neizdzēš nevienu no taviem ierakstiem, kas ir pastiprināts vismaz tik reižu. Atstāj tukšu, lai dzēstu ierakstus neatkarīgi no to pastiprinājumu skaita
+    min_reblogs: Saglabāt ziņas izceltas vismaz
+    min_reblogs_hint: Neizdzēš nevienu no tavām ziņām, kas ir izceltas vismaz tik reižu. Atstāj tukšu, lai dzēstu ziņas neatkarīgi no to izcēlumu skaita
   stream_entries:
     pinned: Piespraustā ziņa
-    reblogged: pastiprinātie
+    reblogged: izceltie
     sensitive_content: Sensitīvs saturs
   strikes:
     errors:
@@ -1641,8 +1641,8 @@ lv:
       explanation:
         delete_statuses: Tika konstatēts, ka dažas no tavām ziņām pārkāpj vienu vai vairākas kopienas vadlīnijas, un rezultātā %{instance} moderatori tās noņēma.
         disable: Tu vairs nevari izmantot savu kontu, taču tavs profils un citi dati paliek neskarti. Tu vari pieprasīt savu datu dublējumu, mainīt konta iestatījumus vai dzēst kontu.
-        mark_statuses_as_sensitive: "%{instance} moderatori dažas no tavām ziņām ir atzīmējušas kā sensitīvas. Tas nozīmē, ka cilvēkiem būs jāpieskaras ziņās esošajiem medijiem, pirms tiek parādīts priekšskatījums. Tu arī pats vari atzīmēt mediju kā sensitīvu, kad tādu publicēsi turpmāk."
-        sensitive: No šī brīža visi augšupielādētie mediju faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
+        mark_statuses_as_sensitive: "%{instance} moderatori dažas no tavām ziņām ir atzīmējušas kā sensitīvas. Tas nozīmē, ka cilvēkiem būs jāpieskaras ziņās esošajai multividei, pirms tiek parādīts priekšskatījums. Tu arī pats vari atzīmēt mediju kā sensitīvu, kad tādu publicēsi turpmāk."
+        sensitive: No šī brīža visi augšupielādētie multivides faili tiks atzīmēti kā sensitīvi un paslēpti aiz klikšķa brīdinājuma.
         silence: Tu joprojām vari izmantot savu kontu, taču tikai tie cilvēki, kuri jau tev seko, redzēs tavas ziņas šajā serverī, un tev var tikt liegtas dažādas atklāšanas funkcijas. Tomēr citi joprojām var tev manuāli sekot.
         suspend: Tu vairs nevari izmantot savu kontu, un tavs profils un citi dati vairs nav pieejami. Tu joprojām vari pieteikties, lai pieprasītu savu datu dublēšanu, līdz dati tiks pilnībā noņemti aptuveni 30 dienu laikā, taču mēs saglabāsim dažus pamata datus, lai neļautu tev izvairīties no apturēšanas.
       reason: 'Iemesls:'

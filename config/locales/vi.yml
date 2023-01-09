@@ -650,8 +650,8 @@ vi:
         manage_reports_description: Cho phép xem xét các báo cáo và thực hiện hành động kiểm duyệt đối với chúng
         manage_roles: Quản lý vai trò
         manage_roles_description: Cho phép quản lý và chỉ định các vai trò nhỏ hơn họ
-        manage_rules: Quản lý quy tắc máy chủ
-        manage_rules_description: Cho phép thay đổi quy tắc máy chủ
+        manage_rules: Quản lý nội quy máy chủ
+        manage_rules_description: Cho phép thay đổi nội quy máy chủ
         manage_settings: Quản lý thiết lập
         manage_settings_description: Cho phép thay đổi thiết lập máy chủ
         manage_taxonomies: Quản lý phân loại
@@ -670,17 +670,17 @@ vi:
         view_devops_description: Cho phép truy cập trang tổng quan Sidekiq và pgHero
       title: Danh sách vai trò
     rules:
-      add_new: Thêm quy tắc
+      add_new: Thêm nội quy
       delete: Xóa bỏ
-      description_html: Mặc dù được yêu cầu chấp nhận điều khoản dịch vụ khi đăng ký, nhưng mọi người thường không đọc cho đến khi vấn đề gì đó xảy ra. <strong>Hãy làm điều này rõ ràng hơn bằng cách liệt kê quy tắc máy chủ theo gạch đầu dòng.</strong> Cố gắng viết ngắn và đơn giản, nhưng đừng tách ra quá nhiều mục.
-      edit: Sửa quy tắc
-      empty: Chưa có quy tắc máy chủ.
-      title: Quy tắc máy chủ
+      description_html: Mặc dù được yêu cầu chấp nhận điều khoản dịch vụ khi đăng ký, nhưng mọi người thường không đọc cho đến khi vấn đề gì đó xảy ra. <strong>Hãy làm điều này rõ ràng hơn bằng cách liệt kê nội quy máy chủ theo gạch đầu dòng.</strong> Cố gắng viết ngắn và đơn giản, nhưng đừng tách ra quá nhiều mục.
+      edit: Sửa nội quy
+      empty: Chưa có nội quy máy chủ.
+      title: Nội quy máy chủ
     settings:
       about:
-        manage_rules: Sửa quy tắc máy chủ
+        manage_rules: Sửa nội quy máy chủ
         preamble: Cung cấp thông tin chuyên sâu về cách máy chủ được vận hành, kiểm duyệt, tài trợ.
-        rules_hint: Có một khu vực dành riêng cho các quy tắc mà người tham gia máy chủ của bạn phải tuân thủ.
+        rules_hint: Có một khu vực dành riêng cho các nội quy mà người tham gia máy chủ của bạn phải tuân thủ.
         title: Giới thiệu
       appearance:
         preamble: Tùy chỉnh giao diện web của Mastodon.
@@ -762,8 +762,8 @@ vi:
         message_html: 'Phiên bản Elasticsearch không tương thích: %{value}'
         version_comparison: Đang dùng Elasticsearch %{running_version} trong khi bắt buộc phải có %{required_version}
       rules_check:
-        action: Sửa quy tắc máy chủ
-        message_html: Bạn chưa cập nhật quy tắc máy chủ.
+        action: Sửa nội quy máy chủ
+        message_html: Bạn chưa cập nhật nội quy máy chủ.
       sidekiq_process_check:
         message_html: Sidekiq không hoạt động khi truy vấn %{value}. Hãy kiểm tra lại cấu hình Sidekiq
     tags:
@@ -950,7 +950,7 @@ vi:
     reset_password: Đặt lại mật khẩu
     rules:
       preamble: Được ban hành và áp dụng bởi quản trị máy chủ %{domain}.
-      title: Quy tắc máy chủ.
+      title: Nội quy máy chủ.
     security: Bảo mật
     set_new_password: Đặt mật khẩu mới
     setup:
@@ -1360,7 +1360,7 @@ vi:
     missing_resource: Không tìm thấy URL chuyển hướng cho tài khoản của bạn
   reports:
     errors:
-      invalid_rules: không đúng với quy tắc
+      invalid_rules: không hợp với nội quy
   rss:
     content_warning: 'Cảnh báo nội dung:'
     descriptions:
@@ -1449,7 +1449,7 @@ vi:
     default_language: Giống ngôn ngữ giao diện
     disallowed_hashtags:
       other: 'chứa các hashtag bị cấm: %{tags}'
-    edited_at_html: Đã sửa %{date}
+    edited_at_html: Sửa %{date}
     errors:
       in_reply_not_found: Bạn đang trả lời một tút không còn tồn tại.
     open_in_web: Xem trong web
@@ -1575,7 +1575,7 @@ vi:
         spam: Spam
         violation: Nội dung vi phạm quy tắc cộng đồng
       explanation:
-        delete_statuses: Vài tút của bạn đã vi phạm quy tắc máy chủ và tạm thời bị ẩn bởi kiểm duyệt viên của %{instance}.
+        delete_statuses: Vài tút của bạn đã vi phạm nội quy máy chủ và tạm thời bị ẩn bởi kiểm duyệt viên của %{instance}.
         disable: Bạn không còn có thể sử dụng tài khoản của mình, nhưng hồ sơ của bạn và dữ liệu khác vẫn còn nguyên. Bạn có thể yêu cầu sao lưu dữ liệu của mình, thay đổi cài đặt tài khoản hoặc xóa tài khoản của bạn.
         mark_statuses_as_sensitive: Vài tút của bạn đã bị kiểm duyệt viên %{instance} đánh dấu nhạy cảm. Mọi người cần nhấn vào media để xem nó. Bạn có thể tự đánh dấu tài khoản của bạn là nhạy cảm.
         sensitive: Từ giờ trở đi, tất cả các media của bạn bạn tải lên sẽ được đánh dấu là nhạy cảm và ẩn đằng sau cảnh báo nhấp chuột.

@@ -21,8 +21,8 @@ et:
         action: Kinnitage e-postiaadress
         action_with_app: Kinnita ja naase %{app}
         explanation: Oled loonud %{host} konto selle e-postiaadressiga. Oled ühe kliki kaugusel selle aktiveerimisest. Kui see polnud sina, palun eira seda kirja.
-        explanation_when_pending: "Esitasite taotluse liituda selle e-postiaadressiga %{host} kasutajaks. Palume kinnitada e-posti aadress. Pärast seda vaatame me teie taotluse üle. Võite logida sisse, et oma andmeid muuta või konto kustutada, aga te ei saa enamustele tegevustele ligi enne, kui teie konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saate selle kohta eraldi e-kirja.\nKui teie taotlus lükatakse aga tagasi, kustutatakse ka teie andmed ja mingit teiepoolset järeltegevust pole vaja. \nKui see polnud teie, siis palume seda kirja eirata."
-        extra_html: Palun tutvuge <a href="%{terms_path}">meie serveri reeglitega</a> ning <a href="%{policy_path}">meie kasutustingimustega</a>.
+        explanation_when_pending: "Selle e-postiaadressiga on esitatud taotlus saada %{host} kasutajaks. E-postiaadress vajab kinnitamist. Pärast seda vaatame me taotluse üle. Võib siseneda, et oma andmeid muuta või konto kustutada, aga enamustele tegevustele ei pääse ligi enne, kui konto on meie moderaatorite poolt kinnitatud. Kui konto on kinnitatud, saabub selle kohta eraldi e-kiri.\nKui taotlus lükatakse aga tagasi, kustutatakse ka andmed ja mingit järeltegevust pole vaja. \nKui see polnud Teie, siis palume seda kirja eirata."
+        extra_html: Palun tutvu <a href="%{terms_path}">meie serveri reeglitega</a> ning <a href="%{policy_path}">meie kasutustingimustega</a>.
         subject: 'Mastodon: %{instance} kinnitamisjuhised'
         title: Kinnita e-postiaadress
       email_changed:
@@ -36,7 +36,7 @@ et:
         subject: 'Mastodon: salasõna muudetud'
         title: Salasõna muudetud
       reconfirmation_instructions:
-        explanation: Kinnitage oma uus aadress, et muuta oma e-posti aadressi.
+        explanation: Kinnita uus aadress, et oma e-posti aadress muuta.
         extra: Kui see muudatus pole teie poolt alustatud, palun eirake seda kirja. E-postiaadress sellele Mastodoni kontole ei muutu, kuni te vajutate üleval asuvale lingile.
         subject: 'Mastodon: kinnitake e-postiaadress %{instance} jaoks'
         title: Kinnita e-postiaadress
@@ -93,19 +93,19 @@ et:
       signed_up_but_locked: Teie konto loodi edukalt, kuid me ei saanud teid sisse logida, kuna teie konto on lukustatud.
       signed_up_but_pending: Kiri kinnituslingiga saadeti teie e-postile. Pärast seda, kui te vajutate lingile, vaatame me teie taotluse üle. Teid teavitatakse, kui see on vastu võetud.
       signed_up_but_unconfirmed: Kiri kinnituslingiga saadeti teie e-postile. Palun järgige linki, et aktiveerida oma konto. Palun kontrollige oma rämpsposti, kui te ei saanud seda e-kirja.
-      update_needs_confirmation: Teie konto uuendamine õnnestus, kuid e-postiaadress tuleb veel kinnitada. Palun kontrollige oma e-posti ning järgige kirjas olevat linki, et e-postiaadress kinnitada. Palun kontrollige rämpsposti, kui te sellist e-kirja ei saanud.
-      updated: Teie konto uuendamine õnnestus.
+      update_needs_confirmation: Konto uuendamine õnnestus, kuid e-postiaadress tuleb veel kinnitada. Palun kontrolli oma e-posti ning järgi kirjas olevat linki, et e-postiaadress kinnitada. Palun kontrolli rämpsposti, kui selline e-kiri ei saabunud.
+      updated: Konto uuendamine õnnestus.
     sessions:
       already_signed_out: Väljumine õnnestus.
       signed_in: Sisenemine õnnestus.
       signed_out: Väljumine õnnestus.
     unlocks:
       send_instructions: Te saate paari minuti pärast e-kirja juhistega, kuidas oma konto lukust lahti teha. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
-      send_paranoid_instructions: Kui teie konto eksisteerib, saate te paari minuti pärast e-kirja juhistega, kuidas see lukust lahti teha. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
-      unlocked: Teie konto lukust lahti võtmine õnnestus. Jätkamiseks palun logige sisse.
+      send_paranoid_instructions: Kui konto on olemas, saabub paari minuti pärast e-kiri juhistega, kuidas konto lukust lahti teha. Palun kontrolli rämpsposti kausta, kui selline e-kiri ei saabunud.
+      unlocked: Sinu konto avamine õnnestus. Jätkamiseks palun logi sisse.
   errors:
     messages:
-      already_confirmed: oli juba kinnitatud, palun proovige sisse logida
+      already_confirmed: on juba kinnitatud, palun proovi sisse logida
       confirmation_period_expired: peab olema kinnitatud ajavahemikus %{period}, palun taotlege uuesti
       expired: on aegunud, palun taotlege uuesti
       not_found: ei leitud
