@@ -680,6 +680,8 @@ Rails.application.routes.draw do
         end
       end
     end
+    # HELLO_PATCH(13) log frontend analytics events
+    post :event, to: 'hello/event#log'
   end
 
   web_app_paths.each do |path|

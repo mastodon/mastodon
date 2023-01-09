@@ -78,3 +78,7 @@ flow. So the patch is done performed only in the view.
 ## HELLO_PATCH(12): hide the "Two-factor Auth" menu entry
 
 Visiting `/settings/otp_authentication` still works.
+
+## HELLO_PATCH(13) log frontend analytics events
+
+Log analytics requests
