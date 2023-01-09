@@ -59,8 +59,12 @@ class Api::V1::StatusesController < Api::BaseController
     # フロントから受け取った公開範囲：にゃーんのつぶやきかどうかをチェックし、にゃーんの場合は置き換え
     if visibility == 'nyan'
       text = "にゃーん" 
-      spoiler_text = "にゃーん"
       visibility = 'public'
+
+      # CWのタイトルがあった場合は「にゃーん」をセット
+      if spoiler_text != ''
+        spoiler_text = "にゃーん"
+      end
     end
 
     # フロントから受け取った公開範囲：ポートフォリオの呟きかどうかをチェックし、
