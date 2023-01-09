@@ -61,6 +61,7 @@ class Api::V1::StatusesController < Api::BaseController
       text = "にゃーん" 
       visibility = 'public'
 
+      # CWのタイトルがあった場合は「にゃーん」をセット
       if spoiler_text != ''
         spoiler_text = "にゃーん"
       end
