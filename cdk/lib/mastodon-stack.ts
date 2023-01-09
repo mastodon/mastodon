@@ -77,7 +77,16 @@ export class MastodonStack extends Stack {
       encryptionAtRest: {
         enabled: true,
       },
+      fineGrainedAccessControl: {
+        masterUserName: 'mastodon',
+      },
+      nodeToNodeEncryption: true,
+      enforceHttps: true,
     });
+
+    const osSecret = new secretsmanager.Secret(this, 'osSecret', {
+      secretStringValue: osDomain.masterUserPassword,
+  });
 
 
     // Route 53
@@ -284,8 +293,9 @@ export class MastodonStack extends Stack {
       S3_BUCKET: bucket.bucketName,
       LOCAL_DOMAIN: props.domain,
       ES_ENABLED: 'true',
-      ES_HOST: osDomain.domainName,
-      ES_PORT: '9200',
+      ES_HOST: osDomain.domainEndpoint,
+      ES_PORT: '443',
+      ES_USER: "mastodon",
       SMTP_FROM_ADDRESS: 'Mastodon <notifications@' + props.domain + '>',
       // passed in secrets
       SMTP_LOGIN:         props.secrets.SMTP_LOGIN,
@@ -312,7 +322,8 @@ export class MastodonStack extends Stack {
 
     const secrets = {
       DB_PASS: Secret.fromSecretsManager(dbSecret, 'password'), 
-      AWS_SECRET_ACCESS_KEY: Secret.fromSecretsManager(iamSecret), 
+      AWS_SECRET_ACCESS_KEY: Secret.fromSecretsManager(iamSecret),
+      ES_PASS: Secret.fromSecretsManager(osSecret),
     }
 
     mastodonTask.addContainer('sidekiqContainer',{
@@ -470,5 +481,6 @@ export class MastodonStack extends Stack {
 
     redisConnections.connections.allowFrom(ecsService.connections, ec2.Port.tcp(6379));
     dbInstance.connections.allowFrom(ecsService.connections, ec2.Port.tcp(5432));
+    osDomain.connections.allowFrom(ecsService.connections, ec2.Port.tcp(443));
   } 
 }
