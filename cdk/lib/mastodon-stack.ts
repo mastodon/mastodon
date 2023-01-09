@@ -8,7 +8,7 @@ import { HostedZone } from 'aws-cdk-lib/aws-route53'
 import { ApplicationMultipleTargetGroupsFargateService }  from 'aws-cdk-lib/aws-ecs-patterns'
 import { CertificateValidation, DnsValidatedCertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { ApplicationProtocol, SslPolicy } from 'aws-cdk-lib/aws-elasticloadbalancingv2';
-import { Vpc } from 'aws-cdk-lib/aws-ec2'
+import { Protocol, Vpc } from 'aws-cdk-lib/aws-ec2'
 import { EcsApplication } from 'aws-cdk-lib/aws-codedeploy';
 
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
@@ -17,6 +17,8 @@ import * as route53 from "aws-cdk-lib/aws-route53";
 import * as route53Targets from "aws-cdk-lib/aws-route53-targets";
 import * as rds from 'aws-cdk-lib/aws-rds';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as ecs from 'aws-cdk-lib/aws-ecs';
+import * as elb from 'aws-cdk-lib/aws-elasticloadbalancingv2';
 import * as elasticache from 'aws-cdk-lib/aws-elasticache';
 import * as ses from 'aws-cdk-lib/aws-ses';
 import * as s3 from 'aws-cdk-lib/aws-s3';
@@ -77,12 +79,6 @@ export class MastodonStack extends Stack {
       },
     });
 
-    // ECS Cluster
-    const cluster = new Cluster(this, 'mastodonCluster', { 
-      vpc,
-      clusterName: 'mastodon',
-      containerInsights: true
-    })
 
     // Route 53
     const zone = HostedZone.fromLookup(this,'zone',{domainName: props.domain})
@@ -227,7 +223,7 @@ export class MastodonStack extends Stack {
     const bucket = new s3.Bucket(this, bucketName, { 
       bucketName: bucketName,
       encryption: s3.BucketEncryption.S3_MANAGED,
-      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
+      blockPublicAccess: {blockPublicAcls: false, blockPublicPolicy: false, ignorePublicAcls: false, restrictPublicBuckets: false},
     });
 
     // IAM user for S3 bucket
@@ -239,7 +235,10 @@ export class MastodonStack extends Stack {
 
     const bucketPolicy = new iam.PolicyStatement({
       actions: ['s3:*'],
-      resources: [bucket.arnForObjects('*')],
+      resources: [
+        bucket.arnForObjects('*'),
+        bucket.bucketArn
+      ],
       principals: [new iam.ArnPrincipal(user.userArn)]
     });
 
@@ -316,20 +315,6 @@ export class MastodonStack extends Stack {
       AWS_SECRET_ACCESS_KEY: Secret.fromSecretsManager(iamSecret), 
     }
 
-    mastodonTask.addContainer('webContainer',{
-      image: ContainerImage.fromEcrRepository(repository,'latest'),
-      //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
-      containerName: 'web',
-      command: (props.FIRST_RUN) ? ['bash', '-c', 'bundle install && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails db:migrate && bundle exec rails s -p 3000'] : ['bash', '-c', 'bundle install && bundle exec rails db:migrate && bundle exec rails s -p 3000'],
-      logging: LogDrivers.awsLogs({
-        streamPrefix: 'web',
-        logGroup: logGroup
-      }),
-      portMappings: [{containerPort:3000}],
-      environment,
-      secrets
-    })
-
     mastodonTask.addContainer('sidekiqContainer',{
       image: ContainerImage.fromEcrRepository(repository,'latest'),
       //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
@@ -340,7 +325,6 @@ export class MastodonStack extends Stack {
         streamPrefix: 'sidekiq',
         logGroup: logGroup
       }),
-      portMappings: [{containerPort:3001}],
       environment,
       secrets
     })
@@ -350,73 +334,44 @@ export class MastodonStack extends Stack {
       //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
       containerName: 'streaming',
       command: ['bash', '-c', 'node ./streaming'],
-      essential: false,
       logging: LogDrivers.awsLogs({
         streamPrefix: 'streaming',
         logGroup: logGroup
       }),
       environment,
-      secrets
+      secrets,
+      portMappings: [{containerPort: 4000}]
     })
 
-    const loadBalancedFargateService = new ApplicationMultipleTargetGroupsFargateService(this, 'webFargate', {
-      cluster : cluster,
-      cpu: 512,
-      desiredCount: 1,
-      memoryLimitMiB: 1024,
-      serviceName: 'mastodon',
-      taskDefinition: mastodonTask,
-      enableExecuteCommand: true, // enables remote execution w/ ECS Exec - TODO - disable for prod? Q: do we need to add other permisions, or will CDK take care of it? 
-      loadBalancers: [
-        {
-          name: 'lb',
-          idleTimeout: Duration.seconds(400),
-          domainName: albHost,
-          domainZone: zone,
-          listeners: [
-            {
-              name: 'mastodon',
-              protocol: ApplicationProtocol.HTTPS,
-              certificate: albCertificate,
-              sslPolicy: SslPolicy.TLS12_EXT,
-            },
-          ],
-        },
-      ],
-      targetGroups: [
-        {
-          containerPort: 3000,
-          listener: 'mastodon',
-        },
-        {
-          containerPort: 4000,
-          pathPattern: '/api/v1/streaming',
-          priority: 10,
-          listener: 'mastodon',
-        },
-      ],    
+    mastodonTask.addContainer('webContainer',{
+      image: ContainerImage.fromEcrRepository(repository,'latest'),
+      //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
+      containerName: 'webserver',
+      command: (props.FIRST_RUN) ? ['bash', '-c', 'bundle install && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails db:migrate && bundle exec rails s -p 3000'] : ['bash', '-c', 'bundle install && bundle exec rails db:migrate && bundle exec rails s -p 3000'],
+      logging: LogDrivers.awsLogs({
+        streamPrefix: 'web',
+        logGroup: logGroup
+      }),
+      environment,
+      secrets,
+      portMappings: [{containerPort: 3000}]
+    })
+
+    // ECS Cluster
+    const ecsCluster = new ecs.Cluster(this, 'FargateCluster', {
+      vpc,
+      clusterName: "mastodon",
+      containerInsights: true
     });
-    
-    loadBalancedFargateService.targetGroups.forEach(targetGroup =>{
-      targetGroup.configureHealthCheck({
-        path: '/health',
-        timeout: Duration.seconds(10),
-        unhealthyThresholdCount: 5,
-        healthyThresholdCount: 3,
-        interval: Duration.seconds(20)
-      })
+
+    // ECS Service
+    const ecsService = new ecs.FargateService(this, 'Service', { 
+      cluster: ecsCluster, 
+      taskDefinition: mastodonTask,
+      enableExecuteCommand: true
     })
 
-    loadBalancedFargateService.loadBalancers[0].setAttribute('routing.http.preserve_host_header.enabled', 'true')
-    
-    const albSecurityGroup = new ec2.SecurityGroup(this, 'alb-security-group', { 
-      vpc: vpc,
-      allowAllOutbound: true,
-     });
-     
-    loadBalancedFargateService.loadBalancers[0].addSecurityGroup(albSecurityGroup)
-
-    const scalableTarget = loadBalancedFargateService.service.autoScaleTaskCount({
+    const scalableTarget = ecsService.autoScaleTaskCount({
       minCapacity: 1,
       maxCapacity: 20,
     })
@@ -429,8 +384,83 @@ export class MastodonStack extends Stack {
       targetUtilizationPercent: 80,
     })    
 
+    // ALB
+    const lb = new elb.ApplicationLoadBalancer(this, 'LB', {
+      vpc,
+      internetFacing: true
+    });
+
+    lb.setAttribute('routing.http.preserve_host_header.enabled', 'true')
+    lb.setAttribute('routing.http.xff_client_port.enabled', 'true')
+    lb.setAttribute('routing.http.xff_header_processing.mode', 'preserve')
+
+    const albRecord = new route53.CnameRecord(this, 'albRecord', {
+      recordName: 'alb',
+      zone: zone,
+      domainName: lb.loadBalancerDnsName
+    })
+
+    // Redirect HTTP to HTTPS
+    lb.addRedirect({
+      sourceProtocol: elb.ApplicationProtocol.HTTP,
+      sourcePort: 80,
+      targetProtocol: elb.ApplicationProtocol.HTTPS,
+      targetPort: 443,
+    })
+
+    // HTTPS Listener
+    const listener443 = lb.addListener('listener443', {
+      port: 443,
+      open: true,
+      protocol: elb.ApplicationProtocol.HTTPS,
+      certificates: [albCertificate],
+      sslPolicy: SslPolicy.TLS12_EXT,
+      defaultAction: elb.ListenerAction.fixedResponse(200, {
+        messageBody: 'OK',
+      })
+    });
+
+    ecsService.registerLoadBalancerTargets(
+      {
+        containerName: 'webserver',
+        containerPort: 3000,
+        newTargetGroupId: 'webserver',
+        listener: ecs.ListenerConfig.applicationListener(listener443, {
+          protocol: elb.ApplicationProtocol.HTTP,
+          healthCheck: {path:"/health", interval: Duration.seconds(30), healthyThresholdCount: 3, unhealthyThresholdCount: 3},
+          priority: 200,
+          conditions: [
+            elb.ListenerCondition.pathPatterns(['/*']),
+          ]
+        }),
+      },
+    );
+
+    ecsService.registerLoadBalancerTargets(
+      {
+        containerName: 'streaming',
+        containerPort: 4000,
+        newTargetGroupId: 'streaming',
+        listener: ecs.ListenerConfig.applicationListener(listener443, {
+          protocol: elb.ApplicationProtocol.HTTP,
+          healthCheck: {path:"/api/v1/streaming/health", interval: Duration.seconds(30), healthyThresholdCount: 3, unhealthyThresholdCount: 3},
+          priority: 100,
+          conditions: [
+            elb.ListenerCondition.pathPatterns(['/api/v1/streaming','/api/v1/streaming/*']),
+          ]
+        }),
+      },
+    );
+    
+    const albSecurityGroup = new ec2.SecurityGroup(this, 'alb-security-group', { 
+      vpc: vpc,
+      allowAllOutbound: true,
+     });
+     
+    lb.addSecurityGroup(albSecurityGroup)
+
     // Outputs
-    new CfnOutput(this, 'dbEndpoint', {           // Kyle: I'm not familiar with how one would use CfnOutput
+    new CfnOutput(this, 'dbEndpoint', {
       value: dbInstance.instanceEndpoint.hostname,
     });
 
@@ -438,7 +468,7 @@ export class MastodonStack extends Stack {
       value: dbInstance.secret?.secretName!,
     });
 
-    redisConnections.connections.allowFrom(loadBalancedFargateService.service.connections, ec2.Port.tcp(6379));
-    dbInstance.connections.allowFrom(loadBalancedFargateService.service.connections, ec2.Port.tcp(5432));
+    redisConnections.connections.allowFrom(ecsService.connections, ec2.Port.tcp(6379));
+    dbInstance.connections.allowFrom(ecsService.connections, ec2.Port.tcp(5432));
   } 
 }
