@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-require 'uri'
 
 class Hello::VerifiedController < ActionController::Base
 
