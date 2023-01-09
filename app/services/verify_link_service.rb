@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class VerifyLinkService < BaseService
-  LINK_BACK_XPATH =
-    '//a[contains(concat(" ", normalize-space(@rel), " "), " me ")]' \
-    '|//link[contains(concat(" ", normalize-space(@rel), " "), " me ")]'
-
   def call(field)
     @link_back = ActivityPub::TagManager.instance.url_for(field.account)
     @url       = field.value_for_verification
@@ -14,9 +10,8 @@ class VerifyLinkService < BaseService
     return unless link_back_present?
 
     field.mark_verified!
-  rescue OpenSSL::SSL::SSLError, HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError,
-         Mastodon::LengthValidationError => e
-    Rails.logger.debug { "Error fetching link #{@url}: #{e}" }
+  rescue OpenSSL::SSL::SSLError, HTTP::Error, Addressable::URI::InvalidURIError, Mastodon::HostValidationError, Mastodon::LengthValidationError => e
+    Rails.logger.debug "Error fetching link #{@url}: #{e}"
     nil
   end
 
@@ -24,14 +19,14 @@ class VerifyLinkService < BaseService
 
   def perform_request!
     @body = Request.new(:get, @url).add_headers('Accept' => 'text/html').perform do |res|
-      res.code == 200 ? res.truncated_body : nil
+      res.code != 200 ? nil : res.body_with_limit
     end
   end
 
   def link_back_present?
     return false if @body.blank?
 
-    links = Nokogiri::HTML5(@body).xpath(LINK_BACK_XPATH)
+    links = Nokogiri::HTML5(@body).xpath('//a[contains(concat(" ", normalize-space(@rel), " "), " me ")]|//link[contains(concat(" ", normalize-space(@rel), " "), " me ")]')
 
     if links.any? { |link| link['href']&.downcase == @link_back.downcase }
       true
