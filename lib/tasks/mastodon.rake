@@ -395,7 +395,7 @@ namespace :mastodon do
         incompatible_syntax = false
 
         env_contents = env.each_pair.map do |key, value|
-          if value.is_a?(String) && value =~ /[\s\#\\"]/
+          if value.is_a?(String) && value =~ /[\s\#\\"\$]/
             incompatible_syntax = true
 
             if value =~ /[']/
