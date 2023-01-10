@@ -19,9 +19,9 @@ Doorkeeper::Application.create(
   owner_id: 1
 )
 
-
-Rule.create(text: 'Real names only.')
-Rule.create(text: 'Be kind.')
+Rule.create(text: 'Be kind. Don''t be mean, nasty, abusive, sexist, racist, or offensive. No shitposting. No doxing. Engage in healthy debate if inclined.')
+Rule.create(text: 'Be legal. Don''t post material illigal in either the US, or where you are located. Abide by all applicable laws. We will cooperate with law enforcement when legally required to.')
+Rule.create(text: 'Use your real name, IE the name that others know you as. Don''t pretend to be someone else. User another Mastodon instance if you want pseudonymity or anonymity.')
 
 
 category = CustomEmojiCategory.find_or_create_by(name: 'System')
