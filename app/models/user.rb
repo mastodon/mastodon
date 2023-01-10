@@ -136,6 +136,7 @@ class User < ApplicationRecord
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application,
            :advanced_layout, :use_blurhash, :use_pending_items, :trends, :crop_images,
            :disable_swiping, :always_send_emails,
+           :resized_custom_emoji,
            to: :settings, prefix: :setting, allow_nil: false
 
   delegate :can?, to: :role

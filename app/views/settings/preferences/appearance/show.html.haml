@@ -38,6 +38,11 @@
   .fields-group
     = f.input :setting_crop_images, as: :boolean, wrapper: :with_label
 
+  %h4= t 'カスタム絵文字の表示サイズ'
+
+  .fields-group
+    = f.input :setting_resized_custom_emoji, as: :boolean, wrapper: :with_label, recommended: true
+
   %h4= t 'appearance.discovery'
 
   .fields-group

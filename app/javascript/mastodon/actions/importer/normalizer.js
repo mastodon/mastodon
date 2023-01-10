@@ -1,7 +1,7 @@
 import escapeTextContentForBrowser from 'escape-html';
 import emojify, { emojifyStatus } from '../../features/emoji/emoji';
 import { unescapeHTML } from '../../utils/html';
-import { expandSpoilers } from '../../initial_state';
+import { expandSpoilers, domain } from '../../initial_state';
 
 const domParser = new DOMParser();
 
@@ -88,7 +88,7 @@ export function normalizeStatus(status, normalOldStatus) {
     const emojiMap      = makeEmojiMap(normalStatus);
 
     const uri = status.uri;
-    const isLocalCustomEmoji = uri.match(/gamelinks007\.net/) !== null;
+    const isLocalCustomEmoji = uri.match(domain) !== null;
 
     normalStatus.search_index = domParser.parseFromString(searchContent, 'text/html').documentElement.textContent;
     normalStatus.contentHtml  = emojifyStatus(isLocalCustomEmoji, normalStatus.content, emojiMap);
