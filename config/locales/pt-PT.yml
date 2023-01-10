@@ -694,12 +694,12 @@ pt-PT:
         manage_rules: Gerir regras do servidor
         preamble: Forneça informações aprofundadas sobre como o servidor é operado, moderado, financiado.
         rules_hint: Existe uma área dedicada às regras a que os seus utilizadores devem aderir.
-        title: Sobre
+        title: Acerca de
       appearance:
         preamble: Personalize a interface web do Mastodon.
         title: Aspeto
       branding:
-        preamble: A marca do seu servidor diferencia-a de outros servidores na rede. Essa informação pode ser exibida em vários ambientes, como a interface web do Mastodon, aplicativos nativos, visualizações de links em outros sites e dentro de aplicativos de mensagens, etc. Por esta razão, é melhor manter esta informação clara, curta e concisa.
+        preamble: A marca do seu servidor diferencia-a doutros servidores na rede. Essa informação pode ser exibida em vários contexos, como a interface na teia do Mastodon, aplicações nativas, visualizações de hiperligações noutros sites, em aplicações de mensagens, etc. Por esta razão, é melhor manter esta informação clara, curta e concisa.
         title: Marca
       content_retention:
         preamble: Controle como o conteúdo gerado pelos utilizadores é armazenado no Mastodon.
@@ -713,7 +713,7 @@ pt-PT:
         profile_directory: Diretório de perfis
         public_timelines: Cronologias públicas
         title: Descobrir
-        trends: Tendências
+        trends: Em alta
       domain_blocks:
         all: Para toda a gente
         disabled: Para ninguém
@@ -729,7 +729,7 @@ pt-PT:
       title: Definições do Servidor
     site_uploads:
       delete: Eliminar arquivo carregado
-      destroyed_msg: Upload do site eliminado com sucesso!
+      destroyed_msg: Envio de sítio na teia correctamente eliminado!
     statuses:
       account: Autor
       application: Aplicação
@@ -739,7 +739,7 @@ pt-PT:
         remove_from_report: Remover da denúncia
         report: Denúncia
       deleted: Eliminado
-      favourites: Favoritos
+      favourites: Marcadores
       history: Histórico de versões
       in_reply_to: A responder a
       language: Idioma
@@ -749,26 +749,26 @@ pt-PT:
       no_status_selected: Nenhum estado foi alterado porque nenhum foi selecionado
       open: Abrir publicação
       original_status: Publicação original
-      reblogs: Reblogs
+      reblogs: Re-publicacões
       status_changed: Publicação alterada
       title: Estado das contas
-      trending: Em destaque
+      trending: Em alta
       visibility: Visibilidade
       with_media: Com media
     strikes:
       actions:
         delete_statuses: "%{name} eliminou a publicação de %{target}"
         disable: "%{name} congelou a conta de %{target}"
-        mark_statuses_as_sensitive: "%{name} marcou as publicações de %{target} como sensíveis"
+        mark_statuses_as_sensitive: "%{name} marcou as publicações de %{target} como problemáticas"
         none: "%{name} enviou uma advertência a %{target}"
-        sensitive: "%{name} marcou a conta de %{target} como sensível"
+        sensitive: "%{name} marcou a conta de %{target} como problemática"
         silence: "%{name} limitou a conta de %{target}"
         suspend: "%{name} suspendeu a conta de %{target}"
       appeal_approved: Recorrido
       appeal_pending: Recurso pendente
     system_checks:
       database_schema_check:
-        message_html: Existem migrações de base de dados pendentes. Por favor, execute-as para garantir que o aplicativo se comporte como esperado
+        message_html: Há migrações de base de dados pendentes. Queira executá-las, para garantir que a aplicação se comporta como o esperado
       elasticsearch_running_check:
         message_html: Não foi possível conectar ao Elasticsearch. Por favor, verifique se está em execução, ou desabilite a pesquisa de texto completo
       elasticsearch_version_check:
@@ -788,25 +788,25 @@ pt-PT:
       approved: Aprovado
       disallow: Não permitir
       links:
-        allow: Permitir link
+        allow: Permitir ligação
         allow_provider: Permitir editor
-        description_html: Estes são links que atualmente estão a ser frequentemente partilhados por contas visiveis pelo seu servidor. Eles podem ajudar os seus utilizador a descobrir o que está a acontecer no mundo. Nenhum link é exibido publicamente até que aprove o editor. Também pode permitir ou rejeitar links individualmente.
-        disallow: Não permitir link
+        description_html: Estas são as ligações que presentemente estão a ser muito partilhadas por contas visíveis pelo seu servidor. Estas podem ajudar os seus utilizador a descobrir o que está a acontecer no mundo. Nenhuma ligação é exibida publicamente até que o editor a aprove. Também pode permitir ou rejeitar ligações em avulso.
+        disallow: Não permitir ligação
         disallow_provider: Não permitir editor
-        no_link_selected: Nenhum link foi alterado, pois nenhum foi selecionado
+        no_link_selected: Nenhuma ligação foi alterada, pois nenhuma foi selecionada
         publishers:
           no_publisher_selected: Nenhum editor foi alterado, pois nenhum foi selecionado
         shared_by_over_week:
           one: Partilhado por uma pessoa na última semana
           other: Partilhado por %{count} pessoas na última semana
-        title: Links em destaque
+        title: Ligações em alta
         usage_comparison: Partilhado %{today} vezes hoje, em comparação com %{yesterday} ontem
       only_allowed: Apenas permitidos
       pending_review: Pendente de revisão
       preview_card_providers:
-        allowed: Links deste editor poderão ser incluídos nos destaques
-        description_html: Estes são domínios a partir dos quais links são frequentemente partilhados no seu servidor. Estes links não serão colocados em destaque a menos que o seu domínio de origem seja aprovado. A sua aprovação (ou rejeição) estende-se a subdomínios.
-        rejected: Links deste editor não serão incluídos nos destaques
+        allowed: Ligações deste editor poderão vir a ficar em alta
+        description_html: Estes são os domínios a partir dos quais ligações são frequentemente partilhadas no seu servidor. As suas ligações não serão colocadas em alta a menos que o seu domínio de origem seja aprovado. A sua aprovação (ou rejeição) estende-se a subdomínios.
+        rejected: Ligações deste editor não serão postas em alta
         title: Editores
       rejected: Rejeitado
       statuses:
@@ -815,18 +815,18 @@ pt-PT:
         description_html: Estas são publicações que o seu servidor conhece e que atualmente estão a ser frequentemente partilhadas e adicionadas aos favoritos. Isto pode ajudar os seus utilizadores, novos e retornados, a encontrar mais pessoas para seguir. Nenhuma publicação será exibida publicamente até que aprove o autor, e o autor permita que a sua conta seja sugerida a outros. Você também pode permitir ou rejeitar publicações individualmente.
         disallow: Não permitir publicação
         disallow_account: Não permitir autor
-        no_status_selected: Nenhuma publicação em tendência foi alterada, pois nenhuma foi selecionada
+        no_status_selected: Nenhuma publicação em alta foi alterada, pois nenhuma foi selecionada
         not_discoverable: O autor optou por não permitir que a sua conta seja sugerida a outros
         shared_by:
-          one: Partilhado ou adicionado aos favoritos uma vez
-          other: Partilhado e adicionado aos favoritos %{friendly_count} vezes
-        title: Publicações em destaque
+          one: Partilhado ou adicionado aos marcadores uma vez
+          other: Partilhado e adicionado aos marcadores %{friendly_count} vezes
+        title: Publicações em alta
       tags:
         current_score: Pontuação atual %{score}
         dashboard:
           tag_accounts_measure: utilizadores únicos
-          tag_languages_dimension: Idiomas mais populares
-          tag_servers_dimension: Servidores mais populares
+          tag_languages_dimension: Topo de idiomas
+          tag_servers_dimension: Topo de servidores
           tag_servers_measure: servidores diferentes
           tag_uses_measure: utilizações totais
         description_html: 'Estas são as #etiquetas que aparecem atualmente com frequência em publicações visíveis pelo seu servidor. Isto pode ajudar os seus utilizadores a descobrir o que está ser mais falado no momento. Nenhuma #etiqueta será exibida publicamente até que a aprove.'
@@ -837,15 +837,15 @@ pt-PT:
         not_usable: Não pode ser utilizada
         peaked_on_and_decaying: Máximo em %{date}, agora a decair
         title: Etiquetas em alta
-        trendable: Pode aparecer nas tendências
-        trending_rank: 'Tendência #%{rank}'
+        trendable: Pode aparecer em alta
+        trending_rank: 'Em alta #%{rank}'
         usable: Pode ser utilizada
         usage_comparison: Utilizada %{today} vezes hoje, em comparação com %{yesterday} ontem
         used_by_over_week:
           one: Utilizada por uma pessoa na última semana
           other: Utilizada por %{count} pessoas na última semana
-      title: Tendências
-      trending: Em destaque
+      title: Em alta
+      trending: Em alta
     warning_presets:
       add_new: Adicionar novo
       delete: Eliminar
@@ -855,7 +855,7 @@ pt-PT:
     webhooks:
       add_new: Adicionar endpoint
       delete: Eliminar
-      description_html: Um <strong>webhook</strong> possibilita que o Mastodon envie <strong>notificações em tempo real</strong> de eventos seleccionados, para um seu aplicativo, para que este possa <strong>acionar ações automaticamente</strong>.
+      description_html: Um <strong>webhook</strong> possibilita que o Mastodon envie <strong>notificações em tempo real</strong> de eventos seleccionados, para uma aplicação sua, de modo que esta possa <strong>espoletar ações automaticamente</strong>.
       disable: Desativar
       disabled: Desativado
       edit: Editar endpoint
@@ -875,18 +875,18 @@ pt-PT:
   admin_mailer:
     new_appeal:
       actions:
-        delete_statuses: para elimintar as suas publicações
+        delete_statuses: para eliminar as suas publicações
         disable: para congelar a sua conta
-        mark_statuses_as_sensitive: marcar as suas publicações como sensíveis
+        mark_statuses_as_sensitive: para marcar as suas publicações como problemáticas
         none: uma advertência
-        sensitive: marcação da sua conta como sensível
-        silence: limitação da sua conta
-        suspend: suspensão da sua conta
+        sensitive: para marcar a sua conta como problemática
+        silence: para limitar a sua conta
+        suspend: para suspender a sua conta
       body: "%{target} está a recorrer de uma decisão de moderação de %{action_taken_by} a %{date}, que consistiu em %{type}. Escreveu:"
       next_steps: Pode aprovar o recurso para reverter a decisão de moderação, ou ignorá-lo.
       subject: "%{username} está a recorrer da decisão de moderação em %{instance}"
     new_pending_account:
-      body: Em baixo, estão os detalhes da nova conta. Pode aprovar ou rejeitar esta inscrição.
+      body: Abaixo, estão os pormenores da nova conta. Pode aprovar ou rejeitar esta inscrição.
       subject: Nova conta para revisão em %{instance} (%{username})
     new_report:
       body: "%{reporter} denunciou %{target}"
@@ -895,9 +895,9 @@ pt-PT:
     new_trends:
       body: 'Os seguintes itens precisam ser revistos antes de poderem ser exibidos publicamente:'
       new_trending_links:
-        title: Links em destaque
+        title: Ligações em alta
       new_trending_statuses:
-        title: Publicações em destaque
+        title: Publicações em alta
       new_trending_tags:
         no_approved_tags: 'Neste momento, não existem #etiquetas aprovadas para destaque.'
         requirements: 'Qualquer um destes candidatos pode ultrapassar a #%{rank} etiqueta aprovada em destaque, que é atualmente #%{lowest_tag_name} com uma pontuação de %{lowest_tag_score}.'
@@ -906,7 +906,7 @@ pt-PT:
   aliases:
     add_new: Criar pseudónimo
     created_msg: Criou com sucesso um novo pseudónimo. Pode agora iniciar a migração da conta antiga.
-    deleted_msg: O pseudónimo foi eliminado com sucesso. Migrar dessa conta para esta não será mais possível.
+    deleted_msg: O pseudónimo foi correctamente eliminado. Não será mais possível migrar a partir dessa conta.
     empty: Não tem pseudónimos.
     hint_html: Se quiser mudar de outra conta para esta, pode criar aqui um pseudónimo, que é necessário antes de poder prosseguir com a migração de seguidores da conta antiga para esta. Esta ação por si só é <strong>inofensiva e reversível</strong>. <strong>A migração da conta é iniciada a partir da conta antiga</strong>.
     remove: Desvincular pseudónimo
@@ -917,11 +917,11 @@ pt-PT:
     confirmation_dialogs: Caixas de confirmação
     discovery: Descobrir
     localization:
-      body: Mastodon é traduzido por voluntários.
+      body: O Mastodon é traduzido por voluntários.
       guide_link: https://pt.crowdin.com/project/mastodon/
       guide_link_text: Todos podem contribuir.
-    sensitive_content: Conteúdo sensível
-    toot_layout: Disposição do Toot
+    sensitive_content: Conteúdo problemático
+    toot_layout: Disposição da publicação
   application_mailer:
     notification_preferences: Alterar preferências de e-mail
     salutation: "%{name},"
@@ -930,8 +930,8 @@ pt-PT:
     view_profile: Ver perfil
     view_status: Ver publicação
   applications:
-    created: Aplicação criada com sucesso
-    destroyed: Aplicação eliminada com sucesso
+    created: Aplicação correctamente criada
+    destroyed: Aplicação correctamente eliminada
     regenerate_token: Regenerar token de acesso
     token_regenerated: Token de acesso regenerado com sucesso
     warning: Cuidado com estes dados. Não partilhar com ninguém!
@@ -947,9 +947,9 @@ pt-PT:
       suffix: Com uma conta, poderá seguir pessoas, publicar atualizações e trocar mensagens com utilizadores de qualquer instância Mastodon e muito mais!
     didnt_get_confirmation: Não recebeu o e-mail de confirmação?
     dont_have_your_security_key: Não tem a sua chave de segurança?
-    forgot_password: Esqueceste a palavra-passe?
+    forgot_password: Esqueceu-se da palavra-passe?
     invalid_reset_password_token: Token de modificação da palavra-passe é inválido ou expirou. Por favor, solicita um novo.
-    link_to_otp: Insira um código de autenticação em duas etapas do seu telemóvel ou um código de recuperação
+    link_to_otp: Insira um código de autenticação em duas etapas do seu telemóvel, ou um código de recuperação
     link_to_webauth: Usa o teu dispositivo de chave de segurança
     log_in_with: Iniciar sessão com
     login: Entrar
@@ -966,7 +966,7 @@ pt-PT:
     resend_confirmation: Reenviar instruções de confirmação
     reset_password: Criar nova palavra-passe
     rules:
-      preamble: Estas são definidos e aplicadas pelos moderadores de %{domain}.
+      preamble: Estas são definidas e aplicadas pelos moderadores de %{domain}.
       title: Algumas regras básicas.
     security: Alterar palavra-passe
     set_new_password: Editar palavra-passe
@@ -975,7 +975,7 @@ pt-PT:
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, pode alterá-lo nas definições da conta.
       title: Configuração
     sign_in:
-      preamble_html: Iniciar sessão com as suas credenciais de <strong>%{domain}</strong>. Se a sua conta estiver hospedada noutro servidor, não poderá inciar sessão aqui.
+      preamble_html: Iniciar sessão com as suas credenciais de <strong>%{domain}</strong>. Se a sua conta estiver hospedada noutro servidor, não poderá iniciar sessão aqui.
       title: Iniciar sessão em %{domain}
     sign_up:
       preamble: Com uma conta neste servidor Mastodon, poderá seguir qualquer outra pessoa na rede, independentemente do servidor onde a conta esteja hospedada.
@@ -986,8 +986,8 @@ pt-PT:
       functional: A sua conta está totalmente operacional.
       pending: A sua inscrição está pendente de revisão pela nossa equipa. Isso pode demorar algum tempo. Receberá um e-mail se a sua conta for aprovada.
       redirecting_to: A sua conta está inativa porque está atualmente a ser redirecionada para %{acct}.
-      view_strikes: Veja as punições anteriores contra a sua conta
-    too_fast: Formulário enviado muito rapidamente, tente novamente.
+      view_strikes: Veja as reprimendas anteriores sobre a sua conta
+    too_fast: Formulário enviado demasiado rapidamente, tente novamente.
     use_security_key: Usar chave de segurança
   authorize_follow:
     already_following: Tu já estás a seguir esta conta
@@ -998,8 +998,8 @@ pt-PT:
     following: 'Sucesso! Agora estás a seguir a:'
     post_follow:
       close: Ou podes simplesmente fechar esta janela.
-      return: Voltar ao perfil do utilizador
-      web: Voltar à página inicial
+      return: Mostrar perfil do utilizador
+      web: Ir para a página na teia
     title: Seguir %{acct}
   challenge:
     confirm: Continuar
@@ -1033,7 +1033,7 @@ pt-PT:
     confirm_password: Introduza a sua palavra-passe atual para verificar a sua identidade
     confirm_username: Introduza o seu nome de utilizador para confirmar o procedimento
     proceed: Eliminar conta
-    success_msg: A sua conta foi eliminada com sucesso
+    success_msg: A sua conta foi correctamente eliminada
     warning:
       before: 'Antes de continuar, por favor leia cuidadosamente estas notas:'
       caches: O conteúdo que foi armazenado em cache por outras instâncias pode persistir
@@ -1067,7 +1067,7 @@ pt-PT:
       title_actions:
         delete_statuses: Remoção de publicação
         disable: Congelamento da conta
-        mark_statuses_as_sensitive: Marcação das publicações como sensíveis
+        mark_statuses_as_sensitive: Marcação das publicações como problemáticas
         none: Advertência
         sensitive: Marcação da conta como sensível
         silence: Limitação da conta
