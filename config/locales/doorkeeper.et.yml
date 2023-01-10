@@ -28,9 +28,9 @@ et:
       edit:
         title: Avalduse muutmine
       form:
-        error: Oih! Kontrollige oma vormi võimalikest vigadest
+        error: Oih! Kontrolli vormi, ehk on mõni viga sees
       help:
-        native_redirect_uri: Kasutage %{native_redirect_uri} kohalikeks testideks
+        native_redirect_uri: Kasuta %{native_redirect_uri} kohalikeks testideks
         redirect_uri: Kasuta ühte rida iga URI jaoks
         scopes: Eralda ulatused tühikutega. Jäta tühjaks, et kasutada vaikimisi ulatusi.
       index:
@@ -81,7 +81,7 @@ et:
       messages:
         access_denied: Ressursi omanik või autoriseerimisserver lükkas taotluse tagasi.
         credential_flow_not_configured: Resource Owner Password Credentials vool ebaõnnestus, kuna Doorkeeper.configure.resource_owner_from_credentials ei ole seadistatud.
-        invalid_client: Kliendi autentimine ebaõnnestus, kuna tundmatu klient, puudulik autentimine või mitte toetatud autentimismeetod.
+        invalid_client: Kliendi autentimine ebaõnnestus. Põhjus kas tundmatu klient, puudulik autentimine või toetamata autentimismeetod.
         invalid_grant: Antud autoriseerimisluba on vale, aegunud, tagasi võetud, ei kattu kasutatud ümbersuunamise URLid või oli antud teisele kliendile.
         invalid_redirect_uri: Antud ümbersuunamise URL ei ole õige.
         invalid_request:
@@ -153,7 +153,7 @@ et:
       "admin:read:domain_blocks": loe kõigi domeenide blokeeringute tundlikku infot
       "admin:read:email_domain_blocks": loe kõigi e-posti blokeeringute tundlikku infot
       "admin:read:ip_blocks": loe kõigi IP-blokeeringute tundlikku infot
-      "admin:read:reports": lugeda privaatset informatsiooni kõikide teavituste ja teavitatud kasutajate kohta
+      "admin:read:reports": lugeda privaatset infot kõikide teavituste ja teavitatud kasutajate kohta
       "admin:write": muuta kõiki andmeid serveril
       "admin:write:accounts": teostada moderaatori tegevusi kontodel
       "admin:write:canonical_email_blocks": modereeri kanoonilisi e-posti blokeeringuid
