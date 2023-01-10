@@ -1020,47 +1020,47 @@ pt-PT:
       about_x_months: "%{count} meses"
       about_x_years: "%{count} anos"
       almost_x_years: "%{count} anos"
-      half_a_minute: Justo agora
+      half_a_minute: Agora mesmo
       less_than_x_minutes: "%{count} meses"
-      less_than_x_seconds: Justo agora
+      less_than_x_seconds: Agora mesmo
       over_x_years: "%{count} anos"
       x_days: "%{count} dias"
       x_minutes: "%{count} minutos"
       x_months: "%{count} meses"
       x_seconds: "%{count} segundos"
   deletes:
-    challenge_not_passed: A informação que introduziu não estava correta
-    confirm_password: Introduza a sua palavra-passe atual para verificar a sua identidade
-    confirm_username: Introduza o seu nome de utilizador para confirmar o procedimento
+    challenge_not_passed: A informação que inseriu não estava correcta
+    confirm_password: Insira sua palavra-passe atual para verificar a sua identidade
+    confirm_username: Insira seu nome de utilizador para confirmar o procedimento
     proceed: Eliminar conta
     success_msg: A sua conta foi correctamente eliminada
     warning:
       before: 'Antes de continuar, por favor leia cuidadosamente estas notas:'
-      caches: O conteúdo que foi armazenado em cache por outras instâncias pode persistir
+      caches: O conteúdo que foi armazenado em cache por outras instâncias pode perdurar
       data_removal: As suas publicações e outros dados serão eliminados permanentemente
       email_change_html: Pode <a href="%{path}">alterar o seu endereço de e-mail</a> sem eliminar a sua conta
       email_contact_html: Se ainda não chegou, pode enviar um e-mail a <a href="mailto:%{email}">%{email}</a> para obter ajuda
       email_reconfirmation_html: Se não recebeu o e-mail de confirmação, pode <a href="%{path}">pedi-lo novamente</a>
       irreversible: Não será possível restaurar ou reativar sua conta
-      more_details_html: Para mais detalhes, leia a <a href="%{terms_path}">política de privacidade</a>.
+      more_details_html: Para mais pormenores, leia a <a href="%{terms_path}">política de privacidade</a>.
       username_available: O seu nome de utilizador ficará novamente disponível
       username_unavailable: O seu nome de utilizador permanecerá indisponível
   disputes:
     strikes:
       action_taken: Ação tomada
       appeal: Recorrer
-      appeal_approved: Esta punição foi alvo de recurso, bem sucedido, pelo que já não é válida
+      appeal_approved: Esta reprimenda foi alvo dum recurso entretanto deferido, pelo que já não é válida
       appeal_rejected: O recurso foi rejeitado
       appeal_submitted_at: Recurso submetido
       appealed_msg: O seu recurso foi submetido. Se ele for aprovado, será notificado.
       appeals:
         submit: Submeter recurso
-      approve_appeal: Aprovar recurso
+      approve_appeal: Deferir recurso
       associated_report: Denúncia associada
       created_at: Data
       description_html: Estas são ações tomadas contra a sua conta e avisos que lhe foram enviados pela equipa de %{instance}.
       recipient: Endereçado a
-      reject_appeal: Rejeitar recurso
+      reject_appeal: Indeferir recurso
       status: 'Publicação #%{id}'
       status_removed: Publicação já eliminada do sistema
       title: "%{action} de %{date}"
@@ -1069,42 +1069,42 @@ pt-PT:
         disable: Congelamento da conta
         mark_statuses_as_sensitive: Marcação das publicações como problemáticas
         none: Advertência
-        sensitive: Marcação da conta como sensível
+        sensitive: Marcação da conta como problemática
         silence: Limitação da conta
         suspend: Suspensão da conta
-      your_appeal_approved: O seu recurso foi aprovado
+      your_appeal_approved: O seu recurso foi deferido
       your_appeal_pending: Submeteu um recurso
-      your_appeal_rejected: O seu recurso foi rejeitado
+      your_appeal_rejected: O seu recurso foi indeferido
   domain_validator:
     invalid_domain: não é um nome de domínio válido
   errors:
     '400': O pedido que submeteu foi inválido ou mal formulado.
     '403': Não tens a permissão necessária para ver esta página.
-    '404': A página que estás a procurar não existe.
+    '404': A página que procura não existe.
     '406': Esta página não está disponível no formato solicitado.
-    '410': A página que estás a procurar não existe mais.
+    '410': A página que procura já não existe.
     '422':
       content: "A verificação de segurança falhou. \nDesativaste o uso de cookies?"
       title: A verificação de segurança falhou
-    '429': Desacelerado
+    '429': Demasiados pedidos
     '500':
-      content: Desculpe, mas algo correu mal.
+      content: Desculpe, mas algo correu mal da nossa parte.
       title: Esta página não está correta
     '503': A página não pôde ser apresentada devido a uma falha temporária do servidor.
-    noscript_html: Para usar o aplicativo web do Mastodon, por favor ativa o JavaScript. Alternativamente, experimenta um dos <a href="%{apps_path}">apps nativos</a> para o Mastodon na sua plataforma.
+    noscript_html: Para usar a aplicação da teia do Mastodon, por favor active o JavaScript. Em alternativa, experimenta uma das <a href="%{apps_path}">aplicações nativas</a> do Mastodon para a sua plataforma.
   existing_username_validator:
     not_found: não foi possível encontrar um utilizador local com esse nome
     not_found_multiple: não foi possível encontrar %{usernames}
   exports:
     archive_takeout:
       date: Data
-      download: Descarregar o teu arquivo
-      hint_html: Pode pedir um arquivo das suas <strong>publicações e ficheiros de media carregados</strong>. Os dados no ficheiro exportado estarão no formato ActivityPub, que pode ser lido com qualquer software compatível. Pode solicitar um arquivo a cada 7 dias.
+      download: Descarregar o seu arquivo
+      hint_html: Pode pedir um arquivo das suas <strong>publicações e ficheiros de media carregados</strong>. Os dados no ficheiro exportado estarão no formato ActivityPub, que pode ser lido com qualquer programa compatível. Pode solicitar um arquivo a cada 7 dias.
       in_progress: A compilar o seu arquivo...
-      request: Pede o teu arquivo
+      request: Peça o seu arquivo
       size: Tamanho
     blocks: Bloqueaste
-    bookmarks: Itens Salvos
+    bookmarks: Marcadores
     csv: CSV
     domain_blocks: Bloqueios de domínio
     lists: Listas
@@ -1129,7 +1129,7 @@ pt-PT:
       statuses_hint_html: Este filtro aplica-se a publicações individuais selecionadas independentemente de estas corresponderem às palavras-chave abaixo. <a href="%{path}">Reveja ou remova publicações do filtro</a>.
       title: Editar filtros
     errors:
-      deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir deste aplicativo porque se aplicam a mais de um filtro de palavra-chave. Use um aplicativo mais recente ou a interface web.
+      deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir desta aplicação porque se aplicam a mais que um filtro de palavra-chave. Use uma aplicação mais recente ou a interface na teia.
       invalid_context: Inválido ou nenhum contexto fornecido
     index:
       contexts: Filtros em %{contexts}
