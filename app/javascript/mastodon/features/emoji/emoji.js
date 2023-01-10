@@ -1,4 +1,4 @@
-import { autoPlayGif } from '../../initial_state';
+import { autoPlayGif, resizedCustomEmoji } from '../../initial_state';
 import unicodeMapping from './emoji_unicode_mapping_light';
 import { assetHost } from 'mastodon/utils/config';
 import Trie from 'substring-trie';
@@ -120,7 +120,7 @@ const emojifyTextNodeForLocal = (isLocalCustomEmoji, node, customEmojis) => {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
           replacement = document.createElement('img');
           replacement.setAttribute('draggable', false);
-          replacement.setAttribute('class', isLocalCustomEmoji ? 'emojione local-custom-emoji' : 'emojione custom-emoji');
+          replacement.setAttribute('class', isLocalCustomEmoji && resizedCustomEmoji ? 'emojione local-custom-emoji' : 'emojione custom-emoji');
           replacement.setAttribute('alt', shortname);
           replacement.setAttribute('title', shortname);
           replacement.setAttribute('src', filename);
