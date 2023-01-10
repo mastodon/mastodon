@@ -949,7 +949,7 @@ et:
     dont_have_your_security_key: Pole turvavõtit?
     forgot_password: Salasõna ununenud?
     invalid_reset_password_token: Salasõna lähtestusvõti on vale või aegunud. Palun taotle uus.
-    link_to_otp: Kahe-etapine kood telefonist või taastekood
+    link_to_otp: Kaheastmeline kood telefonist või taastekood
     link_to_webauth: Turvavõtmete seadme kasutamine
     log_in_with: Sisene kasutades
     login: Logi sisse
@@ -1228,11 +1228,11 @@ et:
       limit: Oled jõudnud loetelude lubatud maksimumarvuni
   login_activities:
     authentication_methods:
-      otp: kahe-etapise autentimise rakendus
+      otp: kaheastmelise autentimise rakendus
       password: salasõna
       sign_in_token: e-posti turvakood
       webauthn: turvavõtmed
-    description_html: Kui paistab tundmatauid tegevusi, tuleks vahetada salasõna ja aktiveerida kahe-etapine autentimine.
+    description_html: Kui paistab tundmatuid tegevusi, tuleks vahetada salasõna ja aktiveerida kaheastmeline autentimine.
     empty: Autentimisajalugu pole saadaval
     failed_sign_in_html: Nurjunud sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
     successful_sign_in_html: Edukas sisenemine meetodiga %{method} aadressilt %{ip} (%{browser})
@@ -1331,7 +1331,7 @@ et:
           trillion: trn
   otp_authentication:
     code_hint: Kinnituseks autentimisrakenduse loodud kood
-    description_html: Kui aktiveerda <strong>kahe-etapine autentimine</strong> autentimisrakenduse abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
+    description_html: Kui aktiveerida <strong>kaheastmeline autentimine</strong> autentimisrakenduse abil, on sisselogimiseks tarvis telefoni, mis loob sisenemiseks võtmeid.
     enable: Luba
     instructions_html: "<strong>See QR-kood on võimalik skannida telefoni Google Authenticatori või sarnasesse ühekordsete aeguvate salasõnade (TOTP) rakendusse</strong>. Nüüdsest genereerib see rakendus koode, mille peab sisenemisel sisestama."
     manual_instructions: 'Kui pole võimalik QR-koodi skaneerida, on salavõti võimalik sisestada tavatekstina:'
@@ -1458,7 +1458,7 @@ et:
     relationships: Jälgitud ja jälgijad
     statuses_cleanup: Automaatne kustutamine
     strikes: Modereerimisjuhtumid
-    two_factor_authentication: Kahe-etapine autentimine
+    two_factor_authentication: Kaheastmeline autentimine
     webauthn_authentication: Turvavõtmed
   statuses:
     attached:
@@ -1566,13 +1566,13 @@ et:
   two_factor_authentication:
     add: Lisa
     disable: Keela 2FA
-    disabled_success: Kahe-etapine autentimine keelatud
+    disabled_success: Kaheastmeline autentimine keelatud
     edit: Muuda
-    enabled: Kahe-etapine autentimine on lubatud
-    enabled_success: Kahe-etapine autentimine lubatud
+    enabled: Kaheastmeline autentimine on lubatud
+    enabled_success: Kaheastmeline autentimine lubatud
     generate_recovery_codes: Loo taastekoodid
     lost_recovery_codes: Taastekoodide abil on võimalik telefoni kaotsimineku puhul kontole siseneda. Taastekoodide puudumisel saab need siin luua. Eelnevad taastekoodid kaotavad kehtivuse.
-    methods: Kahe-etapised meetodid
+    methods: Kaheastmelised meetodid
     otp: Autentimisrakendus
     recovery_codes: Taastekoodide varundamine
     recovery_codes_regenerated: Taastekoodid edukalt taasloodud
@@ -1596,7 +1596,7 @@ et:
       change_password: muuta oma salasõna
       details: 'Sisenemise üksikasjad:'
       explanation: Täheldasime kontole sisenemise uuelt IP-aadressilt.
-      further_actions_html: Kui see tuleb üllatusena, soovitame viivitamata %{action} ja lülitada konto turvamiseks sisse kahe-etapine autentimine.
+      further_actions_html: Kui see tuleb üllatusena, soovitame viivitamata %{action} ja lülitada konto turvamiseks sisse kaheastmeline autentimine.
       subject: Kontole sisenemine uuelt IP-aadressilt
       title: Uus sisenemine
     warning:
@@ -1642,7 +1642,7 @@ et:
       title: Tere tulemast, %{name}!
   users:
     follow_limit_reached: Ei saa jälgida rohkem kui %{limit} inimest
-    invalid_otp_token: Vale kahe-etapine võti
+    invalid_otp_token: Vale kaheastmeline võti
     otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
