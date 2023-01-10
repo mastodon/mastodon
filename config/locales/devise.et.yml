@@ -13,8 +13,8 @@ et:
       not_found_in_database: Valed %{authentication_keys} või salasõna.
       pending: Sinu konto on siiani läbivaatamisel.
       timeout: Sinu sessioon on aegunud. Jätkamiseks palun sisene uuesti.
-      unauthenticated: Te peate sisenema või looma konto enne jätkamist.
-      unconfirmed: Te peate kinnitama oma e-postiaadressi enne jätkamist.
+      unauthenticated: Pead sisenema või looma konto enne kui jätkad.
+      unconfirmed: Pead kinnitama oma e-postiaadressi enne kui jätkad.
     mailer:
       confirmation_instructions:
         action: Kinnita e-postiaadress
@@ -99,14 +99,14 @@ et:
       signed_in: Sisenemine õnnestus.
       signed_out: Väljumine õnnestus.
     unlocks:
-      send_instructions: Te saate paari minuti pärast e-kirja juhistega, kuidas oma konto lukust lahti teha. Palun kontrollige oma rämpsposti kausta juhul, kui te ei saanud seda e-kirja.
+      send_instructions: Saad paari minuti pärast juhistega e-kirja, kuidas oma konto lukust lahti teha. Palun kontrolli oma rämpsposti kausta, kui selline kiri ei saabunud.
       send_paranoid_instructions: Kui konto on olemas, saabub paari minuti pärast e-kiri juhistega, kuidas konto lukust lahti teha. Palun kontrolli rämpsposti kausta, kui selline e-kiri ei saabunud.
       unlocked: Sinu konto avamine õnnestus. Jätkamiseks palun logi sisse.
   errors:
     messages:
       already_confirmed: on juba kinnitatud, palun proovi sisse logida
-      confirmation_period_expired: peab olema kinnitatud ajavahemikus %{period}, palun taotlege uuesti
-      expired: on aegunud, palun taotlege uuesti
+      confirmation_period_expired: peab olema kinnitatud ajavahemikus %{period}, palun taotle uuesti
+      expired: on aegunud, palun taotle uuesti
       not_found: ei leitud
       not_locked: ei olnud lukustatud
       not_saved:
