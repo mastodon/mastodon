@@ -133,13 +133,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = ENV.fetch('SMTP_DELIVERY_METHOD', 'smtp').to_sym
 
   config.action_dispatch.default_headers = {
-    'Server'                  => 'Mastodon',
-    'X-Frame-Options'         => 'DENY',
-    'X-Content-Type-Options'  => 'nosniff',
-    'X-XSS-Protection'        => '0',
-    'Permissions-Policy'      => 'interest-cohort=()',
-    'Referrer-Policy'         => 'same-origin',
-    'X-Clacks-Overhead' => 'GNU Natalie Nguyen'
+    'Server'                 => 'Mastodon',
+    'X-Frame-Options'        => 'DENY',
+    'X-Content-Type-Options' => 'nosniff',
+    'X-XSS-Protection'       => '0',
+    'Permissions-Policy'     => 'interest-cohort=()',
+    'X-Clacks-Overhead'      => 'GNU Natalie Nguyen',
+    'Referrer-Policy'        => 'same-origin',
   }
 
   config.x.otp_secret = ENV.fetch('OTP_SECRET')
