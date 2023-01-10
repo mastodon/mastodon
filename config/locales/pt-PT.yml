@@ -1212,8 +1212,8 @@ pt-PT:
       '604800': 1 semana
       '86400': 1 dia
     expires_in_prompt: Nunca
-    generate: Gerar
-    invited_by: 'Tu foste convidado por:'
+    generate: Gerar hiperligação de convite
+    invited_by: 'Foi convidado por:'
     max_uses:
       one: 1 uso
       other: "%{count} usos"
@@ -1230,28 +1230,28 @@ pt-PT:
     authentication_methods:
       otp: aplicação de autenticação em duas etapas
       password: palavra-passe
-      sign_in_token: código de segurança por e-mail
+      sign_in_token: código de segurança por correio electrónico
       webauthn: chaves de segurança
     description_html: Se vê atividade que não reconhece, considere alterar a sua palavra-passe e ativar a autenticação em duas etapas.
     empty: Sem histórico de autenticação disponível
     failed_sign_in_html: Tentativa falhada de início de sessão com %{method} de %{ip} (%{browser})
-    successful_sign_in_html: Iniciada sessão com sucesso com %{method} de %{ip} (%{browser})
+    successful_sign_in_html: Sessão correctamente iniciada com %{method} de %{ip} (%{browser})
     title: Histórico de autenticação
   media_attachments:
     validations:
       images_and_video: Não é possível anexar um vídeo a uma publicação que já contém imagens
-      not_ready: Não é possível anexar arquivos que não terminaram de ser processados. Tente novamente daqui a pouco!
-      too_many: Não é possível anexar mais de 4 arquivos
+      not_ready: Não é possível anexar ficheiros que ainda não acabaram de ser processados. Tente outra vez daqui a pouco!
+      too_many: Não é possível anexar mais de 4 ficheiros
   migrations:
-    acct: username@domain da nova conta
+    acct: Mudou-se para
     cancel: Cancelar redirecionamento
     cancel_explanation: Cancelar o redirecionamento irá reativar a sua conta atual, mas não trará de volta os seguidores que foram migrados para essa conta.
-    cancelled_msg: Cancelou com sucesso o redireccionamento.
+    cancelled_msg: Cancelou correctamente o redireccionamento.
     errors:
       already_moved: é a mesma conta para a qual já migrou
-      missing_also_known_as: não está a referenciar esta conta
+      missing_also_known_as: não é um pseudónimo dessa conta
       move_to_self: não pode ser conta atual
-      not_found: não pode ser encontrado
+      not_found: não foi encontrado
       on_cooldown: Você está no período de espera
     followers_count: Seguidores no momento da migração
     incoming_migrations: A migrar de uma conta diferente
@@ -1280,7 +1280,7 @@ pt-PT:
     carry_mutes_over_text: Este utilizador migrou de %{acct}, que você tinha silenciado.
     copy_account_note_text: 'Este utilizador migrou de %{acct}, aqui estão as suas notas anteriores sobre ele:'
   navigation:
-    toggle_menu: Abrir/fechar menu
+    toggle_menu: Alternar o menu
   notification_mailer:
     admin:
       report:
@@ -1288,9 +1288,9 @@ pt-PT:
       sign_up:
         subject: "%{name} inscreveu-se"
     favourite:
-      body: 'O teu post foi adicionado aos favoritos por %{name}:'
-      subject: "%{name} adicionou o teu post aos favoritos"
-      title: Novo favorito
+      body: 'A sua publicação foi adicionada aos marcadores por %{name}:'
+      subject: "%{name} adicionou a sua publicação aos marcadores"
+      title: Novo marcador
     follow:
       body: "%{name} é teu seguidor!"
       subject: "%{name} começou a seguir-te"
@@ -1306,18 +1306,18 @@ pt-PT:
       subject: '%{name} mencionou-te'
       title: Nova menção
     poll:
-      subject: Uma votação realizada por %{name} terminou
+      subject: A sondagem de %{name} encerrou
     reblog:
-      body: 'O teu post foi partilhado por %{name}:'
-      subject: "%{name} partilhou o teu post"
-      title: Nova partilha
+      body: 'A sua publicação foi reforçada por %{name}:'
+      subject: "%{name} reforçou a sua publicação"
+      title: Novo reforço
     status:
       subject: "%{name} acabou de publicar"
     update:
       subject: "%{name} editou uma publicação"
   notifications:
     email_events: Eventos para notificações por e-mail
-    email_events_hint: 'Selecione os eventos para os quais deseja receber notificações:'
+    email_events_hint: 'Selecione os casos para os quais deseja receber notificações:'
     other_settings: Outras opções de notificações
   number:
     human:
@@ -1333,8 +1333,8 @@ pt-PT:
     code_hint: Introduz o código gerado pela tua aplicação de autenticação para confirmar
     description_html: Se ativar a <strong>autenticação em duas etapas</strong>, para entrar na sua conta terá de ter consigo o seu telefone, que vai gerar os tokens necessários à validação do seu acesso.
     enable: Ativar
-    instructions_html: "<strong>Digitalize este código QR no Google Authenticator ou num aplicativo TOTP similar no seu telefone</strong>. A partir de agora, esse aplicativo irá gerar tokens que você terá que introduzir para aceder à sua conta."
-    manual_instructions: 'Se você não consegue digitalizar o código QR e precisa introduzi-lo manualmente, aqui está o código em texto:'
+    instructions_html: "<strong>Digitalize este código QR no Google Authenticator ou numa aplicação TOTP semelhante a partir do seu telemóvel</strong>. A partir desse momento, essa aplicação irá gerar tokens que terá que inserir para aceder à sua conta."
+    manual_instructions: 'Se não conseguir digitalizar o código QR e precisar de o inserir manualmente, eis o código por extenso:'
     setup: Configurar
     wrong_code: O código introduzido é inválido! A hora do servidor e a hora do dispositivo estão corretos?
   pagination:
