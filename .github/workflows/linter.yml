@@ -74,10 +74,8 @@ jobs:
           DEFAULT_BRANCH: main
           NO_COLOR: 1 # https://github.com/xt0rted/stylelint-problem-matcher/issues/360
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          JAVASCRIPT_ES_CONFIG_FILE: .eslintrc.js
           LINTER_RULES_PATH: .
           RUBY_CONFIG_FILE: .rubocop.yml
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_CSS: true
-          VALIDATE_JAVASCRIPT_ES: true
           VALIDATE_RUBY: true
