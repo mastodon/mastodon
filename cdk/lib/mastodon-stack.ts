@@ -358,7 +358,9 @@ export class MastodonStack extends Stack {
       image: ContainerImage.fromEcrRepository(repository,'latest'),
       //image: ContainerImage.fromRegistry('tootsuite/mastodon'),
       containerName: 'webserver',
-      command: (props.FIRST_RUN) ? ['bash', '-c', 'bundle install && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails db:migrate && bundle exec rails s -p 3000'] : ['bash', '-c', 'bundle install && bundle exec rails db:migrate && bundle exec rails s -p 3000'],
+      command: (props.FIRST_RUN) 
+        ? ['bash', '-c', 'bundle install && DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rails db:setup && bundle exec rails db:migrate && bundle exec rails s -p 3000'] 
+        : ['bash', '-c', 'bundle install && bundle exec rails db:migrate && bundle exec rails s -p 3000'],
       logging: LogDrivers.awsLogs({
         streamPrefix: 'web',
         logGroup: logGroup
