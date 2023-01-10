@@ -116,8 +116,8 @@ fi:
       redownloaded_msg: Käyttäjän %{username} profiilin päivittäminen alkuperästä onnistui
       reject: Hylkää
       rejected_msg: Käyttäjän %{username} rekisteröitymishakemus hylättiin
-      remote_suspension_irreversible: Tilin tiedot on poistettu pysyvästi.
-      remote_suspension_reversible_hint_html: Tili on jäädytetty heidän palvelimellaan ja sen tiedot poistetaan pysyvästi %{date}. Ennen sitä tili etäpalvelimen ylläpito voi palauttaa tilin ilman haittavaikutuksia. Jos haluat poistaa kaikki tilin tiedot välittömästi, voit tehdä sen alta.
+      remote_suspension_irreversible: Tämän tilin tiedot on poistettu peruuttamattomasti.
+      remote_suspension_reversible_hint_html: Tili on jäädytetty heidän palvelimellaan, ja tilin kaikki tiedot poistetaan %{date}. Ennen tätä ajankohtaa on kyseessä olevan palvelimen ylläpidolla mahdollisuus palauttaa tili ongelmitta. Jos puolestaan haluat poistaa tilin tietoineen heti, onnistuu se alta.
       remove_avatar: Poista profiilikuva
       remove_header: Poista otsakekuva
       removed_avatar_msg: Käyttäjän %{username} avatar-kuva poistettu onnistuneesti
@@ -557,7 +557,7 @@ fi:
       pending: Odotetaan välittäjän hyväksyntää
       save_and_enable: Tallenna ja ota käyttöön
       setup: Määritä yhteys välittäjään
-      signatures_not_enabled: Releet eivät toimi oikein, kun turvallinen tila tai rajoitettu federaatio on käytössä
+      signatures_not_enabled: Välittäjät eivät toimi oikein, kun turvallinen tai rajoitettu federaatio -tila on käytössä
       status: Tila
       title: Välittäjät
     report_notes:
@@ -976,7 +976,7 @@ fi:
       email_settings_hint_html: Vahvistussähköposti lähetettiin osoitteeseen %{email}. Jos sähköpostiosoite ei ole oikea, voit muuttaa sitä tiliasetuksissa.
       title: Asetukset
     sign_in:
-      preamble_html: Kirjaudu <strong>%{domain}</strong>-tunnuksillasi. Jos tilisi sijaitsee eri palvelimella, et voi kirjautua täällä.
+      preamble_html: Kirjaudu sisään <strong>%{domain}</strong>-tunnuksillasi. Jos tilisi sijaitsee eri palvelimella, et voi sisäänkirjautua täällä.
       title: Kirjaudu palveluun %{domain}
     sign_up:
       preamble: Kun sinulla on tili tällä Mastodon-palvelimella, voit seurata kaikkia muita verkossa olevia henkilöitä riippumatta siitä, missä heidän tilinsä on.
@@ -1597,7 +1597,7 @@ fi:
       change_password: vaihda salasanasi
       details: 'Tässä on tiedot kirjautumisesta:'
       explanation: Olemme havainneet kirjautumisen tilillesi uudesta IP-osoitteesta.
-      further_actions_html: Jos et ollut sinä, suosittelemme, että %{action} teet välittömästi ja otat kaksivaiheisen todennuksen käyttöön tilisi turvallisuuden varmistamiseksi.
+      further_actions_html: Jos tämä et ollut sinä, suosittelemme että %{action} välittömästi ja ota kaksivaiheinen todennus käyttöön säilyttääksesi tilisi turvallisena.
       subject: Tiliäsi on käytetty uudesta IP-osoitteesta
       title: Uusi kirjautuminen
     warning:
