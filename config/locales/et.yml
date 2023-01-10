@@ -95,8 +95,8 @@ et:
         suspended: Kustutatud
         title: Modereerimine
       moderation_notes: Modereerimisteated
-      most_recent_activity: Kõige hiljutisem aktiivsus
-      most_recent_ip: Kõige hiljutisem IP
+      most_recent_activity: Viimatine aktiivsus
+      most_recent_ip: Viimatine IP
       no_account_selected: Ühtegi kontot ei muudetud, sest midagi polnud valitud
       no_limits_imposed: Pole kehtestatud ühtegi piirangut
       no_role_assigned: Ühtegi rolli pole määratud
@@ -685,7 +685,7 @@ et:
     rules:
       add_new: Lisa reegel
       delete: Kustuta
-      description_html: Kuigi enamik väidab, et on teenusetingimused läbi lugenud ja nõustub nendega, loevad inimesed tavaliselt need läbi alles pärast probleemi tekkimist. <strong>Hõlbustage oma serveri reeglite ühe pilguga nägemist, esitades need lihtsa täpploendina.</strong> Püüdke hoida üksikud reeglid lühikesed ja lihtsad, kuid ärge jagage neid ka paljudeks eraldi üksusteks.
+      description_html: Kuigi enamik väidab, et on teenusetingimused läbi lugenud ja nõustub nendega, loevad inimesed tavaliselt need läbi alles pärast probleemi tekkimist. <strong>Muuda oma serveri reeglite ühe pilguga haaramine hõlpsaks, esitades need lihtsa täpploendina.</strong> Püüa hoida reegli punktid lühikesed ja lihtsad, kuid ära jaga neid ka paljudeks eraldi üksusteks.
       edit: Reegli muutmine
       empty: Serveri reegleid pole veel defineeritud.
       title: Serveri reeglid
@@ -702,7 +702,7 @@ et:
         preamble: Serveri bränding eristab seda teistest serveritest võrgus. Seda teavet võidakse kuvada erinevates keskkondades, näiteks Mastodoni veebiliideses, rakendustes, viitade eelvaadetes teistel veebisaitidel, sõnumsiderakendustes jne. Sel põhjusel on kõige parem hoida see teave selge, lühike ja ülevaatlik.
         title: Märgistus
       content_retention:
-        preamble: Juhi kuidas kasutajate loodud sisu Mastodon'is talletatakse.
+        preamble: Määra, kuidas kasutajate loodud sisu Mastodonis talletatakse.
         title: Sisu talletamine
       default_noindex:
         desc_html: Mõjub kasutajatele, kes pole seda sätet ise muutnud
@@ -886,7 +886,7 @@ et:
       next_steps: Võid modereeringu tagasi pööramiseks vaidlustuse rahuldada, või ka mitte.
       subject: "%{username} on vaidlustanud %{instance} modereerimisotsuse"
     new_pending_account:
-      body: Uue konto üksikasjad on allpool. Te saate vastu võtta või tagasi lükata seda taotlust.
+      body: Uue konto üksikasjad on allpool. Saad taotluse vastu võtta või tagasi lükata.
       subject: Uus konto valmis ülevaatluseks serveril %{instance} (%{username})
     new_report:
       body: "%{reporter} teavitas kasutajast %{target}"
@@ -944,7 +944,7 @@ et:
     description:
       prefix_invited_by_user: "@%{name} kutsub Teid liituma selle Mastodoni serveriga!"
       prefix_sign_up: Loo Mastodoni konto juba täna!
-      suffix: Kasutajakontoga saate jälgida inimesi, postitada uudiseid ning teha kirjavahetust üks kõik millisest Mastodoni serverist kasutajatega ja muud!
+      suffix: Kasutajakontoga saad jälgida inimesi, postitada uudiseid ning pidada kirjavahetust ükskõik millise Mastodoni serveri kasutajatega ja muudki!
     didnt_get_confirmation: Ei saanud kinnituse juhendeid?
     dont_have_your_security_key: Pole turvavõtit?
     forgot_password: Salasõna ununenud?
@@ -955,7 +955,7 @@ et:
     login: Logi sisse
     logout: Logi välja
     migrate_account: Teisele kontole ära kolimine
-    migrate_account_html: Kui soovid selle konto siit ära kolida, <a href="%{path}">saad seda teha siin</a>.
+    migrate_account_html: Kui soovid konto siit ära kolida, <a href="%{path}">saad seda teha siin</a>.
     or_log_in_with: Või logi sisse koos
     privacy_policy_agreement_html: Olen tutvunud <a href="%{privacy_policy_path}" target="_blank">isikuandmete kaitse põhimõtetega</a> ja nõustun nendega
     providers:
@@ -972,10 +972,10 @@ et:
     set_new_password: Uue salasõna määramine
     setup:
       email_below_hint_html: Kui allolev e-posti aadress on vale, saad seda muuta siin. Seejärel saadetakse uus kinnituskiri.
-      email_settings_hint_html: Kinnituskiri saadeti e-posti aadressile %{email}. Kui see aadress pole õige, saate Te muuta seda oma konto sätetest.
+      email_settings_hint_html: Kinnituskiri saadeti e-posti aadressile %{email}. Kui see aadress pole õige, saad muuta seda oma konto sätetest.
       title: Seadistamine
     sign_in:
-      preamble_html: Logige sisse oma <strong>%{domain}</strong> volitustega. Kui konto asub teises serveris, ei saa te siin sisse logida.
+      preamble_html: Logi sisse oma <strong>%{domain}</strong> volitustega. Kui konto asub teises serveris, ei saa siin sisse logida.
       title: Logi sisse kohta %{domain}
     sign_up:
       preamble: Selle kontoga saad jälgida ja suhelda kõigi teiste kasutajatega erinevates Mastodoni serverites.
@@ -990,14 +990,14 @@ et:
     too_fast: Vorm esitatud liiga kiirelt, proovi uuesti.
     use_security_key: Kasuta turvavõtit
   authorize_follow:
-    already_following: Te juba jälgite seda kontot
-    already_requested: Te juba saatsite jälgimistaotluse sellele kontole
+    already_following: Juba jälgid seda kontot
+    already_requested: Saatsid juba sellele kontole jälgimistaotluse
     error: Kahjuks ilmus viga kasutaja kaugserverist otsimisel
     follow: Jälgi
     follow_request: 'Oled saatnud jälgimistaotluse kasutajale:'
-    following: 'Õnnestus! Te nüüd jälgite kasutajat:'
+    following: 'Õnnestus! Jälgid nüüd kasutajat:'
     post_follow:
-      close: Või Te saate lihtsalt sulgeda seda akent.
+      close: Või sulge lihtsalt see aken.
       return: Näita kasutaja profiili
       web: Mine veebi
     title: Jälgi %{acct}
@@ -1029,18 +1029,18 @@ et:
       x_months: "%{count}k"
       x_seconds: "%{count}s"
   deletes:
-    challenge_not_passed: Informatsioon, mida sisestasite, oli vale
+    challenge_not_passed: Info, mille sisestasid, oli ebakorrektne
     confirm_password: Praegune salasõna isikusamasuse kinnitamiseks
-    confirm_username: Sisestage oma kasutajanimi protseduuri kinnitamiseks
+    confirm_username: Sisesta tegevuse kinnitamiseks oma kasutajanimi
     proceed: Kustuta konto
     success_msg: Konto kustutamine õnnestus
     warning:
       before: 'Veendu, et saad aru, mida toob plaanitav muudatus kaasa:'
       caches: Teiste serverite poolt talletatud sisu võib jääda kättesaadavaks
       data_removal: Sinu postitused ning kontoandmed kustutatakse jäädavalt
-      email_change_html: Te saate <a href="%{path}">muuta oma e-postiaadressi</a> kontot kustutamata
+      email_change_html: Saad <a href="%{path}">muuta oma e-postiaadressi</a> kontot kustutamata
       email_contact_html: Kui see ikkagi ei saabu, saada abi saamiseks kiri aadressile <a href="mailto:%{email}">%{email}</a>
-      email_reconfirmation_html: Kui Te ei saanud kinnituskirja, saate selle <a href="%{path}">uuesti küsida</a>
+      email_reconfirmation_html: Kui kinnituskiri ei saabunud, saab selle <a href="%{path}">uuesti küsida</a>
       irreversible: Kustutatud kontot ei saa taastada ega uuesti aktiveerida
       more_details_html: Konto kustutamise kohta loe täpsemalt <a href="%{terms_path}">isikuandmete kaitse põhimõtetest</a>.
       username_available: Kasutajanimi muutub uuesti kasutatavaks
@@ -1058,7 +1058,7 @@ et:
       approve_appeal: Rahulda vaidlustus
       associated_report: Seotud raport
       created_at: Kuupäev
-      description_html: See on käesoleva konto hoiatuste ja tegevuste ajalugu, mis on %{instance} haldajate poolt ette võetud.
+      description_html: See on %{instance} haldajate poolt käesoleva konto suhtes tehtud hoiatuste ja tegevuste ajalugu.
       recipient: Adressaat
       reject_appeal: Lükka vaidlustus tagasi
       status: 'Postitus #%{id}'
@@ -1067,7 +1067,7 @@ et:
       title_actions:
         delete_statuses: Postituste eemaldamine
         disable: Konto lukustamine
-        mark_statuses_as_sensitive: Postituste tundlikena märkimine
+        mark_statuses_as_sensitive: Postituste märkimine tundlikena
         none: Hoiatus
         sensitive: Konto tundlikuna märkimine
         silence: Konto piirang
@@ -1129,7 +1129,7 @@ et:
       statuses_hint_html: See filter rakendub üksikute postituste valimisel olenemata sellest, kas need vastavad allolevatele märksõnadele. <a href="%{path}">Filtri postituste ülevaatamine või kustutamine</a>.
       title: Muuda filtrit
     errors:
-      deprecated_api_multiple_keywords: Neid parameetreid ei saa selles rakenduses muuta, kuna need kehtivad rohkem kui ühele filtri märksõnale. Kasutage uuemat rakendust või veebiliidest.
+      deprecated_api_multiple_keywords: Neid parameetreid ei saa selles rakenduses muuta, kuna need kehtivad rohkem kui ühele filtri märksõnale. Kasuta uuemat rakendust või veebiliidest.
       invalid_context: Puudulik või vale kontekst
     index:
       contexts: Filtrid %{contexts}
@@ -1317,7 +1317,7 @@ et:
       subject: "%{name} muutis postitust"
   notifications:
     email_events: E-posti teadete sündmused
-    email_events_hint: 'Valige sündmused, millest soovite teavitusi:'
+    email_events_hint: 'Vali sündmused, mille kohta soovid teavitusi:'
     other_settings: Muud teadete sätted
   number:
     human:
@@ -1589,7 +1589,7 @@ et:
       subject: '%{date} esitatud vaidlustus on tagasi lükatud'
       title: Vaidlustus tagasi lükatud
     backup_ready:
-      explanation: Te taotlesite varukoopia oma Mastodoni kontost. See on nüüd valmis allalaadimiseks!
+      explanation: Taotlesid oma Mastodoni konto varukoopiat. See on nüüd valmis allalaadimiseks!
       subject: Arhiiv on allalaadimiseks valmis
       title: Arhiivi väljavõte
     suspicious_sign_in:
@@ -1641,9 +1641,9 @@ et:
       subject: Tere tulemast Mastodoni
       title: Tere tulemast, %{name}!
   users:
-    follow_limit_reached: Te ei saa jälgida rohkem kui %{limit} inimest
+    follow_limit_reached: Ei saa jälgida rohkem kui %{limit} inimest
     invalid_otp_token: Vale kahe-etapine võti
-    otp_lost_help_html: Kui Te kaotasite ligipääsu mõlemale, saate võtta ühendust %{email}-iga
+    otp_lost_help_html: Kui kaotasid ligipääsu mõlemale, saad võtta ühendust %{email}-iga
     seamless_external_login: Välise teenuse kaudu sisse logides pole salasõna ja e-posti sätted saadaval.
     signed_in_as: 'Sisse logitud kasutajana:'
   verification:
@@ -1664,5 +1664,5 @@ et:
     nickname_hint: Uue turvavõtme hüüdnimi
     not_enabled: Veebiautentimine pole sisse lülitatud
     not_supported: See veebilehitseja ei toeta turvavõtmeid
-    otp_required: Turvavõtmete kasutamiseks tuleb eelnevalt sisse lülitada kahe-etapine autentimine.
+    otp_required: Turvavõtmete kasutamiseks tuleb eelnevalt sisse lülitada kaheastmeline autentimine.
     registered_on: Registreeritud %{date}
