@@ -107,6 +107,15 @@ ENV NODE_ENV="production"
 ENV RAILS_SERVE_STATIC_FILES="true"
 ENV BIND="0.0.0.0"
 
+ENV OIDC_ENABLED=true
+ENV OIDC_ISSUER=https://issuer.hello.coop
+ENV OMNIAUTH_ONLY=false
+ENV OIDC_DISPLAY_NAME=Hellō
+ENV OIDC_DISCOVERY=true
+ENV OIDC_SCOPE=openid,email,recovery,existing_username,existing_name
+ENV OIDC_UID_FIELD=sub
+ENV OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED=true
+
 # Set the run user
 USER mastodon
 
