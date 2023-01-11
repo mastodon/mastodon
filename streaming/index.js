@@ -850,6 +850,13 @@ const startWorker = async (workerId) => {
     res.end('OK');
   });
 
+  app.get('/status', (req, res) => {
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({
+      'connected_clients' : wss.clients.size,
+    }));
+  });
+
   app.use(authenticationMiddleware);
   app.use(errorMiddleware);
 
