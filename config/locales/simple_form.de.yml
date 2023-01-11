@@ -13,7 +13,7 @@ de:
         include_statuses: Die Person sieht, welche Beiträge die Moderationsmaßnahme oder Warnung verursacht haben
         send_email_notification: Benutzer*in wird eine Erklärung erhalten, was mit dem Konto geschehen ist
         text_html: Optional. Du kannst Beitragssyntax verwenden. Du kannst <a href="%{path}">Warnvorlagen hinzufügen</a>, um Zeit zu sparen
-        type_html: Wähle aus, was du mit <strong>%{acct}</strong> machen möchtest
+        type_html: Wähle aus, wie mit <strong>%{acct}</strong> vorgegangen werden soll
         types:
           disable: Benutzer*in daran hindern, das Konto verwenden zu können, aber die Inhalte nicht löschen oder ausblenden.
           none: Verwende dies, um dem Account eine Warnung zu schicken, ohne dabei eine andere Aktion vorzunehmen.
@@ -43,7 +43,7 @@ de:
         header: PNG, GIF oder JPG. Höchstens %{size} groß. Wird auf %{dimensions} px verkleinert
         inbox_url: Kopiere die URL von der Startseite des gewünschten Relays
         irreversible: Bereinigte Beiträge verschwinden unwiderruflich für dich, auch dann, wenn dieser Filter zu einem späteren wieder entfernt wird
-        locale: Die Sprache der Oberfläche, E-Mails und Push-Benachrichtigungen
+        locale: Die Sprache der Benutzeroberfläche, E-Mails und Push-Benachrichtigungen
         locked: Wer dir folgen und deine Inhalte sehen möchte, muss dein Follower sein und dafür um deine Erlaubnis bitten
         password: Verwende mindestens 8 Zeichen
         phrase: Wird unabhängig von der Groß- und Kleinschreibung im Text oder der Inhaltswarnung eines Beitrags abgeglichen
@@ -95,17 +95,17 @@ de:
         trendable_by_default: Manuelles Überprüfen angesagter Inhalte überspringen. Einzelne Elemente können später noch aus den Trends entfernt werden.
         trends: Trends zeigen, welche Beiträge, Hashtags und Nachrichten auf deinem Server immer beliebter werden.
       form_challenge:
-        current_password: Du betrittst einen sicheren Bereich
+        current_password: Du betrittst einen gesicherten Bereich
       imports:
-        data: CSV-Datei, die aus einem anderen Mastodon-Server exportiert wurde
+        data: CSV-Datei, exportiert von einem anderen Mastodon-Server
       invite_request:
-        text: Dies wird uns helfen deine Anmeldungsanfrage besser zu verarbeiten
+        text: Dies wird uns bei der Überprüfung deiner Anmeldung behilflich sein
       ip_block:
         comment: Optional. Zur Erinnerung, weshalb du diese Regel eingeführt hast.
         expires_in: IP-Adressen sind eine begrenzte Ressource. Sie können außerdem auf viele Computer aufgeteilt sein und auch die Zuordnungen ändern sich. Deshalb werden unbestimmte IP-Blöcke nicht empfohlen.
-        ip: Gib eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht aussperrst!
+        ip: Gib eine IPv4- oder IPv6-Adresse an. Du kannst ganze Bereiche mit der CIDR-Syntax blockieren. Achte darauf, dass du dich nicht selbst aussperrst!
         severities:
-          no_access: Zugriff auf alle Ressourcen blockieren
+          no_access: Blockiere Zugriff auf alle Ressourcen
           sign_up_block: Neue Registrierungen werden nicht möglich sein
           sign_up_requires_approval: Neue Registrierungen müssen genehmigt werden
         severity: Wähle aus, was mit Anfragen von dieser IP-Adresse geschehen soll
@@ -124,9 +124,9 @@ de:
         highlighted: Dies macht die Rolle öffentlich im Profil sichtbar
         name: Name der Rolle, der auch öffentlich als Badge angezeigt wird, sofern dies unten aktiviert ist
         permissions_as_keys: Benutzer*innen mit dieser Rolle haben Zugriff auf...
-        position: Die höhere Rolle entscheidet über die Konfliktlösung in bestimmten Situationen. Bestimmte Aktionen können nur in Rollen mit geringerer Priorität ausgeführt werden
+        position: Höhere Rollen entscheiden über Konfliktlösungen zu gewissen Situationen. Bestimmte Aktionen können nur mit geringfügigeren Rollen durchgeführt werden
       webhook:
-        events: Zu sendende Ereignisse auswählen
+        events: Wähle die zu sendenden Termine
         url: Wo Ereignisse hingesendet werden
     labels:
       account:
@@ -134,24 +134,24 @@ de:
           name: Bezeichnung
           value: Inhalt
       account_alias:
-        acct: Adresse des alten Kontos
+        acct: Betreiber des alten Kontos
       account_migration:
-        acct: Adresse des neuen Kontos
+        acct: Betreiber des neuen Kontos
       account_warning_preset:
         text: Vorlagentext
         title: Titel
       admin_account_action:
-        include_statuses: Gemeldete Beiträge der E-Mail beifügen
+        include_statuses: Beitragsmeldungen in die E-Mail mit anfügen
         send_email_notification: Nutzer*in per E-Mail benachrichtigen
-        text: Eigene Warnung
+        text: Benutzerdefinierte Warnung
         type: Aktion
         types:
           disable: Einfrieren
-          none: Nichts tun
+          none: Warnung senden
           sensitive: Inhaltswarnung
-          silence: Stummschalten
+          silence: Einschränkung
           suspend: Sperren
-        warning_preset_id: Benutze eine Warnungsvorlage
+        warning_preset_id: Warnungsvorlage verwenden
       announcement:
         all_day: Ganztägiges Ereignis
         ends_at: Ende der Ankündigung
@@ -159,11 +159,11 @@ de:
         starts_at: Beginn der Ankündigung
         text: Ankündigung
       appeal:
-        text: Erkläre, warum diese Entscheidung rückgängig gemacht werden soll
+        text: Teile mit, warum diese Entscheidung zurückgenommen werden soll
       defaults:
-        autofollow: Meinem Profil automatisch folgen
+        autofollow: Lade ein, um deinem Konto zu folgen
         avatar: Profilbild
-        bot: Dieses Profil ist ein Bot
+        bot: Dies ist ein Bot-Konto
         chosen_languages: Sprachen einschränken
         confirm_new_password: Neues Passwort bestätigen
         confirm_password: Passwort bestätigen
@@ -181,22 +181,22 @@ de:
         irreversible: Endgültig, nicht nur temporär ausblenden
         locale: Sprache des Webinterface
         locked: Geschütztes Profil
-        max_uses: Maximale Verwendungen
+        max_uses: Maximale Anzahl der Nutzer
         new_password: Neues Passwort
         note: Über mich
         otp_attempt: Zwei-Faktor-Authentisierung
         password: Passwort
         phrase: Wort oder Formulierung
         setting_advanced_layout: Erweitertes Webinterface verwenden
-        setting_aggregate_reblogs: Geteilte Beiträge in den Timelines gruppieren
+        setting_aggregate_reblogs: Boosts in der Timeline gruppieren
         setting_always_send_emails: Benachrichtigungen immer senden
         setting_auto_play_gif: Animierte GIFs automatisch abspielen
-        setting_boost_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag geteilt wird
+        setting_boost_modal: Bestätigung vor dem Teilen einholen
         setting_crop_images: Bilder in nicht ausgeklappten Beiträgen auf 16:9 zuschneiden
         setting_default_language: Beitragssprache
         setting_default_privacy: Beitragssichtbarkeit
         setting_default_sensitive: Eigene Medien immer mit einer Inhaltswarnung versehen
-        setting_delete_modal: Bestätigungsdialog anzeigen, bevor ein Beitrag gelöscht wird
+        setting_delete_modal: Bestätigung anzeigen, bevor ein Beitrag gelöscht wird
         setting_disable_swiping: Wischgesten deaktivieren
         setting_display_media: Medien-Anzeige
         setting_display_media_default: Standard
@@ -242,7 +242,7 @@ de:
         show_domain_blocks: Anzeigen, welche Domains gesperrt wurden
         show_domain_blocks_rationale: Anzeigen, weshalb Domains gesperrt wurden
         site_contact_email: E-Mail-Adresse
-        site_contact_username: Profilname
+        site_contact_username: Kontakt Benutzername
         site_extended_description: Detaillierte Beschreibung
         site_short_description: Serverbeschreibung
         site_terms: Datenschutzerklärung

@@ -1,0 +1,40 @@
+name: YML Linting
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - '.prettier*'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '.github/workflows/lint-yml.yml'
+
+  pull_request:
+    paths:
+      - 'package.json'
+      - 'yarn.lock'
+      - '.prettier*'
+      - '**/*.yaml'
+      - '**/*.yml'
+      - '.github/workflows/lint-yml.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: yarn
+
+      - name: Install all yarn packages
+        run: yarn --frozen-lockfile
+
+      - name: Prettier
+        run: yarn prettier --check "**/*.{yml,yaml}"

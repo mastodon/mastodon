@@ -111,7 +111,7 @@
         %span.username
           = link_to @appeal.account.username, can?(:show, @appeal.account) ? admin_account_path(@appeal.account_id) : short_account_url(@appeal.account)
         %time.relative-formatted{ datetime: @appeal.created_at.iso8601 }
-          = t('admin.report_notes.created_at')
+          = l @appeal.created_at.to_date
 
       .report-notes__item__content
         = simple_format(h(@appeal.text))
