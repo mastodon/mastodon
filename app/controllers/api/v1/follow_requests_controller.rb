@@ -8,7 +8,7 @@ class Api::V1::FollowRequestsController < Api::BaseController
 
   def index
     @accounts = load_accounts
-    render json: @accounts, each_serializer: REST::AccountSerializer
+    render json: @accounts, each_serializer: REST::FollowRequestedAccountSerializer
   end
 
   def authorize
