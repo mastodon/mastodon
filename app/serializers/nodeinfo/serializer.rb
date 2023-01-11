@@ -38,6 +38,7 @@ class NodeInfo::Serializer < ActiveModel::Serializer
   end
 
   def metadata
+    # HELLO_PATCH(14) Hellō specific metadata
     {
       hello: {
         version: ENV.fetch('HELLO_VERSION', 'NOT_SET'),

@@ -82,3 +82,7 @@ Visiting `/settings/otp_authentication` still works.
 ## HELLO_PATCH(13) log frontend analytics events
 
 Log analytics requests
+
+## HELLO_PATCH(14) Hellō specific metadata
+
+Add Hellō version and issuer to the output of the `/nodeinfo/2.0` endpoint.
