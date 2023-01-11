@@ -1,18 +1,19 @@
 %ul.no-list
   - if user_signed_in?
     %li= link_to t('settings.account_settings'), edit_user_registration_path
-  - else
-    - if controller_name != 'sessions'
-      %li= link_to_login t('auth.login')
+  -# HELLO_PATCH(15) remove most navigation links at bottom of auth pages
+  -# - else
+    -# - if controller_name != 'sessions'
+      -# %li= link_to_login t('auth.login')
 
-    - if controller_name != 'registrations'
-      %li= link_to t('auth.register'), available_sign_up_path
+    -# - if controller_name != 'registrations'
+      -# %li= link_to t('auth.register'), available_sign_up_path
 
-    - if controller_name != 'passwords' && controller_name != 'registrations'
-      %li= link_to t('auth.forgot_password'), new_user_password_path
+    -# - if controller_name != 'passwords' && controller_name != 'registrations'
+      -# %li= link_to t('auth.forgot_password'), new_user_password_path
 
-  - if controller_name != 'confirmations' && (!user_signed_in? || !current_user.confirmed? || current_user.unconfirmed_email.present?)
-    %li= link_to t('auth.didnt_get_confirmation'), new_user_confirmation_path
+  -# - if controller_name != 'confirmations' && (!user_signed_in? || !current_user.confirmed? || current_user.unconfirmed_email.present?)
+    -# %li= link_to t('auth.didnt_get_confirmation'), new_user_confirmation_path
 
   - if user_signed_in? && controller_name != 'setup'
     %li= link_to t('auth.logout'), destroy_user_session_path, data: { method: :delete }

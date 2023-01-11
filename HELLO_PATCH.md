@@ -86,3 +86,5 @@ Log analytics requests
 ## HELLO_PATCH(14) Hellō specific metadata
 
 Add Hellō version and issuer to the output of the `/nodeinfo/2.0` endpoint.
+
+## HELLO_PATCH(15) remove most navigation links at bottom of auth pages
