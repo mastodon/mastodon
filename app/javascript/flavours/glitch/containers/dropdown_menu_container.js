@@ -5,18 +5,17 @@ import DropdownMenu from 'flavours/glitch/components/dropdown_menu';
 import { isUserTouching } from '../is_mobile';
 
 const mapStateToProps = state => ({
-  dropdownPlacement: state.getIn(['dropdown_menu', 'placement']),
   openDropdownId: state.getIn(['dropdown_menu', 'openId']),
   openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
 });
 
 const mapDispatchToProps = (dispatch, { status, items, scrollKey }) => ({
-  onOpen(id, onItemClick, dropdownPlacement, keyboard) {
+  onOpen(id, onItemClick, keyboard) {
     dispatch(isUserTouching() ? openModal('ACTIONS', {
       status,
       actions: items,
       onClick: onItemClick,
-    }) : openDropdownMenu(id, dropdownPlacement, keyboard, scrollKey));
+    }) : openDropdownMenu(id, keyboard, scrollKey));
   },
 
   onClose(id) {
