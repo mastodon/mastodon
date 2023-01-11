@@ -38,7 +38,12 @@ class NodeInfo::Serializer < ActiveModel::Serializer
   end
 
   def metadata
-    {}
+    {
+      hello: {
+        version: ENV.fetch('HELLO_VERSION', 'NOT_SET'),
+        issuer: ENV.fetch('OIDC_ISSUER', 'NOT_SET'),
+      }
+    }
   end
 
   private
