@@ -363,7 +363,7 @@ pt-PT:
       sources: Origem de inscrições
       space: Utilização do espaço
       title: Painel de controlo
-      top_languages: Principais idiomas activos
+      top_languages: Principais línguas activas
       top_servers: Servidores mais activos
       website: Página na teia
     disputes:
@@ -445,7 +445,7 @@ pt-PT:
       no_file: Nenhum ficheiro selecionado
     follow_recommendations:
       description_html: "<strong>Recomendações de quem seguir ajudam novos utilizadores a encontrar conteúdo interessante rapidamente.</strong>. Quando um utilizador não interage com outros o suficiente para formar recomendações personalizadas, estas contas são recomendadas. Elas são recalculadas diariamente a partir de uma mistura de contas com mais atividade recente e maior número de seguidores locais para um determinado idioma."
-      language: Para o idioma
+      language: Para a língua
       status: Estado
       suppress: Suprimir recomendação de contas a seguir
       suppressed: Suprimida
@@ -484,7 +484,7 @@ pt-PT:
         instance_accounts_measure: contas armazenadas
         instance_followers_measure: nossos seguidores lá
         instance_follows_measure: os seus seguidores aqui
-        instance_languages_dimension: Idiomas mais populares
+        instance_languages_dimension: Liderança de línguas
         instance_media_attachments_measure: anexos de media armazenados
         instance_reports_measure: denúncias sobre eles
         instance_statuses_measure: publicações armazenadas
@@ -742,7 +742,7 @@ pt-PT:
       favourites: Marcadores
       history: Histórico de versões
       in_reply_to: A responder a
-      language: Idioma
+      language: Língua
       media:
         title: Media
       metadata: Metadados
@@ -825,7 +825,7 @@ pt-PT:
         current_score: Pontuação atual %{score}
         dashboard:
           tag_accounts_measure: utilizadores únicos
-          tag_languages_dimension: Topo de idiomas
+          tag_languages_dimension: Liderança de línguas
           tag_servers_dimension: Topo de servidores
           tag_servers_measure: servidores diferentes
           tag_uses_measure: utilizações totais
@@ -1474,7 +1474,7 @@ pt-PT:
         other: "%{count} vídeos"
     boosted_from_html: Reforçado por %{acct_link}
     content_warning: 'Aviso de conteúdo: %{warning}'
-    default_language: O mesmo do idioma da interface
+    default_language: A mesma língua que a da interface
     disallowed_hashtags:
       one: 'continha uma #etiqueta proibida: %{tags}'
       other: 'continha as hashtags proibidas: %{tags}'
@@ -1522,15 +1522,15 @@ pt-PT:
     keep_direct: Manter mensagens diretas
     keep_direct_hint: Não apaga nenhuma das suas mensagens diretas
     keep_media: Manter publicações com anexos de multimédia
-    keep_media_hint: Não exclui nenhuma das suas publicações com multimédia anexada
-    keep_pinned: Manter publicações fixadas
-    keep_pinned_hint: Não apagar nenhuma das suas publicações fixadas
-    keep_polls: Manter enquetes
-    keep_polls_hint: Não apaga nenhuma das suas enquetes
+    keep_media_hint: Não apaga nenhuma das suas publicações com multimédia anexada
+    keep_pinned: Manter publicações afixadas
+    keep_pinned_hint: Não apagar nenhuma das suas publicações afixadas
+    keep_polls: Manter sondagens
+    keep_polls_hint: Não apaga nenhuma das suas sondagens
     keep_self_bookmark: Manter as publicações que guardou
     keep_self_bookmark_hint: Não apaga as suas próprias publicações se as tiver guardado
-    keep_self_fav: Manter as publicações que gostou
-    keep_self_fav_hint: Não apaga as suas próprias publicações se as tiver favoritado
+    keep_self_fav: Manter as publicações que marcou
+    keep_self_fav_hint: Não apaga as suas próprias publicações se as tiver marcado
     min_age:
       '1209600': 2 semanas
       '15778476': 6 meses
@@ -1541,22 +1541,22 @@ pt-PT:
       '63113904': 2 anos
       '7889238': 3 meses
     min_age_label: Limite de idade
-    min_favs: Manter as publicações favoritas mais de
+    min_favs: Manter pelo menos as publicações dos marcadores
     min_favs_hint: Não apaga nenhuma das suas publicações que tenha recebido mais do que esta quantidade de favoritos. Deixe em branco para apagar as publicações, independentemente do número de favoritos
-    min_reblogs: Manter as publicações partilhadas mais de
+    min_reblogs: Manter as publicações reforçadas mais de
     min_reblogs_hint: Não apaga nenhuma das suas publicações que tenha sido partilhada mais do que este número de vezes. Deixe em branco para apagar as publicações, independentemente do número de partilhas
   stream_entries:
-    pinned: Toot fixado
-    reblogged: partilhado
-    sensitive_content: Conteúdo sensível
+    pinned: Publicação afixada
+    reblogged: reforçada
+    sensitive_content: Conteúdo problemático
   strikes:
     errors:
-      too_late: É tarde demais para apelar desta punição
+      too_late: É tarde demais para recorrer desta reprimenda
   tags:
     does_not_match_previous_name: não coincide com o nome anterior
   themes:
     contrast: Mastodon (Elevado contraste)
-    default: Mastodon
+    default: Mastodon (Escuro)
     mastodon-light: Mastodon (Claro)
   time:
     formats:
@@ -1565,32 +1565,32 @@ pt-PT:
       time: "%H:%M"
   two_factor_authentication:
     add: Adicionar
-    disable: Desativar
-    disabled_success: Autenticação em duas etapas desativada com sucesso
+    disable: Desactivar autenticação por dois factores (2FA)
+    disabled_success: Autenticação em duas etapas correctamente desactivada
     edit: Editar
     enabled: A autenticação em duas etapas está ativada
-    enabled_success: Autenticação em duas etapas ativada com sucesso
+    enabled_success: Autenticação em duas etapas correctamente activada
     generate_recovery_codes: Gerar códigos para recuperar conta
-    lost_recovery_codes: Códigos de recuperação permite que você recupere o acesso a sua conta se você perder seu telefone. Se você perder os códigos de recuperação, você pode regera-los aqui. Seus códigos antigos serão invalidados.
+    lost_recovery_codes: Os códigos de recuperação permitem que recupere o acesso à sua conta caso perca o seu telemóvel. Se perder os códigos de recuperação, pode criar uns novos aqui. Os seus códigos antigos serão revogados.
     methods: Métodos de autenticação em duas etapas
     otp: Aplicação de autenticação
     recovery_codes: Cópia de segurança dos códigos de recuperação
-    recovery_codes_regenerated: Códigos de recuperação foram gerados com sucesso
-    recovery_instructions_html: Se tu alguma vez perderes o teu smartphone, to poderás usar um dos códigos de recuperação para voltares a ter acesso à tua conta. <strong>Mantém os códigos de recuperação seguros</strong>. Por exemplo, tu podes imprimi-los e guardá-los junto a outros documentos importantes.
+    recovery_codes_regenerated: Códigos de recuperação foram correctamente gerados
+    recovery_instructions_html: Se perder o seu telemóvel, poderá usar um dos códigos de recuperação para voltar a ter acesso à sua conta. <strong>Guarde os códigos de recuperação em lugar seguro</strong>. Por exemplo, pode imprimi-los e guardá-los junto doutros documentos importantes.
     webauthn: Chaves de segurança
   user_mailer:
     appeal_approved:
       action: Ir para a sua conta
-      explanation: O recurso à punição contra a sua conta de %{strike_date}, o qual submeteu a %{appeal_date}, foi aprovado. A sua conta encontra-se novamente em situação regular.
-      subject: O seu recurso de %{date} foi aprovado
-      title: Recurso aprovado
+      explanation: O recurso à reprimenda contra a sua conta de %{strike_date}, enviado a %{appeal_date}, foi deferido. A sua conta encontra-se novamente em situação regular.
+      subject: O seu recurso de %{date} foi deferido
+      title: Recurso deferido
     appeal_rejected:
-      explanation: O recurso à punição contra a sua conta de %{strike_date}, o qual submeteu a %{appeal_date}, foi rejeitado.
-      subject: O seu recurso de %{date} foi rejeitado
-      title: Recurso rejeitado
+      explanation: O recurso à punição contra a sua conta de %{strike_date}, submetido em %{appeal_date}, foi indeferido.
+      subject: O seu recurso de %{date} foi indeferido
+      title: Recurso indeferido
     backup_ready:
-      explanation: Pediste uma cópia completa da tua conta Mastodon. Ela já está pronta para descarregares!
-      subject: O teu arquivo está pronto para descarregar
+      explanation: Pediu uma cópia integral de salvaguarda da sua conta Mastodon. Já está pronta para descarregar!
+      subject: O seu arquivo está pronto para descarregar
       title: Arquivo de ficheiros
     suspicious_sign_in:
       change_password: alterar a sua palavra-passe
