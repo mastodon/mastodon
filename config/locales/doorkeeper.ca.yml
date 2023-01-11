@@ -1,3 +1,4 @@
+---
 ca:
   activerecord:
     attributes:
@@ -146,49 +147,49 @@ ca:
       application:
         title: Cal una autorització OAuth
     scopes:
-      "admin:read": llegeix totes les dades en el servidor
-      "admin:read:accounts": llegir informació confidencial de tots els comptes
-      "admin:read:canonical_email_blocks": llegeix informació sensible de tots els blocs canònics de correu-e
-      "admin:read:domain_allows": llegeix informació sensible de tots els dominis permesos
-      "admin:read:domain_blocks": llegeix informació sensible de tots els blocs de domini
-      "admin:read:email_domain_blocks": llegeix informació sensible de tots els blocs de domini de correu-e
-      "admin:read:ip_blocks": llegeix informació sensible de tots els blocs d'IP
-      "admin:read:reports": llegir informació confidencial de tots els informes i comptes reportats
-      "admin:write": modificar totes les dades en el servidor
-      "admin:write:accounts": fer l'acció de moderació en els comptes
-      "admin:write:canonical_email_blocks": executa accions de moderació en blocs canònics de correu-e
-      "admin:write:domain_allows": executa accions de moderació en permisos de domini
-      "admin:write:domain_blocks": executa accions de moderació en blocs de domini
-      "admin:write:email_domain_blocks": executa accions de moderació en blocs de domini de correu-e
-      "admin:write:ip_blocks": executa accions de moderació en blocs d'IP
-      "admin:write:reports": fer l'acció de moderació en els informes
+      admin:read: llegeix totes les dades en el servidor
+      admin:read:accounts: llegir informació confidencial de tots els comptes
+      admin:read:canonical_email_blocks: llegeix informació sensible de tots els blocs canònics de correu-e
+      admin:read:domain_allows: llegeix informació sensible de tots els dominis permesos
+      admin:read:domain_blocks: llegeix informació sensible de tots els blocs de domini
+      admin:read:email_domain_blocks: llegeix informació sensible de tots els blocs de domini de correu-e
+      admin:read:ip_blocks: llegeix informació sensible de tots els blocs d'IP
+      admin:read:reports: llegir informació confidencial de tots els informes i comptes reportats
+      admin:write: modificar totes les dades en el servidor
+      admin:write:accounts: fer l'acció de moderació en els comptes
+      admin:write:canonical_email_blocks: executa accions de moderació en blocs canònics de correu-e
+      admin:write:domain_allows: executa accions de moderació en permisos de domini
+      admin:write:domain_blocks: executa accions de moderació en blocs de domini
+      admin:write:email_domain_blocks: executa accions de moderació en blocs de domini de correu-e
+      admin:write:ip_blocks: executa accions de moderació en blocs d'IP
+      admin:write:reports: fer l'acció de moderació en els informes
       crypto: usa xifrat d'extrem a extrem
       follow: modifica les relacions del compte
       push: rebre notificacions push del teu compte
       read: llegir les dades del teu compte
-      "read:accounts": mira informació dels comptes
-      "read:blocks": mira els teus bloqueigs
-      "read:bookmarks": mira els teus marcadors
-      "read:favourites": mira els teus preferits
-      "read:filters": mira els teus filtres
-      "read:follows": mira els teus seguiments
-      "read:lists": mira les teves llistes
-      "read:mutes": mira els teus silenciats
-      "read:notifications": mira les teves notificacions
-      "read:reports": mira els teus informes
-      "read:search": cerca en nom teu
-      "read:statuses": veure tots els tuts
+      read:accounts: mira informació dels comptes
+      read:blocks: mira els teus bloqueigs
+      read:bookmarks: mira els teus marcadors
+      read:favourites: mira els teus preferits
+      read:filters: mira els teus filtres
+      read:follows: mira els teus seguiments
+      read:lists: mira les teves llistes
+      read:mutes: mira els teus silenciats
+      read:notifications: mira les teves notificacions
+      read:reports: mira els teus informes
+      read:search: cerca en nom teu
+      read:statuses: veure tots els tuts
       write: modifica totes les dades del teu compte
-      "write:accounts": modifica el teu perfil
-      "write:blocks": bloca comptes i dominis
-      "write:bookmarks": marca tuts
-      "write:conversations": silencia i esborra converses
-      "write:favourites": afavoreix tuts
-      "write:filters": crea filtres
-      "write:follows": segueix gent
-      "write:lists": crea llistes
-      "write:media": puja fitxers multimèdia
-      "write:mutes": silencia usuaris i converses
-      "write:notifications": esborra les teves notificacions
-      "write:reports": informa sobre altres persones
-      "write:statuses": publica tuts
+      write:accounts: modifica el teu perfil
+      write:blocks: bloca comptes i dominis
+      write:bookmarks: marca tuts
+      write:conversations: silencia i esborra converses
+      write:favourites: afavoreix tuts
+      write:filters: crea filtres
+      write:follows: segueix gent
+      write:lists: crea llistes
+      write:media: puja fitxers multimèdia
+      write:mutes: silencia usuaris i converses
+      write:notifications: esborra les teves notificacions
+      write:reports: informa sobre altres persones
+      write:statuses: publica tuts
