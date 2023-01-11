@@ -853,7 +853,7 @@ const startWorker = async (workerId) => {
   app.get('/status', (req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({
-      'connected_clients' : wss.clients.size,
+      'connected_clients': wss.clients.size,
     }));
   });
 
