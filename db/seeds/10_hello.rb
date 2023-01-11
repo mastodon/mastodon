@@ -13,7 +13,7 @@ Doorkeeper::Application.create(
   uid: 'hello-mastodon-builder',
   secret: client_secret,
   redirect_uri: redirect_uri,
-  scopes: 'read write follow',
+  scopes: 'read read:accounts read:follows read:statuses write write:accounts write:follows write:statuses',
   website: 'https://hello.coop/',
   owner_type: 'User',
   owner_id: 1
