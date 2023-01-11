@@ -121,6 +121,7 @@ USER mastodon
 
 # Precompile assets
 RUN cd ~ && \
+	mkdir -p public/system && \
 	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
 	yarn cache clean
 
