@@ -5,16 +5,15 @@
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_profile'
 
 -# HELLO_PATCH(8) add "Mastodon Builder" button at the top of the profile page
-= button_tag 'Mastodon Builder', class: 'button hello-mastodon-builder', type: 'button', onclick: "location.href='#{@mastodon_builder_url}'"
+= button_tag raw('ō&nbsp;&nbsp;&nbsp;Mastodon Builder'), class: 'button hello-mastodon-builder', type: 'button', onclick: "location.href='#{@mastodon_builder_url}'"
 
 = simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
   = render 'shared/error_messages', object: @account
 
   .fields-row
     .fields-row__column.fields-group.fields-row__column-6
-      -# HELLO_PATCH(7) make "Display name" read-only on profile page
+      -# HELLO_PATCH(7) remove "Display name" on profile page
       -# = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30, data: { default: @account.username } }, hint: false
-      = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30, data: { default: @account.username }, readonly: true }, hint: false
       = f.input :note, wrapper: :with_label, input_html: { maxlength: 500 }, hint: false
 
   .fields-row
