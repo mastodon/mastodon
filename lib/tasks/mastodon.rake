@@ -399,7 +399,7 @@ namespace :mastodon do
           escaped = dotenv_escape(value)
           incompatible_syntax = true if value != escaped
 
-          escaped
+          "#{key}=#{escaped}"
         end.join("\n")
 
         generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
