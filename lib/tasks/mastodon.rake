@@ -395,18 +395,11 @@ namespace :mastodon do
         incompatible_syntax = false
 
         env_contents = env.each_pair.map do |key, value|
-          if value.is_a?(String) && value =~ /[\s\#\\"]/
-            incompatible_syntax = true
+          value = value.to_s
+          escaped = dotenv_escape(value)
+          incompatible_syntax = true if value != escaped
 
-            if value =~ /[']/
-              value = value.to_s.gsub(/[\\"\$]/) { |x| "\\#{x}" }
-              "#{key}=\"#{value}\""
-            else
-              "#{key}='#{value}'"
-            end
-          else
-            "#{key}=#{value}"
-          end
+          escaped
         end.join("\n")
 
         generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
@@ -518,4 +511,50 @@ def disable_log_stdout!
   ActiveRecord::Base.logger    = dev_null
   HttpLog.configuration.logger = dev_null
   Paperclip.options[:log]      = false
+end
+
+def dotenv_escape(value)
+  # Dotenv has its own parser, which unfortunately deviates somewhat from
+  # what shells actually do.
+  #
+  # In particular, we can't use Shellwords::escape because it outputs a
+  # non-quotable string, while Dotenv requires `#` to always be in quoted
+  # strings.
+  #
+  # Therefore, we need to write our own escape code…
+  # Dotenv's parser has a *lot* of edge cases, and I think not every
+  # ASCII string can even be represented into something Dotenv can parse,
+  # so this is a best effort thing.
+  #
+  # In particular, strings with all the following probably cannot be
+  # escaped:
+  # - `#`, or ends with spaces, which requires some form of quoting (simply escaping won't work)
+  # - `'` (single quote), preventing us from single-quoting
+  # - `\` followed by either `r` or `n`
+
+  # No character that would cause Dotenv trouble
+  return value unless /[\s\#\\"'$]/.match?(value)
+
+  # As long as the value doesn't include single quotes, we can safely
+  # rely on single quotes
+  return "'#{value}'" unless /[']/.match?(value)
+
+  # If the value contains the string '\n' or '\r' we simply can't use
+  # a double-quoted string, because Dotenv will expand \n or \r no
+  # matter how much escaping we add.
+  double_quoting_disallowed = /\\[rn]/.match?(value)
+
+  value = value.gsub(double_quoting_disallowed ? /[\\"'\s]/ : /[\\"']/) { |x| "\\#{x}" }
+
+  # Dotenv is especially tricky with `$` as unbalanced
+  # parenthesis will make it not unescape `\$` as `$`…
+
+  # Variables
+  value = value.gsub(/\$(?!\()/) { |x| "\\#{x}" }
+  # Commands
+  value = value.gsub(/\$(?<cmd>\((?:[^()]|\g<cmd>)+\))/) { |x| "\\#{x}" }
+
+  value = "\"#{value}\"" unless double_quoting_disallowed
+
+  value
 end
