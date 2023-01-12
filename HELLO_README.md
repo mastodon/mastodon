@@ -111,3 +111,13 @@ Admin account credentials:
 
 Legacy sign-in form available at: http://mastodon.local/auth/sign_in
 
+## Image building
+
+To build the `hello-mastodon` image
+`npm run docker`
+
+To publish the `hellocoop/mastodon` image to Docker Hub
+`./publish.sh`
+
+`./version.sh` will increment the version in `HELLO_VERSION.txt`
+

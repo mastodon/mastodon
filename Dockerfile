@@ -127,12 +127,13 @@ RUN cd ~ && \
 	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
 	yarn cache clean
 
-# set HELLO_VERSION
-ARG HELLO_VERSION
-ENV HELLO_VERSION=${HELLO_VERSION}
-RUN env
-
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
 ENTRYPOINT ["/usr/bin/tini", "--"]
 EXPOSE 3000 4000
+
+COPY --chown=mastodon:mastodon HELLO_VERSION.txt /opt/mastodon/
+# set HELLO_VERSION
+ARG HELLO_VERSION
+ENV HELLO_VERSION=${HELLO_VERSION}
+RUN env
