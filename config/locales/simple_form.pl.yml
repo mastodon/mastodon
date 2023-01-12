@@ -1,4 +1,3 @@
----
 pl:
   simple_form:
     hints:
@@ -8,11 +7,11 @@ pl:
         acct: Określ nazwę@domenę konta na które chcesz się przenieść
       account_warning_preset:
         text: Możesz korzystać ze składni której używasz we wpisach, takiej jak adresy URL, hashtagi i wspomnienia
-        title: Nieobowiązkowe. Niewidoczne dla odbiorcy
+        title: Opcjonalnie. Niewidoczne dla odbiorcy
       admin_account_action:
         include_statuses: Użytkownik zobaczy, których wpisów dotyczyło działanie moderacji lub ostrzeżenie
         send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
-        text_html: Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
+        text_html: Opcjonalnie. Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
         type_html: Wybierz co chcesz zrobić z <strong>%{acct}</strong>
         types:
           disable: Nie pozwalaj użytkownikowi na korzystanie ze swojego konta, ale nie usuwaj ani nie ukrywaj jego zawartości.
@@ -20,12 +19,12 @@ pl:
           sensitive: Wymuś oznaczanie wszystkich załączników multimedialnych tego użytkownika jako wrażliwe.
           silence: Zablokuj użytkownikowi możliwość publikowania z widocznością publiczną, ukrywaj jego wpisy i powiadomienia przed osobami, które go nie obserwują.
           suspend: Zapobiegaj wszelkim interakcjom z tym kontem i usuń jego zawartość. Odwracalne w ciągu 30 dni.
-        warning_preset_id: Nieobowiązkowe. Możesz dodać niestandardowy tekst do końcowki szablonu
+        warning_preset_id: Opcjonalnie. Możesz dodać niestandardowy tekst do końcówki szablonu
       announcement:
         all_day: Jeżeli zaznaczone, tylko daty z przedziału czasu będą wyświetlane
-        ends_at: Nieobowiązkowe. Ogłoszenie zostanie automatycznie wycofane w tym czasie
+        ends_at: Opcjonalnie. Ogłoszenie zostanie automatycznie wycofane w tym czasie
         scheduled_at: Pozostaw puste, aby opublikować ogłoszenie natychmiastowo
-        starts_at: Nieobowiązkowe. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
+        starts_at: Opcjonalnie. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
         text: Możesz używać składni wpisu. Pamiętaj o tym, ile miejsca zajmie ogłoszenie na ekranie użytkownika
       appeal:
         text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
@@ -101,7 +100,7 @@ pl:
       invite_request:
         text: To pomoże nam w recenzji Twojej aplikacji
       ip_block:
-        comment: Niewymagane. Pamiętaj, dlaczego dodałeś tę regułę.
+        comment: Opcjonalnie. Pamiętaj, dlaczego dodałeś tę regułę.
         expires_in: Adresy IP to ograniczony zasób, czasami są współdzielone i często zmieniają właściciela. Z tego powodu blokady adresów IP nie są zalecane.
         ip: Wprowadź adres IPv4 lub IPv6. Możesz zablokować całe zakresy za pomocą składni CIDR. Uważaj, aby się nie zablokować!
         severities:
@@ -297,7 +296,7 @@ pl:
       webhook:
         events: Włączone zdarzenia
         url: Endpoint URL
-    'no': Nie
+    'no': 'Nie'
     not_recommended: Niezalecane
     recommended: Polecane
     required:
@@ -306,4 +305,4 @@ pl:
     title:
       sessions:
         webauthn: Użyj jednego ze swoich kluczy bezpieczeństwa, aby się zalogować
-    'yes': Tak
+    'yes': 'Tak'
