@@ -1,7 +1,6 @@
 {
   "name": "@mastodon/mastodon",
   "license": "AGPL-3.0-or-later",
-  "version": "2023.1.2",
   "engines": {
     "node": ">=14"
   },
@@ -18,8 +17,7 @@
     "test:jest": "cross-env NODE_ENV=test jest",
     "format": "prettier --write '**/*.{json,yml}'",
     "format-check": "prettier --write '**/*.{json,yml}'",
-    "docker": "npm version patch && export HELLO_VERSION=$(npm run --silent version) && docker build . -t hello-mastodon:latest -t hello-mastodon:${HELLO_VERSION}",
-    "version": "echo $npm_package_version"
+    "docker": "export HELLO_VERSION=$(./hello_version.sh) && docker build . -t hello-mastodon:latest -t hello-mastodon:${HELLO_VERSION}"
   },
   "repository": {
     "type": "git",

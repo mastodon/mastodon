@@ -116,7 +116,6 @@ ENV OIDC_SCOPE=openid,email,recovery,existing_username,existing_name
 ENV OIDC_UID_FIELD=sub
 ENV OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED=true
 
-ENV HELLO_VERSION=${HELLO_VERSION}
 
 # Set the run user
 USER mastodon
@@ -126,6 +125,11 @@ RUN cd ~ && \
 	mkdir -p public/system && \
 	OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
 	yarn cache clean
+
+# set HELLO_VERSION
+ARG HELLO_VERSION
+ENV HELLO_VERSION=${HELLO_VERSION}
+RUN env
 
 # Set the work dir and the container entry point
 WORKDIR /opt/mastodon
