@@ -268,7 +268,7 @@ class PrivacyDropdown extends React.PureComponent {
 
         <Overlay show={open} placement={'bottom'} flip target={this.findTarget} container={container} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement }) => (
-            <div {...props} style={{ ...props.style, width: 350, maxWidth: '100vw' }}>
+            <div {...props}>
               <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
                 <PrivacyDropdownMenu
                   items={this.options}
