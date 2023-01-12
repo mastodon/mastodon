@@ -107,6 +107,7 @@ ENV NODE_ENV="production"
 ENV RAILS_SERVE_STATIC_FILES="true"
 ENV BIND="0.0.0.0"
 
+ENV LANG=C.UTF-8
 ENV OIDC_ENABLED=true
 ENV OIDC_ISSUER=https://issuer.hello.coop
 ENV OMNIAUTH_ONLY=false
