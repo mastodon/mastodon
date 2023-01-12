@@ -18,7 +18,7 @@
     "test:jest": "cross-env NODE_ENV=test jest",
     "format": "prettier --write '**/*.{json,yml}'",
     "format-check": "prettier --write '**/*.{json,yml}'",
-    "docker": "npm version patch && export HELLO_VERSION=$(npm run --silent version) && docker build . -t hello-mastodon:latest -t hello-mastodon:$(HELLO_VERSION)",
+    "docker": "npm version patch && export HELLO_VERSION=$(npm run --silent version) && docker build . -t hello-mastodon:latest -t hello-mastodon:${HELLO_VERSION}",
     "version": "echo $npm_package_version"
   },
   "repository": {
