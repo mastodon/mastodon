@@ -21,7 +21,7 @@
 - if devise_mapping.omniauthable? and resource_class.omniauth_providers.any?
   .simple_form.alternative-login
     -# HELLO_PATCH(11): hide username and password login form
-    %h4= params['hello'] != 'false' ? t('auth.log_in_with') : t('auth.or_log_in_with')
+    %h4= params['hello'] != 'false' ? '' : 'Or'
 
     .actions
       - resource_class.omniauth_providers.each do |provider|

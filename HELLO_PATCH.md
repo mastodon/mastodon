@@ -75,6 +75,11 @@ Overriding the `omniauth_only?` methods (or setting the `OMNIAUTH_ONLY` env var)
 the  registration flow uses OpenID Connect it does rely on showing the server rules which is part of the registration
 flow. So the patch is done performed only in the view.
 
+Also:
+* hide "Login with" if username and password form not available
+* change "or Login with" to "or"
+* change the login button label to "Login with Hellō"
+
 ## HELLO_PATCH(12): hide the "Two-factor Auth" menu entry
 
 Visiting `/settings/otp_authentication` still works.
@@ -88,3 +93,5 @@ Log analytics requests
 Add Hellō version and issuer to the output of the `/nodeinfo/2.0` endpoint.
 
 ## HELLO_PATCH(15) remove most navigation links at bottom of auth pages
+
+## HELLO_PATCH(16) change Sign-Up "Accept" button label to "Continue with Hellō"
