@@ -146,22 +146,22 @@ pt-PT:
         type: Acção
         types:
           disable: Congelar
-          none: Não fazer algo
-          sensitive: Sensível
-          silence: Silenciar
-          suspend: Suspender e apagar irreversivelmente os dados da conta
+          none: Enviar um aviso
+          sensitive: Problemático
+          silence: Limitar
+          suspend: Suspender
         warning_preset_id: Usar um aviso pré-definido
       announcement:
         all_day: Evento de dia inteiro
         ends_at: Fim do evento
         scheduled_at: Agendar publicação
         starts_at: Início do evento
-        text: Anúncio
+        text: Comunicado
       appeal:
         text: Explique porque esta decisão deve ser revertida
       defaults:
         autofollow: Convidar para seguir a tua conta
-        avatar: Imagem de Perfil
+        avatar: Imagem de perfil
         bot: Esta é uma conta robô
         chosen_languages: Filtrar línguas
         confirm_new_password: Confirmar nova palavra-passe
@@ -169,9 +169,9 @@ pt-PT:
         context: Filtrar contextos
         current_password: Palavra-passe actual
         data: Dados
-        discoverable: Permitir sugerir esta conta a outros
-        display_name: Nome Público
-        email: Endereço de e-mail
+        discoverable: Sugerir esta conta a outros
+        display_name: Nome a apresentar
+        email: Endereço de correio electrónico
         expires_in: Expira em
         fields: Metadados de perfil
         header: Cabeçalho
@@ -179,22 +179,22 @@ pt-PT:
         inbox_url: URL da caixa de entrada do repetidor
         irreversible: Expandir em vez de esconder
         locale: Língua da interface
-        locked: Trancar conta
+        locked: Exigir pedidos de seguimento
         max_uses: Número máximo de utilizações
         new_password: Nova palavra-passe
         note: Biografia
         otp_attempt: Código de autenticação em duas etapas
         password: Palavra-passe
-        phrase: Palavra ou expressão-chave
+        phrase: Palavra-chave ou frase
         setting_advanced_layout: Ativar interface web avançada
-        setting_aggregate_reblogs: Agrupar partilhas em cronologias
-        setting_always_send_emails: Enviar notificações de email sempre
-        setting_auto_play_gif: Reproduzir GIFs automaticamente
+        setting_aggregate_reblogs: Agrupar reforços em cronologias
+        setting_always_send_emails: Enviar sempre notificações de email
+        setting_auto_play_gif: Reproduzir GIF automaticamente
         setting_boost_modal: Solicitar confirmação antes de partilhar uma publicação
-        setting_crop_images: Cortar imagens em toots não expandidos para o formato 16x9
+        setting_crop_images: Recortar imagens para o formato 16x9 nas publicações não expandidas
         setting_default_language: Língua de publicação
         setting_default_privacy: Privacidade da publicação
-        setting_default_sensitive: Sempre marcar media como sensível
+        setting_default_sensitive: Marcar sempre os media como problemáticos
         setting_delete_modal: Solicitar confirmação antes de eliminar uma publicação
         setting_disable_swiping: Desativar os movimentos de deslize
         setting_display_media: Visualização de media
@@ -206,9 +206,9 @@ pt-PT:
         setting_noindex: Não quero ser indexado por motores de pesquisa
         setting_reduce_motion: Reduz movimento em animações
         setting_show_application: Revelar sempre qual a aplicação usada para enviar as publicações
-        setting_system_font_ui: Usar a fonte padrão do teu sistema
-        setting_theme: Tema do site
-        setting_trends: Mostrar as tendências de hoje
+        setting_system_font_ui: Usar o tipo de letra padrão do sistema
+        setting_theme: Tema do sítio
+        setting_trends: Mostrar o que está hoje em alta
         setting_unfollow_modal: Solicitar confirmação antes de deixar de seguir alguém
         setting_use_blurhash: Mostrar gradientes coloridos para medias ocultas
         setting_use_pending_items: Modo lento
@@ -220,7 +220,7 @@ pt-PT:
         username_or_email: Nome de utilizador ou e-mail
         whole_word: Palavra completa
       email_domain_block:
-        with_dns_records: Incluir registos MX e IPs do domínio
+        with_dns_records: Incluir registos MX e IP do domínio
       featured_tag:
         name: Etiqueta
       filters:
@@ -229,14 +229,14 @@ pt-PT:
           warn: Ocultar com um aviso
       form_admin_settings:
         backups_retention_period: Período de retenção de arquivos de utilizador
-        bootstrap_timeline_accounts: Sempre recomendar essas contas para novos utilizadores
-        closed_registrations_message: Mensagem personalizada quando as inscrições não estão disponíveis
+        bootstrap_timeline_accounts: Recomendar sempre estas contas para novos utilizadores
+        closed_registrations_message: Mensagem personalizada quando as inscrições não estiverem disponíveis
         content_cache_retention_period: Período de retenção de conteúdo em cache
-        custom_css: CSS Personalizado
+        custom_css: CSS personalizado
         mascot: Mascote personalizada (legado)
         media_cache_retention_period: Período de retenção de ficheiros de media em cache
         profile_directory: Habilitar diretório de perfis
-        registrations_mode: Quem pode inscrever-se
+        registrations_mode: Quem se pode inscrever
         require_invite_text: Requerer uma razão para entrar
         show_domain_blocks: Mostrar domínios bloqueados
         show_domain_blocks_rationale: Mostrar porque os domínios foram bloqueados
@@ -244,13 +244,13 @@ pt-PT:
         site_contact_username: Nome de utilizador do contacto
         site_extended_description: Descrição estendida
         site_short_description: Descrição do servidor
-        site_terms: Política de Privacidade
+        site_terms: Política de privacidade
         site_title: Nome do servidor
         theme: Tema predefinido
         thumbnail: Miniatura do servidor
         timeline_preview: Permitir acesso não autenticado às cronologias públicas
-        trendable_by_default: Permitir tendências sem revisão prévia
-        trends: Habilitar tendências
+        trendable_by_default: Permitir publicações em alta sem revisão prévia
+        trends: Activar publicações em alta
       interactions:
         must_be_follower: Bloquear notificações de não-seguidores
         must_be_following: Bloquear notificações de pessoas que não segues
@@ -270,26 +270,26 @@ pt-PT:
       notification_emails:
         appeal: Alguém recorreu de uma decisão de moderação
         digest: Enviar e-mails de resumo
-        favourite: Quando alguém adiciona uma publicação sua aos favoritos
-        follow: Quando alguém começar a segui-lo
-        follow_request: Quando alguém solicitar ser seu seguidor
-        mention: Quando alguém o mencionar
-        pending_account: Quando uma nova conta aguarda aprovação
-        reblog: Quando alguém partilhar uma publicação sua
-        report: Nova denúncia submetida
-        trending_tag: Nova tendência requer revisão
+        favourite: Alguém adicionou uma publicação sua aos marcadores
+        follow: Alguém começou a segui-lo
+        follow_request: Alguém pediu para ser seu seguidor
+        mention: Alguém o mencionou
+        pending_account: Uma nova conta aguarda aprovação
+        reblog: Alguém reforçou uma publicação sua
+        report: Uma nova denúncia foi submetida
+        trending_tag: Uma nova publicação em alta requer avaliação
       rule:
         text: Regra
       tag:
         listable: Permitir que esta etiqueta apareça em pesquisas e no diretório de perfis
         name: Etiqueta
-        trendable: Permitir que esta etiqueta apareça em destaque
-        usable: Permitir as publicações usem esta etiqueta
+        trendable: Permitir que esta etiqueta apareça em alta
+        usable: Permitir que as publicações usem esta etiqueta
       user:
-        role: Função
+        role: Cargo
       user_role:
-        color: Cor do distintivo
-        highlighted: Exibir a função como distintivo nos perfis de utilizador
+        color: Cor do emblema
+        highlighted: Apresentar o cargo como emblema nos perfis de utilizador
         name: Nome
         permissions_as_keys: Permissões
         position: Prioridade
