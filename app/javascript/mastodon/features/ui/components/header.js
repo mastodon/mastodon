@@ -40,12 +40,21 @@ class Header extends React.PureComponent {
         </>
       );
     } else {
+      // HELLO_PATCH(6) use Hello specific Login In
       content = (
         <>
-          <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
+          <div className='hello-container'>
+            <a className='button button--block button-openid_connect hello-btn' rel='nofollow' data-method='post' href='/auth/auth/openid_connect'>ō&nbsp;&nbsp;&nbsp;Log in with Hellō</a>
+          </div>
           <a href={registrationsOpen ? '/auth/sign_up' : 'https://joinmastodon.org/servers'} className='button button-tertiary'><FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' /></a>
         </>
       );
+      // content = (
+      //   <>
+      //     <a href='/auth/sign_in' className='button'><FormattedMessage id='sign_in_banner.sign_in' defaultMessage='Sign in' /></a>
+      //     <a href={registrationsOpen ? '/auth/sign_up' : 'https://joinmastodon.org/servers'} className='button button-tertiary'><FormattedMessage id='sign_in_banner.create_account' defaultMessage='Create account' /></a>
+      //   </>
+      // );
     }
 
     return (
