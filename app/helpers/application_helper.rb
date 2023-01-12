@@ -85,7 +85,7 @@ module ApplicationHelper
   def provider_sign_in_link(provider)
     label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence || I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize)
     # HELLO_PATCH(11): hide username and password login form
-    label = "ō&nbsp;&nbsp;&nbsp;Login with #{label}"
+    label = "ō&nbsp;&nbsp;&nbsp;Log in with #{label}"
     link_to raw(label), omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
   end
 
