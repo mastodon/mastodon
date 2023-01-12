@@ -122,6 +122,7 @@ class Video extends React.PureComponent {
     volume: PropTypes.number,
     muted: PropTypes.bool,
     componentIndex: PropTypes.number,
+    autoFocus: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -523,7 +524,7 @@ class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, editable, blurhash } = this.props;
+    const { preview, src, inline, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, editable, blurhash, autoFocus } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = Math.min((currentTime / duration) * 100, 100);
     const playerStyle = {};
@@ -617,7 +618,7 @@ class Video extends React.PureComponent {
 
           <div className='video-player__buttons-bar'>
             <div className='video-player__buttons left'>
-              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={detailed}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
+              <button type='button' title={intl.formatMessage(paused ? messages.play : messages.pause)} aria-label={intl.formatMessage(paused ? messages.play : messages.pause)} className='player-button' onClick={this.togglePlay} autoFocus={autoFocus}><Icon id={paused ? 'play' : 'pause'} fixedWidth /></button>
               <button type='button' title={intl.formatMessage(muted ? messages.unmute : messages.mute)} aria-label={intl.formatMessage(muted ? messages.unmute : messages.mute)} className='player-button' onClick={this.toggleMute}><Icon id={muted ? 'volume-off' : 'volume-up'} fixedWidth /></button>
 
               <div className={classNames('video-player__volume', { active: this.state.hovered })} onMouseDown={this.handleVolumeMouseDown} ref={this.setVolumeRef}>

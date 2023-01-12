@@ -370,6 +370,8 @@ io:
       add_new: Permisez federato kun domeno
       created_msg: Domeno sucesoza permisesas por federato
       destroyed_msg: Domeno despermisesas de federato
+      export: Exportez
+      import: Importez
       undo: Despermisez federato kun domeno
     domain_blocks:
       add_new: Add new
@@ -379,13 +381,18 @@ io:
       edit: Modifikez domenobstrukto
       existing_domain_block: Vu ja exekutis plu rigoroza limiti a %{name}.
       existing_domain_block_html: Vu ja povis plu rigoroza limiti a %{name}, vu bezonas <a href="%{unblock_url}">deobstruktar</a> unesme.
+      export: Exportez
+      import: Importez
       new:
         create: Kreez obstrukto
         hint: Domenobstrukto ne preventos kreo di kontrekordaji en datumaturo, ma retroaktive e automate aplikos partikulara jermetodi a ta konti.
         severity:
           noop: Nulo
+          silence: Limito
           suspend: Restriktez
         title: Nova domenobstrukto
+      no_domain_block_selected: Nula domenobstrukti ne chanjesis por ke nulo selektesis
+      not_permitted: Vu ne permisesis agar co
       obfuscate: Nedicernebligez domennomo
       obfuscate_hint: Partala nedicernebligez domennomo en listo se reklamo di listo di domenlimito aktivigesas
       private_comment: Privata komento
@@ -1230,6 +1237,8 @@ io:
     carry_blocks_over_text: Ca uzanti transferesis de %{acct} quon vu restriktis.
     carry_mutes_over_text: Ca uzanti transferesis de %{acct} quon vu silencigis.
     copy_account_note_text: 'Ca uzanti transferesis de %{acct}, co esas vua antea noti pri ol:'
+  navigation:
+    toggle_menu: Baskulez menuo
   notification_mailer:
     admin:
       report:
@@ -1349,6 +1358,7 @@ io:
     browser: Vidilo
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1362,6 +1372,7 @@ io:
       phantom_js: PhantomJS
       qq: Vidilo QQ
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Nuna sesiono
     description: "%{browser} che %{platform}"
@@ -1370,6 +1381,8 @@ io:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux
