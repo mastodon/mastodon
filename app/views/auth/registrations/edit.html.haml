@@ -3,7 +3,7 @@
 
 = render 'status'
 
-%h3= t('auth.security')
+-# %h3= t('auth.security')
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'auth_edit', novalidate: false }) do |f|
   = render 'shared/error_messages', object: resource
@@ -25,10 +25,10 @@
 
     .actions
       = f.button :button, t('generic.save_changes'), type: :submit, class: 'button', disabled: current_account.suspended?
-  - else
-    %p.hint= t('users.seamless_external_login')
+  -# - else
+  -#   %p.hint= t('users.seamless_external_login')
 
-%hr.spacer/
+-# %hr.spacer/
 
 = render 'sessions'
 
