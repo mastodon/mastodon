@@ -216,6 +216,7 @@ sk:
         change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
+      deleted_account: zmazaný účet
       filter_by_action: Filtruj podľa úkonu
       filter_by_user: Trieď podľa užívateľa
       title: Kontrólny záznam
@@ -267,6 +268,7 @@ sk:
       upload: Nahraj
     dashboard:
       active_users: aktívni užívatelia
+      interactions: interakcií
       media_storage: Úložisko médií
       new_users: noví užívatelia
       opened_reports: otvorené hlásenia
@@ -281,6 +283,7 @@ sk:
       add_new: Povolená doména
       created_msg: Doména bola úspešne povolená
       destroyed_msg: Doména bola odstránená zo zoznamu povolených
+      import: Nahraj
       undo: Odober zo zoznamu povolených
     domain_blocks:
       add_new: Blokuj novú doménu
@@ -289,6 +292,8 @@ sk:
       domain: Doména
       edit: Uprav blokovanie domény
       existing_domain_block_html: Pre účet %{name} si už nahodil/a přísnejšie obmedzenie, najskôr ho teda musíš <a href="%{unblock_url}">odblokovať</a>.
+      export: Exportuj
+      import: Nahraj
       new:
         create: Vytvor blokovanie domény
         hint: Blokovanie domény stále dovolí vytvárať nové účty v databázi, ale tieto budú spätne automaticky moderované.
@@ -336,6 +341,7 @@ sk:
         comment: Interná poznámka
         policies:
           reject_media: Zamietni médiá
+          reject_reports: Zamietni hlásenia
           suspend: Vylúč
         policy: Zásady
         reason: Verejné odôvodnenie
@@ -344,6 +350,7 @@ sk:
         instance_accounts_dimension: Najsledovanejšie účty
       delivery:
         all: Všetko
+        failing: Zlyhávajúce
         unavailable: Nedostupné
       delivery_available: Je v dosahu doručovania
       moderation:
