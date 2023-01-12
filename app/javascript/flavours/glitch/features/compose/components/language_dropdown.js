@@ -307,7 +307,7 @@ class LanguageDropdown extends React.PureComponent {
 
         <Overlay show={open} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
           {({ props, placement }) => (
-            <div {...props} style={{ ...props.style, width: 280 }}>
+            <div {...props}>
               <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >
                 <LanguageDropdownMenu
                   value={value}
