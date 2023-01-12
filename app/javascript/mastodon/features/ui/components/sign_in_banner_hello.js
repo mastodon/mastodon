@@ -33,7 +33,6 @@ const SignInBanner = () => {
       <p><FormattedMessage id='sign_in_banner.text' defaultMessage='Sign in to follow profiles or hashtags, favourite, share and reply to posts, or interact from your account on a different server.' /></p>
       <div className='hello-container'>
         <a className='button button--block button-openid_connect hello-btn' rel='nofollow' data-method='post' href='/auth/auth/openid_connect'>ō&nbsp;&nbsp;&nbsp;Login with Hellō</a>
-        <button className='hello-about' />
       </div>
       {signupButton}
     </div>
