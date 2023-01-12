@@ -17,7 +17,7 @@
     "test:jest": "cross-env NODE_ENV=test jest",
     "format": "prettier --write '**/*.{json,yml}'",
     "format-check": "prettier --write '**/*.{json,yml}'",
-    "docker": "export HELLO_VERSION=$(./hello_version.sh) && docker build . -t hello-mastodon:latest -t hello-mastodon:${HELLO_VERSION}"
+    "docker": "export HELLO_VERSION=$(./hello_version.sh) && docker build . -t hello-mastodon:latest -t hello-mastodon:${HELLO_VERSION} --build-arg HELLO_VERSION=${HELLO_VERSION}"
   },
   "repository": {
     "type": "git",
