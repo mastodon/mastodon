@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import IconButton from './icon_button';
-import Overlay from 'react-overlays/lib/Overlay';
-import Motion from '../features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
+import Overlay from 'react-overlays/Overlay';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import { CircularProgress } from 'mastodon/components/loading_indicator';
@@ -24,9 +22,6 @@ class DropdownMenu extends React.PureComponent {
     scrollable: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     style: PropTypes.object,
-    placement: PropTypes.string,
-    arrowOffsetLeft: PropTypes.string,
-    arrowOffsetTop: PropTypes.string,
     openedViaKeyboard: PropTypes.bool,
     renderItem: PropTypes.func,
     renderHeader: PropTypes.func,
@@ -35,11 +30,6 @@ class DropdownMenu extends React.PureComponent {
 
   static defaultProps = {
     style: {},
-    placement: 'bottom',
-  };
-
-  state = {
-    mounted: false,
   };
 
   handleDocumentClick = e => {
@@ -56,8 +46,6 @@ class DropdownMenu extends React.PureComponent {
     if (this.focusedItem && this.props.openedViaKeyboard) {
       this.focusedItem.focus({ preventScroll: true });
     }
-
-    this.setState({ mounted: true });
   }
 
   componentWillUnmount () {
@@ -139,40 +127,28 @@ class DropdownMenu extends React.PureComponent {
   }
 
   render () {
-    const { items, style, placement, arrowOffsetLeft, arrowOffsetTop, scrollable, renderHeader, loading } = this.props;
-    const { mounted } = this.state;
+    const { items, scrollable, renderHeader, loading } = this.props;
 
     let renderItem = this.props.renderItem || this.renderItem;
 
     return (
-      <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
-        {({ opacity, scaleX, scaleY }) => (
-          // It should not be transformed when mounting because the resulting
-          // size will be used to determine the coordinate of the menu by
-          // react-overlays
-          <div className={`dropdown-menu ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
-            <div className={`dropdown-menu__arrow ${placement}`} style={{ left: arrowOffsetLeft, top: arrowOffsetTop }} />
+      <div className={classNames('dropdown-menu__container', { 'dropdown-menu__container--loading': loading })} ref={this.setRef}>
+        {loading && (
+          <CircularProgress size={30} strokeWidth={3.5} />
+        )}
 
-            <div className={classNames('dropdown-menu__container', { 'dropdown-menu__container--loading': loading })}>
-              {loading && (
-                <CircularProgress size={30} strokeWidth={3.5} />
-              )}
-
-              {!loading && renderHeader && (
-                <div className='dropdown-menu__container__header'>
-                  {renderHeader(items)}
-                </div>
-              )}
-
-              {!loading && (
-                <ul className={classNames('dropdown-menu__container__list', { 'dropdown-menu__container__list--scrollable': scrollable })}>
-                  {items.map((option, i) => renderItem(option, i, { onClick: this.handleClick, onKeyPress: this.handleItemKeyPress }))}
-                </ul>
-              )}
-            </div>
+        {!loading && renderHeader && (
+          <div className='dropdown-menu__container__header'>
+            {renderHeader(items)}
           </div>
         )}
-      </Motion>
+
+        {!loading && (
+          <ul className={classNames('dropdown-menu__container__list', { 'dropdown-menu__container__list--scrollable': scrollable })}>
+            {items.map((option, i) => renderItem(option, i, { onClick: this.handleClick, onKeyPress: this.handleItemKeyPress }))}
+          </ul>
+        )}
+      </div>
     );
   }
 
@@ -197,7 +173,6 @@ export default class Dropdown extends React.PureComponent {
     isUserTouching: PropTypes.func,
     onOpen: PropTypes.func.isRequired,
     onClose: PropTypes.func.isRequired,
-    dropdownPlacement: PropTypes.string,
     openDropdownId: PropTypes.number,
     openedViaKeyboard: PropTypes.bool,
     renderItem: PropTypes.func,
@@ -213,13 +188,11 @@ export default class Dropdown extends React.PureComponent {
     id: id++,
   };
 
-  handleClick = ({ target, type }) => {
+  handleClick = ({ type }) => {
     if (this.state.id === this.props.openDropdownId) {
       this.handleClose();
     } else {
-      const { top } = target.getBoundingClientRect();
-      const placement = top * 2 < innerHeight ? 'bottom' : 'top';
-      this.props.onOpen(this.state.id, this.handleItemClick, placement, type !== 'click');
+      this.props.onOpen(this.state.id, this.handleItemClick, type !== 'click');
     }
   }
 
@@ -303,7 +276,6 @@ export default class Dropdown extends React.PureComponent {
       disabled,
       loading,
       scrollable,
-      dropdownPlacement,
       openDropdownId,
       openedViaKeyboard,
       children,
@@ -314,7 +286,6 @@ export default class Dropdown extends React.PureComponent {
     const open = this.state.id === openDropdownId;
 
     const button = children ? React.cloneElement(React.Children.only(children), {
-      ref: this.setTargetRef,
       onClick: this.handleClick,
       onMouseDown: this.handleMouseDown,
       onKeyDown: this.handleButtonKeyDown,
@@ -326,7 +297,6 @@ export default class Dropdown extends React.PureComponent {
         active={open}
         disabled={disabled}
         size={size}
-        ref={this.setTargetRef}
         onClick={this.handleClick}
         onMouseDown={this.handleMouseDown}
         onKeyDown={this.handleButtonKeyDown}
@@ -336,19 +306,27 @@ export default class Dropdown extends React.PureComponent {
 
     return (
       <React.Fragment>
-        {button}
-
-        <Overlay show={open} placement={dropdownPlacement} target={this.findTarget}>
-          <DropdownMenu
-            items={items}
-            loading={loading}
-            scrollable={scrollable}
-            onClose={this.handleClose}
-            openedViaKeyboard={openedViaKeyboard}
-            renderItem={renderItem}
-            renderHeader={renderHeader}
-            onItemClick={this.handleItemClick}
-          />
+        <span ref={this.setTargetRef}>
+          {button}
+        </span>
+        <Overlay show={open} offset={[5, 5]} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+          {({ props, arrowProps, placement }) => (
+            <div {...props}>
+              <div className={`dropdown-animation dropdown-menu ${placement}`}>
+                <div className={`dropdown-menu__arrow ${placement}`} {...arrowProps} />
+                <DropdownMenu
+                  items={items}
+                  loading={loading}
+                  scrollable={scrollable}
+                  onClose={this.handleClose}
+                  openedViaKeyboard={openedViaKeyboard}
+                  renderItem={renderItem}
+                  renderHeader={renderHeader}
+                  onItemClick={this.handleItemClick}
+                />
+              </div>
+            </div>
+          )}
         </Overlay>
       </React.Fragment>
     );
