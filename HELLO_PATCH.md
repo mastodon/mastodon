@@ -93,3 +93,7 @@ Add Hellō version and issuer to the output of the `/nodeinfo/2.0` endpoint.
 ## HELLO_PATCH(15) remove most navigation links at bottom of auth pages
 
 ## HELLO_PATCH(16) change Sign-Up "Accept" button label to "Continue with Hellō"
+
+## HELLO_PATCH(17) move Bio below the card
+
+On the "Edit profile" page (`/settings/profile`) move the Bio (aka Note) below the account card (header, avatar & username card)
