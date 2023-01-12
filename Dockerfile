@@ -116,6 +116,8 @@ ENV OIDC_SCOPE=openid,email,recovery,existing_username,existing_name
 ENV OIDC_UID_FIELD=sub
 ENV OIDC_SECURITY_ASSUME_EMAIL_IS_VERIFIED=true
 
+ENV HELLO_VERSION=${HELLO_VERSION}
+
 # Set the run user
 USER mastodon
 
