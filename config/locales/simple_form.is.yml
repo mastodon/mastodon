@@ -1,4 +1,3 @@
----
 is:
   simple_form:
     hints:
@@ -18,8 +17,6 @@ is:
           disable: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra.
           none: Nota þetta til að senda aðvörun til notandans, án þess að setja neina aðra aðgerð í gang.
           sensitive: Þvinga fram að öll myndefnisviðhengi þessa notanda verði flögguð sem viðkvæmt efni.
-          silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum.
-          suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga.
         warning_preset_id: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
       announcement:
         all_day: Þegar merkt er við þetta, munu einungis birtast dagsetningar tímarammans
@@ -297,7 +294,7 @@ is:
       webhook:
         events: Virkjaðir atburðir
         url: Slóð á endapunkt
-    'no': Nei
+    'no': 'Nei'
     not_recommended: Ekki mælt með þessu
     recommended: Mælt með
     required:
@@ -306,4 +303,4 @@ is:
     title:
       sessions:
         webauthn: Nota einn af öryggislyklunum þínum til að skrá inn
-    'yes': Já
+    'yes': 'Já'
