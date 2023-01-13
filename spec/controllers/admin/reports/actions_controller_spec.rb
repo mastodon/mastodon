@@ -9,9 +9,50 @@ describe Admin::Reports::ActionsController do
     sign_in user, scope: :user
   end
 
+  describe 'POST #preview' do
+    let(:report) { Fabricate(:report) }
+
+    before do
+      post :preview, params: { report_id: report.id, action => '' }
+    end
+
+    context 'when the action is "suspend"' do
+      let(:action) { 'suspend' }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the action is "silence"' do
+      let(:action) { 'silence' }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the action is "delete"' do
+      let(:action) { 'delete' }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the action is "mark_as_sensitive"' do
+      let(:action) { 'mark_as_sensitive' }
+
+      it 'returns http success' do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
+
   describe 'POST #create' do
     let(:target_account) { Fabricate(:account) }
     let(:statuses)       { [Fabricate(:status, account: target_account), Fabricate(:status, account: target_account)] }
+    let!(:media)         { Fabricate(:media_attachment, account: target_account, status: statuses[0]) }
     let(:report)         { Fabricate(:report, target_account: target_account, status_ids: statuses.map(&:id)) }
     let(:text)           { 'hello' }
 
@@ -32,6 +73,32 @@ describe Admin::Reports::ActionsController do
     end
 
     shared_examples 'all action types' do
+      context 'when the action is "suspend"' do
+        let(:action) { 'suspend' }
+
+        it_behaves_like 'common behavior'
+
+        it 'suspends the target account' do
+          expect { subject }.to change { report.target_account.reload.suspended? }.from(false).to(true)
+        end
+      end
+
+      context 'when the action is "silence"' do
+        let(:action) { 'silence' }
+
+        it_behaves_like 'common behavior'
+
+        it 'suspends the target account' do
+          expect { subject }.to change { report.target_account.reload.silenced? }.from(false).to(true)
+        end
+      end
+
+      context 'when the action is "delete"' do
+        let(:action) { 'delete' }
+
+        it_behaves_like 'common behavior'
+      end
+
       context 'when the action is "mark_as_sensitive"' do
         let(:action) { 'mark_as_sensitive' }
         let(:statuses) { [media_attached_status, media_attached_deleted_status] }
@@ -56,6 +123,11 @@ describe Admin::Reports::ActionsController do
 
     context 'action as submit button' do
       subject { post :create, params: { report_id: report.id, text: text, action => '' } }
+      it_behaves_like 'all action types'
+    end
+
+    context 'action as submit button' do
+      subject { post :create, params: { report_id: report.id, text: text, moderation_action: action } }
       it_behaves_like 'all action types'
     end
   end
