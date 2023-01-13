@@ -99,9 +99,9 @@ pt-PT:
       signed_in: Sessão iniciada.
       signed_out: Sessão encerrada.
     unlocks:
-      send_instructions: Vai receber um e-mail com instruções para desbloquear a sua conta dentro de alguns minutos.
-      send_paranoid_instructions: Se a sua conta existe, vais receber um e-mail com instruções a detalhar como a desbloquear dentro de alguns minutos.
-      unlocked: A sua conta foi desbloqueada com sucessos. Por favor, inicie uma nova sessão para continuar.
+      send_instructions: Dentro de alguns momentos, irá receber um e-mail com instruções para desbloquear a sua conta. Consulte a sua pasta de lixo electrónico se não o encontrar.
+      send_paranoid_instructions: Se a sua conta existir, dentro de momentos irá receber um e-mail com instruções para a desbloquear. Consulte a sua pasta de lixo electrónico se não o encontrar.
+      unlocked: A sua conta foi correctamente desbloqueada. Queira iniciar uma nova sessão para continuar.
   errors:
     messages:
       already_confirmed: já confirmado, por favor tente iniciar sessão
@@ -110,5 +110,5 @@ pt-PT:
       not_found: não encontrado
       not_locked: não estava bloqueada
       not_saved:
-        one: '1 erro impediu este %{resource} de ser guardado:'
+        one: 'Um erro impediu este %{resource} de ser guardado:'
         other: "%{count} erros impediram este %{resource} de ser guardado:"
