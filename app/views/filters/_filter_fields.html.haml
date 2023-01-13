@@ -1,0 +1,40 @@
+.fields-row
+  .fields-row__column.fields-row__column-6.fields-group
+    = f.input :title, as: :string, wrapper: :with_label, hint: false
+  .fields-row__column.fields-row__column-6.fields-group
+    = f.input :expires_in, wrapper: :with_label, collection: [30.minutes, 1.hour, 6.hours, 12.hours, 1.day, 1.week].map(&:to_i), label_method: lambda { |i| I18n.t("invites.expires_in.#{i}") }, include_blank: I18n.t('invites.expires_in_prompt')
+
+.fields-group
+  = f.input :context, wrapper: :with_block_label, collection: CustomFilter::VALID_CONTEXTS, as: :check_boxes, collection_wrapper_tag: 'ul', item_wrapper_tag: 'li', label_method: lambda { |context| I18n.t("filters.contexts.#{context}") }, include_blank: false
+
+%hr.spacer/
+
+.fields-group
+  = f.input :filter_action, as: :radio_buttons, collection: %i(warn hide), include_blank: false, wrapper: :with_block_label, label_method: ->(action) { safe_join([t("simple_form.labels.filters.actions.#{action}"), content_tag(:span, t("simple_form.hints.filters.actions.#{action}"), class: 'hint')]) }, hint: t('simple_form.hints.filters.action'), required: true
+
+%hr.spacer/
+
+- unless f.object.statuses.empty?
+  %h4= t('filters.edit.statuses')
+
+  %p.muted-hint= t('filters.edit.statuses_hint_html', path: filter_statuses_path(f.object))
+
+  %hr.spacer/
+
+%h4= t('filters.edit.keywords')
+
+.table-wrapper
+  %table.table.keywords-table
+    %thead
+      %tr
+        %th= t('simple_form.labels.defaults.phrase')
+        %th= t('simple_form.labels.defaults.whole_word')
+        %th
+    %tbody
+      = f.simple_fields_for :keywords do |keyword|
+        = render 'keyword_fields', f: keyword
+    %tfoot
+      %tr
+        %td{ colspan: 3}
+          = link_to_add_association f, :keywords, class: 'table-action-link', partial: 'keyword_fields', 'data-association-insertion-node': '.keywords-table tbody', 'data-association-insertion-method': 'append' do
+            = safe_join([fa_icon('plus'), t('filters.edit.add_keyword')])

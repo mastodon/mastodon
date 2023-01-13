@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createSelector } from 'reselect';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { fetchLists } from 'mastodon/actions/lists';
 import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
-import { NavLink, withRouter } from 'react-router-dom';
-import Icon from 'mastodon/components/icon';
+import { withRouter } from 'react-router-dom';
+import { fetchLists } from 'mastodon/actions/lists';
+import ColumnLink from './column_link';
 
 const getOrderedLists = createSelector([state => state.get('lists')], lists => {
   if (!lists) {
@@ -42,11 +42,11 @@ class ListPanel extends ImmutablePureComponent {
     }
 
     return (
-      <div>
+      <div className='list-panel'>
         <hr />
 
         {lists.map(list => (
-          <NavLink key={list.get('id')} className='column-link column-link--transparent' strict to={`/lists/${list.get('id')}`}><Icon className='column-link__icon' id='list-ul' fixedWidth />{list.get('title')}</NavLink>
+          <ColumnLink icon='list-ul' key={list.get('id')} strict text={list.get('title')} to={`/lists/${list.get('id')}`} transparent />
         ))}
       </div>
     );

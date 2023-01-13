@@ -40,11 +40,11 @@ class Admin::StatusBatchAction
   end
 
   def handle_delete!
-    statuses.each { |status| authorize(status, :destroy?) }
+    statuses.each { |status| authorize([:admin, status], :destroy?) }
 
     ApplicationRecord.transaction do
       statuses.each do |status|
-        status.discard
+        status.discard_with_reblogs
         log_action(:destroy, status)
       end
 
@@ -73,9 +73,9 @@ class Admin::StatusBatchAction
     # Can't use a transaction here because UpdateStatusService queues
     # Sidekiq jobs
     statuses.includes(:media_attachments, :preview_cards).find_each do |status|
-      next unless status.with_media? || status.with_preview_card?
+      next if status.discarded? || !(status.with_media? || status.with_preview_card?)
 
-      authorize(status, :update?)
+      authorize([:admin, status], :update?)
 
       if target_account.local?
         UpdateStatusService.new.call(status, representative_account.id, sensitive: true)
@@ -89,21 +89,21 @@ class Admin::StatusBatchAction
         report.resolve!(current_account)
         log_action(:resolve, report)
       end
-
-      @warning = target_account.strikes.create!(
-        action: :mark_statuses_as_sensitive,
-        account: current_account,
-        report: report,
-        status_ids: status_ids
-      )
     end
+
+    @warning = target_account.strikes.create!(
+      action: :mark_statuses_as_sensitive,
+      account: current_account,
+      report: report,
+      status_ids: status_ids
+    )
 
     UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
   end
 
   def handle_report!
     @report = Report.new(report_params) unless with_report?
-    @report.status_ids = (@report.status_ids + status_ids.map(&:to_i)).uniq
+    @report.status_ids = (@report.status_ids + allowed_status_ids).uniq
     @report.save!
 
     @report_id = @report.id
@@ -134,5 +134,9 @@ class Admin::StatusBatchAction
 
   def report_params
     { account: current_account, target_account: target_account }
+  end
+
+  def allowed_status_ids
+    AccountStatusesFilter.new(@report.target_account, current_account).results.with_discarded.where(id: status_ids).pluck(:id)
   end
 end

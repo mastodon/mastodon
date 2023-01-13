@@ -19,71 +19,99 @@ const emojiFilename = (filename) => {
   return borderedEmoji.includes(filename) ? (filename + '_border') : filename;
 };
 
-const emojify = (str, customEmojis = {}) => {
-  const tagCharsWithoutEmojis = '<&';
-  const tagCharsWithEmojis = Object.keys(customEmojis).length ? '<&:' : '<&';
-  let rtn = '', tagChars = tagCharsWithEmojis, invisible = 0;
+const emojifyTextNode = (node, customEmojis) => {
+  let str = node.textContent;
+
+  const fragment = new DocumentFragment();
+
   for (;;) {
-    let match, i = 0, tag;
-    while (i < str.length && (tag = tagChars.indexOf(str[i])) === -1 && (invisible || !(match = trie.search(str.slice(i))))) {
-      i += str.codePointAt(i) < 65536 ? 1 : 2;
+    let match, i = 0;
+
+    if (customEmojis === null) {
+      while (i < str.length && !(match = trie.search(str.slice(i)))) {
+        i += str.codePointAt(i) < 65536 ? 1 : 2;
+      }
+    } else {
+      while (i < str.length && str[i] !== ':' && !(match = trie.search(str.slice(i)))) {
+        i += str.codePointAt(i) < 65536 ? 1 : 2;
+      }
     }
-    let rend, replacement = '';
+
+    let rend, replacement = null;
     if (i === str.length) {
       break;
     } else if (str[i] === ':') {
       if (!(() => {
         rend = str.indexOf(':', i + 1) + 1;
         if (!rend) return false; // no pair of ':'
-        const lt = str.indexOf('<', i + 1);
-        if (!(lt === -1 || lt >= rend)) return false; // tag appeared before closing ':'
         const shortname = str.slice(i, rend);
         // now got a replacee as ':shortname:'
         // if you want additional emoji handler, add statements below which set replacement and return true.
         if (shortname in customEmojis) {
           const filename = autoPlayGif ? customEmojis[shortname].url : customEmojis[shortname].static_url;
-          replacement = `<img draggable="false" class="emojione custom-emoji" alt="${shortname}" title="${shortname}" src="${filename}" data-original="${customEmojis[shortname].url}" data-static="${customEmojis[shortname].static_url}" />`;
+          replacement = document.createElement('img');
+          replacement.setAttribute('draggable', false);
+          replacement.setAttribute('class', 'emojione custom-emoji');
+          replacement.setAttribute('alt', shortname);
+          replacement.setAttribute('title', shortname);
+          replacement.setAttribute('src', filename);
+          replacement.setAttribute('data-original', customEmojis[shortname].url);
+          replacement.setAttribute('data-static', customEmojis[shortname].static_url);
           return true;
         }
         return false;
       })()) rend = ++i;
-    } else if (tag >= 0) { // <, &
-      rend = str.indexOf('>;'[tag], i + 1) + 1;
-      if (!rend) {
-        break;
-      }
-      if (tag === 0) {
-        if (invisible) {
-          if (str[i + 1] === '/') { // closing tag
-            if (!--invisible) {
-              tagChars = tagCharsWithEmojis;
-            }
-          } else if (str[rend - 2] !== '/') { // opening tag
-            invisible++;
-          }
-        } else {
-          if (str.startsWith('<span class="invisible">', i)) {
-            // avoid emojifying on invisible text
-            invisible = 1;
-            tagChars = tagCharsWithoutEmojis;
-          }
-        }
-      }
-      i = rend;
     } else { // matched to unicode emoji
       const { filename, shortCode } = unicodeMapping[match];
       const title = shortCode ? `:${shortCode}:` : '';
-      replacement = `<img draggable="false" class="emojione" alt="${match}" title="${title}" src="${assetHost}/emoji/${emojiFilename(filename)}.svg" />`;
+      replacement = document.createElement('img');
+      replacement.setAttribute('draggable', false);
+      replacement.setAttribute('class', 'emojione');
+      replacement.setAttribute('alt', match);
+      replacement.setAttribute('title', title);
+      replacement.setAttribute('src', `${assetHost}/emoji/${emojiFilename(filename)}.svg`);
       rend = i + match.length;
       // If the matched character was followed by VS15 (for selecting text presentation), skip it.
       if (str.codePointAt(rend) === 65038) {
         rend += 1;
       }
     }
-    rtn += str.slice(0, i) + replacement;
+
+    fragment.append(document.createTextNode(str.slice(0, i)));
+    if (replacement) {
+      fragment.append(replacement);
+    }
     str = str.slice(rend);
   }
-  return rtn + str;
+
+  fragment.append(document.createTextNode(str));
+  node.parentElement.replaceChild(fragment, node);
+};
+
+const emojifyNode = (node, customEmojis) => {
+  for (const child of node.childNodes) {
+    switch(child.nodeType) {
+    case Node.TEXT_NODE:
+      emojifyTextNode(child, customEmojis);
+      break;
+    case Node.ELEMENT_NODE:
+      if (!child.classList.contains('invisible'))
+        emojifyNode(child, customEmojis);
+      break;
+    }
+  }
+};
+
+const emojify = (str, customEmojis = {}) => {
+  const wrapper = document.createElement('div');
+  wrapper.innerHTML = str;
+
+  if (!Object.keys(customEmojis).length)
+    customEmojis = null;
+
+  emojifyNode(wrapper, customEmojis);
+
+  return wrapper.innerHTML;
 };
 
 export default emojify;

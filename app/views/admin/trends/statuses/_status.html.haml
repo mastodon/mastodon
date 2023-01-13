@@ -25,9 +25,9 @@
     - if status.trendable? && !status.account.discoverable?
       •
       = t('admin.trends.statuses.not_discoverable')
-    - if status.trendable? && (rank = Trends.statuses.rank(status.id, locale: params[:locale].presence))
+    - if status.trend.allowed?
       •
-      %abbr{ title: t('admin.trends.tags.current_score', score: Trends.statuses.score(status.id, locale: params[:locale].presence)) }= t('admin.trends.tags.trending_rank', rank: rank + 1)
+      %abbr{ title: t('admin.trends.tags.current_score', score: status.trend.score) }= t('admin.trends.tags.trending_rank', rank: status.trend.rank)
     - elsif status.requires_review?
       •
       = t('admin.trends.pending_review')

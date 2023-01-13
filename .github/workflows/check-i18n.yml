@@ -9,12 +9,15 @@ on:
 env:
   RAILS_ENV: test
 
+permissions:
+  contents: read
+
 jobs:
   check-i18n:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Install system dependencies
         run: |
           sudo apt-get update
@@ -22,7 +25,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'
+          ruby-version: .ruby-version
           bundler-cache: true
       - name: Check locale file normalization
         run: bundle exec i18n-tasks check-normalized

@@ -5,7 +5,7 @@ RSpec.describe Disputes::AppealsController, type: :controller do
 
   before { sign_in current_user, scope: :user }
 
-  let!(:admin) { Fabricate(:user, admin: true) }
+  let!(:admin) { Fabricate(:user, role: UserRole.find_by(name: 'Admin')) }
 
   describe '#create' do
     let(:current_user) { Fabricate(:user) }

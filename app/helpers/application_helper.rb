@@ -83,11 +83,8 @@ module ApplicationHelper
   end
 
   def provider_sign_in_link(provider)
-    link_to I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize), omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
-  end
-
-  def open_deletion?
-    Setting.open_deletion
+    label = Devise.omniauth_configs[provider]&.strategy&.display_name.presence || I18n.t("auth.providers.#{provider}", default: provider.to_s.chomp('_oauth2').capitalize)
+    link_to label, omniauth_authorize_path(:user, provider), class: "button button-#{provider}", method: :post
   end
 
   def locale_direction
@@ -96,11 +93,6 @@ module ApplicationHelper
     else
       'ltr'
     end
-  end
-
-  def favicon_path
-    env_suffix = Rails.env.production? ? '' : '-dev'
-    "/favicon#{env_suffix}.ico"
   end
 
   def title
@@ -146,8 +138,8 @@ module ApplicationHelper
     end
   end
 
-  def custom_emoji_tag(custom_emoji, animate = true)
-    if animate
+  def custom_emoji_tag(custom_emoji)
+    if prefers_autoplay?
       image_tag(custom_emoji.image.url, class: 'emojione', alt: ":#{custom_emoji.shortcode}:")
     else
       image_tag(custom_emoji.image.url(:static), class: 'emojione custom-emoji', alt: ":#{custom_emoji.shortcode}", 'data-original' => full_asset_url(custom_emoji.image.url), 'data-static' => full_asset_url(custom_emoji.image.url(:static)))
@@ -197,15 +189,12 @@ module ApplicationHelper
 
   def quote_wrap(text, line_width: 80, break_sequence: "\n")
     text = word_wrap(text, line_width: line_width - 2, break_sequence: break_sequence)
-    text.split("\n").map { |line| '> ' + line }.join("\n")
+    text.split("\n").map { |line| "> #{line}" }.join("\n")
   end
 
   def render_initial_state
     state_params = {
-      settings: {
-        known_fediverse: Setting.show_known_fediverse_at_about_page,
-      },
-
+      settings: {},
       text: [params[:title], params[:text], params[:url]].compact.join(' '),
     }
 
@@ -214,12 +203,21 @@ module ApplicationHelper
     permit_visibilities.shift(permit_visibilities.index(default_privacy) + 1) if default_privacy.present?
     state_params[:visibility] = params[:visibility] if permit_visibilities.include? params[:visibility]
 
-    if user_signed_in?
+    if user_signed_in? && current_user.functional?
       state_params[:settings]          = state_params[:settings].merge(Web::Setting.find_by(user: current_user)&.data || {})
       state_params[:push_subscription] = current_account.user.web_push_subscription(current_session)
       state_params[:current_account]   = current_account
       state_params[:token]             = current_session.token
       state_params[:admin]             = Account.find_local(Setting.site_contact_username.strip.gsub(/\A@/, ''))
+    end
+
+    if user_signed_in? && !current_user.functional?
+      state_params[:disabled_account] = current_account
+      state_params[:moved_to_account] = current_account.moved_to_account
+    end
+
+    if single_user_mode?
+      state_params[:owner] = Account.local.without_suspended.where('id > 0').first
     end
 
     json = ActiveModelSerializers::SerializableResource.new(InitialStatePresenter.new(state_params), serializer: InitialStateSerializer).to_json

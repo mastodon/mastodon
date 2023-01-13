@@ -37,11 +37,14 @@ class PostStatusService < BaseService
       schedule_status!
     else
       process_status!
-      postprocess_status!
-      bump_potential_friendship!
     end
 
     redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
+
+    unless scheduled?
+      postprocess_status!
+      bump_potential_friendship!
+    end
 
     @status
   end
@@ -66,9 +69,6 @@ class PostStatusService < BaseService
     ApplicationRecord.transaction do
       @status = @account.statuses.create!(status_attributes)
     end
-
-    process_hashtags_service.call(@status)
-    process_mentions_service.call(@status)
   end
 
   def schedule_status!
@@ -92,6 +92,8 @@ class PostStatusService < BaseService
   end
 
   def postprocess_status!
+    process_hashtags_service.call(@status)
+    process_mentions_service.call(@status)
     Trends.tags.register(@status)
     LinkCrawlWorker.perform_async(@status.id)
     DistributionWorker.perform_async(@status.id)

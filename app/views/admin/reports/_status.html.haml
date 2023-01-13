@@ -12,14 +12,7 @@
           = prerender_custom_emojis(status_content_format(status.proper), status.proper.emojis)
 
     - unless status.proper.ordered_media_attachments.empty?
-      - if status.proper.ordered_media_attachments.first.video?
-        - video = status.proper.ordered_media_attachments.first
-        = react_component :video, src: video.file.url(:original), preview: video.file.url(:small), frameRate: video.file.meta.dig('original', 'frame_rate'), blurhash: video.blurhash, sensitive: status.proper.sensitive?, visible: false, width: 610, height: 343, inline: true, alt: video.description, media: [ActiveModelSerializers::SerializableResource.new(video, serializer: REST::MediaAttachmentSerializer)].as_json
-      - elsif status.proper.ordered_media_attachments.first.audio?
-        - audio = status.proper.ordered_media_attachments.first
-        = react_component :audio, src: audio.file.url(:original), height: 110, alt: audio.description, duration: audio.file.meta.dig(:original, :duration)
-      - else
-        = react_component :media_gallery, height: 343, sensitive: status.proper.sensitive?, visible: false, media: status.proper.ordered_media_attachments.map { |a| ActiveModelSerializers::SerializableResource.new(a, serializer: REST::MediaAttachmentSerializer).as_json }
+      = render partial: 'admin/reports/media_attachments', locals: { status: status.proper }
 
     .detailed-status__meta
       - if status.application
@@ -29,7 +22,7 @@
         %time.formatted{ datetime: status.created_at.iso8601, title: l(status.created_at) }= l(status.created_at)
       - if status.edited?
         ·
-        = t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted'))
+        = link_to t('statuses.edited_at_html', date: content_tag(:time, l(status.edited_at), datetime: status.edited_at.iso8601, title: l(status.edited_at), class: 'formatted')), admin_account_status_path(status.account_id, status), class: 'detailed-status__datetime'
       - if status.discarded?
         ·
         %span.negative-hint= t('admin.statuses.deleted')

@@ -59,13 +59,6 @@ describe ApplicationHelper do
     end
   end
 
-  describe 'favicon_path' do
-    it 'returns /favicon.ico on production environment' do
-      expect(Rails.env).to receive(:production?).and_return(true)
-      expect(helper.favicon_path).to eq '/favicon.ico'
-    end
-  end
-
   describe 'open_registrations?' do
     it 'returns true when open for registrations' do
       without_partial_double_verification do
@@ -120,7 +113,7 @@ describe ApplicationHelper do
       Setting.site_title = site_title
     end
 
-    it 'returns site title on production enviroment' do
+    it 'returns site title on production environment' do
       Setting.site_title = 'site title'
       expect(Rails.env).to receive(:production?).and_return(true)
       expect(helper.title).to eq 'site title'

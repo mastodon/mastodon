@@ -8,7 +8,7 @@ cs:
         acct: Zadejte svůj účet, na který se chcete přesunout, ve formátu přezdívka@doména
       account_warning_preset:
         text: Můžete použít syntax příspěvku, jako jsou URL, hashtagy nebo zmínky
-        title: Nepovinné. Není viditelné pro příjemce
+        title: Volitelné. Není viditelné pro příjemce
       admin_account_action:
         include_statuses: Uživatel uvidí, které příspěvky způsobily moderátorskou akci nebo varování
         send_email_notification: Uživatel obdrží vysvětlení toho, co se stalo s jeho účtem
@@ -18,11 +18,11 @@ cs:
           disable: Zabránit uživateli používat svůj účet, ale nemazat ani neskrývat jejich obsah.
           none: Toto použijte pro zaslání varování uživateli, bez vyvolání jakékoliv další akce.
           sensitive: Vynutit označení všech mediálních příloh tohoto uživatele jako citlivých.
-          silence: Zamezit uživateli odesílat příspěvky s veřejnou viditelností, schovat jejich příspěvky a notifikace před lidmi, kteří je nesledují.
+          silence: Zamezit uživateli odesílat veřejné příspěvky, schovat jejich příspěvky a notifikace před lidmi, kteří je nesledují.
           suspend: Zamezit jakékoliv interakci z nebo do tohoto účtu a smazat jeho obsah. Vratné do 30 dnů.
         warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
       announcement:
-        all_day: Po vybrání budou zobrazeny jenom dny z časového období
+        all_day: Po vybrání budou zobrazeny jen dny z daného časového období
         ends_at: Volitelné. Zveřejněné oznámení bude v uvedený čas skryto
         scheduled_at: Pro okamžité zveřejnění ponechte prázdné
         starts_at: Volitelné. Jen pokud je oznámení vázáno na konkrétní časové období
@@ -36,18 +36,18 @@ cs:
         context: Jeden či více kontextů, ve kterých má být filtr uplatněn
         current_password: Z bezpečnostních důvodů prosím zadejte heslo současného účtu
         current_username: Potvrďte prosím tuto akci zadáním uživatelského jména aktuálního účtu
-        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste při své nepřítomnosti obdrželi osobní zprávy
+        digest: Odesíláno pouze po dlouhé době nečinnosti a pouze, pokud jste během své nepřítomnosti obdrželi osobní zprávy
         discoverable: Umožnit, aby mohli váš účet objevit neznámí lidé pomocí doporučení, trendů a dalších funkcí
         email: Bude vám poslán potvrzovací e-mail
-        fields: Na profilu můžete mít až 4 položky zobrazené jako tabulka
+        fields: Na svém profilu můžete mít zobrazeny až 4 položky jako tabulku
         header: PNG, GIF či JPG. Maximálně %{size}. Bude zmenšen na %{dimensions} px
         inbox_url: Zkopírujte URL z hlavní stránky mostu, který chcete použít
         irreversible: Filtrované příspěvky nenávratně zmizí, i pokud bude filtr později odstraněn
-        locale: Jazyk uživatelského rozhraní, e-mailů a oznámení push
+        locale: Jazyk uživatelského rozhraní, e-mailů a push notifikací
         locked: Kontrolujte, kdo vás může sledovat pomocí schvalování žádostí o sledování
         password: Použijte alespoň 8 znaků
         phrase: Shoda bude nalezena bez ohledu na velikost písmen v textu příspěvku či varování o obsahu
-        scopes: Která API bude aplikaci povoleno používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
+        scopes: Která API bude aplikace moct používat. Pokud vyberete rozsah nejvyššího stupně, nebudete je muset vybírat jednotlivě.
         setting_aggregate_reblogs: Nezobrazovat nové boosty pro příspěvky, které byly nedávno boostnuty (ovlivňuje pouze nově přijaté boosty)
         setting_always_send_emails: Jinak nebudou e-mailové notifikace posílány, když Mastodon aktivně používáte
         setting_default_sensitive: Citlivá média jsou ve výchozím stavu skryta a mohou být zobrazena kliknutím
@@ -58,16 +58,42 @@ cs:
         setting_noindex: Ovlivňuje váš veřejný profil a stránky příspěvků
         setting_show_application: Aplikace, kterou používáte k odeslání příspěvků, bude zobrazena jejich detailním zobrazení
         setting_use_blurhash: Gradienty jsou založeny na barvách skryté grafiky, ale zakrývají jakékoliv detaily
-        setting_use_pending_items: Aktualizovat časovou osu až po kliknutím namísto automatického rolování kanálu
+        setting_use_pending_items: Aktualizovat časovou osu až po kliknutí namísto automatického rolování kanálu
         username: Vaše uživatelské jméno bude na serveru %{domain} unikátní
-        whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikována pouze, pokud se shoduje s celým slovem
+        whole_word: Je-li klíčové slovo či fráze pouze alfanumerická, bude aplikován pouze, pokud se shoduje s celým slovem
       domain_allow:
         domain: Tato doména bude moci stahovat data z tohoto serveru a příchozí data z ní budou zpracována a uložena
       email_domain_block:
-        domain: Toto může být doménové jméno, které je v e-mailové adrese nebo MX záznam, který používá. Budou zkontrolovány při registraci.
+        domain: Toto může být doménové jméno, které je v e-mailové adrese, nebo MX záznam, který používá. Budou zkontrolovány při registraci.
         with_dns_records: Dojde k pokusu o překlad DNS záznamů dané domény a výsledky budou rovněž zablokovány
       featured_tag:
-        name: 'Nejspíš budete chtít použít jeden z těchto:'
+        name: 'Zde jsou některé z hashtagů, které jste nedávno použili:'
+      filters:
+        action: Vyberte, jakou akci provést, když příspěvek odpovídá filtru
+        actions:
+          hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
+          warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
+      form_admin_settings:
+        backups_retention_period: Zachovat generované uživatelské archivy pro zadaný počet dní.
+        bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
+        closed_registrations_message: Zobrazeno při zavření registrace
+        content_cache_retention_period: Příspěvky z jiných serverů budou odstraněny po zadaném počtu dní, pokud je nastavena kladná hodnota. To může být nevratné.
+        custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
+        mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
+        media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
+        profile_directory: Adresář profilu obsahuje seznam všech uživatelů, kteří se přihlásili, aby mohli být nalezeni.
+        require_invite_text: Pokud přihlášení vyžaduje ruční schválení, měl by být textový vstup „Proč se chcete připojit?“ povinný spíše než volitelný
+        site_contact_email: Jak vás mohou lidé kontaktovat v případě právních dotazů nebo dotazů na podporu.
+        site_contact_username: Jak vás lidé mohou oslovit na Mastodon.
+        site_extended_description: Jakékoli další informace, které mohou být užitečné pro návštěvníky a vaše uživatele. Může být strukturováno pomocí Markdown syntaxe.
+        site_short_description: Krátký popis, který pomůže jednoznačně identifikovat váš server. Kdo ho provozuje, pro koho je určen?
+        site_terms: Použijte vlastní zásady ochrany osobních údajů nebo ponechte prázdné pro použití výchozího nastavení. Může být strukturováno pomocí Markdown syntaxe.
+        site_title: Jak mohou lidé odkazovat na váš server kromě názvu domény.
+        theme: Vzhled stránky, který vidí noví a odhlášení uživatelé.
+        thumbnail: Přibližně 2:1 obrázek zobrazený vedle informací o vašem serveru.
+        timeline_preview: Odhlášení uživatelé budou moci procházet nejnovější veřejné příspěvky na serveru.
+        trendable_by_default: Přeskočit manuální kontrolu populárního obsahu. Jednotlivé položky mohou být odstraněny z trendů později.
+        trends: Trendy zobrazují, které příspěvky, hashtagy a zprávy získávají na serveru pozornost.
       form_challenge:
         current_password: Vstupujete do zabezpečeného prostoru
       imports:
@@ -80,6 +106,7 @@ cs:
         ip: Zadejte IPv4 nebo IPv6 adresu. Můžete blokovat celé rozsahy použitím CIDR notace. Dejte pozor, ať neodříznete přístup sami sobě!
         severities:
           no_access: Blokovat přístup ke všem zdrojům
+          sign_up_block: Nové přihlášení nebude možné
           sign_up_requires_approval: Nové registrace budou vyžadovat schválení
         severity: Zvolte, jak naložit s požadavky z dané IP
       rule:
@@ -91,6 +118,16 @@ cs:
         name: Můžete měnit pouze velikost písmen, například kvůli lepší čitelnosti
       user:
         chosen_languages: Po zaškrtnutí budou ve veřejných časových osách zobrazeny pouze příspěvky ve zvolených jazycích
+        role: Role určuje, která oprávnění má uživatel
+      user_role:
+        color: Barva, která má být použita pro roli v celém UI, jako RGB v hex formátu
+        highlighted: Toto roli učiní veřejně viditelnou
+        name: Veřejný název role, pokud má být role zobrazena jako odznak
+        permissions_as_keys: Uživatelé s touto rolí budou moci...
+        position: Vyšší role rozhoduje o řešení konfliktů v určitých situacích. Některé akce lze provádět pouze na rolích s nižší prioritou
+      webhook:
+        events: Zvolte odesílané události
+        url: Kam budou události odesílány
     labels:
       account:
         fields:
@@ -178,6 +215,7 @@ cs:
         setting_use_pending_items: Pomalý režim
         severity: Vážnost
         sign_in_token_attempt: Bezpečnostní kód
+        title: Název
         type: Typ importu
         username: Uživatelské jméno
         username_or_email: Uživatelské jméno nebo e-mail
@@ -186,6 +224,34 @@ cs:
         with_dns_records: Zahrnout MX záznamy a IP adresy domény
       featured_tag:
         name: Hashtag
+      filters:
+        actions:
+          hide: Zcela skrýt
+          warn: Skrýt s varováním
+      form_admin_settings:
+        backups_retention_period: Doba uchovávání archivu uživatelů
+        bootstrap_timeline_accounts: Vždy doporučovat tyto účty novým uživatelům
+        closed_registrations_message: Vlastní zpráva, když přihlášení není k dispozici
+        content_cache_retention_period: Doba uchování mezipaměti obsahu
+        custom_css: Vlastní CSS
+        mascot: Vlastní maskot (zastaralé)
+        media_cache_retention_period: Doba uchovávání mezipaměti médií
+        profile_directory: Povolit adresář profilů
+        registrations_mode: Kdo se může přihlásit
+        require_invite_text: Požadovat důvod pro připojení
+        show_domain_blocks: Zobrazit blokace domén
+        show_domain_blocks_rationale: Zobrazit proč byly blokovány domény
+        site_contact_email: Kontaktní e-mail
+        site_contact_username: Jméno kontaktu
+        site_extended_description: Rozšířený popis
+        site_short_description: Popis serveru
+        site_terms: Ochrana osobních údajů
+        site_title: Název serveru
+        theme: Výchozí motiv
+        thumbnail: Miniatura serveru
+        timeline_preview: Povolit neověřený přístup k veřejným časovým osám
+        trendable_by_default: Povolit trendy bez předchozí revize
+        trends: Povolit trendy
       interactions:
         must_be_follower: Blokovat oznámení od lidí, kteří vás nesledují
         must_be_following: Blokovat oznámení od lidí, které nesledujete
@@ -199,6 +265,7 @@ cs:
         ip: IP
         severities:
           no_access: Blokovat přístup
+          sign_up_block: Blokovat registrace
           sign_up_requires_approval: Omezit registrace
         severity: Pravidlo
       notification_emails:
@@ -219,7 +286,19 @@ cs:
         name: Hashtag
         trendable: Povolit zobrazení tohoto hashtagu mezi populárními
         usable: Povolit používat tento hashtag v příspěvcích
+      user:
+        role: Role
+      user_role:
+        color: Barva odznaku
+        highlighted: Zobrazit roli jako odznak na profilech uživatelů
+        name: Název
+        permissions_as_keys: Oprávnění
+        position: Priorita
+      webhook:
+        events: Zapnuté události
+        url: URL koncového bodu
     'no': Ne
+    not_recommended: Nedoporučuje se
     recommended: Doporučeno
     required:
       mark: "*"

@@ -3,6 +3,11 @@
 class AccountSearchService < BaseService
   attr_reader :query, :limit, :offset, :options, :account
 
+  MENTION_ONLY_RE = /\A#{Account::MENTION_RE}\z/i
+
+  # Min. number of characters to look for non-exact matches
+  MIN_QUERY_LENGTH = 5
+
   def call(query, account = nil, options = {})
     @acct_hint = query&.start_with?('@')
     @query     = query&.strip&.gsub(/\A@/, '')
@@ -61,11 +66,11 @@ class AccountSearchService < BaseService
   end
 
   def advanced_search_results
-    Account.advanced_search_for(terms_for_query, account, limit_for_non_exact_results, options[:following], offset)
+    Account.advanced_search_for(terms_for_query, account, limit: limit_for_non_exact_results, following: options[:following], offset: offset)
   end
 
   def simple_search_results
-    Account.search_for(terms_for_query, limit_for_non_exact_results, offset)
+    Account.search_for(terms_for_query, limit: limit_for_non_exact_results, offset: offset)
   end
 
   def from_elasticsearch
@@ -102,7 +107,7 @@ class AccountSearchService < BaseService
     {
       script_score: {
         script: {
-          source: "(doc['followers_count'].value + 0.0) / (doc['followers_count'].value + doc['following_count'].value + 1)",
+          source: "(Math.max(doc['followers_count'].value, 0) + 0.0) / (Math.max(doc['followers_count'].value, 0) + Math.max(doc['following_count'].value, 0) + 1)",
         },
       },
     }
@@ -110,10 +115,10 @@ class AccountSearchService < BaseService
 
   def followers_score_function
     {
-      field_value_factor: {
-        field: 'followers_count',
-        modifier: 'log2p',
-        missing: 0,
+      script_score: {
+        script: {
+          source: "Math.log10(Math.max(doc['followers_count'].value, 0) + 2)",
+        },
       },
     }
   end
@@ -135,6 +140,8 @@ class AccountSearchService < BaseService
   end
 
   def limit_for_non_exact_results
+    return 0 if @account.nil? && query.size < MIN_QUERY_LENGTH
+
     if exact_match?
       limit - 1
     else
@@ -175,7 +182,7 @@ class AccountSearchService < BaseService
   end
 
   def username_complete?
-    query.include?('@') && "@#{query}".match?(/\A#{Account::MENTION_RE}\Z/)
+    query.include?('@') && "@#{query}".match?(MENTION_ONLY_RE)
   end
 
   def likely_acct?

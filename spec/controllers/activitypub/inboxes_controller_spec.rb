@@ -6,7 +6,7 @@ RSpec.describe ActivityPub::InboxesController, type: :controller do
   let(:remote_account) { nil }
 
   before do
-    allow(controller).to receive(:signed_request_account).and_return(remote_account)
+    allow(controller).to receive(:signed_request_actor).and_return(remote_account)
   end
 
   describe 'POST #create' do

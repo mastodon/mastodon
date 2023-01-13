@@ -4,6 +4,7 @@ class AdminMailer < ApplicationMailer
   layout 'plain_mailer'
 
   helper :accounts
+  helper :languages
 
   def new_report(recipient, report)
     @report   = report
@@ -37,11 +38,8 @@ class AdminMailer < ApplicationMailer
 
   def new_trends(recipient, links, tags, statuses)
     @links                  = links
-    @lowest_trending_link   = Trends.links.query.allowed.limit(Trends.links.options[:review_threshold]).last
     @tags                   = tags
-    @lowest_trending_tag    = Trends.tags.query.allowed.limit(Trends.tags.options[:review_threshold]).last
     @statuses               = statuses
-    @lowest_trending_status = Trends.statuses.query.allowed.limit(Trends.statuses.options[:review_threshold]).last
     @me                     = recipient
     @instance               = Rails.configuration.x.local_domain
 

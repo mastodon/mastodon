@@ -5,7 +5,7 @@ describe Admin::ResetsController do
 
   let(:account) { Fabricate(:account) }
   before do
-    sign_in Fabricate(:user, admin: true), scope: :user
+    sign_in Fabricate(:user, role: UserRole.find_by(name: 'Admin')), scope: :user
   end
 
   describe 'POST #create' do

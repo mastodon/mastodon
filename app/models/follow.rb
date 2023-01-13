@@ -11,6 +11,7 @@
 #  show_reblogs      :boolean          default(TRUE), not null
 #  uri               :string
 #  notify            :boolean          default(FALSE), not null
+#  languages         :string           is an Array
 #
 
 class Follow < ApplicationRecord
@@ -27,6 +28,7 @@ class Follow < ApplicationRecord
   has_one :notification, as: :activity, dependent: :destroy
 
   validates :account_id, uniqueness: { scope: :target_account_id }
+  validates :languages, language: true
 
   scope :recent, -> { reorder(id: :desc) }
 
@@ -35,7 +37,7 @@ class Follow < ApplicationRecord
   end
 
   def revoke_request!
-    FollowRequest.create!(account: account, target_account: target_account, show_reblogs: show_reblogs, notify: notify, uri: uri)
+    FollowRequest.create!(account: account, target_account: target_account, show_reblogs: show_reblogs, notify: notify, languages: languages, uri: uri)
     destroy!
   end
 

@@ -21,12 +21,35 @@ sl:
             username:
               invalid: samo črke, številke in podčrtaji
               reserved: je rezerviran
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ni veljaven URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ni veljaven URL
+        import:
+          attributes:
+            data:
+              malformed: je napačno oblikovan
         status:
           attributes:
             reblog:
-              taken: od statusa že obstajajo
+              taken: od objave že obstajajo
         user:
           attributes:
             email:
               blocked: uporablja nedovoljenega ponudnika e-poštnih storitev
               unreachable: kot kaže ne obstaja
+            role_id:
+              elevated: ne more biti višje od vaše trenutne vloge
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: vključi pravice, ki niso varne za osnovno vlogo
+              elevated: ni mogoče vključiti pravic, ki jih vaša trenutna vloga ne vsebuje
+              own_role: ni mogoče spremeniti z vašo trenutno vlogo
+            position:
+              elevated: ne more biti višje od vaše trenutne vloge
+              own_role: ni mogoče spremeniti z vašo trenutno vlogo

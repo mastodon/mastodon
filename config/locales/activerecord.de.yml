@@ -3,8 +3,8 @@ de:
   activerecord:
     attributes:
       poll:
-        expires_at: Frist
-        options: Wahlmöglichkeiten
+        expires_at: Abstimmungsende
+        options: Auswahlmöglichkeiten
       user:
         agreement: Service-Vereinbarung
         email: E-Mail-Adresse
@@ -13,20 +13,43 @@ de:
       user/account:
         username: Benutzername
       user/invite_request:
-        text: Grund
+        text: Begründung
     errors:
       models:
         account:
           attributes:
             username:
               invalid: nur Buchstaben, Ziffern und Unterstriche
-              reserved: ist reserviert
+              reserved: ist bereits vergeben
+        admin/webhook:
+          attributes:
+            url:
+              invalid: ist keine gültige URL
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: ist keine gültige Adresse
+        import:
+          attributes:
+            data:
+              malformed: ist fehlerhaft
         status:
           attributes:
             reblog:
-              taken: des Beitrags existiert schon
+              taken: des Beitrags existiert bereits
         user:
           attributes:
             email:
-              blocked: verwendet einen nicht erlaubten E-Mail-Anbieter
+              blocked: verwendet einen unerlaubten E-Mail-Anbieter
               unreachable: scheint nicht zu existieren
+            role_id:
+              elevated: kann nicht höher als Ihre aktuelle Rolle sein
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: enthält Berechtigungen, welche nicht sicher sind für die Basisrolle
+              elevated: kann nicht Berechtigungen beinhalten, die deine aktuelle Rolle nicht besitzt
+              own_role: kann nicht mit deiner aktuellen Rolle geändert werden
+            position:
+              elevated: kann nicht höher sein als deine aktuelle Rolle
+              own_role: kann nicht mit deiner aktuellen Rolle geändert werden

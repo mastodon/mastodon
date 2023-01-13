@@ -109,4 +109,98 @@ RSpec.describe ActivityPub::ProcessAccountService, type: :service do
       end
     end
   end
+
+  context 'discovering many subdomains in a short timeframe' do
+    before do
+      stub_const 'ActivityPub::ProcessAccountService::SUBDOMAINS_RATELIMIT', 5
+    end
+
+    let(:subject) do
+      8.times do |i|
+        domain = "test#{i}.testdomain.com"
+        json = {
+          id: "https://#{domain}/users/1",
+          type: 'Actor',
+          inbox: "https://#{domain}/inbox",
+        }.with_indifferent_access
+        described_class.new.call('alice', domain, json)
+      end
+    end
+
+    it 'creates at least some accounts' do
+      expect { subject }.to change { Account.remote.count }.by_at_least(2)
+    end
+
+    it 'creates no more account than the limit allows' do
+      expect { subject }.to change { Account.remote.count }.by_at_most(5)
+    end
+  end
+
+  context 'accounts referencing other accounts' do
+    before do
+      stub_const 'ActivityPub::ProcessAccountService::DISCOVERIES_PER_REQUEST', 5
+    end
+
+    let(:payload) do
+      {
+        '@context': ['https://www.w3.org/ns/activitystreams'],
+        id: 'https://foo.test/users/1',
+        type: 'Person',
+        inbox: 'https://foo.test/inbox',
+        featured: 'https://foo.test/users/1/featured',
+        preferredUsername: 'user1',
+      }.with_indifferent_access
+    end
+
+    before do
+      8.times do |i|
+        actor_json = {
+          '@context': ['https://www.w3.org/ns/activitystreams'],
+          id: "https://foo.test/users/#{i}",
+          type: 'Person',
+          inbox: 'https://foo.test/inbox',
+          featured: "https://foo.test/users/#{i}/featured",
+          preferredUsername: "user#{i}",
+        }.with_indifferent_access
+        status_json = {
+          '@context': ['https://www.w3.org/ns/activitystreams'],
+          id: "https://foo.test/users/#{i}/status",
+          attributedTo: "https://foo.test/users/#{i}",
+          type: 'Note',
+          content: "@user#{i + 1} test",
+          tag: [
+            {
+              type: 'Mention',
+              href: "https://foo.test/users/#{i + 1}",
+              name: "@user#{i + 1 }",
+            }
+          ],
+          to: [ 'as:Public', "https://foo.test/users/#{i + 1}" ]
+        }.with_indifferent_access
+        featured_json = {
+          '@context': ['https://www.w3.org/ns/activitystreams'],
+          id: "https://foo.test/users/#{i}/featured",
+          type: 'OrderedCollection',
+          totelItems: 1,
+          orderedItems: [status_json],
+        }.with_indifferent_access
+        webfinger = {
+          subject: "acct:user#{i}@foo.test",
+          links: [{ rel: 'self', href: "https://foo.test/users/#{i}" }],
+        }.with_indifferent_access
+        stub_request(:get, "https://foo.test/users/#{i}").to_return(status: 200, body: actor_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, "https://foo.test/users/#{i}/featured").to_return(status: 200, body: featured_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, "https://foo.test/users/#{i}/status").to_return(status: 200, body: status_json.to_json, headers: { 'Content-Type': 'application/activity+json' })
+        stub_request(:get, "https://foo.test/.well-known/webfinger?resource=acct:user#{i}@foo.test").to_return(body: webfinger.to_json, headers: { 'Content-Type': 'application/jrd+json' })
+      end
+    end
+
+    it 'creates at least some accounts' do
+      expect { subject.call('user1', 'foo.test', payload) }.to change { Account.remote.count }.by_at_least(2)
+    end
+
+    it 'creates no more account than the limit allows' do
+      expect { subject.call('user1', 'foo.test', payload) }.to change { Account.remote.count }.by_at_most(5)
+    end
+  end
 end

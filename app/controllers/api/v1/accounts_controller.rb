@@ -9,6 +9,8 @@ class Api::V1::AccountsController < Api::BaseController
 
   before_action :require_user!, except: [:show, :create]
   before_action :set_account, except: [:create]
+  before_action :check_account_approval, except: [:create]
+  before_action :check_account_confirmation, except: [:create]
   before_action :check_enabled_registrations, only: [:create]
 
   skip_before_action :require_authenticated_user!, only: :create
@@ -28,12 +30,12 @@ class Api::V1::AccountsController < Api::BaseController
     self.response_body = Oj.dump(response.body)
     self.status        = response.status
   rescue ActiveRecord::RecordInvalid => e
-    render json: ValidationErrorFormatter.new(e, :'account.username' => :username, :'invite_request.text' => :reason).as_json, status: :unprocessable_entity
+    render json: ValidationErrorFormatter.new(e, 'account.username': :username, 'invite_request.text': :reason).as_json, status: :unprocessable_entity
   end
 
   def follow
-    follow  = FollowService.new.call(current_user.account, @account, reblogs: params.key?(:reblogs) ? truthy_param?(:reblogs) : nil, notify: params.key?(:notify) ? truthy_param?(:notify) : nil, with_rate_limit: true)
-    options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify? } }, requested_map: { @account.id => false } }
+    follow  = FollowService.new.call(current_user.account, @account, reblogs: params.key?(:reblogs) ? truthy_param?(:reblogs) : nil, notify: params.key?(:notify) ? truthy_param?(:notify) : nil, languages: params.key?(:languages) ? params[:languages] : nil, with_rate_limit: true)
+    options = @account.locked? || current_user.account.silenced? ? {} : { following_map: { @account.id => { reblogs: follow.show_reblogs?, notify: follow.notify?, languages: follow.languages } }, requested_map: { @account.id => false } }
 
     render json: @account, serializer: REST::RelationshipSerializer, relationships: relationships(**options)
   end
@@ -72,6 +74,14 @@ class Api::V1::AccountsController < Api::BaseController
 
   def set_account
     @account = Account.find(params[:id])
+  end
+
+  def check_account_approval
+    raise(ActiveRecord::RecordNotFound) if @account.local? && @account.user_pending?
+  end
+
+  def check_account_confirmation
+    raise(ActiveRecord::RecordNotFound) if @account.local? && !@account.user_confirmed?
   end
 
   def relationships(**options)

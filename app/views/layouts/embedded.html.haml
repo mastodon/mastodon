@@ -20,5 +20,5 @@
   %body.embed
     = yield
 
-    .logo-resources
-      = raw render file: Rails.root.join('app', 'javascript', 'images', 'logo_transparent.svg')
+    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => true }
+      = render_symbol :icon

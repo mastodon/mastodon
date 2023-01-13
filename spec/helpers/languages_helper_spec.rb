@@ -11,7 +11,7 @@ describe LanguagesHelper do
 
   describe 'native_locale_name' do
     it 'finds the human readable native name from a key' do
-      expect(helper.native_locale_name(:en)).to eq('English')
+      expect(helper.native_locale_name(:de)).to eq('Deutsch')
     end
   end
 

@@ -126,5 +126,24 @@ describe ResolveURLService, type: :service do
         end
       end
     end
+
+    context 'searching for a link that redirects to a local public status' do
+      let(:account) { Fabricate(:account) }
+      let(:poster)  { Fabricate(:account) }
+      let!(:status) { Fabricate(:status, account: poster, visibility: :public) }
+      let(:url)     { 'https://link.to/foobar' }
+      let(:status_url) { ActivityPub::TagManager.instance.url_for(status) }
+      let(:uri)     { ActivityPub::TagManager.instance.uri_for(status) }
+
+      before do
+        stub_request(:get, url).to_return(status: 302, headers: { 'Location' => status_url })
+        body = ActiveModelSerializers::SerializableResource.new(status, serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter).to_json
+        stub_request(:get, status_url).to_return(body: body, headers: { 'Content-Type' => 'application/activity+json' })
+      end
+
+      it 'returns status by url' do
+        expect(subject.call(url, on_behalf_of: account)).to eq(status)
+      end
+    end
   end
 end

@@ -1,1 +1,55 @@
+---
 af:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Sperdatum
+        options: Keuses
+      user:
+        agreement: Diensooreenkoms
+        email: E-posadres
+        locale: Plaaslik
+        password: Wagwoord
+      user/account:
+        username: Gebruikersnaam
+      user/invite_request:
+        text: Rede
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: mag slegs letters, syfers en onderstrepe bevat
+              reserved: is gereserveer
+        admin/webhook:
+          attributes:
+            url:
+              invalid: is nie ’n geldige URL nie
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: is nie 'n geldige URL nie
+        import:
+          attributes:
+            data:
+              malformed: is misvorm
+        status:
+          attributes:
+            reblog:
+              taken: van plasing bestaan reeds
+        user:
+          attributes:
+            email:
+              blocked: gebruik ’n ontoelaatbare e-posverskaffer
+              unreachable: blyk nie te bestaan nie
+            role_id:
+              elevated: kan nie hoër as jou huidige rol wees nie
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: bevat toestemmings wat vir die basisrol onveilig is
+              elevated: kan nie toestemmings bevat waaroor jou huidige rol nie beskik nie
+              own_role: kan nie verander word met jou huidige rol nie
+            position:
+              elevated: kan nie hoër as jou huidige rol wees nie
+              own_role: kan nie verander word met jou huidige rol nie

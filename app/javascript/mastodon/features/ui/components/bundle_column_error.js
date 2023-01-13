@@ -1,44 +1,162 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
+import Column from 'mastodon/components/column';
+import Button from 'mastodon/components/button';
+import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+import { autoPlayGif } from 'mastodon/initial_state';
 
-import Column from './column';
-import ColumnHeader from './column_header';
-import ColumnBackButtonSlim from '../../../components/column_back_button_slim';
-import IconButton from '../../../components/icon_button';
-
-const messages = defineMessages({
-  title: { id: 'bundle_column_error.title', defaultMessage: 'Network error' },
-  body: { id: 'bundle_column_error.body', defaultMessage: 'Something went wrong while loading this component.' },
-  retry: { id: 'bundle_column_error.retry', defaultMessage: 'Try again' },
-});
-
-class BundleColumnError extends React.PureComponent {
+class GIF extends React.PureComponent {
 
   static propTypes = {
-    onRetry: PropTypes.func.isRequired,
-    intl: PropTypes.object.isRequired,
+    src: PropTypes.string.isRequired,
+    staticSrc: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    animate: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    animate: autoPlayGif,
+  };
+
+  state = {
+    hovering: false,
+  };
+
+  handleMouseEnter = () => {
+    const { animate } = this.props;
+
+    if (!animate) {
+      this.setState({ hovering: true });
+    }
   }
 
-  handleRetry = () => {
-    this.props.onRetry();
+  handleMouseLeave = () => {
+    const { animate } = this.props;
+
+    if (!animate) {
+      this.setState({ hovering: false });
+    }
   }
 
   render () {
-    const { intl: { formatMessage } } = this.props;
+    const { src, staticSrc, className, animate } = this.props;
+    const { hovering } = this.state;
 
     return (
-      <Column>
-        <ColumnHeader icon='exclamation-circle' type={formatMessage(messages.title)} />
-        <ColumnBackButtonSlim />
-        <div className='error-column'>
-          <IconButton title={formatMessage(messages.retry)} icon='refresh' onClick={this.handleRetry} size={64} />
-          {formatMessage(messages.body)}
-        </div>
-      </Column>
+      <img
+        className={className}
+        src={(hovering || animate) ? src : staticSrc}
+        alt=''
+        role='presentation'
+        onMouseEnter={this.handleMouseEnter}
+        onMouseLeave={this.handleMouseLeave}
+      />
     );
   }
 
 }
 
-export default injectIntl(BundleColumnError);
+class CopyButton extends React.PureComponent {
+
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    value: PropTypes.string.isRequired,
+  };
+
+  state = {
+    copied: false,
+  };
+
+  handleClick = () => {
+    const { value } = this.props;
+    navigator.clipboard.writeText(value);
+    this.setState({ copied: true });
+    this.timeout = setTimeout(() => this.setState({ copied: false }), 700);
+  }
+
+  componentWillUnmount () {
+    if (this.timeout) clearTimeout(this.timeout);
+  }
+
+  render () {
+    const { children } = this.props;
+    const { copied } = this.state;
+
+    return (
+      <Button onClick={this.handleClick} className={copied ? 'copied' : 'copyable'}>{copied ? <FormattedMessage id='copypaste.copied' defaultMessage='Copied' /> : children}</Button>
+    );
+  }
+
+}
+
+export default @injectIntl
+class BundleColumnError extends React.PureComponent {
+
+  static propTypes = {
+    errorType: PropTypes.oneOf(['routing', 'network', 'error']),
+    onRetry: PropTypes.func,
+    intl: PropTypes.object.isRequired,
+    multiColumn: PropTypes.bool,
+    stacktrace: PropTypes.string,
+  };
+
+  static defaultProps = {
+    errorType: 'routing',
+  };
+
+  handleRetry = () => {
+    const { onRetry } = this.props;
+
+    if (onRetry) {
+      onRetry();
+    }
+  }
+
+  render () {
+    const { errorType, multiColumn, stacktrace } = this.props;
+
+    let title, body;
+
+    switch(errorType) {
+    case 'routing':
+      title = <FormattedMessage id='bundle_column_error.routing.title' defaultMessage='404' />;
+      body = <FormattedMessage id='bundle_column_error.routing.body' defaultMessage='The requested page could not be found. Are you sure the URL in the address bar is correct?' />;
+      break;
+    case 'network':
+      title = <FormattedMessage id='bundle_column_error.network.title' defaultMessage='Network error' />;
+      body = <FormattedMessage id='bundle_column_error.network.body' defaultMessage='There was an error when trying to load this page. This could be due to a temporary problem with your internet connection or this server.' />;
+      break;
+    case 'error':
+      title = <FormattedMessage id='bundle_column_error.error.title' defaultMessage='Oh, no!' />;
+      body = <FormattedMessage id='bundle_column_error.error.body' defaultMessage='The requested page could not be rendered. It could be due to a bug in our code, or a browser compatibility issue.' />;
+      break;
+    }
+
+    return (
+      <Column bindToDocument={!multiColumn}>
+        <div className='error-column'>
+          <GIF src='/oops.gif' staticSrc='/oops.png' className='error-column__image' />
+
+          <div className='error-column__message'>
+            <h1>{title}</h1>
+            <p>{body}</p>
+
+            <div className='error-column__message__actions'>
+              {errorType === 'network' && <Button onClick={this.handleRetry}><FormattedMessage id='bundle_column_error.retry' defaultMessage='Try again' /></Button>}
+              {errorType === 'error' && <CopyButton value={stacktrace}><FormattedMessage id='bundle_column_error.copy_stacktrace' defaultMessage='Copy error report' /></CopyButton>}
+              <Link to='/' className={classNames('button', { 'button-tertiary': errorType !== 'routing' })}><FormattedMessage id='bundle_column_error.return' defaultMessage='Go back home' /></Link>
+            </div>
+          </div>
+        </div>
+
+        <Helmet>
+          <meta name='robots' content='noindex' />
+        </Helmet>
+      </Column>
+    );
+  }
+
+}

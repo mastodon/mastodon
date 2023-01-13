@@ -8,7 +8,7 @@ it:
       user:
         agreement: Condizioni di servizio
         email: Indirizzo email
-        locale: Localizzazione
+        locale: Locale
         password: Password
       user/account:
         username: Nome utente
@@ -19,8 +19,20 @@ it:
         account:
           attributes:
             username:
-              invalid: solo lettere, numeri e trattini bassi
+              invalid: deve contenere solo lettere, numeri e trattini bassi
               reserved: è riservato
+        admin/webhook:
+          attributes:
+            url:
+              invalid: non è un URL valido
+        doorkeeper/application:
+          attributes:
+            website:
+              invalid: non è un URL valido
+        import:
+          attributes:
+            data:
+              malformed: è malformato
         status:
           attributes:
             reblog:
@@ -30,3 +42,14 @@ it:
             email:
               blocked: utilizza un provider di posta elettronica non autorizzato
               unreachable: non sembra esistere
+            role_id:
+              elevated: non può essere superiore al tuo ruolo corrente
+        user_role:
+          attributes:
+            permissions_as_keys:
+              dangerous: include autorizzazioni che non sono sicure per il ruolo di base
+              elevated: non può includere le autorizzazioni che il tuo ruolo corrente non possiede
+              own_role: non può essere modificato con il tuo ruolo attuale
+            position:
+              elevated: non può essere superiore al tuo ruolo corrente
+              own_role: non può essere modificato con il tuo ruolo corrente

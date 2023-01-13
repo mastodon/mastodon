@@ -1,0 +1,22 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'admin', async: true, crossorigin: 'anonymous'
+
+- content_for :page_title do
+  = t('admin.settings.content_retention.title')
+
+- content_for :heading do
+  %h2= t('admin.settings.title')
+  = render partial: 'admin/settings/shared/links'
+
+= simple_form_for @admin_settings, url: admin_settings_content_retention_path, html: { method: :patch } do |f|
+  = render 'shared/error_messages', object: @admin_settings
+
+  %p.lead= t('admin.settings.content_retention.preamble')
+
+  .fields-group
+    = f.input :media_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :content_cache_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+    = f.input :backups_retention_period, wrapper: :with_block_label, input_html: { pattern: '[0-9]+' }
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

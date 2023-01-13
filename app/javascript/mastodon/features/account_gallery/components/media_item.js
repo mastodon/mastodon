@@ -2,7 +2,6 @@ import Blurhash from 'mastodon/components/blurhash';
 import classNames from 'classnames';
 import Icon from 'mastodon/components/icon';
 import { autoPlayGif, displayMedia, useBlurhash } from 'mastodon/initial_state';
-import { isIOS } from 'mastodon/is_mobile';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -105,11 +104,13 @@ export default class MediaItem extends ImmutablePureComponent {
           <video
             className='media-gallery__item-gifv-thumbnail'
             aria-label={attachment.get('description')}
+            title={attachment.get('description')}
             role='application'
             src={attachment.get('url')}
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
-            autoPlay={!isIOS() && autoPlayGif}
+            autoPlay={autoPlayGif}
+            playsInline
             loop
             muted
           />
@@ -129,7 +130,7 @@ export default class MediaItem extends ImmutablePureComponent {
 
     return (
       <div className='account-gallery__item' style={{ width, height }}>
-        <a className='media-gallery__item-thumbnail' href={status.get('url')} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
+        <a className='media-gallery__item-thumbnail' href={`/@${status.getIn(['account', 'acct'])}\/${status.get('id')}`} onClick={this.handleClick} title={title} target='_blank' rel='noopener noreferrer'>
           <Blurhash
             hash={attachment.get('blurhash')}
             className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && loaded })}

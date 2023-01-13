@@ -149,9 +149,19 @@ sq:
     scopes:
       admin:read: të lexojë krejt të dhënat te shërbyesi
       admin:read:accounts: të lexojë krejt të dhënat rezervat të krejt llogarive
+      admin:read:canonical_email_blocks: të lexojë hollësi rezervat të krejt bllokimeve të zakonshëm të email-eve
+      admin:read:domain_allows: të lexojë hollësi rezervat të krejt lejimeve të përkatësive
+      admin:read:domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive
+      admin:read:email_domain_blocks: të lexojë hollësi rezervat të krejt bllokimeve të përkatësive të email-eve
+      admin:read:ip_blocks: të lexojë hollësi rezervat të krejt bllokimeve të IP-eve
       admin:read:reports: të lexojë të dhëna rezervat të krejt raportimeve dhe të llogarive të raportuara
       admin:write: të përpunojë krejt të dhënat në shërbyes
       admin:write:accounts: të kryejë veprime moderimi në llogaritë
+      admin:write:canonical_email_blocks: të kryejë veprime moderimi në bllokime të zakonshëm të email-eve
+      admin:write:domain_allows: të kryejë veprime moderimi mbi lejime përkatësish
+      admin:write:domain_blocks: të kryejë veprime moderimi mbi bllokime përkatësish
+      admin:write:email_domain_blocks: të kryejë veprime moderimi mbi lejime përkatësish email
+      admin:write:ip_blocks: të kryejë veprime moderimi mbi bllokime IP-sh
       admin:write:reports: të kryejë veprime moderimi në raportime
       crypto: përdor fshehtëzim skaj-më-skaj
       follow: të ndryshojë marrëdhënie llogarish

@@ -39,6 +39,18 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reblog, bob)).to be false
       end
 
+      it 'returns true for post from account who blocked me' do
+        status = Fabricate(:status, text: 'Hello, World', account: alice)
+        alice.block!(bob)
+        expect(FeedManager.instance.filter?(:home, status, bob)).to be true
+      end
+
+      it 'returns true for post from blocked account' do
+        status = Fabricate(:status, text: 'Hello, World', account: alice)
+        bob.block!(alice)
+        expect(FeedManager.instance.filter?(:home, status, bob)).to be true
+      end
+
       it 'returns true for reblog by followee of blocked account' do
         status = Fabricate(:status, text: 'Hello world', account: jeff)
         reblog = Fabricate(:status, reblog: status, account: alice)
@@ -128,36 +140,16 @@ RSpec.describe FeedManager do
         expect(FeedManager.instance.filter?(:home, reblog, alice)).to be true
       end
 
-      context 'for irreversibly muted phrases' do
-        it 'considers word boundaries when matching' do
-          alice.custom_filters.create!(phrase: 'bob', context: %w(home), irreversible: true)
-          alice.follow!(jeff)
-          status = Fabricate(:status, text: 'bobcats', account: jeff)
-          expect(FeedManager.instance.filter?(:home, status, alice)).to be_falsy
-        end
+      it 'returns true for German post when follow is set to English only' do
+        alice.follow!(bob, languages: %w(en))
+        status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be true
+      end
 
-        it 'returns true if phrase is contained' do
-          alice.custom_filters.create!(phrase: 'farts', context: %w(home public), irreversible: true)
-          alice.custom_filters.create!(phrase: 'pop tarts', context: %w(home), irreversible: true)
-          alice.follow!(jeff)
-          status = Fabricate(:status, text: 'i sure like POP TARts', account: jeff)
-          expect(FeedManager.instance.filter?(:home, status, alice)).to be true
-        end
-
-        it 'matches substrings if whole_word is false' do
-          alice.custom_filters.create!(phrase: 'take', context: %w(home), whole_word: false, irreversible: true)
-          alice.follow!(jeff)
-          status = Fabricate(:status, text: 'shiitake', account: jeff)
-          expect(FeedManager.instance.filter?(:home, status, alice)).to be true
-        end
-
-        it 'returns true if phrase is contained in a poll option' do
-          alice.custom_filters.create!(phrase: 'farts', context: %w(home public), irreversible: true)
-          alice.custom_filters.create!(phrase: 'pop tarts', context: %w(home), irreversible: true)
-          alice.follow!(jeff)
-          status = Fabricate(:status, text: 'what do you prefer', poll: Fabricate(:poll, options: %w(farts POP TARts)), account: jeff)
-          expect(FeedManager.instance.filter?(:home, status, alice)).to be true
-        end
+      it 'returns false for German post when follow is set to German' do
+        alice.follow!(bob, languages: %w(de))
+        status = Fabricate(:status, text: 'Hallo Welt', account: bob, language: 'de')
+        expect(FeedManager.instance.filter?(:home, status, alice)).to be false
       end
     end
 

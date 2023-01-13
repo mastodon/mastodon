@@ -11,7 +11,7 @@
     .filter-subset.filter-subset--with-select
       %strong= t('admin.action_logs.filter_by_user')
       .input.select.optional
-        = select_tag :account_id, options_from_collection_for_select(Account.joins(:user).merge(User.staff), :id, :username, params[:account_id]), prompt: I18n.t('admin.accounts.moderation.all')
+        = select_tag :account_id, options_from_collection_for_select(@auditable_accounts, :id, :username, params[:account_id]), prompt: I18n.t('admin.accounts.moderation.all')
 
     .filter-subset.filter-subset--with-select
       %strong= t('admin.action_logs.filter_by_action')

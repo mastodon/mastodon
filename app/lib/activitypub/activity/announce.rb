@@ -4,7 +4,7 @@ class ActivityPub::Activity::Announce < ActivityPub::Activity
   def perform
     return reject_payload! if delete_arrived_first?(@json['id']) || !related_to_local_activity?
 
-    lock_or_fail("announce:#{@object['id']}") do
+    with_lock("announce:#{value_or_id(@object)}") do
       original_status = status_from_object
 
       return reject_payload! if original_status.nil? || !announceable?(original_status)

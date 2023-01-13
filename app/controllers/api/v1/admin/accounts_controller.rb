@@ -8,11 +8,11 @@ class Api::V1::Admin::AccountsController < Api::BaseController
 
   before_action -> { authorize_if_got_token! :'admin:read', :'admin:read:accounts' }, only: [:index, :show]
   before_action -> { authorize_if_got_token! :'admin:write', :'admin:write:accounts' }, except: [:index, :show]
-  before_action :require_staff!
   before_action :set_accounts, only: :index
   before_action :set_account, except: :index
   before_action :require_local_account!, only: [:enable, :approve, :reject]
 
+  after_action :verify_authorized
   after_action :insert_pagination_headers, only: :index
 
   FILTER_PARAMS = %i(
@@ -54,20 +54,21 @@ class Api::V1::Admin::AccountsController < Api::BaseController
   def approve
     authorize @account.user, :approve?
     @account.user.approve!
+    log_action :approve, @account.user
     render json: @account, serializer: REST::Admin::AccountSerializer
   end
 
   def reject
     authorize @account.user, :reject?
     DeleteAccountService.new.call(@account, reserve_email: false, reserve_username: false)
-    render json: @account, serializer: REST::Admin::AccountSerializer
+    log_action :reject, @account.user
+    render_empty
   end
 
   def destroy
     authorize @account, :destroy?
-    json = render_to_body json: @account, serializer: REST::Admin::AccountSerializer
     Admin::AccountDeletionWorker.perform_async(@account.id)
-    render json: json
+    render_empty
   end
 
   def unsensitive
@@ -119,7 +120,9 @@ class Api::V1::Admin::AccountsController < Api::BaseController
       translated_params[:status] = status.to_s if params[status].present?
     end
 
-    translated_params[:permissions] = 'staff' if params[:staff].present?
+    if params[:staff].present?
+      translated_params[:role_ids] = UserRole.that_can(:manage_reports).map(&:id)
+    end
 
     translated_params
   end

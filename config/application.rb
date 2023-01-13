@@ -22,7 +22,6 @@ require 'mail'
 Bundler.require(*Rails.groups)
 
 require_relative '../lib/exceptions'
-require_relative '../lib/enumerable'
 require_relative '../lib/sanitize_ext/sanitize_config'
 require_relative '../lib/redis/namespace_extensions'
 require_relative '../lib/paperclip/url_generator_extensions'
@@ -38,12 +37,13 @@ require_relative '../lib/mastodon/version'
 require_relative '../lib/mastodon/rack_middleware'
 require_relative '../lib/devise/two_factor_ldap_authenticatable'
 require_relative '../lib/devise/two_factor_pam_authenticatable'
-require_relative '../lib/chewy/strategy/custom_sidekiq'
+require_relative '../lib/chewy/strategy/mastodon'
 require_relative '../lib/webpacker/manifest_extensions'
 require_relative '../lib/webpacker/helper_extensions'
 require_relative '../lib/rails/engine_extensions'
 require_relative '../lib/active_record/database_tasks_extensions'
 require_relative '../lib/active_record/batches'
+require_relative '../lib/simple_navigation/item_extensions'
 
 Dotenv::Railtie.load
 
@@ -71,6 +71,7 @@ module Mastodon
       :af,
       :ar,
       :ast,
+      :be,
       :bg,
       :bn,
       :br,
@@ -92,6 +93,7 @@ module Mastodon
       :fa,
       :fi,
       :fr,
+      :fy,
       :ga,
       :gd,
       :gl,
@@ -162,9 +164,9 @@ module Mastodon
     # config.autoload_paths += Dir[Rails.root.join('app', 'api', '*')]
 
     config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.deliver_later_queue_name = 'mailers'
 
     config.middleware.use Rack::Attack
-    config.middleware.use Rack::Deflater
     config.middleware.use Mastodon::RackMiddleware
 
     config.to_prepare do

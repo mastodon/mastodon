@@ -73,10 +73,55 @@ RSpec.describe VerifyLinkService, type: :service do
       end
     end
 
+    context 'when a document is truncated but the link back is valid' do
+      let(:html) do
+        "
+          <!doctype html>
+          <body>
+            <a rel=\"me\" href=\"#{ActivityPub::TagManager.instance.url_for(account)}\"
+        "
+      end
+
+      it 'marks the field as not verified' do
+        expect(field.verified?).to be false
+      end
+    end
+
+    context 'when a link back might be truncated' do
+      let(:html) do
+        "
+          <!doctype html>
+          <body>
+            <a rel=\"me\" href=\"#{ActivityPub::TagManager.instance.url_for(account)}"
+      end
+
+      it 'does not mark the field as verified' do
+        expect(field.verified?).to be false
+      end
+    end
+
     context 'when a link does not contain a link back' do
       let(:html) { '' }
 
-      it 'marks the field as verified' do
+      it 'does not mark the field as verified' do
+        expect(field.verified?).to be false
+      end
+    end
+
+    context 'when link has no `href` attribute' do
+      let(:html) do
+        <<-HTML
+          <!doctype html>
+          <head>
+            <link type="text/html" rel="me" />
+          </head>
+          <body>
+            <a rel="me" target="_blank">Follow me on Mastodon</a>
+          </body>
+        HTML
+      end
+
+      it 'does not mark the field as verified' do
         expect(field.verified?).to be false
       end
     end

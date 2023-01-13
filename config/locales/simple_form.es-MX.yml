@@ -49,6 +49,7 @@ es-MX:
         phrase: Se aplicará sin importar las mayúsculas o los avisos de contenido de un toot
         scopes: Qué APIs de la aplicación tendrán acceso. Si seleccionas el alcance de nivel mas alto, no necesitas seleccionar las individuales.
         setting_aggregate_reblogs: No mostrar nuevos retoots para los toots que han sido recientemente retooteados (sólo afecta a los retoots recibidos recientemente)
+        setting_always_send_emails: Normalmente las notificaciones por correo electrónico no se enviarán cuando estés usando Mastodon activamente
         setting_default_sensitive: El contenido multimedia sensible está oculto por defecto y puede ser mostrado con un click
         setting_display_media_default: Ocultar contenido multimedia marcado como sensible
         setting_display_media_hide_all: Siempre ocultar todo el contenido multimedia
@@ -66,7 +67,33 @@ es-MX:
         domain: Este puede ser el nombre de dominio que se muestra en al dirección de correo o el registro MX que utiliza. Se comprobarán al registrarse.
         with_dns_records: Se hará un intento de resolver los registros DNS del dominio dado y los resultados serán también puestos en lista negra
       featured_tag:
-        name: 'Puede que quieras usar uno de estos:'
+        name: 'Aquí están algunas de las etiquetas que más has utilizado recientemente:'
+      filters:
+        action: Elegir qué acción realizar cuando una publicación coincide con el filtro
+        actions:
+          hide: Ocultar completamente el contenido filtrado, comportándose como si no existiera
+          warn: Ocultar el contenido filtrado detrás de una advertencia mencionando el título del filtro
+      form_admin_settings:
+        backups_retention_period: Mantener los archivos de usuario generados durante el número de días especificado.
+        bootstrap_timeline_accounts: Estas cuentas aparecerán en la parte superior de las recomendaciones de los nuevos usuarios.
+        closed_registrations_message: Mostrado cuando los registros están cerrados
+        content_cache_retention_period: Las publicaciones de otros servidores se eliminarán después del número especificado de días cuando se establezca un valor positivo. Esto puede ser irreversible.
+        custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
+        mascot: Reemplaza la ilustración en la interfaz web avanzada.
+        media_cache_retention_period: Los archivos multimedia descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se redescargarán bajo demanda.
+        profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
+        require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
+        site_contact_email: Cómo la gente puede ponerse en contacto contigo para consultas legales o de ayuda.
+        site_contact_username: Cómo puede contactarte la gente en Mastodon.
+        site_extended_description: Cualquier información adicional que pueda ser útil para los visitantes y sus usuarios. Se puede estructurar con formato Markdown.
+        site_short_description: Una breve descripción para ayudar a identificar su servidor de forma única. ¿Quién lo administra, a quién va dirigido?
+        site_terms: Utiliza tu propia política de privacidad o déjala en blanco para usar la predeterminada Puede estructurarse con formato Markdown.
+        site_title: Cómo puede referirse la gente a tu servidor además de por el nombre de dominio.
+        theme: El tema que los visitantes no registrados y los nuevos usuarios ven.
+        thumbnail: Una imagen de aproximadamente 2:1 se muestra junto a la información de tu servidor.
+        timeline_preview: Los visitantes no registrados podrán navegar por los mensajes públicos más recientes disponibles en el servidor.
+        trendable_by_default: Omitir la revisión manual del contenido en tendencia. Los elementos individuales aún podrán eliminarse de las tendencias.
+        trends: Las tendencias muestran qué mensajes, etiquetas y noticias están ganando tracción en tu servidor.
       form_challenge:
         current_password: Estás entrando en un área segura
       imports:
@@ -79,6 +106,7 @@ es-MX:
         ip: Introduzca una dirección IPv4 o IPv6. Puede bloquear rangos completos usando la sintaxis CIDR. ¡Tenga cuidado de no quedarse fuera!
         severities:
           no_access: Bloquear acceso a todos los recursos
+          sign_up_block: Los nuevos registros se deshabilitarán
           sign_up_requires_approval: Nuevos registros requerirán su aprobación
         severity: Elegir lo que pasará con las peticiones desde esta IP
       rule:
@@ -90,6 +118,16 @@ es-MX:
         name: Sólo se puede cambiar el cajón de las letras, por ejemplo, para que sea más legible
       user:
         chosen_languages: Cuando se marca, solo se mostrarán los toots en los idiomas seleccionados en los timelines públicos
+        role: El rol controla qué permisos tiene el usuario
+      user_role:
+        color: Color que se utilizará para el rol a lo largo de la interfaz de usuario, como RGB en formato hexadecimal
+        highlighted: Esto hace que el rol sea públicamente visible
+        name: Nombre público del rol, si el rol se establece para que se muestre como una insignia
+        permissions_as_keys: Los usuarios con este rol tendrán acceso a...
+        position: Un rol superior decide la resolución de conflictos en ciertas situaciones. Ciertas acciones sólo pueden llevarse a cabo en roles con menor prioridad
+      webhook:
+        events: Seleccionar eventos para enviar
+        url: Donde los eventos serán enviados
     labels:
       account:
         fields:
@@ -151,6 +189,7 @@ es-MX:
         phrase: Palabra clave o frase
         setting_advanced_layout: Habilitar interfaz web avanzada
         setting_aggregate_reblogs: Agrupar retoots en las líneas de tiempo
+        setting_always_send_emails: Enviar siempre notificaciones por correo
         setting_auto_play_gif: Reproducir automáticamente los GIFs animados
         setting_boost_modal: Mostrar ventana de confirmación antes de un Retoot
         setting_crop_images: Recortar a 16x9 las imágenes de los toots no expandidos
@@ -176,6 +215,7 @@ es-MX:
         setting_use_pending_items: Modo lento
         severity: Severidad
         sign_in_token_attempt: Código de seguridad
+        title: Título
         type: Importar tipo
         username: Nombre de usuario
         username_or_email: Usuario o Email
@@ -184,6 +224,34 @@ es-MX:
         with_dns_records: Incluye los registros MX y las IP del dominio
       featured_tag:
         name: Etiqueta
+      filters:
+        actions:
+          hide: Ocultar completamente
+          warn: Ocultar con una advertencia
+      form_admin_settings:
+        backups_retention_period: Período de retención del archivo de usuario
+        bootstrap_timeline_accounts: Recomendar siempre estas cuentas a nuevos usuarios
+        closed_registrations_message: Mensaje personalizado cuando los registros no están disponibles
+        content_cache_retention_period: Período de retención de caché de contenido
+        custom_css: CSS personalizado
+        mascot: Mascota personalizada (legado)
+        media_cache_retention_period: Período de retención de caché multimedia
+        profile_directory: Habilitar directorio de perfiles
+        registrations_mode: Quién puede registrarse
+        require_invite_text: Requerir una razón para unirse
+        show_domain_blocks: Mostrar dominios bloqueados
+        show_domain_blocks_rationale: Mostrar por qué se bloquearon los dominios
+        site_contact_email: Dirección de correo electrónico de contacto
+        site_contact_username: Nombre de usuario de contacto
+        site_extended_description: Descripción extendida
+        site_short_description: Descripción del servidor
+        site_terms: Política de Privacidad
+        site_title: Nombre del servidor
+        theme: Tema por defecto
+        thumbnail: Miniatura del servidor
+        timeline_preview: Permitir el acceso no autenticado a las líneas de tiempo públicas
+        trendable_by_default: Permitir tendencias sin revisión previa
+        trends: Habilitar tendencias
       interactions:
         must_be_follower: Bloquear notificaciones de personas que no te siguen
         must_be_following: Bloquear notificaciones de personas que no sigues
@@ -197,6 +265,7 @@ es-MX:
         ip: IP
         severities:
           no_access: Bloquear acceso
+          sign_up_block: Bloquear registros
           sign_up_requires_approval: Limitar registros
         severity: Regla
       notification_emails:
@@ -217,7 +286,19 @@ es-MX:
         name: Etiqueta
         trendable: Permitir que esta etiqueta aparezca bajo tendencias
         usable: Permitir a los toots usar esta etiqueta
+      user:
+        role: Rol
+      user_role:
+        color: Color de insignia
+        highlighted: Mostrar rol como insignia en perfiles de usuario
+        name: Nombre
+        permissions_as_keys: Permisos
+        position: Prioridad
+      webhook:
+        events: Eventos habilitados
+        url: URL de Endpoint
     'no': 'No'
+    not_recommended: No recomendado
     recommended: Recomendado
     required:
       mark: "*"

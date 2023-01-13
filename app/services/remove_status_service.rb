@@ -3,6 +3,7 @@
 class RemoveStatusService < BaseService
   include Redisable
   include Payloadable
+  include Lockable
 
   # Delete a status
   # @param   [Status] status
@@ -17,37 +18,35 @@ class RemoveStatusService < BaseService
     @account  = status.account
     @options  = options
 
-    RedisLock.acquire(lock_options) do |lock|
-      if lock.acquired?
-        @status.discard
+    with_lock("distribute:#{@status.id}") do
+      @status.discard_with_reblogs
 
-        remove_from_self if @account.local?
-        remove_from_followers
-        remove_from_lists
+      StatusPin.find_by(status: @status)&.destroy
 
-        # There is no reason to send out Undo activities when the
-        # cause is that the original object has been removed, since
-        # original object being removed implicitly removes reblogs
-        # of it. The Delete activity of the original is forwarded
-        # separately.
-        remove_from_remote_reach if @account.local? && !@options[:original_removed]
+      remove_from_self if @account.local?
+      remove_from_followers
+      remove_from_lists
 
-        # Since reblogs don't mention anyone, don't get reblogged,
-        # favourited and don't contain their own media attachments
-        # or hashtags, this can be skipped
-        unless @status.reblog?
-          remove_from_mentions
-          remove_reblogs
-          remove_from_hashtags
-          remove_from_public
-          remove_from_media if @status.with_media?
-          remove_media
-        end
+      # There is no reason to send out Undo activities when the
+      # cause is that the original object has been removed, since
+      # original object being removed implicitly removes reblogs
+      # of it. The Delete activity of the original is forwarded
+      # separately.
+      remove_from_remote_reach if @account.local? && !@options[:original_removed]
 
-        @status.destroy! if permanently?
-      else
-        raise Mastodon::RaceConditionError
+      # Since reblogs don't mention anyone, don't get reblogged,
+      # favourited and don't contain their own media attachments
+      # or hashtags, this can be skipped
+      unless @status.reblog?
+        remove_from_mentions
+        remove_reblogs
+        remove_from_hashtags
+        remove_from_public
+        remove_from_media if @status.with_media?
+        remove_media
       end
+
+      @status.destroy! if permanently?
     end
   end
 
@@ -58,13 +57,13 @@ class RemoveStatusService < BaseService
   end
 
   def remove_from_followers
-    @account.followers_for_local_distribution.reorder(nil).find_each do |follower|
+    @account.followers_for_local_distribution.includes(:user).reorder(nil).find_each do |follower|
       FeedManager.instance.unpush_from_home(follower, @status)
     end
   end
 
   def remove_from_lists
-    @account.lists_for_local_distribution.select(:id, :account_id).reorder(nil).find_each do |list|
+    @account.lists_for_local_distribution.select(:id, :account_id).includes(account: :user).reorder(nil).find_each do |list|
       FeedManager.instance.unpush_from_list(list, @status)
     end
   end
@@ -103,7 +102,7 @@ class RemoveStatusService < BaseService
     # because once original status is gone, reblogs will disappear
     # without us being able to do all the fancy stuff
 
-    @status.reblogs.includes(:account).reorder(nil).find_each do |reblog|
+    @status.reblogs.rewhere(deleted_at: [nil, @status.deleted_at]).includes(:account).reorder(nil).find_each do |reblog|
       RemoveStatusService.new.call(reblog, original_removed: true)
     end
   end
@@ -143,9 +142,5 @@ class RemoveStatusService < BaseService
 
   def permanently?
     @options[:immediate] || !(@options[:preserve] || @status.reported?)
-  end
-
-  def lock_options
-    { redis: redis, key: "distribute:#{@status.id}", autorelease: 5.minutes.seconds }
   end
 end

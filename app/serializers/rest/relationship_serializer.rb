@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class REST::RelationshipSerializer < ActiveModel::Serializer
-  attributes :id, :following, :showing_reblogs, :notifying, :followed_by,
-             :blocking, :blocked_by, :muting, :muting_notifications, :requested,
-             :domain_blocking, :endorsed, :note
+  attributes :id, :following, :showing_reblogs, :notifying, :languages, :followed_by,
+             :blocking, :blocked_by, :muting, :muting_notifications,
+             :requested, :requested_by, :domain_blocking, :endorsed, :note
 
   def id
     object.id.to_s
@@ -23,6 +23,11 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
     (instance_options[:relationships].following[object.id] || {})[:notify] ||
       (instance_options[:relationships].requested[object.id] || {})[:notify] ||
       false
+  end
+
+  def languages
+    (instance_options[:relationships].following[object.id] || {})[:languages] ||
+      (instance_options[:relationships].requested[object.id] || {})[:languages]
   end
 
   def followed_by
@@ -47,6 +52,10 @@ class REST::RelationshipSerializer < ActiveModel::Serializer
 
   def requested
     instance_options[:relationships].requested[object.id] ? true : false
+  end
+
+  def requested_by
+    instance_options[:relationships].requested_by[object.id] ? true : false
   end
 
   def domain_blocking
