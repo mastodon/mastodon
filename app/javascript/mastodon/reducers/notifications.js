@@ -26,6 +26,9 @@ import {
   APP_FOCUS,
   APP_UNFOCUS,
 } from '../actions/app';
+import {
+  STATUS_CLEAR_NOTIFICATONS_SUCCESS
+} from '../actions/statuses'
 import { DOMAIN_BLOCK_SUCCESS } from 'mastodon/actions/domain_blocks';
 import { TIMELINE_DELETE, TIMELINE_DISCONNECT } from '../actions/timelines';
 import { fromJS, Map as ImmutableMap, List as ImmutableList } from 'immutable';
@@ -175,6 +178,16 @@ const filterNotifications = (state, accountIds, type) => {
   return state.update('items', helper).update('pendingItems', helper);
 };
 
+const filterNotificationsByStatus = (state, statusId) => {
+  const helper = list => {
+    list = list.filterNot(item => item !== null && (item.get('type') == "favourite" && item.get('status') == statusId));
+    list = list.filterNot(item => item !== null && (item.get('type') == "reblog" && item.get('status') == statusId));
+    return list
+  }
+  return state.update('items', helper).update('pendingItems', helper);
+
+}
+
 const clearUnread = (state) => {
   state = state.set('unread', state.get('pendingItems').size);
   const lastNotification = state.get('items').find(item => item !== null);
@@ -287,6 +300,8 @@ export default function notifications(state = initialState, action) {
     return filterNotifications(state, [action.id], 'follow_request');
   case NOTIFICATIONS_CLEAR:
     return state.set('items', ImmutableList()).set('pendingItems', ImmutableList()).set('hasMore', false);
+  case STATUS_CLEAR_NOTIFICATONS_SUCCESS:
+    return filterNotificationsByStatus(state, action.id);
   case TIMELINE_DELETE:
     return deleteByStatus(state, action.id);
   case TIMELINE_DISCONNECT:
