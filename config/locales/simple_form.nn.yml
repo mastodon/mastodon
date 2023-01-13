@@ -1,4 +1,3 @@
----
 nn:
   simple_form:
     hints:
@@ -18,8 +17,6 @@ nn:
           disable: Hindre eigaren frå å bruke kontoen, men fjern eller skjul ikkje innhaldet deira.
           none: Bruk dette for å senda ei åtvaring til brukaren utan å utløyse andre handlingar.
           sensitive: Tving markering for sensitivt innhald på alle mediavedlegga til denne brukaren.
-          silence: Hindre brukaren frå å publisere offentlege innlegg og i å skjule eigne innlegg og varsel frå folk som ikkje fylgjer dei.
-          suspend: Hindre samhandling med– og slett innhaldet til denne kontoen. Kan omgjerast innan 30 dagar.
         warning_preset_id: Valfritt. Du kan leggja inn eigen tekst på enden av føreoppsettet
       announcement:
         all_day: Når merka, vil berre datoane til tidsramma synast
@@ -112,7 +109,7 @@ nn:
       rule:
         text: Forklar ein regel eller eit krav for brukarar på denne tenaren. Prøv å skriva kort og lettfattleg
       sessions:
-        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+        otp: 'Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.'
         webauthn: Om det er ein USB-nøkkel må du setja han inn og om nødvendig trykkja på han.
       tag:
         name: Du kan berre endra bruken av store/små bokstavar, t. d. for å gjera det meir leseleg
@@ -297,7 +294,7 @@ nn:
       webhook:
         events: Aktiverte hendingar
         url: Endepunkts-URL
-    'no': Nei
+    'no': 'Nei'
     not_recommended: Ikkje anbefalt
     recommended: Tilrådt
     required:
@@ -306,4 +303,4 @@ nn:
     title:
       sessions:
         webauthn: Bruk en av sikkerhetsnøklene dine til å logge på
-    'yes': Ja
+    'yes': 'Ja'
