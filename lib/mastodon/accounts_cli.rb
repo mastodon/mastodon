@@ -553,6 +553,43 @@ module Mastodon
       end
     end
 
+    option :concurrency, type: :numeric, default: 5, aliases: [:c]
+    option :dry_run, type: :boolean
+    desc 'prune', 'Prune remote accounts that never interacted with local users'
+    long_desc <<-LONG_DESC
+      Prune remote account that
+      - follows no local accounts
+      - is not followed by any local accounts
+      - has no statuses on local
+      - has not been mentioned
+      - has not been favourited local posts
+      - not muted/blocked by us
+    LONG_DESC
+    def prune
+      dry_run = options[:dry_run] ? ' (dry run)' : ''
+
+      query = Account.remote.where.not(actor_type: %i(Application Service))
+      query = query.where('NOT EXISTS (SELECT 1 FROM mentions WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM favourites WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM statuses WHERE account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM follows WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM blocks WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM mutes WHERE target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM reports WHERE target_account_id = accounts.id)')
+      query = query.where('NOT EXISTS (SELECT 1 FROM follow_requests WHERE account_id = accounts.id OR target_account_id = accounts.id)')
+
+      _, deleted = parallelize_with_progress(query) do |account|
+        next if account.bot? || account.group?
+        next if account.suspended?
+        next if account.silenced?
+
+        account.destroy unless options[:dry_run]
+        1
+      end
+
+      say("OK, pruned #{deleted} accounts#{dry_run}", :green)
+    end
+
     option :force, type: :boolean
     option :replay, type: :boolean
     option :target
