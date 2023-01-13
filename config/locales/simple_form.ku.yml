@@ -1,4 +1,3 @@
----
 ku:
   simple_form:
     hints:
@@ -18,8 +17,6 @@ ku:
           disable: Nehêle bikarhêner ajimêrê xwe bi kar bîne lê naverokan jê nabe an jî veneşêre.
           none: Ji bo ku tu hişyariyekê ji bikarhêner re bişînî vê bi kar bîne, bêyî ku çalakiyeke din bikî.
           sensitive: Neçar bihêle ku ev bikarhêner hemû pêvekên medyayê hestiyar nîşan bike.
-          silence: Pêşî li bikarhêneran bigire ku bikarhêner bi herkesî ra xûyabarî neşîne, post û agahdarîyên xwe ji mirovên ku wan naşopîne veşêre.
-          suspend: Pêşîya hevbandorîya vî ajimêrê bigire û naveroka wê jê bibe. Di nava 30 rojan de tê vegerandin.
         warning_preset_id: Bi dilê xwe ye. Tu hîn jî dikarî dawîya pêşsazkirî de nivîsek teybet li zêde bikî
       announcement:
         all_day: Dema were nîşankirin, tenê dîrokên navbera demê dê werin nîşan kirin
@@ -47,9 +44,7 @@ ku:
         locked: Bi pejirandina daxwazên şopandinê, kî dikare te bişopîne bi destan kontrol bike
         password: Herî kêm 8 tîpan bi kar bîne
         phrase: Ji rewşa nivîsê tîpên girdek/hûrdek an jî ji hişyariya naveroka ya şandiyê wek serbixwe wê were hevbeş kirin
-        scopes: |-
-          Sepana ku dê kîjan maf bide bigihije APIyan.
-          Ger te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî.
+        scopes: "Sepana ku dê kîjan maf bide bigihije APIyan.\nGer te asteke jor hilbijartibe, ne pêwîste ku tu yên berfirehî a kesane hilbijêrî."
         setting_aggregate_reblogs: Bilindkirinên ku nû hatine weşan ji şandiyên di dema dawî de nîşan nede (tenê li ser bilindkirinên nû wergirtî bandor dike)
         setting_always_send_emails: Dema ku tu Mastodon bi rengek çalak bi kar tînî, bi gelemperî agahdariya e-nameyê nayê şandin
         setting_default_sensitive: Medyaya hestiyar berdestî ve tê veşartin û bi tikandin dikare were eşkere kirin
@@ -299,7 +294,7 @@ ku:
       webhook:
         events: Bûyerên çalakkirî
         url: Girêdana xala dawîbûnê
-    'no': Na
+    'no': 'Na'
     not_recommended: Nayê pêşniyarkirin
     recommended: Pêşniyarkirî
     required:
@@ -308,4 +303,4 @@ ku:
     title:
       sessions:
         webauthn: Yek ji kilîtên ewlehiyê yên xwe bi kar bîne bo têketinê
-    'yes': Erê
+    'yes': 'Erê'
