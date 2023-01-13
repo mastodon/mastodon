@@ -18,8 +18,8 @@ en:
           disable: Prevent the user from using their account, but do not delete or hide their contents.
           none: Use this to send a warning to the user, without triggering any other action.
           sensitive: Force all this user's media attachments to be flagged as sensitive.
-          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them.
-          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days.
+          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them. Closes all reports against this account.
+          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days. Closes all reports against this account.
         warning_preset_id: Optional. You can still add custom text to end of the preset
       announcement:
         all_day: When checked, only the dates of the time range will be displayed
