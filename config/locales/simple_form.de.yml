@@ -73,6 +73,7 @@ de:
           hide: Den gefilterten Beitrag vollständig ausblenden, als hätte er nie existiert
           warn: Den gefilterten Beitrag hinter einer Warnung, die den Filtertitel beinhaltet, ausblenden
       form_admin_settings:
+        activity_api_enabled: Zählung der lokal veröffentlichten Beiträge, der aktiven Nutzer und der Neuanmeldungen in wöchentlichen Zeitabschnitten
         backups_retention_period: Behalte die Archive, die von den Benutzer*innen erstellt worden sind, für die angegebene Anzahl an Tagen.
         bootstrap_timeline_accounts: Diese Profile werden bei den Follower-Empfehlungen für neu registrierte Nutzer*innen oben angeheftet.
         closed_registrations_message: Wird angezeigt, wenn Registrierungen deaktiviert sind
@@ -80,6 +81,7 @@ de:
         custom_css: Du kannst benutzerdefinierte Stile auf die Web-Version von Mastodon anwenden.
         mascot: Überschreibt die Abbildung in der erweiterten Weboberfläche.
         media_cache_retention_period: Von anderen Instanzen übertragene Mediendateien werden nach der angegebenen Anzahl an Tagen – sofern das Feld eine positive Zahl enthält – aus dem Cache gelöscht und bei Bedarf erneut heruntergeladen.
+        peers_api_enabled: Eine Liste von Domainnamen, die diesem Server im Fediverse bekannt ist. Hier werden keine Angaben darüber gemacht, ob Sie mit einem bestimmten Server verbunden sind, sondern nur, dass Ihr Server von ihm weiß. Dies wird von Diensten verwendet, die Statistiken über die Föderation im Allgemeinen sammeln.
         profile_directory: Das Profilverzeichnis zeigt alle Benutzer*innen an, die sich dafür entschieden haben, entdeckt zu werden.
         require_invite_text: Wenn Registrierungen eine manuelle Genehmigung erfordern, dann werden Nutzer einen Grund für ihre Registrierung angeben müssen
         site_contact_email: Wie man dich bei rechtlichen oder Support-Anfragen erreichen kann.
@@ -228,6 +230,7 @@ de:
           hide: Komplett ausblenden
           warn: Mit einer Warnung ausblenden
       form_admin_settings:
+        activity_api_enabled: Veröffentlichung von Gesamtstatistiken über Nutzeraktivitäten in der API
         backups_retention_period: Aufbewahrungsfrist für Archive
         bootstrap_timeline_accounts: Neuen Nutzern immer diese Konten empfehlen
         closed_registrations_message: Nachricht, falls Registrierungen deaktiviert sind
@@ -235,6 +238,7 @@ de:
         custom_css: Eigenes CSS
         mascot: Benutzerdefiniertes Maskottchen (Legacy)
         media_cache_retention_period: Aufbewahrungsfrist für den Medien-Cache
+        peers_api_enabled: Veröffentliche Liste bekannter Server in der API
         profile_directory: Profilverzeichnis aktivieren
         registrations_mode: Wer darf ein neues Konto registrieren?
         require_invite_text: Grund für den Beitritt verlangen
