@@ -4,7 +4,6 @@ import { fetchHistory } from 'flavours/glitch/actions/history';
 import DropdownMenu from 'flavours/glitch/components/dropdown_menu';
 
 const mapStateToProps = (state, { statusId }) => ({
-  dropdownPlacement: state.getIn(['dropdown_menu', 'placement']),
   openDropdownId: state.getIn(['dropdown_menu', 'openId']),
   openedViaKeyboard: state.getIn(['dropdown_menu', 'keyboard']),
   items: state.getIn(['history', statusId, 'items']),
@@ -13,9 +12,9 @@ const mapStateToProps = (state, { statusId }) => ({
 
 const mapDispatchToProps = (dispatch, { statusId }) => ({
 
-  onOpen (id, onItemClick, dropdownPlacement, keyboard) {
+  onOpen (id, onItemClick, keyboard) {
     dispatch(fetchHistory(statusId));
-    dispatch(openDropdownMenu(id, dropdownPlacement, keyboard));
+    dispatch(openDropdownMenu(id, keyboard));
   },
 
   onClose (id) {

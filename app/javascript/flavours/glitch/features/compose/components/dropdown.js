@@ -2,7 +2,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Overlay from 'react-overlays/lib/Overlay';
+import Overlay from 'react-overlays/Overlay';
 
 //  Components.
 import IconButton from 'flavours/glitch/components/icon_button';
@@ -45,7 +45,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
   };
 
   //  Toggles opening and closing the dropdown.
-  handleToggle = ({ target, type }) => {
+  handleToggle = ({ type }) => {
     const { onModalOpen } = this.props;
     const { open } = this.state;
 
@@ -59,11 +59,9 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
         }
       }
     } else {
-      const { top } = target.getBoundingClientRect();
       if (this.state.open && this.activeElement) {
         this.activeElement.focus({ preventScroll: true });
       }
-      this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
       this.setState({ open: !this.state.open, openedViaKeyboard: type !== 'click' });
     }
   }
@@ -158,6 +156,18 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
     };
   }
 
+  setTargetRef = c => {
+    this.target = c;
+  }
+
+  findTarget = () => {
+    return this.target;
+  }
+
+  handleOverlayEnter = (state) => {
+    this.setState({ placement: state.placement });
+  }
+
   //  Rendering.
   render () {
     const {
@@ -179,6 +189,7 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
       <div
         className={classNames('privacy-dropdown', placement, { active: open })}
         onKeyDown={this.handleKeyDown}
+        ref={this.setTargetRef}
       >
         <div className={classNames('privacy-dropdown__value', { active })}>
           <IconButton
@@ -204,18 +215,26 @@ export default class ComposerOptionsDropdown extends React.PureComponent {
           containerPadding={20}
           placement={placement}
           show={open}
-          target={this}
+          flip
+          target={this.findTarget}
           container={container}
+          popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}
         >
-          <DropdownMenu
-            items={items}
-            renderItemContents={renderItemContents}
-            onChange={onChange}
-            onClose={this.handleClose}
-            value={value}
-            openedViaKeyboard={this.state.openedViaKeyboard}
-            closeOnChange={closeOnChange}
-          />
+          {({ props, placement }) => (
+            <div {...props}>
+              <div className={`dropdown-animation privacy-dropdown__dropdown ${placement}`}>
+                <DropdownMenu
+                  items={items}
+                  renderItemContents={renderItemContents}
+                  onChange={onChange}
+                  onClose={this.handleClose}
+                  value={value}
+                  openedViaKeyboard={this.state.openedViaKeyboard}
+                  closeOnChange={closeOnChange}
+                />
+              </div>
+            </div>
+          )}
         </Overlay>
       </div>
     );

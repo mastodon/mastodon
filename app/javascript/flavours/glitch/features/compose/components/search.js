@@ -3,13 +3,12 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
-import spring from 'react-motion/lib/spring';
 import {
   injectIntl,
   FormattedMessage,
   defineMessages,
 } from 'react-intl';
-import Overlay from 'react-overlays/lib/Overlay';
+import Overlay from 'react-overlays/Overlay';
 
 //  Components.
 import Icon from 'flavours/glitch/components/icon';
@@ -17,7 +16,6 @@ import Icon from 'flavours/glitch/components/icon';
 //  Utils.
 import { focusRoot } from 'flavours/glitch/utils/dom_helpers';
 import { searchEnabled } from 'flavours/glitch/initial_state';
-import Motion from '../../ui/util/optional_motion';
 
 const messages = defineMessages({
   placeholder: { id: 'search.placeholder', defaultMessage: 'Search' },
@@ -26,31 +24,20 @@ const messages = defineMessages({
 
 class SearchPopout extends React.PureComponent {
 
-  static propTypes = {
-    style: PropTypes.object,
-  };
-
   render () {
-    const { style } = this.props;
     const extraInformation = searchEnabled ? <FormattedMessage id='search_popout.tips.full_text' defaultMessage='Simple text returns statuses you have written, favourited, boosted, or have been mentioned in, as well as matching usernames, display names, and hashtags.' /> : <FormattedMessage id='search_popout.tips.text' defaultMessage='Simple text returns matching display names, usernames and hashtags' />;
     return (
-      <div style={{ ...style, position: 'absolute', width: 285, zIndex: 2 }}>
-        <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
-          {({ opacity, scaleX, scaleY }) => (
-            <div className='search-popout' style={{ opacity: opacity, transform: `scale(${scaleX}, ${scaleY})` }}>
-              <h4><FormattedMessage id='search_popout.search_format' defaultMessage='Advanced search format' /></h4>
+      <div className='search-popout'>
+        <h4><FormattedMessage id='search_popout.search_format' defaultMessage='Advanced search format' /></h4>
 
-              <ul>
-                <li><em>#example</em> <FormattedMessage id='search_popout.tips.hashtag' defaultMessage='hashtag' /></li>
-                <li><em>@username@domain</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
-                <li><em>URL</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
-                <li><em>URL</em> <FormattedMessage id='search_popout.tips.status' defaultMessage='status' /></li>
-              </ul>
+        <ul>
+          <li><em>#example</em> <FormattedMessage id='search_popout.tips.hashtag' defaultMessage='hashtag' /></li>
+          <li><em>@username@domain</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
+          <li><em>URL</em> <FormattedMessage id='search_popout.tips.user' defaultMessage='user' /></li>
+          <li><em>URL</em> <FormattedMessage id='search_popout.tips.status' defaultMessage='status' /></li>
+        </ul>
 
-              {extraInformation}
-            </div>
-          )}
-        </Motion>
+        {extraInformation}
       </div>
     );
   }
@@ -136,6 +123,10 @@ class Search extends React.PureComponent {
     }
   }
 
+  findTarget = () => {
+    return this.searchForm;
+  }
+
   render () {
     const { intl, value, submitted } = this.props;
     const { expanded } = this.state;
@@ -161,8 +152,14 @@ class Search extends React.PureComponent {
           <Icon id='search' className={hasValue ? '' : 'active'} />
           <Icon id='times-circle' className={hasValue ? 'active' : ''} />
         </div>
-        <Overlay show={expanded && !hasValue} placement='bottom' target={this} container={this}>
-          <SearchPopout />
+        <Overlay show={expanded && !hasValue} placement='bottom' target={this.findTarget} popperConfig={{ strategy: 'fixed' }}>
+          {({ props, placement }) => (
+            <div {...props} style={{ ...props.style, width: 285, zIndex: 2 }}>
+              <div className={`dropdown-animation ${placement}`}>
+                <SearchPopout />
+              </div>
+            </div>
+          )}
         </Overlay>
       </div>
     );

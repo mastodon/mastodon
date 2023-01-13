@@ -28,6 +28,10 @@ describe Sanitize::Config do
       expect(Sanitize.fragment('<a href="foo://bar">Test</a>', subject)).to eq 'Test'
     end
 
+    it 'does not re-interpret HTML when removing unsupported links' do
+      expect(Sanitize.fragment('<a href="foo://bar">Test&lt;a href="https://example.com"&gt;test&lt;/a&gt;</a>', subject)).to eq 'Test&lt;a href="https://example.com"&gt;test&lt;/a&gt;'
+    end
+
     it 'keeps a with href' do
       expect(Sanitize.fragment('<a href="http://example.com">Test</a>', subject)).to eq '<a href="http://example.com" rel="nofollow noopener noreferrer" target="_blank">Test</a>'
     end

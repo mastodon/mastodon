@@ -355,7 +355,7 @@ fi:
         other: "<strong>%{count}</strong> odottavat raportit"
       pending_tags_html:
         one: "<strong>%{count}</strong> odottava hashtagi"
-        other: "<strong>%{count}</strong> odottavat hashtagit"
+        other: "<strong>%{count}</strong> odottavaa aihetunnistetta"
       pending_users_html:
         one: "<strong>%{count}</strong> odottava käyttäjä"
         other: "<strong>%{count}</strong> odottavat käyttäjät"
@@ -669,7 +669,7 @@ fi:
         manage_settings: Hallita asetuksia
         manage_settings_description: Salli käyttäjien muuttaa sivuston asetuksia
         manage_taxonomies: Hallita luokittelua
-        manage_taxonomies_description: Sallii käyttäjien tarkistaa trendillisen sisällön ja päivittää hashtag-asetuksia
+        manage_taxonomies_description: Sallii käyttäjien tarkistaa nousussa olevan sisällön ja päivittää aihetunnisteiden asetuksia
         manage_user_access: Hallita käyttäjän oikeuksia
         manage_user_access_description: Sallii käyttäjien poistaa käytöstä muiden käyttäjien kaksivaiheisen todennuksen, muuttaa heidän sähköpostiosoitettaan ja nollata heidän salasanansa
         manage_users: Hallita käyttäjiä
@@ -782,7 +782,7 @@ fi:
         message_html: Ei ole Sidekiq-prosessia käynnissä jonossa %{value}. Tarkista Sidekiq-asetukset
     tags:
       review: Tarkista tila
-      updated_msg: Hashtagin asetukset päivitetty onnistuneesti
+      updated_msg: Aihetunnisteen asetukset päivitetty onnistuneesti
     title: Ylläpito
     trends:
       allow: Salli
@@ -830,7 +830,7 @@ fi:
           tag_servers_dimension: Suosituimmat palvelimet
           tag_servers_measure: eri palvelimet
           tag_uses_measure: käyttökerrat
-        description_html: Nämä ovat hashtageja, jotka näkyvät tällä hetkellä monissa viesteissä, jotka palvelimesi näkee. Tämä voi auttaa käyttäjiäsi selvittämään, mistä ihmiset puhuvat eniten tällä hetkellä. Mitään hashtageja ei näytetä julkisesti ennen kuin hyväksyt ne.
+        description_html: Nämä ovat aihetunnisteita, jotka näkyvät tällä hetkellä monissa julkaisuissa, jotka palvelimesi näkee. Tämä voi auttaa käyttäjiäsi selvittämään, mistä ihmiset puhuvat eniten tällä hetkellä. Mitään aihetunnisteita ei näytetä julkisesti, ennen kuin hyväksyt ne.
         listable: Voidaan ehdottaa
         no_tag_selected: Yhtään tagia ei muutettu, koska yhtään ei valittu
         not_listable: Ei tulla ehdottamaan
@@ -900,9 +900,9 @@ fi:
       new_trending_statuses:
         title: Suositut viestit
       new_trending_tags:
-        no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä hashtageja.
-        requirements: 'Mikä tahansa näistä ehdokkaista voisi ylittää #%{rank} hyväksytyn trendikkään hashtagin, joka on tällä hetkellä #%{lowest_tag_name} arvosanalla %{lowest_tag_score}.'
-        title: Suositut hashtagit
+        no_approved_tags: Tällä hetkellä ei ole hyväksyttyjä trendikkäitä aihetunnisteita.
+        requirements: 'Mikä tahansa näistä ehdokkaista voisi ylittää #%{rank} hyväksytyn trendikkään aihetunnisteen, joka on tällä hetkellä #%{lowest_tag_name} arvosanalla %{lowest_tag_score}.'
+        title: Suositut aihetunnisteet
       subject: Uusia trendejä tarkistettavaksi instanssissa %{instance}
   aliases:
     add_new: Luo alias
@@ -1114,8 +1114,8 @@ fi:
   featured_tags:
     add_new: Lisää uusi
     errors:
-      limit: Olet jo lisännyt enimmäismäärän hashtageja
-    hint_html: "<strong>Mitkä ovat näkyvillä olevat hashtagit?</strong> Ne ovat näkyvästi julkisessa profiilissasi ja niiden avulla ihmiset voivat selata julkisia viestejäsi nimenomaan näiden hashtagien alla. Ne ovat loistava luovan työn työkalu tai pitkäaikaisten projektien seurantaan."
+      limit: Olet jo lisännyt enimmäismäärän aihetunnisteita
+    hint_html: "<strong>Mitä ovat näkyvillä olevat hashtagit eli aihetunnisteet?</strong> Ne ovat näkyvissä julkisessa profiilissasi ja niiden avulla ihmiset voivat selata julkisia viestejäsi nimenomaan näiden aihetunnisteiden alla. Ne auttavat esimerkiksi luovan työn tai pitkäaikaisten projektien seurannassa."
   filters:
     contexts:
       account: Profiilit
@@ -1636,7 +1636,7 @@ fi:
       edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat ennen kuin he saavat seurata sinua.
       explanation: Näillä vinkeillä pääset alkuun
       final_action: Ala julkaista
-      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja hashtageilla. Kannattaa myös esittäytyä! Käytä hashtagia #esittely.'
+      final_step: 'Ala julkaista! Vaikkei sinulla olisi seuraajia, monet voivat nähdä julkiset viestisi esimerkiksi paikallisella aikajanalla ja aihetunnisteilla. Kannattaa myös esittäytyä! Käytä aihetunnistetta #esittely.'
       full_handle: Koko käyttäjätunnuksesi
       full_handle_hint: Kerro tämä ystävillesi, niin he voivat lähettää sinulle viestejä tai löytää sinut toisen instanssin kautta.
       subject: Tervetuloa Mastodoniin
