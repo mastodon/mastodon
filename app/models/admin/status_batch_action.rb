@@ -73,7 +73,7 @@ class Admin::StatusBatchAction
     # Can't use a transaction here because UpdateStatusService queues
     # Sidekiq jobs
     statuses.includes(:media_attachments, :preview_cards).find_each do |status|
-      next unless status.with_media? || status.with_preview_card?
+      next if status.discarded? || !(status.with_media? || status.with_preview_card?)
 
       authorize(status, :update?)
 
@@ -89,14 +89,14 @@ class Admin::StatusBatchAction
         report.resolve!(current_account)
         log_action(:resolve, report)
       end
-
-      @warning = target_account.strikes.create!(
-        action: :mark_statuses_as_sensitive,
-        account: current_account,
-        report: report,
-        status_ids: status_ids
-      )
     end
+
+    @warning = target_account.strikes.create!(
+      action: :mark_statuses_as_sensitive,
+      account: current_account,
+      report: report,
+      status_ids: status_ids
+    )
 
     UserMailer.warning(target_account.user, @warning).deliver_later! if warnable?
   end
