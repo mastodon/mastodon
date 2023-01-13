@@ -553,6 +553,79 @@ module Mastodon
       end
     end
 
+    option :force, type: :boolean
+    option :replay, type: :boolean
+    option :target
+    desc 'migrate USERNAME', 'Migrate a local user to another account'
+    long_desc <<~LONG_DESC
+      With --replay, replay the last migration of the specified account, in
+      case some remote server may not have properly processed the associated
+      `Move` activity.
+
+      With --target, specify another account to migrate to.
+
+      With --force, perform the migration even if the selected account
+      redirects to a different account that the one specified.
+    LONG_DESC
+    def migrate(username)
+      if options[:replay].present? && options[:target].present?
+        say('Use --replay or --target, not both', :red)
+        exit(1)
+      end
+
+      if options[:replay].blank? && options[:target].blank?
+        say('Use either --replay or --target', :red)
+        exit(1)
+      end
+
+      account = Account.find_local(username)
+
+      if account.nil?
+        say("No such account: #{username}", :red)
+        exit(1)
+      end
+
+      migration = nil
+
+      if options[:replay]
+        migration = account.migrations.last
+        if migration.nil?
+          say('The specified account has not performed any migration', :red)
+          exit(1)
+        end
+
+        unless options[:force] || migration.target_acount_id == account.moved_to_account_id
+          say('The specified account is not redirecting to its last migration target. Use --force if you want to replay the migration anyway', :red)
+          exit(1)
+        end
+      end
+
+      if options[:target]
+        target_account = ResolveAccountService.new.call(options[:target])
+
+        if target_account.nil?
+          say("The specified target account could not be found: #{options[:target]}", :red)
+          exit(1)
+        end
+
+        unless options[:force] || account.moved_to_account_id.nil? || account.moved_to_account_id == target_account.id
+          say('The specified account is redirecting to a different target account. Use --force if you want to change the migration target', :red)
+          exit(1)
+        end
+
+        begin
+          migration = account.migrations.create!(acct: target_account.acct)
+        rescue ActiveRecord::RecordInvalid => e
+          say("Error: #{e.message}", :red)
+          exit(1)
+        end
+      end
+
+      MoveService.new.call(migration)
+
+      say("OK, migrated #{account.acct} to #{migration.target_account.acct}", :green)
+    end
+
     private
 
     def rotate_keys_for_account(account, delay = 0)
