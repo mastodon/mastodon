@@ -1,7 +1,4 @@
-redirect_uri = 'https://wallet.hello.coop/oauth/response/mastodon/'
-if ENV['HELLO_MASTODON_BUILDER_REDIRECT_URI']
-  redirect_uri = ENV['HELLO_MASTODON_BUILDER_REDIRECT_URI']
-end
+redirect_uri = Hello.mastodon_builder_redirect_uri
 
 client_secret = nil
 if ENV['HELLO_MASTODON_BUILDER_CLIENT_SECRET']
