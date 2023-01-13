@@ -17,8 +17,8 @@ pt-PT:
           disable: Impede o utilizador de usar a sua conta, mas não elimina ou oculta o seu conteúdo.
           none: Use isto para enviar um aviso ao utilizador, sem espoletar nenhuma outra ação.
           sensitive: Força todos os anexos de media deste utilizador a serem sinalizados como problemáticos.
-          silence: Impede que o utilizador seja capaz de publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem.
-          suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias.
+          silence: Impede que o utilizador possa publicar com visibilidade pública, ocultando as suas publicações e notificações de pessoas que não o seguem. Encerra todas as denúncias contra esta conta.
+          suspend: Evita qualquer interação de ou para esta conta e elimina o seu conteúdo. Reversível num período de 30 dias. Encerra todas as denúncias contra esta conta.
         warning_preset_id: Opcional. Tu ainda podes adicionar texto personalizado no fim do predefinido
       announcement:
         all_day: Quando marcado, apenas as datas do intervalo de tempo serão apresentadas
@@ -80,6 +80,7 @@ pt-PT:
         custom_css: Pode aplicar estilos personalizados na versão web do Mastodon.
         mascot: Sobrepõe-se à ilustração na interface web avançada.
         media_cache_retention_period: Os ficheiros de media descarregados serão apagados decorrido o número de dias especificado, quando definido com um valor positivo, e descarregados novamente quando solicitados.
+        peers_api_enabled: Uma lista de nomes de domínio que este servidor encontrou no fediverso. Nenhum dado é incluído aqui sobre se você federa com um determinado servidor, apenas que o seu servidor o conhece. Este serviço é utilizado por serviços que recolhem estatísticas na federação, em termos gerais.
         profile_directory: O diretório de perfis lista todos os utilizadores que optaram por ter a sua conta a ser sugerida a outros.
         require_invite_text: Quando as incrições exigirem aprovação manual, faça o texto "Por que se quer juntar a nós?" da solicitação de convite ser obrigatório, em vez de opcional
         site_contact_email: Como as pessoas podem entrar em contacto consigo para obter informações legais ou de apoio técnico.
@@ -235,6 +236,7 @@ pt-PT:
         custom_css: CSS personalizado
         mascot: Mascote personalizada (legado)
         media_cache_retention_period: Período de retenção de ficheiros de media em cache
+        peers_api_enabled: Publicar lista de servidores descobertos na API
         profile_directory: Habilitar diretório de perfis
         registrations_mode: Quem se pode inscrever
         require_invite_text: Requerer uma razão para entrar
