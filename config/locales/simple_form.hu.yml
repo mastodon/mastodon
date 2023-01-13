@@ -1,4 +1,3 @@
----
 hu:
   simple_form:
     hints:
@@ -18,8 +17,6 @@ hu:
           disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
           none: Ezt használd ahhoz, hogy a felhasználónak figyelmeztetést küldj bármilyen más következmény nélkül.
           sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg kényesként.
-          silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú bejegyzést tegyen közzé, elrejtjük a bejegyzéseit és a róla szóló értesítéseket azok elől, akik nem közvetlen követői.
-          suspend: Minden interakciót megakadályozunk ezzel a fiókkal és töröljük a tartalmát. 30 napon belül még visszacsinálható.
         warning_preset_id: Nem kötelező. A figyelmeztetés végére saját szöveget is írhatsz.
       announcement:
         all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
@@ -297,7 +294,7 @@ hu:
       webhook:
         events: Engedélyezett események
         url: Végponti URL
-    'no': Nem
+    'no': 'Nem'
     not_recommended: Nem ajánlott
     recommended: Ajánlott
     required:
@@ -306,4 +303,4 @@ hu:
     title:
       sessions:
         webauthn: Használd valamelyik biztonsági kulcsodat a bejelentkezéshez
-    'yes': Igen
+    'yes': 'Igen'
