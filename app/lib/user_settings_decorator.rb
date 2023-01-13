@@ -40,6 +40,8 @@ class UserSettingsDecorator
     user.settings['crop_images']         = crop_images_preference if change?('setting_crop_images')
     user.settings['always_send_emails']  = always_send_emails_preference if change?('setting_always_send_emails')
     user.settings['resized_custom_emoji']  = resized_custom_emoji if change?('setting_resized_custom_emoji')
+    user.settings['portfolio_default_hashtag_flag']  = portfolio_default_hashtag_flag if change?('setting_portfolio_default_hashtag_flag')
+    user.settings['portfolio_default_hashtag']  = portfolio_default_hashtag if change?('setting_portfolio_default_hashtag')
   end
 
   def merged_notification_emails
@@ -140,6 +142,14 @@ class UserSettingsDecorator
 
   def resized_custom_emoji
     boolean_cast_setting 'setting_resized_custom_emoji'
+  end
+
+  def portfolio_default_hashtag_flag
+    boolean_cast_setting 'setting_portfolio_default_hashtag_flag'
+  end
+
+  def portfolio_default_hashtag
+    settings['setting_portfolio_default_hashtag']
   end
 
   def boolean_cast_setting(key)
