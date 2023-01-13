@@ -2,9 +2,9 @@ fa:
   simple_form:
     hints:
       account_alias:
-        acct: نشانی username@domain را برای حسابی که می‌خواهید از آن منتقل شوید بنویسید
+        acct: مشخّص کردن username@domain حسابی که می‌خواهید از آن منتقل شوید
       account_migration:
-        acct: نشانی username@domain را برای حسابی که می‌خواهید به آن منتقل شوید بنویسید
+        acct: مشخّص کردن username@domain حسابی که می‌خواهید به آن منتقل شوید
       account_warning_preset:
         text: می‌توانید مانند فرسته‌های معمولی کاربران دیگر را نام ببرید یا پیوند و برچسب بگذارید
         title: اختیاری. برای گیرنده قابل مشاهده نیست
@@ -200,6 +200,9 @@ fa:
         backups_retention_period: دورهٔ نگه‌داری بایگانی کاربری
         theme: زمینهٔ پیش‌گزیده
         thumbnail: بندانگشتی کارساز
+        timeline_preview: اجازهٔ دسترسی بدون تأیید هویت به خط‌زمانی‌های عمومی
+        trendable_by_default: اجازهٔ پرطرفدار شدن بدون بازبینی پیشین
+        trends: به کار انداختن پرطرفدارها
       interactions:
         must_be_follower: انسداد آگاهی‌ها از ناپی‌گیران
         must_be_following: انسداد آگاهی‌ها از افرادی که پی نمی‌گیرید
@@ -213,6 +216,7 @@ fa:
         ip: آی‌پی
         severities:
           no_access: بن کردن دسترسی
+          sign_up_block: مسدود کردن ثبت‌نام‌ها
           sign_up_requires_approval: محدود کردن ثبت نام‌ها
         severity: قانون
       notification_emails:
@@ -233,7 +237,19 @@ fa:
         name: برچسب
         trendable: بگذارید که این برچسب در موضوعات پرطرفدار دیده شود
         usable: بگذارید که این برچسب در فرسته‌ها به کار بروند
+      user:
+        role: نقش
+      user_role:
+        color: رنگ نشان
+        highlighted: نمایش نقش به شکل نشان روی نمایهً کاربری
+        name: نام
+        permissions_as_keys: اجازه‌ها
+        position: اولویت
+      webhook:
+        events: رویدادهای به کار افتاده
+        url: نشانی نقطهٔ پایانی
     'no': 'خیر'
+    not_recommended: پیشنهاد نشده
     recommended: توصیه می‌شود
     required:
       mark: "*"
