@@ -63,6 +63,17 @@ en-GB:
       disabled: Frozen
       display_name: Display name
       domain: Domain
+      edit: Edit
+      email: Email
+      email_status: Email status
+      enable: Unfreeze
+      enable_sign_in_token_auth: Enable e-mail token authentication
+      enabled: Enabled
+    roles:
+      categories:
+        devops: DevOps
+      privileges:
+        view_devops: DevOps
   errors:
     '400': The request you submitted was invalid or malformed.
     '403': You don't have permission to view this page.
@@ -73,3 +84,10 @@ en-GB:
     '429': Too many requests
     '500': 
     '503': The page could not be served due to a temporary server failure.
+  sessions:
+    browsers:
+      blackberry: BlackBerry
+      uc_browser: UC Browser
+    platforms:
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
