@@ -1,4 +1,3 @@
----
 cy:
   simple_form:
     hints:
@@ -18,8 +17,6 @@ cy:
           disable: Yn atal y defnyddiwr rhag defnyddio ei gyfrif, ond peidio â dileu neu guddio ei gynnwys.
           none: Defnyddio hwn i anfon rhybudd at y defnyddiwr, heb ysgogi unrhyw gamau eraill.
           sensitive: Gorfodi holl atodiadau cyfryngau'r defnyddiwr hwn i gael eu nodi fel rhai sensitif.
-          silence: Atal y defnyddiwr rhag gallu postio gyda gwelededd cyhoeddus, cuddio ei bostiadau a'i hysbysiadau rhag pobl nad ydyn nhw'n eu dilyn.
-          suspend: Atal unrhyw ryngweithio o neu i'r cyfrif hwn a dileu ei gynnwys. Mae modd ei ddadwneud o fewn 30 diwrnod.
         warning_preset_id: Yn ddewisol. Gallwch dal ychwanegu testun cyfaddas i ddiwedd y rhagosodiad
       announcement:
         all_day: Pan gaiff ei wirio, dim ond dyddiadau'r ystod amser fydd yn cael eu harddangos
@@ -297,7 +294,7 @@ cy:
       webhook:
         events: Digwyddiadau wedi'u galluogi
         url: URL diweddbwynt
-    'no': Na
+    'no': 'Na'
     not_recommended: Heb ei argymell
     recommended: Argymhellwyd
     required:
@@ -306,4 +303,4 @@ cy:
     title:
       sessions:
         webauthn: Defnyddiwch un o'ch allweddi diogelwch i fewngofnodi
-    'yes': Ie
+    'yes': 'Ie'
