@@ -1,4 +1,3 @@
----
 io:
   simple_form:
     hints:
@@ -18,8 +17,6 @@ io:
           disable: Preventez uzanto de uzar olia konto ma ne efacez o celez olia kontenaji.
           none: Uzez co por sendar averto a la uzanto sen eventigar irga altra ago.
           sensitive: Koaktez omna mediiatachaji da ca uzanto markizesar quale sentoza.
-          silence: Preventez la uzanto de povar postar per publika videbleso, celez olia posti e avizi de personi quo ne sequas oli.
-          suspend: Preventez irga interago de o a ca konto e efacez ola kontenaji. Inversebla til 30 dii.
         warning_preset_id: Neobligata. Vu povas ankore insertar kustume texto a extremajo di fixito
       announcement:
         all_day: Kande kontrolesas, nur tempoporteodato montresos
@@ -110,7 +107,7 @@ io:
       rule:
         text: Deskriptez regulo o bezonaj por uzanti en ca servilo. Vu debas lasar lu esar korta e simpla
       sessions:
-        otp: Enter the Two-factor code from your phone or use one of your recovery codes.
+        otp: 'Enter the Two-factor code from your phone or use one of your recovery codes.'
         webauthn: Se ol esas klefo di USB, certigar ke vu insertas e se bezonesas, tushetez.
       tag:
         name: Vu povas nur chanjar literkaso, por exemplo, por kauzigar lu divenar plu lektebla
@@ -295,7 +292,7 @@ io:
       webhook:
         events: Aktivigita eventi
         url: URL di finpunto
-    'no': Ne
+    'no': 'Ne'
     not_recommended: Ne rekomendesas
     recommended: Rekomendito
     required:
