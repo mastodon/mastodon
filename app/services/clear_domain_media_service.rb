@@ -36,6 +36,7 @@ class ClearDomainMediaService < BaseService
     media_from_blocked_domain.reorder(nil).find_in_batches do |attachments|
       affected_status_ids = []
 
+      Paperclip::AttachmentExtensions.start_batch
       attachments.each do |attachment|
         affected_status_ids << attachment.status_id if attachment.status_id.present?
 
@@ -43,6 +44,7 @@ class ClearDomainMediaService < BaseService
         attachment.type = :unknown
         attachment.save
       end
+      Paperclip::AttachmentExtensions.end_batch
 
       invalidate_association_caches!(affected_status_ids) unless affected_status_ids.empty?
     end

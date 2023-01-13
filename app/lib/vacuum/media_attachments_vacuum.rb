@@ -15,11 +15,13 @@ class Vacuum::MediaAttachmentsVacuum
   private
 
   def vacuum_cached_files!
+    Paperclip::AttachmentExtensions.start_batch
     media_attachments_past_retention_period.find_each do |media_attachment|
       media_attachment.file.destroy
       media_attachment.thumbnail.destroy
       media_attachment.save
     end
+    Paperclip::AttachmentExtensions.end_batch
   end
 
   def vacuum_orphaned_records!

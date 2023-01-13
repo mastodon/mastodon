@@ -67,7 +67,7 @@ if ENV['S3_ENABLED'] == 'true'
       retry_limit: 0,
     }
   )
-  
+
   if ENV['S3_PERMISSION'] == ''
     Paperclip::Attachment.default_options.merge!(
       s3_permissions: ->(*) { nil }
@@ -90,12 +90,95 @@ if ENV['S3_ENABLED'] == 'true'
     )
   end
 
-  # Some S3-compatible providers might not actually be compatible with some APIs
-  # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
-  if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
-    module Paperclip
-      module Storage
-        module S3Extensions
+  module Paperclip
+    module Storage
+      module S3Extensions
+        # Batch up deletes. See https://github.com/mastodon/mastodon/issues/23073
+        OBJECTS_PER_BATCH = 1000 # Defined by https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html
+
+        # Module-wide queue of objects to delete
+        # Use queue rather than array since multiple threads may be pushing to it
+        @objects_to_delete = Queue.new
+
+        def flush_deletes
+          # If deletes are paused, push objects onto the shared queue; otherwise use a fresh array per flush operation.
+          # The different ordering semantics of queue vs array are not significant in this context.
+          queue = S3Extensions.are_deletes_paused ? S3Extensions.shared_delete_queue : []
+          @queued_for_delete.each do |path|
+            log("queueing #{path} for delete")
+            S3Extensions.queue_object_for_delete(queue, @s3_bucket, path)
+          end
+          @queued_for_delete = []
+          S3Extensions.flush_batch(queue)
+        end
+
+        def self.start_batch
+          Paperclip.log("starting batch")
+          @deletes_are_paused = true
+        end
+
+        def self.end_batch
+          Paperclip.log("ending batch")
+          @deletes_are_paused = false
+          flush_batch(@objects_to_delete)
+        end
+
+        def self.are_deletes_paused
+          return @deletes_are_paused
+        end
+
+        def self.shared_delete_queue
+          return @objects_to_delete
+        end
+
+        def self.queue_object_for_delete(queue, s3_bucket, path)
+          # Each attachment has its own distinct s3_bucket object, but they all reference the same bucket in the cloud
+          # object store, so just keep the first bucket object.
+          @s3_bucket ||= s3_bucket
+          queue.push(path)
+        end
+
+        def self.flush_batch(queue)
+          Paperclip.log("#{queue.size} objects in the #{queue == @objects_to_delete ? 'global' : 'local'} queue")
+          unless @deletes_are_paused || queue.size == 0
+            Paperclip.log("start flushing")
+            batch = []
+            until queue.empty?
+              path = queue.pop
+              Paperclip.log("adding #{path} to batch for deletion")
+              batch.push({key: path.sub(%r{\A/}, "")})
+              if batch.size == OBJECTS_PER_BATCH
+                delete_objects(@s3_bucket, batch)
+                batch = []
+              end
+            end
+            if batch.size > 0
+              delete_objects(@s3_bucket, batch)
+            end
+            Paperclip.log("end flushing objects")
+          end
+        end
+
+        def self.delete_objects(s3_bucket, objects)
+          begin
+            Paperclip.log("deleting #{objects.size} objects")
+            starting = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+            s3_bucket.delete_objects({
+                                       delete: {
+                                         objects: objects,
+                                         quiet: true
+                                       }
+                                     })
+            ending = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+            Paperclip.log("deletion completed in #{(ending - starting).round(3)} seconds")
+          rescue Aws::Errors::ServiceError => e
+            # Ignore this.
+          end
+        end
+
+        # Some S3-compatible providers might not actually be compatible with some APIs
+        # used by kt-paperclip, see https://github.com/mastodon/mastodon/issues/16822
+        if ENV['S3_FORCE_SINGLE_REQUEST'] == 'true'
           def copy_to_local_file(style, local_dest_path)
             log("copying #{path(style)} to local file #{local_dest_path}")
             s3_object(style).download_file(local_dest_path, { mode: 'single_request' })
@@ -125,7 +208,7 @@ elsif ENV['SWIFT_ENABLED'] == 'true'
       openstack_region: ENV['SWIFT_REGION'],
       openstack_cache_ttl: ENV.fetch('SWIFT_CACHE_TTL') { 60 },
     },
-    
+
     fog_file: { 'Cache-Control' => 'public, max-age=315576000, immutable' },
 
     fog_directory: ENV['SWIFT_CONTAINER'],

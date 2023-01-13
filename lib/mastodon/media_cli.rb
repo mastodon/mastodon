@@ -49,6 +49,7 @@ module Mastodon
       dry_run         = options[:dry_run] ? ' (DRY RUN)' : ''
 
       if options[:prune_profiles] || options[:remove_headers]
+        Paperclip::AttachmentExtensions.start_batch
         processed, aggregate = parallelize_with_progress(Account.remote.where({ last_webfingered_at: ..time_ago, updated_at: ..time_ago })) do |account|
           next if !options[:include_follows] && Follow.where(account: account).or(Follow.where(target_account: account)).exists?
           next if account.avatar.blank? && account.header.blank?
@@ -65,11 +66,13 @@ module Mastodon
 
           size
         end
+        Paperclip::AttachmentExtensions.end_batch
 
         say("Visited #{processed} accounts and removed profile media totaling #{number_to_human_size(aggregate)}#{dry_run}", :green, true)
       end
 
       unless options[:prune_profiles] || options[:remove_headers]
+        Paperclip::AttachmentExtensions.start_batch
         processed, aggregate = parallelize_with_progress(MediaAttachment.cached.where.not(remote_url: '').where(created_at: ..time_ago)) do |media_attachment|
           next if media_attachment.file.blank?
 
@@ -83,6 +86,7 @@ module Mastodon
 
           size
         end
+        Paperclip::AttachmentExtensions.end_batch
 
         say("Removed #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
       end
@@ -281,6 +285,7 @@ module Mastodon
         scope = scope.where('media_attachments.id > ?', Mastodon::Snowflake.id_at(options[:days].days.ago, with_random: false))
       end
 
+      Paperclip::AttachmentExtensions.start_batch
       processed, aggregate = parallelize_with_progress(scope) do |media_attachment|
         next if media_attachment.remote_url.blank? || (!options[:force] && media_attachment.file_file_name.present?)
         next if DomainBlock.reject_media?(media_attachment.account.domain)
@@ -293,6 +298,7 @@ module Mastodon
 
         media_attachment.file_file_size + (media_attachment.thumbnail_file_size || 0)
       end
+      Paperclip::AttachmentExtensions.end_batch
 
       say("Downloaded #{processed} media attachments (approx. #{number_to_human_size(aggregate)})#{dry_run}", :green, true)
     end

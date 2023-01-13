@@ -92,6 +92,18 @@ module Paperclip
         end
       end.run
     end
+
+    def self.start_batch
+      if ENV['S3_ENABLED'] == 'true'
+        Paperclip::Storage::S3Extensions.start_batch
+      end
+    end
+
+    def self.end_batch
+      if ENV['S3_ENABLED'] == 'true'
+        Paperclip::Storage::S3Extensions.end_batch
+      end
+    end
   end
 end
 
