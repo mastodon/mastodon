@@ -21,7 +21,7 @@ module Mastodon
     end
 
     def suffix
-      '+hometown-1.1.0'
+      '+hometown-1.1.1'
     end
 
     def to_a
