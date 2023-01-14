@@ -485,6 +485,9 @@ sk:
     settings:
       appearance:
         title: Vzhľad
+      discovery:
+        publish_discovered_servers: Zverejni objavené servery
+        publish_statistics: Zverejni štatistiky
       domain_blocks:
         all: Všetkým
         disabled: Nikomu
@@ -871,10 +874,14 @@ sk:
       title: Novo vyzdvyhnuté
     status:
       subject: "%{name} práve prispel/a"
+    update:
+      subject: "%{name} upravil/a príspevok"
   notifications:
     email_events: Udalosti oznamované emailom
     email_events_hint: 'Vyber si udalosti, pre ktoré chceš dostávať oboznámenia:'
     other_settings: Ostatné oboznamovacie nastavenia
+  otp_authentication:
+    enable: Povoľ
   pagination:
     newer: Novšie
     next: Ďalšie
@@ -901,6 +908,9 @@ sk:
       unrecognized_emoji: je neznámy smajlík
   relationships:
     activity: Aktivita účtu
+    confirm_follow_selected_followers: Si si istý/á, že chceš nasledovať vybraných sledujúcich?
+    confirm_remove_selected_followers: Si si istý/á, že chceš odstrániť vybraných sledovateľov?
+    confirm_remove_selected_follows: Si si istý/á, že chceš odstrániť vybraných sledovaných?
     dormant: Spiace
     follow_selected_followers: Následuj označených sledovatelov
     followers: Následovatelia
