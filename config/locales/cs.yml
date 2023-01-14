@@ -598,7 +598,10 @@ cs:
         mark_as_sensitive_description_html: Média v nahlášených příspěvcích budou označena jako citlivá a bude zaznamenán prohřešek pro pomoc s eskalací v případě budoucích porušení stejným účtem.
         other_description_html: Podívejte se na další možnosti kontroly chování účtu a přizpůsobte komunikaci k nahlášenému účtu.
         resolve_description_html: Nebudou učiněny žádné kroky proti nahlášenému účtu, žádný prohřešek zaznamenán a hlášení bude uzavřeno.
+        silence_description_html: Účet bude viditelný pouze těm, kdo jej již sledují nebo si jej ručně vyhledají, což výrazně omezí jeho dosah. Vždy lze vrátit zpět. Uzavře všechna hlášení proti tomuto účtu.
+        suspend_description_html: Účet a veškerý jeho obsah se znepřístupní a bude nakonec smazán, interakce s ním nebude možná. Lze vrátit zpět do 30 dnů. Uzavře všechna hlášení proti tomuto účtu.
       actions_description_html: Rozhodněte, který krok učinit pro vyřešení tohoto hlášení. Pokud podniknete kárný krok proti nahlášenému účtu, bude mu zasláno e-mailové oznámení, s výjimkou případu, kdy je zvolena kategorie <strong>Spam</strong>.
+      actions_description_remote_html: Rozhodněte, co podniknout pro vyřešení tohoto hlášení. Toto ovlivní pouze to, jak <strong>váš</strong> server komunikuje s tímto vzdáleným účtem, a zpracuje jeho obsah.
       add_to_report: Přidat do hlášení další
       are_you_sure: Jste si jisti?
       assign_to_self: Přidělit ke mně
@@ -738,6 +741,8 @@ cs:
         preamble: Povrchový zajímavý obsah je užitečný pro zapojení nových uživatelů, kteří možná neznají žádného Mastodona. Mějte pod kontrolou, jak různé objevovací funkce fungují na vašem serveru.
         profile_directory: Adresář profilů
         public_timelines: Veřejné časové osy
+        publish_discovered_servers: Zveřejnit objevené servery
+        publish_statistics: Zveřejnit statistiku
         title: Objevujte
         trends: Trendy
       domain_blocks:
