@@ -28,6 +28,14 @@
   .fields-group
     = f.input :setting_show_application, as: :boolean, wrapper: :with_label, recommended: true
 
+  %h4= t '公開範囲「ポートフォリオ」でのデフォルトハッシュタグ'
+
+  .fields-group
+    = f.input :setting_portfolio_default_hashtag_flag, as: :boolean, wrapper: :with_label
+
+  .fields-group
+    = f.input :setting_portfolio_default_hashtag, as: :text, wrapper: :with_label
+
   %h4= t 'preferences.public_timelines'
 
   .fields-group

@@ -50,6 +50,8 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:trends]            = Setting.trends && object.current_account.user.setting_trends
       store[:crop_images]       = object.current_account.user.setting_crop_images
       store[:resized_custom_emoji]       = object.current_account.user.setting_resized_custom_emoji
+      store[:portfolio_default_hashtag_flag]       = object.current_account.user.setting_portfolio_default_hashtag_flag
+      store[:portfolio_default_hashtag]       = object.current_account.user.setting_portfolio_default_hashtag
     else
       store[:auto_play_gif] = Setting.auto_play_gif
       store[:display_media] = Setting.display_media
