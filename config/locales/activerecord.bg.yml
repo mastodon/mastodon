@@ -19,7 +19,7 @@ bg:
         account:
           attributes:
             username:
-              invalid: трябва да има само букви, цифри и долни черти
+              invalid: трябва да е само букви, цифри и долни черти
               reserved: е запазено
         admin/webhook:
           attributes:
@@ -40,14 +40,14 @@ bg:
         user:
           attributes:
             email:
-              blocked: използва се непозволен имейл доставчик
+              blocked: използва се непозволен доставчик на услуга за е-поща
               unreachable: изглежда, че не съществува
             role_id:
               elevated: не може да е по-висока от текущата ви роля
         user_role:
           attributes:
             permissions_as_keys:
-              dangerous: включва разрешения, които не са безопасни за базова роля
+              dangerous: включва разрешения, които не са безопасни за базовата роля
               elevated: не може да включва разрешения, които настоящата ви роля не притежава
               own_role: не може да се промени с текущата ви роля
             position:

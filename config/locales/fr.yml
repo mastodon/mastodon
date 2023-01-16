@@ -975,6 +975,9 @@ fr:
       email_below_hint_html: Si l’adresse de courriel ci-dessous est incorrecte, vous pouvez la modifier ici et recevoir un nouveau courriel de confirmation.
       email_settings_hint_html: Le courriel de confirmation a été envoyé à %{email}. Si cette adresse de courriel n’est pas correcte, vous pouvez la modifier dans les paramètres du compte.
       title: Configuration
+    sign_in:
+      preamble_html: Connectez-vous avec vos identifiants <strong>%{domain}</strong> . Si votre compte est hébergé sur un autre serveur, vous ne pourrez pas vous connecter ici.
+      title: Se connecter à %{domain}
     sign_up:
       preamble: Avec un compte sur ce serveur Mastodon, vous serez en mesure de suivre toute autre personne sur le réseau, quel que soit l’endroit où son compte est hébergé.
       title: Mettons les choses en place pour %{domain}.
@@ -1595,7 +1598,7 @@ fr:
       details: 'Voici les détails de la connexion :'
       explanation: Nous avons détecté une connexion à votre compte à partir d’une nouvelle adresse IP.
       further_actions_html: Si ce n’était pas vous, nous vous recommandons de %{action} immédiatement et d’activer l’authentification à deux facteurs afin de garder votre compte sécurisé.
-      subject: Votre compte a été accédé à partir d'une nouvelle adresse IP
+      subject: Une nouvelle adresse IP a accédé à votre compte
       title: Une nouvelle connexion
     warning:
       appeal: Faire appel
