@@ -358,6 +358,27 @@ ga:
     copy: Cóipeáil
     delete: Scrios
     today: inniu
+  imports:
+    modes:
+      merge: Cumaisc
+      overwrite: Forscríobh
+    types:
+      bookmarks: Leabharmharcanna
+    upload: Uaslódáil
+  invites:
+    expired: As feidhm
+    expires_in:
+      '1800': 30 nóiméid
+      '21600': 6 uair
+      '3600': Uair amháin
+      '43200': 12 uair
+      '604800': Seachtain amháin
+      '86400': Lá amháin
+    expires_in_prompt: In am ar bith
+  login_activities:
+    authentication_methods:
+      password: pasfhocal
+      webauthn: eochracha slándála
   notification_mailer:
     admin:
       report:
@@ -366,24 +387,65 @@ ga:
       body: "Tá %{name} do do leanúint anois!"
       subject: "Tá %{name} do do leanúint anois"
       title: Leantóirí nua
+    mention:
+      action: Freagair
     reblog:
       subject: "Mhol %{name} do phostáil"
       title: Moladh nua
+  otp_authentication:
+    enable: Cumasaigh
+  pagination:
+    newer: Níos nuaí
+    next: An céad eile
+    older: Níos sine
+    prev: Ceann roimhe seo
+  preferences:
+    other: Eile
   relationships:
     follow_selected_followers: Lean leantóirí roghnaithe
     followers: Leantóirí
     following: Ag leanúint
+    primary: Príomha
     remove_selected_followers: Bain leantóirí roghnaithe
     remove_selected_follows: Dí-lean úsáideoirí roghnaithe
+    status: Stádas cuntais
   rss:
     content_warning: 'Rabhadh ábhair:'
+  sessions:
+    browser: Brabhsálaí
+    browsers:
+      alipay: Alipay
+      blackberry: BlackBerry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Brabhsálaí anaithnid
+    platforms:
+      android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: macOS
+      other: ardán anaithnid
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    title: Seisiúin
   settings:
     account: Cuntas
+    account_settings: Socruithe cuntais
     appearance: Cuma
     back: Ar ais go Mastodon
     development: Forbairt
     edit_profile: Cuir an phróifíl in eagar
+    import: Iompórtáil
+    notifications: Fógraí
+    preferences: Sainroghanna pearsanta
     profile: Próifíl
+    webauthn_authentication: Eochracha slándála
   statuses:
     boosted_from_html: Molta ó %{acct_link}
     content_warning: 'Rabhadh ábhair: %{warning}'
