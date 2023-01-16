@@ -64,13 +64,18 @@ ga:
         all: Uile
         local: Áitiúil
         remote: Cian
+      login_status: Stádas logála isteach
       memorialize: Déan cuntas chuimhneacháin de
       memorialized: Cuntas chuimhneacháin
       moderation:
         active: Gníomhach
         all: Uile
         pending: Ar feitheamh
+        silenced: Teoranta
         suspended: Ar fionraí
+        title: Modhnóireacht
+      moderation_notes: Nótaí modhnóireacht
+      most_recent_activity: Gníomhaíocht is déanaí
       most_recent_ip: IP is déanaí
       perform_full_suspension: Fionraí
       previous_strikes: Cionta roimhe seo
@@ -90,6 +95,7 @@ ga:
       search: Cuardaigh
       security_measures:
         only_password: Pasfhocal amháin
+      sensitized: Marcáladh mar íogair
       silence: Teorannaigh
       silenced: Teoranta
       statuses: Postálacha
@@ -104,10 +110,13 @@ ga:
       action_types:
         assigned_to_self_report: Sann Tuairisc
         create_account_warning: Cruthaigh Rabhadh
+        create_ip_block: Cruthaigh riail IP
         create_user_role: Cruthaigh Ról
+        demote_user: Ísligh úsáideoir
         destroy_announcement: Scrios Fógra
         destroy_ip_block: Scrios riail IP
         destroy_status: Scrios Postáil
+        destroy_user_role: Scrios ról
         remove_avatar_user: Bain Abhatár
         reopen_report: Athoscail tuairisc
         reset_password_user: Athshocraigh Pasfhocal
@@ -118,13 +127,22 @@ ga:
         update_user_role: Nuashonraigh Ról
       actions:
         create_account_warning_html: "Sheol %{name} rabhadh chuig %{target}"
+        destroy_user_role_html: "Scrios %{name} ról %{target}"
+        update_user_role_html: "D'athraigh %{name} ról %{target}"
       deleted_account: cuntas scriosta
     announcements:
+      edit:
+        title: Cuir fógra in eagar
       live: Beo
+      new:
+        create: Cruthaigh fógra
+        title: Fógra nua
       publish: Foilsigh
       title: Fógraí
     custom_emojis:
+      by_domain: Fearann
       copy: Cóipeáil
+      create_new_category: Cruthaigh catagóir nua
       created_msg: Cruthaíodh emoji go rathúil!
       delete: Scrios
       destroyed_msg: Scriosadh emoji go rathúil!
@@ -135,13 +153,21 @@ ga:
       enabled: Ar chumas
       list: Liosta
       listed: Liostaithe
+      overwrite: Forscríobh
+      uncategorized: Neamhchatagóirithe
+      unlist: Neamhliostaigh
+      unlisted: Neamhliostaithe
       upload: Uaslódáil
     dashboard:
+      active_users: úsáideoirí gníomhacha
       new_users: úsáideoirí nua
       opened_reports: tuairiscí oscailte
       software: Bogearraí
       title: Deais
       website: Suíomh Gréasáin
+    disputes:
+      appeals:
+        title: Achomhairc
     domain_allows:
       export: Easpórtáil
       import: Iompórtáil
@@ -149,11 +175,18 @@ ga:
       domain: Fearann
       export: Easpórtáil
       import: Iompórtáil
+      new:
+        severity:
+          silence: Teorannaigh
+          suspend: Cuir ar fionraí
     email_domain_blocks:
       delete: Scrios
       domain: Fearann
     follow_recommendations:
+      language: Don teanga
       status: Stádas
+      suppress: Coisc moladh leanúna
+      suppressed: Coiscthe
       title: Moltaí leanúna
       unsuppress: Aischuir moladh leanúna
     instances:
@@ -162,6 +195,7 @@ ga:
       back_to_warning: Rabhadh
       by_domain: Fearann
       content_policies:
+        comment: Nóta inmheánach
         policies:
           silence: Teorannaigh
           suspend: Cuir ar fionraí
@@ -170,6 +204,7 @@ ga:
         instance_languages_dimension: Teangacha is airde
       delivery:
         all: Uile
+        failing: Ag teip
         unavailable: Níl ar fáil
       moderation:
         all: Uile
@@ -449,6 +484,8 @@ ga:
   statuses:
     boosted_from_html: Molta ó %{acct_link}
     content_warning: 'Rabhadh ábhair: %{warning}'
+    poll:
+      vote: Vótáil
     show_more: Taispeáin níos mó
     show_newer: Taispeáin níos nuaí
     show_thread: Taispeáin snáithe
@@ -457,6 +494,21 @@ ga:
       private_long: Taispeáin do leantóirí amháin
   statuses_cleanup:
     ignore_favs: Tabhair neamhaird ar toghanna
+    min_age:
+      '1209600': Coicís
+      '15778476': 6 mhí
+      '2629746': Mí amháin
+      '31556952': Bliain amháin
+      '5259492': 2 mhí
+      '604800': Seachtain amháin
+      '63113904': 2 bhliain
+      '7889238': 3 mhí
+  stream_entries:
+    pinned: Postáil pionnáilte
+    sensitive_content: Ábhar íogair
+  two_factor_authentication:
+    edit: Cuir in eagar
+    webauthn: Eochracha slándála
   user_mailer:
     warning:
       appeal: Cuir achomharc isteach
