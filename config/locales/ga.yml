@@ -59,6 +59,7 @@ ga:
       follows: Ag leanúint
       header: Ceanntásc
       ip: IP
+      joined: Cláraithe
       location:
         all: Uile
         local: Áitiúil
@@ -66,7 +67,11 @@ ga:
       memorialize: Déan cuntas chuimhneacháin de
       memorialized: Cuntas chuimhneacháin
       moderation:
+        active: Gníomhach
         all: Uile
+        pending: Ar feitheamh
+        suspended: Ar fionraí
+      most_recent_ip: IP is déanaí
       perform_full_suspension: Fionraí
       previous_strikes: Cionta roimhe seo
       promote: Ardaigh
@@ -85,16 +90,21 @@ ga:
       search: Cuardaigh
       security_measures:
         only_password: Pasfhocal amháin
+      silence: Teorannaigh
       silenced: Teoranta
       statuses: Postálacha
       subscribe: Cláraigh
+      suspend: Cuir ar fionraí
+      suspended: Ar fionraí
       title: Cuntais
+      username: Ainm úsáideora
       warn: Rabhadh a thabhairt
       web: Gréasán
     action_logs:
       action_types:
         assigned_to_self_report: Sann Tuairisc
         create_account_warning: Cruthaigh Rabhadh
+        create_user_role: Cruthaigh Ról
         destroy_announcement: Scrios Fógra
         destroy_ip_block: Scrios riail IP
         destroy_status: Scrios Postáil
@@ -112,7 +122,9 @@ ga:
     announcements:
       live: Beo
       publish: Foilsigh
+      title: Fógraí
     custom_emojis:
+      copy: Cóipeáil
       created_msg: Cruthaíodh emoji go rathúil!
       delete: Scrios
       destroyed_msg: Scriosadh emoji go rathúil!
@@ -120,30 +132,48 @@ ga:
       disabled: Díchumasaithe
       emoji: Emoji
       enable: Cumasaigh
+      enabled: Ar chumas
       list: Liosta
+      listed: Liostaithe
       upload: Uaslódáil
     dashboard:
+      new_users: úsáideoirí nua
+      opened_reports: tuairiscí oscailte
       software: Bogearraí
       title: Deais
       website: Suíomh Gréasáin
+    domain_allows:
+      export: Easpórtáil
+      import: Iompórtáil
     domain_blocks:
       domain: Fearann
+      export: Easpórtáil
+      import: Iompórtáil
     email_domain_blocks:
       delete: Scrios
+      domain: Fearann
     follow_recommendations:
       status: Stádas
       title: Moltaí leanúna
       unsuppress: Aischuir moladh leanúna
     instances:
       back_to_all: Uile
+      back_to_limited: Teoranta
       back_to_warning: Rabhadh
+      by_domain: Fearann
       content_policies:
+        policies:
+          silence: Teorannaigh
+          suspend: Cuir ar fionraí
         policy: Polasaí
+      dashboard:
+        instance_languages_dimension: Teangacha is airde
       delivery:
         all: Uile
         unavailable: Níl ar fáil
       moderation:
         all: Uile
+        limited: Teoranta
       purge: Glan
       title: Cónascadh
       total_followed_by_us: Á leanúint againn
@@ -151,7 +181,10 @@ ga:
       filter:
         all: Uile
         available: Ar fáil
+        title: Scag
+      title: Cuirí
     ip_blocks:
+      add_new: Cruthaigh riail
       delete: Scrios
       expires_in:
         '1209600': Coicís
@@ -160,6 +193,7 @@ ga:
         '31556952': Bliain amháin
         '86400': Lá amháin
         '94670856': 3 bhliain
+      title: Rialacha IP
     relays:
       delete: Scrios
       disable: Díchumasaigh
@@ -169,19 +203,32 @@ ga:
       save_and_enable: Sábháil agus cumasaigh
       status: Stádas
     reports:
+      are_you_sure: An bhfuil tú cinnte?
       category: Catagóir
+      created_at: Tuairiscithe
       delete_and_resolve: Scrios postálacha
+      mark_as_resolved: Marcáil mar réitithe
+      mark_as_sensitive: Marcáil mar íogair
       no_one_assigned: Duine ar bith
       notes:
+        create: Cruthaigh nóta
+        create_and_resolve: Réitigh le nóta
         delete: Scrios
         title: Nótaí
       status: Stádas
       title: Tuairiscí
     roles:
+      add_new: Cruthaigh ról
+      categories:
+        administration: Riar
+        invites: Cuirí
       delete: Scrios
       privileges:
+        administrator: Riarthóir
         delete_user_data: Scrios Sonraí Úsáideora
+      title: Róil
     rules:
+      add_new: Cruthaigh riail
       delete: Scrios
     settings:
       appearance:
@@ -189,6 +236,8 @@ ga:
       default_noindex:
         desc_html: I bhfeidhm do ghach úsáideoir nár athraigh an socrú seo iad féin
         title: Diúltaigh d'innéacsú inneall cuardaigh mar réamhshocrú d'úsáideoirí
+      registrations:
+        title: Clárúcháin
     site_uploads:
       delete: Scrios comhad uaslódáilte
     statuses:
@@ -211,11 +260,13 @@ ga:
         delete_statuses: "Scrios %{name} postálacha de chuid %{target}"
     tags:
       review: Stádas athbhreithnithe
+    title: Riar
     trends:
       allow: Ceadaigh
       disallow: Dícheadaigh
       preview_card_providers:
         title: Foilsitheoirí
+      rejected: Diúltaithe
       statuses:
         allow: Ceadaigh postáil
         allow_account: Ceadaigh údar
@@ -223,20 +274,48 @@ ga:
       delete: Scrios
     webhooks:
       delete: Scrios
+      disable: Díchumasaigh
+      disabled: Díchumasaithe
+      enable: Cumasaigh
+      enabled: Gníomhach
+      events: Eachtraí
+      status: Stádas
   admin_mailer:
     new_appeal:
       actions:
         delete_statuses: a gcuid postálacha a scrios
         none: rabhadh
   auth:
+    change_password: Pasfhocal
     delete_account: Scrios cuntas
+    login: Logáil isteach
     logout: Logáil Amach
+    or_log_in_with: Nó logáil isteach le
+    register: Clárú
+    security: Slándáil
+    status:
+      account_status: Stádas cuntais
     too_fast: Cuireadh an fhoirm isteach róthapa, triail arís.
   authorize_follow:
     follow: Lean
     post_follow:
       return: Taispeáin próifíl an úsáideora
     title: Lean %{acct}
+  challenge:
+    confirm: Lean ar aghaidh
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}u"
+      about_x_months: "%{count}m"
+      about_x_years: "%{count}b"
+      almost_x_years: "%{count}b"
+      half_a_minute: Díreach anois
+      less_than_x_seconds: Díreach anois
+      over_x_years: "%{count}b"
+      x_days: "%{count}l"
+      x_minutes: "%{count}n"
+      x_months: "%{count}m"
+      x_seconds: "%{count}s"
   deletes:
     proceed: Scrios cuntas
   disputes:
@@ -258,14 +337,27 @@ ga:
     '429': Too many requests
     '500':
     '503': The page could not be served due to a temporary server failure.
+  exports:
+    archive_takeout:
+      date: Dáta
+      size: Méid
+    lists: Liostaí
   filters:
     contexts:
+      home: Baile agus liostaí
+      notifications: Fógraí
       thread: Comhráite
+    edit:
+      add_keyword: Cruthaigh eochairfhocal
+      keywords: Eochairfhocal
     index:
       delete: Scrios
+      empty: Níl aon scagairí agat.
       title: Scagairí
   generic:
+    copy: Cóipeáil
     delete: Scrios
+    today: inniu
   notification_mailer:
     admin:
       report:
