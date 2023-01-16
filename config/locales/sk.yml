@@ -217,6 +217,8 @@ sk:
         change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
+        destroy_canonical_email_block_html: "%{name} odblokoval/i email z hašom %{target}"
+        destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
       deleted_account: zmazaný účet
       filter_by_action: Filtruj podľa úkonu
       filter_by_user: Trieď podľa užívateľa
@@ -324,6 +326,9 @@ sk:
       add_new: Pridaj nový
       created_msg: Emailová doména bola úspešne pridaná do zoznamu zakázaných
       delete: Vymaž
+      dns:
+        types:
+          mx: MX záznam
       domain: Doména
       new:
         create: Pridaj doménu
@@ -331,6 +336,8 @@ sk:
         title: Nový email na zablokovanie
       resolved_through_html: Prevedená cez %{domain}
       title: Blokované emailové adresy
+    export_domain_allows:
+      no_file: Nevybraný žiaden súbor
     follow_recommendations:
       description_html: "<strong>Odporúčania na sledovanie pomáhaju novým užívateľom rýchlo nájsť zaujímavý obsah</strong>. Ak užívateľ zatiaľ nedostatočne interagoval s ostatnými aby si vyformoval personalizované odporúčania na sledovanie, tak mu budú odporúčané tieto účty. Sú prepočítavané na dennej báze z mixu účtov s nedávnym najvyšším záujmom a najvyšším počtom lokálnych sledujúcich pre daný jazyk."
       language: Pre jazyk
@@ -357,6 +364,8 @@ sk:
         title: Zásady o obsahu
       dashboard:
         instance_accounts_dimension: Najsledovanejšie účty
+        instance_accounts_measure: uložené účty
+        instance_statuses_measure: uložené príspevky
       delivery:
         all: Všetko
         failing: Zlyhávajúce
