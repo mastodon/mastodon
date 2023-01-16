@@ -4,9 +4,6 @@
 - content_for :heading_actions do
   = button_tag t('generic.save_changes'), class: 'button', form: 'edit_profile'
 
--# HELLO_PATCH(8) add "Mastodon Builder" button at the top of the profile page
-= button_tag raw('ō&nbsp;&nbsp;&nbsp;Mastodon Builder'), class: 'button hello-mastodon-builder', type: 'button', onclick: "location.href='#{@mastodon_builder_url}'"
-
 = simple_form_for @account, url: settings_profile_path, html: { method: :put, id: 'edit_profile' } do |f|
   = render 'shared/error_messages', object: @account
 
@@ -16,6 +13,8 @@
       -# = f.input :display_name, wrapper: :with_label, input_html: { maxlength: 30, data: { default: @account.username } }, hint: false
       -# HELLO_PATCH(17) move Bio below the card
       -# = f.input :note, wrapper: :with_label, input_html: { maxlength: 500 }, hint: false
+      -# HELLO_PATCH(8) add "Mastodon Builder" button at the top of the profile page
+      = link_to raw('ō&nbsp;&nbsp;&nbsp;Edit with Hellō Mastodon Builder'), @mastodon_builder_url, class: 'button', style: 'width: 100%'
 
   .fields-row
     .fields-row__column.fields-row__column-6
