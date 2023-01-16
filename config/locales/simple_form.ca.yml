@@ -22,14 +22,14 @@ ca:
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
         all_day: Si es marca, només es mostraran les dates de l'interval de temps
-        ends_at: Opcional. En aquest moment, l'anunci no es publicarà automàticament
+        ends_at: Opcional. En aquest moment, l’anunci deixarà automàticament d'estar publicat
         scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
         starts_at: Opcional. En cas que el teu anunci estigui vinculat a un interval de temps específic
         text: Pots fer servir la sintaxi dels tuts. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
       appeal:
         text: Només pots emetre una apel·lació per cada acció
       defaults:
-        autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
+        autofollow: Qui es registri a través de la invitació et seguirà automàticament
         avatar: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
         bot: Notifica que aquest compte realitza principalment accions automatitzades i que pot no estar controlat per cap persona
         context: Un o diversos contextos en què s'ha d'aplicar el filtre
