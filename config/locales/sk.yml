@@ -180,6 +180,7 @@ sk:
         create_user_role: Vytvoriť rolu
         demote_user: Zniž užívateľskú rolu
         destroy_announcement: Vymaž oboznámenie
+        destroy_canonical_email_block: Zruš blokovanie emailu
         destroy_custom_emoji: Vymaž vlastné emotikony
         destroy_domain_allow: Zmaž povolenie pre doménu
         destroy_domain_block: Zruš blokovanie domény
@@ -198,6 +199,7 @@ sk:
         reject_user: Zamietni užívateľa
         remove_avatar_user: Vymaž avatar
         reopen_report: Znovu otvor hlásenie
+        resend_user: Preposlať overovací email
         reset_password_user: Obnov heslo
         resolve_report: Vyrieš nahlásený problém
         sensitive_account: Vynúť všetky médiá na účte ako chúlostivé
@@ -218,6 +220,7 @@ sk:
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
         destroy_canonical_email_block_html: "%{name} odblokoval/i email z hašom %{target}"
+        destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
       deleted_account: zmazaný účet
       filter_by_action: Filtruj podľa úkonu
@@ -337,6 +340,10 @@ sk:
       resolved_through_html: Prevedená cez %{domain}
       title: Blokované emailové adresy
     export_domain_allows:
+      no_file: Nevybraný žiaden súbor
+    export_domain_blocks:
+      new:
+        title: Nahraj zákazy domén
       no_file: Nevybraný žiaden súbor
     follow_recommendations:
       description_html: "<strong>Odporúčania na sledovanie pomáhaju novým užívateľom rýchlo nájsť zaujímavý obsah</strong>. Ak užívateľ zatiaľ nedostatočne interagoval s ostatnými aby si vyformoval personalizované odporúčania na sledovanie, tak mu budú odporúčané tieto účty. Sú prepočítavané na dennej báze z mixu účtov s nedávnym najvyšším záujmom a najvyšším počtom lokálnych sledujúcich pre daný jazyk."
