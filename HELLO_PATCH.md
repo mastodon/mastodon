@@ -108,3 +108,6 @@ Add Hellō version and issuer to the output of the `/nodeinfo/2.0` endpoint.
 ## HELLO_PATCH(17) move Bio below the card
 
 On the "Edit profile" page (`/settings/profile`) move the Bio (aka Note) below the account card (header, avatar & username card)
+
+
+## HELLO_PATCH(18) remove uppercase text style for form buttons
