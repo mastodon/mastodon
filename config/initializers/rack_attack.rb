@@ -64,64 +64,64 @@ class Rack::Attack
 
   rate_limits = {
     authenticated_api: {
-      count: ENV.fetch('AUTHENTICATED_API_RATE_LIMIT', 300),
-      minutes: ENV.fetch('AUTHENTICATED_API_RATE_LIMIT_MINUTES', 5).minutes
+      count: ENV.fetch('AUTHENTICATED_API_RATE_LIMIT', 300).to_i,
+      minutes: ENV.fetch('AUTHENTICATED_API_RATE_LIMIT_MINUTES', 5).to_i.minutes
     },
     unauthenticated_api: {
-      count: ENV.fetch('UNAUTHENTICATED_API_RATE_LIMIT', 300),
-      minutes: ENV.fetch('UNAUTHENTICATED_API_RATE_LIMIT_MINUTES', 5).minutes,
+      count: ENV.fetch('UNAUTHENTICATED_API_RATE_LIMIT', 300).to_i,
+      minutes: ENV.fetch('UNAUTHENTICATED_API_RATE_LIMIT_MINUTES', 5).to_i.minutes,
     },
     api_media: {
-      count: ENV.fetch('API_MEDIA_RATE_LIMIT', 30),
-      minutes: ENV.fetch('API_MEDIA_RATE_LIMIT_MINUTES', 30).minutes,
+      count: ENV.fetch('API_MEDIA_RATE_LIMIT', 30).to_i,
+      minutes: ENV.fetch('API_MEDIA_RATE_LIMIT_MINUTES', 30).to_i.minutes,
     },
     media_proxy: {
-      count: ENV.fetch('MEDIA_PROXY_RATE_LIMIT', 30),
-      minutes: ENV.fetch('MEDIA_PROXY_RATE_LIMIT_MINUTES', 10).minutes,
+      count: ENV.fetch('MEDIA_PROXY_RATE_LIMIT', 30).to_i,
+      minutes: ENV.fetch('MEDIA_PROXY_RATE_LIMIT_MINUTES', 10).to_i.minutes,
     },
     api_sign_up: {
-      count: ENV.fetch('API_SIGN_UP_RATE_LIMIT', 5),
-      minutes: ENV.fetch('API_SIGN_UP_RATE_LIMIT_MINUTES', 30).minutes,
+      count: ENV.fetch('API_SIGN_UP_RATE_LIMIT', 5).to_i,
+      minutes: ENV.fetch('API_SIGN_UP_RATE_LIMIT_MINUTES', 30).to_i.minutes,
     },
     authenticated_paging: {
-      count: ENV.fetch('AUTHENTICATED_PAGING_RATE_LIMIT', 300),
-      minutes: ENV.fetch('AUTHENTICATED_PAGING_RATE_LIMIT_MINUTES', 15).minutes,
+      count: ENV.fetch('AUTHENTICATED_PAGING_RATE_LIMIT', 300).to_i,
+      minutes: ENV.fetch('AUTHENTICATED_PAGING_RATE_LIMIT_MINUTES', 15).to_i.minutes,
     },
     unauthenticated_paging: {
-      count: ENV.fetch('UNAUTHENTICATED_PAGING_RATE_LIMIT', 300),
-      minutes: ENV.fetch('UNAUTHENTICATED_PAGING_RATE_LIMIT_MINUTES', 15).minutes,
+      count: ENV.fetch('UNAUTHENTICATED_PAGING_RATE_LIMIT', 300).to_i,
+      minutes: ENV.fetch('UNAUTHENTICATED_PAGING_RATE_LIMIT_MINUTES', 15).to_i.minutes,
     },
     api_delete: {
-      count: ENV.fetch('API_DELETE_RATE_LIMIT', 30),
-      minutes: ENV.fetch('API_DELETE_RATE_LIMIT_MINUTES', 30).minutes,
+      count: ENV.fetch('API_DELETE_RATE_LIMIT', 30).to_i,
+      minutes: ENV.fetch('API_DELETE_RATE_LIMIT_MINUTES', 30).to_i.minutes,
     },
     sign_up_attempts_ip: {
-      count: ENV.fetch('SIGN_UP_ATTEMPTS_IP_RATE_LIMIT', 25),
-      minutes: ENV.fetch('SIGN_UP_ATTEMPTS_IP_RATE_LIMIT_MINUTES', 5).minutes,
+      count: ENV.fetch('SIGN_UP_ATTEMPTS_IP_RATE_LIMIT', 25).to_i,
+      minutes: ENV.fetch('SIGN_UP_ATTEMPTS_IP_RATE_LIMIT_MINUTES', 5).to_i.minutes,
     },
     password_resets_ip: {
-      count: ENV.fetch('PASSWORD_RESETS_IP_RATE_LIMIT', 25),
-      minutes: ENV.fetch('PASSWORD_RESETS_IP_RATE_LIMIT_MINUTES', 5).minutes,
+      count: ENV.fetch('PASSWORD_RESETS_IP_RATE_LIMIT', 25).to_i,
+      minutes: ENV.fetch('PASSWORD_RESETS_IP_RATE_LIMIT_MINUTES', 5).to_i.minutes,
     },
     password_resets_email: {
-      count: ENV.fetch('PASSWORD_RESETS_EMAIL_RATE_LIMIT', 5),
-      minutes: ENV.fetch('PASSWORD_RESETS_EMAIL_RATE_LIMIT_MINUTES', 30).minutes,
+      count: ENV.fetch('PASSWORD_RESETS_EMAIL_RATE_LIMIT', 5).to_i,
+      minutes: ENV.fetch('PASSWORD_RESETS_EMAIL_RATE_LIMIT_MINUTES', 30).to_i.minutes,
     },
     email_confirmations_ip: {
-      count: ENV.fetch('EMAIL_CONFIRMATIONS_IP_RATE_LIMIT', 25),
-      minutes: ENV.fetch('EMAIL_CONFIRMATIONS_IP_RATE_LIMIT_MINUTES', 5).minutes,
+      count: ENV.fetch('EMAIL_CONFIRMATIONS_IP_RATE_LIMIT', 25).to_i,
+      minutes: ENV.fetch('EMAIL_CONFIRMATIONS_IP_RATE_LIMIT_MINUTES', 5).to_i.minutes,
     },
     email_confirmations_email: {
-      count: ENV.fetch('EMAIL_CONFIRMATIONS_EMAIL_RATE_LIMIT', 5),
-      minutes: ENV.fetch('EMAIL_CONFIRMATIONS_EMAIL_RATE_LIMIT_MINUTES', 30).minutes,
+      count: ENV.fetch('EMAIL_CONFIRMATIONS_EMAIL_RATE_LIMIT', 5).to_i,
+      minutes: ENV.fetch('EMAIL_CONFIRMATIONS_EMAIL_RATE_LIMIT_MINUTES', 30).to_i.minutes,
     },
     login_attempts_ip: {
-      count: ENV.fetch('LOGIN_ATTEMPTS_IP_RATE_LIMIT', 25),
-      minutes: ENV.fetch('LOGIN_ATTEMPTS_IP_RATE_LIMIT_MINUTES', 5).minutes,
+      count: ENV.fetch('LOGIN_ATTEMPTS_IP_RATE_LIMIT', 25).to_i,
+      minutes: ENV.fetch('LOGIN_ATTEMPTS_IP_RATE_LIMIT_MINUTES', 5).to_i.minutes,
     },
     login_attempts_email: {
-      count: ENV.fetch('LOGIN_ATTEMPTS_EMAIL_RATE_LIMIT', 25),
-      minutes: ENV.fetch('LOGIN_ATTEMPTS_EMAIL_RATE_LIMIT_MINUTES', 60).minutes,
+      count: ENV.fetch('LOGIN_ATTEMPTS_EMAIL_RATE_LIMIT', 25).to_i,
+      minutes: ENV.fetch('LOGIN_ATTEMPTS_EMAIL_RATE_LIMIT_MINUTES', 60).to_i.minutes,
     },
   }
 
