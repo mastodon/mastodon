@@ -578,7 +578,7 @@ module Mastodon
       query = query.where('NOT EXISTS (SELECT 1 FROM reports WHERE target_account_id = accounts.id)')
       query = query.where('NOT EXISTS (SELECT 1 FROM follow_requests WHERE account_id = accounts.id OR target_account_id = accounts.id)')
 
-      _, deleted = parallelize_with_progress(query) do |account|
+      _, deleted = parallelize_with_progress(query.partitioned) do |account|
         next if account.bot? || account.group?
         next if account.suspended?
         next if account.silenced?
