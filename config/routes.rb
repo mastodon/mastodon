@@ -682,6 +682,9 @@ Rails.application.routes.draw do
     end
     # HELLO_PATCH(13) log frontend analytics events
     post :event, to: 'hello/event#log'
+    # HELLO_PATCH(19) Twitter Account Activity API
+    get  '/twitter/webhook', to: 'hello/twitter_webhook#crc'
+    post '/twitter/webhook', to: 'hello/twitter_webhook#activity'
   end
 
   web_app_paths.each do |path|

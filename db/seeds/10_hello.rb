@@ -4,7 +4,7 @@ client_secret = nil
 if ENV['HELLO_MASTODON_BUILDER_CLIENT_SECRET']
   client_secret = ENV['HELLO_MASTODON_BUILDER_CLIENT_SECRET']
 else
-  puts "The HELLO_MASTODON_BUILDER_CLIENT_SECRET env var must be set"
+  Rails.logger.error "[ERROR] The HELLO_MASTODON_BUILDER_CLIENT_SECRET env var must be set"
 end
 
 Doorkeeper::Application.create(
