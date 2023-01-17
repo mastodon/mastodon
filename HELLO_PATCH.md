@@ -12,10 +12,10 @@ The username is hard coded to `preferred_username`.
 
 ## HELLO_PATCH(2) use OIDC for Sign-Up
 
-Instead of showing the Sign-Up form start the OpenID Connect authorization request.
+Instead of showing the actual Sign-Up form only show a "Continue with Hellō" button that starts the OpenID Connect
+authorization request.
 
-The request starts at `/auth/auth/openid_connect` and it must be a POST request. The `data-method="post"` attribute on
-the `<a>` tag enforces that.
+The request starts at `/auth/auth/openid_connect` and it must be a POST request.
 
 
 ## HELLO_PATCH(3) enable auto-loading in development
@@ -49,11 +49,14 @@ No link to `/auth/sign_in` with username and password form and OIDC button, dire
 
 Username and password form still accessible at `/auth/sign_in`.
 
+
 ## HELLO_PATCH(7) remove "Display name" on profile page
+
 
 ## HELLO_PATCH(8) add "Mastodon Builder" button at the top of the profile page
 
 Added button labelled "Mastodon Builder" with link to https://wallet.hello.coop/mastodon at the top of the profile page.
+
 
 ## HELLO_PATCH(9) remove Security section on Account settings page (/auth/edit)
 
@@ -65,7 +68,9 @@ password set.
 The method to revisit is `use_seamless_external_login?`. Currently this method returns `true` only for PAM and LDAP
 authentication, disconnected from the similar `omniauth_only?`
 
+
 ## HELLO_PATCH(10): append the :verified: emoji to the end of the display name
+
 
 ## HELLO_PATCH(11): hide username and password login form
 
@@ -78,21 +83,27 @@ Also:
 * change "or Login with" to "or"
 * change the login button label to "Login with Hellō"
 
+
 ## HELLO_PATCH(12): hide the "Two-factor Auth" menu entry
 
 Visiting `/settings/otp_authentication` still works.
+
 
 ## HELLO_PATCH(13) log frontend analytics events
 
 Log analytics requests
 
+
 ## HELLO_PATCH(14) Hellō specific metadata
 
 Add Hellō version and issuer to the output of the `/nodeinfo/2.0` endpoint.
 
+
 ## HELLO_PATCH(15) remove most navigation links at bottom of auth pages
 
+
 ## HELLO_PATCH(16) change Sign-Up "Accept" button label to "Continue with Hellō"
+
 
 ## HELLO_PATCH(17) move Bio below the card
 

@@ -145,8 +145,7 @@ class Auth::RegistrationsController < Devise::RegistrationsController
   end
 
   def require_rules_acceptance!
-    # HELLO_PATCH(2) use OIDC for Sign-Up
-    # return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
+    return if @rules.empty? || (session[:accept_token].present? && params[:accept] == session[:accept_token])
 
     @accept_token = session[:accept_token] = SecureRandom.hex
     @invite_code  = invite_code
