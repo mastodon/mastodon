@@ -389,7 +389,7 @@ et:
       import: Import
       new:
         create: Loo blokeering
-        hint: Domeeniblokeering ei takista kontode lisamist andmebaasi, aga lisab nendele kontodele tagasiulatuvalt ja automaatselt erinevaid moderatsioonimeetodeid.
+        hint: Domeeniblokeering ei takista kontode lisamist andmebaasi, aga lisab automaatselt nendele kontodele tagasiulatuvalt teatud moderatsioonimeetodeid.
         severity:
           desc_html: "<strong>Piira</strong> muudab domeeni kasutajate postitused mittejälgijatele nähtamatuks.<strong>Kustuta</strong> eemaldab serverist kõik selle domeeni kontode sisu, meedia ja kasutajaandmed. <strong>Ei midagi</strong> lihtsalt lükkab meediafailid tagasi."
           noop: Ei midagi
@@ -1369,6 +1369,9 @@ et:
       unrecognized_emoji: ei ole tuntud emotikoon
   relationships:
     activity: Konto tegevus
+    confirm_follow_selected_followers: Oled kindel, et soovid jälgida valitud jälgijaid?
+    confirm_remove_selected_followers: Oled kindel, et soovid eemaldada valitud jälgijad?
+    confirm_remove_selected_follows: Oled kindel, et soovid eemaldada valitud jälgitavad?
     dormant: Seisev
     follow_selected_followers: Valitud jälgijate jälgimine
     followers: Jälgijad
