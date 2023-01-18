@@ -30,5 +30,8 @@
           = fa_icon 'trash fw'
           = t('admin.site_uploads.delete')
 
+  .fields-group
+    = f.input :publish_button_text, wrapper: :with_block_label
+
   .actions
     = f.button :button, t('generic.save_changes'), type: :submit
