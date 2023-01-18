@@ -42,6 +42,7 @@ import {
   FollowRequests,
   FavouritedStatuses,
   BookmarkedStatuses,
+  FollowedTags,
   ListTimeline,
   Blocks,
   DomainBlocks,
@@ -216,6 +217,7 @@ class SwitchingColumnsArea extends React.PureComponent {
           <WrappedRoute path='/follow_requests' component={FollowRequests} content={children} />
           <WrappedRoute path='/blocks' component={Blocks} content={children} />
           <WrappedRoute path='/domain_blocks' component={DomainBlocks} content={children} />
+          <WrappedRoute path='/followed_tags' component={FollowedTags} content={children} />
           <WrappedRoute path='/mutes' component={Mutes} content={children} />
           <WrappedRoute path='/lists' component={Lists} content={children} />
 
