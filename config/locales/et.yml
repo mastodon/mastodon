@@ -178,8 +178,8 @@ et:
         create_canonical_email_block: E-posti blokeeringu lisamine
         create_custom_emoji: Lisas kohandatud emotikoni
         create_domain_allow: Lisas lubatud domeeni
-        create_domain_block: Lisas domeeniblokeeringu
-        create_email_domain_block: Lisas e-posti domeeni blokeeringu
+        create_domain_block: Domeeni blokeerimine
+        create_email_domain_block: E-postidomeeni blokeerimine
         create_ip_block: IP-reegli lisamine
         create_unavailable_domain: Kättesaamatu domeeni lisamine
         create_user_role: Loo roll
@@ -188,8 +188,8 @@ et:
         destroy_canonical_email_block: E-posti blokeeringu kustutamine
         destroy_custom_emoji: Eemaldas kohandatud emotikoni
         destroy_domain_allow: Eemaldas lubatud domeeni
-        destroy_domain_block: Eemaldas domeeniblokeeringu
-        destroy_email_domain_block: Eemaldas e-posti domeeni blokeeringu
+        destroy_domain_block: Domeeniblokeeringu eemaldamine
+        destroy_email_domain_block: E-postidomeeni blokeeringu eemaldamine
         destroy_instance: Domeeni kustutamine
         destroy_ip_block: IP-reegli kustutamine
         destroy_status: Kustuta postitus
@@ -401,21 +401,21 @@ et:
       obfuscate: Domeeninime varjamine
       obfuscate_hint: Varja osaliselt domeeni nimi nimekirjas, kui domeenipiirangute nimekirja avaldamine on sisse lülitatud
       private_comment: Privaatne kommentaar
-      private_comment_hint: Kommenteeri selle domeeni limiteerimise kohta moderaatoritele.
+      private_comment_hint: Kommentaar selle domeenipiirangu kohta moderaatorite sisekasutuseks.
       public_comment: Avalik kommentaar
-      public_comment_hint: Kommenteeri selle domeeni limiteerimise kohta avalikkusele, kui domeenilimitatsioonide loend on kõigile nähtav.
+      public_comment_hint: Avalik kommentaar selle domeenipiirangu kohta, juhuks kui domeenipiirangute loetelu avaldamine on lubatud.
       reject_media: Keela meediafailid
-      reject_media_hint: Kustutab kohalikult salvestatud meediafailid ja keeldub tulevikus rohkem allalaadimast. Ei puuduta peatamisi
+      reject_media_hint: Kustutab kohalikult salvestatud meediafailid ja keeldub tulevikus allalaadimisest. Ei puuduta peatamisi
       reject_reports: Lükka teavitused tagasi
-      reject_reports_hint: Eira kõik teavitused sellelt domeenilt. Ei puuduta peatamisi
-      undo: Võta tagasi domeeniblokeering
+      reject_reports_hint: Eira kõiki teavitusi sellelt domeenilt. Ei puuduta peatamisi
+      undo: Võta domeeniblokeering tagasi
       view: Vaata domeeniblokeeringut
     email_domain_blocks:
       add_new: Lisa uus
       attempts_over_week:
         one: "%{count} katse viimase nädala kestel"
         other: "%{count} liitumiskatset viimase nädala kestel"
-      created_msg: E-posti aadressi keelunimekirja lisamine õnnestus
+      created_msg: Edukalt blokeeritud e-posti domeen
       delete: Kustuta
       dns:
         types:
@@ -424,7 +424,7 @@ et:
       new:
         create: Lisa domeen
         resolve: Domeeni lahendamine
-        title: Uus e-posti keelunimekirja sisend
+        title: Blokeeri uus e-posti domeen
       no_email_domain_block_selected: Ühtegi e-posti domeeni keeldu ei muudetud, kuna midagi polnud valitud
       resolved_dns_records_hint_html: Domeeninimi lahendub järgnevateks MX-domeenideks, mis vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib liitumistaotlused kõigilt e-postiaadressidelt, mis kasutavad sama MX-domeeni, kuigi kasutatav domeeninimi on erinev. <strong>Ole tähelepanelik, et mitte blokeerida suuremaid e-postiteenuse pakkujaid.</strong>
       resolved_through_html: Lahendatud %{domain} kaudu
