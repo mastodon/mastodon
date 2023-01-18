@@ -98,6 +98,10 @@ export function FavouritedStatuses () {
   return import(/* webpackChunkName: "flavours/glitch/async/favourited_statuses" */'flavours/glitch/features/favourited_statuses');
 }
 
+export function FollowedTags () {
+  return import(/* webpackChunkName: "flavours/glitch/async/followed_tags" */'flavours/glitch/features/followed_tags');
+}
+
 export function BookmarkedStatuses () {
   return import(/* webpackChunkName: "flavours/glitch/async/bookmarked_statuses" */'flavours/glitch/features/bookmarked_statuses');
 }

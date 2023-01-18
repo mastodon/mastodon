@@ -45,6 +45,7 @@ const messages = defineMessages({
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   favourites: { id: 'navigation_bar.favourites', defaultMessage: 'Favourites' },
   lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
+  followed_tags: { id: 'navigation_bar.followed_tags', defaultMessage: 'Followed hashtags' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Blocked domains' },
   mutes: { id: 'navigation_bar.mutes', defaultMessage: 'Muted users' },
@@ -188,7 +189,7 @@ class Header extends ImmutablePureComponent {
     }
 
     if (account.getIn(['relationship', 'requested']) || account.getIn(['relationship', 'following'])) {
-      bellBtn = <IconButton icon='bell-o' size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
+      bellBtn = <IconButton icon={account.getIn(['relationship', 'notifying']) ? 'bell' : 'bell-o'} size={24} active={account.getIn(['relationship', 'notifying'])} title={intl.formatMessage(account.getIn(['relationship', 'notifying']) ? messages.disableNotifications : messages.enableNotifications, { name: account.get('username') })} onClick={this.props.onNotifyToggle} />;
     }
 
     if (me !== account.get('id')) {
@@ -245,6 +246,7 @@ class Header extends ImmutablePureComponent {
       menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
       menu.push({ text: intl.formatMessage(messages.favourites), to: '/favourites' });
       menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
+      menu.push({ text: intl.formatMessage(messages.followed_tags), to: '/followed_tags' });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
       menu.push({ text: intl.formatMessage(messages.blocks), to: '/blocks' });

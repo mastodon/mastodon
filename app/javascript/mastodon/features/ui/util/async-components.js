@@ -90,6 +90,10 @@ export function FavouritedStatuses () {
   return import(/* webpackChunkName: "features/favourited_statuses" */'../../favourited_statuses');
 }
 
+export function FollowedTags () {
+  return import(/* webpackChunkName: "features/followed_tags" */'../../followed_tags');
+}
+
 export function BookmarkedStatuses () {
   return import(/* webpackChunkName: "features/bookmarked_statuses" */'../../bookmarked_statuses');
 }

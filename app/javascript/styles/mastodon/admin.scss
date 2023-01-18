@@ -1588,6 +1588,15 @@ a.sparkline {
           margin-bottom: 0;
         }
       }
+
+      a {
+        color: $highlight-text-color;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     &__actions {
