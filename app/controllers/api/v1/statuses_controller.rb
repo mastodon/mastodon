@@ -80,6 +80,7 @@ class Api::V1::StatusesController < Api::BaseController
       current_account.id,
       text: status_params[:status],
       media_ids: status_params[:media_ids],
+      media_attributes: status_params[:media_attributes],
       sensitive: status_params[:sensitive],
       language: status_params[:language],
       spoiler_text: status_params[:spoiler_text],
@@ -131,6 +132,12 @@ class Api::V1::StatusesController < Api::BaseController
       :scheduled_at,
       :content_type,
       media_ids: [],
+      media_attributes: [
+        :id,
+        :thumbnail,
+        :description,
+        :focus,
+      ],
       poll: [
         :multiple,
         :hide_totals,
