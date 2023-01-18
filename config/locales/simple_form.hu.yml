@@ -18,8 +18,8 @@ hu:
           disable: A felhasználó nem fogja tudni használni a fiókját, de ettől még nem töröljük azt vagy rejtjük el a tartalmait.
           none: Ezt használd ahhoz, hogy a felhasználónak figyelmeztetést küldj bármilyen más következmény nélkül.
           sensitive: Ennek a felhasználónak minden médiatartalmát jelöljük meg kényesként.
-          silence: Megakadályozzuk, hogy ez a felhasználó nyilvános láthatóságú bejegyzést tegyen közzé, elrejtjük a bejegyzéseit és a róla szóló értesítéseket azok elől, akik nem közvetlen követői.
-          suspend: Minden interakciót megakadályozunk ezzel a fiókkal és töröljük a tartalmát. 30 napon belül még visszacsinálható.
+          silence: A felhasználó megakadályozása abban, hogy nyilvános bejegyzéseket tehessen közzé, bejegyzései és tőle származó értesítések elrejtése az őt követők számára. A fiók ellen indított minden bejelentés lezárása.
+          suspend: A fiókkal való minden kapcsolat megakadályozása és a tartalmak törlése. 30 napig visszaállítható. A fiók ellen indított minden bejelentés lezárása.
         warning_preset_id: Nem kötelező. A figyelmeztetés végére saját szöveget is írhatsz.
       announcement:
         all_day: Bejelölve csak a dátumok számítanak majd a megadott intervallumból
@@ -74,6 +74,7 @@ hu:
           hide: A szűrt tartalom teljes elrejtése, mintha nem is létezne
           warn: A szűrt tartalom a szűrő címét említő figyelmeztetés mögé rejtése
       form_admin_settings:
+        activity_api_enabled: Helyi bejegyzések, aktív felhasználók és új regisztrációk száma heti bontásban
         backups_retention_period: Az előállított felhasználói archívumok megtartása a megadott napokig.
         bootstrap_timeline_accounts: Ezek a fiókok ki lesznek tűzve az új felhasználók követési javaslatainak élére.
         closed_registrations_message: Akkor jelenik meg, amikor a regisztráció le van zárva
@@ -81,6 +82,7 @@ hu:
         custom_css: A Mastodon webes verziójában használhatsz egyedi stílusokat.
         mascot: Felülvágja a haladó webes felületen található illusztrációt.
         media_cache_retention_period: A letöltött médiafájlok megadott számú nap után törölve lesznek, ha pozitív értékre van állítva, és igény szerint újból le lesznek töltve.
+        peers_api_enabled: Azon domainek listája, melyekkel ez a kiszolgáló találkozott a fediverzumban. Nem csatolunk adatot arról, hogy föderált kapcsolatban vagy-e az adott kiszolgálóval, csak arról, hogy a kiszolgálód tud a másikról. Ezt olyan szolgáltatások használják, melyek általában a föderációról készítenek statisztikákat.
         profile_directory: A profilok jegyzéke minden olyan felhasználót felsorol, akik engedélyezték a felfedezhetőségüket.
         require_invite_text: Ha a regisztrációhoz manuális jóváhagyásra van szükség, akkor a „Miért akarsz csatlakozni?” válasz kitöltése legyen kötelező, és ne opcionális
         site_contact_email: Hogyan érhetnek el jogi vagy támogatási kérésekkel.
@@ -229,6 +231,7 @@ hu:
           hide: Teljes elrejtés
           warn: Elrejtés figyelmeztetéssel
       form_admin_settings:
+        activity_api_enabled: Összesített statisztikák közzététele az API-ban a felhasználók aktivitásáról
         backups_retention_period: Felhasználói archívum megtartási időszaka
         bootstrap_timeline_accounts: Mindig javasoljuk ezeket a fiókokat az új felhasználók számára
         closed_registrations_message: A feliratkozáskor megjelenő egyéni üzenet nem érhető el
@@ -236,6 +239,7 @@ hu:
         custom_css: Egyéni CSS
         mascot: Egyéni kabala (örökölt)
         media_cache_retention_period: Média-gyorsítótár megtartási időszaka
+        peers_api_enabled: Felfedezett kiszolgálók listájának közzététele az API-ban
         profile_directory: Profiladatbázis engedélyezése
         registrations_mode: Ki regisztrálhat
         require_invite_text: Indok megkövetelése a csatlakozáshoz

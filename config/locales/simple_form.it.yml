@@ -18,8 +18,8 @@ it:
           disable: Impedisce all'utente di utilizzare il suo account, ma non elimina o nasconde i suoi contenuti.
           none: Usa questo per inviare un avviso all'utente, senza eseguire altre azioni.
           sensitive: Forza tutti gli allegati multimediali di questo utente ad essere contrassegnati come sensibili.
-          silence: Impedisce all'utente di poter pubblicare con visibilità pubblica, nasconde i suoi post e notifiche a persone che non lo seguono.
-          suspend: Impedisce qualsiasi interazione da o per questo account ed elimina i suoi contenuti. Annullabile entro 30 giorni.
+          silence: Impedisce all'utente di poter pubblicare con visibilità pubblica, nasconde i suoi post e notifiche a persone che non lo seguono. Chiude tutte le segnalazioni relative a questo account.
+          suspend: Impedisce qualsiasi interazione da o verso questo account e cancellarne il contenuto. Annullabile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
         warning_preset_id: Opzionale. Puoi aggiungere un testo personalizzato alla fine di quello preimpostato
       announcement:
         all_day: Se selezionato, verranno visualizzate solo le date dell'intervallo di tempo
@@ -74,6 +74,7 @@ it:
           hide: Nascondi completamente il contenuto filtrato, come se non esistesse
           warn: Nascondi il contenuto filtrato e mostra invece un avviso, citando il titolo del filtro
       form_admin_settings:
+        activity_api_enabled: Conteggi di post pubblicati localmente, utenti attivi e nuove registrazioni in gruppi settimanali
         backups_retention_period: Conserva gli archivi utente generati per il numero di giorni specificato.
         bootstrap_timeline_accounts: Questi account verranno aggiunti in cima ai consigli da seguire dei nuovi utenti.
         closed_registrations_message: Visualizzato alla chiusura delle iscrizioni
@@ -81,6 +82,7 @@ it:
         custom_css: È possibile applicare stili personalizzati sulla versione web di Mastodon.
         mascot: Sostituisce l'illustrazione nell'interfaccia web avanzata.
         media_cache_retention_period: I file multimediali scaricati verranno eliminati dopo il numero di giorni specificato se impostati su un valore positivo e scaricati nuovamente su richiesta.
+        peers_api_enabled: Un elenco di nomi di dominio che questo server ha incontrato nel fediverse. Qui non sono inclusi dati sul fatto se si federano con un dato server, solo che il server ne è a conoscenza. Questo viene utilizzato dai servizi che raccolgono statistiche sulla federazione in senso generale.
         profile_directory: La directory del profilo elenca tutti gli utenti che hanno acconsentito ad essere individuabili.
         require_invite_text: 'Quando le iscrizioni richiedono l''approvazione manuale, rendi la domanda: "Perché vuoi unirti?" obbligatoria anziché facoltativa'
         site_contact_email: In che modo le persone possono contattarti per richieste legali o di supporto.
@@ -229,6 +231,7 @@ it:
           hide: Nascondi completamente
           warn: Nascondi con avviso
       form_admin_settings:
+        activity_api_enabled: Pubblica le statistiche aggregate sull'attività degli utenti nell'API
         backups_retention_period: Periodo di conservazione dell'archivio utente
         bootstrap_timeline_accounts: Consiglia sempre questi account ai nuovi utenti
         closed_registrations_message: Messaggio personalizzato quando le iscrizioni non sono disponibili
@@ -236,6 +239,7 @@ it:
         custom_css: Personalizza CSS
         mascot: Personalizza mascotte (legacy)
         media_cache_retention_period: Periodo di conservazione della cache multimediale
+        peers_api_enabled: Pubblica l'elenco dei server scoperti nell'API
         profile_directory: Abilita directory del profilo
         registrations_mode: Chi può iscriversi
         require_invite_text: Richiedi un motivo per unirsi

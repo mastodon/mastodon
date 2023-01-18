@@ -575,9 +575,10 @@ es-AR:
         mark_as_sensitive_description_html: Los archivos de medios en los mensajes denunciados se marcarán como sensibles y se registrará un incumplimiento para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta denunciada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará el incumplimiento, y se cerrará la denuncia.
-        silence_description_html: El perfil será visible sólo para aquellos que ya sigan esta cuenta o que la busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
-        suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. No será posible interactuar con la cuenta. Reversible dentro de los 30 días.
+        silence_description_html: La cuenta será visible sólo para quienes ya la siguen o la busquen manualmente, limitando severamente su alcance. Siempre puede ser revertido. Esto cierra todas las denuncias contra esta cuenta.
+        suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Revertible en 30 días. Esto cierra todas las denuncias contra esta cuenta.
       actions_description_html: Decidí qué medidas tomar para resolver esta denuncia. Si tomás una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
+      actions_description_remote_html: Decidí qué medidas tomar para resolver esta denuncia. Esto sólo afectará la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y maneja su contenido.
       add_to_report: Agregar más a la denuncia
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
@@ -713,6 +714,8 @@ es-AR:
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controlá cómo funcionan varias opciones de descubrimiento en tu servidor.
         profile_directory: Directorio de perfiles
         public_timelines: Líneas temporales públicas
+        publish_discovered_servers: Publicar servidores descubiertos
+        publish_statistics: Publicar estadísticas
         title: Descubrí
         trends: Tendencias
       domain_blocks:
@@ -1367,6 +1370,9 @@ es-AR:
       unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
+    confirm_follow_selected_followers: "¿Estás seguro que querés seguir a los seguidores seleccionados?"
+    confirm_remove_selected_followers: "¿Estás seguro que querés quitar a los seguidores seleccionados?"
+    confirm_remove_selected_follows: "¿Estás seguro que querés quitar a las cuentas seguidas seleccionadas?"
     dormant: Inactivas
     follow_selected_followers: Seguir a los seguidores seleccionados
     followers: Seguidores
