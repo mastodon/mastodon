@@ -220,6 +220,7 @@ sk:
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
         destroy_canonical_email_block_html: "%{name} odblokoval/i email z hašom %{target}"
+        destroy_domain_allow_html: "%{name} zakázal/a federáciu s doménou %{target}"
         destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
       deleted_account: zmazaný účet
@@ -355,6 +356,7 @@ sk:
       unsuppress: Obnoviť odporúčanie na sledovanie
     instances:
       availability:
+        no_failures_recorded: Žiadne zlyhania nezaznamenané.
         title: Dostupnosť
       back_to_all: Všetko
       back_to_limited: Obmedzené
