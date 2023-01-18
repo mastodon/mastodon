@@ -21,6 +21,16 @@ const mapDispatchToProps = (dispatch, { columnId }) => {
       } else {
         dispatch(changeSetting(['public', ...key], checked));
       }
+
+      if (key[1] == 'onlyRemote' && checked) {
+        console.log('this line');
+        dispatch(changeSetting(['public', 'other', 'onlyLocal'], false));
+      }
+
+      if (key[1] == 'onlyLocal' && checked) {
+        console.log('this line');
+        dispatch(changeSetting(['public', 'other', 'onlyRemote'], false));
+      }
     },
   };
 };
