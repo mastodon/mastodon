@@ -12,23 +12,23 @@
   
   body {
     &.app-body {
-      background: no-repeat fixed center/80% url($wallpaper);
+      background: no-repeat fixed center center/80% url($wallpaper);
     }
   
     &.about-body {
-      background: no-repeat fixed center/80% url($wallpaper);
+      background: no-repeat fixed center center/80% url($wallpaper);
     }
   
     &.tag-body {
-      background: no-repeat fixed center/80% url($wallpaper);
+      background: no-repeat fixed center center/80% url($wallpaper);
     }
   
     &.admin {
-      background: no-repeat fixed center/80% url($wallpaper);
+      background: no-repeat fixed center center/80% url($wallpaper);
     }
   
     &.error {
-      background: url($wallpaper) no-repeat fixed center top;
+      background: no-repeat fixed center/80% url($wallpaper);
     }
   }
   
@@ -36,35 +36,35 @@
     &:focus {
       .detailed-status,
       .detailed-status__action-bar {
-        background: rgba(lighten($ui-base-color, 8%), 0.5);
+        background: rgba(lighten($ui-base-color, 8%), 0.6);
       }
     }
   }
   
   .detailed-status {
-    background: rgba(lighten($ui-base-color, 4%), 0.5);
+    background: rgba(lighten($ui-base-color, 4%), 0.6);
   }
   
   .detailed-status__action-bar {
-    background: rgba(lighten($ui-base-color, 4%), 0.5);
+    background: rgba(lighten($ui-base-color, 4%), 0.6);
   }
   
   .account__header {
-    background: rgba(lighten($ui-base-color, 4%), 0.5);
+    background: rgba(lighten($ui-base-color, 4%), 0.6);
   }
   
   .column {
     > .scrollable {
-      background: rgba($ui-base-color, 0.5);
+      background: rgba($ui-base-color, 0.6);
     }
   }
   
   .ui {
-    background: rgba(darken($ui-base-color, 15%), 0.5);
+    background: rgba(darken($ui-base-color, 15%), 0.6);
   }
   
   .drawer__inner {
-    background: rgba(lighten($ui-base-color, 13%), 0.5);
+    background: rgba(lighten($ui-base-color, 13%), 0.6);
   }
   
   .drawer__inner__mastodon {
@@ -72,11 +72,11 @@
   }
   
   .drawer__header {
-    background: rgba(lighten($ui-base-color, 8%), 0.5);
+    background: rgba(lighten($ui-base-color, 8%), 0.6);
   }
   
   .tabs-bar {
-    background: rgba(lighten($ui-base-color, 8%), 0.5);
+    background: rgba(lighten($ui-base-color, 8%), 0.6);
   }
   
   .column-back-button {
@@ -88,27 +88,27 @@
   }
   
   .column-link {
-    background: rgba(lighten($ui-base-color, 12%), 0.5);
+    background: rgba(lighten($ui-base-color, 12%), 0.6);
     &:hover {
       background: rgba(lighten($ui-base-color, 22%), 0.6);
     }
   }
   
   .column-subheading {
-    background: rgba($ui-base-color, 0.5);
+    background: rgba($ui-base-color, 0.6);
   }
   
   .getting-started__wrapper,
   .getting_started {
-    background: rgba($ui-base-color, 0.5);
+    background: rgba($ui-base-color, 0.6);
   }
   
   .getting-started {
-    background: rgba($ui-base-color, 0.5);
+    background: rgba($ui-base-color, 0.6);
   }
   
   .column-header {
-    background: rgba(lighten($ui-base-color, 4%), 0.5);
+    background: rgba(lighten($ui-base-color, 4%), 0.6);
   }
   
   .column-header__button {
@@ -129,11 +129,11 @@
   
   .empty-column-indicator,
   .error-column {
-    background: rgba($ui-base-color, 0.5)
+    background: rgba($ui-base-color, 0.6)
   }
   
   .account-section-headline {
-    background: rgba(lighten($ui-base-color, 2%), 0.5);
+    background: rgba(lighten($ui-base-color, 2%), 0.6);
   }
   
   .landing-page {
@@ -176,19 +176,19 @@
     }
   
     .about-short {
-      background: rgba(darken($ui-base-color, 15%), 0.5);
+      background: rgba(darken($ui-base-color, 15%), 0.6);
     }
   
     .information-board {
-      background: rgba(darken($ui-base-color, 15%), 0.5);
+      background: rgba(darken($ui-base-color, 15%), 0.6);
   
       .panel {
-        background: rgba(darken($ui-base-color, 15%), 0.5);
+        background: rgba(darken($ui-base-color, 15%), 0.6);
       }
     }
   
     .features {
-      background: rgba(darken($ui-base-color, 15%), 0.55);
+      background: rgba(darken($ui-base-color, 15%), 0.65);
   
       #mastodon-timeline {
         background: transparent;
@@ -196,11 +196,11 @@
     }
   
     .extended-description {
-      background: rgba(darken($ui-base-color, 15%), 0.55);
+      background: rgba(darken($ui-base-color, 15%), 0.65);
     }
   
     .footer-links {
-      background: rgba(darken($ui-base-color, 15%), 0.55);
+      background: rgba(darken($ui-base-color, 15%), 0.65);
     }
   
     @media screen and (max-width: 675px) {
@@ -234,7 +234,7 @@
   .table {
     & > tbody > tr:nth-child(odd) > td,
     & > tbody > tr:nth-child(odd) > th {
-      background: rgba($ui-base-color, 0.5);
+      background: rgba($ui-base-color, 0.6);
     }
   }
   
@@ -247,7 +247,7 @@
       ul {
         a {
           &.selected {
-            background: rgba($ui-base-color, 0.5);
+            background: rgba($ui-base-color, 0.6);
           }
         }
   
@@ -258,7 +258,7 @@
     }
   
     .content-wrapper {
-      background: rgba($ui-base-color, 0.5);
+      background: rgba($ui-base-color, 0.6);
     }
   }
   
