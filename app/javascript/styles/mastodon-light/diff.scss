@@ -12,6 +12,14 @@ html {
   &.button-alternative-2 {
     color: $white;
   }
+
+  &.button-tertiary {
+    color: $highlight-text-color;
+  }
+}
+
+.simple_form .button.button-tertiary {
+  color: $highlight-text-color;
 }
 
 .status-card__actions button,
