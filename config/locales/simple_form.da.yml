@@ -18,8 +18,6 @@ da:
           disable: Forhindre brugeren i at bruge sin konto, men slet eller skjul ikke vedkommendes indhold.
           none: Brug dette til at sende en advarsel til brugeren uden at udløse nogen anden handling.
           sensitive: Gennemtving sensitivmarkering af alle denne brugers medievedhæftninger.
-          silence: Forhindre brugeren i at kunne skrive offentligt synlige indlæg, skjule deres indlæg og notifikationer fra personer, som ikke følger dem.
-          suspend: Forhindre enhver interaktion fra eller til denne konto og slet dens indhold. Reversibelt inden for 30 dage.
         warning_preset_id: Valgfri. Du kan stadig tilføje tilpasset tekst til slutningen af forvalgene
       announcement:
         all_day: Hvis markeret, vil kun datoerne for tidsintervallet blive vist
@@ -74,6 +72,7 @@ da:
           hide: Skjul filtreret indhold helt (adfærd som om, det ikke fandtes)
           warn: Skjul filtreret indhold bag en advarsel, der nævner filterets titel
       form_admin_settings:
+        activity_api_enabled: Antal lokalt opslåede indlæg, aktive brugere samt nye tilmeldinger i ugentlige opdelinger
         backups_retention_period: Behold genererede brugerarkiver i det angivne antal dage.
         bootstrap_timeline_accounts: Disse konti fastgøres øverst på nye brugeres følg-anbefalinger.
         closed_registrations_message: Vises, når tilmeldinger er lukket
@@ -229,6 +228,7 @@ da:
           hide: Skjul helt
           warn: Skjul bag en advarsel
       form_admin_settings:
+        activity_api_enabled: Offentliggør samlede statistikker vedr. brugeraktivitet i API'en
         backups_retention_period: Brugerarkivs opbevaringsperiode
         bootstrap_timeline_accounts: Anbefal altid disse konti til nye brugere
         closed_registrations_message: Tilpasset besked, når tilmelding er utilgængelig

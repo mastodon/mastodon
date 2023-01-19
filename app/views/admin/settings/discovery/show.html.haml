@@ -19,6 +19,9 @@
     = f.input :trends, as: :boolean, wrapper: :with_label
 
   .fields-group
+    = f.input :trends_as_landing_page, as: :boolean, wrapper: :with_label
+
+  .fields-group
     = f.input :trendable_by_default, as: :boolean, wrapper: :with_label, recommended: :not_recommended
 
   %h4= t('admin.settings.discovery.public_timelines')

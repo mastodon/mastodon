@@ -575,9 +575,10 @@ ca:
         mark_as_sensitive_description_html: Els mèdia dels tuts reportats seran marcats com a sensibles i una acció serà gravada per ajudar a escalar en futures infraccions del mateix compte.
         other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte reportat.
         resolve_description_html: No serà presa cap acció contra el compte reportat, cap cop serà gravat i l'informe es tancarà.
-        silence_description_html: El perfil serà visible només per aquells que ja el seguien o en cerca manual, limitant severament el seu alcanç. Sempre pot ser revertit.
-        suspend_description_html: El perfil i tot el seu contingut esdevindrà inaccessible fins que sigui eventualment esborrat. Interactuar amb el compte serà impossible. Reversible dins de 30 dies.
+        silence_description_html: El compte només serà visible a qui ja el seguia o l'ha cercat manualment, limitant-ne fortament l'abast. Sempre es pot revertir. Es tancaran tots els informes contra aquest compte.
+        suspend_description_html: Aquest compte i tots els seus continguts seran inaccessibles i finalment eliminats, i interaccionar amb ell no serà possible. Reversible en 30 dies. Tanca tots els informes contra aquest compte.
       actions_description_html: Decideix quina acció a prendre per a resoldre aquest informe. Si prens un acció punitiva contra el compte reportat, se li enviarà una notificació per correu electrònic, excepte quan la categoria <strong>Spam</strong> és seleccionada.
+      actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
       add_to_report: Afegir més al informe
       are_you_sure: N'estàs segur?
       assign_to_self: Assignar-me
@@ -713,6 +714,8 @@ ca:
         preamble: L'aparició de contingut interessant és fonamental per atraure els nous usuaris que podrien no saber res de Mastodon. Controla com funcionen diverses opcions de descobriment en el teu servidor.
         profile_directory: Directori de perfils
         public_timelines: Línies de temps públiques
+        publish_discovered_servers: Publica els servidors descoberts
+        publish_statistics: Publica estadístiques
         title: Descobriment
         trends: Tendències
       domain_blocks:
@@ -1367,6 +1370,9 @@ ca:
       unrecognized_emoji: no és un emoji reconegut
   relationships:
     activity: Activitat del compte
+    confirm_follow_selected_followers: Segur que vols seguir els seguidors seleccionats?
+    confirm_remove_selected_followers: Segur que vols esborrar els seguidors seleccionats?
+    confirm_remove_selected_follows: Segur que vols esborrar els seguits seleccionats?
     dormant: Inactiu
     follow_selected_followers: Segueix als seguidors seleccionats
     followers: Seguidors

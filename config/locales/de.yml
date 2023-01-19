@@ -575,9 +575,10 @@ de:
         mark_as_sensitive_description_html: Die Medien in den gemeldeten Beiträgen werden mit einer Inhaltswarnung versehen und ein Verstoß wird vermerkt, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können.
         other_description_html: Weitere Optionen zur Steuerung des Kontoverhaltens und zur Anpassung der Kommunikation mit dem gemeldeten Konto.
         resolve_description_html: Es wird keine Maßnahme gegen das gemeldete Konto ergriffen, es wird kein Strike verzeichnet und die Meldung wird geschlossen.
-        silence_description_html: Das Profil wird nur für diejenigen sichtbar sein, die ihm bereits folgen oder es manuell nachschlagen, und die Reichweite wird stark begrenzt. Kann immer rückgängig gemacht werden.
-        suspend_description_html: Das Profil und alle seine Inhalte werden unzugänglich werden, bis es schließlich gelöscht wird. Interaktion mit dem Konto wird unmöglich sein. Reversibel innerhalb von 30 Tagen.
+        silence_description_html: Das Konto wird nur für diejenigen sichtbar sein, die dem Konto bereits folgen oder es manuell suchen, was die Reichweite stark einschränkt. Kann jederzeit rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
+        suspend_description_html: Das Konto und alle Inhalte werden unzugänglich und ggf. gelöscht. Eine Interaktion mit dem Konto wird unmöglich. Dies kann innerhalb von 30 Tagen rückgängig gemacht werden. Alle Meldungen zu diesem Konto werden geschlossen.
       actions_description_html: Entscheide, welche Maßnahmen zur Lösung dieses Berichts zu ergreifen sind. Wenn du eine Strafmaßnahme gegen das gemeldete Konto ergreifst, wird eine E-Mail-Benachrichtigung an diese gesendet, außer wenn die <strong>Spam</strong>-Kategorie ausgewählt ist.
+      actions_description_remote_html: Entscheide, welche Maßnahmen du zur Lösung dieser Meldungen ergreifen möchtest. Dies wirkt sich lediglich darauf aus, wie <strong>dein</strong> Server mit diesem externen Konto kommuniziert und dessen Inhalt handhabt.
       add_to_report: Mehr zur Meldung hinzufügen
       are_you_sure: Bist du dir sicher?
       assign_to_self: Mir zuweisen
@@ -713,6 +714,8 @@ de:
         preamble: Das Auffinden interessanter Inhalte ist wichtig, um neue Nutzer einzubinden, die Mastodon noch nicht kennen. Bestimme, wie verschiedene Suchfunktionen auf deinem Server funktionieren.
         profile_directory: Profilverzeichnis
         public_timelines: Öffentliche Timeline
+        publish_discovered_servers: Veröffentliche bekannte Server
+        publish_statistics: Statistiken veröffentlichen
         title: Entdecken
         trends: Trends
       domain_blocks:
@@ -1099,7 +1102,7 @@ de:
   exports:
     archive_takeout:
       date: Datum
-      download: Dein Archiv herunterladen
+      download: Archiv jetzt herunterladen
       hint_html: Du kannst ein Archiv deiner <strong>Beiträge, Listen, hochgeladenen Medien usw.</strong> anfordern. Die exportierten Daten werden im ActivityPub-Format gespeichert und können mit geeigneter Software ausgewertet und angezeigt werden. Du kannst alle 7 Tage ein Archiv erstellen lassen.
       in_progress: Persönliches Archiv wird erstellt …
       request: Dein Archiv anfordern
@@ -1367,6 +1370,9 @@ de:
       unrecognized_emoji: ist kein anerkanntes Emoji
   relationships:
     activity: Kontoaktivität
+    confirm_follow_selected_followers: Bist du dir sicher, dass du den ausgewählten Followern folgen möchtest?
+    confirm_remove_selected_followers: Bist du sicher, dass du den ausgewählten Konten entfolgen möchtest?
+    confirm_remove_selected_follows: Bist du sicher, dass du den ausgewählten Konten entfolgen möchtest?
     dormant: Inaktiv
     follow_selected_followers: Ausgewählten Followern folgen
     followers: Follower
@@ -1590,8 +1596,8 @@ de:
       subject: Dein Einspruch vom %{date} wurde abgelehnt
       title: Einspruch abgelehnt
     backup_ready:
-      explanation: Du hast eine vollständige Sicherung von deinem Mastodon-Konto angefragt. Es kann jetzt heruntergeladen werden!
-      subject: Dein persönliches Archiv ist bereit zum Herunterladen
+      explanation: Du hast eine vollständige Sicherung deines Mastodon-Kontos angefordert. Das Backup kann jetzt heruntergeladen werden!
+      subject: Dein persönliches Archiv kann heruntergeladen werden
       title: Archivmitnahme
     suspicious_sign_in:
       change_password: dein Passwort zu ändern

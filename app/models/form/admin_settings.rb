@@ -23,6 +23,7 @@ class Form::AdminSettings
     thumbnail
     mascot
     trends
+    trends_as_landing_page
     trendable_by_default
     show_domain_blocks
     show_domain_blocks_rationale
@@ -46,6 +47,7 @@ class Form::AdminSettings
     preview_sensitive_media
     profile_directory
     trends
+    trends_as_landing_page
     trendable_by_default
     noindex
     require_invite_text
