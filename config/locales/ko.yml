@@ -565,9 +565,10 @@ ko:
         mark_as_sensitive_description_html: 신고된 게시물의 미디어는 민감함으로 표시될 것이며 이 처벌기록은 같은 계정의 향후 규정 위반에 대해 참고사항으로 쓰일 수 있도록 저장됩니다.
         other_description_html: 계정 동작을 제어하고 신고된 계정과의 의사소통을 사용자 지정하기 위한 추가 옵션을 봅니다.
         resolve_description_html: 신고된 계정에 대해 아무런 동작도 취하지 않으며, 처벌기록이 남지 않으며, 신고는 처리됨으로 변경됩니다.
-        silence_description_html: 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다.
-        suspend_description_html: 프로필과 모든 콘텐츠가 최종적으로 삭제될 때까지 접근 불가상태가 됩니다. 이 계정과의 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다.
+        silence_description_html: 이 계정을 이미 팔로우 하고 있는 사람이나 수동으로 찾아보는 사람에게만 프로필이 보여지고, 도달 범위를 엄격하게 제한합니다. 언제든지 되돌릴 수 있습니다. 이 계정에 대한 모든 신고를 닫습니다.
+        suspend_description_html: 이 계정과 이 계정의 콘텐츠들은 접근 불가능해지고 삭제될 것이며, 상호작용은 불가능해집니다. 30일 이내에 되돌릴 수 있습니다. 이 계정에 대한 모든 신고를 닫습니다.
       actions_description_html: 이 신고를 해결하기 위해 취해야 할 조치를 지정해주세요. 신고된 계정에 대해 처벌 조치를 취하면, <strong>스팸</strong> 카테고리가 선택된 경우를 제외하고 해당 계정으로 이메일 알림이 전송됩니다.
+      actions_description_remote_html: 이 신고를 해결하기 위해 실행할 행동을 결정하세요. 이 결정은 이 원격 계정과 그 콘텐츠를 다루는 방식에 대해 <strong>이 서버</strong>에서만 영향을 끼칩니다
       add_to_report: 신고에 더 추가하기
       are_you_sure: 정말로 실행하시겠습니까?
       assign_to_self: 나에게 할당하기
@@ -701,6 +702,8 @@ ko:
         preamble: 흥미로운 콘텐츠를 노출하는 것은 마스토돈을 알지 못할 수도 있는 신규 사용자를 유입시키는 데 중요합니다. 이 서버에서 작동하는 다양한 발견하기 기능을 제어합니다.
         profile_directory: 프로필 책자
         public_timelines: 공개 타임라인
+        publish_discovered_servers: 발견 된 서버들 발행
+        publish_statistics: 통계 발행
         title: 발견하기
         trends: 유행
       domain_blocks:
@@ -1343,7 +1346,7 @@ ko:
       unrecognized_emoji: 인식 되지 않은 에모지입니다
   relationships:
     activity: 계정 활동
-    confirm_follow_selected_followers: 정말로 선택된 팔로워들을 팔로우 하시겠습니까?
+    confirm_follow_selected_followers: 정말로 선택된 팔로워들을 팔로우 하시겠습니까
     confirm_remove_selected_followers: 정말로 선택된 팔로워들을 삭제하시겠습니까?
     confirm_remove_selected_follows: 정말로 선택된 팔로우를 끊으시겠습니까?
     dormant: 휴면

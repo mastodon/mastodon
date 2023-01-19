@@ -575,8 +575,6 @@ fi:
         mark_as_sensitive_description_html: Ilmoitettujen viestien media merkitään arkaluonteisiksi ja varoitus tallennetaan, jotta voit kärjistää saman tilin tulevia rikkomuksia.
         other_description_html: Katso lisää vaihtoehtoja tilin käytöksen hallitsemiseksi ja ilmoitetun tilin viestinnän mukauttamiseksi.
         resolve_description_html: Ilmoitettua tiliä vastaan ei ryhdytä toimenpiteisiin, varoitusta ei kirjata ja raportti suljetaan.
-        silence_description_html: Profiili näkyy vain niille, jotka jo seuraavat sitä tai etsivät sen manuaalisesti, mikä rajoittaa merkittävästi kattavuutta. Se voidaan aina palauttaa.
-        suspend_description_html: Profiili ja sen koko sisältö eivät ole käytettävissä, kunnes se lopulta poistetaan. Vuorovaikutus tilin kanssa on mahdotonta. Palautettavissa 30 päivän kuluessa.
       actions_description_html: Päätä, mihin toimiin ryhdyt tämän ilmoituksen ratkaisemiseksi. Jos ryhdyt rangaistustoimeen ilmoitettua tiliä vastaan, heille lähetetään sähköposti-ilmoitus, paitsi jos <strong>Roskaposti</strong> luokka on valittuna.
       add_to_report: Lisää raporttiin
       are_you_sure: Oletko varma?
@@ -1367,6 +1365,9 @@ fi:
       unrecognized_emoji: ei ole tunnistettu emoji
   relationships:
     activity: Tilin aktiivisuus
+    confirm_follow_selected_followers: Haluatko varmasti seurata valittuja seuraajia?
+    confirm_remove_selected_followers: Haluatko varmasti poistaa valitut seuraajat?
+    confirm_remove_selected_follows: Haluatko varmasti poistaa valitut seurannat?
     dormant: Horroksessa
     follow_selected_followers: Seuraa valittuja seuraajia
     followers: Seuraajat

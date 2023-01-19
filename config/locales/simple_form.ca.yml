@@ -18,19 +18,19 @@ ca:
           disable: Evita que l'usuari faci servir el seu compte, però no n'esborris ni amaguis el contingut.
           none: Fes servir això per a enviar un avís a l'usuari sense desencadenar cap altra acció.
           sensitive: Obliga a marcar tots els fitxers multimèdia adjunts com a sensibles.
-          silence: Evita que l'usuari pugui publicar amb visibilitat pública, amagar els seus tuts i les notificacions d'usuaris que no el segueixin.
-          suspend: Evita qualsevol interacció des de o cap a aquest compte i esborra els seus continguts. Reversible en un termini de 30 dies.
+          silence: Evita que l'usuari sigui capaç de publicar amb visibilitat pública, amagar els seus tuts i les notificacions d'usuaris que no el segueixin. Tanca tots els informes contra aquest compte.
+          suspend: Evita qualsevol interacció de o cap a aquest compte i esborra'n el contingut. Reversible en un termini de trenta dies. Tanca tots els informes contra aquest compte.
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
         all_day: Si es marca, només es mostraran les dates de l'interval de temps
-        ends_at: Opcional. En aquest moment, l'anunci no es publicarà automàticament
+        ends_at: Opcional. En aquest moment, l’anunci deixarà automàticament d'estar publicat
         scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
         starts_at: Opcional. En cas que el teu anunci estigui vinculat a un interval de temps específic
         text: Pots fer servir la sintaxi dels tuts. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
       appeal:
         text: Només pots emetre una apel·lació per cada acció
       defaults:
-        autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
+        autofollow: Qui es registri a través de la invitació et seguirà automàticament
         avatar: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
         bot: Notifica que aquest compte realitza principalment accions automatitzades i que pot no estar controlat per cap persona
         context: Un o diversos contextos en què s'ha d'aplicar el filtre
@@ -74,6 +74,7 @@ ca:
           hide: Ocultar completament el contingut filtrat, comportant-se com si no existís
           warn: Oculta el contingut filtrat darrere d'un avís mencionant el títol del filtre
       form_admin_settings:
+        activity_api_enabled: Contador de tuts publicats localment, usuaris actius i registres nous en períodes setmanals
         backups_retention_period: Manté els arxius d'usuari generats durant el nombre de dies especificats.
         bootstrap_timeline_accounts: Aquests comptes es fixaran en la part superior de les recomanacions de seguiment dels nous usuaris.
         closed_registrations_message: Mostrat quan el registres estan tancats
@@ -81,6 +82,7 @@ ca:
         custom_css: Pots aplicar estils personalitzats en la versió web de Mastodon.
         mascot: Anul·la la il·lustració en la interfície web avançada.
         media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del nombre de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
+        peers_api_enabled: Una llista de noms de domini que aquest servidor ha trobat al fedivers. No inclou cap dada sobre si estàs federat amb un servidor determinat, només si el teu en sap res. La fan servir, en un sentit general, serveis que recoŀlecten estadístiques sobre la federació.
         profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
         require_invite_text: Quan el registre requereix aprovació manual, fes que sigui obligatori en lloc d'opcional escriure el text de la sol·licitud d'invitació "Per què vols unir-te?"
         site_contact_email: Com pot la gent comunicar amb tu per a consultes legals o de recolzament.
@@ -229,6 +231,7 @@ ca:
           hide: Oculta completament
           warn: Oculta amb un avís
       form_admin_settings:
+        activity_api_enabled: Publica a l'API estadístiques agregades sobre l'activitat dels usuaris
         backups_retention_period: Període de retenció del arxiu d'usuari
         bootstrap_timeline_accounts: Recomana sempre aquests comptes als nous usuaris
         closed_registrations_message: Missatge personalitzat quan el registre està tancat
@@ -236,6 +239,7 @@ ca:
         custom_css: CSS personalitzat
         mascot: Mascota personalitzada (llegat)
         media_cache_retention_period: Període de retenció del cau multimèdia
+        peers_api_enabled: Publica a l'API la llista de servidors descoberts
         profile_directory: Habilita el directori de perfils
         registrations_mode: Qui es pot registrar
         require_invite_text: Requereix un motiu per el registre

@@ -18,8 +18,8 @@ et:
           disable: Keela kasutajal konto kasutamine, sisu kustutamata või varjamata.
           none: Hoiatuse saatmine kasutajale, ilma täiendavate tegevuste käivitamiseta.
           sensitive: Kogu kasutaja meediasisu märgitakse kui tundlik sisu.
-          silence: Takistab kasutajal avaliku nähtavusega postitamist, peidab tema postitused ja märguanded inimeste eest, kes teda ei jälgi.
-          suspend: Takistamaks suhtlust selle kontoga ja kustutamaks kogu sisu. Tagasivõetav 30 päeva jooksul.
+          silence: Välistab kasutaja võimaluse postitada avalikult, peita postitusi ning teavitusi mitte-jälgijate eest. Lõpetab kõik selle konto kohta esitatud kaebused.
+          suspend: Välistab igasuguse suhtluse selle kontoga või sellelt kontolt ning kustutab kogu konto sisu. Tagasipööratav 30 päeva jooksul. Lõpetab kõik selle konto vastu esitatud kaebused.
         warning_preset_id: Valikuline. Saad ikka lisada mis tahes teksti eelseadistuse lõppu
       announcement:
         all_day: Kui valitud, kuvatakse vaid selle ajavahemiku kuupäevi
@@ -74,6 +74,7 @@ et:
           hide: Filtreeritud sisu täielik peitmine, nagu seda polekski üldse olemas
           warn: Varja filtreeritud sisu hoiatusega, nimetades filtri pealkirja
       form_admin_settings:
+        activity_api_enabled: Kohalike postituste, aktiivsete kasutajate ja uute registreerumistr arv nädala kaupa grupeeritult
         backups_retention_period: Talleta genereeritud kasutajaarhiivid määratud arv päevi.
         bootstrap_timeline_accounts: Need kasutajad kinnitatakse uute kasutajate jälgimissoovituste esiritta.
         closed_registrations_message: Kuvatakse, kui liitumised pole võimalikud
@@ -81,6 +82,7 @@ et:
         custom_css: Kohandatud stiile on võimalik kasutada Mastodoni veebiliideses.
         mascot: Asendab kohandatud veebiliidese illustratsiooni.
         media_cache_retention_period: Positiivse väärtuse korral kustutatakse allalaetud meediafailid määratud päevade möödudes. Vajadusel laaditakse need uuesti alla.
+        peers_api_enabled: Domeeninimede loetelu, mida see server on Fediversumis kohanud. Mitte mingeid andmeid selle serveri födereerumise kohta antud serverite pole, vaid üksnes info, et sellest serverist ollakse teadlik. Seda kasutavad teenused, mis koguvad üldist födereerumise statistikat.
         profile_directory: Kasutajate kataloog kuvab nimekirja kasutajatest, kes on seda lubanud.
         require_invite_text: Kui liitumisi on tarvis kinnitada, oleks "Miks soovid liituda?" vastus vajalik
         site_contact_email: Kui peaks tekkima vajadus ühendust võtta täiendavate küsimuste osas.
@@ -229,6 +231,7 @@ et:
           hide: Peida täielikult
           warn: Peida hoiatusega
       form_admin_settings:
+        activity_api_enabled: Avalda agregeeritud statistika kasutajaaktiivsuse kohta API-s
         backups_retention_period: Kasutajate arhiivi talletusperiood
         bootstrap_timeline_accounts: Alati soovita neid kontosid uutele kasutajatele
         closed_registrations_message: Kohandatud teade, kui liitumine pole võimalik
@@ -236,6 +239,7 @@ et:
         custom_css: Kohandatud CSS
         mascot: Kohandatud maskott (kunagine)
         media_cache_retention_period: Meediapuhvri talletusperiood
+        peers_api_enabled: Avalda avastatud serverite loetelu API kaudu
         profile_directory: Luba kasutajate kataloog
         registrations_mode: Kes saab liituda
         require_invite_text: Nõua liitumiseks põhjendust

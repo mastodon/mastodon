@@ -18,8 +18,6 @@ en-GB:
           disable: Prevent the user from using their account, but do not delete or hide their contents.
           none: Use this to send a warning to the user, without triggering any other action.
           sensitive: Force all this user's media attachments to be flagged as sensitive.
-          silence: Prevent the user from being able to post with public visibility, hide their posts and notifications from people not following them.
-          suspend: Prevent any interaction from or to this account and delete its contents. Revertible within 30 days.
         warning_preset_id: Optional. You can still add custom text to end of the preset
       announcement:
         all_day: When checked, only the dates of the time range will be displayed
@@ -92,6 +90,25 @@ en-GB:
         theme: Theme that logged out visitors and new users see.
         thumbnail: A roughly 2:1 image displayed alongside your server information.
     labels:
+      defaults:
+        context: Filter contexts
+        current_password: Current password
+        data: Data
+        discoverable: Suggest account to others
+        display_name: Display name
+        email: E-mail address
+        expires_in: Expire after
+        fields: Profile metadata
+        header: Header
+        honeypot: "%{label} (do not fill in)"
+        inbox_url: URL of the relay inbox
+        irreversible: Drop instead of hide
+        locale: Interface language
+        locked: Require follow requests
+        max_uses: Max number of uses
+        new_password: New password
+        note: Bio
+        otp_attempt: Two-factor code
       ip_block:
         ip: IP
         severities:
