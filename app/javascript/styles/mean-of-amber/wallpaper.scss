@@ -12,23 +12,38 @@
   
   body {
     &.app-body {
-      background: no-repeat fixed center/80% url($wallpaper);
+      background: no-repeat fixed center top/80% url($wallpaper);
+      @media (max-width: 697px) {
+        background-position: 25% 75%;
+      }
     }
   
     &.about-body {
-      background: no-repeat center center/80% url($wallpaper);
+      background: no-repeat fixed center top/80% url($wallpaper);
+      @media (max-width: 697px) {
+        background-position: 25% 75%;
+      }
     }
   
     &.tag-body {
-      background: no-repeat center center/80% url($wallpaper);
+      background: no-repeat fixed center top/80% url($wallpaper);
+      @media (max-width: 697px) {
+        background-position: 25% 75%;
+      }
     }
   
     &.admin {
-      background: no-repeat center center/80% url($wallpaper);
+      background: no-repeat fixed center top/80% url($wallpaper);
+      @media (max-width: 697px) {
+        background-position: 25% 75%;
+      }
     }
   
     &.error {
-      background: no-repeat center center/80% url($wallpaper);
+      background: no-repeat fixed center top/80% url($wallpaper);
+      @media (max-width: 697px) {
+        background-position: 25% 75%;
+      }
     }
   }
   
