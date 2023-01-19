@@ -1,10 +1,9 @@
----
 eo:
   about:
     about_mastodon_html: 'La socia retejo de la estonteco: sen reklamo, sen kompania observado, etika desegno, kaj malcentrigo! Regu viajn datumojn per Mastodon!'
     contact_missing: Ne elektita
     contact_unavailable: Ne disponebla
-    hosted_on: "%{domain} estas nodo de Mastodon"
+    hosted_on: '%{domain} estas nodo de Mastodon'
     title: Pri
   accounts:
     follow: Sekvi
@@ -56,7 +55,7 @@ eo:
       delete: Forigi datumojn
       deleted: Forigita
       demote: Degradi
-      destroyed_msg: Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ
+      destroyed_msg: "Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ"
       disable: Frostigi
       disable_sign_in_token_auth: Malŝalti aŭtentigon de retpoŝta ĵetono
       disable_two_factor_authentication: Malŝalti 2FA-n
@@ -542,11 +541,11 @@ eo:
       no_ip_block_selected: Neniu IP-regulo estis ŝanĝita ĉar neniu estis elektita
       title: IP-reguloj
     relationships:
-      title: Rilatoj de %{acct}
+      title: "Rilatoj de %{acct}"
     relays:
       add_new: Aldoni novan ripetilon
       delete: Forigi
-      description_html: "<strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj."
+      description_html: <strong>Fratara ripetilo</strong> estas survoja servilo, kiu interŝanĝas grandan kvanton de publikaj mesaĝoj inter serviloj, kiuj abonas kaj publikigas al ĝi. <strong>Ĝi povas helpi etajn kaj mezgrandajn servilojn malkovri enhavon de la fediverse</strong>, kio normale postulus al lokaj uzantoj mane sekvi homojn de foraj serviloj.
       disable: Malebligi
       disabled: Malebligita
       enable: Ebligi
@@ -853,7 +852,7 @@ eo:
     webhooks:
       add_new: Aldoni finpunkton
       delete: Forigi
-      description_html: "<strong>Rethoko</strong> ebligas Mastodon sendi <strong>realtempan sciigon</strong> pri kelkaj eventoj al la via sia programaro por <strong>automata ekigi</strong>."
+      description_html: <strong>Rethoko</strong> ebligas Mastodon sendi <strong>realtempan sciigon</strong> pri kelkaj eventoj al la via sia programaro por <strong>automata ekigi</strong>.
       disable: Neebligi
       disabled: Neebligita
       edit: Redakti finpunkton
@@ -889,7 +888,7 @@ eo:
     new_report:
       body: "%{reporter} signalis %{target}"
       body_remote: Iu de %{domain} signalis %{target}
-      subject: Nova signalo por %{instance} (#%{id})
+      subject: 'Nova signalo por %{instance} (#%{id})'
     new_trends:
       body: 'La eroj bezonas kontrolon antau ol ili povas montritas publike:'
       new_trending_links:
@@ -898,7 +897,7 @@ eo:
         title: Popularaĝaj mesaĝoj
       new_trending_tags:
         no_approved_tags: Nun ne havas aprobitajn popularajn kradvortojn.
-        requirements: Ajn ĉi tiu eroj povas superi la %{rank}an kradvorton kiu estas %{lowest_tag_name} kun %{lowest_tag_score} puentoj.
+        requirements: 'Ajn ĉi tiu eroj povas superi la %{rank}an kradvorton kiu estas %{lowest_tag_name} kun %{lowest_tag_score} puentoj.'
         title: Tendencantaj kradvortoj
       subject: Novaj popularaĵoj bezonas kontrolitis ĉe %{instance}
   aliases:
@@ -954,7 +953,7 @@ eo:
     logout: Adiaŭi
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
-    or_log_in_with: Aŭ ensaluti per
+    or_log_in_with: Aŭ saluti per
     privacy_policy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
     providers:
       cas: CAS
@@ -973,7 +972,7 @@ eo:
       email_settings_hint_html: La konfirmretpoŝto senditas al %{email}.
       title: Agordi
     sign_in:
-      title: Ensalutu al %{domain}
+      title: Saluti en %{domain}
     sign_up:
       preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
       title: Ni pretigu vin ĉe %{domain}.
@@ -1088,9 +1087,7 @@ eo:
       content: Ni bedaŭras, io malsukcesis niaflanke.
       title: Ĉi tiu paĝo ne estas ĝusta
     '503': La paĝo ne povas montritis pro malpermanenta servilmalfunkcio.
-    noscript_html: |-
-      Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la
-      <a href="%{apps_path}">operaciumaj aplikaĵoj</a> por Mastodon por via platformo.
+    noscript_html: "Por uzi la retan aplikaĵon de Mastodon, bonvolu ebligi JavaScript. Alimaniere, provu unu el la\n<a href=\"%{apps_path}\">operaciumaj aplikaĵoj</a> por Mastodon por via platformo."
   existing_username_validator:
     not_found: Ne povas trovi lokaj uzanto kun tiu uzantnomo
     not_found_multiple: Ne povas trovi %{usernames}
@@ -1162,10 +1159,10 @@ eo:
     all: Ĉio
     all_items_on_page_selected_html:
       one: "<strong>%{count}</strong> ero ĉe ĉi tiu paĝo elektitas."
-      other: "<strong>%{count}</strong> eroj ĉe ĉi tiu paĝo elektitas."
+      other: <strong>%{count}</strong> eroj ĉe ĉi tiu paĝo elektitas.
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> ero kiu kongruas vian serĉon elektitas."
-      other: "<strong>%{count}</strong> eroj kiuj kongruas vian serĉon elektitas."
+      other: <strong>%{count}</strong> eroj kiuj kongruas vian serĉon elektitas.
     changes_saved_msg: Ŝanĝoj sukcese konservitaj!
     copy: Kopii
     delete: Forigi
@@ -1184,7 +1181,7 @@ eo:
     invalid_markup: 'havas nevalidan HTML-markadon: %{error}'
   imports:
     errors:
-      invalid_csv_file: Nevalida CSV-dosiero. %{error}
+      invalid_csv_file: 'Nevalida CSV-dosiero. %{error}'
       over_rows_processing_limit: enhavas pli ol %{count} vicoj
     modes:
       merge: Kunigi
@@ -1287,7 +1284,7 @@ eo:
       sign_up:
         subject: "%{name} registriĝis"
     favourite:
-      body: "%{name} stelumis vian mesaĝon:"
+      body: '%{name} stelumis vian mesaĝon:'
       subject: "%{name} stelumis vian mesaĝon"
       title: Nova stelumo
     follow:
@@ -1297,12 +1294,12 @@ eo:
     follow_request:
       action: Administri petojn de sekvado
       body: "%{name} petis sekvi vin"
-      subject: "%{name} petis sekvi vin"
+      subject: '%{name} petis sekvi vin'
       title: Nova peto de sekvado
     mention:
       action: Respondi
-      body: "%{name} menciis vin en:"
-      subject: "%{name} menciis vin"
+      body: '%{name} menciis vin en:'
+      subject: '%{name} menciis vin'
       title: Nova mencio
     poll:
       subject: Enketo de %{name} finitas
@@ -1500,7 +1497,7 @@ eo:
     show_older: Montri pli malnovajn
     show_thread: Montri la mesaĝaron
     sign_in_to_participate: Ensalutu por partopreni la konversacion
-    title: "%{name}: “%{quote}”"
+    title: '%{name}: “%{quote}”'
     visibilities:
       direct: Rekta
       private: Montri nur al sekvantoj
@@ -1593,11 +1590,11 @@ eo:
       title: Arkiva elŝuto
     suspicious_sign_in:
       change_password: ŝanĝi vian pasvorton
-      details: 'Detaloj pri ensaluto:'
-      explanation: Ni detektas ensaluton al via konto de nova IP-adreso.
+      details: 'Ĉi-sube estas detaloj pri la saluto:'
+      explanation: Ni detektis saluton en via konto de nova IP-adreso.
       further_actions_html: Se ne estas vi, ni rekomendas ke vi %{action} tuj por sekurigi vian konton.
       subject: Via konto estas alirita de nova IP-adreso
-      title: Nova ensaluto
+      title: Nova saluto
     warning:
       appeal: Sendi apelacion
       appeal_description: Se vi pensas ke ĉi tio estas eraro, vi povas sendi apelacion al la teamo de %{instance}.
