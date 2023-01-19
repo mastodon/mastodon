@@ -1,0 +1,15 @@
+- content_for :page_title do
+  = "Welcome #{display_name(@account)}"
+
+.fields-group
+  %p
+    = "Welcome #{display_name(@account, custom_emojify: true)}"
+
+.fields-group
+  %p
+    = "You now have #{acct(@account)}"
+
+.fields-group
+  %p To complete your profile:
+  %a{ href: @mastodon_builder_url, class: 'button' }
+    ō&nbsp;&nbsp;&nbsp;Continue with Hellō Mastodon Builder
