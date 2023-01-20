@@ -99,7 +99,7 @@ RUN apt-get update && \
 USER mastodon
 WORKDIR /opt/mastodon
 
-COPY --chown=mastodon:mastodon --from=build --link /opt/mastodon /opt/mastodon
+COPY --chown=${UID}:${GID} --from=build --link /opt/mastodon /opt/mastodon
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
