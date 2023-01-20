@@ -7,8 +7,10 @@ FROM node:${NODE_VERSION} as build
 
 COPY --link --from=ruby /opt/ruby /opt/ruby
 
-ENV DEBIAN_FRONTEND="noninteractive" \
-    PATH="${PATH}:/opt/ruby/bin"
+ENV RAILS_ENV="production" \
+    NODE_ENV="production" \
+    DEBIAN_FRONTEND="noninteractive" \
+    PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
@@ -32,32 +34,45 @@ RUN apt-get update && \
         ca-certificates \
         libreadline8 \
         python3 \
-        shared-mime-info && \
+        shared-mime-info  \
+    && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN set -eux && \
     bundle config set --local deployment 'true' && \
     bundle config set --local without 'development test' && \
     bundle config set silence_root_warning true && \
     bundle install -j"$(nproc)" && \
     yarn install --pure-lockfile --network-timeout 600000
 
-FROM node:${NODE_VERSION}
+COPY --chown=mastodon:mastodon . /opt/mastodon
+
+# Precompile assets
+RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
+    yarn cache clean
+
+FROM debian:bullseye-slim as prod
 
 ARG UID="991"
 ARG GID="991"
 
-COPY --link --from=ruby /opt/ruby /opt/ruby
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-ENV DEBIAN_FRONTEND="noninteractive" \
+ENV RAILS_ENV="production" \
+    NODE_ENV="production" \
+    RAILS_SERVE_STATIC_FILES="true" \
+    BIND="0.0.0.0" \
     PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
-# Ignoreing these here since we don't want to pin any versions and the Debian image removes apt-get content after use
-# hadolint ignore=DL3008,DL3009
+COPY --from=build --link /usr/local/bin/node /usr/local/bin/node
+COPY --from=ruby           --link /opt/ruby           /opt/ruby
+
 RUN apt-get update && \
     echo "Etc/UTC" > /etc/localtime && \
     groupadd -g "${GID}" mastodon && \
     useradd -l -u "$UID" -g "${GID}" -m -d /opt/mastodon mastodon && \
-    apt-get -y --no-install-recommends install whois \
+    DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install  \
+        whois \
         wget \
         procps \
         libssl1.1 \
@@ -72,27 +87,16 @@ RUN apt-get update && \
         ca-certificates \
         tzdata \
         libreadline8 \
-        tini && \
+        tini  \
+    && \
+    rm -rf /var/lib/apt/lists/* && \
     ln -s /opt/mastodon /mastodon
-
-# Note: no, cleaning here since Debian does this automatically
-# See the file /etc/apt/apt.conf.d/docker-clean within the Docker image's filesystem
-
-COPY --chown=mastodon:mastodon . /opt/mastodon
-COPY --chown=mastodon:mastodon --from=build /opt/mastodon /opt/mastodon
-
-ENV RAILS_ENV="production" \
-    NODE_ENV="production" \
-    RAILS_SERVE_STATIC_FILES="true" \
-    BIND="0.0.0.0"
 
 # Set the run user
 USER mastodon
 WORKDIR /opt/mastodon
 
-# Precompile assets
-RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
-    yarn cache clean
+COPY --chown=mastodon:mastodon --from=build --link /opt/mastodon /opt/mastodon
 
 # Set the work dir and the container entry point
 ENTRYPOINT ["/usr/bin/tini", "--"]
