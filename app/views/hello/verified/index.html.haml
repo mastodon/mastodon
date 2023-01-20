@@ -4,24 +4,23 @@
 .admin-wrapper
   .content
 
-    %div{ 'tabindex': '-1', 'inert': true, 'aria-hidden': true, style: 'display: flex; align-items: center; justify-content: center;' }
+    %div{ 'tabindex': '-1', 'inert': true, 'aria-hidden': true, class: 'flex-all' }
       = render_symbol :wordmark
 
     .form-container
-      %form.simple_form{ style: 'text-align: center' }
+      %form.simple_form.text-center
 
         .fields-group
-          %h1.title Welcome
-          %h2
+          %h1.title.mb-0.leading-none.text-4xl Welcome
+          %h2.mb-0.leading-none.mt-3
             = display_name(@account, custom_emojify: true)
 
-        .fields-group
-          %h3 you now have
-          %h2
+        .fields-group.my-12
+          %h3.mb-0.leading-none.text-lg.font-medium you now have
+          %h2.mb-0.leading-none.mt-3
             = acct(@account)
 
         .fields-group
-          %h3 to complete your profile
-          %p
-            %a{ href: @mastodon_builder_url, class: 'button' }
-              ō&nbsp;&nbsp;&nbsp;Continue with Hellō Mastodon Builder
+          %h3.mb-0.leading-none.text-lg.font-medium to complete your profile
+          %a{ href: @mastodon_builder_url, class: 'button mt-3 text-lg p-4' }
+            ō&nbsp;&nbsp;&nbsp;Continue with Hellō Mastodon Builder
