@@ -68,6 +68,8 @@ ENV RAILS_ENV="production" \
 COPY --from=build --link /usr/local/bin/node /usr/local/bin/node
 COPY --from=ruby           --link /opt/ruby           /opt/ruby
 
+# Ignoreing these here since we don't want to pin any versions and the Debian image removes apt-get content after use
+# hadolint ignore=DL3008
 RUN apt-get update && \
     echo "Etc/UTC" > /etc/localtime && \
     groupadd -g "${GID}" mastodon && \
