@@ -16,6 +16,27 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
     end
   end
 
+  describe 'POST #batch' do
+    it 'blocks the domains when succeeded to save' do
+      allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
+
+      post :batch, params: {
+        save: '',
+        form_domain_block_batch: {
+          domain_blocks_attributes: {
+            '0' => { enabled: '1', domain: 'example.com', severity: 'silence' },
+            '1' => { enabled: '0', domain: 'mastodon.social', severity: 'suspend' },
+            '2' => { enabled: '1', domain: 'mastodon.online', severity: 'suspend' }
+          }
+        }
+      }
+
+      expect(DomainBlockWorker).to have_received(:perform_async).exactly(2).times
+      expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
+      expect(response).to redirect_to(admin_instances_path(limited: '1'))
+    end
+  end
+
   describe 'POST #create' do
     it 'blocks the domain when succeeded to save' do
       allow(DomainBlockWorker).to receive(:perform_async).and_return(true)
@@ -46,6 +67,53 @@ RSpec.describe Admin::DomainBlocksController, type: :controller do
       expect(DomainBlockWorker).to have_received(:perform_async)
       expect(flash[:notice]).to eq I18n.t('admin.domain_blocks.created_msg')
       expect(response).to redirect_to(admin_instances_path(limited: '1'))
+    end
+  end
+
+  describe 'PUT #update' do
+    let!(:remote_account) { Fabricate(:account, domain: 'example.com') }
+    let(:domain_block)    { Fabricate(:domain_block, domain: 'example.com', severity: original_severity) }
+
+    before do
+      BlockDomainService.new.call(domain_block)
+    end
+
+    let(:subject) do
+      post :update, params: { id: domain_block.id, domain_block: { domain: 'example.com', severity: new_severity } }
+    end
+
+    context 'downgrading a domain suspension to silence' do
+      let(:original_severity) { 'suspend' }
+      let(:new_severity)      { 'silence' }
+
+      it 'changes the block severity' do
+        expect { subject }.to change { domain_block.reload.severity }.from('suspend').to('silence')
+      end
+
+      it 'undoes individual suspensions' do
+        expect { subject }.to change { remote_account.reload.suspended? }.from(true).to(false)
+      end
+
+      it 'performs individual silences' do
+        expect { subject }.to change { remote_account.reload.silenced? }.from(false).to(true)
+      end
+    end
+
+    context 'upgrading a domain silence to suspend' do
+      let(:original_severity) { 'silence' }
+      let(:new_severity)      { 'suspend' }
+
+      it 'changes the block severity' do
+        expect { subject }.to change { domain_block.reload.severity }.from('silence').to('suspend')
+      end
+
+      it 'undoes individual silences' do
+        expect { subject }.to change { remote_account.reload.silenced? }.from(true).to(false)
+      end
+
+      it 'performs individual suspends' do
+        expect { subject }.to change { remote_account.reload.suspended? }.from(false).to(true)
+      end
     end
   end
 

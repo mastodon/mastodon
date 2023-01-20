@@ -28,8 +28,8 @@ module SignatureVerification
   end
 
   class SignatureParamsTransformer < Parslet::Transform
-    rule(params: subtree(:p)) do
-      (p.is_a?(Array) ? p : [p]).each_with_object({}) { |(key, val), h| h[key] = val }
+    rule(params: subtree(:param)) do
+      (param.is_a?(Array) ? param : [param]).each_with_object({}) { |(key, value), hash| hash[key] = value }
     end
 
     rule(param: { key: simple(:key), value: simple(:val) }) do
@@ -46,11 +46,11 @@ module SignatureVerification
   end
 
   def require_account_signature!
-    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
+    render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_account
   end
 
   def require_actor_signature!
-    render plain: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
+    render json: signature_verification_failure_reason, status: signature_verification_failure_code unless signed_request_actor
   end
 
   def signed_request?
@@ -97,11 +97,11 @@ module SignatureVerification
 
     actor = stoplight_wrap_request { actor_refresh_key!(actor) }
 
-    raise SignatureVerificationError, "Public key not found for key #{signature_params['keyId']}" if actor.nil?
+    raise SignatureVerificationError, "Could not refresh public key #{signature_params['keyId']}" if actor.nil?
 
     return actor unless verify_signature(actor, signature, compare_signed_string).nil?
 
-    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)"
+    fail_with! "Verification failed for #{actor.to_log_human_identifier} #{actor.uri} using rsa-sha256 (RSASSA-PKCS1-v1_5 with SHA-256)", signed_string: compare_signed_string, signature: signature_params['signature']
   rescue SignatureVerificationError => e
     fail_with! e.message
   rescue HTTP::Error, OpenSSL::SSL::SSLError => e
@@ -118,8 +118,8 @@ module SignatureVerification
 
   private
 
-  def fail_with!(message)
-    @signature_verification_failure_reason = message
+  def fail_with!(message, **options)
+    @signature_verification_failure_reason = { error: message }.merge(options)
     @signed_request_actor = nil
   end
 
@@ -209,8 +209,8 @@ module SignatureVerification
       end
 
       expires_time = Time.at(signature_params['expires'].to_i).utc if signature_params['expires'].present?
-    rescue ArgumentError
-      return false
+    rescue ArgumentError => e
+      raise SignatureVerificationError, "Invalid Date header: #{e.message}"
     end
 
     expires_time ||= created_time + 5.minutes unless created_time.nil?

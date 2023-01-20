@@ -12,6 +12,14 @@ html {
   &.button-alternative-2 {
     color: $white;
   }
+
+  &.button-tertiary {
+    color: $highlight-text-color;
+  }
+}
+
+.simple_form .button.button-tertiary {
+  color: $highlight-text-color;
 }
 
 .status-card__actions button,
@@ -285,22 +293,8 @@ html {
 .dropdown-menu {
   background: $white;
 
-  &__arrow {
-    &.left {
-      border-left-color: $white;
-    }
-
-    &.top {
-      border-top-color: $white;
-    }
-
-    &.bottom {
-      border-bottom-color: $white;
-    }
-
-    &.right {
-      border-right-color: $white;
-    }
+  &__arrow::before {
+    background-color: $white;
   }
 
   &__item {

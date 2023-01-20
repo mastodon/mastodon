@@ -53,7 +53,7 @@ jobs:
       - name: Set-up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version-file: .nvmrc
           cache: yarn
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -62,7 +62,7 @@ jobs:
       - name: Set-up Stylelint Problem Matcher
         uses: xt0rted/stylelint-problem-matcher@v1
       # https://github.com/xt0rted/stylelint-problem-matcher/issues/360
-      - run: echo "::add-matcher::.github/stylelint-matcher.json" 
+      - run: echo "::add-matcher::.github/stylelint-matcher.json"
 
       ################################
       # Run Linter against code base #

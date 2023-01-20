@@ -5,6 +5,7 @@ ro:
     contact_missing: Nesetat
     contact_unavailable: Indisponibil
     hosted_on: Mastodon găzduit de %{domain}
+    title: Despre
   accounts:
     follow: Urmărește
     followers:
@@ -45,6 +46,11 @@ ro:
         new_email: E-mail nou
         submit: Schimbă adresa de email
         title: Schimbă e-mailul pentru %{username}
+      change_role:
+        changed_msg: Rol actualizat cu succes!
+        label: Schimbare rol
+        no_role: Niciun rol
+        title: Schimbă rolul pentru %{username}
       confirm: Confirmă
       confirmed: Confirmat
       confirming: Confirmare
@@ -88,6 +94,7 @@ ro:
         active: Activ
         all: Toate
         pending: În așteptare
+        silenced: Limitat
         suspended: Suspendate
         title: Moderare
       moderation_notes: Note de moderare
@@ -95,9 +102,11 @@ ro:
       most_recent_ip: Cel mai recent IP
       no_account_selected: Nici un cont nu a fost schimbat deoarece nici unul nu a fost selectat
       no_limits_imposed: Nicio limită impusă
+      no_role_assigned: Niciun rol atribuit
       not_subscribed: Nesubscrise
       pending: În așteptare
       perform_full_suspension: Suspendate
+      previous_strikes: Atenționări anterioare
       promote: Promovează
       protocol: Protocol
       public: Public
@@ -117,6 +126,7 @@ ro:
       reset: Resetează
       reset_password: Resetează parola
       resubscribe: Resubscrie-te
+      role: Rol
       search: Caută
       search_same_email_domain: Alţi utilizatori cu acelaşi domeniu de e-mail
       search_same_ip: Alţi utilizatori cu acelaşi IP
@@ -134,6 +144,7 @@ ro:
       statuses: Stări
       strikes: Atenționări anterioare
       subscribe: Subscrie
+      suspend: Suspendă
       suspended: Suspendate
       suspension_irreversible: Datele acestui cont au fost șterse în mod ireversibil. Poți să renunți la suspnedarea contului pentru a-l face utilizabil, dar acesta nu va recupera nicio informație pe care a avut-o anterior.
       suspension_reversible_hint_html: Contul a fost suspendat și datele vor fi șterse complet pe %{date}. Până atunci, contul poate fi restabilit fără efecte adverse. Dacă dorești să ştergi imediat toate datele contului, poți face acest lucru mai jos.
@@ -154,9 +165,11 @@ ro:
       whitelisted: Excluse la blocare
     action_logs:
       action_types:
+        approve_appeal: Aprobare apel
         approve_user: Aprobă Utilizatorul
         assigned_to_self_report: Atribuie raportul
         change_email_user: Schimbă e-mailul pentru utilizator
+        change_role_user: Schimbă rolul utilizatorului
         confirm_user: Confirmare Utilizator
         create_account_warning: Crează avertisment
         create_announcement: Creează Anunț
@@ -166,6 +179,7 @@ ro:
         create_email_domain_block: Creați blocare de domeniu e-mail
         create_ip_block: Creează regulă IP
         create_unavailable_domain: Crează domeniu indisponibil
+        create_user_role: Creează Rol
         demote_user: Retrogradare Utilizatorul
         destroy_announcement: Ștergere anunț
         destroy_custom_emoji: Ștergere Zâmbet Personalizat
@@ -185,24 +199,206 @@ ro:
         enable_user: Activează Utilizator
         memorialize_account: Comemoreză Contul
         promote_user: Promovează utilizator
+        reject_appeal: Respingere apel
         reject_user: Respinge Utilizatorul
         remove_avatar_user: Elimină avatar
         reopen_report: Redeschide Raport
         reset_password_user: Resetează Parola
         resolve_report: Rezolvă Raport
         sensitive_account: Cont Sensibil
+        silence_account: Limitează cont
         suspend_account: Suspendă Cont
         unassigned_report: Raport Neasignat
+        unblock_email_account: Deblochează adresa de e-mail
+        unsilence_account: Anulează Limitarea Contului
         unsuspend_account: Anulează Suspendarea Contului
         update_announcement: Actualizare Anunț
         update_custom_emoji: Actualizare Emoji Personalizat
         update_status: Actualizează Starea
       actions:
         create_custom_emoji_html: "%{name} a încărcat noi emoji %{target}"
+      deleted_account: cont șters
+      empty: Niciun jurnal nu a fost găsit.
+      filter_by_action: Filtrează după acțiune
+      filter_by_user: Filtrează după utilizator
+      title: Jurnal de audit
     announcements:
+      destroyed_msg: Anunț șters cu succes!
+      edit:
+        title: Modifică anunțul
+      empty: Niciun anunț nu a fost găsit.
       live: În direct
       new:
         create: Creează Anunț
+        title: Anunț nou
+      publish: Publică
+      published_msg: Anunț publicat cu succes!
+      scheduled_for: Programat pentru ora %{time}
+      scheduled_msg: Publicarea anunțului va avea loc la ora programată!
+      title: Anunțuri
+      unpublish: Revocă publicarea
+      unpublished_msg: Publicarea anunțului a fost revocată cu succes!
+      updated_msg: Anunț actualizat cu succes!
+    custom_emojis:
+      assign_category: Atribuie o categorie
+      by_domain: Domeniu
+      copied_msg: Copie locală a emoticonului creată cu succes
+      copy: Copiază
+      copy_failed_msg: Nu s-a putut realiza o copie locală a acelui emoticon
+      create_new_category: Creează o categorie nouă
+      created_msg: Emoticon creat cu succes!
+      delete: Șterge
+      destroyed_msg: Emoticon distrus cu succes!
+      disable: Dezactivează
+      disabled: Dezactivat
+      disabled_msg: Emoticon dezactivat cu succes
+      emoji: Emoticon
+      enable: Activează
+      enabled: Activat
+      enabled_msg: Emoticon activat cu succes
+      image_hint: PNG sau GIF de cel mult %{size}
+      list: Listează
+      listed: Listat
+      new:
+        title: Adaugă un nou emoticon personalizat
+      no_emoji_selected: Niciun emoticon nu a fost modificat pentru că niciunul nu era selectat
+      not_permitted: Nu ai permisiunea de a efectua această acțiune
+      overwrite: Suprascrie
+      shortcode: Scurtătură
+      shortcode_hint: Cel puțin două caractere, doar caractere alfanumerice sau linii de subliniere
+      title: Emoticoane personalizate
+      uncategorized: Necategorizat
+      unlist: Nu mai lista
+      unlisted: Nelistat
+      update_failed_msg: Nu s-a putut actualiza emoticonul respectiv
+      updated_msg: Emoticon actualizat cu succes!
+      upload: Încarcă
+    email_domain_blocks:
+      delete: Șterge
+      dns:
+        types:
+          mx: Înregistrare MX
+      domain: Domeniu
+      new:
+        create: Adaugă domeniu
+        resolve: Rezolvă domeniul
+    export_domain_allows:
+      no_file: Niciun fișier selectat
+    follow_recommendations:
+      status: Stare
+    instances:
+      back_to_all: Toate
+      back_to_limited: Limitat
+      back_to_warning: Avertizare
+      by_domain: Domeniu
+      content_policies:
+        comment: Notă internă
+        policies:
+          reject_media: Respinge conținutul multimedia
+          reject_reports: Respinge raportările
+      moderation:
+        all: Toate
+        limited: Limitat
+        title: Moderare
+      private_comment: Comentariu privat
+      public_comment: Comentariu public
+      title: Federație
+      total_blocked_by_us: Blocat de către noi
+    ip_blocks:
+      expires_in:
+        '1209600': 2 săptămâni
+        '15778476': 6 luni
+        '2629746': o lună
+        '31556952': un an
+        '86400': o zi
+        '94670856': 3 ani
+      new:
+        title: Creează o regulă IP nouă
+      no_ip_block_selected: Nicio regulă IP nu a fost modificată deoarece niciuna nu era selectată
+      title: Reguli IP
+    relationships:
+      title: Relațiile lui %{acct}
+    relays:
+      delete: Șterge
+      disable: Dezactivează
+      disabled: Dezactivat
+      enable: Activează
+    reports:
+      are_you_sure: Ești sigur?
+      assign_to_self: Alocă-mi-o mie
+      assigned: Moderator alocat
+      category: Categorie
+      category_description_html: Motivul pentru care acest cont și/sau conținut a fost raportat va fi citat în comunicarea trimisă contului raportat
+      comment:
+        none: Niciunul
+      comment_description_html: 'Pentru a furniza mai multe informaţii, %{name} a scris:'
+      created_at: Raportat
+      delete_and_resolve: Șterge postările
+      forwarded: Redirecționat
+      forwarded_to: Redirecționat către %{domain}
+      mark_as_resolved: Marchează ca fiind rezolvat
+      mark_as_sensitive: Marchează ca fiind sensibil
+      mark_as_unresolved: Marchează ca fiind nerezolvat
+      no_one_assigned: Nimeni
+      notes:
+        create: Adaugă o notă
+        create_and_resolve: Rezolvă cu o notă
+        create_and_unresolve: Redeschide cu o notă
+        delete: Șterge
+        title: Note
+      reopen: Redeschide raportarea
+      report: Raportare №%{id}
+      reported_account: Contul raportat
+      reported_by: Raportat de către
+      resolved: Rezolvată
+      resolved_msg: Raportare rezolvată cu succes!
+      skip_to_actions: Treci la acțiuni
+      status: Stare
+      statuses: Conținut raportat
+      statuses_description_html: Conținutul problematic va fi citat în comunicarea trimisă contului raportat
+      target_origin: Originea contului raportat
+      title: Raportări
+      unassign: Anulează alocarea
+      unresolved: Cu rezolvare anulată
+      updated_at: Actualizată
+      view_profile: Vezi profilul
+    roles:
+      add_new: Adaugă un rol
+      categories:
+        administration: Administrație
+        devops: Dezvoltare și operațiuni
+        invites: Invitații
+        moderation: Moderare
+        special: Speciale
+      delete: Șterge
+      description_html: Folosind <strong>roluri pentru utilizatori</strong>, poți alege ce funcții și zone din Mastodon pot accesa utilizatorii tăi.
+      edit: Modifică rolul lui „%{name}”
+      everyone: Permisiuni implicite
+      everyone_full_description_html: Acesta este <strong>rolul de bază</strong> care afectează <strong>toți utilizatorii</strong>, chiar și pe cei fără un rol alocat. Toate celelalte roluri îi moștenesc permisiunile lui.
+      privileges:
+        administrator: Administrator
+        administrator_description: Utilizatorii cu această permisiune vor putea avea orice permisiune
+        delete_user_data: Șterge datele utilizatorului
+    rules:
+      title: Regulile serverului
+    settings:
+      about:
+        manage_rules: Administrează regulile serverului
+        preamble: Furnizează informații detaliate despre modul în care serverul este operat, moderat și finanțat.
+        rules_hint: Există o zonă dedicată pentru regulile pe care utilizatorii tăi ar trebui să le respecte.
+        title: Despre
+      appearance:
+        preamble: Personalizează interfața web a Mastodon.
+        title: Aspect
+      branding:
+        preamble: Elementele de marcă ale serverului tău îl diferențiază de celelalte servere din rețea. Acestea pot fi afișate într-o varietate de medii precum în interfața web a Mastodon, în aplicațiile native, în previzualizarea linkurilor pe alte site-uri web, în aplicațiile de mesagerie ș.a.m.d. Din acest motiv, este de preferat ca aceste elemente să fie clare, scurte şi concise.
+        title: Elemente de marcă
+      content_retention:
+        preamble: Controlează modul în care conținutul generat de utilizatori este stocat în Mastodon.
+        title: Retenția conținutului
+      discovery:
+        follow_recommendations: Urmează recomandările
+        profile_directory: Catalogul de profiluri
   aliases:
     add_new: Creează un alias
     created_msg: A fost creat cu succes un alias nou. Acum puteţi iniţia mutarea din vechiul cont.

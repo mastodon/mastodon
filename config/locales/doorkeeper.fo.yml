@@ -1,0 +1,195 @@
+---
+fo:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: Navnið á forritinum
+        redirect_uri: URL víðarisending
+        scopes: Karmar
+        website: Netsíðan hjá forritinum
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: kann ikki innihalda eitt petti.
+              invalid_uri: má vera eiitt gildugt URL.
+              relative_uri: má vera eitt treytaleyst URL.
+              secured_uri: má vera eitt HTTPS/SSL URI.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: Heimila
+        cancel: Angra
+        destroy: Oyðilegg
+        edit: Rætta
+        submit: Send avstað
+      confirmations:
+        destroy: Ert tú vís/ur?
+      edit:
+        title: Broyt forrit
+      form:
+        error: Ups! Kanna frymilin fyri møguligar feilir
+      help:
+        native_redirect_uri: Nýt %{native_redirect_uri} til lokalar nároyndir
+        redirect_uri: Nýt eina linju fyri hvørt URI
+        scopes: Atskil valmøguleikarnar við millumrúmum. Um standard vælmøguleikar verða valdir, lat so millumrúm verða í.
+      index:
+        application: Skipan
+        callback_url: Afturkallingar URL
+        delete: Strika
+        empty: T´´u hevur onga skipan.
+        name: Navn
+        new: Nýggj skipan
+        scopes: Møguleikar
+        show: Vís
+        title: Tínar skipanir
+      new:
+        title: Nýggj skipan
+      show:
+        actions: Skipan
+        application_id: Kunda lykil
+        callback_urls: Afturkallingar URL'ir
+        scopes: Møguleikar
+        secret: Kunda loyndir
+        title: 'Skipan: %{name}'
+    authorizations:
+      buttons:
+        authorize: Heimila
+        deny: Nokta
+      error:
+        title: Ein feilur er íkomin
+      new:
+        prompt_html: "%{client_name} kundi hugsa sær atgongd til tína kontu. Tað er ein triðjaparts-nýtsluskipan. <strong>Tú skal ikki geva henni hesa heimld, um tú ikki hevur álit á henni.</strong>"
+        review_permissions: Eftirkanna rættindi
+        title: Váttan kravd
+      show:
+        title: Kopiera hesa váttanarkodu og líma hana í nýtsluskipanini.
+    authorized_applications:
+      buttons:
+        revoke: Tak aftur
+      confirmations:
+        revoke: Ert tú vís/ur?
+      index:
+        authorized_at: Váttað tann %{date}
+        description_html: Hetta eru nýtsluskipaninar, sum hava atgongd til tína kontu umvegis API'ið. Tú kanst taka loyvið aftur, um tað eru nýtsluskipanir, ið tú ikki kennir aftur ella sum ikki skikka sær, sum tær eiga.
+        last_used_at: Seinast brúkt tann %{date}
+        never_used: Ongantíð brúkt/ur
+        scopes: Loyvi
+        superapp: Innanhýsis
+        title: Tínar váttaðu nýtsluskipanir
+    errors:
+      messages:
+        access_denied: Tilfarseigarin ella váttanarambætarin noktaðu umbønina.
+        credential_flow_not_configured: Resource Owner Password Credentials floymurin eydnaðist ikki. Orsøkin var, at Doorkeeper.configure.resource_owner_from_credentials var ikki sett upp.
+        invalid_client: Viðskiftaraváttan miseydnaðist. Orsøkin var ein ókendur viðskiftari, at eingin viðskiftaraváttan var við ella at váttanarmannagongdin er ókend.
+        invalid_grant: Veitta váttanarheimildin er antin ógildug, útgingin, tikin aftur, samsvarar ikki við endursendingar-URI'ið, sum bleiv brúkt í váttanarumbønini ella var flýggjað øðrum viðskiftara.
+        invalid_redirect_uri: Endursendingar-URI'ið, sum var viðheft, er ógyldugt.
+        invalid_request:
+          missing_param: 'Manglandi kravdur parametur: %{value}.'
+          request_not_authorized: Umbønin má váttast. Kravdi parameturin fyri váttanarumbønina manglar ella er ógyldugur.
+          unknown: Umbønin manglar ein kravdan parametur, inniheldur eitt óstuðlað parametur-virði ella hevur skeivt skap.
+        invalid_resource_owner: Veitta tilfarseigaraváttanin er ógyldug ella ber ikki til at finna tilfarseigaran
+        invalid_scope: Umbidna vavið er ógyldugt, ókent ella hevur skeivt skap.
+        invalid_token:
+          expired: Atgongdarfrámerkið er útgingið
+          revoked: Atgongdarfrámerkið varð tikið aftur
+          unknown: Atgongdarfrámerkið er ógyldugt
+        resource_owner_authenticator_not_configured: Av tí at Doorkeeper.configure.resource_owner_authenticator ikki var sett upp, bar ikki til at finna tilfarseigaran.
+        server_error: Váttnarambætarin rendi seg í eina óvæntaða støðu, sum forðaði honum í at fullføra umbønina.
+        temporarily_unavailable: Váttanarambætarain er í løtuni ikki førur fyri at handfara umbønina vegna bráðfeingis ovbyrjan ella ambætaraviðlíkahald.
+        unauthorized_client: Viðskiftarin hevur ikki rættindi at útføra hesa umbønina við hesi mannagongdini.
+        unsupported_grant_type: Váttanarloyvisslagið er ikki stuðlað av váttanarambætaranum.
+        unsupported_response_type: Váttanarambætarin stuðlar ikki hesum slagnum av svari.
+    flash:
+      applications:
+        create:
+          notice: Nýtsluskipan stovnað.
+        destroy:
+          notice: Nýtsluskipan strikað.
+        update:
+          notice: Nýtsluskipan dagførd.
+      authorized_applications:
+        destroy:
+          notice: Nýtsluskipan tikin aftur.
+    grouped_scopes:
+      access:
+        read: Lesi-rættindir
+        read/write: Lesi- og skrivi-rættindir
+        write: Skrivi-rættindir
+      title:
+        accounts: Kontur
+        admin/accounts: Umsiting av kontum
+        admin/all: Allar umsitingarligar funktiónir
+        admin/reports: Umsiting av meldingum
+        all: Full atgongd til tína Mastodon kontu
+        blocks: Blokeringar
+        bookmarks: Bókamerki
+        conversations: Samrøður
+        crypto: Enda-til-enda bronglan
+        favourites: Yndispostar
+        filters: Filtur
+        follow: Fylgingar, doyvingar og blokeringar
+        follows: Fylgir
+        lists: Listar
+        media: Viðfestir miðlar
+        mutes: Doyvir
+        notifications: Fráboðanir
+        push: Skumpifráboðanir
+        reports: Meldingar
+        search: Leita
+        statuses: Uppsløg
+    layouts:
+      admin:
+        nav:
+          applications: Nýtsluskipanir
+          oauth2_provider: OAuth2 veitari
+      application:
+        title: OAuth váttan kravd
+    scopes:
+      admin:read: les allar dátur á ambætaranum
+      admin:read:accounts: les viðkvæmar upplýsingar úr øllum kontum
+      admin:read:canonical_email_blocks: les viðkvæmar upplýsingar frá øllum fyrimyndarligum teldupostblokeringum
+      admin:read:domain_allows: les viðkvæmar upplýsingar frá øllum loyvdum navnaøkjum
+      admin:read:domain_blocks: les viðkvæmar upplýsingar frá øllum navnaøkjablokeringum
+      admin:read:email_domain_blocks: les viðkvæmar upplýsingar frá øllum telduposta-navnaøkjablokeringum
+      admin:read:ip_blocks: les viðkvæmar upplýsingar frá øllum IP blokeringum
+      admin:read:reports: les viðkvæmar upplýsingar um allar meldingar og meldaðar kontur
+      admin:write: broyta allar dátur á ambætaranum
+      admin:write:accounts: útinna kjakleiðsluatgerðir á kontum
+      admin:write:canonical_email_blocks: før umsjón við øllum fyrimyndarligum teldupostablokeringum
+      admin:write:domain_allows: før umsjón á loyvdum navnaøkjum
+      admin:write:domain_blocks: før umsjón á navnaøkjablokeringum
+      admin:write:email_domain_blocks: før umsjón á telduposta-navnaøkjablokeringum
+      admin:write:ip_blocks: før umsjón á IP blokeringum
+      admin:write:reports: útinna kjakleiðsluatgerðir á meldingum
+      crypto: brúka enda-til-enda bronglan
+      follow: broyta viðurskifti millum kontur
+      push: móttaka tínar skumpifráboðanir
+      read: lesa allar dátur í tíni kontu
+      read:accounts: vís kontuupplýsingar
+      read:blocks: síggja tínar blokeringar
+      read:bookmarks: síggja tíni bókamerki
+      read:favourites: síggja tínar yndispostar
+      read:filters: síggja tíni filtur
+      read:follows: síggja hvørji tú fylgir
+      read:lists: síggja tínar listar
+      read:mutes: síggja tínar doyvingar
+      read:notifications: síggja tínar fráboðanir
+      read:reports: síggja tínar meldingar
+      read:search: leita vegna teg
+      read:statuses: síggja allar postar
+      write: broyta allar dátur í tínari kontu
+      write:accounts: broyt vangamyndina
+      write:blocks: blokera kontur og domenir
+      write:bookmarks: bókamerkja postar
+      write:conversations: doyva og strika samrøður
+      write:favourites: yndismerkja postar
+      write:filters: gera filtur
+      write:follows: fylgja fólki
+      write:lists: gera listar
+      write:media: leggja miðlafílur upp
+      write:mutes: doyva fólk og samrøður
+      write:notifications: nullstilla tínar fráboðanir
+      write:reports: melda onnur fólk
+      write:statuses: útgeva postar

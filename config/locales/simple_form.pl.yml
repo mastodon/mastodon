@@ -8,24 +8,24 @@ pl:
         acct: Określ nazwę@domenę konta na które chcesz się przenieść
       account_warning_preset:
         text: Możesz korzystać ze składni której używasz we wpisach, takiej jak adresy URL, hashtagi i wspomnienia
-        title: Nieobowiązkowe. Niewidoczne dla odbiorcy
+        title: Opcjonalnie. Niewidoczne dla odbiorcy
       admin_account_action:
         include_statuses: Użytkownik zobaczy, których wpisów dotyczyło działanie moderacji lub ostrzeżenie
         send_email_notification: Użytkownik otrzyma informację, co stało się z jego kontem
-        text_html: Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
+        text_html: Opcjonalnie. Możesz używać składni której używasz we wpisach. Możesz <a href="%{path}">dodać szablon ostrzeżenia</a> aby zaoszczędzić czas
         type_html: Wybierz co chcesz zrobić z <strong>%{acct}</strong>
         types:
           disable: Nie pozwalaj użytkownikowi na korzystanie ze swojego konta, ale nie usuwaj ani nie ukrywaj jego zawartości.
           none: Użyj tego, aby wysłać użytkownikowi ostrzeżenie, nie wywołując żadnego innego działania.
           sensitive: Wymuś oznaczanie wszystkich załączników multimedialnych tego użytkownika jako wrażliwe.
-          silence: Zablokuj użytkownikowi możliwość publikowania z widocznością publiczną, ukrywaj jego wpisy i powiadomienia przed osobami, które go nie obserwują.
-          suspend: Zapobiegaj wszelkim interakcjom z tym kontem i usuń jego zawartość. Odwracalne w ciągu 30 dni.
-        warning_preset_id: Nieobowiązkowe. Możesz dodać niestandardowy tekst do końcowki szablonu
+          silence: Uniemożliwia użytkownikowi publikowanie postów z publiczną widocznością, ukrywanie swoich postów i powiadomień od osób nieśledzących ich. Zamyka wszystkie zgłoszenia dotyczące tego konta.
+          suspend: Uniemożliwienie wszelkich interakcji z lub na tym koncie oraz usunięcie jego zawartości. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
+        warning_preset_id: Opcjonalnie. Możesz dodać niestandardowy tekst do końcówki szablonu
       announcement:
         all_day: Jeżeli zaznaczone, tylko daty z przedziału czasu będą wyświetlane
-        ends_at: Nieobowiązkowe. Ogłoszenie zostanie automatycznie wycofane w tym czasie
+        ends_at: Opcjonalnie. Ogłoszenie zostanie automatycznie wycofane w tym czasie
         scheduled_at: Pozostaw puste, aby opublikować ogłoszenie natychmiastowo
-        starts_at: Nieobowiązkowe. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
+        starts_at: Opcjonalnie. Jeżeli ogłoszenie jest związane z danym przedziałem czasu
         text: Możesz używać składni wpisu. Pamiętaj o tym, ile miejsca zajmie ogłoszenie na ekranie użytkownika
       appeal:
         text: Możesz wysłać odwołanie do ostrzeżenia tylko raz
@@ -74,6 +74,7 @@ pl:
           hide: Całkowicie ukryj przefiltrowaną zawartość, jakby nie istniała
           warn: Ukryj filtrowaną zawartość za ostrzeżeniem wskazującym tytuł filtra
       form_admin_settings:
+        activity_api_enabled: Liczby opublikowanych lokalnych postów, aktywnych użytkowników i nowych rejestracji w tygodniowych przedziałach
         backups_retention_period: Zachowaj wygenerowane archiwa użytkownika przez określoną liczbę dni.
         bootstrap_timeline_accounts: Te konta zostaną przypięte na górze rekomendacji obserwacji nowych użytkowników.
         closed_registrations_message: Wyświetlane po zamknięciu rejestracji
@@ -81,6 +82,7 @@ pl:
         custom_css: Możesz zastosować niestandardowe style w internetowej wersji Mastodon.
         mascot: Nadpisuje ilustrację w zaawansowanym interfejsie internetowym.
         media_cache_retention_period: Pobrane pliki multimedialne zostaną usunięte po określonej liczbie dni po ustawieniu na wartość dodatnią i ponownie pobrane na żądanie.
+        peers_api_enabled: Lista nazw domen, z którymi ten serwer spotkał się w fediverse. Nie są tu zawarte żadne dane o tym, czy użytkownik dokonuje federacji z danym serwerem, a jedynie, że jego serwer o tym wie. Jest to wykorzystywane przez serwisy, które zbierają statystyki dotyczące federacji w ogólnym sensie.
         profile_directory: Katalog profili zawiera listę wszystkich użytkowników, którzy zgodzili się na bycie znalezionymi.
         require_invite_text: Kiedy rejestracje wymagają ręcznego zatwierdzenia, ustaw pole "Dlaczego chcesz dołączyć?" jako obowiązkowe, a nie opcjonalne
         site_contact_email: Jak ludzie mogą się z Tobą skontaktować w celu uzyskania odpowiedzi na zapytania prawne lub wsparcie.
@@ -101,7 +103,7 @@ pl:
       invite_request:
         text: To pomoże nam w recenzji Twojej aplikacji
       ip_block:
-        comment: Niewymagane. Pamiętaj, dlaczego dodałeś tę regułę.
+        comment: Opcjonalnie. Pamiętaj, dlaczego dodałeś tę regułę.
         expires_in: Adresy IP to ograniczony zasób, czasami są współdzielone i często zmieniają właściciela. Z tego powodu blokady adresów IP nie są zalecane.
         ip: Wprowadź adres IPv4 lub IPv6. Możesz zablokować całe zakresy za pomocą składni CIDR. Uważaj, aby się nie zablokować!
         severities:
@@ -229,6 +231,7 @@ pl:
           hide: Ukryj całkowicie
           warn: Ukryj z ostrzeżeniem
       form_admin_settings:
+        activity_api_enabled: Publikuj zagregowane statystyki dotyczące aktywności użytkownika w API
         backups_retention_period: Okres przechowywania archiwum użytkownika
         bootstrap_timeline_accounts: Zawsze rekomenduj te konta nowym użytkownikom
         closed_registrations_message: Niestandardowa wiadomość, gdy rejestracje nie są dostępne
@@ -236,6 +239,7 @@ pl:
         custom_css: Niestandardowy CSS
         mascot: Własna ikona
         media_cache_retention_period: Okres przechowywania pamięci podręcznej
+        peers_api_enabled: Opublikuj listę odkrytych serwerów w API
         profile_directory: Włącz katalog profilów
         registrations_mode: Kto może się zarejestrować
         require_invite_text: Wymagaj powodu, aby dołączyć

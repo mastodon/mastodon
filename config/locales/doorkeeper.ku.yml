@@ -13,9 +13,9 @@ ku:
           attributes:
             redirect_uri:
               fragment_present: perçe tê de tinne.
-              invalid_uri: ger ev URL derbasdar be.
-              relative_uri: teqez URl'yek hebe.
-              secured_uri: ger HTTPS/SSL URl hebe.
+              invalid_uri: divê girêdaneke derbasdar be.
+              relative_uri: divê girêdanake teqezî be.
+              secured_uri: divê girêdaneke HTTPS/SSL be.
   doorkeeper:
     applications:
       buttons:
@@ -32,11 +32,11 @@ ku:
         error: Wey li min! kontrol bikeku form çewtî tê de tune
       help:
         native_redirect_uri: Bo testên herêmî %{native_redirect_uri} bi kar bîne
-        redirect_uri: Serê URl de rêzek bikarbînin
+        redirect_uri: Yek rêz bi kar bîne bo her girêdan
         scopes: Berfirehî bi valahîyan re veqetîne. Bo bikaranîna berfirehî ya standard vala bihêle.
       index:
         application: Sepan
-        callback_url: URl ya vegeriyayî
+        callback_url: Girêdana banga vegerê
         delete: Jê bibe
         empty: Qet sepanê te tinne.
         name: Nav
@@ -49,7 +49,7 @@ ku:
       show:
         actions: Çalakî
         application_id: Kilîdê rajegir
-        callback_urls: URlyên vegeriyayî
+        callback_urls: Girêdanên banga vegerê
         scopes: Berfirehî
         secret: Rajegirî veşartî
         title: 'Sepan: %{name}'
@@ -93,8 +93,8 @@ ku:
         invalid_scope: Berfirehiya tê xwestin nederbasdare, nenas e, an jî xelet e.
         invalid_token:
           expired: Dema nîşana gihîştinê qediya
-          revoked: Nîşana gihîştin hatibû pûçkirin
-          unknown: Nîşana gihîştinê derbasdar e
+          revoked: Nîşana gihîştin hatibû têkbirin
+          unknown: Nîşana gihîştinê ne derbasdar e
         resource_owner_authenticator_not_configured: Xwedîyê çavkanîyê, ji ber ku nehatîye sazkirin bi ser neket di Doorkeeper.configure.resource_owner_authenticator de.
         server_error: Rajekarê rastandinê bi şertek nediyar re rûbirû ma ku nehişt ku ew daxwazê ​​bicîh bîne.
         temporarily_unavailable: Mafê rajekarê hetta demekî ji ber zêde barkirinê an jî lê nihêrîna rajekarê daxwaz bi cîh nay.
@@ -122,14 +122,12 @@ ku:
         admin/accounts: Rêveberiya ajimêran
         admin/all: Hemû fonksiyonên reveberî
         admin/reports: Rêveberiya ragihandinan
-        all: Her tişt
         blocks: Astengkirin
         bookmarks: Şûnpel
         conversations: Axaftin
         crypto: Dawî bi dawî şifrekirî
         favourites: Bijarte
         filters: Parzûn
-        follow: Pêwendî
         follows: Dişopîne
         lists: Lîste
         media: Pêvekên medya
@@ -171,7 +169,7 @@ ku:
       read:statuses: hemû şandiyan bibîne
       write: hemû daneyên ajimêra xwe biguherîne
       write:accounts: profîla xwe biguherîne
-      write:blocks: hemû ajimêr û navperan asteng bike
+      write:blocks: ajimêr û navperan asteng bike
       write:bookmarks: şandiyan di şûnpelê de tomar bike
       write:conversations: bêdengkirin û jêbirina axaftinan
       write:favourites: şandiyên bijarte

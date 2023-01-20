@@ -15,12 +15,12 @@
 
   = account_action_button(status.account)
 
-  .status__content.emojify{ :data => ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
+  .status__content.emojify{ data: ({ spoiler: current_account&.user&.setting_expand_spoilers ? 'expanded' : 'folded' } if status.spoiler_text?) }<
     - if status.spoiler_text?
       %p<
         %span.p-summary> #{prerender_custom_emojis(h(status.spoiler_text), status.emojis)}&nbsp;
         %button.status__content__spoiler-link= t('statuses.show_more')
-    .e-content{ :lang => status.language }
+    .e-content{ lang: status.language }
       = prerender_custom_emojis(status_content_format(status), status.emojis)
 
       - if status.preloadable_poll

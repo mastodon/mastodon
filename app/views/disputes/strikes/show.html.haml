@@ -110,11 +110,8 @@
       .report-notes__item__header
         %span.username
           = link_to @appeal.account.username, can?(:show, @appeal.account) ? admin_account_path(@appeal.account_id) : short_account_url(@appeal.account)
-        %time{ datetime: @appeal.created_at.iso8601, title: l(@appeal.created_at) }
-          - if @appeal.created_at.today?
-            = t('admin.report_notes.today_at', time: l(@appeal.created_at, format: :time))
-          - else
-            = l @appeal.created_at.to_date
+        %time.relative-formatted{ datetime: @appeal.created_at.iso8601 }
+          = l @appeal.created_at.to_date
 
       .report-notes__item__content
         = simple_format(h(@appeal.text))
