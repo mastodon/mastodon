@@ -15,7 +15,6 @@ ENV RAILS_ENV="production" \
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 WORKDIR /opt/mastodon
-COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
@@ -37,6 +36,8 @@ RUN apt-get update && \
         shared-mime-info  \
     && \
     rm -rf /var/lib/apt/lists/*
+
+COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
 RUN set -eux && \
     bundle config set --local deployment 'true' && \
