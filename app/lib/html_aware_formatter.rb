@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HtmlAwareFormatter
+  STATUS_MIME_TYPES = %w(text/plain text/markdown text/html).freeze
+
   attr_reader :text, :local, :options
 
   alias local? local
