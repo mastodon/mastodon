@@ -1,15 +1,28 @@
 - content_for :page_title do
   = "Welcome #{display_name(@account)}"
 
-.fields-group
-  %p
-    = "Welcome #{display_name(@account, custom_emojify: true)}"
+.admin-wrapper
+  .content{ style: 'text-align: center' }
 
-.fields-group
-  %p
-    = "You now have #{@account.acct} on #{site_hostname}"
+    .logo-resources{ 'tabindex' => '-1', 'inert' => true, 'aria-hidden' => true }
+      = render_symbol :icon
+      = render_symbol :wordmark
 
-.fields-group
-  %p To complete your profile:
-  %a{ href: @mastodon_builder_url, class: 'button' }
-    ō&nbsp;&nbsp;&nbsp;Continue with Hellō Mastodon Builder
+    .form-container{ style: 'text-align: center' }
+      %form.simple_form
+
+        .fields-group{ style: 'text-align: center' }
+          %h1.title Welcome
+          %h2
+            = display_name(@account, custom_emojify: true)
+
+        .fields-group{ style: 'text-align: center' }
+          %h3 you now have
+          %h2
+            = acct(@account)
+
+        .fields-group{ style: 'text-align: center' }
+          %h3 to complete your profile
+          %p
+            %a{ href: @mastodon_builder_url, class: 'button' }
+              ō&nbsp;&nbsp;&nbsp;Continue with Hellō Mastodon Builder
