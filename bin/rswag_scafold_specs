@@ -20,6 +20,16 @@
 
 require 'fileutils'
 require 'active_support/inflector'
+require 'pry'
+
+ENV['RAILS_ENV'] ||= 'development'
+
+FILTER_CONTROLLERS = [
+  # takes endless to generate for unknown reasons
+  'app/controllers/api/v1/accounts/featured_tags_controller.rb',
+  'app/controllers/api/v1/custom_emojis_controller.rb',
+  'app/controllers/api/v1/instances_controller.rb'
+]
 
 # path to your application root.
 APP_ROOT = File.expand_path('..', __dir__)
@@ -56,17 +66,28 @@ def patch_lines(line, index, klass_name, tags)
 end
 
 FileUtils.chdir APP_ROOT do
-  controllers = ARGV.size > 0 ? ARGV : Dir['app/controllers/api/*/**/*_controller.rb']
-  controllers.map do |path|
-    klass_name = File.read(path).match(/^class ([\w:]+)/)[0]&.split('class ').last
+  controllers = if ARGV.size > 0
+    ARGV
+  else 
+    Dir['app/controllers/api/*/**/*_controller.rb'] - FILTER_CONTROLLERS
+  end
+  controllers.each do |path|
+    klass_match = File.read(path).match(/^class ([\w:]+)/)
+    next unless klass_match
+
+    klass_name = klass_match[0]&.split('class ').last
     tags = klass_name.split('Controller').first.split('::')
-    route_path = path.split('app/controllers/').last.split('_controller.rb').first
-    spec_path = "spec/requests/#{route_path}_spec.rb"
-    File.delete(spec_path) if File.exist?(spec_path)
+    controller_path = path.split('app/controllers/').last
+    route_path = controller_path.split('_controller.rb').first
+    spec_path = "#{APP_ROOT}/spec/requests/#{route_path}_spec.rb"
+    spec_renamed_path = "#{APP_ROOT}/spec/requests/#{controller_path.gsub(/\.rb$/, '')}_spec.rb"
+    spec_backup_path = spec_renamed_path.gsub(/_spec\.rb$/, '_spec_old.rb')
+    puts "Spec generation for #{klass_name} in #{path}"
     puts `bundle exec rails g rspec:swagger #{klass_name}`
     next unless File.exist?(spec_path)
 
     spec_source = File.read(spec_path)
+    File.delete(spec_path)
     lines = spec_source.split("\n").each_with_index.flat_map do |line, index|
       patch_lines(line, index, klass_name, tags)
     end
@@ -85,9 +106,18 @@ FileUtils.chdir APP_ROOT do
     end
     cleaned = ([cleaned] + lines[start_index..-1] + ['']).join("\n")
 
-    spec_file = File.open(spec_path, 'w')
-    spec_file.write(cleaned)
+    File.rename(spec_renamed_path, spec_backup_path) if File.exist?(spec_renamed_path)
+    spec_file = File.open(spec_renamed_path, 'w')
+    spec_file.write(['# TODO: implement rswag spec from generated scafold', cleaned].join("\n"))
     spec_file.close
-    puts `rubocop -A #{spec_path} | tail -n 1`
+    puts `rubocop -A #{spec_renamed_path}`
+    diff = `git diff #{spec_renamed_path}`
+    if diff.blank? && File.exist?(spec_backup_path)
+      File.delete(spec_renamed_path)
+      File.rename(spec_backup_path, spec_renamed_path)
+    end
+    # binding.pry
+    # [spec_renamed_path, spec_backup_path]
   end
+  # puts `rubocop -A #{generated_specs.map(&:first).join(' ')}`
 end

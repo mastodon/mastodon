@@ -10,3 +10,5 @@ export SWAGGER_DRY_RUN=0
 export RAILS_ENV=test
 # Run rswag swaggerize task
 bundle exec rake rswag:specs:swaggerize
+
+node_modules/.bin/prettier -w api-docs/**/*.yml
