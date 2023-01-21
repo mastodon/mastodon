@@ -46,7 +46,7 @@ RUN set -eux && \
     bundle install -j"$(nproc)" && \
     yarn install --pure-lockfile --network-timeout 600000
 
-COPY --chown=mastodon:mastodon . /opt/mastodon
+COPY . /opt/mastodon
 
 # Precompile assets
 RUN OTP_SECRET=precompile_placeholder SECRET_KEY_BASE=precompile_placeholder rails assets:precompile && \
