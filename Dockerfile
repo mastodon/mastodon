@@ -66,7 +66,7 @@ ENV RAILS_ENV="production" \
     PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
 COPY --from=build --link /usr/local/bin/node /usr/local/bin/node
-COPY --from=ruby           --link /opt/ruby           /opt/ruby
+COPY --from=ruby --link /opt/ruby /opt/ruby
 
 # Ignoreing these here since we don't want to pin any versions and the Debian image removes apt-get content after use
 # hadolint ignore=DL3008
