@@ -1,5 +1,11 @@
 #!/bin/bash
 
+git pull
+if [ -n "$(git status --porcelain)" ]; then
+  echo "repository is not clean -- check in all changes"
+  exit 1
+fi
+
 export HELLO_VERSION=$(./hello_version.sh) 
 echo HELLO_VERSION=${HELLO_VERSION}
 git commit -a -m${HELLO_VERSION}
