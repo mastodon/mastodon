@@ -2,6 +2,7 @@
 
 export HELLO_VERSION=$(./hello_version.sh) 
 echo HELLO_VERSION=${HELLO_VERSION}
+git commit -a -m${HELLO_VERSION}
 git tag ${HELLO_VERSION}
 git push
 git push --tags
