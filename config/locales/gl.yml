@@ -575,9 +575,10 @@ gl:
         mark_as_sensitive_description_html: Os multimedia das publicacións denunciadas serán marcados como sensibles e engadirase un aviso para axudarche a xestionar futuras infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardarán avisos, e pecharase a denuncia.
-        silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
-        suspend_description_html: O perfil e tódolos seus contidos será inaccesbles e finalmente eliminados. A interacción coa conta non será posible. Reversible durante 30 días.
+        silence_description_html: A conta será visible só para quen xa a está a seguir ou quen a buscou manualmente, limitando moito o seu alcance. Pódese cambiar. Isto pecha tódalas denuncias acerca desta conta.
+        suspend_description_html: A conta e todo o seu contido non serán accesible e finalmente eliminaranse, será imposible interactuar con ela. A decisión é reversible durante 30 días. Isto pecha tódalas denuncias sobre esta conta.
       actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
+      actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
       add_to_report: Engadir máis á denuncia
       are_you_sure: Tes certeza?
       assign_to_self: Asignarme
@@ -713,6 +714,8 @@ gl:
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
         profile_directory: Directorio de perfís
         public_timelines: Cronoloxías públicas
+        publish_discovered_servers: Publicar os servidores descubertos
+        publish_statistics: Publicar estatísticas
         title: Descubrir
         trends: Tendencias
       domain_blocks:
@@ -1367,6 +1370,9 @@ gl:
       unrecognized_emoji: non é unha emoticona recoñecida
   relationships:
     activity: Actividade da conta
+    confirm_follow_selected_followers: Tes a certeza de querer seguir as seguidoras seleccionadas?
+    confirm_remove_selected_followers: Tes a certeza de querer deixar de seguir as seguidoras seleccionadas?
+    confirm_remove_selected_follows: Tes a certeza de querer eliminar os seguimentos seleccionados?
     dormant: En repouso
     follow_selected_followers: Seguir seguidoras seleccionadas
     followers: Seguidoras

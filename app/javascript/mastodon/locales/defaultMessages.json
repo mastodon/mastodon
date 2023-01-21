@@ -1173,6 +1173,10 @@
         "id": "navigation_bar.lists"
       },
       {
+        "defaultMessage": "Followed hashtags",
+        "id": "navigation_bar.followed_tags"
+      },
+      {
         "defaultMessage": "Blocked users",
         "id": "navigation_bar.blocks"
       },
@@ -2307,6 +2311,19 @@
       }
     ],
     "path": "app/javascript/mastodon/features/follow_requests/index.json"
+  },
+  {
+    "descriptors": [
+      {
+        "defaultMessage": "Followed hashtags",
+        "id": "followed_tags"
+      },
+      {
+        "defaultMessage": "You have not followed any hashtags yet. When you do, they will show up here.",
+        "id": "empty_column.followed_tags"
+      }
+    ],
+    "path": "app/javascript/mastodon/features/followed_tags/index.json"
   },
   {
     "descriptors": [

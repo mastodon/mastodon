@@ -575,9 +575,10 @@ sv:
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         other_description_html: Se fler alternativ för att kontrollera kontots beteende och anpassa kommunikationen till det rapporterade kontot.
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
-        silence_description_html: Profilen kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Kan alltid ångras.
-        suspend_description_html: Profilen och allt dess innehåll kommer att bli oåtkomligt tills det slutligen raderas. Det kommer inte vara möjligt att interagera med kontot. Går att ångra inom 30 dagar.
+        silence_description_html: Kontot kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Kan alltid ångras. Stänger alla anmälningar mot detta konto.
+        suspend_description_html: Kontot och allt dess innehåll kommer att vara oåtkomligt och så småningom tas bort, det kommer inte gå att interagera med kontot. Kan ångras inom 30 dagar. Stänger alla anmälningar mot detta konto.
       actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer en e-postnotis att skickas till dem, förutom om du valt kategorin <strong>Skräppost</strong>.
+      actions_description_remote_html: Bestäm vilka åtgärder som ska vidtas för att lösa denna rapport. Detta kommer bara att påverka hur <strong>din</strong> server kommunicerar med detta fjärrkonto och hanterar dess innehåll.
       add_to_report: Lägg till mer i rapporten
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
@@ -713,6 +714,8 @@ sv:
         preamble: Att visa intressant innehåll är avgörande i onboarding av nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din server.
         profile_directory: Profilkatalog
         public_timelines: Offentliga tidslinjer
+        publish_discovered_servers: Publicera upptäckta servrar
+        publish_statistics: Publicera statistik
         title: Upptäck
         trends: Trender
       domain_blocks:

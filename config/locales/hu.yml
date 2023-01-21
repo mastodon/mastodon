@@ -575,9 +575,10 @@ hu:
         mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy szankciót, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetében.
         other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
         resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel szankciót, és bezárjuk a bejelentést.
-        silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézileg megkeresik, rendkívül korlátozva az elérését. Ez mindig visszafordítható.
-        suspend_description_html: A profil és az összes tartalma elérhetetlen lesz, amíg végleg törlésre nem kerül. A fiókkal történő minden interakció lehetetlen lesz. 30 napon belül még visszaállítható.
+        silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézzel rákeresnek, jelentősen korlátozva annak elérését. Ez a művelet bármikor visszafordítható. A fiókkal szemben indított minden bejelentést lezárunk.
+        suspend_description_html: A fiók és minden tartalma elérhetetlenné válik és végül törlésre kerül. A fiókkal kapcsolatbalépni lehetetlen lesz. Ez a művelet 30 napig visszafordítható. A fiók ellen indított minden bejelentést lezárunk.
       actions_description_html: Döntsd el, mit csináljunk, hogy megoldjuk ezt a bejelentést. Ha valamilyen büntető intézkedést hozol a bejelentett fiók ellen, küldünk neki egy figyelmeztetést e-mail-ben, kivéve ha a <strong>Spam</strong> kategóriát választod.
+      actions_description_remote_html: Döntsd el, mit tegyünk a bejelentés lezárásának érdekében. Ez csak azt befolyásolja, hogy a <strong>saját</strong> kiszolgálód hogyan kommunikál ezzel a távoli fiókkal és hogyan kezeli annak tartalmait.
       add_to_report: Továbbiak hozzáadása a bejelentéshez
       are_you_sure: Biztos vagy benne?
       assign_to_self: Magamhoz rendelés
@@ -713,6 +714,8 @@ hu:
         preamble: Az érdekes tartalmak felszínre hozása fontos szerepet játszik az új felhasználók bevonásában, akik esetleg nem ismerik a Mastodont. Szabályozd, hogy a különböző felfedezési funkciók hogyan működjenek a kiszolgálón.
         profile_directory: Profiladatbázis
         public_timelines: Nyilvános idővonalak
+        publish_discovered_servers: Felfedezett kiszolgálók közzététele
+        publish_statistics: Statisztikák közzététele
         title: Felfedezés
         trends: Trendek
       domain_blocks:
@@ -1367,6 +1370,9 @@ hu:
       unrecognized_emoji: nem ismert emodzsi
   relationships:
     activity: Fiók aktivitás
+    confirm_follow_selected_followers: Biztos, hogy követni akarod a kiválasztott követőket?
+    confirm_remove_selected_followers: Biztos, hogy el szeretnéd távolítani a kiválasztott követőket?
+    confirm_remove_selected_follows: Biztos, hogy el szeretnéd távolítani a kiválasztott követéseket?
     dormant: Elhagyott
     follow_selected_followers: Kiválasztott követők bekövetése
     followers: Követők

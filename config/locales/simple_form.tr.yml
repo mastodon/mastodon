@@ -18,8 +18,8 @@ tr:
           disable: Kullanıcının hesabını kullanmasını engelle ama içeriklerini silme veya gizleme.
           none: Bunu, başka bir eylem tetiklemeden kullanıcıya bir uyarı göndermek için kullan.
           sensitive: Bu kullanıcının tüm medya eklerini hassas olarak işaretlemeye zorla.
-          silence: Kullanıcının herkese açık şekilde gönderimde bulunmasını engelle, gönderilerini ve bildirimlerini onları takip etmeyen kişilerden gizle.
-          suspend: Bu hesaptan herhangi bir etkileşimi engelle ve içeriğini sil. 30 gün içerisinde geri alınabilir.
+          silence: Kullanıcının herkese açık şekilde gönderimde bulunmasını engelle, gönderilerini ve bildirimlerini onları takip etmeyen kişilerden gizle. Bu hesaba yönelik tüm bildirimleri kapatır.
+          suspend: Bu hesaptan herhangi bir etkileşimi engelle ve içeriğini sil. 30 gün içerisinde geri alınabilir. Bu hesaba yönelik tüm bildirimleri kapatır.
         warning_preset_id: İsteğe bağlı. Hazır ayarın sonuna hala özel metin ekleyebilirsiniz
       announcement:
         all_day: İşaretlendiğinde, yalnızca zaman aralığındaki tarihler görüntülenir
@@ -74,6 +74,7 @@ tr:
           hide: Filtrelenmiş içeriği tamamen gizle, sanki varolmamış gibi
           warn: Filtrelenmiş içeriği, filtrenin başlığından söz eden bir uyarının arkasında gizle
       form_admin_settings:
+        activity_api_enabled: Yerel olarak yayınlanan gönderi, etkin kullanıcı ve yeni kayıtların haftalık sayıları
         backups_retention_period: Üretilen kullanıcı arşivlerini belirli gün sayısı kadar sakla.
         bootstrap_timeline_accounts: Bu hesaplar, yeni kullanıcıların takip önerilerinin tepesinde sabitlenecektir.
         closed_registrations_message: Kayıt olma kapalıyken görüntülenir
@@ -81,6 +82,7 @@ tr:
         custom_css: Mastodon'un web sürümüne özel biçimler uygulayabilirsiniz.
         mascot: Gelişmiş web arayüzündeki illüstrasyonu geçersiz kılar.
         media_cache_retention_period: Pozitif bir sayı girildiğinde, diğer sunuculardan indirilen medya dosyaları belirli bir gün sonra silinecektir, isteğe bağlı olarak tekrar indirilebilir.
+        peers_api_enabled: Bu sunucunun fediverse'te karşılaştığı alan adlarının bir listesi. İlgili sunucuyla birleştirme mi yapıyorsunuz yoksa sunucunuz sadece onu biliyor mu hakkında bir bilgi burada yok. Bu blgi genel olarak federasyın hakkında istatistik toplamak isteyen hizmetler tarafından kullanılıyor.
         profile_directory: Profil dizini keşfedilebilir olmayı kabul eden tüm kullanıcıları listeler.
         require_invite_text: Kayıt olmak elle doğrulama gerektiriyorsa, "Neden katılmak istiyorsunuz?" metin girdisini isteğe bağlı yerine zorunlu yapın
         site_contact_email: İnsanlar yasal konular veya destek hakkında bilgi edinmek için size nasıl ulaşabilir.
@@ -229,6 +231,7 @@ tr:
           hide: Tamamen gizle
           warn: Uyarıyla gizle
       form_admin_settings:
+        activity_api_enabled: API'deki kullanıcı etkinliği hakkında toplu istatistikler yayınlayın
         backups_retention_period: Kullanıcı arşivi saklama süresi
         bootstrap_timeline_accounts: Bu hesapları yeni kullanıcılara her zaman öner
         closed_registrations_message: Kayıt olma mevcut değilken gösterilen özel ileti
@@ -236,6 +239,7 @@ tr:
         custom_css: Özel CSS
         mascot: Özel maskot (eski)
         media_cache_retention_period: Medya önbelleği saklama süresi
+        peers_api_enabled: API'de keşfedilen sunucuların listesini yayınla
         profile_directory: Profil dizinini etkinleştir
         registrations_mode: Kim kaydolabilir
         require_invite_text: Katılmak için bir gerekçe iste

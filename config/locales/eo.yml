@@ -84,7 +84,7 @@ eo:
         remote: Foraj
         title: Loko
       login_status: Ensaluta stato
-      media_attachments: Ligitaj aŭdovidaĵoj
+      media_attachments: Plurmediaj aldonaĵoj
       memorialize: Ŝanĝi al memoro
       memorialized: Memorita
       memorialized_msg: Sukcese ŝanĝis %{username} al memorkonto
@@ -116,6 +116,7 @@ eo:
       redownloaded_msg: Sukcese refreŝis profilon de %{username} de origino
       reject: Malakcepti
       rejected_msg: Sukcese malaprobis aliĝ-peton de %{username}
+      remote_suspension_irreversible: La informoj de ĉi tiu konto estis neinversigeble forigitaj.
       remove_avatar: Forigi la profilbildon
       remove_header: Forigi kapan bildon
       removed_avatar_msg: La rolfiguro de %{username} estas sukcese forigita
@@ -342,7 +343,7 @@ eo:
     dashboard:
       active_users: aktivaj uzantoj
       interactions: interago
-      media_storage: Konservo de aŭdovidaĵoj
+      media_storage: Konservo de plurmedioj
       new_users: novaj uzantoj
       opened_reports: raportoj malfermitaj
       pending_appeals_html:
@@ -471,7 +472,7 @@ eo:
         comment: Interna noto
         description_html: Vi povas difini enhavopolitikojn al la ĉiuj kontoj.
         policies:
-          reject_media: Malakcepti aŭdovidaĵojn
+          reject_media: Malakcepti plurmediojn
           reject_reports: Malakcepti raportojn
           silence: Kaŝu
           suspend: Suspendi
@@ -484,7 +485,7 @@ eo:
         instance_followers_measure: niaj sekvantoj tie
         instance_follows_measure: iliaj sekvantoj ĉi tie
         instance_languages_dimension: Ĉefaj lingvoj
-        instance_media_attachments_measure: konservitaj ligitaj aŭdovidaĵoj
+        instance_media_attachments_measure: konservitaj plurmediaj aldonaĵoj
         instance_reports_measure: raportoj pri ili
         instance_statuses_measure: konservitaj afiŝoj
       delivery:
@@ -573,8 +574,6 @@ eo:
         mark_as_sensitive_description_html: La audovidaĵo en la raportita mesaĝo markotas kiel sentema kaj admono rekorditas.
         other_description_html: Vidu pli da ebloj por regi la sintenon de la konto kaj por personigi la komunikadon kun la raportita konto.
         resolve_description_html: Nenio okazotas al la raportita konto kaj la raporto fermotas.
-        silence_description_html: La profilo estas videbla nur de persono kiu jam sekvis au serĉis.
-        suspend_description_html: La profilo kaj ĉiuj ĝiaj enhavoj fariĝos nealirebla kaj ĝi fine forigotas.
       actions_description_html: Decidu kiu ago por solvi ĉi tiuj raporto. <strong>Spamo</strong> kategorio elektitas.
       add_to_report: Aldoni pli al raporto
       are_you_sure: Ĉu vi certas?
@@ -973,6 +972,8 @@ eo:
       email_below_hint_html: Se malsupra retpoŝtoadreso estas neĝusta, vi povas ŝanĝi ĉi tie kaj ricevi novan konfirmretpoŝton.
       email_settings_hint_html: La konfirmretpoŝto senditas al %{email}.
       title: Agordi
+    sign_in:
+      title: Ensalutu al %{domain}
     sign_up:
       preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
       title: Ni pretigu vin ĉe %{domain}.
