@@ -421,7 +421,7 @@ RSpec.describe FeedManager do
   end
 
   describe '#unpush_from_home' do
-    let(:receiver) { Fabricate(:account) }
+    let!(:receiver) { Fabricate(:account) }
 
     it 'leaves a reblogged status if original was on feed' do
       reblogged = Fabricate(:status)
