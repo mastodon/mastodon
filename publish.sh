@@ -9,7 +9,7 @@ git push --tags
 
 docker login
 docker build . -t hello-mastodon:latest -t hello-mastodon:${HELLO_VERSION} --build-arg HELLO_VERSION=${HELLO_VERSION}
-docker tag hello-mastodon:lastest docker.io/hellocoop/mastodon:${HELLO_VERSION}
-docker tag hello-mastodon:lastest docker.io/hellocoop/mastodon:latest
+docker tag hello-mastodon:latest docker.io/hellocoop/mastodon:${HELLO_VERSION}
+docker tag hello-mastodon:latest docker.io/hellocoop/mastodon:latest
 docker push docker.io/hellocoop/mastodon:${HELLO_VERSION}
 docker push docker.io/hellocoop/mastodon:latest
