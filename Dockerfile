@@ -13,8 +13,6 @@ ENV RAILS_ENV="production" \
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-WORKDIR /opt/mastodon
-
 # hadolint ignore=DL3008
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends  \
@@ -36,6 +34,8 @@ RUN apt-get update && \
         shared-mime-info  \
     && \
     rm -rf /var/lib/apt/lists/*
+
+WORKDIR /opt/mastodon
 
 COPY Gemfile* package.json yarn.lock /opt/mastodon/
 
