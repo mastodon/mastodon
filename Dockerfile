@@ -9,7 +9,6 @@ COPY --link --from=ruby /opt/ruby /opt/ruby
 
 ENV RAILS_ENV="production" \
     NODE_ENV="production" \
-    DEBIAN_FRONTEND="noninteractive" \
     PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -18,7 +17,8 @@ WORKDIR /opt/mastodon
 
 # hadolint ignore=DL3008
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends build-essential \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends  \
+        build-essential \
         ca-certificates \
         git \
         libicu-dev \
