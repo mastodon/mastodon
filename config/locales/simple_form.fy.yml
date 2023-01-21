@@ -18,8 +18,8 @@ fy:
           disable: Foarkom dat de brûker harren account brûkt, mar wiskje of ferstopje de ynhâld net.
           none: Brûk dit om in warskôging nei de brûker te stjoeren, sûnder dat noch in oare maatregel nommen wurdt.
           sensitive: Forsearje dat alle mediabylagen fan dizze brûker as gefoelich markearre wurde.
-          silence: Foarkom dat de brûker iepenbiere berjochten ferstjoere kin, ferstopje harren berjochten en meldingen foar minsken dy’t dyjinge net folgje.
-          suspend: Alle ynteraksjes fan en mei dizze account opkeare, en de accountgegevens fuortsmite. Dit kin binnen 30 dagen weromdraaid wurde.
+          silence: Foarkom dat de brûker iepenbiere berjochten ferstjoere kin, ferstopje harren berjochten en meldingen foar minsken dy’t dyjinge net folgje. Dit slút alle rapportaazjes oer dizze account.
+          suspend: Alle ynteraksjes fan en mei dizze account opkeare, en de accountgegevens fuortsmite. Dit kin binnen 30 dagen weromdraaid wurde. Dit slút alle rapportaazjes oer dizze account.
         warning_preset_id: Opsjoneel. Jo kinne noch hieltyd hânmjittich tekst tafoegje oan it ein fan de foarynstelling
       announcement:
         all_day: Wannear dit oanfinkt is, wurde allinnich de datums binnen it tiidrek toand
@@ -74,6 +74,7 @@ fy:
           hide: Ferstopje de filtere ynhâld folslein, as oft it net bestiet
           warn: Ferstopje de filtere ynhâld efter in warskôging, mei de titel fan it filter as warskôgingstekst
       form_admin_settings:
+        activity_api_enabled: Tal lokaal publisearre artikelen, aktive brûkers en nije registraasjes yn wyklikse werjefte
         backups_retention_period: De oanmakke brûkersargiven foar it opjûne oantal dagen behâlde.
         bootstrap_timeline_accounts: Dizze accounts wurde boppe oan de oanrekommandaasjes oan nije brûkers toand. Meardere brûkersnammen troch komma’s skiede.
         closed_registrations_message: Werjûn wannear’t registraasje fan nije accounts útskeakele is
@@ -229,6 +230,7 @@ fy:
           hide: Folslein ferstopje
           warn: Mei in warskôging ferstopje
       form_admin_settings:
+        activity_api_enabled: Publyklik meitsjen fan sammele statistiken oer brûkersaktiviteiten yn de API
         backups_retention_period: Bewartermyn brûkersargyf
         bootstrap_timeline_accounts: Accounts dy’t altyd oan nije brûkers oanrekommandearre wurde
         closed_registrations_message: Oanpast berjocht wannear registraasje útskeakele is
@@ -236,6 +238,7 @@ fy:
         custom_css: Oanpaste CSS
         mascot: Oanpaste maskotte (legacy)
         media_cache_retention_period: Bewartermyn mediabuffer
+        peers_api_enabled: Publyklik meitsjen fan ûntdekte servers yn de API
         profile_directory: Brûkersgids ynskeakelje
         registrations_mode: Wa kin harren registrearje
         require_invite_text: Opjaan fan in reden is ferplicht

@@ -575,9 +575,10 @@ es:
         mark_as_sensitive_description_html: Los archivos multimedia en los mensajes informados se marcarán como sensibles y se aplicará una amonestación para ayudarte a escalar las futuras infracciones de la misma cuenta.
         other_description_html: Ver más opciones para controlar el comportamiento de la cuenta y personalizar la comunicación de la cuenta reportada.
         resolve_description_html: No se tomarán medidas contra la cuenta denunciada, no se registrará la amonestación, y se cerrará el informe.
-        silence_description_html: El perfil será visible solo para aquellos que ya lo sigan o lo busquen manualmente, limitando seriamente su alcance. Siempre puede ser revertido.
-        suspend_description_html: El perfil y todos sus contenidos serán inaccesibles hasta que sean finalmente eliminados. La interacción con la cuenta será imposible. Reversible durante un plazo de 30 días.
+        silence_description_html: La cuenta será visible sólo para aquellos que ya la sigan o la busquen manualmente, limitando severamente su visibilidad. Siempre puede ser revertido. Cierra todos los informes contra esta cuenta.
+        suspend_description_html: La cuenta y todos sus contenidos serán inaccesibles y finalmente eliminados, e interactuar con ella será imposible. Reversible durante 30 días. Cierra todos los informes contra esta cuenta.
       actions_description_html: Decide qué medidas tomar para resolver esta denuncia. Si tomas una acción punitiva contra la cuenta denunciada, se le enviará a dicha cuenta una notificación por correo electrónico, excepto cuando se seleccione la categoría <strong>Spam</strong>.
+      actions_description_remote_html: Decide qué medidas tomar para resolver este informe. Esto solo afectará a la forma en que <strong>tu servidor</strong> se comunica con esta cuenta remota y gestiona su contenido.
       add_to_report: Añadir más al reporte
       are_you_sure: "¿Estás seguro?"
       assign_to_self: Asignármela a mí
@@ -713,6 +714,7 @@ es:
         preamble: Exponer contenido interesante a la superficie es fundamental para incorporar nuevos usuarios que pueden no conocer a nadie Mastodon. Controla cómo funcionan varias opciones de descubrimiento en tu servidor.
         profile_directory: Directorio de perfiles
         public_timelines: Lineas de tiempo públicas
+        publish_discovered_servers: Publicar servidores descubiertos
         title: Descubrimiento
         trends: Tendencias
       domain_blocks:
@@ -1367,6 +1369,9 @@ es:
       unrecognized_emoji: no es un emoji conocido
   relationships:
     activity: Actividad de la cuenta
+    confirm_follow_selected_followers: "¿Estás seguro de que quieres seguir a las cuentas seleccionadas?"
+    confirm_remove_selected_followers: "¿Estás seguro de que quieres eliminar los seguidores seleccionados?"
+    confirm_remove_selected_follows: "¿Estás seguro de que quieres eliminar los seguidos seleccionados?"
     dormant: Inactivo
     follow_selected_followers: Seguir a los seguidores seleccionados
     followers: Seguidores

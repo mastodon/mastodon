@@ -575,9 +575,10 @@ tr:
         mark_as_sensitive_description_html: Bildirilen gönderilerdeki medya dosyaları hassas olarak işaretlenecek ve aynı hesabın gelecekteki ihlallerinde daha yetkili makamlara bildirmenize yardımcı olmak için bir eylem kaydedilecek.
         other_description_html: Hesabın davranışını denetlemek ve bildirilen hesabın iletişimini yapılandırmak için daha fazla seçenek görün.
         resolve_description_html: Bildirilen hesap için bir şey yapılmayacak, eylem kaydedilmeyecek ve bildirim kapatılacak.
-        silence_description_html: Profil sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir.
-        suspend_description_html: Profil ve tüm içeriği sonunda silinene kadar erişilmez olacak. Hesapla etkileşim mümkün olmayacak. 30 gün boyunca geri alınabilir.
+        silence_description_html: Bu hesap sadece halihazırda takip edenler ve elle bakanlarca görünecek, böylece erişimi ciddi bir şekilde kısıtlanacak. Her zaman geri alınabilir. Bu hesaba yönelik tüm bildirimleri kapatır.
+        suspend_description_html: Bu hesap ve tüm içeriği erişilmez olacak ve nihayetinde silinecek ve bu hesapla etkileşim mümkün olmayacaktır. 30 gün içinde geri alınabilir. Bu hesaba yönelik tüm bildiriimleri kapatır.
       actions_description_html: Bu bildirimi çözmek için ne yapılması gerektiğine karar verin. Bildirilen hesap için ceza işlemi yaparsanız, <strong>İstenmeyen</strong> kategorisi seçilmemişse, onlara bir e-posta duyurusu gönderilecektir.
+      actions_description_remote_html: Bu bildirimi çözmek için hangi eylemi yapmak istediğinize karar verin. Bu yalnızca <strong>sizin</strong> sunucunuzun bu uzak hesapla nasıl etkileşeğini ve içeriğiyle ne yapacağını etkiler.
       add_to_report: Bildirime daha fazlasını ekle
       are_you_sure: Emin misiniz?
       assign_to_self: Bana ata
@@ -713,6 +714,8 @@ tr:
         preamble: İlginç içeriği gezinmek, Mastodon'da kimseyi tanımayan yeni kullanıcıları alıştırmak için oldukça etkilidir. Sunucunuzdaki çeşitli keşif özelliklerinin nasıl çalıştığını denetleyin.
         profile_directory: Profil dizini
         public_timelines: Genel zaman çizelgeleri
+        publish_discovered_servers: Keşfedilen sunucuları yayınla
+        publish_statistics: İstatistikleri yayınla
         title: Keşfet
         trends: Öne çıkanlar
       domain_blocks:
@@ -1367,6 +1370,9 @@ tr:
       unrecognized_emoji: tanınan bir emoji değil
   relationships:
     activity: Hesap etkinliği
+    confirm_follow_selected_followers: Seçili takipçileri takip etmek istediğinizden emin misiniz?
+    confirm_remove_selected_followers: Seçili takipçileri kaldırmak istediğinizden emin misiniz?
+    confirm_remove_selected_follows: Seçili takipleri kaldırmak istediğinizden emin misiniz?
     dormant: Uykuda
     follow_selected_followers: Seçili takipçileri takip et
     followers: Takipçiler

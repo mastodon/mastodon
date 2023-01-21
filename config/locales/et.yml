@@ -179,8 +179,8 @@ et:
         create_canonical_email_block: E-posti blokeeringu lisamine
         create_custom_emoji: Lisas kohandatud emotikoni
         create_domain_allow: Lisas lubatud domeeni
-        create_domain_block: Lisas domeeniblokeeringu
-        create_email_domain_block: Lisas e-posti domeeni blokeeringu
+        create_domain_block: Domeeni blokeerimine
+        create_email_domain_block: E-postidomeeni blokeerimine
         create_ip_block: IP-reegli lisamine
         create_unavailable_domain: Kättesaamatu domeeni lisamine
         create_user_role: Loo roll
@@ -189,8 +189,8 @@ et:
         destroy_canonical_email_block: E-posti blokeeringu kustutamine
         destroy_custom_emoji: Eemaldas kohandatud emotikoni
         destroy_domain_allow: Eemaldas lubatud domeeni
-        destroy_domain_block: Eemaldas domeeniblokeeringu
-        destroy_email_domain_block: Eemaldas e-posti domeeni blokeeringu
+        destroy_domain_block: Domeeniblokeeringu eemaldamine
+        destroy_email_domain_block: E-postidomeeni blokeeringu eemaldamine
         destroy_instance: Domeeni kustutamine
         destroy_ip_block: IP-reegli kustutamine
         destroy_status: Kustuta postitus
@@ -390,7 +390,7 @@ et:
       import: Import
       new:
         create: Loo blokeering
-        hint: Domeeniblokeering ei takista kontode lisamist andmebaasi, aga lisab nendele kontodele tagasiulatuvalt ja automaatselt erinevaid moderatsioonimeetodeid.
+        hint: Domeeniblokeering ei takista kontode lisamist andmebaasi, aga lisab automaatselt nendele kontodele tagasiulatuvalt teatud moderatsioonimeetodeid.
         severity:
           desc_html: "<strong>Piira</strong> muudab domeeni kasutajate postitused mittejälgijatele nähtamatuks.<strong>Kustuta</strong> eemaldab serverist kõik selle domeeni kontode sisu, meedia ja kasutajaandmed. <strong>Ei midagi</strong> lihtsalt lükkab meediafailid tagasi."
           noop: Ei midagi
@@ -402,21 +402,21 @@ et:
       obfuscate: Domeeninime varjamine
       obfuscate_hint: Varja osaliselt domeeni nimi nimekirjas, kui domeenipiirangute nimekirja avaldamine on sisse lülitatud
       private_comment: Privaatne kommentaar
-      private_comment_hint: Kommenteeri selle domeeni limiteerimise kohta moderaatoritele.
+      private_comment_hint: Kommentaar selle domeenipiirangu kohta moderaatorite sisekasutuseks.
       public_comment: Avalik kommentaar
-      public_comment_hint: Kommenteeri selle domeeni limiteerimise kohta avalikkusele, kui domeenilimitatsioonide loend on kõigile nähtav.
+      public_comment_hint: Avalik kommentaar selle domeenipiirangu kohta, juhuks kui domeenipiirangute loetelu avaldamine on lubatud.
       reject_media: Keela meediafailid
-      reject_media_hint: Kustutab kohalikult salvestatud meediafailid ja keeldub tulevikus rohkem allalaadimast. Ei puuduta peatamisi
+      reject_media_hint: Kustutab kohalikult salvestatud meediafailid ja keeldub tulevikus allalaadimisest. Ei puuduta peatamisi
       reject_reports: Lükka teavitused tagasi
-      reject_reports_hint: Eira kõik teavitused sellelt domeenilt. Ei puuduta peatamisi
-      undo: Võta tagasi domeeniblokeering
+      reject_reports_hint: Eira kõiki teavitusi sellelt domeenilt. Ei puuduta peatamisi
+      undo: Võta domeeniblokeering tagasi
       view: Vaata domeeniblokeeringut
     email_domain_blocks:
       add_new: Lisa uus
       attempts_over_week:
         one: "%{count} katse viimase nädala kestel"
         other: "%{count} liitumiskatset viimase nädala kestel"
-      created_msg: E-posti aadressi keelunimekirja lisamine õnnestus
+      created_msg: Edukalt blokeeritud e-posti domeen
       delete: Kustuta
       dns:
         types:
@@ -425,7 +425,7 @@ et:
       new:
         create: Lisa domeen
         resolve: Domeeni lahendamine
-        title: Uus e-posti keelunimekirja sisend
+        title: Blokeeri uus e-posti domeen
       no_email_domain_block_selected: Ühtegi e-posti domeeni keeldu ei muudetud, kuna midagi polnud valitud
       resolved_dns_records_hint_html: Domeeninimi lahendub järgnevateks MX-domeenideks, mis vastutavad e-kirjade vastuvõtmise eest. MX-domeeni blokeerimine blokeerib liitumistaotlused kõigilt e-postiaadressidelt, mis kasutavad sama MX-domeeni, kuigi kasutatav domeeninimi on erinev. <strong>Ole tähelepanelik, et mitte blokeerida suuremaid e-postiteenuse pakkujaid.</strong>
       resolved_through_html: Lahendatud %{domain} kaudu
@@ -575,9 +575,10 @@ et:
         mark_as_sensitive_description_html: Raporteeritud meedia märgitakse kui tundlik sisu ja juhtum talletatakse hoiatusena tulevaste eksimuste ärahoidmiseks.
         other_description_html: On rohkem valikuid konto käitumise juhtimiseks ja suhtluse kohandamiseks raporteeritud kontoga.
         resolve_description_html: Raporteeritud konto suhtes ei võeta midagi ette, juhtumit ei registreerita ja raport suletakse.
-        silence_description_html: Profiil on nähtav ainult neile, kes seda juba jälgivad või otsivad seda käsitsi, piirates sellega tõsiselt selle leitavust. Saab alati tagasi võtta.
-        suspend_description_html: Konto ja kogu sisu muutub lõpliku kustutamiseni kättesaamatuks. Kontoga suhtlemine pole võimalik. Tagasivõetav 30 päeva jooksul.
+        silence_description_html: Konto saab olema nähtav ainult senistele jälgijatele või otsestele pöördujatele, mõjutates avalikku levi. On tagasipööratav. Sulgeb kõik konto suhtes esitatud raportid.
+        suspend_description_html: See konto ja kogu selle sisu muutub kättesaamatuks ning kustub lõpuks ja igasugune suhtlus sellega muutub võimatuks. Tagasipööratav 30 päeva jooksul. Lõpetab kõik selle konto kohta esitatud kaebused.
       actions_description_html: Otsustus, mida raporti lahendamiseks ette võtta. Karistava tegevuse korral saadetakse e-postiga teade, välja arvatud kategooria <strong>rämpspost</strong> puhul.
+      actions_description_remote_html: Otsusta, mida teha selle raporti lahendamiseks. See mõjutab ainult seda, kuidas <strong>Sinu</strong> server selle kaugkontoga suhtleb ning selle sisu käsitleb.
       add_to_report: Lisa raportile juurde
       are_you_sure: Oled kindel?
       assign_to_self: Määra mulle
@@ -713,6 +714,8 @@ et:
         preamble: Huvitava sisu esiletoomine on oluline uute kasutajate kaasamisel, kes ei pruugi Mastodonist kedagi tunda. Kontrolli, kuidas erinevad avastamisfunktsioonid serveris töötavad.
         profile_directory: Kasutajate kataloog
         public_timelines: Avalikud ajajooned
+        publish_discovered_servers: Avalda avastatud serverid
+        publish_statistics: Avalda statistika
         title: Avastamine
         trends: Trendid
       domain_blocks:
@@ -1367,6 +1370,9 @@ et:
       unrecognized_emoji: ei ole tuntud emotikoon
   relationships:
     activity: Konto tegevus
+    confirm_follow_selected_followers: Oled kindel, et soovid jälgida valitud jälgijaid?
+    confirm_remove_selected_followers: Oled kindel, et soovid eemaldada valitud jälgijad?
+    confirm_remove_selected_follows: Oled kindel, et soovid eemaldada valitud jälgitavad?
     dormant: Seisev
     follow_selected_followers: Valitud jälgijate jälgimine
     followers: Jälgijad

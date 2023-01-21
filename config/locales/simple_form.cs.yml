@@ -18,8 +18,8 @@ cs:
           disable: Zabránit uživateli používat svůj účet, ale nemazat ani neskrývat jejich obsah.
           none: Toto použijte pro zaslání varování uživateli, bez vyvolání jakékoliv další akce.
           sensitive: Vynutit označení všech mediálních příloh tohoto uživatele jako citlivých.
-          silence: Zamezit uživateli odesílat veřejné příspěvky, schovat jejich příspěvky a notifikace před lidmi, kteří je nesledují.
-          suspend: Zamezit jakékoliv interakci z nebo do tohoto účtu a smazat jeho obsah. Vratné do 30 dnů.
+          silence: Zamezit uživateli odesílat veřejné příspěvky, schovat jejich příspěvky a notifikace před lidmi, kteří jej nesledují. Uzavře všechna hlášení proti tomuto účtu.
+          suspend: Zamezit jakékoliv interakci z nebo s tímto účtem a smazat jeho obsah. Lze vrátit zpět do 30 dnů. Uzavře všechna hlášení proti tomuto účtu.
         warning_preset_id: Volitelné. Na konec předlohy můžete stále vložit vlastní text
       announcement:
         all_day: Po vybrání budou zobrazeny jen dny z daného časového období
@@ -74,6 +74,7 @@ cs:
           hide: Úplně schovat filtrovaný obsah tak, jako by neexistoval
           warn: Schovat filtrovaný obsah za varováním zmiňujicím název filtru
       form_admin_settings:
+        activity_api_enabled: Počty lokálně publikovaných příspěvků, aktivních uživatelů a nových registrací v týdenních intervalech
         backups_retention_period: Zachovat generované uživatelské archivy pro zadaný počet dní.
         bootstrap_timeline_accounts: Tyto účty budou připnuty na vrchol nových uživatelů podle doporučení.
         closed_registrations_message: Zobrazeno při zavření registrace
@@ -81,6 +82,7 @@ cs:
         custom_css: Můžete použít vlastní styly ve verzi Mastodonu.
         mascot: Přepíše ilustraci v pokročilém webovém rozhraní.
         media_cache_retention_period: Stažené mediální soubory budou po zadaném počtu dní odstraněny, pokud je nastavena kladná hodnota, a na požádání znovu staženy.
+        peers_api_enabled: Seznam názvů domén se kterými se tento server setkal ve fediversu. Neobsahuje žádná data o tom, zda jste federovali s daným serverem, pouze že o něm váš server ví. Toto je využíváno službami, které sbírají o federování statistiku v obecném smyslu.
         profile_directory: Adresář profilu obsahuje seznam všech uživatelů, kteří se přihlásili, aby mohli být nalezeni.
         require_invite_text: Pokud přihlášení vyžaduje ruční schválení, měl by být textový vstup „Proč se chcete připojit?“ povinný spíše než volitelný
         site_contact_email: Jak vás mohou lidé kontaktovat v případě právních dotazů nebo dotazů na podporu.
@@ -229,6 +231,7 @@ cs:
           hide: Zcela skrýt
           warn: Skrýt s varováním
       form_admin_settings:
+        activity_api_enabled: Zveřejnit souhrnné statistiky o aktivitě uživatele v API
         backups_retention_period: Doba uchovávání archivu uživatelů
         bootstrap_timeline_accounts: Vždy doporučovat tyto účty novým uživatelům
         closed_registrations_message: Vlastní zpráva, když přihlášení není k dispozici
@@ -236,6 +239,7 @@ cs:
         custom_css: Vlastní CSS
         mascot: Vlastní maskot (zastaralé)
         media_cache_retention_period: Doba uchovávání mezipaměti médií
+        peers_api_enabled: Zveřejnit seznam nalezených serverů v API
         profile_directory: Povolit adresář profilů
         registrations_mode: Kdo se může přihlásit
         require_invite_text: Požadovat důvod pro připojení

@@ -18,8 +18,8 @@ es:
           disable: Evita que el usuario utilice su cuenta, pero no elimina ni oculta sus contenidos.
           none: Utilizar esto para enviar una advertencia al usuario, sin poner en marcha ninguna otra acción.
           sensitive: Forzar que todos los archivos multimedia de este usuario sean marcados como sensibles.
-          silence: Evitar que el usuario pueda publicar con visibilidad pública, oculta sus mensajes y notificaciones a personas que no lo siguen.
-          suspend: Evitar cualquier interacción desde o hacia esta cuenta y eliminar su contenido. Reversible en un plazo de 30 días.
+          silence: Evita que el usuario pueda publicar con visibilidad pública, y oculta sus mensajes y notificaciones a personas que no lo siguen. Cierra todos los informes contra esta cuenta.
+          suspend: Evita cualquier interacción desde o hacia esta cuenta y elimina su contenido. Reversible en 30 días. Cierra todos los informes contra esta cuenta.
         warning_preset_id: Opcional. Aún puede añadir texto personalizado al final de la configuración predefinida
       announcement:
         all_day: Cuando está seleccionado solo se mostrarán las fechas del rango de tiempo
@@ -81,6 +81,7 @@ es:
         custom_css: Puedes aplicar estilos personalizados a la versión web de Mastodon.
         mascot: Reemplaza la ilustración en la interfaz web avanzada.
         media_cache_retention_period: Los archivos multimedia descargados se eliminarán después del número especificado de días cuando se establezca un valor positivo, y se redescargarán bajo demanda.
+        peers_api_enabled: Una lista de nombres de dominio que este servidor ha encontrado en el Fediverso. Aquí no se incluye ningún dato sobre si federas con un servidor determinado, solo que tu servidor lo conoce. Esto es utilizado por los servicios que recopilan estadísticas sobre la federación en un sentido general.
         profile_directory: El directorio de perfiles lista a todos los usuarios que han optado por que su cuenta pueda ser descubierta.
         require_invite_text: Cuando los registros requieren aprobación manual, hace obligatoria la entrada de texto "¿Por qué quieres unirte?" en lugar de opcional
         site_contact_email: Cómo la gente puede ponerse en contacto contigo para consultas legales o de ayuda.
@@ -236,6 +237,7 @@ es:
         custom_css: CSS personalizado
         mascot: Mascota personalizada (legado)
         media_cache_retention_period: Período de retención de caché multimedia
+        peers_api_enabled: Publicar lista de servidores descubiertos en la API
         profile_directory: Habilitar directorio de perfiles
         registrations_mode: Quién puede registrarse
         require_invite_text: Requerir una razón para unirse
