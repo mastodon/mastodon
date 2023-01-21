@@ -38,11 +38,12 @@ group :pam_authentication, optional: true do
 end
 
 gem 'net-ldap', '~> 0.17'
-gem 'omniauth-cas', '~> 2.0'
-gem 'omniauth-saml', '~> 1.10'
-gem 'gitlab-omniauth-openid-connect', '~>0.10.0', require: 'omniauth_openid_connect'
-gem 'omniauth', '~> 1.9'
-gem 'omniauth-rails_csrf_protection', '~> 0.1'
+# Gem can't be updated and this PR that seems to fix it is stale: https://github.com/dlindahl/omniauth-cas/pull/68
+gem 'omniauth-cas', github: 'stanhu/omniauth-cas', branch: 'sh-update-omniauth2'
+gem 'omniauth-saml'
+gem 'gitlab-omniauth-openid-connect', require: 'omniauth_openid_connect'
+gem 'omniauth'
+gem 'omniauth-rails_csrf_protection'
 
 gem 'color_diff', '~> 0.1'
 gem 'discard', '~> 1.2'

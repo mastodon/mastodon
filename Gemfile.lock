@@ -7,6 +7,16 @@ GIT
       hkdf (~> 0.2)
       jwt (~> 2.0)
 
+GIT
+  remote: https://github.com/stanhu/omniauth-cas.git
+  revision: 4211e6d05941b4a981f9a36b49ec166cecd0e271
+  branch: sh-update-omniauth2
+  specs:
+    omniauth-cas (2.0.0)
+      addressable (~> 2.3)
+      nokogiri (~> 1.5)
+      omniauth (>= 1.2, < 3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -117,7 +127,7 @@ GEM
       erubi (~> 1.4)
       parser (>= 2.4)
       smart_properties
-    bindata (2.4.10)
+    bindata (2.4.14)
     binding_of_caller (1.0.0)
       debug_inspector (>= 0.0.1)
     blurhash (0.1.6)
@@ -331,10 +341,11 @@ GEM
     jmespath (1.6.2)
     json (2.6.3)
     json-canonicalization (0.3.0)
-    json-jwt (1.14.0)
+    json-jwt (1.15.3)
       activesupport (>= 4.2)
       aes_key_wrap
       bindata
+      httpclient
     json-ld (3.2.3)
       htmlentities (~> 4.3)
       json-canonicalization (~> 0.3)
@@ -416,7 +427,7 @@ GEM
     net-ldap (0.17.1)
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.1.3)
+    net-protocol (0.2.1)
       timeout
     net-scp (4.0.0.rc1)
       net-ssh (>= 2.6.5, < 8.0.0)
@@ -433,29 +444,27 @@ GEM
       sidekiq (>= 3.5)
       statsd-ruby (~> 1.4, >= 1.4.0)
     oj (3.13.23)
-    omniauth (1.9.2)
+    omniauth (2.1.1)
       hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
-    omniauth-cas (2.0.0)
-      addressable (~> 2.3)
-      nokogiri (~> 1.5)
-      omniauth (~> 1.2)
-    omniauth-rails_csrf_protection (0.1.2)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-rails_csrf_protection (1.0.1)
       actionpack (>= 4.2)
-      omniauth (>= 1.3.1)
-    omniauth-saml (1.10.3)
-      omniauth (~> 1.3, >= 1.3.2)
-      ruby-saml (~> 1.9)
-    openid_connect (1.3.0)
+      omniauth (~> 2.0)
+    omniauth-saml (2.1.0)
+      omniauth (~> 2.0)
+      ruby-saml (~> 1.12)
+    openid_connect (1.4.2)
       activemodel
       attr_required (>= 1.0.0)
-      json-jwt (>= 1.5.0)
-      rack-oauth2 (>= 1.6.1)
-      swd (>= 1.0.0)
+      json-jwt (>= 1.15.0)
+      net-smtp
+      rack-oauth2 (~> 1.21)
+      swd (~> 1.3)
       tzinfo
       validate_email
       validate_url
-      webfinger (>= 1.0.1)
+      webfinger (~> 1.2)
     openssl (3.0.0)
     openssl-signature_algorithm (1.2.1)
       openssl (> 2.0, < 3.1)
@@ -501,12 +510,14 @@ GEM
       rack (>= 1.0, < 3)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
-    rack-oauth2 (1.19.0)
+    rack-oauth2 (1.21.3)
       activesupport
       attr_required
       httpclient
       json-jwt (>= 1.11.0)
       rack (>= 2.1.0)
+    rack-protection (3.0.5)
+      rack
     rack-proxy (0.7.0)
       rack
     rack-test (2.0.2)
@@ -533,7 +544,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.4)
+    rails-html-sanitizer (1.5.0)
       loofah (~> 2.19, >= 2.19.1)
     rails-i18n (6.0.0)
       i18n (>= 0.7, < 2)
@@ -618,8 +629,8 @@ GEM
       rubocop (~> 1.33)
       rubocop-capybara
     ruby-progressbar (1.11.0)
-    ruby-saml (1.13.0)
-      nokogiri (>= 1.10.5)
+    ruby-saml (1.15.0)
+      nokogiri (>= 1.13.10)
       rexml
     ruby2_keywords (0.0.5)
     rufus-scheduler (3.8.2)
@@ -689,7 +700,7 @@ GEM
       climate_control (>= 0.0.3, < 1.0)
     thor (1.2.1)
     tilt (2.0.11)
-    timeout (0.3.0)
+    timeout (0.3.1)
     tpm-key_attestation (0.11.0)
       bindata (~> 2.4)
       openssl (> 2.0, < 3.1)
@@ -797,7 +808,7 @@ DEPENDENCIES
   fog-core (<= 2.4.0)
   fog-openstack (~> 0.3)
   fuubar (~> 2.5)
-  gitlab-omniauth-openid-connect (~> 0.10.0)
+  gitlab-omniauth-openid-connect
   hamlit-rails (~> 0.2)
   hiredis (~> 0.6)
   htmlentities (~> 4.3)
@@ -823,10 +834,10 @@ DEPENDENCIES
   nokogiri (~> 1.14)
   nsa (~> 0.2)
   oj (~> 3.13)
-  omniauth (~> 1.9)
-  omniauth-cas (~> 2.0)
-  omniauth-rails_csrf_protection (~> 0.1)
-  omniauth-saml (~> 1.10)
+  omniauth
+  omniauth-cas!
+  omniauth-rails_csrf_protection
+  omniauth-saml
   ox (~> 2.14)
   parslet
   pg (~> 1.4)
@@ -885,3 +896,9 @@ DEPENDENCIES
   webpacker (~> 5.4)
   webpush!
   xorcist (~> 1.1)
+
+RUBY VERSION
+   ruby 3.0.4p208
+
+BUNDLED WITH
+   2.2.33
