@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::Trends::LinksController, type: :request do
+RSpec.describe Api::V1::Admin::Trends::LinksController do
   path '/api/v1/admin/trends/links' do
     get('list links') do
       tags 'Api', 'V1', 'Admin', 'Trends', 'Links'
@@ -18,7 +18,7 @@ RSpec.describe Api::V1::Admin::Trends::LinksController, type: :request do
       include_context 'admin token auth'
 
       let!(:preview_cards) do
-        11.times.map do
+        Array.new(11) do
           Fabricate(
             :preview_card, language: 'en', trendable: true,
             trend: PreviewCardTrend.new(language: 'en', allowed: true, score: 1.0)

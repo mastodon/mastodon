@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::BookmarksController, type: :request do
+RSpec.describe Api::V1::BookmarksController do
   path '/api/v1/bookmarks' do
     get('list bookmarks') do
       tags 'Api', 'V1', 'Bookmarks'

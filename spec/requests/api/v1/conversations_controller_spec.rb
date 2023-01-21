@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::ConversationsController, type: :request do
+RSpec.describe Api::V1::ConversationsController do
   let!(:other) { Fabricate(:user).account }
   let!(:conversation_status) do
     PostStatusService.new.call(other, text: "Hello @#{user.account.acct}", visibility: 'direct')

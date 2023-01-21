@@ -111,7 +111,7 @@ components:
         - acct
         - url
       type: object
-    
+
     AccountField:
       allOf:
         - $ref: '#/components/schemas/Field'
@@ -122,7 +122,7 @@ components:
       required:
         - name
         - value
-    
+
     AccountUpdateCredentialsParams:
       example:
         avatar: ''
@@ -160,7 +160,7 @@ components:
         source:
           $ref: '#/components/schemas/SourceParam'
       type: object
-    
+
     Admin::Account:
       description: Admin-level information about a given account.
       properties:
@@ -225,7 +225,7 @@ components:
           description: The username of the account, not including domain.
           type: string
       type: object
-    
+
     Admin::CanonicalEmailBlock:
       description: Represents a canonical email block (hashed).
       properties:
@@ -238,7 +238,7 @@ components:
           example: '2'
           type: string
       type: object
-    
+
     Admin::Cohort:
       description: Represents a retention metric.
       properties:
@@ -259,7 +259,7 @@ components:
         period:
           description: The timestamp for the start of the period, at midnight.
       type: object
-    
+
     Admin::CohortData:
       description: Retention data for users who registered during the given period.
       properties:
@@ -274,7 +274,7 @@ components:
           description: How many users registered in the specified `period` and were active for the given `date` bucket.
           type: integer
       type: object
-    
+
     Admin::Dimension:
       description: Represents qualitative data about the server.
       properties:
@@ -288,7 +288,7 @@ components:
           example: space_usage
           type: string
       type: object
-    
+
     Admin::Dimension::Data:
       description: The data available for the requested dimension.
       properties:
@@ -313,7 +313,7 @@ components:
           example: '14924935'
           type: string
       type: object
-    
+
     Admin::DomainAllow:
       description: Represents a domain allowed to federate.
       properties:
@@ -328,7 +328,7 @@ components:
           $ref: '#/components/schemas/StringId'
           description: The ID of the DomainAllow in the database.
       type: object
-    
+
     Admin::DomainBlock:
       description: Represents a domain limited from federating.
       properties:
@@ -370,7 +370,7 @@ components:
             - noop
           type: string
       type: object
-    
+
     Admin::EmailDomainBlock:
       description: Represents an email domain that cannot be used to sign up.
       properties:
@@ -406,7 +406,7 @@ components:
           $ref: '#/components/schemas/StringId'
           description: The ID of the DomainBlock in the database.
       type: object
-    
+
     Admin::Ip:
       description: Represents an IP address associated with a user.
       properties:
@@ -418,7 +418,7 @@ components:
           $ref: '#/components/schemas/DateTime'
           description: The timestamp of when the IP address was last used for this account.
       type: object
-    
+
     Admin::IpBlock:
       description: Represents an IP address range that cannot be used to sign up.
       properties:
@@ -452,7 +452,7 @@ components:
             - no_access
           type: string
       type: object
-    
+
     Admin::Measure:
       description: Represents quantitative data about the server.
       properties:
@@ -497,7 +497,7 @@ components:
           nullable: true
           type: string
       type: object
-    
+
     Admin::Report:
       description: Admin-level information about a filed report.
       properties:
@@ -557,7 +557,7 @@ components:
         updated_at:
           $ref: '#/components/schemas/DateTime'
       type: object
-    
+
     Announcement:
       description: Represents an announcement set by an administrator.
       properties:
@@ -617,7 +617,7 @@ components:
           $ref: '#/components/schemas/DateTime'
           description: When the announcement was last updated.
       type: object
-    
+
     Announcement::Account:
       properties:
         acct:
@@ -634,7 +634,7 @@ components:
           description: The username of the mentioned user.
           type: string
       type: object
-    
+
     Announcement::Status:
       properties:
         id:
@@ -643,7 +643,7 @@ components:
           description: The URL of an attached Status.
           type: string
       type: object
-    
+
     Application:
       description: Represents an application that interfaces with the REST API to access accounts or post statuses.
       properties:
@@ -670,7 +670,7 @@ components:
         - name
         - vapid_key
       type: object
-    
+
     ApplicationRequestBody:
       properties:
         client_name:
@@ -693,7 +693,7 @@ components:
         - client_name
         - redirect_uris
       type: object
-    
+
     Context:
       description: Represents the tree around a given status. Used for reconstructing threads of statuses.
       properties:
@@ -708,7 +708,7 @@ components:
             $ref: '#/components/schemas/Status'
           type: array
       type: object
-    
+
     Conversation:
       description: Represents a conversation with "direct message" visibility.
       properties:
@@ -732,7 +732,7 @@ components:
         - accounts
         - last_status
         - unread
-    
+
     Credential:
       properties:
         role:
@@ -740,7 +740,7 @@ components:
         source:
           $ref: '#/components/schemas/Source'
       type: object
-    
+
     CustomEmoji:
       description: Represents a custom emoji.
       properties:
@@ -768,12 +768,12 @@ components:
         - url
         - static_url
         - visible_in_picker
-    
+
     DateTime:
       example: '2022-11-13T21:24:59.474Z'
       format: datetime
       type: string
-    
+
     DomainBlock:
       description: Represents a domain that is blocked by the instance.
       properties:
@@ -802,7 +802,7 @@ components:
         - digest
         - severity
       type: object
-    
+
     Error:
       properties:
         error:
@@ -815,7 +815,7 @@ components:
       required:
         - error
       type: object
-    
+
     ExtendedDescription:
       properties:
         content:
@@ -827,7 +827,7 @@ components:
         - content
         - updated_at
       type: object
-    
+
     FamiliarFollowers:
       description: Represents a subset of your follows who also follow some other user.
       properties:
@@ -839,7 +839,7 @@ components:
         id:
           $ref: '#/components/schemas/StringId'
       type: object
-    
+
     FeaturedTag:
       description: Represents a hashtag that is featured on a profile.
       properties:
@@ -861,7 +861,7 @@ components:
           description: A link to all statuses by a user that contain this hashtag.
           type: string
       type: object
-    
+
     Field:
       properties:
         name:
@@ -872,7 +872,7 @@ components:
         - name
         - value
       type: object
-    
+
     Filter:
       description: Represents a user-defined filter for determining which statuses should not be shown to the user.
       properties:
@@ -921,7 +921,7 @@ components:
           description: A title given by the user to name the filter.
           type: string
       type: object
-    
+
     FilterKeyword:
       description: Represents a keyword that, if matched, should cause the filter action to be taken.
       properties:
@@ -936,7 +936,7 @@ components:
             See [implementation guidelines for filters](https://docs.joinmastodon.org/api/guidelines/#filters).
           type: boolean
       type: object
-    
+
     FilterStatus:
       description: Represents a status ID that, if matched, should cause the filter action to be taken.
       properties:
@@ -946,7 +946,7 @@ components:
           $ref: '#/components/schemas/StringId'
           description: The ID of the filtered Status in the database.
       type: object
-    
+
     V1FilterContextEnum:
       description: |
         * `home` home timeline and lists
@@ -989,13 +989,13 @@ components:
         whole_word:
           description: |
             Should the filter consider word boundaries?
-            
+
             See [implementation guidelines for filters](https://docs.joinmastodon.org/api/guidelines/#filters).
           type: boolean
         irreversible:
           description: |
             Should matching entities in home and notifications be dropped by the server?
-            
+
             See [implementation guidelines for filters](https://docs.joinmastodon.org/api/guidelines/#filters).
           type: boolean
       required:
@@ -1018,14 +1018,14 @@ components:
         context:
           description: |
             Where the filter should be applied.
-            
+
             Specify at least one of `home`, `notifications`, `public`, `thread`, `account`.
           type: array
           minItems: 1
           uniqueItems: true
           items:
             $ref: '#/components/schemas/V1FilterContextEnum'
-          
+
         expires_in:
           type: integer
           description: |
@@ -1035,14 +1035,14 @@ components:
         whole_word:
           description: |
             Should the filter consider word boundaries for this keyword?
-            
+
             Defaults to false.
           type: boolean
           default: falses
         irreversible:
           description: |
             Should the server irreversibly drop matching entities from home and notifications?
-            
+
             Defaults to false.
           type: boolean
           default: false
@@ -1054,7 +1054,7 @@ components:
       description: Represents a proof from an external identity provider.
       properties: {}
       type: object
-    
+
     Instance:
       description: Represents the software instance of Mastodon running on this domain.
       properties:
@@ -1357,7 +1357,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rule'
-        
+
     List:
       description: Represents a list of some users that the authenticated user follows.
       properties:
@@ -1377,7 +1377,7 @@ components:
           description: The user-defined title of the list.
           type: string
       type: object
-    
+
     Marker:
       description: Represents the last read position within a user's timelines.
       properties:
@@ -1390,7 +1390,7 @@ components:
           description: An incrementing counter, used for locking to prevent write conflicts.
           type: integer
       type: object
-    
+
     MediaAttachment:
       description: Represents a file or media attachment that can be added to a status.
       properties:
@@ -1452,7 +1452,7 @@ components:
         - id
         - type
       type: object
-    
+
     Mention:
       properties:
         acct:
@@ -1465,7 +1465,7 @@ components:
         username:
           type: string
       type: object
-    
+
     Notification:
       description: Represents a notification of an event relevant to the user.
       properties:
@@ -1514,7 +1514,7 @@ components:
             - admin.report
           type: string
       type: object
-    
+
     Poll:
       description: Represents a poll attached to a status.
       properties:
@@ -1564,7 +1564,7 @@ components:
       required:
         - id
       type: object
-    
+
     PollVote:
       properties:
         actor:
@@ -1591,7 +1591,7 @@ components:
         type:
           type: string
       type: object
-    
+
     Preferences:
       description: Represents a user's preferences.
       properties:
@@ -1637,7 +1637,7 @@ components:
             Whether CWs should be expanded by default.
           type: boolean
       type: object
-    
+
     PreviewCard:
       description: |
         Represents a rich preview card that is generated using OpenGraph tags from a URL.
@@ -1705,7 +1705,7 @@ components:
             - type: integer
           description: Width of preview, in pixels.
       type: object
-    
+
     PreviewCardLink:
       allOf:
         - $ref: '#/components/schemas/PreviewCard'
@@ -1715,7 +1715,7 @@ components:
                 $ref: '#/components/schemas/TrendHistory'
               type: array
           type: object
-    
+
     Reaction:
       description: Represents an announcement set by an administrator.
       properties:
@@ -1737,7 +1737,7 @@ components:
             If the reaction is a custom emoji: A link to the custom emoji.
           type: string
       type: object
-    
+
     Relationship:
       description: Represents the relationship between accounts, such as following / blocking / muting / etc.
       properties:
@@ -1785,7 +1785,7 @@ components:
           description: Are you receiving this user's boosts in your home timeline?
           type: boolean
       type: object
-    
+
     Report:
       description: Reports filed against users and/or statuses, to be taken action on by moderators.
       properties:
@@ -1828,7 +1828,7 @@ components:
         target_account:
           $ref: '#/components/schemas/Account'
       type: object
-    
+
     Role:
       description: Represents a custom user role that grants permissions.
       properties:
@@ -1884,7 +1884,7 @@ components:
           $ref: '#/components/schemas/DateTime'
           description: The date that the role was updated.
       type: object
-    
+
     Rule:
       description: Represents a rule that server users should follow.
       properties:
@@ -1894,7 +1894,7 @@ components:
           description: The rule to be followed.
           type: string
       type: object
-    
+
     ScheduledStatus:
       description: Represents a status that will be published at a future scheduled date.
       properties:
@@ -1911,7 +1911,7 @@ components:
         scheduled_at:
           $ref: '#/components/schemas/DateTime'
       type: object
-    
+
     Search:
       description: Represents the results of a search.
       properties:
@@ -1931,7 +1931,7 @@ components:
             $ref: '#/components/schemas/Status'
           type: array
       type: object
-    
+
     Source:
       allOf:
         - $ref: '#/components/schemas/SourceParam'
@@ -1952,7 +1952,7 @@ components:
       description: |
         Represents display or publishing preferences of user's own account.  
         Returned as an additional entity when verifying and updated credentials, as an attribute of Account.
-    
+
     SourceParam:
       properties:
         language:
@@ -1980,7 +1980,7 @@ components:
           nullable: true
           type: boolean
       type: object
-    
+
     Status:
       properties:
         account:
@@ -2077,7 +2077,7 @@ components:
         - created_at
         - media_attachments
       type: object
-    
+
     Status::Tag:
       properties:
         id:
@@ -2086,7 +2086,7 @@ components:
         url:
           type: string
       type: object
-    
+
     StatusEdit:
       description: Represents a revision of a status that has been edited.
       properties:
@@ -2124,7 +2124,7 @@ components:
           description: The content of the subject or content warning at this revision.
           type: string
       type: object
-    
+
     StatusSource:
       description: Represents a status's source as plain text.
       properties:
@@ -2137,12 +2137,12 @@ components:
           description: The plain text used to compose the status.
           type: string
       type: object
-    
+
     StringId:
       example: '10999'
       pattern: '[0-9]+'
       type: string
-    
+
     Suggestion:
       properties:
         account:
@@ -2160,7 +2160,7 @@ components:
             - global
           type: string
       type: object
-    
+
     Tag:
       description: Represents a hashtag used within the content of a status.
       properties:
@@ -2192,7 +2192,7 @@ components:
           description: A link to the hashtag on the instance.
           type: string
       type: object
-    
+
     Token:
       description: Represents an OAuth token used for authenticating with the API and performing actions.
       properties:
@@ -2208,7 +2208,7 @@ components:
           description: The OAuth token type. Mastodon uses `Bearer` tokens.
           type: string
       type: object
-    
+
     TrendHistory:
       properties:
         accounts:
@@ -2221,7 +2221,7 @@ components:
           pattern: '[0-9]+'
           type: string
       type: object
-    
+
     boolOrStrBool:
       anyOf:
         - type: boolean
@@ -2231,7 +2231,7 @@ components:
             - 'true'
             - 'false'
           type: string
-  
+
   securitySchemes:
     bearerAuth:
       scheme: bearer
@@ -2317,7 +2317,7 @@ components:
           schema:
             $ref: '#/components/schemas/AccountUpdateCredentialsParams'
       required: false
-  
+
   links: {}
   parameters: {}
   responses: {}

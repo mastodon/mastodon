@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Accounts::IdentityProofsController, type: :request do
+RSpec.describe Api::V1::Accounts::IdentityProofsController do
   path '/api/v1/accounts/{account_id}/identity_proofs' do
     # You'll want to customize the parameter types...
     parameter name: 'account_id', in: :path, type: :string, description: 'account_id'

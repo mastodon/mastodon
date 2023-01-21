@@ -238,7 +238,7 @@ RSpec.describe Api::V1::AccountsController do
       operationId 'v1AccountsCreateAccount'
       description 'Creates a user and account records. Returns an account access token for the app that initiated the request. The app should save this token for later, and should wait for the user to confirm their account by clicking a link in their email inbox.'
       rswag_auth_scope %w(write write:accounts)
-      parameter name: :payload, in: :body, required: :true, schema: {
+      parameter name: :payload, in: :body, required: true, schema: {
         type: :object,
         properties: {
           username: {

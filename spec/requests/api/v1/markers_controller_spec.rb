@@ -10,7 +10,7 @@ RSpec.describe Api::V1::MarkersController do
       parameter name: 'timeline[]', in: :query, required: false, schema: {
         type: :string,
         enum: %w(home notifications),
-        description: <<~MD
+        description: <<~MD,
           Array of String. 
           Specify the timeline(s) for which markers should be fetched.
           

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Accounts::RelationshipsController, type: :request do
+RSpec.describe Api::V1::Accounts::RelationshipsController do
   path '/api/v1/accounts/relationships' do
     get('list relationships') do
       tags 'Api', 'V1', 'Accounts', 'Relationships'
@@ -25,7 +25,7 @@ RSpec.describe Api::V1::Accounts::RelationshipsController, type: :request do
 
       response(200, 'successful') do
         schema type: :array, items: { '$ref' => '#/components/schemas/Relationship' }
-        let('id') { account.id }
+        let(:id) { account.id }
         rswag_add_examples!
         run_test! do |response|
           body = rswag_parse_body(response)

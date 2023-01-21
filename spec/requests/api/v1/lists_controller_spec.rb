@@ -16,7 +16,6 @@ RSpec.describe Api::V1::ListsController do
       end
       let!(:list1) { List.create(title: 'list1', account: user.account) }
 
-
       response(200, 'successful') do
         schema type: :array, items: { '$ref' => '#/components/schemas/List' }
         rswag_add_examples!

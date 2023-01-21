@@ -2,7 +2,7 @@
 
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::AccountActionsController, type: :request do
+RSpec.describe Api::V1::Admin::AccountActionsController do
   path '/api/v1/admin/accounts/{account_id}/action' do
     # You'll want to customize the parameter types...
     parameter name: 'account_id', in: :path, type: :string, description: 'account_id'

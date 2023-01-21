@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Accounts::StatusesController, type: :request do
+RSpec.describe Api::V1::Accounts::StatusesController do
   let(:account) { Fabricate(:account, username: 'bob', domain: 'example.com') }
   let(:other_account) { Fabricate(:account, username: 'jane', domain: 'example.com') }
   let!(:status) { Fabricate(:status, account: account, edited_at: Time.zone.now, language: 'en') }

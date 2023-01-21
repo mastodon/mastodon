@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Admin::Trends::TagsController, type: :request do
-  path '/api/v1/admin/trends/tags' do
-    get('list tags') do
-      tags 'Api', 'V1', 'Admin', 'Trends', 'Tags'
-      operationId 'v1AdminTrendsTagsListTag'
+RSpec.describe Api::V1::Admin::Trends::StatusesController do
+  path '/api/v1/admin/trends/statuses' do
+    get('list statuses') do
+      tags 'Api', 'V1', 'Admin', 'Trends', 'Statuses'
+      operationId 'v1AdminTrendsStatusesListStatus'
       rswag_auth_scope %w(admin:read)
       parameter name: 'limit', in: :query, type: :integer, required: false,
                 description: 'Maximum number of results to return. Defaults to 40.'
@@ -18,15 +18,15 @@ RSpec.describe Api::V1::Admin::Trends::TagsController, type: :request do
       include_context 'admin token auth'
 
       let(:account) { Fabricate(:account, trendable: true) }
-      let(:status) { Fabricate(:status, trendable: true, language: 'en', account: account) }
-      let!(:tag) { Fabricate(:tag, trendable: true, listable: true, usable: true, statuses: [status], accounts: [account]) }
+      let(:status) { Fabricate(:status, trendable: true, language: 'en') }
+      let!(:status_trend) do
+        StatusTrend.create!(status: status, account: account)
+      end
 
       response(200, 'successful') do
-        schema type: :array, items: { '$ref' => '#/components/schemas/Tag' }
-        # TODO: convince this controller to actually produce examples. This Tag Trends thing is a bit of a tricky thing here... 
+        schema type: :array, items: { '$ref' => '#/components/schemas/Status' }
         rswag_add_examples!
         run_test!
-        # analyse_body_run_test!
       end
     end
   end

@@ -17,7 +17,7 @@ RSpec.describe Api::V1::BlocksController do
 
       include_context 'user token auth'
       let!(:accounts) do
-        3.times.map { Fabricate(:account) }
+        Array.new(3) { Fabricate(:account) }
       end
 
       response(200, 'successful') do

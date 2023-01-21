@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::ReportsController, type: :request do
+RSpec.describe Api::V1::ReportsController do
   let!(:status) { Fabricate(:status) }
   let(:target_account) { status.account }
   let(:category) { nil }

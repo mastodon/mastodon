@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Accounts::FamiliarFollowersController, type: :request do
+RSpec.describe Api::V1::Accounts::FamiliarFollowersController do
   path '/api/v1/accounts/familiar_followers' do
     get('list familiar_followers') do
       tags 'Api', 'V1', 'Accounts', 'FamiliarFollowers'
@@ -28,7 +28,7 @@ RSpec.describe Api::V1::Accounts::FamiliarFollowersController, type: :request do
             },
           }
         }
-        let('id[]') { alice.id }
+        let(:'id[]') { alice.id }
 
         before do
           account.follow!(bob)
@@ -60,7 +60,7 @@ RSpec.describe Api::V1::Accounts::FamiliarFollowersController, type: :request do
             },
           }
         }
-        let('id[]') { bob.id }
+        let(:'id[]') { bob.id }
 
         before do
           account.follow!(bob)

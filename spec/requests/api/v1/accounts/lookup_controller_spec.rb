@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'swagger_helper'
 
-RSpec.describe Api::V1::Accounts::LookupController, type: :request do
+RSpec.describe Api::V1::Accounts::LookupController do
   path '/api/v1/accounts/lookup' do
     get('show lookup') do
       tags 'Api', 'V1', 'Accounts', 'Lookup'
