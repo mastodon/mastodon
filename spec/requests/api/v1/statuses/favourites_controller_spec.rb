@@ -1,4 +1,6 @@
 # frozen_string_literal: true
+# TODO: implement rswag spec from generated scafold
+
 require 'swagger_helper'
 
 RSpec.describe Api::V1::Statuses::FavouritesController do
