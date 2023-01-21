@@ -5,12 +5,6 @@ ARG NODE_VERSION="16.18.1-bullseye-slim"
 FROM ghcr.io/moritzheiber/ruby-jemalloc:3.0.4-slim as ruby
 FROM node:${NODE_VERSION} as build
 
-COPY --link --from=ruby /opt/ruby /opt/ruby
-
-ENV RAILS_ENV="production" \
-    NODE_ENV="production" \
-    PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # hadolint ignore=DL3008
@@ -34,6 +28,12 @@ RUN apt-get update && \
         shared-mime-info  \
     && \
     rm -rf /var/lib/apt/lists/*
+
+COPY --link --from=ruby /opt/ruby /opt/ruby
+
+ENV RAILS_ENV="production" \
+    NODE_ENV="production" \
+    PATH="${PATH}:/opt/ruby/bin:/opt/mastodon/bin"
 
 WORKDIR /opt/mastodon
 
