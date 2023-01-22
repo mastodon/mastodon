@@ -212,6 +212,7 @@ components:
             ISO 639 Part 1 two-letter language code
           pattern: '[a-z]{2}'
           type: string
+          nullable: true
         role:
           $ref: '#/components/schemas/Role'
           description: The current role of the account.
