@@ -16,7 +16,7 @@ module Admin::ActionLogsHelper
     when 'Report'
       link_to "##{log.human_identifier.presence || log.target_id}", admin_report_path(log.target_id)
     when 'DomainBlock', 'DomainAllow', 'EmailDomainBlock', 'UnavailableDomain'
-      link_to_url log.human_identifier, "https://#{log.human_identifier.presence}"
+      link_to log.human_identifier, "https://#{log.human_identifier.presence}", target: '_blank', class: 'emojify', rel: 'noopener noreferrer'
     when 'Status'
       link_to log.human_identifier, log.permalink
     when 'AccountWarning'
