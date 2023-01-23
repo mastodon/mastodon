@@ -61,6 +61,10 @@ describe Api::V1::Push::SubscriptionsController do
       post :create, params: create_payload
       expect(Web::PushSubscription.where(endpoint: create_payload[:subscription][:endpoint]).count).to eq 1
     end
+
+    it 'returns the expected JSON' do
+      expect(body_as_json.with_indifferent_access).to include({ endpoint: create_payload[:subscription][:endpoint], alerts: {}, policy: 'all' })
+    end
   end
 
   describe 'PUT #update' do
@@ -77,6 +81,10 @@ describe Api::V1::Push::SubscriptionsController do
       %w(follow follow_request favourite reblog mention poll status).each do |type|
         expect(push_subscription.data['alerts'][type]).to eq(alerts_payload[:data][:alerts][type.to_sym].to_s)
       end
+    end
+
+    it 'returns the expected JSON' do
+      expect(body_as_json.with_indifferent_access).to include({ endpoint: create_payload[:subscription][:endpoint], alerts: alerts_payload[:data][:alerts], policy: alerts_payload[:data][:policy] })
     end
   end
 
