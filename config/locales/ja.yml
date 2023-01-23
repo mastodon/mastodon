@@ -384,7 +384,7 @@ ja:
         create: ブロックを作成
         hint: ドメインブロックはデータベース中のアカウント項目の作成を妨げませんが、遡って自動的に指定されたモデレーションをそれらのアカウントに適用します。
         severity:
-          desc_html: "<strong></strong>はこのドメインでのアカウントの投稿をフォローしていない人から隠します。<strong>停止</strong>はこのドメインでのアカウントのコンテンツ、メディア、プロフィールデータをサーバーから削除します。メディアファイルのみを拒否したい場合は<strong>なし</strong>を選択します。"
+          desc_html: "<strong>制限</strong>は、このドメイン上のアカウントからの投稿が、相手をフォローしている場合を除き非表示になります。<strong>停止</strong>は、このドメイン上のすべてのコンテンツ、メディア、およびプロフィールデータを受け付けなくなります。メディアファイルのみを拒否したい場合は<strong>なし</strong>を選択します。"
           noop: なし
           silence: 制限
           suspend: 停止
@@ -429,7 +429,7 @@ ja:
       import:
         description_html: ドメインブロックのリストをインポートしようとしています。このリストを自分で作成していない場合は、慎重に確認してください。
         existing_relationships_warning: 既存のフォロー関係
-        private_comment_description_html: 'インポートされたブロックがどこから来たのかを追跡するため、インポートされたブロックは次のプライベートコメントを追加して作成されます:<q>%{comment}</q>'
+        private_comment_description_html: 'ブロックのインポート元を判別できるようにするため、ブロックは次のプライベートコメントを追加してインポートされます: <q>%{comment}</q>'
         private_comment_template: '%{source} から %{date} にインポートしました'
         title: ドメインブロックをインポート
       new:
