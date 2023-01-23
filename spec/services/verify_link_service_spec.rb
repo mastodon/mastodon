@@ -126,10 +126,13 @@ RSpec.describe VerifyLinkService, type: :service do
 
     context 'when the link contains a link with a missing protocol slash' do
       # This was seen in the wild where a user had three pages:
-      # 1. their mastodon profile
+      # 1. their mastodon profile, which linked to github and the personal website
       # 2. their personal website correctly linking back to mastodon
       # 3. a github profile that was linking to the personal website, but with
       #    a malformed protocol of http:/
+      #
+      # This caused link verification between the mastodon profile and the
+      # website to fail.
       #
       # apparently github allows the user to enter website URLs with a single
       # slash and makes no attempts to correct that.
