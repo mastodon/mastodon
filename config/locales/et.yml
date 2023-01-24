@@ -440,6 +440,7 @@ et:
         private_comment_description_html: 'Pidamaks järge, kust imporditud keelud pärinevad, luuakse need järneva privaatse kommentaariga: <q>%{comment}</q>'
         private_comment_template: Imporditud allikast %{source} kuupäeval %{date}
         title: Domeenikeeldude import
+      invalid_domain_block: 'Üks või mitu domeeniblokeeringut jäeti vahele järgnevate vigade tõttu: %{error}'
       new:
         title: Domeenikeeldude import
       no_file: Faili pole valitud
@@ -588,6 +589,7 @@ et:
       comment:
         none: Pole
       comment_description_html: 'Täiendava infona kirjutas %{name}:'
+      confirm_action: Kinnita @%{acct} modereering
       created_at: Teavitatud
       delete_and_resolve: Kustuta postitused
       forwarded: Edastatud
@@ -604,6 +606,7 @@ et:
         placeholder: Kirjelda, mis on ette võetud või muid seotud uuendusi...
         title: Märkmed
       notes_description_html: Märkmete vaatamine ja jätmine teistele moderaatoritele ja tulevikuks endale
+      processed_msg: 'Raport #%{id} edukalt käsitletud'
       quick_actions_description_html: 'Võimalus teha kiire otsus või näha raporteeritud sisu allpool:'
       remote_user_placeholder: kaugkasutaja domeenist %{instance}
       reopen: Taasava teavitus
