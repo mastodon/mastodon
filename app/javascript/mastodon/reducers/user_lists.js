@@ -22,7 +22,7 @@ import {
   FOLLOW_REQUESTS_EXPAND_FAIL,
   FOLLOW_REQUEST_AUTHORIZE_SUCCESS,
   FOLLOW_REQUEST_REJECT_SUCCESS,
-  } from '../actions/accounts';
+} from '../actions/accounts';
 import {
   REBLOGS_FETCH_SUCCESS,
   FAVOURITES_FETCH_SUCCESS,
@@ -187,4 +187,4 @@ export default function userLists(state = initialState, action) {
   default:
     return state;
   }
-};
+}

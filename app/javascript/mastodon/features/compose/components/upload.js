@@ -43,10 +43,10 @@ export default class Upload extends ImmutablePureComponent {
             <div className='compose-form__upload-thumbnail' style={{ transform: `scale(${scale})`, backgroundImage: `url(${media.get('preview_url')})`, backgroundPosition: `${x}% ${y}%` }}>
               <div className='compose-form__upload__actions'>
                 <button type='button' className='icon-button' onClick={this.handleUndoClick}><Icon id='times' /> <FormattedMessage id='upload_form.undo' defaultMessage='Delete' /></button>
-                {!!media.get('unattached') && (<button type='button' className='icon-button' onClick={this.handleFocalPointClick}><Icon id='pencil' /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>)}
+                <button type='button' className='icon-button' onClick={this.handleFocalPointClick}><Icon id='pencil' /> <FormattedMessage id='upload_form.edit' defaultMessage='Edit' /></button>
               </div>
 
-              {(media.get('description') || '').length === 0 && !!media.get('unattached') && (
+              {(media.get('description') || '').length === 0 && (
                 <div className='compose-form__upload__warning'>
                   <button type='button' className='icon-button' onClick={this.handleFocalPointClick}><Icon id='info-circle' /> <FormattedMessage id='upload_form.description_missing' defaultMessage='No description added' /></button>
                 </div>

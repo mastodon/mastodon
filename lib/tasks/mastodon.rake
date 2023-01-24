@@ -142,7 +142,7 @@ namespace :mastodon do
       prompt.say "\n"
 
       if prompt.yes?('Do you want to store uploaded files on the cloud?', default: false)
-        case prompt.select('Provider', ['DigitalOcean Spaces', 'Amazon S3', 'Wasabi', 'Minio', 'Google Cloud Storage'])
+        case prompt.select('Provider', ['DigitalOcean Spaces', 'Amazon S3', 'Wasabi', 'Minio', 'Google Cloud Storage', 'Storj DCS'])
         when 'DigitalOcean Spaces'
           env['S3_ENABLED'] = 'true'
           env['S3_PROTOCOL'] = 'https'
@@ -194,7 +194,7 @@ namespace :mastodon do
 
           env['S3_HOSTNAME'] = prompt.ask('S3 hostname:') do |q|
             q.required true
-            q.default 's3-us-east-1.amazonaws.com'
+            q.default 's3.us-east-1.amazonaws.com'
             q.modify :strip
           end
 
@@ -257,6 +257,42 @@ namespace :mastodon do
             q.required true
             q.modify :strip
           end
+        when 'Storj DCS'
+          env['S3_ENABLED']  = 'true'
+          env['S3_PROTOCOL'] = 'https'
+          env['S3_REGION']   = 'global'
+
+          env['S3_ENDPOINT'] = prompt.ask('Storj DCS endpoint URL:') do |q|
+            q.required true
+            q.default "https://gateway.storjshare.io"
+            q.modify :strip
+          end
+
+          env['S3_PROTOCOL'] = env['S3_ENDPOINT'].start_with?('https') ? 'https' : 'http'
+          env['S3_HOSTNAME'] = env['S3_ENDPOINT'].gsub(/\Ahttps?:\/\//, '')
+
+          env['S3_BUCKET'] = prompt.ask('Storj DCS bucket name:') do |q|
+            q.required true
+            q.default "files.#{env['LOCAL_DOMAIN']}"
+            q.modify :strip
+          end
+
+          env['AWS_ACCESS_KEY_ID'] = prompt.ask('Storj Gateway access key (uplink share --register --readonly=false --not-after=none sj://bucket):') do |q|
+            q.required true
+            q.modify :strip
+          end
+
+          env['AWS_SECRET_ACCESS_KEY'] = prompt.ask('Storj Gateway secret key:') do |q|
+            q.required true
+            q.modify :strip
+          end
+          
+          linksharing_access_key = prompt.ask('Storj Linksharing access key (uplink share --register --public --readonly=true --disallow-lists --not-after=none sj://bucket):') do |q|
+            q.required true
+            q.modify :strip
+          end
+          env['S3_ALIAS_HOST'] = "link.storjshare.io/raw/#{linksharing_access_key}/#{env['S3_BUCKET']}"
+          
         when 'Google Cloud Storage'
           env['S3_ENABLED']             = 'true'
           env['S3_PROTOCOL']            = 'https'
@@ -395,18 +431,11 @@ namespace :mastodon do
         incompatible_syntax = false
 
         env_contents = env.each_pair.map do |key, value|
-          if value.is_a?(String) && value =~ /[\s\#\\"]/
-            incompatible_syntax = true
+          value = value.to_s
+          escaped = dotenv_escape(value)
+          incompatible_syntax = true if value != escaped
 
-            if value =~ /[']/
-              value = value.to_s.gsub(/[\\"\$]/) { |x| "\\#{x}" }
-              "#{key}=\"#{value}\""
-            else
-              "#{key}='#{value}'"
-            end
-          else
-            "#{key}=#{value}"
-          end
+          "#{key}=#{escaped}"
         end.join("\n")
 
         generated_header = "# Generated with mastodon:setup on #{Time.now.utc}\n\n".dup
@@ -518,4 +547,50 @@ def disable_log_stdout!
   ActiveRecord::Base.logger    = dev_null
   HttpLog.configuration.logger = dev_null
   Paperclip.options[:log]      = false
+end
+
+def dotenv_escape(value)
+  # Dotenv has its own parser, which unfortunately deviates somewhat from
+  # what shells actually do.
+  #
+  # In particular, we can't use Shellwords::escape because it outputs a
+  # non-quotable string, while Dotenv requires `#` to always be in quoted
+  # strings.
+  #
+  # Therefore, we need to write our own escape code…
+  # Dotenv's parser has a *lot* of edge cases, and I think not every
+  # ASCII string can even be represented into something Dotenv can parse,
+  # so this is a best effort thing.
+  #
+  # In particular, strings with all the following probably cannot be
+  # escaped:
+  # - `#`, or ends with spaces, which requires some form of quoting (simply escaping won't work)
+  # - `'` (single quote), preventing us from single-quoting
+  # - `\` followed by either `r` or `n`
+
+  # No character that would cause Dotenv trouble
+  return value unless /[\s\#\\"'$]/.match?(value)
+
+  # As long as the value doesn't include single quotes, we can safely
+  # rely on single quotes
+  return "'#{value}'" unless /[']/.match?(value)
+
+  # If the value contains the string '\n' or '\r' we simply can't use
+  # a double-quoted string, because Dotenv will expand \n or \r no
+  # matter how much escaping we add.
+  double_quoting_disallowed = /\\[rn]/.match?(value)
+
+  value = value.gsub(double_quoting_disallowed ? /[\\"'\s]/ : /[\\"']/) { |x| "\\#{x}" }
+
+  # Dotenv is especially tricky with `$` as unbalanced
+  # parenthesis will make it not unescape `\$` as `$`…
+
+  # Variables
+  value = value.gsub(/\$(?!\()/) { |x| "\\#{x}" }
+  # Commands
+  value = value.gsub(/\$(?<cmd>\((?:[^()]|\g<cmd>)+\))/) { |x| "\\#{x}" }
+
+  value = "\"#{value}\"" unless double_quoting_disallowed
+
+  value
 end

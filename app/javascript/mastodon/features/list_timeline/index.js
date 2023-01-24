@@ -126,7 +126,7 @@ class ListTimeline extends React.PureComponent {
       onConfirm: () => {
         dispatch(deleteList(id));
 
-        if (!!columnId) {
+        if (columnId) {
           dispatch(removeColumn(columnId));
         } else {
           this.context.router.history.push('/lists');

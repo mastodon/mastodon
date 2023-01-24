@@ -18,8 +18,8 @@ zh-TW:
           disable: 禁止該使用者使用他們的帳號，但是不刪除或隱藏他們的內容。
           none: 使用這個寄送警告給該使用者，而不進行其他動作。
           sensitive: 強制標記此使用者所有媒體為敏感內容。
-          silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳號中隱藏嘟文和通知。
-          suspend: 禁止所有對該帳號任何互動，並且刪除其內容。三十日內可以撤回。
+          silence: 禁止該使用者發公開嘟文，從無跟隨他們的帳號中隱藏嘟文和通知。關閉所有對此帳號之檢舉報告。
+          suspend: 禁止所有對該帳號任何互動，並且刪除其內容。三十天內可以撤銷此動作。關閉所有對此帳號之檢舉報告。
         warning_preset_id: 選用。您仍可在預設的結尾新增自訂文字
       announcement:
         all_day: 核取後，只會顯示出時間範圍中的日期部分
@@ -74,6 +74,7 @@ zh-TW:
           hide: 完全隱藏過濾內容，當作它似乎不曾存在過
           warn: 隱藏過濾內容於過濾器標題之警告後
       form_admin_settings:
+        activity_api_enabled: 本站使用者的嘟文數量，以及本站的活躍使用者與一週內新使用者數量
         backups_retention_period: 將已產生的使用者封存資料保存特定天數。
         bootstrap_timeline_accounts: 這些帳號將被釘選於新帳號跟隨推薦之上。
         closed_registrations_message: 於註冊關閉時顯示
@@ -81,6 +82,7 @@ zh-TW:
         custom_css: 您於 Mastodon 網頁版本中能套用客製化風格。
         mascot: 覆寫進階網頁介面中的圖例。
         media_cache_retention_period: 當設定成正值時，已下載的多媒體檔案會於指定天數後被刪除，並且視需要重新下載。
+        peers_api_enabled: 浩瀚聯邦宇宙中與此伺服器曾經擦肩而過的網域列表。不包含關於您是否與此伺服器是否有與之串連，僅僅表示您的伺服器已知此網域。這是供收集聯邦宇宙中一般性統計資料服務使用。
         profile_directory: 個人檔案目錄將會列出那些有選擇被發現的使用者。
         require_invite_text: 如果已設定為手動審核註冊，請將「加入原因」設定為必填項目。
         site_contact_email: 其他人如何聯繫您關於法律或支援之諮詢。
@@ -155,7 +157,7 @@ zh-TW:
       announcement:
         all_day: 全天活動
         ends_at: 活動結束時間
-        scheduled_at: 排程發佈
+        scheduled_at: 排程發布
         starts_at: 活動開始時間
         text: 公告
       appeal:
@@ -229,6 +231,7 @@ zh-TW:
           hide: 完全隱藏
           warn: 隱藏於警告之後
       form_admin_settings:
+        activity_api_enabled: 於 API 中公開使用者活躍度的統計數據
         backups_retention_period: 使用者封存資料保留期間
         bootstrap_timeline_accounts: 永遠推薦這些帳號給新使用者
         closed_registrations_message: 當註冊關閉時的客製化訊息
@@ -236,6 +239,7 @@ zh-TW:
         custom_css: 自訂 CSS
         mascot: 自訂吉祥物 (legacy)
         media_cache_retention_period: 多媒體快取資料保留期間
+        peers_api_enabled: 於 API 中公開已知伺服器的列表
         profile_directory: 啟用個人檔案目錄
         registrations_mode: 誰能註冊
         require_invite_text: 要求「加入原因」

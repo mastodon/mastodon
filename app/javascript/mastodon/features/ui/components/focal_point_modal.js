@@ -291,11 +291,11 @@ class FocalPointModal extends ImmutablePureComponent {
     let descriptionLabel = null;
 
     if (media.get('type') === 'audio') {
-      descriptionLabel = <FormattedMessage id='upload_form.audio_description' defaultMessage='Describe for people with hearing loss' />;
+      descriptionLabel = <FormattedMessage id='upload_form.audio_description' defaultMessage='Describe for people who are hard of hearing' />;
     } else if (media.get('type') === 'video') {
-      descriptionLabel = <FormattedMessage id='upload_form.video_description' defaultMessage='Describe for people with hearing loss or visual impairment' />;
+      descriptionLabel = <FormattedMessage id='upload_form.video_description' defaultMessage='Describe for people who are deaf, hard of hearing, blind or have low vision' />;
     } else {
-      descriptionLabel = <FormattedMessage id='upload_form.description' defaultMessage='Describe for the visually impaired' />;
+      descriptionLabel = <FormattedMessage id='upload_form.description' defaultMessage='Describe for people who are blind or have low vision' />;
     }
 
     let ocrMessage = '';
@@ -320,7 +320,7 @@ class FocalPointModal extends ImmutablePureComponent {
               <React.Fragment>
                 <label className='setting-text-label' htmlFor='upload-modal__thumbnail'><FormattedMessage id='upload_form.thumbnail' defaultMessage='Change thumbnail' /></label>
 
-                <Button disabled={isUploadingThumbnail} text={intl.formatMessage(messages.chooseImage)} onClick={this.handleFileInputClick} />
+                <Button disabled={isUploadingThumbnail || !media.get('unattached')} text={intl.formatMessage(messages.chooseImage)} onClick={this.handleFileInputClick} />
 
                 <label>
                   <span style={{ display: 'none' }}>{intl.formatMessage(messages.chooseImage)}</span>

@@ -18,8 +18,8 @@ sq:
           disable: Pengoji përdoruesit përdorimin e llogarisë së tij, por mos fshi apo fshih lëndën e tij.
           none: Përdoreni këtë për t’i dërguar përdoruesit një sinjalizim, pa u kryer ndonjë veprim tjetër.
           sensitive: Vëru krejt bashkëngjitjeve media të këtij përdoruesi shenjë si rezervat.
-          silence: Pengoji përdoruesit të qenët i aftë të postojë publikisht, fshihja postimet dhe njoftimet e tij personave që nuk i ndjekin ato.
-          suspend: Pengo çfarëdo ndërveprimi nga ose për te kjo llogari dhe fshi lëndën e saj. E prapësueshme brenda 30 ditësh.
+          silence: Pengoji përdoruesit të jetë i aftë të postojë me dukshmëri publike, fshih postimet dhe njoftimet prej tyre për njerëz që nuk i ndjekin. Mbyll krejt raportimet kundër kësaj llogarie.
+          suspend: Pengo çfarëdo ndërveprimi prej ose për këtë llogari dhe fshi lëndën e saj. E prapakthyeshme brenda 30 ditësh. Mbyll krejt raportet kundër kësaj llogarie.
         warning_preset_id: Opsionale. Mundeni sërish të shtoni tekst vetjak në fund të paracaktimit
       announcement:
         all_day: Nëse i vihet shenjë, do të shfaqen vetëm datat e intervalit kohor
@@ -57,7 +57,7 @@ sq:
         setting_hide_network: Cilët ndiqni dhe cilët ju ndjekin nuk do të shfaqen në profilin tuaj
         setting_noindex: Prek faqet e profilit tuaj publik dhe gjendjeve
         setting_show_application: Aplikacioni që përdorni për mesazhe do të shfaqet te pamja e hollësishme për mesazhet tuaj
-        setting_use_blurhash: Gradientët bazohen në ngjyrat e elementëve pamorë të fshehur, por eerësojnë çfarëdo hollësie
+        setting_use_blurhash: Gradientët bazohen në ngjyrat e elementëve pamorë të fshehur, por errësojnë çfarëdo hollësie
         setting_use_pending_items: Fshihi përditësimet e rrjedhës kohore pas një klikimi, në vend të rrëshqitjes automatike nëpër prurje
         username: Emri juaj i përdoruesit do të jetë unik në %{domain}
         whole_word: Kur fjalëkyçi ose fraza është vetëm numerike, do të aplikohet vetëm nëse përputhet me krejt fjalën
@@ -74,6 +74,7 @@ sq:
           hide: Fshihe plotësisht lëndën e filtruar, duke u sjellë sikur të mos ekzistonte
           warn: Fshihe lëndën e filtruar pas një sinjalizimi që përmend titullin e filtrit
       form_admin_settings:
+        activity_api_enabled: Numër postimesh të botuar lokalisht, përdoruesish aktiv dhe regjistrimesh të reja sipas matjesh javore
         backups_retention_period: Mbaji arkivat e prodhuara të përdoruesve për aq ditë sa numri i dhënë.
         bootstrap_timeline_accounts: Këto llogari do të fiksohen në krye të rekomandimeve për ndjekje nga përdorues të rinj.
         closed_registrations_message: Shfaqur kur mbyllen dritare regjistrimesh
@@ -81,6 +82,7 @@ sq:
         custom_css: Stile vetjakë mund të aplikoni në versionin web të Mastodon-it.
         mascot: Anashkalon ilustrimin te ndërfaqja web e thelluar.
         media_cache_retention_period: Kartelat media të shkarkuara do të fshihen pas numrit të dhënë të ditëve, kur këtij i jepet një vlerë pozitive dhe rishkarkohen po u kërkua.
+        peers_api_enabled: Një listë emrash përkatësish që ky shërbyes ka hasur në fedivers. Këtu s’jepen të dhëna nëse jeni i federuar me shërbyesin e dhënë, thjesht tregohet se shërbyesi juaj e njeh. Kjo përdoret nga shërbime që mbledhin statistika mbi federimin në kuptimin e përgjithshëm.
         profile_directory: Drejtoria e profileve paraqet krejt përdoruesit që kanë zgjedhur të jenë të zbulueshëm.
         require_invite_text: Kur regjistrimet lypin miratim dorazi, bëje tekstin “Përse doni të bëheni pjesë?” të detyrueshëm, në vend se opsional
         site_contact_email: Si mund të lidhen me ju njerëzit, për çështje ligjore, ose për asistencë.
@@ -91,7 +93,7 @@ sq:
         site_title: Si mund t’i referohen njerëzit shërbyesit tuaj, përveç emrit të tij të përkatësisë.
         theme: Temë që shohin vizitorët që kanë bërë daljen dhe përdorues të rinj.
         thumbnail: Një figurë afërsisht 2:1 e shfaqur tok me hollësi mbi shërbyesin tuaj.
-        timeline_preview: Vizitorët që kanë bërë daljen do të jenë në gjendje të shfletojnë psotimet më të freskëta publike të passhme në shërbyes.
+        timeline_preview: Vizitorët që kanë bërë daljen do të jenë në gjendje të shfletojnë postimet më të freskëta publike të passhme në shërbyes.
         trendable_by_default: Anashkalo shqyrtim dorazi lënde në modë. Gjëra individuale prapë mund të hiqen nga lëndë në modë pas publikimi.
         trends: Gjërat në modë shfaqin cilat postime, hashtagë dhe histori të reja po tërheqin vëmendjen në shërbyesin tuaj.
       form_challenge:
@@ -123,7 +125,7 @@ sq:
         color: Ngjyrë për t’u përdorur për rolin nëpër UI, si RGB në format gjashtëmbëdhjetësh
         highlighted: Kjo e bën rolin të dukshëm publikisht
         name: Emër publik për rolin, nëse roli është ujdisur të shfaqet si një stemë
-        permissions_as_keys: Përdoruest me këtë rol do të mund të…
+        permissions_as_keys: Përdoruesit me këtë rol do të mund të…
         position: Role më të lartë vendosin zgjidhje përplasje në disa raste. Disa veprime mund të kryhen vetëm mbi role të një shkalle më të ulët
       webhook:
         events: Përzgjidhni akte për dërgim
@@ -229,6 +231,7 @@ sq:
           hide: Fshihe plotësisht
           warn: Fshihe me një sinjalizim
       form_admin_settings:
+        activity_api_enabled: Publikoni te API statistika përmbledhëse rreth veprimtarisë së përdoruesve
         backups_retention_period: Periudhë mbajtjeje arkivash përdoruesish
         bootstrap_timeline_accounts: Rekomandoju përherë këto llogari përdoruesve të rinj
         closed_registrations_message: Mesazh vetjak për pamundësi regjistrimesh të reja
@@ -236,6 +239,7 @@ sq:
         custom_css: CSS Vetjake
         mascot: Simbol vetjak (e dikurshme)
         media_cache_retention_period: Periudhë mbajtjeje lënde media
+        peers_api_enabled: Publiko te API listë shërbyesish të zbuluar
         profile_directory: Aktivizo drejtori profilesh
         registrations_mode: Kush mund të regjistrohet
         require_invite_text: Kërko një arsye për pjesëmarrje

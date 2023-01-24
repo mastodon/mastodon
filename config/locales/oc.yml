@@ -248,9 +248,7 @@ oc:
         create: Crear blocatge
         hint: Lo blocatge empacharà pas la creacion de compte dins la basa de donadas, mai aplicarà la moderacion sus aquestes comptes.
         severity:
-          desc_html: "<strong>Silenci</strong> farà venir invisibles los estatuts del compte al monde que son pas de seguidors. <strong>Suspendre</strong> levarà tot lo contengut del compte, los mèdias e las donadas de perfil. Utilizatz <strong>Cap</strong> se volètz regetar totes los mèdias."
           noop: Cap
-          silence: Silenci
           suspend: Suspendre
         title: Nòu blocatge domeni
       private_comment: Comentari privat
@@ -495,6 +493,8 @@ oc:
     registration_closed: "%{instance} accepta pas de nòus membres"
     resend_confirmation: Tornar mandar las instruccions de confirmacion
     reset_password: Reïnicializar lo senhal
+    rules:
+      title: Unas règlas de basa.
     security: Seguretat
     set_new_password: Picar un nòu senhal
     setup:

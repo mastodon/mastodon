@@ -23,7 +23,9 @@ export const store = configureStore();
 const hydrateAction = hydrateStore(initialState);
 
 store.dispatch(hydrateAction);
-store.dispatch(fetchCustomEmojis());
+if (initialState.meta.me) {
+  store.dispatch(fetchCustomEmojis());
+}
 
 const createIdentityContext = state => ({
   signedIn: !!state.meta.me,

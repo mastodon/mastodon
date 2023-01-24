@@ -122,14 +122,14 @@ tr:
         admin/accounts: Hesapların yönetimi
         admin/all: Tüm yönetsel işlevler
         admin/reports: Şikayetlerin yönetimi
-        all: Her şey
+        all: Mastodon hesabınıza tam erişim
         blocks: Engeller
         bookmarks: Yer imleri
         conversations: Sohbetler
         crypto: Uçtan uca şifreleme
         favourites: Beğeniler
         filters: Filtreler
-        follow: İlişkiler
+        follow: Takipler, Sessizler ve Engeller
         follows: Takip edilenler
         lists: Listeler
         media: Medya ekleri
@@ -149,9 +149,19 @@ tr:
     scopes:
       admin:read: sunucudaki tüm verileri okuma
       admin:read:accounts: tüm hesapların hassas bilgilerini okuma
+      admin:read:canonical_email_blocks: tüm kurallı e-posta engellerinin hassas bilgilerini okuma
+      admin:read:domain_allows: tüm alan adı izinlerinin hassas bilgilerini okuma
+      admin:read:domain_blocks: tüm alan adı engellerinin hassas bilgilerini okuma
+      admin:read:email_domain_blocks: tüm e-posta alan adı engellerinin hassas bilgilerini okuma
+      admin:read:ip_blocks: tüm IP engellerinin hassas bilgilerini okuma
       admin:read:reports: tüm raporların ve raporlanan hesapların hassas bilgilerini okuma
       admin:write: sunucudaki tüm verileri değiştirin
       admin:write:accounts: hesaplarda denetleme eylemleri gerçekleştirin
+      admin:write:canonical_email_blocks: kurallı e-posta engellemeleri için denetleme eylemleri gerçekleştirin
+      admin:write:domain_allows: alan adı izinleri için denetleme eylemleri gerçekleştirin
+      admin:write:domain_blocks: alan adı engellemeleri için denetleme eylemleri gerçekleştirin
+      admin:write:email_domain_blocks: e-posta alan adı engellemeleri için denetleme eylemleri gerçekleştirin
+      admin:write:ip_blocks: IP engellemeleri için denetleme eylemleri gerçekleştirin
       admin:write:reports: raporlarda denetleme eylemleri gerçekleştirin
       crypto: uçtan uca şifreleme kullan
       follow: hesap ilişkilerini değiştirin

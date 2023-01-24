@@ -4,7 +4,7 @@ pl:
     about_mastodon_html: 'Sieć społecznościowa przyszłości: Bez reklam, bez inwigilacji, zaprojektowana etycznie i zdecentralizowanie! Władaj swoimi danymi z Mastodonem!'
     contact_missing: Nie ustawiono
     contact_unavailable: Nie dotyczy
-    hosted_on: Mastodon hostowany na %{domain}
+    hosted_on: Mastodon prowadzony na %{domain}
     title: O nas
   accounts:
     follow: Obserwuj
@@ -38,7 +38,7 @@ pl:
       add_email_domain_block: Dodaj domenę e-mail na czarną listę
       approve: Przyjmij
       approved_msg: Pomyślnie zaakceptowano wniosek o rejestrację %{username}
-      are_you_sure: Jesteś tego pewien?
+      are_you_sure: Czy na pewno?
       avatar: Awatar
       by_domain: Domena
       change_email:
@@ -122,6 +122,8 @@ pl:
       redownloaded_msg: Pomyślnie odświeżono profil %{username} z miejsca pochodzenia
       reject: Odrzuć
       rejected_msg: Pomyślnie odrzucono wniosek o rejestrację %{username}
+      remote_suspension_irreversible: Dane tego konta zostały nieodwracalnie usunięte.
+      remote_suspension_reversible_hint_html: Konto zostało zawieszone na serwerze, a dane zostaną w pełni usunięte dnia %{date}. Do tego czasu zdalny serwer może przywrócić to konto bez żadnych konsekwencji. Jeśli chcesz natychmiast usunąć wszystkie dane konta, możesz to zrobić poniżej.
       remove_avatar: Usun awatar
       remove_header: Usuń nagłówek
       removed_avatar_msg: Pomyślnie usunięto awatar %{username}
@@ -387,6 +389,8 @@ pl:
       add_new: Zatwierdź domenę
       created_msg: Domena dodana do białej listy
       destroyed_msg: Domena usunięta z białej listy
+      export: Eksportuj
+      import: Importuj
       undo: Usuń z białej listy
     domain_blocks:
       add_new: Dodaj nową
@@ -396,15 +400,19 @@ pl:
       edit: Edytuj blokadę domeny
       existing_domain_block: Już nałożyłeś surowsze limity na %{name}.
       existing_domain_block_html: Już narzuciłeś bardziej rygorystyczne limity na %{name}, musisz najpierw <a href="%{unblock_url}">je odblokować</a>.
+      export: Eksportuj
+      import: Importuj
       new:
         create: Utwórz blokadę
         hint: Blokada domen nie zabroni tworzenia wpisów kont w bazie danych, ale pozwoli na automatyczną moderację kont do nich należących.
         severity:
-          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkownika widoczne tylko dla osób, które go obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
+          desc_html: "<strong>Wyciszenie</strong> uczyni wpisy użytkowników z tej domeny widoczne tylko dla osób, które go obserwują. <strong>Zawieszenie</strong> spowoduje usunięcie całej zawartości dodanej przez użytkownika. Użyj <strong>Żadne</strong>, jeżeli chcesz jedynie odrzucać zawartość multimedialną."
           noop: Nic nie rób
-          silence: Wycisz
+          silence: Limit
           suspend: Zawieś
         title: Nowa blokada domen
+      no_domain_block_selected: Nie zmieniono żadnych bloków domen, gdyż żadna nie została wybrana
+      not_permitted: Nie możesz wykonać tej czynności
       obfuscate: Ukryj nazwę domeny
       obfuscate_hint: Częściowo ukryj nazwę domeny na liście, gdy reklamowanie listy limitów domen jest włączone
       private_comment: Prywatny komentarz
@@ -438,6 +446,20 @@ pl:
       resolved_dns_records_hint_html: Nazwa domeny rozwiązuje się do następujących domen MX, które są ostatecznie odpowiedzialne za przyjmowanie wiadomości e-mail. Blokowanie domeny MX spowoduje zablokowanie rejestracji z dowolnego adresu e-mail, który używa tej samej domeny MX, nawet jeśli widoczna nazwa domeny jest inna. <strong>Uważaj, aby nie blokować głównych dostawców poczty elektronicznej.</strong>
       resolved_through_html: Rozwiązano przez %{domain}
       title: Blokowanie domen e-mail
+    export_domain_allows:
+      new:
+        title: Zaimportuj zezwolenia domen
+      no_file: Nie wybrano pliku
+    export_domain_blocks:
+      import:
+        description_html: Zamierzasz zaimportować listę zablokowanych domen. Przejrzyj uważnie tę listę, zwłaszcza jeśli sam jej nie utworzyłeś.
+        existing_relationships_warning: Istniejące połączenia obserwujących
+        private_comment_description_html: 'Żebyś wiedział(a) skąd pochodzą zaimportowane bloki, zostaną one utworzone z następującym prywatnym komentarzem: <q>%{comment}</q>'
+        private_comment_template: Zaimportowano z %{source} dnia %{date}
+        title: Importuj zablokowane domeny
+      new:
+        title: Importuj zablokowane domeny
+      no_file: Nie wybrano pliku
     follow_recommendations:
       description_html: "<strong>Polecane obserwacje pomagają nowym użytkownikom szybko odnaleźć interesujące treści</strong>. Jeżeli użytkownik nie wchodził w interakcje z innymi wystarczająco często, aby powstały spersonalizowane rekomendacje, polecane są te konta. Są one obliczane każdego dnia na podstawie kombinacji kont o największej liczbie niedawnej aktywności i największej liczbie lokalnych obserwatorów dla danego języka."
       language: Dla języka
@@ -563,7 +585,6 @@ pl:
     report_notes:
       created_msg: Pomyslnie utworzono notatkę moderacyjną.
       destroyed_msg: Pomyślnie usunięto notatkę moderacyjną.
-      today_at: Dziś o %{time}
     reports:
       account:
         notes:
@@ -578,9 +599,10 @@ pl:
         mark_as_sensitive_description_html: Media w zgłaszanych postach zostaną oznaczone jako wrażliwe, a ostrzeżenie zostanie nagrane, aby pomóc w eskalacji przyszłych przewinień na tym samym koncie.
         other_description_html: Zobacz więcej opcji do kontrolowania zachowania konta i dostosuj komunikację do zgłoszonego konta.
         resolve_description_html: Nie zostaną podjęte żadne działania przeciwko zgłoszonemu sprawozdaniu, zdarzenie nie zostanie zarejestrowane, a zgłoszenie zostanie zamknięte.
-        silence_description_html: Profil będzie widoczny tylko dla tych, którzy go już obserwują lub szukaj ręcznie, poważnie ograniczając jego zasięg. Może być zawsze cofnięty.
-        suspend_description_html: Profil i cała jego zawartość staną się niedostępne, dopóki nie zostaną ostatecznie usunięte. Interakcja z kontem będzie niemożliwa. Odwracalne w ciągu 30 dni.
+        silence_description_html: Konto będzie widoczne tylko dla tych, którzy go już obserwują lub przeglądają ręcznie, poważnie ograniczając jego zasięg. Zawsze można cofnąć. Zamyka wszelkie zgłoszenia dotyczące tego konta.
+        suspend_description_html: Konto i cała jego zawartość będą niedostępne i ostatecznie usunięte, a interakcja z nim będzie niemożliwa. Możliwość odwrócenia w ciągu 30 dni. Zamyka wszelkie zgłoszenia dotyczące tego konta.
       actions_description_html: Zdecyduj, jakie działania należy podjąć, aby rozstrzygnąć niniejsze zgłoszenie. Jeśli podejmiesz działania karne przeciwko zgłoszonemu kontowi, zostanie do nich wysłane powiadomienie e-mail, chyba że wybrano kategorię <strong>Spam</strong>.
+      actions_description_remote_html: Zdecyduj, jakie działanie należy podjąć, aby rozwiązać to zgłoszenie. Będzie to miało wpływ jedynie na sposób, w jaki <strong>Twój</strong> serwer komunikuje się z tym kontem zdalnym i obsługuje jego zawartość.
       add_to_report: Dodaj więcej do raportu
       are_you_sure: Czy na pewno?
       assign_to_self: Przypisz do siebie
@@ -712,11 +734,16 @@ pl:
       content_retention:
         preamble: Kontroluj, jak treści generowane przez użytkownika są przechowywane w Mastodon.
         title: Retencja treści
+      default_noindex:
+        desc_html: Wpłynie to na wszystkich użytkowników, którzy sami tego nie zmienili w swoich ustawieniach
+        title: Domyślnie żądaj nieindeksowania użytkowników przez wyszukiwarki
       discovery:
         follow_recommendations: Polecane konta
         preamble: Prezentowanie interesujących treści ma kluczowe znaczenie dla nowych użytkowników, którzy mogą nie znać nikogo z Mastodona. Kontroluj, jak różne funkcje odkrywania działają na Twoim serwerze.
         profile_directory: Katalog profilów
         public_timelines: Publiczne osie czasu
+        publish_discovered_servers: Opublikuj znane serwery
+        publish_statistics: Publikuj statystyki
         title: Odkrywanie
         trends: Trendy
       domain_blocks:
@@ -950,7 +977,7 @@ pl:
     warning: Przechowuj te dane ostrożnie. Nie udostępniaj ich nikomu!
     your_token: Twój token dostępu
   auth:
-    apply_for_account: Dodaj na listę oczekujących
+    apply_for_account: Poproś o założenie konta
     change_password: Hasło
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
@@ -987,6 +1014,9 @@ pl:
       email_below_hint_html: Jeżeli poniższy adres e-mail jest nieprawidłowy, możesz zmienić go tutaj i otrzymać nowy e-mail potwierdzający.
       email_settings_hint_html: E-mail potwierdzający został wysłany na %{email}. Jeżeli adres e-mail nie jest prawidłowy, możesz zmienić go w ustawieniach konta.
       title: Konfiguracja
+    sign_in:
+      preamble_html: Zaloguj się przy użyciu danych logowania <strong>%{domain}</strong>. Jeśli Twoje konto jest hostowane na innym serwerze, nie będziesz mógł się zalogować tutaj.
+      title: Zaloguj się do %{domain}
     sign_up:
       preamble: Z kontem na tym serwerze Mastodon będziesz mógł obserwować każdą inną osobę w sieci, niezależnie od miejsca przechowywania ich konta.
       title: Skonfigurujmy Twoje konto na %{domain}.
@@ -1209,6 +1239,7 @@ pl:
     invalid_markup: 'zawiera nieprawidłową składnię HTML: %{error}'
   imports:
     errors:
+      invalid_csv_file: 'Nieprawidłowy plik CSV. Błąd: %{error}'
       over_rows_processing_limit: zawiera więcej niż %{count} wierszy
     modes:
       merge: Połącz
@@ -1337,7 +1368,7 @@ pl:
       subject: Twój wpis został podbity przez %{name}
       title: Nowe podbicie
     status:
-      subject: "%{name} właśnie opublikował(a) wpis"
+      subject: Właśnie opublikowano wpis %{name}
     update:
       subject: "%{name} edytował/a wpis"
   notifications:
@@ -1391,6 +1422,9 @@ pl:
       unrecognized_emoji: nie jest znanym emoji
   relationships:
     activity: Aktywność konta
+    confirm_follow_selected_followers: Czy na pewno chcesz obserwować wybranych obserwujących?
+    confirm_remove_selected_followers: Czy na pewno chcesz usunąć wybranych obserwujących?
+    confirm_remove_selected_follows: Czy na pewno chcesz usunąć zaznaczone obserwacje?
     dormant: Uśpione
     follow_selected_followers: Zacznij obserwować wybranych obserwujących
     followers: Obserwujący
@@ -1481,7 +1515,7 @@ pl:
     preferences: Preferencje
     profile: Profil
     relationships: Obserwowani i obserwujący
-    statuses_cleanup: Automatyczne usuwanie posta
+    statuses_cleanup: Automatyczne usuwanie wpisów
     strikes: Ostrzeżenia moderacyjne
     two_factor_authentication: Uwierzytelnianie dwuetapowe
     webauthn_authentication: Klucze bezpieczeństwa

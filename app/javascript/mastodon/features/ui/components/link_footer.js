@@ -52,6 +52,8 @@ class LinkFooter extends React.PureComponent {
     const canInvite = signedIn && ((permissions & PERMISSION_INVITE_USERS) === PERMISSION_INVITE_USERS);
     const canProfileDirectory = profileDirectory;
 
+    const DividingCircle = <span aria-hidden>{' · '}</span>;
+
     return (
       <div className='link-footer'>
         <p>
@@ -60,17 +62,17 @@ class LinkFooter extends React.PureComponent {
           <a key='about' href='/about'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
           {canInvite && (
             <>
-              {' · '}
+              {DividingCircle}
               <a key='invites' href='/invites' target='_blank'><FormattedMessage id='footer.invite' defaultMessage='Invite people' /></a>
             </>
           )}
           {canProfileDirectory && (
             <>
-              {' · '}
+              {DividingCircle}
               <Link key='directory' to='/directory'><FormattedMessage id='footer.directory' defaultMessage='Profiles directory' /></Link>
             </>
           )}
-          {' · '}
+          {DividingCircle}
           <Link key='privacy-policy' to='/privacy-policy'><FormattedMessage id='footer.privacy_policy' defaultMessage='Privacy policy' /></Link>
         </p>
 
@@ -78,9 +80,9 @@ class LinkFooter extends React.PureComponent {
           <strong>Hometown</strong>:
           {' '}
           <a href='https://github.com/hometown-fork/hometown/wiki' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
-          {' · '}
+          {DividingCircle}
           <a href='https://github.com/hometown-fork/hometown/' rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
-          {' · '}
+          {DividingCircle}
           v{version}
         </p>
 
@@ -88,15 +90,15 @@ class LinkFooter extends React.PureComponent {
           <strong>Mastodon</strong>:
           {' '}
           <a href='https://joinmastodon.org' target='_blank'><FormattedMessage id='footer.about' defaultMessage='About' /></a>
-          {' · '}
+          {DividingCircle}
           <a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='footer.get_app' defaultMessage='Get the app' /></a>
-          {' · '}
+          {DividingCircle}
           <Link to='/keyboard-shortcuts'><FormattedMessage id='footer.keyboard_shortcuts' defaultMessage='Keyboard shortcuts' /></Link>
-          {' · '}
+          {DividingCircle}
           <a href={source_url} rel='noopener noreferrer' target='_blank'><FormattedMessage id='footer.source_code' defaultMessage='View source code' /></a>
         </p>
       </div>
     );
   }
 
-};
+}

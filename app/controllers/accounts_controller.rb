@@ -18,7 +18,7 @@ class AccountsController < ApplicationController
       format.html do
         expires_in 0, public: true unless user_signed_in?
 
-        @rss_url  = rss_url
+        @rss_url = rss_url
       end
 
       format.rss do

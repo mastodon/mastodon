@@ -222,6 +222,10 @@ class Status extends ImmutablePureComponent {
       this.props.dispatch(fetchStatus(nextProps.params.statusId));
     }
 
+    if (nextProps.params.statusId && nextProps.ancestorsIds.size > this.props.ancestorsIds.size) {
+      this._scrolledIntoView = false;
+    }
+
     if (nextProps.status && nextProps.status.get('id') !== this.state.loadedStatusId) {
       this.setState({ showMedia: defaultMediaVisibility(nextProps.status), loadedStatusId: nextProps.status.get('id') });
     }

@@ -43,6 +43,16 @@ namespace :tests do
         puts 'CustomFilterKeyword records not created as expected'
         exit(1)
       end
+
+      unless Admin::ActionLog.find_by(target_type: 'DomainBlock', target_id: 1).human_identifier == 'example.org'
+        puts 'Admin::ActionLog domain block records not updated as expected'
+        exit(1)
+      end
+
+      unless Admin::ActionLog.find_by(target_type: 'EmailDomainBlock', target_id: 1).human_identifier == 'example.org'
+        puts 'Admin::ActionLog email domain block records not updated as expected'
+        exit(1)
+      end
     end
 
     desc 'Populate the database with test data for 2.4.3'
@@ -84,8 +94,8 @@ namespace :tests do
         VALUES
           (1, 'destroy', 'Account', 1, now(), now()),
           (1, 'destroy', 'User', 1, now(), now()),
-          (1, 'destroy', 'DomainBlock', 1312, now(), now()),
-          (1, 'destroy', 'EmailDomainBlock', 1312, now(), now()),
+          (1, 'destroy', 'DomainBlock', 1, now(), now()),
+          (1, 'destroy', 'EmailDomainBlock', 1, now(), now()),
           (1, 'destroy', 'Status', 1, now(), now()),
           (1, 'destroy', 'CustomEmoji', 3, now(), now());
       SQL

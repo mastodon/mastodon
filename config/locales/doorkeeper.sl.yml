@@ -122,14 +122,14 @@ sl:
         admin/accounts: Upravljanje računov
         admin/all: Vse skrbniške funkcije
         admin/reports: Upravljanje prijav
-        all: Vse
+        all: Poln dostop do vašega računa Mastodon
         blocks: Blokira
         bookmarks: Zaznamki
         conversations: Pogovori
         crypto: Šifriranje od konca do konca
         favourites: Priljubljeni
         filters: Filtri
-        follow: Razmerja
+        follow: Sledi, utiša in blokira
         follows: Sledi
         lists: Seznami
         media: Predstavnostne priloge
@@ -149,9 +149,19 @@ sl:
     scopes:
       admin:read: preberi vse podatke na strežniku
       admin:read:accounts: preberi občutljive informacije vseh računov
+      admin:read:canonical_email_blocks: preberi občutljive informacije vseh blokad kanoničnih e-računov
+      admin:read:domain_allows: preberi občutljive informacije vseh dovolil domene
+      admin:read:domain_blocks: preberi občutljive informacije vseh blokad domen
+      admin:read:email_domain_blocks: preberi občutljive informacije vseh blokad domen e-računov
+      admin:read:ip_blocks: preberi občutljive informacije vseh blokad IP
       admin:read:reports: preberi občutljive informacije vseh prijav in prijavljenih računov
       admin:write: spremeni vse podatke na strežniku
       admin:write:accounts: izvedi moderirana dejanja na računih
+      admin:write:canonical_email_blocks: izvedi moderirana dejanja na blokadah kanoničnih e-računov
+      admin:write:domain_allows: izvedi moderirana dejanja na dovolilih domen
+      admin:write:domain_blocks: izvedi moderirana dejanja na blokadah domen
+      admin:write:email_domain_blocks: izvedi moderirana dejanja na blokadah domen e-računov
+      admin:write:ip_blocks: izvedi moderirana dejanja na blokadah IP
       admin:write:reports: izvedi moderirana dejanja na prijavah
       crypto: Uporabi šifriranje od konca do konca
       follow: spremeni razmerja med računi

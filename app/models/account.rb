@@ -84,8 +84,8 @@ class Account < ApplicationRecord
   validates :username, presence: true
   validates_with UniqueUsernameValidator, if: -> { will_save_change_to_username? }
 
-  # Remote user validations
-  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { !local? && will_save_change_to_username? }
+  # Remote user validations, also applies to internal actors
+  validates :username, format: { with: USERNAME_ONLY_RE }, if: -> { (!local? || actor_type == 'Application') && will_save_change_to_username? }
 
   # Local user validations
   validates :username, format: { with: /\A[a-z0-9_]+\z/i }, length: { maximum: 30 }, if: -> { local? && will_save_change_to_username? && actor_type != 'Application' }
@@ -341,9 +341,15 @@ class Account < ApplicationRecord
 
   def save_with_optional_media!
     save!
-  rescue ActiveRecord::RecordInvalid
-    self.avatar = nil
-    self.header = nil
+  rescue ActiveRecord::RecordInvalid => e
+    errors = e.record.errors.errors
+    errors.each do |err|
+      if err.attribute == :avatar
+        self.avatar = nil
+      elsif err.attribute == :header
+        self.header = nil
+      end
+    end
 
     save!
   end
@@ -507,7 +513,7 @@ class Account < ApplicationRecord
         <<-SQL.squish
           SELECT
             accounts.*,
-            (count(f.id) + 1) * #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank,
+            #{BOOST} * ts_rank_cd(#{TEXTSEARCH}, to_tsquery('simple', :tsquery), 32) AS rank,
             count(f.id) AS followed
           FROM accounts
           LEFT OUTER JOIN follows AS f ON (accounts.id = f.account_id AND f.target_account_id = :id) OR (accounts.id = f.target_account_id AND f.account_id = :id)
