@@ -1,11 +1,11 @@
 .text-center {
-    text-align: center;
+    text-align: center !important;
 }
 
 .flex-all {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
 .leading-none {
@@ -39,4 +39,13 @@
 
 .font-medium {
     font-weight: 500 !important;
+}
+
+.ml-8 {
+    margin-left: 32px !important;
+}
+
+.verified-modifier img {
+    width: 28px !important;
+    height: 28px !important;
 }

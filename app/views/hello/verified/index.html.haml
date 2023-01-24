@@ -4,7 +4,7 @@
 .admin-wrapper
   .content
 
-    %div{ 'tabindex': '-1', 'inert': true, 'aria-hidden': true, class: 'flex-all' }
+    %div{ 'tabindex': '-1', 'inert': true, 'aria-hidden': true, class: 'flex-all ml-8' }
       = render_symbol :wordmark
 
     .form-container
@@ -12,7 +12,7 @@
 
         .fields-group
           %h1.title.mb-0.leading-none.text-4xl Welcome
-          %h2.mb-0.leading-none.mt-3
+          %h2.mb-0.leading-none.mt-3.verified-modifier
             = display_name(@account, custom_emojify: true)
 
         .fields-group.my-12
