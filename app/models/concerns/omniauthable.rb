@@ -85,7 +85,7 @@ module Omniauthable
           # HELLO_PATCH(1): use preferred_username instead of uid for username
           username: ensure_unique_username(ensure_valid_username(auth.extra.raw_info.preferred_username)),
           # HELLO_PATCH(10): append the :verified: emoji to the end of the display name
-          display_name: (auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' ')) + ' :verified:',
+          display_name: create_display_name(auth),
         },
       }
     end
@@ -107,6 +107,18 @@ module Omniauthable
       temp_username = starting_username.gsub(/[^a-z0-9_]+/i, '')
       validated_username = temp_username.truncate(30, omission: '')
       validated_username
+    end
+
+    def create_display_name(auth)
+      display_name = auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' ')
+
+      if display_name.length <= 26
+        display_name += ' :v:'
+      else
+        display_name = "#{display_name[0, 26]}\u2026:v:"
+      end
+
+      display_name
     end
   end
 end
