@@ -440,6 +440,7 @@ ca:
         private_comment_description_html: 'Per a ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
         private_comment_template: Importar des de %{source} el %{date}
         title: Importa dominis bloquejats
+      invalid_domain_block: 'Un o més dominis blocats s''han omés degut al següent error(s): %{error}'
       new:
         title: Importa dominis bloquejats
       no_file: No s'ha seleccionat cap fitxer
@@ -588,6 +589,7 @@ ca:
       comment:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
+      confirm_action: Confirma l'acció de moderació contra @%{acct}
       created_at: Reportat
       delete_and_resolve: Elimina les publicacions
       forwarded: Reenviat
@@ -604,6 +606,7 @@ ca:
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
         title: Notes
       notes_description_html: Veu i deixa notes als altres moderadors i a tu mateix
+      processed_msg: 'L''informe #%{id} ha estat processat amb èxit'
       quick_actions_description_html: 'Pren una acció ràpida o desplaça''t avall per a veure el contingut reportat:'
       remote_user_placeholder: l'usuari remot des de %{instance}
       reopen: Reobre l'informe
@@ -616,9 +619,28 @@ ca:
       status: Estat
       statuses: Contingut reportat
       statuses_description_html: El contingut ofensiu serà citat en comunicació amb el compte reportat
+      summary:
+        action_preambles:
+          delete_html: 'Estàs a punt d''<strong>esborrar</strong> alguns dels tuts de <strong>@%{acct}</strong>. Això provocarà:'
+          mark_as_sensitive_html: 'Estàs a punt de <strong>marcar</strong> alguns dels tuts de <strong>@%{acct}</strong> com a <strong>sensibles</strong>. Això provocarà:'
+          silence_html: 'Estàs a punt de <strong>limitar</strong> el compte de <strong>@%{acct}</strong>. Això provocarà:'
+          suspend_html: 'Estàs a punt de <strong>suspendre</strong> el compte de <strong>@%{acct}</strong>. Això provocarà:'
+        actions:
+          delete_html: Esborra els tuts ofensius
+          mark_as_sensitive_html: Marca el contingut multimèdia dels tuts com a sensibles
+          silence_html: Limita severament l'abast de <strong>@%{acct}</strong> fent el seus perfils i continguts només visibles per la gent que ja els estan seguint o que cerquin manualment els seus perfils
+          suspend_html: Suspèn <strong>@%{acct}</strong>, fent els seus perfils i continguts inaccessibles i impossibles d'interactuar
+        close_report: 'Marca l''informe #%{id} com a resolt'
+        close_reports_html: Marca <strong>tots</strong> els informes contra <strong>@%{acct}</strong> com a resolts
+        delete_data_html: Esborra el perfil de <strong>@%{acct}</strong> i els seus continguts dins de 30 dies des d'ara a no ser que es desactivi la suspensió abans
+        preview_preamble_html: "<strong>@%{acct}</strong> rebrà un avís amb el contingut següent:"
+        record_strike_html: Registra una acció contra <strong>@%{acct}</strong> per ajudar a escalar-ho en futures violacions des d'aquest compte
+        send_email_html: Envia un avís per correu electrònic a <strong>@%{acct}</strong>
+        warning_placeholder: Opcional raó adicional d'aquesta acció de moderació.
       target_origin: Origen del compte reportat
       title: Informes
       unassign: Treu l'assignació
+      unknown_action_msg: 'Acció desconeguda: %{action}'
       unresolved: No resolt
       updated_at: Actualitzat
       view_profile: Veure perfil
@@ -942,6 +964,8 @@ ca:
   auth:
     apply_for_account: Sol·licitar un compte
     change_password: Contrasenya
+    confirmations:
+      wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     description:
