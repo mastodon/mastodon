@@ -72,6 +72,7 @@ fi:
           hide: Piilota suodatettu sisältö kokonaan ja käyttäydy ikään kuin sitä ei olisi olemassa
           warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen otsikko
       form_admin_settings:
+        activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
         backups_retention_period: Säilytä luodut arkistot määritetyn määrän päiviä.
         bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien suositusten yläpuolelle.
         closed_registrations_message: Näkyy, kun ilmoittautuminen on suljettu
@@ -79,6 +80,7 @@ fi:
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
         mascot: Ohittaa kuvituksen edistyneessä käyttöliittymässä.
         media_cache_retention_period: Ladatut mediatiedostot poistetaan määritetyn määrän päiviä jälkeen, kun arvo on positiivinen ja ladataan uudelleen pyynnöstä.
+        peers_api_enabled: Lista verkkotunnuksista, joita tämä palvelin on kohdannut fediversessä. Täällä ei ole tietoja siitä, oletko liitossa tiettyjen palvelinten kanssa, vaan ainoastaan luettelo niistä verkkotunnuksista, joista palvelimesi on ylipäätään tietoinen. Tätä tietoa käytetään palveluissa, jotka keräävät liittotilastoja laajassa merkityksessä.
         profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
         require_invite_text: Kun kirjautuminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” teksti syötetään pakolliseksi eikä vapaaehtoiseksi
         site_contact_email: Kuinka ihmiset voivat tavoittaa sinut oikeudellisissa tai tukikysymyksissä.
@@ -227,6 +229,7 @@ fi:
           hide: Piilota kokonaan
           warn: Piilota varoituksella
       form_admin_settings:
+        activity_api_enabled: Julkaise yhteenlasketut tilastot käyttäjätoiminnasta rajapinnassa
         backups_retention_period: Käyttäjän arkiston säilytysaika
         bootstrap_timeline_accounts: Suosittele aina näitä tilejä uusille käyttäjille
         closed_registrations_message: Mukautettu viesti, kun kirjautumisia ei ole saatavilla
@@ -234,6 +237,7 @@ fi:
         custom_css: Mukautettu CSS
         mascot: Mukautettu maskotti (legacy)
         media_cache_retention_period: Median välimuistin säilytysaika
+        peers_api_enabled: Julkaise löydettyjen instanssien luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
         require_invite_text: Vaadi syy liittyä
