@@ -321,7 +321,7 @@ class Status < ApplicationRecord
 
   class << self
     def selectable_visibilities
-      visibilities.keys - %w(direct limited)
+      %w(public portfolio unlisted nyan)
     end
 
     def favourites_map(status_ids, account_id)
