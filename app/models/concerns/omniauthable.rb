@@ -112,10 +112,10 @@ module Omniauthable
     def create_display_name(auth)
       display_name = auth.info.full_name || auth.info.name || [auth.info.first_name, auth.info.last_name].join(' ')
 
-      if display_name.length <= 26
-        display_name += ' :v:'
+      if display_name.length <= 25
+        display_name += ' :_v:'
       else
-        display_name = "#{display_name[0, 26]}\u2026:v:"
+        display_name = "#{display_name[0, 25]}\u2026:_v:"
       end
 
       display_name
