@@ -61,6 +61,7 @@ class ComposeForm extends ImmutablePureComponent {
     anyMedia: PropTypes.bool,
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
+    lang: PropTypes.string,
 
     advancedOptions: ImmutablePropTypes.map,
     layout: PropTypes.string,
@@ -325,6 +326,7 @@ class ComposeForm extends ImmutablePureComponent {
             searchTokens={[':']}
             id='glitch.composer.spoiler.input'
             className='spoiler-input__input'
+            lang={this.props.lang}
             autoFocus={false}
           />
         </div>
@@ -343,6 +345,7 @@ class ComposeForm extends ImmutablePureComponent {
           onSuggestionSelected={this.onSuggestionSelected}
           onPaste={onPaste}
           autoFocus={!showSearch && !isMobile(window.innerWidth, layout)}
+          lang={this.props.lang}
         >
           <EmojiPickerDropdown onPickEmoji={handleEmojiPick} />
           <TextareaIcons advancedOptions={advancedOptions} />

@@ -50,6 +50,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
     id: PropTypes.string,
     searchTokens: PropTypes.arrayOf(PropTypes.string),
     maxLength: PropTypes.number,
+    lang: PropTypes.string,
   };
 
   static defaultProps = {
@@ -185,7 +186,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
   }
 
   render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, className, id, maxLength } = this.props;
+    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, className, id, maxLength, lang } = this.props;
     const { suggestionsHidden } = this.state;
 
     return (
@@ -210,6 +211,7 @@ export default class AutosuggestInput extends ImmutablePureComponent {
             id={id}
             className={className}
             maxLength={maxLength}
+            lang={lang}
           />
         </label>
 
