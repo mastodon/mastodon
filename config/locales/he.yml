@@ -612,6 +612,7 @@ he:
       comment:
         none: ללא
       comment_description_html: 'על מנת לספק עוד מידע, %{name} כתב\ה:'
+      confirm_action: אנא אשר/י פעולת מודרציה לגבי חשבון %{acct}
       created_at: מדווח
       delete_and_resolve: מחיקת הודעות
       forwarded: קודם
@@ -628,6 +629,7 @@ he:
         placeholder: תאר/י אילו פעולות ננקטו, או עדכונים קשורים אחרים...
         title: הערות
       notes_description_html: צפייה והשארת הערות למנחים אחרים או לעצמך העתידי
+      processed_msg: 'דיווח %{id} עוּבָּד בהצלחה'
       quick_actions_description_html: 'נקוט/י פעולה מהירה או גלול/י למטה לצפייה בתוכן המדווח:'
       remote_user_placeholder: המשתמש המרוחק מ-%{instance}
       reopen: פתיחת דו"ח מחדש
@@ -640,6 +642,11 @@ he:
       status: מצב
       statuses: התוכן עליו דווח
       statuses_description_html: התוכן הפוגע יצוטט בתקשורת עם החשבון המדווח
+      summary:
+        action_preambles:
+          delete_html: 'הפעולה <strong>תמחק</strong> כמה הודעות של חשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
+          mark_as_sensitive_html: 'הפעולה הבאה <strong>תסמן</strong> כמה הודעות של חשבון <strong>@%{acct}</strong> כ<strong>רגישות</strong>. תוצאות הפעולה יהיו:'
+          silence_html: 'הפעולה הבאה <strong>תגביל</strong> את החשבון <strong>@%{acct}</strong>. תוצאות הפעולה יהיו:'
       target_origin: מקור החשבון המדווח
       title: דיווחים
       unassign: ביטול הקצאה
