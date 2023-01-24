@@ -11,7 +11,7 @@ fi:
       one: Seuraaja
       other: Seuraajat
     following: Seuraaja
-    instance_actor_flash: Tämä on virtuaalitili, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään yhdistämistarkoituksiin, eikä sitä tule keskeyttää.
+    instance_actor_flash: Tämä on virtuaalitili, jota käytetään edustamaan itse palvelinta eikä yksittäistä käyttäjää. Sitä käytetään yhdistämistarkoituksiin, eikä sitä tule jäädyttää.
     last_active: viimeksi aktiivinen
     link_verified_on: Tämän linkin omistus on tarkastettu %{date}
     nothing_here: Täällä ei ole mitään!
@@ -159,7 +159,7 @@ fi:
       undo_suspension: Peru jäähy
       unsilenced_msg: '%{username} -tilin rajoituksen kumoaminen onnistui'
       unsubscribe: Lopeta tilaus
-      unsuspended_msg: '%{username} -tilin keskeytyksen kumoaminen onnistui'
+      unsuspended_msg: '%{username} -tilin jäädytyksen kumoaminen onnistui'
       username: Käyttäjätunnus
       view_domain: Näytä verkkotunnuksen yhteenveto
       warn: Varoita
@@ -585,6 +585,7 @@ fi:
       comment:
         none: Ei mitään
       comment_description_html: 'Antaakseen lisätietoja %{name} kirjoitti:'
+      confirm_action: Vahvista moderointitoiminto käyttäjää @%{acct} kohtaan
       created_at: Raportoitu
       delete_and_resolve: Poista viestejä
       forwarded: Välitetty
@@ -601,6 +602,7 @@ fi:
         placeholder: Kuvaile mitä toimia on tehty tai muita päivityksiä tähän raporttiin…
         title: Merkinnät
       notes_description_html: Tarkastele ja jätä merkintöjä muille valvojille ja itsellesi tulevaisuuteen
+      processed_msg: 'Raportti #%{id} käsitelty'
       quick_actions_description_html: 'Suorita nopea toiminto tai vieritä alas nähdäksesi raportoitu sisältö:'
       remote_user_placeholder: etäkäyttäjä instanssista %{instance}
       reopen: Avaa raportti uudestaan
@@ -613,9 +615,24 @@ fi:
       status: Tila
       statuses: Raportoitu sisältö
       statuses_description_html: Loukkaava sisältö mainitaan ilmoitetun tilin yhteydessä
+      summary:
+        action_preambles:
+          delete_html: 'Olet aikeissa <strong>poistaa</strong> joitain käyttäjän <strong>@%{acct}</strong> viestejä. Tästä seuraa:'
+          mark_as_sensitive_html: 'Olet aikeissa <strong>merkitä</strong> joitain käyttäjän <strong>@%{acct}</strong> viestejä <strong>arkaluonteisiksi</strong>. Tästä seuraa:'
+          silence_html: 'Olet aikeissa <strong>rajoittaa</strong> käyttäjän <strong>@%{acct}</strong> tiliä. Tästä seuraa:'
+        actions:
+          delete_html: Loukkaavat viestit poistetaan
+          mark_as_sensitive_html: Loukkaavien viestien media merkitään arkaluonteiseksi
+          silence_html: Vakavasti rajoittaa käyttäjän <strong>@%{acct}</strong> tavoitettavuutta tekemällä profiilista ja sen sisällöstä näkyviä vain jo häntä seuraaville tai niille, jotka etsivät profiilia manuaalisesti
+        close_report: 'Merkitse raportti #%{id} selvitetyksi'
+        close_reports_html: Merkitse <strong>kaikki</strong> käyttäjään <strong>@%{acct}</strong> kohdistuvat raportit ratkaistuiksi
+        preview_preamble_html: "<strong>@%{acct}</strong> saa varoituksen, jonka sisältö on seuraava:"
+        send_email_html: Lähetä käyttäjälle <strong>@%{acct}</strong> varoitus sähköpostitse
+        warning_placeholder: Valinnaiset lisäperustelut moderointitoimenpiteelle.
       target_origin: Raportoidun tilin alkuperä
       title: Raportit
       unassign: Määrittämätön
+      unknown_action_msg: 'Tuntematon toiminto: %{action}'
       unresolved: Ratkaisemattomat
       updated_at: Päivitetty
       view_profile: Näytä profiili
@@ -762,7 +779,7 @@ fi:
         none: "%{name} lähetti varoituksen henkilölle %{target}"
         sensitive: "%{name} merkitsi käyttäjän %{target} tilin arkaluonteiseksi"
         silence: "%{name} rajoitti käyttäjän %{target} tilin"
-        suspend: "%{name} keskeytti käyttäjän %{target} tilin"
+        suspend: "%{name} jäädytti käyttäjän %{target} tilin"
       appeal_approved: Valitti
       appeal_pending: Valitus vireillä
     system_checks:
@@ -835,7 +852,7 @@ fi:
         not_trendable: Ei näy trendien alla
         not_usable: Ei voida käyttää
         peaked_on_and_decaying: Saavutti huipun %{date}, nyt hiipuu
-        title: Suositut tunnisteet
+        title: Suositut aihetunnisteet
         trendable: Voi näkyä trendien alla
         trending_rank: 'Nousussa #%{rank}'
         usable: Voidaan käyttää
@@ -880,7 +897,7 @@ fi:
         none: varoitus
         sensitive: merkitä heidän tilinsä arkaluonteiseksi
         silence: rajoittaa heidän tilinsä
-        suspend: keskeyttää heidän tilinsä
+        suspend: jäädyttää heidän tilinsä
       body: "%{target} on valittanut valvojan päätöksestä %{action_taken_by} aika %{date}, joka oli %{type}. He kirjoittivat:"
       next_steps: Voit hyväksyä vetoomuksen ja kumota päätöksen tai jättää sen huomiotta.
       subject: "%{username} valittaa valvojan päätöksestä, joka koskee instanssia %{instance}"
@@ -938,6 +955,8 @@ fi:
   auth:
     apply_for_account: Pyydä tiliä
     change_password: Salasana
+    confirmations:
+      wrong_email_hint: Jos sähköpostiosoite ei ole oikein, voit muuttaa sen tilin asetuksista.
     delete_account: Poista tili
     delete_account_html: Jos haluat poistaa tilisi, <a href="%{path}">paina tästä</a>. Poisto on vahvistettava.
     description:
@@ -1070,7 +1089,7 @@ fi:
         none: Varoitus
         sensitive: Tilin merkitseminen arkaluonteiseksi
         silence: Tilin rajoittaminen
-        suspend: Tilin keskeyttäminen
+        suspend: Tilin jäädyttäminen
       your_appeal_approved: Valituksesi on hyväksytty
       your_appeal_pending: Olet lähettänyt valituksen
       your_appeal_rejected: Valituksesi on hylätty
@@ -1623,7 +1642,7 @@ fi:
         none: Varoitus %{acct}
         sensitive: Sinun viestisi %{acct} merkitään arkaluonteisiksi tästä lähtien
         silence: Tilisi %{acct} on rajoitettu
-        suspend: Tilisi %{acct} on keskeytetty
+        suspend: Tilisi %{acct} on jäädytetty
       title:
         delete_statuses: Viestit poistettu
         disable: Tili jäädytetty
@@ -1631,7 +1650,7 @@ fi:
         none: Varoitus
         sensitive: Tili on merkitty arkaluonteiseksi
         silence: Rajoitettu tili
-        suspend: Tilin käyttäminen keskeytetty
+        suspend: Tilin käyttäminen jäädytetty
     welcome:
       edit_profile_action: Aseta profiili
       edit_profile_step: Voit muokata profiiliasi lataamalla profiilikuvan, vaihtamalla näyttönimeä ja paljon muuta. Voit halutessasi arvioida uudet seuraajat ennen kuin he saavat seurata sinua.
