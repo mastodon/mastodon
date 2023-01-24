@@ -220,9 +220,11 @@ sk:
         change_email_user_html: "%{name} zmenil/a emailovú adresu užívateľa %{target}"
         confirm_user_html: "%{name} potvrdil/a emailovú adresu používateľa %{target}"
         create_account_warning_html: "%{name} poslal/a upozornenie užívateľovi %{target}"
+        demote_user_html: "%{name} degradoval/a užívateľa %{target}"
         destroy_canonical_email_block_html: "%{name} odblokoval/i email z hašom %{target}"
         destroy_domain_allow_html: "%{name} zakázal/a federáciu s doménou %{target}"
         destroy_domain_block_html: "%{name} odblokoval/i doménu %{target}"
+        destroy_ip_block_html: "%{name} vymazal/a pravidlo pre IP %{target}"
         destroy_status_html: "%{name} zmazal/a príspevok od %{target}"
       deleted_account: zmazaný účet
       filter_by_action: Filtruj podľa úkonu
@@ -344,6 +346,8 @@ sk:
     export_domain_allows:
       no_file: Nevybraný žiaden súbor
     export_domain_blocks:
+      import:
+        title: Nahraj zákazy domén
       new:
         title: Nahraj zákazy domén
       no_file: Nevybraný žiaden súbor
@@ -487,10 +491,13 @@ sk:
       categories:
         administration: Spravovanie
         invites: Pozvánky
+      delete: Vymaž
       edit: Uprav postavenie %{name}
       privileges:
         administrator: Správca
+        delete_user_data: Vymaž užívateľské dáta
         invite_users: Pozvi užívateľov
+        manage_announcements: Spravuj oboznámenia
         manage_appeals: Spravuj námietky
         manage_roles: Spravuj postavenia
         manage_users: Spravuj užívateľov
@@ -505,29 +512,42 @@ sk:
       appearance:
         title: Vzhľad
       discovery:
+        public_timelines: Verejné časové osi
         publish_discovered_servers: Zverejni objavené servery
         publish_statistics: Zverejni štatistiky
+        title: Objavovanie
+        trends: Trendy
       domain_blocks:
         all: Všetkým
         disabled: Nikomu
         users: Prihláseným, miestnym užívateľom
+      registrations:
+        title: Registrácie
       registrations_mode:
         modes:
           approved: Pre registráciu je nutné povolenie
           none: Nikto sa nemôže registrovať
           open: Ktokoľvek sa môže zaregistrovať
+      title: Nastavenia servera
     site_uploads:
       delete: Vymaž nahratý súbor
       destroyed_msg: Nahratie bolo zo stránky úspešne vymazané!
     statuses:
+      account: Autor
+      application: Aplikácia
       back_to_account: Späť na účet
+      batch:
+        report: Hlásenie
       deleted: Vymazané
+      favourites: Obľúbené
       history: História verzií
       in_reply_to: Odpoveď na
       language: Jazyk
       media:
         title: Médiá
       no_status_selected: Žiadne príspevky neboli zmenené, keďže si žiadne nemal/a zvolené
+      open: Otvor príspevok
+      original_status: Pôvodný príspevok
       status_changed: Príspevok bol zmenený
       title: Príspevky na účte
       trending: Populárne
@@ -558,6 +578,10 @@ sk:
       preview_card_providers:
         title: Zverejňovatelia
       rejected: Odmietnuté
+      statuses:
+        disallow: Zakáž príspevok
+        disallow_account: Zakáž autora
+        title: Populárne príspevky
       tags:
         title: Populárne štítky
         trending_rank: 'Populárne #%{rank}'
