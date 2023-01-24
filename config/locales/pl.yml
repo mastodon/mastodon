@@ -275,19 +275,19 @@ pl:
         remove_avatar_user_html: "%{name} usunął(-ęła) awatar użytkownikowi %{target}"
         reopen_report_html: "%{name} otworzył(a) ponownie zgłoszenie %{target}"
         resend_user_html: "%{name} ponownie wysłał(a) e-mail z potwierdzeniem dla %{target}"
-        reset_password_user_html: "%{name} przywrócił(a) hasło użytkownikowi %{target}"
+        reset_password_user_html: "%{name} resetuje hasło użytkownika %{target}"
         resolve_report_html: "%{name} rozwiązał(a) zgłoszenie %{target}"
         sensitive_account_html: "%{name} oznaczył(a) zawartość multimedialną %{target} jako wrażliwą"
         silence_account_html: "%{name} wyciszył(a) konto %{target}"
-        suspend_account_html: "%{name} zawiesił(a) konto %{target}"
+        suspend_account_html: Zawieszono konto %{target} przez %{name}
         unassigned_report_html: "%{name} cofnął(-ęła) przypisanie zgłoszenia %{target}"
         unblock_email_account_html: "%{name} odblokował adres e-mail %{target}"
         unsensitive_account_html: "%{name} cofnął(-ęła) oznaczenie zawartości multimedialnej %{target} jako wrażliwą"
         unsilence_account_html: "%{name} cofnął(-ęła) wyciszenie konta %{target}"
         unsuspend_account_html: "%{name} cofnął(-ęła) zawieszenie konta %{target}"
-        update_announcement_html: "%{name} zaktualizował(a) ogłoszenie %{target}"
-        update_custom_emoji_html: "%{name} zaktualizował(a) emoji %{target}"
-        update_domain_block_html: "%{name} zaktualizował(a) blokadę domeny dla %{target}"
+        update_announcement_html: Zaktualizowane ogłoszenie %{target} przez %{name}
+        update_custom_emoji_html: Zaktualizowane emoji %{target} przez %{name}
+        update_domain_block_html: Zaktualizowano blokadę domeny dla %{target} przez %{name}
         update_ip_block_html: "%{name} stworzył(a) regułę dla IP %{target}"
         update_status_html: "%{name} zaktualizował(a) wpis użytkownika %{target}"
         update_user_role_html: "%{name} zmienił rolę %{target}"
@@ -1358,8 +1358,8 @@ pl:
       title: Nowa prośba o możliwość obsewowania
     mention:
       action: Odpowiedz
-      body: "%{name} wspomniał(a) o Tobie w:"
-      subject: "%{name} wspomniał(a) o Tobie"
+      body: 'Wspomniano o tobie przez %{name} w:'
+      subject: Wspomniano o tobie przez %{name}
       title: Nowe wspomnienie o Tobie
     poll:
       subject: Ankieta %{name} zakończyła się
