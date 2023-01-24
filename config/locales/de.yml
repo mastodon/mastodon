@@ -634,9 +634,13 @@ de:
         close_reports_html: Markiere <strong>alle</strong> Berichte gegen <strong>@%{acct}</strong> als gelöst
         delete_data_html: Lösche <strong>@%{acct}</strong>'s Profil und Inhalte in 30 Tagen, es sei denn, sie werden in der Zwischenzeit entsperrt
         preview_preamble_html: "<strong>@%{acct}</strong> wird eine Warnung mit folgenden Inhalten erhalten:"
+        record_strike_html: Speichere eine Verwarnung gegen <strong>@%{acct}</strong> um bei zukünftigen Verletzungen dieses Kontos zu helfen
+        send_email_html: Schicke <strong>@%{acct}</strong> eine Warnungs-E-Mail
+        warning_placeholder: Optionale zusätzliche Argumentation für die Moderationsmaßnahme.
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
       unassign: Zuweisung entfernen
+      unknown_action_msg: 'Unbekannte Aktion: %{action}'
       unresolved: Ungelöst
       updated_at: Aktualisiert
       view_profile: Profil anzeigen
@@ -960,6 +964,8 @@ de:
   auth:
     apply_for_account: Konto beantragen
     change_password: Passwort
+    confirmations:
+      wrong_email_hint: Wenn diese E-Mail-Adresse nicht korrekt ist, kann sie in den Kontoeinstellungen geändert werden.
     delete_account: Konto löschen
     delete_account_html: Falls du dein Konto endgültig löschen möchtest, kannst du das <a href="%{path}">hier vornehmen</a>. Du musst dies zusätzlich bestätigen.
     description:
