@@ -20,7 +20,7 @@ fi:
     posts:
       one: Julkaisu
       other: Julkaisut
-    posts_tab_heading: Julkaisut
+    posts_tab_heading: Viestit
   admin:
     account_actions:
       action: Suorita toimenpide
@@ -620,10 +620,12 @@ fi:
           delete_html: 'Olet aikeissa <strong>poistaa</strong> joitain käyttäjän <strong>@%{acct}</strong> viestejä. Tästä seuraa:'
           mark_as_sensitive_html: 'Olet aikeissa <strong>merkitä</strong> joitain käyttäjän <strong>@%{acct}</strong> viestejä <strong>arkaluonteisiksi</strong>. Tästä seuraa:'
           silence_html: 'Olet aikeissa <strong>rajoittaa</strong> käyttäjän <strong>@%{acct}</strong> tiliä. Tästä seuraa:'
+          suspend_html: 'Olet aikeissa <strong>rajoittaa</strong> käyttäjän <strong>@%{acct}</strong> tiliä. Tästä seuraa:'
         actions:
           delete_html: Loukkaavat viestit poistetaan
           mark_as_sensitive_html: Loukkaavien viestien media merkitään arkaluonteiseksi
           silence_html: Vakavasti rajoittaa käyttäjän <strong>@%{acct}</strong> tavoitettavuutta tekemällä profiilista ja sen sisällöstä näkyviä vain jo häntä seuraaville tai niille, jotka etsivät profiilia manuaalisesti
+          suspend_html: Rajoita <strong>@%{acct}</strong>, jolloin heidän profiilinsa ja sisällönsä ei ole käytettävissä ja on mahdotonta olla vuorovaikutuksessa
         close_report: 'Merkitse raportti #%{id} selvitetyksi'
         close_reports_html: Merkitse <strong>kaikki</strong> käyttäjään <strong>@%{acct}</strong> kohdistuvat raportit ratkaistuiksi
         preview_preamble_html: "<strong>@%{acct}</strong> saa varoituksen, jonka sisältö on seuraava:"
