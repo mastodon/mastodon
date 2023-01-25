@@ -18,6 +18,8 @@ ja:
           disable: ユーザーが自分のアカウントを使用できないようにします。コンテンツを削除したり非表示にすることはありません。
           none: これを使用すると、他の操作をせずにユーザーに警告を送信できます。
           sensitive: このユーザーが添付したメディアを強制的に閲覧注意にする
+          silence: ユーザーが公開投稿できないようにし、フォローしていない人に投稿や通知が表示されないようにする。このアカウントに対する全ての通報をクローズします。
+          suspend: このアカウントとのやりとりを止め、コンテンツを削除します。30日以内は取消可能です。このアカウントに対する全ての通報をクローズします。
         warning_preset_id: オプションです。プリセット警告文の末尾に任意の文字列を追加することができます
       announcement:
         all_day: 有効化すると、対象期間の箇所に日付だけが表示されます
@@ -72,6 +74,7 @@ ja:
           hide: フィルタリングしたコンテンツを完全に隠し、あたかも存在しないかのようにします
           warn: フィルタリングされたコンテンツを、フィルタータイトルの警告の後ろに隠します。
       form_admin_settings:
+        activity_api_enabled: 週単位でローカルで公開された投稿数、アクティブユーザー数、新規登録者数を表示する
         backups_retention_period: 生成されたユーザーのアーカイブを指定した日数の間保持します。
         bootstrap_timeline_accounts: これらのアカウントは、新しいユーザーのフォロー推奨リストの一番上にピン留めされます。
         closed_registrations_message: アカウント作成を停止している時に表示されます
@@ -79,6 +82,7 @@ ja:
         custom_css: ウェブ版のMastodonでカスタムスタイルを適用できます。
         mascot: 上級者向けWebインターフェースのイラストを上書きする。
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
+        peers_api_enabled: このサーバーが Fediverse で遭遇したドメイン名のリストです。このサーバーが知っているだけで、特定のサーバーと連合しているかのデータは含まれません。これは一般的に Fediverse に関する統計情報を収集するサービスによって使用されます。
         profile_directory: プロフィールディレクトリには、掲載するよう設定したすべてのユーザーが一覧表示されます。
         require_invite_text: アカウント登録が承認制の場合、「意気込みをお聞かせください」のテキストの入力を必須にする
         site_contact_email: 法律またはサポートに関する問い合わせ先
@@ -227,6 +231,7 @@ ja:
           hide: 完全に隠す
           warn: 警告付きで隠す
       form_admin_settings:
+        activity_api_enabled: APIでユーザーアクティビティに関する集計統計を公開する
         backups_retention_period: ユーザーアーカイブの保持期間
         bootstrap_timeline_accounts: 新規ユーザーに必ずおすすめするアカウント
         closed_registrations_message: サインアップできない場合のカスタムメッセージ
@@ -234,6 +239,7 @@ ja:
         custom_css: カスタムCSS
         mascot: カスタムマスコット（レガシー）
         media_cache_retention_period: メディアキャッシュの保持期間
+        peers_api_enabled: APIで接続しているサーバーのリストを公開する
         profile_directory: ディレクトリを有効にする
         registrations_mode: 新規登録が可能な人
         require_invite_text: 意気込み理由の入力を必須にする。

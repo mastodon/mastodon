@@ -575,7 +575,10 @@ fr:
         mark_as_sensitive_description_html: Les médias des messages signalés seront marqués comme sensibles et une sanction sera enregistrée pour vous aider à prendre les mesures appropriées en cas d'infractions futures par le même compte.
         other_description_html: Voir plus d'options pour contrôler le comportement du compte et personnaliser la communication vers le compte signalé.
         resolve_description_html: Aucune mesure ne sera prise contre le compte signalé, aucune sanction ne sera enregistrée et le sigalement sera clôturé.
+        silence_description_html: Le compte ne sera visible que par ceux qui le suivent déjà ou qui le recherchent manuellement, ce qui limite fortement sa portée. Cette action peut toujours être annulée. Cloture tous les signalements concernant ce compte.
+        suspend_description_html: Le compte et tous ses contenus seront inaccessibles et finalement supprimés, et il sera impossible d'interagir avec lui. Réversible dans les 30 jours. Cloture tous les signalements concernant ce compte.
       actions_description_html: Décidez des mesures à prendre pour résoudre ce signalement. Si vous prenez des mesures punitives contre le compte signalé, une notification sera envoyée par e-mail, sauf si la catégorie <strong>Spam</strong> est sélectionnée.
+      actions_description_remote_html: Décidez des mesures à prendre pour résoudre ce signalement. Cela n'affectera que la manière dont <strong>votre</strong> serveur communique avec ce compte distant et traite son contenu.
       add_to_report: Ajouter davantage au rapport
       are_you_sure: Voulez-vous vraiment faire ça ?
       assign_to_self: Me l’assigner
@@ -711,6 +714,8 @@ fr:
         preamble: Faire apparaître un contenu intéressant est essentiel pour interagir avec de nouveaux utilisateurs qui ne connaissent peut-être personne sur Mastodonte. Contrôlez le fonctionnement des différentes fonctionnalités de découverte sur votre serveur.
         profile_directory: Annuaire des profils
         public_timelines: Fils publics
+        publish_discovered_servers: Publier les serveurs découverts
+        publish_statistics: Publier les statistiques
         title: Découverte
         trends: Tendances
       domain_blocks:
@@ -1365,6 +1370,9 @@ fr:
       unrecognized_emoji: n’est pas un émoji reconnu
   relationships:
     activity: Activité du compte
+    confirm_follow_selected_followers: Voulez-vous vraiment suivre les abonné⋅e⋅s sélectionné⋅e⋅s ?
+    confirm_remove_selected_followers: Voulez-vous vraiment supprimer les abonné⋅e⋅s sélectionné⋅e⋅s ?
+    confirm_remove_selected_follows: Voulez-vous vraiment suivre les abonnements sélectionnés ?
     dormant: Dormant
     follow_selected_followers: Suivre les abonné·e·s sélectionné·e·s
     followers: Abonné·e
