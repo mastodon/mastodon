@@ -551,25 +551,6 @@ html {
   }
 }
 
-.directory__tag.active > a,
-.directory__tag.active > div {
-  border-color: $ui-highlight-color;
-
-  &,
-  h4,
-  h4 small,
-  .fa,
-  .trends__item__current {
-    color: $white;
-  }
-
-  &:hover,
-  &:active,
-  &:focus {
-    background: $ui-highlight-color;
-  }
-}
-
 .batch-table {
   &__toolbar,
   &__row,
