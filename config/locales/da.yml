@@ -631,9 +631,13 @@ da:
         close_reports_html: Markér <strong>alle</strong> anmeldelser af <strong>@%{acct}</strong> som løst
         delete_data_html: Slet profil og indhold for <strong>@%{acct}</strong> 30 dage fra nu medmindre suspenderingen af vedkommende i mellemtiden fjernes
         preview_preamble_html: "<strong>@%{acct}</strong> vil modtage en advarsel med flg. indhold:"
+        record_strike_html: Registrér en advarsel for <strong>@%{acct}</strong> som hjælpe til eskalering af fremtidige overtrædelser fra samme konto
+        send_email_html: Send en advarselsmail til <strong>@%{acct}</strong>
+        warning_placeholder: Valgfri yderligere begrundelse for modereringshandlingen.
       target_origin: Anmeldte kontos oprindelse
       title: Anmeldelser
       unassign: Fjern tildeling
+      unknown_action_msg: 'Ukendt handling: %{action}'
       unresolved: Uløst
       updated_at: Opdateret
       view_profile: Vis profil
@@ -956,6 +960,8 @@ da:
   auth:
     apply_for_account: Anmod om en konto
     change_password: Adgangskode
+    confirmations:
+      wrong_email_hint: Er denne e-mail-adresse ikke korrekt, kan den ændres i kontoindstillinger.
     delete_account: Slet konto
     delete_account_html: Ønsker du at slette din konto, kan du <a href="%{path}">gøre dette hér</a>. Du vil blive bedt om bekræftelse.
     description:
