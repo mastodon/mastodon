@@ -122,12 +122,14 @@ pt-BR:
         admin/accounts: Administração de contas
         admin/all: Todas as funções administrativas
         admin/reports: Controle de denúncias
+        all: Acesso total à sua conta Mastodon
         blocks: Bloqueios
         bookmarks: Salvos
         conversations: Conversas
         crypto: Criptografia de ponta a ponta
         favourites: Favoritos
         filters: Filtros
+        follow: Seguidores, Silenciados e Bloqueados
         follows: Seguidores
         lists: Listas
         media: Mídias anexadas
@@ -147,9 +149,19 @@ pt-BR:
     scopes:
       admin:read: ler todos os dados no servidor
       admin:read:accounts: ler informações sensíveis de todas as contas
+      admin:read:canonical_email_blocks: ler informações sensíveis de todos os blocos de e-mail canônicos
+      admin:read:domain_allows: ler informações sensíveis de todos os domínios (URL) permitidos
+      admin:read:domain_blocks: ler informações sensíveis de todos os domínios (URL) bloqueados
+      admin:read:email_domain_blocks: ler informações sensíveis de todos os e-mails de domínios bloqueados
+      admin:read:ip_blocks: ler informações sensíveis de todos os endereços de IP bloqueados
       admin:read:reports: ler informações sensíveis de todas as denúncias e contas denunciadas
       admin:write: alterar todos os dados no servidor
       admin:write:accounts: executar ações de moderação em contas
+      admin:write:canonical_email_blocks: executar ações de moderação em blocos canônicos de e-mail
+      admin:write:domain_allows: executar ações de moderação em domínios (URL) permitidos
+      admin:write:domain_blocks: executar ações de moderação em domínios (URL) bloqueados
+      admin:write:email_domain_blocks: executar ações de moderação em blocos de e-mail bloqueados
+      admin:write:ip_blocks: executar ações de moderação em IPs bloqueados
       admin:write:reports: executar ações de moderação em denúncias
       crypto: usar criptografia de ponta-a-ponta
       follow: alterar o relacionamento das contas

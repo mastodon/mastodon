@@ -708,6 +708,8 @@ pt-BR:
         preamble: Navegar por um conteúdo interessante é fundamental para integrar novos usuários que podem não conhecer ninguém no Mastodon. Controle como várias características de descoberta funcionam no seu servidor.
         profile_directory: Diretório de perfis
         public_timelines: Timelines públicas
+        publish_discovered_servers: Publicar servidores descobertos
+        publish_statistics: Publicar estatísticas
         title: Descobrir
         trends: Tendências
       domain_blocks:
@@ -970,6 +972,7 @@ pt-BR:
       email_settings_hint_html: O e-mail de confirmação foi enviado para %{email}. Se esse endereço de e-mail não estiver correto, você pode alterá-lo nas configurações da conta.
       title: Configurações
     sign_in:
+      preamble_html: Entre com suas credenciais de domínios ( <strong>%{domain}</strong> ) . Se sua conta estiver hospedada em um servidor diferente, você não deve conseguir acessar este conteúdo.
       title: Entrar em %{domain}
     sign_up:
       preamble: Com uma conta neste servidor Mastodon, você poderá seguir qualquer outra pessoa na rede, independentemente de onde sua conta esteja hospedada.
@@ -1120,6 +1123,7 @@ pt-BR:
       add_keyword: Adicionar palavra-chave
       keywords: Palavras-chave
       statuses: Publicações individuais
+      statuses_hint_html: Este filtro se aplica para selecionar posts individuais, independentemente de serem compatíveis com as palavras-chave abaixo. <a href="%{path}">Revise ou remova as publicações do filtro</a>.
       title: Editar filtro
     errors:
       deprecated_api_multiple_keywords: Estes parâmetros não podem ser alterados a partir deste aplicativo porque se aplicam a mais de uma palavra-chave de filtro. Use um aplicativo mais recente ou a interface web.
@@ -1359,6 +1363,9 @@ pt-BR:
       unrecognized_emoji: não é um emoji reconhecido
   relationships:
     activity: Atividade da conta
+    confirm_follow_selected_followers: Tem certeza que deseja seguir os seguidores selecionados?
+    confirm_remove_selected_followers: Tem certeza que deseja remover os seguidores selecionados?
+    confirm_remove_selected_follows: Tem certeza que deseja remover os grupos seguidos selecionados?
     dormant: Inativo
     follow_selected_followers: Seguir os seguidores selecionados
     followers: Seguidores

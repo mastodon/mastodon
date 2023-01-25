@@ -58,7 +58,7 @@ eo:
       demote: Degradi
       destroyed_msg: Datumoj de %{username} nun enviciĝis por esti forigita baldaǔ
       disable: Frostigi
-      disable_sign_in_token_auth: Malŝalti aŭtentigon de retpoŝta ĵetono
+      disable_sign_in_token_auth: Malŝalti aŭtentigon per retpoŝta ĵetono
       disable_two_factor_authentication: Malŝalti 2FA-n
       disabled: Frostigita
       display_name: Montrata nomo
@@ -67,7 +67,7 @@ eo:
       email: Retpoŝto
       email_status: Stato de retpoŝto
       enable: Malfrostigi
-      enable_sign_in_token_auth: Ŝalti aŭtentigon de retpoŝta ĵetono por uzanto
+      enable_sign_in_token_auth: Ŝalti aŭtentigon per retpoŝta ĵetono
       enabled: Ebligita
       enabled_msg: Sukcese malfrostigis konton de %{username}
       followers: Sekvantoj
@@ -130,7 +130,7 @@ eo:
       resubscribe: Reaboni
       role: Rolo
       search: Serĉi
-      search_same_email_domain: Aliaj uzantoj kun la sama retpoŝta domajno
+      search_same_email_domain: Aliaj uzantoj kun la sama domajno de retpoŝto
       search_same_ip: Aliaj uzantoj kun la sama IP
       security_measures:
         only_password: Nur pasvorto
@@ -140,7 +140,7 @@ eo:
       shared_inbox_url: URL de kunhavigita leterkesto
       show:
         created_reports: Faritaj raportoj
-        targeted_reports: Raporitaj de la aliaj
+        targeted_reports: Raporitaj de aliaj
       silence: Limigi
       silenced: Silentigita
       statuses: Afiŝoj
@@ -197,10 +197,10 @@ eo:
         destroy_user_role: Detrui Rolon
         disable_2fa_user: Malebligi 2FA
         disable_custom_emoji: Malebligi proprajn emoĝiojn
-        disable_sign_in_token_auth_user: Malŝalti aŭtentigon de retpoŝta ĵetono por la uzanto
+        disable_sign_in_token_auth_user: Malŝalti aŭtentigon per retpoŝta ĵetono por la uzanto
         disable_user: Neebligi la uzanton
         enable_custom_emoji: Ebligi Propran Emoĝion
-        enable_sign_in_token_auth_user: Ŝalti aŭtentigon de retpoŝta ĵetono por la uzanto
+        enable_sign_in_token_auth_user: Ŝalti aŭtentigon per retpoŝta ĵetono por la uzanto
         enable_user: Ebligi uzanton
         memorialize_account: Memorigu Konton
         promote_user: Promocii Uzanton
@@ -375,7 +375,7 @@ eo:
       created_msg: Domajno estis sukcese aldonita al la blanka listo
       destroyed_msg: Domajno estis forigita el la blanka listo
       export: Eksporti
-      import: Importi
+      import: Enporti
       undo: Forigi el la blanka listo
     domain_blocks:
       add_new: Aldoni novan blokadon de domajno
@@ -386,7 +386,7 @@ eo:
       existing_domain_block: Vi jam metis pli striktajn limojn al %{name}.
       existing_domain_block_html: Vi jam trudis pli striktajn limojn al %{name}, vi devas <a href="%{unblock_url}">malbloki ĝin</a> unue.
       export: Eksporti
-      import: Importi
+      import: Enporti
       new:
         create: Krei blokadon
         hint: La domajna blokado ne evitigos kreadon de novaj kontoj en la datumbazo, sed aplikos specifajn kontrolajn agojn sur ĉi tiujn kontojn aŭtomate kaj retroaktive.
@@ -438,7 +438,7 @@ eo:
         description_html: Vi importos liston de domajnblokoj.
         existing_relationships_warning: Ekzistantaj sekvorilatoj
         private_comment_description_html: 'Por helpi vin, importitaj blokoj kreitas kun la privata komento: <q>%{comment}</q>'
-        private_comment_template: Importita de %{source} je %{date}
+        private_comment_template: Enportita el %{source} je %{date}
         title: Importi domajnblokojn
       new:
         title: Importi domajnblokojn
@@ -710,6 +710,7 @@ eo:
         preamble: Interesa enhavo estas grava por novaj uzantoj kiuj eble ne konas ajn iun.
         profile_directory: Profilujo
         public_timelines: Publikaj templinioj
+        publish_statistics: Publikigi statistikojn
         title: Eltrovado
         trends: Tendencoj
       domain_blocks:
@@ -930,8 +931,8 @@ eo:
   applications:
     created: Aplikaĵo sukcese kreita
     destroyed: Aplikaĵo sukcese forigita
-    regenerate_token: Rekrei aliran ĵetonon
-    token_regenerated: Alira ĵetono sukcese rekreita
+    regenerate_token: Regeneri aliran ĵetonon
+    token_regenerated: Alira ĵetono sukcese regeneria
     warning: Estu tre atenta kun ĉi tiu datumo. Neniam diskonigu ĝin al iu ajn!
     your_token: Via alira ĵetono
   auth:
@@ -946,7 +947,7 @@ eo:
     didnt_get_confirmation: Ĉu vi ne ricevis la instrukciojn por konfirmi?
     dont_have_your_security_key: Ne havas vi vian sekurecan ŝlosilon?
     forgot_password: Pasvorto forgesita?
-    invalid_reset_password_token: Ĵetono por restarigi pasvorton nevalida aŭ eksvalida. Bonvolu peti novan.
+    invalid_reset_password_token: La ĵetono por restarigi la pasvorton estas nevalida aŭ eksvalida. Bonvolu peti novon.
     link_to_otp: Enigu 2-faktorkodo de via telefono au regajnkodo
     link_to_webauth: Uzi vian sekurecan ŝlosilon
     log_in_with: Ensaluti per
@@ -954,7 +955,7 @@ eo:
     logout: Adiaŭi
     migrate_account: Movi al alia konto
     migrate_account_html: Se vi deziras alidirekti ĉi tiun konton al alia, vi povas <a href="%{path}">agordi ĝin ĉi tie</a>.
-    or_log_in_with: Aŭ ensaluti per
+    or_log_in_with: Aŭ saluti per
     privacy_policy_agreement_html: Mi legis kaj konsentis pri <a href="%{privacy_policy_path}" target="_blank">privatpolitiko</a>
     providers:
       cas: CAS
@@ -973,7 +974,7 @@ eo:
       email_settings_hint_html: La konfirmretpoŝto senditas al %{email}.
       title: Agordi
     sign_in:
-      title: Ensalutu al %{domain}
+      title: Saluti en %{domain}
     sign_up:
       preamble: Per konto ĉe ĉi tiu Mastodon-servilo, vi povas sekvi ajn personojn en la reto.
       title: Ni pretigu vin ĉe %{domain}.
@@ -1034,7 +1035,7 @@ eo:
     warning:
       before: 'Antau ol dauri, legu ĉi tiujn notojn zorgeme:'
       caches: Enhavo kiu kaŝmemorigitas de aliaj serviloj eble restas
-      data_removal: Viaj mesaĝoj kaj aliaj datumoj permanente forigotas
+      data_removal: Viaj afiŝoj kaj aliaj informoj estos forigita por eterne
       email_change_html: Vi povas <a href="%{path}">ŝanĝi vian retadreson</a> sen forigi vian konton
       email_contact_html: Se ĝi ankorau ne venas, vi povas retpoŝti al <a href="mailto:%{email}">%{email}</a> por ricevi helpon
       email_reconfirmation_html: Se vi ne ricevas la konfirmretpoŝton, vi povas <a href="%{path}">denove peti</a>
@@ -1217,7 +1218,7 @@ eo:
       one: 1 uzo
       other: "%{count} uzoj"
     max_uses_prompt: Neniu limo
-    prompt: Generi kaj kundividi ligilojn kun la aliaj por doni aliron al ĉi tiu servilo
+    prompt: Generi kaj kundividi ligilojn kun aliaj por doni aliron al ĉi tiu servilo
     table:
       expires_at: Eksvalidiĝas je
       uses: Uzoj
@@ -1291,8 +1292,8 @@ eo:
       subject: "%{name} stelumis vian mesaĝon"
       title: Nova stelumo
     follow:
-      body: "%{name} eksekvis vin!"
-      subject: "%{name} eksekvis vin"
+      body: "%{name} nun sekvas vin!"
+      subject: "%{name} nun sekvas vin"
       title: Nova sekvanto
     follow_request:
       action: Administri petojn de sekvado
@@ -1428,7 +1429,7 @@ eo:
       ios: iOS
       linux: Linux
       mac: Mac
-      other: nekonata platformo
+      other: nekonata substrato
       windows: Windows
       windows_mobile: Windows Mobile
       windows_phone: Windows Phone
@@ -1448,7 +1449,7 @@ eo:
     edit_profile: Redakti profilon
     export: Eksporti datumojn
     featured_tags: Elstarigitaj kradvortoj
-    import: Importi
+    import: Enporti
     import_and_export: Importi kaj eksporti
     migrate: Konta migrado
     notifications: Sciigoj
@@ -1593,11 +1594,11 @@ eo:
       title: Arkiva elŝuto
     suspicious_sign_in:
       change_password: ŝanĝi vian pasvorton
-      details: 'Detaloj pri ensaluto:'
-      explanation: Ni detektas ensaluton al via konto de nova IP-adreso.
+      details: 'Ĉi-sube estas detaloj pri la saluto:'
+      explanation: Ni detektis saluton en via konto de nova IP-adreso.
       further_actions_html: Se ne estas vi, ni rekomendas ke vi %{action} tuj por sekurigi vian konton.
       subject: Via konto estas alirita de nova IP-adreso
-      title: Nova ensaluto
+      title: Nova saluto
     warning:
       appeal: Sendi apelacion
       appeal_description: Se vi pensas ke ĉi tio estas eraro, vi povas sendi apelacion al la teamo de %{instance}.
@@ -1609,7 +1610,7 @@ eo:
         disable: Vi ne povas uzi vian konton plu sed via profilo kaj alia datumo restas bone.
         mark_statuses_as_sensitive: Kelkaj viaj mesaĝoj markitas kiel sentemaj de kontrolantoj de %{instance}. Vi povas marki mem kiam mesaĝi dum la estonteco.
         sensitive: Malantau ol nun, ĉiuj viaj alŝutitaj audovidaĵoj markitas kiel sentemaj kaj kaŝitas.
-        silence: Vi ankorau povas uzi vian konton sed nur personoj kiu jam sekvis vin vidos viaj mesaĝoj ĉe ĉi tiu servilo.
+        silence: Vi ankorau povas uzi vian konton, sed nur personoj kiuj jam sekvas vin vidos viajn mesaĝojn en tiu ĉi servilo, kaj vi eble estos ekskluzive el diversaj malkovrigaj funkcioj. Tamen, aliaj ankoraŭ povas permane eksekvi vin.
         suspend: Vi ne povas uzi vian konton plu, kaj via profilo kaj aliaj datumoj ne estas disponeblaj plu.
       reason: 'Kialo:'
       statuses: 'Mesaĝoj ripetitaj:'

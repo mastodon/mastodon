@@ -4441,14 +4441,14 @@ a.status-card.compact:hover {
   align-items: center;
   background: rgba($base-overlay-background, 0.8);
   display: flex;
-  height: 100%;
+  height: 100vh;
   justify-content: center;
   left: 0;
   opacity: 0;
-  position: absolute;
+  position: fixed;
   top: 0;
   visibility: hidden;
-  width: 100%;
+  width: 100vw;
   z-index: 2000;
 
   * {
