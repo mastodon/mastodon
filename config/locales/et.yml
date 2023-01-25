@@ -634,9 +634,13 @@ et:
         close_reports_html: Märgi <strong>kõik</strong> raportid <strong>@%{acct}</strong> vastu lahendatuks
         delete_data_html: Kustuta tänasest 30 päeva pärast kasutaja <strong>@%{acct}</strong> profiil ja sisu, kui vahepeal tema kontot ei taastata
         preview_preamble_html: "<strong>@%{acct}</strong> saab järgmise sisuga hoiatuse:"
+        record_strike_html: Salvesta <strong>@%{acct}</strong> kohta juhtum, et aidata selle konto tulevaste rikkumiste puhul reageerida
+        send_email_html: Saada kasutajale <strong>@%{acct}</strong> hoiatus-e-kiri
+        warning_placeholder: Valikuline täiendav põhjendus modereerimisele.
       target_origin: Raporteeritud konto päritolu
       title: Teavitused
       unassign: Eemalda määramine
+      unknown_action_msg: 'Tundmatu tegevus: %{action}'
       unresolved: Lahendamata
       updated_at: Uuendatud
       view_profile: Vaata profiili
@@ -960,6 +964,8 @@ et:
   auth:
     apply_for_account: Konto taotluse esitamine
     change_password: Salasõna
+    confirmations:
+      wrong_email_hint: Kui see e-postiaadress pole korrektne, saad seda kontosätetes muuta.
     delete_account: Konto kustutamine
     delete_account_html: Kui soovid oma konto kustutada, siis <a href="%{path}">jätka siit</a>. Pead kustutamise eraldi kinnitama.
     description:
