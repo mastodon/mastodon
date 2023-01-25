@@ -196,12 +196,12 @@ fi:
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         destroy_user_role: Hävitä rooli
         disable_2fa_user: Poista kaksivaiheinen tunnistautuminen käytöstä
-        disable_custom_emoji: Estä mukautettu emoji
+        disable_custom_emoji: Poista mukautettu emoji käytöstä
         disable_sign_in_token_auth_user: Estä käyttäjältä sähköpostitunnuksen todennus
-        disable_user: Tili poistettu käytöstä
+        disable_user: Poista tili käytöstä
         enable_custom_emoji: Käytä mukautettuja emojeita
         enable_sign_in_token_auth_user: Salli käyttäjälle sähköpostitunnuksen todennus
-        enable_user: Tili otettu käyttöön
+        enable_user: Ota tili käyttöön
         memorialize_account: Muuta muistotiliksi
         promote_user: Käyttäjä ylennetty
         reject_appeal: Hylkää valitus
@@ -230,32 +230,32 @@ fi:
         approve_user_html: "%{name} hyväksyi käyttäjän rekisteröitymisen kohteesta %{target}"
         assigned_to_self_report_html: "%{name} otti raportin %{target} tehtäväkseen"
         change_email_user_html: "%{name} vaihtoi käyttäjän %{target} sähköpostiosoitteen"
-        change_role_user_html: "%{name} muutti roolia %{target}"
+        change_role_user_html: "%{name} muutti käyttäjän %{target} roolia"
         confirm_user_html: "%{name} vahvisti käyttäjän %{target} sähköpostiosoitteen"
-        create_account_warning_html: "%{name} lähetti varoituksen henkilölle %{target}"
+        create_account_warning_html: "%{name} lähetti varoituksen käyttäjälle %{target}"
         create_announcement_html: "%{name} loi uuden ilmoituksen %{target}"
         create_canonical_email_block_html: "%{name} esti sähköpostin hashilla %{target}"
         create_custom_emoji_html: "%{name} lähetti uuden emojin %{target}"
-        create_domain_allow_html: "%{name} salli yhdistäminen verkkotunnuksella %{target}"
+        create_domain_allow_html: "%{name} salli federaation verkkotunnuksella %{target}"
         create_domain_block_html: "%{name} esti verkkotunnuksen %{target}"
         create_email_domain_block_html: "%{name} esti sähköpostin %{target}"
-        create_ip_block_html: "%{name} luonut IP-säännön %{target}"
+        create_ip_block_html: "%{name} loi IP-säännön %{target}"
         create_unavailable_domain_html: "%{name} pysäytti toimituksen verkkotunnukseen %{target}"
-        create_user_role_html: "%{name} luonut %{target} roolin"
+        create_user_role_html: "%{name} loi roolin %{target}"
         demote_user_html: "%{name} alensi käyttäjän %{target}"
         destroy_announcement_html: "%{name} poisti ilmoituksen %{target}"
-        destroy_canonical_email_block_html: "%{name} poisti sähköposti eston hashilla %{target}"
+        destroy_canonical_email_block_html: "%{name} poisti sähköpostieston hashilla %{target}"
         destroy_custom_emoji_html: "%{name} poisti emojin %{target}"
-        destroy_domain_allow_html: "%{name} esti yhdistämisen verkkotunnuksella %{target}"
+        destroy_domain_allow_html: "%{name} esti federaation verkkotunnuksella %{target}"
         destroy_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
-        destroy_email_domain_block_html: "%{name} poisti verkkotunnuksen %{target} eston"
+        destroy_email_domain_block_html: "%{name} poisti sähköpostin verkkotunnuksen %{target} eston"
         destroy_instance_html: "%{name} tyhjensi verkkotunnuksen %{target}"
         destroy_ip_block_html: "%{name} poisti IP-säännön %{target}"
-        destroy_status_html: "%{name} poisti viestin %{target}"
+        destroy_status_html: "%{name} poisti käyttäjän %{target} viestin"
         destroy_unavailable_domain_html: "%{name} jatkoi toimitusta verkkotunnukseen %{target}"
-        destroy_user_role_html: "%{name} poisti %{target} roolin"
+        destroy_user_role_html: "%{name} poisti roolin %{target}"
         disable_2fa_user_html: "%{name} poisti käyttäjältä %{target} vaatimuksen kaksivaiheisen todentamiseen"
-        disable_custom_emoji_html: "%{name} poisti emojin %{target}"
+        disable_custom_emoji_html: "%{name} poisti käytöstä emojin %{target}"
         disable_sign_in_token_auth_user_html: "%{name} poisti sähköpostitunnuksen %{target} todennuksen käytöstä"
         disable_user_html: "%{name} poisti kirjautumisen käyttäjältä %{target}"
         enable_custom_emoji_html: "%{name} salli emojin %{target}"
