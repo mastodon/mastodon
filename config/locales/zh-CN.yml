@@ -622,9 +622,13 @@ zh-CN:
         close_reports_html: 将针对 <strong>@%{acct}</strong> 的<strong>所有</strong> 报告标记为已解决
         delete_data_html: 从现在起 30 天后删除 <strong>@%{acct}</strong> 的个人资料和内容，除非他们同时解除暂停。
         preview_preamble_html: "<strong>@%{acct}</strong> 将收到包含以下内容的警告："
+        record_strike_html: 记录一次针对 <strong>@%{acct}</strong> 的警示，以帮助您在这个帐户上的未来违规事件中得到重视。
+        send_email_html: 向 <strong>@%{acct}</strong> 发送警告电子邮件
+        warning_placeholder: 可选的补充理由，以说明调整的情况。
       target_origin: 被举报账号的来源
       title: 举报
       unassign: 取消接管
+      unknown_action_msg: '未知操作：%{action}'
       unresolved: 未处理
       updated_at: 更新时间
       view_profile: 查看资料
@@ -942,6 +946,8 @@ zh-CN:
   auth:
     apply_for_account: 申请账号
     change_password: 密码
+    confirmations:
+      wrong_email_hint: 如果该电子邮件地址不正确，您可以在帐户设置中进行更改。
     delete_account: 删除帐户
     delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
     description:
