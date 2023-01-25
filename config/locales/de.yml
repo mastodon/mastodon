@@ -606,7 +606,7 @@ de:
         placeholder: Bitte beschreibe, welche Maßnahmen ergriffen wurden oder andere damit verbundene Aktualisierungen …
         title: Notizen
       notes_description_html: Notiz an dich und andere Moderator*innen hinterlassen
-      processed_msg: 'Bericht #%{id} erfolgreich verarbeitet'
+      processed_msg: 'Meldung #%{id} erfolgreich bearbeitet'
       quick_actions_description_html: 'Führe eine schnelle Aktion aus oder scrolle nach unten, um gemeldete Inhalte zu sehen:'
       remote_user_placeholder: das externe Profil von %{instance}
       reopen: Meldung wieder eröffnen
@@ -621,22 +621,22 @@ de:
       statuses_description_html: Störende Inhalte werden in der Kommunikation mit dem gemeldeten Konto zitiert
       summary:
         action_preambles:
-          delete_html: 'Sie sind im Begriff, einige Beiträge von <strong>@%{acct}</strong> zu <strong>entfernen</strong>. Das wären:'
-          mark_as_sensitive_html: 'Sie sind im Begriff, einige Beiträge von <strong>@%{acct}</strong> als <strong>sensitiv</strong> zu <strong>markieren</strong>. Das wären:'
-          silence_html: 'Sie sind im Begriff das Konto von <strong>@%{acct}</strong> zu <strong>limitieren</strong>. Das betrifft:'
-          suspend_html: 'Sie sind im Begriff das Konto von <strong>@%{acct}</strong> zu <strong>suspendieren</strong>. Das betrifft:'
+          delete_html: 'Du bist dabei, einige Beiträge von <strong>@%{acct}</strong> zu <strong>entfernen</strong>. Dies wird:'
+          mark_as_sensitive_html: 'Du bist dabei, einige Beiträge von <strong>@%{acct}</strong> mit einer <strong>Inhaltswarnung</strong> zu <strong>versehen</strong>. Dies wird:'
+          silence_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> <strong>einzuschränken</strong>. Dies wird:'
+          suspend_html: 'Du bist dabei, das Konto von <strong>@%{acct}</strong> zu <strong>sperren</strong>. Dies wird:'
         actions:
           delete_html: Die anstößigen Beiträge entfernen
-          mark_as_sensitive_html: Die Medien der anstößigen Beiträge als sensitiv markieren
-          silence_html: <strong>@%{acct}</strong>'s Reichweite stark begrenzen, indem das Profil und dessen Inhalte nur für Personen sichtbar gemacht werden, die ihm bereits folgen oder es manuell heraussuchen
-          suspend_html: Suspendiere <strong>@%{acct}</strong> um das Profil und dessen Inhalte auszublenden sowie Interaktionen damit zu unterbinden
-        close_report: 'Bericht #%{id} als erledigt markieren'
-        close_reports_html: Markiere <strong>alle</strong> Berichte gegen <strong>@%{acct}</strong> als gelöst
-        delete_data_html: Lösche <strong>@%{acct}</strong>'s Profil und Inhalte in 30 Tagen, es sei denn, sie werden in der Zwischenzeit entsperrt
+          mark_as_sensitive_html: Medien der anstößigen Beiträge mit einer Inhaltswarnung versehen
+          silence_html: Schränkt die Reichweite von <strong>@%{acct}</strong> stark ein, indem das Profil und dessen Inhalte nur für Personen sichtbar sind, die dem Profil bereits folgen oder es manuell aufrufen
+          suspend_html: <strong>@%{acct}</strong> sperren, sodass das Profil und dessen Inhalte nicht mehr zugänglich sind und keine Interaktion mehr möglich ist
+        close_report: 'Meldung #%{id} als erledigt markieren'
+        close_reports_html: <strong>Alle</strong> Meldungen gegen <strong>@%{acct}</strong> als erledigt markieren
+        delete_data_html: Das Profil und die Inhalte von <strong>@%{acct}</strong> werden in 30 Tagen gelöscht, es sei denn, sie werden in der Zwischenzeit entsperrt
         preview_preamble_html: "<strong>@%{acct}</strong> wird eine Warnung mit folgenden Inhalten erhalten:"
-        record_strike_html: Speichere eine Verwarnung gegen <strong>@%{acct}</strong> um bei zukünftigen Verletzungen dieses Kontos zu helfen
-        send_email_html: Schicke <strong>@%{acct}</strong> eine Warnungs-E-Mail
-        warning_placeholder: Optionale zusätzliche Argumentation für die Moderationsmaßnahme.
+        record_strike_html: Einen Verstoß gegen <strong>@%{acct}</strong> eintragen, um bei zukünftigen Verstößen desselben Kontos besser reagieren zu können
+        send_email_html: <strong>@%{acct}</strong> eine Warnung per E-Mail senden
+        warning_placeholder: Zusätzliche optionale Begründung für die Moderationsaktion.
       target_origin: Domain des gemeldeten Kontos
       title: Meldungen
       unassign: Zuweisung entfernen
