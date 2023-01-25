@@ -440,6 +440,7 @@ gl:
         private_comment_description_html: 'Para axudarche a lembrar de onde veñen os bloqueos importados, imos crealos engadindo o seguinte comentario privado: <q>%{comment}</q>'
         private_comment_template: Importada desde %{source} o %{date}
         title: Importar bloqueos de dominio
+      invalid_domain_block: 'Un ou varios dominios non se bloquearon debido ao seguintes erros: %{error}'
       new:
         title: Importar bloqueos de dominio
       no_file: Ningún ficheiro seleccionado
@@ -588,6 +589,7 @@ gl:
       comment:
         none: Ningún
       comment_description_html: 'Como información engadida, %{name} escribiu:'
+      confirm_action: Confirma a acción de moderación contra @%{acct}
       created_at: Denunciado
       delete_and_resolve: Eliminar publicacións
       forwarded: Reenviado
@@ -604,6 +606,7 @@ gl:
         placeholder: Describir que accións foron tomadas ou calquera outra novidade sobre esta denuncia...
         title: Notas
       notes_description_html: Ver e deixar unha nota para ti no futuro e outras moderadoras
+      processed_msg: 'Procesada correctamente a denuncia #%{id}'
       quick_actions_description_html: 'Toma unha acción rápida ou desprázate abaixo para ver o contido denunciado:'
       remote_user_placeholder: a usuaria remota desde %{instance}
       reopen: Reabrir denuncia
@@ -616,6 +619,9 @@ gl:
       status: Estado
       statuses: Contido denunciado
       statuses_description_html: O contido ofensivo será citado na comunicación coa conta denunciada
+      summary:
+        action_preambles:
+          delete_html: 'Vas <strong>eliminar</strong> algunha das publicacións de <strong>@%{acct}</strong>. Serán:'
       target_origin: Orixe da conta denunciada
       title: Denuncias
       unassign: Non asignar
