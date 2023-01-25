@@ -351,7 +351,7 @@ class FeedManager
   # @param [Integer] receiver_id
   # @param [Hash] crutches
   # @return [Boolean]
-  def filter_from_home?(status, receiver_id, crutches, timeline_type=:home)
+  def filter_from_home?(status, receiver_id, crutches, timeline_type = :home)
     return false if receiver_id == status.account_id
     return true  if status.reply? && (status.in_reply_to_id.nil? || status.in_reply_to_account_id.nil?)
     # hometown: exclusive list rules
