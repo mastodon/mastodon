@@ -456,6 +456,7 @@ sl:
         private_comment_description_html: 'Kot pomoč pri sledenju izvora uvoženih blokad bodo le-te ustvarjene z naslednjim zasebnim komentarjem: <q>%{comment}</q>'
         private_comment_template: Uvoženo iz %{source} %{date}
         title: Uvozi blokade domen
+      invalid_domain_block: 'Ena ali več blokad domen je bila preskočena zaradi naslednjih napak: %{error}'
       new:
         title: Uvozi blokade domen
       no_file: Nobena datoteka ni izbrana
@@ -645,8 +646,11 @@ sl:
         action_preambles:
           delete_html: 'Nekatere od objav uporabnika/ce <strong>@%{acct}</strong> boste <strong>odstranili</strong>. S tem boste:'
           mark_as_sensitive_html: 'Nekatere od objav uporabnika/ce <strong>@%{acct}</strong> boste <strong>označili</strong> kot <strong>občutljive</strong>. S tem boste:'
+          silence_html: 'Račun uporabnika/ce <strong>@%{acct}</strong> boste <strong>omejili</strong>. S tem boste:'
         actions:
           delete_html: Odstrani žaljive objave
+        delete_data_html: Izbriši profil in vsebine <strong>@%{acct}</strong> čez 30 dni, razen če suspenz v tem času ni preklican
+        preview_preamble_html: "Oseba <strong>@%{acct}</strong> bo prejela opozorilo z naslednjo vsebino:"
         send_email_html: Pošlji <strong>@%{acct}</strong> opozorilno e-sporočilo
       target_origin: Izvor prijavljenega računa
       title: Prijave
