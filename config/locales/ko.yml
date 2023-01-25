@@ -616,8 +616,15 @@ ko:
         actions:
           delete_html: 문제가 되는 게시물을 지웁니다
           mark_as_sensitive_html: 문제가 되는 게시물의 미디어를 민감함으로 표시합니다
+          silence_html: 이미 팔로우하고 있는 사람에게만 프로필을 보이게 하고 나머지 사람들에게는 수동으로 확인을 해야만 볼 수 있게 하여 <strong>@%{acct}</strong>의 도달 범위를 엄격하게 제한합니다.
+          suspend_html: <strong>@%{acct}</strong>의 계정을 정지합니다. 프로필과 콘텐츠가 사용 불가능하게 됩니다.
         close_report: '신고 #%{id}를 해결됨으로 표시합니다'
+        close_reports_html: <strong>@%{acct}</strong>에 대한 <strong>모든</strong> 신고를 해결됨으로 처리합니다
+        delete_data_html: <strong>@%{acct}</strong>의 프로필과 콘텐츠를 30일의 유예기간 이후에 삭제합니다
+        preview_preamble_html: "<strong>@%{acct}</strong>는 다음 내용의 경고를 받게 됩니다:"
+        record_strike_html: 향후 규칙위반에 대한 참고사항이 될 수 있도록 <strong>@%{acct}</strong>에 대한 처벌기록을 남깁니다
         send_email_html: <strong>@%{acct}</strong>에게 경고 메일을 보냅니다
+        warning_placeholder: 중재 결정에 대한 추가적인 이유.
       target_origin: 신고된 계정의 소속
       title: 신고
       unassign: 할당 해제
@@ -939,6 +946,8 @@ ko:
   auth:
     apply_for_account: 가입 요청하기
     change_password: 패스워드
+    confirmations:
+      wrong_email_hint: 만약 이메일 주소가 올바르지 않다면, 계정 설정에서 수정할 수 있습니다.
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     description:
