@@ -19,7 +19,7 @@ fi:
       following: Sinun täytyy seurata henkilöä jota haluat tukea
     posts:
       one: Julkaisu
-      other: Julkaisut
+      other: Viestit
     posts_tab_heading: Viestit
   admin:
     account_actions:
@@ -192,7 +192,7 @@ fi:
         destroy_email_domain_block: Poista sähköpostipalvelimen esto
         destroy_instance: Tyhjennä verkkotunnus
         destroy_ip_block: Poista IP-sääntö
-        destroy_status: Poista julkaisu
+        destroy_status: Poista viesti
         destroy_unavailable_domain: Poista ei-saatavilla oleva verkkotunnus
         destroy_user_role: Hävitä rooli
         disable_2fa_user: Poista kaksivaiheinen tunnistautuminen käytöstä
@@ -1328,9 +1328,9 @@ fi:
     poll:
       subject: Äänestys käyttäjältä %{name} on päättynyt
     reblog:
-      body: '%{name} buustasi tilaasi:'
-      subject: "%{name} boostasi tilaasi"
-      title: Uusi buustaus
+      body: '%{name} tehosti viestiäsi:'
+      subject: "%{name} tehosti viestiäsi"
+      title: Uusi tehostus
     status:
       subject: "%{name} julkaisi juuri"
     update:
@@ -1495,7 +1495,7 @@ fi:
       video:
         one: "%{count} video"
         other: "%{count} videota"
-    boosted_from_html: Tehostettu %{acct_link}
+    boosted_from_html: Tehostus lähteestä %{acct_link}
     content_warning: 'Sisältövaroitus: %{warning}'
     default_language: Sama kuin käyttöliittymän kieli
     disallowed_hashtags:
@@ -1510,7 +1510,7 @@ fi:
       direct: Viestejä, jotka ovat näkyvissä vain mainituille käyttäjille, ei voi kiinnittää
       limit: Olet jo kiinnittänyt suurimman mahdollisen määrän tuuttauksia
       ownership: Muiden tuuttauksia ei voi kiinnittää
-      reblog: Buustausta ei voi kiinnittää
+      reblog: Tehostusta ei voi kiinnittää
     poll:
       total_people:
         one: "%{count} henkilö"
@@ -1570,7 +1570,7 @@ fi:
     min_reblogs_hint: Ei poista yhtään viestiäsi, jota on tehostettu vähintään näin monta kertaa. Jätä tyhjäksi poistaaksesi viestejä riippumatta niiden tehosteiden määrästä
   stream_entries:
     pinned: Kiinnitetty tuuttaus
-    reblogged: buustasi
+    reblogged: tehosti
     sensitive_content: Arkaluontoista sisältöä
   strikes:
     errors:
