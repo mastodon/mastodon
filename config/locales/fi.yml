@@ -120,30 +120,30 @@ fi:
       remove_avatar: Poista profiilikuva
       remove_header: Poista otsakekuva
       removed_avatar_msg: Käyttäjän %{username} avatar-kuva poistettu onnistuneesti
-      removed_header_msg: Käyttäjän %{username} otsikkokuva poistettiin onnistuneesti
+      removed_header_msg: Käyttäjän %{username} otsakekuva poistettiin onnistuneesti
       resend_confirmation:
         already_confirmed: Tämä käyttäjä on jo vahvistettu
-        send: Lähetä varmistusviesti uudelleen
+        send: Lähetä vahvistusviesti uudelleen
         success: Vahvistusviesti onnistuneesti lähetetty!
       reset: Palauta
       reset_password: Palauta salasana
       resubscribe: Tilaa uudelleen
       role: Rooli
       search: Hae
-      search_same_email_domain: Muut käyttäjät, joilla on sama sähköpostiverkkotunnus
-      search_same_ip: Muut käyttäjät samalla IP-osoitteella
+      search_same_email_domain: Muut käyttäjät, joilla on sama sähköpostin verkkotunnus
+      search_same_ip: Muut käyttäjät, joilla on sama IP-osoite
       security_measures:
         only_password: Vain salasana
         password_and_2fa: Salasana ja kaksivaiheinen tunnistautuminen
-      sensitive: Pakotus arkaluontoiseksi
-      sensitized: Merkitty arkaluontoiseksi
+      sensitive: Pakotus arkaluonteiseksi
+      sensitized: Merkitty arkaluonteiseksi
       shared_inbox_url: Jaetun saapuvan postilaatikon osoite
       show:
         created_reports: Tämän tilin luomat raportit
         targeted_reports: Tästä tilistä tehdyt raportit
       silence: Hiljennä
       silenced: Mykistetty
-      statuses: Tilat
+      statuses: Viestit
       strikes: Aiemmat varoitukset
       subscribe: Tilaa
       suspend: Jäädytä
@@ -154,17 +154,17 @@ fi:
       unblock_email: Poista sähköpostiosoitteen esto
       unblocked_email_msg: Käyttäjän %{username} sähköpostiosoitteen esto kumottiin
       unconfirmed_email: Sähköpostia ei vahvistettu
-      undo_sensitized: Kumoa pakotus arkaluontoiseksi tiliksi
+      undo_sensitized: Kumoa pakotus arkaluonteiseksi tiliksi
       undo_silenced: Peru hiljennys
       undo_suspension: Peru jäähy
-      unsilenced_msg: '%{username} -tilin rajoituksen kumoaminen onnistui'
+      unsilenced_msg: Tilin %{username} rajoituksen kumoaminen onnistui
       unsubscribe: Lopeta tilaus
-      unsuspended_msg: '%{username} -tilin jäädytyksen kumoaminen onnistui'
+      unsuspended_msg: Tilin %{username} jäädytyksen kumoaminen onnistui
       username: Käyttäjätunnus
       view_domain: Näytä verkkotunnuksen yhteenveto
       warn: Varoita
       web: Verkko
-      whitelisted: Sallittu liittämiselle
+      whitelisted: Sallittu federaatioon
     action_logs:
       action_types:
         approve_appeal: Hyväksy valitus
@@ -177,9 +177,9 @@ fi:
         create_announcement: Luo ilmoitus
         create_canonical_email_block: Luo sähköpostin esto
         create_custom_emoji: Luo mukautettu emoji
-        create_domain_allow: Salli palvelin
-        create_domain_block: Estä palvelin
-        create_email_domain_block: Estä sähköpostipalvelin
+        create_domain_allow: Luo verkkotunnuksen salliminen
+        create_domain_block: Luo verkkotunnuksen esto
+        create_email_domain_block: Luo sähköpostin verkkotunnuksen esto
         create_ip_block: Luo IP-sääntö
         create_unavailable_domain: Luo ei-saatavilla oleva verkkotunnus
         create_user_role: Luo rooli
@@ -187,9 +187,9 @@ fi:
         destroy_announcement: Poista ilmoitus
         destroy_canonical_email_block: Poista sähköpostin esto
         destroy_custom_emoji: Poista mukautettu emoji
-        destroy_domain_allow: Salli verkkotunnuksen poisto
+        destroy_domain_allow: Poista verkkotunnuksen salliminen
         destroy_domain_block: Poista verkkotunnuksen esto
-        destroy_email_domain_block: Poista sähköpostipalvelimen esto
+        destroy_email_domain_block: Poista sähköpostin verkkotunnuksen esto
         destroy_instance: Tyhjennä verkkotunnus
         destroy_ip_block: Poista IP-sääntö
         destroy_status: Poista viesti
