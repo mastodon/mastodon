@@ -611,10 +611,19 @@ eu:
         actions:
           delete_html: Bidalketa iraingarriak ezabatu
           mark_as_sensitive_html: Bidalketa iraingarrien media hunkigarri gisa markatu
-          silence_html: <strong>@%{acct}</strong> kontuaren irismena gogorki mugatu, beraren profila eta edukia soilik bere jarraitzaileentzat eta espresuki profila aurkitzen dutenentzat ikusgarri egiten delarik
+          silence_html: <strong>@%{acct}</strong> kontuaren irismena gogorki mugatu, beraren profila eta edukia soilik bere jarraitzaileentzat eta espresuki profila aurkitzen dutenentzat ikusgarri egiten direlarik
+          suspend_html: <strong>@%{acct}</strong> kontua bertan behera utzi, bere profila eta edukia iritsezin eta elkarreragin ezina izango direlarik
+        close_report: '#%{id} txostena ebatzitako gisa markatu'
+        close_reports_html: <strong>@%{acct}</strong> kontuaren txosten <strong>guztiak</strong> ebatzitako gisa markatu
+        delete_data_html: <strong>@%{acct}</strong> kontuaren profila eta edukia, gaurtik hasita, 30 egunez ezabatu, ez bada bitartean kontua berraktibatzen
+        preview_preamble_html: "<strong>@%{acct}</strong> kontuak ondorengo edukia duen abisu bat jasoko du:"
+        record_strike_html: <strong>@%{acct}</strong> kontuak eginiko eraso bat erregistratu, kontu honek etorkizunean egin ditzakeen erasoen aurrean erabakiak hartzen laguntzeko
+        send_email_html: <strong>@%{acct}</strong> kontuari abisu bat posta-elektronikoz bidali
+        warning_placeholder: Moderazio-ekintzarako aukerazkoak diren arrazoiketa gehigarriak.
       target_origin: Salatutako kontuaren jatorria
       title: Salaketak
       unassign: Kendu esleipena
+      unknown_action_msg: 'Ekintza ezezaguna: %{action}'
       unresolved: Konpondu gabea
       updated_at: Eguneratua
       view_profile: Ikusi profila
@@ -932,6 +941,8 @@ eu:
     your_token: Zure sarbide token-a
   auth:
     change_password: Pasahitza
+    confirmations:
+      wrong_email_hint: Helbide-elektroniko hori zuzena ez bada, kontuaren ezarpenetan alda dezakezu.
     delete_account: Ezabatu kontua
     delete_account_html: Kontua ezabatu nahi baduzu, <a href="%{path}">jarraitu hemen</a>. Berrestea eskatuko zaizu.
     description:
