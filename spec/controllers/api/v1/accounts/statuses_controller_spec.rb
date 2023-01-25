@@ -29,13 +29,21 @@ describe Api::V1::Accounts::StatusesController do
 
     context 'with exclude replies' do
       before do
+        user.account.statuses.destroy_all
+        
+        Fabricate(:status, account: user.account)
         Fabricate(:status, account: user.account, thread: Fabricate(:status))
+
+        get :index, params: { account_id: user.account.id, exclude_replies: true }
       end
 
       it 'returns http success' do
-        get :index, params: { account_id: user.account.id, exclude_replies: true }
-
         expect(response).to have_http_status(200)
+      end
+
+      it 'returns only posts' do
+        json = body_as_json
+        expect(json.count).to eq 1
       end
     end
 
