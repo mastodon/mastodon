@@ -428,6 +428,7 @@ eu:
     export_domain_allows:
       no_file: Ez da fitxategirik hautatu
     export_domain_blocks:
+      invalid_domain_block: 'Domeinu-blokeatze bat edo gehiago ekidin dira ondorengo errorearen edo erroreengatik: %{error}'
       no_file: Ez da fitxategirik hautatu
     follow_recommendations:
       description_html: "<strong>Jarraitzeko gomendioek erabiltzaile berriei eduki interesgarria azkar aurkitzen laguntzen diete</strong>. Erabiltzaile batek jarraitzeko gomendio pertsonalizatuak jasotzeko adina interakzio izan ez duenean, kontu hauek gomendatzen zaizkio. Egunero birkalkulatzen dira hizkuntza bakoitzerako, azken aldian parte-hartze handiena izan duten eta jarraitzaile lokal gehien dituzten kontuak nahasiz."
@@ -571,6 +572,7 @@ eu:
       comment:
         none: Bat ere ez
       comment_description_html: 'Informazio gehiago emateko, %{name} idatzi:'
+      confirm_action: '@%{acct} kontuaren aurkako moderazio-ekintza baieztatu'
       created_at: Salatua
       delete_and_resolve: Ezabatu bidalketak
       forwarded: Birbidalia
@@ -587,6 +589,7 @@ eu:
         placeholder: Azaldu hartutako neurriak, edo erlazioa duten bestelako berriak...
         title: Oharrak
       notes_description_html: Ikusi eta idatzi oharrak beste moderatzaileentzat eta zuretzat etorkizunerako
+      processed_msg: '#%{id} txostena ongi prozesatu da'
       quick_actions_description_html: 'Hartu ekintza azkar bat edo korritu behera salatutako edukia ikusteko:'
       remote_user_placeholder: '%{instance} instantziako urruneko erabiltzailea'
       reopen: Berrireki salaketa
@@ -599,6 +602,16 @@ eu:
       status: Mezua
       statuses: Salatutako edukia
       statuses_description_html: Salatutako edukia salatutako kontuarekiko komunikazioan aipatuko da
+      summary:
+        action_preambles:
+          delete_html: '<strong>@%{acct}</strong> kontuaren bidalketa guztiak <strong>ezabatzera</strong> zoaz. Honek hau suposatuko du:'
+          mark_as_sensitive_html: '<strong>%{acct}</strong> kontuaren bidalketa guztiak <strong>hunkigarri</strong> gisa <strong>markatzera</strong> zoaz. Honek hau suposatuko du:'
+          silence_html: '<strong>@%{acct}</strong> kontua <strong>mugatzera</strong> zoaz. Honek hau suposatuko du:'
+          suspend_html: '<strong>@%{acct}</strong> kontua <strong>bertan behera uztera</strong> zoaz. Honek hau suposatuko du:'
+        actions:
+          delete_html: Bidalketa iraingarriak ezabatu
+          mark_as_sensitive_html: Bidalketa iraingarrien media hunkigarri gisa markatu
+          silence_html: <strong>@%{acct}</strong> kontuaren irismena gogorki mugatu, beraren profila eta edukia soilik bere jarraitzaileentzat eta espresuki profila aurkitzen dutenentzat ikusgarri egiten delarik
       target_origin: Salatutako kontuaren jatorria
       title: Salaketak
       unassign: Kendu esleipena
