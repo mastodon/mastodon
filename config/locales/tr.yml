@@ -619,9 +619,24 @@ tr:
       status: Durum
       statuses: Bildirilen içerik
       statuses_description_html: İncitici içerik, bildirilen hesapla iletişimde alıntılanacaktır
+      summary:
+        action_preambles:
+          delete_html: '<strong>@%{acct}</strong> hesabının bazı gönderilerini <strong>kaldıracaksınız</strong>, böylece:'
+          mark_as_sensitive_html: '<strong>@%{acct}</strong> hesabının bazı gönderilerini <strong>hassas</strong> olarak <strong>işaretleyeceksiniz</strong>, böylece:'
+          silence_html: '<strong>@%{acct}</strong> hesabını <strong>sınırlayacaksınız</strong>, böylece:'
+          suspend_html: '<strong>@%{acct}</strong> hesabını <strong>askıya alacaksınız</strong>, böylece:'
+        actions:
+          delete_html: Kuralı ihlal eden gönderileri kaldır
+          mark_as_sensitive_html: Kuralı ihlal eden gönderilerin medyasını hassas olarak işaretle
+          suspend_html: <strong>@%{acct}</strong> hesabını askıya al, profilini ve içeriğini erişilmez ve etkileşimi imkansız yap
+        close_report: '#%{id} bildirimini çözüldü olarak işaretle'
+        close_reports_html: <strong>@%{acct}</strong> hesabına yönelik <strong>tüm</strong> bildirimleri çözüldü olarak işaretle
+        delete_data_html: İlgili sürede askıdan alınması kaldırılmazsa <strong>@%{acct}</strong> hesabının profilini ve içeriğini şu andan itibaren 30 gün içinde sil
+        preview_preamble_html: "<strong>@%{acct}</strong> aşağıdaki içerikle bir uyarı alacaktır:"
       target_origin: Şikayet edilen hesabın kökeni
       title: Şikayetler
       unassign: Atamayı geri al
+      unknown_action_msg: 'Bilinmeyen eylem: %{action}'
       unresolved: Giderilmedi
       updated_at: Güncellendi
       view_profile: Profili görüntüle
@@ -945,6 +960,8 @@ tr:
   auth:
     apply_for_account: Bir hesap talep et
     change_password: Parola
+    confirmations:
+      wrong_email_hint: Eğer bu e-posta adresi doğru değilse, hesap ayarlarında değiştirebilirsiniz.
     delete_account: Hesabı sil
     delete_account_html: Hesabını silmek istersen, <a href="%{path}">buradan devam edebilirsin</a>. Onay istenir.
     description:
