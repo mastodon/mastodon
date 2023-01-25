@@ -440,6 +440,7 @@ hu:
         private_comment_description_html: 'Az importált tiltások forrásának könnyebb követése érdekében, az importált tiltások a következő privát megjegyzéssel lesznek létrehozva: <q>%{comment}</q>'
         private_comment_template: 'Innen importálva: %{source}, ekkor: %{date}'
         title: Domain tiltások importálása
+      invalid_domain_block: 'Egy vagy több domain letiltást kihagytunk a következő hiba(ák) miatt: %{error}'
       new:
         title: Domain tiltások importálása
       no_file: Nincs fájl kiválasztva
@@ -588,6 +589,7 @@ hu:
       comment:
         none: Egyik sem
       comment_description_html: 'Hogy további információkat adjon, %{name} ezt írta:'
+      confirm_action: Moderációs művelet jóváhagyása @%{acct} fiókon
       created_at: Jelentve
       delete_and_resolve: Bejegyzések törlése
       forwarded: Továbbítva
@@ -604,6 +606,7 @@ hu:
         placeholder: Jegyezd le, mi tettünk az ügy érdekében, vagy bármilyen változást...
         title: Megjegyzések
       notes_description_html: Megtekintés, és megjegyzések hagyása más moderátoroknak
+      processed_msg: 'Bejelentés #%{id} sikeresen feldolgozva'
       quick_actions_description_html: 'Hozz egy gyors intézkedést, vagy görgess le a bejelentett tartalomhoz:'
       remote_user_placeholder: 'a távoli felhasználó innen: %{instance}'
       reopen: Bejelentés újranyitása
