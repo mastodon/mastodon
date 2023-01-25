@@ -432,6 +432,7 @@ zh-CN:
         private_comment_description_html: '为了帮助您追踪域名列表来源，导入的域名列表将被添加如下的私人注释：<q>%{comment}</q>'
         private_comment_template: 从 %{source} 导入 %{date}
         title: 导入域名列表
+      invalid_domain_block: '由于以下错误，一个或多个域名屏蔽被跳过： %{error}'
       new:
         title: 导入域名列表
       no_file: 没有选择文件
@@ -576,6 +577,7 @@ zh-CN:
       comment:
         none: 没有
       comment_description_html: '%{name} 补充道：'
+      confirm_action: 确认对 @%{acct} 的管理操作
       created_at: 举报时间
       delete_and_resolve: 删除嘟文
       forwarded: 已转发
@@ -592,6 +594,7 @@ zh-CN:
         placeholder: 描述已经执行的操作，或其他任何相关的跟进情况…
         title: 备注
       notes_description_html: 查看备注或向其他监察员留言
+      processed_msg: '举报 #%{id} 处理成功'
       quick_actions_description_html: '快捷选择操作或向下滚动以查看举报内容：'
       remote_user_placeholder: 来自 %{instance} 的远程实例用户
       reopen: 重开举报
@@ -604,6 +607,21 @@ zh-CN:
       status: 状态
       statuses: 被举报内容
       statuses_description_html: 在与该账号的通信中将引用违规内容
+      summary:
+        action_preambles:
+          delete_html: '您即将<strong>删除</strong> <strong>@%{acct}</strong> 的一些帖子。 这将：'
+          mark_as_sensitive_html: '您即将 <strong>标记</strong> <strong>@%{acct}</strong> 的帖一些子为 <strong>敏感</strong>。这将：'
+          silence_html: '您即将<strong>限制</strong> <strong>@%{acct}</strong> 的帐户。 这将：'
+          suspend_html: '您即将<strong>暂停</strong> <strong>@%{acct}</strong> 的帐户。 这将：'
+        actions:
+          delete_html: 删除违规帖子
+          mark_as_sensitive_html: 将违规帖子的媒体标记为敏感
+          silence_html: 严格限制 <strong>@%{acct}</strong> 的影响力，方法是让他们的个人资料和内容仅对已经关注他们的人可见，或手动查找其个人资料时
+          suspend_html: 暂停 <strong>@%{acct}</strong>，使他们的个人资料和内容无法访问，也无法与之互动
+        close_report: '将报告 #%{id} 标记为已解决'
+        close_reports_html: 将针对 <strong>@%{acct}</strong> 的<strong>所有</strong> 报告标记为已解决
+        delete_data_html: 从现在起 30 天后删除 <strong>@%{acct}</strong> 的个人资料和内容，除非他们同时解除暂停。
+        preview_preamble_html: "<strong>@%{acct}</strong> 将收到包含以下内容的警告："
       target_origin: 被举报账号的来源
       title: 举报
       unassign: 取消接管
