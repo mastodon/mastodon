@@ -440,6 +440,7 @@ da:
         private_comment_description_html: 'For at man lettere kan holde styr på, hvorfra importerede blokeringer kommer, oprettes disse med flg. private kommentar: <q>%{comment}</q>'
         private_comment_template: Importeret fra %{source} d. %{date}
         title: Import af domæneblokeringer
+      invalid_domain_block: 'En eller flere domæneblokke blev oversprunget grundet flg. fejl: %{error}'
       new:
         title: Import af domæneblokeringer
       no_file: Ingen fill udvalgt
@@ -585,6 +586,7 @@ da:
       comment:
         none: Ingen
       comment_description_html: 'For at give mere information, skrev %{name}:'
+      confirm_action: Bekræft moderatorhandling for %{acct}
       created_at: Anmeldt
       delete_and_resolve: Slet indlæg
       forwarded: Videresendt
@@ -601,6 +603,7 @@ da:
         placeholder: Beskriv udførte foranstaltninger eller andre relevante opdateringer...
         title: Notater
       notes_description_html: Se og skriv notater til andre moderatorer og dit fremtid selv
+      processed_msg: 'Anmeldelse #%{id} er blev behandlet'
       quick_actions_description_html: 'Træf en hurtig foranstaltning eller rul ned for at se anmeldt indhold:'
       remote_user_placeholder: fjernbrugeren fra %{instance}
       reopen: Genåbn anmeldelse
@@ -613,6 +616,21 @@ da:
       status: Status
       statuses: Anmeld indhold
       statuses_description_html: Krænkende indhold citeres i kommunikationen med den anmeldte konto
+      summary:
+        action_preambles:
+          delete_html: 'Du er ved at <strong>fjerne</strong> nogle indlæg fra <strong>@%{acct}</strong>. Dette vil:'
+          mark_as_sensitive_html: 'Du er ved at <strong>markere</strong> nogle indlæg fra <strong>@%{acct}</strong> som <strong>sensitive</strong>. Dette vil:'
+          silence_html: 'Du er ved at <strong>begrænse</strong> nogle indlæg fra kontoen <strong>@%{acct}</strong>. Dette vil:'
+          suspend_html: 'Du er ved at <strong>suspendere</strong> kontoen <strong>@%{acct}</strong>. Dette vil:'
+        actions:
+          delete_html: Fjern de overtrædende indlæg
+          mark_as_sensitive_html: Markér medier i overtrædende indlæg som sensitive
+          silence_html: Begræns kraftigt rækkeviden for <strong>@%{acct}</strong> ved at gøre vedkommendes profil og indhold synligt alene for personer, som allerede er følgere eller manuelt slår profilen op
+          suspend_html: Suspendér <strong>@%{acct}</strong>, hvilket gør vedkommendes profil og indhold utilgængeligt og umuligt at interagere med
+        close_report: 'Markér anmeldelsen #%{id} som løst'
+        close_reports_html: Markér <strong>alle</strong> anmeldelser af <strong>@%{acct}</strong> som løst
+        delete_data_html: Slet profil og indhold for <strong>@%{acct}</strong> 30 dage fra nu medmindre suspenderingen af vedkommende i mellemtiden fjernes
+        preview_preamble_html: "<strong>@%{acct}</strong> vil modtage en advarsel med flg. indhold:"
       target_origin: Anmeldte kontos oprindelse
       title: Anmeldelser
       unassign: Fjern tildeling
