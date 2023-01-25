@@ -432,6 +432,7 @@ ko:
         private_comment_description_html: '어디서 불러온 것인지 추적을 원활하게 하기 위해서, 불러온 차단들은 다음과 같은 비공개 주석과 함께 생성될 것입니다: <q>%{comment}</q>'
         private_comment_template: '%{date}에 %{source}에서 불러옴'
         title: 도메인 차단 불러오기
+      invalid_domain_block: '한 개 이상의 도메인 차단이 생략되었습니다. 에러는 다음과 같습니다: %{error}'
       new:
         title: 도메인 차단 불러오기
       no_file: 선택된 파일이 없습니다
@@ -576,6 +577,7 @@ ko:
       comment:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
+      confirm_action: '@%{acct}에 취할 중재 결정에 대한 확인'
       created_at: 리포트 시각
       delete_and_resolve: 게시물 삭제
       forwarded: 전달됨
@@ -592,6 +594,7 @@ ko:
         placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
         title: 기록
       notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
+      processed_msg: '신고 #%{id}가 정상적으로 처리되었습니다'
       quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
       remote_user_placeholder: '%{instance}의 리모트 사용자'
       reopen: 리포트 다시 열기
@@ -604,9 +607,21 @@ ko:
       status: 상태
       statuses: 신고된 콘텐츠
       statuses_description_html: 문제가 되는 콘텐츠는 신고된 계정에게 인용되어 전달됩니다
+      summary:
+        action_preambles:
+          delete_html: '<strong>@%{acct}</strong>의 게시물 중 일부를 <strong>지우려고</strong> 합니다. 이것은 아래의 행동이 수반됩니다:'
+          mark_as_sensitive_html: '<strong>@%{acct}</strong>의 게시물 중 일부를 <strong>민감함으로 표시</strong> 합니다. 이것은 아래의 행동이 수반됩니다:'
+          silence_html: '<strong>@%{acct}</strong>의 계정을 <strong>제한</strong>하려고 합니다. 이것은 아래의 행동이 수반됩니다:'
+          suspend_html: '<strong>@%{acct}</strong>의 계정을 <strong>정지</strong>하려고 합니다. 이것은 아래의 행동이 수반됩니다:'
+        actions:
+          delete_html: 문제가 되는 게시물을 지웁니다
+          mark_as_sensitive_html: 문제가 되는 게시물의 미디어를 민감함으로 표시합니다
+        close_report: '신고 #%{id}를 해결됨으로 표시합니다'
+        send_email_html: <strong>@%{acct}</strong>에게 경고 메일을 보냅니다
       target_origin: 신고된 계정의 소속
       title: 신고
       unassign: 할당 해제
+      unknown_action_msg: '알 수 없는 액션: %{action}'
       unresolved: 미해결
       updated_at: 업데이트 시각
       view_profile: 프로필 보기
