@@ -619,6 +619,21 @@ et:
       status: Olek
       statuses: Raporteeritud sisu
       statuses_description_html: Sobimatu sisu kaasatakse suhtlusse raporteeritud kontoga
+      summary:
+        action_preambles:
+          delete_html: 'Oled <strong>eemaldamas</strong> mõnesid <strong>@%{acct}</strong> postitusi. Selle tulemusena:'
+          mark_as_sensitive_html: 'Oled <strong>märkimas</strong> mõnesid <strong>@%{acct}</strong> postitusi <strong>tundlikuks</strong>. Selle tulemusena:'
+          silence_html: 'Oled <strong>määramas piirangut</strong> kontole <strong>@%{acct}</strong>. Selle tulemusena:'
+          suspend_html: 'Oled <strong>peatamas</strong> kontot <strong>@%{acct}</strong>. Selle tulemusena:'
+        actions:
+          delete_html: Solvava postituse eemaldamine
+          mark_as_sensitive_html: Solvava postituse meedia märkimine tundlikuks
+          silence_html: <strong>@%{acct}</strong> ulatuse tugev piiramine muutes tema profiili ja sisu nähtavaks ainult neile, kes teda juba jälgivad, või neile, kes just tema profiili üles otsivad
+          suspend_html: <strong>@%{acct}</strong> peatamine, muutes tema profiili ja sisu mitteligipääsetavaks ning mitteinterakteerutavaks
+        close_report: 'Raporti #%{id} lahendatuks märkimine'
+        close_reports_html: Märgi <strong>kõik</strong> raportid <strong>@%{acct}</strong> vastu lahendatuks
+        delete_data_html: Kustuta tänasest 30 päeva pärast kasutaja <strong>@%{acct}</strong> profiil ja sisu, kui vahepeal tema kontot ei taastata
+        preview_preamble_html: "<strong>@%{acct}</strong> saab järgmise sisuga hoiatuse:"
       target_origin: Raporteeritud konto päritolu
       title: Teavitused
       unassign: Eemalda määramine
