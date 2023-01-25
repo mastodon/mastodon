@@ -141,8 +141,8 @@ it:
       show:
         created_reports: Rapporti creati
         targeted_reports: Segnalato da altri
-      silence: Limita
-      silenced: Limitato
+      silence: Silenzia
+      silenced: Silenziato
       statuses: Toot
       strikes: Provvedimenti precedenti
       subscribe: Iscriviti
@@ -155,7 +155,7 @@ it:
       unblocked_email_msg: Indirizzo email di %{username} sbloccato correttamente
       unconfirmed_email: Email non confermata
       undo_sensitized: Annulla sensibile
-      undo_silenced: Annulla limitazione
+      undo_silenced: Rimuovi silenzia
       undo_suspension: Annulla sospensione
       unsilenced_msg: Limitazione del profilo di %{username} annullata correttamente
       unsubscribe: Disiscriviti
@@ -588,6 +588,7 @@ it:
       comment:
         none: Nessuno
       comment_description_html: 'Per fornire ulteriori informazioni, %{name} ha scritto:'
+      confirm_action: Conferma l'azione di moderazione contro @%{acct}
       created_at: Segnalato
       delete_and_resolve: Cancella post
       forwarded: Inoltrato
@@ -604,6 +605,7 @@ it:
         placeholder: Descrivi quali azioni sono state intraprese, o ogni altro aggiornamento rilevante...
         title: Note
       notes_description_html: Visualizza e lascia note ad altri moderatori e al tuo futuro sé
+      processed_msg: 'Segnalazione #%{id} elaborata correttamente'
       quick_actions_description_html: 'Fai un''azione rapida o scorri verso il basso per vedere il contenuto segnalato:'
       remote_user_placeholder: l'utente remoto da %{instance}
       reopen: Riapri rapporto
@@ -616,6 +618,18 @@ it:
       status: Stato
       statuses: Contenuto segnalato
       statuses_description_html: Il contenuto offensivo sarà citato nella comunicazione con l'account segnalato
+      summary:
+        action_preambles:
+          delete_html: 'Stai per <strong>rimuovere</strong> alcuni post di <strong>@%{acct}</strong>. Questo conseguirà:'
+          mark_as_sensitive_html: 'Stai per <strong>contrassegnare</strong> alcuni post di <strong>@%{acct}</strong> come <strong>sensibili</strong>. Questo conseguirà:'
+          silence_html: 'Stai per <strong>limitare</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
+          suspend_html: 'Stai per <strong>sospendere</strong> l''account di <strong>@%{acct}</strong>. Questo conseguirà:'
+        actions:
+          delete_html: Rimuovi i post offensivi
+          mark_as_sensitive_html: Contrassegna i file multimediali dei post offensivi come sensibili
+          suspend_html: Sospendere <strong>@%{acct}</strong>, rendendo il suo profilo e i suoi contenuti inaccessibili e impossibilitandone l'interazione
+        close_report: 'Contrassegna la segnalazione #%{id} come risolta'
+        close_reports_html: Contrassegna <strong>tutte</strong> le segnalazioni contro <strong>@%{acct}</strong> come risolte
       target_origin: Origine dell'account segnalato
       title: Rapporti
       unassign: Non assegnare
