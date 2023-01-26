@@ -27,6 +27,14 @@ RSpec.describe AppSignUpService, type: :service do
       expect(user.confirmed?).to be false
     end
 
+    it 'creates a confirmed user when the confirmed param is true' do
+      access_token = subject.call(app, remote_ip, good_params.merge(confirmed: true))
+      expect(access_token).to_not be_nil
+      user = User.find_by(id: access_token.resource_owner_id)
+      expect(user).to_not be_nil
+      expect(user.confirmed?).to be true
+    end
+
     it 'creates access token with the app\'s scopes' do
       access_token = subject.call(app, remote_ip, good_params)
       expect(access_token).to_not be_nil
