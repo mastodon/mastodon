@@ -624,9 +624,22 @@ hu:
           delete_html: 'Arra készülsz, hogy <strong>eltávolítsd</strong> <strong>@%{acct}</strong> néhány bejegyzését. Ez a következőket okozza:'
           mark_as_sensitive_html: 'Arra készülsz, hogy <strong>érzékenynek jelöld</strong> <strong>@%{acct}</strong> néhány tartalmát. Ez a következőket okozza:'
           silence_html: 'Arra készülsz, hogy <strong>korlátozd</strong> <strong>@%{acct}</strong> fiókját. Ez a következőket okozza:'
+          suspend_html: 'Arra készülsz, hogy <strong>felfüggeszd</strong> <strong>@%{acct}</strong> fiókját. Ez a következőket okozza:'
+        actions:
+          delete_html: Sértő bejegyzések eltávolítása
+          mark_as_sensitive_html: Sértő bejegyzések médiatartalmainak érzékenyként történő megjelölése
+          silence_html: <strong>@%{acct}</strong> fiók elérésének jelentős korlátozása azzal, hogy ennek profilja és tartalmai csak olyanoknak legyen látható, akik követik vagy manuálisan rákeresnek
+          suspend_html: <strong>@%{acct}</strong> felfüggesztése a profil és tartalmainak elérhetetlenné tételével, a fiókkal való interakció ellehetetlenítésével
+        close_report: 'Bejelentés #%{id} megjelölése megoldottként'
+        close_reports_html: <strong>Minden</strong> <strong>@%{acct}</strong> ellen tett bejelentés megjelölése megoldottként
+        delete_data_html: <strong>@%{acct}</strong> profiljának és tartalmainak törlése 30 nap múlva, hacsak addig nem oldják fel a felfüggesztést
+        preview_preamble_html: "<strong>@%{acct}</strong> a következő tartalommal fog figyelmeztetést kapni:"
+        send_email_html: Figyelmeztető email küldése <strong>@%{acct}</strong> fiók részére
+        warning_placeholder: Opcionális kiegészítő indoklás a moderációs művelethez.
       target_origin: A jelentett fiók eredete
       title: Bejelentések
       unassign: Hozzárendelés törlése
+      unknown_action_msg: 'Ismeretlen művelet: %{action}'
       unresolved: Megoldatlan
       updated_at: Frissítve
       view_profile: Profil megtekintése
@@ -950,6 +963,8 @@ hu:
   auth:
     apply_for_account: Fiók kérése
     change_password: Jelszó
+    confirmations:
+      wrong_email_hint: Ha az emailcím nem helyes, a fiókbeállításokban megváltoztathatod.
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     description:
