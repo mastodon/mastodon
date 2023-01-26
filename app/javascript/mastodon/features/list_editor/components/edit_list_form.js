@@ -67,7 +67,7 @@ class ListForm extends React.PureComponent {
 
         <label htmlFor='is-exclusive-checkbox'>
           <Toggle className='is-exclusive-checkbox' defaultChecked={isExclusive} onChange={this.handleToggle} />
-          <FormattedMessage id='lists.is-exclusive' defaultMessage='Exclusive?' />
+          <FormattedMessage id='lists.exclusive' defaultMessage='Exclusive?' />
         </label>
 
         <IconButton
