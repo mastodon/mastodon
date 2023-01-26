@@ -70,7 +70,8 @@ defaults: &defaults
   show_domain_blocks: 'disabled'
   show_domain_blocks_rationale: 'disabled'
   require_invite_text: false
-  backups_retention_period: 7
+  # Set backup rentention intervall
+  backups_retention_period: 1
 
 development:
   <<: *defaults
