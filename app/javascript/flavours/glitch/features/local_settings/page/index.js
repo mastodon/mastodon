@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { defineMessages, FormattedMessage, injectIntl } from 'react-intl';
 
 //  Our imports
-import { expandSpoilers, disableSwiping } from 'flavours/glitch/initial_state';
+import { expandSpoilers } from 'flavours/glitch/initial_state';
 import { preferenceLink } from 'flavours/glitch/utils/backend_links';
 import LocalSettingsPageItem from './item';
 import DeprecatedLocalSettingsPageItem from './deprecated_item';
@@ -405,6 +405,18 @@ class LocalSettingsPage extends React.PureComponent {
             dependsOnNot={[['collapsed', 'auto', 'all']]}
           >
             <FormattedMessage id='settings.auto_collapse_media' defaultMessage='Toots with media' />
+          </LocalSettingsPageItem>
+          <LocalSettingsPageItem
+            settings={settings}
+            item={['collapsed', 'auto', 'height']}
+            id='mastodon-settings--collapsed-auto-height'
+            placeholder='400'
+            onChange={onChange}
+            dependsOn={[['collapsed', 'enabled']]}
+            dependsOnNot={[['collapsed', 'auto', 'all']]}
+            inputProps={{type: 'number', min: '200', max: '999'}}
+          >
+            <FormattedMessage id='settings.auto_collapse_height' defaultMessage='Height (in pixels) for a toot to be considered lengthy' />
           </LocalSettingsPageItem>
         </section>
         <section>
