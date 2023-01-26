@@ -628,6 +628,7 @@ pl:
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
+      processed_msg: 'Raport #%{id} został pomyślnie przetworzony'
       quick_actions_description_html: 'Wykonaj szybkie działanie lub przewiń w dół, aby zobaczyć zgłoszoną zawartość:'
       remote_user_placeholder: zdalny użytkownik z %{instance}
       reopen: Otwórz ponownie
@@ -640,6 +641,15 @@ pl:
       status: Stan
       statuses: Zgłoszona treść
       statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
+      summary:
+        action_preambles:
+          delete_html: 'Zamierzasz <strong>usunąć</strong> niektóre posty <strong>@%{acct}</strong>. To spowoduje:'
+          mark_as_sensitive_html: 'Zamierzasz <strong>oznaczyć</strong> niektóre posty <strong>@%{acct}</strong> jako <strong>wrażliwe</strong>. To spowoduje:'
+          silence_html: 'Zamierzasz <strong>ograniczyć</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
+          suspend_html: 'Zamierzasz <strong>zawiesić</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
+        actions:
+          delete_html: Usuń obrażające posty
+          mark_as_sensitive_html: Oznacz obraźliwe media postów jako wrażliwe
       target_origin: Pochodzenie zgłaszanego konta
       title: Zgłoszenia
       unassign: Cofnij przypisanie
