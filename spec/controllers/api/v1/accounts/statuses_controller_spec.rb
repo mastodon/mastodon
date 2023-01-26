@@ -28,14 +28,24 @@ describe Api::V1::Accounts::StatusesController do
     end
 
     context 'with exclude replies' do
+      let!(:older_statuses) { user.account.statuses.destroy_all }
+      let!(:status) { Fabricate(:status, account: user.account) }
+      let!(:status_reply) { Fabricate(:status, account: user.account, thread: Fabricate(:status)) }
+      let!(:status_self_reply) { Fabricate(:status, account: user.account, thread: status) }
+
       before do
-        Fabricate(:status, account: user.account, thread: Fabricate(:status))
+        get :index, params: { account_id: user.account.id, exclude_replies: true }
       end
 
       it 'returns http success' do
-        get :index, params: { account_id: user.account.id, exclude_replies: true }
-
         expect(response).to have_http_status(200)
+      end
+
+      it 'returns posts along with self replies' do
+        json = body_as_json
+        post_ids = json.map { |item| item[:id].to_i }.sort
+        
+        expect(post_ids).to eq [status.id, status_self_reply.id]
       end
     end
 
