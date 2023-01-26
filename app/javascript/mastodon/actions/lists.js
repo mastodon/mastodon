@@ -11,7 +11,6 @@ export const LISTS_FETCH_SUCCESS = 'LISTS_FETCH_SUCCESS';
 export const LISTS_FETCH_FAIL    = 'LISTS_FETCH_FAIL';
 
 export const LIST_EDITOR_TITLE_CHANGE        = 'LIST_EDITOR_TITLE_CHANGE';
-export const LIST_EDITOR_IS_EXCLUSIVE_CHANGE = 'LIST_EDITOR_IS_EXCLUSIVE_CHANGE';
 export const LIST_EDITOR_RESET               = 'LIST_EDITOR_RESET';
 export const LIST_EDITOR_SETUP               = 'LIST_EDITOR_SETUP';
 
@@ -101,14 +100,13 @@ export const fetchListsFail = error => ({
 });
 
 export const submitListEditor = shouldReset => (dispatch, getState) => {
-  const listId      = getState().getIn(['listEditor', 'listId']);
-  const title       = getState().getIn(['listEditor', 'title']);
-  const isExclusive = getState().getIn(['listEditor', 'isExclusive']);
+  const listId = getState().getIn(['listEditor', 'listId']);
+  const title  = getState().getIn(['listEditor', 'title']);
 
   if (listId === null) {
     dispatch(createList(title, shouldReset));
   } else {
-    dispatch(updateList(listId, title, shouldReset, isExclusive));
+    dispatch(updateList(listId, title, shouldReset));
   }
 };
 
@@ -123,11 +121,6 @@ export const setupListEditor = listId => (dispatch, getState) => {
 
 export const changeListEditorTitle = value => ({
   type: LIST_EDITOR_TITLE_CHANGE,
-  value,
-});
-
-export const changeListEditorIsExclusive = value => ({
-  type: LIST_EDITOR_IS_EXCLUSIVE_CHANGE,
   value,
 });
 

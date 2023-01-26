@@ -17,6 +17,7 @@ import LoadingIndicator from 'mastodon/components/loading_indicator';
 import MissingIndicator from 'mastodon/components/missing_indicator';
 import RadioButton from 'mastodon/components/radio_button';
 import StatusListContainer from 'mastodon/features/ui/containers/status_list_container';
+import Toggle from 'react-toggle';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -113,7 +114,7 @@ class ListTimeline extends React.PureComponent {
   }
 
   handleEditClick = () => {
-    this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id, isExclusive: this.props.list.get('is_exclusive') }));
+    this.props.dispatch(openModal('LIST_EDITOR', { listId: this.props.params.id }));
   }
 
   handleDeleteClick = () => {
@@ -141,12 +142,19 @@ class ListTimeline extends React.PureComponent {
     dispatch(updateList(id, undefined, false, undefined, target.value));
   }
 
+  onExclusiveToggle = () => {
+    const { dispatch, list } = this.props;
+    const { id } = this.props.params;
+    dispatch(updateList(id, undefined, false, !list.get('is_exclusive'), undefined));
+  }
+
   render () {
     const { hasUnread, columnId, multiColumn, list, intl } = this.props;
     const { id } = this.props.params;
     const pinned = !!columnId;
     const title  = list ? list.get('title') : id;
     const replies_policy = list ? list.get('replies_policy') : undefined;
+    const isExclusive = list ? list.get('is_exclusive') : undefined;
 
     if (typeof list === 'undefined') {
       return (
@@ -185,6 +193,13 @@ class ListTimeline extends React.PureComponent {
             <button type='button' className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
+          </div>
+
+          <div className='setting-toggle'>
+            <Toggle id='lists.exclusive' defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
+            <label htmlFor='lists.exclusive' className='setting-toggle__label'>
+              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these toots from home' />
+            </label>
           </div>
 
           { replies_policy !== undefined && (

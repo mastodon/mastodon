@@ -3046,15 +3046,6 @@ $ui-header-height: 55px;
   border-color: $ui-highlight-color;
 }
 
-label[for="is-exclusive-checkbox"] {
-  margin-left: 20px;
-}
-
-.is-exclusive-checkbox {
-  transform: scale(0.7);
-  transform-origin: bottom;
-}
-
 .column-link {
   background: lighten($ui-base-color, 8%);
   color: $primary-text-color;
@@ -4254,7 +4245,7 @@ a.status-card.compact:hover {
 }
 
 @keyframes heartbeat {
-  0% {
+  from {
     transform: scale(1);
     animation-timing-function: ease-out;
   }
@@ -7318,7 +7309,7 @@ noscript {
 
       path:first-child {
         fill: rgba($highlight-text-color, 0.25) !important;
-        fill-opacity: 1 !important;
+        fill-opacity: 100% !important;
       }
 
       path:last-child {
