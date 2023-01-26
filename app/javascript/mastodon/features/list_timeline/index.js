@@ -198,7 +198,7 @@ class ListTimeline extends React.PureComponent {
           <div className='setting-toggle'>
             <Toggle id='lists.exclusive' defaultChecked={isExclusive} onChange={this.onExclusiveToggle} />
             <label htmlFor='lists.exclusive' className='setting-toggle__label'>
-              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these toots from home' />
+              <FormattedMessage id='lists.exclusive' defaultMessage='Hide these posts from home' />
             </label>
           </div>
 
