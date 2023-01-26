@@ -28,6 +28,11 @@ class ReblogService < BaseService
       end
     end
 
+    # デフォルトの公開範囲が「ポートフォリオ」か「にゃーん」だった場合に公開範囲「公開」に置き換えるように
+    if visibility == 'portfolio' || visibility == 'nyan'
+      visibility = 'public'
+    end
+
     reblog = account.statuses.create!(reblog: reblogged_status, text: '', visibility: visibility, rate_limit: options[:with_rate_limit])
 
     Trends.register!(reblog)
