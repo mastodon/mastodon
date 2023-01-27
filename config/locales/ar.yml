@@ -452,6 +452,13 @@ ar:
     instances:
       availability:
         failure_threshold_reached: تم الوصول إلى أقصى حد للفشل بتاريخ %{date}.
+        failures_recorded:
+          zero: ليس هناك أية محاولة فاشلة في %{count} يوم.
+          one: محاولة فاشلة في يوم %{count} واحد.
+          two: المحاولات الفاشلة في يَومين %{count}.
+          few: المحاولات الفاشلة في %{count} يومًا.
+          many: المحاولات الفاشلة في %{count} يوم مختلف.
+          other: المحاولات الفاشلة في %{count} أيام مختلفة.
         no_failures_recorded: لم يتم العثور على أي فشل.
         title: التوفر
         warning: فشلت المحاولة الأخيرة للاتصال بهذا النطاق
@@ -1138,6 +1145,13 @@ ar:
       empty: ليست لديك أية عوامل تصفية.
       expires_in: تنتهي مدة صلاحيتها في غضون %{distance}
       expires_on: تنتهي مدة صلاحيتها في %{date}
+      keywords:
+        zero: "%{count} كلمة مفتاحية"
+        one: "كلمة مفتاحية %{count} واحدة"
+        two: "كلمتان مفتاحيتان %{count}"
+        few: "%{count} كلمة مفتاحية"
+        many: "%{count} كلمة مفتاحية"
+        other: "%{count} كلمة مفتاحية"
       title: عوامل التصفية
     new:
       save: حفظ عامل التصفية الجديد
