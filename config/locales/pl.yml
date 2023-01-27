@@ -456,6 +456,7 @@ pl:
         private_comment_description_html: 'Żebyś wiedział(a) skąd pochodzą zaimportowane bloki, zostaną one utworzone z następującym prywatnym komentarzem: <q>%{comment}</q>'
         private_comment_template: Zaimportowano z %{source} dnia %{date}
         title: Importuj zablokowane domeny
+      invalid_domain_block: 'Jeden lub więcej blokujących domen zostało pominiętych z powodu następującego błędu(ów): %{error}'
       new:
         title: Importuj zablokowane domeny
       no_file: Nie wybrano pliku
@@ -612,6 +613,7 @@ pl:
       comment:
         none: Brak
       comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
+      confirm_action: Potwierdzenie działań moderacyjnych wobec @%{acct}
       created_at: Zgłoszono
       delete_and_resolve: Usuń posty
       forwarded: Przekazano
@@ -650,6 +652,13 @@ pl:
         actions:
           delete_html: Usuń obrażające posty
           mark_as_sensitive_html: Oznacz obraźliwe media postów jako wrażliwe
+          silence_html: Znacząco ogranicz zasięg <strong>@%{acct}</strong>, aby ich profil i zawartość były widoczne tylko dla osób, które je już obserwują lub ręcznie wyszukują jego profil
+          suspend_html: Zawieś <strong>@%{acct}</strong>, co sprawia, że ich profil i zawartość są niedostępne i niemożliwe do interakcji z
+        close_report: 'Oznacz raport #%{id} jako rozwiązany'
+        close_reports_html: Oznacz <strong>wszystkie</strong> zgłoszenia dotyczące <strong>@%{acct}</strong> jako rozwiązane
+        delete_data_html: Usuń profil i zawartość <strong>@%{acct}</strong> za 30 dni, chyba że w tym czasie zostanie zawieszony
+        preview_preamble_html: "<strong>@%{acct}</strong> otrzyma ostrzeżenie o następującej treści:"
+        record_strike_html: Zarejestruj ostrzeżenie przeciwko <strong>@%{acct}</strong>, aby ułatwić sobie eskalację w przypadku przyszłych naruszeń z tego konta
       target_origin: Pochodzenie zgłaszanego konta
       title: Zgłoszenia
       unassign: Cofnij przypisanie
