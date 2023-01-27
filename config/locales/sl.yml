@@ -651,10 +651,14 @@ sl:
           suspend_html: '<strong>Suspendirali</strong> boste račun uporabnika/ce <strong>@%{acct}</strong>. S tem boste:'
         actions:
           delete_html: Odstrani žaljive objave
+          mark_as_sensitive_html: Označi večpredstavnost žaljivih objav kot občutljivo
+          silence_html: Močno omejite doseg osebe <strong>@%{acct}</strong>, tako da naredite njihov profil in vsebino vidno samo osebam, ki jih že spremljajo ali ročno poiščejo profil
+          suspend_html: Suspendirajte <strong>@%{acct}</strong>, s čimer postaneta njihov profil in vsebina nedostopna in z njim ni mogoče komunicirati
         close_report: 'Označi prijavo #%{id} kot rešeno'
         close_reports_html: Označi <strong>vse</strong> prijave zoper <strong>@%{acct}</strong> kot rešene
         delete_data_html: Izbriši profil in vsebine <strong>@%{acct}</strong> čez 30 dni, razen če suspenz v tem času ni preklican
         preview_preamble_html: "Oseba <strong>@%{acct}</strong> bo prejela opozorilo z naslednjo vsebino:"
+        record_strike_html: Izdajte opomin računu <strong>@%{acct}</strong>, da boste lažje stopnjevali svoj odziv ob prihodnjih kršitvah s tega računa
         send_email_html: Pošlji <strong>@%{acct}</strong> opozorilno e-sporočilo
         warning_placeholder: Neobvezna dodatna utemeljitev dejanja moderiranja.
       target_origin: Izvor prijavljenega računa
