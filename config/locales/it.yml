@@ -440,6 +440,7 @@ it:
         private_comment_description_html: 'Per aiutarti a tenere traccia della provenienza dei blocchi importati, i blocchi importati verranno creati con il seguente commento privato: <q>%{comment}</q>'
         private_comment_template: Importato da %{source} il %{date}
         title: Importare i blocchi di dominio
+      invalid_domain_block: 'Uno o più blocchi di dominio sono stati saltati a causa dei seguenti errori: %{error}'
       new:
         title: Importare i blocchi di dominio
       no_file: Nessun file selezionato
@@ -627,6 +628,7 @@ it:
         actions:
           delete_html: Rimuovi i post offensivi
           mark_as_sensitive_html: Contrassegna i file multimediali dei post offensivi come sensibili
+          silence_html: Limita severamente la portata di <strong>@%{acct}</strong> rendendo il suo profilo e il suo contenuto visibili solo a persone che già li seguono o che lo guardano manualmente
           suspend_html: Sospendere <strong>@%{acct}</strong>, rendendo il suo profilo e i suoi contenuti inaccessibili e impossibilitandone l'interazione
         close_report: 'Contrassegna la segnalazione #%{id} come risolta'
         close_reports_html: Contrassegna <strong>tutte</strong> le segnalazioni contro <strong>@%{acct}</strong> come risolte
