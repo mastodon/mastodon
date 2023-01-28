@@ -440,6 +440,7 @@ nl:
         private_comment_description_html: 'Om je te helpen bijhouden waar de geïmporteerde blokkades vandaan komen, worden de geïmporteerde blokkades met de volgende privé-opmerking aangemaakt: <q>%{comment}</q>'
         private_comment_template: Geïmporteerd van %{source} op %{date}
         title: Domeinblokkades importeren
+      invalid_domain_block: 'Een of meer domeinblokkades zijn overgeslagen vanwege de volgende fout(en): %{error}'
       new:
         title: Domeinblokkades importeren
       no_file: Geen bestand geselecteerd
@@ -585,6 +586,7 @@ nl:
       comment:
         none: Geen
       comment_description_html: 'Om meer informatie te verstrekken, schreef %{name}:'
+      confirm_action: Bevestig moderatiemaatregel tegen @%{acct}
       created_at: Gerapporteerd op
       delete_and_resolve: Bericht verwijderen
       forwarded: Doorgestuurd
@@ -601,6 +603,7 @@ nl:
         placeholder: Beschrijf welke maatregelen zijn genomen of andere gerelateerde opmerkingen...
         title: Opmerkingen
       notes_description_html: Bekijk en laat opmerkingen achter voor andere moderatoren en voor jouw toekomstige zelf
+      processed_msg: 'Melding #%{id} succesvol verwerkt'
       quick_actions_description_html: 'Neem een snelle maatregel of scroll naar beneden om de gerapporteerde inhoud te bekijken:'
       remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
@@ -613,9 +616,28 @@ nl:
       status: Rapportages
       statuses: Gerapporteerde inhoud
       statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
+      summary:
+        action_preambles:
+          delete_html: 'Je staat op het punt om enkele posts van <strong>@%{acct}</strong> te <strong>verwijderen</strong>. Dit zal:'
+          mark_as_sensitive_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> als <strong>gevoelig te markeren</strong>. Dit zal:'
+          silence_html: 'Je staat op het punt om <strong>@%{acct}</strong>''s account te <strong>beperken</strong>. Dit zal:'
+          suspend_html: 'Je staat op het punt om <strong>@%{acct}</strong>''s account <strong>op te schorten</strong>. Dit zal:'
+        actions:
+          delete_html: De aanstootgevende berichten verwijderen
+          mark_as_sensitive_html: De media in de aanstootgevende berichten als gevoelig markeren
+          silence_html: Het profiel van <strong>@%{acct}</strong> ernstig beperken, door hun profiel en inhoud alleen zichtbaar te maken aan mensen die ze al volgen of aan mensen die het profiel handmatig opzoeken
+          suspend_html: Het account van <strong>@%{acct}</strong> opschorten, waarmee hun profiel en inhoud niet toegankelijk zijn en het onmogelijk is om interactie te hebben
+        close_report: 'Markeer melding #%{id} als opgelost'
+        close_reports_html: Markeer <strong>alle</strong> meldingen tegen <strong>@%{acct}</strong> als opgelost
+        delete_data_html: Verwijder <strong>@%{acct}</strong>'s profiel en inhoud over 30 dagen, tenzij ze in de tussentijd gedeblokkeerd worden
+        preview_preamble_html: "<strong>@%{acct}</strong> zal een waarschuwing ontvangen met de volgende inhoud:"
+        record_strike_html: Registreer een overtreding van <strong>@%{acct}</strong> om je te helpen met escaleren bij toekomstige overtredingen van dit account
+        send_email_html: Stuur <strong>@%{acct}</strong> een waarschuwingsmail
+        warning_placeholder: Optionele aanvullende redenen voor de moderatie-actie.
       target_origin: Herkomst van de gerapporteerde accounts
       title: Rapportages
       unassign: Niet langer toewijzen
+      unknown_action_msg: 'Onbekende actie: %{action}'
       unresolved: Onopgelost
       updated_at: Bijgewerkt
       view_profile: Profiel bekijken
@@ -937,6 +959,8 @@ nl:
   auth:
     apply_for_account: Account aanvragen
     change_password: Wachtwoord
+    confirmations:
+      wrong_email_hint: Als dat e-mailadres niet correct is, kun je het wijzigen in je accountinstellingen.
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     description:
