@@ -97,7 +97,7 @@ class AccountStatusesFilter
   end
 
   def blocked?
-    account.blocking?(current_account) || (current_account.domain.present? && account.domain_blocking?(current_account.domain))
+    account.blocking?(current_account) || (account.domain.present? && current_account.domain_blocking?(account.domain))
   end
 
   def follower?
