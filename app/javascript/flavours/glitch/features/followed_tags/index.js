@@ -38,7 +38,7 @@ class FollowedTags extends ImmutablePureComponent {
 
   componentDidMount() {
     this.props.dispatch(fetchFollowedHashtags());
-  };
+  }
 
   handleLoadMore = debounce(() => {
     this.props.dispatch(expandFollowedHashtags());
