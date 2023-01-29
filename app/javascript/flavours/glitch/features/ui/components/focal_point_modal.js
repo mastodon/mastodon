@@ -39,6 +39,7 @@ const mapStateToProps = (state, { id }) => ({
   account: state.getIn(['accounts', me]),
   isUploadingThumbnail: state.getIn(['compose', 'isUploadingThumbnail']),
   description: state.getIn(['compose', 'media_modal', 'description']),
+  lang: state.getIn(['compose', 'language']),
   focusX: state.getIn(['compose', 'media_modal', 'focusX']),
   focusY: state.getIn(['compose', 'media_modal', 'focusY']),
   dirty: state.getIn(['compose', 'media_modal', 'dirty']),
@@ -274,7 +275,7 @@ class FocalPointModal extends ImmutablePureComponent {
   }
 
   render () {
-    const { media, intl, account, onClose, isUploadingThumbnail, description, focusX, focusY, dirty, is_changing_upload } = this.props;
+    const { media, intl, account, onClose, isUploadingThumbnail, description, lang, focusX, focusY, dirty, is_changing_upload } = this.props;
     const { dragging, detecting, progress, ocrStatus } = this.state;
     const x = (focusX /  2) + .5;
     const y = (focusY / -2) + .5;
@@ -349,6 +350,7 @@ class FocalPointModal extends ImmutablePureComponent {
                 id='upload-modal__description'
                 className='setting-text light'
                 value={detecting ? '…' : description}
+                lang={lang}
                 onChange={this.handleChange}
                 onKeyDown={this.handleKeyDown}
                 disabled={detecting || is_changing_upload}
