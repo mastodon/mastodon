@@ -22,11 +22,11 @@ class NotificationMailer < ApplicationMailer
     @me      = recipient
     @account = notification.from_account
 
-    return unless @me.user.functional?
+    return# unless @me.user.functional?
 
-    locale_for_account(@me) do
-      mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
-    end
+    #locale_for_account(@me) do
+    #  mail to: @me.user.email, subject: I18n.t('notification_mailer.follow.subject', name: @account.acct)
+    #end
   end
 
   def favourite(recipient, notification)
