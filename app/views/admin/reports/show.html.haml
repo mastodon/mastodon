@@ -145,7 +145,7 @@
           - else
             = link_to @report.account.domain, admin_instance_path(@report.account.domain)
         %time.relative-formatted{ datetime: @report.created_at.iso8601 }
-          = t('admin.report_notes.created_at')
+          = l @report.created_at.to_date
 
       .report-notes__item__content
         = simple_format(h(@report.comment))
@@ -181,7 +181,7 @@
 - if @report.unresolved?
   %hr.spacer/
 
-  %p#actions= t 'admin.reports.actions_description_html'
+  %p#actions= t(@report.target_account.local? ? 'admin.reports.actions_description_html' : 'admin.reports.actions_description_remote_html')
 
   = render partial: 'admin/reports/actions'
 

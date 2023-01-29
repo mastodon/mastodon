@@ -28,7 +28,7 @@ gl:
       title: Executar acción de moderación a %{acct}
     account_moderation_notes:
       create: Deixar nota
-      created_msg: Nota de moderación creada de xeito correcto!
+      created_msg: Nota de moderación creada correctamente!
       destroyed_msg: Nota de moderación eliminada de xeito correcto!
     accounts:
       add_email_domain_block: Bloquear o dominio do email
@@ -557,7 +557,7 @@ gl:
       pending: Agardando pola aprobación do repetidor
       save_and_enable: Gardar e activar
       setup: Configurar unha conexión ó repetidor
-      signatures_not_enabled: Os repetidores non funcionarán de xeito correcto se o modo seguro ou listaxe branca están activados
+      signatures_not_enabled: Os repetidores non funcionarán de xeito correcto se o modo seguro ou o modo de federación limitada están activados
       status: Estado
       title: Repetidores
     report_notes:
@@ -575,9 +575,10 @@ gl:
         mark_as_sensitive_description_html: Os multimedia das publicacións denunciadas serán marcados como sensibles e engadirase un aviso para axudarche a xestionar futuras infraccións da mesma conta.
         other_description_html: Mira máis opcións para controlar o comportamento da conta e personalizar as comunicacións coa conta denunciada.
         resolve_description_html: Non se van tomar accións contra a conta denunciada, nin se gardarán avisos, e pecharase a denuncia.
-        silence_description_html: O perfil será visible só para quen xa o está a seguir ou quen o buscou manualmente, limitando moito o seu alcance. Pódese cambiar.
-        suspend_description_html: O perfil e tódolos seus contidos será inaccesbles e finalmente eliminados. A interacción coa conta non será posible. Reversible durante 30 días.
+        silence_description_html: A conta será visible só para quen xa a está a seguir ou quen a buscou manualmente, limitando moito o seu alcance. Pódese cambiar. Isto pecha tódalas denuncias acerca desta conta.
+        suspend_description_html: A conta e todo o seu contido non serán accesible e finalmente eliminaranse, será imposible interactuar con ela. A decisión é reversible durante 30 días. Isto pecha tódalas denuncias sobre esta conta.
       actions_description_html: Decide que acción tomar respecto desta denuncia. Se tomas accións punitivas contra a conta denunciada, enviaráselles un email coa notificación, excepto se está seleccionada a categoría <strong>Spam</strong>.
+      actions_description_remote_html: Decide a acción a tomar para resolver a denuncia. Isto só lle afecta ao xeito en que o <strong>teu</strong> servidor se comunica con esta conta remota e xestiona o seu contido.
       add_to_report: Engadir máis á denuncia
       are_you_sure: Tes certeza?
       assign_to_self: Asignarme
@@ -713,6 +714,8 @@ gl:
         preamble: Destacar contido interesante é importante para axudar a que as novas usuarias se sintan cómodas se non coñecen a ninguén en Mastodon. Xestiona os diferentes xeitos de promocionar contidos.
         profile_directory: Directorio de perfís
         public_timelines: Cronoloxías públicas
+        publish_discovered_servers: Publicar os servidores descubertos
+        publish_statistics: Publicar estatísticas
         title: Descubrir
         trends: Tendencias
       domain_blocks:
@@ -996,9 +999,9 @@ gl:
     error: Desgraciadamente, algo fallou ao buscar a conta remota
     follow: Seguir
     follow_request: 'Enviaches unha petición de seguimento a:'
-    following: 'Parabéns! Está a seguir a:'
+    following: 'Parabéns! Agora segues a:'
     post_follow:
-      close: Ou, pode pechar esta ventá.
+      close: Ou, podes pechar esta ventá.
       return: Mostrar o perfil da usuaria
       web: Ir á web
     title: Seguir %{acct}
@@ -1031,19 +1034,19 @@ gl:
       x_seconds: "%{count}s"
   deletes:
     challenge_not_passed: A información introducida non é correcta
-    confirm_password: Introduza o seu contrasinal para verificar a súa identidade
+    confirm_password: Escribe o contrasinal actual para verificar a túa identidade
     confirm_username: Introduce o nome de usuaria para confirmar o procedemento
     proceed: Eliminar conta
     success_msg: A súa conta eliminouse correctamente
     warning:
-      before: 'Antes de seguir, por favor lé estas notas con atención:'
-      caches: O contido almacenado en outros servidores podería persistir
+      before: 'Antes de continuar, por favor le estas notas con atención:'
+      caches: O contido almacenado noutros servidores podería persistir
       data_removal: As túas publicacións e outros datos serán permanentemente borrados
       email_change_html: Podes <a href="%{path}">cambiar o enderezo de correo</a> sen eliminar a conta
       email_contact_html: Se non o recibes, podes escribir a <a href="mailto:%{email}">%{email}</a> pedindo axuda
       email_reconfirmation_html: Se non recibes o correo de confirmación, podes <a href="%{path}">solicitalo de novo</a>
       irreversible: Non poderás restaurar ou reactivar a conta
-      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de intimidade</a>.
+      more_details_html: Para máis detalles, mira a <a href="%{terms_path}">política de privacidade</a>.
       username_available: O nome de usuaria estará dispoñible novamente
       username_unavailable: O nome de usuaria non estará dispoñible
   disputes:
@@ -1085,7 +1088,7 @@ gl:
     '406': Esta páxina non está dispoñible no formato solicitado.
     '410': A páxina que estaba a buscar xa non existe.
     '422':
-      content: Fallou a verificación de seguridade. Está bloqueando as cookies?
+      content: Fallou a verificación de seguridade. Estás bloqueando os rastros?
       title: Fallou a verficación de seguridade
     '429': Acelerado
     '500':
@@ -1267,7 +1270,7 @@ gl:
     set_redirect: Establecer redirección
     warning:
       backreference_required: Tes que configurar primeiro a nova conta para referenciar hacia esta
-      before: 'Antes de seguir, por favor lé estas notas con atención:'
+      before: 'Antes de continuar, por favor le estas notas con atención:'
       cooldown: Tras a migración existe un período de calma durante o cal non poderás volver a migrar de novo
       disabled_account: Tras o cambio a túa conta actual non será totalmente usable, pero terás acceso a exportar os datos e tamén a reactivación.
       followers: Esta acción moverá todas as túas seguidoras desde a conta actual a nova conta
@@ -1367,6 +1370,9 @@ gl:
       unrecognized_emoji: non é unha emoticona recoñecida
   relationships:
     activity: Actividade da conta
+    confirm_follow_selected_followers: Tes a certeza de querer seguir as seguidoras seleccionadas?
+    confirm_remove_selected_followers: Tes a certeza de querer deixar de seguir as seguidoras seleccionadas?
+    confirm_remove_selected_follows: Tes a certeza de querer eliminar os seguimentos seleccionados?
     dormant: En repouso
     follow_selected_followers: Seguir seguidoras seleccionadas
     followers: Seguidoras

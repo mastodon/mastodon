@@ -7,7 +7,7 @@ fi:
       account_migration:
         acct: Määrittele käyttäjän käyttäjänimi@verkkotunnus, johon haluat siirtyä
       account_warning_preset:
-        text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, hashtageja ja mainintoja
+        text: Voit käyttää julkaisun syntaksia, kuten URL-osoitteita, aihetunnisteita ja mainintoja
         title: Vapaaehtoinen. Ei näytetä vastaanottajalle
       admin_account_action:
         include_statuses: Käyttäjä näkee mitkä viestit johtivat toimenpiteeseen tai varoitukseen
@@ -18,8 +18,6 @@ fi:
           disable: Estä käyttäjää käyttämästä tiliään, mutta älä poista tai piilota sen sisältöä.
           none: Käytä tätä lähettääksesi varoituksen käyttäjälle käynnistämättä mitään muita toimintoja.
           sensitive: Pakota kaikki tämän käyttäjän mediatiedostot arkaluontoisiksi.
-          silence: Estä käyttäjää pystymästä julkaisemaan julkisessa näkyvyydessä, piilota käyttäjän viestit ja ilmoitukset ihmisiltä, jotka eivät seuraa käyttäjää.
-          suspend: Estä vuorovaikutus tililtä tai tilille ja poista sen sisältö. Palautettavissa 30 päivän kuluessa.
         warning_preset_id: Valinnainen. Voit silti lisätä mukautetun tekstin esiasetuksen loppuun
       announcement:
         all_day: Kun valittu, vain valittu aikaväli näytetään
@@ -74,6 +72,7 @@ fi:
           hide: Piilota suodatettu sisältö kokonaan ja käyttäydy ikään kuin sitä ei olisi olemassa
           warn: Piilota suodatettu sisältö varoituksen taakse, jossa mainitaan suodattimen otsikko
       form_admin_settings:
+        activity_api_enabled: Paikallisesti julkaistujen julkaisujen, aktiivisten käyttäjien ja rekisteröitymisten viikoittainen määrä
         backups_retention_period: Säilytä luodut arkistot määritetyn määrän päiviä.
         bootstrap_timeline_accounts: Nämä tilit kiinnitetään uusien käyttäjien suositusten yläpuolelle.
         closed_registrations_message: Näkyy, kun ilmoittautuminen on suljettu
@@ -81,6 +80,7 @@ fi:
         custom_css: Voit käyttää mukautettuja tyylejä Mastodonin verkkoversiossa.
         mascot: Ohittaa kuvituksen edistyneessä käyttöliittymässä.
         media_cache_retention_period: Ladatut mediatiedostot poistetaan määritetyn määrän päiviä jälkeen, kun arvo on positiivinen ja ladataan uudelleen pyynnöstä.
+        peers_api_enabled: Lista verkkotunnuksista, joita tämä palvelin on kohdannut fediversessä. Täällä ei ole tietoja siitä, oletko liitossa tiettyjen palvelinten kanssa, vaan ainoastaan luettelo niistä verkkotunnuksista, joista palvelimesi on ylipäätään tietoinen. Tätä tietoa käytetään palveluissa, jotka keräävät liittotilastoja laajassa merkityksessä.
         profile_directory: Profiilihakemisto lueteloi kaikki käyttäjät, jotka ovat ilmoittaneet olevansa löydettävissä.
         require_invite_text: Kun kirjautuminen vaatii manuaalisen hyväksynnän, tee ”Miksi haluat liittyä?” teksti syötetään pakolliseksi eikä vapaaehtoiseksi
         site_contact_email: Kuinka ihmiset voivat tavoittaa sinut oikeudellisissa tai tukikysymyksissä.
@@ -93,7 +93,7 @@ fi:
         thumbnail: Noin 2:1 kuva näytetään palvelimen tietojen rinnalla.
         timeline_preview: Uloskirjautuneet vierailijat voivat selata uusimpia julkisia viestejä, jotka ovat saatavilla palvelimella.
         trendable_by_default: Ohita suositun sisällön manuaalinen tarkistus. Yksittäisiä kohteita voidaan edelleen poistaa jälkikäteen.
-        trends: Trendit osoittavat, mitkä viestit, hashtagit ja uutiset ovat saamassa vetoa palvelimellasi.
+        trends: Trendit osoittavat, mitkä julkaisut, aihetunnisteet ja uutiset ovat saamassa vetoa palvelimellasi.
       form_challenge:
         current_password: Olet menossa suojatulle alueelle
       imports:
@@ -229,6 +229,7 @@ fi:
           hide: Piilota kokonaan
           warn: Piilota varoituksella
       form_admin_settings:
+        activity_api_enabled: Julkaise yhteenlasketut tilastot käyttäjätoiminnasta rajapinnassa
         backups_retention_period: Käyttäjän arkiston säilytysaika
         bootstrap_timeline_accounts: Suosittele aina näitä tilejä uusille käyttäjille
         closed_registrations_message: Mukautettu viesti, kun kirjautumisia ei ole saatavilla
@@ -236,6 +237,7 @@ fi:
         custom_css: Mukautettu CSS
         mascot: Mukautettu maskotti (legacy)
         media_cache_retention_period: Median välimuistin säilytysaika
+        peers_api_enabled: Julkaise löydettyjen instanssien luettelo ohjelmointirajapinnassa
         profile_directory: Ota profiilihakemisto käyttöön
         registrations_mode: Kuka voi rekisteröityä
         require_invite_text: Vaadi syy liittyä
@@ -282,10 +284,10 @@ fi:
       rule:
         text: Sääntö
       tag:
-        listable: Salli tämän hashtagin näkyä hauissa ja ehdotuksissa
+        listable: Salli tämän aihetunnisteen näkyä hauissa ja ehdotuksissa
         name: Aihetunniste
         trendable: Salli tämän aihetunnisteen näkyä trendeissä
-        usable: Salli postauksien käyttää tätä aihetunnistetta
+        usable: Salli julkaisujen käyttää tätä aihetunnistetta
       user:
         role: Rooli
       user_role:

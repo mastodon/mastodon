@@ -18,8 +18,8 @@ fo:
           disable: Forða brúkaranum at brúka teirra kontu, men lat vera við at strika ella fjala teirra innihald.
           none: Brúka hetta at senda eina ávaring til brúkaran, uttan at íverkseta nakra aðra atgerð.
           sensitive: Flagga øll framtíðar miðlaviðfesti hjá brúkaranum sum viðkvom.
-          silence: Forða brúkaranum at posta alment, fjal teirra postar og fráboðanir frá fólki, sum ikki fylgja teimum.
-          suspend: Forða alt samskifti frá og til hesa kontuna og strika innihaldið hjá henni. Kann angrast innan 30 dagar.
+          silence: Forða brúkaranum at posta alment, fjal teirra postar og fráboðanir frá fólki, sum ikki fylgja teimum. Lukkar allar rapporteringar um hesa kontuna.
+          suspend: Forða alt samskifti frá og til hesa kontuna og strika innihaldið hjá henni. Kann angrast innan 30 dagar. Lukkar allar rapporteringar um hesa kontuna.
         warning_preset_id: Valfrítt. Tú kanst enn leggja serskildan tekst afturat undanstillingini
       announcement:
         all_day: Tá hetta er valt, verða einans dagfestingarnar í tíðarbilinum vístar
@@ -74,6 +74,7 @@ fo:
           hide: Fjal filtreraða innihaldið fullkomiliga, ber seg at sum at tað ikki fanst
           warn: Fjal filtreraða innihaldið aftan fyri eina ávaring, sum nevnir heitið á filtrinum
       form_admin_settings:
+        activity_api_enabled: Tal av lokalt útgivnum postum, virknum brúkarum og nýggjum skrásetingum býtt vikuliga
         backups_retention_period: Varðveit gjørd brúkarasøvn í ásetta talið av døgum.
         bootstrap_timeline_accounts: Hesar kontur verða festar ovast á listanum yvir brúkarar, sum tey nýggju verða mælt til at fylgja.
         closed_registrations_message: Víst tá stongt er fyri tilmeldingum
@@ -81,6 +82,7 @@ fo:
         custom_css: Tú kanst seta títt egna snið upp í net-útgávuni av Mastodon.
         mascot: Skúgvar til viks myndprýðingina í framkomna vev-markamótinum.
         media_cache_retention_period: Miðlafílur, sum eru tiknar niður, verða strikaðar eftir ásetta talið av døgum, tá hetta er sett til eitt positivt virði, og takast niður umaftur eftir ynski.
+        peers_api_enabled: Ein listi við navnaøkjum, sum hesin ambætarin er komin framat í fediversinum. Ongar dátur eru tiknar við her um tú er sameind/ur við ein givnan ambætara, einans at tín ambætari veit um hann. Hetta verður brúkt av tænastum, sum gera hagtøl um sameining yvirhøvur.
         profile_directory: Vangaskráin listar allar brúkarar, sum hava valt at kunna uppdagast.
         require_invite_text: Tá tilmeldingar krevja serskilda góðkenning, set so "Hví vil tú vera við?" tekstateigin til at vera kravdan heldur enn valfrían
         site_contact_email: Hvussu fólk kunnu røkka teg við løgfrøðisligum og brúks-fyrispurningum.
@@ -229,6 +231,7 @@ fo:
           hide: Fjal fullkomiliga
           warn: Fjal við eini ávaring
       form_admin_settings:
+        activity_api_enabled: Útgev samantald hagtøl um brúkaravirksemi í API'num
         backups_retention_period: Hvussu leingi verða brúkarasøvn goymd
         bootstrap_timeline_accounts: Mæl altíð nýggjum brúkarum at fylgja hesar kontur
         closed_registrations_message: Serskild boð, tá tað ikki er møguligt at tilmelda seg
@@ -236,6 +239,7 @@ fo:
         custom_css: Serskilt CSS
         mascot: Serskildur maskottur (arvur)
         media_cache_retention_period: Tíðarskeið, har miðlagoymslur verða varðveittar
+        peers_api_enabled: Kunnger lista við uppdagaðum ambætarum í API'num
         profile_directory: Ger vangaskrá virkna
         registrations_mode: Hvør kann tilmelda seg
         require_invite_text: Krev eina orsøk at luttaka

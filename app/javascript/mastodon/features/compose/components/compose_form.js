@@ -64,6 +64,7 @@ class ComposeForm extends ImmutablePureComponent {
     anyMedia: PropTypes.bool,
     isInReply: PropTypes.bool,
     singleColumn: PropTypes.bool,
+    lang: PropTypes.string,
   };
 
   static defaultProps = {
@@ -225,7 +226,7 @@ class ComposeForm extends ImmutablePureComponent {
 
         <ReplyIndicatorContainer />
 
-        <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef}>
+        <div className={`spoiler-input ${this.props.spoiler ? 'spoiler-input--visible' : ''}`} ref={this.setRef} aria-hidden={!this.props.spoiler}>
           <AutosuggestInput
             placeholder={intl.formatMessage(messages.spoiler_placeholder)}
             value={this.props.spoilerText}
@@ -240,6 +241,7 @@ class ComposeForm extends ImmutablePureComponent {
             searchTokens={[':']}
             id='cw-spoiler-input'
             className='spoiler-input__input'
+            lang={this.props.lang}
           />
         </div>
 
@@ -257,6 +259,7 @@ class ComposeForm extends ImmutablePureComponent {
           onSuggestionSelected={this.onSuggestionSelected}
           onPaste={onPaste}
           autoFocus={autoFocus}
+          lang={this.props.lang}
         >
           <EmojiPickerDropdown onPickEmoji={this.handleEmojiPick} />
 
