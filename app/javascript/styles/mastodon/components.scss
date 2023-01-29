@@ -83,6 +83,16 @@
     }
   }
 
+  &.always-destructive {
+    background-color: $error-red;
+
+    &:disabled,
+    &.disabled {
+      background-color: $ui-primary-color;
+      cursor: default;
+    }
+  }
+
   &:disabled,
   &.disabled {
     background-color: $ui-primary-color;
@@ -5758,6 +5768,51 @@ a.status-card.compact:hover {
 .confirmation-modal__container,
 .report-modal__target {
   text-align: center;
+}
+
+.confirmation-modal__passphrase {
+  text-align: center;
+  padding: 0 30px 30px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .passphrase__label {
+    flex: 1 1 auto;
+
+    strong {
+      font-weight: 500;
+
+      @each $lang in $cjk-langs {
+        &:lang(#{$lang}) {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .passphrase__input {
+    flex: 1 1 auto;
+    min-width: 50%;
+    display: block;
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0;
+    color: $inverted-text-color;
+    background: $simple-background-color;
+    font-family: inherit;
+    font-size: 16px;
+    resize: vertical;
+    border: 0;
+    outline: 0;
+    border-radius: 4px;
+
+    &.invalid {
+      background-color: lighten($error-value-color, 35%);
+    }
+  }
 }
 
 .block-modal,

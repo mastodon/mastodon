@@ -79,6 +79,7 @@
  * @property {boolean} unfollow_modal
  * @property {boolean} use_blurhash
  * @property {boolean=} use_pending_items
+ * @property {boolean} confirm_domain_block
  * @property {string} version
  * @property {boolean} translation_enabled
  */
@@ -131,6 +132,7 @@ export const trendsAsLanding = getMeta('trends_as_landing_page');
 export const unfollowModal = getMeta('unfollow_modal');
 export const useBlurhash = getMeta('use_blurhash');
 export const usePendingItems = getMeta('use_pending_items');
+export const confirmDomainBlock = getMeta('confirm_domain_block');
 export const version = getMeta('version');
 export const translationEnabled = getMeta('translation_enabled');
 export const languages = initialState?.languages;
