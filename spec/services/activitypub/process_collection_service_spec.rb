@@ -95,11 +95,11 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
       context 'when receiving a fabricated status' do
         let!(:actor) do
           Fabricate(:account,
-            username: 'bob',
-            domain: 'example.com',
-            uri: 'https://example.com/users/bob',
-            public_key: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuuYyoyfsRkYnXRotMsId\nW3euBDDfiv9oVqOxUVC7bhel8KednIMrMCRWFAkgJhbrlzbIkjVr68o1MP9qLcn7\nCmH/BXHp7yhuFTr4byjdJKpwB+/i2jNEsvDH5jR8WTAeTCe0x/QHg21V3F7dSI5m\nCCZ/1dSIyOXLRTWVlfDlm3rE4ntlCo+US3/7oSWbg/4/4qEnt1HC32kvklgScxua\n4LR5ATdoXa5bFoopPWhul7MJ6NyWCyQyScUuGdlj8EN4kmKQJvphKHrI9fvhgOuG\nTvhTR1S5InA4azSSchY0tXEEw/VNxraeX0KPjbgr6DPcwhPd/m0nhVDq0zVyVBBD\nMwIDAQAB\n-----END PUBLIC KEY-----\n",
-            private_key: nil)
+                    username: 'bob',
+                    domain: 'example.com',
+                    uri: 'https://example.com/users/bob',
+                    public_key: "-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAuuYyoyfsRkYnXRotMsId\nW3euBDDfiv9oVqOxUVC7bhel8KednIMrMCRWFAkgJhbrlzbIkjVr68o1MP9qLcn7\nCmH/BXHp7yhuFTr4byjdJKpwB+/i2jNEsvDH5jR8WTAeTCe0x/QHg21V3F7dSI5m\nCCZ/1dSIyOXLRTWVlfDlm3rE4ntlCo+US3/7oSWbg/4/4qEnt1HC32kvklgScxua\n4LR5ATdoXa5bFoopPWhul7MJ6NyWCyQyScUuGdlj8EN4kmKQJvphKHrI9fvhgOuG\nTvhTR1S5InA4azSSchY0tXEEw/VNxraeX0KPjbgr6DPcwhPd/m0nhVDq0zVyVBBD\nMwIDAQAB\n-----END PUBLIC KEY-----\n",
+                    private_key: nil)
         end
 
         let(:payload) do
@@ -107,7 +107,7 @@ RSpec.describe ActivityPub::ProcessCollectionService, type: :service do
             '@context': [
               'https://www.w3.org/ns/activitystreams',
               nil,
-              {'object': 'https://www.w3.org/ns/activitystreams#object'}
+              { 'object': 'https://www.w3.org/ns/activitystreams#object' }
             ],
             'id': 'https://example.com/users/bob/fake-status/activity',
             'type': 'Create',

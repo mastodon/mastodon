@@ -37,29 +37,29 @@ RSpec.describe RemoveStatusService, type: :service do
     it 'sends Delete activity to followers' do
       subject.call(@status)
       expect(a_request(:post, 'http://example.com/inbox').with(
-        body: hash_including({
-          'type' => 'Delete',
-          'object' => {
-            'type' => 'Tombstone',
-            'id' => ActivityPub::TagManager.instance.uri_for(@status),
-            'atomUri' => OStatus::TagManager.instance.uri_for(@status),
-          },
-        })
-      )).to have_been_made.once
+               body: hash_including({
+                 'type' => 'Delete',
+                 'object' => {
+                   'type' => 'Tombstone',
+                   'id' => ActivityPub::TagManager.instance.uri_for(@status),
+                   'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+                 },
+               })
+             )).to have_been_made.once
     end
 
     it 'sends Delete activity to rebloggers' do
       subject.call(@status)
       expect(a_request(:post, 'http://example2.com/inbox').with(
-        body: hash_including({
-          'type' => 'Delete',
-          'object' => {
-            'type' => 'Tombstone',
-            'id' => ActivityPub::TagManager.instance.uri_for(@status),
-            'atomUri' => OStatus::TagManager.instance.uri_for(@status),
-          },
-        })
-      )).to have_been_made.once
+               body: hash_including({
+                 'type' => 'Delete',
+                 'object' => {
+                   'type' => 'Tombstone',
+                   'id' => ActivityPub::TagManager.instance.uri_for(@status),
+                   'atomUri' => OStatus::TagManager.instance.uri_for(@status),
+                 },
+               })
+             )).to have_been_made.once
     end
 
     it 'remove status from notifications' do
@@ -78,14 +78,14 @@ RSpec.describe RemoveStatusService, type: :service do
     it 'sends Undo activity to followers' do
       subject.call(@status)
       expect(a_request(:post, 'http://example.com/inbox').with(
-        body: hash_including({
-          'type' => 'Undo',
-          'object' => hash_including({
-            'type' => 'Announce',
-            'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
-          }),
-        })
-      )).to have_been_made.once
+               body: hash_including({
+                 'type' => 'Undo',
+                 'object' => hash_including({
+                   'type' => 'Announce',
+                   'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
+                 }),
+               })
+             )).to have_been_made.once
     end
   end
 
@@ -98,14 +98,14 @@ RSpec.describe RemoveStatusService, type: :service do
     it 'sends Undo activity to followers' do
       subject.call(@status)
       expect(a_request(:post, 'http://example.com/inbox').with(
-        body: hash_including({
-          'type' => 'Undo',
-          'object' => hash_including({
-            'type' => 'Announce',
-            'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
-          }),
-        })
-      )).to have_been_made.once
+               body: hash_including({
+                 'type' => 'Undo',
+                 'object' => hash_including({
+                   'type' => 'Announce',
+                   'object' => ActivityPub::TagManager.instance.uri_for(@original_status),
+                 }),
+               })
+             )).to have_been_made.once
     end
   end
 end

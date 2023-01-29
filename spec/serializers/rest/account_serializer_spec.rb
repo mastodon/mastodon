@@ -5,7 +5,7 @@ require 'rails_helper'
 describe REST::AccountSerializer do
   let(:role)    { Fabricate(:user_role, name: 'Role', highlighted: true) }
   let(:user)    { Fabricate(:user, role: role) }
-  let(:account) { user.account}
+  let(:account) { user.account }
 
   subject { JSON.parse(ActiveModelSerializers::SerializableResource.new(account, serializer: REST::AccountSerializer).to_json) }
 

@@ -19,4 +19,3 @@ class RemoveDuplicatedIndexesPghero < ActiveRecord::Migration[5.2]
     add_index :markers, :user_id, name: :index_markers_on_user_id                                       unless index_exists?(:markers, :user_id, name: :index_markers_on_user_id)
   end
 end
-

@@ -408,7 +408,6 @@ RSpec.describe ActivityPub::Activity::Create do
         end
       end
 
-
       context 'with media attachments with long description' do
         let(:object_json) do
           {
