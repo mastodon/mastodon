@@ -432,6 +432,7 @@ vi:
         private_comment_description_html: 'Để giúp bạn theo dõi nguồn gốc của các chặn tên miền đã nhập, các tên miền chặn đã nhập sẽ được tạo bằng nhận xét riêng tư sau: <q>%{comment}</q>'
         private_comment_template: Nhập từ %{source} vào %{date}
         title: Nhập máy chủ chặn
+      invalid_domain_block: 'Một hoặc nhiều tên miền đã bị bỏ qua do (các) lỗi sau: %{error}'
       new:
         title: Nhập máy chủ chặn
       no_file: Không có tập tin nào được chọn
@@ -576,6 +577,7 @@ vi:
       comment:
         none: Không có mô tả
       comment_description_html: '%{name} cho biết thêm:'
+      confirm_action: Xác nhận kiểm duyệt với %{acct}
       created_at: Báo cáo lúc
       delete_and_resolve: Xóa tút
       forwarded: Chuyển tiếp
@@ -592,6 +594,7 @@ vi:
         placeholder: Mô tả vi phạm của người này, hướng xử lý và những cập nhật liên quan khác...
         title: Lưu ý
       notes_description_html: Xem và để lại lưu ý cho các kiểm duyệt viên khác
+      processed_msg: 'Báo cáo #%{id} đã được xử lý thành công'
       quick_actions_description_html: 'Kiểm duyệt nhanh hoặc kéo xuống để xem nội dung bị báo cáo:'
       remote_user_placeholder: người ở %{instance}
       reopen: Mở lại báo cáo
@@ -604,6 +607,10 @@ vi:
       status: Trạng thái
       statuses: Nội dung bị báo cáo
       statuses_description_html: Lý do tài khoản hoặc nội dung này bị báo cáo sẽ được trích dẫn khi giao tiếp với họ
+      summary:
+        action_preambles:
+          delete_html: 'Bạn sắp <strong>xóa</strong> vài tút của <strong>@%{acct}</strong>. Việc này sẽ:'
+          mark_as_sensitive_html: 'Bạn sắp <strong>đánh dấu</strong> vài tút của <strong>@%{acct}</strong> là <strong>nhạy cảm</strong>. Việc này sẽ:'
       target_origin: Nguồn báo cáo
       title: Báo cáo
       unassign: Bỏ qua
