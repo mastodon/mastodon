@@ -177,6 +177,9 @@ module Mastodon::CLI
     def fix_duplicates
       verify_system_ready!
 
+      # Just in case the server's configuration sets a timeout
+      ActiveRecord::Base.connection.execute 'SET statement_timeout = 0'
+
       process_deduplications
 
       deduplication_cleanup_tasks
