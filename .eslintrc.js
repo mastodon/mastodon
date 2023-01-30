@@ -81,7 +81,6 @@ module.exports = {
     ],
     'no-empty': 'off',
     'no-nested-ternary': 'warn',
-    'no-prototype-builtins': 'off',
     'no-restricted-properties': [
       'error',
       { property: 'substring', message: 'Use .slice instead of .substring.' },
