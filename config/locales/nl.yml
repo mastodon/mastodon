@@ -575,7 +575,10 @@ nl:
         mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
         other_description_html: Bekijk meer opties voor het controleren van het gedrag van en de communicatie met het gerapporteerde account.
         resolve_description_html: Er wordt tegen het gerapporteerde account geen maatregel genomen, geen overtreding geregistreerd en de rapportage wordt gemarkeerd als opgelost.
+        silence_description_html: Het account is alleen zichtbaar voor degenen die het al volgen of handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Dit kan altijd ongedaan worden gemaakt. Dit sluit alle rapporten tegen dit account af.
+        suspend_description_html: Het account en al zijn inhoud zullen niet toegankelijk zijn en uiteindelijk verwijderd worden en er zal geen interactie met het account mogelijk zijn. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
       actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
+      actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze melding op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server communiceert met dit externe account en de inhoud ervan beheert.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -732,6 +735,8 @@ nl:
         preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
+        publish_discovered_servers: Ontdekte servers publiceren
+        publish_statistics: Statistieken publiceren
         title: Ontdekken
         trends: Trends
       domain_blocks:
@@ -1388,6 +1393,9 @@ nl:
       unrecognized_emoji: is geen bestaande emoji-reactie
   relationships:
     activity: Accountactiviteit
+    confirm_follow_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt volgen?
+    confirm_remove_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt verwijderen?
+    confirm_remove_selected_follows: Weet je zeker dat je de geselecteerde volgers wilt verwijderen?
     dormant: Sluimerend
     follow_selected_followers: Geselecteerde volgers volgen
     followers: Volgers
