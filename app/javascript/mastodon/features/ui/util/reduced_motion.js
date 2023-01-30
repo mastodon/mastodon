@@ -17,7 +17,7 @@ class ReducedMotion extends React.Component {
     defaultStyle: PropTypes.object,
     style: PropTypes.object,
     children: PropTypes.func,
-  }
+  };
 
   render() {
 

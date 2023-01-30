@@ -137,7 +137,7 @@ export default class Retention extends React.PureComponent {
       break;
     default:
       title = <FormattedMessage id='admin.dashboard.monthly_retention' defaultMessage='User retention rate by month after sign-up' />;
-    };
+    }
 
     return (
       <div className='retention'>

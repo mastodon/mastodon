@@ -17,8 +17,8 @@ class StatusesController < ApplicationController
   skip_around_action :set_locale, if: -> { request.format == :json }
   skip_before_action :require_functional!, only: [:show, :embed], unless: :whitelist_mode?
 
-  content_security_policy only: :embed do |p|
-    p.frame_ancestors(false)
+  content_security_policy only: :embed do |policy|
+    policy.frame_ancestors(false)
   end
 
   def show

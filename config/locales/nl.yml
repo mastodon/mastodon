@@ -1,7 +1,7 @@
 ---
 nl:
   about:
-    about_mastodon_html: Mastodon is een sociaal netwerk dat gebruikt maakt van open webprotocollen en vrije software. Het is net zoals e-mail gedecentraliseerd.
+    about_mastodon_html: 'Het sociale netwerk van de toekomst: geen advertenties, geen bedrijven die meekijken, ethisch ontworpen, en gedecentraliseerd! Wees eigenaar van jouw eigen gegevens met Mastodon!'
     contact_missing: Niet ingesteld
     contact_unavailable: n.v.t
     hosted_on: Mastodon op %{domain}
@@ -116,6 +116,8 @@ nl:
       redownloaded_msg: Het herstellen van het oorspronkelijke profiel van %{username} is geslaagd
       reject: Afwijzen
       rejected_msg: Het afwijzen van het registratieverzoek van %{username} is geslaagd
+      remote_suspension_irreversible: De gegevens van dit account zijn onomkeerbaar verwijderd.
+      remote_suspension_reversible_hint_html: Dit account is opgeschort op hun server en de gegevens worden volledig verwijderd op %{date}. Tot die tijd kan de externe server dit account herstellen zonder nadelige gevolgen. Wanneer je alle gegevens van dit account onmiddellijk wilt verwijderen, kun je dit hieronder doen.
       remove_avatar: Profielfoto verwijderen
       remove_header: Omslagfoto verwijderen
       removed_avatar_msg: Het verwijderen van de profielfoto van %{username} is geslaagd
@@ -226,7 +228,7 @@ nl:
         update_user_role: Rol bijwerken
       actions:
         approve_appeal_html: "%{name} heeft het bezwaar tegen de moderatiemaatregel van %{target} goedgekeurd"
-        approve_user_html: "%{name} heeft het account van %{target} goedgekeurd"
+        approve_user_html: "%{name} heeft de registratie van %{target} goedgekeurd"
         assigned_to_self_report_html: "%{name} heeft rapportage %{target} aan zichzelf toegewezen"
         change_email_user_html: "%{name} veranderde het e-mailadres van gebruiker %{target}"
         change_role_user_html: "%{name} wijzigde de rol van %{target}"
@@ -555,13 +557,12 @@ nl:
       pending: Aan het wachten op toestemming van de relayserver
       save_and_enable: Opslaan en inschakelen
       setup: Een verbinding met een relayserver maken
-      signatures_not_enabled: Federatierelays werken niet goed wanneer de veilige modus of de beperkte federatiemodus is ingeschakeld
+      signatures_not_enabled: Federatierelays werken mogelijk niet goed wanneer de veilige modus of de beperkte federatiemodus is ingeschakeld
       status: Status
       title: Relayservers
     report_notes:
       created_msg: Opmerking bij rapportage succesvol aangemaakt!
       destroyed_msg: Opmerking bij rapportage succesvol verwijderd!
-      today_at: Vandaag om %{time}
     reports:
       account:
         notes:
@@ -574,8 +575,6 @@ nl:
         mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
         other_description_html: Bekijk meer opties voor het controleren van het gedrag van en de communicatie met het gerapporteerde account.
         resolve_description_html: Er wordt tegen het gerapporteerde account geen maatregel genomen, geen overtreding geregistreerd en de rapportage wordt gemarkeerd als opgelost.
-        silence_description_html: Het profiel zal alleen zichtbaar zijn voor diegenen die het al volgen of het handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Kan altijd worden teruggedraaid.
-        suspend_description_html: Het profiel en alle accountgegevens worden eerst ontoegankelijk gemaakt, totdat deze uiteindelijk onomkeerbaar worden verwijderd. Het is niet meer mogelijk om interactie te hebben met het account. Dit kan binnen 30 dagen worden teruggedraaid.
       actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
@@ -704,6 +703,9 @@ nl:
       content_retention:
         preamble: Toezicht houden op hoe berichten en media van gebruikers op Mastodon worden bewaard.
         title: Bewaartermijn berichten
+      default_noindex:
+        desc_html: Heeft invloed op alle gebruikers die deze instelling niet zelf hebben veranderd
+        title: Gebruikers standaard niet door zoekmachines laten indexeren
       discovery:
         follow_recommendations: Aanbevolen accounts
         preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
@@ -971,6 +973,9 @@ nl:
       email_below_hint_html: Wanneer onderstaand e-mailadres niet klopt, kun je dat hier veranderen. Je ontvangt dan hierna een bevestigingsmail.
       email_settings_hint_html: De bevestigingsmail is verzonden naar %{email}. Wanneer dat e-mailadres niet klopt, kun je dat veranderen in je accountinstellingen.
       title: Instellen
+    sign_in:
+      preamble_html: Log in met de inloggegevens van <strong>%{domain}</strong>. Als jouw account zich op een andere server bevindt, kun je hier niet inloggen.
+      title: Inloggen op %{domain}
     sign_up:
       preamble: Je kunt met een Mastodon-account iedereen in het netwerk volgen, ongeacht waar deze persoon een account heeft.
       title: Laten we je account op %{domain} instellen.
@@ -1263,7 +1268,7 @@ nl:
       before: 'Lees eerst goed deze tekst, alvorens verder te gaan:'
       cooldown: Na de verhuizing kun je tijdelijk niet opnieuw verhuizen
       disabled_account: Jouw huidige account is hierna niet meer volledig bruikbaar. Je hebt echter wel toegang tot het exporteren van je gegevens en tot het opnieuw activeren van je account.
-      followers: Deze actie verhuisd alle volgers vanaf het huidige account naar het nieuwe account
+      followers: Deze actie verhuist alle volgers vanaf het huidige account naar het nieuwe account
       only_redirect_html: Je kunt als alternatief ook <a href="%{path}">alleen de doorverwijzing op je profiel zetten</a>.
       other_data: Geen andere gegevens worden automatisch verhuisd
       redirect: Jouw huidige accountprofiel wordt bijgewerkt met een doorverwijzingsmelding en wordt uitgesloten van zoekresultaten
@@ -1631,7 +1636,7 @@ nl:
       final_action: Begin berichten te plaatsen
       final_step: 'Begin berichten te plaatsen! Zelfs zonder volgers kunnen jouw openbare berichten door anderen bekeken worden, bijvoorbeeld op de lokale tijdlijn en onder hashtags. Je kunt jezelf voorstellen met het gebruik van de hashtag #introductions.'
       full_handle: Jouw volledige Mastodonadres
-      full_handle_hint: Dit geef je aan jouw vrienden, zodat ze jouw berichten kunnen sturen of (vanaf een andere Mastodonserver) kunnen volgen.
+      full_handle_hint: Dit geef je aan jouw vrienden, zodat ze jou berichten kunnen sturen of (vanaf een andere Mastodonserver) kunnen volgen.
       subject: Welkom op Mastodon
       title: Welkom aan boord %{name}!
   users:

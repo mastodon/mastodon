@@ -370,6 +370,8 @@ io:
       add_new: Permisez federato kun domeno
       created_msg: Domeno sucesoza permisesas por federato
       destroyed_msg: Domeno despermisesas de federato
+      export: Exportez
+      import: Importez
       undo: Despermisez federato kun domeno
     domain_blocks:
       add_new: Add new
@@ -379,13 +381,18 @@ io:
       edit: Modifikez domenobstrukto
       existing_domain_block: Vu ja exekutis plu rigoroza limiti a %{name}.
       existing_domain_block_html: Vu ja povis plu rigoroza limiti a %{name}, vu bezonas <a href="%{unblock_url}">deobstruktar</a> unesme.
+      export: Exportez
+      import: Importez
       new:
         create: Kreez obstrukto
         hint: Domenobstrukto ne preventos kreo di kontrekordaji en datumaturo, ma retroaktive e automate aplikos partikulara jermetodi a ta konti.
         severity:
           noop: Nulo
+          silence: Limito
           suspend: Restriktez
         title: Nova domenobstrukto
+      no_domain_block_selected: Nula domenobstrukti ne chanjesis por ke nulo selektesis
+      not_permitted: Vu ne permisesis agar co
       obfuscate: Nedicernebligez domennomo
       obfuscate_hint: Partala nedicernebligez domennomo en listo se reklamo di listo di domenlimito aktivigesas
       private_comment: Privata komento
@@ -536,7 +543,6 @@ io:
     report_notes:
       created_msg: Raportnoto sucesoze kreesis!
       destroyed_msg: Raportnoto sucesoze efacesis!
-      today_at: Hodie en %{time}
     reports:
       account:
         notes:
@@ -549,8 +555,6 @@ io:
         mark_as_sensitive_description_html: Medii en raportizita posti markizesos quale sentoza e streko rekordigesos por helpar vu intensigar en nexta malagi da la sama konto.
         other_description_html: Videz plu multa opcioni por dominacar konduto di konto e kustumizar komuniko a raportizita konto.
         resolve_description_html: Nulo agesos kontre raportizita konto, streko ne rekordizesos e raporto klozesos.
-        silence_description_html: Profilo esos videbla nur por personi quo ja sequis o manuale trovis, se severe limitizas ola porteo. Sempre povas inversigesar.
-        suspend_description_html: Ca profilo e omna ola kontenaji divenos neacesebla til ol eventuale efacesas. Interagar kun la konto divenos neposibla. Inversigebla til 30 dii.
       actions_description_html: Decidez ago por rezolvar ca raporto. Se vu decidar puniso kontre raportizesis konto, retpostoavizo sendesos a ol, ecepte kande <strong>Spam</strong> kategorio selektesis.
       add_to_report: Insertez pluse a raporto
       are_you_sure: Ka vu esas certa?
@@ -1231,6 +1235,8 @@ io:
     carry_blocks_over_text: Ca uzanti transferesis de %{acct} quon vu restriktis.
     carry_mutes_over_text: Ca uzanti transferesis de %{acct} quon vu silencigis.
     copy_account_note_text: 'Ca uzanti transferesis de %{acct}, co esas vua antea noti pri ol:'
+  navigation:
+    toggle_menu: Baskulez menuo
   notification_mailer:
     admin:
       report:
@@ -1350,6 +1356,7 @@ io:
     browser: Vidilo
     browsers:
       alipay: Alipay
+      blackberry: BlackBerry
       chrome: Chrome
       edge: Microsoft Edge
       electron: Electron
@@ -1363,6 +1370,7 @@ io:
       phantom_js: PhantomJS
       qq: Vidilo QQ
       safari: Safari
+      uc_browser: UC Browser
       weibo: Weibo
     current_session: Nuna sesiono
     description: "%{browser} che %{platform}"
@@ -1371,6 +1379,8 @@ io:
     platforms:
       adobe_air: Adobe Air
       android: Android
+      blackberry: BlackBerry
+      chrome_os: ChromeOS
       firefox_os: Firefox OS
       ios: iOS
       linux: Linux

@@ -116,6 +116,8 @@ sv:
       redownloaded_msg: Uppdaterade %{username}s profil från server
       reject: Förkasta
       rejected_msg: Avvisade %{username}s registreringsansökan
+      remote_suspension_irreversible: Detta konto har raderats och uppgifterna kan inte återkallas.
+      remote_suspension_reversible_hint_html: Kontot har stängts av på dess server och all data som tillhör det kommer att raderas permanent den %{date}. Tills dess kan kontot återställas på sin server utan dataförlust. Om du vill radera all kontodata redan nu, kan du göra detta nedan.
       remove_avatar: Ta bort avatar
       remove_header: Ta bort rubrik
       removed_avatar_msg: Tog bort %{username}s profilbild
@@ -123,7 +125,7 @@ sv:
       resend_confirmation:
         already_confirmed: Den här användaren är redan bekräftad
         send: Skicka om e-postbekräftelse
-        success: Bekräftelsemeddelande skickas framgångsrikt!
+        success: Bekräftelsemeddelande skickades framgångsrikt!
       reset: Återställ
       reset_password: Återställ lösenord
       resubscribe: Starta en ny prenumeration
@@ -283,7 +285,7 @@ sv:
         update_ip_block_html: "%{name} ändrade regel för IP %{target}"
         update_status_html: "%{name} uppdaterade inlägget av %{target}"
         update_user_role_html: "%{name} ändrade rollen %{target}"
-      deleted_account: raderat konto deleted account
+      deleted_account: raderat konto
       empty: Inga loggar hittades.
       filter_by_action: Filtrera efter åtgärd
       filter_by_user: Filtrera efter användare
@@ -561,7 +563,6 @@ sv:
     report_notes:
       created_msg: Anmälningsanteckning har skapats!
       destroyed_msg: Anmälningsanteckning har raderats!
-      today_at: Idag kl. %{time}
     reports:
       account:
         notes:
@@ -574,9 +575,10 @@ sv:
         mark_as_sensitive_description_html: Medierna i de rapporterade inläggen kommer markeras som känsliga och en prick kommer registreras för att hjälpa dig eskalera framtida överträdelser av samma konto.
         other_description_html: Se fler alternativ för att kontrollera kontots beteende och anpassa kommunikationen till det rapporterade kontot.
         resolve_description_html: Ingen åtgärd vidtas mot det rapporterade kontot, ingen prick registreras och rapporten stängs.
-        silence_description_html: Profilen kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Kan alltid ångras.
-        suspend_description_html: Profilen och allt dess innehåll kommer att bli oåtkomligt tills det slutligen raderas. Det kommer inte vara möjligt att interagera med kontot. Går att ångra inom 30 dagar.
+        silence_description_html: Kontot kommer endast synas för de som redan följer den eller manuellt söker på den, vilket dramatiskt minskar dess räckvidd. Kan alltid ångras. Stänger alla anmälningar mot detta konto.
+        suspend_description_html: Kontot och allt dess innehåll kommer att vara oåtkomligt och så småningom tas bort, det kommer inte gå att interagera med kontot. Kan ångras inom 30 dagar. Stänger alla anmälningar mot detta konto.
       actions_description_html: Välj vilken åtgärd som skall vidtas för att lösa denna rapport. Om du vidtar en bestraffningsåtgärd mot det rapporterade kontot kommer en e-postnotis att skickas till dem, förutom om du valt kategorin <strong>Skräppost</strong>.
+      actions_description_remote_html: Bestäm vilka åtgärder som ska vidtas för att lösa denna rapport. Detta kommer bara att påverka hur <strong>din</strong> server kommunicerar med detta fjärrkonto och hanterar dess innehåll.
       add_to_report: Lägg till mer i rapporten
       are_you_sure: Är du säker?
       assign_to_self: Tilldela till mig
@@ -704,11 +706,16 @@ sv:
       content_retention:
         preamble: Kontrollera hur användargenererat innehåll lagras i Mastodon.
         title: Bibehållande av innehåll
+      default_noindex:
+        desc_html: Påverkar alla användare som inte själva ändrat denna inställning
+        title: Undantag användare från sökmotorindexering som standard
       discovery:
         follow_recommendations: Följrekommendationer
         preamble: Att visa intressant innehåll är avgörande i onboarding av nya användare som kanske inte känner någon på Mastodon. Styr hur olika upptäcktsfunktioner fungerar på din server.
         profile_directory: Profilkatalog
         public_timelines: Offentliga tidslinjer
+        publish_discovered_servers: Publicera upptäckta servrar
+        publish_statistics: Publicera statistik
         title: Upptäck
         trends: Trender
       domain_blocks:
@@ -971,6 +978,9 @@ sv:
       email_below_hint_html: Om nedanstående e-postadress är felaktig kan du ändra den här, och få ett nytt bekräftelsemeddelande.
       email_settings_hint_html: E-postmeddelande för verifiering skickades till %{email}. Om e-postadressen inte stämmer kan du ändra den i kontoinställningarna.
       title: Ställ in
+    sign_in:
+      preamble_html: Logga in med dina användaruppgifter på <strong>%{domain}</strong>. Om ditt konto finns på en annan server kommer du inte att kunna logga in här.
+      title: Logga in på %{domain}
     sign_up:
       preamble: Med ett konto på denna Mastodon-server kan du följa alla andra personer på nätverket, oavsett vilken server deras konto tillhör.
       title: Låt oss få igång dig på %{domain}.
@@ -1161,7 +1171,7 @@ sv:
     all_matching_items_selected_html:
       one: "<strong>%{count}</strong> objekt som matchar din sökning är valt."
       other: "<strong>%{count}</strong> objekt som matchar din sökning är valda."
-    changes_saved_msg: Ändringar sparades framgångsrikt!
+    changes_saved_msg: Ändringar sparade!
     copy: Kopiera
     delete: Radera
     deselect: Avmarkera alla
@@ -1187,7 +1197,7 @@ sv:
       overwrite: Skriv över
       overwrite_long: Ersätt de nuvarande uppgifterna med de nya
     preface: Du kan importera data som du exporterat från en annan instans, till exempel en lista över personer du följer eller blockerar.
-    success: Dina uppgifter har laddats upp och kommer nu att behandlas snarast
+    success: Dina uppgifter har laddats upp och kommer att behandlas snarast
     types:
       blocking: Lista av blockerade
       bookmarks: Bokmärken

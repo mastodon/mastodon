@@ -122,14 +122,12 @@ sr-Latn:
         admin/accounts: Administracija naloga
         admin/all: Sve funkcije administracije
         admin/reports: Administracija prijava
-        all: Sve
         blocks: Blokirani
         bookmarks: Obeleživači
         conversations: Razgovori
         crypto: End-to-end enkripcija
         favourites: Omiljeni
         filters: Filteri
-        follow: Veze
         follows: Praćeni
         lists: Liste
         media: Multimedijalni prilozi
@@ -149,9 +147,14 @@ sr-Latn:
     scopes:
       admin:read: čitanje svih podataka na serveru
       admin:read:accounts: čitanje osetljivih podataka za sve naloge
+      admin:read:domain_allows: pročitaj osetljive informacije za sve dozvole domena
+      admin:read:domain_blocks: pročitaj osetljive informacije za sve blokove domena
+      admin:read:ip_blocks: pročitaj osetljive informacije za sve IP blokove
       admin:read:reports: čitanje osetljivih podataka svih izveštaja i prijavljenih naloga
       admin:write: menjanje svih podataka na serveru
       admin:write:accounts: vršenje moderatorskih aktivnosti nad nalozima
+      admin:write:domain_blocks: izvrši moderatorske aktivnosti na blokovima domena
+      admin:write:ip_blocks: izvrši moderatorske aktivnosti na IP blokovima
       admin:write:reports: vršenje moderatorskih aktivnosti nad izveštajima
       crypto: korišćenje end-to-end enkripcije
       follow: prati, blokira, odblokira i otprati naloge

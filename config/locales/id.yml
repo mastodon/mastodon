@@ -113,6 +113,7 @@ id:
       redownloaded_msg: Berhasil menyegarkan profil %{username} dari asal
       reject: Tolak
       rejected_msg: Berhasil menolak permintaan pendaftaran %{username}
+      remote_suspension_irreversible: Data akun ini telah dihapus permanen.
       remove_avatar: Hapus avatar
       remove_header: Hapus header
       removed_avatar_msg: Berhasil menghapus gambar avatar %{username}
@@ -550,7 +551,6 @@ id:
     report_notes:
       created_msg: Catatan laporan berhasil dibuat!
       destroyed_msg: Catatan laporan berhasil dihapus!
-      today_at: Hari ini pada %{time}
     reports:
       account:
         notes:
@@ -562,8 +562,6 @@ id:
         mark_as_sensitive_description_html: Media di dalam kiriman terlapor akan ditandai sebagai sensitif dan hukuman akan direkam untuk membantu menangani pelanggaran dari akun yang sama di masa mendatang.
         other_description_html: Lihat opsi lain untuk mengendalikan perilaku akun dan menyesuaikan komunikasi ke akun yang dilaporkan.
         resolve_description_html: Tidak ada tindakan untuk akun yang dilaporkan, tidak ada peringatan yang direkam, dan laporan akan ditutup.
-        silence_description_html: Profil hanya dapat terlihat oleh pengguna yang telah mengikuti atau melihatnya secara manual, yang sangat membatasi jangkauannya. Selalu dapat dipulihkan kembali.
-        suspend_description_html: Profil dan semua kontennya tidak dapat diakses sampai ia terhapus. Interaksi dengan akun tersebut tidak dimungkinkan. Dapat dipulihkan dalam waktu 30 hari.
       actions_description_html: Memutuskan tindakan yang tepat untuk menyelesaikan laporan ini. Jika Anda memutuskan tindakan hukuman kepada akun terlapor, notifikasi email akan dikirim ke mereka, kecuali saat kategori <strong>Spam</strong> dipilih.
       add_to_report: Tambahkan lebih banyak untuk lapor
       are_you_sure: Apakah Anda yakin?
@@ -690,6 +688,9 @@ id:
       content_retention:
         preamble: Atur bagaimana konten yang dibuat oleh pengguna disimpan di Mastodon.
         title: Retensi konten
+      default_noindex:
+        desc_html: Memengaruhi semua pengguna yang belum mengubah pengaturan ini sendiri
+        title: Keluarkan pengguna dari pengindeksan mesin telusur secara bawaan
       discovery:
         follow_recommendations: Ikuti rekomendasi
         preamble: Menampilkan konten menarik penting dalam memandu pengguna baru yang mungkin tidak tahu siapa pun di Mastodon. Atur bagaimana berbagai fitur penemuan bekerja di server Anda.
@@ -953,6 +954,8 @@ id:
       email_below_hint_html: Jika alamat email di bawah tidak benar, Anda dapat menggantinya di sini dan menerima email konfirmasi baru.
       email_settings_hint_html: Email konfirmasi telah dikirim ke %{email}. Jika alamat email tidak benar, Anda dapat mengubahnya di pengaturan akun.
       title: Atur
+    sign_in:
+      title: Masuk ke %{domain}
     sign_up:
       preamble: Dengan sebuah akun di server Mastodon ini, Anda akan dapat mengikuti orang lain dalam jaringan, di mana pun akun mereka berada.
       title: Mari kita siapkan Anda di %{domain}.

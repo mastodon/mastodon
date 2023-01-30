@@ -122,14 +122,14 @@ fo:
         admin/accounts: Umsiting av kontum
         admin/all: Allar umsitingarligar funktiónir
         admin/reports: Umsiting av meldingum
-        all: Alt
+        all: Full atgongd til tína Mastodon kontu
         blocks: Blokeringar
         bookmarks: Bókamerki
         conversations: Samrøður
         crypto: Enda-til-enda bronglan
         favourites: Yndispostar
         filters: Filtur
-        follow: Sambond
+        follow: Fylgingar, doyvingar og blokeringar
         follows: Fylgir
         lists: Listar
         media: Viðfestir miðlar
@@ -149,9 +149,19 @@ fo:
     scopes:
       admin:read: les allar dátur á ambætaranum
       admin:read:accounts: les viðkvæmar upplýsingar úr øllum kontum
+      admin:read:canonical_email_blocks: les viðkvæmar upplýsingar frá øllum fyrimyndarligum teldupostblokeringum
+      admin:read:domain_allows: les viðkvæmar upplýsingar frá øllum loyvdum navnaøkjum
+      admin:read:domain_blocks: les viðkvæmar upplýsingar frá øllum navnaøkjablokeringum
+      admin:read:email_domain_blocks: les viðkvæmar upplýsingar frá øllum telduposta-navnaøkjablokeringum
+      admin:read:ip_blocks: les viðkvæmar upplýsingar frá øllum IP blokeringum
       admin:read:reports: les viðkvæmar upplýsingar um allar meldingar og meldaðar kontur
       admin:write: broyta allar dátur á ambætaranum
       admin:write:accounts: útinna kjakleiðsluatgerðir á kontum
+      admin:write:canonical_email_blocks: før umsjón við øllum fyrimyndarligum teldupostablokeringum
+      admin:write:domain_allows: før umsjón á loyvdum navnaøkjum
+      admin:write:domain_blocks: før umsjón á navnaøkjablokeringum
+      admin:write:email_domain_blocks: før umsjón á telduposta-navnaøkjablokeringum
+      admin:write:ip_blocks: før umsjón á IP blokeringum
       admin:write:reports: útinna kjakleiðsluatgerðir á meldingum
       crypto: brúka enda-til-enda bronglan
       follow: broyta viðurskifti millum kontur

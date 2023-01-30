@@ -116,6 +116,8 @@ fo:
       redownloaded_msg: Tín vangamynd %{username}'s er nú endurnýggja
       reject: Nokta
       rejected_msg: Tað eydnaðist, at avvísa umsóknina frá %{username}'s um innskriving
+      remote_suspension_irreversible: Dáturnar hjá hesi kontuni eru strikaðar med alla.
+      remote_suspension_reversible_hint_html: Kontan er sett úr gildi á teirra ambætara og dáturnar verða endaliga strikaðar tann %{date}. Inntil tá kann fjarambætarin endurskapa kontuna uttan fylgjur. Ynskir tú at strika allar dátur hjá kontuni beinan vegin, so kanst tú gera tað niðanfyri.
       remove_avatar: Sletta avatar
       remove_header: Sletta headera
       removed_avatar_msg: Slettaði avatar myndina hjá %{username}
@@ -561,7 +563,6 @@ fo:
     report_notes:
       created_msg: Viðmerking til melding stovnað!
       destroyed_msg: Viðmerking til melding strikað!
-      today_at: Í dag kl. %{time}
     reports:
       account:
         notes:
@@ -574,9 +575,10 @@ fo:
         mark_as_sensitive_description_html: Miðlarnir í meldaðu postunum verða merkir sum viðkvæmir, og ein atsókn verður skrásett, soleiðis at tú veist, um onnur stig skulu takast, um sama konta ger fleiri brot í framtíðini.
         other_description_html: Sí fleiri valmøguleikar at stýra atferðini hjá kontuni og at tillagað samskiftið við meldaðu kontuni.
         resolve_description_html: Eingin atgerð verður tikin móti meldaðu kontuni, eingin atsókn verður skrásett og meldingin verður lukkað.
-        silence_description_html: Vangin verður einans sjónligur hjá teimum, sum longu fylgja honum ella leita eftir honum við hond, og tað minkar nógv um, hvussu langt hann røkkur. Kann altíð angrast.
-        suspend_description_html: Vangin og alt tilfar hjá vanganum verður óatkomandi inntil hann at enda verður strikaður. Tað verður ómøguligt at samvirka við hesa kontuna. Vendast kann aftur innan 30 dagar.
+        silence_description_html: Kontan verður einans sjónlig hjá teimum, sum longu fylgja henni ella leita eftir henni við hond, og tað minkar nógv um, hvussu langt hon røkkur. Kann altíð angrast. Lukkar allar rapporteringar um hesa kontuna.
+        suspend_description_html: Kontan og alt innihald hjá kontuni gerast óatkomulig og við tíðini strikaði, og tað verður ógjørligt at samvirka við henni. Kann angrast innan 30 dagar. Lukkar allar rapporteringar av hesi kontuni.
       actions_description_html: Ger av hvør atgerð skal takast fyri at avgreiða hesa meldingina. Revsitiltøk móti meldaðu kontuni føra við sær, at ein teldupostfráboðan verður send teimum, undantikið tá <strong>Ruskpostur</strong> verður valdur.
+      actions_description_remote_html: Tak avgerð um hvat skal gerast fyri at avgreiða hesa rapporteringina. Hetta fer einans at ávirka, hvussu <strong>tín</strong> ambætari samskiftir við hesa fjarkontuna og hvussu hann handfer tilfar frá henni.
       add_to_report: Legg meira afturat meldingini
       are_you_sure: Er tú vís/ur?
       assign_to_self: Tilluta mær
@@ -704,11 +706,16 @@ fo:
       content_retention:
         preamble: Stýr hvussu brúkara-skapt tilfar er goymt í Mastodon.
         title: Varðveitsla av tilfari
+      default_noindex:
+        desc_html: Hevur ávirkan á allar brúkarar, sum ikki hava broytt hesa stillingina sjálvi
+        title: Tekur brúkarar úr leitimaskinu-indeksering, um ikki annað er valt
       discovery:
         follow_recommendations: Tilmæli um at fylgja
         preamble: At fáa áhugavert innihald í ljósmála er avgerandi fyri at nýggir brúkarar, sum kanska ongan kenna á Mastodon, kunnu koma væl umborð. Stýr, hvussu hentleikarnir at uppdaga ymiskt rigga á ambætaranum hjá tær.
         profile_directory: Vangaskrá
         public_timelines: Almennar tíðarlinjur
+        publish_discovered_servers: Kunnger uppdagaðu ambætararnar
+        publish_statistics: Legg hagtøl út
         title: Uppdaging
         trends: Rák
       domain_blocks:
@@ -971,6 +978,9 @@ fo:
       email_below_hint_html: Er telduposturin niðanfyri skeivur, so kanst tú broyta hann her og móttaka eitt nýtt váttanarteldubræv.
       email_settings_hint_html: Váttanarteldubrævið varð sent til %{email}. Um telduposturin er skeivur, so kanst tú broyta hann í kontustillingunum.
       title: Uppseting
+    sign_in:
+      preamble_html: Rita inn við tínum <strong>%{domain}</strong> heimildum. Er konta tín á einum øðrum ambætara, so er ikki gjørligt hjá tær at rita inn her.
+      title: Rita inn á %{domain}
     sign_up:
       preamble: Við eini kontu á hesum Mastodon ambætaranum ber til hjá tær at fylgja ein og hvønn annan persón á netverkinum, óansæð hvar teirra konta er hýst.
       title: Latum okkum fáa teg settan upp á %{domain}.
@@ -1360,6 +1370,9 @@ fo:
       unrecognized_emoji: er ikki eitt kenslutekn, sum kennist aftur
   relationships:
     activity: Kontuvirksemi
+    confirm_follow_selected_followers: Vil tú veruliga fylgja valdu fylgjarunum?
+    confirm_remove_selected_followers: Vil tú veruliga strika valdu fylgjararnar?
+    confirm_remove_selected_follows: Vil tú veruliga strika valdu fylgingarnar?
     dormant: Í dvala
     follow_selected_followers: Fylg valdu fylgjarum
     followers: Fylgjarar

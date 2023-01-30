@@ -72,6 +72,7 @@ ast:
         enable_custom_emoji_html: "%{name} activó'l fustaxe «%{target}»"
         reject_user_html: "%{name} refugó'l rexistru de: %{target}"
         remove_avatar_user_html: "%{name} quitó l'avatar de: %{target}"
+        unblock_email_account_html: "%{name} desbloquió la direición de corréu electrónicu de: %{target}"
         update_announcement_html: "%{name} anovó l'anunciu «%{target}»"
         update_custom_emoji_html: "%{name} anovó'l fustaxe «%{target}»"
         update_status_html: "%{name} anovó l'artículu de: %{target}"
@@ -159,6 +160,8 @@ ast:
       no_file: Nun se seleicionó nengún ficheru
     follow_recommendations:
       language: Pa la llingua
+      status: Estáu
+      title: Recomendación de cuentes
     instances:
       availability:
         no_failures_recorded: Nun se rexistró nengún fallu.
@@ -311,6 +314,7 @@ ast:
       statuses:
         title: Artículos en tendencia
       tags:
+        current_score: 'Puntuación total: %{score}'
         dashboard:
           tag_accounts_measure: usos únicos
         listable: Pue suxerise
@@ -408,6 +412,7 @@ ast:
       web: Dir a la web
   challenge:
     hint_html: "<strong>Conseyu:</strong> nun vamos volver pidite la contraseña hasta dientro d'una hora."
+    prompt: Confirma la contraseña pa siguir
   crypto:
     errors:
       invalid_key: nun ye una clave ed25519 o curve25519 válida
@@ -759,6 +764,7 @@ ast:
     follow_limit_reached: Nun pues siguir a más de %{limit} persones
     invalid_otp_token: El códigu de l'autenticación en dos pasos nun ye válidu
     seamless_external_login: Aniciesti la sesión pente un serviciu esternu, polo que la configuración de la contraseña ya de la direición de corréu electrónicu nun tán disponibles.
+    signed_in_as: 'Aniciesti la sesión como:'
   verification:
     explanation_html: 'Pues <strong>verificate como la persona propietaria de los enllaces nos metadatos del to perfil</strong>. Pa ello, el sitiu web enllaciáu ha contener un enllaz al to perfil de Mastodon. Esti enllaz <strong>ha</strong> tener l''atributu <code>rel="me"</code>. El testu del enllaz nun importa. Equí tienes un exemplu:'
     verification: Verificación

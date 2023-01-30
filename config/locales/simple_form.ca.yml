@@ -10,27 +10,27 @@ ca:
         text: Pots usar totes les sintaxis, com ara URL, etiquetes i mencions
         title: Opcional. No és visible per al destinatari
       admin_account_action:
-        include_statuses: L'usuari veurà quines publicacions han provocat que s'hagi moderat o avisat
+        include_statuses: L'usuari veurà quins tuts han causat l'acció de moderació o avís
         send_email_notification: L'usuari rebrà una explicació del que ha passat amb el seu compte
-        text_html: Opcional. En les publicacions, pots usar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
+        text_html: Opcional. En els tuts, pots usar tota la sintaxi. Pots <a href="%{path}">afegir configuracions predefinides d'avís</a> per a estalviar temps
         type_html: Tria què fer amb <strong>%{acct}</strong>
         types:
-          disable: Evita que l'usuari faci servir el seu compte, però no esborris ni amaguis el seu contingut.
+          disable: Evita que l'usuari faci servir el seu compte, però no n'esborris ni amaguis el contingut.
           none: Fes servir això per a enviar un avís a l'usuari sense desencadenar cap altra acció.
           sensitive: Obliga a marcar tots els fitxers multimèdia adjunts com a sensibles.
-          silence: Evita que l'usuari pugui publicar amb visibilitat pública, amagar les seves publicacions i les notificacions d'usuaris que no el segueixin.
-          suspend: Evita qualsevol interacció des de o cap a aquest compte i esborra els seus continguts. Reversible en un termini de 30 dies.
+          silence: Evita que l'usuari sigui capaç de publicar amb visibilitat pública, amagar els seus tuts i les notificacions d'usuaris que no el segueixin. Tanca tots els informes contra aquest compte.
+          suspend: Evita qualsevol interacció de o cap a aquest compte i esborra'n el contingut. Reversible en un termini de trenta dies. Tanca tots els informes contra aquest compte.
         warning_preset_id: Opcional. Encara pots afegir text personalitzat al final de la configuració predefinida
       announcement:
         all_day: Si es marca, només es mostraran les dates de l'interval de temps
-        ends_at: Opcional. En aquest moment, l'anunci no es publicarà automàticament
+        ends_at: Opcional. En aquest moment, l’anunci deixarà automàticament d'estar publicat
         scheduled_at: Deixa-ho en blanc per a publicar l’anunci immediatament
         starts_at: Opcional. En cas que el teu anunci estigui vinculat a un interval de temps específic
-        text: Pots fer servir la sintaxi de publicacions. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
+        text: Pots fer servir la sintaxi dels tuts. Tingues en compte l’espai que l’anunci ocuparà a la pantalla de l’usuari
       appeal:
         text: Només pots emetre una apel·lació per cada acció
       defaults:
-        autofollow: Les persones que es registrin a través de la invitació et seguiran automàticament
+        autofollow: Qui es registri a través de la invitació et seguirà automàticament
         avatar: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
         bot: Notifica que aquest compte realitza principalment accions automatitzades i que pot no estar controlat per cap persona
         context: Un o diversos contextos en què s'ha d'aplicar el filtre
@@ -42,23 +42,23 @@ ca:
         fields: Pots tenir fins a 4 elements que es mostren com a taula al teu perfil
         header: PNG, GIF o JPG de com a màxim %{size}. S'escalarà a %{dimensions}px
         inbox_url: Copia l'URL de la pàgina principal del relay que vols usar
-        irreversible: Les publicacions filtrades desapareixeran de manera irreversible, fins i tot si el filtre s'elimina més tard
+        irreversible: Els tuts filtrats desapareixeran de manera irreversible, fins i tot si el filtre es retira més tard
         locale: L'idioma de la interfície d’usuari, els correus i les notificacions push
         locked: Controla manualment qui et pot seguir, aprovant sol·licituds
         password: Utilitza com a mínim 8 caràcters
         phrase: Es combinarà independentment del format en el text o l'avís de contingut del tut
         scopes: API permeses per a accedir a l'aplicació. Si selecciones un àmbit de nivell superior, no cal que en seleccionis un d'individual.
-        setting_aggregate_reblogs: No mostris els nous impulsos de les publicacions que ja s'han impulsat recentment (només afecta els nous impulsos rebuts)
+        setting_aggregate_reblogs: No mostra els nous impulsos dels tuts que ja s'han impulsat recentment (només afecta als impulsos nous rebuts)
         setting_always_send_emails: Normalment, no s'enviarà cap notificació per correu electrònic mentre facis servir Mastodon
         setting_default_sensitive: El contingut sensible està ocult per defecte i es pot mostrar fent-hi clic
-        setting_display_media_default: Ocultar el contingut gràfic marcat com a sensible
+        setting_display_media_default: Amaga el contingut gràfic marcat com a sensible
         setting_display_media_hide_all: Oculta sempre tot el contingut multimèdia
         setting_display_media_show_all: Mostra sempre el contingut gràfic
         setting_hide_network: Qui segueixes i els que et segueixen no es mostraran en el teu perfil
         setting_noindex: Afecta el teu perfil públic i les pàgines d'estat
-        setting_show_application: L'aplicació que fas servir per a publicar es mostrarà en la vista detallada de les publicacions
+        setting_show_application: L'aplicació que fas servir per a publicar es mostrarà a la vista detallada dels teus tuts
         setting_use_blurhash: Els degradats es basen en els colors de les imatges ocultes, però n'enfosqueixen els detalls
-        setting_use_pending_items: Amaga les actualitzacions de la línia de temps després de fer un clic en lloc de desplaçar automàticament les publicacions
+        setting_use_pending_items: Amaga les actualitzacions de la línia de temps després de fer un clic, en lloc de desplaçar-les automàticament
         username: El teu nom d'usuari serà únic a %{domain}
         whole_word: Quan la paraula clau o la frase sigui només alfanumèrica, s'aplicarà si coincideix amb la paraula sencera
       domain_allow:
@@ -74,26 +74,28 @@ ca:
           hide: Ocultar completament el contingut filtrat, comportant-se com si no existís
           warn: Oculta el contingut filtrat darrere d'un avís mencionant el títol del filtre
       form_admin_settings:
+        activity_api_enabled: Contador de tuts publicats localment, usuaris actius i registres nous en períodes setmanals
         backups_retention_period: Manté els arxius d'usuari generats durant el nombre de dies especificats.
         bootstrap_timeline_accounts: Aquests comptes es fixaran en la part superior de les recomanacions de seguiment dels nous usuaris.
         closed_registrations_message: Mostrat quan el registres estan tancats
-        content_cache_retention_period: Les publicacions d'altres servidors se suprimiran després del nombre de dies especificat quan s'estableix un valor positiu. Això pot ser irreversible.
+        content_cache_retention_period: Els tuts d'altres servidors se suprimiran després del nombre de dies especificat quan s'estableix un valor positiu. Això pot ser irreversible.
         custom_css: Pots aplicar estils personalitzats en la versió web de Mastodon.
         mascot: Anul·la la il·lustració en la interfície web avançada.
         media_cache_retention_period: Els fitxers multimèdia descarregats s'esborraran després del nombre de dies especificat quan el valor configurat és positiu, i tornats a descarregats sota demanda.
+        peers_api_enabled: Una llista de noms de domini que aquest servidor ha trobat al fedivers. No inclou cap dada sobre si estàs federat amb un servidor determinat, només si el teu en sap res. La fan servir, en un sentit general, serveis que recoŀlecten estadístiques sobre la federació.
         profile_directory: El directori de perfils llista tots els usuaris que tenen activat ser descoberts.
         require_invite_text: Quan el registre requereix aprovació manual, fes que sigui obligatori en lloc d'opcional escriure el text de la sol·licitud d'invitació "Per què vols unir-te?"
         site_contact_email: Com pot la gent comunicar amb tu per a consultes legals o de recolzament.
         site_contact_username: Com pot la gent trobar-te a Mastodon.
         site_extended_description: Qualsevol informació addicional que pot ser útil per als visitants i els teus usuaris. Es pot estructurar amb format Markdown.
         site_short_description: Una descripció curta per a ajudar a identificar de manera única el teu servidor. Qui el fa anar, per a qui és?
-        site_terms: Usa la teva pròpia política de privacitat o deixa-ho en blanc per a usar la per defecte. Pot ser estructurat amb format Markdown.
+        site_terms: Fes servir la teva pròpia política de privacitat o deixa-ho en blanc per a la per defecte. Es pot estructurar amb format Markdown.
         site_title: Com pot la gent referir-se al teu servidor a part del seu nom de domini.
         theme: El tema que els visitants i els nous usuaris veuen.
         thumbnail: Una imatge d'aproximadament 2:1 que es mostra al costat la informació del teu servidor.
-        timeline_preview: Els visitants amb sessió no iniciada seran capaços de navegar per les publicacions més recents en el teu servidor.
+        timeline_preview: Els visitants amb sessió no iniciada seran capaços de navegar per els tuts més recents en el teu servidor.
         trendable_by_default: Omet la revisió manual del contingut en tendència. Els articles individuals poden encara ser eliminats després del fet.
-        trends: Les tendències mostren quines publicacions, etiquetes i notícies estan guanyant força al vostre servidor.
+        trends: Les tendències mostren quins tuts, etiquetes i notícies estan guanyant força en el teu servidor.
       form_challenge:
         current_password: Estàs entrant en una àrea segura
       imports:
@@ -117,7 +119,7 @@ ca:
       tag:
         name: Només pots canviar la caixa de les lletres, per exemple, per fer-la més llegible
       user:
-        chosen_languages: Quan estigui marcat, només es mostraran les publicacions en les llengües seleccionades en les línies de temps públiques
+        chosen_languages: Quan estigui marcat, només es mostraran els tuts de les llengües seleccionades en les línies de temps públiques
         role: El rol controla quines permissions té l'usuari
       user_role:
         color: Color que s'usarà per al rol a tota la interfície d'usuari, com a RGB en format hexadecimal
@@ -141,7 +143,7 @@ ca:
         text: Text predefinit
         title: Títol
       admin_account_action:
-        include_statuses: Inclou les publicacions reportades en el correu electrònic
+        include_statuses: Inclou tuts reportats en el correu electrònic
         send_email_notification: Notifica l'usuari per correu electrònic
         text: Avís personalitzat
         type: Acció
@@ -192,9 +194,9 @@ ca:
         setting_always_send_emails: Envia'm sempre notificacions per correu electrònic
         setting_auto_play_gif: Reprodueix automàticament els GIF animats
         setting_boost_modal: Mostra la finestra de confirmació abans d'impulsar
-        setting_crop_images: Retalla les imatges en publicacions no ampliades a 16x9
-        setting_default_language: Idioma de les publicacions
-        setting_default_privacy: Privacitat de les publicacions
+        setting_crop_images: Retalla les imatges en tuts no ampliats a 16x9
+        setting_default_language: Llengua dels tuts
+        setting_default_privacy: Privacitat dels tuts
         setting_default_sensitive: Marcar sempre el contingut gràfic com a sensible
         setting_delete_modal: Mostra la finestra de confirmació abans d'esborrar un tut
         setting_disable_swiping: Desactiva les animacions
@@ -202,11 +204,11 @@ ca:
         setting_display_media_default: Per defecte
         setting_display_media_hide_all: Amaga-ho tot
         setting_display_media_show_all: Mostra-ho tot
-        setting_expand_spoilers: Desplega sempre les publicacions marcades amb advertències de contingut
+        setting_expand_spoilers: Desplega sempre els tuts marcats amb advertències de contingut
         setting_hide_network: Amaga la teva xarxa
         setting_noindex: Desactiva la indexació dels motors de cerca
         setting_reduce_motion: Redueix el moviment de les animacions
-        setting_show_application: Revelar l'aplicació utilitzada per fer les publicacions
+        setting_show_application: Revela l'aplicació utilitzada per enviar tuts
         setting_system_font_ui: Usa la lletra predeterminada del sistema
         setting_theme: Tema del lloc
         setting_trends: Mostra les tendències d'avui
@@ -229,6 +231,7 @@ ca:
           hide: Oculta completament
           warn: Oculta amb un avís
       form_admin_settings:
+        activity_api_enabled: Publica a l'API estadístiques agregades sobre l'activitat dels usuaris
         backups_retention_period: Període de retenció del arxiu d'usuari
         bootstrap_timeline_accounts: Recomana sempre aquests comptes als nous usuaris
         closed_registrations_message: Missatge personalitzat quan el registre està tancat
@@ -236,6 +239,7 @@ ca:
         custom_css: CSS personalitzat
         mascot: Mascota personalitzada (llegat)
         media_cache_retention_period: Període de retenció del cau multimèdia
+        peers_api_enabled: Publica a l'API la llista de servidors descoberts
         profile_directory: Habilita el directori de perfils
         registrations_mode: Qui es pot registrar
         require_invite_text: Requereix un motiu per el registre
@@ -271,7 +275,7 @@ ca:
       notification_emails:
         appeal: Algú ha apel·lat una decisió de moderació
         digest: Envia'm un resum per correu electrònic
-        favourite: Algú marca com a preferit el teu estat
+        favourite: Algú marca com a preferida la teva publicació
         follow: Algú et segueix
         follow_request: Algú sol·licita seguir-te
         mention: Algú et menciona
@@ -285,7 +289,7 @@ ca:
         listable: Permet que aquesta etiqueta aparegui en les cerques i en el directori de perfils
         name: Etiqueta
         trendable: Permet que aquesta etiqueta aparegui en les tendències
-        usable: Permetre a les publicacions emprar aquesta etiqueta
+        usable: Permet als tuts emprar aquesta etiqueta
       user:
         role: Rol
       user_role:

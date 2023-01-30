@@ -14,7 +14,7 @@ zh-CN:
     instance_actor_flash: 该账号用来代表虚拟角色，并不代表个人用户，仅代表服务器本身。该账号用于达成互联之目的，不应该被停用。
     last_active: 最近活动
     link_verified_on: 此链接的所有权已在 %{date} 检查
-    nothing_here: 这里什么都没有！
+    nothing_here: 空空如也！
     pin_errors:
       following: 你必须关注你要推荐的人
     posts:
@@ -45,8 +45,8 @@ zh-CN:
       change_role:
         changed_msg: 已成功更改角色！
         label: 更改角色
-        no_role: 未设置角色
-        title: 为 %{username} 更改角色
+        no_role: 没有角色
+        title: 更改 %{username} 的角色
       confirm: 确认
       confirmed: 已确认
       confirming: 等待确认
@@ -113,6 +113,8 @@ zh-CN:
       redownloaded_msg: 成功从来源处刷新 %{username} 的用户资料
       reject: 拒绝
       rejected_msg: 已拒绝 %{username} 的注册申请
+      remote_suspension_irreversible: 此账户的数据已被不可逆转地删除。
+      remote_suspension_reversible_hint_html: 账号已在他们的服务器上封禁，数据将在 %{date} 完全删除。 在此之前，远程服务器仍可恢复此账号，并且没有任何不良影响。 如果你想立即移除该账号的所有数据，可以在下面进行。
       remove_avatar: 删除头像
       remove_header: 删除横幅图片
       removed_avatar_msg: 成功删除 %{username} 的头像
@@ -550,7 +552,6 @@ zh-CN:
     report_notes:
       created_msg: 举报记录建立成功！
       destroyed_msg: 举报记录删除成功！
-      today_at: 今天 %{time}
     reports:
       account:
         notes:
@@ -562,9 +563,10 @@ zh-CN:
         mark_as_sensitive_description_html: 被举报的嘟文将被标记为敏感，同时该账号将被标记一次处罚，以供未来同一账号再次违规时参考。
         other_description_html: 查看更多控制该账号行为的选项，并自定义编写与被举报账号的通信。
         resolve_description_html: 不会对被举报账号采取任何动作，举报将被关闭，也不会留下处罚记录。
-        silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。可随时撤销。
-        suspend_description_html: 此账号及其内容将无法访问，并最终被删除。也无法与该账号交互。可在30天内撤销。
+        silence_description_html: 只有关注或手工搜索此账号才能查看其资料，将严重限制其触达范围。可随时撤销。关闭针对此帐户的所有举报。
+        suspend_description_html: 该帐户及其所有内容将无法访问并最终被删除，且无法与该帐户进行互动。 在 30 天内可随时撤销。关闭针对此帐户的所有举报。
       actions_description_html: 决定采取何种措施处理此举报。如果对被举报账号采取惩罚性措施，将向其发送一封电子邮件通知。但若选中<strong>垃圾信息</strong>类别则不会发送通知。
+      actions_description_remote_html: 决定采取何种行动来解决此举报。 这只会影响<strong>您的</strong>服务器如何与该远程帐户的通信并处理其内容。
       add_to_report: 增加更多举报内容
       are_you_sure: 你确定吗？
       assign_to_self: 接管
@@ -690,11 +692,16 @@ zh-CN:
       content_retention:
         preamble: 控制用户生成的内容在 Mastodon 中如何存储。
         title: 内容保留
+      default_noindex:
+        desc_html: 影响所有尚未更改此设置的用户
+        title: 默认不让用户被搜索引擎索引
       discovery:
         follow_recommendations: 关注推荐
         preamble: 露出有趣的内容有助于新加入 Mastodon 的用户融入。可在这里控制多种发现功能如何在你的服务器上工作。
         profile_directory: 个人资料目录
         public_timelines: 公共时间轴
+        publish_discovered_servers: 已公开实例的服务器
+        publish_statistics: 发布统计数据
         title: 发现
         trends: 流行趋势
       domain_blocks:
@@ -953,6 +960,9 @@ zh-CN:
       email_below_hint_html: 如果下面的电子邮箱地址是错误的，你可以在这里修改并重新发送新的确认邮件。
       email_settings_hint_html: 确认邮件已经发送到%{email}。如果该邮箱地址不对，你可以在账号设置里面修改。
       title: 初始设置
+    sign_in:
+      preamble_html: 使用您在 <strong>%{domain}</strong> 的账户和密码登录。如果您的账户托管在其他的服务器上，您将无法在此登录。
+      title: 登录到 %{domain}
     sign_up:
       preamble: 使用此 Mastodon 服务器上的帐号，您将能够关注网络上的任何其他人，无论他们的帐号托管在哪里的主机。
       title: 让我们在 %{domain} 上开始。
@@ -1334,6 +1344,9 @@ zh-CN:
       unrecognized_emoji: 不是一个可识别的表情
   relationships:
     activity: 账号活动
+    confirm_follow_selected_followers: 您确定想要关注所选的关注者吗？
+    confirm_remove_selected_followers: 您确定想要取关所选的关注者吗？
+    confirm_remove_selected_follows: 您确定要删除选定的关注着吗？
     dormant: 休眠
     follow_selected_followers: 关注选中的关注者
     followers: 关注者

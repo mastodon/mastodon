@@ -16,7 +16,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       streaming_api_base_url: Rails.configuration.x.streaming_api_base_url,
       access_token: object.token,
       locale: I18n.locale,
-      domain: instance_presenter.domain,
+      domain: Addressable::IDNA.to_unicode(instance_presenter.domain),
       title: instance_presenter.title,
       admin: object.admin&.id&.to_s,
       search_enabled: Chewy.enabled?,
@@ -32,6 +32,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       activity_api_enabled: Setting.activity_api_enabled,
       single_user_mode: Rails.configuration.x.single_user_mode,
       translation_enabled: TranslationService.configured?,
+      trends_as_landing_page: Setting.trends_as_landing_page,
     }
 
     if object.current_account

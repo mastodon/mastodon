@@ -116,6 +116,8 @@ da:
       redownloaded_msg: "%{username}s profil opfrisket fra oprindelsesserver"
       reject: Afvis
       rejected_msg: "%{username}s tilmeldingsansøgning afvist"
+      remote_suspension_irreversible: Denne kontos data er slettet permanent.
+      remote_suspension_reversible_hint_html: Kontoen er suspenderet på den pågældende server, og kontodata fjernes fuldstændig pr. %{date}. Indtil da vil fjernserveren kunne foretage en komplet reetablering af kontoen. Ønskes alle kontodata fjernet straks, kan dette gøres nedenfor.
       remove_avatar: Fjern profilbillede
       remove_header: Fjern overskrift
       removed_avatar_msg: "%{username}s profilbillede fjernet"
@@ -555,13 +557,12 @@ da:
       pending: Afventer videreformidlers godkendelse
       save_and_enable: Gem og aktivér
       setup: Opsæt en videreformidlerforbindelse
-      signatures_not_enabled: Videreformidlere fungerer ikke korrekt, mens sikker tilstand eller begrænset federeringstilstand er aktiveret
+      signatures_not_enabled: I sikker tilstand eller begrænset federeringstilstand fungerer videreformidlere muligvis ikke korrekt
       status: Status
       title: Videreformidlere
     report_notes:
       created_msg: Anmeldelsesnotat er oprettet!
       destroyed_msg: Anmeldelsesnotat er slettet!
-      today_at: I dag %{time}
     reports:
       account:
         notes:
@@ -574,8 +575,6 @@ da:
         mark_as_sensitive_description_html: Medierne i det anmeldte indlæg markeres som sensitive, og en advarsel (strike) registreres mhp. eskalering ved evt. fremtidige overtrædelser fra samme konto.
         other_description_html: Se flere muligheder relateret til at adfærdshåndtering for, samt tilpasning af kommunikation til, den anmeldte konto.
         resolve_description_html: Ingen foranstaltninger træffes mod den anmeldte konto, ingen advarsel (strike) registreres og anmeldelsen lukkes.
-        silence_description_html: Profilen vil kun være synlig for dem, som allerede følger den eller manuelt slå den op, hvilket markant begrænser dens rækkevidde. Kan altid omgøres.
-        suspend_description_html: Profilen (inkl. alt indhold) gøres utilgængelig, indtil den til sidst slettes. Interaktion med kontoen vil være umulig. Kan fortrydes inden for 30 dage.
       actions_description_html: Afgør, hvilke foranstaltning, der skal træffes for at løse denne anmeldelse. Træffes en straffende foranstaltning mod den anmeldte konto, fremsendes en e-mailnotifikation, undtagen når kategorien <strong>Spam</strong> er valgt.
       add_to_report: Føj mere til anmeldelse
       are_you_sure: Sikker?
@@ -704,11 +703,15 @@ da:
       content_retention:
         preamble: Styr, hvordan Mastodon gemmer brugergenereret indhold.
         title: Indholdsopbevaring
+      default_noindex:
+        desc_html: Påvirker alle brugere, som ikke selv har ændret denne indstilling
+        title: Fravælg som standard søgemaskineindeksering for brugere
       discovery:
         follow_recommendations: Følg-anbefalinger
         preamble: At vise interessant indhold er vitalt ifm. at få nye brugere om bord, som måske ikke kender nogen på Mastodon. Styr, hvordan forskellige opdagelsesfunktioner fungerer på serveren.
         profile_directory: Profiloversigt
         public_timelines: Offentlige tidslinjer
+        publish_statistics: Udgiv statistik
         title: Opdagelse
         trends: Trends
       domain_blocks:
@@ -971,6 +974,9 @@ da:
       email_below_hint_html: Er nedenstående e-mailadresse forkert, kan du rette den hér og modtage en ny bekræftelses-e-mail.
       email_settings_hint_html: Bekræftelsese-mailen er sendt til %{email}. Er denne e-mailadresse forkert, kan du rette den via kontoindstillingerne.
       title: Opsætning
+    sign_in:
+      preamble_html: Log ind med dine <strong>%{domain}</strong>-legitimationsoplysninger. Hostes kontoen på en anden server, vil der ikke kunne logges ind her.
+      title: Log ind på %{domain}
     sign_up:
       preamble: Med en konto på denne Mastodon-server vil man kunne følge enhver anden person på netværket, uanset hvor vedkommendes konto hostes.
       title: Lad os få dig sat op på %{domain}.
@@ -1360,6 +1366,8 @@ da:
       unrecognized_emoji: er ikke en genkendt emoji
   relationships:
     activity: Kontoaktivitet
+    confirm_follow_selected_followers: Sikker på, at de valgte følgere skal følges?
+    confirm_remove_selected_followers: Sikker på, at de valgte følgere skal fjernes?
     dormant: I dvale
     follow_selected_followers: Følg valgte følgere
     followers: Følgere

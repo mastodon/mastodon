@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import TextIconButton from './text_icon_button';
-import Overlay from 'react-overlays/lib/Overlay';
-import Motion from 'mastodon/features/ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
+import Overlay from 'react-overlays/Overlay';
 import { supportsPassiveEvents } from 'detect-passive-events';
 import classNames from 'classnames';
 import { languages as preloadedLanguages } from 'mastodon/initial_state';
@@ -22,10 +20,8 @@ const listenerOptions = supportsPassiveEvents ? { passive: true } : false;
 class LanguageDropdownMenu extends React.PureComponent {
 
   static propTypes = {
-    style: PropTypes.object,
     value: PropTypes.string.isRequired,
     frequentlyUsedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
-    placement: PropTypes.string.isRequired,
     onClose: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     languages: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.string)),
@@ -37,7 +33,6 @@ class LanguageDropdownMenu extends React.PureComponent {
   };
 
   state = {
-    mounted: false,
     searchValue: '',
   };
 
@@ -45,12 +40,11 @@ class LanguageDropdownMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
     document.addEventListener('touchend', this.handleDocumentClick, listenerOptions);
-    this.setState({ mounted: true });
 
     // Because of https://github.com/react-bootstrap/react-bootstrap/issues/2614 we need
     // to wait for a frame before focusing
@@ -69,15 +63,15 @@ class LanguageDropdownMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   setListRef = c => {
     this.listNode = c;
-  }
+  };
 
   handleSearchChange = ({ target }) => {
     this.setState({ searchValue: target.value });
-  }
+  };
 
   search () {
     const { languages, value, frequentlyUsedLanguages } = this.props;
@@ -128,7 +122,7 @@ class LanguageDropdownMenu extends React.PureComponent {
 
     this.props.onClose();
     this.props.onChange(value);
-  }
+  };
 
   handleKeyDown = e => {
     const { onClose } = this.props;
@@ -169,7 +163,7 @@ class LanguageDropdownMenu extends React.PureComponent {
       e.preventDefault();
       e.stopPropagation();
     }
-  }
+  };
 
   handleSearchKeyDown = e => {
     const { onChange, onClose } = this.props;
@@ -205,11 +199,11 @@ class LanguageDropdownMenu extends React.PureComponent {
 
       break;
     }
-  }
+  };
 
   handleClear = () => {
     this.setState({ searchValue: '' });
-  }
+  };
 
   renderItem = lang => {
     const { value } = this.props;
@@ -219,32 +213,25 @@ class LanguageDropdownMenu extends React.PureComponent {
         <span className='language-dropdown__dropdown__results__item__native-name'>{lang[2]}</span> <span className='language-dropdown__dropdown__results__item__common-name'>({lang[1]})</span>
       </div>
     );
-  }
+  };
 
   render () {
-    const { style, placement, intl } = this.props;
-    const { mounted, searchValue } = this.state;
+    const { intl } = this.props;
+    const { searchValue } = this.state;
     const isSearching = searchValue !== '';
     const results = this.search();
 
     return (
-      <Motion defaultStyle={{ opacity: 0, scaleX: 0.85, scaleY: 0.75 }} style={{ opacity: spring(1, { damping: 35, stiffness: 400 }), scaleX: spring(1, { damping: 35, stiffness: 400 }), scaleY: spring(1, { damping: 35, stiffness: 400 }) }}>
-        {({ opacity, scaleX, scaleY }) => (
-          // It should not be transformed when mounting because the resulting
-          // size will be used to determine the coordinate of the menu by
-          // react-overlays
-          <div className={`language-dropdown__dropdown ${placement}`} style={{ ...style, opacity: opacity, transform: mounted ? `scale(${scaleX}, ${scaleY})` : null }} ref={this.setRef}>
-            <div className='emoji-mart-search'>
-              <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
-              <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}>{!isSearching ? loupeIcon : deleteIcon}</button>
-            </div>
+      <div ref={this.setRef}>
+        <div className='emoji-mart-search'>
+          <input type='search' value={searchValue} onChange={this.handleSearchChange} onKeyDown={this.handleSearchKeyDown} placeholder={intl.formatMessage(messages.search)} />
+          <button type='button' className='emoji-mart-search-icon' disabled={!isSearching} aria-label={intl.formatMessage(messages.clear)} onClick={this.handleClear}>{!isSearching ? loupeIcon : deleteIcon}</button>
+        </div>
 
-            <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={this.setListRef}>
-              {results.map(this.renderItem)}
-            </div>
-          </div>
-        )}
-      </Motion>
+        <div className='language-dropdown__dropdown__results emoji-mart-scroll' role='listbox' ref={this.setListRef}>
+          {results.map(this.renderItem)}
+        </div>
+      </div>
     );
   }
 
@@ -266,16 +253,13 @@ class LanguageDropdown extends React.PureComponent {
     placement: 'bottom',
   };
 
-  handleToggle = ({ target }) => {
-    const { top } = target.getBoundingClientRect();
-
+  handleToggle = () => {
     if (this.state.open && this.activeElement) {
       this.activeElement.focus({ preventScroll: true });
     }
 
-    this.setState({ placement: top * 2 < innerHeight ? 'bottom' : 'top' });
     this.setState({ open: !this.state.open });
-  }
+  };
 
   handleClose = () => {
     const { value, onClose } = this.props;
@@ -286,20 +270,32 @@ class LanguageDropdown extends React.PureComponent {
 
     this.setState({ open: false });
     onClose(value);
-  }
+  };
 
   handleChange = value => {
     const { onChange } = this.props;
     onChange(value);
-  }
+  };
+
+  setTargetRef = c => {
+    this.target = c;
+  };
+
+  findTarget = () => {
+    return this.target;
+  };
+
+  handleOverlayEnter = (state) => {
+    this.setState({ placement: state.placement });
+  };
 
   render () {
     const { value, intl, frequentlyUsedLanguages } = this.props;
     const { open, placement } = this.state;
 
     return (
-      <div className={classNames('privacy-dropdown', { active: open })}>
-        <div className='privacy-dropdown__value'>
+      <div className={classNames('privacy-dropdown', placement, { active: open })}>
+        <div className='privacy-dropdown__value' ref={this.setTargetRef} >
           <TextIconButton
             className='privacy-dropdown__value-icon'
             label={value && value.toUpperCase()}
@@ -309,15 +305,20 @@ class LanguageDropdown extends React.PureComponent {
           />
         </div>
 
-        <Overlay show={open} placement={placement} target={this}>
-          <LanguageDropdownMenu
-            value={value}
-            frequentlyUsedLanguages={frequentlyUsedLanguages}
-            onClose={this.handleClose}
-            onChange={this.handleChange}
-            placement={placement}
-            intl={intl}
-          />
+        <Overlay show={open} placement={'bottom'} flip target={this.findTarget} popperConfig={{ strategy: 'fixed', onFirstUpdate: this.handleOverlayEnter }}>
+          {({ props, placement }) => (
+            <div {...props}>
+              <div className={`dropdown-animation language-dropdown__dropdown ${placement}`} >
+                <LanguageDropdownMenu
+                  value={value}
+                  frequentlyUsedLanguages={frequentlyUsedLanguages}
+                  onClose={this.handleClose}
+                  onChange={this.handleChange}
+                  intl={intl}
+                />
+              </div>
+            </div>
+          )}
         </Overlay>
       </div>
     );

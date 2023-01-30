@@ -116,6 +116,8 @@ it:
       redownloaded_msg: Il profilo di %{username} è stato aggiornato correttamente dall'origine
       reject: Rifiuta
       rejected_msg: Richiesta d'iscrizione di %{username} rifiutata correttamente
+      remote_suspension_irreversible: I dati di questo account sono stati cancellati in modo irreversibile.
+      remote_suspension_reversible_hint_html: L'account è stato sospeso sul loro server e i dati saranno completamente eliminati il %{date}. Fino ad allora, il server remoto può ripristinare questo account senza effetti negativi. Se si desidera eliminare immediatamente tutti i dati dell'account, è possibile farlo qui sotto.
       remove_avatar: Rimuovi l'avatar
       remove_header: Rimuovi l'intestazione
       removed_avatar_msg: Immagine dell'avatar di %{username} rimossa correttamente
@@ -561,7 +563,6 @@ it:
     report_notes:
       created_msg: Nota rapporto creata!
       destroyed_msg: Nota rapporto cancellata!
-      today_at: Oggi alle %{time}
     reports:
       account:
         notes:
@@ -574,9 +575,10 @@ it:
         mark_as_sensitive_description_html: I contenuti nei post segnalati saranno segnati come sensibili e verrà registrata una sanzione per aiutarti a prendere ulteriori provvedimenti sulle future infrazioni dello stesso account.
         other_description_html: Vedi altre opzioni per controllare il comportamento dell'account e personalizzare la comunicazione all'account segnalato.
         resolve_description_html: Nessuna azione sarà intrapresa contro l'account segnalato, nessuna sanzione registrata, e la segnalazione sarà chiusa.
-        silence_description_html: Il profilo sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato.
-        suspend_description_html: Il profilo e tutti i suoi contenuti diventeranno inaccessibili fino a quando non sarà cancellato. L'interazione con l'account sarà impossibile. Annullabile entro 30 giorni.
+        silence_description_html: L'account sarà visibile solo a coloro che lo seguono o lo cercano manualmente, limitandone fortemente la raggiungibilità. Può sempre essere annullato. Chiude tutte le segnalazioni contro questo account.
+        suspend_description_html: L'account e tutti i suoi contenuti saranno inaccessibili ed eventualmente cancellati, e interagire con esso sarà impossibile. Reversibile entro 30 giorni. Chiude tutte le segnalazioni contro questo account.
       actions_description_html: Decidete quali azioni intraprendere per risolvere la segnalazione. Se si intraprende un'azione punitiva contro l'account segnalato, gli sarà inviata una notifica via e-mail, tranne quando è selezionata la categoria <strong>Spam</strong>.
+      actions_description_remote_html: Decide quali azioni intraprendere per risolvere la relazione. Questo influenzerà solo come <strong>il tuo</strong> server comunica con questo account remoto e ne gestisce il contenuto.
       add_to_report: Aggiungi altro al report
       are_you_sure: Sei sicuro?
       assign_to_self: Assegna a me
@@ -704,11 +706,16 @@ it:
       content_retention:
         preamble: Controlla come vengono memorizzati i contenuti generati dall'utente in Mastodon.
         title: Conservazione dei contenuti
+      default_noindex:
+        desc_html: Interessa tutti gli utenti che non hanno modificato personalmente questa impostazione
+        title: Esclude gli utenti dall'indicizzazione dei motori di ricerca per impostazione predefinita
       discovery:
         follow_recommendations: Segui le raccomandazioni
         preamble: La comparsa di contenuti interessanti è determinante per l'arrivo di nuovi utenti che potrebbero non conoscere nessuno su Mastodon. Controlla in che modo varie funzionalità di scoperta funzionano sul tuo server.
         profile_directory: Directory del profilo
         public_timelines: Timeline pubbliche
+        publish_discovered_servers: Pubblica i server scoperti
+        publish_statistics: Pubblica le statistiche
         title: Scopri
         trends: Tendenze
       domain_blocks:
@@ -973,6 +980,9 @@ it:
       email_below_hint_html: Se l'indirizzo e-mail sottostante non è corretto, puoi cambiarlo qui e ricevere una nuova e-mail di conferma.
       email_settings_hint_html: L'email di conferma è stata inviata a %{email}. Se l'indirizzo e-mail non è corretto, puoi modificarlo nelle impostazioni dell'account.
       title: Configurazione
+    sign_in:
+      preamble_html: Accedi con le tue credenziali <strong>%{domain}</strong>. Se il tuo account si trova su un server diverso, non potrai accedere qui.
+      title: Accedi a %{domain}
     sign_up:
       preamble: Con un account su questo server Mastodon, sarai in grado di seguire qualsiasi altra persona sulla rete, indipendentemente da dove sia ospitato il suo account.
       title: Lascia che ti configuriamo su %{domain}.
@@ -1362,6 +1372,9 @@ it:
       unrecognized_emoji: non è un emoji riconosciuto
   relationships:
     activity: Attività dell'account
+    confirm_follow_selected_followers: Sei sicuro di voler seguire i follower selezionati?
+    confirm_remove_selected_followers: Sei sicuro di voler rimuovere i follower selezionati?
+    confirm_remove_selected_follows: Sei sicuro di voler rimuovere i follow selezionati?
     dormant: Dormiente
     follow_selected_followers: Segui i seguaci selezionati
     followers: Seguaci

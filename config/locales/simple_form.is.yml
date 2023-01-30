@@ -18,8 +18,8 @@ is:
           disable: Koma í veg fyrir að notandinn noti aðganginn sinn, en ekki eyða eða fela efnið þeirra.
           none: Nota þetta til að senda aðvörun til notandans, án þess að setja neina aðra aðgerð í gang.
           sensitive: Þvinga fram að öll myndefnisviðhengi þessa notanda verði flögguð sem viðkvæmt efni.
-          silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum.
-          suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga.
+          silence: Koma í veg fyrir að notandinn geti birt færslur opinberlega, fela færslur þeirra og tilkynningar fyrir fólki sem ekki er að fylgjast með notandanum. Lokar öllum kærum gagnvart þessum aðgangi.
+          suspend: Koma í veg fyrir öll samskipti til eða frá þessum aðgangi og eyða öllu efni hans. Afturkallanlegt innan 30 daga. Lokar öllum kærum gagnvart þessum aðgangi.
         warning_preset_id: Valkvætt. Þú getur ennþá bætt sérsniðnum texta við enda forstillinga
       announcement:
         all_day: Þegar merkt er við þetta, munu einungis birtast dagsetningar tímarammans
@@ -74,6 +74,7 @@ is:
           hide: Fela síað efni algerlega, rétt eins og það sé ekki til staðar
           warn: Fela síað efni á bakvið aðvörun sem tekur fram titil síunnar
       form_admin_settings:
+        activity_api_enabled: Fjöldi staðværra stöðufærslna, virkra notenda og nýskráninga í vikulegum skömmtum
         backups_retention_period: Halda safni notandans í tiltekinn fjölda daga.
         bootstrap_timeline_accounts: Þessir notendaaðgangar verða festir efst í meðmælum til nýrra notenda um að fylgjast með þeim.
         closed_registrations_message: Birtist þegar lokað er á nýskráningar
@@ -81,6 +82,7 @@ is:
         custom_css: Þú getur virkjað sérsniðna stíla í vefútgáfu Mastodon.
         mascot: Þetta tekyr yfir myndskreytinguna í ítarlega vefviðmótinu.
         media_cache_retention_period: Sóttu myndefni verður eytt eftir tiltekinn fjölda daga þegar þetta er jákvætt gildi og síðan sótt aftur eftir þörfum.
+        peers_api_enabled: Listi yfir þau lénaheiti sem þessi netþjónn hefur rekist á í skýjasambandinu. Engin gögn eru hér sem gefa til kynna hvort þú sért í sambandi við tiltekinn netþjón, bara að netþjónninn þinn viti um hann. Þetta er notað af þjónustum sem safna tölfræði um skýjasambönd á almennan hátt.
         profile_directory: Notendamappan telur upp alla þá notendur sem hafa valið að vera uppgötvanlegir.
         require_invite_text: Þegar nýskráningar krefjast handvirks samþykkis, þá skal gera textann í “Hvers vegna viltu taka þátt?” að kröfu en ekki valkvæðan
         site_contact_email: Hovernig fólk getur haft samband við þig til að fá aðstoð eða vegna lagalegra mála.
@@ -203,7 +205,7 @@ is:
         setting_display_media_hide_all: Fela allt
         setting_display_media_show_all: Birta allt
         setting_expand_spoilers: Alltaf útfella færslur sem eru með aðvörun vegna efnisins
-        setting_hide_network: Fela netkerfið þitt
+        setting_hide_network: Fela félagsnetið þitt
         setting_noindex: Afþakka atriðaskráningu í leitarvélum
         setting_reduce_motion: Minnka hreyfingu í hreyfimyndum
         setting_show_application: Upplýsa um forrit sem er til að senda færslur
@@ -229,6 +231,7 @@ is:
           hide: Fela alveg
           warn: Fela með aðvörun
       form_admin_settings:
+        activity_api_enabled: Birta samantektartölfræði um virkni notanda í API-kerfisviðmótinu
         backups_retention_period: Tímalengd sem safni notandans er haldið eftir
         bootstrap_timeline_accounts: Alltaf mæla með þessum notendaaðgöngum fyrir nýja notendur
         closed_registrations_message: Sérsniðin skilaboð þegar ekki er hægt að nýskrá
@@ -236,6 +239,7 @@ is:
         custom_css: Sérsniðið CSS
         mascot: Sérsniðið gæludýr (eldra)
         media_cache_retention_period: Tímalengd sem myndefni haldið
+        peers_api_enabled: Birta lista yfir uppgötvaða netþjóna í API-kerfisviðmótinu
         profile_directory: Virkja notendamöppu
         registrations_mode: Hverjir geta nýskráð sig
         require_invite_text: Krefjast ástæðu fyrir þátttöku

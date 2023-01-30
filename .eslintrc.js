@@ -1,6 +1,11 @@
 module.exports = {
   root: true,
 
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+  ],
+
   env: {
     browser: true,
     node: true,
@@ -64,8 +69,8 @@ module.exports = {
     eqeqeq: 'error',
     indent: ['warn', 2],
     'jsx-quotes': ['error', 'prefer-single'],
+    'no-case-declarations': 'off',
     'no-catch-shadow': 'error',
-    'no-cond-assign': 'error',
     'no-console': [
       'warn',
       {
@@ -75,18 +80,15 @@ module.exports = {
         ],
       },
     ],
-    'no-fallthrough': 'error',
-    'no-irregular-whitespace': 'error',
-    'no-mixed-spaces-and-tabs': 'warn',
+    'no-empty': 'off',
     'no-nested-ternary': 'warn',
     'no-restricted-properties': [
       'error',
       { property: 'substring', message: 'Use .slice instead of .substring.' },
       { property: 'substr', message: 'Use .slice instead of .substr.' },
     ],
+    'no-self-assign': 'off',
     'no-trailing-spaces': 'warn',
-    'no-undef': 'error',
-    'no-unreachable': 'error',
     'no-unused-expressions': 'error',
     'no-unused-vars': [
       'error',
@@ -96,6 +98,7 @@ module.exports = {
         ignoreRestSiblings: true,
       },
     ],
+    'no-useless-escape': 'off',
     'object-curly-spacing': ['error', 'always'],
     'padded-blocks': [
       'error',
@@ -105,25 +108,21 @@ module.exports = {
     ],
     quotes: ['error', 'single'],
     semi: 'error',
-    strict: 'off',
     'valid-typeof': 'error',
 
     'react/jsx-boolean-value': 'error',
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-curly-spacing': 'error',
+    'react/display-name': 'off',
     'react/jsx-equals-spacing': 'error',
     'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
     'react/jsx-indent': ['error', 2],
     'react/jsx-no-bind': 'error',
-    'react/jsx-no-duplicate-props': 'error',
-    'react/jsx-no-undef': 'error',
+    'react/jsx-no-target-blank': 'off',
     'react/jsx-tag-spacing': 'error',
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
     'react/jsx-wrap-multilines': 'error',
-    'react/no-multi-comp': 'off',
-    'react/no-string-refs': 'error',
-    'react/prop-types': 'error',
+    'react/no-deprecated': 'off',
+    'react/no-unknown-property': 'off',
     'react/self-closing-comp': 'error',
 
     'jsx-a11y/accessible-emoji': 'warn',

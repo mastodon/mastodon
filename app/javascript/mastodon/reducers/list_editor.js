@@ -95,4 +95,4 @@ export default function listEditorReducer(state = initialState, action) {
   default:
     return state;
   }
-};
+}

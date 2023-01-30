@@ -4,7 +4,7 @@ be:
     attributes:
       doorkeeper/application:
         name: Назва праграмы
-        redirect_uri: URI перанакіравання
+        redirect_uri: перанакіравць URI
         scopes: Дазволы
         website: Вэб-сайт праграмы
     errors:
@@ -13,7 +13,7 @@ be:
           attributes:
             redirect_uri:
               fragment_present: не можа ўтрымліваць фрагмент
-              invalid_uri: павінен быць сапраўдным URI
+              invalid_uri: URI павінен быць сапраўдным
               relative_uri: павінен быць абсалютным URI.
               secured_uri: павінен быць HTTPS/SSL URI.
   doorkeeper:
@@ -51,7 +51,7 @@ be:
         application_id: Ключ кліента
         callback_urls: URL зваротных выклікаў
         scopes: Дазволы
-        secret: Кліенцкая таямніца
+        secret: Кліенцкі сакрэт
         title: 'Праграма: %{name}'
     authorizations:
       buttons:
@@ -80,7 +80,7 @@ be:
         title: Вашы аўтарызаваныя праграмы
     errors:
       messages:
-        access_denied: Уласнік рэсурсу або сервер аўтарызацыі адхіліў ваш запыт.
+        access_denied: Уласнік рэсурсу або сэрвер аўтарызацыі адхіліў ваш запыт.
         credential_flow_not_configured: Resource Owner Password Credentials flow не прайшоў з-за таго, што ўласцівасць Doorkeeper.configure.resource_owner_from_credentials была не вызначана.
         invalid_client: Збой аўтэнтыфікацыі кліента з-за невядомага кліента, адсутнасці аўтэнтыфікацыі кліента або метаду аўтэнтыфікацыі, які не падтрымліваецца.
         invalid_grant: Прадастаўлены дазвол на аўтарызацыю несапраўдны, пратэрмінованы, быў адкліканы, не адпавядае URI перанакіравання, які выкарыстоўваецца ў запыце аўтарызацыі або быў выдадзены іншаму кліенту.
@@ -89,18 +89,18 @@ be:
           missing_param: 'Адсутнічае абавязковы параметр: %{value}.'
           request_not_authorized: Запыт павінен быць аўтарызаваны. Абавязковы параметр для запыту аўтарызацыі адсутнічае або несапраўдны.
           unknown: У запыце адсутнічае абавязковы параметр, уключае значэнне параметра, якое не падтрымліваецца, альбо ён сфарміраваны іншым няправільным чынам.
-        invalid_resource_owner: Прадастаўленыя ўліковыя дадзеныя ўладальніка рэсурсу несапраўдныя або немагчыма знайсці ўладальніка рэсурсу
-        invalid_scope: Запытаная обласць абмежаванняў несапраўдная, невядомая альбо няправільная.
+        invalid_resource_owner: Прадстаўленыя ўліковыя дадзеныя ўладальніка рэсурсу несапраўдныя або немагчыма знайсці ўладальніка рэсурсу
+        invalid_scope: Запытаная вобласць абмежаванняў несапраўдная, невядомая альбо няправільная.
         invalid_token:
           expired: Тэрмін дзеяння токена доступу скончыўся
           revoked: Токен доступу быў адкліканы
           unknown: Токен доступу з'яўляецца несапраўдным
-        resource_owner_authenticator_not_configured: Пошук уладальніка рэсурсу не прайшоў з-за таго, што ўласцівасць Doorkeeper.configure.resource_owner_authenticator была не вызначына.
-        server_error: Сервер аўтарызацыі сутыкнуўся з непрадбачанай умоваю, якая не дазваляе выканаць запыт.
+        resource_owner_authenticator_not_configured: Пошук уладальніка рэсурсу не прайшоў з-за таго, што ўласцівасць Doorkeeper.configure.resource_owner_authenticator была не вызначана.
+        server_error: Сэрвер аўтарызацыі сутыкнуўся з непрадбачанай умовай, якая не дазваляе выканаць запыт.
         temporarily_unavailable: Сервер аўтарызацыі зараз не можа апрацаваць запыт з-за часовага перагрузу або прафілактычных работ на серверы.
         unauthorized_client: Кліент не аўтарызаваны, каб выканаць такі запыт выкарыстоўваючы гэты метад.
-        unsupported_grant_type: Тып аўтарызацыі не падтрымліваецца серверам аўтарызацыі.
-        unsupported_response_type: Сервер аўтарызацыі не падтрымлівае такі тып адказу.
+        unsupported_grant_type: Тып аўтарызацыі не падтрымліваецца сэрверам аўтарызацыі.
+        unsupported_response_type: Сэрвер аўтарызацыі не падтрымлівае такі тып адказу.
     flash:
       applications:
         create:
@@ -119,17 +119,17 @@ be:
         write: Доступ толькі для запісу
       title:
         accounts: Уліковыя запісы
-        admin/accounts: Кіраванне ўліковымі запісамі
-        admin/all: Усе адміністратыўныя функцыі
-        admin/reports: Кіраванне справаздачамі
-        all: Усе
-        blocks: Блакіроўкі
+        admin/accounts: Кіраванне акаўнтамі
+        admin/all: Усе кіравальныя функцыі
+        admin/reports: Кіраванне скардамі
+        all: Поўны доступ да акаўнта Mastodon
+        blocks: Блакаванні
         bookmarks: Закладкі
         conversations: Размовы
         crypto: Скразное шыфраванне
-        favourites: Упадабаныя
+        favourites: Абраныя
         filters: Фільтры
-        follow: Зносіны
+        follow: Падпіскі, ігнараванне і блакіроўка
         follows: Падпіскі
         lists: Спісы
         media: Мультымедыйныя ўкладанні
@@ -145,38 +145,48 @@ be:
           applications: Праграмы
           oauth2_provider: OAuth2 правайдар
       application:
-        title: Неабходна OAuth аўтарызацыя
+        title: Патрабуецца аўтарызацыя OAuth
     scopes:
-      admin:read: чытаць усе даныя на серверы
-      admin:read:accounts: бачыць канфідэнцыйную інфармацыю ўсіх акаўнтаў
-      admin:read:reports: чытаць далікатную інфармацыю са скарг і ўліковых запісаў, на якія пададзена скарга
+      admin:read: чытаць усе дадзеныя на серверы
+      admin:read:accounts: чытаць канфідэнцыйную інфармацыю ўсіх акаўнтаў
+      admin:read:canonical_email_blocks: чытаць канфідэнцыйную інфармацыю ўсіх кананічных блокаў электроннай пошты
+      admin:read:domain_allows: чытаць канфідэнцыйную інфармацыю ўсіх дазволеных даменаў
+      admin:read:domain_blocks: чытаць канфідэнцыйную інфармацыю ўсіх блакіраваных даменаў
+      admin:read:email_domain_blocks: чытаць канфідэнцыйную інфармацыю ўсіх блакіраваных даменаў эл. пошты
+      admin:read:ip_blocks: чытаць канфідэнцыяльную інфармацыю ўсіх блакіраваных IP
+      admin:read:reports: чытаць канфідэнцыйную інфармацыю ўсіх справаздач і справаздачных уліковых запісаў
       admin:write: змяняць усе даныя на серверы
-      admin:write:accounts: мадэраваць уліковыя запісы
+      admin:write:accounts: выконваць дзеянні па мадэрацыі акаўнтаў
+      admin:write:canonical_email_blocks: выконваць дзеянні па мадэрацыі кананічных блокаў электроннай пошты
+      admin:write:domain_allows: дазваляе праводзіць мадэрацыю ў дамене
+      admin:write:domain_blocks: мадэраваць блакіраваныя дамены
+      admin:write:email_domain_blocks: мадэраваць блакіраваныя дамены эл. пошты
+      admin:write:ip_blocks: мадэраваць блакіраваныя IP
       admin:write:reports: мадэраваць скаргі
-      crypto: выкарыстоўваць скразное шыфраванне
+      crypto: выкарыстоўваць скразное шыфраванне (end-to-end)
       follow: змяняць зносіны ўліковага запісу
       push: атрымліваць push-апавяшчэнні
       read: чытаць усе даныя вашага ўліковага запісу
       read:accounts: бачыць інфармацыю аб уліковых запісах
-      read:blocks: бачыць вашы блакіроўкі
-      read:bookmarks: бачыць вашы закладкі
-      read:favourites: бачыць ваш спіс упадабанага
-      read:filters: бачыць вашы фільтры
-      read:follows: бачыць вашы падпіскі
-      read:lists: бачыць вашы спісы
-      read:mutes: бачыць ваш спіс ігнараваных
-      read:notifications: бачыць вашы апавяшчэнні
-      read:reports: бачыць вашы скаргі
+      read:blocks: бачыць свае блакіроўкі
+      read:bookmarks: бачыць свае закладкі
+      read:favourites: Бачыць сваё абранае
+      read:filters: бачыць свае фільтры
+      read:follows: бачыць свае падпіскі
+      read:lists: бачыць свае спісы
+      read:mutes: бачыць свае ігнараванні
+      read:notifications: бачыць свае абвесткі
+      read:reports: бачыць свае скаргі
       read:search: шукаць ад вашага імя
       read:statuses: бачыць усе допісы
       write: змяняць усе даныя вашага ўліковага запісу
-      write:accounts: змяняць ваш профіль
+      write:accounts: змяняць свой профіль
       write:blocks: блакіраваць уліковыя запісы і дамены
-      write:bookmarks: дадаваць допісы ў закладкі
+      write:bookmarks: закладкі допісаў
       write:conversations: ігнараваць і выдаляць размовы
       write:favourites: дадаваць допісы ва ўпадабанае
       write:filters: ствараць фільтры
-      write:follows: падпісвацца на людзей
+      write:follows: Сачыць за людзьмі
       write:lists: ствараць спiсы
       write:media: запампоўваць медыяфайлы
       write:mutes: ігнараваць людзей і размовы
