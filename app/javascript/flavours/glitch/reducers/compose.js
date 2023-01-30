@@ -303,8 +303,8 @@ const insertEmoji = (state, position, emojiData) => {
 const hydrate = (state, hydratedState) => {
   state = clearAll(state.merge(hydratedState));
 
-  if (hydratedState.has('text')) {
-    state = state.set('text', hydratedState.get('text'));
+  if (hydratedState.get('text')) {
+    state = state.set('text', hydratedState.get('text')).set('focusDate', new Date());
   }
 
   return state;
