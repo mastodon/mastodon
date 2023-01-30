@@ -1,7 +1,10 @@
 import { connect } from 'react-redux';
 import PollForm from '../components/poll_form';
-import { addPollOption, removePollOption, changePollOption, changePollSettings } from '../../../actions/compose';
 import {
+  addPollOption,
+  removePollOption,
+  changePollOption,
+  changePollSettings,
   clearComposeSuggestions,
   fetchComposeSuggestions,
   selectComposeSuggestion,
