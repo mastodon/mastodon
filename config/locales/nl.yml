@@ -578,7 +578,7 @@ nl:
         silence_description_html: Het account is alleen zichtbaar voor degenen die het al volgen of handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Dit kan altijd ongedaan worden gemaakt. Dit sluit alle rapporten tegen dit account af.
         suspend_description_html: Het account en al zijn inhoud zullen niet toegankelijk zijn en uiteindelijk verwijderd worden en er zal geen interactie met het account mogelijk zijn. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
       actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
-      actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze melding op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server communiceert met dit externe account en de inhoud ervan beheert.
+      actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze rapportage op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server met dit externe account communiceert en de inhoud ervan beheert.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -606,7 +606,7 @@ nl:
         placeholder: Beschrijf welke maatregelen zijn genomen of andere gerelateerde opmerkingen...
         title: Opmerkingen
       notes_description_html: Bekijk en laat opmerkingen achter voor andere moderatoren en voor jouw toekomstige zelf
-      processed_msg: 'Melding #%{id} succesvol verwerkt'
+      processed_msg: 'Rapportage #%{id} succesvol afgehandeld'
       quick_actions_description_html: 'Neem een snelle maatregel of scroll naar beneden om de gerapporteerde inhoud te bekijken:'
       remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
@@ -621,21 +621,21 @@ nl:
       statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
       summary:
         action_preambles:
-          delete_html: 'Je staat op het punt om enkele posts van <strong>@%{acct}</strong> te <strong>verwijderen</strong>. Dit zal:'
+          delete_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> te <strong>verwijderen</strong>. Dit zal:'
           mark_as_sensitive_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> als <strong>gevoelig te markeren</strong>. Dit zal:'
-          silence_html: 'Je staat op het punt om <strong>@%{acct}</strong>''s account te <strong>beperken</strong>. Dit zal:'
-          suspend_html: 'Je staat op het punt om <strong>@%{acct}</strong>''s account <strong>op te schorten</strong>. Dit zal:'
+          silence_html: 'Je staat op het punt om het account van <strong>@%{acct}</strong> te <strong>beperken</strong>. Dit zal:'
+          suspend_html: 'Je staat op het punt om het account van <strong>@%{acct}</strong> <strong>op te schorten</strong>. Dit zal:'
         actions:
           delete_html: De aanstootgevende berichten verwijderen
           mark_as_sensitive_html: De media in de aanstootgevende berichten als gevoelig markeren
-          silence_html: Het profiel van <strong>@%{acct}</strong> ernstig beperken, door hun profiel en inhoud alleen zichtbaar te maken aan mensen die ze al volgen of aan mensen die het profiel handmatig opzoeken
-          suspend_html: Het account van <strong>@%{acct}</strong> opschorten, waarmee hun profiel en inhoud niet toegankelijk zijn en het onmogelijk is om interactie te hebben
-        close_report: 'Markeer melding #%{id} als opgelost'
-        close_reports_html: Markeer <strong>alle</strong> meldingen tegen <strong>@%{acct}</strong> als opgelost
-        delete_data_html: Verwijder <strong>@%{acct}</strong>'s profiel en inhoud over 30 dagen, tenzij ze in de tussentijd gedeblokkeerd worden
+          silence_html: Het account van <strong>@%{acct}</strong> ernstig beperken, door diens profiel en inhoud alleen zichtbaar te maken aan mensen die dit account al volgen of aan mensen die het account handmatig opzoeken
+          suspend_html: Het account van <strong>@%{acct}</strong> opschorten, waarmee diens profiel en inhoud niet toegankelijk zijn en het onmogelijk is om interactie te hebben
+        close_report: 'Rapportage #%{id} als opgelost markeren'
+        close_reports_html: <strong>Alle</strong> rapportages tegen <strong>@%{acct}</strong> als opgelost markeren
+        delete_data_html: Het account en inhoud van <strong>@%{acct}</strong> over 30 dagen verwijderen, tenzij die in de tussentijd wordt gedeblokkeerd
         preview_preamble_html: "<strong>@%{acct}</strong> zal een waarschuwing ontvangen met de volgende inhoud:"
-        record_strike_html: Registreer een overtreding van <strong>@%{acct}</strong> om je te helpen met escaleren bij toekomstige overtredingen van dit account
-        send_email_html: Stuur <strong>@%{acct}</strong> een waarschuwingsmail
+        record_strike_html: Registreer een overtreding van <strong>@%{acct}</strong> om je te helpen met het sneller afhandelen van toekomstige overtredingen van dit account
+        send_email_html: Een waarschuwingsmail naar <strong>@%{acct}</strong> sturen
         warning_placeholder: Optionele aanvullende redenen voor de moderatie-actie.
       target_origin: Herkomst van de gerapporteerde accounts
       title: Rapportages
@@ -1395,7 +1395,7 @@ nl:
     activity: Accountactiviteit
     confirm_follow_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt volgen?
     confirm_remove_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt verwijderen?
-    confirm_remove_selected_follows: Weet je zeker dat je de geselecteerde volgers wilt verwijderen?
+    confirm_remove_selected_follows: Weet je zeker dat je de geselecteerde gevolgde accounts wilt verwijderen?
     dormant: Sluimerend
     follow_selected_followers: Geselecteerde volgers volgen
     followers: Volgers
@@ -1485,7 +1485,7 @@ nl:
     notifications: Meldingen
     preferences: Voorkeuren
     profile: Profiel
-    relationships: Volgers en gevolgden
+    relationships: Volgers en gevolgde accounts
     statuses_cleanup: Automatisch berichten verwijderen
     strikes: Vastgestelde overtredingen
     two_factor_authentication: Tweestapsverificatie
