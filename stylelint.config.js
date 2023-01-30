@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['stylelint-config-standard-scss'],
+  extends: ['stylelint-config-standard-scss', 'stylelint-prettier/recommended'],
   ignoreFiles: [
     'app/javascript/styles/mastodon/reset.scss',
     'node_modules/**/*',
