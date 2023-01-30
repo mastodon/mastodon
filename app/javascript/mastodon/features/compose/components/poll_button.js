@@ -27,7 +27,7 @@ class PollButton extends React.PureComponent {
 
   handleClick = () => {
     this.props.onClick();
-  }
+  };
 
   render () {
     const { intl, active, unavailable, disabled } = this.props;

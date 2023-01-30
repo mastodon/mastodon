@@ -19,7 +19,7 @@ class Account extends ImmutablePureComponent {
 
   handleDomainUnblock = () => {
     this.props.onUnblockDomain(this.props.domain);
-  }
+  };
 
   render () {
     const { domain, intl } = this.props;

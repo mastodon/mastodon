@@ -135,7 +135,7 @@ class FocalPointModal extends ImmutablePureComponent {
 
     this.updatePosition(e);
     this.setState({ dragging: true });
-  }
+  };
 
   handleTouchStart = e => {
     document.addEventListener('touchmove', this.handleMouseMove);
@@ -143,25 +143,25 @@ class FocalPointModal extends ImmutablePureComponent {
 
     this.updatePosition(e);
     this.setState({ dragging: true });
-  }
+  };
 
   handleMouseMove = e => {
     this.updatePosition(e);
-  }
+  };
 
   handleMouseUp = () => {
     document.removeEventListener('mousemove', this.handleMouseMove);
     document.removeEventListener('mouseup', this.handleMouseUp);
 
     this.setState({ dragging: false });
-  }
+  };
 
   handleTouchEnd = () => {
     document.removeEventListener('touchmove', this.handleMouseMove);
     document.removeEventListener('touchend', this.handleTouchEnd);
 
     this.setState({ dragging: false });
-  }
+  };
 
   updatePosition = e => {
     const { x, y } = getPointerPosition(this.node, e);
@@ -169,24 +169,24 @@ class FocalPointModal extends ImmutablePureComponent {
     const focusY   = (y - .5) * -2;
 
     this.props.onChangeFocus(focusX, focusY);
-  }
+  };
 
   handleChange = e => {
     this.props.onChangeDescription(e.target.value);
-  }
+  };
 
   handleKeyDown = (e) => {
     if (e.keyCode === 13 && (e.ctrlKey || e.metaKey)) {
       this.props.onChangeDescription(e.target.value);
       this.handleSubmit(e);
     }
-  }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.props.onSave(this.props.description, this.props.focusX, this.props.focusY);
-  }
+  };
 
   getCloseConfirmationMessage = () => {
     const { intl, dirty } = this.props;
@@ -199,15 +199,15 @@ class FocalPointModal extends ImmutablePureComponent {
     } else {
       return null;
     }
-  }
+  };
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   handleTextDetection = () => {
     this._detectText();
-  }
+  };
 
   _detectText = (refreshCache = false) => {
     const { media } = this.props;
@@ -258,21 +258,21 @@ class FocalPointModal extends ImmutablePureComponent {
       console.error(e);
       this.setState({ detecting: false });
     });
-  }
+  };
 
   handleThumbnailChange = e => {
     if (e.target.files.length > 0) {
       this.props.onSelectThumbnail(e.target.files);
     }
-  }
+  };
 
   setFileInputRef = c => {
     this.fileInput = c;
-  }
+  };
 
   handleFileInputClick = () => {
     this.fileInput.click();
-  }
+  };
 
   render () {
     const { media, intl, account, onClose, isUploadingThumbnail, description, lang, focusX, focusY, dirty, is_changing_upload } = this.props;
