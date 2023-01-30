@@ -56,8 +56,9 @@ class AccountStatusesFilter
 
   def filtered_reblogs_scope
     Status
-      .left_outer_joins(:reblog).where(reblog_of_id: nil)
+      .left_outer_joins(:reblog)
       .joins('LEFT OUTER JOIN accounts reblogs_accounts ON reblogs_accounts.id = reblogs_statuses.account_id')
+      .where(reblog_of_id: nil)
       .or(
         Status
           .where.not(reblogs_statuses: { account_id: current_account.excluded_from_timeline_account_ids })
