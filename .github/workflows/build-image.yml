@@ -16,6 +16,11 @@ permissions:
 jobs:
   build-image:
     runs-on: ubuntu-latest
+
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: true
+
     steps:
       - uses: actions/checkout@v3
       - uses: hadolint/hadolint-action@v3.1.0
