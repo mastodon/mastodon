@@ -27,7 +27,7 @@ const makeMapStateToProps = () => {
 };
 
 const getFirstSentence = str => {
-  const arr = str.split(/(([\.\?!]+\s)|[．。？！\n•])/);
+  const arr = str.split(/(([.?!]+\s)|[．。？！\n•])/);
 
   return arr[0];
 };
