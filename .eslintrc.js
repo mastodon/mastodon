@@ -3,6 +3,7 @@ module.exports = {
 
   extends: [
     'eslint:recommended',
+    'plugin:react/recommended',
   ],
 
   env: {
@@ -112,19 +113,16 @@ module.exports = {
     'react/jsx-boolean-value': 'error',
     'react/jsx-closing-bracket-location': ['error', 'line-aligned'],
     'react/jsx-curly-spacing': 'error',
+    'react/display-name': 'off',
     'react/jsx-equals-spacing': 'error',
     'react/jsx-first-prop-new-line': ['error', 'multiline-multiprop'],
     'react/jsx-indent': ['error', 2],
     'react/jsx-no-bind': 'error',
-    'react/jsx-no-duplicate-props': 'error',
-    'react/jsx-no-undef': 'error',
+    'react/jsx-no-target-blank': 'off',
     'react/jsx-tag-spacing': 'error',
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
     'react/jsx-wrap-multilines': 'error',
-    'react/no-multi-comp': 'off',
-    'react/no-string-refs': 'error',
-    'react/prop-types': 'error',
+    'react/no-deprecated': 'off',
+    'react/no-unknown-property': 'off',
     'react/self-closing-comp': 'error',
 
     'jsx-a11y/accessible-emoji': 'warn',
