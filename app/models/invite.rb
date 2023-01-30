@@ -24,6 +24,9 @@ class Invite < ApplicationRecord
   scope :available, -> { where(expires_at: nil).or(where('expires_at >= ?', Time.now.utc)) }
 
   validates :comment, length: { maximum: 420 }
+  # 招待リングが無制限に作成できないようにバリデーションチェックではじく
+  validates :max_uses, presence: true
+  validates :expires_at, presence: true
 
   before_validation :set_code
 
