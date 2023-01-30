@@ -111,6 +111,3 @@ On the "Edit profile" page (`/settings/profile`) move the Bio (aka Note) below t
 
 
 ## HELLO_PATCH(18) remove uppercase text style for form buttons
-
-
-## HELLO_PATCH(19) Twitter Account Activity API
