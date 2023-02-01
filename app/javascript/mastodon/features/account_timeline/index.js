@@ -145,7 +145,7 @@ class AccountTimeline extends ImmutablePureComponent {
 
   handleLoadMore = maxId => {
     this.props.dispatch(expandAccountTimeline(this.props.accountId, { maxId, withReplies: this.props.withReplies, tagged: this.props.params.tagged }));
-  }
+  };
 
   render () {
     const { accountId, statusIds, featuredStatusIds, isLoading, hasMore, blockedBy, suspended, isAccount, hidden, multiColumn, remote, remoteUrl } = this.props;

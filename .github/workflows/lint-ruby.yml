@@ -1,0 +1,41 @@
+name: Ruby Linting
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**'
+    paths:
+      - 'Gemfile*'
+      - '.rubocop.yml'
+      - '**/*.rb'
+      - '**/*.rake'
+      - '.github/workflows/lint-ruby.yml'
+
+  pull_request:
+    paths:
+      - 'Gemfile*'
+      - '.rubocop.yml'
+      - '**/*.rb'
+      - '**/*.rake'
+      - '.github/workflows/lint-ruby.yml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set-up RuboCop Problem Mathcher
+        uses: r7kamura/rubocop-problem-matchers-action@v1
+
+      - name: Run rubocop
+        uses: github/super-linter@v4
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LINTER_RULES_PATH: .
+          RUBY_CONFIG_FILE: .rubocop.yml
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_RUBY: true

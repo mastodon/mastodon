@@ -31,7 +31,7 @@ class ActionBar extends React.PureComponent {
 
   handleLogout = () => {
     this.props.onLogout();
-  }
+  };
 
   render () {
     const { intl } = this.props;

@@ -449,6 +449,7 @@ lv:
         private_comment_description_html: 'Lai palīdzētu tev izsekot, no kurienes nāk importētie bloki, tiks izveidoti importētie bloki ar šādu privātu komentāru: <q>%{comment}</q>'
         private_comment_template: Importēts no %{source} %{date}
         title: Importēt bloķētos domēnus
+      invalid_domain_block: 'Viens vai vairāki domēna bloķi tika izlaisti šādas kļūdas(-u) dēļ: %{error}'
       new:
         title: Importēt bloķētos domēnus
       no_file: Nav atlasīts neviens fails
@@ -601,6 +602,7 @@ lv:
       comment:
         none: Neviens
       comment_description_html: 'Lai sniegtu vairāk informācijas, %{name} rakstīja:'
+      confirm_action: Apstipriniet regulēšanas darbību pret @%{acct}
       created_at: Ziņoti
       delete_and_resolve: Izdzēst rakstus
       forwarded: Pārsūtīti
@@ -617,6 +619,7 @@ lv:
         placeholder: Apraksti veiktās darbības vai citus saistītus atjauninājumus...
         title: Piezīmes
       notes_description_html: Skati un atstāj piezīmes citiem moderatoriem un sev nākotnei
+      processed_msg: 'Pārskats #%{id} veiksmīgi apstrādāts'
       quick_actions_description_html: 'Veic ātro darbību vai ritini uz leju, lai skatītu saturu, par kuru ziņots:'
       remote_user_placeholder: attālais lietotājs no %{instance}
       reopen: Atkārtoti atvērt ziņojumu
@@ -629,9 +632,28 @@ lv:
       status: Statuss
       statuses: Ziņotais saturs
       statuses_description_html: Pārkāpuma saturs tiks minēts saziņā ar paziņoto kontu
+      summary:
+        action_preambles:
+          delete_html: 'Jūs gatavojaties <strong>noņemt</strong> dažas no lietotāja <strong>@%{acct}</strong> ziņām. Tas:'
+          mark_as_sensitive_html: 'Jūs gatavojaties <strong>atzīmēt</strong> dažas no lietotāja <strong>@%{acct}</strong> ziņām kā <strong>sensitīvas</strong>. Tas:'
+          silence_html: 'Jūs gatavojaties <strong>ierobežot</strong> <strong>@%{acct}</strong> kontu. Tas:'
+          suspend_html: 'Jūs gatavojaties <strong>apturēt</strong> <strong>@%{acct}</strong> kontu. Tas:'
+        actions:
+          delete_html: Noņemt aizskarošās ziņas
+          mark_as_sensitive_html: Atzīmēt aizskarošo ziņu multivides saturu kā sensitīvu
+          silence_html: Ievērojami ierobežojiet <strong>@%{acct}</strong> sasniedzamību, padarot viņa profilu un saturu redzamu tikai personām, kas jau seko viņiem vai manuāli meklē profilu
+          suspend_html: Apturēt <strong>@%{acct}</strong>, padarot viņu profilu un saturu nepieejamu un neiespējamu mijiedarbību ar
+        close_report: 'Atzīmēt ziņojumu #%{id} kā atrisinātu'
+        close_reports_html: Atzīmējiet <strong>visus</strong> pārskatus par <strong>@%{acct}</strong> kā atrisinātus
+        delete_data_html: Dzēsiet lietotāja <strong>@%{acct}</strong> profilu un saturu pēc 30 dienām, ja vien to darbība pa šo laiku netiks atcelta
+        preview_preamble_html: "<strong>@%{acct}</strong> saņems brīdinājumu ar šādu saturu:"
+        record_strike_html: Ierakstiet brīdinājumu pret <strong>@%{acct}</strong>, lai palīdzētu jums izvērst turpmākus pārkāpumus no šī konta
+        send_email_html: Nosūtiet <strong>@%{acct}</strong> brīdinājuma e-pastu
+        warning_placeholder: Izvēles papildu pamatojums regulēšanas darbībai.
       target_origin: Ziņotā konta izcelsme
       title: Ziņojumi
       unassign: Atsaukt
+      unknown_action_msg: 'Nezināms konts: %{action}'
       unresolved: Neatrisinātie
       updated_at: Atjaunināts
       view_profile: Skatīt profilu
@@ -961,6 +983,8 @@ lv:
   auth:
     apply_for_account: Pieprasīt kontu
     change_password: Parole
+    confirmations:
+      wrong_email_hint: Ja šī e-pasta adrese nav pareiza, varat to mainīt konta iestatījumos.
     delete_account: Dzēst kontu
     delete_account_html: Ja vēlies dzēst savu kontu, tu vari <a href="%{path}">turpināt šeit</a>. Tev tiks lūgts apstiprinājums.
     description:
