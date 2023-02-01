@@ -80,17 +80,17 @@ export class WrappedRoute extends React.Component {
         {Component => <Component params={match.params} multiColumn={multiColumn} {...componentParams}>{content}</Component>}
       </BundleContainer>
     );
-  }
+  };
 
   renderLoading = () => {
     const { multiColumn } = this.props;
 
     return <ColumnLoading multiColumn={multiColumn} />;
-  }
+  };
 
   renderError = (props) => {
     return <BundleColumnError {...props} errorType='network' />;
-  }
+  };
 
   render () {
     const { component: Component, content, ...rest } = this.props;

@@ -22,12 +22,12 @@ export default class Upload extends ImmutablePureComponent {
   handleUndoClick = e => {
     e.stopPropagation();
     this.props.onUndo(this.props.media.get('id'));
-  }
+  };
 
   handleFocalPointClick = e => {
     e.stopPropagation();
     this.props.onOpenFocalPoint(this.props.media.get('id'));
-  }
+  };
 
   render () {
     const { media } = this.props;

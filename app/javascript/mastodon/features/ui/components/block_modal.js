@@ -55,20 +55,20 @@ class BlockModal extends React.PureComponent {
   handleClick = () => {
     this.props.onClose();
     this.props.onConfirm(this.props.account);
-  }
+  };
 
   handleSecondary = () => {
     this.props.onClose();
     this.props.onBlockAndReport(this.props.account);
-  }
+  };
 
   handleCancel = () => {
     this.props.onClose();
-  }
+  };
 
   setRef = (c) => {
     this.button = c;
-  }
+  };
 
   render () {
     const { account } = this.props;

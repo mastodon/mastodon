@@ -35,7 +35,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
     if (this.node && !this.node.contains(e.target)) {
       this.props.onClose();
     }
-  }
+  };
 
   handleKeyDown = e => {
     const { items } = this.props;
@@ -79,7 +79,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
       e.preventDefault();
       e.stopPropagation();
     }
-  }
+  };
 
   handleClick = e => {
     const value = e.currentTarget.getAttribute('data-index');
@@ -88,7 +88,7 @@ class PrivacyDropdownMenu extends React.PureComponent {
 
     this.props.onClose();
     this.props.onChange(value);
-  }
+  };
 
   componentDidMount () {
     document.addEventListener('click', this.handleDocumentClick, false);
@@ -103,11 +103,11 @@ class PrivacyDropdownMenu extends React.PureComponent {
 
   setRef = c => {
     this.node = c;
-  }
+  };
 
   setFocusRef = c => {
     this.focusedItem = c;
-  }
+  };
 
   render () {
     const { style, items, value } = this.props;
@@ -168,7 +168,7 @@ class PrivacyDropdown extends React.PureComponent {
       }
       this.setState({ open: !this.state.open });
     }
-  }
+  };
 
   handleModalActionClick = (e) => {
     e.preventDefault();
@@ -177,7 +177,7 @@ class PrivacyDropdown extends React.PureComponent {
 
     this.props.onModalClose();
     this.props.onChange(value);
-  }
+  };
 
   handleKeyDown = e => {
     switch(e.key) {
@@ -185,13 +185,13 @@ class PrivacyDropdown extends React.PureComponent {
       this.handleClose();
       break;
     }
-  }
+  };
 
   handleMouseDown = () => {
     if (!this.state.open) {
       this.activeElement = document.activeElement;
     }
-  }
+  };
 
   handleButtonKeyDown = (e) => {
     switch(e.key) {
@@ -200,18 +200,18 @@ class PrivacyDropdown extends React.PureComponent {
       this.handleMouseDown();
       break;
     }
-  }
+  };
 
   handleClose = () => {
     if (this.state.open && this.activeElement) {
       this.activeElement.focus({ preventScroll: true });
     }
     this.setState({ open: false });
-  }
+  };
 
   handleChange = value => {
     this.props.onChange(value);
-  }
+  };
 
   componentWillMount () {
     const { intl: { formatMessage } } = this.props;
@@ -231,15 +231,15 @@ class PrivacyDropdown extends React.PureComponent {
 
   setTargetRef = c => {
     this.target = c;
-  }
+  };
 
   findTarget = () => {
     return this.target;
-  }
+  };
 
   handleOverlayEnter = (state) => {
     this.setState({ placement: state.placement });
-  }
+  };
 
   render () {
     const { value, container, disabled, intl } = this.props;

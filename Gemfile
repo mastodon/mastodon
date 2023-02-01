@@ -18,7 +18,7 @@ gem 'makara', '~> 0.5'
 gem 'pghero'
 gem 'dotenv-rails', '~> 2.8'
 
-gem 'aws-sdk-s3', '~> 1.117', require: false
+gem 'aws-sdk-s3', '~> 1.119', require: false
 gem 'fog-core', '<= 2.4.0'
 gem 'fog-openstack', '~> 0.3', require: false
 gem 'kt-paperclip', '~> 7.1'
@@ -40,7 +40,7 @@ end
 gem 'net-ldap', '~> 0.17'
 gem 'omniauth-cas', '~> 2.0'
 gem 'omniauth-saml', '~> 1.10'
-gem 'gitlab-omniauth-openid-connect', '~>0.10.0', require: 'omniauth_openid_connect'
+gem 'gitlab-omniauth-openid-connect', '~>0.10.1', require: 'omniauth_openid_connect'
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-rails_csrf_protection', '~> 0.1'
 
@@ -73,7 +73,7 @@ gem 'rack-attack', '~> 6.6'
 gem 'rack-cors', '~> 1.1', require: 'rack/cors'
 gem 'rails-i18n', '~> 6.0'
 gem 'rails-settings-cached', '~> 0.6'
-gem 'redcarpet', '~> 3.5'
+gem 'redcarpet', '~> 3.6'
 gem 'redis', '~> 4.5', require: ['redis', 'redis/connection/hiredis']
 gem 'mario-redis-lock', '~> 1.2', require: 'redis_lock'
 gem 'rqrcode', '~> 2.1'
@@ -85,7 +85,7 @@ gem 'sidekiq-scheduler', '~> 4.0'
 gem 'sidekiq-unique-jobs', '~> 7.1'
 gem 'sidekiq-bulk', '~> 0.2.0'
 gem 'simple-navigation', '~> 4.4'
-gem 'simple_form', '~> 5.1'
+gem 'simple_form', '~> 5.2'
 gem 'sprockets-rails', '~> 3.4', require: 'sprockets/railtie'
 gem 'stoplight', '~> 3.0.1'
 gem 'strong_migrations', '~> 0.7'

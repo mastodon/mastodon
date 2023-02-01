@@ -48,6 +48,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     onKeyDown: PropTypes.func,
     onPaste: PropTypes.func.isRequired,
     autoFocus: PropTypes.bool,
+    lang: PropTypes.string,
   };
 
   static defaultProps = {
@@ -74,7 +75,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     this.props.onChange(e);
-  }
+  };
 
   onKeyDown = (e) => {
     const { suggestions, disabled } = this.props;
@@ -132,25 +133,25 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
     }
 
     this.props.onKeyDown(e);
-  }
+  };
 
   onBlur = () => {
     this.setState({ suggestionsHidden: true, focused: false });
-  }
+  };
 
   onFocus = (e) => {
     this.setState({ focused: true });
     if (this.props.onFocus) {
       this.props.onFocus(e);
     }
-  }
+  };
 
   onSuggestionClick = (e) => {
     const suggestion = this.props.suggestions.get(e.currentTarget.getAttribute('data-index'));
     e.preventDefault();
     this.props.onSuggestionSelected(this.state.tokenStart, this.state.lastToken, suggestion);
     this.textarea.focus();
-  }
+  };
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.suggestions !== this.props.suggestions && nextProps.suggestions.size > 0 && this.state.suggestionsHidden && this.state.focused) {
@@ -160,14 +161,14 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
 
   setTextarea = (c) => {
     this.textarea = c;
-  }
+  };
 
   onPaste = (e) => {
     if (e.clipboardData && e.clipboardData.files.length === 1) {
       this.props.onPaste(e.clipboardData.files);
       e.preventDefault();
     }
-  }
+  };
 
   renderSuggestion = (suggestion, i) => {
     const { selectedSuggestion } = this.state;
@@ -189,10 +190,10 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
         {inner}
       </div>
     );
-  }
+  };
 
   render () {
-    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, children } = this.props;
+    const { value, suggestions, disabled, placeholder, onKeyUp, autoFocus, lang, children } = this.props;
     const { suggestionsHidden } = this.state;
 
     return [
@@ -216,6 +217,7 @@ export default class AutosuggestTextarea extends ImmutablePureComponent {
               onPaste={this.onPaste}
               dir='auto'
               aria-autocomplete='list'
+              lang={lang}
             />
           </label>
         </div>
