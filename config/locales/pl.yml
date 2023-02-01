@@ -457,6 +457,7 @@ pl:
         private_comment_description_html: 'Żebyś wiedział(a) skąd pochodzą zaimportowane bloki, zostaną one utworzone z następującym prywatnym komentarzem: <q>%{comment}</q>'
         private_comment_template: Zaimportowano z %{source} dnia %{date}
         title: Importuj zablokowane domeny
+      invalid_domain_block: 'Jeden lub więcej blokujących domen zostało pominiętych z powodu następującego błędu(ów): %{error}'
       new:
         title: Importuj zablokowane domeny
       no_file: Nie wybrano pliku
@@ -613,6 +614,7 @@ pl:
       comment:
         none: Brak
       comment_description_html: 'Aby dostarczyć więcej informacji, %{name} napisał:'
+      confirm_action: Potwierdzenie działań moderacyjnych wobec @%{acct}
       created_at: Zgłoszono
       delete_and_resolve: Usuń posty
       forwarded: Przekazano
@@ -629,6 +631,7 @@ pl:
         placeholder: Opisz wykonane akcje i inne szczegóły dotyczące tego zgłoszenia…
         title: Notatki
       notes_description_html: Przeglądaj i zostaw notatki innym moderatorom i sobie samemu
+      processed_msg: 'Raport #%{id} został pomyślnie przetworzony'
       quick_actions_description_html: 'Wykonaj szybkie działanie lub przewiń w dół, aby zobaczyć zgłoszoną zawartość:'
       remote_user_placeholder: zdalny użytkownik z %{instance}
       reopen: Otwórz ponownie
@@ -641,9 +644,28 @@ pl:
       status: Stan
       statuses: Zgłoszona treść
       statuses_description_html: Obraźliwe treści będą cytowane w komunikacji ze zgłoszonym kontem
+      summary:
+        action_preambles:
+          delete_html: 'Zamierzasz <strong>usunąć</strong> niektóre posty <strong>@%{acct}</strong>. To spowoduje:'
+          mark_as_sensitive_html: 'Zamierzasz <strong>oznaczyć</strong> niektóre posty <strong>@%{acct}</strong> jako <strong>wrażliwe</strong>. To spowoduje:'
+          silence_html: 'Zamierzasz <strong>ograniczyć</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
+          suspend_html: 'Zamierzasz <strong>zawiesić</strong> konto <strong>@%{acct}</strong>. To spowoduje:'
+        actions:
+          delete_html: Usuń obrażające posty
+          mark_as_sensitive_html: Oznacz obraźliwe media postów jako wrażliwe
+          silence_html: Znacząco ogranicz zasięg <strong>@%{acct}</strong>, aby ich profil i zawartość były widoczne tylko dla osób, które je już obserwują lub ręcznie wyszukują jego profil
+          suspend_html: Zawieś <strong>@%{acct}</strong>, co sprawia, że ich profil i zawartość są niedostępne i niemożliwe do interakcji z
+        close_report: 'Oznacz raport #%{id} jako rozwiązany'
+        close_reports_html: Oznacz <strong>wszystkie</strong> zgłoszenia dotyczące <strong>@%{acct}</strong> jako rozwiązane
+        delete_data_html: Usuń profil i zawartość <strong>@%{acct}</strong> za 30 dni, chyba że w tym czasie zostanie zawieszony
+        preview_preamble_html: "<strong>@%{acct}</strong> otrzyma ostrzeżenie o następującej treści:"
+        record_strike_html: Zarejestruj ostrzeżenie przeciwko <strong>@%{acct}</strong>, aby ułatwić sobie eskalację w przypadku przyszłych naruszeń z tego konta
+        send_email_html: Wyślij do <strong>@%{acct}</strong> wiadomość e-mail z ostrzeżeniem
+        warning_placeholder: Opcjonalne dodatkowe uzasadnienie działania moderacyjnego.
       target_origin: Pochodzenie zgłaszanego konta
       title: Zgłoszenia
       unassign: Cofnij przypisanie
+      unknown_action_msg: 'Nieznane działanie: %{action}'
       unresolved: Nierozwiązane
       updated_at: Zaktualizowano
       view_profile: Wyświetl profil
@@ -979,6 +1001,8 @@ pl:
   auth:
     apply_for_account: Poproś o założenie konta
     change_password: Hasło
+    confirmations:
+      wrong_email_hint: Jeśli ten adres e-mail nie jest poprawny, możesz go zmienić w ustawieniach konta.
     delete_account: Usunięcie konta
     delete_account_html: Jeżeli chcesz usunąć konto, <a href="%{path}">przejdź tutaj</a>. Otrzymasz prośbę o potwierdzenie.
     description:

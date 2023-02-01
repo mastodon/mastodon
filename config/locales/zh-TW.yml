@@ -23,7 +23,7 @@ zh-TW:
   admin:
     account_actions:
       action: 執行動作
-      title: 在 %{acct} 執行管理員動作
+      title: 對 %{acct} 執行站務動作
     account_moderation_notes:
       create: 記錄
       created_msg: 已新增管理備忘!
@@ -373,8 +373,8 @@ zh-TW:
       undo: 從聯邦宇宙白名單移除
     domain_blocks:
       add_new: 新增欲封鎖域名
-      created_msg: 正在進行站點封鎖
-      destroyed_msg: 已撤銷站點封鎖
+      created_msg: 正在進行網域封鎖
+      destroyed_msg: 已撤銷網域封鎖
       domain: 站點
       edit: 更改封鎖的站台
       existing_domain_block: 您已對 %{name} 施加了更嚴格的限制。
@@ -401,7 +401,7 @@ zh-TW:
       reject_media: 拒絕媒體檔案
       reject_media_hint: 刪除本地快取的媒體檔案，並且不再接收來自該站點的任何媒體檔案。與停權無關
       reject_reports: 拒絕檢舉
-      reject_reports_hint: 忽略所有來自此站點的檢舉。與停權無關
+      reject_reports_hint: 忽略所有來自此網域的檢舉。與停權無關
       undo: 復原欲封鎖域名
       view: 顯示阻擋的網域
     email_domain_blocks:
@@ -413,9 +413,9 @@ zh-TW:
       dns:
         types:
           mx: MX 記錄
-      domain: 站點
+      domain: 網域
       new:
-        create: 新增站點
+        create: 新增網域
         resolve: 解析網域
         title: 新增電子郵件黑名單項目
       no_email_domain_block_selected: 因未選取項目，而未更改電子郵件網域黑名單
@@ -433,6 +433,7 @@ zh-TW:
         private_comment_description_html: 為了幫助您追蹤匯入黑名單之來源，匯入黑名單建立時將隨附以下私密備註：<q>%{comment}</q>
         private_comment_template: 於 %{date} 由 %{source} 匯入
         title: 匯入網域黑名單
+      invalid_domain_block: 由於此錯誤，以致一個或多個網域封鎖被略過：%{error}
       new:
         title: 匯入網域黑名單
       no_file: 尚未選擇檔案
@@ -579,6 +580,7 @@ zh-TW:
       comment:
         none: 無
       comment_description_html: 提供更多資訊，%{name} 寫道：
+      confirm_action: 確認對 @%{acct} 執行站務動作
       created_at: 日期
       delete_and_resolve: 刪除嘟文
       forwarded: 已轉寄
@@ -595,6 +597,7 @@ zh-TW:
         placeholder: 記錄已執行的動作，或其他相關的更新...
         title: 註記
       notes_description_html: 檢視及留下些給其他管理員和未來的自己的註記
+      processed_msg: '檢舉報告 #%{id} 已被成功處理'
       quick_actions_description_html: 採取一個快速行動，或者下捲以檢視檢舉內容：
       remote_user_placeholder: 來自 %{instance} 之遠端使用者
       reopen: 重開檢舉
@@ -607,9 +610,28 @@ zh-TW:
       status: 嘟文
       statuses: 被檢舉的內容
       statuses_description_html: 侵犯性違規內容會被引用在檢舉帳號通知中
+      summary:
+        action_preambles:
+          delete_html: 您將要 <strong>移除</strong> 某些 <strong>@%{acct}</strong> 之嘟文。此將會：
+          mark_as_sensitive_html: 您將要 <strong>標記</strong> 某些 <strong>@%{acct}</strong> 之嘟文為 <strong>敏感內容 </strong>。此將會：
+          silence_html: 您將要 <strong>限制</strong> <strong>@%{acct}</strong> 之帳號。此將會：
+          suspend_html: 您將要 <strong>暫停</strong> <strong>@%{acct}</strong> 之帳號。此將會：
+        actions:
+          delete_html: 移除違反規則之嘟文
+          mark_as_sensitive_html: 將違反規則之嘟文多媒體標記為敏感內容
+          silence_html: 藉由標記他們的個人檔案與內容為僅可見於已跟隨帳號或手動查詢此個人檔案，此將嚴格地限制 <strong>@%{acct}</strong> 之觸及率
+          suspend_html: 暫停 <strong>@%{acct}</strong>，將他們的個人檔案與內容標記為無法存取及無法與之互動
+        close_report: '將檢舉報告 #%{id} 標記為已處理'
+        close_reports_html: 將 <strong>所有</strong> 對於 <strong>@%{acct}</strong> 之檢舉報告標記為已處理
+        delete_data_html: 於即日起 30 天後刪除 <strong>@%{acct}</strong>之個人檔案與內容，除非他們於期限前被解除暫停
+        preview_preamble_html: "<strong>@%{acct}</strong> 將收到關於以下內容之警告："
+        record_strike_html: 紀錄關於 <strong>@%{acct}</strong>之警示有助於您升級對此帳號未來違規處理
+        send_email_html: 寄一封警告 e-mail 給 <strong>@%{acct}</strong>
+        warning_placeholder: 選填之其他站務動作理由。
       target_origin: 檢舉帳號之來源
       title: 檢舉
       unassign: 取消指派
+      unknown_action_msg: 未知的動作：%{action}
       unresolved: 未解決
       updated_at: 更新
       view_profile: 檢視個人檔案頁面
@@ -927,6 +949,8 @@ zh-TW:
   auth:
     apply_for_account: 申請帳號
     change_password: 密碼
+    confirmations:
+      wrong_email_hint: 若電子郵件地址不正確，您可以於帳號設定中更改。
     delete_account: 刪除帳號
     delete_account_html: 如果您欲刪除您的帳號，請<a href="%{path}">點擊這裡繼續</a>。您需要再三確認您的操作。
     description:
