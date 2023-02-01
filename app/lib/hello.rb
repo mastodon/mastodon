@@ -23,4 +23,14 @@ class Hello
 
     mastodon_builder_url.to_s
   end
+
+  def self.strip_verified_emoji(name)
+    if name.end_with?(':verified:')
+      name = name[0..-12]
+    elsif name.end_with?(':_v:')
+      name = name[0..-6]
+    end
+
+    name
+  end
 end

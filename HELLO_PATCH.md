@@ -113,4 +113,7 @@ On the "Edit profile" page (`/settings/profile`) move the Bio (aka Note) below t
 ## HELLO_PATCH(18) remove uppercase text style for form buttons
 
 
-# HELLO_PATCH(19) import /js/script.js
+## HELLO_PATCH(19) import /js/script.js
+
+
+## HELLO_PATCH(20) strip raw verified emoji from display name

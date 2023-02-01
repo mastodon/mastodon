@@ -7,7 +7,8 @@ module AccountsHelper
     if options[:custom_emojify]
       prerender_custom_emojis(h(str), account.emojis)
     else
-      str
+      # HELLO_PATCH(20) strip raw verified emoji from display name
+      Hello.strip_verified_emoji(str)
     end
   end
 
