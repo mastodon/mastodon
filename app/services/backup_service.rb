@@ -5,20 +5,19 @@ require 'rubygems/package'
 class BackupService < BaseService
   include Payloadable
 
-  attr_reader :account, :backup, :collection
+  attr_reader :account, :backup
 
   def call(backup)
     @backup  = backup
     @account = backup.user.account
 
-    build_json!
     build_archive!
   end
 
   private
 
-  def build_json!
-    @collection = serialize(collection_presenter, ActivityPub::CollectionSerializer)
+  def outbox_collection
+    collection = serialize(collection_presenter, ActivityPub::CollectionSerializer)
 
     account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
       statuses.each do |status|
@@ -31,11 +30,13 @@ class BackupService < BaseService
           end
         end
 
-        @collection[:orderedItems] << item
+        collection[:orderedItems] << item
       end
 
       GC.start
     end
+
+    collection
   end
 
   def build_archive!
@@ -44,8 +45,8 @@ class BackupService < BaseService
     File.open(tmp_file, 'wb') do |file|
       Zlib::GzipWriter.wrap(file) do |gz|
         Gem::Package::TarWriter.new(gz) do |tar|
-          dump_media_attachments!(tar)
           dump_outbox!(tar)
+          dump_media_attachments!(tar)
           dump_likes!(tar)
           dump_bookmarks!(tar)
           dump_actor!(tar)
@@ -76,7 +77,7 @@ class BackupService < BaseService
   end
 
   def dump_outbox!(tar)
-    json = Oj.dump(collection)
+    json = Oj.dump(outbox_collection)
 
     tar.add_file_simple('outbox.json', 0o444, json.bytesize) do |io|
       io.write(json)
