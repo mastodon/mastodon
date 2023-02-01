@@ -69,6 +69,47 @@ en-GB:
       enable: Unfreeze
       enable_sign_in_token_auth: Enable e-mail token authentication
       enabled: Enabled
+      enabled_msg: Successfully unfroze %{username}'s account
+      followers: Followers
+      follows: Follows
+      header: Header
+      inbox_url: Inbox URL
+      invite_request_text: Reasons for joining
+      invited_by: Invited by
+      ip: IP
+      joined: Joined
+      location:
+        all: All
+        local: Local
+        remote: Remote
+        title: Location
+      login_status: Login status
+      media_attachments: Media attachments
+      memorialize: Turn into memoriam
+      memorialized: Memorialised
+      memorialized_msg: Successfully turned %{username} into a memorial account
+      moderation:
+        active: Active
+        all: All
+        pending: Pending
+        silenced: Limited
+        suspended: Suspended
+        title: Moderation
+      moderation_notes: Moderation notes
+      most_recent_activity: Most recent activity
+      most_recent_ip: Most recent IP
+      no_account_selected: No accounts were changed as none were selected
+      no_limits_imposed: No limits imposed
+      no_role_assigned: No role assigned
+      not_subscribed: Not subscribed
+      pending: Pending review
+      perform_full_suspension: Suspend
+      previous_strikes: Previous strikes
+      previous_strikes_description_html:
+        one: This account has <strong>one</strong> strike.
+        other: This account has <strong>%{count}</strong> strikes.
+      promote: Promote
+      protocol: Protocol
     roles:
       categories:
         devops: DevOps
@@ -91,3 +132,32 @@ en-GB:
     platforms:
       blackberry: BlackBerry
       chrome_os: ChromeOS
+  user_mailer:
+    warning:
+      subject:
+        silence: Your account %{acct} has been limited
+        suspend: Your account %{acct} has been suspended
+      title:
+        delete_statuses: Posts removed
+        disable: Account frozen
+        mark_statuses_as_sensitive: Posts marked as sensitive
+        none: Warning
+        sensitive: Account marked as sensitive
+        silence: Account limited
+        suspend: Account suspended
+    welcome:
+      edit_profile_action: Setup profile
+      edit_profile_step: You can customise your profile by uploading a profile picture, changing your display name and more. You can opt-in to review new followers before they’re allowed to follow you.
+      explanation: Here are some tips to get you started
+      final_action: Start posting
+      final_step: 'Start posting! Even without followers, your public posts may be seen by others, for example on the local timeline or in hashtags. You may want to introduce yourself on the #introductions hashtag.'
+      full_handle: Your full handle
+      full_handle_hint: This is what you would tell your friends so they can message or follow you from another server.
+      subject: Welcome to Mastodon
+      title: Welcome aboard, %{name}!
+  users:
+    follow_limit_reached: You cannot follow more than %{limit} people
+    invalid_otp_token: Invalid two-factor code
+    otp_lost_help_html: If you lost access to both, you may get in touch with %{email}
+    seamless_external_login: You are logged in via an external service, so password and e-mail settings are not available.
+    signed_in_as: 'Signed in as:'

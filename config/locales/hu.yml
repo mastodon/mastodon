@@ -104,10 +104,10 @@ hu:
       not_subscribed: Nincs feliratkozás
       pending: Engedélyezés alatt
       perform_full_suspension: Felfüggesztés
-      previous_strikes: Korábbi szankciók
+      previous_strikes: Korábbi felrótt vétségek
       previous_strikes_description_html:
-        one: Ezt a fiókot <strong>egyszer</strong> szankcionálták.
-        other: Ezt a fiókot <strong>%{count}</strong> esetben szankcionálták.
+        one: Ehhez a fiókhoz <strong>egyszer</strong> róttak fel vétséget.
+        other: Ehhez a fiókhoz <strong>%{count}</strong> esetben róttak fel vétséget.
       promote: Előléptetés
       protocol: Protokoll
       public: Nyilvános
@@ -441,6 +441,7 @@ hu:
         private_comment_description_html: 'Az importált tiltások forrásának könnyebb követése érdekében, az importált tiltások a következő privát megjegyzéssel lesznek létrehozva: <q>%{comment}</q>'
         private_comment_template: 'Innen importálva: %{source}, ekkor: %{date}'
         title: Domain tiltások importálása
+      invalid_domain_block: 'Egy vagy több domain letiltást kihagytunk a következő hiba(ák) miatt: %{error}'
       new:
         title: Domain tiltások importálása
       no_file: Nincs fájl kiválasztva
@@ -571,10 +572,10 @@ hu:
       action_log: Audit napló
       action_taken_by: 'Kezelte:'
       actions:
-        delete_description_html: A bejelentett bejegyzéseket törölni fogjuk és feljegyzünk egy szankciót, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
-        mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy szankciót, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetében.
+        delete_description_html: A bejelentett bejegyzéseket törölni fogjuk és feljegyzünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
+        mark_as_sensitive_description_html: A bejelentett bejegyzések médaitartalmait érzékenynek jelöljük, és rögzítünk egy vétséget, hogy segítsük az eszkalációt a fiók későbbi kihágásai esetén.
         other_description_html: További lehetőségek megjelenítése a fiók viselkedésének szabályozásához, és a jelentett fiók kommunikációjának testreszabásához.
-        resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel szankciót, és bezárjuk a bejelentést.
+        resolve_description_html: Nem csinálunk semmit a bejelentett fiókkal, nem jegyzünk fel vétséget, és bezárjuk a bejelentést.
         silence_description_html: A profil csak azok számára lesz látható, akik már követik, vagy kézzel rákeresnek, jelentősen korlátozva annak elérését. Ez a művelet bármikor visszafordítható. A fiókkal szemben indított minden bejelentést lezárunk.
         suspend_description_html: A fiók és minden tartalma elérhetetlenné válik és végül törlésre kerül. A fiókkal kapcsolatbalépni lehetetlen lesz. Ez a művelet 30 napig visszafordítható. A fiók ellen indított minden bejelentést lezárunk.
       actions_description_html: Döntsd el, mit csináljunk, hogy megoldjuk ezt a bejelentést. Ha valamilyen büntető intézkedést hozol a bejelentett fiók ellen, küldünk neki egy figyelmeztetést e-mail-ben, kivéve ha a <strong>Spam</strong> kategóriát választod.
@@ -589,6 +590,7 @@ hu:
       comment:
         none: Egyik sem
       comment_description_html: 'Hogy további információkat adjon, %{name} ezt írta:'
+      confirm_action: Moderációs művelet jóváhagyása @%{acct} fiókon
       created_at: Jelentve
       delete_and_resolve: Bejegyzések törlése
       forwarded: Továbbítva
@@ -605,6 +607,7 @@ hu:
         placeholder: Jegyezd le, mi tettünk az ügy érdekében, vagy bármilyen változást...
         title: Megjegyzések
       notes_description_html: Megtekintés, és megjegyzések hagyása más moderátoroknak
+      processed_msg: 'Bejelentés #%{id} sikeresen feldolgozva'
       quick_actions_description_html: 'Hozz egy gyors intézkedést, vagy görgess le a bejelentett tartalomhoz:'
       remote_user_placeholder: 'a távoli felhasználó innen: %{instance}'
       reopen: Bejelentés újranyitása
@@ -617,9 +620,28 @@ hu:
       status: Állapot
       statuses: Jelentett tartalom
       statuses_description_html: A sértő tartalmat idézni fogjuk a bejelentett fiókkal való kommunikáció során
+      summary:
+        action_preambles:
+          delete_html: 'Arra készülsz, hogy <strong>eltávolítsd</strong> <strong>@%{acct}</strong> néhány bejegyzését. Ez a következőket okozza:'
+          mark_as_sensitive_html: 'Arra készülsz, hogy <strong>érzékenynek jelöld</strong> <strong>@%{acct}</strong> néhány tartalmát. Ez a következőket okozza:'
+          silence_html: 'Arra készülsz, hogy <strong>korlátozd</strong> <strong>@%{acct}</strong> fiókját. Ez a következőket okozza:'
+          suspend_html: 'Arra készülsz, hogy <strong>felfüggeszd</strong> <strong>@%{acct}</strong> fiókját. Ez a következőket okozza:'
+        actions:
+          delete_html: Sértő bejegyzések eltávolítása
+          mark_as_sensitive_html: Sértő bejegyzések médiatartalmainak érzékenyként történő megjelölése
+          silence_html: "<strong>@%{acct}</strong> fiók elérésének jelentős korlátozása azzal, hogy ennek profilja és tartalmai csak olyanoknak legyen látható, akik követik vagy manuálisan rákeresnek"
+          suspend_html: "<strong>@%{acct}</strong> felfüggesztése a profil és tartalmainak elérhetetlenné tételével, a fiókkal való interakció ellehetetlenítésével"
+        close_report: 'Bejelentés #%{id} megjelölése megoldottként'
+        close_reports_html: "<strong>Minden</strong> <strong>@%{acct}</strong> ellen tett bejelentés megjelölése megoldottként"
+        delete_data_html: "<strong>@%{acct}</strong> profiljának és tartalmainak törlése 30 nap múlva, hacsak addig nem oldják fel a felfüggesztést"
+        preview_preamble_html: "<strong>@%{acct}</strong> a következő tartalommal fog figyelmeztetést kapni:"
+        record_strike_html: Vétség felrovása a <strong>@%{acct}</strong> fiók ellen, hogy segítsük az eszkalációt a fiók jövőbeni kihágásai esetén
+        send_email_html: Figyelmeztető email küldése <strong>@%{acct}</strong> fiók részére
+        warning_placeholder: Opcionális kiegészítő indoklás a moderációs művelethez.
       target_origin: A jelentett fiók eredete
       title: Bejelentések
       unassign: Hozzárendelés törlése
+      unknown_action_msg: 'Ismeretlen művelet: %{action}'
       unresolved: Megoldatlan
       updated_at: Frissítve
       view_profile: Profil megtekintése
@@ -943,6 +965,8 @@ hu:
   auth:
     apply_for_account: Fiók kérése
     change_password: Jelszó
+    confirmations:
+      wrong_email_hint: Ha az emailcím nem helyes, a fiókbeállításokban megváltoztathatod.
     delete_account: Felhasználói fiók törlése
     delete_account_html: Felhasználói fiókod törléséhez <a href="%{path}">kattints ide</a>. A rendszer újbóli megerősítést fog kérni.
     description:
@@ -990,7 +1014,7 @@ hu:
       functional: A fiókod teljesen működőképes.
       pending: A jelentkezésed engedélyezésre vár. Ez eltarthat egy ideig. Kapsz egy e-mailt, ha a kérelmedet jóváhagyták.
       redirecting_to: A fiókod inaktív, mert jelenleg ide %{acct} van átirányítva.
-      view_strikes: Fiókod elleni korábbi szankciók megtekintése
+      view_strikes: Fiókod ellen felrótt korábbi vétségek megtekintése
     too_fast: Túl gyorsan küldted el az űrlapot, próbáld később.
     use_security_key: Biztonsági kulcs használata
   authorize_follow:
@@ -1053,7 +1077,7 @@ hu:
     strikes:
       action_taken: Intézkedés
       appeal: Fellebbezés
-      appeal_approved: Ezt a szankciót eredményesen fellebbezték, így már nem érvényes
+      appeal_approved: Ezt a felrótt vétséget eredményesen fellebbezték, így már nem érvényes
       appeal_rejected: A fellebbezést visszautasították
       appeal_submitted_at: Fellebbezés beküldve
       appealed_msg: A fellebbezésedet beküldtük. Ha jóváhagyták, értesítünk.
@@ -1464,7 +1488,7 @@ hu:
     profile: Profil
     relationships: Követések és követők
     statuses_cleanup: Bejegyzések automatikus törlése
-    strikes: Moderációs szankciók
+    strikes: Moderációs felrótt vétségek
     two_factor_authentication: Kétlépcsős hitelesítés
     webauthn_authentication: Biztonsági kulcsok
   statuses:
@@ -1558,7 +1582,7 @@ hu:
     sensitive_content: Kényes tartalom
   strikes:
     errors:
-      too_late: Túl késő, hogy fellebbezd ezt a szankciót
+      too_late: Túl késő, hogy fellebbezd ezt a felrótt vétséget
   tags:
     does_not_match_previous_name: nem illeszkedik az előző névvel
   themes:
@@ -1588,11 +1612,11 @@ hu:
   user_mailer:
     appeal_approved:
       action: Ugrás a fiókodhoz
-      explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i szankcióval kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
+      explanation: A fiókod %{appeal_date}-i fellebbezése, mely a %{strike_date}-i vétségeddel kapcsolatos, jóváhagyásra került. A fiókod megint makulátlan.
       subject: A %{date}-i fellebbezésedet jóváhagyták
       title: Fellebbezés jóváhagyva
     appeal_rejected:
-      explanation: A %{appeal_date}-i fellebbezésed, amely a fiókod %{strike_date}-i szankciójával kapcsolatos, elutasításra került.
+      explanation: A %{appeal_date}-i fellebbezésed, amely a fiókod %{strike_date}-i vétségével kapcsolatos, elutasításra került.
       subject: A %{date}-i fellebbezésedet visszautasították
       title: Fellebbezés visszautasítva
     backup_ready:

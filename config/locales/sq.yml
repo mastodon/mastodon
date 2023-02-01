@@ -441,6 +441,7 @@ sq:
         private_comment_description_html: 'Për t’ju ndihmuar të ndiqni se nga vijnë bllokimet e importuara, këto do të krijohen me komentin vijues privat: <q>%{comment}</q>'
         private_comment_template: Importuar nga %{source} më %{date}
         title: Importoni bllokime përkatësish
+      invalid_domain_block: 'U anashkalua një ose më tepër bllokime përkatësish, për shkak të gabimit(eve) vijues: %{error}'
       new:
         title: Importoni bllokime përkatësish
       no_file: S’u përzgjodh kartelë
@@ -588,6 +589,7 @@ sq:
       comment:
         none: Asnjë
       comment_description_html: 'Për të dhënë më tepër informacion, %{name} shkroi:'
+      confirm_action: Ripohoni veprim moderimi kundër @%{acct}
       created_at: Raportuar më
       delete_and_resolve: Fshiji postimet
       forwarded: U përcoll
@@ -604,6 +606,7 @@ sq:
         placeholder: Përshkruani ç’veprime janë ndërmarrë, ose çfarëdo përditësimi tjetër që lidhet me të…
         title: Shënime
       notes_description_html: Shihni dhe lini shënime për moderatorët e tjerë dhe për veten në të ardhmen
+      processed_msg: 'Raportimi #%{id} u përpunua me sukses'
       quick_actions_description_html: 'Kryeni një veprim të shpejtë, ose rrëshqitni poshtë për të parë lëndën e raportuar:'
       remote_user_placeholder: përdoruesi i largët prej %{instance}
       reopen: Rihape raportimin
@@ -616,9 +619,28 @@ sq:
       status: Gjendje
       statuses: Lëndë e raportuar
       statuses_description_html: Lënda problematike do të citohet në komunikimin me llogarinë e raportuar
+      summary:
+        action_preambles:
+          delete_html: 'Ju ndan një hap nga <strong>heqja</strong> e disa postimeve të <strong>@%{acct}</strong>. Kjo do të sjellë:'
+          mark_as_sensitive_html: 'Ju ndan një hap nga <strong>vënia shenjë</strong> disa postimeve të <strong>@%{acct}</strong> si <strong>me spec</strong>. Kjo do të sjellë:'
+          silence_html: 'Ju ndan një hap nga <strong>kufizimi</strong> i llogarisë së <strong>@%{acct}</strong>. Kjo do të sjellë:'
+          suspend_html: 'Ju ndan një hap nga <strong>pezullimi</strong> i llogarisë së <strong>@%{acct}</strong>. Kjo do të sjellë:'
+        actions:
+          delete_html: Hiqi postimet fyese
+          mark_as_sensitive_html: Vëru shenjë si me spec mediave të postimeve fyese
+          silence_html: Kufizoje fort shtrirjen e <strong>@%{acct}</strong>, duke e bërë profilin dhe lëndën e tij të dukshme vetëm për persona që e ndjekin tashmë, ose që kërkojnë dorazi për profilin e tij
+          suspend_html: Pezulloje <strong>@%{acct}</strong>, duke e bërë profilin dhe lëndën e tij të pahapshme dhe të pamundur ndërveprimin me të
+        close_report: 'Vëri shenjë raportimit #%{id} si të zgjidhur'
+        close_reports_html: Vëru shenjë <strong>krejt</strong> raportimeve kundër <strong>@%{acct}</strong> si të zgjidhur
+        delete_data_html: Fshije profilin e <strong>@%{acct}</strong> dhe lëndën e 30 ditëve nga sot, veç në u pezulloftë ndërkohë
+        preview_preamble_html: "<strong>@%{acct}</strong> do të marrë një sinjalizim me lëndën vijuese:"
+        record_strike_html: Regjistroni një vërejtje kundër <strong>@%{acct}</strong> për t’ju ndihmuar të përshkallëzoni qëndrim në ras cenimesh të ardhshme nga kjo llogari
+        send_email_html: Dërgojini <strong>@%{acct}</strong> një vërejtje me email
+        warning_placeholder: Arsye shtesë, në daçi, për veprimin e moderimit.
       target_origin: Origjinë e llogarisë së raportuar
       title: Raportime
       unassign: Hiqja
+      unknown_action_msg: 'Veprim i panjohur: %{action}'
       unresolved: Të pazgjidhur
       updated_at: U përditësua më
       view_profile: Shihni profilin
@@ -938,6 +960,8 @@ sq:
   auth:
     apply_for_account: Kërkoni një llogari
     change_password: Fjalëkalim
+    confirmations:
+      wrong_email_hint: Nëse ajo adresë email s’është e saktë, mund ta ndryshoni te rregullimet e llogarisë.
     delete_account: Fshije llogarinë
     delete_account_html: Nëse dëshironi të fshihni llogarinë tuaj, mund <a href="%{path}">ta bëni që këtu</a>. Do t’ju kërkohet ta ripohoni.
     description:

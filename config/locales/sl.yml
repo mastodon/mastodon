@@ -457,6 +457,7 @@ sl:
         private_comment_description_html: 'Kot pomoč pri sledenju izvora uvoženih blokad bodo le-te ustvarjene z naslednjim zasebnim komentarjem: <q>%{comment}</q>'
         private_comment_template: Uvoženo iz %{source} %{date}
         title: Uvozi blokade domen
+      invalid_domain_block: 'Ena ali več blokad domen je bila preskočena zaradi naslednjih napak: %{error}'
       new:
         title: Uvozi blokade domen
       no_file: Nobena datoteka ni izbrana
@@ -613,6 +614,7 @@ sl:
       comment:
         none: Brez
       comment_description_html: 'V pojasnilo je %{name} zapisal/a:'
+      confirm_action: Potrdite dejanje moderiranja proti @%{acct}
       created_at: Prijavljeno
       delete_and_resolve: Izbriši objave
       forwarded: Posredovano
@@ -629,6 +631,7 @@ sl:
         placeholder: Opišite dejanja, ki ste jih izvedli, ali katere koli druge posodobitve ...
         title: Zapiski
       notes_description_html: Pokaži in pusti opombe drugim moderatorjem in sebi v prihodnosti
+      processed_msg: 'Prijava #%{id} uspešno obdelana'
       quick_actions_description_html: 'Opravite hitro dejanje ali podrsajte navzdol, da si ogledate prijavljeno vsebino:'
       remote_user_placeholder: oddaljeni uporabnik iz %{instance}
       reopen: Ponovno odpri prijavo
@@ -641,9 +644,28 @@ sl:
       status: Stanje
       statuses: Prijavljena vsebina
       statuses_description_html: Žaljiva vsebina bo citirana v komunikaciji z računom iz prijave
+      summary:
+        action_preambles:
+          delete_html: 'Nekatere od objav uporabnika/ce <strong>@%{acct}</strong> boste <strong>odstranili</strong>. S tem boste:'
+          mark_as_sensitive_html: 'Nekatere od objav uporabnika/ce <strong>@%{acct}</strong> boste <strong>označili</strong> kot <strong>občutljive</strong>. S tem boste:'
+          silence_html: 'Račun uporabnika/ce <strong>@%{acct}</strong> boste <strong>omejili</strong>. S tem boste:'
+          suspend_html: "<strong>Suspendirali</strong> boste račun uporabnika/ce <strong>@%{acct}</strong>. S tem boste:"
+        actions:
+          delete_html: Odstrani žaljive objave
+          mark_as_sensitive_html: Označi večpredstavnost žaljivih objav kot občutljivo
+          silence_html: Močno omejite doseg osebe <strong>@%{acct}</strong>, tako da naredite njihov profil in vsebino vidno samo osebam, ki jih že spremljajo ali ročno poiščejo profil
+          suspend_html: Suspendirajte <strong>@%{acct}</strong>, s čimer postaneta njihov profil in vsebina nedostopna in z njim ni mogoče komunicirati
+        close_report: 'Označi prijavo #%{id} kot rešeno'
+        close_reports_html: Označi <strong>vse</strong> prijave zoper <strong>@%{acct}</strong> kot rešene
+        delete_data_html: Izbriši profil in vsebine <strong>@%{acct}</strong> čez 30 dni, razen če suspenz v tem času ni preklican
+        preview_preamble_html: 'Oseba <strong>@%{acct}</strong> bo prejela opozorilo z naslednjo vsebino:'
+        record_strike_html: Izdajte opomin računu <strong>@%{acct}</strong>, da boste lažje stopnjevali svoj odziv ob prihodnjih kršitvah s tega računa
+        send_email_html: Pošlji <strong>@%{acct}</strong> opozorilno e-sporočilo
+        warning_placeholder: Neobvezna dodatna utemeljitev dejanja moderiranja.
       target_origin: Izvor prijavljenega računa
       title: Prijave
       unassign: Odstopljeni
+      unknown_action_msg: 'Neznano dejanje: %{action}'
       unresolved: Nerešeni
       updated_at: Posodobljeni
       view_profile: Pokaži profil
@@ -979,6 +1001,8 @@ sl:
   auth:
     apply_for_account: Zaprosite za račun
     change_password: Geslo
+    confirmations:
+      wrong_email_hint: Če ta e-poštni naslov ni pravilen, ga lahko spremenite v nastavitvah računa.
     delete_account: Izbriši račun
     delete_account_html: Če želite izbrisati svoj račun, lahko nadaljujete <a href="%{path}">tukaj</a>. Prosili vas bomo za potrditev.
     description:

@@ -211,11 +211,11 @@ ca:
         reopen_report: Reobre l'informe
         resend_user: Torna a enviar el correu de confirmació
         reset_password_user: Restableix la contrasenya
-        resolve_report: Resolt l'informe
+        resolve_report: Resol l'informe
         sensitive_account: Marcar els mèdia en el teu compte com a sensibles
         silence_account: Silencia el compte
         suspend_account: Suspèn el compte
-        unassigned_report: Des-assigna l'informe
+        unassigned_report: Desassigna l'informe
         unblock_email_account: Desbloqueja l'adreça de correu
         unsensitive_account: Desmarcar els mèdia en el teu compte com a sensibles
         unsilence_account: Desfés el silenci del compte
@@ -229,7 +229,7 @@ ca:
       actions:
         approve_appeal_html: "%{name} ha aprovat l'apel·lació a la decisió de moderació de %{target}"
         approve_user_html: "%{name} ha aprovat el registre de %{target}"
-        assigned_to_self_report_html: "%{name} han assignat l'informe %{target} a ells mateixos"
+        assigned_to_self_report_html: "%{name} s'han assignat l'informe %{target} a ells mateixos"
         change_email_user_html: "%{name} ha canviat l'adreça de correu electrònic del usuari %{target}"
         change_role_user_html: "%{name} ha canviat el rol de %{target}"
         confirm_user_html: "%{name} ha confirmat l'adreça de correu electrònic de l'usuari %{target}"
@@ -441,6 +441,7 @@ ca:
         private_comment_description_html: 'Per a ajudar-te a fer un seguiment d''on provenen els bloquejos importats, es crearan amb el següent comentari privat: <q>%{comment}</q>'
         private_comment_template: Importar des de %{source} el %{date}
         title: Importa dominis bloquejats
+      invalid_domain_block: 'Un o més dominis blocats s''han omés degut al següent error(s): %{error}'
       new:
         title: Importa dominis bloquejats
       no_file: No s'ha seleccionat cap fitxer
@@ -573,23 +574,24 @@ ca:
       actions:
         delete_description_html: Els tuts reportats seran eliminats i un cop serà gravat per a ajudar-te a escalar en futures infraccions des del mateix compte.
         mark_as_sensitive_description_html: Els mèdia dels tuts reportats seran marcats com a sensibles i una acció serà gravada per ajudar a escalar en futures infraccions del mateix compte.
-        other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte reportat.
-        resolve_description_html: No serà presa cap acció contra el compte reportat, cap cop serà gravat i l'informe es tancarà.
+        other_description_html: Veu més opcions controlant el comportament del compte i personalitza la comunicació al compte denunciat.
+        resolve_description_html: No serà presa cap acció contra el compte denunciat, no se'n registrarà res i l'informe es tancarà.
         silence_description_html: El compte només serà visible a qui ja el seguia o l'ha cercat manualment, limitant-ne fortament l'abast. Sempre es pot revertir. Es tancaran tots els informes contra aquest compte.
         suspend_description_html: Aquest compte i tots els seus continguts seran inaccessibles i finalment eliminats, i interaccionar amb ell no serà possible. Reversible en 30 dies. Tanca tots els informes contra aquest compte.
-      actions_description_html: Decideix quina acció a prendre per a resoldre aquest informe. Si prens un acció punitiva contra el compte reportat, se li enviarà una notificació per correu electrònic, excepte quan la categoria <strong>Spam</strong> és seleccionada.
+      actions_description_html: Decideix quina acció a prendre per a resoldre aquest informe. Si prens un acció punitiva contra el compte denunciat, se li enviarà una notificació per correu electrònic, excepte quan se selecciona la categoria <strong>Spam</strong>.
       actions_description_remote_html: Decideix quina acció prendre per a resoldre aquest informe. Això només afectarà com <strong>el teu</strong> servidor es comunica amb aquest compte remot i en gestiona el contingut.
       add_to_report: Afegir més al informe
-      are_you_sure: N'estàs segur?
-      assign_to_self: Assignar-me
+      are_you_sure: Segur?
+      assign_to_self: Assigna'm
       assigned: Moderador assignat
-      by_target_domain: Domini del compte reportat
+      by_target_domain: Domini del compte denunciat
       category: Categoria
-      category_description_html: El motiu pel qual aquest compte o contingut ha estat reportat serà citat en la comunicació amb el compte reportat
+      category_description_html: El motiu pel qual aquest compte o contingut ha estat denunciat se citarà en la comunicació amb el compte denunciat
       comment:
         none: Cap
       comment_description_html: 'Per a donar més informació, %{name} ha escrit:'
-      created_at: Reportat
+      confirm_action: Confirma l'acció de moderació contra @%{acct}
+      created_at: Denunciat
       delete_and_resolve: Elimina les publicacions
       forwarded: Reenviat
       forwarded_to: Reenviat a %{domain}
@@ -598,28 +600,48 @@ ca:
       mark_as_unresolved: Marcar com a sense resoldre
       no_one_assigned: Ningú
       notes:
-        create: Afegir una nota
+        create: Afegeix una nota
         create_and_resolve: Resol amb una nota
         create_and_unresolve: Reobre amb una nota
         delete: Elimina
         placeholder: Descriu les accions que s'han pres o qualsevol altra actualització relacionada…
         title: Notes
-      notes_description_html: Veu i deixa notes als altres moderadors i a tu mateix
-      quick_actions_description_html: 'Pren una acció ràpida o desplaça''t avall per a veure el contingut reportat:'
+      notes_description_html: Mira i deixa notes als altres moderadors i a tu mateix
+      processed_msg: 'L''informe #%{id} ha estat processat amb èxit'
+      quick_actions_description_html: 'Pren una acció ràpida o desplaça''t avall per a veure el contingut denunciat:'
       remote_user_placeholder: l'usuari remot des de %{instance}
       reopen: Reobre l'informe
       report: 'Informe #%{id}'
-      reported_account: Compte reportat
-      reported_by: Reportat per
+      reported_account: Compte denunciat
+      reported_by: Denunciat per
       resolved: Resolt
-      resolved_msg: Informe resolt amb èxit!
+      resolved_msg: Informe resolt correctament!
       skip_to_actions: Salta a les accions
       status: Estat
       statuses: Contingut reportat
-      statuses_description_html: El contingut ofensiu serà citat en comunicació amb el compte reportat
-      target_origin: Origen del compte reportat
+      statuses_description_html: El contingut ofensiu se citarà en comunicació amb el compte denunciat
+      summary:
+        action_preambles:
+          delete_html: 'Estàs a punt d''<strong>esborrar</strong> alguns dels tuts de <strong>@%{acct}</strong>. Això provocarà:'
+          mark_as_sensitive_html: 'Estàs a punt de <strong>marcar</strong> alguns dels tuts de <strong>@%{acct}</strong> com a <strong>sensibles</strong>. Això provocarà:'
+          silence_html: 'Estàs a punt de <strong>limitar</strong> el compte de <strong>@%{acct}</strong>. Això provocarà:'
+          suspend_html: 'Estàs a punt de <strong>suspendre</strong> el compte de <strong>@%{acct}</strong>. Això provocarà:'
+        actions:
+          delete_html: Esborra els tuts ofensius
+          mark_as_sensitive_html: Marca el contingut multimèdia dels tuts com a sensibles
+          silence_html: Limita severament l'abast de <strong>@%{acct}</strong> fent el seus perfils i continguts només visibles per la gent que ja els estan seguint o que cerquin manualment els seus perfils
+          suspend_html: Suspèn <strong>@%{acct}</strong>, fent els seus perfils i continguts inaccessibles i impossibles d'interactuar
+        close_report: 'Marca l''informe #%{id} com a resolt'
+        close_reports_html: Marca <strong>tots</strong> els informes contra <strong>@%{acct}</strong> com a resolts
+        delete_data_html: Esborra el perfil de <strong>@%{acct}</strong> i els seus continguts dins de 30 dies des d'ara a no ser que es desactivi la suspensió abans
+        preview_preamble_html: "<strong>@%{acct}</strong> rebrà un avís amb el contingut següent:"
+        record_strike_html: Registra una acció contra <strong>@%{acct}</strong> per ajudar a escalar-ho en futures violacions des d'aquest compte
+        send_email_html: Envia un avís per correu electrònic a <strong>@%{acct}</strong>
+        warning_placeholder: Opcional raó adicional d'aquesta acció de moderació.
+      target_origin: Origen del compte denunciat
       title: Informes
       unassign: Treu l'assignació
+      unknown_action_msg: 'Acció desconeguda: %{action}'
       unresolved: No resolt
       updated_at: Actualitzat
       view_profile: Veure perfil
@@ -738,10 +760,10 @@ ca:
       account: Autor
       application: Aplicació
       back_to_account: Torna a la pàgina del compte
-      back_to_report: Torna a la pàgina del informe
+      back_to_report: Torna a la pàgina de l'informe
       batch:
-        remove_from_report: Treu del informe
-        report: Informe
+        remove_from_report: Treu de l'informe
+        report: Denuncia
       deleted: Eliminada
       favourites: Favorits
       history: Històric de versions
@@ -894,7 +916,7 @@ ca:
       subject: Nou compte per a revisar a %{instance} (%{username})
     new_report:
       body: "%{reporter} ha informat de %{target}"
-      body_remote: Algú des de el domini %{domain} ha informat sobre %{target}
+      body_remote: Algú des del domini %{domain} ha informat sobre %{target}
       subject: Informe nou per a %{instance} (#%{id})
     new_trends:
       body: 'Els següents elements necessiten una revisió abans de que puguin ser mostrats públicament:'
@@ -943,6 +965,8 @@ ca:
   auth:
     apply_for_account: Sol·licitar un compte
     change_password: Contrasenya
+    confirmations:
+      wrong_email_hint: Si aquesta adreça de correu electrònic no és correcte, pots canviar-la en els ajustos del compte.
     delete_account: Elimina el compte
     delete_account_html: Si vols suprimir el compte pots <a href="%{path}">fer-ho aquí</a>. Se't demanarà confirmació.
     description:

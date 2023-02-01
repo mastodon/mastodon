@@ -44,7 +44,7 @@ class LinkFooter extends React.PureComponent {
     this.props.onLogout();
 
     return false;
-  }
+  };
 
   render () {
     const { signedIn, permissions } = this.context.identity;
