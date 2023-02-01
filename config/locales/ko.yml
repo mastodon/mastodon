@@ -99,7 +99,7 @@ ko:
       no_limits_imposed: 제한 없음
       no_role_assigned: 할당된 역할 없음
       not_subscribed: 구독하지 않음
-      pending: 심사 대기
+      pending: 계류된 검토
       perform_full_suspension: 정지
       previous_strikes: 이전의 처벌들
       previous_strikes_description_html:
@@ -464,7 +464,7 @@ ko:
         description_html: 이 도메인과 하위 도메인의 모든 계정에 적용될 콘텐츠 정책을 정의할 수 있습니다.
         policies:
           reject_media: 미디어 거부
-          reject_reports: 신고 거부
+          reject_reports: 신고 반려
           silence: 제한
           suspend: 정지
         policy: 정책
@@ -791,7 +791,7 @@ ko:
       sidekiq_process_check:
         message_html: '%{value} 큐에 대한 사이드킥 프로세스가 발견되지 않았습니다. 사이드킥 설정을 검토해주세요'
     tags:
-      review: 심사 상태
+      review: 검토 상태
       updated_msg: 해시태그 설정이 성공적으로 갱신되었습니다
     title: 관리
     trends:
@@ -812,7 +812,7 @@ ko:
         title: 유행하는 링크
         usage_comparison: 오늘은 %{today}회 공유되었고, 어제는 %{yesterday}회 공유되었습니다
       only_allowed: 허용된 것만
-      pending_review: 심사 대기
+      pending_review: 계류된 검토
       preview_card_providers:
         allowed: 이 출처의 링크는 유행 목록에 실릴 수 있습니다
         description_html: 당신의 서버에서 많은 링크가 공유되고 있는 도메인들입니다. 링크의 도메인이 승인되기 전까지는 링크들은 공개적으로 트렌드에 게시되지 않습니다. 당신의 승인(또는 거절)은 서브도메인까지 확장됩니다.
@@ -894,7 +894,7 @@ ko:
       subject: "%{username} 님이 %{instance}에서 발생한 중재 결정에 대해 소명을 제출했습니다"
     new_pending_account:
       body: 아래에 새 계정에 대한 상세정보가 있습니다. 이 가입을 승인하거나 거부할 수 있습니다.
-      subject: '%{instance}의 새 계정(%{username})에 대한 심사가 대기중입니다'
+      subject: '%{instance}의 새 계정(%{username}) 검토'
     new_report:
       body: "%{reporter} 님이 %{target}를 신고했습니다"
       body_remote: '%{domain}의 누군가가 %{target}을 신고했습니다'
@@ -909,7 +909,7 @@ ko:
         no_approved_tags: 현재 승인된 유행 중인 해시태그가 없습니다.
         requirements: '이 후보들 중 어떤 것이라도 #%{rank}위의 승인된 유행 중인 해시태그를 앞지를 수 있으며, 이것은 현재 #%{lowest_tag_name}이고 %{lowest_tag_score}점을 기록하고 있습니다.'
         title: 유행하는 해시태그
-      subject: 새 트렌드가 %{instance}에서 심사 대기 중입니다
+      subject: '%{instance}의 새 유행물 검토'
   aliases:
     add_new: 별칭 만들기
     created_msg: 새 별칭이 성공적으로 만들어졌습니다. 이제 기존 계정에서 이주를 시작할 수 있습니다.
@@ -951,7 +951,7 @@ ko:
     delete_account: 계정 삭제
     delete_account_html: 계정을 삭제하고 싶은 경우, <a href="%{path}">여기서</a> 삭제할 수 있습니다. 삭제 전 확인 화면이 표시됩니다.
     description:
-      prefix_invited_by_user: "@%{name} 님이 당신을 이 마스토돈 서버로 초대했습니다!"
+      prefix_invited_by_user: "@%{name}님이 마스토돈 서버에 초대했습니다!"
       prefix_sign_up: 마스토돈에 가입하세요!
       suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 사용자와도 메시지를 주고 받을 수 있습니다!
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
@@ -1215,7 +1215,7 @@ ko:
       '86400': 하루
     expires_in_prompt: 영원히
     generate: 생성
-    invited_by: '당신을 초대한 사람:'
+    invited_by: '초대자:'
     max_uses:
       other: "%{count}회"
     max_uses_prompt: 제한 없음
