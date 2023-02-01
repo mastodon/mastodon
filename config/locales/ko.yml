@@ -555,7 +555,7 @@ ko:
     reports:
       account:
         notes:
-          other: "%{count}개의 기록"
+          other: "%{count}개의 참고사항"
       action_log: 감사 기록
       action_taken_by: 신고 처리자
       actions:
@@ -578,7 +578,7 @@ ko:
         none: 없음
       comment_description_html: '더 많은 정보를 위해, %{name} 님이 작성했습니다:'
       confirm_action: '@%{acct}에 취할 중재 결정에 대한 확인'
-      created_at: 리포트 시각
+      created_at: 신고 시각
       delete_and_resolve: 게시물 삭제
       forwarded: 전달됨
       forwarded_to: '%{domain}에게 전달됨'
@@ -588,21 +588,21 @@ ko:
       no_one_assigned: 아무도 없음
       notes:
         create: 기록 추가
-        create_and_resolve: 기록을 작성하고 해결됨으로 표시
-        create_and_unresolve: 기록 작성과 함께 미해결로 표시
+        create_and_resolve: 종결 및 참고사항 기재
+        create_and_unresolve: 재검토 및 참고사항 기재
         delete: 삭제
-        placeholder: 이 리포트에 대한 조치, 기타 관련 된 사항에 대해 설명합니다…
-        title: 노트
+        placeholder: 어떤 대응을 했는지 서설 또는 그 밖의 관련된 갱신 사항들
+        title: 참고사항
       notes_description_html: 확인하고 다른 중재자나 미래의 자신을 위해 기록을 작성합니다
       processed_msg: '신고 #%{id}가 정상적으로 처리되었습니다'
       quick_actions_description_html: '빠른 조치를 취하거나 아래로 스크롤해서 신고된 콘텐츠를 확인하세요:'
       remote_user_placeholder: '%{instance}의 리모트 사용자'
-      reopen: 리포트 다시 열기
+      reopen: 신고 재검토
       report: '신고 #%{id}'
       reported_account: 신고 대상 계정
       reported_by: 신고자
       resolved: 해결됨
-      resolved_msg: 리포트가 성공적으로 해결되었습니다!
+      resolved_msg: 신고를 잘 해결했습니다!
       skip_to_actions: 작업으로 건너뛰기
       status: 상태
       statuses: 신고된 콘텐츠
@@ -849,7 +849,7 @@ ko:
         trendable: 유행 목록에 나타날 수 있습니다
         trending_rank: '#%{rank}위로 유행 중'
         usable: 사용 가능
-        usage_comparison: 오늘은 %{today}회 사용되었고, 어제는 %{yesterday}회 사용되었습니다
+        usage_comparison: 오늘은 %{today}회 쓰였고, 어제는 %{yesterday}회 쓰임
         used_by_over_week:
           other: 지난 주 동안 %{count} 명의 사람들이 사용했습니다
       title: 유행
@@ -945,7 +945,7 @@ ko:
     your_token: 액세스 토큰
   auth:
     apply_for_account: 가입 요청하기
-    change_password: 패스워드
+    change_password: 암호
     confirmations:
       wrong_email_hint: 만약 이메일 주소가 올바르지 않다면, 계정 설정에서 수정할 수 있습니다.
     delete_account: 계정 삭제
@@ -956,7 +956,7 @@ ko:
       suffix: 계정 하나로 사람들을 팔로우 하고, 게시물을 작성하며 마스토돈을 포함한 다른 어떤 서버의 사용자와도 메시지를 주고 받을 수 있습니다!
     didnt_get_confirmation: 확인 메일을 받지 못하셨습니까?
     dont_have_your_security_key: 보안 키가 없습니까?
-    forgot_password: 비밀번호를 잊어버리셨습니까?
+    forgot_password: 암호를 잊었나요?
     invalid_reset_password_token: 암호 리셋 토큰이 올바르지 못하거나 기간이 만료되었습니다. 다시 요청해주세요.
     link_to_otp: 휴대폰의 2차 코드 혹은 복구 키를 입력해 주세요
     link_to_webauth: 보안 키 장치 사용
@@ -1006,7 +1006,7 @@ ko:
     follow_request: '당신은 다음 계정에 팔로우 신청을 했습니다:'
     following: '성공! 당신은 다음 계정을 팔로우 하고 있습니다:'
     post_follow:
-      close: 혹은, 당신은 이 윈도우를 닫을 수 있습니다.
+      close: 또한, 그저 이 창을 닫을 수도 있습니다.
       return: 사용자 프로필 보기
       web: 웹으로 가기
     title: '%{acct} 를 팔로우'
@@ -1044,7 +1044,7 @@ ko:
     proceed: 계정 삭제
     success_msg: 계정이 성공적으로 삭제되었습니다
     warning:
-      before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
+      before: '진행 전, 참고사항을 주의 깊게 읽기 바랍니다:'
       caches: 다른 서버에 캐싱된 정보들은 남아있을 수 있습니다
       data_removal: 당신의 게시물과 다른 정보들은 영구적으로 삭제 됩니다
       email_change_html: 계정을 지우지 않고도 <a href="%{path}">이메일 주소를 수정할 수 있습니다</a>
@@ -1267,7 +1267,7 @@ ko:
     set_redirect: 리디렉션 설정
     warning:
       backreference_required: 새 계정은 이 계정으로 역참조를 하도록 설정되어 있어야 합니다
-      before: '진행하기 전, 주의사항을 꼼꼼히 읽어보세요:'
+      before: '진행 전, 참고사항을 주의 깊게 읽기 바랍니다:'
       cooldown: 이주 뒤에는 새로운 이주를 하지 못하는 휴식기간이 존재합니다
       disabled_account: 이 계정은 완전한 사용이 불가능하게 됩니다. 하지만, 데이터 내보내기나 재활성화를 위해 접근할 수 있습니다.
       followers: 이 행동은 현재 계정의 모든 팔로워를 새 계정으로 이동시킵니다
