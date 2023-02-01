@@ -36,6 +36,7 @@
     = stylesheet_link_tag '/inert.css', skip_pipeline: true, media: 'all', id: 'inert-style'
     = stylesheet_link_tag custom_css_path, skip_pipeline: true, host: root_url, media: 'all'
 
+    -# HELLO_PATCH(19) import /js/script.js
     %script{ defer: true, src: '/js/script.js', data: { domain: ENV['LOCAL_DOMAIN'] } }
 
     = yield :header_tags
