@@ -83,7 +83,7 @@ ja:
         media_cache_retention_period: 正の値に設定されている場合、ダウンロードされたメディアファイルは指定された日数の後に削除され、リクエストに応じて再ダウンロードされます。
         peers_api_enabled: このサーバーが Fediverse で遭遇したドメイン名のリストです。このサーバーが知っているだけで、特定のサーバーと連合しているかのデータは含まれません。これは一般的に Fediverse に関する統計情報を収集するサービスによって使用されます。
         profile_directory: ディレクトリには、掲載する設定をしたすべてのユーザーが一覧表示されます。
-        require_invite_text: アカウント登録が承認制の場合、申請事由の入力を必須にします
+        require_invite_text: アカウント登録が承認制の場合、登録の際の申請事由の入力を必須にします
         site_contact_email: 法律またはサポートに関する問い合わせ先
         site_contact_username: マストドンでの連絡方法
         site_extended_description: 訪問者やユーザーに役立つかもしれない任意の追加情報。Markdownが使えます。
@@ -94,7 +94,7 @@ ja:
         thumbnail: サーバー情報と共に表示される、アスペクト比が約 2:1 の画像。
         timeline_preview: ログインしていないユーザーがサーバー上の最新の公開投稿を閲覧できるようにします。
         trendable_by_default: トレンドの審査を省略します。トレンドは掲載後でも個別に除外できます。
-        trends: トレンドは、サーバー上でどの投稿、ハッシュタグ、ニュース記事が人気を集めているかを示します。
+        trends: トレンドは、サーバー上で人気を集めている投稿、ハッシュタグ、ニュース記事などが表示されます。
       form_challenge:
         current_password: セキュリティ上重要なエリアにアクセスしています
       imports:
@@ -121,11 +121,11 @@ ja:
         chosen_languages: 選択すると、選択した言語の投稿のみが公開タイムラインに表示されるようになります
         role: このロールはユーザーが持つ権限を管理します
       user_role:
-        color: UI 全体で使用される色（RGB hex 形式）
+        color: UI 全体でロールの表示に使用される色（16進数RGB形式）
         highlighted: これによりロールが公開されます。
         name: ロールのバッジを表示する際の表示名
         permissions_as_keys: このロールを持つユーザーは次の機能にアクセスできます
-        position: 特定の状況では、より高いロールが競合の解決を決定します。特定のアクションは優先順位が低いロールでのみ実行できます。
+        position: 場合により、より高いロールのユーザーが紛争の解決を決定します。特定のアクションは優先度が低いロールでのみ実行できます。
       webhook:
         events: 送信するイベントを選択
         url: イベントの送信先
@@ -232,16 +232,16 @@ ja:
       form_admin_settings:
         activity_api_enabled: APIでユーザーアクティビティに関する集計統計を公開する
         backups_retention_period: ユーザーアーカイブの保持期間
-        bootstrap_timeline_accounts: 新規ユーザーに必ずおすすめするアカウント
-        closed_registrations_message: サインアップできない場合のカスタムメッセージ
+        bootstrap_timeline_accounts: おすすめユーザーに常に表示するアカウント
+        closed_registrations_message: アカウント作成を停止している時のカスタムメッセージ
         content_cache_retention_period: コンテンツキャッシュの保持期間
         custom_css: カスタムCSS
         mascot: カスタムマスコット（レガシー）
         media_cache_retention_period: メディアキャッシュの保持期間
-        peers_api_enabled: APIで接続しているサーバーのリストを公開する
+        peers_api_enabled: 発見したサーバーのリストをAPIで公開する
         profile_directory: ディレクトリを有効にする
         registrations_mode: 新規登録が可能な人
-        require_invite_text: 意気込み理由の入力を必須にする。
+        require_invite_text: 申請事由の入力を必須にする
         show_domain_blocks: ドメインブロックを表示
         show_domain_blocks_rationale: ドメインがブロックされた理由を表示
         site_contact_email: 連絡先メールアドレス
@@ -253,7 +253,7 @@ ja:
         theme: デフォルトテーマ
         thumbnail: サーバーのサムネイル
         timeline_preview: 公開タイムラインへの未認証のアクセスを許可する
-        trendable_by_default: 審査前のハッシュタグのトレンドへの表示を許可する
+        trendable_by_default: 審査前のトレンドの掲載を許可する
         trends: トレンドを有効にする
       interactions:
         must_be_follower: フォロワー以外からの通知をブロック
