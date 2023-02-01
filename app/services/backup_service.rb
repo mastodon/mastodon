@@ -16,11 +16,21 @@ class BackupService < BaseService
 
   private
 
-  def outbox_collection
-    collection = serialize(collection_presenter, ActivityPub::CollectionSerializer)
+  def build_outbox_json!(file)
+    skeleton = serialize(collection_presenter, ActivityPub::CollectionSerializer)
+    skeleton[:orderedItems] = ['!PLACEHOLDER!']
+    skeleton = Oj.dump(skeleton)
+    prepend    = skeleton.gsub(/"!PLACEHOLDER!".*/, '')
+    append     = skeleton.gsub(/.*"!PLACEHOLDER!"/, '')
+    add_comma  = false
+
+    file.write(prepend)
 
     account.statuses.with_includes.reorder(nil).find_in_batches do |statuses|
-      statuses.each do |status|
+      file.write(',') if add_comma
+      add_comma = true
+
+      file.write(statuses.map do |status|
         item = serialize_payload(ActivityPub::ActivityPresenter.from_status(status), ActivityPub::ActivitySerializer)
         item.delete(:@context)
 
@@ -30,13 +40,13 @@ class BackupService < BaseService
           end
         end
 
-        collection[:orderedItems] << item
-      end
+        Oj.dump(item)
+      end.join(','))
 
       GC.start
     end
 
-    collection
+    file.write(append)
   end
 
   def build_archive!
@@ -77,11 +87,18 @@ class BackupService < BaseService
   end
 
   def dump_outbox!(tar)
-    json = Oj.dump(outbox_collection)
+    tmp_file = Tempfile.new(%w(outbox .json))
+    build_outbox_json!(tmp_file)
 
-    tar.add_file_simple('outbox.json', 0o444, json.bytesize) do |io|
-      io.write(json)
+    tar.add_file_simple('outbox.json', 0o444, tmp_file.size) do |io|
+      tmp_file.rewind
+      while (buffer = tmp_file.read(CHUNK_SIZE))
+        io.write(buffer)
+      end
     end
+  ensure
+    tmp_file.close
+    tmp_file.unlink
   end
 
   def dump_actor!(tar)
