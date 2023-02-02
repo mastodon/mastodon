@@ -3,12 +3,12 @@ import CircleDropdown from '../components/circle_dropdown';
 import { changeComposeCircle } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
-  value: state.getIn(['compose', 'circle_id']) ?? '',
+  value: state.getIn(['compose', 'circle_id']) || '',
   visible: state.getIn(['compose', 'privacy']) === 'limited',
   limitedReply: state.getIn(['compose', 'privacy']) === 'limited' && state.getIn(['compose', 'reply_status', 'visibility']) === 'limited',
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
 
   onChange (value) {
     dispatch(changeComposeCircle(value));

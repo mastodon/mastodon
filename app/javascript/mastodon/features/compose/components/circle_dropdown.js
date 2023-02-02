@@ -29,9 +29,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default @connect(mapStateToProps)
+@connect(mapStateToProps)
 @injectIntl
-class CircleDropdown extends React.PureComponent {
+export default class CircleDropdown extends React.PureComponent {
 
   static contextTypes = {
     router: PropTypes.object,
