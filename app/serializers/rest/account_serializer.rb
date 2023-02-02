@@ -26,6 +26,16 @@ class REST::AccountSerializer < ActiveModel::Serializer
     end
   end
 
+  class RoleSerializer < ActiveModel::Serializer
+    attributes :id, :name, :color
+
+    def id
+      object.id.to_s
+    end
+  end
+
+  has_many :roles, serializer: RoleSerializer, if: :local?
+
   class FieldSerializer < ActiveModel::Serializer
     include FormattingHelper
 
@@ -112,6 +122,14 @@ class REST::AccountSerializer < ActiveModel::Serializer
 
   def silenced
     object.silenced?
+  end
+
+  def roles
+    if object.suspended?
+      []
+    else
+      [object.user.role].compact.filter { |role| role.highlighted? }
+    end
   end
 
   def noindex

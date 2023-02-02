@@ -441,6 +441,7 @@ nl:
         private_comment_description_html: 'Om je te helpen bijhouden waar de geïmporteerde blokkades vandaan komen, worden de geïmporteerde blokkades met de volgende privé-opmerking aangemaakt: <q>%{comment}</q>'
         private_comment_template: Geïmporteerd van %{source} op %{date}
         title: Domeinblokkades importeren
+      invalid_domain_block: 'Een of meer domeinblokkades zijn overgeslagen vanwege de volgende fout(en): %{error}'
       new:
         title: Domeinblokkades importeren
       no_file: Geen bestand geselecteerd
@@ -575,7 +576,10 @@ nl:
         mark_as_sensitive_description_html: De media in de gerapporteerde berichten worden gemarkeerd als gevoelig en er wordt een overtreding geregistreerd om toekomstige overtredingen van hetzelfde account sneller af te kunnen handelen.
         other_description_html: Bekijk meer opties voor het controleren van het gedrag van en de communicatie met het gerapporteerde account.
         resolve_description_html: Er wordt tegen het gerapporteerde account geen maatregel genomen, geen overtreding geregistreerd en de rapportage wordt gemarkeerd als opgelost.
+        silence_description_html: Het account is alleen zichtbaar voor degenen die het al volgen of handmatig opzoeken, waardoor het bereik ernstig wordt beperkt. Dit kan altijd ongedaan worden gemaakt. Dit sluit alle rapporten tegen dit account af.
+        suspend_description_html: Het account en al zijn inhoud zullen niet toegankelijk zijn en uiteindelijk verwijderd worden en er zal geen interactie met het account mogelijk zijn. Dit is omkeerbaar binnen 30 dagen. Dit sluit alle rapporten tegen dit account af.
       actions_description_html: Beslis welke maatregel moet worden genomen om deze rapportage op te lossen. Wanneer je een (straf)maatregel tegen het gerapporteerde account neemt, krijgt het account een e-mailmelding, behalve wanneer de <strong>spam</strong>-categorie is gekozen.
+      actions_description_remote_html: Beslis welke actie moet worden ondernomen om deze rapportage op te lossen. Dit is alleen van invloed op hoe <strong>jouw</strong> server met dit externe account communiceert en de inhoud ervan beheert.
       add_to_report: Meer aan de rapportage toevoegen
       are_you_sure: Weet je het zeker?
       assign_to_self: Aan mij toewijzen
@@ -586,6 +590,7 @@ nl:
       comment:
         none: Geen
       comment_description_html: 'Om meer informatie te verstrekken, schreef %{name}:'
+      confirm_action: Bevestig moderatiemaatregel tegen @%{acct}
       created_at: Gerapporteerd op
       delete_and_resolve: Bericht verwijderen
       forwarded: Doorgestuurd
@@ -602,6 +607,7 @@ nl:
         placeholder: Beschrijf welke maatregelen zijn genomen of andere gerelateerde opmerkingen...
         title: Opmerkingen
       notes_description_html: Bekijk en laat opmerkingen achter voor andere moderatoren en voor jouw toekomstige zelf
+      processed_msg: 'Rapportage #%{id} succesvol afgehandeld'
       quick_actions_description_html: 'Neem een snelle maatregel of scroll naar beneden om de gerapporteerde inhoud te bekijken:'
       remote_user_placeholder: de externe gebruiker van %{instance}
       reopen: Rapportage heropenen
@@ -614,9 +620,28 @@ nl:
       status: Rapportages
       statuses: Gerapporteerde inhoud
       statuses_description_html: De problematische inhoud wordt aan het gerapporteerde account medegedeeld
+      summary:
+        action_preambles:
+          delete_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> te <strong>verwijderen</strong>. Dit zal:'
+          mark_as_sensitive_html: 'Je staat op het punt om enkele berichten van <strong>@%{acct}</strong> als <strong>gevoelig te markeren</strong>. Dit zal:'
+          silence_html: 'Je staat op het punt om het account van <strong>@%{acct}</strong> te <strong>beperken</strong>. Dit zal:'
+          suspend_html: 'Je staat op het punt om het account van <strong>@%{acct}</strong> <strong>op te schorten</strong>. Dit zal:'
+        actions:
+          delete_html: De aanstootgevende berichten verwijderen
+          mark_as_sensitive_html: De media in de aanstootgevende berichten als gevoelig markeren
+          silence_html: Het account van <strong>@%{acct}</strong> ernstig beperken, door diens profiel en inhoud alleen zichtbaar te maken aan mensen die dit account al volgen of aan mensen die het account handmatig opzoeken
+          suspend_html: Het account van <strong>@%{acct}</strong> opschorten, waarmee diens profiel en inhoud niet toegankelijk zijn en het onmogelijk is om interactie te hebben
+        close_report: 'Rapportage #%{id} als opgelost markeren'
+        close_reports_html: "<strong>Alle</strong> rapportages tegen <strong>@%{acct}</strong> als opgelost markeren"
+        delete_data_html: Het account en inhoud van <strong>@%{acct}</strong> over 30 dagen verwijderen, tenzij die in de tussentijd wordt gedeblokkeerd
+        preview_preamble_html: "<strong>@%{acct}</strong> zal een waarschuwing ontvangen met de volgende inhoud:"
+        record_strike_html: Registreer een overtreding van <strong>@%{acct}</strong> om je te helpen met het sneller afhandelen van toekomstige overtredingen van dit account
+        send_email_html: Een waarschuwingsmail naar <strong>@%{acct}</strong> sturen
+        warning_placeholder: Optionele aanvullende redenen voor de moderatie-actie.
       target_origin: Herkomst van de gerapporteerde accounts
       title: Rapportages
       unassign: Niet langer toewijzen
+      unknown_action_msg: 'Onbekende actie: %{action}'
       unresolved: Onopgelost
       updated_at: Bijgewerkt
       view_profile: Profiel bekijken
@@ -711,6 +736,8 @@ nl:
         preamble: Het tonen van interessante inhoud is van essentieel belang voor het aan boord halen van nieuwe gebruikers, die mogelijk niemand van Mastodon kennen. Bepaal hoe verschillende functies voor het ontdekken van inhoud en gebruikers op jouw server werken.
         profile_directory: Gebruikersgids
         public_timelines: Openbare tijdlijnen
+        publish_discovered_servers: Ontdekte servers publiceren
+        publish_statistics: Statistieken publiceren
         title: Ontdekken
         trends: Trends
       domain_blocks:
@@ -938,6 +965,8 @@ nl:
   auth:
     apply_for_account: Account aanvragen
     change_password: Wachtwoord
+    confirmations:
+      wrong_email_hint: Als dat e-mailadres niet correct is, kun je het wijzigen in je accountinstellingen.
     delete_account: Account verwijderen
     delete_account_html: Wanneer je jouw account graag wilt verwijderen, kun je dat <a href="%{path}">hier doen</a>. We vragen jou daar om een bevestiging.
     description:
@@ -1365,6 +1394,9 @@ nl:
       unrecognized_emoji: is geen bestaande emoji-reactie
   relationships:
     activity: Accountactiviteit
+    confirm_follow_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt volgen?
+    confirm_remove_selected_followers: Weet je zeker dat je de geselecteerde volgers wilt verwijderen?
+    confirm_remove_selected_follows: Weet je zeker dat je de geselecteerde gevolgde accounts wilt verwijderen?
     dormant: Sluimerend
     follow_selected_followers: Geselecteerde volgers volgen
     followers: Volgers
@@ -1454,7 +1486,7 @@ nl:
     notifications: Meldingen
     preferences: Voorkeuren
     profile: Profiel
-    relationships: Volgers en gevolgden
+    relationships: Volgers en gevolgde accounts
     statuses_cleanup: Automatisch berichten verwijderen
     strikes: Vastgestelde overtredingen
     two_factor_authentication: Tweestapsverificatie
